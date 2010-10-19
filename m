@@ -1,31 +1,32 @@
-Return-Path: <richard.purdie@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D84CF4C801BF
-	for <yocto@yoctoproject.org>; Tue, 19 Oct 2010 16:42:58 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 19 Oct 2010 14:42:57 -0700
+Return-Path: <darren.hart@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id ECF9B4C80815
+	for <yocto@yoctoproject.org>; Tue, 19 Oct 2010 16:45:08 -0500 (CDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 19 Oct 2010 14:45:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.57,352,1283756400"; d="scan'208";a="338055627"
-Received: from unknown (HELO [10.255.16.64]) ([10.255.16.64])
-	by azsmga001.ch.intel.com with ESMTP; 19 Oct 2010 14:42:54 -0700
-From: Richard Purdie <richard.purdie@intel.com>
-To: Tom Zanussi <tom.zanussi@intel.com>
-In-Reply-To: <1287504271.26874.205.camel@elmorro>
-References: <4807CBBFD12C484EBEAB6D8DFBDCE47C267E303C06@orsmsx501.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.57,352,1283756400"; d="scan'208";a="848847787"
+Received: from unknown (HELO [10.255.12.104]) ([10.255.12.104])
+	by fmsmga001.fm.intel.com with ESMTP; 19 Oct 2010 14:44:49 -0700
+Message-ID: <4CBE1150.6090807@intel.com>
+Date: Tue, 19 Oct 2010 14:44:48 -0700
+From: Darren Hart <darren.hart@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.9) Gecko/20100922 Thunderbird/3.1.4
+MIME-Version: 1.0
+To: "Zanussi, Tom" <tom.zanussi@intel.com>
+References: <4807CBBFD12C484EBEAB6D8DFBDCE47C267E303C06@orsmsx501.amr.corp.intel.com>	
 	<B27EBC40D200ED48A3F4CC2EBEABAE0B25BBC510A2@orsmsx501.amr.corp.intel.com>
 	<1287504271.26874.205.camel@elmorro>
-Date: Tue, 19 Oct 2010 22:42:47 +0100
-Message-ID: <1287524567.16386.13.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
+In-Reply-To: <1287504271.26874.205.camel@elmorro>
 X-Mailman-Approved-At: Tue, 19 Oct 2010 17:06:31 -0500
-Cc: "'McCombe, Kevin'" <kevin.mccombe@windriver.com>, "Lock,
-	Joshua" <joshua.lock@intel.com>, "Li, Susie" <susie.li@intel.com>, "'Ta,
+Cc: "Li, Susie" <susie.li@intel.com>, "Lock, Joshua" <joshua.lock@intel.com>,
+	"'McCombe, Kevin'" <kevin.mccombe@windriver.com>, "'Ta,
 	Lieu'" <Lieu.Ta@windriver.com>, "'Anderson,
 	Paul'" <paul.anderson@windriver.com>,
 	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>,
-	'Bruce Ashfield' <bruce.ashfield@windriver.com>, "Hart,
-	Darren" <darren.hart@intel.com>
+	'Bruce Ashfield' <bruce.ashfield@windriver.com>, "Purdie,
+	Richard" <richard.purdie@intel.com>
 Subject: Re: Yocto Linux Project Sync notes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -38,29 +39,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Oct 2010 21:42:59 -0000
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Tue, 19 Oct 2010 21:45:09 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-T24gVHVlLCAyMDEwLTEwLTE5IGF0IDExOjA0IC0wNTAwLCBUb20gWmFudXNzaSB3cm90ZToKPiBP
-biBUdWUsIDIwMTAtMTAtMTkgYXQgMDg6NDAgLTA3MDAsIFN0ZXdhcnQsIERhdmlkIEMgd3JvdGU6
-Cj4gCj4gPiAKPiA+ICogZGVtbwo+ID4gCj4gPiAqKiBBbGV4IHdpbGwgcHV0IHRoZSBoYXJkd2Fy
-ZSBiaXRzIHRvZ2V0aGVyLCBEYXJyZW4gdG8gd3JpdGUgZG93biAKPiA+IHRoZSBkZXNjcmlwdGlv
-biBvZiB3aGF0IG5lZWRzIHRvIGNvbWUgdG9nZXRoZXIgYW5kIHdpa2ktZnkgaXQuIFJQCj4gPiBz
-dWdnZXN0cyB0aGF0IG1heWJlIGdldHRpbmcgYWxsIHRoZSBwaWVjZXMgcnVubmluZyBvbiBvbmUg
-aGFyZHdhcmUgCj4gPiBtaWdodCBiZSBhIGdvb2Qgd2F5IHRvIHRyeSBpdCBvdXQganVzdCBpbiBj
-YXNlLgo+IAo+IEkgY2FuIHRyeSBnZXR0aW5nIGV2ZXJ5dGhpbmcgcnVubmluZyBvbiBvbmUgbWFj
-aGluZSB0b28gLSB3b3VsZCBpdCBtYWtlCj4gc2Vuc2UgdG8gdHJ5IHRoYXQgYWxsIG9uIGUuZy4g
-ZW1lbmxvdywgb3IgYWxsIG9uIGEgbGFwdG9wIHVzaW5nIHFlbXUsIG9yCj4gYm90aD8KCkknZCBn
-byB3aXRoIGVtZW5sb3cgc2luY2UgaXQgaGFzIHdvcmtpbmcgc291bmQuIFdlJ3ZlIG5ldmVyIHN1
-cHBvcnRlZApzb3VuZCB1bmRlciBxZW11LgoKQ2hlZXJzLAoKUmljaGFyZAoKLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-CkludGVsIENvcnBvcmF0aW9uIChVSykgTGltaXRlZApSZWdpc3RlcmVkIE5vLiAxMTM0OTQ1IChF
-bmdsYW5kKQpSZWdpc3RlcmVkIE9mZmljZTogUGlwZXJzIFdheSwgU3dpbmRvbiBTTjMgMVJKClZB
-VCBObzogODYwIDIxNzMgNDcKClRoaXMgZS1tYWlsIGFuZCBhbnkgYXR0YWNobWVudHMgbWF5IGNv
-bnRhaW4gY29uZmlkZW50aWFsIG1hdGVyaWFsIGZvcgp0aGUgc29sZSB1c2Ugb2YgdGhlIGludGVu
-ZGVkIHJlY2lwaWVudChzKS4gQW55IHJldmlldyBvciBkaXN0cmlidXRpb24KYnkgb3RoZXJzIGlz
-IHN0cmljdGx5IHByb2hpYml0ZWQuIElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZApyZWNpcGll
-bnQsIHBsZWFzZSBjb250YWN0IHRoZSBzZW5kZXIgYW5kIGRlbGV0ZSBhbGwgY29waWVzLgo=
+On 10/19/2010 09:04 AM, Zanussi, Tom wrote:
+> On Tue, 2010-10-19 at 08:40 -0700, Stewart, David C wrote:
+>
+>>
+>> * demo
+>>
+>> ** Alex will put the hardware bits together, Darren to write down the description of what needs to come together and wiki-fy it. RP suggests that maybe getting all the pieces running on one hardware might be a good way to try it out just in case.
+>>
+>
+> I can try getting everything running on one machine too - would it make
+> sense to try that all on e.g. emenlow, or all on a laptop using qemu, or
+> both?
 
+Everything on One machine doesn't make a lot of sense to me, for two 
+reasons:
+
+1) This is heavily network dependent, making sure the machines can find 
+eachother is a critical aspect of testing this.
+2) Qemu does some magic with tun/tap devices, you have to configure 
+things to get multicast working between guests. I've tested the 
+mediatomb image in qemu, it works. We need to test on real hardware.
+3) We don't an image that will install everything on the same machine, 
+and making one doesn't make a lot of sense to me.
+4) Running a NAS to serve up media to itself doesn't test the networking 
+side of things as well.
+
+I'd rather use 3 real devices (even if they are all emenlow or 
+blacksand) rather than qemu or all on one.
+
+--
+Darren
+
+>
+> Tom
+>
+
+
+-- 
+Darren Hart
+Embedded Linux Kernel
 
