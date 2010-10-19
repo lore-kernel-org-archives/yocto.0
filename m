@@ -1,21 +1,45 @@
-Return-Path: <ke.yu@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 1B1514C81199
-	for <yocto@yoctoproject.org>; Tue, 19 Oct 2010 09:22:54 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Oct 2010 07:22:53 -0700
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 279CD4C80121
+	for <yocto@yoctoproject.org>; Tue, 19 Oct 2010 10:40:20 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 19 Oct 2010 08:40:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.57,350,1283756400"; d="scan'208";a="848680969"
-Received: from kyu3-hedt.bj.intel.com (HELO localhost) ([172.16.182.108])
-	by fmsmga001.fm.intel.com with ESMTP; 19 Oct 2010 07:22:53 -0700
-From: ke.yu@intel.com
-To: yocto@yoctoproject.org
-Date: Tue, 19 Oct 2010 22:26:49 +0800
-Message-Id: <1287498409-12928-2-git-send-email-ke.yu@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1287498409-12928-1-git-send-email-ke.yu@intel.com>
-References: <1287498409-12928-1-git-send-email-ke.yu@intel.com>
-Subject: [PATCH] sysklogd: correct the syslog link and conf file
+X-IronPort-AV: E=Sophos;i="4.57,351,1283756400"; d="scan'208";a="668830478"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga001.jf.intel.com with ESMTP; 19 Oct 2010 08:40:19 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Tue, 19 Oct 2010 08:40:19 -0700
+Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
+	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
+	Tue, 19 Oct 2010 08:40:19 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "Stewart, David C" <david.c.stewart@intel.com>, "'McCombe, Kevin'"
+	<kevin.mccombe@windriver.com>, "Wold, Saul" <saul.wold@intel.com>, "Zhang, 
+	Jessica" <jessica.zhang@intel.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Polk, Jeffrey'" <jeff.polk@windriver.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "Li, Susie" <susie.li@intel.com>, "Lock,
+	Joshua"
+	<joshua.lock@intel.com>, 'Bruce Ashfield' <bruce.ashfield@windriver.com>,
+	"Zanussi, Tom" <tom.zanussi@intel.com>, "Hart, Darren"
+	<darren.hart@intel.com>
+Date: Tue, 19 Oct 2010 08:40:18 -0700
+Thread-Topic: Yocto Linux Project Sync notes
+Thread-Index: AcsY0Ei14kcYesAzSBGri5n46+ni7xWzbnJg
+Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BBC510A2@orsmsx501.amr.corp.intel.com>
+References: <4807CBBFD12C484EBEAB6D8DFBDCE47C267E303C06@orsmsx501.amr.corp.intel.com>
+In-Reply-To: <4807CBBFD12C484EBEAB6D8DFBDCE47C267E303C06@orsmsx501.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+X-Mailman-Approved-At: Tue, 19 Oct 2010 10:45:28 -0500
+Cc: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>, "'Anderson,
+	Paul'" <paul.anderson@windriver.com>, "'Ta, Lieu'" <Lieu.Ta@windriver.com>
+Subject: Yocto Linux Project Sync notes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,191 +51,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Oct 2010 14:22:54 -0000
+X-List-Received-Date: Tue, 19 Oct 2010 15:40:20 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Yu Ke <ke.yu@intel.com>
+Attending: davest, RP, Saul, Kevin, Jessica, Tom, Mark, Alex, Jeff, Josh=20
 
-This commit fix [BUGID #482]
+Exec Summary:
+	EIGHT DAYS TO LAUNCH.
+	RC3 testing is going, will be finished on time for Oct 22
+	Readiness review on Oct 21, Saul will set up
+	The Fetcher is showing serious problems, this needs to be addressed for re=
+lease. Richard will update daily on this.
 
-Two issues cause bug 482:
-- firsty, there are two version of syslog: sysklogd and busybox.
-  the busybox one is directly installed as /etc/init.d/syslog,
-  and the sysklogd one is installed by update-alternative. the
-  update-alternative will thus fail because the /etc/init.d/syslog
-  (busybox one) already exist and not a link. so the correct way
-  is to install busybox one by update-alternative, the layout will be:
-  /etc/init.d/syslog.busybox
-  /etc/init.d/syslog.sysklogd
-  /etc/init.d/syslog -> syslog.busybox or
-  /etc/init.d/syslog -> syslog.sysklogd
+	You all have items to complete below, please follow up=20
 
-- secondly, sysklogd default conf is not comply with poky. Its dir /var/adm/
-  does not exist. Check the debian /etc/syslog.conf and find it is more
-  sophiscated and suitable, so port /etc/syslog.conf from debian.
 
-Signed-off-by: Yu Ke <ke.yu@intel.com>
----
- meta/recipes-core/busybox/busybox.inc            |   13 ++++-
- meta/recipes-core/busybox/busybox_1.16.2.bb      |    2 +-
- meta/recipes-extended/sysklogd/files/syslog.conf |   70 ++++++++++++++++++++++
- meta/recipes-extended/sysklogd/sysklogd.inc      |    3 +-
- meta/recipes-extended/sysklogd/sysklogd_1.5.bb   |    2 +-
- 5 files changed, 86 insertions(+), 4 deletions(-)
- create mode 100644 meta/recipes-extended/sysklogd/files/syslog.conf
+ARs:
+	AR: Saul - set up readiness review
+	AR: Darren - demo use case notes to ScottR
+	AR: Kevin - do we need to retain the WR copyrights on the kernel doc? or c=
+an we rebrand as LF?
+	AR: Saul - ask Nitin to investigate delta with the MeeGo toolchain
+	AR: Dave to send CB, boards, panels, etc to Tom
+	AR: Bruce to take the recipes, bring up the 4 arch demo and train Alex on =
+them
+	AR: MarkH - Package summary doc to ScottR
+	AR: Jessica - work on getting Eclipse plug-in download location set up wit=
+h ScottR
 
-diff --git a/meta/recipes-core/busybox/busybox.inc b/meta/recipes-core/busybox/busybox.inc
-index b3c6c66..b8c009c 100644
---- a/meta/recipes-core/busybox/busybox.inc
-+++ b/meta/recipes-core/busybox/busybox.inc
-@@ -53,7 +53,7 @@ do_install () {
- 	# Move back the sh symlink
- 	test -h ${D}/busybox${base_bindir}/sh && mv ${D}/busybox${base_bindir}/sh ${D}${base_bindir}/
- 
--	install -m 0755 ${WORKDIR}/syslog ${D}${sysconfdir}/init.d/
-+	install -m 0755 ${WORKDIR}/syslog ${D}${sysconfdir}/init.d/syslog.${PN}
- 	install -m 644 ${WORKDIR}/syslog.conf ${D}${sysconfdir}/
- 	if grep "CONFIG_CROND=y" ${WORKDIR}/defconfig; then
- 		# Move crond back to /usr/sbin/crond
-@@ -107,6 +107,8 @@ pkg_postinst_${PN} () {
- 	
- 	# This adds the links, remember that this has to work when building an image too, hence the $D
- 	while read link; do case "$link" in /*/*/*) to="../../bin/busybox";; /bin/*) to="busybox";; /*/*) to="../bin/busybox";; esac; bn=`basename $link`; update-alternatives --install $link $bn $to 50; done <$D/etc/busybox.links
-+
-+	update-alternatives --install ${sysconfdir}/init.d/syslog syslog-init syslog.${PN} 50
- }
- 
- pkg_prerm_${PN} () {
-@@ -138,4 +140,13 @@ pkg_prerm_${PN} () {
- 		bn=`basename $link`
- 		sh /usr/bin/update-alternatives --remove $bn $to
- 	done </etc/busybox.links
-+
-+	# remove syslog
-+	if test "x$D" = "x"; then
-+		if test "$1" = "upgrade" -o "$1" = "remove"; then
-+			/etc/init.d/syslog stop
-+		fi
-+	fi
-+
-+	update-alternatives --remove syslog-init syslog.${PN}
- }
-diff --git a/meta/recipes-core/busybox/busybox_1.16.2.bb b/meta/recipes-core/busybox/busybox_1.16.2.bb
-index 0952f4d..80dbeab 100644
---- a/meta/recipes-core/busybox/busybox_1.16.2.bb
-+++ b/meta/recipes-core/busybox/busybox_1.16.2.bb
-@@ -1,5 +1,5 @@
- require busybox.inc
--PR = "r0"
-+PR = "r1"
- 
- SRC_URI = "http://www.busybox.net/downloads/busybox-${PV}.tar.bz2;name=tarball \
-            file://udhcpscript.patch \
-diff --git a/meta/recipes-extended/sysklogd/files/syslog.conf b/meta/recipes-extended/sysklogd/files/syslog.conf
-new file mode 100644
-index 0000000..795d735
---- /dev/null
-+++ b/meta/recipes-extended/sysklogd/files/syslog.conf
-@@ -0,0 +1,70 @@
-+#  /etc/syslog.conf	Configuration file for syslogd.
-+#
-+#  Ported from debian by Yu Ke <ke.yu@intel.com>
-+#
-+
-+#
-+# First some standard logfiles.  Log by facility.
-+#
-+
-+auth,authpriv.*			/var/log/auth.log
-+*.*;auth,authpriv.none		-/var/log/syslog
-+#cron.*				/var/log/cron.log
-+daemon.*			-/var/log/daemon.log
-+kern.*				-/var/log/kern.log
-+lpr.*				-/var/log/lpr.log
-+mail.*				-/var/log/mail.log
-+user.*				-/var/log/user.log
-+
-+#
-+# Logging for the mail system.  Split it up so that
-+# it is easy to write scripts to parse these files.
-+#
-+mail.info			-/var/log/mail.info
-+mail.warn			-/var/log/mail.warn
-+mail.err			/var/log/mail.err
-+
-+# Logging for INN news system
-+#
-+news.crit			/var/log/news/news.crit
-+news.err			/var/log/news/news.err
-+news.notice			-/var/log/news/news.notice
-+
-+#
-+# Some `catch-all' logfiles.
-+#
-+*.=debug;\
-+	auth,authpriv.none;\
-+	news.none;mail.none	-/var/log/debug
-+*.=info;*.=notice;*.=warn;\
-+	auth,authpriv.none;\
-+	cron,daemon.none;\
-+	mail,news.none		-/var/log/messages
-+
-+#
-+# Emergencies are sent to everybody logged in.
-+#
-+*.emerg				*
-+
-+#
-+# I like to have messages displayed on the console, but only on a virtual
-+# console I usually leave idle.
-+#
-+#daemon,mail.*;\
-+#	news.=crit;news.=err;news.=notice;\
-+#	*.=debug;*.=info;\
-+#	*.=notice;*.=warn	/dev/tty8
-+
-+# The named pipe /dev/xconsole is for the `xconsole' utility.  To use it,
-+# you must invoke `xconsole' with the `-file' option:
-+#
-+#    $ xconsole -file /dev/xconsole [...]
-+#
-+# NOTE: adjust the list below, or you'll go crazy if you have a reasonably
-+#      busy site..
-+#
-+daemon.*;mail.*;\
-+	news.err;\
-+	*.=debug;*.=info;\
-+	*.=notice;*.=warn	|/dev/xconsole
-+
-diff --git a/meta/recipes-extended/sysklogd/sysklogd.inc b/meta/recipes-extended/sysklogd/sysklogd.inc
-index 76ab707..9bd7728 100644
---- a/meta/recipes-extended/sysklogd/sysklogd.inc
-+++ b/meta/recipes-extended/sysklogd/sysklogd.inc
-@@ -18,6 +18,7 @@ RDEPENDS_${PN}_append = " ${@base_conditional("ONLINE_PACKAGE_MANAGEMENT", "none
- SRC_URI = "http://www.infodrom.org/projects/sysklogd/download/sysklogd-${PV}.tar.gz \
-            file://no-strip-install.patch \
-            file://sysklogd \
-+           file://syslog.conf \
-            "
- 
- INITSCRIPT_NAME = "syslog"
-@@ -33,7 +34,7 @@ do_install () {
- 	mv ${D}${base_sbindir}/syslogd ${D}${base_sbindir}/syslogd.${PN}
- 	mv ${D}${base_sbindir}/klogd ${D}${base_sbindir}/klogd.${PN}
- 	install -d ${D}${sysconfdir}
--	install -m 644 ${S}/syslog.conf ${D}${sysconfdir}/syslog.conf
-+	install -m 644 ${WORKDIR}/syslog.conf ${D}${sysconfdir}/syslog.conf
- 	install -d ${D}${sysconfdir}/init.d
- 	install -m 755 ${WORKDIR}/sysklogd ${D}${sysconfdir}/init.d/syslog.${PN}
- }
-diff --git a/meta/recipes-extended/sysklogd/sysklogd_1.5.bb b/meta/recipes-extended/sysklogd/sysklogd_1.5.bb
-index 8344e27..27146c7 100644
---- a/meta/recipes-extended/sysklogd/sysklogd_1.5.bb
-+++ b/meta/recipes-extended/sysklogd/sysklogd_1.5.bb
-@@ -1,2 +1,2 @@
- require sysklogd.inc
--PR = "r0"
-+PR = "r1"
--- 
-1.7.0.4
+Giveaway:
+
+
+Sprint B (Due: Oct 01, Midnight PDT)
+
+
+* demo
+
+** Alex will put the hardware bits together, Darren to write down the descr=
+iption of what needs to come together and wiki-fy it. RP suggests that mayb=
+e getting all the pieces running on one hardware might be a good way to try=
+ it out just in case.
+
+** create and document on Yocto Linux website the use cases
+
+** NAS: NFS (Mark)
+	Will do by end of his day today. This will run on MIPS RouterStation Pro
+	Mark will bring this board and drive to Cambridge
+
+** DNLA Server (Darren)
+
+** UPnP Renderer (Josh)
+	Will test with real hardware because audio on qemux86 isn't working
+
+* autobuilder runtime testing of images (ScottG)
+	Will defer this change until release bits are safely out the door
+
+
+Sprint C (Due: Oct 8, Midnight PDT)
+
+* Go through each of the recipe file summary info and make sure they are th=
+ere and correct, load all into a spreadsheet (Distro team) tech writer corr=
+ect them and send them back (MarkH, Bug 281)
+	Tech writer info pending, may move to 1.0
+
+* add class for rpmbuild (JeffP)
+	WIP
+
+* ldat compatibility
+** importing packages from LDAT (JeffP)
+	WIP
+
+* determine way to distribute SDK (Jessica)
+	Done, waiting for the build to push it.
+
+* setup and test RPM feed (Saul)
+	done
+
+
+Sprint D (Due: Oct 15 (note: Thursday), Midnight PDT)
+
+** shrink kernel repo size (Bruce)
+
+* demo
+** kit up boards for give away (Dave/Saul)
+
+** ensure sato desktop runs on ppc real h/w (Bruce)
+
+* qemu ppc graphics (Bruce)
+
 
 
