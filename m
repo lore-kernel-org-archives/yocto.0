@@ -1,38 +1,39 @@
-Return-Path: <paul.anderson@windriver.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 580DE4C80815
-	for <yocto@yoctoproject.org>; Tue, 19 Oct 2010 17:14:30 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8C46C4C810D8
+	for <yocto@yoctoproject.org>; Tue, 19 Oct 2010 17:17:22 -0500 (CDT)
 Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id o9JMDSdZ000915;
-	Tue, 19 Oct 2010 15:13:28 -0700 (PDT)
-Received: from ala-mail10.corp.ad.wrs.com ([147.11.57.155]) by
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id o9JMHLow001474;
+	Tue, 19 Oct 2010 15:17:21 -0700 (PDT)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
 	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Tue, 19 Oct 2010 15:13:27 -0700
-X-MimeOLE: Produced By Microsoft Exchange V6.5
+	Tue, 19 Oct 2010 15:17:20 -0700
+Received: from Macintosh-5.local ([172.25.36.230]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Tue, 19 Oct 2010 15:17:20 -0700
+Message-ID: <4CBE18ED.8010703@windriver.com>
+Date: Tue, 19 Oct 2010 17:17:17 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.9) Gecko/20100915 Thunderbird/3.1.4
 MIME-Version: 1.0
-Date: Tue, 19 Oct 2010 15:12:30 -0700
-Message-ID: <E1027E710AAD99438096D079C7648C625B7FE5@ala-mail10.corp.ad.wrs.com>
-In-Reply-To: <1287526141.16386.15.camel@rex>
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Thread-Topic: Yocto Linux Project Sync notes
-Thread-Index: Actv2k6Hps3Fk79ZTb2x/b8flaINXQAAGWUQ
+To: Saul Wold <saul.wold@intel.com>
 References: <4807CBBFD12C484EBEAB6D8DFBDCE47C267E303C06@orsmsx501.amr.corp.intel.com>
 	<B27EBC40D200ED48A3F4CC2EBEABAE0B25BBC510A2@orsmsx501.amr.corp.intel.com>
-	<1287504271.26874.205.camel@elmorro> <4CBE1150.6090807@intel.com>
-	<E1027E710AAD99438096D079C7648C625B7FDF@ala-mail10.corp.ad.wrs.com>
-	<4CBE12E4.2070803@linux.intel.com> <1287526141.16386.15.camel@rex>
-From: "Anderson, Paul" <paul.anderson@windriver.com>
-To: "Richard Purdie" <rpurdie@linux.intel.com>,
-	"Darren Hart" <dvhart@linux.intel.com>
-X-OriginalArrivalTime: 19 Oct 2010 22:13:27.0925 (UTC)
-	FILETIME=[DB13C250:01CB6FDA]
+	<4CBE17ED.4040805@intel.com>
+In-Reply-To: <4CBE17ED.4040805@intel.com>
+X-OriginalArrivalTime: 19 Oct 2010 22:17:20.0833 (UTC)
+	FILETIME=[65E6B310:01CB6FDB]
 X-Mailman-Approved-At: Tue, 19 Oct 2010 17:31:11 -0500
-Cc: "McCombe, Kevin" <kevin.mccombe@windriver.com>, "Ta,
-	Lieu" <Lieu.Ta@windriver.com>, "Lock,
-	Joshua" <joshua.lock@intel.com>, "Ashfield,
-	Bruce" <Bruce.Ashfield@windriver.com>, yocto@yoctoproject.org
-Subject: Re: Yocto Linux Project Sync notes
+Cc: "Purdie, Richard" <richard.purdie@intel.com>, "Lock,
+	Joshua" <joshua.lock@intel.com>, "McCombe,
+	Kevin" <kevin.mccombe@windriver.com>, "Ta,
+	Lieu" <Lieu.Ta@windriver.com>, "Anderson,
+	Paul" <paul.anderson@windriver.com>, "Ashfield,
+	Bruce" <bruce.ashfield@windriver.com>, "Hart,
+	Darren" <darren.hart@intel.com>, yocto@yoctoproject.org
+Subject: Re: Yocto Readiness Review Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,48 +45,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Oct 2010 22:14:30 -0000
-Content-class: urn:content-classes:message
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 19 Oct 2010 22:17:22 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Spot on, Richard.
+On 10/19/10 5:13 PM, Saul Wold wrote:
+>
+> David, Kevin, Paul, Richard:
+>
+> As discussed in the project sync we need to do a readiness review to
+> look at the current state of the release with regards to existing open
+> bugs, QA testing, and general sanity of the release.
+>
+> The best time for this would be Thursday morning at 11:00, could the
+> folks on the "To:" line please respond with your availablity to meet at
+> this time.  We need to do it in the morning to enable Richard to attend
+> at a "reasonable" hour.
+>
+>
+> Thursday Oct 21, 2010 11:00AM
+> Where: 916-356-2663, 8-356-2663 Bridge 92 / 3302969
 
--pja=20
+11am Pacific should work.. I have a short meeting somewhere between 2 and 6 
+EDT... (or 10 and 2 Pacific)..  Hopefully this won't interfere..  (sorry I don't 
+have details beyond that wide range.. but it's supposed to be 15 minutes or 
+less)  :P
 
------Original Message-----
-From: Richard Purdie [mailto:rpurdie@linux.intel.com]=20
-Sent: Tuesday, October 19, 2010 3:09 PM
-To: Darren Hart
-Cc: Anderson, Paul; Zanussi, Tom; Stewart, David C; McCombe, Kevin;
-Wold, Saul; Zhang, Jessica; deVries, Alex; Polk, Jeffrey; Hatle, Mark;
-Li, Susie; Lock, Joshua; Ashfield, Bruce; Ta, Lieu;
-yocto@yoctoproject.org
-Subject: Re: Yocto Linux Project Sync notes
+--Mark
 
-On Tue, 2010-10-19 at 14:51 -0700, Darren Hart wrote:
-> On 10/19/2010 02:48 PM, Anderson, Paul wrote:
-> > I thought the plan was to do BOTH a QEMU demo and a demo on real=20
-> > hardware? If that's not the plan, it should be the plan.
->=20
-> There has been no discussion of a QEMU demo for the media network
-demo.=20
-> I've tested some components with QEMU, but we aren't currently=20
-> planning on demo'ing this in QEMU.
-
-I think Paul is talking about a different demo, one where we're just
-able to boot all four qemu architectures alongside each other.
-
-This should be possible with our release images, we just need someone to
-own it and to bring a machine with it working on it (and have a backup
-of the setup in case of filesystem corruption etc.).
-
-Any volunteers?
-
-Cheers,
-
-Richard
-
+> Thanks
+>      Sau!
 
 
