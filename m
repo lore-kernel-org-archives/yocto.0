@@ -1,39 +1,31 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 73BC64C80815
-	for <yocto@yoctoproject.org>; Tue, 19 Oct 2010 16:12:48 -0500 (CDT)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id o9JLCk8R019830;
-	Tue, 19 Oct 2010 14:12:46 -0700 (PDT)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Tue, 19 Oct 2010 14:12:46 -0700
-Received: from Macintosh-5.local ([172.25.36.230]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Tue, 19 Oct 2010 14:12:45 -0700
-Message-ID: <4CBE09CA.5060209@windriver.com>
-Date: Tue, 19 Oct 2010 16:12:42 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.9) Gecko/20100915 Thunderbird/3.1.4
-MIME-Version: 1.0
-To: Alex deVries <Alex.deVries@windriver.com>
+Return-Path: <richard.purdie@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id D84CF4C801BF
+	for <yocto@yoctoproject.org>; Tue, 19 Oct 2010 16:42:58 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 19 Oct 2010 14:42:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.57,352,1283756400"; d="scan'208";a="338055627"
+Received: from unknown (HELO [10.255.16.64]) ([10.255.16.64])
+	by azsmga001.ch.intel.com with ESMTP; 19 Oct 2010 14:42:54 -0700
+From: Richard Purdie <richard.purdie@intel.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+In-Reply-To: <1287504271.26874.205.camel@elmorro>
 References: <4807CBBFD12C484EBEAB6D8DFBDCE47C267E303C06@orsmsx501.amr.corp.intel.com>
 	<B27EBC40D200ED48A3F4CC2EBEABAE0B25BBC510A2@orsmsx501.amr.corp.intel.com>
-	<5D5D343A-04B9-4313-AED1-AD6F48C6DAE9@windriver.com>
-In-Reply-To: <5D5D343A-04B9-4313-AED1-AD6F48C6DAE9@windriver.com>
-X-OriginalArrivalTime: 19 Oct 2010 21:12:45.0790 (UTC)
-	FILETIME=[60320FE0:01CB6FD2]
-X-Mailman-Approved-At: Tue, 19 Oct 2010 16:39:29 -0500
-Cc: "Purdie, Richard" <richard.purdie@intel.com>, "Li,
-	Susie" <susie.li@intel.com>, "Lock,
-	Joshua" <joshua.lock@intel.com>, "McCombe,
-	Kevin" <kevin.mccombe@windriver.com>, "Ta,
-	Lieu" <Lieu.Ta@windriver.com>, "Anderson,
-	Paul" <paul.anderson@windriver.com>, "Ashfield,
-	Bruce" <bruce.ashfield@windriver.com>, "Hart,
-	Darren" <darren.hart@intel.com>, yocto@yoctoproject.org
+	<1287504271.26874.205.camel@elmorro>
+Date: Tue, 19 Oct 2010 22:42:47 +0100
+Message-ID: <1287524567.16386.13.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Mailman-Approved-At: Tue, 19 Oct 2010 17:06:31 -0500
+Cc: "'McCombe, Kevin'" <kevin.mccombe@windriver.com>, "Lock,
+	Joshua" <joshua.lock@intel.com>, "Li, Susie" <susie.li@intel.com>, "'Ta,
+	Lieu'" <Lieu.Ta@windriver.com>, "'Anderson,
+	Paul'" <paul.anderson@windriver.com>,
+	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>,
+	'Bruce Ashfield' <bruce.ashfield@windriver.com>, "Hart,
+	Darren" <darren.hart@intel.com>
 Subject: Re: Yocto Linux Project Sync notes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -46,49 +38,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Oct 2010 21:12:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 19 Oct 2010 21:42:59 -0000
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"
 
-On 10/19/10 4:01 PM, Alex deVries wrote:
->
-> On 2010-10-19, at 11:40 AM, Stewart, David C wrote:
->
->> ** Alex will put the hardware bits together, Darren to write down the description of what needs to come together and wiki-fy it.
->
->
-> Yes, so what I need is something like:
->
-> - description
-> - expected behaviour
-> - hardware used
-> - how to build and install the software
->
-> ... for all four boards.  The sooner we have something, the sooner I can start.
->
-> Does that make sense, Darren?
-
-Darren (or someone else can correct me.. but what I'm doing now)
-
-Board: RouterStationPro
-Purpose: NAS and boot server for other board
-Features:
-  - Contains file server for multimedia and other files
-  - Can serve files via:
-    - NFS
-    - http
-    - tftp (likely needed if the other boards need to network boot)
-    - ftp (maybe)
-  - Will act as THE authoritation DHCP server for the network of boards
-  - no DNS on the network (is it needed?)
-
-Software:
-  - From the meta-demo, build the poky-image-nas with the machine target of the 
-routerstationpro  (thats the goal, but there might be some custom config files 
-in the end.. still working on it)
-
-> - A
->
->
+T24gVHVlLCAyMDEwLTEwLTE5IGF0IDExOjA0IC0wNTAwLCBUb20gWmFudXNzaSB3cm90ZToKPiBP
+biBUdWUsIDIwMTAtMTAtMTkgYXQgMDg6NDAgLTA3MDAsIFN0ZXdhcnQsIERhdmlkIEMgd3JvdGU6
+Cj4gCj4gPiAKPiA+ICogZGVtbwo+ID4gCj4gPiAqKiBBbGV4IHdpbGwgcHV0IHRoZSBoYXJkd2Fy
+ZSBiaXRzIHRvZ2V0aGVyLCBEYXJyZW4gdG8gd3JpdGUgZG93biAKPiA+IHRoZSBkZXNjcmlwdGlv
+biBvZiB3aGF0IG5lZWRzIHRvIGNvbWUgdG9nZXRoZXIgYW5kIHdpa2ktZnkgaXQuIFJQCj4gPiBz
+dWdnZXN0cyB0aGF0IG1heWJlIGdldHRpbmcgYWxsIHRoZSBwaWVjZXMgcnVubmluZyBvbiBvbmUg
+aGFyZHdhcmUgCj4gPiBtaWdodCBiZSBhIGdvb2Qgd2F5IHRvIHRyeSBpdCBvdXQganVzdCBpbiBj
+YXNlLgo+IAo+IEkgY2FuIHRyeSBnZXR0aW5nIGV2ZXJ5dGhpbmcgcnVubmluZyBvbiBvbmUgbWFj
+aGluZSB0b28gLSB3b3VsZCBpdCBtYWtlCj4gc2Vuc2UgdG8gdHJ5IHRoYXQgYWxsIG9uIGUuZy4g
+ZW1lbmxvdywgb3IgYWxsIG9uIGEgbGFwdG9wIHVzaW5nIHFlbXUsIG9yCj4gYm90aD8KCkknZCBn
+byB3aXRoIGVtZW5sb3cgc2luY2UgaXQgaGFzIHdvcmtpbmcgc291bmQuIFdlJ3ZlIG5ldmVyIHN1
+cHBvcnRlZApzb3VuZCB1bmRlciBxZW11LgoKQ2hlZXJzLAoKUmljaGFyZAoKLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+CkludGVsIENvcnBvcmF0aW9uIChVSykgTGltaXRlZApSZWdpc3RlcmVkIE5vLiAxMTM0OTQ1IChF
+bmdsYW5kKQpSZWdpc3RlcmVkIE9mZmljZTogUGlwZXJzIFdheSwgU3dpbmRvbiBTTjMgMVJKClZB
+VCBObzogODYwIDIxNzMgNDcKClRoaXMgZS1tYWlsIGFuZCBhbnkgYXR0YWNobWVudHMgbWF5IGNv
+bnRhaW4gY29uZmlkZW50aWFsIG1hdGVyaWFsIGZvcgp0aGUgc29sZSB1c2Ugb2YgdGhlIGludGVu
+ZGVkIHJlY2lwaWVudChzKS4gQW55IHJldmlldyBvciBkaXN0cmlidXRpb24KYnkgb3RoZXJzIGlz
+IHN0cmljdGx5IHByb2hpYml0ZWQuIElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZApyZWNpcGll
+bnQsIHBsZWFzZSBjb250YWN0IHRoZSBzZW5kZXIgYW5kIGRlbGV0ZSBhbGwgY29waWVzLgo=
 
 
