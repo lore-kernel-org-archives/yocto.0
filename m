@@ -1,24 +1,19 @@
-Return-Path: <saul.wold@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 1C90C4C803C9
-	for <yocto@yoctoproject.org>; Wed, 20 Oct 2010 11:54:19 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 20 Oct 2010 09:54:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.57,356,1283756400"; d="scan'208";a="618619806"
-Received: from unknown (HELO [10.255.12.141]) ([10.255.12.141])
-	by fmsmga002.fm.intel.com with ESMTP; 20 Oct 2010 09:54:18 -0700
-Message-ID: <4CBF1EBA.9050703@intel.com>
-Date: Wed, 20 Oct 2010 09:54:18 -0700
-From: Saul Wold <saul.wold@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
-MIME-Version: 1.0
+Return-Path: <josh@linux.intel.com>
+Received: from pug.o-hand.com (3a.49.1343.static.theplanet.com [67.19.73.58])
+	by mx1.pokylinux.org (Postfix) with ESMTP id E882D4C803C9
+	for <yocto@yoctoproject.org>; Wed, 20 Oct 2010 12:19:02 -0500 (CDT)
+Received: from [10.250.128.245] (unknown [158.43.2.102])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by pug.o-hand.com (Postfix) with ESMTP id 885F212EC1FE
+	for <yocto@yoctoproject.org>; Wed, 20 Oct 2010 12:54:30 -0500 (CDT)
+From: Joshua Lock <josh@linux.intel.com>
 To: yocto@yoctoproject.org
-References: <1287580041.16386.145.camel@rex>
-In-Reply-To: <1287580041.16386.145.camel@rex>
-Subject: Re: Release checklist
+Date: Wed, 20 Oct 2010 18:18:59 +0100
+Message-ID: <1287595139.2635.16.camel@scimitar>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.0 (2.32.0-2.fc14) 
+Subject: UPnP demo - call for testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,35 +25,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Oct 2010 16:54:19 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Wed, 20 Oct 2010 17:19:03 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 10/20/2010 06:07 AM, Richard Purdie wrote:
-> Coming up to launch there are going to be some technical things that
-> need to be done, I'm aiming to write these down and assign owners so we
-> remember them all and that they all happen:
->
-> * Remove password protection from yoctoproject.org (sub)domains [RP]
-> * Swap default site redirection and name for lists.* and wiki.* [RP]
-> * Make meta-demo public [RP]
-> * Remove password protection from autobuilder [ScottG]
-> * Upload final version of the eclipse plugin [Jessica]
-> * Upload final Yocto release images and tarballs [???]
->
-This should be ScottG also.
+Hi all,
 
-> What date and time are we going to actually do these things?
->
-> Cheers,
->
-> Richard
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.pokylinux.org/listinfo/yocto
+I've successfully tested the UPnP demo in my office but would appreciate
+someone else taking a bash.
+
+Unfortunately you currently need my branch from poky-contrib (josh/demo)
+and the corresponding branch from meta-demo (josh/demo).
+
+The renderer and controller are installed together in the
+poky-image-rygel image (I've been using the -live variant).
+
+I needed to use amixer to enable the soundcard and increase the volume
+on the netbook I was using.
+
+"amixer set Master on
+ amixer set Master 75"
+
+Run rygel from a terminal and launch gupnp-av-cp and you should be able
+to set play music from a content store on the device. I haven't tested
+video...
+
+I need to tweak the recipes some more so that:
+* Rygel is configured and started automatically at boot on the rygel
+image
+* All of the required recipes are self contained in the master branch
+meta-demo overlay.
+
+I think this may mean using bbappend to extend recipes where I've
+currently modified them in the main meta overlay, rather than
+replication a recipe with the same PN and PV.
+
+I'll probably work on this tomorrow.
+
+Cheers,
+Joshua
+-- 
+Joshua Lock
+        Intel Open Source Technology Centre
 
 
