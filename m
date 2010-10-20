@@ -1,19 +1,34 @@
-Return-Path: <josh@linux.intel.com>
-Received: from pug.o-hand.com (3a.49.1343.static.theplanet.com [67.19.73.58])
-	by mx1.pokylinux.org (Postfix) with ESMTP id E882D4C803C9
-	for <yocto@yoctoproject.org>; Wed, 20 Oct 2010 12:19:02 -0500 (CDT)
-Received: from [10.250.128.245] (unknown [158.43.2.102])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by pug.o-hand.com (Postfix) with ESMTP id 885F212EC1FE
-	for <yocto@yoctoproject.org>; Wed, 20 Oct 2010 12:54:30 -0500 (CDT)
-From: Joshua Lock <josh@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 20 Oct 2010 18:18:59 +0100
-Message-ID: <1287595139.2635.16.camel@scimitar>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.0 (2.32.0-2.fc14) 
-Subject: UPnP demo - call for testing
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4CC804C803C9
+	for <yocto@yoctoproject.org>; Wed, 20 Oct 2010 12:22:58 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 20 Oct 2010 10:22:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.57,356,1283756400"; d="scan'208";a="669212872"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga001.jf.intel.com with ESMTP; 20 Oct 2010 10:22:58 -0700
+Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Wed, 20 Oct 2010 10:22:57 -0700
+Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
+	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi;
+	Wed, 20 Oct 2010 10:22:57 -0700
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: Joshua Lock <josh@linux.intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Wed, 20 Oct 2010 10:22:55 -0700
+Thread-Topic: [yocto] UPnP demo - call for testing
+Thread-Index: ActweuaDmpoSda06SMWfSuGvJQm9JwAAEtdw
+Message-ID: <8EA2C2C4116BF44AB370468FBF85A777019511EC82@orsmsx504.amr.corp.intel.com>
+References: <1287595139.2635.16.camel@scimitar>
+In-Reply-To: <1287595139.2635.16.camel@scimitar>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: Re: UPnP demo - call for testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,9 +40,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Oct 2010 17:19:03 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 20 Oct 2010 17:22:58 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Great job Josh!!! I would have like to give it a try but I don't have a net=
+book to try. Looks like the drivers will not work on qemu.
+
+Thanks,
+Nitin
+
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Joshua Lock
+Sent: Wednesday, October 20, 2010 10:19 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] UPnP demo - call for testing
 
 Hi all,
 
@@ -64,8 +94,12 @@ I'll probably work on this tomorrow.
 
 Cheers,
 Joshua
--- 
+--=20
 Joshua Lock
         Intel Open Source Technology Centre
 
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.pokylinux.org/listinfo/yocto
 
