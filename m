@@ -1,36 +1,24 @@
-Return-Path: <kevin.tian@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 691B64C80121
-	for <yocto@yoctoproject.org>; Tue, 19 Oct 2010 19:33:27 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Oct 2010 17:33:26 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 1FAF24C80121
+	for <yocto@yoctoproject.org>; Tue, 19 Oct 2010 19:34:28 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 19 Oct 2010 17:34:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.57,353,1283756400"; d="scan'208";a="848908020"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by fmsmga001.fm.intel.com with ESMTP; 19 Oct 2010 17:33:26 -0700
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Wed, 20 Oct 2010 08:33:25 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Wed, 20 Oct 2010 08:33:24 +0800
-From: "Tian, Kevin" <kevin.tian@intel.com>
-To: "Tian, Kevin" <kevin.tian@intel.com>, Darren Hart
-	<dvhart@linux.intel.com>, Joshua Lock <josh@linux.intel.com>
-Date: Wed, 20 Oct 2010 08:33:22 +0800
-Thread-Topic: [yocto] Call for help for demo UPNP media renderer
-Thread-Index: Actv7RoOLerMc14AQ2SnjkQ3ietJGQAAA9CwAABEo5A=
-Message-ID: <625BA99ED14B2D499DC4E29D8138F1504CF2575B90@shsmsx502.ccr.corp.intel.com>
-References: <1287522903.24666.5.camel@scimitar>	<4CBE0E4A.1050208@intel.com>
-	<1287533087.2283.5.camel@scimitar>	<1287533773.2283.10.camel@scimitar>
+X-IronPort-AV: E=Sophos;i="4.57,353,1283756400"; d="scan'208";a="668982062"
+Received: from unknown (HELO [10.255.12.104]) ([10.255.12.104])
+	by orsmga001.jf.intel.com with ESMTP; 19 Oct 2010 17:34:27 -0700
+Message-ID: <4CBE3913.8090903@linux.intel.com>
+Date: Tue, 19 Oct 2010 17:34:27 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.9) Gecko/20100922 Thunderbird/3.1.4
+MIME-Version: 1.0
+To: "Tian, Kevin" <kevin.tian@intel.com>
+References: <1287522903.24666.5.camel@scimitar>	<4CBE0E4A.1050208@intel.com>	<1287533087.2283.5.camel@scimitar>	<1287533773.2283.10.camel@scimitar>
 	<4CBE3693.2070808@linux.intel.com>
 	<625BA99ED14B2D499DC4E29D8138F1504CF2575B86@shsmsx502.ccr.corp.intel.com>
 In-Reply-To: <625BA99ED14B2D499DC4E29D8138F1504CF2575B86@shsmsx502.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Call for help for demo UPNP media renderer
 X-BeenThere: yocto@yoctoproject.org
@@ -44,18 +32,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Oct 2010 00:33:27 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 20 Oct 2010 00:34:28 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
->From: Tian, Kevin
->Sent: Wednesday, October 20, 2010 8:31 AM
->
->>From: Darren Hart
->>Sent: Wednesday, October 20, 2010 8:24 AM
+On 10/19/2010 05:30 PM, Tian, Kevin wrote:
+>> From: Darren Hart
+>> Sent: Wednesday, October 20, 2010 8:24 AM
 >>
->>On 10/19/2010 05:16 PM, Joshua Lock wrote:
+>> On 10/19/2010 05:16 PM, Joshua Lock wrote:
 >>> On Wed, 2010-10-20 at 01:04 +0100, Joshua Lock wrote:
 >>>> On Tue, 2010-10-19 at 14:31 -0700, Saul Wold wrote:
 >>>>>
@@ -63,12 +48,10 @@ Content-Transfer-Encoding: quoted-printable
 >>>>>
 >>>>> Can you take a look at this since you have worked with the gstreamer?
 >>>>
->>>> I did a sloppy job pushing my changes when leaving the office but thin=
-k
+>>>> I did a sloppy job pushing my changes when leaving the office but think
 >>>> I have replicated most/all of the in the josh/demo branch.
 >>>>
->>>> I also took a look through the rygel code to see what gstreamer elemen=
-ts
+>>>> I also took a look through the rygel code to see what gstreamer elements
 >>>> are explicitly being used, I've created a list and tried to ensure as
 >>>> many as possible of them are in the IMAGE_INSTALL list for
 >>>> poky-image-rygel, adding them to the RDEPENDS for rygel doesn't appear
@@ -96,26 +79,33 @@ ts
 >>> gupnp-av-cp as provided by gupnp-tools to control the renderer and
 >>> content server.
 >>
->>It is my udnerstanding that we plan to run both the renderer and the
->>gupnp-av-cp on each "player". That is an ARM BeagleBoard and a PowerPC
->>*unknown* board. Each will have a suitable display. Is this your
->>understanding/intention?
+>> It is my udnerstanding that we plan to run both the renderer and the
+>> gupnp-av-cp on each "player". That is an ARM BeagleBoard and a PowerPC
+>> *unknown* board. Each will have a suitable display. Is this your
+>> understanding/intention?
 >>
 >
->I guess Josh may go to bed now. :-)
+> I guess Josh may go to bed now. :-)
 >
->btw, Darren, do we have to use real boards for the exercise? We don't have
->those boards in PRC. Any limitations to use Qemu environments as the alter=
-native
->in our side?
+> btw, Darren, do we have to use real boards for the exercise? We don't have
+> those boards in PRC. Any limitations to use Qemu environments as the alternative
+> in our side?
 
-Oops, we do have netbooks which I forgot. :-)
+For testing the images, you can use all x86 hardware. I'd prefer we not 
+use QEMU as it is likely to complicate the networking, which is rather 
+integral to this demo.
 
-Thanks
-Keivn
 >
->Also it'd be great if we have a detail list for demo steps. Is it included=
- in the
->demo branch?
->
+> Also it'd be great if we have a detail list for demo steps. Is it included in the
+> demo branch?
+
+No documented steps yet, just build the live images in the demo layers 
+and boot on hardware. If you run into issues, please share them here and 
+we'll help work through them.
+
+Thanks,
+
+-- 
+Darren Hart
+Embedded Linux Kernel
 
