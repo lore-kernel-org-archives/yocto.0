@@ -1,35 +1,23 @@
-Return-Path: <Alex.deVries@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id BAD914C80121
-	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 09:11:57 -0500 (CDT)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id o9LEBulZ002376;
-	Thu, 21 Oct 2010 07:11:56 -0700 (PDT)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Thu, 21 Oct 2010 07:11:55 -0700
-Received: from dhcp-144-166.ottawa.windriver.com ([128.224.144.166]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Thu, 21 Oct 2010 07:11:55 -0700
-Mime-Version: 1.0 (Apple Message framework v1081)
-From: Alex deVries <Alex.deVries@windriver.com>
-In-Reply-To: <1287527513.16386.21.camel@rex>
-Date: Thu, 21 Oct 2010 10:11:52 -0400
-Message-Id: <4253DC34-0CE0-49EF-8A39-C1CA96ABA6EB@windriver.com>
-References: <4807CBBFD12C484EBEAB6D8DFBDCE47C267E303C06@orsmsx501.amr.corp.intel.com>
-	<B27EBC40D200ED48A3F4CC2EBEABAE0B25BBC510A2@orsmsx501.amr.corp.intel.com>
-	<4CBE17ED.4040805@intel.com> <1287527513.16386.21.camel@rex>
-To: Richard Purdie <rpurdie@linux.intel.com>
-X-Mailer: Apple Mail (2.1081)
-X-OriginalArrivalTime: 21 Oct 2010 14:11:55.0974 (UTC)
-	FILETIME=[EAF56660:01CB7129]
-X-Mailman-Approved-At: Thu, 21 Oct 2010 09:16:33 -0500
-Cc: "McCombe, Kevin" <kevin.mccombe@windriver.com>, "Lock,
-	Joshua" <joshua.lock@intel.com>, "Ta,
-	Lieu" <Lieu.Ta@windriver.com>, "Anderson,
-	Paul" <paul.anderson@windriver.com>, "Hart,
-	Darren" <darren.hart@intel.com>, yocto@yoctoproject.org
-Subject: Re: Yocto Readiness Review Meeting
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 7A8AC4C80121
+	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 09:52:05 -0500 (CDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 21 Oct 2010 07:52:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.58,217,1286175600"; d="scan'208";a="849564546"
+Received: from unknown (HELO [10.255.12.149]) ([10.255.12.149])
+	by fmsmga001.fm.intel.com with ESMTP; 21 Oct 2010 07:52:04 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Joshua Lock <josh@linux.intel.com>
+In-Reply-To: <1287595139.2635.16.camel@scimitar>
+References: <1287595139.2635.16.camel@scimitar>
+Date: Thu, 21 Oct 2010 09:52:09 -0500
+Message-ID: <1287672729.2073.11.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: UPnP demo - call for testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,48 +29,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Oct 2010 14:11:58 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Thu, 21 Oct 2010 14:52:06 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-I'll be there too.
-
-- A
-
-
-On 2010-10-19, at 6:31 PM, Richard Purdie wrote:
-
-> On Tue, 2010-10-19 at 15:13 -0700, Wold, Saul wrote:
->> David, Kevin, Paul, Richard:
->> 
->> As discussed in the project sync we need to do a readiness review to 
->> look at the current state of the release with regards to existing open 
->> bugs, QA testing, and general sanity of the release.
->> 
->> The best time for this would be Thursday morning at 11:00, could the 
->> folks on the "To:" line please respond with your availablity to meet at 
->> this time.  We need to do it in the morning to enable Richard to attend 
->> at a "reasonable" hour.
->> 
->> 
->> Thursday Oct 21, 2010 11:00AM
->> Where: 916-356-2663, 8-356-2663 Bridge 92 / 3302969
+On Wed, 2010-10-20 at 10:18 -0700, Joshua Lock wrote:
+> Hi all,
 > 
-> This is ok with me.
-> 
-> Cheers,
-> 
-> Richard
+> I've successfully tested the UPnP demo in my office but would appreciate
+> someone else taking a bash.
 > 
 
--- 
-Alex deVries
-Chief Linux Technologist
-Wind River Systems
+With the mediatomb image running on a Black Sand and the rygel image
+running on an eMenlow, and using the av-cp on my laptop, I'm able to get
+ok audio out of the eMenlow speakers - pretty nifty! ;-)
 
+Still need to get the nas piece going, but it all basically works with
+the hardware I have (and will be bringing) - nice job!
 
-
-
+Tom 
 
 
 
