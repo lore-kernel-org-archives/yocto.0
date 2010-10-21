@@ -1,21 +1,21 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 7A8AC4C80121
-	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 09:52:05 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 21 Oct 2010 07:52:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,217,1286175600"; d="scan'208";a="849564546"
-Received: from unknown (HELO [10.255.12.149]) ([10.255.12.149])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Oct 2010 07:52:04 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Joshua Lock <josh@linux.intel.com>
-In-Reply-To: <1287595139.2635.16.camel@scimitar>
+Return-Path: <josh@linux.intel.com>
+Received: from pug.o-hand.com (3a.49.1343.static.theplanet.com [67.19.73.58])
+	by mx1.pokylinux.org (Postfix) with ESMTP id A7AB64C80054
+	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 10:01:48 -0500 (CDT)
+Received: from [10.250.128.245] (unknown [158.43.2.102])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by pug.o-hand.com (Postfix) with ESMTP id 903F012EC11B;
+	Thu, 21 Oct 2010 10:37:18 -0500 (CDT)
+From: Joshua Lock <josh@linux.intel.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+In-Reply-To: <1287672729.2073.11.camel@elmorro>
 References: <1287595139.2635.16.camel@scimitar>
-Date: Thu, 21 Oct 2010 09:52:09 -0500
-Message-ID: <1287672729.2073.11.camel@elmorro>
+	<1287672729.2073.11.camel@elmorro>
+Date: Thu, 21 Oct 2010 16:01:44 +0100
+Message-ID: <1287673304.2325.8.camel@scimitar>
 Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
+X-Mailer: Evolution 2.32.0 (2.32.0-2.fc14) 
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: UPnP demo - call for testing
 X-BeenThere: yocto@yoctoproject.org
@@ -29,26 +29,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Oct 2010 14:52:06 -0000
+X-List-Received-Date: Thu, 21 Oct 2010 15:01:48 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2010-10-20 at 10:18 -0700, Joshua Lock wrote:
-> Hi all,
+On Thu, 2010-10-21 at 09:52 -0500, Tom Zanussi wrote:
+> On Wed, 2010-10-20 at 10:18 -0700, Joshua Lock wrote:
+> > Hi all,
+> > 
+> > I've successfully tested the UPnP demo in my office but would appreciate
+> > someone else taking a bash.
+> > 
 > 
-> I've successfully tested the UPnP demo in my office but would appreciate
-> someone else taking a bash.
+> With the mediatomb image running on a Black Sand and the rygel image
+> running on an eMenlow, and using the av-cp on my laptop, I'm able to get
+> ok audio out of the eMenlow speakers - pretty nifty! ;-)
 > 
+> Still need to get the nas piece going, but it all basically works with
+> the hardware I have (and will be bringing) - nice job!
 
-With the mediatomb image running on a Black Sand and the rygel image
-running on an eMenlow, and using the av-cp on my laptop, I'm able to get
-ok audio out of the eMenlow speakers - pretty nifty! ;-)
+Huzzah! Replicated on three set ups, victory is mine! 
 
-Still need to get the nas piece going, but it all basically works with
-the hardware I have (and will be bringing) - nice job!
+Unfortunately I've had only limited success with videos so will continue
+to look into that...
 
-Tom 
+Thanks for testing Tom!
 
-
+Cheers,
+Joshua
+-- 
+Joshua Lock
+        Intel Open Source Technology Centre
 
 
