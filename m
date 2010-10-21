@@ -1,24 +1,23 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id DC6744C803C9
-	for <yocto@yoctoproject.org>; Wed, 20 Oct 2010 18:48:17 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 20 Oct 2010 16:48:17 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C2FA34C801BF
+	for <yocto@yoctoproject.org>; Wed, 20 Oct 2010 19:07:20 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 20 Oct 2010 17:07:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.57,357,1283756400"; d="scan'208";a="618750284"
-Received: from unknown (HELO [10.255.12.168]) ([10.255.12.168])
-	by fmsmga002.fm.intel.com with ESMTP; 20 Oct 2010 16:48:11 -0700
-Message-ID: <4CBF7FBB.3080804@linux.intel.com>
-Date: Wed, 20 Oct 2010 16:48:11 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.9) Gecko/20100922 Thunderbird/3.1.4
-MIME-Version: 1.0
-To: Joshua Lock <josh@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.57,357,1283756400"; d="scan'208";a="338562638"
+Received: from unknown (HELO [10.255.12.170]) ([10.255.12.170])
+	by azsmga001.ch.intel.com with ESMTP; 20 Oct 2010 17:07:18 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4CBF7FBB.3080804@linux.intel.com>
 References: <1287595139.2635.16.camel@scimitar>
-	<1287612589.2231.3.camel@scimitar>
-In-Reply-To: <1287612589.2231.3.camel@scimitar>
-Cc: yocto@yoctoproject.org
+	<1287612589.2231.3.camel@scimitar> <4CBF7FBB.3080804@linux.intel.com>
+Date: Wed, 20 Oct 2010 19:07:16 -0500
+Message-ID: <1287619636.2036.1.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: UPnP demo - call for testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -31,40 +30,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Oct 2010 23:48:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 21 Oct 2010 00:07:21 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 10/20/2010 03:09 PM, Joshua Lock wrote:
-> On Wed, 2010-10-20 at 18:18 +0100, Joshua Lock wrote:
->> Hi all,
->>
->> I've successfully tested the UPnP demo in my office but would appreciate
->> someone else taking a bash.
->>
->> Unfortunately you currently need my branch from poky-contrib (josh/demo)
->> and the corresponding branch from meta-demo (josh/demo).
->
-> I've just pushed one change to poky/master and merged a tidied up
-> changeset into the master branch of meta-demo. So you should now be able
-> to test with latest poky and meta-demo master.
->
-> Cheers,
-> Joshua
+On Wed, 2010-10-20 at 16:48 -0700, Darren Hart wrote:
+> On 10/20/2010 03:09 PM, Joshua Lock wrote:
+> > On Wed, 2010-10-20 at 18:18 +0100, Joshua Lock wrote:
+> >> Hi all,
+> >>
+> >> I've successfully tested the UPnP demo in my office but would appreciate
+> >> someone else taking a bash.
+> >>
+> >> Unfortunately you currently need my branch from poky-contrib (josh/demo)
+> >> and the corresponding branch from meta-demo (josh/demo).
+> >
+> > I've just pushed one change to poky/master and merged a tidied up
+> > changeset into the master branch of meta-demo. So you should now be able
+> > to test with latest poky and meta-demo master.
+> >
+> > Cheers,
+> > Joshua
+> 
+> I have added the COMMERCIAL_LICENSE bits to my local.conf and mediatomb 
+> built after that.
+> 
+> building poky-image-rygel-live, gupnp-dlna do_configure is failing with:
+> 
+> 	configure: error: Package requirements (gstreamer-0.10 >=
+> 	0.10.29.2) were not met:
+> 
+> 	No package 'gstreamer-0.10' found
+> 
+> Have you seen that?
+> 
 
-I have added the COMMERCIAL_LICENSE bits to my local.conf and mediatomb 
-built after that.
+I did get that, but IIRC it was because I didn't have the latest
+josh/demo branch.  Do you have the latest?
 
-building poky-image-rygel-live, gupnp-dlna do_configure is failing with:
+Tom
 
-	configure: error: Package requirements (gstreamer-0.10 >=
-	0.10.29.2) were not met:
-
-	No package 'gstreamer-0.10' found
-
-Have you seen that?
-
--- 
-Darren Hart
-Embedded Linux Kernel
 
