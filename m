@@ -1,31 +1,23 @@
-Return-Path: <yongkang.you@intel.com>
+Return-Path: <qing.he@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id AD8AC4C801BF
-	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 02:44:42 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 21 Oct 2010 00:44:37 -0700
+	by mx1.pokylinux.org (Postfix) with ESMTP id 5CB1F4C81003
+	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 03:37:16 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 21 Oct 2010 01:37:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,216,1286175600"; d="scan'208";a="669411058"
-Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
-	by orsmga001.jf.intel.com with ESMTP; 21 Oct 2010 00:44:36 -0700
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Thu, 21 Oct 2010 15:44:13 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Thu, 21 Oct 2010 15:44:12 +0800
-From: "You, Yongkang" <yongkang.you@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 21 Oct 2010 15:44:11 +0800
-Thread-Topic: Please verify the fixed bug in bugzilla.
-Thread-Index: Actw87/6doqir9YPQ72YAeNBE5TO0A==
-Message-ID: <F26D193E20BBDC42A43B611D1BDEDE712151801BB8@shsmsx502.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+X-IronPort-AV: E=Sophos;i="4.58,216,1286175600"; d="scan'208";a="566062062"
+Received: from qhe2-db.sh.intel.com ([10.239.13.48])
+	by orsmga002.jf.intel.com with ESMTP; 21 Oct 2010 01:37:15 -0700
+Received: from qhe2 by qhe2-db.sh.intel.com with local (Exim 4.71)
+	(envelope-from <qing.he@intel.com>) id 1P8qaC-0004oq-Cw
+	for yocto@yoctoproject.org; Thu, 21 Oct 2010 16:33:08 +0800
+Date: Thu, 21 Oct 2010 16:33:08 +0800
+From: Qing He <qing.he@intel.com>
+To: yocto@yoctoproject.org
+Message-ID: <20101021083308.GB18344@qhe2-db>
 MIME-Version: 1.0
-Subject: Please verify the fixed bug in bugzilla.
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Subject: zypper and poky architectures
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,26 +29,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Oct 2010 07:44:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 21 Oct 2010 08:37:16 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hi all,
+I recently reported several zypper bugs specifically for arm, after
+some deeper investigation, the problem seems to be of higher level than
+I originally thought.
 
-I just had a quick search in bugzilla and found a lot of bugs are resolved =
-but not verified. We'd better to verify the fix before 0.9 launch.=20
+The root cause is that zypper and poky use different way to represent
+architectures, as we are putting them together, these two ways are
+not compatible, causing many minor glitches that need to modify at
+least one of them.
 
-The M4 resolved (but not verified) bugs (88):
-http://bugzilla.pokylinux.org/buglist.cgi?bug_status=3DRESOLVED&query_forma=
-t=3Dadvanced&target_milestone=3D0.9%20M4&query_based_on=3D&columnlist=3Dbug=
-_severity%2Creporter%2Cpriority%2Cop_sys%2Cassigned_to%2Cbug_status%2Cresol=
-ution%2Cshort_desc%2Cproduct%2Ccomponent
+Poky has three kinds of representations in a single target image, which
+are independent, cpu-dependent and machine-dependent (all, armv5te,
+qemuarm, respectively), e.g.
 
-All resolved (but not verified) bugs (198):
-http://bugzilla.pokylinux.org/buglist.cgi?query_format=3Dadvanced&bug_statu=
-s=3DRESOLVED
+	update-rc.d-0.7-r3.all.rpm
+	curl-7.21.0-r0.armv5te.rpm
+	task-base-1.0-r69.qemuarm.rpm
+
+(note that armv5te is the same with gcc's -march option, meaning little
+endian)
+
+This is natural until zypper is involved. Zypper supports only one arch
+at one time (and this arch should not be changed in fly), and use the
+idea of arch compatibility (e.g. _noarch is compatible with _i586), it
+then hardcodes the available archs in a different way than poky does,
+thus creating several problems:
+  1. what uses for independent packages is called "noarch", "all" is not
+     recognized, something depends on update-rc.d won't be installed
+     because of missing dependency
+  2. the arch automatic detection system uses "uname -m", thus producing
+     armv5tejl, which can only be resolved as armv5tel, conflicting with
+     "armv5te" in rpm
+  3. many archs are missing in zypper, like mips, armeb, etc.
+  4. there is no concept of machine-dependent packages (task-base) in
+     zypper, although we can work around.
+
+Currently, at least zypper is broken on all of mips, arm, ppc, with
+slightly different problems.
+
+The ideal situation is to use consistent arch specification, the
+following can be a solution:
+  1. rename *.all.rpm to *.noarch.rpm
+  2. removing the concept of machine-dependent packages, change all
+     *.qemuarm.rpm to *.armv5te.rpm
+  3. enhance zypper arch module, make the addition more flexible,
+     allowing arch alias (e.g. armv5te = armv5tel = armel = arm)
+
+That would be some work to do, maybe 1.0 is a good time to get zypper
+and package upgrade truely working.
+
+Any ideas and comments?
 
 Thanks,
-Yongkang
+Qing
 
