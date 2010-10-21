@@ -1,36 +1,31 @@
-Return-Path: <kevin.tian@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 613D94C801BF
-	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 02:38:31 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 21 Oct 2010 00:38:30 -0700
+Return-Path: <yongkang.you@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id AD8AC4C801BF
+	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 02:44:42 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 21 Oct 2010 00:44:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,216,1286175600"; d="scan'208";a="849445008"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Oct 2010 00:38:30 -0700
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Thu, 21 Oct 2010 15:37:51 +0800
+X-IronPort-AV: E=Sophos;i="4.58,216,1286175600"; d="scan'208";a="669411058"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by orsmga001.jf.intel.com with ESMTP; 21 Oct 2010 00:44:36 -0700
 Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Thu, 21 Oct 2010 15:37:51 +0800
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Thu, 21 Oct 2010 15:44:13 +0800
 Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
 	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Thu, 21 Oct 2010 15:37:50 +0800
-From: "Tian, Kevin" <kevin.tian@intel.com>
-To: Richard Purdie <rpurdie@linux.intel.com>, yocto <yocto@yoctoproject.org>
-Date: Thu, 21 Oct 2010 15:37:47 +0800
-Thread-Topic: [yocto] Release checklist
-Thread-Index: ActwV8kauQ90nYcNR6mEyz63EQVmtQAmvPRg
-Message-ID: <625BA99ED14B2D499DC4E29D8138F1504D0149B40F@shsmsx502.ccr.corp.intel.com>
-References: <1287580041.16386.145.camel@rex>
-In-Reply-To: <1287580041.16386.145.camel@rex>
+	Thu, 21 Oct 2010 15:44:12 +0800
+From: "You, Yongkang" <yongkang.you@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Thu, 21 Oct 2010 15:44:11 +0800
+Thread-Topic: Please verify the fixed bug in bugzilla.
+Thread-Index: Actw87/6doqir9YPQ72YAeNBE5TO0A==
+Message-ID: <F26D193E20BBDC42A43B611D1BDEDE712151801BB8@shsmsx502.ccr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
-Subject: Re: Release checklist
+Subject: Please verify the fixed bug in bugzilla.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,35 +37,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Oct 2010 07:38:31 -0000
+X-List-Received-Date: Thu, 21 Oct 2010 07:44:42 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
->From: Richard Purdie
->Sent: Wednesday, October 20, 2010 9:07 PM
->
->Coming up to launch there are going to be some technical things that
->need to be done, I'm aiming to write these down and assign owners so we
->remember them all and that they all happen:
->
->* Remove password protection from yoctoproject.org (sub)domains [RP]
->* Swap default site redirection and name for lists.* and wiki.* [RP]
+Hi all,
 
-does this include the content movement from old wiki to the new place?
+I just had a quick search in bugzilla and found a lot of bugs are resolved =
+but not verified. We'd better to verify the fix before 0.9 launch.=20
 
-Thanks
-Kevin
+The M4 resolved (but not verified) bugs (88):
+http://bugzilla.pokylinux.org/buglist.cgi?bug_status=3DRESOLVED&query_forma=
+t=3Dadvanced&target_milestone=3D0.9%20M4&query_based_on=3D&columnlist=3Dbug=
+_severity%2Creporter%2Cpriority%2Cop_sys%2Cassigned_to%2Cbug_status%2Cresol=
+ution%2Cshort_desc%2Cproduct%2Ccomponent
 
->* Make meta-demo public [RP]
->* Remove password protection from autobuilder [ScottG]
->* Upload final version of the eclipse plugin [Jessica]
->* Upload final Yocto release images and tarballs [???]
->
->What date and time are we going to actually do these things?
->
->Cheers,
->
->Richard
->
+All resolved (but not verified) bugs (198):
+http://bugzilla.pokylinux.org/buglist.cgi?query_format=3Dadvanced&bug_statu=
+s=3DRESOLVED
+
+Thanks,
+Yongkang
 
