@@ -1,23 +1,24 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C2C994C811AB
-	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 18:00:35 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 21 Oct 2010 16:00:35 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6ABBB4C811A2
+	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 18:29:10 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 21 Oct 2010 16:29:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,219,1286175600"; d="scan'208";a="669663027"
-Received: from doubt.jf.intel.com (HELO [10.24.148.210]) ([10.24.148.210])
-	by orsmga001.jf.intel.com with ESMTP; 21 Oct 2010 16:00:35 -0700
-Message-ID: <4CC0C619.7070201@linux.intel.com>
-Date: Thu, 21 Oct 2010 16:00:41 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.9) Gecko/20100922 Thunderbird/3.1.4
-MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Cc: Josh Lock <joshua.lock@intel.com>, "Rifenbark,
-	Scott M" <scott.m.rifenbark@intel.com>
-Subject: RFC: "Demo Use Cases" documentation for the web page
+X-IronPort-AV: E=Sophos;i="4.58,220,1286175600"; d="scan'208";a="619128654"
+Received: from unknown (HELO [10.255.12.149]) ([10.255.12.149])
+	by fmsmga002.fm.intel.com with ESMTP; 21 Oct 2010 16:29:09 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4CC0C252.1020501@linux.intel.com>
+References: <4CC0C252.1020501@linux.intel.com>
+Date: Thu, 21 Oct 2010 18:29:18 -0500
+Message-ID: <1287703758.10206.8.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: Yocto Project <yocto@yoctoproject.org>, "Lock,
+	Joshua" <joshua.lock@intel.com>
+Subject: Re: Media Network Demo: Black Sand and Netbook
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,61 +30,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Oct 2010 23:00:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 21 Oct 2010 23:29:10 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
+On Thu, 2010-10-21 at 15:44 -0700, Darren Hart wrote:
+> I build mediatomb and rygel live atom-pc images from today's poky/master 
+> + meta-demo/master. I booted mediatomb on the BlackSand and rygel on the 
+> netbook. I had to manually start the rygel renderer on the netbook. I 
+> didn't see gupnp-av-cp on the rygel image as I expected and the 
+> gupnp-universal-cp command failed to start on the netbook (via a sato 
+> terminal) complaining about missing icons. If I tried to stabrt this 
+> over an ssh - connection, the gupnp-universal-cp started fine (strange).
+> 
+> I could run gupnp-av-cp from my laptop (Ubuntu 10.10) and play music
+> from mediatomb on the rygel renderer. (YAY)
+> 
+> What I'd like to see is for gupnp-av-cp to start automatically after the
+> sato desktop loads on each renderer. This would make each renderer a
+> standalone player.
+> 
+> So, it's functional (awesome!) and I see these ARs as pending for the 
+> demo images:
+> 
+> [ ] add gupnp-av-cp to the rygel image
 
-Media Network Demo
-==================
-We're looking to have a section on the web site for the demo that
-explains what each use-case is and possibly how it can be replicated.
-I'm taking the approach of describing each image. Consider the
-following:
+I think this is already done - I have it on my image and it works for
+me.
 
-The Yocto Project launch event at ECLF 2010 featured a
-multi-architecture Media Network Demo. All the source for this demo is
-available in the meta-demo git repository as a layer for the poky build
-system.
+> [ ] start rygel on boot (after networking)
+> [ ] start gupnp-av-cp after the sato desktop loads on the rygel image
+> [ ] setup networking on each of the non-nas images to dhcp on eth0
+> 
 
-The following images made up the demo:
-o poky-image-nas
-o poky-image-mediatomb
-o poky-image-rygel
+eth0 on the rygel image seems to come up ok, it's just the mediatomb
+image that doesn't afaics.  I'll probably look into this tonight.
 
-poky-image-nas
---------------
-The poky-image-nas image boots your device as a network attached storage
-device. It provides a DHCP service and an NFS server. We used this image
-to store all our media.
+I also added a small change in tom/demo that allows the mediatomb image
+to do nfs.  After doing that, I was able to mount an nfs share from my
+laptop on the Black Sand, and have mediatomb add all the media there.
 
-poky-image-mediatomb
---------------------
-The poky-image-mediatomb image adds a UPnP content provider via the
-mediatomb package. This image mounts the media share from the NAS and
-makes it available to UPnP renderers.
+Tom
 
-poky-image-rygel
-----------------
-The poky-image-rygel image provides gupnp tools and the rygel media
-renderer along with the sato desktop. The renderer can be controlled 
-locally or via any control point on the network. Several devices can run 
-this image and stream media from the mediatomb device.
-
-
-Open Questions
---------------
-o Is this more or less what we are looking for?
-o Should we modify the mediatomb image to:
-   o automatically mount a specific share from the NAS?
-   o add something to the config to automatically scan the
-     media share?
-o The poky-image-rygel description needs to be updated as we finalize
-   the package.
+> With the above, each image should boot to a functional state with no
+> manual interference required.
+> 
+> How much of the above is already planned and how much do we need to get
+> an owner for?
+> 
 
 
-
--- 
-Darren Hart
-Embedded Linux Kernel
 
