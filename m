@@ -1,23 +1,24 @@
-Return-Path: <qing.he@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5CB1F4C81003
-	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 03:37:16 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 21 Oct 2010 01:37:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,216,1286175600"; d="scan'208";a="566062062"
-Received: from qhe2-db.sh.intel.com ([10.239.13.48])
-	by orsmga002.jf.intel.com with ESMTP; 21 Oct 2010 01:37:15 -0700
-Received: from qhe2 by qhe2-db.sh.intel.com with local (Exim 4.71)
-	(envelope-from <qing.he@intel.com>) id 1P8qaC-0004oq-Cw
-	for yocto@yoctoproject.org; Thu, 21 Oct 2010 16:33:08 +0800
-Date: Thu, 21 Oct 2010 16:33:08 +0800
-From: Qing He <qing.he@intel.com>
-To: yocto@yoctoproject.org
-Message-ID: <20101021083308.GB18344@qhe2-db>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: zypper and poky architectures
+Return-Path: <josh@linux.intel.com>
+Received: from pug.o-hand.com (3a.49.1343.static.theplanet.com [67.19.73.58])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 393F64C803C9
+	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 05:50:31 -0500 (CDT)
+Received: from [10.250.128.245] (unknown [158.43.2.102])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by pug.o-hand.com (Postfix) with ESMTP id 2C60612EC117;
+	Thu, 21 Oct 2010 06:26:01 -0500 (CDT)
+From: Joshua Lock <josh@linux.intel.com>
+To: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+In-Reply-To: <D5AB6E638E5A3E4B8F4406B113A5A19A2FF0D7F8@shsmsx501.ccr.corp.intel.com>
+References: <1287595139.2635.16.camel@scimitar>
+	<D5AB6E638E5A3E4B8F4406B113A5A19A2FF0D63D@shsmsx501.ccr.corp.intel.com>
+	<D5AB6E638E5A3E4B8F4406B113A5A19A2FF0D7F8@shsmsx501.ccr.corp.intel.com>
+Date: Thu, 21 Oct 2010 11:50:28 +0100
+Message-ID: <1287658228.2325.3.camel@scimitar>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.0 (2.32.0-2.fc14) 
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: UPnP demo - call for testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,61 +30,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Oct 2010 08:37:16 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Thu, 21 Oct 2010 10:50:31 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-I recently reported several zypper bugs specifically for arm, after
-some deeper investigation, the problem seems to be of higher level than
-I originally thought.
+On Thu, 2010-10-21 at 13:32 +0800, Xu, Dongxiao wrote:
+> Xu, Dongxiao wrote:
+> > I'd also like to have a try, and building the demo image now.
+> > 
+> > Thanks,
+> > Dongxiao
+> > 
+> > Joshua Lock wrote:
+> >> Hi all,
+> >> 
+> >> I've successfully tested the UPnP demo in my office but would
+> >> appreciate someone else taking a bash.
+> >> 
+> >> Unfortunately you currently need my branch from poky-contrib
+> >> (josh/demo) and the corresponding branch from meta-demo (josh/demo).
+> >> 
+> >> The renderer and controller are installed together in the
+> >> poky-image-rygel image (I've been using the -live variant).
+> >> 
+> >> I needed to use amixer to enable the soundcard and increase the
+> >> volume on the netbook I was using. 
+> >> 
+> >> "amixer set Master on
+> >>  amixer set Master 75"
+> >> 
+> >> Run rygel from a terminal and launch gupnp-av-cp and you should be
+> >> able to set play music from a content store on the device. I haven't
+> >> tested video... 
+> 
+> I just setup the environment and gupnp-av-cp could play music from
+> another host within the network. However it seems that video doesn't
+> work yet. Does gupnp-av-cp supports video play?
 
-The root cause is that zypper and poky use different way to represent
-architectures, as we are putting them together, these two ways are
-not compatible, causing many minor glitches that need to modify at
-least one of them.
+Thanks for testing this Dongxiao!
 
-Poky has three kinds of representations in a single target image, which
-are independent, cpu-dependent and machine-dependent (all, armv5te,
-qemuarm, respectively), e.g.
+I'm not sure whether video is required for the demo, but it should be
+supported by gupnp-av-cp and Rygel so long as required gstreamer plugins
+are installed. What type of video where you trying to play?
 
-	update-rc.d-0.7-r3.all.rpm
-	curl-7.21.0-r0.armv5te.rpm
-	task-base-1.0-r69.qemuarm.rpm
+To clarify did you test the josh/demo or master branch of the meta-demo
+repository?
 
-(note that armv5te is the same with gcc's -march option, meaning little
-endian)
+Cheers,
+Joshua
+-- 
+Joshua Lock
+        Intel Open Source Technology Centre
 
-This is natural until zypper is involved. Zypper supports only one arch
-at one time (and this arch should not be changed in fly), and use the
-idea of arch compatibility (e.g. _noarch is compatible with _i586), it
-then hardcodes the available archs in a different way than poky does,
-thus creating several problems:
-  1. what uses for independent packages is called "noarch", "all" is not
-     recognized, something depends on update-rc.d won't be installed
-     because of missing dependency
-  2. the arch automatic detection system uses "uname -m", thus producing
-     armv5tejl, which can only be resolved as armv5tel, conflicting with
-     "armv5te" in rpm
-  3. many archs are missing in zypper, like mips, armeb, etc.
-  4. there is no concept of machine-dependent packages (task-base) in
-     zypper, although we can work around.
-
-Currently, at least zypper is broken on all of mips, arm, ppc, with
-slightly different problems.
-
-The ideal situation is to use consistent arch specification, the
-following can be a solution:
-  1. rename *.all.rpm to *.noarch.rpm
-  2. removing the concept of machine-dependent packages, change all
-     *.qemuarm.rpm to *.armv5te.rpm
-  3. enhance zypper arch module, make the addition more flexible,
-     allowing arch alias (e.g. armv5te = armv5tel = armel = arm)
-
-That would be some work to do, maybe 1.0 is a good time to get zypper
-and package upgrade truely working.
-
-Any ideas and comments?
-
-Thanks,
-Qing
 
