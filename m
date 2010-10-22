@@ -1,33 +1,22 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 232544C810B4
-	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 12:51:22 -0500 (CDT)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id o9MHpKwB003700;
-	Fri, 22 Oct 2010 10:51:20 -0700 (PDT)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Fri, 22 Oct 2010 10:51:20 -0700
-Received: from Macintosh-5.local ([172.25.34.19]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Fri, 22 Oct 2010 10:51:19 -0700
-Message-ID: <4CC1CF15.5030601@windriver.com>
-Date: Fri, 22 Oct 2010 12:51:17 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.11) Gecko/20101013 Thunderbird/3.1.5
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C271E4C8101B
+	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 13:22:04 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 22 Oct 2010 11:22:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.58,224,1286175600"; d="scan'208";a="566554166"
+Received: from unknown (HELO [10.255.12.77]) ([10.255.12.77])
+	by orsmga002.jf.intel.com with ESMTP; 22 Oct 2010 11:22:04 -0700
+Message-ID: <4CC1D64B.3050606@linux.intel.com>
+Date: Fri, 22 Oct 2010 11:22:03 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.11) Gecko/20101006 Lightning/1.0b2 Thunderbird/3.1.5
 MIME-Version: 1.0
-To: "Stewart, David C" <david.c.stewart@intel.com>
-References: <4CC0C619.7070201@linux.intel.com>
-	<B27EBC40D200ED48A3F4CC2EBEABAE0B25BC182ED9@orsmsx501.amr.corp.intel.com>
-In-Reply-To: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC182ED9@orsmsx501.amr.corp.intel.com>
-X-OriginalArrivalTime: 22 Oct 2010 17:51:20.0094 (UTC)
-	FILETIME=[BBCC73E0:01CB7211]
-Cc: Yocto Project <yocto@yoctoproject.org>, "Rifenbark,
-	Scott M" <scott.m.rifenbark@intel.com>, "Lock,
-	Joshua" <joshua.lock@intel.com>
-Subject: Re: "Demo Use Cases" documentation for the web page
+To: Yocto Project <yocto@yoctoproject.org>
+Cc: "Hohndel, Dirk" <dirk.hohndel@intel.com>
+Subject: Fetcher error reporting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,87 +28,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Oct 2010 17:51:22 -0000
+X-List-Received-Date: Fri, 22 Oct 2010 18:22:05 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/22/10 12:35 PM, Stewart, David C wrote:
->> From: Darren Hart [mailto:dvhart@linux.intel.com]
->> Sent: Thursday, October 21, 2010 4:01 PM
->>
->>
->> Media Network Demo
->> ==================
->> We're looking to have a section on the web site for the demo that
->> explains what each use-case is and possibly how it can be replicated.
->> I'm taking the approach of describing each image. Consider the
->> following:
->
-> At this point, the site map is set, and we're working with the web guys to set this up for review today and over the weekend.  I'm loath to mess with the structure at this point, and adding something like this would require more than a page, it requires references, etc.
->
-> I'm inclined to add a page to the new wiki once it is set up. (Scott is working on that now). Then we could add a link to the signage and on the Resources page.
->
->> The Yocto Project launch event at ECLF 2010 featured a
->> multi-architecture Media Network Demo. All the source for this demo is
->> available in the meta-demo git repository as a layer for the poky build
->> system.
->>
->> The following images made up the demo:
->> o poky-image-nas
->> o poky-image-mediatomb
->> o poky-image-rygel
->
-> "Note that the goal of these recipes was to demonstrate example functionality and the flexibility and power of Yocto. The goal was not to produce a production-ready image."
->
-> What might be better here would be a little additional info with each of these. Some examples below.
->
->> poky-image-nas
->> --------------
->> The poky-image-nas image boots your device as a network attached storage
->> device. It provides a DHCP service and an NFS server. We used this image
->> to store all our media.
->
-> "The filesystem called /<blah>  is exported via nfsexport<or whatever>. To make use of this for our demo setup, put your *.mp3 or *.ogg files into the /<blah>  directory. You need to make sure your system is on a network, and the TCP/IP stack is configured correctly to be visible by the other client systems."
->
+Richard,
 
-/media/storage is the export location...
+Here is an example of the do_fetch/do_unpack failure that I believe is 
+representative of what Dirk saw and what I have been seeing periodically.
 
-> (I am sure you can fix this up to make it better).
->
->> poky-image-mediatomb
->> --------------------
->> The poky-image-mediatomb image adds a UPnP content provider via the
->> mediatomb package. This image mounts the media share from the NAS and
->> makes it available to UPnP renderers.
->
-> "You need to edit<this file>  to nfsmount the filesystem from the NFS server in the previous example or use a local disk or another file server."
->
->> poky-image-rygel
->> ----------------
->> The poky-image-rygel image provides gupnp tools and the rygel media
->> renderer along with the sato desktop. The renderer can be controlled
->> locally or via any control point on the network. Several devices can run
->> this image and stream media from the mediatomb device.
->
-> "To activate the media renderer, type<something>  at the command line as root." You get my drift.
->
-> Let's go through one more round on email with these enhancements and by then the wiki should be set up.
->
->>
->> Open Questions
->> --------------
->> o Is this more or less what we are looking for?
->> o Should we modify the mediatomb image to:
->>    o automatically mount a specific share from the NAS?
->>    o add something to the config to automatically scan the
->>      media share?
->> o The poky-image-rygel description needs to be updated as we finalize
->>    the package.
->>
->>
->>
->> --
->> Darren Hart
->> Embedded Linux Kernel
+I saw the following while building libproxy in poky-image-sdk-live on a 
+Fedora 13 box behind the firewall. I saw identical failures with opkg on 
+a different machine - also behind the firewall. Both SRC_URIs point to 
+googlecode.
 
+log.do_fetch:
+-------------
+NOTE: fetch http://libproxy.googlecode.com/files/libproxy-0.4.3.tar.gz
+NOTE: libproxy-0.4.3: 
+http://libproxy.googlecode.com/files/libproxy-0.4.3.tar.gz has no entry 
+in conf/checksums.ini, not checking URI
+
+log.do_unpack:
+--------------
+gzip: stdin: unexpected end of file
+tar: Child returned status 1
+tar: Exiting with failure status due to previous errors
+NOTE: Unpacking 
+/vol/1/dvhart/poky.git/build/downloads/libproxy-0.4.3.tar.gz to 
+/vol/1/dvhart/poky.git/build/tmp/work/i586-poky-linux/libproxy-0.4.3-r2/
+ERROR: Task failed:
+
+With opkg, I tried the following which resulted in the same error.
+
+$ bitbake -c clean;
+$ rm downloads/*opkg*
+$ bitbake opkg
+
+In both cases, using wget to manually download the file and place it in
+the downloads directory allowed the build to continue.
+
+-- 
+Darren Hart
+Embedded Linux Kernel
 
