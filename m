@@ -1,23 +1,23 @@
 Return-Path: <qing.he@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C56894C810C1
-	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 20:40:04 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 21 Oct 2010 18:40:04 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C16494C801BF
+	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 20:51:34 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 21 Oct 2010 18:51:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,220,1286175600"; d="scan'208";a="339063032"
+X-IronPort-AV: E=Sophos;i="4.58,220,1286175600"; d="scan'208";a="669705113"
 Received: from qhe2-db.sh.intel.com ([10.239.13.48])
-	by azsmga001.ch.intel.com with ESMTP; 21 Oct 2010 18:40:03 -0700
+	by orsmga001.jf.intel.com with ESMTP; 21 Oct 2010 18:51:22 -0700
 Received: from qhe2 by qhe2-db.sh.intel.com with local (Exim 4.71)
 	(envelope-from <qing.he@intel.com>)
-	id 1P96Xz-0005eK-Qt; Fri, 22 Oct 2010 09:35:55 +0800
-Date: Fri, 22 Oct 2010 09:35:55 +0800
+	id 1P96ix-0005ey-03; Fri, 22 Oct 2010 09:47:15 +0800
+Date: Fri, 22 Oct 2010 09:47:14 +0800
 From: Qing He <qing.he@intel.com>
-To: Richard Purdie <rpurdie@linux.intel.com>
-Message-ID: <20101022013555.GD18344@qhe2-db>
-References: <20101021083308.GB18344@qhe2-db> <1287660099.16386.450.camel@rex>
+To: Mark Hatle <mark.hatle@windriver.com>
+Message-ID: <20101022014714.GE18344@qhe2-db>
+References: <20101021083308.GB18344@qhe2-db> <4CC059D9.8050208@windriver.com>
 MIME-Version: 1.0
-In-Reply-To: <1287660099.16386.450.camel@rex>
+In-Reply-To: <4CC059D9.8050208@windriver.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: zypper and poky architectures
@@ -32,97 +32,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Oct 2010 01:40:05 -0000
+X-List-Received-Date: Fri, 22 Oct 2010 01:51:35 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Thu, 2010-10-21 at 19:21 +0800, Richard Purdie wrote:
-> On Thu, 2010-10-21 at 16:33 +0800, Qing He wrote:
-> > I recently reported several zypper bugs specifically for arm, after
-> > some deeper investigation, the problem seems to be of higher level than
-> > I originally thought.
-> > 
-> > The root cause is that zypper and poky use different way to represent
-> > architectures, as we are putting them together, these two ways are
-> > not compatible, causing many minor glitches that need to modify at
-> > least one of them.
-> > 
-> > Poky has three kinds of representations in a single target image, which
-> > are independent, cpu-dependent and machine-dependent (all, armv5te,
-> > qemuarm, respectively), e.g.
-> > 
-> > 	update-rc.d-0.7-r3.all.rpm
-> > 	curl-7.21.0-r0.armv5te.rpm
-> > 	task-base-1.0-r69.qemuarm.rpm
-> > 
-> > (note that armv5te is the same with gcc's -march option, meaning little
-> > endian)
+On Thu, 2010-10-21 at 23:18 +0800, Mark Hatle wrote:
+> On 10/21/10 3:33 AM, Qing He wrote:
+> >    1. what uses for independent packages is called "noarch", "all" is not
+> >       recognized, something depends on update-rc.d won't be installed
+> >       because of missing dependency
 > 
-> This is a good analysis and summary. It actually gets more complicated
-> as for some machines we have a long list of compatible package types
-> that can be installed, e.g. for qemuarm, if you list PACKAGE_ARCHES
-> you'll see armv4t armv5 armv5t armv5te which are all accepted by the
-> opkg backend.
+> We can certainly look into translating "all" to "noarch" post 0.9.  That might 
+> make it easier for people coming from the RPM world, to understand what is in 
+> the package.
+>
+> >    1. rename *.all.rpm to *.noarch.rpm
+> 
+> We can certainly do this easily.
 
-Zypper also does something similar:
-
-    defCompatibleWith(_armv5tejl,   _noarch,_armv3l,_armv4l,_armv4tl,_armv5l,_armv5tel);
+If noarch is universally used in RPM word, I think we should use it.
 
 > 
-> > Currently, at least zypper is broken on all of mips, arm, ppc, with
-> > slightly different problems.
-> > 
-> > The ideal situation is to use consistent arch specification, the
-> > following can be a solution:
-> >   1. rename *.all.rpm to *.noarch.rpm
+> >    2. the arch automatic detection system uses "uname -m", thus producing
+> >       armv5tejl, which can only be resolved as armv5tel, conflicting with
+> >       "armv5te" in rpm
 > 
-> This would only solve part of the problem though?
-
-Yes, only a small part. And the way I prefer is to add an alias in zypper
-instead of changing poky.
-
+> This is a bug in Zypper.  The machine names should come from somewhere other 
+> then uname -m.  (The value of uname -m is very much ia32 specific for the most 
+> part.. other architectures have way too many possible namings for it to be 
+> useful.)   There is a line in "/etc/rpm/platform" that contains the name of Poky 
+> architecture.  This file should be referenced (instead of -m) for all cases.
+>
+> >    3. enhance zypper arch module, make the addition more flexible,
+> >       allowing arch alias (e.g. armv5te = armv5tel = armel = arm)
 > 
-> >   2. removing the concept of machine-dependent packages, change all
-> >      *.qemuarm.rpm to *.armv5te.rpm
-> 
-> This could mean making a copy of each rpm per machine so I'm not keen on
-> this.
+> Zypper should read the rpm platform file.
 
-Agreed.
+Sounds reasonable. After all, zypper is only intended to be a frontend
+utility to the lower end package tool. Then we won't need to worry about
+alias and different naming, and this detaches zypper from hardware.
 
 > 
-> >   3. enhance zypper arch module, make the addition more flexible,
-> >      allowing arch alias (e.g. armv5te = armv5tel = armel = arm)
-> > 
+> >    3. many archs are missing in zypper, like mips, armeb, etc.
+> >    4. there is no concept of machine-dependent packages (task-base) in
+> >       zypper, although we can work around.
+> 
+> Generally speaking, this is true of most RPM installations.  However, within RPM 
+> itself.. there really isn't any concept of "arch" anymore.. They're really only 
+> used for grouping and ordering.  So Zypper may need to be updated to query the 
+> arch of a package and use it for it's various operations.
+> 
+> >    2. removing the concept of machine-dependent packages, change all
+> >       *.qemuarm.rpm to *.armv5te.rpm
+> 
+> I'm a bit worried about doing this, as we'll end up with (potentially) 
+> incompatible packages with exactly the same name and versions...  Perhaps we 
+> need to think about embedding the machine type into the name of the packages 
+> instead?
+
+Thanks for the info. If we are going for dynamic platform specs, it
+doesn't really matter whether we have things like qemuarm or not, does it?
+
+> 
+> 
 > > That would be some work to do, maybe 1.0 is a good time to get zypper
 > > and package upgrade truely working.
-> > 
-> > Any ideas and comments?
 > 
-> I think we're going to have to teach zypper to read a list of compatible
-> "architectures" from a configuration file. There is a config file opkg
-> writes to the filesystem continaing this list and we'll have to do
-> similar for RPM.
-
-The problem is that current zypper uses hardcoded "archs" and
-compatibility list, i.e. at build time with C++ code. Changing it to
-read the list at run time is probably substantial.
-
-Another possibility is to generate the list at build time and do it by
-scripts and conditional compiling, this does have the problem of
-creating logically different versions for different archs.
-
+> Yes, we also need to get multi-arch as well.. (i.e. 32-bit and 64-bit at the 
+> same time) working.  I'm guessing there will be some Zypper interactions there 
+> as well.
 > 
-> It does raise the question of how given two possible rpm's it would
-> chose between the two (for opkg, the list is in order).
-> 
-> Is the problem just in zypper and is rpm free from any issues in this
-> area?
 
-I don't know much about rpm internals, there is a bug regarding the rpm,
-http://bugzilla.pokylinux.org/show_bug.cgi?id=498
-
-But it looks fair limited in impact.
+I don't really have ideas how this is done. I think on debian this is
+actually avoided and i386 packages are repackaged as lib32xxx for x86_64
+platform.
 
 Thanks,
 Qing
