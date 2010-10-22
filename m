@@ -1,25 +1,26 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 71A5F4C810C1
-	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 20:32:06 -0500 (CDT)
+Return-Path: <qing.he@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C56894C810C1
+	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 20:40:04 -0500 (CDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 21 Oct 2010 18:32:05 -0700
+	by azsmga102.ch.intel.com with ESMTP; 21 Oct 2010 18:40:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,220,1286175600"; d="scan'208";a="339061355"
-Received: from unknown (HELO [10.255.12.149]) ([10.255.12.149])
-	by azsmga001.ch.intel.com with ESMTP; 21 Oct 2010 18:32:04 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-In-Reply-To: <4CC0C619.7070201@linux.intel.com>
-References: <4CC0C619.7070201@linux.intel.com>
-Date: Thu, 21 Oct 2010 20:32:14 -0500
-Message-ID: <1287711134.10206.62.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: Yocto Project <yocto@yoctoproject.org>, "Rifenbark,
-	Scott M" <scott.m.rifenbark@intel.com>, "Lock,
-	Joshua" <joshua.lock@intel.com>
-Subject: Re: RFC: "Demo Use Cases" documentation for the web page
+X-IronPort-AV: E=Sophos;i="4.58,220,1286175600"; d="scan'208";a="339063032"
+Received: from qhe2-db.sh.intel.com ([10.239.13.48])
+	by azsmga001.ch.intel.com with ESMTP; 21 Oct 2010 18:40:03 -0700
+Received: from qhe2 by qhe2-db.sh.intel.com with local (Exim 4.71)
+	(envelope-from <qing.he@intel.com>)
+	id 1P96Xz-0005eK-Qt; Fri, 22 Oct 2010 09:35:55 +0800
+Date: Fri, 22 Oct 2010 09:35:55 +0800
+From: Qing He <qing.he@intel.com>
+To: Richard Purdie <rpurdie@linux.intel.com>
+Message-ID: <20101022013555.GD18344@qhe2-db>
+References: <20101021083308.GB18344@qhe2-db> <1287660099.16386.450.camel@rex>
+MIME-Version: 1.0
+In-Reply-To: <1287660099.16386.450.camel@rex>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: zypper and poky architectures
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,170 +32,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Oct 2010 01:32:06 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 22 Oct 2010 01:40:05 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Thu, 2010-10-21 at 16:00 -0700, Darren Hart wrote:
-> Media Network Demo
-> ==================
-> We're looking to have a section on the web site for the demo that
-> explains what each use-case is and possibly how it can be replicated.
-> I'm taking the approach of describing each image. Consider the
-> following:
+On Thu, 2010-10-21 at 19:21 +0800, Richard Purdie wrote:
+> On Thu, 2010-10-21 at 16:33 +0800, Qing He wrote:
+> > I recently reported several zypper bugs specifically for arm, after
+> > some deeper investigation, the problem seems to be of higher level than
+> > I originally thought.
+> > 
+> > The root cause is that zypper and poky use different way to represent
+> > architectures, as we are putting them together, these two ways are
+> > not compatible, causing many minor glitches that need to modify at
+> > least one of them.
+> > 
+> > Poky has three kinds of representations in a single target image, which
+> > are independent, cpu-dependent and machine-dependent (all, armv5te,
+> > qemuarm, respectively), e.g.
+> > 
+> > 	update-rc.d-0.7-r3.all.rpm
+> > 	curl-7.21.0-r0.armv5te.rpm
+> > 	task-base-1.0-r69.qemuarm.rpm
+> > 
+> > (note that armv5te is the same with gcc's -march option, meaning little
+> > endian)
 > 
+> This is a good analysis and summary. It actually gets more complicated
+> as for some machines we have a long list of compatible package types
+> that can be installed, e.g. for qemuarm, if you list PACKAGE_ARCHES
+> you'll see armv4t armv5 armv5t armv5te which are all accepted by the
+> opkg backend.
 
-This is a good start.  I don't know if this is the place to add it, but
-I just wanted to capture the details of what I've done so far to get my
-setup working.  For now mainly in case anyone else could use some hints
-on how to get everything going...
+Zypper also does something similar:
 
-Basically this is just what I did, and it may be completely wrong -
-please do correct anything stupid and suggest improvements if you see
-any - at this point I just want to get the basic stuff up and running so
-I can pack it all up tomorrow night and not be too worried about not
-having anything.
-
-> The Yocto Project launch event at ECLF 2010 featured a
-> multi-architecture Media Network Demo. All the source for this demo is
-> available in the meta-demo git repository as a layer for the poky build
-> system.
-> 
-> The following images made up the demo:
-> o poky-image-nas
-> o poky-image-mediatomb
-> o poky-image-rygel
-> 
-> poky-image-nas
-> --------------
-> The poky-image-nas image boots your device as a network attached storage
-> device. It provides a DHCP service and an NFS server. We used this image
-> to store all our media.
-> 
-
-Rather than using the nas image, since all I have is a laptop and the
-two atom boards, I decided to just do the simplest thing for now and
-have my laptop host and serve up the images over nfs (I was thinking of
-doing the nas image inside of say an arm qemu instance running on the
-laptop, and may still if I get time, but as a simple approximation, this
-will work.  All this is also just a fallback in case the real demo
-system breaks down, so I'm not being too particular).
-
-So on the laptop, install the nfs server and export the media files:
-
-# apt-get install nfs-kernel-server
-
-Put a bunch of music files somewhere - in my case I put some files in:
-
-/home/trz/Music
-
-Add a line to /etc/exports to export that directory:
-
-/home/trz/Music	*(ro,sync,no_root_squash)
-
-restart the nfs server:
-
-/etc/init.d/nfs-kernel-server restart
-
-Let's say the IP address the laptip got was 192.168.1.3.
-
-> poky-image-mediatomb
-> --------------------
-> The poky-image-mediatomb image adds a UPnP content provider via the
-> mediatomb package. This image mounts the media share from the NAS and
-> makes it available to UPnP renderers.
-
-ssh into the mediatomb board, in my case, this is a Black Sand, and
-mount the exported media share:
-
-# mount 192.168.1.3:/home/trz/Music /media/music
-
-So now the mediatomb box has access to the files it's going to
-advertise.  Let's tell mediatomb to do that.
-
-Look in /var/log/mediatomb.log
-
-You should see a line like this:
-
-2010-09-08 10:50:03    INFO: MediaTomb Web UI can be reached by
-following this link:
-2010-09-08 10:50:03    INFO: http://192.168.1.3:49152/
-
-Point a web browser at that URL and you should see the minimalistic
-Mediatomb web interface.  Click on the 'Filesystem link' and you should
-see somewhere in there your /media/music mount.  Click on that and you
-should see all your music on the right-hand-side.  Click on the '+' and
-that should add all your songs to mediatomb (watch out, there doesn't
-seem to be any indication as to whether it succeeded or not - I had
-duplicates show up in Mediatomb if I did that more than once - just like
-iTunes, yeah!).
-
-If you go the 'Database link', you should see a treeview with your songs
-somewhere in there.  This is the same hierarchy you'll see and navigate
-to play your songs in the rygel image 'AV control point'.
-
-*Note, if mediatomb.log showed errors instead of the URL you need, it's
-probably because eth0 didn't come up (working on a fix).  An ifup
-eth0; /etc/init.d/mediatomb restart should fix that.
-
-If that step was successful, you should now be able to see and play your
-songs from another box...
+    defCompatibleWith(_armv5tejl,   _noarch,_armv3l,_armv4l,_armv4tl,_armv5l,_armv5tel);
 
 > 
-> poky-image-rygel
-> ----------------
-> The poky-image-rygel image provides gupnp tools and the rygel media
-> renderer along with the sato desktop. The renderer can be controlled 
-> locally or via any control point on the network. Several devices can run 
-> this image and stream media from the mediatomb device.
+> > Currently, at least zypper is broken on all of mips, arm, ppc, with
+> > slightly different problems.
+> > 
+> > The ideal situation is to use consistent arch specification, the
+> > following can be a solution:
+> >   1. rename *.all.rpm to *.noarch.rpm
 > 
+> This would only solve part of the problem though?
 
-On the rygel image, open up a terminal and type:
-
-# rygel
-
-(the latest image takes awhile to display anything - it's not graphical,
-will display a couple lines of text - one of which is an error message,
-but the 'playbin' plugin should say it's available, and things should
-still work.)
-
-Navigate back to the Desktop and find the 'UpnP Universal Control Point'
-and click on it.  That should open up a graphical UI showing available
-data sources (but is not where you play media from)...
-
-Navigate back to the Desktop and find the 'UPnP AV Control Point'.
-Click on that, and you should see something more familiar, something
-that looks like it can actually do something useful, which is play a
-song.  Click on treeview in the app, and eventually you should see some
-songs.  Click on a song, and hit the 'Play' button, and it should play
-the song - it couldn't be easier!
-
-NOTE: make sure you have speaker connected to the board you're rendering
-the music on.  If that doesn't work, try opening a terminal window and
-using amixer to play around with the volume e.g.:
-
-amixer set Master on
-amixer set Master 75
-
-For extra credit, install gupnp-tools and try the AV Control Point from
-your laptop, or any system - you should see the same media and should be
-able to control it from anywhere.  Choose a different song and send it
-to any other renderer running on any other box, etc.  The possibilities
-are endless!
+Yes, only a small part. And the way I prefer is to add an alias in zypper
+instead of changing poky.
 
 > 
-> Open Questions
-> --------------
-> o Is this more or less what we are looking for?
-> o Should we modify the mediatomb image to:
->    o automatically mount a specific share from the NAS?
->    o add something to the config to automatically scan the
->      media share?
-> o The poky-image-rygel description needs to be updated as we finalize
->    the package.
+> >   2. removing the concept of machine-dependent packages, change all
+> >      *.qemuarm.rpm to *.armv5te.rpm
 > 
-> 
-> 
+> This could mean making a copy of each rpm per machine so I'm not keen on
+> this.
 
+Agreed.
 
+> 
+> >   3. enhance zypper arch module, make the addition more flexible,
+> >      allowing arch alias (e.g. armv5te = armv5tel = armel = arm)
+> > 
+> > That would be some work to do, maybe 1.0 is a good time to get zypper
+> > and package upgrade truely working.
+> > 
+> > Any ideas and comments?
+> 
+> I think we're going to have to teach zypper to read a list of compatible
+> "architectures" from a configuration file. There is a config file opkg
+> writes to the filesystem continaing this list and we'll have to do
+> similar for RPM.
+
+The problem is that current zypper uses hardcoded "archs" and
+compatibility list, i.e. at build time with C++ code. Changing it to
+read the list at run time is probably substantial.
+
+Another possibility is to generate the list at build time and do it by
+scripts and conditional compiling, this does have the problem of
+creating logically different versions for different archs.
+
+> 
+> It does raise the question of how given two possible rpm's it would
+> chose between the two (for opkg, the list is in order).
+> 
+> Is the problem just in zypper and is rpm free from any issues in this
+> area?
+
+I don't know much about rpm internals, there is a bug regarding the rpm,
+http://bugzilla.pokylinux.org/show_bug.cgi?id=498
+
+But it looks fair limited in impact.
+
+Thanks,
+Qing
 
