@@ -1,29 +1,36 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 155724C80054
-	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 12:24:45 -0500 (CDT)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id o9MHOhlk029680
-	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 10:24:43 -0700 (PDT)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Fri, 22 Oct 2010 10:24:42 -0700
-Received: from Macintosh-5.local ([172.25.34.19]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Fri, 22 Oct 2010 10:24:42 -0700
-Message-ID: <4CC1C8D8.2090207@windriver.com>
-Date: Fri, 22 Oct 2010 12:24:40 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.11) Gecko/20101013 Thunderbird/3.1.5
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 0714B4C81081
+	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 12:35:50 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 22 Oct 2010 10:35:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.58,224,1286175600"; d="scan'208";a="619384675"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by fmsmga002.fm.intel.com with ESMTP; 22 Oct 2010 10:35:50 -0700
+Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Fri, 22 Oct 2010 10:35:50 -0700
+Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
+	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
+	Fri, 22 Oct 2010 10:35:50 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>, Yocto Project
+	<yocto@yoctoproject.org>
+Date: Fri, 22 Oct 2010 10:35:49 -0700
+Thread-Topic: "Demo Use Cases" documentation for the web page
+Thread-Index: Actxc8q4x31CiH7pSxSErKEWwcJibQAleuqA
+Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC182ED9@orsmsx501.amr.corp.intel.com>
+References: <4CC0C619.7070201@linux.intel.com>
+In-Reply-To: <4CC0C619.7070201@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4CC1C88B.707@linux.intel.com>
-In-Reply-To: <4CC1C88B.707@linux.intel.com>
-X-OriginalArrivalTime: 22 Oct 2010 17:24:43.0157 (UTC)
-	FILETIME=[03F33450:01CB720E]
-Subject: Re: Last minute changes - Review Request
+Cc: "Lock, Joshua" <joshua.lock@intel.com>, "Rifenbark,
+	Scott M" <scott.m.rifenbark@intel.com>
+Subject: Re: "Demo Use Cases" documentation for the web page
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,96 +42,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Oct 2010 17:24:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 22 Oct 2010 17:35:51 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Add a +1 to reviewed, worried, but accepting column.  They each seem reasonable, 
-low-enough risk..
+>From: Darren Hart [mailto:dvhart@linux.intel.com]
+>Sent: Thursday, October 21, 2010 4:01 PM
+>
+>
+>Media Network Demo
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>We're looking to have a section on the web site for the demo that
+>explains what each use-case is and possibly how it can be replicated.
+>I'm taking the approach of describing each image. Consider the
+>following:
 
---Mark
+At this point, the site map is set, and we're working with the web guys to =
+set this up for review today and over the weekend.  I'm loath to mess with =
+the structure at this point, and adding something like this would require m=
+ore than a page, it requires references, etc.
 
-On 10/22/10 12:23 PM, Saul G. Wold wrote:
-> On 10/22/2010 09:32 AM, Stewart, David C wrote:
->>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->>> bounces@yoctoproject.org] On Behalf Of Richard Purdie
->>> Sent: Friday, October 22, 2010 7:24 AM
->>>
->>> Coming up to release there are a few things that the extended testing
->>> has shown up which we have fixes for and which we should consider
->>> including in the release. I also finally got around to doing the final
->>> sstate stress testing and found several problematic issues. Given that
->>> sstate and checksums are a significant feature of this release, I'd
->>> really like them to work as well as we can make them. Prior to this I
->>> had stress tested the backend up not the use of the packages. These
->>> changes don't change any sstate packages themselves, just the use of
->>> them.
->>>
->>> Since we already have the release images prepared and tested and these
->>> are not going to change, the criteria for potential changes:
->>>
->>> a) We can unit test the changes and be confident they don't
->>>     break/regress things.
->
-> For the Future: Besides doing a basic build, we need to have some real
-> unit tests for bitbake and the poky infrastructure, I guess I need to
-> turn this into a Testing feature request for 1.0 (look for it soon).
->
->>> b) They fix important bugs that the user can easily run into
->>>     or that make the project look bad.
-> After reviewing the changes I agree, don't get me wrong, I am still very
-> nervous about these changes.
->
->>> c) The changes are small, well documented and are obviously correct
->>>     looking at the code/patch.
-> Some times we over look the obvious changes, been caught by that myself
-> too many time.
->
->>> d) The don't change the generated images.
->
-> <SNIP>
->
->>> I'm not happy about being in this position and I know Dave will be very
->>> nervous about these late changes. To mitigate this I'd like to propose
->>> that a selection of people (Josh, Mark, Saul?) review these changes and
->>> report back on whether they feel these are appropriate and also give the
->>> build some testing with these applied.
->>
->> I'm so predictable... :-) Yes, I'm nervous. I looked at all of the patches and with the exception of one or two, they mostly seem like good ones. I will accept these if Josh/Mark/Saul give us a +1 on their review&   testing.
->>
->
-> If there was 1 or 2 changes, I would be much happier, but there are
-> almost a dozen changes, yes mostly individually they are OK, I am still
-> reviewing them all, and have not started any testing with them yet.
->
-> I agree with Dave that there are a couple that I am more nervous about
-> the pseudo/fakeroot as we have had so much trouble in the past, yes I
-> know this will make things better, but what else will crop up?
->
->
->>> Cheers,
->>>
->>> Richard
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.pokylinux.org/listinfo/yocto
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.pokylinux.org/listinfo/yocto
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.pokylinux.org/listinfo/yocto
+I'm inclined to add a page to the new wiki once it is set up. (Scott is wor=
+king on that now). Then we could add a link to the signage and on the Resou=
+rces page.
 
+>The Yocto Project launch event at ECLF 2010 featured a
+>multi-architecture Media Network Demo. All the source for this demo is
+>available in the meta-demo git repository as a layer for the poky build
+>system.
+>
+>The following images made up the demo:
+>o poky-image-nas
+>o poky-image-mediatomb
+>o poky-image-rygel
+
+"Note that the goal of these recipes was to demonstrate example functionali=
+ty and the flexibility and power of Yocto. The goal was not to produce a pr=
+oduction-ready image."
+
+What might be better here would be a little additional info with each of th=
+ese. Some examples below.
+
+>poky-image-nas
+>--------------
+>The poky-image-nas image boots your device as a network attached storage
+>device. It provides a DHCP service and an NFS server. We used this image
+>to store all our media.
+
+"The filesystem called /<blah> is exported via nfsexport <or whatever>. To =
+make use of this for our demo setup, put your *.mp3 or *.ogg files into the=
+ /<blah> directory. You need to make sure your system is on a network, and =
+the TCP/IP stack is configured correctly to be visible by the other client =
+systems." =20
+
+(I am sure you can fix this up to make it better).
+
+>poky-image-mediatomb
+>--------------------
+>The poky-image-mediatomb image adds a UPnP content provider via the
+>mediatomb package. This image mounts the media share from the NAS and
+>makes it available to UPnP renderers.
+
+"You need to edit <this file> to nfsmount the filesystem from the NFS serve=
+r in the previous example or use a local disk or another file server."
+
+>poky-image-rygel
+>----------------
+>The poky-image-rygel image provides gupnp tools and the rygel media
+>renderer along with the sato desktop. The renderer can be controlled
+>locally or via any control point on the network. Several devices can run
+>this image and stream media from the mediatomb device.
+
+"To activate the media renderer, type <something> at the command line as ro=
+ot." You get my drift.
+
+Let's go through one more round on email with these enhancements and by the=
+n the wiki should be set up.
+
+>
+>Open Questions
+>--------------
+>o Is this more or less what we are looking for?
+>o Should we modify the mediatomb image to:
+>   o automatically mount a specific share from the NAS?
+>   o add something to the config to automatically scan the
+>     media share?
+>o The poky-image-rygel description needs to be updated as we finalize
+>   the package.
+>
+>
+>
+>--
+>Darren Hart
+>Embedded Linux Kernel
 
