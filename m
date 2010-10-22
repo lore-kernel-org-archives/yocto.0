@@ -1,24 +1,24 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id EDE674C801BF
-	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 22:12:28 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 21 Oct 2010 20:12:28 -0700
+Return-Path: <joshua.lock@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 52C434C801BF
+	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 02:29:55 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 22 Oct 2010 00:29:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,221,1286175600"; d="scan'208";a="566345734"
-Received: from unknown (HELO [10.255.12.146]) ([10.255.12.146])
-	by orsmga002.jf.intel.com with ESMTP; 21 Oct 2010 20:12:28 -0700
-Message-ID: <4CC1011C.9050904@linux.intel.com>
-Date: Thu, 21 Oct 2010 20:12:28 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.9) Gecko/20100922 Thunderbird/3.1.4
-MIME-Version: 1.0
-To: "You, Yongkang" <yongkang.you@intel.com>
-References: <F26D193E20BBDC42A43B611D1BDEDE712151801BB8@shsmsx502.ccr.corp.intel.com>
-In-Reply-To: <F26D193E20BBDC42A43B611D1BDEDE712151801BB8@shsmsx502.ccr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Please verify the fixed bug in bugzilla.
+X-IronPort-AV: E=Sophos;i="4.58,222,1286175600"; d="scan'208";a="669772432"
+Received: from unknown (HELO [10.255.16.69]) ([10.255.16.69])
+	by orsmga001.jf.intel.com with ESMTP; 22 Oct 2010 00:29:52 -0700
+From: Joshua Lock <joshua.lock@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4CC0C252.1020501@linux.intel.com>
+References: <4CC0C252.1020501@linux.intel.com>
+Date: Fri, 22 Oct 2010 08:29:51 +0100
+Message-ID: <1287732591.2208.3.camel@scimitar>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.0 (2.32.0-2.fc14) 
+X-Mailman-Approved-At: Fri, 22 Oct 2010 02:45:10 -0500
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Media Network Demo: Black Sand and Netbook
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,25 +30,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Oct 2010 03:12:29 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 22 Oct 2010 07:29:55 -0000
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"
 
-On 10/21/2010 12:44 AM, You, Yongkang wrote:
-> Hi all,
->
-> I just had a quick search in bugzilla and found a lot of bugs are resolved but not verified. We'd better to verify the fix before 0.9 launch.
->
-> The M4 resolved (but not verified) bugs (88):
-> http://bugzilla.pokylinux.org/buglist.cgi?bug_status=RESOLVED&query_format=advanced&target_milestone=0.9%20M4&query_based_on=&columnlist=bug_severity%2Creporter%2Cpriority%2Cop_sys%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cproduct%2Ccomponent
->
-> All resolved (but not verified) bugs (198):
-> http://bugzilla.pokylinux.org/buglist.cgi?query_format=advanced&bug_status=RESOLVED
+T24gVGh1LCAyMDEwLTEwLTIxIGF0IDE1OjQ0IC0wNzAwLCBEYXJyZW4gSGFydCB3cm90ZToKPiBJ
+IGJ1aWxkIG1lZGlhdG9tYiBhbmQgcnlnZWwgbGl2ZSBhdG9tLXBjIGltYWdlcyBmcm9tIHRvZGF5
+J3MgcG9reS9tYXN0ZXIgCj4gKyBtZXRhLWRlbW8vbWFzdGVyLiBJIGJvb3RlZCBtZWRpYXRvbWIg
+b24gdGhlIEJsYWNrU2FuZCBhbmQgcnlnZWwgb24gdGhlIAo+IG5ldGJvb2suIEkgaGFkIHRvIG1h
+bnVhbGx5IHN0YXJ0IHRoZSByeWdlbCByZW5kZXJlciBvbiB0aGUgbmV0Ym9vay4gSSAKPiBkaWRu
+J3Qgc2VlIGd1cG5wLWF2LWNwIG9uIHRoZSByeWdlbCBpbWFnZSBhcyBJIGV4cGVjdGVkIGFuZCB0
+aGUgCj4gZ3VwbnAtdW5pdmVyc2FsLWNwIGNvbW1hbmQgZmFpbGVkIHRvIHN0YXJ0IG9uIHRoZSBu
+ZXRib29rICh2aWEgYSBzYXRvIAo+IHRlcm1pbmFsKSBjb21wbGFpbmluZyBhYm91dCBtaXNzaW5n
+IGljb25zLiBJZiBJIHRyaWVkIHRvIHN0YWJydCB0aGlzIAo+IG92ZXIgYW4gc3NoIC0gY29ubmVj
+dGlvbiwgdGhlIGd1cG5wLXVuaXZlcnNhbC1jcCBzdGFydGVkIGZpbmUgKHN0cmFuZ2UpLgoKSG1t
+LCBJJ3ZlIGNvbW1pdHMgdG8gZml4IGJvdGggb2YgdGhvc2UgaXNzdWVzIGluIG1ldGEtZGVtbyBt
+YXN0ZXIgc2luY2UKYXQgbGVhc3QgeWVzdGVyZGF5IG1vcm5pbmcuYgoKPiAKPiBJIGNvdWxkIHJ1
+biBndXBucC1hdi1jcCBmcm9tIG15IGxhcHRvcCAoVWJ1bnR1IDEwLjEwKSBhbmQgcGxheSBtdXNp
+Ywo+IGZyb20gbWVkaWF0b21iIG9uIHRoZSByeWdlbCByZW5kZXJlci4gKFlBWSkKCkNvb2whCgo+
+IAo+IFdoYXQgSSdkIGxpa2UgdG8gc2VlIGlzIGZvciBndXBucC1hdi1jcCB0byBzdGFydCBhdXRv
+bWF0aWNhbGx5IGFmdGVyIHRoZQo+IHNhdG8gZGVza3RvcCBsb2FkcyBvbiBlYWNoIHJlbmRlcmVy
+LiBUaGlzIHdvdWxkIG1ha2UgZWFjaCByZW5kZXJlciBhCj4gc3RhbmRhbG9uZSBwbGF5ZXIuCj4g
+Cj4gU28sIGl0J3MgZnVuY3Rpb25hbCAoYXdlc29tZSEpIGFuZCBJIHNlZSB0aGVzZSBBUnMgYXMg
+cGVuZGluZyBmb3IgdGhlIAo+IGRlbW8gaW1hZ2VzOgo+IAo+IFsgXSBhZGQgZ3VwbnAtYXYtY3Ag
+dG8gdGhlIHJ5Z2VsIGltYWdlCkFscmVhZHkgZG9uZQo+IFsgXSBzdGFydCByeWdlbCBvbiBib290
+IChhZnRlciBuZXR3b3JraW5nKQpJJ2xsIHRha2UgdGhpcyBBUgo+IFsgXSBzdGFydCBndXBucC1h
+di1jcCBhZnRlciB0aGUgc2F0byBkZXNrdG9wIGxvYWRzIG9uIHRoZSByeWdlbCBpbWFnZQpJJ2xs
+IHRha2UgdGhpcyBBUiB0b28KPiBbIF0gc2V0dXAgbmV0d29ya2luZyBvbiBlYWNoIG9mIHRoZSBu
+b24tbmFzIGltYWdlcyB0byBkaGNwIG9uIGV0aDAKPiAKPiBXaXRoIHRoZSBhYm92ZSwgZWFjaCBp
+bWFnZSBzaG91bGQgYm9vdCB0byBhIGZ1bmN0aW9uYWwgc3RhdGUgd2l0aCBubwo+IG1hbnVhbCBp
+bnRlcmZlcmVuY2UgcmVxdWlyZWQuCj4gCj4gSG93IG11Y2ggb2YgdGhlIGFib3ZlIGlzIGFscmVh
+ZHkgcGxhbm5lZCBhbmQgaG93IG11Y2ggZG8gd2UgbmVlZCB0byBnZXQKPiBhbiBvd25lciBmb3I/
+Cj4gCgpJJ2xsIGhhbmRsZSB0aGUgUnlnZWwgYW5kIGd1cG5wLWF2LWNwIG9uZXMsIHRoZXkgd2hl
+cmUgYWxyZWFkeSBvbiBteQpsaXN0IDotKQoKQ2hlZXJzLApKb3NodWEKLS0gCkpvc2h1YSBMb2Nr
+CiAgICAgICAgSW50ZWwgT3BlbiBTb3VyY2UgVGVjaG5vbG9neSBDZW50cmUKCi0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LQpJbnRlbCBDb3Jwb3JhdGlvbiAoVUspIExpbWl0ZWQKUmVnaXN0ZXJlZCBOby4gMTEzNDk0NSAo
+RW5nbGFuZCkKUmVnaXN0ZXJlZCBPZmZpY2U6IFBpcGVycyBXYXksIFN3aW5kb24gU04zIDFSSgpW
+QVQgTm86IDg2MCAyMTczIDQ3CgpUaGlzIGUtbWFpbCBhbmQgYW55IGF0dGFjaG1lbnRzIG1heSBj
+b250YWluIGNvbmZpZGVudGlhbCBtYXRlcmlhbCBmb3IKdGhlIHNvbGUgdXNlIG9mIHRoZSBpbnRl
+bmRlZCByZWNpcGllbnQocykuIEFueSByZXZpZXcgb3IgZGlzdHJpYnV0aW9uCmJ5IG90aGVycyBp
+cyBzdHJpY3RseSBwcm9oaWJpdGVkLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQKcmVjaXBp
+ZW50LCBwbGVhc2UgY29udGFjdCB0aGUgc2VuZGVyIGFuZCBkZWxldGUgYWxsIGNvcGllcy4K
 
-Bug 468 needs confirmation by someone in PRC with the HP Mini netbook. 
-I've verified the other 4 I opened.
-
--- 
-Darren Hart
-Embedded Linux Kernel
 
