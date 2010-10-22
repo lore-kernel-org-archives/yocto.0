@@ -1,31 +1,31 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 28A2E4C810B4
-	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 17:48:16 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 22 Oct 2010 15:48:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,225,1286175600"; d="scan'208";a="669999937"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by orsmga001.jf.intel.com with ESMTP; 22 Oct 2010 15:48:15 -0700
-Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Fri, 22 Oct 2010 15:48:15 -0700
-Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
-	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi;
-	Fri, 22 Oct 2010 15:48:15 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Fri, 22 Oct 2010 15:48:14 -0700
-Thread-Topic: RC3 vs RC4a
-Thread-Index: ActyOzXSVwV712kEQ5yVUlQVucujnA==
-Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC1832E6@orsmsx501.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: RC3 vs RC4a
+Return-Path: <rpurdie@linux.intel.com>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8BAA14C8101B
+	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 18:39:10 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id o9MNd4Cu006118;
+	Sat, 23 Oct 2010 00:39:04 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 05997-03; Sat, 23 Oct 2010 00:39:00 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id o9MNcwwc006112
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Sat, 23 Oct 2010 00:38:58 +0100
+From: Richard Purdie <rpurdie@linux.intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4CC1D64B.3050606@linux.intel.com>
+References: <4CC1D64B.3050606@linux.intel.com>
+Date: Sat, 23 Oct 2010 00:38:44 +0100
+Message-ID: <1287790724.16386.791.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: Yocto Project <yocto@yoctoproject.org>, "Hohndel,
+	Dirk" <dirk.hohndel@intel.com>
+Subject: Re: Fetcher error reporting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,28 +37,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Oct 2010 22:48:16 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 22 Oct 2010 23:39:11 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-We have an RC3 which we feel confident in based on our no-nogo launch decis=
-ion.
+On Fri, 2010-10-22 at 11:22 -0700, Darren Hart wrote:
+> Here is an example of the do_fetch/do_unpack failure that I believe is 
+> representative of what Dirk saw and what I have been seeing periodically.
+> 
+> I saw the following while building libproxy in poky-image-sdk-live on a 
+> Fedora 13 box behind the firewall. I saw identical failures with opkg on 
+> a different machine - also behind the firewall. Both SRC_URIs point to 
+> googlecode.
+> 
+> log.do_fetch:
+> -------------
+> NOTE: fetch http://libproxy.googlecode.com/files/libproxy-0.4.3.tar.gz
+> NOTE: libproxy-0.4.3: 
+> http://libproxy.googlecode.com/files/libproxy-0.4.3.tar.gz has no entry 
+> in conf/checksums.ini, not checking URI
+> 
+> log.do_unpack:
+> --------------
+> gzip: stdin: unexpected end of file
+> tar: Child returned status 1
+> tar: Exiting with failure status due to previous errors
+> NOTE: Unpacking 
+> /vol/1/dvhart/poky.git/build/downloads/libproxy-0.4.3.tar.gz to 
+> /vol/1/dvhart/poky.git/build/tmp/work/i586-poky-linux/libproxy-0.4.3-r2/
+> ERROR: Task failed:
+> 
+> With opkg, I tried the following which resulted in the same error.
+> 
+> $ bitbake -c clean;
+> $ rm downloads/*opkg*
+> $ bitbake opkg
+> 
+> In both cases, using wget to manually download the file and place it in
+> the downloads directory allowed the build to continue.
 
-However, there are a handful of issues which are not critical but would be =
-desirable to address them - for example, having to do with errors being "fa=
-tal" which are not, etc.
+We've talked about this a lot over jabber. We don't have a reproducer.
+What we do see is its always the wget fetcher that hits this (for mirror
+urls in the case of git repos) and its failing creating a zero length
+file.
 
-So I have asked Saul to create an RC4a with these patched in. Would like Sa=
-nity and BAT tests run on RC4a to see if we should ship it, or with stick w=
-ith RC3.
+If we make the assumption that wget is creating the empty file and
+exiting with an error code and look at what bitbake would do, it would
+give the behaviour described in these bugs.
 
-RP - will complete the patch tonight.
-Saul - will complete the RC4a build by 5PM Sunday (Pacific)
-Kevin and Jiajun and whole team - test this build as much as you have time =
-for.
+Why? If the original fetch fails, it falls back to the mirror code. That
+looks, sees a file on the disk and says "nothing to do".
 
-Late Monday, we will decide whether to go with the RC3 build or RC4a build.
+Solution is therefore to make sure if the wget fetcher fails we wipe any
+file that may be present.
 
-Dave
+Is is possible the wget fetcher is creating a zero length file and no
+setting an error code but I really hope its not that broken.
+
+So I've pushed this patch as a bandaid for the problem:
+
+http://git.pokylinux.org/cgit/cgit.cgi/poky/commit/?id=c5fab99a6f979a4a0ce246c6395b35a3082aec0d
+
+Cheers,
+
+Richard
+
+
 
