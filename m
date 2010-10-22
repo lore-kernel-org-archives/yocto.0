@@ -1,22 +1,27 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C271E4C8101B
-	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 13:22:04 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 22 Oct 2010 11:22:04 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6CFBE4C811A9
+	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 15:22:02 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 22 Oct 2010 13:22:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,224,1286175600"; d="scan'208";a="566554166"
+X-IronPort-AV: E=Sophos;i="4.58,225,1286175600"; d="scan'208";a="339414059"
 Received: from unknown (HELO [10.255.12.77]) ([10.255.12.77])
-	by orsmga002.jf.intel.com with ESMTP; 22 Oct 2010 11:22:04 -0700
-Message-ID: <4CC1D64B.3050606@linux.intel.com>
-Date: Fri, 22 Oct 2010 11:22:03 -0700
+	by azsmga001.ch.intel.com with ESMTP; 22 Oct 2010 13:22:01 -0700
+Message-ID: <4CC1F268.6070902@linux.intel.com>
+Date: Fri, 22 Oct 2010 13:22:00 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
 	rv:1.9.2.11) Gecko/20101006 Lightning/1.0b2 Thunderbird/3.1.5
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Cc: "Hohndel, Dirk" <dirk.hohndel@intel.com>
-Subject: Fetcher error reporting
+To: "Tian, Kevin" <kevin.tian@intel.com>
+References: <4CC0C619.7070201@linux.intel.com>
+	<625BA99ED14B2D499DC4E29D8138F1504D0149B5B7@shsmsx502.ccr.corp.intel.com>
+In-Reply-To: <625BA99ED14B2D499DC4E29D8138F1504D0149B5B7@shsmsx502.ccr.corp.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>, "Rifenbark,
+	Scott M" <scott.m.rifenbark@intel.com>, "Lock,
+	Joshua" <joshua.lock@intel.com>
+Subject: Re: RFC: "Demo Use Cases" documentation for the web page
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,45 +33,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Oct 2010 18:22:05 -0000
+X-List-Received-Date: Fri, 22 Oct 2010 20:22:02 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Richard,
+On 10/21/2010 05:26 PM, Tian, Kevin wrote:
+>> From: Darren Hart
+>> Sent: Friday, October 22, 2010 7:01 AM
+>>
+>>
+>> Media Network Demo
+>> ==================
+>> We're looking to have a section on the web site for the demo that
+>> explains what each use-case is and possibly how it can be replicated.
+>> I'm taking the approach of describing each image. Consider the
+>> following:
+>>
+>> The Yocto Project launch event at ECLF 2010 featured a
+>> multi-architecture Media Network Demo. All the source for this demo is
+>> available in the meta-demo git repository as a layer for the poky build
+>> system.
+>>
+>> The following images made up the demo:
+>> o poky-image-nas
+>> o poky-image-mediatomb
+>> o poky-image-rygel
+>>
+>> poky-image-nas
+>> --------------
+>> The poky-image-nas image boots your device as a network attached storage
+>> device. It provides a DHCP service and an NFS server. We used this image
+>> to store all our media.
+>>
+>> poky-image-mediatomb
+>> --------------------
+>> The poky-image-mediatomb image adds a UPnP content provider via the
+>> mediatomb package. This image mounts the media share from the NAS and
+>> makes it available to UPnP renderers.
+>>
+>> poky-image-rygel
+>> ----------------
+>> The poky-image-rygel image provides gupnp tools and the rygel media
+>> renderer along with the sato desktop. The renderer can be controlled
+>> locally or via any control point on the network. Several devices can run
+>> this image and stream media from the mediatomb device.
+>>
+>>
+>> Open Questions
+>> --------------
+>> o Is this more or less what we are looking for?
+>
+> boards list used in this demo.
 
-Here is an example of the do_fetch/do_unpack failure that I believe is 
-representative of what Dirk saw and what I have been seeing periodically.
+Hrm... do we want to explicitly call them out? The point is that it was 
+multi-architecture, but for some to recreate it, the point is that it 
+doesn't really matter what hardware they have - poky can build for any 
+of them.
 
-I saw the following while building libproxy in poky-image-sdk-live on a 
-Fedora 13 box behind the firewall. I saw identical failures with opkg on 
-a different machine - also behind the firewall. Both SRC_URIs point to 
-googlecode.
+What do others think, should we mention the specific boards in use at 
+the demo?
 
-log.do_fetch:
--------------
-NOTE: fetch http://libproxy.googlecode.com/files/libproxy-0.4.3.tar.gz
-NOTE: libproxy-0.4.3: 
-http://libproxy.googlecode.com/files/libproxy-0.4.3.tar.gz has no entry 
-in conf/checksums.ini, not checking URI
+>
+> Also a simple figure is always more intuitive to catch the intention here. :-)
+>
+>> o Should we modify the mediatomb image to:
+>>    o automatically mount a specific share from the NAS?
+>>    o add something to the config to automatically scan the
+>>      media share?
+>> o The poky-image-rygel description needs to be updated as we finalize
+>>    the package.
+>>
+>
+> One thought is, could we convert this demo page into something more useful
+> as the collection for various use cases on Yocto which can be contributed by
+> any user, and then here UPnP is the 1st example?
 
-log.do_unpack:
---------------
-gzip: stdin: unexpected end of file
-tar: Child returned status 1
-tar: Exiting with failure status due to previous errors
-NOTE: Unpacking 
-/vol/1/dvhart/poky.git/build/downloads/libproxy-0.4.3.tar.gz to 
-/vol/1/dvhart/poky.git/build/tmp/work/i586-poky-linux/libproxy-0.4.3-r2/
-ERROR: Task failed:
+I'm not opposed to the idea, but for now, let's just make it a page 
+where people can go and get more detail about what we did for the demo 
+and get them started on replicating it if they should so choose.
 
-With opkg, I tried the following which resulted in the same error.
+>
+> Thanks
+> Kevin
 
-$ bitbake -c clean;
-$ rm downloads/*opkg*
-$ bitbake opkg
-
-In both cases, using wget to manually download the file and place it in
-the downloads directory allowed the build to continue.
 
 -- 
 Darren Hart
