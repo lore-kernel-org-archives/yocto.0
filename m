@@ -1,24 +1,27 @@
-Return-Path: <joshua.lock@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 52C434C801BF
-	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 02:29:55 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 22 Oct 2010 00:29:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,222,1286175600"; d="scan'208";a="669772432"
-Received: from unknown (HELO [10.255.16.69]) ([10.255.16.69])
-	by orsmga001.jf.intel.com with ESMTP; 22 Oct 2010 00:29:52 -0700
-From: Joshua Lock <joshua.lock@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-In-Reply-To: <4CC0C252.1020501@linux.intel.com>
-References: <4CC0C252.1020501@linux.intel.com>
-Date: Fri, 22 Oct 2010 08:29:51 +0100
-Message-ID: <1287732591.2208.3.camel@scimitar>
+Return-Path: <rpurdie@linux.intel.com>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B191A4C8101B
+	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 09:24:09 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id o9MEOAOl030350
+	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 15:24:10 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP id 30309-01 for <yocto@yoctoproject.org>;
+	Fri, 22 Oct 2010 15:24:06 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id o9MEO4OJ030344
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <yocto@yoctoproject.org>; Fri, 22 Oct 2010 15:24:05 +0100
+From: Richard Purdie <rpurdie@linux.intel.com>
+To: yocto <yocto@yoctoproject.org>
+Date: Fri, 22 Oct 2010 15:23:51 +0100
+Message-ID: <1287757431.16386.768.camel@rex>
 Mime-Version: 1.0
-X-Mailer: Evolution 2.32.0 (2.32.0-2.fc14) 
-X-Mailman-Approved-At: Fri, 22 Oct 2010 02:45:10 -0500
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Media Network Demo: Black Sand and Netbook
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Subject: Last minute changes - Review Request
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,47 +33,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Oct 2010 07:29:55 -0000
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Fri, 22 Oct 2010 14:24:10 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-T24gVGh1LCAyMDEwLTEwLTIxIGF0IDE1OjQ0IC0wNzAwLCBEYXJyZW4gSGFydCB3cm90ZToKPiBJ
-IGJ1aWxkIG1lZGlhdG9tYiBhbmQgcnlnZWwgbGl2ZSBhdG9tLXBjIGltYWdlcyBmcm9tIHRvZGF5
-J3MgcG9reS9tYXN0ZXIgCj4gKyBtZXRhLWRlbW8vbWFzdGVyLiBJIGJvb3RlZCBtZWRpYXRvbWIg
-b24gdGhlIEJsYWNrU2FuZCBhbmQgcnlnZWwgb24gdGhlIAo+IG5ldGJvb2suIEkgaGFkIHRvIG1h
-bnVhbGx5IHN0YXJ0IHRoZSByeWdlbCByZW5kZXJlciBvbiB0aGUgbmV0Ym9vay4gSSAKPiBkaWRu
-J3Qgc2VlIGd1cG5wLWF2LWNwIG9uIHRoZSByeWdlbCBpbWFnZSBhcyBJIGV4cGVjdGVkIGFuZCB0
-aGUgCj4gZ3VwbnAtdW5pdmVyc2FsLWNwIGNvbW1hbmQgZmFpbGVkIHRvIHN0YXJ0IG9uIHRoZSBu
-ZXRib29rICh2aWEgYSBzYXRvIAo+IHRlcm1pbmFsKSBjb21wbGFpbmluZyBhYm91dCBtaXNzaW5n
-IGljb25zLiBJZiBJIHRyaWVkIHRvIHN0YWJydCB0aGlzIAo+IG92ZXIgYW4gc3NoIC0gY29ubmVj
-dGlvbiwgdGhlIGd1cG5wLXVuaXZlcnNhbC1jcCBzdGFydGVkIGZpbmUgKHN0cmFuZ2UpLgoKSG1t
-LCBJJ3ZlIGNvbW1pdHMgdG8gZml4IGJvdGggb2YgdGhvc2UgaXNzdWVzIGluIG1ldGEtZGVtbyBt
-YXN0ZXIgc2luY2UKYXQgbGVhc3QgeWVzdGVyZGF5IG1vcm5pbmcuYgoKPiAKPiBJIGNvdWxkIHJ1
-biBndXBucC1hdi1jcCBmcm9tIG15IGxhcHRvcCAoVWJ1bnR1IDEwLjEwKSBhbmQgcGxheSBtdXNp
-Ywo+IGZyb20gbWVkaWF0b21iIG9uIHRoZSByeWdlbCByZW5kZXJlci4gKFlBWSkKCkNvb2whCgo+
-IAo+IFdoYXQgSSdkIGxpa2UgdG8gc2VlIGlzIGZvciBndXBucC1hdi1jcCB0byBzdGFydCBhdXRv
-bWF0aWNhbGx5IGFmdGVyIHRoZQo+IHNhdG8gZGVza3RvcCBsb2FkcyBvbiBlYWNoIHJlbmRlcmVy
-LiBUaGlzIHdvdWxkIG1ha2UgZWFjaCByZW5kZXJlciBhCj4gc3RhbmRhbG9uZSBwbGF5ZXIuCj4g
-Cj4gU28sIGl0J3MgZnVuY3Rpb25hbCAoYXdlc29tZSEpIGFuZCBJIHNlZSB0aGVzZSBBUnMgYXMg
-cGVuZGluZyBmb3IgdGhlIAo+IGRlbW8gaW1hZ2VzOgo+IAo+IFsgXSBhZGQgZ3VwbnAtYXYtY3Ag
-dG8gdGhlIHJ5Z2VsIGltYWdlCkFscmVhZHkgZG9uZQo+IFsgXSBzdGFydCByeWdlbCBvbiBib290
-IChhZnRlciBuZXR3b3JraW5nKQpJJ2xsIHRha2UgdGhpcyBBUgo+IFsgXSBzdGFydCBndXBucC1h
-di1jcCBhZnRlciB0aGUgc2F0byBkZXNrdG9wIGxvYWRzIG9uIHRoZSByeWdlbCBpbWFnZQpJJ2xs
-IHRha2UgdGhpcyBBUiB0b28KPiBbIF0gc2V0dXAgbmV0d29ya2luZyBvbiBlYWNoIG9mIHRoZSBu
-b24tbmFzIGltYWdlcyB0byBkaGNwIG9uIGV0aDAKPiAKPiBXaXRoIHRoZSBhYm92ZSwgZWFjaCBp
-bWFnZSBzaG91bGQgYm9vdCB0byBhIGZ1bmN0aW9uYWwgc3RhdGUgd2l0aCBubwo+IG1hbnVhbCBp
-bnRlcmZlcmVuY2UgcmVxdWlyZWQuCj4gCj4gSG93IG11Y2ggb2YgdGhlIGFib3ZlIGlzIGFscmVh
-ZHkgcGxhbm5lZCBhbmQgaG93IG11Y2ggZG8gd2UgbmVlZCB0byBnZXQKPiBhbiBvd25lciBmb3I/
-Cj4gCgpJJ2xsIGhhbmRsZSB0aGUgUnlnZWwgYW5kIGd1cG5wLWF2LWNwIG9uZXMsIHRoZXkgd2hl
-cmUgYWxyZWFkeSBvbiBteQpsaXN0IDotKQoKQ2hlZXJzLApKb3NodWEKLS0gCkpvc2h1YSBMb2Nr
-CiAgICAgICAgSW50ZWwgT3BlbiBTb3VyY2UgVGVjaG5vbG9neSBDZW50cmUKCi0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LQpJbnRlbCBDb3Jwb3JhdGlvbiAoVUspIExpbWl0ZWQKUmVnaXN0ZXJlZCBOby4gMTEzNDk0NSAo
-RW5nbGFuZCkKUmVnaXN0ZXJlZCBPZmZpY2U6IFBpcGVycyBXYXksIFN3aW5kb24gU04zIDFSSgpW
-QVQgTm86IDg2MCAyMTczIDQ3CgpUaGlzIGUtbWFpbCBhbmQgYW55IGF0dGFjaG1lbnRzIG1heSBj
-b250YWluIGNvbmZpZGVudGlhbCBtYXRlcmlhbCBmb3IKdGhlIHNvbGUgdXNlIG9mIHRoZSBpbnRl
-bmRlZCByZWNpcGllbnQocykuIEFueSByZXZpZXcgb3IgZGlzdHJpYnV0aW9uCmJ5IG90aGVycyBp
-cyBzdHJpY3RseSBwcm9oaWJpdGVkLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQKcmVjaXBp
-ZW50LCBwbGVhc2UgY29udGFjdCB0aGUgc2VuZGVyIGFuZCBkZWxldGUgYWxsIGNvcGllcy4K
+Coming up to release there are a few things that the extended testing
+has shown up which we have fixes for and which we should consider
+including in the release. I also finally got around to doing the final
+sstate stress testing and found several problematic issues. Given that
+sstate and checksums are a significant feature of this release, I'd
+really like them to work as well as we can make them. Prior to this I
+had stress tested the backend up not the use of the packages. These
+changes don't change any sstate packages themselves, just the use of
+them.
+
+Since we already have the release images prepared and tested and these
+are not going to change, the criteria for potential changes:
+
+a) We can unit test the changes and be confident they don't 
+   break/regress things.
+b) They fix important bugs that the user can easily run into
+   or that make the project look bad.
+c) The changes are small, well documented and are obviously correct 
+   looking at the code/patch.
+d) The don't change the generated images.
+
+I'm proposing the following, for each I've provided a rationale:
+
+http://git.pokylinux.org/cgit/cgit.cgi/poky/commit/?id=d5504a4275d94868e28b00c272411e82f4999d95
+
+Printing "fatal:" to new users is worrying
+
+[Reported by Dirk]
+
+http://git.pokylinux.org/cgit/cgit.cgi/poky/commit/?id=2a69c58046a86d0f783acebd8a77e9419b43139a
+
+Users can easily hit the sanity warning about missing 32 bit libs. We
+don't need this functionality at this time so we might as well turn it
+off by default
+
+[Reported by Dirk]
+
+http://git.pokylinux.org/cgit/cgit.cgi/poky/commit/?id=0068e55d8f64ae13a1049c37164e8b14dc33f53f
+
+Doesn't change the build output but fixes a build issue people can
+easily run into in from scratch builds due to a missing dependency.
+
+[Reported by Dexuan]
+
+http://git.pokylinux.org/cgit/cgit.cgi/poky/commit/?id=6e277cb014a53aef66ae931b5142495f8a02404f
+
+Removes the "WARNING: Function do_build doesn't exist" message which
+could worry users and looks bad
+
+[Reported by Richard]
+
+http://git.pokylinux.org/cgit/cgit.cgi/poky/commit/?id=fd4457199ef604dc4d5f8346c8b2a09dc3939129
+
+Several complaints have been received about the inability to easily
+delete sstate and DL_DIR contents to recover from failures. This adds a
+cleanall task which does this. Downside is that this is undocumented.
+
+[Reported by Darren and others, run into by Dirk]
+
+http://git.pokylinux.org/cgit/cgit.cgi/poky/commit/?id=f806c499c031fe0c4da001d41bce635088a90c52
+
+Fixes an sstate bug where the do_package sstate packages don't install
+correctly. A user could hit this if cleaning and rebuilding a package
+under certain circumstances.
+
+[Reported by Richard]
+
+http://git.pokylinux.org/cgit/cgit.cgi/poky/commit/?id=13f116b1ad6a955b07d4cbaba85879913c30e1ee
+
+Fixes an issue with sstate where rebuilding a package using partially
+prebuilt state would break rpm generation and silently remove all the
+rpm packages.
+
+[Reported by Richard]
+
+http://git.pokylinux.org/cgit/cgit.cgi/poky/commit/?id=00a96a20995cefacc52e10559029de32941ecf6e
+
+Fixes a typo spotted in the debian packaging backend. We don't use this
+by default but it should be fixed.
+
+[Reported by Richard]
+
+http://git.pokylinux.org/cgit/cgit.cgi/poky/commit/?id=36f1ae42fe13dae174b7fb5eb85dc49d7d7b516b
+
+User testing keeps showing up issues with the pseudo directory creation
+failing to happen. This patch solves the problem in a brute force
+fashion, once and forall.
+
+[Reported by Mark and others]
+
+http://git.pokylinux.org/cgit/cgit.cgi/poky/commit/?id=3f599b3f6a47286277cdaa8503f8a8da024eadd4
+
+Fixes an sstate issue seen on the Poky mailing list where file:// sstate
+mirrors wouldn't work.
+
+[Reported by Gary Thomas (poky list)]
+
+http://git.pokylinux.org/cgit/cgit.cgi/poky/commit/?id=535a77a9b681423e2f10744aca54858c25a03cb0
+
+Just changes a log level to make the output from sstate slightly more
+readable.
+
+[Reported by Richard]
+
+
+I'm not happy about being in this position and I know Dave will be very
+nervous about these late changes. To mitigate this I'd like to propose
+that a selection of people (Josh, Mark, Saul?) review these changes and
+report back on whether they feel these are appropriate and also give the
+build some testing with these applied.
+
+Cheers,
+
+Richard
+
+
+
+
+
+
+
+
 
 
