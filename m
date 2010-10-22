@@ -1,36 +1,35 @@
-Return-Path: <kevin.tian@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C5A184C80054
-	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 19:26:25 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 21 Oct 2010 17:26:25 -0700
+Return-Path: <yongkang.you@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 9C8B84C810C1
+	for <yocto@yoctoproject.org>; Thu, 21 Oct 2010 20:23:13 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 21 Oct 2010 18:23:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,220,1286175600"; d="scan'208";a="339042537"
+X-IronPort-AV: E=Sophos;i="4.58,220,1286175600"; d="scan'208";a="566321262"
 Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by azsmga001.ch.intel.com with ESMTP; 21 Oct 2010 17:26:24 -0700
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	by orsmga002.jf.intel.com with ESMTP; 21 Oct 2010 18:23:12 -0700
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
 	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Fri, 22 Oct 2010 08:26:19 +0800
+	(TLS) id 8.2.254.0; Fri, 22 Oct 2010 09:22:33 +0800
 Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Fri, 22 Oct 2010 08:26:18 +0800
-From: "Tian, Kevin" <kevin.tian@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>, Yocto Project
-	<yocto@yoctoproject.org>
-Date: Fri, 22 Oct 2010 08:26:14 +0800
-Thread-Topic: [yocto] RFC: "Demo Use Cases" documentation for the web page
-Thread-Index: Actxc9bfrQHcXMq/SySXj1eMtUwONwAC3ZMQ
-Message-ID: <625BA99ED14B2D499DC4E29D8138F1504D0149B5B7@shsmsx502.ccr.corp.intel.com>
-References: <4CC0C619.7070201@linux.intel.com>
-In-Reply-To: <4CC0C619.7070201@linux.intel.com>
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Fri, 22 Oct 2010 09:22:32 +0800
+From: "You, Yongkang" <yongkang.you@intel.com>
+To: Richard Purdie <rpurdie@linux.intel.com>
+Date: Fri, 22 Oct 2010 09:22:31 +0800
+Thread-Topic: [yocto] Please verify the fixed bug in bugzilla.
+Thread-Index: ActxHi5o1AnlIwUrTmKpJFZokioedAAaR7qQ
+Message-ID: <F26D193E20BBDC42A43B611D1BDEDE712151801D95@shsmsx502.ccr.corp.intel.com>
+References: <F26D193E20BBDC42A43B611D1BDEDE712151801BB8@shsmsx502.ccr.corp.intel.com>
+	<1287665254.16386.453.camel@rex>
+In-Reply-To: <1287665254.16386.453.camel@rex>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
-Cc: "Lock, Joshua" <joshua.lock@intel.com>, "Rifenbark,
-	Scott M" <scott.m.rifenbark@intel.com>
-Subject: Re: RFC: "Demo Use Cases" documentation for the web page
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Please verify the fixed bug in bugzilla.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,74 +41,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Oct 2010 00:26:26 -0000
+X-List-Received-Date: Fri, 22 Oct 2010 01:23:13 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
->From: Darren Hart
->Sent: Friday, October 22, 2010 7:01 AM
->
->
->Media Network Demo
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->We're looking to have a section on the web site for the demo that
->explains what each use-case is and possibly how it can be replicated.
->I'm taking the approach of describing each image. Consider the
->following:
->
->The Yocto Project launch event at ECLF 2010 featured a
->multi-architecture Media Network Demo. All the source for this demo is
->available in the meta-demo git repository as a layer for the poky build
->system.
->
->The following images made up the demo:
->o poky-image-nas
->o poky-image-mediatomb
->o poky-image-rygel
->
->poky-image-nas
->--------------
->The poky-image-nas image boots your device as a network attached storage
->device. It provides a DHCP service and an NFS server. We used this image
->to store all our media.
->
->poky-image-mediatomb
->--------------------
->The poky-image-mediatomb image adds a UPnP content provider via the
->mediatomb package. This image mounts the media share from the NAS and
->makes it available to UPnP renderers.
->
->poky-image-rygel
->----------------
->The poky-image-rygel image provides gupnp tools and the rygel media
->renderer along with the sato desktop. The renderer can be controlled
->locally or via any control point on the network. Several devices can run
->this image and stream media from the mediatomb device.
->
->
->Open Questions
->--------------
->o Is this more or less what we are looking for?
+On Thursday, October 21, 2010 8:48 PM, Richard Purdie wrote:
+> On Thu, 2010-10-21 at 15:44 +0800, You, Yongkang wrote:
+> > Hi all,
+> >=20
+> > I just had a quick search in bugzilla and found a lot of
+> bugs are resolved but not verified. We'd better to verify the
+> fix before 0.9 launch.
+> >=20
+> > The M4 resolved (but not verified) bugs (88):
+> >=20
+> http://bugzilla.pokylinux.org/buglist.cgi?bug_status=3DRESOLVED&q
+> uery_format=3Dadvanced&target_milestone=3D0.9%20M4&query_based_on=3D&
+> columnlist=3Dbug_severity%2Creporter%2Cpriority%2Cop_sys%2Cassign
+> ed_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cproduct%2Ccomponent
+> >=20
+> > All resolved (but not verified) bugs (198):
+> >=20
+> http://bugzilla.pokylinux.org/buglist.cgi?query_format=3Dadvanced
+> &bug_status=3DRESOLVED=20
+>=20
+> Just to remind people, who is responsible for verifying a bug? The
+> original reporter?=20
+>=20
 
-boards list used in this demo.
+RP,
 
-Also a simple figure is always more intuitive to catch the intention here. =
-:-)
+Yes. The original reporter is responsible for bug verification. Please do i=
+t as more as possible.
 
->o Should we modify the mediatomb image to:
->   o automatically mount a specific share from the NAS?
->   o add something to the config to automatically scan the
->     media share?
->o The poky-image-rygel description needs to be updated as we finalize
->   the package.
->
+Do we need to close (verify) all fixed bugs before 0.9 release? QA can help=
+ to close the old bugs (bug ID <100).=20
 
-One thought is, could we convert this demo page into something more useful
-as the collection for various use cases on Yocto which can be contributed b=
-y
-any user, and then here UPnP is the 1st example?
+Thanks,
+Yongkang
 
-Thanks
-Kevin
 
