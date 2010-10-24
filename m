@@ -1,26 +1,25 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 991CC4C80054
-	for <yocto@yoctoproject.org>; Sat, 23 Oct 2010 00:26:52 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 22 Oct 2010 22:26:52 -0700
+Return-Path: <sgw@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id F3DB64C80054
+	for <yocto@yoctoproject.org>; Sun, 24 Oct 2010 13:51:21 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 24 Oct 2010 11:51:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,226,1286175600"; d="scan'208";a="619536412"
-Received: from unknown (HELO [10.255.12.77]) ([10.255.12.77])
-	by fmsmga002.fm.intel.com with ESMTP; 22 Oct 2010 22:26:51 -0700
-Message-ID: <4CC2721A.10609@linux.intel.com>
-Date: Fri, 22 Oct 2010 22:26:50 -0700
-From: Darren Hart <dvhart@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.58,232,1286175600"; d="scan'208";a="670352460"
+Received: from unknown (HELO [10.255.12.188]) ([10.255.12.188])
+	by orsmga001.jf.intel.com with ESMTP; 24 Oct 2010 11:51:21 -0700
+Message-ID: <4CC48028.4040009@linux.intel.com>
+Date: Sun, 24 Oct 2010 11:51:20 -0700
+From: "Saul G. Wold" <sgw@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.11) Gecko/20101006 Lightning/1.0b2 Thunderbird/3.1.5
+	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
+	Thunderbird/3.0.5
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <4CC1D64B.3050606@linux.intel.com> <1287790724.16386.791.camel@rex>
-	<4CC221D6.90504@linux.intel.com>
-In-Reply-To: <4CC221D6.90504@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>, "Hohndel,
-	Dirk" <dirk.hohndel@intel.com>
-Subject: Re: Fetcher error reporting
+To: "Stewart, David C" <david.c.stewart@intel.com>
+References: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC1832E6@orsmsx501.amr.corp.intel.com>
+In-Reply-To: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC1832E6@orsmsx501.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: RC3 vs RC4a
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,79 +31,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 23 Oct 2010 05:26:52 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-List-Received-Date: Sun, 24 Oct 2010 18:51:22 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/22/2010 04:44 PM, Darren Hart wrote:
-> On 10/22/2010 04:38 PM, Richard Purdie wrote:
->> On Fri, 2010-10-22 at 11:22 -0700, Darren Hart wrote:
->>> Here is an example of the do_fetch/do_unpack failure that I believe is
->>> representative of what Dirk saw and what I have been seeing
->>> periodically.
->>>
->>> I saw the following while building libproxy in poky-image-sdk-live on a
->>> Fedora 13 box behind the firewall. I saw identical failures with opkg on
->>> a different machine - also behind the firewall. Both SRC_URIs point to
->>> googlecode.
->>>
->>> log.do_fetch:
->>> -------------
->>> NOTE: fetch http://libproxy.googlecode.com/files/libproxy-0.4.3.tar.gz
->>> NOTE: libproxy-0.4.3:
->>> http://libproxy.googlecode.com/files/libproxy-0.4.3.tar.gz has no entry
->>> in conf/checksums.ini, not checking URI
->>>
->>> log.do_unpack:
->>> --------------
->>> gzip: stdin: unexpected end of file
->>> tar: Child returned status 1
->>> tar: Exiting with failure status due to previous errors
->>> NOTE: Unpacking
->>> /vol/1/dvhart/poky.git/build/downloads/libproxy-0.4.3.tar.gz to
->>> /vol/1/dvhart/poky.git/build/tmp/work/i586-poky-linux/libproxy-0.4.3-r2/
->>> ERROR: Task failed:
->>>
->>> With opkg, I tried the following which resulted in the same error.
->>>
->>> $ bitbake -c clean;
->>> $ rm downloads/*opkg*
->>> $ bitbake opkg
->>>
->>> In both cases, using wget to manually download the file and place it in
->>> the downloads directory allowed the build to continue.
->>
->> We've talked about this a lot over jabber. We don't have a reproducer.
->> What we do see is its always the wget fetcher that hits this (for mirror
->> urls in the case of git repos) and its failing creating a zero length
->> file.
->>
->> If we make the assumption that wget is creating the empty file and
->> exiting with an error code and look at what bitbake would do, it would
->> give the behaviour described in these bugs.
->>
->> Why? If the original fetch fails, it falls back to the mirror code. That
->> looks, sees a file on the disk and says "nothing to do".
->>
->> Solution is therefore to make sure if the wget fetcher fails we wipe any
->> file that may be present.
->>
->> Is is possible the wget fetcher is creating a zero length file and no
->> setting an error code but I really hope its not that broken.
->>
->> So I've pushed this patch as a bandaid for the problem:
->>
->> http://git.pokylinux.org/cgit/cgit.cgi/poky/commit/?id=c5fab99a6f979a4a0ce246c6395b35a3082aec0d
->>
->>
+On 10/22/2010 03:48 PM, Stewart, David C wrote:
+> We have an RC3 which we feel confident in based on our no-nogo launch decision.
 >
-> I've applied and am running another build.
+> However, there are a handful of issues which are not critical but would be desirable to address them - for example, having to do with errors being "fatal" which are not, etc.
+>
+> So I have asked Saul to create an RC4a with these patched in. Would like Sanity and BAT tests run on RC4a to see if we should ship it, or with stick with RC3.
+>
+> RP - will complete the patch tonight.
+> Saul - will complete the RC4a build by 5PM Sunday (Pacific)
 
-One poky-image-sdk-live build completed from a clean slate from inside 
-the firewall. I have another outside the firewall that will take a bit 
-longer, but is well on its way without any errors. Looking good.
+The build has been running overnight and should be complete, the images 
+are in the standard location on the internal and external autobuilder 
+dated 20101024.
 
--- 
-Darren Hart
-Embedded Linux Kernel
+http://autobuilder.pokylinux.org/milestone/20101024/
+
+
+> Kevin and Jiajun and whole team - test this build as much as you have time for.
+Please pass this request to the Windriver team also as I am not sure if 
+they are on the list
+
+>
+> Late Monday, we will decide whether to go with the RC3 build or RC4a build.
+Once we (Jessica and I) get through Heathrow and I get a phone card (I 
+hope), I will call Richard.  If it's approved, Scott G. can move the 
+bits to the yoctoproject.org machine.
+
+Sau!
+
+
+>
+> Dave
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.pokylinux.org/listinfo/yocto
 
