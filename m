@@ -1,39 +1,29 @@
-Return-Path: <lianhao.lu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id DC3904C81016
-	for <yocto@yoctoproject.org>; Mon, 25 Oct 2010 20:16:43 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 25 Oct 2010 18:16:43 -0700
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id F33724C811A2
+	for <yocto@yoctoproject.org>; Tue, 26 Oct 2010 16:54:37 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 26 Oct 2010 14:54:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,238,1286175600"; 
-	d="scan'208,217";a="340381116"
-Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
-	by azsmga001.ch.intel.com with ESMTP; 25 Oct 2010 18:16:42 -0700
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Tue, 26 Oct 2010 09:16:40 +0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Tue, 26 Oct 2010 09:16:40 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Tue, 26 Oct 2010 09:16:39 +0800
-From: "Lu, Lianhao" <lianhao.lu@intel.com>
-To: "Tian, Kevin" <kevin.tian@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Tue, 26 Oct 2010 09:16:37 +0800
-Thread-Topic: [yocto] Did not find big problems for today's Rc4 (x86/arm)
-	toolchain sdk related images
-Thread-Index: Act0QZnde/eg/2owSm28TgLxKMmP1wAZI1vAAAE5TEA=
-Message-ID: <C10D3FB0CD45994C8A51FEC1227CE22F186AA3427A@shsmsx502.ccr.corp.intel.com>
-References: <625BA99ED14B2D499DC4E29D8138F1504D0B8DF549@shsmsx502.ccr.corp.intel.com>
-In-Reply-To: <625BA99ED14B2D499DC4E29D8138F1504D0B8DF549@shsmsx502.ccr.corp.intel.com>
-Accept-Language: zh-CN, en-US
+X-IronPort-AV: E=Sophos;i="4.58,242,1286175600"; 
+	d="scan'208,217";a="567647159"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga002.jf.intel.com with ESMTP; 26 Oct 2010 14:54:32 -0700
+Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
+	orsmsx603.amr.corp.intel.com ([10.22.226.49]) with mapi;
+	Tue, 26 Oct 2010 14:54:32 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 26 Oct 2010 14:54:26 -0700
+Thread-Topic: Thanks, and buckle up!
+Thread-Index: Act1WFur6DDthch6RpqUmtIXUxdK4A==
+Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC27FD60@orsmsx501.amr.corp.intel.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN, en-US
+acceptlanguage: en-US
 MIME-Version: 1.0
-Subject: Re: Did not find big problems for today's Rc4 (x86/arm) toolchain sdk related images
+Subject: Thanks, and buckle up!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,99 +35,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Oct 2010 01:16:44 -0000
+X-List-Received-Date: Tue, 26 Oct 2010 21:54:45 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_C10D3FB0CD45994C8A51FEC1227CE22F186AA3427Ashsmsx502ccrc_"
+	boundary="_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC27FD60orsmsx501amrc_"
 
---_000_C10D3FB0CD45994C8A51FEC1227CE22F186AA3427Ashsmsx502ccrc_
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC27FD60orsmsx501amrc_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I did the SDK part test of RC4a images on qemuppc, qemumips, and BlackSand.=
- No new bugs found compared to the test of RC3.
+All -
 
-Best Regards,
--Lianhao
+First of all, I want to thank you guys so much for all of the hard work you=
+ put in to bring us to this point, the first public launch of the Yocto Pro=
+ject. There is something really powerful when a team of talented people gat=
+hers together to do something special and then pulls it off. I know when we=
+ first put our eyes on October 17, 2010 and decided to launch our baby then=
+, there were a few of us who quaked in our boots a bit at the thought of pu=
+lling off something like this.
 
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Tian, Kevin
-Sent: Tuesday, October 26, 2010 8:39 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] Did not find big problems for today's Rc4 (x86/arm) toolch=
-ain sdk related images
+But we did it! And it's awesome to behold. It's not perfect, but we have a =
+lot to be proud about.
 
-FYI. SDK/toolchain part behaves well from RC4.
+In my mind's eye, I can think forward to a time when your code will have an=
+ impact on many people's lives - whether it's saving lives with medical dev=
+ices, operating airplanes or cars safely, generating and routing energy eff=
+iciently or routing packets in your favorite website's data center. Think a=
+bout how many lives you can touch! Pretty amazing stuff.
 
-Thanks
-Kevin
+So thank you, from my heart. I feel privileged to have worked with you.
 
-From: Wu, Tong
-Sent: Monday, October 25, 2010 8:39 PM
-To: Ke, Liping; Tian, Kevin; Yu, Ke; Lu, Lianhao
-Subject: On behalf of Liping {Did not find big problems for today's Rc4 (x8=
-6/arm) toolchain sdk related images]
+Secondly, I know that tomorrow when the site goes live and announcements go=
+ out, I hope people will like our baby, and will tell us so. But you know, =
+there are some people who could be quite critical, and criticize everything=
+ from our use of Python to package selection to the fonts on our web sites.=
+  If you have not been through one of these launches before, this is simply=
+ a normal part of life in an open source project. When you get your stuff o=
+ut there for people to see and interact with, you open yourself up to criti=
+cism too.
 
-Hi, all
-I did not bring my laptop, and can't connect webmail, so use this mail box =
-to report the result.
+So don't take anything as a personal insult. I try to look at all of it as =
+feedback from a valuable person, and in my heart I do thank them for it.
 
-X86 sdk image, sdk toolchain, ide-support has been built successfully from =
-clean-up folder at last.
+Dave
 
-X86/arm qemu run successfully.
-
-Crosstool chain could compile the c/c++ project successfully in the host.
-
-Qemu arm/x86 could compile c/c++ project successfully.
-
-Thanks& Regards,
-criping
-
---_000_C10D3FB0CD45994C8A51FEC1227CE22F186AA3427Ashsmsx502ccrc_
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC27FD60orsmsx501amrc_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
 osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 
 <head>
 <meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dus-ascii">
@@ -146,30 +95,16 @@ st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
 <!--
  /* Font Definitions */
  @font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
  /* Style Definitions */
  p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
+	{margin:0in;
 	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	font-size:10.5pt;
+	font-size:11.0pt;
 	font-family:"Calibri","sans-serif";}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
@@ -180,26 +115,14 @@ a:visited, span.MsoHyperlinkFollowed
 	color:purple;
 	text-decoration:underline;}
 span.EmailStyle17
-	{mso-style-type:personal;
+	{mso-style-type:personal-compose;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Verdana","sans-serif";
-	color:blue;
-	font-weight:normal;
-	font-style:normal;
-	text-decoration:none none;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
 .MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	{mso-style-type:export-only;}
 @page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
 div.WordSection1
 	{page:WordSection1;}
 -->
@@ -212,159 +135,78 @@ div.WordSection1
  </o:shapelayout></xml><![endif]-->
 </head>
 
-<body lang=3DZH-CN link=3Dblue vlink=3Dpurple style=3D'text-justify-trim:pu=
-nctuation'>
+<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
 
 <div class=3DWordSection1>
 
-<div>
+<p class=3DMsoNormal>All &#8211;<o:p></o:p></p>
 
-<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span lang=3DEN=
--US
-style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:#1F497D'>I=
- did
-the SDK part test of RC4a images on qemuppc, qemumips, and BlackSand. No ne=
-w
-bugs found compared to the test of RC3.<o:p></o:p></span></p>
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span lang=3DEN=
--US
-style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:#1F497D'><=
-o:p>&nbsp;</o:p></span></p>
+<p class=3DMsoNormal>First of all, I want to thank you guys so much for all=
+ of the
+hard work you put in to bring us to this point, the first public launch of =
+the
+Yocto Project. There is something really powerful when a team of talented
+people gathers together to do something special and then pulls it off. I kn=
+ow
+when we first put our eyes on October 17, 2010 and decided to launch our ba=
+by
+then, there were a few of us who quaked in our boots a bit at the thought o=
+f
+pulling off something like this. <o:p></o:p></p>
 
-<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span lang=3DEN=
--US
-style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:#1F497D'>B=
-est Regards,<o:p></o:p></span></p>
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span lang=3DEN=
--US
-style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:#1F497D'>-=
-Lianhao<o:p></o:p></span></p>
+<p class=3DMsoNormal>But we did it! And it&#8217;s awesome to behold. It&#8=
+217;s
+not perfect, but we have a lot to be proud about.<o:p></o:p></p>
 
-</div>
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US style=3D'color:#1F497D'><o:p>&nbsp;=
-</o:p></span></p>
+<p class=3DMsoNormal>In my mind&#8217;s eye, I can think forward to a time =
+when
+your code will have an impact on many people&#8217;s lives &#8211; whether =
+it&#8217;s
+saving lives with medical devices, operating airplanes or cars safely,
+generating and routing energy efficiently or routing packets in your favori=
+te website&#8217;s
+data center. Think about how many lives you can touch! Pretty amazing stuff=
+.<o:p></o:p></p>
 
-<div style=3D'border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm =
-4.0pt'>
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-<div>
+<p class=3DMsoNormal>So thank you, from my heart. I feel privileged to have
+worked with you.<o:p></o:p></p>
 
-<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
-0cm 0cm'>
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><b><span lang=
-=3DEN-US
-style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span></=
-b><span
-lang=3DEN-US style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>
-yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] <b>O=
-n
-Behalf Of </b>Tian, Kevin<br>
-<b>Sent:</b> Tuesday, October 26, 2010 8:39 AM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] Did not find big problems for today's Rc4 (x86/arm)
-toolchain sdk related images<o:p></o:p></span></p>
+<p class=3DMsoNormal>Secondly, I know that tomorrow when the site goes live=
+ and
+announcements go out, I hope people will like our baby, and will tell us so=
+.
+But you know, there are some people who could be quite critical, and critic=
+ize
+everything from our use of Python to package selection to the fonts on our =
+web
+sites.&nbsp; If you have not been through one of these launches before, thi=
+s is
+simply a normal part of life in an open source project. When you get your s=
+tuff
+out there for people to see and interact with, you open yourself up to crit=
+icism
+too.<o:p></o:p></p>
 
-</div>
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-</div>
+<p class=3DMsoNormal>So don&#8217;t take anything as a personal insult. I t=
+ry to
+look at all of it as feedback from a valuable person, and in my heart I do
+thank them for it.<o:p></o:p></p>
 
-<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span lang=3DEN=
--US><o:p>&nbsp;</o:p></span></p>
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US style=3D'font-size:10.0pt;font-fami=
-ly:"Verdana","sans-serif";
-color:blue'>FYI. SDK/toolchain part behaves well from RC4.<o:p></o:p></span=
-></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US style=3D'font-size:10.0pt;font-fami=
-ly:"Verdana","sans-serif";
-color:blue'><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US style=3D'font-size:10.0pt;font-fami=
-ly:"Verdana","sans-serif";
-color:blue'>Thanks<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US style=3D'font-size:10.0pt;font-fami=
-ly:"Verdana","sans-serif";
-color:blue'>Kevin<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US style=3D'font-size:10.0pt;font-fami=
-ly:"Verdana","sans-serif";
-color:blue'><o:p>&nbsp;</o:p></span></p>
-
-<div style=3D'border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm =
-4.0pt'>
-
-<div>
-
-<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
-0cm 0cm'>
-
-<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><b><span lang=
-=3DEN-US
-style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span></=
-b><span
-lang=3DEN-US style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
-Wu, Tong
-<br>
-<b>Sent:</b> Monday, October 25, 2010 8:39 PM<br>
-<b>To:</b> Ke, Liping; Tian, Kevin; Yu, Ke; Lu, Lianhao<br>
-<b>Subject:</b> On behalf of Liping {Did not find big problems for today's =
-Rc4
-(x86/arm) toolchain sdk related images]<o:p></o:p></span></p>
-
-</div>
-
-</div>
-
-<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span lang=3DEN=
--US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Hi, all<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>I did not bring my laptop, and can&=
-#8217;t
-connect webmail, so use this mail box to report the result.<o:p></o:p></spa=
-n></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>X86 sdk image, sdk toolchain, ide-s=
-upport
-has been built successfully from clean-up folder at last.<o:p></o:p></span>=
-</p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>X86/arm qemu run successfully.<o:p>=
-</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Crosstool chain could compile the c=
-/c++
-project successfully in the host.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Qemu arm/x86 could compile c/c++ pr=
-oject
-successfully.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Thanks&amp; Regards,<o:p></o:p></sp=
-an></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>criping<o:p></o:p></span></p>
-
-</div>
-
-</div>
+<p class=3DMsoNormal>Dave<o:p></o:p></p>
 
 </div>
 
@@ -372,4 +214,4 @@ an></p>
 
 </html>
 
---_000_C10D3FB0CD45994C8A51FEC1227CE22F186AA3427Ashsmsx502ccrc_--
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC27FD60orsmsx501amrc_--
