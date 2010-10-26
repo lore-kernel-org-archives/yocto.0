@@ -1,36 +1,39 @@
-Return-Path: <kevin.tian@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 9D7CD4C80287
-	for <yocto@yoctoproject.org>; Mon, 25 Oct 2010 19:39:36 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 25 Oct 2010 17:39:35 -0700
+Return-Path: <lianhao.lu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id DC3904C81016
+	for <yocto@yoctoproject.org>; Mon, 25 Oct 2010 20:16:43 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 25 Oct 2010 18:16:43 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.58,238,1286175600"; 
-	d="scan'208,217";a="670782551"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by orsmga001.jf.intel.com with ESMTP; 25 Oct 2010 17:39:35 -0700
+	d="scan'208,217";a="340381116"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by azsmga001.ch.intel.com with ESMTP; 25 Oct 2010 18:16:42 -0700
 Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Tue, 26 Oct 2010 08:39:34 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Tue, 26 Oct 2010 09:16:40 +0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
 	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Tue, 26 Oct 2010 08:39:33 +0800
+	(TLS) id 8.2.254.0; Tue, 26 Oct 2010 09:16:40 +0800
 Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Tue, 26 Oct 2010 08:39:30 +0800
-From: "Tian, Kevin" <kevin.tian@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 26 Oct 2010 08:39:26 +0800
-Thread-Topic: Did not find big problems for today's Rc4 (x86/arm) toolchain
-	sdk related images
-Thread-Index: Act0QZnde/eg/2owSm28TgLxKMmP1wAZI1vA
-Message-ID: <625BA99ED14B2D499DC4E29D8138F1504D0B8DF549@shsmsx502.ccr.corp.intel.com>
-Accept-Language: en-US
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Tue, 26 Oct 2010 09:16:39 +0800
+From: "Lu, Lianhao" <lianhao.lu@intel.com>
+To: "Tian, Kevin" <kevin.tian@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Tue, 26 Oct 2010 09:16:37 +0800
+Thread-Topic: [yocto] Did not find big problems for today's Rc4 (x86/arm)
+	toolchain sdk related images
+Thread-Index: Act0QZnde/eg/2owSm28TgLxKMmP1wAZI1vAAAE5TEA=
+Message-ID: <C10D3FB0CD45994C8A51FEC1227CE22F186AA3427A@shsmsx502.ccr.corp.intel.com>
+References: <625BA99ED14B2D499DC4E29D8138F1504D0B8DF549@shsmsx502.ccr.corp.intel.com>
+In-Reply-To: <625BA99ED14B2D499DC4E29D8138F1504D0B8DF549@shsmsx502.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-Subject: Did not find big problems for today's Rc4 (x86/arm) toolchain sdk related images
+Subject: Re: Did not find big problems for today's Rc4 (x86/arm) toolchain sdk related images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,14 +45,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Oct 2010 00:39:37 -0000
+X-List-Received-Date: Tue, 26 Oct 2010 01:16:44 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_625BA99ED14B2D499DC4E29D8138F1504D0B8DF549shsmsx502ccrc_"
+	boundary="_000_C10D3FB0CD45994C8A51FEC1227CE22F186AA3427Ashsmsx502ccrc_"
 
---_000_625BA99ED14B2D499DC4E29D8138F1504D0B8DF549shsmsx502ccrc_
+--_000_C10D3FB0CD45994C8A51FEC1227CE22F186AA3427Ashsmsx502ccrc_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+I did the SDK part test of RC4a images on qemuppc, qemumips, and BlackSand.=
+ No new bugs found compared to the test of RC3.
+
+Best Regards,
+-Lianhao
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Tian, Kevin
+Sent: Tuesday, October 26, 2010 8:39 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Did not find big problems for today's Rc4 (x86/arm) toolch=
+ain sdk related images
 
 FYI. SDK/toolchain part behaves well from RC4.
 
@@ -78,7 +94,7 @@ Qemu arm/x86 could compile c/c++ project successfully.
 Thanks& Regards,
 criping
 
---_000_625BA99ED14B2D499DC4E29D8138F1504D0B8DF549shsmsx502ccrc_
+--_000_C10D3FB0CD45994C8A51FEC1227CE22F186AA3427Ashsmsx502ccrc_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -124,8 +140,7 @@ Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
 st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
 
 <head>
-<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; charset=3Dus-ascii"=
->
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dus-ascii">
 <meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
 <style>
 <!--
@@ -134,8 +149,8 @@ st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
 	{font-family:SimSun;
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
@@ -143,11 +158,11 @@ st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
 	{font-family:Tahoma;
 	panose-1:2 11 6 4 3 5 4 4 2 4;}
 @font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
 	{font-family:Verdana;
 	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
  /* Style Definitions */
  p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0cm;
@@ -169,12 +184,16 @@ span.EmailStyle17
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
 span.EmailStyle18
-	{mso-style-type:personal-reply;
+	{mso-style-type:personal;
 	font-family:"Verdana","sans-serif";
 	color:blue;
 	font-weight:normal;
 	font-style:normal;
 	text-decoration:none none;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
 .MsoChpDefault
 	{mso-style-type:export-only;
 	font-size:10.0pt;}
@@ -197,6 +216,64 @@ div.WordSection1
 nctuation'>
 
 <div class=3DWordSection1>
+
+<div>
+
+<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span lang=3DEN=
+-US
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:#1F497D'>I=
+ did
+the SDK part test of RC4a images on qemuppc, qemumips, and BlackSand. No ne=
+w
+bugs found compared to the test of RC3.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span lang=3DEN=
+-US
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:#1F497D'><=
+o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span lang=3DEN=
+-US
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:#1F497D'>B=
+est Regards,<o:p></o:p></span></p>
+
+<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span lang=3DEN=
+-US
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:#1F497D'>-=
+Lianhao<o:p></o:p></span></p>
+
+</div>
+
+<p class=3DMsoNormal><span lang=3DEN-US style=3D'color:#1F497D'><o:p>&nbsp;=
+</o:p></span></p>
+
+<div style=3D'border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm =
+4.0pt'>
+
+<div>
+
+<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'>
+
+<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><b><span lang=
+=3DEN-US
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span></=
+b><span
+lang=3DEN-US style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>
+yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] <b>O=
+n
+Behalf Of </b>Tian, Kevin<br>
+<b>Sent:</b> Tuesday, October 26, 2010 8:39 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] Did not find big problems for today's Rc4 (x86/arm)
+toolchain sdk related images<o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span lang=3DEN=
+-US><o:p>&nbsp;</o:p></span></p>
 
 <p class=3DMsoNormal><span lang=3DEN-US style=3D'font-size:10.0pt;font-fami=
 ly:"Verdana","sans-serif";
@@ -289,8 +366,10 @@ an></p>
 
 </div>
 
+</div>
+
 </body>
 
 </html>
 
---_000_625BA99ED14B2D499DC4E29D8138F1504D0B8DF549shsmsx502ccrc_--
+--_000_C10D3FB0CD45994C8A51FEC1227CE22F186AA3427Ashsmsx502ccrc_--
