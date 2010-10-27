@@ -1,78 +1,107 @@
-Return-Path: <kevin.tian@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 0E4384C80BD7
-	for <yocto@yoctoproject.org>; Tue, 26 Oct 2010 23:25:07 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 26 Oct 2010 21:25:07 -0700
+Return-Path: <qing.he@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 583CF4C80BD7
+	for <yocto@yoctoproject.org>; Wed, 27 Oct 2010 04:27:23 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 27 Oct 2010 02:27:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,244,1286175600"; d="scan'208";a="671254883"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by orsmga001.jf.intel.com with ESMTP; 26 Oct 2010 21:25:06 -0700
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Wed, 27 Oct 2010 12:25:05 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Wed, 27 Oct 2010 12:25:05 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Wed, 27 Oct 2010 12:25:04 +0800
-From: "Tian, Kevin" <kevin.tian@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 27 Oct 2010 12:24:57 +0800
-Thread-Topic: [PATCH] package.bbclass: make sure 'sysroots' created before
-	lockfile
-Thread-Index: Act1jumrBRdUe1LsQoa29g9xAUffPA==
-Message-ID: <625BA99ED14B2D499DC4E29D8138F1504D0B8DFD19@shsmsx502.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-cr-hashedpuzzle: dTs= tzY= AF2u AKen Al0d AzLE Cghr Ck33 DPA4 EJZ7 FOmc
-	GLQG IJ3g IROx IoAw
-	IreG; 1; eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
-	Sosha1_v1; 7; {C4CF5468-B944-4832-BF1E-5C18AEE28BBE};
-	awBlAHYAaQBuAC4AdABpAGEAbgBAAGkAbgB0AGUAbAAuAGMAbwBtAA==; Wed,
-	27 Oct 2010 04:24:58 GMT;
-	WwBQAEEAVABDAEgAXQAgAHAAYQBjAGsAYQBnAGUALgBiAGIAYwBsAGEAcwBzADoAIABtAGEAawBlACAAcwB1AHIAZQAgACcAcwB5AHMAcgBvAG8AdABzACcAIABjAHIAZQBhAHQAZQBkACAAYgBlAGYAbwByAGUAIABsAG8AYwBrAGYAaQBsAGUA
-x-cr-puzzleid: {C4CF5468-B944-4832-BF1E-5C18AEE28BBE}
-acceptlanguage: en-US
+X-IronPort-AV: E=Sophos;i="4.58,245,1286175600"; d="scan'208";a="620753458"
+Received: from qhe2-db.sh.intel.com ([10.239.13.109])
+	by fmsmga002.fm.intel.com with ESMTP; 27 Oct 2010 02:27:22 -0700
+Received: from qhe2 by qhe2-db.sh.intel.com with local (Exim 4.71)
+	(envelope-from <qing.he@intel.com>)
+	id 1PB2Ds-0004xV-84; Wed, 27 Oct 2010 17:23:08 +0800
+Date: Wed, 27 Oct 2010 17:23:08 +0800
+From: Qing He <qing.he@intel.com>
+To: rpurdie@linux.intel.com
+Message-ID: <20101027092308.GA18748@qhe2-db>
 MIME-Version: 1.0
-Subject: [PATCH] package.bbclass: make sure 'sysroots' created before lockfile
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: yocto@yoctoproject.org
+Subject: Some data collection and analysis on poky performance
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.pokylinux.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
-List-Archive: <https://lists.pokylinux.org/private/yocto>
+List-Archive: <http://lists.pokylinux.org/pipermail/yocto>
 List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Oct 2010 04:25:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 27 Oct 2010 09:27:23 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
- meta/classes/package.bbclass |    1 +
- 1 file changed, 1 insertion(+)
+As we know, many of us have experienced slow builds of recent poky,
+and it also takes larger disk space. This affects user exprience thus
+is one of our directions in 1.0.
 
-commit 2cd6d6d7957cf46114c8b25ed13e6f8030cd9c06
-Author: Kevin Tian <kevin.tian@intel.com>
-Date:   Tue Oct 26 15:54:43 2010 +0800
+To find the problems leading to performance issues, I tried some
+profiling on poky builds, below is a very brief summary of the data.
+I profiled poky-image-minimal of both the current master branch and
+green release, with similar parameters (4 CPUs) on NHM. Note that
+both rpm and ipk packages are built for current master branch, while
+oonly ipk packages are built for green release
 
-    package.bbclass: make sure 'sysroots' created before lockfile
 
-    package sstate requires a lock under sysroots/, which however may not b=
-e
-    created when sstate_setscene functions are executed and then causes fai=
-lures.
-    here we make sure 'sysroots' created before do_package_setscene is exec=
-uted.
+I. some stats
+1. recipes (including -native)
+  green release:
+    recipes built:  76
+    tasks run:  998
+  master:
+    recipes built: 133
+    tasks run:  1600
 
-    Signed-off-by: Kevin Tian <kevin.tian@intel.com>
-Pull URL: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=3Dtk/master
+2. time
+  green release:
+    real:  28m7s
+    user:  57m45s
+    sys:    9m41s
+    user+sys: 67m26s
+  master:
+    real:  66m39s
+    user: 152m17s
+    sys:   27m37s
+    user+sys: 179m54s
 
-Thanks
-Kevin
+3. space (haven't analyze though)
+  green release:   7.8G
+  master:         26.6G
+
+
+II. profiling
+I tried a brief profile by collecting the time used for every task, so
+we can scrutinize the result from a microscopic point of view. I'm still
+looking into the full result, but there's something of immediate
+attention.
+
+In master, hardly any task consume less than 1.3s, this is quite
+surprising, since many tasks like do_patch virtually do nothing, while
+in the green release, these tasks may simply consume 0.1~0.2s. A deeper
+investigation shows that this large overhead goes to bitbake-runtask,
+the bitbake config and cache mechanism is executed for every task,
+considerably increased the time. The overhead introduced solely by
+this is around 1600*1.3=2080s, approximately 35 minutes (user+sys).
+
+Also, we should count the additional rpm packaging system,
+do_package_write_rpm costs around 1400s, (excluding 1.3s per task,
+btw, this is about 50% slower than do_package_write_ipk, in average),
+that's around 23 minutes.
+
+Roughly considering that the build time is proportional to recipes
+count, we can try to estimate master build time from green release:
+    67 * (76 / 133) + 35 + 23 = 175
+very close to the real time consuming (although somewhat too closed...),
+so possibly the above two are the most significant time consumers
+in the slowness of current poky
+
+Thanks,
+Qing
+
+
+
+
 
