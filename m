@@ -1,38 +1,33 @@
-Return-Path: <kevin.tian@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id EF83E4C80FA4
-	for <yocto@yoctoproject.org>; Wed, 27 Oct 2010 19:57:42 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 27 Oct 2010 17:57:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,248,1286175600"; d="scan'208";a="341388319"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by azsmga001.ch.intel.com with ESMTP; 27 Oct 2010 17:57:41 -0700
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Thu, 28 Oct 2010 08:57:29 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Thu, 28 Oct 2010 08:57:29 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Thu, 28 Oct 2010 08:57:28 +0800
-From: "Tian, Kevin" <kevin.tian@intel.com>
-To: "He, Qing" <qing.he@intel.com>, "rpurdie@linux.intel.com"
-	<rpurdie@linux.intel.com>
-Date: Thu, 28 Oct 2010 08:57:25 +0800
-Thread-Topic: [yocto] Some data collection and analysis on poky performance
-Thread-Index: Act1uS4Ov8VnSOJxSGe5NMfXuQbpYQAgGc0g
-Message-ID: <625BA99ED14B2D499DC4E29D8138F1504D12778EE3@shsmsx502.ccr.corp.intel.com>
-References: <20101027092308.GA18748@qhe2-db>
-In-Reply-To: <20101027092308.GA18748@qhe2-db>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <tiagoprn@gmail.com>
+Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
+	by mx1.pokylinux.org (Postfix) with ESMTP id CCC924C80BD4
+	for <yocto@yoctoproject.org>; Fri, 29 Oct 2010 06:50:59 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by wwb13 with SMTP id 13so2158484wwb.11
+	for <yocto@yoctoproject.org>; Fri, 29 Oct 2010 04:50:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:received:received:date:message-id
+	:subject:from:to:content-type;
+	bh=4YGJ8LGhUk+so4SFq6tqf5eY72avV/Pj24/hI191JTE=;
+	b=cbDOkUV3jGmcLrRh4xECSqnFBZZjHuHskeyElPHQJI76U9gho07TL6YSm+/LcUkuDl
+	0fW7DyRkhrtU1u17v8JOuJGSd5joSiJtGSRZIdAjUvUVqCzl0mVfdQ/7O7lsJtv2TkBA
+	nCun3yHTEji8thhND/wgWNHkW3kMeciRKKNu8=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	b=xYV1Yu6dldW1GQFNub7Dfq/j1Su5rRddlgDL2eAF58pGenKl9L0YzHMhq8JB5gd7NU
+	0y3r7pXES4tRNO5XctTmAIPNwbvVilMjZgnMgm+5ile8CRcreujwp3XpSZQ71FQZbE9p
+	i58jNglZkrW15+gXDPypqS4FHwPOE+T0pb56k=
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Some data collection and analysis on poky performance
+Received: by 10.227.141.209 with SMTP id n17mr8869057wbu.126.1288353057490;
+	Fri, 29 Oct 2010 04:50:57 -0700 (PDT)
+Received: by 10.216.183.66 with HTTP; Fri, 29 Oct 2010 04:50:57 -0700 (PDT)
+Date: Fri, 29 Oct 2010 09:50:57 -0200
+Message-ID: <AANLkTi=zOCosKwknHK4nN3dps6hmv4EhnY3zYU6w5Hqp@mail.gmail.com>
+From: tiagoprn <tiagoprn@gmail.com>
+To: yocto@yoctoproject.org
+Subject: yocto tools on a nokia n800
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,99 +39,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Oct 2010 00:57:43 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 29 Oct 2010 11:51:00 -0000
+Content-Type: multipart/alternative; boundary=001485f777ee56460e0493c01285
+
+--001485f777ee56460e0493c01285
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
->From: Qing He
->Sent: Wednesday, October 27, 2010 5:23 PM
->
->As we know, many of us have experienced slow builds of recent poky,
->and it also takes larger disk space. This affects user exprience thus
->is one of our directions in 1.0.
+ Hello everyone!
 
-thanks Qing, that's a great start.
+ I have a question. I have just read about the yocto/poky projects and here
+I am with a hope. :)
 
->
->To find the problems leading to performance issues, I tried some
->profiling on poky builds, below is a very brief summary of the data.
->I profiled poky-image-minimal of both the current master branch and
->green release, with similar parameters (4 CPUs) on NHM. Note that
->both rpm and ipk packages are built for current master branch, while
->oonly ipk packages are built for green release
->
->
->I. some stats
->1. recipes (including -native)
->  green release:
->    recipes built:  76
->    tasks run:  998
->  master:
->    recipes built: 133
->    tasks run:  1600
+ I have a nokia n800 (an internet tablet abandoned by Nokia just about 2
+years ago).
 
-could you get a compare list which recipes have been newly added? I thought=
- that
-minimal image was seldom changed...
+ With poky/yocto project tools, is it possible to install a linux toolchain
+with X and the touchscreen/wireless components working, for an example, in =
+a
+SD Card and boot my device into it?
 
->
->2. time
->  green release:
->    real:  28m7s
->    user:  57m45s
->    sys:    9m41s
->    user+sys: 67m26s
->  master:
->    real:  66m39s
->    user: 152m17s
->    sys:   27m37s
->    user+sys: 179m54s
->
->3. space (haven't analyze though)
->  green release:   7.8G
->  master:         26.6G
+ I'm anxious for that.
 
-I recall that RP mentioned debug symbol is enabled in current master, but I=
-'m not sure
-whether green has done the same. You may double-confirm that part first.
+ Thanks for your support.
 
->
->
->II. profiling
->I tried a brief profile by collecting the time used for every task, so
->we can scrutinize the result from a microscopic point of view. I'm still
->looking into the full result, but there's something of immediate
->attention.
->
->In master, hardly any task consume less than 1.3s, this is quite
->surprising, since many tasks like do_patch virtually do nothing, while
->in the green release, these tasks may simply consume 0.1~0.2s. A deeper
->investigation shows that this large overhead goes to bitbake-runtask,
->the bitbake config and cache mechanism is executed for every task,
->considerably increased the time. The overhead introduced solely by
->this is around 1600*1.3=3D2080s, approximately 35 minutes (user+sys).
+ Regard,
 
-It's said this change comes from pseudo integration. Now it's time for us t=
-o
-revisit this implementation then. RP can have more insights here.
 
->
->Also, we should count the additional rpm packaging system,
->do_package_write_rpm costs around 1400s, (excluding 1.3s per task,
->btw, this is about 50% slower than do_package_write_ipk, in average),
->that's around 23 minutes.
->
->Roughly considering that the build time is proportional to recipes
->count, we can try to estimate master build time from green release:
->    67 * (76 / 133) + 35 + 23 =3D 175
->very close to the real time consuming (although somewhat too closed...),
->so possibly the above two are the most significant time consumers
->in the slowness of current poky
->
+--=20
+***
+TIAGOPRN
+*Desenvolvedor Web, Linux e Windows
+*(Django, Python, Delphi, Lazarus, MySQL, SQLite)
+E-mail: tiagoprn@gmail.com
+Blog: http://tgplima.net84.net
+LinkedIn (profile p=C3=BAblico): http://br.linkedin.com/in/tiagoparanhoslim=
+a
+twitter: https://twitter.com/tiagoprn
+identi.ca: http://identi.ca/tiagoprn
 
-above are all good findings!
+--001485f777ee56460e0493c01285
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Thanks
-Kevin
+=C2=A0Hello everyone!<br>=C2=A0<br>=C2=A0I have a question. I have just rea=
+d about the yocto/poky projects and here I am with a hope. :)<br>=C2=A0<br>=
+=C2=A0I have a nokia n800 (an internet tablet abandoned by Nokia just about=
+ 2 years ago). <br>=C2=A0<br>
+=C2=A0With poky/yocto project tools, is it possible to install a linux tool=
+chain with X and the touchscreen/wireless components working, for an exampl=
+e, in a SD Card and boot my device into it?<br>=C2=A0<br>=C2=A0I&#39;m anxi=
+ous for that. <br>
+=C2=A0<br>=C2=A0Thanks for your support. <br>=C2=A0<br>=C2=A0Regard, <br>=
+=C2=A0<br clear=3D"all"><br>-- <br>***<br>TIAGOPRN<br><b>Desenvolvedor Web,=
+ Linux e Windows<br></b>(Django, Python, Delphi, Lazarus, MySQL, SQLite)<br=
+>E-mail: <a href=3D"mailto:tiagoprn@gmail.com" target=3D"_blank">tiagoprn@g=
+mail.com</a><br>
+Blog: <a href=3D"http://tgplima.net84.net" target=3D"_blank">http://tgplima=
+.net84.net</a><br>LinkedIn (profile p=C3=BAblico): <a href=3D"http://br.lin=
+kedin.com/in/tiagoparanhoslima" target=3D"_blank">http://br.linkedin.com/in=
+/tiagoparanhoslima</a><br>
+twitter: <a href=3D"https://twitter.com/tiagoprn" target=3D"_blank">https:/=
+/twitter.com/tiagoprn</a><div><a href=3D"http://identi.ca" target=3D"_blank=
+">identi.ca</a>:=C2=A0<a href=3D"http://identi.ca/tiagoprn" target=3D"_blan=
+k">http://identi.ca/tiagoprn</a><br>
+<br><br><br></div><br>
 
+--001485f777ee56460e0493c01285--
