@@ -1,33 +1,30 @@
-Return-Path: <tiagoprn@gmail.com>
-Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
-	by mx1.pokylinux.org (Postfix) with ESMTP id CCC924C80BD4
-	for <yocto@yoctoproject.org>; Fri, 29 Oct 2010 06:50:59 -0500 (CDT)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by wwb13 with SMTP id 13so2158484wwb.11
-	for <yocto@yoctoproject.org>; Fri, 29 Oct 2010 04:50:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:received:received:date:message-id
-	:subject:from:to:content-type;
-	bh=4YGJ8LGhUk+so4SFq6tqf5eY72avV/Pj24/hI191JTE=;
-	b=cbDOkUV3jGmcLrRh4xECSqnFBZZjHuHskeyElPHQJI76U9gho07TL6YSm+/LcUkuDl
-	0fW7DyRkhrtU1u17v8JOuJGSd5joSiJtGSRZIdAjUvUVqCzl0mVfdQ/7O7lsJtv2TkBA
-	nCun3yHTEji8thhND/wgWNHkW3kMeciRKKNu8=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	b=xYV1Yu6dldW1GQFNub7Dfq/j1Su5rRddlgDL2eAF58pGenKl9L0YzHMhq8JB5gd7NU
-	0y3r7pXES4tRNO5XctTmAIPNwbvVilMjZgnMgm+5ile8CRcreujwp3XpSZQ71FQZbE9p
-	i58jNglZkrW15+gXDPypqS4FHwPOE+T0pb56k=
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 87E284C80287
+	for <yocto@yoctoproject.org>; Fri, 29 Oct 2010 11:58:58 -0500 (CDT)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id o9TGwu7o003735;
+	Fri, 29 Oct 2010 09:58:56 -0700 (PDT)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Fri, 29 Oct 2010 09:58:56 -0700
+Received: from [128.224.146.67] ([128.224.146.67]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Fri, 29 Oct 2010 09:58:56 -0700
+Message-ID: <4CCAFD4F.8040501@windriver.com>
+Date: Fri, 29 Oct 2010 12:58:55 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.9pre) Gecko/20100217 Shredder/3.0.3pre
+	ThunderBrowse/3.2.8.1
 MIME-Version: 1.0
-Received: by 10.227.141.209 with SMTP id n17mr8869057wbu.126.1288353057490;
-	Fri, 29 Oct 2010 04:50:57 -0700 (PDT)
-Received: by 10.216.183.66 with HTTP; Fri, 29 Oct 2010 04:50:57 -0700 (PDT)
-Date: Fri, 29 Oct 2010 09:50:57 -0200
-Message-ID: <AANLkTi=zOCosKwknHK4nN3dps6hmv4EhnY3zYU6w5Hqp@mail.gmail.com>
-From: tiagoprn <tiagoprn@gmail.com>
-To: yocto@yoctoproject.org
-Subject: yocto tools on a nokia n800
+To: tiagoprn <tiagoprn@gmail.com>
+References: <AANLkTi=zOCosKwknHK4nN3dps6hmv4EhnY3zYU6w5Hqp@mail.gmail.com>
+In-Reply-To: <AANLkTi=zOCosKwknHK4nN3dps6hmv4EhnY3zYU6w5Hqp@mail.gmail.com>
+X-OriginalArrivalTime: 29 Oct 2010 16:58:56.0507 (UTC)
+	FILETIME=[92F764B0:01CB778A]
+Cc: yocto@yoctoproject.org
+Subject: Re: yocto tools on a nokia n800
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,70 +36,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Oct 2010 11:51:00 -0000
-Content-Type: multipart/alternative; boundary=001485f777ee56460e0493c01285
+X-List-Received-Date: Fri, 29 Oct 2010 16:58:59 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001485f777ee56460e0493c01285
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+On 10-10-29 07:50 AM, tiagoprn wrote:
+>   Hello everyone!
+>
+>   I have a question. I have just read about the yocto/poky projects and here I am with a hope. :)
+>
+>   I have a nokia n800 (an internet tablet abandoned by Nokia just about 2 years ago).
+>
+>   With poky/yocto project tools, is it possible to install a linux toolchain with X and the touchscreen/wireless components working, for an example, in a SD Card and boot my device into it?
 
- Hello everyone!
+I can comment on some of this from the kernel point of view,
+I'll leave others to comment on platform/project/userspace
+issues.
 
- I have a question. I have just read about the yocto/poky projects and here
-I am with a hope. :)
+It is definitely possible to enable (basic or more capabilities)
+in the N800 (in particular since most of the required support
+is mainline) in the yocto kernel (or other). We could extend
+the common set of features and sanity to the n800 and then
+enable peripherals or boot methods .. it all depends on the
+capabilities and interest.
 
- I have a nokia n800 (an internet tablet abandoned by Nokia just about 2
-years ago).
+maintable/doable in the kernel and userspace has the required
+capabilities (from my point of view), so this is something
+that could come back (others can comment more on the previous
+support), with a little bit of assistance.
 
- With poky/yocto project tools, is it possible to install a linux toolchain
-with X and the touchscreen/wireless components working, for an example, in =
-a
-SD Card and boot my device into it?
+Cheers,
 
- I'm anxious for that.
+Bruce
 
- Thanks for your support.
+>
+>   I'm anxious for that.
+>
+>   Thanks for your support.
+>
+>   Regard,
+>
+>
 
- Regard,
 
-
---=20
-***
-TIAGOPRN
-*Desenvolvedor Web, Linux e Windows
-*(Django, Python, Delphi, Lazarus, MySQL, SQLite)
-E-mail: tiagoprn@gmail.com
-Blog: http://tgplima.net84.net
-LinkedIn (profile p=C3=BAblico): http://br.linkedin.com/in/tiagoparanhoslim=
-a
-twitter: https://twitter.com/tiagoprn
-identi.ca: http://identi.ca/tiagoprn
-
---001485f777ee56460e0493c01285
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-=C2=A0Hello everyone!<br>=C2=A0<br>=C2=A0I have a question. I have just rea=
-d about the yocto/poky projects and here I am with a hope. :)<br>=C2=A0<br>=
-=C2=A0I have a nokia n800 (an internet tablet abandoned by Nokia just about=
- 2 years ago). <br>=C2=A0<br>
-=C2=A0With poky/yocto project tools, is it possible to install a linux tool=
-chain with X and the touchscreen/wireless components working, for an exampl=
-e, in a SD Card and boot my device into it?<br>=C2=A0<br>=C2=A0I&#39;m anxi=
-ous for that. <br>
-=C2=A0<br>=C2=A0Thanks for your support. <br>=C2=A0<br>=C2=A0Regard, <br>=
-=C2=A0<br clear=3D"all"><br>-- <br>***<br>TIAGOPRN<br><b>Desenvolvedor Web,=
- Linux e Windows<br></b>(Django, Python, Delphi, Lazarus, MySQL, SQLite)<br=
->E-mail: <a href=3D"mailto:tiagoprn@gmail.com" target=3D"_blank">tiagoprn@g=
-mail.com</a><br>
-Blog: <a href=3D"http://tgplima.net84.net" target=3D"_blank">http://tgplima=
-.net84.net</a><br>LinkedIn (profile p=C3=BAblico): <a href=3D"http://br.lin=
-kedin.com/in/tiagoparanhoslima" target=3D"_blank">http://br.linkedin.com/in=
-/tiagoparanhoslima</a><br>
-twitter: <a href=3D"https://twitter.com/tiagoprn" target=3D"_blank">https:/=
-/twitter.com/tiagoprn</a><div><a href=3D"http://identi.ca" target=3D"_blank=
-">identi.ca</a>:=C2=A0<a href=3D"http://identi.ca/tiagoprn" target=3D"_blan=
-k">http://identi.ca/tiagoprn</a><br>
-<br><br><br></div><br>
-
---001485f777ee56460e0493c01285--
