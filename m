@@ -1,23 +1,29 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 9D2004C80BD7
-	for <yocto@yoctoproject.org>; Sat, 30 Oct 2010 11:20:31 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 30 Oct 2010 09:20:31 -0700
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id E200B4C80287
+	for <yocto@yoctoproject.org>; Sun, 31 Oct 2010 18:43:55 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 31 Oct 2010 16:43:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,265,1286175600"; d="scan'208";a="621841598"
-Received: from unknown (HELO [10.255.12.201]) ([10.255.12.201])
-	by fmsmga002.fm.intel.com with ESMTP; 30 Oct 2010 09:20:30 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: tiagoprn <tiagoprn@gmail.com>
-In-Reply-To: <AANLkTi=zOCosKwknHK4nN3dps6hmv4EhnY3zYU6w5Hqp@mail.gmail.com>
-References: <AANLkTi=zOCosKwknHK4nN3dps6hmv4EhnY3zYU6w5Hqp@mail.gmail.com>
-Date: Sat, 30 Oct 2010 11:20:28 -0500
-Message-ID: <1288455628.13568.13.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: yocto tools on a nokia n800
+X-IronPort-AV: E=Sophos;i="4.58,269,1286175600"; 
+	d="scan'208,217";a="342796510"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by azsmga001.ch.intel.com with ESMTP; 31 Oct 2010 16:43:54 -0700
+Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
+	orsmsx604.amr.corp.intel.com ([10.250.113.17]) with mapi;
+	Sun, 31 Oct 2010 16:43:54 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Sun, 31 Oct 2010 16:43:53 -0700
+Thread-Topic: Some photos of the four architecture demo
+Thread-Index: Act5VXmrPvxHCkw/RASLbi8cPaMEgQ==
+Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34EF5F@orsmsx501.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: Some photos of the four architecture demo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,56 +35,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Oct 2010 16:20:31 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 31 Oct 2010 23:43:56 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34EF5Forsmsx501amrc_"
 
-On Fri, 2010-10-29 at 04:50 -0700, tiagoprn wrote:
->  Hello everyone!
->  
->  I have a question. I have just read about the yocto/poky projects and
-> here I am with a hope. :)
->  
->  I have a nokia n800 (an internet tablet abandoned by Nokia just about
-> 2 years ago). 
->  
->  With poky/yocto project tools, is it possible to install a linux
-> toolchain with X and the touchscreen/wireless components working, for
-> an example, in a SD Card and boot my device into it?
->  
->  I'm anxious for that. 
->  
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34EF5Forsmsx501amrc_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Check out http://www.yoctoproject.org/blogs/davest/2010/10/7/four-architect=
+ures-grooving-together, my latest post to the Yocto Project blog. Some phot=
+os there of the UPnP demo.
 
-It looks like yocto already has support for the n800 - there's this
-entry in local.conf:
+I also plan to post one up showing a little of the sausage-making... just a=
+ little...
 
-# Other supported machines
-.
-.
+Let me know what you think.
 
+Dave
 
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34EF5Forsmsx501amrc_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dus-ascii">
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
 
+<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
 
-#MACHINE ?= "nokia800"
+<div class=3DWordSection1>
 
+<p class=3DMsoNormal>Check out <a
+href=3D"http://www.yoctoproject.org/blogs/davest/2010/10/7/four-architectur=
+es-grooving-together">http://www.yoctoproject.org/blogs/davest/2010/10/7/fo=
+ur-architectures-grooving-together</a>,
+my latest post to the Yocto Project blog. Some photos there of the UPnP dem=
+o.<o:p></o:p></p>
 
-and see this section in README.hardware:
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-'Nokia 770/N800/N810 Internet Tablets (nokia770 and nokia800)'
+<p class=3DMsoNormal>I also plan to post one up showing a little of the
+sausage-making&#8230; just a little&#8230;<o:p></o:p></p>
 
-which says:
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-"The nokia800 images and kernel will run on both the N800 and N810"
+<p class=3DMsoNormal>Let me know what you think.<o:p></o:p></p>
 
-Sounds like what you're looking for...
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-Tom
+<p class=3DMsoNormal>Dave<o:p></o:p></p>
 
+</div>
 
+</body>
 
+</html>
 
-
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34EF5Forsmsx501amrc_--
