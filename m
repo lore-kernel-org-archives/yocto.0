@@ -1,34 +1,34 @@
 Return-Path: <jiajun.xu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 504D04C80A74
-	for <yocto@yoctoproject.org>; Mon,  1 Nov 2010 10:46:37 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 01 Nov 2010 08:46:36 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id A66544C80132
+	for <yocto@yoctoproject.org>; Mon,  1 Nov 2010 11:50:10 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 01 Nov 2010 09:50:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,274,1286175600"; d="scan'208";a="673020837"
-Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
-	by orsmga001.jf.intel.com with ESMTP; 01 Nov 2010 08:46:36 -0700
+X-IronPort-AV: E=Sophos;i="4.58,274,1286175600"; d="scan'208";a="343112943"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by azsmga001.ch.intel.com with ESMTP; 01 Nov 2010 09:50:09 -0700
 Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Mon, 1 Nov 2010 23:46:35 +0800
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Tue, 2 Nov 2010 00:50:08 +0800
 Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi; Mon, 1 Nov 2010
-	23:46:34 +0800
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi; Tue, 2 Nov 2010
+	00:50:07 +0800
 From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "Garman, Scott A" <scott.a.garman@intel.com>, "yocto@yoctoproject.org"
+To: Saul Wold <sgw@linux.intel.com>, "'yocto@yoctoproject.org'"
 	<yocto@yoctoproject.org>
-Date: Mon, 1 Nov 2010 23:46:32 +0800
-Thread-Topic: [yocto] nightly-release takes more than 24 hours to build.
-Thread-Index: Act5qIdG/oCuwe6HTNiArEhD0ZU6jAAMSRfA
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A300B6EBC@shsmsx501.ccr.corp.intel.com>
-References: <4CCE8A82.7070000@intel.com>
-In-Reply-To: <4CCE8A82.7070000@intel.com>
+Date: Tue, 2 Nov 2010 00:50:06 +0800
+Thread-Topic: [yocto] Bugzilla Changes
+Thread-Index: Act4D5ENXMHD9YMURUKCZaRM0IDiXAB0FPyw
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A300B6ECE@shsmsx501.ccr.corp.intel.com>
+References: <4CCBDC67.4050306@linux.intel.com>
+In-Reply-To: <4CCBDC67.4050306@linux.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
-Subject: Re: nightly-release takes more than 24 hours to build.
+Subject: Re: Bugzilla Changes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,72 +40,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Nov 2010 15:46:37 -0000
+X-List-Received-Date: Mon, 01 Nov 2010 16:50:10 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-> Hello,
 >=20
-> Leading up to our 0.9 release, our autobuilder has been building an
-> increasing number of targets for our nightly-release buildset. We've
-> now reached the point that the nightly build takes more than 24 hours
-> to run (> 26 hours, in fact)
-> - which is clearly a problem on a build that we'd like to generate on
-> a daily basis.
+> We need to review the existing Bugzilla and update the Products and
+> Categories to reflect the projects correctly.  Please review this
+> email and make comments, suggestions for moving forward with a better
+> Bugzilla categorization.
 >=20
-> The following is a list of everything which is built within nightly-relea=
-se:
+> Currently we have "Core OS" with the following Components:
+>    General
+>    Graphics Driver
+>    Kernel
+>    Tool Chain
+> Along with "Poky" which contains:
+>    General
+>    SDK Tools
+> There are also product categories for "Runtime Distribution", "Sato"
+> and "SDK Plugins". Along with other infrastructure items.
 >=20
-> The following targets are built for qemux86, qemux86-64, qemuarm,
-> qemumips, and qemuppc:
+> I would propose that we clearly define the some new products and move
+> bugs as appropriate:
 >=20
-> * poky-image-minimal
-> * poky-image-sato
-> * poky-image-lsb
-> * poky-image-sdk
-> * meta-toolchain-sdk (SDKMACHINE=3Di586 and also x86_64)
+> Poky Build System - for Poky class and configuration issues User Space
+> - for user space, patching and runtime failures Tool Chain - break it
+> down to compiler, tools, libraries, and general Kernel - Break it down
+> to Arch  / Config components SDK - For all SDK related issues, have
+> components for plugin, tools, ...
+> Sato - as it exists today
+> Runtime Distribution- Delete this, we are not a distro (no bugs now)
 >=20
-> For emenlow and atom-pc, we build:
->=20
-> * poky-image-minimal-live
-> * poky-image-sato-live
-> * poky-image-sdk-live
-> * meta-toolchain-sdk (SDKMACHINE=3Di586 and also x86_64)
->=20
-> Finally, we also build the Eclipse plugin, and copy the shared state
-> prebuilds and RPM output at the end of the build.
->=20
-> I was going to post build times for some of these targets for
-> reference, but it would be misleading as we build the targets in
-> succession (e.g, we start with poky-image-sdk which takes the bulk of
-> the time, and then the other targets can largely rely on the shared state=
- builds).
->=20
-> Ideally I think our nightly build should take much less than 24 hours
-> to build. The question is what we can move out of the nightly build
-> and do on perhaps a weekly basis instead?
+> Additionally, there is other discussion about Poky Test components for
+> the standards tests such as LSB, LTP, Posix.
 >=20
 
-How about customizing the nightly build to build part of targets for every =
-day? For example, x86/x86_64 for Monday, atom-pc/emenlow for Tuesday..... e=
-tc.
-And we can schedule a new build task for weekly, which is only triggered on=
- Wednesday(or maybe Tuesday night) for QA weekly testing and with all targe=
-ts built out.
+These test suites can help to find bugs from user level to kernel. It's har=
+d to put them as components under just one product. User can decide the pro=
+duct and add note in bug title that the bug is for LSB or LTP.
+If we want to make it easier to report bugs for such test suites, how about=
+ adding a Standard Test Suite product, which includes LSB, LTP, POSIX and O=
+thers as components.
 
-> Our buildserver hardware is a dual quad-core Xeon server with 12 GB of RA=
-M.
-> Throwing hardware at the problem is another solution, but not an
-> inexpensive one (we'd be looking at a 4-socket machine filled with
-> quad-cores and 32 GB of RAM).
+> We will need to add Product Categories for other Yocto Projects that
+> do not have bugzilla yet.
 >=20
-> I'm open to ideas on how to address this issue. QA will be driving a
-> lot of the requirements and I'm especially interested to hear your though=
-ts.
+> Finally we need to update the Bugzilla Interface to be Yocto Project,
+> changing naming as appropriate.
 >=20
-> Scott
+> Please take a few minutes to review this and give some feedback.
 >=20
+>=20
+> Thanks
+>=20
+>      Sau!
+> Saul Wold
+> Yocto Component Wrangler @ Intel
+> Yocto Project / Poky Build System
 >=20
 > _______________________________________________
 > yocto mailing list
@@ -114,5 +107,6 @@ ts.
 
 Best Regards,
 Jiajun
+
 
 
