@@ -1,30 +1,31 @@
-Return-Path: <rpurdie@linux.intel.com>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id EB61B4C80132
-	for <yocto@yoctoproject.org>; Mon,  1 Nov 2010 15:48:32 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oA1KmUNq025503;
-	Mon, 1 Nov 2010 20:48:30 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 25319-04; Mon,  1 Nov 2010 20:48:26 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oA1KmPSn025497
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Mon, 1 Nov 2010 20:48:25 GMT
-From: Richard Purdie <rpurdie@linux.intel.com>
-To: Hector Oron <hector.oron@gmail.com>
-In-Reply-To: <AANLkTinu_38Fo9yC1Hpkgf_JN5FqW-WFfFxfxztvOhJr@mail.gmail.com>
-References: <AANLkTinu_38Fo9yC1Hpkgf_JN5FqW-WFfFxfxztvOhJr@mail.gmail.com>
-Date: Mon, 01 Nov 2010 20:48:19 +0000
-Message-ID: <1288644499.28481.67.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-X-Virus-Scanned: amavisd-new at rpsys.net
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 14C2C4C80044
+	for <yocto@yoctoproject.org>; Mon,  1 Nov 2010 16:40:59 -0500 (CDT)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oA1LewH0026170;
+	Mon, 1 Nov 2010 14:40:58 -0700 (PDT)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Mon, 1 Nov 2010 14:40:57 -0700
+Received: from bruce-ashfields-macbook.local ([128.224.143.26]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Mon, 1 Nov 2010 14:40:56 -0700
+Message-ID: <4CCF33E1.6080600@windriver.com>
+Date: Mon, 01 Nov 2010 17:40:49 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.12) Gecko/20101027 Thunderbird/3.1.6
+MIME-Version: 1.0
+To: Saul Wold <sgw@linux.intel.com>
+References: <4CCBDC67.4050306@linux.intel.com>
+	<4CCF1250.4080903@linux.intel.com>
+	<4CCF1F6A.2080702@linux.intel.com>
+In-Reply-To: <4CCF1F6A.2080702@linux.intel.com>
+X-OriginalArrivalTime: 01 Nov 2010 21:40:57.0615 (UTC)
+	FILETIME=[77F8D1F0:01CB7A0D]
 Cc: yocto@yoctoproject.org
-Subject: Re: Build failures on yocto
+Subject: Re: Bugzilla Changes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,140 +37,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Nov 2010 20:48:33 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 01 Nov 2010 21:40:59 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
+On 10-11-01 4:13 PM, Saul Wold wrote:
+> On 11/01/2010 12:17 PM, Darren Hart wrote:
+>> On 10/30/2010 01:50 AM, Saul Wold wrote:
+>>>
+>>> We need to review the existing Bugzilla and update the Products and
+>>> Categories to reflect the projects correctly. Please review this email
+>>> and make comments, suggestions for moving forward with a better Bugzilla
+>>> categorization.
+>>>
+>>> Currently we have "Core OS" with the following Components:
+>>> General
+>>> Graphics Driver
+>>> Kernel
+>>> Tool Chain
+>>>
+>>> Along with "Poky" which contains:
+>>> General
+>>> SDK Tools
+>>>
+>>> There are also product categories for "Runtime Distribution", "Sato" and
+>>> "SDK Plugins". Along with other infrastructure items.
+>>>
+>>> I would propose that we clearly define the some new products and move
+>>> bugs as appropriate:
+>>>
+>>> Poky Build System - for Poky class and configuration issues
+>>> User Space - for user space, patching and runtime failures
+>>> Tool Chain - break it down to compiler, tools, libraries
+>>
+>> The divide between User Space and Tool Chain is a bit vague. For
+>> instance, I would generally expect to see glibc under User Space, but
+>> your description seems to place it under Tool Chain.
+>>
+> Good point. (See my reply to Mark's email)
+>
+>>   >  and general Kernel - Break it down to Arch / Config components
+>>
+>> Please keep the kernel separate from the Tool Chain, something along the
+>> lines of:
+>>
+>> Kernel
+>> - Core
+>> - Drivers
+>> - Tooling (Trace, Debug, Perf)
+>>
+> I think my lines might have run together!  It was meant to be separate,
+> and this looks like a good break down.
 
-I don't have answers to all of the failures but let me try and respond
-to the ones I have some ideas about:
+This is too much separation, having over categorization
+of the kernel defects at this point is overkill. I'd
+suggest three categories:
 
-On Mon, 2010-11-01 at 18:23 +0000, Hector Oron wrote:
->   lenny_i386)
-> cat <<EOF
-> [...]
-> | NOTE: Running
-> /srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/work/x86_64-linux/gmp-native-4.2.4-r0/gmp-4.2.4/configure
->                 --build=x86_64-linux          --host=x86_64-linux
->    --target=x86_64-linux
-> --prefix=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/usr
->           --exec_prefix=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/usr
-> 
-> --bindir=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/usr/bin
->          --sbindir=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/usr/sbin
-> 
-> --libexecdir=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/usr/libexec
-> 
-> --datadir=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/usr/share
->             --sysconfdir=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/etc
->       --sharedstatedir=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/com
->              --localstatedir=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/var
->         --libdir=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/usr/lib
-> 
-> --includedir=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/usr/include
-> 
-> --oldincludedir=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/usr/include
->              --infodir=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/usr/share/info
->          --mandir=/srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/staging/x86_64-linux/usr/share/man
->                                        ...
-> | checking build system type... x86_64-pc-linux-gnu
-> | checking host system type... x86_64-pc-linux-gnu
-> | checking for a BSD-compatible install... /usr/bin/install -c
-> [...]
-> | checking size of unsigned short... 2
-> | checking for unsigned... yes
-> | checking size of unsigned... 4
-> | checking for unsigned long... yes
-> | checking size of unsigned long... 4
-> | checking for mp_limb_t... yes
-> | checking size of mp_limb_t... 4
-> | configure: error: Oops, mp_limb_t is 32 bits, but the assembler code
-> | in this configuration expects 64 bits.
-> | You appear to have set $CFLAGS, perhaps you also need to tell GMP the
-> | intended ABI, see "ABI and ISA" in the manual.
-> | FATAL: oe_runconf failed
-> NOTE: Task failed:
-> /srv/build/builds/build/rootfs/yocto/purple-3.2/build/tmp/work/x86_64-linux/gmp-native-4.2.4-r0/temp/log.do_configure.28892
-> NOTE: package gmp-native-4.2.4-r0: task do_configure: failed
-> ERROR: TaskFailed event exception, aborting
-> NOTE: package gmp-native-4.2.4: failed
-> ERROR: Build of
-> /srv/build/builds/build/rootfs/yocto/purple-3.2/meta/packages/gmp/gmp-native_4.2.4.bb
-> do_configure failed
-> ERROR: Task 556
-> (/srv/build/builds/build/rootfs/yocto/purple-3.2/meta/packages/gmp/gmp-native_4.2.4.bb,
-> do_configure) failed
-> NOTE: Tasks Summary: Attempted 135 tasks of which 135 didn't need to
-> be rerun and 1 failed.
-> ERROR: '/srv/build/builds/build/rootfs/yocto/purple-3.2/meta/packages/gmp/gmp-native_4.2.4.bb'
-> failed
-> NOTE: build 201011011717: completed
-> make: *** [/srv/build/builds/menuconfig2-i386/../build/rootfs/yocto/purple-3.2/foo]
-> Error 1
-> EOF
+   - kernel build (which often transitions to
+     straight up build-system after triage).
+   - kernel configuration
+   - kernel runtime
 
-At a guess this is a 64 bit kernel and a 32 bit userspace? What does
-"uname -a" show?
+Let's keep it simple.
 
-I suspect if you add
+Bruce
 
-BUILD_ARCH = "i686"
-
-to your local.conf, the build might work better? If you can confirm that
-we can probably detect this problem and avoid this failure.
->   ;;
->   unstable_i386)
-> cat <<EOF
-> [...]
-> | checking size of unsigned long... 4
-> | checking size of mp_limb_t... 4
-> | configure: error: Oops, mp_limb_t is 32 bits, but the assembler code
-> | in this configuration expects 64 bits.
-> | You appear to have set $CFLAGS, perhaps you also need to tell GMP the
-> | intended ABI, see "ABI and ISA" in the manual.
-> | FATAL: oe_runconf failed
-> | ERROR: Task failed: ('function do_configure failed',
-> '/srv/build/builds/build/rootfs/yocto/laverne-4.0/build/tmp/work/x86_64-linux/gmp-native-5.0.1-r0/temp/log.do_configure.13641')
-> NOTE: package gmp-native-5.0.1-r0: task do_configure: Failed
-> ERROR: Task 971
-> (virtual:native:/srv/build/builds/build/rootfs/yocto/laverne-4.0/meta/recipes-support/gmp/gmp_5.0.1.bb,
-> do_configure) failed with 1
-> Waiting for 1 active tasks to finish:
-> 1: gettext-native-0.17-r5 do_compile (pid 13646)
-> NOTE: package gettext-native-0.17-r5: task do_compile: Succeeded
-> ERROR: 'virtual:native:/srv/build/builds/build/rootfs/yocto/laverne-4.0/meta/recipes-support/gmp/gmp_5.0.1.bb'
-> failed
-> make: *** [/srv/build/builds/menuconfig2-i386/../build/rootfs/yocto/laverne-4.0/foo]
-> Error 1
-> EOF
-
-Same as the above failure (64 bit kernel and 32 bit userspace)?
-
->   ;;
->   others|*)
-> cat <<EOF
->     - I need to setup "vm.mmap_min_addr = 0" under /etc/sysctl.conf
-
-Right, but it detected that?
-
->     - sh linked to dash makes build system fail
-> (./build/rootfs/yocto/laverne-4.0/poky-init-build-env):
->        (sid_i386)zumbi@enorme:/srv/build/builds/build/rootfs/yocto/laverne-4.0$
-> checkbashisms poky-init-build-env
-> possible bashism in poky-init-build-env line 24 ($BASH_SOMETHING):
-> elif test x"$BASH_SOURCE" = x; then
-> possible bashism in poky-init-build-env line 27 ($BASH_SOMETHING):
->    . `dirname $BASH_SOURCE`/scripts/poky-env-internal
-
-Ouch. We don't support building with /bin/sh as dash (way too many
-broken scripts our there still) and the system would tell you as such if
-it detected that. Looks like bashisms have made it into the setup script
-though which we need to fix.
-
-Cheers,
-
-Richard
-
+>
+> Sau!
+>
+>> Thanks,
+>>
+>> --
+>> Darren
+>>
+>>> SDK - For all SDK related issues, have components for plugin, tools, ...
+>>> Sato - as it exists today
+>>> Runtime Distribution- Delete this, we are not a distro (no bugs now)
+>>>
+>>> Additionally, there is other discussion about Poky Test components for
+>>> the standards tests such as LSB, LTP, Posix.
+>>>
+>>> We will need to add Product Categories for other Yocto Projects that do
+>>> not have bugzilla yet.
+>>>
+>>> Finally we need to update the Bugzilla Interface to be Yocto Project,
+>>> changing naming as appropriate.
+>>>
+>>> Please take a few minutes to review this and give some feedback.
+>>>
+>>>
+>>> Thanks
+>>>
+>>> Sau!
+>>>
+>>> Saul Wold
+>>> Yocto Component Wrangler @ Intel
+>>> Yocto Project / Poky Build System
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.pokylinux.org/listinfo/yocto
+>>
+>>
 
 
