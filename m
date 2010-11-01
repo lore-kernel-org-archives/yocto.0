@@ -1,30 +1,39 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8FCB14C80132
-	for <yocto@yoctoproject.org>; Sun, 31 Oct 2010 22:11:26 -0500 (CDT)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oA13BOmE013721;
-	Sun, 31 Oct 2010 20:11:24 -0700 (PDT)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Sun, 31 Oct 2010 20:11:23 -0700
-Received: from bruce-ashfields-macbook.local ([128.224.143.15]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Sun, 31 Oct 2010 20:11:23 -0700
-Message-ID: <4CCE2FD8.7010006@windriver.com>
-Date: Sun, 31 Oct 2010 23:11:20 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.12) Gecko/20101027 Thunderbird/3.1.6
+Return-Path: <fransmeulenbroeks@gmail.com>
+Received: from mail-iw0-f176.google.com (mail-iw0-f176.google.com
+	[209.85.214.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 68D854C80132
+	for <yocto@yoctoproject.org>; Mon,  1 Nov 2010 02:07:32 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iwn7 with SMTP id 7so7137450iwn.35
+	for <yocto@yoctoproject.org>; Mon, 01 Nov 2010 00:07:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:received:received:in-reply-to
+	:references:date:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=iEyj3LrZgwhwxAoejU92011sDsQlQuSI4oAXM+1h6Ow=;
+	b=LiIk5xSay28BWFNLkpqufUhEtpPRETwS9JX07vNWqmbHXQ5oQCD0/2BDCsyzd3e38v
+	clA4YALBbTI8mft+Y0KGZa0LCj3wm/0909faNVk84grXSY5uIgb3sV7LXAhAadYoSOdE
+	4zk+jntOU9rGnE/S0hfyJMnvYlrU/SgFP/grQ=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	b=sU+jpCZjvxKpJAOS2NQl5nEoU+DAXRg9muGsyl2nfOq2IAZdmbN6U+vmspYQ0Ariu2
+	pfo9RSaN23f0+oc6POWF56Uq2WwHhrpSNxFE5owQA9QhmNnJgIxrU5/z2kOZVXkQ4eo8
+	LZXX91uOPIfDQYVIsohvvXnTKSU2VIdh7fmRA=
 MIME-Version: 1.0
-To: Tom Zanussi <tom.zanussi@intel.com>
-References: <AANLkTi=zOCosKwknHK4nN3dps6hmv4EhnY3zYU6w5Hqp@mail.gmail.com>
-	<1288455628.13568.13.camel@elmorro>
-In-Reply-To: <1288455628.13568.13.camel@elmorro>
-X-OriginalArrivalTime: 01 Nov 2010 03:11:24.0120 (UTC)
-	FILETIME=[7713A580:01CB7972]
-Cc: yocto@yoctoproject.org, tiagoprn <tiagoprn@gmail.com>
-Subject: Re: yocto tools on a nokia n800
+Received: by 10.231.30.74 with SMTP id t10mr13031993ibc.171.1288595250462;
+	Mon, 01 Nov 2010 00:07:30 -0700 (PDT)
+Received: by 10.231.40.13 with HTTP; Mon, 1 Nov 2010 00:07:30 -0700 (PDT)
+In-Reply-To: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34EF5F@orsmsx501.amr.corp.intel.com>
+References: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34EF5F@orsmsx501.amr.corp.intel.com>
+Date: Mon, 1 Nov 2010 08:07:30 +0100
+Message-ID: <AANLkTinJYiqS9rTv6ioZUSdS5sbSob3WQ564T-6funmc@mail.gmail.com>
+From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+To: "Stewart, David C" <david.c.stewart@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Some photos of the four architecture demo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,73 +45,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Nov 2010 03:11:27 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 01 Nov 2010 07:07:32 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-On 10-10-30 12:20 PM, Tom Zanussi wrote:
-> On Fri, 2010-10-29 at 04:50 -0700, tiagoprn wrote:
->>   Hello everyone!
->>
->>   I have a question. I have just read about the yocto/poky projects and
->> here I am with a hope. :)
->>
->>   I have a nokia n800 (an internet tablet abandoned by Nokia just about
->> 2 years ago).
->>
->>   With poky/yocto project tools, is it possible to install a linux
->> toolchain with X and the touchscreen/wireless components working, for
->> an example, in a SD Card and boot my device into it?
->>
->>   I'm anxious for that.
->>
->
-> Hi,
->
-> It looks like yocto already has support for the n800 - there's this
-> entry in local.conf:
->
-> # Other supported machines
-> .
-> .
+2010/11/1 Stewart, David C <david.c.stewart@intel.com>:
+> Check out
+> http://www.yoctoproject.org/blogs/davest/2010/10/7/four-architectures-gro=
+oving-together,
+> my latest post to the Yocto Project blog. Some photos there of the UPnP
+> demo.
 >
 >
 >
+> I also plan to post one up showing a little of the sausage-making=85 just=
+ a
+> little=85
 >
 >
 >
-> #MACHINE ?= "nokia800"
->
->
-> and see this section in README.hardware:
->
-> 'Nokia 770/N800/N810 Internet Tablets (nokia770 and nokia800)'
->
-> which says:
->
-> "The nokia800 images and kernel will run on both the N800 and N810"
->
-> Sounds like what you're looking for...
+> Let me know what you think.
 
-The rest of the config has been moved to meta-extras, and
-we'd need to do a bit of kernel work, but it has worked in the past, and 
-could work again in the future.
+Dave, the demo looked indeed quite impressive, and actually I was
+trying to fetch the sources, but ....
+git clone does not work for me. I've tried a few times and from
+different systems/locations.
+the poky master clones fine.
 
-In other words 'I agree'.
+frans@frans-desktop:~/yocto$ git clone git://git.pokylinux.org/meta-demo
+Initialized empty Git repository in /home/frans/yocto/meta-demo/.git/
+fatal: The remote end hung up unexpectedly
 
-Cheers,
-
-Bruce
-
->
-> Tom
->
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.pokylinux.org/listinfo/yocto
-
+Best regards, Frans
 
