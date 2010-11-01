@@ -1,31 +1,34 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 857FF4C80287
-	for <yocto@yoctoproject.org>; Mon,  1 Nov 2010 10:37:07 -0500 (CDT)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oA1Fb6vD022864;
-	Mon, 1 Nov 2010 08:37:06 -0700 (PDT)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Mon, 1 Nov 2010 08:37:05 -0700
-Received: from Macintosh-5.local ([172.25.36.227]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Mon, 1 Nov 2010 08:37:05 -0700
-Message-ID: <4CCEDE9F.7000707@windriver.com>
-Date: Mon, 01 Nov 2010 10:37:03 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.12) Gecko/20101027 Thunderbird/3.1.6
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 504D04C80A74
+	for <yocto@yoctoproject.org>; Mon,  1 Nov 2010 10:46:37 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 01 Nov 2010 08:46:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.58,274,1286175600"; d="scan'208";a="673020837"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by orsmga001.jf.intel.com with ESMTP; 01 Nov 2010 08:46:36 -0700
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Mon, 1 Nov 2010 23:46:35 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi; Mon, 1 Nov 2010
+	23:46:34 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "Garman, Scott A" <scott.a.garman@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Mon, 1 Nov 2010 23:46:32 +0800
+Thread-Topic: [yocto] nightly-release takes more than 24 hours to build.
+Thread-Index: Act5qIdG/oCuwe6HTNiArEhD0ZU6jAAMSRfA
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A300B6EBC@shsmsx501.ccr.corp.intel.com>
+References: <4CCE8A82.7070000@intel.com>
+In-Reply-To: <4CCE8A82.7070000@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: Qing He <qing.he@intel.com>
-References: <20101021083308.GB18344@qhe2-db> <4CC059D9.8050208@windriver.com>
-	<20101022014714.GE18344@qhe2-db>
-In-Reply-To: <20101022014714.GE18344@qhe2-db>
-X-OriginalArrivalTime: 01 Nov 2010 15:37:05.0654 (UTC)
-	FILETIME=[A31BF160:01CB79DA]
-Cc: yocto@yoctoproject.org
-Subject: Re: zypper and poky architectures
+Subject: Re: nightly-release takes more than 24 hours to build.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,133 +40,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Nov 2010 15:37:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 01 Nov 2010 15:46:37 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-(Sorry for the late response, today's my first day back from CELF)
+> Hello,
+>=20
+> Leading up to our 0.9 release, our autobuilder has been building an
+> increasing number of targets for our nightly-release buildset. We've
+> now reached the point that the nightly build takes more than 24 hours
+> to run (> 26 hours, in fact)
+> - which is clearly a problem on a build that we'd like to generate on
+> a daily basis.
+>=20
+> The following is a list of everything which is built within nightly-relea=
+se:
+>=20
+> The following targets are built for qemux86, qemux86-64, qemuarm,
+> qemumips, and qemuppc:
+>=20
+> * poky-image-minimal
+> * poky-image-sato
+> * poky-image-lsb
+> * poky-image-sdk
+> * meta-toolchain-sdk (SDKMACHINE=3Di586 and also x86_64)
+>=20
+> For emenlow and atom-pc, we build:
+>=20
+> * poky-image-minimal-live
+> * poky-image-sato-live
+> * poky-image-sdk-live
+> * meta-toolchain-sdk (SDKMACHINE=3Di586 and also x86_64)
+>=20
+> Finally, we also build the Eclipse plugin, and copy the shared state
+> prebuilds and RPM output at the end of the build.
+>=20
+> I was going to post build times for some of these targets for
+> reference, but it would be misleading as we build the targets in
+> succession (e.g, we start with poky-image-sdk which takes the bulk of
+> the time, and then the other targets can largely rely on the shared state=
+ builds).
+>=20
+> Ideally I think our nightly build should take much less than 24 hours
+> to build. The question is what we can move out of the nightly build
+> and do on perhaps a weekly basis instead?
+>=20
 
-On 10/21/10 8:47 PM, Qing He wrote:
-> On Thu, 2010-10-21 at 23:18 +0800, Mark Hatle wrote:
->> On 10/21/10 3:33 AM, Qing He wrote:
->>>     1. what uses for independent packages is called "noarch", "all" is not
->>>        recognized, something depends on update-rc.d won't be installed
->>>        because of missing dependency
->>
->> We can certainly look into translating "all" to "noarch" post 0.9.  That might
->> make it easier for people coming from the RPM world, to understand what is in
->> the package.
->>
->>>     1. rename *.all.rpm to *.noarch.rpm
->>
->> We can certainly do this easily.
->
-> If noarch is universally used in RPM word, I think we should use it.
+How about customizing the nightly build to build part of targets for every =
+day? For example, x86/x86_64 for Monday, atom-pc/emenlow for Tuesday..... e=
+tc.
+And we can schedule a new build task for weekly, which is only triggered on=
+ Wednesday(or maybe Tuesday night) for QA weekly testing and with all targe=
+ts built out.
 
-My preference is staying with the Poky 'arch' naming...  but renaming to noarch 
-is fine, and unless Richard or someone else sees an issue it could be used as a 
-temporary workaround.  (There are a few places like rootfs generation that we'll 
-have to translate "all" to "noarch".. if we decide to do this.)
+> Our buildserver hardware is a dual quad-core Xeon server with 12 GB of RA=
+M.
+> Throwing hardware at the problem is another solution, but not an
+> inexpensive one (we'd be looking at a 4-socket machine filled with
+> quad-cores and 32 GB of RAM).
+>=20
+> I'm open to ideas on how to address this issue. QA will be driving a
+> lot of the requirements and I'm especially interested to hear your though=
+ts.
+>=20
+> Scott
+>=20
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.pokylinux.org/listinfo/yocto
 
->>
->>>     2. the arch automatic detection system uses "uname -m", thus producing
->>>        armv5tejl, which can only be resolved as armv5tel, conflicting with
->>>        "armv5te" in rpm
->>
->> This is a bug in Zypper.  The machine names should come from somewhere other
->> then uname -m.  (The value of uname -m is very much ia32 specific for the most
->> part.. other architectures have way too many possible namings for it to be
->> useful.)   There is a line in "/etc/rpm/platform" that contains the name of Poky
->> architecture.  This file should be referenced (instead of -m) for all cases.
->>
->>>     3. enhance zypper arch module, make the addition more flexible,
->>>        allowing arch alias (e.g. armv5te = armv5tel = armel = arm)
->>
->> Zypper should read the rpm platform file.
->
-> Sounds reasonable. After all, zypper is only intended to be a frontend
-> utility to the lower end package tool. Then we won't need to worry about
-> alias and different naming, and this detaches zypper from hardware.
->
->>
->>>     3. many archs are missing in zypper, like mips, armeb, etc.
->>>     4. there is no concept of machine-dependent packages (task-base) in
->>>        zypper, although we can work around.
->>
->> Generally speaking, this is true of most RPM installations.  However, within RPM
->> itself.. there really isn't any concept of "arch" anymore.. They're really only
->> used for grouping and ordering.  So Zypper may need to be updated to query the
->> arch of a package and use it for it's various operations.
->>
->>>     2. removing the concept of machine-dependent packages, change all
->>>        *.qemuarm.rpm to *.armv5te.rpm
->>
->> I'm a bit worried about doing this, as we'll end up with (potentially)
->> incompatible packages with exactly the same name and versions...  Perhaps we
->> need to think about embedding the machine type into the name of the packages
->> instead?
->
-> Thanks for the info. If we are going for dynamic platform specs, it
-> doesn't really matter whether we have things like qemuarm or not, does it?
-
-Ya, if we are able to do things dynamically, then the naming is no longer 
-important.  That's really my hope as to how we implement the RPM components.
-
->>
->>
->>> That would be some work to do, maybe 1.0 is a good time to get zypper
->>> and package upgrade truely working.
->>
->> Yes, we also need to get multi-arch as well.. (i.e. 32-bit and 64-bit at the
->> same time) working.  I'm guessing there will be some Zypper interactions there
->> as well.
->>
->
-> I don't really have ideas how this is done. I think on debian this is
-> actually avoided and i386 packages are repackaged as lib32xxx for x86_64
-> platform.
-
-Since Poky does not yet have the ability to deal with Multiarch builds, this is 
-something we will have to work on designing as we get closer to Yocto 1.0.
-
-Within RPM, the rpm package manager understands all of the "types" of each file 
-in the system.  When you ask to install (note, not upgrade) two packages of the 
-same name the system checks the files.
-
-When a conflict is identified, if the contents of the files are the same, 
-nothing is done -- no error is generated.
-
-If the contents of the file are different, and the file is tagged as a 
-configuration file, then either first or last in wins (I don't remember which) 
--- no error is generated.
-
-If the contents of the file are different, and the file type is NOT ELF (and the 
-above has no already detected), then an error is generated and installation stops.
-
-if the contents of the file are different, and the file type is ELF... then 
-there is a weighting algorithm that is used.  Depending on the configuration the 
-following could happen:
-
-multiarch is not allowed -- an error is generated
-
-multiarch is allowed -- one of the components though is not an allowed multiarch 
--- an error is generated (this could be the mips case of o32, n32 and n64 on the 
-same system.  You could prevent someone from installing say o32 binaries.)
-
-multiarch is allowed -- a 'winner' is chosen based on the system configuration. 
-  The winner is installed, and the loser is not installed -- no error is generated.
-
----
-
-If DEB and IPK don't support this (which I wouldn't be surprised if they don't), 
-then we'll need to: extend them, modify the package naming to include some type 
-of architecture keying to avoid conflicts, or simply state multiarch support 
-isn't available if the rootfs type is DEB or IPK.  (I suspect the middle case is 
-what we'll end up with.)
-
---Mark
-
-> Thanks,
-> Qing
+Best Regards,
+Jiajun
 
 
