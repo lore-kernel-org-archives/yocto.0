@@ -1,32 +1,31 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 96E414C80100
-	for <yocto@yoctoproject.org>; Mon,  1 Nov 2010 08:35:47 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 01 Nov 2010 06:35:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,273,1286175600"; d="scan'208";a="343023586"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by azsmga001.ch.intel.com with ESMTP; 01 Nov 2010 06:35:36 -0700
-Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
-	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
-	Mon, 1 Nov 2010 06:35:36 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: Richard Purdie <rpurdie@linux.intel.com>, "Garman, Scott A"
-	<scott.a.garman@intel.com>
-Date: Mon, 1 Nov 2010 06:35:35 -0700
-Thread-Topic: [yocto] nightly-release takes more than 24 hours to build.
-Thread-Index: Act5tGyu8CdE2gkqQVWUN0snalUTggAFGGOg
-Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34F068@orsmsx501.amr.corp.intel.com>
-References: <4CCE8A82.7070000@intel.com> <1288609394.22875.133.camel@rex>
-In-Reply-To: <1288609394.22875.133.camel@rex>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
+Return-Path: <rpurdie@linux.intel.com>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 030CB4C80132
+	for <yocto@yoctoproject.org>; Mon,  1 Nov 2010 08:59:57 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oA1DxsZD020344;
+	Mon, 1 Nov 2010 13:59:54 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 20041-04; Mon,  1 Nov 2010 13:59:50 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oA1DxmKK020338
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 1 Nov 2010 13:59:48 GMT
+From: Richard Purdie <rpurdie@linux.intel.com>
+To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+In-Reply-To: <AANLkTinJYiqS9rTv6ioZUSdS5sbSob3WQ564T-6funmc@mail.gmail.com>
+References: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34EF5F@orsmsx501.amr.corp.intel.com>
+	<AANLkTinJYiqS9rTv6ioZUSdS5sbSob3WQ564T-6funmc@mail.gmail.com>
+Date: Mon, 01 Nov 2010 13:59:42 +0000
+Message-ID: <1288619982.28481.12.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: nightly-release takes more than 24 hours to build.
+Subject: Re: Some photos of the four architecture demo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,37 +37,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Nov 2010 13:35:48 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 01 Nov 2010 13:59:58 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Richard Purdie
->Sent: Monday, November 01, 2010 4:03 AM
->
->On Mon, 2010-11-01 at 02:38 -0700, Scott Garman wrote:
->>
->> Our buildserver hardware is a dual quad-core Xeon server with 12 GB of
->> RAM. Throwing hardware at the problem is another solution, but not an
->> inexpensive one (we'd be looking at a 4-socket machine filled with
->> quad-cores and 32 GB of RAM).
->
->There doesn't just have to be one build machine, we are going to end up
->needing multiple machines and we can split the load between them quite
->easily. I think there is going to be a second machine needed alongside
->the existing one regardless of what other optimisations we make.
+On Mon, 2010-11-01 at 08:07 +0100, Frans Meulenbroeks wrote:
+> Dave, the demo looked indeed quite impressive, and actually I was
+> trying to fetch the sources, but ....
+> git clone does not work for me. I've tried a few times and from
+> different systems/locations.
+> the poky master clones fine.
+> 
+> frans@frans-desktop:~/yocto$ git clone git://git.pokylinux.org/meta-demo
+> Initialized empty Git repository in /home/frans/yocto/meta-demo/.git/
+> fatal: The remote end hung up unexpectedly
 
-I can buy another server and contribute it to the build effort. I had inten=
-ded to buy one this quarter to begin hosting yoctoproject.org and a source =
-mirror, but we could offload part of the builds to it as well.
+These was a problem with anonymous clones of this repository but this
+should be fixed now, sorry about that.
 
-As you know, I want us to get to the root of the problem, which is efficien=
-cy of the build process. Since RP has already committed to addressing this,=
- I'm fine with a short-term fix if it will help. :-)
+Cheers,
 
-Scott - please put in an order, will tell you the max amount today when we'=
-re f2f.
+Richard
 
-Dave
+
 
