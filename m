@@ -1,29 +1,30 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id E200B4C80287
-	for <yocto@yoctoproject.org>; Sun, 31 Oct 2010 18:43:55 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 31 Oct 2010 16:43:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,269,1286175600"; 
-	d="scan'208,217";a="342796510"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by azsmga001.ch.intel.com with ESMTP; 31 Oct 2010 16:43:54 -0700
-Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
-	orsmsx604.amr.corp.intel.com ([10.250.113.17]) with mapi;
-	Sun, 31 Oct 2010 16:43:54 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Sun, 31 Oct 2010 16:43:53 -0700
-Thread-Topic: Some photos of the four architecture demo
-Thread-Index: Act5VXmrPvxHCkw/RASLbi8cPaMEgQ==
-Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34EF5F@orsmsx501.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8FCB14C80132
+	for <yocto@yoctoproject.org>; Sun, 31 Oct 2010 22:11:26 -0500 (CDT)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oA13BOmE013721;
+	Sun, 31 Oct 2010 20:11:24 -0700 (PDT)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Sun, 31 Oct 2010 20:11:23 -0700
+Received: from bruce-ashfields-macbook.local ([128.224.143.15]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Sun, 31 Oct 2010 20:11:23 -0700
+Message-ID: <4CCE2FD8.7010006@windriver.com>
+Date: Sun, 31 Oct 2010 23:11:20 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.12) Gecko/20101027 Thunderbird/3.1.6
 MIME-Version: 1.0
-Subject: Some photos of the four architecture demo
+To: Tom Zanussi <tom.zanussi@intel.com>
+References: <AANLkTi=zOCosKwknHK4nN3dps6hmv4EhnY3zYU6w5Hqp@mail.gmail.com>
+	<1288455628.13568.13.camel@elmorro>
+In-Reply-To: <1288455628.13568.13.camel@elmorro>
+X-OriginalArrivalTime: 01 Nov 2010 03:11:24.0120 (UTC)
+	FILETIME=[7713A580:01CB7972]
+Cc: yocto@yoctoproject.org, tiagoprn <tiagoprn@gmail.com>
+Subject: Re: yocto tools on a nokia n800
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,110 +36,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 31 Oct 2010 23:43:56 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34EF5Forsmsx501amrc_"
+X-List-Received-Date: Mon, 01 Nov 2010 03:11:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34EF5Forsmsx501amrc_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On 10-10-30 12:20 PM, Tom Zanussi wrote:
+> On Fri, 2010-10-29 at 04:50 -0700, tiagoprn wrote:
+>>   Hello everyone!
+>>
+>>   I have a question. I have just read about the yocto/poky projects and
+>> here I am with a hope. :)
+>>
+>>   I have a nokia n800 (an internet tablet abandoned by Nokia just about
+>> 2 years ago).
+>>
+>>   With poky/yocto project tools, is it possible to install a linux
+>> toolchain with X and the touchscreen/wireless components working, for
+>> an example, in a SD Card and boot my device into it?
+>>
+>>   I'm anxious for that.
+>>
+>
+> Hi,
+>
+> It looks like yocto already has support for the n800 - there's this
+> entry in local.conf:
+>
+> # Other supported machines
+> .
+> .
+>
+>
+>
+>
+>
+>
+> #MACHINE ?= "nokia800"
+>
+>
+> and see this section in README.hardware:
+>
+> 'Nokia 770/N800/N810 Internet Tablets (nokia770 and nokia800)'
+>
+> which says:
+>
+> "The nokia800 images and kernel will run on both the N800 and N810"
+>
+> Sounds like what you're looking for...
 
-Check out http://www.yoctoproject.org/blogs/davest/2010/10/7/four-architect=
-ures-grooving-together, my latest post to the Yocto Project blog. Some phot=
-os there of the UPnP demo.
+The rest of the config has been moved to meta-extras, and
+we'd need to do a bit of kernel work, but it has worked in the past, and 
+could work again in the future.
 
-I also plan to post one up showing a little of the sausage-making... just a=
- little...
+In other words 'I agree'.
 
-Let me know what you think.
+Cheers,
 
-Dave
+Bruce
 
---_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34EF5Forsmsx501amrc_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+>
+> Tom
+>
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.pokylinux.org/listinfo/yocto
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
 
-<head>
-<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dus-ascii">
-<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
--->
-</style>
-<!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
- </o:shapelayout></xml><![endif]-->
-</head>
-
-<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
-
-<div class=3DWordSection1>
-
-<p class=3DMsoNormal>Check out <a
-href=3D"http://www.yoctoproject.org/blogs/davest/2010/10/7/four-architectur=
-es-grooving-together">http://www.yoctoproject.org/blogs/davest/2010/10/7/fo=
-ur-architectures-grooving-together</a>,
-my latest post to the Yocto Project blog. Some photos there of the UPnP dem=
-o.<o:p></o:p></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal>I also plan to post one up showing a little of the
-sausage-making&#8230; just a little&#8230;<o:p></o:p></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal>Let me know what you think.<o:p></o:p></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal>Dave<o:p></o:p></p>
-
-</div>
-
-</body>
-
-</html>
-
---_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34EF5Forsmsx501amrc_--
