@@ -1,41 +1,33 @@
-Return-Path: <hector.oron@gmail.com>
-Received: from mail-gy0-f176.google.com (mail-gy0-f176.google.com
-	[209.85.160.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id F0A1C4C80044
-	for <yocto@yoctoproject.org>; Tue,  2 Nov 2010 06:39:08 -0500 (CDT)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by gyg4 with SMTP id 4so4547244gyg.35
-	for <yocto@yoctoproject.org>; Tue, 02 Nov 2010 04:39:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:received:received:in-reply-to
-	:references:date:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=B7SuCjyzfuJyPQXMTjqp9tCBQ8zRWACSoRxxrpzxrJk=;
-	b=x0AgRKjtMBuShlHelfzO/vgo6yBpvfgT/JmSGdkDUUVu+x/msPsynLUVFHFD/QmGzA
-	Bp86OEw+dHMm2hj69lQfiJTjGJhFdG5CpHmcygRdjdt+nZgnSzGy+OSYRhCadQh8l8LX
-	iZX7joDJ67OUJiN5kGY3OEfy1WpVtNUYnTunM=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	b=tmHufuYrc8W+6vzqs39rQGk5ltRUIRDuBOnKRiqLIyBNMbl75UtwptA+H31xj2Y9uq
-	IXUBpP1radZXBUdfZ/3ATHO/sc/pQrssOuIIM8zAsbVw9VpeHqUbxUIJn3fs6D7A00BZ
-	nyOinSgWhc7EbvOZb2OX3ghNU+hmYyCKQ7BJc=
-MIME-Version: 1.0
-Received: by 10.229.109.199 with SMTP id k7mr16275141qcp.239.1288697947424;
-	Tue, 02 Nov 2010 04:39:07 -0700 (PDT)
-Received: by 10.229.105.142 with HTTP; Tue, 2 Nov 2010 04:39:07 -0700 (PDT)
-In-Reply-To: <1288697349.28481.1131.camel@rex>
+Return-Path: <rpurdie@linux.intel.com>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6281C4C803A5
+	for <yocto@yoctoproject.org>; Tue,  2 Nov 2010 07:07:19 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oA2C7Il4003774;
+	Tue, 2 Nov 2010 12:07:18 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 03364-05; Tue,  2 Nov 2010 12:07:14 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oA2C79XR003768
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Tue, 2 Nov 2010 12:07:09 GMT
+From: Richard Purdie <rpurdie@linux.intel.com>
+To: Hector Oron <hector.oron@gmail.com>
+In-Reply-To: <AANLkTi=HhFALrXhirP5d_SS98KARKbEQh14FLFE5Pb7d@mail.gmail.com>
 References: <AANLkTinu_38Fo9yC1Hpkgf_JN5FqW-WFfFxfxztvOhJr@mail.gmail.com>
 	<AANLkTik7jWT2WiQJbAYNQKyN+ywGW9xG5soW2ms5AeVa@mail.gmail.com>
 	<1288691504.28481.905.camel@rex>
 	<AANLkTi=CmEr8AM952_2T0bYb0UWymJiU+Q0o4nELQ_Rq@mail.gmail.com>
 	<1288697349.28481.1131.camel@rex>
-Date: Tue, 2 Nov 2010 11:39:07 +0000
-Message-ID: <AANLkTi=HhFALrXhirP5d_SS98KARKbEQh14FLFE5Pb7d@mail.gmail.com>
-From: Hector Oron <hector.oron@gmail.com>
-To: Richard Purdie <rpurdie@linux.intel.com>
+	<AANLkTi=HhFALrXhirP5d_SS98KARKbEQh14FLFE5Pb7d@mail.gmail.com>
+Date: Tue, 02 Nov 2010 12:07:00 +0000
+Message-ID: <1288699620.28481.1213.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
 Cc: yocto@yoctoproject.org
 Subject: Re: Build failures on yocto
 X-BeenThere: yocto@yoctoproject.org
@@ -49,27 +41,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Nov 2010 11:39:09 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 02 Nov 2010 12:07:19 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hello,
+On Tue, 2010-11-02 at 11:39 +0000, Hector Oron wrote:
+> 2010/11/2 Richard Purdie <rpurdie@linux.intel.com>:
+> > So to be clear, you set MACHINE="balloon3"? You're therefore building
+> > with some layer or additional metadata? I'd suggest trying a supported
+> > machine like "atom-pc" first before trying to add your own.
+> 
+> Yes and yes. I'll attempt "atom-pc" later on, but that is not much of
+> interest for me. Thanks.
 
-2010/11/2 Richard Purdie <rpurdie@linux.intel.com>:
-> So to be clear, you set MACHINE=3D"balloon3"? You're therefore building
-> with some layer or additional metadata? I'd suggest trying a supported
-> machine like "atom-pc" first before trying to add your own.
+I'd just appreciate people being a little clearer about what they're
+attempting to do. 
 
-Yes and yes. I'll attempt "atom-pc" later on, but that is not much of
-interest for me. Thanks.
+Obviously I don't know how you've setup this balloon3 target but knowing
+this isn't an out the box configuration might help me target my replies
+to you. 
 
-Best regards,
---=20
-=C2=A0H=C3=A9ctor Or=C3=B3n
+There would appear to be a problem with the kernel provision for your
+board. As a hint, either have a kernel recipe and point to it with
+PREFERRED_PROVIDER_virtual/kernel setting in the machine configuration
+or ensure the machine in question is listed in COMPATIBLE_MACHINE of the
+kernel recipe you want to use.
 
-"Our Sun unleashes tremendous flares expelling hot gas into the Solar
-System, which one day will disconnect us."
+Cheers,
 
--- Day DVB-T stop working nicely
-Video flare: http://antwrp.gsfc.nasa.gov/apod/ap100510.html
+Richard
+
+
+
 
