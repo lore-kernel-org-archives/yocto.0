@@ -1,39 +1,30 @@
-Return-Path: <hector.oron@gmail.com>
-Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
-	[209.85.212.48])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 249154C80A74
-	for <yocto@yoctoproject.org>; Tue,  2 Nov 2010 05:08:05 -0500 (CDT)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by vws5 with SMTP id 5so5382449vws.35
-	for <yocto@yoctoproject.org>; Tue, 02 Nov 2010 03:08:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:received:received:in-reply-to
-	:references:date:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=SFIZ6MymQACroUg7VnlCxSdQpKaemq0wiURu0cTytqo=;
-	b=mOyuRTmaZQYncPAJJCPsxlQmdCd9zewLRBgXPe0mHn4LPEGdcljsNHxoX348J97AFQ
-	cFFhiJLLFqgvEGum1OyUs9N25lEBk8z/dlTvthyieg8krnR5EhntqikW9CWnyUcRmC7Q
-	oIQrCz7b6UjoAHq/S87oN1/I4KKeMfLbJfBtE=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	b=cT8D6kYIzhJ5HGKb6ShO24vlmbD42nYtlKSpuzeBOb3/aB3D44JK/ZQaQjOtbfxm5K
-	mJEjqB+gUwLKWEIBrs7rY0OMcDcXLGBOX1UelBCKrOLD5LdAgnSasxBDko89C1EtluqO
-	SrKLVOK4fYzOJZyBoUOYc4EFy2j5wRpADEakI=
-MIME-Version: 1.0
-Received: by 10.224.104.3 with SMTP id m3mr9026844qao.157.1288692483764; Tue,
-	02 Nov 2010 03:08:03 -0700 (PDT)
-Received: by 10.229.105.142 with HTTP; Tue, 2 Nov 2010 03:08:03 -0700 (PDT)
-In-Reply-To: <1288691504.28481.905.camel@rex>
+Return-Path: <rpurdie@linux.intel.com>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C9D7D4C80287
+	for <yocto@yoctoproject.org>; Tue,  2 Nov 2010 06:27:22 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oA2BRKXR002996;
+	Tue, 2 Nov 2010 11:27:20 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 02702-05; Tue,  2 Nov 2010 11:27:16 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oA2BRCYZ002990
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Tue, 2 Nov 2010 11:27:12 GMT
+From: Richard Purdie <rpurdie@linux.intel.com>
+To: Hector Oron <hector.oron@gmail.com>
+In-Reply-To: <AANLkTikf5R=dnMKpEX+V4awP=3Dt5+ttcoCVD0TAP8Kb@mail.gmail.com>
 References: <AANLkTinu_38Fo9yC1Hpkgf_JN5FqW-WFfFxfxztvOhJr@mail.gmail.com>
-	<AANLkTik7jWT2WiQJbAYNQKyN+ywGW9xG5soW2ms5AeVa@mail.gmail.com>
-	<1288691504.28481.905.camel@rex>
-Date: Tue, 2 Nov 2010 10:08:03 +0000
-Message-ID: <AANLkTi=CmEr8AM952_2T0bYb0UWymJiU+Q0o4nELQ_Rq@mail.gmail.com>
-From: Hector Oron <hector.oron@gmail.com>
-To: Richard Purdie <rpurdie@linux.intel.com>
+	<1288644499.28481.67.camel@rex>
+	<AANLkTikf5R=dnMKpEX+V4awP=3Dt5+ttcoCVD0TAP8Kb@mail.gmail.com>
+Date: Tue, 02 Nov 2010 11:27:04 +0000
+Message-ID: <1288697224.28481.1124.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
 Cc: yocto@yoctoproject.org
 Subject: Re: Build failures on yocto
 X-BeenThere: yocto@yoctoproject.org
@@ -47,30 +38,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Nov 2010 10:08:05 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 02 Nov 2010 11:27:23 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hello,
+On Tue, 2010-11-02 at 10:03 +0000, Hector Oron wrote:
+> > At a guess this is a 64 bit kernel and a 32 bit userspace? What does
+> > "uname -a" show?
+> 
+> Yes, it is 64 bit kernel host running a 32 bit userland.
+> Linux enorme 2.6.32-5-amd64 #1 SMP Fri Sep 17 21:50:19 UTC 2010 x86_64 GNU/Linux
+> 
+> > I suspect if you add
+> >
+> > BUILD_ARCH = "i686"
+> >
+> > to your local.conf, the build might work better? If you can confirm that
+> > we can probably detect this problem and avoid this failure.
+> 
+> Build attempted with
+> BUILD_ARCH="i686" BB_NUMBER_THREADS="2" PARALLEL_MAKE="-j 2"
+> MACHINE=$(BOARD) bitbake $(YOCTO_IMAGE)
+> got same result as above.
 
-2010/11/2 Richard Purdie <rpurdie@linux.intel.com>:
+Only certainly variables can be passed through the environment. Can you
+put the line in local.conf please and retry as otherwise it won't have
+any effect.
 
-> Which MACHINE is that set for? Its unusual for the system to be using
-> linux-dummy.
+> > Same as the above failure (64 bit kernel and 32 bit userspace)?
+> 
+> Sure.
+> 
+> >>   others|*)
+> >> cat <<EOF
+> >>     - I need to setup "vm.mmap_min_addr = 0" under /etc/sysctl.conf
+> >
+> > Right, but it detected that?
+> 
+> If it was not set, scripts warn about it, once you set it up, it goes through.
 
-It is a balloon3 [1]. I think you have not official support for it. I
-also got an Intel Embedded Devkit 1-N450 (Black Sand) which I could
-attempt to build for it.
+Ok, good.
 
-[1] http://balloonboard.org/
+Cheers,
 
-Best regards,
---=20
-=C2=A0H=C3=A9ctor Or=C3=B3n
+Richard
 
-"Our Sun unleashes tremendous flares expelling hot gas into the Solar
-System, which one day will disconnect us."
-
--- Day DVB-T stop working nicely
-Video flare: http://antwrp.gsfc.nasa.gov/apod/ap100510.html
 
