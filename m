@@ -1,27 +1,34 @@
-Return-Path: <qing.he@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 820944C803A5
-	for <yocto@yoctoproject.org>; Wed,  3 Nov 2010 03:03:07 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 03 Nov 2010 01:03:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.58,288,1286175600"; d="scan'208";a="623044242"
-Received: from qhe2-db.sh.intel.com ([10.239.13.109])
-	by fmsmga002.fm.intel.com with ESMTP; 03 Nov 2010 01:02:55 -0700
-Received: from qhe2 by qhe2-db.sh.intel.com with local (Exim 4.71)
-	(envelope-from <qing.he@intel.com>)
-	id 1PDYEr-000749-DR; Wed, 03 Nov 2010 15:58:33 +0800
-Date: Wed, 3 Nov 2010 15:58:33 +0800
-From: Qing He <qing.he@intel.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-Message-ID: <20101103075833.GA26968@qhe2-db>
-References: <20101021083308.GB18344@qhe2-db> <4CC059D9.8050208@windriver.com>
-	<20101022014714.GE18344@qhe2-db> <4CCEDE9F.7000707@windriver.com>
+Return-Path: <fransmeulenbroeks@gmail.com>
+Received: from mail-iw0-f176.google.com (mail-iw0-f176.google.com
+	[209.85.214.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6EFE14C80287
+	for <yocto@yoctoproject.org>; Wed,  3 Nov 2010 03:24:16 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iwn7 with SMTP id 7so484541iwn.35
+	for <yocto@yoctoproject.org>; Wed, 03 Nov 2010 01:24:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:received:received:date:message-id
+	:subject:from:to:content-type;
+	bh=amtf/JNQYL8410vKSMIpCvwIV1tHO1xBqO6GS4UayCA=;
+	b=EhwOFm01GPUEcvMFN/tBK2Jhfb/ZV2Io8jz/4orixysjBu72PhdOx7csUKm+g+3Qhh
+	VAAYYDNfwgKKWkZBhpDvLjQtMYMDn09bzBWGS1MIazr0UW2DKk3Vd57OsIcQOyNIKlbN
+	4pNNvbXLV6RK8GiSo+roZek0mTk796EIZjOKs=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	b=GeIcV3gNLhJRtV3q08p96SugtFXjDuEh27MucIWY9/7OLCeFBbfFVihvnJHz1Bqqpq
+	I9LYNmXtq/Y8YwTsTLNIq7zvMnwpl3RgmLAKOYJpgzeGxXVbQrW4Vd5n6qAoHQuBhmY8
+	3OYTwWMZoX6T1bmdoEk4CERUrntzctx30PXiQ=
 MIME-Version: 1.0
-In-Reply-To: <4CCEDE9F.7000707@windriver.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: zypper and poky architectures
+Received: by 10.42.230.65 with SMTP id jl1mr1028601icb.134.1288772655195; Wed,
+	03 Nov 2010 01:24:15 -0700 (PDT)
+Received: by 10.231.40.13 with HTTP; Wed, 3 Nov 2010 01:24:15 -0700 (PDT)
+Date: Wed, 3 Nov 2010 09:24:15 +0100
+Message-ID: <AANLkTi=p0jSowGAVwNrixt67hDR105fgkmJyRE-Eq0yd@mail.gmail.com>
+From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+To: yocto@yoctoproject.org
+Subject: some yocto/poky issues and errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,120 +40,187 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Nov 2010 08:03:07 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 03 Nov 2010 08:24:16 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Mon, 2010-11-01 at 23:37 +0800, Mark Hatle wrote:
-> (Sorry for the late response, today's my first day back from CELF)
-> 
-> On 10/21/10 8:47 PM, Qing He wrote:
-> > On Thu, 2010-10-21 at 23:18 +0800, Mark Hatle wrote:
-> >> On 10/21/10 3:33 AM, Qing He wrote:
-> >>>     1. what uses for independent packages is called "noarch", "all" is not
-> >>>        recognized, something depends on update-rc.d won't be installed
-> >>>        because of missing dependency
-> >>
-> >> We can certainly look into translating "all" to "noarch" post 0.9.  That might
-> >> make it easier for people coming from the RPM world, to understand what is in
-> >> the package.
-> >>
-> >>>     1. rename *.all.rpm to *.noarch.rpm
-> >>
-> >> We can certainly do this easily.
-> >
-> > If noarch is universally used in RPM word, I think we should use it.
-> 
-> My preference is staying with the Poky 'arch' naming...  but renaming to noarch 
-> is fine, and unless Richard or someone else sees an issue it could be used as a 
-> temporary workaround.  (There are a few places like rootfs generation that we'll 
-> have to translate "all" to "noarch".. if we decide to do this.)
+Dear all,
 
-This is good. I may test if this works and let's see if Richard has any
-comments on it.
+Not sure whether I should sent this here or to the poky ML. Trying
+here first, fee free to forward/redirect.
 
-> > Thanks for the info. If we are going for dynamic platform specs, it
-> > doesn't really matter whether we have things like qemuarm or not, does it?
-> 
-> Ya, if we are able to do things dynamically, then the naming is no longer 
-> important.  That's really my hope as to how we implement the RPM components.
+After my initial success of building poky 4.0 with the delivered
+config, I decided to try to add my own layer (with some private
+recipes), meanwhile also switching to MACHINE = "beagleboard". These
+recipes build under OE.
+In order to get things parsing I had to rework a few legacy staging
+things (no big deal).
 
-It seems to be an elegant solution, but need some efforts to find out
-how this can fit in current zypper.
+Also I got an error:
+NOTE: Handling BitBake files: - (0053/0886) [ 5 %]NOTE: Error
+expanding variable do_package
+ERROR: string index out of range while parsing
+/home/frans/yocto/poky-laverne-4.0/tv.axon.openembedded.2010/recipes/linux/linux-factory-sygtd1_2.6.34.bb
 
-> 
-> >>
-> >>
-> >>> That would be some work to do, maybe 1.0 is a good time to get zypper
-> >>> and package upgrade truely working.
-> >>
-> >> Yes, we also need to get multi-arch as well.. (i.e. 32-bit and 64-bit at the
-> >> same time) working.  I'm guessing there will be some Zypper interactions there
-> >> as well.
-> >>
-> >
-> > I don't really have ideas how this is done. I think on debian this is
-> > actually avoided and i386 packages are repackaged as lib32xxx for x86_64
-> > platform.
-> 
-> Since Poky does not yet have the ability to deal with Multiarch builds, this is 
-> something we will have to work on designing as we get closer to Yocto 1.0.
-> 
-> Within RPM, the rpm package manager understands all of the "types" of each file 
-> in the system.  When you ask to install (note, not upgrade) two packages of the 
-> same name the system checks the files.
-> 
-> When a conflict is identified, if the contents of the files are the same, 
-> nothing is done -- no error is generated.
-> 
-> If the contents of the file are different, and the file is tagged as a 
-> configuration file, then either first or last in wins (I don't remember which) 
-> -- no error is generated.
-> 
-> If the contents of the file are different, and the file type is NOT ELF (and the 
-> above has no already detected), then an error is generated and installation stops.
-> 
-> if the contents of the file are different, and the file type is ELF... then 
-> there is a weighting algorithm that is used.  Depending on the configuration the 
-> following could happen:
-> 
-> multiarch is not allowed -- an error is generated
-> 
-> multiarch is allowed -- one of the components though is not an allowed multiarch 
-> -- an error is generated (this could be the mips case of o32, n32 and n64 on the 
-> same system.  You could prevent someone from installing say o32 binaries.)
-> 
-> multiarch is allowed -- a 'winner' is chosen based on the system configuration. 
->   The winner is installed, and the loser is not installed -- no error is generated.
-> 
+For now I removed the do_package function. No idea if that is sound.
 
-Hmm, this is not quite what I've been thinking about. The problem is
-the shared library, and the library path renaming.
+After doing so the parsing goes well but I get an interesting
+traceback, even if no recipe is given. See the log below.
+I suspect this is because a var is referenced somewhere but the var is
+not initialised. Guess this should not happen.
+Then again my pythonese is not good enough to diagnose this.
+Any suggestion is appreciated (meanwhile I'll try to use bisecting to
+find the cause).
 
-The above winner works fine for executables, nobody needs different arch
-versions of a same binary, but it's possible that several different
-archs are used for different binaries, that's where the library problem
-comes in.
+Best regards, Frans
 
-Let's say we have an i586 `ls', and an x86_64 `cp' that coexist in the same
-box, they would possibly link to two different ld-linux.so and libc.so (this
-scenario is common requirement on x86, esp. x86_64). If 32bit rpms can
-be installed to 64bit platforms directly without any modification, that
-would be great.
-
-I guess the deb way to solve this is to create a special kind of
-package, namely `lib32c_2.10.1-r1.x86_64.deb', which installs something
-like /lib32/ld-linux-i586.so.2. If the executable can links to it, the
-dedicated ld.so cache can get most of its library path right. However,
-sadly, this special lib32 and maybe the 32bit executable package, may
-not be installable on pure i586 archs.
-
-
-So should this kind of multiarch be concerned, where multiarch packages
-coexist instead of being exlusive?
-
-Thanks,
-Qing
-
-
+frans@frans-desktop:~/yocto/poky-laverne-4.0$ bitbake -v -v -v -D -D -D
+DEBUG: Removed the following variables from the environment:
+GDM_KEYBOARD_LAYOUT, GNOME_DESKTOP_SESSION_ID, LESSOPEN, CVS_RSH,
+GNOME_KEYRING_CONTROL, SPEECHD_PORT, SHLVL, MANDATORY_PATH, WINDOWID,
+CVSROOT, GDMSESSION, LESSCLOSE, ORBIT_SOCKETDIR, GTK_MODULES,
+HISTIGNORE, XDG_CONFIG_DIRS, DEFAULTS_PATH, OLDPWD, GDM_LANG,
+HISTCONTROL, BUILDDIR, OE_TOPDIR, LS_COLORS
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/bitbake.conf
+DEBUG: CONF conf/bitbake.conf:637: including conf/site.conf
+DEBUG: CONF file 'conf/site.conf' not found
+DEBUG: CONF conf/bitbake.conf:638: including conf/auto.conf
+DEBUG: CONF file 'conf/auto.conf' not found
+DEBUG: CONF conf/bitbake.conf:639: including conf/local.conf
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/tv.axon.openembedded.gtd100/conf/local.conf
+DEBUG: CONF conf/bitbake.conf:640: including conf/build/x86_64-linux.conf
+DEBUG: CONF file 'conf/build/x86_64-linux.conf' not found
+DEBUG: CONF conf/bitbake.conf:641: including conf/target/INVALID-INVALID.conf
+DEBUG: CONF file 'conf/target/INVALID-INVALID.conf' not found
+DEBUG: CONF conf/bitbake.conf:642: including conf/machine/beagleboard.conf
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/machine/beagleboard.conf
+DEBUG: CONF /home/frans/yocto/poky-laverne-4.0/meta/conf/machine/beagleboard.conf:17:
+including conf/machine/include/tune-cortexa8.inc
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/conf/machine/include/tune-cortexa8.inc:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/machine/include/tune-cortexa8.inc
+DEBUG: CONF conf/bitbake.conf:643: including conf/machine-sdk/${SDKMACHINE}.conf
+DEBUG: CONF file 'conf/machine-sdk/${SDKMACHINE}.conf' not found
+DEBUG: CONF conf/bitbake.conf:644: including conf/distro/poky.conf
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/poky.conf
+DEBUG: CONF /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/poky.conf:57:
+including conf/distro/include/poky-default.inc
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/poky-default.inc:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/poky-default.inc
+DEBUG: CONF /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/poky-default.inc:52:
+including conf/distro/include/as-needed.inc
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/as-needed.inc:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/as-needed.inc
+DEBUG: CONF /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/poky.conf:60:
+including conf/distro/include/poky-eglibc.inc
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/poky-eglibc.inc:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/poky-eglibc.inc
+DEBUG: CONF /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/poky.conf:95:
+including conf/distro/include/poky-fixed-revisions.inc
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/poky-fixed-revisions.inc:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/poky-fixed-revisions.inc
+DEBUG: CONF /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/poky.conf:96:
+including conf/distro/include/preferred-xorg-versions.inc
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/preferred-xorg-versions.inc:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/preferred-xorg-versions.inc
+DEBUG: CONF /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/poky.conf:139:
+including conf/distro/include/world-broken.inc
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/world-broken.inc:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/world-broken.inc
+DEBUG: CONF /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/poky.conf:140:
+including conf/distro/include/distro_tracking_fields.inc
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/distro_tracking_fields.inc:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/distro/include/distro_tracking_fields.inc
+DEBUG: CONF conf/bitbake.conf:645: including conf/documentation.conf
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/documentation.conf
+DEBUG: CONF conf/bitbake.conf:646: including conf/sanity.conf
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/sanity.conf
+DEBUG: CONF conf/bitbake.conf:647: including conf/abi_version.conf
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/conf/abi_version.conf
+DEBUG: BB classes/base.bbclass: handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/base.bbclass
+DEBUG: BB :0: inheriting classes/patch.bbclass
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/classes/patch.bbclass:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/patch.bbclass
+DEBUG: BB :0: inheriting classes/staging.bbclass
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/classes/staging.bbclass:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/staging.bbclass
+DEBUG: BB :0: inheriting classes/mirrors.bbclass
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/classes/mirrors.bbclass:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/mirrors.bbclass
+DEBUG: BB :0: inheriting classes/utils.bbclass
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/classes/utils.bbclass:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/utils.bbclass
+DEBUG: BB :0: inheriting classes/utility-tasks.bbclass
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/classes/utility-tasks.bbclass:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/utility-tasks.bbclass
+DEBUG: BB :0: inheriting classes/metadata_scm.bbclass
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/classes/metadata_scm.bbclass:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/metadata_scm.bbclass
+DEBUG: BB classes/devshell.bbclass: handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/devshell.bbclass
+DEBUG: BB classes/package_ipk.bbclass: handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/package_ipk.bbclass
+DEBUG: BB :0: inheriting classes/package.bbclassmachine
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/classes/package.bbclass:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/package.bbclass
+DEBUG: BB :0: inheriting classes/packagedata.bbclass
+DEBUG: BB /home/frans/yocto/poky-laverne-4.0/meta/classes/packagedata.bbclass:
+handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/packagedata.bbclass
+DEBUG: BB classes/debian.bbclass: handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/debian.bbclass
+DEBUG: BB classes/poky.bbclass: handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/poky.bbclass
+DEBUG: BB classes/devshell.bbclass: handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/devshell.bbclass
+DEBUG: BB classes/insane.bbclass: handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/insane.bbclass
+DEBUG: BB classes/sstate.bbclass: handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/sstate.bbclass
+DEBUG: BB classes/sanity.bbclass: handle(data, include)
+DEBUG: LOAD /home/frans/yocto/poky-laverne-4.0/meta/classes/sanity.bbclass
+DEBUG: Using '${OE_TOPDIR}/tmp/cache/bb_persist_data.sqlite3' as the
+persistent data cache
+DEBUG: Clearing SRCREV cache due to cache policy of: clear
+DEBUG: mkdirhier(${OE_TOPDIR}/tmp/cache)
+DEBUG: Using cache in '${OE_TOPDIR}/tmp/cache/bb_codeparser.dat' for
+codeparser cache
+FATAL: Traceback (most recent call last):
+  File "/home/frans/yocto/poky-laverne-4.0/scripts/..//bitbake//bin/bitbake",
+line 216, in <module>
+    ret = main()
+  File "/home/frans/yocto/poky-laverne-4.0/scripts/..//bitbake//bin/bitbake",
+line 177, in main
+    cooker = bb.cooker.BBCooker(configuration, server)
+  File "/home/frans/yocto/poky-laverne-4.0/scripts/..//bitbake/lib/bb/cooker.py",
+line 85, in __init__
+    self.parseConfigurationFiles(self.configuration.file)
+  File "/home/frans/yocto/poky-laverne-4.0/scripts/..//bitbake/lib/bb/cooker.py",
+line 555, in parseConfigurationFiles
+    bb.event.fire(bb.event.ConfigParsed(), self.configuration.data)
+  File "/home/frans/yocto/poky-laverne-4.0/scripts/..//bitbake/lib/bb/event.py",
+line 98, in fire
+    fire_class_handlers(event, d)
+  File "/home/frans/yocto/poky-laverne-4.0/scripts/..//bitbake/lib/bb/event.py",
+line 68, in fire_class_handlers
+    ret = bb.utils.better_eval("tmpHandler(e)", locals)
+  File "/home/frans/yocto/poky-laverne-4.0/scripts/..//bitbake/lib/bb/utils.py",
+line 373, in better_eval
+    return eval(source, _context, locals)
+  File "<string>", line 1, in <module>
+AttributeError: 'NoneType' object has no attribute 'find'
 
