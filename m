@@ -1,30 +1,38 @@
-Return-Path: <rpurdie@linux.intel.com>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 385064C80B70
-	for <yocto@yoctoproject.org>; Wed,  3 Nov 2010 05:55:41 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oA3AtdSN019180;
-	Wed, 3 Nov 2010 10:55:39 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 18657-08; Wed,  3 Nov 2010 10:55:35 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oA3AtWF6019174
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 3 Nov 2010 10:55:32 GMT
-From: Richard Purdie <rpurdie@linux.intel.com>
-To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-In-Reply-To: <AANLkTi=VA_3KRUsFkRTirpOTuMXLu3uLYwC6fFt4om8a@mail.gmail.com>
+Return-Path: <fransmeulenbroeks@gmail.com>
+Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
+	[209.85.213.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 00C724C80B70
+	for <yocto@yoctoproject.org>; Wed,  3 Nov 2010 07:54:43 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by yxn22 with SMTP id 22so481976yxn.35
+	for <yocto@yoctoproject.org>; Wed, 03 Nov 2010 05:54:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:received:received:in-reply-to
+	:references:date:message-id:subject:from:to:content-type;
+	bh=uvSkvpBSCeH7roiH7cWh/1A0UXWxq3ETKLfN4RvRtlE=;
+	b=nt7MT8Gbt6NkepMYxjHsPDpnpTLYXrSc87SOOYlIEzb3VOnysPDVTQXF2OnA/DxSFZ
+	7HE+Q8D4YGIYerPgfK6awelx18uS7PfuejwrA17zijFlTEiSPclGXVNzqQk1+IGfzNw1
+	l/ipfscO63fO/2vygR8F71W7n8geDmsjljOGg=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type;
+	b=MFF04xyVyc6jzdXnvAJNKlwe8Kzq1dij9Df+5UuShYyIj9fMBIsaePfmYR02DDY8EA
+	yCZPJB0xGSbJp9PsmYThDqYBCguestqJICtA+1hBBmR7q5aMRjA9HUT07mWlTee+Qdn1
+	3W2Ugj67zT+8KQEoPDFJbkWKrRU501ori2iBc=
+MIME-Version: 1.0
+Received: by 10.42.230.65 with SMTP id jl1mr1196644icb.134.1288788881164; Wed,
+	03 Nov 2010 05:54:41 -0700 (PDT)
+Received: by 10.231.40.13 with HTTP; Wed, 3 Nov 2010 05:54:41 -0700 (PDT)
+In-Reply-To: <1288781721.28481.4906.camel@rex>
 References: <AANLkTi=p0jSowGAVwNrixt67hDR105fgkmJyRE-Eq0yd@mail.gmail.com>
 	<AANLkTi=VA_3KRUsFkRTirpOTuMXLu3uLYwC6fFt4om8a@mail.gmail.com>
-Date: Wed, 03 Nov 2010 10:55:21 +0000
-Message-ID: <1288781721.28481.4906.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org
+	<1288781721.28481.4906.camel@rex>
+Date: Wed, 3 Nov 2010 13:54:41 +0100
+Message-ID: <AANLkTinPRh-c_3ymdxU_4cWsE9ahM6MV94_6=P9JH-XF@mail.gmail.com>
+From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+To: Richard Purdie <rpurdie@linux.intel.com>, yocto@yoctoproject.org
 Subject: Re: some yocto/poky issues and errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -37,57 +45,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Nov 2010 10:55:41 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 03 Nov 2010 12:54:44 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, 2010-11-03 at 09:27 +0100, Frans Meulenbroeks wrote:
-> 2010/11/3 Frans Meulenbroeks <fransmeulenbroeks@gmail.com>:
-> > Dear all,
-> >
-> > Not sure whether I should sent this here or to the poky ML. Trying
-> > here first, fee free to forward/redirect.
-> >
-> > After my initial success of building poky 4.0 with the delivered
-> > config, I decided to try to add my own layer (with some private
-> > recipes), meanwhile also switching to MACHINE = "beagleboard". These
-> > recipes build under OE.
-> > In order to get things parsing I had to rework a few legacy staging
-> > things (no big deal).
-> >
-> > Also I got an error:
-> > NOTE: Handling BitBake files: - (0053/0886) [ 5 %]NOTE: Error
-> > expanding variable do_package
-> > ERROR: string index out of range while parsing
-> > /home/frans/yocto/poky-laverne-4.0/tv.axon.openembedded.2010/recipes/linux/linux-factory-sygtd1_2.6.34.bb
-> >
-> > For now I removed the do_package function. No idea if that is sound.
-> >
-> > After doing so the parsing goes well but I get an interesting
-> > traceback, even if no recipe is given. See the log below.
-> > I suspect this is because a var is referenced somewhere but the var is
-> > not initialised. Guess this should not happen.
-> > Then again my pythonese is not good enough to diagnose this.
-> > Any suggestion is appreciated (meanwhile I'll try to use bisecting to
-> > find the cause).
-> >
-> > Best regards, Frans
-> 
-> Nevermind, already found the cause of the traceback. I accidently ran
-> bitbake in the wrong dir.
-> My default setup is such that BBPATH etc is set in such a way that I
-> can effectively run bitbake from any dir once the env is set.
-> Guess it would be nice if bitbake would have given a decent error msg though.
-> 
-> Frans (btw: still confused on the do_package thing)
+2010/11/3 Richard Purdie <rpurdie@linux.intel.com>:
+> On Wed, 2010-11-03 at 09:27 +0100, Frans Meulenbroeks wrote:
+ess it would be nice if bitbake would have given a decent error msg though.
+>>
+>> Frans (btw: still confused on the do_package thing)
+>
+> Can you point at a copy of this recipe or the do_package function? At
+> this point its hard to guess what the problem might be. I suspect you
+> might be right about there being a reference to but not a definition of
+> a variable.
 
-Can you point at a copy of this recipe or the do_package function? At
-this point its hard to guess what the problem might be. I suspect you
-might be right about there being a reference to but not a definition of
-a variable.
+Richard, the recipe was a private kernel recipe which actually didn't
+do too much.
 
-Cheers,
+It reads:
 
-Richard
+recipes/linux/linux-factory_2.6.34.bb:
 
+FILESPATHPKG_append = ":linux-${PV}"
+
+require linux_${PV}.bb
+
+PACKAGES = ""
+PROVIDES = ""
+KERNEL_IMAGE_BASE_NAME = "${KERNEL_IMAGETYPE}-${PN}-${PV}-${PR}-${MACHINE}"
+KERNEL_IMAGE_SYMLINK_NAME = "${KERNEL_IMAGETYPE}-${PN}-${MACHINE}"
+
+S = "${WORKDIR}/linux-${PV}"
+
+do_populate_sysroot() {
+}
+
+do_install() {
+}
+
+python do_package() {
+}
+
+As you see the do_package function is empty.
+Basically this recipe was created as a mechanism (not necessarily the
+best :-) ) to create a 2nd kernel for the same hardware which could be
+used for factory upgrade. Idea is that this kernel has a much smaller
+defconfig.
+
+Actually I don't really know any more how/why I came to the code
+above. I guess I just copied some stuff from oe kexecboot recipes. It
+did what I needed it to do, so I just moved on to the next issue.
+(and I must admit that I have no idea why the python thingie is there
+before do_package, but I saw the same in a few other oe recipes).
+
+Frans.
 
