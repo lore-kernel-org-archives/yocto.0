@@ -1,31 +1,27 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A1E9C4C810A8
-	for <yocto@yoctoproject.org>; Thu,  4 Nov 2010 13:50:21 -0500 (CDT)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oA4IoKvZ010666;
-	Thu, 4 Nov 2010 11:50:20 -0700 (PDT)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Thu, 4 Nov 2010 11:50:19 -0700
-Received: from Macintosh-5.local ([172.25.36.228]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Thu, 4 Nov 2010 11:50:19 -0700
-Message-ID: <4CD3006A.607@windriver.com>
-Date: Thu, 04 Nov 2010 13:50:18 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.12) Gecko/20101027 Thunderbird/3.1.6
+Return-Path: <scott.a.garman@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 93BA94C81003
+	for <yocto@yoctoproject.org>; Thu,  4 Nov 2010 17:32:24 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 04 Nov 2010 15:32:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.58,298,1286175600"; d="scan'208";a="344837409"
+Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
+	by azsmga001.ch.intel.com with ESMTP; 04 Nov 2010 15:32:22 -0700
+Received: from [10.24.145.77] (10.24.145.77) by rrsmsx603.amr.corp.intel.com
+	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
+	Thu, 4 Nov 2010 16:32:21 -0600
+Message-ID: <4CD33476.40106@intel.com>
+Date: Thu, 4 Nov 2010 15:32:22 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.12) Gecko/20101027 Lightning/1.0b2 Thunderbird/3.1.6
 MIME-Version: 1.0
-To: Leon Woestenberg <leon.woestenberg@gmail.com>
-References: <AANLkTi=+SkeQJbAvCcmzk20XzY-2Wk9rnypte59Lnkxs@mail.gmail.com><4CD1849F.6010303@windriver.com><AANLkTinsewJh-==QbQ-LbXmNEZMSdqCKKpf-c8yi=m-a@mail.gmail.com><4CD2EB61.2090502@windriver.com><AANLkTimiWHMcwukn7j7aCx_KUHsp-yYdcb_G4omDQPpU@mail.gmail.com><4CD2F8F6.3080702@windriver.com>
-	<AANLkTi=JebFH-aF9PDsXVR0QO+RBef4CbQSBP-yS7tG-@mail.gmail.com>
-In-Reply-To: <AANLkTi=JebFH-aF9PDsXVR0QO+RBef4CbQSBP-yS7tG-@mail.gmail.com>
-X-OriginalArrivalTime: 04 Nov 2010 18:50:20.0045 (UTC)
-	FILETIME=[2124DBD0:01CB7C51]
-Cc: yocto@yoctoproject.org
-Subject: Re: ppc e500v2 support?
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <4CCE8A82.7070000@intel.com> <1288609394.22875.133.camel@rex>
+	<B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34F068@orsmsx501.amr.corp.intel.com>
+In-Reply-To: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC34F068@orsmsx501.amr.corp.intel.com>
+Subject: Re: nightly-release takes more than 24 hours to build.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,65 +33,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Nov 2010 18:50:21 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 04 Nov 2010 22:32:25 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 11/4/10 1:43 PM, Leon Woestenberg wrote:
-> Hello Mark,
->
-> On Thu, Nov 4, 2010 at 7:18 PM, Mark Hatle<mark.hatle@windriver.com>  wrote:
->> On 11/4/10 1:02 PM, Leon Woestenberg wrote:
->>>> and for e500v2:
->>>> -mcpu=8548 -mfloat-gprs=double -mspe=yes -mabi=spe
->>>> Neither of those would be compatible with the existing "ppc" packaging
->>>> arch.
->>>>   We will need to generate at least one new packaging arch type, likely 2
->>>> (one for each).  Maybe called ppc_spe or something similar?
->>>>
->>> In OpenEmbedded we use the core variant as the packaging name:
->>>
->>> TARGET_CC_ARCH = "-mcpu=8548 -mspe=yes -mabi=spe -mhard-float
->>> -mfloat-gprs=double"
->>> BASE_PACKAGE_ARCH = "ppce500v2"
->>> FEED_ARCH = "ppce500v2"
->>> PACKAGE_EXTRA_ARCHS += "ppce500v2"
->>>
->>> Does that make sense?
->>>
->> I think this is an area we need to coordinate.. I'm not against calling is
->> ppce500v2 for right now.  However, I think this is a place we need to
->> coordinate efforts.  I'm going to attempt to pull together a list of Linux
->> ABIs&  potential optimizations in the Yocto wiki.
->>
->> The reason I bring this up is that over the years at Wind River, and my
->> previous experience at MontaVista... and watching Emdebian and other
->> projects.. _everyone_ names their package architectures differently..
->> because people only have a small view on the problem.  We finally have
->> enough history to have a chance at indicating what the actual ABIs are, and
->> how the compatibility matrix may fill out.  (also giving us a change to
->> finally give these architectures reasonable naming schemes!)
->>
-> I don't see how we could be "final" on this, it seems a returning
-> topic every few years.
->
-> To bring in the OpenEmbedded arch namespace and our optimizations,
-> from the "master" branch at OpenEmbedded:
-> http://cgit.openembedded.org/cgit.cgi/openembedded/tree/conf/machine/include?h=master
+On 11/01/2010 06:35 AM, Stewart, David C wrote:
+> I can buy another server and contribute it to the build effort. I had
+> intended to buy one this quarter to begin hosting yoctoproject.org
+> and a source mirror, but we could offload part of the builds to it as
+> well.
 
-This is a place where I think the Yocto Project can help.  We're likely never 
-going to have a final answer.. but what we'll be able to do is give these 
-impromptu ABIs reasonable names so when people talk, everyone can be talking 
-about the same thing..
+Great, thanks Dave! :)
 
-Then within the Yocto Project's build environment we can promote these namings 
-as part of the implementation...
+I have spec'ed out and initiated an order for our newest server. In case 
+anyone likes to geek out on hardware specs, here they are:
 
-Open Embedded, and everyone else has legacy associated with their names, which 
-we can try to either coordinate -- or at least help document...
+Dell PowerEdge R710
+2x Xeon X5680 @ 3.33Ghz
+24 GB RAM
+6x 1.5 TB hard drives for use in a RAID5 array
 
---Mark
+While it's not a 4-processor system, the additional resources should be 
+sufficient for us to tackle our resource problems my distributing the 
+workload more evenly.
 
-> Regards,
+The system will likely arrive and be set up around the end of the month.
+
+Scott
+
+
 
 
