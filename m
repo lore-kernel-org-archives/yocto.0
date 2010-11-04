@@ -1,29 +1,29 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 7ED724C80044
-	for <yocto@yoctoproject.org>; Thu,  4 Nov 2010 09:29:50 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id D37B84C80287
+	for <yocto@yoctoproject.org>; Thu,  4 Nov 2010 12:20:35 -0500 (CDT)
 Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oA4ETmNP016983;
-	Thu, 4 Nov 2010 07:29:48 -0700 (PDT)
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oA4HKZM5023232
+	for <yocto@yoctoproject.org>; Thu, 4 Nov 2010 10:20:35 -0700 (PDT)
 Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
 	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Thu, 4 Nov 2010 07:29:47 -0700
-Received: from [147.11.233.120] ([147.11.233.120]) by
+	Thu, 4 Nov 2010 10:20:35 -0700
+Received: from Macintosh-5.local ([172.25.36.228]) by
 	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Thu, 4 Nov 2010 07:29:47 -0700
-Message-ID: <4CD2C35A.1050807@windriver.com>
-Date: Thu, 04 Nov 2010 10:29:46 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	Thu, 4 Nov 2010 10:20:34 -0700
+Message-ID: <4CD2EB61.2090502@windriver.com>
+Date: Thu, 04 Nov 2010 12:20:33 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
 	rv:1.9.2.12) Gecko/20101027 Thunderbird/3.1.6
 MIME-Version: 1.0
-To: Leon Woestenberg <leon.woestenberg@gmail.com>
+To: yocto@yoctoproject.org
 References: <AANLkTi=+SkeQJbAvCcmzk20XzY-2Wk9rnypte59Lnkxs@mail.gmail.com><4CD1849F.6010303@windriver.com>
 	<AANLkTinsewJh-==QbQ-LbXmNEZMSdqCKKpf-c8yi=m-a@mail.gmail.com>
 In-Reply-To: <AANLkTinsewJh-==QbQ-LbXmNEZMSdqCKKpf-c8yi=m-a@mail.gmail.com>
-X-OriginalArrivalTime: 04 Nov 2010 14:29:47.0970 (UTC)
-	FILETIME=[BBB38220:01CB7C2C]
-Cc: yocto@yoctoproject.org
+X-OriginalArrivalTime: 04 Nov 2010 17:20:35.0161 (UTC)
+	FILETIME=[9780C490:01CB7C44]
 Subject: Re: ppc e500v2 support?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -36,11 +36,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.pokylinux.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Nov 2010 14:29:50 -0000
+X-List-Received-Date: Thu, 04 Nov 2010 17:20:36 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10-11-04 09:53 AM, Leon Woestenberg wrote:
+On 11/4/10 8:53 AM, Leon Woestenberg wrote:
 > Hello Bruce,
 >
 > On Wed, Nov 3, 2010 at 4:49 PM, Bruce Ashfield
@@ -58,29 +58,34 @@ On 10-11-04 09:53 AM, Leon Woestenberg wrote:
 >> gone back to look again.
 >>
 > Was combo did you see problems with?
-
-It was particular to the mpc8315e config.
-
 >
 > I added e500v2 support to OpenEmbedded more than one year ago and have
 > not seen issues yet in userspace GCC.
 > Recently been playing with SPE which also ran fine:
 > http://www.sidebranch.nl/spe-apu
-
-Runtime on the target is fine, since this is all well known
-and working (we've had SPE/e500/e500v2 BSPs working for
-quite some time), the issue was specific to -Os and gcc 4.5
-bootstrap building.
-
-These have all largely been resolved now, and a minor kernel
-patch has the powerpc kernel boot code building and working,
-and cleanups can happen in our post yocto 0.9 efforts.
-
-Cheers,
-
-Bruce
-
 >
 > Regards,
 
+I'm not sure we have all of the pieces in place yet in the toolchain.
+
+My quick looking of my own e500v1 & e500v2 support includes both libc patches 
+and compiler patches.
+
+Just an FYI.. the compiler flags for e500v1:
+
+-mcpu=8540 -mfloat-gprs=single -mspe=yes -mabi=spe
+
+and for e500v2:
+
+-mcpu=8548 -mfloat-gprs=double -mspe=yes -mabi=spe
+
+Neither of those would be compatible with the existing "ppc" packaging arch.  We 
+will need to generate at least one new packaging arch type, likely 2 (one for 
+each).  Maybe called ppc_spe or something similar?
+
+The key thing is that each of these cpu's has not only additional SPE 
+instructions, but also additional registers, specific to those instructions, to 
+pass values from function to function.  It's not just using the PPC soft-float ABI..
+
+--Mark
 
