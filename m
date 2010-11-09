@@ -1,22 +1,22 @@
-Return-Path: <bruce.ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5D4784C811A6;
-	Mon,  8 Nov 2010 15:06:33 -0600 (CST)
-Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
-	[128.224.146.167])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oA8L6T25028719;
-	Mon, 8 Nov 2010 13:06:31 -0800 (PST)
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: saul.wold@intel.com, rpurdie@linux.intel.com
-Date: Mon,  8 Nov 2010 16:06:40 -0500
-Message-Id: <4e3d8e771e60738d0601dd7dc98186029bcd2935.1289250219.git.bruce.ashfield@windriver.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1289250400-16953-1-git-send-email-bruce.ashfield@windriver.com>
-References: <1289250400-16953-1-git-send-email-bruce.ashfield@windriver.com>
-In-Reply-To: <94e24bd11b32f486e7a249cb856d9ade46f9bdc4.1289250219.git.bruce.ashfield@windriver.com>
-References: <94e24bd11b32f486e7a249cb856d9ade46f9bdc4.1289250219.git.bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org
-Subject: [PATCH 2/2] kernel: prefer the kernel produced uImage
+Return-Path: <sgw@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id CDEC44C80FAD
+	for <yocto@yoctoproject.org>; Mon,  8 Nov 2010 18:38:30 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 08 Nov 2010 16:38:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,172,1288594800"; d="scan'208";a="346191678"
+Received: from unknown (HELO [10.255.13.55]) ([10.255.13.55])
+	by azsmga001.ch.intel.com with ESMTP; 08 Nov 2010 16:38:13 -0800
+Message-ID: <4CD897F4.9050706@linux.intel.com>
+Date: Mon, 08 Nov 2010 16:38:12 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
+	Thunderbird/3.0.5
+MIME-Version: 1.0
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: [PULL] Distro Updates and Locale Generation Change to Posix
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,37 +28,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Nov 2010 21:06:33 -0000
+X-List-Received-Date: Tue, 09 Nov 2010 00:38:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The custom uImage produced by the kernel classes by default
-does not universally boot and working with existing uboot
-configurations and setups.
 
-This changes the preference to the uImage constructed by
-the kbuild processes and falls back to the other techniques
-if uImage is requested by the kernel does not produce one.
+Richard,
 
-Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
----
- meta/classes/kernel.bbclass |    4 +++-
- 1 files changed, 3 insertions(+), 1 deletions(-)
+This contains the initial set of distro updates along with some fixes
+to locale generation.
 
-diff --git a/meta/classes/kernel.bbclass b/meta/classes/kernel.bbclass
-index 4c79a98..bb76285 100644
---- a/meta/classes/kernel.bbclass
-+++ b/meta/classes/kernel.bbclass
-@@ -481,7 +481,9 @@ do_deploy() {
- 	fi
- 
- 	if test "x${KERNEL_IMAGETYPE}" = "xuImage" ; then 
--		if test -e arch/${ARCH}/boot/compressed/vmlinux ; then
-+		if test -e arch/${ARCH}/boot/uImage ; then
-+			cp arch/${ARCH}/boot/uImage ${DEPLOYDIR}/uImage-${PV}-${PR}-${MACHINE}-${DATETIME}.bin
-+		elif test -e arch/${ARCH}/boot/compressed/vmlinux ; then
- 			${OBJCOPY} -O binary -R .note -R .comment -S arch/${ARCH}/boot/compressed/vmlinux linux.bin
- 			uboot-mkimage -A ${ARCH} -O linux -T kernel -C none -a ${UBOOT_ENTRYPOINT} -e ${UBOOT_ENTRYPOINT} -n "${DISTRO_NAME}/${PV}/${MACHINE}" -d linux.bin ${DEPLOYDIR}/uImage-${PV}-${PR}-${MACHINE}-${DATETIME}.bin
- 			rm -f linux.bin
--- 
-1.7.0.4
+
+
+Pull URL: 
+http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=distro/master
+Branch: contrib/distro/master
+
+Dexuan Cui (2):
+       busybox: enable more options for tar to support more file formats.
+       eglibc: install the missing /etc/ld.so.conf into target
+
+Jiajun Xu (1):
+       imagetest-qemu: Add test case for dmesg check in target
+
+Qing He (1):
+       bzip2: upgrade to version 1.0.6
+
+Saul Wold (5):
+       task-sdk-gmae: fix typo in SDK-EXTRAS and convert to ?= for 
+assignment
+       poky.conf: Change default locale to POSIX
+       ld.so.conf: create empty file
+       eglibc: add en-us locale generation
+       poky.conf: Default Locale Generation
+
+Xiaofeng Yan (1):
+       LSB: Add a new package
+
+
+
+--  meta/classes/imagetest-qemu.bbclass                       |    6
+  meta/conf/distro/include/poky-eglibc.inc                  |    1
+  meta/conf/distro/poky.conf                                |    8
+  meta/recipes-core/busybox/busybox-1.16.2/defconfig        |   14 -
+  meta/recipes-core/eglibc/eglibc-2.12/etc/ld.so.conf       |    2
+  meta/recipes-core/eglibc/eglibc-package.inc               |    2
+  meta/recipes-core/eglibc/eglibc_2.12.bb                   |    2
+  meta/recipes-extended/bzip2/bzip2-1.0.5/Makefile.am       |   41 ----
+  meta/recipes-extended/bzip2/bzip2-1.0.5/configure.ac      |   14 -
+  meta/recipes-extended/bzip2/bzip2-1.0.6/Makefile.am       |   41 ++++
+  meta/recipes-extended/bzip2/bzip2-1.0.6/configure.ac      |   14 +
+  meta/recipes-extended/bzip2/bzip2_1.0.5.bb                |   26 --
+  meta/recipes-extended/bzip2/bzip2_1.0.6.bb                |   26 ++
+  meta/recipes-extended/lsb/lsb_1.4.bb                      |   83 +++++++++
+  meta/recipes-gnome/tasks/task-poky-sdk-gmae.bb            |    4
+  meta/recipes-gnome/tasks/task-sdk-gmae.inc                |   12 -
+  scripts/qemuimage-testlib                                 |  122 
++++++++++++++-
+  scripts/qemuimage-tests/sanity/boot                       |    3
+  scripts/qemuimage-tests/sanity/dmesg                      |   52 +++++
+  scripts/qemuimage-tests/sanity/ssh                        |    5
+  scripts/qemuimage-tests/scenario/qemuarm/poky-image-sato  |    1
+  scripts/qemuimage-tests/scenario/qemuarm/poky-image-sdk   |    1
+  scripts/qemuimage-tests/scenario/qemumips/poky-image-sato |    1
+  scripts/qemuimage-tests/scenario/qemumips/poky-image-sdk  |    1
+  scripts/qemuimage-tests/scenario/qemuppc/poky-image-sato  |    1
+  scripts/qemuimage-tests/scenario/qemuppc/poky-image-sdk   |    1
+  scripts/qemuimage-tests/scenario/qemux86/poky-image-sato  |    1
+  scripts/qemuimage-tests/scenario/qemux86/poky-image-sdk   |    1
+  scripts/qemuimage-tests/tools/dmesg.sh                    |   26 ++
+  29 files changed, 398 insertions(+), 114 deletions(-)
+
+
+     Sau!
+
+Saul Wold
+Yocto Component Wrangler @ Intel
+Yocto Project / Poky Build System
 
 
