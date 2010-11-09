@@ -1,33 +1,33 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 610584C80815
-	for <yocto@yoctoproject.org>; Tue,  9 Nov 2010 16:30:40 -0600 (CST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 09 Nov 2010 14:30:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,175,1288594800"; d="scan'208";a="625174638"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 09 Nov 2010 14:29:54 -0800
-Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Tue, 9 Nov 2010 14:29:54 -0800
-Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
-	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi; Tue, 9 Nov 2010
-	14:29:53 -0800
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: "'Alex.deVries@windriver.com'" <Alex.deVries@windriver.com>,
-	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Date: Tue, 9 Nov 2010 14:29:52 -0800
-Thread-Topic: [yocto] Running builds under strace
-Thread-Index: AcuAWytChvSWw8msR+OYRmdSts6tggAAoPQM
-Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BBC51144@orsmsx501.amr.corp.intel.com>
-In-Reply-To: <ED29F0AE-CCDF-48FC-AB38-E84BCF789086@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: Re: Running builds under strace
+Return-Path: <rpurdie@linux.intel.com>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 42C214C80815
+	for <yocto@yoctoproject.org>; Tue,  9 Nov 2010 18:34:58 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAA0YtAq024895;
+	Wed, 10 Nov 2010 00:34:55 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 24843-01; Wed, 10 Nov 2010 00:34:51 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAA0YcJG024889
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 10 Nov 2010 00:34:45 GMT
+From: Richard Purdie <rpurdie@linux.intel.com>
+To: Mark Hatle <mark.hatle@windriver.com>
+In-Reply-To: <4CD9663A.50200@windriver.com>
+References: <8EA2C2C4116BF44AB370468FBF85A77701BC9526F4@orsmsx504.amr.corp.intel.com>
+	<4CD8601A.4090500@windriver.com>
+	<8EA2C2C4116BF44AB370468FBF85A77701BCA3809D@orsmsx504.amr.corp.intel.com>
+	<4CD8E634.1090403@windriver.com>  <4CD9663A.50200@windriver.com>
+Date: Wed, 10 Nov 2010 07:31:58 +0800
+Message-ID: <1289345518.1272.55.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org
+Subject: Re: [PULL] devel/toolchain Recipes upgrades
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,80 +39,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Nov 2010 22:30:41 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 10 Nov 2010 00:34:59 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-This is quite helpful, as we have been discussing this exact topic this wee=
-k.=20
+On Tue, 2010-11-09 at 09:18 -0600, Mark Hatle wrote:
+> On 11/9/10 12:12 AM, Bruce Ashfield wrote:
+> > On 10-11-08 7:41 PM, Kamble, Nitin A wrote:
+> >> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+> >>
+> >> Out of curiosity. What's the logic/requirement behind this
+> >> change ? Since we don't have a 'supported' 2.6.36 kernel, using
+> >> these would be a mismatch with what is actually booting on
+> >> the targets.
+> >>
+> >> There's probably something I just don't understand here, so
+> >> apologies in advance for the (potentially) dumb question.
+> >>
+> >>      AFAIU the linux-libc-headers are independent from the running kernel. These are headers for libc.
+> >
+> > But they aren't. The libc headers should be coupled to the
+> > kernel version. New ABIs are established and glibc can detect
+> > and deal with this, but you should never have a newer set of
+> > headers than the running kernel.
+> >
+> > To say the least, I'd like more explanation of this change.
+> 
+> I agree with Bruce here.  If anything the linux-libc-headers should be the same 
+> or OLDER then the running kernel for this exact reason.  It's quite dangerous 
+> for newer kernel headers, as they may trigger behavioral differences within the 
+> glibc configuration.
 
-Maybe capture this in Bugzilla? (Not at my computer at the moment or would =
-help). Thanks again.=20
+When you compile [e]glibc you specify the oldest kernel you wish to
+support. As far as I know it is safe to use a recent set of kernel
+headers to build [e]glibc and then use older kernels with it. I have
+never seems a problem caused directly by kernel versions unless it was
+related to ABI changes or massive kernel version differences (2.4
+kernels on a 2.6 optimised glibc, compiled with 2.6 as the oldest kernel
+it would support).
 
-Davest
-Sent from my Blackberry
+I'm therefore ok in general with keeping linux-libc-headers tracking the
+most recent kernels and letting the toolchain optionally support
+features from the most recent kernel.
 
------ Original Message -----
-From: Alex deVries [mailto:alex.devries@windriver.com]
-Sent: Tuesday, November 09, 2010 02:10 PM=0A=
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: [yocto] Running builds under strace
+If I'm missing something or anyone has experience of this causing
+problems I'd be interested to learn about it though.
 
+Cheers,
 
-I'm working on swabber support, and as part of that need to enable running =
-builds in strace.  The code for this is in josh's poky-contrib.
+Richard
 
-For anyone else who is looking at this, various packages failed to build wi=
-th -jN (with N>1).  My theory is that running these builds under strace cha=
-nges the build timing and exposes existing parallel build problems that don=
-'t normally show themselves.
-
-To address this, I had to modify various recipes to set PARALLEL_MAKE =3D "=
-" for various packages.
-
-The following packages had to be modified:
-#	modified:   meta/recipes-connectivity/openssl/openssl.inc
-#	modified:   meta/recipes-core/eglibc/eglibc_2.12.bb
-#	modified:   meta/recipes-core/glib-2.0/glib-2.0_2.24.1.bb
-#	modified:   meta/recipes-core/libxml/libxml2.inc
-#	modified:   meta/recipes-core/readline/readline.inc
-#	modified:   meta/recipes-core/util-linux/util-linux.inc
-#	modified:   meta/recipes-devtools/binutils/binutils.inc
-#	modified:   meta/recipes-devtools/bison/bison_2.4.2.bb
-#	modified:   meta/recipes-devtools/cmake/cmake.inc
-#	modified:   meta/recipes-devtools/elfutils/elfutils_0.148.bb
-#	modified:   meta/recipes-devtools/gcc/gcc-common.inc
-#	modified:   meta/recipes-devtools/m4/m4_1.4.13.bb
-#	modified:   meta/recipes-devtools/opkg/opkg.inc
-#	modified:   meta/recipes-devtools/pkgconfig/pkgconfig.inc
-#	modified:   meta/recipes-devtools/prelink/prelink_git.bb
-#	modified:   meta/recipes-devtools/qemu/qemu.inc
-#	modified:   meta/recipes-devtools/qemu/qemu_0.12.4.bb
-#	modified:   meta/recipes-devtools/quilt/quilt.inc
-#	modified:   meta/recipes-devtools/rpm/rpm_5.1.10.bb
-#	modified:   meta/recipes-devtools/tcltk/tcl_8.5.8.bb
-#	modified:   meta/recipes-support/beecrypt/beecrypt_4.1.2.bb
-#	modified:   meta/recipes-support/curl/curl_7.21.0.bb
-#	modified:   meta/recipes-support/gmp/gmp.inc
-#	modified:   meta/recipes-support/libmpc/libmpc_0.8.2.bb
-#	modified:   meta/recipes-support/libxslt/libxslt_1.1.26.bb
-#	modified:   meta/recipes-support/lzo/lzo_2.03.bb
-#	modified:   meta/recipes-support/popt/popt_1.16.bb
-#
-
-The only really concerning ones were eglibc and gcc.  We can't set PARALLEL=
-_MAKE=3D"" for these as these are very large, and builds would be very slow=
-.  Packages like popt don't matter as much, you don't save that much time b=
-y building them with -j16.
-
-Josh and I are trying to figure out how to address these.
-
-Swabber support is coming soon!
-
-- A
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
