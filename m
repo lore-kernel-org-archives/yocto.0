@@ -1,22 +1,25 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 10C074C80815
-	for <yocto@yoctoproject.org>; Tue,  9 Nov 2010 14:32:22 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 09 Nov 2010 12:32:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,175,1288594800"; d="scan'208";a="571818466"
-Received: from unknown (HELO [10.255.13.55]) ([10.255.13.55])
-	by orsmga002.jf.intel.com with ESMTP; 09 Nov 2010 12:32:22 -0800
-Message-ID: <4CD9AFD5.3020307@linux.intel.com>
-Date: Tue, 09 Nov 2010 12:32:21 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
-MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: [PULL] Distro Updates: Kernel, scripts and gplv2 cleanup
+Return-Path: <Alex.deVries@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 3C4CD4C80815
+	for <yocto@yoctoproject.org>; Tue,  9 Nov 2010 16:10:47 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oA9MAkog005603
+	for <yocto@yoctoproject.org>; Tue, 9 Nov 2010 14:10:46 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Tue, 9 Nov 2010 14:10:46 -0800
+Received: from dhcp-144-194.ottawa.windriver.com ([128.224.144.194]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Tue, 9 Nov 2010 14:10:46 -0800
+From: Alex deVries <alex.devries@windriver.com>
+Date: Tue, 9 Nov 2010 17:10:45 -0500
+Message-Id: <ED29F0AE-CCDF-48FC-AB38-E84BCF789086@windriver.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1081)
+X-Mailer: Apple Mail (2.1081)
+X-OriginalArrivalTime: 09 Nov 2010 22:10:46.0893 (UTC)
+	FILETIME=[F5C4F9D0:01CB805A]
+Subject: Running builds under strace
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,75 +31,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Nov 2010 20:32:23 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
-
-Richard,
-
-More Distro reviewed, build and basic testing.  This is the new script 
-output from Darren's pull request.
-
-Sau!
+X-List-Received-Date: Tue, 09 Nov 2010 22:10:47 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
 
-Pull URL: git://git.pokylinux.org/poky-contrib.git
-   Branch: distro/master
-   Browse: 
-http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=distro/master
+I'm working on swabber support, and as part of that need to enable =
+running builds in strace.  The code for this is in josh's poky-contrib.
 
-   For RP: contrib/distro/master
+For anyone else who is looking at this, various packages failed to build =
+with -jN (with N>1).  My theory is that running these builds under =
+strace changes the build timing and exposes existing parallel build =
+problems that don't normally show themselves.
 
-Thanks,
-     Saul Wold <Saul.Wold@intel.com>
+To address this, I had to modify various recipes to set PARALLEL_MAKE =3D =
+"" for various packages.
 
+The following packages had to be modified:
+#	modified:   meta/recipes-connectivity/openssl/openssl.inc
+#	modified:   meta/recipes-core/eglibc/eglibc_2.12.bb
+#	modified:   meta/recipes-core/glib-2.0/glib-2.0_2.24.1.bb
+#	modified:   meta/recipes-core/libxml/libxml2.inc
+#	modified:   meta/recipes-core/readline/readline.inc
+#	modified:   meta/recipes-core/util-linux/util-linux.inc
+#	modified:   meta/recipes-devtools/binutils/binutils.inc
+#	modified:   meta/recipes-devtools/bison/bison_2.4.2.bb
+#	modified:   meta/recipes-devtools/cmake/cmake.inc
+#	modified:   meta/recipes-devtools/elfutils/elfutils_0.148.bb
+#	modified:   meta/recipes-devtools/gcc/gcc-common.inc
+#	modified:   meta/recipes-devtools/m4/m4_1.4.13.bb
+#	modified:   meta/recipes-devtools/opkg/opkg.inc
+#	modified:   meta/recipes-devtools/pkgconfig/pkgconfig.inc
+#	modified:   meta/recipes-devtools/prelink/prelink_git.bb
+#	modified:   meta/recipes-devtools/qemu/qemu.inc
+#	modified:   meta/recipes-devtools/qemu/qemu_0.12.4.bb
+#	modified:   meta/recipes-devtools/quilt/quilt.inc
+#	modified:   meta/recipes-devtools/rpm/rpm_5.1.10.bb
+#	modified:   meta/recipes-devtools/tcltk/tcl_8.5.8.bb
+#	modified:   meta/recipes-support/beecrypt/beecrypt_4.1.2.bb
+#	modified:   meta/recipes-support/curl/curl_7.21.0.bb
+#	modified:   meta/recipes-support/gmp/gmp.inc
+#	modified:   meta/recipes-support/libmpc/libmpc_0.8.2.bb
+#	modified:   meta/recipes-support/libxslt/libxslt_1.1.26.bb
+#	modified:   meta/recipes-support/lzo/lzo_2.03.bb
+#	modified:   meta/recipes-support/popt/popt_1.16.bb
+#
 
-Beth Flanagan (1):
-   quilt: Fixed configure test for patch --version.
+The only really concerning ones were eglibc and gcc.  We can't set =
+PARALLEL_MAKE=3D"" for these as these are very large, and builds would =
+be very slow.  Packages like popt don't matter as much, you don't save =
+that much time by building them with -j16.
 
-Bruce Ashfield (4):
-   qemumips: re-enable wacom and standard USB UI options
-   wrs_meta: add USB options for wacom tablet support
-   linux-wrs: rename force_revisions and allow override
-   kernel: prefer the kernel produced uImage
+Josh and I are trying to figure out how to address these.
 
-Darren Hart (3):
-   git pull: remove the existing create_pull_request script
-   git-pull: add the new create-pull-request script
-   git-pull: add send-pull-request script
+Swabber support is coming soon!
 
-J. Aaron Gamble (2):
-   Added qemumips /etc/pointercal file for touchscreen calibration
-   tslib: 32bit big endian support
-
-Jingdong Lu (1):
-   tcltk: Fix moving libtcl8.5.so into tcl-lib.
-
-Saul Wold (1):
-   base.bbclass/poky.conf: Fix INCOMPATIBLE_LICENSE Whitelist checking
-
-  meta/classes/base.bbclass                          |   13 +-
-  meta/classes/kernel.bbclass                        |    4 +-
-  .../conf/distro/include/poky-default-revisions.inc |    2 +-
-  meta/conf/distro/poky.conf                         |    6 +-
-  .../formfactor/files/qemumips/machconfig           |    4 +-
-  .../pointercal/files/qemumips/pointercal           |    1 +
-  meta/recipes-devtools/quilt/quilt.inc              |    3 +-
-  .../quilt/quilt/gnu_patch_test_fix.patch           |   19 +++
-  meta/recipes-devtools/tcltk/tcl_8.5.8.bb           |    4 +-
-  .../tslib/tslib/32bitBE-support.patch              |   52 ++++++
-  meta/recipes-graphics/tslib/tslib_1.0.bb           |    4 +-
-  meta/recipes-kernel/linux/linux-wrs_git.bb         |    6 +-
-  scripts/create-pull-request                        |  165 
-++++++++++++-------
-  scripts/poky-qemu-internal                         |    2 +-
-  scripts/send-pull-request                          |  133 ++++++++++++++++
-  15 files changed, 338 insertions(+), 80 deletions(-)
-  create mode 100644 meta/recipes-bsp/pointercal/files/qemumips/pointercal
-  create mode 100644 
-meta/recipes-devtools/quilt/quilt/gnu_patch_test_fix.patch
-  create mode 100644 meta/recipes-graphics/tslib/tslib/32bitBE-support.patch
-  create mode 100755 scripts/send-pull-request
-
-
+- A=
 
