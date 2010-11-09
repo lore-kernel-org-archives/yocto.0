@@ -1,25 +1,33 @@
-Return-Path: <Alex.deVries@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 3C4CD4C80815
-	for <yocto@yoctoproject.org>; Tue,  9 Nov 2010 16:10:47 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oA9MAkog005603
-	for <yocto@yoctoproject.org>; Tue, 9 Nov 2010 14:10:46 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Tue, 9 Nov 2010 14:10:46 -0800
-Received: from dhcp-144-194.ottawa.windriver.com ([128.224.144.194]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Tue, 9 Nov 2010 14:10:46 -0800
-From: Alex deVries <alex.devries@windriver.com>
-Date: Tue, 9 Nov 2010 17:10:45 -0500
-Message-Id: <ED29F0AE-CCDF-48FC-AB38-E84BCF789086@windriver.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1081)
-X-Mailer: Apple Mail (2.1081)
-X-OriginalArrivalTime: 09 Nov 2010 22:10:46.0893 (UTC)
-	FILETIME=[F5C4F9D0:01CB805A]
-Subject: Running builds under strace
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 610584C80815
+	for <yocto@yoctoproject.org>; Tue,  9 Nov 2010 16:30:40 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 09 Nov 2010 14:30:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,175,1288594800"; d="scan'208";a="625174638"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga002.fm.intel.com with ESMTP; 09 Nov 2010 14:29:54 -0800
+Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Tue, 9 Nov 2010 14:29:54 -0800
+Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
+	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi; Tue, 9 Nov 2010
+	14:29:53 -0800
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "'Alex.deVries@windriver.com'" <Alex.deVries@windriver.com>,
+	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Date: Tue, 9 Nov 2010 14:29:52 -0800
+Thread-Topic: [yocto] Running builds under strace
+Thread-Index: AcuAWytChvSWw8msR+OYRmdSts6tggAAoPQM
+Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BBC51144@orsmsx501.amr.corp.intel.com>
+In-Reply-To: <ED29F0AE-CCDF-48FC-AB38-E84BCF789086@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: Re: Running builds under strace
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,21 +39,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Nov 2010 22:10:47 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Tue, 09 Nov 2010 22:30:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
+This is quite helpful, as we have been discussing this exact topic this wee=
+k.=20
 
-I'm working on swabber support, and as part of that need to enable =
-running builds in strace.  The code for this is in josh's poky-contrib.
+Maybe capture this in Bugzilla? (Not at my computer at the moment or would =
+help). Thanks again.=20
 
-For anyone else who is looking at this, various packages failed to build =
-with -jN (with N>1).  My theory is that running these builds under =
-strace changes the build timing and exposes existing parallel build =
-problems that don't normally show themselves.
+Davest
+Sent from my Blackberry
 
-To address this, I had to modify various recipes to set PARALLEL_MAKE =3D =
-"" for various packages.
+----- Original Message -----
+From: Alex deVries [mailto:alex.devries@windriver.com]
+Sent: Tuesday, November 09, 2010 02:10 PM=0A=
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: [yocto] Running builds under strace
+
+
+I'm working on swabber support, and as part of that need to enable running =
+builds in strace.  The code for this is in josh's poky-contrib.
+
+For anyone else who is looking at this, various packages failed to build wi=
+th -jN (with N>1).  My theory is that running these builds under strace cha=
+nges the build timing and exposes existing parallel build problems that don=
+'t normally show themselves.
+
+To address this, I had to modify various recipes to set PARALLEL_MAKE =3D "=
+" for various packages.
 
 The following packages had to be modified:
 #	modified:   meta/recipes-connectivity/openssl/openssl.inc
@@ -77,14 +101,18 @@ The following packages had to be modified:
 #	modified:   meta/recipes-support/popt/popt_1.16.bb
 #
 
-The only really concerning ones were eglibc and gcc.  We can't set =
-PARALLEL_MAKE=3D"" for these as these are very large, and builds would =
-be very slow.  Packages like popt don't matter as much, you don't save =
-that much time by building them with -j16.
+The only really concerning ones were eglibc and gcc.  We can't set PARALLEL=
+_MAKE=3D"" for these as these are very large, and builds would be very slow=
+.  Packages like popt don't matter as much, you don't save that much time b=
+y building them with -j16.
 
 Josh and I are trying to figure out how to address these.
 
 Swabber support is coming soon!
 
-- A=
+- A
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
