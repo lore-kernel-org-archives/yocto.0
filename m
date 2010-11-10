@@ -1,34 +1,40 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 475384C80FA8
-	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 09:07:19 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oAAF7HR7025232;
-	Wed, 10 Nov 2010 07:07:17 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Wed, 10 Nov 2010 07:07:17 -0800
-Received: from [128.224.146.67] ([128.224.146.67]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Wed, 10 Nov 2010 07:07:17 -0800
-Message-ID: <4CDAB524.3060104@windriver.com>
-Date: Wed, 10 Nov 2010 10:07:16 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.9pre) Gecko/20100217 Shredder/3.0.3pre
-	ThunderBrowse/3.2.8.1
+Return-Path: <joaohf@gmail.com>
+Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
+	[209.85.160.48])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 1ADED4C80B6B
+	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 12:02:11 -0600 (CST)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by pwj9 with SMTP id 9so259615pwj.35
+	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 10:02:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:received:received:in-reply-to
+	:references:date:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=w8GT53dZiS+HPUxfkHwxwRea44QOovnyoJGF91uTQpI=;
+	b=kWPe64RJjchtrwuTeeQFD2b3hhoIUxWyaPqysbJaxVcsOQWJ6IX22iZqx6YlkY0AEu
+	d2qxVFo/SWlBoI2vPtXyF1fYjBuX81rW/Za7sBLtJc7CzSH9UDovwuR6PvnUG1v+X5v+
+	KFunRiwh4d3j4tpxa1lUoa6Skgji4Kn8ZiGNk=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	b=mCl5FxB6ozJSeLanVu184+yeu8rIwCEg6k8Ma95XmrSPy4TO4r3GFbDOzYFp4Ne7yJ
+	FnlWroF5E2yggn/wt/sTHm83HAIywCzloMM8FCJLzf2uTvJuzgrHSkTyW8xHkzLrV6tH
+	1v4n+u4/FVOrmFyVOKnAF5Dk0hjPScuIPR/I8=
 MIME-Version: 1.0
-To: Kumar Gala <galak@kernel.crashing.org>
-References: <414DA7D8-2E3E-4DEE-9C36-24EF976D7A99@kernel.crashing.org>
-	<4CDAA03C.8090004@windriver.com> <4CDAA4F0.1060802@windriver.com>
-	<BE6DB51E-F39B-4C61-9EA1-9AFBE5E397FA@kernel.crashing.org>
-	<4CDAAACD.1070206@windriver.com>
-	<64CB5A01-C87F-43FA-BD52-43694E5E5908@kernel.crashing.org>
-In-Reply-To: <64CB5A01-C87F-43FA-BD52-43694E5E5908@kernel.crashing.org>
-X-OriginalArrivalTime: 10 Nov 2010 15:07:17.0765 (UTC)
-	FILETIME=[F7297B50:01CB80E8]
+Received: by 10.42.220.138 with SMTP id hy10mr5819281icb.437.1289412129176;
+	Wed, 10 Nov 2010 10:02:09 -0800 (PST)
+Received: by 10.42.176.73 with HTTP; Wed, 10 Nov 2010 10:02:09 -0800 (PST)
+In-Reply-To: <1289396279.1272.282.camel@rex>
+References: <AANLkTimr0Vm+kdDzCiJ07nOTZLgJDDC+DvNNwpgZ72xz@mail.gmail.com>
+	<1289396279.1272.282.camel@rex>
+Date: Wed, 10 Nov 2010 16:02:09 -0200
+Message-ID: <AANLkTi=N4MRrA6S1RdPqR5jb+Wy5K65kxKXshgScq2cy@mail.gmail.com>
+From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
+To: Richard Purdie <rpurdie@linux.intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: TARGET_FPU for mpc8315e-rdb listed as SPE??
+Subject: Re: two layers: hardware and distro.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,88 +46,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Nov 2010 15:07:19 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 10 Nov 2010 18:02:12 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 10-11-10 10:03 AM, Kumar Gala wrote:
->
-> On Nov 10, 2010, at 8:23 AM, Bruce Ashfield wrote:
->
->> On 10-11-10 09:11 AM, Kumar Gala wrote:
->>>
->>> On Nov 10, 2010, at 7:58 AM, Bruce Ashfield wrote:
->>>
->>>> On 10-11-10 08:38 AM, Bruce Ashfield wrote:
->>>>> On 10-11-10 01:46 AM, Kumar Gala wrote:
->>>>>> Why does the meta/conf/machine/mpc8315e-rdb.conf list TARGET_FPU as
->>>>>> SPE. This isn't correct for an MPC8313 SoC.
->>>>>
->>>>> It isn't used at the moment, so we can safely
->>>>> ignore this.
->>>>>
->>>>> It was a hold over from when I initially created
->>>>> the BSP, and I've since changed it locally, but
->>>>> haven't sent the updated BSP yet.
->>>>
->>>> To clarify on this point, the kernel configuration
->>>> is NOT using SPE for this, and I was attempting to
->>>> use the FPU setting to trigger some different gcc
->>>> flags during development the base of that test was
->>>> an e500 board, so the SPE setting leaked in, but is
->>>> unused.
->>>>
->>>> At the moment, it is actually using soft-float, and
->>>> I had planned to submit a change to clarify that.
->>>>
->>>> If there's another option, let me know and I'll
->>>> rebase my patches and change it again.
->>>
->>> We should NOT be using soft-float for mpc8315e (it has HW floating point on this chip).
->>
->> Indeed. I fell back to a safe multilib. I'm willing
->> to try again and see if the gcc bootstrap phases will
->> build.
->>
->> The kernel was fine, and is fine, it was userspace
->> that caused problems for me .. and that's definitely not
->> an area where my expertise lies :)
->>
->> I needed something that worked, and had to excplicitly
->> chose to ignore the FPU temporarily, but revisiting that
->> now seems like a good idea.
->>
->>>
->>> Any plans to get an e500 based system going before the rev1.0 release?
->>
->> We've got tonnes of experience and BSPs to draw from
->> here. The selection of some of these BSPs was (largely)
->> based on cost and availability. If we can get our
->> hands on a suitable e500 replacement .. the switch is
->> trivial.
->
-> If we can get a toolchain and basic build I'm happy to help on the HW side and getting kernel, etc worked out.
+Hi,
 
-Agreed. For me, this is the slightly harder part. I'll
-start a few builds and see if the errors are still here.
+I can tell about what applications we will use and contribute with
+some questions.
 
->
-> I'd like to get a semi-generic setup going for an e500v2 based system.
+We are focus on Telecom applications and I am setting a BSP to a Media
+Gateway and Sigtran Gateway.
 
-Should be doable. I've already got a generic set of configs/
-patches/features in place for all powerpc/FSL boards,
-(largely due to the lineage of the base kernel we use).
-But getting some assistance with  further tuning of the
-options would be appreciated, since I can use that to springboard
-the creation of new BSPs.
-
-Cheers,
-
-Bruce
+Thanks.
 
 
-
->
-> - k
-
+--=20
+-----------------------------------------------------------
+Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
+Campinas-SP-Brasil
+BSD051283
+LPI 1
+http://www.joaohfreitas.eti.br
 
