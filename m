@@ -1,27 +1,27 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C5B5A4C81001
-	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 12:32:53 -0600 (CST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 10 Nov 2010 10:32:53 -0800
+Return-Path: <saul.wold@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 032EC4C811AC;
+	Wed, 10 Nov 2010 13:40:44 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 10 Nov 2010 11:40:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,179,1288594800"; d="scan'208";a="625482383"
-Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
-	by fmsmga002.fm.intel.com with ESMTP; 10 Nov 2010 10:32:53 -0800
-Received: from [10.255.13.64] (10.255.13.64) by rrsmsx603.amr.corp.intel.com
-	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
-	Wed, 10 Nov 2010 11:32:52 -0700
-Message-ID: <4CDAE553.7040304@intel.com>
-Date: Wed, 10 Nov 2010 10:32:51 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.1.15) Gecko/20101027 Thunderbird/3.0.10
+X-IronPort-AV: E=Sophos;i="4.59,179,1288594800"; d="scan'208";a="347126223"
+Received: from unknown (HELO [10.255.13.55]) ([10.255.13.55])
+	by azsmga001.ch.intel.com with ESMTP; 10 Nov 2010 11:40:43 -0800
+Message-ID: <4CDAF53B.2030906@intel.com>
+Date: Wed, 10 Nov 2010 11:40:43 -0800
+From: Saul Wold <saul.wold@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
+	Thunderbird/3.0.5
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <BA703559-6EAC-43D9-BB84-E95DDCB1ED62@kernel.crashing.org>	<625BA99ED14B2D499DC4E29D8138F1504D2271119D@shsmsx502.ccr.corp.intel.com>	<401A3267-606A-4A1E-9F45-18F75B6B3FB7@kernel.crashing.org>	<1289395789.1272.260.camel@rex>
-	<D10D6A3E-F997-489A-8921-83E5B33EE764@kernel.crashing.org>
-In-Reply-To: <D10D6A3E-F997-489A-8921-83E5B33EE764@kernel.crashing.org>
-Subject: Re: problem with fetching?
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <1289250400-16953-1-git-send-email-bruce.ashfield@windriver.com>
+In-Reply-To: <1289250400-16953-1-git-send-email-bruce.ashfield@windriver.com>
+X-Mailman-Approved-At: Wed, 10 Nov 2010 16:21:30 -0600
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"poky@yoctoproject.org" <poky@yoctoproject.org>
+Subject: Re: [poky][PULL] misc (minor) kernel fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,35 +33,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Nov 2010 18:32:54 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Wed, 10 Nov 2010 19:40:47 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 11/10/2010 05:31 AM, Kumar Gala wrote:
+On 11/08/2010 01:06 PM, Bruce Ashfield wrote:
+> In preparation for some larger kernel changes being sent
+> for review, I'm clearing my queue of a few minor changes
+> that were done while working on the 0.9 release.
 >
-> On Nov 10, 2010, at 7:29 AM, Richard Purdie wrote:
+> The uImage one is particularly interesting, since it was
+> a fix for the default beagle board uImage being completely
+> unbootable.
 >
->> On Wed, 2010-11-10 at 06:32 -0600, Kumar Gala wrote:
->>> ERROR: Task failed: Fetch failed: Unable to fetch URL cvs://anonymous@cvs.sv.gnu.org/cvsroot/config;module=config;method=pserver;date=20080123 from any source.
->>> NOTE: package gnu-config-native-0.1+cvs20080123-r1: task do_fetch: Failed
->>> ERROR: Task 211 (virtual:native:/local/home/galak/poky-laverne-4.0/meta/recipes-devtools/gnu-config/gnu-config_20080123.bb, do_fetch) failed with 1
->>> ERROR: 'virtual:native:/local/home/galak/poky-laverne-4.0/meta/recipes-devtools/gnu-config/gnu-config_20080123.bb' failed
->>>
->>> Attached is the full log.
->>
->> Are you behind some kind of proxy/firewall? Its interesting its a cvs
->> based recipe that is failing so it could be your cvs setup.
+> The force revisions is largely cosmetic, but it is used
+> by my upcoming kernel dev layer and I think it is more in
+> the spirit of other variables that are set from local
+> configurations.
 >
-> Yes, behind a proxy/firewall.  cvs is not normally allowed out.
+> The following changes since commit e417aa98e4b4170f4b4aaf805cc8ea20f8593604:
+>    Bruce Ashfield (1):
+>          wrs_meta: add USB options for wacom tablet support
+>
+> are available in the git repository at:
+>
+>    ssh://git@git.pokylinux.org/poky-contrib zedd/kernel-fixes
+>
+> Bruce Ashfield (2):
+>        linux-wrs: rename force_revisions and allow override
+>        kernel: prefer the kernel produced uImage
+>
+>   meta/classes/kernel.bbclass                |    4 +++-
+>   meta/recipes-kernel/linux/linux-wrs_git.bb |    6 +++---
+>   2 files changed, 6 insertions(+), 4 deletions(-)
+>
+>
+Merged into Master
 
-If you're behind a SOCKS proxy, these instructions might be helpful to 
-get CVS checkouts working:
+Thanks
+	Sau!
 
-https://wiki.yoctoproject.org/wiki/Working_Behind_a_Network_Proxy
-
-Scott
-
--- 
-Scott Garman
-Embedded Linux Distro Engineer - Yocto Project
 
