@@ -1,30 +1,32 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A44364C81001
-	for <yocto@yoctoproject.org>; Tue,  9 Nov 2010 19:16:54 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oAA1EwEw002870;
-	Tue, 9 Nov 2010 17:14:58 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Tue, 9 Nov 2010 17:14:57 -0800
-Received: from bruce-ashfields-macbook.local ([128.224.143.11]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Tue, 9 Nov 2010 17:14:57 -0800
-Message-ID: <4CD9F20F.6070203@windriver.com>
-Date: Tue, 09 Nov 2010 20:14:55 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.12) Gecko/20101027 Thunderbird/3.1.6
+Return-Path: <dongxiao.xu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id DAAC94C80815
+	for <yocto@yoctoproject.org>; Tue,  9 Nov 2010 20:19:27 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 09 Nov 2010 18:19:26 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,176,1288594800"; d="scan'208";a="625231461"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by fmsmga002.fm.intel.com with ESMTP; 09 Nov 2010 18:19:26 -0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Wed, 10 Nov 2010 10:18:20 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Wed, 10 Nov 2010 10:18:19 +0800
+From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+To: "Purdie, Richard" <richard.purdie@intel.com>
+Date: Wed, 10 Nov 2010 10:18:18 +0800
+Thread-Topic: Some investigation on disk space occupation for Yocto Linux
+Thread-Index: AcuAfYnr6TlCYNZTStuPBTblMfCCXw==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A301B1C1F@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: Richard Purdie <rpurdie@linux.intel.com>
-References: <8EA2C2C4116BF44AB370468FBF85A77701BC9526F4@orsmsx504.amr.corp.intel.com><4CD8601A.4090500@windriver.com><8EA2C2C4116BF44AB370468FBF85A77701BCA3809D@orsmsx504.amr.corp.intel.com><4CD8E634.1090403@windriver.com>
-	<4CD9663A.50200@windriver.com> <1289345518.1272.55.camel@rex>
-In-Reply-To: <1289345518.1272.55.camel@rex>
-X-OriginalArrivalTime: 10 Nov 2010 01:14:57.0485 (UTC)
-	FILETIME=[B06F7FD0:01CB8074]
-Cc: yocto@yoctoproject.org
-Subject: Re: [PULL] devel/toolchain Recipes upgrades
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Some investigation on disk space occupation for Yocto Linux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,123 +38,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Nov 2010 01:16:55 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 10 Nov 2010 02:19:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 10-11-09 6:31 PM, Richard Purdie wrote:
-> On Tue, 2010-11-09 at 09:18 -0600, Mark Hatle wrote:
->> On 11/9/10 12:12 AM, Bruce Ashfield wrote:
->>> On 10-11-08 7:41 PM, Kamble, Nitin A wrote:
->>>> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
->>>>
->>>> Out of curiosity. What's the logic/requirement behind this
->>>> change ? Since we don't have a 'supported' 2.6.36 kernel, using
->>>> these would be a mismatch with what is actually booting on
->>>> the targets.
->>>>
->>>> There's probably something I just don't understand here, so
->>>> apologies in advance for the (potentially) dumb question.
->>>>
->>>>       AFAIU the linux-libc-headers are independent from the running kernel. These are headers for libc.
->>>
->>> But they aren't. The libc headers should be coupled to the
->>> kernel version. New ABIs are established and glibc can detect
->>> and deal with this, but you should never have a newer set of
->>> headers than the running kernel.
->>>
->>> To say the least, I'd like more explanation of this change.
->>
->> I agree with Bruce here.  If anything the linux-libc-headers should be the same
->> or OLDER then the running kernel for this exact reason.  It's quite dangerous
->> for newer kernel headers, as they may trigger behavioral differences within the
->> glibc configuration.
->
-> When you compile [e]glibc you specify the oldest kernel you wish to
-> support. As far as I know it is safe to use a recent set of kernel
-> headers to build [e]glibc and then use older kernels with it. I have
-> never seems a problem caused directly by kernel versions unless it was
-> related to ABI changes or massive kernel version differences (2.4
-> kernels on a 2.6 optimised glibc, compiled with 2.6 as the oldest kernel
-> it would support).
->
+Hi, Richard,
 
-I've seen incompatibilities. Since we aren't running full
-toolchain validation, I do see some (minor) chances of
-'bad things' happening.
+I just had a quick investigation on disk space occupation for Yocto linux.
+Here are some findings and thoughts.
 
-If we can limit it in eglibc, then things should be fine,
-since, as we all know, the kernel doesn't break ABIs. So any
-headers from a newer kernel will leave structures alone that
-existed for older kernels.
+I built poky-image-minimal based on poky green release and yocto-0.9 releas=
+e,
+within the build directory, I dumped the tmp dir size:
 
-There is a chance of a mismatch at runtime if someone uses
-statically linked binaries and matches them with the wrong
-kernel, this is something we've had happen in the past, but
-is more of a social engineering issue.
-
-> I'm therefore ok in general with keeping linux-libc-headers tracking the
-> most recent kernels and letting the toolchain optionally support
-> features from the most recent kernel.
->
-> If I'm missing something or anyone has experience of this causing
-> problems I'd be interested to learn about it though.
-
-TIPC and some of the other protocols share structures/definitions
-via exported headers, they run into problems periodically. Those
-breakages are more along the lines of new features not being
-picked up, or new features being picked up in the headers and
-not supported in the kernel, etc.
-
-When robust PI futexs were introduced there was also
-a time when the libc headers and kernel were out of sync.
-glibc wouldn't do the right thing with respect to runtime
-detection of the support, would fall back to the kernel
-version and the support would be incorrectly disabled.
-
-There are some syscalls added for various optional features
-that are exported via unistd.h. Having newer headers than
-the running kernel means some functionality may be assumed
-and not present.
-
-ARM EABI caused headaches with this as well, I vividly
-remember the issues.
-
-This are all historical examples, so my memory isn't precise
-on the details (so I reserve the right to be correct). Luckily
-we tend to know better now, but there is always a possibility that
-things like this will pop back as well, in particular since we'll
-be doing kernel development and using on-the-way upstream features.
-since we have a supported kernel, I'd tend to track those headers and
-not stray newer than one of our supported kernels, since they'll have
-extra validation and testing. But I'm being overly paranoid.
-
-We also have the matching of the preferred provider of the
-kernel and linux-libc-headers matching, so that keeps things
-in sync. But if we've removed a version locked set of
-headers, and move the default forward, a local mod needs to
-be done to move back to a matching set (if you were using
-that older kernel). correct ?
-
-In the end, this isn't really an issue, but coming from a
-background where we validate a toolchain against a supported
-kernel and set of headers, moving this forward so quickly
-made me want to at least ask the question.
-
-Cheers,
-
-Bruce
+Tmp dir size:
+Green: 7.4G
+Yocto-0.9: 27G
 
 
+The "work" dir occupies most of the space (~90%) in both releases.
+Here are the details with "work" dir.
 
->
-> Cheers,
->
-> Richard
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Green:
+1.5M    all-poky-linux
+5.2G    i586-poky-linux
+675M    i686-linux
+1.1G    qemux86-poky-linux
 
+Yocto-0.9:
+1.8M    all-poky-linux
+16G     i586-poky-linux
+4.8G    qemux86-poky-linux
+3.5G    x86_64-linux
+
+For the directory of "i586-poky-linux", Green has 34 sub directories, while=
+ Yocto-0.9
+has 64 sub directories, which doubles Green's number. However the size is t=
+riple.
+
+This should be a problem.
+
+For a certain package directory, for example, ncurses-5.4-r14.
+
+Green:
+Total: 112M
+12M     image
+36M     ncurses-5.4
+16M     package
+16M     packages-split
+18M     staging-pkg
+15M     sysroot-destdir
+1.1M    temp
+
+Yocto-0.9:
+Total: 167M
+13M     image
+36M     ncurses-5.4
+17M     package
+17M     packages-split
+16M     sysroot-destdir
+1.4M    temp
+2.5M    deploy-ipks
+2.6M    deploy-rpms
+4.0K    ncurses.requires
+116K    ncurses.spec
+40K     pkgdata
+12M     pseudo
+12K     shlibs
+2.5M    sstate-build-deploy-ipk
+2.6M    sstate-build-deploy-rpm
+33M     sstate-build-package
+16M     sstate-build-populate-sysroot
+
+We saw in Yocto-0.9, size is 50% larger than Green release.
+
+Some directories within package are new in Yocto-0.9, like pseudo, sstate-b=
+uild-*.=20
+I just took a glance at sstate.bbclass, the current logic seems that it wil=
+l first
+copy directories (like deploy-rpms, deploy-ipks, package, package-split, sy=
+sroot, etc)
+into sstate-build-*, and then archive it into sstate-cache directory.
+
+So the first step of optimization from my thoughts are:=20
+1) Can we remove the sstate-build-* directories after archive is done?
+2) Or is it possible to omit the copy process and archive directly from dir=
+ectories
+(deploy-rpms, deploy-ipks, package, package-split, sysroot, etc) to sstate-=
+cache?
+
+Thanks,
+Dongxiao =
 
