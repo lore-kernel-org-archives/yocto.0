@@ -1,34 +1,32 @@
 Return-Path: <rpurdie@linux.intel.com>
 Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
 	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 1F06C4C80815
-	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 07:50:50 -0600 (CST)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 546B94C80815
+	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 07:53:01 -0600 (CST)
 Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAADolih003165;
-	Wed, 10 Nov 2010 13:50:47 GMT
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAADqvYm003180;
+	Wed, 10 Nov 2010 13:52:57 GMT
 Received: from tim.rpsys.net ([127.0.0.1])
 	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
 	port 10024) with LMTP
-	id 02821-07; Wed, 10 Nov 2010 13:50:43 +0000 (GMT)
+	id 02706-09; Wed, 10 Nov 2010 13:52:53 +0000 (GMT)
 Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAADoWLa003159
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAADqcvv003173
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 10 Nov 2010 13:50:37 GMT
+	Wed, 10 Nov 2010 13:52:43 GMT
 From: Richard Purdie <rpurdie@linux.intel.com>
-To: Kumar Gala <galak@kernel.crashing.org>
-In-Reply-To: <D10D6A3E-F997-489A-8921-83E5B33EE764@kernel.crashing.org>
-References: <BA703559-6EAC-43D9-BB84-E95DDCB1ED62@kernel.crashing.org>
-	<625BA99ED14B2D499DC4E29D8138F1504D2271119D@shsmsx502.ccr.corp.intel.com>
-	<401A3267-606A-4A1E-9F45-18F75B6B3FB7@kernel.crashing.org>
-	<1289395789.1272.260.camel@rex>
-	<D10D6A3E-F997-489A-8921-83E5B33EE764@kernel.crashing.org>
-Date: Wed, 10 Nov 2010 21:50:29 +0800
-Message-ID: <1289397029.1272.315.camel@rex>
+To: Esben Haabendal <eha@dev.doredevelopment.dk>
+In-Reply-To: <87zkthlabk.fsf@eha.doredevelopment.dk>
+References: <731F6F755F547148839CA39AD8282CE38F8C85@orsmsx001.amr.corp.intel.com>
+	<87fwv9mrr6.fsf@eha.doredevelopment.dk> <1289383317.1272.104.camel@rex>
+	<87zkthlabk.fsf@eha.doredevelopment.dk>
+Date: Wed, 10 Nov 2010 21:52:32 +0800
+Message-ID: <1289397152.1272.322.camel@rex>
 Mime-Version: 1.0
 X-Mailer: Evolution 2.28.3 
 X-Virus-Scanned: amavisd-new at rpsys.net
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: problem with fetching?
+Subject: Re: Distro 1.0 Planning minutes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,42 +38,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Nov 2010 13:50:51 -0000
+X-List-Received-Date: Wed, 10 Nov 2010 13:53:01 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2010-11-10 at 07:31 -0600, Kumar Gala wrote:
-> On Nov 10, 2010, at 7:29 AM, Richard Purdie wrote:
+On Wed, 2010-11-10 at 11:52 +0100, Esben Haabendal wrote:
+> Richard Purdie <rpurdie@linux.intel.com> writes:
 > 
-> > On Wed, 2010-11-10 at 06:32 -0600, Kumar Gala wrote:
-> >> ERROR: Task failed: Fetch failed: Unable to fetch URL cvs://anonymous@cvs.sv.gnu.org/cvsroot/config;module=config;method=pserver;date=20080123 from any source.
-> >> NOTE: package gnu-config-native-0.1+cvs20080123-r1: task do_fetch: Failed
-> >> ERROR: Task 211 (virtual:native:/local/home/galak/poky-laverne-4.0/meta/recipes-devtools/gnu-config/gnu-config_20080123.bb, do_fetch) failed with 1
-> >> ERROR: 'virtual:native:/local/home/galak/poky-laverne-4.0/meta/recipes-devtools/gnu-config/gnu-config_20080123.bb' failed
+> > On Wed, 2010-11-10 at 10:50 +0100, Esben Haabendal wrote:
+> >> "Kamble, Nitin A" <nitin.a.kamble@intel.com> writes:
 > >> 
-> >> Attached is the full log.
-> > 
-> > Are you behind some kind of proxy/firewall? Its interesting its a cvs
-> > based recipe that is failing so it could be your cvs setup.
+> >> > Dongxiao:  sysroot per machine per recipe
+> >> 
+> >> Is it possible to elaborate on this topic?  What was discussed and what
+> >> was the conclusion?
+> >
+> > This is what we discussed in person in Cambridge, the idea of making it
+> > possible to have one sysroot per machine or one sysroot per recipe. Our
+> > intention is to make this work in the next few months.
+> >
+> > I pointed you at the existing task based sstate code which should make
+> > this kind of thing relatively straight forward.
 > 
-> Yes, behind a proxy/firewall.  cvs is not normally allowed out.
+> This definitely sounds interesting.
 > 
-> > You could try placing
-> > http://autobuilder.pokylinux.org/sources/config_cvs.sv.gnu.org__20080123.tar.gz
-> > 
-> > into the downloads directory manually and touching the
-> > config_cvs.sv.gnu.org__20080123.tar.gz.md5 file there to show the
-> > fetcher the fetch is complete. If that works it would suggest the mirror
-> > fallback code in the fetcher isn't working as intended.
-> 
-> I'm new to this, where would my download dir be?
+> Will it be possible to have recipe A (build) depend on B, which (build)
+> depends on C, without having C in the per recipe stage of A?
 
-It defaults to "build/downloads" so in the build directory unless you
-changed it in local.conf.
+Yes, that is the plan. I'm hoping this allows us to rigorously check
+package dependencies and whilst we might not default to it all the time,
+it would allow us to test this periodically.
+
+> Will it be possible to have recipe A (build) depend on selected files
+> from B, f.x. only a subset of libraries built by a recipe?
+
+This currently isn't planned.
 
 Cheers,
 
 Richard
-
 
 
