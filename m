@@ -1,28 +1,28 @@
-Return-Path: <rpurdie@linux.intel.com>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 85E0E4C81068
-	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 07:38:15 -0600 (CST)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAADcD5d002801;
-	Wed, 10 Nov 2010 13:38:13 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 02706-02; Wed, 10 Nov 2010 13:38:09 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAADc1Hv002794
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 10 Nov 2010 13:38:04 GMT
-From: Richard Purdie <rpurdie@linux.intel.com>
-To: =?ISO-8859-1?Q?Jo=E3o?= Henrique Freitas <joaohf@gmail.com>
-In-Reply-To: <AANLkTimr0Vm+kdDzCiJ07nOTZLgJDDC+DvNNwpgZ72xz@mail.gmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id EAD7A4C80044
+	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 07:41:00 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oAADewtr011173;
+	Wed, 10 Nov 2010 05:40:58 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Wed, 10 Nov 2010 05:40:58 -0800
+Received: from [128.224.146.67] ([128.224.146.67]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Wed, 10 Nov 2010 05:40:58 -0800
+Message-ID: <4CDAA0E9.7010001@windriver.com>
+Date: Wed, 10 Nov 2010 08:40:57 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.9pre) Gecko/20100217 Shredder/3.0.3pre
+	ThunderBrowse/3.2.8.1
+MIME-Version: 1.0
+To: =?UTF-8?B?Sm/Do28gSGVucmlxdWUgRnJlaXRhcw==?= <joaohf@gmail.com>
 References: <AANLkTimr0Vm+kdDzCiJ07nOTZLgJDDC+DvNNwpgZ72xz@mail.gmail.com>
-Date: Wed, 10 Nov 2010 21:37:59 +0800
-Message-ID: <1289396279.1272.282.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-X-Virus-Scanned: amavisd-new at rpsys.net
+In-Reply-To: <AANLkTimr0Vm+kdDzCiJ07nOTZLgJDDC+DvNNwpgZ72xz@mail.gmail.com>
+X-OriginalArrivalTime: 10 Nov 2010 13:40:58.0775 (UTC)
+	FILETIME=[E83E5270:01CB80DC]
 Cc: yocto@yoctoproject.org
 Subject: Re: two layers: hardware and distro.
 X-BeenThere: yocto@yoctoproject.org
@@ -36,46 +36,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Nov 2010 13:38:15 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 10 Nov 2010 13:41:01 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Hi,
-
-On Wed, 2010-11-10 at 09:41 -0200, João Henrique Freitas wrote:
+On 10-11-10 06:41 AM, João Henrique Freitas wrote:
+> Hi,
+>
 > I am novice yocto user.
-> 
+>
 > My target is create a BSP to my hardware+application. Is Yocto a
 > suitable project to do it?
-> 
+>
 > I want to create two layers:
-> 
+>
 > bsp-myhardware: linux kernel, firmware, specific hardware configuration
 > bsp-myapplication: linux distro with all software need. Ex: net-snmp,
 > lksctp (the target is telecom applications)
-> 
+>
 > Currently yocto does not have many recipes that I need. No problem, I
 > can get from OE. We use kernel 2.6.22 and I presume that I need a
 > recipe to it and put inside bsp-myhardware, right?
 
-Yes, this sounds like a very reasonable approach.
+Any interest in moving to a newer/different kernel ? The
+supported kernel for yocto is at 2.6.34 and I'll have a
+-dev tree tracking 2.6.37 shortly.
 
-In general (this applies to anyone out there), we're interested to know
-what kinds of software people use so please let us know what you're
-putting into application layers anyone creates like this. Our focus is
-currently on making sure there is a rock solid core for people to build
-from but if there are core applications missing we'd like to know about
-it.
+My interest is getting more BSPs using the same kernel
+version so we can leverage the common set of issues,
+bug fixes, CVEs, etc. It also helps me streamline the
+BSP bootstrapping process, which is a primary focus of
+mine at the moment.
 
-Also, if anyone establishes a layer with a specific focus, we're happy
-to provide a git repository for it on git.yoctoproject.org where you
-could maintain and share this code with other people with a similar
-goal.
+Bruce
 
-Cheers,
-
-Richard
-
-
+>
+>
+> Thanks.
+>
 
 
