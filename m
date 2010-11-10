@@ -1,40 +1,27 @@
-Return-Path: <joaohf@gmail.com>
-Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
-	[209.85.160.48])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 1ADED4C80B6B
-	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 12:02:11 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by pwj9 with SMTP id 9so259615pwj.35
-	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 10:02:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:received:received:in-reply-to
-	:references:date:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=w8GT53dZiS+HPUxfkHwxwRea44QOovnyoJGF91uTQpI=;
-	b=kWPe64RJjchtrwuTeeQFD2b3hhoIUxWyaPqysbJaxVcsOQWJ6IX22iZqx6YlkY0AEu
-	d2qxVFo/SWlBoI2vPtXyF1fYjBuX81rW/Za7sBLtJc7CzSH9UDovwuR6PvnUG1v+X5v+
-	KFunRiwh4d3j4tpxa1lUoa6Skgji4Kn8ZiGNk=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	b=mCl5FxB6ozJSeLanVu184+yeu8rIwCEg6k8Ma95XmrSPy4TO4r3GFbDOzYFp4Ne7yJ
-	FnlWroF5E2yggn/wt/sTHm83HAIywCzloMM8FCJLzf2uTvJuzgrHSkTyW8xHkzLrV6tH
-	1v4n+u4/FVOrmFyVOKnAF5Dk0hjPScuIPR/I8=
+Return-Path: <scott.a.garman@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C5B5A4C81001
+	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 12:32:53 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 10 Nov 2010 10:32:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,179,1288594800"; d="scan'208";a="625482383"
+Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
+	by fmsmga002.fm.intel.com with ESMTP; 10 Nov 2010 10:32:53 -0800
+Received: from [10.255.13.64] (10.255.13.64) by rrsmsx603.amr.corp.intel.com
+	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
+	Wed, 10 Nov 2010 11:32:52 -0700
+Message-ID: <4CDAE553.7040304@intel.com>
+Date: Wed, 10 Nov 2010 10:32:51 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.1.15) Gecko/20101027 Thunderbird/3.0.10
 MIME-Version: 1.0
-Received: by 10.42.220.138 with SMTP id hy10mr5819281icb.437.1289412129176;
-	Wed, 10 Nov 2010 10:02:09 -0800 (PST)
-Received: by 10.42.176.73 with HTTP; Wed, 10 Nov 2010 10:02:09 -0800 (PST)
-In-Reply-To: <1289396279.1272.282.camel@rex>
-References: <AANLkTimr0Vm+kdDzCiJ07nOTZLgJDDC+DvNNwpgZ72xz@mail.gmail.com>
-	<1289396279.1272.282.camel@rex>
-Date: Wed, 10 Nov 2010 16:02:09 -0200
-Message-ID: <AANLkTi=N4MRrA6S1RdPqR5jb+Wy5K65kxKXshgScq2cy@mail.gmail.com>
-From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
-To: Richard Purdie <rpurdie@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: two layers: hardware and distro.
+To: <yocto@yoctoproject.org>
+References: <BA703559-6EAC-43D9-BB84-E95DDCB1ED62@kernel.crashing.org>	<625BA99ED14B2D499DC4E29D8138F1504D2271119D@shsmsx502.ccr.corp.intel.com>	<401A3267-606A-4A1E-9F45-18F75B6B3FB7@kernel.crashing.org>	<1289395789.1272.260.camel@rex>
+	<D10D6A3E-F997-489A-8921-83E5B33EE764@kernel.crashing.org>
+In-Reply-To: <D10D6A3E-F997-489A-8921-83E5B33EE764@kernel.crashing.org>
+Subject: Re: problem with fetching?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,26 +33,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Nov 2010 18:02:12 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 10 Nov 2010 18:32:54 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 11/10/2010 05:31 AM, Kumar Gala wrote:
+>
+> On Nov 10, 2010, at 7:29 AM, Richard Purdie wrote:
+>
+>> On Wed, 2010-11-10 at 06:32 -0600, Kumar Gala wrote:
+>>> ERROR: Task failed: Fetch failed: Unable to fetch URL cvs://anonymous@cvs.sv.gnu.org/cvsroot/config;module=config;method=pserver;date=20080123 from any source.
+>>> NOTE: package gnu-config-native-0.1+cvs20080123-r1: task do_fetch: Failed
+>>> ERROR: Task 211 (virtual:native:/local/home/galak/poky-laverne-4.0/meta/recipes-devtools/gnu-config/gnu-config_20080123.bb, do_fetch) failed with 1
+>>> ERROR: 'virtual:native:/local/home/galak/poky-laverne-4.0/meta/recipes-devtools/gnu-config/gnu-config_20080123.bb' failed
+>>>
+>>> Attached is the full log.
+>>
+>> Are you behind some kind of proxy/firewall? Its interesting its a cvs
+>> based recipe that is failing so it could be your cvs setup.
+>
+> Yes, behind a proxy/firewall.  cvs is not normally allowed out.
 
-I can tell about what applications we will use and contribute with
-some questions.
+If you're behind a SOCKS proxy, these instructions might be helpful to 
+get CVS checkouts working:
 
-We are focus on Telecom applications and I am setting a BSP to a Media
-Gateway and Sigtran Gateway.
+https://wiki.yoctoproject.org/wiki/Working_Behind_a_Network_Proxy
 
-Thanks.
+Scott
 
-
---=20
------------------------------------------------------------
-Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
-Campinas-SP-Brasil
-BSD051283
-LPI 1
-http://www.joaohfreitas.eti.br
+-- 
+Scott Garman
+Embedded Linux Distro Engineer - Yocto Project
 
