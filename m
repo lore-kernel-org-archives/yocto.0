@@ -1,23 +1,30 @@
-Return-Path: <galak@kernel.crashing.org>
-Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 341B14C80815
-	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 07:31:34 -0600 (CST)
-Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
-	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id oAADVS29024763;
-	Wed, 10 Nov 2010 07:31:29 -0600
-Mime-Version: 1.0 (Apple Message framework v1081)
-From: Kumar Gala <galak@kernel.crashing.org>
-In-Reply-To: <1289395789.1272.260.camel@rex>
-Date: Wed, 10 Nov 2010 07:31:28 -0600
-Message-Id: <D10D6A3E-F997-489A-8921-83E5B33EE764@kernel.crashing.org>
-References: <BA703559-6EAC-43D9-BB84-E95DDCB1ED62@kernel.crashing.org>
-	<625BA99ED14B2D499DC4E29D8138F1504D2271119D@shsmsx502.ccr.corp.intel.com>
-	<401A3267-606A-4A1E-9F45-18F75B6B3FB7@kernel.crashing.org>
-	<1289395789.1272.260.camel@rex>
-To: Richard Purdie <rpurdie@linux.intel.com>
-X-Mailer: Apple Mail (2.1081)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: problem with fetching?
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4CFC64C81068
+	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 07:38:09 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oAADc6j7010817;
+	Wed, 10 Nov 2010 05:38:06 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Wed, 10 Nov 2010 05:38:05 -0800
+Received: from [128.224.146.67] ([128.224.146.67]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Wed, 10 Nov 2010 05:38:05 -0800
+Message-ID: <4CDAA03C.8090004@windriver.com>
+Date: Wed, 10 Nov 2010 08:38:04 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.9pre) Gecko/20100217 Shredder/3.0.3pre
+	ThunderBrowse/3.2.8.1
+MIME-Version: 1.0
+To: Kumar Gala <galak@kernel.crashing.org>
+References: <414DA7D8-2E3E-4DEE-9C36-24EF976D7A99@kernel.crashing.org>
+In-Reply-To: <414DA7D8-2E3E-4DEE-9C36-24EF976D7A99@kernel.crashing.org>
+X-OriginalArrivalTime: 10 Nov 2010 13:38:05.0959 (UTC)
+	FILETIME=[813CB170:01CB80DC]
+Cc: yocto@yoctoproject.org
+Subject: Re: TARGET_FPU for mpc8315e-rdb listed as SPE??
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,46 +36,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Nov 2010 13:31:34 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 10 Nov 2010 13:38:09 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 10-11-10 01:46 AM, Kumar Gala wrote:
+> Why does the meta/conf/machine/mpc8315e-rdb.conf list TARGET_FPU as SPE.  This isn't correct for an MPC8313 SoC.
 
-On Nov 10, 2010, at 7:29 AM, Richard Purdie wrote:
+It isn't used at the moment, so we can safely
+ignore this.
 
-> On Wed, 2010-11-10 at 06:32 -0600, Kumar Gala wrote:
->> ERROR: Task failed: Fetch failed: Unable to fetch URL =
-cvs://anonymous@cvs.sv.gnu.org/cvsroot/config;module=3Dconfig;method=3Dpse=
-rver;date=3D20080123 from any source.
->> NOTE: package gnu-config-native-0.1+cvs20080123-r1: task do_fetch: =
-Failed
->> ERROR: Task 211 =
-(virtual:native:/local/home/galak/poky-laverne-4.0/meta/recipes-devtools/g=
-nu-config/gnu-config_20080123.bb, do_fetch) failed with 1
->> ERROR: =
-'virtual:native:/local/home/galak/poky-laverne-4.0/meta/recipes-devtools/g=
-nu-config/gnu-config_20080123.bb' failed
->>=20
->> Attached is the full log.
->=20
-> Are you behind some kind of proxy/firewall? Its interesting its a cvs
-> based recipe that is failing so it could be your cvs setup.
+It was a hold over from when I initially created
+the BSP, and I've since changed it locally, but
+haven't sent the updated BSP yet.
 
-Yes, behind a proxy/firewall.  cvs is not normally allowed out.
+Cheers,
 
-> You could try placing
-> =
-http://autobuilder.pokylinux.org/sources/config_cvs.sv.gnu.org__20080123.t=
-ar.gz
->=20
-> into the downloads directory manually and touching the
-> config_cvs.sv.gnu.org__20080123.tar.gz.md5 file there to show the
-> fetcher the fetch is complete. If that works it would suggest the =
-mirror
-> fallback code in the fetcher isn't working as intended.
+Bruce
 
-I'm new to this, where would my download dir be?
-
-- k
+>
+> - k
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
