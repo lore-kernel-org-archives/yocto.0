@@ -1,37 +1,23 @@
-Return-Path: <yongkang.you@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 4611A4C80FA4
-	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 08:44:22 -0600 (CST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 10 Nov 2010 06:44:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,178,1288594800"; d="scan'208";a="625404855"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by fmsmga002.fm.intel.com with ESMTP; 10 Nov 2010 06:44:20 -0800
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Wed, 10 Nov 2010 22:43:23 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Wed, 10 Nov 2010 22:43:22 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Wed, 10 Nov 2010 22:43:21 +0800
-From: "You, Yongkang" <yongkang.you@intel.com>
-To: "Yu, Ke" <ke.yu@intel.com>
-Date: Wed, 10 Nov 2010 22:43:19 +0800
-Thread-Topic: Bug Fixer and Verifier
-Thread-Index: AcuA2cv8qcTG/QMLR1SZdsydarmvfAACpUKA
-Message-ID: <F26D193E20BBDC42A43B611D1BDEDE7122183FB3A7@shsmsx502.ccr.corp.intel.com>
-References: <33AB447FBD802F4E932063B962385B35302B3E57@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <33AB447FBD802F4E932063B962385B35302B3E57@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Bug Fixer and Verifier
+Return-Path: <galak@kernel.crashing.org>
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 73B2F4C80FA8
+	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 09:03:45 -0600 (CST)
+Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id oAAF3fje008054;
+	Wed, 10 Nov 2010 09:03:42 -0600
+Mime-Version: 1.0 (Apple Message framework v1081)
+From: Kumar Gala <galak@kernel.crashing.org>
+In-Reply-To: <4CDAAACD.1070206@windriver.com>
+Date: Wed, 10 Nov 2010 09:03:41 -0600
+Message-Id: <64CB5A01-C87F-43FA-BD52-43694E5E5908@kernel.crashing.org>
+References: <414DA7D8-2E3E-4DEE-9C36-24EF976D7A99@kernel.crashing.org>
+	<4CDAA03C.8090004@windriver.com> <4CDAA4F0.1060802@windriver.com>
+	<BE6DB51E-F39B-4C61-9EA1-9AFBE5E397FA@kernel.crashing.org>
+	<4CDAAACD.1070206@windriver.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+X-Mailer: Apple Mail (2.1081)
+Cc: yocto@yoctoproject.org
+Subject: Re: TARGET_FPU for mpc8315e-rdb listed as SPE??
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,38 +29,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Nov 2010 14:44:22 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 10 Nov 2010 15:03:46 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Ke,
 
-I think that's okay. But if reporter can ask somebody (who is in bug's cc l=
-ist) to help verify, that will be greater.  And it needs to provide master =
-tree's commit info, when mark the bug to "fixed" stage.=20
+On Nov 10, 2010, at 8:23 AM, Bruce Ashfield wrote:
 
-BTW, we also defined the bug should not be marked to "fixed", until it has =
-been included in master tree and built into any formal build. Well, this pr=
-ocess is not easy to be manually followed. I noticed Bugzilla 4.0 would be =
-released soon. I am hoping we will have automation bug status changing soon=
- (with required bug fixing info added to patch).=20
-
-Thanks,
-Yongkang
-
-
-On Wednesday, November 10, 2010 9:19 PM, Yu, Ke wrote:
-> Hi KangKang,
+> On 10-11-10 09:11 AM, Kumar Gala wrote:
+>>=20
+>> On Nov 10, 2010, at 7:58 AM, Bruce Ashfield wrote:
+>>=20
+>>> On 10-11-10 08:38 AM, Bruce Ashfield wrote:
+>>>> On 10-11-10 01:46 AM, Kumar Gala wrote:
+>>>>> Why does the meta/conf/machine/mpc8315e-rdb.conf list TARGET_FPU =
+as
+>>>>> SPE. This isn't correct for an MPC8313 SoC.
+>>>>=20
+>>>> It isn't used at the moment, so we can safely
+>>>> ignore this.
+>>>>=20
+>>>> It was a hold over from when I initially created
+>>>> the BSP, and I've since changed it locally, but
+>>>> haven't sent the updated BSP yet.
+>>>=20
+>>> To clarify on this point, the kernel configuration
+>>> is NOT using SPE for this, and I was attempting to
+>>> use the FPU setting to trigger some different gcc
+>>> flags during development the base of that test was
+>>> an e500 board, so the SPE setting leaked in, but is
+>>> unused.
+>>>=20
+>>> At the moment, it is actually using soft-float, and
+>>> I had planned to submit a change to clarify that.
+>>>=20
+>>> If there's another option, let me know and I'll
+>>> rebase my patches and change it again.
+>>=20
+>> We should NOT be using soft-float for mpc8315e (it has HW floating =
+point on this chip).
 >=20
-> One case of the bug process need your input. In bug #467, Josh
-> are both reporter and the one who fix this bug. When he fixed
-> the bug, as a reporter, he also verify the bug according to the
-> process
-> (https://wiki.yoctoproject.org/wiki/Bugzilla_Configuration_and_
-> Bug_Tracking) . I just wonder if it is appropriate that bug fixer and
-> verifier be the same people?=20
+> Indeed. I fell back to a safe multilib. I'm willing
+> to try again and see if the gcc bootstrap phases will
+> build.
 >=20
-> Regards
-> Ke=
+> The kernel was fine, and is fine, it was userspace
+> that caused problems for me .. and that's definitely not
+> an area where my expertise lies :)
+>=20
+> I needed something that worked, and had to excplicitly
+> chose to ignore the FPU temporarily, but revisiting that
+> now seems like a good idea.
+>=20
+>>=20
+>> Any plans to get an e500 based system going before the rev1.0 =
+release?
+>=20
+> We've got tonnes of experience and BSPs to draw from
+> here. The selection of some of these BSPs was (largely)
+> based on cost and availability. If we can get our
+> hands on a suitable e500 replacement .. the switch is
+> trivial.
+
+If we can get a toolchain and basic build I'm happy to help on the HW =
+side and getting kernel, etc worked out.
+
+I'd like to get a semi-generic setup going for an e500v2 based system.
+
+- k=
 
