@@ -1,23 +1,33 @@
-Return-Path: <qing.he@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 909F14C81001
-	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 03:02:05 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 10 Nov 2010 01:02:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,177,1288594800"; d="scan'208";a="572016165"
-Received: from qhe2-db.sh.intel.com ([10.239.13.109])
-	by orsmga002.jf.intel.com with ESMTP; 10 Nov 2010 01:01:55 -0800
-Received: from qhe2 by qhe2-db.sh.intel.com with local (Exim 4.71)
-	(envelope-from <qing.he@intel.com>) id 1PG6Uf-0008FO-NY
-	for yocto@yoctoproject.org; Wed, 10 Nov 2010 16:57:25 +0800
-Date: Wed, 10 Nov 2010 16:57:25 +0800
-From: Qing He <qing.he@intel.com>
-To: yocto@yoctoproject.org
-Message-ID: <20101110085725.GB31687@qhe2-db>
+Return-Path: <eha@dev.doredevelopment.dk>
+Received: from public.doredevelopment.dk (unknown [77.233.226.4])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 172BB4C80BCF
+	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 03:50:56 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+	by public.doredevelopment.dk (Postfix) with ESMTP id 202571B60;
+	Wed, 10 Nov 2010 10:50:56 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at dev.doredevelopment.dk
+Received: from public.doredevelopment.dk ([127.0.0.1])
+	by localhost (public.doredevelopment.dk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 81AZaQEi29Mx; Wed, 10 Nov 2010 10:50:54 +0100 (CET)
+Received: from eha.doredevelopment.dk (eha.doredevelopment.dk [192.168.18.32])
+	(using TLSv1 with cipher ADH-AES256-SHA (256/256 bits))
+	(No client certificate requested) (Authenticated sender: eha)
+	by public.doredevelopment.dk (Postfix) with ESMTPSA id E3E6C2B7;
+	Wed, 10 Nov 2010 10:50:53 +0100 (CET)
+Received: by eha.doredevelopment.dk (Postfix, from userid 1000)
+	id 5B27D47A37; Wed, 10 Nov 2010 10:50:53 +0100 (CET)
+From: Esben Haabendal <eha@dev.doredevelopment.dk>
+To: "Kamble\, Nitin A" <nitin.a.kamble@intel.com>
+References: <731F6F755F547148839CA39AD8282CE38F8C85@orsmsx001.amr.corp.intel.com>
+Date: Wed, 10 Nov 2010 10:50:53 +0100
+In-Reply-To: <731F6F755F547148839CA39AD8282CE38F8C85@orsmsx001.amr.corp.intel.com>
+	(Nitin A. Kamble's message of "Tue, 9 Nov 2010 19:52:44 -0800")
+Message-ID: <87fwv9mrr6.fsf@eha.doredevelopment.dk>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/23.1 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: [PULL] recipe upgrades in base section, Nov. 10
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Distro 1.0 Planning minutes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,77 +39,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Nov 2010 09:02:05 -0000
+X-List-Received-Date: Wed, 10 Nov 2010 09:50:57 -0000
 Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-most of them are simple upgrades that changes minor version,
-also adds license info in procps
+"Kamble, Nitin A" <nitin.a.kamble@intel.com> writes:
 
-Thanks,
-Qing
+> Dongxiao:  sysroot per machine per recipe
 
----
- meta/recipes-bsp/pciutils/pciutils-3.1.5/configure.patch                 |  102 ---
- meta/recipes-bsp/pciutils/pciutils-3.1.5/guess-fix.patch                 |   35 -
- meta/recipes-bsp/pciutils/pciutils-3.1.5/lib-build-fix.patch             |   92 --
- meta/recipes-bsp/pciutils/pciutils-3.1.5/pcimodules-pciutils.diff        |  338 ----------
- meta/recipes-bsp/pciutils/pciutils-3.1.7/configure.patch                 |  102 +++
- meta/recipes-bsp/pciutils/pciutils-3.1.7/guess-fix.patch                 |   35 +
- meta/recipes-bsp/pciutils/pciutils-3.1.7/lib-build-fix.patch             |   92 ++
- meta/recipes-bsp/pciutils/pciutils-3.1.7/pcimodules-pciutils.diff        |  338 ++++++++++
- meta/recipes-bsp/pciutils/pciutils_3.1.5.bb                              |   57 -
- meta/recipes-bsp/pciutils/pciutils_3.1.7.bb                              |   57 +
- meta/recipes-connectivity/iproute2/iproute2-2.6.34/configure-cross.patch |   61 -
- meta/recipes-connectivity/iproute2/iproute2-2.6.35/configure-cross.patch |   61 +
- meta/recipes-connectivity/iproute2/iproute2_2.6.34.bb                    |    6 
- meta/recipes-connectivity/iproute2/iproute2_2.6.35.bb                    |    6 
- meta/recipes-connectivity/nfs-utils/nfs-utils_1.2.2.bb                   |   53 -
- meta/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bb                   |   53 +
- meta/recipes-extended/bzip2/bzip2-1.0.5/Makefile.am                      |   41 -
- meta/recipes-extended/bzip2/bzip2-1.0.5/configure.ac                     |   14 
- meta/recipes-extended/bzip2/bzip2-1.0.6/Makefile.am                      |   41 +
- meta/recipes-extended/bzip2/bzip2-1.0.6/configure.ac                     |   14 
- meta/recipes-extended/bzip2/bzip2_1.0.5.bb                               |   26 
- meta/recipes-extended/bzip2/bzip2_1.0.6.bb                               |   26 
- meta/recipes-extended/iptables/iptables_1.4.8.bb                         |   31 
- meta/recipes-extended/iptables/iptables_1.4.9.bb                         |   31 
- meta/recipes-extended/procps/procps-3.2.7/install.patch                  |   27 
- meta/recipes-extended/procps/procps-3.2.7/linux-limits.patch             |   13 
- meta/recipes-extended/procps/procps-3.2.7/pagesz-not-constant.patch      |   22 
- meta/recipes-extended/procps/procps-3.2.7/procmodule.patch               |   36 -
- meta/recipes-extended/procps/procps-3.2.7/procps.init                    |    6 
- meta/recipes-extended/procps/procps-3.2.7/psmodule.patch                 |   21 
- meta/recipes-extended/procps/procps-3.2.7/sysctl.conf                    |   64 -
- meta/recipes-extended/procps/procps-3.2.8/install.patch                  |   27 
- meta/recipes-extended/procps/procps-3.2.8/linux-limits.patch             |   13 
- meta/recipes-extended/procps/procps-3.2.8/pagesz-not-constant.patch      |   22 
- meta/recipes-extended/procps/procps-3.2.8/procmodule.patch               |   36 +
- meta/recipes-extended/procps/procps-3.2.8/procps.init                    |    6 
- meta/recipes-extended/procps/procps-3.2.8/psmodule.patch                 |   21 
- meta/recipes-extended/procps/procps-3.2.8/sysctl.conf                    |   64 +
- meta/recipes-extended/procps/procps.inc                                  |    8 
- meta/recipes-extended/procps/procps_3.2.7.bb                             |   40 -
- meta/recipes-extended/procps/procps_3.2.8.bb                             |   40 +
- meta/recipes-extended/tzdata/tzdata_2010j.bb                             |  166 ----
- meta/recipes-extended/tzdata/tzdata_2010o.bb                             |  166 ++++
- meta/recipes-support/curl/curl_7.21.0.bb                                 |   54 -
- meta/recipes-support/curl/curl_7.21.2.bb                                 |   54 +
- meta/recipes-support/shared-mime-info/shared-mime-info.inc               |    1 
- meta/recipes-support/shared-mime-info/shared-mime-info_0.71.bb           |    1 
- meta/recipes-support/shared-mime-info/shared-mime-info_0.80.bb           |    2 
- 48 files changed, 1313 insertions(+), 1309 deletions(-)
+Is it possible to elaborate on this topic?  What was discussed and what
+was the conclusion?
 
-Qing He (9):
-      bzip2: upgrade to version 1.0.6
-      shared-mime-info: upgrade to version 0.80
-      tzdata: upgrade to version 2010o
-      curl: upgrade to version 7.21.2
-      nfs-utils: upgrade to version 1.2.3
-      pciutils: upgrade to version 3.1.7
-      iproute2: upgrade to version 2.6.35
-      iptables: upgrade to version 1.4.9
-      procps: upgrade to version 3.2.8
-
-Pull URL: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=qhe/distro
+/Esben
 
