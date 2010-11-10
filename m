@@ -1,32 +1,31 @@
-Return-Path: <rpurdie@linux.intel.com>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 546B94C80815
-	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 07:53:01 -0600 (CST)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAADqvYm003180;
-	Wed, 10 Nov 2010 13:52:57 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 02706-09; Wed, 10 Nov 2010 13:52:53 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAADqcvv003173
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 10 Nov 2010 13:52:43 GMT
-From: Richard Purdie <rpurdie@linux.intel.com>
-To: Esben Haabendal <eha@dev.doredevelopment.dk>
-In-Reply-To: <87zkthlabk.fsf@eha.doredevelopment.dk>
-References: <731F6F755F547148839CA39AD8282CE38F8C85@orsmsx001.amr.corp.intel.com>
-	<87fwv9mrr6.fsf@eha.doredevelopment.dk> <1289383317.1272.104.camel@rex>
-	<87zkthlabk.fsf@eha.doredevelopment.dk>
-Date: Wed, 10 Nov 2010 21:52:32 +0800
-Message-ID: <1289397152.1272.322.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Distro 1.0 Planning minutes
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 36CA34C80B6B
+	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 07:58:11 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oAADwA1d013768;
+	Wed, 10 Nov 2010 05:58:10 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Wed, 10 Nov 2010 05:58:09 -0800
+Received: from [128.224.146.67] ([128.224.146.67]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Wed, 10 Nov 2010 05:58:09 -0800
+Message-ID: <4CDAA4F0.1060802@windriver.com>
+Date: Wed, 10 Nov 2010 08:58:08 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.9pre) Gecko/20100217 Shredder/3.0.3pre
+	ThunderBrowse/3.2.8.1
+MIME-Version: 1.0
+To: Kumar Gala <galak@kernel.crashing.org>
+References: <414DA7D8-2E3E-4DEE-9C36-24EF976D7A99@kernel.crashing.org>
+	<4CDAA03C.8090004@windriver.com>
+In-Reply-To: <4CDAA03C.8090004@windriver.com>
+X-OriginalArrivalTime: 10 Nov 2010 13:58:09.0873 (UTC)
+	FILETIME=[4ED36410:01CB80DF]
+Cc: yocto@yoctoproject.org
+Subject: Re: TARGET_FPU for mpc8315e-rdb listed as SPE??
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,44 +37,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Nov 2010 13:53:01 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 10 Nov 2010 13:58:11 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2010-11-10 at 11:52 +0100, Esben Haabendal wrote:
-> Richard Purdie <rpurdie@linux.intel.com> writes:
-> 
-> > On Wed, 2010-11-10 at 10:50 +0100, Esben Haabendal wrote:
-> >> "Kamble, Nitin A" <nitin.a.kamble@intel.com> writes:
-> >> 
-> >> > Dongxiao:  sysroot per machine per recipe
-> >> 
-> >> Is it possible to elaborate on this topic?  What was discussed and what
-> >> was the conclusion?
-> >
-> > This is what we discussed in person in Cambridge, the idea of making it
-> > possible to have one sysroot per machine or one sysroot per recipe. Our
-> > intention is to make this work in the next few months.
-> >
-> > I pointed you at the existing task based sstate code which should make
-> > this kind of thing relatively straight forward.
-> 
-> This definitely sounds interesting.
-> 
-> Will it be possible to have recipe A (build) depend on B, which (build)
-> depends on C, without having C in the per recipe stage of A?
+On 10-11-10 08:38 AM, Bruce Ashfield wrote:
+> On 10-11-10 01:46 AM, Kumar Gala wrote:
+>> Why does the meta/conf/machine/mpc8315e-rdb.conf list TARGET_FPU as
+>> SPE. This isn't correct for an MPC8313 SoC.
+>
+> It isn't used at the moment, so we can safely
+> ignore this.
+>
+> It was a hold over from when I initially created
+> the BSP, and I've since changed it locally, but
+> haven't sent the updated BSP yet.
 
-Yes, that is the plan. I'm hoping this allows us to rigorously check
-package dependencies and whilst we might not default to it all the time,
-it would allow us to test this periodically.
+To clarify on this point, the kernel configuration
+is NOT using SPE for this, and I was attempting to
+use the FPU setting to trigger some different gcc
+flags during development the base of that test was
+an e500 board, so the SPE setting leaked in, but is
+unused.
 
-> Will it be possible to have recipe A (build) depend on selected files
-> from B, f.x. only a subset of libraries built by a recipe?
+At the moment, it is actually using soft-float, and
+I had planned to submit a change to clarify that.
 
-This currently isn't planned.
+If there's another option, let me know and I'll
+rebase my patches and change it again.
 
 Cheers,
 
-Richard
+Bruce
+
+>
+> Cheers,
+>
+> Bruce
+>
+>>
+>> - k
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
 
 
