@@ -1,30 +1,34 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id EAD7A4C80044
-	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 07:41:00 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oAADewtr011173;
-	Wed, 10 Nov 2010 05:40:58 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Wed, 10 Nov 2010 05:40:58 -0800
-Received: from [128.224.146.67] ([128.224.146.67]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Wed, 10 Nov 2010 05:40:58 -0800
-Message-ID: <4CDAA0E9.7010001@windriver.com>
-Date: Wed, 10 Nov 2010 08:40:57 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.9pre) Gecko/20100217 Shredder/3.0.3pre
-	ThunderBrowse/3.2.8.1
-MIME-Version: 1.0
-To: =?UTF-8?B?Sm/Do28gSGVucmlxdWUgRnJlaXRhcw==?= <joaohf@gmail.com>
-References: <AANLkTimr0Vm+kdDzCiJ07nOTZLgJDDC+DvNNwpgZ72xz@mail.gmail.com>
-In-Reply-To: <AANLkTimr0Vm+kdDzCiJ07nOTZLgJDDC+DvNNwpgZ72xz@mail.gmail.com>
-X-OriginalArrivalTime: 10 Nov 2010 13:40:58.0775 (UTC)
-	FILETIME=[E83E5270:01CB80DC]
-Cc: yocto@yoctoproject.org
-Subject: Re: two layers: hardware and distro.
+Return-Path: <rpurdie@linux.intel.com>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 1F06C4C80815
+	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 07:50:50 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAADolih003165;
+	Wed, 10 Nov 2010 13:50:47 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 02821-07; Wed, 10 Nov 2010 13:50:43 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAADoWLa003159
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 10 Nov 2010 13:50:37 GMT
+From: Richard Purdie <rpurdie@linux.intel.com>
+To: Kumar Gala <galak@kernel.crashing.org>
+In-Reply-To: <D10D6A3E-F997-489A-8921-83E5B33EE764@kernel.crashing.org>
+References: <BA703559-6EAC-43D9-BB84-E95DDCB1ED62@kernel.crashing.org>
+	<625BA99ED14B2D499DC4E29D8138F1504D2271119D@shsmsx502.ccr.corp.intel.com>
+	<401A3267-606A-4A1E-9F45-18F75B6B3FB7@kernel.crashing.org>
+	<1289395789.1272.260.camel@rex>
+	<D10D6A3E-F997-489A-8921-83E5B33EE764@kernel.crashing.org>
+Date: Wed, 10 Nov 2010 21:50:29 +0800
+Message-ID: <1289397029.1272.315.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: problem with fetching?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,43 +40,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Nov 2010 13:41:01 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 10 Nov 2010 13:50:51 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On 10-11-10 06:41 AM, João Henrique Freitas wrote:
-> Hi,
->
-> I am novice yocto user.
->
-> My target is create a BSP to my hardware+application. Is Yocto a
-> suitable project to do it?
->
-> I want to create two layers:
->
-> bsp-myhardware: linux kernel, firmware, specific hardware configuration
-> bsp-myapplication: linux distro with all software need. Ex: net-snmp,
-> lksctp (the target is telecom applications)
->
-> Currently yocto does not have many recipes that I need. No problem, I
-> can get from OE. We use kernel 2.6.22 and I presume that I need a
-> recipe to it and put inside bsp-myhardware, right?
+On Wed, 2010-11-10 at 07:31 -0600, Kumar Gala wrote:
+> On Nov 10, 2010, at 7:29 AM, Richard Purdie wrote:
+> 
+> > On Wed, 2010-11-10 at 06:32 -0600, Kumar Gala wrote:
+> >> ERROR: Task failed: Fetch failed: Unable to fetch URL cvs://anonymous@cvs.sv.gnu.org/cvsroot/config;module=config;method=pserver;date=20080123 from any source.
+> >> NOTE: package gnu-config-native-0.1+cvs20080123-r1: task do_fetch: Failed
+> >> ERROR: Task 211 (virtual:native:/local/home/galak/poky-laverne-4.0/meta/recipes-devtools/gnu-config/gnu-config_20080123.bb, do_fetch) failed with 1
+> >> ERROR: 'virtual:native:/local/home/galak/poky-laverne-4.0/meta/recipes-devtools/gnu-config/gnu-config_20080123.bb' failed
+> >> 
+> >> Attached is the full log.
+> > 
+> > Are you behind some kind of proxy/firewall? Its interesting its a cvs
+> > based recipe that is failing so it could be your cvs setup.
+> 
+> Yes, behind a proxy/firewall.  cvs is not normally allowed out.
+> 
+> > You could try placing
+> > http://autobuilder.pokylinux.org/sources/config_cvs.sv.gnu.org__20080123.tar.gz
+> > 
+> > into the downloads directory manually and touching the
+> > config_cvs.sv.gnu.org__20080123.tar.gz.md5 file there to show the
+> > fetcher the fetch is complete. If that works it would suggest the mirror
+> > fallback code in the fetcher isn't working as intended.
+> 
+> I'm new to this, where would my download dir be?
 
-Any interest in moving to a newer/different kernel ? The
-supported kernel for yocto is at 2.6.34 and I'll have a
--dev tree tracking 2.6.37 shortly.
+It defaults to "build/downloads" so in the build directory unless you
+changed it in local.conf.
 
-My interest is getting more BSPs using the same kernel
-version so we can leverage the common set of issues,
-bug fixes, CVEs, etc. It also helps me streamline the
-BSP bootstrapping process, which is a primary focus of
-mine at the moment.
+Cheers,
 
-Bruce
+Richard
 
->
->
-> Thanks.
->
 
 
