@@ -1,27 +1,37 @@
-Return-Path: <saul.wold@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 032EC4C811AC;
-	Wed, 10 Nov 2010 13:40:44 -0600 (CST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 10 Nov 2010 11:40:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,179,1288594800"; d="scan'208";a="347126223"
-Received: from unknown (HELO [10.255.13.55]) ([10.255.13.55])
-	by azsmga001.ch.intel.com with ESMTP; 10 Nov 2010 11:40:43 -0800
-Message-ID: <4CDAF53B.2030906@intel.com>
-Date: Wed, 10 Nov 2010 11:40:43 -0800
-From: Saul Wold <saul.wold@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
+Return-Path: <sachindhiman123@gmail.com>
+Received: from mail-gy0-f176.google.com (mail-gy0-f176.google.com
+	[209.85.160.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 15D6C4C80BCF
+	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 20:08:39 -0600 (CST)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by gyf2 with SMTP id 2so1005818gyf.35
+	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 18:08:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:received:sender:received:date
+	:x-google-sender-auth:message-id:subject:from:to:content-type;
+	bh=BwfLtOHdQvwnjQQJ9nC5DRsGnHbOjUGJvwdahYfpuHA=;
+	b=knjjJw5tavte4d/MsliFItjX9uI9JZ+nTlK0DD8ifezyO9B4xiz5URanA1qjM8ErSx
+	6Liyre5S4KQ/Am9tuDh4FWleDvkJPU94CZsMN6VGmwynPSBkDa5k0xu3qRUCjm0NiXhG
+	NhprBVPYyY8nKEjoJhKk62+YRmgurz9jVzqpY=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
+	:from:to:content-type;
+	b=c8+i77MprcbwoYeCVitob4ir+M4U644DF/3gF4O3P8qM5JBhqGYyQUJao5OUzJenb6
+	WGLJ3g3T8FAJ/ClS2PmtbfGOVm5XtEKXgBTVZFZAEt0q4U8vEEw2OogCzsxkmfv//zzP
+	xIrC9cCohv1W5XTC1BtMxoF8wliLjDvIN1AHA=
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <1289250400-16953-1-git-send-email-bruce.ashfield@windriver.com>
-In-Reply-To: <1289250400-16953-1-git-send-email-bruce.ashfield@windriver.com>
-X-Mailman-Approved-At: Wed, 10 Nov 2010 16:21:30 -0600
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"poky@yoctoproject.org" <poky@yoctoproject.org>
-Subject: Re: [poky][PULL] misc (minor) kernel fixes
+Received: by 10.100.126.11 with SMTP id y11mr71714anc.115.1289441318606; Wed,
+	10 Nov 2010 18:08:38 -0800 (PST)
+Sender: sachindhiman123@gmail.com
+Received: by 10.100.225.17 with HTTP; Wed, 10 Nov 2010 18:08:38 -0800 (PST)
+Date: Thu, 11 Nov 2010 07:38:38 +0530
+X-Google-Sender-Auth: Gc7Lk_FG956_c8zMPdcxl-Ezy7U
+Message-ID: <AANLkTi=77Owty-Qf1J8-GeNv17ZBjE98YNYGxuH4-_ek@mail.gmail.com>
+From: sachin kumar <sachinsomeone@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Problem in running poky-qemu
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,44 +43,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Nov 2010 19:40:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 11 Nov 2010 02:08:39 -0000
+Content-Type: multipart/alternative; boundary=0016e645a3c0c11e770494bd73bd
 
-On 11/08/2010 01:06 PM, Bruce Ashfield wrote:
-> In preparation for some larger kernel changes being sent
-> for review, I'm clearing my queue of a few minor changes
-> that were done while working on the 0.9 release.
->
-> The uImage one is particularly interesting, since it was
-> a fix for the default beagle board uImage being completely
-> unbootable.
->
-> The force revisions is largely cosmetic, but it is used
-> by my upcoming kernel dev layer and I think it is more in
-> the spirit of other variables that are set from local
-> configurations.
->
-> The following changes since commit e417aa98e4b4170f4b4aaf805cc8ea20f8593604:
->    Bruce Ashfield (1):
->          wrs_meta: add USB options for wacom tablet support
->
-> are available in the git repository at:
->
->    ssh://git@git.pokylinux.org/poky-contrib zedd/kernel-fixes
->
-> Bruce Ashfield (2):
->        linux-wrs: rename force_revisions and allow override
->        kernel: prefer the kernel produced uImage
->
->   meta/classes/kernel.bbclass                |    4 +++-
->   meta/recipes-kernel/linux/linux-wrs_git.bb |    6 +++---
->   2 files changed, 6 insertions(+), 4 deletions(-)
->
->
-Merged into Master
+--0016e645a3c0c11e770494bd73bd
+Content-Type: text/plain; charset=ISO-8859-1
 
-Thanks
-	Sau!
+Dear All:
 
+I am new to qemu, so please excuse me, i am asking basic question.
 
+Actually i want to run linux image for ppc on qemu.
+
+My host machine is running Fedora13.
+
+For that i have downloaded following from yocto project website.
+
+Disk Image: yocto-image-minimal-qemuppc-0.9.rootfs.ext3
+Kernel Image : zImage-2.6.34-qemuppc-0.9.bin
+Toolchain: yocto-eglibc-i586-i586-toolchain-sdk-0.9.tar.bz2
+
+Now toolchain was installed properly.
+
+Now when i am running poky-qemu from command line it is giving following
+message
+=============================================================================================
+[root@sachinlinux yocto_tools]# poky-qemu zImage-2.6.34-qemuppc-0.9.bin
+yocto-image-minimal-qemuppc-0.9.rootfs.ext3
+Set MACHINE to [qemuppc-0] based on kernel [zImage-2.6.34-qemuppc-0.9.bin]
+In order for this script to dynamically infer paths
+to kernels or filesystem images, you either need
+bitbake in your PATH or to source poky-init-build-env
+before running this script
+
+=============================================================================================
+I am blank about this message, which script they are referring.
+Please help me for the same.
+This will be a great help for me as i am at critical phase of one of my
+project.
+
+Kind Regards
+Sachin
+
+--0016e645a3c0c11e770494bd73bd
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Dear All:<br><br>I am new to qemu, so please excuse me, i am asking basic q=
+uestion.<br><br>Actually i want to run linux image for ppc on qemu. <br><br=
+>My host machine is running Fedora13.<br><br>For that i have downloaded fol=
+lowing from yocto project website.<br>
+<br>Disk Image: yocto-image-minimal-qemuppc-0.9.rootfs.ext3<br>Kernel Image=
+ : zImage-2.6.34-qemuppc-0.9.bin<br>Toolchain: yocto-eglibc-i586-i586-toolc=
+hain-sdk-0.9.tar.bz2<br><br>Now toolchain was installed properly.<br><br>
+Now when i am running poky-qemu from command line it is giving following me=
+ssage<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>[root@sa=
+chinlinux yocto_tools]# poky-qemu zImage-2.6.34-qemuppc-0.9.bin yocto-image=
+-minimal-qemuppc-0.9.rootfs.ext3 <br>
+Set MACHINE to [qemuppc-0] based on kernel [zImage-2.6.34-qemuppc-0.9.bin]<=
+br>In order for this script to dynamically infer paths<br>to kernels or fil=
+esystem images, you either need<br>bitbake in your PATH or to source poky-i=
+nit-build-env<br>
+before running this script<br><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D<br>I am blank about this message, which script they are ref=
+erring.<br>Please help me for the same. <br>
+This will be a great help for me as i am at critical phase of one of my pro=
+ject.<br><br>Kind Regards<br>Sachin <br><br><br><br><br>
+
+--0016e645a3c0c11e770494bd73bd--
