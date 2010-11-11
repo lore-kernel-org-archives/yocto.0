@@ -1,22 +1,35 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 140414C80FA4
-	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 23:48:12 -0600 (CST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 10 Nov 2010 21:48:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,181,1288594800"; d="scan'208";a="347327241"
-Received: from unknown (HELO [10.255.13.55]) ([10.255.13.55])
-	by azsmga001.ch.intel.com with ESMTP; 10 Nov 2010 21:48:04 -0800
-Message-ID: <4CDB8393.206@linux.intel.com>
-Date: Wed, 10 Nov 2010 21:48:03 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
+Return-Path: <joaohf@gmail.com>
+Received: from mail-fx0-f48.google.com (mail-fx0-f48.google.com
+	[209.85.161.48])
+	by mx1.pokylinux.org (Postfix) with ESMTP id A85A14C80815
+	for <yocto@yoctoproject.org>; Thu, 11 Nov 2010 09:19:15 -0600 (CST)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by fxm10 with SMTP id 10so1039189fxm.35
+	for <yocto@yoctoproject.org>; Thu, 11 Nov 2010 07:19:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:received:received:date:message-id
+	:subject:from:to:content-type:content-transfer-encoding;
+	bh=/AGISVcb+o4akuhqO2v3h3nWnWsql3ZlrsnQBMd1u7Y=;
+	b=D28Fwg+z+b1sscdRnbwkJObO4C+fBe1T9ssRTa5YqjXWVaTYM0/3huneQ85eTH6SrY
+	VXqGx0Iq5SiTZSknhzrAHjTgS17JLh+jnygOQvk+arFOl2NjFkCotLb6yJ9Abytdt4T2
+	+WtrlCtdPxcd2OdY1Y1KVzZGuW77B+8YVsYqU=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:content-transfer-encoding;
+	b=eMDL/wBUTXjNhSo19nyEe/DaUyQAdMXjXBJq+i1bzBwAQc9mCy0/SWuCVn40dD6ToS
+	bzc6PNa+1OS3ygtE3UGJc4MhZocu+IdTSagFniPXWoa2VDlG6NKOfpD1ZV+GBbuJ1EyI
+	enRVhbqn2DNBBqIJzgrdsFwTqpQ0Yl9RzrU98=
 MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: [PULL] Distro Core updates
+Received: by 10.223.86.194 with SMTP id t2mr270655fal.40.1289488754357; Thu,
+	11 Nov 2010 07:19:14 -0800 (PST)
+Received: by 10.223.106.19 with HTTP; Thu, 11 Nov 2010 07:19:14 -0800 (PST)
+Date: Thu, 11 Nov 2010 13:19:14 -0200
+Message-ID: <AANLkTi=7yQCQB4=bKYuW3DTx4-psGZPDKkQeum+qdw3=@mail.gmail.com>
+From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
+To: yocto@yoctoproject.org
+Subject: BSPs and duplicate files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,158 +41,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Nov 2010 05:48:13 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 11 Nov 2010 15:19:16 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
-Richard:
+Two questions:
 
-Grouping of distro updates along with some changes from Gary and Jiajun.
+With some BSPs, like
 
-Sau!
+meta
+meta-myhardware
+meta-mydistro
 
+I need to create a conf/checksums.ini for every BSP or append it to
+meta/conf/checksums.ini ? In other others, checksums.ini is per BSP or
+unique?
 
-Pull URL: git://git.pokylinux.org/poky-contrib.git
-   Branch: distro/master
-   Browse: 
-http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=distro/master
+In my meta-myhardware I have a kernel too:
 
+meta-myhardware/recipes-kernel/linux/linux.inc
+meta-myhardware/recipes-kernel/linux/linux_2.6.22.bb
 
-Gary Thomas (2):
-   Make /etc/timestamp usage consistent. Also keep timestamp in UTC
-   Remove superfluous 'create_etc_timestamp()' function - seems to be a
-     duplicate of 'rootfs_update_timestamp()'
+The file meta-myhardware/recipes-kernel/linux/linux.inc is the some of
+meta/recipes-kernel/linux/linux.inc. Is any way to use a unique file
+instead of duplicate it?
 
-Jiajun Xu (1):
-   imagetest-qemu: Add sanity test cases for scp/shutdown in target
-
-Qing He (10):
-   shared-mime-info: upgrade to version 0.80
-   tzdata: upgrade to version 2010o
-   curl: upgrade to version 7.21.2
-   nfs-utils: upgrade to version 1.2.3
-   pciutils: upgrade to version 3.1.7
-   iproute2: upgrade to version 2.6.35
-   iptables: upgrade to version 1.4.9
-   procps: upgrade to version 3.2.8
-   libnss-mdns: fix package removal
-   insane.bbclass: fix qa_configure and qa_staging
-
-Saul Wold (3):
-   base.bbclass/poky.conf: Fix INCOMPATIBLE_LICENSE Whitelist checking
-   git: Update recipe for git to include configure options
-   iproute2: update LIC_FILES_CHKSUM
-
-  meta/classes/base.bbclass                          |    9 ++-
-  meta/classes/image.bbclass                         |   10 +--
-  meta/classes/imagetest-qemu.bbclass                |    2 +-
-  meta/classes/insane.bbclass                        |    4 +-
-  meta/conf/distro/poky.conf                         |    6 +-
-  .../configure.patch                                |    0
-  .../guess-fix.patch                                |    0
-  .../lib-build-fix.patch                            |    0
-  .../pcimodules-pciutils.diff                       |    0
-  .../{pciutils_3.1.5.bb =pciutils_3.1.7.bb}       |    0
-  .../configure-cross.patch                          |    0
-  meta/recipes-connectivity/iproute2/iproute2.inc    |    3 +-
-  .../{iproute2_2.6.34.bb =iproute2_2.6.35.bb}     |    2 +-
-  .../libnss-mdns/libnss-mdns_0.10.bb                |    5 +-
-  .../{nfs-utils_1.2.2.bb =nfs-utils_1.2.3.bb}     |    2 +-
-  .../initscripts/initscripts-1.0/bootmisc.sh        |    8 +-
-  .../initscripts/initscripts-1.0/save-rtc.sh        |    2 +-
-  meta/recipes-devtools/git/git.inc                  |    6 +-
-  meta/recipes-devtools/git/git_1.7.2.1.bb           |    7 ++-
-  .../{iptables_1.4.8.bb =iptables_1.4.9.bb}       |    0
-  .../{procps-3.2.7 =procps-3.2.8}/install.patch   |    0
-  .../linux-limits.patch                             |    0
-  .../pagesz-not-constant.patch                      |    0
-  .../procmodule.patch                               |    0
-  .../{procps-3.2.7 =procps-3.2.8}/procps.init     |    0
-  .../{procps-3.2.7 =procps-3.2.8}/psmodule.patch  |    0
-  .../{procps-3.2.7 =procps-3.2.8}/sysctl.conf     |    0
-  meta/recipes-extended/procps/procps.inc            |    8 ++-
-  .../procps/{procps_3.2.7.bb =procps_3.2.8.bb}    |    8 +-
-  .../tzdata/{tzdata_2010j.bb =tzdata_2010o.bb}    |    2 +-
-  .../curl/{curl_7.21.0.bb =curl_7.21.2.bb}        |    0
-  .../shared-mime-info/shared-mime-info.inc          |    1 -
-  ...-mime-info_0.71.bb =shared-mime-info_0.80.bb} |    1 +
-  scripts/qemuimage-testlib                          |    4 +-
-  scripts/qemuimage-tests/sanity/boot                |    2 +-
-  scripts/qemuimage-tests/sanity/dmesg               |    2 +-
-  scripts/qemuimage-tests/sanity/scp                 |   71 
-++++++++++++++++++++
-  scripts/qemuimage-tests/sanity/shutdown            |   70 
-+++++++++++++++++++
-  scripts/qemuimage-tests/sanity/ssh                 |    2 +-
-  .../scenario/qemuarm/poky-image-sato               |    2 +
-  .../scenario/qemuarm/poky-image-sdk                |    2 +
-  .../scenario/qemumips/poky-image-sato              |    2 +
-  .../scenario/qemumips/poky-image-sdk               |    2 +
-  .../scenario/qemuppc/poky-image-sato               |    2 +
-  .../scenario/qemuppc/poky-image-sdk                |    2 +
-  .../scenario/qemux86-64/poky-image-minimal         |    1 +
-  .../scenario/qemux86-64/poky-image-sato            |    5 ++
-  .../scenario/qemux86-64/poky-image-sdk             |    5 ++
-  .../scenario/qemux86/poky-image-sato               |    2 +
-  .../scenario/qemux86/poky-image-sdk                |    2 +
-  50 files changed, 222 insertions(+), 42 deletions(-)
-  rename meta/recipes-bsp/pciutils/{pciutils-3.1.5 
-=pciutils-3.1.7}/configure.patch (100%)
-  rename meta/recipes-bsp/pciutils/{pciutils-3.1.5 
-=pciutils-3.1.7}/guess-fix.patch (100%)
-  rename meta/recipes-bsp/pciutils/{pciutils-3.1.5 
-=pciutils-3.1.7}/lib-build-fix.patch (100%)
-  rename meta/recipes-bsp/pciutils/{pciutils-3.1.5 
-=pciutils-3.1.7}/pcimodules-pciutils.diff (100%)
-  rename meta/recipes-bsp/pciutils/{pciutils_3.1.5.bb 
-=pciutils_3.1.7.bb} (100%)
-  rename meta/recipes-connectivity/iproute2/{iproute2-2.6.34 
-=iproute2-2.6.35}/configure-cross.patch (10
-0%)
-  rename meta/recipes-connectivity/iproute2/{iproute2_2.6.34.bb 
-=iproute2_2.6.35.bb} (92%)
-  rename meta/recipes-connectivity/nfs-utils/{nfs-utils_1.2.2.bb 
-=nfs-utils_1.2.3.bb} (99%)
-  rename meta/recipes-extended/iptables/{iptables_1.4.8.bb 
-=iptables_1.4.9.bb} (100%)
-  rename meta/recipes-extended/procps/{procps-3.2.7 
-=procps-3.2.8}/install.patch (100%)
-  rename meta/recipes-extended/procps/{procps-3.2.7 
-=procps-3.2.8}/linux-limits.patch (100%)
-  rename meta/recipes-extended/procps/{procps-3.2.7 
-=procps-3.2.8}/pagesz-not-constant.patch (100%)
-  rename meta/recipes-extended/procps/{procps-3.2.7 
-=procps-3.2.8}/procmodule.patch (100%)
-  rename meta/recipes-extended/procps/{procps-3.2.7 
-=procps-3.2.8}/procps.init (100%)
-  rename meta/recipes-extended/procps/{procps-3.2.7 
-=procps-3.2.8}/psmodule.patch (100%)
-  rename meta/recipes-extended/procps/{procps-3.2.7 
-=procps-3.2.8}/sysctl.conf (100%)
-  rename meta/recipes-extended/procps/{procps_3.2.7.bb =procps_3.2.8.bb} 
-(89%)
-  rename meta/recipes-extended/tzdata/{tzdata_2010j.bb =tzdata_2010o.bb} 
-(99%)
-  rename meta/recipes-support/curl/{curl_7.21.0.bb =curl_7.21.2.bb} (100%)
-  rename meta/recipes-support/shared-mime-info/{shared-mime-info_0.71.bb 
-=shared-mime-info_0.80.bb} (74%
-)
-  create mode 100755 scripts/qemuimage-tests/sanity/scp
-  create mode 100755 scripts/qemuimage-tests/sanity/shutdown
-  create mode 100644 
-scripts/qemuimage-tests/scenario/qemux86-64/poky-image-minimal
-  create mode 100644 
-scripts/qemuimage-tests/scenario/qemux86-64/poky-image-sato
-  create mode 100644 
-scripts/qemuimage-tests/scenario/qemux86-64/poky-image-sdk
-
--- 
-     Sau!
-
-Saul Wold
-Yocto Component Wrangler @ Intel
-Yocto Project / Poky Build System
-
-
+--=20
+-----------------------------------------------------------
+Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
+Campinas-SP-Brasil
+BSD051283
+LPI 1
+http://www.joaohfreitas.eti.br
 
