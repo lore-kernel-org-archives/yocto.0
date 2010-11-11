@@ -1,27 +1,22 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 433C14C80FA4
-	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 20:30:07 -0600 (CST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 10 Nov 2010 18:30:05 -0800
+Return-Path: <sgw@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 140414C80FA4
+	for <yocto@yoctoproject.org>; Wed, 10 Nov 2010 23:48:12 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 10 Nov 2010 21:48:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,181,1288594800"; d="scan'208";a="625634943"
-Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
-	by fmsmga002.fm.intel.com with ESMTP; 10 Nov 2010 18:29:51 -0800
-Received: from [10.7.199.55] (10.7.199.55) by rrsmsx603.amr.corp.intel.com
-	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
-	Wed, 10 Nov 2010 19:29:37 -0700
-Message-ID: <4CDB5513.7060202@intel.com>
-Date: Wed, 10 Nov 2010 18:29:39 -0800
-From: Scott Garman <scott.a.garman@intel.com>
+X-IronPort-AV: E=Sophos;i="4.59,181,1288594800"; d="scan'208";a="347327241"
+Received: from unknown (HELO [10.255.13.55]) ([10.255.13.55])
+	by azsmga001.ch.intel.com with ESMTP; 10 Nov 2010 21:48:04 -0800
+Message-ID: <4CDB8393.206@linux.intel.com>
+Date: Wed, 10 Nov 2010 21:48:03 -0800
+From: Saul Wold <sgw@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.12) Gecko/20101027 Fedora/3.1.6-1.fc14 Lightning/1.0b3pre
-	Thunderbird/3.1.6
+	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
+	Thunderbird/3.0.5
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <AANLkTi=77Owty-Qf1J8-GeNv17ZBjE98YNYGxuH4-_ek@mail.gmail.com>
-In-Reply-To: <AANLkTi=77Owty-Qf1J8-GeNv17ZBjE98YNYGxuH4-_ek@mail.gmail.com>
-Subject: Re: Problem in running poky-qemu
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: [PULL] Distro Core updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,67 +28,158 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Nov 2010 02:30:07 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Thu, 11 Nov 2010 05:48:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 11/10/2010 06:08 PM, sachin kumar wrote:
-> Dear All:
->
-> I am new to qemu, so please excuse me, i am asking basic question.
->
-> Actually i want to run linux image for ppc on qemu.
->
-> My host machine is running Fedora13.
->
-> For that i have downloaded following from yocto project website.
->
-> Disk Image: yocto-image-minimal-qemuppc-0.9.rootfs.ext3
-> Kernel Image : zImage-2.6.34-qemuppc-0.9.bin
-> Toolchain: yocto-eglibc-i586-i586-toolchain-sdk-0.9.tar.bz2
->
-> Now toolchain was installed properly.
->
-> Now when i am running poky-qemu from command line it is giving following
-> message
-> =============================================================================================
-> [root@sachinlinux yocto_tools]# poky-qemu zImage-2.6.34-qemuppc-0.9.bin
-> yocto-image-minimal-qemuppc-0.9.rootfs.ext3
-> Set MACHINE to [qemuppc-0] based on kernel [zImage-2.6.34-qemuppc-0.9.bin]
-> In order for this script to dynamically infer paths
-> to kernels or filesystem images, you either need
-> bitbake in your PATH or to source poky-init-build-env
-> before running this script
->
-> =============================================================================================
-> I am blank about this message, which script they are referring.
 
-Hi Sachin,
+Richard:
 
-When you installed the toolchain tarball 
-(yocto-eglibc-i586-i586-toolchain-sdk-0.9.tar.bz2), it should have 
-created a script /opt/poky/environment-setup-<arch>. That's the one you 
-want to source.
+Grouping of distro updates along with some changes from Gary and Jiajun.
 
-The other issue is that we changed the naming conventions of the kernel 
-and qemu images at the last minute, and the poky-qemu script needs some 
-additional help to figure out which machine architecture you're using 
-and the format of the image. So you need to add "qemuppc" and "ext3" to 
-the list of options to poky-qemu.
-
-$ source /opt/poky/environment-setup-ppc603e-poky-linux
-$ poky-qemu qemuppc zImage-2.6.34-qemuppc-0.9.bin 
-yocto-image-minimal-qemuppc-0.9.rootfs.ext3 ext3
-
-should get you going.
-
-This needs to get fixed ASAP and I'm going to submit a patch for it 
-tomorrow in master. Thanks for your patience.
-
-Scott
+Sau!
 
 
+Pull URL: git://git.pokylinux.org/poky-contrib.git
+   Branch: distro/master
+   Browse: 
+http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=distro/master
 
+
+Gary Thomas (2):
+   Make /etc/timestamp usage consistent. Also keep timestamp in UTC
+   Remove superfluous 'create_etc_timestamp()' function - seems to be a
+     duplicate of 'rootfs_update_timestamp()'
+
+Jiajun Xu (1):
+   imagetest-qemu: Add sanity test cases for scp/shutdown in target
+
+Qing He (10):
+   shared-mime-info: upgrade to version 0.80
+   tzdata: upgrade to version 2010o
+   curl: upgrade to version 7.21.2
+   nfs-utils: upgrade to version 1.2.3
+   pciutils: upgrade to version 3.1.7
+   iproute2: upgrade to version 2.6.35
+   iptables: upgrade to version 1.4.9
+   procps: upgrade to version 3.2.8
+   libnss-mdns: fix package removal
+   insane.bbclass: fix qa_configure and qa_staging
+
+Saul Wold (3):
+   base.bbclass/poky.conf: Fix INCOMPATIBLE_LICENSE Whitelist checking
+   git: Update recipe for git to include configure options
+   iproute2: update LIC_FILES_CHKSUM
+
+  meta/classes/base.bbclass                          |    9 ++-
+  meta/classes/image.bbclass                         |   10 +--
+  meta/classes/imagetest-qemu.bbclass                |    2 +-
+  meta/classes/insane.bbclass                        |    4 +-
+  meta/conf/distro/poky.conf                         |    6 +-
+  .../configure.patch                                |    0
+  .../guess-fix.patch                                |    0
+  .../lib-build-fix.patch                            |    0
+  .../pcimodules-pciutils.diff                       |    0
+  .../{pciutils_3.1.5.bb =pciutils_3.1.7.bb}       |    0
+  .../configure-cross.patch                          |    0
+  meta/recipes-connectivity/iproute2/iproute2.inc    |    3 +-
+  .../{iproute2_2.6.34.bb =iproute2_2.6.35.bb}     |    2 +-
+  .../libnss-mdns/libnss-mdns_0.10.bb                |    5 +-
+  .../{nfs-utils_1.2.2.bb =nfs-utils_1.2.3.bb}     |    2 +-
+  .../initscripts/initscripts-1.0/bootmisc.sh        |    8 +-
+  .../initscripts/initscripts-1.0/save-rtc.sh        |    2 +-
+  meta/recipes-devtools/git/git.inc                  |    6 +-
+  meta/recipes-devtools/git/git_1.7.2.1.bb           |    7 ++-
+  .../{iptables_1.4.8.bb =iptables_1.4.9.bb}       |    0
+  .../{procps-3.2.7 =procps-3.2.8}/install.patch   |    0
+  .../linux-limits.patch                             |    0
+  .../pagesz-not-constant.patch                      |    0
+  .../procmodule.patch                               |    0
+  .../{procps-3.2.7 =procps-3.2.8}/procps.init     |    0
+  .../{procps-3.2.7 =procps-3.2.8}/psmodule.patch  |    0
+  .../{procps-3.2.7 =procps-3.2.8}/sysctl.conf     |    0
+  meta/recipes-extended/procps/procps.inc            |    8 ++-
+  .../procps/{procps_3.2.7.bb =procps_3.2.8.bb}    |    8 +-
+  .../tzdata/{tzdata_2010j.bb =tzdata_2010o.bb}    |    2 +-
+  .../curl/{curl_7.21.0.bb =curl_7.21.2.bb}        |    0
+  .../shared-mime-info/shared-mime-info.inc          |    1 -
+  ...-mime-info_0.71.bb =shared-mime-info_0.80.bb} |    1 +
+  scripts/qemuimage-testlib                          |    4 +-
+  scripts/qemuimage-tests/sanity/boot                |    2 +-
+  scripts/qemuimage-tests/sanity/dmesg               |    2 +-
+  scripts/qemuimage-tests/sanity/scp                 |   71 
+++++++++++++++++++++
+  scripts/qemuimage-tests/sanity/shutdown            |   70 
++++++++++++++++++++
+  scripts/qemuimage-tests/sanity/ssh                 |    2 +-
+  .../scenario/qemuarm/poky-image-sato               |    2 +
+  .../scenario/qemuarm/poky-image-sdk                |    2 +
+  .../scenario/qemumips/poky-image-sato              |    2 +
+  .../scenario/qemumips/poky-image-sdk               |    2 +
+  .../scenario/qemuppc/poky-image-sato               |    2 +
+  .../scenario/qemuppc/poky-image-sdk                |    2 +
+  .../scenario/qemux86-64/poky-image-minimal         |    1 +
+  .../scenario/qemux86-64/poky-image-sato            |    5 ++
+  .../scenario/qemux86-64/poky-image-sdk             |    5 ++
+  .../scenario/qemux86/poky-image-sato               |    2 +
+  .../scenario/qemux86/poky-image-sdk                |    2 +
+  50 files changed, 222 insertions(+), 42 deletions(-)
+  rename meta/recipes-bsp/pciutils/{pciutils-3.1.5 
+=pciutils-3.1.7}/configure.patch (100%)
+  rename meta/recipes-bsp/pciutils/{pciutils-3.1.5 
+=pciutils-3.1.7}/guess-fix.patch (100%)
+  rename meta/recipes-bsp/pciutils/{pciutils-3.1.5 
+=pciutils-3.1.7}/lib-build-fix.patch (100%)
+  rename meta/recipes-bsp/pciutils/{pciutils-3.1.5 
+=pciutils-3.1.7}/pcimodules-pciutils.diff (100%)
+  rename meta/recipes-bsp/pciutils/{pciutils_3.1.5.bb 
+=pciutils_3.1.7.bb} (100%)
+  rename meta/recipes-connectivity/iproute2/{iproute2-2.6.34 
+=iproute2-2.6.35}/configure-cross.patch (10
+0%)
+  rename meta/recipes-connectivity/iproute2/{iproute2_2.6.34.bb 
+=iproute2_2.6.35.bb} (92%)
+  rename meta/recipes-connectivity/nfs-utils/{nfs-utils_1.2.2.bb 
+=nfs-utils_1.2.3.bb} (99%)
+  rename meta/recipes-extended/iptables/{iptables_1.4.8.bb 
+=iptables_1.4.9.bb} (100%)
+  rename meta/recipes-extended/procps/{procps-3.2.7 
+=procps-3.2.8}/install.patch (100%)
+  rename meta/recipes-extended/procps/{procps-3.2.7 
+=procps-3.2.8}/linux-limits.patch (100%)
+  rename meta/recipes-extended/procps/{procps-3.2.7 
+=procps-3.2.8}/pagesz-not-constant.patch (100%)
+  rename meta/recipes-extended/procps/{procps-3.2.7 
+=procps-3.2.8}/procmodule.patch (100%)
+  rename meta/recipes-extended/procps/{procps-3.2.7 
+=procps-3.2.8}/procps.init (100%)
+  rename meta/recipes-extended/procps/{procps-3.2.7 
+=procps-3.2.8}/psmodule.patch (100%)
+  rename meta/recipes-extended/procps/{procps-3.2.7 
+=procps-3.2.8}/sysctl.conf (100%)
+  rename meta/recipes-extended/procps/{procps_3.2.7.bb =procps_3.2.8.bb} 
+(89%)
+  rename meta/recipes-extended/tzdata/{tzdata_2010j.bb =tzdata_2010o.bb} 
+(99%)
+  rename meta/recipes-support/curl/{curl_7.21.0.bb =curl_7.21.2.bb} (100%)
+  rename meta/recipes-support/shared-mime-info/{shared-mime-info_0.71.bb 
+=shared-mime-info_0.80.bb} (74%
+)
+  create mode 100755 scripts/qemuimage-tests/sanity/scp
+  create mode 100755 scripts/qemuimage-tests/sanity/shutdown
+  create mode 100644 
+scripts/qemuimage-tests/scenario/qemux86-64/poky-image-minimal
+  create mode 100644 
+scripts/qemuimage-tests/scenario/qemux86-64/poky-image-sato
+  create mode 100644 
+scripts/qemuimage-tests/scenario/qemux86-64/poky-image-sdk
+
+-- 
+     Sau!
+
+Saul Wold
+Yocto Component Wrangler @ Intel
+Yocto Project / Poky Build System
 
 
 
