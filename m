@@ -1,24 +1,29 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 66B184C80B6B
-	for <yocto@yoctoproject.org>; Thu, 11 Nov 2010 18:17:03 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 11 Nov 2010 16:15:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,185,1288594800"; 
-	d="csv'?scan'208";a="676700302"
-Received: from unknown (HELO [10.255.13.55]) ([10.255.13.55])
-	by orsmga001.jf.intel.com with ESMTP; 11 Nov 2010 16:15:01 -0800
-Message-ID: <4CDC8704.9020506@linux.intel.com>
-Date: Thu, 11 Nov 2010 16:15:00 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 388F34C80B6B
+	for <yocto@yoctoproject.org>; Thu, 11 Nov 2010 19:46:47 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oAC1kknX004583;
+	Thu, 11 Nov 2010 17:46:46 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Thu, 11 Nov 2010 17:46:45 -0800
+Received: from bruce-ashfields-macbook.local ([128.224.143.18]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Thu, 11 Nov 2010 17:46:45 -0800
+Message-ID: <4CDC9C83.7020506@windriver.com>
+Date: Thu, 11 Nov 2010 20:46:43 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.12) Gecko/20101027 Thunderbird/3.1.6
 MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-X-Mailman-Approved-At: Thu, 11 Nov 2010 18:56:48 -0600
-Subject: Recipes updates planned for 1.0
+To: Saul Wold <sgw@linux.intel.com>
+References: <4CDC8704.9020506@linux.intel.com>
+In-Reply-To: <4CDC8704.9020506@linux.intel.com>
+X-OriginalArrivalTime: 12 Nov 2010 01:46:45.0872 (UTC)
+	FILETIME=[76BFBF00:01CB820B]
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: Recipes updates planned for 1.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,370 +35,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Nov 2010 00:17:04 -0000
-X-Groupsio-MsgNum: 261
-Content-Type: multipart/mixed; boundary="------------010000020001020608070205"
-
---------------010000020001020608070205
+X-List-Received-Date: Fri, 12 Nov 2010 01:46:47 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
+On 10-11-11 7:15 PM, Saul Wold wrote:
+>
+> Distro / User Space Folks:
+>
+> Attached is a spread sheet that shows the recipes we plan to update for
+> the 1.0 release. This list is based on the reorganization that will be
+> coming into master soon and shows that there are 231 recipes that need
+> updating and another 93 recipes that need some manual investigation due
+> to the checkpkg task not able to determine the version.
 
-Distro / User Space Folks:
+I couldn't easily read the CSV in my email, but I scanned
+for kernel elements.
 
-Attached is a spread sheet that shows the recipes we plan to update for 
-the 1.0 release. This list is based on the reorganization that will be 
-coming into master soon and shows that there are 231 recipes that need 
-updating and another 93 recipes that need some manual investigation due 
-to the checkpkg task not able to determine the version.
+I can't tell, are we updating kexec to 2.0.1 ? If so, that's
+good. kexec is pretty tightly coupled to the kernel version, I'd
+suggest doing it last, or not doing it at all. I'm talking
+less about x86 here and more about non-x86. There are more
+patches to the 2.0.x version that we can apply in this area,
+but unless we have a test-per arch, it is more than likely
+broken.
 
-For the first phase, we will focus on updating as many of these that can 
-be managed, many of these are dot.dot updates and should be easy. The 
-focus will be on toolchain, core utilities and libraries, along with the 
-graphics core (Xorg and Qt).
+Other related / coupled kernel -> userspace apps appear to be
+at the correct versions.
 
-We will continue to focus on making sure that LICENSE and 
-LIC_FILES_CHKSUM metadata is correct, along with adding URI checksums.
+Cheers,
 
-Thanks to all for working on this effort.
--- 
-     Sau!
+Bruce
 
-Saul Wold
-Yocto Component Wrangler @ Intel
-Yocto Project / Poky Build System
+>
+> For the first phase, we will focus on updating as many of these that can
+> be managed, many of these are dot.dot updates and should be easy. The
+> focus will be on toolchain, core utilities and libraries, along with the
+> graphics core (Xorg and Qt).
+>
+> We will continue to focus on making sure that LICENSE and
+> LIC_FILES_CHKSUM metadata is correct, along with adding URI checksums.
+>
+> Thanks to all for working on this effort.
 
 
---------------010000020001020608070205
-Content-Type: text/csv;
- name="update_for_1.0.csv"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="update_for_1.0.csv"
-
-"gtk-theme-darkilouche","x11/base","git","b4ce102a303d1176107a9d9d28c14f7da78feedd",1,"N/A","UPDATE","ErrGitAccess","people.freedesktop.org/~jimmac/Darkilouche.git","Dark GTK+ theme",
-"gconf-dbus","x11/utils","svn",705,"2.16.0+svnr705","N/A","UPDATE","ErrSvnAccess","developer.imendio.com/svn/gconf-dbus","Settings daemon using DBUS for communication.",
-"puzzles","base","svn",7593,"svn_8956","N/A","UPDATE","ErrSvnAccess","ixion.tartarus.org/main","None",
-"gtkhtml2","libs","svn",1144,"2.11.1","N/A","UPDATE","ErrSvnAccess","svn.gnome.org/svn/gtkhtml2/","A GTK+ HTML rendering library.",
-"minicom","console/network","http",2.3,"N/A","N/A","ErrNoRecipeData","ErrUnknown","alioth.debian.org/frs/download.php/2332/minicom-2.3.tar.gz","None",
-"mingetty","console/utils","http",1.08,"N/A","N/A","ErrNoRecipeData","ErrUnknown","cdnetworks-kr-1.dl.sourceforge.net/project/mingetty/mingetty/1.08/mingetty-1.08.tar.gz"," A compact getty program for virtual consoles only",
-"eggdbus","base","http",0.6,0.6,"N/A","MATCH","ErrUnknown","cgit.freedesktop.org/~david/eggdbus/snapshot/eggdbus-0.6.tar.bz2","An alternative to dbus-glib. It is designed specifically to make it comfortable to work with very large and potentially complex D-Bus services like e.g. DeviceKit-disks",
-"acpid","base","http","1.0.6","1.0.10","N/A","UPDATE","ErrUnknown","downloads.sourceforge.net/acpid/acpid-1.0.6.tar.gz","A daemon for delivering ACPI events.",
-"beecrypt","base","http","4.1.2","4.2.1","N/A","UPDATE","ErrUnknown","downloads.sourceforge.net/beecrypt/beecrypt-4.1.2.tar.gz","Beecrypt is a general-purpose cryptography library.",
-"boost","libs","http","1.44.0","1.43.0","N/A","UPDATE","ErrUnknown","downloads.sourceforge.net/boost/boost_1_44_0.tar.bz2","Free peer-reviewed portable C++ source libraries",
-"libcheck","devel","http","0.9.8","0.9.8","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/check/check-0.9.8.tar.gz","Check Test Framework",
-"cracklib","base","http","2.8.16","2.8.16","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/cracklib/cracklib-2.8.16.tar.gz","A pro-active password checker library",
-"e2fsprogs","base","http","1.41.12","1.41.12","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/e2fsprogs/e2fsprogs-1.41.12.tar.gz","The Ext2 Filesystem Utilities (e2fsprogs) contain all of the standard utilities for creating, fixing, configuring , and debugging ext2 filesystems.",
-"expat","libs","http","2.0.1","2.0.1","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/expat/expat-2.0.1.tar.gz","Expat is an XML parser library written in C. It is a stream-oriented parser in which an application registers handlers for things the parser might find in the XML document (like start tags)",
-"flac","libs","http","1.2.1","1.2.1","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/flac/flac-1.2.1.tar.gz","FLAC stands for Free Lossless Audio Codec, an audio format similar to MP3, but lossless.",
-"flex","devel","http","2.5.35","2.5.35","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/flex/flex-2.5.35.tar.bz2","Flex is a tool for generating programs that recognize lexical patterns in text.",
-"libical","libs","http",0.44,0.44,"N/A","MATCH","ErrUnknown","downloads.sourceforge.net/freeassociation/libical-0.44.tar.gz","iCal and scheduling (RFC 2445, 2446, 2447) library",
-"freetype","libs","http","2.3.12","2.3.12","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/freetype/freetype-2.3.12.tar.bz2","Freetype font rendering library",
-"ethtool","console/network","http","2.6.34","2.6.34","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/gkernel/ethtool-2.6.34.tar.gz","A small utility for examining and tuning the settings of your ethernet-based network interfaces.",
-"hdparm","console/utils","http",6.3,9.28,"N/A","UPDATE","ErrUnknown","downloads.sourceforge.net/hdparm/hdparm-6.3.tar.gz","hdparm is a Linux shell utility for viewing and manipulating various IDE drive and driver parameters.",
-"irda-utils","base","http","0.9.18","0.9.18","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/irda/irda-utils-0.9.18.tar.gz","Provides common files needed to use IrDA. IrDA allows communication over Infrared with other devices such as phones and laptops.",
-"lame","console/utils","http","3.98.4","3.98.4","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/lame/lame-3.98.4.tar.gz","LAME is an educational tool to be used for learning about MP3 encoding.",
-"console-tools","base","http","0.3.2","0.3.2","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/lct/console-tools-0.3.2.tar.gz","Provides tools that enable the set-up and manipulation of the linux console and console-font files.",
-"libpng","libs","http","1.2.44","1.4.3","N/A","UPDATE","ErrUnknown","downloads.sourceforge.net/libpng/libpng-1.2.44.tar.bz2","PNG Library",
-"libtirpc","libs/network","http","0.2.1","0.2.1","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/libtirpc/libtirpc-0.2.1.tar.bz2","Libtirpc is a port of Suns Transport-Independent RPC library to Linux",
-"libusb1","libs","http","1.0.8","1.0.8","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/libusb/libusb-1.0.8.tar.bz2","userspace library to access USB (version 1.0)",
-"libusb-compat","libs","http","0.1.3","0.1.3","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/libusb/libusb-compat-0.1.3.tar.bz2","libusb-0.1 compatible layer for libusb1, a drop-in replacement that aims to look, feel and behave exactly like libusb-0.1",
-"x11vnc","x11/utils","http","0.9.3","0.9.11_dev","N/A","UPDATE","ErrUnknown","downloads.sourceforge.net/libvncserver/x11vnc-0.9.3.tar.gz","Export your X session on-the-fly via VNC",
-"sysfsutils","base","http","2.1.0","2.1.0","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/linux-diag/sysfsutils-2.1.0.tar.gz","Tools for working with the sysfs virtual filesystem.  The tool 'systool' can query devices by bus, class and topology.",
-"usbutils","base","http",0.86,0.86,"N/A","MATCH","ErrUnknown","downloads.sourceforge.net/linux-usb/usbutils-0.86.tar.gz","Contains the lsusb utility for inspecting the devices connected to the USB bus.",
-"menu-cache","x11/libs","http","0.3.2","0.3.2","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/lxde/menu-cache-0.3.2.tar.gz","A library creating and utilizing caches to speed up freedesktop.org application menus",
-"libmad","libs","http","0.15.1b","0.15.1b","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/mad/libmad-0.15.1b.tar.gz","MPEG Audio Decoder Library",
-"telepathy-mission-control","libs","http",4.67,"5.5.0","N/A","UPDATE","ErrUnknown","downloads.sourceforge.net/mission-control/telepathy-mission-control-4.67.tar.gz","Central control for Telepathy connection managers",
-"nasm","devel","http",2.07,2.07,"N/A","MATCH","ErrUnknown","downloads.sourceforge.net/nasm/nasm-2.07.tar.bz2","General-purpose x86 assembler",
-"nfs-utils","console/network","http","1.2.3","1.2.2","N/A","UPDATE","ErrUnknown","downloads.sourceforge.net/nfs/nfs-utils-1.2.3.tar.bz2","The nfs-utils package provides a daemon for the kernel NFS server and related tools.",
-"libomxil","base","http","0.3.3","0.9.2.1","N/A","UPDATE","ErrUnknown","downloads.sourceforge.net/omxil/libomxil-B-0.3.3.tar.gz","Bellagio OpenMAX Integration Layer",
-"oprofile","devel","http","0.9.6","0.9.6","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/oprofile/oprofile-0.9.6.tar.gz","OProfile is a system-wide profiler for Linux systems, capable of profiling all running code at low overhead.",
-"libfm","x11/libs","http","0.1.12","0.1.12","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/pcmanfm/libfm-0.1.12.tar.gz","Library for file management",
-"pcmanfm","x11","http","0.9.7","0.9.7","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/pcmanfm/pcmanfm-0.9.7.tar.gz","Fast lightweight tabbed filemanager",
-"libpcre","devel","http",8.1,"N/A","N/A","ErrNoRecipeData","ErrUnknown","downloads.sourceforge.net/pcre/pcre-8.10.tar.bz2","Perl-compatible regular expression library. PCRE has its own native API, but a set of 'wrapper' functions that are based on the POSIX API are also supplied in the library libpcreposix. Note that this just provides a POSIX calling interface to PCRE; the regular expressions themselves still follow Perl syntax and semantics. The header file for the POSIX-style functions is called pcreposix.h.",
-"quota","base","http",3.17,3.17,"N/A","MATCH","ErrUnknown","downloads.sourceforge.net/project/linuxquota/quota-tools/3.17/quota-3.17.tar.gz","display disk usage and limits",
-"psmisc","base","http",22.2,22.11,"N/A","UPDATE","ErrUnknown","downloads.sourceforge.net/psmisc/psmisc-22.2.tar.gz","procfs tools",
-"rpcbind","console/network","http","0.2.0","0.2.0","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/rpcbind/rpcbind-0.2.0.tar.bz2","The rpcbind utility is a server that converts RPC                program numbers into universal addresses.",
-"python-scons","devel/python","http","1.3.0","1.3.0","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/scons/scons-1.3.0.tar.gz","A Software Construction Tool",
-"setserial","console/utils","http",2.17,2.17,"N/A","MATCH","ErrUnknown","downloads.sourceforge.net/setserial/setserial-2.17.tar.gz","setserial is a program designed to set and/or report the configuration information associated with a serial port",
-"strace","console/utils","http","4.5.20","4.5.20","N/A","MATCH","ErrUnknown","downloads.sourceforge.net/strace/strace-4.5.20.tar.bz2","strace is a system call tracing tool.",
-"tcl-native","devel/tcltk","http","8.5.8","N/A","N/A","ErrNoRecipeData","ErrUnknown","downloads.sourceforge.net/tcl/tcl8.5.8-src.tar.gz","Tool Command Language",
-"watchdog","base","http",5.9,5.9,"N/A","MATCH","ErrUnknown","downloads.sourceforge.net/watchdog/watchdog-5.9.tar.gz","Watchdog is a daemon that checks if your system is still working. If programs in user space are not longer executed it will reboot the system.",
-"tzdata","base","ftp","2010o","2010j","N/A","UPDATE","ErrUnknown","elsie.nci.nih.gov/pub/tzdata2010o.tar.gz","Timezone data",
-"mtools","base","http","3.9.9","4.0.13","N/A","UPDATE","ErrUnknown","folks.o-hand.com/richard/poky/sources/mtools-3.9.9.tar.gz","Mtools is a collection of utilities for accessing MS-DOS disks from Unix without mounting them.",
-"net-tools","base","ftp","1.60-23","1.60-23","N/A","MATCH","ErrUnknown","ftp.debian.org/debian/pool/main/n/net-tools/net-tools_1.60.orig.tar.gz","None",
-"bison","devel","ftp","2.4.2","2.4.2","N/A","MATCH","ErrUnknown","ftp.gnu.org/gnu/bison/bison-2.4.2.tar.gz","GNU Project parser generator (yacc replacement).",
-"m4-native","base","ftp","1.4.13","N/A","N/A","ErrNoRecipeData","ErrUnknown","ftp.gnu.org/gnu/m4/m4-1.4.13.tar.gz","GNU m4 is an implementation of the traditional Unix macro processor.",
-"gpgme","base","ftp","1.3.0","1.3.0","N/A","MATCH","ErrUnknown","ftp.gnupg.org/gcrypt/gpgme/gpgme-1.3.0.tar.bz2","GnuPG Made Easy (GPGME) is a library designed to make access to GnuPG easier for applications. It provides a High-Level Crypto API for encryption, decryption, signing, signature verification and key management",
-"unzip-native","console/utils","ftp",6,"N/A","N/A","ErrNoRecipeData","ErrUnknown","ftp.info-zip.org/pub/infozip/src/unzip60.tgz","A (de)compression library for the ZIP format",
-"unzip","console/utils","ftp",6,6,"N/A","MATCH","ErrUnknown","ftp.info-zip.org/pub/infozip/src/unzip60.tgz","A (de)compression library for the ZIP format",
-"zip-native","console/utils","ftp",3,"N/A","N/A","ErrNoRecipeData","ErrUnknown","ftp.info-zip.org/pub/infozip/src/zip30.tgz","Archiver for .zip files",
-"zip","console/utils","ftp",3,3,"N/A","MATCH","ErrUnknown","ftp.info-zip.org/pub/infozip/src/zip30.tgz","Archiver for .zip files",
-"pax","base","ftp",3.4,3.4,"N/A","MATCH","ErrUnknown","ftp.suse.com/pub/people/kukuk/pax/pax-3.4.tar.bz2","pax (Portable Archive eXchange) is the POSIX standard archive tool",
-"dosfstools","base","ftp",2.11,2.11,"N/A","MATCH","ErrUnknown","ftp.uni-erlangen.de/pub/Linux/LOCAL/dosfstools/dosfstools-2.11.src.tar.gz","DOS FAT Filesystem Utilities",
-"gssdp","base","http","0.7.1","0.7.2","N/A","UPDATE","ErrUnknown","gupnp.org/sites/all/files/sources/gssdp-0.7.1.tar.gz","GSSDP implements resource discovery and announcement over SSDP (Simpe Service Discovery Protocol).",
-"gupnp","base","http","0.13.2","0.13.3","N/A","UPDATE","ErrUnknown","gupnp.org/sites/all/files/sources/gupnp-0.13.2.tar.gz","GUPnP is an elegant, object-oriented open source framework for creating UPnP  devices and control points, written in C using GObject and libsoup. The GUPnP API is intended to be easy to use, efficient and flexible. It provides the same set of features as libupnp, but shields the developer from most of UPnP's internals.",
-"gupnp-av","base","http","0.5.2","0.5.5","N/A","UPDATE","ErrUnknown","gupnp.org/sites/all/files/sources/gupnp-av-0.5.2.tar.gz","GUPnP-AV is a collection of helpers for building AV (audio/video) applications using GUPnP.",
-"gupnp-tools","base","http",0.8,0.8,"N/A","MATCH","ErrUnknown","gupnp.org/sites/all/files/sources/gupnp-tools-0.8.tar.gz","Tools for GUPnP",
-"libdrm-poulsbo","base","https","2.3.0","2.3.0","N/A","MATCH","ErrUnknown","launchpad.net/~gma500/+archive/ppa/+files/libdrm-poulsbo_2.3.0-1ubuntu0sarvatt4~1004um1ubuntu1.tar.gz","Userspace interface to kernel DRM services",
-"liba52","libs","http","0.7.4","0.7.4","N/A","MATCH","ErrUnknown","liba52.sourceforge.net/files/a52dec-0.7.4.tar.gz","Library for reading some sort of media format.",
-"mpeg2dec","libs","http","0.4.1","0.4.1","N/A","MATCH","ErrUnknown","libmpeg2.sourceforge.net/files/mpeg2dec-0.4.1.tar.gz","Library and test program for decoding mpeg-2 and mpeg-1 video streams",
-"libproxy","libs","http","0.4.3","0.4.4","N/A","UPDATE","ErrUnknown","libproxy.googlecode.com/files/libproxy-0.4.3.tar.gz","A library that provides automatic proxy configuration management",
-"acl","libs","http","2.2.49","2.2.49","N/A","MATCH","ErrUnknown","mirror.cinquix.com/pub/savannah/acl/acl-2.2.49.src.tar.gz","utilities for access control list",
-"sysstat","console/utils","http","9.1.4","9.0.6.1","N/A","UPDATE","ErrUnknown","pagesperso-orange.fr/sebastien.godard/sysstat-9.1.4.tar.gz","The sysstat utilities are a collection of performance monitoring tools for Linux.",
-"consolekit","base","http","0.3.0","0.4.1","N/A","UPDATE","ErrUnknown","people.freedesktop.org/~mccann/dist/ConsoleKit-0.3.0.tar.bz2","ConsoleKit is a framework for defining and tracking users, login sessions, and seats.",
-"xrestop","x11/utils","http",0.4,0.4,"N/A","MATCH","ErrUnknown","projects.o-hand.com/sources/xrestop/xrestop-0.4.tar.gz","top-like statistics of X11 server resource usage by clients",
-"fotowall","x11/apps","http",0.9,"N/A","N/A","ErrNoRecipeData","ErrUnknown","qt-apps.org/CONTENT/content-files/71316-Fotowall-0.9.tar.bz2","Fotowall is a creative tool that allows you to layout your photos or pictures in a personal way. You can add pictures, then resize, move, change colors, text, shadows, etc..",
-"quicky","x11/apps","http",0.4,0.4,"N/A","MATCH","ErrUnknown","qt-apps.org/CONTENT/content-files/80325-quicky-0.4.tar.gz","A simple note-taking application with Wiki-style syntax and behaviour",
-"subversion","console/network","http","1.5.5","N/A","N/A","ErrNoRecipeData","ErrUnknown","subversion.tigris.org/downloads/subversion-1.5.5.tar.bz2","The Subversion (svn) client",
-"tinylogin","base","http",1.4,1.4,"N/A","MATCH","ErrUnknown","tinylogin.busybox.net/downloads/tinylogin-1.4.tar.bz2","TinyLogin is a suite of tiny UNIX utilities for handling logins, user authentication, changing passwords, and otherwise maintaining users and groups on an embedded system.",
-"bzip2","console/utils","http","1.0.6","1.0.5","N/A","UPDATE","ErrUnknown","www.bzip.org/1.0.6/bzip2-1.0.6.tar.gz","Very high-quality data compression program.",
-"less","console/utils","http",436,436,"N/A","MATCH","ErrUnknown","www.greenwoodsoftware.com/less/less-436.tar.gz","Less is a program similar to more, i.e. a terminal based program for viewing text files and the output from other programs. Less offers many features beyond those that more does.",
-"wireless-tools","base","http",29,29,"N/A","MATCH","ErrUnknown","www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/wireless_tools.29.tar.gz","Tools for the Linux Standard Wireless Extension Subsystem",
-"jpeg","libs","http","8b","8b","N/A","MATCH","ErrUnknown","www.ijg.org/files/jpegsrc.v8b.tar.gz","libjpeg contains a library for handling the JPEG (JFIF) image format, as well as related programs for accessing the libjpeg functions.",
-"libnl","libs/network","http",1.1,1.1,"N/A","MATCH","ErrUnknown","www.infradead.org/~tgr/libnl/files/libnl-1.1.tar.gz","libnl is a library for applications dealing with netlink sockets.",
-"kexec-tools","kernel/userland","http","2.0.1","2.0.1","N/A","MATCH","ErrUnknown","www.kernel.org/pub/linux/kernel/people/horms/kexec-tools//kexec-tools-2.0.1.tar.gz","Kexec is a fast reboot feature that lets you reboot to a new Linux kernel",
-"latencytop","base","http",0.5,0.5,"N/A","MATCH","ErrUnknown","www.latencytop.org/download/latencytop-0.5.tar.gz","LatencyTOP, a Linux tool measuring and fixing latency",
-"powertop","base","http",1.13,1.13,"N/A","MATCH","ErrUnknown","www.lesswatts.org/projects/powertop/download/powertop-1.13.tar.gz","PowerTOP, a tool that helps you find what software is using the most power.",
-"libsamplerate0","libs","http","0.1.2","0.1.7","N/A","UPDATE","ErrUnknown","www.mega-nerd.com/SRC/libsamplerate-0.1.2.tar.gz","An audio Sample Rate Conversion library",
-"libevent","libs","http","1.4.14b","1.4.14b","N/A","MATCH","ErrUnknown","www.monkey.org/~provos/libevent-1.4.14b-stable.tar.gz","an asynchronous event notification library",
-"mpfr","devel","http","3.0.0","3.0.0","N/A","MATCH","ErrUnknown","www.mpfr.org/mpfr-3.0.0/mpfr-3.0.0.tar.bz2","A C library for multiple-precision floating-point computations with exact rounding",
-"libmpc","libs","http","0.8.2","0.8.2","N/A","MATCH","ErrUnknown","www.multiprecision.org/mpc/download/mpc-0.8.2.tar.gz","Mpc is a C library for the arithmetic of complex numbers with arbitrarily high precision and correct rounding of the result. It is built upon and follows the same principles as Mpfr",
-"libacpi","base","http",0.2,0.2,"N/A","MATCH","ErrUnknown","www.ngolde.de/download/libacpi-0.2.tar.gz","General purpose shared library for programs gathering ACPI data on Linux. Thermal zones, battery infomration, fan information and AC states are implemented.",
-"lrzsz","console/network","http","0.12.20","0.12.20","N/A","MATCH","ErrUnknown","www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz","Lrzsz is a cosmetically modified zmodem/ymodem/xmodem package built from the public-domain version of Chuck Forsberg's rzsz package. These programs use error correcting protocols ({z,x,y}modem) to send (sz, sx, sb) and receive (rz, rx, rb) files over a dial-in serial port from a variety of programs running under various operating systems. ",
-"rpm","base","http","5.1.10","4.8.0","N/A","UPDATE","ErrUnknown","www.rpm5.org/files/rpm/rpm-5.1/POKY/rpm-5.1.10.tar.gz","The RPM Package Manager - relaunched",
-"sqlite3","libs","http","3.6.23.1","3.6.23.1","N/A","MATCH","ErrUnknown","www.sqlite.org/sqlite-3.6.23.1.tar.gz","An Embeddable SQL Database Engine",
-"eds-tools","x11","file","INVALID","N/A","N/A","ErrNoRecipeData","ErrUnsupportedProto","burtonini.com/bzr/eds-tools","Test applications for EDS",
-"diffutils","base","ftp","2.8.1","N/A",3,"ErrNoRecipeData","UPDATE",,"Diffutils contains the GNU diff, diff3, sdiff, and cmp utilities. These programs are usually used for creating patch files.",
-"dtc","bootloader","git","73dca9ae0b9abe6924ba640164ecce9f8df69c5a","N/A","8773e12fa9f5109172a779aa2a83b4464e5273cc","ErrNoRecipeData","UPDATE",,"The Device Tree Compiler is a tool used to manipulate the Open-Firmware-like device tree used by PowerPC kernels.",
-"fakechroot","base","ftp",2.9,"N/A",2.11,"ErrNoRecipeData","UPDATE",,"Gives a fake root environment which can support chroot",
-"git","console/utils","http","1.7.2.1","N/A","1.7.3.2","ErrNoRecipeData","UPDATE",,"The git revision control system used by the Linux kernel developers",
-"groff","console/utils","ftp","1.18.1.4","N/A","1.20.1","ErrNoRecipeData","UPDATE",,"groff-a short reference for the GNU roff language ",
-"libsoup","x11/gnome/libs","http","2.2.100","N/A","2.32.0","ErrNoRecipeData","UPDATE",,"An HTTP library implementation in C",
-"libtheora","libs","http","1.1.1","N/A","1.2.0","ErrNoRecipeData","UPDATE",,"The libtheora reference implementation provides the standard encoder and decoder under a BSD license.",
-"makedepend","x11/utils","http","1.0.2","N/A","1.0.3","ErrNoRecipeData","UPDATE",,"create dependencies in makefiles",
-"man","console/utils","http","1.6e","N/A",1.6,"ErrNoRecipeData","UPDATE",,"A set of documentation tools: man, apropos and whatis",
-"man-pages","console/utils","http",3.25,"N/A",3.3,"ErrNoRecipeData","UPDATE",,"The Linux man-pages project documents the Linux kernel and C library interfaces that are employed by user programs",
-"mc","console/utils","http","4.7.3","N/A","4.7.4","ErrNoRecipeData","UPDATE",,"Midnight Commander is an ncurses based file manager.",
-"patch","utils","ftp","2.5.9","N/A","2.6.1","ErrNoRecipeData","UPDATE",,"patch takes a patch file containing a difference listing produced by the diff program and applies those differences to one or more original files, producing patched versions.",
-"qmmp","multimedia","http","0.4.1","N/A","0.4.3","ErrNoRecipeData","UPDATE",,"Qmmp (Qt-based Multimedia Player) is an audio-player, written with help of Qt library",
-"trace-cmd","base","git","0d252224626bd6926324f023a65f20c165232891","N/A","84cc30df9c35a3ccb79e34bc931c3edb979b2412","ErrNoRecipeData","UPDATE",,"User interface to Ftrace",
-"web","x11","svn",97,"N/A",108,"ErrNoRecipeData","UPDATE",,"Web is a multi-platform web browsing application.",
-"yaffs2-utils","base","cvs","INVALID","N/A","HEAD","ErrNoRecipeData","UPDATE",,"Tools for managing 'yaffs2' file systems.",
-"apmd","base","ftp","3.2.2-14","3.2.2-14","3.2.2","MATCH","UPDATE",,"The Advanced Power Management (APM) support provides access to battery status information and a set of tools for managing notebook power consumption.",
-"atk","x11/libs","http","1.30.0","1.30.0","1.32.0","MATCH","UPDATE",,"An accessibility toolkit for GNOME.",
-"autoconf","devel","ftp",2.65,2.65,2.68,"MATCH","UPDATE",,"A package of M4 macros to produce scripts to automatically configure sourcecode.",
-"avahi","network","http","0.6.27","0.6.27","0.6.28","MATCH","UPDATE",,"Avahi is a fully LGPL framework for Multicast DNS Service Discovery. It allows programs to publish and discover services and hosts running on a local network with no specific configuration. This tool implements IPv4LL, Dynamic Configuration of IPv4 Link-Local Addresses"" (IETF RFC3927)"," a protocol for automatic IP address configuration from the link-local 169.254.0.0/16 range without the need for a central server."""
-"bigreqsproto","x11/libs","http","1.1.0","1.1.0","1.1.1","MATCH","UPDATE",,"X.Org BigReqs extension headers",
-"blktool","base","ftp","4-6","4-6",4,"MATCH","UPDATE",,"blktool is used for querying and/or changing settings of a block device. It is like hdparm but a more general tool, as it works on SCSI, IDE and SATA devices",
-"busybox","base","http","1.16.2","1.16.2","1.17.3","MATCH","UPDATE",,"BusyBox combines tiny versions of many common UNIX utilities into a single small executable. It provides minimalist replacements for most of the utilities you usually find in GNU fileutils, shellutils, etc. The utilities in BusyBox generally have fewer options than their full-featured GNU cousins; however, the options that are included provide the expected functionality and behave very much like their GNU counterparts. BusyBox provides a fairly complete POSIX environment for any small or embedded system.",
-"compositeproto","x11/libs","http",0.4,0.4,"0.4.2","MATCH","UPDATE",,"X protocol headers: compositeproto",
-"connman","base","http",0.56,0.56,0.63,"MATCH","UPDATE",,"The ConnMan project provides a daemon for managing internet connections within embedded devices running the Linux operating system.  The Connection Manager is designed to be slim and to use as few resources as possible, so it can be easily integrated. It is a fully modular system that can be extended, through plug-ins, to support all kinds of wired or wireless technologies. Also, configuration methods, like DHCP and domain name resolving, are implemented using plug-ins.",
-"coreutils","base","http",8.5,8.5,8.6,"MATCH","UPDATE",,"The GNU Core Utilities provide the basic file, shell and text manipulation utilities. These are the core utilities which are expected to exist on every system.",
-"cronie","utils","https","1.4.4","1.4.4","1.4.6","MATCH","UPDATE",,"Cronie contains the standard UNIX daemon crond that runs specified programs at scheduled times and related tools. It is based on the original cron and has security and configuration enhancements like the ability to use pam and SELinux.",
-"damageproto","x11/libs","http","1.2.0","1.2.0","1.2.1","MATCH","UPDATE",,"X protocol headers: damageproto",
-"dbus","base","http","1.2.24","1.2.24","1.4.0","MATCH","UPDATE",,"D-Bus is a message bus system, a simple way for applications to talk to one another. In addition to interprocess communication, D-Bus helps coordinate process lifecycle; it makes it simple and reliable to code a \single instance\"" application or daemon"," and to launch applications and daemons on demand when their services are needed."""
-"dbus-glib","base","http",0.86,0.86,0.92,"MATCH","UPDATE",,"GLib bindings for the D-Bus message bus that integration the D-Bus library with the GLib thread abstraction and main loop.",
-"dhcp","console/network","ftp","4.1.1-P1","4.1.1-P1","4.2.0","MATCH","UPDATE",,"DHCP (Dynamic Host Configuration Protocol) is a protocol which allows individual devices on an IP network to get their own network configuration information from a server.  DHCP helps make it easier to administer devices.",
-"diffstat","devel","ftp",1.47,1.47,1.53,"MATCH","UPDATE",,"diffstat reads the output of diff and displays a histogram of the insertions, deletions, and modifications per-file. It is useful for reviewing large, complex patch files.",
-"ed","base","ftp",1.4,1.4,1.5,"MATCH","UPDATE",,"a line-oriented text editor",
-"encodings","x11/fonts","http","1.0.3","1.0.3","1.0.4","MATCH","UPDATE",,"The XFree86/Xorg encoding files",
-"fixesproto","x11/libs","http","4.1.1","4.1.1","4.1.2","MATCH","UPDATE",,"X protocol headers: fixesproto",
-"font-alias","x11/fonts","http","1.0.2","1.0.2","1.0.3","MATCH","UPDATE",,"X font aliases.",
-"font-util","x11/fonts","http","1.1.1","1.1.1","1.2.0","MATCH","UPDATE",,"X.Org font package creation/installation utilities",
-"fontsproto","x11/libs","http","2.1.0","2.1.0","2.1.1","MATCH","UPDATE",,"X protocol headers: fontsproto",
-"gdb","devel","ftp",7.1,7.1,7.2,"MATCH","UPDATE",,"gdb - GNU debugger",
-"glib-2.0","libs","http","2.24.1","2.24.1","2.27.3","MATCH","UPDATE",,"GLib is a general-purpose utility library, which provides many useful data types, macros, type conversions, string utilities, file utilities, a main loop abstraction, and so on.",
-"glproto","x11/libs","http","1.4.11","1.4.11","1.4.12","MATCH","UPDATE",,"X protocol headers: glproto",
-"gnome-keyring","x11/gnome","http","2.31.4","2.31.4","2.91.2","MATCH","UPDATE",,"Password and keyring managing daemon",
-"gnome-vfs","base","http","2.24.3","2.24.3","2.24.4","MATCH","UPDATE",,"a userspace virtual filesystem",
-"gnutls","base","ftp","2.8.6","2.8.6","2.10.2","MATCH","UPDATE",,"GNU Transport Layer Security Library",
-"grub","bootloaders","ftp",0.97,0.97,1.98,"MATCH","UPDATE",,"GRUB is a GPLed bootloader intended to unify bootloading across x86 operating systems. In addition to loading the Linux kernel, it implements the Multiboot standard, which allows for flexible loading of multiple boot images.",
-"gst-plugins-bad","multimedia","http","0.10.19","0.10.19","0.10.20","MATCH","UPDATE",,"Plugins for GStreamer",
-"gst-plugins-base","multimedia","http","0.10.29","0.10.29","0.10.30","MATCH","UPDATE",,"Plugins for GStreamer",
-"gst-plugins-good","multimedia","http","0.10.23","0.10.23","0.10.25","MATCH","UPDATE",,"Plugins for GStreamer",
-"gst-plugins-ugly","multimedia","http","0.10.15","0.10.15","0.10.16","MATCH","UPDATE",,"Plugins for GStreamer",
-"gstreamer","multimedia","http","0.10.29","0.10.29","0.10.30","MATCH","UPDATE",,"GStreamer is a multimedia framework for encoding and decoding video and sound. It supports a wide range of formats including mp3, ogg, avi, mpeg and quicktime.",
-"gtk+","libs","http","2.20.1","2.20.1","2.91.4","MATCH","UPDATE",,"GTK+ is a multi-platform toolkit for creating graphical user interfaces. Offering a complete set of widgets, GTK+ is suitable for projects ranging from small one-off projects to complete application suites.",
-"icu","base","ftp",3.6,3.6,"3_6","MATCH","UPDATE",,"The International Component for Unicode (ICU) is a mature, portable set of C/C++ and Java libraries for Unicode support, software internationalization (I18N) and globalization (G11N), giving applications the same results on all platforms.",
-"inputproto","x11/libs","http",2,2,"2.0.1","MATCH","UPDATE",,"X protocol headers: inputproto",
-"iputils","console/network","http","s20100418","s20100418",20101006,"MATCH","UPDATE",,"Utilities for the IP protocol, including traceroute6, tracepath, tracepath6, ping, ping6 and arping.",
-"js","libs","http","1.7.0+1.8.0rc1","1.7.0+1.8.0rc1",1.6,"MATCH","UPDATE",,"Spidermonkey: a javascript engine written in C",
-"kbproto","x11/libs","http","1.0.4","1.0.4","1.0.5","MATCH","UPDATE",,"X protocol headers: kbproto",
-"libassuan","base","ftp","2.0.0","2.0.0","2.0.1","MATCH","UPDATE",,"IPC library used by GnuPG and GPGME",
-"libdmx","x11/libs","http","1.1.0","1.1.0","1.1.1","MATCH","UPDATE",,"X11 Distributed Multihead extension library",
-"libdrm","x11/base","http","2.4.21","2.4.21","2.4.22","MATCH","UPDATE",,"userspace library for accessing the DRM(direct rendering manager)",
-"libfontenc","x11/libs","http","1.0.5","1.0.5","1.1.0","MATCH","UPDATE",,"X11 font encoding library",
-"libgnome-keyring","x11/gnome/libs","http","2.30.1","2.30.1","2.32.0","MATCH","UPDATE",,"Compatibility library for accessing secrets",
-"libgpg-error","libs","ftp",1.8,1.8,1.1,"MATCH","UPDATE",,"a small library that defines common error values for all GnuPG components",
-"libice","x11/libs","http","1.0.6","1.0.6","1.0.7","MATCH","UPDATE",,"X11 Inter-Client Exchange library",
-"libid3tag","libs","ftp","0.15.1b","0.15.1b","0.15.1","MATCH","UPDATE",,"Library for interacting with ID3 tags.",
-"libmusicbrainz","base","http","3.0.2","3.0.2","3.0.3","MATCH","UPDATE",,"The MusicBrainz client is a library which can be built into other programs.  The library allows you to access the data held on the MusicBrainz server.",
-"libogg","libs","http","1.2.0","1.2.0","1.2.1","MATCH","UPDATE",,"libogg is the bitstream and framing library for the Ogg project. It provides functions which are necessary to codec libraries like libvorbis.",
-"libpam","base","http","1.1.1","1.1.1","1.1.3","MATCH","UPDATE",,"Linux-PAM (Pluggable Authentication Modules for Linux), Basically, it is a flexible mechanism for authenticating users",
-"libpciaccess","x11/libs","http","0.11.0","0.11.0","0.12.0","MATCH","UPDATE",,"Generic PCI access library",
-"librsvg","x11/utils","http","2.26.3","2.26.3","2.32.0","MATCH","UPDATE",,"Library for rendering SVG files",
-"libsm","x11/libs","http","1.1.1","1.1.1","1.2.0","MATCH","UPDATE",,"X11 Session management library",
-"libsoup-2.4","x11/gnome/libs","http","2.31.2","2.31.2","2.32.0","MATCH","UPDATE",,"An HTTP library implementation in C",
-"libtasn1","base","ftp",2.7,2.7,2.8,"MATCH","UPDATE",,"Library for ASN.1 and DER manipulation",
-"libtool","devel","ftp","2.2.10","2.2.10",2.4,"MATCH","UPDATE",,"Generic library support script This is GNU libtool, a generic library support script.  Libtool hides the complexity of generating special library types (such as shared libraries) behind a consistent interface.",
-"libunique","base","http","1.1.6","1.1.6","2.90.1","MATCH","UPDATE",,"None",
-"liburcu","base","http","0.4.6","0.4.6","0.4.8","MATCH","UPDATE",,"The userspace read-copy update library by Mathieu Desnoyers",
-"libvorbis","libs","http","1.3.1","1.3.1","1.3.2","MATCH","UPDATE",,"Ogg Vorbis is a high-quality lossy audio codec that is free of intellectual property restrictions. libvorbis is the main vorbis codec library.",
-"libxau","x11/libs","http","1.0.5","1.0.5","1.0.6","MATCH","UPDATE",,"A Sample Authorization Protocol for X",
-"libxcb","x11/libs","http",1.6,1.6,1.7,"MATCH","UPDATE",,"XCB: an X protocol C binding",
-"libxcomposite","x11/libs","http","0.4.1","0.4.1","0.4.3","MATCH","UPDATE",,"X Composite extension library.",
-"libxcursor","x11/libs","http","1.1.10","1.1.10","1.1.11","MATCH","UPDATE",,"X cursor management library",
-"libxdamage","x11/libs","http","1.1.2","1.1.2","1.1.3","MATCH","UPDATE",,"X11 damaged region extension library",
-"libxdmcp","x11/libs","http","1.0.3","1.0.3","1.1.0","MATCH","UPDATE",,"X Display Manager Control Protocol library",
-"libxext","x11/libs","http","1.1.2","1.1.2","1.2.0","MATCH","UPDATE",,"X11 miscellaneous extension library",
-"libxfixes","x11/libs","http","4.0.4","4.0.4","4.0.5","MATCH","UPDATE",,"X Fixes extension library.",
-"libxfont","x11/libs","http","1.4.2","1.4.2","1.4.3","MATCH","UPDATE",,"X11 font rasterisation library",
-"libxft","x11/libs","http","2.1.14","2.1.14","2.2.0","MATCH","UPDATE",,"FreeType-based font drawing library for X",
-"libxi","x11/libs","http",1.3,1.3,"1.4.0","MATCH","UPDATE",,"X11 Input extension library",
-"libxinerama","x11/libs","http",1.1,1.1,"1.1.1","MATCH","UPDATE",,"X11 Xinerama extension library",
-"libxkbfile","x11/libs","http","1.0.6","1.0.6","1.0.7","MATCH","UPDATE",,"X11 keyboard file manipulation library",
-"libxml2","libs","ftp","2.7.7","2.7.7","2.7.8","MATCH","UPDATE",,"The XML Parser Library allows for manipulation of XML files.  Libxml2 exports Push and Pull type parser interfaces for both XML and HTML.  It can do DTD validation at parse time, on a parsed document instance or with an arbitrary DTD.  Libxml2 includes complete XPath, XPointer and Xinclude implementations.  It also has a SAX like interface, which is designed to be compatible with Expat.",
-"libxmu","x11/libs","http","1.0.5","1.0.5","1.1.0","MATCH","UPDATE",,"X11 miscellaneous utility library",
-"libxrandr","x11/libs","http","1.3.0","1.3.0","1.3.1","MATCH","UPDATE",,"X11 Resize and Rotate extension library",
-"libxrender","x11/libs","http","0.9.5","0.9.5","0.9.6","MATCH","UPDATE",,"X11 Rendering Extension client library",
-"libxres","x11/libs","http","1.0.4","1.0.4","1.0.5","MATCH","UPDATE",,"X11 Resource extension library",
-"libxt","x11/libs","http","1.0.8","1.0.8","1.0.9","MATCH","UPDATE",,"X11 toolkit intrinsics library",
-"libxtst","x11/libs","http","1.1.0","1.1.0","1.2.0","MATCH","UPDATE",,"X Test Extension: client side library",
-"libxv","x11/libs","http","1.0.5","1.0.5","1.0.6","MATCH","UPDATE",,"X11 Video extension library",
-"libxvmc","x11/libs","http","1.0.5","1.0.5","1.0.6","MATCH","UPDATE",,"X Video Motion Compensation extension library",
-"libxxf86dga","x11/libs","http","1.1.1","1.1.1","1.1.2","MATCH","UPDATE",,"X11 Direct Graphics Access extension library",
-"libxxf86vm","x11/libs","http","1.1.0","1.1.0","1.1.1","MATCH","UPDATE",,"X11 XFree86 video mode extension library",
-"lsof","devel","ftp",4.83,4.83,4.84,"MATCH","UPDATE",,"Lsof is a Unix-specific diagnostic tool. Its name stands for LiSt Open Files, and it does just that.",
-"lttng-control","devel","http",0.87,0.87,"0.88-09242010","MATCH","UPDATE",,"The Linux trace toolkit is a suite of tools designed to extract program execution details from the Linux operating system and  interpret them.",
-"lttng-ust","base","http",0.7,0.7,0.8,"MATCH","UPDATE",,"The LTTng Userspace Tracer (UST) is a library accompanied by a set of tools to trace userspace code",
-"lttng-viewer","devel","http","0.12.35","0.12.35","0.12.35-20082010","MATCH","UPDATE",,"The Linux trace toolkit is a suite of tools designed to extract program execution details from the Linux operating system and  interpret them.",
-"lzo","libs","http",2.03,2.03,2.04,"MATCH","UPDATE",,"Lossless data compression library",
-"make","devel","ftp",3.81,3.81,3.82,"MATCH","UPDATE",,"GNU Make examines the timestamps on a set of interdependent files, and, if necessary, issues commands to bring them up-to-date.",
-"mkfontdir","x11/apps","http","1.0.5","1.0.5","1.0.6","MATCH","UPDATE",,"a program to create an index of X font files in a directory",
-"mkfontscale","x11/apps","http","1.0.7","1.0.7","1.0.8","MATCH","UPDATE",,"a program to create an index of scalable font files for X",
-"neon","libs","http","0.29.3","0.29.3","0.29.5","MATCH","UPDATE",,"neon is an HTTP and WebDAV client library, with a C interface.",
-"netbase","base","ftp",4.41,4.41,4.43,"MATCH","UPDATE",,"This package provides the necessary infrastructure for basic TCP/IP based networking",
-"pango","x11/libs","http","1.28.0","1.28.0","1.28.3","MATCH","UPDATE",,"The goal of the Pango project is to provide an Open Source framework for the layout and rendering of internationalized text.",
-"pixman","x11/libs","http","0.18.2","0.18.2","0.20.0","MATCH","UPDATE",,"Library for lowlevel pixel operations",
-"pm-utils","base","http","1.3.0","1.3.0","1.4.1","MATCH","UPDATE",,"Simple shell command line toos to suspect and hibernate.",
-"python","devel/python","http","2.6.5","2.6.5",3.2,"MATCH","UPDATE",,"The Python Programming Language",
-"python-gst","devel/python","http","0.10.18","0.10.18","0.10.19","MATCH","UPDATE",,"Python Gstreamer bindings",
-"python-pygobject","devel/python","ftp","2.21.1","2.21.1","2.21.5","MATCH","UPDATE",,"Python GObject bindings",
-"qemu","base","http","0.12.4","0.12.4","0.13.0","MATCH","UPDATE",,"open source processor emulator",
-"qt4-x11-free","x11/libs","http","4.6.3","4.6.3","4.7.1","MATCH","UPDATE",,"Qt is a comprehensive cross-platform C++ application framework",
-"randrproto","x11/libs","http","1.3.1","1.3.1","1.3.2","MATCH","UPDATE",,"X protocol headers: randrproto",
-"recordproto","x11/libs","http",1.14,1.14,"1.14.1","MATCH","UPDATE",,"X protocol headers: recordproto",
-"renderproto","x11/libs","http",0.11,0.11,"0.11.1","MATCH","UPDATE",,"X protocol headers: renderproto",
-"scrnsaverproto","x11/libs","http","1.2.0","1.2.0","1.2.1","MATCH","UPDATE",,"X protocol headers: scrnsaverproto",
-"speex","libs","http","1.2rc1","1.2rc1",1.2,"MATCH","UPDATE",,"Speex is an Open Source/Free Software patent-free audio compression format designed for speech.",
-"sudo","admin","http","1.7.2p7","1.7.2p7","1.7.4","MATCH","UPDATE",,"Sudo (superuser do) allows a system administrator to give certain users (or groups of users) the ability to run some (or all) commands as root while logging all commands and arguments.",
-"syslinux","base","http",3.86,3.86,4.03,"MATCH","UPDATE",,"A multi-purpose linux bootloader",
-"sysvinit","base","http","2.88dsf","2.88dsf",2.88,"MATCH","UPDATE",,"This package is required to boot in most configurations.  It provides the /sbin/init program.  This is the first process started on boot, and the last process terminated before the system halts.",
-"tar","base","ftp",1.23,1.23,1.25,"MATCH","UPDATE",,"GNU tar saves many files together into a single tape or disk archive, and can restore individual files from the archive.",
-"tasks","x11","http",0.16,0.16,0.18,"MATCH","UPDATE",,"Task list application",
-"udev","base","http",158,158,164,"MATCH","UPDATE",,"udev is a daemon which dynamically creates and removes device nodes from /dev/, handles hotplug events and loads drivers at boot time.",
-"util-linux","base","http","2.17.2","2.17.2",2.18,"MATCH","UPDATE",,"Util-linux includes a suite of basic system administration utilities commonly found on most Linux systems.  Some of the more important utilities include disk partitioning, kernel message management, filesystem creation, and system login.",
-"util-macros","x11/utils","http","1.10.0","1.10.0","1.11.0","MATCH","UPDATE",,"X autotools macros",
-"valgrind","base","http","3.5.0","3.5.0","3.6.0","MATCH","UPDATE",,"Valgrind memory debugger",
-"videoproto","x11/libs","http","2.3.0","2.3.0","2.3.1","MATCH","UPDATE",,"X protocol headers: videoproto",
-"vte","base","http","0.24.3","0.24.3","0.27.2","MATCH","UPDATE",,"vte is a virtual terminal emulator",
-"xauth","x11/apps","http","1.0.4","1.0.4","1.0.5","MATCH","UPDATE",,"X application to edit and display the authorization information used in connecting to the X server",
-"xcmiscproto","x11/libs","http","1.2.0","1.2.0","1.2.1","MATCH","UPDATE",,"X protocol headers: xcmiscproto",
-"xdpyinfo","x11/apps","http","1.1.0","1.1.0","1.2.0","MATCH","UPDATE",,"X display information utility",
-"xextproto","x11/libs","http","7.1.1","7.1.1","7.1.2","MATCH","UPDATE",,"X protocol headers: xextproto",
-"xf86-input-evdev","x11/drivers","http","2.4.0","2.4.0","2.5.0","MATCH","UPDATE",,"X.Org X server -- evdev input driver",
-"xf86-input-keyboard","x11/drivers","http","1.4.0","1.4.0","1.5.0","MATCH","UPDATE",,"X.Org X server -- keyboard input driver",
-"xf86-input-mouse","x11/drivers","http","1.5.0","1.5.0","1.6.0","MATCH","UPDATE",,"X.Org X server -- mouse input driver",
-"xf86-input-vmmouse","x11/drivers","http","12.6.9","12.6.9","12.6.10","MATCH","UPDATE",,"X.Org X server -- VMWare mouse input driver",
-"xf86-video-vmware","x11/drivers","http","11.0.1","11.0.1","11.0.3","MATCH","UPDATE",,"X.Org X server -- VMware SVGA II display driver",
-"xhost","x11/apps","http","1.0.3","1.0.3","1.0.4","MATCH","UPDATE",,"Server access control program for X",
-"xinit","x11/apps","http","1.2.1","1.2.1","1.3.0","MATCH","UPDATE",,"X Window System initializer",
-"xkbcomp","x11/apps","http","1.1.1","1.1.1","1.2.0","MATCH","UPDATE",,"The X Keyboard Extension essentially replaces the core protocol definition of keyboard.",
-"xkeyboard-config","x11/libs","http",1.9,1.9,2,"MATCH","UPDATE",,"Keyboard configuration database for X Window",
-"xmodmap","x11/apps","http","1.0.4","1.0.4","1.0.5","MATCH","UPDATE",,"utility for modifying keymaps and pointer button mappings in X",
-"xprop","x11/apps","http","1.1.0","1.1.0","1.2.0","MATCH","UPDATE",,"utility to display window and font properties of an X server",
-"xproto","x11/libs","http","7.0.17","7.0.17","7.0.19","MATCH","UPDATE",,"X protocol headers: xproto",
-"xrandr","x11/apps","http","1.3.2","1.3.2","1.3.4","MATCH","UPDATE",,"X Resize and Rotate extension command.",
-"xset","x11/apps","http","1.1.0","1.1.0","1.2.1","MATCH","UPDATE",,"Utility of setting various user preference options of the display",
-"xtrans","x11/libs","http","1.2.5","1.2.5","1.2.6","MATCH","UPDATE",,"network API translation layer to insulate X applications and libraries from OS network vageries.",
-"xwininfo","x11/apps","http","1.0.5","1.0.5","1.1.1","MATCH","UPDATE",,"window information utility for X",
-"xz","base","http","4.999.9beta","4.999.9beta","5.0.0","MATCH","UPDATE",,"utils for managing LZMA compressed files",
-"zlib","libs","http","1.2.5","1.2.5",121,"MATCH","UPDATE",,"Zlib is a general-purpose, patent-free, lossless data compression library which is used by many different programs.",
-"apr","libs","http","1.3.3","1.4.2","1.4.2","UPDATE","UPDATE",,"Apache Portable Runtime (APR) library",
-"apr-util","libs","http","1.3.4","1.3.9","1.3.10","UPDATE","UPDATE",,"Apache Portable Runtime (APR) companion library",
-"apt","base","ftp","0.7.14","0.7.25.3","0.8.8","UPDATE","UPDATE",,"Advanced front-end for dpkg.",
-"cairo","libs","http","1.8.10","1.9.10","1.10.0","UPDATE","UPDATE",,"Cairo graphics library",
-"clutter","base","git","e957e277b8a4893ce8c99e94402036d42a8b3748","1.2.8","dfdd5914142d6c6fd36b52c186d8bfa92c704168","UPDATE","UPDATE",,"Clutter graphics library",
-"clutter-1.0","base","git","ce5025d0a2b701541ca9343686f9dac858905da4","1.0+git0+ce5025d0a2b701541ca9343686f9dac858905da4","dfdd5914142d6c6fd36b52c186d8bfa92c704168","UPDATE","UPDATE",,"Clutter graphics library",
-"clutter-box2d","base","git","2bcf5b836548dc4909e13b8ae7f60dc64c93d559","0.10.0","99e09f69429690e94098bee949989efc57fcfd04","UPDATE","UPDATE",,"Clutter Box2D",
-"clutter-gst-1.0","base","git","d48c6fc67b48304f90e51b520631c1ecc10410af","0.11.0+git0+d48c6fc67b48304f90e51b520631c1ecc10410af","08fb7665f8097c9a496043f487dee69804ace457","UPDATE","UPDATE",,"Clutter GStreamer",
-"clutter-gtk-1.0","base","git","e8d828ba1d87937baa571e68fdff22f3e2d79ca8","0.90.0+git0+e8d828ba1d87937baa571e68fdff22f3e2d79ca8","9f15c5763a04821ec3650a3e76e065e0f863c838","UPDATE","UPDATE",,"Clutter GTK+",
-"contacts","x11","git","19853893fdb595de6aa59db0d9dc2f9451ed2933","0.12+git0+19853893fdb595de6aa59db0d9dc2f9451ed2933","1d8d51ffa36decd92d42812e250c981b6d8c0f00","UPDATE","UPDATE",,"Address-book application.",
-"dates","x11","git","514185dc1f6588085fda41eb59898b93d0487dd4","0.4.11+git0+514185dc1f6588085fda41eb59898b93d0487dd4","a58cacaa32a560e485bd796ec0f6be96a0868411","UPDATE","UPDATE",,"Dates is a calendar application.",
-"eds-dbus","base","git","7337d11aed576e7caaa12b4e881ad8d33668799f","2.31.4","0d793ebf03300416e455a6b044e03469bf169e95","UPDATE","UPDATE",,"Evolution database backend server",
-"eee-acpi-scripts","base","git","df785afdacedf869b20fb88a793c13b539819270","1.1.10+eaaa266e8c3b91b19d8ac861334b41ce7530e8c5","2ee954a60900297dfa419b17acd026f25b920381","UPDATE","UPDATE",,"eeePC specific ACPI scripts",
-"fstests","devel","svn",266,"0.0+svnr426",204,"UPDATE","UPDATE",,"Various benchmarning tests for X",
-"gdk-pixbuf-csource-native","libs","http","2.12.7","2.20.1","2.91.4","UPDATE","UPDATE",,"GTK+ is a multi-platform toolkit for creating graphical user interfaces. Offering a complete set of widgets, GTK+ is suitable for projects ranging from small one-off projects to complete application suites.",
-"gnome-desktop","x11/gnome","http","2.26.2","2.31.2","2.91.1","UPDATE","UPDATE",,"GNOME library for reading .desktop files",
-"gnome-doc-utils","base","http","0.12.0","0.20.1","0.20.2","UPDATE","UPDATE",,"None",
-"gnome-icon-theme","x11/gnome","http","2.22.0","2.30.2","2.31.0","UPDATE","UPDATE",,"None",
-"gnu-config","devel","cvs","INVALID","0.1+cvs20080123","HEAD","UPDATE","UPDATE",,"gnu-configize",
-"gobject-introspection","base","git","efa7266bcf78478ce62e8dd778a4f0417bfd4d15","0.9.5","a2c6793bd1873a7af3c19f88405e97e334a6872f","UPDATE","UPDATE",,"None",
-"gst-ffmpeg","multimedia","http","0.10.1","0.10.10","0.10.11","UPDATE","UPDATE",,"FFmpeg-based GStreamer plug-in",
-"gst-fluendo-mp3","multimedia","http","0.10.2","0.10.10","0.10.15","UPDATE","UPDATE",,"Fluendo closed-format mp3 GStreamer plug-in",
-"gst-fluendo-mpegdemux","multimedia","http","0.10.7","0.10.23","0.10.62","UPDATE","UPDATE",,"Fluendo closed-format mpeg video GStreamer plug-in",
-"gst-openmax","base","http","0.10.0.2","0.10.0.5","0.10.0.5","UPDATE","UPDATE",,"None",
-"gtk-engines","x11/base","http","2.14.0",2.18,"2.91.1","UPDATE","UPDATE",,"GTK theme engines",
-"gypsy","x11","http",0.6,0.7,0.8,"UPDATE","UPDATE",,"Gypsy is a GPS multiplexing daemon which allows multiple clients to access GPS data from multiple GPS sources concurrently.  Gypsy also hides the details of parsing NMEA from the client applications, passing the data as simple values for the clients to use.",
-"insserv","base","ftp","1.11.0","1.14.0","1.14.0","UPDATE","UPDATE",,"None",
-"iptables","base","http","1.4.9","1.4.8","1.4.10","UPDATE","UPDATE",,"iptables is the userspace command line program used to configure the Linux 2.4.x and 2.6.x IPv4 packet filtering ruleset",
-"libart-lgpl","x11/gnome","http","2.3.19","2.3.21","2.3.21","UPDATE","UPDATE",,"Library of functions for 2D graphics",
-"libatomics-ops","base","http",1.2,"7.2alpha4",7.2,"UPDATE","UPDATE",,"A library for atomic integer operations",
-"libcanberra","base","http",0.1,0.24,0.26,"UPDATE","UPDATE",,"Libcanberra is an implementation of the XDG Sound Theme and Name Specifications, for generating event sounds on free desktops.",
-"libconvert-asn1-perl","libs","http",0.21,0.22,0.22,"UPDATE","UPDATE",,"Convert::ASN1 - ASN.1 Encode/Decode library",
-"liberation-fonts","x11/fonts","https",1.04,"1.05.2.20091019","1.06.0.20100721","UPDATE","UPDATE",,"The Liberation(tm) Fonts is a font family originally created by Ascender(c) which aims metric compatibility as usage of Arial, Times New Roman, Courier New",
-"libgdbus","base","git","aeab6e3c0185b271ca343b439470491b99cc587f","Release-0.2","0ed91c956fb6cf3d94eac17e778c63d5867bcb96","UPDATE","UPDATE",,"None",
-"libgsmd","libs/gsm","svn",4335,"check",4899,"UPDATE","UPDATE",,"GSM libraries and daemons implementing the 07.10 specification",
-"libowl-av","x11","svn",398,"0.0+svnr398",416,"UPDATE","UPDATE",,"OpenedHand Widget Library Audio/Video",
-"libsndfile1","libs/multimedia","http","1.0.17","1.0.21 ","1.0.23","UPDATE","UPDATE",,"An audio format Conversion library",
-"libxpm","x11/libs","http","3.5.7","3.5.8","3.5.9","UPDATE","UPDATE",,"X11 Pixmap library",
-"libzypp","base","git","4494797d5b0369365b1af63921de45b197ead64f","git","65d1e5a35c3fc61d64578fa3b14831105056b4c2","UPDATE","UPDATE",,"The ZYpp Linux Software management framework",
-"m4","base","ftp","1.4.13","1.4.15","1.4.15","UPDATE","UPDATE",,"GNU m4 is an implementation of the traditional Unix macro processor.",
-"matchbox-panel-2","base","svn",2109,"0.0+svnr2109",2111,"UPDATE","UPDATE",,"A simple GTK+ based panel for handheld devices.",
-"matchbox-theme-sato-2","x11/wm","svn",94,"0.1+svnr164",164,"UPDATE","UPDATE",,"Matchbox window manager Sato themes",
-"matchbox-wm-2","x11/wm","svn",2083,"0.0+svnr2106",2106,"UPDATE","UPDATE",,"Matchbox window manager",
-"metacity","x11/wm","http","2.22.0","2.30.1","2.30.3","UPDATE","UPDATE",,"Metacity is the boring window manager for the adult in you.",
-"mtd-utils","base","git","INVALID","1.3.1+a67747b7a314e685085b62e8239442ea54959dbc","4854c615740a6e73eb4c0fbe4245ddd4a3b40a9c","UPDATE","UPDATE",,"Tools for managing memory technology devices.",
-"mutter","x11/wm","git","c96345dd81176f171c2d15dd9d5c5b20f334f842","2.29.1_0.4","01d3bebe24d2a56bdf2d82c4a71923e1573f7b7c","UPDATE","UPDATE",,"Metacity is the boring window manager for the adult in you. Mutter is metacity + clutter.",
-"ncurses","libs","ftp",5.4,5.7,5.7,"UPDATE","UPDATE",,"SVr4 and XSI-Curses compatible curses library and terminfo tools including tic, infocmp, captoinfo. Supports color, multiple highlights, forms-drawing characters, and automatic recognition of keypad and function-key sequences. Extensions include resizable windows and mouse support on both xterm and Linux console using the gpm library.",
-"ofono","base","http",0.17,0.21,0.35,"UPDATE","UPDATE",,"oFono is a stack for mobile telephony devices on Linux. oFono supports speaking to telephony devices through specific drivers, or with generic AT commands.",
-"openssl","libs/network","http","0.9.8o","1.0.0a","1.0.0","UPDATE","UPDATE",,"Secure Socket Layer (SSL) binary and related cryptographic tools.",
-"parted","console/tools","ftp","1.9.0",2.3,2.3,"UPDATE","UPDATE",,"parted, the GNU partition resizing program",
-"perl","devel","ftp","5.8.8","5.12.1","5.13.6","UPDATE","UPDATE",,"Perl is a popular scripting language.",
-"prelink","devel","git","909470ee441237563d6236c505cb2d02ddc48704","1.0+git0+0x909470ee441237563d6236c505cb2d02ddc48704","cc6f9b79b73bd66bc8e94de872e14db94e99f7b1","UPDATE","UPDATE",," The prelink package contains a utility which modifies ELF shared libraries and executables, so that far fewer relocations need to be resolved at runtime and thus programs come up faster.",
-"pulseaudio","libs/multimedia","http","0.9.15","0.9.21","0.9.21","UPDATE","UPDATE",,"Pulseaudio is a sound server for Linux and Unix-like operating systems.",
-"qemugl","x11/drivers","git","d888bbc723c00d197d34a39b5b7448660ec1b1c0","0.0+git0+d888bbc723c00d197d34a39b5b7448660ec1b1c0","33466cd83c2a9d7d3fb9fe437fb6a4d6fbd866b9","UPDATE","UPDATE",,"QEMU i386 OpenGL passtrough",
-"resolvconf","console/network","ftp",1.43,1.45,1.46,"UPDATE","UPDATE",,"Resolvconf is a framework for keeping track of the system's information about currently available nameservers. It sets itself up as the intermediary between programs that supply nameserver information and programs that need nameserver information.",
-"sat-solver","base","git","aa799f7bae0ec055e0e527203635001bb7346dbc","git","63145db3f5b171258445f3404967a3a3ec58ab95","UPDATE","UPDATE",,"Sat Solver",
-"taglib","libs/multimedia","http","1.6.1","1.6.3","1.6.3","UPDATE","UPDATE",,"TagLib is a library for reading and editing the meta-data of several popular audio formats",
-"tcf-agent","base","svn",1078,"0.3.0+svnr1078",998,"UPDATE","UPDATE",,"Target Communication Framework",
-"telepathy-glib","base","http","0.9.2","0.11.6","0.13.5","UPDATE","UPDATE",,"Telepathy Framework: GLib-based helper library for connection managers",
-"telepathy-idle","base","http","0.1.2","0.1.6","0.1.6","UPDATE","UPDATE",,"Telepathy implementation of the Internet Relay Chat protocols.",
-"telepathy-python","base","http","0.15.1","0.15.17","0.15.18","UPDATE","UPDATE",,"Telepathy framework - Python package",
-"tiff","base","ftp","3.8.2","3.9.2","4.0.0","UPDATE","UPDATE",,"This software provides support for the Tag Image File Format (TIFF)",
-"tremor","libs","svn",17157,20100422,17572,"UPDATE","UPDATE",,"tremor is a fixed point implementation of the vorbis codec.",
-"u-boot-mkimage","bootloader","ftp",2009.08,2010.03,2010.12,"UPDATE","UPDATE",,"U-boot bootloader mkimage tool",
-"ubootchart","base","svn",10,"0.0+r12",12,"UPDATE","UPDATE",,"A boot profiling tool",
-"update-rc.d","base","cvs","INVALID",0.7,"HEAD","UPDATE","UPDATE",,"update-rc.d is a utilities that allows the management of symlinks to the initscripts in the /etc/rcN.d directory structure.",
-"webkit-gtk","base","svn",62027,"1.3.2+svnr62027",71844,"UPDATE","UPDATE",,"WebKitGTK+ is the port of the portable web rendering engine WebKitK to the GTK+ platform.",
-"wpa-supplicant","network","http","0.6.10","0.7.2","0.7.3","UPDATE","UPDATE",,"A Client for Wi-Fi Protected Access (WPA).",
-"x11perf","x11/apps","http",1.5,"1.5.1","1.5.2","UPDATE","UPDATE",,"X11 server performance test program",
-"xf86-input-synaptics","x11/drivers","http","1.2.1","1.2.2","1.3.0","UPDATE","UPDATE",,"X.Org X server -- keyboard input driver",
-"xf86-video-intel","x11/drivers","http","2.12.0","2.11.0","2.13.901","UPDATE","UPDATE",,"X.Org X server -- Intel i8xx, i9xx display driver",
-"xf86-video-omapfb","x11/drivers","git","2ae9a57ebc3236cd0aec6534067b91a5c6916a3a","0.1.1+git_db636c8436265c3d86","6cff996abcb305460e9fa2c75569b776f099c9d5","UPDATE","UPDATE",,"X.Org X server -- OMAP display driver",
-"xvinfo","x11/apps","http","1.0.2","1.1.0","1.1.1","UPDATE","UPDATE",,"Print out X-Video extension adaptor information",
-"zaurusd","base","svn",358,"n/a",415,"UPDATE","UPDATE",,"Daemon to handle device specifc features.",
-"zypper","base","git","9eb0e248e06c8d20ad054be2439149d9ede37531","git","003a291cbbc3b3cfe106253ec3d8ac954222ab79","UPDATE","UPDATE",,"The ZYpp Linux Software management framework",
-
---------------010000020001020608070205--
