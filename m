@@ -1,25 +1,31 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 9F6744C8108C
-	for <yocto@yoctoproject.org>; Fri, 12 Nov 2010 11:29:10 -0600 (CST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 12 Nov 2010 09:29:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,188,1288594800"; d="scan'208";a="856916198"
-Received: from unknown (HELO [10.255.13.55]) ([10.255.13.55])
-	by fmsmga001.fm.intel.com with ESMTP; 12 Nov 2010 09:29:10 -0800
-Message-ID: <4CDD7965.6060206@linux.intel.com>
-Date: Fri, 12 Nov 2010 09:29:09 -0800
-From: Saul Wold <sgw@linux.intel.com>
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from lo.gmane.org (lo.gmane.org [80.91.229.12])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 5B5D64C80815
+	for <yocto@yoctoproject.org>; Fri, 12 Nov 2010 11:43:06 -0600 (CST)
+Received: from list by lo.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1PGxeT-0007Ut-FQ
+	for yocto@yoctoproject.org; Fri, 12 Nov 2010 18:43:05 +0100
+Received: from adsl-75-37-22-143.dsl.pltn13.sbcglobal.net ([75.37.22.143])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 12 Nov 2010 18:43:05 +0100
+Received: from philip by adsl-75-37-22-143.dsl.pltn13.sbcglobal.net with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 12 Nov 2010 18:43:05 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Philip Balister <philip@balister.org>
+Date: Fri, 12 Nov 2010 09:42:51 -0800
+Message-ID: <ibjuar$74b$1@dough.gmane.org>
+References: <AANLkTi=7yQCQB4=bKYuW3DTx4-psGZPDKkQeum+qdw3=@mail.gmail.com>	<ibi10q$a68$1@dough.gmane.org>
+	<4CDCBB73.3010303@intel.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@dough.gmane.org
+X-Gmane-NNTP-Posting-Host: adsl-75-37-22-143.dsl.pltn13.sbcglobal.net
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
-MIME-Version: 1.0
-To: "Xu, Dongxiao" <dongxiao.xu@intel.com>, 
-	Yocto Project Discussion <yocto@yoctoproject.org>
-References: <D5AB6E638E5A3E4B8F4406B113A5A19A302157EF@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <D5AB6E638E5A3E4B8F4406B113A5A19A302157EF@shsmsx501.ccr.corp.intel.com>
-Subject: Re: [PULL] multimedia upgrades and disk optmization, Dongxiao Xu, 2010/11/12
+	rv:1.9.2.12) Gecko/20101027 Fedora/3.1.6-1.fc13 Thunderbird/3.1.6
+In-Reply-To: <4CDCBB73.3010303@intel.com>
+Subject: Re: BSPs and duplicate files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,59 +37,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Nov 2010 17:29:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 12 Nov 2010 17:43:06 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 11/12/2010 03:24 AM, Xu, Dongxiao wrote:
-> Hi Saul,
+On 11/11/2010 07:58 PM, Scott Garman wrote:
+> On 11/11/2010 04:16 PM, Philip Balister wrote:
+>> On 11/11/2010 07:19 AM, João Henrique Freitas wrote:
+>>> Hi,
+>>>
+>>> Two questions:
+>>>
+>>> With some BSPs, like
+>>>
+>>> meta
+>>> meta-myhardware
+>>> meta-mydistro
+>>>
+>>> I need to create a conf/checksums.ini for every BSP or append it to
+>>> meta/conf/checksums.ini ? In other others, checksums.ini is per BSP or
+>>> unique?
+>>
+>> Poky still uses checksums.ini? OE moved the checksums to the recipes and
+>> this seems make things much easier to work with.
 >
-> This pull request contains some gstreamer recipe upgrades and disk space optimization, please help to review and pull.
->
-Dongxiao,
+> We'll be switching to recipe-based checksums soon in master, and in fact
+> you'll notice that most of our recipes already have checksums in them.
+> It's just a matter of importing the code from OE and making whatever
+> tweaks might be necessary.
 
-Will you have a distro tracking pull request also?
+Good to know. I don't think one approach is technically better than the 
+other, but when you have a "large" community, it seemed like one 
+checksum file lead to merge conflicts.
 
-> Thanks,
-> Dongxiao
->
->   meta/classes/sstate.bbclass
-Minor nit, traditional the options go between the command and the file 
-list, so I fixed this to be "rm -rf ${SSTATE_BUILDDIR}".
+Philip
 
-Sau!
-                                                      |    3
->   meta/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.19.bb                      |   24
->   meta/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.20.bb                      |   24
->   meta/recipes-multimedia/gstreamer/gst-plugins-base_0.10.29.bb                     |   22
->   meta/recipes-multimedia/gstreamer/gst-plugins-base_0.10.30.bb                     |   22
->   meta/recipes-multimedia/gstreamer/gst-plugins-good_0.10.23.bb                     |   19
->   meta/recipes-multimedia/gstreamer/gst-plugins-good_0.10.25.bb                     |   19
->   meta/recipes-multimedia/gstreamer/gst-plugins-ugly_0.10.15.bb                     |   19
->   meta/recipes-multimedia/gstreamer/gst-plugins-ugly_0.10.16.bb                     |   19
->   meta/recipes-multimedia/gstreamer/gstreamer-0.10.29/check_fix.patch               |   17
->   meta/recipes-multimedia/gstreamer/gstreamer-0.10.29/gst-inspect-check-error.patch |   14
->   meta/recipes-multimedia/gstreamer/gstreamer-0.10.29/gstregistrybinary.c           |  487 ----------
->   meta/recipes-multimedia/gstreamer/gstreamer-0.10.29/gstregistrybinary.h           |  194 ---
->   meta/recipes-multimedia/gstreamer/gstreamer-0.10.30/check_fix.patch               |   17
->   meta/recipes-multimedia/gstreamer/gstreamer-0.10.30/gst-inspect-check-error.patch |   14
->   meta/recipes-multimedia/gstreamer/gstreamer-0.10.30/gstregistrybinary.c           |  487 ++++++++++
->   meta/recipes-multimedia/gstreamer/gstreamer-0.10.30/gstregistrybinary.h           |  194 +++
->   meta/recipes-multimedia/gstreamer/gstreamer_0.10.29.bb                            |   30
->   meta/recipes-multimedia/gstreamer/gstreamer_0.10.30.bb                            |   30
->   19 files changed, 829 insertions(+), 826 deletions(-)
->
-> Dongxiao Xu (6):
->        sstate.bbclass: Remove the temp sstate-build-* directories in WORKDIR
->        gstreamer: Upgrade to version 0.10.30
->        gst-plugins-base: Upgraded to version 0.10.30
->        gst-plugins-good: Upgraded to version 0.10.25
->        gst-plugins-bad: Upgraded to version 0.10.20
->        gst-plugins-ugly: Upgraded to version 0.10.16
->
-> Pull URL: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=dxu4/distro
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
