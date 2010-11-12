@@ -1,31 +1,18 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from lo.gmane.org (lo.gmane.org [80.91.229.12])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5B5D64C80815
-	for <yocto@yoctoproject.org>; Fri, 12 Nov 2010 11:43:06 -0600 (CST)
-Received: from list by lo.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1PGxeT-0007Ut-FQ
-	for yocto@yoctoproject.org; Fri, 12 Nov 2010 18:43:05 +0100
-Received: from adsl-75-37-22-143.dsl.pltn13.sbcglobal.net ([75.37.22.143])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 12 Nov 2010 18:43:05 +0100
-Received: from philip by adsl-75-37-22-143.dsl.pltn13.sbcglobal.net with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 12 Nov 2010 18:43:05 +0100
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Philip Balister <philip@balister.org>
-Date: Fri, 12 Nov 2010 09:42:51 -0800
-Message-ID: <ibjuar$74b$1@dough.gmane.org>
-References: <AANLkTi=7yQCQB4=bKYuW3DTx4-psGZPDKkQeum+qdw3=@mail.gmail.com>	<ibi10q$a68$1@dough.gmane.org>
-	<4CDCBB73.3010303@intel.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@dough.gmane.org
-X-Gmane-NNTP-Posting-Host: adsl-75-37-22-143.dsl.pltn13.sbcglobal.net
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.12) Gecko/20101027 Fedora/3.1.6-1.fc13 Thunderbird/3.1.6
-In-Reply-To: <4CDCBB73.3010303@intel.com>
-Subject: Re: BSPs and duplicate files
+Return-Path: <bruce.ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 2ECB84C80815;
+	Fri, 12 Nov 2010 12:40:11 -0600 (CST)
+Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
+	[128.224.146.167])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oACIe97O022416;
+	Fri, 12 Nov 2010 10:40:09 -0800 (PST)
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+To: rpurdie@linux.intel.com
+Date: Fri, 12 Nov 2010 13:40:28 -0500
+Message-Id: <cover.1289583673.git.bruce.ashfield@windriver.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: yocto@yoctoproject.org, poky@yoctoproject.org
+Subject: [PATCH 0/2] linux-wrs: improve BSP-bootstrap process
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,39 +24,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Nov 2010 17:43:06 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 12 Nov 2010 18:40:11 -0000
 
-On 11/11/2010 07:58 PM, Scott Garman wrote:
-> On 11/11/2010 04:16 PM, Philip Balister wrote:
->> On 11/11/2010 07:19 AM, João Henrique Freitas wrote:
->>> Hi,
->>>
->>> Two questions:
->>>
->>> With some BSPs, like
->>>
->>> meta
->>> meta-myhardware
->>> meta-mydistro
->>>
->>> I need to create a conf/checksums.ini for every BSP or append it to
->>> meta/conf/checksums.ini ? In other others, checksums.ini is per BSP or
->>> unique?
->>
->> Poky still uses checksums.ini? OE moved the checksums to the recipes and
->> this seems make things much easier to work with.
->
-> We'll be switching to recipe-based checksums soon in master, and in fact
-> you'll notice that most of our recipes already have checksums in them.
-> It's just a matter of importing the code from OE and making whatever
-> tweaks might be necessary.
+I've been looking to improve the introduction of new boards
+to the supported kernel for some time, and this takes us
+most of the way there. Now with a machine.conf and a defconfig
+you can create an initial working environment for BSP development
+with no manual/workaround steps.
 
-Good to know. I don't think one approach is technically better than the 
-other, but when you have a "large" community, it seemed like one 
-checksum file lead to merge conflicts.
+When creating a new BSP there isn't always an upstream branch
+to validate SRCREVs against. Therefore, creating a new BSP
+required extra manipulations of the git repository, even though
+the branch for the build would be dynamically created.
 
-Philip
+To fix this, provide a fallback to the 'standard' branch if
+WRMACHINE is not assigned a specific value for the given MACHINE.
+The fallback saved in KBRANCH, and represents the branch that
+we should build, even if no fallback is required. Some substeps
+of the recipe have been updated to use KBRANCH rather than
+enforcing MACHINE-KERNELTYPE.
+
+There will be one additional change to not track the SRCREV
+of wrs_meta as a fallback, but I wasn't able to get the 
+standard branch tracking working, so I'm sending this as-is
+for now.
+
+I've tested this with my kernel development layer, and with
+the stock meta directories only. Either way, I was able
+to build and test a 'qemumips-variant' quickly.
+
+Cheers,
+
+Bruce
+
+Pull URL: git://git.pokylinux.org/poky-contrib.git
+  Branch: zedd/kernel
+  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
+
+Thanks,
+    Bruce Ashfield <bruce.ashfield@windriver.com>
+---
+
+
+Bruce Ashfield (2):
+  linux-wrs: implement BSP bootstrapping via fallback branches
+  linux-wrs: BSP bootstrap
+
+ .../conf/distro/include/poky-default-revisions.inc |    2 +-
+ meta/recipes-kernel/linux/linux-wrs_git.bb         |   40 ++++++++++++++++----
+ 2 files changed, 33 insertions(+), 9 deletions(-)
 
 
