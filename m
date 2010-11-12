@@ -1,27 +1,33 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 9A9924C80B6B
-	for <yocto@yoctoproject.org>; Thu, 11 Nov 2010 21:58:45 -0600 (CST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 11 Nov 2010 19:58:44 -0800
+Return-Path: <dongxiao.xu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id DEE624C80815
+	for <yocto@yoctoproject.org>; Fri, 12 Nov 2010 05:25:07 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 12 Nov 2010 03:25:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,186,1288594800"; d="scan'208";a="347785922"
-Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
-	by azsmga001.ch.intel.com with ESMTP; 11 Nov 2010 19:58:44 -0800
-Received: from [10.255.13.76] (10.255.13.76) by rrsmsx603.amr.corp.intel.com
-	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
-	Thu, 11 Nov 2010 20:58:44 -0700
-Message-ID: <4CDCBB73.3010303@intel.com>
-Date: Thu, 11 Nov 2010 19:58:43 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.1.15) Gecko/20101027 Thunderbird/3.0.10
+X-IronPort-AV: E=Sophos;i="4.59,186,1288594800"; d="scan'208";a="626089740"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by fmsmga002.fm.intel.com with ESMTP; 12 Nov 2010 03:24:45 -0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Fri, 12 Nov 2010 19:24:19 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Fri, 12 Nov 2010 19:24:18 +0800
+From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+To: "Wold, Saul" <saul.wold@intel.com>
+Date: Fri, 12 Nov 2010 19:24:16 +0800
+Thread-Topic: [PULL] multimedia upgrades and disk optmization, Dongxiao Xu,
+	2010/11/12
+Thread-Index: AcuCXCRNSGN/l2AJQ861+xVjc/tpkg==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A302157EF@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <AANLkTi=7yQCQB4=bKYuW3DTx4-psGZPDKkQeum+qdw3=@mail.gmail.com>
-	<ibi10q$a68$1@dough.gmane.org>
-In-Reply-To: <ibi10q$a68$1@dough.gmane.org>
-Subject: Re: BSPs and duplicate files
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [PULL] multimedia upgrades and disk optmization, Dongxiao Xu, 2010/11/12
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,37 +39,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Nov 2010 03:58:45 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 12 Nov 2010 11:25:08 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/11/2010 04:16 PM, Philip Balister wrote:
-> On 11/11/2010 07:19 AM, João Henrique Freitas wrote:
->> Hi,
->>
->> Two questions:
->>
->> With some BSPs, like
->>
->> meta
->> meta-myhardware
->> meta-mydistro
->>
->> I need to create a conf/checksums.ini for every BSP or append it to
->> meta/conf/checksums.ini ? In other others, checksums.ini is per BSP or
->> unique?
->
-> Poky still uses checksums.ini? OE moved the checksums to the recipes and
-> this seems make things much easier to work with.
+Hi Saul,
 
-We'll be switching to recipe-based checksums soon in master, and in fact 
-you'll notice that most of our recipes already have checksums in them. 
-It's just a matter of importing the code from OE and making whatever 
-tweaks might be necessary.
+This pull request contains some gstreamer recipe upgrades and disk space op=
+timization, please help to review and pull.
 
-Scott
+Thanks,
+Dongxiao=20
 
--- 
-Scott Garman
-Embedded Linux Distro Engineer - Yocto Project
+ meta/classes/sstate.bbclass                                               =
+        |    3
+ meta/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.19.bb              =
+        |   24
+ meta/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.20.bb              =
+        |   24
+ meta/recipes-multimedia/gstreamer/gst-plugins-base_0.10.29.bb             =
+        |   22
+ meta/recipes-multimedia/gstreamer/gst-plugins-base_0.10.30.bb             =
+        |   22
+ meta/recipes-multimedia/gstreamer/gst-plugins-good_0.10.23.bb             =
+        |   19
+ meta/recipes-multimedia/gstreamer/gst-plugins-good_0.10.25.bb             =
+        |   19
+ meta/recipes-multimedia/gstreamer/gst-plugins-ugly_0.10.15.bb             =
+        |   19
+ meta/recipes-multimedia/gstreamer/gst-plugins-ugly_0.10.16.bb             =
+        |   19
+ meta/recipes-multimedia/gstreamer/gstreamer-0.10.29/check_fix.patch       =
+        |   17
+ meta/recipes-multimedia/gstreamer/gstreamer-0.10.29/gst-inspect-check-erro=
+r.patch |   14
+ meta/recipes-multimedia/gstreamer/gstreamer-0.10.29/gstregistrybinary.c   =
+        |  487 ----------
+ meta/recipes-multimedia/gstreamer/gstreamer-0.10.29/gstregistrybinary.h   =
+        |  194 ---
+ meta/recipes-multimedia/gstreamer/gstreamer-0.10.30/check_fix.patch       =
+        |   17
+ meta/recipes-multimedia/gstreamer/gstreamer-0.10.30/gst-inspect-check-erro=
+r.patch |   14
+ meta/recipes-multimedia/gstreamer/gstreamer-0.10.30/gstregistrybinary.c   =
+        |  487 ++++++++++
+ meta/recipes-multimedia/gstreamer/gstreamer-0.10.30/gstregistrybinary.h   =
+        |  194 +++
+ meta/recipes-multimedia/gstreamer/gstreamer_0.10.29.bb                    =
+        |   30
+ meta/recipes-multimedia/gstreamer/gstreamer_0.10.30.bb                    =
+        |   30
+ 19 files changed, 829 insertions(+), 826 deletions(-)
+
+Dongxiao Xu (6):
+      sstate.bbclass: Remove the temp sstate-build-* directories in WORKDIR
+      gstreamer: Upgrade to version 0.10.30
+      gst-plugins-base: Upgraded to version 0.10.30
+      gst-plugins-good: Upgraded to version 0.10.25
+      gst-plugins-bad: Upgraded to version 0.10.20
+      gst-plugins-ugly: Upgraded to version 0.10.16
+
+Pull URL: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=3Ddxu4/dist=
+ro
 
