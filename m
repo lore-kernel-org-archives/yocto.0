@@ -1,29 +1,27 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 388F34C80B6B
-	for <yocto@yoctoproject.org>; Thu, 11 Nov 2010 19:46:47 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oAC1kknX004583;
-	Thu, 11 Nov 2010 17:46:46 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Thu, 11 Nov 2010 17:46:45 -0800
-Received: from bruce-ashfields-macbook.local ([128.224.143.18]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Thu, 11 Nov 2010 17:46:45 -0800
-Message-ID: <4CDC9C83.7020506@windriver.com>
-Date: Thu, 11 Nov 2010 20:46:43 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.12) Gecko/20101027 Thunderbird/3.1.6
+Return-Path: <scott.a.garman@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 9A9924C80B6B
+	for <yocto@yoctoproject.org>; Thu, 11 Nov 2010 21:58:45 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 11 Nov 2010 19:58:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,186,1288594800"; d="scan'208";a="347785922"
+Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
+	by azsmga001.ch.intel.com with ESMTP; 11 Nov 2010 19:58:44 -0800
+Received: from [10.255.13.76] (10.255.13.76) by rrsmsx603.amr.corp.intel.com
+	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
+	Thu, 11 Nov 2010 20:58:44 -0700
+Message-ID: <4CDCBB73.3010303@intel.com>
+Date: Thu, 11 Nov 2010 19:58:43 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.1.15) Gecko/20101027 Thunderbird/3.0.10
 MIME-Version: 1.0
-To: Saul Wold <sgw@linux.intel.com>
-References: <4CDC8704.9020506@linux.intel.com>
-In-Reply-To: <4CDC8704.9020506@linux.intel.com>
-X-OriginalArrivalTime: 12 Nov 2010 01:46:45.0872 (UTC)
-	FILETIME=[76BFBF00:01CB820B]
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: Recipes updates planned for 1.0
+To: <yocto@yoctoproject.org>
+References: <AANLkTi=7yQCQB4=bKYuW3DTx4-psGZPDKkQeum+qdw3=@mail.gmail.com>
+	<ibi10q$a68$1@dough.gmane.org>
+In-Reply-To: <ibi10q$a68$1@dough.gmane.org>
+Subject: Re: BSPs and duplicate files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,47 +33,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Nov 2010 01:46:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 12 Nov 2010 03:58:45 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 10-11-11 7:15 PM, Saul Wold wrote:
+On 11/11/2010 04:16 PM, Philip Balister wrote:
+> On 11/11/2010 07:19 AM, João Henrique Freitas wrote:
+>> Hi,
+>>
+>> Two questions:
+>>
+>> With some BSPs, like
+>>
+>> meta
+>> meta-myhardware
+>> meta-mydistro
+>>
+>> I need to create a conf/checksums.ini for every BSP or append it to
+>> meta/conf/checksums.ini ? In other others, checksums.ini is per BSP or
+>> unique?
 >
-> Distro / User Space Folks:
->
-> Attached is a spread sheet that shows the recipes we plan to update for
-> the 1.0 release. This list is based on the reorganization that will be
-> coming into master soon and shows that there are 231 recipes that need
-> updating and another 93 recipes that need some manual investigation due
-> to the checkpkg task not able to determine the version.
+> Poky still uses checksums.ini? OE moved the checksums to the recipes and
+> this seems make things much easier to work with.
 
-I couldn't easily read the CSV in my email, but I scanned
-for kernel elements.
+We'll be switching to recipe-based checksums soon in master, and in fact 
+you'll notice that most of our recipes already have checksums in them. 
+It's just a matter of importing the code from OE and making whatever 
+tweaks might be necessary.
 
-I can't tell, are we updating kexec to 2.0.1 ? If so, that's
-good. kexec is pretty tightly coupled to the kernel version, I'd
-suggest doing it last, or not doing it at all. I'm talking
-less about x86 here and more about non-x86. There are more
-patches to the 2.0.x version that we can apply in this area,
-but unless we have a test-per arch, it is more than likely
-broken.
+Scott
 
-Other related / coupled kernel -> userspace apps appear to be
-at the correct versions.
-
-Cheers,
-
-Bruce
-
->
-> For the first phase, we will focus on updating as many of these that can
-> be managed, many of these are dot.dot updates and should be easy. The
-> focus will be on toolchain, core utilities and libraries, along with the
-> graphics core (Xorg and Qt).
->
-> We will continue to focus on making sure that LICENSE and
-> LIC_FILES_CHKSUM metadata is correct, along with adding URI checksums.
->
-> Thanks to all for working on this effort.
-
+-- 
+Scott Garman
+Embedded Linux Distro Engineer - Yocto Project
 
