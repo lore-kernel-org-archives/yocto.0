@@ -1,22 +1,27 @@
-Return-Path: <bruce.ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id BF5C94C811BF;
-	Fri, 12 Nov 2010 12:40:12 -0600 (CST)
-Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
-	[128.224.146.167])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oACIe97Q022416;
-	Fri, 12 Nov 2010 10:40:11 -0800 (PST)
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: rpurdie@linux.intel.com
-Date: Fri, 12 Nov 2010 13:40:30 -0500
-Message-Id: <dba65bf5c06310c39af4b398e9f8d93c78de7f73.1289583673.git.bruce.ashfield@windriver.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1289583673.git.bruce.ashfield@windriver.com>
-References: <cover.1289583673.git.bruce.ashfield@windriver.com>
-In-Reply-To: <cover.1289583673.git.bruce.ashfield@windriver.com>
-References: <cover.1289583673.git.bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org
-Subject: [PATCH 2/2] linux-wrs: BSP bootstrap
+Return-Path: <scott.a.garman@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 3623D4C80FD4
+	for <yocto@yoctoproject.org>; Fri, 12 Nov 2010 12:52:45 -0600 (CST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 12 Nov 2010 10:52:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,188,1288594800"; d="scan'208";a="856943122"
+Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
+	by fmsmga001.fm.intel.com with ESMTP; 12 Nov 2010 10:52:44 -0800
+Received: from [10.255.13.72] (10.255.13.72) by rrsmsx603.amr.corp.intel.com
+	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
+	Fri, 12 Nov 2010 11:52:44 -0700
+Message-ID: <4CDD8CFB.4030606@intel.com>
+Date: Fri, 12 Nov 2010 10:52:43 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.12) Gecko/20101027 Lightning/1.0b2 Thunderbird/3.1.6
+MIME-Version: 1.0
+To: <yocto@yoctoproject.org>
+References: <AANLkTi=77Owty-Qf1J8-GeNv17ZBjE98YNYGxuH4-_ek@mail.gmail.com>	<B08D4353009C0E4FB5FE1A4D0041EBC4B20453@orsmsx001.amr.corp.intel.com>	<AANLkTik1hgwSfbLxndtJq93KW0Q312V4i8hCXEn6PTDo@mail.gmail.com>	<B08D4353009C0E4FB5FE1A4D0041EBC4B20774@orsmsx001.amr.corp.intel.com>
+	<AANLkTikP1bEu+QqHTEh9zYcO3K2ie5+dq_f3fq+=LK-H@mail.gmail.com>
+In-Reply-To: <AANLkTikP1bEu+QqHTEh9zYcO3K2ie5+dq_f3fq+=LK-H@mail.gmail.com>
+Subject: Re: Problem in running poky-qemu
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,59 +33,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Nov 2010 18:40:12 -0000
+X-List-Received-Date: Fri, 12 Nov 2010 18:52:45 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Updating the kern-tools SRCREV to pickup changes required for
-BSP bootstrapping:
+On 11/12/2010 03:31 AM, sachin kumar wrote:
+> Hi:
+>
+> i am sorry, again i am getting same message.
 
-commit 9722d8decacd2b750f079b3fde7918810700f80e
-Author: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date:   Thu Nov 11 01:28:33 2010 -0500
+Sachin,
 
-    createme: improve BSP bootstrapping
+Please also see my reply to this thread. Try adding both "qemuppc" and 
+"ext3" to the list of options you're passing to poky-qemu. I was able to 
+reproduce your problem and workaround it by adding those two options.
 
-    To streamline BSP bootstrapping, createme now actually
-    creates the required branch rather than only dumping it
-    in a .scc file. Later phases of the build will create
-    the .scc file, so it isn't required here.
+Scott
 
-    Also, a BSP with a '-' in the name would break the parent
-    branch detection. Improving the parsing of this allows more
-    flexibile branch naming.
-
-    Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
-
-commit c7d222b4cffb5108d9b14298fc4dc4cae31b784f
-Author: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date:   Thu Nov 11 01:27:33 2010 -0500
-
-    updateme: improve parent and target parsing
-
-    A BSP with a '-' in the name would break the parent branch
-    detection. Improving the parsing of this allows more
-    flexibile branch naming.
-
-    Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
-
-Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
----
- .../conf/distro/include/poky-default-revisions.inc |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
-
-diff --git a/meta/conf/distro/include/poky-default-revisions.inc b/meta/conf/distro/include/poky-default-revisions.inc
-index 4571995..ed8420f 100644
---- a/meta/conf/distro/include/poky-default-revisions.inc
-+++ b/meta/conf/distro/include/poky-default-revisions.inc
-@@ -55,7 +55,7 @@ SRCREV_pn-gypsy ??= "147"
- SRCREV_pn-inputproto ??= "7203036522ba9d4b224d282d6afc2d0b947711ee"
- SRCREV_pn-inputproto-native ??= "7203036522ba9d4b224d282d6afc2d0b947711ee"
- SRCREV_pn-inputproto-nativesdk ??= "7203036522ba9d4b224d282d6afc2d0b947711ee"
--SRCREV_pn-kern-tools-native ??= "140693a6b0d81b7ba7175b6cfce11c6c22f81e24"
-+SRCREV_pn-kern-tools-native ??= "9722d8decacd2b750f079b3fde7918810700f80e"
- SRCREV_pn-libdrm ??= "3f3c5be6f908272199ccf53f108b1124bfe0a00e"
- SRCREV_pn-libfakekey ??= "2031"
- SRCREV_pn-libgdbus ??= "aeab6e3c0185b271ca343b439470491b99cc587f"
 -- 
-1.7.0.4
-
+Scott Garman
+Embedded Linux Distro Engineer - Yocto Project
 
