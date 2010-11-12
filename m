@@ -1,44 +1,31 @@
-Return-Path: <sachindhiman123@gmail.com>
-Received: from mail-gx0-f176.google.com (mail-gx0-f176.google.com
-	[209.85.161.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id E778C4C80B6B
-	for <yocto@yoctoproject.org>; Fri, 12 Nov 2010 05:31:33 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by gxk5 with SMTP id 5so206125gxk.35
-	for <yocto@yoctoproject.org>; Fri, 12 Nov 2010 03:31:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:received:sender:received
-	:in-reply-to:references:date:x-google-sender-auth:message-id:subject
-	:from:to:cc:content-type;
-	bh=ANdRGsUgu7FzjCPIN3RRbsAloU1Ekb3glEBTvBTHlwU=;
-	b=Z6ASUHt2zRImg9UTnB3sXYRFti9wexudZpJE8QcOYAeglypmzY0O9GyMuvzL/Enxij
-	7bHykjeDpmTEruOCQaqCfJwy4ng3imGqI+oOScyylacb/noh05GCKq+DaeDSNPKWTlgS
-	anv/u6GiTHbjFlz2AEuK4lY2BEOcSQklXSiiI=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	b=fezP0+EVu0bxHdhdnCMBKgc3od2QA9Iip4V4O8CMxzv79TO4b20pmw423HVQ4+RikL
-	YJuFgSHYs+Rd+CBEbr7PCAg67VVRn0WoJIVGHDxXIaYcEj/3rNPR2xj53X9H76kjNkBm
-	Vnku8Hwx3R4tR0/LvUDmf6sf0m8S5MVPqT8Ro=
+Return-Path: <ke.yu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 0F3E84C80BCF
+	for <yocto@yoctoproject.org>; Fri, 12 Nov 2010 09:47:45 -0600 (CST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 12 Nov 2010 07:47:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,188,1288594800"; d="scan'208";a="856887442"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by fmsmga001.fm.intel.com with ESMTP; 12 Nov 2010 07:47:45 -0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Fri, 12 Nov 2010 23:47:39 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Fri, 12 Nov 2010 23:47:39 +0800
+From: "Yu, Ke" <ke.yu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Fri, 12 Nov 2010 23:47:37 +0800
+Thread-Topic: [PATCH 1/8] xmodmap: upgrade from 1.0.4 to 1.0.5
+Thread-Index: AcuCfgIHlt0EpltFRrOKg5R8RWEPygAApLrw
+Message-ID: <33AB447FBD802F4E932063B962385B353030AE49@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-Received: by 10.100.106.4 with SMTP id e4mr1453894anc.81.1289561493279; Fri,
-	12 Nov 2010 03:31:33 -0800 (PST)
-Sender: sachindhiman123@gmail.com
-Received: by 10.100.225.17 with HTTP; Fri, 12 Nov 2010 03:31:33 -0800 (PST)
-In-Reply-To: <B08D4353009C0E4FB5FE1A4D0041EBC4B20774@orsmsx001.amr.corp.intel.com>
-References: <AANLkTi=77Owty-Qf1J8-GeNv17ZBjE98YNYGxuH4-_ek@mail.gmail.com>
-	<B08D4353009C0E4FB5FE1A4D0041EBC4B20453@orsmsx001.amr.corp.intel.com>
-	<AANLkTik1hgwSfbLxndtJq93KW0Q312V4i8hCXEn6PTDo@mail.gmail.com>
-	<B08D4353009C0E4FB5FE1A4D0041EBC4B20774@orsmsx001.amr.corp.intel.com>
-Date: Fri, 12 Nov 2010 17:01:33 +0530
-X-Google-Sender-Auth: fWmZBkIVcnys4ApcEVUmMVvmgkw
-Message-ID: <AANLkTikP1bEu+QqHTEh9zYcO3K2ie5+dq_f3fq+=LK-H@mail.gmail.com>
-From: sachin kumar <sachinsomeone@gmail.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem in running poky-qemu
+Subject: [PATCH 1/8] xmodmap: upgrade from 1.0.4 to 1.0.5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,142 +37,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Nov 2010 11:31:34 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 12 Nov 2010 15:47:46 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi:
+Signed-off-by: Yu Ke <ke.yu@intel.com>
+---
+ .../distro/include/preferred-xorg-versions.inc     |    2 +-
+ .../{xmodmap_1.0.4.bb =3D> xmodmap_1.0.5.bb}         |    0
+ 2 files changed, 1 insertions(+), 1 deletions(-)
+ rename meta/recipes-graphics/xorg-app/{xmodmap_1.0.4.bb =3D> xmodmap_1.0.5=
+.bb} (100%)
 
-i am sorry, again i am getting same message.
+diff --git a/meta/conf/distro/include/preferred-xorg-versions.inc b/meta/co=
+nf/distro/include/preferred-xorg-versions.inc
+index 8083df2..182720e 100644
+--- a/meta/conf/distro/include/preferred-xorg-versions.inc
++++ b/meta/conf/distro/include/preferred-xorg-versions.inc
+@@ -119,7 +119,7 @@ PREFERRED_VERSION_xf86vidmodeproto ?=3D "2.3"
+ PREFERRED_VERSION_xhost ?=3D "1.0.3"
+ PREFERRED_VERSION_xinit ?=3D "1.2.1"
+ PREFERRED_VERSION_xineramaproto ?=3D "1.2"
+-PREFERRED_VERSION_xmodmap ?=3D "1.0.4"
++PREFERRED_VERSION_xmodmap ?=3D "1.0.5"
+ PREFERRED_VERSION_xorg-cf-files ?=3D "1.0.3"
+ PREFERRED_VERSION_xprop ?=3D "1.1.0"
+ PREFERRED_VERSION_xproto ?=3D "7.0.17"
+diff --git a/meta/recipes-graphics/xorg-app/xmodmap_1.0.4.bb b/meta/recipes=
+-graphics/xorg-app/xmodmap_1.0.5.bb
+similarity index 100%
+rename from meta/recipes-graphics/xorg-app/xmodmap_1.0.4.bb
+rename to meta/recipes-graphics/xorg-app/xmodmap_1.0.5.bb
+--=20
+1.7.0.4
 
-Regards
-Sachin
-
-On 11/12/10, Zhang, Jessica <jessica.zhang@intel.com> wrote:
-> Hi Sachin,
->
-> under /opt/poky, can you do the following in exact sequence:
-> 1. source environment-setup-ppc603e-poky-linux
-> 2. poky-qemy qemuppc zImage-2.6.34.qemuppc-0.9.bin
-> yocto-image-minimal-qemuppc-0.9.rootfs.ext3
->
-> Thanks,
-> Jessica
->
->   _____
->
-> From: sachindhiman123@gmail.com [mailto:sachindhiman123@gmail.com] On Behalf
-> Of sachin kumar
-> Sent: Thursday, November 11, 2010 8:19 AM
-> To: Zhang, Jessica
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Problem in running poky-qemu
->
->
-> Hello Jessica:
->
-> Thanks for your swift response, as per your suggestions i have downloaded
-> yocto-eglibc-i586-powerpc-toolchain-sdk-0.9.tar.bz2 file from yocto website.
-> I have installed the same.
-> you can see now content of my /opt/poky folder as following
->
-> [sachin@sachinlinux yocto_tools]$ ls /opt/poky/
-> environment-setup-i586-poky-linux     site-config-i586-poky-linux
-> sysroots                 version-ppc603e-poky-linux
-> environment-setup-ppc603e-poky-linux  site-config-ppc603e-poky-linux
-> version-i586-poky-linux
-> [sachin@sachinlinux yocto_tools]$
->
-> But despite that i am getting same message
->
-> [sachin@sachinlinux yocto_tools]$ poky-qemu zImage-2.6.34-qemuppc-0.9.bin
-> yocto-image-minimal-qemuppc-0.9.rootfs.ext3
-> Set MACHINE to [qemuppc-0] based on kernel [zImage-2.6.34-qemuppc-0.9.bin]
-> In order for this script to dynamically infer paths
-> to kernels or filesystem images, you either need
-> bitbake in your PATH or to source poky-init-build-env
-> before running this script
-> [sachin@sachinlinux yocto_tools]$
->
->
-> I do not which script this is referring.
-> Please help me.
->
-> Kind regards
->
-> Sachin
->
->
->
->
->
-> On Thu, Nov 11, 2010 at 7:59 AM, Zhang, Jessica <jessica.zhang@intel.com>
-> wrote:
->
->
-> Hi Sachin,
->
-> First of all, if you want to run ppc, the toolchain you need to download is
-> yocto-eglibc-i586-powerpc-toolchain-sdk-0.9.tar.bz2.  After you install it
-> under /opt/poky, you should go under /opt/poky and source the
-> environment-setup-ppc* and try start qemu again...
->
-> Let us know if you still run into issues.
->
-> Thanks,
-> Jessica
->
->   _____
->
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-> On Behalf Of sachin kumar
-> Sent: Wednesday, November 10, 2010 6:09 PM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] Problem in running poky-qemu
->
->
-> Dear All:
->
-> I am new to qemu, so please excuse me, i am asking basic question.
->
-> Actually i want to run linux image for ppc on qemu.
->
-> My host machine is running Fedora13.
->
-> For that i have downloaded following from yocto project website.
->
-> Disk Image: yocto-image-minimal-qemuppc-0.9.rootfs.ext3
-> Kernel Image : zImage-2.6.34-qemuppc-0.9.bin
-> Toolchain: yocto-eglibc-i586-i586-toolchain-sdk-0.9.tar.bz2
->
-> Now toolchain was installed properly.
->
-> Now when i am running poky-qemu from command line it is giving following
-> message
-> ============================================================================
-> =================
-> [root@sachinlinux yocto_tools]# poky-qemu zImage-2.6.34-qemuppc-0.9.bin
-> yocto-image-minimal-qemuppc-0.9.rootfs.ext3
-> Set MACHINE to [qemuppc-0] based on kernel [zImage-2.6.34-qemuppc-0.9.bin]
-> In order for this script to dynamically infer paths
-> to kernels or filesystem images, you either need
-> bitbake in your PATH or to source poky-init-build-env
-> before running this script
->
-> ============================================================================
-> =================
-> I am blank about this message, which script they are referring.
-> Please help me for the same.
-> This will be a great help for me as i am at critical phase of one of my
-> project.
->
-> Kind Regards
-> Sachin
->
->
->
->
->
->
->
->
 
