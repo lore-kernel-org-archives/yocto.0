@@ -1,18 +1,20 @@
 Return-Path: <ke.yu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 15CEE4C80BD8
-	for <yocto@yoctoproject.org>; Sat, 13 Nov 2010 08:52:06 -0600 (CST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 13 Nov 2010 06:52:06 -0800
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C426E4C80FD4
+	for <yocto@yoctoproject.org>; Sat, 13 Nov 2010 08:52:08 -0600 (CST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 13 Nov 2010 06:52:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,191,1288594800"; d="scan'208";a="348330922"
+X-IronPort-AV: E=Sophos;i="4.59,191,1288594800"; d="scan'208";a="677184300"
 Received: from kyu3-dev32.bj.intel.com (HELO localhost) ([10.238.154.168])
-	by azsmga001.ch.intel.com with ESMTP; 13 Nov 2010 06:52:05 -0800
-Message-Id: <cover.1289659279.git.ke.yu@intel.com>
+	by orsmga001.jf.intel.com with ESMTP; 13 Nov 2010 06:52:07 -0800
+Message-Id: <c668621611f939b942ab6b1fb485560aebeba849.1289659279.git.ke.yu@intel.com>
+In-Reply-To: <cover.1289659279.git.ke.yu@intel.com>
+References: <cover.1289659279.git.ke.yu@intel.com>
 From: Yu Ke <ke.yu@intel.com>
-Date: Sat, 13 Nov 2010 22:41:19 +0800
+Date: Sat, 13 Nov 2010 16:46:43 +0800
 To: yocto@yoctoproject.org
-Subject: [PATCH 0/3] upgrade recipes cracklib,sqlite3
+Subject: [PATCH 1/3] cracklib: upgrade from 2.8.16 to 2.8.18
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -24,29 +26,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 Nov 2010 14:52:07 -0000
+X-List-Received-Date: Sat, 13 Nov 2010 14:52:09 -0000
 
-also with distro tracking field update
-
-Pull URL: git://git.pokylinux.org/poky-contrib.git
-  Branch: kyu3/update-11-13
-  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=kyu3/update-11-13
-
-Thanks,
-    Yu Ke <ke.yu@intel.com>
+Signed-off-by: Yu Ke <ke.yu@intel.com>
 ---
-
-
-Yu Ke (3):
-  cracklib: upgrade from 2.8.16 to 2.8.18
-  sqlite: upgrade from 3.6.23 to 3.7.3
-  distro tracking: update the info for upgrade recpies
-
- .../conf/distro/include/distro_tracking_fields.inc |   42 ++++++++++----------
  .../{cracklib_2.8.16.bb => cracklib_2.8.18.bb}     |    0
- .../{sqlite3_3.6.23.1.bb => sqlite3_3.7.3.bb}      |    2 +-
- 3 files changed, 22 insertions(+), 22 deletions(-)
+ 1 files changed, 0 insertions(+), 0 deletions(-)
  rename meta/recipes-extended/cracklib/{cracklib_2.8.16.bb => cracklib_2.8.18.bb} (100%)
- rename meta/recipes-support/sqlite/{sqlite3_3.6.23.1.bb => sqlite3_3.7.3.bb} (67%)
+
+diff --git a/meta/recipes-extended/cracklib/cracklib_2.8.16.bb b/meta/recipes-extended/cracklib/cracklib_2.8.18.bb
+similarity index 100%
+rename from meta/recipes-extended/cracklib/cracklib_2.8.16.bb
+rename to meta/recipes-extended/cracklib/cracklib_2.8.18.bb
+-- 
+1.7.0.4
 
 
