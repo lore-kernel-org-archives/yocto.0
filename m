@@ -1,30 +1,41 @@
-Return-Path: <rpurdie@linux.intel.com>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A66174C80B71
-	for <yocto@yoctoproject.org>; Mon, 15 Nov 2010 15:50:25 -0600 (CST)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAFLoCK2026067;
-	Mon, 15 Nov 2010 21:50:12 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 25578-07; Mon, 15 Nov 2010 21:50:08 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAFLo7SI026060
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Mon, 15 Nov 2010 21:50:07 GMT
-From: Richard Purdie <rpurdie@linux.intel.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-In-Reply-To: <B08D4353009C0E4FB5FE1A4D0041EBC4BEAC1D@orsmsx001.amr.corp.intel.com>
-References: <B08D4353009C0E4FB5FE1A4D0041EBC4BEAC1D@orsmsx001.amr.corp.intel.com>
-Date: Mon, 15 Nov 2010 21:50:02 +0000
-Message-ID: <1289857802.1272.6698.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Questions based on sysroot testing
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from mail-iw0-f176.google.com (mail-iw0-f176.google.com
+	[209.85.214.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4ABC24C80052;
+	Mon, 15 Nov 2010 15:16:30 -0600 (CST)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iwn33 with SMTP id 33so217920iwn.35
+	for <multiple recipients>; Mon, 15 Nov 2010 13:16:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:received:received:in-reply-to
+	:references:date:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=dnec2dXFuphtdzMYrulWxt+9AYVAOiXi3IaLJhaPhps=;
+	b=DRPXs7SBTb5cYHVUeCX7d18wg5zjdGyiW7qdyz41SWJ5edK9uOxqaBXcfAVtoqoiu9
+	xwYxhUcy7h69aRxldpWNn+0Dc/NOJwxNKtQ5RyPAFDdm9MGD/b90QxSQXsnqvL9C7Ftl
+	t4zx5qZdiyEwZQ/cJJ28Dcnc7vhCOCg/jzOq0=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	b=cVDkKCkwnv/aaDUceRcgDezTyRRYZTY5QFKloBa8UpXhRbkC/UZ7NsM4MUGEYPLeE5
+	3ym1JvXTL+vGZTaiBUTFyV+FR9IjY7M8jDtgzc2mbWL32wDsTDzUS8qC54WYhwuS2cYt
+	Q3S5ajHFVeVcFuWKRGoC5Q/HRcd8C+fRRWWdY=
+MIME-Version: 1.0
+Received: by 10.231.37.199 with SMTP id y7mr4780894ibd.127.1289855787905; Mon,
+	15 Nov 2010 13:16:27 -0800 (PST)
+Received: by 10.231.208.73 with HTTP; Mon, 15 Nov 2010 13:16:27 -0800 (PST)
+In-Reply-To: <4CE1A1A5.1020003@linux.intel.com>
+References: <cover.1289839979.git.bruce.ashfield@windriver.com>
+	<4CE1A1A5.1020003@linux.intel.com>
+Date: Mon, 15 Nov 2010 16:16:27 -0500
+Message-ID: <AANLkTim4+siYZ3_G47gSVEVfv_md23X2FtDAz5GWVFM8@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Darren Hart <dvhart@linux.intel.com>
+X-Mailman-Approved-At: Mon, 15 Nov 2010 16:11:20 -0600
+Cc: yocto@yoctoproject.org, poky@yoctoproject.org
+Subject: Re: [poky] [PATCH 0/3] kernel: rename supported kernel to linux-yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,47 +47,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Nov 2010 21:50:26 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 15 Nov 2010 21:16:30 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Hi Jessica,
+On Mon, Nov 15, 2010 at 4:09 PM, Darren Hart <dvhart@linux.intel.com> wrote=
+:
+> On 11/15/2010 08:56 AM, Bruce Ashfield wrote:
+>>
+>> This is the first of several staged changes to update the
+>> kernel support for the 1.0 release.
+>>
+>> This series is step 1:
+>>
+>> =A0- rename the supported kernel to 'linux-yocto' and update
+>> =A0 =A0the boards, and recipes that have references to linux-wrs.
+>>
+>> Step 2 will refactor the code into reusable blocks
+>> Step 3 will do internal branch renames for scalability
+>> Step 4 will launch and updated 2.6.34.x and 2.6.37-rcX kernel
+>>
+>> This has been built and booted on the relevant boards. If I've
+>> missed a reference to the existing kernel name, let me know
+>> and I'll make those updates as well.
+>>
+>> Pull URL: git://git.pokylinux.org/poky-contrib.git
+>> =A0 Branch: zedd/kernel-rename
+>> =A0 Browse:
+>> http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=3Dzedd/kernel-rena=
+me
+>>
+>> Thanks,
+>> =A0 =A0 Bruce Ashfield<bruce.ashfield@windriver.com>
+>> ---
+>>
+>>
+>> Bruce Ashfield (3):
+>> =A0 linux-wrs: rename to linux-yocto
+>> =A0 linux-yocto: update board configurations
+>> =A0 linux-yocto: update SRCREVs for linux-yocto rename
+>
+> From what I can tell these changes are not "bisectable" - the build would
+> fail if all three are not applied. If I'm not missing something, I'd pref=
+er
+> to see these squashed into a single commit.
 
-On Mon, 2010-11-15 at 12:05 -0800, Zhang, Jessica wrote:
-> As we'll allow dynamic setup sysroot for app developers, I've done
-> some testing and here are some findings that want to further discuss
-> with you:
->  
-> 1. We talked about using qemu rootfs as target sysroot, some I've
-> tried pass "--sysroot" to cross gcc and tested against one of our
-> existing testing app, cvs.  The cvs project client.c is using
-> gssapi.h, with the sysroot option, it'll strictly looking for target
-> include within the sysroot setup, so it failed at finding "gssapi.h".
-> While our original sysroots under /opt/poky, even we don't have
-> gssapi.h under our sysroot, but since we're not using --sysroot option
-> to enforce searching target libraries and include files, it was able
-> to use the gssapi.h under /usr/include/gssapi.  My question here is
-> which one is the desired behavior, the --sysroot enforcement which
-> means we/user need to include everything needed in the sysroot, or the
-> current /opt/poky sysroot behavior that uses the host setting as the
-> 2nd choice...
+Definitely. Not bisectable, but I wanted to keep the changes logically
+separated,
+since it allowed a commit message that wasn't too long to read and
+be useful. Since there are several recipe categories, boards and layers
+involved, I made the choice to split things up.
 
-This is desired behaviour, you should *never* be mixing host and target
-system headers or libraries. The current behaviour is plain wrong and if
-I'd known it was doing that, I'd have fixed it before now ;-).
+I typically insist on bisectable series as well, but have made exceptions :=
+)
 
-> 2. Under our /opt/poky/sysroot, we have target sysroot(e.g.
-> i586-poky-linux), and host sysroot (i586-pokysdk-linux), for the user
-> sysroot setup, I don't think we need to copy the host sysroot under
-> the usr sysroort setup dir, seems for the specific arch, the host
-> sysroot will be fixed, only the target sysroot may change even for the
-> same target arch which we'll use target qemu rootfs, is this correct?
+I'm happy to squash things though, if Richard wants them squashed
+I'll resend .. or it might be quicker to rebase and squash on merge,
+either works for me.
 
-This is correct.
+Bruce
 
-Cheers,
-
-Richard
+>
+> --
+> Darren Hart
+> Embedded Linux Kernel
+> _______________________________________________
+> poky mailing list
+> poky@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/poky
+>
 
 
+
+--=20
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
