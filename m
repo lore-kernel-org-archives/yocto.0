@@ -1,24 +1,30 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id EA5A64C80052;
-	Mon, 15 Nov 2010 15:09:57 -0600 (CST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 15 Nov 2010 13:09:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,202,1288594800"; d="scan'208";a="349029216"
-Received: from doubt.jf.intel.com (HELO [10.24.5.74]) ([10.24.5.74])
-	by azsmga001.ch.intel.com with ESMTP; 15 Nov 2010 13:09:56 -0800
-Message-ID: <4CE1A1A5.1020003@linux.intel.com>
-Date: Mon, 15 Nov 2010 13:09:57 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.12) Gecko/20101027 Lightning/1.0b2 Thunderbird/3.1.6
-MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <cover.1289839979.git.bruce.ashfield@windriver.com>
-In-Reply-To: <cover.1289839979.git.bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org
-Subject: Re: [poky] [PATCH 0/3] kernel: rename supported kernel to linux-yocto
+Return-Path: <rpurdie@linux.intel.com>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id A66174C80B71
+	for <yocto@yoctoproject.org>; Mon, 15 Nov 2010 15:50:25 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAFLoCK2026067;
+	Mon, 15 Nov 2010 21:50:12 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 25578-07; Mon, 15 Nov 2010 21:50:08 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oAFLo7SI026060
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 15 Nov 2010 21:50:07 GMT
+From: Richard Purdie <rpurdie@linux.intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+In-Reply-To: <B08D4353009C0E4FB5FE1A4D0041EBC4BEAC1D@orsmsx001.amr.corp.intel.com>
+References: <B08D4353009C0E4FB5FE1A4D0041EBC4BEAC1D@orsmsx001.amr.corp.intel.com>
+Date: Mon, 15 Nov 2010 21:50:02 +0000
+Message-ID: <1289857802.1272.6698.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Questions based on sysroot testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,46 +36,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Nov 2010 21:09:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Mon, 15 Nov 2010 21:50:26 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 11/15/2010 08:56 AM, Bruce Ashfield wrote:
-> This is the first of several staged changes to update the
-> kernel support for the 1.0 release.
->
-> This series is step 1:
->
->   - rename the supported kernel to 'linux-yocto' and update
->     the boards, and recipes that have references to linux-wrs.
->
-> Step 2 will refactor the code into reusable blocks
-> Step 3 will do internal branch renames for scalability
-> Step 4 will launch and updated 2.6.34.x and 2.6.37-rcX kernel
->
-> This has been built and booted on the relevant boards. If I've
-> missed a reference to the existing kernel name, let me know
-> and I'll make those updates as well.
->
-> Pull URL: git://git.pokylinux.org/poky-contrib.git
->    Branch: zedd/kernel-rename
->    Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel-rename
->
-> Thanks,
->      Bruce Ashfield<bruce.ashfield@windriver.com>
-> ---
->
->
-> Bruce Ashfield (3):
->    linux-wrs: rename to linux-yocto
->    linux-yocto: update board configurations
->    linux-yocto: update SRCREVs for linux-yocto rename
+Hi Jessica,
 
- From what I can tell these changes are not "bisectable" - the build 
-would fail if all three are not applied. If I'm not missing something, 
-I'd prefer to see these squashed into a single commit.
+On Mon, 2010-11-15 at 12:05 -0800, Zhang, Jessica wrote:
+> As we'll allow dynamic setup sysroot for app developers, I've done
+> some testing and here are some findings that want to further discuss
+> with you:
+>  
+> 1. We talked about using qemu rootfs as target sysroot, some I've
+> tried pass "--sysroot" to cross gcc and tested against one of our
+> existing testing app, cvs.  The cvs project client.c is using
+> gssapi.h, with the sysroot option, it'll strictly looking for target
+> include within the sysroot setup, so it failed at finding "gssapi.h".
+> While our original sysroots under /opt/poky, even we don't have
+> gssapi.h under our sysroot, but since we're not using --sysroot option
+> to enforce searching target libraries and include files, it was able
+> to use the gssapi.h under /usr/include/gssapi.  My question here is
+> which one is the desired behavior, the --sysroot enforcement which
+> means we/user need to include everything needed in the sysroot, or the
+> current /opt/poky sysroot behavior that uses the host setting as the
+> 2nd choice...
 
--- 
-Darren Hart
-Embedded Linux Kernel
+This is desired behaviour, you should *never* be mixing host and target
+system headers or libraries. The current behaviour is plain wrong and if
+I'd known it was doing that, I'd have fixed it before now ;-).
+
+> 2. Under our /opt/poky/sysroot, we have target sysroot(e.g.
+> i586-poky-linux), and host sysroot (i586-pokysdk-linux), for the user
+> sysroot setup, I don't think we need to copy the host sysroot under
+> the usr sysroort setup dir, seems for the specific arch, the host
+> sysroot will be fixed, only the target sysroot may change even for the
+> same target arch which we'll use target qemu rootfs, is this correct?
+
+This is correct.
+
+Cheers,
+
+Richard
+
+
 
