@@ -1,28 +1,35 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C0DEB4C80B71
-	for <yocto@yoctoproject.org>; Tue, 16 Nov 2010 11:16:39 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 16 Nov 2010 09:16:39 -0800
+Return-Path: <lei.mei@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 212254C80A74
+	for <yocto@yoctoproject.org>; Wed, 17 Nov 2010 00:51:59 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 16 Nov 2010 22:51:58 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,206,1288594800"; d="scan'208";a="678075728"
-Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
-	by orsmga001.jf.intel.com with ESMTP; 16 Nov 2010 09:16:38 -0800
-Received: from [10.7.199.55] (10.7.199.55) by rrsmsx603.amr.corp.intel.com
-	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
-	Tue, 16 Nov 2010 10:16:35 -0700
-Message-ID: <4CE2BC38.3070603@intel.com>
-Date: Tue, 16 Nov 2010 09:15:36 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.12) Gecko/20101103 Fedora/1.0-0.33.b2pre.fc14
-	Lightning/1.0b3pre Thunderbird/3.1.6
+X-IronPort-AV: E=Sophos;i="4.59,209,1288594800"; d="scan'208";a="349772272"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by azsmga001.ch.intel.com with ESMTP; 16 Nov 2010 22:51:47 -0800
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Wed, 17 Nov 2010 14:50:55 +0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Wed, 17 Nov 2010 14:50:55 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Wed, 17 Nov 2010 14:50:03 +0800
+From: "Mei, Lei" <lei.mei@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Wed, 17 Nov 2010 14:50:02 +0800
+Thread-Topic: [PULL]distro_tracking_fields.inc: remove some invalid packages
+	information from it
+Thread-Index: AcuGI6jjD7OB+0Z9SUeglDxwIeFfBQ==
+Message-ID: <749B9D3DBF0F054390025D9EAFF47F22301754AF@shsmsx501.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <4CE042CA.1000809@fosstel.com>	<B08D4353009C0E4FB5FE1A4D0041EBC4BEA763@orsmsx001.amr.corp.intel.com>	<4CE07943.9080204@fosstel.com>
-	<4CE14EDD.8060503@ronsgallery.com>
-In-Reply-To: <4CE14EDD.8060503@ronsgallery.com>
-Subject: Re: bitbake problems when testing pre-built images
+Subject: [PULL]distro_tracking_fields.inc: remove some invalid packages information from it
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,39 +41,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Nov 2010 17:16:40 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 17 Nov 2010 06:51:59 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/15/2010 07:16 AM, Ron Olson wrote:
-> I second the point about updating the instructions.  The whole point of
-> the quick start instructions is to let one quickly get their feet on the
-> ground.  When the documentation is in error, it costs people time and
-> frustration.  I spent a couple hours working in the dark since this is
-> new to me, until I finally found a work-around, when the exercise should
-> have taken minutes.
+Because of the limitation of the message length, and this patch looks strai=
+ght forward and shouldn't to be split, so I send it out only with the pull =
+URL, please check it.
 
-Hi Ron,
+Pull URL: git://git.pokylinux.org/poky-contrib.git
+  Branch: lmei3/distrotracking
+  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=3Dlmei3/dis=
+trotracking
+Thanks,
+    Mei Lei <lei.mei@intel.com>
+---
 
-I'm sorry to hear that this took up your time in this way, and wanted to 
-let you know that I'm working with our documentation person to get the 
-change made to our web site. Unfortunately the person who has access to 
-make changes on our production server is at a conference this week, so 
-we're hoping he will be able to make the change in a free moment.
 
-> My suggestion would be that you dry-run documentation such as this,
-> using people that have *no* yocto or openembedded background.  After
-> all, that's the target audience for a 'quick start' page.
+Mei Lei (1):
+  distro_tracking_fields.inc: remove some invalid packages information from=
+ it
 
-Point taken. As a matter of fact, we did do this, but the renaming of 
-the final images happened literally within a day or two of our public 
-release, and the bug in the poky-qemu script is due to this renaming. It 
-just goes to show that even "simple" last-minute changes still need to 
-be tested. :(
+ .../conf/distro/include/distro_tracking_fields.inc |  553 +---------------=
+----
+ 1 files changed, 1 insertions(+), 552 deletions(-)
 
-Scott
 
--- 
-Scott Garman
-Embedded Linux Distro Engineer - Yocto Project
+Pull URL: http://git.pokylinux.org/cgit.cgi/poky-contrib/commit/?h=3Dlmei3/=
+distrotracking&id=3D49a05acd5b9335e559d4170d0e9bc95a50c42e18
+
+
+Thanks
+Lei
+
+---
+Mei, Lei
+Email: lei.mei@intel.com
+
+
 
