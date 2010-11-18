@@ -1,23 +1,21 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id EE8524C80B71
-	for <yocto@yoctoproject.org>; Thu, 18 Nov 2010 04:49:07 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 18 Nov 2010 02:49:07 -0800
+Return-Path: <joshua.lock@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B2E1C4C81002
+	for <yocto@yoctoproject.org>; Thu, 18 Nov 2010 06:36:20 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 18 Nov 2010 04:36:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,216,1288594800"; d="scan'208";a="575060873"
+X-IronPort-AV: E=Sophos;i="4.59,217,1288594800"; d="scan'208";a="350354186"
 Received: from unknown (HELO [10.255.16.146]) ([10.255.16.146])
-	by orsmga002.jf.intel.com with ESMTP; 18 Nov 2010 02:49:06 -0800
-From: Joshua Lock <josh@linux.intel.com>
+	by azsmga001.ch.intel.com with ESMTP; 18 Nov 2010 04:36:10 -0800
+From: Joshua Lock <joshua.lock@intel.com>
 To: yocto@yoctoproject.org
-In-Reply-To: <4CE4B9DC.9050003@intel.com>
-References: <33AB447FBD802F4E932063B962385B3530383DDA@shsmsx501.ccr.corp.intel.com>
-	<4CE4B536.7020802@linux.intel.com>  <4CE4B9DC.9050003@intel.com>
-Date: Thu, 18 Nov 2010 10:49:00 +0000
-Message-ID: <1290077340.2487.0.camel@scimitar>
+Date: Thu, 18 Nov 2010 12:36:04 +0000
+Message-ID: <1290083764.2487.24.camel@scimitar>
 Mime-Version: 1.0
 X-Mailer: Evolution 2.32.0 (2.32.0-2.fc14) 
-Subject: Re: BKM on add SRC_URI MD5 and SHA256 checksum
+Cc: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+Subject: Documenting Poky dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,41 +27,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Nov 2010 10:49:08 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 18 Nov 2010 12:36:21 -0000
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"
 
-On Wed, 2010-11-17 at 21:30 -0800, Scott Garman wrote:
-> On 11/17/2010 09:10 PM, Saul Wold wrote:
-> > On 11/17/2010 06:32 PM, Yu, Ke wrote:
-> >> Hi Distro folks:
-> >>
-> >> As Saul suggest to add SRC_URI MD5 and SHA256 checksum when we upgrade the recipes, here is a simple how-to:
-> >>
-> >> Two entry is needed for checksum, take meta/recipes-extended/tar/tar_1.23.bb as example:
-> >> SRC_URI[md5sum] = "41e2ca4b924ec7860e51b43ad06cdb7e"
-> >> SRC_URI[sha256sum] = "c9328372db62fbb1d94c9e4e3cefc961111af46de47085b635359c00a0eebe36"
-> >>
-> > Also, a clarification, these values should go at the END of the file,
-> > which I believe is the OE Style on this.
-> 
-> The reason you see many OE files with the checksums at the end of the 
-> file is that at one point a member of the OE community wrote a script to 
-> append the values to a ton of recipes and then checked it in.
-> 
-> I would think that keeping the SRC_URI fields relatively close to each 
-> other makes more logical sense. But I'm not going to get religious about it.
-
-I'm willing to be religious about it. A selling point of Poky has always
-been the cleaner, better maintained, metadata. 
-
-Therefore fields which logically fit together should be kept so. Let's
-keep the SRC_URI fields together please.
-
-Cheers,
-Joshua
--- 
-Joshua Lock
-        Intel Open Source Technology Centre
+SGkgYWxsLAoKSSd2ZSBiZWVuIHRoaW5raW5nIGFib3V0IHRoZSBpc3N1ZSBvZiBkb2N1bWVudGlu
+ZyBQb2t5J3MgZGVwZW5kZW5jaWVzIGluCnRoZSBoYW5kYm9vay4KQXQgdGhlIG1vbWVudCB0aGUg
+aGFuZGJvb2sgaW5jbHVkZXMgYSBsaXN0IG9mIHJlcXVpcmVkIHBhY2thZ2VzIGFuZCB0aGVuCmV4
+cGxpY2l0bHkgbGlzdHMgY29tbWFuZHMgdG8gaW5zdGFsbCB0aG9zZSBwYWNrYWdlcyBvbiBVYnVu
+dHUuCgpXaGF0IEknZCBsaWtlIHRvIHByb3Bvc2UgaXMgdGhhdCB3ZSBsaXN0IHRoZSByZXF1aXJl
+ZCBkZXBlbmRlbmNpZXMgaW4KdGhlIGhhbmRib29rIGFuZCB0aGVuIGxpbmsgdG8gYSB3aWtpIHBh
+Z2Ugd2hlcmUgd2UgY2FuIGxpc3QgZXhwbGljaXQKaW5zdHJ1Y3Rpb25zIGZvciB2YXJpb3VzIGRp
+c3RyaWJ1dGlvbnMuCgpUaGlzIGFsbG93cyB1cyB0byBkb2N1bWVudCB0aGUgcHJvY2VzcyBmb3Ig
+YXMgbWFueSBkaXN0cmlidXRpb25zIGFzCnBvc3NpYmxlIHdpdGhvdXQgY2x1dHRlcmluZyB0aGUg
+aGFuZGJvb2suIEFuIGFsdGVybmF0aXZlIHdvdWxkIGJlIHRvIGFkZAp0aGlzIHRvIGFuIGFwcGVu
+ZGl4IGJ1dCBJIHF1aXRlIGxpa2UgdGhlIGlkZWEgb2YgcGVvcGxlIGJlaW5nIGFibGUgdG8KZWRp
+dCBhbmQgYWRkIHRvIHRoaXMgaW5mb3JtYXRpb24gd2l0aG91dCBoYXZpbmcgdG8gdXNlIGdpdC4K
+ClRvIHRoYXQgZW5kIEkndmUgYWRkZWQgYSBwYWdlIHRvIG91ciBwdWJsaWMgd2lraSBzaG93aW5n
+IHRoZSBzdGVwcyBJIGhhZAp0byB0YWtlIHRvIHJ1biBQb2t5IG9uIEZlZG9yYSBhbmQgQ2VudE9T
+IG1hY2hpbmVzOgoKaHR0cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9Qb2t5L0dldHRp
+bmdTdGFydGVkL0RlcGVuZGVuY2llcwoKQ2hlZXJzLApKb3NodWEKLS0gCkpvc2h1YSBMb2NrCiAg
+ICAgICAgSW50ZWwgT3BlbiBTb3VyY2UgVGVjaG5vbG9neSBDZW50cmUKCi0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpJ
+bnRlbCBDb3Jwb3JhdGlvbiAoVUspIExpbWl0ZWQKUmVnaXN0ZXJlZCBOby4gMTEzNDk0NSAoRW5n
+bGFuZCkKUmVnaXN0ZXJlZCBPZmZpY2U6IFBpcGVycyBXYXksIFN3aW5kb24gU04zIDFSSgpWQVQg
+Tm86IDg2MCAyMTczIDQ3CgpUaGlzIGUtbWFpbCBhbmQgYW55IGF0dGFjaG1lbnRzIG1heSBjb250
+YWluIGNvbmZpZGVudGlhbCBtYXRlcmlhbCBmb3IKdGhlIHNvbGUgdXNlIG9mIHRoZSBpbnRlbmRl
+ZCByZWNpcGllbnQocykuIEFueSByZXZpZXcgb3IgZGlzdHJpYnV0aW9uCmJ5IG90aGVycyBpcyBz
+dHJpY3RseSBwcm9oaWJpdGVkLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQKcmVjaXBpZW50
+LCBwbGVhc2UgY29udGFjdCB0aGUgc2VuZGVyIGFuZCBkZWxldGUgYWxsIGNvcGllcy4K
 
 
