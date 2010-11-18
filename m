@@ -1,24 +1,30 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 753AA4C80052
-	for <yocto@yoctoproject.org>; Wed, 17 Nov 2010 23:10:27 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 17 Nov 2010 21:10:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,215,1288594800"; d="scan'208";a="678627841"
-Received: from unknown (HELO [10.255.13.148]) ([10.255.13.148])
-	by orsmga001.jf.intel.com with ESMTP; 17 Nov 2010 21:10:17 -0800
-Message-ID: <4CE4B536.7020802@linux.intel.com>
-Date: Wed, 17 Nov 2010 21:10:14 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 925B84C81002
+	for <yocto@yoctoproject.org>; Wed, 17 Nov 2010 23:13:42 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oAI5Dfns007308;
+	Wed, 17 Nov 2010 21:13:41 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Wed, 17 Nov 2010 21:13:41 -0800
+Received: from bruce-ashfields-macbook.local ([128.224.143.16]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Wed, 17 Nov 2010 21:13:41 -0800
+Message-ID: <4CE4B603.2030709@windriver.com>
+Date: Thu, 18 Nov 2010 00:13:39 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.12) Gecko/20101027 Thunderbird/3.1.6
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <33AB447FBD802F4E932063B962385B3530383DDA@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <33AB447FBD802F4E932063B962385B3530383DDA@shsmsx501.ccr.corp.intel.com>
-Subject: Re: BKM on add SRC_URI MD5 and SHA256 checksum
+To: Darren Hart <dvhart@linux.intel.com>
+References: <4CE46608.1010708@linux.intel.com>
+	<4CE4817F.3070007@linux.intel.com>
+In-Reply-To: <4CE4817F.3070007@linux.intel.com>
+X-OriginalArrivalTime: 18 Nov 2010 05:13:41.0631 (UTC)
+	FILETIME=[5D98B8F0:01CB86DF]
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: Bugzilla Reorg Take 2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,35 +36,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Nov 2010 05:10:28 -0000
+X-List-Received-Date: Thu, 18 Nov 2010 05:13:42 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 11/17/2010 06:32 PM, Yu, Ke wrote:
-> Hi Distro folks:
+On 10-11-17 8:29 PM, Darren Hart wrote:
+> On 11/17/2010 03:32 PM, Saul Wold wrote:
+>>
+>> Folks,
+>>
+>> After reviewing the emails from the first attempt and review bugzilla,
+>> there are a couple of different approaches that can be taken. It's
+>> important to note that bugzilla supports 3 layers, Classification,
+>> Product and Components, version are tracked at the Product level.
+>>
+>> Since we have 3 Layers, there are 2 possible scenarios:
+>>
+>> This is the Yocto Projects Bugzilla, so each "project" can have it's
+>> own classification, I am not sure that this is the best since some of
+>> the projects are pretty flat the extra level does not make sense.
+>>
+>> I am proposing the following top level classifications, containing the
+>> following projects (products/components) :
+>>
+>> Yocto Projects
+> ...
+>> - Kernel
+>>    - build
+>>    - configuration
+>>    - runtime
 >
-> As Saul suggest to add SRC_URI MD5 and SHA256 checksum when we upgrade the recipes, here is a simple how-to:
+> Acked-by: Darren Hart<dvhart@linux.intel.com>
 >
-> Two entry is needed for checksum, take meta/recipes-extended/tar/tar_1.23.bb as example:
-> SRC_URI[md5sum] = "41e2ca4b924ec7860e51b43ad06cdb7e"
-> SRC_URI[sha256sum] = "c9328372db62fbb1d94c9e4e3cefc961111af46de47085b635359c00a0eebe36"
+>> - BSPs
+>>    - by board??
 >
-Also, a clarification, these values should go at the END of the file, 
-which I believe is the OE Style on this.
+> Let's start off simple - by board might not scale well. Just "BSP" would
+> be my vote - Bruce might have additional thoughts.
 
-Sau!
-> The md5sum and sha256sum value can be get by:
+This is the sane thing to do. One category 'bsp'. We can specify
+the BSP in the subject of the bug. If a bug appears across a
+class of BSPs or an arch, it gets bumped to kernel runtime and
+is dealt with there.
+
+We've been using this scheme for about 200 supported BSPs, so it
+should do just fine here as well.
+
+Cheers,
+
+Bruce
+
 >
-> # md5sum /your_DL_DIR/ tar-1.23.tar.bz2
-> 41e2ca4b924ec7860e51b43ad06cdb7e
->
-> # sha256sum /your_DL_DIR/ tar-1.23.tar.bz2
-> c9328372db62fbb1d94c9e4e3cefc961111af46de47085b635359c00a0eebe36
->
-> Regards
-> Ke
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+
 
