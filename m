@@ -1,41 +1,23 @@
-Return-Path: <fransmeulenbroeks@gmail.com>
-Received: from mail-iw0-f176.google.com (mail-iw0-f176.google.com
-	[209.85.214.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8DB7A4C80287
-	for <yocto@yoctoproject.org>; Fri, 19 Nov 2010 06:25:49 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iwn6 with SMTP id 6so1743794iwn.35
-	for <yocto@yoctoproject.org>; Fri, 19 Nov 2010 04:25:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:received:received:in-reply-to
-	:references:date:message-id:subject:from:to:cc:content-type;
-	bh=H6kjIzqwR/b0UNaYmYkdCiGDllgesFRI0qSO6r4WwxQ=;
-	b=MqrWF40b60ZUX6ncut29XB+pdx/vZd0q/T6QAeeqUnhq7Qd7V0iJt8sxjJ5Ua/5VYu
-	jf8mpRvuofmmY9pPL7GRyHSnVqGQkFp/N6vzSHkny93c+Cfvsnskmq607oUi75NJvbXJ
-	/dsA4SZRECH/A6DjG/XstsGrb7sNasJ/mnxeE=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	b=przdCNRwu+eHGrDFiE6ATkb2eO4xhlog0dU0Gtl/odky9ytc7Sgqgrfymh9k/oPcGH
-	J5bc4BS7Hm4UoLY5L/EzkIrvP8E6hhshJ3ua9xUyGrJtISHC5B4xJRPCoXUfgh21aqT7
-	EuMN87BKha8HQ+zfSnLpmZBg6B7nxxSOPOs9A=
-MIME-Version: 1.0
-Received: by 10.231.37.201 with SMTP id y9mr1911333ibd.76.1290169548396; Fri,
-	19 Nov 2010 04:25:48 -0800 (PST)
-Received: by 10.231.33.4 with HTTP; Fri, 19 Nov 2010 04:25:48 -0800 (PST)
-In-Reply-To: <1290168327.1272.12243.camel@rex>
-References: <AANLkTim9rqmdOZf2bHwuqbkJRMAnWP4sFj11S1LPtUbG@mail.gmail.com>
-	<625BA99ED14B2D499DC4E29D8138F1504D3667EC0C@shsmsx502.ccr.corp.intel.com>
-	<AANLkTim+W1qVYXnbJ448oNmOhCGTU=e2UX33RZebcN=r@mail.gmail.com>
-	<1290168327.1272.12243.camel@rex>
-Date: Fri, 19 Nov 2010 13:25:48 +0100
-Message-ID: <AANLkTikWN=UW1J_sM3+peOfh1KhD8DHboN4gGzU1nDkf@mail.gmail.com>
-From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-To: Richard Purdie <rpurdie@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: inc files in recipes
+Return-Path: <joshua.lock@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8A6D94C80287
+	for <yocto@yoctoproject.org>; Fri, 19 Nov 2010 06:38:53 -0600 (CST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 19 Nov 2010 04:38:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,222,1288594800"; d="scan'208";a="859375413"
+Received: from unknown (HELO [10.255.16.123]) ([10.255.16.123])
+	by fmsmga001.fm.intel.com with ESMTP; 19 Nov 2010 04:38:52 -0800
+From: Joshua Lock <joshua.lock@intel.com>
+To: yocto@yoctoproject.org
+In-Reply-To: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC73A014@orsmsx501.amr.corp.intel.com>
+References: <1290083764.2487.24.camel@scimitar>
+	<B27EBC40D200ED48A3F4CC2EBEABAE0B25BC73A014@orsmsx501.amr.corp.intel.com>
+Date: Fri, 19 Nov 2010 12:38:41 +0000
+Message-ID: <1290170323.9343.8.camel@scimitar>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.0 (2.32.0-2.fc14) 
+Subject: Re: Documenting Poky dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,29 +29,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Nov 2010 12:25:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 19 Nov 2010 12:38:53 -0000
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"
 
-2010/11/19 Richard Purdie <rpurdie@linux.intel.com>:
-> On Fri, 2010-11-19 at 10:42 +0100, Frans Meulenbroeks wrote:
->> 2010/11/19 Tian, Kevin <kevin.tian@intel.com>:
+T24gVGh1LCAyMDEwLTExLTE4IGF0IDEyOjU0IC0wODAwLCBTdGV3YXJ0LCBEYXZpZCBDIHdyb3Rl
+Ogo+IFRoYW5rcyBmb3IgZG9pbmcgdGhpcyEgCj4gCj4gU29tZSBTY290dFIgQVJzIGJlbG93Lgo+
+IAo+ID5Gcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by0K
+PiA+Ym91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgSm9zaHVhIExvY2sKPiA+
+U2VudDogVGh1cnNkYXksIE5vdmVtYmVyIDE4LCAyMDEwIDQ6MzYgQU0KPiA+Cj4gPkhpIGFsbCwK
+PiA+Cj4gPkkndmUgYmVlbiB0aGlua2luZyBhYm91dCB0aGUgaXNzdWUgb2YgZG9jdW1lbnRpbmcg
+UG9reSdzIGRlcGVuZGVuY2llcyBpbgo+ID50aGUgaGFuZGJvb2suCj4gPkF0IHRoZSBtb21lbnQg
+dGhlIGhhbmRib29rIGluY2x1ZGVzIGEgbGlzdCBvZiByZXF1aXJlZCBwYWNrYWdlcyBhbmQgdGhl
+bgo+ID5leHBsaWNpdGx5IGxpc3RzIGNvbW1hbmRzIHRvIGluc3RhbGwgdGhvc2UgcGFja2FnZXMg
+b24gVWJ1bnR1Lgo+ID4KPiA+V2hhdCBJJ2QgbGlrZSB0byBwcm9wb3NlIGlzIHRoYXQgd2UgbGlz
+dCB0aGUgcmVxdWlyZWQgZGVwZW5kZW5jaWVzIGluCj4gPnRoZSBoYW5kYm9vayBhbmQgdGhlbiBs
+aW5rIHRvIGEgd2lraSBwYWdlIHdoZXJlIHdlIGNhbiBsaXN0IGV4cGxpY2l0Cj4gPmluc3RydWN0
+aW9ucyBmb3IgdmFyaW91cyBkaXN0cmlidXRpb25zLgo+ID4KPiA+VGhpcyBhbGxvd3MgdXMgdG8g
+ZG9jdW1lbnQgdGhlIHByb2Nlc3MgZm9yIGFzIG1hbnkgZGlzdHJpYnV0aW9ucyBhcwo+ID5wb3Nz
+aWJsZSB3aXRob3V0IGNsdXR0ZXJpbmcgdGhlIGhhbmRib29rLiBBbiBhbHRlcm5hdGl2ZSB3b3Vs
+ZCBiZSB0byBhZGQKPiA+dGhpcyB0byBhbiBhcHBlbmRpeCBidXQgSSBxdWl0ZSBsaWtlIHRoZSBp
+ZGVhIG9mIHBlb3BsZSBiZWluZyBhYmxlIHRvCj4gPmVkaXQgYW5kIGFkZCB0byB0aGlzIGluZm9y
+bWF0aW9uIHdpdGhvdXQgaGF2aW5nIHRvIHVzZSBnaXQuCj4gPgo+ID5UbyB0aGF0IGVuZCBJJ3Zl
+IGFkZGVkIGEgcGFnZSB0byBvdXIgcHVibGljIHdpa2kgc2hvd2luZyB0aGUgc3RlcHMgSSBoYWQK
+PiA+dG8gdGFrZSB0byBydW4gUG9reSBvbiBGZWRvcmEgYW5kIENlbnRPUyBtYWNoaW5lczoKPiA+
+Cj4gPmh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvUG9reS9HZXR0aW5nU3RhcnRl
+ZC9EZXBlbmRlbmNpZXMKPiAKPiBHb29kIGlkZWEuIFNvbWUgc3VnZ2VzdGlvbnM6Cj4gCj4gMS4g
+VGhlcmUgc2VlbSB0byBiZSBubyBsaW5rcyB0byB0aGlzIHBhZ2UgZnJvbSB0aGUgcmVzdCBvZiB0
+aGUgd2lraS4KPiBTaG91bGQgYWRkIG9uZS4gU2NvdHQgLSBjYW4geW91IHBsZWFzZSBmaWd1cmUg
+b3V0IHRoZSBiZXN0IHBsYWNlPwoKWWVhaCwgSSB3YW50ZWQgdG8gbWFrZSBzdXJlIGV2ZXJ5b25l
+IHdhcyBPSyB3aXRoIHRoZSBpZGVhIGJlZm9yZSBJIG1hZGUKaXQgdG9vIHZpc2libGUuCgo+IAo+
+IDIuIENhbiB5b3UgYWRkIHNvbWV0aGluZyBzcGVjaWZpYyB0byB0aGUgdmVyc2lvbiBvZiBQb2t5
+IChvciBZb2N0bykKPiB3aGljaCBoYXMgYmVlbiB2ZXJpZmllZCB3aXRoIHRoZXNlIGRpc3Ryb3M/
+IEZvciBleGFtcGxlLCBmMTMgYW5kIGYxNAo+IGhhdmUgaW5zdHJ1Y3Rpb25zIGZvciBMYXZlcm5l
+OyB0aGV5IG1pZ2h0IGNoYW5nZSBmb3IgYSBmdXR1cmUgcmV2LiBXaGF0Cj4gaXMgdGhlIGJlc3Qg
+d2F5IHRvIHNob3cgdGhpcz8KCk5vdCBzdXJlIG9uIHRoZSBiZXN0IHdheSB0byBzaG93IHRoaXMs
+IGJ1dCB0aGlzIHdhcyBQb2t5IG1hc3RlciAoc28KTGF2ZXJuZS1pc2gpIHRoYXQgSSd2ZSB0ZXN0
+ZWQuCgpJIHdpbGwgdmVyaWZ5IHRoYXQgdGhlIHN0ZXBzIHdvcmsgZXF1YWxseSB3ZWxsIGZvciB2
+YW5pbGxhIExhdmVybmUuCgpDaGVlcnMsCkpvc2h1YQotLSAKSm9zaHVhIExvY2sKICAgICAgICBJ
+bnRlbCBPcGVuIFNvdXJjZSBUZWNobm9sb2d5IENlbnRyZQoKLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCkludGVsIENv
+cnBvcmF0aW9uIChVSykgTGltaXRlZApSZWdpc3RlcmVkIE5vLiAxMTM0OTQ1IChFbmdsYW5kKQpS
+ZWdpc3RlcmVkIE9mZmljZTogUGlwZXJzIFdheSwgU3dpbmRvbiBTTjMgMVJKClZBVCBObzogODYw
+IDIxNzMgNDcKClRoaXMgZS1tYWlsIGFuZCBhbnkgYXR0YWNobWVudHMgbWF5IGNvbnRhaW4gY29u
+ZmlkZW50aWFsIG1hdGVyaWFsIGZvcgp0aGUgc29sZSB1c2Ugb2YgdGhlIGludGVuZGVkIHJlY2lw
+aWVudChzKS4gQW55IHJldmlldyBvciBkaXN0cmlidXRpb24KYnkgb3RoZXJzIGlzIHN0cmljdGx5
+IHByb2hpYml0ZWQuIElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZApyZWNpcGllbnQsIHBsZWFz
+ZSBjb250YWN0IHRoZSBzZW5kZXIgYW5kIGRlbGV0ZSBhbGwgY29waWVzLgo=
 
->>
->> The same also holds if you want to keep two versions because they are
->> e.g. functionwise very different.
->> Sometimes this is already done (at least in OE, there we have e.g
->> libsigc++-1.2 and libsigc++-2.0 and apache and apache2 directories,
->> also sometimes there are differently named recipes (different PN) in
->> the same folder, e.g. bluez and bluez4)
->
-> Having them in the same directory doesn't cause any complications and
-> using the same names means that creation of a GPLv3 image is much
-> simpler which is why we didn't rename the recipes.
-
-True, but it slightly increases the risk that the v2 recipe gets
-accidently removed because someone thinks it is old.
-Of course for OE due to the fact that there are a lot of people with
-commit rights there
-
-Frans
 
