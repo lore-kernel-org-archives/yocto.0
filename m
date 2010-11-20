@@ -1,33 +1,24 @@
-Return-Path: <kevin.tian@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id BE0994C80BD4
-	for <yocto@yoctoproject.org>; Fri, 19 Nov 2010 17:42:19 -0600 (CST)
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 059B54C80FA7
+	for <yocto@yoctoproject.org>; Fri, 19 Nov 2010 18:06:19 -0600 (CST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 19 Nov 2010 15:42:19 -0800
+	by orsmga101.jf.intel.com with ESMTP; 19 Nov 2010 16:06:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,226,1288594800"; d="scan'208";a="575697734"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by orsmga002.jf.intel.com with ESMTP; 19 Nov 2010 15:42:18 -0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Sat, 20 Nov 2010 07:42:17 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Sat, 20 Nov 2010 07:42:16 +0800
-From: "Tian, Kevin" <kevin.tian@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>, Yocto Project
-	<yocto@yoctoproject.org>
-Date: Sat, 20 Nov 2010 07:42:15 +0800
-Thread-Topic: [yocto] RFC: Rapid iterative development
-Thread-Index: AcuIP46YHqrlLuDLTQC0pkwVK/RNTAAA2/zQ
-Message-ID: <625BA99ED14B2D499DC4E29D8138F1504D3667ECAD@shsmsx502.ccr.corp.intel.com>
-References: <4CE704C6.6010203@linux.intel.com>
-In-Reply-To: <4CE704C6.6010203@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+X-IronPort-AV: E=Sophos;i="4.59,226,1288594800"; d="scan'208";a="575705044"
+Received: from doubt.jf.intel.com (HELO [10.7.199.159]) ([10.7.199.159])
+	by orsmga002.jf.intel.com with ESMTP; 19 Nov 2010 16:06:19 -0800
+Message-ID: <4CE710FC.6010508@linux.intel.com>
+Date: Fri, 19 Nov 2010 16:06:20 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.12) Gecko/20101027 Lightning/1.0b2 Thunderbird/3.1.6
 MIME-Version: 1.0
+To: "Tian, Kevin" <kevin.tian@intel.com>
+References: <4CE704C6.6010203@linux.intel.com>
+	<625BA99ED14B2D499DC4E29D8138F1504D3667ECAD@shsmsx502.ccr.corp.intel.com>
+In-Reply-To: <625BA99ED14B2D499DC4E29D8138F1504D3667ECAD@shsmsx502.ccr.corp.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: RFC: Rapid iterative development
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,35 +31,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Nov 2010 23:42:20 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 20 Nov 2010 00:06:20 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
->From: Darren Hart
->Sent: Saturday, November 20, 2010 7:14 AM
+On 11/19/2010 03:42 PM, Tian, Kevin wrote:
+>> From: Darren Hart
+>> Sent: Saturday, November 20, 2010 7:14 AM
+>>
+>> While working on a single package, I need to be able to tweak a variable
+>> in the new recipe, change the MACHINE in local.conf, etc. I'd like to be
+>> able to rapidly test my changes, but some of these changes trigger a
+>> long list of dependencies for various commands. While working on a new
+>> linux kernel recipe, I found it rebuilding a number of things that were
+>> either -native (can I force it to use the system version rather than
+>> building one) or seemed unrelated to the process at hand.
 >
->While working on a single package, I need to be able to tweak a variable
->in the new recipe, change the MACHINE in local.conf, etc. I'd like to be
->able to rapidly test my changes, but some of these changes trigger a
->long list of dependencies for various commands. While working on a new
->linux kernel recipe, I found it rebuilding a number of things that were
->either -native (can I force it to use the system version rather than
->building one) or seemed unrelated to the process at hand.
+> That's interesting. Did you build from scratch or incrementally? Ideally only
+> recipes being changed will be rebuilt in incremental way.
 
-That's interesting. Did you build from scratch or incrementally? Ideally on=
-ly
-recipes being changed will be rebuilt in incremental way.
+By changing machine type (and therefor architecture) I probably trigger 
+at least all the non -native builds. These were clean builds. I'd just 
+like to eliminate as much of that as possible when testing things like:
+
+$ bitbake linux-linaro -c fetch
+
+and
+
+$ bitbake linux-linaro -c configure
 
 >
->Are there some best practices for iterative recipe development that
->speed things along?
+>>
+>> Are there some best practices for iterative recipe development that
+>> speed things along?
+>>
 >
+> "bitbake -k" is one method if you're sure the dependency doesn't change.
+> But if you change MACHINE, I think a whole rebuild except -native will
+> be required as it's the fundamental bit for target recipes.
 
-"bitbake -k" is one method if you're sure the dependency doesn't change.
-But if you change MACHINE, I think a whole rebuild except -native will
-be required as it's the fundamental bit for target recipes.
+OK, time to get this off the laptop and onto something with some serious 
+storage then I guess.
 
-Thanks
-Kevin
+-- 
+Darren Hart
+Yocto Linux Kernel
 
