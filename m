@@ -1,21 +1,25 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 03E9B4C80A74
-	for <yocto@yoctoproject.org>; Fri, 19 Nov 2010 18:24:48 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 19 Nov 2010 16:24:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,226,1288594800"; d="scan'208";a="679269868"
-Received: from doubt.jf.intel.com (HELO [10.7.199.159]) ([10.7.199.159])
-	by orsmga001.jf.intel.com with ESMTP; 19 Nov 2010 16:24:14 -0800
-Message-ID: <4CE7152F.5030804@linux.intel.com>
-Date: Fri, 19 Nov 2010 16:24:15 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.12) Gecko/20101027 Lightning/1.0b2 Thunderbird/3.1.6
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by mx1.pokylinux.org (Postfix) with ESMTP id E1EE14C81065
+	for <yocto@yoctoproject.org>; Mon, 22 Nov 2010 03:13:41 -0600 (CST)
+Received: by mail.chez-thomas.org (Postfix, from userid 999)
+	id 700F516607E1; Mon, 22 Nov 2010 02:13:40 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 9562A16607A4;
+	Mon, 22 Nov 2010 02:13:39 -0700 (MST)
+Message-ID: <4CEA3442.6080909@mlbassoc.com>
+Date: Mon, 22 Nov 2010 02:13:38 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.12) Gecko/20101027 Fedora/3.1.6-1.fc13 Thunderbird/3.1.6
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Using a layer's kernel instead of a machine's stated preferred virtual/kernel provider
+To: yocto@yoctoproject.org
+Subject: Eclipse plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,23 +31,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 20 Nov 2010 00:24:49 -0000
+X-List-Received-Date: Mon, 22 Nov 2010 09:13:42 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-I've created a new layer which provides a linux kernel. This layer 
-applies to boards (ie beagleboard) that are defined in 
-meta/conf/machines which specify linux-wrs as their preferred kernel.
+I'm interested in trying the Yocto Eclipse plugin with my Poky based builds.
+That said, I'm a true Eclipse novice :-(
 
-Is there a standard way of overriding this when building images / 
-packages from a new layer? Something like a machine.append file maybe? I 
-could just copy the machine config and rename it something else - 
-beagleboard-mylayer and set MACHINE=beagleboard-mylayer, but that seems 
-like a hack.
+Does anyone have some guidance on what packages I might need to install to
+get a usable Eclipse framework on Fedora (13)?  For example, the Yocto page
+mentions the "standard TCF" agent to contact the target - how do I make sure
+this is available and enabled?
 
-Thanks,
+n.b. the [web] documentation on this plugin is pretty thin.  Perhaps once I
+get this going, I can contribute some meat to put on these bones :-)
+
+Thanks
 
 -- 
-Darren Hart
-Yocto Linux Kernel
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
