@@ -1,35 +1,31 @@
-Return-Path: <joaohf@gmail.com>
-Received: from mail-fx0-f48.google.com (mail-fx0-f48.google.com
-	[209.85.161.48])
-	by mx1.pokylinux.org (Postfix) with ESMTP id E9DAA4C80B6B
-	for <yocto@yoctoproject.org>; Tue, 23 Nov 2010 19:09:10 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by fxm2 with SMTP id 2so4662773fxm.35
-	for <yocto@yoctoproject.org>; Tue, 23 Nov 2010 17:09:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:received:received:date:message-id
-	:subject:from:to:content-type:content-transfer-encoding;
-	bh=95joCVOIdiBivCOkRDvTcwW9HuVuc7KkqXv7S3R411E=;
-	b=BEPvJrcN2pvIHwZkvZ10H3EmR34IkHeFMayuFvvCgvFauqJcO65ylOvcY0NmtcLRyA
-	mYQal1aC59rQRdzSBx1EGzpFMPEJIzWNg74r9O9xNN4rhB3QL3vQQgTpWYIiGWJcWOme
-	eHHgX2Y4LUjpDCDBAR487PTZarSqXf+Chxsbs=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:content-transfer-encoding;
-	b=CoTB11d+0v5vj0rTnYJ9AXLJFLDZmHeEO5ei+5bgChmYI5vp6K4gFLjylFhw/zHoq6
-	QtIpBiwopgg6ifJ238qy4U4CAKgks6QjoT6YcxluRHjhmHZftfZHsaIL9gZK55o7tkDz
-	gn9uo2ARp/k3FKm4OiSVm0eWkE2Ly9Wmehy8E=
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4507F4C80B70
+	for <yocto@yoctoproject.org>; Wed, 24 Nov 2010 00:47:54 -0600 (CST)
+Received: by mail.chez-thomas.org (Postfix, from userid 999)
+	id AD2B01660890; Tue, 23 Nov 2010 23:47:53 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id CB172166088A;
+	Tue, 23 Nov 2010 23:47:51 -0700 (MST)
+Message-ID: <4CECB517.5030603@mlbassoc.com>
+Date: Tue, 23 Nov 2010 23:47:51 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.12) Gecko/20101027 Fedora/3.1.6-1.fc13 Thunderbird/3.1.6
 MIME-Version: 1.0
-Received: by 10.223.83.4 with SMTP id d4mr2970954fal.59.1290560949447; Tue, 23
-	Nov 2010 17:09:09 -0800 (PST)
-Received: by 10.223.106.19 with HTTP; Tue, 23 Nov 2010 17:09:09 -0800 (PST)
-Date: Tue, 23 Nov 2010 23:09:09 -0200
-Message-ID: <AANLkTi=Ehg15jkH2Zb7YYEW-cV4drzVD7-XCC5_NLU0E@mail.gmail.com>
-From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
-To: yocto@yoctoproject.org
-Subject: toolchain with big symbolic links?
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+References: <4CEA3442.6080909@mlbassoc.com>	<4CEA53B8.9060804@mlbassoc.com>	<C10D3FB0CD45994C8A51FEC1227CE22F1ACE892ED1@shsmsx502.ccr.corp.intel.com>	<4CEA7405.8070700@mlbassoc.com>	<C10D3FB0CD45994C8A51FEC1227CE22F1ACE892EE5@shsmsx502.ccr.corp.intel.com>	<4CEA8B25.3060103@mlbassoc.com>
+	<4CEA8D05.8010608@mlbassoc.com>	<9AFCD584B0B67B48AE8D8585BE30BA95133F@orsmsx504.amr.corp.intel.com>	<4CEB7C74.4000502@mlbassoc.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA95A7BF4B@orsmsx504.amr.corp.intel.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA95A7BF4E@orsmsx504.amr.corp.intel.com>
+In-Reply-To: <9AFCD584B0B67B48AE8D8585BE30BA95A7BF4E@orsmsx504.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Eclipse plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,179 +37,140 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Nov 2010 01:09:11 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 24 Nov 2010 06:47:54 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 11/23/2010 02:44 PM, Zhang, Jessica wrote:
+> Sorry forgot the attachements.
+>
+>
+> Zhang, Jessica wrote:
+>> Gary,
+>>
+>> I setup my eclipse IDE to be using 0.9 plug-in and couldn't reproduce
+>> the problem that you run into.  Here're several key step screenshots
+>> that I used to create a Yocto Autotools based project and run
+>> autoconfig for it.
+>> Step 1: Please refere preference.png for your "Yocto SDK" settings
+>> under Window->Preference
+>> Step 2: In c project, please make sure you select "Yocto SDK
+>> Project->Hello World ANSI C Autotools Project" (please refer to
+>> project.png)
+>> Step 3: reconfigure.png is the output when I do Project->"Reconfigure
+>> Project".
+>>
+>> If you still run into problem, go under Project->Invoke Yocto
+>> Tools->Reconfigure Yocto, make sure the setting there is the same as
+>> your settings under preference.  Then do step 3 again to reconfigure.
+>>
+>> Hope this will get you going...
 
-I am using yocto 0.9 release and trying to generate my own meta-toolchain.
+Thanks, this did help.  My biggest problem was that the Poky tree I was
+trying to use had grown a permission problem so I could no longer execute
+the compiler (result of moving the tree between machines - pure cockpit
+error, sorry).  Once I restarted a new Eclipse project with a proper tree
+(again I forgot the meta-ide-support package - is this documented?), things
+have started coming together.
 
-With toolchain from yocto:
+Next step - try to debug this project on my remote board.
 
-joaohf@joaohf-desktop:~/Downloads$ ls
-/opt/poky/sysroots/x86_64-pokysdk-linux/usr/libexec/armv5te-poky-linux-gnue=
-abi/gcc/arm-poky-linux-gnueabi/4.5.0/
--l
-total 30920
-lrwxrwxrwx 1 1006 users      100 2010-11-23 21:18 ar ->
-/opt/poky/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/=
-arm-poky-linux-gnueabi-ar
-lrwxrwxrwx 1 1006 users      100 2010-11-23 21:18 as ->
-/opt/poky/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/=
-arm-poky-linux-gnueabi-as
--rwxr-xr-x 1 1006 users 10387701 2010-10-24 20:53 cc1
--rwxr-xr-x 1 1006 users 11216826 2010-10-24 20:53 cc1plus
--rwxr-xr-x 1 1006 users   157274 2010-10-24 20:53 collect2
-lrwxrwxrwx 1 1006 users      100 2010-11-23 21:18 cpp ->
-/opt/poky/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/=
-arm-poky-linux-gnueabi-cp
-lrwxrwxrwx 1 1006 users      100 2010-11-23 21:18 g77 ->
-/opt/poky/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/=
-arm-poky-linux-gnueabi-g7
-lrwxrwxrwx 1 1006 users      100 2010-11-23 21:18 gcc ->
-/opt/poky/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/=
-arm-poky-linux-gnueabi-gc
-lrwxrwxrwx 1 1006 users      100 2010-11-23 21:18 gfortran ->
-/opt/poky/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/=
-arm-poky-linux-gnueabi-gf
-lrwxrwxrwx 1 1006 users      100 2010-11-23 21:18 ld ->
-/opt/poky/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/=
-arm-poky-linux-gnueabi-ld
--rwxr-xr-x 1 1006 users  9803466 2010-10-24 20:53 lto1
--rwxr-xr-x 1 1006 users    36707 2010-10-24 20:53 lto-wrapper
-lrwxrwxrwx 1 1006 users      100 2010-11-23 21:18 nm ->
-/opt/poky/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/=
-arm-poky-linux-gnueabi-nm
-lrwxrwxrwx 1 1006 users      100 2010-11-23 21:18 objcopy ->
-/opt/poky/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/=
-arm-poky-linux-gnueabi-ob
-lrwxrwxrwx 1 1006 users      100 2010-11-23 21:18 objdump ->
-/opt/poky/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/=
-arm-poky-linux-gnueabi-ob
-lrwxrwxrwx 1 1006 users      100 2010-11-23 21:18 ranlib ->
-/opt/poky/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/=
-arm-poky-linux-gnueabi-ra
-lrwxrwxrwx 1 1006 users      100 2010-11-23 21:18 strip ->
-/opt/poky/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/=
-arm-poky-linux-gnueabi-st
+Thanks again
 
+>> Gary Thomas wrote:
+>>> On 11/22/10 11:43, Zhang, Jessica wrote:
+>>>> Hi Gary,
+>>>>
+>>>> I just setup my machine for ppc and create a new auto tools based c
+>>>> project and everything seems working fine for me, so if you go
+>>>> "Window->Preferecencs->Yocto SDK" in that setup window, do you see
+>>>> "Sysroot" field? If yo, somehow you're using the 1.0 plugin, but
+>>>> that's fine, just put
+>>>> "/home/gary/mytarget_poky/tmp/sysroots/ppc603e-poky-linux" there.
+>>>> And try to reconfigure your project which should trigger autoconfig
+>>>> and the compiler should be able to use the correct sysroot setup...
+>>>>
+>>>> Let me know whether that help or not.
+>>>
+>>> I don't have a Sysroot field on that form, only a "Poky root" which
+>>> is pointing to the top of my tree, in your example
+>>> "/home/gary/mytarget_poky/"
+>>>
+>>> I installed the Yocto SDK 1.0.0.201010202121 from
+>>> http://www.yoctoproject.org/downloads/eclipse-plugin/
+>>>
+>>>> Gary Thomas wrote:
+>>>>> On 11/22/2010 08:24 AM, Gary Thomas wrote:
+>>>>>> On 11/22/2010 06:55 AM, Lu, Lianhao wrote:
+>>>>>>>
+>>>>>>> Gary Thomas wrote on 2010-11-22:
+>>>>>>>> Thanks, I installed Helios directly from the Eclipse site and
+>>>>>>>> that's working better now. I also installed the components you
+>>>>>>>> mention above.
+>>>>>>>>
+>>>>>>>> When I try to configure Yocto, I'm trying to use the Poky tree
+>>>>>>>> method but it doesn't like my tree :-( I pointed it to my build
+>>>>>>>> directory (the one which contains tmp/, sstate-cache/ and conf/)
+>>>>>>>>
+>>>>>>>> What else am I missing?
+>>>>>>>>
+>>>>>>>
+>>>>>>> You need to "bitbake meta-ide-support" before you can use the
+>>>>>>> poky tree mode.
+>>>>>>
+>>>>>> I did that and now I can move a bit farther. I managed to select
+>>>>>> my SDK type (ppc603e-poky-linux) and started with the autotools
+>>>>>> example. However, I get this error when trying to run autogen.sh:
+>>>>>>
+>>>>>>
+>>>>>> Generating Makefile in build directory:
+>>>>>> /home/gthomas/workspace/yocto_test3
+>>>>>>
+>>>>>> sh /home/gthomas/workspace/yocto_test3/configure
+>>>>>> --host=powerpc-poky-linux --build=i686-linux
+>>>>>> --target=powerpc-poky-linux checking for a BSD-compatible
+>>>>>> install... /usr/bin/install -c checking whether build environment
+>>>>>> is sane... yes checking for powerpc-poky-linux-strip... no
+>>>>>> checking for strip... strip
+>>>>>> configure: WARNING: using cross tools not prefixed with host
+>>>>>> triplet checking for a thread-safe mkdir -p... /bin/mkdir -p
+>>>>>> checking for gawk... gawk checking whether make sets $(MAKE)...
+>>>>>> yes
+>>>>>> checking build system type... i686-pc-linux-gnu
+>>>>>> checking host system type... powerpc-poky-linux-gnu
+>>>>>> checking for style of include used by make... GNU
+>>>>>> checking for powerpc-poky-linux-gcc... powerpc-poky-linux-gcc
+>>>>>> checking whether the C compiler works... no
+>>>>>> configure: error: in `/home/gthomas/workspace/yocto_test3':
+>>>>>> configure: error: C compiler cannot create executables
+>>>>>> See `config.log' for more details.
+>>>>>>
+>>>>>> Configuration failed with error
+>>>>>>
+>>>>>> It looks like there is a confusion over the SDK type and the
+>>>>>> compiler setup?
+>>>>>>
+>>>>>
+>>>>> BTW, this was on my console (hidden by the eclipse window), in
+>>>>> case it helps:
+>>>>>
+>>>>> get env key CC value powerpc-poky-linux-gcc
+>>>>> get env key CXX value powerpc-poky-linux-g++
+>>>>> get env key GDB value powerpc-poky-linux-gdb
+>>>>> get env key TARGET_PREFIX value powerpc-poky-linux-
+>>>>> get env key CONFIGURE_FLAGS value --target=powerpc-poky-linux
+>>>>> --host=powerpc-poky-linux --build=i686-linux get env key CFLAGS
+>>>>> value
+>>>>> -mcpu=603e -mhard-float
+>>>>> get env key CXXFLAGS value -mcpu=603e -mhard-float
+>>>>> get env key POKY_NATIVE_SYSROOT value
+>>>>> /home/gary/mytarget_poky/tmp/sysroots/i686-linux
+>>>>> get env key POKY_TARGET_SYSROOT value
+>>>>> /home/gary/mytarget_poky/tmp/sysroots/ppc603e-poky-linux
 
-Same broken symbolic links.
-
-So, I start my own toolchain....
-
-Don't work, TARGET_VENDOR =3D "-tropico"
-
-joaohf@joaohf-desktop:/opt/via/sysroots/x86_64-pokysdk-linux/usr/libexec/ar=
-mv5te-tropico-linux-gnueabi/gcc/arm-tropico-linux-gnueabi/4.5.0$
-ls -l
-total 30904
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 21:04 as ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tropico-linux-gnueab=
-i/arm-tropico-linux-gnuea
--rwxr-xr-x 1 joaohf joaohf 10383493 2010-11-23 19:57 cc1
--rwxr-xr-x 1 joaohf joaohf 11212618 2010-11-23 19:57 cc1plus
--rwxr-xr-x 1 joaohf joaohf   157274 2010-11-23 19:57 collect2
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 21:04 cpp ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tropico-linux-gnueab=
-i/arm-tropico-linux-gnuea
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 21:04 g77 ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tropico-linux-gnueab=
-i/arm-tropico-linux-gnuea
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 21:04 gcc ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tropico-linux-gnueab=
-i/arm-tropico-linux-gnuea
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 21:04 gfortran ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tropico-linux-gnueab=
-i/arm-tropico-linux-gnuea
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 21:04 ld ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tropico-linux-gnueab=
-i/arm-tropico-linux-gnuea
--rwxr-xr-x 1 joaohf joaohf  9798490 2010-11-23 19:57 lto1
--rwxr-xr-x 1 joaohf joaohf    36707 2010-11-23 19:57 lto-wrapper
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 21:04 nm ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tropico-linux-gnueab=
-i/arm-tropico-linux-gnuea
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 21:04 objcopy ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tropico-linux-gnueab=
-i/arm-tropico-linux-gnuea
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 21:04 objdump ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tropico-linux-gnueab=
-i/arm-tropico-linux-gnuea
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 21:04 ranlib ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tropico-linux-gnueab=
-i/arm-tropico-linux-gnuea
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 21:04 strip ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tropico-linux-gnueab=
-i/arm-tropico-linux-gnuea
-
-
-Works, TARGET_VENDOR =3D "-tp"
-
-joaohf@joaohf-desktop:/opt/via/sysroots$ ls
-x86_64-pokysdk-linux/usr/libexec/armv5te-tp-linux-gnueabi/gcc/arm-tp-linux-=
-gnueabi/4.5.0/
--l
-total 30896
-lrwxrwxrwx 1 joaohf joaohf       95 2010-11-23 23:00 ar ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tp-linux-gnueabi/arm=
--tp-linux-gnueabi-ar
-lrwxrwxrwx 1 joaohf joaohf       95 2010-11-23 23:00 as ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tp-linux-gnueabi/arm=
--tp-linux-gnueabi-as
--rwxr-xr-x 1 joaohf joaohf 10380613 2010-11-23 22:56 cc1
--rwxr-xr-x 1 joaohf joaohf 11209354 2010-11-23 22:56 cc1plus
--rwxr-xr-x 1 joaohf joaohf   157274 2010-11-23 22:56 collect2
-lrwxrwxrwx 1 joaohf joaohf       96 2010-11-23 23:00 cpp ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tp-linux-gnueabi/arm=
--tp-linux-gnueabi-cpp
-lrwxrwxrwx 1 joaohf joaohf       96 2010-11-23 23:00 g77 ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tp-linux-gnueabi/arm=
--tp-linux-gnueabi-g77
-lrwxrwxrwx 1 joaohf joaohf       96 2010-11-23 23:00 gcc ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tp-linux-gnueabi/arm=
--tp-linux-gnueabi-gcc
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 23:00 gfortran ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tp-linux-gnueabi/arm=
--tp-linux-gnueabi-gfortra
-lrwxrwxrwx 1 joaohf joaohf       95 2010-11-23 23:00 ld ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tp-linux-gnueabi/arm=
--tp-linux-gnueabi-ld
--rwxr-xr-x 1 joaohf joaohf  9797242 2010-11-23 22:56 lto1
--rwxr-xr-x 1 joaohf joaohf    36707 2010-11-23 22:56 lto-wrapper
-lrwxrwxrwx 1 joaohf joaohf       95 2010-11-23 23:00 nm ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tp-linux-gnueabi/arm=
--tp-linux-gnueabi-nm
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 23:00 objcopy ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tp-linux-gnueabi/arm=
--tp-linux-gnueabi-objcopy
-lrwxrwxrwx 1 joaohf joaohf      100 2010-11-23 23:00 objdump ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tp-linux-gnueabi/arm=
--tp-linux-gnueabi-objdump
-lrwxrwxrwx 1 joaohf joaohf       99 2010-11-23 23:00 ranlib ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tp-linux-gnueabi/arm=
--tp-linux-gnueabi-ranlib
-lrwxrwxrwx 1 joaohf joaohf       98 2010-11-23 23:00 strip ->
-/opt/via/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-tp-linux-gnueabi/arm=
--tp-linux-gnueabi-strip
-
-
-
-But g77 and gfortran is broken.
-
-
-Is any issue with symbolic link? I am using ubuntu 10.04 and ext4 filesyste=
-m.
-
-Thanks.
-
-
---=20
------------------------------------------------------------
-Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
-Campinas-SP-Brasil
-BSD051283
-LPI 1
-http://www.joaohfreitas.eti.br
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
