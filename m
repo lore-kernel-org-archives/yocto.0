@@ -1,24 +1,34 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 69AFC4C80815
-	for <yocto@yoctoproject.org>; Fri, 26 Nov 2010 21:52:06 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 26 Nov 2010 19:52:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,264,1288594800"; d="scan'208";a="681416711"
-Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
-	by orsmga001.jf.intel.com with ESMTP; 26 Nov 2010 19:52:05 -0800
-Received: from [10.255.13.188] (10.255.13.188) by rrsmsx603.amr.corp.intel.com
-	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
-	Fri, 26 Nov 2010 20:52:05 -0700
-Message-ID: <4CF08064.1030604@intel.com>
-Date: Fri, 26 Nov 2010 19:52:04 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.1.15) Gecko/20101027 Thunderbird/3.0.10
+Return-Path: <fransmeulenbroeks@gmail.com>
+Received: from mail-iw0-f176.google.com (mail-iw0-f176.google.com
+	[209.85.214.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id AF9144C8110B
+	for <yocto@yoctoproject.org>; Sat, 27 Nov 2010 10:30:58 -0600 (CST)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iwn34 with SMTP id 34so883545iwn.35
+	for <yocto@yoctoproject.org>; Sat, 27 Nov 2010 08:30:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:received:received:date:message-id
+	:subject:from:to:content-type;
+	bh=j1BoK7azHGtpM/re1BgXV3iyNYwYd/Lt74xn21wQoCA=;
+	b=Pus5NZS/qmg/oRnrpljVYd+dNOAJzQpco179S+zFFuVkk92TZJWgIv51xyuxV/xBo7
+	ppHeqA7sw8/JH9THwJ1zpr6SbIpkkJMh/3rBgB5Ib0mZnaCS5N0t2hUB16VXY9TjFEaj
+	IuJTIgpU9P71LCZTU84WCDtLj1gxekMxa54rY=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	b=eCQnukroYNI4wcCONBR030HemUNKPVnylKDX36zHwahCDVuYWqDazo7EQZB+jbZmuK
+	ogvqbPakH5VJLmq2sbQLTqNoCEFkr7uHPfs8yktZsRQ34Oy77PMKSCsAt+vPCk9/QTG4
+	jWI/bVPbjZvb6iqFee4SKlAUrspkqzu8IXEgs=
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: About autobuilder images
+Received: by 10.231.13.137 with SMTP id c9mr3080134iba.76.1290875458175; Sat,
+	27 Nov 2010 08:30:58 -0800 (PST)
+Received: by 10.231.33.4 with HTTP; Sat, 27 Nov 2010 08:30:58 -0800 (PST)
+Date: Sat, 27 Nov 2010 17:30:58 +0100
+Message-ID: <AANLkTikG322KfbJ-ZEKXFbsOLkzLE3Kdp4L-096ODvxd@mail.gmail.com>
+From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+To: yocto@yoctoproject.org
+Subject: bsp doc bug
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,47 +40,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 Nov 2010 03:52:06 -0000
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 27 Nov 2010 16:30:58 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Meant to cc: the list.
+I was trying to create a bsp layer. In the doc I bumped into the
+following example for layer.conf:
 
-Scott
+# We have a conf directory, add to BBPATH
+BBPATH := "${BBPATH}${LAYERDIR}"
 
--------- Original Message --------
-Subject: Re: [yocto] About autobuilder images
-Date: Fri, 26 Nov 2010 20:48:35 -0700
-From: Scott Garman <scott.a.garman@intel.com>
-To: Tian, Kunwei <kunwei.tian@intel.com>
+[...]
 
-On 11/25/2010 01:55 AM, Tian, Kunwei wrote:
-> Hi, Elizabeth I find the folder 20101123-1 and folder 20101124-1 are
-> empty,which from http://autobuilder.pokylinux.org/nightly/. Do you
-> know what is the matter? And also , I find folder 20101115-1 only
-> have qemu images,but folder 20101115-2 is ok. What is the different
-> between folder 20101115-1 and folder 20101115-2?
+Isn't there a colon mssing here.
+If I look at the layer.conf of meta-ememlow it does have a colon:
 
-Most likely you're looking at output from a build that was canceled.
+BBPATH := "${BBPATH}:${LAYERDIR}"
 
-Previously, the output directories in the web area were only created at
-the very end of the buildset, and the images copied over in one big
-step. However, due to the length of time builds were taking and our need
-to make the images available to QA as quickly as possible, images are
-now copied over to the web area in several steps (generally as each main
-machine arch is completed).
+Guess this is a typo in the doc (both html and pdf have this)
 
-The -1 vs. -2 directory naming definitely indicates that the first build
-was originally canceled and a second one was run.
-
-To make this clearer, I'm thinking at the start of the build to touch a
-file named BUILD_INCOMPLETE or somesuch, and then delete that at the
-very end of the build, to clarify the state of the build. I can probably
-add this early next week.
-
-Scott
-
--- 
-Scott Garman
-Embedded Linux Distro Engineer - Yocto Project
+Frans
 
