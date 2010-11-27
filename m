@@ -1,35 +1,24 @@
-Return-Path: <joaohf@gmail.com>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 2E9184C80815
-	for <yocto@yoctoproject.org>; Fri, 26 Nov 2010 09:24:35 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by yxm8 with SMTP id 8so1158234yxm.35
-	for <yocto@yoctoproject.org>; Fri, 26 Nov 2010 07:24:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:received:received:date:message-id
-	:subject:from:to:content-type:content-transfer-encoding;
-	bh=4RAXn5DuKWS46OqKGf4crbu65LkErExIddGtjyz61E4=;
-	b=O6Rd38ea4MrRJWe9IKN+hVZ/xycv0kyeaMp0Mk962AIoVMfZclrOT5hahbOh9O6f5N
-	+EAi2WsEBblF0qLQphzVXH2yJyweoveym7GWcsHdSCfxJgn2Hmap3cHQDyFdqL+gVy5Y
-	ziGzC81ili5FMxd8IVM4ws6TSK+gWLe1ylWfM=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:content-transfer-encoding;
-	b=LsXbo90UIXhNS4qU/zmyJYIar2zivnZlllb2nSujDB8y6dQM2sJB3WNEbFCg2OTpX/
-	zODca8uunOeJosk/yzVlwVqtv3es+UJv22As0PFgnuPa/jr2Huqonqf4WWkjhBe70PE3
-	adbwlB3f4/FO2BrSzg+LV9J4JIQuJYQ282/AA=
+Return-Path: <scott.a.garman@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 69AFC4C80815
+	for <yocto@yoctoproject.org>; Fri, 26 Nov 2010 21:52:06 -0600 (CST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 26 Nov 2010 19:52:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,264,1288594800"; d="scan'208";a="681416711"
+Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
+	by orsmga001.jf.intel.com with ESMTP; 26 Nov 2010 19:52:05 -0800
+Received: from [10.255.13.188] (10.255.13.188) by rrsmsx603.amr.corp.intel.com
+	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
+	Fri, 26 Nov 2010 20:52:05 -0700
+Message-ID: <4CF08064.1030604@intel.com>
+Date: Fri, 26 Nov 2010 19:52:04 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.1.15) Gecko/20101027 Thunderbird/3.0.10
 MIME-Version: 1.0
-Received: by 10.42.219.200 with SMTP id hv8mr672294icb.123.1290785073920; Fri,
-	26 Nov 2010 07:24:33 -0800 (PST)
-Received: by 10.42.228.9 with HTTP; Fri, 26 Nov 2010 07:24:33 -0800 (PST)
-Date: Fri, 26 Nov 2010 13:24:33 -0200
-Message-ID: <AANLkTimb6B5ospVzkhF2QuursOgZHD2HKtD7K-Rr_LgD@mail.gmail.com>
-From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
-To: yocto@yoctoproject.org
-Subject: my own SDK with svn
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: About autobuilder images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,34 +30,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Nov 2010 15:24:35 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 27 Nov 2010 03:52:06 -0000
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+Meant to cc: the list.
 
-Just a exploration...
+Scott
 
-I need to create a SDK with packages like: svn, git, cmake. Can I use
-yocto to do it?
+-------- Original Message --------
+Subject: Re: [yocto] About autobuilder images
+Date: Fri, 26 Nov 2010 20:48:35 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+To: Tian, Kunwei <kunwei.tian@intel.com>
 
-Currently I am working to put svn in my SDK.  I changed recipes
-(dependent recipes) to use BBCLASSEXTEND=3D"native nativesdk". It's
-right?
+On 11/25/2010 01:55 AM, Tian, Kunwei wrote:
+> Hi, Elizabeth I find the folder 20101123-1 and folder 20101124-1 are
+> empty,which from http://autobuilder.pokylinux.org/nightly/. Do you
+> know what is the matter? And also , I find folder 20101115-1 only
+> have qemu images,but folder 20101115-2 is ok. What is the different
+> between folder 20101115-1 and folder 20101115-2?
 
-I can compile every things. But apr-utls (it talk about autoconf saw
-same host variables) not yet.
+Most likely you're looking at output from a build that was canceled.
 
-When I get positive results and don't break things, I post a patch.
-For now I want to know if someone tried it too.
+Previously, the output directories in the web area were only created at
+the very end of the buildset, and the images copied over in one big
+step. However, due to the length of time builds were taking and our need
+to make the images available to QA as quickly as possible, images are
+now copied over to the web area in several steps (generally as each main
+machine arch is completed).
 
-Thanks
+The -1 vs. -2 directory naming definitely indicates that the first build
+was originally canceled and a second one was run.
 
---=20
------------------------------------------------------------
-Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
-Campinas-SP-Brasil
-BSD051283
-LPI 1
-http://www.joaohfreitas.eti.br
+To make this clearer, I'm thinking at the start of the build to touch a
+file named BUILD_INCOMPLETE or somesuch, and then delete that at the
+very end of the build, to clarify the state of the build. I can probably
+add this early next week.
+
+Scott
+
+-- 
+Scott Garman
+Embedded Linux Distro Engineer - Yocto Project
 
