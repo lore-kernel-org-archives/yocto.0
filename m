@@ -1,32 +1,35 @@
-Return-Path: <marcelo.lorenzati@intel.com>
+Return-Path: <david.c.stewart@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A2D6E4C81200
-	for <yocto@yoctoproject.org>; Mon, 29 Nov 2010 07:29:44 -0600 (CST)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 245724C80FFE
+	for <yocto@yoctoproject.org>; Mon, 29 Nov 2010 08:09:57 -0600 (CST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 29 Nov 2010 05:29:44 -0800
+	by orsmga101.jf.intel.com with ESMTP; 29 Nov 2010 06:09:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,275,1288594800"; 
-	d="gif'147?scan'147,208,217,147";a="578572903"
-Received: from rrsmsx602.amr.corp.intel.com ([10.31.0.33])
-	by orsmga002.jf.intel.com with ESMTP; 29 Nov 2010 05:29:44 -0800
-Received: from rrsmsx601.amr.corp.intel.com (10.31.0.151) by
-	rrsmsx602.amr.corp.intel.com (10.31.0.33) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Mon, 29 Nov 2010 06:29:43 -0700
-Received: from rrsmsx503.amr.corp.intel.com ([10.31.0.31]) by
-	rrsmsx601.amr.corp.intel.com ([10.31.0.151]) with mapi; Mon, 29 Nov 2010
-	06:29:43 -0700
-From: "Lorenzati, Marcelo" <marcelo.lorenzati@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 29 Nov 2010 06:29:40 -0700
+X-IronPort-AV: E=Sophos;i="4.59,276,1288594800"; 
+	d="gif'147?scan'147,208,217,147";a="578584422"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga002.jf.intel.com with ESMTP; 29 Nov 2010 06:09:56 -0800
+Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Mon, 29 Nov 2010 06:09:56 -0800
+Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
+	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
+	Mon, 29 Nov 2010 06:09:56 -0800
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "Lorenzati, Marcelo" <marcelo.lorenzati@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 29 Nov 2010 06:09:54 -0800
 Thread-Topic: Yocto presentation material
-Thread-Index: AcuPyXoSHQrKrMUKT2G67Wegv27f2Q==
-Message-ID: <FE028D69955796489B510CE43DBBE8030115769E5A@rrsmsx503.amr.corp.intel.com>
+Thread-Index: AcuPyXoSHQrKrMUKT2G67Wegv27f2QABZNGw
+Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BC8879E6@orsmsx501.amr.corp.intel.com>
+References: <FE028D69955796489B510CE43DBBE8030115769E5A@rrsmsx503.amr.corp.intel.com>
+In-Reply-To: <FE028D69955796489B510CE43DBBE8030115769E5A@rrsmsx503.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
-Subject: Yocto presentation material
+Subject: Re: Yocto presentation material
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,20 +41,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Nov 2010 13:29:45 -0000
-X-Groupsio-MsgNum: 416
+X-List-Received-Date: Mon, 29 Nov 2010 14:09:57 -0000
+X-Groupsio-MsgNum: 417
 Content-Language: en-US
 Content-Type: multipart/related;
-	boundary="_004_FE028D69955796489B510CE43DBBE8030115769E5Arrsmsx503amrc_";
+	boundary="_004_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC8879E6orsmsx501amrc_";
 	type="multipart/alternative"
 
---_004_FE028D69955796489B510CE43DBBE8030115769E5Arrsmsx503amrc_
+--_004_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC8879E6orsmsx501amrc_
 Content-Type: multipart/alternative;
-	boundary="_000_FE028D69955796489B510CE43DBBE8030115769E5Arrsmsx503amrc_"
+	boundary="_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC8879E6orsmsx501amrc_"
 
---_000_FE028D69955796489B510CE43DBBE8030115769E5Arrsmsx503amrc_
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC8879E6orsmsx501amrc_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Marcelo - I'll send you some things offline.
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Lorenzati, Marcelo
+Sent: Monday, November 29, 2010 5:30 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Yocto presentation material
 
 Hi,
 Let me introduce myself and tell you the reason behind this mail.
@@ -77,7 +88,7 @@ It is possible to receive some materials/presentations / PoC or collaterals=
 
 Thanks and best regards.
 
-[cid:image001.gif@01CB8FAD.EB7DDE80]
+[cid:image001.gif@01CB8F8C.0ABC7F30]
 
 Marcelo Lorenzati
 Argentina Software Development Center
@@ -91,7 +102,7 @@ marcelo.lorenzati@intel.com<mailto:marcelo.lorenzati@intel.com>
 
 
 
---_000_FE028D69955796489B510CE43DBBE8030115769E5Arrsmsx503amrc_
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC8879E6orsmsx501amrc_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -160,11 +171,11 @@ w\:* {behavior:url(#default#VML);}
 	{font-family:Tahoma;
 	panose-1:2 11 6 4 3 5 4 4 2 4;}
 @font-face
-	{font-family:"Neo Sans Intel";
-	panose-1:2 11 5 4 2 2 2 2 2 4;}
-@font-face
 	{font-family:Consolas;
 	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Neo Sans Intel";
+	panose-1:2 11 5 4 2 2 2 2 2 4;}
  /* Style Definitions */
  p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
@@ -193,22 +204,27 @@ p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
 	margin-bottom:.0001pt;
 	font-size:8.0pt;
 	font-family:"Tahoma","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
 span.PlainTextChar
 	{mso-style-name:"Plain Text Char";
 	mso-style-priority:99;
 	mso-style-link:"Plain Text";
 	font-family:Consolas;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle21
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle22
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
 .MsoChpDefault
-	{mso-style-type:export-only;}
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -217,7 +233,7 @@ div.WordSection1
 -->
 </style>
 <!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"2050" />
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
  <o:shapelayout v:ext=3D"edit">
   <o:idmap v:ext=3D"edit" data=3D"1" />
@@ -227,6 +243,37 @@ div.WordSection1
 <body lang=3DEN-US link=3Dblue vlink=3Dpurple>
 
 <div class=3DWordSection1>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Marcelo &#8211; I&#8217;=
+ll send
+you some things offline.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span>=
+</p>
+
+<div style=3D'border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt'>
+
+<div>
+
+<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in'>
+
+<p class=3DMsoNormal><b><span style=3D'font-size:10.0pt;font-family:"Tahoma=
+","sans-serif"'>From:</span></b><span
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>
+yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] <b>O=
+n
+Behalf Of </b>Lorenzati, Marcelo<br>
+<b>Sent:</b> Monday, November 29, 2010 5:30 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] Yocto presentation material<o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
 <p class=3DMsoNormal>Hi,<o:p></o:p></p>
 
@@ -284,7 +331,7 @@ or collaterals you may have available?<o:p></o:p></p>
 <table class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 al=
 ign=3Dleft
  style=3D'border-collapse:collapse;margin-left:6.75pt;margin-right:6.75pt;
- margin-bottom:1.0pt'>
+ margin-bottom:-1.25pt'>
  <tr>
   <td width=3D79 valign=3Dtop style=3D'width:59.4pt;border:solid white 1.0p=
 t;
@@ -296,7 +343,7 @@ ent-frame-hspace:
   style=3D'font-size:8.0pt;line-height:115%;font-family:"Neo Sans Intel","s=
 ans-serif"'><img
   width=3D61 height=3D41 id=3D"Picture_x0020_1"
-  src=3D"cid:image001.gif@01CB8FAD.EB7DDE80"
+  src=3D"cid:image001.gif@01CB8F8C.0ABC7F30"
   alt=3D"cid:image001.gif@01CB4310.9C4582D0"></span><span style=3D'font-fam=
 ily:
   "Neo Sans Intel","sans-serif"'><o:p></o:p></span></p>
@@ -313,10 +360,8 @@ ent-frame-hspace:
   font-family:"Neo Sans Intel","sans-serif";color:#5F5F5F'><br>
   </span></b><span style=3D'font-size:7.5pt;line-height:115%;font-family:"N=
 eo Sans Intel","sans-serif";
-  color:#5F5F5F'>Argentina Software Development Center</span><span
-  style=3D'font-size:7.5pt;line-height:115%;font-family:"Neo Sans Intel","s=
-ans-serif";
-  color:#5F5F5F'><o:p></o:p></span></p>
+  color:#5F5F5F'>Argentina Software Development Center<o:p></o:p></span></p=
+>
   <p class=3DMsoNormal style=3D'line-height:115%;mso-element:frame;mso-elem=
 ent-frame-hspace:
   9.0pt;mso-element-wrap:around;mso-element-anchor-vertical:paragraph;
@@ -340,7 +385,7 @@ m</a> </span><span
 <table class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 al=
 ign=3Dleft
  style=3D'border-collapse:collapse;margin-left:6.75pt;margin-right:6.75pt;
- margin-bottom:7.75pt'>
+ margin-bottom:5.5pt'>
  <tr>
   <td width=3D79 valign=3Dtop style=3D'width:59.4pt;border:solid white 1.0p=
 t;
@@ -357,19 +402,21 @@ t;
 
 </div>
 
+</div>
+
 </body>
 
 </html>
 
---_000_FE028D69955796489B510CE43DBBE8030115769E5Arrsmsx503amrc_--
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC8879E6orsmsx501amrc_--
 
---_004_FE028D69955796489B510CE43DBBE8030115769E5Arrsmsx503amrc_
+--_004_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC8879E6orsmsx501amrc_
 Content-Type: image/gif; name="image001.gif"
 Content-Description: image001.gif
 Content-Disposition: inline; filename="image001.gif"; size=1481;
-	creation-date="Mon, 29 Nov 2010 06:29:41 GMT";
-	modification-date="Mon, 29 Nov 2010 06:29:41 GMT"
-Content-ID: <image001.gif@01CB8FAD.EB7DDE80>
+	creation-date="Mon, 29 Nov 2010 06:09:55 GMT";
+	modification-date="Mon, 29 Nov 2010 06:09:55 GMT"
+Content-ID: <image001.gif@01CB8F8C.0ABC7F30>
 Content-Transfer-Encoding: base64
 
 R0lGODlhPQApAOYAAFSRw+Dr9BBlq/D1+uHs9I211xJmq9zp82KayNDg7hdprR5usOrx9xFmq+Xu
@@ -399,4 +446,4 @@ KXTCxMZ+RAHu2jCnAPgpQHXCAcA/0UEmSBdwwcYdjKcSg1KwmKARKn3YUAQJNXUSAQMmXGEFGrW2
 x/Eaj8NSQxLfpPLBGHk8AUIVFGywAQUepFECAGGIUbnqCqTAs0JmxKj68swfs0URyJ7EgxVINW/9
 CWGA8EXXVcswhQd5xPBsJvMQLKADFhS4EP3dhciAwxRXbNCCBkmUUAIcIPjQhRMc9BA6T4EAADs=
 
---_004_FE028D69955796489B510CE43DBBE8030115769E5Arrsmsx503amrc_--
+--_004_B27EBC40D200ED48A3F4CC2EBEABAE0B25BC8879E6orsmsx501amrc_--
