@@ -1,30 +1,44 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D83104C80815
-	for <yocto@yoctoproject.org>; Tue, 30 Nov 2010 15:30:42 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oAULUdAp001058;
-	Tue, 30 Nov 2010 13:30:39 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Tue, 30 Nov 2010 13:30:38 -0800
-Received: from [128.224.146.67] ([128.224.146.67]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Tue, 30 Nov 2010 13:30:38 -0800
-Message-ID: <4CF56CFD.9060606@windriver.com>
-Date: Tue, 30 Nov 2010 16:30:37 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.9pre) Gecko/20100217 Shredder/3.0.3pre
-	ThunderBrowse/3.2.8.1
+Return-Path: <liping.ke@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id E170F4C81231
+	for <yocto@yoctoproject.org>; Tue, 30 Nov 2010 21:30:18 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 30 Nov 2010 19:30:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,282,1288594800"; d="scan'208";a="579298590"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by orsmga002.jf.intel.com with ESMTP; 30 Nov 2010 19:30:17 -0800
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Wed, 1 Dec 2010 11:29:48 +0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Wed, 1 Dec 2010 11:29:48 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi; Wed, 1 Dec 2010
+	11:29:47 +0800
+From: "Ke, Liping" <liping.ke@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, "Lu, Lianhao"
+	<lianhao.lu@intel.com>, "Xu, Dongxiao" <dongxiao.xu@intel.com>
+Date: Wed, 1 Dec 2010 11:29:43 +0800
+Thread-Topic: about install shell script privilege problem
+Thread-Index: AcuRB/6Yk+hyR+TSSq2L2My3n5fIYQ==
+Message-ID: <789F9655DD1B8F43B48D77C5D30659732FF6BE31@shsmsx501.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-cr-hashedpuzzle: DAx9 DS3F De7O EFgC EQTm FT+m FxjA GAtW Gm3r H7b3 IDTP
+	IIU1 Ipf1 JV2G JdfN
+	JdgO; 1; eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
+	Sosha1_v1; 7; {07E44498-429A-4B52-AEA3-B5A89B051951};
+	bABpAHAAaQBuAGcALgBrAGUAQABpAG4AdABlAGwALgBjAG8AbQA=; Wed,
+	01 Dec 2010 03:29:43 GMT;
+	YQBiAG8AdQB0ACAAaQBuAHMAdABhAGwAbAAgAHMAaABlAGwAbAAgAHMAYwByAGkAcAB0ACAAcAByAGkAdgBpAGwAZQBnAGUAIABwAHIAbwBiAGwAZQBtAA==
+x-cr-puzzleid: {07E44498-429A-4B52-AEA3-B5A89B051951}
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-To: Tim Bird <tim.bird@am.sony.com>
-References: <4CF569E8.2000307@am.sony.com>
-In-Reply-To: <4CF569E8.2000307@am.sony.com>
-X-OriginalArrivalTime: 30 Nov 2010 21:30:38.0773 (UTC)
-	FILETIME=[D517C650:01CB90D5]
-Cc: yocto@yoctoproject.org
-Subject: Re: fetch problem during build
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: about install shell script privilege problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,89 +50,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Nov 2010 21:30:43 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 01 Dec 2010 03:30:19 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 10-11-30 04:17 PM, Tim Bird wrote:
-> Hi all,
->
-> I am trying out yocto, and I get the following error during an initial build:
->
-> ERROR: Task failed: Fetch failed: Unable to fetch URL git://git.pokylinux.org/linux-2.6-windriver.git;protocol=git;fullclone=1;branch=common_pc-standard;name=machine from any source.
-> NOTE: package linux-wrs-2.6.34+git0+b67e060194a38c6331da1532bd06446087a42b3b_0+0431115c9d720fee5bb105f6a7411efb4f851d26-r12: task do_fetch: Failed
-> ERROR: Task 476 (/a/home/tbird/work/yocto/poky-laverne-4.0/meta/recipes-kernel/linux/linux-wrs_git.bb, do_fetch) failed with 1
->
-> I don't have git access through my corporate firewall, except to kernel.org.
-> I presume this is the source of the problem.  I read that someone else had problems
-> with fetching source in CVS.  I suspect that will be a problem as well, since
-> I don't have CVS access through my corporate firewall either.
->
-> I tried the instructions at: https://wiki.yoctoproject.org/wiki/Working_Behind_a_Network_Proxy
-> (for the git-proxy), but this didn't work. I suspect I don't have a SOCKS
-> proxy.
->
-> In the CVS case above, there appeared to be a workaround to directly download
-> some files.
+Hi, Jessica
+When testing the script, we found some privilege problems if using normal u=
+ser to install the sdk.
 
-It does sound like that, and you can typically download
-and place things in the downloads directory manually
-and they'll be picked up and used.
+Now all those packages must be installed to /opt, which acquire root privil=
+ege.=20
+So when running opkg-cl, the installation root must be pointed to "/", so o=
+pkg-cl needs root privilege too.
+Since the installation root is "/", the opkg lib dir must be under "/var/li=
+b/opkg" which needs root privilege too.
 
-The kernel is no different from other packages in
-this sense. I often point the SRC_URI at a local
-clone on disk to to save time as well.
+And also, when extract rootfs, we need to use pseudo, since pseudo is insta=
+lled under /opt/poky/, when running, it needs to create lock file which als=
+o needs root privilege.
 
-I don't have the instructions handy for what exactly
-to do to clone via a proxy (others do though, so
-hopefully they'll follow up) or download manually.
+If user don't use sudo, there're several problems which can't be solved wel=
+l enough currently (for example, yes, we can change owner of /opt/poky to c=
+urrent user, but what if user another username b to install another archite=
+cture under the /opt/poky?)
 
->
-> Is this possible with the kernel source as well?
->
-> Also, I presume I could substitute my own kernel
-> source, if I wanted to?  Maybe some pointers about how to do what
-> would be good as well.
+So after discussion, we decide to use sudo to run the script.=20
 
-For the 0.9 kernel, there is a specific structure
-expected for the kernel source tree if you use the
-default linux-wrs recipe. You can add to that structure
-with your own BSP branches and kernel configuration
-without changing the actual source repo.
+Any other suggestions?
 
-For a completely different src tree, you can use
-some of the other recipes for various other kernels
-that use defconfigs and other mechanisms for board
-support.
+Thanks& Regards,
+criping
 
-That being said, for 1.0, it will be easier/possible
-to point the linux-yocto recipe at another src tree
-and have the BSP branching structure automatically
-created and bootstrapped for a board, based on any
-number of trees.
-
-So depending on what you want to try, there's definitely
-something we can do to get you started.
-
-Hope that helps,
-
-Bruce
-
->
-> Any assistance would be appreciated.
->
-> Thanks,
->   -- Tim
->
-> =============================
-> Tim Bird
-> Architecture Group Chair, CE Linux Forum
-> Senior Staff Engineer, Sony Network Entertainment
-> =============================
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
 
