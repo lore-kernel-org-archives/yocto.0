@@ -1,34 +1,30 @@
-Return-Path: <lei.mei@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id F36634C80052
-	for <yocto@yoctoproject.org>; Thu,  2 Dec 2010 07:53:59 -0600 (CST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 02 Dec 2010 05:53:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,288,1288594800"; d="scan'208";a="863574497"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by fmsmga001.fm.intel.com with ESMTP; 02 Dec 2010 05:53:46 -0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Thu, 2 Dec 2010 21:53:45 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi; Thu, 2 Dec 2010
-	21:53:44 +0800
-From: "Mei, Lei" <lei.mei@intel.com>
-To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-Date: Thu, 2 Dec 2010 21:53:43 +0800
-Thread-Topic: [yocto] The patch_2.5.9.bb download another version source file
-Thread-Index: AcuMTYB8csdJ207xQJG1eEhYRP5X9AF2nhBQ
-Message-ID: <749B9D3DBF0F054390025D9EAFF47F22302FD7E5@shsmsx501.ccr.corp.intel.com>
-References: <749B9D3DBF0F054390025D9EAFF47F223023B0F7@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <749B9D3DBF0F054390025D9EAFF47F223023B0F7@shsmsx501.ccr.corp.intel.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN, en-US
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id AF47B4C80052
+	for <yocto@yoctoproject.org>; Thu,  2 Dec 2010 07:55:58 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oB2DtvOv006568;
+	Thu, 2 Dec 2010 05:55:57 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Thu, 2 Dec 2010 05:55:56 -0800
+Received: from [128.224.146.67] ([128.224.146.67]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Thu, 2 Dec 2010 05:55:56 -0800
+Message-ID: <4CF7A56B.9090508@windriver.com>
+Date: Thu, 02 Dec 2010 08:55:55 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.9pre) Gecko/20100217 Shredder/3.0.3pre
+	ThunderBrowse/3.2.8.1
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: The patch_2.5.9.bb download another version source file
+To: "Lu, Lianhao" <lianhao.lu@intel.com>
+References: <C10D3FB0CD45994C8A51FEC1227CE22F1B90B6C267@shsmsx502.ccr.corp.intel.com>
+In-Reply-To: <C10D3FB0CD45994C8A51FEC1227CE22F1B90B6C267@shsmsx502.ccr.corp.intel.com>
+X-OriginalArrivalTime: 02 Dec 2010 13:55:57.0062 (UTC)
+	FILETIME=[A4C08A60:01CB9228]
+Cc: yocto@yoctoproject.org
+Subject: Re: why cp in do_install() change file permission mode?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,42 +36,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Dec 2010 13:54:00 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 02 Dec 2010 13:55:59 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Nitin,
-	This issue still exists. Can you help me to have a look?
+On 10-12-02 05:16 AM, Lu, Lianhao wrote:
+> Hi fellows,
+>
+> Could anyone tell me why does the cp in do_install() change the file permission mode? Thanks!
+>
+> do_install () {
+> 	rm -rf ${D}${installed_dir}
+> 	install -d ${D}${installed_dir}
+> 	cp -rp ${S}/* ${D}${installed_dir}
+> }
+>
+> After "bitbake xxx -c install", I found the file under ${D}${installed_dir} had the permission mode of 0744 while the corresponding file under directory ${S} had the mode of 0644. Why did this happen? How to avoid this kind of mode change? Thanks!
 
-Thanks
-Lei=20
+What's the umask of the your uid ? .. or maybe this is
+one of those settings that is controlled by bitbake/poky.
+But either way, it should just be that the cp is taking
+the current umask which is changing the mode to 0744.
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Mei, Lei
-Sent: Thursday, November 25, 2010 11:05 AM
-To: Kamble, Nitin A
-Cc: yocto@yoctoproject.org
-Subject: [yocto] The patch_2.5.9.bb download another version source file
+One option is to use install to copy the files, since it
+allows a specific set of permissions to be set on its
+command line.
 
-Hi Nitin,
-	I am adding the license file MD5sum information to recipe, but I find the =
-recipe "patch_2.5.9.bb" downloaded the source file from "patch-2.5.4.tar.gz=
-", this will result in the COPYING file MD5sum is not match with the bitbak=
-e calculate. I find you are the maintainer ,so can you tell me the reason?
+I haven't looked into this at all, just some thoughts
+off the top of my head.
 
-Thanks
-Lei=20
+Cheers,
 
+Bruce
 
----
-Mei, Lei
-Email: lei.mei@intel.com
+>
+> Best Regards
+> -Lianhao Lu
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
