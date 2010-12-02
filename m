@@ -1,34 +1,34 @@
-Return-Path: <lianhao.lu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 19BCF4C80052
-	for <yocto@yoctoproject.org>; Thu,  2 Dec 2010 04:16:42 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 02 Dec 2010 02:16:41 -0800
+Return-Path: <lei.mei@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id F36634C80052
+	for <yocto@yoctoproject.org>; Thu,  2 Dec 2010 07:53:59 -0600 (CST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 02 Dec 2010 05:53:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,287,1288594800"; d="scan'208";a="579806365"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by orsmga002.jf.intel.com with ESMTP; 02 Dec 2010 02:16:41 -0800
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Thu, 2 Dec 2010 18:16:39 +0800
+X-IronPort-AV: E=Sophos;i="4.59,288,1288594800"; d="scan'208";a="863574497"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by fmsmga001.fm.intel.com with ESMTP; 02 Dec 2010 05:53:46 -0800
 Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Thu, 2 Dec 2010 18:16:39 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Thu, 2 Dec 2010 21:53:45 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
 	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi; Thu, 2 Dec 2010
-	18:16:38 +0800
-From: "Lu, Lianhao" <lianhao.lu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 2 Dec 2010 18:16:37 +0800
-Thread-Topic: why cp in do_install() change file permission mode?
-Thread-Index: AcuSCgEqLCrx7zmuQC2aEx+1L8oOfg==
-Message-ID: <C10D3FB0CD45994C8A51FEC1227CE22F1B90B6C267@shsmsx502.ccr.corp.intel.com>
+	21:53:44 +0800
+From: "Mei, Lei" <lei.mei@intel.com>
+To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+Date: Thu, 2 Dec 2010 21:53:43 +0800
+Thread-Topic: [yocto] The patch_2.5.9.bb download another version source file
+Thread-Index: AcuMTYB8csdJ207xQJG1eEhYRP5X9AF2nhBQ
+Message-ID: <749B9D3DBF0F054390025D9EAFF47F22302FD7E5@shsmsx501.ccr.corp.intel.com>
+References: <749B9D3DBF0F054390025D9EAFF47F223023B0F7@shsmsx501.ccr.corp.intel.com>
+In-Reply-To: <749B9D3DBF0F054390025D9EAFF47F223023B0F7@shsmsx501.ccr.corp.intel.com>
 Accept-Language: zh-CN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-Subject: why cp in do_install() change file permission mode?
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: The patch_2.5.9.bb download another version source file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,27 +40,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Dec 2010 10:16:42 -0000
+X-List-Received-Date: Thu, 02 Dec 2010 13:54:00 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi fellows,
+Hi Nitin,
+	This issue still exists. Can you help me to have a look?
 
-Could anyone tell me why does the cp in do_install() change the file permis=
-sion mode? Thanks!
+Thanks
+Lei=20
 
-do_install () {
-	rm -rf ${D}${installed_dir}
-	install -d ${D}${installed_dir}
-	cp -rp ${S}/* ${D}${installed_dir}
-}
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Mei, Lei
+Sent: Thursday, November 25, 2010 11:05 AM
+To: Kamble, Nitin A
+Cc: yocto@yoctoproject.org
+Subject: [yocto] The patch_2.5.9.bb download another version source file
 
-After "bitbake xxx -c install", I found the file under ${D}${installed_dir}=
- had the permission mode of 0744 while the corresponding file under directo=
-ry ${S} had the mode of 0644. Why did this happen? How to avoid this kind o=
-f mode change? Thanks!
+Hi Nitin,
+	I am adding the license file MD5sum information to recipe, but I find the =
+recipe "patch_2.5.9.bb" downloaded the source file from "patch-2.5.4.tar.gz=
+", this will result in the COPYING file MD5sum is not match with the bitbak=
+e calculate. I find you are the maintainer ,so can you tell me the reason?
 
-Best Regards
--Lianhao Lu
+Thanks
+Lei=20
+
+
+---
+Mei, Lei
+Email: lei.mei@intel.com
+
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
