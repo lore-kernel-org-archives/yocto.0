@@ -1,28 +1,45 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id E6AD24C80039
-	for <yocto@yoctoproject.org>; Thu,  2 Dec 2010 11:13:48 -0600 (CST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oB2HDlR4012218
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 2 Dec 2010 09:13:47 -0800 (PST)
-Received: from ALA-MBA.corp.ad.wrs.com ([169.254.1.206]) by
-	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.01.0255.000;
-	Thu, 2 Dec 2010 09:13:47 -0800
-From: "Hatle, Mark" <mark.hatle@windriver.com>
-To: "'lianhao.lu@intel.com'" <lianhao.lu@intel.com>,
-	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] why cp in do_install() change file permission mode?
-Thread-Index: AcuSCgEqLCrx7zmuQC2aEx+1L8oOfgAOj1n/
-Date: Thu, 2 Dec 2010 17:13:45 +0000
-Message-ID: <154B64CD119D7843A9EC39EC45EE7CD8038643@ALA-MBA.corp.ad.wrs.com>
-In-Reply-To: <C10D3FB0CD45994C8A51FEC1227CE22F1B90B6C267@shsmsx502.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.82.31]
+Return-Path: <tim.bird@am.sony.com>
+Received: from TX2EHSOBE002.bigfish.com (tx2ehsobe001.messaging.microsoft.com
+	[65.55.88.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 35E5B4C80FAC
+	for <yocto@yoctoproject.org>; Thu,  2 Dec 2010 12:54:32 -0600 (CST)
+Received: from mail197-tx2-R.bigfish.com (10.9.14.242) by
+	TX2EHSOBE002.bigfish.com (10.9.40.22) with Microsoft SMTP Server id
+	14.1.225.8; Thu, 2 Dec 2010 18:54:31 +0000
+Received: from mail197-tx2 (localhost.localdomain [127.0.0.1])	by
+	mail197-tx2-R.bigfish.com (Postfix) with ESMTP id 8AD068000F5	for
+	<yocto@yoctoproject.org>; Thu,  2 Dec 2010 18:54:31 +0000 (UTC)
+X-SpamScore: -3
+X-BigFish: VPS-3(zzbb2cKzz1202hzzz2fh2a8h691h637h668h66h)
+X-Spam-TCS-SCL: 5:0
+X-Forefront-Antispam-Report: KIP:(null); UIP:(null); IPVD:NLI;
+	H:mail7.fw-bc.sony.com; RD:mail7.fw-bc.sony.com; EFVD:NLI
+Received: from mail197-tx2 (localhost.localdomain [127.0.0.1]) by mail197-tx2
+	(MessageSwitch) id 1291316065318943_22145;
+	Thu,  2 Dec 2010 18:54:25 +0000 (UTC)
+Received: from TX2EHSMHS045.bigfish.com (unknown [10.9.14.241])	by
+	mail197-tx2.bigfish.com (Postfix) with ESMTP id 782531E804F	for
+	<yocto@yoctoproject.org>; Thu,  2 Dec 2010 18:54:24 +0000 (UTC)
+Received: from mail7.fw-bc.sony.com (160.33.98.74) by TX2EHSMHS045.bigfish.com
+	(10.9.99.145) with Microsoft SMTP Server (TLS) id 14.1.225.8;
+	Thu, 2 Dec 2010 18:54:21 +0000
+Received: from mail1x.sjc.in.sel.sony.com ([43.134.1.112])	by
+	mail7.fw-bc.sony.com (Switch-3.4.2/Switch-3.3.2mp) with ESMTP id
+	oB2IsIlJ002620	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256
+	verify=FAIL)	for <yocto@yoctoproject.org>; Thu, 2 Dec 2010 18:54:19 GMT
+Received: from timdesk.am.sony.com ([43.135.148.222])	by
+	mail1x.sjc.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
+	oB2Is81h031382	for <yocto@yoctoproject.org>;
+	Thu, 2 Dec 2010 18:54:08 GMT
+Message-ID: <4CF7EB4A.3010109@am.sony.com>
+Date: Thu, 2 Dec 2010 10:54:02 -0800
+From: Tim Bird <tim.bird@am.sony.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.12) Gecko/20100907 Fedora/3.0.7-1.fc12 Thunderbird/3.0.7
 MIME-Version: 1.0
-Subject: Re: why cp in do_install() change file permission mode?
+To: <yocto@yoctoproject.org>
+X-OriginatorOrg: am.sony.com
+Subject: Still having build problems - what version of python is required?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,53 +51,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Dec 2010 17:13:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 02 Dec 2010 18:54:32 -0000
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
 
-Sorry for the brief response, but...
+So I gave up, for the time being, trying to build behind
+my firewall.
 
-Do_install is performed under 'pseudo'.  Pseudo is a ld_preload that interc=
-epts calls and captures permissions, users and groups settings to allow roo=
-t-like actions to occur.
+I tried to set up a machine outside my firewall to do a build.
+Unfortunately, this machine is a bit dated.  It is running
+Fedora 8, with python version 2.5.1.
 
-In order for the sstate components to be easily copied and manipulated outs=
-ide of pseudo control, permissions are modified.
+Here's what I get when I run bitbake:
 
-If you look at the produced package/filesystem image the permissions/owner/=
-group will be as expected.  If you don't see that behavior then we should i=
-nvestigate.
+[tbird@tree poky-4.0-build]$ bitbake poky-image-minimal
+  File "/a/home/tbird/work/yocto/poky-laverne-4.0/scripts/..//bitbake//bin/bitbake", line 207
+    except Exception as e:
+                      ^
+SyntaxError: invalid syntax
+[tbird@tree poky-4.0-build]$ python --version
+Python 2.5.1
+[tbird@tree poky-4.0-build]$ cat /etc/issue
+Fedora release 8 (Werewolf)1
 
-Note pseudo only captures the attributes as set.  So if cp, install, etc do=
-esn't set it -- pseudo won't capture it.
+What version of python is required?
 
------ Original Message -----
-From: Lu, Lianhao [mailto:lianhao.lu@intel.com]
-Sent: Thursday, December 02, 2010 02:16 AM=0A=
-To: yocto@yoctoproject.org <yocto@yoctoproject.org>
-Subject: [yocto] why cp in do_install() change file permission mode?
+Note also that I couldn't find a prce package for this distro, despite
+there being an prce-devel page available.  I don't know how important
+that will be for building stuff.
 
-Hi fellows,
+Is it a dead end trying to get a host distro this old to build
+poky?
+ -- Tim
 
-Could anyone tell me why does the cp in do_install() change the file permis=
-sion mode? Thanks!
+=============================
+Tim Bird
+Architecture Group Chair, CE Linux Forum
+Senior Staff Engineer, Sony Network Entertainment
+=============================
 
-do_install () {
-	rm -rf ${D}${installed_dir}
-	install -d ${D}${installed_dir}
-	cp -rp ${S}/* ${D}${installed_dir}
-}
-
-After "bitbake xxx -c install", I found the file under ${D}${installed_dir}=
- had the permission mode of 0744 while the corresponding file under directo=
-ry ${S} had the mode of 0644. Why did this happen? How to avoid this kind o=
-f mode change? Thanks!
-
-Best Regards
--Lianhao Lu
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
