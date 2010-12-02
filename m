@@ -1,28 +1,22 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 975AB4C80FAC
-	for <yocto@yoctoproject.org>; Thu,  2 Dec 2010 12:56:57 -0600 (CST)
-Received: by mail.chez-thomas.org (Postfix, from userid 999)
-	id 50271166084E; Thu,  2 Dec 2010 11:56:57 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-Received: from hermes.chez-thomas.org (hermes_local [192.168.1.101])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 3107216607FD;
-	Thu,  2 Dec 2010 11:56:56 -0700 (MST)
-Message-ID: <4CF7EBF8.90609@mlbassoc.com>
-Date: Thu, 02 Dec 2010 11:56:56 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.1.9) Gecko/20100430 Fedora/3.0.4-2.fc11 Thunderbird/3.0.4
-MIME-Version: 1.0
-To: Tim Bird <tim.bird@am.sony.com>
-References: <4CF7EB4A.3010109@am.sony.com>
+Return-Path: <josh@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B733F4C80FAC
+	for <yocto@yoctoproject.org>; Thu,  2 Dec 2010 13:05:46 -0600 (CST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 02 Dec 2010 11:05:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,289,1288594800"; d="scan'208";a="683300587"
+Received: from unknown (HELO [10.255.16.47]) ([10.255.16.47])
+	by orsmga001.jf.intel.com with ESMTP; 02 Dec 2010 11:05:45 -0800
+From: Joshua Lock <josh@linux.intel.com>
+To: yocto@yoctoproject.org
 In-Reply-To: <4CF7EB4A.3010109@am.sony.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Still having build problems - what version of python is	required?
+References: <4CF7EB4A.3010109@am.sony.com>
+Date: Thu, 02 Dec 2010 19:05:39 +0000
+Message-ID: <1291316739.11835.4.camel@scimitar>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.1 (2.32.1-1.fc14) 
+Subject: Re: Still having build problems - what version of python is required?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,46 +28,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Dec 2010 18:56:57 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 02 Dec 2010 19:05:47 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 12/02/2010 11:54 AM, Tim Bird wrote:
+On Thu, 2010-12-02 at 10:54 -0800, Tim Bird wrote:
 > So I gave up, for the time being, trying to build behind
 > my firewall.
->
+> 
 > I tried to set up a machine outside my firewall to do a build.
 > Unfortunately, this machine is a bit dated.  It is running
 > Fedora 8, with python version 2.5.1.
-
-You need at least 2.6
-
+> 
 > Here's what I get when I run bitbake:
->
+> 
 > [tbird@tree poky-4.0-build]$ bitbake poky-image-minimal
->    File "/a/home/tbird/work/yocto/poky-laverne-4.0/scripts/..//bitbake//bin/bitbake", line 207
->      except Exception as e:
->                        ^
+>   File "/a/home/tbird/work/yocto/poky-laverne-4.0/scripts/..//bitbake//bin/bitbake", line 207
+>     except Exception as e:
+>                       ^
 > SyntaxError: invalid syntax
 > [tbird@tree poky-4.0-build]$ python --version
 > Python 2.5.1
 > [tbird@tree poky-4.0-build]$ cat /etc/issue
 > Fedora release 8 (Werewolf)1
->
+> 
 > What version of python is required?
->
+> 
 > Note also that I couldn't find a prce package for this distro, despite
 > there being an prce-devel page available.  I don't know how important
 > that will be for building stuff.
->
+> 
 > Is it a dead end trying to get a host distro this old to build
 > poky?
 
-Probably yes.  Can't you upgrade?  Fedora 8 is really old now...
+Possibly not, poky can build a standalone Python for people without
+Python 2.6 on their host system. If you've any will left it could be
+enough, I've used this Python version to do Poky builds on CentOS 5.5.
 
+You need the appropriate version from
+http://autobuilder.yoctoproject.org/downloads/miscsupport/
+
+It will need extracting at / and will inflate
+to /opt/poky/sysroots/$ARCH-pokysdk-linux/usr/bin/python you'll probably
+want to update your PATH.
+
+Cheers,
+Joshua
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Joshua Lock
+        Intel Open Source Technology Centre
+
 
