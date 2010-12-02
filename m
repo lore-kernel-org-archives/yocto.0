@@ -1,25 +1,32 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 74C2F4C80052
-	for <yocto@yoctoproject.org>; Thu,  2 Dec 2010 09:56:02 -0600 (CST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 02 Dec 2010 07:56:01 -0800
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 3706B4C80052
+	for <yocto@yoctoproject.org>; Thu,  2 Dec 2010 10:43:05 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 02 Dec 2010 08:43:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,288,1288594800"; d="scan'208";a="863611643"
-Received: from unknown (HELO [10.255.13.208]) ([10.255.13.208])
-	by fmsmga001.fm.intel.com with ESMTP; 02 Dec 2010 07:55:59 -0800
-Message-ID: <4CF7C18C.6030602@linux.intel.com>
-Date: Thu, 02 Dec 2010 07:55:56 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.12) Gecko/20101027 Lightning/1.0b2 Thunderbird/3.1.6
+X-IronPort-AV: E=Sophos;i="4.59,289,1288594800"; d="scan'208";a="579921960"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga002.jf.intel.com with ESMTP; 02 Dec 2010 08:42:57 -0800
+Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
+	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
+	Thu, 2 Dec 2010 08:42:57 -0800
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: "Mei, Lei" <lei.mei@intel.com>
+Date: Thu, 2 Dec 2010 08:42:55 -0800
+Thread-Topic: [yocto] The patch_2.5.9.bb download another version source file
+Thread-Index: AcuMTYB8csdJ207xQJG1eEhYRP5X9AF2nhBQAAXnL9A=
+Message-ID: <9DA5872FEF993D41B7173F58FCF6BE94023D994B@orsmsx504.amr.corp.intel.com>
+References: <749B9D3DBF0F054390025D9EAFF47F223023B0F7@shsmsx501.ccr.corp.intel.com>
+	<749B9D3DBF0F054390025D9EAFF47F22302FD7E5@shsmsx501.ccr.corp.intel.com>
+In-Reply-To: <749B9D3DBF0F054390025D9EAFF47F22302FD7E5@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-References: <1290974426-24618-1-git-send-email-fransmeulenbroeks@gmail.com>	<20101129200549.GA25679@windriver.com>	<AANLkTimm0MxsA4M9eMaPs9jd8-MKB5z9F7kQ714L8umK@mail.gmail.com>	<4CF40E3B.10202@windriver.com>
-	<AANLkTi=hFEzaDc7CE7mj1TySpKwLArwkuYeL6EqUCiP5@mail.gmail.com>
-In-Reply-To: <AANLkTi=hFEzaDc7CE7mj1TySpKwLArwkuYeL6EqUCiP5@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] meta-bsp-kirkwood: created layer for	Marvellkirkwood
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: The patch_2.5.9.bb download another version source file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,23 +38,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Dec 2010 15:56:02 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 02 Dec 2010 16:43:05 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/29/2010 01:07 PM, Frans Meulenbroeks wrote:
-> Actually wanted my reply to Bruce to go to the list too (and guess his
-> reply should also have gone to the list so added that too).
->
-> Issue is that most of the other lists I'm on (including openembedded)
-> use reply to reply to the list, not to the original author.
-> Guess I'll make this mistake every once in a while).
+I Mei Lei,
+  I have also noticed it. The patch recipe has customizations which I have =
+not seen in other recipes. Like instead of getting the version, it gets old=
+er version, and adds a patch to update it to the later version. I also have=
+ some issues to upgrade it to latest version. I am working on sorting these=
+ out with Richard.=20
 
-Best practice is to use reply-to-all. That ensures you get the list as 
-well as the CC'd parties. Many people will miss messages sent only to 
-the list, so it is a good idea to keep the participants in a thread on CC.
+Thanks,
+Nitin
 
--- 
-Darren Hart
-Yocto Linux Kernel
+
+> -----Original Message-----
+> From: Mei, Lei
+> Sent: Thursday, December 02, 2010 5:54 AM
+> To: Kamble, Nitin A
+> Cc: yocto@yoctoproject.org
+> Subject: RE: [yocto] The patch_2.5.9.bb download another version source
+> file
+>=20
+> Hi Nitin,
+> 	This issue still exists. Can you help me to have a look?
+>=20
+> Thanks
+> Lei
+>=20
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Mei, Lei
+> Sent: Thursday, November 25, 2010 11:05 AM
+> To: Kamble, Nitin A
+> Cc: yocto@yoctoproject.org
+> Subject: [yocto] The patch_2.5.9.bb download another version source
+> file
+>=20
+> Hi Nitin,
+> 	I am adding the license file MD5sum information to recipe, but I
+> find the recipe "patch_2.5.9.bb" downloaded the source file from
+> "patch-2.5.4.tar.gz", this will result in the COPYING file MD5sum is
+> not match with the bitbake calculate. I find you are the maintainer ,so
+> can you tell me the reason?
+>=20
+> Thanks
+> Lei
+>=20
+>=20
+> ---
+> Mei, Lei
+> Email: lei.mei@intel.com
+>=20
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
