@@ -1,34 +1,34 @@
 Return-Path: <fransmeulenbroeks@gmail.com>
 Received: from mail-iw0-f176.google.com (mail-iw0-f176.google.com
 	[209.85.214.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D3EA74C80052
-	for <yocto@yoctoproject.org>; Sat,  4 Dec 2010 17:22:22 -0600 (CST)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4232D4C80052
+	for <yocto@yoctoproject.org>; Sat,  4 Dec 2010 17:31:43 -0600 (CST)
 Authentication-Results: mx1.pokylinux.org; dkim=pass
 	(1024-bit key; insecure key) header.i=@gmail.com;
 	x-dkim-adsp=none (insecure policy)
-Received: by iwn35 with SMTP id 35so1408354iwn.35
-	for <yocto@yoctoproject.org>; Sat, 04 Dec 2010 15:22:22 -0800 (PST)
+Received: by iwn35 with SMTP id 35so1415768iwn.35
+	for <yocto@yoctoproject.org>; Sat, 04 Dec 2010 15:31:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
 	h=domainkey-signature:mime-version:received:received:date:message-id
 	:subject:from:to:content-type;
-	bh=8CugWI7yX6hoNrcbYOZC0hwL72o1tENQ4Ka/SDBdgUI=;
-	b=m9aQ+7aDTUHdc8qet5glBeFbpP8M0SM+b3KahDJIL9+oPrr7bqOU1WzoUxAz04PTNj
-	tc++HkpTMolDP7wwgaj0cBMTRyFQBrB7PGpE99AdJbzEhT8tUl9lqfQ4eiK4IhHkl/nD
-	bib5s9LfLnbGYgIKLdV6vMvBTsYngzEyeV7ks=
+	bh=q3/fflIxEI7ApNsm55aNIeTcukl6wvkZhIQZFHQroSQ=;
+	b=Bhjk2/ZeKAAfm+RjxxVF6Lt/1QKwPNa2rqZSfbSMuziGzqP2oo+PZLtvXOq47wTiL0
+	sz6UKqB0p1Tn8ZZia9LFt3goSuE2oXZBJrMQBTswVolMg3ZeeCh47K4jOraR6IwvgrcW
+	7UBhCXUEWOfNaOcUZk0Mmreal2LBcXHCHy7Wo=
 DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
 	h=mime-version:date:message-id:subject:from:to:content-type;
-	b=re0C9A/C59MAq4mboUIsc5ChsCQhPLkicE8SCEeHZ24dpKXYLnHgchhmNMh03yD+wr
-	dZ8m20iHhbQSurwOytaJYYfWHYRXjpduRPKMOawapny3NLbmiDGzIHnnjXw0ViHGXUQm
-	6VtL+AtClBQ+Up863W7Mh7vPUvec1Lwvrsaeg=
+	b=TQJgrUh7qQ716mplUanDciGC18DOPAVBtQpjo0D8hJcd0qOFrjmwKLFKBGHehZaMKZ
+	P+xAGsvp0T1etTIuR3dHaenIcemDs/DHcetPwCPIbrkmLCHBkuWDe04l4xU4r4g2F3yz
+	3odHIWMX1CHGUVZ1rQ9woaNvrRvqKBcGcsjso=
 MIME-Version: 1.0
-Received: by 10.231.191.4 with SMTP id dk4mr3768800ibb.82.1291504942260; Sat,
-	04 Dec 2010 15:22:22 -0800 (PST)
-Received: by 10.231.200.140 with HTTP; Sat, 4 Dec 2010 15:22:22 -0800 (PST)
-Date: Sun, 5 Dec 2010 00:22:22 +0100
-Message-ID: <AANLkTi=W6EZEqLRj-GOAagbBaSgR=KcN2J4oU2nX4x4b@mail.gmail.com>
+Received: by 10.231.20.65 with SMTP id e1mr3790133ibb.32.1291505502137; Sat,
+	04 Dec 2010 15:31:42 -0800 (PST)
+Received: by 10.231.200.140 with HTTP; Sat, 4 Dec 2010 15:31:42 -0800 (PST)
+Date: Sun, 5 Dec 2010 00:31:42 +0100
+Message-ID: <AANLkTimOUSrRJd+bVLmprX+e+tCTtQHLQEC52GNgMCZ=@mail.gmail.com>
 From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-To: yocto@yoctoproject.org
-Subject: LIC_FILES_CHKSUM issue
+To: openembedded-devel@lists.openembedded.org, yocto@yoctoproject.org
+Subject: AUTOTOOLS_STAGE_PKGCONFIG still used?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,58 +40,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 Dec 2010 23:22:23 -0000
+X-List-Received-Date: Sat, 04 Dec 2010 23:31:43 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+Dear all.
 
-I was porting a recipe from OE to yocto and bumped into a
-LIC_FILES_CHKSUM  error.
-I get a message about  LIC_FILES_CHKSUM
+Is AUTOTOOLS_STAGE_PKGCONFIG still of any use?
+I was trying to fidn out what I did, I ran a grep on both my
+openembedded dir (results see below) and my yocto tree, both trees at
+git head.
+I see a lot of places where it is set but no place where it is used.
 
-Checked the ref man
-(http://www.yoctoproject.org/docs/poky-ref-manual/poky-ref-manual.html#usingpoky-specifying-LIC_FILES_CHKSUM)
-added this:
-LIC_FILES_CHKSUM = "file://COPYING; md5=xxxx"
-in the hope to get the checksum.
-However I don't get one, so I run md5sum on the COPYING file myself
-and replace xxxx with that value.
+Anyone who can confirm that this is a stale var? Or otherwise anyone
+who can explain how this is used. (and no, bitbake does not know the
+var either, not that I had expected it)
 
-No success though, I still get:
-
-| NOTE: Checking autotools environment for common misconfiguration
-| FATAL: Gettext required but not in DEPENDS for file
-/home/frans/poky/poky/build/tmp/work/armv5te-poky-linux-gnueabi/libcddb-1.3.2-r0/libcddb-1.3.2/configure.ac.
-| Missing inherit gettext?
-| ERROR: Error in executing python function in:
-/home/frans/poky/poky/meta-private/recipes/libcddb/libcddb_1.3.2.bb
-| ERROR: Exception:<type 'exceptions.SystemExit'> Message:1
-| ERROR: Traceback:
-| ERROR:   File "do_qa_configure", line 36, in <module>
-| ERROR:
-| ERROR:   File "do_qa_configure", line 31, in do_qa_configure
-| ERROR:
-| ERROR:   File
-"/home/frans/poky/poky/scripts/..//bitbake/lib/bb/__init__.py", line
-56, in fatal
-| ERROR:     bb.msg.fatal(None, ''.join(args))
-| ERROR:
-| ERROR:   File
-"/home/frans/poky/poky/scripts/..//bitbake/lib/bb/msg.py", line 139,
-in fatal
-| ERROR:     sys.exit(1)
-| ERROR:
-| ERROR: The lines leading to this error were:
-| ERROR: 	0032:
-| ERROR: 	0033:    if not package_qa_check_license(workdir, d):
-| ERROR: 	0034:        bb.fatal("Licensing warning: LIC_FILES_CHKSUM
-does not match, please fix")
-| ERROR: 	0035:
-| ERROR: Task failed: ('Function do_qa_configure failed',
-'/home/frans/poky/poky/build/tmp/work/armv5te-poky-linux-gnueabi/libcddb-1.3.2-r0/temp/log.do_configure.12827')
-NOTE: package libcddb-1.3.2-r0: task do_configure: Failed
-
-No idea on how to resolve this.
-
-Frans
+frans@linux-suse:~/oe/openembedded> grep -r AUTOTOOLS_STAGE_PKGCONFIG .
+./recipes/gnome/libsoup_2.2.100.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/gnome/gnome-python-extras_2.25.3.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/gnome/hippo-canvas_0.3.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/openmax/libomxil-bellagio_0.9.2.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/openmax/libomxil-bellagio_0.9.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/openmax/libomxil-bellagio_0.9.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/openmax/libomxil-bellagio_0.9.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/musicpd/libmpd_0.17.96.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/musicpd/libmpd_0.20.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/libexif/libexif.inc:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/obsolete/pixman/pixman_0.17.6.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/mml-widget/gtkmathview_0.8.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = 1
+./recipes/ggz/libggz_0.0.14.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/vlc/libdvdcss_1.2.10.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/gnutls/libtasn1_1.7.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/gstreamer/gst-common.inc:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/mythtv/gmyth_0.7.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/mythtv/gmyth-upnp_0.7.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/lcms/lcms_1.17.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/jpeg/jasper_1.900.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/redland/redland_1.0.8.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/telepathy/telepathy-gabble_0.7.27.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/telepathy/telepathy-farsight_0.0.7.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/telepathy/telepathy-mission-control_4.67.bb:AUTOTOOLS_STAGE_PKGCONFIG
+= "1"
+./recipes/telepathy/telepathy-glib_0.7.29.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/kde4/gmm_3.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/kde4/kde4.inc:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/kde4/strigi_0.5.10.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/device-mapper/device-mapper_1.02.28.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sdr/hamlib_1.2.10.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/libusb/libusb-compat_0.1.3.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/libusb/libusb-compat_0.1.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/libusb/libusb1_1.0.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/bluez/bluez4-libs.inc:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/bluez/bluez4.inc:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/boxee/tre_0.7.5.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/fann/fann_2.0.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/pango/pangomm_2.26.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/icon-slicer/icon-slicer-native_0.3.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar_0.83.4.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar-datastore_0.82.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar-artwork_0.84.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar-toolkit_0.82.11.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar-datastore_0.84.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar-base_0.82.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar-artwork_0.82.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar_0.82.9.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar-toolkit_0.84.4.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar-toolkit_0.83.3.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar-presence-service_0.82.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar-base_0.84.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar-presence-service_0.84.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar_0.84.6.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/sugar/sugar-base_0.83.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/schroedinger/schroedinger_1.0.9.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/devicekit/devicekit-disks_004.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/upnp/gupnp-av_0.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/upnp/libupnp_1.6.5.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/libdlo/libdlo_git.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/obexftp/obexftp_0.23.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/pulseaudio/libcanberra_0.17.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/pulseaudio/libcanberra_0.14.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/pulseaudio/libcanberra_0.12.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/farsight/farsight2_0.0.9.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/farsight/libnice_0.0.13.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/farsight/farsight2_0.0.22.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./recipes/farsight/libnice_0.0.6.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./classes/xfce.bbclass:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./classes/gnomebase.bbclass:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./classes/xfce46.bbclass:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+./classes/efl.bbclass:AUTOTOOLS_STAGE_PKGCONFIG = "1"
+frans@linux-suse:~/oe/openembedded>
 
