@@ -1,34 +1,30 @@
-Return-Path: <fransmeulenbroeks@gmail.com>
-Received: from mail-iw0-f176.google.com (mail-iw0-f176.google.com
-	[209.85.214.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 4232D4C80052
-	for <yocto@yoctoproject.org>; Sat,  4 Dec 2010 17:31:43 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iwn35 with SMTP id 35so1415768iwn.35
-	for <yocto@yoctoproject.org>; Sat, 04 Dec 2010 15:31:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:received:received:date:message-id
-	:subject:from:to:content-type;
-	bh=q3/fflIxEI7ApNsm55aNIeTcukl6wvkZhIQZFHQroSQ=;
-	b=Bhjk2/ZeKAAfm+RjxxVF6Lt/1QKwPNa2rqZSfbSMuziGzqP2oo+PZLtvXOq47wTiL0
-	sz6UKqB0p1Tn8ZZia9LFt3goSuE2oXZBJrMQBTswVolMg3ZeeCh47K4jOraR6IwvgrcW
-	7UBhCXUEWOfNaOcUZk0Mmreal2LBcXHCHy7Wo=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	b=TQJgrUh7qQ716mplUanDciGC18DOPAVBtQpjo0D8hJcd0qOFrjmwKLFKBGHehZaMKZ
-	P+xAGsvp0T1etTIuR3dHaenIcemDs/DHcetPwCPIbrkmLCHBkuWDe04l4xU4r4g2F3yz
-	3odHIWMX1CHGUVZ1rQ9woaNvrRvqKBcGcsjso=
-MIME-Version: 1.0
-Received: by 10.231.20.65 with SMTP id e1mr3790133ibb.32.1291505502137; Sat,
-	04 Dec 2010 15:31:42 -0800 (PST)
-Received: by 10.231.200.140 with HTTP; Sat, 4 Dec 2010 15:31:42 -0800 (PST)
-Date: Sun, 5 Dec 2010 00:31:42 +0100
-Message-ID: <AANLkTimOUSrRJd+bVLmprX+e+tCTtQHLQEC52GNgMCZ=@mail.gmail.com>
-From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-To: openembedded-devel@lists.openembedded.org, yocto@yoctoproject.org
-Subject: AUTOTOOLS_STAGE_PKGCONFIG still used?
+Return-Path: <rpurdie@linux.intel.com>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 7E6B74C80039
+	for <yocto@yoctoproject.org>; Sun,  5 Dec 2010 14:42:04 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oB5KfxmX030160;
+	Sun, 5 Dec 2010 20:41:59 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 29604-08; Sun,  5 Dec 2010 20:41:54 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oB5KfoWI030154
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Sun, 5 Dec 2010 20:41:51 GMT
+From: Richard Purdie <rpurdie@linux.intel.com>
+To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+In-Reply-To: <AANLkTimOUSrRJd+bVLmprX+e+tCTtQHLQEC52GNgMCZ=@mail.gmail.com>
+References: <AANLkTimOUSrRJd+bVLmprX+e+tCTtQHLQEC52GNgMCZ=@mail.gmail.com>
+Date: Sun, 05 Dec 2010 20:41:49 +0000
+Message-ID: <1291581709.14277.2905.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org
+Subject: Re: AUTOTOOLS_STAGE_PKGCONFIG still used?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,93 +36,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 Dec 2010 23:31:43 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sun, 05 Dec 2010 20:42:05 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Dear all.
+On Sun, 2010-12-05 at 00:31 +0100, Frans Meulenbroeks wrote:
+> Is AUTOTOOLS_STAGE_PKGCONFIG still of any use?
 
-Is AUTOTOOLS_STAGE_PKGCONFIG still of any use?
-I was trying to fidn out what I did, I ran a grep on both my
-openembedded dir (results see below) and my yocto tree, both trees at
-git head.
-I see a lot of places where it is set but no place where it is used.
+No, it used to do something but hasn't for over a year in either OE or
+Poky.
 
-Anyone who can confirm that this is a stale var? Or otherwise anyone
-who can explain how this is used. (and no, bitbake does not know the
-var either, not that I had expected it)
+> I was trying to fidn out what I did, I ran a grep on both my
+> openembedded dir (results see below) and my yocto tree, both trees at
+> git head.
+> I see a lot of places where it is set but no place where it is used.
+> 
+> Anyone who can confirm that this is a stale var? Or otherwise anyone
+> who can explain how this is used. (and no, bitbake does not know the
+> var either, not that I had expected it)
 
-frans@linux-suse:~/oe/openembedded> grep -r AUTOTOOLS_STAGE_PKGCONFIG .
-./recipes/gnome/libsoup_2.2.100.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/gnome/gnome-python-extras_2.25.3.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/gnome/hippo-canvas_0.3.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/openmax/libomxil-bellagio_0.9.2.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/openmax/libomxil-bellagio_0.9.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/openmax/libomxil-bellagio_0.9.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/openmax/libomxil-bellagio_0.9.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/musicpd/libmpd_0.17.96.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/musicpd/libmpd_0.20.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/libexif/libexif.inc:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/obsolete/pixman/pixman_0.17.6.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/mml-widget/gtkmathview_0.8.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = 1
-./recipes/ggz/libggz_0.0.14.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/vlc/libdvdcss_1.2.10.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/gnutls/libtasn1_1.7.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/gstreamer/gst-common.inc:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/mythtv/gmyth_0.7.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/mythtv/gmyth-upnp_0.7.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/lcms/lcms_1.17.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/jpeg/jasper_1.900.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/redland/redland_1.0.8.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/telepathy/telepathy-gabble_0.7.27.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/telepathy/telepathy-farsight_0.0.7.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/telepathy/telepathy-mission-control_4.67.bb:AUTOTOOLS_STAGE_PKGCONFIG
-= "1"
-./recipes/telepathy/telepathy-glib_0.7.29.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/kde4/gmm_3.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/kde4/kde4.inc:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/kde4/strigi_0.5.10.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/device-mapper/device-mapper_1.02.28.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sdr/hamlib_1.2.10.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/libusb/libusb-compat_0.1.3.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/libusb/libusb-compat_0.1.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/libusb/libusb1_1.0.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/bluez/bluez4-libs.inc:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/bluez/bluez4.inc:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/boxee/tre_0.7.5.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/fann/fann_2.0.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/pango/pangomm_2.26.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/icon-slicer/icon-slicer-native_0.3.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar_0.83.4.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar-datastore_0.82.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar-artwork_0.84.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar-toolkit_0.82.11.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar-datastore_0.84.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar-base_0.82.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar-artwork_0.82.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar_0.82.9.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar-toolkit_0.84.4.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar-toolkit_0.83.3.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar-presence-service_0.82.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar-base_0.84.1.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar-presence-service_0.84.0.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar_0.84.6.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/sugar/sugar-base_0.83.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/schroedinger/schroedinger_1.0.9.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/devicekit/devicekit-disks_004.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/upnp/gupnp-av_0.2.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/upnp/libupnp_1.6.5.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/libdlo/libdlo_git.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/obexftp/obexftp_0.23.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/pulseaudio/libcanberra_0.17.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/pulseaudio/libcanberra_0.14.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/pulseaudio/libcanberra_0.12.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/farsight/farsight2_0.0.9.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/farsight/libnice_0.0.13.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/farsight/farsight2_0.0.22.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./recipes/farsight/libnice_0.0.6.bb:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./classes/xfce.bbclass:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./classes/gnomebase.bbclass:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./classes/xfce46.bbclass:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-./classes/efl.bbclass:AUTOTOOLS_STAGE_PKGCONFIG = "1"
-frans@linux-suse:~/oe/openembedded>
+Its not needed and can be removed. I've pushed a patch to poky removing
+the references and acked your patch for OE.
+
+Cheers,
+
+Richard
+
 
