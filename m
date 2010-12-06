@@ -1,40 +1,30 @@
-Return-Path: <liping.ke@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C7E8C4C80FB2
-	for <yocto@yoctoproject.org>; Mon,  6 Dec 2010 04:15:23 -0600 (CST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Dec 2010 02:15:23 -0800
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 9C16D4C80050;
+	Mon,  6 Dec 2010 16:36:25 -0600 (CST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 06 Dec 2010 14:36:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,305,1288594800"; d="scan'208";a="633478018"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by fmsmga002.fm.intel.com with ESMTP; 06 Dec 2010 02:15:23 -0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Mon, 6 Dec 2010 18:15:14 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi; Mon, 6 Dec 2010
-	18:15:13 +0800
-From: "Ke, Liping" <liping.ke@intel.com>
-To: "Ke, Liping" <liping.ke@intel.com>, "Zhang, Jessica"
-	<jessica.zhang@intel.com>, "Lu, Lianhao" <lianhao.lu@intel.com>, "Tian, 
-	Kevin" <kevin.tian@intel.com>
-Date: Mon, 6 Dec 2010 18:15:14 +0800
-Thread-Topic: yocto_installer test script update
-Thread-Index: AcuRP2G+ThJAQacvTRywh28cpIwTgQAdMP0gABKk1AAAHtt2YACqdV0QAAJu3TA=
-Message-ID: <789F9655DD1B8F43B48D77C5D306597330021F85@shsmsx501.ccr.corp.intel.com>
-References: <789F9655DD1B8F43B48D77C5D30659732FF6C134@shsmsx501.ccr.corp.intel.com>
-	<9AFCD584B0B67B48AE8D8585BE30BA950208643C@orsmsx504.amr.corp.intel.com>
-	<789F9655DD1B8F43B48D77C5D30659732FFC465B@shsmsx501.ccr.corp.intel.com>
-	<9AFCD584B0B67B48AE8D8585BE30BA9502086DDD@orsmsx504.amr.corp.intel.com>
-	<789F9655DD1B8F43B48D77C5D306597330021F49@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <789F9655DD1B8F43B48D77C5D306597330021F49@shsmsx501.ccr.corp.intel.com>
-Accept-Language: zh-CN, en-US
+X-IronPort-AV: E=Sophos;i="4.59,307,1288594800"; d="scan'208";a="684496198"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga001.jf.intel.com with ESMTP; 06 Dec 2010 14:36:25 -0800
+Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
+	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
+	Mon, 6 Dec 2010 14:36:25 -0800
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "yocto-announce@yoctoproject.org" <yocto-announce@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "poky@yoctoproject.org"
+	<poky@yoctoproject.org>
+Date: Mon, 6 Dec 2010 14:36:23 -0800
+Thread-Topic: Announcing Yocto Project 1.0 roadmap and working schedule
+Thread-Index: AcuVlgMAxW7btRtCQESFl3FQFjtZ6Q==
+Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25BCA447C3@orsmsx501.amr.corp.intel.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN, en-US
+acceptlanguage: en-US
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: yocto_installer test script update
+Subject: Announcing Yocto Project 1.0 roadmap and working schedule
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,42 +36,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Dec 2010 10:15:24 -0000
+X-List-Received-Date: Mon, 06 Dec 2010 22:36:26 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Just one thing, if directly tee, check_result will get wrong output result.
-So I did not tee opkg/make related command. I will try to add opkg/make to =
-logfile tomorrow.
+The Yocto Project is pleased to announce some enhancements to our planning =
+documents to add visibility and transparency. In general, we are using the =
+Planning page on the project wiki to collaborate on details.
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Ke, Liping
-> Sent: Monday, December 06, 2010 5:04 PM
-> To: Zhang, Jessica; Lu, Lianhao; Tian, Kevin
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] yocto_installer test script update
->=20
-> Hi, Jessica
->=20
->   I have updated the script file which modifies all your input (prompts
-> and the discussion result in the weekly meeting such as logfile, go on
-> installing when /var/lib/opkg exists, etc).
->   I have tested with lianhao's repository (x86_64 native sdk has some
-> problem, he's now fixing it). Sample log files are included. I had
-> uploaded in lianhao's website.
->=20
->=20
-> Any problem, just let me know. I can fix it tomorrow!
->=20
-> Thanks & Regards,
-> criping
->=20
->=20
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+https://wiki.pokylinux.org/wiki/Planning
+
+
+1. Yocto Project Roadmap - we added a high-level roadmap document which giv=
+es a bullet-level list of features which are planned for future releases. I=
+n particular, the 1.0 release (planned for April) has frozen content, and i=
+s listed in some detail here.
+
+https://wiki.pokylinux.org/wiki/Yocto_Project_Roadmap=20
+
+
+2. Yocto Project 1.0 Schedule - Our normal methodology for development incl=
+udes managing progress through this page. We did this throughout the 0.9 de=
+velopment cycle and are doing it today for 1.0. By monitoring this page and=
+ the git master you should be able to see when functionality comes online a=
+nd any comments about it.
+
+https://wiki.pokylinux.org/wiki/Yocto_1.0_Schedule=20
+
+
+3. Yocto Features - we collect requested features through a number of metho=
+ds - bugzilla is a prime method, but we also try to solicit feature request=
+s at many opportunities.  This file is where we collect requests. Then the =
+maintainers work with the architect to prioritize and size the features, ag=
+ain using this file. Usually this process occurs during the last milestone =
+of the previous release, about four weeks before the release date.
+
+https://wiki.pokylinux.org/wiki/Yocto_Features
+
+
+4. Development methodology - We talked about a number of things we wanted t=
+o do in a really good open source project when we first started working tog=
+ether. Then as time went on and we got some experience, we honed this metho=
+dology to something which seems to be working well for the project. Now as =
+a public project, we want to open this up and improve on it. There are a fe=
+w notes here just so you can decode the Schedule file. More information wil=
+l come as we factor it in.
+
+https://wiki.pokylinux.org/wiki/Development_Methodology
+
+
+COMING SOON: We have a couple of demo videos for how to use the Yocto Proje=
+ct Eclipse plug-in. Will post these over to YouTube and post links on yocto=
+project.org, hopefully this week.
+
+
 
