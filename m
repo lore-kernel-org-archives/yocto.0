@@ -1,23 +1,24 @@
 Return-Path: <jessica.zhang@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 06B914C80A74
-	for <yocto@yoctoproject.org>; Mon,  6 Dec 2010 22:39:22 -0600 (CST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Dec 2010 20:39:22 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 902D84C80A74
+	for <yocto@yoctoproject.org>; Mon,  6 Dec 2010 22:40:45 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 06 Dec 2010 20:40:45 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.59,309,1288594800"; 
-	d="p7s'?scan'208";a="865269493"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by fmsmga001.fm.intel.com with ESMTP; 06 Dec 2010 20:39:10 -0800
+	d="p7s'?scan'208";a="358020571"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by azsmga001.ch.intel.com with ESMTP; 06 Dec 2010 20:40:44 -0800
 Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
-	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
-	Mon, 6 Dec 2010 20:38:54 -0800
+	orsmsx604.amr.corp.intel.com ([10.250.113.17]) with mapi;
+	Mon, 6 Dec 2010 20:40:43 -0800
 From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Ke, Liping" <liping.ke@intel.com>, "Lu, Lianhao" <lianhao.lu@intel.com>
-Date: Mon, 6 Dec 2010 20:38:53 -0800
+To: "Tian, Kevin" <kevin.tian@intel.com>, "Ke, Liping" <liping.ke@intel.com>, 
+	"Lu, Lianhao" <lianhao.lu@intel.com>
+Date: Mon, 6 Dec 2010 20:40:43 -0800
 Thread-Topic: yocto_installer test script update
-Thread-Index: AcuRP2G+ThJAQacvTRywh28cpIwTgQAdMP0gABKk1AAAHtt2YACqdV0QAAJu3TAAH5th4AADk9oAAAAdwxAAAyOOYA==
-Message-ID: <9AFCD584B0B67B48AE8D8585BE30BA9502178EB0@orsmsx504.amr.corp.intel.com>
+Thread-Index: AcuRP2G+ThJAQacvTRywh28cpIwTgQAdMP0gABKk1AAAHtt2YACqdV0QAAJu3TAAH5th4AABuUTAAAUY5IAAAFA80A==
+Message-ID: <9AFCD584B0B67B48AE8D8585BE30BA9502178EB1@orsmsx504.amr.corp.intel.com>
 References: <789F9655DD1B8F43B48D77C5D30659732FF6C134@shsmsx501.ccr.corp.intel.com>
 	<9AFCD584B0B67B48AE8D8585BE30BA950208643C@orsmsx504.amr.corp.intel.com>
 	<789F9655DD1B8F43B48D77C5D30659732FFC465B@shsmsx501.ccr.corp.intel.com>
@@ -25,8 +26,9 @@ References: <789F9655DD1B8F43B48D77C5D30659732FF6C134@shsmsx501.ccr.corp.intel.c
 	<789F9655DD1B8F43B48D77C5D306597330021F49@shsmsx501.ccr.corp.intel.com>
 	<789F9655DD1B8F43B48D77C5D306597330021F85@shsmsx501.ccr.corp.intel.com>
 	<9AFCD584B0B67B48AE8D8585BE30BA9502178E3E@orsmsx504.amr.corp.intel.com>
-	<789F9655DD1B8F43B48D77C5D30659733104C58C@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <789F9655DD1B8F43B48D77C5D30659733104C58C@shsmsx501.ccr.corp.intel.com>
+	<789F9655DD1B8F43B48D77C5D30659733104C4D4@shsmsx501.ccr.corp.intel.com>
+	<625BA99ED14B2D499DC4E29D8138F1504D4754397C@shsmsx502.ccr.corp.intel.com>
+In-Reply-To: <625BA99ED14B2D499DC4E29D8138F1504D4754397C@shsmsx502.ccr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
@@ -45,66 +47,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Dec 2010 04:39:23 -0000
-X-Groupsio-MsgNum: 472
+X-List-Received-Date: Tue, 07 Dec 2010 04:40:45 -0000
+X-Groupsio-MsgNum: 473
 Content-Language: en-US
 Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=SHA1; boundary="----=_NextPart_000_0028_01CB9585.98653670"
+	micalg=SHA1; boundary="----=_NextPart_000_002D_01CB9585.DA1E7810"
 
-------=_NextPart_000_0028_01CB9585.98653670
+------=_NextPart_000_002D_01CB9585.DA1E7810
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-Liping,
+Tian, Kevin wrote:
+>> From: Ke, Liping
+>> Sent: Tuesday, December 07, 2010 10:05 AM
+>> 
+>> Ops. Seems I made concurrent changes again....
+>> Seems I need to redo today's work ....
+>> 
+>> I will update the final files a little later. Just wait.
+> 
+> why don't you setup a master repo on git.pokylinux.org? anyway we
+> need such thing finally and now you have multiple people touching
+> same code... 
 
-It's not new image for each install, I want to download image whether new or
-old for each install period.  Reasons:
-
-1. The old image may be corrupted, this is how I found the problem, since
-the download detect the image file only by file name, there's no way to
-sanity check the image file itself, so the later extract rootfs will always
-fail if the file's corrupted
-2. I've noticed that if we don't remove the directory, the new download will
-be called *(1) *(2), etc. and the extraction only happen to the original
-file, so the new files will never be picked, thus why I add remove and
-recreate the download directory to totally avoid the issue...
-
+Yes, realize the issue from today's situation, I'll setup a repo for the
+installer once Liping's done her updates today to prevent further stepping
+on each other...
 
 - Jessica
-Ke, Liping wrote:
-> Ok, you want to download new image for each install...
 > 
-> Ok, no problem. I will change that.
+> Thanks
+> Kevin
 > 
-> Thanks& Regards,
-> criping
-> 
-> 
->> -----Original Message-----
->> From: Ke, Liping
->> Sent: Tuesday, December 07, 2010 10:59 AM
->> To: Zhang, Jessica; Lu, Lianhao
->> Cc: yocto@yoctoproject.org
->> Subject: RE: yocto_installer test script update
->> 
->> 3. Correct
->>> the problem for qemu image download, now we forcing download images
->>> in a clean directory since wget will change the file ext if the file
->>> already there and which maybe corrupted
->>> 
->> Hi, Jessica
->> 
->> Have question for this one.
->> Now the code will directly downloading, so the folders might contain
->> image, image(1), image(2)... But the untar will always untar the old
->> image? Then why downloading new? If user's network is very slow?
 >> 
 >> 
->> Thanks& Regards,
 >> criping
+>> 
+>>> -----Original Message-----
+>>> From: Zhang, Jessica
+>>> Sent: Tuesday, December 07, 2010 9:34 AM
+>>> To: Ke, Liping; Lu, Lianhao
+>>> Cc: yocto@yoctoproject.org
+>>> Subject: RE: yocto_installer test script update
+>>> 
+>>> Liping,
+>>> 
+>>> I've made lots of modifications:
+>>> 
+>>> 1. Tide up the prompt imformation format and messaging 2. Correct
+>>> the logic in validate_config for checking the target selection 3.
+>>> Correct the problem for qemu image download, now we forcing
+>>> download images in a clean directory since wget will change the
+>>> file ext if the file already there and which maybe corrupted 4.
+>>> Eliminate unnecessary checking and prompt, e.g. for removing the
+>>> old /var/pseudo dir if user already choosing to install under
+>>> /opt/poky and override existing contents 5. Add prompt for target
+>>> arch configuration to be consistent with the host side checking 6.
+>>> Rename file names to make them make more sense and cosistent with
+>>> other script name convention of Yocto project 
+>>> 
+>>> Attached  tar file contains all my changes, so please make changes
+>>> on top of the files in it instead of merge into your local dir due
+>>> to the amount of changes, unless you already create a git repo some
+>>> where for us to track the changes... 
+>>> 
+>>> There're still couple issues that you need to fix:
+>>> 1. The log file is still not capturing all the needed content, I
+>>> think it's on your to do list 2. I noticed the target sysroot is
+>>> create as root under the user directory, which is wrong, I believe
+>>> it's due to the code is exectuing in the part that need root
+>>> priviledge, so need to move it out... 
+>>> 
+>>> I've run against situation of none /opt/poky and everything has been
+>>> installed before, and it functioning as I'd expected besides the
+>>> above 2 mentioned issues.  So we're almost there...
+>>> 
+>>> Thanks,
+>>> Jessica
+>>> 
+>>> Ke, Liping wrote:
+>>>> Just one thing, if directly tee, check_result will get wrong
+>>>> output result. So I did not tee opkg/make related command. I will
+>>>> try to add opkg/make to logfile tomorrow.
+>>>> 
+>>>>> -----Original Message-----
+>>>>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>>>>> bounces@yoctoproject.org] On Behalf Of Ke, Liping
+>>>>> Sent: Monday, December 06, 2010 5:04 PM
+>>>>> To: Zhang, Jessica; Lu, Lianhao; Tian, Kevin
+>>>>> Cc: yocto@yoctoproject.org
+>>>>> Subject: Re: [yocto] yocto_installer test script update
+>>>>> 
+>>>>> Hi, Jessica
+>>>>> 
+>>>>>   I have updated the script file which modifies all your input
+>>>>> (prompts and the discussion result in the weekly meeting such as
+>>>>> logfile, go on installing when /var/lib/opkg exists, etc).
+>>>>>   I have tested with lianhao's repository (x86_64 native sdk has
+>>>>> some problem, he's now fixing it). Sample log files are included.
+>>>>> I had uploaded in lianhao's website.
+>>>>> 
+>>>>> 
+>>>>> Any problem, just let me know. I can fix it tomorrow!
+>>>>> 
+>>>>> Thanks & Regards,
+>>>>> criping
+>>>>> 
+>>>>> 
+>>>>> 
+>>>>> _______________________________________________
+>>>>> yocto mailing list
+>>>>> yocto@yoctoproject.org
+>>>>> https://lists.yoctoproject.org/listinfo/yocto
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
-------=_NextPart_000_0028_01CB9585.98653670
+------=_NextPart_000_002D_01CB9585.DA1E7810
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -245,18 +306,18 @@ YiTi71VhwWenYKPnyKbLgiULEgdfwQscMzJQ9rmq1iyfoXuXPSkCA6nfZKoSkBOVJQXjW/+B2wxe
 YmaO9Qc5P3CJvsmgmgX5mK2wyKEw0JCwTHE3w7FkFjGCA0EwggM9AgEBMGQwVjELMAkGA1UEBhMC
 VVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBC
 YXNpYyBJc3N1aW5nIENBIDNCAgoabC6wAAAAACl2MAkGBSsOAwIaBQCgggGyMBgGCSqGSIb3DQEJ
-AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEwMTIwNzA0Mzg1M1owIwYJKoZIhvcNAQkE
-MRYEFGgZX2A1ksoK48K4M6Lif8qVF0soMGcGCSqGSIb3DQEJDzFaMFgwCgYIKoZIhvcNAwcwDgYI
+AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEwMTIwNzA0NDA0M1owIwYJKoZIhvcNAQkE
+MRYEFC+clUWsNwNArJAObIrrhc4IObWfMGcGCSqGSIb3DQEJDzFaMFgwCgYIKoZIhvcNAwcwDgYI
 KoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMAcGBSsO
 AwIaMAoGCCqGSIb3DQIFMHMGCSsGAQQBgjcQBDFmMGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoT
 EUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5n
 IENBIDNBAgp5ih1RAAAAAB8rMHUGCyqGSIb3DQEJEAILMWagZDBWMQswCQYDVQQGEwJVUzEaMBgG
 A1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElz
-c3VpbmcgQ0EgM0ECCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEBBQAEggEAgRdX/zJrdZwkL8X0UanI
-aKPU81FjkDv98v4oV+N4x8hbNfBvRBFIngefFaBrXULVXbeEW6FvMg4Af7AJi/lhalLjUmSat75+
-eJ8+azy65IFOcDwJ2B4D5rS3/N/UZoZ57NbUF7D929tcaxvZolKCBw9pDMadqskvbhH14y6+WvGZ
-zxqTMo0M9FMWBjemO8figzv2xKVdoKDOXhsjHwgGIs/+Nq0JpWaYj6xeQjdgtyoA+eSZ7GpxBw8H
-GKh7WLQqJEcAHGNWxfwyoQgPf4Rhkxrwo3a/am5tYEPe8A2a8m/w49R7MaNa775lhAkmkHpCXAI3
-aijsxOZvpy+wFQKs7wAAAAAAAA==
+c3VpbmcgQ0EgM0ECCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEBBQAEggEAE2NCr5nVdmxMKqeE2Jb3
+mgrziXACJ1p0GDR1f+JSyhNnD1kFmh2DoB7HBpOFQXnz0oJ89/LB42R1gheT0Uvr1x7sQ3i/UxGq
+LhRMSbhJiux9iBNMObsXdtayj5KZfJwsORU9xs5/rO4AYv9PGt+ittGaA0BOD1OauhYw4pPClcvP
+mR17bRlUVLY0hq/a6IfNIcC0ZmvpsoLmB12IvEwjIPAo0J7IFWB/LBemJ+BpYqiYxeM2AqR5zOWI
+u0VjXo7WaZUHk3jzFYqrzubR5CPB+jYE22XmzuQS1T/ndsG1kLGQH+sLjcq1tfFABR/j6Gdb8+/I
+1CnXKVVdj7dxof+7LgAAAAAAAA==
 
-------=_NextPart_000_0028_01CB9585.98653670--
+------=_NextPart_000_002D_01CB9585.DA1E7810--
