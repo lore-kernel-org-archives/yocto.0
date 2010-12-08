@@ -1,32 +1,24 @@
-Return-Path: <nitin.a.kamble@intel.com>
+Return-Path: <dvhart@linux.intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A26BB4C8122E
-	for <yocto@yoctoproject.org>; Wed,  8 Dec 2010 10:29:57 -0600 (CST)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4D6CB4C81231;
+	Wed,  8 Dec 2010 11:43:44 -0600 (CST)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 08 Dec 2010 08:29:57 -0800
+	by fmsmga102.fm.intel.com with ESMTP; 08 Dec 2010 09:43:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,316,1288594800"; d="scan'208";a="865945189"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga001.fm.intel.com with ESMTP; 08 Dec 2010 08:29:57 -0800
-Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
-	orsmsx603.amr.corp.intel.com ([10.22.226.49]) with mapi; Wed, 8 Dec 2010
-	08:29:57 -0800
-From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: Richard Purdie <rpurdie@linux.intel.com>
-Date: Wed, 8 Dec 2010 08:29:55 -0800
-Thread-Topic: strange bitbake error
-Thread-Index: AcuWw5rsiC4pAOHoSuK5/JTv+XC9ogAMVKrQ
-Message-ID: <9DA5872FEF993D41B7173F58FCF6BE940254AC91@orsmsx504.amr.corp.intel.com>
-References: <9DA5872FEF993D41B7173F58FCF6BE940254AA53@orsmsx504.amr.corp.intel.com>
-	<1291804501.1554.264.camel@rex>
-In-Reply-To: <1291804501.1554.264.camel@rex>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+X-IronPort-AV: E=Sophos;i="4.59,316,1288594800"; d="scan'208";a="865977495"
+Received: from unknown (HELO [10.255.13.189]) ([10.255.13.189])
+	by fmsmga001.fm.intel.com with ESMTP; 08 Dec 2010 09:43:41 -0800
+Message-ID: <4CFFC3C3.4090003@linux.intel.com>
+Date: Wed, 08 Dec 2010 09:43:31 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.12) Gecko/20101027 Lightning/1.0b2 Thunderbird/3.1.6
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: strange bitbake error
+To: Richard Purdie <rpurdie@linux.intel.com>
+References: <1291812548.1554.475.camel@rex>
+In-Reply-To: <1291812548.1554.475.camel@rex>
+Cc: yocto <yocto@yoctoproject.org>, poky <poky@yoctoproject.org>
+Subject: Re: [poky] Adding extra metadata to Yocto/Poky
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,26 +30,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Dec 2010 16:29:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 08 Dec 2010 17:43:44 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-DQoNCj4gT24gVHVlLCAyMDEwLTEyLTA3IGF0IDE5OjE1IC0wODAwLCBLYW1ibGUsIE5pdGluIEEg
-d3JvdGU6DQo+ID4gICBJIGFtIGdldHRpbmcgZm9sbG93aW5nIGJpdGJha2UgZXJyb3IuIEkgYWxz
-byB0cmllZCBwYXNzaW5nIOKAk0QNCj4gb3B0aW9uDQo+ID4gdG8gYml0YmFrZSwgYnV0IEkgZGlk
-IG5vdCBmaW5kIGFueXRoaW5nIHVzZWZ1bC4gQWxzbyBiZWxsb3cgaXMgdGhlDQo+ID4gY2hhbmdl
-IHdoaWNoIGlzIGNhdXNpbmcgdGhpcyBlcnJvci4NCj4gPg0KPiA+IEkgZG9u4oCZdCBzZWUgYW55
-dGhpbmcgb2JsaXZpb3VzIGhlcmUuIEFzIEkgdW5kZXJzdGFuZCBqdXN0IGNoYW5naW5nDQo+IHRo
-ZQ0KPiA+IHJlY2lwZSBmcm9tIGN2cyB0byBnaXQgc3JjX3VyaSBoYXMgY2F1c2VkIHRoaXMgaXNz
-dWUuDQo+IA0KPiBJdHMgcHJvYmFibHkgZXhhY3RseSB0aGlzIGNoYW5nZSB0aGUgYnJlYWtzIHRo
-aW5ncy4gZ2l0IFNSQ19VUklzIGhhdmUgYQ0KPiBkZXBlbmRlbmN5IG9uIGdpdC1uYXRpdmUuIGdp
-dC1uYXRpdmUgcHJvYmFibHkgZGVwZW5kcyBvbg0KPiBnbnUtY29uZmlnLW5hdGl2ZSBpbmRpcmVj
-dGx5LiBUaGUgZW5kIHJlc3VsdCBpcyBhIGNpcmN1bGFyIGRlcGVuZGVuY3kuDQo+IEJpdGJha2Ug
-dHJpZWQgdG8gd29yayB0aGlzIG91dCBidXQgb2J2aW91c2x5IGdvdCBsb3N0IGluIHRoZSBjaXJj
-dWxhcg0KPiBsb2dpYy4NCj4gDQpUaGFua3MgUmljaGFyZCBmb3IgdGhlIGNsYXJpZmljYXRpb24u
-IFNvIHdoYXQgd291bGQgYmUgcG9zc2libGUgc29sdXRpb24gZm9yIHRoaXMgY2lyY3VsYXIgZGVw
-ZW5kZW5jeSBpc3N1ZT8gSSBjYW4gY2hlY2sgaWYgd2UgY2FuIGdldCB0aGUgbGF0ZXN0IGdudS1j
-b25maWcgdmlhIGN2cy4gQW55IG90aGVyIG9yIGJldHRlciBzb2x1dGlvbj8NCg0KVGhhbmtzLA0K
-Tml0aW4NCg==
+On 12/08/2010 04:49 AM, Richard Purdie wrote:
+> Hi,
+>
+> We're in a position where we have people wanting to extend Poky but
+> wondering exactly how to add their own layer and make Poky useful for
+> their specific use cases.
+>
+> This is a topic I want to work with the OE community on and have
+> discussion about but equally, people are interested at the moment and we
+> need something people can experiment with now so we can see what works
+> and what doesn't.
+>
+> With this in mind I'm proposing we create a "poky-extras" repository
+> which contains multiple user contributed layers.
+>
+> My proposed ground rules are:
+>
+> * it has the OE style open contributions model
+> * consists of a set of layers, each clearly identified at the top level
+> * each layer has a clearly named maintainer or maintainers
+> * people respect the layer maintainers
+> * layers are split into logical "topics" where at all possible
+>
+> Ultimately, the repo structure and some of the details could change but
+> I'd like to experiment and see what we can come up with which is
+> probably the only way we're going to move forward.
+>
+> Any comments, objections or better ideas? :)
+
+Sounds like a good approach to me. What would the expectation of 
+"lifecycle" be? Will these layers move to the poky git repository after 
+some proven time to join things like meta-linaro and meta-demo (which 
+should be renamed meta-dlna) or should we move these layers to 
+poky-extras too?
+
+-- 
+Darren Hart
+Yocto Linux Kernel
 
