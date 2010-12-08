@@ -1,24 +1,32 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 4D6CB4C81231;
-	Wed,  8 Dec 2010 11:43:44 -0600 (CST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 08 Dec 2010 09:43:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,316,1288594800"; d="scan'208";a="865977495"
-Received: from unknown (HELO [10.255.13.189]) ([10.255.13.189])
-	by fmsmga001.fm.intel.com with ESMTP; 08 Dec 2010 09:43:41 -0800
-Message-ID: <4CFFC3C3.4090003@linux.intel.com>
-Date: Wed, 08 Dec 2010 09:43:31 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.12) Gecko/20101027 Lightning/1.0b2 Thunderbird/3.1.6
-MIME-Version: 1.0
-To: Richard Purdie <rpurdie@linux.intel.com>
-References: <1291812548.1554.475.camel@rex>
-In-Reply-To: <1291812548.1554.475.camel@rex>
-Cc: yocto <yocto@yoctoproject.org>, poky <poky@yoctoproject.org>
-Subject: Re: [poky] Adding extra metadata to Yocto/Poky
+Return-Path: <rpurdie@linux.intel.com>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id A67114C81233
+	for <yocto@yoctoproject.org>; Wed,  8 Dec 2010 11:47:05 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oB8Hl4ms025184;
+	Wed, 8 Dec 2010 17:47:04 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 25122-01; Wed,  8 Dec 2010 17:47:00 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oB8Hktu9025156
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 8 Dec 2010 17:46:56 GMT
+From: Richard Purdie <rpurdie@linux.intel.com>
+To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+In-Reply-To: <9DA5872FEF993D41B7173F58FCF6BE940254AC91@orsmsx504.amr.corp.intel.com>
+References: <9DA5872FEF993D41B7173F58FCF6BE940254AA53@orsmsx504.amr.corp.intel.com>
+	<1291804501.1554.264.camel@rex>
+	<9DA5872FEF993D41B7173F58FCF6BE940254AC91@orsmsx504.amr.corp.intel.com>
+Date: Wed, 08 Dec 2010 17:46:45 +0000
+Message-ID: <1291830405.1554.721.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: strange bitbake error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,46 +38,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Dec 2010 17:43:44 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 08 Dec 2010 17:47:06 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On 12/08/2010 04:49 AM, Richard Purdie wrote:
-> Hi,
->
-> We're in a position where we have people wanting to extend Poky but
-> wondering exactly how to add their own layer and make Poky useful for
-> their specific use cases.
->
-> This is a topic I want to work with the OE community on and have
-> discussion about but equally, people are interested at the moment and we
-> need something people can experiment with now so we can see what works
-> and what doesn't.
->
-> With this in mind I'm proposing we create a "poky-extras" repository
-> which contains multiple user contributed layers.
->
-> My proposed ground rules are:
->
-> * it has the OE style open contributions model
-> * consists of a set of layers, each clearly identified at the top level
-> * each layer has a clearly named maintainer or maintainers
-> * people respect the layer maintainers
-> * layers are split into logical "topics" where at all possible
->
-> Ultimately, the repo structure and some of the details could change but
-> I'd like to experiment and see what we can come up with which is
-> probably the only way we're going to move forward.
->
-> Any comments, objections or better ideas? :)
+On Wed, 2010-12-08 at 08:29 -0800, Kamble, Nitin A wrote:
+> 
+> > On Tue, 2010-12-07 at 19:15 -0800, Kamble, Nitin A wrote:
+> > >   I am getting following bitbake error. I also tried passing –D
+> > option
+> > > to bitbake, but I did not find anything useful. Also bellow is the
+> > > change which is causing this error.
+> > >
+> > > I don’t see anything oblivious here. As I understand just changing
+> > the
+> > > recipe from cvs to git src_uri has caused this issue.
+> > 
+> > Its probably exactly this change the breaks things. git SRC_URIs have a
+> > dependency on git-native. git-native probably depends on
+> > gnu-config-native indirectly. The end result is a circular dependency.
+> > Bitbake tried to work this out but obviously got lost in the circular
+> > logic.
+> > 
+> Thanks Richard for the clarification. So what would be possible
+> solution for this circular dependency issue? I can check if we can get
+> the latest gnu-config via cvs. Any other or better solution?
 
-Sounds like a good approach to me. What would the expectation of 
-"lifecycle" be? Will these layers move to the poky git repository after 
-some proven time to join things like meta-linaro and meta-demo (which 
-should be renamed meta-dlna) or should we move these layers to 
-poky-extras too?
+Is there a release tarball we can use? If not, we might end up hosting a
+release tarball for it somewhere given this piece of software's position
+in the build process.
 
--- 
-Darren Hart
-Yocto Linux Kernel
+I'd like to axe our cvs dependency for sure.
+
+Cheers,
+
+Richard
+
 
