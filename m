@@ -1,37 +1,49 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 024244C811F6
-	for <yocto@yoctoproject.org>; Wed,  8 Dec 2010 02:33:08 -0600 (CST)
+Return-Path: <liping.ke@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id D64634C811F4
+	for <yocto@yoctoproject.org>; Wed,  8 Dec 2010 03:35:17 -0600 (CST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 08 Dec 2010 00:33:08 -0800
+	by orsmga102.jf.intel.com with ESMTP; 08 Dec 2010 01:35:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,315,1288594800"; d="scan'208";a="581682303"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by orsmga002.jf.intel.com with ESMTP; 08 Dec 2010 00:33:07 -0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Wed, 8 Dec 2010 16:32:51 +0800
+X-IronPort-AV: E=Sophos;i="4.59,315,1288594800"; d="scan'208";a="581696264"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by orsmga002.jf.intel.com with ESMTP; 08 Dec 2010 01:35:16 -0800
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Wed, 8 Dec 2010 17:34:56 +0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Wed, 8 Dec 2010 17:34:56 +0800
 Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi; Wed, 8 Dec 2010
-	16:32:50 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 8 Dec 2010 16:32:49 +0800
-Thread-Topic: [yocto] [Bug 552] autobuild missing the non-x86 realboard images
-Thread-Index: AcuWWjCeBF58mPT3TjKEk+73gGE1eAAVjuJQ
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A314F2B1F@shsmsx501.ccr.corp.intel.com>
-References: <bug-552-84@http.bugzilla.pokylinux.org/>
-	<20101207212853.4282620F48496@mail.opensource.intel.com>
-	<4CFEAE72.1030401@intel.com>
-In-Reply-To: <4CFEAE72.1030401@intel.com>
-Accept-Language: en-US
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi; Wed, 8 Dec 2010
+	17:34:55 +0800
+From: "Ke, Liping" <liping.ke@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, "Tian, Kevin"
+	<kevin.tian@intel.com>, "Lu, Lianhao" <lianhao.lu@intel.com>
+Date: Wed, 8 Dec 2010 17:34:46 +0800
+Thread-Topic: yocto_installer test script update
+Thread-Index: AcuRP2G+ThJAQacvTRywh28cpIwTgQAdMP0gABKk1AAAHtt2YACqdV0QAAJu3TAAH5th4AABuUTAAAUY5IAAAFA80AABnpXgAABEWKAAOpY5AA==
+Message-ID: <789F9655DD1B8F43B48D77C5D30659733104CE7F@shsmsx501.ccr.corp.intel.com>
+References: <789F9655DD1B8F43B48D77C5D30659732FF6C134@shsmsx501.ccr.corp.intel.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA950208643C@orsmsx504.amr.corp.intel.com>
+	<789F9655DD1B8F43B48D77C5D30659732FFC465B@shsmsx501.ccr.corp.intel.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA9502086DDD@orsmsx504.amr.corp.intel.com>
+	<789F9655DD1B8F43B48D77C5D306597330021F49@shsmsx501.ccr.corp.intel.com>
+	<789F9655DD1B8F43B48D77C5D306597330021F85@shsmsx501.ccr.corp.intel.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA9502178E3E@orsmsx504.amr.corp.intel.com>
+	<789F9655DD1B8F43B48D77C5D30659733104C4D4@shsmsx501.ccr.corp.intel.com>
+	<625BA99ED14B2D499DC4E29D8138F1504D4754397C@shsmsx502.ccr.corp.intel.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA9502178EB1@orsmsx504.amr.corp.intel.com>
+	<789F9655DD1B8F43B48D77C5D30659733104C691@shsmsx501.ccr.corp.intel.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA9502178ED5@orsmsx504.amr.corp.intel.com>
+In-Reply-To: <9AFCD584B0B67B48AE8D8585BE30BA9502178ED5@orsmsx504.amr.corp.intel.com>
+Accept-Language: zh-CN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-Cc: Harry Ciao <qingtao.cao@windriver.com>
-Subject: Re: [Bug 552] autobuild missing the non-x86 realboard images
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: yocto_installer test script update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,54 +55,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Dec 2010 08:33:09 -0000
+X-List-Received-Date: Wed, 08 Dec 2010 09:35:18 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
->=20
-> I wanted to give people a heads up about the addition of a few more
-> targets to the nightly build and how they'll effect the nightly (and our =
-overall efficency).
->=20
-> This bug asks for the addition of a few targets:
->=20
-> arm: beagleboard: poky-image-sato, poky-image-minimal, poky-image-sdk
-> powerpc: mpc8315e-rdb: poky-image-minimal
-> mips: routerstationpro: poky-image-minimal
->=20
-
-Hi Beth,
-Could you also build sdk images for mpc8315e-rdb and routerstationpro? We w=
-ill have testing for them from M2.
-
-> I'm going to put these into nightly after the current build is done,
-> but I want to make people aware of a few things.
->=20
-> First, our build times have been between 26 and 31 hours over the past mo=
-nth.
-> Adding these builds will increase that time. Depending on how long
-> this extends the total build time will depend on how big of an effect it =
-has.
->=20
-> It may also introduce new failures to the nightly which will need to
-> be dealt with. I know it doesn't mean much for stability since the
-> targets already are in master and just aren't build built, but what it
-> does mean is that someone needs to QA these targets.
->=20
-> So, like I said, I'll have this in when our next nightly kicks off. If
-> folks have any concerns over this, let me know before #141 finishes up.
->=20
-> -b
->=20
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-Best Regards,
-Jiajun
+Hi, Jessica
 
 
+I have check the script in my branch tree (branch origin/lke/master), pleas=
+e check @ http://git.pokylinux.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dlke/=
+master
+
+After checkout, directly goto poky_tree/script/adt_installer, everything is=
+ there.
+
+Thanks& Regards,
+criping
+
+
+> -----Original Message-----
+> From: Zhang, Jessica
+> Sent: Tuesday, December 07, 2010 1:34 PM
+> To: Ke, Liping; Tian, Kevin; Lu, Lianhao
+> Cc: yocto@yoctoproject.org
+> Subject: RE: yocto_installer test script update
+>=20
+> Ke, Liping wrote:
+> > the final files a little later. Just wait.
+> >>>
+> >>> why don't you setup a master repo on git.pokylinux.org? anyway we
+> >>> need such thing finally and now you have multiple people touching
+> >>> same code...
+> >>
+> >> Yes, realize the issue from today's situation, I'll setup a repo for
+> >> the installer once Liping's done her updates today to prevent
+> >> further stepping on each other...
+> >
+> > Oh, that'll be great. I remember we said we will send the code to the
+> > poky.git in the end and we can use our own contrib tree? But of
+> > course the separate tree will be better.
+> >
+> > Current I temporarily put the updated code in the old place. I have
+> > finished the merging.
+> >
+> > Any problem, just let me know.
+>=20
+> Thanks, I'll try it out tomorrow and figure out how to setup the repo
+> for us
+> to continue update in the futuer..
+>=20
+> - Jessica
 
