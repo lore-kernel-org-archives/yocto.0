@@ -1,35 +1,35 @@
 Return-Path: <jessica.zhang@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 03F474C80FD4
-	for <yocto@yoctoproject.org>; Thu,  9 Dec 2010 15:16:30 -0600 (CST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 09 Dec 2010 13:16:30 -0800
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 12ECC4C80FA4
+	for <yocto@yoctoproject.org>; Thu,  9 Dec 2010 15:54:48 -0600 (CST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 09 Dec 2010 13:54:47 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.59,322,1288594800"; 
-	d="p7s'?scan'208";a="634852994"
+	d="p7s'?scan'208";a="866508252"
 Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by fmsmga002.fm.intel.com with ESMTP; 09 Dec 2010 13:16:30 -0800
+	by fmsmga001.fm.intel.com with ESMTP; 09 Dec 2010 13:54:47 -0800
 Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
 	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
-	Thu, 9 Dec 2010 13:16:30 -0800
+	Thu, 9 Dec 2010 13:54:47 -0800
 From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Garman, Scott A" <scott.a.garman@intel.com>, "Ke, Liping"
+To: Richard Purdie <rpurdie@linux.intel.com>, "Ke, Liping"
 	<liping.ke@intel.com>
-Date: Thu, 9 Dec 2010 13:16:28 -0800
-Thread-Topic: Add extra parameters for qemu script
-Thread-Index: AcuX4dzNkig21P9ESXmf9YFBxAnvZAAA1GAg
-Message-ID: <9AFCD584B0B67B48AE8D8585BE30BA95021EBE06@orsmsx504.amr.corp.intel.com>
-References: <789F9655DD1B8F43B48D77C5D30659733104D391@shsmsx501.ccr.corp.intel.com>
-	<4D013F9C.2010404@intel.com>
-In-Reply-To: <4D013F9C.2010404@intel.com>
+Date: Thu, 9 Dec 2010 13:54:46 -0800
+Thread-Topic: [yocto] PULL] ADT installer script implementation, Liping Ke
+Thread-Index: AcuX29d4Ehuqoug7RE2CXblOApd/1gADMz2w
+Message-ID: <9AFCD584B0B67B48AE8D8585BE30BA95021EBE98@orsmsx504.amr.corp.intel.com>
+References: <789F9655DD1B8F43B48D77C5D3065973312DBD16@shsmsx501.ccr.corp.intel.com>
+	<1291924853.1554.933.camel@rex>
+In-Reply-To: <1291924853.1554.933.camel@rex>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Purdie,
-	Richard" <richard.purdie@intel.com>
-Subject: Re: Add extra parameters for qemu script
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
+	Saul" <saul.wold@intel.com>
+Subject: Re: PULL] ADT installer script implementation, Liping Ke
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,78 +41,120 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Dec 2010 21:16:31 -0000
-X-Groupsio-MsgNum: 522
+X-List-Received-Date: Thu, 09 Dec 2010 21:54:48 -0000
+X-Groupsio-MsgNum: 523
 Content-Language: en-US
 Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=SHA1; boundary="----=_NextPart_000_0000_01CB97A3.49F49420"
+	micalg=SHA1; boundary="----=_NextPart_000_0005_01CB97A8.A35F1AD0"
 
-------=_NextPart_000_0000_01CB97A3.49F49420
+------=_NextPart_000_0005_01CB97A8.A35F1AD0
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-Garman, Scott A wrote:
-> On 12/09/2010 12:44 AM, Ke, Liping wrote:
->> Hi, Scott
->> 
->> The patch is in the attachment for your review. Below is some notes:
->> 
->> 1) Basically I wouldn't like to change any logic of the original
->> code. 2) -serial stdio and -nographic options are removed since
->> they're be covered by the extra parameters. 3) User input would be
->> $poky-qemu qemux86 "<-nographic -m 300>" 4) -m input will be checked
->>     still. If it exceeds 128 for arm, it will be changed back to
->>      128M, same logic as before. And after parsing, -m option will
->> be removed and replaced by Kernel options mem=128M for avoiding some
->> instability issue.  
->> 
->> Generally I modified very few, just add an extra parameters with
->> least intrusion of 
->> Current logic.
->> 
->> Any comments are welcomed.
->> I will conduct more test with latest code in parallel.
+Richard Purdie wrote:
+> Hi Liping, Jessica and team,
 > 
-> Hi Criping,
+> On Thu, 2010-12-09 at 17:28 +0800, Ke, Liping wrote:
+>> Pull URL: git://git.pokylinux.org/poky-contrib.git
+>> Branch: lke/adt_installer_initial
+>> Browse:
+>>
+http://git.pokylinux.org/cgit/cgit.cgi/poky-contrib/commit/?h=lke/adt_instal
+ler_initial&id=a06769b01d7b18894ad413daa8159f74c90f6c0f
 > 
-> Thanks for the patch. Overall I think this looks good.
 > 
-> However, one thing I feel the need to run by Richard, as he expressed
-> some preferences with how the poky-qemu script would work with regard
-> to options.
-> 
-> Richard: Criping's patch would remove the standalone options we had to
-> the poky-qemu script (e.g, nographic, serial) and instead requires the
-> user to specify them in one command option which can take any qemu
-> command switch.
-> 
-> So for example:
-> 
-> poky-qemu qemux86 nographic
-> 
-> would become:
-> 
-> poky-qemu qemux86 "<-nographic>"
-> 
-> The benefit of this is that this allows the user to specify any qemu
-> option they wish. Previously they were limited by the options we
-> allowed them to specify (which were quite limited).
-> 
-> I tend to feel that this approach is more flexible, and scales better
-> than having to support each and every qemu option with our own script
-> syntax. Is this acceptable, or should we continue to support our own
-> custom options in addition to Criping's new approach?
+> I had a quick look over this and have a few comments. I'm in critical
+> review mode and don't have a lot of time so please don't take any of
+> this feedback the wrong way, I just want to give you honest first hand
+> first time user perception.
 
-Liping and I had the discussion regarding this before she went on taking the
-approach.  Since we now provide this capability to allow user to provide
-their qemu params, then why we still in our qemu scripts isolate certain
-qemu params out, which may make things complicated unnecessarily and be more
-error prone...
-> 
-> Scott
+Really appreciated your time and feedbacks.
 
-------=_NextPart_000_0000_01CB97A3.49F49420
+> 
+> The first thing I read was in the patch was:
+> 
+> +# following are for testing in my machine. it will be moved when
+> +# going into code repository
+> +export http_proxy=""
+> +export HTTP_PROXY=""
+> +export HTTPS_PROXY=""
+> +export https_proxy=""
+> +export ftp_proxy=""
+> +export FTP_PROXY=""
+> 
+> which it evidently wasn't! ;-)
+> 
+> The rest of that file suggests it probably shouldn't be there
+> actually? 
+> 
+
+Sorry for this obvious mistake. Need to do a better job before sending our a
+review request next time
+
+> I then decided to try it.
+> 
+> cd /
+> root@rex:/# /rphome/poky/scripts/adt-installer/yocto_installer
+> /rphome/poky/scripts/adt-installer/yocto_installer: line 207:
+> .config: No such file or directory [snip lots of similar errors]
+> 
+> So I'd suggest it looks at the location of the main script and then
+> uses 
+> this to find its config files.
+> 
+> It then found the presetup .config file and took those values as the
+> defaults. This was not obvious to me, it should perhaps really state
+> where its getting that config from.
+> 
+> I removed the .config file. That didn't help me so I removed
+> yocto_installer.conf. This didn't help me much either.
+> 
+
+That definitely a bug regarding how to locate .config that we need to
+address.  As to the different config files, the .config is on purpose non
+user editable that's why we set it as hidden file by default.  And the
+yocto_installer.conf is the customizable config user should change and we
+have prompt for the user as regard to the configuration values to be used
+and where they're from along the installation process...
+
+> Now, reading the script I suddenly realise the user doesn't get
+> prompted 
+> to be able to change the values, you can only set these in the config
+> files.
+> 
+> I tried hitting Y for fun despite knowing it would crash and burn.
+> Those 
+> error messages were good so kudos there :)
+> 
+> I think it would make most sense for the user to be prompted for unset
+> values with "enter" selecting a sane set of defaults.
+> 
+Agree and will make improvement on that..
+
+> So in summary, I think the right pieces are there in terms of
+> configuration but the user interaction needs a lot more thought. I
+> didn't try an actual installation as I don't have a local setup to
+> allow 
+> it.
+> 
+> For the next review, I'd like an opkg repo to be available somewhere
+
+Lianhao has a testing opkg repo setup on his machine which mimic the release
+package repo and we've been using it test things out
+
+> to 
+> test against and for you to provide an installer tarball as an end
+> user 
+> would receive for people to evaluate.
+
+Yes, and will attach the tar ball with in the next review request
+> 
+> Cheers,
+> 
+> Richard
+
+------=_NextPart_000_0005_01CB97A8.A35F1AD0
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -253,18 +295,18 @@ YiTi71VhwWenYKPnyKbLgiULEgdfwQscMzJQ9rmq1iyfoXuXPSkCA6nfZKoSkBOVJQXjW/+B2wxe
 YmaO9Qc5P3CJvsmgmgX5mK2wyKEw0JCwTHE3w7FkFjGCA0EwggM9AgEBMGQwVjELMAkGA1UEBhMC
 VVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBC
 YXNpYyBJc3N1aW5nIENBIDNCAgoabC6wAAAAACl2MAkGBSsOAwIaBQCgggGyMBgGCSqGSIb3DQEJ
-AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEwMTIwOTIxMTYyOFowIwYJKoZIhvcNAQkE
-MRYEFNC6QEQfsd2yE2tKmnt9o7RKTKRyMGcGCSqGSIb3DQEJDzFaMFgwCgYIKoZIhvcNAwcwDgYI
+AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEwMTIwOTIxNTQ0NlowIwYJKoZIhvcNAQkE
+MRYEFI/LlvgUyW87P1rYSxdQsvbW4BIoMGcGCSqGSIb3DQEJDzFaMFgwCgYIKoZIhvcNAwcwDgYI
 KoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMAcGBSsO
 AwIaMAoGCCqGSIb3DQIFMHMGCSsGAQQBgjcQBDFmMGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoT
 EUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5n
 IENBIDNBAgp5ih1RAAAAAB8rMHUGCyqGSIb3DQEJEAILMWagZDBWMQswCQYDVQQGEwJVUzEaMBgG
 A1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElz
-c3VpbmcgQ0EgM0ECCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEBBQAEggEAa7NMQjQWcc0BSETggRxw
-Tlg9GkNsz5BZO7DIFP9RLQ6EHZj2IWQt80rxEt17CZvebOev7SQ7oEad0SXsXcwxREhFpitD+etm
-TfYbETwMoPQ3q0x8i2srR3FXaMvMhM6sZ/hyzJIUiFlkd7oxtgNiuhxJhfzyQDKQ875CElc2RLBH
-XEg653XvWpyUG96nZpVtZg3+kk9JrEe2bg+p7+m5BImdogS4EwbtR3AL5+PNbpXHP+7iuDfbpLMl
-c30mLAsp2A0l7sVyzj5SxSENwyiQQZbmr0T35/M2cToK2ccRce5ZP7tEWOETsWZ5TUCyz3tbITF9
-twvAnoRnm0XdTXo0FAAAAAAAAA==
+c3VpbmcgQ0EgM0ECCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEBBQAEggEABdB5a6/IYYseeU65pXSn
+6oZWfOIy2QzlvHHjhI9rTtttcmwqH04v5h3Q9Wuo6QTfb7p2OBmpUFlk9qC6BVuQqhA1M1cO4Eeb
+GL7vf8Bou3f87YCKEt7GQAcbQaB3PVuGz760QPmzcgDHZrqTGUcC9JVL25TQEv4bP9/ED88/C4AV
+GPutzBxwNTZLP5xnR3BP58G1uBA7x2ekT60e53MhnxjCcfiMLv2NYcmE1RWUrNKDLM/V4qWrcUUD
+VmJ86Sn7WMDsFbZwUvnFicArrr22AVOrqdF4SBA5xK8a9rJ/o5p0Dlv+SU/uvhfvmnIvynP59bLH
+bbl0K5cor23h8GZ0WwAAAAAAAA==
 
-------=_NextPart_000_0000_01CB97A3.49F49420--
+------=_NextPart_000_0005_01CB97A8.A35F1AD0--
