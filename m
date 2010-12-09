@@ -1,26 +1,34 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 3493C4C8123C
-	for <yocto@yoctoproject.org>; Wed,  8 Dec 2010 19:31:07 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 08 Dec 2010 17:31:06 -0800
+Return-Path: <liping.ke@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 9240B4C81234
+	for <yocto@yoctoproject.org>; Wed,  8 Dec 2010 19:45:01 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 08 Dec 2010 17:45:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,318,1288594800"; d="scan'208";a="581953113"
-Received: from unknown (HELO [10.255.13.45]) ([10.255.13.45])
-	by orsmga002.jf.intel.com with ESMTP; 08 Dec 2010 17:31:06 -0800
-Message-ID: <4D003159.2000604@linux.intel.com>
-Date: Wed, 08 Dec 2010 17:31:05 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.12) Gecko/20101027 Lightning/1.0b2 Thunderbird/3.1.6
+X-IronPort-AV: E=Sophos;i="4.59,318,1288594800"; d="scan'208";a="359115570"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by azsmga001.ch.intel.com with ESMTP; 08 Dec 2010 17:45:00 -0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Thu, 9 Dec 2010 09:43:59 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi; Thu, 9 Dec 2010
+	09:43:58 +0800
+From: "Ke, Liping" <liping.ke@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, "Tian, Kevin"
+	<kevin.tian@intel.com>
+Date: Thu, 9 Dec 2010 09:43:59 +0800
+Thread-Topic: [Bug 246987] [tcf] Would be nice to have Shell(Terminal)
+	subsystem over TCF
+Thread-Index: AcuW8B4SsLlSgDR8Tn+TBGmWF+TaxgAUcPtw
+Message-ID: <789F9655DD1B8F43B48D77C5D30659733104CFE6@shsmsx501.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <cover.1291786378.git.bruce.ashfield@windriver.com>
-	<64f083b7e51bae434b4ae449edc81795e89f9f1c.1291786378.git.bruce.ashfield@windriver.com>
-	<4CFFE88D.4000105@windriver.com>
-In-Reply-To: <4CFFE88D.4000105@windriver.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/3] yocto-kernel: factor common routes, update to 2.6.37 and branch renaming
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: FW: [Bug 246987] [tcf] Would be nice to have Shell(Terminal) subsystem over TCF
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,31 +40,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Dec 2010 01:31:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 09 Dec 2010 01:45:01 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/08/2010 12:20 PM, Bruce Ashfield wrote:
-> On 10-12-08 09:35 AM, Bruce Ashfield wrote:
->> In order to extend and create more kernel recipes based on the
->> supported yocto kernel common routines need to be placed in
->> re-usable blocks.
->
-> There may be a minor problem with this, stay tuned.
->
-> I just had a strange failure when I built the 2.6.37
-> kernel .. it blew up in the SRCREVs for the -stable
-> kernel. Looking into it.
+Hi, Jessica
 
-I was just about to report this :-). I also see these sorts of issues 
-when working with other kernel recipes, and I haven't gotten to the 
-bottom of it yet. I see this with the linux-linaro for instance (the 
-error occurs while parsing the linux-yocto_git.bb - it was 
-linux-wrs_git.bb at the time).
+FYI.
+TCF terminal/shell java code part is now in upstream.
 
-Please let us know if what you find if you get the bottom of it first.
+Thanks& Regards,
+criping
 
--- 
-Darren Hart
-Yocto Linux Kernel
+> -----Original Message-----
+> From: bugzilla-daemon@eclipse.org [mailto:bugzilla-daemon@eclipse.org]
+> Sent: Wednesday, December 08, 2010 11:54 PM
+> To: Ke, Liping
+> Subject: [Bug 246987] [tcf] Would be nice to have Shell(Terminal)
+> subsystem over TCF
+>=20
+> https://bugs.eclipse.org/bugs/show_bug.cgi?id=3D246987
+> Product/Component: Target Management / TCF
+>=20
+> Anna Dushistova <anna_dushistova@mentor.com> changed:
+>=20
+>            What    |Removed                     |Added
+> -----------------------------------------------------------------------
+> -----
+>  Attachment #184447|                            |iplog+
+>                Flag|                            |
+>=20
+> --- Comment #82 from Anna Dushistova <anna_dushistova@mentor.com> 2010-
+> 12-08 10:53:35 EST ---
+> (From update of attachment 184447)
+> Applied the patch with the copyright changes requested by Eclipse Legal.
+>=20
+> --
+> Configure bugmail:
+> https://bugs.eclipse.org/bugs/userprefs.cgi?tab=3Demail
+> ------- You are receiving this mail because: -------
+> You are on the CC list for the bug.
 
