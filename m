@@ -1,25 +1,31 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id AECC94C80FA4
-	for <yocto@yoctoproject.org>; Thu,  9 Dec 2010 12:34:24 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 09 Dec 2010 10:34:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,321,1288594800"; d="scan'208";a="582200835"
-Received: from eflanlinux.jf.intel.com (HELO [10.7.201.99]) ([10.7.201.99])
-	by orsmga002.jf.intel.com with ESMTP; 09 Dec 2010 10:34:24 -0800
-Message-ID: <4D012133.5010806@intel.com>
-Date: Thu, 09 Dec 2010 10:34:27 -0800
-From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.15) Gecko/20101026 SUSE/3.0.10 Lightning/1.0b1
-	Thunderbird/3.0.10 ThunderBrowse/3.3.3
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <cover.1291786378.git.bruce.ashfield@windriver.com>
-	<4D00FC35.8050101@windriver.com>
-In-Reply-To: <4D00FC35.8050101@windriver.com>
-Subject: Re: [PATCH 0/3] linux-yocto: refactor recipes and update the	kernel
+Return-Path: <rpurdie@linux.intel.com>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id CDA4A4C81081
+	for <yocto@yoctoproject.org>; Thu,  9 Dec 2010 14:01:14 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oB9K1C1x012802;
+	Thu, 9 Dec 2010 20:01:12 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 12429-06; Thu,  9 Dec 2010 20:01:07 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oB9K15kW012796
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 9 Dec 2010 20:01:05 GMT
+From: Richard Purdie <rpurdie@linux.intel.com>
+To: "Ke, Liping" <liping.ke@intel.com>
+In-Reply-To: <789F9655DD1B8F43B48D77C5D3065973312DBD16@shsmsx501.ccr.corp.intel.com>
+References: <789F9655DD1B8F43B48D77C5D3065973312DBD16@shsmsx501.ccr.corp.intel.com>
+Date: Thu, 09 Dec 2010 20:00:53 +0000
+Message-ID: <1291924853.1554.933.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
+	Saul" <saul.wold@intel.com>
+Subject: Re: PULL] ADT installer script implementation, Liping Ke
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,47 +37,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Dec 2010 18:34:25 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 09 Dec 2010 20:01:15 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 12/09/2010 07:56 AM, Bruce Ashfield wrote:
-> On 10-12-08 09:35 AM, Bruce Ashfield wrote:
->> Richard,
->>
->> Consider these patches for merging. I've been building and working
->> with these for 2 weeks now, and while they aren't perfect, they
->> work and we need more eyes on 2.6.37.
-> 
-> Does anyone with the right admin privs have time to look
-> into this ?
-> 
->  >  git clone git://git.pokylinux.org/linux-yocto-2.6.37
-> fatal: destination path 'linux-yocto-2.6.37' already exists and is not 
-> an empty directory.
-> yow-bashfiel-d2 [/tmp]> rm -rf linux-yocto-2.6.37/
-> yow-bashfiel-d2 [/tmp]> git clone git://git.pokylinux.org/linux-yocto-2.6.37
-> Initialized empty Git repository in /tmp/linux-yocto-2.6.37/.git/
-> fatal: The remote end hung up unexpectedly
-> yow-bashfiel-d2 [/tmp]> git clone 
-> git://git.pokylinux.org/linux-2.6-windriver
-> Initialized empty Git repository in /tmp/linux-2.6-windriver/.git/
-> ^Cmote: Counting objects: 125026
-> 
-> ------
-> 
-> In other words, the 2.6.37 repo is only reachable by a ssh
-> based clone :)
-> 
-> When I get that working, I can fixup the SRCREV issue and
-> resubmit this for merge.
-> 
-> Cheers,
-> 
-> Bruce
-> 
+Hi Liping, Jessica and team,
 
-Fixed this. Due to the repo not being public.
+On Thu, 2010-12-09 at 17:28 +0800, Ke, Liping wrote:
+> Pull URL: git://git.pokylinux.org/poky-contrib.git
+> Branch: lke/adt_installer_initial
+> Browse: http://git.pokylinux.org/cgit/cgit.cgi/poky-contrib/commit/?h=lke/adt_installer_initial&id=a06769b01d7b18894ad413daa8159f74c90f6c0f
 
--b
+
+I had a quick look over this and have a few comments. I'm in critical
+review mode and don't have a lot of time so please don't take any of
+this feedback the wrong way, I just want to give you honest first hand
+first time user perception.
+
+The first thing I read was in the patch was:
+
++# following are for testing in my machine. it will be moved when
++# going into code repository
++export http_proxy=""
++export HTTP_PROXY=""
++export HTTPS_PROXY=""
++export https_proxy=""
++export ftp_proxy=""
++export FTP_PROXY=""
+
+which it evidently wasn't! ;-)
+
+The rest of that file suggests it probably shouldn't be there actually?
+
+I then decided to try it.
+
+cd /
+root@rex:/# /rphome/poky/scripts/adt-installer/yocto_installer
+/rphome/poky/scripts/adt-installer/yocto_installer: line 207: .config: No such file or directory
+[snip lots of similar errors]
+
+So I'd suggest it looks at the location of the main script and then uses
+this to find its config files.
+
+It then found the presetup .config file and took those values as the
+defaults. This was not obvious to me, it should perhaps really state
+where its getting that config from.
+
+I removed the .config file. That didn't help me so I removed
+yocto_installer.conf. This didn't help me much either.
+
+Now, reading the script I suddenly realise the user doesn't get prompted
+to be able to change the values, you can only set these in the config
+files.
+
+I tried hitting Y for fun despite knowing it would crash and burn. Those
+error messages were good so kudos there :)
+
+I think it would make most sense for the user to be prompted for unset
+values with "enter" selecting a sane set of defaults.
+
+So in summary, I think the right pieces are there in terms of
+configuration but the user interaction needs a lot more thought. I
+didn't try an actual installation as I don't have a local setup to allow
+it.
+
+For the next review, I'd like an opkg repo to be available somewhere to
+test against and for you to provide an installer tarball as an end user
+would receive for people to evaluate.
+
+Cheers,
+
+Richard
+
+
 
