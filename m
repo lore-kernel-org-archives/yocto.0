@@ -1,43 +1,30 @@
-Return-Path: <liping.ke@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 1123E4C8123C
-	for <yocto@yoctoproject.org>; Thu,  9 Dec 2010 03:29:23 -0600 (CST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 09 Dec 2010 01:29:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,319,1288594800"; d="scan'208";a="359251199"
-Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
-	by azsmga001.ch.intel.com with ESMTP; 09 Dec 2010 01:29:22 -0800
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Thu, 9 Dec 2010 17:28:59 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Thu, 9 Dec 2010 17:28:59 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi; Thu, 9 Dec 2010
-	17:28:58 +0800
-From: "Ke, Liping" <liping.ke@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Zhang, Jessica"
-	<jessica.zhang@intel.com>, "Wold, Saul" <saul.wold@intel.com>
-Date: Thu, 9 Dec 2010 17:28:53 +0800
-Thread-Topic: PULL] ADT installer script implementation, Liping Ke
-Thread-Index: AcuXg38e2UrJcVRuQMOv8z8Es1XcBA==
-Message-ID: <789F9655DD1B8F43B48D77C5D3065973312DBD16@shsmsx501.ccr.corp.intel.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-cr-hashedpuzzle: A4CB BV/8 B/wC CqVF DHig EMFd GT/j HXyd Hjb/ I5Cx I6md
-	JYGh JZz+ J519 J6Es
-	KE4A; 1; eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
-	Sosha1_v1; 7; {88C3FAEB-46B7-4EE8-A250-AE27717F5AFA};
-	bABpAHAAaQBuAGcALgBrAGUAQABpAG4AdABlAGwALgBjAG8AbQA=; Thu,
-	09 Dec 2010 09:28:53 GMT;
-	UABVAEwATABdACAAQQBEAFQAIABpAG4AcwB0AGEAbABsAGUAcgAgAHMAYwByAGkAcAB0ACAAaQBtAHAAbABlAG0AZQBuAHQAYQB0AGkAbwBuACwAIABMAGkAcABpAG4AZwAgAEsAZQA=
-x-cr-puzzleid: {88C3FAEB-46B7-4EE8-A250-AE27717F5AFA}
-acceptlanguage: zh-CN, en-US
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8B1644C80039
+	for <yocto@yoctoproject.org>; Thu,  9 Dec 2010 09:56:49 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oB9FukSf016732;
+	Thu, 9 Dec 2010 07:56:46 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Thu, 9 Dec 2010 07:56:45 -0800
+Received: from [128.224.146.67] ([128.224.146.67]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Thu, 9 Dec 2010 07:56:45 -0800
+Message-ID: <4D00FC35.8050101@windriver.com>
+Date: Thu, 09 Dec 2010 10:56:37 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.9pre) Gecko/20100217 Shredder/3.0.3pre
+	ThunderBrowse/3.2.8.1
 MIME-Version: 1.0
-Subject: PULL] ADT installer script implementation, Liping Ke
+To: rpurdie@linux.intel.com
+References: <cover.1291786378.git.bruce.ashfield@windriver.com>
+In-Reply-To: <cover.1291786378.git.bruce.ashfield@windriver.com>
+X-OriginalArrivalTime: 09 Dec 2010 15:56:45.0649 (UTC)
+	FILETIME=[AE236410:01CB97B9]
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/3] linux-yocto: refactor recipes and update the	kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,42 +36,143 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Dec 2010 09:29:24 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 09 Dec 2010 15:56:50 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi, Saul
+On 10-12-08 09:35 AM, Bruce Ashfield wrote:
+> Richard,
+>
+> Consider these patches for merging. I've been building and working
+> with these for 2 weeks now, and while they aren't perfect, they
+> work and we need more eyes on 2.6.37.
 
-This pull request includes initial ADT(Yocto Application Development Tools)=
- installer script implementation.
+Does anyone with the right admin privs have time to look
+into this ?
 
-Pull URL: git://git.pokylinux.org/poky-contrib.git
-Branch: lke/adt_installer_initial
-Browse: http://git.pokylinux.org/cgit/cgit.cgi/poky-contrib/commit/?h=3Dlke=
-/adt_installer_initial&id=3Da06769b01d7b18894ad413daa8159f74c90f6c0f
+ >  git clone git://git.pokylinux.org/linux-yocto-2.6.37
+fatal: destination path 'linux-yocto-2.6.37' already exists and is not 
+an empty directory.
+yow-bashfiel-d2 [/tmp]> rm -rf linux-yocto-2.6.37/
+yow-bashfiel-d2 [/tmp]> git clone git://git.pokylinux.org/linux-yocto-2.6.37
+Initialized empty Git repository in /tmp/linux-yocto-2.6.37/.git/
+fatal: The remote end hung up unexpectedly
+yow-bashfiel-d2 [/tmp]> git clone 
+git://git.pokylinux.org/linux-2.6-windriver
+Initialized empty Git repository in /tmp/linux-2.6-windriver/.git/
+^Cmote: Counting objects: 125026
 
+------
 
-Thanks,
-criping
+In other words, the 2.6.37 repo is only reachable by a ssh
+based clone :)
 
+When I get that working, I can fixup the SRCREV issue and
+resubmit this for merge.
 
+Cheers,
 
-Add initial yocto adt installer scriptlke/adt_installer_initial
-Below patches are for installing Yocto Application Development Tools.
-opkg files include both 32 bit and 64 bit installation machine.
-Installer entry script file is yocto_installer. A hidden .config files
-are for holding parameters which are unlikely to be changed by end users
+Bruce
 
-Signed-off-by: Liping Ke <liping.ke@intel.com>
-Signed-off-by: Jessica Zhang<jessica.zhang@intel.com>
-Diffstat (more/less context) (ignore whitespace changes)
--rw-r--r--	scripts/adt-installer/.config	35=09
--rw-r--r--	scripts/adt-installer/opkg-sdk-i586.conf	17=09
--rw-r--r--	scripts/adt-installer/opkg-sdk-x86_64.conf	17=09
--rw-r--r--	scripts/adt-installer/util	70=09
--rwxr-xr-x	scripts/adt-installer/yocto_installer	250=09
--rw-r--r--	scripts/adt-installer/yocto_installer.conf	32=09
--rwxr-xr-x	scripts/adt-installer/yocto_installer_internal	222=09
-7 files changed, 643 insertions, 0 deletions
+>
+> What we get is the following:
+>
+>   - factoring of the code into some reusable routines in the form
+>     of a linux-yocto bbclass. The -stable, -devel and libc headers
+>     recipes are all using this common code
+>
+>   - A new branching scheme for the 2.6.37 kernel that generalizes
+>     the branch names and shows their hierarchy. The tools that
+>     process the kernel needed a lot of 'unlearning' about the
+>     old structure (this took a lot of my time working on this).
+>
+>     If this needs to be tweaked more, we can do it later, since
+>     the big changes are done and agreed on, and we can't delay
+>     scaling this out to more boards much longer.
+>
+>   - A -stable recipe that continues to build the 2.6.34 kernel
+>     and a move of the main recipe to track the development
+>     2.6.37-rc5 tree. The qemu* targets have their defaults
+>     changed to 2.6.37-rc, while the hardware targets remain
+>     on 2.6.34 for a bit longer. To ease the switch over, I
+>     put the SRCREVs for 2.6.37 into the recipe itself. We
+>     can move these as .37 becomes the default.
+>
+>   - perf is moved into a linux-tools.inc, we can add more to
+>     this and re-use it more easily from here
+>
+>   - BSP boostrapping is streamlined (docs to follow).
+>
+> The temporary commenting of the preferred libc-headers provider
+> was intentional. There is something strange happening when
+> headers are generated for 2.6.34 that was breaking libc builds.
+> To avoid holding up this series, we'll go with the default
+> libc headers for a short while.
+>
+> I've built and booted all the qemu* targets on 2.6.37
+> (minimal and sato), I've built most of the hardware
+> targets. I noticed some strangeness with the mouse on
+> ARM, and that will need to be looked at further. I've done
+> some audits on the kernel configuration in 2.6.37, and
+> while it looks sane, full BSP testing will tell us if
+> anything major changed (that I missed).
+>
+> If there are better suggestions on how we can stage and
+> get mileage on this code, I'm all ears, but this is a kernel
+> uprev, so I expect some issues (there always is even though
+> I've done plenty of these). If we don't want anything
+> destabilizing in the tree, I'm fine with this and we just
+> need to come up with a plan.
+>
+> What remains (I'm only one person!):
+>
+>   - BSP porting and full BSP testing
+>   - Investigation into the libc-headers issue
+>   - Continued cleanup
+>   - Feature merging into 2.6.37 (lttng, yaffs, etc)
+>
+> Pull URL: git://git.pokylinux.org/poky-contrib.git
+>    Branch: zedd/kernel
+>    Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
+>
+> Thanks,
+>      Bruce Ashfield<bruce.ashfield@windriver.com>
+> ---
+>
+>
+> Bruce Ashfield (3):
+>    yocto-kernel: factor common routes, update to 2.6.37 and branch
+>      renaming
+>    linux-libc-headers-yocto: use common linux-yocto routines
+>    qemu: update arm timer handling
+>
+>   meta-emenlow/conf/machine/emenlow.conf             |    3 +-
+>   meta/classes/kernel-yocto.bbclass                  |  202 +++++++++++++++++
+>   .../conf/distro/include/poky-default-revisions.inc |    2 +-
+>   meta/conf/machine/atom-pc.conf                     |    3 +-
+>   meta/conf/machine/beagleboard.conf                 |    3 +-
+>   meta/conf/machine/include/qemu.inc                 |    1 +
+>   meta/conf/machine/mpc8315e-rdb.conf                |    3 +-
+>   meta/conf/machine/routerstationpro.conf            |    3 +-
+>   .../qemu-0.12.4/arm_timer-fix-oneshot-mode.patch   |   32 +++
+>   .../arm_timer-reload-timer-when-enabled.patch      |   40 ++++
+>   meta/recipes-devtools/qemu/qemu_0.12.4.bb          |    4 +-
+>   .../linux-libc-headers-yocto_git.bb                |   25 +--
+>   meta/recipes-kernel/linux/linux-tools.inc          |   19 ++
+>   .../recipes-kernel/linux/linux-yocto-stable_git.bb |   41 ++++
+>   meta/recipes-kernel/linux/linux-yocto.inc          |   23 ++
+>   meta/recipes-kernel/linux/linux-yocto_git.bb       |  232 +++-----------------
+>   16 files changed, 415 insertions(+), 221 deletions(-)
+>   create mode 100644 meta/classes/kernel-yocto.bbclass
+>   create mode 100644 meta/recipes-devtools/qemu/qemu-0.12.4/arm_timer-fix-oneshot-mode.patch
+>   create mode 100644 meta/recipes-devtools/qemu/qemu-0.12.4/arm_timer-reload-timer-when-enabled.patch
+>   create mode 100644 meta/recipes-kernel/linux/linux-tools.inc
+>   create mode 100644 meta/recipes-kernel/linux/linux-yocto-stable_git.bb
+>   create mode 100644 meta/recipes-kernel/linux/linux-yocto.inc
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
