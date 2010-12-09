@@ -1,28 +1,25 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 33C2D4C80039
-	for <yocto@yoctoproject.org>; Thu,  9 Dec 2010 14:44:15 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 09 Dec 2010 12:44:14 -0800
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 816864C80039
+	for <yocto@yoctoproject.org>; Thu,  9 Dec 2010 14:49:15 -0600 (CST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 09 Dec 2010 12:49:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,322,1288594800"; d="scan'208";a="582236764"
-Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
-	by orsmga002.jf.intel.com with ESMTP; 09 Dec 2010 12:44:14 -0800
-Received: from [10.255.13.43] (10.255.13.43) by rrsmsx603.amr.corp.intel.com
-	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
-	Thu, 9 Dec 2010 13:44:14 -0700
-Message-ID: <4D013F9C.2010404@intel.com>
-Date: Thu, 9 Dec 2010 12:44:12 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.1.15) Gecko/20101027 Thunderbird/3.0.10
+X-IronPort-AV: E=Sophos;i="4.59,322,1288594800"; d="scan'208";a="866485251"
+Received: from doubt.jf.intel.com (HELO [10.24.4.158]) ([10.24.4.158])
+	by fmsmga001.fm.intel.com with ESMTP; 09 Dec 2010 12:49:15 -0800
+Message-ID: <4D0140C4.5030603@linux.intel.com>
+Date: Thu, 09 Dec 2010 12:49:08 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.12) Gecko/20101027 Lightning/1.0b2 Thunderbird/3.1.6
 MIME-Version: 1.0
-To: "Ke, Liping" <liping.ke@intel.com>
-References: <789F9655DD1B8F43B48D77C5D30659733104D391@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <789F9655DD1B8F43B48D77C5D30659733104D391@shsmsx501.ccr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Purdie,
-	Richard" <richard.purdie@intel.com>
-Subject: Re: Add extra parameters for qemu script
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <cover.1291786378.git.bruce.ashfield@windriver.com>
+	<64f083b7e51bae434b4ae449edc81795e89f9f1c.1291786378.git.bruce.ashfield@windriver.com>
+In-Reply-To: <64f083b7e51bae434b4ae449edc81795e89f9f1c.1291786378.git.bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/3] yocto-kernel: factor common routes, update to 2.6.37 and branch renaming
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,61 +31,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Dec 2010 20:44:15 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Thu, 09 Dec 2010 20:49:15 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/09/2010 12:44 AM, Ke, Liping wrote:
-> Hi, Scott
+On 12/08/2010 06:35 AM, Bruce Ashfield wrote:
+> In order to extend and create more kernel recipes based on the
+> supported yocto kernel common routines need to be placed in
+> re-usable blocks.
 >
-> The patch is in the attachment for your review. Below is some notes:
->
-> 1) Basically I wouldn't like to change any logic of the original code.
-> 2) -serial stdio and -nographic options are removed since they're be covered by the extra parameters.
-> 3) User input would be $poky-qemu qemux86 "<-nographic -m 300>"
-> 4) -m input will be checked still. If it exceeds 128 for arm, it will be changed back to
->     128M, same logic as before. And after parsing, -m option will be removed and replaced by
->      Kernel options mem=128M for avoiding some instability issue.
->
-> Generally I modified very few, just add an extra parameters with least intrusion of
-> Current logic.
->
-> Any comments are welcomed.
-> I will conduct more test with latest code in parallel.
+> To accomplish this meta/recipes-kernel/linux/linux-yocto_git.bb
+> is broken into three parts:
+>   .../recipes-kernel/linux/linux-yocto-stable_git.bb |   41 ++++
 
-Hi Criping,
+Now that the git tree permissions for 2.6.37 are public (not sure how 
+that impacted this) I am still seeing SRC_REV related parsing errors of 
+linux-yocto-stable_git.bb. Do you have this working Bruce?
 
-Thanks for the patch. Overall I think this looks good.
+$ bitbake linux-yocto-stable
+NOTE: Out of date cache found, rebuilding...
+NOTE: Handling BitBake files: - (0003/0760) [ 0 %]NOTE: <class 
+'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid value while 
+evaluating:
+${@bb.fetch.get_srcrev(d)}
+NOTE: <class 'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid 
+value while evaluating:
+${LINUX_VERSION}+git${SRCPV}
+NOTE: <class 'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid 
+value while evaluating:
+${PN}-${EXTENDPE}${PV}-${PR}
+NOTE: <class 'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid 
+value while evaluating:
+${TMPDIR}/work/${MULTIMACH_TARGET_SYS}/${PF}
+NOTE: <class 'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid 
+value while evaluating:
+${WORKDIR}/linux
+NOTE: <class 'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid 
+value while evaluating:
+	cd ${S}
+	if [ -f ${WORKDIR}/defconfig ]; then
+	    defconfig=${WORKDIR}/defconfig
+	fi
 
-However, one thing I feel the need to run by Richard, as he expressed 
-some preferences with how the poky-qemu script would work with regard to 
-options.
+	if [ -n "${BOOTSTRAP}" ]; then
+	    kbranch="yocto/${LINUX_KERNEL_TYPE}/${KMACHINE}"
+	else
+	    kbranch=${KBRANCH}
+	fi
 
-Richard: Criping's patch would remove the standalone options we had to 
-the poky-qemu script (e.g, nographic, serial) and instead requires the 
-user to specify them in one command option which can take any qemu 
-command switch.
+	# simply ensures that a branch of the right name has been created
+	createme ${ARCH} ${kbranch} ${defconfig}
+	if [ $? -ne 0 ]; then
+		echo "ERROR. Could not create ${kbranch}"
+		exit 1
+	fi
 
-So for example:
+	# updates or generates the target description
+	if [ -n "${KERNEL_FEATURES}" ]; then
+	       addon_features="--features ${KERNEL_FEATURES}"
+	fi
+	updateme ${addon_features} ${ARCH} ${WORKDIR}
+	if [ $? -ne 0 ]; then
+		echo "ERROR. Could not update ${kbranch}"
+		exit 1
+	fi
 
-poky-qemu qemux86 nographic
+	# executes and modifies the source tree as required
+	patchme ${kbranch}
+	if [ $? -ne 0 ]; then
+		echo "ERROR. Could not modify ${kbranch}"
+		exit 1
+	fi
 
-would become:
+NOTE: Error expanding variable do_patch
+ERROR: Please set SRCREV to a valid value while parsing 
+/home/dvhart/source/poky.git/meta/recipes-kernel/linux/linux-yocto-stable_git.bb
+NOTE: Handling BitBake files: / (0311/0760) [40 %]NOTE: <class 
+'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid value while 
+evaluating:
+${@bb.fetch.get_srcrev(d)}
 
-poky-qemu qemux86 "<-nographic>"
-
-The benefit of this is that this allows the user to specify any qemu 
-option they wish. Previously they were limited by the options we allowed 
-them to specify (which were quite limited).
-
-I tend to feel that this approach is more flexible, and scales better 
-than having to support each and every qemu option with our own script 
-syntax. Is this acceptable, or should we continue to support our own 
-custom options in addition to Criping's new approach?
-
-Scott
+Thanks,
 
 -- 
-Scott Garman
-Embedded Linux Distro Engineer - Yocto Project
+Darren Hart
+Yocto Linux Kernel
 
