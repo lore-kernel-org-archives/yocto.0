@@ -1,31 +1,28 @@
-Return-Path: <rpurdie@linux.intel.com>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id CDA4A4C81081
-	for <yocto@yoctoproject.org>; Thu,  9 Dec 2010 14:01:14 -0600 (CST)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oB9K1C1x012802;
-	Thu, 9 Dec 2010 20:01:12 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 12429-06; Thu,  9 Dec 2010 20:01:07 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oB9K15kW012796
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Thu, 9 Dec 2010 20:01:05 GMT
-From: Richard Purdie <rpurdie@linux.intel.com>
+Return-Path: <scott.a.garman@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 33C2D4C80039
+	for <yocto@yoctoproject.org>; Thu,  9 Dec 2010 14:44:15 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 09 Dec 2010 12:44:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,322,1288594800"; d="scan'208";a="582236764"
+Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
+	by orsmga002.jf.intel.com with ESMTP; 09 Dec 2010 12:44:14 -0800
+Received: from [10.255.13.43] (10.255.13.43) by rrsmsx603.amr.corp.intel.com
+	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
+	Thu, 9 Dec 2010 13:44:14 -0700
+Message-ID: <4D013F9C.2010404@intel.com>
+Date: Thu, 9 Dec 2010 12:44:12 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.1.15) Gecko/20101027 Thunderbird/3.0.10
+MIME-Version: 1.0
 To: "Ke, Liping" <liping.ke@intel.com>
-In-Reply-To: <789F9655DD1B8F43B48D77C5D3065973312DBD16@shsmsx501.ccr.corp.intel.com>
-References: <789F9655DD1B8F43B48D77C5D3065973312DBD16@shsmsx501.ccr.corp.intel.com>
-Date: Thu, 09 Dec 2010 20:00:53 +0000
-Message-ID: <1291924853.1554.933.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
-	Saul" <saul.wold@intel.com>
-Subject: Re: PULL] ADT installer script implementation, Liping Ke
+References: <789F9655DD1B8F43B48D77C5D30659733104D391@shsmsx501.ccr.corp.intel.com>
+In-Reply-To: <789F9655DD1B8F43B48D77C5D30659733104D391@shsmsx501.ccr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Purdie,
+	Richard" <richard.purdie@intel.com>
+Subject: Re: Add extra parameters for qemu script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,77 +34,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Dec 2010 20:01:15 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 09 Dec 2010 20:44:15 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi Liping, Jessica and team,
+On 12/09/2010 12:44 AM, Ke, Liping wrote:
+> Hi, Scott
+>
+> The patch is in the attachment for your review. Below is some notes:
+>
+> 1) Basically I wouldn't like to change any logic of the original code.
+> 2) -serial stdio and -nographic options are removed since they're be covered by the extra parameters.
+> 3) User input would be $poky-qemu qemux86 "<-nographic -m 300>"
+> 4) -m input will be checked still. If it exceeds 128 for arm, it will be changed back to
+>     128M, same logic as before. And after parsing, -m option will be removed and replaced by
+>      Kernel options mem=128M for avoiding some instability issue.
+>
+> Generally I modified very few, just add an extra parameters with least intrusion of
+> Current logic.
+>
+> Any comments are welcomed.
+> I will conduct more test with latest code in parallel.
 
-On Thu, 2010-12-09 at 17:28 +0800, Ke, Liping wrote:
-> Pull URL: git://git.pokylinux.org/poky-contrib.git
-> Branch: lke/adt_installer_initial
-> Browse: http://git.pokylinux.org/cgit/cgit.cgi/poky-contrib/commit/?h=lke/adt_installer_initial&id=a06769b01d7b18894ad413daa8159f74c90f6c0f
+Hi Criping,
 
+Thanks for the patch. Overall I think this looks good.
 
-I had a quick look over this and have a few comments. I'm in critical
-review mode and don't have a lot of time so please don't take any of
-this feedback the wrong way, I just want to give you honest first hand
-first time user perception.
+However, one thing I feel the need to run by Richard, as he expressed 
+some preferences with how the poky-qemu script would work with regard to 
+options.
 
-The first thing I read was in the patch was:
+Richard: Criping's patch would remove the standalone options we had to 
+the poky-qemu script (e.g, nographic, serial) and instead requires the 
+user to specify them in one command option which can take any qemu 
+command switch.
 
-+# following are for testing in my machine. it will be moved when
-+# going into code repository
-+export http_proxy=""
-+export HTTP_PROXY=""
-+export HTTPS_PROXY=""
-+export https_proxy=""
-+export ftp_proxy=""
-+export FTP_PROXY=""
+So for example:
 
-which it evidently wasn't! ;-)
+poky-qemu qemux86 nographic
 
-The rest of that file suggests it probably shouldn't be there actually?
+would become:
 
-I then decided to try it.
+poky-qemu qemux86 "<-nographic>"
 
-cd /
-root@rex:/# /rphome/poky/scripts/adt-installer/yocto_installer
-/rphome/poky/scripts/adt-installer/yocto_installer: line 207: .config: No such file or directory
-[snip lots of similar errors]
+The benefit of this is that this allows the user to specify any qemu 
+option they wish. Previously they were limited by the options we allowed 
+them to specify (which were quite limited).
 
-So I'd suggest it looks at the location of the main script and then uses
-this to find its config files.
+I tend to feel that this approach is more flexible, and scales better 
+than having to support each and every qemu option with our own script 
+syntax. Is this acceptable, or should we continue to support our own 
+custom options in addition to Criping's new approach?
 
-It then found the presetup .config file and took those values as the
-defaults. This was not obvious to me, it should perhaps really state
-where its getting that config from.
+Scott
 
-I removed the .config file. That didn't help me so I removed
-yocto_installer.conf. This didn't help me much either.
-
-Now, reading the script I suddenly realise the user doesn't get prompted
-to be able to change the values, you can only set these in the config
-files.
-
-I tried hitting Y for fun despite knowing it would crash and burn. Those
-error messages were good so kudos there :)
-
-I think it would make most sense for the user to be prompted for unset
-values with "enter" selecting a sane set of defaults.
-
-So in summary, I think the right pieces are there in terms of
-configuration but the user interaction needs a lot more thought. I
-didn't try an actual installation as I don't have a local setup to allow
-it.
-
-For the next review, I'd like an opkg repo to be available somewhere to
-test against and for you to provide an installer tarball as an end user
-would receive for people to evaluate.
-
-Cheers,
-
-Richard
-
-
+-- 
+Scott Garman
+Embedded Linux Distro Engineer - Yocto Project
 
