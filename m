@@ -1,31 +1,31 @@
-Return-Path: <lianhao.lu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C10904C80FA4
-	for <yocto@yoctoproject.org>; Thu,  9 Dec 2010 23:29:54 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 09 Dec 2010 21:29:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,322,1288594800"; d="scan'208";a="685747974"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by orsmga001.jf.intel.com with ESMTP; 09 Dec 2010 21:29:52 -0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Fri, 10 Dec 2010 13:29:51 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Fri, 10 Dec 2010 13:29:50 +0800
-From: "Lu, Lianhao" <lianhao.lu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Fri, 10 Dec 2010 13:29:50 +0800
-Thread-Topic: [patch] meta-environment
-Thread-Index: AcuYKz9x3L7Uv8ylRSmkJU/tO+ixBw==
-Message-ID: <C10D3FB0CD45994C8A51FEC1227CE22F1C3686618A@shsmsx502.ccr.corp.intel.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN, en-US
-MIME-Version: 1.0
-Subject: [patch] meta-environment
+Return-Path: <rpurdie@linux.intel.com>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 85A354C80FA4
+	for <yocto@yoctoproject.org>; Fri, 10 Dec 2010 07:35:03 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oBADZ0bO026047;
+	Fri, 10 Dec 2010 13:35:00 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 25557-08; Fri, 10 Dec 2010 13:34:56 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oBADYqOG026041
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Fri, 10 Dec 2010 13:34:52 GMT
+From: Richard Purdie <rpurdie@linux.intel.com>
+To: "Garman, Scott A" <scott.a.garman@intel.com>
+In-Reply-To: <4D013F9C.2010404@intel.com>
+References: <789F9655DD1B8F43B48D77C5D30659733104D391@shsmsx501.ccr.corp.intel.com>
+	<4D013F9C.2010404@intel.com>
+Date: Fri, 10 Dec 2010 13:34:38 +0000
+Message-ID: <1291988079.1554.939.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Add extra parameters for qemu script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,136 +37,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Dec 2010 05:29:55 -0000
-X-Groupsio-MsgNum: 529
-Content-Language: en-US
-Content-Type: multipart/mixed;
-	boundary="_002_C10D3FB0CD45994C8A51FEC1227CE22F1C3686618Ashsmsx502ccrc_"
+X-List-Received-Date: Fri, 10 Dec 2010 13:35:04 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---_002_C10D3FB0CD45994C8A51FEC1227CE22F1C3686618Ashsmsx502ccrc_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Thu, 2010-12-09 at 12:44 -0800, Garman, Scott A wrote:
+> However, one thing I feel the need to run by Richard, as he expressed 
+> some preferences with how the poky-qemu script would work with regard to 
+> options.
+> 
+> Richard: Criping's patch would remove the standalone options we had to 
+> the poky-qemu script (e.g, nographic, serial) and instead requires the 
+> user to specify them in one command option which can take any qemu 
+> command switch.
+> 
+> So for example:
+> 
+> poky-qemu qemux86 nographic
+> 
+> would become:
+> 
+> poky-qemu qemux86 "<-nographic>"
+> 
+> The benefit of this is that this allows the user to specify any qemu 
+> option they wish. Previously they were limited by the options we allowed 
+> them to specify (which were quite limited).
+> 
+> I tend to feel that this approach is more flexible, and scales better 
+> than having to support each and every qemu option with our own script 
+> syntax. Is this acceptable, or should we continue to support our own 
+> custom options in addition to Criping's new approach?
 
-Hi all,
+My gut feeling is that having some simplified way to trigger possibly
+complex option combinations is still desirable but adding a way to pass
+additional custom commandline is equally good. This gives us the maximum
+flexibility moving forwards but keeps the script easy to use?
 
-The attached patch is to create environment file package used by the ADT in=
-staller during ADT installation. This patch should be applied upon my previ=
-ous pull request of bug#528 fixing (see the following summary of the previo=
-us pull request):
+Cheers,
 
-Pull URL: git://git.pokylinux.org/poky-contrib.git
-  Branch: llu/fix
-  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=3Dllu/fix=20
+Richard
 
-Best Regards,
--Lianhao Lu
 
---_002_C10D3FB0CD45994C8A51FEC1227CE22F1C3686618Ashsmsx502ccrc_
-Content-Type: application/octet-stream; name="meta-environment.patch"
-Content-Description: meta-environment.patch
-Content-Disposition: attachment; filename="meta-environment.patch"; size=5612;
-	creation-date="Fri, 10 Dec 2010 13:16:25 GMT";
-	modification-date="Fri, 10 Dec 2010 13:16:25 GMT"
-Content-Transfer-Encoding: base64
-
-ZGlmZiAtLWdpdCBhL21ldGEvY2xhc3Nlcy90b29sY2hhaW4tc2NyaXB0cy5iYmNsYXNzIGIvbWV0
-YS9jbGFzc2VzL3Rvb2xjaGFpbi1zY3JpcHRzLmJiY2xhc3MKaW5kZXggYzM5M2Q5OS4uNmViZmUw
-MCAxMDA2NDQKLS0tIGEvbWV0YS9jbGFzc2VzL3Rvb2xjaGFpbi1zY3JpcHRzLmJiY2xhc3MKKysr
-IGIvbWV0YS9jbGFzc2VzL3Rvb2xjaGFpbi1zY3JpcHRzLmJiY2xhc3MKQEAgLTYwLDMgKzYwLDM1
-IEBAIHRvb2xjaGFpbl9jcmVhdGVfdHJlZV9lbnZfc2NyaXB0ICgpIHsKIAllY2hvICdleHBvcnQg
-UE9LWV9OQVRJVkVfU1lTUk9PVD0iJHtTVEFHSU5HX0RJUl9OQVRJVkV9IicgPj4gJHNjcmlwdAog
-CWVjaG8gJ2V4cG9ydCBQT0tZX1RBUkdFVF9TWVNST09UPSIke1NUQUdJTkdfRElSX1RBUkdFVH0i
-JyA+PiAkc2NyaXB0CiB9CisKKyMgVGhpcyBmdW5jdGlvbiBjcmVhdGVzIGFuIGVudmlyb25tZW50
-LXNldHVwLXNjcmlwdCBmb3IgdXNlIGJ5IHRoZSBBRFQgaW5zdGFsbGVyCit0b29sY2hhaW5fY3Jl
-YXRlX3Nka19lbnZfc2NyaXB0X2Zvcl9pbnN0YWxsZXIgKCkgeworCSMgQ3JlYXRlIGVudmlyb25t
-ZW50IHNldHVwIHNjcmlwdAorCXNjcmlwdD0ke1NES19PVVRQVVR9LyR7U0RLUEFUSH0vZW52aXJv
-bm1lbnQtc2V0dXAtJHtPTERfTVVMVElNQUNIX1RBUkdFVF9TWVN9CisJcm0gLWYgJHNjcmlwdAor
-CXRvdWNoICRzY3JpcHQKKwllY2hvICdleHBvcnQgUEFUSD0ke1NES1BBVEhOQVRJVkV9JHtiaW5k
-aXJfbmF0aXZlc2RrfToke1NES1BBVEhOQVRJVkV9JHtiaW5kaXJfbmF0aXZlc2RrfS8ke09MRF9N
-VUxUSU1BQ0hfVEFSR0VUX1NZU306JFBBVEgnID4+ICRzY3JpcHQKKwllY2hvICdleHBvcnQgUEtH
-X0NPTkZJR19TWVNST09UX0RJUj0jI1NES1RBUkdFVFNZU1JPT1QjIycgPj4gJHNjcmlwdAorCWVj
-aG8gJ2V4cG9ydCBQS0dfQ09ORklHX1BBVEg9IyNTREtUQVJHRVRTWVNST09UIyMke2xpYmRpcn0v
-cGtnY29uZmlnJyA+PiAkc2NyaXB0CisJZWNobyAnZXhwb3J0IENPTkZJR19TSVRFPSR7U0RLUEFU
-SH0vc2l0ZS1jb25maWctJHtPTERfTVVMVElNQUNIX1RBUkdFVF9TWVN9JyA+PiAkc2NyaXB0CisJ
-ZWNobyAnZXhwb3J0IENDPSR7VEFSR0VUX1BSRUZJWH1nY2MnID4+ICRzY3JpcHQKKwllY2hvICdl
-eHBvcnQgQ1hYPSR7VEFSR0VUX1BSRUZJWH1nKysnID4+ICRzY3JpcHQKKwllY2hvICdleHBvcnQg
-R0RCPSR7VEFSR0VUX1BSRUZJWH1nZGInID4+ICRzY3JpcHQKKwllY2hvICdleHBvcnQgVEFSR0VU
-X1BSRUZJWD0ke1RBUkdFVF9QUkVGSVh9JyA+PiAkc2NyaXB0CisJZWNobyAnZXhwb3J0IENPTkZJ
-R1VSRV9GTEFHUz0iLS10YXJnZXQ9JHtUQVJHRVRfU1lTfSAtLWhvc3Q9JHtUQVJHRVRfU1lTfSAt
-LWJ1aWxkPSR7U0RLX0FSQ0h9LWxpbnV4IicgPj4gJHNjcmlwdAorCWlmIFsgIiR7VEFSR0VUX09T
-fSIgPSAiZGFyd2luOCIgXTsgdGhlbgorCQllY2hvICdleHBvcnQgVEFSR0VUX0NGTEFHUz0iLUkj
-I1NES1RBUkdFVFNZU1JPT1QjIyR7aW5jbHVkZWRpcn0iJyA+PiAkc2NyaXB0CisJCWVjaG8gJ2V4
-cG9ydCBUQVJHRVRfTERGTEFHUz0iLUwjI1NES1RBUkdFVFNZU1JPT1QjI3tsaWJkaXJ9IicgPj4g
-JHNjcmlwdAorCQkjIFdvcmthcm91bmQgZGFyd2luIHRvb2xjaGFpbiBzeXNyb290IHBhdGggcHJv
-YmxlbXMKKwkJY2QgJHtTREtfT1VUUFVUfSR7U0RLVEFSR0VUU1lTUk9PVH0vdXNyCisJCWxuIC1z
-IC91c3IvbG9jYWwgbG9jYWwKKwlmaQorCWVjaG8gJ2V4cG9ydCBDRkxBR1M9IiR7VEFSR0VUX0ND
-X0FSQ0h9IC0tc3lzcm9vdD0jI1NES1RBUkdFVFNZU1JPT1QjIyInID4+ICRzY3JpcHQKKwllY2hv
-ICdleHBvcnQgQ1hYRkxBR1M9IiR7VEFSR0VUX0NDX0FSQ0h9IC0tc3lzcm9vdD0jI1NES1RBUkdF
-VFNZU1JPT1QjIyAtSSMjU0RLVEFSR0VUU1lTUk9PVCMjJHtHWFhfSU5DTFVERURJUn0iJyA+PiAk
-c2NyaXB0CisJZWNobyAiIyBhbGlhcyBvcGtnPSdMRF9MSUJSQVJZX1BBVEg9JHtTREtQQVRITkFU
-SVZFfSR7bGliZGlyX25hdGl2ZXNka30gJHtTREtQQVRITkFUSVZFfSR7YmluZGlyX25hdGl2ZXNk
-a30vb3BrZy1jbCAtZiAke1NES1BBVEhOQVRJVkV9LyR7c3lzY29uZmRpcn0vb3BrZy1zZGsuY29u
-ZiAtbyAke1NES1BBVEhOQVRJVkV9JyIgPj4gJHNjcmlwdAorCWVjaG8gIiMgYWxpYXMgb3BrZy10
-YXJnZXQ9J0xEX0xJQlJBUllfUEFUSD0ke1NES1BBVEhOQVRJVkV9JHtsaWJkaXJfbmF0aXZlc2Rr
-fSAke1NES1BBVEhOQVRJVkV9JHtiaW5kaXJfbmF0aXZlc2RrfS9vcGtnLWNsIC1mICMjU0RLVEFS
-R0VUU1lTUk9PVCMjJHtzeXNjb25mZGlyfS9vcGtnLmNvbmYgLW8gIyNTREtUQVJHRVRTWVNST09U
-IyMnIiA+PiAkc2NyaXB0CisJZWNobyAnZXhwb3J0IFBPS1lfTkFUSVZFX1NZU1JPT1Q9IiR7U0RL
-UEFUSE5BVElWRX0iJyA+PiAkc2NyaXB0CisJZWNobyAnZXhwb3J0IFBPS1lfVEFSR0VUX1NZU1JP
-T1Q9IiMjU0RLVEFSR0VUU1lTUk9PVCMjIicgPj4gJHNjcmlwdAorCWVjaG8gJ2V4cG9ydCBQT0tZ
-X0RJU1RST19WRVJTSU9OPSIke0RJU1RST19WRVJTSU9OfSInID4+ICRzY3JpcHQKK30KKwpkaWZm
-IC0tZ2l0IGEvbWV0YS9yZWNpcGVzLWNvcmUvbWV0YS9tZXRhLWVudmlyb25tZW50LmJiIGIvbWV0
-YS9yZWNpcGVzLWNvcmUvbWV0YS9tZXRhLWVudmlyb25tZW50LmJiCm5ldyBmaWxlIG1vZGUgMTAw
-NjQ0CmluZGV4IDAwMDAwMDAuLjUxNTUyY2YKLS0tIC9kZXYvbnVsbAorKysgYi9tZXRhL3JlY2lw
-ZXMtY29yZS9tZXRhL21ldGEtZW52aXJvbm1lbnQuYmIKQEAgLTAsMCArMSw4MiBAQAorREVTQ1JJ
-UFRJT04gPSAiUGFja2dlIG9mIGVudmlyb25tZW50IGZpbGVzIGZvciBTREsiCitMSUNFTlNFID0g
-Ik1JVCIKK1BSID0gInIwIgorCitpbmhlcml0IG1ldGEgdG9vbGNoYWluLXNjcmlwdHMKKworVFJB
-TlNMQVRFRF9UQVJHRVRfQVJDSCA/PSAiJHtUQVJHRVRfQVJDSH0iCisKK0VYQ0xVREVfRlJPTV9X
-T1JMRCA9ICIxIgorCitTREtfRElSID0gIiR7V09SS0RJUn0vc2RrIgorU0RLX09VVFBVVCA9ICIk
-e1NES19ESVJ9L2ltYWdlIgorU0RLX0RFUExPWSA9ICIke1RNUERJUn0vZGVwbG95L3NkayIKKwor
-U0RLVEFSR0VUU1lTUk9PVCA9ICIke1NES1BBVEh9L3N5c3Jvb3RzLyR7VEFSR0VUX1NZU30iCisK
-KyMgU2F2ZSBNVUxUSU1BQ0hfVEFSR0VUX1NZUworT0xEX01VTFRJTUFDSF9UQVJHRVRfU1lTIDo9
-ICIke01VTFRJTUFDSF9UQVJHRVRfU1lTfSIKKworIyBTYXZlIFBBQ0tBR0VfQVJDSAorT0xEX1BB
-Q0tBR0VfQVJDSCA6PSAke1BBQ0tBR0VfQVJDSH0KK1BBQ0tBR0VfQVJDSCA9ICIke1NES19BUkNI
-fS0ke1RBUkdFVF9BUkNIfS1jYW5hZGlhbiIKK1BBQ0tBR0VfQVJDSFMgPSAiJHtQQUNLQUdFX0FS
-Q0h9IgorIyBBbHNvIHNhdmUgQkFTRV9QQUNLQUdFX0FSQ0ggc2luY2UgSE9TVF9BUkNIIGNhbiBp
-bmZsdWVuY2UgaXQKK09MRF9CQVNFX1BBQ0tBR0VfQVJDSCA6PSAiJHtCQVNFX1BBQ0tBR0VfQVJD
-SH0iCitCQVNFX1BBQ0tBR0VfQVJDSCA9ICIke09MRF9CQVNFX1BBQ0tBR0VfQVJDSH0iCisKKyNj
-aGFuZ2UgU1NUQVRFX1BLR0FSQ0ggZHVlIHRvIHRoZSBQQUNLQUdFX0FSQ0ggY2hhbmdlCitTU1RB
-VEVfUEtHQVJDSCA9ICIke1NES19BUkNIfV8ke0JBU0VfUEFDS0FHRV9BUkNIfSIKKworQ09ORklH
-X1NJVEUgPSAiJHtAc2l0ZWluZm9fZ2V0X2ZpbGVzKGQpfSIKK0dYWF9JTkNMVURFRElSIDo9ICIk
-e2luY2x1ZGVkaXJ9L2MrKyIKKworZG9fZ2VuZXJhdGVfY29udGVudCgpIHsKKworICAgIHJtIC1y
-ZiAke1NES19PVVRQVVR9CisgICAgbWtkaXIgLXAgJHtTREtfT1VUUFVUfS8ke1NES1BBVEh9CisK
-KyAgICBzaXRlY29uZmlnPSR7U0RLX09VVFBVVH0vJHtTREtQQVRIfS9zaXRlLWNvbmZpZy0ke09M
-RF9NVUxUSU1BQ0hfVEFSR0VUX1NZU30KKyAgICAKKyAgICB0b3VjaCAkc2l0ZWNvbmZpZworICAg
-IGZvciBzaXRlZmlsZSBpbiAke0NPTkZJR19TSVRFfSA7IGRvCisJY2F0ICRzaXRlZmlsZSA+PiAk
-c2l0ZWNvbmZpZworICAgIGRvbmUKKworICAgIHRvb2xjaGFpbl9jcmVhdGVfc2RrX2Vudl9zY3Jp
-cHRfZm9yX2luc3RhbGxlcgorCisgICAgIyBBZGQgdmVyc2lvbiBpbmZvcm1hdGlvbgorICAgIHZl
-cnNpb25maWxlPSR7U0RLX09VVFBVVH0vJHtTREtQQVRIfS92ZXJzaW9uLSR7T0xEX01VTFRJTUFD
-SF9UQVJHRVRfU1lTfQorICAgIHRvdWNoICR2ZXJzaW9uZmlsZQorICAgIGVjaG8gJ0Rpc3Rybzog
-JHtESVNUUk99JyA+PiAkdmVyc2lvbmZpbGUKKyAgICBlY2hvICdEaXN0cm8gVmVyc2lvbjogJHtE
-SVNUUk9fVkVSU0lPTn0nID4+ICR2ZXJzaW9uZmlsZQorICAgIGVjaG8gJ01ldGFkYXRhIFJldmlz
-aW9uOiAke01FVEFEQVRBX1JFVklTSU9OfScgPj4gJHZlcnNpb25maWxlCisgICAgZWNobyAnVGlt
-ZXN0YW1wOiAke0RBVEVUSU1FfScgPj4gJHZlcnNpb25maWxlCit9CisKK2RvX2dlbmVyYXRlX2Nv
-bnRlbnRbcmVjcmRlcHRhc2tdID0gImRvX2NvbXBpbGUiCithZGR0YXNrIGdlbmVyYXRlX2NvbnRl
-bnQgYmVmb3JlIGRvX2luc3RhbGwgYWZ0ZXIgZG9fY29tcGlsZQorCitkb19pbnN0YWxsKCkgewor
-ICAgIGluc3RhbGwgLWQgJHtEfS8ke1NES1BBVEh9CisgICAgaW5zdGFsbCAtbSAwNjQ0IC10ICR7
-RH0vJHtTREtQQVRIfSAke1NES19PVVRQVVR9LyR7U0RLUEFUSH0vKgorfQorCitQQUNLQUdFUyA9
-ICIke1BOfS0ke1RSQU5TTEFURURfVEFSR0VUX0FSQ0h9IgorRklMRVNfJHtQTn0tJHtUUkFOU0xB
-VEVEX1RBUkdFVF9BUkNIfSA9ICIgXAorICAgICR7U0RLUEFUSH0vKiBcCisgICAgIgorCitkb19m
-ZXRjaFtub2V4ZWNdID0gIjEiCitkb191bnBhY2tbbm9leGVjXSA9ICIxIgorZG9fcGF0Y2hbbm9l
-eGVjXSA9ICIxIgorZG9fY29uZmlndXJlW25vZXhlY10gPSAiMSIKK2RvX2NvbXBpbGVbbm9leGVj
-XSA9ICIxIgorZG9fcG9wdWxhZ2Vfc3lzcm9vdFtub2V4ZWNdID0gIjEiCisKK2RvX2dlbmVyYXRl
-X2NvbnRlbnRbbm9zdGFtcF0gPSAiMSIKK2RvX2luc3RhbGxbbm9zdGFtcF0gPSAiMSIKK2RvX3Bh
-Y2thZ2Vbbm9zdGFtcF0gPSAiMSIKK2RvX3BhY2thZ2Vfd3JpdGVbbm9zdGFtcF0gPSAiMSIKK2Rv
-X3BhY2thZ2Vfd3JpdGVfaXBrW25vc3RhbXBdID0gIjEiCisKZGlmZiAtLWdpdCBhL21ldGEvcmVj
-aXBlcy1jb3JlL3Rhc2tzL3Rhc2stY3Jvc3MtY2FuYWRpYW4uYmIgYi9tZXRhL3JlY2lwZXMtY29y
-ZS90YXNrcy90YXNrLWNyb3NzLWNhbmFkaWFuLmJiCmluZGV4IGMzMmFmZGMuLjhhMzc4OGIgMTAw
-NjQ0Ci0tLSBhL21ldGEvcmVjaXBlcy1jb3JlL3Rhc2tzL3Rhc2stY3Jvc3MtY2FuYWRpYW4uYmIK
-KysrIGIvbWV0YS9yZWNpcGVzLWNvcmUvdGFza3MvdGFzay1jcm9zcy1jYW5hZGlhbi5iYgpAQCAt
-MTEsNSArMTEsNiBAQCBSREVQRU5EU18ke1BOfSA9ICJcCiAgICAgYmludXRpbHMtY3Jvc3MtY2Fu
-YWRpYW4tJHtUUkFOU0xBVEVEX1RBUkdFVF9BUkNIfSBcCiAgICAgZ2RiLWNyb3NzLWNhbmFkaWFu
-LSR7VFJBTlNMQVRFRF9UQVJHRVRfQVJDSH0gXAogICAgIGdjYy1jcm9zcy1jYW5hZGlhbi0ke1RS
-QU5TTEFURURfVEFSR0VUX0FSQ0h9IFwKKyAgICBtZXRhLWVudmlyb25tZW50LSR7VFJBTlNMQVRF
-RF9UQVJHRVRfQVJDSH0gXAogICAgICIKIAo=
-
---_002_C10D3FB0CD45994C8A51FEC1227CE22F1C3686618Ashsmsx502ccrc_--
