@@ -1,22 +1,30 @@
-Return-Path: <bruce.ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 7F5B04C811DB;
-	Fri, 10 Dec 2010 10:01:44 -0600 (CST)
-Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
-	[128.224.146.167])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oBAG1dCT027769;
-	Fri, 10 Dec 2010 08:01:42 -0800 (PST)
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: rpurdie@linux.intel.com
-Date: Fri, 10 Dec 2010 11:02:55 -0500
-Message-Id: <8a5b5c7c2f9279852dda0930e4776bd4fe3b80d6.1291996631.git.bruce.ashfield@windriver.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1291996631.git.bruce.ashfield@windriver.com>
-References: <cover.1291996631.git.bruce.ashfield@windriver.com>
-In-Reply-To: <cover.1291996631.git.bruce.ashfield@windriver.com>
-References: <cover.1291996631.git.bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
-Subject: [PATCH 3/3] qemu: update arm timer handling
+Return-Path: <rpurdie@linux.intel.com>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 9CEF14C810B1
+	for <yocto@yoctoproject.org>; Fri, 10 Dec 2010 10:20:43 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oBAGKe8t027843;
+	Fri, 10 Dec 2010 16:20:40 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 27321-08; Fri, 10 Dec 2010 16:20:36 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id oBAGKXNx027837
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Fri, 10 Dec 2010 16:20:34 GMT
+From: Richard Purdie <rpurdie@linux.intel.com>
+To: "Lu, Lianhao" <lianhao.lu@intel.com>
+In-Reply-To: <C10D3FB0CD45994C8A51FEC1227CE22F1B90B6C267@shsmsx502.ccr.corp.intel.com>
+References: <C10D3FB0CD45994C8A51FEC1227CE22F1B90B6C267@shsmsx502.ccr.corp.intel.com>
+Date: Fri, 10 Dec 2010 16:20:18 +0000
+Message-ID: <1291998019.14420.53.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: why cp in do_install() change file permission mode?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,127 +36,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Dec 2010 16:01:44 -0000
+X-List-Received-Date: Fri, 10 Dec 2010 16:20:44 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-commit e388771458b4ff3ad81ab70e390b24d069647da4 in the upstream
-kernel factored/cleaned the SP804 timer code. This commit exposed
-issues in the qemu timer emulation that was dependent on the
-old behaviour. As a result, no kernel past 2.6.34 would boot on
-qemu-system-arm.
+On Thu, 2010-12-02 at 18:16 +0800, Lu, Lianhao wrote:
+> Hi fellows,
+> 
+> Could anyone tell me why does the cp in do_install() change the file permission mode? Thanks!
+> 
+> do_install () {
+> 	rm -rf ${D}${installed_dir}
+> 	install -d ${D}${installed_dir}
+> 	cp -rp ${S}/* ${D}${installed_dir}
+> }
+> 
+> After "bitbake xxx -c install", I found the file under
+> ${D}${installed_dir} had the permission mode of 0744 while the
+> corresponding file under directory ${S} had the mode of 0644. Why did
+> this happen? How to avoid this kind of mode change? Thanks!
 
-The quick fix is to backport two patches from the latest qemu
-repositories that fix the timer handling under emulation. Long
-term, these will be dropped when qemu is upreved.
+do_install and all tasks that work on the output of do_install run under
+pseduo which can mean the permissions on disk might not match the real
+permissions as seen within a pseduo session.
 
-Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
----
- .../qemu-0.12.4/arm_timer-fix-oneshot-mode.patch   |   32 ++++++++++++++++
- .../arm_timer-reload-timer-when-enabled.patch      |   40 ++++++++++++++++++++
- meta/recipes-devtools/qemu/qemu_0.12.4.bb          |    4 +-
- 3 files changed, 75 insertions(+), 1 deletions(-)
- create mode 100644 meta/recipes-devtools/qemu/qemu-0.12.4/arm_timer-fix-oneshot-mode.patch
- create mode 100644 meta/recipes-devtools/qemu/qemu-0.12.4/arm_timer-reload-timer-when-enabled.patch
+To illustrate, in a do_install do something like
 
-diff --git a/meta/recipes-devtools/qemu/qemu-0.12.4/arm_timer-fix-oneshot-mode.patch b/meta/recipes-devtools/qemu/qemu-0.12.4/arm_timer-fix-oneshot-mode.patch
-new file mode 100644
-index 0000000..530736c
---- /dev/null
-+++ b/meta/recipes-devtools/qemu/qemu-0.12.4/arm_timer-fix-oneshot-mode.patch
-@@ -0,0 +1,32 @@
-+From a9cf98d939c4f6539fad7e7d812ea16d96ba3dc9 Mon Sep 17 00:00:00 2001
-+From: Rabin Vincent <rabin@rab.in>
-+Date: Sun, 2 May 2010 15:20:52 +0530
-+Subject: [PATCH] arm_timer: fix oneshot mode
-+
-+commit id: a9cf98d939c4f6539fad7e7d812ea16d96ba3dc9 in git://git.sv.gnu.org/qemu.git
-+
-+In oneshot mode, the delta needs to come from the TimerLoad register,
-+not the maximum limit.
-+
-+Signed-off-by: Rabin Vincent <rabin@rab.in>
-+Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-+---
-+ hw/arm_timer.c |    2 +-
-+ 1 files changed, 1 insertions(+), 1 deletions(-)
-+
-+diff --git a/hw/arm_timer.c b/hw/arm_timer.c
-+index 5b6947a..9073ffc 100644
-+--- a/hw/arm_timer.c
-++++ b/hw/arm_timer.c
-+@@ -71,7 +71,7 @@ static void arm_timer_recalibrate(arm_timer_state *s, int reload)
-+ {
-+     uint32_t limit;
-+ 
-+-    if ((s->control & TIMER_CTRL_PERIODIC) == 0) {
-++    if ((s->control & (TIMER_CTRL_PERIODIC | TIMER_CTRL_ONESHOT)) == 0) {
-+         /* Free running.  */
-+         if (s->control & TIMER_CTRL_32BIT)
-+             limit = 0xffffffff;
-+-- 
-+1.6.5.2
-+
-diff --git a/meta/recipes-devtools/qemu/qemu-0.12.4/arm_timer-reload-timer-when-enabled.patch b/meta/recipes-devtools/qemu/qemu-0.12.4/arm_timer-reload-timer-when-enabled.patch
-new file mode 100644
-index 0000000..1890e21
---- /dev/null
-+++ b/meta/recipes-devtools/qemu/qemu-0.12.4/arm_timer-reload-timer-when-enabled.patch
-@@ -0,0 +1,40 @@
-+From d6759902cb467c002086853d2eb38fb969c29f7f Mon Sep 17 00:00:00 2001
-+From: Rabin Vincent <rabin@rab.in>
-+Date: Sun, 2 May 2010 15:20:51 +0530
-+Subject: [PATCH] arm_timer: reload timer when enabled
-+
-+commit id: d6759902cb467c002086853d2eb38fb969c29f7f in git://git.sv.gnu.org/qemu.git
-+
-+Reload the timer when TimerControl is written, if the timer is to be
-+enabled.  Otherwise, if an earlier write to TimerLoad was done while
-+periodic mode was not set, s->delta may incorrectly still have the value
-+of the maximum limit instead of the value written to TimerLoad.
-+
-+This problem is evident on versatileap on current linux-next, which
-+enables TIMER_CTRL_32BIT before writing to TimerLoad and then enabling
-+periodic mode and starting the timer.  This causes the first periodic
-+tick to be scheduled to occur after 0xffffffff periods, leading to a
-+perceived hang while the kernel waits for the first timer tick.
-+
-+Signed-off-by: Rabin Vincent <rabin@rab.in>
-+Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-+---
-+ hw/arm_timer.c |    2 +-
-+ 1 files changed, 1 insertions(+), 1 deletions(-)
-+
-+diff --git a/hw/arm_timer.c b/hw/arm_timer.c
-+index 9fef191..5b6947a 100644
-+--- a/hw/arm_timer.c
-++++ b/hw/arm_timer.c
-+@@ -113,7 +113,7 @@ static void arm_timer_write(void *opaque, target_phys_addr_t offset,
-+         case 1: freq >>= 4; break;
-+         case 2: freq >>= 8; break;
-+         }
-+-        arm_timer_recalibrate(s, 0);
-++        arm_timer_recalibrate(s, s->control & TIMER_CTRL_ENABLE);
-+         ptimer_set_freq(s->timer, freq);
-+         if (s->control & TIMER_CTRL_ENABLE) {
-+             /* Restart the timer if still enabled.  */
-+-- 
-+1.6.5.2
-+
-diff --git a/meta/recipes-devtools/qemu/qemu_0.12.4.bb b/meta/recipes-devtools/qemu/qemu_0.12.4.bb
-index 04526d1..6125bca 100644
---- a/meta/recipes-devtools/qemu/qemu_0.12.4.bb
-+++ b/meta/recipes-devtools/qemu/qemu_0.12.4.bb
-@@ -25,7 +25,9 @@ SRC_URI = "\
-     file://cursor-shadow-fix.patch \
-     file://vmware-vga-fifo-rewind.patch \
-     file://fix-configure-checks.patch \
--    file://powerpc_rom.bin"
-+    file://powerpc_rom.bin \
-+    file://arm_timer-fix-oneshot-mode.patch \
-+    file://arm_timer-reload-timer-when-enabled.patch"
- 
- SRC_URI[md5sum] = "93e6b134dff89b2799f57b7d9e0e0fc5"
- SRC_URI[sha256sum] = "1a29a5b5151162d1de035c4926d1a1dbffee4a145ef61ee865d6b82aaea0602e"
--- 
-1.7.0.4
+chown root.root somefile 
+ls -la somefile
+
+then look at the file on disk and you'll see different owners. The
+ownership works the same way as the permissions.
+
+Cheers,
+
+Richard
+
+(Note Poky specific questions should be on the poky mailing list)
 
 
