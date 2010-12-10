@@ -1,31 +1,41 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 22CF74C80FD4
-	for <yocto@yoctoproject.org>; Thu,  9 Dec 2010 19:33:32 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oBA1XVvr023150;
-	Thu, 9 Dec 2010 17:33:31 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Thu, 9 Dec 2010 17:33:30 -0800
-Received: from bruce-ashfields-macbook.local ([128.224.143.11]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Thu, 9 Dec 2010 17:33:30 -0800
-Message-ID: <4D018368.9060603@windriver.com>
-Date: Thu, 09 Dec 2010 20:33:28 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.13) Gecko/20101203 Thunderbird/3.1.7
+Return-Path: <liping.ke@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id CDAC04C80FD4
+	for <yocto@yoctoproject.org>; Thu,  9 Dec 2010 19:34:58 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 09 Dec 2010 17:34:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,322,1288594800"; d="scan'208";a="634922263"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by fmsmga002.fm.intel.com with ESMTP; 09 Dec 2010 17:34:57 -0800
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Fri, 10 Dec 2010 09:34:53 +0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Fri, 10 Dec 2010 09:34:53 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Fri, 10 Dec 2010 09:34:52 +0800
+From: "Ke, Liping" <liping.ke@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, Richard Purdie
+	<rpurdie@linux.intel.com>
+Date: Fri, 10 Dec 2010 09:34:51 +0800
+Thread-Topic: [yocto] PULL] ADT installer script implementation, Liping Ke
+Thread-Index: AcuX29d4Ehuqoug7RE2CXblOApd/1gADMz2wAAg/U7A=
+Message-ID: <789F9655DD1B8F43B48D77C5D3065973312DBF01@shsmsx501.ccr.corp.intel.com>
+References: <789F9655DD1B8F43B48D77C5D3065973312DBD16@shsmsx501.ccr.corp.intel.com>
+	<1291924853.1554.933.camel@rex>
+	<9AFCD584B0B67B48AE8D8585BE30BA95021EBE98@orsmsx504.amr.corp.intel.com>
+In-Reply-To: <9AFCD584B0B67B48AE8D8585BE30BA95021EBE98@orsmsx504.amr.corp.intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <cover.1291786378.git.bruce.ashfield@windriver.com>
-	<64f083b7e51bae434b4ae449edc81795e89f9f1c.1291786378.git.bruce.ashfield@windriver.com>
-	<4D0140C4.5030603@linux.intel.com>
-In-Reply-To: <4D0140C4.5030603@linux.intel.com>
-X-OriginalArrivalTime: 10 Dec 2010 01:33:30.0792 (UTC)
-	FILETIME=[40692A80:01CB980A]
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/3] yocto-kernel: factor common routes, update to 2.6.37 and branch renaming
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
+	Saul" <saul.wold@intel.com>
+Subject: Re: PULL] ADT installer script implementation, Liping Ke
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,102 +47,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Dec 2010 01:33:32 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 10 Dec 2010 01:34:59 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 10-12-09 3:49 PM, Darren Hart wrote:
-> On 12/08/2010 06:35 AM, Bruce Ashfield wrote:
->> In order to extend and create more kernel recipes based on the
->> supported yocto kernel common routines need to be placed in
->> re-usable blocks.
->>
->> To accomplish this meta/recipes-kernel/linux/linux-yocto_git.bb
->> is broken into three parts:
->> .../recipes-kernel/linux/linux-yocto-stable_git.bb | 41 ++++
->
-> Now that the git tree permissions for 2.6.37 are public (not sure how
-> that impacted this) I am still seeing SRC_REV related parsing errors of
-> linux-yocto-stable_git.bb. Do you have this working Bruce?
+> > The first thing I read was in the patch was:
+> >
+> > +# following are for testing in my machine. it will be moved when
+> > +# going into code repository
+> > +export http_proxy=3D""
+> > +export HTTP_PROXY=3D""
+> > +export HTTPS_PROXY=3D""
+> > +export https_proxy=3D""
+> > +export ftp_proxy=3D""
+> > +export FTP_PROXY=3D""
+> >
+> > which it evidently wasn't! ;-)
+> >
+> > The rest of that file suggests it probably shouldn't be there
+> > actually?
+> >
+>=20
+> Sorry for this obvious mistake. Need to do a better job before sending
+> our a
+> review request next time
 
-FYI: I've solved this 'for real' now, and I've fixed the SRCREV
-issue that I found at the end of my day. I wasn't thinking straight
-when I set this up, and I simply neglected to provide valid
-SRCREVs for the -stable variant of the kernel. That has allowed
-me to remove the SRCREVs from the specific recipes and centralize
-the support.
+Oh, I am sorry that I should not send the [pull] request, instead I should =
+send a review request.
+I meant to collect some review comments before finalize the code.
 
-The hack I sent earlier is no longer needed and everything now
-looks good. v2 of the series for merge will be out shortly.
+This is for testing. So I did not remove this part. When going into tree,
+it will definitely be removed.
 
-Bruce
-
->
-> $ bitbake linux-yocto-stable
-> NOTE: Out of date cache found, rebuilding...
-> NOTE: Handling BitBake files: - (0003/0760) [ 0 %]NOTE: <class
-> 'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid value while
-> evaluating:
-> ${@bb.fetch.get_srcrev(d)}
-> NOTE: <class 'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid
-> value while evaluating:
-> ${LINUX_VERSION}+git${SRCPV}
-> NOTE: <class 'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid
-> value while evaluating:
-> ${PN}-${EXTENDPE}${PV}-${PR}
-> NOTE: <class 'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid
-> value while evaluating:
-> ${TMPDIR}/work/${MULTIMACH_TARGET_SYS}/${PF}
-> NOTE: <class 'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid
-> value while evaluating:
-> ${WORKDIR}/linux
-> NOTE: <class 'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid
-> value while evaluating:
-> cd ${S}
-> if [ -f ${WORKDIR}/defconfig ]; then
-> defconfig=${WORKDIR}/defconfig
-> fi
->
-> if [ -n "${BOOTSTRAP}" ]; then
-> kbranch="yocto/${LINUX_KERNEL_TYPE}/${KMACHINE}"
-> else
-> kbranch=${KBRANCH}
-> fi
->
-> # simply ensures that a branch of the right name has been created
-> createme ${ARCH} ${kbranch} ${defconfig}
-> if [ $? -ne 0 ]; then
-> echo "ERROR. Could not create ${kbranch}"
-> exit 1
-> fi
->
-> # updates or generates the target description
-> if [ -n "${KERNEL_FEATURES}" ]; then
-> addon_features="--features ${KERNEL_FEATURES}"
-> fi
-> updateme ${addon_features} ${ARCH} ${WORKDIR}
-> if [ $? -ne 0 ]; then
-> echo "ERROR. Could not update ${kbranch}"
-> exit 1
-> fi
->
-> # executes and modifies the source tree as required
-> patchme ${kbranch}
-> if [ $? -ne 0 ]; then
-> echo "ERROR. Could not modify ${kbranch}"
-> exit 1
-> fi
->
-> NOTE: Error expanding variable do_patch
-> ERROR: Please set SRCREV to a valid value while parsing
-> /home/dvhart/source/poky.git/meta/recipes-kernel/linux/linux-yocto-stable_git.bb
->
-> NOTE: Handling BitBake files: / (0311/0760) [40 %]NOTE: <class
-> 'bb.fetch.InvalidSRCREV'>:Please set SRCREV to a valid value while
-> evaluating:
-> ${@bb.fetch.get_srcrev(d)}
->
-> Thanks,
+>=20
+> > I then decided to try it.
+> >
+> > cd /
+> > root@rex:/# /rphome/poky/scripts/adt-installer/yocto_installer
+> > /rphome/poky/scripts/adt-installer/yocto_installer: line 207:
+> > .config: No such file or directory [snip lots of similar errors]
+> >
+> > So I'd suggest it looks at the location of the main script and then
+> > uses
+> > this to find its config files.
+> >
+> > It then found the presetup .config file and took those values as the
+> > defaults. This was not obvious to me, it should perhaps really state
+> > where its getting that config from.
+> >
+> > I removed the .config file. That didn't help me so I removed
+> > yocto_installer.conf. This didn't help me much either.
+> >
 >
 
+> That definitely a bug regarding how to locate .config that we need to
+> address.  As to the different config files, the .config is on purpose
+> non
+> user editable that's why we set it as hidden file by default.  And the
+> yocto_installer.conf is the customizable config user should change and
+> we
+> have prompt for the user as regard to the configuration values to be
+> used
+> and where they're from along the installation process...
+
+Yes, this is a problem. After source .config (default location), if we
+Failed to locate the file, I should prompt to exit instead of going forward=
+.
+
+>=20
+> > Now, reading the script I suddenly realise the user doesn't get
+> > prompted
+> > to be able to change the values, you can only set these in the config
+> > files.
+> >
+> > I tried hitting Y for fun despite knowing it would crash and burn.
+> > Those
+> > error messages were good so kudos there :)
+> >
+> > I think it would make most sense for the user to be prompted for
+> unset
+> > values with "enter" selecting a sane set of defaults.
+> >
+> Agree and will make improvement on that..
+OK, I will give default values for all those variables. If user needs to
+change it, he can use a config file to override it. Thanks for the suggesti=
+on.
+
+>=20
+> > So in summary, I think the right pieces are there in terms of
+> > configuration but the user interaction needs a lot more thought. I
+> > didn't try an actual installation as I don't have a local setup to
+> > allow
+> > it.
+> >
+> > For the next review, I'd like an opkg repo to be available somewhere
+>=20
+> Lianhao has a testing opkg repo setup on his machine which mimic the
+> release
+> package repo and we've been using it test things out
+
+
+Also I did not attach the opkg source tar ball, so the script can't be run
+actually. I plan to dynamically fetch opkg source file when using bitbake
+to generate adt-installer tarball. But for reviewing, next time, I will
+include the opkg source file tarball in the installer tarball.
+
+
+Thanks& Regards,
+criping
+
+>=20
+> > to
+> > test against and for you to provide an installer tarball as an end
+> > user
+> > would receive for people to evaluate.
+>=20
+> Yes, and will attach the tar ball with in the next review request
+> >
+> > Cheers,
+> >
+> > Richard
 
