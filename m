@@ -1,22 +1,33 @@
-Return-Path: <bruce.ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 995924C80050;
-	Mon, 13 Dec 2010 00:26:32 -0600 (CST)
-Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
-	[128.224.146.167])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oBD6QThS002593;
-	Sun, 12 Dec 2010 22:26:31 -0800 (PST)
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: rpurdie@linux.intel.com, saul.wold@intel.com
-Date: Mon, 13 Dec 2010 01:27:51 -0500
-Message-Id: <69ad383525657b44dc7eeb347e888deebb501b00.1292221596.git.bruce.ashfield@windriver.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1292221596.git.bruce.ashfield@windriver.com>
-References: <cover.1292221596.git.bruce.ashfield@windriver.com>
-In-Reply-To: <cover.1292221596.git.bruce.ashfield@windriver.com>
-References: <cover.1292221596.git.bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org
-Subject: [PATCH 1/1] linux-yocto: fix machine compatibility
+Return-Path: <liping.ke@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8DDC94C80048
+	for <yocto@yoctoproject.org>; Mon, 13 Dec 2010 00:53:32 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 12 Dec 2010 22:53:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,335,1288594800"; d="scan'208";a="635714057"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by fmsmga002.fm.intel.com with ESMTP; 12 Dec 2010 22:53:29 -0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Mon, 13 Dec 2010 14:52:51 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Mon, 13 Dec 2010 14:52:50 +0800
+From: "Ke, Liping" <liping.ke@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, "Lu, Lianhao"
+	<lianhao.lu@intel.com>, "Lock, Joshua" <joshua.lock@intel.com>
+Date: Mon, 13 Dec 2010 14:52:51 +0800
+Thread-Topic: version problems about SDK
+Thread-Index: Acuaklwc5HMHEi3QSNy/BWEdHHxNOg==
+Message-ID: <789F9655DD1B8F43B48D77C5D3065973312DC7C0@shsmsx501.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN, en-US
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: version problems about SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,68 +39,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Dec 2010 06:26:32 -0000
+X-List-Received-Date: Mon, 13 Dec 2010 06:53:32 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-During the last phase of the recipe factoring, the board compatibility
-lists ended up in the wrong place, which meant we had an incomplete
-list of boards, and the same set of boards for both kernels (stable
-and devel).
+Hi, Jessica & Josh
 
-To fix this, I've yanked the compatibility to the recipes themselves and
-updated the emenlow to have a -stable bbappend.
+When we are trying to run installer script on lianhao's x86_64 machine, we =
+found if the images are build in two days, according to current version nam=
+ing convention, some of the packages will be installed to /opt/poky/0.9+sna=
+pshot-20101210, some will be to /opt/poky/0.9+snapshot-20101210.=20
+It will cause problem since we need to know the exact version number before=
+ installing and searching some files (environment script file, etc). And th=
+e same releases of packages belong to different version (just the build dat=
+e is not in the same day) seems very strange and hard to handle for us?
 
-Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
----
- ...it.bbappend => linux-yocto-stable_git.bbappend} |    0
- .../recipes-kernel/linux/linux-yocto-stable_git.bb |    2 ++
- meta/recipes-kernel/linux/linux-yocto.inc          |    2 --
- meta/recipes-kernel/linux/linux-yocto_git.bb       |    1 +
- 4 files changed, 3 insertions(+), 2 deletions(-)
- rename meta-emenlow/recipes/linux/{linux-yocto_git.bbappend => linux-yocto-stable_git.bbappend} (100%)
-
-diff --git a/meta-emenlow/recipes/linux/linux-yocto_git.bbappend b/meta-emenlow/recipes/linux/linux-yocto-stable_git.bbappend
-similarity index 100%
-rename from meta-emenlow/recipes/linux/linux-yocto_git.bbappend
-rename to meta-emenlow/recipes/linux/linux-yocto-stable_git.bbappend
-diff --git a/meta/recipes-kernel/linux/linux-yocto-stable_git.bb b/meta/recipes-kernel/linux/linux-yocto-stable_git.bb
-index 8ecd86f..dd4d176 100644
---- a/meta/recipes-kernel/linux/linux-yocto-stable_git.bb
-+++ b/meta/recipes-kernel/linux/linux-yocto-stable_git.bb
-@@ -17,6 +17,8 @@ PR = "r0"
- PV = "${LINUX_VERSION}+git${SRCPV}"
- SRCREV_FORMAT = "meta_machine"
- 
-+COMPATIBLE_MACHINE = "(qemuarm|qemux86|qemuppc|qemumips|qemux86-64|atom-pc|routerstationpro|mpc8315e-rdb|beagleboard)"
-+
- # this performs a fixup on the SRCREV for new/undefined BSPs
- python __anonymous () {
-     import bb, re
-diff --git a/meta/recipes-kernel/linux/linux-yocto.inc b/meta/recipes-kernel/linux/linux-yocto.inc
-index 095b337..2a77f4a 100644
---- a/meta/recipes-kernel/linux/linux-yocto.inc
-+++ b/meta/recipes-kernel/linux/linux-yocto.inc
-@@ -7,8 +7,6 @@ LICENSE = "GPL"
- # and it can be specific to the machine or shared
- KMACHINE = "UNDEFINED"
- 
--COMPATIBLE_MACHINE = "(qemuarm|qemux86|qemuppc|qemumips|qemux86-64|atom-pc|routerstationpro)"
--
- # Set this to 'preempt_rt' in the local.conf if you want a real time kernel
- LINUX_KERNEL_TYPE ?= standard
- 
-diff --git a/meta/recipes-kernel/linux/linux-yocto_git.bb b/meta/recipes-kernel/linux/linux-yocto_git.bb
-index 1e3df47..f40fe38 100644
---- a/meta/recipes-kernel/linux/linux-yocto_git.bb
-+++ b/meta/recipes-kernel/linux/linux-yocto_git.bb
-@@ -20,6 +20,7 @@ SRCREV_FORMAT = "meta_machine"
- SRC_URI = "git://git.pokylinux.org/linux-yocto-2.6.37;protocol=git;fullclone=1;branch=${KBRANCH};name=machine \
-            git://git.pokylinux.org/linux-yocto-2.6.37;protocol=git;noclone=1;branch=meta;name=meta"
- 
-+COMPATIBLE_MACHINE = "(qemuarm|qemux86|qemuppc|qemumips|qemux86-64)"
- 
- # Functionality flags
- KERNEL_REVISION_CHECKING ?= "t"
--- 
-1.7.0.4
-
+Thanks& Regards,
+criping
 
