@@ -1,38 +1,32 @@
 Return-Path: <jessica.zhang@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id AC8E14C80B71
-	for <yocto@yoctoproject.org>; Mon, 13 Dec 2010 16:33:36 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 13 Dec 2010 14:33:36 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C776C4C811F5
+	for <yocto@yoctoproject.org>; Mon, 13 Dec 2010 17:09:20 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 13 Dec 2010 15:09:19 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.59,338,1288594800"; 
-	d="p7s'?scan'208";a="583362481"
+	d="p7s'?scan'208";a="361179876"
 Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by orsmga002.jf.intel.com with ESMTP; 13 Dec 2010 14:33:36 -0800
-Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Mon, 13 Dec 2010 14:33:36 -0800
+	by azsmga001.ch.intel.com with ESMTP; 13 Dec 2010 15:09:17 -0800
 Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
-	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi;
-	Mon, 13 Dec 2010 14:33:35 -0800
+	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
+	Mon, 13 Dec 2010 15:09:15 -0800
 From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Lock, Joshua" <joshua.lock@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Mon, 13 Dec 2010 14:33:33 -0800
-Thread-Topic: [yocto] version problems about SDK
-Thread-Index: AcuavYcpFr3Topr+RteL4yYFV9njGgAVq1+w
-Message-ID: <9AFCD584B0B67B48AE8D8585BE30BA950465CB3C@orsmsx504.amr.corp.intel.com>
-References: <789F9655DD1B8F43B48D77C5D3065973312DC7C0@shsmsx501.ccr.corp.intel.com>
-	<625BA99ED14B2D499DC4E29D8138F1504D5A7A1576@shsmsx502.ccr.corp.intel.com>
-	<9AFCD584B0B67B48AE8D8585BE30BA950465C55F@orsmsx504.amr.corp.intel.com>
-	<1292241663.2485.4.camel@scimitar>
-In-Reply-To: <1292241663.2485.4.camel@scimitar>
+To: "Ke, Liping" <liping.ke@intel.com>
+Date: Mon, 13 Dec 2010 15:09:14 -0800
+Thread-Topic: Try latest yocto adt script installer 
+Thread-Index: Acual4vOqTvhX8f5Tsm9er0UcNM8oAAfzMiA
+Message-ID: <9AFCD584B0B67B48AE8D8585BE30BA950465CBC4@orsmsx504.amr.corp.intel.com>
+References: <789F9655DD1B8F43B48D77C5D3065973312DC806@shsmsx501.ccr.corp.intel.com>
+In-Reply-To: <789F9655DD1B8F43B48D77C5D3065973312DC806@shsmsx501.ccr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
-Subject: Re: version problems about SDK
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Try latest yocto adt script installer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,71 +38,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Dec 2010 22:33:37 -0000
-X-Groupsio-MsgNum: 578
+X-List-Received-Date: Mon, 13 Dec 2010 23:09:21 -0000
+X-Groupsio-MsgNum: 579
 Content-Language: en-US
 Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=SHA1; boundary="----=_NextPart_000_000E_01CB9AD2.B880CE90"
+	micalg=SHA1; boundary="----=_NextPart_000_0013_01CB9AD7.B46BC940"
 
-------=_NextPart_000_000E_01CB9AD2.B880CE90
+------=_NextPart_000_0013_01CB9AD7.B46BC940
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-Joshua Lock wrote:
-> On Sun, 2010-12-12 at 23:53 -0800, Zhang, Jessica wrote:
->> Tian, Kevin wrote:
->>>> From: Ke, Liping
->>>> Sent: Monday, December 13, 2010 2:53 PM
->>>> 
->>>> Hi, Jessica & Josh
->>>> 
->>>> When we are trying to run installer script on lianhao's x86_64
->>>> machine, we found if the images are build in two days, according to
->>>> current version naming convention, some of the packages will be
->>>> installed to /opt/poky/0.9+snapshot-20101210, some will be to
->>>> /opt/poky/0.9+snapshot-20101210.
->>>> It will cause problem since we need to know the exact version
->>>> number before installing and searching some files (environment
->>>> script file, etc). And the same releases of packages belong to
->>>> different version (just the build date is not in the same day)
->>>> seems very strange and hard to handle for us? 
->>>> 
->>> 
->>> I think Josh has laid down the base for multiple version SDK
->>> support. The only problem is: 
->>> 
->>> SDKPATH = "/opt/${DISTRO}/${DISTRO_VERSION}"
->>> 
->>> which obviously is not what we want. We need a similar variable like
->>> SDK_VERSION, which is incremented only when SDK team thinks there's
->>> a need for a new version release or
->>> else it keeps same in the life cycle of current version.
+Ke, Liping wrote:
+> Hi, Jessica
 > 
-> I disagree, I think it's definitely useful to know which distribution
-> version your SDK is built against. In fact as the SDK components are
-> generated from the distro metadata introducing an extra variable
-> seems a little superfluous and just increases the number of things
-> which need to be changed for a release.
+> I have put the installer script tar ball in the below links:
+> http://llu-piketon.sh.intel.com/installer.tar 
 > 
-> Also note the DATE element is only included in the DISTRO_VERSION for
-> development snapshots.
+> You can have a try. Below is some key notes:
 > 
+> 1. since now version has problems, we have submit bug 586
+> http://bugzilla.pokylinux.org/show_bug.cgi?id=586 
+> So currently we have no available x86_64 repository. (same packages
+> now belong to different version because they are built in two days).
+> So currently only 32 bit host could run the script  
+> 2. after untar this installer, under adt_installer folder, directly
+> running $ ./yocto_installer. 
+Why we must run the script under the adt-installer directory? Actually I
+tried to run under $HOME or / but specifying the full path to
+yocto_installer, and got the error: 
+[ADT_INST] script file util is not  found!
 
-Since the DATE element is only included in the DISTRO_VERSION for
-development, then I'd suggest that our SDK_VERSION logic to be as:
-If DISTRO_VERSION contains snapshot
-SDK_VERSION = 0.9+snapshot (stripe off the date part)
-Else
-SDK_VERSION = DISTRO_VERSION (which means the DISTRO is a stablized and
-meaningful version, e.g. M3_RC1, etc, or 1.0 relrease, etc.)
+#############################################
+# Meet error when installing Yocto ADT.
+#############################################
 
-SDKPATH = "/opt/${DISTRO}/${SDK_VERSION}"
+2 comments here:
+1. we should be able to allow user run the yocto_installer script from any
+location and it should be able to locate the needed surporting files or
+scripts
+2. As a convention and to be consistent, I'd suggest change the above error
+message as "[ADT_INST] Error: Script file util is not found!"  There're
+several error messages in the scripts has the Error message format that I'm
+talking about here, which you can look up as a reference.
 
-This way we can easily link the SDK_VERSION to DISTRO_VERSION and avoid the
-unnecessary version issue during the development cycle...
+> 3. Build log are located @ adt_installer/yoctoadt_installer.log
+> 4. User config ( install which targets) are defined/changed in
+> Yocto_installer.conf. Note: now only i586 qemu rootfs are available
+> in repository.  
+> 
+> Any problem, just let me know.
 
-------=_NextPart_000_000E_01CB9AD2.B880CE90
+Just by playing with it, I change YOCTOADT_TARGETS="ppc" in
+yocto_installer.conf. And the prompt that I got is as follows:
+
+[ADT_INST] selected archs defined in Host Area Item: YOCTOADT_TARGETS is not
+valid!
+Error: Terminate installation process due to errors!
+
+Comments here:
+1. Add the "Error: " to the error message as mentioned before
+2. YOCTADT_TARGETS is now replaces by the specified value (ppc)
+3. It would be nice to point out Host Area resides in which file, and also
+tells user what are the valid entries
+4. It's not consistent when existing the program when running into errors,
+see the above and here just "Error: "...
+
+During the Make opkg..., there're bunch of warning messages can we redirect
+them to the log file?
+Also, it seems the log file contents is less than what shows on the screen
+(STDOUT), which I think should be the reverse case, people should be able to
+trace more info in the log file? E.g. during downloading rootfs, all the
+info where it download from and saved to where are showed on the screen but
+missing in the log file...
+
+Toward the end of the installation, I run into:
+
+[ADT_INST] Re-generate environment script file according to rootfs location.
+Ls: cannot access /opt/poky/0.9+snapshot-20101211/environment-setup-i586*:
+No such file or directory
+Sed: no input files
+
+################################################
+# Yocto ADT has been successfully installed.
+################################################
+
+Since there's error, why it claims successfully installed?
+
+In general, as I mentioned, we need to do more thorough unit test for the
+script since we're in the refining phase of the implementation...
+
+Thanks,
+Jessica
+
+------=_NextPart_000_0013_01CB9AD7.B46BC940
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -249,18 +272,18 @@ YiTi71VhwWenYKPnyKbLgiULEgdfwQscMzJQ9rmq1iyfoXuXPSkCA6nfZKoSkBOVJQXjW/+B2wxe
 YmaO9Qc5P3CJvsmgmgX5mK2wyKEw0JCwTHE3w7FkFjGCA0EwggM9AgEBMGQwVjELMAkGA1UEBhMC
 VVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBC
 YXNpYyBJc3N1aW5nIENBIDNCAgoabC6wAAAAACl2MAkGBSsOAwIaBQCgggGyMBgGCSqGSIb3DQEJ
-AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEwMTIxMzIyMzMzM1owIwYJKoZIhvcNAQkE
-MRYEFNSowsQOga9ohbfSO92mmdPX9VCqMGcGCSqGSIb3DQEJDzFaMFgwCgYIKoZIhvcNAwcwDgYI
+AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEwMTIxMzIzMDkxNFowIwYJKoZIhvcNAQkE
+MRYEFJnbzdckhMf8o4Lfh6TqDYyNRIWWMGcGCSqGSIb3DQEJDzFaMFgwCgYIKoZIhvcNAwcwDgYI
 KoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMAcGBSsO
 AwIaMAoGCCqGSIb3DQIFMHMGCSsGAQQBgjcQBDFmMGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoT
 EUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5n
 IENBIDNBAgp5ih1RAAAAAB8rMHUGCyqGSIb3DQEJEAILMWagZDBWMQswCQYDVQQGEwJVUzEaMBgG
 A1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElz
-c3VpbmcgQ0EgM0ECCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEBBQAEggEAkq3eTHWuz+3OoTnmMaui
-e2NJMTd7k0vsVjed/WohjyUBM4Xp1HQfoHgZA2GqhQW0nZAWWC0M7Gntan35JjKOVduP2ll5SEvz
-zfvQcz2AGJP2V9NQYYZzaEBPisrWMteDv0Yy/f0Dni1Cu78l3DAHhBL+qBHmrwZlqLRyQ9uKhS11
-SZqPtED28fb+2CJIVkTWUd8aVSmo8LyT1wOS7m0/G5hrQMEvM/FG5tEBdsVLZtgNr4lMLDZcjCJY
-4p+zG/fDX+JqHizabBKHoe1h2HpkGCV1on+lg6/ruXtuSV8pAASGyUGjMaFLu5jNNu6d7hjW8cN5
-EZVeHluf+FPM3CjAawAAAAAAAA==
+c3VpbmcgQ0EgM0ECCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEBBQAEggEApSbDG9Av64IwrT7nPCtj
+zVhKtWNAO7ixcP/QSbV+e+gpvvgdf40/ZD829C8Fi2apqj2aocHw7nDv1G5MbvHiQj4aq9h9MVsy
+8qm3clj7vX4Ee6G/gL8hu235w7tmzwe/QHZrgL3tnRJO7efyoiPy/ktiZZ0BHQvDJLqpIO0beLJg
+R00Hzk/tVKf+2ZnrXlG8/jGvqqtA/gVuaTO434Fq9qtKMGOurvG/vdBEZqG/z1qmELRTRzldkVmt
+w+rpVD/sLsLaKBU3GXgIPPQZQ2HFtuVHptMUg3dM/P2K8g9NAkADY5YBrhfYn2Z9Ly+2Yc+Xd7B5
+3nLEdvAt0z42GS0qDgAAAAAAAA==
 
-------=_NextPart_000_000E_01CB9AD2.B880CE90--
+------=_NextPart_000_0013_01CB9AD7.B46BC940--
