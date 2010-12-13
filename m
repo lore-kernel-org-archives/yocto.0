@@ -1,24 +1,23 @@
-Return-Path: <joshua.lock@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B4E204C811AF
-	for <yocto@yoctoproject.org>; Mon, 13 Dec 2010 06:01:23 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 13 Dec 2010 04:01:22 -0800
+Return-Path: <lianhao.lu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6CDBE4C811AF
+	for <yocto@yoctoproject.org>; Mon, 13 Dec 2010 06:05:05 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 13 Dec 2010 04:05:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,335,1288594800"; d="scan'208";a="686593294"
-Received: from unknown (HELO [10.255.16.71]) ([10.255.16.71])
-	by orsmga001.jf.intel.com with ESMTP; 13 Dec 2010 04:01:10 -0800
-From: Joshua Lock <joshua.lock@intel.com>
+X-IronPort-AV: E=Sophos;i="4.59,335,1288594800"; d="scan'208";a="635781568"
+Received: from llu-piketon.sh.intel.com ([10.239.36.141])
+	by fmsmga002.fm.intel.com with ESMTP; 13 Dec 2010 04:05:04 -0800
+Received: from lulianhao by llu-piketon.sh.intel.com with local (Exim 4.71)
+	(envelope-from <lianhao.lu@intel.com>)
+	id 1PS7FF-00034l-SL; Mon, 13 Dec 2010 20:11:09 +0800
+Message-Id: <c11924451455e5ca9cf7420d5411a82e9d5b37d0.1292242072.git.lianhao.lu@intel.com>
+In-Reply-To: <cover.1292242072.git.lianhao.lu@intel.com>
+References: <cover.1292242072.git.lianhao.lu@intel.com>
+From: Lianhao Lu <lianhao.lu@intel.com>
+Date: Mon, 13 Dec 2010 18:47:11 +0800
 To: yocto@yoctoproject.org
-In-Reply-To: <9AFCD584B0B67B48AE8D8585BE30BA950465C55F@orsmsx504.amr.corp.intel.com>
-References: <789F9655DD1B8F43B48D77C5D3065973312DC7C0@shsmsx501.ccr.corp.intel.com>
-	<625BA99ED14B2D499DC4E29D8138F1504D5A7A1576@shsmsx502.ccr.corp.intel.com>
-	<9AFCD584B0B67B48AE8D8585BE30BA950465C55F@orsmsx504.amr.corp.intel.com>
-Date: Mon, 13 Dec 2010 12:01:03 +0000
-Message-ID: <1292241663.2485.4.camel@scimitar>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.1 (2.32.1-1.fc14) 
-Subject: Re: version problems about SDK
+Subject: [PATCH 1/1] Fix bug #565.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,48 +29,151 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Dec 2010 12:01:23 -0000
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Mon, 13 Dec 2010 12:05:05 -0000
 
-T24gU3VuLCAyMDEwLTEyLTEyIGF0IDIzOjUzIC0wODAwLCBaaGFuZywgSmVzc2ljYSB3cm90ZToK
-PiBUaWFuLCBLZXZpbiB3cm90ZToKPiA+PiBGcm9tOiBLZSwgTGlwaW5nCj4gPj4gU2VudDogTW9u
-ZGF5LCBEZWNlbWJlciAxMywgMjAxMCAyOjUzIFBNCj4gPj4gCj4gPj4gSGksIEplc3NpY2EgJiBK
-b3NoCj4gPj4gCj4gPj4gV2hlbiB3ZSBhcmUgdHJ5aW5nIHRvIHJ1biBpbnN0YWxsZXIgc2NyaXB0
-IG9uIGxpYW5oYW8ncyB4ODZfNjQKPiA+PiBtYWNoaW5lLCB3ZSBmb3VuZCBpZiB0aGUgaW1hZ2Vz
-IGFyZSBidWlsZCBpbiB0d28gZGF5cywgYWNjb3JkaW5nIHRvCj4gPj4gY3VycmVudCB2ZXJzaW9u
-IG5hbWluZyBjb252ZW50aW9uLCBzb21lIG9mIHRoZSBwYWNrYWdlcyB3aWxsIGJlCj4gPj4gaW5z
-dGFsbGVkIHRvIC9vcHQvcG9reS8wLjkrc25hcHNob3QtMjAxMDEyMTAsIHNvbWUgd2lsbCBiZSB0
-bwo+ID4+IC9vcHQvcG9reS8wLjkrc25hcHNob3QtMjAxMDEyMTAuIAo+ID4+IEl0IHdpbGwgY2F1
-c2UgcHJvYmxlbSBzaW5jZSB3ZSBuZWVkIHRvIGtub3cgdGhlIGV4YWN0IHZlcnNpb24gbnVtYmVy
-Cj4gPj4gYmVmb3JlIGluc3RhbGxpbmcgYW5kIHNlYXJjaGluZyBzb21lIGZpbGVzIChlbnZpcm9u
-bWVudCBzY3JpcHQgZmlsZSwKPiA+PiBldGMpLiBBbmQgdGhlIHNhbWUgcmVsZWFzZXMgb2YgcGFj
-a2FnZXMgYmVsb25nIHRvIGRpZmZlcmVudCB2ZXJzaW9uCj4gPj4gKGp1c3QgdGhlIGJ1aWxkIGRh
-dGUgaXMgbm90IGluIHRoZSBzYW1lIGRheSkgc2VlbXMgdmVyeSBzdHJhbmdlIGFuZAo+ID4+IGhh
-cmQgdG8gaGFuZGxlIGZvciB1cz8gIAo+ID4+IAo+ID4gCj4gPiBJIHRoaW5rIEpvc2ggaGFzIGxh
-aWQgZG93biB0aGUgYmFzZSBmb3IgbXVsdGlwbGUgdmVyc2lvbiBTREsgc3VwcG9ydC4KPiA+IFRo
-ZSBvbmx5IHByb2JsZW0gaXM6IAo+ID4gCj4gPiBTREtQQVRIID0gIi9vcHQvJHtESVNUUk99LyR7
-RElTVFJPX1ZFUlNJT059Igo+ID4gCj4gPiB3aGljaCBvYnZpb3VzbHkgaXMgbm90IHdoYXQgd2Ug
-d2FudC4gV2UgbmVlZCBhIHNpbWlsYXIgdmFyaWFibGUgbGlrZQo+ID4gU0RLX1ZFUlNJT04sIHdo
-aWNoIGlzIGluY3JlbWVudGVkIG9ubHkgd2hlbiBTREsgdGVhbSB0aGlua3MgdGhlcmUncyBhCj4g
-PiBuZWVkIGZvciBhIG5ldyB2ZXJzaW9uIHJlbGVhc2Ugb3IgCj4gPiBlbHNlIGl0IGtlZXBzIHNh
-bWUgaW4gdGhlIGxpZmUgY3ljbGUgb2YgY3VycmVudCB2ZXJzaW9uLgoKSSBkaXNhZ3JlZSwgSSB0
-aGluayBpdCdzIGRlZmluaXRlbHkgdXNlZnVsIHRvIGtub3cgd2hpY2ggZGlzdHJpYnV0aW9uCnZl
-cnNpb24geW91ciBTREsgaXMgYnVpbHQgYWdhaW5zdC4gSW4gZmFjdCBhcyB0aGUgU0RLIGNvbXBv
-bmVudHMgYXJlCmdlbmVyYXRlZCBmcm9tIHRoZSBkaXN0cm8gbWV0YWRhdGEgaW50cm9kdWNpbmcg
-YW4gZXh0cmEgdmFyaWFibGUgc2VlbXMgYQpsaXR0bGUgc3VwZXJmbHVvdXMgYW5kIGp1c3QgaW5j
-cmVhc2VzIHRoZSBudW1iZXIgb2YgdGhpbmdzIHdoaWNoIG5lZWQgdG8KYmUgY2hhbmdlZCBmb3Ig
-YSByZWxlYXNlLgoKQWxzbyBub3RlIHRoZSBEQVRFIGVsZW1lbnQgaXMgb25seSBpbmNsdWRlZCBp
-biB0aGUgRElTVFJPX1ZFUlNJT04gZm9yCmRldmVsb3BtZW50IHNuYXBzaG90cy4KCkNoZWVycywK
-Sm9zaHVhCi0tIApKb3NodWEgTG9jawogICAgICAgIEludGVsIE9wZW4gU291cmNlIFRlY2hub2xv
-Z3kgQ2VudHJlCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KSW50ZWwgQ29ycG9yYXRpb24gKFVLKSBMaW1pdGVkClJl
-Z2lzdGVyZWQgTm8uIDExMzQ5NDUgKEVuZ2xhbmQpClJlZ2lzdGVyZWQgT2ZmaWNlOiBQaXBlcnMg
-V2F5LCBTd2luZG9uIFNOMyAxUkoKVkFUIE5vOiA4NjAgMjE3MyA0NwoKVGhpcyBlLW1haWwgYW5k
-IGFueSBhdHRhY2htZW50cyBtYXkgY29udGFpbiBjb25maWRlbnRpYWwgbWF0ZXJpYWwgZm9yCnRo
-ZSBzb2xlIHVzZSBvZiB0aGUgaW50ZW5kZWQgcmVjaXBpZW50KHMpLiBBbnkgcmV2aWV3IG9yIGRp
-c3RyaWJ1dGlvbgpieSBvdGhlcnMgaXMgc3RyaWN0bHkgcHJvaGliaXRlZC4gSWYgeW91IGFyZSBu
-b3QgdGhlIGludGVuZGVkCnJlY2lwaWVudCwgcGxlYXNlIGNvbnRhY3QgdGhlIHNlbmRlciBhbmQg
-ZGVsZXRlIGFsbCBjb3BpZXMuCg==
+Added package of meta-environment-${TARGET_ARCH} for environment
+files.
+
+Signed-off-by: Lianhao Lu <lianhao.lu@intel.com>
+---
+ meta/classes/toolchain-scripts.bbclass         |   32 ++++++++++
+ meta/recipes-core/meta/meta-environment.bb     |   74 ++++++++++++++++++++++++
+ meta/recipes-core/tasks/task-cross-canadian.bb |    1 +
+ 3 files changed, 107 insertions(+), 0 deletions(-)
+ create mode 100644 meta/recipes-core/meta/meta-environment.bb
+
+diff --git a/meta/classes/toolchain-scripts.bbclass b/meta/classes/toolchain-scripts.bbclass
+index c393d99..4093635 100644
+--- a/meta/classes/toolchain-scripts.bbclass
++++ b/meta/classes/toolchain-scripts.bbclass
+@@ -60,3 +60,35 @@ toolchain_create_tree_env_script () {
+ 	echo 'export POKY_NATIVE_SYSROOT="${STAGING_DIR_NATIVE}"' >> $script
+ 	echo 'export POKY_TARGET_SYSROOT="${STAGING_DIR_TARGET}"' >> $script
+ }
++
++# This function creates an environment-setup-script for use by the ADT installer
++toolchain_create_sdk_env_script_for_installer () {
++	# Create environment setup script
++	script=${SDK_OUTPUT}/${SDKPATH}/environment-setup-${OLD_MULTIMACH_TARGET_SYS}
++	rm -f $script
++	touch $script
++	echo 'export PATH=${SDKPATHNATIVE}${bindir_nativesdk}:${SDKPATHNATIVE}${bindir_nativesdk}/${OLD_MULTIMACH_TARGET_SYS}:$PATH' >> $script
++	echo 'export PKG_CONFIG_SYSROOT_DIR=##SDKTARGETSYSROOT##' >> $script
++	echo 'export PKG_CONFIG_PATH=##SDKTARGETSYSROOT##${libdir}/pkgconfig' >> $script
++	echo 'export CONFIG_SITE=${SDKPATH}/site-config-${OLD_MULTIMACH_TARGET_SYS}' >> $script
++	echo 'export CC=${TARGET_PREFIX}gcc' >> $script
++	echo 'export CXX=${TARGET_PREFIX}g++' >> $script
++	echo 'export GDB=${TARGET_PREFIX}gdb' >> $script
++	echo 'export TARGET_PREFIX=${TARGET_PREFIX}' >> $script
++	echo 'export CONFIGURE_FLAGS="--target=${TARGET_SYS} --host=${TARGET_SYS} --build=${SDK_ARCH}-linux"' >> $script
++	if [ "${TARGET_OS}" = "darwin8" ]; then
++		echo 'export TARGET_CFLAGS="-I##SDKTARGETSYSROOT##${includedir}"' >> $script
++		echo 'export TARGET_LDFLAGS="-L##SDKTARGETSYSROOT##{libdir}"' >> $script
++		# Workaround darwin toolchain sysroot path problems
++		cd ${SDK_OUTPUT}${SDKTARGETSYSROOT}/usr
++		ln -s /usr/local local
++	fi
++	echo 'export CFLAGS="${TARGET_CC_ARCH} --sysroot=##SDKTARGETSYSROOT##"' >> $script
++	echo 'export CXXFLAGS="${TARGET_CC_ARCH} --sysroot=##SDKTARGETSYSROOT## -I##SDKTARGETSYSROOT##${GXX_INCLUDEDIR}"' >> $script
++	echo "# alias opkg='LD_LIBRARY_PATH=${SDKPATHNATIVE}${libdir_nativesdk} ${SDKPATHNATIVE}${bindir_nativesdk}/opkg-cl -f ${SDKPATHNATIVE}/${sysconfdir}/opkg-sdk.conf -o ${SDKPATHNATIVE}'" >> $script
++	echo "# alias opkg-target='LD_LIBRARY_PATH=${SDKPATHNATIVE}${libdir_nativesdk} ${SDKPATHNATIVE}${bindir_nativesdk}/opkg-cl -f ##SDKTARGETSYSROOT##${sysconfdir}/opkg.conf -o ##SDKTARGETSYSROOT##'" >> $script
++	echo 'export POKY_NATIVE_SYSROOT="${SDKPATHNATIVE}"' >> $script
++	echo 'export POKY_TARGET_SYSROOT="##SDKTARGETSYSROOT##"' >> $script
++	echo 'export POKY_DISTRO_VERSION="${DISTRO_VERSION}"' >> $script
++	echo 'export POKY_SDK_VERSION="${SDK_VERSION}"' >> $script
++}
+diff --git a/meta/recipes-core/meta/meta-environment.bb b/meta/recipes-core/meta/meta-environment.bb
+new file mode 100644
+index 0000000..e8d4a80
+--- /dev/null
++++ b/meta/recipes-core/meta/meta-environment.bb
+@@ -0,0 +1,74 @@
++DESCRIPTION = "Packge of environment files for SDK"
++LICENSE = "MIT"
++PR = "r0"
++
++inherit meta toolchain-scripts
++
++TRANSLATED_TARGET_ARCH ?= "${TARGET_ARCH}"
++
++EXCLUDE_FROM_WORLD = "1"
++
++SDK_DIR = "${WORKDIR}/sdk"
++SDK_OUTPUT = "${SDK_DIR}/image"
++SDK_DEPLOY = "${TMPDIR}/deploy/sdk"
++
++SDKTARGETSYSROOT = "${SDKPATH}/sysroots/${TARGET_SYS}"
++
++# Save MULTIMACH_TARGET_SYS
++OLD_MULTIMACH_TARGET_SYS := "${MULTIMACH_TARGET_SYS}"
++MULTIMACH_TARGET_SYS = "${MULTIMACH_ARCH}${SDK_VENDOR}-${SDK_OS}"
++
++# Save PACKAGE_ARCH
++OLD_PACKAGE_ARCH := ${BASE_PACKAGE_ARCH}
++BASE_PACKAGE_ARCH = "${SDK_ARCH}-nativesdk"
++
++#change SSTATE_PKGARCH due to the PACKAGE_ARCH change
++SSTATE_PKGARCH = "${SDK_ARCH}"
++
++CONFIG_SITE = "${@siteinfo_get_files(d)}"
++GXX_INCLUDEDIR := "${includedir}/c++"
++
++do_generate_content[nostamp] = "1"
++do_generate_content() {
++
++    rm -rf ${SDK_OUTPUT}
++    mkdir -p ${SDK_OUTPUT}/${SDKPATH}
++
++    siteconfig=${SDK_OUTPUT}/${SDKPATH}/site-config-${OLD_MULTIMACH_TARGET_SYS}
++    
++    touch $siteconfig
++    for sitefile in ${CONFIG_SITE} ; do
++	cat $sitefile >> $siteconfig
++    done
++
++    toolchain_create_sdk_env_script_for_installer
++
++    # Add version information
++    versionfile=${SDK_OUTPUT}/${SDKPATH}/version-${OLD_MULTIMACH_TARGET_SYS}
++    touch $versionfile
++    echo 'Distro: ${DISTRO}' >> $versionfile
++    echo 'Distro Version: ${DISTRO_VERSION}' >> $versionfile
++    echo 'Metadata Revision: ${METADATA_REVISION}' >> $versionfile
++    echo 'Timestamp: ${DATETIME}' >> $versionfile
++}
++do_generate_content[recrdeptask] = "do_compile"
++addtask generate_content before do_install after do_compile
++
++do_install[nostamp] = "1"
++do_install() {
++    install -d ${D}/${SDKPATH}
++    install -m 0644 -t ${D}/${SDKPATH} ${SDK_OUTPUT}/${SDKPATH}/*
++}
++
++PN = "meta-environment-${TRANSLATED_TARGET_ARCH}"
++PACKAGES = "${PN}"
++FILES_${PN}= " \
++    ${SDKPATH}/* \
++    "
++
++do_fetch[noexec] = "1"
++do_unpack[noexec] = "1"
++do_patch[noexec] = "1"
++do_configure[noexec] = "1"
++do_compile[noexec] = "1"
++do_populage_sysroot[noexec] = "1"
+diff --git a/meta/recipes-core/tasks/task-cross-canadian.bb b/meta/recipes-core/tasks/task-cross-canadian.bb
+index 7170faa..64e53fe 100644
+--- a/meta/recipes-core/tasks/task-cross-canadian.bb
++++ b/meta/recipes-core/tasks/task-cross-canadian.bb
+@@ -12,5 +12,6 @@ RDEPENDS_${PN} = "\
+     binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} \
+     gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} \
+     gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} \
++    meta-environment-${TRANSLATED_TARGET_ARCH} \
+     "
+ 
+-- 
+1.7.0.4
 
 
