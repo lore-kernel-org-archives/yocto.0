@@ -1,36 +1,34 @@
-Return-Path: <liping.ke@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id CC8464C80048
-	for <yocto@yoctoproject.org>; Sun, 12 Dec 2010 19:43:27 -0600 (CST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 12 Dec 2010 17:43:26 -0800
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B14554C80050;
+	Sun, 12 Dec 2010 20:11:24 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 12 Dec 2010 18:11:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,333,1288594800"; d="scan'208";a="635656978"
-Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
-	by fmsmga002.fm.intel.com with ESMTP; 12 Dec 2010 17:43:25 -0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Mon, 13 Dec 2010 09:43:13 +0800
+X-IronPort-AV: E=Sophos;i="4.59,333,1288594800"; d="scan'208";a="583063354"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by orsmga002.jf.intel.com with ESMTP; 12 Dec 2010 18:11:23 -0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Mon, 13 Dec 2010 10:10:34 +0800
 Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Mon, 13 Dec 2010 09:43:12 +0800
-From: "Ke, Liping" <liping.ke@intel.com>
-To: Richard Purdie <rpurdie@linux.intel.com>, "Garman, Scott A"
-	<scott.a.garman@intel.com>
-Date: Mon, 13 Dec 2010 09:43:13 +0800
-Thread-Topic: Add extra parameters for qemu script
-Thread-Index: AcuYbxKVljYqTyAUTgywgIUPpgT+iwB919Qw
-Message-ID: <789F9655DD1B8F43B48D77C5D3065973312DC52B@shsmsx501.ccr.corp.intel.com>
-References: <789F9655DD1B8F43B48D77C5D30659733104D391@shsmsx501.ccr.corp.intel.com>
-	<4D013F9C.2010404@intel.com> <1291988079.1554.939.camel@rex>
-In-Reply-To: <1291988079.1554.939.camel@rex>
-Accept-Language: zh-CN, en-US
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Mon, 13 Dec 2010 10:10:33 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: Saul Wold <sgw@linux.intel.com>, "poky@yoctoproject.org"
+	<poky@yoctoproject.org>, Yocto Project Discussion <yocto@yoctoproject.org>
+Date: Mon, 13 Dec 2010 10:10:32 +0800
+Thread-Topic: [poky] Milestone 2 Stabilization Branch Created (Resend)
+Thread-Index: AcuZa8ltkuCJO3iORSyNN+d7uJxSNwA/s47Q
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A317D6F75@shsmsx501.ccr.corp.intel.com>
+References: <4D03D481.4050104@linux.intel.com>
+In-Reply-To: <4D03D481.4050104@linux.intel.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN, en-US
+acceptlanguage: en-US
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Add extra parameters for qemu script
+Subject: Re: [poky] Milestone 2 Stabilization Branch Created (Resend)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,24 +40,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Dec 2010 01:43:28 -0000
+X-List-Received-Date: Mon, 13 Dec 2010 02:11:25 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-PiBJIHRlbmQgdG8gZmVlbCB0aGF0IHRoaXMgYXBwcm9hY2ggaXMgbW9yZSBmbGV4aWJsZSwgYW5k
-IHNjYWxlcyBiZXR0ZXINCj4gPiB0aGFuIGhhdmluZyB0byBzdXBwb3J0IGVhY2ggYW5kIGV2ZXJ5
-IHFlbXUgb3B0aW9uIHdpdGggb3VyIG93biBzY3JpcHQNCj4gPiBzeW50YXguIElzIHRoaXMgYWNj
-ZXB0YWJsZSwgb3Igc2hvdWxkIHdlIGNvbnRpbnVlIHRvIHN1cHBvcnQgb3VyIG93bg0KPiA+IGN1
-c3RvbSBvcHRpb25zIGluIGFkZGl0aW9uIHRvIENyaXBpbmcncyBuZXcgYXBwcm9hY2g/DQo+IA0K
-PiBNeSBndXQgZmVlbGluZyBpcyB0aGF0IGhhdmluZyBzb21lIHNpbXBsaWZpZWQgd2F5IHRvIHRy
-aWdnZXIgcG9zc2libHkNCj4gY29tcGxleCBvcHRpb24gY29tYmluYXRpb25zIGlzIHN0aWxsIGRl
-c2lyYWJsZSBidXQgYWRkaW5nIGEgd2F5IHRvIHBhc3MNCj4gYWRkaXRpb25hbCBjdXN0b20gY29t
-bWFuZGxpbmUgaXMgZXF1YWxseSBnb29kLiBUaGlzIGdpdmVzIHVzIHRoZQ0KPiBtYXhpbXVtDQo+
-IGZsZXhpYmlsaXR5IG1vdmluZyBmb3J3YXJkcyBidXQga2VlcHMgdGhlIHNjcmlwdCBlYXN5IHRv
-IHVzZT8NCj4gDQoNCkhpLCBTY290dA0KDQpTbyB0aGUgY29uY2x1c2lvbiBpcyB0aGF0IEkgc2hv
-dWxkIGtlZXAgdGhlIG9sZCAoc2VyaWFsIG5vZ3JhcGhpYykgb3B0aW9uIHdoaWxlDQphZGRpbmcg
-dGhlIG5ldyAiPC1YWFggLVhYWCAtWFhYPiIgb3B0aW9uPw0KT0suIEkgd2lsbCBzZW5kIG91dCB0
-aGUgbW9kaWZpZWQgcGF0Y2ggdG8geW91IGZvciByZXZpZXcgbGF0ZXIuDQoNClRoYW5rcyYgUmVn
-YXJkcywNCmNyaXBpbmcNCg0KDQo+IENoZWVycywNCj4gDQo+IFJpY2hhcmQNCg0K
+> [Resend with correct mailing lists]
+>=20
+>=20
+> Yocto / Poky Folks:
+>=20
+> Thanks to everyone's hard work, we are currently on working getting
+> the first build of M2 started and available for QA testing on Monday.
+>=20
+> I have pushed out the lastest commit that was pending in the
+> distro/master area to both master and create a builds/milestone branch
+> which is where bug fixes for M2 will go.
+>=20
+> There is currently an issue with the PPC Kernel build on this branch
+> and that is being worked, this may impact getting a PPC build available b=
+y Monday.
+>=20
+> For the next week as we stabilize M2, please ensure that any patch or
+> pull requests indicate that this is for M2 or not.  By default all
+> commits will go to master regardless.
+>=20
+
+Hi Saul,
+Nightly build is near finished now. PPC and some non-x86 real hardware targ=
+et building failed. I begin downloading them now and will start QA testing.
+
+> Thanks
+>      Sau!
+> Saul Wold
+> Yocto Component Wrangler @ Intel
+> Yocto Project / Poky Build System
+>=20
+> _______________________________________________
+> poky mailing list
+> poky@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/poky
+
+Best Regards,
+Jiajun
+
 
