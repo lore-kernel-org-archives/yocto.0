@@ -1,30 +1,31 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 2FD864C80BCF;
-	Tue, 14 Dec 2010 10:29:49 -0600 (CST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 14 Dec 2010 08:29:38 -0800
+Return-Path: <scott.a.garman@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id CDA604C80FA4
+	for <yocto@yoctoproject.org>; Tue, 14 Dec 2010 16:27:54 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 14 Dec 2010 14:27:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,342,1288594800"; d="scan'208";a="868085744"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga001.fm.intel.com with ESMTP; 14 Dec 2010 08:29:38 -0800
-Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
-	orsmsx603.amr.corp.intel.com ([10.22.226.49]) with mapi;
-	Tue, 14 Dec 2010 08:29:38 -0800
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: "yocto-announce@yoctoproject.org" <yocto-announce@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "poky@yoctoproject.org"
-	<poky@yoctoproject.org>
-Date: Tue, 14 Dec 2010 08:29:36 -0800
-Thread-Topic: Announcing new resources: demo video and Getting Started
-Thread-Index: AcubrBkkJmVXu/+STE+XG/6ylEsF4Q==
-Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25C0A48707@orsmsx501.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+X-IronPort-AV: E=Sophos;i="4.59,344,1288594800"; d="scan'208";a="361709627"
+Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
+	by azsmga001.ch.intel.com with ESMTP; 14 Dec 2010 14:27:54 -0800
+Received: from [10.255.13.70] (10.255.13.70) by rrsmsx603.amr.corp.intel.com
+	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
+	Tue, 14 Dec 2010 15:27:53 -0700
+Message-ID: <4D07EF67.5090107@intel.com>
+Date: Tue, 14 Dec 2010 14:27:51 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7
 MIME-Version: 1.0
-Subject: Announcing new resources: demo video and Getting Started
+To: "Ke, Liping" <liping.ke@intel.com>
+References: <789F9655DD1B8F43B48D77C5D30659733104D391@shsmsx501.ccr.corp.intel.com>	
+	<4D013F9C.2010404@intel.com> <1291988079.1554.939.camel@rex>
+	<789F9655DD1B8F43B48D77C5D3065973312DC52B@shsmsx501.ccr.corp.intel.com>
+	<4D0581FC.2030600@intel.com>
+	<789F9655DD1B8F43B48D77C5D3065973312DCC45@shsmsx501.ccr.corp.intel.com>
+In-Reply-To: <789F9655DD1B8F43B48D77C5D3065973312DCC45@shsmsx501.ccr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Add extra parameters for qemu script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,39 +37,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Dec 2010 16:29:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 14 Dec 2010 22:27:55 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-We are pleased to announce some new resources on the Yocto Project.
+On 12/13/2010 07:41 PM, Ke, Liping wrote:
+> Hi, Scott
+>
+> I have updated the patch and tested with poky-tree mode (arm, x86).
+> Since kvm and serial needs special processing, so for avoiding repeating the code, I will exclude serial and kvm in permitted extra-option, user need to use (serial, kvm) it they want to use it.
+>
+> For "<-m XXX>" options, I will keep the original logic. If it's arm, the>  128M memory will be forced back to 128M.
+>
+> It's the high-level user's responsibility to make sure other params are valid.
+>
+> Any problem, just let me know.
+>
+> Thanks a lot for your help!
 
-When you build a custom Linux distribution for your device using the Yocto =
-Project, you can also build an Application Development Toolkit (ADT) which =
-corresponds to that distribution. The toolkit also comes with an Eclipse ID=
-E plug-in.
+Thanks for the patch, Criping.
 
-Sometimes it helps to have a little demo of how the ADT works to get you st=
-arted
+This patch includes the addition of a do_configure_prepend step for the 
+libxfixes recipe? That looks like some debugging info crept in that may 
+not have been intended.
 
-Jessica Zhang, the ADT maintainer did a five minute demo screen cast of how=
- to get the Eclipse plug-in working.  You can view this video at http://www=
-.youtube.com/watch?v=3D3ZlOu-gLsh0 and there is a link in the Resources sec=
-tion of the Yocto Project website (http://www.yoctoproject.org/resources) a=
-long with other useful resources. Thanks Jessica for contributing this!
+In the usage() function, please use $MYNAME instead of $0 for 
+consistency - see the other help echo lines.
 
-We also made some enhancements to our "Getting Started" page, to make a cou=
-ple of things clearer:
+The rest of the patch looks ok. Please respin one last time with the 
+above minor changes and I'll accept it.
 
-* We now have a "contact us" link to send mail to the project organizers wi=
-thout using the public list.
+Thanks,
 
-* We also added a bunch of ideas on this page of how to contribute to the p=
-roject. We hope you find it useful.
-
-You can find this on http://www.yoctoproject.org/getting-started
-
-Thank you again for your contributions to the project. Code is of course al=
-ways really welcome as a contribution, and we also welcome informational pi=
-eces like Jessica's video.
+Scott
+-- 
+Scott Garman
+Embedded Linux Distro Engineer - Yocto Project
 
