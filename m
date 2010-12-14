@@ -1,40 +1,38 @@
 Return-Path: <liping.ke@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B22B14C811FC
-	for <yocto@yoctoproject.org>; Mon, 13 Dec 2010 21:41:22 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 13 Dec 2010 19:41:22 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4683B4C80048
+	for <yocto@yoctoproject.org>; Tue, 14 Dec 2010 00:40:22 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 13 Dec 2010 22:40:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,340,1288594800"; d="scan'208";a="686856588"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by orsmga001.jf.intel.com with ESMTP; 13 Dec 2010 19:41:15 -0800
+X-IronPort-AV: E=Sophos;i="4.59,340,1288594800"; d="scan'208";a="583495521"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by orsmga002.jf.intel.com with ESMTP; 13 Dec 2010 22:40:21 -0800
 Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Tue, 14 Dec 2010 11:41:14 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Tue, 14 Dec 2010 14:40:18 +0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
 	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Tue, 14 Dec 2010 11:41:14 +0800
+	(TLS) id 8.2.254.0; Tue, 14 Dec 2010 14:40:18 +0800
 Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Tue, 14 Dec 2010 11:41:13 +0800
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Tue, 14 Dec 2010 14:40:17 +0800
 From: "Ke, Liping" <liping.ke@intel.com>
-To: "Garman, Scott A" <scott.a.garman@intel.com>
-Date: Tue, 14 Dec 2010 11:41:18 +0800
-Thread-Topic: Add extra parameters for qemu script
-Thread-Index: Acuaa8PodTNGLNd8QJWO8UA9iHeSRAA08C5g
-Message-ID: <789F9655DD1B8F43B48D77C5D3065973312DCC45@shsmsx501.ccr.corp.intel.com>
-References: <789F9655DD1B8F43B48D77C5D30659733104D391@shsmsx501.ccr.corp.intel.com>
-	<4D013F9C.2010404@intel.com> <1291988079.1554.939.camel@rex>
-	<789F9655DD1B8F43B48D77C5D3065973312DC52B@shsmsx501.ccr.corp.intel.com>
-	<4D0581FC.2030600@intel.com>
-In-Reply-To: <4D0581FC.2030600@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Date: Tue, 14 Dec 2010 14:40:16 +0800
+Thread-Topic: Try latest yocto adt script installer 
+Thread-Index: Acual4vOqTvhX8f5Tsm9er0UcNM8oAAfzMiAAA+QidA=
+Message-ID: <789F9655DD1B8F43B48D77C5D3065973313A69C0@shsmsx501.ccr.corp.intel.com>
+References: <789F9655DD1B8F43B48D77C5D3065973312DC806@shsmsx501.ccr.corp.intel.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA950465CBC4@orsmsx504.amr.corp.intel.com>
+In-Reply-To: <9AFCD584B0B67B48AE8D8585BE30BA950465CBC4@orsmsx504.amr.corp.intel.com>
 Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: yes
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Add extra parameters for qemu script
+Subject: Re: Try latest yocto adt script installer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,126 +44,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Dec 2010 03:41:23 -0000
-X-Groupsio-MsgNum: 580
+X-List-Received-Date: Tue, 14 Dec 2010 06:40:22 -0000
 Content-Language: en-US
-Content-Type: multipart/mixed;
-	boundary="_002_789F9655DD1B8F43B48D77C5D3065973312DCC45shsmsx501ccrcor_"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---_002_789F9655DD1B8F43B48D77C5D3065973312DCC45shsmsx501ccrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+> Why we must run the script under the adt-installer directory? Actually
+> I
+> tried to run under $HOME or / but specifying the full path to
+> yocto_installer, and got the error:
+> [ADT_INST] script file util is not  found!
 
-SGksIFNjb3R0DQoNCkkgaGF2ZSB1cGRhdGVkIHRoZSBwYXRjaCBhbmQgdGVzdGVkIHdpdGggcG9r
-eS10cmVlIG1vZGUgKGFybSwgeDg2KS4NClNpbmNlIGt2bSBhbmQgc2VyaWFsIG5lZWRzIHNwZWNp
-YWwgcHJvY2Vzc2luZywgc28gZm9yIGF2b2lkaW5nIHJlcGVhdGluZyB0aGUgY29kZSwgSSB3aWxs
-IGV4Y2x1ZGUgc2VyaWFsIGFuZCBrdm0gaW4gcGVybWl0dGVkIGV4dHJhLW9wdGlvbiwgdXNlciBu
-ZWVkIHRvIHVzZSAoc2VyaWFsLCBrdm0pIGl0IHRoZXkgd2FudCB0byB1c2UgaXQuIA0KDQpGb3Ig
-IjwtbSBYWFg+IiBvcHRpb25zLCBJIHdpbGwga2VlcCB0aGUgb3JpZ2luYWwgbG9naWMuIElmIGl0
-J3MgYXJtLCB0aGUgPiAxMjhNIG1lbW9yeSB3aWxsIGJlIGZvcmNlZCBiYWNrIHRvIDEyOE0uDQoN
-Ckl0J3MgdGhlIGhpZ2gtbGV2ZWwgdXNlcidzIHJlc3BvbnNpYmlsaXR5IHRvIG1ha2Ugc3VyZSBv
-dGhlciBwYXJhbXMgYXJlIHZhbGlkLg0KDQpBbnkgcHJvYmxlbSwganVzdCBsZXQgbWUga25vdy4N
-Cg0KVGhhbmtzIGEgbG90IGZvciB5b3VyIGhlbHAhDQoNCmNyaXBpbmcNCg0KPiAtLS0tLU9yaWdp
-bmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBHYXJtYW4sIFNjb3R0IEENCj4gU2VudDogTW9uZGF5
-LCBEZWNlbWJlciAxMywgMjAxMCAxMDoxNiBBTQ0KPiBUbzogS2UsIExpcGluZw0KPiBDYzogUmlj
-aGFyZCBQdXJkaWU7IFpoYW5nLCBKZXNzaWNhOyBMdSwgTGlhbmhhbzsgQ3VpLCBEZXh1YW47DQo+
-IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogUmU6IEFkZCBleHRyYSBwYXJhbWV0
-ZXJzIGZvciBxZW11IHNjcmlwdA0KPiANCj4gT24gMTIvMTIvMjAxMCAwNTo0MyBQTSwgS2UsIExp
-cGluZyB3cm90ZToNCj4gPj4gSSB0ZW5kIHRvIGZlZWwgdGhhdCB0aGlzIGFwcHJvYWNoIGlzIG1v
-cmUgZmxleGlibGUsIGFuZCBzY2FsZXMNCj4gYmV0dGVyDQo+ID4+PiB0aGFuIGhhdmluZyB0byBz
-dXBwb3J0IGVhY2ggYW5kIGV2ZXJ5IHFlbXUgb3B0aW9uIHdpdGggb3VyIG93bg0KPiBzY3JpcHQN
-Cj4gPj4+IHN5bnRheC4gSXMgdGhpcyBhY2NlcHRhYmxlLCBvciBzaG91bGQgd2UgY29udGludWUg
-dG8gc3VwcG9ydCBvdXINCj4gb3duDQo+ID4+PiBjdXN0b20gb3B0aW9ucyBpbiBhZGRpdGlvbiB0
-byBDcmlwaW5nJ3MgbmV3IGFwcHJvYWNoPw0KPiA+Pg0KPiA+PiBNeSBndXQgZmVlbGluZyBpcyB0
-aGF0IGhhdmluZyBzb21lIHNpbXBsaWZpZWQgd2F5IHRvIHRyaWdnZXINCj4gcG9zc2libHkNCj4g
-Pj4gY29tcGxleCBvcHRpb24gY29tYmluYXRpb25zIGlzIHN0aWxsIGRlc2lyYWJsZSBidXQgYWRk
-aW5nIGEgd2F5IHRvDQo+IHBhc3MNCj4gPj4gYWRkaXRpb25hbCBjdXN0b20gY29tbWFuZGxpbmUg
-aXMgZXF1YWxseSBnb29kLiBUaGlzIGdpdmVzIHVzIHRoZQ0KPiA+PiBtYXhpbXVtDQo+ID4+IGZs
-ZXhpYmlsaXR5IG1vdmluZyBmb3J3YXJkcyBidXQga2VlcHMgdGhlIHNjcmlwdCBlYXN5IHRvIHVz
-ZT8NCj4gPj4NCj4gPg0KPiA+IEhpLCBTY290dA0KPiA+DQo+ID4gU28gdGhlIGNvbmNsdXNpb24g
-aXMgdGhhdCBJIHNob3VsZCBrZWVwIHRoZSBvbGQgKHNlcmlhbCBub2dyYXBoaWMpDQo+IG9wdGlv
-biB3aGlsZQ0KPiA+IGFkZGluZyB0aGUgbmV3ICI8LVhYWCAtWFhYIC1YWFg+IiBvcHRpb24/DQo+
-ID4gT0suIEkgd2lsbCBzZW5kIG91dCB0aGUgbW9kaWZpZWQgcGF0Y2ggdG8geW91IGZvciByZXZp
-ZXcgbGF0ZXIuDQo+IA0KPiBZZXMsIHBsZWFzZSByZXNwaW4gdGhlIHBhdGNoIHdpdGggdGhvc2Ug
-Y2hhbmdlcy4NCj4gDQo+IFRoYW5rcyENCj4gDQo+IFNjb3R0DQo+IA0KPiAtLQ0KPiBTY290dCBH
-YXJtYW4NCj4gRW1iZWRkZWQgTGludXggRGlzdHJvIEVuZ2luZWVyIC0gWW9jdG8gUHJvamVjdA0K
+Oh, it's caused by the include grammar. I need to check how to solve the
+relative path problem with include grammar in shell script. It should not
+be difficult.
 
---_002_789F9655DD1B8F43B48D77C5D3065973312DCC45shsmsx501ccrcor_
-Content-Type: application/octet-stream; name="qemu_extra_option.patch"
-Content-Description: qemu_extra_option.patch
-Content-Disposition: attachment; filename="qemu_extra_option.patch";
-	size=3917; creation-date="Tue, 14 Dec 2010 11:31:14 GMT";
-	modification-date="Wed, 15 Dec 2010 03:35:11 GMT"
-Content-Transfer-Encoding: base64
+>=20
+> #############################################
+> # Meet error when installing Yocto ADT.
+> #############################################
+>=20
+> 2 comments here:
+> 1. we should be able to allow user run the yocto_installer script from
+> any
+> location and it should be able to locate the needed surporting files or
+> scripts
+> 2. As a convention and to be consistent, I'd suggest change the above
+> error
+> message as "[ADT_INST] Error: Script file util is not found!"  There're
+> several error messages in the scripts has the Error message format that
+> I'm
+> talking about here, which you can look up as a reference.
 
-ZGlmZiAtLWdpdCBhL21ldGEvcmVjaXBlcy1ncmFwaGljcy94b3JnLWxpYi9saWJ4Zml4ZXNfNC4w
-LjUuYmIgYi9tZXRhL3JlY2lwZXMtZ3JhcGhpY3MveG9yZy1saWIvbGlieGZpeGVzXzQuMC41LmJi
-CmluZGV4IDhlY2YxZjguLjI0ZGE2OWQgMTAwNjQ0Ci0tLSBhL21ldGEvcmVjaXBlcy1ncmFwaGlj
-cy94b3JnLWxpYi9saWJ4Zml4ZXNfNC4wLjUuYmIKKysrIGIvbWV0YS9yZWNpcGVzLWdyYXBoaWNz
-L3hvcmctbGliL2xpYnhmaXhlc180LjAuNS5iYgpAQCAtMTYsMyArMTYsNyBAQCBCQkNMQVNTRVhU
-RU5EID0gIm5hdGl2ZXNkayIKIAogU1JDX1VSSVttZDVzdW1dID0gIjFiNGI4Mzg2YmQ1ZDE3NTFi
-MmM3MTc3MjIzYWQ0NjI5IgogU1JDX1VSSVtzaGEyNTZzdW1dID0gIjJlNmNkMDIwNDYwZTRlZjVk
-NWExZDliNWQyMTE0M2U5ZjVlNTgwMDM2YTc5YzdkZTI2YWU1MzlkN2JjYjhkNzQiCisKK2RvX2Nv
-bmZpZ3VyZV9wcmVwZW5kKCkgeworCWVjaG8gIiR7UEtHX0NPTkZJR19QQVRIfSIKK30KZGlmZiAt
-LWdpdCBhL3NjcmlwdHMvcG9reS1xZW11IGIvc2NyaXB0cy9wb2t5LXFlbXUKaW5kZXggYmZlZWZj
-Ny4uZGE1NjUzMiAxMDA3NTUKLS0tIGEvc2NyaXB0cy9wb2t5LXFlbXUKKysrIGIvc2NyaXB0cy9w
-b2t5LXFlbXUKQEAgLTI5LDExICsyOSwxNCBAQCB1c2FnZSgpIHsKICAgICBlY2hvICIgIEFkZGl0
-aW9uYWwgUUVNVSBjb21tYW5kLWxpbmUgb3B0aW9ucyBjYW4gYmUgcGFzc2VkIHdpdGg6IgogICAg
-IGVjaG8gIiAgICBub2dyYXBoaWMgLSBkaXNhYmxlcyB2aWRlbyBjb25zb2xlIgogICAgIGVjaG8g
-IiAgICBzZXJpYWwgLSBlbmFibGVzIGEgc2VyaWFsIGNvbnNvbGUgb24gL2Rldi90dHlTMCIKKyAg
-ICBlY2hvICIgICAga3ZtIC0gZW5hYmxlcyBrdm0iCisgICAgZWNobyAiICAgIFwiPGV4dHJhLXFl
-bXUtb3B0aW9ucz5cIiAtIGVuYWJsZXMgZXh0cmEgcWVtdSBvcHRpb25zLCBleGNsdWRpbmcgc2Vy
-aWFsIGFuZCBrdm0iCiAgICAgZWNobyAiIgogICAgIGVjaG8gIkV4YW1wbGVzOiIKICAgICBlY2hv
-ICIgICRNWU5BTUUgcWVtdWFybSIKICAgICBlY2hvICIgICRNWU5BTUUgcWVtdXg4Ni02NCBwb2t5
-LWltYWdlLXNhdG8gZXh0MyIKICAgICBlY2hvICIgICRNWU5BTUUgcGF0aC90by9iekltYWdlLXFl
-bXV4ODYuYmluIHBhdGgvdG8vbmZzcm9vdGRpci8gc2VyaWFsIgorICAgIGVjaG8gIiAgJDAgcWVt
-dXg4NiBcIjwtbSAyNTY+XCIiCiAgICAgZXhpdCAxCiB9CiAKQEAgLTQ3LDYgKzUwLDcgQEAgRlNU
-WVBFPSIiCiBST09URlM9IiIKIExBWllfUk9PVEZTPSIiCiBTQ1JJUFRfUUVNVV9PUFQ9IiIKK1ND
-UklQVF9RRU1VX0VYVFJBX09QVD0iIgogU0NSSVBUX0tFUk5FTF9PUFQ9IiIKIAogVE1QRElSPSIi
-CkBAIC0xMjksNiArMTMzLDE2IEBAIHdoaWxlIFsgJGkgLWxlICQjIF07IGRvCiAgICAgICAgICAg
-ICBLVk1fRU5BQkxFRD0ieWVzIgogICAgICAgICAgICAgS1ZNX0NBUEFCTEU9YGdyZXAgJ3ZteFx8
-c214JyAvcHJvYy9jcHVpbmZvYAogICAgICAgICAgICAgOzsKKyAgICAgICAgXDwqXD4pCisgICAg
-ICAgICAgICBTQ1JJUFRfUUVNVV9FWFRSQV9PUFQ9JGFyZyAKKyAgICAgICAgICAgIHNlcmlhbF9v
-cHRpb249YGV4cHIgIiRTQ1JJUFRfUUVNVV9FWFRSQV9PUFQiIDogJy4qXCgtc2VyaWFsXCknYAor
-ICAgICAgICAgICAga3ZtX29wdGlvbj1gZXhwciAiJFNDUklQVF9RRU1VX0VYVFJBX09QVCIgOiAn
-LipcKC1lbmFibGUta3ZtXCknYAorICAgICAgICAgICAgZWNobyAiJGt2bV9vcHRpb24iCisgICAg
-ICAgICAgICBpZiBbWyAhIC16ICIkc2VyaWFsX29wdGlvbiIgfHwgISAteiAiJGt2bV9vcHRpb24i
-IF1dOyB0aGVuCisgICAgICAgICAgICAgICAgZWNobyAiRXJyb3I6IFBsZWFzZSB1c2Ugc2VyaWFs
-IG9yIGt2bSBwYXJhbXMgaW5zdGVhZCEiCisgICAgICAgICAgICAgICAgdXNhZ2UKKyAgICAgICAg
-ICAgIGZpCisgICAgICAgICAgICA7OwogICAgICAgICAqKQogICAgICAgICAgICAgIyBBIGRpcmVj
-dG9yeSBuYW1lIGlzIGFuIG5mcyByb290ZnMKICAgICAgICAgICAgIGlmIFsgLWQgIiRhcmciIF07
-IHRoZW4KZGlmZiAtLWdpdCBhL3NjcmlwdHMvcG9reS1xZW11LWludGVybmFsIGIvc2NyaXB0cy9w
-b2t5LXFlbXUtaW50ZXJuYWwKaW5kZXggY2EyNTExYS4uNWU3NDE2OSAxMDA3NTUKLS0tIGEvc2Ny
-aXB0cy9wb2t5LXFlbXUtaW50ZXJuYWwKKysrIGIvc2NyaXB0cy9wb2t5LXFlbXUtaW50ZXJuYWwK
-QEAgLTI5LDYgKzI5LDIzIEBACiAjICAgUk9PVEZTIC0gdGhlIGRpc2sgaW1hZ2UgZmlsZSB0byB1
-c2UKICMKIAorCittZW1fc2l6ZT0tMQorCisjR2V0IHJpZCBvZiA8PiBhbmQgZ2V0IHRoZSBjb250
-ZW50cyBvZiBleHRyYSBxZW11IHJ1bm5pbmcgcGFyYW1zCitTQ1JJUFRfUUVNVV9FWFRSQV9PUFQ9
-YGVjaG8gJFNDUklQVF9RRU1VX0VYVFJBX09QVCB8IHNlZCAtZSAncy88Ly8nIC1lICdzLz4vLydg
-CisjaWYgdXNlciBzZXQgcWVtdSBtZW1vcnksIGVnOiAtbSAyNTYgaW4gcWVtdSBleHRyYSBwYXJh
-bXMsIHdlIG5lZWQgdG8gZG8gc29tZSAKKyMgdmFsaWRhdGlvbiBjaGVjaworbWVtX3NldD1gZXhw
-ciAiJFNDUklQVF9RRU1VX0VYVFJBX09QVCIgOiAnLipcKC1tW1s6c3BhY2U6XV0gKlswLTldKlwp
-J2AKK2lmIFsgISAteiAiJG1lbV9zZXQiIF0gOyB0aGVuCisjR2V0IG1lbW9yeSBzZXR0aW5nIHNp
-emUgZnJvbSB1c2VyIGlucHV0CisgIG1lbV9zaXplPWBlY2hvICRtZW1fc2V0IHwgc2VkICdzLy1t
-W1s6c3BhY2U6XV0gKi8vJ2AKK2ZpCisKK2lmIFsgJG1lbV9zaXplIC1ndCAwIF07IHRoZW4KKyAg
-UUVNVV9NRU1PUlk9IiRtZW1fc2l6ZSJNCitmaQorCiBpZiBbIC16ICIkUUVNVV9NRU1PUlkiIF07
-IHRoZW4KICAgICBjYXNlICIkTUFDSElORSIgaW4KICAgICAgICAgInFlbXV4ODYiKQpAQCAtNjAs
-NiArNzcsNyBAQCBpZiBbICIkTUFDSElORSIgPSAicWVtdWFybSIgXTsgdGhlbgogICAgICAgICBl
-Y2hvICJXQVJOSU5HOiBxZW11YXJtIGRvZXMgbm90IHN1cHBvcnQgPiAxMjhNIG9mIFJBTS4iCiAg
-ICAgICAgIGVjaG8gIioqKiBDaGFuZ2luZyBRRU1VX01FTU9SWSB0byBkZWZhdWx0IG9mIDEyOE0g
-KioqIgogICAgICAgICBRRU1VX01FTU9SWT0iMTI4TSIKKyAgICAgICAgU0NSSVBUX1FFTVVfRVhU
-UkFfT1BUPWBlY2hvICRTQ1JJUFRfUUVNVV9FWFRSQV9PUFQgfCBzZWQgLWUgInMvJG1lbV9zZXQv
-LW0gMTI4LyIgYAogICAgIGZpCiBmaQogCkBAIC00MjcsOCArNDQ1LDggQEAgZmkKIAogZWNobyAi
-UnVubmluZyAkUUVNVS4uLiIKICMgLW5vLXJlYm9vdCBpcyBhIG1hbmRhdG9yeSBvcHRpb24gLSBz
-ZWUgYnVnICMxMDAKLWVjaG8gJFFFTVVCSU4gLWtlcm5lbCAkS0VSTkVMICRRRU1VT1BUSU9OUyAk
-U0VSSUFMT1BUUyAtbm8tcmVib290ICRTQ1JJUFRfUUVNVV9DTURMSU5FX09QVCAtLWFwcGVuZCAn
-IickS0VSTkNNRExJTkUgJFNDUklQVF9LRVJORUxfT1BUJyInCi0kUUVNVUJJTiAta2VybmVsICRL
-RVJORUwgJFFFTVVPUFRJT05TICRTRVJJQUxPUFRTIC1uby1yZWJvb3QgJFNDUklQVF9RRU1VX09Q
-VCAtLWFwcGVuZCAiJEtFUk5DTURMSU5FICRTQ1JJUFRfS0VSTkVMX09QVCIgfHwgL2Jpbi90cnVl
-CitlY2hvICRRRU1VQklOIC1rZXJuZWwgJEtFUk5FTCAkUUVNVU9QVElPTlMgJFNFUklBTE9QVFMg
-LW5vLXJlYm9vdCAkU0NSSVBUX1FFTVVfT1BUICRTQ1JJUFRfUUVNVV9FWFRSQV9PUFQgLS1hcHBl
-bmQgJyInJEtFUk5DTURMSU5FICRTQ1JJUFRfS0VSTkVMX09QVCciJworJFFFTVVCSU4gLWtlcm5l
-bCAkS0VSTkVMICRRRU1VT1BUSU9OUyAkU0VSSUFMT1BUUyAtbm8tcmVib290ICRTQ1JJUFRfUUVN
-VV9PUFQgJFNDUklQVF9RRU1VX0VYVFJBX09QVCAtLWFwcGVuZCAiJEtFUk5DTURMSU5FICRTQ1JJ
-UFRfS0VSTkVMX09QVCIgfHwgL2Jpbi90cnVlCiAKIGNsZWFudXAKIAo=
+No problem, I will unify all error messages.
+>=20
+> > 3. Build log are located @ adt_installer/yoctoadt_installer.log
+> > 4. User config ( install which targets) are defined/changed in
+> > Yocto_installer.conf. Note: now only i586 qemu rootfs are available
+> > in repository.
+> >
+> > Any problem, just let me know.
+>=20
+> Just by playing with it, I change YOCTOADT_TARGETS=3D"ppc" in
+> yocto_installer.conf. And the prompt that I got is as follows:
+>=20
+> [ADT_INST] selected archs defined in Host Area Item: YOCTOADT_TARGETS
+> is not
+> valid!
+> Error: Terminate installation process due to errors!
+It's expected behavior. Since powerpcc is the correct name.
 
---_002_789F9655DD1B8F43B48D77C5D3065973312DCC45shsmsx501ccrcor_--
+
+> 3. It would be nice to point out Host Area resides in which file, and
+> also
+> tells user what are the valid entries
+
+
+> 4. It's not consistent when existing the program when running into
+> errors,
+> see the above and here just "Error: "...
+>=20
+> During the Make opkg..., there're bunch of warning messages can we
+> redirect
+> them to the log file?
+> Also, it seems the log file contents is less than what shows on the
+> screen
+> (STDOUT), which I think should be the reverse case, people should be
+> able to
+> trace more info in the log file? E.g. during downloading rootfs, all
+> the
+> info where it download from and saved to where are showed on the screen
+> but
+> missing in the log file...
+
+Log file problem is solved totally by replacing " >> " with "&>>" pointed b=
+y Lianhao.=20
+
+>=20
+> Toward the end of the installation, I run into:
+>=20
+> [ADT_INST] Re-generate environment script file according to rootfs
+> location.
+> Ls: cannot access /opt/poky/0.9+snapshot-20101211/environment-setup-
+> i586*:
+> No such file or directory
+> Sed: no input files
+
+Missing guard will be added here.=20
+I will send the updated scripts which will address most of the problem.
+
+
+Btw: I need someone review the script totally. I am afraid some of the scri=
+pts
+Might not obey shell's world conventions since this is the first script I w=
+rote.
+I have to say I did try several blackbox test yet failed to cover all corne=
+r problems.
+
+Updated scripts will soon be published.
+
+Thanks & Regards,
+criping
+
+
+
