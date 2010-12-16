@@ -1,39 +1,29 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
-	[209.85.213.48])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 71C374C80FA8
-	for <yocto@yoctoproject.org>; Thu, 16 Dec 2010 15:05:40 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by ywo7 with SMTP id 7so2143365ywo.35
-	for <yocto@yoctoproject.org>; Thu, 16 Dec 2010 13:05:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:received:mime-version:received:in-reply-to
-	:references:from:date:message-id:subject:to:cc:content-type
-	:content-transfer-encoding;
-	bh=uY5vdDpvj44iEr5LIzCs1DZsuNmaVGejopj/CFAA7tA=;
-	b=S+yW5sn9Qr8ouYdk3yzhggM5whmWDT8dPBeQPKPPIwfLXUJcnbMihtAuMKQ+pgRJBJ
-	0iou6Tv1r8dn3lNVra2nxQA8DBWIN7aoM0loHwqLSWgaxFVqBYkLSFfyUAFplpLJTRbL
-	gXtBR2gp4LY9CVgAb/SVvDFbUInnadGpA5Bb0=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	b=pmoOlEK36n4Do7ItfnKERkQa+DNCGvry9x28SGmLHZwlMdyPJ3gROPXxNQkM5wY2de
-	rkelrpUV7PytxQOCCXrljuJ+gnBXVz0fPQxo/ErvpjLiMX4wXNQUt5tyfwSAr7uqChz7
-	SotClq3pHvaQ2AkA2y8kBkwV2B++jgzq1iuB8=
-Received: by 10.90.72.2 with SMTP id u2mr1360544aga.4.1292533539684; Thu, 16
-	Dec 2010 13:05:39 -0800 (PST)
+Return-Path: <scott.a.garman@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 981AD4C80B71;
+	Thu, 16 Dec 2010 15:56:33 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 16 Dec 2010 13:56:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.59,357,1288594800"; d="scan'208";a="637196369"
+Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
+	by fmsmga002.fm.intel.com with ESMTP; 16 Dec 2010 13:56:33 -0800
+Received: from [10.255.14.24] (10.255.14.24) by rrsmsx603.amr.corp.intel.com
+	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
+	Thu, 16 Dec 2010 14:56:32 -0700
+Message-ID: <4D0A8B0F.8000208@intel.com>
+Date: Thu, 16 Dec 2010 13:56:31 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7
 MIME-Version: 1.0
-Received: by 10.90.86.4 with HTTP; Thu, 16 Dec 2010 13:05:19 -0800 (PST)
-In-Reply-To: <4D0A7856.6010508@am.sony.com>
-References: <4D0A7856.6010508@am.sony.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 16 Dec 2010 13:05:19 -0800
-Message-ID: <AANLkTi=Na8Pi15ysPtfRNv=EjHQBtPkEgpTWvbckrZCH@mail.gmail.com>
-To: Tim Bird <tim.bird@am.sony.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Build success (mostly), disk space a little huge
+To: "Tian, Kevin" <kevin.tian@intel.com>
+References: <4D096431.2000107@linux.intel.com>
+	<625BA99ED14B2D499DC4E29D8138F1504D5F4093D7@shsmsx502.ccr.corp.intel.com>
+In-Reply-To: <625BA99ED14B2D499DC4E29D8138F1504D5F4093D7@shsmsx502.ccr.corp.intel.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
+	"poky@yoctoproject.org" <poky@yoctoproject.org>
+Subject: Re: [poky] Recipe Updating Status and call to action
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,58 +35,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Dec 2010 21:05:40 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 16 Dec 2010 21:56:33 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 16, 2010 at 12:36 PM, Tim Bird <tim.bird@am.sony.com> wrote:
-> For those interested in my build saga,
-> I performed a mostly successful build of poky-minimal-image
-> on my old Fedora 8 distro (oustide my Sony firewall).
->
-> This was after I installed an poky 586 sdk, and set
-> path to include /opt/poky/.../usr/bin (to pick up python 2.6.5)
->
-> and after adding a fedora package to add chrpath to my
-> system (not listed on the yocto distro help page).
->
-> The build took 6 hours, and the emulator didn't quite finish.
-> Here was the error:
-> ERROR: Logfile of failure stored in:
-> /a/home/tbird/work/yocto/poky-4.0-build/tmp/work/i686-linux/qemu-native-0=
-.12.4-r22/temp/log.do_configure.12332
-> Log data follows:
-> | You need libGL.so and libGLU.so to exist in your library path and the
-> development headers for SDL installed to build qemu-native.
-> | =C2=A0 =C2=A0 =C2=A0 =C2=A0Ubuntu package names are: libgl1-mesa-dev, l=
-ibglu1-mesa-dev and
-> libsdl1.2-dev
-> | ERROR: Task failed: ('function do_configure failed',
-> '/a/home/tbird/work/yocto/poky-4.0-build/tmp/work/i686-linux/qemu-native-=
-0.12.4-r22/temp/log.do_configure.12332')
-> NOTE: package qemu-native-0.12.4-r22: task do_configure: Failed
->
-> I checked, and indeed my system is missing SDL-devel. =C2=A0Due to
-> some broken dependencies in my yum database, it turned out to be
-> difficult to install this package, and I'm going to give up
-> (again) on this machine.
->
-> I noticed after the build that my yocto directory was consuming
-> 30G of disk space. =C2=A0The big parts were in
-> yocto/poky-4.0-build/tmp/work
-> $ du -sh *
-> 2.2M =C2=A0 =C2=A0all-poky-linux
-> 18G =C2=A0 =C2=A0 i586-poky-linux
-> 3.5G =C2=A0 =C2=A0i686-linux
-> 4.6G =C2=A0 =C2=A0qemux86-poky-linux
->
-> This seems a bit high? =C2=A0Is this normal?
+On 12/15/2010 06:40 PM, Tian, Kevin wrote:
+> On the other hand, along with this I realize that there's one area we need further
+> discuss. How often should we upgrade packages in a given release cycle? MeeGo
+> only does once. For Yocto we want to keep our recipes in cutting-edge which is
+> why we schedule two upgrade windows in M2 and M3 this time.
 
-These are build objects if you don't need them
-add INHERIT +=3D "rm_work"
-to your conf/local.conf which should delete the intermediate
-objects after a recipe builds.
+I'd like to question this. Is the goal for Poky/Yocto to track the 
+bleeding-edge releases of software, or is the goal to be a well-tested 
+and stable foundation for embedded software applications?
 
-Thx
--Khem
+Upgrading a recipe within a couple of weeks of its release may end up 
+using more of our resources if/when we encounter new bugs that were 
+introduced in the new release. Or worse, if we don't encounter them 
+during distro builds and then our users take our release and discover 
+them for themselves.
+
+I'm not saying we need to be as conservative as long-term-support 
+enterprise Linux distros, but IMHO I think racing to always upgrade our 
+recipes to versions released a handful of weeks ago can be 
+counterproductive in many situations.
+
+A policy I might put forward for consideration is this: recipe upgrades 
+are done once per release cycle, and upstream versions that have come 
+out within the last 30 days should not be upgraded unless we have a 
+really good reason for doing so.
+
+Scott
+
+-- 
+Scott Garman
+Embedded Linux Distro Engineer - Yocto Project
 
