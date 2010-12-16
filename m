@@ -1,34 +1,47 @@
-Return-Path: <kevin.tian@intel.com>
+Return-Path: <liping.ke@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 670934C80BD4;
-	Wed, 15 Dec 2010 20:41:30 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 15 Dec 2010 18:41:29 -0800
+	by mx1.pokylinux.org (Postfix) with ESMTP id AD05B4C80048
+	for <yocto@yoctoproject.org>; Wed, 15 Dec 2010 21:13:15 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 15 Dec 2010 19:13:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,352,1288594800"; d="scan'208";a="687617253"
-Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
-	by orsmga001.jf.intel.com with ESMTP; 15 Dec 2010 18:41:07 -0800
+X-IronPort-AV: E=Sophos;i="4.59,352,1288594800"; d="scan'208";a="584180037"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by orsmga002.jf.intel.com with ESMTP; 15 Dec 2010 19:13:04 -0800
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Thu, 16 Dec 2010 11:12:12 +0800
 Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Thu, 16 Dec 2010 10:40:33 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Thu, 16 Dec 2010 11:12:12 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
 	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Thu, 16 Dec 2010 10:40:32 +0800
-From: "Tian, Kevin" <kevin.tian@intel.com>
-To: Saul Wold <sgw@linux.intel.com>, Yocto Project Discussion
-	<yocto@yoctoproject.org>, "poky@yoctoproject.org" <poky@yoctoproject.org>
-Date: Thu, 16 Dec 2010 10:40:29 +0800
-Thread-Topic: [poky] Recipe Updating Status and call to action
-Thread-Index: AcucvGebHWzVq86nSRKyRJnao04hbgACfrKw
-Message-ID: <625BA99ED14B2D499DC4E29D8138F1504D5F4093D7@shsmsx502.ccr.corp.intel.com>
-References: <4D096431.2000107@linux.intel.com>
-In-Reply-To: <4D096431.2000107@linux.intel.com>
-Accept-Language: en-US
+	Thu, 16 Dec 2010 11:12:10 +0800
+From: "Ke, Liping" <liping.ke@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, "Lu, Lianhao"
+	<lianhao.lu@intel.com>
+Date: Thu, 16 Dec 2010 11:12:06 +0800
+Thread-Topic: [yocto] Try latest yocto adt script installer
+Thread-Index: Acual4vOqTvhX8f5Tsm9er0UcNM8oAAfzMiAAA+QidAABdmpsAABHC7wACY1niAAAtf3EAAAjdwgAAWEuFAAApB+gAAla+kQ
+Message-ID: <789F9655DD1B8F43B48D77C5D3065973313A733D@shsmsx501.ccr.corp.intel.com>
+References: <789F9655DD1B8F43B48D77C5D3065973312DC806@shsmsx501.ccr.corp.intel.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA950465CBC4@orsmsx504.amr.corp.intel.com>
+	<789F9655DD1B8F43B48D77C5D3065973313A69C0@shsmsx501.ccr.corp.intel.com>
+	<789F9655DD1B8F43B48D77C5D3065973313A6B19@shsmsx501.ccr.corp.intel.com>
+	<789F9655DD1B8F43B48D77C5D3065973313A6B2A@shsmsx501.ccr.corp.intel.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA9504950111@orsmsx504.amr.corp.intel.com>
+	<789F9655DD1B8F43B48D77C5D3065973313A6E8D@shsmsx501.ccr.corp.intel.com>
+	<789F9655DD1B8F43B48D77C5D3065973313A6EAE@shsmsx501.ccr.corp.intel.com>
+	<789F9655DD1B8F43B48D77C5D3065973313A6FE2@shsmsx501.ccr.corp.intel.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA950495017B@orsmsx504.amr.corp.intel.com>
+In-Reply-To: <9AFCD584B0B67B48AE8D8585BE30BA950495017B@orsmsx504.amr.corp.intel.com>
+Accept-Language: zh-CN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-Subject: Re: [poky] Recipe Updating Status and call to action
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Try latest yocto adt script installer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,128 +53,299 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Dec 2010 02:41:30 -0000
+X-List-Received-Date: Thu, 16 Dec 2010 03:13:16 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
->From: Saul Wold
->Sent: Thursday, December 16, 2010 8:58 AM
->
->Folks,
->
->As we get ready for M3 opening up shortly, I wanted to get folks aware
->of where we are with M2 and the recipe updating process.  Based on my
->rough reckoning, we had about 266 recipes that needed updating at the
->start of M2, we updated about 110 (possibly more).  There are now about
->160 recipes in the update list that need tackling.
->
->Also, the distro tracking data for Version information is getting stale,
->there are about 135 RECIPE_LATEST_VERSION metadata tags that need to be
->updated.
->
->I have attached a spreadsheet that shows the update status of both the
->upstream (RMatch Column) and tracking data (TMatch Column).
->
->I would like to see the team and community pitch in and complete these
->160 recipe updates for the 1.0 Release. Please be sure the ownership /
->RECIPE_MAINTAINER information is correct.
->
+Hi, Jessica
 
-I'm kind of surprised when seeing this data, as I thought we have upgraded =
-more
-than 110 recipes. Then distro team gathered just now to understand whether =
-there's
-anything mismatch. The major point causing confusion is that the code gener=
-ating
-above sheet is stateless, which doesn't track historical data while there d=
-o have
-many packages releasing new versions just in M2 window. This then moves som=
-e
-packages we do upgrade into the '160' group. Basically we think those items=
- with small=20
-version difference fall into this category. So it's not that bad as I origi=
-nally thought. :-)
+I have tested newly added image types  (sato minimal) in the user configura=
+tion file.
 
-Ke is collecting some data and will reply later to clarify in 160 recieps:
-	- what have been upgraded in M2 window already, and
-	- what have not been touched at all
+One known thing is: for extracting root fs, currently our code/configuratio=
+n logic is: Only one rootfs (minimal, sato, sdk) is workable for each arch.=
+=20
+So if user want to extract another rootfs, he needs to change user config a=
+nd run the installation again.
+I am not sure if we need to allow user to extract multiple rootfs for each =
+arch.  In that case, either configuration file section needs to add directo=
+ry unfs-folder for each arch-imagetype combination or keep the configuratio=
+n file, we automatically add sub directory image type under user's designat=
+ed nfs-folder.
 
-With that data we'll see how much work remains in M3 for this task.
+As for downloading file, I strongly feel that we need let user choose wheth=
+er he want to download again if the same file name existing in the ./downlo=
+ad folder with more and more available testing qemu images... Even in intra=
+net, I felt the downloading is quite slow... Each time when testing, I need=
+ to wait several minutes.
 
-On the other hand, along with this I realize that there's one area we need =
-further
-discuss. How often should we upgrade packages in a given release cycle? Mee=
-Go=20
-only does once. For Yocto we want to keep our recipes in cutting-edge which=
- is=20
-why we schedule two upgrade windows in M2 and M3 this time. The policy for =
-each=20
-recipe however could be a bit different:
+The tarball is available now @ http://llu-piketon.sh.intel.com/installer.ta=
+r
 
-	- M2 is our 1st upgrade window, within which we try to upgrade as many=20
-recipes as possible to avoid rush push in last release point. The order is =
-done by:
-		* first upgrade small version changes in a batch which normally implicate=
-s=20
-those recipes have been touched in previous release cycle and thus small ri=
-sk
-		* then upgrade the rest recipes which may need more debug time=20
-because they may not been touched for some time or at all
+And for tracking, I checkin it @ http://git.pokylinux.org/cgit.cgi/poky-con=
+trib/log/?h=3Dlke/installer_new
 
-	- M3 (now) is our 2nd upgrade window, within which we try to ensure our=20
-final release in cutting-edge. Then I suggest a reverse order:
-		* first upgrade recipes which haven't been covered in M2, which implicate=
-s=20
-more work required and higher risk
-		* then upgrade small version changes at end of the window. This way=20
-can ensure catching latest version or else we may need to do it multiple ti=
-mes if doing
-it too early. This has small risk
+Thanks& Regards,
+criping
 
-So in generally I propose to have a longer window for recipes which have be=
-en=20
-upgraded and got a new version now. For now we can have distro team focusin=
-g on
-those recipes which haven't been touched yet.
-
-Does it sound OK?
-
-----
-
-BTW, I think our package report system (in experimental phase now) can help
-the upgrade decision clearly. A suggested flow will be:
-
-The server checks upstream version every day or every several days. When th=
-ere's
-a new version newly released, a mail will be sent to the recipe owner and C=
-C this
-list.
-
-The owner then need react to the notification:
-	- verify whether this is a valid message
-	- decide whether a upgrade is required. The reason for non-upgrade could b=
-e:
-		* pure SCM commit (for SCM check we may need more thinking)
-		* an unstable release
-		* known critical bugs/security holes
-		* not worthy of upgrade effort since no new features are introduced
-		* ...
-	- mark decision on the package report system
-		* to-be-upgraded
-		* not upgrade (if so, reason). If we still use RECIPE_NO_UPDATE_REASON,
-then a patch may be required to update that field
-	=09
-The package report system will record all the historical versions and decis=
-ions, to
-avoid trigger unnecessary messages again.
-
-When a upgrade window starts and ends, we can then use above stateful data =
-to
-draw overall picture and track our progress accurately.
-
-Comments?=20
-
-Thanks
-Kevin
+> -----Original Message-----
+> From: Zhang, Jessica
+> Sent: Wednesday, December 15, 2010 5:10 PM
+> To: Ke, Liping; Lu, Lianhao
+> Cc: yocto@yoctoproject.org
+> Subject: RE: [yocto] Try latest yocto adt script installer
+>=20
+> Liping,
+>=20
+> The newly update scripts are at:
+> http://git.pokylinux.org/cgit.cgi/poky-
+> contrib/commit/?h=3Djzhang/installer_ne
+> w
+> With following changes:
+> more messages cleanup, fix issues: 1) download all the specified rootfs
+> fiels, 2) add check for yocto_installer_internal, 3) error out when
+> sysroot
+> image file or sysroot location are empty
+>=20
+> - Jessica
+>=20
+> Ke, Liping wrote:
+> > Hi, Jessica
+> >
+> > You said you will give me a new cs today with new cleanups/bugfixes
+> > before I am working with recover wget percentage information?
+> >
+> > Thanks& Regards,
+> > criping
+> >
+> >> -----Original Message-----
+> >> From: Ke, Liping
+> >> Sent: Wednesday, December 15, 2010 1:18 PM
+> >> To: Ke, Liping; Zhang, Jessica
+> >> Cc: yocto@yoctoproject.org
+> >> Subject: RE: [yocto] Try latest yocto adt script installer
+> >>
+> >> Hi, Jessica
+> >>
+> >> I have checked in the changes based on your changeset.
+> >> Now nfs extraction folders could be deleted/operated by user.
+> >>
+> >> And also, the config file is changed since the version number now is
+> >> 0.9+snapshot.
+> >>
+> >> Currently repository only has arm/x86 sdks. So I changed that in
+> >> User config too.
+> >>
+> >> Any problem, just let me know.
+> >>
+> >> Thanks& Regards,
+> >> criping
+> >>
+> >>> -----Original Message-----
+> >>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> >>> bounces@yoctoproject.org] On Behalf Of Ke, Liping
+> >>> Sent: Wednesday, December 15, 2010 1:03 PM
+> >>> To: Zhang, Jessica
+> >>> Cc: yocto@yoctoproject.org
+> >>> Subject: Re: [yocto] Try latest yocto adt script installer
+> >>>
+> >>>> Liping,
+> >>>>
+> >>>> All my changes are captured under:
+> >>>> http://git.pokylinux.org/cgit.cgi/poky-
+> >>> contrib/log/?h=3Djzhang/installer
+> >>> OK.
+> >>>
+> >>>>
+> >>>> My installation stopped at:
+> >>>>
+> >>>> ./yocto_installer_internal: line 165:
+> >>>> /opt/poky/0.9-post/sysroots/i586-pokysdk-linux//usr/bin/pseudo: No
+> >>>> such file or directory
+> >>>
+> >>> It's caused because you changed 0.9-post to 0.9+snapshot. The
+> >>> version is now defined in the yocto_installer.conf.
+> >>>
+> >>> Also, for solving the user priviledge problem, I will change user
+> >>> nfs root owner to $USER:$GROUP (lke:lke, eg).
+> >>> Because we found opkg must run under root. Otherwise, the root
+> >>> folder will have to be changed. It will be not good.
+> >>>
+> >>>
+> >>> Thanks& Regards,
+> >>> criping
+> >>>
+> >>>
+> >>>
+> >>>
+> >>>>
+> >>>> We'll sync later tonight...
+> >>>>
+> >>>> Thanks,
+> >>>> Jessica
+> >>>> Ke, Liping wrote:
+> >>>>> Hi, Jessica
+> >>>>>
+> >>>>> For tracing the file, I temporarily checked in all needed files
+> >>>>> into my branch:
+> >>>>>
+> >>>> http://git.pokylinux.org/cgit/cgit.cgi/poky-
+> >>>> contrib/log/?h=3Dlke/adt_installer
+> >>>> _initial
+> >>>>>
+> >>>>> If you have some modification on echo message, you can directly
+> >>>>> change and submit the changes.
+> >>>>> Since I am not sure about what kinds of echo message is most
+> >>>>> wanted by user. I temporarily put It under folder
+> >>>>> ${POKYBASE}/scripts/adt_installer
+> >>>>>
+> >>>>> For testing, Lianhao temporarily make SDK_VERSION=3D"0.9-post",
+> it's
+> >>>>> now defined in Yocto_installer.conf.
+> >>>>>
+> >>>>> Thanks& Regards,
+> >>>>> criping
+> >>>>>
+> >>>>>
+> >>>>>
+> >>>>>> -----Original Message-----
+> >>>>>> From: Ke, Liping
+> >>>>>> Sent: Tuesday, December 14, 2010 5:20 PM
+> >>>>>> To: Ke, Liping; Zhang, Jessica
+> >>>>>> Cc: yocto@yoctoproject.org
+> >>>>>> Subject: RE: [yocto] Try latest yocto adt script installer
+> >>>>>>
+> >>>>>> Hi, Jessica
+> >>>>>>
+> >>>>>> I have updated the script and it is still put under http://llu-
+> >>>>>> piketon.sh.intel.com/installer.tar.
+> >>>>>>
+> >>>>>> 1. For util path problem, the solution is that we need to find
+> >>>>>> the dirname of running script, then cd to that folder.
+> >>>>>> 2. For logfile, now I will output all detailed information to
+> >>>>>> the log file for tracing.
+> >>>>>> 3. If environement-file is not there, error will be reported.
+> >>>>>> 4. Add Error: prompt for errors.
+> >>>>>>
+> >>>>>>
+> >>>>>> Proxy should be disabled before testing.
+> >>>>>>
+> >>>>>> I tested for both 32 bit and 64 bit host. Yet I am not sure
+> >>>>>> whether I could cover all corner cases...
+> >>>>>> And Lianhao will easily cause hard-disk not responding when
+> >>>>>> running the script. Haven't root cause the problem. (My two test
+> >>>>>> machine is just fine) If you meet the same issue, please let us
+> >>>>>> know.
+> >>>>>>
+> >>>>>>
+> >>>>>> Thanks& Regards,
+> >>>>>> criping
+> >>>>>>
+> >>>>>>
+> >>>>>>> -----Original Message-----
+> >>>>>>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> >>>>>>> bounces@yoctoproject.org] On Behalf Of Ke, Liping
+> >>>>>>> Sent: Tuesday, December 14, 2010 2:40 PM
+> >>>>>>> To: Zhang, Jessica
+> >>>>>>> Cc: yocto@yoctoproject.org
+> >>>>>>> Subject: Re: [yocto] Try latest yocto adt script installer
+> >>>>>>>
+> >>>>>>>> Why we must run the script under the adt-installer directory?
+> >>>>>>>> Actually I tried to run under $HOME or / but specifying the
+> >>>>>>>> full path to yocto_installer, and got the error:
+> >>>>>>>> [ADT_INST] script file util is not  found!
+> >>>>>>>
+> >>>>>>> Oh, it's caused by the include grammar. I need to check how to
+> >>>>>>> solve the relative path problem with include grammar in shell
+> >>>>>>> script. It should not be difficult.
+> >>>>>>>
+> >>>>>>>>
+> >>>>>>>> #############################################
+> >>>>>>>> # Meet error when installing Yocto ADT.
+> >>>>>>>> #############################################
+> >>>>>>>>
+> >>>>>>>> 2 comments here:
+> >>>>>>>> 1. we should be able to allow user run the yocto_installer
+> >>>>>>>> script from any location and it should be able to locate the
+> >>>>>>>> needed surporting files or scripts
+> >>>>>>>> 2. As a convention and to be consistent, I'd suggest change
+> the
+> >>>>>>>> above error message as "[ADT_INST] Error: Script file util is
+> >>>>>>>> not found!" There're several error messages in the scripts has
+> >>>>>>>> the Error message format that I'm talking about here, which
+> >>>>>>>> you can look up as a reference.
+> >>>>>>>
+> >>>>>>> No problem, I will unify all error messages.
+> >>>>>>>>
+> >>>>>>>>> 3. Build log are located @
+> >> adt_installer/yoctoadt_installer.log
+> >>>>>>>>> 4. User config ( install which targets) are defined/changed
+> in
+> >>>>>>>>> Yocto_installer.conf. Note: now only i586 qemu rootfs are
+> >>>>>>>>> available in repository.
+> >>>>>>>>>
+> >>>>>>>>> Any problem, just let me know.
+> >>>>>>>>
+> >>>>>>>> Just by playing with it, I change YOCTOADT_TARGETS=3D"ppc" in
+> >>>>>>>> yocto_installer.conf. And the prompt that I got is as follows:
+> >>>>>>>>
+> >>>>>>>> [ADT_INST] selected archs defined in Host Area Item:
+> >>>>>>>> YOCTOADT_TARGETS is not valid!
+> >>>>>>>> Error: Terminate installation process due to errors!
+> >>>>>>> It's expected behavior. Since powerpcc is the correct name.
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>> 3. It would be nice to point out Host Area resides in which
+> >>>>>>>> file, and also tells user what are the valid entries
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>> 4. It's not consistent when existing the program when running
+> >>>>>>>> into errors, see the above and here just "Error: "...
+> >>>>>>>>
+> >>>>>>>> During the Make opkg..., there're bunch of warning messages
+> >>>>>>>> can we redirect them to the log file?
+> >>>>>>>> Also, it seems the log file contents is less than what shows
+> on
+> >>>>>>>> the screen (STDOUT), which I think should be the reverse case,
+> >>>>>>>> people should be able to trace more info in the log file? E.g.
+> >>>>>>>> during downloading rootfs, all the info where it download from
+> >>>>>>>> and saved to where are showed on the screen but missing in the
+> >>>>>>>> log file...
+> >>>>>>>
+> >>>>>>> Log file problem is solved totally by replacing " >> " with
+> >>>>>>> "&>>" pointed by Lianhao.
+> >>>>>>>
+> >>>>>>>>
+> >>>>>>>> Toward the end of the installation, I run into:
+> >>>>>>>>
+> >>>>>>>> [ADT_INST] Re-generate environment script file according to
+> >>>>>>>> rootfs location. Ls: cannot access
+> >>>>>>>> /opt/poky/0.9+snapshot-20101211/environment- setup- i586*: No
+> >>>>>>>> such file or directory Sed: no input files
+> >>>>>>>
+> >>>>>>> Missing guard will be added here.
+> >>>>>>> I will send the updated scripts which will address most of the
+> >>>>>>> problem.
+> >>>>>>>
+> >>>>>>>
+> >>>>>>> Btw: I need someone review the script totally. I am afraid some
+> >>>>>>> of the scripts Might not obey shell's world conventions since
+> >>>>>>> this is the first script I wrote. I have to say I did try
+> >>>>>>> several blackbox test yet failed to cover all corner problems.
+> >>>>>>>
+> >>>>>>> Updated scripts will soon be published.
+> >>>>>>>
+> >>>>>>> Thanks & Regards,
+> >>>>>>> criping
+> >>>>>>>
+> >>>>>>>
+> >>>>>>> _______________________________________________
+> >>>>>>> yocto mailing list
+> >>>>>>> yocto@yoctoproject.org
+> >>>>>>> https://lists.yoctoproject.org/listinfo/yocto
+> >>> _______________________________________________
+> >>> yocto mailing list
+> >>> yocto@yoctoproject.org
+> >>> https://lists.yoctoproject.org/listinfo/yocto
 
