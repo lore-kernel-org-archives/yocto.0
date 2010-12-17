@@ -1,25 +1,36 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C77A34C80B71
-	for <yocto@yoctoproject.org>; Thu, 16 Dec 2010 17:19:20 -0600 (CST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 16 Dec 2010 15:19:20 -0800
+Return-Path: <kevin.tian@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 64C294C80B71;
+	Thu, 16 Dec 2010 20:02:49 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 16 Dec 2010 18:02:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.59,357,1288594800"; d="scan'208";a="362866610"
-Received: from unknown (HELO [10.255.14.3]) ([10.255.14.3])
-	by azsmga001.ch.intel.com with ESMTP; 16 Dec 2010 15:19:19 -0800
-Message-ID: <4D0A9E77.5010607@linux.intel.com>
-Date: Thu, 16 Dec 2010 15:19:19 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
-MIME-Version: 1.0
-To: "Yu, Ke" <ke.yu@intel.com>
+X-IronPort-AV: E=Sophos;i="4.59,358,1288594800"; d="scan'208";a="637301612"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by fmsmga002.fm.intel.com with ESMTP; 16 Dec 2010 18:02:18 -0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Fri, 17 Dec 2010 10:02:17 +0800
+Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Fri, 17 Dec 2010 10:02:16 +0800
+From: "Tian, Kevin" <kevin.tian@intel.com>
+To: "Garman, Scott A" <scott.a.garman@intel.com>
+Date: Fri, 17 Dec 2010 10:02:14 +0800
+Thread-Topic: [poky] Recipe Updating Status and call to action
+Thread-Index: AcudbBtjPLuta1tJTmeqvjJLuebgogAH26Dw
+Message-ID: <625BA99ED14B2D499DC4E29D8138F1504D5F409833@shsmsx502.ccr.corp.intel.com>
 References: <4D096431.2000107@linux.intel.com>
-	<33AB447FBD802F4E932063B962385B3531A37556@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <33AB447FBD802F4E932063B962385B3531A37556@shsmsx501.ccr.corp.intel.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+	<625BA99ED14B2D499DC4E29D8138F1504D5F4093D7@shsmsx502.ccr.corp.intel.com>
+	<4D0A8B0F.8000208@intel.com>
+In-Reply-To: <4D0A8B0F.8000208@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
+	"poky@yoctoproject.org" <poky@yoctoproject.org>
 Subject: Re: [poky] Recipe Updating Status and call to action
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -32,80 +43,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Dec 2010 23:19:21 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 17 Dec 2010 02:02:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/16/2010 06:17 AM, Yu, Ke wrote:
-> Thanks Saul for working out this list.
+>From: Garman, Scott A
+>Sent: Friday, December 17, 2010 5:57 AM
 >
-> I am a bit surprised on the large number of to-be-upgraded list: 160, because according to our plan, we actually upgrade most of the recipes in M2, and only a small number of recipes are supposed to be left for M3. To find out the reason why, PRC team collect some data to analysis, and here is the result:
+>On 12/15/2010 06:40 PM, Tian, Kevin wrote:
+>> On the other hand, along with this I realize that there's one area we ne=
+ed further
+>> discuss. How often should we upgrade packages in a given release cycle? =
+MeeGo
+>> only does once. For Yocto we want to keep our recipes in cutting-edge wh=
+ich is
+>> why we schedule two upgrade windows in M2 and M3 this time.
 >
-I am sorry I gave everyone a scare with my numbers, as Kevin points out, 
-currently this information is stateless, I am going my best to gather 
-the information that I have at hand
+>I'd like to question this. Is the goal for Poky/Yocto to track the
+>bleeding-edge releases of software, or is the goal to be a well-tested
+>and stable foundation for embedded software applications?
 
-> Among the 160, PRC team (Dexuan, Dongxiao, Edwin, Ke, Qing) owns 105 recipes. the 105 recipes can be grouped into 3 cases:
-> Case A: the recipe is not planned to upgrade in M2, mostly due to that it is up-to-update in M2 planning time, and later has new version available.
-> Case B: the recipe is planned to upgrade in M2, but not upgrade and leave it to M3
-> Case C: the recipe is planned to upgrade in M2, and it is upgraded in M2, but later has new version available.
-Can you send me a list of the Case C recipes, I would like to review if 
-we need to update all of them.  As I said in the past some of these may 
-be the Xserver and libraries which we do want to update since we went to 
-an RC release first.
-
-Sau!
-
+I think the both. :-)
 
 >
-> According to our data collection, Case A has 31 recipes, Case B has 21 recipes, Case C has 53 recipes. In other word, in M2 time, we leave 21 recipes (Case B) for M3, but due to new version available after the planning, there are extra 84 recipes (case A + case C) added to be upgraded. Even only count Case C, we can see almost 50% ofM3  to-be-upgraded recipes are already upgraded in M2. This is probably one area we can improved in the future.
+>Upgrading a recipe within a couple of weeks of its release may end up
+>using more of our resources if/when we encounter new bugs that were
+>introduced in the new release. Or worse, if we don't encounter them
+>during distro builds and then our users take our release and discover
+>them for themselves.
+
+This is always being a tradeoff in all distributions. There's no simple gui=
+deline
+whether there's severe risk to upgrade to a latest release, and I think the
+one general rule is to pick up a newer release with enough stability. How t=
+o
+judge that? This finally goes to the owner of each recipe.
+
 >
+>I'm not saying we need to be as conservative as long-term-support
+>enterprise Linux distros, but IMHO I think racing to always upgrade our
+>recipes to versions released a handful of weeks ago can be
+>counterproductive in many situations.
+>
+>A policy I might put forward for consideration is this: recipe upgrades
+>are done once per release cycle, and upstream versions that have come
+>out within the last 30 days should not be upgraded unless we have a
+>really good reason for doing so.
+>
+
+I think there's no simple guideline meaningful in general context like this=
+. All the
+decisions should come to the actual recipe maintainer, based on his knowled=
+ge
+in this specific area. Once we involve with upstream more closely, we shoul=
+d be
+able to tell whether a new release is worthy to go or not in most cases.
+
+Besides that, what in general we can do is about the process.
+
+That's why we come up a two phase upgrade windows in 1.0. With the first wi=
+ndow
+as the major upgrade, and the 2nd window to catch up minor version changes =
+which
+should be with little risk. If there's important release coming out in 2nd =
+window, we
+(again mainly the recipe owner) again need to make decision instead of a si=
+mple
+global rule "to go" or "not to go". As I raised in early thread, I suggest =
+to those=20
+minor version upgrade in later of 2nd window.
+
+That's also why we're currently developing the package reporting system, wh=
+ich is
+expected to check upstream release periodically and once a new release comi=
+ng
+out the maintainer gets notified to make decision.
+
+So in a nutshell:
+	- the general goal is to being cutting-edge
+	- we work out a process which give recipe maintainers enough opportunities
+to check new releases of packages they own, toward our 'cutting-edge' goal
+	- Saul generates a general candidate list from those info in start of each=
+=20
+upgrade window
+	- then it's always recipe maintainers to make decision whether a new relea=
+se=20
+should go or not, based on its stability, new features and risks given time=
+ to Yocto
+release point. If there's a decision not to upgrade, the maintainer should =
+document
+it well
+
+Having said that so far our process is not exactly as expected yet, and our=
+ expertise
+on each area still need time. But I think that's the what we'll need to be.=
+ :-)
+
 Thanks
-
-> Regards
-> Ke
->
->> -----Original Message-----
->> From: poky-bounces@yoctoproject.org [mailto:poky-
->> bounces@yoctoproject.org] On Behalf Of Saul Wold
->> Sent: Thursday, December 16, 2010 8:58 AM
->> To: Yocto Project Discussion; poky@yoctoproject.org
->> Subject: [poky] Recipe Updating Status and call to action
->>
->>
->> Folks,
->>
->> As we get ready for M3 opening up shortly, I wanted to get folks aware of where
->> we are with M2 and the recipe updating process.  Based on my rough reckoning,
->> we had about 266 recipes that needed updating at the start of M2, we updated
->> about 110 (possibly more).  There are now about 160 recipes in the update list
->> that need tackling.
->>
->> Also, the distro tracking data for Version information is getting stale, there are
->> about 135 RECIPE_LATEST_VERSION metadata tags that need to be updated.
->>
->> I have attached a spreadsheet that shows the update status of both the
->> upstream (RMatch Column) and tracking data (TMatch Column).
->>
->> I would like to see the team and community pitch in and complete these 160
->> recipe updates for the 1.0 Release. Please be sure the ownership /
->> RECIPE_MAINTAINER information is correct.
->>
->> IMPORTANT: Please use distro/stage in poky-contrib to update the
->> distro_tracking_fields.inc file, I have many updates in that already, I will do my
->> best not to rebase that until we get it updated.
->>
->> The attached spread sheet contains 3 Sheets, please review the 2nd and 3rd
->> sheets (Labeled Tracking Updates and Recipe Updates respectively).
->>
->> Thanks.
->>
->> --
->>       Sau!
->>
->> Saul Wold
->> Yocto Component Wrangler @ Intel
->> Yocto Project / Poky Build System
->
->
+Kevin
 
