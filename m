@@ -1,18 +1,28 @@
-Return-Path: <bruce.ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 352284C80B71;
-	Fri, 17 Dec 2010 14:50:28 -0600 (CST)
-Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
-	[128.224.146.167])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oBHKmjRa025159;
-	Fri, 17 Dec 2010 12:48:46 -0800 (PST)
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: rpurdie@linux.intel.com, saul.wold@intel.com
-Date: Fri, 17 Dec 2010 15:50:15 -0500
-Message-Id: <cover.1292618741.git.bruce.ashfield@windriver.com>
-X-Mailer: git-send-email 1.7.0.4
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org
-Subject: [PATCH 0/1] linux-yocto: remove or adjust to _ in branch names
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B5BC34C80B70
+	for <yocto@yoctoproject.org>; Fri, 17 Dec 2010 17:32:12 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 17 Dec 2010 15:32:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,190,1291622400"; d="scan'208";a="363366448"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by azsmga001.ch.intel.com with ESMTP; 17 Dec 2010 15:32:12 -0800
+Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
+	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
+	Fri, 17 Dec 2010 15:32:11 -0800
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Fri, 17 Dec 2010 15:32:11 -0800
+Thread-Topic: Milestone releases FYI
+Thread-Index: AQHLnkKg75QVpcsVBkS+5UuMYEBxTQ==
+Message-ID: <DC74E0187B44084E9AD28300B75DFE300557D6E1@orsmsx504.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: Milestone releases FYI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -24,57 +34,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Dec 2010 20:50:28 -0000
+X-List-Received-Date: Fri, 17 Dec 2010 23:32:13 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Richard/Saul,
+The current milestone release builders have a slight bug in a script called=
+ the final build steps that generate the release tarball. I found it this a=
+fternoon after milestone-internal failed on tarball generation. I'll have t=
+o fix this on monday, but in the meantime, I've run the fixed script by han=
+d on the internal and will fix the one on external and run it by hand tomor=
+row after milestone-external finishes up.=20
 
-I'll repeat what is in the patch here:
-
-The existing 2.6.34 kernel tree uses _ where poky typically
-uses -. This is a historical artifact, since working with
-gnu Make and shells means avoiding - is wise. The opposite
-is true in Yocto.
-
-To avoid using the _ reserved character wherever possible
-we can simply remove it from the branch names in the
-new 2.6.37 kernel, but to keep the content stable in the
-0.9 2.6.34 kernel, we map _ to - for the purposes of
-packaging.
-
-To further faciliate this switch, the branch names no
-longer need to be shortened in the KMACHINE mappings, but
-can be fully specified and the tools/processing adapt as
-required. This gives us the flexibility to map multiple
-boards to a single branch for building.
-
--------
-
-I've been building with this for a week, Darren has also
-had sucess with this as well.
-
-*** We need to coordinate the merge, I've pushed the new
-    branches to the linux-yocto-2.6.37 kernel, but we need
-    to purge the old branches as well. 
-
-    So send me a heads up and I'll do that removal once
-    this merges. 
-
-Pull URL: git://git.pokylinux.org/poky-contrib.git
-  Branch: zedd/kernel
-  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
-
-Thanks,
-    Bruce Ashfield <bruce.ashfield@windriver.com>
----
-
-
-Bruce Ashfield (1):
-  linux-yocto: remove or adjust to _ in branch names
-
- meta/classes/kernel-yocto.bbclass                  |   12 +++++-------
- .../conf/distro/include/poky-default-revisions.inc |    2 +-
- .../recipes-kernel/linux/linux-yocto-stable_git.bb |    8 ++++++--
- meta/recipes-kernel/linux/linux-yocto_git.bb       |   18 +++++++++---------
- 4 files changed, 21 insertions(+), 19 deletions(-)
-
+-b=
 
