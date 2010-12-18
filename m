@@ -1,28 +1,23 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B5BC34C80B70
-	for <yocto@yoctoproject.org>; Fri, 17 Dec 2010 17:32:12 -0600 (CST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 17 Dec 2010 15:32:12 -0800
+Return-Path: <sgw@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 69E324C80B70;
+	Fri, 17 Dec 2010 22:03:51 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 17 Dec 2010 20:03:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,190,1291622400"; d="scan'208";a="363366448"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by azsmga001.ch.intel.com with ESMTP; 17 Dec 2010 15:32:12 -0800
-Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
-	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
-	Fri, 17 Dec 2010 15:32:11 -0800
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Fri, 17 Dec 2010 15:32:11 -0800
-Thread-Topic: Milestone releases FYI
-Thread-Index: AQHLnkKg75QVpcsVBkS+5UuMYEBxTQ==
-Message-ID: <DC74E0187B44084E9AD28300B75DFE300557D6E1@orsmsx504.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+X-IronPort-AV: E=Sophos;i="4.60,192,1291622400"; d="scan'208";a="637738797"
+Received: from unknown (HELO [10.255.14.40]) ([10.255.14.40])
+	by fmsmga002.fm.intel.com with ESMTP; 17 Dec 2010 20:03:15 -0800
+Message-ID: <4D0C3282.2060000@linux.intel.com>
+Date: Fri, 17 Dec 2010 20:03:14 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
+	Thunderbird/3.0.5
 MIME-Version: 1.0
-Subject: Milestone releases FYI
+To: "poky@yoctoproject.org" <poky@yoctoproject.org>, 
+	Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Milestone 2 Update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,17 +29,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Dec 2010 23:32:13 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 18 Dec 2010 04:03:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The current milestone release builders have a slight bug in a script called=
- the final build steps that generate the release tarball. I found it this a=
-fternoon after milestone-internal failed on tarball generation. I'll have t=
-o fix this on monday, but in the meantime, I've run the fixed script by han=
-d on the internal and will fix the one on external and run it by hand tomor=
-row after milestone-external finishes up.=20
 
--b=
+The M2 branch has had a minor change to back out the 2.6.37 Kernel for 
+the QEMU ARM and PPC arches due to some issue with that version.  The 
+problem are related to the mouse on ARM and a very slow boot on Qemu PPC.
+
+We will move forward with the M2 build starting tonight or tomorrow 
+morning, which will provide a QA window starting on Monday in China.
+
+Thanks to all members of the community and team for their support in 
+making this release happen.
+
+
+-- 
+     Sau!
+
+Saul Wold
+Yocto Component Wrangler @ Intel
+Yocto Project / Poky Build System
+
 
