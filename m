@@ -1,25 +1,31 @@
-Return-Path: <saul.wold@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 7A48C4C80039
-	for <yocto@yoctoproject.org>; Sat, 18 Dec 2010 17:58:11 -0600 (CST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 18 Dec 2010 15:58:10 -0800
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id BD8074C80B70
+	for <yocto@yoctoproject.org>; Sun, 19 Dec 2010 17:07:06 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 19 Dec 2010 15:06:36 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,195,1291622400"; d="scan'208";a="363623872"
-Received: from unknown (HELO [10.255.13.86]) ([10.255.13.86])
-	by azsmga001.ch.intel.com with ESMTP; 18 Dec 2010 15:58:10 -0800
-Message-ID: <4D0D4A91.30001@intel.com>
-Date: Sat, 18 Dec 2010 15:58:09 -0800
-From: Saul Wold <saul.wold@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
+X-IronPort-AV: E=Sophos;i="4.60,198,1291622400"; d="scan'208";a="638115174"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga002.fm.intel.com with ESMTP; 19 Dec 2010 15:06:36 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Sun, 19 Dec 2010 15:06:35 -0800
+Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
+	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
+	Sun, 19 Dec 2010 15:06:35 -0800
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Sun, 19 Dec 2010 15:06:35 -0800
+Thread-Topic: Milestone 2 build update.
+Thread-Index: AQHLn9FiLxyrUyWIEEygr+HFA09U2Q==
+Message-ID: <DC74E0187B44084E9AD28300B75DFE300557D6E5@orsmsx504.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-References: <DC74E0187B44084E9AD28300B75DFE300557D6E2@orsmsx504.amr.corp.intel.com>
-In-Reply-To: <DC74E0187B44084E9AD28300B75DFE300557D6E2@orsmsx504.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Autobuilder changes and Milestone2
+Subject: Milestone 2 build update.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,35 +37,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 18 Dec 2010 23:58:11 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 19 Dec 2010 23:07:07 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/18/2010 10:14 AM, Flanagan, Elizabeth wrote:
-> All,
->
-> This morning I stopped the autobuilder and fixed a few scripts that caused our first milestone build to not generate a source release tarball. I also removed a few unneeded sdk targets from milestone-internal and fixed the CURRENT linking issue. I'll have these all packaged up and ready to pull into the poky-autobuilder repo next week but I wanted to go through the changes before I left for the weekend (so I don't forget what I did :) )
->
-> The first change was with poky-autobuild-generate-sources-tarball. The tarball generation failed due to git trying to archive a hardcoded branch (master). This script now takes an optional third arg of $BRANCH. If the third arg isn't set, it defaults to 'master'. This should fix the source tarball generation.
->
-> The second change was to poky-autobuild-generate-release. This script now takes an optional third arg of 'current', which causes it to just create a CURRENT symlink to the latest release directory. I want to remove this functionality from this script as issuing a 'current' doesn't actually generate a release and the functionality should be extracted and put in it's own script. It was just a convenient place to put it for now.
->
-> I also removed all the non-IA arch  sdk builds from milestone-internal. Building these happens on milestone-external and is not needed.
->
-> M2 build 2 is now running and judging from the last build, milestone-external should be done around 12 noon PST tomorrow and milestone-internal finished around 8am PST.
->
-> If you have any questions or concerns, I'll be checking email intermittently this weekend.
->
-> -b
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-Beth,
+The milestone 2 build has completed successfully and is now available for Q=
+A. The source of this build is available at:
 
-Thanks for getting this kicked off over the weekend.
+http://autobuilder.pokylinux.org/milestone/CURRENT/poky-milestone2-1.0pre.t=
+ar.bz2=20
 
-Sau!
+There was a minor issue in a buildstep that created the above symlink. This=
+ step has been done by hand and the issue (which has hopefully been correct=
+ed) did not effect the actual build.
 
+Thanks everyone for all your hard work in during this release.
+
+-b=
 
