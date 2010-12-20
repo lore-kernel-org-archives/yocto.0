@@ -1,23 +1,22 @@
 Return-Path: <josh@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 6B0844C8106A
-	for <yocto@yoctoproject.org>; Mon, 20 Dec 2010 05:14:46 -0600 (CST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 20 Dec 2010 03:14:46 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 02F904C811BA
+	for <yocto@yoctoproject.org>; Mon, 20 Dec 2010 05:35:58 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 20 Dec 2010 03:35:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,201,1291622400"; d="scan'208";a="638273513"
+X-IronPort-AV: E=Sophos;i="4.60,201,1291622400"; d="scan'208";a="585382800"
 Received: from unknown (HELO [10.255.16.58]) ([10.255.16.58])
-	by fmsmga002.fm.intel.com with ESMTP; 20 Dec 2010 03:14:45 -0800
+	by orsmga002.jf.intel.com with ESMTP; 20 Dec 2010 03:35:47 -0800
 From: Joshua Lock <josh@linux.intel.com>
 To: yocto@yoctoproject.org
-In-Reply-To: <AANLkTi=YJR+3a=9MGpAq-+6DUmG3j+am-+otcSYwQSgp@mail.gmail.com>
-References: <4D0A8CEC.5030709@linux.intel.com>
-	<AANLkTi=YJR+3a=9MGpAq-+6DUmG3j+am-+otcSYwQSgp@mail.gmail.com>
-Date: Mon, 20 Dec 2010 11:14:39 +0000
-Message-ID: <1292843679.2466.7.camel@scimitar>
+In-Reply-To: <DC74E0187B44084E9AD28300B75DFE300557D6DB@orsmsx504.amr.corp.intel.com>
+References: <DC74E0187B44084E9AD28300B75DFE300557D6DB@orsmsx504.amr.corp.intel.com>
+Date: Mon, 20 Dec 2010 11:35:41 +0000
+Message-ID: <1292844941.2466.12.camel@scimitar>
 Mime-Version: 1.0
 X-Mailer: Evolution 2.32.1 (2.32.1-1.fc14) 
-Subject: Re: Announcing poky-extras repository available
+Subject: Re: Upcoming releases around the Yocto 1.0 release date
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,57 +28,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Dec 2010 11:14:46 -0000
+X-List-Received-Date: Mon, 20 Dec 2010 11:35:59 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Sat, 2010-12-18 at 12:29 +0100, Frans Meulenbroeks wrote:
-> 2010/12/16 Saul Wold <sgw@linux.intel.com>:
-> >
-> > Hello All,
-> >
-> > Recently Richard sent around an email proposing that a new repository be
-> > created for hosting layers that are not part of the core Yocto Metadata.
-> >
-> > This new repository "poky-extras" can host different contributed layers and
-> > will be open to any one.
-> >
-> > From Richard's proposed ground rules:
-> >
-> >> * it has the OE style open contributions model
-> >> * consists of a set of layers, each clearly identified at the top level
-> >> * each layer has a clearly named maintainer or maintainers
-> >> * people respect the layer maintainers
-> >> * layers are split into logical "topics" where at all possible
-> >
-> > The first layer contained in this new repository is the meta-linaro layer,
-> > the top level repository will be removed short since it will now be
-> > maintained in poky-extras.
-> >
-> > If you require write access to this repository, please send your request to
-> > git-requests@yoctoproject.org
-> 
-> 
-> Saul, all,
-> 
-> I've peeked at poky-extras. The meta-linaor layer does not have an
-> identifiable maintainer (grep -ir maint . in that dir did not result
-> in any hits).
-> Do we have a policy on when/how to create a layer.
-> My intention is to bring over some of my OE recipes (as I would love
-> to be able to build my james image under poky too).
+On Fri, 2010-12-17 at 09:59 -0800, Flanagan, Elizabeth wrote:
+> I've compiled a list (based on the mirrors.kernel.org calendar and my
+> research) of upcoming releases prior to and immediately after Yocto
+> v1.0. These may be OS versions we should plan on being able to support.
+> I was not able to find info on release dates for Debian sneezy,
+> Mandravia or Slackware, so if anyone has that info, I'd appreciate it
+> so we can fill in the blanks.
 
-I'd suggest you forge ahead with creating a layer, it may be that some
-of the recipes get moved into the core layer at some stage but I think
-that the best approach is to create a layer which you control so that
-you can use Yocto to achieve your goals. :-)
+Thanks for doing this Beth. I am happy to adopt Fedora and start running
+test builds on F15 as soon as the Alpha is available...
 
 Cheers,
 Joshua
--- 
-Joshua Lock
-        Intel Open Source Technology Centre
-
 -- 
 Joshua Lock
         Intel Open Source Technology Centre
