@@ -1,23 +1,35 @@
-Return-Path: <josh@openedhand.com>
-Received: from pug.o-hand.com (3a.49.1343.static.theplanet.com [67.19.73.58])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D39344C80B70
-	for <yocto@yoctoproject.org>; Mon, 20 Dec 2010 05:00:10 -0600 (CST)
-Received: from [10.250.128.97] (unknown [158.43.2.102])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by pug.o-hand.com (Postfix) with ESMTP id 69FDC12EC331
-	for <yocto@yoctoproject.org>; Mon, 20 Dec 2010 05:38:57 -0600 (CST)
-From: Joshua Lock <josh@openedhand.com>
+Return-Path: <mlorenzati@gmail.com>
+Received: from mail-qy0-f169.google.com (mail-qy0-f169.google.com
+	[209.85.216.169])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4B2874C80039
+	for <yocto@yoctoproject.org>; Mon, 20 Dec 2010 11:33:42 -0600 (CST)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by qyk7 with SMTP id 7so3835953qyk.14
+	for <yocto@yoctoproject.org>; Mon, 20 Dec 2010 09:33:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:received:received:date:message-id
+	:subject:from:to:content-type;
+	bh=TBMsuqq2i5WZ9cma1X6dNhaRfW5jP7CVUyZqWZvqkWY=;
+	b=EO59wrLfqOBLyAr857qQJ77YW1j9PnEO/+CHzglCXMJZsU2sqmiJ+yshne0Si38pNg
+	GVzFC4K2/r1+Nx8nGnO6KzO3M1HaTX24knmGSfzbNaaSPh28JoPs0SzkpbmKOGFyJYzA
+	zuc2l4eCBjGT1L2+av5LXCKIpaKjr4uTPl0x8=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	b=Cn3T1auUlEJwPHeW+gtt0gIgWQa1W1mzKSatNWMfcPwGiMtI1BxX9gqp09m4908/Tg
+	BiG13aG/SD9M08MpRtPSfsDb9zpIW5DDYeFeniSzI6MUosdrM02UFmqB2DFD7hEMFDEN
+	beUqxzkquB2/jLzIlDaxU4Wep6jegcQ6NhXZc=
+MIME-Version: 1.0
+Received: by 10.229.81.83 with SMTP id w19mr4004990qck.85.1292866421753; Mon,
+	20 Dec 2010 09:33:41 -0800 (PST)
+Received: by 10.229.105.91 with HTTP; Mon, 20 Dec 2010 09:33:41 -0800 (PST)
+Date: Mon, 20 Dec 2010 14:33:41 -0300
+Message-ID: <AANLkTinm-5zy9KzSj-CWT9Dz+1r8oUpjXSv1jTn5mHjj@mail.gmail.com>
+From: Marce <mlorenzati@gmail.com>
 To: yocto@yoctoproject.org
-In-Reply-To: <AANLkTi=YJR+3a=9MGpAq-+6DUmG3j+am-+otcSYwQSgp@mail.gmail.com>
-References: <4D0A8CEC.5030709@linux.intel.com>
-	<AANLkTi=YJR+3a=9MGpAq-+6DUmG3j+am-+otcSYwQSgp@mail.gmail.com>
-Date: Mon, 20 Dec 2010 10:59:58 +0000
-Message-ID: <1292842798.2466.4.camel@scimitar>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.1 (2.32.1-1.fc14) 
-X-Mailman-Approved-At: Mon, 20 Dec 2010 08:17:30 -0600
-Subject: Re: Announcing poky-extras repository available
+X-Mailman-Approved-At: Mon, 20 Dec 2010 16:55:25 -0600
+Subject: Yocto liveCD image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,55 +41,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Dec 2010 11:00:11 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 20 Dec 2010 17:33:42 -0000
+Content-Type: multipart/alternative; boundary=0016364ee406cf87e10497daeb7b
 
-On Sat, 2010-12-18 at 12:29 +0100, Frans Meulenbroeks wrote:
-> 2010/12/16 Saul Wold <sgw@linux.intel.com>:
-> >
-> > Hello All,
-> >
-> > Recently Richard sent around an email proposing that a new repository be
-> > created for hosting layers that are not part of the core Yocto Metadata.
-> >
-> > This new repository "poky-extras" can host different contributed layers and
-> > will be open to any one.
-> >
-> > From Richard's proposed ground rules:
-> >
-> >> * it has the OE style open contributions model
-> >> * consists of a set of layers, each clearly identified at the top level
-> >> * each layer has a clearly named maintainer or maintainers
-> >> * people respect the layer maintainers
-> >> * layers are split into logical "topics" where at all possible
-> >
-> > The first layer contained in this new repository is the meta-linaro layer,
-> > the top level repository will be removed short since it will now be
-> > maintained in poky-extras.
-> >
-> > If you require write access to this repository, please send your request to
-> > git-requests@yoctoproject.org
-> 
-> 
-> Saul, all,
-> 
-> I've peeked at poky-extras. The meta-linaor layer does not have an
-> identifiable maintainer (grep -ir maint . in that dir did not result
-> in any hits).
-> Do we have a policy on when/how to create a layer.
-> My intention is to bring over some of my OE recipes (as I would love
-> to be able to build my james image under poky too).
+--0016364ee406cf87e10497daeb7b
+Content-Type: text/plain; charset=ISO-8859-1
 
-I'd suggest you forge ahead with creating a layer, it may be that some
-of the recipes get moved into the core layer at some stage but I think
-that the best approach is to create a layer which you control so that
-you can use Yocto to achieve your goals. :-)
+Hi, I wanted to know If you have made a live CD image with Yocto Build
+Systems plus SDK to test drive Yocto.
+I'm planing to show Yocto to other people and to have a built iso image
+could help to ease the adoption.
+I've been playing around with Yocto SDK and although I could build apps and
+debug it on Qemu with the terminal, Eclipse, and Anjuta, in some cases I had
+to make some tweaks.
 
-Cheers,
-Joshua
--- 
-Joshua Lock
-        Intel Open Source Technology Centre
+Thanks.
 
+Marcelo Lorenzati
 
+--0016364ee406cf87e10497daeb7b
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hi, I wanted to know If you have made a=A0live CD
+image with Yocto Build Systems plus SDK to test drive Yocto.<div>I&#39;m pl=
+aning to show Yocto to other people and to have a built iso image could hel=
+p to ease the adoption.</div><div>I&#39;ve been=A0playing around with Yocto=
+ SDK and although I could
+build apps and debug it<span style=3D"mso-spacerun:yes">=A0o</span>n Qemu w=
+ith the
+terminal, Eclipse, and Anjuta, in some cases I had to make some tweaks.</di=
+v><div><div><div><br></div><div><p class=3D"MsoNormal"></p>
+
+Thanks.</div><div><br></div><div>Marcelo Lorenzati<br>
+
+<p class=3D"MsoNormal">=A0</p></div></div></div>
+
+--0016364ee406cf87e10497daeb7b--
