@@ -1,23 +1,23 @@
-Return-Path: <odole@connected-labs.com>
-Received: from mail-wy0-f176.google.com (mail-wy0-f176.google.com
-	[74.125.82.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 444B04C80BD8
-	for <yocto@yoctoproject.org>; Mon, 20 Dec 2010 04:01:59 -0600 (CST)
-Received: by wye20 with SMTP id 20so2878785wye.35
-	for <yocto@yoctoproject.org>; Mon, 20 Dec 2010 02:01:59 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.216.63.81 with SMTP id z59mr4369249wec.91.1292839318835; Mon,
-	20 Dec 2010 02:01:58 -0800 (PST)
-Received: by 10.216.188.12 with HTTP; Mon, 20 Dec 2010 02:01:58 -0800 (PST)
-X-Originating-IP: [88.167.229.45]
-In-Reply-To: <DC74E0187B44084E9AD28300B75DFE300557D6DB@orsmsx504.amr.corp.intel.com>
-References: <DC74E0187B44084E9AD28300B75DFE300557D6DB@orsmsx504.amr.corp.intel.com>
-Date: Mon, 20 Dec 2010 11:01:58 +0100
-Message-ID: <AANLkTikY8adP28EE4QSRkqBo-K8M1SXRQF9PnvvJfc9R@mail.gmail.com>
-From: Olivier Dole <odole@connected-labs.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Upcoming releases around the Yocto 1.0 release date
+Return-Path: <josh@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6B0844C8106A
+	for <yocto@yoctoproject.org>; Mon, 20 Dec 2010 05:14:46 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 20 Dec 2010 03:14:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,201,1291622400"; d="scan'208";a="638273513"
+Received: from unknown (HELO [10.255.16.58]) ([10.255.16.58])
+	by fmsmga002.fm.intel.com with ESMTP; 20 Dec 2010 03:14:45 -0800
+From: Joshua Lock <josh@linux.intel.com>
+To: yocto@yoctoproject.org
+In-Reply-To: <AANLkTi=YJR+3a=9MGpAq-+6DUmG3j+am-+otcSYwQSgp@mail.gmail.com>
+References: <4D0A8CEC.5030709@linux.intel.com>
+	<AANLkTi=YJR+3a=9MGpAq-+6DUmG3j+am-+otcSYwQSgp@mail.gmail.com>
+Date: Mon, 20 Dec 2010 11:14:39 +0000
+Message-ID: <1292843679.2466.7.camel@scimitar>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.1 (2.32.1-1.fc14) 
+Subject: Re: Announcing poky-extras repository available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,104 +29,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Dec 2010 10:02:01 -0000
-Content-Type: multipart/alternative; boundary=000e0cd5bd2659dd050497d49cb4
+X-List-Received-Date: Mon, 20 Dec 2010 11:14:46 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---000e0cd5bd2659dd050497d49cb4
-Content-Type: text/plain; charset=ISO-8859-1
+On Sat, 2010-12-18 at 12:29 +0100, Frans Meulenbroeks wrote:
+> 2010/12/16 Saul Wold <sgw@linux.intel.com>:
+> >
+> > Hello All,
+> >
+> > Recently Richard sent around an email proposing that a new repository be
+> > created for hosting layers that are not part of the core Yocto Metadata.
+> >
+> > This new repository "poky-extras" can host different contributed layers and
+> > will be open to any one.
+> >
+> > From Richard's proposed ground rules:
+> >
+> >> * it has the OE style open contributions model
+> >> * consists of a set of layers, each clearly identified at the top level
+> >> * each layer has a clearly named maintainer or maintainers
+> >> * people respect the layer maintainers
+> >> * layers are split into logical "topics" where at all possible
+> >
+> > The first layer contained in this new repository is the meta-linaro layer,
+> > the top level repository will be removed short since it will now be
+> > maintained in poky-extras.
+> >
+> > If you require write access to this repository, please send your request to
+> > git-requests@yoctoproject.org
+> 
+> 
+> Saul, all,
+> 
+> I've peeked at poky-extras. The meta-linaor layer does not have an
+> identifiable maintainer (grep -ir maint . in that dir did not result
+> in any hits).
+> Do we have a policy on when/how to create a layer.
+> My intention is to bring over some of my OE recipes (as I would love
+> to be able to build my james image under poky too).
 
-Hello,
+I'd suggest you forge ahead with creating a layer, it may be that some
+of the recipes get moved into the core layer at some stage but I think
+that the best approach is to create a layer which you control so that
+you can use Yocto to achieve your goals. :-)
 
-I have found the following info about Mandriva release plan:
-http://wiki.mandriva.com/en/2011_Development#Development_planning:_2011_planning_and_delivery
+Cheers,
+Joshua
+-- 
+Joshua Lock
+        Intel Open Source Technology Centre
 
-Best regards
+-- 
+Joshua Lock
+        Intel Open Source Technology Centre
 
-On Fri, Dec 17, 2010 at 6:59 PM, Flanagan, Elizabeth <
-elizabeth.flanagan@intel.com> wrote:
 
-> I've compiled a list (based on the mirrors.kernel.org calendar and my
-> research) of upcoming releases prior to and immediately after Yocto v1.0.
-> These may be OS versions we should plan on being able to support. I was not
-> able to find info on release dates for Debian sneezy, Mandravia or
-> Slackware, so if anyone has that info, I'd appreciate it so we can fill in
-> the blanks.
->
-> -b
->
-> --------------------------------
->
-> November 2nd
-> Fedora 14: Final
->
-> March 1st
-> Fedora 15 Alpha
->
-> Mar 10 2011
-> openSUSE 11.4
->
-> April 5th
-> Fedora 15 Beta
->
-> April 28th
-> Ubuntu 11.04
->
-> May 10th
-> Fedora 15 Final
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---000e0cd5bd2659dd050497d49cb4
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hello,<div><br></div><div>I have found the following info about Mandriva re=
-lease plan:=A0<a href=3D"http://wiki.mandriva.com/en/2011_Development#Devel=
-opment_planning:_2011_planning_and_delivery">http://wiki.mandriva.com/en/20=
-11_Development#Development_planning:_2011_planning_and_delivery</a></div>
-<div><br></div><div>Best regards<br><br><div class=3D"gmail_quote">On Fri, =
-Dec 17, 2010 at 6:59 PM, Flanagan, Elizabeth <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:elizabeth.flanagan@intel.com">elizabeth.flanagan@intel.com</a>&g=
-t;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex;">I&#39;ve compiled a list (based on the <a h=
-ref=3D"http://mirrors.kernel.org" target=3D"_blank">mirrors.kernel.org</a> =
-calendar and my research) of upcoming releases prior to and immediately aft=
-er Yocto v1.0. These may be OS versions we should plan on being able to sup=
-port. I was not able to find info on release dates for Debian sneezy, Mandr=
-avia or Slackware, so if anyone has that info, I&#39;d appreciate it so we =
-can fill in the blanks.<br>
-
-<br>
--b<br>
-<br>
---------------------------------<br>
-<br>
-November 2nd<br>
-Fedora 14: Final<br>
-<br>
-March 1st<br>
-Fedora 15 Alpha<br>
-<br>
-Mar 10 2011<br>
-openSUSE 11.4<br>
-<br>
-April 5th<br>
-Fedora 15 Beta<br>
-<br>
-April 28th<br>
-Ubuntu 11.04<br>
-<br>
-May 10th<br>
-Fedora 15 Final<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br></div>
-
---000e0cd5bd2659dd050497d49cb4--
