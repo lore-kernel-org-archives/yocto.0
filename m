@@ -1,31 +1,32 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <liping.ke@intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id BD8074C80B70
-	for <yocto@yoctoproject.org>; Sun, 19 Dec 2010 17:07:06 -0600 (CST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Dec 2010 15:06:36 -0800
+	by mx1.pokylinux.org (Postfix) with ESMTP id B858E4C80039
+	for <yocto@yoctoproject.org>; Sun, 19 Dec 2010 18:41:26 -0600 (CST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 19 Dec 2010 16:41:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,198,1291622400"; d="scan'208";a="638115174"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 19 Dec 2010 15:06:36 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Sun, 19 Dec 2010 15:06:35 -0800
-Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
-	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
-	Sun, 19 Dec 2010 15:06:35 -0800
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Sun, 19 Dec 2010 15:06:35 -0800
-Thread-Topic: Milestone 2 build update.
-Thread-Index: AQHLn9FiLxyrUyWIEEygr+HFA09U2Q==
-Message-ID: <DC74E0187B44084E9AD28300B75DFE300557D6E5@orsmsx504.amr.corp.intel.com>
-Accept-Language: en-US
+X-IronPort-AV: E=Sophos;i="4.60,198,1291622400"; d="scan'208";a="869890276"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by fmsmga001.fm.intel.com with ESMTP; 19 Dec 2010 16:41:25 -0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Mon, 20 Dec 2010 08:40:42 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Mon, 20 Dec 2010 08:40:42 +0800
+From: "Ke, Liping" <liping.ke@intel.com>
+To: "Tian, Kevin" <kevin.tian@intel.com>, "Li, Susie" <susie.li@intel.com>
+Date: Mon, 20 Dec 2010 08:40:39 +0800
+Thread-Topic: Biweekly Status Report WW50~51'2010 --OSEL SDK Liping Ke
+Thread-Index: Acuf3oZX/B4+iNh4RhytotWZtrmx5A==
+Message-ID: <789F9655DD1B8F43B48D77C5D30659733142ADD2@shsmsx501.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-Subject: Milestone 2 build update.
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Biweekly Status Report WW50~51'2010 --OSEL SDK Liping Ke
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,22 +38,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 19 Dec 2010 23:07:07 -0000
+X-List-Received-Date: Mon, 20 Dec 2010 00:41:26 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-The milestone 2 build has completed successfully and is now available for Q=
-A. The source of this build is available at:
+[Summary]
+1.	OSEL SDK related jobs
+2.	Others
 
-http://autobuilder.pokylinux.org/milestone/CURRENT/poky-milestone2-1.0pre.t=
-ar.bz2=20
-
-There was a minor issue in a buildstep that created the above symlink. This=
- step has been done by hand and the issue (which has hopefully been correct=
-ed) did not effect the actual build.
-
-Thanks everyone for all your hard work in during this release.
-
--b=
+[Details]
+SDK related jobs:
+1. Modified the first installer script according to Jessica and RP's input,=
+ including:
+   1) all sorts of echo message formalization.
+   2) Make script could be run anywhere.
+   3) solve the privilege level problem, change the owner of root fs extrac=
+tion folder, etc.
+2. Finished the draft version of bb class file for generating tarball for s=
+cript installer.
+   And I had sent out the patch for review.
+3. Finished the qemu extra parameters patch for poky-qemu/poky-qemu script.=
+ Scott helped to
+   Review the patch and it has been checked in.
+4. TCF RSE integration patch has finally been checked in which means all ja=
+va part patch
+   For tcf has been in the upstream.
+Others:
+   1. Take 0.5 days' annual leave and half day's sick leave
+   2. Take weekly project meeting and technical sharing meeting.
+    =20
+Thanks & Regards,
+criping
 
