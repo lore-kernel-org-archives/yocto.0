@@ -1,23 +1,40 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 4CB324C80039
-	for <yocto@yoctoproject.org>; Tue, 21 Dec 2010 11:36:21 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 21 Dec 2010 09:36:10 -0800
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 3A9F14C80039
+	for <yocto@yoctoproject.org>; Tue, 21 Dec 2010 13:01:46 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 21 Dec 2010 11:01:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,208,1291622400"; d="scan'208";a="689377166"
-Received: from eflanlinux.jf.intel.com (HELO [10.7.201.149]) ([10.7.201.149])
-	by orsmga001.jf.intel.com with ESMTP; 21 Dec 2010 09:36:10 -0800
-Message-ID: <4D10E596.4010209@intel.com>
-Date: Tue, 21 Dec 2010 09:36:22 -0800
-From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.16) Gecko/20101125 SUSE/3.0.11 Lightning/1.0b1
-	Thunderbird/3.0.11 ThunderBrowse/3.3.3
+X-IronPort-AV: E=Sophos;i="4.60,208,1291622400"; 
+	d="scan'208,217";a="364806884"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by azsmga001.ch.intel.com with ESMTP; 21 Dec 2010 11:01:45 -0800
+Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Tue, 21 Dec 2010 11:01:45 -0800
+Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
+	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi;
+	Tue, 21 Dec 2010 11:01:44 -0800
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 21 Dec 2010 11:01:39 -0800
+Thread-Topic: Ideas for yoctoproject.org improvements
+Thread-Index: AcuhQX+65KOTCcbcTYmjc+4+AT9Y9g==
+Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25C0FD18C0@orsmsx501.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-cr-hashedpuzzle: Ah5S CAPY DY8x DdBj ELYH E1Y7 FJjx FPXA GD6m GENS GVaQ
+	GYEa H+ru JnJu Jy58
+	KcIh; 1; eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
+	Sosha1_v1; 7; {ACD419EF-5344-417C-9791-BA47704A9452};
+	ZABhAHYAaQBkAC4AYwAuAHMAdABlAHcAYQByAHQAQABpAG4AdABlAGwALgBjAG8AbQA=;
+	Tue, 21 Dec 2010 19:01:39 GMT;
+	SQBkAGUAYQBzACAAZgBvAHIAIAB5AG8AYwB0AG8AcAByAG8AagBlAGMAdAAuAG8AcgBnACAAaQBtAHAAcgBvAHYAZQBtAGUAbgB0AHMA
+x-cr-puzzleid: {ACD419EF-5344-417C-9791-BA47704A9452}
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Autobuilder Backup Cron <elizabeth.flanagan@intel.com>
-Subject: [PATCH 0/3] Consolidate Pull Requests for Autobuilder
+Subject: Ideas for yoctoproject.org improvements
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,71 +46,166 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Dec 2010 17:36:21 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 21 Dec 2010 19:01:46 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25C0FD18C0orsmsx501amrc_"
 
-Scott,
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25C0FD18C0orsmsx501amrc_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This pull request updates the buildbot installer to support BuildBot
-0.8.3, which was released yesterday, as well as updated build helper
-scripts and a new pokyABConfig.py which adds a swabber testing
-target,implements all current autobuilder build arches and lastly,
-implements sanity testing.
+Hello Yocto Project -
 
-The buildbot installer script has been re-written in python and an
-INSTALL file added to explain the new installation process. I've tested
-it on Ubuntu 10.10 and openSUSE 11.3, and would appreciate anyone who
-has a different system letting me know what their experiences with it
-were (good and bad).
+I was asked yesterday what kinds of things we might do to improve the proje=
+ct website, http://www.yoctoproject.org - I have a few opinions on the subj=
+ect, but I thought I would put the question to you.
 
-Also included in this pull request is a fix RP made to the live builder
-this morning to fix an issue with piky-autobuild sourcing the wrong file.
+Where can we do better? What kinds of frustrations did you have with the si=
+te when you first got involved with the project? How could it improve the e=
+xperience of people becoming familiar with the project?
 
-Pull URL: git://git.pokylinux.org/poky-contrib.git
-  Branch: eflanagan/bb-0.8.3
-  Browse:
-http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=eflanagan/bb-0.8.3
+If you want to use this email thread, that would be great. Or if you prefer=
+ to file issues in bugzilla.yoctoproject.org, that would be great too.
 
-Thanks,
-    Beth Flanagan <elizabeth.flanagan@intel.com>
----
+Thanks!
 
+Dave
 
-Beth Flanagan (3):
-  Upgrade to Buildbot 0.8.3: scripts/poky-setup-autobuilder
-  Adding new scripts to reflect a real autobuilder
-  Change to poky-autobuild to source correct file:
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25C0FD18C0orsmsx501amrc_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
- INSTALL                                          |   55 +++
- README                                           |    6 +-
- scripts/poky-autobuild                           |   39 ++-
- scripts/poky-autobuild-cleanoutput               |    6 +-
- scripts/poky-autobuild-copy-images               |  458 +++++++++++++++++++
- scripts/poky-autobuild-generate-release-external |  220 +++++++++
- scripts/poky-autobuild-generate-release-internal |  232 ++++++++++
- scripts/poky-autobuild-generate-sources-tarball  |   54 +++
- scripts/poky-autobuild-postprocess               |    6 +-
- scripts/poky-autobuild-preamble                  |   58 +++
- scripts/poky-autobuild-rename-release-images     |  128 ++++++
- scripts/poky-autobuild-sanitytest                |   58 +++
- scripts/poky-output-sort                         |  117 +++++
- scripts/poky-preserve-work-dir                   |   26 +-
- scripts/poky-setup-autobuilder                   |  514
-+++++++++++++++-------
- scripts/pokyABConfig.py                          |  469
-+++++++++++++++-----
- scripts/run-on-buildset-success                  |   11 +
- 17 files changed, 2154 insertions(+), 303 deletions(-)
- create mode 100644 INSTALL
- create mode 100755 scripts/poky-autobuild-copy-images
- create mode 100755 scripts/poky-autobuild-generate-release-external
- create mode 100755 scripts/poky-autobuild-generate-release-internal
- create mode 100755 scripts/poky-autobuild-generate-sources-tarball
- create mode 100755 scripts/poky-autobuild-preamble
- create mode 100755 scripts/poky-autobuild-rename-release-images
- create mode 100755 scripts/poky-autobuild-sanitytest
- create mode 100755 scripts/poky-output-sort
- create mode 100755 scripts/run-on-buildset-success
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
+icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
+:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
+uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
+t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
+m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
+t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
+:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
+soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
+icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
+schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
+point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
+/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
+=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
+schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
+.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
+/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
+://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
+repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
+ xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
+schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
+/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
+ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
+p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
+/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
+mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
+crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
+s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
+ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
+om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
+ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
+partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
+06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
+6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
+deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
+Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
+st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
 
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dus-ascii">
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
 
+<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
+
+<div class=3DWordSection1>
+
+<p class=3DMsoNormal>Hello Yocto Project &#8211; <o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>I was asked yesterday what kinds of things we might do=
+ to
+improve the project website, <a href=3D"http://www.yoctoproject.org">http:/=
+/www.yoctoproject.org</a>
+&#8211; I have a few opinions on the subject, but I thought I would put the
+question to you. <o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>Where can we do better? What kinds of frustrations did=
+ you
+have with the site when you first got involved with the project? How could =
+it
+improve the experience of people becoming familiar with the project?<o:p></=
+o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>If you want to use this email thread, that would be gr=
+eat.
+Or if you prefer to file issues in bugzilla.yoctoproject.org, that would be
+great too.<o:p></o:p></p>
+
+<p class=3DMsoNormal><br>
+Thanks!<o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>Dave<o:p></o:p></p>
+
+</div>
+
+</body>
+
+</html>
+
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25C0FD18C0orsmsx501amrc_--
