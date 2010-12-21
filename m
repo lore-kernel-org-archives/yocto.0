@@ -1,22 +1,34 @@
-Return-Path: <josh@linux.intel.com>
+Return-Path: <yongkang.you@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id E63574C80BD8
-	for <yocto@yoctoproject.org>; Tue, 21 Dec 2010 04:56:30 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 21 Dec 2010 02:56:19 -0800
+	by mx1.pokylinux.org (Postfix) with ESMTP id DCCD64C80039
+	for <yocto@yoctoproject.org>; Tue, 21 Dec 2010 08:19:11 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 21 Dec 2010 06:19:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,207,1291622400"; d="scan'208";a="689245006"
-Received: from unknown (HELO [10.255.16.49]) ([10.255.16.49])
-	by orsmga001.jf.intel.com with ESMTP; 21 Dec 2010 02:56:19 -0800
-From: Joshua Lock <josh@linux.intel.com>
-To: yocto@yoctoproject.org
-In-Reply-To: <AANLkTinm-5zy9KzSj-CWT9Dz+1r8oUpjXSv1jTn5mHjj@mail.gmail.com>
-References: <AANLkTinm-5zy9KzSj-CWT9Dz+1r8oUpjXSv1jTn5mHjj@mail.gmail.com>
-Date: Tue, 21 Dec 2010 10:56:13 +0000
-Message-ID: <1292928973.2701.4.camel@scimitar>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.1 (2.32.1-1.fc14) 
-Subject: Re: Yocto liveCD image
+X-IronPort-AV: E=Sophos;i="4.60,208,1291622400"; d="scan'208";a="585811775"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by orsmga002.jf.intel.com with ESMTP; 21 Dec 2010 06:19:10 -0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Tue, 21 Dec 2010 22:19:09 +0800
+Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Tue, 21 Dec 2010 22:19:08 +0800
+From: "You, Yongkang" <yongkang.you@intel.com>
+To: "You, Yongkang" <yongkang.you@intel.com>, Yocto Project Discussion
+	<yocto@yoctoproject.org>
+Date: Tue, 21 Dec 2010 22:19:07 +0800
+Thread-Topic: Yocto Bugzilla will be rebuild today
+Thread-Index: AcugwV/NMPpQvEKUSAOo9jMIIY4ziQAVKs8Q
+Message-ID: <F26D193E20BBDC42A43B611D1BDEDE7124EF227E65@shsmsx502.ccr.corp.intel.com>
+References: <F26D193E20BBDC42A43B611D1BDEDE7124EF227B5A@shsmsx502.ccr.corp.intel.com>
+In-Reply-To: <F26D193E20BBDC42A43B611D1BDEDE7124EF227B5A@shsmsx502.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: Re: Yocto Bugzilla will be rebuild today
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,32 +40,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Dec 2010 10:56:31 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 21 Dec 2010 14:19:12 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2010-12-20 at 14:33 -0300, Marce wrote:
-> Hi, I wanted to know If you have made a live CD image with Yocto Build
-> Systems plus SDK to test drive Yocto.
-> I'm planing to show Yocto to other people and to have a built iso
-> image could help to ease the adoption.
+Hi all,
 
-I'm afraid we don't have such a thing, though I admit it does sound like
-it could be useful.
+Bugzilla structure is completely rebuilt. It can accept new bug updating an=
+d reporting.=20
 
-I'm not sure how much work is involved though?
+Please visit http://bugzilla.pokylinux.org/show_bug.cgi?id=3D564 to get det=
+ailed changing.=20
 
-> I've been playing around with Yocto SDK and although I could build
-> apps and debug it on Qemu with the terminal, Eclipse, and Anjuta, in
-> some cases I had to make some tweaks.
+A fake user list is also added for catching bug update in time. https://wik=
+i.yoctoproject.org/wiki/Watch_Yocto_Bugs
 
-Are these tweaks that you can share so that we can integrate them back
-into the project?
+Thanks,
+Yongkang
 
-Cheers,
-Joshua
--- 
-Joshua Lock
-        Intel Open Source Technology Centre
 
+On Tuesday, December 21, 2010 11:45 AM, yocto-bounces@yoctoproject.org
+wrote:=20
+> Hi all,
+>=20
+> I will remotely reconstruct bugzilla to align new Yocto
+> structure today. The detailed info can be found at
+> http://bugzilla.pokylinux.org/show_bug.cgi?id=3D564
+>=20
+> I am planning to change bugzilla start from UTS 5 a.m.
+> (2010-12-21) and sending another email when finishing. I will
+> also disable bugzilla sendmail function.
+>=20
+> Please hold on any bug's modification, until see my update. Thanks
+> for supporting.=20
+>=20
+> Thanks,
+> Yongkang
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto=
 
