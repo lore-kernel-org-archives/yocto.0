@@ -1,18 +1,36 @@
-Return-Path: <bruce.ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 4FDCD4C811E0;
-	Wed, 22 Dec 2010 00:26:18 -0600 (CST)
-Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
-	[128.224.146.167])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oBM6OALO016700;
-	Tue, 21 Dec 2010 22:24:10 -0800 (PST)
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: rpurdie@linux.intel.com
-Date: Wed, 22 Dec 2010 01:25:46 -0500
-Message-Id: <cover.1292998230.git.bruce.ashfield@windriver.com>
-X-Mailer: git-send-email 1.7.0.4
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
-Subject: [PATCH 0/3] linux-yocto: update to 2.6.37-rc6 and minor fixes
+Return-Path: <liping.ke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 208EE4C80039
+	for <yocto@yoctoproject.org>; Wed, 22 Dec 2010 00:39:35 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 21 Dec 2010 22:39:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,211,1291622400"; d="scan'208";a="365080577"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by azsmga001.ch.intel.com with ESMTP; 21 Dec 2010 22:39:18 -0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Wed, 22 Dec 2010 14:38:35 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Wed, 22 Dec 2010 14:38:34 +0800
+From: "Ke, Liping" <liping.ke@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Wed, 22 Dec 2010 14:38:27 +0800
+Thread-Topic: [yocto] Questions about the name of qemu bin file for
+	different archs
+Thread-Index: AcubnchiDHQ/IjzgTKmh5sk7SdtG8QGAuKug
+Message-ID: <789F9655DD1B8F43B48D77C5D3065973314A25C7@shsmsx501.ccr.corp.intel.com>
+References: <789F9655DD1B8F43B48D77C5D3065973313A6A37@shsmsx501.ccr.corp.intel.com>
+	<4D078361.2040301@windriver.com>
+In-Reply-To: <4D078361.2040301@windriver.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN, en-US
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Questions about the name of qemu bin file for different archs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -24,48 +42,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Dec 2010 06:26:18 -0000
+X-List-Received-Date: Wed, 22 Dec 2010 06:39:35 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Richard/Saul,
+Hi, Bruce
 
-This fixes BUGID #596 (mouse in qemuarm), through the fixing of
-the linux-libc-headers-yocto recipe. The mouse was broken due to
-tslib being out of sync with the kernel and not activating the
-pointer. Having the matching kernel headers fixes this problem.
+Lost this mail and finally found it.
 
-** Note: I saw some instances where I was getting fetcher/unpack
-errors during my testing of this. I wasn't able to consistently
-reproduce the error, so I wasn't able to conclusively determine if
-it has anything to do with the libc-headers change. I recommend
-that we watch this carefully and be prepared to revert as required
-(revert the headers preference in qemu.inc).
-
-This also updating the SRCREVs of the target branches in the linux-yocto
-development kernel to point to 2.6.37-rc6 content.
-
-And finally, this updates the meta branch to remove the rest of the _'s
-from branch meta data. At this point branches have been switched
-from _ to - and we are able to remove the old branch names. (which
-I have done).
-
-Pull URL: git://git.pokylinux.org/poky-contrib.git
-  Branch: zedd/kernel
-  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
-
-Thanks,
-    Bruce Ashfield <bruce.ashfield@windriver.com>
----
+Thanks for your detailed explanation.
 
 
-Bruce Ashfield (3):
-  linux-yocto-stable: fix qemux86 branch name
-  qemu: match kernel headers to preferred kernel
-  linux-yocto: update to 2.6.37-rc6
+And so, for easily fetching those qemu images, we need to make sure that
+these symbol-link must be created according to the defined naming conventio=
+n in the build-result-repository.
+I will check this problem firstly.
 
- .../conf/distro/include/poky-default-revisions.inc |   26 ++++++++++----------
- meta/conf/machine/include/qemu.inc                 |    2 +-
- .../linux-libc-headers-yocto_git.bb                |   10 +++----
- .../recipes-kernel/linux/linux-yocto-stable_git.bb |    2 +-
- 4 files changed, 19 insertions(+), 21 deletions(-)
+Thanks & Regards,
+criping
+
+>=20
+> On 10-12-14 02:40 AM, Ke, Liping wrote:
+> > Hi, Jessica
+> >
+> > I found qemu bin file name convention is different for different
+> archs, for example, for x86, it is bzImage-qemuXXX.
+> > For arm, it is zImage-qemuXXX. My question is why it is bzXXX or zXXX,
+> is there any reason of such naming convention?
+>=20
+> The leading part of the image name is dependent
+> on the type of kernel we are booting.
+>=20
+> ]> grep KERNEL_IMAGETYPE qemu*
+> qemuarm.conf:KERNEL_IMAGETYPE =3D "zImage"
+> qemumips.conf:KERNEL_IMAGETYPE =3D "vmlinux"
+> qemumips-variant.conf:KERNEL_IMAGETYPE =3D "vmlinux"
+> qemuppc.conf:KERNEL_IMAGETYPE =3D "zImage"
+> qemux86-64.conf:KERNEL_IMAGETYPE =3D "bzImage"
+> qemux86.conf:KERNEL_IMAGETYPE =3D "bzImage"
+>=20
+> And those are your differences in the name.
+>=20
+> As for why the symlinks may not be created at times, I'm
+> not sure.
+>=20
+> >
+> > Or I must did name translate for each kind of arch qemu bin file?
+>=20
+> Should be something you can script by checking the
+> KERNEL_IMAGETYPE.
+>=20
+> Cheers,
+>=20
+> Bruce
+>=20
+> >
+> >
+> > Thanks&  Regards,
+> > criping
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
 
 
