@@ -1,36 +1,21 @@
-Return-Path: <liping.ke@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 208EE4C80039
-	for <yocto@yoctoproject.org>; Wed, 22 Dec 2010 00:39:35 -0600 (CST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 21 Dec 2010 22:39:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,211,1291622400"; d="scan'208";a="365080577"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by azsmga001.ch.intel.com with ESMTP; 21 Dec 2010 22:39:18 -0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Wed, 22 Dec 2010 14:38:35 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Wed, 22 Dec 2010 14:38:34 +0800
-From: "Ke, Liping" <liping.ke@intel.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date: Wed, 22 Dec 2010 14:38:27 +0800
-Thread-Topic: [yocto] Questions about the name of qemu bin file for
-	different archs
-Thread-Index: AcubnchiDHQ/IjzgTKmh5sk7SdtG8QGAuKug
-Message-ID: <789F9655DD1B8F43B48D77C5D3065973314A25C7@shsmsx501.ccr.corp.intel.com>
-References: <789F9655DD1B8F43B48D77C5D3065973313A6A37@shsmsx501.ccr.corp.intel.com>
-	<4D078361.2040301@windriver.com>
-In-Reply-To: <4D078361.2040301@windriver.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN, en-US
+Return-Path: <c.aeschlimann@acn-group.ch>
+Received: from 111.com (mail.dns-net.ch [195.160.190.3])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4AB1F4C808B0
+	for <yocto@yoctoproject.org>; Wed, 22 Dec 2010 03:32:29 -0600 (CST)
+Received: from [172.16.145.92] (unknown [212.98.42.40])
+	by 111.com (Postfix) with ESMTPA id C6A022F071;
+	Wed, 22 Dec 2010 10:32:28 +0100 (CET)
+Message-ID: <4D11C5AC.7040709@acn-group.ch>
+Date: Wed, 22 Dec 2010 10:32:28 +0100
+From: Christophe Aeschlimann <c.aeschlimann@acn-group.ch>
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB;
+	rv:1.9.2.13) Gecko/20101207 Thunderbird/3.1.7
 MIME-Version: 1.0
+To: "Stewart, David C" <david.c.stewart@intel.com>
+References: <B27EBC40D200ED48A3F4CC2EBEABAE0B25C0FD18C0@orsmsx501.amr.corp.intel.com>
+In-Reply-To: <B27EBC40D200ED48A3F4CC2EBEABAE0B25C0FD18C0@orsmsx501.amr.corp.intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Questions about the name of qemu bin file for different archs
+Subject: Re: Ideas for yoctoproject.org improvements
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,68 +27,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Dec 2010 06:39:35 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 22 Dec 2010 09:32:31 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-Hi, Bruce
+Hi,
 
-Lost this mail and finally found it.
+On 21.12.2010 20:01, Stewart, David C wrote:
+> Hello Yocto Project –
+> 
+> 
+> I was asked yesterday what kinds of things we might do to improve the
+> project website, http://www.yoctoproject.org – I have a few opinions on
+> the subject, but I thought I would put the question to you.
+> 
+>  
+> 
+> Where can we do better? What kinds of frustrations did you have with the
+> site when you first got involved with the project? How could it improve
+> the experience of people becoming familiar with the project?
 
-Thanks for your detailed explanation.
+I've just started looking at Yocto, but I have been following
+OpenEmbedded progress for two years now. So I don't have any comment yet
+on the yoctoproject website content but I noticed that :
 
+https://www.yoctoproject.org/
 
-And so, for easily fetching those qemu images, we need to make sure that
-these symbol-link must be created according to the defined naming conventio=
-n in the build-result-repository.
-I will check this problem firstly.
+Leads to a broken, default, mailman page. Maybe this can be fixed ?
 
-Thanks & Regards,
-criping
+> If you want to use this email thread, that would be great. Or if you
+> prefer to file issues in bugzilla.yoctoproject.org, that would be great too.
+> 
+> Thanks!
+> 
+> Dave
 
->=20
-> On 10-12-14 02:40 AM, Ke, Liping wrote:
-> > Hi, Jessica
-> >
-> > I found qemu bin file name convention is different for different
-> archs, for example, for x86, it is bzImage-qemuXXX.
-> > For arm, it is zImage-qemuXXX. My question is why it is bzXXX or zXXX,
-> is there any reason of such naming convention?
->=20
-> The leading part of the image name is dependent
-> on the type of kernel we are booting.
->=20
-> ]> grep KERNEL_IMAGETYPE qemu*
-> qemuarm.conf:KERNEL_IMAGETYPE =3D "zImage"
-> qemumips.conf:KERNEL_IMAGETYPE =3D "vmlinux"
-> qemumips-variant.conf:KERNEL_IMAGETYPE =3D "vmlinux"
-> qemuppc.conf:KERNEL_IMAGETYPE =3D "zImage"
-> qemux86-64.conf:KERNEL_IMAGETYPE =3D "bzImage"
-> qemux86.conf:KERNEL_IMAGETYPE =3D "bzImage"
->=20
-> And those are your differences in the name.
->=20
-> As for why the symlinks may not be created at times, I'm
-> not sure.
->=20
-> >
-> > Or I must did name translate for each kind of arch qemu bin file?
->=20
-> Should be something you can script by checking the
-> KERNEL_IMAGETYPE.
->=20
-> Cheers,
->=20
-> Bruce
->=20
-> >
-> >
-> > Thanks&  Regards,
-> > criping
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
+Best Regards,
 
+-- 
+Christophe Aeschlimann
+
+Embedded Software Engineer
+
+ACN Advanced Communications Networks S.A.
+
+Rue du Puits-Godet 8a
+2000 Neuchâtel, Switzerland
+
+Tél. +41 32 724 74 31
+
+c.aeschlimann@acn-group.ch
 
