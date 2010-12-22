@@ -1,26 +1,25 @@
-Return-Path: <Alex.deVries@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 16F414C808B0
-	for <yocto@yoctoproject.org>; Tue, 21 Dec 2010 16:30:31 -0600 (CST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oBLMUT4o013804
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 21 Dec 2010 14:30:29 -0800 (PST)
-Received: from ALA-MBB.corp.ad.wrs.com ([169.254.2.204]) by
-	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.01.0255.000;
-	Tue, 21 Dec 2010 14:30:29 -0800
-From: "deVries, Alex" <Alex.deVries@windriver.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Thread-Topic: What hosts do we support?
-Thread-Index: AQHLoV6rLUgfi1mxIEeUkLiCvQpj9w==
-Date: Tue, 21 Dec 2010 22:30:29 +0000
-Message-ID: <6DF2F895-51BF-43C8-AED5-486C0C1DB17C@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.224.144.219]
+Return-Path: <sgw@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4B7DF4C80050
+	for <yocto@yoctoproject.org>; Tue, 21 Dec 2010 18:47:42 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 21 Dec 2010 16:47:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,210,1291622400"; d="scan'208";a="364966434"
+Received: from unknown (HELO [10.255.13.77]) ([10.255.13.77])
+	by azsmga001.ch.intel.com with ESMTP; 21 Dec 2010 16:47:41 -0800
+Message-ID: <4D114AAC.6000609@linux.intel.com>
+Date: Tue, 21 Dec 2010 16:47:40 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
+	Thunderbird/3.0.5
 MIME-Version: 1.0
-Subject: What hosts do we support?
+To: yocto@yoctoproject.org
+References: <F26D193E20BBDC42A43B611D1BDEDE7124EF227B5A@shsmsx502.ccr.corp.intel.com>
+	<F26D193E20BBDC42A43B611D1BDEDE7124EF227E65@shsmsx502.ccr.corp.intel.com>
+In-Reply-To: <F26D193E20BBDC42A43B611D1BDEDE7124EF227E65@shsmsx502.ccr.corp.intel.com>
+Subject: Re: Yocto Bugzilla will be rebuild today
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,34 +31,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Dec 2010 22:30:32 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <7621865CCF74AE4A8E79D9BDDEFCC5DD@corp.ad.wrs.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 22 Dec 2010 00:47:42 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 12/21/2010 06:19 AM, You, Yongkang wrote:
+> Hi all,
+>
+> Bugzilla structure is completely rebuilt. It can accept new bug updating and reporting.
+>
+> Please visit http://bugzilla.pokylinux.org/show_bug.cgi?id=564 to get detailed changing.
+>
+> A fake user list is also added for catching bug update in time. https://wiki.yoctoproject.org/wiki/Watch_Yocto_Bugs
+>
+Thanks for doing the major reorg!
 
-I think we're at the point where we should think of what makes a host suppo=
-rted, and what expectations we have of that host. The situation is undocume=
-nted and a bit frustrating today. =20
+Sau!
 
-It should be really easy to get going with YML/poky. We should consider opt=
-imizing the following workflow:
-1. Install a minimal distribution
-2. Download YML/poky, run it
-3. Follow only the instructions provided
-4. Complete a build
+> Thanks,
+> Yongkang
+>
+>
+> On Tuesday, December 21, 2010 11:45 AM, yocto-bounces@yoctoproject.org
+> wrote:
+>> Hi all,
+>>
+>> I will remotely reconstruct bugzilla to align new Yocto
+>> structure today. The detailed info can be found at
+>> http://bugzilla.pokylinux.org/show_bug.cgi?id=564
+>>
+>> I am planning to change bugzilla start from UTS 5 a.m.
+>> (2010-12-21) and sending another email when finishing. I will
+>> also disable bugzilla sendmail function.
+>>
+>> Please hold on any bug's modification, until see my update. Thanks
+>> for supporting.
+>>
+>> Thanks,
+>> Yongkang
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-It may be required that the user has root access temporarily to update pack=
-ages.  Only packages provided by the distribution vendor should need to be =
-installed. The user should only have to make changes once.  The need for th=
-ese changes should be minimized.
-
-Yocto can then advertise a finite list of supported distributions, with the=
- goal of widening the list over time.
-
-Feedback?  Are these reasonable guidelines?
-
-
-- A=
 
