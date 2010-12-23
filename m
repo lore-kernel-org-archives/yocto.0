@@ -1,31 +1,28 @@
 Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 271174C81081
-	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 13:45:31 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 23 Dec 2010 11:45:30 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8D8DA4C80FD4
+	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 16:08:18 -0600 (CST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 23 Dec 2010 14:08:18 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,220,1291622400"; d="scan'208";a="586753004"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga002.jf.intel.com with ESMTP; 23 Dec 2010 11:45:14 -0800
-Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Thu, 23 Dec 2010 11:45:14 -0800
+X-IronPort-AV: E=Sophos;i="4.60,220,1291622400"; d="scan'208";a="690311188"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga001.jf.intel.com with ESMTP; 23 Dec 2010 14:08:18 -0800
 Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
-	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
-	Thu, 23 Dec 2010 11:45:14 -0800
+	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
+	Thu, 23 Dec 2010 14:08:18 -0800
 From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 23 Dec 2010 11:45:00 -0800
-Thread-Topic: Autobuilder upgrade to Buildbot 0.8.3
-Thread-Index: AQHLotnieLIb83jZjEOr0ky1Y5Dolw==
-Message-ID: <DC74E0187B44084E9AD28300B75DFE300557D6E7@orsmsx504.amr.corp.intel.com>
+Date: Thu, 23 Dec 2010 14:08:17 -0800
+Thread-Topic: Recent build issues.
+Thread-Index: AQHLou3mCz/Vk0oUbESUz+kPR/tLDQ==
+Message-ID: <DC74E0187B44084E9AD28300B75DFE300557D6E8@orsmsx504.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
-Subject: Autobuilder upgrade to Buildbot 0.8.3
+Subject: Recent build issues.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,57 +34,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Dec 2010 19:45:31 -0000
+X-List-Received-Date: Thu, 23 Dec 2010 22:08:18 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-All,
+Recent build issues:
 
-I've now finished the upgrade of the autobuilder repo to include buildbot 0=
-.8.3. I've rewritten the installer and updated a bunch of build helper file=
-s. I wanted to take a few moments to explain some of the changes regarding =
-installation.
+- There seem to be a few issues going on with sanity testing:
 
-The big change is the upgrade to buildbot 0.8.3. Buildbot now keeps the mas=
-ter and slave code in different tarballs, so I've split up the installer to=
- allow people to install either a master, a slave or both.
+First, I've made a change to how sanity tests are run on the autobuilder th=
+at should speed them up some. bitbake @ -c qemuimagetest creates a rootfs. =
+I've switched this to bitbake @ -c qemuimagetest_standalone, so this should=
+n't create a rootfs and should use the one already existing. We should see =
+some performance improvement with this. I thought this had been included in=
+ my pull with BB 0.8.3 but I must have not included it.
 
-I've also added some command line args to help people in configuration of a=
- local BB. To see the long form of usage:
+Next,  the following bugs have been making it difficult to track down build=
+ failures:
 
-git clone git://git.pokylinux.org/poky-autobuilder
-cd poky-autobuilder
-./scripts/poky-setup-autobuilder --help
+Sanity Test Boot test returns invalid results.
+http://bugzilla.pokylinux.org/show_bug.cgi?id=3D611
 
-The quickest way to set up the autobuilder for developer use, is to do:=20
+Sanity tests do not always kill QEMU once timeout is reached
+http://bugzilla.pokylinux.org/show_bug.cgi?id=3D595
 
-./scripts/poky-setup-autobuilder both
-cd ~/poky-master
-make start
-cd ~/poky-slave
-make start
-open a browser to http://localhost:8010
+There are also sanity test failures in a few images:
 
-If for some reason the bb uses too many cpu cycles, you *should* be able to=
- do:
+qemuarm poky-image-sato
+qemuarm poky-image-minimal
+qemumips poky-image-sato
 
-nice -n 20 make start
+mips seems to have run poky-image-minimal ok, but with Bug #611, I can't be=
+ sure that is the case and I doubt it's actually the case. My inclination i=
+s that there is an issue with arm and mips builds that should be looked at.
 
-I haven't tested this though so YMMV.
+- PPC is broken.
 
-This creates a minimal pokyABConfig.py within ~/poky-master. There is a lon=
-ger more complex pokyABConfig.py within scripts called pokyABConfig.py.exam=
-ple but for most developers, the default should suffice. If you need to tur=
-n off some buildsets in pokyABConfig.py, just edit it and comment out the b=
-uild steps you don't need and issue a
+PPC is having serious issues that seem to revolve around linux-yocto-2.6.37=
+. Bruce I believe is working on this. Can anyone give an update around wher=
+e this stands?
 
-make reconfig
-
-If something went funny (ie you don't see your changes) tail out the twistd=
-.log file for debug info.
-
-I've tested this on opensuse and ubuntu, but would appreciate any feedback,=
- especially for folks doing more complicated installs (multiple slave build=
-ers, etc)=
+I'm running nightly-incremental and nightly now to pull in some changes mad=
+e this morning and to prepare for weekend delivery to QA. I'll send out tho=
+se build results on Sunday (or whenever the build finishes.)
+-b
 
