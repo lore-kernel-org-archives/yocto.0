@@ -1,32 +1,26 @@
-Return-Path: <eha@dev.doredevelopment.dk>
-Received: from public.doredevelopment.dk (unknown [77.233.226.4])
-	by mx1.pokylinux.org (Postfix) with ESMTP id F31B74C811C5
-	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 04:39:47 -0600 (CST)
-Received: from localhost (localhost [127.0.0.1])
-	by public.doredevelopment.dk (Postfix) with ESMTP id E24067BBA;
-	Thu, 23 Dec 2010 11:39:46 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at dev.doredevelopment.dk
-Received: from public.doredevelopment.dk ([127.0.0.1])
-	by localhost (public.doredevelopment.dk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id kWicuowZDg-c; Thu, 23 Dec 2010 11:39:40 +0100 (CET)
-Received: from [192.168.18.32] (eha.doredevelopment.dk [192.168.18.32])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by public.doredevelopment.dk (Postfix) with ESMTPS id 2165531B;
-	Thu, 23 Dec 2010 11:39:40 +0100 (CET)
-From: Esben Haabendal <eha@dev.doredevelopment.dk>
-To: Cliff Brake <cliff.brake@gmail.com>
-In-Reply-To: <AANLkTik3-5x2W+DRTJ9bC0YnUQB9HbvSWEYLSMWLTPjZ@mail.gmail.com>
-References: <AANLkTik3-5x2W+DRTJ9bC0YnUQB9HbvSWEYLSMWLTPjZ@mail.gmail.com>
-Organization: =?ISO-8859-1?Q?Dor=E9Development?= ApS
-Date: Thu, 23 Dec 2010 07:11:46 +0100
-Message-ID: <1293084706.2594.5.camel@eha>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.30.3 
-Cc: yocto@yoctoproject.org,
-	openembedded-devel <openembedded-devel@lists.openembedded.org>
-Subject: Re: Multiple Repository support
+Return-Path: <scott.a.garman@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 65F394C80039
+	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 13:21:02 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 23 Dec 2010 11:21:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,220,1291622400"; d="scan'208";a="639881477"
+Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
+	by fmsmga002.fm.intel.com with ESMTP; 23 Dec 2010 11:21:02 -0800
+Received: from [10.255.14.97] (10.255.14.97) by rrsmsx603.amr.corp.intel.com
+	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
+	Thu, 23 Dec 2010 12:21:01 -0700
+Message-ID: <4D13A11C.2030004@intel.com>
+Date: Thu, 23 Dec 2010 11:21:00 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7
+MIME-Version: 1.0
+To: <yocto@yoctoproject.org>
+References: <cover.1292951846.git.elizabeth.flanagan@intel.com>
+In-Reply-To: <cover.1292951846.git.elizabeth.flanagan@intel.com>
+Subject: Re: [PATCH 0/3] Consolidate Pull Requests for Autobuilder
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,55 +32,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Dec 2010 10:39:49 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 23 Dec 2010 19:21:02 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2010-12-22 at 11:09 -0500, Cliff Brake wrote:
-> Hello,
-> 
-> I've started collecting ideas from various emails on multiple
-> repository support.
-> 
-> http://wiki.openembedded.org/index.php/MultipleRepositoryMethods
-> 
-> Please feel free to update the above page.
-> 
-> In my mind, this is a key problem we need to solve, not just for
-> Yocto/OE, but also for anyone doing product development.
-> 
-> I've personally been using git submodules for most projects, and repo
-> for Android based projects.
-> 
-> Appreciate any ideas, experiences, or insights into how we solve this problem.
+On 12/21/2010 09:17 AM, Beth Flanagan wrote:
+> Scott,
+>
+> This pull request updates the buildbot installer to support BuildBot 0.8.3, which was released yesterday, as well as updated build helper scripts and a new pokyABConfig.py which adds a swabber testing target,implements all current autobuilder build arches and lastly, implements sanity testing.
+>
+> The buildbot installer script has been re-written in python and an INSTALL file added to explain the new installation process. I've tested it on Ubuntu 10.10 and openSUSE 11.3, and would appreciate anyone who has a different system letting me know their experiences with it (good and bad).
+>
+> I've also incorporated a fix to poky-autobuild that sources the correct env script and added some missing build helper scripts, based off of what is actually on the autobuilder.
+>
+> -b
+>
+> Pull URL: git://git.pokylinux.org/poky-contrib.git
+>    Branch: eflanagan/bb-0.8.3
+>    Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=eflanagan/bb-0.8.3
+>
+> Thanks,
+>      Beth Flanagan<elizabeth.flanagan@intel.com>
+> ---
+>
+>
+> Beth Flanagan (3):
+>    Upgrade to Buildbot 0.8.3: scripts/poky-setup-autobuilder
+>    Adding new scripts to reflect a real autobuilder
+>    Change to poky-autobuild to source correct file:
+>
+>   INSTALL                                          |   55 +++
+>   README                                           |    6 +-
+>   scripts/poky-autobuild                           |   39 ++-
+>   scripts/poky-autobuild-cleanoutput               |    6 +-
+>   scripts/poky-autobuild-copy-images               |  458 +++++++++++++++++++
+>   scripts/poky-autobuild-generate-release-external |  220 +++++++++
+>   scripts/poky-autobuild-generate-release-internal |  232 ++++++++++
+>   scripts/poky-autobuild-generate-sources-tarball  |   54 +++
+>   scripts/poky-autobuild-postprocess               |    6 +-
+>   scripts/poky-autobuild-preamble                  |   58 +++
+>   scripts/poky-autobuild-rename-release-images     |  128 ++++++
+>   scripts/poky-autobuild-sanitytest                |   58 +++
+>   scripts/poky-output-sort                         |  117 +++++
+>   scripts/poky-preserve-work-dir                   |   26 +-
+>   scripts/poky-setup-autobuilder                   |  514 +++++++++++++++-------
+>   scripts/pokyABConfig.py                          |  469 +++++++++++++++-----
+>   scripts/run-on-buildset-success                  |   11 +
+>   17 files changed, 2154 insertions(+), 303 deletions(-)
+>   create mode 100644 INSTALL
+>   create mode 100755 scripts/poky-autobuild-copy-images
+>   create mode 100755 scripts/poky-autobuild-generate-release-external
+>   create mode 100755 scripts/poky-autobuild-generate-release-internal
+>   create mode 100755 scripts/poky-autobuild-generate-sources-tarball
+>   create mode 100755 scripts/poky-autobuild-preamble
+>   create mode 100755 scripts/poky-autobuild-rename-release-images
+>   create mode 100755 scripts/poky-autobuild-sanitytest
+>   create mode 100755 scripts/poky-output-sort
+>   create mode 100755 scripts/run-on-buildset-success
 
-We are using git submodules for just this task in OE-lite.
-It works pretty well, but I fear that this will not be the case if a
-push model is used for the top repository.
+After a few iterations with Beth, I have now pulled this into 
+poky-autobuilder master.
 
-We have partly wrapped the git submodule configuration into a bitbake
-parsed configuration file, looking something like:
+Thanks Beth!
 
-# OE-lite/core metadata
-OE_MODULES                      += "core"
-OE_MODULE_PATH_core              = "meta/core"
-OE_MODULE_URL_core               =
-"git://git.doredevelopment.dk/oe-lite/core.git"
-OE_MODULE_PUSHURL_core           =
-"ssh://dev.doredevelopment.dk/srv/public/git/oe-lite/core.git"
-OE_MODULE_BRANCH_core            = "master"
-OE_MODULE_REMOTES_core          += "gitorious"
-OE_MODULE_REMOTE_core_gitorious  = "git@gitorious.org:oe-lite/core.git"
+Scott
 
-So developers get a more complete and consistent submodule setup.
-
-We considered repo, but the KISS principle ruled in favor of git
-submodules.  I believe the learning curve is steep enough for any
-newcomers to OE, so having to figure out how to master something like
-repo also does not seem so attractive.
-
-/Esben
-
-/Esben
-
+-- 
+Scott Garman
+Embedded Linux Distro Engineer - Yocto Project
 
