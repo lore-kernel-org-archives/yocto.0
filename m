@@ -1,26 +1,31 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 65F394C80039
-	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 13:21:02 -0600 (CST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 23 Dec 2010 11:21:02 -0800
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 271174C81081
+	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 13:45:31 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 23 Dec 2010 11:45:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,220,1291622400"; d="scan'208";a="639881477"
-Received: from rrsmsx603.amr.corp.intel.com ([10.31.0.57])
-	by fmsmga002.fm.intel.com with ESMTP; 23 Dec 2010 11:21:02 -0800
-Received: from [10.255.14.97] (10.255.14.97) by rrsmsx603.amr.corp.intel.com
-	(10.31.0.57) with Microsoft SMTP Server (TLS) id 8.2.254.0;
-	Thu, 23 Dec 2010 12:21:01 -0700
-Message-ID: <4D13A11C.2030004@intel.com>
-Date: Thu, 23 Dec 2010 11:21:00 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7
+X-IronPort-AV: E=Sophos;i="4.60,220,1291622400"; d="scan'208";a="586753004"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga002.jf.intel.com with ESMTP; 23 Dec 2010 11:45:14 -0800
+Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Thu, 23 Dec 2010 11:45:14 -0800
+Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
+	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
+	Thu, 23 Dec 2010 11:45:14 -0800
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Thu, 23 Dec 2010 11:45:00 -0800
+Thread-Topic: Autobuilder upgrade to Buildbot 0.8.3
+Thread-Index: AQHLotnieLIb83jZjEOr0ky1Y5Dolw==
+Message-ID: <DC74E0187B44084E9AD28300B75DFE300557D6E7@orsmsx504.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <cover.1292951846.git.elizabeth.flanagan@intel.com>
-In-Reply-To: <cover.1292951846.git.elizabeth.flanagan@intel.com>
-Subject: Re: [PATCH 0/3] Consolidate Pull Requests for Autobuilder
+Subject: Autobuilder upgrade to Buildbot 0.8.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,72 +37,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Dec 2010 19:21:02 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 23 Dec 2010 19:45:31 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/21/2010 09:17 AM, Beth Flanagan wrote:
-> Scott,
->
-> This pull request updates the buildbot installer to support BuildBot 0.8.3, which was released yesterday, as well as updated build helper scripts and a new pokyABConfig.py which adds a swabber testing target,implements all current autobuilder build arches and lastly, implements sanity testing.
->
-> The buildbot installer script has been re-written in python and an INSTALL file added to explain the new installation process. I've tested it on Ubuntu 10.10 and openSUSE 11.3, and would appreciate anyone who has a different system letting me know their experiences with it (good and bad).
->
-> I've also incorporated a fix to poky-autobuild that sources the correct env script and added some missing build helper scripts, based off of what is actually on the autobuilder.
->
-> -b
->
-> Pull URL: git://git.pokylinux.org/poky-contrib.git
->    Branch: eflanagan/bb-0.8.3
->    Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=eflanagan/bb-0.8.3
->
-> Thanks,
->      Beth Flanagan<elizabeth.flanagan@intel.com>
-> ---
->
->
-> Beth Flanagan (3):
->    Upgrade to Buildbot 0.8.3: scripts/poky-setup-autobuilder
->    Adding new scripts to reflect a real autobuilder
->    Change to poky-autobuild to source correct file:
->
->   INSTALL                                          |   55 +++
->   README                                           |    6 +-
->   scripts/poky-autobuild                           |   39 ++-
->   scripts/poky-autobuild-cleanoutput               |    6 +-
->   scripts/poky-autobuild-copy-images               |  458 +++++++++++++++++++
->   scripts/poky-autobuild-generate-release-external |  220 +++++++++
->   scripts/poky-autobuild-generate-release-internal |  232 ++++++++++
->   scripts/poky-autobuild-generate-sources-tarball  |   54 +++
->   scripts/poky-autobuild-postprocess               |    6 +-
->   scripts/poky-autobuild-preamble                  |   58 +++
->   scripts/poky-autobuild-rename-release-images     |  128 ++++++
->   scripts/poky-autobuild-sanitytest                |   58 +++
->   scripts/poky-output-sort                         |  117 +++++
->   scripts/poky-preserve-work-dir                   |   26 +-
->   scripts/poky-setup-autobuilder                   |  514 +++++++++++++++-------
->   scripts/pokyABConfig.py                          |  469 +++++++++++++++-----
->   scripts/run-on-buildset-success                  |   11 +
->   17 files changed, 2154 insertions(+), 303 deletions(-)
->   create mode 100644 INSTALL
->   create mode 100755 scripts/poky-autobuild-copy-images
->   create mode 100755 scripts/poky-autobuild-generate-release-external
->   create mode 100755 scripts/poky-autobuild-generate-release-internal
->   create mode 100755 scripts/poky-autobuild-generate-sources-tarball
->   create mode 100755 scripts/poky-autobuild-preamble
->   create mode 100755 scripts/poky-autobuild-rename-release-images
->   create mode 100755 scripts/poky-autobuild-sanitytest
->   create mode 100755 scripts/poky-output-sort
->   create mode 100755 scripts/run-on-buildset-success
+All,
 
-After a few iterations with Beth, I have now pulled this into 
-poky-autobuilder master.
+I've now finished the upgrade of the autobuilder repo to include buildbot 0=
+.8.3. I've rewritten the installer and updated a bunch of build helper file=
+s. I wanted to take a few moments to explain some of the changes regarding =
+installation.
 
-Thanks Beth!
+The big change is the upgrade to buildbot 0.8.3. Buildbot now keeps the mas=
+ter and slave code in different tarballs, so I've split up the installer to=
+ allow people to install either a master, a slave or both.
 
-Scott
+I've also added some command line args to help people in configuration of a=
+ local BB. To see the long form of usage:
 
--- 
-Scott Garman
-Embedded Linux Distro Engineer - Yocto Project
+git clone git://git.pokylinux.org/poky-autobuilder
+cd poky-autobuilder
+./scripts/poky-setup-autobuilder --help
+
+The quickest way to set up the autobuilder for developer use, is to do:=20
+
+./scripts/poky-setup-autobuilder both
+cd ~/poky-master
+make start
+cd ~/poky-slave
+make start
+open a browser to http://localhost:8010
+
+If for some reason the bb uses too many cpu cycles, you *should* be able to=
+ do:
+
+nice -n 20 make start
+
+I haven't tested this though so YMMV.
+
+This creates a minimal pokyABConfig.py within ~/poky-master. There is a lon=
+ger more complex pokyABConfig.py within scripts called pokyABConfig.py.exam=
+ple but for most developers, the default should suffice. If you need to tur=
+n off some buildsets in pokyABConfig.py, just edit it and comment out the b=
+uild steps you don't need and issue a
+
+make reconfig
+
+If something went funny (ie you don't see your changes) tail out the twistd=
+.log file for debug info.
+
+I've tested this on opensuse and ubuntu, but would appreciate any feedback,=
+ especially for folks doing more complicated installs (multiple slave build=
+ers, etc)=
 
