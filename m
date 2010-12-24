@@ -1,35 +1,25 @@
-Return-Path: <dongxiao.xu@intel.com>
+Return-Path: <saul.wold@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 84B284C80FD4
-	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 19:44:15 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 23 Dec 2010 17:44:14 -0800
+	by mx1.pokylinux.org (Postfix) with ESMTP id 022804C80050
+	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 23:28:33 -0600 (CST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 23 Dec 2010 21:28:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,221,1291622400"; d="scan'208";a="586825614"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by orsmga002.jf.intel.com with ESMTP; 23 Dec 2010 17:44:14 -0800
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Fri, 24 Dec 2010 09:43:48 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Fri, 24 Dec 2010 09:43:48 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Fri, 24 Dec 2010 09:43:46 +0800
-From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
-To: "Purdie, Richard" <richard.purdie@intel.com>
-Date: Fri, 24 Dec 2010 09:43:45 +0800
-Thread-Topic: A question about libtool-cross
-Thread-Index: AcujDADM8XYY2hVEQjqhOvWWBnt8+A==
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A319A5510@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+X-IronPort-AV: E=Sophos;i="4.60,222,1291622400"; d="scan'208";a="690395918"
+Received: from unknown (HELO [10.255.14.41]) ([10.255.14.41])
+	by orsmga001.jf.intel.com with ESMTP; 23 Dec 2010 21:28:33 -0800
+Message-ID: <4D142F80.3090308@intel.com>
+Date: Thu, 23 Dec 2010 21:28:32 -0800
+From: Saul Wold <saul.wold@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
+	Thunderbird/3.0.5
 MIME-Version: 1.0
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+References: <DC74E0187B44084E9AD28300B75DFE300557D6E7@orsmsx504.amr.corp.intel.com>
+In-Reply-To: <DC74E0187B44084E9AD28300B75DFE300557D6E7@orsmsx504.amr.corp.intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: A question about libtool-cross
+Subject: Re: Autobuilder upgrade to Buildbot 0.8.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,19 +31,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Dec 2010 01:44:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 24 Dec 2010 05:28:34 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Richard,
+On 12/23/2010 11:45 AM, Flanagan, Elizabeth wrote:
+> All,
+>
+> I've now finished the upgrade of the autobuilder repo to include buildbot 0.8.3. I've rewritten the installer and updated a bunch of build helper files. I wanted to take a few moments to explain some of the changes regarding installation.
+>
+> The big change is the upgrade to buildbot 0.8.3. Buildbot now keeps the master and slave code in different tarballs, so I've split up the installer to allow people to install either a master, a slave or both.
+>
+> I've also added some command line args to help people in configuration of a local BB. To see the long form of usage:
+>
+> git clone git://git.pokylinux.org/poky-autobuilder
+> cd poky-autobuilder
+> ./scripts/poky-setup-autobuilder --help
+>
+> The quickest way to set up the autobuilder for developer use, is to do:
+>
+> ./scripts/poky-setup-autobuilder both
+> cd ~/poky-master
+> make start
+> cd ~/poky-slave
+> make start
+> open a browser to http://localhost:8010
+>
+Ok, so what is the User and Password for?  I don't really see any 
+explanation for them.
 
-When looking at libtool-cross recipe, I found that it doesn't inherit the c=
-ross.bbclass, thus its files are populated into target sysroot. Is it on pu=
-rpose or its inherit is missing?=20
-BTW, for other cross recipes, like gcc-cross, binutils-cross, etc, they all=
- inherit cross.bbclass
+I am trying different options for setting locations and seem to have run 
+into trouble.  It would be nice to have a general option to just sent 
+bbHome to something other than home directory to move everything to a 
+different drive.
 
-Thanks,
-Dongxiao =
+Sau!
+
+
+> If for some reason the bb uses too many cpu cycles, you *should* be able to do:
+>
+> nice -n 20 make start
+>
+> I haven't tested this though so YMMV.
+>
+> This creates a minimal pokyABConfig.py within ~/poky-master. There is a longer more complex pokyABConfig.py within scripts called pokyABConfig.py.example but for most developers, the default should suffice. If you need to turn off some buildsets in pokyABConfig.py, just edit it and comment out the build steps you don't need and issue a
+>
+> make reconfig
+>
+> If something went funny (ie you don't see your changes) tail out the twistd.log file for debug info.
+>
+> I've tested this on opensuse and ubuntu, but would appreciate any feedback, especially for folks doing more complicated installs (multiple slave builders, etc)
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
 
