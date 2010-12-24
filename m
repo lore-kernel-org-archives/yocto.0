@@ -1,25 +1,39 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 16ACC4C80050
-	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 19:09:06 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 23 Dec 2010 17:09:05 -0800
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 079C44C80050
+	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 19:32:40 -0600 (CST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 23 Dec 2010 17:32:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,221,1291622400"; d="scan'208";a="690349413"
-Received: from unknown (HELO [10.255.14.41]) ([10.255.14.41])
-	by orsmga001.jf.intel.com with ESMTP; 23 Dec 2010 17:09:04 -0800
-Message-ID: <4D13F2B0.8040803@linux.intel.com>
-Date: Thu, 23 Dec 2010 17:09:04 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
+X-IronPort-AV: E=Sophos;i="4.60,221,1291622400"; d="scan'208";a="871470069"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by fmsmga001.fm.intel.com with ESMTP; 23 Dec 2010 17:32:09 -0800
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Fri, 24 Dec 2010 09:31:25 +0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Fri, 24 Dec 2010 09:31:25 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Fri, 24 Dec 2010 09:31:23 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>
+Date: Fri, 24 Dec 2010 09:31:22 +0800
+Thread-Topic: [yocto] Recent build issues.
+Thread-Index: AcujALZvftRYDN6tRFesSCuzOnrmtQACPZRA
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A319A54F0@shsmsx501.ccr.corp.intel.com>
+References: <DC74E0187B44084E9AD28300B75DFE300557D6E8@orsmsx504.amr.corp.intel.com>
+	<1293150141.17519.560.camel@rex>
+In-Reply-To: <1293150141.17519.560.camel@rex>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-References: <4D126637.4080805@intel.com>
-In-Reply-To: <4D126637.4080805@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Master stability and the autobuilder.
+Subject: Re: Recent build issues.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,94 +45,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Dec 2010 01:09:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 24 Dec 2010 01:32:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+> On Thu, 2010-12-23 at 14:08 -0800, Flanagan, Elizabeth wrote:
+>> Next,  the following bugs have been making it difficult to track down
+>> build failures:
+>>=20
+>> Sanity Test Boot test returns invalid results.
+>> http://bugzilla.pokylinux.org/show_bug.cgi?id=3D611
+>=20
+> Fixes for #611, #612 and some other issues I found are merged into master=
+.
+> Sanity tests are now working locally for me at least.
+>=20
+>> Sanity tests do not always kill QEMU once timeout is reached
+>> http://bugzilla.pokylinux.org/show_bug.cgi?id=3D595
+>=20
 
-On 12/22/2010 12:57 PM, Elizabeth Flanagan wrote:
-> All,
->
-> In preparation for the M3 milestone, I've been taking notes on what our
-> build and release process is and where the pain points are over the
-> course of the M2 milestone. A few things I've noted that are concerning:
->
-Beth,
+I tried to reproduce the bug before, but never seen such issue on my local =
+machine. Meanwhile, when I was checking the log on autobuilder, I found QEM=
+U was actually killed. I will add some check code and report error when qem=
+u is not killed.
 
-Good job here on pulling together the various pain points and summarizing.
-
-> 1. We have a really long build cycle. It takes a good 40 hours before
-> contamination of master is recognized and a further 40 hours *at the
-> very minimum* before it can be verified as corrected.
->
-> 2. We are very resource constrained. Because the build loop is so long,
-> our two build slaves are essentially in use 24/7. This will be
-> alleviated soon with a new build slave, but not until after the new year.
->
-> 3. There was an issue in M2 (which I'm not totally filled in on yet, I'm
-> going to be pinging people for details) which caused some kernel issues
-> around the M2 branch for ppc and arm. I haven't seen (and I've been
-> swamped with email recently, so I may have missed it) any resolution on
-> this in master.
->
-Yes and no, the ARM issue was resolved (missing mouse driver), the Slow 
-boot PPC issue was not verifiable, seemed to be related to sanity 
-testing, but we still need to verify this one.
-
-There was also an issue with the image not being built for mpc8315 (#610)
-
-> 4. People are relying on the autobuilder to do their builds or to verify
-> their code.
->
-> My main goal in M3 and on, is the stability of master. If we were less
-> resource constrained, I could allow the autobuilder to be a global
-> community resource where people could just queue up their various
-> builds. That, unfortunately, is not the case for now. What this means is
-> that I have to ask people for a few things.
->
-> 1. I'll be cleaning up the poky autobuilder config within the git repo
-> and making it very developer specific so that you should be able to run
-> a script and have the autobuilder set up to run incremental and fulls
-> (and an optional swabber target) on your own machine and have it work
-> right out of the box. Once my pull for the new autobuilder comes
-> through, please, set up your own local autobuilder instance. This should
-> be by the EOD today. I'll be somewhat available through the holidays to
-> assist people with local machine setups, but it should be fairly
-> straightforward.
->
-> 2. Please, make certain that your code builds on your local buildbot
-> before submitting a pull request. As the project grows, maintaining the
-> stability of master will become more and more important and the limited
-> resources of our maintainers and our infrastructure will become more and
-> more stretched.
->
-I can not stress this enough, I would like to get clean code from people 
-so that when I have to do the integration build I am not fighting problems.
-
-Thanks for helping to make this a stable master
-
-Sau!
-
-> 3. I've dropped this recently, due to limited time, but I'm going to
-> start sending out more and more broken build emails. Please, do not
-> ignore these. Act on them. If you're think you may be responsible for
-> something that is broken, let people know that you recognize the
-> breakage and what you're planning on doing to fix it.
->
-> 4. Until we know that master is stable (right now I know of 3 or 4
-> issues, email forthcoming), the autobuilder will be tasked with a very
-> limited number of buildsets. I'll be generating a milestone type build
-> off of master to get some quicker response (20 hours verses 38), and
-> incremental versions of milestone and sanity testing. We will still be
-> running nightly (although you can't see it on the autobuilder right now)
-> and distro-testing but until master is stable, those have got to be the
-> priorities on the autobuilder.
->
-> -b
+> This is not fixed yet and we need to sort that as its hurting the autobui=
+lder.
+>=20
+>> There are also sanity test failures in a few images:
+>>=20
+>> qemuarm poky-image-sato
+>> qemuarm poky-image-minimal
+>> qemumips poky-image-sato
+>>=20
+>> mips seems to have run poky-image-minimal ok, but with Bug #611, I
+>> can't be sure that is the case and I doubt it's actually the case.
+>> My inclination is that there is an issue with arm and mips builds
+>> that should be looked at.
+>=20
+> Also, qemux86 was broken until a fix I pushed a few minutes ago
+> (kernel was missing IDE support and wouldn't boot in qemu).
+>=20
+> It looks like the new version of opkg we've upgraded to fixing certain
+> meta-toolchain corruption issues has some other new characteristics
+> such as refusing to install overlapping files. This is good but its
+> exposed bugs (and why isn't rpm showing this?).
+>=20
+> There is currently an issue with that when building meta-toolchain and
+> poky-image-lsb that I know of. Patches to fix these bugs welcome (and
+> bugs need filing).
+>=20
+>> - PPC is broken.
+>>=20
+>> PPC is having serious issues that seem to revolve around
+>> linux-yocto-2.6.37. Bruce I believe is working on this. Can anyone
+>> give an update around where this stands?
+>=20
+> Bruce pushed a patch to disable -Os usage. If this isn't showing up in
+> the next round of autobuilds, we'll have to figure out why it isn't getti=
+ng applied.
+>=20
+> Cheers,
+>=20
+> Richard
+>=20
+>=20
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->
+
+Best Regards,
+Jiajun
+
 
 
