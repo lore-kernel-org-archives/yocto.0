@@ -1,28 +1,29 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A24F04C80FD4
-	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 18:22:40 -0600 (CST)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.2/8.14.2/Debian-2build1) with ESMTP id
-	oBO0O2O9001591; Fri, 24 Dec 2010 00:24:03 GMT
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id T-PSrpVSj7QK; Fri, 24 Dec 2010 00:24:02 +0000 (GMT)
-Received: from [192.168.1.42] (tim [93.97.173.237]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.2/8.14.2/Debian-2build1) with ESMTP id
-	oBO0NtSh001587
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
-	Fri, 24 Dec 2010 00:23:57 GMT
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-In-Reply-To: <DC74E0187B44084E9AD28300B75DFE300557D6E8@orsmsx504.amr.corp.intel.com>
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 569AB4C80FD4
+	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 18:53:08 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oBO0r7jF004689
+	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 16:53:07 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Thu, 23 Dec 2010 16:53:07 -0800
+Received: from Macintosh-5.local ([172.25.36.226]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Thu, 23 Dec 2010 16:53:07 -0800
+Message-ID: <4D13EEF2.8080605@windriver.com>
+Date: Thu, 23 Dec 2010 18:53:06 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.13) Gecko/20101207 Thunderbird/3.1.7
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
 References: <DC74E0187B44084E9AD28300B75DFE300557D6E8@orsmsx504.amr.corp.intel.com>
-Date: Fri, 24 Dec 2010 00:22:21 +0000
-Message-ID: <1293150141.17519.560.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<1293150141.17519.560.camel@rex>
+In-Reply-To: <1293150141.17519.560.camel@rex>
+X-OriginalArrivalTime: 24 Dec 2010 00:53:07.0627 (UTC)
+	FILETIME=[EDE007B0:01CBA304]
 Subject: Re: Recent build issues.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -35,61 +36,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Dec 2010 00:22:41 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 24 Dec 2010 00:53:08 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2010-12-23 at 14:08 -0800, Flanagan, Elizabeth wrote:
-> Next,  the following bugs have been making it difficult to track down build failures:
+On 12/23/10 6:22 PM, Richard Purdie wrote:
+> On Thu, 2010-12-23 at 14:08 -0800, Flanagan, Elizabeth wrote:
+...
+
+>> mips seems to have run poky-image-minimal ok, but with Bug #611, I
+>> can't be sure that is the case and I doubt it's actually the case. My
+>> inclination is that there is an issue with arm and mips builds that
+>> should be looked at.
 > 
-> Sanity Test Boot test returns invalid results.
-> http://bugzilla.pokylinux.org/show_bug.cgi?id=611
-
-Fixes for #611, #612 and some other issues I found are merged into
-master. Sanity tests are now working locally for me at least.
-
-> Sanity tests do not always kill QEMU once timeout is reached
-> http://bugzilla.pokylinux.org/show_bug.cgi?id=595
-
-This is not fixed yet and we need to sort that as its hurting the
-autobuilder.
-
-> There are also sanity test failures in a few images:
+> Also, qemux86 was broken until a fix I pushed a few minutes ago (kernel
+> was missing IDE support and wouldn't boot in qemu).
 > 
-> qemuarm poky-image-sato
-> qemuarm poky-image-minimal
-> qemumips poky-image-sato
+> It looks like the new version of opkg we've upgraded to fixing certain
+> meta-toolchain corruption issues has some other new characteristics such
+> as refusing to install overlapping files. This is good but its exposed
+> bugs (and why isn't rpm showing this?).
+
+There are two cases in which RPM allows "overlapping" files.
+
+The first is that the files are identical.  I.e. same md5sum/same sha1.  There
+are reasons for overlapping files in most distros, so they are handled
+gracefully.  (To me not supporting identical files in multiple packages is a
+defect.. because of the second reason...)
+
+The second is two files of different ELF types.  This can occur when you are on
+a multilib system.  You have duplicate packages (one 32-bit, one 64-bit) to be
+installed at the same time.  They may contain duplicate files, as well as endian
+specific files (libraries and binaries).  In the case of overlapping binaries
+RPM will check and use a configured policy to determine which one is installed
+and which is ignored.  (On IA32 systems, generally 64-bit is installed, and
+32-bit is ignored.)  Goal is to allow for both 64-bit and 32-bit libraries, all
+common data files and the "preferred" binary format to be installed onto a system.
+
+> There is currently an issue with that when building meta-toolchain and
+> poky-image-lsb that I know of. Patches to fix these bugs welcome (and
+> bugs need filing).
 > 
-> mips seems to have run poky-image-minimal ok, but with Bug #611, I
-> can't be sure that is the case and I doubt it's actually the case. My
-> inclination is that there is an issue with arm and mips builds that
-> should be looked at.
 
-Also, qemux86 was broken until a fix I pushed a few minutes ago (kernel
-was missing IDE support and wouldn't boot in qemu).
-
-It looks like the new version of opkg we've upgraded to fixing certain
-meta-toolchain corruption issues has some other new characteristics such
-as refusing to install overlapping files. This is good but its exposed
-bugs (and why isn't rpm showing this?).
-
-There is currently an issue with that when building meta-toolchain and
-poky-image-lsb that I know of. Patches to fix these bugs welcome (and
-bugs need filing).
-
-> - PPC is broken.
-> 
-> PPC is having serious issues that seem to revolve around
-> linux-yocto-2.6.37. Bruce I believe is working on this. Can anyone
-> give an update around where this stands?
-
-Bruce pushed a patch to disable -Os usage. If this isn't showing up in
-the next round of autobuilds, we'll have to figure out why it isn't
-getting applied.
-
-Cheers,
-
-Richard
-
-
+...
 
