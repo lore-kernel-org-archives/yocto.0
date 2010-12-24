@@ -1,25 +1,31 @@
-Return-Path: <saul.wold@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 022804C80050
-	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 23:28:33 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 23 Dec 2010 21:28:33 -0800
+Return-Path: <lianhao.lu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 182CF4C80050
+	for <yocto@yoctoproject.org>; Fri, 24 Dec 2010 01:10:06 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 23 Dec 2010 23:10:06 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,222,1291622400"; d="scan'208";a="690395918"
-Received: from unknown (HELO [10.255.14.41]) ([10.255.14.41])
-	by orsmga001.jf.intel.com with ESMTP; 23 Dec 2010 21:28:33 -0800
-Message-ID: <4D142F80.3090308@intel.com>
-Date: Thu, 23 Dec 2010 21:28:32 -0800
-From: Saul Wold <saul.wold@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
+X-IronPort-AV: E=Sophos;i="4.60,222,1291622400"; d="scan'208";a="586884397"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by orsmga002.jf.intel.com with ESMTP; 23 Dec 2010 23:10:05 -0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Fri, 24 Dec 2010 15:09:38 +0800
+Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Fri, 24 Dec 2010 15:09:37 +0800
+From: "Lu, Lianhao" <lianhao.lu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Fri, 24 Dec 2010 15:09:37 +0800
+Thread-Topic: building output when inherit different bbclasses
+Thread-Index: AcujOYYw1Oa46lZeSZaQZ9CLtPuj+w==
+Message-ID: <C10D3FB0CD45994C8A51FEC1227CE22F1D26D870C2@shsmsx502.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-References: <DC74E0187B44084E9AD28300B75DFE300557D6E7@orsmsx504.amr.corp.intel.com>
-In-Reply-To: <DC74E0187B44084E9AD28300B75DFE300557D6E7@orsmsx504.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Autobuilder upgrade to Buildbot 0.8.3
+Subject: building output when inherit different bbclasses
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,60 +37,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Dec 2010 05:28:34 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 24 Dec 2010 07:10:09 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/23/2010 11:45 AM, Flanagan, Elizabeth wrote:
-> All,
->
-> I've now finished the upgrade of the autobuilder repo to include buildbot 0.8.3. I've rewritten the installer and updated a bunch of build helper files. I wanted to take a few moments to explain some of the changes regarding installation.
->
-> The big change is the upgrade to buildbot 0.8.3. Buildbot now keeps the master and slave code in different tarballs, so I've split up the installer to allow people to install either a master, a slave or both.
->
-> I've also added some command line args to help people in configuration of a local BB. To see the long form of usage:
->
-> git clone git://git.pokylinux.org/poky-autobuilder
-> cd poky-autobuilder
-> ./scripts/poky-setup-autobuilder --help
->
-> The quickest way to set up the autobuilder for developer use, is to do:
->
-> ./scripts/poky-setup-autobuilder both
-> cd ~/poky-master
-> make start
-> cd ~/poky-slave
-> make start
-> open a browser to http://localhost:8010
->
-Ok, so what is the User and Password for?  I don't really see any 
-explanation for them.
+Hi guys,
 
-I am trying different options for setting locations and seem to have run 
-into trouble.  It would be nice to have a general option to just sent 
-bbHome to something other than home directory to move everything to a 
-different drive.
+The following list might help someone who wants to figure out what's the di=
+fference between the various buildings when inheriting different bbclass(es=
+).=20
 
-Sau!
+The normal(default) situation for poky is:
 
+   build =3D "build system"
+   host =3D target =3D "set by MACHINE config"
 
-> If for some reason the bb uses too many cpu cycles, you *should* be able to do:
->
-> nice -n 20 make start
->
-> I haven't tested this though so YMMV.
->
-> This creates a minimal pokyABConfig.py within ~/poky-master. There is a longer more complex pokyABConfig.py within scripts called pokyABConfig.py.example but for most developers, the default should suffice. If you need to turn off some buildsets in pokyABConfig.py, just edit it and comment out the build steps you don't need and issue a
->
-> make reconfig
->
-> If something went funny (ie you don't see your changes) tail out the twistd.log file for debug info.
->
-> I've tested this on opensuse and ubuntu, but would appreciate any feedback, especially for folks doing more complicated installs (multiple slave builders, etc)
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+cross.bbclass:=20
 
+   build =3D host =3D "build system"
+   target =3D "set by MACHINE config"
+
+crosssdk.bbclass:=20
+
+   build =3D host =3D "build system"
+   target =3D "set by SDKMACHINE config"
+
+native.bbclass:
+
+   build =3D host =3D target =3D "build system"
+
+nativesdk.bbclass:
+
+   build =3D "build system"
+   host =3D target =3D "set by SDKMACHINE config"
+
+cross-canadian.bbclass:
+
+   build =3D "build system"
+   host =3D "set by SDKMACHINE config"
+   target =3D "set by MACHINE config"
 
