@@ -1,28 +1,29 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8D8DA4C80FD4
-	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 16:08:18 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 23 Dec 2010 14:08:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,220,1291622400"; d="scan'208";a="690311188"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by orsmga001.jf.intel.com with ESMTP; 23 Dec 2010 14:08:18 -0800
-Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
-	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
-	Thu, 23 Dec 2010 14:08:18 -0800
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 23 Dec 2010 14:08:17 -0800
-Thread-Topic: Recent build issues.
-Thread-Index: AQHLou3mCz/Vk0oUbESUz+kPR/tLDQ==
-Message-ID: <DC74E0187B44084E9AD28300B75DFE300557D6E8@orsmsx504.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: Recent build issues.
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
+	by mx1.pokylinux.org (Postfix) with ESMTP id A24F04C80FD4
+	for <yocto@yoctoproject.org>; Thu, 23 Dec 2010 18:22:40 -0600 (CST)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.2/8.14.2/Debian-2build1) with ESMTP id
+	oBO0O2O9001591; Fri, 24 Dec 2010 00:24:03 GMT
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id T-PSrpVSj7QK; Fri, 24 Dec 2010 00:24:02 +0000 (GMT)
+Received: from [192.168.1.42] (tim [93.97.173.237]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.2/8.14.2/Debian-2build1) with ESMTP id
+	oBO0NtSh001587
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
+	Fri, 24 Dec 2010 00:23:57 GMT
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+In-Reply-To: <DC74E0187B44084E9AD28300B75DFE300557D6E8@orsmsx504.amr.corp.intel.com>
+References: <DC74E0187B44084E9AD28300B75DFE300557D6E8@orsmsx504.amr.corp.intel.com>
+Date: Fri, 24 Dec 2010 00:22:21 +0000
+Message-ID: <1293150141.17519.560.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Recent build issues.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,49 +35,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Dec 2010 22:08:18 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 24 Dec 2010 00:22:41 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Recent build issues:
+On Thu, 2010-12-23 at 14:08 -0800, Flanagan, Elizabeth wrote:
+> Next,  the following bugs have been making it difficult to track down build failures:
+> 
+> Sanity Test Boot test returns invalid results.
+> http://bugzilla.pokylinux.org/show_bug.cgi?id=611
 
-- There seem to be a few issues going on with sanity testing:
+Fixes for #611, #612 and some other issues I found are merged into
+master. Sanity tests are now working locally for me at least.
 
-First, I've made a change to how sanity tests are run on the autobuilder th=
-at should speed them up some. bitbake @ -c qemuimagetest creates a rootfs. =
-I've switched this to bitbake @ -c qemuimagetest_standalone, so this should=
-n't create a rootfs and should use the one already existing. We should see =
-some performance improvement with this. I thought this had been included in=
- my pull with BB 0.8.3 but I must have not included it.
+> Sanity tests do not always kill QEMU once timeout is reached
+> http://bugzilla.pokylinux.org/show_bug.cgi?id=595
 
-Next,  the following bugs have been making it difficult to track down build=
- failures:
+This is not fixed yet and we need to sort that as its hurting the
+autobuilder.
 
-Sanity Test Boot test returns invalid results.
-http://bugzilla.pokylinux.org/show_bug.cgi?id=3D611
+> There are also sanity test failures in a few images:
+> 
+> qemuarm poky-image-sato
+> qemuarm poky-image-minimal
+> qemumips poky-image-sato
+> 
+> mips seems to have run poky-image-minimal ok, but with Bug #611, I
+> can't be sure that is the case and I doubt it's actually the case. My
+> inclination is that there is an issue with arm and mips builds that
+> should be looked at.
 
-Sanity tests do not always kill QEMU once timeout is reached
-http://bugzilla.pokylinux.org/show_bug.cgi?id=3D595
+Also, qemux86 was broken until a fix I pushed a few minutes ago (kernel
+was missing IDE support and wouldn't boot in qemu).
 
-There are also sanity test failures in a few images:
+It looks like the new version of opkg we've upgraded to fixing certain
+meta-toolchain corruption issues has some other new characteristics such
+as refusing to install overlapping files. This is good but its exposed
+bugs (and why isn't rpm showing this?).
 
-qemuarm poky-image-sato
-qemuarm poky-image-minimal
-qemumips poky-image-sato
+There is currently an issue with that when building meta-toolchain and
+poky-image-lsb that I know of. Patches to fix these bugs welcome (and
+bugs need filing).
 
-mips seems to have run poky-image-minimal ok, but with Bug #611, I can't be=
- sure that is the case and I doubt it's actually the case. My inclination i=
-s that there is an issue with arm and mips builds that should be looked at.
+> - PPC is broken.
+> 
+> PPC is having serious issues that seem to revolve around
+> linux-yocto-2.6.37. Bruce I believe is working on this. Can anyone
+> give an update around where this stands?
 
-- PPC is broken.
+Bruce pushed a patch to disable -Os usage. If this isn't showing up in
+the next round of autobuilds, we'll have to figure out why it isn't
+getting applied.
 
-PPC is having serious issues that seem to revolve around linux-yocto-2.6.37=
-. Bruce I believe is working on this. Can anyone give an update around wher=
-e this stands?
+Cheers,
 
-I'm running nightly-incremental and nightly now to pull in some changes mad=
-e this morning and to prepare for weekend delivery to QA. I'll send out tho=
-se build results on Sunday (or whenever the build finishes.)
--b
+Richard
+
+
 
