@@ -1,32 +1,29 @@
-Return-Path: <liping.ke@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 2B3B44C80050
-	for <yocto@yoctoproject.org>; Mon, 27 Dec 2010 21:34:01 -0600 (CST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 27 Dec 2010 19:34:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,237,1291622400"; d="scan'208";a="367129085"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by azsmga001.ch.intel.com with ESMTP; 27 Dec 2010 19:33:50 -0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Tue, 28 Dec 2010 11:33:21 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Tue, 28 Dec 2010 11:33:20 +0800
-From: "Ke, Liping" <liping.ke@intel.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-Date: Tue, 28 Dec 2010 11:33:20 +0800
-Thread-Topic: size of source file opkg and the opkg.tar.gz
-Thread-Index: AcumP/kX75p+9QZkSk+GjBbBXGSwCw==
-Message-ID: <789F9655DD1B8F43B48D77C5D30659733150749B@shsmsx501.ccr.corp.intel.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN, en-US
+Return-Path: <liming.wang@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B38C44C80050
+	for <yocto@yoctoproject.org>; Mon, 27 Dec 2010 21:40:02 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id oBS3e1T5020906;
+	Mon, 27 Dec 2010 19:40:01 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Mon, 27 Dec 2010 19:40:01 -0800
+Received: from [128.224.163.159] ([128.224.163.159]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Mon, 27 Dec 2010 19:40:01 -0800
+Message-ID: <4D195C39.20205@windriver.com>
+Date: Tue, 28 Dec 2010 11:40:41 +0800
+From: Liming Wang <liming.wang@windriver.com>
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN;
+	rv:1.9.2.13) Gecko/20101207 Thunderbird/3.1.7
 MIME-Version: 1.0
+To: "Lu, Lianhao" <lianhao.lu@intel.com>
+References: <C10D3FB0CD45994C8A51FEC1227CE22F1DC19A9BCD@shsmsx502.ccr.corp.intel.com>
+In-Reply-To: <C10D3FB0CD45994C8A51FEC1227CE22F1DC19A9BCD@shsmsx502.ccr.corp.intel.com>
+X-OriginalArrivalTime: 28 Dec 2010 03:40:01.0546 (UTC)
+	FILETIME=[E849CEA0:01CBA640]
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: size of source file opkg and the opkg.tar.gz
+Subject: Re: default dependencies not built in "bitbake -b"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,23 +35,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Dec 2010 03:34:01 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 28 Dec 2010 03:40:03 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi, Jessica
+On 2010-12-28 10:21, Lu, Lianhao wrote:
+> Hi fellows,
+>
+> Does anyone know why "bitbake -b<.bbfile>" fails on a newly cloned poky tree, complaining about the cross-compiler can not be found in the PATH. Does  "bitbake -b" build the default dependencies?
+I think it doesn't build the dependencies if you a .bb file.
 
-Opkg source file is not very big. 437kb. And if untar, the folder size will=
- be 1.92M, about four times.
+Liming Wang
+> Best Regards,
+> -Lianhao Lu
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Seems not very big.
-
-So I will keep using do_unpack facilities. So that the installer script tar=
-ball will contain the source file
-directory. User need not unpack it during installation phase.
-
-
-Thanks& Regards,
-criping
 
