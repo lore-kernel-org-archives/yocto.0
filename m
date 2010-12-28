@@ -1,28 +1,33 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 4FC994C80050
-	for <yocto@yoctoproject.org>; Mon, 27 Dec 2010 16:44:53 -0600 (CST)
-Received: by mail.chez-thomas.org (Postfix, from userid 999)
-	id 0F08C16601AB; Mon, 27 Dec 2010 15:44:52 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.1
-Received: from hermes.chez-thomas.org (hermes_local [192.168.1.101])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 1C57F1660177;
-	Mon, 27 Dec 2010 15:44:51 -0700 (MST)
-Message-ID: <4D1916E3.7020703@mlbassoc.com>
-Date: Mon, 27 Dec 2010 15:44:51 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.13) Gecko/20101209 Fedora/3.1.7-0.35.b3pre.fc13
-	Thunderbird/3.1.7
+Return-Path: <psanchez@fosstel.com>
+Received: from a2s40.a2hosting.com (a2s40.a2hosting.com [216.119.135.130])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6C07A4C80050
+	for <yocto@yoctoproject.org>; Mon, 27 Dec 2010 18:10:38 -0600 (CST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=default; d=fosstel.com;
+	h=Received:Message-ID:Date:From:User-Agent:MIME-Version:CC:Subject:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:X-A2-Score:X-A2-checked;
+	b=g24LMIvjINLm6I5/W5xIm6Qy8fewspdoRoVMfqnIeyf24s572h3zRRAO+ua+08XyDpUNmaqIOUYMT6GWJC5iY2Htmu0yFzoyRNg582Fb/SJqovnekyTHVx24WOlYd/3n;
+Received: from cpe0014d14df253-cm001e6b1a7260.cpe.net.cable.rogers.com
+	([99.224.55.53] helo=[192.168.1.160])
+	by a2s40.a2hosting.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <psanchez@fosstel.com>)
+	id 1PXN95-0007kK-Oe
+	for yocto@yoctoproject.org; Mon, 27 Dec 2010 19:10:36 -0500
+Message-ID: <4D192AF5.5080304@fosstel.com>
+Date: Mon, 27 Dec 2010 19:10:29 -0500
+From: Pedro Sanchez <psanchez@fosstel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.13) Gecko/20101208 Lightning/1.0b2 Thunderbird/3.1.7
 MIME-Version: 1.0
-To: Pedro Sanchez <psanchez@fosstel.com>
-References: <4D191170.20103@fosstel.com>
-In-Reply-To: <4D191170.20103@fosstel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+CC: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <4D191170.20103@fosstel.com> <4D1916E3.7020703@mlbassoc.com>
+In-Reply-To: <4D1916E3.7020703@mlbassoc.com>
+X-A2-Score: -3.3 (---)
+X-A2-checked: Yes
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a2s40.a2hosting.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - fosstel.com
 Subject: Re: Failing to compile Yocto (acl package)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -35,44 +40,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Dec 2010 22:44:54 -0000
+X-List-Received-Date: Tue, 28 Dec 2010 00:10:38 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/27/2010 03:21 PM, Pedro Sanchez wrote:
-> Hello,
+On 12/27/2010 05:44 PM, Gary Thomas wrote:
+> On 12/27/2010 03:21 PM, Pedro Sanchez wrote:
+>> Hello,
+>>
+>> I'm trying to compile Yocto from sources as described in the quick
+>> start documentation but the build fails as follows:
+>>
+>> $ wget
+>> http://www.yoctoproject.org/downloads/poky/poky-laverne-4.0.tar.bz2
+>> $ tar xjf poky-laverne-4.0.tar.bz2
+>> $ (edited conf/local.conf to select qemuarm)
+>> $ source poky-laverne-4.0/poky-init-build-env poky-4.0-build
+>> $ bitbake poky-image-minimal
+>>
+>>
+>> ... (30 minutes of work)
+>>
+>> NOTE: package acl-2.2.49-r0: task do_fetch: Succeeded
+>> NOTE: Running task 582 of 1621 (ID: 1261,
+>> /home/psanchez/Oven/poky-laverne-4.0/meta/recipes-support/attr/acl_2.2.49.bb,
+>> do_unpack)
+>> NOTE: package acl-2.2.49-r0: task do_unpack: Started
+>> NOTE: Unpacking
+>> /home/psanchez/Oven/poky-4.0-build/downloads/acl-2.2.49.src.tar.gz to
+>> /home/psanchez/Oven/poky-4.0-build/tmp/work/armv5te-poky-linux-gnueabi/acl-2.2.49-r0/
+>>
+>> ERROR: Task failed:
+>> NOTE: package acl-2.2.49-r0: task do_unpack: Failed
+>> ERROR: Task 1261
+>> (/home/psanchez/Oven/poky-laverne-4.0/meta/recipes-support/attr/acl_2.2.49.bb,
+>> do_unpack) failed with 1
+>> ERROR:
+>> '/home/psanchez/Oven/poky-laverne-4.0/meta/recipes-support/attr/acl_2.2.49.bb'
+>> failed
+>>
+>>
+>> I tried compiling the Laverne branch on a cloned Poky git repo. It
+>> also fails when processing the acl package. Any workarounds? Is there
+>> any log file I can look at for more details?
 >
-> I'm trying to compile Yocto from sources as described in the quick start documentation but the build fails as follows:
+> You can find log files in the build directory with a relative
+> path like .../tmp/work/*/acl*/temp
 >
-> $ wget http://www.yoctoproject.org/downloads/poky/poky-laverne-4.0.tar.bz2
-> $ tar xjf poky-laverne-4.0.tar.bz2
-> $ (edited conf/local.conf to select qemuarm)
-> $ source poky-laverne-4.0/poky-init-build-env poky-4.0-build
-> $ bitbake poky-image-minimal
+> In particular, look at the log.do_unpack file for clues
 >
->
-> ... (30 minutes of work)
->
-> NOTE: package acl-2.2.49-r0: task do_fetch: Succeeded
-> NOTE: Running task 582 of 1621 (ID: 1261, /home/psanchez/Oven/poky-laverne-4.0/meta/recipes-support/attr/acl_2.2.49.bb, do_unpack)
-> NOTE: package acl-2.2.49-r0: task do_unpack: Started
-> NOTE: Unpacking /home/psanchez/Oven/poky-4.0-build/downloads/acl-2.2.49.src.tar.gz to /home/psanchez/Oven/poky-4.0-build/tmp/work/armv5te-poky-linux-gnueabi/acl-2.2.49-r0/
-> ERROR: Task failed:
-> NOTE: package acl-2.2.49-r0: task do_unpack: Failed
-> ERROR: Task 1261 (/home/psanchez/Oven/poky-laverne-4.0/meta/recipes-support/attr/acl_2.2.49.bb, do_unpack) failed with 1
-> ERROR: '/home/psanchez/Oven/poky-laverne-4.0/meta/recipes-support/attr/acl_2.2.49.bb' failed
->
->
-> I tried compiling the Laverne branch on a cloned Poky git repo. It also fails when processing the acl package. Any workarounds? Is there any log file I can look at for more details?
 
-You can find log files in the build directory with a relative
-path like .../tmp/work/*/acl*/temp
+Thanks,
 
-In particular, look at the log.do_unpack file for clues
+This is what I see:
+
+$ cat armv5te-poky-linux-gnueabi/acl-2.2.49-r0/temp/log.do_unpack
+gzip: stdin: not in gzip format
+tar: Child returned status 1
+tar: Exiting with failure status due to previous errors
+NOTE: Unpacking 
+/home/psanchez/Oven/poky-4.0-build/downloads/acl-2.2.49.src.tar.gz to 
+/home/psanchez/Oven/poky-4.0-build/tmp/work/armv5te-poky-linux-gnueabi/acl-2.2.49-r0/
+ERROR: Task failed:
+
+$ file poky-4.0-build/downloads/acl-2.2.49.src.tar.gz
+poky-4.0-build/downloads/acl-2.2.49.src.tar.gz: HTML document text
+
+The mirror where bb is configured to get acl from, mirror.cinquix.com, 
+is down. I'll try to get it from the Savannah site.
+
+Thanks again,
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Pedro
 
