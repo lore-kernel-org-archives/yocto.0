@@ -1,42 +1,39 @@
 Return-Path: <kevin.tian@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 094104C80050
-	for <yocto@yoctoproject.org>; Mon, 27 Dec 2010 18:24:06 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 27 Dec 2010 16:24:06 -0800
+	by mx1.pokylinux.org (Postfix) with ESMTP id 7BF464C8112C
+	for <yocto@yoctoproject.org>; Mon, 27 Dec 2010 19:14:04 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 27 Dec 2010 17:14:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,237,1291622400"; d="scan'208";a="691192291"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by orsmga001.jf.intel.com with ESMTP; 27 Dec 2010 16:24:05 -0800
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Tue, 28 Dec 2010 08:23:19 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Tue, 28 Dec 2010 08:23:19 +0800
+X-IronPort-AV: E=Sophos;i="4.60,237,1291622400"; d="scan'208";a="587652140"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by orsmga002.jf.intel.com with ESMTP; 27 Dec 2010 17:13:54 -0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Tue, 28 Dec 2010 09:13:54 +0800
 Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Tue, 28 Dec 2010 08:23:18 +0800
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Tue, 28 Dec 2010 09:13:52 +0800
 From: "Tian, Kevin" <kevin.tian@intel.com>
 To: Pedro Sanchez <psanchez@fosstel.com>
-Date: Tue, 28 Dec 2010 08:23:10 +0800
+Date: Tue, 28 Dec 2010 09:13:45 +0800
 Thread-Topic: [yocto] Failing to compile Yocto (acl package)
-Thread-Index: AcumI9P3t910Xkc+RSuHqK2b0/gJmwAAHhtA
-Message-ID: <625BA99ED14B2D499DC4E29D8138F1504D64C30957@shsmsx502.ccr.corp.intel.com>
+Thread-Index: AcumI9P3t910Xkc+RSuHqK2b0/gJmwACFBZw
+Message-ID: <625BA99ED14B2D499DC4E29D8138F1504D64C309B0@shsmsx502.ccr.corp.intel.com>
 References: <4D191170.20103@fosstel.com> <4D1916E3.7020703@mlbassoc.com>
 	<4D192AF5.5080304@fosstel.com>
 In-Reply-To: <4D192AF5.5080304@fosstel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-cr-hashedpuzzle: AMhS Bupn C+4D EzCP FvmZ F1gD ILJb IhuL Jy53 J8iA Ktnn
-	LmmI M4Av QEn+ Rc2d TE7z; 2;
+x-cr-hashedpuzzle: A3un BVgv BY4Y CeOt FSpU H1en IWjX KXEL Lncx L935 NvcT
+	Opt3 QS6l R901 Th7c XZsg; 2;
 	cABzAGEAbgBjAGgAZQB6AEAAZgBvAHMAcwB0AGUAbAAuAGMAbwBtADsAeQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
-	Sosha1_v1; 7; {C38CBE9B-2992-4770-8322-56B750042000};
+	Sosha1_v1; 7; {F18BDFE1-CF14-40E6-A5BF-95B68356384D};
 	awBlAHYAaQBuAC4AdABpAGEAbgBAAGkAbgB0AGUAbAAuAGMAbwBtAA==; Tue,
-	28 Dec 2010 00:23:10 GMT;
+	28 Dec 2010 01:13:45 GMT;
 	UgBFADoAIABbAHkAbwBjAHQAbwBdACAARgBhAGkAbABpAG4AZwAgAHQAbwAgAGMAbwBtAHAAaQBsAGUAIABZAG8AYwB0AG8AIAAoAGEAYwBsACAAcABhAGMAawBhAGcAZQApAA==
-x-cr-puzzleid: {C38CBE9B-2992-4770-8322-56B750042000}
+x-cr-puzzleid: {F18BDFE1-CF14-40E6-A5BF-95B68356384D}
 acceptlanguage: en-US
 MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
@@ -52,7 +49,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Dec 2010 00:24:07 -0000
+X-List-Received-Date: Tue, 28 Dec 2010 01:14:04 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
@@ -134,15 +131,13 @@ Content-Transfer-Encoding: quoted-printable
 >is down. I'll try to get it from the Savannah site.
 >
 
-yes, it's very likely that the file you downloaded from the mirror is broke=
-n. You can
-either change the SRC_URI in the acl*.bb to the real Savannah link, or down=
-load it
-manually and then copy to the place where DL_DIR in your build/conf/local.c=
-onf
-points to. It doesn't make sense not using Savannah directly. A fix will be=
- sent out
-soon.
+I've sent out the SRC_URI fixes to use correct Savannah site.
+
+BTW, if the mirror site is down, you should still get a correct tar ball fr=
+om=20
+pre-configured poky mirrors (pokylinux.org, ...). Please let's know if thos=
+e
+mirrors don't take effect to you.=20
 
 Thanks
 Kevin
