@@ -1,31 +1,32 @@
-Return-Path: <lianhao.lu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 3EA424C810B6
-	for <yocto@yoctoproject.org>; Mon, 27 Dec 2010 20:23:03 -0600 (CST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 27 Dec 2010 18:23:02 -0800
+Return-Path: <liping.ke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 2B3B44C80050
+	for <yocto@yoctoproject.org>; Mon, 27 Dec 2010 21:34:01 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 27 Dec 2010 19:34:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,237,1291622400"; d="scan'208";a="872320850"
+X-IronPort-AV: E=Sophos;i="4.60,237,1291622400"; d="scan'208";a="367129085"
 Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by fmsmga001.fm.intel.com with ESMTP; 27 Dec 2010 18:23:02 -0800
+	by azsmga001.ch.intel.com with ESMTP; 27 Dec 2010 19:33:50 -0800
 Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
 	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Tue, 28 Dec 2010 10:21:57 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	(TLS) id 8.2.254.0; Tue, 28 Dec 2010 11:33:21 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
 	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Tue, 28 Dec 2010 10:21:56 +0800
-From: "Lu, Lianhao" <lianhao.lu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 28 Dec 2010 10:21:54 +0800
-Thread-Topic: default dependencies not built in "bitbake -b"
-Thread-Index: AcumNf6bWnqbp1cnTYKiqgzsRE9PsQ==
-Message-ID: <C10D3FB0CD45994C8A51FEC1227CE22F1DC19A9BCD@shsmsx502.ccr.corp.intel.com>
+	Tue, 28 Dec 2010 11:33:20 +0800
+From: "Ke, Liping" <liping.ke@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Date: Tue, 28 Dec 2010 11:33:20 +0800
+Thread-Topic: size of source file opkg and the opkg.tar.gz
+Thread-Index: AcumP/kX75p+9QZkSk+GjBbBXGSwCw==
+Message-ID: <789F9655DD1B8F43B48D77C5D30659733150749B@shsmsx501.ccr.corp.intel.com>
 Accept-Language: zh-CN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-Subject: default dependencies not built in "bitbake -b"
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: size of source file opkg and the opkg.tar.gz
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,17 +38,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Dec 2010 02:23:03 -0000
+X-List-Received-Date: Tue, 28 Dec 2010 03:34:01 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi fellows,
+Hi, Jessica
 
-Does anyone know why "bitbake -b <.bbfile>" fails on a newly cloned poky tr=
-ee, complaining about the cross-compiler can not be found in the PATH. Does=
-  "bitbake -b" build the default dependencies?
+Opkg source file is not very big. 437kb. And if untar, the folder size will=
+ be 1.92M, about four times.
 
-Best Regards,
--Lianhao Lu
+Seems not very big.
+
+So I will keep using do_unpack facilities. So that the installer script tar=
+ball will contain the source file
+directory. User need not unpack it during installation phase.
+
+
+Thanks& Regards,
+criping
 
