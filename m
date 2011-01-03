@@ -1,35 +1,30 @@
-Return-Path: <liping.ke@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 40D874C80BD4
-	for <yocto@yoctoproject.org>; Mon,  3 Jan 2011 07:36:03 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 03 Jan 2011 05:36:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,266,1291622400"; d="scan'208";a="589390168"
-Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
-	by orsmga002.jf.intel.com with ESMTP; 03 Jan 2011 05:36:02 -0800
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Mon, 3 Jan 2011 21:36:01 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Mon, 3 Jan 2011 21:36:01 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi; Mon, 3 Jan 2011
-	21:36:00 +0800
-From: "Ke, Liping" <liping.ke@intel.com>
-To: "Tian, Kevin" <kevin.tian@intel.com>, "Li, Susie" <susie.li@intel.com>
-Date: Mon, 3 Jan 2011 21:35:56 +0800
-Thread-Topic: [yocto] Biweekly Status Report WW52~53'2010 --OSEL SDK Liping Ke
-Thread-Index: AcurSyZgATEHmweqSpitTVzNYnasww==
-Message-ID: <789F9655DD1B8F43B48D77C5D306597331570C62@shsmsx501.ccr.corp.intel.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN, en-US
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 5D9E74C80B70
+	for <yocto@yoctoproject.org>; Mon,  3 Jan 2011 10:00:40 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p03G0d8F017169;
+	Mon, 3 Jan 2011 08:00:39 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Mon, 3 Jan 2011 08:00:39 -0800
+Received: from [128.224.146.67] ([128.224.146.67]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Mon, 3 Jan 2011 08:00:38 -0800
+Message-ID: <4D21F2A6.8030900@windriver.com>
+Date: Mon, 03 Jan 2011 11:00:38 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.9pre) Gecko/20100217 Shredder/3.0.3pre
+	ThunderBrowse/3.2.8.1
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Biweekly Status Report WW52~53'2010 --OSEL SDK Liping Ke
+To: =?UTF-8?B?Sm/Do28gSGVucmlxdWUgRnJlaXRhcw==?= <joaohf@gmail.com>
+References: <AANLkTimHq1JGQCUfsPcc4DdBYWxDdGmtBzgV0ObvJDZ-@mail.gmail.com>
+In-Reply-To: <AANLkTimHq1JGQCUfsPcc4DdBYWxDdGmtBzgV0ObvJDZ-@mail.gmail.com>
+X-OriginalArrivalTime: 03 Jan 2011 16:00:39.0138 (UTC)
+	FILETIME=[5DA2BC20:01CBAB5F]
+Cc: yocto@yoctoproject.org
+Subject: Re: linux yocto private branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,56 +36,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Jan 2011 13:36:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 03 Jan 2011 16:00:40 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-[Summary]
-1.	OSEL SDK related jobs
-2.	Others
+On 10-12-28 07:54 PM, João Henrique Freitas wrote:
+> Hi,
+>
+> This question is about how I can track linux yocto and maintain a
+> private kernel.
+>
+> I am tracking the yocto master on git.
+>
+> My target is to use linux-yocto kernel and with my personal machine
+> (IBM and HP blade servers x86-64 or x86).
+> Probably I need to setup some special driver like disk controller or
+> network device, but it's not the case now.
+>
+> I want to track linux-yocto kernel. To accomplish it, I created a
+> linux-yocto_git.bbappend with:
+>
+> SRC_URI = "git://git.pokylinux.org/linux-yocto-2.6.37;protocol=git;fullclone=1;branch=${KBRANCH};name=machine
+> \
+>             git://git.pokylinux.org/linux-yocto-2.6.37;protocol=git;noclone=1;branch=meta;name=meta
+> \
+>             file://defconfig"
+>
+> KMACHINE_mpg = "yocto/standard/common-pc/base"<---- it's right?
 
-[Details]
-SDK related jobs:
-1. Modified sdk installer scripts according to Josh's feedback, including
-   a. Folder reorganization per Josh's suggestion, make the structure more =
-user friendly
-   b. Move sudo to a smaller granularity, so that user could input $HOME as=
- parameters which will be parsed correctly outside sudo.
-   c. restructure shell scripts, and move some scripts to another file for =
-readability.
-   d. Provide silent install and interactive install, so that user have mor=
-e choices
-2. Fixed several bugs/defects for shell scripts and bb files
-   a. Made downloading files optional if the files exists.
-   b. stored pseudo database in target rootfs, and export the path, so pseu=
-do extract nfs does not need sudo at all.
-   c. Linked ld.so.cache file into the host filesystem
-   d. Moved tar actions to do_deploy from do_install, etc.
-3. Add editor box UI in eclipse plugin for qemu extra parameters.
-4. Do integral testing, bitbake installer tarball, untar the installer, ins=
-tall the sdk,=20
-   And then launch eclipse plugin, and launch qemu. Fixed several bugs such=
- as sdk version
-   Problems (we now add version support), opkg source file chksum issues, e=
-tc.
-Now I have sent out all installer related materials for review.
+This will be right in a few weeks, but right now, the
+searching for machine specific configuration is triggered
+from the branch name, so you still require a machine
+specific branch. This is a long standing optimization to
+represent validated configurations in the kernel tree, but
+to control branch "explosion" I've completed some changes
+that allow many (unlimited) boards to be built from a single
+branch.
 
-5. Spent some time investigating why unfs qemu fails to boot, it was caused=
- by latest kernel. 0.9 kernel + current unfs works fine.
-6. Spent one day in looking bitbake code (ast, bbhandler, confhandler) for =
-technical sharing session.
+So for this, you'd want  "yocto/standard/common-pc/mpg", and
+have a kernel tree that contains the branch (this is BSP
+bootstrapping). I have a meta-kernel-dev layer that facilitates
+a local clone (where you can easily make your own branch), and
+it will be available in the poky-extras repo very soon (I don't
+have push access at the moment).
 
-Next step is that we need to find a repository, containing all archs build =
-result, so
-That we can have a whole testing. I guess we need local build machine to do=
- this.
+> COMPATIBLE_MACHINE = "mpg"<--- my kernel config
+>
+> My doubt: KMACHINE_mpg can be "yocto/standard/mpg" or it need to be a
+> strict branch on yocto git?
 
-Others:
-   1. Take 2 days' annual leave
-   2. Take weekly project meeting and technical sharing meeting.
-    =20
-Thanks & Regards,
-criping
-_________________
+See above. Your doubt was correct.
+
+>
+> In other words, Can I have a private branch and track a default
+> yocto/standard/common-pc/base?
+
+You can. You need to initially create your BSP branch from that
+point, and as you update your tree, merge common-pc/base into
+your BSP to pickup the main kernel updates.
+
+To have your own kernel configuration, see the examples for
+other BSPs on the 'meta' branch. Create your own infrastructure
+there, and things will work. Since you are tracking a branch
+besides 'standard/base' you need to have your own .scc file
+on the meta branch since the auto detect logic will fall back
+to tracking standard.
+
+Cheers,
+
+Bruce
+
+>
+> I read kernel-manual_9.pdf, section 3.4.4 but I believe it's a bit outdate now.
+>
+> Currently I can build linux-yocto and create a full image to be use
+> with VirtualBox and with real hardware.
+>
+> Thanks.
+>
+> PS:
+>
+> I think that yocto can be use to build and runs in big machines too,
+> not only in small devices.
+>
+
 
