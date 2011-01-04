@@ -1,25 +1,37 @@
-Return-Path: <saul.wold@intel.com>
+Return-Path: <dongxiao.xu@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 6213C4C811AA;
-	Mon,  3 Jan 2011 19:26:31 -0600 (CST)
+	by mx1.pokylinux.org (Postfix) with ESMTP id ADF734C80B70;
+	Tue,  4 Jan 2011 00:08:26 -0600 (CST)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 03 Jan 2011 17:26:31 -0800
+	by fmsmga101.fm.intel.com with ESMTP; 03 Jan 2011 22:08:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,269,1291622400"; d="scan'208";a="643025934"
-Received: from unknown (HELO [10.255.14.6]) ([10.255.14.6])
-	by fmsmga002.fm.intel.com with ESMTP; 03 Jan 2011 17:26:30 -0800
-Message-ID: <4D227746.5020805@intel.com>
-Date: Mon, 03 Jan 2011 17:26:30 -0800
-From: Saul Wold <saul.wold@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
+X-IronPort-AV: E=Sophos;i="4.60,270,1291622400"; d="scan'208";a="643114906"
+Received: from unknown (HELO pgsmsx603.gar.corp.intel.com) ([10.221.43.87])
+	by fmsmga002.fm.intel.com with ESMTP; 03 Jan 2011 22:08:25 -0800
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Tue, 4 Jan 2011 14:08:20 +0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Tue, 4 Jan 2011 14:08:19 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi; Tue, 4 Jan 2011
+	14:08:18 +0800
+From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+To: Saul Wold <sgw@linux.intel.com>, Yocto Project Discussion
+	<yocto@yoctoproject.org>, "poky@yoctoproject.org" <poky@yoctoproject.org>
+Date: Tue, 4 Jan 2011 14:08:17 +0800
+Thread-Topic: [yocto] M3 Package Update List
+Thread-Index: AcukxjpbZKOjZRpbT16kxOfwuYXnnwHDsd4w
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A31A96EC8@shsmsx501.ccr.corp.intel.com>
+References: <4D16E018.90502@linux.intel.com>
+In-Reply-To: <4D16E018.90502@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <cover.1294034587.git.bruce.ashfield@windriver.com>
-In-Reply-To: <cover.1294034587.git.bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org
-Subject: Re: [poky] [PATCH 0/1] linux-yocto/stable: update to 2.6.34.x -longterm
+Subject: Re: M3 Package Update List
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,63 +43,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jan 2011 01:26:31 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 04 Jan 2011 06:08:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 01/02/2011 10:11 PM, Bruce Ashfield wrote:
-> Richard/Saul,
->
-> Paul Gortmaker maintains the upstream 2.6.34.x -longerm tree. The
-> yocto stable kernel tracks this tree and incorporates those nominated
-> changes. We are picking up lots of bug fixes and security updates
-> to the -stable tree with this change.
->
-> This commit updates the BSP SRCREVs to the latest 2.6.34.x
-> merge and picks up 260 -stable commits for each BSP.
->
-> Tom: the meta-emenlow layer should be updated with the new SRCREV.
-> I updated the master version, and simply tossed any changes to the
-> drivers modified by the emenlow. So taking a quick look at the merge
-> might be a good idea as well. I did my own build tests here and
-> everything looked sane.
->
-> Darren: I had to resolve a merge in the -rt branches, and preferred
-> the -rt implementation of the files in question. I used your patches
-> that are out for review and confirmed that qemux86-64-preempt_rt builds with
-> the updated kernel.
->
-> I built all the -stable boards, and everything looks sane, so this
-> one should be good to go.
->
-> Cheers,
->
-> Bruce
->
->
-> Pull URL: git://git.pokylinux.org/poky-contrib.git
->    Branch: zedd/stable
->    Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/stable
->
-> Thanks,
->      Bruce Ashfield<bruce.ashfield@windriver.com>
-> ---
->
->
-> Bruce Ashfield (1):
->    linux-yocto/stable: update SRCREVs for 2.6.34.x -stable update
->
->   .../conf/distro/include/poky-default-revisions.inc |   20 ++++++++++----------
->   1 files changed, 10 insertions(+), 10 deletions(-)
->
-> _______________________________________________
-> poky mailing list
-> poky@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/poky
->
-Pulled into Master
+Hi Saul,
 
-Thanks
-    Sau!
+Here is an update for recipes in the list under my name.
+
+I upgraded most of the recipes except:
+
+1) upstream check error, actually they are up to date.
+Speex, net-tools, libid3tag, libgsmd
+
+2) git development tree:
+Mtd-utils
+
+3) dependency on other recipes:
+Clutter-gst (depend on latest version of clutter).
+
+Thanks,
+Dongxiao
+
+Saul Wold wrote:
+> Folks,
+>=20
+> Please find attached the list of M3 Recipe Updates, our goal for 1.0
+> M3 release is to complete the update process we started in 0.9 and
+> 1.0 M2. =20
+> There are about 150 recipes in this list, some people may have more
+> and if there is a need to request help, please let me know.  If you
+> plan on helping, please let the current owner know that you will be
+> updating a recipe.  =20
+>=20
+> Unless I hear otherwise, I will work to update the "None" maintained
+> list, but I believe some of these are owned by people and the distro
+> tracking information needs to be updated. =20
+>=20
+> Thanks again to the team for the hard work during 0.9 and M2, we will
+> always have updates to do, but they will get easier with our gained
+> experience and expertise. =20
+>=20
+> Happy Holidays and Happy New Year to all.
 
 
