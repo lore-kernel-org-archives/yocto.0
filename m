@@ -1,21 +1,19 @@
 Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id BE99B4C8086F
-	for <yocto@yoctoproject.org>; Mon,  3 Jan 2011 18:19:36 -0600 (CST)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id E69F44C80050
+	for <yocto@yoctoproject.org>; Mon,  3 Jan 2011 18:38:46 -0600 (CST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 03 Jan 2011 16:19:36 -0800
+	by orsmga101.jf.intel.com with ESMTP; 03 Jan 2011 16:38:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,268,1291622400"; d="scan'208";a="589563089"
+X-IronPort-AV: E=Sophos;i="4.60,269,1291622400"; d="scan'208";a="589567551"
 Received: from eflanlinux.jf.intel.com (HELO localhost) ([10.7.201.67])
-	by orsmga002.jf.intel.com with ESMTP; 03 Jan 2011 16:19:12 -0800
-Message-Id: <bac280af784fc15cb54ef260978725ac6b249ccf.1294097693.git.elizabeth.flanagan@intel.com>
-In-Reply-To: <cover.1294097693.git.elizabeth.flanagan@intel.com>
-References: <cover.1294097693.git.elizabeth.flanagan@intel.com>
+	by orsmga002.jf.intel.com with ESMTP; 03 Jan 2011 16:38:46 -0800
+Message-Id: <cover.1294101386.git.elizabeth.flanagan@intel.com>
 From: Beth Flanagan <elizabeth.flanagan@intel.com>
-Old-Date: Mon, 3 Jan 2011 14:06:54 -0800
-Date: Mon, 03 Jan 2011 16:19:48 -0800
+Old-Date: Mon, 3 Jan 2011 16:36:26 -0800
+Date: Mon, 03 Jan 2011 16:39:22 -0800
 To: yocto@yoctoproject.org
-Subject: [PATCH 1/1] Fix for easy_install, source tarball and 0.8.3
+Subject: [PATCH 0/1] Autobuilder fixes and added functionality
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,141 +25,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jan 2011 00:19:37 -0000
+X-List-Received-Date: Tue, 04 Jan 2011 00:38:47 -0000
 
-A few fixes here. First, reverting down to 0.8.2 for the time being since
-there was issues with 0.8.3's git poller. Also, fixing an issue with how
-bb setup.py works when setuptools is installed.
+Some minor fixes to the Autobuilder. I've reverted to Buildbot 0.8.2 for the time being,
+as well as fixed some issues with poky-autobuild-generate-sources-tarball.
 
-Fixing a known error in how generate sources tarball performs
+There is also a nasty issue when you have easy_install installed on a system. The BB 
+installer will attempt to install via easy_install, however, if the install directory 
+does not exist, it fails to install. I now create the install directories beforehand.
 
-Signed-off-by: Beth Flanagan <elizabeth.flanagan@intel.com>
+This is actually something that should be fixed on the BB side, and when I have some time
+I'll look at it.
+
+I've also added a --installbase option which does away with having to set all of the 
+--(*)dir= options when you are trying to relocate the install from ~.
+
+Pull URL: git://git.pokylinux.org/poky-contrib.git
+  Branch: eflanagan/bb-0.8.3
+  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=eflanagan/bb-0.8.3
+
+Thanks,
+    Beth Flanagan <elizabeth.flanagan@intel.com>
 ---
- scripts/poky-autobuild-generate-sources-tarball |    2 +-
- scripts/poky-setup-autobuilder                  |   59 +++++++++++++----------
- 2 files changed, 35 insertions(+), 26 deletions(-)
 
-diff --git a/scripts/poky-autobuild-generate-sources-tarball b/scripts/poky-autobuild-generate-sources-tarball
-index 11ebda1..c445f24 100755
---- a/scripts/poky-autobuild-generate-sources-tarball
-+++ b/scripts/poky-autobuild-generate-sources-tarball
-@@ -19,7 +19,7 @@ if [[ -z "$RELEASE" || -z "$VERSION" ]]; then
- fi
- 
- if [[ -z "$BRANCH" ]]; then
--	$BRANCH = "master"
-+	BRANCH = "master"
- fi
- 
- BASEDIR=poky-tarball
-diff --git a/scripts/poky-setup-autobuilder b/scripts/poky-setup-autobuilder
-index 51e06eb..299b8c2 100755
---- a/scripts/poky-setup-autobuilder
-+++ b/scripts/poky-setup-autobuilder
-@@ -130,32 +130,33 @@ def configureBot(buildtype):
-     elif buildtype == "slave":
-         URL = bbSlaveDownloadUrl
-     bbInstallFile = "./" + URL.rpartition("/")[2]
--    try:
--        bbSourceDir = bbInstallerHome + "/" + bbInstallFile.rpartition("/")[2].replace(".tar.gz", "")
--        print "Configuring " + bbSourceDir        
--        os.chdir(bbSourceDir)
--        os.system ("echo 'export PYTHONPATH=" + bbSourceDir + "/lib/python2.6/site-packages/:$PYTHONPATH' >> "  
--            + bbHome + "/.profile" )
--        if buildtype == "master":
--            bbInstallDir = bbMasterDir
--        elif buildtype == "slave":
--            bbInstallDir = bbSlaveDir
--        cmd = "cd " + bbSourceDir + "; export PYTHONPATH=" + bbInstallDir + "/lib/python2.6/site-packages/:$PYTHONPATH; python ./setup.py install --prefix=" + bbInstallDir
--        os.system (cmd) 
--    except:
--        print "Issues Configuring "
--        sys.exit(1)
--
--
--#BuildBot download parameters
--bbVersion = "0.8.3"
-+#    try:
-+    bbSourceDir = bbInstallerHome + "/" + bbInstallFile.rpartition("/")[2].replace(".tar.gz", "")
-+    print "Configuring " + bbSourceDir        
-+    os.chdir(bbSourceDir)
-+    os.system ("echo 'export PYTHONPATH=" + bbSourceDir + "/lib/python2.6/site-packages/:$PYTHONPATH' >> "  
-+        + bbHome + "/.profile" )
-+    if buildtype == "master":
-+        bbInstallDir = bbMasterDir
-+    elif buildtype == "slave":
-+        bbInstallDir = bbSlaveDir
-+    cmd = "cd " + bbSourceDir + "; export PYTHONPATH=" + bbInstallDir + "/lib/python2.6/site-packages/:$PYTHONPATH; python ./setup.py build; python ./setup.py install --prefix=" + bbInstallDir
-+    os.system (cmd) 
-+#    except:
-+#        print "Issues Configuring "
-+#        sys.exit(1)
-+
-+
-+# BuildBot download parameters
-+#bbVersion = "0.8.3"
-+# Pushing this back down to 0.8.2 until 0.8.3p1 comes out.
-+bbVersion = "0.8.2"
- bbMasterDownloadUrl = "http://buildbot.googlecode.com/files/buildbot-" + bbVersion + ".tar.gz"
- bbSlaveDownloadUrl = "http://buildbot.googlecode.com/files/buildbot-slave-" + bbVersion + ".tar.gz"
- bbConfigDownloadUrl = None
- bbInstallerHome = os.getcwd()
- bbInstallFile = ""
--# We need the expanded path for ~ later
--bbHome = os.path.expanduser('~')
-+bbHome = ""
- bbType = None
- bbSlaveDesc="Poky Autobuilder Example"
- 
-@@ -188,7 +189,8 @@ parser.add_option( "--maxlogs", help = "The max number of logs you want saved. I
-                        action = "store", dest = "bbMaxLogs", default = "10" )                        
- parser.add_option( "--adminmail", help = "The administrator email address. If left unset we set it to current user @ localhost",
-                        action = "store", dest = "bbAdminMail", default = "root@localhost" )                        
--
-+parser.add_option( "--installbase", help = "The base install directory. If left unset we set we'll use --masterdir/slavedir/sourcedir/pstagedir/controldir or their defaults",
-+                       action = "store", dest = "bbHome", default = os.path.expanduser('~') )          
- options, args = parser.parse_args( sys.argv )
- 
- # We need to decide if we're doing a master or slave install or both
-@@ -236,7 +238,10 @@ if bbPStagingDir == "":
- 
- if bbType == "master" or bbType == "both":
-     try:
--        os.mkdir(bbMasterDir)
-+        # We do this here, because if setuputils is installed BuildBot wants to use it the easy_install way
-+        # however, their easy_install way will fail if the dir does not exist. It's a bug in the BB installer
-+        # that I'm going to have to figure out and push upstream.
-+        os.makedirs(bbMasterDir + "/lib/python2.6/site-packages/")
-     except:
-         print bbMasterDir + " already exists."
-         pass
-@@ -332,7 +337,10 @@ c['projectURL'] = pokyABConfig.poky_projurl
- 
- if bbType == "slave" or bbType == "both":
-     try:
--        os.mkdir(bbSlaveDir) 
-+        # We do this here, because if setuputils is installed BuildBot wants to use it the easy_install way
-+        # however, their easy_install way will fail if the dir does not exist. It's a bug in the BB installer
-+        # that I'm going to have to figure out and push upstream.
-+        os.makedirs(bbSlaveDir + "/lib/python2.6/site-packages/") 
-         os.mkdir(bbOutputDir) 
-         os.mkdir(bbPStagingDir) 
- 
-@@ -400,7 +408,7 @@ PSTAGEDIR=%s
- # We should correct this for slave only/master only builds
- 
- print """
--nstallation complete. Please review the output above for any errors.
-+Installation complete. Please review the output above for any errors.
- Then edit the master.cfg file in %s and start the build master and
- build slave by running 'make start' in %s and %s directories.
- ---------------------------------------------------------------------
-@@ -418,3 +426,4 @@ cd <poky-slave>; make start
- """ % (bbMasterDir, bbMasterDir, bbSlaveDir, bbSlaveDir, bbSlaveDir, bbSlaveDir)
- 
- 
-+
--- 
-1.7.1
+
+Beth Flanagan (1):
+  Fix for easy_install, source tarball and 0.8.3
+
+ scripts/poky-autobuild-generate-sources-tarball |    2 +-
+ scripts/poky-setup-autobuilder                  |   27 +++++++++++++++-------
+ 2 files changed, 19 insertions(+), 10 deletions(-)
+
+
 
 
