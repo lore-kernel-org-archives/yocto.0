@@ -1,30 +1,19 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 693654C80039
-	for <yocto@yoctoproject.org>; Mon,  3 Jan 2011 14:38:38 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p03KcbTu023971;
-	Mon, 3 Jan 2011 12:38:37 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Mon, 3 Jan 2011 12:38:37 -0800
-Received: from [128.224.146.67] ([128.224.146.67]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Mon, 3 Jan 2011 12:38:37 -0800
-Message-ID: <4D2233CC.7020707@windriver.com>
-Date: Mon, 03 Jan 2011 15:38:36 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.9pre) Gecko/20100217 Shredder/3.0.3pre
-	ThunderBrowse/3.2.8.1
-MIME-Version: 1.0
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-References: <DC74E0187B44084E9AD28300B75DFE300557D6E8@orsmsx504.amr.corp.intel.com>
-In-Reply-To: <DC74E0187B44084E9AD28300B75DFE300557D6E8@orsmsx504.amr.corp.intel.com>
-X-OriginalArrivalTime: 03 Jan 2011 20:38:37.0364 (UTC)
-	FILETIME=[32A20F40:01CBAB86]
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Recent build issues.
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 5B0434C80050
+	for <yocto@yoctoproject.org>; Mon,  3 Jan 2011 18:19:13 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 03 Jan 2011 16:19:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,268,1291622400"; d="scan'208";a="589563086"
+Received: from eflanlinux.jf.intel.com (HELO localhost) ([10.7.201.67])
+	by orsmga002.jf.intel.com with ESMTP; 03 Jan 2011 16:19:12 -0800
+Message-Id: <cover.1294097693.git.elizabeth.flanagan@intel.com>
+From: Beth Flanagan <elizabeth.flanagan@intel.com>
+Old-Date: Mon, 3 Jan 2011 15:34:53 -0800
+Date: Mon, 03 Jan 2011 16:19:48 -0800
+To: yocto@yoctoproject.org
+Subject: [PATCH 0/1] Autobuilder fixes and added functionality
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,54 +25,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Jan 2011 20:38:38 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 04 Jan 2011 00:19:13 -0000
 
-On 10-12-23 05:08 PM, Flanagan, Elizabeth wrote:
-> Recent build issues:
->
-> - There seem to be a few issues going on with sanity testing:
->
-> First, I've made a change to how sanity tests are run on the autobuilder that should speed them up some. bitbake @ -c qemuimagetest creates a rootfs. I've switched this to bitbake @ -c qemuimagetest_standalone, so this shouldn't create a rootfs and should use the one already existing. We should see some performance improvement with this. I thought this had been included in my pull with BB 0.8.3 but I must have not included it.
->
-> Next,  the following bugs have been making it difficult to track down build failures:
->
-> Sanity Test Boot test returns invalid results.
-> http://bugzilla.pokylinux.org/show_bug.cgi?id=611
->
-> Sanity tests do not always kill QEMU once timeout is reached
-> http://bugzilla.pokylinux.org/show_bug.cgi?id=595
->
-> There are also sanity test failures in a few images:
->
-> qemuarm poky-image-sato
-> qemuarm poky-image-minimal
-> qemumips poky-image-sato
->
-> mips seems to have run poky-image-minimal ok, but with Bug #611, I can't be sure that is the case and I doubt it's actually the case. My inclination is that there is an issue with arm and mips builds that should be looked at.
->
-> - PPC is broken.
->
-> PPC is having serious issues that seem to revolve around linux-yocto-2.6.37. Bruce I believe is working on this. Can anyone give an update around where this stands?
+Some minor fixes to the Autobuilder. I've reverted to Buildbot 0.8.2 for the time being,
+as well as fixed some issues with poky-autobuild-generate-sources-tarball.
 
-Were we talking build or boot for this one ? The slow boot is only
-being seen during auto-tests, and I've never reproduced it here.
+There is also a nasty issue when you have easy_install installed on a system. The BB 
+installer will attempt to install via easy_install, however, if the install directory 
+does not exist, it fails to install. I now create the install directories beforehand.
 
-I'm looking for someone who has time to debug this by tweaking
-the kernel configuration, but as for what we produce for qemuppc
-the configuration is sane and boots fine. Does anyone who can
-reproduce this have time to look into it a bit more, or get me
-access to a reproducing environment ?
+This is actually something that should be fixed on the BB side, and when I have some time
+I'll look at it.
 
-Bruce
+I've also added a --installbase option which does away with having to set all of the 
+--(*)dir= options when you are trying to relocate the install from ~.
 
->
-> I'm running nightly-incremental and nightly now to pull in some changes made this morning and to prepare for weekend delivery to QA. I'll send out those build results on Sunday (or whenever the build finishes.)
-> -b
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Pull URL: git://git.pokylinux.org/poky-contrib.git
+  Branch: eflanagan/poky-ab-fixes
+  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=eflanagan/poky-ab-fixes
+
+Thanks,
+    Beth Flanagan <elizabeth.flanagan@intel.com>
+---
+
+
+Beth Flanagan (1):
+  Fix for easy_install, source tarball and 0.8.3
+
+ scripts/poky-autobuild-generate-sources-tarball |    2 +-
+ scripts/poky-setup-autobuilder                  |   59 +++++++++++++----------
+ 2 files changed, 35 insertions(+), 26 deletions(-)
 
 
