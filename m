@@ -1,37 +1,33 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B736B4C80FAD
-	for <yocto@yoctoproject.org>; Wed,  5 Jan 2011 11:29:31 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 05 Jan 2011 09:29:31 -0800
+Return-Path: <lianhao.lu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B8FEC4C80FAD
+	for <yocto@yoctoproject.org>; Wed,  5 Jan 2011 20:12:27 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 05 Jan 2011 18:12:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,278,1291622400"; d="scan'208";a="693870840"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by orsmga001.jf.intel.com with ESMTP; 05 Jan 2011 09:29:31 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Wed, 5 Jan 2011 09:29:31 -0800
-Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
-	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
-	Wed, 5 Jan 2011 09:29:30 -0800
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "Garman, Scott A" <scott.a.garman@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Wed, 5 Jan 2011 09:24:33 -0800
-Thread-Topic: [yocto] [PATCH 0/1] Autobuilder fixes and added functionality
-Thread-Index: Acus/U2b83mFhvHkRBSTRFcMIfW0zQAAB1JN
-Message-ID: <DC74E0187B44084E9AD28300B75DFE300557D6F4@orsmsx504.amr.corp.intel.com>
-References: <cover.1294102657.git.elizabeth.flanagan@intel.com>,
-	<201101051156.09408.paul.eggleton@linux.intel.com>
-	<DC74E0187B44084E9AD28300B75DFE300557D6F3@orsmsx504.amr.corp.intel.com>,
-	<4D24A8E9.4000901@intel.com>
-In-Reply-To: <4D24A8E9.4000901@intel.com>
-Accept-Language: en-US
+X-IronPort-AV: E=Sophos;i="4.60,280,1291622400"; d="scan'208";a="370695033"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by azsmga001.ch.intel.com with ESMTP; 05 Jan 2011 18:12:26 -0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Thu, 6 Jan 2011 10:12:06 +0800
+Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi; Thu, 6 Jan 2011
+	10:12:05 +0800
+From: "Lu, Lianhao" <lianhao.lu@intel.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>, "Zhang, Jessica"
+	<jessica.zhang@intel.com>
+Date: Thu, 6 Jan 2011 10:12:04 +0800
+Thread-Topic: Setup repository for ADT installer
+Thread-Index: AcutRxxxA4sxJgSDT+mYZXrRUtXeMw==
+Message-ID: <C10D3FB0CD45994C8A51FEC1227CE22F1E4A315F86@shsmsx502.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/1] Autobuilder fixes and added functionality
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Setup repository for ADT installer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,54 +39,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Jan 2011 17:29:32 -0000
+X-List-Received-Date: Thu, 06 Jan 2011 02:12:28 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Let's wait on all this. I'm running into a few issues with the AB that I wa=
-nt to fix that are unrelated to the upgrade and would rather do one big pat=
-chset that did the upgrade and fixed some of the issues I'm trying to fix.
+Hi Beth and Jessica,
 
-I'll keep everyone posted. That said, we should probably discuss tagging/ve=
-rsioning process for non-poky projects within yocto. If I remember correctl=
-y, there was discussion about this going on already, and I'm a little uneas=
-y leaving the ab master broken without a tag to a known good version. Anyon=
-e have any thoughts on this?=20
+Here is a summary of how I set up the IPK repo for ADT installer on my loca=
+l machine. Currently, there are 10 combinations (based on the following 2 v=
+ariables in conf/local.conf) needs to be built for setting up the ADT insta=
+ller repo.
 
--b
-________________________________________
-From: yocto-bounces@yoctoproject.org [yocto-bounces@yoctoproject.org] On Be=
-half Of Scott Garman [scott.a.garman@intel.com]
-Sent: Wednesday, January 05, 2011 9:22 AM
-To: yocto@yoctoproject.org
-Subject: Re: [yocto] [PATCH 0/1] Autobuilder fixes and added functionality
+MACHINE: qemux86, qemuarm, qemuppc, qemumips, qemux86-64
+SDKMACHINE: i586, x86_64
 
-On 01/05/2011 08:30 AM, Flanagan, Elizabeth wrote:
->> 3) BuildBot 0.8.2 unfortunately suffers from buildbot bug #1697 on
->> my system, making it not very useful (as you can't view any of the
->> build logs through the web interface). It's fixed in 0.8.3. More
->> details:
->>
->> http://trac.buildbot.net/ticket/1697
->
-> I hadn't run into this, so thanks for pointing it out. I'm tempted to
-> wait for 0.8.3p1 which should have the fix for this, rather than
-> trying to pull the fix out to patch 0.8.2
+NOTE: Please make sure the PACKAGE_CLASSES has the value of "package_ipk".
 
-Hi Beth,
+First, we need to generate the kernel/target rootfs images, as well as the =
+ipk files and the repository index files. Then we need to make those genera=
+ted files available through HTTP protocol.=20
 
-Do you want me to merge this patchset into master now, or should I wait
-for a respin based on Buildbot 0.8.3p1 (which should be out by the end
-of the week, I think)?
+1. Generate kernel/target rootfs images, as well as the ipk files and repos=
+itory index files.=20
+For each of the combinations:
+1.1) bitbake poky-image-sdk  =20
+1.2) bitbake meta-toolchain-sdk
 
-Scott
+Step 1.2) will generate more ipk files than the ADT installer needs, and al=
+so create the meta-toolchain-sdk-XXX.tar.gz under deploy/sdk which is not u=
+sed by the ADT installer. We may split step 1.2) into the following command=
+s if we just want to generate the files only for ADT installer.
 
---
-Scott Garman
-Embedded Linux Distro Engineer - Yocto Project
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+bitbake task-sdk-host    								#generate ipk files for host utils
+bitbake task-cross-canadian-<TRNASLATED_TARGET_ARCH>  	#generate ipk files =
+for cross-canadian tool chain
+bitbake package-index									#generate the repository index files
+
+The <TRNASLATED_TARGET_ARCH> is based on the MACHINE configuration in conf/=
+local.conf
+MACHINE    <TRANSLATED_TARGET_ARCH>
+qemux86     i586
+qemuarm     arm
+qemuppc     powerpc
+qemumips    mips
+qemux86-64  x86-64
+
+2. Setup a web server for adt-installer to access the files through http pr=
+otocol
+The ADT-installer needs to access the following directories through http, s=
+o we need to set up a web server for user to access.
+
+${BUILD_DIR}/tmp/deploy/ipk
+${BUILD_DIR}/tmp/deploy/images
+
+
+b.t.w. I think the final directory layout of the repo	will influence adt in=
+staller, because currently the repo's top level layout is hard coded in the=
+ installer. Here are something we think need to consider (Liping, pls add m=
+ore information here):
+- yocto release version
+- file name conventions for the built kernel
+
+Best Regards,
+-Lianhao Lu
+
 
