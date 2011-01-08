@@ -1,25 +1,25 @@
 Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 998D14C8108C
-	for <yocto@yoctoproject.org>; Sat,  8 Jan 2011 17:21:46 -0600 (CST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 08 Jan 2011 15:21:46 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 04B544C8108C
+	for <yocto@yoctoproject.org>; Sat,  8 Jan 2011 17:22:28 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 08 Jan 2011 15:21:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,295,1291622400"; d="scan'208";a="875712087"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga001.fm.intel.com with ESMTP; 08 Jan 2011 15:21:46 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Sat, 8 Jan 2011 15:21:45 -0800
+X-IronPort-AV: E=Sophos;i="4.60,295,1291622400"; d="scan'208";a="371917467"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by azsmga001.ch.intel.com with ESMTP; 08 Jan 2011 15:21:28 -0800
+Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Sat, 8 Jan 2011 15:21:27 -0800
 Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
-	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
-	Sat, 8 Jan 2011 15:21:45 -0800
+	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi; Sat, 8 Jan 2011
+	15:21:27 -0800
 From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Sat, 8 Jan 2011 15:21:45 -0800
+Date: Sat, 8 Jan 2011 15:21:27 -0800
 Thread-Topic: Changes to the autobuilder.
-Thread-Index: AQHLr4rQHDZqEztj0EKyraI8+uvLgg==
-Message-ID: <DC74E0187B44084E9AD28300B75DFE300557D6FC@orsmsx504.amr.corp.intel.com>
+Thread-Index: AQHLr4rFf001RevvAESkRGLTCvCiww==
+Message-ID: <DC74E0187B44084E9AD28300B75DFE300557D6FB@orsmsx504.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -37,7 +37,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Jan 2011 23:21:46 -0000
+X-List-Received-Date: Sat, 08 Jan 2011 23:22:29 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
