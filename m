@@ -1,39 +1,31 @@
-Return-Path: <vjensen@gmx.de>
-Received: from out1.smtp.messagingengine.com (out1.smtp.messagingengine.com
-	[66.111.4.25])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 16DF14C8086F
-	for <yocto@yoctoproject.org>; Fri,  7 Jan 2011 09:27:22 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@messagingengine.com;
-	x-dkim-adsp=none (insecure policy)
-Received: from compute1.internal (compute1.nyi.mail.srv.osa [10.202.2.41])
-	by gateway1.messagingengine.com (Postfix) with ESMTP id BBE6120B79;
-	Fri,  7 Jan 2011 10:27:21 -0500 (EST)
-Received: from frontend1.messagingengine.com ([10.202.2.160])
-	by compute1.internal (MEProxy); Fri, 07 Jan 2011 10:27:21 -0500
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=messagingengine.com;
-	h=date:from:to:cc:subject:in-reply-to:message-id:references:mime-version:content-type;
-	s=smtpout; bh=IKxZiwi5qNnJNXBfMnZ5p5HWUKQ=;
-	b=gyoBQVZLjDyOO2WAkHi1bAuXeMMYR8v4Y26hGp1c59KB9MMoNDSqs6Aa5VMT1O17CUhm4pEAZq0LM0wYd8xhwiIVvNSRJAlE/iTYE8hIpzBfek2OjDO4WW0LuOW+lHmwVM6Y/Rmnop5IkC4uDhVXmBnJJ2hxD4elAohE1YSBPbc=
-X-Sasl-enc: T24z2rqsbOA87S13v6lrHetRMHSunUtot+i2nDS1rhxA 1294414041
-Received: from [192.168.1.34] (hnvr-4dbd3c5d.pool.mediaWays.net [77.189.60.93])
-	by mail.messagingengine.com (Postfix) with ESMTPSA id 1A91340A809;
-	Fri,  7 Jan 2011 10:27:20 -0500 (EST)
-Date: Fri, 7 Jan 2011 16:30:11 +0100 (CET)
-From: Vitus Jensen <vjensen@gmx.de>
-To: openembedded-devel <openembedded-devel@lists.openembedded.org>
-In-Reply-To: <AANLkTik3-5x2W+DRTJ9bC0YnUQB9HbvSWEYLSMWLTPjZ@mail.gmail.com>
-Message-ID: <alpine.LNX.2.00.1101071623480.6291@asterix.crazy-teaparty.dyndns.org>
-References: <AANLkTik3-5x2W+DRTJ9bC0YnUQB9HbvSWEYLSMWLTPjZ@mail.gmail.com>
-User-Agent: Alpine 2.00 (LNX 1167 2008-08-23)
-Jabber-ID: vitus_jensen@gmx.de
-X-Accepted-File-Formats: ASCII rtf ps pdf - *NO* MS Office files please
-X-Message-Flag: Worried about bugs & viruses? Switch to Mac/Unix/PC Pine! Info
-	@ www.ii.com
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 998D14C8108C
+	for <yocto@yoctoproject.org>; Sat,  8 Jan 2011 17:21:46 -0600 (CST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 08 Jan 2011 15:21:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,295,1291622400"; d="scan'208";a="875712087"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by fmsmga001.fm.intel.com with ESMTP; 08 Jan 2011 15:21:46 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Sat, 8 Jan 2011 15:21:45 -0800
+Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
+	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
+	Sat, 8 Jan 2011 15:21:45 -0800
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Sat, 8 Jan 2011 15:21:45 -0800
+Thread-Topic: Changes to the autobuilder.
+Thread-Index: AQHLr4rQHDZqEztj0EKyraI8+uvLgg==
+Message-ID: <DC74E0187B44084E9AD28300B75DFE300557D6FC@orsmsx504.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 07 Jan 2011 19:00:24 -0600
-Cc: yocto@yoctoproject.org
-Subject: Re: [oe] Multiple Repository support
+Subject: Changes to the autobuilder.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,45 +37,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Jan 2011 15:27:23 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII; format=flowed
+X-List-Received-Date: Sat, 08 Jan 2011 23:21:46 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Cliff,
+I've made a few changes to the autobuilder that people should know about. C=
+urrently, we've been utilizing the milestone builders to split the nightly =
+to both the internal and external builders in order to speed things up. I'v=
+e renamed them to nightly-internal* and nightly-external*. They were puttin=
+g their build output to the milestone directory on the webserver. This was =
+incorrect behavior. I've changed this to make the build output go out to th=
+e nightly directory of the webserver: http://autobuilder.pokylinux.org/nigh=
+tly.
 
+The big change is to how we deal with emenlow, atom-pc, beagleboard, etc. T=
+hese are now found under the machines/<machine_name>/<arch> directory in th=
+e build output web directory. I'll need to eventually refactor some of the =
+autobuilder scripts to deal with BSPs a little more elegantly, but it's fun=
+ctional for now and we have a standard to adhere to.
 
-On Wed, 22 Dec 2010, Cliff Brake wrote:
+Also, be aware that we now have a functional CURRENT link, so if you go to =
+the autobuilder/nightly/CURRENT directory this will point to the last thing=
+ the autobuilder built. Keep in mind, it will create that link even if the =
+build is broken.=20
+I'll have a commit with all of this in it when I finish up the upgrade to 0=
+.8.3.
 
-> Hello,
->
-> I've started collecting ideas from various emails on multiple
-> repository support.
->
-> http://wiki.openembedded.org/index.php/MultipleRepositoryMethods
->
-> Please feel free to update the above page.
+If you have any questions, feel free to ask.
 
-I seem to have no account and only administrators may create one.
-
-> In my mind, this is a key problem we need to solve, not just for
-> Yocto/OE, but also for anyone doing product development.
->
-> I've personally been using git submodules for most projects, and repo
-> for Android based projects.
->
-> Appreciate any ideas, experiences, or insights into how we solve this problem.
-
-From the list mentioned in that page I only used git submodules so far. 
-Handling could be simpler, that's right.  On the other hand there was work 
-done in git regarding submodules, see
-
-http://git.kernel.org/?p=git/git.git;a=commit;h=4bb4d30095fbc3b1689cc656e71f6a51e43fbd69
-
-16-dec-2010.  So perhaps some of the bad things will be easier in the next 
-release.
-
-Vitus
-
--- 
-Vitus Jensen, Hannover, Germany, Universe (current)
-pgp public key available from keyservers
+-b=
 
