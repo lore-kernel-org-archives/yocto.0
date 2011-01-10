@@ -1,35 +1,25 @@
-Return-Path: <joaohf@gmail.com>
-Received: from mail-iw0-f176.google.com (mail-iw0-f176.google.com
-	[209.85.214.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 9228B4C8085F
-	for <yocto@yoctoproject.org>; Mon, 10 Jan 2011 15:23:06 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iwn2 with SMTP id 2so22542579iwn.35
-	for <yocto@yoctoproject.org>; Mon, 10 Jan 2011 13:23:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:received:received:date:message-id
-	:subject:from:to:content-type:content-transfer-encoding;
-	bh=J/RlvetxFYb+pUie3z617kW6bizPKs4jfRmyZNKHK6E=;
-	b=q1zjuer1BVo55VngWhpfjxaFyJ0QrbQOMi801H85874EXyATTTTbUoD9uZnrgHXfwN
-	98oRsLiBZQReCQZCHxGKYZSr+XUH2YWyO6IAfKfvkU2SL3FuEz0x0QkYYsubM1uwTnr+
-	U6JViAUZowljlP58Fc9HQovW8TA+OPwOLc2OU=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:content-transfer-encoding;
-	b=Ub6DH9o8ieA4kMo6Nm3uwO5Ro5utSALBPoJBuPoHHlav8rtDoAmVwRIbRJrUZOB+9u
-	RMUvIw4HUaZ2KSG+593JKYDWJZmqJ2ODXez3+zX4e21wBUf6iDIQaDlHjjUmZsEfg3UJ
-	klzX7zrY5X7DiADvucTcRs7aMSXsy1hZQDNHI=
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6274E4C8085F
+	for <yocto@yoctoproject.org>; Mon, 10 Jan 2011 15:29:40 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 10 Jan 2011 13:29:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,303,1291622400"; d="scan'208";a="591626262"
+Received: from eflanlinux.jf.intel.com (HELO [10.7.201.154]) ([10.7.201.154])
+	by orsmga002.jf.intel.com with ESMTP; 10 Jan 2011 13:29:39 -0800
+Message-ID: <4D2B7A7E.5040407@intel.com>
+Date: Mon, 10 Jan 2011 13:30:38 -0800
+From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.16) Gecko/20101125 SUSE/3.0.11 Lightning/1.0b1
+	Thunderbird/3.0.11 ThunderBrowse/3.3.3
 MIME-Version: 1.0
-Received: by 10.42.227.202 with SMTP id jb10mr4852589icb.475.1294694586123;
-	Mon, 10 Jan 2011 13:23:06 -0800 (PST)
-Received: by 10.42.176.8 with HTTP; Mon, 10 Jan 2011 13:23:06 -0800 (PST)
-Date: Mon, 10 Jan 2011 19:23:06 -0200
-Message-ID: <AANLkTim3HcAyatj9qChj0ub5pc6wZL3pobd66ZuwHrth@mail.gmail.com>
-From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
-To: yocto@yoctoproject.org
-Subject: ntp client
+To: yocto@yoctoproject.org, "Xu, Jiajun" <jiajun.xu@intel.com>
+References: <DC74E0187B44084E9AD28300B75DFE300557D6FC@orsmsx504.amr.corp.intel.com>	<D5AB6E638E5A3E4B8F4406B113A5A19A31B0755D@shsmsx501.ccr.corp.intel.com>
+	<4D2B4170.6080609@intel.com>
+In-Reply-To: <4D2B4170.6080609@intel.com>
+Subject: Re: Changes to the autobuilder.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,27 +31,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Jan 2011 21:23:07 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 10 Jan 2011 21:29:41 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hi,
+The answer to this, is that the nightly-*-incrementals were copying
+their output to the webserver nightly (which updated CURRENT). As there
+was a change to the incrementals on Friday that broke kernel deploy, the
+kernel didn't get copied. That is now fixed.
 
-I searched in meta/* but did not found a ntp client like.
+You should look at: http://autobuilder.pokylinux.org/nightly/20110107-1
+as this is the actual nightly. I'm fixing the incrementals right now, so
+that they won't copy over their output and so they do a bitbake
+virtual/kernel -f -c deploy, which will fix the incremental sanity test
+breakage.
+-b
 
-busybox have one but yocto don't compiles it, by default.
 
-I can use a busybox.append or change busybox recipe.
+That is corrected.
 
-In this cases, what is the best to do?
+On 01/10/2011 09:27 AM, Elizabeth Flanagan wrote:
+> I see that and I think I know what is going on. I should have a fix for
+> this today.
+> 
+> -b
+> 
+> On 01/09/2011 05:25 PM, Xu, Jiajun wrote:
+>>> I've made a few changes to the autobuilder that people should know about.
+>>> Currently, we've been utilizing the milestone builders to split the
+>>> nightly to both the internal and external builders in order to speed
+>>> things up. I've renamed them to nightly-internal* and
+>>> nightly-external*. They were putting their build output to the
+>>> milestone directory on the webserver. This was incorrect behavior.
+>>> I've changed this to make the build output go out to the nightly directory of the webserver: http://autobuilder.pokylinux.org/nightly.
+>>>
+>>> The big change is to how we deal with emenlow, atom-pc, beagleboard, etc.
+>>> These are now found under the machines/<machine_name>/<arch> directory
+>>> in the build output web directory. I'll need to eventually refactor
+>>> some of the autobuilder scripts to deal with BSPs a little more
+>>> elegantly, but it's functional for now and we have a standard to adhere to.
+>>>
+>>> Also, be aware that we now have a functional CURRENT link, so if you
+>>> go to the autobuilder/nightly/CURRENT directory this will point to the
+>>> last thing the autobuilder built. Keep in mind, it will create that link even if the build is broken.
+>>> I'll have a commit with all of this in it when I finish up the upgrade to 0.8.3.
+>>>
+>>> If you have any questions, feel free to ask.
+>>>
+>>
+>> Hi Beth,
+>> We found there is no kernel image for QEMU target with latest nightly, http://autobuilder.pokylinux.org/nightly/20110108-1/qemu/. Could you help to have a check? And nightly-internal does not start last week.
+>>
+>>> -b
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>> Best Regards,
+>> Jiajun
+>>
+>>
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Thanks
-
---=20
------------------------------------------------------------
-Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
-Campinas-SP-Brasil
-BSD051283
-LPI 1
-http://www.joaohfreitas.eti.br
 
