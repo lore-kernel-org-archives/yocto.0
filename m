@@ -1,26 +1,18 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A94544C8108C
-	for <yocto@yoctoproject.org>; Mon, 10 Jan 2011 11:26:14 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 10 Jan 2011 09:26:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,301,1291622400"; d="scan'208";a="695336831"
-Received: from eflanlinux.jf.intel.com (HELO [10.7.201.154]) ([10.7.201.154])
-	by orsmga001.jf.intel.com with ESMTP; 10 Jan 2011 09:26:14 -0800
-Message-ID: <4D2B4170.6080609@intel.com>
-Date: Mon, 10 Jan 2011 09:27:12 -0800
-From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.16) Gecko/20101125 SUSE/3.0.11 Lightning/1.0b1
-	Thunderbird/3.0.11 ThunderBrowse/3.3.3
-MIME-Version: 1.0
-To: "Xu, Jiajun" <jiajun.xu@intel.com>
-References: <DC74E0187B44084E9AD28300B75DFE300557D6FC@orsmsx504.amr.corp.intel.com>
-	<D5AB6E638E5A3E4B8F4406B113A5A19A31B0755D@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <D5AB6E638E5A3E4B8F4406B113A5A19A31B0755D@shsmsx501.ccr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Changes to the autobuilder.
+Return-Path: <bruce.ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 428C34C810C1;
+	Mon, 10 Jan 2011 11:28:37 -0600 (CST)
+Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
+	[128.224.146.167])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p0AHSZGT008979;
+	Mon, 10 Jan 2011 09:28:35 -0800 (PST)
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+To: rpurdie@linux.intel.com
+Date: Mon, 10 Jan 2011 12:30:47 -0500
+Message-Id: <cover.1294680187.git.bruce.ashfield@windriver.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
+Subject: [PATCH 0/5] linux-yocto: consolidated pull request
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,50 +24,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Jan 2011 17:26:15 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 10 Jan 2011 17:28:37 -0000
 
-I see that and I think I know what is going on. I should have a fix for
-this today.
+It looks like some of my last pull request didn't make it
+to master, so I've repeated it here. Patches 4/5 have already
+been sent:
 
--b
+  kernel-yocto: pass the build directory to configme
+  routerstation: disable command line overrides
 
-On 01/09/2011 05:25 PM, Xu, Jiajun wrote:
->> I've made a few changes to the autobuilder that people should know about.
->> Currently, we've been utilizing the milestone builders to split the
->> nightly to both the internal and external builders in order to speed
->> things up. I've renamed them to nightly-internal* and
->> nightly-external*. They were putting their build output to the
->> milestone directory on the webserver. This was incorrect behavior.
->> I've changed this to make the build output go out to the nightly directory of the webserver: http://autobuilder.pokylinux.org/nightly.
->>
->> The big change is to how we deal with emenlow, atom-pc, beagleboard, etc.
->> These are now found under the machines/<machine_name>/<arch> directory
->> in the build output web directory. I'll need to eventually refactor
->> some of the autobuilder scripts to deal with BSPs a little more
->> elegantly, but it's functional for now and we have a standard to adhere to.
->>
->> Also, be aware that we now have a functional CURRENT link, so if you
->> go to the autobuilder/nightly/CURRENT directory this will point to the
->> last thing the autobuilder built. Keep in mind, it will create that link even if the build is broken.
->> I'll have a commit with all of this in it when I finish up the upgrade to 0.8.3.
->>
->> If you have any questions, feel free to ask.
->>
-> 
-> Hi Beth,
-> We found there is no kernel image for QEMU target with latest nightly, http://autobuilder.pokylinux.org/nightly/20110108-1/qemu/. Could you help to have a check? And nightly-internal does not start last week.
-> 
->> -b
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> 
-> Best Regards,
-> Jiajun
-> 
-> 
+The remaining three changes are new and are:
+
+ - A merge from Darren to update the default 2.6.37 configs
+   to enable the debug/ftrace configs we need.
+
+ - A change to make board descriptions generic. These are
+   transparent to nearly everyone, but any new BSPs will be
+   described with: KARCH, KMACHINE and KTYPE which are more
+   generic variables and used internally during kernel
+   configuration. They are differnet from yocto/poky variables
+   on purpose, since the kernel tree can be cloned and used 
+   distinctly from any build system.
+
+ - And finally an update to 2.6.37 with a port of the alternate
+   RPC ports patch which reinstates usermode NFS support to
+   2.6.37.
+
+Also out of interest, the routerstation pro and fsl-mpc8315e-rdb
+have all been booted against 2.6.37 and will follow shortly. 
+Next up are feature merges (lttng, etc) to match the -stable 
+kernel functionality.
+
+Cheers,
+
+Bruce
+
+
+Pull URL: git://git.pokylinux.org/poky-contrib.git
+  Branch: zedd/kernel
+  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
+
+Thanks,
+    Bruce Ashfield <bruce.ashfield@windriver.com>
+---
+
+
+Bruce Ashfield (5):
+  kernel-yocto: pass the build directory to configme
+  routerstation: disable command line overrides
+  linux-yocto: update SRCREV to pickup debug/ftrace config changes
+  kern-tools: create generic variables for platform/board/kernel
+  linux-yocto: update to 2.6.37
+
+ meta/classes/kernel-yocto.bbclass                  |    2 +-
+ .../conf/distro/include/poky-default-revisions.inc |   28 ++++++++++----------
+ 2 files changed, 15 insertions(+), 15 deletions(-)
 
 
