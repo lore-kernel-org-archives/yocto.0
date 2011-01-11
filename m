@@ -1,34 +1,43 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5ED7B4C8085F;
-	Tue, 11 Jan 2011 04:01:10 -0600 (CST)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.2/8.14.2/Debian-2build1) with ESMTP id
-	p0BA2mA0004363; Tue, 11 Jan 2011 10:02:48 GMT
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id DQlOa+Lw6Gvk; Tue, 11 Jan 2011 10:02:48 +0000 (GMT)
-Received: from [192.168.1.42] (tim [93.97.173.237]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.2/8.14.2/Debian-2build1) with ESMTP id
-	p0BA2gVf004360
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
-	Tue, 11 Jan 2011 10:02:44 GMT
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Cui, Dexuan" <dexuan.cui@intel.com>
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 137174C80050;
+	Tue, 11 Jan 2011 08:19:32 -0600 (CST)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iyb26 with SMTP id 26so22151035iyb.35
+	for <multiple recipients>; Tue, 11 Jan 2011 06:19:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:received:received:in-reply-to
+	:references:date:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=jIDjX1hbPztaikdiAmfxODfEwjZDvYf2FEDPojpN7Ps=;
+	b=doFt5wOu3FcgQMIJV10K5qOlgsv35mMLSGfSyRK3rD6YP0wppb+U/0CZ9l2igMAvAY
+	FhCS2dwiNSe/bWuM7wY/WU6B1dD8liKgCIeveiq3elrF4btukgqgeguW0AR3Hsb3XDFc
+	1Xye7yw+uW9mVDcX5lAOQiTIh6iA/YJ8TT/rQ=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	b=Qq97tS1B8OGNgz6UHCpZ2kqDdidl+Us7YtGpeUmjNp0xO/vtQS5qpZtV3TJz56VS1s
+	LTul12KRPT5n/tNyXp2ekZScJCpsdwnvD1sSuOteUo5T+gv5Ee4h5D1VMD828itCfRbR
+	9yRw9zY32vIW597kLOMtvYVZxwCzmGTJm3h3o=
+MIME-Version: 1.0
+Received: by 10.231.207.73 with SMTP id fx9mr19420261ibb.137.1294755571471;
+	Tue, 11 Jan 2011 06:19:31 -0800 (PST)
+Received: by 10.231.156.136 with HTTP; Tue, 11 Jan 2011 06:19:31 -0800 (PST)
 In-Reply-To: <1865303E0DED764181A9D882DEF65FB685AFA1B31B@shsmsx502.ccr.corp.intel.com>
 References: <cover.1294680187.git.bruce.ashfield@windriver.com>
 	<38d72bcb177222eba77eb3d7c483d55cbfb7f2e8.1294680187.git.bruce.ashfield@windriver.com>
 	<1865303E0DED764181A9D882DEF65FB685AFA1B319@shsmsx502.ccr.corp.intel.com>
 	<AANLkTikSSGjwH61YgsAQQ3qAQzgaq+RBzdC2r_=A5K9S@mail.gmail.com>
 	<1865303E0DED764181A9D882DEF65FB685AFA1B31B@shsmsx502.ccr.corp.intel.com>
-Date: Tue, 11 Jan 2011 10:00:50 +0000
-Message-ID: <1294740050.1492.2957.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
+Date: Tue, 11 Jan 2011 09:19:31 -0500
+Message-ID: <AANLkTik9C6f4qrP6_Ou7iCAPFiAs+wA3JjcAVay+-WQJ@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: "Cui, Dexuan" <dexuan.cui@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"poky@yoctoproject.org" <poky@yoctoproject.org>,
-	'Bruce Ashfield' <bruce.ashfield@gmail.com>, "Wold,
+	"poky@yoctoproject.org" <poky@yoctoproject.org>, "Wold,
 	Saul" <saul.wold@intel.com>
 Subject: Re: [poky] [PATCH 4/5] kern-tools: create generic variables for platform/board/kernel
 X-BeenThere: yocto@yoctoproject.org
@@ -42,43 +51,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jan 2011 10:01:11 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 11 Jan 2011 14:19:32 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2011-01-11 at 14:10 +0800, Cui, Dexuan wrote:
+On Tue, Jan 11, 2011 at 1:10 AM, Cui, Dexuan <dexuan.cui@intel.com> wrote:
 > Bruce Ashfield wrote:
-> > 2011/1/10 Cui, Dexuan <dexuan.cui@intel.com>:
-> >> hmmm, looks this commit was not tested?
-> > 
-> > It was definitely tested. Built for every board. Feel free to revert
-> > as required.
+>> 2011/1/10 Cui, Dexuan <dexuan.cui@intel.com>:
+>>> hmmm, looks this commit was not tested?
+>>
+>> It was definitely tested. Built for every board. Feel free to revert
+>> as required.
 > Hi Bruce,
-> I'm building poky-image-minimal on today's latest poky master 4b055ed and got the following failure.
-> 
-> >> With poky.git's latest 4b055ed, "bitbake  kern-tools-native -c
-> >> fetch" fails because in
-> >> http://git.pokylinux.org/cgit/cgit.cgi/wr-kernel-tools/, the latest
-> >> commit is still a494ddaf1c9151af8af8050e8427c9958440ec4c.   
-> The commit "kern-tools: create generic variables for
-> platform/board/kernel" upgraded SRCREV_pn-kern-tools-native to
-> f553af04, but the wr-kernel-tools tree doesn't have such a commit
-> number, so I got the build failure. Can you please check that? Maybe
-> you forgot to push your internal commits into the public tree? :-)
+> I'm building poky-image-minimal on today's latest poky master 4b055ed and=
+ got the following failure.
+>
+>>> With poky.git's latest 4b055ed, "bitbake =A0kern-tools-native -c
+>>> fetch" fails because in
+>>> http://git.pokylinux.org/cgit/cgit.cgi/wr-kernel-tools/, the latest
+>>> commit is still a494ddaf1c9151af8af8050e8427c9958440ec4c.
+> The commit "kern-tools: create generic variables for platform/board/kerne=
+l" upgraded SRCREV_pn-kern-tools-native to f553af04, but the wr-kernel-tool=
+s tree doesn't have such a commit number, so I got the build failure. Can y=
+ou please check that? Maybe you forgot to push your internal commits into t=
+he public tree? :-)
 
-I've just looked now and I don't know if anything has changed but the
-head revision is:
-
-http://git.pokylinux.org/cgit/cgit.cgi/wr-kernel-tools/commit/?id=f553af044615ba75c2b4b7ef1f382e6f75087213
-
-which matches. A local build also succeeded.
+I recalled giving it a push before sending the pull, but I was also battlin=
+g
+some issues with both infrastructure and poky-extras at the time. Regardles=
+s,
+it seems to be resolved now and shout if you see this again and I'll loop
+back and have another look.
 
 Cheers,
 
-Richard
+Bruce
+
+>
+> Thanks,
+> -- Dexuan
+>
 
 
 
-
-
+--=20
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
