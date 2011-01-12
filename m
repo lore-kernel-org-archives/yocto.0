@@ -1,40 +1,24 @@
-Return-Path: <joaohf@gmail.com>
-Received: from mail-iw0-f176.google.com (mail-iw0-f176.google.com
-	[209.85.214.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id BC8F24C81021
-	for <yocto@yoctoproject.org>; Wed, 12 Jan 2011 17:30:37 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iwn2 with SMTP id 2so1118795iwn.35
-	for <yocto@yoctoproject.org>; Wed, 12 Jan 2011 15:30:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=IMr4vyvr6n1QP8+K+LlB1l/023I/gpPMy05ub1MFBJE=;
-	b=lDrrildlO3zg3/vvxGEQhBBPMIFV6GTLTBHbR/taIZoeE9EdGPgZwYGG33FYxvbSTA
-	33Onm3oOaWnElwnFKARJF/haJXV5+bktQq5IaM0io051C0wvs6NYZPxLcTTiZ5iZhjpV
-	fz/JwZxqhmAbUbkW9axfmXeJ2X9o8F+pRYrEE=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	b=T4R94EqnkGEIblIkLArWyb3Kmcu42Y7lRTCPns+ujmk9F/uRb1PDpD52X7WvEiJwIr
-	CaxYVW6pwCcG5245ZV5jtU7Qf3/6wWlax4dKdsJkXkzdom+DZPJZd/neH44wuFrycDNb
-	rBLn4Aq0teGmzQV+hZXpWC16LqYMa6UL/yae8=
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id E9A934C80039
+	for <yocto@yoctoproject.org>; Wed, 12 Jan 2011 17:49:53 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 12 Jan 2011 15:49:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,314,1291622400"; d="scan'208";a="373769439"
+Received: from unknown (HELO [10.255.14.60]) ([10.255.14.60])
+	by azsmga001.ch.intel.com with ESMTP; 12 Jan 2011 15:49:41 -0800
+Message-ID: <4D2E3E15.2070305@linux.intel.com>
+Date: Wed, 12 Jan 2011 15:49:41 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.13) Gecko/20101208 Lightning/1.0b2 Thunderbird/3.1.7
 MIME-Version: 1.0
-Received: by 10.42.224.3 with SMTP id im3mr1741269icb.341.1294875037285; Wed,
-	12 Jan 2011 15:30:37 -0800 (PST)
-Received: by 10.42.176.8 with HTTP; Wed, 12 Jan 2011 15:30:37 -0800 (PST)
-In-Reply-To: <4D2E0148.4010205@intel.com>
-References: <AANLkTim3HcAyatj9qChj0ub5pc6wZL3pobd66ZuwHrth@mail.gmail.com>
-	<4D2E0148.4010205@intel.com>
-Date: Wed, 12 Jan 2011 21:30:37 -0200
-Message-ID: <AANLkTim=_TNHOvwUfc9pTfvnQp8wuAkTZMORMRNE9cMZ@mail.gmail.com>
-From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
-To: Saul Wold <saul.wold@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: ntp client
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+References: <DC74E0187B44084E9AD28300B75DFE300557D6FB@orsmsx504.amr.corp.intel.com>
+In-Reply-To: <DC74E0187B44084E9AD28300B75DFE300557D6FB@orsmsx504.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Changes to the autobuilder.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,28 +30,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jan 2011 23:30:38 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 12 Jan 2011 23:49:54 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 01/08/2011 03:21 PM, Flanagan, Elizabeth wrote:
+> I've made a few changes to the autobuilder that people should know
+> about. Currently, we've been utilizing the milestone builders to split
+> the nightly to both the internal and external builders in order to
+> speed things up. I've renamed them to nightly-internal* and
+> nightly-external*. They were putting their build output to the
+> milestone directory on the webserver. This was incorrect behavior.
+> I've changed this to make the build output go out to the nightly
+> directory of the webserver: http://autobuilder.pokylinux.org/nightly.
+>
+> The big change is to how we deal with emenlow, atom-pc, beagleboard,
+> etc. These are now found under the machines/<machine_name>/<arch>
+
+once you've descended into machine_name, "arch" seems superfluous. Won't
+it be the only directory? Would it make more sense as:
+
+machines/arch/machine_name ?
+
+machines
+   x86
+     qemux86
+     atom-pc
+   x86_64
+     qemux86-64
+   arm
+     beagleboard
+     beagleboard_xm
+
+Something like that?
+
+--
+Darren
+
+> directory in the build output web directory. I'll need to eventually
+> refactor some of the autobuilder scripts to deal with BSPs a little
+> more elegantly, but it's functional for now and we have a standard to
+> adhere to.
+>
+> Also, be aware that we now have a functional CURRENT link, so if you
+> go to the autobuilder/nightly/CURRENT directory this will point to the
+> last thing the autobuilder built. Keep in mind, it will create that
+> link even if the build is broken.  I'll have a commit with all of this
+> in it when I finish up the upgrade to 0.8.3.
+>
+> If you have any questions, feel free to ask.
+>
+> -b
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
-I have a layer and will try it.
-
-If all thinks goes well, I submit a patch.
-
-In OE I used openntpd. The busybox ntp client does not support a config fil=
-e.
-
-
-Thanks.
-
---=20
------------------------------------------------------------
-Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
-Campinas-SP-Brasil
-BSD051283
-LPI 1
-http://www.joaohfreitas.eti.br
+-- 
+Darren Hart
+Yocto Linux Kernel
 
