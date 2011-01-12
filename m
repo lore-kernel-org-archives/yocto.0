@@ -1,23 +1,38 @@
-Return-Path: <saul.wold@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 85C8B4C81069
-	for <yocto@yoctoproject.org>; Wed, 12 Jan 2011 13:30:43 -0600 (CST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 12 Jan 2011 11:30:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,313,1291622400"; d="scan'208";a="876934932"
-Received: from unknown (HELO [10.255.14.15]) ([10.255.14.15])
-	by fmsmga001.fm.intel.com with ESMTP; 12 Jan 2011 11:30:19 -0800
-Message-ID: <4D2E0148.4010205@intel.com>
-Date: Wed, 12 Jan 2011 11:30:16 -0800
-From: Saul Wold <saul.wold@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
+Return-Path: <joaohf@gmail.com>
+Received: from mail-iw0-f176.google.com (mail-iw0-f176.google.com
+	[209.85.214.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id BC8F24C81021
+	for <yocto@yoctoproject.org>; Wed, 12 Jan 2011 17:30:37 -0600 (CST)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iwn2 with SMTP id 2so1118795iwn.35
+	for <yocto@yoctoproject.org>; Wed, 12 Jan 2011 15:30:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=IMr4vyvr6n1QP8+K+LlB1l/023I/gpPMy05ub1MFBJE=;
+	b=lDrrildlO3zg3/vvxGEQhBBPMIFV6GTLTBHbR/taIZoeE9EdGPgZwYGG33FYxvbSTA
+	33Onm3oOaWnElwnFKARJF/haJXV5+bktQq5IaM0io051C0wvs6NYZPxLcTTiZ5iZhjpV
+	fz/JwZxqhmAbUbkW9axfmXeJ2X9o8F+pRYrEE=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	b=T4R94EqnkGEIblIkLArWyb3Kmcu42Y7lRTCPns+ujmk9F/uRb1PDpD52X7WvEiJwIr
+	CaxYVW6pwCcG5245ZV5jtU7Qf3/6wWlax4dKdsJkXkzdom+DZPJZd/neH44wuFrycDNb
+	rBLn4Aq0teGmzQV+hZXpWC16LqYMa6UL/yae8=
 MIME-Version: 1.0
-To: =?UTF-8?B?Sm/Do28gSGVucmlxdWUgRnJlaXRhcw==?= <joaohf@gmail.com>
+Received: by 10.42.224.3 with SMTP id im3mr1741269icb.341.1294875037285; Wed,
+	12 Jan 2011 15:30:37 -0800 (PST)
+Received: by 10.42.176.8 with HTTP; Wed, 12 Jan 2011 15:30:37 -0800 (PST)
+In-Reply-To: <4D2E0148.4010205@intel.com>
 References: <AANLkTim3HcAyatj9qChj0ub5pc6wZL3pobd66ZuwHrth@mail.gmail.com>
-In-Reply-To: <AANLkTim3HcAyatj9qChj0ub5pc6wZL3pobd66ZuwHrth@mail.gmail.com>
+	<4D2E0148.4010205@intel.com>
+Date: Wed, 12 Jan 2011 21:30:37 -0200
+Message-ID: <AANLkTim=_TNHOvwUfc9pTfvnQp8wuAkTZMORMRNE9cMZ@mail.gmail.com>
+From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
+To: Saul Wold <saul.wold@intel.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: ntp client
 X-BeenThere: yocto@yoctoproject.org
@@ -31,31 +46,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jan 2011 19:30:43 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 12 Jan 2011 23:30:38 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 01/10/2011 01:23 PM, João Henrique Freitas wrote:
-> Hi,
->
-> I searched in meta/* but did not found a ntp client like.
->
-> busybox have one but yocto don't compiles it, by default.
->
-> I can use a busybox.append or change busybox recipe.
->
-> In this cases, what is the best to do?
->
-João,
+Hi,
 
-If you are creating a layer, then it would be best to create a 
-busybox.bbappend file that enables the options you are looking for. You 
-can also add an ntp client in your layer, you just need to ensure you 
-also add it to the appropriate task or image via a .bbappend file.
 
-Sau!
+I have a layer and will try it.
 
-> Thanks
->
+If all thinks goes well, I submit a patch.
 
+In OE I used openntpd. The busybox ntp client does not support a config fil=
+e.
+
+
+Thanks.
+
+--=20
+-----------------------------------------------------------
+Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
+Campinas-SP-Brasil
+BSD051283
+LPI 1
+http://www.joaohfreitas.eti.br
 
