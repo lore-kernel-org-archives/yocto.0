@@ -1,29 +1,32 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D36984C80039
-	for <yocto@yoctoproject.org>; Fri, 14 Jan 2011 06:44:40 -0600 (CST)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.2/8.14.2/Debian-2build1) with ESMTP id
-	p0ECkNUK004713; Fri, 14 Jan 2011 12:46:23 GMT
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id 75C0U1dtMyxi; Fri, 14 Jan 2011 12:46:22 +0000 (GMT)
-Received: from [192.168.1.42] (tim [93.97.173.237]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.2/8.14.2/Debian-2build1) with ESMTP id
-	p0ECkFlA004710
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
-	Fri, 14 Jan 2011 12:46:18 GMT
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-In-Reply-To: <9AFCD584B0B67B48AE8D8585BE30BA9504DC9D07@orsmsx504.amr.corp.intel.com>
-References: <9AFCD584B0B67B48AE8D8585BE30BA9504DC9D07@orsmsx504.amr.corp.intel.com>
-Date: Fri, 14 Jan 2011 12:44:18 +0000
-Message-ID: <1295009058.14388.5786.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id AEC7F4C80FBE
+	for <yocto@yoctoproject.org>; Fri, 14 Jan 2011 09:48:51 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p0EFmnnl007161;
+	Fri, 14 Jan 2011 07:48:49 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Fri, 14 Jan 2011 07:48:49 -0800
+Received: from [128.224.146.67] ([128.224.146.67]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Fri, 14 Jan 2011 07:48:49 -0800
+Message-ID: <4D307060.4040802@windriver.com>
+Date: Fri, 14 Jan 2011 10:48:48 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7 ThunderBrowse/3.3.4
+MIME-Version: 1.0
+To: Tom Zanussi <tom.zanussi@intel.com>
+References: <4D2F2977.90007@intel.com>	<4D2F2A4A.8030305@windriver.com>	
+	<1294937243.9232.2.camel@elmorro>	
+	<AANLkTime7E3HN64prTXoxfu_yb6BqW56_=jU7L38S_MP@mail.gmail.com>	
+	<4D2FA9BE.80303@windriver.com> <1294986870.28996.10.camel@elmorro>
+In-Reply-To: <1294986870.28996.10.camel@elmorro>
+X-OriginalArrivalTime: 14 Jan 2011 15:48:49.0337 (UTC)
+	FILETIME=[891AF290:01CBB402]
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: question about SDKMACHINE, SDK_ARCH and BUILD_ARCH
+Subject: Re: Current Build Failures for d82f205cfa790b40e132e11b7937050bc3b97ff3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,55 +38,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jan 2011 12:44:41 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 14 Jan 2011 15:48:52 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, 2011-01-13 at 15:36 -0800, Zhang, Jessica wrote:
-> Hi Richard,
->  
-> As I mentioned in IRC, we've noticed that bitbake behaves differently
-> on 64bit and 32bit machines from SDKMACHINE setup perspective.  It
-> never enforces SDKMACHINE to be set in local.conf for 64bit users but
-> for 32bit user, if you leave SDKMACHINE unset, the bitbake sanity
-> test will fail and prompts user to set the SDKMACHINE to i586.
->  
-> It seems internally we really use SDK_ARCH which derived from
-> BUILD_ARCH that reflects the poky build machines arch.  And for
-> bitbake sanity check if it sees SDK_ARCH is i686, it will prompts user
-> to set SDKMACHINE to i586 since there's a known issue for this case
-> can't use the default build machine arch of i686.
->  
-> Questions are:
-> 1. what  is the known issue for using i686?
+On 11-01-14 01:34 AM, Tom Zanussi wrote:
+> On Thu, 2011-01-13 at 17:41 -0800, Bruce Ashfield wrote:
+>> On 11-01-13 8:37 PM, João Henrique Freitas wrote:
+>>> Hi,
+>>>
+>>> I have two build machines:
+>>>
+>>> x86 ubuntu 10.04 at work
+>>> x86_64 ubuntu 10.04 at home
+>>>
+>>> At home all things goes ok. But at work perf has failed.
+>>
+>> Are your package lists identical ? Sounds like host contamination
+>> to me and perf is deciding to build perl or not perl based on
+>> what the host has installed.
+>>
+>>>
+>>> The problem is LIBPERL. I can't understand why but at work the
+>>> Makefile from perf does not have the flag NO_LIBPERL.
+>>>
+>>> To 'solve'  it I put:
+>>>
+>>> do_compile_perf() {
+>>> 	oe_runmake -C ${S}/tools/perf CC="${CC}" LD="${LD}" prefix=${prefix}
+>>> NO_LIBPERL=1
+>>
+>> This works .. or to get the functionality back, we get perl
+>> in the package list and kindly ask perf to look in our sysroot
+>> for what it needs :)
+>>
+>
+> One thing I notice is that recipes-devtools/perl/perl_5.12.2.bb doesn't
+> install ExtUtils, which perl_5.8.8.bb did.
 
-(e)glibc will fail to build with some issues to do with architecture
-optimisations. I don't remember the details but the builds do fail and
-the warning is valid. The easy way to test is to disable the warning and
-try it!
+That would explain the "what changed under us?" if this
+turns out to be the cause.
 
-Once, there were also conflicts between the native bits and the cross
-bits both being i686 but I think the problem was solved a long time ago.
+>
+> The logic in perf that decides whether to define NO_LIBPERL depends on
+> the output of ExtUtils::Embed - it looks like it may be picking up the
+> host's ccopts instead, which might explain the /usr/local/include in the
+> error message:
+>
+> cc1: error: include location "/usr/local/include" is unsafe for cross-compilation
 
-At some point it would be nice to fix this but as far as I know the
-problem remains and the sanity warning is still valid.
+Sounds like we are on the right track.
 
-> 2. If we can't resolve the issue for i686, then shouldn't we set the
-> SDK_ARCH to i586 as default if the BUILD_ARCH is i686, this way,
-> bitbake will behave consistent for 32bit and 64bit if user leave the
-> SDKMACHINE unset...
+>
+> Will look into it more tomorrow...
 
-The original code was written simply to stop users building something
-that was known not to work. 
+Many thanks!
 
-I agree the user experience could be better and we could put some inline
-python into the default definition of SDKMACHINE to handle this I guess.
+Bruce
 
-Cheers,
-
-Richard
-
-
-
+>
+> Tom
+>
+>> Thanks for the digging on this.
+>>
+>> Bruce
+>>
+>>> }
+>>>
+>>> in linux-tools.inc
+>>>
+>>> Thanks.
+>>>
+>>> On Thu, Jan 13, 2011 at 2:47 PM, Tom Zanussi<tom.zanussi@intel.com>   wrote:
+>>>> On Thu, 2011-01-13 at 08:37 -0800, Bruce Ashfield wrote:
+>>>>> On 11-01-13 11:33 AM, Elizabeth Flanagan wrote:
+>>>>>> All,
+>>>>>>
+>>>>>> The current nightly based on d82f205cfa790b40e132e11b7937050bc3b97ff3 is
+>>>>>> showing 3 build failures so far.
+>>>>>>
+>>>>>> Machine: qemux86
+>>>>>> Failure: intermittent tasks_0.18 failure at do_compile
+>>>>>> Description: Tasks_0.18 has failed during one buildset, however it's not
+>>>>>> failing on the other.
+>>>>>>
+>>>>>>
+>>>>>> Machine: arm
+>>>>>> Failure: sanity tests time out and cause cascading failures.
+>>>>>> Description: I'm patching the autobuilder today so that sanity tests
+>>>>>> timing out shouldn't cause a cascading failure, however the arm sanity
+>>>>>> tests are still timing out.
+>>>>>>
+>>>>>> Machine: qemux86-64
+>>>>>> Failure: linux-yocto_git failing at do_compile_perf
+>>>>>> Description:
+>>>>>> |     CC util/scripting-engines/trace-event-perl.o
+>>>>>> | cc1: warnings being treated as errors
+>>>>>> | cc1: error: include location "/usr/local/include" is unsafe for
+>>>>>> cross-compilation
+>>>>>
+>>>>> I saw this one as well, but hadn't gone back to look at
+>>>>> it yet. Did something change underneath us?
+>>>>>
+>>>>> I haven't updated any parts of the recipes or kernel that
+>>>>> would have triggered the new failure. Or at least nothing
+>>>>> that has ever showed up in my testing.
+>>>>>
+>>>>
+>>>> Yeah, it's strange that this starts happening seemingly out of the blue
+>>>> - nothing wrt this has changed recently AFAICS.
+>>>>
+>>>>> Darren/Tom: you guys have been into perf/trace recently,
+>>>>> any ideas (or time) for a quick fix ? I'm going to be
+>>>>> pegged for the day trying to sort out some other items.
+>>>>>
+>>>>
+>>>> Coincidentally, I was going to look at perf scripting next week - guess
+>>>> I'll start this week instead.  Don't have a quick fix off the top of my
+>>>> head - will start looking into it later today/tonight...
+>>>>
+>>>> Tom
+>>>>
+>>>>> Cheers,
+>>>>>
+>>>>> Bruce
+>>>>>
+>>>>>> | make: *** [util/scripting-engines/trace-event-perl.o] Error 1
+>>>>>>
+>>>>>> _______________________________________________
+>>>>>> yocto mailing list
+>>>>>> yocto@yoctoproject.org
+>>>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>>
+>>>>
+>>>>
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>
+>>>
+>>>
+>>>
+>>
+>
+>
 
 
