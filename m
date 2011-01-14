@@ -1,32 +1,24 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id AEC7F4C80FBE
-	for <yocto@yoctoproject.org>; Fri, 14 Jan 2011 09:48:51 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p0EFmnnl007161;
-	Fri, 14 Jan 2011 07:48:49 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Fri, 14 Jan 2011 07:48:49 -0800
-Received: from [128.224.146.67] ([128.224.146.67]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Fri, 14 Jan 2011 07:48:49 -0800
-Message-ID: <4D307060.4040802@windriver.com>
-Date: Fri, 14 Jan 2011 10:48:48 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Return-Path: <saul.wold@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 7F40E4C80039;
+	Fri, 14 Jan 2011 10:12:13 -0600 (CST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 14 Jan 2011 08:12:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,323,1291622400"; d="scan'208";a="696897722"
+Received: from unknown (HELO [10.255.14.72]) ([10.255.14.72])
+	by orsmga001.jf.intel.com with ESMTP; 14 Jan 2011 08:12:10 -0800
+Message-ID: <4D3075D9.40804@intel.com>
+Date: Fri, 14 Jan 2011 08:12:09 -0800
+From: Saul Wold <saul.wold@intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7 ThunderBrowse/3.3.4
+	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
+	Thunderbird/3.0.5
 MIME-Version: 1.0
-To: Tom Zanussi <tom.zanussi@intel.com>
-References: <4D2F2977.90007@intel.com>	<4D2F2A4A.8030305@windriver.com>	
-	<1294937243.9232.2.camel@elmorro>	
-	<AANLkTime7E3HN64prTXoxfu_yb6BqW56_=jU7L38S_MP@mail.gmail.com>	
-	<4D2FA9BE.80303@windriver.com> <1294986870.28996.10.camel@elmorro>
-In-Reply-To: <1294986870.28996.10.camel@elmorro>
-X-OriginalArrivalTime: 14 Jan 2011 15:48:49.0337 (UTC)
-	FILETIME=[891AF290:01CBB402]
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Current Build Failures for d82f205cfa790b40e132e11b7937050bc3b97ff3
+To: "poky@yoctoproject.org" <poky@yoctoproject.org>, 
+	Yocto Project Discussion <yocto@yoctoproject.org>,
+	yocto-announce@yoctoproject.org
+Subject: ANNOUNCE: Poky / Yocto Core Metadata 1.0 Milestone 2 Status
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,150 +30,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jan 2011 15:48:52 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 14 Jan 2011 16:12:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 11-01-14 01:34 AM, Tom Zanussi wrote:
-> On Thu, 2011-01-13 at 17:41 -0800, Bruce Ashfield wrote:
->> On 11-01-13 8:37 PM, João Henrique Freitas wrote:
->>> Hi,
->>>
->>> I have two build machines:
->>>
->>> x86 ubuntu 10.04 at work
->>> x86_64 ubuntu 10.04 at home
->>>
->>> At home all things goes ok. But at work perf has failed.
->>
->> Are your package lists identical ? Sounds like host contamination
->> to me and perf is deciding to build perl or not perl based on
->> what the host has installed.
->>
->>>
->>> The problem is LIBPERL. I can't understand why but at work the
->>> Makefile from perf does not have the flag NO_LIBPERL.
->>>
->>> To 'solve'  it I put:
->>>
->>> do_compile_perf() {
->>> 	oe_runmake -C ${S}/tools/perf CC="${CC}" LD="${LD}" prefix=${prefix}
->>> NO_LIBPERL=1
->>
->> This works .. or to get the functionality back, we get perl
->> in the package list and kindly ask perf to look in our sysroot
->> for what it needs :)
->>
->
-> One thing I notice is that recipes-devtools/perl/perl_5.12.2.bb doesn't
-> install ExtUtils, which perl_5.8.8.bb did.
+On December 24th the Yocto Project team completed Milestone 2 for Poky / 
+Yocto Core Metadata.  The milestone tar ball is availbe at:
 
-That would explain the "what changed under us?" if this
-turns out to be the cause.
+    http://autobuilder.pokylinux.org/milestone/20101218-1/
 
->
-> The logic in perf that decides whether to define NO_LIBPERL depends on
-> the output of ExtUtils::Embed - it looks like it may be picking up the
-> host's ccopts instead, which might explain the /usr/local/include in the
-> error message:
->
-> cc1: error: include location "/usr/local/include" is unsafe for cross-compilation
+This milestone contains a number of new features including:
 
-Sounds like we are on the right track.
+   - Linux Kernel Version 2.6.37-rc5
+   - introduced linux-yocto-stable recipe at 2.6.34
+   - Updated Recipes
+   - World Cleanup (World will build for most arches)
+   - LIC_FILES_CHKSUM required for recipes
+   - SRC_URI Checksums added to recipes
+   - Kernel Tracing
+   - Updated Documentation
+   - SDK and Installer Enhancments
+   - Linaro: meta-linaro layer added in poky-extras
 
->
-> Will look into it more tomorrow...
 
-Many thanks!
+The test results indicated the following issues, which are being worked 
+on to resolve before the 1.0 release occurs:
 
-Bruce
+[multimedia] No sound from machine when playing audio files
+http://bugzilla.pokylinux.org/show_bug.cgi?id=616
+[multimedia] video player reports error when open video files
+http://bugzilla.pokylinux.org/show_bug.cgi?id=615
 
->
-> Tom
->
->> Thanks for the digging on this.
->>
->> Bruce
->>
->>> }
->>>
->>> in linux-tools.inc
->>>
->>> Thanks.
->>>
->>> On Thu, Jan 13, 2011 at 2:47 PM, Tom Zanussi<tom.zanussi@intel.com>   wrote:
->>>> On Thu, 2011-01-13 at 08:37 -0800, Bruce Ashfield wrote:
->>>>> On 11-01-13 11:33 AM, Elizabeth Flanagan wrote:
->>>>>> All,
->>>>>>
->>>>>> The current nightly based on d82f205cfa790b40e132e11b7937050bc3b97ff3 is
->>>>>> showing 3 build failures so far.
->>>>>>
->>>>>> Machine: qemux86
->>>>>> Failure: intermittent tasks_0.18 failure at do_compile
->>>>>> Description: Tasks_0.18 has failed during one buildset, however it's not
->>>>>> failing on the other.
->>>>>>
->>>>>>
->>>>>> Machine: arm
->>>>>> Failure: sanity tests time out and cause cascading failures.
->>>>>> Description: I'm patching the autobuilder today so that sanity tests
->>>>>> timing out shouldn't cause a cascading failure, however the arm sanity
->>>>>> tests are still timing out.
->>>>>>
->>>>>> Machine: qemux86-64
->>>>>> Failure: linux-yocto_git failing at do_compile_perf
->>>>>> Description:
->>>>>> |     CC util/scripting-engines/trace-event-perl.o
->>>>>> | cc1: warnings being treated as errors
->>>>>> | cc1: error: include location "/usr/local/include" is unsafe for
->>>>>> cross-compilation
->>>>>
->>>>> I saw this one as well, but hadn't gone back to look at
->>>>> it yet. Did something change underneath us?
->>>>>
->>>>> I haven't updated any parts of the recipes or kernel that
->>>>> would have triggered the new failure. Or at least nothing
->>>>> that has ever showed up in my testing.
->>>>>
->>>>
->>>> Yeah, it's strange that this starts happening seemingly out of the blue
->>>> - nothing wrt this has changed recently AFAICS.
->>>>
->>>>> Darren/Tom: you guys have been into perf/trace recently,
->>>>> any ideas (or time) for a quick fix ? I'm going to be
->>>>> pegged for the day trying to sort out some other items.
->>>>>
->>>>
->>>> Coincidentally, I was going to look at perf scripting next week - guess
->>>> I'll start this week instead.  Don't have a quick fix off the top of my
->>>> head - will start looking into it later today/tonight...
->>>>
->>>> Tom
->>>>
->>>>> Cheers,
->>>>>
->>>>> Bruce
->>>>>
->>>>>> | make: *** [util/scripting-engines/trace-event-perl.o] Error 1
->>>>>>
->>>>>> _______________________________________________
->>>>>> yocto mailing list
->>>>>> yocto@yoctoproject.org
->>>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>>
->>>>
->>>>
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>
->>>
->>>
->>>
->>
->
->
+   - Issue with upgrading libowl-av and interaction with playbin, this 
+is being actively investigated.
 
+[Blacksand]system cannot enter S3 standby mode
+http://bugzilla.pokylinux.org/show_bug.cgi?id=613
+[emenlow] system cannot enter S3 standby mode
+http://bugzilla.pokylinux.org/show_bug.cgi?id=503
+
+   - These are related and possibly duplicated, just for different 
+hardware platforms.
+
+no rootfs and dtb file in qemumpc8315e-rdb milestone build
+http://bugzilla.pokylinux.org/show_bug.cgi?id=610
+
+- This issue is related to the autobuilder not correctly moving files to 
+the milestone directory tree. It has been resolved in the Autobuilder now.
+
+[RouterStation] The timestamp of new file created under /home/root 
+doesn't correct after adjusting the time
+http://bugzilla.pokylinux.org/show_bug.cgi?id=609
+
+   - Being investigated
+
+[Blacksand] Some error information prompted when run dmesg command
+http://bugzilla.pokylinux.org/show_bug.cgi?id=607
+
+   - This bug will be closed, as it is a normal error based on EDID not 
+being available depending on the monitor connector (or no monitor connected)
+
+[toolchain]Build c program failed with arm toolchain
+http://bugzilla.pokylinux.org/show_bug.cgi?id=604
+
+- Fixed and commited in M3, needs to be verified
+
+[Netbook]Connection preferences did not enable wireless networks
+http://bugzilla.pokylinux.org/show_bug.cgi?id=603
+
+   - Need to get updated status on this
+
+qemumips shutdown cause host console warning
+http://bugzilla.pokylinux.org/show_bug.cgi?id=322
+
+- minor bug that displays warning due to bad qemu emulations of ethernet 
+driver.
+
+[poky] kernel interactive build does not work via ssh
+http://bugzilla.pokylinux.org/show_bug.cgi?id=598
+
+   - Fix was commited and tested in M3, but a psuedo issue seems to have
+cropped up.
+
+[poky] qemu running with KVM needs root permission
+http://bugzilla.pokylinux.org/show_bug.cgi?id=599
+
+- This was fixed in M3 and has been verified
+
+[LTP] LTP default test suite cannot fully pass
+http://bugzilla.pokylinux.org/show_bug.cgi?id=169
+[POSIX] POSIX default test suite cannot fully pass
+http://bugzilla.pokylinux.org/show_bug.cgi?id=172
+
+- These are place holder bugs, we know that LTP and Posix testing will 
+not completely pass, we are working to identify and document the 
+failures in order to use future testing for regressions verification.
+
+
+
+Zypper/RPM Bugs, these are known issues that are currently being addressed.
+
+[zypper] uname -m and repo arch difference
+http://bugzilla.pokylinux.org/show_bug.cgi?id=489
+
+[zypper] installation failure on arm
+http://bugzilla.pokylinux.org/show_bug.cgi?id=490
+
+[zypper] package removal failure
+http://bugzilla.pokylinux.org/show_bug.cgi?id=491
+
+zypper encounter segfault when startup with qemuppc
+http://bugzilla.pokylinux.org/show_bug.cgi?id=443
+
+[rpm/zypper] remove_packaging_data_files makes rpm/zypper install/remove 
+not work in minimal image
+http://bugzilla.pokylinux.org/show_bug.cgi?id=608
 
