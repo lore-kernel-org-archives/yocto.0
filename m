@@ -1,26 +1,36 @@
-Return-Path: <Xiaofeng.Yan@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 533AE4C810D2
-	for <yocto@yoctoproject.org>; Sun, 16 Jan 2011 23:17:40 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p0H5Hdc5010560
-	for <yocto@yoctoproject.org>; Sun, 16 Jan 2011 21:17:39 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Sun, 16 Jan 2011 21:17:39 -0800
-Received: from [128.224.163.183] ([128.224.163.183]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Sun, 16 Jan 2011 21:17:38 -0800
-Message-ID: <4D33CFB0.1030701@windriver.com>
-Date: Mon, 17 Jan 2011 13:12:16 +0800
-From: Xiaofeng Yan <xiaofeng.yan@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.1.11) Gecko/20100713 Thunderbird/3.0.6
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 048004C8109B
+	for <yocto@yoctoproject.org>; Mon, 17 Jan 2011 01:58:39 -0600 (CST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 16 Jan 2011 23:58:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,332,1291622400"; 
+	d="p7s'?scan'208";a="697524318"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga001.jf.intel.com with ESMTP; 16 Jan 2011 23:58:31 -0800
+Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Sun, 16 Jan 2011 23:58:30 -0800
+Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
+	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
+	Sun, 16 Jan 2011 23:58:30 -0800
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date: Sun, 16 Jan 2011 23:58:29 -0800
+Thread-Topic: question about SDKMACHINE, SDK_ARCH and BUILD_ARCH
+Thread-Index: Acuz6NIuDvLaES//Sr28lf6+JorEVACMbMCg
+Message-ID: <9AFCD584B0B67B48AE8D8585BE30BA9504E143D8@orsmsx504.amr.corp.intel.com>
+References: <9AFCD584B0B67B48AE8D8585BE30BA9504DC9D07@orsmsx504.amr.corp.intel.com>
+	<1295009058.14388.5786.camel@rex>
+In-Reply-To: <1295009058.14388.5786.camel@rex>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-X-OriginalArrivalTime: 17 Jan 2011 05:17:39.0009 (UTC)
-	FILETIME=[DBDEBB10:01CBB605]
-Subject: Status for lsb test (2011.1.10-2011.1.14)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: question about SDKMACHINE, SDK_ARCH and BUILD_ARCH
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,758 +42,212 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jan 2011 05:17:40 -0000
-Content-Type: multipart/alternative;
-	boundary="------------050701080905030500070704"
+X-List-Received-Date: Mon, 17 Jan 2011 07:58:40 -0000
+X-Groupsio-MsgNum: 807
+Content-Language: en-US
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+	micalg=SHA1; boundary="----=_NextPart_000_0078_01CBB5D9.45C3ED70"
 
---------------050701080905030500070704
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+------=_NextPart_000_0078_01CBB5D9.45C3ED70
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-Hi all,
-The next table is for the latest lsb test result.
+Richard Purdie wrote:
+> On Thu, 2011-01-13 at 15:36 -0800, Zhang, Jessica wrote:
+>> Hi Richard,
+>> 
+>> As I mentioned in IRC, we've noticed that bitbake behaves differently
+>> on 64bit and 32bit machines from SDKMACHINE setup perspective.  It
+>> never enforces SDKMACHINE to be set in local.conf for 64bit users but
+>> for 32bit user, if you leave SDKMACHINE unset, the bitbake sanity
+>> test will fail and prompts user to set the SDKMACHINE to i586.
+>> 
+>> It seems internally we really use SDK_ARCH which derived from
+>> BUILD_ARCH that reflects the poky build machines arch.  And for
+>> bitbake sanity check if it sees SDK_ARCH is i686, it will prompts
+>> user to set SDKMACHINE to i586 since there's a known issue for this
+>> case can't use the default build machine arch of i686.
+>> 
+>> Questions are:
+>> 1. what  is the known issue for using i686?
+> 
+> (e)glibc will fail to build with some issues to do with architecture
+> optimisations. I don't remember the details but the builds do fail and
+> the warning is valid. The easy way to test is to disable the warning
+> and try it!
+> 
+> Once, there were also conflicts between the native bits and the cross
+> bits both being i686 but I think the problem was solved a long time
+> ago. 
+> 
+> At some point it would be nice to fix this but as far as I know the
+> problem remains and the sanity warning is still valid.
+> 
 
-*LSB Test Suite* 	*Version* 	*Result* 	*Left work* 	*May/Days* 	*Start 
-Date* 	*Finish Date* 	*Status* 	*Completed Percentage* 	*Defects 
-filed* 	*Developer* 	*Risk/Issue*
-Cpp-T2C Tests 	4.0.2-1 	Passed 	submit 	2 	2010-12-20 	2010-12-21 	In 
-Progress 	90% 	
-	Jingdong Lu 	
-Libstdc++ Tests 	4.1.0-7 	Passed 	submit 	3 	2010-12-22 	2010-12-24 	In 
-Progress 	90% 	
-	Jingdong Lu 	
-Perl Tests 	4.0.7-1 	Passed 	None 	2 	2010-12-27 	2010-12-28 	Done 	100% 	
-	Jingdong Lu 	
-Python Runtime Tests 	4.0.2-1 	Passed 	submit 	3 	2010-12-29 
-2010-12-31 	In Progress 	90% 	Bug 614(Open) 	Jingdong Lu 	
-Python Tests 	2.4.5-2 	Passed 	submit 	0 	
-	
-	In Progress 	90% 	
-	Jingdong Lu 	
-OLVER Core Tests 	
-	Passed 	submit 	6 	2011-1-4 	2011-1-11 	In Progress 	90% 	
-	Jingdong Lu 	
-Command Check 	4.0.0-2 	Passed 	Lsb 	3 	2011-1-12 	2011-1-14 	In 
-Progress 	90% 	BUG 520(Open) 	Jingdong Lu 	
-Tcl Tests 	8.5.7-6 	Passed 	None 	5 	2011-1-17 	2011-1-21 	Done 	100% 	
-	Jingdong Lu 	
-Library Check 	4.0.2-1 	Failures: 2 	qt3 	5 	2011-1-12 	2011-1-18 	In 
-Progress 	80% 	
-	Jingdong Lu 	Query if we need to handle any QT3 issues
+Interestingly, by simply comment off the sanity check for SDK_ARCH == i686,
+I successfully built meta-toolchain for i686-i586 and poky-image-sdk for x86
+and didn't run into (e)glibc build errors.  I check my built toolchain and
+sysroot, and everything looks right, as host as i686 and target as i586.  I
+was able to use the cross toolchain to compile a simple c program.  Are
+these enough test, if so, I'll submitted a patch ...
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-Desktop Tests 	
-	Passed 	submit 	4 	2010-12-20 	2010-12-29 	Delay 	90% 	BUG 567(Closed)
-BUG 569(Closed)
-BUG 570(Closed) 	Xiaofeng Yan 	
-Desktop-T2C Tests 	4.0.2-1 	Failures: 1 	fix failures 	4 	2010-12-20 
-2010-12-29 	Delay 	70% 	BUG 571(Accepted) 	Xiaofeng Yan 	
-Qt4-Azov Tests 	4.0.2-1 	Failures:3 	fix failures 	4 	2010-12-30 
-2011-1-5 	Delay 	50% 	
-	Xiaofeng Yan 	
-Xts5 Tests 	5.1.5-19 	Passed 	submit 	5 	2011-1-6 	2010-1-12 	In 
-Progress 	90% 	
-	Xiaofeng Yan 	
-Core Tests 	4.0.5-1 	Failures: N/A 	fix failures 	7 (?) 	2011-1-21 
-2011-1-31 	Not started Yet 	
-	
-	Xiaofeng Yan 	Blocked by POSIX rename test case
-LSB Test Suite 	
-	
-	creat-lsb-image
-LSB_Setup.sh 	0 	
-	
-	Done 	100% 	
-	Xiaofeng Yan 	
+Thanks
+Jessica
 
+------=_NextPart_000_0078_01CBB5D9.45C3ED70
+Content-Type: application/x-pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
 
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIdiDCCAyAw
+ggKJoAMCAQICBDXe9M8wDQYJKoZIhvcNAQEFBQAwTjELMAkGA1UEBhMCVVMxEDAOBgNVBAoTB0Vx
+dWlmYXgxLTArBgNVBAsTJEVxdWlmYXggU2VjdXJlIENlcnRpZmljYXRlIEF1dGhvcml0eTAeFw05
+ODA4MjIxNjQxNTFaFw0xODA4MjIxNjQxNTFaME4xCzAJBgNVBAYTAlVTMRAwDgYDVQQKEwdFcXVp
+ZmF4MS0wKwYDVQQLEyRFcXVpZmF4IFNlY3VyZSBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkwgZ8wDQYJ
+KoZIhvcNAQEBBQADgY0AMIGJAoGBAMFdsVhnCGLuoJotHwhtkRRomAoe/toEbxOEYiHD0XzOnwXg
+uAHwTjTs4oqVBGSs8WtTXwWzy2eAv0ICjv7dAQns4QAUT/z78AzdQ7pbK+EfgHCZFVeTFvEPl2q3
+wmgjHMxNWTCsUR47ryvW7mNFe8XZX1DS41APOojnvxT94Me5AgMBAAGjggEJMIIBBTBwBgNVHR8E
+aTBnMGWgY6BhpF8wXTELMAkGA1UEBhMCVVMxEDAOBgNVBAoTB0VxdWlmYXgxLTArBgNVBAsTJEVx
+dWlmYXggU2VjdXJlIENlcnRpZmljYXRlIEF1dGhvcml0eTENMAsGA1UEAxMEQ1JMMTAaBgNVHRAE
+EzARgQ8yMDE4MDgyMjE2NDE1MVowCwYDVR0PBAQDAgEGMB8GA1UdIwQYMBaAFEjmaPkr0rKV10fY
+IyAQTzOYkJ/UMB0GA1UdDgQWBBRI5mj5K9KylddH2CMgEE8zmJCf1DAMBgNVHRMEBTADAQH/MBoG
+CSqGSIb2fQdBAAQNMAsbBVYzLjBjAwIGwDANBgkqhkiG9w0BAQUFAAOBgQBYzinq/Pfetc4CuRe1
+hdG54+CVzCUxDQCmkm5/tpJjnlCV0Zpv5BHeY4VumO6o/1rI01WyZnFX3sAh6z0qpyNJAQSGQnv8
+7n+iFlK1Z2fTQNs7JliyKHc9rhR3Ydb6KmYnoA36p3Nc6nDxlCFlRF/6/O8paKmih3nvee9PrAd3
+ODCCAz0wggKmoAMCAQICAwWw/zANBgkqhkiG9w0BAQUFADBOMQswCQYDVQQGEwJVUzEQMA4GA1UE
+ChMHRXF1aWZheDEtMCsGA1UECxMkRXF1aWZheCBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5
+MB4XDTA2MDIxNjE4MDEzMFoXDTE2MDIxOTE4MDEzMFowUjELMAkGA1UEBhMCVVMxGjAYBgNVBAoT
+EUludGVsIENvcnBvcmF0aW9uMScwJQYDVQQDEx5JbnRlbCBFeHRlcm5hbCBCYXNpYyBQb2xpY3kg
+Q0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDBpd/XOb9QVqEZ8mQ1042TdOIq3ATD
+IsV2xDyt30yLyMR5Wjtus0bn3B+he89BiNO/LP6+rFzEwlD55PlX+HLGIKeNNG97dqyc30FElEUj
+ZzTZFq2N4e3kVJ/XAEEgANzV8v9qp7qWwxugPgfc3z9BkYot+CifozexHLb/hEZj+yISCU61kRZv
+uSQ0E11yYL4dRgcglJeaHo3oX57rvIckaLsYV5/1Aj+R8DM1Ppk965XQAKsHfnyT7C4S50T4lVn4
+lz36wOdNZn/zegG1zp41lnoTFfT4KuKVJH5x7YD1p6KbgJCKLovnujGuohquBNfdXKpZkvz6pGv+
+iC1HawJdAgMBAAGjgaAwgZ0wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBQaxgxKxEdvqNutK/D0
+Vgaj7TdUDDA6BgNVHR8EMzAxMC+gLaArhilodHRwOi8vY3JsLmdlb3RydXN0LmNvbS9jcmxzL3Nl
+Y3VyZWNhLmNybDAfBgNVHSMEGDAWgBRI5mj5K9KylddH2CMgEE8zmJCf1DAPBgNVHRMBAf8EBTAD
+AQH/MA0GCSqGSIb3DQEBBQUAA4GBABMQOK2kVKVIlUWwLTdywJ+e2O+PC/uQltK2F3lRyrPfBn69
+tOkIP4SgDJOfsxyobIrPLe75kBLw+Dom13OBDp/EMZJZ1CglQfVV8co9mT3aZMjSGGQiMgkJLR3j
+Mfr900fXZKj5XeqCJ+JP0mEhJGEdVCY+FFlksJjV86fDrq1QMIIFYzCCBEugAwIBAgIKYSyUiQAA
+AAAABTANBgkqhkiG9w0BAQUFADBSMQswCQYDVQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9y
+YXRpb24xJzAlBgNVBAMTHkludGVsIEV4dGVybmFsIEJhc2ljIFBvbGljeSBDQTAeFw0wNjAzMjIy
+MjIyNDJaFw0xMjAzMjIyMjMyNDJaMFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jw
+b3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQTCCASIw
+DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKvXqH/ah10uJc7YzQUh+XEDNqS6IsXOyqCtizr9
+x6F+v6iRAbvddRRJRWixfV78qarSN9WMymJ90M8c9/Dfr1yzFuq95RgCAF3vdve3wKi7kJv6lkMJ
+wyyB+uIYcWtljYx2LDqbb9S6Z6He3q8W/aGKvu23I9ksNx+cmZcDNZwGdXVIEHpEMyA4bp0RvYtf
+p8BsGAyn6YuK63HugeyYdeFL+4+Wz2tGUqw9OWhob6oV1oDH3zboLhHJiQ2oIj3jAJ3/LrIkzcWP
+2R20UIliDAPAAl6MNWJPdsNK5EEeuxEuUSpdFsMj5rBmPHH4U8i8rUmi6GEOcX5rwAw64AzS3gEC
+AwEAAaOCAjUwggIxMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFAlpgTN7BnOPI0wKA9/3FoER
+ghMFMAsGA1UdDwQEAwIBhjAQBgkrBgEEAYI3FQEEAwIBADAZBgkrBgEEAYI3FAIEDB4KAFMAdQBi
+AEMAQTAfBgNVHSMEGDAWgBQaxgxKxEdvqNutK/D0Vgaj7TdUDDCBvQYDVR0fBIG1MIGyMIGvoIGs
+oIGphk5odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFs
+JTIwQmFzaWMlMjBQb2xpY3klMjBDQS5jcmyGV2h0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29t
+L3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUyMENBLmNy
+bDCB4wYIKwYBBQUHAQEEgdYwgdMwYwYIKwYBBQUHMAKGV2h0dHA6Ly93d3cuaW50ZWwuY29tL3Jl
+cG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUy
+MENBLmNydDBsBggrBgEFBQcwAoZgaHR0cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3Np
+dG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwUG9saWN5JTIwQ0Eu
+Y3J0MA0GCSqGSIb3DQEBBQUAA4IBAQCuNCnecJ+vDpXzsHOzMEyz4KgTNDbJROHag8H/ZVga7soc
+oJyC+HKqDfQgxifVorbTbSajCBEAxqg6bbNWBJ6qKOFHneBrXkENf5WdD50eCTCFWRV3EIsHEOQ1
+kP0eNYV5Ed4hp9y6wASV6z2z86O4+qouLJiow4AIhoCKD8rEyD7ODgTvjvLCKpsVyPlG1jOVSsOS
+IF2VUmueAmK3RFU4np83zerK/j0G37owhniEDT6ZhwkUd0XL45nt1m7yApMEbnXUTHNaXnE+P98k
+k3nDXdW25sB+5xWcYR3GpgMdQiZgP/f0KZ+yZKNE7gcp3I/O4pXqUNWIsLSYTi3soAR2MIIFYzCC
+BEugAwIBAgIKYSyl/gAAAAAABjANBgkqhkiG9w0BAQUFADBSMQswCQYDVQQGEwJVUzEaMBgGA1UE
+ChMRSW50ZWwgQ29ycG9yYXRpb24xJzAlBgNVBAMTHkludGVsIEV4dGVybmFsIEJhc2ljIFBvbGlj
+eSBDQTAeFw0wNjAzMjIyMjIyNDdaFw0xMjAzMjIyMjMyNDdaMFYxCzAJBgNVBAYTAlVTMRowGAYD
+VQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNz
+dWluZyBDQSAzQjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMDoHJYUGvcdR4k0Qv8/
+RrwNX4+vEe5PN2LnGn4xfIWwdUbk5+zvrRy1HjoKdG/AShZfxAuFoVyNIah5GJLpiS/vGbsDYKK+
+EZcIcmtPfvbB9Yg09EnQ0OpsZ2ORRd5lYUfMUU+zkpgL96vKFdkiG+eeHEwnSS3VikGVrF7UDdKf
+vxZwRwQCx6rEHAFPCjBDVfGYZuYT1EDhSDvzEiU7KzBsxrdBCFU4RYL7kh+do+vyMDlBzpw3WKvM
+Vbf3s5lxYiY7AjEhU8OSyZEQlgtK8PNyifHjmyrSaeJrPshM3PuLFG4d3gm1UJEiGNzxcHGb6YLP
+29IQAwY5mAk8j+UOVcsCAwEAAaOCAjUwggIxMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFG/D
+cREooZ0ZV/VnV8/ZKSaI1aWiMAsGA1UdDwQEAwIBhjAQBgkrBgEEAYI3FQEEAwIBADAZBgkrBgEE
+AYI3FAIEDB4KAFMAdQBiAEMAQTAfBgNVHSMEGDAWgBQaxgxKxEdvqNutK/D0Vgaj7TdUDDCBvQYD
+VR0fBIG1MIGyMIGvoIGsoIGphk5odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9J
+bnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBQb2xpY3klMjBDQS5jcmyGV2h0dHA6Ly9jZXJ0aWZp
+Y2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUy
+MFBvbGljeSUyMENBLmNybDCB4wYIKwYBBQUHAQEEgdYwgdMwYwYIKwYBBQUHMAKGV2h0dHA6Ly93
+d3cuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBC
+YXNpYyUyMFBvbGljeSUyMENBLmNydDBsBggrBgEFBQcwAoZgaHR0cDovL2NlcnRpZmljYXRlcy5p
+bnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2lj
+JTIwUG9saWN5JTIwQ0EuY3J0MA0GCSqGSIb3DQEBBQUAA4IBAQBAiWWHL6T21QXFZDyaUIye0jh7
+f40GXqi75Ro5JbpROtlZBqyRq6oPMAG6Igxd5Bd9TMtNkOvguknFnK1y17UdMhLOl+FuInE+FAWk
+803aRW27OsX+ot0KmPioKnZ3L1K5qcQS3tp6or7AaZzd0w0qFitm4UfP9nnTXQtY9XM5QJ07IKFD
+E3tlOlamKhjbiJV3FKigCVesPZSx9h2G7Ve4irEfz915Vks26AJHGZagEHNxM9exkgem4ENsG+t0
+vYqn9x7YsqJ6fmbOSyrzjzb3CYeEfyE5SL+f3Vx9uMsQDyb8LVCDBXQtxLEHnFEBPrRSSF9kPmyj
+avx4UqFdPEyCMIIGAzCCBOugAwIBAgIKGmwusAAAAAApdjANBgkqhkiG9w0BAQUFADBWMQswCQYD
+VQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVy
+bmFsIEJhc2ljIElzc3VpbmcgQ0EgM0IwHhcNMDgwNDE0MjMxNDQ4WhcNMTEwNDE0MjMxNDQ4WjBB
+MRcwFQYDVQQDEw5aaGFuZywgSmVzc2ljYTEmMCQGCSqGSIb3DQEJARYXamVzc2ljYS56aGFuZ0Bp
+bnRlbC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDQbirxoX/8OWYyzy4UnZ7N
+xXoADLZqxxH1q4lMF2zuAHjyDnNj/4ReRzB6AIDEg1BQWS4z5jC6oApos3HvFEsGbS3pYCWSo5Vb
+jtY5HWOBRPJ2rQ8wzITqcEEBWooYCj5LJeAjPuOZoZPVrKPI1khbOYzaJUwQpICfaErHZyM4p2mV
+AYXcUa/N0zKGnZmNaO6Dff96g41C9jEyfOFEtYOpLdQoXhD1i8tW17WxbHMuiXx3PR3GUdBADrRf
+I3wzqn4rh0y0D4l9mBfgTybVN3UR35ZFGSRsuldyJeeKcCSgghJi3K4ZTxzMfQ6+OKBu6SBeNKWk
+e2Q4f8CIf0+8ZpwfAgMBAAGjggLmMIIC4jALBgNVHQ8EBAMCB4AwHQYDVR0OBBYEFPIpOYEzCqH+
+037yR8d0Rarz7r7mMDwGCSsGAQQBgjcVBwQvMC0GJSsGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OC
+kcAJZ4HevTmV8EMCAWQCAQYwHwYDVR0jBBgwFoAUb8NxESihnRlX9WdXz9kpJojVpaIwgckGA1Ud
+HwSBwTCBvjCBu6CBuKCBtYZUaHR0cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50
+ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwM0IuY3Jshl1odHRwOi8vY2Vy
+dGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFz
+aWMlMjBJc3N1aW5nJTIwQ0ElMjAzQi5jcmwwge8GCCsGAQUFBwEBBIHiMIHfMGkGCCsGAQUFBzAC
+hl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4
+dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQi5jcnQwcgYIKwYBBQUHMAKGZmh0dHA6
+Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIw
+RXh0ZXJuYWwlMjBCYXNpYyUyMElzc3VpbmclMjBDQSUyMDNCLmNydDAfBgNVHSUEGDAWBggrBgEF
+BQcDBAYKKwYBBAGCNwoDDDApBgkrBgEEAYI3FQoEHDAaMAoGCCsGAQUFBwMEMAwGCisGAQQBgjcK
+AwwwSwYDVR0RBEQwQqAnBgorBgEEAYI3FAIDoBkMF2plc3NpY2EuemhhbmdAaW50ZWwuY29tgRdq
+ZXNzaWNhLnpoYW5nQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEANFSBbauSm1ktwUQI6fGq
+9XhTSUsty5/CHOrOwFe4K7LX0clVirXUYakIZXXG86lD1piRrjt23MhKRekYNIv0mfJklEF7yV5M
+VVqwDK1Uz6bsiw/SQnqfBuFrd70W4cua3bU1uu3dAhZBh482BtBZYFockuHd3YBFT7xmykOaAMLP
+CttrNSijP7HsbetGG2GLLc3CWauSXXr2ELseXkw3KkUKBPMw+DFAJdsRyBe0L+OwlDplr8POBXXb
+uuQK7Wo84mX7gMT0uSq/Luex/BD1xn2brKVs9t4FvL8ifxv4LuWRzv45EgPN4T12I202GBQ8iJtZ
+DkT3+9QPiQ35Hmuy6zCCBkowggUyoAMCAQICCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEFBQAwVjEL
+MAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBF
+eHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBMB4XDTA4MDQxNDIzMTM1MVoXDTExMDQxNDIzMTM1
+MVowQTEXMBUGA1UEAxMOWmhhbmcsIEplc3NpY2ExJjAkBgkqhkiG9w0BCQEWF2plc3NpY2Euemhh
+bmdAaW50ZWwuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2Lgwg9E/0F9weWx5
+ZCk0oiuerOIqOFTXcithjh7zRhiq8v/z9sXR/yWXUA7JK5E5JLPRNl0nQJFv/FLTaq9/9PchiI/N
+4v7L/ERXTzdMNvwOEqNOy8SOmmOOjF8N1vtrIv+WdBYiqBvtfQ9xGXadxckgrBOSTtTrw4iShbnG
+mVrw6mYYIOdPIKhq3QFmxHs93R8IrmIjvMbf31JhiAp7KJ/mc+bckmYW/9fNNEQkMbuF3B6iWsTk
+8c+D8oWmxuw+m6svwEMKck8yr3ldF6sZ6NCKXJChwDmjZMHBBSV6IUUycyl6SJ33j3r9Beki5bvG
+mhZnfGBLWODaLv4PDbG7BwIDAQABo4IDLTCCAykwCwYDVR0PBAQDAgQwMEQGCSqGSIb3DQEJDwQ3
+MDUwDgYIKoZIhvcNAwICAgCAMA4GCCqGSIb3DQMEAgIAgDAHBgUrDgMCBzAKBggqhkiG9w0DBzAd
+BgNVHQ4EFgQUKEdHKlCw71rRzz5gJWoRJwoviW0wPQYJKwYBBAGCNxUHBDAwLgYmKwYBBAGCNxUI
+hsOMdYSZ5VGD/YEohY6fU4KRwAlnhLnZQYeE/04CAWQCAQkwHwYDVR0jBBgwFoAUCWmBM3sGc48j
+TAoD3/cWgRGCEwUwgckGA1UdHwSBwTCBvjCBu6CBuKCBtYZUaHR0cDovL3d3dy5pbnRlbC5jb20v
+cmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIw
+M0EuY3Jshl1odHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9JbnRl
+bCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQS5jcmwwge8GCCsGAQUFBwEB
+BIHiMIHfMGkGCCsGAQUFBzAChl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRp
+ZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQS5jcnQw
+cgYIKwYBBQUHMAKGZmh0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2Vy
+dGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElzc3VpbmclMjBDQSUyMDNBLmNy
+dDAfBgNVHSUEGDAWBggrBgEFBQcDBAYKKwYBBAGCNwoDBDApBgkrBgEEAYI3FQoEHDAaMAoGCCsG
+AQUFBwMEMAwGCisGAQQBgjcKAwQwSwYDVR0RBEQwQqAnBgorBgEEAYI3FAIDoBkMF2plc3NpY2Eu
+emhhbmdAaW50ZWwuY29tgRdqZXNzaWNhLnpoYW5nQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOC
+AQEAlkSHAnj2YSCjtyOIJJtoNia1mv4qLpp3rxqxeZzEG9Bk4k4hGHkozj1p+mi368ieYl/fTPtK
+IIBDCwod9o12adTGGW7wyUHjZfalumhsFoKTXbUU/CC7lpooUKuDxCjaIjsc4rdDxP1MEAUX43IG
+kLRqq9elDWluC0WjR+q+cAqKMJxLmAKhKz7JDTNrbfWwuoETGdCMkLUK464/FSvfDKoV+Ypkoq1x
+YiTi71VhwWenYKPnyKbLgiULEgdfwQscMzJQ9rmq1iyfoXuXPSkCA6nfZKoSkBOVJQXjW/+B2wxe
+YmaO9Qc5P3CJvsmgmgX5mK2wyKEw0JCwTHE3w7FkFjGCA0EwggM9AgEBMGQwVjELMAkGA1UEBhMC
+VVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBC
+YXNpYyBJc3N1aW5nIENBIDNCAgoabC6wAAAAACl2MAkGBSsOAwIaBQCgggGyMBgGCSqGSIb3DQEJ
+AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTExMDExNzA3NTgyOVowIwYJKoZIhvcNAQkE
+MRYEFFc8xsaVM0WrvFnRXbtMXwGJ0eebMGcGCSqGSIb3DQEJDzFaMFgwCgYIKoZIhvcNAwcwDgYI
+KoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMAcGBSsO
+AwIaMAoGCCqGSIb3DQIFMHMGCSsGAQQBgjcQBDFmMGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoT
+EUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5n
+IENBIDNBAgp5ih1RAAAAAB8rMHUGCyqGSIb3DQEJEAILMWagZDBWMQswCQYDVQQGEwJVUzEaMBgG
+A1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElz
+c3VpbmcgQ0EgM0ECCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEBBQAEggEAt3+1tHyr950WW5OSJ6Df
+x4kUF/HA/OZGJMINX/FCFVMNTeDjMWRV/plBmTQRNIMWhYlQqUjoENQIbYzgSYOIAz7ruZWsFsCm
+2bbDPOqRZCcGqlrdlumZpj+JJTzzAHr869COAxgB2tulbVpbbhpf9FGmTyzFgspAk/RPa2gtuCsI
+FM6v+iPdpUtIIeIByg4T4UUs4qMg5mvx4W+Fe0sN9ReC1QXPj35XQqNaiavf2k9dCDC2eTmrRd3r
+nikVQO1BN8vgznHCtuP9RrhOC50ziWDPjnaWjR0Cg8XTw6y9xx5K1dcL9OkKbet1mwjffhAaDG3x
+toRtLioXaqAvJf1mTgAAAAAAAA==
 
-
---------------050701080905030500070704
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-  <meta http-equiv="content-type"
- content="text/html; charset=ISO-8859-1">
-</head>
-<body text="#000000" bgcolor="#ffffff">
-Hi all,<br>
-The next table is for the latest lsb test result.<br>
-<br>
-<meta http-equiv="CONTENT-TYPE" content="text/html; charset=ISO-8859-1">
-<title></title>
-<meta name="GENERATOR" content="OpenOffice.org 3.2  (Linux)">
-<style>
-		<!-- 
-		BODY,DIV,TABLE,THEAD,TBODY,TFOOT,TR,TH,TD,P { font-family:"DejaVu Sans"; font-size:x-small }
-		 -->
-	</style>
-<table frame="VOID" rules="NONE" border="0" cellspacing="0" cols="12">
-  <colgroup><col width="162"><col width="78"><col width="109"><col
- width="148"><col width="95"><col width="109"><col width="117"><col
- width="88"><col width="206"><col width="178"><col width="102"><col
- width="176"></colgroup> <tbody>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="40"
- valign="TOP" width="162" align="CENTER" bgcolor="#c0c0c0"><b><font
- face="Lucida Sans" size="3">LSB Test Suite</font></b></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- width="78" align="CENTER" bgcolor="#c0c0c0"><b><font face="Lucida Sans"
- size="3">Version</font></b></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- width="109" align="CENTER" bgcolor="#c0c0c0"><b><font
- face="Lucida Sans" size="3">Result</font></b></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- width="148" align="CENTER" bgcolor="#c0c0c0"><b><font
- face="Lucida Sans" size="3">Left work</font></b></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- width="95" align="CENTER" bgcolor="#c0c0c0"><b><font face="Lucida Sans"
- size="3">May/Days</font></b></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- width="109" align="CENTER" bgcolor="#c0c0c0"><b><font
- face="Lucida Sans" size="3">Start Date</font></b></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- width="117" align="CENTER" bgcolor="#c0c0c0"><b><font
- face="Lucida Sans" size="3">Finish Date</font></b></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- width="88" align="CENTER" bgcolor="#c0c0c0"><b><font face="Lucida Sans"
- size="3">Status</font></b></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- width="206" align="CENTER" bgcolor="#c0c0c0"><b><font
- face="Lucida Sans" size="3">Completed Percentage</font></b></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- width="178" align="CENTER" bgcolor="#c0c0c0"><b><font
- face="Lucida Sans" size="3">Defects filed</font></b></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- width="102" align="CENTER" bgcolor="#c0c0c0"><b><font
- face="Lucida Sans" size="3">Developer</font></b></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- width="176" align="CENTER" bgcolor="#c0c0c0"><b><font
- face="Lucida Sans" size="3">Risk/Issue</font></b></td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="21"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Cpp-T2C Tests</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font face="FreeSerif" size="3">4.0.2-1</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="CENTER" bgcolor="#339966"><font face="FreeSerif"
- size="3" color="#000000">Passed</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="2"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">2</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40532"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-12-20</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40533"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-12-21</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">In Progress</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="0.9"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#3366ff"><font
- face="FreeSerif" size="3">90%</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="21"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Libstdc++
-Tests</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font face="FreeSerif" size="3">4.1.0-7</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="CENTER" bgcolor="#339966"><font face="FreeSerif"
- size="3" color="#000000">Passed</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="3"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">3</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40534"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-12-22</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40536"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-12-24</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">In Progress</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="0.9"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#3366ff"><font
- face="FreeSerif" size="3">90%</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="21"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Perl Tests</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font face="FreeSerif" size="3">4.0.7-1</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="CENTER" bgcolor="#339966"><font face="FreeSerif"
- size="3" color="#000000">Passed</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">None</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="2"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">2</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40539"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-12-27</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40540"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-12-28</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">Done</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="1"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#99cc00"><font
- face="FreeSerif" size="3">100%</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="21"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Python
-Runtime Tests</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font face="FreeSerif" size="3">4.0.2-1</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="CENTER" bgcolor="#339966"><font face="FreeSerif"
- size="3" color="#000000">Passed</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="3"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">3</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40541"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-12-29</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40543"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-12-31</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">In Progress</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="0.9"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#3366ff"><font
- face="FreeSerif" size="3">90%</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="CENTER"><font face="FreeSerif" size="3">Bug
-614(Open)</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="21"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Python Tests</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font face="FreeSerif" size="3">2.4.5-2</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="CENTER" bgcolor="#339966"><font face="FreeSerif"
- size="3" color="#000000">Passed</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="0"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">0</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font size="3"><br>
-      </font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">In Progress</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="0.9"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#3366ff"><font
- face="FreeSerif" size="3">90%</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="21"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">OLVER Core
-Tests</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font size="3"><br>
-      </font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="CENTER" bgcolor="#339966"><font face="FreeSerif"
- size="3" color="#000000">Passed</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="6"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">6</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40547"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2011-1-4</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40554"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2011-1-11</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">In Progress</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="0.9"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#3366ff"><font
- face="FreeSerif" size="3">90%</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="39"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Command Check</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font face="FreeSerif" size="3">4.0.0-2</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="CENTER" bgcolor="#339966"><font face="FreeSerif"
- size="3" color="#000000">Passed</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">Lsb</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="3"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">3</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40555"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2011-1-12</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40557"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2011-1-14</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">In Progress</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="0.9"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#3366ff"><font
- face="FreeSerif" size="3">90%</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="CENTER"><font face="FreeSerif" size="3">BUG
-520(Open)</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-    <tr>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26);"
- height="21" valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Tcl
-Tests</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26);"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">8.5.7-6</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="CENTER" bgcolor="#339966"><font face="FreeSerif"
- size="3" color="#000000">Passed</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">None</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="5"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">5</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40560"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2011-1-17</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40564"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2011-1-21</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">Done</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="1"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#99cc00"><font
- face="FreeSerif" size="3">100%</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="36"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Library Check</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font face="FreeSerif" size="3">4.0.2-1</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER" bgcolor="#ff6060"><font face="FreeSerif" size="3">Failures:
-2</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3"> qt3</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="5"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">5</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40555"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2011-1-12</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40561"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2011-1-18</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">In Progress</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="0.8"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#3366ff"><font
- face="FreeSerif" size="3">80%</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Query if we need to
-handle any QT3 issues</font></td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="20"
- valign="TOP" align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font size="3"><br>
-      </font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdnum="2052;0;0%"
- valign="MIDDLE" align="CENTER"><font size="3"><br>
-      </font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="51"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Desktop Tests</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font size="3"><br>
-      </font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="CENTER" bgcolor="#339966"><font face="FreeSerif"
- size="3" color="#000000">Passed</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="4"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">4</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40532"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-12-20</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40541"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-12-29</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">Delay</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="0.9"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#ffcc99"><font
- face="FreeSerif" size="3">90%</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdnum="2052;0;0%"
- valign="MIDDLE" align="CENTER"><font face="FreeSerif" size="3">BUG
-567(Closed)<br>
-BUG 569(Closed)<br>
-BUG 570(Closed)</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Xiaofeng Yan</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-    <tr>
-      <td
- style="border-left: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- height="40" valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Desktop-T2C
-Tests</font></td>
-      <td
- style="border-left: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">4.0.2-1</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER" bgcolor="#ff6060"><font face="FreeSerif" size="3">Failures:
-1</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">fix failures</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="4"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">4</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40532"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-12-20</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40541"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-12-29</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">Delay</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="0.7"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#ffcc99"><font
- face="FreeSerif" size="3">70%</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">BUG 571(Accepted)</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Xiaofeng Yan</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="40"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Qt4-Azov
-Tests</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font face="FreeSerif" size="3">4.0.2-1</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER" bgcolor="#ff6060"><font face="FreeSerif" size="3">Failures:3</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">fix failures</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="4"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">4</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40542"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-12-30</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40548"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2011-1-5</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">Delay</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="0.5"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#ffcc99"><font
- face="FreeSerif" size="3">50%</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Xiaofeng Yan</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="40"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Xts5 Tests</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font face="FreeSerif" size="3">5.1.5-19</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="CENTER" bgcolor="#339966"><font face="FreeSerif"
- size="3" color="#000000">Passed</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="5"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">5</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40549"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2011-1-6</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="40190"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2010-1-12</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">In Progress</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="0.9"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#3366ff"><font
- face="FreeSerif" size="3">90%</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Xiaofeng Yan</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-    <tr>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26);"
- height="40" valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Core
-Tests</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26);"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">4.0.5-1</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER" bgcolor="#ff6060"><font face="FreeSerif" size="3">Failures:
-N/A</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">fix failures</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="CENTER"><font face="FreeSerif" size="3">7 (?)</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26);"
- sdval="40564" sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2011-1-21</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26, 26, 26);"
- sdval="40574" sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">2011-1-31</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">Not started Yet</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdnum="2052;0;0%"
- valign="MIDDLE" align="CENTER"><font size="3"><br>
-      </font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Xiaofeng Yan</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Blocked by POSIX rename
-test case</font></td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid rgb(26, 26, 26);" height="40"
- valign="TOP" align="LEFT"><font face="FreeSerif" size="3">LSB Test
-Suite</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
- align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="CENTER"><font face="FreeSerif" size="3">creat-lsb-image <br>
-LSB_Setup.sh</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="0"
- sdnum="2052;" valign="MIDDLE" align="CENTER"><font face="FreeSerif"
- size="3">0</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);"
- sdnum="2052;0;YYYY-M-D" valign="MIDDLE" align="CENTER"><font
- face="FreeSerif" size="3">Done</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" sdval="1"
- sdnum="2052;0;0%" valign="MIDDLE" align="CENTER" bgcolor="#94bd5e"><font
- face="FreeSerif" size="3">100%</font></td>
-      <td
- style="border-top: 1px solid rgb(26, 26, 26); border-left: 1px solid rgb(26, 26, 26); border-bottom: 1px solid rgb(26, 26, 26);"
- valign="MIDDLE" align="LEFT"><font size="3"><br>
-      </font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font face="FreeSerif" size="3">Xiaofeng Yan</font></td>
-      <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
- align="LEFT"><font size="3"><br>
-      </font></td>
-    </tr>
-  </tbody>
-</table>
-<br>
-<br>
-</body>
-</html>
-
---------------050701080905030500070704--
+------=_NextPart_000_0078_01CBB5D9.45C3ED70--
