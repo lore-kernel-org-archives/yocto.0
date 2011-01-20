@@ -1,35 +1,33 @@
-Return-Path: <dongxiao.xu@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 42A534C810DA
-	for <yocto@yoctoproject.org>; Wed, 19 Jan 2011 23:06:16 -0600 (CST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Jan 2011 21:06:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,348,1291622400"; d="scan'208";a="879171940"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by fmsmga001.fm.intel.com with ESMTP; 19 Jan 2011 21:06:06 -0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Thu, 20 Jan 2011 13:06:05 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Thu, 20 Jan 2011 13:06:04 +0800
-From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
-To: "Wold, Saul" <saul.wold@intel.com>
-Date: Thu, 20 Jan 2011 13:06:03 +0800
-Thread-Topic: [yocto] Generation of upgrade statistics table
-Thread-Index: Acu4X4eApLJjY2HAR+m3/qqWRsfxEQAAChfA
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A31C3E855@shsmsx501.ccr.corp.intel.com>
-References: <D5AB6E638E5A3E4B8F4406B113A5A19A31C3E710@shsmsx501.ccr.corp.intel.com>
-	<4D37C260.7010106@intel.com>
-In-Reply-To: <4D37C260.7010106@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <diego.sueiro@gmail.com>
+Received: from mail-iw0-f176.google.com (mail-iw0-f176.google.com
+	[209.85.214.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id E1B704C81065
+	for <yocto@yoctoproject.org>; Thu, 20 Jan 2011 17:15:51 -0600 (CST)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iwn2 with SMTP id 2so1207757iwn.35
+	for <yocto@yoctoproject.org>; Thu, 20 Jan 2011 15:15:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:from:date:message-id:subject:to
+	:content-type; bh=rcYazewQcNzUg55TObBHuL5CaXkRFlLU7/tsvM2Z/3I=;
+	b=CZ6nGXtQ48dk3lHZDfJDyEGDESikjwarKpVH3AeeOCh9aSZ0+qRKW8zboi9uCJa2M4
+	zhF6DSfeLUM09W+9hwO+tLCa2AT5HcA6Anf+noLoGTn3yD8TDEMENj1zyaKJ6zMhcZZ/
+	FEC/t2PV3y535kfGXJiTL+DTpeaZsjmdQbCRU=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	b=Ee/v40IXx/xlzo2vPR0TNgIB1M1jsB8MRe2DjWyG5v+gbs0blnLrymgo+0Mth5SMZ1
+	0WHnS0WcS75O6WbtLiXlDSPyjxUAGIEz0dRRPuy4LyMEyD5vRIiuScJYCHuF4GxMw0L+
+	ob3R2e70iREYbj/HFmRfspZpFjBJ3uvnepI0o=
+Received: by 10.42.217.196 with SMTP id hn4mr3399285icb.249.1295565351555;
+	Thu, 20 Jan 2011 15:15:51 -0800 (PST)
 MIME-Version: 1.0
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: Generation of upgrade statistics table
+Received: by 10.42.226.70 with HTTP; Thu, 20 Jan 2011 15:15:31 -0800 (PST)
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Thu, 20 Jan 2011 21:15:31 -0200
+Message-ID: <AANLkTi=XdyonrJRV03znEbLf5r67rVWOLBiAJrWoYE8E@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Eclipse Plugin Yocto Project Settings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,38 +39,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Jan 2011 05:06:16 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 20 Jan 2011 23:15:52 -0000
+Content-Type: multipart/alternative; boundary=20cf30549c699014a4049a4f50c6
+
+--20cf30549c699014a4049a4f50c6
+Content-Type: text/plain; charset=ISO-8859-1
+
+On "Target Settings" for "QEMU" "Root Filesystem" options there is no way to
+choose a individual file, just directories are allowed to be chosen.
+
+When I tried to pass a poky-image-sato-qemuarm.ext3 file I had to put the
+filename manually.
+
+
+
+Regards,
+
+--
+*dS
+Diego Sueiro
+
+/*long live rock 'n roll*/
+
+--20cf30549c699014a4049a4f50c6
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Wold, Saul wrote:
-> On 01/19/2011 06:23 PM, Xu, Dongxiao wrote:
->> Hi Saul,
->>=20
->> Could you share with us how you generate your upgrade statistics
->> table?=20
->> We want to locally have a try of it and see if there is anything we
->> missed.=20
->>=20
-> Dongziao,
->=20
-> I use the checkpkg task in distrodata.bbclass, you need to ensure you
-> add INHERIT +=3D distrodata to your local.conf to enable it.=20
+<div>On &quot;Target Settings&quot; for &quot;QEMU&quot; &quot;Root Filesys=
+tem&quot; options there is no way to choose a individual file, just directo=
+ries are allowed to be chosen.</div><div><br></div><div>When I tried to pas=
+s a poky-image-sato-qemuarm.ext3 file I had to put the filename manually.</=
+div>
 
-Thanks, we will have a try.
+<div><br></div><div><br></div><div><br></div><div><div>Regards,</div><div><=
+br></div>--<br>*dS<br>Diego Sueiro<br><br>/*long live rock &#39;n roll*/<br=
+>
+</div>
 
--- Dongxiao
-
->=20
-> Sau!
->=20
->> Thanks,
->> Dongxiao
->>=20
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-
-
+--20cf30549c699014a4049a4f50c6--
