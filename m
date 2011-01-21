@@ -1,26 +1,43 @@
-Return-Path: <Xiaofeng.Yan@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 0FBA44C81065
-	for <yocto@yoctoproject.org>; Fri, 21 Jan 2011 01:38:15 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p0L7cD9J017531;
-	Thu, 20 Jan 2011 23:38:14 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Thu, 20 Jan 2011 23:38:13 -0800
-Received: from [128.224.163.183] ([128.224.163.183]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Thu, 20 Jan 2011 23:38:12 -0800
-Message-ID: <4D393668.2040002@windriver.com>
-Date: Fri, 21 Jan 2011 15:31:52 +0800
-From: Xiaofeng Yan <xiaofeng.yan@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7
+Return-Path: <diego.sueiro@gmail.com>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4B96E4C81065
+	for <yocto@yoctoproject.org>; Fri, 21 Jan 2011 03:05:08 -0600 (CST)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iyb26 with SMTP id 26so1597938iyb.35
+	for <yocto@yoctoproject.org>; Fri, 21 Jan 2011 01:05:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=4SkMkBrLYm2o1D/6VLQs5wlsfRlZ1q7RvSB1mUQkT18=;
+	b=slDEcwQ5q1XXCIiy/6WS0GmOGqm2IEmIjxVzIdtkWghR+C2nk7GlElSbDzeE2DSja/
+	K5rSBXWZVK8Rg/a0v3b4S+HocVWjiAym1AalnaqDA8VncPBt4R8c9kvpXUkYfsbnzjMy
+	N75M5tRfjQXp7HamtQnHxfPERf+KofAGiqz5M=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	b=rokYWyiYZG+aQUKfrNBDc3F1clfLshbQuR5MQwwUZdVuBrMeb1iUBTTVyRuuiX2q5m
+	AtCMJ3ai+lFinpVPLHGCZ3AnJwvt3SE1OWkQn8S1+qiFzbQ+jNDz0v3GfkES6RMabAa1
+	uPvkGMd773m8m80sT4pzRnDZNy/AIVgCaR0vU=
+Received: by 10.42.176.2 with SMTP id bc2mr380507icb.517.1295600707407; Fri,
+	21 Jan 2011 01:05:07 -0800 (PST)
 MIME-Version: 1.0
-To: yocto@linux.intel.com, "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-OriginalArrivalTime: 21 Jan 2011 07:38:13.0127 (UTC)
-	FILETIME=[28A60170:01CBB93E]
-Subject: Status for lsb test (2011.1.16-2011.1.21)
+Received: by 10.42.226.70 with HTTP; Fri, 21 Jan 2011 01:04:47 -0800 (PST)
+In-Reply-To: <9AFCD584B0B67B48AE8D8585BE30BA950678BE2C@orsmsx504.amr.corp.intel.com>
+References: <AANLkTi=XdyonrJRV03znEbLf5r67rVWOLBiAJrWoYE8E@mail.gmail.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA9504ED88CD@orsmsx504.amr.corp.intel.com>
+	<AANLkTinm1j+_J_7=dsjEx=rnsOhQH1vwfKZPzPsdP7++@mail.gmail.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA9504ED898A@orsmsx504.amr.corp.intel.com>
+	<AANLkTik0yFXOtDnXQaC2z7htnF0ak8g++GhzKLaL7RJ-@mail.gmail.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA950678BE2C@orsmsx504.amr.corp.intel.com>
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Fri, 21 Jan 2011 07:04:47 -0200
+Message-ID: <AANLkTi=65w99wt1kxGLY4qEUApXdYBCg-Mj15z1cm4Ni@mail.gmail.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Eclipse Plugin Yocto Project Settings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,1073 +49,209 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jan 2011 07:38:15 -0000
-Content-Type: multipart/alternative;
-	boundary="------------040104040704060407060308"
+X-List-Received-Date: Fri, 21 Jan 2011 09:05:08 -0000
+Content-Type: multipart/alternative; boundary=90e6ba6e887eef8d90049a578bae
 
---------------040104040704060407060308
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+--90e6ba6e887eef8d90049a578bae
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi all,
-The next table is for the latest lsb test result.(2011.1.16-2011.1.21)
+Jessica,
 
 
-*LSB Test Suite* 	*Version* 	*Result* 	*Left work* 	*May/Days* 	*Start 
-Date* 	*Finish Date* 	*Status* 	*Completed Percentage* 	*Defects 
-filed* 	*Developer* 	*Risk/Issue*
-Cpp-T2C Tests 	4.0.2-1 	Passed 	submit 	2 	2010-12-20 	2010-12-21 	In 
-Progress 	90% 	
-	Jingdong Lu 	
-Libstdc++ Tests 	4.1.0-7 	Passed 	submit 	3 	2010-12-22 	2010-12-24 	In 
-Progress 	90% 	
-	Jingdong Lu 	
-Perl Tests 	4.0.7-1 	Passed 	None 	2 	2010-12-27 	2010-12-28 	Done 	100% 	
-	Jingdong Lu 	
-Python Runtime Tests 	4.0.2-1 	Passed 	submit 	3 	2010-12-29 
-2010-12-31 	In Progress 	90% 	Bug 614(Open) 	Jingdong Lu 	
-Python Tests 	2.4.5-2 	Passed 	submit 	0 	
-	
-	In Progress 	90% 	
-	Jingdong Lu 	
-OLVER Core Tests 	
-	Passed 	submit 	6 	2011-1-4 	2011-1-11 	In Progress 	90% 	
-	Jingdong Lu 	
-Command Check 	4.0.0-2 	Passed 	Lsb 	3 	2011-1-12 	2011-1-14 	In 
-Progress 	90% 	BUG 520(Closed) 	Jingdong Lu 	
-Tcl Tests 	8.5.7-6 	Passed 	None 	5 	2011-1-17 	2011-1-21 	Done 	100% 	
-	Jingdong Lu 	
-Library Check 	4.0.2-1 	Failures: 2 	qt3 	5 	2011-1-12 	2011-1-18 	In 
-Progress 	80% 	
-	Jingdong Lu 	Query if we need to handle any QT3 issues
+On Thu, Jan 20, 2011 at 11:36 PM, Zhang, Jessica <jessica.zhang@intel.com>wrote:
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-Desktop Tests 	
-	Passed 	submit 	4 	2010-12-20 	2010-12-29 	In Progress 	90% 	BUG 
-567(Closed)
-BUG 569(Closed)
-BUG 570(Closed) 	Xiaofeng Yan 	
-Desktop-T2C Tests 	4.0.2-1 	Failures: 1 	fix failures 	4 	2010-12-20 
-2010-12-29 	Block 	90% 	BUG 571(Accepted) 	Xiaofeng Yan 	Test suite led 
-to these failed items.
-http://bugs.linuxbase.org/show_bug.cgi?id=3153
-Qt4-Azov Tests 	4.0.2-1 	Failures:3 	fix failures 	4 	2010-12-30 
-2011-1-5 	Block 	90% 	
-	Xiaofeng Yan 	Test suite led to these failed items.
-(Qlocale)
-http://bugs.linuxbase.org/show_bug.cgi?id=3125
-(QmenBar)
-http://bugs.linuxbase.org/show_bug.cgi?id=3124
-Http://bugs.linuxbase.org/show_bug.cgi?id=3067
-Xts5 Tests 	5.1.5-19 	Passed 	submit 	5 	2011-1-6 	2010-1-12 	In 
-Progress 	90% 	
-	Xiaofeng Yan 	
-Core Tests 	4.0.5-1 	Failures: 62 	fix failures 	5 	2011-1-19 
-2011-1-25 	In Progress 	20% 	
-	Xiaofeng Yan 	
-Qt3-Azov Tests 	4 	
-	
-	
-	2011-1-26 	N/A 	Not Start Yet 	
-	
-	N/A 	
-LSB Test Suite 	
-	
-	creat-lsb-image
-LSB_Setup.sh 	0 	
-	
-	Done 	100% 	
-	Xiaofeng Yan 	
+>  Diego,
+>
+> The errors that you ran into are not normal.  So can you tell me more about
+> your setup:
+> 1. how did you get your poky build tree, git clone from the latest
+> master or else way, when did you get it?
+>
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-X86_32 LSB Finish Date 	2011-2-11 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-Re-test on X86_64 & ppc Finish Date 	2011-3-11 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-Yocto M3 Stabilize Finish Date 	2011-2-11 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-Tested on: (self built LSB image) 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+I'm using the poky build tree from
+http://www.yoctoproject.org/downloads/poky/poky-laverne-4.0.tar.bz2
 
 
+> 2. I'm assuming you run "bitbake meta-ide-support" and source the generated
+> environment-setup-armv5te-poky-linux-gnueabi file
+>
 
---------------040104040704060407060308
+That's right.
+
+
+> 3. I'd expect you get these error messages from poky-extract-sdk, right?
+>
+
+Yes. I invoked the poky-extract-sdk inside my destination directory.
+
+
+> Thanks,
+> Jessica
+>
+>  ------------------------------
+> *From:* Diego Sueiro [mailto:diego.sueiro@gmail.com]
+> *Sent:* Thursday, January 20, 2011 4:42 PM
+>
+> *To:* Zhang, Jessica
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Eclipse Plugin Yocto Project Settings
+>
+> Jessica,
+>
+> Thanks for the explanations.
+>
+> After sourcing environment-setup-armv5te-poky-linux-gnueabi file I get lots
+> of this message printed on the terminal:
+>
+> pseudo: Couldn't open .//var/pseudo/pseudo.pid: No such file or directory
+> pseudo: can't create socket: pseudo.socket (Too many open files)
+>
+> And some messages like:
+>
+>  tar: ./usr/games/inertia: Cannot change ownership to uid 0, gid 0:
+> Function not implemented
+>  tar: ./usr/games/inertia: Cannot change mode to rwxr-xr-x: Function not
+> implemented
+>
+>  Is it a normal behavior?
+>
+>
+>
+>  Rgds,
+>
+> --
+> *dS
+> Diego Sueiro
+>
+> /*long live rock 'n roll*/
+>
+>
+> On Thu, Jan 20, 2011 at 10:15 PM, Zhang, Jessica <jessica.zhang@intel.com>wrote:
+>
+>> environment-setup-targetarch-poky-linux
+>
+>
+>  --
+*dS
+Diego Sueiro
+
+/*long live rock 'n roll*/
+
+--90e6ba6e887eef8d90049a578bae
 Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
+Jessica,<div><br></div><div><br><div class=3D"gmail_quote">On Thu, Jan 20, =
+2011 at 11:36 PM, Zhang, Jessica <span dir=3D"ltr">&lt;<a href=3D"mailto:je=
+ssica.zhang@intel.com">jessica.zhang@intel.com</a>&gt;</span> wrote:<br><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
+ccc solid;padding-left:1ex;">
 
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-  </head>
-  <body text="#000000" bgcolor="#ffffff">
-    Hi all,<br>
-    The next table is for the latest lsb test
-    result.(2011.1.16-2011.1.21)<br>
-    <br>
-    <br>
-    <style>body, div, table, thead, tbody, tfoot, tr, th, td, p { font-family: "DejaVu Sans"; font-size: x-small; }</style>
-    <table cols="12" frame="VOID" rules="NONE" border="0"
-      cellspacing="0">
-      <colgroup><col width="162"><col width="78"><col width="109"><col
-          width="148"><col width="95"><col width="109"><col width="117"><col
-          width="88"><col width="206"><col width="178"><col width="102"><col
-          width="343"></colgroup> <tbody>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="40"
-            valign="TOP" width="162" align="CENTER" bgcolor="#c0c0c0"><b><font
-                face="Lucida Sans" size="3">LSB Test Suite</font></b></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            width="78" align="CENTER" bgcolor="#c0c0c0"><b><font
-                face="Lucida Sans" size="3">Version</font></b></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            width="109" align="CENTER" bgcolor="#c0c0c0"><b><font
-                face="Lucida Sans" size="3">Result</font></b></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            width="148" align="CENTER" bgcolor="#c0c0c0"><b><font
-                face="Lucida Sans" size="3">Left work</font></b></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            width="95" align="CENTER" bgcolor="#c0c0c0"><b><font
-                face="Lucida Sans" size="3">May/Days</font></b></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            width="109" align="CENTER" bgcolor="#c0c0c0"><b><font
-                face="Lucida Sans" size="3">Start Date</font></b></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            width="117" align="CENTER" bgcolor="#c0c0c0"><b><font
-                face="Lucida Sans" size="3">Finish Date</font></b></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            width="88" align="CENTER" bgcolor="#c0c0c0"><b><font
-                face="Lucida Sans" size="3">Status</font></b></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            width="206" align="CENTER" bgcolor="#c0c0c0"><b><font
-                face="Lucida Sans" size="3">Completed Percentage</font></b></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            width="178" align="CENTER" bgcolor="#c0c0c0"><b><font
-                face="Lucida Sans" size="3">Defects filed</font></b></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            width="102" align="CENTER" bgcolor="#c0c0c0"><b><font
-                face="Lucida Sans" size="3">Developer</font></b></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            width="343" align="CENTER" bgcolor="#c0c0c0"><b><font
-                face="Lucida Sans" size="3">Risk/Issue</font></b></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="21"
-            valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Cpp-T2C
-              Tests</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font face="FreeSerif" size="3">4.0.2-1</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-right: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"
-            bgcolor="#339966"><font color="#000000" face="FreeSerif"
-              size="3">Passed</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-12-20</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-12-21</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">In Progress</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#3366ff"><font face="FreeSerif"
-              size="3">90%</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="LEFT"><font
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="21"
-            valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Libstdc++
-              Tests</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font face="FreeSerif" size="3">4.1.0-7</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-right: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"
-            bgcolor="#339966"><font color="#000000" face="FreeSerif"
-              size="3">Passed</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">3</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-12-22</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-12-24</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">In Progress</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#3366ff"><font face="FreeSerif"
-              size="3">90%</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="LEFT"><font
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="21"
-            valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Perl
-              Tests</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font face="FreeSerif" size="3">4.0.7-1</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-right: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"
-            bgcolor="#339966"><font color="#000000" face="FreeSerif"
-              size="3">Passed</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">None</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-12-27</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-12-28</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">Done</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#99cc00"><font face="FreeSerif"
-              size="3">100%</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="LEFT"><font
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="21"
-            valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Python
-              Runtime Tests</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font face="FreeSerif" size="3">4.0.2-1</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-right: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"
-            bgcolor="#339966"><font color="#000000" face="FreeSerif"
-              size="3">Passed</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">3</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-12-29</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-12-31</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">In Progress</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#3366ff"><font face="FreeSerif"
-              size="3">90%</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">Bug 614(Open)</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="21"
-            valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Python
-              Tests</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font face="FreeSerif" size="3">2.4.5-2</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-right: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"
-            bgcolor="#339966"><font color="#000000" face="FreeSerif"
-              size="3">Passed</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">0</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">In Progress</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#3366ff"><font face="FreeSerif"
-              size="3">90%</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="LEFT"><font
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="21"
-            valign="TOP" align="LEFT"><font face="FreeSerif" size="3">OLVER
-              Core Tests</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font size="3"><br>
-            </font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-right: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"
-            bgcolor="#339966"><font color="#000000" face="FreeSerif"
-              size="3">Passed</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">6</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2011-1-4</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2011-1-11</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">In Progress</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#3366ff"><font face="FreeSerif"
-              size="3">90%</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="LEFT"><font
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="39"
-            valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Command
-              Check</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font face="FreeSerif" size="3">4.0.0-2</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-right: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"
-            bgcolor="#339966"><font color="#000000" face="FreeSerif"
-              size="3">Passed</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">Lsb</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">3</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2011-1-12</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2011-1-14</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">In Progress</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#3366ff"><font face="FreeSerif"
-              size="3">90%</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">BUG 520(Closed)</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26,
-            26, 26);" height="21" valign="TOP" align="LEFT"><font
-              face="FreeSerif" size="3">Tcl Tests</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26,
-            26, 26);" valign="TOP" align="LEFT"><font face="FreeSerif"
-              size="3">8.5.7-6</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-right: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"
-            bgcolor="#339966"><font color="#000000" face="FreeSerif"
-              size="3">Passed</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">None</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">5</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2011-1-17</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2011-1-21</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">Done</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#99cc00"><font face="FreeSerif"
-              size="3">100%</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="LEFT"><font
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="36"
-            valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Library
-              Check</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font face="FreeSerif" size="3">4.0.2-1</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#ff6060"><font face="FreeSerif"
-              size="3">Failures: 2</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3"> qt3</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">5</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2011-1-12</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2011-1-18</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">In Progress</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#3366ff"><font face="FreeSerif"
-              size="3">80%</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="LEFT"><font
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Jingdong Lu</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Query if we
-              need to handle any QT3 issues</font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="20"
-            valign="TOP" align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="LEFT"><font
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="51"
-            valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Desktop
-              Tests</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font size="3"><br>
-            </font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-right: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"
-            bgcolor="#339966"><font color="#000000" face="FreeSerif"
-              size="3">Passed</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">4</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-12-20</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-12-29</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">In Progress</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#3366ff"><font face="FreeSerif"
-              size="3">90%</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">BUG
-              567(Closed)<br>
-              BUG 569(Closed)<br>
-              BUG 570(Closed)</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Xiaofeng Yan</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border-bottom: 1px solid rgb(26, 26, 26);
-            border-left: 1px solid rgb(26, 26, 26); border-right: 1px
-            solid rgb(26, 26, 26);" height="71" valign="TOP"
-            align="LEFT"><font face="FreeSerif" size="3">Desktop-T2C
-              Tests</font></td>
-          <td style="border-bottom: 1px solid rgb(26, 26, 26);
-            border-left: 1px solid rgb(26, 26, 26); border-right: 1px
-            solid rgb(26, 26, 26);" valign="TOP" align="LEFT"><font
-              face="FreeSerif" size="3">4.0.2-1</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#ff6060"><font face="FreeSerif"
-              size="3">Failures: 1</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">fix failures</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">4</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-12-20</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-12-29</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">Block</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#3366ff"><font face="FreeSerif"
-              size="3">90%</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">BUG
-              571(Accepted)</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Xiaofeng Yan</font></td>
-          <td valign="MIDDLE" align="LEFT">Test suite led to these
-            failed items. <br>
-            <a class="moz-txt-link-freetext" href="http://bugs.linuxbase.org/show_bug.cgi?id=3153">http://bugs.linuxbase.org/show_bug.cgi?id=3153</a></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="113"
-            valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Qt4-Azov
-              Tests</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font face="FreeSerif" size="3">4.0.2-1</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#ff6060"><font face="FreeSerif"
-              size="3">Failures:3</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">fix failures</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">4</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-12-30</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2011-1-5</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">Block</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#3366ff"><font face="FreeSerif"
-              size="3">90%</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="LEFT"><font
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Xiaofeng Yan</font></td>
-          <td align="LEFT">Test suite led to these failed items.<br>
-            (Qlocale)<br>
-            <a class="moz-txt-link-freetext" href="http://bugs.linuxbase.org/show_bug.cgi?id=3125">http://bugs.linuxbase.org/show_bug.cgi?id=3125</a><br>
-            (QmenBar)<br>
-            <a class="moz-txt-link-freetext" href="http://bugs.linuxbase.org/show_bug.cgi?id=3124">http://bugs.linuxbase.org/show_bug.cgi?id=3124</a><br>
-            <a class="moz-txt-link-freetext" href="Http://bugs.linuxbase.org/show_bug.cgi?id=3067">Http://bugs.linuxbase.org/show_bug.cgi?id=3067</a></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="21"
-            valign="TOP" align="LEFT"><font face="FreeSerif" size="3">Xts5
-              Tests</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font face="FreeSerif" size="3">5.1.5-19</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-right: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"
-            bgcolor="#339966"><font color="#000000" face="FreeSerif"
-              size="3">Passed</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">submit</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">5</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2011-1-6</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2010-1-12</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">In Progress</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#3366ff"><font face="FreeSerif"
-              size="3">90%</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="LEFT"><font
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Xiaofeng Yan</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26,
-            26, 26);" height="21" valign="TOP" align="LEFT"><font
-              face="FreeSerif" size="3">Core Tests</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26,
-            26, 26);" valign="TOP" align="LEFT"><font face="FreeSerif"
-              size="3">4.0.5-1</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#ff6060"><font face="FreeSerif"
-              size="3">Failures: 62</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">fix failures</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26,
-            26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">5</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26,
-            26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">2011-1-19</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26,
-            26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">2011-1-25</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">In Progress</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#3366ff"><font face="FreeSerif"
-              size="3">20%</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26);" valign="MIDDLE" align="LEFT"><font
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Xiaofeng Yan</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26,
-            26, 26);" height="40" valign="TOP" align="LEFT"><font
-              face="FreeSerif" size="3"> Qt3-Azov Tests</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26,
-            26, 26);" valign="TOP" align="LEFT"><font face="FreeSerif"
-              size="3">4</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#ffffff"><font face="FreeSerif"
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26,
-            26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26,
-            26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">2011-1-26</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26); border-right: 1px solid rgb(26,
-            26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">N/A</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26);" valign="MIDDLE" align="CENTER"><font
-              face="FreeSerif" size="3">Not Start Yet</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#ffffff"><font face="FreeSerif"
-              size="3"><br>
-            </font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26); border-left:
-            1px solid rgb(26, 26, 26);" valign="MIDDLE" align="LEFT"><font
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">N/A</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="40"
-            valign="TOP" align="LEFT"><font face="FreeSerif" size="3">LSB
-              Test Suite</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="TOP"
-            align="LEFT"><font size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">creat-lsb-image
-              <br>
-              LSB_Setup.sh</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">0</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">Done</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER" bgcolor="#94bd5e"><font face="FreeSerif"
-              size="3">100%</font></td>
-          <td style="border-top: 1px solid rgb(26, 26, 26);
-            border-bottom: 1px solid rgb(26, 26, 26); border-left: 1px
-            solid rgb(26, 26, 26);" valign="MIDDLE" align="LEFT"><font
-              size="3"><br>
-            </font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3">Xiaofeng Yan</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="LEFT"><font face="FreeSerif" size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td height="45" valign="TOP" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="CENTER"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="CENTER"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="CENTER"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="CENTER"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="40"
-            valign="MIDDLE" align="LEFT"><font face="FreeSerif" size="3">X86_32
-              LSB Finish Date</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2011-2-11</font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="40"
-            valign="MIDDLE" align="LEFT"><font face="FreeSerif" size="3">Re-test
-              on X86_64 &amp; ppc Finish Date</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2011-3-11</font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td height="20" valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="CENTER"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="40"
-            valign="MIDDLE" align="LEFT"><font face="FreeSerif" size="3">Yocto
-              M3 Stabilize Finish Date</font></td>
-          <td style="border: 1px solid rgb(26, 26, 26);" valign="MIDDLE"
-            align="CENTER"><font face="FreeSerif" size="3">2011-2-11</font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td height="20" valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-          <td align="LEFT"><font size="3"><br>
-            </font></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid rgb(26, 26, 26);" height="40"
-            valign="MIDDLE" align="LEFT"><font face="FreeSerif" size="3">Tested
-              on: (self built LSB image)</font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-          <td valign="MIDDLE" align="LEFT"><font size="3"><br>
-            </font></td>
-        </tr>
-      </tbody>
-    </table>
-    <br>
-  </body>
-</html>
 
---------------040104040704060407060308--
+
+
+
+<div>
+<div dir=3D"ltr" align=3D"left"><span><font color=3D"#0000ff" size=3D"2" fa=
+ce=3D"Arial">Diego,</font></span></div>
+<div dir=3D"ltr" align=3D"left"><span><font color=3D"#0000ff" size=3D"2" fa=
+ce=3D"Arial"></font></span>=A0</div>
+<div dir=3D"ltr" align=3D"left"><span><font color=3D"#0000ff" size=3D"2" fa=
+ce=3D"Arial">The errors that you ran into are not normal.=A0 So can you=20
+tell me more about your setup:</font></span></div>
+<div dir=3D"ltr" align=3D"left"><span><font color=3D"#0000ff" size=3D"2" fa=
+ce=3D"Arial">1. how did you get your poky build tree, git clone from the=20
+latest master=A0or else way, when did you get it?</font></span></div></div>=
+</blockquote><div><br></div><div>I&#39;m using the poky build tree from=A0<=
+span class=3D"Apple-style-span" style=3D"font-family: monospace; font-size:=
+ medium; color: rgb(51, 51, 51); white-space: pre; "><a href=3D"http://www.=
+yoctoproject.org/downloads/poky/poky-laverne-4.0.tar.bz2">http://www.yoctop=
+roject.org/downloads/poky/poky-laverne-4.0.tar.bz2</a></span></div>
+
+<meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8"><d=
+iv>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex;"><div>
+<div dir=3D"ltr" align=3D"left"><span><font color=3D"#0000ff" size=3D"2" fa=
+ce=3D"Arial">2. I&#39;m assuming you run &quot;bitbake meta-ide-support&quo=
+t; and source=20
+the generated environment-setup-armv5te-poky-linux-gnueabi=20
+file</font></span></div></div></blockquote><div><br></div><div>That&#39;s r=
+ight.</div><div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex;"><div>
+<div dir=3D"ltr" align=3D"left"><span><font color=3D"#0000ff" size=3D"2" fa=
+ce=3D"Arial">3. I&#39;d expect you get these error messages from=20
+poky-extract-sdk, right?</font></span></div></div></blockquote><div><br></d=
+iv><div>Yes. I invoked the poky-extract-sdk inside my destination directory=
+.=A0</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex;">
+
+<div>
+<div dir=3D"ltr" align=3D"left"><span><font color=3D"#0000ff" size=3D"2" fa=
+ce=3D"Arial"></font></span>=A0</div>
+<div dir=3D"ltr" align=3D"left"><span><font color=3D"#0000ff" size=3D"2" fa=
+ce=3D"Arial">Thanks,</font></span></div>
+<div dir=3D"ltr" align=3D"left"><span><font color=3D"#0000ff" size=3D"2" fa=
+ce=3D"Arial">Jessica</font></span></div><br>
+<div dir=3D"ltr" lang=3D"en-us" align=3D"left">
+<hr>
+<font size=3D"2" face=3D"Tahoma"><div class=3D"im"><b>From:</b> Diego Sueir=
+o=20
+[mailto:<a href=3D"mailto:diego.sueiro@gmail.com" target=3D"_blank">diego.s=
+ueiro@gmail.com</a>] <br></div><b>Sent:</b> Thursday, January 20, 2011 4:42=
+=20
+PM<div class=3D"im"><br><b>To:</b> Zhang, Jessica<br><b>Cc:</b>=20
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br><b>Subject:</b> Re: [yocto] Eclipse Plugin Yocto=20
+Project Settings<br></div></font><br></div><div><div></div><div class=3D"h5=
+">
+<div></div>Jessica,
+<div><br></div>
+<div>Thanks for the explanations.</div>
+<div><br></div>
+<div>After sourcing=A0environment-setup-armv5te-poky-linux-gnueabi file I g=
+et=20
+lots of this message printed on the terminal:</div>
+<blockquote style=3D"border-bottom:medium none;border-left:medium none;padd=
+ing-bottom:0px;margin:0px 0px 0px 40px;padding-left:0px;padding-right:0px;b=
+order-top:medium none;border-right:medium none;padding-top:0px">
+  <div>pseudo: Couldn&#39;t open .//var/pseudo/pseudo.pid: No such file or=
+=20
+  directory</div>
+  <div>pseudo: can&#39;t create socket: pseudo.socket (Too many open=20
+files)</div></blockquote>And some messages like:
+<blockquote style=3D"border-bottom:medium none;border-left:medium none;padd=
+ing-bottom:0px;margin:0px 0px 0px 40px;padding-left:0px;padding-right:0px;b=
+order-top:medium none;border-right:medium none;padding-top:0px">
+  <div>
+  <div>tar: ./usr/games/inertia: Cannot change ownership to uid 0, gid 0:=
+=20
+  Function not implemented</div></div>
+  <div>
+  <div>tar: ./usr/games/inertia: Cannot change mode to rwxr-xr-x: Function =
+not=20
+  implemented</div></div>
+  <div><br></div></blockquote>
+<div>
+<div>Is it a normal behavior?</div>
+<div><br></div>
+<div><br></div>
+<div><br></div>
+<div>
+<div>Rgds,</div>
+<div><br></div>--<br>*dS<br>Diego Sueiro<br><br>/*long live rock &#39;n=20
+roll*/<br><br><br>
+<div class=3D"gmail_quote">On Thu, Jan 20, 2011 at 10:15 PM, Zhang, Jessica=
+ <span dir=3D"ltr">&lt;<a href=3D"mailto:jessica.zhang@intel.com" target=3D=
+"_blank">jessica.zhang@intel.com</a>&gt;</span>=20
+wrote:<br>
+<blockquote style=3D"border-left:#ccc 1px solid;margin:0px 0px 0px 0.8ex;pa=
+dding-left:1ex" class=3D"gmail_quote"><font color=3D"#0000ff" size=3D"2" fa=
+ce=3D"Arial">environment-setup-targetarch-poky-linux</font></blockquote></d=
+iv><br>
+
+</div></div></div></div></div>
+</blockquote></div><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"><div>--</div><div>*dS<br>Diego Sueiro<br><br>/*long live r=
+ock &#39;n roll*/<br></div></div>
+
+--90e6ba6e887eef8d90049a578bae--
