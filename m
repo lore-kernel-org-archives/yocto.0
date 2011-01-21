@@ -1,24 +1,18 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id CF3154C810B6;
-	Fri, 21 Jan 2011 12:42:33 -0600 (CST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 21 Jan 2011 10:42:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,359,1291622400"; d="scan'208";a="378097665"
-Received: from unknown (HELO [10.255.14.114]) ([10.255.14.114])
-	by azsmga001.ch.intel.com with ESMTP; 21 Jan 2011 10:42:32 -0800
-Message-ID: <4D39D398.2050603@linux.intel.com>
-Date: Fri, 21 Jan 2011 10:42:32 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
-MIME-Version: 1.0
-To: "poky@yoctoproject.org" <poky@yoctoproject.org>, 
-	Internal Yocto Discussion <yocto@linux.intel.com>,
-	Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: *** NOTICE: bugzilla.yoctoproject.org scheduled maintenance ***
+Return-Path: <bruce.ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 45E1A4C81065;
+	Fri, 21 Jan 2011 14:20:33 -0600 (CST)
+Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
+	[128.224.146.167])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p0LKKUMG016096;
+	Fri, 21 Jan 2011 12:20:30 -0800 (PST)
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+To: rpurdie@linux.intel.com
+Date: Fri, 21 Jan 2011 15:23:09 -0500
+Message-Id: <cover.1295641280.git.bruce.ashfield@windriver.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: poky@yoctoproject.org, yocto@yoctoproject.org, saul.wold@intel.com
+Subject: [PATCH 0/1] linux-yocto/stable: update beagleboard part 2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,30 +24,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jan 2011 18:42:34 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 21 Jan 2011 20:20:38 -0000
 
-All,
+Richard/Saul,
 
-The site/application http://bugzilla.yoctoproject.org will be offline,
-temporarily, for maintenance on 01/21/2011 at 4:00PM PST.
-Please do not attempt to use the site during this time period as the
-application and its data will be completely offline.
+Just another quick update to pickup a change that gets beagleboard xm
+networking functional.
 
-The purpose of this outage is to provide improved functionality to site
-users and service will be restored as soon as possible.
+Pull URL: git://git.pokylinux.org/poky-contrib.git
+  Branch: zedd/kernel
+  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
 
-Thank you,
-
-The Yocto Team
+Thanks,
+    Bruce Ashfield <bruce.ashfield@windriver.com>
+---
 
 
--- 
-     Sau!
+Bruce Ashfield (1):
+  linux-yocto/stable: update beagleboard SRCREV
 
-Saul Wold
-Yocto Component Wrangler @ Intel
-Yocto Project / Poky Build System
+ .../conf/distro/include/poky-default-revisions.inc |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
 
