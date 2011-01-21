@@ -1,37 +1,35 @@
-Return-Path: <diego.sueiro@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 039004C81065
-	for <yocto@yoctoproject.org>; Thu, 20 Jan 2011 17:32:33 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iyb26 with SMTP id 26so1208822iyb.35
-	for <yocto@yoctoproject.org>; Thu, 20 Jan 2011 15:32:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=//7l9kCrvLHQPKN54YenhR7uFfX3qOWNVHJlZ+i+yDo=;
-	b=Q6oLKUXs7pmaPQUlqGvkn6dZ6E8IoyRdQVAKX/nGbmKRhcUfSmgAL/fxGKJ1j0nZuE
-	2p0tA6paTV35X03dtGqPZyNI14UaMua/OXvzrGMouIFXujbUyYp2rwfob00HPzijyFgw
-	cQYGRRQiOMJGezuW9H2dDi0zA0mL2b5xlRD1Y=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	b=sQa/GfCbMCtd+YFPXG0wYLIJ3SfoTy/Wzi7znccOoxnpVye0pjPOsHgCUtm0O9ugea
-	/f6/kdGOOm8id33Iy65rXoF49H8NUQiSRUs60bZcTuQeDOvtGIQK5uMv0x1zVXU5HezR
-	1IbQB9Iqqm7TZ2hsj9hLE8rljiN/tOyvG9Mjc=
-Received: by 10.42.176.2 with SMTP id bc2mr3386492icb.517.1295566353526; Thu,
-	20 Jan 2011 15:32:33 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.42.226.70 with HTTP; Thu, 20 Jan 2011 15:32:13 -0800 (PST)
-In-Reply-To: <9AFCD584B0B67B48AE8D8585BE30BA9504ED88CD@orsmsx504.amr.corp.intel.com>
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4C8974C81110
+	for <yocto@yoctoproject.org>; Thu, 20 Jan 2011 18:16:01 -0600 (CST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 20 Jan 2011 16:16:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,354,1291622400"; 
+	d="p7s'?scan'208,217";a="698984950"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga001.jf.intel.com with ESMTP; 20 Jan 2011 16:16:00 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Thu, 20 Jan 2011 16:16:00 -0800
+Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
+	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
+	Thu, 20 Jan 2011 16:16:00 -0800
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Thu, 20 Jan 2011 16:15:58 -0800
+Thread-Topic: [yocto] Eclipse Plugin Yocto Project Settings
+Thread-Index: Acu4+lEtHcpJkWQxR22DpTnvIw2JBwAA1+dA
+Message-ID: <9AFCD584B0B67B48AE8D8585BE30BA9504ED898A@orsmsx504.amr.corp.intel.com>
 References: <AANLkTi=XdyonrJRV03znEbLf5r67rVWOLBiAJrWoYE8E@mail.gmail.com>
 	<9AFCD584B0B67B48AE8D8585BE30BA9504ED88CD@orsmsx504.amr.corp.intel.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Thu, 20 Jan 2011 21:32:13 -0200
-Message-ID: <AANLkTinm1j+_J_7=dsjEx=rnsOhQH1vwfKZPzPsdP7++@mail.gmail.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
+	<AANLkTinm1j+_J_7=dsjEx=rnsOhQH1vwfKZPzPsdP7++@mail.gmail.com>
+In-Reply-To: <AANLkTinm1j+_J_7=dsjEx=rnsOhQH1vwfKZPzPsdP7++@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Eclipse Plugin Yocto Project Settings
 X-BeenThere: yocto@yoctoproject.org
@@ -45,18 +43,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Jan 2011 23:32:34 -0000
-Content-Type: multipart/alternative; boundary=90e6ba6e887e48efbc049a4f8c2e
+X-List-Received-Date: Fri, 21 Jan 2011 00:16:01 -0000
+X-Groupsio-MsgNum: 831
+Content-Language: en-US
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+	micalg=SHA1; boundary="----=_NextPart_000_00F7_01CBB8BD.524F4E90"
 
---90e6ba6e887e48efbc049a4f8c2e
-Content-Type: text/plain; charset=ISO-8859-1
+------=_NextPart_000_00F7_01CBB8BD.524F4E90
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_00F8_01CBB8BD.524F4E90"
 
-Jessica,
+------=_NextPart_001_00F8_01CBB8BD.524F4E90
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hi Diego,
+ 
+There's a qemu script bug in the 0.9 release that can't figure out the
+kernel file that we're passing in, so you have to explicitly add the
+targeted arch after qemu script, to fix this in eclipse, go to Run->Externel
+Tools Configuration, and select under program the configuration
+corresponding to your target arch, e.g. qemu_i586_poky_linux, on the
+arguement entry, add "qemuarch" between poky-qemu and your kernel file, e.g.
+for my qemu setup for i586 the created one is "..poky-qemu
+/home/jzhang/test_import/build/tmp/deploy/images/bzImage-qemux86.bin ..."
+and change it to" ..poky-qemu qemux86
+/home/jzhang/test_import/build/tmp/deploy/images/bzImage-qemux86.bin ..."
+you should be able to figure out the qemuarch from the kernel file name...
+ 
+Also, as I've mentioned when you build a qemu image, besides the kernel
+file, it also build ext3 file corresponding to rootfs and a tar file, for my
+case it's under
+/home/jzhang/build/tmp/deploy/images/poky-image-sdk-qemuarm.ext3 and
+poky-image-sdk-qemuarm.tar.bz2, you need to extract the
+poky-image-sdk-qemuarm.tar.bz2 to a directory using the poky-extract-sdk.
+For my case, I extract it to /home/jzhang/qemu-arm, and the
+/home/jzhang/qemu-arm is the directory that you passed to the "Root
+Filesystem", not the built directory contains the rootfs...
+ 
+To access the poky-extract-sdk, you need to do "bitbake meta-ide-support"
+under your poky tree which will generate an
+environment-setup-targetarch-poky-linux file, by sourcing that file, it'll
+setup the correct environment for you to access poky-extract-sdk...
+ 
+Thanks,
+Jessica
+
+  _____  
+
+From: Diego Sueiro [mailto:diego.sueiro@gmail.com] 
+Sent: Thursday, January 20, 2011 3:32 PM
+To: Zhang, Jessica
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Eclipse Plugin Yocto Project Settings
+
+
+Jessica, 
 
 Even if I'm using "Poky Tree Mode"?
 
 When I tried to pass my rootfs directory built by poky I've gotten an error
-message related to a wrong ext3 filesystem type.
+message related to a wrong ext3 filesystem type. 
 
 Regards,
 
@@ -67,103 +115,361 @@ Diego Sueiro
 /*long live rock 'n roll*/
 
 
-On Thu, Jan 20, 2011 at 9:24 PM, Zhang, Jessica <jessica.zhang@intel.com>wrote:
 
->  Within the Eclipse IDE, it's expected to run qemu in the unfs mode which
-> means you have to extract the rootfs file to the dirctory with the
-> poky-extract-sdk script, and setup the directory in the "Root Filesystem"
-> entry.
->
-> Thanks,
-> Jessica
->
->  ------------------------------
-> *From:* yocto-bounces@yoctoproject.org [mailto:
-> yocto-bounces@yoctoproject.org] *On Behalf Of *Diego Sueiro
-> *Sent:* Thursday, January 20, 2011 3:16 PM
-> *To:* yocto@yoctoproject.org
-> *Subject:* [yocto] Eclipse Plugin Yocto Project Settings
->
->  On "Target Settings" for "QEMU" "Root Filesystem" options there is no way
-> to choose a individual file, just directories are allowed to be chosen.
->
-> When I tried to pass a poky-image-sato-qemuarm.ext3 file I had to put the
-> filename manually.
->
->
->
->  Regards,
->
-> --
-> *dS
-> Diego Sueiro
->
-> /*long live rock 'n roll*/
->
+On Thu, Jan 20, 2011 at 9:24 PM, Zhang, Jessica <jessica.zhang@intel.com>
+wrote:
 
---90e6ba6e887e48efbc049a4f8c2e
-Content-Type: text/html; charset=ISO-8859-1
+
+Within the Eclipse IDE, it's expected to run qemu in the unfs mode which
+means you have to extract the rootfs file to the dirctory with the
+poky-extract-sdk script, and setup the directory in the "Root Filesystem"
+entry.
+ 
+Thanks,
+Jessica
+
+  _____  
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+On Behalf Of Diego Sueiro
+Sent: Thursday, January 20, 2011 3:16 PM
+To: yocto@yoctoproject.org
+Subject: [yocto] Eclipse Plugin Yocto Project Settings
+
+
+On "Target Settings" for "QEMU" "Root Filesystem" options there is no way to
+choose a individual file, just directories are allowed to be chosen.
+
+When I tried to pass a poky-image-sato-qemuarm.ext3 file I had to put the
+filename manually.
+
+
+
+Regards,
+
+--
+*dS
+Diego Sueiro
+
+/*long live rock 'n roll*/
+
+
+
+
+------=_NextPart_001_00F8_01CBB8BD.524F4E90
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Jessica,<div><br></div><div>Even if I&#39;m using &quot;Poky Tree Mode&quot=
-;?</div><div><br></div><div>When I tried to pass my rootfs directory built =
-by poky I&#39;ve gotten an error message related to a wrong ext3 filesystem=
- type.=A0</div>
-
-<div><br clear=3D"all"><div>Regards,</div><div><br></div>--<br>*dS<br>Diego=
- Sueiro<br><br>/*long live rock &#39;n roll*/<br>
-<br><br><div class=3D"gmail_quote">On Thu, Jan 20, 2011 at 9:24 PM, Zhang, =
-Jessica <span dir=3D"ltr">&lt;<a href=3D"mailto:jessica.zhang@intel.com">je=
-ssica.zhang@intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1e=
-x;">
-
-
-
-
-
-<div>
-<div dir=3D"ltr" align=3D"left"><span><font color=3D"#0000ff" size=3D"2" fa=
-ce=3D"Arial">Within the Eclipse IDE, it&#39;s expected to run qemu in the u=
-nfs=20
-mode which means you have to extract the rootfs file to the dirctory with t=
-he=20
-poky-extract-sdk script, and setup the directory in the &quot;Root Filesyst=
-em&quot;=20
-entry.</font></span></div>
-<div dir=3D"ltr" align=3D"left"><span><font color=3D"#0000ff" size=3D"2" fa=
-ce=3D"Arial"></font></span>=A0</div>
-<div dir=3D"ltr" align=3D"left"><span><font color=3D"#0000ff" size=3D"2" fa=
-ce=3D"Arial">Thanks,</font></span></div>
-<div dir=3D"ltr" align=3D"left"><span><font color=3D"#0000ff" size=3D"2" fa=
-ce=3D"Arial">Jessica</font></span></div><br>
-<div dir=3D"ltr" lang=3D"en-us" align=3D"left">
-<hr>
-<font size=3D"2" face=3D"Tahoma"><b>From:</b> <a href=3D"mailto:yocto-bounc=
-es@yoctoproject.org" target=3D"_blank">yocto-bounces@yoctoproject.org</a>=
-=20
-[mailto:<a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank"=
->yocto-bounces@yoctoproject.org</a>] <b>On Behalf Of </b>Diego=20
-Sueiro<br><b>Sent:</b> Thursday, January 20, 2011 3:16 PM<br><b>To:</b>=20
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br><b>Subject:</b> [yocto] Eclipse Plugin Yocto Project=20
-Settings<br></font><br></div><div><div></div><div class=3D"h5">
-<div></div>
-<div>On &quot;Target Settings&quot; for &quot;QEMU&quot; &quot;Root Filesys=
-tem&quot; options there is no way=20
-to choose a individual file, just directories are allowed to be chosen.</di=
-v>
-<div><br></div>
-<div>When I tried to pass a poky-image-sato-qemuarm.ext3 file I had to put =
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META content=3D"text/html; charset=3Dus-ascii" =
+http-equiv=3DContent-Type>
+<META name=3DGENERATOR content=3D"MSHTML 8.00.6001.18975"></HEAD>
+<BODY>
+<DIV dir=3Dltr align=3Dleft><SPAN class=3D271445623-20012011><FONT =
+color=3D#0000ff=20
+size=3D2 face=3DArial>Hi Diego,</FONT></SPAN></DIV>
+<DIV dir=3Dltr align=3Dleft><SPAN class=3D271445623-20012011><FONT =
+color=3D#0000ff=20
+size=3D2 face=3DArial></FONT></SPAN>&nbsp;</DIV>
+<DIV dir=3Dltr align=3Dleft><SPAN class=3D271445623-20012011><FONT =
+color=3D#0000ff=20
+size=3D2 face=3DArial>There's a qemu script bug in the 0.9 release that =
+can't figure=20
+out the kernel file that we're passing in, so you have to explicitly add =
 the=20
-filename manually.</div>
-<div><br></div>
-<div><br></div>
-<div><br></div>
-<div>
-<div>Regards,</div>
-<div><br></div>--<br>*dS<br>Diego Sueiro<br><br>/*long live rock &#39;n=20
-roll*/<br></div></div></div></div>
-</blockquote></div><br></div>
+targeted arch after qemu script, to fix this in eclipse, go to =
+Run-&gt;Externel=20
+Tools Configuration, and select under program the configuration =
+corresponding to=20
+your target arch, e.g. qemu_i586_poky_linux, on the arguement entry, add =
 
---90e6ba6e887e48efbc049a4f8c2e--
+"qemuarch" between poky-qemu and your kernel file, e.g. for my qemu =
+setup for=20
+i586 the created one is "..poky-qemu=20
+/home/jzhang/test_import/build/tmp/deploy/images/bzImage-qemux86.bin =
+..." and=20
+change it to" ..poky-qemu <FONT size=3D4>qemux86=20
+</FONT>/home/jzhang/test_import/build/tmp/deploy/images/bzImage-qemux86.b=
+in ..."=20
+you should be able to figure out the qemuarch from the kernel file=20
+name...</FONT></SPAN></DIV>
+<DIV dir=3Dltr align=3Dleft><SPAN class=3D271445623-20012011><FONT =
+color=3D#0000ff=20
+size=3D2 face=3DArial></FONT></SPAN>&nbsp;</DIV>
+<DIV dir=3Dltr align=3Dleft><SPAN class=3D271445623-20012011><FONT =
+color=3D#0000ff=20
+size=3D2 face=3DArial>Also, as I've mentioned when you build a qemu =
+image, besides=20
+the kernel file, it also build ext3  file corresponding to rootfs and a =
+tar=20
+file, for my case it's under=20
+/home/jzhang/build/tmp/deploy/images/poky-image-sdk-qemuarm.ext3 and=20
+poky-image-sdk-qemuarm.tar.bz2, you need to extract the=20
+poky-image-sdk-qemuarm.tar.bz2 to a directory using the =
+poky-extract-sdk.&nbsp;=20
+For my case, I extract it to /home/jzhang/qemu-arm, and the=20
+/home/jzhang/qemu-arm is the directory that you passed to the "Root =
+Filesystem",=20
+not the built directory contains the rootfs...</FONT></SPAN></DIV>
+<DIV dir=3Dltr align=3Dleft><SPAN class=3D271445623-20012011><FONT =
+color=3D#0000ff=20
+size=3D2 face=3DArial></FONT></SPAN>&nbsp;</DIV>
+<DIV dir=3Dltr align=3Dleft><SPAN class=3D271445623-20012011><FONT =
+color=3D#0000ff=20
+size=3D2 face=3DArial>To access the poky-extract-sdk, you need to do =
+"bitbake=20
+meta-ide-support" under your poky tree which will generate an=20
+environment-setup-targetarch-poky-linux file, by sourcing that file, =
+it'll setup=20
+the correct environment for you to access=20
+poky-extract-sdk...</FONT></SPAN></DIV>
+<DIV dir=3Dltr align=3Dleft><SPAN class=3D271445623-20012011><FONT =
+color=3D#0000ff=20
+size=3D2 face=3DArial></FONT></SPAN>&nbsp;</DIV>
+<DIV dir=3Dltr align=3Dleft><SPAN class=3D271445623-20012011><FONT =
+color=3D#0000ff=20
+size=3D2 face=3DArial>Thanks,</FONT></SPAN></DIV>
+<DIV dir=3Dltr align=3Dleft><SPAN class=3D271445623-20012011><FONT =
+color=3D#0000ff=20
+size=3D2 face=3DArial>Jessica</FONT></SPAN></DIV><BR>
+<DIV dir=3Dltr lang=3Den-us class=3DOutlookMessageHeader align=3Dleft>
+<HR tabIndex=3D-1>
+<FONT size=3D2 face=3DTahoma><B>From:</B> Diego Sueiro=20
+[mailto:diego.sueiro@gmail.com] <BR><B>Sent:</B> Thursday, January 20, =
+2011 3:32=20
+PM<BR><B>To:</B> Zhang, Jessica<BR><B>Cc:</B>=20
+yocto@yoctoproject.org<BR><B>Subject:</B> Re: [yocto] Eclipse Plugin =
+Yocto=20
+Project Settings<BR></FONT><BR></DIV>
+<DIV></DIV>Jessica,
+<DIV><BR></DIV>
+<DIV>Even if I'm using "Poky Tree Mode"?</DIV>
+<DIV><BR></DIV>
+<DIV>When I tried to pass my rootfs directory built by poky I've gotten =
+an error=20
+message related to a wrong ext3 filesystem type.&nbsp;</DIV>
+<DIV><BR clear=3Dall>
+<DIV>Regards,</DIV>
+<DIV><BR></DIV>--<BR>*dS<BR>Diego Sueiro<BR><BR>/*long live rock 'n=20
+roll*/<BR><BR><BR>
+<DIV class=3Dgmail_quote>On Thu, Jan 20, 2011 at 9:24 PM, Zhang, Jessica =
+<SPAN=20
+dir=3Dltr>&lt;<A=20
+href=3D"mailto:jessica.zhang@intel.com">jessica.zhang@intel.com</A>&gt;</=
+SPAN>=20
+wrote:<BR>
+<BLOCKQUOTE=20
+style=3D"BORDER-LEFT: #ccc 1px solid; MARGIN: 0px 0px 0px 0.8ex; =
+PADDING-LEFT: 1ex"=20
+class=3Dgmail_quote>
+  <DIV>
+  <DIV dir=3Dltr align=3Dleft><SPAN><FONT color=3D#0000ff size=3D2 =
+face=3DArial>Within the=20
+  Eclipse IDE, it's expected to run qemu in the unfs mode which means =
+you have=20
+  to extract the rootfs file to the dirctory with the poky-extract-sdk =
+script,=20
+  and setup the directory in the "Root Filesystem" =
+entry.</FONT></SPAN></DIV>
+  <DIV dir=3Dltr align=3Dleft><SPAN><FONT color=3D#0000ff size=3D2=20
+  face=3DArial></FONT></SPAN>&nbsp;</DIV>
+  <DIV dir=3Dltr align=3Dleft><SPAN><FONT color=3D#0000ff size=3D2=20
+  face=3DArial>Thanks,</FONT></SPAN></DIV>
+  <DIV dir=3Dltr align=3Dleft><SPAN><FONT color=3D#0000ff size=3D2=20
+  face=3DArial>Jessica</FONT></SPAN></DIV><BR>
+  <DIV dir=3Dltr lang=3Den-us align=3Dleft>
+  <HR>
+  <FONT size=3D2 face=3DTahoma><B>From:</B> <A=20
+  href=3D"mailto:yocto-bounces@yoctoproject.org"=20
+  target=3D_blank>yocto-bounces@yoctoproject.org</A> [mailto:<A=20
+  href=3D"mailto:yocto-bounces@yoctoproject.org"=20
+  target=3D_blank>yocto-bounces@yoctoproject.org</A>] <B>On Behalf Of =
+</B>Diego=20
+  Sueiro<BR><B>Sent:</B> Thursday, January 20, 2011 3:16 =
+PM<BR><B>To:</B> <A=20
+  href=3D"mailto:yocto@yoctoproject.org"=20
+  target=3D_blank>yocto@yoctoproject.org</A><BR><B>Subject:</B> [yocto] =
+Eclipse=20
+  Plugin Yocto Project Settings<BR></FONT><BR></DIV>
+  <DIV>
+  <DIV></DIV>
+  <DIV class=3Dh5>
+  <DIV></DIV>
+  <DIV>On "Target Settings" for "QEMU" "Root Filesystem" options there =
+is no way=20
+  to choose a individual file, just directories are allowed to be =
+chosen.</DIV>
+  <DIV><BR></DIV>
+  <DIV>When I tried to pass a poky-image-sato-qemuarm.ext3 file I had to =
+put the=20
+  filename manually.</DIV>
+  <DIV><BR></DIV>
+  <DIV><BR></DIV>
+  <DIV><BR></DIV>
+  <DIV>
+  <DIV>Regards,</DIV>
+  <DIV><BR></DIV>--<BR>*dS<BR>Diego Sueiro<BR><BR>/*long live rock 'n=20
+  =
+roll*/<BR></DIV></DIV></DIV></DIV></BLOCKQUOTE></DIV><BR></DIV></BODY></H=
+TML>
+
+------=_NextPart_001_00F8_01CBB8BD.524F4E90--
+
+------=_NextPart_000_00F7_01CBB8BD.524F4E90
+Content-Type: application/x-pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIdiDCCAyAw
+ggKJoAMCAQICBDXe9M8wDQYJKoZIhvcNAQEFBQAwTjELMAkGA1UEBhMCVVMxEDAOBgNVBAoTB0Vx
+dWlmYXgxLTArBgNVBAsTJEVxdWlmYXggU2VjdXJlIENlcnRpZmljYXRlIEF1dGhvcml0eTAeFw05
+ODA4MjIxNjQxNTFaFw0xODA4MjIxNjQxNTFaME4xCzAJBgNVBAYTAlVTMRAwDgYDVQQKEwdFcXVp
+ZmF4MS0wKwYDVQQLEyRFcXVpZmF4IFNlY3VyZSBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkwgZ8wDQYJ
+KoZIhvcNAQEBBQADgY0AMIGJAoGBAMFdsVhnCGLuoJotHwhtkRRomAoe/toEbxOEYiHD0XzOnwXg
+uAHwTjTs4oqVBGSs8WtTXwWzy2eAv0ICjv7dAQns4QAUT/z78AzdQ7pbK+EfgHCZFVeTFvEPl2q3
+wmgjHMxNWTCsUR47ryvW7mNFe8XZX1DS41APOojnvxT94Me5AgMBAAGjggEJMIIBBTBwBgNVHR8E
+aTBnMGWgY6BhpF8wXTELMAkGA1UEBhMCVVMxEDAOBgNVBAoTB0VxdWlmYXgxLTArBgNVBAsTJEVx
+dWlmYXggU2VjdXJlIENlcnRpZmljYXRlIEF1dGhvcml0eTENMAsGA1UEAxMEQ1JMMTAaBgNVHRAE
+EzARgQ8yMDE4MDgyMjE2NDE1MVowCwYDVR0PBAQDAgEGMB8GA1UdIwQYMBaAFEjmaPkr0rKV10fY
+IyAQTzOYkJ/UMB0GA1UdDgQWBBRI5mj5K9KylddH2CMgEE8zmJCf1DAMBgNVHRMEBTADAQH/MBoG
+CSqGSIb2fQdBAAQNMAsbBVYzLjBjAwIGwDANBgkqhkiG9w0BAQUFAAOBgQBYzinq/Pfetc4CuRe1
+hdG54+CVzCUxDQCmkm5/tpJjnlCV0Zpv5BHeY4VumO6o/1rI01WyZnFX3sAh6z0qpyNJAQSGQnv8
+7n+iFlK1Z2fTQNs7JliyKHc9rhR3Ydb6KmYnoA36p3Nc6nDxlCFlRF/6/O8paKmih3nvee9PrAd3
+ODCCAz0wggKmoAMCAQICAwWw/zANBgkqhkiG9w0BAQUFADBOMQswCQYDVQQGEwJVUzEQMA4GA1UE
+ChMHRXF1aWZheDEtMCsGA1UECxMkRXF1aWZheCBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5
+MB4XDTA2MDIxNjE4MDEzMFoXDTE2MDIxOTE4MDEzMFowUjELMAkGA1UEBhMCVVMxGjAYBgNVBAoT
+EUludGVsIENvcnBvcmF0aW9uMScwJQYDVQQDEx5JbnRlbCBFeHRlcm5hbCBCYXNpYyBQb2xpY3kg
+Q0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDBpd/XOb9QVqEZ8mQ1042TdOIq3ATD
+IsV2xDyt30yLyMR5Wjtus0bn3B+he89BiNO/LP6+rFzEwlD55PlX+HLGIKeNNG97dqyc30FElEUj
+ZzTZFq2N4e3kVJ/XAEEgANzV8v9qp7qWwxugPgfc3z9BkYot+CifozexHLb/hEZj+yISCU61kRZv
+uSQ0E11yYL4dRgcglJeaHo3oX57rvIckaLsYV5/1Aj+R8DM1Ppk965XQAKsHfnyT7C4S50T4lVn4
+lz36wOdNZn/zegG1zp41lnoTFfT4KuKVJH5x7YD1p6KbgJCKLovnujGuohquBNfdXKpZkvz6pGv+
+iC1HawJdAgMBAAGjgaAwgZ0wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBQaxgxKxEdvqNutK/D0
+Vgaj7TdUDDA6BgNVHR8EMzAxMC+gLaArhilodHRwOi8vY3JsLmdlb3RydXN0LmNvbS9jcmxzL3Nl
+Y3VyZWNhLmNybDAfBgNVHSMEGDAWgBRI5mj5K9KylddH2CMgEE8zmJCf1DAPBgNVHRMBAf8EBTAD
+AQH/MA0GCSqGSIb3DQEBBQUAA4GBABMQOK2kVKVIlUWwLTdywJ+e2O+PC/uQltK2F3lRyrPfBn69
+tOkIP4SgDJOfsxyobIrPLe75kBLw+Dom13OBDp/EMZJZ1CglQfVV8co9mT3aZMjSGGQiMgkJLR3j
+Mfr900fXZKj5XeqCJ+JP0mEhJGEdVCY+FFlksJjV86fDrq1QMIIFYzCCBEugAwIBAgIKYSyUiQAA
+AAAABTANBgkqhkiG9w0BAQUFADBSMQswCQYDVQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9y
+YXRpb24xJzAlBgNVBAMTHkludGVsIEV4dGVybmFsIEJhc2ljIFBvbGljeSBDQTAeFw0wNjAzMjIy
+MjIyNDJaFw0xMjAzMjIyMjMyNDJaMFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jw
+b3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQTCCASIw
+DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKvXqH/ah10uJc7YzQUh+XEDNqS6IsXOyqCtizr9
+x6F+v6iRAbvddRRJRWixfV78qarSN9WMymJ90M8c9/Dfr1yzFuq95RgCAF3vdve3wKi7kJv6lkMJ
+wyyB+uIYcWtljYx2LDqbb9S6Z6He3q8W/aGKvu23I9ksNx+cmZcDNZwGdXVIEHpEMyA4bp0RvYtf
+p8BsGAyn6YuK63HugeyYdeFL+4+Wz2tGUqw9OWhob6oV1oDH3zboLhHJiQ2oIj3jAJ3/LrIkzcWP
+2R20UIliDAPAAl6MNWJPdsNK5EEeuxEuUSpdFsMj5rBmPHH4U8i8rUmi6GEOcX5rwAw64AzS3gEC
+AwEAAaOCAjUwggIxMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFAlpgTN7BnOPI0wKA9/3FoER
+ghMFMAsGA1UdDwQEAwIBhjAQBgkrBgEEAYI3FQEEAwIBADAZBgkrBgEEAYI3FAIEDB4KAFMAdQBi
+AEMAQTAfBgNVHSMEGDAWgBQaxgxKxEdvqNutK/D0Vgaj7TdUDDCBvQYDVR0fBIG1MIGyMIGvoIGs
+oIGphk5odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFs
+JTIwQmFzaWMlMjBQb2xpY3klMjBDQS5jcmyGV2h0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29t
+L3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUyMENBLmNy
+bDCB4wYIKwYBBQUHAQEEgdYwgdMwYwYIKwYBBQUHMAKGV2h0dHA6Ly93d3cuaW50ZWwuY29tL3Jl
+cG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUy
+MENBLmNydDBsBggrBgEFBQcwAoZgaHR0cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3Np
+dG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwUG9saWN5JTIwQ0Eu
+Y3J0MA0GCSqGSIb3DQEBBQUAA4IBAQCuNCnecJ+vDpXzsHOzMEyz4KgTNDbJROHag8H/ZVga7soc
+oJyC+HKqDfQgxifVorbTbSajCBEAxqg6bbNWBJ6qKOFHneBrXkENf5WdD50eCTCFWRV3EIsHEOQ1
+kP0eNYV5Ed4hp9y6wASV6z2z86O4+qouLJiow4AIhoCKD8rEyD7ODgTvjvLCKpsVyPlG1jOVSsOS
+IF2VUmueAmK3RFU4np83zerK/j0G37owhniEDT6ZhwkUd0XL45nt1m7yApMEbnXUTHNaXnE+P98k
+k3nDXdW25sB+5xWcYR3GpgMdQiZgP/f0KZ+yZKNE7gcp3I/O4pXqUNWIsLSYTi3soAR2MIIFYzCC
+BEugAwIBAgIKYSyl/gAAAAAABjANBgkqhkiG9w0BAQUFADBSMQswCQYDVQQGEwJVUzEaMBgGA1UE
+ChMRSW50ZWwgQ29ycG9yYXRpb24xJzAlBgNVBAMTHkludGVsIEV4dGVybmFsIEJhc2ljIFBvbGlj
+eSBDQTAeFw0wNjAzMjIyMjIyNDdaFw0xMjAzMjIyMjMyNDdaMFYxCzAJBgNVBAYTAlVTMRowGAYD
+VQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNz
+dWluZyBDQSAzQjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMDoHJYUGvcdR4k0Qv8/
+RrwNX4+vEe5PN2LnGn4xfIWwdUbk5+zvrRy1HjoKdG/AShZfxAuFoVyNIah5GJLpiS/vGbsDYKK+
+EZcIcmtPfvbB9Yg09EnQ0OpsZ2ORRd5lYUfMUU+zkpgL96vKFdkiG+eeHEwnSS3VikGVrF7UDdKf
+vxZwRwQCx6rEHAFPCjBDVfGYZuYT1EDhSDvzEiU7KzBsxrdBCFU4RYL7kh+do+vyMDlBzpw3WKvM
+Vbf3s5lxYiY7AjEhU8OSyZEQlgtK8PNyifHjmyrSaeJrPshM3PuLFG4d3gm1UJEiGNzxcHGb6YLP
+29IQAwY5mAk8j+UOVcsCAwEAAaOCAjUwggIxMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFG/D
+cREooZ0ZV/VnV8/ZKSaI1aWiMAsGA1UdDwQEAwIBhjAQBgkrBgEEAYI3FQEEAwIBADAZBgkrBgEE
+AYI3FAIEDB4KAFMAdQBiAEMAQTAfBgNVHSMEGDAWgBQaxgxKxEdvqNutK/D0Vgaj7TdUDDCBvQYD
+VR0fBIG1MIGyMIGvoIGsoIGphk5odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9J
+bnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBQb2xpY3klMjBDQS5jcmyGV2h0dHA6Ly9jZXJ0aWZp
+Y2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUy
+MFBvbGljeSUyMENBLmNybDCB4wYIKwYBBQUHAQEEgdYwgdMwYwYIKwYBBQUHMAKGV2h0dHA6Ly93
+d3cuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBC
+YXNpYyUyMFBvbGljeSUyMENBLmNydDBsBggrBgEFBQcwAoZgaHR0cDovL2NlcnRpZmljYXRlcy5p
+bnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2lj
+JTIwUG9saWN5JTIwQ0EuY3J0MA0GCSqGSIb3DQEBBQUAA4IBAQBAiWWHL6T21QXFZDyaUIye0jh7
+f40GXqi75Ro5JbpROtlZBqyRq6oPMAG6Igxd5Bd9TMtNkOvguknFnK1y17UdMhLOl+FuInE+FAWk
+803aRW27OsX+ot0KmPioKnZ3L1K5qcQS3tp6or7AaZzd0w0qFitm4UfP9nnTXQtY9XM5QJ07IKFD
+E3tlOlamKhjbiJV3FKigCVesPZSx9h2G7Ve4irEfz915Vks26AJHGZagEHNxM9exkgem4ENsG+t0
+vYqn9x7YsqJ6fmbOSyrzjzb3CYeEfyE5SL+f3Vx9uMsQDyb8LVCDBXQtxLEHnFEBPrRSSF9kPmyj
+avx4UqFdPEyCMIIGAzCCBOugAwIBAgIKGmwusAAAAAApdjANBgkqhkiG9w0BAQUFADBWMQswCQYD
+VQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVy
+bmFsIEJhc2ljIElzc3VpbmcgQ0EgM0IwHhcNMDgwNDE0MjMxNDQ4WhcNMTEwNDE0MjMxNDQ4WjBB
+MRcwFQYDVQQDEw5aaGFuZywgSmVzc2ljYTEmMCQGCSqGSIb3DQEJARYXamVzc2ljYS56aGFuZ0Bp
+bnRlbC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDQbirxoX/8OWYyzy4UnZ7N
+xXoADLZqxxH1q4lMF2zuAHjyDnNj/4ReRzB6AIDEg1BQWS4z5jC6oApos3HvFEsGbS3pYCWSo5Vb
+jtY5HWOBRPJ2rQ8wzITqcEEBWooYCj5LJeAjPuOZoZPVrKPI1khbOYzaJUwQpICfaErHZyM4p2mV
+AYXcUa/N0zKGnZmNaO6Dff96g41C9jEyfOFEtYOpLdQoXhD1i8tW17WxbHMuiXx3PR3GUdBADrRf
+I3wzqn4rh0y0D4l9mBfgTybVN3UR35ZFGSRsuldyJeeKcCSgghJi3K4ZTxzMfQ6+OKBu6SBeNKWk
+e2Q4f8CIf0+8ZpwfAgMBAAGjggLmMIIC4jALBgNVHQ8EBAMCB4AwHQYDVR0OBBYEFPIpOYEzCqH+
+037yR8d0Rarz7r7mMDwGCSsGAQQBgjcVBwQvMC0GJSsGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OC
+kcAJZ4HevTmV8EMCAWQCAQYwHwYDVR0jBBgwFoAUb8NxESihnRlX9WdXz9kpJojVpaIwgckGA1Ud
+HwSBwTCBvjCBu6CBuKCBtYZUaHR0cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50
+ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwM0IuY3Jshl1odHRwOi8vY2Vy
+dGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFz
+aWMlMjBJc3N1aW5nJTIwQ0ElMjAzQi5jcmwwge8GCCsGAQUFBwEBBIHiMIHfMGkGCCsGAQUFBzAC
+hl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4
+dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQi5jcnQwcgYIKwYBBQUHMAKGZmh0dHA6
+Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIw
+RXh0ZXJuYWwlMjBCYXNpYyUyMElzc3VpbmclMjBDQSUyMDNCLmNydDAfBgNVHSUEGDAWBggrBgEF
+BQcDBAYKKwYBBAGCNwoDDDApBgkrBgEEAYI3FQoEHDAaMAoGCCsGAQUFBwMEMAwGCisGAQQBgjcK
+AwwwSwYDVR0RBEQwQqAnBgorBgEEAYI3FAIDoBkMF2plc3NpY2EuemhhbmdAaW50ZWwuY29tgRdq
+ZXNzaWNhLnpoYW5nQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEANFSBbauSm1ktwUQI6fGq
+9XhTSUsty5/CHOrOwFe4K7LX0clVirXUYakIZXXG86lD1piRrjt23MhKRekYNIv0mfJklEF7yV5M
+VVqwDK1Uz6bsiw/SQnqfBuFrd70W4cua3bU1uu3dAhZBh482BtBZYFockuHd3YBFT7xmykOaAMLP
+CttrNSijP7HsbetGG2GLLc3CWauSXXr2ELseXkw3KkUKBPMw+DFAJdsRyBe0L+OwlDplr8POBXXb
+uuQK7Wo84mX7gMT0uSq/Luex/BD1xn2brKVs9t4FvL8ifxv4LuWRzv45EgPN4T12I202GBQ8iJtZ
+DkT3+9QPiQ35Hmuy6zCCBkowggUyoAMCAQICCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEFBQAwVjEL
+MAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBF
+eHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBMB4XDTA4MDQxNDIzMTM1MVoXDTExMDQxNDIzMTM1
+MVowQTEXMBUGA1UEAxMOWmhhbmcsIEplc3NpY2ExJjAkBgkqhkiG9w0BCQEWF2plc3NpY2Euemhh
+bmdAaW50ZWwuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2Lgwg9E/0F9weWx5
+ZCk0oiuerOIqOFTXcithjh7zRhiq8v/z9sXR/yWXUA7JK5E5JLPRNl0nQJFv/FLTaq9/9PchiI/N
+4v7L/ERXTzdMNvwOEqNOy8SOmmOOjF8N1vtrIv+WdBYiqBvtfQ9xGXadxckgrBOSTtTrw4iShbnG
+mVrw6mYYIOdPIKhq3QFmxHs93R8IrmIjvMbf31JhiAp7KJ/mc+bckmYW/9fNNEQkMbuF3B6iWsTk
+8c+D8oWmxuw+m6svwEMKck8yr3ldF6sZ6NCKXJChwDmjZMHBBSV6IUUycyl6SJ33j3r9Beki5bvG
+mhZnfGBLWODaLv4PDbG7BwIDAQABo4IDLTCCAykwCwYDVR0PBAQDAgQwMEQGCSqGSIb3DQEJDwQ3
+MDUwDgYIKoZIhvcNAwICAgCAMA4GCCqGSIb3DQMEAgIAgDAHBgUrDgMCBzAKBggqhkiG9w0DBzAd
+BgNVHQ4EFgQUKEdHKlCw71rRzz5gJWoRJwoviW0wPQYJKwYBBAGCNxUHBDAwLgYmKwYBBAGCNxUI
+hsOMdYSZ5VGD/YEohY6fU4KRwAlnhLnZQYeE/04CAWQCAQkwHwYDVR0jBBgwFoAUCWmBM3sGc48j
+TAoD3/cWgRGCEwUwgckGA1UdHwSBwTCBvjCBu6CBuKCBtYZUaHR0cDovL3d3dy5pbnRlbC5jb20v
+cmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIw
+M0EuY3Jshl1odHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9JbnRl
+bCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQS5jcmwwge8GCCsGAQUFBwEB
+BIHiMIHfMGkGCCsGAQUFBzAChl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRp
+ZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQS5jcnQw
+cgYIKwYBBQUHMAKGZmh0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2Vy
+dGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElzc3VpbmclMjBDQSUyMDNBLmNy
+dDAfBgNVHSUEGDAWBggrBgEFBQcDBAYKKwYBBAGCNwoDBDApBgkrBgEEAYI3FQoEHDAaMAoGCCsG
+AQUFBwMEMAwGCisGAQQBgjcKAwQwSwYDVR0RBEQwQqAnBgorBgEEAYI3FAIDoBkMF2plc3NpY2Eu
+emhhbmdAaW50ZWwuY29tgRdqZXNzaWNhLnpoYW5nQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOC
+AQEAlkSHAnj2YSCjtyOIJJtoNia1mv4qLpp3rxqxeZzEG9Bk4k4hGHkozj1p+mi368ieYl/fTPtK
+IIBDCwod9o12adTGGW7wyUHjZfalumhsFoKTXbUU/CC7lpooUKuDxCjaIjsc4rdDxP1MEAUX43IG
+kLRqq9elDWluC0WjR+q+cAqKMJxLmAKhKz7JDTNrbfWwuoETGdCMkLUK464/FSvfDKoV+Ypkoq1x
+YiTi71VhwWenYKPnyKbLgiULEgdfwQscMzJQ9rmq1iyfoXuXPSkCA6nfZKoSkBOVJQXjW/+B2wxe
+YmaO9Qc5P3CJvsmgmgX5mK2wyKEw0JCwTHE3w7FkFjGCA0EwggM9AgEBMGQwVjELMAkGA1UEBhMC
+VVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBC
+YXNpYyBJc3N1aW5nIENBIDNCAgoabC6wAAAAACl2MAkGBSsOAwIaBQCgggGyMBgGCSqGSIb3DQEJ
+AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTExMDEyMTAwMTU1N1owIwYJKoZIhvcNAQkE
+MRYEFCxfTFB2wYRYwHEoALFXKGkss10uMGcGCSqGSIb3DQEJDzFaMFgwCgYIKoZIhvcNAwcwDgYI
+KoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMAcGBSsO
+AwIaMAoGCCqGSIb3DQIFMHMGCSsGAQQBgjcQBDFmMGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoT
+EUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5n
+IENBIDNBAgp5ih1RAAAAAB8rMHUGCyqGSIb3DQEJEAILMWagZDBWMQswCQYDVQQGEwJVUzEaMBgG
+A1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElz
+c3VpbmcgQ0EgM0ECCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEBBQAEggEAqZcLwOH6rsboaAQKGrBV
+/HUycfGythr7ONQHhYDLu69e4QRjiy6GUp/nloBEq3BLGck+k27JBGd8mg3oUsLx7oQZ/8jJ9Cnk
+1LdukY29wFYXUYWlL9h3t9sj2KInNauI1PMK1igoALa6Irqm5XBvbsxFReKcKuQWFjS3m8j5Ux9a
+ea+9pBb8+rLpcNUkbMZoiNdxAGcCNt11xZDPS7dO/1QpxI1yzzkY+PodbLQ6ZtoDk470wegGUB7t
+S5feoJLBN9Zn80ycm58+cyNo/PUzA/1ugUeyzDb4zTlkgfcKwbtkMZ1ksncTVzwkjuxoVW6HQHxF
+zfUYahjjXGI6q5/RkQAAAAAAAA==
+
+------=_NextPart_000_00F7_01CBB8BD.524F4E90--
