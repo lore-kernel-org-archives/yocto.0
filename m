@@ -1,28 +1,30 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id E46614C806DA;
-	Tue, 25 Jan 2011 13:18:51 -0600 (CST)
-Received: by eyz10 with SMTP id 10so107966eyz.35
-	for <multiple recipients>; Tue, 25 Jan 2011 11:18:50 -0800 (PST)
-Received: by 10.216.19.139 with SMTP id n11mr191221wen.78.1295983130044;
-	Tue, 25 Jan 2011 11:18:50 -0800 (PST)
-Received: from [172.20.0.255] (ip545070eb.adsl-surfen.hetnet.nl
-	[84.80.112.235])
-	by mx.google.com with ESMTPS id r6sm7335384weq.20.2011.01.25.11.18.48
-	(version=TLSv1/SSLv3 cipher=RC4-MD5);
-	Tue, 25 Jan 2011 11:18:49 -0800 (PST)
-Mime-Version: 1.0 (Apple Message framework v1082)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <F4686931-067A-4564-BDD3-073B8F1BB435@dominion.thruhere.net>
-Date: Tue, 25 Jan 2011 20:18:48 +0100
-Message-Id: <7F187B04-9B3D-4D57-9060-D8B710B59A8A@dominion.thruhere.net>
-References: <1295963829.14388.49564.camel@rex>
-	<F4686931-067A-4564-BDD3-073B8F1BB435@dominion.thruhere.net>
-To: poky <poky@yoctoproject.org>
-X-Mailer: Apple Mail (2.1082)
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: [poky] Major feature changes for the next release - merging very soon
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C76BC4C806DA
+	for <yocto@yoctoproject.org>; Tue, 25 Jan 2011 13:31:13 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p0PJVCM7002168;
+	Tue, 25 Jan 2011 11:31:12 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Tue, 25 Jan 2011 11:31:12 -0800
+Received: from Macintosh-5.local ([172.25.36.227]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Tue, 25 Jan 2011 11:31:12 -0800
+Message-ID: <4D3F24FF.8050400@windriver.com>
+Date: Tue, 25 Jan 2011 13:31:11 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.13) Gecko/20101207 Thunderbird/3.1.7
+MIME-Version: 1.0
+To: "Lorenzati, Marcelo" <marcelo.lorenzati@intel.com>
+References: <FE028D69955796489B510CE43DBBE8030118C8B7E8@rrsmsx503.amr.corp.intel.com>
+In-Reply-To: <FE028D69955796489B510CE43DBBE8030118C8B7E8@rrsmsx503.amr.corp.intel.com>
+X-OriginalArrivalTime: 25 Jan 2011 19:31:12.0343 (UTC)
+	FILETIME=[6CB35670:01CBBCC6]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: ulibc instead of glibc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,125 +36,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jan 2011 19:18:52 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 25 Jan 2011 19:31:14 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
+On 1/25/11 12:36 PM, Lorenzati, Marcelo wrote:
+> Hi all,
+> 
+>                 I wanted to know if it’s feasible to build Yocto with ulibc
+> instead of glibc and if someone have tried.
+> 
+> In a really constrained system could be the difference between selecting RT
+> Linux or another real time OS.
+> 
 
-Op 25 jan 2011, om 19:34 heeft Koen Kooi het volgende geschreven:
+So far uclibc has not been a goal of the Yocto project.  With the minimum size
+of flash parts these days, the configurability of eglibc and the mklibs library
+optimizer... the use-case for uclibc is quickly going away.
 
->=20
-> Op 25 jan 2011, om 14:57 heeft Richard Purdie het volgende geschreven:
->=20
->> As has been mentioned in other emails we're working on some major
->> enhancements for the next release. Several components of these are =
-now
->> ready for merging to the master branch. These include:
->>=20
->> * Rework of the compiler bootstrap process
->>=20
->> If you've ever tried to run "bitbake eglibc -c clean;bitbake eglibc" =
-or
->> any of the gcc components you'll have run into issues with the =
-compiler
->> bootstrap process overwriting files. This also causes problems for
->> sstate as it doesn't get on well with two sstate archives providing =
-the
->> same file.
->>=20
->> The changes we have queued split the intermediate components into a
->> separate sysroot so no files are overwritten and the whole process is
->> less fragile and more robust. Each gcc-cross step (initial, =
-intermediate
->> and final) also stage binaries in separate locations.
->>=20
->> * Changes to sysroot structure
->>=20
->> We now support creating a sysroot per machine target rather than the
->> original multimachine approach we have used. This means packages with =
-an
->> "all" architecture can be safely installed into the sysroot and used
->> correctly fixing bugs in that area and it also allows machines like
->> emenlow which have separate graphics components to build and work
->> correctly yet be able to share builds with other machines like =
-atom-pc.
->>=20
->> If you change machine and the machine you change to shares a core
->> architecture with a previous build, the components from that previous
->> build will be used to construct a new sysroot using the sstate =
-prebuilt
->> packages.
->>=20
->> The branch I'm planning to merge very soon with these features is:
->>=20
->> =
-http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=3Drpurdie/tt-bootstr=
-ap
->=20
-> For a single machine:
->=20
-> NOTE: package console-image-1.0-r0: task do_rm_work_all: Succeeded
->=20
->=20
-> Now building it incrementally for a different machine
+(eglibc configuration is not yet implemented in Yocto.  Mklibs is currently
+being implemented.)
 
-Switchting from usrp-e1xx (armv7a) to beagleboard (also armv7a) and =
-building console-image again:
+We have built (at Wind River) eglibc filesystems, single application systems, in
+foot prints of less then 2 MB of disk space required.  As far as I know,
+currently the smallest flash parts you can get for new designs are in the 4 MB
+range, and quickly those are being replaced by 16 MB (and larger) parts...
 
-NOTE: package perl-5.12.2-r0: task do_package: Started
-ERROR: Function 'perl_package_preprocess' failed (see =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/temp/log.do_package.28537 for further information)
-ERROR: Logfile of failure stored in: =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/temp/log.do_package.28537
-Log data follows:
-| cp: cannot stat =
-`/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi=
-/perl-5.12.2-r0/image/*': No such file or directory
-| sed: can't read =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/package/usr/bin/h2xs: No such file or directory
-| sed: can't read =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/package/usr/bin/h2ph: No such file or directory
-| sed: can't read =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/package/usr/lib/perl/5.12.2/pod/*.pod: No such file or =
-directory
-| sed: can't read =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/package/usr/lib/perl/5.12.2/cacheout.pl: No such file or =
-directory
-| sed: can't read =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/package/usr/lib/perl/5.12.2/FileCache.pm: No such file or =
-directory
-| sed: can't read =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/package/usr/lib/perl/config.sh: No such file or directory
-| sed: can't read =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/package/usr/lib/perl/5.12.2/Config.pm: No such file or =
-directory
-| sed: can't read =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/package/usr/lib/perl/5.12.2/Config_heavy.pl: No such file =
-or directory
-| sed: can't read =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/package/usr/lib/perl/5.12.2/CORE/perl.h: No such file or =
-directory
-| sed: can't read =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/package/usr/lib/perl/5.12.2/CORE/pp.h: No such file or =
-directory
-| Function 'perl_package_preprocess' failed (see =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/temp/log.do_package.28537 for further information)
-| ERROR: Function 'perl_package_preprocess' failed (see =
-/OE/tentacle/build/tmp-angstrom_2010_x/work/armv7a-angstrom-linux-gnueabi/=
-perl-5.12.2-r0/temp/log.do_package.28537 for further information)
+eglibc also has the advantage (over uclibc) of better support for a wide range
+of existing Open Source projects.
 
+With that all said, yes it should be feasible to add uclibc to Yocto... but it's
+not already there as far as I know.
+
+--Mark
+
+> 
+> Regards
+> 
+>  
+> 
+> cid:image001.gif@01CB4310.9C4582D0
+> 
+> 	
+> 
+> *Marcelo Lorenzati**
+> *Argentina Software Development Center
+> 
+> Software and Services Group
+> Phone: +54 351 5358761
+> marcelo.lorenzati@intel.com <mailto:marcelo.lorenzati@intel.com>
+> 
+>  
+> 
+>  
+> 
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
