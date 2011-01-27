@@ -1,26 +1,26 @@
-Return-Path: <aleksandr.koltsoff@ebts.fi>
-Received: from smtp.mmd.net (smtp.mmd.net [80.83.0.30])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 65BE14C80050
-	for <yocto@yoctoproject.org>; Thu, 27 Jan 2011 07:34:52 -0600 (CST)
-Received: from [192.168.0.102] (ebi0.eke.fi [213.140.179.212])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested) (Authenticated sender: ebtsfi-4)
-	by smtp.mmd.net (Postfix) with ESMTPSA id 0C66A208A8;
-	Thu, 27 Jan 2011 15:34:51 +0200 (EET)
-Message-ID: <4D41747D.6060708@ebts.fi>
-Date: Thu, 27 Jan 2011 15:34:53 +0200
-From: Aleksandr Koltsoff <aleksandr.koltsoff@ebts.fi>
-Organization: EKE Building Technology Systems
-User-Agent: Thunderbird 2.0.0.24 (X11/20100317)
-MIME-Version: 1.0
-To: Chris Tapp <opensource@keylevel.com>
-References: <AANLkTikG322KfbJ-ZEKXFbsOLkzLE3Kdp4L-096ODvxd@mail.gmail.com>
-	<46CAF87B-6605-4026-88C3-47258B9FDDB7@keylevel.com>
-In-Reply-To: <46CAF87B-6605-4026-88C3-47258B9FDDB7@keylevel.com>
-X-Virus-Scanned: clamav-milter 0.96.5 at smtp.mmd.net
-X-Virus-Status: Clean
-Cc: yocto@yoctoproject.org
-Subject: Re: rootfs image size
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 217024C8118C
+	for <yocto@yoctoproject.org>; Thu, 27 Jan 2011 08:22:31 -0600 (CST)
+Received: from durham.keylevel.com ([109.224.134.115]:53889
+	helo=[192.168.1.99])
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1PiSk2-0006ft-Dh
+	for yocto@yoctoproject.org; Thu, 27 Jan 2011 14:22:30 +0000
+Message-Id: <953D6EA3-E3D9-4998-8147-2FF0E325AA56@keylevel.com>
+From: Chris Tapp <opensource@keylevel.com>
+To: yocto@yoctoproject.org
+Mime-Version: 1.0 (Apple Message framework v936)
+Date: Thu, 27 Jan 2011 14:22:27 +0000
+X-Mailer: Apple Mail (2.936)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+Subject: USB keyboard not working on PC-Engines host
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,41 +32,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jan 2011 13:34:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 27 Jan 2011 14:22:32 -0000
+Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
 Content-Transfer-Encoding: 7bit
 
-Chris Tapp wrote:
-> I've built poky-image-minimal for atom-pc using the 0.9 Poky release.
-> 
-> This gives me an ext3 rootfs of over 80MB, which doesn't sound minimal
-> to me ;-)
-> 
-> Can I reduce the size of the image, or is it expected to be this size?
+I've built poky-image-minimal for a machine that's based on  
+qemux86.conf. I've create a modified copy to target x86 hardware and  
+made sure usbhost and usbgadget are in the MACHINE_FEATURES.
 
-Hi there,
+If I boot on an Intel Atom board then everything is fine. However, if  
+I boot on a PC-Engines ALIX 3D3 the usb keyboard doesn't work and I  
+can't login.
 
-The rpm packaging version does has some issues (half-statically built
-binaries, full SAT-solver which might be an overkill for a minimal
-image, etc).
+I have had to disable USB 2 support in the ALIX BIOS to prevent  
+"unable to enumerate USB device on port ..." messages, but USB 1.1 is  
+still enabled. The OHCI device code is 1d6b:0001 and works ok with an  
+EO build that I have.
 
-I got much better results by switching to PACKAGE_CLASSES ?=
-"package_ipk" in local.conf.
+Can anyone point me to where I should be looking to find out how to  
+get this working?
 
-This will not be an RPM based system, but the image size will be
-significantly smaller (especially if you're trying to reduce minimal).
+Chris Tapp
 
-Also, some fixes (post 0.9) should drop the rpm size requirement a bit,
-if you want to try git/master.
+opensource@keylevel.com
+www.keylevel.com
 
-regards,
 
-ak.
--- 
-Best regards,
 
-Aleksandr Koltsoff
-Head of Software Development, EKE Building Technology Systems
-+358 44 566 2030, Piispanportti 7, 02240 Espoo, Finland
--= Easy Home Control for Everyone @ www.ebts.fi =-
 
