@@ -1,28 +1,34 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-ww0-f42.google.com (mail-ww0-f42.google.com [74.125.82.42])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 880B14C8026D
-	for <yocto@yoctoproject.org>; Sun, 30 Jan 2011 04:00:00 -0600 (CST)
-Received: by wwi17 with SMTP id 17so2484542wwi.5
-	for <yocto@yoctoproject.org>; Sun, 30 Jan 2011 01:59:59 -0800 (PST)
-Received: by 10.227.157.1 with SMTP id z1mr4854350wbw.23.1296381599377;
-	Sun, 30 Jan 2011 01:59:59 -0800 (PST)
-Received: from [172.20.0.255] (ip545070eb.adsl-surfen.hetnet.nl
-	[84.80.112.235])
-	by mx.google.com with ESMTPS id o33sm10087222wej.37.2011.01.30.01.59.58
-	(version=TLSv1/SSLv3 cipher=RC4-MD5);
-	Sun, 30 Jan 2011 01:59:58 -0800 (PST)
-Mime-Version: 1.0 (Apple Message framework v1082)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <AANLkTim=9082OqALzkhPaB+zcVGK73_jB04jAeLtiM3E@mail.gmail.com>
-Date: Sun, 30 Jan 2011 10:59:58 +0100
-Message-Id: <7C41D336-EC9F-47A8-A004-D005DA9F40A1@dominion.thruhere.net>
-References: <cover.1296372804.git.jingdong.lu@windriver.com>
-	<a598a01bc519ea080e73605f4ff70b499bcab645.1296372804.git.jingdong.lu@windriver.com>
-	<5665B920-09DE-4E25-A246-4B2FA57B704A@dominion.thruhere.net>
-	<AANLkTim=9082OqALzkhPaB+zcVGK73_jB04jAeLtiM3E@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
-X-Mailer: Apple Mail (2.1082)
-Subject: Re: [poky] [PATCH 4/5] cups: add cups 1.4.6
+Return-Path: <dexuan.cui@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C6BC34C811CA;
+	Mon, 31 Jan 2011 00:44:56 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 30 Jan 2011 22:44:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,403,1291622400"; d="scan'208";a="652748053"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by fmsmga002.fm.intel.com with ESMTP; 30 Jan 2011 22:44:50 -0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Mon, 31 Jan 2011 14:43:43 +0800
+Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Mon, 31 Jan 2011 14:43:42 +0800
+From: "Cui, Dexuan" <dexuan.cui@intel.com>
+To: 'Saul Wold' <sgw@linux.intel.com>, Yocto Project Discussion
+	<yocto@yoctoproject.org>, "poky@yoctoproject.org" <poky@yoctoproject.org>
+Date: Mon, 31 Jan 2011 14:43:40 +0800
+Thread-Topic: [yocto] M3 Package Update List
+Thread-Index: Acukxjooru4MdVoBSgS8rAS3g15fegcSUnog
+Message-ID: <1865303E0DED764181A9D882DEF65FB685EBCB6C42@shsmsx502.ccr.corp.intel.com>
+References: <4D16E018.90502@linux.intel.com>
+In-Reply-To: <4D16E018.90502@linux.intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN, en-US
+MIME-Version: 1.0
+Subject: Re: M3 Package Update List
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,61 +40,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 30 Jan 2011 10:00:01 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Mon, 31 Jan 2011 06:44:57 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+Saul Wold wrote:
+> Folks,
+>=20
+> Please find attached the list of M3 Recipe Updates, our goal for 1.0
+> M3 release is to complete the update process we started in 0.9 and
+> 1.0 M2. There are about 150 recipes in this list, some people may
+> have more and if there is a need to request help, please let me know.
+> If you plan on helping, please let the current owner know that you
+> will be updating a recipe.
+>=20
+> Unless I hear otherwise, I will work to update the "None" maintained
+> list, but I believe some of these are owned by people and the distro
+> tracking information needs to be updated.
+>=20
+> Thanks again to the team for the hard work during 0.9 and M2, we will
+> always have updates to do, but they will get easier with our gained
+> experience and expertise.
+>=20
+> Happy Holidays and Happy New Year to all.
 
-Op 30 jan 2011, om 10:56 heeft Frans Meulenbroeks het volgende =
-geschreven:
+Hi Saul,
+Here is the update for recipes in the list with me as the owner:
 
-> 2011/1/30 Koen Kooi <koen@dominion.thruhere.net>:
->> FWIW, there's also a cleaned-up cups in meta-oe
->>=20
-> It is not that clean as it has QA issues.
+There are 18 recipes in total:=20
+1) I have upgraded 14 ones:
+renderproto
+inputproto
+libdmx
+lttng-viewer
+liburcu
+libxxf86misc
+compositeproto
+resourceproto
+xproto
+gnome-doc-utils
+scrnsaverproto
+lttng-ust
+librsvg
+pixman: upgraded from 0.20.0 to 0.21.2 and later downgraded to 0.20.2 since=
+ 0.21.x is development release.
 
-The cups in meta-oe is 1.4.x, you are posting 1.2.x QA errors.=20
+2) I decided to not upgrade these 2 ones and upgraded RECIPE_NO_UPDATE_REAS=
+ON:
+libunique: Do not upgrade to version: 2.91.4 because it requires gtk+ >=3D =
+2.90.0 and the stable version of gtk+ used by poky is 2.2x.x
+liberation-fonts:  Do not upgrade to version: 1.06.0.20100721 because befor=
+e doing that, we need adding new native packages like libungif_4.1.3, libsp=
+iro and fontforge first
 
+3) These 2 ones doesn't need upgrade at present:
+lttng-control: acutally not newer release is available. The script detectin=
+g new release thought 0.88-09242010 are different from 0.88.  Mei Lei has f=
+ixed that.
+tcf-agent: as Lianhao said, the upstream is re-orging the code, so we can o=
+nly wait for now. Previously the script detecting new release simply printe=
+d a useless svn number "998".
 
-> I posted the message below a few days ago to the OE mailing list.
-> I've not too  much knowledge on .desktop files, so I have no idea how =
-to fix it.
->=20
-> Frans.
->=20
-> --- forwarded message
->=20
-> Hi,
->=20
-> I got this while building cups, but I am not a gnome person (actually
-> I am only intterested in the server part).
->=20
-> ERROR: QA Issue with cups:
-> =
-/home/hudson/jobs/FM_TEST/workspace/tmp/work/ppce500v2-oe-linux-gnuspe/cup=
-s-1.2.12-r7.2/packages-split/cups/usr/share/applications/cups.desktop:
-> warning: value "Application;System;X-Red-Hat-Base;" for key
-> "Categories" in group "Desktop Entry" contains a deprecated value
-> "Application"
-> ERROR: QA Issue with cups:
-> =
-/home/hudson/jobs/FM_TEST/workspace/tmp/work/ppce500v2-oe-linux-gnuspe/cup=
-s-1.2.12-r7.2/packages-split/cups/usr/share/applications/cups.desktop:
-> warning: key "Encoding" in group "Desktop Entry" is deprecated
-> ERROR: QA Issue with cups:
-> =
-/home/hudson/jobs/FM_TEST/workspace/tmp/work/ppce500v2-oe-linux-gnuspe/cup=
-s-1.2.12-r7.2/packages-split/cups/usr/share/applications/cups.desktop:
-> warning: value "" for key "Path" in group "Desktop Entry" does not
-> look like an absolute path
-> ERROR: QA Issue with cups:
-> =
-/home/hudson/jobs/FM_TEST/workspace/tmp/work/ppce500v2-oe-linux-gnuspe/cup=
-s-1.2.12-r7.2/packages-split/cups/usr/share/applications/cups.desktop:
-> warning: key "TerminalOptions" in group "Desktop Entry" is deprecated
->=20
-> Anyone care to fix this or provide a suggestion on how to fix ?
->=20
-> Thanks, Frans
-
+Thanks,
+-- Dexuan=
 
