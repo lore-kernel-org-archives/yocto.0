@@ -1,33 +1,35 @@
-Return-Path: <diego.sueiro@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8595F4C80FA4
-	for <yocto@yoctoproject.org>; Mon, 31 Jan 2011 12:52:56 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iyb26 with SMTP id 26so5781661iyb.35
-	for <yocto@yoctoproject.org>; Mon, 31 Jan 2011 10:52:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:from:date:message-id:subject:to
-	:content-type; bh=Lv/vzurpbA4FSJVAUDaIB2ufAY2uOmXUxfFwTeHjuR0=;
-	b=Ip7fPRxXKULPnSjDzMkuenp+Sk8tqOSd7KbzqG2ZTlkRbbMliAVi68JFCe+D/cIScN
-	rbpUZg7IVl9P3DfjFxAKNXbSgBNJrRDWKQKlSx6Oku0f9I+3hBoAZBz/gDsylrunQKqM
-	QBOtnF+adaDQgH7vFz8IYYRwrBMRFUx5YeBIs=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	b=JQWZQGZiaD0kcYIZeyKJ4y4J/BNawPjK4PtnCrARl9K8i1uB9ZHAmglk1pY3QLTU/8
-	/VdWxN9RlKzazHUPg5nUgBxrcdnMee8KG3lL00wu1e2gwX0O80FbDg/LYiKWXMgrHwIA
-	2uh3N/JJD8bQ18/pvfayId+E2D4NF3j/WMZNY=
-Received: by 10.42.170.196 with SMTP id g4mr8271802icz.450.1296499976162; Mon,
-	31 Jan 2011 10:52:56 -0800 (PST)
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 3125C4C810C1
+	for <yocto@yoctoproject.org>; Mon, 31 Jan 2011 18:41:30 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 31 Jan 2011 16:41:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,406,1291622400"; 
+	d="scan'208,217";a="653073386"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by fmsmga002.fm.intel.com with ESMTP; 31 Jan 2011 16:41:29 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Mon, 31 Jan 2011 16:41:29 -0800
+Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
+	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
+	Mon, 31 Jan 2011 16:41:29 -0800
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: Diego Sueiro <diego.sueiro@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Mon, 31 Jan 2011 16:41:26 -0800
+Thread-Topic: [yocto] Kernel Panics on armv4t with gcc.4.5.1
+Thread-Index: AcvBeCiIl4ikzgTaRTiGKKp/cVLFZgAMHuYQ
+Message-ID: <9DA5872FEF993D41B7173F58FCF6BE940A5EBA78@orsmsx504.amr.corp.intel.com>
+References: <AANLkTinBmzf=erJiuG+pxtXVD9Yd3z7bnC1yUuDvp5N2@mail.gmail.com>
+In-Reply-To: <AANLkTinBmzf=erJiuG+pxtXVD9Yd3z7bnC1yUuDvp5N2@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-Received: by 10.42.226.70 with HTTP; Mon, 31 Jan 2011 10:52:34 -0800 (PST)
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Mon, 31 Jan 2011 16:52:34 -0200
-Message-ID: <AANLkTinBmzf=erJiuG+pxtXVD9Yd3z7bnC1yUuDvp5N2@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Kernel Panics on armv4t with gcc.4.5.1
+Subject: Re: Kernel Panics on armv4t with gcc.4.5.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,39 +41,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Jan 2011 18:52:56 -0000
-X-Groupsio-MsgNum: 890
-Content-Type: multipart/mixed; boundary=90e6ba61364087ccde049b28ece4
+X-List-Received-Date: Tue, 01 Feb 2011 00:41:30 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9DA5872FEF993D41B7173F58FCF6BE940A5EBA78orsmsx504amrcor_"
 
---90e6ba61364087ccde049b28ece4
-Content-Type: multipart/alternative; boundary=90e6ba61364087ccd8049b28ece2
+--_000_9DA5872FEF993D41B7173F58FCF6BE940A5EBA78orsmsx504amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---90e6ba61364087ccd8049b28ece2
-Content-Type: text/plain; charset=ISO-8859-1
+Diego,
+  Can you try with 4.5.2 gcc from this branch: http://git.pokylinux.org/cgi=
+t/cgit.cgi/poky-contrib/log/?h=3Dnitin/khem_gcc_nitin
+
+Thanks,
+Nitin
+
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Diego Sueiro
+Sent: Monday, January 31, 2011 10:53 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Kernel Panics on armv4t with gcc.4.5.1
 
 Folks,
 
-I'm not a kernel and neither a gcc expert developer, and after searching for
-a solution for the last 2 weeks I've decided to appeal to the list.
+I'm not a kernel and neither a gcc expert developer, and after searching fo=
+r a solution for the last 2 weeks I've decided to appeal to the list.
 
-I'm trying to build a kernel image (2.6.32 and 2.6.30) for mini2440 (armv4t)
-with Yocto Project (poky master branch) and I'm facing a strange issue.
+I'm trying to build a kernel image (2.6.32 and 2.6.30) for mini2440 (armv4t=
+) with Yocto Project (poky master branch) and I'm facing a strange issue.
 
-If I compile the kernel with Yocto gcc recipes (gcc 4.5.1) the kernel will
-panic on init (console printed message is attached for kernel 2.6.30 and
-2.6.32).
-But, if I compile the kernel with meta-oe gcc recipes (gcc 4.5) everything
+If I compile the kernel with Yocto gcc recipes (gcc 4.5.1) the kernel will =
+panic on init (console printed message is attached for kernel 2.6.30 and 2.=
+6.32).
+But, if I compile the kernel with meta-oe gcc recipes (gcc 4.5) everything =
 will be ok.
 Just for your reference these is the gcc recipes which I'm using:
-
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-devtools/gcc
-http://git.openembedded.org/cgit.cgi/meta-openembedded/tree/recipes-devtools/gcc
-
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-devtools/g=
+cc
+http://git.openembedded.org/cgit.cgi/meta-openembedded/tree/recipes-devtool=
+s/gcc
 
 
 I've compiled with and without thumb instructions, but the issue remains.
-I've tried to apply the patches gcc-armv4-pass-fix-v4bx-to-ld.patch
-and gcc-arm-volatile-bitfield-fix.patch, but no success.
+I've tried to apply the patches gcc-armv4-pass-fix-v4bx-to-ld.patch and gcc=
+-arm-volatile-bitfield-fix.patch, but no success.
 
 
 
@@ -83,337 +98,325 @@ Diego Sueiro
 
 /*long live rock 'n roll*/
 
---90e6ba61364087ccd8049b28ece2
-Content-Type: text/html; charset=ISO-8859-1
+--_000_9DA5872FEF993D41B7173F58FCF6BE940A5EBA78orsmsx504amrcor_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8"><s=
-pan class=3D"Apple-style-span" style=3D"font-family: arial, sans-serif; fon=
-t-size: 13px; border-collapse: collapse; "><div>Folks,</div><div><br></div>=
-<div>I&#39;m not a kernel and neither a gcc expert developer, and after sea=
-rching for a solution for the last 2 weeks I&#39;ve decided to appeal to th=
-e list.</div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 
-<div><br></div><div>I&#39;m trying to build a kernel image (2.6.32 and 2.6.=
-30) for mini2440 (armv4t) with Yocto Project (poky master branch) and=A0I&#=
-39;m facing a strange issue.</div><div><br></div><div>If I compile the kern=
-el with Yocto gcc recipes (gcc 4.5.1) the kernel will panic on init (consol=
-e printed message is attached for kernel 2.6.30 and 2.6.32).</div>
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dus-ascii">
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.apple-style-span
+	{mso-style-name:apple-style-span;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
 
-<div>But, if I compile the kernel with meta-oe gcc recipes (gcc 4.5) everyt=
-hing will be ok.</div><div>Just for your reference these is the gcc recipes=
- which I&#39;m using:</div><blockquote style=3D"margin-top: 0px; margin-rig=
-ht: 0px; margin-bottom: 0px; margin-left: 40px; border-top-style: none; bor=
-der-right-style: none; border-bottom-style: none; border-left-style: none; =
-border-width: initial; border-color: initial; padding-top: 0px; padding-rig=
-ht: 0px; padding-bottom: 0px; padding-left: 0px; ">
+<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
 
-<div><a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/re=
-cipes-devtools/gcc" target=3D"_blank" style=3D"color: rgb(6, 88, 181); ">ht=
-tp://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-devtools/gcc=
-</a></div>
+<div class=3DWordSection1>
 
-<div><a href=3D"http://git.openembedded.org/cgit.cgi/meta-openembedded/tree=
-/recipes-devtools/gcc" target=3D"_blank" style=3D"color: rgb(6, 88, 181); "=
->http://git.openembedded.org/cgit.cgi/meta-openembedded/tree/recipes-devtoo=
-ls/gcc</a></div>
+<p class=3DMsoNormal><span style=3D'font-size:11.0pt;font-family:"Calibri",=
+"sans-serif";
+color:#1F497D'>Diego,<o:p></o:p></span></p>
 
-</blockquote><div><br></div><div><br></div><div>I&#39;ve compiled with and =
-without thumb instructions, but the issue remains.</div><div>I&#39;ve tried=
- to apply the patches=A0gcc-armv4-pass-fix-v4bx-to-ld.patch and=A0gcc-arm-v=
-olatile-bitfield-fix.patch, but no success.</div>
+<p class=3DMsoNormal><span style=3D'font-size:11.0pt;font-family:"Calibri",=
+"sans-serif";
+color:#1F497D'>&nbsp; Can you try with 4.5.2 gcc from this branch: <a
+href=3D"http://git.pokylinux.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dnitin/=
+khem_gcc_nitin">http://git.pokylinux.org/cgit/cgit.cgi/poky-contrib/log/?h=
+=3Dnitin/khem_gcc_nitin</a><o:p></o:p></span></p>
 
-<div><br></div><div><br></div><div><br></div><div><div>Kind Regards,</div><=
-/div></span><div><br></div><div>--</div>*dS<br>Diego Sueiro<br><br>/*long l=
-ive rock &#39;n roll*/<br>
+<p class=3DMsoNormal><span style=3D'font-size:11.0pt;font-family:"Calibri",=
+"sans-serif";
+color:#1F497D'><o:p>&nbsp;</o:p></span></p>
 
---90e6ba61364087ccd8049b28ece2--
+<p class=3DMsoNormal><span style=3D'font-size:11.0pt;font-family:"Calibri",=
+"sans-serif";
+color:#1F497D'>Thanks,<o:p></o:p></span></p>
 
---90e6ba61364087ccde049b28ece4
-Content-Type: text/plain; charset=US-ASCII; name="oops-2.6.30.txt"
-Content-Disposition: attachment; filename="oops-2.6.30.txt"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_gjlqdfo00
+<p class=3DMsoNormal><span style=3D'font-size:11.0pt;font-family:"Calibri",=
+"sans-serif";
+color:#1F497D'>Nitin<o:p></o:p></span></p>
 
-VkZTOiBNb3VudGVkIHJvb3QgKGpmZnMyIGZpbGVzeXN0ZW0pIG9uIGRldmljZSAzMToyLgpGcmVl
-aW5nIGluaXQgbWVtb3J5OiAxMDRLCkZhaWxlZCB0byBleGVjdXRlIC9saW51eHJjLiAgQXR0ZW1w
-dGluZyBkZWZhdWx0cy4uLgpVbmFibGUgdG8gaGFuZGxlIGtlcm5lbCBwYWdpbmcgcmVxdWVzdCBh
-dCB2aXJ0dWFsIGFkZHJlc3MgMDAxMDAxMDQKcGdkID0gYzM5ODAwMDAKWzAwMTAwMTA0XSAqcGdk
-PTMzOThjMDMxLCAqcHRlPTAwMDAwMDAwLCAqcHB0ZT0wMDAwMDAwMApJbnRlcm5hbCBlcnJvcjog
-T29wczogODE3IFsjMV0KTW9kdWxlcyBsaW5rZWQgaW46CkNQVTogMCAgICBOb3QgdGFpbnRlZCAg
-KDIuNi4zMC40LWJvYXJkY29uICMxKQpQQyBpcyBhdCBnZXRfcGFnZV9mcm9tX2ZyZWVsaXN0KzB4
-MWNjLzB4NDE4CkxSIGlzIGF0IGdldF9wYWdlX2Zyb21fZnJlZWxpc3QrMHhmOC8weDQxOApwYyA6
-IFs8YzAwNjFlZDQ+XSAgICBsciA6IFs8YzAwNjFlMDA+XSAgICBwc3I6IDYwMDAwMDkzCnNwIDog
-YzM4MWRiMTAgIGlwIDogMDAwMDAwMDAgIGZwIDogYzM4MWRiNmMKcjEwOiBjMDQxZTY2MCAgcjkg
-OiBjMDNjMGNiOCAgcjggOiA2MDAwMDAxMwpyNyA6IDAwMDAwMDAxICByNiA6IGMwM2UwOTc0ICBy
-NSA6IGMwM2UwOTk0ICByNCA6IDAwMDAwMDAwCnIzIDogMDAxMDAxMDAgIHIyIDogMDAwMDAwMDAg
-IHIxIDogMDAyMDAyMDAgIHIwIDogMDAwMDAwMDEKRmxhZ3M6IG5aQ3YgIElSUXMgb2ZmICBGSVFz
-IG9uICBNb2RlIFNWQ18zMiAgSVNBIEFSTSAgU2VnbWVudCB1c2VyCkNvbnRyb2w6IGMwMDA3MTdm
-ICBUYWJsZTogMzM5ODAwMDAgIERBQzogMDAwMDAwMTUKUHJvY2VzcyBpbml0IChwaWQ6IDEsIHN0
-YWNrIGxpbWl0ID0gMHhjMzgxYzI2OCkKU3RhY2s6ICgweGMzODFkYjEwIHRvIDB4YzM4MWUwMDAp
-CmRiMDA6ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAwMDAwMDQ0IDAwMDAw
-MDAwIGY3NzY4MmVjIDAwMDAwMDAwIApkYjIwOiAwMDAwMDAwMCAwMDAwMDAwMCBjMDNlMGYwMCAw
-MDAwMDAwMCAwMDAyODRkMCAwMDAwMDAwMCBjMDNlMDk3NCBjMDNlMDk3NCAKZGI0MDogYzAwMmYz
-YTAgYzM4MWEwMDAgMDAwMDAwMDAgMDAwMDg0ZDAgYzM4MWMwMDAgYzAzZTBlZmMgMDAwMDAwMDAg
-MDAwMDAwMDAgCmRiNjA6IGMzODFkYmRjIGMzODFkYjcwIGMwMDYyMWM4IGMwMDYxZDE4IDAwMDAw
-MDAwIDAwMDAwMDQ0IGMwNDAzMjQ4IDAwMDI4NGQwIApkYjgwOiAwMDAwMDAwMSBjMzgxYzAwMCBj
-MzgxZGI4OCAwMDAwMDQwMCBjMzgxZGJiNCAwMDAwMDAwMCBjMDQwMjMwYyAwMDAwMDAwMCAKZGJh
-MDogMDAwMDAwMTAgYzA0MDIyZTAgMDAwMDAwMDAgYzA0MDIzMGMgYzM4MWRiZmMgYzM5ODEwMDAg
-YzM5MzUwMDAgYzNhMDUxNjAgCmRiYzA6IGMzODFjMDAwIGMzOTgxMDAwIGMzOTgwMDAwIDAwMDAw
-MjAwIGMzODFkYmZjIGMzODFkYmUwIGMwMDZlZTUwIGMwMDYyMTMwIApkYmUwOiA0MDAyNTAwMCBj
-MzgxYTAwMCBjM2EwNTE2MCBjMzgxYzAwMCBjMzgxZGM2NCBjMzgxZGMwMCBjMDA3MTQwNCBjMDA2
-ZWUzOCAKZGMwMDogYzM4MWRjMmMgYzM4MWRjMTAgYzAwMjIwNDggYzAwMzhiZGMgMDAwMDA4MDAg
-ZmZmZmZmZmYgZjQwMDAwMDAgMDAwMDQwMDAgCmRjMjA6IGMzOTM1MDAwIGMzODFkYzMwIGMwMDIy
-OWU0IGMwMDIyMDEwIGMwNDFlNTYwIDAwMDAwMDgwIDAwMDAwMDAwIGMzOTM1MDAwIApkYzQwOiA0
-MDAyNTg3YyBjMzgxZGRmMCBjMzgxYTAwMCBjM2EwNTE2MCAwMDAwMDgwNSBjMzkzNTAzNCBjMzgx
-ZGQxYyBjMzgxZGM2OCAKZGM2MDogYzAwMjgxOTQgYzAwNzBiYTAgNDAwMjUwMDAgMDAwMDA4MDAg
-YzM5M2Q3ODAgMDAwMDAwMzQgMDAwMDAwMDAgYzM0MDhhODAgCmRjODA6IGMzODFkZDNjIGMzODFk
-YzkwIGMwMDVlM2JjIGMwMDkyMmM4IDAwMDAwMDAxIGMzODFjMDAwIGMzODFkY2JjIGMzODFkY2E4
-IApkY2EwOiAwMDAxZGQ1YyAwMDAwMDAwMCAwMDAwMDAwMCAwMDAwMDBjMCAwMDAwMDAwMCBjMzgx
-ZGQ5OCAwMDAwMDAwMCAwMDAwMDAwMCAKZGNjMDogMDAwMDAwMDAgMDAwMDAwMDEgMDAwMDAwMDAg
-MDAwMDAwMDAgYzM4MWRkMTQgYzM4MWRjZTAgYzAxNTFmNWMgYzAxNTFjOTAgCmRjZTA6IGMzYTA1
-MTg0IGMzYTA1MTg0IGMzODFkZDE0IGMzYTA1MTYwIGMzYTA1MTg0IDAwMDAwODA1IDQwMDI1ODdj
-IGMzODFkZGYwIApkZDAwOiAwMDAwMDAwNSBjMDNiYTY2NCAyMDAwMDAxMyA0MDAwMDAwMCBjMzgx
-ZGQzYyBjMzgxZGQyMCBjMDAyODM1YyBjMDAyODAwNCAKZGQyMDogMDAwMDAwMDUgMDAwMDA4MDUg
-NDAwMjU4N2MgYzM4MWRkZjAgYzM4MWRkZWMgYzM4MWRkNDAgYzAwMjIxYmMgYzAwMjgyZjggCmRk
-NDA6IDQwMDI0MDAwIGMzOTM1MDAwIGMzODFkZGM0IGMzODFkZDU4IGMwMDc0ODFjIGMwMDczN2Q0
-IGMzYTA1MTIwIDAwMDAwMDAwIApkZDYwOiBjMzkzZDc4MCAwMDAwMDAxYyAwMDAwMDAwMCBjM2Ew
-NTE2MCBjM2EwNTAwMCBjMDNjMGRkYyBjMzQwODllOCAwMDAwMDgxMiAKZGQ4MDogYzM5M2Q3ODAg
-YzM4MWMwMDAgYzM5M2Q3ODAgYzNhMDUxMjAgYzNhMDUxMjQgYzNhMDUxMDggYzM4MWRkYzQgMDAw
-MDAwMDcgCmRkYTA6IGMzODFjMDAwIGMzOTNkNzgwIDAwMDAyMDAwIGMzOTM1MDAwIDAwMDAwODEy
-IDAwMDAwMDAyIGMzODFkZTBjIGMzODFkZGM4IApkZGMwOiBjMDA3NGNmOCBjMDA3NDY3YyAwODEw
-MDg3NyBmZmZmZmZmZiBjMzgxZGUyNCAwMDAwMDAwMCBjMzgxZGY1MCBjMzgxYzAwMCAKZGRlMDog
-YzM4MWRlNGMgYzM4MWRkZjAgYzAwMjI5YTAgYzAwMjIxOTggNDAwMjU4N2MgMDAwMDA3N2MgMDAw
-MDAwMDAgODEwMjVmZmYgCmRlMDA6IGMzOTNkNzAwIGMzODM4ZTAwIDAwMDAwMDAwIGMzODFkZjUw
-IGMzODFjMDAwIGMzOTNkNzgwIDQwMDAwMDAwIGMzODFkZTRjIApkZTIwOiAwMDAwMDAwMCBjMzgx
-ZGUzOCBjMDBiM2I3MCBjMDE0YzdjOCAyMDAwMDAxMyBmZmZmZmZmZiAwMDAwMDc4NCBjMDBiM2I3
-MCAKZGU0MDogYzM4MWRlZGMgYzM4MWRlNTAgYzAwYjRhNDggYzAwYjNiMmMgMDAwMDA4MTIgMDAw
-MDAwMDAgMDAwMDAwMGIgMDAwMTZjMTQgCmRlNjA6IDAwMDAwMDAxIDAwMDE2NTNjIDAwMDA4MDAw
-IDQwMDI1ODdjIDQwMDI1OTYwIDAwMDBlNTNjIDAwMDA4MDAwIGMzOTNkNzAwIApkZTgwOiAwMDAw
-MDAwMCAwMDAxNjlmYyAwMDAwMDAwMCBjMzk4NDQ4MCBjMzk4NmZjMCBjMzkzZDczNCAwMDAwMDAw
-NiBjMzgzOGYwMCAKZGVhMDogYzM4MzhlMDAgYzAzNWM2YzAgMDAwMDAwMDAgYmVmZmZmZDQgYzAz
-ZTE0NDAgYzAzYzE1YmMgYzAzYzEyMDggYzM4MzhlMDAgCmRlYzA6IGZmZmZmZmY4IDAwMDAwMDAw
-IGMzODFkZjUwIGMzODFjMDAwIGMzODFkZjE0IGMzODFkZWUwIGMwMDg0YzY0IGMwMGIzZjRjIApk
-ZWUwOiBiZWZmZjAwMCAwMDAwMDAwMiBjMDNiYTIyOCAwMDAwMDAwMCAwMDAwMDAwMCBjMzgzOGUw
-MCBjMzgxZGY1MCBjMzgxYzAwMCAKZGYwMDogYzAzYmEyMjggYzAzYmExYTAgYzM4MWRmNGMgYzM4
-MWRmMTggYzAwODVkYjggYzAwODRiYzAgYzM4MWRmOWMgMDAwMDAwMDAgCmRmMjA6IDAwMDAwMDAw
-IGMwM2JhMWEwIGMzODFkZjUwIGMwMzVjNmMwIGMwM2JhMjI4IDAwMDAwMDAwIDAwMDAwMDAwIDAw
-MDAwMDAwIApkZjQwOiBjMzgxZGZiNCBjMzgxZGY1MCBjMDAyNWI3MCBjMDA4NWJiNCAwMDAwMDAw
-MCAwMDAwMDAwMCAwMDAwMDAwMCAwMDAwMDAwMCAKZGY2MDogMDAwMDAwMDAgMDAwMDAwMDAgMDAw
-MDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgCmRmODA6
-IDAwMDAwMDAwIDAwMDAwMDAwIDAwMDAwMDAwIDAwMDAwMDAwIDAwMDAwMDAwIDAwMDAwMDAwIGMw
-M2UxMzgwIGMwMDFkMWY4IApkZmEwOiAwMDAwMDAwMCAwMDAwMDAwMCBjMzgxZGZjNCBjMzgxZGZi
-OCBjMDAyMjI1YyBjMDAyNWI0MCBjMzgxZGZkYyBjMzgxZGZjOCAKZGZjMDogYzAwMjIyZWMgYzAw
-MjIyNTAgYzM0MDEwODAgYzAzZTEzODAgYzM4MWRmZjQgYzM4MWRmZTAgYzAwMDg5YzggYzAwMjIy
-NzQgCmRmZTA6IDAwMDAwMDAwIDAwMDAwMDAwIDAwMDAwMDAwIGMzODFkZmY4IGMwMDM2NWE4IGMw
-MDA4OTE4IDQwMDAwNDQyIDAwMDA0MDAxIApCYWNrdHJhY2U6IApbPGMwMDYxZDA4Pl0gKGdldF9w
-YWdlX2Zyb21fZnJlZWxpc3QrMHgwLzB4NDE4KSBmcm9tIFs8YzAwNjIxYzg+XSAoX19hbGxvY19w
-YWdlc19pbnRlcm5hbCsweGE4LzB4NDI0KQpbPGMwMDYyMTIwPl0gKF9fYWxsb2NfcGFnZXNfaW50
-ZXJuYWwrMHgwLzB4NDI0KSBmcm9tIFs8YzAwNmVlNTA+XSAoX19wdGVfYWxsb2MrMHgyOC8weDE3
-OCkKWzxjMDA2ZWUyOD5dIChfX3B0ZV9hbGxvYysweDAvMHgxNzgpIGZyb20gWzxjMDA3MTQwND5d
-IChoYW5kbGVfbW1fZmF1bHQrMHg4NzQvMHhhOGMpCiByNzpjMzgxYzAwMCByNjpjM2EwNTE2MCBy
-NTpjMzgxYTAwMCByNDo0MDAyNTAwMApbPGMwMDcwYjkwPl0gKGhhbmRsZV9tbV9mYXVsdCsweDAv
-MHhhOGMpIGZyb20gWzxjMDAyODE5ND5dIChkb19wYWdlX2ZhdWx0KzB4MWEwLzB4MjY4KQpbPGMw
-MDI3ZmY0Pl0gKGRvX3BhZ2VfZmF1bHQrMHgwLzB4MjY4KSBmcm9tIFs8YzAwMjgzNWM+XSAoZG9f
-dHJhbnNsYXRpb25fZmF1bHQrMHg3NC8weDdjKQpbPGMwMDI4MmU4Pl0gKGRvX3RyYW5zbGF0aW9u
-X2ZhdWx0KzB4MC8weDdjKSBmcm9tIFs8YzAwMjIxYmM+XSAoZG9fRGF0YUFib3J0KzB4MzQvMHg5
-YykKIHI2OmMzODFkZGYwIHI1OjQwMDI1ODdjIHI0OjAwMDAwODA1IHIzOjAwMDAwMDA1Cls8YzAw
-MjIxODg+XSAoZG9fRGF0YUFib3J0KzB4MC8weDljKSBmcm9tIFs8YzAwMjI5YTA+XSAoX19kYWJ0
-X3N2YysweDQwLzB4NjApCkV4Y2VwdGlvbiBzdGFjaygweGMzODFkZGYwIHRvIDB4YzM4MWRlMzgp
-CmRkZTA6ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDQwMDI1ODdjIDAwMDAw
-NzdjIDAwMDAwMDAwIDgxMDI1ZmZmIApkZTAwOiBjMzkzZDcwMCBjMzgzOGUwMCAwMDAwMDAwMCBj
-MzgxZGY1MCBjMzgxYzAwMCBjMzkzZDc4MCA0MDAwMDAwMCBjMzgxZGU0YyAKZGUyMDogMDAwMDAw
-MDAgYzM4MWRlMzggYzAwYjNiNzAgYzAxNGM3YzggMjAwMDAwMTMgZmZmZmZmZmYgICAgICAgICAg
-ICAgICAgICAgCiByODpjMzgxYzAwMCByNzpjMzgxZGY1MCByNjowMDAwMDAwMCByNTpjMzgxZGUy
-NCByNDpmZmZmZmZmZgpbPGMwMGIzYjFjPl0gKHBhZHplcm8rMHgwLzB4NjApIGZyb20gWzxjMDBi
-NGE0OD5dIChsb2FkX2VsZl9iaW5hcnkrMHhiMGMvMHgxMWU4KQpbPGMwMGIzZjNjPl0gKGxvYWRf
-ZWxmX2JpbmFyeSsweDAvMHgxMWU4KSBmcm9tIFs8YzAwODRjNjQ+XSAoc2VhcmNoX2JpbmFyeV9o
-YW5kbGVyKzB4YjQvMHgyNTApCls8YzAwODRiYjA+XSAoc2VhcmNoX2JpbmFyeV9oYW5kbGVyKzB4
-MC8weDI1MCkgZnJvbSBbPGMwMDg1ZGI4Pl0gKGRvX2V4ZWN2ZSsweDIxNC8weDI5MCkKWzxjMDA4
-NWJhND5dIChkb19leGVjdmUrMHgwLzB4MjkwKSBmcm9tIFs8YzAwMjViNzA+XSAoa2VybmVsX2V4
-ZWN2ZSsweDQwLzB4OGMpCls8YzAwMjViMzA+XSAoa2VybmVsX2V4ZWN2ZSsweDAvMHg4YykgZnJv
-bSBbPGMwMDIyMjVjPl0gKHJ1bl9pbml0X3Byb2Nlc3MrMHgxYy8weDI0KQogcjc6MDAwMDAwMDAg
-cjY6MDAwMDAwMDAgcjU6YzAwMWQxZjggcjQ6YzAzZTEzODAKWzxjMDAyMjI0MD5dIChydW5faW5p
-dF9wcm9jZXNzKzB4MC8weDI0KSBmcm9tIFs8YzAwMjIyZWM+XSAoaW5pdF9wb3N0KzB4ODgvMHgx
-MGMpCls8YzAwMjIyNjQ+XSAoaW5pdF9wb3N0KzB4MC8weDEwYykgZnJvbSBbPGMwMDA4OWM4Pl0g
-KGtlcm5lbF9pbml0KzB4YzAvMHhlOCkKIHI0OmMwM2UxMzgwIHIzOmMzNDAxMDgwCls8YzAwMDg5
-MDg+XSAoa2VybmVsX2luaXQrMHgwLzB4ZTgpIGZyb20gWzxjMDAzNjVhOD5dIChkb19leGl0KzB4
-MC8weDYzOCkKIHI1OjAwMDAwMDAwIHI0OjAwMDAwMDAwCkNvZGU6IGU1ODYwMDE0IGUyNDNhMDE4
-IGU1OWExMDFjIGU1OWEzMDE4IChlNTgzMTAwNCkgCi0tLVsgZW5kIHRyYWNlIDcwNGNiYmNhZmU3
-Yzc5MzUgXS0tLQpLZXJuZWwgcGFuaWMgLSBub3Qgc3luY2luZzogQXR0ZW1wdGVkIHRvIGtpbGwg
-aW5pdCEKQmFja3RyYWNlOiAKWzxjMDAyNjU5OD5dIChkdW1wX2JhY2t0cmFjZSsweDAvMHgxMGMp
-IGZyb20gWzxjMDJjODRkOD5dIChkdW1wX3N0YWNrKzB4MTgvMHgxYykKIHI2OmMwMDYxZWQ0IHI1
-OjAwMDAwMDBiIHI0OmMwM2UxOWMwIHIzOmZmZmZmZmZmCls8YzAyYzg0YzA+XSAoZHVtcF9zdGFj
-aysweDAvMHgxYykgZnJvbSBbPGMwMmM4NTI4Pl0gKHBhbmljKzB4NGMvMHgxMTApCls8YzAyYzg0
-ZGM+XSAocGFuaWMrMHgwLzB4MTEwKSBmcm9tIFs8YzAwMzZiYjQ+XSAoZG9fZXhpdCsweDYwYy8w
-eDYzOCkKIHIzOmMwM2JlNmY0IHIyOmMzODFkNzk0IHIxOmMzODFkOGMwIHIwOmMwMzVmYWU4CiBy
-NzowMDAwMDAwMApbPGMwMDM2NWE4Pl0gKGRvX2V4aXQrMHgwLzB4NjM4KSBmcm9tIFs8YzAwMjY5
-MzQ+XSAoZGllKzB4MWM0LzB4MjE0KQogcjc6MDAwMDAwMDAKWzxjMDAyNjc3MD5dIChkaWUrMHgw
-LzB4MjE0KSBmcm9tIFs8YzAwMjdmZTQ+XSAoX19kb19rZXJuZWxfZmF1bHQrMHg2Yy8weDdjKQog
-cjc6YzM5MzUwMDAgcjM6ZmZmZmZmZmYKWzxjMDAyN2Y3OD5dIChfX2RvX2tlcm5lbF9mYXVsdCsw
-eDAvMHg3YykgZnJvbSBbPGMwMDI4MTM4Pl0gKGRvX3BhZ2VfZmF1bHQrMHgxNDQvMHgyNjgpCiBy
-NzpjMzgxYTAwMCByNjpjMzgxZGFjOCByNTowMDEwMDEwNCByNDpjMzkzNTAwMApbPGMwMDI3ZmY0
-Pl0gKGRvX3BhZ2VfZmF1bHQrMHgwLzB4MjY4KSBmcm9tIFs8YzAwMjIxYmM+XSAoZG9fRGF0YUFi
-b3J0KzB4MzQvMHg5YykKWzxjMDAyMjE4OD5dIChkb19EYXRhQWJvcnQrMHgwLzB4OWMpIGZyb20g
-WzxjMDAyMjlhMD5dIChfX2RhYnRfc3ZjKzB4NDAvMHg2MCkKRXhjZXB0aW9uIHN0YWNrKDB4YzM4
-MWRhYzggdG8gMHhjMzgxZGIxMCkKZGFjMDogICAgICAgICAgICAgICAgICAgMDAwMDAwMDEgMDAy
-MDAyMDAgMDAwMDAwMDAgMDAxMDAxMDAgMDAwMDAwMDAgYzAzZTA5OTQgCmRhZTA6IGMwM2UwOTc0
-IDAwMDAwMDAxIDYwMDAwMDEzIGMwM2MwY2I4IGMwNDFlNjYwIGMzODFkYjZjIDAwMDAwMDAwIGMz
-ODFkYjEwIApkYjAwOiBjMDA2MWUwMCBjMDA2MWVkNCA2MDAwMDA5MyBmZmZmZmZmZiAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKIHI4OjYwMDAwMDEzIHI3OjAwMDAwMDAxIHI2
-OmMwM2UwOTc0IHI1OmMzODFkYWZjIHI0OmZmZmZmZmZmCls8YzAwNjFkMDg+XSAoZ2V0X3BhZ2Vf
-ZnJvbV9mcmVlbGlzdCsweDAvMHg0MTgpIGZyb20gWzxjMDA2MjFjOD5dIChfX2FsbG9jX3BhZ2Vz
-X2ludGVybmFsKzB4YTgvMHg0MjQpCls8YzAwNjIxMjA+XSAoX19hbGxvY19wYWdlc19pbnRlcm5h
-bCsweDAvMHg0MjQpIGZyb20gWzxjMDA2ZWU1MD5dIChfX3B0ZV9hbGxvYysweDI4LzB4MTc4KQpb
-PGMwMDZlZTI4Pl0gKF9fcHRlX2FsbG9jKzB4MC8weDE3OCkgZnJvbSBbPGMwMDcxNDA0Pl0gKGhh
-bmRsZV9tbV9mYXVsdCsweDg3NC8weGE4YykKIHI3OmMzODFjMDAwIHI2OmMzYTA1MTYwIHI1OmMz
-ODFhMDAwIHI0OjQwMDI1MDAwCls8YzAwNzBiOTA+XSAoaGFuZGxlX21tX2ZhdWx0KzB4MC8weGE4
-YykgZnJvbSBbPGMwMDI4MTk0Pl0gKGRvX3BhZ2VfZmF1bHQrMHgxYTAvMHgyNjgpCls8YzAwMjdm
-ZjQ+XSAoZG9fcGFnZV9mYXVsdCsweDAvMHgyNjgpIGZyb20gWzxjMDAyODM1Yz5dIChkb190cmFu
-c2xhdGlvbl9mYXVsdCsweDc0LzB4N2MpCls8YzAwMjgyZTg+XSAoZG9fdHJhbnNsYXRpb25fZmF1
-bHQrMHgwLzB4N2MpIGZyb20gWzxjMDAyMjFiYz5dIChkb19EYXRhQWJvcnQrMHgzNC8weDljKQog
-cjY6YzM4MWRkZjAgcjU6NDAwMjU4N2MgcjQ6MDAwMDA4MDUgcjM6MDAwMDAwMDUKWzxjMDAyMjE4
-OD5dIChkb19EYXRhQWJvcnQrMHgwLzB4OWMpIGZyb20gWzxjMDAyMjlhMD5dIChfX2RhYnRfc3Zj
-KzB4NDAvMHg2MCkKRXhjZXB0aW9uIHN0YWNrKDB4YzM4MWRkZjAgdG8gMHhjMzgxZGUzOCkKZGRl
-MDogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNDAwMjU4N2MgMDAwMDA3N2Mg
-MDAwMDAwMDAgODEwMjVmZmYgCmRlMDA6IGMzOTNkNzAwIGMzODM4ZTAwIDAwMDAwMDAwIGMzODFk
-ZjUwIGMzODFjMDAwIGMzOTNkNzgwIDQwMDAwMDAwIGMzODFkZTRjIApkZTIwOiAwMDAwMDAwMCBj
-MzgxZGUzOCBjMDBiM2I3MCBjMDE0YzdjOCAyMDAwMDAxMyBmZmZmZmZmZiAgICAgICAgICAgICAg
-ICAgICAKIHI4OmMzODFjMDAwIHI3OmMzODFkZjUwIHI2OjAwMDAwMDAwIHI1OmMzODFkZTI0IHI0
-OmZmZmZmZmZmCls8YzAwYjNiMWM+XSAocGFkemVybysweDAvMHg2MCkgZnJvbSBbPGMwMGI0YTQ4
-Pl0gKGxvYWRfZWxmX2JpbmFyeSsweGIwYy8weDExZTgpCls8YzAwYjNmM2M+XSAobG9hZF9lbGZf
-YmluYXJ5KzB4MC8weDExZTgpIGZyb20gWzxjMDA4NGM2ND5dIChzZWFyY2hfYmluYXJ5X2hhbmRs
-ZXIrMHhiNC8weDI1MCkKWzxjMDA4NGJiMD5dIChzZWFyY2hfYmluYXJ5X2hhbmRsZXIrMHgwLzB4
-MjUwKSBmcm9tIFs8YzAwODVkYjg+XSAoZG9fZXhlY3ZlKzB4MjE0LzB4MjkwKQpbPGMwMDg1YmE0
-Pl0gKGRvX2V4ZWN2ZSsweDAvMHgyOTApIGZyb20gWzxjMDAyNWI3MD5dIChrZXJuZWxfZXhlY3Zl
-KzB4NDAvMHg4YykKWzxjMDAyNWIzMD5dIChrZXJuZWxfZXhlY3ZlKzB4MC8weDhjKSBmcm9tIFs8
-YzAwMjIyNWM+XSAocnVuX2luaXRfcHJvY2VzcysweDFjLzB4MjQpCiByNzowMDAwMDAwMCByNjow
-MDAwMDAwMCByNTpjMDAxZDFmOCByNDpjMDNlMTM4MApbPGMwMDIyMjQwPl0gKHJ1bl9pbml0X3By
-b2Nlc3MrMHgwLzB4MjQpIGZyb20gWzxjMDAyMjJlYz5dIChpbml0X3Bvc3QrMHg4OC8weDEwYykK
-WzxjMDAyMjI2ND5dIChpbml0X3Bvc3QrMHgwLzB4MTBjKSBmcm9tIFs8YzAwMDg5Yzg+XSAoa2Vy
-bmVsX2luaXQrMHhjMC8weGU4KQogcjQ6YzAzZTEzODAgcjM6YzM0MDEwODAKWzxjMDAwODkwOD5d
-IChrZXJuZWxfaW5pdCsweDAvMHhlOCkgZnJvbSBbPGMwMDM2NWE4Pl0gKGRvX2V4aXQrMHgwLzB4
-NjM4KQogcjU6MDAwMDAwMDAgcjQ6MDAwMDAwMDAKCg==
+<p class=3DMsoNormal><span style=3D'font-size:11.0pt;font-family:"Calibri",=
+"sans-serif";
+color:#1F497D'><o:p>&nbsp;</o:p></span></p>
 
---90e6ba61364087ccde049b28ece4
-Content-Type: text/plain; charset=US-ASCII; name="oops-2.6.32.txt"
-Content-Disposition: attachment; filename="oops-2.6.32.txt"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_gjlqdnd41
+<p class=3DMsoNormal><span style=3D'font-size:11.0pt;font-family:"Calibri",=
+"sans-serif";
+color:#1F497D'><o:p>&nbsp;</o:p></span></p>
 
-VW5hYmxlIHRvIGhhbmRsZSBrZXJuZWwgcGFnaW5nIHJlcXVlc3QgYXQgdmlydHVhbCBhZGRyZXNz
-IDAwMTAwMTA0CnBnZCA9IGMzYTk0MDAwClswMDEwMDEwNF0gKnBnZD0zM2E5OTAzMSwgKnB0ZT0w
-MDAwMDAwMCwgKnBwdGU9MDAwMDAwMDAKSW50ZXJuYWwgZXJyb3I6IE9vcHM6IDgxNyBbIzFdCmxh
-c3Qgc3lzZnMgZmlsZTogCk1vZHVsZXMgbGlua2VkIGluOgpDUFU6IDAgICAgTm90IHRhaW50ZWQg
-ICgyLjYuMzIuMTEgIzEpClBDIGlzIGF0IGdldF9wYWdlX2Zyb21fZnJlZWxpc3QrMHgyMDQvMHg0
-NTgKTFIgaXMgYXQgZ2V0X3BhZ2VfZnJvbV9mcmVlbGlzdCsweGE0LzB4NDU4CnBjIDogWzxjMDA2
-OWZlND5dICAgIGxyIDogWzxjMDA2OWU4ND5dICAgIHBzcjogMjAwMDAwOTMKc3AgOiBjMzgyM2Nm
-MCAgaXAgOiAwMDIwMDIwMCAgZnAgOiAwMDAyMDFkYQpyMTA6IGMwM2NlNjM0ICByOSA6IGMzODIy
-MDAwICByOCA6IGMwNDExNTIwCnI3IDogNjAwMDAwMTMgIHI2IDogYzM4MjIwMDAgIHI1IDogMDAw
-MDAwMDAgIHI0IDogYzAzY2U2MDQKcjMgOiAwMDIwMDIwMCAgcjIgOiAwMDEwMDEwMCAgcjEgOiAw
-MDAwMDAwMSAgcjAgOiAwMDAwMDAwMQpGbGFnczogbnpDdiAgSVJRcyBvZmYgIEZJUXMgb24gIE1v
-ZGUgU1ZDXzMyICBJU0EgQVJNICBTZWdtZW50IHVzZXIKQ29udHJvbDogYzAwMDcxN2YgIFRhYmxl
-OiAzM2E5NDAwMCAgREFDOiAwMDAwMDAxNQpQcm9jZXNzIGluaXQgKHBpZDogMSwgc3RhY2sgbGlt
-aXQgPSAweGMzODIyMjcwKQpTdGFjazogKDB4YzM4MjNjZjAgdG8gMHhjMzgyNDAwMCkKM2NlMDog
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMDAwMDAwNDEgMDAwMDAwMDAgMDAw
-MDAwMDAgMDAwMDAwMDAKM2QwMDogMDAwMDAwMDEgYzAzY2ViZjggMDAwMDAwMDEgZmZmZmZmZmYg
-MDAwMDAwMDAgYzAzY2U2MmMgMDAwMDAwMDAgMDAwMDAwMDAKM2QyMDogMDAwMDAwMjggMDAwMDAw
-MDAgMDAwMDAwMDAgYzAzY2U2MDQgMDAwMDAwMDAgMDAwMjAxZGEgMDAwMDAwMDAgYzAzY2ViZjQK
-M2Q0MDogYzAzY2U2MDQgMDAzZmZmZmYgMDAwMDAwMDEgYzNhMjI4ODAgYzM0MTRiODQgYzAwNmEz
-MWMgMDAwMDAwMDEgMDAwMDAwNDEKM2Q2MDogYzAzY2U2MDQgMDAwMDAwMDIgMDAwMDAwMDAgMDAw
-MDAwMDIgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMjAxZGEKM2Q4MDogYzAzY2ViZjgg
-MDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAw
-MDAwMDAKM2RhMDogMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgYzAzY2U2MDQgMDAwMDAwMDAg
-MDAwMDAwMDAgYzM0MTRiODAgMDAwMDAwMDQKM2RjMDogMDAwMDAwMDQgMDAwMDAwMjAgMDAwMDAw
-MWQgYzNhMjI4ODAgYzM0MTRiODQgYzAwNmJmZTggYzM4MjNlMWMgMDAwMDAwMjAKM2RlMDogYzM4
-MjNkZTAgYzM4MjNkZTAgYzM4MjNlMWMgYzNhMjI4ODAgMDAwMDAwMDAgMDAwMDAwMDQgYzM0MTRi
-ODAgYzNhMjI4YzAKM2UwMDogYzM4MjNlNjAgYzNhOTAxMDggYzM0MTRhZTggYzAwNmMzZDQgMDAw
-MDAwMDAgYzM0MTRiODAgYzNhMjI4ODAgYzAwNjU4OTAKM2UyMDogMDAwMDAwMjAgMDAwMDAwMDAg
-MDAwMDAwMDAgYzM0MTRiODAgMDAwMDAwMDAgYzNhOTAxMDggYzNhOTAxMDggYzNhMmQwMDAKM2U0
-MDogMDAwMDAwMDAgMDAwMDAwMDAgYzNhOTUwMDAgYzNhOWE4MTAgNDAwMDQwMDAgYzAwNzY3MmMg
-MDAwMDAwMDAgYzNhOWE4MDAKM2U2MDogMDAwMDAwMDAgMDAwMDAwMDQgNDAwMDQwMDAgMDAwMDAw
-MDAgYzM4MjIwMDAgNDAwMDQ1YjQgYzNhOTAxMDggNDAwMDQwMDAKM2U4MDogMDAwMDAwMDAgYzNh
-MmQwMDAgMDAwMDAyMDAgYzNhOWE4MTAgYzNhOTQwMDAgYzAwNzkwODQgMDAwMDAwMDQgMDAwMDAw
-MDAKM2VhMDogMDAwMDAwMDAgMDAwMDAwMDAgYzNhMjI3MDAgMDAwMDAwMDAgYzNhOTUwMDAgMDAw
-MDAwMTAgMDAwMDAwMDQgMDAwMDAwMDAKM2VjMDogMDAwMDAwMDAgNDAwMDQ1YjQgYzM4MjAwMDAg
-YzM4MjNmYjAgYzNhMmQwMDAgODAwMDAwMDUgYzNhOTAxMDggYzNhMmQwMzQKM2VlMDogMDAwMDAw
-MDAgYzAwMmU1ZGMgNDAwMDQ1YjQgODAwMDAwMDUgMDAwMDAwMDUgMDAwMDAwMDUgNDAwMDQ1YjQg
-YzM4MjNmYjAKM2YwMDogYzAyYjcyNWMgMDAwMDAwMDAgMDAwMjQ3ZDQgYzAwMjgyYjQgYzA0MDg0
-ZTAgYzM5YjY1MDAgZmZmZmZmZjggYzAzYjMxNjQKM2YyMDogMDAwMDAwMDAgMDAwMDAwMDIgYzM4
-MjNmODAgYzAzYjJjNjAgMDAwMDAwMDEgYzM4MjAwMDAgYzM4MjAwMDAgMDAwMDAwMDAKM2Y0MDog
-MDAwMDAwMDAgYjQxMjFjYmIgYzNhOTIwMWMgYzM4MjAwMDAgMDAwMDAwMTcgYzM4MjAwMDAgMDAw
-MDAwMDAgYzAwNTEzNzAKM2Y2MDogYzAzYWRkZTggYzM4MjIwMDAgYzM4MjNmYWMgYzAyYjUxYzAg
-MDAwMDAwMDAgYzM4MjNmYjAgMDAwMDE3MGQgMDAwMDAwMDAKM2Y4MDogMDAzODMwOTMgMDAwMDAw
-MDAgMDAwMDAwMDAgYzM4MjNmODAgMDAwMDFmYjAgYzM4MjIwMDAgZmZmZmZmZmYgMDAwMDAwMDAK
-M2ZhMDogMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgYzAwMjhlMjAgYmVlMDZmMTAgYmVlMDZm
-ZDQgMDAwMDAwMDAgMDAwMDAwMDAKM2ZjMDogMDAwMDA5NDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAw
-MDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMjQ3ZDQgMDAwMDAwMDAKM2ZlMDogMDAwMDAwMDAg
-YmVlMDZmMTAgNDAwMDA3YTAgNDAwMDQ1YjQgMDAwMDAwMTAgZmZmZmZmZmYgMzNjYzMzY2MgMzNj
-YzMzY2MKWzxjMDA2OWZlND5dIChnZXRfcGFnZV9mcm9tX2ZyZWVsaXN0KzB4MjA0LzB4NDU4KSBm
-cm9tIFs8YzAwNmEzMWM+XSAoX19hbGxvY19wYWdlc19ub2RlbWFzaysweGU0LzB4NTE4KQpbPGMw
-MDZhMzFjPl0gKF9fYWxsb2NfcGFnZXNfbm9kZW1hc2srMHhlNC8weDUxOCkgZnJvbSBbPGMwMDZi
-ZmU4Pl0gKF9fZG9fcGFnZV9jYWNoZV9yZWFkYWhlYWQrMHhhNC8weDFlYykKWzxjMDA2YmZlOD5d
-IChfX2RvX3BhZ2VfY2FjaGVfcmVhZGFoZWFkKzB4YTQvMHgxZWMpIGZyb20gWzxjMDA2YzNkND5d
-IChyYV9zdWJtaXQrMHgyMC8weDI0KQpbPGMwMDZjM2Q0Pl0gKHJhX3N1Ym1pdCsweDIwLzB4MjQp
-IGZyb20gWzxjMDA2NTg5MD5dIChmaWxlbWFwX2ZhdWx0KzB4MWFjLzB4Mzc4KQpbPGMwMDY1ODkw
-Pl0gKGZpbGVtYXBfZmF1bHQrMHgxYWMvMHgzNzgpIGZyb20gWzxjMDA3NjcyYz5dIChfX2RvX2Zh
-dWx0KzB4NTAvMHgzYWMpCls8YzAwNzY3MmM+XSAoX19kb19mYXVsdCsweDUwLzB4M2FjKSBmcm9t
-IFs8YzAwNzkwODQ+XSAoaGFuZGxlX21tX2ZhdWx0KzB4MjQ4LzB4NTc4KQpbPGMwMDc5MDg0Pl0g
-KGhhbmRsZV9tbV9mYXVsdCsweDI0OC8weDU3OCkgZnJvbSBbPGMwMDJlNWRjPl0gKGRvX3BhZ2Vf
-ZmF1bHQrMHhkYy8weDFjOCkKWzxjMDAyZTVkYz5dIChkb19wYWdlX2ZhdWx0KzB4ZGMvMHgxYzgp
-IGZyb20gWzxjMDAyODJiND5dIChkb19QcmVmZXRjaEFib3J0KzB4MzAvMHg5OCkKWzxjMDAyODJi
-ND5dIChkb19QcmVmZXRjaEFib3J0KzB4MzAvMHg5OCkgZnJvbSBbPGMwMDI4ZTIwPl0gKHJldF9m
-cm9tX2V4Y2VwdGlvbisweDAvMHgxMCkKRXhjZXB0aW9uIHN0YWNrKDB4YzM4MjNmYjAgdG8gMHhj
-MzgyM2ZmOCkKM2ZhMDogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYmVlMDZm
-MTAgYmVlMDZmZDQgMDAwMDAwMDAgMDAwMDAwMDAKM2ZjMDogMDAwMDA5NDAgMDAwMDAwMDAgMDAw
-MDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMjQ3ZDQgMDAwMDAwMDAKM2ZlMDog
-MDAwMDAwMDAgYmVlMDZmMTAgNDAwMDA3YTAgNDAwMDQ1YjQgMDAwMDAwMTAgZmZmZmZmZmYKQ29k
-ZTogMTU5MjgwMGMgZTI0ODgwMTggZTU5ODMwMWMgZTU5ODIwMTggKGU1ODIzMDA0KSAKLS0tWyBl
-bmQgdHJhY2UgN2RhYjA2ZTFmM2VhNGZjOSBdLS0tCkJVRzogQmFkIHBhZ2UgbWFwIGluIHByb2Nl
-c3MgaW5pdCAgcHRlOjMwMDI3MWNmIHBtZDozM2E5MTAzMQpwYWdlOmMwNDA4NGUwIGZsYWdzOjAw
-MDAwMDE0IGNvdW50OjAgbWFwY291bnQ6LTEgbWFwcGluZzoobnVsbCkgaW5kZXg6MAphZGRyOmJl
-ZTA2MDAwIHZtX2ZsYWdzOjAwMTAwMTczIGFub25fdm1hOmMzYTk4MDAwIG1hcHBpbmc6KG51bGwp
-IGluZGV4OmJlZmZmCls8YzAwMmQ2ZGM+XSAodW53aW5kX2JhY2t0cmFjZSsweDAvMHhkMCkgZnJv
-bSBbPGMwMDc2YzE4Pl0gKHByaW50X2JhZF9wdGUrMHgxOTAvMHgxYzApCls8YzAwNzZjMTg+XSAo
-cHJpbnRfYmFkX3B0ZSsweDE5MC8weDFjMCkgZnJvbSBbPGMwMDc4MjkwPl0gKHVubWFwX3ZtYXMr
-MHgzNzgvMHg1YTApCls8YzAwNzgyOTA+XSAodW5tYXBfdm1hcysweDM3OC8weDVhMCkgZnJvbSBb
-PGMwMDdiZGY0Pl0gKGV4aXRfbW1hcCsweGEwLzB4MTJjKQpbPGMwMDdiZGY0Pl0gKGV4aXRfbW1h
-cCsweGEwLzB4MTJjKSBmcm9tIFs8YzAwMzk5MzQ+XSAobW1wdXQrMHgzOC8weGQwKQpbPGMwMDM5
-OTM0Pl0gKG1tcHV0KzB4MzgvMHhkMCkgZnJvbSBbPGMwMDNkMDY4Pl0gKGV4aXRfbW0rMHgxMDQv
-MHgxMDgpCls8YzAwM2QwNjg+XSAoZXhpdF9tbSsweDEwNC8weDEwOCkgZnJvbSBbPGMwMDNlMmM4
-Pl0gKGRvX2V4aXQrMHgxNzQvMHg1NzQpCls8YzAwM2UyYzg+XSAoZG9fZXhpdCsweDE3NC8weDU3
-NCkgZnJvbSBbPGMwMDJjNGMwPl0gKGRpZSsweDE1OC8weDE3YykKWzxjMDAyYzRjMD5dIChkaWUr
-MHgxNTgvMHgxN2MpIGZyb20gWzxjMDAyZTRmMD5dIChfX2RvX2tlcm5lbF9mYXVsdCsweDY0LzB4
-NzQpCls8YzAwMmU0ZjA+XSAoX19kb19rZXJuZWxfZmF1bHQrMHg2NC8weDc0KSBmcm9tIFs8YzAw
-MmU2YjQ+XSAoZG9fcGFnZV9mYXVsdCsweDFiNC8weDFjOCkKWzxjMDAyZTZiND5dIChkb19wYWdl
-X2ZhdWx0KzB4MWI0LzB4MWM4KSBmcm9tIFs8YzAwMjgyMWM+XSAoZG9fRGF0YUFib3J0KzB4MzAv
-MHg5OCkKWzxjMDAyODIxYz5dIChkb19EYXRhQWJvcnQrMHgzMC8weDk4KSBmcm9tIFs8YzAwMjhh
-NDA+XSAoX19kYWJ0X3N2YysweDQwLzB4NjApCkV4Y2VwdGlvbiBzdGFjaygweGMzODIzY2E4IHRv
-IDB4YzM4MjNjZjApCjNjYTA6ICAgICAgICAgICAgICAgICAgIDAwMDAwMDAxIDAwMDAwMDAxIDAw
-MTAwMTAwIDAwMjAwMjAwIGMwM2NlNjA0IDAwMDAwMDAwCjNjYzA6IGMzODIyMDAwIDYwMDAwMDEz
-IGMwNDExNTIwIGMzODIyMDAwIGMwM2NlNjM0IDAwMDIwMWRhIDAwMjAwMjAwIGMzODIzY2YwCjNj
-ZTA6IGMwMDY5ZTg0IGMwMDY5ZmU0IDIwMDAwMDkzIGZmZmZmZmZmCls8YzAwMjhhNDA+XSAoX19k
-YWJ0X3N2YysweDQwLzB4NjApIGZyb20gWzxjMDA2OWZlND5dIChnZXRfcGFnZV9mcm9tX2ZyZWVs
-aXN0KzB4MjA0LzB4NDU4KQpbPGMwMDY5ZmU0Pl0gKGdldF9wYWdlX2Zyb21fZnJlZWxpc3QrMHgy
-MDQvMHg0NTgpIGZyb20gWzxjMDA2YTMxYz5dIChfX2FsbG9jX3BhZ2VzX25vZGVtYXNrKzB4ZTQv
-MHg1MTgpCls8YzAwNmEzMWM+XSAoX19hbGxvY19wYWdlc19ub2RlbWFzaysweGU0LzB4NTE4KSBm
-cm9tIFs8YzAwNmJmZTg+XSAoX19kb19wYWdlX2NhY2hlX3JlYWRhaGVhZCsweGE0LzB4MWVjKQpb
-PGMwMDZiZmU4Pl0gKF9fZG9fcGFnZV9jYWNoZV9yZWFkYWhlYWQrMHhhNC8weDFlYykgZnJvbSBb
-PGMwMDZjM2Q0Pl0gKHJhX3N1Ym1pdCsweDIwLzB4MjQpCls8YzAwNmMzZDQ+XSAocmFfc3VibWl0
-KzB4MjAvMHgyNCkgZnJvbSBbPGMwMDY1ODkwPl0gKGZpbGVtYXBfZmF1bHQrMHgxYWMvMHgzNzgp
-Cls8YzAwNjU4OTA+XSAoZmlsZW1hcF9mYXVsdCsweDFhYy8weDM3OCkgZnJvbSBbPGMwMDc2NzJj
-Pl0gKF9fZG9fZmF1bHQrMHg1MC8weDNhYykKWzxjMDA3NjcyYz5dIChfX2RvX2ZhdWx0KzB4NTAv
-MHgzYWMpIGZyb20gWzxjMDA3OTA4ND5dIChoYW5kbGVfbW1fZmF1bHQrMHgyNDgvMHg1NzgpCls8
-YzAwNzkwODQ+XSAoaGFuZGxlX21tX2ZhdWx0KzB4MjQ4LzB4NTc4KSBmcm9tIFs8YzAwMmU1ZGM+
-XSAoZG9fcGFnZV9mYXVsdCsweGRjLzB4MWM4KQpbPGMwMDJlNWRjPl0gKGRvX3BhZ2VfZmF1bHQr
-MHhkYy8weDFjOCkgZnJvbSBbPGMwMDI4MmI0Pl0gKGRvX1ByZWZldGNoQWJvcnQrMHgzMC8weDk4
-KQpbPGMwMDI4MmI0Pl0gKGRvX1ByZWZldGNoQWJvcnQrMHgzMC8weDk4KSBmcm9tIFs8YzAwMjhl
-MjA+XSAocmV0X2Zyb21fZXhjZXB0aW9uKzB4MC8weDEwKQpFeGNlcHRpb24gc3RhY2soMHhjMzgy
-M2ZiMCB0byAweGMzODIzZmY4KQozZmEwOiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICBiZWUwNmYxMCBiZWUwNmZkNCAwMDAwMDAwMCAwMDAwMDAwMAozZmMwOiAwMDAwMDk0MCAw
-MDAwMDAwMCAwMDAwMDAwMCAwMDAwMDAwMCAwMDAwMDAwMCAwMDAwMDAwMCAwMDAyNDdkNCAwMDAw
-MDAwMAozZmUwOiAwMDAwMDAwMCBiZWUwNmYxMCA0MDAwMDdhMCA0MDAwNDViNCAwMDAwMDAxMCBm
-ZmZmZmZmZgpLZXJuZWwgcGFuaWMgLSBub3Qgc3luY2luZzogQXR0ZW1wdGVkIHRvIGtpbGwgaW5p
-dCEKCg==
+<div style=3D'border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt'>
 
---90e6ba61364087ccde049b28ece4--
+<div>
+
+<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in'>
+
+<p class=3DMsoNormal><b><span style=3D'font-size:10.0pt;font-family:"Tahoma=
+","sans-serif"'>From:</span></b><span
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>
+yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] <b>O=
+n
+Behalf Of </b>Diego Sueiro<br>
+<b>Sent:</b> Monday, January 31, 2011 10:53 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] Kernel Panics on armv4t with gcc.4.5.1<o:p></o:p></=
+span></p>
+
+</div>
+
+</div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'>Folks,<o:p></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'>I'm
+not a kernel and neither a gcc expert developer, and after searching for a
+solution for the last 2 weeks I've decided to appeal to the list.<o:p></o:p=
+></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'>I'm
+trying to build a kernel image (2.6.32 and 2.6.30) for mini2440 (armv4t) wi=
+th
+Yocto Project (poky master branch) and&nbsp;I'm facing a strange issue.<o:p=
+></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'>If
+I compile the kernel with Yocto gcc recipes (gcc 4.5.1) the kernel will pan=
+ic
+on init (console printed message is attached for kernel 2.6.30 and 2.6.32).=
+<o:p></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'>But,
+if I compile the kernel with meta-oe gcc recipes (gcc 4.5) everything will =
+be
+ok.<o:p></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'>Just
+for your reference these is the gcc recipes which I'm using:<o:p></o:p></sp=
+an></p>
+
+</div>
+
+<blockquote style=3D'margin-left:30.0pt;margin-right:0in;border-width:initi=
+al;
+border-color:initial'>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'><a
+href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-de=
+vtools/gcc"
+target=3D"_blank"><span style=3D'color:#0658B5'>http://git.yoctoproject.org=
+/cgit/cgit.cgi/poky/tree/meta/recipes-devtools/gcc</span></a><o:p></o:p></s=
+pan></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'><a
+href=3D"http://git.openembedded.org/cgit.cgi/meta-openembedded/tree/recipes=
+-devtools/gcc"
+target=3D"_blank"><span style=3D'color:#0658B5'>http://git.openembedded.org=
+/cgit.cgi/meta-openembedded/tree/recipes-devtools/gcc</span></a><o:p></o:p>=
+</span></p>
+
+</div>
+
+</blockquote>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'>I've
+compiled with and without thumb instructions, but the issue remains.<o:p></=
+o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'>I've
+tried to apply the patches&nbsp;gcc-armv4-pass-fix-v4bx-to-ld.patch
+and&nbsp;gcc-arm-volatile-bitfield-fix.patch, but no success.<o:p></o:p></s=
+pan></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+<div>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial","s=
+ans-serif"'>Kind
+Regards,<o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal>--<o:p></o:p></p>
+
+</div>
+
+<p class=3DMsoNormal>*dS<br>
+Diego Sueiro<br>
+<br>
+/*long live rock 'n roll*/<o:p></o:p></p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
+
+--_000_9DA5872FEF993D41B7173F58FCF6BE940A5EBA78orsmsx504amrcor_--
