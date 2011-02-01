@@ -1,40 +1,18 @@
-Return-Path: <diego.sueiro@gmail.com>
-Received: from mail-iw0-f176.google.com (mail-iw0-f176.google.com
-	[209.85.214.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id F0FAE4C8008C
-	for <yocto@yoctoproject.org>; Tue,  1 Feb 2011 09:33:57 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iwn2 with SMTP id 2so7340503iwn.35
-	for <yocto@yoctoproject.org>; Tue, 01 Feb 2011 07:33:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=yUsv9yxX5pA8Q0oOyvGpJRLYMSafr6cHmLpI8T6Csxw=;
-	b=UUi3Twy+M1bDrKps2GDLjI54U+oD1Yi1ahGblyk0003acox9A2fkZJRaNCGuFYoeLn
-	PTbnPHGLtn+IzNyFwzln0KqKzLBvvENGc28Q5avI5hU+b3n0l571FU0jENEKulhAFg28
-	XVXRxi8WG9VLT/j1XvNNpz3oz0Z7qtz1Vb/fM=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	b=hOcSa294ZoK8JtoenVR9TPN1dJR7ZxbzfaJVhprYLAXdoDPv32KL8cOfEuY9O756VZ
-	qsS4EGwzN1ZyXmGj3/m4i0gEn/PJuNleSu9/lb9zVvsQ+/bgtUflNXz6aFhUFOQ0YWva
-	NOdQ/1krbvueSjaQ9OxWh86JDvOILqT6UTtEA=
-Received: by 10.42.164.66 with SMTP id f2mr996462icy.431.1296574437619; Tue,
-	01 Feb 2011 07:33:57 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.42.222.202 with HTTP; Tue, 1 Feb 2011 07:33:37 -0800 (PST)
-In-Reply-To: <AANLkTikz91RahwnectR5cNjx0HKVu4WJNLMH-BNtwszw@mail.gmail.com>
-References: <AANLkTinBmzf=erJiuG+pxtXVD9Yd3z7bnC1yUuDvp5N2@mail.gmail.com>
-	<9DA5872FEF993D41B7173F58FCF6BE940A5EBA78@orsmsx504.amr.corp.intel.com>
-	<AANLkTikz91RahwnectR5cNjx0HKVu4WJNLMH-BNtwszw@mail.gmail.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Tue, 1 Feb 2011 13:33:37 -0200
-Message-ID: <AANLkTimX_OMXpQkN3UubTPcVLEmv2DUNdwunJ8rd64je@mail.gmail.com>
-To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Kernel Panics on armv4t with gcc.4.5.1
+Return-Path: <bruce.ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 1183B4C8007E;
+	Tue,  1 Feb 2011 11:22:06 -0600 (CST)
+Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
+	[128.224.146.167])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p11HM3Aj018181;
+	Tue, 1 Feb 2011 09:22:03 -0800 (PST)
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+To: rpurdie@linux.intel.com
+Date: Tue,  1 Feb 2011 12:25:04 -0500
+Message-Id: <cover.1296580694.git.bruce.ashfield@windriver.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
+Subject: [PATCH 0/2] linux-yocto: consolidated pull request
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,490 +24,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Feb 2011 15:33:58 -0000
-Content-Type: multipart/alternative; boundary=90e6ba613aaec77766049b3a42ce
-
---90e6ba613aaec77766049b3a42ce
-Content-Type: text/plain; charset=ISO-8859-1
-
-Nitin,
-
-After removing:
-
-echo "/* GNU ld script
-   Use the shared library, but some functions are only in
-   the static library.  */
-GROUP ( libgcc_s.so.1 libgcc.a )" > ${D}${libdir}/libgcc_s.so
-
-
-from gcc-package-target.inc and gcc-package-cross.inc, the gcc 4.5.2 was
-successfully compiled.
-
-And no kernel panic anymore. :-D
-
-I just want to understand what is wrong with gcc 4.5.1.
-
-
-Regards,
-
---
-*dS
-Diego Sueiro
-
-Administrador do Portal Embarcados
-www.embarcados.com.br
-
-/*long live rock 'n roll*/
-
-
-On Tue, Feb 1, 2011 at 8:40 AM, Diego Sueiro <diego.sueiro@gmail.com> wrote:
-
-> Nitin,
->
->
-> I got this error:
->
-> /home/dev/yocto-repo/build/tmp/sysroots/i686-linux/usr/bin/armv4t-poky-linux-gnueabi/arm-poky-linux-gnueabi-ld:
-> /usr/lib/crti.o: Relocations in generic ELF (EM: 3)
-> /home/dev/yocto-repo/build/tmp/sysroots/i686-linux/usr/bin/armv4t-poky-linux-gnueabi/arm-poky-linux-gnueabi-ld:
-> /usr/lib/crti.o: Relocations in generic ELF (EM: 3)
-> /usr/lib/crti.o: could not read symbols: File in wrong format
-> collect2: ld returned 1 exit status
-> make[2]: *** [libgcc_s.so] Error 1
-> make[2]: *** Waiting for unfinished jobs....
-> arm-poky-linux-gnueabi-ranlib libgcc_eh.a
-> arm-poky-linux-gnueabi-ranlib libgcc.a
-> make[2]: Leaving directory
-> `/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/gcc-cross-intermediate-4.5.2-r3/gcc-4.5.2/build.i686-linux.arm-poky-linux-gnueabi/arm-poky-linux-gnueabi/libgcc'
-> make[1]: *** [all-target-libgcc] Error 2
-> make[1]: Leaving directory
-> `/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/gcc-cross-intermediate-4.5.2-r3/gcc-4.5.2/build.i686-linux.arm-poky-linux-gnueabi'
-> make: *** [all] Error 2
-> FATAL: oe_runmake failed
-> Function 'do_compile' failed (see
-> /home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/gcc-cross-intermediate-4.5.2-r3/temp/log.do_compile.646
-> for further information)
-> ERROR: Function 'do_compile' failed (see
-> /home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/gcc-cross-intermediate-4.5.2-r3/temp/log.do_compile.646
-> for further information)
->
->
->
-> Regards,
->
-> --
-> *dS
-> Diego Sueiro
->
-> /*long live rock 'n roll*/
->
->
-> On Mon, Jan 31, 2011 at 10:41 PM, Kamble, Nitin A <
-> nitin.a.kamble@intel.com> wrote:
->
->>  Diego,
->>
->>   Can you try with 4.5.2 gcc from this branch:
->> http://git.pokylinux.org/cgit/cgit.cgi/poky-contrib/log/?h=nitin/khem_gcc_nitin
->>
->>
->>
->> Thanks,
->>
->> Nitin
->>
->>
->>
->>
->>
->> *From:* yocto-bounces@yoctoproject.org [mailto:
->> yocto-bounces@yoctoproject.org] *On Behalf Of *Diego Sueiro
->> *Sent:* Monday, January 31, 2011 10:53 AM
->> *To:* yocto@yoctoproject.org
->> *Subject:* [yocto] Kernel Panics on armv4t with gcc.4.5.1
->>
->>
->>
->> Folks,
->>
->>
->>
->> I'm not a kernel and neither a gcc expert developer, and after searching
->> for a solution for the last 2 weeks I've decided to appeal to the list.
->>
->>
->>
->> I'm trying to build a kernel image (2.6.32 and 2.6.30) for mini2440
->> (armv4t) with Yocto Project (poky master branch) and I'm facing a strange
->> issue.
->>
->>
->>
->> If I compile the kernel with Yocto gcc recipes (gcc 4.5.1) the kernel will
->> panic on init (console printed message is attached for kernel 2.6.30 and
->> 2.6.32).
->>
->> But, if I compile the kernel with meta-oe gcc recipes (gcc 4.5) everything
->> will be ok.
->>
->> Just for your reference these is the gcc recipes which I'm using:
->>
->>
->> http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-devtools/gcc
->>
->>
->> http://git.openembedded.org/cgit.cgi/meta-openembedded/tree/recipes-devtools/gcc
->>
->>
->>
->>
->>
->> I've compiled with and without thumb instructions, but the issue remains.
->>
->> I've tried to apply the patches gcc-armv4-pass-fix-v4bx-to-ld.patch
->> and gcc-arm-volatile-bitfield-fix.patch, but no success.
->>
->>
->>
->>
->>
->>
->>
->> Kind Regards,
->>
->>
->>
->> --
->>
->> *dS
->> Diego Sueiro
->>
->> /*long live rock 'n roll*/
->>
->
->
-
---90e6ba613aaec77766049b3a42ce
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Nitin,<div><br></div><div>After removing:</div><div><br></div><blockquote c=
-lass=3D"webkit-indent-blockquote" style=3D"margin: 0 0 0 40px; border: none=
-; padding: 0px;"><div><div>echo &quot;/* GNU ld script</div><div>=A0=A0 Use=
- the shared library, but some functions are only in</div>
-
-<div>=A0=A0 the static library. =A0*/</div><div>GROUP ( libgcc_s.so.1 libgc=
-c.a )&quot; &gt; ${D}${libdir}/libgcc_s.so</div></div></blockquote><div><br=
-></div><div>from=A0gcc-package-target.inc and=A0gcc-package-cross.inc, the =
-gcc 4.5.2 was successfully compiled.</div>
-
-<div><br clear=3D"all"><div>And no kernel panic anymore. :-D</div><div><br>=
-</div><div>I just want to understand what is wrong with gcc 4.5.1.</div><di=
-v><br></div><div><br></div><div>Regards,</div><div><br></div>--<br>*dS<br>
-
-Diego Sueiro<br><br>Administrador do Portal Embarcados<br><a href=3D"http:/=
-/www.embarcados.com.br" target=3D"_blank">www.embarcados.com.br</a><br><br>=
-/*long live rock &#39;n roll*/<br>
-<br><br><div class=3D"gmail_quote">On Tue, Feb 1, 2011 at 8:40 AM, Diego Su=
-eiro <span dir=3D"ltr">&lt;<a href=3D"mailto:diego.sueiro@gmail.com">diego.=
-sueiro@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote"=
- style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex;">
-
-Nitin,<div><br></div><div><br></div><div>I got this error:</div><div><br></=
-div><div><div>/home/dev/yocto-repo/build/tmp/sysroots/i686-linux/usr/bin/ar=
-mv4t-poky-linux-gnueabi/arm-poky-linux-gnueabi-ld: /usr/lib/crti.o: Relocat=
-ions in generic ELF (EM: 3)</div>
-
-
-<div>/home/dev/yocto-repo/build/tmp/sysroots/i686-linux/usr/bin/armv4t-poky=
--linux-gnueabi/arm-poky-linux-gnueabi-ld: /usr/lib/crti.o: Relocations in g=
-eneric ELF (EM: 3)</div><div>/usr/lib/crti.o: could not read symbols: File =
-in wrong format</div>
-
-
-<div>collect2: ld returned 1 exit status</div><div>make[2]: *** [libgcc_s.s=
-o] Error 1</div><div>make[2]: *** Waiting for unfinished jobs....</div><div=
->arm-poky-linux-gnueabi-ranlib libgcc_eh.a</div><div>arm-poky-linux-gnueabi=
--ranlib libgcc.a</div>
-
-
-<div>make[2]: Leaving directory `/home/dev/yocto-repo/build/tmp/work/armv4t=
--poky-linux-gnueabi/gcc-cross-intermediate-4.5.2-r3/gcc-4.5.2/build.i686-li=
-nux.arm-poky-linux-gnueabi/arm-poky-linux-gnueabi/libgcc&#39;</div><div>
-
-
-make[1]: *** [all-target-libgcc] Error 2</div><div>make[1]: Leaving directo=
-ry `/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/gcc-cross=
--intermediate-4.5.2-r3/gcc-4.5.2/build.i686-linux.arm-poky-linux-gnueabi&#3=
-9;</div>
+X-List-Received-Date: Tue, 01 Feb 2011 17:22:06 -0000
 
+Richard/Saul,
 
-<div>make: *** [all] Error 2</div><div>FATAL: oe_runmake failed</div><div>F=
-unction &#39;do_compile&#39; failed (see /home/dev/yocto-repo/build/tmp/wor=
-k/armv4t-poky-linux-gnueabi/gcc-cross-intermediate-4.5.2-r3/temp/log.do_com=
-pile.646 for further information)</div>
+I'm addressing a couple of bugs in this pull request.
 
+Bug #685: for the mpc8315e-rdb boot issue. I'm going to revisit
+this one, since changing the entry point shouldn't be making a
+difference to this board's boot (by me looking at th code), but
+it does seem to fix the problem according to the reporter.
 
-<div>ERROR: Function &#39;do_compile&#39; failed (see /home/dev/yocto-repo/=
-build/tmp/work/armv4t-poky-linux-gnueabi/gcc-cross-intermediate-4.5.2-r3/te=
-mp/log.do_compile.646 for further information)</div></div><div><br></div>
+Bug #692: kernel configuration audit information
 
+After configuration of the kernel and audit is performed, and
+has been for some time. This updates it to work with the 2.6.37
+kernel and makes the output visible. You now get something like
+this:
 
-<div><br></div><div><div class=3D"im"><br clear=3D"all"><div>Regards,</div>=
-<div><br></div>--<br>*dS<br>Diego Sueiro<br><br>/*long live rock &#39;n rol=
-l*/<br>
-<br><br></div><div><div></div><div class=3D"h5"><div class=3D"gmail_quote">=
-On Mon, Jan 31, 2011 at 10:41 PM, Kamble, Nitin A <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:nitin.a.kamble@intel.com" target=3D"_blank">nitin.a.kamble@i=
-ntel.com</a>&gt;</span> wrote:<br>
+------------------------
+NOTE: package linux-yocto-2.6.37+git0+e8b8c1ae44932835f4f79e77180d3ce5e4b1ec99_0+a9d833fda90e2f1257888a97e092135610b5f259-r15: task do_kernel_configcheck: Started
+NOTE: validating kernel configuration
+The following Kconfig files no longer exist in this tree:
+      drivers/ieee1394/Kconfig
+      drivers/media/video/zc0301/Kconfig
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
+This BSP sets 1 invalid/obsolete kernel options.
+These config options are not offered anywhere within this kernel.
+The full list can be found in your workspace at:
+/home/bruce/poky/build/tmp/work/qemux86-poky-linux/linux-yocto-2.6.37+git0+e8b8c1ae44932835f4f79e77180d3ce5e4b1ec99_0+a9d833fda90e2f1257888a97e092135610b5f259-r15/linux/meta/cfg/yocto/standard/common-pc/invalid.cfg
 
+This BSP sets 6 kernel options that are possibly non-hardware related.
+The full list can be found in your workspace at:
+/home/bruce/poky/build/tmp/work/qemux86-poky-linux/linux-yocto-2.6.37+git0+e8b8c1ae44932835f4f79e77180d3ce5e4b1ec99_0+a9d833fda90e2f1257888a97e092135610b5f259-r15/linux/meta/cfg/yocto/standard/common-pc/specified_non_hdw.cfg
 
+WARNING: There were 2 hardware options requested that do not
+         have a corresponding value present in the final ".config" file.
+         This probably means you aren't getting the config you wanted.
+The full list can be found in your workspace at:
+/home/bruce/poky/build/tmp/work/qemux86-poky-linux/linux-yocto-2.6.37+git0+e8b8c1ae44932835f4f79e77180d3ce5e4b1ec99_0+a9d833fda90e2f1257888a97e092135610b5f259-r15/linux/meta/cfg/yocto/standard/common-pc/mismatch.cfg
 
+Waiting a second to make sure you get a chance to see this...
+NOTE: package linux-yocto-2.6.37+git0+e8b8c1ae44932835f4f79e77180d3ce5e4b1ec99_0+a9d833fda90e2f1257888a97e092135610b5f259-r15: task do_kernel_configcheck: Succeeded
+------------------------
 
+This is actually telling us something useful, and actually is showing
+me something that need to be fixed in the Kconfig classification for
+2.6.37 .. so it has already proven to be useful data to expose
+to the user!
 
 
+Pull URL: git://git.pokylinux.org/poky-contrib.git
+  Branch: zedd/kernel
+  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
 
+Thanks,
+    Bruce Ashfield <bruce.ashfield@windriver.com>
+---
 
 
-<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+Bruce Ashfield (2):
+  mpc8315e-rdb: set UBOOT_ENTRYPOINT
+  linux-yocto: export kernel configuration audit to the console
 
-<div>
+ meta/classes/kernel-yocto.bbclass                  |   17 +++++++++++------
+ .../conf/distro/include/poky-default-revisions.inc |    4 ++--
+ meta/conf/machine/mpc8315e-rdb.conf                |    3 +++
+ meta/recipes-kernel/linux/linux-yocto.inc          |    1 -
+ meta/recipes-kernel/linux/linux-yocto_git.bb       |    1 +
+ 5 files changed, 17 insertions(+), 9 deletions(-)
 
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">Diego=
-,</span></p>
+-- 
+1.7.3.4
 
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">=A0 C=
-an you try with 4.5.2 gcc from this branch: <a href=3D"http://git.pokylinux=
-.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dnitin/khem_gcc_nitin" target=3D"_b=
-lank">http://git.pokylinux.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dnitin/kh=
-em_gcc_nitin</a></span></p>
 
-
-
-
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">=A0</=
-span></p>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">Thank=
-s,</span></p>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">Nitin=
-</span></p>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">=A0</=
-span></p>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">=A0</=
-span></p>
-
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-
-<div>
-
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt">From:</span></b>=
-<span style=3D"font-size:10.0pt">
-<a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-b=
-ounces@yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctopr=
-oject.org" target=3D"_blank">yocto-bounces@yoctoproject.org</a>] <b>On
-Behalf Of </b>Diego Sueiro<br>
-<b>Sent:</b> Monday, January 31, 2011 10:53 AM<br>
-<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
-o@yoctoproject.org</a><br>
-<b>Subject:</b> [yocto] Kernel Panics on armv4t with gcc.4.5.1</span></p>
-
-</div>
-
-</div><div><div></div><div>
-
-<p class=3D"MsoNormal">=A0</p>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">Folks,</span></p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">=A0</span></p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">I&#39;m
-not a kernel and neither a gcc expert developer, and after searching for a
-solution for the last 2 weeks I&#39;ve decided to appeal to the list.</span=
-></p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">=A0</span></p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">I&#39;m
-trying to build a kernel image (2.6.32 and 2.6.30) for mini2440 (armv4t) wi=
-th
-Yocto Project (poky master branch) and=A0I&#39;m facing a strange issue.</s=
-pan></p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">=A0</span></p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">If
-I compile the kernel with Yocto gcc recipes (gcc 4.5.1) the kernel will pan=
-ic
-on init (console printed message is attached for kernel 2.6.30 and 2.6.32).=
-</span></p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">But,
-if I compile the kernel with meta-oe gcc recipes (gcc 4.5) everything will =
-be
-ok.</span></p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">Just
-for your reference these is the gcc recipes which I&#39;m using:</span></p>
-
-</div>
-
-<blockquote style=3D"margin-left:30.0pt;margin-right:0in;border-width:initi=
-al;border-color:initial">
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt"><a href=3D"http://g=
-it.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-devtools/gcc" targ=
-et=3D"_blank"><span style=3D"color:#0658B5">http://git.yoctoproject.org/cgi=
-t/cgit.cgi/poky/tree/meta/recipes-devtools/gcc</span></a></span></p>
-
-
-
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt"><a href=3D"http://g=
-it.openembedded.org/cgit.cgi/meta-openembedded/tree/recipes-devtools/gcc" t=
-arget=3D"_blank"><span style=3D"color:#0658B5">http://git.openembedded.org/=
-cgit.cgi/meta-openembedded/tree/recipes-devtools/gcc</span></a></span></p>
-
-
-
-
-</div>
-
-</blockquote>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">=A0</span></p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">=A0</span></p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">I&#39;ve
-compiled with and without thumb instructions, but the issue remains.</span>=
-</p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">I&#39;ve
-tried to apply the patches=A0gcc-armv4-pass-fix-v4bx-to-ld.patch
-and=A0gcc-arm-volatile-bitfield-fix.patch, but no success.</span></p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">=A0</span></p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">=A0</span></p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">=A0</span></p>
-
-</div>
-
-<div>
-
-<div>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">Kind
-Regards,</span></p>
-
-</div>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal">=A0</p>
-
-</div>
-
-<div>
-
-<p class=3D"MsoNormal">--</p>
-
-</div>
-
-<p class=3D"MsoNormal">*dS<br>
-Diego Sueiro<br>
-<br>
-/*long live rock &#39;n roll*/</p>
-
-</div></div></div>
-
-</div>
-
-</div>
-
-
-</blockquote></div><br></div></div></div>
-</blockquote></div><br></div>
-
---90e6ba613aaec77766049b3a42ce--
