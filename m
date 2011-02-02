@@ -1,22 +1,33 @@
-Return-Path: <bruce.ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D9BAF4C800A9;
-	Wed,  2 Feb 2011 11:08:22 -0600 (CST)
-Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
-	[128.224.146.167])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p12H8Hp3022426;
-	Wed, 2 Feb 2011 09:08:20 -0800 (PST)
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: rpurdie@linux.intel.com
-Date: Wed,  2 Feb 2011 12:11:22 -0500
-Message-Id: <baf03e7534c825725732db77b6c4b183825d201b.1296666481.git.bruce.ashfield@windriver.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1296666481.git.bruce.ashfield@windriver.com>
-References: <cover.1296666481.git.bruce.ashfield@windriver.com>
-In-Reply-To: <cover.1296666481.git.bruce.ashfield@windriver.com>
-References: <cover.1296666481.git.bruce.ashfield@windriver.com>
-Cc: poky@yoctoproject.org, yocto@yoctoproject.org, saul.wold@intel.com
-Subject: [PATCH 1/1] linux-yocto: BSP updates
+Return-Path: <diego.sueiro@gmail.com>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6ABC74C800A7
+	for <yocto@yoctoproject.org>; Wed,  2 Feb 2011 12:10:19 -0600 (CST)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iyb26 with SMTP id 26so225512iyb.35
+	for <yocto@yoctoproject.org>; Wed, 02 Feb 2011 10:10:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:from:date:message-id:subject:to
+	:content-type; bh=aJwKKFVU+Fvszvo0f3Exjepieesr6/21aGTUInc/Vmc=;
+	b=iBejX8gz7qZyH69qgjXhEYGJBiCcU9Ehinixh0Q4CTwtj/0OrsGwKKPLUGUoKyvihj
+	hR02e2uFQBn0EKHWHcfpPtaKBbCxw5WkN996KFd1I7OnAn+rEP9cVICctxNgtceQK10H
+	7KV3XkMAtWMnGf2j27NR6eriRhP3bfv6EWZ5Q=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	b=CxXgyVa73cuKxkk6j54uOWffwYFnx8932T9qICNuQ86Sr//8uL9k6Z6pl3OLZ47/vr
+	tZwMo1VVT74IbqAqXKoC+Y4TyNcNew8u2R8rzC1MvPekXc45tD0jPs+h2mXU4JM366cI
+	Qv6gB/zlddgVtbcZ+1ud4JBLeNcPQMentAetM=
+Received: by 10.42.180.7 with SMTP id bs7mr11545438icb.297.1296670219035; Wed,
+	02 Feb 2011 10:10:19 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.42.222.202 with HTTP; Wed, 2 Feb 2011 10:09:58 -0800 (PST)
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Wed, 2 Feb 2011 16:09:58 -0200
+Message-ID: <AANLkTi=WOdajvOf=yq2DwXj6VqSyx8t3BXzHPm-QCXMf@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Binutils compiling workaround
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,68 +39,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Feb 2011 17:08:23 -0000
+X-List-Received-Date: Wed, 02 Feb 2011 18:10:19 -0000
+Content-Type: multipart/alternative; boundary=90e6ba613790cbe5d4049b508f7b
 
-Updating for the sugarbay and beagleboard BSPs. To make the sugbay
-inhert common-pc-64 generic config/changes/fixes it has been
-branched in the kernel as yocto/standard/common-pc-64/sugarbar, as
-a result, we'll bump the common-pc-64 to be yocto/standard/common-pc-64/base.
+--90e6ba613790cbe5d4049b508f7b
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
----
- .../conf/distro/include/poky-default-revisions.inc |   24 ++++++++++----------
- meta/recipes-kernel/linux/linux-yocto_git.bb       |    2 +-
- 2 files changed, 13 insertions(+), 13 deletions(-)
+Folks,
 
-diff --git a/meta/conf/distro/include/poky-default-revisions.inc b/meta/conf/distro/include/poky-default-revisions.inc
-index ac0de6a..93c7233 100644
---- a/meta/conf/distro/include/poky-default-revisions.inc
-+++ b/meta/conf/distro/include/poky-default-revisions.inc
-@@ -95,18 +95,18 @@ SRCREV_machine_pn-linux-yocto-stable_mpc8315e-rdb ?= "a1c0ed6bf4060c10874b2a8547
- SRCREV_machine_pn-linux-yocto-stable_beagleboard ?= "ef7f944e773950d4016b7643f9ecf052bbe250cd"
- SRCREV_meta_pn-linux-yocto-stable ?= "e1f85a470934a0cf6abde5d95533e74501822c6b"
- # development SRCREVs
--SRCREV_machine_pn-linux-yocto_qemuarm ?= "4f86b5a0cb23faa4134cc004730d673f6640614b"
--SRCREV_machine_pn-linux-yocto_qemumips ?= "2b43d84250a582b61397ad5f59a6445ce1258615"
--SRCREV_machine_pn-linux-yocto_qemuppc ?= "20f182db27f3e6fc6bd55bfc9e24c8c023fbff7f"
--SRCREV_machine_pn-linux-yocto_qemux86 ?= "a9d833fda90e2f1257888a97e092135610b5f259"
--SRCREV_machine_pn-linux-yocto_qemux86-64 ?= "a9d833fda90e2f1257888a97e092135610b5f259"
--SRCREV_machine_pn-linux-yocto_emenlow ?= "c19e556f79f03c8f1e5e84ccd9b5436c2001fcce"
--SRCREV_machine_pn-linux-yocto_atom-pc ?= "a9d833fda90e2f1257888a97e092135610b5f259"
--SRCREV_machine_pn-linux-yocto_routerstationpro ?= "219a5f9dc6e5beced36184e141f80b2df61ae32f"
--SRCREV_machine_pn-linux-yocto_mpc8315e-rdb ?= "3f01b98238c2ff7913ce9f68f9db5ae9538717bc"
--SRCREV_machine_pn-linux-yocto_beagleboard ?= "a9d833fda90e2f1257888a97e092135610b5f259"
--SRCREV_meta_pn-linux-yocto ?= "e8b8c1ae44932835f4f79e77180d3ce5e4b1ec99"
--SRCREV_pn-linux-libc-headers-yocto ??= "a9d833fda90e2f1257888a97e092135610b5f259"
-+SRCREV_machine_pn-linux-yocto_qemuarm ?= "ed53121c69f1217348a442280870eca145d71a8b"
-+SRCREV_machine_pn-linux-yocto_qemumips ?= "36c68e6766ab698a63da1ee95bd64e4baa0e796b"
-+SRCREV_machine_pn-linux-yocto_qemuppc ?= "cdb58f93de8c4bb7f10b1dba2ab3f30e2c847030"
-+SRCREV_machine_pn-linux-yocto_qemux86 ?= "72ebe58ddeb173881c9b35b98708ff1c70c3eb18"
-+SRCREV_machine_pn-linux-yocto_qemux86-64 ?= "41ec30ddc42912fec133a533b924e9c56ecda8f9"
-+SRCREV_machine_pn-linux-yocto_emenlow ?= "92fe45e754d621d90aeb8dc4de156f4ac8f18b1c"
-+SRCREV_machine_pn-linux-yocto_atom-pc ?= "41ec30ddc42912fec133a533b924e9c56ecda8f9"
-+SRCREV_machine_pn-linux-yocto_routerstationpro ?= "3266d06c6cc978218ad44bfee53ffa759cd15ed5"
-+SRCREV_machine_pn-linux-yocto_mpc8315e-rdb ?= "769e9d100a5287983426b74c652d88dc7d9fd47d"
-+SRCREV_machine_pn-linux-yocto_beagleboard ?= "41ec30ddc42912fec133a533b924e9c56ecda8f9"
-+SRCREV_meta_pn-linux-yocto ?= "5a32d7fe3b817868ebb697d2d883d743903685ae"
-+SRCREV_pn-linux-libc-headers-yocto ??= "41ec30ddc42912fec133a533b924e9c56ecda8f9"
- SRCREV_pn-matchbox-config-gtk ??= "3ed74dfb7c57be088a5ab36e446c0ccde9fa1028"
- SRCREV_pn-matchbox-desktop-sato ??= "76"
- SRCREV_pn-matchbox-desktop ??= "af7ed6775487380be73160aa0298bf6019765fad"
-diff --git a/meta/recipes-kernel/linux/linux-yocto_git.bb b/meta/recipes-kernel/linux/linux-yocto_git.bb
-index b1486bc..c2f6606 100644
---- a/meta/recipes-kernel/linux/linux-yocto_git.bb
-+++ b/meta/recipes-kernel/linux/linux-yocto_git.bb
-@@ -2,7 +2,7 @@ inherit kernel
- require linux-yocto.inc
- 
- KMACHINE_qemux86  = "yocto/standard/common-pc/base"
--KMACHINE_qemux86-64  = "yocto/standard/common-pc-64"
-+KMACHINE_qemux86-64  = "yocto/standard/common-pc-64/base"
- KMACHINE_qemuppc  = "yocto/standard/qemu-ppc32"
- KMACHINE_qemumips = "yocto/standard/mti-malta32-be"
- KMACHINE_qemuarm  = "yocto/standard/arm-versatile-926ejs"
--- 
-1.7.0.4
+I was trying to get binutils (2.10.1 an 2.21) compiled but always getting
+this error:
+
+cc1: warnings being treated as errors
+/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21-r0/binutils-2.21/gas/config/tc-arm.c:
+In function 'parse_operands':
+/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21-r0/binutils-2.21/gas/config/tc-arm.c:1895:27:
+error: 'firsttype$defined' may be used uninitialized in this function
+/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21-r0/binutils-2.21/gas/config/tc-arm.c:1895:27:
+error: 'firsttype$index' may be used uninitialized in this function
+make[4]: *** [tc-arm.o] Error 1
+make[4]: Leaving directory
+`/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21-r0/binutils-2.21/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/gas'
+make[3]: *** [all-recursive] Error 1
+make[3]: Leaving directory
+`/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21-r0/binutils-2.21/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/gas'
+make[2]: *** [all] Error 2
+make[2]: Leaving directory
+`/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21-r0/binutils-2.21/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/gas'
+make[1]: *** [all-gas] Error 2
+make[1]: Leaving directory
+`/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21-r0/binutils-2.21/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi'
+make: *** [all] Error 2
+FATAL: oe_runmake failed
+Function 'do_compile' failed (see
+/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21-r0/temp/log.do_compile.26524
+for further information)
+ERROR: Function 'do_compile' failed (see
+/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21-r0/temp/log.do_compile.26524
+for further information)
 
 
+As the compiler was treating warnings as errors I put "--disabe-werror"
+on EXTRA_OECONF inside the binutils.inc file.
+
+I don't know if this is the best solution.
+What is the root cause of this warning?
+
+
+
+Regards,
+
+--
+*dS
+Diego Sueiro
+
+/*long live rock 'n roll*/
+
+--90e6ba613790cbe5d4049b508f7b
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Folks,<div><br></div><div>I was trying to get binutils (2.10.1 an 2.21) com=
+piled but always getting this error:</div><div><br></div><div><div>cc1: war=
+nings being treated as errors</div><div>/home/dev/yocto-repo/build/tmp/work=
+/armv4t-poky-linux-gnueabi/binutils-2.21-r0/binutils-2.21/gas/config/tc-arm=
+.c: In function &#39;parse_operands&#39;:</div>
+
+<div>/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils=
+-2.21-r0/binutils-2.21/gas/config/tc-arm.c:1895:27: error: &#39;firsttype$d=
+efined&#39; may be used uninitialized in this function</div><div>/home/dev/=
+yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21-r0/binuti=
+ls-2.21/gas/config/tc-arm.c:1895:27: error: &#39;firsttype$index&#39; may b=
+e used uninitialized in this function</div>
+
+<div>make[4]: *** [tc-arm.o] Error 1</div><div>make[4]: Leaving directory `=
+/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21=
+-r0/binutils-2.21/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/gas&#=
+39;</div>
+
+<div>make[3]: *** [all-recursive] Error 1</div><div>make[3]: Leaving direct=
+ory `/home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils=
+-2.21-r0/binutils-2.21/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/=
+gas&#39;</div>
+
+<div>make[2]: *** [all] Error 2</div><div>make[2]: Leaving directory `/home=
+/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21-r0/b=
+inutils-2.21/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/gas&#39;</=
+div>
+
+<div>make[1]: *** [all-gas] Error 2</div><div>make[1]: Leaving directory `/=
+home/dev/yocto-repo/build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21-=
+r0/binutils-2.21/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi&#39;</=
+div>
+
+<div>make: *** [all] Error 2</div><div>FATAL: oe_runmake failed</div><div>F=
+unction &#39;do_compile&#39; failed (see /home/dev/yocto-repo/build/tmp/wor=
+k/armv4t-poky-linux-gnueabi/binutils-2.21-r0/temp/log.do_compile.26524 for =
+further information)</div>
+
+<div>ERROR: Function &#39;do_compile&#39; failed (see /home/dev/yocto-repo/=
+build/tmp/work/armv4t-poky-linux-gnueabi/binutils-2.21-r0/temp/log.do_compi=
+le.26524 for further information)</div></div><div><br></div><div><div>
+<br>
+</div></div><div>As the compiler was treating warnings as errors I put &quo=
+t;--disabe-werror&quot; on=A0EXTRA_OECONF inside the binutils.inc file.</di=
+v><div><br></div><div>I don&#39;t know if this is the best solution.</div>
+
+<div>What is the root cause of this warning?</div><div><br></div><div><br><=
+/div><div><br clear=3D"all"><div>Regards,</div><div><br></div>--<br>*dS<br>=
+Diego Sueiro<br><br>/*long live rock &#39;n roll*/<br>
+</div>
+
+--90e6ba613790cbe5d4049b508f7b--
