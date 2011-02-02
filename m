@@ -1,25 +1,22 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id ACDB84C8007E;
-	Tue,  1 Feb 2011 14:01:06 -0600 (CST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 01 Feb 2011 12:01:06 -0800
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id E22764C8008C;
+	Tue,  1 Feb 2011 19:36:49 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 01 Feb 2011 17:36:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,411,1291622400"; d="scan'208";a="883327839"
-Received: from unknown (HELO [10.255.14.170]) ([10.255.14.170])
-	by fmsmga001.fm.intel.com with ESMTP; 01 Feb 2011 12:01:06 -0800
-Message-ID: <4D486681.9030605@linux.intel.com>
-Date: Tue, 01 Feb 2011 12:01:05 -0800
-From: Darren Hart <dvhart@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.60,412,1291622400"; d="scan'208";a="598632968"
+Received: from unknown (HELO [10.255.14.138]) ([10.255.14.138])
+	by orsmga002.jf.intel.com with ESMTP; 01 Feb 2011 17:36:26 -0800
+Message-ID: <4D48B519.5050407@intel.com>
+Date: Tue, 01 Feb 2011 17:36:25 -0800
+From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.13) Gecko/20101208 Lightning/1.0b2 Thunderbird/3.1.7
+	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7 ThunderBrowse/3.3.4
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-References: <cover.1296580694.git.bruce.ashfield@windriver.com>	<368409054248933ffd777fbd600a29670feeaa16.1296580694.git.bruce.ashfield@windriver.com>	<4D485554.1030209@linux.intel.com>
-	<AANLkTink7v3PP=N6fXfvMFGzwOJXY-KX10UtfrCkd0Ei@mail.gmail.com>
-In-Reply-To: <AANLkTink7v3PP=N6fXfvMFGzwOJXY-KX10UtfrCkd0Ei@mail.gmail.com>
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
-Subject: Re: [poky] [PATCH 2/2] linux-yocto: export kernel configuration audit to the console
+To: "poky@yoctoproject.org" <poky@yoctoproject.org>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [Reminder] Upcoming Yocto 1.0 Release Cycle
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,44 +28,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Feb 2011 20:01:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Wed, 02 Feb 2011 01:36:50 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 02/01/2011 11:09 AM, Bruce Ashfield wrote:
-> On Tue, Feb 1, 2011 at 1:47 PM, Darren Hart<dvhart@linux.intel.com>  wrote:
->> On 02/01/2011 09:25 AM, Bruce Ashfield wrote:
->>>
->>> Fixes [BUGID #692]
->>>
->>> Previously the information dumped by the kernel configuration audit
->>> scripts was only placed in log files. This isn't as useful as it
->>> could be, since they are rarely checked. This change takes the
->>> output from kconf_check and explicitly displays it to the user.
->>>
->>> Signed-off-by: Bruce Ashfield<bruce.ashfield@windriver.com>
->>
->>> diff --git a/meta/conf/distro/include/poky-default-revisions.inc
->>> b/meta/conf/distro/include/poky-default-revisions.inc
->>> index 0c3aa9a..ac0de6a 100644
->>> --- a/meta/conf/distro/include/poky-default-revisions.inc
->>> +++ b/meta/conf/distro/include/poky-default-revisions.inc
->>
->>> -SRCREV_meta_pn-linux-yocto ?= "8a49ef6f1a43dabbce34a9ee9a1be08b26fc511c"
->>> +SRCREV_meta_pn-linux-yocto ?= "e8b8c1ae44932835f4f79e77180d3ce5e4b1ec99"
->>
->> Was this an intentional change? It wasn't clear to me above which bits
->> necessitated a linux-yocto-2.6.37/meta SRCREV change.
->
-> Good catch, and typically that would have been a mistake. That's
-> me updating the captured scripts to have the updated kconf_check
-> (among others), so it was intentional, but I did for get to mention it
-> in the submission email.
+All,
 
-Ah right, of course. Thanks!
+I wanted to give everyone a heads up as we are coming up to the start of
+the Yocto 1.0 release cycle. If you haven't had time to look at what the
+next 2 months entail, please do so now at:
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v._1.0_Release_Cycle
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+This Friday, February 4th, is our feature freeze date. We should be
+mostly feature complete by then with pull requests made. Please have all
+pull request for new features for 1.0 in by Friday if not earlier. Our
+distro maintainers would appreciate not having a deluge of pull
+requests, so, if possible, please have these in well before Friday
+morning. The initial build of a release candidate will begin Friday @ 5pm.
+
+The first stage of our release cycle will be a 3 week long cycle of
+stabilizing master/bug fixing/QA with release candidate generation
+occurring on February 25th-26th. During this time should also be doing
+regular IRC bug scrubs as we did this morning.
+
+Also, during the next two months I'll be sending out regular emails
+about what should be expected for the coming week.
+
+For the week of Feb 4th-10th:
+
+Feb 4th: Feature Freeze
+	 Initial Yocto Reference Manual is due to QA
+         Weekly Build
+
+Feb 6th: Release Cycle Kickoff
+         Weekly Build finished and delivered for QA
+
+Feb 8th: IRC Bug Scrub (#yocto)
+
+Feb 10th: IRC Bug Scrub (#yocto)
+
+Feb 11th: Weekly Build
+          Release Readiness Review
+
+
+Thanks,
+
+------------------
+Elizabeth Flanagan
+Yocto Project
+Release Engineer
 
