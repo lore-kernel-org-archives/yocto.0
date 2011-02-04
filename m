@@ -1,29 +1,24 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id F05124C800A3
-	for <yocto@yoctoproject.org>; Thu,  3 Feb 2011 23:21:39 -0600 (CST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 03 Feb 2011 21:21:39 -0800
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 5376C4C800A3
+	for <yocto@yoctoproject.org>; Fri,  4 Feb 2011 01:08:56 -0600 (CST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 03 Feb 2011 23:08:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,424,1291622400"; 
-	d="p7s'?scan'208,217";a="384043937"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by azsmga001.ch.intel.com with ESMTP; 03 Feb 2011 21:21:39 -0800
-Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
-	orsmsx603.amr.corp.intel.com ([10.22.226.49]) with mapi; Thu, 3 Feb 2011
-	21:21:38 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 3 Feb 2011 21:20:37 -0800
-Thread-Topic: [poky] meta-toolchain build failed on fetch
-Thread-Index: AcvEK0GC7Rx9DeWET5Wxhw9LOAq0/A==
-Message-ID: <9AFCD584B0B67B48AE8D8585BE30BA950D9782E2@orsmsx504.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+X-IronPort-AV: E=Sophos;i="4.60,425,1291622400"; d="scan'208";a="703956866"
+Received: from unknown (HELO [10.255.14.171]) ([10.255.14.171])
+	by orsmga001.jf.intel.com with ESMTP; 03 Feb 2011 23:08:55 -0800
+Message-ID: <4D4BA607.3060006@linux.intel.com>
+Date: Thu, 03 Feb 2011 23:08:55 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.13) Gecko/20101208 Lightning/1.0b2 Thunderbird/3.1.7
 MIME-Version: 1.0
-Subject: [poky] meta-toolchain build failed on fetch
+To: Gary Thomas <gary@mlbassoc.com>
+References: <4D4B37F9.7080708@mlbassoc.com>
+In-Reply-To: <4D4B37F9.7080708@mlbassoc.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: meta-linaro woes continue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,296 +30,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Feb 2011 05:21:40 -0000
-X-Groupsio-MsgNum: 919
-Content-Language: en-US
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=SHA1; boundary="----=_NextPart_000_0005_01CBC3E8.33722A20"
-
-------=_NextPart_000_0005_01CBC3E8.33722A20
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_0006_01CBC3E8.33722A20"
-
-------=_NextPart_001_0006_01CBC3E8.33722A20
-Content-Type: text/plain;
-	charset="us-ascii"
+X-List-Received-Date: Fri, 04 Feb 2011 07:08:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Has anyone run into the following failure, this is for meta-toolchain for
-x86_64:
- 
-ERROR: Function 'Fetch failed: Unable to fetch URL
-git://git.pokylinux.org/linux-yocto-2.6.37;protocol=git;fullclone=1;branch=y
-octo/standard/base;name=machine from any source.' failed
-ERROR: Logfile of failure stored in:
-/home/jzhang/master-arm-build/tmp/work/i586-poky-linux/linux-libc-headers-yo
-cto-2.6.37+git-0+a9d833fda90e2f1257888a97e092135610b5f259_0+standard-r2/temp
-/log.do_fetch.3772
-Log data follows:
-| Fetcher accessed the network with the command git fetch
-git.pokylinux.org/linux-yocto-2.6.37
-| NOTE: Fetcher accessed the network with the command git fetch
-git.pokylinux.org/linux-yocto-2.6.37
-| Fetching origin
-|  error: unable to resolve reference
-refs/remotes/origin/yocto/standard/common-pc-64/base: Not a directory
-|  From git://git.pokylinux.org/linux-yocto-2.6.37
-|   ! [new branch]      yocto/standard/common-pc-64/base ->
-origin/yocto/standard/common-pc-64/base  (unable to update local ref)
-|  error: unable to resolve reference
-refs/remotes/origin/yocto/standard/common-pc-64/sugarbay: Not a directory
-|   ! [new branch]      yocto/standard/common-pc-64/sugarbay ->
-origin/yocto/standard/common-pc-64/sugarbay  (unable to update local ref)
-|  error: some local refs could not be updated; try running
-|   'git remote prune origin' to remove any old, conflicting branches
-|  error: Could not fetch origin
-|  Function 'Fetch failed: Unable to fetch URL
-git://git.pokylinux.org/linux-yocto-2.6.37;protocol=git;fullclone=1;branch=y
-octo/standard/base;name=machine from any source.' failed
-| ERROR: Function 'Fetch failed: Unable to fetch URL
-git://git.pokylinux.org/linux-yocto-2.6.37;protocol=git;fullclone=1;branch=y
-octo/standard/base;name=machine from any source.' failed
-NOTE: package
-linux-libc-headers-yocto-2.6.37+git-0+a9d833fda90e2f1257888a97e092135610b5f2
-59_0+standard-r2: task Fetch failed: Unable to fetch URL
-git://git.pokylinux.org/linux-yocto-2.6.37;protocol=git;fullclone=1;branch=y
-octo/standard/base;name=machine from any source.: Failed
-NOTE: package gcc-cross-4.5.1-r2: task do_unpack: Started
-ERROR: Task 441
-(/home/jzhang/poky-master/meta/recipes-kernel/linux-libc-headers/linux-libc-
-headers-yocto_git.bb, do_fetch) failed with exit code '1'
+On 02/03/2011 03:19 PM, Gary Thomas wrote:
+> n.b. this is a continuation of "Kernel Panics on armv4t with gcc.4.5.1"
+> but the actual discussion has changed enough and there was too much
+> noise in the previous thread.
 
-Thanks,
-Jessica
+Hi Gary,
 
-------=_NextPart_001_0006_01CBC3E8.33722A20
-Content-Type: text/html;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+We're both pounding away on the meta-linaro layer at the same time 
+unfortunately. I've reorganized things a bit and cleaned up how the 
+layer is configured. I believe this layer ran into some trouble when gcc 
+and binutils changed, but also suffered from a bad BBFILES variable as 
+well (as you noted below). I'll push my changes to 
+poky-contrib/dvhart/meta-linaro just as soon as they build.
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD>
-<META content=3D"text/html; charset=3Dus-ascii" =
-http-equiv=3DContent-Type>
-<META name=3DGENERATOR content=3D"MSHTML 8.00.6001.18999"></HEAD>
-<BODY>
-<DIV><FONT size=3D2 face=3DArial><SPAN class=3D458391705-04022011>Has =
-anyone run into=20
-the following failure, this is for meta-toolchain for=20
-x86_64:</SPAN></FONT></DIV>
-<DIV><FONT size=3D2 face=3DArial><SPAN=20
-class=3D458391705-04022011></SPAN></FONT>&nbsp;</DIV>
-<DIV><FONT size=3D2 face=3DArial><SPAN class=3D458391705-04022011>ERROR: =
-Function=20
-'Fetch failed: Unable to fetch URL=20
-git://git.pokylinux.org/linux-yocto-2.6.37;protocol=3Dgit;fullclone=3D1;b=
-ranch=3Dyocto/standard/base;name=3Dmachine=20
-from any source.' failed<BR>ERROR: Logfile of failure stored in:=20
-/home/jzhang/master-arm-build/tmp/work/i586-poky-linux/linux-libc-headers=
--yocto-2.6.37+git-0+a9d833fda90e2f1257888a97e092135610b5f259_0+standard-r=
-2/temp/log.do_fetch.3772<BR>Log=20
-data follows:<BR>| Fetcher accessed the network with the command git =
-fetch=20
-git.pokylinux.org/linux-yocto-2.6.37<BR>| NOTE: Fetcher accessed the =
-network=20
-with the command git fetch git.pokylinux.org/linux-yocto-2.6.37<BR>| =
-Fetching=20
-origin<BR>|&nbsp; error: unable to resolve reference=20
-refs/remotes/origin/yocto/standard/common-pc-64/base: Not a =
-directory<BR>|&nbsp;=20
-From git://git.pokylinux.org/linux-yocto-2.6.37<BR>|&nbsp;&nbsp; ! [new=20
-branch]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yocto/standard/common-pc-64/base =
--&gt;=20
-origin/yocto/standard/common-pc-64/base&nbsp; (unable to update local=20
-ref)<BR>|&nbsp; error: unable to resolve reference=20
-refs/remotes/origin/yocto/standard/common-pc-64/sugarbay: Not a=20
-directory<BR>|&nbsp;&nbsp; ! [new branch]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
-yocto/standard/common-pc-64/sugarbay -&gt;=20
-origin/yocto/standard/common-pc-64/sugarbay&nbsp; (unable to update =
-local=20
-ref)<BR>|&nbsp; error: some local refs could not be updated; try=20
-running<BR>|&nbsp;&nbsp; 'git remote prune origin' to remove any old,=20
-conflicting branches<BR>|&nbsp; error: Could not fetch origin<BR>|&nbsp; =
+--
+Darren
 
-Function 'Fetch failed: Unable to fetch URL=20
-git://git.pokylinux.org/linux-yocto-2.6.37;protocol=3Dgit;fullclone=3D1;b=
-ranch=3Dyocto/standard/base;name=3Dmachine=20
-from any source.' failed<BR>| ERROR: Function 'Fetch failed: Unable to =
-fetch URL=20
-git://git.pokylinux.org/linux-yocto-2.6.37;protocol=3Dgit;fullclone=3D1;b=
-ranch=3Dyocto/standard/base;name=3Dmachine=20
-from any source.' failed<BR>NOTE: package=20
-linux-libc-headers-yocto-2.6.37+git-0+a9d833fda90e2f1257888a97e092135610b=
-5f259_0+standard-r2:=20
-task Fetch failed: Unable to fetch URL=20
-git://git.pokylinux.org/linux-yocto-2.6.37;protocol=3Dgit;fullclone=3D1;b=
-ranch=3Dyocto/standard/base;name=3Dmachine=20
-from any source.: Failed<BR>NOTE: package gcc-cross-4.5.1-r2: task =
-do_unpack:=20
-Started<BR>ERROR: Task 441=20
-(/home/jzhang/poky-master/meta/recipes-kernel/linux-libc-headers/linux-li=
-bc-headers-yocto_git.bb,=20
-do_fetch) failed with exit code '1'<BR></SPAN></FONT></DIV>
-<DIV><FONT size=3D2 face=3DArial><SPAN=20
-class=3D458391705-04022011>Thanks,</SPAN></FONT></DIV>
-<DIV><FONT size=3D2 face=3DArial><SPAN=20
-class=3D458391705-04022011>Jessica</DIV></SPAN></FONT></BODY></HTML>
+>
+> Trying to use the meta-linaro layer (to solve my problems
+> with GCC/4.5.1 on armv5te ), I was able to include and use
+> the layer with the attached changes. I added this layer
+> intact, moving meta-linaro into my poky tree at the same
+> level as meta, meta-extras, etc.
+>
+> I also had to copy meta/recipes-devtools/gcc/gcc-4.5.1 into
+> meta-linaro/recipes-devtools/gcc (I didn't know how to expand
+> the FILESPATH variable to suck from the main meta tree)
+>
+> The next problem is this:
+>
+> | configure: WARNING: unrecognized options: --enable-languages,
+> --enable-threads, --enable-target-optspace, --enable-lto,
+> --enable-libssp, --disable-bootstrap, --disable-libgomp,
+> --disable-libmudflap, --with-float, --with-local-prefix, --with-sysroot,
+> --with-build-sysroot, --disable-libunwind-exceptions, --enable-__cxa_atexit
+> | Checking autotools environment for common misconfiguration
+> | NOTE: Checking autotools environment for common misconfiguration
+> | This autoconf log indicates errors, it looked at host includes.
+> | Rerun configure task after fixing this. The path was
+> '/home/local/efacec_omap_linaro/tmp/work/armv5te-poky-linux-gnueabi/gcc-runtime-4.5.1.linaro-r0/gcc-4.5.1.linaro/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/libstdc++-v3'
+>
+> | ERROR: This autoconf log indicates errors, it looked at host includes.
+> | Rerun configure task after fixing this. The path was
+> '/home/local/efacec_omap_linaro/tmp/work/armv5te-poky-linux-gnueabi/gcc-runtime-4.5.1.linaro-r0/gcc-4.5.1.linaro/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/libstdc++-v3'
+>
+> | Function 'do_qa_configure' failed
+> | ERROR: Function 'do_qa_configure' failed
+> NOTE: package gcc-runtime-4.5.1.linaro-r0: task do_qa_configure: Failed
+>
+> Ideas? I'm really anxious to see if this fixes my kernel problems.
+>
+> Thanks
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-------=_NextPart_001_0006_01CBC3E8.33722A20--
 
-------=_NextPart_000_0005_01CBC3E8.33722A20
-Content-Type: application/x-pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIdiDCCAyAw
-ggKJoAMCAQICBDXe9M8wDQYJKoZIhvcNAQEFBQAwTjELMAkGA1UEBhMCVVMxEDAOBgNVBAoTB0Vx
-dWlmYXgxLTArBgNVBAsTJEVxdWlmYXggU2VjdXJlIENlcnRpZmljYXRlIEF1dGhvcml0eTAeFw05
-ODA4MjIxNjQxNTFaFw0xODA4MjIxNjQxNTFaME4xCzAJBgNVBAYTAlVTMRAwDgYDVQQKEwdFcXVp
-ZmF4MS0wKwYDVQQLEyRFcXVpZmF4IFNlY3VyZSBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkwgZ8wDQYJ
-KoZIhvcNAQEBBQADgY0AMIGJAoGBAMFdsVhnCGLuoJotHwhtkRRomAoe/toEbxOEYiHD0XzOnwXg
-uAHwTjTs4oqVBGSs8WtTXwWzy2eAv0ICjv7dAQns4QAUT/z78AzdQ7pbK+EfgHCZFVeTFvEPl2q3
-wmgjHMxNWTCsUR47ryvW7mNFe8XZX1DS41APOojnvxT94Me5AgMBAAGjggEJMIIBBTBwBgNVHR8E
-aTBnMGWgY6BhpF8wXTELMAkGA1UEBhMCVVMxEDAOBgNVBAoTB0VxdWlmYXgxLTArBgNVBAsTJEVx
-dWlmYXggU2VjdXJlIENlcnRpZmljYXRlIEF1dGhvcml0eTENMAsGA1UEAxMEQ1JMMTAaBgNVHRAE
-EzARgQ8yMDE4MDgyMjE2NDE1MVowCwYDVR0PBAQDAgEGMB8GA1UdIwQYMBaAFEjmaPkr0rKV10fY
-IyAQTzOYkJ/UMB0GA1UdDgQWBBRI5mj5K9KylddH2CMgEE8zmJCf1DAMBgNVHRMEBTADAQH/MBoG
-CSqGSIb2fQdBAAQNMAsbBVYzLjBjAwIGwDANBgkqhkiG9w0BAQUFAAOBgQBYzinq/Pfetc4CuRe1
-hdG54+CVzCUxDQCmkm5/tpJjnlCV0Zpv5BHeY4VumO6o/1rI01WyZnFX3sAh6z0qpyNJAQSGQnv8
-7n+iFlK1Z2fTQNs7JliyKHc9rhR3Ydb6KmYnoA36p3Nc6nDxlCFlRF/6/O8paKmih3nvee9PrAd3
-ODCCAz0wggKmoAMCAQICAwWw/zANBgkqhkiG9w0BAQUFADBOMQswCQYDVQQGEwJVUzEQMA4GA1UE
-ChMHRXF1aWZheDEtMCsGA1UECxMkRXF1aWZheCBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5
-MB4XDTA2MDIxNjE4MDEzMFoXDTE2MDIxOTE4MDEzMFowUjELMAkGA1UEBhMCVVMxGjAYBgNVBAoT
-EUludGVsIENvcnBvcmF0aW9uMScwJQYDVQQDEx5JbnRlbCBFeHRlcm5hbCBCYXNpYyBQb2xpY3kg
-Q0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDBpd/XOb9QVqEZ8mQ1042TdOIq3ATD
-IsV2xDyt30yLyMR5Wjtus0bn3B+he89BiNO/LP6+rFzEwlD55PlX+HLGIKeNNG97dqyc30FElEUj
-ZzTZFq2N4e3kVJ/XAEEgANzV8v9qp7qWwxugPgfc3z9BkYot+CifozexHLb/hEZj+yISCU61kRZv
-uSQ0E11yYL4dRgcglJeaHo3oX57rvIckaLsYV5/1Aj+R8DM1Ppk965XQAKsHfnyT7C4S50T4lVn4
-lz36wOdNZn/zegG1zp41lnoTFfT4KuKVJH5x7YD1p6KbgJCKLovnujGuohquBNfdXKpZkvz6pGv+
-iC1HawJdAgMBAAGjgaAwgZ0wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBQaxgxKxEdvqNutK/D0
-Vgaj7TdUDDA6BgNVHR8EMzAxMC+gLaArhilodHRwOi8vY3JsLmdlb3RydXN0LmNvbS9jcmxzL3Nl
-Y3VyZWNhLmNybDAfBgNVHSMEGDAWgBRI5mj5K9KylddH2CMgEE8zmJCf1DAPBgNVHRMBAf8EBTAD
-AQH/MA0GCSqGSIb3DQEBBQUAA4GBABMQOK2kVKVIlUWwLTdywJ+e2O+PC/uQltK2F3lRyrPfBn69
-tOkIP4SgDJOfsxyobIrPLe75kBLw+Dom13OBDp/EMZJZ1CglQfVV8co9mT3aZMjSGGQiMgkJLR3j
-Mfr900fXZKj5XeqCJ+JP0mEhJGEdVCY+FFlksJjV86fDrq1QMIIFYzCCBEugAwIBAgIKYSyUiQAA
-AAAABTANBgkqhkiG9w0BAQUFADBSMQswCQYDVQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9y
-YXRpb24xJzAlBgNVBAMTHkludGVsIEV4dGVybmFsIEJhc2ljIFBvbGljeSBDQTAeFw0wNjAzMjIy
-MjIyNDJaFw0xMjAzMjIyMjMyNDJaMFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jw
-b3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQTCCASIw
-DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKvXqH/ah10uJc7YzQUh+XEDNqS6IsXOyqCtizr9
-x6F+v6iRAbvddRRJRWixfV78qarSN9WMymJ90M8c9/Dfr1yzFuq95RgCAF3vdve3wKi7kJv6lkMJ
-wyyB+uIYcWtljYx2LDqbb9S6Z6He3q8W/aGKvu23I9ksNx+cmZcDNZwGdXVIEHpEMyA4bp0RvYtf
-p8BsGAyn6YuK63HugeyYdeFL+4+Wz2tGUqw9OWhob6oV1oDH3zboLhHJiQ2oIj3jAJ3/LrIkzcWP
-2R20UIliDAPAAl6MNWJPdsNK5EEeuxEuUSpdFsMj5rBmPHH4U8i8rUmi6GEOcX5rwAw64AzS3gEC
-AwEAAaOCAjUwggIxMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFAlpgTN7BnOPI0wKA9/3FoER
-ghMFMAsGA1UdDwQEAwIBhjAQBgkrBgEEAYI3FQEEAwIBADAZBgkrBgEEAYI3FAIEDB4KAFMAdQBi
-AEMAQTAfBgNVHSMEGDAWgBQaxgxKxEdvqNutK/D0Vgaj7TdUDDCBvQYDVR0fBIG1MIGyMIGvoIGs
-oIGphk5odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFs
-JTIwQmFzaWMlMjBQb2xpY3klMjBDQS5jcmyGV2h0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29t
-L3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUyMENBLmNy
-bDCB4wYIKwYBBQUHAQEEgdYwgdMwYwYIKwYBBQUHMAKGV2h0dHA6Ly93d3cuaW50ZWwuY29tL3Jl
-cG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUy
-MENBLmNydDBsBggrBgEFBQcwAoZgaHR0cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3Np
-dG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwUG9saWN5JTIwQ0Eu
-Y3J0MA0GCSqGSIb3DQEBBQUAA4IBAQCuNCnecJ+vDpXzsHOzMEyz4KgTNDbJROHag8H/ZVga7soc
-oJyC+HKqDfQgxifVorbTbSajCBEAxqg6bbNWBJ6qKOFHneBrXkENf5WdD50eCTCFWRV3EIsHEOQ1
-kP0eNYV5Ed4hp9y6wASV6z2z86O4+qouLJiow4AIhoCKD8rEyD7ODgTvjvLCKpsVyPlG1jOVSsOS
-IF2VUmueAmK3RFU4np83zerK/j0G37owhniEDT6ZhwkUd0XL45nt1m7yApMEbnXUTHNaXnE+P98k
-k3nDXdW25sB+5xWcYR3GpgMdQiZgP/f0KZ+yZKNE7gcp3I/O4pXqUNWIsLSYTi3soAR2MIIFYzCC
-BEugAwIBAgIKYSyl/gAAAAAABjANBgkqhkiG9w0BAQUFADBSMQswCQYDVQQGEwJVUzEaMBgGA1UE
-ChMRSW50ZWwgQ29ycG9yYXRpb24xJzAlBgNVBAMTHkludGVsIEV4dGVybmFsIEJhc2ljIFBvbGlj
-eSBDQTAeFw0wNjAzMjIyMjIyNDdaFw0xMjAzMjIyMjMyNDdaMFYxCzAJBgNVBAYTAlVTMRowGAYD
-VQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNz
-dWluZyBDQSAzQjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMDoHJYUGvcdR4k0Qv8/
-RrwNX4+vEe5PN2LnGn4xfIWwdUbk5+zvrRy1HjoKdG/AShZfxAuFoVyNIah5GJLpiS/vGbsDYKK+
-EZcIcmtPfvbB9Yg09EnQ0OpsZ2ORRd5lYUfMUU+zkpgL96vKFdkiG+eeHEwnSS3VikGVrF7UDdKf
-vxZwRwQCx6rEHAFPCjBDVfGYZuYT1EDhSDvzEiU7KzBsxrdBCFU4RYL7kh+do+vyMDlBzpw3WKvM
-Vbf3s5lxYiY7AjEhU8OSyZEQlgtK8PNyifHjmyrSaeJrPshM3PuLFG4d3gm1UJEiGNzxcHGb6YLP
-29IQAwY5mAk8j+UOVcsCAwEAAaOCAjUwggIxMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFG/D
-cREooZ0ZV/VnV8/ZKSaI1aWiMAsGA1UdDwQEAwIBhjAQBgkrBgEEAYI3FQEEAwIBADAZBgkrBgEE
-AYI3FAIEDB4KAFMAdQBiAEMAQTAfBgNVHSMEGDAWgBQaxgxKxEdvqNutK/D0Vgaj7TdUDDCBvQYD
-VR0fBIG1MIGyMIGvoIGsoIGphk5odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9J
-bnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBQb2xpY3klMjBDQS5jcmyGV2h0dHA6Ly9jZXJ0aWZp
-Y2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUy
-MFBvbGljeSUyMENBLmNybDCB4wYIKwYBBQUHAQEEgdYwgdMwYwYIKwYBBQUHMAKGV2h0dHA6Ly93
-d3cuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBC
-YXNpYyUyMFBvbGljeSUyMENBLmNydDBsBggrBgEFBQcwAoZgaHR0cDovL2NlcnRpZmljYXRlcy5p
-bnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2lj
-JTIwUG9saWN5JTIwQ0EuY3J0MA0GCSqGSIb3DQEBBQUAA4IBAQBAiWWHL6T21QXFZDyaUIye0jh7
-f40GXqi75Ro5JbpROtlZBqyRq6oPMAG6Igxd5Bd9TMtNkOvguknFnK1y17UdMhLOl+FuInE+FAWk
-803aRW27OsX+ot0KmPioKnZ3L1K5qcQS3tp6or7AaZzd0w0qFitm4UfP9nnTXQtY9XM5QJ07IKFD
-E3tlOlamKhjbiJV3FKigCVesPZSx9h2G7Ve4irEfz915Vks26AJHGZagEHNxM9exkgem4ENsG+t0
-vYqn9x7YsqJ6fmbOSyrzjzb3CYeEfyE5SL+f3Vx9uMsQDyb8LVCDBXQtxLEHnFEBPrRSSF9kPmyj
-avx4UqFdPEyCMIIGAzCCBOugAwIBAgIKGmwusAAAAAApdjANBgkqhkiG9w0BAQUFADBWMQswCQYD
-VQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVy
-bmFsIEJhc2ljIElzc3VpbmcgQ0EgM0IwHhcNMDgwNDE0MjMxNDQ4WhcNMTEwNDE0MjMxNDQ4WjBB
-MRcwFQYDVQQDEw5aaGFuZywgSmVzc2ljYTEmMCQGCSqGSIb3DQEJARYXamVzc2ljYS56aGFuZ0Bp
-bnRlbC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDQbirxoX/8OWYyzy4UnZ7N
-xXoADLZqxxH1q4lMF2zuAHjyDnNj/4ReRzB6AIDEg1BQWS4z5jC6oApos3HvFEsGbS3pYCWSo5Vb
-jtY5HWOBRPJ2rQ8wzITqcEEBWooYCj5LJeAjPuOZoZPVrKPI1khbOYzaJUwQpICfaErHZyM4p2mV
-AYXcUa/N0zKGnZmNaO6Dff96g41C9jEyfOFEtYOpLdQoXhD1i8tW17WxbHMuiXx3PR3GUdBADrRf
-I3wzqn4rh0y0D4l9mBfgTybVN3UR35ZFGSRsuldyJeeKcCSgghJi3K4ZTxzMfQ6+OKBu6SBeNKWk
-e2Q4f8CIf0+8ZpwfAgMBAAGjggLmMIIC4jALBgNVHQ8EBAMCB4AwHQYDVR0OBBYEFPIpOYEzCqH+
-037yR8d0Rarz7r7mMDwGCSsGAQQBgjcVBwQvMC0GJSsGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OC
-kcAJZ4HevTmV8EMCAWQCAQYwHwYDVR0jBBgwFoAUb8NxESihnRlX9WdXz9kpJojVpaIwgckGA1Ud
-HwSBwTCBvjCBu6CBuKCBtYZUaHR0cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50
-ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwM0IuY3Jshl1odHRwOi8vY2Vy
-dGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFz
-aWMlMjBJc3N1aW5nJTIwQ0ElMjAzQi5jcmwwge8GCCsGAQUFBwEBBIHiMIHfMGkGCCsGAQUFBzAC
-hl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4
-dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQi5jcnQwcgYIKwYBBQUHMAKGZmh0dHA6
-Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIw
-RXh0ZXJuYWwlMjBCYXNpYyUyMElzc3VpbmclMjBDQSUyMDNCLmNydDAfBgNVHSUEGDAWBggrBgEF
-BQcDBAYKKwYBBAGCNwoDDDApBgkrBgEEAYI3FQoEHDAaMAoGCCsGAQUFBwMEMAwGCisGAQQBgjcK
-AwwwSwYDVR0RBEQwQqAnBgorBgEEAYI3FAIDoBkMF2plc3NpY2EuemhhbmdAaW50ZWwuY29tgRdq
-ZXNzaWNhLnpoYW5nQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEANFSBbauSm1ktwUQI6fGq
-9XhTSUsty5/CHOrOwFe4K7LX0clVirXUYakIZXXG86lD1piRrjt23MhKRekYNIv0mfJklEF7yV5M
-VVqwDK1Uz6bsiw/SQnqfBuFrd70W4cua3bU1uu3dAhZBh482BtBZYFockuHd3YBFT7xmykOaAMLP
-CttrNSijP7HsbetGG2GLLc3CWauSXXr2ELseXkw3KkUKBPMw+DFAJdsRyBe0L+OwlDplr8POBXXb
-uuQK7Wo84mX7gMT0uSq/Luex/BD1xn2brKVs9t4FvL8ifxv4LuWRzv45EgPN4T12I202GBQ8iJtZ
-DkT3+9QPiQ35Hmuy6zCCBkowggUyoAMCAQICCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEFBQAwVjEL
-MAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBF
-eHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBMB4XDTA4MDQxNDIzMTM1MVoXDTExMDQxNDIzMTM1
-MVowQTEXMBUGA1UEAxMOWmhhbmcsIEplc3NpY2ExJjAkBgkqhkiG9w0BCQEWF2plc3NpY2Euemhh
-bmdAaW50ZWwuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2Lgwg9E/0F9weWx5
-ZCk0oiuerOIqOFTXcithjh7zRhiq8v/z9sXR/yWXUA7JK5E5JLPRNl0nQJFv/FLTaq9/9PchiI/N
-4v7L/ERXTzdMNvwOEqNOy8SOmmOOjF8N1vtrIv+WdBYiqBvtfQ9xGXadxckgrBOSTtTrw4iShbnG
-mVrw6mYYIOdPIKhq3QFmxHs93R8IrmIjvMbf31JhiAp7KJ/mc+bckmYW/9fNNEQkMbuF3B6iWsTk
-8c+D8oWmxuw+m6svwEMKck8yr3ldF6sZ6NCKXJChwDmjZMHBBSV6IUUycyl6SJ33j3r9Beki5bvG
-mhZnfGBLWODaLv4PDbG7BwIDAQABo4IDLTCCAykwCwYDVR0PBAQDAgQwMEQGCSqGSIb3DQEJDwQ3
-MDUwDgYIKoZIhvcNAwICAgCAMA4GCCqGSIb3DQMEAgIAgDAHBgUrDgMCBzAKBggqhkiG9w0DBzAd
-BgNVHQ4EFgQUKEdHKlCw71rRzz5gJWoRJwoviW0wPQYJKwYBBAGCNxUHBDAwLgYmKwYBBAGCNxUI
-hsOMdYSZ5VGD/YEohY6fU4KRwAlnhLnZQYeE/04CAWQCAQkwHwYDVR0jBBgwFoAUCWmBM3sGc48j
-TAoD3/cWgRGCEwUwgckGA1UdHwSBwTCBvjCBu6CBuKCBtYZUaHR0cDovL3d3dy5pbnRlbC5jb20v
-cmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIw
-M0EuY3Jshl1odHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9JbnRl
-bCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQS5jcmwwge8GCCsGAQUFBwEB
-BIHiMIHfMGkGCCsGAQUFBzAChl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRp
-ZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQS5jcnQw
-cgYIKwYBBQUHMAKGZmh0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2Vy
-dGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElzc3VpbmclMjBDQSUyMDNBLmNy
-dDAfBgNVHSUEGDAWBggrBgEFBQcDBAYKKwYBBAGCNwoDBDApBgkrBgEEAYI3FQoEHDAaMAoGCCsG
-AQUFBwMEMAwGCisGAQQBgjcKAwQwSwYDVR0RBEQwQqAnBgorBgEEAYI3FAIDoBkMF2plc3NpY2Eu
-emhhbmdAaW50ZWwuY29tgRdqZXNzaWNhLnpoYW5nQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOC
-AQEAlkSHAnj2YSCjtyOIJJtoNia1mv4qLpp3rxqxeZzEG9Bk4k4hGHkozj1p+mi368ieYl/fTPtK
-IIBDCwod9o12adTGGW7wyUHjZfalumhsFoKTXbUU/CC7lpooUKuDxCjaIjsc4rdDxP1MEAUX43IG
-kLRqq9elDWluC0WjR+q+cAqKMJxLmAKhKz7JDTNrbfWwuoETGdCMkLUK464/FSvfDKoV+Ypkoq1x
-YiTi71VhwWenYKPnyKbLgiULEgdfwQscMzJQ9rmq1iyfoXuXPSkCA6nfZKoSkBOVJQXjW/+B2wxe
-YmaO9Qc5P3CJvsmgmgX5mK2wyKEw0JCwTHE3w7FkFjGCA0EwggM9AgEBMGQwVjELMAkGA1UEBhMC
-VVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBC
-YXNpYyBJc3N1aW5nIENBIDNCAgoabC6wAAAAACl2MAkGBSsOAwIaBQCgggGyMBgGCSqGSIb3DQEJ
-AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTExMDIwNDA1MjAzN1owIwYJKoZIhvcNAQkE
-MRYEFHtsz0T2gpl570WfbDMIuA5GqENKMGcGCSqGSIb3DQEJDzFaMFgwCgYIKoZIhvcNAwcwDgYI
-KoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMAcGBSsO
-AwIaMAoGCCqGSIb3DQIFMHMGCSsGAQQBgjcQBDFmMGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoT
-EUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5n
-IENBIDNBAgp5ih1RAAAAAB8rMHUGCyqGSIb3DQEJEAILMWagZDBWMQswCQYDVQQGEwJVUzEaMBgG
-A1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElz
-c3VpbmcgQ0EgM0ECCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEBBQAEggEAleZj74zjHZd3luueQrlf
-bbwkh3s91liy3jsdGCPYuDRje1dXddHk2Weak3ET4xIRxkFJJFIyJFs2StGsL5o0j4vbHrF/vXxw
-nIo8kqw24cPOjGCOTU4SdOfW/rHYcwYwTvfiRXBYck49l1MCrYiNyZT10Bt/eX9M5Z/OkEotSpfg
-EATExpcrxpjZ/of8rHjeooP9JwMtjWPFtdVxrmEBAonE6jMKoQKFagc6xQwkkQpWcPxZBdmrsyih
-RIDXvfFGJnlXgMfd4yv0SFPC/dOc6O0a0K6POJ12FUl93TOATYu3x+67H67pF+BO/sOaxk7dGKgO
-4nBket46u9b0GCL5WQAAAAAAAA==
-
-------=_NextPart_000_0005_01CBC3E8.33722A20--
