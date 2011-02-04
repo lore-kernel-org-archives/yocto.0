@@ -1,16 +1,29 @@
-Return-Path: <aleksandr.koltsoff@ebts.fi>
-Received: from smtp.ebi (ebi0.eke.fi [213.140.179.212])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8D0134C800A8
-	for <yocto@yoctoproject.org>; Fri,  4 Feb 2011 08:02:08 -0600 (CST)
-Received: from localhost.localdomain (bob.ebi [192.168.0.244])
-	by smtp.ebi (Postfix) with ESMTP id 505001F0E2;
-	Fri,  4 Feb 2011 16:02:08 +0200 (EET)
-From: Aleksandr Koltsoff <aleksandr.koltsoff@ebts.fi>
-To: yocto@yoctoproject.org
-Date: Fri,  4 Feb 2011 16:01:51 +0200
-Message-Id: <1296828111-16867-1-git-send-email-aleksandr.koltsoff@ebts.fi>
-X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 1/1] openssl: Propagate LDFLAGS properly.
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 62DFD4C800A8
+	for <yocto@yoctoproject.org>; Fri,  4 Feb 2011 08:16:44 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p14EGhGg023744;
+	Fri, 4 Feb 2011 06:16:43 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Fri, 4 Feb 2011 06:16:43 -0800
+Received: from [128.224.146.67] ([128.224.146.67]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Fri, 4 Feb 2011 06:16:41 -0800
+Message-ID: <4D4C0A48.2020504@windriver.com>
+Date: Fri, 04 Feb 2011 09:16:40 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.14) Gecko/20110131 Thunderbird/3.1.8 ThunderBrowse/3.3.4
+MIME-Version: 1.0
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+References: <9AFCD584B0B67B48AE8D8585BE30BA950D9782E2@orsmsx504.amr.corp.intel.com>
+In-Reply-To: <9AFCD584B0B67B48AE8D8585BE30BA950D9782E2@orsmsx504.amr.corp.intel.com>
+X-OriginalArrivalTime: 04 Feb 2011 14:16:42.0894 (UTC)
+	FILETIME=[25C36AE0:01CBC476]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [poky] meta-toolchain build failed on fetch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -22,98 +35,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Feb 2011 14:02:09 -0000
+X-List-Received-Date: Fri, 04 Feb 2011 14:16:44 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The LDFLAGS handling in openssl is slightly difficult, the
-shared libraries use SHARED_LDFLAGS, and the programs (openssl) use
-LDFLAGS, except that it isn't passed by default to the underlying
-Makefiles. This patch fixes both cases and makes the QA issues
-about GNU_HASH go away.
+On 11-02-04 12:20 AM, Zhang, Jessica wrote:
+> Has anyone run into the following failure, this is for meta-toolchain
+> for x86_64:
 
-Signed-off-by: Aleksandr Koltsoff <aleksandr.koltsoff@ebts.fi>
----
- .../openssl/openssl-0.9.8p/respect-ldflags.patch   |   31 ++++++++++++++++++++
- meta/recipes-connectivity/openssl/openssl.inc      |    4 ++-
- .../recipes-connectivity/openssl/openssl_0.9.8p.bb |    7 ++--
- 3 files changed, 38 insertions(+), 4 deletions(-)
- create mode 100644 meta/recipes-connectivity/openssl/openssl-0.9.8p/respect-ldflags.patch
+This is lurking in various forms at the moment, the fetcher
+updates + new branches and the mirrors with old copies (my
+guess), is causing this undesirable behaviour.
 
-diff --git a/meta/recipes-connectivity/openssl/openssl-0.9.8p/respect-ldflags.patch b/meta/recipes-connectivity/openssl/openssl-0.9.8p/respect-ldflags.patch
-new file mode 100644
-index 0000000..37da447
---- /dev/null
-+++ b/meta/recipes-connectivity/openssl/openssl-0.9.8p/respect-ldflags.patch
-@@ -0,0 +1,31 @@
-+http://bugs.gentoo.org/181438 inspired the makefile fixes, although this
-+patch must be applied after the Debian ones, since the rlib stuff has
-+already been removed by the time of this patch.
-+
-+SHARED_LDFLAGS needs to be set from top-level make though, so this patch
-+by itself is not enough.
-+
-+
-+diff -urN openssl-0.9.8q.orig/Makefile.org openssl-0.9.8q/Makefile.org
-+--- openssl-0.9.8q.orig/Makefile.org	2011-02-04 12:46:35.000000000 +0200
-++++ openssl-0.9.8q/Makefile.org	2011-02-04 12:47:12.000000000 +0200
-+@@ -208,6 +208,7 @@
-+ 		MAKEDEPEND='$$$${TOP}/util/domd $$$${TOP} -MD ${MAKEDEPPROG}' \
-+ 		DEPFLAG='-DOPENSSL_NO_DEPRECATED ${DEPFLAG}'	\
-+ 		MAKEDEPPROG='${MAKEDEPPROG}'			\
-++		LDFLAGS='${LDFLAGS}'				\
-+ 		SHARED_LDFLAGS='${SHARED_LDFLAGS}'		\
-+ 		KRB5_INCLUDES='${KRB5_INCLUDES}' LIBKRB5='${LIBKRB5}'	\
-+ 		EXE_EXT='${EXE_EXT}' SHARED_LIBS='${SHARED_LIBS}'	\
-+diff -urN openssl-0.9.8q.orig/Makefile.shared openssl-0.9.8q/Makefile.shared
-+--- openssl-0.9.8q.orig/Makefile.shared	2011-02-04 12:46:35.000000000 +0200
-++++ openssl-0.9.8q/Makefile.shared	2011-02-04 12:47:31.000000000 +0200
-+@@ -151,7 +151,7 @@
-+ 	NOALLSYMSFLAGS='-Wl,--no-whole-archive'; \
-+ 	SHAREDFLAGS="$(CFLAGS) $(SHARED_LDFLAGS) -shared -Wl,-Bsymbolic -Wl,-soname=$$SHLIB$$SHLIB_SOVER$$SHLIB_SUFFIX"
-+ 
-+-DO_GNU_APP=LDFLAGS="$(CFLAGS)"
-++DO_GNU_APP=LDFLAGS="$(LDFLAGS) $(CFLAGS)"
-+ 
-+ #This is rather special.  It's a special target with which one can link
-+ #applications without bothering with any features that have anything to
-diff --git a/meta/recipes-connectivity/openssl/openssl.inc b/meta/recipes-connectivity/openssl/openssl.inc
-index f054c26..c190e5c 100644
---- a/meta/recipes-connectivity/openssl/openssl.inc
-+++ b/meta/recipes-connectivity/openssl/openssl.inc
-@@ -93,7 +93,9 @@ do_configure () {
- }
- 
- do_compile () {
--	oe_runmake
-+	# SHARED_LDFLAGS are used instead of LDFLAGS for shared libs
-+	# Applications and tests use LDFLAGS.
-+	oe_runmake SHARED_LDFLAGS="${LDFLAGS}"
- }
- 
- do_install () {
-diff --git a/meta/recipes-connectivity/openssl/openssl_0.9.8p.bb b/meta/recipes-connectivity/openssl/openssl_0.9.8p.bb
-index 283b82a..c6979bb 100644
---- a/meta/recipes-connectivity/openssl/openssl_0.9.8p.bb
-+++ b/meta/recipes-connectivity/openssl/openssl_0.9.8p.bb
-@@ -1,6 +1,6 @@
- require openssl.inc
- 
--PR = "r2"
-+PR = "r3"
- SRC_URI += "file://debian/ca.patch \
-             file://debian/config-hurd.patch;apply=no \
-             file://debian/debian-targets.patch \
-@@ -24,7 +24,8 @@ SRC_URI += "file://debian/ca.patch \
- SRC_URI[md5sum] = "7f24047f70364c9eabc94899e356ce39"
- SRC_URI[sha256sum] = "b2645e2a2af221fa230b5ef6aa2b9388a875801b74cbddbb16be557f80f45242"
- 
--SRC_URI += "file://configure-targets.patch \
--            file://shared-libs.patch"
-+SRC_URI += "file://shared-libs.patch \
-+            file://configure-targets.patch \
-+            file://respect-ldflags.patch"
- 
- BBCLASSEXTEND = "native nativesdk"
--- 
-1.7.0.4
+> | Fetcher accessed the network with the command git fetch
+> git.pokylinux.org/linux-yocto-2.6.37
+> | NOTE: Fetcher accessed the network with the command git fetch
+> git.pokylinux.org/linux-yocto-2.6.37
+> | Fetching origin
+> | error: unable to resolve reference
+> refs/remotes/origin/yocto/standard/common-pc-64/base: Not a directory
+> | From git://git.pokylinux.org/linux-yocto-2.6.37
+> | ! [new branch] yocto/standard/common-pc-64/base ->
+> origin/yocto/standard/common-pc-64/base (unable to update local ref)
+> | error: unable to resolve reference
+
+This is due to the way that git manages things on disk. In
+this case, make sure to completely remove your old downloaded
+copy of the repo and re-fetch.
+
+I'm trying to find a way to have git properly deal with
+this at the moment.
+
+Cheers,
+
+Bruce
+
+> refs/remotes/origin/yocto/standard/common-pc-64/sugarbay: Not a directory
+> | ! [new branch] yocto/standard/common-pc-64/sugarbay ->
+> origin/yocto/standard/common-pc-64/sugarbay (unable to update local ref)
+> | error: some local refs could not be updated; try running
+> | 'git remote prune origin' to remove any old, conflicting branches
+> | error: Could not fetch origin
+> | Function 'Fetch failed: Unable to fetch URL
+> git://git.pokylinux.org/linux-yocto-2.6.37;protocol=git;fullclone=1;branch=yocto/standard/base;name=machine
+> from any source.' failed
+> | ERROR: Function 'Fetch failed: Unable to fetch URL
+> git://git.pokylinux.org/linux-yocto-2.6.37;protocol=git;fullclone=1;branch=yocto/standard/base;name=machine
+> from any source.' failed
+> NOTE: package
+> linux-libc-headers-yocto-2.6.37+git-0+a9d833fda90e2f1257888a97e092135610b5f259_0+standard-r2:
+> task Fetch failed: Unable to fetch URL
+> git://git.pokylinux.org/linux-yocto-2.6.37;protocol=git;fullclone=1;branch=yocto/standard/base;name=machine
+> from any source.: Failed
+> NOTE: package gcc-cross-4.5.1-r2: task do_unpack: Started
+> ERROR: Task 441
+> (/home/jzhang/poky-master/meta/recipes-kernel/linux-libc-headers/linux-libc-headers-yocto_git.bb,
+> do_fetch) failed with exit code '1'
+> Thanks,
+> Jessica
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
