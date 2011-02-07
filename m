@@ -1,32 +1,27 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 65B284C800B7
-	for <yocto@yoctoproject.org>; Fri,  4 Feb 2011 18:30:58 -0600 (CST)
-Received: by mail.chez-thomas.org (Postfix, from userid 999)
-	id 1BBC1166015C; Fri,  4 Feb 2011 17:30:58 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.1
-Received: from hermes.chez-thomas.org (hermes_local [192.168.1.101])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 60E0D16600AC;
-	Fri,  4 Feb 2011 17:30:57 -0700 (MST)
-Message-ID: <4D4C9A41.7070709@mlbassoc.com>
-Date: Fri, 04 Feb 2011 17:30:57 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.13) Gecko/20101209 Fedora/3.1.7-0.35.b3pre.fc13
-	Thunderbird/3.1.7
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6DB544C800A4;
+	Mon,  7 Feb 2011 12:07:13 -0600 (CST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 07 Feb 2011 10:07:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,438,1291622400"; d="scan'208";a="704955854"
+Received: from eflanlinux.jf.intel.com (HELO [10.7.201.91]) ([10.7.201.91])
+	by orsmga001.jf.intel.com with ESMTP; 07 Feb 2011 10:07:11 -0800
+Message-ID: <4D503519.8010706@intel.com>
+Date: Mon, 07 Feb 2011 10:08:25 -0800
+From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.16) Gecko/20101125 SUSE/3.0.11 Lightning/1.0b1
+	Thunderbird/3.0.11 ThunderBrowse/3.3.3
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <4D4B37F9.7080708@mlbassoc.com> <4D4BA607.3060006@linux.intel.com>
-	<4D4C7BFC.60400@linux.intel.com> <4D4C7DE6.3010409@mlbassoc.com>
-	<4D4C919B.4000100@linux.intel.com>
-In-Reply-To: <4D4C919B.4000100@linux.intel.com>
+To: Wolfgang Denk <wd@denx.de>
+References: <4D4C9919.6060708@intel.com>
+	<20110205140712.181EF152161@gemini.denx.de>
+In-Reply-To: <20110205140712.181EF152161@gemini.denx.de>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Richard Purdie <richard.purdie@intel.com>
-Subject: Re: meta-linaro woes continue
+	"poky@yoctoproject.org" <poky@yoctoproject.org>
+Subject: Re: [poky] [Announcement] Laverne 4.0.1 Release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,34 +33,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 05 Feb 2011 00:30:59 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Mon, 07 Feb 2011 18:07:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 02/04/2011 04:54 PM, Darren Hart wrote:
-> On 02/04/2011 02:29 PM, Gary Thomas wrote:
->> On 02/04/2011 03:21 PM, Darren Hart wrote:
->
->>> I picked up your do_src_move change as it resolves the issue - but I
->>> can't say that I really understand the problem being solved - can you
->>> elaborate on why you took this approach?
->>> I'll credit you properly in the commit in the final set of branches.
+Wolfgang,
+
+It is indeed 4.0.1, the commits for 7fa2b1c and d1fd60f were incorrect
+(there was some confusion on my part as to the numbering scheme). These
+issues were corrected @ 45526f5. Sorry for any confusion.
+
+Regards,
+
+------------------
+Elizabeth Flanagan
+Yocto Project
+Release Engineer
+
+
+On 02/05/2011 06:07 AM, Wolfgang Denk wrote:
+> Dear Elizabeth Flanagan,
+> 
+> In message <4D4C9919.6060708@intel.com> you wrote:
 >>
->> I made this change because do_unpack_append() was being treated
->> as a Python function, so the syntax was wrong. By using that
->> function to run a shell function, the problem is solved. I patterned
->> this after similar functions, e.g. in the eglibc recipe. It took me
->> a while to find and understand this, but then it became obvious.
->
-> Ewww, that's pretty obfuscated. Did you determine why one function is treated as python and the other as bash?
->
+>> We are pleased to announce the first bug-fix release of Poky Laverne,
+>> 4.0.1. This release is available at:
+>>
+>> http://mirrors.kernel.org/yocto/poky/poky-laverne-4.0.1.tar.bz2
+> 
+> Is this Laverne 4.0.1 or 4.1 ? The git tag is laverne-4.0.1, but the
+> 7fa2b1c commit message says:
+> 
+>     Laverne 4.1 release: NOTES and CHANGELOG
+>     
+>     Name: Laverne
+>     Version: 4.0.1
+>     Built from Revision: fd7a07b3a2153826bedda2ef76b9a33ab2791680
+>     Build Date: Jan 26 2011
+>     Builder: autobuilder.pokylinux.org
+>     
+>     Commit of final release notes and changelog for Laverne 4.1
+> 
+> And in d1fd60f I see this:
+> 
+>     Setting Yocto rev number to 4.1: poky.conf
+> ...
+> -DISTRO_NAME = "Yocto Linux (Built by Poky 4.0)"
+> +DISTRO_NAME = "Yocto Linux (Built by Poky 4.1)"
+> 
+> 
+> So I'm a bit confused?
+> 
+> Best regards,
+> 
+> Wolfgang Denk
+> 
 
-No clue, I was just following precedent.  Richard probably
-knows the details.
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
