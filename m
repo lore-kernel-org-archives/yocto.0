@@ -1,36 +1,33 @@
-Return-Path: <wd@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 438844C80097;
-	Mon,  7 Feb 2011 13:39:29 -0600 (CST)
-Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
-	[192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id B3236188B58E;
-	Mon,  7 Feb 2011 20:39:27 +0100 (CET)
-X-Auth-Info: K0BrasIE5nX7IOhyb9QE+a0Dup3Y29bQM3dupOMUnPw=
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216])
-	by smtp-auth.mnet-online.de (Postfix) with ESMTPA id EAC1D1C000FF;
-	Mon,  7 Feb 2011 20:39:27 +0100 (CET)
-Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id CFF003436637;
-	Mon,  7 Feb 2011 20:39:27 +0100 (CET)
-Received: from gemini.denx.de (localhost.localdomain [127.0.0.1])
-	by gemini.denx.de (Postfix) with ESMTP id A8BBC14B4BD5;
-	Mon,  7 Feb 2011 20:39:27 +0100 (CET)
-To: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-From: Wolfgang Denk <wd@denx.de>
+Return-Path: <diego.sueiro@gmail.com>
+Received: from mail-iw0-f176.google.com (mail-iw0-f176.google.com
+	[209.85.214.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 170594C80053
+	for <yocto@yoctoproject.org>; Tue,  8 Feb 2011 07:46:45 -0600 (CST)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iwn2 with SMTP id 2so6219501iwn.35
+	for <yocto@yoctoproject.org>; Tue, 08 Feb 2011 05:46:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:from:date:message-id:subject:to
+	:content-type; bh=86jwbPUd/xl677ZnkHT5hDszGWWx2D8iYUlNCJAyxaI=;
+	b=EHSCB/jTEmCWfVJTFIYapVEcbBDXsxR/+IcEzKi3eb6K2tEzy6JVskY/qEKCOzIVvh
+	lHwm0kknhnhrfi/qpmYavvfMnp5xbu/slp2Vjrikjh+Dye+yQm6Czjjr6rc9zBHdqOJt
+	IPwDFC9hflTv/8lOI4EILTb5efGEpkwsVhxzI=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	b=VVwT2BhA1PnEBylXDoOSm/i1QlT7IhsrUyS8ACUiuXeiCIxlTVTGj8XTocx4OFWHPf
+	DPigsV8krXNzdhcOOqgfpeXqdCsHgMTa5hHHfCxraXb9kfmoNZ1pSi3bIkGTLcgeasNh
+	+wjlJ2U6U97uPmOYnVxyBCBgo+qsSOfZAJhvc=
+Received: by 10.42.173.131 with SMTP id r3mr5527760icz.431.1297172804644; Tue,
+	08 Feb 2011 05:46:44 -0800 (PST)
 MIME-Version: 1.0
-In-reply-to: <4D503519.8010706@intel.com>
-References: <4D4C9919.6060708@intel.com>
-	<20110205140712.181EF152161@gemini.denx.de>
-	<4D503519.8010706@intel.com>
-Comments: In-reply-to Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-	message dated "Mon, 07 Feb 2011 10:08:25 -0800."
-Date: Mon, 07 Feb 2011 20:39:27 +0100
-Message-Id: <20110207193927.A8BBC14B4BD5@gemini.denx.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"poky@yoctoproject.org" <poky@yoctoproject.org>
-Subject: Re: [poky] [Announcement] Laverne 4.0.1 Release
+Received: by 10.42.222.202 with HTTP; Tue, 8 Feb 2011 05:46:23 -0800 (PST)
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Tue, 8 Feb 2011 11:46:23 -0200
+Message-ID: <AANLkTimx3rKU_wj-depc214tGMNnpEZF4OU059H9FGHd@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Adding machine for linux-yocto-stable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,30 +39,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Feb 2011 19:39:30 -0000
-Content-type: text/plain; charset=ISO-8859-1
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Tue, 08 Feb 2011 13:46:45 -0000
+Content-Type: multipart/alternative; boundary=90e6ba6e8cda3bb064049bc594bd
 
-Dear Elizabeth,
+--90e6ba6e8cda3bb064049bc594bd
+Content-Type: text/plain; charset=ISO-8859-1
 
-In message <4D503519.8010706@intel.com> you wrote:
-> 
-> It is indeed 4.0.1, the commits for 7fa2b1c and d1fd60f were incorrect
-> (there was some confusion on my part as to the numbering scheme). These
-> issues were corrected @ 45526f5. Sorry for any confusion.
+Folks,
 
-Understood - thanks!
+I'm trying to get devkit8000 kernel compiled with linux-yocto-stable recipe.
+I've added devkit8000 on COMPATIBLE_MACHINE and on KMACHINE_dekvkit800.
 
-Best regards,
+But I don't know what pokylinux branch to use to make the kernel build
+works.
 
-Wolfgang Denk
+I believe that I have to config these variables:
 
--- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-Winners never talk about glorious victories. That's  because  they're
-the  ones  who  see  what the battlefield looks like afterwards. It's
-only the losers who have glorious victories.
-                                      - Terry Pratchett, _Small Gods_
+LINUX_KERNEL_TYPE
+SRCREV_machine_pn-linux-yocto-stable_devkit8000
 
+
+Any suggestions?
+
+Regards,
+
+--
+*dS
+Diego Sueiro
+
+/*long live rock 'n roll*/
+
+--90e6ba6e8cda3bb064049bc594bd
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Folks,<div><br></div><div>I&#39;m trying to get devkit8000 kernel compiled =
+with linux-yocto-stable recipe.</div><div>I&#39;ve added devkit8000 on=A0CO=
+MPATIBLE_MACHINE and on=A0KMACHINE_dekvkit800.</div><div><br></div><div>But=
+ I don&#39;t know what pokylinux branch to use to make the kernel build wor=
+ks.</div>
+
+<div><br></div><div>I believe that I have to config these variables:</div><=
+blockquote class=3D"webkit-indent-blockquote" style=3D"margin: 0 0 0 40px; =
+border: none; padding: 0px;"><div><meta http-equiv=3D"content-type" content=
+=3D"text/html; charset=3Dutf-8">LINUX_KERNEL_TYPE</div>
+
+<div>SRCREV_machine_pn-linux-yocto-stable_devkit8000</div><div><br></div></=
+blockquote><div><br></div>Any suggestions?<br><div><br></div><div><div>Rega=
+rds,</div><div><br></div>--<br>*dS<br>Diego Sueiro<br><br>/*long live rock =
+&#39;n roll*/<br>
+
+
+</div>
+
+--90e6ba6e8cda3bb064049bc594bd--
