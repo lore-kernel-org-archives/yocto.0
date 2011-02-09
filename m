@@ -1,41 +1,22 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 2FBB44C8009E;
-	Wed,  9 Feb 2011 08:00:25 -0600 (CST)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iyb26 with SMTP id 26so189728iyb.35
-	for <multiple recipients>; Wed, 09 Feb 2011 06:00:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=hjQBZXDp2H8N+4Yk09SOg+hlgjM/Ufx4flrcmkXFZtg=;
-	b=ER8vHo/IHcBzrGdtmTPZHkjwfDHQhCbAjaXXD9TDlEdCVxWpnJrmUGbOeotaqXOf1p
-	mrOTlFsbPqFBq02evtYlKh2sWS6qOJoNXdDr53essOK4uwSThanJz9Iq3WYiuBDa0x6n
-	KwNhgY64B9zi4hm8Rx7clVyeOcS3/a8wBjEK4=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	b=Zg/RYFzS5S4fEsx2YmsrrwdP+w76fExIeTXaWY3tvax67ASShIzNsFs8m87HqL6Oy0
-	koj+/JFQh+lH46wZ5OiA5OtWO4Hinv91ps1IjeC9sR5dy2pMiugZoqXekv7UI26Rem66
-	nbaJOp2OpnqiYWvJffUvxTalxQ2sb2WYgr1KU=
+Return-Path: <scott.a.garman@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 53BF94C8009E
+	for <yocto@yoctoproject.org>; Wed,  9 Feb 2011 13:34:58 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 09 Feb 2011 11:34:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,447,1291622400"; 
+	d="txt'?scan'208";a="386489775"
+Received: from unknown (HELO [10.255.14.206]) ([10.255.14.206])
+	by azsmga001.ch.intel.com with ESMTP; 09 Feb 2011 11:34:57 -0800
+Message-ID: <4D52EC60.9020508@intel.com>
+Date: Wed, 09 Feb 2011 11:34:56 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7
 MIME-Version: 1.0
-Received: by 10.42.171.6 with SMTP id h6mr6483334icz.121.1297260024826; Wed,
-	09 Feb 2011 06:00:24 -0800 (PST)
-Received: by 10.231.156.136 with HTTP; Wed, 9 Feb 2011 06:00:24 -0800 (PST)
-In-Reply-To: <1297250056.1395.6333.camel@rex>
-References: <cover.1297232160.git.bruce.ashfield@windriver.com>
-	<eaec388c5c2bfcfde022835e359bd9a8f73e9137.1297232160.git.bruce.ashfield@windriver.com>
-	<1297250056.1395.6333.camel@rex>
-Date: Wed, 9 Feb 2011 09:00:24 -0500
-Message-ID: <AANLkTikGYC0Y4kCcUJfPyEQoj2sYY7TaivGQXJQUm1Q8@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
-Subject: Re: [poky] [PATCH 1/1] linux-yocto: streamline BSP bootstrapping
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Documentation audit - initial results.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,106 +28,689 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Feb 2011 14:00:25 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 09 Feb 2011 19:34:58 -0000
+X-Groupsio-MsgNum: 954
+Content-Type: multipart/mixed; boundary="------------070804090905080806010202"
 
-On Wed, Feb 9, 2011 at 6:14 AM, Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
-> On Wed, 2011-02-09 at 01:22 -0500, Bruce Ashfield wrote:
->> In order to build BSPs that were not already integrated into
->> the upstream linux yocto kernel AND keep the git fetcher happy,
->> some fairly complex anonymous python sections were required.
->>
->> These sections cause problems with variable expansion and SRCREV
->> processing.
->>
->> With the updated git fetcher code, we can streamline the BSP
->> boostrapping process and drop 99% of the anonymous python code.
->>
->> This commit has the following changes to support BSP boot strapping
->> and simplication for existing BSPs.
->>
->> =A0 =A0- KMETA is set per-recipe rather than in python code
->> =A0 =A0- undefined machines are no longer used, but instead common
->> =A0 =A0 =A0branch names are set per-recipe
->> =A0 =A0- fallback machine SRCREVs are present in the default revisions
->> =A0 =A0 =A0file
->> =A0 =A0- A new variable YOCTO_KERNEL_EXTERNAL_BRANCH should be set in
->> =A0 =A0 =A0the local.conf for new BSPs instead of being programatically
->> =A0 =A0 =A0determined in the anonymous python.
->> =A0 =A0- No more explicity KMACHINE variable expansion and manipulation,
->> =A0 =A0 =A0since the tools and build phases no longer require it due
->> =A0 =A0 =A0to the per-recipe fallbacks.
->>
->> Integrated/merged BSPs are unaffected by the changes and have been
->> regression tested.
->>
->> Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
->>
->> diff --git a/meta/conf/distro/include/poky-default-revisions.inc b/meta/=
-conf/distro/include/poky-default-revisions.inc
->> index 9abc4a5..a04fa9e 100644
->> --- a/meta/conf/distro/include/poky-default-revisions.inc
->> +++ b/meta/conf/distro/include/poky-default-revisions.inc
->> @@ -59,7 +59,7 @@ SRCREV_pn-gypsy ??=3D "147"
->> =A0SRCREV_pn-inputproto ??=3D "7203036522ba9d4b224d282d6afc2d0b947711ee"
->> =A0SRCREV_pn-inputproto-native ??=3D "7203036522ba9d4b224d282d6afc2d0b94=
-7711ee"
->> =A0SRCREV_pn-inputproto-nativesdk ??=3D "7203036522ba9d4b224d282d6afc2d0=
-b947711ee"
->> -SRCREV_pn-kern-tools-native ??=3D "fde7ef8fa8043607752563b9b7908f487eb2=
-f7dd"
->> +SRCREV_pn-kern-tools-native ??=3D "4f13a46499261ea181fdc13db5459067df08=
-aca7"
->> =A0SRCREV_pn-libdrm ??=3D "3f3c5be6f908272199ccf53f108b1124bfe0a00e"
->> =A0SRCREV_pn-libfakekey ??=3D "e8c2e412ea4a417afc1f30e32cb7bdc508b1dccc"
->> =A0SRCREV_pn-libgdbus ??=3D "aeab6e3c0185b271ca343b439470491b99cc587f"
->> @@ -110,6 +110,7 @@ SRCREV_machine_pn-linux-yocto_mpc8315e-rdb ?=3D "68f=
-b0b8d73bbb336ffa4a47bc70ec1eab
->> =A0SRCREV_machine_pn-linux-yocto_beagleboard ?=3D "343c06b25b221aa7f7019=
-aee83b2d976041fddce"
->> =A0SRCREV_machine_pn-linux-yocto ?=3D "cb4faf3af527e25feee584f39c3956ca0=
-c9448c8"
->> =A0SRCREV_meta_pn-linux-yocto ?=3D "5a32d7fe3b817868ebb697d2d883d7439036=
-85ae"
->> +SRCREV_machine_pn-linux-yocto ?=3D "cb4faf3af527e25feee584f39c3956ca0c9=
-448c8"
->> =A0SRCREV_pn-linux-libc-headers-yocto ??=3D "343c06b25b221aa7f7019aee83b=
-2d976041fddce"
->> =A0SRCREV_pn-matchbox-config-gtk ??=3D "3ed74dfb7c57be088a5ab36e446c0ccd=
-e9fa1028"
->> =A0SRCREV_pn-matchbox-desktop-sato ??=3D "76"
->> diff --git a/meta/recipes-kernel/linux/linux-yocto-stable_git.bb b/meta/=
-recipes-kernel/linux/linux-yocto-stable_git.bb
->> index d4bee77..3c1e669 100644
->> --- a/meta/recipes-kernel/linux/linux-yocto-stable_git.bb
->> +++ b/meta/recipes-kernel/linux/linux-yocto-stable_git.bb
->
-> I merged this with the exception of the second hunk above since it just
-> adds a duplicate line.
+--------------070804090905080806010202
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-argh. Sorry about that, I was testing with your changes in my
-tree and thought I had rebased them out!
+Hello,
 
-Cheers,
+I thought I'd share the initial results from the documentation audit 
+I've been doing.
 
-Bruce
+I count a recipe as generating documentation if it creates a -doc output 
+package which is populated with files (as opposed to an empty directory 
+tree).
 
->
-> Cheers,
->
-> Richard
->
-> _______________________________________________
-> poky mailing list
-> poky@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/poky
->
+Using this metric, and building recipes as obtained from bitbake -s for 
+qemux86, I've obtained the following numbers:
 
+302 recipes are producing documentation
+285 recipes do not currently produce documentation
+22 recipes failed to build
 
+I did manage to filter out from this analysis a number of obvious recipe 
+filename patterns: task-/meta-/-native/-nativesdk/-image. That said, 
+there are still some false negatives in the "documentation_missing" 
+list. For example, our plethora of gcc-related recipes do not produce 
+documentation and instead associate it with the primary recipe (gcc), 
+and so on.
 
---=20
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+I will be continuing to look into fixing recipes with missing 
+documentation that *should* be providing it as time goes on, but this 
+gives us a good baseline to start with.
 
+To keep track of this baseline, I will be coordinating with Saul 
+sometime soon to add a new (Yocto is not a) distro tracking field to all 
+recipes. This field will be named RECIPE_DOC_AUDIT_STATUS_pn-<pkg> and 
+will be "red" for recipes that are either missing documentation or (as 
+you add new recipes) have not been audited. The status will be "green" 
+for recipes that either produce documentation or it's been confirmed 
+that the recipe does not need to build documentation. I'd prefer not to 
+further complicate the tracking field, but will consider suggestions 
+from Saul or Richard if finer-grained detail is needed.
+
+Scott
+
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
+
+--------------070804090905080806010202
+Content-Type: text/plain;
+ name="documentation_exists.txt"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="documentation_exists.txt"
+
+acl
+acpid
+alsa-utils
+apt
+aspell
+at
+atk
+attr
+augeas
+autoconf
+automake
+avahi
+base-passwd
+bash
+bc
+bigreqsproto
+bind
+binutils
+bison
+blktool
+blktrace
+bluez-hcidump
+bluez4
+byacc
+bzip2
+cairo
+chrpath
+compositeproto
+console-tools
+contacts
+coreutils
+cpio
+createrepo
+cronie
+cups
+curl
+damageproto
+dates
+db
+dbus
+dbus-glib
+dhcp
+diffstat
+diffutils
+directfb
+distcc
+dosfstools
+dpkg
+e2fsprogs
+ed
+eglibc
+enchant
+ethtool
+expat
+file
+findutils
+fixesproto
+flac
+flex
+fontsproto
+fotowall
+gawk
+gcc
+gccmakedep
+gconf-dbus
+gdb
+gdbm
+gdk-pixbuf
+genext2fs
+gettext
+glib-2.0
+gmp
+gnome-desktop
+gnome-doc-utils
+gnome-keyring
+gnome-vfs
+gnutls
+gperf
+gpgme
+grep
+groff
+gssdp
+gst-plugins-base
+gstreamer
+gthumb
+gtk+
+gupnp
+gupnp-av
+gypsy
+gzip
+hal
+hdparm
+icu
+imake
+inputproto
+insserv
+intltool
+iproute2
+iptables
+jpeg
+less
+liba52
+libacpi
+libassuan
+libcanberra
+libcap
+libcheck
+libdaemon
+libdmx
+libevent
+libexif
+libffi
+libfm
+libgalago
+libgcrypt
+libgdata
+libglade
+libgnome-keyring
+libice
+libidn
+libmpc
+libnfsidmap
+libogg
+liboil
+libpam
+libpcap
+libpcre
+libpng
+librsvg
+libsm
+libsndfile1
+libsoup
+libsoup-2.4
+libtasn1
+libtirpc
+libtool
+libunique
+libuser
+libvorbis
+libx11
+libx11-trim
+libxau
+libxcb
+libxcomposite
+libxcursor
+libxdmcp
+libxext
+libxfixes
+libxfontcache
+libxft
+libxi
+libxinerama
+libxml2
+libxmu
+libxp
+libxpm
+libxrandr
+libxrender
+libxres
+libxscrnsaver
+libxslt
+libxt
+libxtst
+libxv
+libxvmc
+libxxf86dga
+libxxf86misc
+libxxf86vm
+lighttpd
+logrotate
+lsof
+lttng-ust
+m4
+mailx
+make
+makedepend
+mc
+mdadm
+metacity
+mingetty
+minicom
+mkfontdir
+mkfontscale
+mktemp
+modutils
+mpfr
+msmtp
+mtd-utils
+mtools
+nasm
+ncurses
+neon
+net-tools
+nfs-utils
+ofono
+opensp
+openssh
+openssl
+opkg
+opkg-nogpg
+oprofile
+oprofileui
+pango
+parted
+patch
+pax
+pax-utils
+pciutils
+pcmciautils
+perl
+pkgconfig
+pm-utils
+popt
+portmap
+powertop
+ppp
+printproto
+procps
+psmisc
+pth
+pulseaudio
+python
+python-dbus
+python-imaging
+python-pycurl
+python-scons
+qemu
+qt4-embedded
+qt4-x11-free
+quilt
+randrproto
+readline
+recordproto
+renderproto
+rpcbind
+rpm
+rsync
+screen
+sed
+setserial
+shared-mime-info
+speex
+strace
+subversion
+sudo
+sysfsutils
+sysklogd
+syslinux
+sysstat
+systemtap
+talloc
+tar
+tcl
+tcp-wrappers
+telepathy-glib
+telepathy-idle
+telepathy-mission-control
+texinfo
+tiff
+time
+udev
+unzip
+usbutils
+util-linux
+valgrind
+videoproto
+vte
+watchdog
+which
+wireless-tools
+wpa-supplicant
+x11perf
+x11vnc
+xauth
+xcmiscproto
+xdpyinfo
+xextproto
+xf86-input-evdev
+xf86-input-keyboard
+xf86-input-mouse
+xf86-input-synaptics
+xf86-input-vmmouse
+xf86-video-intel
+xf86-video-vesa
+xf86-video-vmware
+xhost
+xinit
+xkbcomp
+xmodmap
+xprop
+xrandr
+xrestop
+xserver-kdrive
+xserver-xf86-dri-lite
+xserver-xf86-lite
+xset
+xtrans
+xvinfo
+xwininfo
+xz
+zip
+zypper
+
+--------------070804090905080806010202
+Content-Type: text/plain;
+ name="documentation_missing.txt"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="documentation_missing.txt"
+
+adt-installer
+alsa-lib
+alsa-tools
+apmd
+apr
+apr-util
+base-files
+beecrypt
+binutils-cross
+binutils-cross-canadian-i586
+binutils-crosssdk
+bluez-dtl1-workaround
+boost
+busybox
+calibrateproto
+clutter
+clutter-1.4
+clutter-box2d
+clutter-gst-1.4
+clutter-gtk-1.4
+connman
+connman-gnome
+consolekit
+cracklib
+cwautomacros
+dbus-wait
+dmxproto
+dri2proto
+dropbear
+dtc
+eds-dbus
+eds-tools
+eee-acpi-scripts
+eggdbus
+eglibc-initial
+elfutils
+encodings
+evieext
+external-csl-toolchain
+external-poky-toolchain
+external-python-tarball
+font-alias
+font-util
+fontcacheproto
+fontconfig
+formfactor
+freetype
+fstests
+gail
+gaku
+galago-daemon
+gamin
+gcc-cross
+gcc-cross-canadian-i586
+gcc-cross-initial
+gcc-cross-intermediate
+gcc-cross-kernel-3.4.4
+gcc-crosssdk
+gcc-crosssdk-initial
+gcc-crosssdk-intermediate
+gcc-runtime
+gdb-cross
+gdb-cross-canadian-i586
+git
+glew
+glibc
+glibc-initial
+glproto
+gnome-common
+gnome-icon-theme
+gnome-mime-data
+gnu-config
+gobject-introspection
+grub
+gst-ffmpeg
+gst-fluendo-mpegdemux
+gst-meta-base
+gst-openmax
+gst-plugins-bad
+gst-plugins-good
+gst-plugins-ugly
+gtk-doc
+gtk-engines
+gtk-sato-engine
+gtk-theme-torturer
+gtkhtml2
+gupnp-tools
+hal-info
+hicolor-icon-theme
+hostap-conf
+hostap-utils
+initramfs-boot
+initramfs-live-boot
+initramfs-live-install
+initscripts
+iputils
+irda-utils
+js
+kbproto
+kernelshark
+kexec-tools
+keymaps
+latencytop
+leafpad
+libaio
+libart-lgpl
+libatomics-ops
+libconvert-asn1-perl
+libcroco
+libdrm
+libdrm-poulsbo
+liberation-fonts
+libfakekey
+libfontenc
+libgcc
+libgdbus
+libgpg-error
+libgsmd
+libical
+libiconv
+libid3tag
+libmatchbox
+libmusicbrainz
+libnl
+libnss-mdns
+libomxil
+libowl
+libowl-av
+libpciaccess
+libproxy
+libpthread-stubs
+libsamplerate0
+libtelepathy
+libtheora
+libtimedate-perl
+libtool-cross
+liburcu
+liburi-perl
+libusb-compat
+libusb1
+libx11-diet
+libxcalibrate
+libxdamage
+libxfont
+libxkbfile
+libxml-parser-perl
+libxml-perl
+libxml-simple-perl
+libxprintapputil
+libxprintutil
+libxsettings-client
+libxtrap
+libzypp
+linux
+linux-dummy
+linux-firmware
+linux-libc-headers
+linux-libc-headers-yocto
+linux-rp
+linux-yocto
+linux-yocto-stable
+lrzsz
+lsb
+lsbsetup
+lttng-control
+lttng-viewer
+lzo
+makedevs
+man
+man-pages
+matchbox-config-gtk
+matchbox-desktop
+matchbox-desktop-sato
+matchbox-keyboard
+matchbox-panel-2
+matchbox-session
+matchbox-session-sato
+matchbox-stroke
+matchbox-terminal
+matchbox-theme-sato
+matchbox-theme-sato-2
+matchbox-wm
+matchbox-wm-2
+menu-cache
+mesa-demos
+mesa-dri
+mesa-xlib
+module-init-tools
+module-init-tools-cross
+modutils-collateral
+modutils-cross
+modutils-initscripts
+mutter
+netbase
+oh-puzzles
+openjade
+opkg-collateral
+opkg-config-base
+opkg-utils
+orinoco-conf
+owl-video
+package-index
+pcmanfm
+pixman
+pointercal
+poky-feed-config-opkg
+polkit
+polkit-gnome
+ppp-dialin
+prelink
+pseudo
+psplash
+puzzles
+python-gst
+python-pycairo
+python-pygobject
+python-pygtk
+python-pyrex
+qemu-config
+qemugl
+quicky
+quota
+resolvconf
+resourceproto
+run-postinsts
+rxvt-unicode
+sat-solver
+sato-icon-theme
+screenshot
+scrnsaverproto
+settings-daemon
+sgml-common
+shadow
+sqlite3
+startup-notification
+sysprof
+sysvinit
+table
+taglib
+tcf-agent
+telepathy-python
+tidy
+tinylogin
+trace-cmd
+trapproto
+tremor
+tslib
+ttf-bitstream-vera
+tzdata
+u-boot-mkimage
+ubootchart
+udev-extraconf
+update-alternatives-dpkg
+update-modules
+update-rc.d
+usbinit
+util-macros
+v86d
+web
+web-webkit
+webkit-gtk
+x11-common
+xcb-proto
+xcb-util
+xcursor-transparent-theme
+xf86-video-omapfb
+xf86bigfontproto
+xf86dgaproto
+xf86driproto
+xf86miscproto
+xf86rushproto
+xf86vidmodeproto
+xineramaproto
+xinetd
+xkeyboard-config
+xorg-minimal-fonts
+xproto
+xserver-nodm-init
+xserver-xf86-config
+xtscal
+xvideo-tests
+yaffs2-utils
+zaurusd
+zeroconf
+zlib
+
+--------------070804090905080806010202
+Content-Type: text/plain;
+ name="build_errors.txt"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="build_errors.txt"
+
+alsa-tools
+eds-tools
+external-csl-toolchain
+external-poky-toolchain
+gail
+gcc-cross-kernel-3.4.4
+glibc
+glibc-initial
+gobject-introspection
+gst-openmax
+gst-plugins-ugly
+libiconv
+libomxil
+libx11-diet
+linux-rp
+modutils-cross
+mutter
+openjade
+rxvt-unicode
+table
+tidy
+update-alternatives-dpkg
+
+--------------070804090905080806010202--
