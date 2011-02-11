@@ -1,32 +1,26 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8E3AC4C800AB;
-	Fri, 11 Feb 2011 04:28:09 -0600 (CST)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p1BAS3rd031964;
-	Fri, 11 Feb 2011 10:28:03 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 31866-02; Fri, 11 Feb 2011 10:27:59 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p1BARtXG031957
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Fri, 11 Feb 2011 10:27:58 GMT
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Esben Haabendal <eha@dev.doredevelopment.dk>
-In-Reply-To: <1297371961.3911.1.camel@eha>
-References: <cover.1297232632.git.bruce.ashfield@windriver.com>
-	<a80cd52437e3b3874ea0196d31127f14cf486f2f.1297232632.git.bruce.ashfield@windriver.com>
-	<1297371961.3911.1.camel@eha>
-Date: Fri, 11 Feb 2011 10:27:51 +0000
-Message-ID: <1297420071.20543.9726.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
-Subject: Re: [poky] [PATCH 1/3] linux: factor dts/dtc/dtb handling into a specific include
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 2D9594C800AB
+	for <yocto@yoctoproject.org>; Fri, 11 Feb 2011 17:00:52 -0600 (CST)
+Received: from durham.keylevel.com ([109.224.134.115]:29692
+	helo=[192.168.1.83])
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1Po1xz-0007PP-RV
+	for yocto@yoctoproject.org; Fri, 11 Feb 2011 22:59:55 +0000
+Message-Id: <6F14423B-D0BC-40AA-99BC-55719A73B51A@keylevel.com>
+From: Chris Tapp <opensource@keylevel.com>
+To: yocto@yoctoproject.org
+Mime-Version: 1.0 (Apple Message framework v936)
+Date: Fri, 11 Feb 2011 22:59:53 +0000
+X-Mailer: Apple Mail (2.936)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+Subject: Kernel configuration using 'menuconfig'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,26 +32,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Feb 2011 10:28:10 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 11 Feb 2011 23:00:53 -0000
+Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2011-02-10 at 22:06 +0100, Esben Haabendal wrote:
-> On Wed, 2011-02-09 at 01:27 -0500, Bruce Ashfield wrote:
-> > diff --git a/meta/recipes-kernel/linux/linux-dtb.inc b/meta/recipes-kernel/linux/linux-dtb.inc
-> > new file mode 100644
-> > index 0000000..0b27d18
-> > --- /dev/null
-> > +++ b/meta/recipes-kernel/linux/linux-dtb.inc
-> > @@ -0,0 +1,27 @@
-> > +# Support for device tree generation
-> > +FILES_kernel_devicetree = "/boot/devicetree*"
-> 
-> I guess that should be FILES_kernel-devicetree to actually match the
-> package name.
+I'm trying to use 'menuconfig' to add a driver to the kernel.
 
-Yes, I've pushed a fix for that, thanks.
+I've been following the instructions I found at http://groups.google.com/group/beagleboard/browse_thread/thread/7ebbfd2948579be0 
+  that were posted by Frans Meulenbroeks. However, when I run
 
-Richard
+bitbake -c menuconfig virtual/kernel
+
+I get
+
+| Failed to parse arguments: Cannot open display:
+| ERROR: Function 'do_menuconfig' failed (see ...
+
+Any ideas? Only thing I can think is this is something to do with  
+ncurses...
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
 
 
