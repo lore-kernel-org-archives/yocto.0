@@ -1,33 +1,31 @@
-Return-Path: <liping.ke@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B14534C8007E
-	for <yocto@yoctoproject.org>; Sat, 12 Feb 2011 01:53:23 -0600 (CST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 11 Feb 2011 23:53:23 -0800
+Return-Path: <dexuan.cui@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 714FE4C80053
+	for <yocto@yoctoproject.org>; Sat, 12 Feb 2011 03:30:49 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 12 Feb 2011 01:30:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.60,461,1291622400"; d="scan'208";a="656995287"
-Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
-	by fmsmga002.fm.intel.com with ESMTP; 11 Feb 2011 23:53:22 -0800
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Sat, 12 Feb 2011 15:53:21 +0800
+X-IronPort-AV: E=Sophos;i="4.60,461,1291622400"; d="scan'208";a="601995527"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by orsmga002.jf.intel.com with ESMTP; 12 Feb 2011 01:30:47 -0800
 Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Sat, 12 Feb 2011 15:53:21 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Sat, 12 Feb 2011 17:30:47 +0800
+Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
 	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Sat, 12 Feb 2011 15:53:19 +0800
-From: "Ke, Liping" <liping.ke@intel.com>
-To: "Ke, Liping" <liping.ke@intel.com>, "richard.purdie@linuxfoundation.org"
-	<richard.purdie@linuxfoundation.org>, "mark.hatle@windriver.com"
-	<mark.hatle@windriver.com>
-Date: Sat, 12 Feb 2011 15:53:15 +0800
+	Sat, 12 Feb 2011 17:30:45 +0800
+From: "Cui, Dexuan" <dexuan.cui@intel.com>
+To: "Ke, Liping" <liping.ke@intel.com>, "Ke, Liping" <liping.ke@intel.com>,
+	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
+	"mark.hatle@windriver.com" <mark.hatle@windriver.com>
+Date: Sat, 12 Feb 2011 17:30:44 +0800
 Thread-Topic: [yocto] Master build error caused a small typo by commit today
 	: fetch2: unpack revision
-Thread-Index: AcvKcn5yiZZjPBwLS0ep3sKVS3OvqAAFrthQ
-Message-ID: <789F9655DD1B8F43B48D77C5D306597332C18774@shsmsx501.ccr.corp.intel.com>
+Thread-Index: AcvKcn5yiZZjPBwLS0ep3sKVS3OvqAAFrthQAACrA9A=
+Message-ID: <1865303E0DED764181A9D882DEF65FB68629835F3E@shsmsx502.ccr.corp.intel.com>
 References: <789F9655DD1B8F43B48D77C5D30659733294D0BE@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <789F9655DD1B8F43B48D77C5D30659733294D0BE@shsmsx501.ccr.corp.intel.com>
+	<789F9655DD1B8F43B48D77C5D306597332C18774@shsmsx501.ccr.corp.intel.com>
+In-Reply-To: <789F9655DD1B8F43B48D77C5D306597332C18774@shsmsx501.ccr.corp.intel.com>
 Accept-Language: zh-CN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -46,85 +44,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 12 Feb 2011 07:53:23 -0000
+X-List-Received-Date: Sat, 12 Feb 2011 09:30:50 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 
-Hi, Mark
-
-After fixing this typo, I found another error when bitbake xorg-minimal-fon=
-ts,
-It will report
-ERROR: Function 'org-minial-fonts: LIC_FILES_CHKSUM points to invalid file:=
- ../misc/fonts/alias' failed
-
-I checked the folder of build/tmp/work/all-poky-linux/xorg-minimal-fonts-1_=
-1.0-r0, fonts.alias fonts.dir
-Cursor.pcf.gz we not under misc subfolder as its expectation, but on the ou=
-ter folder,=20
-seems the SRC_URI=3D"file://misc" defined in the Xorg-minimal-fonts.bb does=
- not work.
-
-Thanks a lot!
-criping
-
-
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Ke, Liping
-> Sent: Saturday, February 12, 2011 1:06 PM
-> To: richard.purdie@linuxfoundation.org; mark.hatle@windriver.com
-> Cc: yocto@yoctoproject.org
-> Subject: [yocto] Master build error caused a small typo by commit
-> today : fetch2: unpack revision
->=20
-> Hi, all
->=20
-> Just found a small typo which caused built error today. The "%d" (file)
-> should be changed to "%s", otherwise, compile error.
->=20
-> Anybody could help to modify the small bug if you're happening sending
-> patches.
->=20
-> Thanks a lot for your help!
-> criping
->=20
->=20
->=20
->=20
->=20
-> author	Mark Hatle <mark.hatle@windriver.com>	2011-02-11
-> 17:43:54 (GMT)
-> committer	 Richard Purdie <richard.purdie@linuxfoundation.org>	2011-
-> 02-12 00:30:29 (GMT)
-> commit	3faa635fd408695dd5b754fda3f6060dd670b81d (patch) (side-by-
-> side diff)
-> tree	d0ba5d2d4acca9f7748029116f3a74877ee899c9
-> parent	e56f63a2843e5a7d70fd60e0aaed4d962a277da7 (diff)
-> download	poky-3faa635fd408695dd5b754fda3f6060dd670b81d.zip
-> poky-3faa635fd408695dd5b754fda3f6060dd670b81d.tar.gz
-> poky-3faa635fd408695dd5b754fda3f6060dd670b81d.tar.bz2
->=20
->=20
->=20
-> @@ -706,17 +720,17 @@ class FetchMethod(object):
->                              destdir =3D "."
->                          elif not os.access("%s/%s" % (rootdir,
-> destdir), os.F_OK):
->                              os.makedirs("%s/%s" % (rootdir, destdir))
-> -                    cmd =3D 'cp -pPR %s %s/%s/' % (file, rootdir,
-> destdir)
-> +                    #cmd =3D 'cp -pPR %s %s/%s/' % (file, rootdir,
-> destdir)
-> +                    cmd =3D 'tar -cf - -C "%d" -ps . | tar -xf - -C
-> "%s/%s/"' % (file, rootdir, destdir)
->=20
->=20
->=20
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+SGkgTWFyaywNCkFzIExpcGluZyBzYWlkLCB0aGUgZm9sbG93aW5nIGNoYW5nZSBicmVha3MgYnVp
+bGRpbmcgeG9yZy1taW5pbWFsLWZvbnRzIGFzIGRlc3RkaXIgaXMgbm90IGNvcnJlY3QuDQpDYW4g
+eW91IHBsZWFzZSBleHBsYWluIHRoZSBhY3R1YWwgZGlmZmVyZW50IGJldHdlZW4gY3AgYW5kIHRh
+ciBoZXJlPyBJIHRoaW5rICJjcCAtcCIgaXMgc2ltaWxhciB0byAidGFyIC14IC1wIiBoZXJlPw0K
+DQpAQCAtNzA2LDE3ICs3MjAsMTcgQEAgY2xhc3MgRmV0Y2hNZXRob2Qob2JqZWN0KToNCiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgZGVzdGRpciA9ICIuIg0KICAgICAgICAgICAgICAgICAg
+ICAgICAgIGVsaWYgbm90IG9zLmFjY2VzcygiJXMvJXMiICUgKHJvb3RkaXIsIGRlc3RkaXIpLCBv
+cy5GX09LKToNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgb3MubWFrZWRpcnMoIiVzLyVz
+IiAlIChyb290ZGlyLCBkZXN0ZGlyKSkNCi0gICAgICAgICAgICAgICAgICAgIGNtZCA9ICdjcCAt
+cFBSICVzICVzLyVzLycgJSAoZmlsZSwgcm9vdGRpciwgZGVzdGRpcikNCisgICAgICAgICAgICAg
+ICAgICAgICNjbWQgPSAnY3AgLXBQUiAlcyAlcy8lcy8nICUgKGZpbGUsIHJvb3RkaXIsIGRlc3Rk
+aXIpDQorICAgICAgICAgICAgICAgICAgICBjbWQgPSAndGFyIC1jZiAtIC1DICIlZCIgLXBzIC4g
+fCB0YXIgLXhmIC0gLUMgIiVzLyVzLyInICUgKGZpbGUsIHJvb3RkaXIsIGRlc3RkaXIpDQoNCg0K
+VGhhbmtzLA0KLS0gRGV4dWFuDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiB5
+b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlvY3Rv
+cHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBLZSwgTGlwaW5nDQpTZW50OiAyMDExxOoy1MIxMsjV
+IDE1OjUzDQpUbzogS2UsIExpcGluZzsgcmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9y
+ZzsgbWFyay5oYXRsZUB3aW5kcml2ZXIuY29tDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0K
+U3ViamVjdDogUmU6IFt5b2N0b10gTWFzdGVyIGJ1aWxkIGVycm9yIGNhdXNlZCBhIHNtYWxsIHR5
+cG8gYnkgY29tbWl0IHRvZGF5IDogZmV0Y2gyOiB1bnBhY2sgcmV2aXNpb24NCg0KSGksIE1hcmsN
+Cg0KQWZ0ZXIgZml4aW5nIHRoaXMgdHlwbywgSSBmb3VuZCBhbm90aGVyIGVycm9yIHdoZW4gYml0
+YmFrZSB4b3JnLW1pbmltYWwtZm9udHMsDQpJdCB3aWxsIHJlcG9ydA0KRVJST1I6IEZ1bmN0aW9u
+ICdvcmctbWluaWFsLWZvbnRzOiBMSUNfRklMRVNfQ0hLU1VNIHBvaW50cyB0byBpbnZhbGlkIGZp
+bGU6IC4uL21pc2MvZm9udHMvYWxpYXMnIGZhaWxlZA0KDQpJIGNoZWNrZWQgdGhlIGZvbGRlciBv
+ZiBidWlsZC90bXAvd29yay9hbGwtcG9reS1saW51eC94b3JnLW1pbmltYWwtZm9udHMtMV8xLjAt
+cjAsIGZvbnRzLmFsaWFzIGZvbnRzLmRpcg0KQ3Vyc29yLnBjZi5neiB3ZSBub3QgdW5kZXIgbWlz
+YyBzdWJmb2xkZXIgYXMgaXRzIGV4cGVjdGF0aW9uLCBidXQgb24gdGhlIG91dGVyIGZvbGRlciwg
+DQpzZWVtcyB0aGUgU1JDX1VSST0iZmlsZTovL21pc2MiIGRlZmluZWQgaW4gdGhlIFhvcmctbWlu
+aW1hbC1mb250cy5iYiBkb2VzIG5vdCB3b3JrLg0KDQpUaGFua3MgYSBsb3QhDQpjcmlwaW5nDQoN
+Cg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiB5b2N0by1ib3VuY2VzQHlv
+Y3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by0NCj4gYm91bmNlc0B5b2N0b3Byb2plY3Qub3Jn
+XSBPbiBCZWhhbGYgT2YgS2UsIExpcGluZw0KPiBTZW50OiBTYXR1cmRheSwgRmVicnVhcnkgMTIs
+IDIwMTEgMTowNiBQTQ0KPiBUbzogcmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZzsg
+bWFyay5oYXRsZUB3aW5kcml2ZXIuY29tDQo+IENjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+
+IFN1YmplY3Q6IFt5b2N0b10gTWFzdGVyIGJ1aWxkIGVycm9yIGNhdXNlZCBhIHNtYWxsIHR5cG8g
+YnkgY29tbWl0DQo+IHRvZGF5IDogZmV0Y2gyOiB1bnBhY2sgcmV2aXNpb24NCj4gDQo+IEhpLCBh
+bGwNCj4gDQo+IEp1c3QgZm91bmQgYSBzbWFsbCB0eXBvIHdoaWNoIGNhdXNlZCBidWlsdCBlcnJv
+ciB0b2RheS4gVGhlICIlZCIgKGZpbGUpDQo+IHNob3VsZCBiZSBjaGFuZ2VkIHRvICIlcyIsIG90
+aGVyd2lzZSwgY29tcGlsZSBlcnJvci4NCj4gDQo+IEFueWJvZHkgY291bGQgaGVscCB0byBtb2Rp
+ZnkgdGhlIHNtYWxsIGJ1ZyBpZiB5b3UncmUgaGFwcGVuaW5nIHNlbmRpbmcNCj4gcGF0Y2hlcy4N
+Cj4gDQo+IFRoYW5rcyBhIGxvdCBmb3IgeW91ciBoZWxwIQ0KPiBjcmlwaW5nDQo+IA0KPiANCj4g
+DQo+IA0KPiANCj4gYXV0aG9yCU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT4J
+MjAxMS0wMi0xMQ0KPiAxNzo0Mzo1NCAoR01UKQ0KPiBjb21taXR0ZXIJIFJpY2hhcmQgUHVyZGll
+IDxyaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5kYXRpb24ub3JnPgkyMDExLQ0KPiAwMi0xMiAwMDoz
+MDoyOSAoR01UKQ0KPiBjb21taXQJM2ZhYTYzNWZkNDA4Njk1ZGQ1Yjc1NGZkYTNmNjA2MGRkNjcw
+YjgxZCAocGF0Y2gpIChzaWRlLWJ5LQ0KPiBzaWRlIGRpZmYpDQo+IHRyZWUJZDBiYTVkMmQ0YWNj
+YTlmNzc0ODAyOTExNmYzYTc0ODc3ZWU4OTljOQ0KPiBwYXJlbnQJZTU2ZjYzYTI4NDNlNWE3ZDcw
+ZmQ2MGUwYWFlZDRkOTYyYTI3N2RhNyAoZGlmZikNCj4gZG93bmxvYWQJcG9reS0zZmFhNjM1ZmQ0
+MDg2OTVkZDViNzU0ZmRhM2Y2MDYwZGQ2NzBiODFkLnppcA0KPiBwb2t5LTNmYWE2MzVmZDQwODY5
+NWRkNWI3NTRmZGEzZjYwNjBkZDY3MGI4MWQudGFyLmd6DQo+IHBva3ktM2ZhYTYzNWZkNDA4Njk1
+ZGQ1Yjc1NGZkYTNmNjA2MGRkNjcwYjgxZC50YXIuYnoyDQo+IA0KPiANCj4gDQo+IEBAIC03MDYs
+MTcgKzcyMCwxNyBAQCBjbGFzcyBGZXRjaE1ldGhvZChvYmplY3QpOg0KPiAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIGRlc3RkaXIgPSAiLiINCj4gICAgICAgICAgICAgICAgICAgICAgICAg
+IGVsaWYgbm90IG9zLmFjY2VzcygiJXMvJXMiICUgKHJvb3RkaXIsDQo+IGRlc3RkaXIpLCBvcy5G
+X09LKToNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBvcy5tYWtlZGlycygiJXMvJXMi
+ICUgKHJvb3RkaXIsIGRlc3RkaXIpKQ0KPiAtICAgICAgICAgICAgICAgICAgICBjbWQgPSAnY3Ag
+LXBQUiAlcyAlcy8lcy8nICUgKGZpbGUsIHJvb3RkaXIsDQo+IGRlc3RkaXIpDQo+ICsgICAgICAg
+ICAgICAgICAgICAgICNjbWQgPSAnY3AgLXBQUiAlcyAlcy8lcy8nICUgKGZpbGUsIHJvb3RkaXIs
+DQo+IGRlc3RkaXIpDQo+ICsgICAgICAgICAgICAgICAgICAgIGNtZCA9ICd0YXIgLWNmIC0gLUMg
+IiVkIiAtcHMgLiB8IHRhciAteGYgLSAtQw0KPiAiJXMvJXMvIicgJSAoZmlsZSwgcm9vdGRpciwg
+ZGVzdGRpcikNCj4gDQo+IA0KPiANCj4gDQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fDQo+IHlvY3RvIG1haWxpbmcgbGlzdA0KPiB5b2N0b0B5b2N0b3By
+b2plY3Qub3JnDQo+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0
+bw0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCnlvY3Rv
+IG1haWxpbmcgbGlzdA0KeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KaHR0cHM6Ly9saXN0cy55b2N0
+b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvDQo=
 
