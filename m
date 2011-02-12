@@ -1,29 +1,34 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A82BB4C80053
-	for <yocto@yoctoproject.org>; Fri, 11 Feb 2011 21:23:34 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p1C3NOMW018125;
-	Fri, 11 Feb 2011 19:23:24 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Fri, 11 Feb 2011 19:23:23 -0800
-Received: from bruce-ashfields-macbook.local ([128.224.143.11]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Fri, 11 Feb 2011 19:23:23 -0800
-Message-ID: <4D55FD29.7010102@windriver.com>
-Date: Fri, 11 Feb 2011 22:23:21 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.14) Gecko/20110207 Thunderbird/3.1.8
+Return-Path: <liping.ke@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 80C1F4C80053
+	for <yocto@yoctoproject.org>; Fri, 11 Feb 2011 23:05:52 -0600 (CST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 11 Feb 2011 21:05:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,460,1291622400"; d="scan'208";a="886816163"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by fmsmga001.fm.intel.com with ESMTP; 11 Feb 2011 21:05:51 -0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Sat, 12 Feb 2011 13:05:46 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Sat, 12 Feb 2011 13:05:44 +0800
+From: "Ke, Liping" <liping.ke@intel.com>
+To: "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
+	"mark.hatle@windriver.com" <mark.hatle@windriver.com>
+Date: Sat, 12 Feb 2011 13:05:40 +0800
+Thread-Topic: Master build error caused a small typo by commit today :
+	fetch2: unpack revision
+Thread-Index: AcvKcn5yiZZjPBwLS0ep3sKVS3OvqA==
+Message-ID: <789F9655DD1B8F43B48D77C5D30659733294D0BE@shsmsx501.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-To: Chris Tapp <opensource@keylevel.com>
-References: <6F14423B-D0BC-40AA-99BC-55719A73B51A@keylevel.com>
-In-Reply-To: <6F14423B-D0BC-40AA-99BC-55719A73B51A@keylevel.com>
-X-OriginalArrivalTime: 12 Feb 2011 03:23:23.0656 (UTC)
-	FILETIME=[34806080:01CBCA64]
-Cc: yocto@yoctoproject.org
-Subject: Re: Kernel configuration using 'menuconfig'
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Master build error caused a small typo by commit today : fetch2: unpack revision
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,44 +40,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 12 Feb 2011 03:23:35 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 12 Feb 2011 05:05:52 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 11-02-11 5:59 PM, Chris Tapp wrote:
-> I'm trying to use 'menuconfig' to add a driver to the kernel.
->
-> I've been following the instructions I found at
-> http://groups.google.com/group/beagleboard/browse_thread/thread/7ebbfd2948579be0
-> that were posted by Frans Meulenbroeks. However, when I run
->
-> bitbake -c menuconfig virtual/kernel
->
-> I get
->
-> | Failed to parse arguments: Cannot open display:
-> | ERROR: Function 'do_menuconfig' failed (see ...
->
-> Any ideas? Only thing I can think is this is something to do with
-> ncurses...
+Hi, all
 
-It is this ?
+Just found a small typo which caused built error today. The "%d" (file) sho=
+uld be changed to "%s", otherwise, compile error.
 
-http://bugzilla.pokylinux.org/show_bug.cgi?id=598
+Anybody could help to modify the small bug if you're happening sending patc=
+hes.
 
-Bruce
+Thanks a lot for your help!
+criping
 
->
-> Chris Tapp
->
-> opensource@keylevel.com
-> www.keylevel.com
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
+
+author	Mark Hatle <mark.hatle@windriver.com>	2011-02-11 17:43:54 (GMT)
+committer	 Richard Purdie <richard.purdie@linuxfoundation.org>	2011-02-12 0=
+0:30:29 (GMT)
+commit	3faa635fd408695dd5b754fda3f6060dd670b81d (patch) (side-by-side diff)
+tree	d0ba5d2d4acca9f7748029116f3a74877ee899c9
+parent	e56f63a2843e5a7d70fd60e0aaed4d962a277da7 (diff)
+download	poky-3faa635fd408695dd5b754fda3f6060dd670b81d.zip
+poky-3faa635fd408695dd5b754fda3f6060dd670b81d.tar.gz
+poky-3faa635fd408695dd5b754fda3f6060dd670b81d.tar.bz2
+
+
+
+@@ -706,17 +720,17 @@ class FetchMethod(object):
+                             destdir =3D "."
+                         elif not os.access("%s/%s" % (rootdir, destdir), o=
+s.F_OK):
+                             os.makedirs("%s/%s" % (rootdir, destdir))
+-                    cmd =3D 'cp -pPR %s %s/%s/' % (file, rootdir, destdir)
++                    #cmd =3D 'cp -pPR %s %s/%s/' % (file, rootdir, destdir=
+)
++                    cmd =3D 'tar -cf - -C "%d" -ps . | tar -xf - -C "%s/%s=
+/"' % (file, rootdir, destdir)
+
+
+
 
 
