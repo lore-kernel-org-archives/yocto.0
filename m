@@ -1,30 +1,26 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 919964C8007E
-	for <yocto@yoctoproject.org>; Sat, 12 Feb 2011 12:09:25 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p1CI9Jpq026659;
-	Sat, 12 Feb 2011 10:09:19 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Sat, 12 Feb 2011 10:09:18 -0800
-Received: from Macintosh-5.local ([172.25.36.226]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Sat, 12 Feb 2011 10:09:18 -0800
-Message-ID: <4D56CCCD.6040106@windriver.com>
-Date: Sat, 12 Feb 2011 12:09:17 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.13) Gecko/20101207 Thunderbird/3.1.7
-MIME-Version: 1.0
-To: "Cui, Dexuan" <dexuan.cui@intel.com>
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 735AE4C80053
+	for <yocto@yoctoproject.org>; Sat, 12 Feb 2011 13:08:14 -0600 (CST)
+Received: by wwb31 with SMTP id 31so3748758wwb.11
+	for <yocto@yoctoproject.org>; Sat, 12 Feb 2011 11:08:13 -0800 (PST)
+Received: by 10.227.151.148 with SMTP id c20mr1124724wbw.207.1297537692751;
+	Sat, 12 Feb 2011 11:08:12 -0800 (PST)
+Received: from [172.20.1.5] (ip545070eb.adsl-surfen.hetnet.nl [84.80.112.235])
+	by mx.google.com with ESMTPS id x1sm542292wbh.2.2011.02.12.11.08.11
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 12 Feb 2011 11:08:11 -0800 (PST)
+Mime-Version: 1.0 (Apple Message framework v1082)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <4D56CCCD.6040106@windriver.com>
+Date: Sat, 12 Feb 2011 20:08:10 +0100
+Message-Id: <C7D623A5-69C2-4318-8C2F-5792C66391BD@dominion.thruhere.net>
 References: <789F9655DD1B8F43B48D77C5D30659733294D0BE@shsmsx501.ccr.corp.intel.com>
 	<789F9655DD1B8F43B48D77C5D306597332C18774@shsmsx501.ccr.corp.intel.com>
 	<1865303E0DED764181A9D882DEF65FB68629835F3E@shsmsx502.ccr.corp.intel.com>
-In-Reply-To: <1865303E0DED764181A9D882DEF65FB68629835F3E@shsmsx502.ccr.corp.intel.com>
-X-OriginalArrivalTime: 12 Feb 2011 18:09:18.0903 (UTC)
-	FILETIME=[F77F6470:01CBCADF]
+	<4D56CCCD.6040106@windriver.com>
+To: Mark Hatle <mark.hatle@windriver.com>
+X-Mailer: Apple Mail (2.1082)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Master build error caused a small typo by commit today : fetch2: unpack revision
 X-BeenThere: yocto@yoctoproject.org
@@ -38,122 +34,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 12 Feb 2011 18:09:26 -0000
-Content-Type: text/plain; charset=GB2312
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sat, 12 Feb 2011 19:08:15 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 2/12/11 3:30 AM, Cui, Dexuan wrote:
-> Hi Mark,
-> As Liping said, the following change breaks building xorg-minimal-fonts as destdir is not correct.
-> Can you please explain the actual different between cp and tar here? I think "cp -p" is similar to "tar -x -p" here?
-> 
 
-We can revert the change.  But the reason for it is tar preserves hard links,
-while cp does not.
+Op 12 feb 2011, om 19:09 heeft Mark Hatle het volgende geschreven:
 
-So if a directory being copied contain foo, foo1, foo2, and foo3  all hardlinks
-of each other, they will end up still being hard links of each other on the
-target side.
+> On 2/12/11 3:30 AM, Cui, Dexuan wrote:
+>> Hi Mark,
+>> As Liping said, the following change breaks building =
+xorg-minimal-fonts as destdir is not correct.
+>> Can you please explain the actual different between cp and tar here? =
+I think "cp -p" is similar to "tar -x -p" here?
+>>=20
+>=20
+> We can revert the change.  But the reason for it is tar preserves hard =
+links,
+> while cp does not.
 
-I previously went through the classes and updated almost all cases of CP to the
-tar method.  (Obviously without the %d typo...)  This reduced over 200MB from
-the eglibc build.. (mostly in locale info)
+The problem is that people can hit things like this:
 
---Mark
+| NOTE: Unpacking =
+/OE/tentacle/sources/angstrom-layers/BSP/TI/recipes-bsp/linux/linux-omap-p=
+sp-2.6.32/beagleboard/defconfig to =
+/OE/tentacle/build/tmp-angstrom_2010_x/work/beagleboard-angstrom-linux-gnu=
+eabi/linux-omap-psp-2.6.32-r99+gitr5fc29e7b2a76a64a739f857858ef0b98294aa15=
+5/
+| ERROR: Error executing a python function in =
+/OE/tentacle/sources/angstrom-layers/BSP/TI/recipes-bsp/linux/linux-omap-p=
+sp_2.6.32.bb:
+| TypeError: %d format: a number is required, not str
+|
+| ERROR: The stack trace of python calls that resulted in this =
+exception/failure was:
+| ERROR:   File "base_do_unpack", line 19, in <module>
+| ERROR:
+| ERROR:   File "base_do_unpack", line 14, in base_do_unpack
+| ERROR:
+| ERROR:   File =
+"/OE/tentacle/sources/bitbake/lib/bb/fetch2/__init__.py", line 1015, in =
+unpack
+| ERROR:     ud.method.unpack(ud, root, self.d)
+| ERROR:
+| ERROR:   File =
+"/OE/tentacle/sources/bitbake/lib/bb/fetch2/__init__.py", line 724, in =
+unpack
+| ERROR:     cmd =3D 'tar -cf - -C "%d" -ps . | tar -xf - -C "%s/%s/"' % =
+(file, rootdir, destdir)
+| ERROR:
+| ERROR: The code that was being executed was:
+| ERROR:      0015:        except bb.fetch2.BBFetchException, e:
+| ERROR:      0016:            raise bb.build.FuncFailed(e)
+| ERROR:      0017:
+| ERROR:      0018:
+| ERROR:  *** 0019:base_do_unpack(d)
+| ERROR:      0020:
+| ERROR: (file: 'base_do_unpack', lineno: 19, function: <module>)
+| ERROR:      0010:     rootdir =3D bb.data.getVar('WORKDIR', localdata, =
+True)
+| ERROR:      0011:
+| ERROR:      0012:        try:
+| ERROR:      0013:            fetcher =3D bb.fetch2.Fetch(src_uri, =
+localdata)
+| ERROR:  *** 0014:            fetcher.unpack(rootdir)
+| ERROR:      0015:        except bb.fetch2.BBFetchException, e:
+| ERROR:      0016:            raise bb.build.FuncFailed(e)
+| ERROR:      0017:
+| ERROR:      0018:
+| ERROR: (file: 'base_do_unpack', lineno: 14, function: base_do_unpack)
+| ERROR: Function 'base_do_unpack' failed
 
-> @@ -706,17 +720,17 @@ class FetchMethod(object):
->                              destdir = "."
->                          elif not os.access("%s/%s" % (rootdir, destdir), os.F_OK):
->                              os.makedirs("%s/%s" % (rootdir, destdir))
-> -                    cmd = 'cp -pPR %s %s/%s/' % (file, rootdir, destdir)
-> +                    #cmd = 'cp -pPR %s %s/%s/' % (file, rootdir, destdir)
-> +                    cmd = 'tar -cf - -C "%d" -ps . | tar -xf - -C "%s/%s/"' % (file, rootdir, destdir)
-> 
-> 
-> Thanks,
-> -- Dexuan
-> 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Ke, Liping
-> Sent: 2011Äê2ÔÂ12ÈÕ 15:53
-> To: Ke, Liping; richard.purdie@linuxfoundation.org; mark.hatle@windriver.com
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Master build error caused a small typo by commit today : fetch2: unpack revision
-> 
-> Hi, Mark
-> 
-> After fixing this typo, I found another error when bitbake xorg-minimal-fonts,
-> It will report
-> ERROR: Function 'org-minial-fonts: LIC_FILES_CHKSUM points to invalid file: ../misc/fonts/alias' failed
-> 
-> I checked the folder of build/tmp/work/all-poky-linux/xorg-minimal-fonts-1_1.0-r0, fonts.alias fonts.dir
-> Cursor.pcf.gz we not under misc subfolder as its expectation, but on the outer folder, 
-> seems the SRC_URI="file://misc" defined in the Xorg-minimal-fonts.bb does not work.
-> 
-> Thanks a lot!
-> criping
-> 
-> 
->> -----Original Message-----
->> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->> bounces@yoctoproject.org] On Behalf Of Ke, Liping
->> Sent: Saturday, February 12, 2011 1:06 PM
->> To: richard.purdie@linuxfoundation.org; mark.hatle@windriver.com
->> Cc: yocto@yoctoproject.org
->> Subject: [yocto] Master build error caused a small typo by commit
->> today : fetch2: unpack revision
->>
->> Hi, all
->>
->> Just found a small typo which caused built error today. The "%d" (file)
->> should be changed to "%s", otherwise, compile error.
->>
->> Anybody could help to modify the small bug if you're happening sending
->> patches.
->>
->> Thanks a lot for your help!
->> criping
->>
->>
->>
->>
->>
->> author	Mark Hatle <mark.hatle@windriver.com>	2011-02-11
->> 17:43:54 (GMT)
->> committer	 Richard Purdie <richard.purdie@linuxfoundation.org>	2011-
->> 02-12 00:30:29 (GMT)
->> commit	3faa635fd408695dd5b754fda3f6060dd670b81d (patch) (side-by-
->> side diff)
->> tree	d0ba5d2d4acca9f7748029116f3a74877ee899c9
->> parent	e56f63a2843e5a7d70fd60e0aaed4d962a277da7 (diff)
->> download	poky-3faa635fd408695dd5b754fda3f6060dd670b81d.zip
->> poky-3faa635fd408695dd5b754fda3f6060dd670b81d.tar.gz
->> poky-3faa635fd408695dd5b754fda3f6060dd670b81d.tar.bz2
->>
->>
->>
->> @@ -706,17 +720,17 @@ class FetchMethod(object):
->>                              destdir = "."
->>                          elif not os.access("%s/%s" % (rootdir,
->> destdir), os.F_OK):
->>                              os.makedirs("%s/%s" % (rootdir, destdir))
->> -                    cmd = 'cp -pPR %s %s/%s/' % (file, rootdir,
->> destdir)
->> +                    #cmd = 'cp -pPR %s %s/%s/' % (file, rootdir,
->> destdir)
->> +                    cmd = 'tar -cf - -C "%d" -ps . | tar -xf - -C
->> "%s/%s/"' % (file, rootdir, destdir)
->>
->>
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Not sure what triggers it, but it breaks my build. It could be entirely =
+my own fault for having buggy recipes in a BSP :)
 
+regards,
+
+Koen=
 
