@@ -1,26 +1,32 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 41D7D4C8007E
-	for <yocto@yoctoproject.org>; Sun, 13 Feb 2011 07:40:47 -0600 (CST)
-Received: from durham.keylevel.com ([109.224.134.115]:40866
-	helo=[192.168.1.83])
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1PocBx-00008Q-KB
-	for yocto@yoctoproject.org; Sun, 13 Feb 2011 13:40:45 +0000
-Message-Id: <BC794782-AADE-4A58-8837-29ACC0497B1E@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Sun, 13 Feb 2011 13:40:42 +0000
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-Subject: Where is 'my' defconfig ?
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 2C5CF4C8007E
+	for <yocto@yoctoproject.org>; Sun, 13 Feb 2011 13:27:07 -0600 (CST)
+Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p1DJR5Qs028183;
+	Sun, 13 Feb 2011 11:27:05 -0800 (PST)
+Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
+	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Sun, 13 Feb 2011 11:27:04 -0800
+Received: from Macintosh-5.local ([172.25.36.226]) by
+	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
+	Sun, 13 Feb 2011 11:27:04 -0800
+Message-ID: <4D583088.9000805@windriver.com>
+Date: Sun, 13 Feb 2011 13:27:04 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.13) Gecko/20101207 Thunderbird/3.1.7
+MIME-Version: 1.0
+To: "Ke, Liping" <liping.ke@intel.com>
+References: <789F9655DD1B8F43B48D77C5D30659733294D0BE@shsmsx501.ccr.corp.intel.com>	<789F9655DD1B8F43B48D77C5D306597332C18774@shsmsx501.ccr.corp.intel.com>	<1865303E0DED764181A9D882DEF65FB68629835F3E@shsmsx502.ccr.corp.intel.com>	<4D56CCCD.6040106@windriver.com>	<C7D623A5-69C2-4318-8C2F-5792C66391BD@dominion.thruhere.net>	<4D56DCB5.2070205@mlbassoc.com>	<4D570BE2.4020900@windriver.com>	<4D572DB0.7050805@intel.com>
+	<789F9655DD1B8F43B48D77C5D306597332C188B9@shsmsx501.ccr.corp.intel.com>
+In-Reply-To: <789F9655DD1B8F43B48D77C5D306597332C188B9@shsmsx501.ccr.corp.intel.com>
+X-OriginalArrivalTime: 13 Feb 2011 19:27:04.0839 (UTC)
+	FILETIME=[FF067970:01CBCBB3]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Garman,
+	Scott A" <scott.a.garman@intel.com>
+Subject: Re: Master build error caused a small typo by commit today : fetch2: unpack revision
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,26 +38,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 13 Feb 2011 13:40:47 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
+X-List-Received-Date: Sun, 13 Feb 2011 19:27:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-I've created my own machine ('MyMachine') that has virtual/kernel set  
-to 'linux-yocto-stable'. I would now like to change the kernel  
-configuration to enable some drivers that aren't enabled by default.
+I verified, I'm not getting this error on a clean checkout of Poky.  So the
+issue has been reverted by going back to the 'cp'
 
-This leads me to a couple of questions:
+I'll work on figuring out what the issue is and resolve it.
 
-1) Where is the defconfig file for 'linux-yocto-stable'? Or does this  
-just use the default configuration provided by the kernel?
-2) Where do I place the defconfig file for MyMachine? Should this be  
-in meta/recipes-kernel/linux/linux-yocto-stable/MyMachine/defconfig?
+--Mark
 
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
+On 2/13/11 1:12 AM, Ke, Liping wrote:
+>>>> Does not changing this "%d" to "%s" work?
+>>>
+>>> Yes, this is the correct fix.  Nobody has been around today to push
+>> the fix into
+>>> the tree however.
+>>>
+>>> It was a simple typo.
+>>
+>> I managed to catch Richard on IRC about an hour ago and he pushed a fix
+>> to master.
+>>
+>> Scott
+> 
+> Hi, Scott and Mark,
+> After fixing the typo, we'll meet another error relates to the tar/untar change for preserving the hard link (mark's comments). I wrote it in another letter as below.
+> If we revert the patch, seems we need to rebuild from scratch, otherwise, I met other problems. Only for your info!
+> 
+> Thanks a lot!
+> Criping
+> 
+> Pasted Info:
+> 
+> 
+> After fixing this typo, I found another error when bitbake xorg-minimal-fonts, It will report
+> ERROR: Function 'org-minial-fonts: LIC_FILES_CHKSUM points to invalid file: ../misc/fonts/alias' failed
+> 
+> I checked the folder of build/tmp/work/all-poky-linux/xorg-minimal-fonts-1_1.0-r0, fonts.alias fonts.dir Cursor.pcf.gz we not under misc subfolder as its expectation, but on the outer folder, seems the SRC_URI="file://misc" defined in the Xorg-minimal-fonts.bb does not work.
+> 
+> 
+>>
+>> --
+>> Scott Garman
+>> Embedded Linux Engineer - Yocto Project
+>> Intel Open Source Technology Center
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
