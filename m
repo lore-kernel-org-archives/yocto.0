@@ -1,29 +1,34 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id CF0714C8007E
-	for <yocto@yoctoproject.org>; Mon, 14 Feb 2011 09:57:49 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p1EFvm6t010054;
-	Mon, 14 Feb 2011 07:57:48 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Mon, 14 Feb 2011 07:57:48 -0800
-Received: from Macintosh-5.local ([172.25.36.227]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Mon, 14 Feb 2011 07:57:48 -0800
-Message-ID: <4D5950FB.9020809@windriver.com>
-Date: Mon, 14 Feb 2011 09:57:47 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.13) Gecko/20101207 Thunderbird/3.1.7
-MIME-Version: 1.0
-To: "Cui, Dexuan" <dexuan.cui@intel.com>
+Return-Path: <dexuan.cui@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B77D94C8007E
+	for <yocto@yoctoproject.org>; Mon, 14 Feb 2011 10:03:41 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 14 Feb 2011 08:03:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,469,1291622400"; d="scan'208";a="657519515"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by fmsmga002.fm.intel.com with ESMTP; 14 Feb 2011 08:03:40 -0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Tue, 15 Feb 2011 00:03:40 +0800
+Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Tue, 15 Feb 2011 00:03:39 +0800
+From: "Cui, Dexuan" <dexuan.cui@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 15 Feb 2011 00:03:38 +0800
+Thread-Topic: [yocto] Some nightly build failures on autobuilder (on commit
+	b9a97e07, namely, "Revert part of the unpack change...")
+Thread-Index: AcvME8IOrSyKLIxiSse1uT6ouB6cUQASprAgAACNVbA=
+Message-ID: <1865303E0DED764181A9D882DEF65FB68630C8DA76@shsmsx502.ccr.corp.intel.com>
 References: <1865303E0DED764181A9D882DEF65FB68630C8DA71@shsmsx502.ccr.corp.intel.com>
-In-Reply-To: <1865303E0DED764181A9D882DEF65FB68630C8DA71@shsmsx502.ccr.corp.intel.com>
-X-OriginalArrivalTime: 14 Feb 2011 15:57:48.0276 (UTC)
-	FILETIME=[ED24C340:01CBCC5F]
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<1865303E0DED764181A9D882DEF65FB68630C8DA75@shsmsx502.ccr.corp.intel.com>
+In-Reply-To: <1865303E0DED764181A9D882DEF65FB68630C8DA75@shsmsx502.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN, en-US
+MIME-Version: 1.0
 Subject: Re: Some nightly build failures on autobuilder (on commit b9a97e07, namely, "Revert part of the unpack change...")
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -36,51 +41,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Feb 2011 15:57:50 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 14 Feb 2011 16:03:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 2/14/11 12:52 AM, Cui, Dexuan wrote:
-> 1)	Building qemumips meta-toolchain-sdk failed: 
-> http://autobuilder.pokylinux.org:8010/builders/nightly-external/builds/35/steps/shell_26/logs/stdio
-> eglibc's do_package failed: 
-> ERROR: Error executing a python function in /srv/home/pokybuild/poky-slave/nightly-external/build/meta/recipes-core/eglibc/eglibc_2.12.bb:
-> CopyFailed: Command tar -cf - -C /srv/home/pokybuild/poky-slave/nightly-external/build/build/tmp/work/mips-poky-linux/eglibc-2.12-r13/sstate-install-package///package -ps . | tar -xf - -C /srv/home/pokybuild/poky-slave/nightly-external/build/build/tmp/work/mips-poky-linux/eglibc-2.12-r13/package failed with return value 2
-> 
-> Looks it's related to Mark's recent commit 3e6d91ec, but what's odd is: qemumips failed here while qemux86 and qemuarm are ok... BTW: MACHINE routerstationpro and atom-pc also have the same failure as qemumips.
+Cui, Dexuan wrote:
+> Cui, Dexuan wrote:
+>> 1)	Building qemumips meta-toolchain-sdk failed:
+>> http://autobuilder.pokylinux.org:8010/builders/nightly-external/builds/3=
+5/steps/shell_26/logs/stdio
+>> eglibc's do_package failed: ERROR: Error executing a python function
+>> in
+>> /srv/home/pokybuild/poky-slave/nightly-external/build/meta/recipes-core/=
+eglibc/eglibc_2.12.bb:
+>> CopyFailed: Command tar -cf - -C
+>> /srv/home/pokybuild/poky-slave/nightly-external/build/build/tmp/work/mip=
+s-poky-linux/eglibc-2.12-r13/sstate-install-package///package
+>> -ps . | tar -xf - -C
+>> /srv/home/pokybuild/poky-slave/nightly-external/build/build/tmp/work/mip=
+s-poky-linux/eglibc-2.12-r13/package
+>> failed with return value 2  =20
+>>=20
+>> Looks it's related to Mark's recent commit 3e6d91ec, but what's odd
+>> is: qemumips failed here while qemux86 and qemuarm are ok... BTW:
+>> MACHINE routerstationpro and atom-pc also have the same failure as
+>> qemumips.=20
+>>=20
+>> First I'm trying to reproduce issue 1 now. Mark, do you have any
+>> quick thought?  :-)
+> hmmm, I can't reproduce the issue in my local ppc build with the same
+> commit...=20
+Sorry for the typo: I meant my local mips build, rather than ppc build.
 
-I've not seen this error.  The code in question would be located in
-meta/classes/package.bbclass.  There are only a couple of locations in there
-that we switched to the 'tar' method of copying.
-
-Is there any other error messages in the logs besides the one above?
-
-If it truly was error "2", then it means "No such file or directory".
-
-If someone is able to reproduce this, we can figure out if the source or
-destination are missing and how that occurred.
-
-> 2)	on mpc, linux-libc-headers-yocto-2.6.37+git do_install failed:
-> http://autobuilder.pokylinux.org:8010/builders/nightly-external/builds/35/steps/shell_19/logs/stdio
-> | install: cannot create regular file `/srv/home/pokybuild/poky-slave/nightly-external/build/build/tmp/work/ppc603e-poky-linux/linux-libc-headers-yocto-2.6.37+git-1+343c06b25b221aa7f7019aee83b2d976041fddce_1+343c06b25b221aa7f7019aee83b2d976041fddce-r2/image/boot/devicetree-': No such file or directory
-> NOTE: package linux-libc-headers-yocto-2.6.37+git-1+343c06b25b221aa7f7019aee83b2d976041fddce
-> 
-> 3)	ememlow do_rootfs failed:
-> http://autobuilder.pokylinux.org:8010/builders/nightly-internal/builds/48/steps/shell_9/logs/stdio
-> | error: Failed dependencies:
-> | 	keymaps is needed by task-poky-boot-1.0-r7.emenlow
-> | 	base-files is needed by task-poky-boot-1.0-r7.emenlow
-> | 	task-base-wifi is needed by task-base-extended-1.0-r69.emenlow
-> | 	task-base-bluetooth is needed by task-base-extended-1.0-r69.emenlow
-> | 	task-base is needed by task-base-extended-1.0-r69.emenlow
-> | ...
-> 
-> First I'm trying to reproduce issue 1 now. Mark, do you have any quick thought?  :-)
-> 
-> 
-> Thanks,
-> -- Dexuan
->  
-> 
-
+Thanks,
+-- Dexuan
 
