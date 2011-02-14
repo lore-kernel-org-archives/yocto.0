@@ -1,20 +1,26 @@
-Return-Path: <bruce.ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 7F3AC4C80872;
-	Mon, 14 Feb 2011 15:42:22 -0600 (CST)
-Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
-	[128.224.146.167])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p1ELgJTJ016342;
-	Mon, 14 Feb 2011 13:42:19 -0800 (PST)
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: rpurdie@linux.intel.com
-Date: Mon, 14 Feb 2011 16:42:38 -0500
-Message-Id: <cover.1297719595.git.bruce.ashfield@windriver.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <y>
-References: <y>
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
-Subject: [PATCH 0/1] linux-libc-headers-yocto: disable device tree generation
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 3DB054C8090F
+	for <yocto@yoctoproject.org>; Mon, 14 Feb 2011 15:43:33 -0600 (CST)
+Received: from durham.keylevel.com ([109.224.134.115]:17835
+	helo=[192.168.1.83])
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1Pp6Ci-0003z0-DZ
+	for yocto@yoctoproject.org; Mon, 14 Feb 2011 21:43:32 +0000
+Message-Id: <848C40EE-B62A-48D9-B9BC-3303559443D9@keylevel.com>
+From: Chris Tapp <opensource@keylevel.com>
+To: yocto@yoctoproject.org
+Mime-Version: 1.0 (Apple Message framework v936)
+Date: Mon, 14 Feb 2011 21:43:29 +0000
+X-Mailer: Apple Mail (2.936)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+Subject: Command line audio
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,33 +32,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Feb 2011 21:42:22 -0000
+X-List-Received-Date: Mon, 14 Feb 2011 21:43:36 -0000
+Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
+Content-Transfer-Encoding: 7bit
 
-Richard/Saul,
+Is there a command-line audio player recipe in the Yocto meta?
 
-This fixed the error picked up overnight where the libc-headers
-fails because there is no dtb to install.
+I've searched for the usual candidates (mpg123, etc.), but I've not  
+found anything.
 
-Note: this could have been fixed by factoring out the include
-of linux-dtb.inc into the individual recipes rather than by
-modifying the libc-headers rule to set the KERNEL_DEVICETREE
-to nothing. But the libc-headers is the exception and most 
-any other recipe that includes linux-yocto.inc needs this
-enabled, so I opted to leave the includes as they were.
+I'm just after something that I can use to see if the kernel  
+configuration I have now gives me working audio.
 
-Pull URL: git://git.pokylinux.org/poky-contrib.git
-  Branch: zedd/kernel
-  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
+Thanks !
 
-Thanks,
-    Bruce Ashfield <bruce.ashfield@windriver.com>
----
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
 
 
-Bruce Ashfield (1):
-  linux-libc-headers-yocto: disable device tree generation
-
- .../linux-libc-headers-yocto_git.bb                |    4 ++++
- 1 files changed, 4 insertions(+), 0 deletions(-)
 
 
