@@ -1,30 +1,22 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 7DFDB4C800A5;
-	Tue, 15 Feb 2011 13:32:08 -0600 (CST)
-Received: from ALA-MAIL03.corp.ad.wrs.com (ala-mail03 [147.11.57.144])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p1FJW3GY021003;
-	Tue, 15 Feb 2011 11:32:03 -0800 (PST)
-Received: from ala-mail06.corp.ad.wrs.com ([147.11.57.147]) by
-	ALA-MAIL03.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Tue, 15 Feb 2011 11:32:03 -0800
-Received: from [128.224.146.67] ([128.224.146.67]) by
-	ala-mail06.corp.ad.wrs.com with Microsoft SMTPSVC(6.0.3790.1830); 
-	Tue, 15 Feb 2011 11:32:03 -0800
-Message-ID: <4D5AD4B1.5080107@windriver.com>
-Date: Tue, 15 Feb 2011 14:32:01 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 0D1824C80908;
+	Tue, 15 Feb 2011 16:02:51 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 15 Feb 2011 14:02:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,476,1291622400"; d="scan'208";a="602980029"
+Received: from eflanaga-mobl.jf.intel.com (HELO [10.7.198.71]) ([10.7.198.71])
+	by orsmga002.jf.intel.com with ESMTP; 15 Feb 2011 14:02:34 -0800
+Message-ID: <4D5AF7F9.6020300@intel.com>
+Date: Tue, 15 Feb 2011 14:02:33 -0800
+From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.14) Gecko/20110208 Thunderbird/3.1.8 ThunderBrowse/3.3.4
+	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7 ThunderBrowse/3.3.4
 MIME-Version: 1.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-References: <cover.1297796707.git.bruce.ashfield@windriver.com>
-	<1297798090.4945.374.camel@rex>
-In-Reply-To: <1297798090.4945.374.camel@rex>
-X-OriginalArrivalTime: 15 Feb 2011 19:32:03.0427 (UTC)
-	FILETIME=[05D2E330:01CBCD47]
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
-Subject: Re: [PATCH 0/1] linux-yocto: add jasperforest BSP and fix lttng NMI bug
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	"poky@yoctoproject.org" <poky@yoctoproject.org>
+Subject: Yocto IRC Bug days
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,51 +28,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Feb 2011 19:32:08 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-List-Received-Date: Tue, 15 Feb 2011 22:02:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 11-02-15 02:28 PM, Richard Purdie wrote:
-> On Tue, 2011-02-15 at 14:07 -0500, Bruce Ashfield wrote:
->> Richard/Saul,
->>
->> During the introduction of the jasperforest BSP, a lttng
->> issues was picked up with NMI tracing. The upstream (and
->> our solution) is to revert that commit.
->>
->> This change updates the meta repo for jasperforest and pushes
->> out the nmi revert to all BSPs.
->>
->> Pull URL: git://git.pokylinux.org/poky-contrib.git
->>    Branch: zedd/jasperforest
->>    Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/jasperforest
->>
->> Thanks,
->>      Bruce Ashfield<bruce.ashfield@windriver.com>
->> ---
->>
->>
->> Bruce Ashfield (1):
->>    linux-yocto: add jasperforest BSP and fix lttng NMI bug
->>
->>   .../conf/distro/include/poky-default-revisions.inc |   27 +++++++++----------
->>   1 files changed, 13 insertions(+), 14 deletions(-)
->
-> btw, this is not all this branch contains. Luckily I noticed and caught
-> that :)
+Folks,
 
-urk. I pushed my master AND not the jasperforest branch
-that I created for the submission.
+First, thanks for everyone's hard work. We're half way through the master stabilization cycle and the buildouts on the
+autobuilder are looking better and better than two weeks ago. Kudos.
 
-Rushing as usual causes mistakes .. sorry about that.
+As we head into the final stretch of master stabilization, we'll be starting to hold regular irc bug scrubs on #yocto.
+These should be between 30 minutes to an hour.
 
-Bruce
+We currently have 168 open defects in bugzilla with a gold spin planned for March 19th, about 5 weeks away. We'll be
+holding the following bugdays over the next few weeks to make sure Yocto 1.0 is as defect free as possible.
 
->
-> Cheers,
->
-> Richard
->
->
+Here is the schedule for the coming weeks.
 
+Master Stabilization Cycle Bug Days:
+Thursday February 17th @ 07:00 GMT / Thurs 23:00 PST / Fri 18th 15:00 China
+Tuesday February 22nd @ 17:30 GMT / Tue 09:30 PST / Wed 23rd 01:30 China
+Thursday February 24th @ 07:00 GMT / Thurs 24th 23:00 PST / Fri 25th 15:00 China
+
+Release Candidate Validation/Verification Bug Days:
+Tuesday March 1st 22nd @ 17:30 GMT / Tue 09:30 PST / Wed 2nd 01:30 China
+Thursday March 3rd 17th @ 07:00 GMT / Thurs 23:00 PST / Fri 4th 15:00 China
+Tuesday March 8th 22nd @ 17:30 GMT / Tue 09:30 PST / Wed 9th 01:30 China
+Thursday March 10th 17th @ 07:00 GMT / Thurs 23:00 PST / Fri 11th 15:00 China
+Tuesday March 15th 22nd @ 17:30 GMT / Tue 09:30 PST / Wed 16th 01:30 China
+Thursday March 17th 17th @ 07:00 GMT / Thurs 23:00 PST / Fri 18th 15:00 China
+
+Please join the team in fixing defects and getting our bug count lower. I or Saul will be the "bug caller" during these
+sessions.
+
+You can also send email or place a bugzilla comment directly for those bugs that are important to you or your project.
+
+Thanks for your support of the Yocto Project.
+
+------------------
+Elizabeth Flanagan
+Yocto Project
+Release Engineer
 
