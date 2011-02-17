@@ -1,26 +1,34 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 833D54C800A8
-	for <yocto@yoctoproject.org>; Thu, 17 Feb 2011 02:57:55 -0600 (CST)
-Received: from durham.keylevel.com ([109.224.134.115]:14710
-	helo=[192.168.1.83])
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1PpzgQ-0000q2-4m
-	for yocto@yoctoproject.org; Thu, 17 Feb 2011 08:57:54 +0000
-Message-Id: <CD558AEE-7B62-4DF4-923A-CC2604260653@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Thu, 17 Feb 2011 08:57:51 +0000
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-Subject: Specifying license files
+Return-Path: <dexuan.cui@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 717994C800A8
+	for <yocto@yoctoproject.org>; Thu, 17 Feb 2011 03:02:28 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 17 Feb 2011 01:02:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.60,485,1291622400"; d="scan'208";a="390055607"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by azsmga001.ch.intel.com with ESMTP; 17 Feb 2011 01:02:27 -0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Thu, 17 Feb 2011 17:02:07 +0800
+Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Thu, 17 Feb 2011 17:02:06 +0800
+From: "Cui, Dexuan" <dexuan.cui@intel.com>
+To: 'Chris Tapp' <opensource@keylevel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Thu, 17 Feb 2011 17:02:05 +0800
+Thread-Topic: [yocto] Bringing in recipes from OE
+Thread-Index: AcvOGey5psru5eGBRjm+Zu7afS9JwQAX/vdg
+Message-ID: <1865303E0DED764181A9D882DEF65FB68637101D46@shsmsx502.ccr.corp.intel.com>
+References: <46137DFC-371A-4A2B-AFB7-06835208EDA4@keylevel.com>
+In-Reply-To: <46137DFC-371A-4A2B-AFB7-06835208EDA4@keylevel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN, en-US
+MIME-Version: 1.0
+Subject: Re: Bringing in recipes from OE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,26 +40,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Feb 2011 08:57:56 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 17 Feb 2011 09:02:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I'm trying to create a recipe to build libSDL, but I can't get the  
-licensing working. My .bb file contains:
+Chris Tapp wrote:
+> I need to include libSDL (and related libs) in to my build, but I
+> can't see the recipes in Yocto (other than -nativesdk).
+>=20
+> Can I just copy the appropriate OE recipes in to Yocto?
+In poky we have meta/recipes-graphics/libsdl/libsdl-nativesdk_1.2.11.bb (lo=
+oks it's not acutally used at present?)
 
-LICENSE = "LGPLv2.1"
-LIC_FILES_CHKSUM = "file://COPYING;md5=27818cd7fd83877a8e3ef82b82798ef4"
+I think you can do the following to add libsdl into target image:
+1) change the file name to libsdl_1.2.11.bb;
+2) add BBCLASSEXTEND =3D "nativesdk" into the file;
+3) remove nativesdk from the "inherit" of the file;
+4) add libsdl into a proper RDEPENDS, e.g., SDK-EXTRAS.
 
-The source is downloaded in to tmp/ where I have a libsdl-1.2.14-r0/ 
-SDL-1.2.14 directory that contains the COPYING file.
-
-How should I specify this in LIC_FILES_CHKSUM ?
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+Thanks,
+-- Dexuan=
 
