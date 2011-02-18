@@ -1,31 +1,23 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 209FA4C80093
-	for <yocto@yoctoproject.org>; Fri, 18 Feb 2011 01:58:54 -0600 (CST)
-Received: from durham.keylevel.com ([109.224.134.115]:46417
-	helo=[192.168.1.83])
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1PqLEr-0006v0-42
-	for yocto@yoctoproject.org; Fri, 18 Feb 2011 07:58:53 +0000
-Message-Id: <A6686EF1-DB89-4A07-95FF-AD25C82EC7E7@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: yocto@yoctoproject.org
-In-Reply-To: <1865303E0DED764181A9D882DEF65FB68637101D48@shsmsx502.ccr.corp.intel.com>
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Fri, 18 Feb 2011 07:58:50 +0000
-References: <46137DFC-371A-4A2B-AFB7-06835208EDA4@keylevel.com>
-	<1865303E0DED764181A9D882DEF65FB68637101D46@shsmsx502.ccr.corp.intel.com>
-	<3130494D-F481-4946-9220-39DA6BA5A201@keylevel.com>
-	<1865303E0DED764181A9D882DEF65FB68637101D48@shsmsx502.ccr.corp.intel.com>
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-Subject: Re: Bringing in recipes from OE
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6C1304C80093;
+	Fri, 18 Feb 2011 02:12:36 -0600 (CST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 18 Feb 2011 00:12:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.62,186,1297065600"; d="scan'208";a="709399197"
+Received: from eflanaga-mobl.jf.intel.com (HELO [10.7.198.165])
+	([10.7.198.165])
+	by orsmga001.jf.intel.com with ESMTP; 18 Feb 2011 00:12:36 -0800
+Message-ID: <4D5E29F3.9090606@intel.com>
+Date: Fri, 18 Feb 2011 00:12:35 -0800
+From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7 ThunderBrowse/3.3.4
+MIME-Version: 1.0
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	"poky@yoctoproject.org" <poky@yoctoproject.org>
+Subject: IRC Bugscrub Feb 17th
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,35 +29,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Feb 2011 07:58:54 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
+X-List-Received-Date: Fri, 18 Feb 2011 08:12:36 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 18 Feb 2011, at 02:18, Cui, Dexuan wrote:
+Thank you everyone who participated in todays IRC bugscrub.
 
-> In poky, to install a package into target image, we have to make  
-> poky Runtime DEPEND on the package.
-> e.g.,  we can change meta/recipes-gnome/tasks/task-sdk-gmae.inc's  
-> SDK-EXTRAS to
-> SDK-EXTRAS ?= "libsdl", in this way, we can see ( "->" means  
-> "depends on")
-> meta-toolchain-gmae -> task-poky-standalone-gmae-sdk-target ->  
-> libsdl, so libsdl will be built into target image when we do  
-> "bitbake meta-toolchain-gmae" (BTW, previously meta-toolchain-gmae  
-> was called meta-toolchain-sdk).
->
-> Similarily, if we want to build libsdl into the target image when  
-> doing "bitbake poky-image-sato-sdk", we may want to add libsdl into  
-> RDEPENDS_task-poky-sdk in meta/recipes-core/tasks/task-poky-sdk.bb.
+Results:
+5 Resolved defects
+1 Pull request missing from master
+1 New assigned defect
 
-Thanks, that makes it clear.
+Logs for the irc bugscrubs are available on the community wiki @
 
-> BTW, could you please reply mail to all? We encourage asking and  
-> answering openly in poky/yocto mailing lists. :-)
+https://wiki.yoctoproject.org/wiki/IRC_Bug_Day_logs
 
-Will do.  I just keep forgetting that this list doesn't have 'reply  
-to' set to the list - nearly did it again for this reply !
+Reminder: Our next bug scrub is Tuesday February 22nd @ 17:30 GMT / Tue 09:30 PST / Wed 23rd 01:30 China
 
-Chris
-
+------------------
+Elizabeth Flanagan
+Yocto Project
+Release Engineer
 
