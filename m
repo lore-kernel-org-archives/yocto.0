@@ -1,26 +1,22 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 0300D4C8090C
-	for <yocto@yoctoproject.org>; Fri, 18 Feb 2011 16:50:07 -0600 (CST)
-Received: from durham.keylevel.com ([109.224.134.115]:21832
-	helo=[192.168.1.83])
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1PqZ8Q-0001J1-D9
-	for yocto@yoctoproject.org; Fri, 18 Feb 2011 22:49:10 +0000
-Message-Id: <1D1373B4-8C08-4C73-BB4C-94EF19939EC6@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Fri, 18 Feb 2011 22:49:07 +0000
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-Subject: Selecting target runtime lib versions
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id D44AA4C8090C;
+	Fri, 18 Feb 2011 16:53:32 -0600 (CST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 18 Feb 2011 14:53:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.62,189,1297065600"; d="scan'208";a="391014032"
+Received: from unknown (HELO [10.255.12.67]) ([10.255.12.67])
+	by azsmga001.ch.intel.com with ESMTP; 18 Feb 2011 14:53:31 -0800
+Message-ID: <4D5EF86A.6040109@intel.com>
+Date: Fri, 18 Feb 2011 14:53:30 -0800
+From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7 ThunderBrowse/3.3.4
+MIME-Version: 1.0
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	"poky@yoctoproject.org" <poky@yoctoproject.org>
+Subject: [ANNOUNCEMENT] Bernard release candidate branch created.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,25 +28,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Feb 2011 22:50:08 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
+X-List-Received-Date: Fri, 18 Feb 2011 22:53:33 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-I'm working on a recipe to give me sdl-directfb-1.2.11. This is  
-building ok, but when I run on the target it's trying to link against  
-directfb-1.2.
+After last nights mostly stable autobuild, Saul and I decided that we were in a fairly good place to create a release
+candidate branch today. With the release candidate branch, we need to make sure that code changes are tested on both
+master and bernard and that pull requests specify where the pull should occur (master, bernard or both). Maintainers,
+please make sure that we keep these two code lines in as sync as possible.
 
-Trouble is, Yocto has a recipe for directfb-1.4 and this is what's  
-installed on the target.
+Branch: bernard
+Created at: c168c529367e123b557e915f5e5e49018c6de572
 
-Why does SDL try to link against 1.2? I'm not having any luck finding  
-anything within SDL that forces this.
+Thanks,
 
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+------------------
+Elizabeth Flanagan
+Yocto Project
+Release Engineer
 
