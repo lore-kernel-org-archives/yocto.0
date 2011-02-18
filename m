@@ -1,31 +1,26 @@
-Return-Path: <julie.n.fleischer@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id F031A4C800A8
-	for <yocto@yoctoproject.org>; Fri, 18 Feb 2011 11:07:52 -0600 (CST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 18 Feb 2011 09:07:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.62,188,1297065600"; d="scan'208";a="659189484"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 18 Feb 2011 09:07:52 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Fri, 18 Feb 2011 09:07:50 -0800
-Received: from orsmsx506.amr.corp.intel.com ([10.22.226.44]) by
-	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
-	Fri, 18 Feb 2011 09:07:50 -0800
-From: "Fleischer, Julie N" <julie.n.fleischer@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Fri, 18 Feb 2011 09:07:49 -0800
-Thread-Topic: Yocto Release Tracking Meeting - Tuesday, Feb 22nd 8am Pacific
-Thread-Index: AcvPjl6/3c4mHE1pSjuQKHqFk900PQ==
-Message-ID: <4F65016F6CB04E49BFFA15D4F7B798D90159189FE1@orsmsx506.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: Yocto Release Tracking Meeting - Tuesday, Feb 22nd 8am Pacific
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 0300D4C8090C
+	for <yocto@yoctoproject.org>; Fri, 18 Feb 2011 16:50:07 -0600 (CST)
+Received: from durham.keylevel.com ([109.224.134.115]:21832
+	helo=[192.168.1.83])
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1PqZ8Q-0001J1-D9
+	for yocto@yoctoproject.org; Fri, 18 Feb 2011 22:49:10 +0000
+Message-Id: <1D1373B4-8C08-4C73-BB4C-94EF19939EC6@keylevel.com>
+From: Chris Tapp <opensource@keylevel.com>
+To: yocto@yoctoproject.org
+Mime-Version: 1.0 (Apple Message framework v936)
+Date: Fri, 18 Feb 2011 22:49:07 +0000
+X-Mailer: Apple Mail (2.936)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+Subject: Selecting target runtime lib versions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,35 +32,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Feb 2011 17:07:53 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 18 Feb 2011 22:50:08 -0000
+Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
+Content-Transfer-Encoding: 7bit
 
-Yocto Team,
-Since we're nearing the release of Yocto 1.0, we thought it would be useful=
- to begin to meet as a group to discuss the project status.=A0 For those th=
-at are interested, here are the details:
+I'm working on a recipe to give me sdl-directfb-1.2.11. This is  
+building ok, but when I run on the target it's trying to link against  
+directfb-1.2.
 
-Time/Date:=A0 Tuesday, February 22nd, 8-9:30am Pacific
-Dial in:=A0 916-356-2663, Bridge: 1, Passcode: 2867097
+Trouble is, Yocto has a recipe for directfb-1.4 and this is what's  
+installed on the target.
 
-Agenda:
-1) Introductions
-2) Review Yocto 1.0 Release Criteria:=A0 https://wiki.yoctoproject.org/wiki=
-/Yocto_Project_v1.0_Release_Criteria=20
-3) Release Readiness decision for Yocto (If a "go," is M3 "complete?")
-4) Opens/Risks
+Why does SDL try to link against 1.2? I'm not having any luck finding  
+anything within SDL that forces this.
 
-All are welcome to attend!=A0 We look forward to talking with you Tuesday!
+Chris Tapp
 
-Thanks.
-- Julie Fleischer
+opensource@keylevel.com
+www.keylevel.com
 
------------------------
-Julie Fleischer
-Yocto Project
-Open Source Technology Center
-Intel Corporation
+
 
 
