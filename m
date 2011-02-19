@@ -1,26 +1,29 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 653644C80093
-	for <yocto@yoctoproject.org>; Sat, 19 Feb 2011 08:58:34 -0600 (CST)
-Received: from durham.keylevel.com ([109.224.134.115]:55238
-	helo=[192.168.1.83])
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1PqoGW-0005R3-SA
-	for yocto@yoctoproject.org; Sat, 19 Feb 2011 14:58:32 +0000
-Message-Id: <466E08F0-1ADF-4618-A7DA-B6390C7AC2A9@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Sat, 19 Feb 2011 14:58:30 +0000
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-Subject: What builds 'netbase'?
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by mx1.pokylinux.org (Postfix) with ESMTP id F0A3B4C800B2
+	for <yocto@yoctoproject.org>; Sat, 19 Feb 2011 10:17:03 -0600 (CST)
+Received: by mail.chez-thomas.org (Postfix, from userid 999)
+	id 1FD59166021E; Sat, 19 Feb 2011 09:16:47 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id BEB441660090;
+	Sat, 19 Feb 2011 09:16:26 -0700 (MST)
+Message-ID: <4D5FECDA.5020403@mlbassoc.com>
+Date: Sat, 19 Feb 2011 09:16:26 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.13) Gecko/20101209 Fedora/3.1.7-0.35.b3pre.fc13
+	Thunderbird/3.1.7
+MIME-Version: 1.0
+To: Chris Tapp <opensource@keylevel.com>
+References: <466E08F0-1ADF-4618-A7DA-B6390C7AC2A9@keylevel.com>
+In-Reply-To: <466E08F0-1ADF-4618-A7DA-B6390C7AC2A9@keylevel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: What builds 'netbase'?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,28 +35,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 19 Feb 2011 14:58:35 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
+X-List-Received-Date: Sat, 19 Feb 2011 16:17:05 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-I want to make some changes to /etc/interfaces.
+On 02/19/2011 07:58 AM, Chris Tapp wrote:
+> I want to make some changes to /etc/interfaces.
+>
+> It looks to me as if this this comes from 'netbase', but what do I need to rebuild to get my changes in to the rootfs? i.e. is there something I can
+>
+> bitbake -c clean ???; bitbake ???
+>
+> to get my changes in to the rootfs image?
+>
+> I tried cleaning 'netbase', but that made no difference when I then 'bitbake poky-image-minimal'.
 
-It looks to me as if this this comes from 'netbase', but what do I  
-need to rebuild to get my changes in to the rootfs? i.e. is there  
-something I can
+Did you clean the shared state (sstate-cache) info that I told you about yesterday?
 
-bitbake -c clean ???; bitbake ???
-
-to get my changes in to the rootfs image?
-
-I tried cleaning 'netbase', but that made no difference when I then  
-'bitbake poky-image-minimal'.
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
