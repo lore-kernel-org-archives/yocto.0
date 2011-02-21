@@ -1,38 +1,30 @@
-Return-Path: <dexuan.cui@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 04F474C8006D
-	for <yocto@yoctoproject.org>; Mon, 21 Feb 2011 00:50:08 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 20 Feb 2011 22:50:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.62,198,1297065600"; d="scan'208";a="604860465"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by orsmga002.jf.intel.com with ESMTP; 20 Feb 2011 22:50:08 -0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Mon, 21 Feb 2011 14:49:17 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Mon, 21 Feb 2011 14:49:15 +0800
-From: "Cui, Dexuan" <dexuan.cui@intel.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Date: Mon, 21 Feb 2011 14:49:15 +0800
-Thread-Topic: [poky] autobuilders in flux today.
-Thread-Index: AcvPOUwQ0st9SHqLQBamp/ljx8HV8ACV33cgAACBPrA=
-Message-ID: <1865303E0DED764181A9D882DEF65FB68642392C2A@shsmsx502.ccr.corp.intel.com>
-References: <4D5C2359.6040007@intel.com>
-	<1865303E0DED764181A9D882DEF65FB68637101D4A@shsmsx502.ccr.corp.intel.com>
-	<4D5E181C.5050208@intel.com>
-	<1865303E0DED764181A9D882DEF65FB68642392C29@shsmsx502.ccr.corp.intel.com>
-In-Reply-To: <1865303E0DED764181A9D882DEF65FB68642392C29@shsmsx502.ccr.corp.intel.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN, en-US
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
-	Saul" <saul.wold@intel.com>
-Subject: Re: [poky] autobuilders in flux today.
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B4A0F4C80A7D;
+	Mon, 21 Feb 2011 11:55:31 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p1LHtR8N019217;
+	Mon, 21 Feb 2011 17:55:27 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 19075-03; Mon, 21 Feb 2011 17:55:23 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p1LHtKio019206
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 21 Feb 2011 17:55:20 GMT
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+In-Reply-To: <cover.1298047352.git.bruce.ashfield@windriver.com>
+References: <y>  <cover.1298047352.git.bruce.ashfield@windriver.com>
+Date: Mon, 21 Feb 2011 17:55:16 +0000
+Message-ID: <1298310916.11289.3188.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
+Subject: Re: [PATCH 0/1] linux-yocto: update to 2.6.37.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,88 +36,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Feb 2011 06:50:09 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 21 Feb 2011 17:55:32 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-MSBtb3JlIGlzc3VlIHRoYXQgYmxvY2tzIG1ldGEtdG9vbGNoYWluLXNkayBmb3IgbWFueSB0YXJn
-ZXRzOg0KDQpDb21tYW5kcyBhcmUgbWV0YS10b29sY2hhaW4tc2RrIC1rDQpDaGFuZ2VkIHRvIC9i
-dWlsZHMyL3Bva3lidWlsZHMvbmlnaHRseS1pbnRlcm5hbC9idWlsZA0KL2hvbWUvcG9reWJ1aWxk
-L3Bva3ktYXV0b2J1aWxkZXIvc2NyaXB0cy9wb2t5LWF1dG9idWlsZDogbGluZSAzNTogLi9wb2t5
-LWluaXQtYnVpbGQtZW52OiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5DQovaG9tZS9wb2t5YnVp
-bGQvcG9reS1hdXRvYnVpbGRlci9zY3JpcHRzL3Bva3ktYXV0b2J1aWxkOiBsaW5lIDgwOiBiaXRi
-YWtlOiBjb21tYW5kIG5vdCBmb3VuZA0KDQpodHRwOi8vYXV0b2J1aWxkZXIucG9reWxpbnV4Lm9y
-Zzo4MDEwL2J1aWxkZXJzL25pZ2h0bHktaW50ZXJuYWwvYnVpbGRzLzU0L3N0ZXBzL3NoZWxsXzE3
-L2xvZ3Mvc3RkaW8NCmh0dHA6Ly9hdXRvYnVpbGRlci5wb2t5bGludXgub3JnOjgwMTAvYnVpbGRl
-cnMvbmlnaHRseS1pbnRlcm5hbC9idWlsZHMvNTQvc3RlcHMvc2hlbGxfMTYvbG9ncy9zdGRpbw0K
-aHR0cDovL2F1dG9idWlsZGVyLnBva3lsaW51eC5vcmc6ODAxMC9idWlsZGVycy9uaWdodGx5LWlu
-dGVybmFsL2J1aWxkcy81NC9zdGVwcy9zaGVsbF8xMy9sb2dzL3N0ZGlvDQpodHRwOi8vYXV0b2J1
-aWxkZXIucG9reWxpbnV4Lm9yZzo4MDEwL2J1aWxkZXJzL25pZ2h0bHktaW50ZXJuYWwvYnVpbGRz
-LzU0L3N0ZXBzL3NoZWxsXzExL2xvZ3Mvc3RkaW8NCg0KVGhhbmtzLA0KLS0gRGV4dWFuIA0KDQot
-LS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2pl
-Y3Qub3JnIFttYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYg
-T2YgQ3VpLCBEZXh1YW4NClNlbnQ6IDIwMTHE6jLUwjIxyNUgMTQ6MzkNClRvOiBGbGFuYWdhbiwg
-RWxpemFiZXRoDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzsgcG9reUB5b2N0b3Byb2plY3Qu
-b3JnOyBXb2xkLCBTYXVsDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBbcG9reV0gYXV0b2J1aWxkZXJz
-IGluIGZsdXggdG9kYXkuDQoNCkhpIEJldGgsDQpUb2RheSBJIGZvdW5kIHRoZSBmb2xsb3dpbmcg
-aXNzdWVzIG9uIGF1dG9idWlsZGVycyBhZ2Fpbi4gQXJlIHRoZXkgYXV0b2J1aWxkZXIncyBjb25m
-aWd1cmUgaXNzdWU/IA0KDQpDb3B5aW5nIElQSyBmZWVkIG91dHB1dCBmYWlsZWQ6IGh0dHA6Ly9h
-dXRvYnVpbGRlci5wb2t5bGludXgub3JnOjgwMTAvYnVpbGRlcnMvbmlnaHRseS1leHRlcm5hbC9i
-dWlsZHMvMzcvc3RlcHMvc2hlbGxfMzYvbG9ncy9zdGRpbw0KDQpDb3B5aW5nIFJQTSBmZWVkIG91
-dHB1dCBmYWlsZWQgLS0gRXJyb3I6IHRtcC9kZXBsb3kvcnBtIGRvZXMgbm90IGV4aXN0LCBjYW5u
-b3QgY29weSE6IGh0dHA6Ly9hdXRvYnVpbGRlci5wb2t5bGludXgub3JnOjgwMTAvYnVpbGRlcnMv
-bmlnaHRseS1pbnRlcm5hbC9idWlsZHMvNTQvc3RlcHMvc2hlbGxfMjEvbG9ncy9zdGRpbw0KDQpH
-ZW5lcmF0aW5nIFBva3kgcmVsZWFzZSB0YXJiYWxsIGZhaWxlZCAtLSBmYXRhbDogTm90IGEgZ2l0
-IHJlcG9zaXRvcnkgKG9yIGFueSBvZiB0aGUgcGFyZW50IGRpcmVjdG9yaWVzKTogLmdpdDogaHR0
-cDovL2F1dG9idWlsZGVyLnBva3lsaW51eC5vcmc6ODAxMC9idWlsZGVycy9uaWdodGx5LWludGVy
-bmFsL2J1aWxkcy81NC9zdGVwcy9zaGVsbF8xOS9sb2dzL3N0ZGlvDQoNClRoYW5rcywNCi0tIERl
-eHVhbiANCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEZsYW5hZ2FuLCBFbGl6
-YWJldGggDQpTZW50OiAyMDExxOoy1MIxOMjVIDE0OjU2DQpUbzogQ3VpLCBEZXh1YW4NCkNjOiB5
-b2N0b0B5b2N0b3Byb2plY3Qub3JnOyBwb2t5QHlvY3RvcHJvamVjdC5vcmc7IFdvbGQsIFNhdWwN
-ClN1YmplY3Q6IFJlOiBbcG9reV0gYXV0b2J1aWxkZXJzIGluIGZsdXggdG9kYXkuDQoNClllcywg
-dGhlcmUgd2FzIHNvbWUgaXNzdWVzIHdpdGggdGhlIGF1dG9idWlsZGVyIGR1ZSB0byBzb21lIG9s
-ZCBwcm9jZXNzZXMuIEEgcXVpY2sgcmVzZXQgb2YgdGhlIGF1dG9idWlsZGVyIHNlcnZpY2UgdGhp
-cw0KYWZ0ZXJub29uIGFuZCB0aGUgY3VycmVudCBidWlsZCBpcyBtb3N0bHkgZ3JlZW4gd2l0aCB0
-aGUgZXhjZXB0aW9uIG9mIG9uZSBzYW5pdHkgdGVzdCBmYWlsdXJlLg0KDQotYg0KDQpPbiAwMi8x
-Ny8yMDExIDA5OjExIFBNLCBDdWksIERleHVhbiB3cm90ZToNCj4gSGkgQmV0aCwNCj4gTG9va3Mg
-YXV0b2J1aWxkZXIgaXMgc3RpbGwgdW5zdGFibGU/IA0KPiBJIGZvdW5kIHRoZSBmb2xsb3dpbmcg
-aXNzdWVzLg0KPiBBY3R1YWxseSBkdWUgdG8gdGhlIDNyZCBmYWlsdXJlKC4vcG9reS1pbml0LWJ1
-aWxkLWVudjogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeSksIGFsbW9zdCBhbGwgdGhlIGJ1aWxk
-cyBmYWlsZWQuLi4NCj4gQ291bGQgeW91IHBsZWFzZSBoYXZlIGEgbG9vaz8NCj4gDQo+IENvcHlp
-bmcgUlBNIGZlZWQgb3V0cHV0IGZhaWxlZDogRXJyb3I6IHRtcC9kZXBsb3kvcnBtIGRvZXMgbm90
-IGV4aXN0LCBjYW5ub3QgY29weSENCj4gaHR0cDovL2F1dG9idWlsZGVyLnBva3lsaW51eC5vcmc6
-ODAxMC9idWlsZGVycy9uaWdodGx5LWludGVybmFsL2J1aWxkcy81NC9zdGVwcy9zaGVsbF8yMS9s
-b2dzL3N0ZGlvDQo+IA0KPiANCj4gR2VuZXJhdGluZyBQb2t5IHJlbGVhc2UgdGFyYmFsbCBmYWls
-ZWQ6IGZhdGFsOiBOb3QgYSBnaXQgcmVwb3NpdG9yeSAob3IgYW55IG9mIHRoZSBwYXJlbnQgZGly
-ZWN0b3JpZXMpOiAuZ2l0DQo+IGh0dHA6Ly9hdXRvYnVpbGRlci5wb2t5bGludXgub3JnOjgwMTAv
-YnVpbGRlcnMvbmlnaHRseS1pbnRlcm5hbC9idWlsZHMvNTQvc3RlcHMvc2hlbGxfMTkvbG9ncy9z
-dGRpbw0KPiANCj4gQnVpbGRpbmcgcWVtdXg4Ni02NCBtZXRhLXRvb2xjaGFpbi1zZGsgZmFpbGVk
-Og0KPiAvaG9tZS9wb2t5YnVpbGQvcG9reS1hdXRvYnVpbGRlci9zY3JpcHRzL3Bva3ktYXV0b2J1
-aWxkOiBsaW5lIDM1OiAuL3Bva3ktaW5pdC1idWlsZC1lbnY6IE5vIHN1Y2ggZmlsZSBvciBkaXJl
-Y3RvcnkNCj4gL2hvbWUvcG9reWJ1aWxkL3Bva3ktYXV0b2J1aWxkZXIvc2NyaXB0cy9wb2t5LWF1
-dG9idWlsZDogbGluZSA4MDogYml0YmFrZTogY29tbWFuZCBub3QgZm91bmQNCj4gaHR0cDovL2F1
-dG9idWlsZGVyLnBva3lsaW51eC5vcmc6ODAxMC9idWlsZGVycy9uaWdodGx5LWludGVybmFsL2J1
-aWxkcy81NC9zdGVwcy9zaGVsbF8xNy9sb2dzL3N0ZGlvDQo+IA0KPiANCj4gVGhhbmtzLA0KPiAt
-LSBEZXh1YW4NCj4gDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IHBva3kt
-Ym91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86cG9reS1ib3VuY2VzQHlvY3RvcHJvamVj
-dC5vcmddIE9uIEJlaGFsZiBPZiBFbGl6YWJldGggRmxhbmFnYW4NCj4gU2VudDogMjAxMcTqMtTC
-MTfI1SAzOjIwDQo+IFRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnOyBwb2t5QHlvY3RvcHJvamVj
-dC5vcmcNCj4gU3ViamVjdDogW3Bva3ldIGF1dG9idWlsZGVycyBpbiBmbHV4IHRvZGF5Lg0KPiAN
-Cj4gSSBjYW1lIGluIHRoaXMgbW9ybmluZyB0byAxNDAgem9tYmllcyBhbmQgYSBidWlsZCB0aGF0
-IHdhcyBjaG9raW5nIG9uIGJ1aWxkZXIyLiBJJ20gcmVib290aW5nIHRoZSBzZXJ2ZXIgcmlnaHQg
-bm93LiBKdXN0DQo+IGFuIEZZSSwgdGhpcyBpcyBhIHJlbGF0aXZlbHkgcmVjZW50IGRldmVsb3Bt
-ZW50IChsYXN0IG5pZ2h0IHRoZXJlIHdlcmUgMTcgem9tYmllcykuIE5vdCBzdXJlIHdoYXQgaXMg
-Z29pbmcgb24gYnV0IEknbGwNCj4ga2VlcCBldmVyeW9uZSBpbmZvcm1lZC4NCj4gDQo+IEFsbCB0
-aGF0IHNhaWQsIHRoZSBhdXRvYnVpbGRlcnMgd2lsbCBiZSBpbiBmbHV4IHRvZGF5IHdoaWxlIEkg
-YnJpbmcgYnVpbGRlcjMgb25saW5lLiBQbGVhc2UgZG9uJ3Qga2ljayBvZmYgYW55dGhpbmcgdml0
-YWwuDQo+IA0KPiBUaGFua3MNCj4gDQo+IA0KPiAtLS0tLS0tLS0tLS0tLS0tLS0NCj4gRWxpemFi
-ZXRoIEZsYW5hZ2FuDQo+IFlvY3RvIFByb2plY3QNCj4gUmVsZWFzZSBFbmdpbmVlcg0KPiBfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBwb2t5IG1haWxp
-bmcgbGlzdA0KPiBwb2t5QHlvY3RvcHJvamVjdC5vcmcNCj4gaHR0cHM6Ly9saXN0cy55b2N0b3By
-b2plY3Qub3JnL2xpc3RpbmZvL3Bva3kNCg0KLS0gDQotLS0tLS0tLS0tLS0tLS0tLS0NCkVsaXph
-YmV0aCBGbGFuYWdhbg0KWW9jdG8gUHJvamVjdA0KUmVsZWFzZSBFbmdpbmVlcg0KX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCnlvY3RvIG1haWxpbmcgbGlz
-dA0KeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3Jn
-L2xpc3RpbmZvL3lvY3RvDQo=
+On Fri, 2011-02-18 at 11:44 -0500, Bruce Ashfield wrote:
+> Richard/Saul,
+> 
+> 2.6.37.1 dropped yesterday, and I've done the merge and built
+> for all the currently supported core boards. Boots on simulation
+> work as well. Obviously, no issues found during my testing.
+> 
+> Pull URL: git://git.pokylinux.org/poky-contrib.git
+>   Branch: zedd/kernel
+>   Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
+> 
+> Thanks,
+>     Bruce Ashfield <bruce.ashfield@windriver.com>
+> ---
+> 
+> 
+> Bruce Ashfield (1):
+>   linux-yocto: update to 2.6.37.1
+> 
+>  .../conf/distro/include/poky-default-revisions.inc |   24 ++++++++++----------
+>  1 files changed, 12 insertions(+), 12 deletions(-)
+
+Merged to master, thanks.
+
+Richard
+
+
 
