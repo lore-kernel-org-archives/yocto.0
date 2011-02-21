@@ -1,30 +1,35 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A22254C80479
-	for <yocto@yoctoproject.org>; Sun, 20 Feb 2011 14:11:00 -0600 (CST)
-Received: from durham.keylevel.com ([109.224.134.115]:9660 helo=[192.168.1.83])
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1PrFcR-0004ZY-As; Sun, 20 Feb 2011 20:10:59 +0000
-Message-Id: <70209A2D-B4A5-4546-9A55-6218C69C96B3@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: Gary Thomas <gary@mlbassoc.com>
-In-Reply-To: <4D615D21.7010304@mlbassoc.com>
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Sun, 20 Feb 2011 20:10:56 +0000
-References: <3776E9FA-795C-450E-83EF-FF154CF1B6FF@keylevel.com>	<4D6157A2.8050906@mlbassoc.com>
-	<02231D24-6F1D-40B5-BD03-6DAA5A49E038@keylevel.com>
-	<4D615D21.7010304@mlbassoc.com>
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-Cc: yocto@yoctoproject.org
-Subject: Re: How do I use layers to replacing system configuration files?
+Return-Path: <kevin.tian@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 36F3B4C8086E
+	for <yocto@yoctoproject.org>; Sun, 20 Feb 2011 20:26:32 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 20 Feb 2011 18:26:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.62,197,1297065600"; d="scan'208";a="659757960"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by fmsmga002.fm.intel.com with ESMTP; 20 Feb 2011 18:26:24 -0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Mon, 21 Feb 2011 10:25:24 +0800
+Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Mon, 21 Feb 2011 10:25:22 +0800
+From: "Tian, Kevin" <kevin.tian@intel.com>
+To: Gary Thomas <gary@mlbassoc.com>, Chris Tapp <opensource@keylevel.com>
+Date: Mon, 21 Feb 2011 10:25:20 +0800
+Thread-Topic: [yocto] What builds 'netbase'?
+Thread-Index: AcvQUHjiFVbMbtk+TEiS3ZqvGtA+mQBEkaDA
+Message-ID: <625BA99ED14B2D499DC4E29D8138F1504FB48E619B@shsmsx502.ccr.corp.intel.com>
+References: <466E08F0-1ADF-4618-A7DA-B6390C7AC2A9@keylevel.com>
+	<4D5FECDA.5020403@mlbassoc.com>
+In-Reply-To: <4D5FECDA.5020403@mlbassoc.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: What builds 'netbase'?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,22 +41,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 20 Feb 2011 20:11:01 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 21 Feb 2011 02:26:32 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 20 Feb 2011, at 18:27, Gary Thomas wrote:
+> From: Gary Thomas
+> Sent: Sunday, February 20, 2011 12:16 AM
+>=20
+> On 02/19/2011 07:58 AM, Chris Tapp wrote:
+> > I want to make some changes to /etc/interfaces.
+> >
+> > It looks to me as if this this comes from 'netbase', but what do I need=
+ to
+> rebuild to get my changes in to the rootfs? i.e. is there something I can
+> >
+> > bitbake -c clean ???; bitbake ???
+> >
+> > to get my changes in to the rootfs image?
+> >
+> > I tried cleaning 'netbase', but that made no difference when I then 'bi=
+tbake
+> poky-image-minimal'.
+>=20
+> Did you clean the shared state (sstate-cache) info that I told you about
+> yesterday?
 
-> On 02/20/2011 11:23 AM, Chris Tapp wrote:
->>
->> FILESEXTRAPATHS := "${THISDIR}/${PN}"
->
-> That would be great (if it works).  My recipes are based on examples
-> which were available when the .bbappend and layers were first  
-> introduced.
+I think we should extend checksum to cover local files/patches, instead of =
+just
+recipe variables. This way old sstate cache will be automatically invalided=
+ due
+to different checksum from /etc/interfaces change.
 
-It's working for me ;-)
+On the other hand, bitbake task scheduling is done in a reverse order, i.e.
+starting from poky-image-minimal.do_build, and then the task including netb=
+ase
+and then netbase. Here if you bump up PR for netbase, the dependency is con=
+sidered
+and then all the recipes recursively depending on netbase will be rebuilt a=
+utomatically.
+If you don't want to bump up PR, then you have to also manually clean up=20
+task-poky-boot to make sure new netbase outputs integrated in new minimal i=
+mage.
 
-Chris
-
+Thanks
+Kevin
 
