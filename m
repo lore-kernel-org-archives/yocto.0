@@ -1,31 +1,31 @@
-Return-Path: <julie.n.fleischer@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8F61B4C80093
-	for <yocto@yoctoproject.org>; Wed, 23 Feb 2011 09:36:34 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 23 Feb 2011 07:36:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.62,212,1297065600"; d="scan'208";a="605737836"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by orsmga002.jf.intel.com with ESMTP; 23 Feb 2011 07:36:34 -0800
-Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Wed, 23 Feb 2011 07:36:33 -0800
-Received: from orsmsx506.amr.corp.intel.com ([10.22.226.44]) by
-	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
-	Wed, 23 Feb 2011 07:36:33 -0800
-From: "Fleischer, Julie N" <julie.n.fleischer@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 23 Feb 2011 07:36:32 -0800
-Thread-Topic: Notes from Tues, Feb 22nd Yocto Release Tracking Meeting
-Thread-Index: AcvTb3J2L0B7Xgv1Q1ibOmJnmiEJIQ==
-Message-ID: <4F65016F6CB04E49BFFA15D4F7B798D9015921B99F@orsmsx506.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: Notes from Tues, Feb 22nd Yocto Release Tracking Meeting
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B5C304C80A7D;
+	Wed, 23 Feb 2011 10:23:24 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p1NGNJjH016465;
+	Wed, 23 Feb 2011 16:23:19 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 16323-03; Wed, 23 Feb 2011 16:23:15 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p1NGN7c9016424
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 23 Feb 2011 16:23:10 GMT
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+In-Reply-To: <f2ce752b4053f9b7d0327d2316432906f459f92f.1298429140.git.bruce.ashfield@windriver.com>
+References: <cover.1298429140.git.bruce.ashfield@windriver.com>
+	<f2ce752b4053f9b7d0327d2316432906f459f92f.1298429140.git.bruce.ashfield@windriver.com>
+Date: Wed, 23 Feb 2011 16:23:02 +0000
+Message-ID: <1298478182.26736.37.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
+Subject: Re: [PATCH 1/1] linux-yocto: enable audio for selected qemu targets
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,73 +37,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Feb 2011 15:36:35 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 23 Feb 2011 16:23:25 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Pursuant to the notice sent on Friday, February 18th, the Yocto Release Tra=
-cking Meeting was held on Tuesday  February 22nd 8-9:15am Pacific time.  No=
-tes are below for all interested.
+On Tue, 2011-02-22 at 21:49 -0500, Bruce Ashfield wrote:
+> Fixes [BUGID #488 #734]
+> 
+> Enable audio for qemux86/qemux86-64 via the following kernel
+> configuration options.
+> 
+>   CONFIG_SOUND_OSS_CORE=y
+>   CONFIG_SOUND_OSS_CORE_PRECLAIM=y
+>   CONFIG_SND_RAWMIDI=m
+>   CONFIG_SND_SEQUENCER=y
+>   CONFIG_SND_OSSEMUL=y
+>   CONFIG_SND_MIXER_OSS=y
+>   CONFIG_SND_PCM_OSS=y
+>   CONFIG_SND_PCM_OSS_PLUGINS=y
+>   CONFIG_SND_SEQUENCER_OSS=y
+>   CONFIG_SND_RAWMIDI_SEQ=m
+>   CONFIG_SND_AC97_CODEC=m
+>   CONFIG_SND_ENS1370=m
+>   CONFIG_SND_INTEL8X0=m
+>   CONFIG_AC97_BUS=m
+> 
+> The mechanism to trigger these options is in the form of an
+> optional kernel feature that is only appended for qemux86
+> and qemux86-64, but is contained within the kernel tree.
+> 
+> This allows several things:
+> 
+>   - the options to be available/shared for all boards
+>   - the options to be in tree
+>   - to not add the options to every board, which unecessarily
+>     bloats the default configuration.
+> 
+> Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
 
-Attendees:  Dave, Julie, Josh, Paul, Mark, Richard, Jessica, Kevin, Jeff Po=
-lk, Darren, Beth, Tom, Saul, Bruce, Alex
+Merged to master, thanks Bruce.
 
-1) Introductions
-Dave - Engineering Manager at Intel
-Julie - Yocto Program Manager
-Josh - Build System Minion
-Paul - Build System Engineer
-Mark - One of the User Space Leads, also responsible for cross-prelinker an=
-d the build to software integration
-Richard - Yocto Project Architect
-Jessica - ADT and XS Plugin Lead/Maintainer
-Kevin - Wind River VP, Yocto Engineering Sponsor
-Jeff Polk - Wind River Engineer that works on modifying Wind River Linux to=
- deal better with Poky integration
-Darren - Linux Kernel Engineer working on patches to the Linux Kernel for Y=
-octo Project
-Beth - Yocto Project Build and Release Engineer Extraordinaire (last part a=
-dded by team)
-Tom - Software Engineer, lately doing lots of work on Board Support Package=
-s for Intel boards
-Saul - Yocto Project Component Wrangler/User Space Architect
-Bruce - Linux Kernel Engineer working on patches to the Linux Kernel for Yo=
-cto Project, Maintainer of Kernel portions of Yocto Project
-Alex - Chief Linux Architect at Wind River; part-time Swabber Monkey
+Cheers,
 
-2) Review Yocto 1.0 Release Criteria:  https://wiki.yoctoproject.org/wiki/Y=
-octo_Project_v1.0_Release_Criteria  =20
-- See website for changes=20
-Action Item:  Richard will send an email to ask about the four features not=
- fully in Master to ask about the disposition.
-Action Item:  Saul:  Work with Scott G on the docutils failures.
-
-Team decided that M3 will be RC1, which is scheduled to come out Friday.
-** We do need to be cautious of what we are putting into Master for the nex=
-t 3 days. **
-
-Action Item:  Julie:  Send emails to people with open bugs (after today's s=
-crub) to let them know our goals for Friday.
-
-Action Item:  Julie:  Check with Scott on the Documentation progress.
-
-Action Item:  Julie:  Send email off-line to get full demo status since we =
-ran out of time for details.  As a result of that email, Julie may order ha=
-rdware for Joshua.
-
-3) Release Readiness decision for Yocto=20
-Team agreed that the key stakeholders should meet informally Friday or Mond=
-ay in order to determine if we are ready to release RC1.  Julie to work wit=
-h Beth off-line to see if assistance is needed.
-
-4) Opens/Risks
-No new items noted.
-
------------------------
-Julie Fleischer
-Open Source Technology Center
-Intel Corporation
-
+Richard
 
 
