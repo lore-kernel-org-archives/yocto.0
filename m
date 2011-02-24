@@ -1,27 +1,26 @@
-Return-Path: <david.borman@windriver.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A0B3E4C8004D
-	for <yocto@yoctoproject.org>; Thu, 24 Feb 2011 13:01:05 -0600 (CST)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 699624C8004D
+	for <yocto@yoctoproject.org>; Thu, 24 Feb 2011 14:49:34 -0600 (CST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p1OJ14Hp002601
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 24 Feb 2011 11:01:04 -0800 (PST)
-Received: from ALA-MBB.corp.ad.wrs.com ([169.254.2.56]) by
-	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.01.0255.000;
-	Thu, 24 Feb 2011 11:01:04 -0800
-From: "Borman, David" <david.borman@windriver.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Observations on Yocto alpha
-Thread-Index: AQHL1FUvvBDAMUFXBUGgO1npsOqzKQ==
-Date: Thu, 24 Feb 2011 19:01:04 +0000
-Message-ID: <F5EB2246-48BA-4B53-981A-28FAB785A6E6@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.34.39]
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p1OKnXmv027781
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 24 Feb 2011 12:49:33 -0800 (PST)
+Received: from Macintosh-5.local (172.25.36.227) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.1.255.0;
+	Thu, 24 Feb 2011 12:49:34 -0800
+Message-ID: <4D66C45A.5090900@windriver.com>
+Date: Thu, 24 Feb 2011 14:49:30 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.13) Gecko/20101207 Thunderbird/3.1.7
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 24 Feb 2011 14:28:29 -0600
-Subject: Observations on Yocto alpha
+To: <yocto@yoctoproject.org>
+References: <F5EB2246-48BA-4B53-981A-28FAB785A6E6@windriver.com>
+In-Reply-To: <F5EB2246-48BA-4B53-981A-28FAB785A6E6@windriver.com>
+X-Originating-IP: [172.25.36.227]
+Subject: Re: Observations on Yocto alpha
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,221 +32,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Feb 2011 19:01:06 -0000
-X-Groupsio-MsgNum: 1065
-Content-Language: en-US
-Content-Type: multipart/mixed;
-	boundary="_002_F5EB224648BA4B53981A28FAB785A6E6windrivercom_"
+X-List-Received-Date: Thu, 24 Feb 2011 20:49:35 -0000
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
 
---_002_F5EB224648BA4B53981A28FAB785A6E6windrivercom_
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <D0B93C186FEAB748A8FF4A4F238C4ADC@corp.ad.wrs.com>
-Content-Transfer-Encoding: quoted-printable
+On 2/24/11 1:01 PM, Borman, David wrote:
+> ===============================================================================
+> 8) When running the script:
+> 	source bernard-5.0-alpha/poky-init-build-env poky-4.0-build
+> if you forgot to "source" it, you get back to a prompt without any
+> indication that things aren't set up.  Personally, I'd rather that
+> this set be done with a sub-shell instead of sourcing into the
+> current shell environment, so that:
+> 	1) you always would get to a prompt that had the env set up
+> 	2) Your existing environment wouldn't be changed.  A ^D
+> 	   would get you back to your old environment.
+> The current script also assumes the user will be running bash or
+> some variant of it, and doesn't allow for users that run something
+> else, e.g. csh or tcsh.
 
-Hi,
+Sounds like something went wrong with the env script, it's supposed to generate
+a warning if you don't source it.  Which shell were you using when you sourced it?
 
-I started late in the game looking at the Yocto Alpha Test, late as in yest=
-erday morning, so I don't have much other than initial impressions.  I've b=
-uilt it for qemux86 and booted it up in qemu.  I'm attaching my raw notes w=
-hich details the issues as I ran into them.
+Non-POSIX shells are not supported (in Poky at least).  Which is why csh/tcsh
+isn't there.. but bash, ash, dash, zsh, etc all though work..  there is one
+issue with zsh where it can't tell if you sourced it or not (which is why I'm
+asking about the above.)
 
-The short summary of issues I ran into:
-1) Upstream packages that no longer exist
-2) Running qemu requiring sudo access
-3) qemu segfaulting due to NVIDIA libGL
+For csh/tcsh there is an unofficial patch to enable support -- but so far it's
+been deemed to risky to included.
 
-My host system is FC13.  I was able to find and manually install the missin=
-g upstream packages from other sources.  The machine I was using was one I =
-could set up sudo access, but you should be able to run qemu without requir=
-ing the TAP interface and sudo to set it up.  I worked around the libGL ver=
-sion by restoring the FC13 version of libGL.
+--Mark
 
-When actually running the generated image, the only thing I had trouble wit=
-h was that my keyboard didn't work, the mappings were all messed up.  I sta=
-rted the virtual keyboard and was able to use that instead.  The mouse work=
-ed fine.
-
-One other item is that I'm generally leery of things that have me blindly s=
-ource things into my shell, as it doesn't give me an easy way to undo whate=
-ver it does.  I'd prefer
-	.../poky-init-build-env poky-4.0-build
-be something that you run as a command and it creates a sub-shell, rather t=
-han sourcing it and having it modify my existing shell environment.  My alt=
-ernative was to first create a sub-shell so that I could ^D and get back to=
- my unmodified shell environment.
-
-
-			-David Borman, david.borman@windriver.com
-
-
---_002_F5EB224648BA4B53981A28FAB785A6E6windrivercom_
-Content-Type: text/plain; name="NOTES.txt"
-Content-Description: NOTES.txt
-Content-Disposition: attachment; filename="NOTES.txt"; size=9088;
-	creation-date="Thu, 24 Feb 2011 19:01:04 GMT";
-	modification-date="Thu, 24 Feb 2011 19:01:04 GMT"
-Content-ID: <74A157207C2C644F98796D4582FD5903@corp.ad.wrs.com>
-Content-Transfer-Encoding: base64
-
-Tm90ZXMgdGFrZW4gYnkgRGF2aWQgQm9ybWFuIChkYXZpZC5ib3JtYW5Ad2luZHJpdmVyLmNvbSkg
-ZHVyaW5nIHRoZQ0KWW9jdG8gQWxwaGEgdGVzdC4gMi8yMy8yMDExDQoNCj09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT0NCjEpIFRoZSBjb21tYW5kOg0KDQoJZ2l0IGNsb25lIGdpdDovL2dpdC5wb2t5bGlu
-dXgub3JnL3Bva3kuZ2l0IC1icmFuY2ggYmVybmFyZC01LjAtYWxwaGENCg0KcHJvZHVjZWQgYW4g
-ZXJyb3IgdGhhdCB0aGUgYnJhbmNoIGRvZXNuJ3QgZXhpc3QuICBUdXJucyBvdXQgaXQgaXNuJ3QN
-CmEgYnJhbmNoLCBidXQgYSB0YWcsIHNvOg0KCWdpdCBjaGVja291dCBiZXJuYXJkLTUuMC1hbHBo
-YQ0Kd29ya2VkLg0KDQoNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCjIpIFRoZSB1cHN0cmVhbSBz
-b3VyY2UgZm9yIHRoZSBuY3Vyc2VzIHBhdGNoIG5vIGxvbmdlciBleGlzdHM6DQoNCk5PVEU6IGZl
-dGNoIGZ0cDovL2ludmlzaWJsZS1pc2xhbmQubmV0L25jdXJzZXMvNS43L25jdXJzZXMtNS43LTIw
-MTAwNTAxLnBhdGNoLmd6DQpFUlJPUjogRnVuY3Rpb24gJ0ZldGNoZXIgZmFpbHVyZSBmb3IgVVJM
-OiAnZnRwOi8vaW52aXNpYmxlLWlzbGFuZC5uZXQvbmN1cnNlcy81LjcvbmN1cnNlcy01LjctMjAx
-MDA1MDEucGF0Y2guZ3o7bmFtZT1wMjAxMDA1MDEnLiBVbmFibGUgdG8gZmV0Y2ggVVJMIGZ0cDov
-L2ludmlzaWJsZS1pc2xhbmQubmV0L25jdXJzZXMvNS43L25jdXJzZXMtNS43LTIwMTAwNTAxLnBh
-dGNoLmd6O25hbWU9cDIwMTAwNTAxIGZyb20gYW55IHNvdXJjZS4nIGZhaWxlZA0KDQpJIHdhcyBh
-YmxlIHRvIGdldCBhIGNvcHkgb2YgdGhpcyBwYXRjaCBmaWxlIGZyb20gYW5vdGhlciBzb3VyY2U6
-DQoJaHR0cDovL2J1aWxkLnNoci1wcm9qZWN0Lm9yZy9zaHItdW5zdGFibGUvc291cmNlcy9NSVQv
-bmN1cnNlcy8NCnB1dCBpdCBpbiB0aGUgImRvd25sb2FkcyIgZGlyZWN0b3J5LCBhbmQgdGhlbiBj
-b250aW51ZSB0aGUgYnVpbGQuDQoNClRoaXMgc2VlbXMgdG8gYmUgYSBoaWdoIHJpc2sgaXNzdWUg
-Zm9yIFlvY3RvLCBhcyBpdCdzIHN0YWJpbGl0eSBhdA0KYW55IGdpdmVuIHBvaW50IGluIHRpbWUg
-aXMgbGlua2VkIHRvIHRoZSBzdGFiaWxpdHkgb2YgdGhlIHVwc3RyZWFtDQpzb3VyY2VzLg0KDQo9
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09DQozKSBUaGUgbG9jYXRpb24gb2YgYXR0ci0yLjQuNDQuc3Jj
-LnRhci5neiBoYXMgY2hhbmdlZDoNCg0KRVJST1I6IEZ1bmN0aW9uICdGZXRjaGVyIGZhaWx1cmUg
-Zm9yIFVSTDogJ2h0dHA6Ly9kb3dubG9hZC5zYXZhbm5haC5nbnUub3JnL2F0dHIvYXR0ci0yLjQu
-NDQuc3JjLnRhci5neicuIFVuYWJsZSB0byBmZXRjaCBVUkwgaHR0cDovL2Rvd25sb2FkLnNhdmFu
-bmFoLmdudS5vcmcvYXR0ci9hdHRyLTIuNC40NC5zcmMudGFyLmd6IGZyb20gYW55IHNvdXJjZS4n
-IGZhaWxlZA0KRVJST1I6IExvZ2ZpbGUgb2YgZmFpbHVyZSBzdG9yZWQgaW46IC9ob21lL2Rib3Jt
-YW4vWW9jdG8vcG9reS00LjAtYnVpbGQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L2F0dHItbmF0aXZl
-LTIuNC40NC1yMi90ZW1wL2xvZy5kb19mZXRjaC4zMjMyMw0KDQpJdCBpcyBub3cgdW5kZXIgaHR0
-cDovL2Rvd25sb2FkLnNhdmFubmFoLmdudS5vcmcvcmVsZWFzZXMvYXR0ci9hdHRyLTIuNC40NC5z
-cmMudGFyLmd6DQoNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCjQpIFRoZSBmaWxlcw0KCXR6Y29k
-ZTIwMDlyLnRhci5neg0KCXR6ZGF0YTIwMDlzLnRhci5neg0KCXR6ZGF0YTIwMTBvLnRhci5neg0K
-ICAgYXJlIG5vIGxvbmdlciBhdmFpbGFibGUgZnJvbSB0aGUgdXBzdHJlYW0gc291cmNlOg0KDQpF
-UlJPUjogRnVuY3Rpb24gJ0ZldGNoZXIgZmFpbHVyZSBmb3IgVVJMOiAnZnRwOi8vZWxzaWUubmNp
-Lm5paC5nb3YvcHViL3R6Y29kZTIwMDlyLnRhci5neicuIFVuYWJsZSB0byBmZXRjaCBVUkwgZnRw
-Oi8vZWxzaWUubmNpLm5paC5nb3YvcHViL3R6Y29kZTIwMDlyLnRhci5neiBmcm9tIGFueSBzb3Vy
-Y2UuJyBmYWlsZWQNCkVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS9k
-Ym9ybWFuL1lvY3RvL3Bva3ktNC4wLWJ1aWxkL3RtcC93b3JrL3g4Nl82NC1saW51eC90emNvZGUt
-bmF0aXZlLTIwMDlyLXIwL3RlbXAvbG9nLmRvX2ZldGNoLjEzMjY4DQoNCkVSUk9SOiBGdW5jdGlv
-biAnRmV0Y2hlciBmYWlsdXJlIGZvciBVUkw6ICdmdHA6Ly9lbHNpZS5uY2kubmloLmdvdi9wdWIv
-dHpkYXRhMjAwOXMudGFyLmd6Jy4gVW5hYmxlIHRvIGZldGNoIFVSTCBmdHA6Ly9lbHNpZS5uY2ku
-bmloLmdvdi9wdWIvdHpkYXRhMjAwOXMudGFyLmd6IGZyb20gYW55IHNvdXJjZS4nIGZhaWxlZA0K
-RVJST1I6IExvZ2ZpbGUgb2YgZmFpbHVyZSBzdG9yZWQgaW46IC9ob21lL2Rib3JtYW4vWW9jdG8v
-cG9reS00LjAtYnVpbGQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L3R6Y29kZS1uYXRpdmUtMjAwOXIt
-cjAvdGVtcC9sb2cuZG9fZmV0Y2guMjAzOTMNCg0KRVJST1I6IEZ1bmN0aW9uICdGZXRjaGVyIGZh
-aWx1cmUgZm9yIFVSTDogJ2Z0cDovL2Vsc2llLm5jaS5uaWguZ292L3B1Yi90emRhdGEyMDEwby50
-YXIuZ3onLiBVbmFibGUgdG8gZmV0Y2ggVVJMIGZ0cDovL2Vsc2llLm5jaS5uaWguZ292L3B1Yi90
-emRhdGEyMDEwby50YXIuZ3ogZnJvbSBhbnkgc291cmNlLicgZmFpbGVkDQpFUlJPUjogTG9nZmls
-ZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogL2hvbWUvZGJvcm1hbi9Zb2N0by9wb2t5LTQuMC1idWls
-ZC90bXAvd29yay9pNTg2LXBva3ktbGludXgvdHpkYXRhLTIwMTBvLXIwL3RlbXAvbG9nLmRvX2Zl
-dGNoLjI4MjM1DQoNCltkYm9ybWFuQG1zcC1kYWItdDU1MDAgZG93bmxvYWRzXSQgZnRwIGVsc2ll
-Lm5jaS5uaWguZ292DQpDb25uZWN0ZWQgdG8gZWxzaWUubmNpLm5paC5nb3YgKDEzNy4xODcuMjE1
-Ljc4KS4NCjIyMCAodnNGVFBkIDIuMi4yKQ0KTmFtZSAoZWxzaWUubmNpLm5paC5nb3Y6ZGJvcm1h
-bik6IGFub255bW91cw0KMzMxIFBsZWFzZSBzcGVjaWZ5IHRoZSBwYXNzd29yZC4NClBhc3N3b3Jk
-Og0KMjMwIExvZ2luIHN1Y2Nlc3NmdWwuDQpSZW1vdGUgc3lzdGVtIHR5cGUgaXMgVU5JWC4NClVz
-aW5nIGJpbmFyeSBtb2RlIHRvIHRyYW5zZmVyIGZpbGVzLg0KZnRwPiBjZCBwdWINCjI1MCBEaXJl
-Y3Rvcnkgc3VjY2Vzc2Z1bGx5IGNoYW5nZWQuDQpmdHA+IGRpciB0emNvZGUqDQoyMjcgRW50ZXJp
-bmcgUGFzc2l2ZSBNb2RlICgxMzcsMTg3LDIxNSw3OCwxMTcsMTAxKS4NCjE1MCBIZXJlIGNvbWVz
-IHRoZSBkaXJlY3RvcnkgbGlzdGluZy4NCi1ydy1yLS1yLS0gICAgMSA4ODAwICAgICAwICAgICAg
-ICAgIDE5MzQ2MiBGZWIgMDcgMTM6NDQgdHpjb2RlMjAxMWIudGFyLmd6DQoyMjYgRGlyZWN0b3J5
-IHNlbmQgT0suDQpmdHA+IGRpciB0emRhdGEqDQoyMjcgRW50ZXJpbmcgUGFzc2l2ZSBNb2RlICgx
-MzcsMTg3LDIxNSw3OCwyMzUsMjE3KS4NCjE1MCBIZXJlIGNvbWVzIHRoZSBkaXJlY3RvcnkgbGlz
-dGluZy4NCi1ydy1yLS1yLS0gICAgMSA4ODAwICAgICAwICAgICAgICAgIDE5MzAzMCBGZWIgMDcg
-MTM6NDQgdHpkYXRhMjAxMWIudGFyLmd6DQoyMjYgRGlyZWN0b3J5IHNlbmQgT0suDQoNCg0KVGhp
-cyB0aW1lIEkgZGlzY292ZXJlZCBJIGNvdWxkIGZpbmQgdGhlIGZpcnN0IHR3byBvZiB0aGVtIGlu
-Og0KCWh0dHA6Ly9hdXRvYnVpbGRlci55b2N0b3Byb2plY3Qub3JnL2Rvd25sb2Fkcy95b2N0by0w
-Ljkvc291cmNlcy8NCmJ1dCB0aGUgdGhpcmQgZmlsZSBJIHBpY2tlZCB1cCBmcm9tOg0KCWh0dHA6
-Ly90eC11cy5sdW5hci1saW51eC5vcmcvbHVuYXIvbWlycm9ycy90emRhdGEyMDEwby50YXIuZ3oN
-Cg0KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PQ0KNSkgVGhlIGZpbGU6DQoJdGlueWxvZ2luLTEuNC50
-YXIuYnoyDQogICBpcyBubyBsb25nZXIgYXZhaWxhYmxlIHVwc3RyZWFtLg0KDQpFUlJPUjogRnVu
-Y3Rpb24gJ0ZldGNoZXIgZmFpbHVyZSBmb3IgVVJMOiAnaHR0cDovL3Rpbnlsb2dpbi5idXN5Ym94
-Lm5ldC9kb3dubG9hZHMvdGlueWxvZ2luLTEuNC50YXIuYnoyJy4gVW5hYmxlIHRvIGZldGNoIFVS
-TCBodHRwOi8vdGlueWxvZ2luLmJ1c3lib3gubmV0L2Rvd25sb2Fkcy90aW55bG9naW4tMS40LnRh
-ci5iejIgZnJvbSBhbnkgc291cmNlLicgZmFpbGVkDQpFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJl
-IHN0b3JlZCBpbjogL2hvbWUvZGJvcm1hbi9Zb2N0by9wb2t5LTQuMC1idWlsZC90bXAvd29yay9p
-NTg2LXBva3ktbGludXgvdGlueWxvZ2luLTEuNC1yNS90ZW1wL2xvZy5kb19mZXRjaC4yODU0MA0K
-DQpBY2NvcmRpbmcgdG8gdGhlIHdlYnNpdGUgaHR0cDovL3Rpbnlsb2dpbi5idXN5Ym94Lm5ldCwg
-VGlueUxvZ2luIGhhcw0KYmVlbiBtZXJnZWQgaW50byBidXN5Ym94Lg0KDQpJIHdhcyBhYmxlIHRv
-IGRvd25sb2FkIGl0IG1hbnVhbGx5IGZyb206DQoJaHR0cDovL2F1dG9idWlsZGVyLnlvY3RvcHJv
-amVjdC5vcmcvZG93bmxvYWRzL3lvY3RvLTAuOS9zb3VyY2VzLw0KDQo9PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09DQo2KSBUaGUgZmlsZToNCgluZXRiYXNlXzQuNDQudGFyLmd6DQogICBpcyBubyBsb25n
-ZXIgYXZhaWxhYmxlIHVwc3RyZWFtDQpFUlJPUjogRnVuY3Rpb24gJ0ZldGNoZXIgZmFpbHVyZSBm
-b3IgVVJMOiAnZnRwOi8vZnRwLmRlYmlhbi5vcmcvZGViaWFuL3Bvb2wvbWFpbi9uL25ldGJhc2Uv
-bmV0YmFzZV80LjQ0LnRhci5neicuIFVuYWJsZSB0byBmZXRjaCBVUkwgZnRwOi8vZnRwLmRlYmlh
-bi5vcmcvZGViaWFuL3Bvb2wvbWFpbi9uL25ldGJhc2UvbmV0YmFzZV80LjQ0LnRhci5neiBmcm9t
-IGFueSBzb3VyY2UuJyBmYWlsZWQNCkVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGlu
-OiAvaG9tZS9kYm9ybWFuL1lvY3RvL3Bva3ktNC4wLWJ1aWxkL3RtcC93b3JrL3FlbXV4ODYtcG9r
-eS1saW51eC9uZXRiYXNlLTQuNDQtcjAvdGVtcC9sb2cuZG9fZmV0Y2guMTQxNTcNCg0KVGhpcyBw
-YWNrYWdlIEkgZm91bmQgYXQ6DQoJaHR0cDovL2F1dG9idWlsZGVyLnBva3lsaW51eC5vcmcvc291
-cmNlcy9uZXRiYXNlXzQuNDQudGFyLmd6DQoNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCjcpIEFm
-dGVyIHRoZSBidWlsZCBjb21wbGV0ZWQsIEkgdGhlbiByYW46DQoJcG9reS1xZW11IHFlbXV4ODYN
-CmFuZCB0aGUgZmlyc3QgdGhpbmcgaXQgd2FudGVkIHRvIGRvIHdhcyB0byBzZXQgdXAgYSB0YXAg
-aW50ZXJmYWNlDQp1c2luZyAic3VkbyIuICBXaGVuIHRoZSBzdWRvIGZhaWxzLCBpdCBleGl0cyB3
-aXRoIG5vIGZ1cnRoZXINCmluZm9ybWF0aW9uIGFib3V0IHdoYXQgd2VudCB3cm9uZywgb3IgaG93
-IHRvIHJlc29sdmUgdGhlIGlzc3VlLg0KTXkgbWFjaGluZSB3YXNuJ3Qgc2V0IHVwIGZvciBzdWRv
-LCBzbyBJIGhhZCB0byBkbyB0aGF0IGJlZm9yZSBJDQpjb3VsZCBwcm9jZWVkLiAgSSBkb24ndCB0
-aGluayBpdCBpcyBhIGdvb2QgYXNzdW1wdGlvbiB0byBhc3N1bWUNCnRoYXQgZXZlcnlvbmUgaGFz
-ICJzdWRvIiBhY2Nlc3MuDQoNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCjgpIFdoZW4gcnVubmlu
-ZyB0aGUgc2NyaXB0Og0KCXNvdXJjZSBiZXJuYXJkLTUuMC1hbHBoYS9wb2t5LWluaXQtYnVpbGQt
-ZW52IHBva3ktNC4wLWJ1aWxkDQppZiB5b3UgZm9yZ290IHRvICJzb3VyY2UiIGl0LCB5b3UgZ2V0
-IGJhY2sgdG8gYSBwcm9tcHQgd2l0aG91dCBhbnkNCmluZGljYXRpb24gdGhhdCB0aGluZ3MgYXJl
-bid0IHNldCB1cC4gIFBlcnNvbmFsbHksIEknZCByYXRoZXIgdGhhdA0KdGhpcyBzZXQgYmUgZG9u
-ZSB3aXRoIGEgc3ViLXNoZWxsIGluc3RlYWQgb2Ygc291cmNpbmcgaW50byB0aGUNCmN1cnJlbnQg
-c2hlbGwgZW52aXJvbm1lbnQsIHNvIHRoYXQ6DQoJMSkgeW91IGFsd2F5cyB3b3VsZCBnZXQgdG8g
-YSBwcm9tcHQgdGhhdCBoYWQgdGhlIGVudiBzZXQgdXANCgkyKSBZb3VyIGV4aXN0aW5nIGVudmly
-b25tZW50IHdvdWxkbid0IGJlIGNoYW5nZWQuICBBIF5EDQoJICAgd291bGQgZ2V0IHlvdSBiYWNr
-IHRvIHlvdXIgb2xkIGVudmlyb25tZW50Lg0KVGhlIGN1cnJlbnQgc2NyaXB0IGFsc28gYXNzdW1l
-cyB0aGUgdXNlciB3aWxsIGJlIHJ1bm5pbmcgYmFzaCBvcg0Kc29tZSB2YXJpYW50IG9mIGl0LCBh
-bmQgZG9lc24ndCBhbGxvdyBmb3IgdXNlcnMgdGhhdCBydW4gc29tZXRoaW5nDQplbHNlLCBlLmcu
-IGNzaCBvciB0Y3NoLg0KDQoNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCjkpIFdoZW4gSSBmaW5h
-bGx5IGhhZCBzdWRvIHNldCB1cCwgYW5kIHJhbjoNCglwb2t5LXFlbXUgcWVtdXg4Ng0KaXQgZmFp
-bGVkIHdpdGg6DQpDb250aW51aW5nIHdpdGggdGhlIGZvbGxvd2luZyBwYXJhbWV0ZXJzOg0KS0VS
-TkVMOiBbL2hvbWUvZGJvcm1hbi9Zb2N0by9wb2t5LTQuMC1idWlsZC90bXAvZGVwbG95L2ltYWdl
-cy9iekltYWdlLXFlbXV4ODYuYmluXQ0KUk9PVEZTOiBbL2hvbWUvZGJvcm1hbi9Zb2N0by9wb2t5
-LTQuMC1idWlsZC90bXAvZGVwbG95L2ltYWdlcy9wb2t5LWltYWdlLXNhdG8tcWVtdXg4Ni5leHQz
-XQ0KRlNUWVBFOiBbZXh0M10NClNldHRpbmcgdXAgdGFwIGludGVyZmFjZSB1bmRlciBzdWRvDQpb
-c3Vkb10gcGFzc3dvcmQgZm9yIGRib3JtYW46IA0KQWNxdWlyaW5nIGxvY2tmaWxlIGZvciB0YXAw
-Li4uDQp3aGljaDogbm8gZGlzdGNjZCBpbiAoOi9ob21lL2Rib3JtYW4vWW9jdG8vcG9reS00LjAt
-YnVpbGQvdG1wL3N5c3Jvb3RzL3g4Nl82NC1saW51eC91c3IvYmluOi9ob21lL2Rib3JtYW4vWW9j
-dG8vYmVybmFyZC01LjAtYWxwaGEvc2NyaXB0czovaG9tZS9kYm9ybWFuL1lvY3RvL2Jlcm5hcmQt
-NS4wLWFscGhhL2JpdGJha2UvYmluLzovaG9tZS9kYm9ybWFuL2JpbjovdXNyL2xpYjY0L3F0LTMu
-My9iaW46L3Vzci9rZXJiZXJvcy9zYmluOi91c3Iva2VyYmVyb3MvYmluOi91c3IvbGliNjQvY2Nh
-Y2hlOi91c3IvbG9jYWwvYmluOi9iaW46L3Vzci9iaW46L3Vzci9sb2NhbC9zYmluOi91c3Ivc2Jp
-bjovc2JpbikNCldhcm5pbmc6IGRpc3RjY2Qgbm90IHByZXNlbnQsIG5vIGRpc3RjYyBzdXBwb3J0
-IGxvYWRlZC4NClJ1bm5pbmcgcWVtdS4uLg0KL2hvbWUvZGJvcm1hbi9Zb2N0by9wb2t5LTQuMC1i
-dWlsZC90bXAvc3lzcm9vdHMveDg2XzY0LWxpbnV4L3Vzci9iaW4vcWVtdSAta2VybmVsIC9ob21l
-L2Rib3JtYW4vWW9jdG8vcG9reS00LjAtYnVpbGQvdG1wL2RlcGxveS9pbWFnZXMvYnpJbWFnZS1x
-ZW11eDg2LmJpbiAtbmV0IG5pYyx2bGFuPTAgLW5ldCB0YXAsdmxhbj0wLGlmbmFtZT10YXAwLHNj
-cmlwdD1ubyxkb3duc2NyaXB0PW5vIC1oZGEgL2hvbWUvZGJvcm1hbi9Zb2N0by9wb2t5LTQuMC1i
-dWlsZC90bXAvZGVwbG95L2ltYWdlcy9wb2t5LWltYWdlLXNhdG8tcWVtdXg4Ni5leHQzIC1zaG93
-LWN1cnNvciAtdXNiIC11c2JkZXZpY2Ugd2Fjb20tdGFibGV0IC12Z2Egdm13YXJlIC1lbmFibGUt
-Z2wgLW5vLXJlYm9vdCAtLWFwcGVuZCAidmdhPTAgcm9vdD0vZGV2L2hkYSBtZW09MTI4TSBpcD0x
-OTIuMTY4LjcuMjo6MTkyLjE2OC43LjE6MjU1LjI1NS4yNTUuMCAiDQovaG9tZS9kYm9ybWFuL1lv
-Y3RvL2Jlcm5hcmQtNS4wLWFscGhhL3NjcmlwdHMvcG9reS1xZW11LWludGVybmFsOiBsaW5lIDQ0
-OTogMjI4MjYgU2VnbWVudGF0aW9uIGZhdWx0ICAgICAgKGNvcmUgZHVtcGVkKSAkUUVNVUJJTiAt
-a2VybmVsICRLRVJORUwgJFFFTVVPUFRJT05TICRTRVJJQUxPUFRTIC1uby1yZWJvb3QgJFNDUklQ
-VF9RRU1VX09QVCAkU0NSSVBUX1FFTVVfRVhUUkFfT1BUIC0tYXBwZW5kICIkS0VSTkNNRExJTkUg
-JFNDUklQVF9LRVJORUxfT1BUIg0KU2V0ICd0YXAwJyBub25wZXJzaXN0ZW50DQpSZWxlYXNpbmcg
-bG9ja2ZpbGUgb2YgcHJlY29uZmlndXJlZCB0YXAgZGV2aWNlICd0YXAwJw0KDQpUdXJucyBvdXQg
-dGhpcyBpcyBkdWUgdG8gdGhlIGxpYkdMIGxpYnJhcmllcyBpbnN0YWxsZWQgYnkgdGhlIE5WSURJ
-QQ0KZHJpdmVyLiAgTXkgd29ya2Fyb3VuZCwgb24gRkMxMywgaXM6DQoJIyBycG0gLVYgbWVzYS1s
-aWJHTA0KCS4uLi5MLi4uLiAgICAvdXNyL2xpYjY0L2xpYkdMLnNvLjENCgltaXNzaW5nICAgICAg
-L3Vzci9saWI2NC9saWJHTC5zby4xLjINCgkjIGNkIC91c3IvbGliNjQNCgkjIG1rZGlyIE5WSURJ
-QV9HTA0KCSMgbXYgbGliR0wubGEgIGxpYkdMLnNvLiogTlZJRElBX0dMDQoJIyB5dW0gcmVpbnN0
-YWxsIG1lc2EtbGliR0wNCg0KQWZ0ZXIgaW5zdGFsbGluZyB0aGUgRkMgdmVyc2lvbiBvZiBsaWJH
-TCwgcWVtdSBub3cgcnVucy4NCg0KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KMTApIEluIHBsYXlp
-bmcgYXJvdW5kIHdpdGggdGhlIHFlbXUgc3lzdGVtICwgSSBzdGFydGVkIHVwIHRoZSAiVGVybWlu
-YWwiDQphcHBsaWNhdGlvbiwgYnV0IG15IGtleWJvYXJkIGlucHV0IHdhcyBhbGwgc2NyYW1ibGVk
-LiAgSSB3YXMgYWJsZSB0bw0Kc3RhcnQgdXAgdGhlIHZpcnR1YWwga2V5Ym9hcmQgYW5kIHVzZSBp
-dCwgdGhvdWdoIHRoYXQgaXMgYSBzbG93IHByb2Nlc3MNCnVzaW5nIHRoZSBtb3VzZSB0byBjbGlj
-ayBvbiBrZXlzIG9uZS1ieS1vbmUuDQoNCg==
-
---_002_F5EB224648BA4B53981A28FAB785A6E6windrivercom_--
