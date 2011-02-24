@@ -1,30 +1,27 @@
-Return-Path: <christophe.sureau@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 42A2A4C80093
-	for <yocto@yoctoproject.org>; Wed, 23 Feb 2011 09:43:26 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 23 Feb 2011 07:43:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.62,212,1297065600"; 
-	d="txt'?scan'208,217";a="605740491"
-Received: from irsmsx601.ger.corp.intel.com ([163.33.7.164])
-	by orsmga002.jf.intel.com with ESMTP; 23 Feb 2011 07:43:23 -0800
-Received: from irsmsx501.ger.corp.intel.com ([163.33.7.70]) by
-	irsmsx601.ger.corp.intel.com ([163.33.7.164]) with mapi;
-	Wed, 23 Feb 2011 15:42:10 +0000
-From: "Sureau, Christophe" <christophe.sureau@intel.com>
+Return-Path: <david.borman@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id A0B3E4C8004D
+	for <yocto@yoctoproject.org>; Thu, 24 Feb 2011 13:01:05 -0600 (CST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p1OJ14Hp002601
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 24 Feb 2011 11:01:04 -0800 (PST)
+Received: from ALA-MBB.corp.ad.wrs.com ([169.254.2.56]) by
+	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.01.0255.000;
+	Thu, 24 Feb 2011 11:01:04 -0800
+From: "Borman, David" <david.borman@windriver.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 23 Feb 2011 15:42:06 +0000
-Thread-Topic: Yocto Alpha Test Program
-Thread-Index: AcvTcDnIQBH83MW4Qsix8ryEmHJ3iA==
-Message-ID: <8250E4885F9967469CAC3FB5CBA2CE69935212D85E@irsmsx501.ger.corp.intel.com>
+Thread-Topic: Observations on Yocto alpha
+Thread-Index: AQHL1FUvvBDAMUFXBUGgO1npsOqzKQ==
+Date: Thu, 24 Feb 2011 19:01:04 +0000
+Message-ID: <F5EB2246-48BA-4B53-981A-28FAB785A6E6@windriver.com>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+x-originating-ip: [172.25.34.39]
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 24 Feb 2011 02:15:44 -0600
-Subject: Yocto Alpha Test Program
+X-Mailman-Approved-At: Thu, 24 Feb 2011 14:28:29 -0600
+Subject: Observations on Yocto alpha
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,494 +33,221 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Feb 2011 15:43:26 -0000
-X-Groupsio-MsgNum: 1064
+X-List-Received-Date: Thu, 24 Feb 2011 19:01:06 -0000
+X-Groupsio-MsgNum: 1065
 Content-Language: en-US
 Content-Type: multipart/mixed;
-	boundary="_004_8250E4885F9967469CAC3FB5CBA2CE69935212D85Eirsmsx501gerc_"
+	boundary="_002_F5EB224648BA4B53981A28FAB785A6E6windrivercom_"
 
---_004_8250E4885F9967469CAC3FB5CBA2CE69935212D85Eirsmsx501gerc_
-Content-Type: multipart/alternative;
-	boundary="_000_8250E4885F9967469CAC3FB5CBA2CE69935212D85Eirsmsx501gerc_"
-
---_000_8250E4885F9967469CAC3FB5CBA2CE69935212D85Eirsmsx501gerc_
+--_002_F5EB224648BA4B53981A28FAB785A6E6windrivercom_
 Content-Type: text/plain; charset="us-ascii"
+Content-ID: <D0B93C186FEAB748A8FF4A4F238C4ADC@corp.ad.wrs.com>
 Content-Transfer-Encoding: quoted-printable
 
-Hi Yocto Team and Julie,
+Hi,
 
-Below is my assessment:
+I started late in the game looking at the Yocto Alpha Test, late as in yest=
+erday morning, so I don't have much other than initial impressions.  I've b=
+uilt it for qemux86 and booted it up in qemu.  I'm attaching my raw notes w=
+hich details the issues as I ran into them.
 
+The short summary of issues I ran into:
+1) Upstream packages that no longer exist
+2) Running qemu requiring sudo access
+3) qemu segfaulting due to NVIDIA libGL
 
-a.      Which architecture you chose in step 3.
+My host system is FC13.  I was able to find and manually install the missin=
+g upstream packages from other sources.  The machine I was using was one I =
+could set up sudo access, but you should be able to run qemu without requir=
+ing the TAP interface and sudo to set it up.  I worked around the libGL ver=
+sion by restoring the FC13 version of libGL.
 
-1.      Qemux86
+When actually running the generated image, the only thing I had trouble wit=
+h was that my keyboard didn't work, the mappings were all messed up.  I sta=
+rted the virtual keyboard and was able to use that instead.  The mouse work=
+ed fine.
 
-1.      Poky-image-sato
-
-2.      Qemuarm
-
-1.      Poky-image-sato
-
-2.      Poky-image-minimal
-
-3.      Qemux86-64
-
-1.      Poky-image-sato
-
-4.      Qemumips
-
-1.      Poky-image-sato
-
-5.      Atom-pc
-
-1.      Poky-image-sato
-
-2.      Poky-image-sato-live
-
-
-b.      How easily you were able to build an image and boot an image.
-
-All images built stated above were done pretty quickly (setting up 8 core p=
-rocessor).
-
-All images were successfully ran, except Atom-pc.
-
-Atom-pc do not boot whatever target is used.
-
-Looking at BugZilla, I found that it was a known issue 686<http://bugzilla.=
-yoctoproject.org/show_bug.cgi?id=3D686>, however, hddimg did not start neit=
-her on an Atom Touch Tablet from Lenovo (IdeaPad S10-3t) with a Boot Error =
-(looking at image using "fdisk -l" is giving a lot of issues on partition t=
-able see attached in "FdiskReport.txt" File).
+One other item is that I'm generally leery of things that have me blindly s=
+ource things into my shell, as it doesn't give me an easy way to undo whate=
+ver it does.  I'd prefer
+	.../poky-init-build-env poky-4.0-build
+be something that you run as a command and it creates a sub-shell, rather t=
+han sourcing it and having it modify my existing shell environment.  My alt=
+ernative was to first create a sub-shell so that I could ^D and get back to=
+ my unmodified shell environment.
 
 
-
-c.      Whether it was easy to find the support you needed to perform the a=
-bove steps.
-
-No support needed except for getting "Bernard-5.0-alpha".
+			-David Borman, david.borman@windriver.com
 
 
-
-d.      Which bugzilla reports you submitted (providing the bugzilla number=
- and description is sufficient).)
-None since the one I found was already logged in BugZilla: 686<http://bugzi=
-lla.yoctoproject.org/show_bug.cgi?id=3D686>
-
-
-e.      If you have the time and the hardware, create an image that boots o=
-n a netbook or laptop or other hardware of interest to you.
-
-Built an Atom-pc image successfully.
-
-
-
-f.       Boot the resulting image on that hardware
-
-Booting images resulting from previous step was not successful.
-
--        Tried Poky-image-sato and flash ext3 file on 2 different USB HDD d=
-rive
-
--        Tried Poky-image-sato-live and flash hddimg on 2 different USB HDD=
- drive
-
-An additional comment:
-When executing "source poky-init-build-env XXXX", this gives a list of some=
- possible targets (4) and a link to poky documentation (http://pokylinux.or=
-g/doc/poky-handbook.html).
-Looking at poky documentation, it is said in "Appendix 4. Reference: Images=
-":
-               Poky has several standard images covering most people's stan=
-dard needs. A full list of image targets can be found by looking in the "me=
-ta/packages/images/" directory.
-However on version we retrieved for Yocto Alpha Testing, this directory doe=
-s not exist. Targets seems to be spread into multiple directories (consider=
-ing "bb" files type)...
-
-Hope this helps ! :)
-
-See you,
-Chris.
-
----------------------------------------------------------------------
-Intel Corporation SAS (French simplified joint stock company)
-Registered headquarters: "Les Montalets"- 2, rue de Paris,=20
-92196 Meudon Cedex, France
-Registration Number:  302 456 199 R.C.S. NANTERRE
-Capital: 4,572,000 Euros
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
-
---_000_8250E4885F9967469CAC3FB5CBA2CE69935212D85Eirsmsx501gerc_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
-=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
-oft Word 12 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Courier;
-	panose-1:2 7 4 9 2 2 5 2 4 4;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-code
-	{mso-style-priority:99;
-	font-family:"Courier New";}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:#002060;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:8142535;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1979278768 67698703 67698713 67698715 67698703 6769=
-8713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level3
-	{mso-level-tab-stop:108.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:144.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level5
-	{mso-level-tab-stop:180.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level6
-	{mso-level-tab-stop:216.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:252.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level8
-	{mso-level-tab-stop:288.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level9
-	{mso-level-tab-stop:324.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l1
-	{mso-list-id:729890648;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1053741262 -1775997574 67895299 67895301 67895297 67=
-895299 67895301 67895297 67895299 67895301;}
-@list l1:level1
-	{mso-level-start-at:5;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:90.0pt;
-	text-indent:-18.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-font-family:Calibri;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DFR link=3Dblue vlink=
-=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span lang=3DEN-US=
- style=3D'color:#002060'>Hi Yocto Team and Julie,<o:p></o:p></span></p><p c=
-lass=3DMsoNormal><span lang=3DEN-US style=3D'color:#002060'><o:p>&nbsp;</o:=
-p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'color:#002060=
-'>Below is my assessment:<o:p></o:p></span></p><p class=3DMsoNormal><span l=
-ang=3DEN-US style=3D'color:#002060'><o:p>&nbsp;</o:p></span></p><p class=3D=
-MsoListParagraph style=3D'margin-left:72.0pt;text-indent:-18.0pt;mso-list:l=
-0 level2 lfo1'><![if !supportLists]><span lang=3DEN-US><span style=3D'mso-l=
-ist:Ignore'>a.<span style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; </span></span></span><![endif]><span lang=3DEN-US>Which arch=
-itecture you chose in step 3.<o:p></o:p></span></p><p class=3DMsoListParagr=
-aph style=3D'margin-left:108.0pt;text-indent:-18.0pt;mso-list:l0 level3 lfo=
-1'><![if !supportLists]><b><span lang=3DEN-US style=3D'color:#002060'><span=
- style=3D'mso-list:Ignore'>1.<span style=3D'font:7.0pt "Times New Roman"'>&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b><![endif]><b><span l=
-ang=3DEN-US style=3D'color:#002060'>Qemux86<o:p></o:p></span></b></p><p cla=
-ss=3DMsoListParagraph style=3D'margin-left:144.0pt;text-indent:-18.0pt;mso-=
-list:l0 level4 lfo1'><![if !supportLists]><b><span lang=3DEN-US style=3D'co=
-lor:#002060'><span style=3D'mso-list:Ignore'>1.<span style=3D'font:7.0pt "T=
-imes New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b><!=
-[endif]><b><span lang=3DEN-US style=3D'color:#002060'>Poky-image-sato<o:p><=
-/o:p></span></b></p><p class=3DMsoListParagraph style=3D'margin-left:108.0p=
-t;text-indent:-18.0pt;mso-list:l0 level3 lfo1'><![if !supportLists]><b><spa=
-n lang=3DEN-US style=3D'color:#002060'><span style=3D'mso-list:Ignore'>2.<s=
-pan style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <=
-/span></span></span></b><![endif]><b><span lang=3DEN-US style=3D'color:#002=
-060'>Qemuarm<o:p></o:p></span></b></p><p class=3DMsoListParagraph style=3D'=
-margin-left:144.0pt;text-indent:-18.0pt;mso-list:l0 level4 lfo1'><![if !sup=
-portLists]><b><span lang=3DEN-US style=3D'color:#002060'><span style=3D'mso=
--list:Ignore'>1.<span style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; </span></span></span></b><![endif]><b><span lang=3DEN-US s=
-tyle=3D'color:#002060'>Poky-image-sato<o:p></o:p></span></b></p><p class=3D=
-MsoListParagraph style=3D'margin-left:144.0pt;text-indent:-18.0pt;mso-list:=
-l0 level4 lfo1'><![if !supportLists]><b><span lang=3DEN-US style=3D'color:#=
-002060'><span style=3D'mso-list:Ignore'>2.<span style=3D'font:7.0pt "Times =
-New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b><![endi=
-f]><b><span lang=3DEN-US style=3D'color:#002060'>Poky-image-minimal<o:p></o=
-:p></span></b></p><p class=3DMsoListParagraph style=3D'margin-left:108.0pt;=
-text-indent:-18.0pt;mso-list:l0 level3 lfo1'><![if !supportLists]><b><span =
-lang=3DEN-US style=3D'color:#002060'><span style=3D'mso-list:Ignore'>3.<spa=
-n style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </s=
-pan></span></span></b><![endif]><b><span lang=3DEN-US style=3D'color:#00206=
-0'>Qemux86-64<o:p></o:p></span></b></p><p class=3DMsoListParagraph style=3D=
-'margin-left:144.0pt;text-indent:-18.0pt;mso-list:l0 level4 lfo1'><![if !su=
-pportLists]><b><span lang=3DEN-US style=3D'color:#002060'><span style=3D'ms=
-o-list:Ignore'>1.<span style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; </span></span></span></b><![endif]><b><span lang=3DEN-US =
-style=3D'color:#002060'>Poky-image-sato<o:p></o:p></span></b></p><p class=
-=3DMsoListParagraph style=3D'margin-left:108.0pt;text-indent:-18.0pt;mso-li=
-st:l0 level3 lfo1'><![if !supportLists]><b><span lang=3DEN-US style=3D'colo=
-r:#002060'><span style=3D'mso-list:Ignore'>4.<span style=3D'font:7.0pt "Tim=
-es New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b><![e=
-ndif]><b><span lang=3DEN-US style=3D'color:#002060'>Qemumips<o:p></o:p></sp=
-an></b></p><p class=3DMsoListParagraph style=3D'margin-left:144.0pt;text-in=
-dent:-18.0pt;mso-list:l0 level4 lfo1'><![if !supportLists]><b><span lang=3D=
-EN-US style=3D'color:#002060'><span style=3D'mso-list:Ignore'>1.<span style=
-=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></s=
-pan></span></b><![endif]><b><span lang=3DEN-US style=3D'color:#002060'>Poky=
--image-sato<o:p></o:p></span></b></p><p class=3DMsoListParagraph style=3D'm=
-argin-left:108.0pt;text-indent:-18.0pt;mso-list:l0 level3 lfo1'><![if !supp=
-ortLists]><b><span lang=3DEN-US style=3D'color:#002060'><span style=3D'mso-=
-list:Ignore'>5.<span style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; </span></span></span></b><![endif]><b><span lang=3DEN-US st=
-yle=3D'color:#002060'>Atom-pc<o:p></o:p></span></b></p><p class=3DMsoListPa=
-ragraph style=3D'margin-left:144.0pt;text-indent:-18.0pt;mso-list:l0 level4=
- lfo1'><![if !supportLists]><b><span lang=3DEN-US style=3D'color:#002060'><=
-span style=3D'mso-list:Ignore'>1.<span style=3D'font:7.0pt "Times New Roman=
-"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b><![endif]><b><sp=
-an lang=3DEN-US style=3D'color:#002060'>Poky-image-sato<o:p></o:p></span></=
-b></p><p class=3DMsoListParagraph style=3D'margin-left:144.0pt;text-indent:=
--18.0pt;mso-list:l0 level4 lfo1'><![if !supportLists]><b><span lang=3DEN-US=
- style=3D'color:#002060'><span style=3D'mso-list:Ignore'>2.<span style=3D'f=
-ont:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><=
-/span></b><![endif]><b><span lang=3DEN-US style=3D'color:#002060'>Poky-imag=
-e-sato-live<o:p></o:p></span></b></p><p class=3DMsoNormal><span lang=3DEN-U=
-S><o:p>&nbsp;</o:p></span></p><p class=3DMsoListParagraph style=3D'margin-l=
-eft:72.0pt;text-indent:-18.0pt;mso-list:l0 level2 lfo1'><![if !supportLists=
-]><span lang=3DEN-US><span style=3D'mso-list:Ignore'>b.<span style=3D'font:=
-7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></spa=
-n><![endif]><span lang=3DEN-US>How easily you were able to build an image a=
-nd boot an image.<o:p></o:p></span></p><p class=3DMsoListParagraph style=3D=
-'margin-left:72.0pt'><b><span lang=3DEN-US style=3D'color:#002060'>All imag=
-es built stated above were done pretty quickly (setting up 8 core processor=
-).<o:p></o:p></span></b></p><p class=3DMsoListParagraph style=3D'margin-lef=
-t:72.0pt'><b><span lang=3DEN-US style=3D'color:#002060'>All images were suc=
-cessfully ran, except Atom-pc.<o:p></o:p></span></b></p><p class=3DMsoListP=
-aragraph style=3D'margin-left:72.0pt'><b><span lang=3DEN-US style=3D'color:=
-#002060'>Atom-pc do not boot whatever target is used.<o:p></o:p></span></b>=
-</p><p class=3DMsoListParagraph style=3D'margin-left:72.0pt'><b><span lang=
-=3DEN-US style=3D'color:#002060'>Looking at BugZilla, I found that it was a=
- known issue </span></b><a name=3Db686></a><a href=3D"http://bugzilla.yocto=
-project.org/show_bug.cgi?id=3D686"><b><span lang=3DEN-US style=3D'font-fami=
-ly:"Verdana","sans-serif";color:#002060'>686</span></b></a><b><span lang=3D=
-EN-US style=3D'font-family:"Verdana","sans-serif";color:#002060'>, </span><=
-/b><b><span lang=3DEN-US style=3D'color:#002060'>however, hddimg did not st=
-art neither on an Atom Touch Tablet from Lenovo (IdeaPad S10-3t) with a Boo=
-t Error (looking at image using &#8220;fdisk -l&#8221; is giving a lot of i=
-ssues on partition table see attached in &#8220;FdiskReport.txt&#8221; File=
-).<o:p></o:p></span></b></p><p class=3DMsoListParagraph style=3D'margin-lef=
-t:72.0pt'><b><span lang=3DEN-US style=3D'color:#002060'><o:p>&nbsp;</o:p></=
-span></b></p><p class=3DMsoListParagraph style=3D'margin-left:72.0pt;text-i=
-ndent:-18.0pt;mso-list:l0 level2 lfo1'><![if !supportLists]><span lang=3DEN=
--US><span style=3D'mso-list:Ignore'>c.<span style=3D'font:7.0pt "Times New =
-Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span=
- lang=3DEN-US>Whether it was easy to find the support you needed to perform=
- the above steps.<o:p></o:p></span></p><p class=3DMsoListParagraph style=3D=
-'margin-left:72.0pt'><b><span lang=3DEN-US style=3D'color:#002060'>No suppo=
-rt needed except for getting &#8220;Bernard-5.0-alpha&#8221;.<o:p></o:p></s=
-pan></b></p><p class=3DMsoListParagraph style=3D'margin-left:72.0pt'><b><sp=
-an lang=3DEN-US style=3D'color:#002060'><o:p>&nbsp;</o:p></span></b></p><p =
-class=3DMsoListParagraph style=3D'margin-left:72.0pt;text-indent:-18.0pt;ms=
-o-list:l0 level2 lfo1'><![if !supportLists]><span lang=3DEN-US><span style=
-=3D'mso-list:Ignore'>d.<span style=3D'font:7.0pt "Times New Roman"'>&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span lang=3DEN-US>W=
-hich bugzilla reports you submitted (providing the bugzilla number and desc=
-ription is sufficient).)<o:p></o:p></span></p><p class=3DMsoNormal style=3D=
-'margin-left:70.8pt'><b><span lang=3DEN-US style=3D'color:#002060'>None sin=
-ce the one I found was already logged in BugZilla: </span></b><b><span styl=
-e=3D'font-family:"Verdana","sans-serif";color:#002060'><a href=3D"http://bu=
-gzilla.yoctoproject.org/show_bug.cgi?id=3D686"><span lang=3DEN-US style=3D'=
-color:#002060'>686</span></a><o:p></o:p></span></b></p><p class=3DMsoNormal=
- style=3D'margin-left:70.8pt'><b><span lang=3DEN-US style=3D'color:#002060'=
-><o:p>&nbsp;</o:p></span></b></p><p class=3DMsoListParagraph style=3D'margi=
-n-left:72.0pt;text-indent:-18.0pt;mso-list:l0 level2 lfo1'><![if !supportLi=
-sts]><span lang=3DEN-US style=3D'color:#002060'><span style=3D'mso-list:Ign=
-ore'>e.<span style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; </span></span></span><![endif]><i><span lang=3DEN-US>If you have th=
-e time and the hardware, create an image that boots on a netbook or laptop =
-or other hardware of interest to you.</span></i><span lang=3DEN-US style=3D=
-'color:#002060'><o:p></o:p></span></p><p class=3DMsoListParagraph style=3D'=
-margin-left:72.0pt'><b><span lang=3DEN-US style=3D'color:#002060'>Built an =
-Atom-pc image successfully.<o:p></o:p></span></b></p><p class=3DMsoListPara=
-graph style=3D'margin-left:72.0pt'><b><span lang=3DEN-US style=3D'color:#00=
-2060'><o:p>&nbsp;</o:p></span></b></p><p class=3DMsoListParagraph style=3D'=
-margin-left:72.0pt;text-indent:-18.0pt;mso-list:l0 level2 lfo1'><![if !supp=
-ortLists]><span lang=3DEN-US style=3D'color:#002060'><span style=3D'mso-lis=
-t:Ignore'>f.<span style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><i><span lang=3DEN-US>Boo=
-t the resulting image on that hardware</span></i><span lang=3DEN-US style=
-=3D'color:#002060'><o:p></o:p></span></p><p class=3DMsoListParagraph style=
-=3D'margin-left:72.0pt'><b><span lang=3DEN-US style=3D'color:#002060'>Booti=
-ng images resulting from previous step was not successful.<o:p></o:p></span=
-></b></p><p class=3DMsoListParagraph style=3D'margin-left:90.0pt;text-inden=
-t:-18.0pt;mso-list:l1 level1 lfo2'><![if !supportLists]><span lang=3DEN-US =
-style=3D'color:#002060'><span style=3D'mso-list:Ignore'>-<span style=3D'fon=
-t:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </spa=
-n></span></span><![endif]><b><span lang=3DEN-US style=3D'color:#002060'>Tri=
-ed Poky-image-sato and flash ext3 file on 2 different USB HDD drive<o:p></o=
-:p></span></b></p><p class=3DMsoListParagraph style=3D'margin-left:90.0pt;t=
-ext-indent:-18.0pt;mso-list:l1 level1 lfo2'><![if !supportLists]><span lang=
-=3DEN-US style=3D'color:#002060'><span style=3D'mso-list:Ignore'>-<span sty=
-le=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; </span></span></span><![endif]><b><span lang=3DEN-US style=3D'color:#00=
-2060'>Tried Poky-image-sato-live and flash hddimg on 2 different USB HDD dr=
-ive<o:p></o:p></span></b></p><p class=3DMsoNormal><span lang=3DEN-US style=
-=3D'color:#002060'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span l=
-ang=3DEN-US style=3D'color:#002060'>An additional comment:<o:p></o:p></span=
-></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'color:#002060'>When e=
-xecuting &#8220;source poky-init-build-env XXXX&#8221;, this gives a list o=
-f some possible targets (4) and a link to poky documentation (<a href=3D"ht=
-tp://pokylinux.org/doc/poky-handbook.html">http://pokylinux.org/doc/poky-ha=
-ndbook.html</a>).<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN=
--US style=3D'color:#002060'>Looking at poky documentation, it is said in &#=
-8220;Appendix 4. Reference: Images&#8221;:<o:p></o:p></span></p><p class=3D=
-MsoNormal><span lang=3DEN-US style=3D'color:#002060'>&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span=
- lang=3DEN style=3D'font-family:"Verdana","sans-serif";color:#333333'>Poky =
-has several standard images covering most people's standard needs. A full l=
-ist of image targets can be found by looking in the &#8220;</span><code><sp=
-an lang=3DEN style=3D'font-size:13.5pt;font-family:Courier;color:#333333'>m=
-eta/packages/images/&quot;</span></code><span lang=3DEN style=3D'font-famil=
-y:"Verdana","sans-serif";color:#333333'> directory.</span><span lang=3DEN-U=
-S style=3D'color:#002060'><o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US style=3D'color:#002060'>However on version we retrieved for Yo=
-cto Alpha Testing, this directory does not exist. Targets seems to be sprea=
-d into multiple directories (considering &#8220;bb&#8221; files type)...<o:=
-p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'color:#=
-002060'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US=
- style=3D'color:#002060'>Hope this helps ! </span><span lang=3DEN-US style=
-=3D'font-family:Wingdings;color:#002060'>J</span><span lang=3DEN-US style=
-=3D'color:#002060'><o:p></o:p></span></p><p class=3DMsoNormal><span lang=3D=
-EN-US style=3D'color:#002060'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNor=
-mal><span lang=3DEN-US style=3D'color:#002060'>See you,<o:p></o:p></span></=
-p><p class=3DMsoNormal><span lang=3DEN-US style=3D'color:#002060'>Chris.<o:=
-p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p=
-></span></p></div><font face=3D"monospace">--------------------------------=
--------------------------------------<br>
-Intel Corporation SAS (French simplified joint stock company)<br>
-Registered headquarters: "Les Montalets"- 2, rue de Paris, <br>
-92196 Meudon Cedex, France<br>
-Registration Number:&nbsp; 302 456 199 R.C.S. NANTERRE<br>
-Capital: 4,572,000 Euros<br>
-<br>
-This e-mail and any attachments may contain confidential material for<br>
-the sole use of the intended recipient(s). Any review or distribution<br>
-by others is strictly prohibited. If you are not the intended<br>
-recipient, please contact the sender and delete all copies.</font></body></=
-html>
-
---_000_8250E4885F9967469CAC3FB5CBA2CE69935212D85Eirsmsx501gerc_--
-
---_004_8250E4885F9967469CAC3FB5CBA2CE69935212D85Eirsmsx501gerc_
-Content-Type: text/plain; name="FdiskReport.txt"
-Content-Description: FdiskReport.txt
-Content-Disposition: attachment; filename="FdiskReport.txt"; size=1471;
-	creation-date="Wed, 23 Feb 2011 15:36:10 GMT";
-	modification-date="Wed, 23 Feb 2011 15:36:10 GMT"
+--_002_F5EB224648BA4B53981A28FAB785A6E6windrivercom_
+Content-Type: text/plain; name="NOTES.txt"
+Content-Description: NOTES.txt
+Content-Disposition: attachment; filename="NOTES.txt"; size=9088;
+	creation-date="Thu, 24 Feb 2011 19:01:04 GMT";
+	modification-date="Thu, 24 Feb 2011 19:01:04 GMT"
+Content-ID: <74A157207C2C644F98796D4582FD5903@corp.ad.wrs.com>
 Content-Transfer-Encoding: base64
 
-RGlzayAvZGV2L3NkYzogNDAzNCBNQiwgNDAzNDkyMDQ0OCBieXRlcw0KMTI1IGhlYWRzLCA2MiBz
-ZWN0b3JzL3RyYWNrLCAxMDE2IGN5bGluZGVycw0KVW5pdHMgPSBjeWxpbmRlcnMgb2YgNzc1MCAq
-IDUxMiA9IDM5NjgwMDAgYnl0ZXMNClNlY3RvciBzaXplIChsb2dpY2FsL3BoeXNpY2FsKTogNTEy
-IGJ5dGVzIC8gNTEyIGJ5dGVzDQpJL08gc2l6ZSAobWluaW11bS9vcHRpbWFsKTogNTEyIGJ5dGVz
-IC8gNTEyIGJ5dGVzDQpEaXNrIGlkZW50aWZpZXI6IDB4MDAwOWU4N2QNCg0KVGhpcyBkb2Vzbid0
-IGxvb2sgbGlrZSBhIHBhcnRpdGlvbiB0YWJsZQ0KUHJvYmFibHkgeW91IHNlbGVjdGVkIHRoZSB3
-cm9uZyBkZXZpY2UuDQoNCiAgIERldmljZSBCb290ICAgICAgU3RhcnQgICAgICAgICBFbmQgICAg
-ICBCbG9ja3MgICBJZCAgU3lzdGVtDQovZGV2L3NkYzEgICA/ICAgICAgNDE1OTE5ICAgICAgNDQ3
-NzQ4ICAgMTIzMzM5OTYyICAgZjQgIFNwZWVkU3Rvcg0KUGFydGl0aW9uIDEgaGFzIGRpZmZlcmVu
-dCBwaHlzaWNhbC9sb2dpY2FsIGJlZ2lubmluZ3MgKG5vbi1MaW51eD8pOg0KICAgICBwaHlzPSg3
-OTMsIDIyLCAxMykgbG9naWNhbD0oNDE1OTE4LCAzNiwgMjEpDQpQYXJ0aXRpb24gMSBoYXMgZGlm
-ZmVyZW50IHBoeXNpY2FsL2xvZ2ljYWwgZW5kaW5nczoNCiAgICAgcGh5cz0oODcwLCAyMzUsIDYx
-KSBsb2dpY2FsPSg0NDc3NDcsIDExOSwgNDgpDQpQYXJ0aXRpb24gMSBkb2VzIG5vdCBlbmQgb24g
-Y3lsaW5kZXIgYm91bmRhcnkuDQovZGV2L3NkYzIgICA/ICAgICAgIDQ4ODAwICAgICAgIDkxNjY4
-ICAgMTY2MTE2Nzk0ICAgMTAgIE9QVVMNClBhcnRpdGlvbiAyIGhhcyBkaWZmZXJlbnQgcGh5c2lj
-YWwvbG9naWNhbCBiZWdpbm5pbmdzIChub24tTGludXg/KToNCiAgICAgcGh5cz0oMjA1LCA3LCAw
-KSBsb2dpY2FsPSg0ODc5OSwgNywgNTQpDQpQYXJ0aXRpb24gMiBoYXMgZGlmZmVyZW50IHBoeXNp
-Y2FsL2xvZ2ljYWwgZW5kaW5nczoNCiAgICAgcGh5cz0oODcwLCAyMzUsIDUwKSBsb2dpY2FsPSg5
-MTY2NywgMTE0LCA3KQ0KUGFydGl0aW9uIDIgZG9lcyBub3QgZW5kIG9uIGN5bGluZGVyIGJvdW5k
-YXJ5Lg0KL2Rldi9zZGMzICAgPyAgICAgICAyOTExMSAgICAgICAyOTExMSAgICAgICAgICAgNSAg
-IDc0ICBVbmtub3duDQpQYXJ0aXRpb24gMyBoYXMgZGlmZmVyZW50IHBoeXNpY2FsL2xvZ2ljYWwg
-YmVnaW5uaW5ncyAobm9uLUxpbnV4Pyk6DQogICAgIHBoeXM9KDM2NywgNjYsIDQ3KSBsb2dpY2Fs
-PSgyOTExMCwgMTUsIDEzKQ0KUGFydGl0aW9uIDMgaGFzIGRpZmZlcmVudCBwaHlzaWNhbC9sb2dp
-Y2FsIGVuZGluZ3M6DQogICAgIHBoeXM9KDM3MCwgMzIsIDM3KSBsb2dpY2FsPSgyOTExMCwgMTUs
-IDIyKQ0KUGFydGl0aW9uIDMgZG9lcyBub3QgZW5kIG9uIGN5bGluZGVyIGJvdW5kYXJ5Lg0KDQpQ
-YXJ0aXRpb24gdGFibGUgZW50cmllcyBhcmUgbm90IGluIGRpc2sgb3JkZXINCg==
+Tm90ZXMgdGFrZW4gYnkgRGF2aWQgQm9ybWFuIChkYXZpZC5ib3JtYW5Ad2luZHJpdmVyLmNvbSkg
+ZHVyaW5nIHRoZQ0KWW9jdG8gQWxwaGEgdGVzdC4gMi8yMy8yMDExDQoNCj09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT0NCjEpIFRoZSBjb21tYW5kOg0KDQoJZ2l0IGNsb25lIGdpdDovL2dpdC5wb2t5bGlu
+dXgub3JnL3Bva3kuZ2l0IC1icmFuY2ggYmVybmFyZC01LjAtYWxwaGENCg0KcHJvZHVjZWQgYW4g
+ZXJyb3IgdGhhdCB0aGUgYnJhbmNoIGRvZXNuJ3QgZXhpc3QuICBUdXJucyBvdXQgaXQgaXNuJ3QN
+CmEgYnJhbmNoLCBidXQgYSB0YWcsIHNvOg0KCWdpdCBjaGVja291dCBiZXJuYXJkLTUuMC1hbHBo
+YQ0Kd29ya2VkLg0KDQoNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCjIpIFRoZSB1cHN0cmVhbSBz
+b3VyY2UgZm9yIHRoZSBuY3Vyc2VzIHBhdGNoIG5vIGxvbmdlciBleGlzdHM6DQoNCk5PVEU6IGZl
+dGNoIGZ0cDovL2ludmlzaWJsZS1pc2xhbmQubmV0L25jdXJzZXMvNS43L25jdXJzZXMtNS43LTIw
+MTAwNTAxLnBhdGNoLmd6DQpFUlJPUjogRnVuY3Rpb24gJ0ZldGNoZXIgZmFpbHVyZSBmb3IgVVJM
+OiAnZnRwOi8vaW52aXNpYmxlLWlzbGFuZC5uZXQvbmN1cnNlcy81LjcvbmN1cnNlcy01LjctMjAx
+MDA1MDEucGF0Y2guZ3o7bmFtZT1wMjAxMDA1MDEnLiBVbmFibGUgdG8gZmV0Y2ggVVJMIGZ0cDov
+L2ludmlzaWJsZS1pc2xhbmQubmV0L25jdXJzZXMvNS43L25jdXJzZXMtNS43LTIwMTAwNTAxLnBh
+dGNoLmd6O25hbWU9cDIwMTAwNTAxIGZyb20gYW55IHNvdXJjZS4nIGZhaWxlZA0KDQpJIHdhcyBh
+YmxlIHRvIGdldCBhIGNvcHkgb2YgdGhpcyBwYXRjaCBmaWxlIGZyb20gYW5vdGhlciBzb3VyY2U6
+DQoJaHR0cDovL2J1aWxkLnNoci1wcm9qZWN0Lm9yZy9zaHItdW5zdGFibGUvc291cmNlcy9NSVQv
+bmN1cnNlcy8NCnB1dCBpdCBpbiB0aGUgImRvd25sb2FkcyIgZGlyZWN0b3J5LCBhbmQgdGhlbiBj
+b250aW51ZSB0aGUgYnVpbGQuDQoNClRoaXMgc2VlbXMgdG8gYmUgYSBoaWdoIHJpc2sgaXNzdWUg
+Zm9yIFlvY3RvLCBhcyBpdCdzIHN0YWJpbGl0eSBhdA0KYW55IGdpdmVuIHBvaW50IGluIHRpbWUg
+aXMgbGlua2VkIHRvIHRoZSBzdGFiaWxpdHkgb2YgdGhlIHVwc3RyZWFtDQpzb3VyY2VzLg0KDQo9
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09DQozKSBUaGUgbG9jYXRpb24gb2YgYXR0ci0yLjQuNDQuc3Jj
+LnRhci5neiBoYXMgY2hhbmdlZDoNCg0KRVJST1I6IEZ1bmN0aW9uICdGZXRjaGVyIGZhaWx1cmUg
+Zm9yIFVSTDogJ2h0dHA6Ly9kb3dubG9hZC5zYXZhbm5haC5nbnUub3JnL2F0dHIvYXR0ci0yLjQu
+NDQuc3JjLnRhci5neicuIFVuYWJsZSB0byBmZXRjaCBVUkwgaHR0cDovL2Rvd25sb2FkLnNhdmFu
+bmFoLmdudS5vcmcvYXR0ci9hdHRyLTIuNC40NC5zcmMudGFyLmd6IGZyb20gYW55IHNvdXJjZS4n
+IGZhaWxlZA0KRVJST1I6IExvZ2ZpbGUgb2YgZmFpbHVyZSBzdG9yZWQgaW46IC9ob21lL2Rib3Jt
+YW4vWW9jdG8vcG9reS00LjAtYnVpbGQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L2F0dHItbmF0aXZl
+LTIuNC40NC1yMi90ZW1wL2xvZy5kb19mZXRjaC4zMjMyMw0KDQpJdCBpcyBub3cgdW5kZXIgaHR0
+cDovL2Rvd25sb2FkLnNhdmFubmFoLmdudS5vcmcvcmVsZWFzZXMvYXR0ci9hdHRyLTIuNC40NC5z
+cmMudGFyLmd6DQoNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCjQpIFRoZSBmaWxlcw0KCXR6Y29k
+ZTIwMDlyLnRhci5neg0KCXR6ZGF0YTIwMDlzLnRhci5neg0KCXR6ZGF0YTIwMTBvLnRhci5neg0K
+ICAgYXJlIG5vIGxvbmdlciBhdmFpbGFibGUgZnJvbSB0aGUgdXBzdHJlYW0gc291cmNlOg0KDQpF
+UlJPUjogRnVuY3Rpb24gJ0ZldGNoZXIgZmFpbHVyZSBmb3IgVVJMOiAnZnRwOi8vZWxzaWUubmNp
+Lm5paC5nb3YvcHViL3R6Y29kZTIwMDlyLnRhci5neicuIFVuYWJsZSB0byBmZXRjaCBVUkwgZnRw
+Oi8vZWxzaWUubmNpLm5paC5nb3YvcHViL3R6Y29kZTIwMDlyLnRhci5neiBmcm9tIGFueSBzb3Vy
+Y2UuJyBmYWlsZWQNCkVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS9k
+Ym9ybWFuL1lvY3RvL3Bva3ktNC4wLWJ1aWxkL3RtcC93b3JrL3g4Nl82NC1saW51eC90emNvZGUt
+bmF0aXZlLTIwMDlyLXIwL3RlbXAvbG9nLmRvX2ZldGNoLjEzMjY4DQoNCkVSUk9SOiBGdW5jdGlv
+biAnRmV0Y2hlciBmYWlsdXJlIGZvciBVUkw6ICdmdHA6Ly9lbHNpZS5uY2kubmloLmdvdi9wdWIv
+dHpkYXRhMjAwOXMudGFyLmd6Jy4gVW5hYmxlIHRvIGZldGNoIFVSTCBmdHA6Ly9lbHNpZS5uY2ku
+bmloLmdvdi9wdWIvdHpkYXRhMjAwOXMudGFyLmd6IGZyb20gYW55IHNvdXJjZS4nIGZhaWxlZA0K
+RVJST1I6IExvZ2ZpbGUgb2YgZmFpbHVyZSBzdG9yZWQgaW46IC9ob21lL2Rib3JtYW4vWW9jdG8v
+cG9reS00LjAtYnVpbGQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L3R6Y29kZS1uYXRpdmUtMjAwOXIt
+cjAvdGVtcC9sb2cuZG9fZmV0Y2guMjAzOTMNCg0KRVJST1I6IEZ1bmN0aW9uICdGZXRjaGVyIGZh
+aWx1cmUgZm9yIFVSTDogJ2Z0cDovL2Vsc2llLm5jaS5uaWguZ292L3B1Yi90emRhdGEyMDEwby50
+YXIuZ3onLiBVbmFibGUgdG8gZmV0Y2ggVVJMIGZ0cDovL2Vsc2llLm5jaS5uaWguZ292L3B1Yi90
+emRhdGEyMDEwby50YXIuZ3ogZnJvbSBhbnkgc291cmNlLicgZmFpbGVkDQpFUlJPUjogTG9nZmls
+ZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogL2hvbWUvZGJvcm1hbi9Zb2N0by9wb2t5LTQuMC1idWls
+ZC90bXAvd29yay9pNTg2LXBva3ktbGludXgvdHpkYXRhLTIwMTBvLXIwL3RlbXAvbG9nLmRvX2Zl
+dGNoLjI4MjM1DQoNCltkYm9ybWFuQG1zcC1kYWItdDU1MDAgZG93bmxvYWRzXSQgZnRwIGVsc2ll
+Lm5jaS5uaWguZ292DQpDb25uZWN0ZWQgdG8gZWxzaWUubmNpLm5paC5nb3YgKDEzNy4xODcuMjE1
+Ljc4KS4NCjIyMCAodnNGVFBkIDIuMi4yKQ0KTmFtZSAoZWxzaWUubmNpLm5paC5nb3Y6ZGJvcm1h
+bik6IGFub255bW91cw0KMzMxIFBsZWFzZSBzcGVjaWZ5IHRoZSBwYXNzd29yZC4NClBhc3N3b3Jk
+Og0KMjMwIExvZ2luIHN1Y2Nlc3NmdWwuDQpSZW1vdGUgc3lzdGVtIHR5cGUgaXMgVU5JWC4NClVz
+aW5nIGJpbmFyeSBtb2RlIHRvIHRyYW5zZmVyIGZpbGVzLg0KZnRwPiBjZCBwdWINCjI1MCBEaXJl
+Y3Rvcnkgc3VjY2Vzc2Z1bGx5IGNoYW5nZWQuDQpmdHA+IGRpciB0emNvZGUqDQoyMjcgRW50ZXJp
+bmcgUGFzc2l2ZSBNb2RlICgxMzcsMTg3LDIxNSw3OCwxMTcsMTAxKS4NCjE1MCBIZXJlIGNvbWVz
+IHRoZSBkaXJlY3RvcnkgbGlzdGluZy4NCi1ydy1yLS1yLS0gICAgMSA4ODAwICAgICAwICAgICAg
+ICAgIDE5MzQ2MiBGZWIgMDcgMTM6NDQgdHpjb2RlMjAxMWIudGFyLmd6DQoyMjYgRGlyZWN0b3J5
+IHNlbmQgT0suDQpmdHA+IGRpciB0emRhdGEqDQoyMjcgRW50ZXJpbmcgUGFzc2l2ZSBNb2RlICgx
+MzcsMTg3LDIxNSw3OCwyMzUsMjE3KS4NCjE1MCBIZXJlIGNvbWVzIHRoZSBkaXJlY3RvcnkgbGlz
+dGluZy4NCi1ydy1yLS1yLS0gICAgMSA4ODAwICAgICAwICAgICAgICAgIDE5MzAzMCBGZWIgMDcg
+MTM6NDQgdHpkYXRhMjAxMWIudGFyLmd6DQoyMjYgRGlyZWN0b3J5IHNlbmQgT0suDQoNCg0KVGhp
+cyB0aW1lIEkgZGlzY292ZXJlZCBJIGNvdWxkIGZpbmQgdGhlIGZpcnN0IHR3byBvZiB0aGVtIGlu
+Og0KCWh0dHA6Ly9hdXRvYnVpbGRlci55b2N0b3Byb2plY3Qub3JnL2Rvd25sb2Fkcy95b2N0by0w
+Ljkvc291cmNlcy8NCmJ1dCB0aGUgdGhpcmQgZmlsZSBJIHBpY2tlZCB1cCBmcm9tOg0KCWh0dHA6
+Ly90eC11cy5sdW5hci1saW51eC5vcmcvbHVuYXIvbWlycm9ycy90emRhdGEyMDEwby50YXIuZ3oN
+Cg0KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PQ0KNSkgVGhlIGZpbGU6DQoJdGlueWxvZ2luLTEuNC50
+YXIuYnoyDQogICBpcyBubyBsb25nZXIgYXZhaWxhYmxlIHVwc3RyZWFtLg0KDQpFUlJPUjogRnVu
+Y3Rpb24gJ0ZldGNoZXIgZmFpbHVyZSBmb3IgVVJMOiAnaHR0cDovL3Rpbnlsb2dpbi5idXN5Ym94
+Lm5ldC9kb3dubG9hZHMvdGlueWxvZ2luLTEuNC50YXIuYnoyJy4gVW5hYmxlIHRvIGZldGNoIFVS
+TCBodHRwOi8vdGlueWxvZ2luLmJ1c3lib3gubmV0L2Rvd25sb2Fkcy90aW55bG9naW4tMS40LnRh
+ci5iejIgZnJvbSBhbnkgc291cmNlLicgZmFpbGVkDQpFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJl
+IHN0b3JlZCBpbjogL2hvbWUvZGJvcm1hbi9Zb2N0by9wb2t5LTQuMC1idWlsZC90bXAvd29yay9p
+NTg2LXBva3ktbGludXgvdGlueWxvZ2luLTEuNC1yNS90ZW1wL2xvZy5kb19mZXRjaC4yODU0MA0K
+DQpBY2NvcmRpbmcgdG8gdGhlIHdlYnNpdGUgaHR0cDovL3Rpbnlsb2dpbi5idXN5Ym94Lm5ldCwg
+VGlueUxvZ2luIGhhcw0KYmVlbiBtZXJnZWQgaW50byBidXN5Ym94Lg0KDQpJIHdhcyBhYmxlIHRv
+IGRvd25sb2FkIGl0IG1hbnVhbGx5IGZyb206DQoJaHR0cDovL2F1dG9idWlsZGVyLnlvY3RvcHJv
+amVjdC5vcmcvZG93bmxvYWRzL3lvY3RvLTAuOS9zb3VyY2VzLw0KDQo9PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09DQo2KSBUaGUgZmlsZToNCgluZXRiYXNlXzQuNDQudGFyLmd6DQogICBpcyBubyBsb25n
+ZXIgYXZhaWxhYmxlIHVwc3RyZWFtDQpFUlJPUjogRnVuY3Rpb24gJ0ZldGNoZXIgZmFpbHVyZSBm
+b3IgVVJMOiAnZnRwOi8vZnRwLmRlYmlhbi5vcmcvZGViaWFuL3Bvb2wvbWFpbi9uL25ldGJhc2Uv
+bmV0YmFzZV80LjQ0LnRhci5neicuIFVuYWJsZSB0byBmZXRjaCBVUkwgZnRwOi8vZnRwLmRlYmlh
+bi5vcmcvZGViaWFuL3Bvb2wvbWFpbi9uL25ldGJhc2UvbmV0YmFzZV80LjQ0LnRhci5neiBmcm9t
+IGFueSBzb3VyY2UuJyBmYWlsZWQNCkVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGlu
+OiAvaG9tZS9kYm9ybWFuL1lvY3RvL3Bva3ktNC4wLWJ1aWxkL3RtcC93b3JrL3FlbXV4ODYtcG9r
+eS1saW51eC9uZXRiYXNlLTQuNDQtcjAvdGVtcC9sb2cuZG9fZmV0Y2guMTQxNTcNCg0KVGhpcyBw
+YWNrYWdlIEkgZm91bmQgYXQ6DQoJaHR0cDovL2F1dG9idWlsZGVyLnBva3lsaW51eC5vcmcvc291
+cmNlcy9uZXRiYXNlXzQuNDQudGFyLmd6DQoNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCjcpIEFm
+dGVyIHRoZSBidWlsZCBjb21wbGV0ZWQsIEkgdGhlbiByYW46DQoJcG9reS1xZW11IHFlbXV4ODYN
+CmFuZCB0aGUgZmlyc3QgdGhpbmcgaXQgd2FudGVkIHRvIGRvIHdhcyB0byBzZXQgdXAgYSB0YXAg
+aW50ZXJmYWNlDQp1c2luZyAic3VkbyIuICBXaGVuIHRoZSBzdWRvIGZhaWxzLCBpdCBleGl0cyB3
+aXRoIG5vIGZ1cnRoZXINCmluZm9ybWF0aW9uIGFib3V0IHdoYXQgd2VudCB3cm9uZywgb3IgaG93
+IHRvIHJlc29sdmUgdGhlIGlzc3VlLg0KTXkgbWFjaGluZSB3YXNuJ3Qgc2V0IHVwIGZvciBzdWRv
+LCBzbyBJIGhhZCB0byBkbyB0aGF0IGJlZm9yZSBJDQpjb3VsZCBwcm9jZWVkLiAgSSBkb24ndCB0
+aGluayBpdCBpcyBhIGdvb2QgYXNzdW1wdGlvbiB0byBhc3N1bWUNCnRoYXQgZXZlcnlvbmUgaGFz
+ICJzdWRvIiBhY2Nlc3MuDQoNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCjgpIFdoZW4gcnVubmlu
+ZyB0aGUgc2NyaXB0Og0KCXNvdXJjZSBiZXJuYXJkLTUuMC1hbHBoYS9wb2t5LWluaXQtYnVpbGQt
+ZW52IHBva3ktNC4wLWJ1aWxkDQppZiB5b3UgZm9yZ290IHRvICJzb3VyY2UiIGl0LCB5b3UgZ2V0
+IGJhY2sgdG8gYSBwcm9tcHQgd2l0aG91dCBhbnkNCmluZGljYXRpb24gdGhhdCB0aGluZ3MgYXJl
+bid0IHNldCB1cC4gIFBlcnNvbmFsbHksIEknZCByYXRoZXIgdGhhdA0KdGhpcyBzZXQgYmUgZG9u
+ZSB3aXRoIGEgc3ViLXNoZWxsIGluc3RlYWQgb2Ygc291cmNpbmcgaW50byB0aGUNCmN1cnJlbnQg
+c2hlbGwgZW52aXJvbm1lbnQsIHNvIHRoYXQ6DQoJMSkgeW91IGFsd2F5cyB3b3VsZCBnZXQgdG8g
+YSBwcm9tcHQgdGhhdCBoYWQgdGhlIGVudiBzZXQgdXANCgkyKSBZb3VyIGV4aXN0aW5nIGVudmly
+b25tZW50IHdvdWxkbid0IGJlIGNoYW5nZWQuICBBIF5EDQoJICAgd291bGQgZ2V0IHlvdSBiYWNr
+IHRvIHlvdXIgb2xkIGVudmlyb25tZW50Lg0KVGhlIGN1cnJlbnQgc2NyaXB0IGFsc28gYXNzdW1l
+cyB0aGUgdXNlciB3aWxsIGJlIHJ1bm5pbmcgYmFzaCBvcg0Kc29tZSB2YXJpYW50IG9mIGl0LCBh
+bmQgZG9lc24ndCBhbGxvdyBmb3IgdXNlcnMgdGhhdCBydW4gc29tZXRoaW5nDQplbHNlLCBlLmcu
+IGNzaCBvciB0Y3NoLg0KDQoNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCjkpIFdoZW4gSSBmaW5h
+bGx5IGhhZCBzdWRvIHNldCB1cCwgYW5kIHJhbjoNCglwb2t5LXFlbXUgcWVtdXg4Ng0KaXQgZmFp
+bGVkIHdpdGg6DQpDb250aW51aW5nIHdpdGggdGhlIGZvbGxvd2luZyBwYXJhbWV0ZXJzOg0KS0VS
+TkVMOiBbL2hvbWUvZGJvcm1hbi9Zb2N0by9wb2t5LTQuMC1idWlsZC90bXAvZGVwbG95L2ltYWdl
+cy9iekltYWdlLXFlbXV4ODYuYmluXQ0KUk9PVEZTOiBbL2hvbWUvZGJvcm1hbi9Zb2N0by9wb2t5
+LTQuMC1idWlsZC90bXAvZGVwbG95L2ltYWdlcy9wb2t5LWltYWdlLXNhdG8tcWVtdXg4Ni5leHQz
+XQ0KRlNUWVBFOiBbZXh0M10NClNldHRpbmcgdXAgdGFwIGludGVyZmFjZSB1bmRlciBzdWRvDQpb
+c3Vkb10gcGFzc3dvcmQgZm9yIGRib3JtYW46IA0KQWNxdWlyaW5nIGxvY2tmaWxlIGZvciB0YXAw
+Li4uDQp3aGljaDogbm8gZGlzdGNjZCBpbiAoOi9ob21lL2Rib3JtYW4vWW9jdG8vcG9reS00LjAt
+YnVpbGQvdG1wL3N5c3Jvb3RzL3g4Nl82NC1saW51eC91c3IvYmluOi9ob21lL2Rib3JtYW4vWW9j
+dG8vYmVybmFyZC01LjAtYWxwaGEvc2NyaXB0czovaG9tZS9kYm9ybWFuL1lvY3RvL2Jlcm5hcmQt
+NS4wLWFscGhhL2JpdGJha2UvYmluLzovaG9tZS9kYm9ybWFuL2JpbjovdXNyL2xpYjY0L3F0LTMu
+My9iaW46L3Vzci9rZXJiZXJvcy9zYmluOi91c3Iva2VyYmVyb3MvYmluOi91c3IvbGliNjQvY2Nh
+Y2hlOi91c3IvbG9jYWwvYmluOi9iaW46L3Vzci9iaW46L3Vzci9sb2NhbC9zYmluOi91c3Ivc2Jp
+bjovc2JpbikNCldhcm5pbmc6IGRpc3RjY2Qgbm90IHByZXNlbnQsIG5vIGRpc3RjYyBzdXBwb3J0
+IGxvYWRlZC4NClJ1bm5pbmcgcWVtdS4uLg0KL2hvbWUvZGJvcm1hbi9Zb2N0by9wb2t5LTQuMC1i
+dWlsZC90bXAvc3lzcm9vdHMveDg2XzY0LWxpbnV4L3Vzci9iaW4vcWVtdSAta2VybmVsIC9ob21l
+L2Rib3JtYW4vWW9jdG8vcG9reS00LjAtYnVpbGQvdG1wL2RlcGxveS9pbWFnZXMvYnpJbWFnZS1x
+ZW11eDg2LmJpbiAtbmV0IG5pYyx2bGFuPTAgLW5ldCB0YXAsdmxhbj0wLGlmbmFtZT10YXAwLHNj
+cmlwdD1ubyxkb3duc2NyaXB0PW5vIC1oZGEgL2hvbWUvZGJvcm1hbi9Zb2N0by9wb2t5LTQuMC1i
+dWlsZC90bXAvZGVwbG95L2ltYWdlcy9wb2t5LWltYWdlLXNhdG8tcWVtdXg4Ni5leHQzIC1zaG93
+LWN1cnNvciAtdXNiIC11c2JkZXZpY2Ugd2Fjb20tdGFibGV0IC12Z2Egdm13YXJlIC1lbmFibGUt
+Z2wgLW5vLXJlYm9vdCAtLWFwcGVuZCAidmdhPTAgcm9vdD0vZGV2L2hkYSBtZW09MTI4TSBpcD0x
+OTIuMTY4LjcuMjo6MTkyLjE2OC43LjE6MjU1LjI1NS4yNTUuMCAiDQovaG9tZS9kYm9ybWFuL1lv
+Y3RvL2Jlcm5hcmQtNS4wLWFscGhhL3NjcmlwdHMvcG9reS1xZW11LWludGVybmFsOiBsaW5lIDQ0
+OTogMjI4MjYgU2VnbWVudGF0aW9uIGZhdWx0ICAgICAgKGNvcmUgZHVtcGVkKSAkUUVNVUJJTiAt
+a2VybmVsICRLRVJORUwgJFFFTVVPUFRJT05TICRTRVJJQUxPUFRTIC1uby1yZWJvb3QgJFNDUklQ
+VF9RRU1VX09QVCAkU0NSSVBUX1FFTVVfRVhUUkFfT1BUIC0tYXBwZW5kICIkS0VSTkNNRExJTkUg
+JFNDUklQVF9LRVJORUxfT1BUIg0KU2V0ICd0YXAwJyBub25wZXJzaXN0ZW50DQpSZWxlYXNpbmcg
+bG9ja2ZpbGUgb2YgcHJlY29uZmlndXJlZCB0YXAgZGV2aWNlICd0YXAwJw0KDQpUdXJucyBvdXQg
+dGhpcyBpcyBkdWUgdG8gdGhlIGxpYkdMIGxpYnJhcmllcyBpbnN0YWxsZWQgYnkgdGhlIE5WSURJ
+QQ0KZHJpdmVyLiAgTXkgd29ya2Fyb3VuZCwgb24gRkMxMywgaXM6DQoJIyBycG0gLVYgbWVzYS1s
+aWJHTA0KCS4uLi5MLi4uLiAgICAvdXNyL2xpYjY0L2xpYkdMLnNvLjENCgltaXNzaW5nICAgICAg
+L3Vzci9saWI2NC9saWJHTC5zby4xLjINCgkjIGNkIC91c3IvbGliNjQNCgkjIG1rZGlyIE5WSURJ
+QV9HTA0KCSMgbXYgbGliR0wubGEgIGxpYkdMLnNvLiogTlZJRElBX0dMDQoJIyB5dW0gcmVpbnN0
+YWxsIG1lc2EtbGliR0wNCg0KQWZ0ZXIgaW5zdGFsbGluZyB0aGUgRkMgdmVyc2lvbiBvZiBsaWJH
+TCwgcWVtdSBub3cgcnVucy4NCg0KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KMTApIEluIHBsYXlp
+bmcgYXJvdW5kIHdpdGggdGhlIHFlbXUgc3lzdGVtICwgSSBzdGFydGVkIHVwIHRoZSAiVGVybWlu
+YWwiDQphcHBsaWNhdGlvbiwgYnV0IG15IGtleWJvYXJkIGlucHV0IHdhcyBhbGwgc2NyYW1ibGVk
+LiAgSSB3YXMgYWJsZSB0bw0Kc3RhcnQgdXAgdGhlIHZpcnR1YWwga2V5Ym9hcmQgYW5kIHVzZSBp
+dCwgdGhvdWdoIHRoYXQgaXMgYSBzbG93IHByb2Nlc3MNCnVzaW5nIHRoZSBtb3VzZSB0byBjbGlj
+ayBvbiBrZXlzIG9uZS1ieS1vbmUuDQoNCg==
 
---_004_8250E4885F9967469CAC3FB5CBA2CE69935212D85Eirsmsx501gerc_--
+--_002_F5EB224648BA4B53981A28FAB785A6E6windrivercom_--
