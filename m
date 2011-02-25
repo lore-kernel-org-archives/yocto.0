@@ -1,37 +1,20 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 4CC6C4C800AE
-	for <yocto@yoctoproject.org>; Fri, 25 Feb 2011 09:21:56 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 25 Feb 2011 07:21:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.62,225,1297065600"; d="scan'208";a="713262647"
-Received: from unknown (HELO [10.255.12.104]) ([10.255.12.104])
-	by orsmga001.jf.intel.com with ESMTP; 25 Feb 2011 07:21:53 -0800
-Message-ID: <4D67C90F.5030007@intel.com>
-Date: Fri, 25 Feb 2011 07:21:51 -0800
-From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7 ThunderBrowse/3.3.4
-MIME-Version: 1.0
-To: "Stewart, David C" <david.c.stewart@intel.com>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>,
-	"'McCombe, Kevin'" <kevin.mccombe@windriver.com>, 
-	"Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>,
-	"Fleischer, Julie N" <julie.n.fleischer@intel.com>, 
-	"'paul.anderson@windriver.com'" <paul.anderson@windriver.com>,
-	"Lock, Joshua" <joshua.lock@intel.com>, 
-	Bruce Ashfield <bruce.ashfield@gmail.com>,
-	"'Polk, Jeffrey'" <jeff.polk@windriver.com>, 
-	"Zhang, Jessica" <jessica.zhang@intel.com>,
-	Saul Wold <saul.wold@intel.com>, 
-	"Erway, Tracey M" <tracey.m.erway@intel.com>,
-	"Hohndel, Dirk" <dirk.hohndel@intel.com>, 
-	"deVries, Alex" <Alex.deVries@windriver.com>,
-	Mark Hatle <mark.hatle@windriver.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Mailman-Approved-At: Fri, 25 Feb 2011 11:47:24 -0600
-Subject: [ANNOUNCEMENT] Yocto Bernard 1.0 Release Candidate Readiness Review Meeting
+Return-Path: <bruce.ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 5023A4C800AC;
+	Fri, 25 Feb 2011 13:28:49 -0600 (CST)
+Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
+	[128.224.146.167])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p1PJSl4i017352;
+	Fri, 25 Feb 2011 11:28:47 -0800 (PST)
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+To: rpurdie@linux.intel.com
+Date: Fri, 25 Feb 2011 14:29:58 -0500
+Message-Id: <cover.1298662054.git.bruce.ashfield@windriver.com>
+X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <y>
+References: <y>
+Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
+Subject: [PATCH 0/1] linux-yocto: update to 2.6.37.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,42 +26,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Feb 2011 15:21:56 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 25 Feb 2011 19:28:49 -0000
 
-All,
+Richard/Saul,
 
-First, thank you everyone for all the hard work stabilizing master. As we close out the week, we enter into the next
-phase of our release cycle, release candidate verification and validation. This coming weekend we will branching master
-and spin the first of our release candidates for Yocto 1.0.
+The commit header says it all here:
 
-For the next few weeks, until we have a fully vetted gold build, we will be holding regular release readiness review
-meetings. The purpose of these meetings is to go through the current release candidate and ultimately decide if it meets
-release standards as set by the steering committee.
+Fixes [BUGID: 773]
 
-Agenda:
+This consolidated SRCREV update addresses the following items:
 
-- Feature Status
-  - Planned features yet to be pulled into master.
-- Status of the Release Candidate Build
-  - known build issues including sanity tests
-  - status of BSP builds
-- QA Status
-  - number of open defects by level of importance
-- Performance Status
-  - build performance statistics of release candidate
+  - updates to 2.6.37.2
+  - updates the routerstation pro configuration for USB mass storage
+  - merges the PERF no scripting patch into the kernel tree
 
-Decisions:
-- If feature incomplete, do we drop those features not implemented entirely attempt to fix them into existence.
-- Is current performance acceptable?
-- What are the current acceptable defects allowed and do we meet that.
+I built this for all boards, and boot tested arm/x86* no 
+issues were found.
 
-Monday, February 28, 2011, 10:00 AM US Pacific Time
-916-356-2663, Bridge: 3, Passcode: 9653542
+I did this change on master, if the release branch needs this
+and it can't be cherry picked. Let me know.
 
-------------------
-Elizabeth Flanagan
-Yocto Project
-Release Engineer
+Pull URL: git://git.pokylinux.org/poky-contrib.git
+  Branch: zedd/kernel
+  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
+
+Thanks,
+    Bruce Ashfield <bruce.ashfield@windriver.com>
+---
+
+
+Bruce Ashfield (1):
+  linux-yocto: update to 2.6.37.2
+
+ .../conf/distro/include/poky-default-revisions.inc |   26 ++++++++++----------
+ meta/recipes-kernel/linux/linux-yocto_git.bb       |    3 +-
+ 2 files changed, 14 insertions(+), 15 deletions(-)
+
 
