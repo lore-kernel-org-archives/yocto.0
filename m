@@ -1,21 +1,21 @@
 Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8A2E84C800AC
-	for <yocto@yoctoproject.org>; Thu, 24 Feb 2011 16:44:25 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 24 Feb 2011 14:44:14 -0800
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 149964C8004D
+	for <yocto@yoctoproject.org>; Thu, 24 Feb 2011 19:12:27 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 24 Feb 2011 17:12:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.62,220,1297065600"; d="scan'208";a="712972161"
+X-IronPort-AV: E=Sophos;i="4.62,221,1297065600"; d="scan'208";a="661271842"
 Received: from unknown (HELO [10.255.12.104]) ([10.255.12.104])
-	by orsmga001.jf.intel.com with ESMTP; 24 Feb 2011 14:44:13 -0800
-Message-ID: <4D66DF3C.80707@intel.com>
-Date: Thu, 24 Feb 2011 14:44:12 -0800
+	by fmsmga002.fm.intel.com with ESMTP; 24 Feb 2011 17:12:25 -0800
+Message-ID: <4D6701F7.7050706@intel.com>
+Date: Thu, 24 Feb 2011 17:12:23 -0800
 From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
 	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7 ThunderBrowse/3.3.4
 MIME-Version: 1.0
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: [PATCH 0/1] Removal of emenlow from poky core
+Subject: [REVISED PATCH 0/1] Removal of emenlow from poky core
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,12 +27,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Feb 2011 22:44:26 -0000
+X-List-Received-Date: Fri, 25 Feb 2011 01:12:27 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-
 Removing Emenlow from core as it is a BSP layer and should be built as such.
+Revised to correct LCONF_VERSION (now 4) and LAYER_CONF_VERSION (now, also 4)
 
 Pull URL: git://git.pokylinux.org/poky-contrib.git
   Branch: eflanagan/emenlow
@@ -110,8 +110,9 @@ Beth Flanagan (1):
  .../recipes-kernel/linux/linux-2.6.33.2/defconfig  |   68 -
  .../linux/linux-yocto-stable_git.bbappend          |    3 -
  .../recipes-kernel/linux/linux_2.6.33.2.bbappend   |    3 -
- meta/conf/bblayers.conf.sample                     |    1 -
- 65 files changed, 0 insertions(+), 9378 deletions(-)
+ meta/conf/bblayers.conf.sample                     |    3 +-
+ meta/conf/sanity.conf                              |    2 +-
+ 66 files changed, 2 insertions(+), 9380 deletions(-)
  delete mode 100644 meta-emenlow/COPYING.MIT
  delete mode 100644 meta-emenlow/README
  delete mode 100644 meta-emenlow/binary/.gitignore
