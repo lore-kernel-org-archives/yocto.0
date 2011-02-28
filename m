@@ -1,23 +1,24 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A493B4C800B1
-	for <yocto@yoctoproject.org>; Mon, 28 Feb 2011 10:40:47 -0600 (CST)
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6D0614C800A4;
+	Mon, 28 Feb 2011 12:53:38 -0600 (CST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 28 Feb 2011 08:40:47 -0800
+	by orsmga101.jf.intel.com with ESMTP; 28 Feb 2011 10:53:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.62,240,1297065600"; d="scan'208";a="714188520"
-Received: from unknown (HELO [10.255.12.145]) ([10.255.12.145])
-	by orsmga001.jf.intel.com with ESMTP; 28 Feb 2011 08:40:46 -0800
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-In-Reply-To: <1298879499.2429.15.camel@elmorro>
-References: <4D6B0F2C.9080401@intel.com>  <1298879499.2429.15.camel@elmorro>
-Date: Mon, 28 Feb 2011 10:40:43 -0600
-Message-ID: <1298911243.2429.31.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Status of release candidate: bernard-1.0rc1
+X-IronPort-AV: E=Sophos;i="4.62,241,1297065600"; d="scan'208";a="714250625"
+Received: from unknown (HELO [10.255.12.138]) ([10.255.12.138])
+	by orsmga001.jf.intel.com with ESMTP; 28 Feb 2011 10:53:37 -0800
+Message-ID: <4D6BEF31.1030400@linux.intel.com>
+Date: Mon, 28 Feb 2011 10:53:37 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.13) Gecko/20101208 Lightning/1.0b2 Thunderbird/3.1.7
+MIME-Version: 1.0
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <cover.1298429140.git.bruce.ashfield@windriver.com>
+In-Reply-To: <cover.1298429140.git.bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
+Subject: Re: [poky] [PATCH 0/1] linux-yocto: enable audio for qemux86 and qemux86-64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,128 +30,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Feb 2011 16:40:47 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 28 Feb 2011 18:53:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Mon, 2011-02-28 at 01:51 -0600, Tom Zanussi wrote:
-> On Sun, 2011-02-27 at 18:57 -0800, Elizabeth Flanagan wrote:
-> > Summary
-> > =======
-> > 
-> > This weekend, we generated a release candidate for bernard based on the bernard branch
-> > of master at commit:
-> > e08dc5aaaeba61e332caab4a3df5750df6b49ac1
-> > 
-> > and for BSPs based on the bernard branch of meta-intel at commit:
-> > 16f47f04a2baaeaf9b5a9b381fc7a3c7755d6ff6
-> > 
-> > Issues seen:
-> > ===========
-> > 
-> > Build Infrastructure issues:
-> > ----------------------------
-> > 
-> > - We had an issue with builder02 running out of disk space, so some of the build
-> >   copying was done post-build. This did not effect the build and was dealt with
-> >   manually after cleaning up the partition.
-> > 
-> > - There is an issue with how package-index is being run. I will need to sync up
-> >   with Jessica to verify how this should be incorporated into the build.
-> > 
-> > - The sanity tests on builder02 failed because builder02 was unable to resolve
-> >   "localhost". This has been corrected and the sanity tests re-run incrementally:
-> >   http://autobuilder.pokylinux.org:8010/builders/nightly-internal-sanity/builds/3
-> > 
-> > - The tarball generation buildstep is not branch aware. This will be fixed this week.
-> >   In the meantime it was run manually.
-> > 
-> > 
-> > Sanity Test Issues:
-> > ----------------------------
-> > 
-> > - zypper-search failed on qemux-x86_64 on poky-image-lsb and poky-image-sato
-> > 
-> > 
-> > Build Issues:
-> > ----------------------------
-> > 
-> > - BSPs did not complete successfully. There were some issue in the actual build mostly centering around:
-> >    - Failing to do_kernel_checkout
-> 
-> There are a couple problems with the jasperforest BSP.  First, the
-> SRCREVs need updating, which I just submitted a patch for.
-> 
-> Even after that, though, there seems to be a problem with the kernel
-> repo the fetcher is getting.  Even after clearing it out of git2, the
-> kernel repo that gets fetched into git2 and the build doesn't have the
-> jasperforest branch.  A manual local clone of linux-yocto-2.6.37 does
-> contain the branch, though, and pointing the build to the local clone
-> finds the branch and builds(*) ok.
-> 
-> (*) until it gets to compiling perf - at that point it fails since the
-> branch doesn't yet have the perf compile fix moved from master.
-> 
+On 02/22/2011 06:49 PM, Bruce Ashfield wrote:
+> Richard/Saul,
 
-The jasperforest branch just got updated, and I just submitted a SRCREV
-update to use that, which takes care of the perf compile error.
+Hi Bruce, I'm a little late to the party, but was wondering what your 
+thoughts are on the whole OSS thing. It seems we should be as consistent 
+as possible in our various Yocto Linux kernel images. Do we want to 
+support OSS? I recall several years ago that OSS had drivers that Alsa 
+did not and was needed for some boards - is that still the case? My 
+feeling is, if possible, I'd like to just have alsa in our kernels and 
+help reduce the raging redundancy in the audio API space.
 
-I still see the problem with the the fetcher not getting the current
-linux-yocto-2.6.37, so it looks like either a problem with the fetcher
-or some stale cache lodged somewhere.
+--
+Darren
 
-An interesting related thing is that I also see it with the 2.6.37
-crownbay branch - a local clone works fine, but in the repo fetched into
-git2 and the build the crownbay branch is missing, but in that case even
-though the branch doesn't appear, its commits are actually in the repo
-e.g. git log <commitid> shows the commits there.
-
-Tom
-
-> Tom
-> 
-> >    - Unpack issues around svn://svn.o-hand.com/repos
-> > 
-> > - Beagleboard failed doing runstrip on uboot during do_populate_sysroot
-> > 
-> > 
-> > Build statistic:
-> > ----------------------------
-> > 	
-> > Using RP__'s machine as a baseline, our current build stats for poky-image-sato is:
-> > 
-> > real	109m52.400s
-> > user	393m58.840s
-> > sys	59m25.380s
-> > 
-> > Build statistics for nightly-external are available at:
-> > 
-> > http://autobuilder.pokylinux.org/nightly/20110226-1/buildstats/buildstats/
-> > 
-> > Open Defects:
-> > ----------------------------
-> > 
-> > As of right now we have:
-> > 76 total open defects targeted for 1.0
-> > 
-> > Critical: 0
-> > High: 14
-> > Medium: 53
-> > Low: 7
-> > Undetermined: 2
-> > 
-> > 
-> > Thanks for all those who helped with this weekends RC generation, especially sgw and RP__
-> > 
-> > ------------------
-> > Elizabeth Flanagan
-> > Yocto Project
-> > Release Engineer
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> 
+>
+> This Fixes [BUGID #488 #734]
+>
+> As discussed, this enables the configuration options for qemu
+> audio for x86/x86-64 (limited to this for now). I did build and
+> boot testing (but couldn't directly test audio) for the impacted
+> qemu boards.
+>
+> The commit message from the patch tells the rest of the story:
+>
+> Enable audio for qemux86/qemux86-64 via the following kernel
+> configuration options.
+>
+>    CONFIG_SOUND_OSS_CORE=y
+>    CONFIG_SOUND_OSS_CORE_PRECLAIM=y
+>    CONFIG_SND_RAWMIDI=m
+>    CONFIG_SND_SEQUENCER=y
+>    CONFIG_SND_OSSEMUL=y
+>    CONFIG_SND_MIXER_OSS=y
+>    CONFIG_SND_PCM_OSS=y
+>    CONFIG_SND_PCM_OSS_PLUGINS=y
+>    CONFIG_SND_SEQUENCER_OSS=y
+>    CONFIG_SND_RAWMIDI_SEQ=m
+>    CONFIG_SND_AC97_CODEC=m
+>    CONFIG_SND_ENS1370=m
+>    CONFIG_SND_INTEL8X0=m
+>    CONFIG_AC97_BUS=m
+>
+> The mechanism to trigger these options is in the form of an
+> optional kernel feature that is only appended for qemux86
+> and qemux86-64, but is contained within the kernel tree.
+>
+> This allows several things:
+>
+>    - the options to be available/shared for all boards
+>    - the options to be in tree
+>    - to not add the options to every board, which unecessarily
+>      bloats the default configuration.
+>
+>
+> Pull URL: git://git.pokylinux.org/poky-contrib.git
+>    Branch: zedd/kernel
+>    Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
+>
+> Thanks,
+>      Bruce Ashfield<bruce.ashfield@windriver.com>
+> ---
+>
+>
+> Bruce Ashfield (1):
+>    linux-yocto: enable audio for selected qemu targets
+>
+>   meta/classes/kernel-yocto.bbclass                  |    4 +++-
+>   .../conf/distro/include/poky-default-revisions.inc |    4 ++--
+>   meta/recipes-kernel/linux/linux-yocto_git.bb       |    6 ++++--
+>   3 files changed, 9 insertions(+), 5 deletions(-)
+>
+> _______________________________________________
+> poky mailing list
+> poky@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/poky
 
 
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
