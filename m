@@ -1,22 +1,23 @@
-Return-Path: <bruce.ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C53AD4C80A7E;
-	Tue,  1 Mar 2011 15:26:43 -0600 (CST)
-Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
-	[128.224.146.167])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p21LQeND012464;
-	Tue, 1 Mar 2011 13:26:42 -0800 (PST)
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: rpurdie@linux.intel.com
-Date: Tue,  1 Mar 2011 16:28:12 -0500
-Message-Id: <3c7015f02d67a0af800df4dbf735c7650fd2b498.1299014724.git.bruce.ashfield@windriver.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1299014724.git.bruce.ashfield@windriver.com>
-References: <cover.1299014724.git.bruce.ashfield@windriver.com>
-In-Reply-To: <cover.1299014724.git.bruce.ashfield@windriver.com>
-References: <cover.1299014724.git.bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
-Subject: [PATCH 1/1] kernel: remove explicit bash call in do_menuconfig
+Return-Path: <aalonso@secretlab.ca>
+Received: from mail-qw0-f68.google.com (mail-qw0-f68.google.com
+	[209.85.216.68])
+	by mx1.pokylinux.org (Postfix) with ESMTP id DCCE44C800A4
+	for <yocto@yoctoproject.org>; Tue,  1 Mar 2011 17:18:22 -0600 (CST)
+Received: by qwj9 with SMTP id 9so723451qwj.11
+	for <yocto@yoctoproject.org>; Tue, 01 Mar 2011 15:18:22 -0800 (PST)
+Received: by 10.224.39.2 with SMTP id d2mr6463199qae.334.1299021499800;
+	Tue, 01 Mar 2011 15:18:19 -0800 (PST)
+Received: from localhost.localdomain
+	(adsl-99-36-28-120.dsl.emhril.sbcglobal.net [99.36.28.120])
+	by mx.google.com with ESMTPS id q12sm4444202qcu.18.2011.03.01.15.18.18
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 01 Mar 2011 15:18:19 -0800 (PST)
+From: Adrian Alonso <aalonso@secretlab.ca>
+To: yocto@yoctoproject.org
+Date: Tue,  1 Mar 2011 17:18:17 -0600
+Message-Id: <cover.1299015730.git.aalonso@secretlab.ca>
+X-Mailer: git-send-email 1.7.4
+Subject: [PATCH 0/5][PULL] meta-xilinx powerpc bsp
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,38 +29,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Mar 2011 21:26:44 -0000
+X-List-Received-Date: Tue, 01 Mar 2011 23:18:23 -0000
 
-Fixes [BUGID #598]
+Several fixes for meta-xilinx powerpc bsp support
 
-The explicit addition of "bash" before "make menuconfig"
-is clearing variables that are required for pseudo. The
-end result is that menuconfig often fails silently with:
+Pull URL: git://git.pokylinux.org/meta-xilinx.git
+  Branch: powerpc-support
+  Browse: http://git.pokylinux.org/cgit.cgi/meta-xilinx/log/?h=powerpc-support
 
-ERROR: ld.so: object 'libpseudo.so' from LD_PRELOAD cannot be preloaded: ignored.
-
-Removing bash from the menuconfig SHELLCMDS variable fixes
-the psudo problem.
-
-Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+Thanks,
+    Adrian Alonso <aalonso@secretlab.ca>
 ---
- meta/classes/kernel.bbclass |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
 
-diff --git a/meta/classes/kernel.bbclass b/meta/classes/kernel.bbclass
-index 5d9b86a..a1b1354 100644
---- a/meta/classes/kernel.bbclass
-+++ b/meta/classes/kernel.bbclass
-@@ -202,7 +202,7 @@ do_menuconfig() {
-         export DBUS_SESSION_BUS_ADDRESS='${DBUS_SESSION_BUS_ADDRESS}'
-         export XAUTHORITY='${XAUTHORITY}'
- 	export TERMWINDOWTITLE="${PN} Kernel Configuration"
--	export SHELLCMDS="bash make menuconfig"
-+	export SHELLCMDS="make menuconfig"
- 	${TERMCMDRUN}
- 	if [ $? -ne 0 ]; then
- 		echo "Fatal: '${TERMCMD}' not found. Check TERMCMD variable."
+
+Adrian Alonso (5):
+  virtex4: add u-boot image to rootfs
+  virtex5: add u-boot image to rootfs
+  u-boot-xilinx: fix missing license definition
+  openssl: Fix files search path
+  linux-xilinx: update kernel version
+
+ conf/machine/virtex4.conf                          |    2 +
+ conf/machine/virtex5.conf                          |    2 +
+ recipes-bsp/uboot/u-boot-xilinx_git.bb             |    6 +-
+ ...enssl-linux-gnueabi-powerpc-configuration.patch |    0
+ .../openssl/openssl_0.9.8p.bbappend                |    5 +-
+ recipes-kernel/linux/linux-xilinx_git.bb           |    8 +-
+ recipes-kernel/linux/linux.inc                     |   95 ++++++++++++++++++++
+ 7 files changed, 109 insertions(+), 9 deletions(-)
+ rename recipes-connectivity/openssl/{openssl-0.9.8p => files}/openssl-linux-gnueabi-powerpc-configuration.patch (100%)
+ create mode 100644 recipes-kernel/linux/linux.inc
+
 -- 
-1.7.0.4
+1.7.4
 
 
