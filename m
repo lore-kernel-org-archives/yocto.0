@@ -1,25 +1,25 @@
 Return-Path: <aalonso@secretlab.ca>
 Received: from mail-qy0-f196.google.com (mail-qy0-f196.google.com
 	[209.85.216.196])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 636E04C80AAF
-	for <yocto@yoctoproject.org>; Tue,  1 Mar 2011 17:18:27 -0600 (CST)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 819634C80AAD
+	for <yocto@yoctoproject.org>; Tue,  1 Mar 2011 17:18:31 -0600 (CST)
 Received: by mail-qy0-f196.google.com with SMTP id 35so718717qyk.11
-	for <yocto@yoctoproject.org>; Tue, 01 Mar 2011 15:18:27 -0800 (PST)
-Received: by 10.229.215.76 with SMTP id hd12mr6000536qcb.125.1299021507025;
-	Tue, 01 Mar 2011 15:18:27 -0800 (PST)
+	for <yocto@yoctoproject.org>; Tue, 01 Mar 2011 15:18:31 -0800 (PST)
+Received: by 10.224.176.67 with SMTP id bd3mr6593137qab.110.1299021511305;
+	Tue, 01 Mar 2011 15:18:31 -0800 (PST)
 Received: from localhost.localdomain
 	(adsl-99-36-28-120.dsl.emhril.sbcglobal.net [99.36.28.120])
-	by mx.google.com with ESMTPS id q12sm4438898qcu.42.2011.03.01.15.18.26
+	by mx.google.com with ESMTPS id t7sm4432033qcs.28.2011.03.01.15.18.30
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 01 Mar 2011 15:18:26 -0800 (PST)
+	Tue, 01 Mar 2011 15:18:30 -0800 (PST)
 From: Adrian Alonso <aalonso@secretlab.ca>
 To: yocto@yoctoproject.org
-Date: Tue,  1 Mar 2011 17:18:25 -0600
-Message-Id: <d65596e8fd90ee5a1e3de9910c47133e724ded3d.1299015730.git.aalonso@secretlab.ca>
+Date: Tue,  1 Mar 2011 17:18:28 -0600
+Message-Id: <aef53d6cf5baf1c52a642e85b9e63662f9350eb2.1299015730.git.aalonso@secretlab.ca>
 X-Mailer: git-send-email 1.7.4
 In-Reply-To: <cover.1299015730.git.aalonso@secretlab.ca>
 References: <cover.1299015730.git.aalonso@secretlab.ca>
-Subject: [PATCH 2/5] virtex5: add u-boot image to rootfs
+Subject: [PATCH 3/5] u-boot-xilinx: fix missing license definition
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,30 +31,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Mar 2011 23:18:27 -0000
+X-List-Received-Date: Tue, 01 Mar 2011 23:18:31 -0000
 
-* Add u-boot image to EXTRA_IMAGEDEPENDS
-  Trigger u-boot elf built and to be exported to hardware
-  project path (see xilinx-boot.bbclass).
+* Fix missing LICENSE definition
+* Update u-boot-xilinx preferred version (sync with xilinx repo).
+* Increase PR
 
 Signed-off-by: Adrian Alonso <aalonso@secretlab.ca>
 ---
- conf/machine/virtex5.conf |    2 ++
- 1 files changed, 2 insertions(+), 0 deletions(-)
+ recipes-bsp/uboot/u-boot-xilinx_git.bb |    6 ++++--
+ 1 files changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/conf/machine/virtex5.conf b/conf/machine/virtex5.conf
-index 232ab6a..b9ea61e 100644
---- a/conf/machine/virtex5.conf
-+++ b/conf/machine/virtex5.conf
-@@ -13,6 +13,8 @@ require conf/machine/include/tune-ppc440.inc
- #ASSUME_PROVIDED += "virtual/kernel"
- PREFERRED_PROVIDER_virtual/kernel = "linux-xilinx"
- PREFERRED_VERSION_u-boot_virtex5 = "u-boot-xilinx"
-+# Add u-boot image
-+EXTRA_IMAGEDEPENDS += "u-boot-xilinx"
+diff --git a/recipes-bsp/uboot/u-boot-xilinx_git.bb b/recipes-bsp/uboot/u-boot-xilinx_git.bb
+index 49f5ad4..2483c4b 100644
+--- a/recipes-bsp/uboot/u-boot-xilinx_git.bb
++++ b/recipes-bsp/uboot/u-boot-xilinx_git.bb
+@@ -1,12 +1,14 @@
+ require recipes-bsp/uboot/u-boot.inc
+-PR = "r7"
++PR = "r8"
+ THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
+ FILESPATH =. "${@base_set_filespath(["${THISDIR}/files"], d)}:"
++LICENSE = "GPLv2+"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=4c6cde5df68eff615d36789dc18edd3b"
  
- KERNEL_IMAGETYPE = "uImage"
- 
+ EXTRA_OEMAKE = "CROSS_COMPILE=${TARGET_PREFIX} OPTFLAGS='-O2'"
+ BRANCH="master"
+-TAG="e094f2479ea339d7f48b6826f06f0be4984d9a98"
++#TAG="e094f2479ea339d7f48b6826f06f0be4984d9a98"
++TAG="d49297009f402a20dd59b21212975dd3d79ee6fd"
+ SRC_URI = "git://git.xilinx.com/u-boot-xlnx.git;branch=${BRANCH};protocol=git \
+            file://uboot-remove-inline-qualifier-from-show_boot_progres.patch \
+            file://ml405-add-uartlite-config-options.patch \
 -- 
 1.7.4
 
