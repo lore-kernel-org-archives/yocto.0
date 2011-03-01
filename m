@@ -1,28 +1,39 @@
-Return-Path: <julie.n.fleischer@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D63094C800A4
-	for <yocto@yoctoproject.org>; Mon, 28 Feb 2011 15:58:56 -0600 (CST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 28 Feb 2011 13:58:56 -0800
+Return-Path: <liping.ke@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C84E94C80546
+	for <yocto@yoctoproject.org>; Mon, 28 Feb 2011 20:04:29 -0600 (CST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 28 Feb 2011 18:04:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.62,242,1297065600"; d="scan'208";a="607433898"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga002.jf.intel.com with ESMTP; 28 Feb 2011 13:58:54 -0800
-Received: from orsmsx506.amr.corp.intel.com ([10.22.226.44]) by
-	orsmsx604.amr.corp.intel.com ([10.250.113.17]) with mapi;
-	Mon, 28 Feb 2011 13:58:53 -0800
-From: "Fleischer, Julie N" <julie.n.fleischer@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 28 Feb 2011 13:58:52 -0800
-Thread-Topic: Yocto Release Tracking Meeting - Tuesday, March 1st 8am Pacific
-Thread-Index: AcvXkq/RPSSysUueSY2c5nU9glyVAw==
-Message-ID: <4F65016F6CB04E49BFFA15D4F7B798D90159286E05@orsmsx506.amr.corp.intel.com>
-Accept-Language: en-US
+X-IronPort-AV: E=Sophos;i="4.62,245,1297065600"; d="scan'208";a="662375239"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by fmsmga002.fm.intel.com with ESMTP; 28 Feb 2011 18:04:29 -0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.254.0; Tue, 1 Mar 2011 10:04:15 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi; Tue, 1 Mar 2011
+	10:03:26 +0800
+From: "Ke, Liping" <liping.ke@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Date: Tue, 1 Mar 2011 10:03:19 +0800
+Thread-Topic: About repo 
+Thread-Index: AcvXtNSNEyNfX34gS5uKnAq7it3WRQ==
+Message-ID: <789F9655DD1B8F43B48D77C5D306597332E26AA1@shsmsx501.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+x-cr-hashedpuzzle: ENk= NOA= BUdT BvTY DPyv DjC9 EQcQ EWD8 EmYQ Ewoo E3xL
+	FALQ GAsv GQNn Ga3f
+	Htoq; 1; eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
+	Sosha1_v1; 7; {14B8AD7E-8751-4FCC-8B42-468F03D9CBD4};
+	bABpAHAAaQBuAGcALgBrAGUAQABpAG4AdABlAGwALgBjAG8AbQA=; Tue,
+	01 Mar 2011 02:03:19 GMT;QQBiAG8AdQB0ACAAcgBlAHAAbwA=
+x-cr-puzzleid: {14B8AD7E-8751-4FCC-8B42-468F03D9CBD4}
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-Subject: Yocto Release Tracking Meeting - Tuesday, March 1st 8am Pacific
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: About repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,27 +45,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Feb 2011 21:58:57 -0000
+X-List-Received-Date: Tue, 01 Mar 2011 02:04:30 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks to those that attended last week's Yocto Release Tracking Meeting!  =
-We'll have another this week.  Details below.
+Hi, Jessica
 
-Time/Date:  Tuesday, March 01, 2011, 08:00 AM US Pacific Time=20
-Dial in:  916-356-2663, Bridge: 1, Passcode: 5857771
+JiaJun told me that RC2 image will soon come out (Hopefully on Wednesday). =
+So my question is that
+When will the repo be ready (With RC2 image). Seems we need to have some fo=
+rmal data for adt-installer testing. I want
+to do a full test asap.
 
-Agenda:
-1) New Introductions (See https://lists.yoctoproject.org/pipermail/yocto/20=
-11-February/001058.html for those already introduced)
-2) Review Yocto 1.0 Release Criteria:  https://wiki.yoctoproject.org/wiki/Y=
-octo_Project_v1.0_Release_Criteria =20
-3) Opens/Risks
-
------------------------
-Julie Fleischer
-Open Source Technology Center
-Intel Corporation
-
+Thanks & regards,
+criping
 
