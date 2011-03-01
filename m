@@ -1,35 +1,24 @@
-Return-Path: <liping.ke@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 228DD4C80546
-	for <yocto@yoctoproject.org>; Mon, 28 Feb 2011 21:04:37 -0600 (CST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 28 Feb 2011 19:04:36 -0800
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C697D4C80546
+	for <yocto@yoctoproject.org>; Tue,  1 Mar 2011 01:37:14 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 28 Feb 2011 23:37:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.62,245,1297065600"; d="scan'208";a="662391279"
-Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
-	by fmsmga002.fm.intel.com with ESMTP; 28 Feb 2011 19:04:36 -0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Tue, 1 Mar 2011 11:04:02 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi; Tue, 1 Mar 2011
-	11:04:01 +0800
-From: "Ke, Liping" <liping.ke@intel.com>
-To: "Ke, Liping" <liping.ke@intel.com>, "Zhang, Jessica"
-	<jessica.zhang@intel.com>
-Date: Tue, 1 Mar 2011 11:03:58 +0800
-Thread-Topic: [yocto] About repo
-Thread-Index: AcvXtNSNEyNfX34gS5uKnAq7it3WRQACGPVg
-Message-ID: <789F9655DD1B8F43B48D77C5D306597332E26B65@shsmsx501.ccr.corp.intel.com>
-References: <789F9655DD1B8F43B48D77C5D306597332E26AA1@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <789F9655DD1B8F43B48D77C5D306597332E26AA1@shsmsx501.ccr.corp.intel.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN, en-US
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="4.62,246,1297065600"; d="scan'208";a="607609070"
+Received: from unknown (HELO [10.255.12.145]) ([10.255.12.145])
+	by orsmga002.jf.intel.com with ESMTP; 28 Feb 2011 23:37:13 -0800
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+In-Reply-To: <1298911243.2429.31.camel@elmorro>
+References: <4D6B0F2C.9080401@intel.com>  <1298879499.2429.15.camel@elmorro>
+	<1298911243.2429.31.camel@elmorro>
+Date: Tue, 01 Mar 2011 01:37:10 -0600
+Message-ID: <1298965030.2429.59.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: About repo
+Subject: Re: Status of release candidate: bernard-1.0rc1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,36 +30,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Mar 2011 03:04:37 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 01 Mar 2011 07:37:15 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Oh, the correct information is that RC2 will be ready @ this weekend.
+On Mon, 2011-02-28 at 10:40 -0600, Tom Zanussi wrote:
+> On Mon, 2011-02-28 at 01:51 -0600, Tom Zanussi wrote:
+> > On Sun, 2011-02-27 at 18:57 -0800, Elizabeth Flanagan wrote:
+> > > Summary
+> > > =======
+> > > 
+> > > This weekend, we generated a release candidate for bernard based on the bernard branch
+> > > of master at commit:
+> > > e08dc5aaaeba61e332caab4a3df5750df6b49ac1
+> > > 
+> > > and for BSPs based on the bernard branch of meta-intel at commit:
+> > > 16f47f04a2baaeaf9b5a9b381fc7a3c7755d6ff6
+> > > 
+> > > Issues seen:
+> > > ===========
+> > > 
+> > > Build Infrastructure issues:
+> > > ----------------------------
+> > > 
+> > > - We had an issue with builder02 running out of disk space, so some of the build
+> > >   copying was done post-build. This did not effect the build and was dealt with
+> > >   manually after cleaning up the partition.
+> > > 
+> > > - There is an issue with how package-index is being run. I will need to sync up
+> > >   with Jessica to verify how this should be incorporated into the build.
+> > > 
+> > > - The sanity tests on builder02 failed because builder02 was unable to resolve
+> > >   "localhost". This has been corrected and the sanity tests re-run incrementally:
+> > >   http://autobuilder.pokylinux.org:8010/builders/nightly-internal-sanity/builds/3
+> > > 
+> > > - The tarball generation buildstep is not branch aware. This will be fixed this week.
+> > >   In the meantime it was run manually.
+> > > 
+> > > 
+> > > Sanity Test Issues:
+> > > ----------------------------
+> > > 
+> > > - zypper-search failed on qemux-x86_64 on poky-image-lsb and poky-image-sato
+> > > 
+> > > 
+> > > Build Issues:
+> > > ----------------------------
+> > > 
+> > > - BSPs did not complete successfully. There were some issue in the actual build mostly centering around:
+> > >    - Failing to do_kernel_checkout
+> > 
+> > There are a couple problems with the jasperforest BSP.  First, the
+> > SRCREVs need updating, which I just submitted a patch for.
+> > 
+> > Even after that, though, there seems to be a problem with the kernel
+> > repo the fetcher is getting.  Even after clearing it out of git2, the
+> > kernel repo that gets fetched into git2 and the build doesn't have the
+> > jasperforest branch.  A manual local clone of linux-yocto-2.6.37 does
+> > contain the branch, though, and pointing the build to the local clone
+> > finds the branch and builds(*) ok.
+> > 
+> > (*) until it gets to compiling perf - at that point it fails since the
+> > branch doesn't yet have the perf compile fix moved from master.
+> > 
+> 
+> The jasperforest branch just got updated, and I just submitted a SRCREV
+> update to use that, which takes care of the perf compile error.
+> 
+> I still see the problem with the the fetcher not getting the current
+> linux-yocto-2.6.37, so it looks like either a problem with the fetcher
+> or some stale cache lodged somewhere.
+> 
 
-Thanks& Regards,
-criping
+Yeah, it looks like stale cache.
+http://autobuilder.yoctoproject.org/sources/git2_git.pokylinux.org.linux-yocto-2.6.37.tar.gz
+doesn't have local branches for yocto/standard/common-pc-64/jasperforest
+or yocto/standard/crownbay.
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Ke, Liping
-> Sent: Tuesday, March 01, 2011 10:03 AM
-> To: Zhang, Jessica
-> Cc: yocto@yoctoproject.org
-> Subject: [yocto] About repo
->=20
-> Hi, Jessica
->=20
-> JiaJun told me that RC2 image will soon come out (Hopefully on
-> Wednesday). So my question is that
-> When will the repo be ready (With RC2 image). Seems we need to have
-> some formal data for adt-installer testing. I want
-> to do a full test asap.
->=20
-> Thanks & regards,
-> criping
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Tom
+
+
+> An interesting related thing is that I also see it with the 2.6.37
+> crownbay branch - a local clone works fine, but in the repo fetched into
+> git2 and the build the crownbay branch is missing, but in that case even
+> though the branch doesn't appear, its commits are actually in the repo
+> e.g. git log <commitid> shows the commits there.
+> 
+> Tom
+> 
+> > Tom
+> > 
+> > >    - Unpack issues around svn://svn.o-hand.com/repos
+> > > 
+> > > - Beagleboard failed doing runstrip on uboot during do_populate_sysroot
+> > > 
+> > > 
+> > > Build statistic:
+> > > ----------------------------
+> > > 	
+> > > Using RP__'s machine as a baseline, our current build stats for poky-image-sato is:
+> > > 
+> > > real	109m52.400s
+> > > user	393m58.840s
+> > > sys	59m25.380s
+> > > 
+> > > Build statistics for nightly-external are available at:
+> > > 
+> > > http://autobuilder.pokylinux.org/nightly/20110226-1/buildstats/buildstats/
+> > > 
+> > > Open Defects:
+> > > ----------------------------
+> > > 
+> > > As of right now we have:
+> > > 76 total open defects targeted for 1.0
+> > > 
+> > > Critical: 0
+> > > High: 14
+> > > Medium: 53
+> > > Low: 7
+> > > Undetermined: 2
+> > > 
+> > > 
+> > > Thanks for all those who helped with this weekends RC generation, especially sgw and RP__
+> > > 
+> > > ------------------
+> > > Elizabeth Flanagan
+> > > Yocto Project
+> > > Release Engineer
+> > > _______________________________________________
+> > > yocto mailing list
+> > > yocto@yoctoproject.org
+> > > https://lists.yoctoproject.org/listinfo/yocto
+> > 
+> 
+
+
 
