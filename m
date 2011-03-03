@@ -1,29 +1,22 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5E0334C80050
-	for <yocto@yoctoproject.org>; Thu,  3 Mar 2011 16:24:46 -0600 (CST)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 156344C800A3
+	for <yocto@yoctoproject.org>; Thu,  3 Mar 2011 16:56:01 -0600 (CST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 03 Mar 2011 14:24:46 -0800
+	by orsmga102.jf.intel.com with ESMTP; 03 Mar 2011 14:56:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.62,260,1297065600"; 
-	d="scan'208,217";a="715888268"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga001.jf.intel.com with ESMTP; 03 Mar 2011 14:23:02 -0800
-Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
-	orsmsx604.amr.corp.intel.com ([10.250.113.17]) with mapi;
-	Thu, 3 Mar 2011 14:23:02 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 3 Mar 2011 14:23:00 -0800
-Thread-Topic: Using the term "Yocto"
-Thread-Index: AcvZ1Gi5VjSiy6nyT6imzAG/wWr7RAAHPcOw
-Message-ID: <DE8BA75F34A0404282AC5E15F691BC76273E7D96@orsmsx504.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+X-IronPort-AV: E=Sophos;i="4.62,260,1297065600"; d="scan'208";a="715901892"
+Received: from eflanaga-mobl.jf.intel.com (HELO [10.7.198.151])
+	([10.7.198.151])
+	by orsmga001.jf.intel.com with ESMTP; 03 Mar 2011 14:56:01 -0800
+Message-ID: <4D701C80.10600@intel.com>
+Date: Thu, 03 Mar 2011 14:56:00 -0800
+From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.13) Gecko/20101208 Thunderbird/3.1.7 ThunderBrowse/3.3.5
 MIME-Version: 1.0
-Subject: Using the term "Yocto"
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [ANNOUNCEMENT] Release of Board Support Packages for Intel Atom Processor E660
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,328 +28,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Mar 2011 22:24:46 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DE8BA75F34A0404282AC5E15F691BC76273E7D96orsmsx504amrcor_"
+X-List-Received-Date: Thu, 03 Mar 2011 22:56:02 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
 
---_000_DE8BA75F34A0404282AC5E15F691BC76273E7D96orsmsx504amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+All,
 
-Hi,
+I am pleased to announce the release of board support packages for systems based on the Intel® Atom(tm) Processor E660
+with Intel® Platform Controller Hub EG20T Development Kit at:
 
-I am sending out this email to stimulate some thought or discussion on the =
-use of the term "Yocto" and "The Yocto Project."
+http://yoctoproject.org/download/board-support-package-bsp-downloads/atom-e660-hub-eg20t
 
-Both terms are used throughout documentation, presentations, blog posts, an=
-d in speaking.  The term "The Yocto Project" is actually trademarked by the=
- Linux Foundation.  And it is a reference to the overall effort around Dave=
- Stewart's group.  Because this term is trademarked its written use needs t=
-o be somewhat standardized.  The term "The Yocto Project" should be used wh=
-enever referring to the effort as a whole.  It could be used as either a no=
-un or an adjective.  Examples:
+This BSP, also known as "Crown Bay", ships as an open system and allows maximum flexibility for changing hardware
+configuration and peripherals.
 
+You can find information about this kit by downloading the PDF document from http://edc.intel.com/Link.aspx?id=3878.
+For information on the Intel® Atom(tm) Processor E660 see http://edc.intel.com/Platforms/Atom-E6xx/.  For general
+information about Board Support Packages, see the Board Support Package (BSP) Developer's Guide at:
 
-*         The Yocto Project is an effort to blah, blah, blah....   (noun)
+http://www.yoctoproject.org/sites/default/files/bsp-guide_7.pdf
 
-*         The Yocto Project Community does blah, blah, blah... (adjective)
+We are releasing two versions of the BSP tarballs. Each tarball contains the meta-crownbay Yocto BSP layer and bootable
+images.
 
-Official announcements, communications, documentation should always use the=
- term "The Yocto Project" when communicating the whole effort.
+The BSP versions available for the Crown Bay are:
 
-What about "Yocto?"  As in "Yocto" this and "Yocto" that....
+- Crown Bay - This tarball is prefixed with the string 'crownbay'. It contains proprietary graphics binaries and
+requires you to agree to a click-through license before you can download it. It is available from:
 
-In more casual situations such as speaking, blog posts, emails it is natura=
-l that the whole effort is going to be referred to as "Yocto."
+https://eula-downloads.yoctoproject.org/crownbay/crownbay-laverne-4.0.1
 
-Care should be used when using "Yocto" as an adjective.  What exactly does =
-"Yocto image" mean?   What is a "Yocto kernel?"  What is "Yocto metadata?"
+- Crown Bay no EMGD - This tarball is prefixed with the string 'crownbay-noemgd'. It does not contain any proprietary
+information. You can download the tarball directly. The BSP uses fully open source generic vesa support.  As such, the
+drivers are not optimized to take full advantage of the hardware as compared to the other BSP tarball. It is available from:
 
-Just some food for thought here....  Comments and discussion welcome.
+http://www.yoctoproject.org/downloads/yocto-0.9/machines/crownbay-noemgd-laverne-4.0.1.tar.bz2
 
-Scott Rifenbark
-Intel Corporation
-Yocto Project Documentation
-503.712.2702
-503.341.0418 (cell)
+For source files for the Crown Bay BSP images see:
+
+http://autobuilder.yoctoproject.org/downloads/yocto-0.9/sources.
 
 
---_000_DE8BA75F34A0404282AC5E15F691BC76273E7D96orsmsx504amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Release Notes
+-------------
+The following known issues exist for this BSP.
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+- BUGID# 725 - During a boot operation you are prompted with the question:
+Found drive at /dev/sda.  Do you want to install poky there ? [y/n] Unrelated text might follow this prompt during the
+install.  You can still see the prompt text but you might have to locate it above the unrelated text.  The actions [y/n]
+are still valid and you need to enter your choice.
 
-<head>
-<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dus-ascii">
-<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
- /* List Definitions */
- @list l0
-	{mso-list-id:769004674;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1792892268 585280962 67698691 67698693 67698689 676=
-98691 67698693 67698689 67698691 67698693;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level2
-	{mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level3
-	{mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level4
-	{mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level5
-	{mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level6
-	{mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level7
-	{mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level8
-	{mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level9
-	{mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
--->
-</style>
-<!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
- </o:shapelayout></xml><![endif]-->
-</head>
+- BUGID# 738 - The icons in the green panel at the top of the screen are missing.  Consequently, the functions that are
+accessible exclusively through that panel, such as switching between open applications and the desktop, do not work.
+You must close an application to get to the desktop.
 
-<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
 
-<div class=3DWordSection1>
+------------------
+Elizabeth Flanagan
+Yocto Project
+Release Engineer
 
-<p class=3DMsoNormal>Hi, <o:p></o:p></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal>I am sending out this email to stimulate some thought =
-or
-discussion on the use of the term &#8220;Yocto&#8221; and &#8220;The Yocto
-Project.&#8221; <o:p></o:p></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal>Both terms are used throughout documentation, presenta=
-tions,
-blog posts, and in speaking.&nbsp; The term &#8220;The Yocto Project&#8221;=
- is
-actually trademarked by the Linux Foundation.&nbsp; And it is a reference t=
-o
-the overall effort around Dave Stewart&#8217;s group.&nbsp; Because this te=
-rm
-is trademarked its written use needs to be somewhat standardized.&nbsp; The
-term &#8220;The Yocto Project&#8221; should be used whenever referring to t=
-he
-effort as a whole.&nbsp; It could be used as either a noun or an
-adjective.&nbsp; Examples:<o:p></o:p></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoListParagraph style=3D'text-indent:-.25in;mso-list:l0 level1 =
-lfo2'><![if !supportLists]><span
-style=3D'font-family:Symbol'><span style=3D'mso-list:Ignore'>&middot;<span
-style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;
-</span></span></span><![endif]>The Yocto Project is an effort to blah, blah=
-,
-blah&#8230;.&nbsp;&nbsp; (noun)<o:p></o:p></p>
-
-<p class=3DMsoListParagraph style=3D'text-indent:-.25in;mso-list:l0 level1 =
-lfo2'><![if !supportLists]><span
-style=3D'font-family:Symbol'><span style=3D'mso-list:Ignore'>&middot;<span
-style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;
-</span></span></span><![endif]>The Yocto Project Community does blah, blah,
-blah&#8230; (adjective) <o:p></o:p></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal>Official announcements, communications, documentation =
-should
-always use the term &#8220;The Yocto Project&#8221; when communicating the
-whole effort.&nbsp; <o:p></o:p></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal>What about &#8220;Yocto?&#8221;&nbsp; As in
-&#8220;Yocto&#8221; this and &#8220;Yocto&#8221; that&#8230;.<o:p></o:p></p=
->
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal>In more casual situations such as speaking, blog posts=
-,
-emails it is natural that the whole effort is going to be referred to as
-&#8220;Yocto.&#8221;&nbsp; <o:p></o:p></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal>Care should be used when using &#8220;Yocto&#8221; as =
-an
-adjective.&nbsp; What exactly does &#8220;Yocto image&#8221; mean?&nbsp;&nb=
-sp;
-What is a &#8220;Yocto kernel?&#8221;&nbsp; What is &#8220;Yocto metadata?&=
-#8221;&nbsp;
-<o:p></o:p></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal>Just some food for thought here&#8230;.&nbsp; Comments=
- and
-discussion welcome.<o:p></o:p></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal><b><span style=3D'font-size:10.0pt;font-family:"Arial"=
-,"sans-serif";
-color:blue'>Scott Rifenbark<o:p></o:p></span></b></p>
-
-<p class=3DMsoNormal><span style=3D'font-size:7.5pt;font-family:"Arial","sa=
-ns-serif";
-color:blue'>Intel Corporation</span><span style=3D'font-size:7.5pt;font-fam=
-ily:
-"Times New Roman","serif"'><o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span style=3D'font-size:7.5pt;font-family:"Arial","sa=
-ns-serif";
-color:blue'>Yocto Project Documentation<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span style=3D'font-size:7.5pt;font-family:"Arial","sa=
-ns-serif";
-color:blue'>503.712.2702</span><span style=3D'font-size:12.0pt;font-family:=
-"Times New Roman","serif"'><o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span style=3D'font-size:7.5pt;font-family:"Arial","sa=
-ns-serif";
-color:blue'>503.341.0418 (cell)</span><span style=3D'font-size:12.0pt;font-=
-family:
-"Times New Roman","serif"'><o:p></o:p></span></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-</div>
-
-</body>
-
-</html>
-
---_000_DE8BA75F34A0404282AC5E15F691BC76273E7D96orsmsx504amrcor_--
