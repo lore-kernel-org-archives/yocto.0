@@ -1,25 +1,25 @@
 Return-Path: <saul.wold@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 0498F4C803BA
-	for <yocto@yoctoproject.org>; Wed,  2 Mar 2011 20:23:59 -0600 (CST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 02 Mar 2011 18:23:59 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B04E44C80050
+	for <yocto@yoctoproject.org>; Wed,  2 Mar 2011 20:45:10 -0600 (CST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 02 Mar 2011 18:45:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.62,256,1297065600"; d="scan'208";a="715462726"
+X-IronPort-AV: E=Sophos;i="4.62,256,1297065600"; d="scan'208";a="608478625"
 Received: from unknown (HELO [10.255.12.102]) ([10.255.12.102])
-	by orsmga001.jf.intel.com with ESMTP; 02 Mar 2011 18:23:59 -0800
-Message-ID: <4D6EFBBE.5040004@intel.com>
-Date: Wed, 02 Mar 2011 18:23:58 -0800
+	by orsmga002.jf.intel.com with ESMTP; 02 Mar 2011 18:45:09 -0800
+Message-ID: <4D6F00B5.2050102@intel.com>
+Date: Wed, 02 Mar 2011 18:45:09 -0800
 From: Saul Wold <saul.wold@intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
 	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
 	Thunderbird/3.0.5
 MIME-Version: 1.0
-To: "Xu, Dongxiao" <dongxiao.xu@intel.com>
-References: <D5AB6E638E5A3E4B8F4406B113A5A19A334FC309@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <D5AB6E638E5A3E4B8F4406B113A5A19A334FC309@shsmsx501.ccr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Could you help to have a look at BUG 660
+To: Adrian Alonso <aalonso@secretlab.ca>
+References: <cover.1299015730.git.aalonso@secretlab.ca>
+In-Reply-To: <cover.1299015730.git.aalonso@secretlab.ca>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/5][PULL] meta-xilinx powerpc bsp
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,46 +31,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Mar 2011 02:24:00 -0000
+X-List-Received-Date: Thu, 03 Mar 2011 02:45:10 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 03/02/2011 05:43 PM, Xu, Dongxiao wrote:
-> Hi Richard and Saul,
+On 03/01/2011 02:30 PM, Adrian Alonso wrote:
+> Several fixes for meta-xilinx powerpc bsp support
 >
-> Could you help to have a review of BUG 660?
->
-> http://bugzilla.pokylinux.org/show_bug.cgi?id=660
->
-> BUG 660 is about missing kernel firmware in poky-image-minimal.
->
-> As from most of the machine configuration files in current poky, including
-> igep0030.conf, "kernel-modules" and "linux-firmware-sd8686" are part of
-> "MACHINE_EXTRA_RRECOMMENDS", like:
->
-> MACHINE_EXTRA_RRECOMMENDS = " kernel-modules linux-firmware-sd8686"
->
-> However for poky-image-minimal, only "MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS" is
-> included. If the kernel module and firmware files are indeed necessary for
-> successful boot, we can add them into minimal image.
->
-> Any comment on that?
+> Pull URL: git://git.pokylinux.org/meta-xilinx.git
+>    Branch: powerpc-support
+>    Browse: http://git.pokylinux.org/cgit.cgi/meta-xilinx/log/?h=powerpc-support
 >
 > Thanks,
-> Dongxiao
+>      Adrian Alonso<aalonso@secretlab.ca>
+> ---
+>
+>
+> Adrian Alonso (5):
+>    virtex4: add u-boot image to rootfs
+>    virtex5: add u-boot image to rootfs
+>    u-boot-xilinx: fix missing license definition
+>    openssl: Fix files search path
+>    linux-xilinx: update kernel version
+>
+>   conf/machine/virtex4.conf                          |    2 +
+>   conf/machine/virtex5.conf                          |    2 +
+>   recipes-bsp/uboot/u-boot-xilinx_git.bb             |    6 +-
+>   ...enssl-linux-gnueabi-powerpc-configuration.patch |    0
+>   .../openssl/openssl_0.9.8p.bbappend                |    5 +-
+>   recipes-kernel/linux/linux-xilinx_git.bb           |    8 +-
+>   recipes-kernel/linux/linux.inc                     |   95 ++++++++++++++++++++
+>   7 files changed, 109 insertions(+), 9 deletions(-)
+>   rename recipes-connectivity/openssl/{openssl-0.9.8p =>  files}/openssl-linux-gnueabi-powerpc-configuration.patch (100%)
+>   create mode 100644 recipes-kernel/linux/linux.inc
+>
+Merged these into meta-xilinx
 
-Dongxiao,
+Thanks
+	Sau!
 
-It seems that the igep machines have been moved to meta-extras now, 
-which is the place for machines that are being depreciated.  If the bug
-is just against igep then we can close this, if there is a more general 
-situation, then firmware files that are required to boot need to be 
-moved to the MACHINE_ESSENTIAL_EXTRA_RRECOMMEDS as that would be the 
-right place.
-
-If you want to fix the meta-extra/igep you can add the 
-MACHINE_ESSENTIAL_EXTRA_RRCOOMENTS instead of MACHINE_EXTRA_RRECOMMEDS?
-
-
-Sau!
 
