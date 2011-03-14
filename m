@@ -1,39 +1,27 @@
-Return-Path: <leon.woestenberg@gmail.com>
-Received: from mail-fx0-f48.google.com (mail-fx0-f48.google.com
-	[209.85.161.48])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 2A5FF4C80A73
-	for <yocto@yoctoproject.org>; Mon, 14 Mar 2011 16:56:33 -0500 (CDT)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by fxm7 with SMTP id 7so4463869fxm.35
-	for <yocto@yoctoproject.org>; Mon, 14 Mar 2011 14:56:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=7VvojZwYvzZ7ksp/MW3TpTPejZ7NZJI8VOqzpEq41+A=;
-	b=b1AgDOFUwtb0unSrnNyMP1nHAQOtqoBzDqXfEsT/NyC1cCeEY97qjNyjSmgVg7vC+/
-	o0w/PGNG/BkNo3lhipYbxeL1LveV3b32YXyd+Cun0MSMN4dcGCib6nTeHiaar+ehHaMJ
-	LeO+zX2H8TKj6BIdJGr6l2wVPU9ohj7CuOgrs=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	b=cfRMsW7nTusP3caUUoFp9uvHpXvj7AAZuWFV+ROEElHAQA6QAvYR7TVR9ZPHRMSJ8s
-	VIrPlREj93vuRy3pnGQcvZRgo8ycK6rovQCwSKwwpqPfki7ICrBrDr06m6nbNU6Om0lC
-	NvRE+gXvmU45dlZBixAdOVImxxxvGmvnox5e8=
-MIME-Version: 1.0
-Received: by 10.223.106.78 with SMTP id w14mr1937651fao.35.1300139783402; Mon,
-	14 Mar 2011 14:56:23 -0700 (PDT)
-Received: by 10.223.156.193 with HTTP; Mon, 14 Mar 2011 14:56:23 -0700 (PDT)
-In-Reply-To: <9AFCD584B0B67B48AE8D8585BE30BA95305E97AD@orsmsx504.amr.corp.intel.com>
-References: <AANLkTi=CS=_V1kd+RzzE6xMLmbd2kFt+6uCJb1JLvJmK@mail.gmail.com>
-	<9AFCD584B0B67B48AE8D8585BE30BA95305E97AD@orsmsx504.amr.corp.intel.com>
-Date: Mon, 14 Mar 2011 21:56:23 +0000
-Message-ID: <AANLkTikyfLoA4LbHpNYvdHuGkskKdXY6yjS6DhUi57zr@mail.gmail.com>
-From: Leon Woestenberg <leon.woestenberg@gmail.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Eclipse plug-in does not detect my target
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6F0144C80AA8
+	for <yocto@yoctoproject.org>; Mon, 14 Mar 2011 18:02:16 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p2EN2FAD008865
+	for <yocto@yoctoproject.org>; Mon, 14 Mar 2011 23:02:15 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP id 08666-03 for <yocto@yoctoproject.org>;
+	Mon, 14 Mar 2011 23:02:11 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p2EN2APV008855
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <yocto@yoctoproject.org>; Mon, 14 Mar 2011 23:02:10 GMT
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: yocto <yocto@yoctoproject.org>
+Date: Mon, 14 Mar 2011 23:02:04 +0000
+Message-ID: <1300143724.30423.727.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Subject: Post 1.0 Feature Planning and Collab Summit/ELC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,25 +33,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Mar 2011 21:56:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 14 Mar 2011 23:02:16 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hello Jessica,
+Hi,
 
-On Sun, Mar 13, 2011 at 12:55 AM, Zhang, Jessica
-<jessica.zhang@intel.com> wrote:
-> Leon Woestenberg wrote:
->> built, I wanted to test the Eclipse plug-in. After selecting Poky Tree
->> mode in the Yocto Tool configuration, I could not make it detect the
->> target; the drop down box remained empty.
->>
-> Did you run "bitbake meta-ide-support", the eclipse plug-in will detect the
-> target architecture based on the environment script file under the toolchain
-> root location, e.g. build/tmp/environment-setup-i586-poky-linux.
->
-No I didn't. I will continue to work on this end of this week. Thanks,
+The Yocto Project is in the final stages of the 1.0 release. This means
+its time to kick off the post 1.0 planning process and see what things
+we think we should be targeting for the release after this.
 
-Regards,
--- 
-Leon
+The various teams involved have been keeping a track of their ideas as
+we went through 1.0 and Julie was kind enough to create a post 1.0 list
+on the wiki based on these ideas:
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.1_Features
+
+(note whilst this says 1.1, the version number is just a working title
+for post 1.0).
+
+There are some general things we're trying to work on in Yocto listed on
+https://wiki.yoctoproject.org/wiki/Yocto_General_Features and also some
+general themes we're considering for the post 1.0 release which are at
+the top of the above features page.
+
+I'd like to invite people from the community to propose ideas.
+Indicating whether its something you'd be prepared to work on yourself
+or would like the project to consider would be helpful.
+
+I'd also like to invite our Yocto partners to look at this list and see
+what they'd add or prioritise and considering putting resources into.
+
+Since its a wiki, people can add to it, or people can reply to this
+email and start a thread for discussion.
+
+On this topic, I'd like to invite interested parties to the Linux
+Foundation Collaboration Summit
+(http://events.linuxfoundation.org/events/collaboration-summit). As well
+as various Yocto partner focused sessions, there will be a Yocto
+specific technical time slot on the agenda for technical discussion
+where I'd be happy to see the community represented (partner's are being
+invited to bring their technical people for that). In that session I'm
+hoping to discuss the post 1.0 plans amongst other topics.
+
+The Embedded Linux Conference is the following week so if you're
+attending that there will be a similar Yocto/OE BoF session there which
+will cover similar topics and you can attend instead if you'll be at
+ELC.
+
+Cheers,
+
+Richard
+
+
+
 
