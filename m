@@ -1,27 +1,28 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 6F0144C80AA8
-	for <yocto@yoctoproject.org>; Mon, 14 Mar 2011 18:02:16 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p2EN2FAD008865
-	for <yocto@yoctoproject.org>; Mon, 14 Mar 2011 23:02:15 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP id 08666-03 for <yocto@yoctoproject.org>;
-	Mon, 14 Mar 2011 23:02:11 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p2EN2APV008855
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
-	for <yocto@yoctoproject.org>; Mon, 14 Mar 2011 23:02:10 GMT
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto <yocto@yoctoproject.org>
-Date: Mon, 14 Mar 2011 23:02:04 +0000
-Message-ID: <1300143724.30423.727.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Subject: Post 1.0 Feature Planning and Collab Summit/ELC
+Return-Path: <julie.n.fleischer@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id DEDA44C80AA8
+	for <yocto@yoctoproject.org>; Mon, 14 Mar 2011 19:07:20 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 14 Mar 2011 17:07:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.62,319,1297065600"; d="scan'208";a="667236966"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by fmsmga002.fm.intel.com with ESMTP; 14 Mar 2011 17:07:20 -0700
+Received: from orsmsx506.amr.corp.intel.com ([10.22.226.44]) by
+	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
+	Mon, 14 Mar 2011 17:07:20 -0700
+From: "Fleischer, Julie N" <julie.n.fleischer@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 14 Mar 2011 17:07:18 -0700
+Thread-Topic: Yocto Release Tracking Meeting - Tuesday, March 15th, 8am Pacific
+Thread-Index: AcvipPKYwDzj33GaQHecF4xK85zGWg==
+Message-ID: <4F65016F6CB04E49BFFA15D4F7B798D901594BA9FC@orsmsx506.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: Yocto Release Tracking Meeting - Tuesday, March 15th, 8am Pacific
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,58 +34,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Mar 2011 23:02:16 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 15 Mar 2011 00:07:21 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+We are entering the final phases of Yocto 1.0 and plan to have another Rele=
+ase Tracking meeting on Tuesday at 8am Pacific (recall that the US just mov=
+ed our clocks forward an hour on Sunday).  Details are below:
 
-The Yocto Project is in the final stages of the 1.0 release. This means
-its time to kick off the post 1.0 planning process and see what things
-we think we should be targeting for the release after this.
+Time/Date:  Tuesday, March 15, 2011, 08:00 AM US Pacific Time=20
+Dial in:  916-356-2663, 8-356-2663, Bridge: 1, Passcode: 7363183
 
-The various teams involved have been keeping a track of their ideas as
-we went through 1.0 and Julie was kind enough to create a post 1.0 list
-on the wiki based on these ideas:
+Agenda:
+1) New Introductions
+2) Review Yocto 1.0 Release Criteria - https://wiki.yoctoproject.org/wiki/Y=
+octo_Project_v1.0_Release_Criteria=20
+3) Opens/Risks
 
-https://wiki.yoctoproject.org/wiki/Yocto_1.1_Features
-
-(note whilst this says 1.1, the version number is just a working title
-for post 1.0).
-
-There are some general things we're trying to work on in Yocto listed on
-https://wiki.yoctoproject.org/wiki/Yocto_General_Features and also some
-general themes we're considering for the post 1.0 release which are at
-the top of the above features page.
-
-I'd like to invite people from the community to propose ideas.
-Indicating whether its something you'd be prepared to work on yourself
-or would like the project to consider would be helpful.
-
-I'd also like to invite our Yocto partners to look at this list and see
-what they'd add or prioritise and considering putting resources into.
-
-Since its a wiki, people can add to it, or people can reply to this
-email and start a thread for discussion.
-
-On this topic, I'd like to invite interested parties to the Linux
-Foundation Collaboration Summit
-(http://events.linuxfoundation.org/events/collaboration-summit). As well
-as various Yocto partner focused sessions, there will be a Yocto
-specific technical time slot on the agenda for technical discussion
-where I'd be happy to see the community represented (partner's are being
-invited to bring their technical people for that). In that session I'm
-hoping to discuss the post 1.0 plans amongst other topics.
-
-The Embedded Linux Conference is the following week so if you're
-attending that there will be a similar Yocto/OE BoF session there which
-will cover similar topics and you can attend instead if you'll be at
-ELC.
-
-Cheers,
-
-Richard
-
-
+-----------------------
+Julie Fleischer
+Open Source Technology Center
+Intel Corporation
 
 
