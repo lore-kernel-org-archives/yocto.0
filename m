@@ -1,34 +1,36 @@
-Return-Path: <julie.n.fleischer@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 1ADAE4C8009D
-	for <yocto@yoctoproject.org>; Tue, 15 Mar 2011 18:00:09 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 15 Mar 2011 16:00:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.63,191,1299484800"; d="scan'208";a="667629705"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga002.fm.intel.com with ESMTP; 15 Mar 2011 16:00:08 -0700
-Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Tue, 15 Mar 2011 16:00:08 -0700
-Received: from orsmsx506.amr.corp.intel.com ([10.22.226.44]) by
-	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi;
-	Tue, 15 Mar 2011 16:00:08 -0700
-From: "Fleischer, Julie N" <julie.n.fleischer@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 15 Mar 2011 16:00:07 -0700
-Thread-Topic: Notes from Release Tracking Meeting
-Thread-Index: AcvjZLqqBXX5785qSnm+2uCJ9hNOew==
-Message-ID: <4F65016F6CB04E49BFFA15D4F7B798D90159543930@orsmsx506.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: Notes from Release Tracking Meeting
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from lo.gmane.org (lo.gmane.org [80.91.229.12])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 57E3C4C805A8
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2011 15:42:52 -0500 (CDT)
+Received: from list by lo.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1PzxYP-0002nH-6u
+	for yocto@yoctoproject.org; Wed, 16 Mar 2011 21:42:49 +0100
+Received: from ppp079166077074.dsl.hol.gr ([79.166.77.74])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2011 21:42:49 +0100
+Received: from gmane by ppp079166077074.dsl.hol.gr with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2011 21:42:49 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Wed, 16 Mar 2011 22:42:29 +0200
+Organization: Reliable Embedded Systems
+Message-ID: <ilr7bm$o0b$1@dough.gmane.org>
+References: <iktkgj$rpj$1@dough.gmane.org>	<4D725AB1.8040309@linux.intel.com>	<4D72DACE.6050209@windriver.com>	<ikvg0j$khm$1@dough.gmane.org>
+	<4D748DD8.5030402@windriver.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@dough.gmane.org
+X-Gmane-NNTP-Posting-Host: ppp079166077074.dsl.hol.gr
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.14) Gecko/20110223 Thunderbird/3.1.8
+In-Reply-To: <4D748DD8.5030402@windriver.com>
+Subject: Re: yocto supported freescale eval boards
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: gmane@reliableembeddedsystems.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -37,47 +39,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Mar 2011 23:00:09 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 16 Mar 2011 20:42:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-All,
-Here are the notes from the March 15th Yocto Release Tracking Meeting.  Fee=
-l free to send on changes/corrections.
-Thanks.
-- Julie
+Hi,
 
-Attendees:  Julie, Tom, Kevin Tian, Dave, Jeff Polk, Qing, Richard, Beth, D=
-arren, Kevin McCombe, Saul, Jessica, Mark
+>>>>
+>>>> We're currently using the following board.
+>>>>
+>>>> http://search.digikey.com/scripts/DkSearch/dksus.dll?PName?Name=MPC8315E-RDBA-ND&Site=US&Lang=EN
+>>>>
 
-See Release Criteria Status at:  https://wiki.yoctoproject.org/wiki/Yocto_P=
-roject_v1.0_Release_Criteria#Yocto_v1.0_Release_Criteria
+Just FYI it looks like this board is not available in Europe from
+Digikey due to U.S. export controls. Some kind of top secret U.S.
+hardware, I guess ;)
 
-General bug status:
-** All bugs need to be fixed by 9am Pacific on March 18th. **
-** ONLY bugs listed on the Release Criteria (or new critical/high items) wi=
-ll be added to Bernard. **
-** Before a fix goes in, Richard, Beth, Saul/Kevin, Jessica, Dave need to a=
-gree the patch can go in. **
-** Team will do daily bug meetings at 7am Pacific and 8pm Pacific. **
+As an alternative solution, which you can actually get in Europe I
+ordered this: http://www.denx-cs.de/?q=mpc8315e-rdb
 
-Action Item:  Beth/Richard will discuss using different directories for Pok=
-y and Poky-lsb.
-Action Item:  Beth/others:  Determine if we can reduce the number of images=
- we build.  (We discussed that images were added at the request of others.)
-Action Item:  All:  If you have /home directories on autobuilder with large=
- files, please remove so Beth has room on autobuilder.
-Action Item:  Tom:  Investigate Crownbay EMGD build issue where it was pick=
-ing up the wrong checksum.  Beth will give Tom info to reproduce.
-Action Item:  Chris:  Send a note to discuss the timing for getting the dem=
-o hardware to ELC.
+No ND at the and, still I hope it's going to work.
 
+Regards,
 
------------------------
-Julie Fleischer
-Open Source Technology Center
-Intel Corporation
+Robert..."The scientific name for an animal that doesn't either run from
+or fight its enemies is lunch." - Michael Friedman
+
+My public pgp key is available at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
 
 
 
