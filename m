@@ -1,28 +1,25 @@
-Return-Path: <Davide.Ricci@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 3BEF54C8009A
-	for <yocto@yoctoproject.org>; Wed, 16 Mar 2011 10:58:46 -0500 (CDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb [147.11.189.41])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p2GFwjom024371
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 16 Mar 2011 08:58:45 -0700 (PDT)
-Received: from ALA-MBB.corp.ad.wrs.com ([169.254.2.25]) by
-	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.01.0255.000;
-	Wed, 16 Mar 2011 08:58:45 -0700
-From: "Ricci, Davide" <Davide.Ricci@windriver.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto 5.0 alpha testing result
-Thread-Index: Acvj8wdtSKdhSTSzS+ibMM7B8Y1RIA==
-Date: Wed, 16 Mar 2011 15:58:45 +0000
-Message-ID: <DBBCC3DE1DCA7648B43EF183746428CD0DF5CD6F@ALA-MBB.corp.ad.wrs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.72.16]
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id E46C84C800A6
+	for <yocto@yoctoproject.org>; Fri, 18 Mar 2011 11:56:45 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 18 Mar 2011 09:56:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.63,206,1299484800"; d="scan'208";a="614758127"
+Received: from unknown (HELO [10.255.12.119]) ([10.255.12.119])
+	by orsmga002.jf.intel.com with ESMTP; 18 Mar 2011 09:56:45 -0700
+Message-ID: <4D838ECD.4030606@linux.intel.com>
+Date: Fri, 18 Mar 2011 09:56:45 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.14) Gecko/20110223 Lightning/1.0b2 Thunderbird/3.1.8
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 18 Mar 2011 11:53:05 -0500
-Cc: "Ta, Lieu" <Lieu.Ta@windriver.com>
-Subject: Yocto 5.0 alpha testing result
+To: Joshua Lock <josh@linux.intel.com>
+References: <cover.1300455727.git.josh@linux.intel.com>
+	<71249ae1f3c337db4c1394697488b6f6d34946fa.1300455727.git.josh@linux.intel.com>
+In-Reply-To: <71249ae1f3c337db4c1394697488b6f6d34946fa.1300455727.git.josh@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/1] emenlow.conf: no need to set PACKAGE_EXTRA_ARCHS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,59 +31,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Mar 2011 15:58:46 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DBBCC3DE1DCA7648B43EF183746428CD0DF5CD6FALAMBBcorpadwrs_"
-
---_000_DBBCC3DE1DCA7648B43EF183746428CD0DF5CD6FALAMBBcorpadwrs_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Able to connect to the git repository and check out 5.0 alpha release.
-
-Had to solve an issue with ncurses recipe which had wrong patch set number.
-
-Build successful - profile "minimal".
-
-Could bring up the target through QEMU and browse filesystem.
-
-No real showstoppers found.
-
-Regards
-Davide
+X-List-Received-Date: Fri, 18 Mar 2011 16:56:46 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
---_000_DBBCC3DE1DCA7648B43EF183746428CD0DF5CD6FALAMBBcorpadwrs_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
 
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
-0;}</style>
-</head>
-<body ocsi=3D"0" fpstyle=3D"1">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">Able to connect to the git repository and check out 5.0 alpha releas=
-e.<br>
-<br>
-Had to solve an issue with ncurses recipe which had wrong patch set number.=
-<br>
-<br>
-Build successful - profile &quot;minimal&quot;.<br>
-<br>
-Could bring up the target through QEMU and browse filesystem.<br>
-<br>
-No real showstoppers found.<br>
-<br>
-Regards<br>
-Davide<br>
-<br>
-</div>
-</body>
-</html>
+On 03/18/2011 06:43 AM, Joshua Lock wrote:
+> From: Joshua Lock<josh@linux.intel.com>
+>
+> x86 and core2 are added to this variable by the tune-atom.inc file
+>
+> Signed-off-by: Joshua Lock<josh@linux.intel.com>
 
---_000_DBBCC3DE1DCA7648B43EF183746428CD0DF5CD6FALAMBBcorpadwrs_--
+Pulling into meta-intel bernard and master, thanks,
+
+> ---
+>   meta-emenlow/conf/machine/emenlow.conf |    1 -
+>   1 files changed, 0 insertions(+), 1 deletions(-)
+>
+> diff --git a/meta-emenlow/conf/machine/emenlow.conf b/meta-emenlow/conf/machine/emenlow.conf
+> index 78fec25..db98706 100644
+> --- a/meta-emenlow/conf/machine/emenlow.conf
+> +++ b/meta-emenlow/conf/machine/emenlow.conf
+> @@ -5,7 +5,6 @@
+>   # Webs-2120 box.
+>
+>   TARGET_ARCH = "i586"
+> -PACKAGE_EXTRA_ARCHS = "x86 core2"
+>
+>   include conf/machine/include/tune-atom.inc
+>
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
+
