@@ -1,30 +1,35 @@
-Return-Path: <simon.li@intel.com>
+Return-Path: <lianhao.lu@intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 182C04C800BA
-	for <yocto@yoctoproject.org>; Mon, 21 Mar 2011 22:48:52 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id A4EB14C800AC
+	for <yocto@yoctoproject.org>; Tue, 22 Mar 2011 05:37:59 -0500 (CDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 21 Mar 2011 20:48:51 -0700
+	by fmsmga102.fm.intel.com with ESMTP; 22 Mar 2011 03:37:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.63,223,1299484800"; 
-	d="scan'208,217";a="899766132"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Mar 2011 20:48:51 -0700
-Received: from pgsmsx507.gar.corp.intel.com ([10.221.43.89]) by
-	pgsmsx601.gar.corp.intel.com ([10.221.43.69]) with mapi;
-	Tue, 22 Mar 2011 11:48:17 +0800
-From: "Li, Simon" <simon.li@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 22 Mar 2011 11:48:16 +0800
+X-IronPort-AV: E=Sophos;i="4.63,224,1299484800"; 
+	d="scan'208,217";a="899882567"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by fmsmga001.fm.intel.com with ESMTP; 22 Mar 2011 03:37:47 -0700
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 22 Mar 2011 18:35:33 +0800
+Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Tue, 22 Mar 2011 18:35:32 +0800
+From: "Lu, Lianhao" <lianhao.lu@intel.com>
+To: "Li, Simon" <simon.li@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Tue, 22 Mar 2011 18:35:30 +0800
 Thread-Topic: where is the Sysroot Location?
-Thread-Index: AcvoQ/pCxCJKunNSSreJbCRFgYbahg==
-Message-ID: <23F1A04A50711046AF124F3D4D1EB2ECB8ACADB0@pgsmsx507.gar.corp.intel.com>
-Accept-Language: en-US
+Thread-Index: AcvoQ/pCxCJKunNSSreJbCRFgYbahgAOGEag
+Message-ID: <C10D3FB0CD45994C8A51FEC1227CE22F22969434D8@shsmsx502.ccr.corp.intel.com>
+References: <23F1A04A50711046AF124F3D4D1EB2ECB8ACADB0@pgsmsx507.gar.corp.intel.com>
+In-Reply-To: <23F1A04A50711046AF124F3D4D1EB2ECB8ACADB0@pgsmsx507.gar.corp.intel.com>
+Accept-Language: zh-CN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 22 Mar 2011 05:21:10 -0500
-Subject: where is the Sysroot Location?
+Subject: Re: where is the Sysroot Location?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,14 +41,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Mar 2011 03:48:52 -0000
+X-List-Received-Date: Tue, 22 Mar 2011 10:38:00 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_23F1A04A50711046AF124F3D4D1EB2ECB8ACADB0pgsmsx507garcor_"
+	boundary="_000_C10D3FB0CD45994C8A51FEC1227CE22F22969434D8shsmsx502ccrc_"
 
---_000_23F1A04A50711046AF124F3D4D1EB2ECB8ACADB0pgsmsx507garcor_
+--_000_C10D3FB0CD45994C8A51FEC1227CE22F22969434D8shsmsx502ccrc_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Hi Simon,
+
+Before using the poky tree mode, you need to run "bitbake meta-ide-support"=
+ within the poky tree in a terminal. The eclipse plug-in needs the output o=
+f that to determine several configuration options for cross compilation.
+
+Best Regards,
+Lianhao
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Li, Simon
+Sent: Tuesday, March 22, 2011 11:48 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] where is the Sysroot Location?
 
 To whom may concern,
 I tried configure the Yocto SDK.
@@ -78,7 +98,7 @@ simon.li@intel.com<mailto:gorden.nieh@intel.com>
 
 
 
---_000_23F1A04A50711046AF124F3D4D1EB2ECB8ACADB0pgsmsx507garcor_
+--_000_C10D3FB0CD45994C8A51FEC1227CE22F22969434D8shsmsx502ccrc_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -94,8 +114,8 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 <!--
  /* Font Definitions */
  @font-face
-	{font-family:PMingLiU;
-	panose-1:2 2 5 0 0 0 0 0 0 0;}
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
@@ -103,8 +123,11 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
 @font-face
-	{font-family:PMingLiU;
-	panose-1:2 2 5 0 0 0 0 0 0 0;}
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
 	{font-family:Verdana;
 	panose-1:2 11 6 4 3 5 4 4 2 4;}
@@ -123,13 +146,17 @@ a:visited, span.MsoHyperlinkFollowed
 	color:purple;
 	text-decoration:underline;}
 span.EmailStyle17
-	{mso-style-type:personal-compose;
+	{mso-style-type:personal;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
 .MsoChpDefault
-	{mso-style-type:export-only;}
- /* Page Definitions */
- @page WordSection1
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
 	{size:612.0pt 792.0pt;
 	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
 div.WordSection1
@@ -144,10 +171,77 @@ div.WordSection1
  </o:shapelayout></xml><![endif]-->
 </head>
 
-<body lang=3DZH-TW link=3Dblue vlink=3Dpurple style=3D'text-justify-trim:pu=
+<body lang=3DZH-CN link=3Dblue vlink=3Dpurple style=3D'text-justify-trim:pu=
 nctuation'>
 
 <div class=3DWordSection1>
+
+<div>
+
+<p class=3DMsoNormal style=3D'text-align:justify;text-justify:inter-ideogra=
+ph'><span
+lang=3DEN-US style=3D'font-size:10.5pt;color:#1F497D'>Hi Simon,<o:p></o:p><=
+/span></p>
+
+<p class=3DMsoNormal style=3D'text-align:justify;text-justify:inter-ideogra=
+ph'><span
+lang=3DEN-US style=3D'font-size:10.5pt;color:#1F497D'><o:p>&nbsp;</o:p></sp=
+an></p>
+
+<p class=3DMsoNormal style=3D'text-align:justify;text-justify:inter-ideogra=
+ph'><span
+lang=3DEN-US style=3D'font-size:10.5pt;color:#1F497D'>Before using the poky=
+ tree
+mode, you need to run &#8220;bitbake meta-ide-support&#8221; within the pok=
+y
+tree in a terminal. The eclipse plug-in needs the output of that to determi=
+ne
+several configuration options for cross compilation.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-align:justify;text-justify:inter-ideogra=
+ph'><span
+lang=3DEN-US style=3D'font-size:10.5pt;color:#1F497D'><o:p>&nbsp;</o:p></sp=
+an></p>
+
+<p class=3DMsoNormal style=3D'text-align:justify;text-justify:inter-ideogra=
+ph'><span
+lang=3DEN-US style=3D'font-size:10.5pt;color:#1F497D'>Best Regards,<o:p></o=
+:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-align:justify;text-justify:inter-ideogra=
+ph'><span
+lang=3DEN-US style=3D'font-size:10.5pt;color:#1F497D'>Lianhao<o:p></o:p></s=
+pan></p>
+
+</div>
+
+<p class=3DMsoNormal><span lang=3DEN-US style=3D'font-size:10.5pt;color:#1F=
+497D'><o:p>&nbsp;</o:p></span></p>
+
+<div style=3D'border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm =
+4.0pt'>
+
+<div>
+
+<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'>
+
+<p class=3DMsoNormal><b><span lang=3DEN-US style=3D'font-size:10.0pt;font-f=
+amily:
+"Tahoma","sans-serif"'>From:</span></b><span lang=3DEN-US style=3D'font-siz=
+e:10.0pt;
+font-family:"Tahoma","sans-serif"'> yocto-bounces@yoctoproject.org
+[mailto:yocto-bounces@yoctoproject.org] <b>On Behalf Of </b>Li, Simon<br>
+<b>Sent:</b> Tuesday, March 22, 2011 11:48 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] where is the Sysroot Location?<o:p></o:p></span></p=
+>
+
+</div>
+
+</div>
+
+<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
 
 <p class=3DMsoNormal><span lang=3DEN-US>To whom may concern,<o:p></o:p></sp=
 an></p>
@@ -170,9 +264,9 @@ Yockto Configuration Error!<o:p></o:p></span></p>
 oot does
 not contain any toolchain yet.<o:p></o:p></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US>Please run &#8220;bitbake meta-ide-=
-support&#8221;
-to build the toolchain.&#8221;<o:p></o:p></span></p>
+<p class=3DMsoNormal><span lang=3DEN-US>Please run &#8220;bitbake
+meta-ide-support&#8221; to build the toolchain.&#8221;<o:p></o:p></span></p=
+>
 
 <p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
 
@@ -235,8 +329,8 @@ lt:auto;
 ize:
   10.0pt;font-family:"Arial","sans-serif";color:blue'>+886-2-2514-4287</spa=
 n><span
-  lang=3DEN-US style=3D'font-family:"&#26032;&#32048;&#26126;&#39636;","ser=
-if"'><o:p></o:p></span></p>
+  lang=3DEN-US style=3D'font-family:"Times New Roman","serif"'><o:p></o:p><=
+/span></p>
   </td>
  </tr>
  <tr>
@@ -257,8 +351,8 @@ lt:auto;
 ize:
   10.0pt;font-family:"Arial","sans-serif";color:blue'>+886-987-303-523</spa=
 n><span
-  lang=3DEN-US style=3D'font-family:"&#26032;&#32048;&#26126;&#39636;","ser=
-if"'><o:p></o:p></span></p>
+  lang=3DEN-US style=3D'font-family:"Times New Roman","serif"'><o:p></o:p><=
+/span></p>
   </td>
  </tr>
  <tr>
@@ -277,11 +371,10 @@ m 5.4pt'>
 lt:auto;
   layout-grid-mode:char'><span lang=3DEN-US style=3D'font-size:10.0pt;font-=
 family:
-  "&#26032;&#32048;&#26126;&#39636;","serif"'><a
-  href=3D"mailto:gorden.nieh@intel.com"><span style=3D'color:blue'>simon.li=
-@intel.com</span></a></span><span
-  lang=3DEN-US style=3D'font-family:"&#26032;&#32048;&#26126;&#39636;","ser=
-if"'><o:p></o:p></span></p>
+  "Times New Roman","serif"'><a href=3D"mailto:gorden.nieh@intel.com">simon=
+.li@intel.com</a></span><span
+  lang=3DEN-US style=3D'font-family:"Times New Roman","serif"'><o:p></o:p><=
+/span></p>
   </td>
  </tr>
 </table>
@@ -292,8 +385,10 @@ if"'><o:p></o:p></span></p>
 
 </div>
 
+</div>
+
 </body>
 
 </html>
 
---_000_23F1A04A50711046AF124F3D4D1EB2ECB8ACADB0pgsmsx507garcor_--
+--_000_C10D3FB0CD45994C8A51FEC1227CE22F22969434D8shsmsx502ccrc_--
