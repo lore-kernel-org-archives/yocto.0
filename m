@@ -1,44 +1,21 @@
-Return-Path: <jpuhlman@gmail.com>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id DD5BB4C802F2
-	for <yocto@yoctoproject.org>; Tue, 22 Mar 2011 12:01:48 -0500 (CDT)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by yxd5 with SMTP id 5so3877301yxd.35
-	for <yocto@yoctoproject.org>; Tue, 22 Mar 2011 10:01:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:message-id:date:from:user-agent:mime-version:to
-	:cc:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=15iBpBYq0YjGThIh+55wfFjl2q4jaXlS4cNg6ZYnoKA=;
-	b=g7AmhABLq1M4dwub9ky0G2FV/jMbg/47HOh1epVPDf34kBGPet7lVa4IBsvLJREApA
-	W1oK8Ds+821Pe4R5iys/br9a5POXJk+/TMEbCpyQRqUTbjyozFfz4EYHvgU7YtDxqN85
-	/FDFPAGJuOLHCHVLd0Vl0FcTqF2FIw91HU1hc=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	b=e1JApycPSkRgivLw9knH7RGWbJ0+iuj0Is1+owL3ukavxJRBPGAZ8EDVAC1mje7Gcz
-	ud09nMNgfsn1dLPkLCuU1HfACIP0pjmfLCBQtxyH5aNykDgZlxLZVcIvZPyw6OfGxi4W
-	ezNtCnQretdkr+p61cXQWDbA+D6BCnS1NNVSY=
-Received: by 10.151.145.18 with SMTP id x18mr64571ybn.133.1300813308359;
-	Tue, 22 Mar 2011 10:01:48 -0700 (PDT)
-Received: from [10.0.10.113] (gateway-1237.mvista.com [206.112.117.35])
-	by mx.google.com with ESMTPS id t12sm3702024ybe.0.2011.03.22.10.01.44
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 22 Mar 2011 10:01:47 -0700 (PDT)
-Message-ID: <4D88D5F6.4020306@gmail.com>
-Date: Tue, 22 Mar 2011 10:01:42 -0700
-From: Jeremy Puhlman <jpuhlman@gmail.com>
-User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US;
-	rv:1.9.2.15) Gecko/20110303 Lightning/1.0b2 Thunderbird/3.1.9
-	ThunderBrowse/3.3.4
-MIME-Version: 1.0
-To: Mark Hatle <mark.hatle@windriver.com>
-References: <C9AE1F25.3EB2F%madison@cisco.com> <4D88D2D0.7050202@windriver.com>
-In-Reply-To: <4D88D2D0.7050202@windriver.com>
-Cc: Yocto Mailer <yocto@yoctoproject.org>
+Return-Path: <josh@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 3A5454C808B6
+	for <yocto@yoctoproject.org>; Tue, 22 Mar 2011 12:02:53 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 22 Mar 2011 10:02:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.63,225,1299484800"; d="scan'208";a="406565064"
+Received: from unknown (HELO [10.255.16.45]) ([10.255.16.45])
+	by azsmga001.ch.intel.com with ESMTP; 22 Mar 2011 10:02:39 -0700
+From: Joshua Lock <josh@linux.intel.com>
+To: yocto@yoctoproject.org
+In-Reply-To: <C9AE1F25.3EB2F%madison@cisco.com>
+References: <C9AE1F25.3EB2F%madison@cisco.com>
+Date: Tue, 22 Mar 2011 16:51:02 +0000
+Message-ID: <1300812662.2793.21.camel@scimitar>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 (2.32.2-1.fc14) 
 Subject: Re: Older versions of Linux as build hosts?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -51,22 +28,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Mar 2011 17:01:49 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 22 Mar 2011 17:02:53 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On 3/22/2011 9:48 AM, Mark Hatle wrote:
-> On 3/22/11 11:40 AM, Matt Madison wrote:
->> Hi,
->>
-> I have done builds with both RHEL 4 and RHEL 5.  Both on machines in which I do
-> not have root access.
->
-> For me I was able to simply provide an update python, some additional tools and
-> it worked.  (Note, I haven't tried it in the last 2 months though, so something
-> may have broken since then.)
+On Tue, 2011-03-22 at 09:40 -0700, Matt Madison wrote:
+> Hi,
+> 
+> I know the documentation mentions that you should be running a
+> “reasonably current” Linux as your build host, but in my enterprise
+> environment I’m stuck with having to run fairly old versions, based on
+> RHEL 4 and 5.  I’ve got some patches that I’ve been maintaining so I
+> can bootstrap Bernard builds on these systems.  Is there any interest
+> in supporting older systems as build hosts?  Any thoughts on how far
+> back “reasonably current” is going to be with each Yocto release?  I’m
+> trying to work with my IT group to upgrade a bit more frequently, and
+> for developer workstations, that might be possible, but I’m not sure
+> I’ll be able to convince them to do that for servers in our data
+> centers.
+> 
+> Is anyone else having this kind of problem?
 
-I have noticed of late, pseudo's definition of clone conflicts with my
-RHEL 4's definition of clone. Aside
-from that I haven't noticed any significant issues.
+We have other users suffering with this sort of problem which is why
+Richard worked to enable Poky to build an external Python tarball.
+This tarball should include what you need (Python + chrpath) to run Poky
+on RHEL: http://autobuilder.yoctoproject.org/downloads/miscsupport/
+
+I documented this for CentOS on the Yocto wiki:
+https://wiki.yoctoproject.org/wiki/Poky/GettingStarted/Dependencies
+
+Regards,
+Joshua
+-- 
+Joshua Lock
+        Yocto Build System Monkey
+        Intel Open Source Technology Centre
+
 
