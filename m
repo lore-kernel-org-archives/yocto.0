@@ -1,32 +1,43 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 16FA84C800BB
-	for <yocto@yoctoproject.org>; Tue, 22 Mar 2011 12:00:42 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 22 Mar 2011 10:00:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.63,225,1299484800"; d="scan'208";a="900044561"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga001.fm.intel.com with ESMTP; 22 Mar 2011 10:00:18 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 22 Mar 2011 10:00:17 -0700
-Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
-	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
-	Tue, 22 Mar 2011 10:00:17 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Mark Hatle <mark.hatle@windriver.com>, Matt Madison <madison@cisco.com>
-Date: Tue, 22 Mar 2011 10:00:13 -0700
-Thread-Topic: [yocto] Older versions of Linux as build hosts?
-Thread-Index: AcvosPeBWjAn0ceaTYWqBoK/lj6xagAAWnEQ
-Message-ID: <DE8BA75F34A0404282AC5E15F691BC765074554D@orsmsx504.amr.corp.intel.com>
+Return-Path: <jpuhlman@gmail.com>
+Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
+	[209.85.213.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id DD5BB4C802F2
+	for <yocto@yoctoproject.org>; Tue, 22 Mar 2011 12:01:48 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by yxd5 with SMTP id 5so3877301yxd.35
+	for <yocto@yoctoproject.org>; Tue, 22 Mar 2011 10:01:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:message-id:date:from:user-agent:mime-version:to
+	:cc:subject:references:in-reply-to:content-type
+	:content-transfer-encoding;
+	bh=15iBpBYq0YjGThIh+55wfFjl2q4jaXlS4cNg6ZYnoKA=;
+	b=g7AmhABLq1M4dwub9ky0G2FV/jMbg/47HOh1epVPDf34kBGPet7lVa4IBsvLJREApA
+	W1oK8Ds+821Pe4R5iys/br9a5POXJk+/TMEbCpyQRqUTbjyozFfz4EYHvgU7YtDxqN85
+	/FDFPAGJuOLHCHVLd0Vl0FcTqF2FIw91HU1hc=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	b=e1JApycPSkRgivLw9knH7RGWbJ0+iuj0Is1+owL3ukavxJRBPGAZ8EDVAC1mje7Gcz
+	ud09nMNgfsn1dLPkLCuU1HfACIP0pjmfLCBQtxyH5aNykDgZlxLZVcIvZPyw6OfGxi4W
+	ezNtCnQretdkr+p61cXQWDbA+D6BCnS1NNVSY=
+Received: by 10.151.145.18 with SMTP id x18mr64571ybn.133.1300813308359;
+	Tue, 22 Mar 2011 10:01:48 -0700 (PDT)
+Received: from [10.0.10.113] (gateway-1237.mvista.com [206.112.117.35])
+	by mx.google.com with ESMTPS id t12sm3702024ybe.0.2011.03.22.10.01.44
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 22 Mar 2011 10:01:47 -0700 (PDT)
+Message-ID: <4D88D5F6.4020306@gmail.com>
+Date: Tue, 22 Mar 2011 10:01:42 -0700
+From: Jeremy Puhlman <jpuhlman@gmail.com>
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US;
+	rv:1.9.2.15) Gecko/20110303 Lightning/1.0b2 Thunderbird/3.1.9
+	ThunderBrowse/3.3.4
+MIME-Version: 1.0
+To: Mark Hatle <mark.hatle@windriver.com>
 References: <C9AE1F25.3EB2F%madison@cisco.com> <4D88D2D0.7050202@windriver.com>
 In-Reply-To: <4D88D2D0.7050202@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
 Cc: Yocto Mailer <yocto@yoctoproject.org>
 Subject: Re: Older versions of Linux as build hosts?
 X-BeenThere: yocto@yoctoproject.org
@@ -40,90 +51,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Mar 2011 17:00:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 22 Mar 2011 17:01:49 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-Yes - the wiki is a great place for this type of information.  All the spec=
-ifics for a particular build system and the steps you have to take to make =
-it work can be collected there.  Then from the Quick Start we can mention w=
-here to get support information for older versions.
+On 3/22/2011 9:48 AM, Mark Hatle wrote:
+> On 3/22/11 11:40 AM, Matt Madison wrote:
+>> Hi,
+>>
+> I have done builds with both RHEL 4 and RHEL 5.  Both on machines in which I do
+> not have root access.
+>
+> For me I was able to simply provide an update python, some additional tools and
+> it worked.  (Note, I haven't tried it in the last 2 months though, so something
+> may have broken since then.)
 
-ScottR
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Mark Hatle
-Sent: Tuesday, March 22, 2011 9:48 AM
-To: Matt Madison
-Cc: Yocto Mailer
-Subject: Re: [yocto] Older versions of Linux as build hosts?
-
-On 3/22/11 11:40 AM, Matt Madison wrote:
-> Hi,
->=20
-
-I have done builds with both RHEL 4 and RHEL 5.  Both on machines in which =
-I do
-not have root access.
-
-For me I was able to simply provide an update python, some additional tools=
- and
-it worked.  (Note, I haven't tried it in the last 2 months though, so somet=
-hing
-may have broken since then.)
-
-> I know the documentation mentions that you should be running a "reasonabl=
-y
-> current" Linux as your build host, but in my enterprise environment I'm s=
-tuck
-> with having to run fairly old versions, based on RHEL 4 and 5.  I've got =
-some
-> patches that I've been maintaining so I can bootstrap Bernard builds on t=
-hese
-> systems.  Is there any interest in supporting older systems as build host=
-s?  Any
-> thoughts on how far back "reasonably current" is going to be with each Yo=
-cto
-> release?  I'm trying to work with my IT group to upgrade a bit more frequ=
-ently,
-> and for developer workstations, that might be possible, but I'm not sure =
-I'll be
-> able to convince them to do that for servers in our data centers.
->=20
-> Is anyone else having this kind of problem?
-
-I think this is a fairly typical problem.  In my experience it's usually ea=
-sier
-to solve in a commercial space then pure open source.
-
-As for the question about interest, we're always interested in patches.  At=
- a
-minimum, it would be nice to document what steps you had to do and what pat=
-ches
-you may have had to apply in order to get "unsupported" functionality out o=
-f the
-build environment.  The yocto wiki seems a fairly natural place for this.
-
-So please send what you have, or start an account on the Yocto Wiki and pos=
-t it
-there.
-
---Mark
-
-> Thanks,
-> -Matt
->=20
->=20
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+I have noticed of late, pseudo's definition of clone conflicts with my
+RHEL 4's definition of clone. Aside
+from that I haven't noticed any significant issues.
 
