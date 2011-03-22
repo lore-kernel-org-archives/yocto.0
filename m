@@ -1,36 +1,31 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from lo.gmane.org (lo.gmane.org [80.91.229.12])
-	by mx1.pokylinux.org (Postfix) with ESMTP id DB30C4C80050
-	for <yocto@yoctoproject.org>; Tue, 22 Mar 2011 18:24:38 -0500 (CDT)
-Received: from list by lo.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Q2AwC-0008Ug-3A
-	for yocto@yoctoproject.org; Wed, 23 Mar 2011 00:24:32 +0100
-Received: from ppp079166106245.dsl.hol.gr ([79.166.106.245])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 23 Mar 2011 00:24:32 +0100
-Received: from gmane by ppp079166106245.dsl.hol.gr with local (Gmexim 0.1
-	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 23 Mar 2011 00:24:32 +0100
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Wed, 23 Mar 2011 01:24:15 +0200
-Organization: Reliable Embedded Systems
-Message-ID: <imbb30$tpv$1@dough.gmane.org>
-References: <imb3jt$jfn$1@dough.gmane.org> <imb6k0$551$1@dough.gmane.org>
-	<4D892A65.9050603@intel.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@dough.gmane.org
-X-Gmane-NNTP-Posting-Host: ppp079166106245.dsl.hol.gr
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.14) Gecko/20110223 Thunderbird/3.1.8
-In-Reply-To: <4D892A65.9050603@intel.com>
-Subject: Re: build failure 2 - poky-image-lsb-sdk-beagleboard with bernard-5.0
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id EB0094C802F2
+	for <yocto@yoctoproject.org>; Tue, 22 Mar 2011 18:24:54 -0500 (CDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p2MNOrVq010515
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 22 Mar 2011 16:24:53 -0700 (PDT)
+Received: from Macintosh-5.local (172.25.36.233) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.1.255.0;
+	Tue, 22 Mar 2011 16:24:53 -0700
+Message-ID: <4D892FC3.1010306@windriver.com>
+Date: Tue, 22 Mar 2011 18:24:51 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.15) Gecko/20110303 Thunderbird/3.1.9
+MIME-Version: 1.0
+To: Jeremy Puhlman <jpuhlman@gmail.com>
+References: <C9AE1F25.3EB2F%madison@cisco.com>
+	<4D88D2D0.7050202@windriver.com> <4D88D5F6.4020306@gmail.com>
+In-Reply-To: <4D88D5F6.4020306@gmail.com>
+X-Originating-IP: [172.25.36.233]
+Cc: Yocto Mailer <yocto@yoctoproject.org>
+Subject: Re: Older versions of Linux as build hosts?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: gmane@reliableembeddedsystems.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -39,36 +34,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Mar 2011 23:24:39 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 22 Mar 2011 23:24:55 -0000
+Content-Type: text/plain; charset="windows-1252"
 Content-Transfer-Encoding: 7bit
 
-Hi Scott,
-
-On 03/23/2011 01:01 AM, Scott Garman wrote:
+On 3/22/11 12:01 PM, Jeremy Puhlman wrote:
+> On 3/22/2011 9:48 AM, Mark Hatle wrote:
+>> On 3/22/11 11:40 AM, Matt Madison wrote:
+>>> Hi,
+>>>
+>> I have done builds with both RHEL 4 and RHEL 5.  Both on machines in which I do
+>> not have root access.
+>>
+>> For me I was able to simply provide an update python, some additional tools and
+>> it worked.  (Note, I haven't tried it in the last 2 months though, so something
+>> may have broken since then.)
 > 
-> Hi Robert,
-> 
-> Could you please report this in our bugzilla? I seem to recall running
-> into something like this too.
-> 
-> http://bugzilla.pokylinux.org
-> 
+> I have noticed of late, pseudo's definition of clone conflicts with my
+> RHEL 4's definition of clone. Aside
+> from that I haven't noticed any significant issues.
 
-http://bugzilla.pokylinux.org/show_bug.cgi?id=924
+semantics of clone changed between RHEL 4 and RHEL 5.  :(
 
-> Thanks,
-> 
-> Scott
-> 
+The newer version of pseudo (upstream, not yet in Poky) fixes this issue.
 
-Regards,
+It's still in development, so I wouldn't consider it stable yet -- but the
+reworking of the utility directories is what was needed to identify the differences.
 
-Robert...Distributed computing means that you cannot get your work done
-when some computer you never heard of crashes" -- L.Lamport
-
-My public pgp key is available at:
-http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
-
-
+--Mark
 
