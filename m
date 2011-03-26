@@ -1,34 +1,33 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id E202A4C800B7
-	for <yocto@yoctoproject.org>; Fri, 25 Mar 2011 15:43:29 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 25 Mar 2011 13:43:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.63,245,1299484800"; d="scan'208";a="725231607"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by orsmga001.jf.intel.com with ESMTP; 25 Mar 2011 13:43:28 -0700
-Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
-	orsmsx603.amr.corp.intel.com ([10.22.226.49]) with mapi;
-	Fri, 25 Mar 2011 13:43:27 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>, yocto
-	<yocto@yoctoproject.org>
-Date: Fri, 25 Mar 2011 13:43:26 -0700
-Thread-Topic: [yocto] Post 1.0 Feature Planning and Collab Summit/ELC
-Thread-Index: Acvim+NC8/wsYSawQU+jdI6S26iDtAIkUDgw
-Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25DBD694ED@orsmsx501.amr.corp.intel.com>
-References: <1300143724.30423.727.camel@rex>
-In-Reply-To: <1300143724.30423.727.camel@rex>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: Re: Post 1.0 Feature Planning and Collab Summit/ELC
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from lo.gmane.org (lo.gmane.org [80.91.229.12])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 5BBB54C800A6
+	for <yocto@yoctoproject.org>; Sat, 26 Mar 2011 10:53:52 -0500 (CDT)
+Received: from list by lo.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Q3VoB-0006ZB-WC
+	for yocto@yoctoproject.org; Sat, 26 Mar 2011 16:53:48 +0100
+Received: from ppp079166103136.dsl.hol.gr ([79.166.103.136])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sat, 26 Mar 2011 16:53:47 +0100
+Received: from gmane by ppp079166103136.dsl.hol.gr with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sat, 26 Mar 2011 16:53:47 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Sat, 26 Mar 2011 17:53:28 +0200
+Organization: Reliable Embedded Systems
+Message-ID: <iml25p$l8j$1@dough.gmane.org>
+Mime-Version: 1.0
+X-Complaints-To: usenet@dough.gmane.org
+X-Gmane-NNTP-Posting-Host: ppp079166103136.dsl.hol.gr
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.14) Gecko/20110223 Thunderbird/3.1.8
+Subject: internal compiler error with qt building poky-image-lsb-sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: gmane@reliableembeddedsystems.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -37,73 +36,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Mar 2011 20:43:30 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 26 Mar 2011 15:53:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-All - a gentle reminder - we would like to get your input by April 4, so we=
- have some time to think about it before the Collab Summit later in the wee=
-k.  Thanks!
+Hi,
 
-Dave
+The short version:
 
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Richard Purdie
->Sent: Monday, March 14, 2011 4:02 PM
->
->Hi,
->
->The Yocto Project is in the final stages of the 1.0 release. This means
->its time to kick off the post 1.0 planning process and see what things
->we think we should be targeting for the release after this.
->
->The various teams involved have been keeping a track of their ideas as
->we went through 1.0 and Julie was kind enough to create a post 1.0 list
->on the wiki based on these ideas:
->
->https://wiki.yoctoproject.org/wiki/Yocto_1.1_Features
->
->(note whilst this says 1.1, the version number is just a working title
->for post 1.0).
->
->There are some general things we're trying to work on in Yocto listed on
->https://wiki.yoctoproject.org/wiki/Yocto_General_Features and also some
->general themes we're considering for the post 1.0 release which are at
->the top of the above features page.
->
->I'd like to invite people from the community to propose ideas.
->Indicating whether its something you'd be prepared to work on yourself
->or would like the project to consider would be helpful.
->
->I'd also like to invite our Yocto partners to look at this list and see
->what they'd add or prioritise and considering putting resources into.
->
->Since its a wiki, people can add to it, or people can reply to this
->email and start a thread for discussion.
->
->On this topic, I'd like to invite interested parties to the Linux
->Foundation Collaboration Summit
->(http://events.linuxfoundation.org/events/collaboration-summit). As well
->as various Yocto partner focused sessions, there will be a Yocto
->specific technical time slot on the agenda for technical discussion
->where I'd be happy to see the community represented (partner's are being
->invited to bring their technical people for that). In that session I'm
->hoping to discuss the post 1.0 plans amongst other topics.
->
->The Embedded Linux Conference is the following week so if you're
->attending that there will be a similar Yocto/OE BoF session there which
->will cover similar topics and you can attend instead if you'll be at
->ELC.
->
->Cheers,
->
->Richard
->
->
->
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+With commit f8539239bc473279cc475b07c22e1e96514c6d2f Thu Mar 24 13:03:50
+2011 +0000 both beagleboard and routerstationpro fail to build due to an
+internal compiler error:
+
+../../include/QtCore/../../src/corelib/tools/qstring.h:187:17: note: the
+mangling of 'va_list' has changed in GCC 4.4
+graphicsview/qgridlayoutengine.cpp:1553:1: internal compiler error: in
+build_abbrev_table, at dwarf2out.c:9806
+
+This seems to be due to the gcc version used and how the code is written
+in qt.
+
+The longer version:
+
+http://bugzilla.pokylinux.org/show_bug.cgi?id=932
+
+Regards,
+
+Robert..."C treats you like a consenting adult. Pascal treats you like a
+naughty child. Ada treats you like a criminal." -- (Bruce Powel Douglass)
+
+My public pgp key is available at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
+
+
 
