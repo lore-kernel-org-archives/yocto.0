@@ -1,50 +1,36 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-px0-f169.google.com (mail-px0-f169.google.com
-	[209.85.212.169])
-	by mx1.pokylinux.org (Postfix) with ESMTP id BA5074C800B8
-	for <yocto@yoctoproject.org>; Sun, 27 Mar 2011 00:31:41 -0500 (CDT)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by pxi9 with SMTP id 9so480057pxi.28
-	for <yocto@yoctoproject.org>; Sat, 26 Mar 2011 22:31:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:date:from:to:cc:subject:message-id
-	:mail-followup-to:references:mime-version:content-type
-	:content-disposition:in-reply-to:user-agent;
-	bh=uVagxyNGgdxhHwaJ4zAlG8+M2C6hl6n5+Dng++PhgIw=;
-	b=QzBLEpc5adnDkiVW/+/hcNFLzU3pXqc9+T6H9zYtyIFXs9q5HG0of1DLX7hsM6mvo5
-	MsVVjulcXStvf8TyQg+z23f1T4yAlMb8bpKkPFbp5q6RQoJrKAKfzcxLwH/FBhJuS9bj
-	lnZolUFE+baMMTYHpgF2PP6VfneAH9dnAVHQY=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=date:from:to:cc:subject:message-id:mail-followup-to:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	b=FHdT0mQJm6XfEVA65EdzN99PWpMgifcubpmvNgW1Klvv1Qwcffa6xU9DDF3rVrWHsC
-	5ZyOXplmdtSgqh1I4Oeieka+sEHuD2Myf4dnC1DpFGnhJKMiAWwQn3kcn2j7cQRz31gw
-	8gq+dE2O8V/ZEfW3tcu0BG6abABoqcGkG6AcU=
-Received: by 10.143.87.3 with SMTP id p3mr2357612wfl.153.1301203901203;
-	Sat, 26 Mar 2011 22:31:41 -0700 (PDT)
-Received: from sakrah.homelinux.org
-	(99-57-141-118.lightspeed.sntcca.sbcglobal.net [99.57.141.118])
-	by mx.google.com with ESMTPS id s41sm3886112wfc.15.2011.03.26.22.31.38
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 26 Mar 2011 22:31:39 -0700 (PDT)
-Date: Sat, 26 Mar 2011 22:32:22 -0700
-From: Khem Raj <raj.khem@gmail.com>
-To: Robert Berger <gmane@reliableembeddedsystems.com>
-Message-ID: <20110327053222.GA22396@sakrah.homelinux.org>
-Mail-Followup-To: Robert Berger <gmane@reliableembeddedsystems.com>,
-	yocto@yoctoproject.org
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from lo.gmane.org (lo.gmane.org [80.91.229.12])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 0ECB44C800BA
+	for <yocto@yoctoproject.org>; Sun, 27 Mar 2011 07:22:16 -0500 (CDT)
+Received: from list by lo.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Q3oyx-0008E4-9K
+	for yocto@yoctoproject.org; Sun, 27 Mar 2011 14:22:11 +0200
+Received: from host-82-135-33-74.customer.m-online.net ([82.135.33.74])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sun, 27 Mar 2011 14:22:11 +0200
+Received: from gmane by host-82-135-33-74.customer.m-online.net with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sun, 27 Mar 2011 14:22:11 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Sun, 27 Mar 2011 15:21:58 +0300
+Organization: Reliable Embedded Systems
+Message-ID: <imna56$d09$1@dough.gmane.org>
 References: <iml25p$l8j$1@dough.gmane.org>
-MIME-Version: 1.0
-In-Reply-To: <iml25p$l8j$1@dough.gmane.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: yocto@yoctoproject.org
+	<20110327053222.GA22396@sakrah.homelinux.org>
+Mime-Version: 1.0
+X-Complaints-To: usenet@dough.gmane.org
+X-Gmane-NNTP-Posting-Host: host-82-135-33-74.customer.m-online.net
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.14) Gecko/20110223 Thunderbird/3.1.8
+In-Reply-To: <20110327053222.GA22396@sakrah.homelinux.org>
 Subject: Re: internal compiler error with qt building poky-image-lsb-sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: gmane@reliableembeddedsystems.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -53,28 +39,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 27 Mar 2011 05:31:42 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Sun, 27 Mar 2011 12:22:17 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On (26/03/11 17:53), Robert Berger wrote:
-> Hi,
+Hi Khem,
+
+On 03/27/2011 08:32 AM, Khem Raj wrote:
+> On (26/03/11 17:53), Robert Berger wrote:
+>> Hi,
+>>
+>> The short version:
+>>
+>> With commit f8539239bc473279cc475b07c22e1e96514c6d2f Thu Mar 24 13:03:50
+>> 2011 +0000 both beagleboard and routerstationpro fail to build due to an
+>> internal compiler error:
+>>
+>> ../../include/QtCore/../../src/corelib/tools/qstring.h:187:17: note: the
+>> mangling of 'va_list' has changed in GCC 4.4
+>> graphicsview/qgridlayoutengine.cpp:1553:1: internal compiler error: in
+>> build_abbrev_table, at dwarf2out.c:9806
 > 
-> The short version:
+> Can you try after addding the following to the failing recipe with 
 > 
-> With commit f8539239bc473279cc475b07c22e1e96514c6d2f Thu Mar 24 13:03:50
-> 2011 +0000 both beagleboard and routerstationpro fail to build due to an
-> internal compiler error:
+> CXXFLAGS := "${@oe_filter_out('-feliminate-dwarf2-dups', '${CXXFLAGS}',
+> d)}"
+
+I'm sorry I can't try right now, since I'm out of office for a week and
+training people in Embedded Linux ;)
+
+I can give it a try earliest in the week of 3rd of April.
+
+Maybe someone else could try in the meantime. It's really easy to reproduce.
+*) Just check out the latest from git
+*) build poky-image-lsb-sdk for beagleboard
+
+... and wait some hours ...
+
+Regards,
+
+Robert
+
 > 
-> ../../include/QtCore/../../src/corelib/tools/qstring.h:187:17: note: the
-> mangling of 'va_list' has changed in GCC 4.4
-> graphicsview/qgridlayoutengine.cpp:1553:1: internal compiler error: in
-> build_abbrev_table, at dwarf2out.c:9806
+> -Khem
 
-Can you try after addding the following to the failing recipe with 
+..."At Group L, Stoffel oversees six first-rate programmers, a
+managerial challenge roughly comparable to herding cats." - The
+Washington Post Magazine, June 9, 1985
 
-CXXFLAGS := "${@oe_filter_out('-feliminate-dwarf2-dups', '${CXXFLAGS}',
-d)}"
+My public pgp key is available at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
 
--Khem
+
 
