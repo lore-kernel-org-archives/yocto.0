@@ -1,25 +1,22 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 0D7E24C804D9
-	for <yocto@yoctoproject.org>; Wed, 30 Mar 2011 11:10:46 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 30 Mar 2011 09:08:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.63,269,1299484800"; d="scan'208";a="727012305"
-Received: from unknown (HELO [10.7.199.155]) ([10.7.199.155])
-	by orsmga001.jf.intel.com with ESMTP; 30 Mar 2011 09:08:22 -0700
-Message-ID: <4D935575.1050501@linux.intel.com>
-Date: Wed, 30 Mar 2011 09:08:21 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.14) Gecko/20110223 Lightning/1.0b2 Thunderbird/3.1.8
-MIME-Version: 1.0
-To: Yury Bushmelev <jay4mail@gmail.com>
-References: <4D90BC7D.4090108@linux.intel.com>
-	<BANLkTi=Nc31v4K3AcL54X4aFYLmcCMeBvw@mail.gmail.com>
-In-Reply-To: <BANLkTi=Nc31v4K3AcL54X4aFYLmcCMeBvw@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: RFC: newbies and janitors
+Return-Path: <bruce.ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 894FB4C8085F;
+	Wed, 30 Mar 2011 15:53:15 -0500 (CDT)
+Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
+	[128.224.146.167])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p2UKqiac007446;
+	Wed, 30 Mar 2011 13:52:46 -0700 (PDT)
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+To: richard.purdie@linuxfoundation.org
+Date: Wed, 30 Mar 2011 16:53:17 -0400
+Message-Id: <3596f8420135f2bdbff81390cedf4a8d9a895670.1301518292.git.bruce.ashfield@windriver.com>
+X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <cover.1301518292.git.bruce.ashfield@windriver.com>
+References: <cover.1301518292.git.bruce.ashfield@windriver.com>
+In-Reply-To: <cover.1301518292.git.bruce.ashfield@windriver.com>
+References: <cover.1301518292.git.bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org, poky@yoctoproject.org
+Subject: [PATCH 1/1] linux-yocto/crownbay: update configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,36 +28,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Mar 2011 16:10:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 30 Mar 2011 20:53:15 -0000
 
+The crownbay has been updated for 2.6.37, the BSP branch
+already contans the changes, and this is the update of meta
+to the new config values:
 
+  crownbay: update eg20t config
+  crownbay: set cpu type to MATOM
 
-On 03/28/2011 04:29 PM, Yury Bushmelev wrote:
-> 2011/3/28 Darren Hart<dvhart@linux.intel.com>:
->> The Yocto Project is a complex thing, and people eager to get involved can
->> have a difficult time sorting out where to start. The Linux kernel community
->> put together kernelnewbies and kerneljanitors to help people get up to speed
->> and provide them with manageable tasks to get them started.
->>
->> I think we have (or should have) the "newbies" side of things covered with
->> #yocto #poky and the website and the various manuals and documentation
->> projects, but I think something like "janitors" would be valuable. This
->> could be something as simple as a tag for bugzilla bugs appropriate for
->> newcomers go after.
->>
->> I imagine this is something we could share with OE - or perhaps OE already
->> has something that serves this purpose - or could be extended to do so.
->
-> We (OE) have wiki page (slightly outdated) with some janitor tasks:
-> http://openembedded.org/index.php/OpenEmbeddedJanitors
+Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+---
+ .../conf/distro/include/poky-default-revisions.inc |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-Great, this is the idea. It's a pretty sparse list, and could do with 
-some fleshing out.
-
+diff --git a/meta/conf/distro/include/poky-default-revisions.inc b/meta/conf/distro/include/poky-default-revisions.inc
+index 98db029..245e0d2 100644
+--- a/meta/conf/distro/include/poky-default-revisions.inc
++++ b/meta/conf/distro/include/poky-default-revisions.inc
+@@ -108,7 +108,7 @@ SRCREV_machine_pn-linux-yocto_atom-pc ?= "69cfbdf9f1ff461a75e5b77d6d7ba35e97db4c
+ SRCREV_machine_pn-linux-yocto_routerstationpro ?= "8db69980d76e1f863af409e70175963f23de83ab"
+ SRCREV_machine_pn-linux-yocto_mpc8315e-rdb ?= "6861d8a4d58f8aa75997f7678cc454791544507a"
+ SRCREV_machine_pn-linux-yocto_beagleboard ?= "69cfbdf9f1ff461a75e5b77d6d7ba35e97db4cc3"
+-SRCREV_machine_pn-linux-yocto ?= "69cfbdf9f1ff461a75e5b77d6d7ba35e97db4cc3"
++SRCREV_machine_pn-linux-yocto ?= "51c761795b078bf3c80104ed6e73b3d995067384"
+ SRCREV_meta_pn-linux-yocto ?= "16cabf8ce412b5f8599f92a9e11dfd0ee6e0ad12"
+ SRCREV_pn-linux-libc-headers-yocto ??= "69cfbdf9f1ff461a75e5b77d6d7ba35e97db4cc3"
+ SRCREV_pn-matchbox-config-gtk ??= "3ed74dfb7c57be088a5ab36e446c0ccde9fa1028"
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+1.7.0.4
+
 
