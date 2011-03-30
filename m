@@ -1,39 +1,24 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-fx0-f48.google.com (mail-fx0-f48.google.com
-	[209.85.161.48])
-	by mx1.pokylinux.org (Postfix) with ESMTP id CC2EE4C800A0
-	for <yocto@yoctoproject.org>; Mon, 28 Mar 2011 20:37:50 -0500 (CDT)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by fxm7 with SMTP id 7so4757083fxm.35
-	for <yocto@yoctoproject.org>; Mon, 28 Mar 2011 18:37:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:content-type;
-	bh=vSm7Rrfk7gGqcN8OJFMb8GFa49QOxmZs+v+yZl5z5bY=;
-	b=dHfFNJis4cVQ/4nMS5VxoHuI44eYOoylLUmUO40AcQZOaFFJ0F+MeF3KXSJKuAHweM
-	gELFHMeJvRvLXfT9T9/xW0cKodc0O7md0XhiFZaOtAtLU12liUHhtwVKj+MYZohHuGUM
-	YhDKaWvxi1XO/e/tX7Wn7497X3vUTkrkdhrzE=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:content-type;
-	b=LI94otHNo/V4F64nZjwKHaDvtnpyI9Y7dLpsVq7Yyyv4sNbEgK/pB3+SezQfrA35Hw
-	7rhLtreWAysvSQD8PtW3gzdo0JsyIzZ6O6oN7gO0M2pchGGMWuqxidBvApb3qrGPLeSe
-	dYscSaac6o62SRZ3w1+gD8ZKikLjGN66UEe5A=
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 0D7E24C804D9
+	for <yocto@yoctoproject.org>; Wed, 30 Mar 2011 11:10:46 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 30 Mar 2011 09:08:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.63,269,1299484800"; d="scan'208";a="727012305"
+Received: from unknown (HELO [10.7.199.155]) ([10.7.199.155])
+	by orsmga001.jf.intel.com with ESMTP; 30 Mar 2011 09:08:22 -0700
+Message-ID: <4D935575.1050501@linux.intel.com>
+Date: Wed, 30 Mar 2011 09:08:21 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.14) Gecko/20110223 Lightning/1.0b2 Thunderbird/3.1.8
 MIME-Version: 1.0
-Received: by 10.223.127.210 with SMTP id h18mr1653936fas.71.1301362669574;
-	Mon, 28 Mar 2011 18:37:49 -0700 (PDT)
-Sender: jefro.net@gmail.com
-Received: by 10.223.58.139 with HTTP; Mon, 28 Mar 2011 18:37:49 -0700 (PDT)
-In-Reply-To: <BANLkTi=Nc31v4K3AcL54X4aFYLmcCMeBvw@mail.gmail.com>
+To: Yury Bushmelev <jay4mail@gmail.com>
 References: <4D90BC7D.4090108@linux.intel.com>
 	<BANLkTi=Nc31v4K3AcL54X4aFYLmcCMeBvw@mail.gmail.com>
-Date: Mon, 28 Mar 2011 18:37:49 -0700
-X-Google-Sender-Auth: U31-OG0NEJx9Vj5wAfN-23DEfCQ
-Message-ID: <AANLkTi=q+C3iXAAYJo-9q3Lq8Rvx-6TLs+zjsoX-oZWa@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-To: Yocto Project <yocto@yoctoproject.org>
+In-Reply-To: <BANLkTi=Nc31v4K3AcL54X4aFYLmcCMeBvw@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: RFC: newbies and janitors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -46,26 +31,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Mar 2011 01:37:51 -0000
-Content-Type: multipart/alternative; boundary=002354530970a4da6e049f951b5d
+X-List-Received-Date: Wed, 30 Mar 2011 16:10:47 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---002354530970a4da6e049f951b5d
-Content-Type: text/plain; charset=ISO-8859-1
 
-I think this is an excellent initiative, Darren!
 
-If anyone has any questions on how to get started participating, please feel
-free to post them to this list or to contact me directly.
+On 03/28/2011 04:29 PM, Yury Bushmelev wrote:
+> 2011/3/28 Darren Hart<dvhart@linux.intel.com>:
+>> The Yocto Project is a complex thing, and people eager to get involved can
+>> have a difficult time sorting out where to start. The Linux kernel community
+>> put together kernelnewbies and kerneljanitors to help people get up to speed
+>> and provide them with manageable tasks to get them started.
+>>
+>> I think we have (or should have) the "newbies" side of things covered with
+>> #yocto #poky and the website and the various manuals and documentation
+>> projects, but I think something like "janitors" would be valuable. This
+>> could be something as simple as a tag for bugzilla bugs appropriate for
+>> newcomers go after.
+>>
+>> I imagine this is something we could share with OE - or perhaps OE already
+>> has something that serves this purpose - or could be extended to do so.
+>
+> We (OE) have wiki page (slightly outdated) with some janitor tasks:
+> http://openembedded.org/index.php/OpenEmbeddedJanitors
 
---
-Jeff "Jefro" Osier-Mixon
-Yocto Project Community Manager
+Great, this is the idea. It's a pretty sparse list, and could do with 
+some fleshing out.
 
---002354530970a4da6e049f951b5d
-Content-Type: text/html; charset=ISO-8859-1
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
-I think this is an excellent initiative, Darren!
-<div><br></div><div>If anyone has any questions on how to get started participating, please feel free to post them to this list or to contact me directly.</div><div><br></div><div>--</div><div>Jeff &quot;Jefro&quot; Osier-Mixon</div>
-<div>Yocto Project Community Manager</div><div><br></div>
-
---002354530970a4da6e049f951b5d--
