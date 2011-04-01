@@ -1,31 +1,40 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by mx1.pokylinux.org (Postfix) with ESMTP id CFEB24C80BD8
-	for <yocto@yoctoproject.org>; Fri,  1 Apr 2011 05:15:34 -0500 (CDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 999)
-	id 437C81660342; Fri,  1 Apr 2011 04:15:34 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2-r929478 (2010-03-31) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2-r929478
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 716F5166033E;
-	Fri,  1 Apr 2011 04:15:33 -0600 (MDT)
-Message-ID: <4D95A5C5.70605@mlbassoc.com>
-Date: Fri, 01 Apr 2011 04:15:33 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.13) Gecko/20101209 Fedora/3.1.7-0.35.b3pre.fc13
-	Thunderbird/3.1.7
+Return-Path: <leon.woestenberg@gmail.com>
+Received: from mail-fx0-f48.google.com (mail-fx0-f48.google.com
+	[209.85.161.48])
+	by mx1.pokylinux.org (Postfix) with ESMTP id D680E4C800A0
+	for <yocto@yoctoproject.org>; Fri,  1 Apr 2011 11:43:06 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by fxm7 with SMTP id 7so4452804fxm.35
+	for <yocto@yoctoproject.org>; Fri, 01 Apr 2011 09:43:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=IqvMZfGOBqtUzJFKfLz3mBQYE86KnEfvAX0s2Ep4m8M=;
+	b=QubpubwbLRQjdOzi/Xb32BMnF+AElbl32NhaAHW4XQyjeL9uAidkCEqsH0dHEbqHB2
+	NCptxlTxi5+yWO6vNVrnEx6DSw92QJmygkCtDq1Mtvn02ez9QocSaIjX922YF8AjuKB4
+	oxmC9g+TJOsxFFLy14gmutwSpSVf0EzfN5QuU=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	b=CBGf9zmQsXD8fitEbGf4yaXXxrJPHHoY1nN1DSDS8dOUPz9WENxRJEzq90Al2EG+ro
+	V4FJDh2fW5ufuW1GBHxzRM+EteVV1SJ3/Nc8fw5qaz/0jUU3eh4s8LAS/AoyVaqpdevA
+	P8Klos4YfdyB/WKHpwh7q4q4p+Jct49H+2BD8=
 MIME-Version: 1.0
-To: "Li, Simon" <simon.li@intel.com>
-References: <23F1A04A50711046AF124F3D4D1EB2ECC073F3FE@pgsmsx507.gar.corp.intel.com>
-	<4D94AD2D.7060505@mlbassoc.com>
-	<23F1A04A50711046AF124F3D4D1EB2ECC073F5FB@pgsmsx507.gar.corp.intel.com>
-In-Reply-To: <23F1A04A50711046AF124F3D4D1EB2ECC073F5FB@pgsmsx507.gar.corp.intel.com>
+Received: by 10.223.97.142 with SMTP id l14mr1614097fan.111.1301676185704;
+	Fri, 01 Apr 2011 09:43:05 -0700 (PDT)
+Received: by 10.223.156.193 with HTTP; Fri, 1 Apr 2011 09:43:05 -0700 (PDT)
+In-Reply-To: <AANLkTikyfLoA4LbHpNYvdHuGkskKdXY6yjS6DhUi57zr@mail.gmail.com>
+References: <AANLkTi=CS=_V1kd+RzzE6xMLmbd2kFt+6uCJb1JLvJmK@mail.gmail.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA95305E97AD@orsmsx504.amr.corp.intel.com>
+	<AANLkTikyfLoA4LbHpNYvdHuGkskKdXY6yjS6DhUi57zr@mail.gmail.com>
+Date: Fri, 1 Apr 2011 18:43:05 +0200
+Message-ID: <AANLkTinctu1nfEcjnDFDSE51ajQ3i+bPhhS_G+cB8t6+@mail.gmail.com>
+From: Leon Woestenberg <leon.woestenberg@gmail.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to compile Qt library with bitbake?
+Subject: Re: Eclipse plug-in does not detect my target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,49 +46,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Apr 2011 10:15:35 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 01 Apr 2011 16:43:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 04/01/2011 12:37 AM, Li, Simon wrote:
-> Hi, Gary,
-> Yes, it works. However, after build finished, I still cann't find any libQt* files.
+Hello Jessica,
 
-Where did you look (what packages did you install)?
-
-Just add this line to your config:
-   IMAGE_FEATURES += "qt4-pkgs"
-This should then build an image which has the QT4 package set.
-
-You could also install them individually, but there are quite a few...
-
-> -----Original Message-----
-> From: Gary Thomas [mailto:gary@mlbassoc.com]
-> Sent: Friday, April 01, 2011 12:35 AM
-> To: Li, Simon
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] How to compile Qt library with bitbake?
->
-> On 03/31/2011 12:52 AM, Li, Simon wrote:
->> To whom may concern,
+On Mon, Mar 14, 2011 at 10:56 PM, Leon Woestenberg
+<leon.woestenberg@gmail.com> wrote:
+> On Sun, Mar 13, 2011 at 12:55 AM, Zhang, Jessica
+> <jessica.zhang@intel.com> wrote:
+>> Leon Woestenberg wrote:
+>>> built, I wanted to test the Eclipse plug-in. After selecting Poky Tree
+>>> mode in the Yocto Tool configuration, I could not make it detect the
+>>> target; the drop down box remained empty.
+>>>
+>> Did you run "bitbake meta-ide-support", the eclipse plug-in will detect the
+>> target architecture based on the environment script file under the toolchain
+>> root location, e.g. build/tmp/environment-setup-i586-poky-linux.
 >>
->> Since Qt library is not existed in the default build configuration, I have to port it by myself.
->>
->> Is there any plan to compile Qt in the Yocto? I cannot find Qt with zypper as well.
->>
->> If not, is there any document to describe how to complie Qt with bitbake?
+> No I didn't. I will continue to work on this end of this week. Thanks,
 >
-> There are recipes for QT4 in the mainline Poky tree.  Just build via:
->     bitbake qt4-x11-free
->      -or-
->     bitbake qt4-embedded
->
-> These work fine for me.
->
+Confirmed that worked.
 
+Thanks,
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Leon
 
