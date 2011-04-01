@@ -1,22 +1,36 @@
-Return-Path: <bruce.ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 716054C800BA;
-	Fri,  1 Apr 2011 22:25:38 -0500 (CDT)
-Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
-	[128.224.146.167])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p323PUO1012561;
-	Fri, 1 Apr 2011 20:25:34 -0700 (PDT)
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: richard.purdie@linuxfoundation.org
-Date: Fri,  1 Apr 2011 23:26:40 -0400
-Message-Id: <b879c458f578d36936c789444d516ca55ba1e683.1301714584.git.bruce.ashfield@windriver.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1301714584.git.bruce.ashfield@windriver.com>
-References: <cover.1301714584.git.bruce.ashfield@windriver.com>
-In-Reply-To: <cover.1301714584.git.bruce.ashfield@windriver.com>
-References: <cover.1301714584.git.bruce.ashfield@windriver.com>
-Cc: dvhart@linux.intel.com, poky@yoctoproject.org, yocto@yoctoproject.org
-Subject: [PATCH 2/2] linux-yocto/meta: cleanup and streamline kernel meta data
+Return-Path: <simon.li@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 05E554C80AE6
+	for <yocto@yoctoproject.org>; Fri,  1 Apr 2011 01:16:02 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 31 Mar 2011 23:16:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.63,281,1299484800"; d="scan'208";a="727804453"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by orsmga001.jf.intel.com with ESMTP; 31 Mar 2011 23:16:02 -0700
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 1 Apr 2011 14:15:43 +0800
+Received: from pgsmsx507.gar.corp.intel.com ([10.221.43.89]) by
+	PGSMSX509.gar.corp.intel.com ([172.30.13.17]) with mapi; Fri, 1 Apr 2011
+	14:15:43 +0800
+From: "Li, Simon" <simon.li@intel.com>
+To: "Wold, Saul" <saul.wold@intel.com>
+Date: Fri, 1 Apr 2011 14:15:41 +0800
+Thread-Topic: [yocto] How to compile Qt library with bitbake?
+Thread-Index: AcvvwdIOnP7qxL15TyCCb6V9SrctvQAcYHXA
+Message-ID: <23F1A04A50711046AF124F3D4D1EB2ECC073F5EC@pgsmsx507.gar.corp.intel.com>
+References: <23F1A04A50711046AF124F3D4D1EB2ECC073F3FE@pgsmsx507.gar.corp.intel.com>
+	<4D94AD91.2060207@intel.com>
+In-Reply-To: <4D94AD91.2060207@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+X-Mailman-Approved-At: Sun, 03 Apr 2011 16:48:38 -0500
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to compile Qt library with bitbake?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,39 +42,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 02 Apr 2011 03:25:38 -0000
+X-List-Received-Date: Fri, 01 Apr 2011 06:16:03 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Fixes [YOCTO #945]
+Hi, Saul,
+Thanks for your reply. However, I got error messages as below:
+It seems not support "poky-image-sato-sdk"
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+simonli@simonli-Aspire-2930:~/Yocto_related/pocky-4.0-build$ bitbake poky-i=
+mage-sato-sdk
+NOTE: Psyco JIT Compiler (http://psyco.sf.net) not available. Install it to=
+ increase performance.
+NOTE: Handling BitBake files: \ (0844/0844) [100 %]
+Parsing of 844 .bb files complete (791 cached, 53 parsed). 997 targets, 34 =
+skipped, 0 masked, 0 errors.
 
-As part of the update to 2.6.37 existing configuration and
-patches from the -stable kernel were left in place as a reminder
-of features and configuration carry forward. A lot of these
-reminders are no longer necessary and the kernel meta data
-needs to be cleaned up to prepare for activities related to
-newer kernels.
+OE Build Configuration:
+BB_VERSION        =3D "1.11.0"
+METADATA_BRANCH   =3D "<unknown>"
+METADATA_REVISION =3D "<unknown>"
+TARGET_ARCH       =3D "i586"
+TARGET_OS         =3D "linux"
+MACHINE           =3D "qemux86"
+DISTRO            =3D "poky"
+DISTRO_VERSION    =3D "0.9"
+TARGET_FPU        =3D ""
 
-Also in this meta update are configuration changes to allow
-common_pc derived BSPs to have a clean baseline configuration.
+ERROR: Nothing PROVIDES 'poky-image-sato-sdk'
+Command execution failed: Traceback (most recent call last):
+  File "/home/simonli/Yocto_related/laverne-4.0.1/scripts/..//bitbake/lib/b=
+b/command.py", line 88, in runAsyncCommand
+    commandmethod(self.cmds_async, self, options)
+  File "/home/simonli/Yocto_related/laverne-4.0.1/scripts/..//bitbake/lib/b=
+b/command.py", line 184, in buildTargets
+    command.cooker.buildTargets(pkgs_to_build, task)
+  File "/home/simonli/Yocto_related/laverne-4.0.1/scripts/..//bitbake/lib/b=
+b/cooker.py", line 756, in buildTargets
+    taskdata.add_provider(localdata, self.status, k)
+  File "/home/simonli/Yocto_related/laverne-4.0.1/scripts/..//bitbake/lib/b=
+b/taskdata.py", line 354, in add_provider
+    self.add_provider_internal(cfgData, dataCache, item)
+  File "/home/simonli/Yocto_related/laverne-4.0.1/scripts/..//bitbake/lib/b=
+b/taskdata.py", line 374, in add_provider_internal
+    raise bb.providers.NoProvider(item)
+NoProvider: poky-image-sato-sdk
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Best Regards,
 
-Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
----
- .../conf/distro/include/poky-default-revisions.inc |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+Simon
 
-diff --git a/meta/conf/distro/include/poky-default-revisions.inc b/meta/conf/distro/include/poky-default-revisions.inc
-index a2b6a98..9a3ae7e 100644
---- a/meta/conf/distro/include/poky-default-revisions.inc
-+++ b/meta/conf/distro/include/poky-default-revisions.inc
-@@ -109,7 +109,7 @@ SRCREV_machine_pn-linux-yocto_routerstationpro ?= "8db69980d76e1f863af409e701759
- SRCREV_machine_pn-linux-yocto_mpc8315e-rdb ?= "6861d8a4d58f8aa75997f7678cc454791544507a"
- SRCREV_machine_pn-linux-yocto_beagleboard ?= "69cfbdf9f1ff461a75e5b77d6d7ba35e97db4cc3"
- SRCREV_machine_pn-linux-yocto ?= "69cfbdf9f1ff461a75e5b77d6d7ba35e97db4cc3"
--SRCREV_meta_pn-linux-yocto ?= "51c761795b078bf3c80104ed6e73b3d995067384"
-+SRCREV_meta_pn-linux-yocto ?= "727fc4769aa920fc5bb3eb9a81bf92d0e6340903"
- SRCREV_pn-linux-libc-headers-yocto ??= "69cfbdf9f1ff461a75e5b77d6d7ba35e97db4cc3"
- SRCREV_pn-matchbox-config-gtk ??= "3ed74dfb7c57be088a5ab36e446c0ccde9fa1028"
- SRCREV_pn-matchbox-desktop-sato ??= "76"
--- 
-1.7.0.4
+
+-----Original Message-----
+From: Wold, Saul=20
+Sent: Friday, April 01, 2011 12:37 AM
+To: Li, Simon
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] How to compile Qt library with bitbake?
+
+On 03/30/2011 11:52 PM, Li, Simon wrote:
+> To whom may concern,
+>
+> Since Qt library is not existed in the default build configuration, I
+> have to port it by myself.
+>
+> Is there any plan to compile Qt in the Yocto? I cannot find Qt with
+> zypper as well.
+>
+Simon,
+
+Qt4 is part of the yocto meta data.
+
+The poky-image-sato-sdk image contains the qt4-pkgs, so you can use the
+following command to build the image:
+
+bitbake poky-image-sato-sdk
+
+Sau!
+
+
+> If not, is there any document to describe how to complie Qt with bitbake?
+>
+> Best Regards,
+>
+> Simon Li
+>
+> Intel Software & Service Group
+>
+> B1 #205 Tun-Hwa North Rd, Taipei, Taiwan
+>
+> Desk
+>
+> =09
+>
+> +886-2-2514-4287
+>
+> Mobile
+>
+> =09
+>
+> +886-987-303-523
+>
+> E-Mail
+>
+> =09
+>
+> simon.li@intel.com <mailto:gorden.nieh@intel.com>
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
