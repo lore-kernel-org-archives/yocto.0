@@ -1,38 +1,37 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 3F31C4C80050
-	for <yocto@yoctoproject.org>; Fri,  1 Apr 2011 11:46:54 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 01 Apr 2011 09:46:53 -0700
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id EFE5B4C80050
+	for <yocto@yoctoproject.org>; Fri,  1 Apr 2011 16:43:33 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 01 Apr 2011 14:43:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.63,283,1299484800"; 
-	d="p7s'?scan'208";a="727997963"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga001.jf.intel.com with ESMTP; 01 Apr 2011 09:46:53 -0700
+X-IronPort-AV: E=Sophos;i="4.63,284,1299484800"; 
+	d="scan'208,217";a="622389497"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga002.jf.intel.com with ESMTP; 01 Apr 2011 14:43:33 -0700
 Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 1 Apr 2011 09:46:53 -0700
-Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 1 Apr 2011 14:43:32 -0700
+Received: from orsmsx505.amr.corp.intel.com ([10.22.226.208]) by
 	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
-	Fri, 1 Apr 2011 09:46:53 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Leon Woestenberg <leon.woestenberg@gmail.com>
-Date: Fri, 1 Apr 2011 09:46:51 -0700
-Thread-Topic: [yocto] Eclipse plug-in does not detect my target
-Thread-Index: Acvwi+DPbFm24V2/SC+xh00mS4LNWwAAF10g
-Message-ID: <9AFCD584B0B67B48AE8D8585BE30BA9552169E3B@orsmsx504.amr.corp.intel.com>
-References: <AANLkTi=CS=_V1kd+RzzE6xMLmbd2kFt+6uCJb1JLvJmK@mail.gmail.com>
-	<9AFCD584B0B67B48AE8D8585BE30BA95305E97AD@orsmsx504.amr.corp.intel.com>
-	<AANLkTikyfLoA4LbHpNYvdHuGkskKdXY6yjS6DhUi57zr@mail.gmail.com>
-	<AANLkTinctu1nfEcjnDFDSE51ajQ3i+bPhhS_G+cB8t6+@mail.gmail.com>
-In-Reply-To: <AANLkTinctu1nfEcjnDFDSE51ajQ3i+bPhhS_G+cB8t6+@mail.gmail.com>
+	Fri, 1 Apr 2011 14:43:33 -0700
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: "Tian, Kevin" <kevin.tian@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Fri, 1 Apr 2011 14:43:31 -0700
+Thread-Topic: [yocto] Failure while running bitbake: gcc-4.5.0.tar.bz2 seems
+	to be corrupted
+Thread-Index: AcvwHS2MREokbm+EQTakXlrBwcWJbQACkXygACN5q7A=
+Message-ID: <4FF5AC937153B0459463C1A88EB478F2ECFA0A83@orsmsx505.amr.corp.intel.com>
+References: <4FF5AC937153B0459463C1A88EB478F2ECFA02A8@orsmsx505.amr.corp.intel.com>
+	<625BA99ED14B2D499DC4E29D8138F15059F629DBB6@shsmsx502.ccr.corp.intel.com>
+In-Reply-To: <625BA99ED14B2D499DC4E29D8138F15059F629DBB6@shsmsx502.ccr.corp.intel.com>
 Accept-Language: en-US
-X-MS-Has-Attach: yes
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Eclipse plug-in does not detect my target
+Subject: Re: Failure while running bitbake: gcc-4.5.0.tar.bz2 seems to be corrupted
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,197 +43,404 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Apr 2011 16:46:54 -0000
-X-Groupsio-MsgNum: 1218
+X-List-Received-Date: Fri, 01 Apr 2011 21:43:34 -0000
 Content-Language: en-US
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=SHA1; boundary="----=_NextPart_000_0000_01CBF051.BA1DE650"
+Content-Type: multipart/alternative;
+	boundary="_000_4FF5AC937153B0459463C1A88EB478F2ECFA0A83orsmsx505amrcor_"
 
-------=_NextPart_000_0000_01CBF051.BA1DE650
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+--_000_4FF5AC937153B0459463C1A88EB478F2ECFA0A83orsmsx505amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Leon Woestenberg wrote:
-> Hello Jessica,
-> 
-> On Mon, Mar 14, 2011 at 10:56 PM, Leon Woestenberg
-> <leon.woestenberg@gmail.com> wrote:
->> On Sun, Mar 13, 2011 at 12:55 AM, Zhang, Jessica
->> <jessica.zhang@intel.com> wrote:
->>> Leon Woestenberg wrote:
->>>> built, I wanted to test the Eclipse plug-in. After selecting Poky
->>>> Tree mode in the Yocto Tool configuration, I could not make it
->>>> detect the target; the drop down box remained empty.
->>>> 
->>> Did you run "bitbake meta-ide-support", the eclipse plug-in will
->>> detect the target architecture based on the environment script file
->>> under the toolchain root location, e.g.
->>> build/tmp/environment-setup-i586-poky-linux. 
->>> 
->> No I didn't. I will continue to work on this end of this week.
->> Thanks, 
->> 
-> Confirmed that worked.
+The file seems to be copied from here by bitbake:
 
-Thanks for the update and glad to hear your problem is resolved...
+http://gcc.get-software.com/releases/gcc-4.5.0/gcc-4.5.0.tar.bz2
 
-Cheers,
-Jessica
+I manually downloaded it too it still shows up to be corrupted.
 
-------=_NextPart_000_0000_01CBF051.BA1DE650
-Content-Type: application/x-pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
+Not sure what does one do in such cases..
 
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIdiDCCAyAw
-ggKJoAMCAQICBDXe9M8wDQYJKoZIhvcNAQEFBQAwTjELMAkGA1UEBhMCVVMxEDAOBgNVBAoTB0Vx
-dWlmYXgxLTArBgNVBAsTJEVxdWlmYXggU2VjdXJlIENlcnRpZmljYXRlIEF1dGhvcml0eTAeFw05
-ODA4MjIxNjQxNTFaFw0xODA4MjIxNjQxNTFaME4xCzAJBgNVBAYTAlVTMRAwDgYDVQQKEwdFcXVp
-ZmF4MS0wKwYDVQQLEyRFcXVpZmF4IFNlY3VyZSBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkwgZ8wDQYJ
-KoZIhvcNAQEBBQADgY0AMIGJAoGBAMFdsVhnCGLuoJotHwhtkRRomAoe/toEbxOEYiHD0XzOnwXg
-uAHwTjTs4oqVBGSs8WtTXwWzy2eAv0ICjv7dAQns4QAUT/z78AzdQ7pbK+EfgHCZFVeTFvEPl2q3
-wmgjHMxNWTCsUR47ryvW7mNFe8XZX1DS41APOojnvxT94Me5AgMBAAGjggEJMIIBBTBwBgNVHR8E
-aTBnMGWgY6BhpF8wXTELMAkGA1UEBhMCVVMxEDAOBgNVBAoTB0VxdWlmYXgxLTArBgNVBAsTJEVx
-dWlmYXggU2VjdXJlIENlcnRpZmljYXRlIEF1dGhvcml0eTENMAsGA1UEAxMEQ1JMMTAaBgNVHRAE
-EzARgQ8yMDE4MDgyMjE2NDE1MVowCwYDVR0PBAQDAgEGMB8GA1UdIwQYMBaAFEjmaPkr0rKV10fY
-IyAQTzOYkJ/UMB0GA1UdDgQWBBRI5mj5K9KylddH2CMgEE8zmJCf1DAMBgNVHRMEBTADAQH/MBoG
-CSqGSIb2fQdBAAQNMAsbBVYzLjBjAwIGwDANBgkqhkiG9w0BAQUFAAOBgQBYzinq/Pfetc4CuRe1
-hdG54+CVzCUxDQCmkm5/tpJjnlCV0Zpv5BHeY4VumO6o/1rI01WyZnFX3sAh6z0qpyNJAQSGQnv8
-7n+iFlK1Z2fTQNs7JliyKHc9rhR3Ydb6KmYnoA36p3Nc6nDxlCFlRF/6/O8paKmih3nvee9PrAd3
-ODCCAz0wggKmoAMCAQICAwWw/zANBgkqhkiG9w0BAQUFADBOMQswCQYDVQQGEwJVUzEQMA4GA1UE
-ChMHRXF1aWZheDEtMCsGA1UECxMkRXF1aWZheCBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5
-MB4XDTA2MDIxNjE4MDEzMFoXDTE2MDIxOTE4MDEzMFowUjELMAkGA1UEBhMCVVMxGjAYBgNVBAoT
-EUludGVsIENvcnBvcmF0aW9uMScwJQYDVQQDEx5JbnRlbCBFeHRlcm5hbCBCYXNpYyBQb2xpY3kg
-Q0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDBpd/XOb9QVqEZ8mQ1042TdOIq3ATD
-IsV2xDyt30yLyMR5Wjtus0bn3B+he89BiNO/LP6+rFzEwlD55PlX+HLGIKeNNG97dqyc30FElEUj
-ZzTZFq2N4e3kVJ/XAEEgANzV8v9qp7qWwxugPgfc3z9BkYot+CifozexHLb/hEZj+yISCU61kRZv
-uSQ0E11yYL4dRgcglJeaHo3oX57rvIckaLsYV5/1Aj+R8DM1Ppk965XQAKsHfnyT7C4S50T4lVn4
-lz36wOdNZn/zegG1zp41lnoTFfT4KuKVJH5x7YD1p6KbgJCKLovnujGuohquBNfdXKpZkvz6pGv+
-iC1HawJdAgMBAAGjgaAwgZ0wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBQaxgxKxEdvqNutK/D0
-Vgaj7TdUDDA6BgNVHR8EMzAxMC+gLaArhilodHRwOi8vY3JsLmdlb3RydXN0LmNvbS9jcmxzL3Nl
-Y3VyZWNhLmNybDAfBgNVHSMEGDAWgBRI5mj5K9KylddH2CMgEE8zmJCf1DAPBgNVHRMBAf8EBTAD
-AQH/MA0GCSqGSIb3DQEBBQUAA4GBABMQOK2kVKVIlUWwLTdywJ+e2O+PC/uQltK2F3lRyrPfBn69
-tOkIP4SgDJOfsxyobIrPLe75kBLw+Dom13OBDp/EMZJZ1CglQfVV8co9mT3aZMjSGGQiMgkJLR3j
-Mfr900fXZKj5XeqCJ+JP0mEhJGEdVCY+FFlksJjV86fDrq1QMIIFYzCCBEugAwIBAgIKYSyUiQAA
-AAAABTANBgkqhkiG9w0BAQUFADBSMQswCQYDVQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9y
-YXRpb24xJzAlBgNVBAMTHkludGVsIEV4dGVybmFsIEJhc2ljIFBvbGljeSBDQTAeFw0wNjAzMjIy
-MjIyNDJaFw0xMjAzMjIyMjMyNDJaMFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jw
-b3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQTCCASIw
-DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKvXqH/ah10uJc7YzQUh+XEDNqS6IsXOyqCtizr9
-x6F+v6iRAbvddRRJRWixfV78qarSN9WMymJ90M8c9/Dfr1yzFuq95RgCAF3vdve3wKi7kJv6lkMJ
-wyyB+uIYcWtljYx2LDqbb9S6Z6He3q8W/aGKvu23I9ksNx+cmZcDNZwGdXVIEHpEMyA4bp0RvYtf
-p8BsGAyn6YuK63HugeyYdeFL+4+Wz2tGUqw9OWhob6oV1oDH3zboLhHJiQ2oIj3jAJ3/LrIkzcWP
-2R20UIliDAPAAl6MNWJPdsNK5EEeuxEuUSpdFsMj5rBmPHH4U8i8rUmi6GEOcX5rwAw64AzS3gEC
-AwEAAaOCAjUwggIxMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFAlpgTN7BnOPI0wKA9/3FoER
-ghMFMAsGA1UdDwQEAwIBhjAQBgkrBgEEAYI3FQEEAwIBADAZBgkrBgEEAYI3FAIEDB4KAFMAdQBi
-AEMAQTAfBgNVHSMEGDAWgBQaxgxKxEdvqNutK/D0Vgaj7TdUDDCBvQYDVR0fBIG1MIGyMIGvoIGs
-oIGphk5odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFs
-JTIwQmFzaWMlMjBQb2xpY3klMjBDQS5jcmyGV2h0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29t
-L3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUyMENBLmNy
-bDCB4wYIKwYBBQUHAQEEgdYwgdMwYwYIKwYBBQUHMAKGV2h0dHA6Ly93d3cuaW50ZWwuY29tL3Jl
-cG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUy
-MENBLmNydDBsBggrBgEFBQcwAoZgaHR0cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3Np
-dG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwUG9saWN5JTIwQ0Eu
-Y3J0MA0GCSqGSIb3DQEBBQUAA4IBAQCuNCnecJ+vDpXzsHOzMEyz4KgTNDbJROHag8H/ZVga7soc
-oJyC+HKqDfQgxifVorbTbSajCBEAxqg6bbNWBJ6qKOFHneBrXkENf5WdD50eCTCFWRV3EIsHEOQ1
-kP0eNYV5Ed4hp9y6wASV6z2z86O4+qouLJiow4AIhoCKD8rEyD7ODgTvjvLCKpsVyPlG1jOVSsOS
-IF2VUmueAmK3RFU4np83zerK/j0G37owhniEDT6ZhwkUd0XL45nt1m7yApMEbnXUTHNaXnE+P98k
-k3nDXdW25sB+5xWcYR3GpgMdQiZgP/f0KZ+yZKNE7gcp3I/O4pXqUNWIsLSYTi3soAR2MIIFYzCC
-BEugAwIBAgIKYSyl/gAAAAAABjANBgkqhkiG9w0BAQUFADBSMQswCQYDVQQGEwJVUzEaMBgGA1UE
-ChMRSW50ZWwgQ29ycG9yYXRpb24xJzAlBgNVBAMTHkludGVsIEV4dGVybmFsIEJhc2ljIFBvbGlj
-eSBDQTAeFw0wNjAzMjIyMjIyNDdaFw0xMjAzMjIyMjMyNDdaMFYxCzAJBgNVBAYTAlVTMRowGAYD
-VQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNz
-dWluZyBDQSAzQjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMDoHJYUGvcdR4k0Qv8/
-RrwNX4+vEe5PN2LnGn4xfIWwdUbk5+zvrRy1HjoKdG/AShZfxAuFoVyNIah5GJLpiS/vGbsDYKK+
-EZcIcmtPfvbB9Yg09EnQ0OpsZ2ORRd5lYUfMUU+zkpgL96vKFdkiG+eeHEwnSS3VikGVrF7UDdKf
-vxZwRwQCx6rEHAFPCjBDVfGYZuYT1EDhSDvzEiU7KzBsxrdBCFU4RYL7kh+do+vyMDlBzpw3WKvM
-Vbf3s5lxYiY7AjEhU8OSyZEQlgtK8PNyifHjmyrSaeJrPshM3PuLFG4d3gm1UJEiGNzxcHGb6YLP
-29IQAwY5mAk8j+UOVcsCAwEAAaOCAjUwggIxMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFG/D
-cREooZ0ZV/VnV8/ZKSaI1aWiMAsGA1UdDwQEAwIBhjAQBgkrBgEEAYI3FQEEAwIBADAZBgkrBgEE
-AYI3FAIEDB4KAFMAdQBiAEMAQTAfBgNVHSMEGDAWgBQaxgxKxEdvqNutK/D0Vgaj7TdUDDCBvQYD
-VR0fBIG1MIGyMIGvoIGsoIGphk5odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9J
-bnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBQb2xpY3klMjBDQS5jcmyGV2h0dHA6Ly9jZXJ0aWZp
-Y2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUy
-MFBvbGljeSUyMENBLmNybDCB4wYIKwYBBQUHAQEEgdYwgdMwYwYIKwYBBQUHMAKGV2h0dHA6Ly93
-d3cuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBC
-YXNpYyUyMFBvbGljeSUyMENBLmNydDBsBggrBgEFBQcwAoZgaHR0cDovL2NlcnRpZmljYXRlcy5p
-bnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2lj
-JTIwUG9saWN5JTIwQ0EuY3J0MA0GCSqGSIb3DQEBBQUAA4IBAQBAiWWHL6T21QXFZDyaUIye0jh7
-f40GXqi75Ro5JbpROtlZBqyRq6oPMAG6Igxd5Bd9TMtNkOvguknFnK1y17UdMhLOl+FuInE+FAWk
-803aRW27OsX+ot0KmPioKnZ3L1K5qcQS3tp6or7AaZzd0w0qFitm4UfP9nnTXQtY9XM5QJ07IKFD
-E3tlOlamKhjbiJV3FKigCVesPZSx9h2G7Ve4irEfz915Vks26AJHGZagEHNxM9exkgem4ENsG+t0
-vYqn9x7YsqJ6fmbOSyrzjzb3CYeEfyE5SL+f3Vx9uMsQDyb8LVCDBXQtxLEHnFEBPrRSSF9kPmyj
-avx4UqFdPEyCMIIGAzCCBOugAwIBAgIKGmwusAAAAAApdjANBgkqhkiG9w0BAQUFADBWMQswCQYD
-VQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVy
-bmFsIEJhc2ljIElzc3VpbmcgQ0EgM0IwHhcNMDgwNDE0MjMxNDQ4WhcNMTEwNDE0MjMxNDQ4WjBB
-MRcwFQYDVQQDEw5aaGFuZywgSmVzc2ljYTEmMCQGCSqGSIb3DQEJARYXamVzc2ljYS56aGFuZ0Bp
-bnRlbC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDQbirxoX/8OWYyzy4UnZ7N
-xXoADLZqxxH1q4lMF2zuAHjyDnNj/4ReRzB6AIDEg1BQWS4z5jC6oApos3HvFEsGbS3pYCWSo5Vb
-jtY5HWOBRPJ2rQ8wzITqcEEBWooYCj5LJeAjPuOZoZPVrKPI1khbOYzaJUwQpICfaErHZyM4p2mV
-AYXcUa/N0zKGnZmNaO6Dff96g41C9jEyfOFEtYOpLdQoXhD1i8tW17WxbHMuiXx3PR3GUdBADrRf
-I3wzqn4rh0y0D4l9mBfgTybVN3UR35ZFGSRsuldyJeeKcCSgghJi3K4ZTxzMfQ6+OKBu6SBeNKWk
-e2Q4f8CIf0+8ZpwfAgMBAAGjggLmMIIC4jALBgNVHQ8EBAMCB4AwHQYDVR0OBBYEFPIpOYEzCqH+
-037yR8d0Rarz7r7mMDwGCSsGAQQBgjcVBwQvMC0GJSsGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OC
-kcAJZ4HevTmV8EMCAWQCAQYwHwYDVR0jBBgwFoAUb8NxESihnRlX9WdXz9kpJojVpaIwgckGA1Ud
-HwSBwTCBvjCBu6CBuKCBtYZUaHR0cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50
-ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwM0IuY3Jshl1odHRwOi8vY2Vy
-dGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFz
-aWMlMjBJc3N1aW5nJTIwQ0ElMjAzQi5jcmwwge8GCCsGAQUFBwEBBIHiMIHfMGkGCCsGAQUFBzAC
-hl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4
-dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQi5jcnQwcgYIKwYBBQUHMAKGZmh0dHA6
-Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIw
-RXh0ZXJuYWwlMjBCYXNpYyUyMElzc3VpbmclMjBDQSUyMDNCLmNydDAfBgNVHSUEGDAWBggrBgEF
-BQcDBAYKKwYBBAGCNwoDDDApBgkrBgEEAYI3FQoEHDAaMAoGCCsGAQUFBwMEMAwGCisGAQQBgjcK
-AwwwSwYDVR0RBEQwQqAnBgorBgEEAYI3FAIDoBkMF2plc3NpY2EuemhhbmdAaW50ZWwuY29tgRdq
-ZXNzaWNhLnpoYW5nQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEANFSBbauSm1ktwUQI6fGq
-9XhTSUsty5/CHOrOwFe4K7LX0clVirXUYakIZXXG86lD1piRrjt23MhKRekYNIv0mfJklEF7yV5M
-VVqwDK1Uz6bsiw/SQnqfBuFrd70W4cua3bU1uu3dAhZBh482BtBZYFockuHd3YBFT7xmykOaAMLP
-CttrNSijP7HsbetGG2GLLc3CWauSXXr2ELseXkw3KkUKBPMw+DFAJdsRyBe0L+OwlDplr8POBXXb
-uuQK7Wo84mX7gMT0uSq/Luex/BD1xn2brKVs9t4FvL8ifxv4LuWRzv45EgPN4T12I202GBQ8iJtZ
-DkT3+9QPiQ35Hmuy6zCCBkowggUyoAMCAQICCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEFBQAwVjEL
-MAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBF
-eHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBMB4XDTA4MDQxNDIzMTM1MVoXDTExMDQxNDIzMTM1
-MVowQTEXMBUGA1UEAxMOWmhhbmcsIEplc3NpY2ExJjAkBgkqhkiG9w0BCQEWF2plc3NpY2Euemhh
-bmdAaW50ZWwuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2Lgwg9E/0F9weWx5
-ZCk0oiuerOIqOFTXcithjh7zRhiq8v/z9sXR/yWXUA7JK5E5JLPRNl0nQJFv/FLTaq9/9PchiI/N
-4v7L/ERXTzdMNvwOEqNOy8SOmmOOjF8N1vtrIv+WdBYiqBvtfQ9xGXadxckgrBOSTtTrw4iShbnG
-mVrw6mYYIOdPIKhq3QFmxHs93R8IrmIjvMbf31JhiAp7KJ/mc+bckmYW/9fNNEQkMbuF3B6iWsTk
-8c+D8oWmxuw+m6svwEMKck8yr3ldF6sZ6NCKXJChwDmjZMHBBSV6IUUycyl6SJ33j3r9Beki5bvG
-mhZnfGBLWODaLv4PDbG7BwIDAQABo4IDLTCCAykwCwYDVR0PBAQDAgQwMEQGCSqGSIb3DQEJDwQ3
-MDUwDgYIKoZIhvcNAwICAgCAMA4GCCqGSIb3DQMEAgIAgDAHBgUrDgMCBzAKBggqhkiG9w0DBzAd
-BgNVHQ4EFgQUKEdHKlCw71rRzz5gJWoRJwoviW0wPQYJKwYBBAGCNxUHBDAwLgYmKwYBBAGCNxUI
-hsOMdYSZ5VGD/YEohY6fU4KRwAlnhLnZQYeE/04CAWQCAQkwHwYDVR0jBBgwFoAUCWmBM3sGc48j
-TAoD3/cWgRGCEwUwgckGA1UdHwSBwTCBvjCBu6CBuKCBtYZUaHR0cDovL3d3dy5pbnRlbC5jb20v
-cmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIw
-M0EuY3Jshl1odHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9JbnRl
-bCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQS5jcmwwge8GCCsGAQUFBwEB
-BIHiMIHfMGkGCCsGAQUFBzAChl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRp
-ZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQS5jcnQw
-cgYIKwYBBQUHMAKGZmh0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2Vy
-dGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElzc3VpbmclMjBDQSUyMDNBLmNy
-dDAfBgNVHSUEGDAWBggrBgEFBQcDBAYKKwYBBAGCNwoDBDApBgkrBgEEAYI3FQoEHDAaMAoGCCsG
-AQUFBwMEMAwGCisGAQQBgjcKAwQwSwYDVR0RBEQwQqAnBgorBgEEAYI3FAIDoBkMF2plc3NpY2Eu
-emhhbmdAaW50ZWwuY29tgRdqZXNzaWNhLnpoYW5nQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOC
-AQEAlkSHAnj2YSCjtyOIJJtoNia1mv4qLpp3rxqxeZzEG9Bk4k4hGHkozj1p+mi368ieYl/fTPtK
-IIBDCwod9o12adTGGW7wyUHjZfalumhsFoKTXbUU/CC7lpooUKuDxCjaIjsc4rdDxP1MEAUX43IG
-kLRqq9elDWluC0WjR+q+cAqKMJxLmAKhKz7JDTNrbfWwuoETGdCMkLUK464/FSvfDKoV+Ypkoq1x
-YiTi71VhwWenYKPnyKbLgiULEgdfwQscMzJQ9rmq1iyfoXuXPSkCA6nfZKoSkBOVJQXjW/+B2wxe
-YmaO9Qc5P3CJvsmgmgX5mK2wyKEw0JCwTHE3w7FkFjGCA0EwggM9AgEBMGQwVjELMAkGA1UEBhMC
-VVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBC
-YXNpYyBJc3N1aW5nIENBIDNCAgoabC6wAAAAACl2MAkGBSsOAwIaBQCgggGyMBgGCSqGSIb3DQEJ
-AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTExMDQwMTE2NDY1MVowIwYJKoZIhvcNAQkE
-MRYEFEPF6Xzbcp6rHwJlKkyjx9DWAkv6MGcGCSqGSIb3DQEJDzFaMFgwCgYIKoZIhvcNAwcwDgYI
-KoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMAcGBSsO
-AwIaMAoGCCqGSIb3DQIFMHMGCSsGAQQBgjcQBDFmMGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoT
-EUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5n
-IENBIDNBAgp5ih1RAAAAAB8rMHUGCyqGSIb3DQEJEAILMWagZDBWMQswCQYDVQQGEwJVUzEaMBgG
-A1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElz
-c3VpbmcgQ0EgM0ECCnmKHVEAAAAAHyswDQYJKoZIhvcNAQEBBQAEggEAJDNzIlt4K29j7z+wT6DB
-Ec6/ldLz6PSpHe8G7jkgV5QgXxNbbW/EQlC+vkYi5gVe5gymWikmm8z9pJFHMKKV690x0R1SqZ2k
-cAlB+6dTRxgpABREicSeTHsHKHis/IHyHM30pI8mhNA/m1Z8afLsoiKIWi+PLoIpe0xiuohGPJOW
-7fP8JA6w3+F2ZeIe+uVxy45UTLRtwseN71MlAElv/qIQav6i3bBAgZXVPtBGT1OROafStraPlSwW
-x3H9apmd+hMIz303dhSWSiVIVgTtZsdqitOoG8z/J4H5j6v34iK5EozeUpv7RvmqE/E/xzxBV6FN
-iVD4roN2Fpw9OzHd1QAAAAAAAA==
+Thanks
+Rahul
 
-------=_NextPart_000_0000_01CBF051.BA1DE650--
+From: Tian, Kevin
+Sent: Thursday, March 31, 2011 9:45 PM
+To: Saxena, Rahul; yocto@yoctoproject.org
+Subject: RE: [yocto] Failure while running bitbake: gcc-4.5.0.tar.bz2 seems=
+ to be corrupted
+
+could you try manually download the tar ball from the link, and then copy t=
+o the /home/rsaxena/poky-4.0-build/downloads/?
+
+Thanks
+Kevin
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Saxena, Rahul
+Sent: Friday, April 01, 2011 11:31 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Failure while running bitbake: gcc-4.5.0.tar.bz2 seems to =
+be corrupted
+
+Hi,
+
+ I get a failure when I run the bitbake  example stated in the Yocto Projec=
+t Quick Start Guide
+
+$ bitbake poky-image-sato
+
+Gives the following error:
+
+>>
+NOTE: Running task 256 of 1633 (ID: 1585, /home/rsaxena/poky-laverne-4.0/me=
+ta/recipes-devtools/gcc/gcc-cross-initial_4.5.0.bb, do_unpack)
+NOTE: package gcc-cross-initial-4.5.0-r10: task do_unpack: Started
+NOTE: Unpacking /home/rsaxena/poky-4.0-build/downloads/gcc-4.5.0.tar.bz2 to=
+ /home/rsaxena/poky-4.0-build/tmp/work/i586-poky-linux/gcc-cross-initial-4.=
+5.0-r10/
+ERROR: Task failed:
+NOTE: package gcc-cross-initial-4.5.0-r10: task do_unpack: Failed
+ERROR: Task 1585 (/home/rsaxena/poky-laverne-4.0/meta/recipes-devtools/gcc/=
+gcc-cross-initial_4.5.0.bb, do_unpack) failed with 1
+ERROR: '/home/rsaxena/poky-laverne-4.0/meta/recipes-devtools/gcc/gcc-cross-=
+initial_4.5.0.bb' failed
+<<
+
+I find that if I manually try to untar the downloaded gcc-4.5.0.tar.bz2 fil=
+e, I get a "not a bzip2 file" error.
+I get the same error if I  download the file again and untar it.
+
+So it seems like the  gcc-4.5.0.tar.bz2 is corrupted for some reason.
+
+Pl let me know of any suggestions on how to get this resolved..
+
+Thanks
+Rahul
+
+--_000_4FF5AC937153B0459463C1A88EB478F2ECFA0A83orsmsx505amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
+icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
+:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
+uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
+t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
+m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
+t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
+:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
+soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
+icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
+schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
+point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
+/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
+=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
+schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
+.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
+/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
+://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
+repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
+ xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
+schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
+/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
+ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
+p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
+/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
+mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
+crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
+s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
+ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
+om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
+ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
+partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
+06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
+6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
+deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
+Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
+st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+
+<head>
+<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";}
+span.EmailStyle20
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle21
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle22
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
+
+<div class=3DWordSection1>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>The file seems to be cop=
+ied from
+here by bitbake:<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span>=
+</p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'><a
+href=3D"http://gcc.get-software.com/releases/gcc-4.5.0/gcc-4.5.0.tar.bz2">h=
+ttp://gcc.get-software.com/releases/gcc-4.5.0/gcc-4.5.0.tar.bz2</a><o:p></o=
+:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span>=
+</p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>I manually downloaded it=
+ too it
+still shows up to be corrupted.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span>=
+</p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Not sure what does one d=
+o in
+such cases..<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span>=
+</p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Thanks<o:p></o:p></span>=
+</p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Rahul<o:p></o:p></span><=
+/p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span>=
+</p>
+
+<div>
+
+<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in'>
+
+<p class=3DMsoNormal><b><span style=3D'font-size:10.0pt;font-family:"Tahoma=
+","sans-serif"'>From:</span></b><span
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> Tian, Kevin <=
+br>
+<b>Sent:</b> Thursday, March 31, 2011 9:45 PM<br>
+<b>To:</b> Saxena, Rahul; yocto@yoctoproject.org<br>
+<b>Subject:</b> RE: [yocto] Failure while running bitbake: gcc-4.5.0.tar.bz=
+2
+seems to be corrupted<o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.5pt;color:#1F497D'>could y=
+ou try
+manually download the tar ball from the link, and then copy to the
+/home/rsaxena/poky-4.0-build/downloads/?<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.5pt;color:#1F497D'><o:p>&n=
+bsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.5pt;color:#1F497D'>Thanks<=
+o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.5pt;color:#1F497D'>Kevin<o=
+:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'font-size:10.5pt;color:#1F497D'><o:p>&n=
+bsp;</o:p></span></p>
+
+<div style=3D'border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt'>
+
+<div>
+
+<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in'>
+
+<p class=3DMsoNormal><b><span style=3D'font-size:10.0pt;font-family:"Tahoma=
+","sans-serif"'>From:</span></b><span
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>
+yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] <b>O=
+n
+Behalf Of </b>Saxena, Rahul<br>
+<b>Sent:</b> Friday, April 01, 2011 11:31 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] Failure while running bitbake: gcc-4.5.0.tar.bz2 se=
+ems
+to be corrupted<o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>Hi,<o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>&nbsp;I get a failure when I run the bitbake &nbsp;exa=
+mple
+stated in the Yocto Project Quick Start Guide<o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>$ bitbake poky-image-sato <o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>Gives the following error: <o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal><span style=3D'color:#C00000'>&gt;&gt;<o:p>&nbsp;</o:p=
+></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#C00000'>NOTE: Running task 256 o=
+f 1633
+(ID: 1585,
+/home/rsaxena/poky-laverne-4.0/meta/recipes-devtools/gcc/gcc-cross-initial_=
+4.5.0.bb,
+do_unpack)<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#C00000'>NOTE: package
+gcc-cross-initial-4.5.0-r10: task do_unpack: Started<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#C00000'>NOTE: Unpacking
+/home/rsaxena/poky-4.0-build/downloads/gcc-4.5.0.tar.bz2 to
+/home/rsaxena/poky-4.0-build/tmp/work/i586-poky-linux/gcc-cross-initial-4.5=
+.0-r10/<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#C00000'>ERROR: Task failed: <o:p=
+></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#C00000'>NOTE: package
+gcc-cross-initial-4.5.0-r10: task do_unpack: Failed<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#C00000'>ERROR: Task 1585
+(/home/rsaxena/poky-laverne-4.0/meta/recipes-devtools/gcc/gcc-cross-initial=
+_4.5.0.bb,
+do_unpack) failed with 1<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#C00000'>ERROR:
+'/home/rsaxena/poky-laverne-4.0/meta/recipes-devtools/gcc/gcc-cross-initial=
+_4.5.0.bb'
+failed<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#C00000'>&lt;&lt;<o:p>&nbsp;</o:p=
+></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#C00000'><o:p>&nbsp;</o:p></span>=
+</p>
+
+<p class=3DMsoNormal><span style=3D'color:black'>I find that if I manually =
+try to
+untar the downloaded gcc-4.5.0.tar.bz2 file, I get a &#8220;not a bzip2 fil=
+e&#8221; error.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:black'>I get the same error if I&=
+nbsp;
+download the file again and untar it.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:black'><o:p>&nbsp;</o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:black'>So it seems like the
+&nbsp;gcc-4.5.0.tar.bz2 is corrupted for some reason.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:black'><o:p>&nbsp;</o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:black'>Pl let me know of any sugg=
+estions
+on how to get this resolved..<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#C00000'><o:p>&nbsp;</o:p></span>=
+</p>
+
+<p class=3DMsoNormal><span style=3D'color:black'>Thanks<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:black'>Rahul<o:p></o:p></span></p=
+>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
+
+--_000_4FF5AC937153B0459463C1A88EB478F2ECFA0A83orsmsx505amrcor_--
