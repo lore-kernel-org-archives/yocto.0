@@ -1,33 +1,30 @@
-Return-Path: <simon.li@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5908A4C80B74
-	for <yocto@yoctoproject.org>; Fri,  1 Apr 2011 01:39:55 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 31 Mar 2011 23:39:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.63,281,1299484800"; d="scan'208";a="622048971"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by orsmga002.jf.intel.com with ESMTP; 31 Mar 2011 23:39:35 -0700
-Received: from pgsmsx507.gar.corp.intel.com ([10.221.43.89]) by
-	pgsmsx601.gar.corp.intel.com ([10.221.43.69]) with mapi; Fri, 1 Apr 2011
-	14:37:25 +0800
-From: "Li, Simon" <simon.li@intel.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Date: Fri, 1 Apr 2011 14:37:23 +0800
-Thread-Topic: [yocto] How to compile Qt library with bitbake?
-Thread-Index: AcvvwZSEDAtD87R4Rj6781cmY4RDEgAcrLYA
-Message-ID: <23F1A04A50711046AF124F3D4D1EB2ECC073F5FB@pgsmsx507.gar.corp.intel.com>
-References: <23F1A04A50711046AF124F3D4D1EB2ECC073F3FE@pgsmsx507.gar.corp.intel.com>
-	<4D94AD2D.7060505@mlbassoc.com>
-In-Reply-To: <4D94AD2D.7060505@mlbassoc.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-X-Mailman-Approved-At: Sun, 03 Apr 2011 16:48:38 -0500
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to compile Qt library with bitbake?
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 040DD4C8026D;
+	Mon,  4 Apr 2011 07:59:06 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p34Cwwrl016184;
+	Mon, 4 Apr 2011 13:58:58 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 15975-06; Mon,  4 Apr 2011 13:58:54 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p34Cwq24016178
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 4 Apr 2011 13:58:53 +0100
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+In-Reply-To: <cover.1301714584.git.bruce.ashfield@windriver.com>
+References: <cover.1301714584.git.bruce.ashfield@windriver.com>
+Date: Mon, 04 Apr 2011 13:58:49 +0100
+Message-ID: <1301921929.24596.362.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: dvhart@linux.intel.com, poky@yoctoproject.org, yocto@yoctoproject.org
+Subject: Re: [PATCH 0/2] linux-yocto/meta: update kernel meta-data
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,47 +36,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Apr 2011 06:39:55 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 04 Apr 2011 12:59:07 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi, Gary,
-Yes, it works. However, after build finished, I still cann't find any libQt=
-* files.
+On Fri, 2011-04-01 at 23:26 -0400, Bruce Ashfield wrote:
+> Richard,
+> 
+> patch 1 in this series is a re-send of a previous change, since
+> it was still on the queue and it was worth keeping it in history
+> in order with the second change.
+> 
+> The second patch addresses [YOCTO #945], and the patch itself
+> has the following:
+> 
+> [ 
+>   As part of the update to 2.6.37 existing configuration and
+>   patches from the -stable kernel were left in place as a reminder
+>   of features and configuration carry forward. A lot of these
+>   reminders are no longer necessary and the kernel meta data
+>   needs to be cleaned up to prepare for activities related to
+>   newer kernels.
+> 
+>   Also in this meta update are configuration changes to allow
+>   common_pc derived BSPs to have a clean baseline configuration.
+> ]
+> 
+> Pull URL: git://git.pokylinux.org/poky-contrib.git
+>   Branch: zedd/kernel
+>   Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
+> 
+> Thanks,
+>     Bruce Ashfield <bruce.ashfield@windriver.com>
+> ---
+> 
+> 
+> Bruce Ashfield (2):
+>   linux-yocto/crownbay: update configuration
+>   linux-yocto/meta: cleanup and streamline kernel meta data
 
-Best Regards,
+Merged to master, thanks!
 
-Simon
+Richard
 
------Original Message-----
-From: Gary Thomas [mailto:gary@mlbassoc.com]=20
-Sent: Friday, April 01, 2011 12:35 AM
-To: Li, Simon
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] How to compile Qt library with bitbake?
-
-On 03/31/2011 12:52 AM, Li, Simon wrote:
-> To whom may concern,
->
-> Since Qt library is not existed in the default build configuration, I hav=
-e to port it by myself.
->
-> Is there any plan to compile Qt in the Yocto? I cannot find Qt with zyppe=
-r as well.
->
-> If not, is there any document to describe how to complie Qt with bitbake?
-
-There are recipes for QT4 in the mainline Poky tree.  Just build via:
-   bitbake qt4-x11-free
-    -or-
-   bitbake qt4-embedded
-
-These work fine for me.
-
---=20
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
