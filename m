@@ -1,23 +1,19 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 2E0FD4C802F2;
-	Tue,  5 Apr 2011 14:17:29 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 05 Apr 2011 12:17:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.63,306,1299484800"; d="scan'208";a="414283772"
-Received: from unknown (HELO [10.255.12.228]) ([10.255.12.228])
-	by azsmga001.ch.intel.com with ESMTP; 05 Apr 2011 12:17:14 -0700
-Message-ID: <4D9B6AB9.3000408@linux.intel.com>
-Date: Tue, 05 Apr 2011 12:17:13 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
-	Thunderbird/3.0.5
+Return-Path: <murilo.travaglia@phiinnovations.com>
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 090454C80A46
+	for <yocto@yoctoproject.org>; Tue,  5 Apr 2011 16:00:53 -0500 (CDT)
+Received: by ywo32 with SMTP id 32so435049ywo.35
+	for <yocto@yoctoproject.org>; Tue, 05 Apr 2011 14:00:53 -0700 (PDT)
 MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>, 
-	"poky@yoctoproject.org" <poky@yoctoproject.org>
-Subject: Patch Comments and Upstream-Status
+Received: by 10.151.17.2 with SMTP id u2mr1028990ybi.294.1302037253577; Tue,
+	05 Apr 2011 14:00:53 -0700 (PDT)
+Received: by 10.150.145.1 with HTTP; Tue, 5 Apr 2011 14:00:53 -0700 (PDT)
+Date: Tue, 5 Apr 2011 18:00:53 -0300
+Message-ID: <BANLkTi=aSGBWpYCPMNquWoUXNfH6zHD2SQ@mail.gmail.com>
+From: Murilo Travaglia <murilo.travaglia@phiinnovations.com>
+To: yocto@yoctoproject.org
+Subject: Cross Compiled Project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,73 +25,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Apr 2011 19:17:29 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 05 Apr 2011 21:00:54 -0000
+Content-Type: multipart/alternative; boundary=000e0cd68da6fbde4604a0322bf5
+
+--000e0cd68da6fbde4604a0322bf5
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi all,
 
 
-Yocto Contributors:
+I'm trying to use my own toolchain to develop and debug my application. I
+made some changes in the file environment-setup-my-toolchain (file used in
+SDK Mode to configure the environment) to link the compiler, gdb,etc to my
+own toolchain. Making a "Reconfigure Project" or "Build Project" I can see
+that my own toolchain is used.  =]
 
-Do you ever wonder why a patch exists?  Thought that it should be part 
-of the upstream project?
+The problem is that I couldn't see where I have to make the modifications to
+get the specific libraries for the target architecture, e.g: if I'LL develop
+an application to ARM architecture, where I have to make modifications to
+use the libs (/lib, usr/lib) of the target architecture (ARM). Is this
+possible in the Yocto Project?
 
-Well now's your chance to help as we move forward with our next release, 
-we want to improve the quality of the patch comments and ensure that 
-patches that can be included in the upstream projects are. The goal is 
-to reduce the total number of patches that we need to carry forward and 
-maintain, this will improve the overall quality of the project.
+Thanks in advance!
 
-The wiki has been updated to include information about what we would 
-like to see in the patch comments, including a format for a new field
-Upstream-Status.
+Best regards!
 
-When creating new patches, updating existing recipes, please take a few 
-minutes to ensure that all the patches have the Upstream-Status field 
-and if appropriate start the process of requesting the upstream project 
-to accept the patch.
+-- 
+Murilo Marques Travaglia
+Phi Innovations
 
-The format and possible status key works are as follows:
+--000e0cd68da6fbde4604a0322bf5
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Upstream-Status:
-Pending
-  No determination has been made yet or not yet submitted to upstream
-Submitted
-  Submitted to upstream, waiting approval
-Accepted
-  Accepted in upstream, expect it to be removed at next update, include 
-expected version info
-Backport
-  Backported from new upstream version, because we are at a fixed 
-version, include upstream version info
-Denied
-  Not accepted by upstream, include reason in patch
-Inappropriate [reason]
-  The patch is not appropriate for upstream, include a brief reason on 
-the same line enclosed with []
-  Reason can be:
-	native
-	licensing
-	enable feature
-	disable feature
-	bugfix (add bug url here)
-	embedded specific
-	other (give details in comments)
+Hi all,<br><br><br>I&#39;m trying to use my own toolchain to develop and de=
+bug my application. I made some changes in the file environment-setup-my-to=
+olchain (file used in SDK Mode to configure the environment) to link the co=
+mpiler, gdb,etc to my own toolchain. Making a &quot;Reconfigure Project&quo=
+t; or &quot;Build Project&quot; I can see that my own toolchain is used.=A0=
+ =3D]<br>
+<br>The problem is that I couldn&#39;t see where I have to make the modific=
+ations to get the specific libraries for the target architecture, e.g: if I=
+&#39;LL develop an application to ARM architecture, where I have to make mo=
+difications to use the libs (/lib, usr/lib) of the target architecture (ARM=
+). Is this possible in the Yocto Project?<br>
+<br>Thanks in advance!<br><br>Best regards!=A0 <br clear=3D"all"><br>-- <br=
+>Murilo Marques Travaglia<br>Phi Innovations<br><br><br><br>
 
-If you are a maintainer of recipes, please work through your patches and 
-submit poky  pull requests and upstream patch submissions.
-
-Wiki Page:
-
-http://wiki.yoctoproject.org/wiki/Best_Known_Methods_%28BKMs%29_for_Package_Updating#Patch_Comments
-
-Please let me know if you have any comments or suggestions to improve 
-this process.
-
-Thanks
-     Sau!
-
-Saul Wold
-Yocto Component Wrangler @ Intel
-Yocto Project / Poky Build System
-
-
+--000e0cd68da6fbde4604a0322bf5--
