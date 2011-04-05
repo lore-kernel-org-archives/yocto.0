@@ -1,31 +1,23 @@
-Return-Path: <julie.n.fleischer@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 1AAE14C80A70
-	for <yocto@yoctoproject.org>; Tue,  5 Apr 2011 10:44:47 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 05 Apr 2011 08:44:32 -0700
+Return-Path: <sgw@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 2E0FD4C802F2;
+	Tue,  5 Apr 2011 14:17:29 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 05 Apr 2011 12:17:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.63,305,1299484800"; d="scan'208";a="675468783"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by fmsmga002.fm.intel.com with ESMTP; 05 Apr 2011 08:44:32 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 5 Apr 2011 08:44:32 -0700
-Received: from orsmsx506.amr.corp.intel.com ([10.22.226.44]) by
-	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
-	Tue, 5 Apr 2011 08:44:32 -0700
-From: "Fleischer, Julie N" <julie.n.fleischer@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 5 Apr 2011 08:44:31 -0700
-Thread-Topic: Notes from Yocto 2011.10 Technical Sync meeting
-Thread-Index: AcvzJId5mZW8OVWsSKyM/OWC7Brk1AAfgHQg
-Message-ID: <4F65016F6CB04E49BFFA15D4F7B798D901609CEB63@orsmsx506.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+X-IronPort-AV: E=Sophos;i="4.63,306,1299484800"; d="scan'208";a="414283772"
+Received: from unknown (HELO [10.255.12.228]) ([10.255.12.228])
+	by azsmga001.ch.intel.com with ESMTP; 05 Apr 2011 12:17:14 -0700
+Message-ID: <4D9B6AB9.3000408@linux.intel.com>
+Date: Tue, 05 Apr 2011 12:17:13 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.10) Gecko/20100621 Fedora/3.0.5-1.fc13 Lightning/1.0b2pre
+	Thunderbird/3.0.5
 MIME-Version: 1.0
-Subject: Notes from Yocto 2011.10 Technical Sync meeting
+To: Yocto Project Discussion <yocto@yoctoproject.org>, 
+	"poky@yoctoproject.org" <poky@yoctoproject.org>
+Subject: Patch Comments and Upstream-Status
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,63 +29,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Apr 2011 15:44:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 05 Apr 2011 19:17:29 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Thanks to all who attended the Yocto 2011.10 Technical Sync meeting.  Note =
-from the meeting are below.
 
-Attendees:  Dave, Jefro, Jessica, Rahul, Beth, Darren, Joshua, Paul, Tom, M=
-ichael, Abraham, Jeff Polk, Jeremy Horn, Julie
+Yocto Contributors:
 
-Notes:
-1) Introductions
-Julie - Project Manager at Intel Open Source Technology Center, working on =
-Yocto Project
-Dave - Engineering Manager at Intel Open Source Technology Center, manages =
-some development work
-Jefro - Community Manager at Intel in Open Source Technology Center
-Jessica - Maintainer of ADT and Eclipse plugin, Intel/Open Source Technolog=
-y Center
-Rahul - software engineer at Intel/Embedded Communications group, intereste=
-d in developing BSPs
-Beth - software developer at Intel/Open Source Technology Center/build and =
-release manager for Yocto
-Darren - kernel developer at Intel/Open Source Technology Center
-Joshua - build system engineer at Intel/Open Source Technology Center
-Paul - general build system engineer at Intel/Open Source Technology Center
-Tom - kernel, BSP engineer at Intel/Open Source Technology Center
-Michael Nilsap - Intel/Embedded Communication Group platform architect
-Abraham - recently joined Intel in Visual and Parallel Computing group, ker=
-nel engineer
-Jeff Polk - Wind River employee, build system engineer for WR and Yocto
-Jeremy Horn - software lead at Monta Vista focused on integration
-Saul - user space architect/maintainer at Intel/Open Source Technology Cent=
-er
-2) Review Yocto 2011.10 Features - https://wiki.yoctoproject.org/wiki/Yocto=
-_1.1_Features=20
-  - In general, call for features has ended; however, those interested in a=
-dding new items probably have a little time to get them in.  Send Julie a n=
-ote to inform her what changed.
-  - Next steps are maintainers and owners of features will put this into mi=
-lestones by EO this week (or EO next for those that are traveling).  Julie =
-will send an email on this to maintainers/owners.
-3) Review Yocto 2011.10 Schedule - https://wiki.yoctoproject.org/wiki/Yocto=
-_OCT2011_Schedule=20
-  - Schedule is milestone-based, dates at the top of the milestone.
-  - Each milestone will be broken into Sprints by the stakeholders.  Sprint=
-s show when code will be committed, but not necessarily all the work that n=
-eeds to be done to get the code ready.
-4) 1.0 Release Criteria review - https://wiki.yoctoproject.org/wiki/Yocto_P=
-roject_v1.0_Release_Criteria=20
-- We decided not to do Crown Bay for demo.  Working on getting Sandy Bridge=
- running as a UPnP video renderer.
-- Have a critical change to README.hardware that needs to go into the Relea=
-se Notes.  Paul will email ScottR to get this into Release Notes.  [This is=
- a general issue for next release, which ScottR has also mentioned, that we=
- need a way to update documentation up until the last minute before release=
-.]
+Do you ever wonder why a patch exists?  Thought that it should be part 
+of the upstream project?
+
+Well now's your chance to help as we move forward with our next release, 
+we want to improve the quality of the patch comments and ensure that 
+patches that can be included in the upstream projects are. The goal is 
+to reduce the total number of patches that we need to carry forward and 
+maintain, this will improve the overall quality of the project.
+
+The wiki has been updated to include information about what we would 
+like to see in the patch comments, including a format for a new field
+Upstream-Status.
+
+When creating new patches, updating existing recipes, please take a few 
+minutes to ensure that all the patches have the Upstream-Status field 
+and if appropriate start the process of requesting the upstream project 
+to accept the patch.
+
+The format and possible status key works are as follows:
+
+Upstream-Status:
+Pending
+  No determination has been made yet or not yet submitted to upstream
+Submitted
+  Submitted to upstream, waiting approval
+Accepted
+  Accepted in upstream, expect it to be removed at next update, include 
+expected version info
+Backport
+  Backported from new upstream version, because we are at a fixed 
+version, include upstream version info
+Denied
+  Not accepted by upstream, include reason in patch
+Inappropriate [reason]
+  The patch is not appropriate for upstream, include a brief reason on 
+the same line enclosed with []
+  Reason can be:
+	native
+	licensing
+	enable feature
+	disable feature
+	bugfix (add bug url here)
+	embedded specific
+	other (give details in comments)
+
+If you are a maintainer of recipes, please work through your patches and 
+submit poky  pull requests and upstream patch submissions.
+
+Wiki Page:
+
+http://wiki.yoctoproject.org/wiki/Best_Known_Methods_%28BKMs%29_for_Package_Updating#Patch_Comments
+
+Please let me know if you have any comments or suggestions to improve 
+this process.
+
+Thanks
+     Sau!
+
+Saul Wold
+Yocto Component Wrangler @ Intel
+Yocto Project / Poky Build System
 
 
