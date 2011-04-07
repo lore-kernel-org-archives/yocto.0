@@ -1,40 +1,28 @@
-Return-Path: <joaohf@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id E7D224C800A4
-	for <yocto@yoctoproject.org>; Thu,  7 Apr 2011 14:48:53 -0500 (CDT)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iym1 with SMTP id 1so3992963iym.35
-	for <yocto@yoctoproject.org>; Thu, 07 Apr 2011 12:48:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=0+igCrvVEK+V4zuv99wIVAf29tLp7l6+snfi9awMWHg=;
-	b=Z/On+LTHP7lZf+Osf6J8kJNje5o1DEXfazJ+b6YnejG+I6GjuQ1/p6oAJm8u9WnwKY
-	CtpxvyO+YTuTNATCBs+dal5rYA3KM4+BJcysB1Curoafq3rptfqlIPJzkVjbhR0dbjGC
-	vegORVRqGrBl1s10Y2tzbU6Utyl7Ioi0x+6KE=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	b=KEH1AxlOXR56tdXlh+AbZYsZmLI/fs4H7I7GEsgNfRL4BME0OVNMF61H0IwK5cUpEs
-	PZ8GP54pH4YHWuj6ed1CfkFaRfRgX+ylnNXgg6VQAurhGY67hwXcfFHWKLUDUBMTk8TQ
-	Y9FoI8hhkWJNwAa0R2dMFhUrhesO50WucqzZk=
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 7A2E24C80579
+	for <yocto@yoctoproject.org>; Thu,  7 Apr 2011 15:20:40 -0500 (CDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 999)
+	id 436DD16607C5; Thu,  7 Apr 2011 14:20:40 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2-r929478 (2010-03-31) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2-r929478
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 6598516607B0;
+	Thu,  7 Apr 2011 14:20:39 -0600 (MDT)
+Message-ID: <4D9E1C97.2070107@mlbassoc.com>
+Date: Thu, 07 Apr 2011 14:20:39 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.13) Gecko/20101209 Fedora/3.1.7-0.35.b3pre.fc13
+	Thunderbird/3.1.7
 MIME-Version: 1.0
-Received: by 10.42.135.201 with SMTP id q9mr2096430ict.340.1302205733712; Thu,
-	07 Apr 2011 12:48:53 -0700 (PDT)
-Received: by 10.42.148.134 with HTTP; Thu, 7 Apr 2011 12:48:53 -0700 (PDT)
-In-Reply-To: <4D9E0519.4060909@mlbassoc.com>
-References: <BANLkTinnBApSJtwrPKpZnnjG+UvkWGt37A@mail.gmail.com>
-	<BCDD8C04-D97A-4B4D-931B-00357C6C59C5@dominion.thruhere.net>
-	<BANLkTimCSrbZ6EgverDQiiRscc24LqNsQg@mail.gmail.com>
-	<4D9E0519.4060909@mlbassoc.com>
-Date: Thu, 7 Apr 2011 16:48:53 -0300
-Message-ID: <BANLkTimgL0PhaySxNvTqCzvCdOKj29wuGg@mail.gmail.com>
-From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
+To: =?UTF-8?B?Sm/Do28gSGVucmlxdWUgRnJlaXRhcw==?= <joaohf@gmail.com>
+References: <BANLkTinnBApSJtwrPKpZnnjG+UvkWGt37A@mail.gmail.com>	<BCDD8C04-D97A-4B4D-931B-00357C6C59C5@dominion.thruhere.net>	<BANLkTimCSrbZ6EgverDQiiRscc24LqNsQg@mail.gmail.com>	<4D9E0519.4060909@mlbassoc.com>
+	<BANLkTimgL0PhaySxNvTqCzvCdOKj29wuGg@mail.gmail.com>
+In-Reply-To: <BANLkTimgL0PhaySxNvTqCzvCdOKj29wuGg@mail.gmail.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: recipes for sniffer tool
 X-BeenThere: yocto@yoctoproject.org
@@ -48,28 +36,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Apr 2011 19:48:54 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 07 Apr 2011 20:20:41 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+On 04/07/2011 01:48 PM, João Henrique Freitas wrote:
+>>
+>> I used this recipe, along with the attached patch to build tcpdump.
+>>
 >
-> I used this recipe, along with the attached patch to build tcpdump.
+> I am using the same recipes, without the patch. But it fails.
 >
+> With not-building-for-solaris.patch, fails too.
+>
+> I will try delete my build and try again.
 
-I am using the same recipes, without the patch. But it fails.
+Be sure and start rebuilding the tcpdump package completely.
+Just running 'bitbake tcpdump' is probably not good enough.
+Here's what I would try:
+   % bitbake tcpdump -c clean
+   % rm -f sstate-cache/sstate-tcpdump*
+   % bitbake tcpdump
 
-With not-building-for-solaris.patch, fails too.
-
-I will try delete my build and try again.
-
-Thanks.
-
-
---=20
------------------------------------------------------------
-Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
-Campinas-SP-Brasil
-BSD051283
-LPI 1
-http://www.joaohfreitas.eti.br
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
