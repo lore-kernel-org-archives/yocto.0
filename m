@@ -1,33 +1,47 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from lo.gmane.org (lo.gmane.org [80.91.229.12])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8F09D4C80050
-	for <yocto@yoctoproject.org>; Sat,  9 Apr 2011 07:04:59 -0500 (CDT)
-Received: from list by lo.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Q8WuP-0001eI-0W
-	for yocto@yoctoproject.org; Sat, 09 Apr 2011 14:04:57 +0200
-Received: from ppp079166139232.dsl.hol.gr ([79.166.139.232])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sat, 09 Apr 2011 14:04:57 +0200
-Received: from gmane by ppp079166139232.dsl.hol.gr with local (Gmexim 0.1
-	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sat, 09 Apr 2011 14:04:57 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Sat, 09 Apr 2011 15:04:41 +0300
-Organization: Reliable Embedded Systems
-Message-ID: <inpi0q$617$1@dough.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@dough.gmane.org
-X-Gmane-NNTP-Posting-Host: ppp079166139232.dsl.hol.gr
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.14) Gecko/20110223 Thunderbird/3.1.8
-Subject: Poky release is 5.0 "Bernard" confusion
+Return-Path: <joaohf@gmail.com>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8B0BC4C80050
+	for <yocto@yoctoproject.org>; Sat,  9 Apr 2011 16:19:08 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iym1 with SMTP id 1so6343331iym.35
+	for <yocto@yoctoproject.org>; Sat, 09 Apr 2011 14:19:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=oOWnDeG1FmuXFGvBTPznKCI7tc/c8CmpolosdpbT2J8=;
+	b=Oo0t/t42XZXjtmOjgFaRdNqwlpd99B1pSK2k7EpNgFKzQVq1nj17JOMaTvVKQC5QfD
+	+0lL2ZsqyAIPlApibV2dmc8ZQF+N8/Z1r/o9UeBnkThI55UGcPoEnoghg1S8gsZBFK9a
+	QvKJ8GIhirQz7iFRQ/7SjP/RZ8jdU8mXCOgiw=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	b=mibBDN4crH3A443Kak/n1fQZU8UwEaZJsKU6L+/+NN4VCbBHUM/s6h+0SPqJ8xfslB
+	bdjdTe5HrkKM5cnyJw49E799Yqy2TLS+CqFc4V+alm32+sKdvPGFjctqObfeWRBqM1FH
+	CKp42dEbQd8JPj7tQ9W9JOHunmd3TeIpM2IPs=
+MIME-Version: 1.0
+Received: by 10.42.1.8 with SMTP id 8mr4841649ice.407.1302383947106; Sat, 09
+	Apr 2011 14:19:07 -0700 (PDT)
+Received: by 10.42.148.134 with HTTP; Sat, 9 Apr 2011 14:19:07 -0700 (PDT)
+In-Reply-To: <4D9E1C97.2070107@mlbassoc.com>
+References: <BANLkTinnBApSJtwrPKpZnnjG+UvkWGt37A@mail.gmail.com>
+	<BCDD8C04-D97A-4B4D-931B-00357C6C59C5@dominion.thruhere.net>
+	<BANLkTimCSrbZ6EgverDQiiRscc24LqNsQg@mail.gmail.com>
+	<4D9E0519.4060909@mlbassoc.com>
+	<BANLkTimgL0PhaySxNvTqCzvCdOKj29wuGg@mail.gmail.com>
+	<4D9E1C97.2070107@mlbassoc.com>
+Date: Sat, 9 Apr 2011 18:19:07 -0300
+Message-ID: <BANLkTimQ22OrQx6OzsfVjreSnkQxafW06w@mail.gmail.com>
+From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: recipes for sniffer tool
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: gmane@reliableembeddedsystems.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -36,36 +50,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Apr 2011 12:05:00 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 09 Apr 2011 21:19:08 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hello,
 
-Can someone please tell me if there is a tag in
-git://git.pokylinux.org/poky.git which corresponds to the official
-release tarball and what it is?
+I need to confirm same data but it works.
 
-What puzzles me is that if you check out bernard-5.0 from the git
-repository it does not correspond to
-http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.tar.bz2
+I have two build hosts Ubuntu 10.10 (OK, at home) Mandriva 2010.1
+(FAIL, at work).
 
-OK, it does not seem to be anything seriously different between the two:
+Thanks.
 
-#       modified:   README.hardware
-#       modified:   documentation/adt-manual/adt-prepare.xml
-#       modified:   documentation/yocto-project-qs/yocto-project-qs.xml
-#       modified:   meta/conf/distro/poky.conf
+2011/4/7 Gary Thomas <gary@mlbassoc.com>:
+> On 04/07/2011 01:48 PM, Jo=C3=A3o Henrique Freitas wrote:
+>>>
+>>> I used this recipe, along with the attached patch to build tcpdump.
+>>>
+>>
+>> I am using the same recipes, without the patch. But it fails.
+>>
+>> With not-building-for-solaris.patch, fails too.
+>>
+>> I will try delete my build and try again.
+>
+> Be sure and start rebuilding the tcpdump package completely.
+> Just running 'bitbake tcpdump' is probably not good enough.
+> Here's what I would try:
+> =C2=A0% bitbake tcpdump -c clean
+> =C2=A0% rm -f sstate-cache/sstate-tcpdump*
+> =C2=A0% bitbake tcpdump
+>
+> --
+> ------------------------------------------------------------
+> Gary Thomas =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =C2=
+=A0Consulting for the
+> MLB Associates =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| =C2=A0 =
+=C2=A0Embedded world
+> ------------------------------------------------------------
+>
 
-... but you might want to synchronize since some people prefer to work
-from git and others from the tarball.
 
-As an example the README.hardware found in the tarball suggests to build
-and update u-boot for the Freescale MPC8315E-RDB, which does not exist
-in the git repo.
 
-Regards,
-
-Robert
-
+--=20
+-----------------------------------------------------------
+Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
+Campinas-SP-Brasil
+BSD051283
+LPI 1
+http://www.joaohfreitas.eti.br
 
