@@ -1,26 +1,35 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C02FE4C80050
-	for <yocto@yoctoproject.org>; Sat,  9 Apr 2011 22:45:59 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 09 Apr 2011 20:45:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.63,331,1299484800"; d="scan'208";a="731312269"
-Received: from unknown (HELO [10.255.12.211]) ([10.255.12.211])
-	by orsmga001.jf.intel.com with ESMTP; 09 Apr 2011 20:45:59 -0700
-Message-ID: <4DA127F6.3010006@intel.com>
-Date: Sat, 09 Apr 2011 20:45:58 -0700
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.14) Gecko/20110223 Thunderbird/3.1.8
-MIME-Version: 1.0
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from lo.gmane.org (lo.gmane.org [80.91.229.12])
+	by mx1.pokylinux.org (Postfix) with ESMTP id BDFF94C80050
+	for <yocto@yoctoproject.org>; Sun, 10 Apr 2011 01:58:32 -0500 (CDT)
+Received: from list by lo.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Q8obP-0005LN-Da
+	for yocto@yoctoproject.org; Sun, 10 Apr 2011 08:58:31 +0200
+Received: from ppp079166096079.dsl.hol.gr ([79.166.96.79])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sun, 10 Apr 2011 08:58:31 +0200
+Received: from gmane by ppp079166096079.dsl.hol.gr with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sun, 10 Apr 2011 08:58:31 +0200
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
-References: <inpi0q$617$1@dough.gmane.org>
-In-Reply-To: <inpi0q$617$1@dough.gmane.org>
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Sun, 10 Apr 2011 09:58:18 +0300
+Organization: Reliable Embedded Systems
+Message-ID: <inrkea$vn7$1@dough.gmane.org>
+References: <inpi0q$617$1@dough.gmane.org> <4DA127F6.3010006@intel.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@dough.gmane.org
+X-Gmane-NNTP-Posting-Host: ppp079166096079.dsl.hol.gr
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.14) Gecko/20110223 Thunderbird/3.1.8
+In-Reply-To: <4DA127F6.3010006@intel.com>
 Subject: Re: Poky release is 5.0 "Bernard" confusion
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: gmane@reliableembeddedsystems.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -29,49 +38,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Apr 2011 03:46:00 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Sun, 10 Apr 2011 06:58:33 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 04/09/2011 05:04 AM, Robert Berger wrote:
-> Hi,
->
-> Can someone please tell me if there is a tag in
-> git://git.pokylinux.org/poky.git which corresponds to the official
-> release tarball and what it is?
->
-> What puzzles me is that if you check out bernard-5.0 from the git
-> repository it does not correspond to
-> http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.tar.bz2
->
-> OK, it does not seem to be anything seriously different between the two:
->
-> #       modified:   README.hardware
-> #       modified:   documentation/adt-manual/adt-prepare.xml
-> #       modified:   documentation/yocto-project-qs/yocto-project-qs.xml
-> #       modified:   meta/conf/distro/poky.conf
->
-> ... but you might want to synchronize since some people prefer to work
-> from git and others from the tarball.
->
-> As an example the README.hardware found in the tarball suggests to build
-> and update u-boot for the Freescale MPC8315E-RDB, which does not exist
-> in the git repo.
+Hi Scott,
 
-This suggests to me that your local git repository isn't up to date. The 
-tag has been moved at least once since it was created, and it sounds 
-like your repository is behind the most recent move of the tag.
+> 
+> This suggests to me that your local git repository isn't up to date. The
+> tag has been moved at least once since it was created, and it sounds
+> like your repository is behind the most recent move of the tag.
+> 
+> Note: if you use git fetch --all, that will fetch new tags but doesn't
+> update old ones that have moved - you need to explicitly run git fetch
+> --tags.
 
-Note: if you use git fetch --all, that will fetch new tags but doesn't 
-update old ones that have moved - you need to explicitly run git fetch 
---tags.
+Thanks, you are absolutely right:
 
-HTH,
+git pull
 
-Scott
+is not enough;)
 
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+git fetch --tags
+From git://git.pokylinux.org/poky
+ - [tag update]      bernard-5.0 -> bernard-5.0
+
+> 
+> HTH,
+> 
+> Scott
+> 
+
+Regards,
+
+Robert
+..."The scientific name for an animal that doesn't either run from or
+fight its enemies is lunch." - Michael Friedman
+
+My public pgp key is available at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
+
+
 
