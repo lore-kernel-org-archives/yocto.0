@@ -1,44 +1,43 @@
-Return-Path: <joaohf@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8B0BC4C80050
-	for <yocto@yoctoproject.org>; Sat,  9 Apr 2011 16:19:08 -0500 (CDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
+	[209.85.160.48])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 9CCD14C80050
+	for <yocto@yoctoproject.org>; Sat,  9 Apr 2011 21:13:45 -0500 (CDT)
 Authentication-Results: mx1.pokylinux.org; dkim=pass
 	(1024-bit key; insecure key) header.i=@gmail.com;
 	x-dkim-adsp=none (insecure policy)
-Received: by iym1 with SMTP id 1so6343331iym.35
-	for <yocto@yoctoproject.org>; Sat, 09 Apr 2011 14:19:08 -0700 (PDT)
+Received: by pwi14 with SMTP id 14so2516074pwi.35
+	for <yocto@yoctoproject.org>; Sat, 09 Apr 2011 19:13:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
+	h=domainkey-signature:message-id:date:from:user-agent:mime-version:to
+	:subject:references:in-reply-to:content-type
 	:content-transfer-encoding;
-	bh=oOWnDeG1FmuXFGvBTPznKCI7tc/c8CmpolosdpbT2J8=;
-	b=Oo0t/t42XZXjtmOjgFaRdNqwlpd99B1pSK2k7EpNgFKzQVq1nj17JOMaTvVKQC5QfD
-	+0lL2ZsqyAIPlApibV2dmc8ZQF+N8/Z1r/o9UeBnkThI55UGcPoEnoghg1S8gsZBFK9a
-	QvKJ8GIhirQz7iFRQ/7SjP/RZ8jdU8mXCOgiw=
+	bh=DuZYc8hFFOgttWwHI+rJjNqc+GVNp5bE6aRFUeFmmbw=;
+	b=UfcnogUfEuOnXVpBOUAEDQY2GPHsbNTdW2hZ47kKA5HMZfOFbkYxpaLo1hAj+lS2Yy
+	JWNf4D+Aa9qAeNQKQtimU5TJ5E050hsn8Pp9ugZpsoG6IBlv7opINsduIG3A6XIsldju
+	3TQIsWoWLFYMvgx9NDNsQ4Ym3AImjo24nQo7k=
 DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	b=mibBDN4crH3A443Kak/n1fQZU8UwEaZJsKU6L+/+NN4VCbBHUM/s6h+0SPqJ8xfslB
-	bdjdTe5HrkKM5cnyJw49E799Yqy2TLS+CqFc4V+alm32+sKdvPGFjctqObfeWRBqM1FH
-	CKp42dEbQd8JPj7tQ9W9JOHunmd3TeIpM2IPs=
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	b=W+mK+0zFcXNIsnsQNNeC/ueZ1rZMdvH6bdc/UaRRkvF2nga6VMt4SAx3qHvNieXDuq
+	Ez4Tv5poeKQThnk97J6mE4nbnO5fhOneqB1Wlr87ymoO1t/wrOdf3No3CkreHBo9Ya/k
+	K5hayLI1AJBaT3dp2+4Ts6TJJ3J2KEAyq5CgQ=
+Received: by 10.142.186.5 with SMTP id j5mr3374558wff.328.1302401624887;
+	Sat, 09 Apr 2011 19:13:44 -0700 (PDT)
+Received: from [192.168.1.70] (99-57-141-118.lightspeed.sntcca.sbcglobal.net
+	[99.57.141.118])
+	by mx.google.com with ESMTPS id s39sm5995853wfc.16.2011.04.09.19.13.42
+	(version=SSLv3 cipher=OTHER); Sat, 09 Apr 2011 19:13:43 -0700 (PDT)
+Message-ID: <4DA11257.103@gmail.com>
+Date: Sat, 09 Apr 2011 19:13:43 -0700
+From: Khem Raj <raj.khem@gmail.com>
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US;
+	rv:1.9.2.15) Gecko/20110303 Thunderbird/3.1.9
 MIME-Version: 1.0
-Received: by 10.42.1.8 with SMTP id 8mr4841649ice.407.1302383947106; Sat, 09
-	Apr 2011 14:19:07 -0700 (PDT)
-Received: by 10.42.148.134 with HTTP; Sat, 9 Apr 2011 14:19:07 -0700 (PDT)
-In-Reply-To: <4D9E1C97.2070107@mlbassoc.com>
-References: <BANLkTinnBApSJtwrPKpZnnjG+UvkWGt37A@mail.gmail.com>
-	<BCDD8C04-D97A-4B4D-931B-00357C6C59C5@dominion.thruhere.net>
-	<BANLkTimCSrbZ6EgverDQiiRscc24LqNsQg@mail.gmail.com>
-	<4D9E0519.4060909@mlbassoc.com>
-	<BANLkTimgL0PhaySxNvTqCzvCdOKj29wuGg@mail.gmail.com>
-	<4D9E1C97.2070107@mlbassoc.com>
-Date: Sat, 9 Apr 2011 18:19:07 -0300
-Message-ID: <BANLkTimQ22OrQx6OzsfVjreSnkQxafW06w@mail.gmail.com>
-From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: recipes for sniffer tool
+To: yocto@yoctoproject.org
+References: <ineroa$hbp$1@dough.gmane.org>
+In-Reply-To: <ineroa$hbp$1@dough.gmane.org>
+Subject: Re: Change Endianess for MIPS build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,54 +49,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Apr 2011 21:19:08 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 10 Apr 2011 02:13:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello,
-
-I need to confirm same data but it works.
-
-I have two build hosts Ubuntu 10.10 (OK, at home) Mandriva 2010.1
-(FAIL, at work).
-
-Thanks.
-
-2011/4/7 Gary Thomas <gary@mlbassoc.com>:
-> On 04/07/2011 01:48 PM, Jo=C3=A3o Henrique Freitas wrote:
->>>
->>> I used this recipe, along with the attached patch to build tcpdump.
->>>
->>
->> I am using the same recipes, without the patch. But it fails.
->>
->> With not-building-for-solaris.patch, fails too.
->>
->> I will try delete my build and try again.
+On 4/5/2011 3:43 AM, Robert Berger wrote:
+> Hi,
 >
-> Be sure and start rebuilding the tcpdump package completely.
-> Just running 'bitbake tcpdump' is probably not good enough.
-> Here's what I would try:
-> =C2=A0% bitbake tcpdump -c clean
-> =C2=A0% rm -f sstate-cache/sstate-tcpdump*
-> =C2=A0% bitbake tcpdump
+> I was wondering what needs to be done to build (at least) a little
+> endian qemu root file system for MIPS.
 >
-> --
-> ------------------------------------------------------------
-> Gary Thomas =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =C2=
-=A0Consulting for the
-> MLB Associates =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| =C2=A0 =
-=C2=A0Embedded world
-> ------------------------------------------------------------
+> Yocto builds this:
+>
+> ELF 32-bit MSB executable, MIPS, MIPS64 version 1 (SYSV), dynamically
+> linked (uses shared libs), not stripped
+>
+> I would need this:
+>
+> ELF 32-bit LSB executable, MIPS, MIPS64 version 1 (SYSV), dynamically
+> linked (uses shared libs), not stripped
+>
+> I guess SITEINFO_ENDIANESS (endian-big, endian-little) needs to be
+> changed to endian-little somewhere.
+>
+> Can you please point me to where this needs to be done?
 >
 
+mipsel is treated as a different machine. Its not supported (yet) in 
+oe-core. Its on my todo list unless someone beats me to it. You need
+to add machine support and infra support. You can look at classic 
+openembedded as reference. Where it is supported.
 
 
---=20
------------------------------------------------------------
-Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
-Campinas-SP-Brasil
-BSD051283
-LPI 1
-http://www.joaohfreitas.eti.br
+> ... or maybe I'm completely wrong and it needs to be done elsewhere ...
+>
+> Regards,
+>
+> Robert
+>
+> ..."I'm afraid that I've seen too many people fix bugs by looking at
+> debugger output, and that almost inevitably leads to fixing the symptoms
+> rather than the underlying problems." --Linus
+>
+> My public pgp key is available at:
+> http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
