@@ -1,43 +1,23 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
-	[209.85.160.48])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 9CCD14C80050
-	for <yocto@yoctoproject.org>; Sat,  9 Apr 2011 21:13:45 -0500 (CDT)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by pwi14 with SMTP id 14so2516074pwi.35
-	for <yocto@yoctoproject.org>; Sat, 09 Apr 2011 19:13:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:message-id:date:from:user-agent:mime-version:to
-	:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=DuZYc8hFFOgttWwHI+rJjNqc+GVNp5bE6aRFUeFmmbw=;
-	b=UfcnogUfEuOnXVpBOUAEDQY2GPHsbNTdW2hZ47kKA5HMZfOFbkYxpaLo1hAj+lS2Yy
-	JWNf4D+Aa9qAeNQKQtimU5TJ5E050hsn8Pp9ugZpsoG6IBlv7opINsduIG3A6XIsldju
-	3TQIsWoWLFYMvgx9NDNsQ4Ym3AImjo24nQo7k=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	b=W+mK+0zFcXNIsnsQNNeC/ueZ1rZMdvH6bdc/UaRRkvF2nga6VMt4SAx3qHvNieXDuq
-	Ez4Tv5poeKQThnk97J6mE4nbnO5fhOneqB1Wlr87ymoO1t/wrOdf3No3CkreHBo9Ya/k
-	K5hayLI1AJBaT3dp2+4Ts6TJJ3J2KEAyq5CgQ=
-Received: by 10.142.186.5 with SMTP id j5mr3374558wff.328.1302401624887;
-	Sat, 09 Apr 2011 19:13:44 -0700 (PDT)
-Received: from [192.168.1.70] (99-57-141-118.lightspeed.sntcca.sbcglobal.net
-	[99.57.141.118])
-	by mx.google.com with ESMTPS id s39sm5995853wfc.16.2011.04.09.19.13.42
-	(version=SSLv3 cipher=OTHER); Sat, 09 Apr 2011 19:13:43 -0700 (PDT)
-Message-ID: <4DA11257.103@gmail.com>
-Date: Sat, 09 Apr 2011 19:13:43 -0700
-From: Khem Raj <raj.khem@gmail.com>
-User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US;
-	rv:1.9.2.15) Gecko/20110303 Thunderbird/3.1.9
+Return-Path: <scott.a.garman@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C02FE4C80050
+	for <yocto@yoctoproject.org>; Sat,  9 Apr 2011 22:45:59 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 09 Apr 2011 20:45:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.63,331,1299484800"; d="scan'208";a="731312269"
+Received: from unknown (HELO [10.255.12.211]) ([10.255.12.211])
+	by orsmga001.jf.intel.com with ESMTP; 09 Apr 2011 20:45:59 -0700
+Message-ID: <4DA127F6.3010006@intel.com>
+Date: Sat, 09 Apr 2011 20:45:58 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.14) Gecko/20110223 Thunderbird/3.1.8
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-References: <ineroa$hbp$1@dough.gmane.org>
-In-Reply-To: <ineroa$hbp$1@dough.gmane.org>
-Subject: Re: Change Endianess for MIPS build
+References: <inpi0q$617$1@dough.gmane.org>
+In-Reply-To: <inpi0q$617$1@dough.gmane.org>
+Subject: Re: Poky release is 5.0 "Bernard" confusion
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,55 +29,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Apr 2011 02:13:45 -0000
+X-List-Received-Date: Sun, 10 Apr 2011 03:46:00 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 4/5/2011 3:43 AM, Robert Berger wrote:
+On 04/09/2011 05:04 AM, Robert Berger wrote:
 > Hi,
 >
-> I was wondering what needs to be done to build (at least) a little
-> endian qemu root file system for MIPS.
+> Can someone please tell me if there is a tag in
+> git://git.pokylinux.org/poky.git which corresponds to the official
+> release tarball and what it is?
 >
-> Yocto builds this:
+> What puzzles me is that if you check out bernard-5.0 from the git
+> repository it does not correspond to
+> http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.tar.bz2
 >
-> ELF 32-bit MSB executable, MIPS, MIPS64 version 1 (SYSV), dynamically
-> linked (uses shared libs), not stripped
+> OK, it does not seem to be anything seriously different between the two:
 >
-> I would need this:
+> #       modified:   README.hardware
+> #       modified:   documentation/adt-manual/adt-prepare.xml
+> #       modified:   documentation/yocto-project-qs/yocto-project-qs.xml
+> #       modified:   meta/conf/distro/poky.conf
 >
-> ELF 32-bit LSB executable, MIPS, MIPS64 version 1 (SYSV), dynamically
-> linked (uses shared libs), not stripped
+> ... but you might want to synchronize since some people prefer to work
+> from git and others from the tarball.
 >
-> I guess SITEINFO_ENDIANESS (endian-big, endian-little) needs to be
-> changed to endian-little somewhere.
->
-> Can you please point me to where this needs to be done?
->
+> As an example the README.hardware found in the tarball suggests to build
+> and update u-boot for the Freescale MPC8315E-RDB, which does not exist
+> in the git repo.
 
-mipsel is treated as a different machine. Its not supported (yet) in 
-oe-core. Its on my todo list unless someone beats me to it. You need
-to add machine support and infra support. You can look at classic 
-openembedded as reference. Where it is supported.
+This suggests to me that your local git repository isn't up to date. The 
+tag has been moved at least once since it was created, and it sounds 
+like your repository is behind the most recent move of the tag.
 
+Note: if you use git fetch --all, that will fetch new tags but doesn't 
+update old ones that have moved - you need to explicitly run git fetch 
+--tags.
 
-> ... or maybe I'm completely wrong and it needs to be done elsewhere ...
->
-> Regards,
->
-> Robert
->
-> ..."I'm afraid that I've seen too many people fix bugs by looking at
-> debugger output, and that almost inevitably leads to fixing the symptoms
-> rather than the underlying problems." --Linus
->
-> My public pgp key is available at:
-> http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+HTH,
 
+Scott
+
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
