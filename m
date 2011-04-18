@@ -1,26 +1,26 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-wy0-f176.google.com (mail-wy0-f176.google.com
-	[74.125.82.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id E1D1E4C80581
-	for <yocto@yoctoproject.org>; Tue, 19 Apr 2011 08:42:20 -0500 (CDT)
-Received: by wyb40 with SMTP id 40so7658830wyb.35
-	for <yocto@yoctoproject.org>; Tue, 19 Apr 2011 06:42:19 -0700 (PDT)
-Received: by 10.217.7.4 with SMTP id z4mr4946508wes.89.1303220539639;
-	Tue, 19 Apr 2011 06:42:19 -0700 (PDT)
-Received: from [172.20.1.5] (ip545070eb.adsl-surfen.hetnet.nl [84.80.112.235])
-	by mx.google.com with ESMTPS id x1sm3902748wbh.2.2011.04.19.06.42.18
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 19 Apr 2011 06:42:18 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1084)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <4DAD870A.8030609@mlbassoc.com>
-Date: Tue, 19 Apr 2011 15:41:42 +0200
-Message-Id: <91F7815E-1C81-4C5E-80BE-4A1D7E6AB3E7@dominion.thruhere.net>
-References: <4DAD870A.8030609@mlbassoc.com>
-To: Gary Thomas <gary@mlbassoc.com>
-X-Mailer: Apple Mail (2.1084)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Where do I find meta-XXX?
+Return-Path: <darren.hart@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id F37804C8016A
+	for <yocto@yoctoproject.org>; Mon, 18 Apr 2011 12:22:39 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 18 Apr 2011 10:22:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.64,233,1301900400"; d="scan'208";a="735138061"
+Received: from doubt.jf.intel.com (HELO [10.24.5.31]) ([10.24.5.31])
+	by orsmga001.jf.intel.com with ESMTP; 18 Apr 2011 10:22:39 -0700
+Message-ID: <4DAC7362.1020109@intel.com>
+Date: Mon, 18 Apr 2011 10:22:42 -0700
+From: Darren Hart <darren.hart@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.14) Gecko/20110223 Lightning/1.0b2 Thunderbird/3.1.8
+MIME-Version: 1.0
+To: Wolfgang Denk <wd@denx.de>
+References: <inpi0q$617$1@dough.gmane.org> <4DA127F6.3010006@intel.com>
+	<20110410082442.28B18142E08A@gemini.denx.de>
+In-Reply-To: <20110410082442.28B18142E08A@gemini.denx.de>
+X-Mailman-Approved-At: Tue, 19 Apr 2011 11:01:36 -0500
+Cc: yocto@yoctoproject.org, Scott Garman <scott.a.garman@intel.com>
+Subject: Re: Poky release is 5.0 "Bernard" confusion
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,30 +32,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Apr 2011 13:42:21 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 18 Apr 2011 17:22:40 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+On 04/10/2011 01:24 AM, Wolfgang Denk wrote:
+> Dear Scott Garman,
+> 
+> In message <4DA127F6.3010006@intel.com> you wrote:
+>>
+>> This suggests to me that your local git repository isn't up to date. The 
+>> tag has been moved at least once since it was created, and it sounds 
+>> like your repository is behind the most recent move of the tag.
+> 
+> You are ...  moving release tags?  Grrrgh!!!
+
+Oh, that surprises me as well. What is the justification here? Generally
+speaking, I'd expect the tags to be static.
+
+--
+Darren
+
+> 
+> Could you please stop doing this?  Nobody ever expects such a thing.
+> And while we are at it:  It would also be great if you could
+> GPG-sign the tags.
+> 
+> Thanks.
+> 
+> Wolfgang Denk
+> 
 
 
-Op 19 apr 2011, om 14:58 heeft Gary Thomas het volgende geschreven:
-
-> Can someone let me in on the secret?  On the Yocto WiKi, I can
-> only find directions for checking out oe-core (and bitbake).
-> The WiKi page for meta-yocto is empty :-(
->=20
-> Also, I've seen references to meta-oe, again I've no clue where
-> to find it...
->=20
-> Sorry to be dense, but if the answers are public, they seem to
-> be well hidden.
-
-At ELC we talked about having a single webpage listing all the layers =
-out there, with descriptions to address that problem.
-
-FWIW, meta-oe lives here: =
-http://cgit.openembedded.org/cgit.cgi/meta-openembedded/
-
-regards,
-
-Koen=
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
