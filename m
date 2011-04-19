@@ -1,24 +1,28 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <julie.n.fleischer@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id DDD844C80052
-	for <yocto@yoctoproject.org>; Mon, 18 Apr 2011 14:28:10 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id D288B4C80A7C
+	for <yocto@yoctoproject.org>; Mon, 18 Apr 2011 19:32:36 -0500 (CDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 18 Apr 2011 12:28:10 -0700
+	by orsmga102.jf.intel.com with ESMTP; 18 Apr 2011 17:32:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.64,234,1301900400"; d="scan'208";a="630644065"
-Received: from eflanaga-mobl.jf.intel.com (HELO [10.7.198.50]) ([10.7.198.50])
-	by orsmga002.jf.intel.com with ESMTP; 18 Apr 2011 12:28:10 -0700
-Message-ID: <4DAC90D3.3050905@intel.com>
-Date: Mon, 18 Apr 2011 12:28:19 -0700
-From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.14) Gecko/20110223 Thunderbird/3.1.8
+X-IronPort-AV: E=Sophos;i="4.64,236,1301900400"; d="scan'208";a="630747803"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga002.jf.intel.com with ESMTP; 18 Apr 2011 17:32:36 -0700
+Received: from orsmsx506.amr.corp.intel.com ([10.22.226.44]) by
+	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
+	Mon, 18 Apr 2011 17:32:36 -0700
+From: "Fleischer, Julie N" <julie.n.fleischer@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 18 Apr 2011 17:32:32 -0700
+Thread-Topic: Yocto Technical Team meeting
+Thread-Index: Acv+KUXCpds1TuwdQL29mZFk6oDmCA==
+Message-ID: <4F65016F6CB04E49BFFA15D4F7B798D901613BC19F@orsmsx506.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <inpi0q$617$1@dough.gmane.org> <4DA127F6.3010006@intel.com>
-	<20110410082442.28B18142E08A@gemini.denx.de>
-In-Reply-To: <20110410082442.28B18142E08A@gemini.denx.de>
-Subject: Re: Poky release is 5.0 "Bernard" confusion
+Subject: Yocto Technical Team meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,44 +34,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Apr 2011 19:28:11 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 19 Apr 2011 00:32:37 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+Yocto Technical Team,
+We are resuming our Yocto Technical Team meetings in order to track Yocto P=
+roject 1.1 deliverables.  If you are interested in attending, our next meet=
+ing will be Tuesday, April 19th at 8am Pacific.
 
+Dial in information:
+Tuesday, April 19, 2011, 08:00 AM US Pacific Time=20
+916-356-2663, Bridge: 1, Passcode: 3999038
 
-On 04/10/2011 01:24 AM, Wolfgang Denk wrote:
-> Dear Scott Garman,
->
-> In message<4DA127F6.3010006@intel.com>  you wrote:
->>
->> This suggests to me that your local git repository isn't up to date. The
->> tag has been moved at least once since it was created, and it sounds
->> like your repository is behind the most recent move of the tag.
->
-> You are ...  moving release tags?  Grrrgh!!!
->
-> Could you please stop doing this?  Nobody ever expects such a thing.
-> And while we are at it:  It would also be great if you could
-> GPG-sign the tags.
->
-> Thanks.
->
-> Wolfgang Denk
->
+Agenda:
+1) Review Yocto Project 1.1 Feature List:  https://wiki.yoctoproject.org/wi=
+ki/Yocto_1.1_Features=20
+2) Review Yocto Project 1.1 Release Criteria:  https://wiki.yoctoproject.or=
+g/wiki/Yocto_Project_v1.1_Release_Criteria#Yocto_Project_1.1
+2) Review Yocto Project 1.0.1 Release Criteria: https://wiki.yoctoproject.o=
+rg/wiki/Yocto_Project_v1.1_Release_Criteria#Yocto_Project_1.0.1
 
-Wolfgang,
+- Julie
 
-Yes, there was a problem with what I assumed would be our bernard-5.0 release and the tag needed to be moved, which, 
-while a messy practice, was the only available option at the time. The tag shouldn't have been created until after 
-verification of the RC. I'll make sure that this is captured in our release process. If you want, please feel free to 
-open up a bug in bugzilla and assign it to me. As this was a relatively new process, I knew we'd hit some snags. This 
-was one of them, and I'll make sure this is captured in our process so that we don't hit it again.
+-----------------------
+Julie Fleischer
+Open Source Technology Center
+Intel Corporation
 
-Thanks for the feedback.
-
-------------------
-Elizabeth Flanagan
-Yocto Project
-Release Engineer
 
