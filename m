@@ -1,26 +1,26 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5F4D44C800A2
-	for <yocto@yoctoproject.org>; Tue, 19 Apr 2011 07:58:51 -0500 (CDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 999)
-	id D79D71660301; Tue, 19 Apr 2011 06:58:50 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2-r929478 (2010-03-31) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2-r929478
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 85BA81660208;
-	Tue, 19 Apr 2011 06:58:50 -0600 (MDT)
-Message-ID: <4DAD870A.8030609@mlbassoc.com>
-Date: Tue, 19 Apr 2011 06:58:50 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.13) Gecko/20101209 Fedora/3.1.7-0.35.b3pre.fc13
-	Thunderbird/3.1.7
-MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Where do I find meta-XXX?
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-wy0-f176.google.com (mail-wy0-f176.google.com
+	[74.125.82.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id E1D1E4C80581
+	for <yocto@yoctoproject.org>; Tue, 19 Apr 2011 08:42:20 -0500 (CDT)
+Received: by wyb40 with SMTP id 40so7658830wyb.35
+	for <yocto@yoctoproject.org>; Tue, 19 Apr 2011 06:42:19 -0700 (PDT)
+Received: by 10.217.7.4 with SMTP id z4mr4946508wes.89.1303220539639;
+	Tue, 19 Apr 2011 06:42:19 -0700 (PDT)
+Received: from [172.20.1.5] (ip545070eb.adsl-surfen.hetnet.nl [84.80.112.235])
+	by mx.google.com with ESMTPS id x1sm3902748wbh.2.2011.04.19.06.42.18
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 19 Apr 2011 06:42:18 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <4DAD870A.8030609@mlbassoc.com>
+Date: Tue, 19 Apr 2011 15:41:42 +0200
+Message-Id: <91F7815E-1C81-4C5E-80BE-4A1D7E6AB3E7@dominion.thruhere.net>
+References: <4DAD870A.8030609@mlbassoc.com>
+To: Gary Thomas <gary@mlbassoc.com>
+X-Mailer: Apple Mail (2.1084)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Where do I find meta-XXX?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,25 +32,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Apr 2011 12:58:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 19 Apr 2011 13:42:21 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Can someone let me in on the secret?  On the Yocto WiKi, I can
-only find directions for checking out oe-core (and bitbake).
-The WiKi page for meta-yocto is empty :-(
 
-Also, I've seen references to meta-oe, again I've no clue where
-to find it...
+Op 19 apr 2011, om 14:58 heeft Gary Thomas het volgende geschreven:
 
-Sorry to be dense, but if the answers are public, they seem to
-be well hidden.
+> Can someone let me in on the secret?  On the Yocto WiKi, I can
+> only find directions for checking out oe-core (and bitbake).
+> The WiKi page for meta-yocto is empty :-(
+>=20
+> Also, I've seen references to meta-oe, again I've no clue where
+> to find it...
+>=20
+> Sorry to be dense, but if the answers are public, they seem to
+> be well hidden.
 
-Thanks
+At ELC we talked about having a single webpage listing all the layers =
+out there, with descriptions to address that problem.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+FWIW, meta-oe lives here: =
+http://cgit.openembedded.org/cgit.cgi/meta-openembedded/
+
+regards,
+
+Koen=
 
