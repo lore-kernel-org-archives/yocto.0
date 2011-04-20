@@ -1,24 +1,33 @@
-Return-Path: <Jate.Sujjavanich@myfuelmaster.com>
-Received: from courier.syntech-fuelmaster.com (exchsrvr.syntech-fuelmaster.com
-	[199.44.250.2])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A12C74C80AC1
-	for <yocto@yoctoproject.org>; Wed, 20 Apr 2011 15:40:49 -0500 (CDT)
-Received: from Courier.syntech.org ([fe80::f1e9:ec58:2caf:f234]) by
-	Courier.syntech.org ([fe80::f1e9:ec58:2caf:f234%14]) with mapi;
-	Wed, 20 Apr 2011 16:40:49 -0400
-From: Jate Sujjavanich <Jate.Sujjavanich@myfuelmaster.com>
-To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Date: Wed, 20 Apr 2011 16:40:48 -0400
-Thread-Topic: yocto 1.0 download link
-Thread-Index: Acv/mzp6CYiYIR/kQP670J3un3+qXQ==
-Message-ID: <6C2434209962DC46B88345CA85C334A2A4A6DA859D@Courier.syntech.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 26BB954800236B26BB9695
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: yocto 1.0 download link
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 2104B4C80AAF;
+	Wed, 20 Apr 2011 17:15:17 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p3KMFCCd026110;
+	Wed, 20 Apr 2011 23:15:12 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 25909-03; Wed, 20 Apr 2011 23:15:08 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p3KMF5YD026101
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 20 Apr 2011 23:15:05 +0100
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <DE8BA75F34A0404282AC5E15F691BC76512BEFF6@orsmsx504.amr.corp.intel.com>
+References: <1300408987.30423.2172.camel@rex>
+	<4DAF0DB2.5080004@linux.intel.com>
+	<DE8BA75F34A0404282AC5E15F691BC76512BEFF6@orsmsx504.amr.corp.intel.com>
+Date: Wed, 20 Apr 2011 23:14:51 +0100
+Message-ID: <1303337691.5518.319.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto <yocto@yoctoproject.org>, Darren Hart <dvhart@linux.intel.com>,
+	poky <poky@yoctoproject.org>
+Subject: Re: [poky] Shared State - What does it mean and why should I care?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,18 +39,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Apr 2011 20:40:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 20 Apr 2011 22:15:18 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-The page http://yoctoproject.org/download/yocto/yocto-project-1.0-release-n=
-otes-poky-5.0 is missing a download link.
+On Wed, 2011-04-20 at 09:58 -0700, Rifenbark, Scott M wrote:
+> > Thanks for the write-up RP. Do we plan to integrate this with the
+> > reference manual? Perhaps something on the wiki until this is all a
+> > bit more final and then move it into the ref manual?
+> 
+> Sstate should get integrated into our documentation somewhere.
 
-It's available on http://yoctoproject.org/download, but I had to search for=
- a while.
+In case this isn't clear, Scott is confirming that working that text
+into the reference manual is already on his todo list :)
 
+Cheers,
 
-Jate
+Richard
+
 
 
