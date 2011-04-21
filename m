@@ -1,40 +1,22 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 0C6284C800A6
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2011 11:51:01 -0500 (CDT)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by wwd20 with SMTP id 20so2260213wwd.11
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2011 09:51:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	bh=ipt0qgafMxk73GAa76rHPrkAAfwsi2xVXhYYt0LkKII=;
-	b=UvClvJue8NLLUSrepyQhFyZ0I2R1jmlBn+65oBRtp/vlVn+IaSDjI1aeG0q1sHqk+V
-	cJiQzo0ea4u1C9lef1XUvl7jr3avSxEWZB9yrazws4NCYMfsF5a4WuNHV+XNt+wPqwH/
-	T79zDTuhzVyQVoTsZKvNfAkdxJr6fSaSCU0w8=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	b=XbYcinUVIU5wm9wFGCuFoGx5BLXGRsqcWSXcpmuxujBtIqu8IJBpGjN+ITZVt3NHuE
-	ObAcQSSfmqRTUVMATDD/J9gglzIsyCnEsZ5xnEppoDByFlLdcDGhWZpur3NbUZOZ8MVm
-	xQO8nc+A/BSsFzlcrqiKsFePTn0BCw+/JzwV8=
-MIME-Version: 1.0
-Received: by 10.216.136.91 with SMTP id v69mr2282893wei.16.1303404660843; Thu,
-	21 Apr 2011 09:51:00 -0700 (PDT)
-Sender: jefro.net@gmail.com
-Received: by 10.216.238.134 with HTTP; Thu, 21 Apr 2011 09:51:00 -0700 (PDT)
-In-Reply-To: <6C2434209962DC46B88345CA85C334A2A4A6DA859D@Courier.syntech.org>
-References: <Acv/mzp6CYiYIR/kQP670J3un3+qXQ==>
-	<6C2434209962DC46B88345CA85C334A2A4A6DA859D@Courier.syntech.org>
-Date: Thu, 21 Apr 2011 09:51:00 -0700
-X-Google-Sender-Auth: MeQfu7T0Q4w3QR7J2fWcbrzD2BY
-Message-ID: <BANLkTimaMOLT1ungNys_HXMqCv7u2_LRdg@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-To: Jate Sujjavanich <Jate.Sujjavanich@myfuelmaster.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: yocto 1.0 download link
+Return-Path: <joshua.lock@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 1E2444C80050
+	for <yocto@yoctoproject.org>; Thu, 21 Apr 2011 13:06:25 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 21 Apr 2011 11:06:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.64,252,1301900400"; d="scan'208";a="632182665"
+Received: from vorpal.jf.intel.com (HELO [10.7.199.145]) ([10.7.199.145])
+	by orsmga002.jf.intel.com with ESMTP; 21 Apr 2011 11:06:24 -0700
+From: Joshua Lock <joshua.lock@intel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+In-Reply-To: <4DB055DC.4020306@linux.intel.com>
+References: <4DB055DC.4020306@linux.intel.com>
+Date: Thu, 21 Apr 2011 11:02:01 -0700
+Message-ID: <1303408921.9960.66.camel@vorpal>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.30.3 
+Subject: Re: RFC: Image Creator and Config Creator, design thoughts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,76 +28,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Apr 2011 16:51:02 -0000
-Content-Type: multipart/alternative; boundary=0016e6dedddfcee3c904a1708bfc
+X-List-Received-Date: Thu, 21 Apr 2011 18:06:25 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---0016e6dedddfcee3c904a1708bfc
-Content-Type: text/plain; charset=ISO-8859-1
+On Thu, 2011-04-21 at 10:05 -0600, Darren Hart wrote:
+> I sat down with Josh earlier this week to discuss how I might use the
+> Image Creator in my development and to address any issues that might
+> pose as blockers to my finding such a tool useful. This led to various
+> feature discussions, scope setting, etc. I wanted to capture that here
+> and also ask for comments from other users and developers.
+> 
+> 
+> Image Recipe Generation
+> -----------------------
+> The image creator Josh is working on currently facilitates specifying
+> the policy (bitbake term "distro", such as poky, poky-bleeding, or
+> poky-lsb), image, and any additional packages you may want to include.
+> It then provides a simple wrapper to bitbake and it's output. 
 
-Hi Jate,
+Aside, wrapper is not the right term. This is a full fledged BitBake GUI
+and uses the same libraries as the CLI (knotty) interface. :-)
 
-Thanks for the comment. Scott has added a download link to the release
-notes.
+> This is
+> useful in and of itself as sorting out which variables to modify
+> (IMAGE_INSTALL, MACHINE(_ESSENTIAL?)_R?DEPENDS_append(_$MACHINE), etc)
+> and which tasks to rebuild (task_base, task_machine_base, poky-image-*,
+> etc.) can be a frustrating exercise (or at least it has been for me).
+> 
+> In order for this feature to be the most useful, it needs to be able to
+> save the result of the user's selection. This involves saving off the
+> "distro" selection (typically in local.conf) as well as an image recipe
+> defining which packages to include in the resulting image. This could be
+> done by writing to local.conf and saving a new *image*.bb file in a
+> suitable location.
+> 
+> 
+> Writing Layers
+> --------------
+> The suitable location is most likely a layer, which suggests the Image
+> Builder should probably know how to construct a basic layer skeleton and
+> prompt the user to fill in the descriptive bits required for layer.conf.
 
-Jefro
+This sounds like a useful way to handle the customisations.
 
-On Wed, Apr 20, 2011 at 1:40 PM, Jate Sujjavanich <
-Jate.Sujjavanich@myfuelmaster.com> wrote:
+> 
+> I could see this as having been useful for the recent Yocto Project 1.0
+> launch demo we worked on, which added rygel upnp video renderers to the
+> the 0.9 audio only demo. This implies the Image Builder should also be
+> able to work with an existing layer - perhaps only those that it created
+> - and save the changes back to that layer.
 
-> The page
-> http://yoctoproject.org/download/yocto/yocto-project-1.0-release-notes-poky-5.0is missing a download link.
->
-> It's available on http://yoctoproject.org/download, but I had to search
-> for a while.
->
->
-> Jate
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+Layer support is definitely something I'd like to see in the Image
+Creator. I'm thinking along the lines of a GUI for toggling available
+layers enabled state.
 
+Further to the suggestion above this GUI would likely also include a
+"Save my customisations to this layer" entry.
 
+> 
+> 
+> Configuration Fragments
+> -----------------------
+> In order to properly build the demo images (poky-image-rygel
+> specifically) some specific license related variables need to be set,
+> typically in local.conf:
+> 
+> COMMERCIAL_LICENSE = ""
+> COMMERCIAL_AUDIO_PLUGINS ?= "gst-plugins-ugly-mad
+> gst-plugins-ugly-mpegaudioparse"
+> COMMERCIAL_VIDEO_PLUGINS ?= "gst-plugins-ugly-mpeg2dec
+> gst-plugins-ugly-mpegstream gst-plugins-bad-mpegvideoparse"
+> 
+> Without the above, the upnp demo is mostly non-functional. Having to
+> manually add these sorts of settings significantly reduces the value of
+> the Image Builder in my mind. This led to the discussion of providing a
+> graphical mechanism to set the variables that have some impact on how
+> the generated image recipe is built.
+> 
+> Something like a Linux kernel kconfig mechanism, which only shows the
+> user relevant options (albeit still WAY too many), might be really nice
+> here. Perhaps an interface that parsed the recipes included in the image
+> recipe and determined which variables would be relevant to the user and
+> present those in the UI with help derived from documentation.conf
+> doctags (or perhaps a new mechanism).
+> 
+> As this would be a considerable effort, and would surely delay the
+> progress of the image builder itself, perhaps a Configuration Editor
+> would be a good companion tool which the Image Builder could launch to
+> do the relevant configurations
 
+I really like the idea of a configuration editor GUI, I'm pretty sure
+Jeff Polk would like at least some of the infrastructure of this.
+
+I haven't yet gotten around to investigating this but I think between
+the doctags and the oetypes support Chris Larson implemented (which we
+still need to pullit into oe-core iirc) we should have a solid
+foundation on which to build this GUI.
+
+> 
+> 
+> Conclusions
+> -----------
+> The goal of any user interface should be to abstract away to
+> implementation details that are not particularly relevant to task at
+> hand, or to the user's perception of the task at hand.  I feel these
+> tools as discussed above would help contain feature creep, while still
+> allowing for a more complete graphical interface to configuring and
+> building images.
+> 
+> 
+> Thoughts? Criticisms?
+
+Unsurprisingly, since I was there, I'm in agreement.
+
+Cheers,
+Joshua
 -- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
+Joshua Lock
+        Yocto Build System Monkey
+        Intel Open Source Technology Center
 
---0016e6dedddfcee3c904a1708bfc
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-Hi Jate,<div><br></div><div>Thanks for the comment. Scott has added a downl=
-oad link to the release notes.</div><div><br></div><div>Jefro<br><br><div c=
-lass=3D"gmail_quote">On Wed, Apr 20, 2011 at 1:40 PM, Jate Sujjavanich <spa=
-n dir=3D"ltr">&lt;<a href=3D"mailto:Jate.Sujjavanich@myfuelmaster.com">Jate=
-.Sujjavanich@myfuelmaster.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex;">The page <a href=3D"http://yoctoproject.org=
-/download/yocto/yocto-project-1.0-release-notes-poky-5.0" target=3D"_blank"=
->http://yoctoproject.org/download/yocto/yocto-project-1.0-release-notes-pok=
-y-5.0</a> is missing a download link.<br>
-
-<br>
-It&#39;s available on <a href=3D"http://yoctoproject.org/download" target=
-=3D"_blank">http://yoctoproject.org/download</a>, but I had to search for a=
- while.<br>
-<br>
-<br>
-Jate<br>
-<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br><br clear=3D"all"><br>-- <br>Jeff Osier-Mixon <a hre=
-f=3D"http://jefro.net/blog" target=3D"_blank">http://jefro.net/blog</a><div=
->Yocto Project Community Manager @Intel <a href=3D"http://yoctoproject.org"=
- target=3D"_blank">http://yoctoproject.org</a></div>
-<br>
-</div>
-
---0016e6dedddfcee3c904a1708bfc--
