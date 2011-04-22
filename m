@@ -1,21 +1,23 @@
-Return-Path: <joshua.lock@intel.com>
+Return-Path: <tom.zanussi@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 1E2444C80050
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2011 13:06:25 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 21 Apr 2011 11:06:24 -0700
+	by mx1.pokylinux.org (Postfix) with ESMTP id 5A4104C80578
+	for <yocto@yoctoproject.org>; Fri, 22 Apr 2011 10:10:36 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 22 Apr 2011 08:10:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.64,252,1301900400"; d="scan'208";a="632182665"
-Received: from vorpal.jf.intel.com (HELO [10.7.199.145]) ([10.7.199.145])
-	by orsmga002.jf.intel.com with ESMTP; 21 Apr 2011 11:06:24 -0700
-From: Joshua Lock <joshua.lock@intel.com>
-To: Yocto Project <yocto@yoctoproject.org>
+X-IronPort-AV: E=Sophos;i="4.64,253,1301900400"; d="scan'208";a="737066756"
+Received: from unknown (HELO [10.255.13.76]) ([10.255.13.76])
+	by orsmga001.jf.intel.com with ESMTP; 22 Apr 2011 08:10:35 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Yocto Project <yocto@yoctoproject.org>,
+	Yocto Project Discussions <yocto@linux.intel.com>
 In-Reply-To: <4DB055DC.4020306@linux.intel.com>
 References: <4DB055DC.4020306@linux.intel.com>
-Date: Thu, 21 Apr 2011 11:02:01 -0700
-Message-ID: <1303408921.9960.66.camel@vorpal>
+Date: Fri, 22 Apr 2011 10:10:17 -0500
+Message-ID: <1303485017.29588.138.camel@elmorro>
 Mime-Version: 1.0
-X-Mailer: Evolution 2.30.3 
+X-Mailer: Evolution 2.28.3 
+Cc: "Lock, Joshua" <joshua.lock@intel.com>
 Subject: Re: RFC: Image Creator and Config Creator, design thoughts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -28,11 +30,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Apr 2011 18:06:25 -0000
+X-List-Received-Date: Fri, 22 Apr 2011 15:10:36 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2011-04-21 at 10:05 -0600, Darren Hart wrote:
+On Thu, 2011-04-21 at 09:05 -0700, Darren Hart wrote:
 > I sat down with Josh earlier this week to discuss how I might use the
 > Image Creator in my development and to address any issues that might
 > pose as blockers to my finding such a tool useful. This led to various
@@ -45,12 +47,7 @@ On Thu, 2011-04-21 at 10:05 -0600, Darren Hart wrote:
 > The image creator Josh is working on currently facilitates specifying
 > the policy (bitbake term "distro", such as poky, poky-bleeding, or
 > poky-lsb), image, and any additional packages you may want to include.
-> It then provides a simple wrapper to bitbake and it's output. 
-
-Aside, wrapper is not the right term. This is a full fledged BitBake GUI
-and uses the same libraries as the CLI (knotty) interface. :-)
-
-> This is
+> It then provides a simple wrapper to bitbake and it's output. This is
 > useful in and of itself as sorting out which variables to modify
 > (IMAGE_INSTALL, MACHINE(_ESSENTIAL?)_R?DEPENDS_append(_$MACHINE), etc)
 > and which tasks to rebuild (task_base, task_machine_base, poky-image-*,
@@ -69,23 +66,12 @@ and uses the same libraries as the CLI (knotty) interface. :-)
 > The suitable location is most likely a layer, which suggests the Image
 > Builder should probably know how to construct a basic layer skeleton and
 > prompt the user to fill in the descriptive bits required for layer.conf.
-
-This sounds like a useful way to handle the customisations.
-
 > 
 > I could see this as having been useful for the recent Yocto Project 1.0
 > launch demo we worked on, which added rygel upnp video renderers to the
 > the 0.9 audio only demo. This implies the Image Builder should also be
 > able to work with an existing layer - perhaps only those that it created
 > - and save the changes back to that layer.
-
-Layer support is definitely something I'd like to see in the Image
-Creator. I'm thinking along the lines of a GUI for toggling available
-layers enabled state.
-
-Further to the suggestion above this GUI would likely also include a
-"Save my customisations to this layer" entry.
-
 > 
 > 
 > Configuration Fragments
@@ -113,19 +99,20 @@ Further to the suggestion above this GUI would likely also include a
 > present those in the UI with help derived from documentation.conf
 > doctags (or perhaps a new mechanism).
 > 
+
+Input we got from the ELC talk suggested that people did think it would
+be intuitive and useful to expand the kernel menuconfig 'UI' down to all
+the other packages in the image.
+
+I've used UIs designed like that in other build systems and it was very
+useful, so I'd add my +1 to the ELC requests...
+
+Tom
+
 > As this would be a considerable effort, and would surely delay the
 > progress of the image builder itself, perhaps a Configuration Editor
 > would be a good companion tool which the Image Builder could launch to
 > do the relevant configurations
-
-I really like the idea of a configuration editor GUI, I'm pretty sure
-Jeff Polk would like at least some of the infrastructure of this.
-
-I haven't yet gotten around to investigating this but I think between
-the doctags and the oetypes support Chris Larson implemented (which we
-still need to pullit into oe-core iirc) we should have a solid
-foundation on which to build this GUI.
-
 > 
 > 
 > Conclusions
@@ -139,14 +126,8 @@ foundation on which to build this GUI.
 > 
 > 
 > Thoughts? Criticisms?
+> 
+> 
 
-Unsurprisingly, since I was there, I'm in agreement.
-
-Cheers,
-Joshua
--- 
-Joshua Lock
-        Yocto Build System Monkey
-        Intel Open Source Technology Center
 
 
