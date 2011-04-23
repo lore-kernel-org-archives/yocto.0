@@ -1,24 +1,40 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5A4104C80578
-	for <yocto@yoctoproject.org>; Fri, 22 Apr 2011 10:10:36 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 22 Apr 2011 08:10:36 -0700
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 208CA4C80050
+	for <yocto@yoctoproject.org>; Fri, 22 Apr 2011 19:56:25 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 22 Apr 2011 17:56:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.64,253,1301900400"; d="scan'208";a="737066756"
-Received: from unknown (HELO [10.255.13.76]) ([10.255.13.76])
-	by orsmga001.jf.intel.com with ESMTP; 22 Apr 2011 08:10:35 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Yocto Project <yocto@yoctoproject.org>,
-	Yocto Project Discussions <yocto@linux.intel.com>
-In-Reply-To: <4DB055DC.4020306@linux.intel.com>
-References: <4DB055DC.4020306@linux.intel.com>
-Date: Fri, 22 Apr 2011 10:10:17 -0500
-Message-ID: <1303485017.29588.138.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "Lock, Joshua" <joshua.lock@intel.com>
-Subject: Re: RFC: Image Creator and Config Creator, design thoughts
+X-IronPort-AV: E=Sophos;i="4.64,256,1301900400"; 
+	d="scan'208,217";a="682766008"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by fmsmga002.fm.intel.com with ESMTP; 22 Apr 2011 17:55:55 -0700
+Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 22 Apr 2011 17:55:55 -0700
+Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
+	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
+	Fri, 22 Apr 2011 17:55:55 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: yocto <yocto@yoctoproject.org>
+Date: Fri, 22 Apr 2011 17:55:52 -0700
+Thread-Topic: Photos from ELC and the Collab Summit
+Thread-Index: AcwBUTF/vo9EtNT/ROC6bn370vToYQ==
+Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B25DC42CAE7@orsmsx501.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-cr-hashedpuzzle: AKJz ALmU AR7n AW5J A+gy BKi2 CSdK CpX3 DMT8 EcEc F3BJ
+	GtXu Gwgu H9XO I4t2
+	KZHx; 1; eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
+	Sosha1_v1; 7; {6ABBB807-F6C4-4E8A-B29C-40C546710D7F};
+	ZABhAHYAaQBkAC4AYwAuAHMAdABlAHcAYQByAHQAQABpAG4AdABlAGwALgBjAG8AbQA=;
+	Sat, 23 Apr 2011 00:55:52 GMT;
+	UABoAG8AdABvAHMAIABmAHIAbwBtACAARQBMAEMAIABhAG4AZAAgAHQAaABlACAAQwBvAGwAbABhAGIAIABTAHUAbQBtAGkAdAA=
+x-cr-puzzleid: {6ABBB807-F6C4-4E8A-B29C-40C546710D7F}
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: Photos from ELC and the Collab Summit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,104 +46,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Apr 2011 15:10:36 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 23 Apr 2011 00:56:26 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25DC42CAE7orsmsx501amrc_"
 
-On Thu, 2011-04-21 at 09:05 -0700, Darren Hart wrote:
-> I sat down with Josh earlier this week to discuss how I might use the
-> Image Creator in my development and to address any issues that might
-> pose as blockers to my finding such a tool useful. This led to various
-> feature discussions, scope setting, etc. I wanted to capture that here
-> and also ask for comments from other users and developers.
-> 
-> 
-> Image Recipe Generation
-> -----------------------
-> The image creator Josh is working on currently facilitates specifying
-> the policy (bitbake term "distro", such as poky, poky-bleeding, or
-> poky-lsb), image, and any additional packages you may want to include.
-> It then provides a simple wrapper to bitbake and it's output. This is
-> useful in and of itself as sorting out which variables to modify
-> (IMAGE_INSTALL, MACHINE(_ESSENTIAL?)_R?DEPENDS_append(_$MACHINE), etc)
-> and which tasks to rebuild (task_base, task_machine_base, poky-image-*,
-> etc.) can be a frustrating exercise (or at least it has been for me).
-> 
-> In order for this feature to be the most useful, it needs to be able to
-> save the result of the user's selection. This involves saving off the
-> "distro" selection (typically in local.conf) as well as an image recipe
-> defining which packages to include in the resulting image. This could be
-> done by writing to local.conf and saving a new *image*.bb file in a
-> suitable location.
-> 
-> 
-> Writing Layers
-> --------------
-> The suitable location is most likely a layer, which suggests the Image
-> Builder should probably know how to construct a basic layer skeleton and
-> prompt the user to fill in the descriptive bits required for layer.conf.
-> 
-> I could see this as having been useful for the recent Yocto Project 1.0
-> launch demo we worked on, which added rygel upnp video renderers to the
-> the 0.9 audio only demo. This implies the Image Builder should also be
-> able to work with an existing layer - perhaps only those that it created
-> - and save the changes back to that layer.
-> 
-> 
-> Configuration Fragments
-> -----------------------
-> In order to properly build the demo images (poky-image-rygel
-> specifically) some specific license related variables need to be set,
-> typically in local.conf:
-> 
-> COMMERCIAL_LICENSE = ""
-> COMMERCIAL_AUDIO_PLUGINS ?= "gst-plugins-ugly-mad
-> gst-plugins-ugly-mpegaudioparse"
-> COMMERCIAL_VIDEO_PLUGINS ?= "gst-plugins-ugly-mpeg2dec
-> gst-plugins-ugly-mpegstream gst-plugins-bad-mpegvideoparse"
-> 
-> Without the above, the upnp demo is mostly non-functional. Having to
-> manually add these sorts of settings significantly reduces the value of
-> the Image Builder in my mind. This led to the discussion of providing a
-> graphical mechanism to set the variables that have some impact on how
-> the generated image recipe is built.
-> 
-> Something like a Linux kernel kconfig mechanism, which only shows the
-> user relevant options (albeit still WAY too many), might be really nice
-> here. Perhaps an interface that parsed the recipes included in the image
-> recipe and determined which variables would be relevant to the user and
-> present those in the UI with help derived from documentation.conf
-> doctags (or perhaps a new mechanism).
-> 
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25DC42CAE7orsmsx501amrc_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Input we got from the ELC talk suggested that people did think it would
-be intuitive and useful to expand the kernel menuconfig 'UI' down to all
-the other packages in the image.
+http://www.flickr.com/photos/davest/sets/72157626431159625/
 
-I've used UIs designed like that in other build systems and it was very
-useful, so I'd add my +1 to the ELC requests...
+Fresh back from vacation, thought I would upload a few photos from the week=
+.
 
-Tom
+Will write a blog entry at some point, including these.
 
-> As this would be a considerable effort, and would surely delay the
-> progress of the image builder itself, perhaps a Configuration Editor
-> would be a good companion tool which the Image Builder could launch to
-> do the relevant configurations
-> 
-> 
-> Conclusions
-> -----------
-> The goal of any user interface should be to abstract away to
-> implementation details that are not particularly relevant to task at
-> hand, or to the user's perception of the task at hand.  I feel these
-> tools as discussed above would help contain feature creep, while still
-> allowing for a more complete graphical interface to configuring and
-> building images.
-> 
-> 
-> Thoughts? Criticisms?
-> 
-> 
+Dave
 
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25DC42CAE7orsmsx501amrc_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dus-ascii">
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
+
+<div class=3DWordSection1>
+
+<p class=3DMsoNormal><a
+href=3D"http://www.flickr.com/photos/davest/sets/72157626431159625/">http:/=
+/www.flickr.com/photos/davest/sets/72157626431159625/</a><o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>Fresh back from vacation, thought I would upload a few
+photos from the week.&nbsp; <o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>Will write a blog entry at some point, including these=
+.<o:p></o:p></p>
+
+<p class=3DMsoNormal><br>
+Dave<o:p></o:p></p>
+
+</div>
+
+</body>
+
+</html>
+
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B25DC42CAE7orsmsx501amrc_--
