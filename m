@@ -1,25 +1,23 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 1EB3C4C80506
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2011 01:35:09 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 26 Apr 2011 23:35:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.64,273,1301900400"; d="scan'208";a="739011080"
-Received: from unknown (HELO [10.255.13.62]) ([10.255.13.62])
-	by orsmga001.jf.intel.com with ESMTP; 26 Apr 2011 23:35:08 -0700
-Message-ID: <4DB7B91B.3050203@linux.intel.com>
-Date: Tue, 26 Apr 2011 23:35:07 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.14) Gecko/20110223 Lightning/1.0b2 Thunderbird/3.1.8
-MIME-Version: 1.0
-To: Tom Zanussi <tom.zanussi@intel.com>
-References: <4DB786E3.4080800@linux.intel.com>	
-	<1303879148.2593.231.camel@elmorro>
-	<4DB7A14B.8010401@linux.intel.com>
-	<1303880757.2593.238.camel@elmorro>
-In-Reply-To: <1303880757.2593.238.camel@elmorro>
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 30CBC4C80332
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2011 02:56:07 -0500 (CDT)
+Received: by wwd20 with SMTP id 20so1450067wwd.11
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2011 00:56:06 -0700 (PDT)
+Received: by 10.216.62.74 with SMTP id x52mr850969wec.45.1303890965829;
+	Wed, 27 Apr 2011 00:56:05 -0700 (PDT)
+Received: from [172.20.1.5] (ip545070eb.adsl-surfen.hetnet.nl [84.80.112.235])
+	by mx.google.com with ESMTPS id c54sm212551wer.6.2011.04.27.00.56.04
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 27 Apr 2011 00:56:04 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <4DB786E3.4080800@linux.intel.com>
+Date: Wed, 27 Apr 2011 09:56:03 +0200
+Message-Id: <B23A229A-15A2-491F-BFE9-4C9BB5F681FB@dominion.thruhere.net>
+References: <4DB786E3.4080800@linux.intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+X-Mailer: Apple Mail (2.1084)
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Personal git repositories
 X-BeenThere: yocto@yoctoproject.org
@@ -33,126 +31,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Apr 2011 06:35:09 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 27 Apr 2011 07:56:07 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 
 
+Op 27 apr 2011, om 05:00 heeft Darren Hart het volgende geschreven:
 
-On 04/26/2011 10:05 PM, Tom Zanussi wrote:
-> On Tue, 2011-04-26 at 21:53 -0700, Darren Hart wrote:
->>
->> On 04/26/2011 09:39 PM, Tom Zanussi wrote:
->>> On Tue, 2011-04-26 at 20:00 -0700, Darren Hart wrote:
->>>> git.yoctoproject.org hosts a number of different repositories, some of
->>>> which host limited user contributions (such as poky-contrib). These
->>>> repositories are setup and administered by a yoctoproject.org system admin.
->>>>
->>>> As our developer base grows, the need for user creatable git trees also
->>>> grows. Eventually, *-contrib isn't going to scale, and neither will the
->>>> system admin. There are plenty of available places individuals can
->>>> create publicly accessible trees (github, kernel.org, or any number of
->>>> similar sites). However, I think it would be beneficial for at least
->>>> very active developers to be able to create and destroy trees on a whim,
->>>> without having to involve the system admin with each event.
->>>>
->>>> kernel.org provides a git web interface for user created trees. I'd like
->>>> to see something similar available at yoctoproject.org in order to
->>>> establish single place to go looking for "yocto developer trees". Users
->>>> would have to justify their request for a user account and agree to a
->>>> terms of use. This has served the Linux kernel community very well. I
->>>> think it could do the same for us.
->>>>
->>>> Note: I am not offering to setup such a service or even say that it's
->>>> possible with the current resources. I just wanted to throw the idea out
->>>> there and see if others have found a similar gap in the development
->>>> environment and if this idea would address that gap.
->>>>
->>>> Thoughts?
->>>>
->>>
->>> My thinking (I guess - I didn't really think that much about it at the
->>> time) when requesting the meta-intel-contrib repo was that repos that
->>> could expect to get continual contributions from many people would
->>> benefit from having a corresponding -contrib version - so far that's
->>> poky-contrib, linux-yocto-*.contrib, and openembedded-core-contrib.  To
->>> me bsp repos fit the same criteria, but I'm not the one who has to
->>> manage it all, so I understand the desire to avoid the proliferation.
->>>
->>> Seems like the personal repos idea would mitigate the problem...
->>>
->>
->> I think these are two distinct but overlapping problems:
->>
->> 1) place to share on the common core (poky, linux-yocto*)
->> 2) place to share new stuff that may not amount to anything
->>
->> For #1, the *-contrib git repositories make sense to me. It provides a
->> single repository that a lot of people use and reduces the git remote
->> management for everyone. They are therefor worth the added complexity
->> they add to the yoctoproject git namespace and on the system administrator.
->>
->> For #2, people need to be able to prepare a tree and poke someone in IRC
->> with a git URL to try out. Many of these are likely to be short lived,
->> and to only have a single contributor. As such, they are not worth
->> polluting the yoctoproject git namespace, nor should we burden our
->> system admin with setting them up and tearing them down. Indeed, they
->> are likely to linger, continuing to pollute the namespace long after
->> they are dead trees simply due to the overhead of removing them!
->>
->> As for BSP's... these don't seem to have a lot of contributors - at
->> least from what I have seen. Typically 1 or 2 people. For that scenario,
->> I see two processes as options:
->>
->> a) add user branches:
->>   master
->>   bernard
->>   dvhart/topicA
->>   dvhart/topicB
->>   tzanussi/topicA
->>   tzanussi/topicD
->>
+> git.yoctoproject.org hosts a number of different repositories, some of
+> which host limited user contributions (such as poky-contrib). These
+> repositories are setup and administered by a yoctoproject.org system admin.
 > 
-> Yeah, that's what you and I do already.  But we now have people coming
-> online who will be be continually pushing changes to their bsps in
-> meta-intel and we don't necessarily want to give them write access to
-> meta-intel itself right away, I assume...
+> As our developer base grows, the need for user creatable git trees also
+> grows. Eventually, *-contrib isn't going to scale, and neither will the
+> system admin. There are plenty of available places individuals can
+> create publicly accessible trees (github, kernel.org, or any number of
+> similar sites). However, I think it would be beneficial for at least
+> very active developers to be able to create and destroy trees on a whim,
+> without having to involve the system admin with each event.
 > 
->> b) use the personal repositories described in #2 above
->>
+> kernel.org provides a git web interface for user created trees. I'd like
+> to see something similar available at yoctoproject.org in order to
+> establish single place to go looking for "yocto developer trees". Users
+> would have to justify their request for a user account and agree to a
+> terms of use. This has served the Linux kernel community very well. I
+> think it could do the same for us.
 > 
-> Yeah, so we could create and manage meta-intel-contrib ourselves without
-> bothering any admins...
+> Note: I am not offering to setup such a service or even say that it's
+> possible with the current resources. I just wanted to throw the idea out
+> there and see if others have found a similar gap in the development
+> environment and if this idea would address that gap.
 
-Well, sort of. The personal trees would be writable only by their owner.
-Otherwise you would have to manage all the user authentication. I forgot
-about the new meta-intel contributors.
 
-I would suggest we start with a pull model to get things upstream. As
-they gain confidence in contributing, we can look at something where
-they have more control of a repository, probably still will need a
-meta-intel-contrib in this case.
+Have you though about setting up a gitorious instance on git.yocto? 
 
---
-Darren
+Regards,
 
-> 
-> Tom
-> 
->> While it is possible to use poky-contrib for things like this, I think
->> it is non-intuitive to use a repository as a remote to a repository that
->> isn't based off the remote repository (like BSP layers which aren't part
->> of poky). For most users, this will result in pulling down MBs of
->> unnecessary git objects. Yes, you can use --reference when cloning. Yes,
->> you can use fancy fetch commands. No, nobody will.
->>
->> Thanks,
->>
-> 
-> 
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Koen
 
