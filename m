@@ -1,25 +1,22 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 30CBC4C80332
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2011 02:56:07 -0500 (CDT)
-Received: by wwd20 with SMTP id 20so1450067wwd.11
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2011 00:56:06 -0700 (PDT)
-Received: by 10.216.62.74 with SMTP id x52mr850969wec.45.1303890965829;
-	Wed, 27 Apr 2011 00:56:05 -0700 (PDT)
-Received: from [172.20.1.5] (ip545070eb.adsl-surfen.hetnet.nl [84.80.112.235])
-	by mx.google.com with ESMTPS id c54sm212551wer.6.2011.04.27.00.56.04
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 27 Apr 2011 00:56:04 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1084)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <4DB786E3.4080800@linux.intel.com>
-Date: Wed, 27 Apr 2011 09:56:03 +0200
-Message-Id: <B23A229A-15A2-491F-BFE9-4C9BB5F681FB@dominion.thruhere.net>
-References: <4DB786E3.4080800@linux.intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-X-Mailer: Apple Mail (2.1084)
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Personal git repositories
+Return-Path: <edwin.zhai@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C8AAE4C80332
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2011 02:58:26 -0500 (CDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 27 Apr 2011 00:58:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.64,273,1301900400"; d="scan'208";a="914957505"
+Received: from shxpwgzhai1a.ccr.corp.intel.com (HELO [10.239.48.130])
+	([10.239.48.130])
+	by fmsmga001.fm.intel.com with ESMTP; 27 Apr 2011 00:58:25 -0700
+Message-ID: <4DB7CCA1.5000500@intel.com>
+Date: Wed, 27 Apr 2011 15:58:25 +0800
+From: "Zhai, Edwin" <edwin.zhai@intel.com>
+User-Agent: Thunderbird 2.0.0.17 (Windows/20080914)
+MIME-Version: 1.0
+To: evolution-hackers@gnome.org
+Cc: yocto@yoctoproject.org
+Subject: [RFC] fix seg fault of evolution-data-server when adding default vcard
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,41 +28,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Apr 2011 07:56:07 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Wed, 27 Apr 2011 07:58:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
+This is one simple patch to fix seg fault of evolution-data-server,
+when new contact is added for new created DB.
 
-Op 27 apr 2011, om 05:00 heeft Darren Hart het volgende geschreven:
+The root cause is simple: do_create (bf, XIMIAN_VCARD,....) would access
+bf->priv->file_db and cause seg fault if not initialized.
 
-> git.yoctoproject.org hosts a number of different repositories, some of
-> which host limited user contributions (such as poky-contrib). These
-> repositories are setup and administered by a yoctoproject.org system admin.
-> 
-> As our developer base grows, the need for user creatable git trees also
-> grows. Eventually, *-contrib isn't going to scale, and neither will the
-> system admin. There are plenty of available places individuals can
-> create publicly accessible trees (github, kernel.org, or any number of
-> similar sites). However, I think it would be beneficial for at least
-> very active developers to be able to create and destroy trees on a whim,
-> without having to involve the system admin with each event.
-> 
-> kernel.org provides a git web interface for user created trees. I'd like
-> to see something similar available at yoctoproject.org in order to
-> establish single place to go looking for "yocto developer trees". Users
-> would have to justify their request for a user account and agree to a
-> terms of use. This has served the Linux kernel community very well. I
-> think it could do the same for us.
-> 
-> Note: I am not offering to setup such a service or even say that it's
-> possible with the current resources. I just wanted to throw the idea out
-> there and see if others have found a similar gap in the development
-> environment and if this idea would address that gap.
+I have created one bz https://bugzilla.gnome.org/show_bug.cgi?id=648736, 
+also attached patch for comments.
 
 
-Have you though about setting up a gitorious instance on git.yocto? 
+=====================================
+Adding default vcard for new created DB always failed with seg fault, as
+file_db was not initialized before access. This patch fix it.
 
-Regards,
+Signed-off-by: Edwin Zhai <edwin.zhai@intel.com>
+Index: 
+evolution-data-server/addressbook/backends/file/e-book-backend-file.c
+===================================================================
+---
+evolution-data-server.orig/addressbook/backends/file/e-book-backend-file.c    
 
-Koen
+2011-04-26 15:46:03.000000000 +0800
++++
+evolution-data-server/addressbook/backends/file/e-book-backend-file.c   
+2011-04-26 15:59:13.000000000 +0800
+@@ -1247,6 +1247,8 @@
+ #ifdef CREATE_DEFAULT_VCARD
+                 EContact *contact = NULL;
+ 
++                /* Initialize file_db, or else following do_create
+cause seg fault */
++                bf->priv->file_db = db;
+                 if (!do_create (bf, XIMIAN_VCARD, &contact, NULL))
+                     g_warning ("Cannot create default contact");
+                 if (contact)
+
+
+------------------------
+Yocto Project @
+http://www.yoctoproject.org/
+
 
