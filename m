@@ -1,19 +1,18 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 87CB84C804D4
-	for <yocto@yoctoproject.org>; Thu, 28 Apr 2011 09:56:57 -0500 (CDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p3SEurVA017957
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 28 Apr 2011 07:56:53 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 28 Apr 2011 07:56:53 -0700
-Message-ID: <4DB98033.1010207@windriver.com>
-Date: Thu, 28 Apr 2011 10:56:51 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Return-Path: <darren.hart@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id DC0414C80578
+	for <yocto@yoctoproject.org>; Thu, 28 Apr 2011 12:07:18 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 28 Apr 2011 10:07:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.64,281,1301900400"; d="scan'208";a="427242046"
+Received: from unknown (HELO [10.255.13.11]) ([10.255.13.11])
+	by azsmga001.ch.intel.com with ESMTP; 28 Apr 2011 10:07:18 -0700
+Message-ID: <4DB99EBD.8040207@intel.com>
+Date: Thu, 28 Apr 2011 10:07:09 -0700
+From: Darren Hart <darren.hart@intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.14) Gecko/20110208 Thunderbird/3.1.8 ThunderBrowse/3.3.5
+	rv:1.9.2.14) Gecko/20110223 Lightning/1.0b2 Thunderbird/3.1.8
 MIME-Version: 1.0
 To: Richard Purdie <richard.purdie@linuxfoundation.org>
 References: <4DB786E3.4080800@linux.intel.com>	
@@ -22,7 +21,7 @@ References: <4DB786E3.4080800@linux.intel.com>
 	<1303938199.21461.21.camel@rex> <4DB89D1E.3010307@intel.com>	
 	<4DB8BBDF.6070503@windriver.com> <1303979316.21461.29.camel@rex>
 In-Reply-To: <1303979316.21461.29.camel@rex>
-Cc: Darren Hart <darren.hart@intel.com>, yocto@yoctoproject.org
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Personal git repositories
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -35,11 +34,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Apr 2011 14:56:57 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-List-Received-Date: Thu, 28 Apr 2011 17:07:19 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11-04-28 04:28 AM, Richard Purdie wrote:
+On 04/28/2011 01:28 AM, Richard Purdie wrote:
 > On Wed, 2011-04-27 at 20:59 -0400, Bruce Ashfield wrote:
 >> On 11-04-27 6:47 PM, Darren Hart wrote:
 >>> I don't understand wanting to keep multiple distinct source trees in a single
@@ -59,52 +58,46 @@ On 11-04-28 04:28 AM, Richard Purdie wrote:
 >> Maybe I'm misunderstanding as well, but sparse fetch or not (and
 >> yes I've done/used it), logically I like things that are distinct
 >> source trees to be separate repos. Maybe it's a kernel-guy thing ? :)
->
+> 
 > I think there are three elements to this:
->
-> a) People do like the logical separation that a repo gives them and
->     find it easiest to think in those terms.
-> b) Most people are used to single relatively monolithic repos such as
->     the kernel. People like myself who have used svn with multiple
->     projects contained within like matchbox or the OpenedHand "misc" svn
->     repo or the BSD projects approach to source control are probably in
->     the minority.
-> c) The git tooling and all the examples out there are geared up to
->     single repos. git is very much a tool where you need to think as its
->     authors do.
+> 
+> a) People do like the logical separation that a repo gives them and 
+>    find it easiest to think in those terms.
+> b) Most people are used to single relatively monolithic repos such as 
+>    the kernel. People like myself who have used svn with multiple 
+>    projects contained within like matchbox or the OpenedHand "misc" svn 
+>    repo or the BSD projects approach to source control are probably in 
+>    the minority.
+> c) The git tooling and all the examples out there are geared up to 
+>    single repos. git is very much a tool where you need to think as its 
+>    authors do.
 
-Agreed with the points above. git really is just wrangling a bunch
-of objects into commit chains and a branch points to a starting
-point. So I completely agree that all chains don't have to lead to
-the same origin, like you said, it is just how people tend to think.
 
->
+Agreed.
+
+
 > Some of this can be addressed with clear example documentation about how
 > to use git in this way.
->
+> 
 > Partly, these proposals are also working within the constraints of the
 > git server solution we have too. Are we really in such a bad position
 > that we need to change all the server setup over this or are there ways
-
-I think we are likely ok, people have solutions that work, getting
-the right contrib repos setup with appropriate permissions to setup
-branches will go a long way.
-
-As long as things stay responsive, I'd imagine that we'll find
-that people will be happy with things as they are. At least we've
-considered the options before it is critical.
-
-Cheers,
-
-Bruce
-
 > we can work within the existing system (or even extend gitolite)?
->
-> Cheers,
->
-> Richard
->
->
->
 
+
+I don't know what gitolite is capable of. I would really like to be able
+to create and destroy my own repositories in a central location with
+other Yocto developers.
+
+However, this doesn't block me from moving forward. I can use kernel.org
+or dvhart.com to do this for the time being and make requests of the
+admins when I have a repository that looks to have some staying power.
+I'll have to time this transition appropriately so that I don't have to
+ask too many people to migrate to the new URL, but that would be true of
+a personal repository to official repository move as well.
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
