@@ -1,28 +1,24 @@
-Return-Path: <darren.hart@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id DC0414C80578
-	for <yocto@yoctoproject.org>; Thu, 28 Apr 2011 12:07:18 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 28 Apr 2011 10:07:18 -0700
+Return-Path: <josh@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 191714C8024E
+	for <yocto@yoctoproject.org>; Thu, 28 Apr 2011 15:35:41 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 28 Apr 2011 13:35:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.64,281,1301900400"; d="scan'208";a="427242046"
-Received: from unknown (HELO [10.255.13.11]) ([10.255.13.11])
-	by azsmga001.ch.intel.com with ESMTP; 28 Apr 2011 10:07:18 -0700
-Message-ID: <4DB99EBD.8040207@intel.com>
-Date: Thu, 28 Apr 2011 10:07:09 -0700
-From: Darren Hart <darren.hart@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.14) Gecko/20110223 Lightning/1.0b2 Thunderbird/3.1.8
-MIME-Version: 1.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-References: <4DB786E3.4080800@linux.intel.com>	
-	<B23A229A-15A2-491F-BFE9-4C9BB5F681FB@dominion.thruhere.net>	
-	<4DB82C1A.2030008@linux.intel.com>	<4DB8506B.9000709@intel.com>	
-	<1303938199.21461.21.camel@rex> <4DB89D1E.3010307@intel.com>	
-	<4DB8BBDF.6070503@windriver.com> <1303979316.21461.29.camel@rex>
-In-Reply-To: <1303979316.21461.29.camel@rex>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Personal git repositories
+X-IronPort-AV: E=Sophos;i="4.64,283,1301900400"; d="scan'208";a="739874253"
+Received: from vorpal.jf.intel.com (HELO [10.7.199.68]) ([10.7.199.68])
+	by orsmga001.jf.intel.com with ESMTP; 28 Apr 2011 13:35:40 -0700
+From: Joshua Lock <josh@linux.intel.com>
+To: Liping Ke <liping.ke@intel.com>
+In-Reply-To: <a1d0bb2c85741e8d21cefd00c7191f111664cc0a.1303968733.git.liping.ke@intel.com>
+References: <cover.1303968733.git.liping.ke@intel.com>
+	<a1d0bb2c85741e8d21cefd00c7191f111664cc0a.1303968733.git.liping.ke@intel.com>
+Date: Thu, 28 Apr 2011 13:31:37 -0700
+Message-ID: <1304022697.2171.326.camel@vorpal>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.30.3 
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/1] Resend:[Image-Creator]Make bitbake server type configurable (xmlrpc, none)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,70 +30,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Apr 2011 17:07:19 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 28 Apr 2011 20:35:41 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 04/28/2011 01:28 AM, Richard Purdie wrote:
-> On Wed, 2011-04-27 at 20:59 -0400, Bruce Ashfield wrote:
->> On 11-04-27 6:47 PM, Darren Hart wrote:
->>> I don't understand wanting to keep multiple distinct source trees in a single
->>> git repositorie. If you have two different layers in there, each in its own
->>> branch, then you can only work with one of them at a time. The end-user then has
->>> to have multiple clones of the same repository in order to work with their two
->>> layers. And they will end up naming them something like:
->>>
->>> yocto-contrib-layer-1.git
->>> yocto-contrib-layer-2.git
->>
->> This is what I was wondering as well. I had my meta-kernel-dev as
->> a branch on poky-extras and ran into exactly this problem. Either
->> have two clones, or get it into master. Master was the choice, since
->> the other seemed clunky.
->>
->> Maybe I'm misunderstanding as well, but sparse fetch or not (and
->> yes I've done/used it), logically I like things that are distinct
->> source trees to be separate repos. Maybe it's a kernel-guy thing ? :)
+Hi Liping,
+
+This looks good to me. Two minor typo nits below, once they're fixed I
+will create a branch on poky-contrib to collect image-creator related
+patches until we're ready to switch to developing against upstream
+bitbake.
+
+Thanks,
+Joshua
+
+
+On Thu, 2011-04-28 at 13:38 +0800, Liping Ke wrote:
+> From: Liping Ke <liping.ke@intel.com>
 > 
-> I think there are three elements to this:
+> Add -t options in bitbake for configuring server type.
 > 
-> a) People do like the logical separation that a repo gives them and 
->    find it easiest to think in those terms.
-> b) Most people are used to single relatively monolithic repos such as 
->    the kernel. People like myself who have used svn with multiple 
->    projects contained within like matchbox or the OpenedHand "misc" svn 
->    repo or the BSD projects approach to source control are probably in 
->    the minority.
-> c) The git tooling and all the examples out there are geared up to 
->    single repos. git is very much a tool where you need to think as its 
->    authors do.
-
-
-Agreed.
-
-
-> Some of this can be addressed with clear example documentation about how
-> to use git in this way.
+> Signed-off-by: Liping Ke <liping.ke@intel.com>
+> ---
+>  bitbake/bin/bitbake |   22 +++++++++++++++++-----
+>  1 files changed, 17 insertions(+), 5 deletions(-)
 > 
-> Partly, these proposals are also working within the constraints of the
-> git server solution we have too. Are we really in such a bad position
-> that we need to change all the server setup over this or are there ways
-> we can work within the existing system (or even extend gitolite)?
+> diff --git a/bitbake/bin/bitbake b/bitbake/bin/bitbake
+> index 6d05289..2c45224 100755
+> --- a/bitbake/bin/bitbake
+> +++ b/bitbake/bin/bitbake
+> @@ -39,8 +39,6 @@ import bb.msg
+>  from bb import cooker
+>  from bb import ui
+>  from bb import server
+> -from bb.server import none
+> -#from bb.server import xmlrpc
+>  
+>  __version__ = "1.11.0"
+>  logger = logging.getLogger("BitBake")
+> @@ -71,7 +69,7 @@ def get_ui(config):
+>          return getattr(module, interface).main
+>      except AttributeError:
+>          sys.exit("FATAL: Invalid user interface '%s' specified.\n"
+> -                 "Valid interfaces: depexp, goggle, ncurses, knotty [default]." % interface)
+> +                 "Valid interfaces: depexp, goggle, ncurses, hob, knotty [default]." % interface)
+>  
+> 
+>  # Display bitbake/OE warnings via the BitBake.Warnings logger, ignoring others"""
+> @@ -161,6 +159,9 @@ Default BBFILES are the .bb files in the current directory.""")
+>      parser.add_option("-u", "--ui", help = "userinterface to use",
+>                 action = "store", dest = "ui")
+>  
+> +    parser.add_option("-t", "--servertype", help = "choose which server to user, none or xmlrpc",
 
+Can you capitalise choose please?
 
-I don't know what gitolite is capable of. I would really like to be able
-to create and destroy my own repositories in a central location with
-other Yocto developers.
+> +               action = "store", dest = "servertype")
+> +
+>      parser.add_option("", "--revisions-changed", help = "Set the exit code depending on whether upstream floating revisions have changed or not",
+>                 action = "store_true", dest = "revisions_changed", default = False)
+>  
+> @@ -175,8 +176,19 @@ Default BBFILES are the .bb files in the current directory.""")
+>      loghandler = event.LogHandler()
+>      logger.addHandler(loghandler)
+>  
+> -    #server = bb.server.xmlrpc
+> -    server = bb.server.none
+> +    # Server type could be xmlrpc or none currently, if nothing is specified,
+> +    # default server would be none
+> +    if configuration.servertype:
+> +        server_type = configuration.servertype
+> +    else:
+> +        server_type = 'none'
+> +
+> +    try:
+> +        module = __import__("bb.server", fromlist = [server_type])
+> +        server = getattr(module, server_type)
+> +    except AttributeError:
+> +        sys.exit("FATAL: Invalid server type '%s' specified.\n"
+> +                 "Valid interfaces: xmlrpc [default]." % servertype)
++                 "Valid interfaces: xmlrpc, none [default]." %
+servertype)
 
-However, this doesn't block me from moving forward. I can use kernel.org
-or dvhart.com to do this for the time being and make requests of the
-admins when I have a repository that looks to have some staying power.
-I'll have to time this transition appropriately so that I don't have to
-ask too many people to migrate to the new URL, but that would be true of
-a personal repository to official repository move as well.
+xmlrpc isn't the default, none is :-)
+
+>  
+>      # Save a logfile for cooker into the current working directory. When the
+>      # server is daemonized this logfile will be truncated.
+
 
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Joshua Lock
+        Yocto Build System Monkey
+        Intel Open Source Technology Center
+
 
