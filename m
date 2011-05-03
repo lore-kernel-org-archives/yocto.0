@@ -1,31 +1,22 @@
-Return-Path: <julie.n.fleischer@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id DC3654C80A46
-	for <yocto@yoctoproject.org>; Tue,  3 May 2011 14:43:39 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 03 May 2011 12:43:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.64,310,1301900400"; d="scan'208";a="429780964"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by azsmga001.ch.intel.com with ESMTP; 03 May 2011 12:43:38 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 3 May 2011 12:43:38 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.203]) with mapi id
-	14.01.0218.012; Tue, 3 May 2011 12:43:22 -0700
-From: "Fleischer, Julie N" <julie.n.fleischer@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Notes from Tuesday, May 3rd Technical Team meeting
-Thread-Index: AcwJymQl6YLS11j7TI+6fSCB8ydW1Q==
-Date: Tue, 3 May 2011 19:43:37 +0000
-Message-ID: <68002A430AC0584FB0A5391B435E93A9BFA9@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.9.131.214]
+Return-Path: <philip@balister.org>
+Received: from starfish.geekisp.com (mail.geekisp.com [216.168.135.169])
+	by mx1.pokylinux.org (Postfix) with ESMTP id DD5E44C80A46
+	for <yocto@yoctoproject.org>; Tue,  3 May 2011 14:44:18 -0500 (CDT)
+Received: (qmail 15355 invoked by uid 1003); 3 May 2011 19:44:18 -0000
+Received: from unknown (HELO ?192.168.1.167?)
+	(philip@opensdr.com@96.240.165.110)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	3 May 2011 19:44:18 -0000
+Message-ID: <4DC05B11.6070506@balister.org>
+Date: Tue, 03 May 2011 15:44:17 -0400
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc14 Thunderbird/3.1.10
 MIME-Version: 1.0
-Subject: Notes from Tuesday, May 3rd Technical Team meeting
+To: openembedded-devel@lists.openembedded.org, 
+	openembedded-members@lists.openembedded.org, yocto@yoctoproject.org, 
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: OpenEmbedded eV membership drive
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,28 +28,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 May 2011 19:43:40 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 03 May 2011 19:44:19 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Here are the notes from the Tuesday, May 3rd Yocto Technical Team meeting.
-Thanks.
-- Julie
+As most of you know, there is an OpenEmbedded eV to provide an umbrella 
+organization for handling various aspects of managing the project. There 
+is a description here: http://wiki.openembedded.net/index.php/Organization.
 
-Attendees: Dave, Darren, Richard, Mark, Julie, Joshua, Saul, Tom, Beth, Jes=
-sica, Jeff Polk, Alex de Vries, Bruce, Jefro
+One of the things we would like to do is vote in new members to the eV 
+(for the .us guys, think 501c3). If you are interested in becoming a 
+member, read the Organization web page and send me an email indicating 
+your desire to become a member. Please include a short paragraph 
+explaining who you are and how you are involved with OpenEmbedded.
 
-Agenda:
-1.  Review 1.1 Release Criteria - See notes at https://wiki.yoctoproject.or=
-g/wiki/Yocto_Project_v1.1_Release_Criteria.=20
-2.  Review 1.0.1 Release Criteria - See notes at https://wiki.yoctoproject.=
-org/wiki/Yocto_Project_v1.0.1_Release_Criteria.=20
-3.  Opens
+After one week, I'll submit the list of names as a voting proposal to 
+the current eV members. Or statutes provide for a one week discussion 
+period, followed by a one week voting period for new member votes.
 
------------------------
-Julie Fleischer
-Open Source Technology Center
-Intel Corporation
+People ask me why they should join the eV. Besides being a good way to 
+show your support for the OpenEmbedded project, the Technical Steering 
+Committee is elected by the eV members.
 
+To remain an eV member, you must attend the annual General Assembly 
+regularly. (if you miss two consecutive meetings you become an 
+extraordinary member with no voting rights). However, submitting a proxy 
+counts as attending the General Assembly. The current plan is to 
+schedule the GA at ELCE this fall.
+
+If you have any questions, please contact me.
+
+Philip
 
