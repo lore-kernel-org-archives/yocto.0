@@ -1,34 +1,23 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 772934C8011E
-	for <yocto@yoctoproject.org>; Tue,  3 May 2011 16:52:40 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p43Lqckx022314;
-	Tue, 3 May 2011 22:52:38 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 22106-03; Tue,  3 May 2011 22:52:34 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p43LqVxJ022308
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Tue, 3 May 2011 22:52:32 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: openembedded-members@lists.openembedded.org
-In-Reply-To: <BANLkTimX8LO1SSDrs+ekB2fZESQw0xY83g@mail.gmail.com>
-References: <4DC05B11.6070506@balister.org>
-	<BANLkTincDz4WZSH919f7+G4q49OkixH7Uw@mail.gmail.com>
-	<1304454137.21461.135.camel@rex>
-	<BANLkTimX8LO1SSDrs+ekB2fZESQw0xY83g@mail.gmail.com>
-Date: Tue, 03 May 2011 22:52:29 +0100
-Message-ID: <1304459549.21461.142.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: OpenEmbedded eV membership drive
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 9C0EC4C8011E
+	for <yocto@yoctoproject.org>; Tue,  3 May 2011 18:09:01 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 03 May 2011 16:09:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.64,312,1301900400"; d="scan'208";a="637456512"
+Received: from unknown (HELO [10.255.13.13]) ([10.255.13.13])
+	by orsmga002.jf.intel.com with ESMTP; 03 May 2011 16:09:00 -0700
+Message-ID: <4DC08B0B.9040009@intel.com>
+Date: Tue, 03 May 2011 16:08:59 -0700
+From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.14) Gecko/20110223 Thunderbird/3.1.8
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <201105031700.43005.paul.eggleton@linux.intel.com>
+In-Reply-To: <201105031700.43005.paul.eggleton@linux.intel.com>
+Subject: Re: RFC: Package exclusion
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,39 +29,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 May 2011 21:52:41 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 03 May 2011 23:09:02 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Tue, 2011-05-03 at 23:15 +0200, Frans Meulenbroeks wrote:
-> 2011/5/3 Richard Purdie <richard.purdie@linuxfoundation.org>
 
->         This was discussed at the last TSC meeting and we reviewed the
->         TSC
->         meeting minutes where it was recorded that:
->         
->         """
->         Election wise, we'll elect the seats in the order from the
->         board
->         announcement email until we have 5 elected members. We will
->         rely on the
->         board to call the first election in May.
->         """
->         
->         which the TSC has reminded the board about last week.
 
->         
-> I don't think it is up to the TSC to decide on the re-election
-> timeframe. As it stands the TSC got a 2 month mandate. See the quote
-> above (from Philip's email from feb 10).
-> That is all I wanted to indicate.
+On 05/03/2011 09:00 AM, Paul Eggleton wrote:
+> Hi all,
+>
+> As part of the 1.1 feature list I suggested a review of the
+> INCOMPATIBLE_LICENSE and COMMERCIAL* package exclusion mechanisms we have
+> within Poky. Below I've outlined my ideas and would appreciate any
+> comments/additions/corrections.
+>
+> ==== Aims ====
+>
+>   * Make error messages clear when user/dependencies have asked for something
+> to be built that can't be due to restrictions
+>
+>   * Ensure that exclusion system is reliable
+>
+> ====  Proposed implementation ====
+>
+>   1) Ensure all documentation of LICENSE field value syntax is clear, concise
+> and up-to-date (wiki and manual)
+>
+>   2) Go through and audit all recipes LICENSE field values to ensure that they
+> all conform to the specifications. This includes making sure that | (package
+> may be used under one of a selection of licences) and&  (recipe has mixed
+> licences that apply to the code base, so conditions of all must be observed)
+> are used correctly.
+>
+>   3) bitbake/core changes:
+>
+>   * LICENSE field checking must fully parse the field and understand the
+> difference between | and&, and must not e.g. mark Qt as being GPLv3 only.
+>
+>   * Make the LICENSE validity checking more strict (given recipes have been
+> audited and rules are clear after above)
+>
+>   * Don't exclude any recipes at parse time - simply record all excluded
+> recipes and their runtime provides in a blacklist which also includes flags
+> indicating the reason for blacklisting
+>
+>   * Ensure all excluded licences in INCOMPATIBLE_LICENSE are valid (e.g. catch
+> GPL3 as apposed to GPLv3) - if not, error out
+>
+>   * Check when calculating dependencies if anything is scheduled to be built
+> that is on the blacklist - if any are, gather all of them up and then stop and
+> list them in an error message along with reason and depchain for each one
+>
+>   * Check when constructing the rootfs if anything in the runtime provides
+> blacklist is going to be included - if so, error out
+>
 
-The TSC was asked by the board to figure out the details of the election
-which we did in the first meeting as requested and provided our feedback
-back to the board. The board naturally has the ultimate say in this.
+Most of the issues surrounding the license field is currently on my plate for M1.D
 
-Cheers,
+License tracking	Build a parser to do license tracking more gracefully and make sure all recipes are correct. (takes 
+~2 weeks)	1	Accept	Beth	Beth	M1, Sprint D
 
-Richard
+There is currently no specification on the LICENSE field values and how they should be parsed. I'm going to be starting 
+that in the next week or so. We should sync up with each other if this work is going to overlap. Schedule some time for 
+this week?
 
+-b
+
+
+> Cheers,
+> Paul
+>
+
+-- 
+---------------
+Elizabeth Flanagan
+Yocto Project
+Release Engineer
 
