@@ -1,23 +1,21 @@
-Return-Path: <josh@linux.intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8E8524C800A3
-	for <yocto@yoctoproject.org>; Mon,  2 May 2011 18:14:14 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 02 May 2011 16:14:14 -0700
+	by mx1.pokylinux.org (Postfix) with ESMTP id 27F164C80A73
+	for <yocto@yoctoproject.org>; Tue,  3 May 2011 11:00:45 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 03 May 2011 09:00:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.64,306,1301900400"; d="scan'208";a="636929095"
-Received: from vorpal.jf.intel.com (HELO [10.7.199.161]) ([10.7.199.161])
-	by orsmga002.jf.intel.com with ESMTP; 02 May 2011 16:14:14 -0700
-From: Joshua Lock <josh@linux.intel.com>
-To: Liping Ke <liping.ke@intel.com>
-In-Reply-To: <cover.1304036312.git.liping.ke@intel.com>
-References: <cover.1304036312.git.liping.ke@intel.com>
-Date: Mon, 02 May 2011 16:10:07 -0700
-Message-ID: <1304377807.4315.126.camel@vorpal>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.30.3 
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/1] Resend:[Image-Creator]Make bitbake server type configurable (xmlrpc, none)
+X-IronPort-AV: E=Sophos;i="4.64,310,1301900400"; d="scan'208";a="741663031"
+Received: from unknown (HELO helios.localnet) ([10.255.13.16])
+	by orsmga001.jf.intel.com with ESMTP; 03 May 2011 09:00:44 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+Organization: Intel Corporation (UK)
+To: yocto@yoctoproject.org
+Date: Tue, 3 May 2011 17:00:42 +0100
+User-Agent: KMail/1.13.6 (Linux/2.6.38-8-generic-pae; KDE/4.6.2; i686; ; )
+MIME-Version: 1.0
+Message-Id: <201105031700.43005.paul.eggleton@linux.intel.com>
+Subject: RFC: Package exclusion
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,54 +27,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 May 2011 23:14:14 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 03 May 2011 16:00:45 -0000
+Content-Type: Text/Plain;
+  charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2011-04-29 at 08:22 +0800, Liping Ke wrote:
-> From: Liping Ke <liping.ke@intel.com>
-> 
-> Add -t options in bitbake for configuring server type.
+Hi all,
 
-Thanks Liping, this looks good to me. I've merged it into an
-image-creator branch on contrib
+As part of the 1.1 feature list I suggested a review of the 
+INCOMPATIBLE_LICENSE and COMMERCIAL* package exclusion mechanisms we have 
+within Poky. Below I've outlined my ideas and would appreciate any 
+comments/additions/corrections.
+
+==== Aims ==== 
+
+ * Make error messages clear when user/dependencies have asked for something 
+to be built that can't be due to restrictions
+
+ * Ensure that exclusion system is reliable
+
+====  Proposed implementation ==== 
+
+ 1) Ensure all documentation of LICENSE field value syntax is clear, concise 
+and up-to-date (wiki and manual)
+
+ 2) Go through and audit all recipes LICENSE field values to ensure that they 
+all conform to the specifications. This includes making sure that | (package 
+may be used under one of a selection of licences) and & (recipe has mixed 
+licences that apply to the code base, so conditions of all must be observed) 
+are used correctly.
+
+ 3) bitbake/core changes:
+
+ * LICENSE field checking must fully parse the field and understand the 
+difference between | and &, and must not e.g. mark Qt as being GPLv3 only.
+
+ * Make the LICENSE validity checking more strict (given recipes have been 
+audited and rules are clear after above)
+
+ * Don't exclude any recipes at parse time - simply record all excluded 
+recipes and their runtime provides in a blacklist which also includes flags 
+indicating the reason for blacklisting
+
+ * Ensure all excluded licences in INCOMPATIBLE_LICENSE are valid (e.g. catch 
+GPL3 as apposed to GPLv3) - if not, error out
+
+ * Check when calculating dependencies if anything is scheduled to be built 
+that is on the blacklist - if any are, gather all of them up and then stop and 
+list them in an error message along with reason and depchain for each one
+
+ * Check when constructing the rootfs if anything in the runtime provides 
+blacklist is going to be included - if so, error out
 
 
-I will be collecting image-creator related BitBake patches there for now
-with the goal of porting them to upstream BitBake and submitting to the
-bitbake-devel list (thought I haven't seen any traffic there for some
-time)...
+Some further possible extensions:
+
+ * Possibly apply similar logic to COMPATIBLE_MACHINE?
+
+ * Replace COMMERCIAL* with some more generic exclusion mechanism that allows 
+the reason to be defined as part of the exclusion list?
+
+ * As a helper for non-en_US users, fail on parse if user defines any of the 
+*LICENSE* variables as *LICENCE*? (we definitely don't want the build to 
+continue and just ignore this as the user might not realise what has happened)
+
 
 Cheers,
-Joshua
-
-> 
-> Signed-off-by: Liping Ke <liping.ke@intel.com>
-> 
-> Pull URL: git://git.pokylinux.org/poky-contrib.git
->   Branch: lke/server_type
->   Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=lke/server_type
-> 
-> Thanks,
->     Liping Ke <liping.ke@intel.com>
-> ---
-> 
-> 
-> Liping Ke (1):
->   Make bitbake server type configurable(xmlrpc,none)
-> 
->  bitbake/bin/bitbake |   22 +++++++++++++++++-----
->  1 files changed, 17 insertions(+), 5 deletions(-)
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+Paul
 
 -- 
-Joshua Lock
-        Yocto Build System Monkey
-        Intel Open Source Technology Center
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
