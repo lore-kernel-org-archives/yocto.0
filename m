@@ -1,24 +1,19 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5C20B4C80FA5
-	for <yocto@yoctoproject.org>; Wed,  4 May 2011 03:59:08 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 04 May 2011 01:59:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.64,313,1301900400"; d="scan'208";a="430206362"
-Received: from unknown (HELO helios.localnet) ([10.255.13.83])
-	by azsmga001.ch.intel.com with ESMTP; 04 May 2011 01:59:06 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-Organization: Intel Corporation (UK)
-To: yocto@yoctoproject.org
-Date: Wed, 4 May 2011 09:59:05 +0100
-User-Agent: KMail/1.13.6 (Linux/2.6.38-8-generic-pae; KDE/4.6.2; i686; ; )
-References: <201105031700.43005.paul.eggleton@linux.intel.com>
-	<4DC08B0B.9040009@intel.com>
-In-Reply-To: <4DC08B0B.9040009@intel.com>
-MIME-Version: 1.0
-Message-Id: <201105040959.05285.paul.eggleton@linux.intel.com>
-Subject: Re: RFC: Package exclusion
+Return-Path: <bruce.ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id D06184C8024E;
+	Wed,  4 May 2011 23:52:18 -0500 (CDT)
+Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
+	[128.224.146.167])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p454q5rI013993;
+	Wed, 4 May 2011 21:52:06 -0700 (PDT)
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+To: richard.purdie@linuxfoundation.org
+Date: Thu,  5 May 2011 00:53:21 -0400
+Message-Id: <cover.1304570401.git.bruce.ashfield@windriver.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org,
+	poky@yoctoproject.org, saul.wold@intel.com
+Subject: [PATCH 0/3] linux-yocto: consolidated pull request
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,35 +25,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 May 2011 08:59:08 -0000
-Content-Type: Text/Plain;
-  charset="iso-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 05 May 2011 04:52:19 -0000
 
-Hi Beth,
+Richard/Saul,
 
-On Wednesday 04 May 2011 00:08:59 Elizabeth Flanagan wrote:
-> Most of the issues surrounding the license field is currently on my plate
-> for M1.D
-> 
-> License tracking	Build a parser to do license tracking more gracefully and
-> make sure all recipes are correct. (takes ~2 weeks)	1	Accept	Beth	Beth	
-M1,
-> Sprint D
->
-> There is currently no specification on the LICENSE field values and how
-> they should be parsed. I'm going to be starting that in the next week or
-> so. We should sync up with each other if this work is going to overlap.
-> Schedule some time for this week?
+I've been running with these changes since before ELC, so they've had
+some good soak time. The first two changes lay the ground for for some
+1.1 functionality and are used by recipes in the meta-kernel-dev layer.
+The changes are transparent to existing recipes.
 
-Yes there's definitely quite an overlap here and we should coordinate efforts. 
-Will catch you later on IRC to organise some time.
+In particular they are related to auto creating meta data for kernel
+repository builds. They are enough for basic korg/defconfig builds and
+limited other repository building. More changes will complete this work
+shortly.
 
-Cheers,
-Paul
+The last patch just updates the SRCREVs to pickup Khem's backported
+perf tool / gcc 4.6.0 patch.
 
--- 
+There are about 8 more pending patches that deal with some recipe
+renames, cleanup and more 1.1 functionality but I wanted to get
+this first set of 3 out before rebasing the rest.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Sorry about the big cross post, but these changes span quite a few
+different interest groups.
+
+cc: Khem Raj <raj.khem@gmail.com>
+
+Pull URL: git://git.pokylinux.org/poky-contrib.git
+  Branch: zedd/kernel
+  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
+
+Thanks,
+    Bruce Ashfield <bruce.ashfield@windriver.com>
+---
+
+
+Bruce Ashfield (3):
+  linux-yocto: apply meta data to external repos
+  linux-yocto: safely process unbranched repositories
+  linux-yocto: update SRCREVs
+
+ meta/classes/kernel-yocto.bbclass                  |   34 +++++++++++++++-----
+ .../kern-tools/kern-tools-native_git.bb            |    2 +-
+ meta/recipes-kernel/linux/linux-yocto_git.bb       |   24 +++++++-------
+ 3 files changed, 39 insertions(+), 21 deletions(-)
+
 
