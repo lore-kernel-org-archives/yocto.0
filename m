@@ -1,24 +1,31 @@
-Return-Path: <bruce.ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 52DC44C8057C;
-	Mon,  9 May 2011 13:32:16 -0500 (CDT)
-Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
-	[128.224.146.167])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p49IW3FG027948;
-	Mon, 9 May 2011 11:32:09 -0700 (PDT)
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: richard.purdie@linuxfoundation.org
-Date: Mon,  9 May 2011 14:34:06 -0400
-Message-Id: <16e2837c338d7ca6cbcc6f7e6d8d3c3327c4705d.1304965560.git.bruce.ashfield@windriver.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1304965560.git.bruce.ashfield@windriver.com>
-References: <cover.1304965560.git.bruce.ashfield@windriver.com>
-In-Reply-To: <cover.1304965560.git.bruce.ashfield@windriver.com>
-References: <cover.1304965560.git.bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com,
-	openembedded-core@lists.openembedded.org, poky@yoctoproject.org,
-	saul.wold@intel.com
-Subject: [PATCH 3/3] linux-yocto: error if meta data not present
+Return-Path: <julie.n.fleischer@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 56A104C8026D
+	for <yocto@yoctoproject.org>; Mon,  9 May 2011 16:17:59 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 09 May 2011 14:17:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.64,342,1301900400"; d="scan'208";a="640318808"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga002.jf.intel.com with ESMTP; 09 May 2011 14:17:51 -0700
+Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 9 May 2011 14:17:51 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX105.amr.corp.intel.com ([169.254.4.15]) with mapi id
+	14.01.0218.012; Mon, 9 May 2011 14:17:50 -0700
+From: "Fleischer, Julie N" <julie.n.fleischer@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto Technical Team meeting, Tuesday, May 10th 8am Pacific
+Thread-Index: AcwOjo0xzFp3d78VTkKpTIatcxrx9w==
+Date: Mon, 9 May 2011 21:17:50 +0000
+Message-ID: <68002A430AC0584FB0A5391B435E93A9F58D@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.9.131.214]
+MIME-Version: 1.0
+Subject: Yocto Technical Team meeting, Tuesday, May 10th 8am Pacific
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,80 +37,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 May 2011 18:32:16 -0000
+X-List-Received-Date: Mon, 09 May 2011 21:17:59 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-There are valid reasons to build repositories without meta
-data present and there are times when this is an error. This
-change adds sanity tests to the build process to detect missing
-meta data and throw an informative error message.
+Yocto Technical Team,
+Here is the agenda for our weekly meeting on Tuesday, May 10th at 8am Pacif=
+ic.
+Thanks.
+- Julie
 
-Sanity checking is only triggered from recipes (linux-yocto)
-that always require meta data to be present. Other recipes
-are not impacted and can auto-generate meta data as required.
+Dial in:  916-356-2663, Bridge: 1, Passcode: 4926307
 
-Without this change the build process suceeds, but incorrect
-meta data will be used (with no user knowledge), which is not
-the desired behaviour.
+Agenda:
+1) Review Yocto 1.1 Release Criteria - https://wiki.yoctoproject.org/wiki/Y=
+octo_Project_v1.1_Release_Criteria
+2) Review Yocto 1.0.1 Release Criteria - https://wiki.yoctoproject.org/wiki=
+/Yocto_Project_v1.0.1_Release_Criteria
+3) Opens
 
-Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
----
- meta/classes/kernel-yocto.bbclass                  |    5 ++++-
- .../kern-tools/kern-tools-native_git.bb            |    2 +-
- meta/recipes-kernel/linux/linux-yocto_git.bb       |    4 +++-
- 3 files changed, 8 insertions(+), 3 deletions(-)
+- Julie
 
-diff --git a/meta/classes/kernel-yocto.bbclass b/meta/classes/kernel-yocto.bbclass
-index ffc0b4c..818a07e 100644
---- a/meta/classes/kernel-yocto.bbclass
-+++ b/meta/classes/kernel-yocto.bbclass
-@@ -13,7 +13,10 @@ do_patch() {
- 	fi
- 
- 	# simply ensures that a branch of the right name has been created
--	createme ${ARCH} ${kbranch} ${defconfig}
-+	if [ -n "${YOCTO_KERNEL_META_DATA}" ]; then
-+		createme_flags="--disable-meta-gen"
-+	fi
-+	createme ${createme_flags} ${ARCH} ${kbranch} ${defconfig}
- 	if [ $? -ne 0 ]; then
- 		echo "ERROR. Could not create ${kbranch}"
- 		exit 1
-diff --git a/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb b/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb
-index 820765e..c808e17 100644
---- a/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb
-+++ b/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb
-@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://git/tools/kgit;beginline=5;endline=9;md5=e2bf4415f3d8
- 
- DEPENDS = "git-native guilt-native"
- 
--SRCREV = "c5896a60acc61f8966cfee3bb241ff564610cea4"
-+SRCREV = "ab49d8e48b7e66d1b4f924385d65d062d25e44f7"
- PR = r10
- PV = "0.1+git${SRCPV}"
- 
-diff --git a/meta/recipes-kernel/linux/linux-yocto_git.bb b/meta/recipes-kernel/linux/linux-yocto_git.bb
-index d4f2ece..f54033d 100644
---- a/meta/recipes-kernel/linux/linux-yocto_git.bb
-+++ b/meta/recipes-kernel/linux/linux-yocto_git.bb
-@@ -22,7 +22,7 @@ SRCREV_machine_qemux86-64 = "b906f358fd404a1e74a961f25079274e0d933ee1"
- SRCREV_machine = "b906f358fd404a1e74a961f25079274e0d933ee1"
- SRCREV_meta = "ecab1e2bc12a8b0c4d064a00acc3260f6e8528c5"
- 
--PR = "r17"
-+PR = "r18"
- PV = "${LINUX_VERSION}+git${SRCPV}"
- SRCREV_FORMAT = "meta_machine"
- 
-@@ -36,6 +36,8 @@ KERNEL_FEATURES="features/netfilter"
- KERNEL_FEATURES_append_qemux86=" cfg/sound"
- KERNEL_FEATURES_append_qemux86-64=" cfg/sound"
- 
-+YOCTO_KERNEL_META_DATA=t
-+
- # extra tasks
- addtask kernel_link_vmlinux after do_compile before do_install
- addtask validate_branches before do_patch after do_kernel_checkout
--- 
-1.7.0.4
+-----------------------
+Julie Fleischer
+Open Source Technology Center
+Intel Corporation
 
 
