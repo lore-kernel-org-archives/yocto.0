@@ -1,24 +1,20 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 861A14C800FB
-	for <yocto@yoctoproject.org>; Tue, 17 May 2011 14:46:51 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 90E9B4C80FB6
+	for <yocto@yoctoproject.org>; Tue, 17 May 2011 15:50:53 -0500 (CDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 17 May 2011 12:46:51 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 17 May 2011 13:50:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,226,1304319600"; 
-   d="scan'208";a="3534924"
-Received: from unknown (HELO [10.255.12.109]) ([10.255.12.109])
-	by fmsmga001.fm.intel.com with ESMTP; 17 May 2011 12:46:50 -0700
+X-IronPort-AV: E=Sophos;i="4.65,227,1304319600"; 
+   d="scan'208";a="3572732"
+Received: from unknown (HELO localhost) ([10.255.12.109])
+	by fmsmga001.fm.intel.com with ESMTP; 17 May 2011 13:50:52 -0700
+Message-Id: <cover.1305665232.git.tom.zanussi@intel.com>
+Old-Date: Tue, 17 May 2011 15:47:12 -0500
+Date: Tue, 17 May 2011 15:49:53 -0500
+To: yocto@yoctoproject.org
 From: Tom Zanussi <tom.zanussi@intel.com>
-To: Otavio Salvador <otavio@ossystems.com.br>
-In-Reply-To: <1305656845-15849-1-git-send-email-otavio@ossystems.com.br>
-References: <1305656845-15849-1-git-send-email-otavio@ossystems.com.br>
-Date: Tue, 17 May 2011 14:45:51 -0500
-Message-ID: <1305661551.21191.677.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] README.sources: use git.yoctoproject.org as server for the BSP repository
+Subject: [PATCH 0/1] meta-intel: add MAINTAINERS file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,88 +26,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 May 2011 19:46:51 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 17 May 2011 20:50:53 -0000
 
-On Tue, 2011-05-17 at 11:27 -0700, Otavio Salvador wrote:
-> Signed-off-by: Otavio Salvador <otavio@ossystems.com.br>
-> ---
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Thanks for noticing and updating this!
+Pull URL: git://git.pokylinux.org/poky-contrib.git
+  Branch: tzanussi/maintainers-init
+  Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=tzanussi/maintainers-init
 
-Pulled into meta-intel/master.
+Thanks,
+    Tom Zanussi <tom.zanussi@intel.com>
+---
 
-Tom
 
->  meta-crownbay/README.sources     |    2 +-
->  meta-emenlow/README.sources      |    2 +-
->  meta-fishriver/README.sources    |    2 +-
->  meta-jasperforest/README.sources |    2 +-
->  meta-n450/README.sources         |    2 +-
->  meta-sugarbay/README.sources     |    2 +-
->  6 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/meta-crownbay/README.sources b/meta-crownbay/README.sources
-> index 8814e70..5c8b5c7 100644
-> --- a/meta-crownbay/README.sources
-> +++ b/meta-crownbay/README.sources
-> @@ -14,4 +14,4 @@ addition to the code contained in this BSP, can also be found at the
->  following locations:
->  
->  git://git.yoctoproject.org/poky.git
-> -git://git.pokylinux.org/meta-intel
-> +git://git.yoctoproject.org/meta-intel
-> diff --git a/meta-emenlow/README.sources b/meta-emenlow/README.sources
-> index 8814e70..5c8b5c7 100644
-> --- a/meta-emenlow/README.sources
-> +++ b/meta-emenlow/README.sources
-> @@ -14,4 +14,4 @@ addition to the code contained in this BSP, can also be found at the
->  following locations:
->  
->  git://git.yoctoproject.org/poky.git
-> -git://git.pokylinux.org/meta-intel
-> +git://git.yoctoproject.org/meta-intel
-> diff --git a/meta-fishriver/README.sources b/meta-fishriver/README.sources
-> index 8814e70..5c8b5c7 100644
-> --- a/meta-fishriver/README.sources
-> +++ b/meta-fishriver/README.sources
-> @@ -14,4 +14,4 @@ addition to the code contained in this BSP, can also be found at the
->  following locations:
->  
->  git://git.yoctoproject.org/poky.git
-> -git://git.pokylinux.org/meta-intel
-> +git://git.yoctoproject.org/meta-intel
-> diff --git a/meta-jasperforest/README.sources b/meta-jasperforest/README.sources
-> index 8814e70..5c8b5c7 100644
-> --- a/meta-jasperforest/README.sources
-> +++ b/meta-jasperforest/README.sources
-> @@ -14,4 +14,4 @@ addition to the code contained in this BSP, can also be found at the
->  following locations:
->  
->  git://git.yoctoproject.org/poky.git
-> -git://git.pokylinux.org/meta-intel
-> +git://git.yoctoproject.org/meta-intel
-> diff --git a/meta-n450/README.sources b/meta-n450/README.sources
-> index 8814e70..5c8b5c7 100644
-> --- a/meta-n450/README.sources
-> +++ b/meta-n450/README.sources
-> @@ -14,4 +14,4 @@ addition to the code contained in this BSP, can also be found at the
->  following locations:
->  
->  git://git.yoctoproject.org/poky.git
-> -git://git.pokylinux.org/meta-intel
-> +git://git.yoctoproject.org/meta-intel
-> diff --git a/meta-sugarbay/README.sources b/meta-sugarbay/README.sources
-> index 8814e70..5c8b5c7 100644
-> --- a/meta-sugarbay/README.sources
-> +++ b/meta-sugarbay/README.sources
-> @@ -14,4 +14,4 @@ addition to the code contained in this BSP, can also be found at the
->  following locations:
->  
->  git://git.yoctoproject.org/poky.git
-> -git://git.pokylinux.org/meta-intel
-> +git://git.yoctoproject.org/meta-intel
+Tom Zanussi (1):
+  meta-intel: add top-level MAINTAINERS file
 
+ MAINTAINERS |   64 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 64 insertions(+), 0 deletions(-)
+ create mode 100644 MAINTAINERS
 
 
