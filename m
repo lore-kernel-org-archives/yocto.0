@@ -1,31 +1,31 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B07024C804C2
-	for <yocto@yoctoproject.org>; Tue, 17 May 2011 06:11:22 -0500 (CDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 999)
-	id 49D75166032A; Tue, 17 May 2011 05:11:21 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2-r929478 (2010-03-31) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2-r929478
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id F1C241660320;
-	Tue, 17 May 2011 05:11:20 -0600 (MDT)
-Message-ID: <4DD257D8.6070207@mlbassoc.com>
-Date: Tue, 17 May 2011 05:11:20 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.13) Gecko/20101209 Fedora/3.1.7-0.35.b3pre.fc13
-	Thunderbird/3.1.7
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 75F1C4C80335
+	for <yocto@yoctoproject.org>; Tue, 17 May 2011 09:16:33 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 17 May 2011 07:16:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.65,225,1304319600"; d="scan'208";a="748506737"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by orsmga001.jf.intel.com with ESMTP; 17 May 2011 07:16:32 -0700
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 17 May 2011 22:14:50 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Tue, 17 May 2011 22:14:49 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 17 May 2011 22:14:47 +0800
+Thread-Topic: Yocto weekly bug trend charts -- WW20
+Thread-Index: AcwUnMbl5eSzN43xRdSiAAYWUNhW/g==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A524589A6@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: wangyang <wangyang01@cn.panasonic.com>
-References: <000b01cc1379$bcc63a60$6f93c20a@psdcd.local>
-	<4DD0CDCE.4000108@intel.com> <4DD1084E.30509@mlbassoc.com>
-	<000401cc1430$9cd014d0$6f93c20a@psdcd.local>
-In-Reply-To: <000401cc1430$9cd014d0$6f93c20a@psdcd.local>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: about how to port YOCTO
+Subject: Yocto weekly bug trend charts -- WW20
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,32 +37,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 May 2011 11:11:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 17 May 2011 14:16:33 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 05/16/2011 07:20 PM, wangyang wrote:
->> Remember that Yocto is
->> just packaging for a Linux kernel and the user tools that surround
->> it.
->
-> In other words, if I want to use Yocto to package Linux kernel and the user
-> tools for new MCU,I must port Linux kernel and toolchain and GLIBC, etc. It is
-> right?
->
-> What Yocto do is just packaging mainstream Linux kernel(from
-> http://www.kernel.org/) and something with it for different needs, it is right?
+Hi all,
+	From this week, QA will maintain a wiki page to save weekly bug trend char=
+ts for Yocto. The wiki page URL is https://wiki.pokylinux.org/wiki/Yocto_Bu=
+g_Trend. There are lots of bugs are fixed in WW20, while more new bugs are =
+submitted. The open bug number increased to 180. Weekly meta-intel BSPs tes=
+ting is still BLOCKED because autobuilder does not build them.
 
-Correct.  Yocto isn't really for porting the tools to a platform,
-but rather something to help you build [embedded] systems to run
-on the platform.
-
-n.b. it's polite to keep such discussions on the mailing list so that
-everyone benefits.
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Best Regards,
+Jiajun
 
