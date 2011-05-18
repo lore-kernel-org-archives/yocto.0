@@ -1,46 +1,36 @@
-Return-Path: <wangyang01@cn.panasonic.com>
-Received: from smtp.mei.co.jp (smtp.mei.co.jp [133.183.100.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 6174E4C80FCF
-	for <yocto@yoctoproject.org>; Tue, 17 May 2011 19:53:10 -0500 (CDT)
-Received: from mail-gw.jp.panasonic.com ([157.8.1.157])
-	by smtp.mei.co.jp (8.12.11.20060614/3.7W/kc-maile13) with ESMTP id
-	p4I0qvJV014254; Wed, 18 May 2011 09:52:57 +0900 (JST)
-Received: from bjsm01.cn.panasonic.com ([10.192.224.17])
-	by mail.jp.panasonic.com (8.11.6p2/3.7W/kc-maili11) with ESMTP id
-	p4I0qvV32766; Wed, 18 May 2011 09:52:57 +0900
-Received: from bjma01.cn.panasonic.com ([10.192.224.16])
-	by bjsm01.cn.panasonic.com (Lotus Domino Release 6.5.6FP3)
-	with ESMTP id 2011051808530082-101614 ;
-	Wed, 18 May 2011 08:53:00 +0800 
-Received: from sc1wangyang01 ([10.194.147.111])
-	by bjma01.cn.panasonic.com (Lotus Domino Release 6.5.6FP3HF321)
-	with ESMTP id 2011051808524892-43910 ;
-	Wed, 18 May 2011 08:52:48 +0800 
-From: "wangyang" <wangyang01@cn.panasonic.com>
-To: "'Gary Thomas'" <gary@mlbassoc.com>
-References: <000b01cc1379$bcc63a60$6f93c20a@psdcd.local>
-	<4DD0CDCE.4000108@intel.com> <4DD1084E.30509@mlbassoc.com>
-	<000401cc1430$9cd014d0$6f93c20a@psdcd.local>
-	<4DD257D8.6070207@mlbassoc.com>
-Date: Wed, 18 May 2011 08:52:48 +0800
-Message-ID: <000001cc14f5$e8b4fc60$6f93c20a@psdcd.local>
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 0207A4C80FDC
+	for <yocto@yoctoproject.org>; Tue, 17 May 2011 21:46:44 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 17 May 2011 19:46:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.65,228,1304319600"; 
+   d="scan'208";a="3131766"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by fmsmga002.fm.intel.com with ESMTP; 17 May 2011 19:46:44 -0700
+Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 17 May 2011 19:46:44 -0700
+Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
+	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi;
+	Tue, 17 May 2011 19:46:43 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Daniel Lazzari <busytester@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Tue, 17 May 2011 19:46:43 -0700
+Thread-Topic: [yocto] Can't create a new project with Yocto BitBake
+	Commander	plugin
+Thread-Index: AcwU9QHqYFD7m8FYR8SdP3ee2bshGgAC2Q5g
+Message-ID: <9AFCD584B0B67B48AE8D8585BE30BA9501170DB6A1@orsmsx504.amr.corp.intel.com>
+References: <BANLkTinwVS4Zu+21TR2eBa_-ArLb8gV0nQ@mail.gmail.com>
+In-Reply-To: <BANLkTinwVS4Zu+21TR2eBa_-ArLb8gV0nQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-In-Reply-To: <4DD257D8.6070207@mlbassoc.com>
-Thread-Index: AcwUgzUJ5myGOhZaR427VpW0annQAAAcpAAg
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3664
-X-MIMETrack: Itemize by SMTP Server on BJMA01/SERVER/CMM(Release 6.5.6FP3HF321
-	| April 27, 2010) at 2011-05-18 08:52:49,
-	Serialize by Router on BJMA01/SERVER/CMM(Release 6.5.6FP3HF321 | April
-	27, 2010) at 2011-05-18 08:52:53,
-	Serialize complete at 2011-05-18 08:52:53,
-	Itemize by SMTP Server on BJSM01/SERVER/CMM(Release 6.5.6FP3|March 27,
-	2008) at 2011-05-18 08:53:00,
-	Serialize by Router on BJSM01/SERVER/CMM(Release 6.5.6FP3|March 27,
-	2008) at 2011-05-18 08:53:04,
-	Serialize complete at 2011-05-18 08:53:04
-Cc: yocto@yoctoproject.org
-Subject: Re: about how to port YOCTO
+Subject: Re: Can't create a new project with Yocto BitBake Commander	plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,46 +42,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 May 2011 00:53:11 -0000
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain;
-	charset="us-ascii"
+X-List-Received-Date: Wed, 18 May 2011 02:46:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Mr Gary:
-Thank you for your answer.
+Hi Daniel,
 
-> -----Original Message-----
-> From: Gary Thomas [mailto:gary@mlbassoc.com]
-> Sent: Tuesday, May 17, 2011 7:11 PM
-> To: wangyang
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] about how to port YOCTO
-> 
-> On 05/16/2011 07:20 PM, wangyang wrote:
-> >> Remember that Yocto is
-> >> just packaging for a Linux kernel and the user tools that surround
-> >> it.
-> >
-> > In other words, if I want to use Yocto to package Linux kernel and the user
-> > tools for new MCU,I must port Linux kernel and toolchain and GLIBC, etc. It
-is
-> > right?
-> >
-> > What Yocto do is just packaging mainstream Linux kernel(from
-> > http://www.kernel.org/) and something with it for different needs, it is
-right?
-> 
-> Correct.  Yocto isn't really for porting the tools to a platform,
-> but rather something to help you build [embedded] systems to run
-> on the platform.
-> 
-> n.b. it's polite to keep such discussions on the mailing list so that
-> everyone benefits.
-> 
-> --
-> ------------------------------------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------------------------------------
+So to be clear, you want a bitbake commander project or yocto sdk project? =
+The former will allow you to edit the bitbate recipe files, the later will =
+allow you develop embedded applications that compiling using the cross tool=
+chain.
 
+Also, what is your Yocto checkout, the latest or Bernard, how about your ec=
+lipse plug-in? The 1.0 Eclipse plug-in is having some issues working with t=
+he latest yocto tree, and only working with Bernard.
+
+Please provide more information.
+
+Thanks,
+Jessica
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Daniel Lazzari
+Sent: Tuesday, May 17, 2011 5:46 PM
+To: yocto@yoctoproject.org
+Subject: [yocto] Can't create a new project with Yocto BitBake Commander pl=
+ugin
+
+Hi everyone,
+
+I searched and couldn't find anything on this issue, but it seems so
+obvious that I'm guessing I'm doing something wrong. I installed the
+Yocto Eclipse Plugin in Eclipse Helios Service Release 2 on an Ubuntu
+10.04 machine. I selected File->New->Project, Selected Yocto BitBake
+Commander->New Yocto Project, set the Project Name to Yocto and
+selected the workspace folder where I have my Yocto checkout. It says
+everything is valid at the top, I click Finish, and it just flashes
+and keeps the dialog box up. No new project is created.
+
+Has anyone else experienced this and knows of a fix or workaround? I'd
+be happy to provide more details or log a bug for it if that helps.
+
+Thanks,
+Daniel Lazzari Jr.
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
