@@ -1,22 +1,33 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 6025A4C80FC7
-	for <yocto@yoctoproject.org>; Tue, 17 May 2011 15:50:54 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 17 May 2011 13:50:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,227,1304319600"; 
-   d="scan'208";a="3004586"
-Received: from unknown (HELO localhost) ([10.255.12.109])
-	by fmsmga002.fm.intel.com with ESMTP; 17 May 2011 13:50:53 -0700
-Message-Id: <b079f39ba2774d362f60c67d0d409f2672dded8c.1305665232.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1305665232.git.tom.zanussi@intel.com>
-References: <cover.1305665232.git.tom.zanussi@intel.com>
-Old-Date: Tue, 17 May 2011 15:29:50 -0500
-Date: Tue, 17 May 2011 15:49:55 -0500
+Return-Path: <busytester@gmail.com>
+Received: from mail-qw0-f48.google.com (mail-qw0-f48.google.com
+	[209.85.216.48])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C8ADC4C80FCF
+	for <yocto@yoctoproject.org>; Tue, 17 May 2011 19:46:09 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by qwj9 with SMTP id 9so777881qwj.35
+	for <yocto@yoctoproject.org>; Tue, 17 May 2011 17:46:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:date:message-id:subject:from:to
+	:content-type; bh=ltSbNsYRn9hC29VuTl99HH30fEqRGBfYz2eEppV1xRA=;
+	b=gTPIn1+BFsw3Pv2kPuvTLKSUbAfQqgeLSVzZHyqFUoDXvhSpI3SzdrKwI2STnwtgop
+	uhWEWr+DaGWeQs1wfS1fXc/IVaJYA0+vY4+AAc+KmDAee/w/aI1zy3uZXzwxBbdWo1ky
+	jc7L6rR4Yh3PAxJEIFrKBC3imX8aqBoIEKmtU=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	b=jzjHLbQHcHmM/c57+JF8Oo1cLq+BR9ZnqXuuGRE2IdIvMJHapHZrpKivnlzWZ0rT3S
+	QHKk7XGn2cCFKkI+rQBRHE08LJxEjBn1KGXUC8JTDkc1c6iOMKTXjkX9ovwFfwK5f62q
+	l6sHU3Fiq5aGbGxFyKUYM+h/5uUEoXNREH9rE=
+MIME-Version: 1.0
+Received: by 10.229.90.66 with SMTP id h2mr985062qcm.109.1305679569263; Tue,
+	17 May 2011 17:46:09 -0700 (PDT)
+Received: by 10.229.98.140 with HTTP; Tue, 17 May 2011 17:46:09 -0700 (PDT)
+Date: Tue, 17 May 2011 17:46:09 -0700
+Message-ID: <BANLkTinwVS4Zu+21TR2eBa_-ArLb8gV0nQ@mail.gmail.com>
+From: Daniel Lazzari <busytester@gmail.com>
 To: yocto@yoctoproject.org
-From: Tom Zanussi <tom.zanussi@intel.com>
-Subject: [PATCH 1/1] meta-intel: add top-level MAINTAINERS file
+Subject: Can't create a new project with Yocto BitBake Commander plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,93 +39,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 May 2011 20:50:54 -0000
+X-List-Received-Date: Wed, 18 May 2011 00:46:10 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+Hi everyone,
 
-To help people figure out where to send patches, report problems, and
-ask questions relating to BSPs in the meta-intel repo.
+I searched and couldn't find anything on this issue, but it seems so
+obvious that I'm guessing I'm doing something wrong. I installed the
+Yocto Eclipse Plugin in Eclipse Helios Service Release 2 on an Ubuntu
+10.04 machine. I selected File->New->Project, Selected Yocto BitBake
+Commander->New Yocto Project, set the Project Name to Yocto and
+selected the workspace folder where I have my Yocto checkout. It says
+everything is valid at the top, I click Finish, and it just flashes
+and keeps the dialog box up. No new project is created.
 
-Based on the linux-kernel MAINTAINERS file, but pared way down for
-simplicity.
+Has anyone else experienced this and knows of a fix or workaround? I'd
+be happy to provide more details or log a bug for it if that helps.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- MAINTAINERS |   64 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 64 insertions(+), 0 deletions(-)
- create mode 100644 MAINTAINERS
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-new file mode 100644
-index 0000000..328136f
---- /dev/null
-+++ b/MAINTAINERS
-@@ -0,0 +1,64 @@
-+This file contains a list of BSP maintainers for the BSPs contained in
-+the meta-intel repository.
-+
-+Please submit any patches against meta-intel BSPs to the Yocto mailing
-+list (yocto@yoctoproject.org).
-+
-+If you have problems with or questions about a particular BSP, feel
-+free to contact the maintainer directly (cc:ing the Yocto mailing list
-+puts it in the archive and helps other people who might have the same
-+questions in the future), but please try to do the following first:
-+
-+  - look in the Yocto Project Bugzilla
-+    (http://bugzilla.yoctoproject.org/) to see if a problem has
-+    already been reported
-+
-+  - look through recent entries of the Yocto mailing list archives
-+    (https://lists.yoctoproject.org/pipermail/yocto/) to see if other
-+    people have run into similar problems or had similar questions
-+    answered.
-+
-+Descriptions of section entries:
-+
-+	M: Mail patches to: FullName <address@domain>
-+	F: Files and directories with wildcard patterns.
-+	   A trailing slash includes all files and subdirectory files.
-+	   F:	meta-crownbay/	all files in and below meta-crownbay
-+	   F:	meta-crownbay/*	all files in meta-crownbay, but not below
-+	   One pattern per line.  Multiple F: lines acceptable.
-+
-+Please keep this list in alphabetical order.
-+
-+Maintainers List (try to look for most precise areas first)
-+
-+		-----------------------------------
-+
-+COMMON
-+M:	Tom Zanussi <tom.zanussi@intel.com>
-+F:	common/recipes-bsp/grub/
-+F:	common/recipes-core/
-+
-+CROWNBAY
-+M:	Tom Zanussi <tom.zanussi@intel.com>
-+F:	meta-crownbay/
-+
-+EMENLOW
-+M:	Tom Zanussi <tom.zanussi@intel.com>
-+F:	meta-emenlow/
-+
-+FISHRIVER
-+M:	Tom Zanussi <tom.zanussi@intel.com>
-+F:	meta-fishriver/
-+
-+JASPERFOREST
-+M:	Tom Zanussi <tom.zanussi@intel.com>
-+F:	meta-jasperforest/
-+
-+N450
-+M:	Darren Hart <dvhart@linux.intel.com>
-+F:	meta-n450/
-+
-+SUGARBAY
-+M:	Tom Zanussi <tom.zanussi@intel.com>
-+F:	meta-sugarbay/
-+
--- 
-1.7.0.4
-
+Thanks,
+Daniel Lazzari Jr.
 
