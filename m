@@ -1,29 +1,36 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 47D124C80FE9
-	for <yocto@yoctoproject.org>; Wed, 18 May 2011 19:50:51 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p4J0omKe001481;
-	Thu, 19 May 2011 01:50:48 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 00907-09; Thu, 19 May 2011 01:50:44 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p4J0ogRV001473
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Thu, 19 May 2011 01:50:42 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Liping Ke <liping.ke@intel.com>
-In-Reply-To: <cover.1305250702.git.liping.ke@intel.com>
+Return-Path: <liping.ke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 440284C81001
+	for <yocto@yoctoproject.org>; Wed, 18 May 2011 20:41:00 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 18 May 2011 18:40:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.65,234,1304319600"; d="scan'208";a="438740172"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by azsmga001.ch.intel.com with ESMTP; 18 May 2011 18:40:58 -0700
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 19 May 2011 09:40:45 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Thu, 19 May 2011 09:40:44 +0800
+From: "Ke, Liping" <liping.ke@intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, "Zhang, Jessica"
+	<jessica.zhang@intel.com>
+Date: Thu, 19 May 2011 09:40:43 +0800
+Thread-Topic: [yocto] [PATCH 0/4][Image Creator]Put extra requested fields
+	into different cache files
+Thread-Index: AcwVvs59K84tFiwaTHm17cGgP0Z7tQABe/Sw
+Message-ID: <789F9655DD1B8F43B48D77C5D30659734C665E01@shsmsx501.ccr.corp.intel.com>
 References: <cover.1305250702.git.liping.ke@intel.com>
-Date: Thu, 19 May 2011 01:10:07 +0100
-Message-ID: <1305763807.3424.358.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org
+	<1305763807.3424.358.camel@rex>
+In-Reply-To: <1305763807.3424.358.camel@rex>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN, en-US
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [PATCH 0/4][Image Creator]Put extra requested fields into different cache files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -36,227 +43,194 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 May 2011 00:50:51 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 19 May 2011 01:41:00 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Liping,
-
-On Fri, 2011-05-13 at 09:50 +0800, Liping Ke wrote:
-> From: Liping Ke <liping.ke@intel.com>
-> 
-> Below four patches are for putting extra requested fields inito different
-> cache files instead of using only on bb_cache.dat. Now image creator need
-> extra three fields. And in the future, there might be more similar requests.
-> For each extra requestor, we will save the requested fields data into a
-> separate cache files so that those who don't need it will not be impacted
-> with larger fields and large data files.
-> 
-> Pull URL: git://git.pokylinux.org/poky-contrib.git
->   Branch: lke/cache_impl
->   Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=lke/cache_impl
-> 
-> Thanks,
->     Liping Ke <liping.ke@intel.com>
-> ---
-> 
-> 
-> Liping Ke (4):
->   This patch introduce new param bitbake_mode into Cache.py.
->   This patch splits Cache Data Retrieve method from Data Fields.
->   This patch introduces Extra required fields for image creator.
->   This patch implements independent cache for Extra Cache Fields
->     Request
-
-These patches are good and the feedback and explanation here is to
-illustrate the bigger picture rather than any criticism of these
-patches. I'm hoping to explain the alterations I think this codebase
-needs in order to allow bitbake to expand and grow which is our main
-objective.
-
-From an overall design standpoint, the place I want to get to is where
-we can arbitrarily extend and add bitbake UIs without needing to alter
-the core cache code or functionality. To do this we need a clean split
-between the cache handling code and the data contained within it. I know
-Chris has made changes here moving us toward that but we need to
-complete them and remove the detail which I know bugs both Chris and
-myself which is that the data is referenced in two places within this
-code (RecipeInfo and CacheData).
-
-The place I want to get to is therefore where we have something like an
-overall set of cache definitions as classes like:
-
-BaseRecipeInfo
-HobRecipeInfo
-NewUIRecipeInfo
-
-and each would have a name which would trigger their use (e.g. "base",
-"hob" and "newui") through the extracaches variable as in your code.
-
-Your code actually follows the model we need to adopt but I'd make the
-following name changes:
-
-RecipeInfo -> BaseRecipeInfo
-RecipeRetrieve -> RecipeInfo
-HobExtraRecipeInfo -> HobRecipeInfo
-
-RecipeInfo would be a base class which BaseRecipeInfo, HobRecipeInfo and
-NewUIRecipeInfo would derive from. The definition would be something
-like the existing RecipeInfo but there would be some entries in the
-class that any user would be expected to provide. I tried to provide an
-example of this and I ran into issues due to the use of namedtuple. I've
-talked to Chris and if that usage is going to hold us from cleaning some
-of this up, we agreed that we could use something else like a dict. The
-trouble is the field list of named tuple needs to be determined in
-advance of the class creation where as we need something we can change
-within the class itself easily.
-
-RecipeInfo would look something like:
-
-class RecipeInfo(object):
-
-    name = "Override me!"
-    cachefile = "bb_extracache_" + self.name + ".dat"
-
-    @classmethod
-    def listvar(cls, var, metadata):
-        return cls.getvar(var, metadata).split()
-
-    @classmethod
-    def intvar(cls, var, metadata):
-        return int(cls.getvar(var, metadata) or 0)
-
-    @classmethod
-    def depvar(cls, var, metadata):
-        return bb.utils.explode_deps(cls.getvar(var, metadata))
-
-    @classmethod
-    def pkgvar(cls, var, packages, metadata):
-        return dict((pkg, cls.depvar("%s_%s" % (var, pkg), metadata))
-                    for pkg in packages)
-
-    @classmethod
-    def taskvar(cls, var, tasks, metadata):
-        return dict((task, cls.getvar("%s_task-%s" % (var, task), metadata))
-                    for task in tasks)
-
-    @classmethod
-    def flaglist(cls, flag, varlist, metadata):
-        return dict((var, metadata.getVarFlag(var, flag, True))
-                    for var in varlist)
-
-BaseRecipeInfo would look something like:
-
-class BaseRecipeInfo(RecipeInfo):
-
-    name = "base"
-    cachefile = "bb_cache.dat"
-
-    @classmethod
-    def cachedata_init(cls, cachedata):
-        cachedata.task_deps = {}
-        cachedata.pkg_pn = defaultdict(list)
-        cachedata.pkg_fn = {}
-        cachedata.pkg_pepvpr = {}
-        cachedata.pkg_dp = {}
-        [...]
-
-    def __init__(self, filename, metadata):
-
-        self.file_depends = metadata.getVar('__depends', False)
-        self.timestamp    = bb.parse.cached_mtime(filename)
-        self.variants     = self.listvar('__VARIANTS', metadata) + ['']
-        self.nocache      = self.getvar('__BB_DONT_CACHE', metadata)
-
-        if self.getvar('__SKIPPED', metadata):
-            self.skipped = True
-            return
-
-        self.tasks = metadata.getVar('__BBTASKS', False)
-
-        self.pn = self.getvar('PN', metadata)
-        packages = self.listvar('PACKAGES', metadata)
-        if not self.pn in packages:
-            packages.append(self.pn)
-
-        self.basetaskhashes   = self.taskvar('BB_BASEHASH', self.tasks, metadata)
-        self.hashfilename     = self.getvar('BB_HASHFILENAME', metadata)
-
-        self.file_depends     = metadata.getVar('__depends', False)
-        self.task_deps        = metadata.getVar('_task_deps', False) or {'tasks': [], 'parents': {}}
-        self.variants         = self.listvar('__VARIANTS', metadata) + ['']
-
-        self.skipped          = False
-        self.timestamp        = bb.parse.cached_mtime(filename)
-        self.packages         = self.listvar('PACKAGES', metadata)
-
-        self.pe               = self.getvar('PE', metadata)
-        self.pv               = self.getvar('PV', metadata)
-        self.pr               = self.getvar('PR', metadata)
-        self.defaultpref      = self.intvar('DEFAULT_PREFERENCE', metadata)
-        self.broken           = self.getvar('BROKEN', metadata)
-        self.not_world        = self.getvar('EXCLUDE_FROM_WORLD', metadata)
-        self.stamp            = self.getvar('STAMP', metadata)
-        self.stamp_extrainfo  = self.flaglist('stamp-extra-info', self.tasks, metadata)
-        self.packages_dynamic = self.listvar('PACKAGES_DYNAMIC', metadata)
-        self.depends          = self.depvar('DEPENDS', metadata)
-        self.provides         = self.depvar('PROVIDES', metadata)
-        self.rdepends         = self.depvar('RDEPENDS', metadata)
-        self.rprovides        = self.depvar('RPROVIDES', metadata)
-        self.rrecommends      = self.depvar('RRECOMMENDS', metadata)
-        self.rprovides_pkg    = self.pkgvar('RPROVIDES', packages, metadata)
-        self.rdepends_pkg     = self.pkgvar('RDEPENDS', packages, metadata)
-        self.rrecommends_pkg  = self.pkgvar('RRECOMMENDS', packages, metadata)
-        self.inherits         = self.getvar('__inherit_cache', metadata)
-        self.summary          = self.getvar('SUMMARY', metadata)
-        self.license          = self.getvar('LICENSE', metadata)
-        self.section          = self.getvar('SECTION', metadata)
-        self.fakerootenv      = self.getvar('FAKEROOTENV', metadata)
-        self.fakerootdirs     = self.getvar('FAKEROOTDIRS', metadata)
-
-    def add_cachedata(self, cachedata, fn):
-        cachedata.task_deps[fn] = self.task_deps
-        cachedata.pkg_fn[fn] = self.pn
-        cachedata.pkg_pn[self.pn].append(fn)
-        cachedata.pkg_pepvpr[fn] = (self.pe, self.pv, self.pr)
-        [...]
-
-HobRecipeInfo would be similar but with its specific field requirements.
-
-Once we've made this split, the code that handles the caches can become
-simpler. In each place RecipeInfo is used, we can turn it into an
-iterator which iterates over a list of caches. In the default case this
-list would just be one (BaseRecipeInfo). With Hob enabled it would be
-two (BaseRecipeInfo and HobRecipeInfo). It would equally handle ten
-different entries, it would just iterate over them. We'd always require
-the BaseRecipeInfo to be present in this list.
-
-In CacheData, we'd take the list of caches and call into the
-cachedata_init() and add_cachedata() hooks. We'd need a namespace
-convention to ensure that whilst they write to the same CacheData object
-there is a prefix to ensure the data is contained.
-
-How do we turn a list of names of caches passed as extracaches into a
-list of objects? We can use code like in runqueue.py for handling the
-schedulers:
-
-        schedulers = set(obj for obj in globals().values()
-                             if type(obj) is type and
-                                issubclass(obj, RunQueueScheduler))
-
-so by checking for anything subclassing RecipeInfo we'd have a list of
-cache classes to choose from.
-
-
-Liping: Does this make sense? Is there anything I need to clarify? Do
-you want to work on this further from here or do you want me to take
-this further?
-
-Cheers,
-
-Richard
-
-
-
-
+SGksIFJpY2hhcmQNCg0KVGhhbmtzIGZvciB0aGUgZGV0YWlsZWQgZGVzaWduIGd1aWRlLiBJIHdp
+bGwgc3luYyB1cCB3aXRoIEplc3NpY2EgYW5kIHJlZG8gdGhlIHBhdGNoLg0KDQpBbmQgdGhhbmtz
+IGZvciBhZHZpY2Ugb2YgdGhlIG5hbWVkdHVwbGUgdXNhZ2UuIER1cmluZyB0aGUgaW1wbGVtZW50
+YXRpb24sDQp3ZSBkaWQgdHJpZWQgc2V2ZXJhbCB3YXlzIG9mIGluaGVyaXRhbmNlIHJlZmFjdG9y
+eSwgYnV0IGFsbCBmYWlsZWQgd2l0aCBuYW1ldHVwbGUgc3RhdGljIGF0dHJpYnV0ZXMuDQpBbmQg
+d2hlbiB0cnlpbmcgdG8gY2hhbmdlIGl0IHRvIGRpY3QsIEkgZm91bmQgdG9vIG11Y2ggY29kZSBu
+ZWVkIHRvIGJlIG1vZGlmaWVkLCBhbmQgSSB3YXMgdmVyeSB1cHNldCBhbmQgZ2F2ZSB1cC4uLg0K
+DQpJIGFtIG5vdyBiYXNpY2FsbHkgY2xlYXIgYWJvdXQgeW91ciBjb21tZW50cy4gSWYgbWVldGlu
+ZyBkZXRhaWxlZCBwcm9ibGVtIHdoZW4gaW1wbGVtZW50YXRpb24sIEkgd2lsbCBsZXQgeW91IGtu
+b3cuDQoNCkFuZCBKZXNzaWNhLCBzbyBjb3VsZCB5b3UgbWFrZSBzb21lIHNjaGVkdWxlIGFkanVz
+dG1lbnQ/IEkgZ3Vlc3MgSSBuZWVkIHNvbWUgdGltZSB0byBmaW5pc2ggdGhpcyByZWZhY3Rvcnku
+DQoNClRoYW5rcyYgUmVnYXJkcywNCmNyaXBpbmcNCg0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2Fn
+ZS0tLS0tDQo+IEZyb206IFJpY2hhcmQgUHVyZGllIFttYWlsdG86cmljaGFyZC5wdXJkaWVAbGlu
+dXhmb3VuZGF0aW9uLm9yZ10NCj4gU2VudDogVGh1cnNkYXksIE1heSAxOSwgMjAxMSA4OjEwIEFN
+DQo+IFRvOiBLZSwgTGlwaW5nDQo+IENjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IFN1Ympl
+Y3Q6IFJlOiBbeW9jdG9dIFtQQVRDSCAwLzRdW0ltYWdlIENyZWF0b3JdUHV0IGV4dHJhIHJlcXVl
+c3RlZCBmaWVsZHMgaW50bw0KPiBkaWZmZXJlbnQgY2FjaGUgZmlsZXMNCj4gDQo+IEhpIExpcGlu
+ZywNCj4gDQo+IE9uIEZyaSwgMjAxMS0wNS0xMyBhdCAwOTo1MCArMDgwMCwgTGlwaW5nIEtlIHdy
+b3RlOg0KPiA+IEZyb206IExpcGluZyBLZSA8bGlwaW5nLmtlQGludGVsLmNvbT4NCj4gPg0KPiA+
+IEJlbG93IGZvdXIgcGF0Y2hlcyBhcmUgZm9yIHB1dHRpbmcgZXh0cmEgcmVxdWVzdGVkIGZpZWxk
+cyBpbml0byBkaWZmZXJlbnQNCj4gPiBjYWNoZSBmaWxlcyBpbnN0ZWFkIG9mIHVzaW5nIG9ubHkg
+b24gYmJfY2FjaGUuZGF0LiBOb3cgaW1hZ2UgY3JlYXRvciBuZWVkDQo+ID4gZXh0cmEgdGhyZWUg
+ZmllbGRzLiBBbmQgaW4gdGhlIGZ1dHVyZSwgdGhlcmUgbWlnaHQgYmUgbW9yZSBzaW1pbGFyIHJl
+cXVlc3RzLg0KPiA+IEZvciBlYWNoIGV4dHJhIHJlcXVlc3Rvciwgd2Ugd2lsbCBzYXZlIHRoZSBy
+ZXF1ZXN0ZWQgZmllbGRzIGRhdGEgaW50byBhDQo+ID4gc2VwYXJhdGUgY2FjaGUgZmlsZXMgc28g
+dGhhdCB0aG9zZSB3aG8gZG9uJ3QgbmVlZCBpdCB3aWxsIG5vdCBiZSBpbXBhY3RlZA0KPiA+IHdp
+dGggbGFyZ2VyIGZpZWxkcyBhbmQgbGFyZ2UgZGF0YSBmaWxlcy4NCj4gPg0KPiA+IFB1bGwgVVJM
+OiBnaXQ6Ly9naXQucG9reWxpbnV4Lm9yZy9wb2t5LWNvbnRyaWIuZ2l0DQo+ID4gICBCcmFuY2g6
+IGxrZS9jYWNoZV9pbXBsDQo+ID4gICBCcm93c2U6DQo+IGh0dHA6Ly9naXQucG9reWxpbnV4Lm9y
+Zy9jZ2l0LmNnaS9wb2t5LWNvbnRyaWIvbG9nLz9oPWxrZS9jYWNoZV9pbXBsDQo+ID4NCj4gPiBU
+aGFua3MsDQo+ID4gICAgIExpcGluZyBLZSA8bGlwaW5nLmtlQGludGVsLmNvbT4NCj4gPiAtLS0N
+Cj4gPg0KPiA+DQo+ID4gTGlwaW5nIEtlICg0KToNCj4gPiAgIFRoaXMgcGF0Y2ggaW50cm9kdWNl
+IG5ldyBwYXJhbSBiaXRiYWtlX21vZGUgaW50byBDYWNoZS5weS4NCj4gPiAgIFRoaXMgcGF0Y2gg
+c3BsaXRzIENhY2hlIERhdGEgUmV0cmlldmUgbWV0aG9kIGZyb20gRGF0YSBGaWVsZHMuDQo+ID4g
+ICBUaGlzIHBhdGNoIGludHJvZHVjZXMgRXh0cmEgcmVxdWlyZWQgZmllbGRzIGZvciBpbWFnZSBj
+cmVhdG9yLg0KPiA+ICAgVGhpcyBwYXRjaCBpbXBsZW1lbnRzIGluZGVwZW5kZW50IGNhY2hlIGZv
+ciBFeHRyYSBDYWNoZSBGaWVsZHMNCj4gPiAgICAgUmVxdWVzdA0KPiANCj4gVGhlc2UgcGF0Y2hl
+cyBhcmUgZ29vZCBhbmQgdGhlIGZlZWRiYWNrIGFuZCBleHBsYW5hdGlvbiBoZXJlIGlzIHRvDQo+
+IGlsbHVzdHJhdGUgdGhlIGJpZ2dlciBwaWN0dXJlIHJhdGhlciB0aGFuIGFueSBjcml0aWNpc20g
+b2YgdGhlc2UNCj4gcGF0Y2hlcy4gSSdtIGhvcGluZyB0byBleHBsYWluIHRoZSBhbHRlcmF0aW9u
+cyBJIHRoaW5rIHRoaXMgY29kZWJhc2UNCj4gbmVlZHMgaW4gb3JkZXIgdG8gYWxsb3cgYml0YmFr
+ZSB0byBleHBhbmQgYW5kIGdyb3cgd2hpY2ggaXMgb3VyIG1haW4NCj4gb2JqZWN0aXZlLg0KPiAN
+Cj4gRnJvbSBhbiBvdmVyYWxsIGRlc2lnbiBzdGFuZHBvaW50LCB0aGUgcGxhY2UgSSB3YW50IHRv
+IGdldCB0byBpcyB3aGVyZQ0KPiB3ZSBjYW4gYXJiaXRyYXJpbHkgZXh0ZW5kIGFuZCBhZGQgYml0
+YmFrZSBVSXMgd2l0aG91dCBuZWVkaW5nIHRvIGFsdGVyDQo+IHRoZSBjb3JlIGNhY2hlIGNvZGUg
+b3IgZnVuY3Rpb25hbGl0eS4gVG8gZG8gdGhpcyB3ZSBuZWVkIGEgY2xlYW4gc3BsaXQNCj4gYmV0
+d2VlbiB0aGUgY2FjaGUgaGFuZGxpbmcgY29kZSBhbmQgdGhlIGRhdGEgY29udGFpbmVkIHdpdGhp
+biBpdC4gSSBrbm93DQo+IENocmlzIGhhcyBtYWRlIGNoYW5nZXMgaGVyZSBtb3ZpbmcgdXMgdG93
+YXJkIHRoYXQgYnV0IHdlIG5lZWQgdG8NCj4gY29tcGxldGUgdGhlbSBhbmQgcmVtb3ZlIHRoZSBk
+ZXRhaWwgd2hpY2ggSSBrbm93IGJ1Z3MgYm90aCBDaHJpcyBhbmQNCj4gbXlzZWxmIHdoaWNoIGlz
+IHRoYXQgdGhlIGRhdGEgaXMgcmVmZXJlbmNlZCBpbiB0d28gcGxhY2VzIHdpdGhpbiB0aGlzDQo+
+IGNvZGUgKFJlY2lwZUluZm8gYW5kIENhY2hlRGF0YSkuDQo+IA0KPiBUaGUgcGxhY2UgSSB3YW50
+IHRvIGdldCB0byBpcyB0aGVyZWZvcmUgd2hlcmUgd2UgaGF2ZSBzb21ldGhpbmcgbGlrZSBhbg0K
+PiBvdmVyYWxsIHNldCBvZiBjYWNoZSBkZWZpbml0aW9ucyBhcyBjbGFzc2VzIGxpa2U6DQo+IA0K
+PiBCYXNlUmVjaXBlSW5mbw0KPiBIb2JSZWNpcGVJbmZvDQo+IE5ld1VJUmVjaXBlSW5mbw0KPiAN
+Cj4gYW5kIGVhY2ggd291bGQgaGF2ZSBhIG5hbWUgd2hpY2ggd291bGQgdHJpZ2dlciB0aGVpciB1
+c2UgKGUuZy4gImJhc2UiLA0KPiAiaG9iIiBhbmQgIm5ld3VpIikgdGhyb3VnaCB0aGUgZXh0cmFj
+YWNoZXMgdmFyaWFibGUgYXMgaW4geW91ciBjb2RlLg0KPiANCj4gWW91ciBjb2RlIGFjdHVhbGx5
+IGZvbGxvd3MgdGhlIG1vZGVsIHdlIG5lZWQgdG8gYWRvcHQgYnV0IEknZCBtYWtlIHRoZQ0KPiBm
+b2xsb3dpbmcgbmFtZSBjaGFuZ2VzOg0KPiANCj4gUmVjaXBlSW5mbyAtPiBCYXNlUmVjaXBlSW5m
+bw0KPiBSZWNpcGVSZXRyaWV2ZSAtPiBSZWNpcGVJbmZvDQo+IEhvYkV4dHJhUmVjaXBlSW5mbyAt
+PiBIb2JSZWNpcGVJbmZvDQo+IA0KPiBSZWNpcGVJbmZvIHdvdWxkIGJlIGEgYmFzZSBjbGFzcyB3
+aGljaCBCYXNlUmVjaXBlSW5mbywgSG9iUmVjaXBlSW5mbyBhbmQNCj4gTmV3VUlSZWNpcGVJbmZv
+IHdvdWxkIGRlcml2ZSBmcm9tLiBUaGUgZGVmaW5pdGlvbiB3b3VsZCBiZSBzb21ldGhpbmcNCj4g
+bGlrZSB0aGUgZXhpc3RpbmcgUmVjaXBlSW5mbyBidXQgdGhlcmUgd291bGQgYmUgc29tZSBlbnRy
+aWVzIGluIHRoZQ0KPiBjbGFzcyB0aGF0IGFueSB1c2VyIHdvdWxkIGJlIGV4cGVjdGVkIHRvIHBy
+b3ZpZGUuIEkgdHJpZWQgdG8gcHJvdmlkZSBhbg0KPiBleGFtcGxlIG9mIHRoaXMgYW5kIEkgcmFu
+IGludG8gaXNzdWVzIGR1ZSB0byB0aGUgdXNlIG9mIG5hbWVkdHVwbGUuIEkndmUNCj4gdGFsa2Vk
+IHRvIENocmlzIGFuZCBpZiB0aGF0IHVzYWdlIGlzIGdvaW5nIHRvIGhvbGQgdXMgZnJvbSBjbGVh
+bmluZyBzb21lDQo+IG9mIHRoaXMgdXAsIHdlIGFncmVlZCB0aGF0IHdlIGNvdWxkIHVzZSBzb21l
+dGhpbmcgZWxzZSBsaWtlIGEgZGljdC4gVGhlDQo+IHRyb3VibGUgaXMgdGhlIGZpZWxkIGxpc3Qg
+b2YgbmFtZWQgdHVwbGUgbmVlZHMgdG8gYmUgZGV0ZXJtaW5lZCBpbg0KPiBhZHZhbmNlIG9mIHRo
+ZSBjbGFzcyBjcmVhdGlvbiB3aGVyZSBhcyB3ZSBuZWVkIHNvbWV0aGluZyB3ZSBjYW4gY2hhbmdl
+DQo+IHdpdGhpbiB0aGUgY2xhc3MgaXRzZWxmIGVhc2lseS4NCj4gDQo+IFJlY2lwZUluZm8gd291
+bGQgbG9vayBzb21ldGhpbmcgbGlrZToNCj4gDQo+IGNsYXNzIFJlY2lwZUluZm8ob2JqZWN0KToN
+Cj4gDQo+ICAgICBuYW1lID0gIk92ZXJyaWRlIG1lISINCj4gICAgIGNhY2hlZmlsZSA9ICJiYl9l
+eHRyYWNhY2hlXyIgKyBzZWxmLm5hbWUgKyAiLmRhdCINCj4gDQo+ICAgICBAY2xhc3NtZXRob2QN
+Cj4gICAgIGRlZiBsaXN0dmFyKGNscywgdmFyLCBtZXRhZGF0YSk6DQo+ICAgICAgICAgcmV0dXJu
+IGNscy5nZXR2YXIodmFyLCBtZXRhZGF0YSkuc3BsaXQoKQ0KPiANCj4gICAgIEBjbGFzc21ldGhv
+ZA0KPiAgICAgZGVmIGludHZhcihjbHMsIHZhciwgbWV0YWRhdGEpOg0KPiAgICAgICAgIHJldHVy
+biBpbnQoY2xzLmdldHZhcih2YXIsIG1ldGFkYXRhKSBvciAwKQ0KPiANCj4gICAgIEBjbGFzc21l
+dGhvZA0KPiAgICAgZGVmIGRlcHZhcihjbHMsIHZhciwgbWV0YWRhdGEpOg0KPiAgICAgICAgIHJl
+dHVybiBiYi51dGlscy5leHBsb2RlX2RlcHMoY2xzLmdldHZhcih2YXIsIG1ldGFkYXRhKSkNCj4g
+DQo+ICAgICBAY2xhc3NtZXRob2QNCj4gICAgIGRlZiBwa2d2YXIoY2xzLCB2YXIsIHBhY2thZ2Vz
+LCBtZXRhZGF0YSk6DQo+ICAgICAgICAgcmV0dXJuIGRpY3QoKHBrZywgY2xzLmRlcHZhcigiJXNf
+JXMiICUgKHZhciwgcGtnKSwgbWV0YWRhdGEpKQ0KPiAgICAgICAgICAgICAgICAgICAgIGZvciBw
+a2cgaW4gcGFja2FnZXMpDQo+IA0KPiAgICAgQGNsYXNzbWV0aG9kDQo+ICAgICBkZWYgdGFza3Zh
+cihjbHMsIHZhciwgdGFza3MsIG1ldGFkYXRhKToNCj4gICAgICAgICByZXR1cm4gZGljdCgodGFz
+aywgY2xzLmdldHZhcigiJXNfdGFzay0lcyIgJSAodmFyLCB0YXNrKSwgbWV0YWRhdGEpKQ0KPiAg
+ICAgICAgICAgICAgICAgICAgIGZvciB0YXNrIGluIHRhc2tzKQ0KPiANCj4gICAgIEBjbGFzc21l
+dGhvZA0KPiAgICAgZGVmIGZsYWdsaXN0KGNscywgZmxhZywgdmFybGlzdCwgbWV0YWRhdGEpOg0K
+PiAgICAgICAgIHJldHVybiBkaWN0KCh2YXIsIG1ldGFkYXRhLmdldFZhckZsYWcodmFyLCBmbGFn
+LCBUcnVlKSkNCj4gICAgICAgICAgICAgICAgICAgICBmb3IgdmFyIGluIHZhcmxpc3QpDQo+IA0K
+PiBCYXNlUmVjaXBlSW5mbyB3b3VsZCBsb29rIHNvbWV0aGluZyBsaWtlOg0KPiANCj4gY2xhc3Mg
+QmFzZVJlY2lwZUluZm8oUmVjaXBlSW5mbyk6DQo+IA0KPiAgICAgbmFtZSA9ICJiYXNlIg0KPiAg
+ICAgY2FjaGVmaWxlID0gImJiX2NhY2hlLmRhdCINCj4gDQo+ICAgICBAY2xhc3NtZXRob2QNCj4g
+ICAgIGRlZiBjYWNoZWRhdGFfaW5pdChjbHMsIGNhY2hlZGF0YSk6DQo+ICAgICAgICAgY2FjaGVk
+YXRhLnRhc2tfZGVwcyA9IHt9DQo+ICAgICAgICAgY2FjaGVkYXRhLnBrZ19wbiA9IGRlZmF1bHRk
+aWN0KGxpc3QpDQo+ICAgICAgICAgY2FjaGVkYXRhLnBrZ19mbiA9IHt9DQo+ICAgICAgICAgY2Fj
+aGVkYXRhLnBrZ19wZXB2cHIgPSB7fQ0KPiAgICAgICAgIGNhY2hlZGF0YS5wa2dfZHAgPSB7fQ0K
+PiAgICAgICAgIFsuLi5dDQo+IA0KPiAgICAgZGVmIF9faW5pdF9fKHNlbGYsIGZpbGVuYW1lLCBt
+ZXRhZGF0YSk6DQo+IA0KPiAgICAgICAgIHNlbGYuZmlsZV9kZXBlbmRzID0gbWV0YWRhdGEuZ2V0
+VmFyKCdfX2RlcGVuZHMnLCBGYWxzZSkNCj4gICAgICAgICBzZWxmLnRpbWVzdGFtcCAgICA9IGJi
+LnBhcnNlLmNhY2hlZF9tdGltZShmaWxlbmFtZSkNCj4gICAgICAgICBzZWxmLnZhcmlhbnRzICAg
+ICA9IHNlbGYubGlzdHZhcignX19WQVJJQU5UUycsIG1ldGFkYXRhKSArIFsnJ10NCj4gICAgICAg
+ICBzZWxmLm5vY2FjaGUgICAgICA9IHNlbGYuZ2V0dmFyKCdfX0JCX0RPTlRfQ0FDSEUnLCBtZXRh
+ZGF0YSkNCj4gDQo+ICAgICAgICAgaWYgc2VsZi5nZXR2YXIoJ19fU0tJUFBFRCcsIG1ldGFkYXRh
+KToNCj4gICAgICAgICAgICAgc2VsZi5za2lwcGVkID0gVHJ1ZQ0KPiAgICAgICAgICAgICByZXR1
+cm4NCj4gDQo+ICAgICAgICAgc2VsZi50YXNrcyA9IG1ldGFkYXRhLmdldFZhcignX19CQlRBU0tT
+JywgRmFsc2UpDQo+IA0KPiAgICAgICAgIHNlbGYucG4gPSBzZWxmLmdldHZhcignUE4nLCBtZXRh
+ZGF0YSkNCj4gICAgICAgICBwYWNrYWdlcyA9IHNlbGYubGlzdHZhcignUEFDS0FHRVMnLCBtZXRh
+ZGF0YSkNCj4gICAgICAgICBpZiBub3Qgc2VsZi5wbiBpbiBwYWNrYWdlczoNCj4gICAgICAgICAg
+ICAgcGFja2FnZXMuYXBwZW5kKHNlbGYucG4pDQo+IA0KPiAgICAgICAgIHNlbGYuYmFzZXRhc2to
+YXNoZXMgICA9IHNlbGYudGFza3ZhcignQkJfQkFTRUhBU0gnLCBzZWxmLnRhc2tzLA0KPiBtZXRh
+ZGF0YSkNCj4gICAgICAgICBzZWxmLmhhc2hmaWxlbmFtZSAgICAgPSBzZWxmLmdldHZhcignQkJf
+SEFTSEZJTEVOQU1FJywNCj4gbWV0YWRhdGEpDQo+IA0KPiAgICAgICAgIHNlbGYuZmlsZV9kZXBl
+bmRzICAgICA9IG1ldGFkYXRhLmdldFZhcignX19kZXBlbmRzJywgRmFsc2UpDQo+ICAgICAgICAg
+c2VsZi50YXNrX2RlcHMgICAgICAgID0gbWV0YWRhdGEuZ2V0VmFyKCdfdGFza19kZXBzJywgRmFs
+c2UpIG9yDQo+IHsndGFza3MnOiBbXSwgJ3BhcmVudHMnOiB7fX0NCj4gICAgICAgICBzZWxmLnZh
+cmlhbnRzICAgICAgICAgPSBzZWxmLmxpc3R2YXIoJ19fVkFSSUFOVFMnLCBtZXRhZGF0YSkgKyBb
+JyddDQo+IA0KPiAgICAgICAgIHNlbGYuc2tpcHBlZCAgICAgICAgICA9IEZhbHNlDQo+ICAgICAg
+ICAgc2VsZi50aW1lc3RhbXAgICAgICAgID0gYmIucGFyc2UuY2FjaGVkX210aW1lKGZpbGVuYW1l
+KQ0KPiAgICAgICAgIHNlbGYucGFja2FnZXMgICAgICAgICA9IHNlbGYubGlzdHZhcignUEFDS0FH
+RVMnLCBtZXRhZGF0YSkNCj4gDQo+ICAgICAgICAgc2VsZi5wZSAgICAgICAgICAgICAgID0gc2Vs
+Zi5nZXR2YXIoJ1BFJywgbWV0YWRhdGEpDQo+ICAgICAgICAgc2VsZi5wdiAgICAgICAgICAgICAg
+ID0gc2VsZi5nZXR2YXIoJ1BWJywgbWV0YWRhdGEpDQo+ICAgICAgICAgc2VsZi5wciAgICAgICAg
+ICAgICAgID0gc2VsZi5nZXR2YXIoJ1BSJywgbWV0YWRhdGEpDQo+ICAgICAgICAgc2VsZi5kZWZh
+dWx0cHJlZiAgICAgID0gc2VsZi5pbnR2YXIoJ0RFRkFVTFRfUFJFRkVSRU5DRScsDQo+IG1ldGFk
+YXRhKQ0KPiAgICAgICAgIHNlbGYuYnJva2VuICAgICAgICAgICA9IHNlbGYuZ2V0dmFyKCdCUk9L
+RU4nLCBtZXRhZGF0YSkNCj4gICAgICAgICBzZWxmLm5vdF93b3JsZCAgICAgICAgPSBzZWxmLmdl
+dHZhcignRVhDTFVERV9GUk9NX1dPUkxEJywNCj4gbWV0YWRhdGEpDQo+ICAgICAgICAgc2VsZi5z
+dGFtcCAgICAgICAgICAgID0gc2VsZi5nZXR2YXIoJ1NUQU1QJywgbWV0YWRhdGEpDQo+ICAgICAg
+ICAgc2VsZi5zdGFtcF9leHRyYWluZm8gID0gc2VsZi5mbGFnbGlzdCgnc3RhbXAtZXh0cmEtaW5m
+bycsIHNlbGYudGFza3MsDQo+IG1ldGFkYXRhKQ0KPiAgICAgICAgIHNlbGYucGFja2FnZXNfZHlu
+YW1pYyA9IHNlbGYubGlzdHZhcignUEFDS0FHRVNfRFlOQU1JQycsDQo+IG1ldGFkYXRhKQ0KPiAg
+ICAgICAgIHNlbGYuZGVwZW5kcyAgICAgICAgICA9IHNlbGYuZGVwdmFyKCdERVBFTkRTJywgbWV0
+YWRhdGEpDQo+ICAgICAgICAgc2VsZi5wcm92aWRlcyAgICAgICAgID0gc2VsZi5kZXB2YXIoJ1BS
+T1ZJREVTJywgbWV0YWRhdGEpDQo+ICAgICAgICAgc2VsZi5yZGVwZW5kcyAgICAgICAgID0gc2Vs
+Zi5kZXB2YXIoJ1JERVBFTkRTJywgbWV0YWRhdGEpDQo+ICAgICAgICAgc2VsZi5ycHJvdmlkZXMg
+ICAgICAgID0gc2VsZi5kZXB2YXIoJ1JQUk9WSURFUycsIG1ldGFkYXRhKQ0KPiAgICAgICAgIHNl
+bGYucnJlY29tbWVuZHMgICAgICA9IHNlbGYuZGVwdmFyKCdSUkVDT01NRU5EUycsIG1ldGFkYXRh
+KQ0KPiAgICAgICAgIHNlbGYucnByb3ZpZGVzX3BrZyAgICA9IHNlbGYucGtndmFyKCdSUFJPVklE
+RVMnLCBwYWNrYWdlcywNCj4gbWV0YWRhdGEpDQo+ICAgICAgICAgc2VsZi5yZGVwZW5kc19wa2cg
+ICAgID0gc2VsZi5wa2d2YXIoJ1JERVBFTkRTJywgcGFja2FnZXMsDQo+IG1ldGFkYXRhKQ0KPiAg
+ICAgICAgIHNlbGYucnJlY29tbWVuZHNfcGtnICA9IHNlbGYucGtndmFyKCdSUkVDT01NRU5EUycs
+IHBhY2thZ2VzLA0KPiBtZXRhZGF0YSkNCj4gICAgICAgICBzZWxmLmluaGVyaXRzICAgICAgICAg
+PSBzZWxmLmdldHZhcignX19pbmhlcml0X2NhY2hlJywgbWV0YWRhdGEpDQo+ICAgICAgICAgc2Vs
+Zi5zdW1tYXJ5ICAgICAgICAgID0gc2VsZi5nZXR2YXIoJ1NVTU1BUlknLCBtZXRhZGF0YSkNCj4g
+ICAgICAgICBzZWxmLmxpY2Vuc2UgICAgICAgICAgPSBzZWxmLmdldHZhcignTElDRU5TRScsIG1l
+dGFkYXRhKQ0KPiAgICAgICAgIHNlbGYuc2VjdGlvbiAgICAgICAgICA9IHNlbGYuZ2V0dmFyKCdT
+RUNUSU9OJywgbWV0YWRhdGEpDQo+ICAgICAgICAgc2VsZi5mYWtlcm9vdGVudiAgICAgID0gc2Vs
+Zi5nZXR2YXIoJ0ZBS0VST09URU5WJywgbWV0YWRhdGEpDQo+ICAgICAgICAgc2VsZi5mYWtlcm9v
+dGRpcnMgICAgID0gc2VsZi5nZXR2YXIoJ0ZBS0VST09URElSUycsIG1ldGFkYXRhKQ0KPiANCj4g
+ICAgIGRlZiBhZGRfY2FjaGVkYXRhKHNlbGYsIGNhY2hlZGF0YSwgZm4pOg0KPiAgICAgICAgIGNh
+Y2hlZGF0YS50YXNrX2RlcHNbZm5dID0gc2VsZi50YXNrX2RlcHMNCj4gICAgICAgICBjYWNoZWRh
+dGEucGtnX2ZuW2ZuXSA9IHNlbGYucG4NCj4gICAgICAgICBjYWNoZWRhdGEucGtnX3BuW3NlbGYu
+cG5dLmFwcGVuZChmbikNCj4gICAgICAgICBjYWNoZWRhdGEucGtnX3BlcHZwcltmbl0gPSAoc2Vs
+Zi5wZSwgc2VsZi5wdiwgc2VsZi5wcikNCj4gICAgICAgICBbLi4uXQ0KPiANCj4gSG9iUmVjaXBl
+SW5mbyB3b3VsZCBiZSBzaW1pbGFyIGJ1dCB3aXRoIGl0cyBzcGVjaWZpYyBmaWVsZCByZXF1aXJl
+bWVudHMuDQo+IA0KPiBPbmNlIHdlJ3ZlIG1hZGUgdGhpcyBzcGxpdCwgdGhlIGNvZGUgdGhhdCBo
+YW5kbGVzIHRoZSBjYWNoZXMgY2FuIGJlY29tZQ0KPiBzaW1wbGVyLiBJbiBlYWNoIHBsYWNlIFJl
+Y2lwZUluZm8gaXMgdXNlZCwgd2UgY2FuIHR1cm4gaXQgaW50byBhbg0KPiBpdGVyYXRvciB3aGlj
+aCBpdGVyYXRlcyBvdmVyIGEgbGlzdCBvZiBjYWNoZXMuIEluIHRoZSBkZWZhdWx0IGNhc2UgdGhp
+cw0KPiBsaXN0IHdvdWxkIGp1c3QgYmUgb25lIChCYXNlUmVjaXBlSW5mbykuIFdpdGggSG9iIGVu
+YWJsZWQgaXQgd291bGQgYmUNCj4gdHdvIChCYXNlUmVjaXBlSW5mbyBhbmQgSG9iUmVjaXBlSW5m
+bykuIEl0IHdvdWxkIGVxdWFsbHkgaGFuZGxlIHRlbg0KPiBkaWZmZXJlbnQgZW50cmllcywgaXQg
+d291bGQganVzdCBpdGVyYXRlIG92ZXIgdGhlbS4gV2UnZCBhbHdheXMgcmVxdWlyZQ0KPiB0aGUg
+QmFzZVJlY2lwZUluZm8gdG8gYmUgcHJlc2VudCBpbiB0aGlzIGxpc3QuDQo+IA0KPiBJbiBDYWNo
+ZURhdGEsIHdlJ2QgdGFrZSB0aGUgbGlzdCBvZiBjYWNoZXMgYW5kIGNhbGwgaW50byB0aGUNCj4g
+Y2FjaGVkYXRhX2luaXQoKSBhbmQgYWRkX2NhY2hlZGF0YSgpIGhvb2tzLiBXZSdkIG5lZWQgYSBu
+YW1lc3BhY2UNCj4gY29udmVudGlvbiB0byBlbnN1cmUgdGhhdCB3aGlsc3QgdGhleSB3cml0ZSB0
+byB0aGUgc2FtZSBDYWNoZURhdGEgb2JqZWN0DQo+IHRoZXJlIGlzIGEgcHJlZml4IHRvIGVuc3Vy
+ZSB0aGUgZGF0YSBpcyBjb250YWluZWQuDQo+IA0KPiBIb3cgZG8gd2UgdHVybiBhIGxpc3Qgb2Yg
+bmFtZXMgb2YgY2FjaGVzIHBhc3NlZCBhcyBleHRyYWNhY2hlcyBpbnRvIGENCj4gbGlzdCBvZiBv
+YmplY3RzPyBXZSBjYW4gdXNlIGNvZGUgbGlrZSBpbiBydW5xdWV1ZS5weSBmb3IgaGFuZGxpbmcg
+dGhlDQo+IHNjaGVkdWxlcnM6DQo+IA0KPiAgICAgICAgIHNjaGVkdWxlcnMgPSBzZXQob2JqIGZv
+ciBvYmogaW4gZ2xvYmFscygpLnZhbHVlcygpDQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgaWYgdHlwZShvYmopIGlzIHR5cGUgYW5kDQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgaXNzdWJjbGFzcyhvYmosIFJ1blF1ZXVlU2NoZWR1bGVyKSkNCj4gDQo+IHNvIGJ5IGNo
+ZWNraW5nIGZvciBhbnl0aGluZyBzdWJjbGFzc2luZyBSZWNpcGVJbmZvIHdlJ2QgaGF2ZSBhIGxp
+c3Qgb2YNCj4gY2FjaGUgY2xhc3NlcyB0byBjaG9vc2UgZnJvbS4NCj4gDQo+IA0KPiBMaXBpbmc6
+IERvZXMgdGhpcyBtYWtlIHNlbnNlPyBJcyB0aGVyZSBhbnl0aGluZyBJIG5lZWQgdG8gY2xhcmlm
+eT8gRG8NCj4geW91IHdhbnQgdG8gd29yayBvbiB0aGlzIGZ1cnRoZXIgZnJvbSBoZXJlIG9yIGRv
+IHlvdSB3YW50IG1lIHRvIHRha2UNCj4gdGhpcyBmdXJ0aGVyPw0KPiANCj4gQ2hlZXJzLA0KPiAN
+Cj4gUmljaGFyZA0KPiANCj4gDQo+IA0KDQo=
 
