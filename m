@@ -1,36 +1,40 @@
-Return-Path: <julie.n.fleischer@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 36DDC4C800B0
-	for <yocto@yoctoproject.org>; Thu, 19 May 2011 13:25:47 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 19 May 2011 11:25:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,238,1304319600"; 
-   d="scan'208";a="4773653"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by fmsmga001.fm.intel.com with ESMTP; 19 May 2011 11:25:46 -0700
-Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 19 May 2011 11:25:46 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.114]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.240]) with mapi id
-	14.01.0289.001; Thu, 19 May 2011 11:25:46 -0700
-From: "Fleischer, Julie N" <julie.n.fleischer@intel.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Results from Yocto 1.0.1 Go/No-Go meeting:  No-Go
-Thread-Index: AQHMFkmTrPJyB5IGQUiQ3cO1D30ydpSU4LaAgAAEhwD//5H4UA==
-Date: Thu, 19 May 2011 18:25:45 +0000
-Message-ID: <68002A430AC0584FB0A5391B435E93A902AC06@ORSMSX101.amr.corp.intel.com>
-References: <68002A430AC0584FB0A5391B435E93A902AAE3@ORSMSX101.amr.corp.intel.com>
-	<4DD55643.1090507@intel.com> <4DD55A10.3080800@intel.com>
-In-Reply-To: <4DD55A10.3080800@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.9.131.214]
+Return-Path: <busytester@gmail.com>
+Received: from mail-qw0-f48.google.com (mail-qw0-f48.google.com
+	[209.85.216.48])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 1132C4C80335
+	for <yocto@yoctoproject.org>; Thu, 19 May 2011 13:26:29 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by qwj9 with SMTP id 9so2130024qwj.35
+	for <yocto@yoctoproject.org>; Thu, 19 May 2011 11:26:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=WNY+bpA1awsg5YZvTMe7mYspU9/mFn5ECnjOyTUf5hk=;
+	b=pFNe9MaHimKHCZUUgbyX4CDfTqwp3DOTxtX2oPY23Nx01GIo8LmwmzfXo2cCuqZ8fF
+	lKDRjTqb8l4F5NJrdwT5FzsM49LSV/C3SqEEv27dkJrufmf8vH9fTOuq+zrcxD2ruX6P
+	AEutKIncXWwuWnH6Zbm71L0g6Z41llI1fJrn4=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	b=fInNotD9qN0BeHSAqfDDRECwC8k1Ke0NYqOqIBIpj6dxrmJxhgFDprRqgfcXUsnman
+	/Zhho92X1Y65bIoVTGNTsjafPXOYPCMf/iTDPv+B4GCqGO/DMfI6MgoiO85ZfM4g7ktt
+	94v7HiliXlR1+1c3+Cv4Yzg4d+dPTB0VjHHek=
 MIME-Version: 1.0
-Subject: Re: Results from Yocto 1.0.1 Go/No-Go meeting: No-Go
+Received: by 10.229.124.145 with SMTP id u17mr2674593qcr.71.1305829587747;
+	Thu, 19 May 2011 11:26:27 -0700 (PDT)
+Received: by 10.229.98.140 with HTTP; Thu, 19 May 2011 11:26:27 -0700 (PDT)
+In-Reply-To: <9AFCD584B0B67B48AE8D8585BE30BA9501170DBC5B@orsmsx504.amr.corp.intel.com>
+References: <BANLkTinwVS4Zu+21TR2eBa_-ArLb8gV0nQ@mail.gmail.com>
+	<9AFCD584B0B67B48AE8D8585BE30BA9501170DBC5B@orsmsx504.amr.corp.intel.com>
+Date: Thu, 19 May 2011 11:26:27 -0700
+Message-ID: <BANLkTikHmPEiXKqRKZuRuZAB-Bm1vj9_bg@mail.gmail.com>
+From: Daniel Lazzari <busytester@gmail.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Can't create a new project with Yocto BitBake Commander plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,64 +46,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 May 2011 18:25:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 19 May 2011 18:26:29 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
+Hi Jessica,
 
+I want a Bitbake Commander project as I'll be creating and editing
+recipes, classes, and configuration files. I am using the Bernard
+release I downloaded from
+http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.tar.bz2
+though I renamed the directory to Yocto. I am using the 1.0 Eclipse
+plugin. I did have a build directory so I moved that outside of the
+Yocto directory, but still no luck.
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Elizabeth Flanagan
->Sent: Thursday, May 19, 2011 10:58 AM
->To: yocto@yoctoproject.org
->Subject: Re: [yocto] Results from Yocto 1.0.1 Go/No-Go meeting: No-Go
+Thanks for the help,
+Daniel Lazzari Jr.
+
+On Wed, May 18, 2011 at 1:55 PM, Zhang, Jessica <jessica.zhang@intel.com> w=
+rote:
+> Hi Daniel,
 >
+> One more thing to check, do you have a build dir under your Yocto checkou=
+t? =A0If so that maybe the reason prevent a new bitbake commander project b=
+eing created since the build dir can contain large contents that Eclipse IP=
+roject tree view can't handle, so the work around is to move your build dir=
+ outside your Yocto checkout through oe-init-build-env path_of_build_dir...
 >
+> Thanks,
+> Jessica
 >
->On 05/19/2011 10:41 AM, Saul Wold wrote:
->> Investigation is complete.
->>
->> This issue is related to how libzypp constructs a header file in
->bitbake
->> using PACKAGE_EXTRA_ARCHS. In 1.0.1 the PACKAGE_EXTRA_ARCHS was
->> cumulative list defined in both crownbay*.conf and tune-atom.inc.  In
->> 1.1 this was changed to just be set once in the tune-atom.inc.
->>
->> Because it was a cumulative list, it included x86 twice in 1.0.1 and
->> only once and correctly 1.1.
->>
->> So the fix is in the crownbay BSP, and does not affect the core 1.0.1
->> base as we currently have it.  This means no respin or re-test is
->> required of the existing bit.
->>
->> ** Is this sufficient information to change to a "GO", pending the
->> beagleboard testing at this point? **
->>
->> Sau!
->>
->>
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
+rg] On Behalf Of Daniel Lazzari
+> Sent: Tuesday, May 17, 2011 5:46 PM
+> To: yocto@yoctoproject.org
+> Subject: [yocto] Can't create a new project with Yocto BitBake Commander =
+plugin
 >
->I would like to just spin a nightly-external once the beagleboard patch
->gets in, to verify the fix. If the fix gets in
->today, I can have it done before our weekly 1.1-preM1 build.
-
-Sounds great!  If Beth is able to create the Beagleboard image for testing =
-and Jiajun is able to test before Tuesday, we could have another go/no-go d=
-iscussion during the Technical Team meeting to (hopefully) be able to relea=
-se 1.0.1 early next week.
-
-I will add that to the Tuesday agenda.
-
-- Julie=20
-
->---------------
->Elizabeth Flanagan
->Yocto Project
->Release Engineer
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+> Hi everyone,
+>
+> I searched and couldn't find anything on this issue, but it seems so
+> obvious that I'm guessing I'm doing something wrong. I installed the
+> Yocto Eclipse Plugin in Eclipse Helios Service Release 2 on an Ubuntu
+> 10.04 machine. I selected File->New->Project, Selected Yocto BitBake
+> Commander->New Yocto Project, set the Project Name to Yocto and
+> selected the workspace folder where I have my Yocto checkout. It says
+> everything is valid at the top, I click Finish, and it just flashes
+> and keeps the dialog box up. No new project is created.
+>
+> Has anyone else experienced this and knows of a fix or workaround? I'd
+> be happy to provide more details or log a bug for it if that helps.
+>
+> Thanks,
+> Daniel Lazzari Jr.
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
