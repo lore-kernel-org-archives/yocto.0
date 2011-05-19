@@ -1,22 +1,37 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id EFA8C4C800B0
-	for <yocto@yoctoproject.org>; Thu, 19 May 2011 14:09:36 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 19 May 2011 12:09:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,238,1304319600"; 
-   d="scan'208";a="4142033"
-Received: from unknown (HELO [10.255.12.58]) ([10.255.12.58])
-	by fmsmga002.fm.intel.com with ESMTP; 19 May 2011 12:09:35 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Marc Ferland <marc.ferland@gmail.com>
-In-Reply-To: <1305828031-10355-1-git-send-email-ferlandm@sonatest.com>
+Return-Path: <marc.ferland@gmail.com>
+Received: from mail-qy0-f169.google.com (mail-qy0-f169.google.com
+	[209.85.216.169])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 751EF4C800A6
+	for <yocto@yoctoproject.org>; Thu, 19 May 2011 15:03:59 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by qyk2 with SMTP id 2so4386422qyk.14
+	for <yocto@yoctoproject.org>; Thu, 19 May 2011 13:03:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=hyXi++qLQI72Irt8Tq+G3nAwkM3fihaDj4npfGdK3x8=;
+	b=wcEjbe4Rp3RiF58on6s1nu0g3xUD52wgUiJcx9bE9ShtLAObvv6wiXKYNIdM9f48is
+	3mDW5wVGU83Z9GynZIcFktvEViGq4tE+A27bxhdhlgbV8ZXmBacxCh1BIFZaVT5AodzK
+	tZKS6aVLJGVKC5TDMYG1uL99w2iJdnr8dC344=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	b=mKuN9a0ZiKwb4MAW1V6oYZO9VqLsjCc3OSx4jumCOdL+vfnEW4SWBGYLtDeuX9p9Rk
+	d9bFJJIj5jwmmXOBNrSGXW213brjhzX0efL7PRzgDE9kQHrXDrBkDU2d6jtOIslUMenH
+	5wtl3smwQHGZW75fgKR1WuIHxeZN56+QSVmY8=
+MIME-Version: 1.0
+Received: by 10.229.213.132 with SMTP id gw4mr2763874qcb.34.1305835439123;
+	Thu, 19 May 2011 13:03:59 -0700 (PDT)
+Received: by 10.229.191.130 with HTTP; Thu, 19 May 2011 13:03:59 -0700 (PDT)
+In-Reply-To: <1305832167.2638.56.camel@elmorro>
 References: <1305828031-10355-1-git-send-email-ferlandm@sonatest.com>
-Date: Thu, 19 May 2011 14:09:27 -0500
-Message-ID: <1305832167.2638.56.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
+	<1305832167.2638.56.camel@elmorro>
+Date: Thu, 19 May 2011 16:03:59 -0400
+Message-ID: <BANLkTinwm1OnsNU5mAgJ2D_Nhg=U+nAM2Q@mail.gmail.com>
+From: Marc Ferland <marc.ferland@gmail.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	Marc Ferland <ferlandm@sonatest.com>
 Subject: Re: [PATCH] Add SMP support to crownbay.
@@ -31,57 +46,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 May 2011 19:09:37 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 19 May 2011 20:03:59 -0000
+Content-Type: multipart/alternative; boundary=0016363b85ec7bf12804a3a68119
 
-Hi Marc,
+--0016363b85ec7bf12804a3a68119
+Content-Type: text/plain; charset=UTF-8
 
-Thanks for the patch - it looks good.  Could I get you to reply with
-your Signed-off-by: though? e.g. something like:
+Signed-off-by: Marc Ferland <ferlandm@sonatest.com>
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+--0016363b85ec7bf12804a3a68119
+Content-Type: text/html; charset=UTF-8
 
-but with your info.
+Signed-off-by: Marc Ferland &lt;<a href="mailto:ferlandm@sonatest.com">ferlandm@sonatest.com</a>&gt;<br><br>
 
-Thanks,
-
-Tom
-
-On Thu, 2011-05-19 at 11:00 -0700, Marc Ferland wrote:
-> This patch fixes Yocto BUG #1015. It adds support for SMP on the crownbay 
-> architecture from the meta-intel branch.
-> ---
->  .../linux/linux-yocto-stable_git.bbappend          |    2 ++
->  .../recipes-kernel/linux/linux-yocto_git.bbappend  |    2 ++
->  2 files changed, 4 insertions(+), 0 deletions(-)
-> 
-> diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto-stable_git.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto-stable_git.bbappend
-> index 8309478..44f892f 100644
-> --- a/meta-crownbay/recipes-kernel/linux/linux-yocto-stable_git.bbappend
-> +++ b/meta-crownbay/recipes-kernel/linux/linux-yocto-stable_git.bbappend
-> @@ -2,6 +2,8 @@ FILESEXTRAPATHS := "${FILESEXTRAPATHS}:${THISDIR}/${PN}"
->  
->  COMPATIBLE_MACHINE_crownbay = "crownbay"
->  KMACHINE_crownbay  = "crownbay"
-> +KERNEL_FEATURES_append_crownbay += " cfg/smp.scc"
->  
->  COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
->  KMACHINE_crownbay-noemgd  = "crownbay"
-> +KERNEL_FEATURES_append_crownbay-noemgd += " cfg/smp.scc"
-> diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto_git.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto_git.bbappend
-> index 176acd3..387c207 100644
-> --- a/meta-crownbay/recipes-kernel/linux/linux-yocto_git.bbappend
-> +++ b/meta-crownbay/recipes-kernel/linux/linux-yocto_git.bbappend
-> @@ -2,6 +2,8 @@ FILESEXTRAPATHS := "${FILESEXTRAPATHS}:${THISDIR}/${PN}"
->  
->  COMPATIBLE_MACHINE_crownbay = "crownbay"
->  KMACHINE_crownbay  = "yocto/standard/crownbay"
-> +KERNEL_FEATURES_append_crownbay += " cfg/smp.scc"
->  
->  COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
->  KMACHINE_crownbay-noemgd  = "yocto/standard/crownbay"
-> +KERNEL_FEATURES_append_crownbay-noemgd += " cfg/smp.scc"
-
-
-
+--0016363b85ec7bf12804a3a68119--
