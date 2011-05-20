@@ -1,21 +1,39 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 68B1F4C803D6;
-	Thu, 19 May 2011 22:06:27 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 19 May 2011 20:06:26 -0700
-X-ExtLoop1: 1
-Received: from unknown (HELO [10.255.12.125]) ([10.255.12.125])
-	by orsmga002.jf.intel.com with ESMTP; 19 May 2011 20:06:26 -0700
-Message-ID: <4DD5DAB2.9030806@intel.com>
-Date: Thu, 19 May 2011 20:06:26 -0700
-From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110424 Thunderbird/3.1.10
+Return-Path: <leon.woestenberg@gmail.com>
+Received: from mail-pv0-f176.google.com (mail-pv0-f176.google.com
+	[74.125.83.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id BF7004C80334
+	for <yocto@yoctoproject.org>; Fri, 20 May 2011 10:07:04 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by pve37 with SMTP id 37so2497175pve.35
+	for <yocto@yoctoproject.org>; Fri, 20 May 2011 08:07:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=isAO5ADys8eQe5N8DOy69w8kkoPNJmMdAiSXvOyLvfo=;
+	b=fFPlSMnpqfp9JV5Xq757g4Lrlci5Fjgg3SQRPzdopxxP0tDyxv/BgXxK6eegMlpEDd
+	Fqq0t8o7ci25zKnaVtNJ5WatbC5m/JaXz0r3/P+48WQiiu8ZscFqPjwP0KBC+bDy4Pp6
+	PENxKL8lsodsamPI0unIYxIr0uVqdM/BY8Njw=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	b=j73XkLvBhswLbnA5C3WGMd3x7SUcPsSLpnR9F/OU07Pc4dItIlRIf4ooQsFBJNYHYf
+	IaVPf84mxDnO8MEVCsYqP+bPs1rfpw22YNa8pe7l+fxnZOhPPjLnlbttDPOIepGznMZq
+	ZAlVCD0ad/TMvs/oHPD8oJU/AlMozJokJtRBM=
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	"poky@yoctoproject.org" <poky@yoctoproject.org>
-Subject: Upcoming M1 RC cut off (now with new and improved process!)
+Received: by 10.68.63.99 with SMTP id f3mr6938086pbs.471.1305904024221; Fri,
+	20 May 2011 08:07:04 -0700 (PDT)
+Received: by 10.68.59.9 with HTTP; Fri, 20 May 2011 08:07:03 -0700 (PDT)
+In-Reply-To: <20101129200549.GA25679@windriver.com>
+References: <1290974426-24618-1-git-send-email-fransmeulenbroeks@gmail.com>
+	<20101129200549.GA25679@windriver.com>
+Date: Fri, 20 May 2011 17:07:03 +0200
+Message-ID: <BANLkTi=7KeMRTkQ7hsp0jXVJNTGfDCAYqQ@mail.gmail.com>
+From: Leon Woestenberg <leon.woestenberg@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] meta-bsp-kirkwood: created layer for Marvellkirkwood
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,73 +45,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 May 2011 03:06:27 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 20 May 2011 15:07:05 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-All,
+Hello,
 
-In preparation for our M1 upcoming stabilization period starting next week, on Friday May 19th, 5pm US Pacific time, we 
-will be branching poky.git and meta-intel.git to 1.1_M1 and begin the autobuilder run after tagging the branch as 
-1.1_M1.rc1. During the next two weeks, bug fixes and minor feature additions will be cherrypicked from master to the 
-1.1_M1 branch. During this time, the autobuilder will be mostly devoted to either 1.1_M1, master or 
-poky-contrib:stage/master_under_test with the general priority being 1.1_M1.
+On Mon, Nov 29, 2010 at 9:05 PM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> In message: [yocto] [PATCH] meta-bsp-kirkwood: created layer for Marvellkirkwood
+> on 28/11/2010 Frans Meulenbroeks wrote:
+>
+>> This layer is a first attempt to create a layer for kirkwoord.
+>
+> On this topic. Is there any reason to not use linux-yocto
+> for the kernel ? Whenever possible, I'd like to get everyone
+> pulling in the same direction for these platforms. We have
+> ...
+> It also helps us review and push for platforms to be merged
+> upstrea if things go into a common kernel repository.
+> ...
+> It would also mean that the BSP would be kept up to date with
+> bug/security fixes and be considered for updating to
+> ...
+> at these patches in a 2.6.37 context (but obviously I don't
+> have the hardware to use for boot testing).
+>
+These are good points, but we have experienced *lots* of (old) vendor
+kernel patch dumps when I new machine is released.
 
-Some notes on the milestone release process as it has changed somewhat. Milestone branches are not permanent branches. 
-These are stabilization branches used to create a milestone checkpoint. At the conclusion of the next milestone (M2), we 
-will remove the prior milestone branch. Major/Minor branches are permanent branches and do not get removed.
+Surely most patches would not be accepted upstream, or have become
+obsolete (need only much forward porting work in the most ideal case).
 
-Going forward, all potential release candidates (milestone, point and major/minor) in the poky.git and meta-intel.git 
-repos will by tagged prior to being built by the autobuilder. In this case, the tags will be "1.1_M1.rcN". This ensures 
-that the autobuilder will be pulling the exact tag across repositories. This process may extend to other repos in the 
-future (eclipse-poky.git is one candidate, for example).
+In OpenEmbedded, the linux/ directory is wildly populated for this
+practical reason.
 
-One new bit of process suggested by the community that I'll be implementing (thank you Wolfgang Denk.) is gpg signing of 
-tags. The public GPG key I'll be using for this is attached below.
+How are we going to shove every machine from OpenEmbedded linux/ into
+linux-yocto?
 
-It can also be found on the MIT key server:
-http://pgp.mit.edu:11371/pks/lookup?search=Yocto&op=index&fingerprint=on
+Or, better: who decides when it matches linux-yocto or should be
+linux-something else?
 
-and on the Build/Release/SCM Infrastructure wiki page:
-https://wiki.yoctoproject.org/wiki/Build/SCM/Release_Interest_Group
+It's mainly a problem originated by vendors working for years on their
+port and then dumping their 2.6.32 kernel in 2.6.39 times, not blaming
+anyone else here :)
 
-The final release tag for 1.1_M1 will occur only after the RC has been fully vetted by QA.
-
----------------
-Elizabeth Flanagan
-Yocto Project
-Release Engineer
-
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-Version: GnuPG v1.4.10 (GNU/Linux)
-
-mQENBE3VnhEBCADHRXFx4DTFEYQ/uT96Tuy0L6xXiJW6J0sypDIFxWzPMxW33pef
-CNyuil80acWMUMTW+m3aTcplaLegD4+Y87OWtscd4Oz/WpssOdqu3GfWRJ8p0zJ1
-ztc2SLmq19ZPW8T23w06HRPssbxTri8O/gbczsdK4t2SQ2YbCzsv0v8i2WTIdhjC
-tfcSsJnH5VMmlsya2LYPTHVrurZ/BccNe8MUqZMkAFREmQVeCMf7O7YIB4Z3tSfX
-12mZD9/M30i0oycRhtyfD9pyrC7xxGU4r+RG1c/EuWsz1qpzdy7L6nemWN5MqL5y
-MH8NXovgA4yZzGllRjtJwy6ywtUxlSSNzv3XABEBAAG0U0VsaXphYmV0aCBGbGFu
-YWdhbiAoWW9jdG8gUHJvamVjdCBCdWlsZCBhbmQgUmVsZWFzZSkgPGVsaXphYmV0
-aC5mbGFuYWdhbkBpbnRlbC5jb20+iQE4BBMBAgAiBQJN1Z4RAhsDBgsJCAcDAgYV
-CAIJCgsEFgIDAQIeAQIXgAAKCRDazhCxVC4ivl+6B/wMQvX45Yh+VSI2J8CDmBFY
-tlBaBUlqHn7ilfWGg4PXvgYBAJHFU3jfDgTRdQRmFLgs0LAVwF+GYXF9ns7K/oag
-QEx+uyE0gkA9atzl9VcEMM29lVIRmbAiif9ElPjYb/yz3TFKtAC55PzZ9UM/4VKc
-FMeW4abcvvbOla1YjWDOEpxTK37jPHh+G+iDpDIXAKlNGgze0UYqsFXPYepOWLqB
-i13/ERi1fFjwnBZ0nRrJoxp03nUAkYy/f5zjH1mPRZyjgxAnjf/07Ivb246Fiy0Y
-iFVqMfiUNK9pwrHI0Tci2gF8ZVLGsbcfNPrjL3uKzGwIno/2DAz8huYiYyKXBRKy
-uQENBE3VnhEBCADNkGJiAhwkEquajEnxBdvh7r5qEDDrsTBNwFSaZIKcaE4Le4Tv
-jaTbk3dH0+1ZacE5Ie3/574jjXXJBvEtuEtNcMiEFz9oE62wMLNHohuHY9Oz0i8R
-EUHX60fWmCzjW9A9bHx16XZWEZN+6touI4YU/MG8m9Md5I6yausyGj+vcC3KHTgK
-zNYy14uuT+av5yO2IzOqdreDw/aGeWPFpla3Q2xbuRE2mPAKOJCuCkjyDPlHbwLA
-6e+rdvV3RXq2OY3xRIOANPLq/okOdS0ghvhMsx5l03oliVoXSKcY20CxA0jinuR+
-2DzF3np6gSwU9cYtolMDIqk0Eyv+QTNbice9ABEBAAGJAR8EGAECAAkFAk3VnhEC
-GwwACgkQ2s4QsVQuIr6IhggAoRErygEaFF754JbdiM0JJdev4X1JHHA0T3WdmsZW
-+Xo6lyHaT+roLNTR1xFkU8WHGuPBUp5zdIqbU6MnGcq1cvKPxjtBykzrmvjLJhby
-nMW7deG/ByqSW97EMFUyaDFHbl1iwNlJdfQQ/OjNIundLev2EGq9f3u67WgrVC4w
-LmFifhY0pGeBtqtD2odpl46pSVamVRkCySJU2qK+alkDIi4zGutc3bMb5TbPBl4q
-ui8vto+Emk3UOPBgCze9Z7x3YzRP9euH2ZpSGH6oaV7ZLctD8d44NOyxXWkgxOK6
-6vdkQR9+sBVa5fQgeEDm15Cu3/bszgP/NtI8oj8NzSYZYw==
-=oHhw
------END PGP PUBLIC KEY BLOCK-----
+Regards,
+-- 
+Leon
 
