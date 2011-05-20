@@ -1,40 +1,21 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-gw0-f48.google.com (mail-gw0-f48.google.com [74.125.83.48])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D21A74C803BA
-	for <yocto@yoctoproject.org>; Thu, 19 May 2011 21:25:35 -0500 (CDT)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by gwj22 with SMTP id 22so1698604gwj.35
-	for <yocto@yoctoproject.org>; Thu, 19 May 2011 19:25:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=jFvtYoAm1iibG/64xNCdyZPT36zmGPeGCZ7yT/7w+fA=;
-	b=k48d9EyQSrbpP+FW+cfxQRZ+xyhPWbaAJPQCWnZKHQqaEf58FOWmuOjr8B1Sk68uSp
-	AOcDZANhEtosdBmIB4sux9mt+IgcvCf1DJOaH+DrklGK2N9yyyw7HhwYd7hC1Vevaw5W
-	3Kvy2Y0Nls80kdzKhmlnvGm6kmWGEPsUk1HmA=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	b=kA81nWVMS2AkUig+eF1R6qquhqreYCB7hSHzawzlQNxm6rLjbXMOoBcrE5lzAG0X9N
-	49mhczK9P/698TrDJmJVm/nUbSEhVdWvcf6gamEhXDuAaOHpd7ln13FdRBZieSYDQjp3
-	P06G5t6Dhejpd1m9k+F0X4ejgzGc91fEX+67w=
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 68B1F4C803D6;
+	Thu, 19 May 2011 22:06:27 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 19 May 2011 20:06:26 -0700
+X-ExtLoop1: 1
+Received: from unknown (HELO [10.255.12.125]) ([10.255.12.125])
+	by orsmga002.jf.intel.com with ESMTP; 19 May 2011 20:06:26 -0700
+Message-ID: <4DD5DAB2.9030806@intel.com>
+Date: Thu, 19 May 2011 20:06:26 -0700
+From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110424 Thunderbird/3.1.10
 MIME-Version: 1.0
-Received: by 10.91.67.7 with SMTP id u7mr344673agk.103.1305858335330; Thu, 19
-	May 2011 19:25:35 -0700 (PDT)
-Received: by 10.90.7.20 with HTTP; Thu, 19 May 2011 19:25:35 -0700 (PDT)
-In-Reply-To: <4DD5BE3F.4010606@linux.intel.com>
-References: <cover.1305736112.git.bruce.ashfield@windriver.com>
-	<4DD5BE3F.4010606@linux.intel.com>
-Date: Thu, 19 May 2011 22:25:35 -0400
-Message-ID: <BANLkTimVv_YwrbdSoqWfEk9YRJ1QHp5qVw@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Cc: yocto@yoctoproject.org
-Subject: Re: [OE-core] [PATCH 0/2] linux-yocto: fix gcc 4.6.0 compilation failures
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	"poky@yoctoproject.org" <poky@yoctoproject.org>
+Subject: Upcoming M1 RC cut off (now with new and improved process!)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,107 +27,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 May 2011 02:25:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 20 May 2011 03:06:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, May 19, 2011 at 9:05 PM, Saul Wold <sgw@linux.intel.com> wrote:
-> On 05/18/2011 09:32 AM, Bruce Ashfield wrote:
->>
->> Repeating the patch contents here, since that's the
->> whole story:
->>
->> Fixes bug: [YOCTO #1035]
->> Fixes bug: [YOCTO #1036]
->>
->> Fixes gcc 4.6.0 compliation issues by importing the upstream change:
->>
->> Author: Michal Marek<mmarek@suse.cz>
->> Date: =A0 Mon May 2 12:13:01 2011 +0000
->>
->> =A0 =A0 kbuild: Fix passing -Wno-* options to gcc 4.4+
->>
->> =A0 =A0 Starting with 4.4, gcc will happily accept -Wno-<anything> =A0in=
- the
->> =A0 =A0 cc-option test and complain later when compiling a file that has=
- some
->> =A0 =A0 other warning. This rather unexpected behavior is intentional as=
- per
->> =A0 =A0 http://gcc.gnu.org/PR28322, so work around it by testing for sup=
-port
->> of
->> =A0 =A0 the opposite option (without the no-). Introduce a new Makefile
->> function
->> =A0 =A0 cc-disable-warning that does this and update two uses of cc-opti=
-on in
->> =A0 =A0 the toplevel Makefile.
->>
->> =A0 =A0 Reported-by: Stephen Rothwell<sfr@canb.auug.org.au>
->> =A0 =A0 Signed-off-by: Michal Marek<mmarek@suse.cz>
->> =A0 =A0 Tested-by: Stephen Rothwell<sfr@canb.auug.org.au>
->> =A0 =A0 Integrated-by: Bruce Ashfield<bruce.ashfield@windriver.com>
->>
->> :100644 100644 0ef00bd... 1d8e7e9... M =A0Documentation/kbuild/makefiles=
-.txt
->> :100644 100644 7bd863e0.. 74bac80... M =A0Makefile
->> :100644 100644 ed2773e... ba25c44... M =A0scripts/Kbuild.include
->>
->>
->> Pull URL: git://git.pokylinux.org/poky-contrib.git
->> =A0 Branch: zedd/460
->> =A0 Browse: http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=3Dzedd=
-/460
->>
->> Thanks,
->> =A0 =A0 Bruce Ashfield<bruce.ashfield@windriver.com>
->> ---
->>
->>
->> Bruce Ashfield (2):
->> =A0 linux-yocto: fix gcc 4.6.0 compilation failures
->> =A0 linux-yocto/meta-yocto: fix gcc 4.6.0 compilation failures
->>
->> =A0.../recipes-kernel/linux/linux-yocto_git.bbappend =A0| =A0 10 +++++--=
----
->> =A0meta/recipes-kernel/linux/linux-yocto_git.bb =A0 =A0 =A0 | =A0 12 +++=
-+++------
->> =A02 files changed, 11 insertions(+), 11 deletions(-)
->>
->>
->> _______________________________________________
->> Openembedded-core mailing list
->> Openembedded-core@lists.openembedded.org
->> http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-core
->>
-> Merged into oe-core and poky as appropriate!
->
-> In the future, can you split these into 2 pull requests one for oe-core a=
-nd
-> the other for poky, it will make tracking these changes easier and one wo=
-n't
-> get lost.
+All,
 
-Sure. Personally I prefer the 2 patches, one pull request, but when in Rome=
- ...
+In preparation for our M1 upcoming stabilization period starting next week, on Friday May 19th, 5pm US Pacific time, we 
+will be branching poky.git and meta-intel.git to 1.1_M1 and begin the autobuilder run after tagging the branch as 
+1.1_M1.rc1. During the next two weeks, bug fixes and minor feature additions will be cherrypicked from master to the 
+1.1_M1 branch. During this time, the autobuilder will be mostly devoted to either 1.1_M1, master or 
+poky-contrib:stage/master_under_test with the general priority being 1.1_M1.
 
-Cheers,
+Some notes on the milestone release process as it has changed somewhat. Milestone branches are not permanent branches. 
+These are stabilization branches used to create a milestone checkpoint. At the conclusion of the next milestone (M2), we 
+will remove the prior milestone branch. Major/Minor branches are permanent branches and do not get removed.
 
-Bruce
+Going forward, all potential release candidates (milestone, point and major/minor) in the poky.git and meta-intel.git 
+repos will by tagged prior to being built by the autobuilder. In this case, the tags will be "1.1_M1.rcN". This ensures 
+that the autobuilder will be pulling the exact tag across repositories. This process may extend to other repos in the 
+future (eclipse-poky.git is one candidate, for example).
 
->
-> Thanks
-> =A0 =A0 =A0 =A0Sau!
->
->
-> _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-core
->
+One new bit of process suggested by the community that I'll be implementing (thank you Wolfgang Denk.) is gpg signing of 
+tags. The public GPG key I'll be using for this is attached below.
+
+It can also be found on the MIT key server:
+http://pgp.mit.edu:11371/pks/lookup?search=Yocto&op=index&fingerprint=on
+
+and on the Build/Release/SCM Infrastructure wiki page:
+https://wiki.yoctoproject.org/wiki/Build/SCM/Release_Interest_Group
+
+The final release tag for 1.1_M1 will occur only after the RC has been fully vetted by QA.
+
+---------------
+Elizabeth Flanagan
+Yocto Project
+Release Engineer
 
 
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1.4.10 (GNU/Linux)
 
---=20
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+mQENBE3VnhEBCADHRXFx4DTFEYQ/uT96Tuy0L6xXiJW6J0sypDIFxWzPMxW33pef
+CNyuil80acWMUMTW+m3aTcplaLegD4+Y87OWtscd4Oz/WpssOdqu3GfWRJ8p0zJ1
+ztc2SLmq19ZPW8T23w06HRPssbxTri8O/gbczsdK4t2SQ2YbCzsv0v8i2WTIdhjC
+tfcSsJnH5VMmlsya2LYPTHVrurZ/BccNe8MUqZMkAFREmQVeCMf7O7YIB4Z3tSfX
+12mZD9/M30i0oycRhtyfD9pyrC7xxGU4r+RG1c/EuWsz1qpzdy7L6nemWN5MqL5y
+MH8NXovgA4yZzGllRjtJwy6ywtUxlSSNzv3XABEBAAG0U0VsaXphYmV0aCBGbGFu
+YWdhbiAoWW9jdG8gUHJvamVjdCBCdWlsZCBhbmQgUmVsZWFzZSkgPGVsaXphYmV0
+aC5mbGFuYWdhbkBpbnRlbC5jb20+iQE4BBMBAgAiBQJN1Z4RAhsDBgsJCAcDAgYV
+CAIJCgsEFgIDAQIeAQIXgAAKCRDazhCxVC4ivl+6B/wMQvX45Yh+VSI2J8CDmBFY
+tlBaBUlqHn7ilfWGg4PXvgYBAJHFU3jfDgTRdQRmFLgs0LAVwF+GYXF9ns7K/oag
+QEx+uyE0gkA9atzl9VcEMM29lVIRmbAiif9ElPjYb/yz3TFKtAC55PzZ9UM/4VKc
+FMeW4abcvvbOla1YjWDOEpxTK37jPHh+G+iDpDIXAKlNGgze0UYqsFXPYepOWLqB
+i13/ERi1fFjwnBZ0nRrJoxp03nUAkYy/f5zjH1mPRZyjgxAnjf/07Ivb246Fiy0Y
+iFVqMfiUNK9pwrHI0Tci2gF8ZVLGsbcfNPrjL3uKzGwIno/2DAz8huYiYyKXBRKy
+uQENBE3VnhEBCADNkGJiAhwkEquajEnxBdvh7r5qEDDrsTBNwFSaZIKcaE4Le4Tv
+jaTbk3dH0+1ZacE5Ie3/574jjXXJBvEtuEtNcMiEFz9oE62wMLNHohuHY9Oz0i8R
+EUHX60fWmCzjW9A9bHx16XZWEZN+6touI4YU/MG8m9Md5I6yausyGj+vcC3KHTgK
+zNYy14uuT+av5yO2IzOqdreDw/aGeWPFpla3Q2xbuRE2mPAKOJCuCkjyDPlHbwLA
+6e+rdvV3RXq2OY3xRIOANPLq/okOdS0ghvhMsx5l03oliVoXSKcY20CxA0jinuR+
+2DzF3np6gSwU9cYtolMDIqk0Eyv+QTNbice9ABEBAAGJAR8EGAECAAkFAk3VnhEC
+GwwACgkQ2s4QsVQuIr6IhggAoRErygEaFF754JbdiM0JJdev4X1JHHA0T3WdmsZW
++Xo6lyHaT+roLNTR1xFkU8WHGuPBUp5zdIqbU6MnGcq1cvKPxjtBykzrmvjLJhby
+nMW7deG/ByqSW97EMFUyaDFHbl1iwNlJdfQQ/OjNIundLev2EGq9f3u67WgrVC4w
+LmFifhY0pGeBtqtD2odpl46pSVamVRkCySJU2qK+alkDIi4zGutc3bMb5TbPBl4q
+ui8vto+Emk3UOPBgCze9Z7x3YzRP9euH2ZpSGH6oaV7ZLctD8d44NOyxXWkgxOK6
+6vdkQR9+sBVa5fQgeEDm15Cu3/bszgP/NtI8oj8NzSYZYw==
+=oHhw
+-----END PGP PUBLIC KEY BLOCK-----
 
