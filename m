@@ -1,34 +1,21 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 754284C800A4
-	for <yocto@yoctoproject.org>; Wed, 25 May 2011 17:59:45 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 25 May 2011 15:59:44 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id D49914C8043A
+	for <yocto@yoctoproject.org>; Wed, 25 May 2011 18:23:49 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 25 May 2011 16:23:49 -0700
 X-ExtLoop1: 1
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by orsmga002.jf.intel.com with ESMTP; 25 May 2011 15:59:44 -0700
-Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 25 May 2011 15:59:45 -0700
-Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
-	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
-	Wed, 25 May 2011 15:59:44 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Xu, Jiajun"
-	<jiajun.xu@intel.com>, "Wold, Saul" <saul.wold@intel.com>
-Date: Wed, 25 May 2011 15:59:43 -0700
-Thread-Topic: Autobuilder Change: Moving meta-toolchain-gmae builds
-Thread-Index: AcwbLpaH5eqxSWlLRVSGdBxX3QME1gAAIQVA
-Message-ID: <9AFCD584B0B67B48AE8D8585BE30BA9501179BCED9@orsmsx504.amr.corp.intel.com>
-References: <4DDD886D.8020008@intel.com>
-In-Reply-To: <4DDD886D.8020008@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: Re: Autobuilder Change: Moving meta-toolchain-gmae builds
+X-IronPort-AV: E=Sophos;i="4.65,269,1304319600"; 
+   d="scan'208";a="7710501"
+Received: from unknown (HELO localhost) ([10.255.12.181])
+	by fmsmga002.fm.intel.com with ESMTP; 25 May 2011 16:23:49 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 25 May 2011 16:23:37 -0700
+Message-Id: <06b79c7da717474d401547c332fb8efdf108f2b0.1306365817.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.1
+Cc: Darren Hart <dvhart@linux.intel.com>, Phill Blundell <pb@pbcl.net>
+Subject: [PATCH meta-intel] linux-yocto*: correct FILESEXTRAPATHS assignment in all layers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,40 +27,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 May 2011 22:59:45 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 25 May 2011 23:23:50 -0000
 
-Beth,
+My previous commit used a self referencing immediate expansion assignment using.
+This causes a circular reference and build failure, particularly when more than
+one layer is configured in.
 
-It should be fine since meta-toolchain-gmae generate toolchain tar ball tha=
-t also contains sysroot which has extra packages for gmae, unless Jiajun is=
- using it in QA work.
+Use the _prepend mechanism in conjunction with the immediate expansion
+assignment operator to accomplish a similar thing without the self referencing.
 
-Thanks,
-Jessica
+Note: This patch is dependent on changes to oe-core, specifically:
+http://lists.linuxtogo.org/pipermail/openembedded-core/2011-May/003145.html
 
------Original Message-----
-From: Flanagan, Elizabeth
-Sent: Wednesday, May 25, 2011 3:54 PM
-To: yocto@yoctoproject.org; Zhang, Jessica; Xu, Jiajun; Wold, Saul
-Subject: Autobuilder Change: Moving meta-toolchain-gmae builds
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+Cc: Tom Zanussi <tom.zanussi@intel.com>
+Cc: Phill Blundell <pb@pbcl.net>
+Cc: Koen Kooi <koen@dominion.thruhere.net>
+---
+ .../linux/linux-yocto-stable_git.bbappend          |    2 +-
+ .../recipes-kernel/linux/linux-yocto_git.bbappend  |    2 +-
+ .../linux/linux-yocto-stable_git.bbappend          |    2 +-
+ .../recipes-kernel/linux/linux-yocto_git.bbappend  |    2 +-
+ .../linux/linux-yocto-stable_git.bbappend          |    2 +-
+ .../recipes-kernel/linux/linux-yocto_git.bbappend  |    2 +-
+ .../linux/linux-yocto-stable_git.bbappend          |    2 +-
+ .../recipes-kernel/linux/linux-yocto_git.bbappend  |    2 +-
+ .../linux/linux-yocto-stable_git.bbappend          |    2 +-
+ .../recipes-kernel/linux/linux-yocto_git.bbappend  |    2 +-
+ .../recipes-kernel/linux/linux-yocto_git.bbappend  |    2 +-
+ 11 files changed, 11 insertions(+), 11 deletions(-)
 
-In order to even out some of the build timing, I've moved the meta-toolchai=
-n-gmae builds out to:
+diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto-stable_git.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto-stable_git.bbappend
+index 44f892f..570f8d4 100644
+--- a/meta-crownbay/recipes-kernel/linux/linux-yocto-stable_git.bbappend
++++ b/meta-crownbay/recipes-kernel/linux/linux-yocto-stable_git.bbappend
+@@ -1,4 +1,4 @@
+-FILESEXTRAPATHS := "${FILESEXTRAPATHS}:${THISDIR}/${PN}"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ COMPATIBLE_MACHINE_crownbay = "crownbay"
+ KMACHINE_crownbay  = "crownbay"
+diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto_git.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto_git.bbappend
+index 387c207..cdae000 100644
+--- a/meta-crownbay/recipes-kernel/linux/linux-yocto_git.bbappend
++++ b/meta-crownbay/recipes-kernel/linux/linux-yocto_git.bbappend
+@@ -1,4 +1,4 @@
+-FILESEXTRAPATHS := "${FILESEXTRAPATHS}:${THISDIR}/${PN}"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ COMPATIBLE_MACHINE_crownbay = "crownbay"
+ KMACHINE_crownbay  = "yocto/standard/crownbay"
+diff --git a/meta-emenlow/recipes-kernel/linux/linux-yocto-stable_git.bbappend b/meta-emenlow/recipes-kernel/linux/linux-yocto-stable_git.bbappend
+index 09234dc..77a665d 100644
+--- a/meta-emenlow/recipes-kernel/linux/linux-yocto-stable_git.bbappend
++++ b/meta-emenlow/recipes-kernel/linux/linux-yocto-stable_git.bbappend
+@@ -1,3 +1,3 @@
+-FILESEXTRAPATHS := "${FILESEXTRAPATHS}:${THISDIR}/${PN}"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_emenlow = "emenlow"
+ KMACHINE_emenlow  = "emenlow"
+diff --git a/meta-emenlow/recipes-kernel/linux/linux-yocto_git.bbappend b/meta-emenlow/recipes-kernel/linux/linux-yocto_git.bbappend
+index 3d7e021..05307b7 100644
+--- a/meta-emenlow/recipes-kernel/linux/linux-yocto_git.bbappend
++++ b/meta-emenlow/recipes-kernel/linux/linux-yocto_git.bbappend
+@@ -1,3 +1,3 @@
+-FILESEXTRAPATHS := "${FILESEXTRAPATHS}:${THISDIR}/${PN}"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_emenlow = "emenlow"
+ KMACHINE_emenlow  = "yocto/standard/emenlow"
+diff --git a/meta-fishriver/recipes-kernel/linux/linux-yocto-stable_git.bbappend b/meta-fishriver/recipes-kernel/linux/linux-yocto-stable_git.bbappend
+index 8003c93..dcc4534 100644
+--- a/meta-fishriver/recipes-kernel/linux/linux-yocto-stable_git.bbappend
++++ b/meta-fishriver/recipes-kernel/linux/linux-yocto-stable_git.bbappend
+@@ -1,4 +1,4 @@
+-FILESEXTRAPATHS := "${FILESEXTRAPATHS}:${THISDIR}/${PN}"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ COMPATIBLE_MACHINE_fishriver = "crownbay"
+ KMACHINE_fishriver  = "crownbay"
+diff --git a/meta-fishriver/recipes-kernel/linux/linux-yocto_git.bbappend b/meta-fishriver/recipes-kernel/linux/linux-yocto_git.bbappend
+index 2e12221..ba38dbe 100644
+--- a/meta-fishriver/recipes-kernel/linux/linux-yocto_git.bbappend
++++ b/meta-fishriver/recipes-kernel/linux/linux-yocto_git.bbappend
+@@ -1,4 +1,4 @@
+-FILESEXTRAPATHS := "${FILESEXTRAPATHS}:${THISDIR}/${PN}"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_fishriver = "fishriver"
+ # zzzz /yocto/standard/crownbay->fishriver
+ KMACHINE_fishriver  = "yocto/standard/crownbay"
+diff --git a/meta-jasperforest/recipes-kernel/linux/linux-yocto-stable_git.bbappend b/meta-jasperforest/recipes-kernel/linux/linux-yocto-stable_git.bbappend
+index a6e31d0..bd6bada 100644
+--- a/meta-jasperforest/recipes-kernel/linux/linux-yocto-stable_git.bbappend
++++ b/meta-jasperforest/recipes-kernel/linux/linux-yocto-stable_git.bbappend
+@@ -1,4 +1,4 @@
+-FILESEXTRAPATHS := "${FILESEXTRAPATHS}:${THISDIR}/${PN}"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ COMPATIBLE_MACHINE_jasperforest = "jasperforest"
+ KMACHINE_jasperforest  = "jasperforest"
+diff --git a/meta-jasperforest/recipes-kernel/linux/linux-yocto_git.bbappend b/meta-jasperforest/recipes-kernel/linux/linux-yocto_git.bbappend
+index 5781326..abceb18 100644
+--- a/meta-jasperforest/recipes-kernel/linux/linux-yocto_git.bbappend
++++ b/meta-jasperforest/recipes-kernel/linux/linux-yocto_git.bbappend
+@@ -1,4 +1,4 @@
+-FILESEXTRAPATHS := "${FILESEXTRAPATHS}:${THISDIR}/${PN}"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ COMPATIBLE_MACHINE_jasperforest = "jasperforest"
+ 
+diff --git a/meta-n450/recipes-kernel/linux/linux-yocto-stable_git.bbappend b/meta-n450/recipes-kernel/linux/linux-yocto-stable_git.bbappend
+index 73a3ee3..18d4999 100644
+--- a/meta-n450/recipes-kernel/linux/linux-yocto-stable_git.bbappend
++++ b/meta-n450/recipes-kernel/linux/linux-yocto-stable_git.bbappend
+@@ -1,4 +1,4 @@
+-FILESEXTRAPATHS := "${FILESEXTRAPATHS}:${THISDIR}/${PN}"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ KMACHINE_n450 = "atom-pc"
+ COMPATIBLE_MACHINE_n450 = "n450"
+ 
+diff --git a/meta-n450/recipes-kernel/linux/linux-yocto_git.bbappend b/meta-n450/recipes-kernel/linux/linux-yocto_git.bbappend
+index 92d666f..d52a90a 100644
+--- a/meta-n450/recipes-kernel/linux/linux-yocto_git.bbappend
++++ b/meta-n450/recipes-kernel/linux/linux-yocto_git.bbappend
+@@ -1,4 +1,4 @@
+-FILESEXTRAPATHS := "${FILESEXTRAPATHS}:${THISDIR}/${PN}"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ KMACHINE_n450 = "yocto/standard/common-pc/atom-pc"
+ COMPATIBLE_MACHINE_n450 = "n450"
+ 
+diff --git a/meta-sugarbay/recipes-kernel/linux/linux-yocto_git.bbappend b/meta-sugarbay/recipes-kernel/linux/linux-yocto_git.bbappend
+index c1b9a9e..72d00ec 100644
+--- a/meta-sugarbay/recipes-kernel/linux/linux-yocto_git.bbappend
++++ b/meta-sugarbay/recipes-kernel/linux/linux-yocto_git.bbappend
+@@ -1,4 +1,4 @@
+-FILESEXTRAPATHS := "${FILESEXTRAPATHS}:${THISDIR}/${PN}"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ COMPATIBLE_MACHINE_sugarbay = "sugarbay"
+ KMACHINE_sugarbay  = "yocto/standard/common-pc-64/sugarbay"
+-- 
+1.7.1
 
-http://autobuilder02.pokylinux.org/nightly-external-toolchain/
-
-nightly-external was running substantially longer than other builders (30 h=
-ours). This should reduce autobuilder build
-time substantially, however, it does mean that meta-toolchain-gmae needs to=
- be picked up from the 02 server.
-
-If you have any questions or issues with this, please let me know.
-
----------------
-Elizabeth Flanagan
-Yocto Project
-Release Engineer
 
