@@ -1,24 +1,43 @@
-Return-Path: <157724595@163.com>
-Received: from m13-125.163.com (m13-125.163.com [220.181.13.125])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 846614C80334
-	for <yocto@yoctoproject.org>; Mon, 23 May 2011 11:10:31 -0500 (CDT)
-Received: from 157724595 ( [118.114.252.50] ) by ajax-webmail-wmsvr125
-	(Coremail) ; Tue, 24 May 2011 00:10:19 +0800 (CST)
-Date: Tue, 24 May 2011 00:10:19 +0800 (CST)
-From: =?GBK?B?1cXOxL3c?= <157724595@163.com>
-To: yocto@yoctoproject.org
-Message-ID: <752f15.db68.1301d9f08ee.Coremail.157724595@163.com>
+Return-Path: <jpuhlman@gmail.com>
+Received: from mail-px0-f173.google.com (mail-px0-f173.google.com
+	[209.85.212.173])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 5AF924C80A78
+	for <yocto@yoctoproject.org>; Wed, 25 May 2011 20:17:51 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by pxi16 with SMTP id 16so140741pxi.32
+	for <yocto@yoctoproject.org>; Wed, 25 May 2011 18:17:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:message-id:date:from:user-agent:mime-version:to
+	:cc:subject:content-type:content-transfer-encoding;
+	bh=7U7ELXhp4sfkJrGOOCDlRTTKj3ntZHCSm2X+YFLhMB0=;
+	b=gnaEUC/alZB6tdpAcZsR4Y71smeojkPUpyM+5ldcDon/+P9XWeWyiZISlTbX8cfV/U
+	fgivchnEV+PRqV+m6OUcJLYNDwCQiTqPuK/7FzfpBkdPHnV7s/qyGu8ExlpfL41EyFg5
+	syOPAOqUFKtKyZNYnTGZaEbPNpme8IsRmqrpE=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:content-type:content-transfer-encoding;
+	b=MqX7S2FUuGXUY4wTXns2xW5F3ierf7GvjOrc4LLRF5rt4IgmE3g6nmSEfvzRxz5WS2
+	bPQ9Hhq7hegUXcD+cvLbMWHtJMqPqSW1W6NK8DhMlWanV5FWfUXnzAgP//+V7aDP4VDy
+	hGRko97w39qO2EMEiHJx7YOXj4FdBs8i19ltQ=
+Received: by 10.68.32.3 with SMTP id e3mr88340pbi.325.1306372671013;
+	Wed, 25 May 2011 18:17:51 -0700 (PDT)
+Received: from [192.168.1.64] (c-67-187-204-11.hsd1.ca.comcast.net
+	[67.187.204.11])
+	by mx.google.com with ESMTPS id y3sm428084pbg.8.2011.05.25.18.17.49
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 25 May 2011 18:17:50 -0700 (PDT)
+Message-ID: <4DDDAA38.8070404@gmail.com>
+Date: Wed, 25 May 2011 18:17:44 -0700
+From: Jeremy Puhlman <jpuhlman@gmail.com>
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US;
+	rv:1.9.2.17) Gecko/20110414 Lightning/1.0b2 Thunderbird/3.1.10
+	ThunderBrowse/3.3.5
 MIME-Version: 1.0
-X-Originating-IP: [118.114.252.50]
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
-	110420(13372.3725.3724) Copyright (c) 2002-2011 www.mailtech.cn 163com
-X-CM-CTRLDATA: 4fOh4WZvb3Rlcl9odG09MzQ4Mzo4MQ==
-X-CM-TRANSID: fcGowLDrJvLshtpNB4AZAA--.5886W
-X-CM-SenderInfo: irvxljiuvzkqqrwthudrp/1tbiZQZIwU0vIjeXrgABsl
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-X-Mailman-Approved-At: Wed, 25 May 2011 20:06:39 -0500
-Subject: ERROR when bitbake e2fsprogs
+To: Yocto Mailer <yocto@yoctoproject.org>
+Cc: dvhart@linux.intel.com
+Subject: In consistancy in the defition of BBFILE_COLLECTIONS in layer.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,70 +49,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 May 2011 16:10:34 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_150982_33426072.1306167019757"
-
-------=_Part_150982_33426072.1306167019757
-Content-Type: text/plain; charset=GBK
+X-List-Received-Date: Thu, 26 May 2011 01:17:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-The error log is blow:
-| make[2]: Entering directory `/sdb1/yocto/poky-bernard-5.0/build/tmp/work/ppce500v2-wrs-linux-gnu/e2fsprogs-1.41.12-r20/e2fsprogs-1.41.12/misc'
-|COMPILE_ET prof_err.et
-|CC mke2fs.c
-|CC util.c
-|CC ../e2fsck/profile.c
-|CC prof_err.c
-|PROFILE_TO_C mke2fs.conf
-|CC default_profile.c
-|LD mke2fs
-|CC badblocks.c
-|LD badblocks
-|CC tune2fs.c
-|LD tune2fs
-|CC dumpe2fs.c
-|LD dumpe2fs
-|CC blkid.c
-|LD blkid
-| ../lib/libext2fs.so: undefined reference to `sem_init'
-| ../lib/libext2fs.so: undefined reference to `sem_destroy'
-| ../lib/libext2fs.so: undefined reference to `sem_post'
-| ../lib/libext2fs.so: undefined reference to `sem_wait'
-| collect2: ld returned 1 exit status
-| make[2]: *** [blkid] Error 1
-| make[2]: Leaving directory `/sdb1/yocto/poky-bernard-5.0/build/tmp/work/ppce500v2-wrs-linux-gnu/e2fsprogs-1.41.12-r20/e2fsprogs-1.41.12/misc'
-| make[1]: *** [all-progs-recursive] Error 1
-| make[1]: Leaving directory `/sdb1/yocto/poky-bernard-5.0/build/tmp/work/ppce500v2-wrs-linux-gnu/e2fsprogs-1.41.12-r20/e2fsprogs-1.41.12'
-| make: *** [all] Error 2
-| FATAL: oe_runmake failed
-| ERROR: Function 'do_compile' failed (see /sdb1/yocto/poky-bernard-5.0/build/tmp/work/ppce500v2-wrs-linux-gnu/e2fsprogs-1.41.12-r20/temp/log.do_compile.10589 for further information)
-NOTE: package e2fsprogs-1.41.12-r20: task do_compile: Failed
-ERROR: Task 8 (/sdb1/yocto/poky-bernard-5.0/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.41.12.bb, do_compile) failed with exit code '1'
-Waiting for 1 active tasks to finish:
-0: ncurses-5.7-r1 do_package (pid 31748)
+Opps sent from wrong account.
+
+I was working with some layerinfo code, and I noticed that the values of
+BBFILE_COLLECTIONS in layer.conf in the meta-intel repo are kind of all over the map:
+
+ for each in */conf/layer.conf; do cat $each; done | grep BBFILE_COLLECTIONS
+BBFILE_COLLECTIONS_crownbay += "crownbay"
+BBFILE_COLLECTIONS_crownbay-noemgd += "crownbay-noemgd"
+BBFILE_COLLECTIONS_fishriver += "fishriver"
+BBFILE_COLLECTIONS_jasperforest += "jasperforest"
+BBFILE_COLLECTIONS_sugarbay += "sugarbay"
+
+For the above layers when I just list out oe-core and one of the above,
+the results from BBFILE_COLLECTIONS ends up
+just being what ever was set above.
+
+BBFILE_COLLECTIONS += "n450"
+BBFILE_COLLECTIONS += "emenlow"
+
+When using these layers, the final BBFILE_COLLECTIONS is the list of all
+the layers as expected.
+
+Was just curious if there was a intentional reason why the
+difference(i.e. is there some code that I am missing that fixes this up)?
+-- Jeremy Puhlman Montavista Sofware, LLC.
 
 
-And in its Makefile of DIR misc it has
-#
-# Library definitions
-#
-LIB = $(top_builddir)/lib
-LIBSS = $(LIB)/libss.so # -ldl
-LIBCOM_ERR = $(LIB)/libcom_err.so # -lpthread
-LIBE2P = $(LIB)/libe2p.so
-LIBEXT2FS = $(LIB)/libext2fs.so
-LIBUUID = -luuid
-LIBBLKID = $(LIB)/libblkid.so # $(LIBUUID)
-I think the red lind should append -lpthread, but it not. any suggestion?
-
-
-
-
-------=_Part_150982_33426072.1306167019757
-Content-Type: text/html; charset=GBK
-Content-Transfer-Encoding: 7bit
-
-The error log is blow:<div><div>| make[2]: Entering directory `/sdb1/yocto/poky-bernard-5.0/build/tmp/work/ppce500v2-wrs-linux-gnu/e2fsprogs-1.41.12-r20/e2fsprogs-1.41.12/misc'</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>COMPILE_ET prof_err.et</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>CC mke2fs.c</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>CC util.c</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>CC ../e2fsck/profile.c</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>CC prof_err.c</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>PROFILE_TO_C mke2fs.conf</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>CC default_profile.c</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>LD mke2fs</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>CC badblocks.c</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>LD badblocks</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>CC tune2fs.c</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>LD tune2fs</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>CC dumpe2fs.c</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>LD dumpe2fs</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>CC blkid.c</div><div>| <span class="Apple-tab-span" style="white-space:pre">	</span>LD blkid</div><div>| ../lib/libext2fs.so: undefined reference to `sem_init'</div><div>| ../lib/libext2fs.so: undefined reference to `sem_destroy'</div><div>| ../lib/libext2fs.so: undefined reference to `sem_post'</div><div>| ../lib/libext2fs.so: undefined reference to `sem_wait'</div><div>| collect2: ld returned 1 exit status</div><div>| make[2]: *** [blkid] Error 1</div><div>| make[2]: Leaving directory `/sdb1/yocto/poky-bernard-5.0/build/tmp/work/ppce500v2-wrs-linux-gnu/e2fsprogs-1.41.12-r20/e2fsprogs-1.41.12/misc'</div><div>| make[1]: *** [all-progs-recursive] Error 1</div><div>| make[1]: Leaving directory `/sdb1/yocto/poky-bernard-5.0/build/tmp/work/ppce500v2-wrs-linux-gnu/e2fsprogs-1.41.12-r20/e2fsprogs-1.41.12'</div><div>| make: *** [all] Error 2</div><div>| FATAL: oe_runmake failed</div><div>| ERROR: Function 'do_compile' failed (see /sdb1/yocto/poky-bernard-5.0/build/tmp/work/ppce500v2-wrs-linux-gnu/e2fsprogs-1.41.12-r20/temp/log.do_compile.10589 for further information)</div><div>NOTE: package e2fsprogs-1.41.12-r20: task do_compile: Failed</div><div>ERROR: Task 8 (/sdb1/yocto/poky-bernard-5.0/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.41.12.bb, do_compile) failed with exit code '1'</div><div>Waiting for 1 active tasks to finish:</div><div>0: ncurses-5.7-r1 do_package (pid 31748)</div></div><div><br></div><div>And in its Makefile of DIR misc it has</div><div><div>#</div><div># Library definitions</div><div>#</div><div>LIB = $(top_builddir)/lib</div><div>LIBSS = $(LIB)/libss.so # -ldl</div><div>LIBCOM_ERR = $(LIB)/libcom_err.so # -lpthread</div><div>LIBE2P = $(LIB)/libe2p.so</div><div><font class="Apple-style-span" color="#ff0000">LIBEXT2FS = $(LIB)/libext2fs.so</font></div><div>LIBUUID = -luuid</div><div>LIBBLKID = $(LIB)/libblkid.so # $(LIBUUID)</div></div><div>I think the red lind should append -lpthread, but it not. any suggestion?</div><div><br></div><div><br></div><br><br><span title="neteasefooter"><span id="netease_mail_footer"></span></span>
-
-------=_Part_150982_33426072.1306167019757--
