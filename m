@@ -1,26 +1,26 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 749674C800C1
-	for <yocto@yoctoproject.org>; Fri, 27 May 2011 16:20:31 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 27 May 2011 14:20:30 -0700
+Return-Path: <darren.hart@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 67CDC4C80334
+	for <yocto@yoctoproject.org>; Fri, 27 May 2011 16:44:28 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 27 May 2011 14:44:28 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.65,282,1304319600"; 
-   d="scan'208";a="6019608"
-Received: from unknown (HELO [10.255.12.115]) ([10.255.12.115])
-	by orsmga001.jf.intel.com with ESMTP; 27 May 2011 14:20:30 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-In-Reply-To: <4DE012C7.7000804@windriver.com>
-References: <cover.1306514719.git.tom.zanussi@intel.com>
-	<3ef38d9b80ebc7b23fa9a1c6712d688e6f2f5f86.1306514719.git.tom.zanussi@intel.com>
-	<4DE012C7.7000804@windriver.com>
-Date: Fri, 27 May 2011 16:19:40 -0500
-Message-ID: <1306531180.23639.4.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 3/3] ahci: AHCI mode SATA patch for Intel Patsburg SATA RAID controller
+   d="scan'208";a="8763326"
+Received: from doubt.jf.intel.com (HELO [10.24.155.80]) ([10.24.155.80])
+	by fmsmga002.fm.intel.com with ESMTP; 27 May 2011 14:44:27 -0700
+Message-ID: <4DE01B2A.9040008@intel.com>
+Date: Fri, 27 May 2011 14:44:10 -0700
+From: Darren Hart <darren.hart@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
+MIME-Version: 1.0
+To: tom.zanussi@intel.com
+References: <ea461ebf3e667c1607afd57abfc0db226bd4033e.1306509168.git.tom.zanussi@intel.com>
+	<cddf6042091c8ba4df53915b87fe7c14e4c2dc70.1306509168.git.tom.zanussi@intel.com>
+In-Reply-To: <cddf6042091c8ba4df53915b87fe7c14e4c2dc70.1306509168.git.tom.zanussi@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 10/14][KERNEL] meta: add intel-e1xxxx feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,68 +32,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 May 2011 21:20:31 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 27 May 2011 21:44:28 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2011-05-27 at 14:08 -0700, Bruce Ashfield wrote:
-> On 11-05-27 04:46 PM, tom.zanussi@intel.com wrote:
-> > From: Seth Heasley
-> >
-> > commit 64a3903d0885879ba8706a8bcf71c5e3e7664db2 upstream
-> >
-> > This patch adds an updated SATA RAID DeviceID for the Intel Patsburg PCH.
+On 05/27/2011 01:45 PM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi <tom.zanussi@intel.com>
 > 
-> Looks like we already had this one in the 2.6.37 tree
-> via gregkh and -stable
-> 
->  > git tag --contains 5618c45b
-> v2.6.37.5
-> v2.6.37.6
-> 
-> And hence the base yocto/standard/common-pc-64/romley
-> bsp branch.
-> 
-> So I won't do anything with this in particular. It is
-> interesting though how it applied in your tree. Do you
-> have all the -stable updates ?
-> 
-> I checked and it doesn't look like I've been hoarding
-> them, but you never know.
-> 
+> Add a general-purpose feature adding support for Intel PRO/100, Intel
+> PRO/1000, and Intel PRO/1000 PCI-Express adapters.
 
-Hmm, yeah, it did apply (checked the build dir for the other changes),
-but not sure why I didn't get rejects.  My kernel is a little over a
-week old, but it does have the .5 stable:
+I noticed some things have been added as modules while others are
+configured in. What is your criteria for determining module versus
+compiled in?
 
-$ git tag --contains 5618c45b
-v2.6.37.5
+--
+Darren
 
-Tom
-
-> Bruce
 > 
-> >
-> > Signed-off-by: Seth Heasley
-> > Signed-off-by: Jeff Garzik
-> > Integrated-by: Tom Zanussi
-> > ---
-> >   drivers/ata/ahci.c |    1 +
-> >   1 files changed, 1 insertions(+), 0 deletions(-)
-> >
-> > diff --git a/drivers/ata/ahci.c b/drivers/ata/ahci.c
-> > index 3288263..dfc0a26 100644
-> > --- a/drivers/ata/ahci.c
-> > +++ b/drivers/ata/ahci.c
-> > @@ -260,6 +260,7 @@ static const struct pci_device_id ahci_pci_tbl[] = {
-> >   	{ PCI_VDEVICE(INTEL, 0x1d02), board_ahci }, /* PBG AHCI */
-> >   	{ PCI_VDEVICE(INTEL, 0x1d04), board_ahci }, /* PBG RAID */
-> >   	{ PCI_VDEVICE(INTEL, 0x1d06), board_ahci }, /* PBG RAID */
-> > +	{ PCI_VDEVICE(INTEL, 0x2826), board_ahci }, /* PBG RAID */
-> >
-> >   	/* JMicron 360/1/3/5/6, match class to avoid IDE function */
-> >   	{ PCI_VENDOR_ID_JMICRON, PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
+> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+> ---
+>  .../features/intel-e1xxxx/intel-e1xxxx.cfg         |    4 ++++
+>  .../features/intel-e1xxxx/intel-e1xxxx.scc         |    1 +
+>  2 files changed, 5 insertions(+), 0 deletions(-)
+>  create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
+>  create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc
 > 
+> diff --git a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
+> new file mode 100644
+> index 0000000..ea9f7e9
+> --- /dev/null
+> +++ b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
+> @@ -0,0 +1,4 @@
+> +CONFIG_NETDEV_1000=y
+> +CONFIG_E100=y
+> +CONFIG_E1000E=y
+> +CONFIG_E1000=y
+> diff --git a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc
+> new file mode 100644
+> index 0000000..90ba914
+> --- /dev/null
+> +++ b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc
+> @@ -0,0 +1 @@
+> +kconf hardware intel-e1xxxx.cfg
 
 
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
