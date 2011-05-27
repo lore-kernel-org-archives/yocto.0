@@ -1,21 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B02784C8043A
-	for <yocto@yoctoproject.org>; Fri, 27 May 2011 15:45:57 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 27 May 2011 13:45:57 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 173D54C80479
+	for <yocto@yoctoproject.org>; Fri, 27 May 2011 15:46:04 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 27 May 2011 13:46:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,282,1304319600"; 
-   d="scan'208";a="8744127"
 Received: from unknown (HELO localhost) ([10.255.12.115])
-	by fmsmga002.fm.intel.com with ESMTP; 27 May 2011 13:45:56 -0700
+	by orsmga002.jf.intel.com with ESMTP; 27 May 2011 13:46:03 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com, rahul.saxena@intel.com,
 	kishore.k.bodke@intel.com, yocto@yoctoproject.org
-Date: Fri, 27 May 2011 15:44:58 -0500
-Message-Id: <cover.1306509168.git.tom.zanussi@intel.com>
+Date: Fri, 27 May 2011 15:44:57 -0500
+Message-Id: <75533a50de1074c4c205d7adbf4779cc67cf2f96.1306509168.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 00/14][KERNEL] add a few new kernel features and related cleanup
+In-Reply-To: <ea461ebf3e667c1607afd57abfc0db226bd4033e.1306509168.git.tom.zanussi@intel.com>
+References: <ea461ebf3e667c1607afd57abfc0db226bd4033e.1306509168.git.tom.zanussi@intel.com>
+In-Reply-To: <cover.1306509168.git.tom.zanussi@intel.com>
+References: <cover.1306509168.git.tom.zanussi@intel.com>
+Subject: [PATCH 03/14][KERNEL] meta: add uio feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,95 +29,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 May 2011 20:45:58 -0000
+X-List-Received-Date: Fri, 27 May 2011 20:46:05 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This adds a few new features needed by the in-progress romley BSP
-(but useable by anyone).
+Add feature to turn on userspace I/O support.
 
-Along the way, I noticed several areas that could usefully be featurized
-and cleaned up those as well.
-
-Please pull into linux-yocto-2.6.37.
-
-Thanks,
-
-Tom
-
-Pull URL: git://git.yoctoproject.org/linux-yocto-2.6.37-contrib
-  Branch: tzanussi/romley-new-options-and-refactor-meta
-  Browse: http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/romley-new-options-and-refactor-meta
-
-Tom Zanussi (14):
-  meta: add hpet feature
-  meta: replace open-coded hpet options with hpet feature
-  meta: add uio feature
-  meta: add hugetlb feature
-  meta: add dmaengine feature
-  meta: replace open-coded dma engine options with dmaengine feature
-  meta: add ixgbe feature
-  meta: add igb feature
-  meta: replace open-coded igb options with igb feature
-  meta: add intel-e1xxxx feature
-  meta: replace open-coded E1XXXX options with intel-e1xxxx feature
-  meta: add dca feature
-  meta: remove 'not set' lines from netfilter.cfg
-  meta: add romley features
-
- .../arm-versatile-926ejs/arm-versatile-926ejs.cfg  |    1 -
- .../kernel-cache/bsp/common-pc-64/common-pc-64.cfg |    8 -----
- .../kernel-cache/bsp/common-pc-64/common-pc-64.scc |    4 ++
- .../kernel-cache/bsp/common-pc/common-pc-net.cfg   |    2 -
- meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg  |    1 -
- meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc  |    2 +-
- meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |    2 -
- meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |   10 ++++--
- meta/cfg/kernel-cache/bsp/crownbay/eg20t.cfg       |    2 -
- meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |    2 -
- meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc      |    7 +++-
- .../bsp/fsl-mpc8315e-rdb/fsl-mpc8315e-rdb.cfg      |    2 -
- .../bsp/fsl-mpc8315e-rdb/fsl-mpc8315e-rdb.scc      |    1 +
- .../kernel-cache/bsp/jasperforest/jasperforest.cfg |    2 -
- .../kernel-cache/bsp/jasperforest/jasperforest.scc |    6 ++-
- .../cfg/kernel-cache/bsp/qemu-ppc32/qemu-ppc32.cfg |    1 -
- meta/cfg/kernel-cache/bsp/romley/romley.cfg        |    2 -
- meta/cfg/kernel-cache/bsp/romley/romley.scc        |    4 ++
- meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg    |    2 -
- meta/cfg/kernel-cache/features/dca/dca.cfg         |    4 ++
- meta/cfg/kernel-cache/features/dca/dca.scc         |    3 ++
- .../kernel-cache/features/dmaengine/dmaengine.cfg  |    2 +
- .../kernel-cache/features/dmaengine/dmaengine.scc  |    1 +
- meta/cfg/kernel-cache/features/hpet/hpet.cfg       |    6 +++
- meta/cfg/kernel-cache/features/hpet/hpet.scc       |    1 +
- meta/cfg/kernel-cache/features/hugetlb/hugetlb.cfg |    2 +
- meta/cfg/kernel-cache/features/hugetlb/hugetlb.scc |    1 +
- meta/cfg/kernel-cache/features/igb/igb.cfg         |    4 ++
- meta/cfg/kernel-cache/features/igb/igb.scc         |    3 ++
- .../features/intel-e1xxxx/intel-e1xxxx.cfg         |    4 ++
- .../features/intel-e1xxxx/intel-e1xxxx.scc         |    1 +
- meta/cfg/kernel-cache/features/ixgbe/ixgbe.cfg     |    6 +++
- meta/cfg/kernel-cache/features/ixgbe/ixgbe.scc     |    3 ++
- .../kernel-cache/features/netfilter/netfilter.cfg  |   34 --------------------
- meta/cfg/kernel-cache/features/uio/uio.cfg         |    1 +
- meta/cfg/kernel-cache/features/uio/uio.scc         |    1 +
- 36 files changed, 69 insertions(+), 69 deletions(-)
- delete mode 100644 meta/cfg/kernel-cache/bsp/common-pc/common-pc-net.cfg
- create mode 100644 meta/cfg/kernel-cache/features/dca/dca.cfg
- create mode 100644 meta/cfg/kernel-cache/features/dca/dca.scc
- create mode 100644 meta/cfg/kernel-cache/features/dmaengine/dmaengine.cfg
- create mode 100644 meta/cfg/kernel-cache/features/dmaengine/dmaengine.scc
- create mode 100644 meta/cfg/kernel-cache/features/hpet/hpet.cfg
- create mode 100644 meta/cfg/kernel-cache/features/hpet/hpet.scc
- create mode 100644 meta/cfg/kernel-cache/features/hugetlb/hugetlb.cfg
- create mode 100644 meta/cfg/kernel-cache/features/hugetlb/hugetlb.scc
- create mode 100644 meta/cfg/kernel-cache/features/igb/igb.cfg
- create mode 100644 meta/cfg/kernel-cache/features/igb/igb.scc
- create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
- create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc
- create mode 100644 meta/cfg/kernel-cache/features/ixgbe/ixgbe.cfg
- create mode 100644 meta/cfg/kernel-cache/features/ixgbe/ixgbe.scc
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ meta/cfg/kernel-cache/features/uio/uio.cfg |    1 +
+ meta/cfg/kernel-cache/features/uio/uio.scc |    1 +
+ 2 files changed, 2 insertions(+), 0 deletions(-)
  create mode 100644 meta/cfg/kernel-cache/features/uio/uio.cfg
  create mode 100644 meta/cfg/kernel-cache/features/uio/uio.scc
+
+diff --git a/meta/cfg/kernel-cache/features/uio/uio.cfg b/meta/cfg/kernel-cache/features/uio/uio.cfg
+new file mode 100644
+index 0000000..109e559
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/uio/uio.cfg
+@@ -0,0 +1 @@
++CONFIG_UIO=m
+diff --git a/meta/cfg/kernel-cache/features/uio/uio.scc b/meta/cfg/kernel-cache/features/uio/uio.scc
+new file mode 100644
+index 0000000..7d606c3
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/uio/uio.scc
+@@ -0,0 +1 @@
++kconf non-hardware uio.cfg
+-- 
+1.7.0.4
 
 
