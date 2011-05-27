@@ -1,25 +1,25 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 427664C80AAA
-	for <yocto@yoctoproject.org>; Fri, 27 May 2011 15:46:25 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 27 May 2011 13:46:25 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4A7B64C80A85
+	for <yocto@yoctoproject.org>; Fri, 27 May 2011 15:46:28 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 27 May 2011 13:46:27 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.65,282,1304319600"; 
-   d="scan'208";a="8744244"
+   d="scan'208";a="3127725"
 Received: from unknown (HELO localhost) ([10.255.12.115])
-	by fmsmga002.fm.intel.com with ESMTP; 27 May 2011 13:46:24 -0700
+	by azsmga001.ch.intel.com with ESMTP; 27 May 2011 13:46:26 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com, rahul.saxena@intel.com,
 	kishore.k.bodke@intel.com, yocto@yoctoproject.org
-Date: Fri, 27 May 2011 15:45:03 -0500
-Message-Id: <c48726a09b770d7164a476aaa5e2b2658c091b1f.1306509168.git.tom.zanussi@intel.com>
+Date: Fri, 27 May 2011 15:45:04 -0500
+Message-Id: <cddf6042091c8ba4df53915b87fe7c14e4c2dc70.1306509168.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <ea461ebf3e667c1607afd57abfc0db226bd4033e.1306509168.git.tom.zanussi@intel.com>
 References: <ea461ebf3e667c1607afd57abfc0db226bd4033e.1306509168.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1306509168.git.tom.zanussi@intel.com>
 References: <cover.1306509168.git.tom.zanussi@intel.com>
-Subject: [PATCH 09/14][KERNEL] meta: replace open-coded igb options with igb feature
+Subject: [PATCH 10/14][KERNEL] meta: add intel-e1xxxx feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,42 +31,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 May 2011 20:46:25 -0000
+X-List-Received-Date: Fri, 27 May 2011 20:46:28 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Have common-pc-64 use the igb feature, and remove the corresponding
-options in common-pc64.cfg.
+Add a general-purpose feature adding support for Intel PRO/100, Intel
+PRO/1000, and Intel PRO/1000 PCI-Express adapters.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../kernel-cache/bsp/common-pc-64/common-pc-64.cfg |    1 -
- .../kernel-cache/bsp/common-pc-64/common-pc-64.scc |    1 +
- 2 files changed, 1 insertions(+), 1 deletions(-)
+ .../features/intel-e1xxxx/intel-e1xxxx.cfg         |    4 ++++
+ .../features/intel-e1xxxx/intel-e1xxxx.scc         |    1 +
+ 2 files changed, 5 insertions(+), 0 deletions(-)
+ create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc
 
-diff --git a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.cfg b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.cfg
-index 4914266..05ad74b 100644
---- a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.cfg
-+++ b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.cfg
-@@ -47,7 +47,6 @@ CONFIG_BLK_DEV_FD=m
- CONFIG_NET_PCI=y
- CONFIG_MII=y
- CONFIG_TIGON3=y
--CONFIG_IGB=y
- # Enable the below for QEMU
- CONFIG_E100=y
- CONFIG_E1000E=y
-diff --git a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
-index e193206..4f0e4c6 100644
---- a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
-+++ b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
-@@ -2,5 +2,6 @@ kconf hardware common-pc-64.cfg
- kconf hardware common-pc-64-graphics.cfg
- 
- include features/hpet/hpet.scc
-+include features/igb/igb.scc
- include features/latencytop/latencytop.scc
- include features/profiling/profiling.scc
+diff --git a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
+new file mode 100644
+index 0000000..ea9f7e9
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
+@@ -0,0 +1,4 @@
++CONFIG_NETDEV_1000=y
++CONFIG_E100=y
++CONFIG_E1000E=y
++CONFIG_E1000=y
+diff --git a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc
+new file mode 100644
+index 0000000..90ba914
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc
+@@ -0,0 +1 @@
++kconf hardware intel-e1xxxx.cfg
 -- 
 1.7.0.4
 
