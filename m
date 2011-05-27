@@ -1,25 +1,25 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 750294C80AA5
-	for <yocto@yoctoproject.org>; Fri, 27 May 2011 15:46:30 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 27 May 2011 13:46:30 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 276254C80AB1
+	for <yocto@yoctoproject.org>; Fri, 27 May 2011 15:46:35 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 27 May 2011 13:46:34 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.65,282,1304319600"; 
-   d="scan'208";a="3127746"
+   d="scan'208";a="8744337"
 Received: from unknown (HELO localhost) ([10.255.12.115])
-	by azsmga001.ch.intel.com with ESMTP; 27 May 2011 13:46:29 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 27 May 2011 13:46:34 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com, rahul.saxena@intel.com,
 	kishore.k.bodke@intel.com, yocto@yoctoproject.org
-Date: Fri, 27 May 2011 15:45:05 -0500
-Message-Id: <b495738adb26d325ea82db409458cbfbbb89cfeb.1306509168.git.tom.zanussi@intel.com>
+Date: Fri, 27 May 2011 15:45:07 -0500
+Message-Id: <d0bd71fda367d2bff35b169c71547a541d70effc.1306509168.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <ea461ebf3e667c1607afd57abfc0db226bd4033e.1306509168.git.tom.zanussi@intel.com>
 References: <ea461ebf3e667c1607afd57abfc0db226bd4033e.1306509168.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1306509168.git.tom.zanussi@intel.com>
 References: <cover.1306509168.git.tom.zanussi@intel.com>
-Subject: [PATCH 11/14][KERNEL] meta: replace open-coded E1XXXX options with intel-e1xxxx feature
+Subject: [PATCH 13/14][KERNEL] meta: remove 'not set' lines from netfilter.cfg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,223 +31,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 May 2011 20:46:30 -0000
+X-List-Received-Date: Fri, 27 May 2011 20:46:35 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Have common-pc and common-pc-64 use the intel-e1xxxx feature, remove
-the corresponding options in common-pc64.cfg (including deletion of
-common-pc-net.cfg) and common-pc.cfg, and update bsps accordingly.
+The 'not set' lines override intentional config options and
+unintentionally turn them off.  Remove them to avoid this behavior.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../kernel-cache/bsp/common-pc-64/common-pc-64.cfg |    4 ----
- .../kernel-cache/bsp/common-pc-64/common-pc-64.scc |    2 ++
- .../kernel-cache/bsp/common-pc/common-pc-net.cfg   |    2 --
- meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg  |    1 -
- meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc  |    2 +-
- meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |    2 --
- meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |    2 --
- meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc      |    7 +++++--
- .../kernel-cache/bsp/jasperforest/jasperforest.cfg |    2 --
- .../kernel-cache/bsp/jasperforest/jasperforest.scc |    6 ++++--
- meta/cfg/kernel-cache/bsp/romley/romley.cfg        |    2 --
- meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg    |    2 --
- 12 files changed, 12 insertions(+), 22 deletions(-)
- delete mode 100644 meta/cfg/kernel-cache/bsp/common-pc/common-pc-net.cfg
+ .../kernel-cache/features/netfilter/netfilter.cfg  |   34 --------------------
+ 1 files changed, 0 insertions(+), 34 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.cfg b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.cfg
-index 05ad74b..d2d0e40 100644
---- a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.cfg
-+++ b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.cfg
-@@ -47,10 +47,6 @@ CONFIG_BLK_DEV_FD=m
- CONFIG_NET_PCI=y
- CONFIG_MII=y
- CONFIG_TIGON3=y
--# Enable the below for QEMU
--CONFIG_E100=y
--CONFIG_E1000E=y
--CONFIG_E1000=y
+diff --git a/meta/cfg/kernel-cache/features/netfilter/netfilter.cfg b/meta/cfg/kernel-cache/features/netfilter/netfilter.cfg
+index 1befe03..6b56e6b 100644
+--- a/meta/cfg/kernel-cache/features/netfilter/netfilter.cfg
++++ b/meta/cfg/kernel-cache/features/netfilter/netfilter.cfg
+@@ -1,5 +1,4 @@
+ CONFIG_NETFILTER=y
+-# CONFIG_NETFILTER_DEBUG is not set
+ CONFIG_NETFILTER_ADVANCED=y
  
- CONFIG_RTC_CLASS=y
- CONFIG_RTC_DRV_CMOS=y
-diff --git a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
-index 4f0e4c6..58dab18 100644
---- a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
-+++ b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
-@@ -3,5 +3,7 @@ kconf hardware common-pc-64-graphics.cfg
+ #
+@@ -11,8 +10,6 @@ CONFIG_NETFILTER_NETLINK_LOG=m
+ CONFIG_NF_CONNTRACK=m
+ CONFIG_NF_CT_ACCT=y
+ CONFIG_NF_CONNTRACK_MARK=y
+-# CONFIG_NF_CONNTRACK_EVENTS is not set
+-# CONFIG_NF_CT_PROTO_DCCP is not set
+ CONFIG_NF_CT_PROTO_GRE=m
+ CONFIG_NF_CT_PROTO_SCTP=m
+ CONFIG_NF_CT_PROTO_UDPLITE=m
+@@ -26,7 +23,6 @@ CONFIG_NF_CONNTRACK_SANE=m
+ CONFIG_NF_CONNTRACK_SIP=m
+ CONFIG_NF_CONNTRACK_TFTP=m
+ CONFIG_NF_CT_NETLINK=m
+-# CONFIG_NETFILTER_TPROXY is not set
+ CONFIG_NETFILTER_XTABLES=m
+ CONFIG_NETFILTER_XT_TARGET_CLASSIFY=m
+ CONFIG_NETFILTER_XT_TARGET_CONNMARK=m
+@@ -36,11 +32,8 @@ CONFIG_NETFILTER_XT_TARGET_MARK=m
+ CONFIG_NETFILTER_XT_TARGET_NFLOG=m
+ CONFIG_NETFILTER_XT_TARGET_NFQUEUE=m
+ CONFIG_NETFILTER_XT_TARGET_NOTRACK=m
+-# CONFIG_NETFILTER_XT_TARGET_RATEEST is not set
+ CONFIG_NETFILTER_XT_TARGET_TRACE=m
+ CONFIG_NETFILTER_XT_TARGET_TCPMSS=m
+-# CONFIG_NETFILTER_XT_TARGET_TCPOPTSTRIP is not set
+-# CONFIG_NETFILTER_XT_MATCH_CLUSTER is not set
+ CONFIG_NETFILTER_XT_MATCH_COMMENT=m
+ CONFIG_NETFILTER_XT_MATCH_CONNBYTES=m
+ CONFIG_NETFILTER_XT_MATCH_CONNLIMIT=m
+@@ -52,28 +45,21 @@ CONFIG_NETFILTER_XT_MATCH_ESP=m
+ CONFIG_NETFILTER_XT_MATCH_HASHLIMIT=m
+ CONFIG_NETFILTER_XT_MATCH_HELPER=m
+ CONFIG_NETFILTER_XT_MATCH_HL=m
+- CONFIG_NETFILTER_XT_MATCH_IPRANGE is not set
+ CONFIG_NETFILTER_XT_MATCH_LENGTH=m
+ CONFIG_NETFILTER_XT_MATCH_LIMIT=m
+ CONFIG_NETFILTER_XT_MATCH_MAC=m
+ CONFIG_NETFILTER_XT_MATCH_MARK=m
+ CONFIG_NETFILTER_XT_MATCH_MULTIPORT=m
+-# CONFIG_NETFILTER_XT_MATCH_OWNER is not set
+ CONFIG_NETFILTER_XT_MATCH_POLICY=m
+ CONFIG_NETFILTER_XT_MATCH_PKTTYPE=m
+ CONFIG_NETFILTER_XT_MATCH_QUOTA=m
+-# CONFIG_NETFILTER_XT_MATCH_RATEEST is not set
+ CONFIG_NETFILTER_XT_MATCH_REALM=m
+-# CONFIG_NETFILTER_XT_MATCH_RECENT is not set
+ CONFIG_NETFILTER_XT_MATCH_SCTP=m
+ CONFIG_NETFILTER_XT_MATCH_STATE=m
+ CONFIG_NETFILTER_XT_MATCH_STATISTIC=m
+ CONFIG_NETFILTER_XT_MATCH_STRING=m
+ CONFIG_NETFILTER_XT_MATCH_TCPMSS=m
+-# CONFIG_NETFILTER_XT_MATCH_TIME is not set
+ CONFIG_NETFILTER_XT_MATCH_U32=m
+-# CONFIG_NETFILTER_XT_MATCH_OSF is not set
+-# CONFIG_IP_VS is not set
  
- include features/hpet/hpet.scc
- include features/igb/igb.scc
-+include features/intel-e1xxxx/intel-e1xxxx.scc
-+
- include features/latencytop/latencytop.scc
- include features/profiling/profiling.scc
-diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-net.cfg b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-net.cfg
-deleted file mode 100644
-index 8e85b36..0000000
---- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-net.cfg
-+++ /dev/null
-@@ -1,2 +0,0 @@
--CONFIG_E1000=y
--CONFIG_E1000E=y
-diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg
-index d3a9fe5..1933963 100644
---- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg
-+++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg
-@@ -38,7 +38,6 @@ CONFIG_NET_PCI=y
- CONFIG_MII=y
+ #
+ # IP: Netfilter Configuration
+@@ -115,26 +101,6 @@ CONFIG_IP_NF_RAW=m
+ CONFIG_IP_NF_ARPTABLES=m
+ CONFIG_IP_NF_ARPFILTER=m
+ CONFIG_IP_NF_ARP_MANGLE=m
+-# CONFIG_IP_DCCP is not set
+-# CONFIG_IP_SCTP is not set
+-# CONFIG_RDS is not set
+-# CONFIG_TIPC is not set
+-# CONFIG_ATM is not set
+-# CONFIG_BRIDGE is not set
+-# CONFIG_NET_DSA is not set
+-# CONFIG_VLAN_8021Q is not set
+-# CONFIG_DECNET is not set
+-# CONFIG_LLC2 is not set
+-# CONFIG_IPX is not set
+-# CONFIG_ATALK is not set
+-# CONFIG_X25 is not set
+-# CONFIG_LAPB is not set
+-# CONFIG_ECONET is not set
+-# CONFIG_WAN_ROUTER is not set
+-# CONFIG_PHONET is not set
+-# CONFIG_IEEE802154 is not set
+-# CONFIG_NET_SCHED is not set
+ CONFIG_NET_CLS_ROUTE=y
+-# CONFIG_DCB is not set
  
- # Enable the below for Dell Dimension 1100 PC / QEMU
--CONFIG_E100=y
- CONFIG_TIGON3=y
- CONFIG_ATL2=y
- 
-diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
-index db8ba08..d7dda80 100644
---- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
-+++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
-@@ -1,6 +1,6 @@
- kconf hardware common-pc.cfg
- kconf hardware common-pc-gfx.cfg
--kconf hardware common-pc-net.cfg
- 
-+include features/intel-e1xxxx/intel-e1xxxx.scc
- include features/latencytop/latencytop.scc
- include features/profiling/profiling.scc
-diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
-index dde8412..5daa65b 100644
---- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
-+++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
-@@ -4,7 +4,6 @@ CONFIG_PRINTK=y
- 
- # Basic hardware support for the box - network, USB, PCI, sound
- CONFIG_NETDEVICES=y
--CONFIG_NETDEV_1000=y
- CONFIG_ATA=y
- CONFIG_ATA_GENERIC=y
- CONFIG_ATA_SFF=y
-@@ -14,7 +13,6 @@ CONFIG_MMC_SDHCI=y
- CONFIG_USB_SUPPORT=y
- CONFIG_USB=y
- CONFIG_USB_ARCH_HAS_EHCI=y
--CONFIG_E1000E=y
- CONFIG_R8169=y
- CONFIG_PATA_SCH=y
- CONFIG_MMC_SDHCI_PCI=y
-diff --git a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
-index a516dc9..9bc250c 100644
---- a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
-+++ b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
-@@ -3,7 +3,6 @@ CONFIG_PRINTK=y
- 
- # Basic hardware support for the box - network, USB, PCI, sound
- CONFIG_NETDEVICES=y
--CONFIG_NETDEV_1000=y
- CONFIG_ATA=y
- CONFIG_ATA_GENERIC=y
- CONFIG_ATA_SFF=y
-@@ -13,7 +12,6 @@ CONFIG_MMC_SDHCI=y
- CONFIG_USB_SUPPORT=y
- CONFIG_USB=y
- CONFIG_USB_ARCH_HAS_EHCI=y
--CONFIG_E1000E=y
- CONFIG_R8169=y
- CONFIG_PATA_SCH=y
- CONFIG_MMC_SDHCI_PCI=y
-diff --git a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
-index c59cff0..2a83303 100644
---- a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
-+++ b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
-@@ -2,8 +2,11 @@ kconf hardware emenlow.cfg
- 
- kconf non-hardware reboot-quirk.cfg 
- 
-+include features/intel-e1xxxx/intel-e1xxxx.scc
- include features/drm-psb/drm-psb.scc
--include features/latencytop/latencytop.scc
--include features/profiling/profiling.scc
- include features/serial/8250.scc
-+
- include features/logbuf/size-normal.scc
-+
-+include features/latencytop/latencytop.scc
-+include features/profiling/profiling.scc
-diff --git a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
-index e407992..b0f993b 100644
---- a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
-+++ b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
-@@ -2,7 +2,6 @@ CONFIG_PRINTK=y
- 
- # Basic hardware support for the box - network, USB, PCI, sound
- CONFIG_NETDEVICES=y
--CONFIG_NETDEV_1000=y
- CONFIG_ATA=y
- CONFIG_ATA_GENERIC=y
- CONFIG_ATA_SFF=y
-@@ -12,7 +11,6 @@ CONFIG_MMC_SDHCI=y
- CONFIG_USB_SUPPORT=y
- CONFIG_USB=y
- CONFIG_USB_ARCH_HAS_EHCI=y
--CONFIG_E1000E=y
- CONFIG_R8169=y
- CONFIG_PATA_SCH=y
- CONFIG_MMC_SDHCI_PCI=y
-diff --git a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc
-index 34d208c..9e5ca8d 100644
---- a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc
-+++ b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc
-@@ -1,6 +1,8 @@
- kconf hardware jasperforest.cfg
- 
--include features/latencytop/latencytop.scc
--include features/profiling/profiling.scc
- include features/serial/8250.scc
-+
- include features/logbuf/size-normal.scc
-+
-+include features/latencytop/latencytop.scc
-+include features/profiling/profiling.scc
-diff --git a/meta/cfg/kernel-cache/bsp/romley/romley.cfg b/meta/cfg/kernel-cache/bsp/romley/romley.cfg
-index 61e5506..3dbc0f3 100644
---- a/meta/cfg/kernel-cache/bsp/romley/romley.cfg
-+++ b/meta/cfg/kernel-cache/bsp/romley/romley.cfg
-@@ -2,7 +2,6 @@ CONFIG_PRINTK=y
- 
- # Basic hardware support for the box - network, USB, PCI, sound
- CONFIG_NETDEVICES=y
--CONFIG_NETDEV_1000=y
- CONFIG_ATA=y
- CONFIG_ATA_GENERIC=y
- CONFIG_ATA_SFF=y
-@@ -12,7 +11,6 @@ CONFIG_MMC_SDHCI=y
- CONFIG_USB_SUPPORT=y
- CONFIG_USB=y
- CONFIG_USB_ARCH_HAS_EHCI=y
--CONFIG_E1000E=y
- CONFIG_R8169=y
- CONFIG_PATA_SCH=y
- CONFIG_MMC_SDHCI_PCI=y
-diff --git a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg
-index 61e5506..3dbc0f3 100644
---- a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg
-+++ b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg
-@@ -2,7 +2,6 @@ CONFIG_PRINTK=y
- 
- # Basic hardware support for the box - network, USB, PCI, sound
- CONFIG_NETDEVICES=y
--CONFIG_NETDEV_1000=y
- CONFIG_ATA=y
- CONFIG_ATA_GENERIC=y
- CONFIG_ATA_SFF=y
-@@ -12,7 +11,6 @@ CONFIG_MMC_SDHCI=y
- CONFIG_USB_SUPPORT=y
- CONFIG_USB=y
- CONFIG_USB_ARCH_HAS_EHCI=y
--CONFIG_E1000E=y
- CONFIG_R8169=y
- CONFIG_PATA_SCH=y
- CONFIG_MMC_SDHCI_PCI=y
+ CONFIG_NET_SCHED=y
 -- 
 1.7.0.4
 
