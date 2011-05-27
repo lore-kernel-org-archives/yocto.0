@@ -1,25 +1,26 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id AC1E94C800E0
-	for <yocto@yoctoproject.org>; Fri, 27 May 2011 17:00:29 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 27 May 2011 15:00:29 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 7538F4C80889
+	for <yocto@yoctoproject.org>; Fri, 27 May 2011 17:02:13 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 27 May 2011 15:02:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,282,1304319600"; d="scan'208";a="10137544"
+X-IronPort-AV: E=Sophos;i="4.65,282,1304319600"; 
+   d="scan'208";a="8767896"
 Received: from unknown (HELO [10.255.12.115]) ([10.255.12.115])
-	by fmsmga001.fm.intel.com with ESMTP; 27 May 2011 15:00:28 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 27 May 2011 15:02:12 -0700
 From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Hart, Darren" <darren.hart@intel.com>
-In-Reply-To: <4DE01B2A.9040008@intel.com>
-References: <ea461ebf3e667c1607afd57abfc0db226bd4033e.1306509168.git.tom.zanussi@intel.com>
-	<cddf6042091c8ba4df53915b87fe7c14e4c2dc70.1306509168.git.tom.zanussi@intel.com>
-	<4DE01B2A.9040008@intel.com>
-Date: Fri, 27 May 2011 16:59:38 -0500
-Message-ID: <1306533578.23639.14.camel@elmorro>
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4DE01DD3.80506@linux.intel.com>
+References: <cover.1306420608.git.tom.zanussi@intel.com>
+	<f113449eb132df7c8a4c45ad8719ecc3ec84a6b5.1306420608.git.tom.zanussi@intel.com>
+	<4DE01DD3.80506@linux.intel.com>
+Date: Fri, 27 May 2011 17:01:22 -0500
+Message-ID: <1306533682.23639.18.camel@elmorro>
 Mime-Version: 1.0
 X-Mailer: Evolution 2.28.3 
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 10/14][KERNEL] meta: add intel-e1xxxx feature
+Subject: Re: [PATCH 1/1] meta-intel: fix BBFILE_COLLECTIONS overrides
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,25 +32,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 May 2011 22:00:39 -0000
+X-List-Received-Date: Fri, 27 May 2011 22:02:13 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2011-05-27 at 14:44 -0700, Hart, Darren wrote:
-> On 05/27/2011 01:45 PM, tom.zanussi@intel.com wrote:
+On Fri, 2011-05-27 at 14:55 -0700, Darren Hart wrote:
+> 
+> On 05/26/2011 08:40 AM, tom.zanussi@intel.com wrote:
 > > From: Tom Zanussi <tom.zanussi@intel.com>
 > > 
-> > Add a general-purpose feature adding support for Intel PRO/100, Intel
-> > PRO/1000, and Intel PRO/1000 PCI-Express adapters.
+> > Several BBFILE_COLLECTIONS assignments in the layer.confs for these
+> > meta-intel layers added unwanted machine overrides, resulting in
+> > truncated values for this variable - remove them.
 > 
-> I noticed some things have been added as modules while others are
-> configured in. What is your criteria for determining module versus
-> compiled in?
+> Why the difference between crownbay and the other BSPs? Crownbay uses
+> _append.
 > 
 
-In general, modules.  I actually had these as modules but then ran into
-bug #xxx, where modules won't load on boot, so had to make them Y again
-to avoid the regression.
+The crownbay has two BBFILE_COLLECTIONS in the same file, one for
+crownbay and one for crownbay-noemgd.  The conditional append allows
+them to be selected based on the machine selected.
 
 Tom
 
@@ -59,30 +61,65 @@ Tom
 > > 
 > > Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 > > ---
-> >  .../features/intel-e1xxxx/intel-e1xxxx.cfg         |    4 ++++
-> >  .../features/intel-e1xxxx/intel-e1xxxx.scc         |    1 +
-> >  2 files changed, 5 insertions(+), 0 deletions(-)
-> >  create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
-> >  create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc
+> >  meta-crownbay/conf/layer.conf     |    4 ++--
+> >  meta-fishriver/conf/layer.conf    |    2 +-
+> >  meta-jasperforest/conf/layer.conf |    2 +-
+> >  meta-sugarbay/conf/layer.conf     |    2 +-
+> >  4 files changed, 5 insertions(+), 5 deletions(-)
 > > 
-> > diff --git a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
-> > new file mode 100644
-> > index 0000000..ea9f7e9
-> > --- /dev/null
-> > +++ b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
-> > @@ -0,0 +1,4 @@
-> > +CONFIG_NETDEV_1000=y
-> > +CONFIG_E100=y
-> > +CONFIG_E1000E=y
-> > +CONFIG_E1000=y
-> > diff --git a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc
-> > new file mode 100644
-> > index 0000000..90ba914
-> > --- /dev/null
-> > +++ b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc
-> > @@ -0,0 +1 @@
-> > +kconf hardware intel-e1xxxx.cfg
-> 
+> > diff --git a/meta-crownbay/conf/layer.conf b/meta-crownbay/conf/layer.conf
+> > index cee4ba2..d15579d 100644
+> > --- a/meta-crownbay/conf/layer.conf
+> > +++ b/meta-crownbay/conf/layer.conf
+> > @@ -5,10 +5,10 @@ BBPATH := "${BBPATH}:${LAYERDIR}"
+> >  BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
+> >  
+> > -BBFILE_COLLECTIONS_crownbay += "crownbay"
+> > +BBFILE_COLLECTIONS_append_crownbay += "crownbay"
+> >  BBFILE_PATTERN_crownbay := "^${LAYERDIR}/"
+> >  BBFILE_PRIORITY_crownbay = "6"
+> >  
+> > -BBFILE_COLLECTIONS_crownbay-noemgd += "crownbay-noemgd"
+> > +BBFILE_COLLECTIONS_append_crownbay-noemgd += "crownbay-noemgd"
+> >  BBFILE_PATTERN_crownbay-noemgd := "^${LAYERDIR}/"
+> >  BBFILE_PRIORITY_crownbay-noemgd = "6"
+> > diff --git a/meta-fishriver/conf/layer.conf b/meta-fishriver/conf/layer.conf
+> > index 595bbe3..9162b5e 100644
+> > --- a/meta-fishriver/conf/layer.conf
+> > +++ b/meta-fishriver/conf/layer.conf
+> > @@ -5,6 +5,6 @@ BBPATH := "${BBPATH}:${LAYERDIR}"
+> >  BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
+> >  
+> > -BBFILE_COLLECTIONS_fishriver += "fishriver"
+> > +BBFILE_COLLECTIONS += "fishriver"
+> >  BBFILE_PATTERN_fishriver := "^${LAYERDIR}/"
+> >  BBFILE_PRIORITY_fishriver = "6"
+> > diff --git a/meta-jasperforest/conf/layer.conf b/meta-jasperforest/conf/layer.conf
+> > index 564bb1d..8125659 100644
+> > --- a/meta-jasperforest/conf/layer.conf
+> > +++ b/meta-jasperforest/conf/layer.conf
+> > @@ -7,6 +7,6 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+> >  	${LAYERDIR}/../common/recipes-*/*/*.bb \
+> >  	${LAYERDIR}/../common/recipes-*/*/*.bbappend"
+> >  
+> > -BBFILE_COLLECTIONS_jasperforest += "jasperforest"
+> > +BBFILE_COLLECTIONS += "jasperforest"
+> >  BBFILE_PATTERN_jasperforest := "^${LAYERDIR}/"
+> >  BBFILE_PRIORITY_jasperforest = "6"
+> > diff --git a/meta-sugarbay/conf/layer.conf b/meta-sugarbay/conf/layer.conf
+> > index e23d123..d5f78e1 100644
+> > --- a/meta-sugarbay/conf/layer.conf
+> > +++ b/meta-sugarbay/conf/layer.conf
+> > @@ -7,6 +7,6 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+> >  	${LAYERDIR}/../common/recipes-*/*/*.bb \
+> >  	${LAYERDIR}/../common/recipes-*/*/*.bbappend"
+> >  
+> > -BBFILE_COLLECTIONS_sugarbay += "sugarbay"
+> > +BBFILE_COLLECTIONS += "sugarbay"
+> >  BBFILE_PATTERN_sugarbay := "^${LAYERDIR}/"
+> >  BBFILE_PRIORITY_sugarbay = "6"
 > 
 
 
