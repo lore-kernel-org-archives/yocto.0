@@ -1,28 +1,27 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 284034C80889
-	for <yocto@yoctoproject.org>; Fri, 27 May 2011 17:37:19 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 27 May 2011 15:37:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,283,1304319600"; 
-   d="scan'208";a="6041087"
-Received: from unknown (HELO [10.255.12.115]) ([10.255.12.115])
-	by orsmga001.jf.intel.com with ESMTP; 27 May 2011 15:37:17 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Jeremy Puhlman <jpuhlman@gmail.com>
-In-Reply-To: <4DE0234A.2070808@gmail.com>
-References: <cover.1306420608.git.tom.zanussi@intel.com>
-	<f113449eb132df7c8a4c45ad8719ecc3ec84a6b5.1306420608.git.tom.zanussi@intel.com>
-	<4DE01DD3.80506@linux.intel.com> <1306533682.23639.18.camel@elmorro>
-	<4DE0234A.2070808@gmail.com>
-Date: Fri, 27 May 2011 17:36:27 -0500
-Message-ID: <1306535787.23639.25.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>
-Subject: Re: [PATCH 1/1] meta-intel: fix BBFILE_COLLECTIONS overrides
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 1BB2C4C8043A
+	for <yocto@yoctoproject.org>; Fri, 27 May 2011 19:16:33 -0500 (CDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p4S0GVFX004279
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 27 May 2011 17:16:31 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.20.232) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Fri, 27 May 2011 17:16:31 -0700
+Message-ID: <4DE03EDC.80901@windriver.com>
+Date: Fri, 27 May 2011 20:16:28 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.17) Gecko/20110414 Thunderbird/3.1.10
+MIME-Version: 1.0
+To: Tom Zanussi <tom.zanussi@intel.com>
+References: <cover.1306514719.git.tom.zanussi@intel.com>	
+	<3ef38d9b80ebc7b23fa9a1c6712d688e6f2f5f86.1306514719.git.tom.zanussi@intel.com>	
+	<4DE012C7.7000804@windriver.com> <1306531180.23639.4.camel@elmorro>
+In-Reply-To: <1306531180.23639.4.camel@elmorro>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 3/3] ahci: AHCI mode SATA patch for Intel Patsburg SATA RAID controller
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,41 +33,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 May 2011 22:37:19 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Sat, 28 May 2011 00:16:33 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2011-05-27 at 15:18 -0700, Jeremy Puhlman wrote:
-> > The crownbay has two BBFILE_COLLECTIONS in the same file, one for
-> > crownbay and one for crownbay-noemgd.  The conditional append allows
-> > them to be selected based on the machine selected.
-> 
-> The BBFILE_COLLECTIONS var basically give you a hook so you can find:
-> 
-> BBFILE_PATTERN_<value set in BBFILE_COLLECTIONS>
-> BBFILE_PRIORITY_<value set in BBFILE_COLLECTIONS>
-> 
-> 
-> While it certainly is true you could have different sets, for different
-> machines, you set those subsequent values identically. At the moment
-> there appears to be no need unless your using the value in some other
-> manner else where. FWIW it probably doesn't matter either way, but it
-> doesn't appear to be needed by the way you are configuring it.
-> 
+On 11-05-27 5:19 PM, Tom Zanussi wrote:
+> On Fri, 2011-05-27 at 14:08 -0700, Bruce Ashfield wrote:
+>> On 11-05-27 04:46 PM, tom.zanussi@intel.com wrote:
+>>> From: Seth Heasley
+>>>
+>>> commit 64a3903d0885879ba8706a8bcf71c5e3e7664db2 upstream
+>>>
+>>> This patch adds an updated SATA RAID DeviceID for the Intel Patsburg PCH.
+>>
+>> Looks like we already had this one in the 2.6.37 tree
+>> via gregkh and -stable
+>>
+>>   >  git tag --contains 5618c45b
+>> v2.6.37.5
+>> v2.6.37.6
+>>
+>> And hence the base yocto/standard/common-pc-64/romley
+>> bsp branch.
+>>
+>> So I won't do anything with this in particular. It is
+>> interesting though how it applied in your tree. Do you
+>> have all the -stable updates ?
+>>
+>> I checked and it doesn't look like I've been hoarding
+>> them, but you never know.
+>>
+>
+> Hmm, yeah, it did apply (checked the build dir for the other changes),
+> but not sure why I didn't get rejects.  My kernel is a little over a
+> week old, but it does have the .5 stable:
 
-Yeah, you're right - it probably isn't necessary, though not broken
-either.
+It actually has .6 and certain people (*cough*) didn't push
+the tags. I'll fix that tonight.
 
-Another thing to put on my list of cleanups for meta-intel that I never
-seem to get to...
+git has a way of managing to apply changes and do the right
+thing. I've double checked, and I do see the change in the
+branches waiting for us, so we'll go with that until proven
+otherwise.
 
-Thanks for your comments,
+Cheers,
 
-Tom
+Bruce
 
-> Jeremy Puhlman
-> Montavista Sofware, LLC.
-> 
-
+>
+> $ git tag --contains 5618c45b
+> v2.6.37.5
+>
+> Tom
+>
+>> Bruce
+>>
+>>>
+>>> Signed-off-by: Seth Heasley
+>>> Signed-off-by: Jeff Garzik
+>>> Integrated-by: Tom Zanussi
+>>> ---
+>>>    drivers/ata/ahci.c |    1 +
+>>>    1 files changed, 1 insertions(+), 0 deletions(-)
+>>>
+>>> diff --git a/drivers/ata/ahci.c b/drivers/ata/ahci.c
+>>> index 3288263..dfc0a26 100644
+>>> --- a/drivers/ata/ahci.c
+>>> +++ b/drivers/ata/ahci.c
+>>> @@ -260,6 +260,7 @@ static const struct pci_device_id ahci_pci_tbl[] = {
+>>>    	{ PCI_VDEVICE(INTEL, 0x1d02), board_ahci }, /* PBG AHCI */
+>>>    	{ PCI_VDEVICE(INTEL, 0x1d04), board_ahci }, /* PBG RAID */
+>>>    	{ PCI_VDEVICE(INTEL, 0x1d06), board_ahci }, /* PBG RAID */
+>>> +	{ PCI_VDEVICE(INTEL, 0x2826), board_ahci }, /* PBG RAID */
+>>>
+>>>    	/* JMicron 360/1/3/5/6, match class to avoid IDE function */
+>>>    	{ PCI_VENDOR_ID_JMICRON, PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
+>>
+>
+>
 
 
