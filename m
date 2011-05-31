@@ -1,26 +1,23 @@
-Return-Path: <darren.hart@intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8903F4C80228
-	for <yocto@yoctoproject.org>; Sat, 28 May 2011 00:14:11 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 27 May 2011 22:14:11 -0700
+	by mx1.pokylinux.org (Postfix) with ESMTP id 0D8E84C80334
+	for <yocto@yoctoproject.org>; Tue, 31 May 2011 03:44:45 -0500 (CDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 31 May 2011 01:44:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,284,1304319600"; 
-   d="scan'208";a="8845772"
-Received: from unknown (HELO [10.255.12.245]) ([10.255.12.245])
-	by fmsmga002.fm.intel.com with ESMTP; 27 May 2011 22:14:10 -0700
-Message-ID: <4DE084A3.40109@intel.com>
-Date: Fri, 27 May 2011 22:14:11 -0700
-From: Darren Hart <darren.hart@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
+X-IronPort-AV: E=Sophos;i="4.65,296,1304319600"; d="scan'208";a="11216274"
+Received: from unknown (HELO helios.localnet) ([10.255.13.73])
+	by fmsmga001.fm.intel.com with ESMTP; 31 May 2011 01:44:43 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 31 May 2011 09:44:42 +0100
+User-Agent: KMail/1.13.6 (Linux/2.6.38-8-generic-pae; KDE/4.6.2; i686; ; )
+References: <87C8C51E47F55D47ABF9BB39687792ED41FA2C@POCITMSEXMB01.LntUniverse.com>
+	<4ED62A07621E9C41B8CB2F608655EF45F5C1@POCITMSEXMB01.LntUniverse.com>
+In-Reply-To: <4ED62A07621E9C41B8CB2F608655EF45F5C1@POCITMSEXMB01.LntUniverse.com>
 MIME-Version: 1.0
-To: "Zanussi, Tom" <tom.zanussi@intel.com>
-References: <cover.1306514719.git.tom.zanussi@intel.com>	
-	<4DE066D4.2030308@intel.com> <1306552807.23639.33.camel@elmorro>
-In-Reply-To: <1306552807.23639.33.camel@elmorro>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/3][KERNEL] base patches needed for romley
+Message-Id: <201105310944.42555.paul.eggleton@linux.intel.com>
+Subject: Re: FW: Problem to generate u-boot image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,113 +29,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 28 May 2011 05:14:11 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 31 May 2011 08:44:45 -0000
+Content-Type: Text/Plain;
+  charset="iso-8859-15"
 Content-Transfer-Encoding: 7bit
 
-On 05/27/2011 08:20 PM, Zanussi, Tom wrote:
-> On Fri, 2011-05-27 at 20:07 -0700, Hart, Darren wrote:
->> On 05/27/2011 01:45 PM, tom.zanussi@intel.com wrote:
->>> From: Tom Zanussi <tom.zanussi@intel.com>
->>>
->>> These upstreamed post-2.6.37 patches are needed by the romley BSP
->>> for 2.6.37.
->>>
->>> Note that I've removed the e-mail addresses from these posted patches,
->>> but the git branch retains them.
->>
->> I understand the reason, but this should no longer be necessary. The new
->> send-pull-request script only matches on "^Signed-off-by" and
->> "^[Cc][Cc]:", and you can do a dry run by answering "no" when prompted
->> and you can see where it would try and send the patches. If you notice
->> that a commit adding patches to recipe pulls in emails included in the
->> patches, PLEASE let me know. This should no longer be the case.
->>
-> 
-> I didn't try that, just decided I didn't want to risk it, but did try it
-> now and get:
-> 
-> Send this email? ([y]es|[n]o|[q]uit|[a]ll): n
-> (mbox) Adding cc: Seth Heasley from line 'From: Seth Heasley'
-> (body) Adding cc: Seth Heasley from line 'Signed-off-by: Seth Heasley'
-> (body) Adding cc: Jeff Garzik from line 'Signed-off-by: Jeff Garzik'
+On Friday 27 May 2011 09:17:45 Nikhil Kamath wrote:
+> $ bitbake u-boot_git
 
+When specifying a target for bitbake you can't include the version (the 
+underscore _ and everything after it). Poky will take care of selecting the 
+version for you; in this case there is only one. So you should run the 
+following instead:
 
-Ah... that's really unfortunate. I fixed our script from harvesting
-those, but git send-email still picks them out :-(
+$ bitbake u-boot
 
-Thanks for testing and confirming the behavior.
+FYI for future reference if you do have multiple version choices and want to 
+force one of them to be selected that is not the default, you need to add this 
+somewhere (initially local.conf, but it may become part of your custom distro 
+if you later create one):
 
---
-Darren
+PREFERRED_VERSION_packagename = "1.0"
 
-> Use of uninitialized value $cc in string eq at /usr/lib/git-core/git-send-email line 842.
-> Use of uninitialized value $cc in string eq at /usr/lib/git-core/git-send-email line 842.
-> Use of uninitialized value $cc in string eq at /usr/lib/git-core/git-send-email line 842.
-> Use of uninitialized value $cc in string eq at /usr/lib/git-core/git-send-email line 842.
-> Use of uninitialized value $cc in string eq at /usr/lib/git-core/git-send-email line 842.
-> Use of uninitialized value $cc in string eq at /usr/lib/git-core/git-send-email line 842.
-> Use of uninitialized value $cc in string eq at /usr/lib/git-core/git-send-email line 842.
-> Use of uninitialized value $cc in string eq at /usr/lib/git-core/git-send-email line 842.
-> Use of uninitialized value $cc in string eq at /usr/lib/git-core/git-send-email line 842.
-> Use of uninitialized value $cc in string eq at /usr/lib/git-core/git-send-email line 842.
-> Use of uninitialized value $cc in string eq at /usr/lib/git-core/git-send-email line 842.
-> Use of uninitialized value $cc in string eq at /usr/lib/git-core/git-send-email line 842.
-> W: unable to extract a valid address from: Seth Heasley
-> W: unable to extract a valid address from: Seth Heasley
-> W: unable to extract a valid address from: Jeff Garzik
-> W: unable to extract a valid address from: Seth Heasley
-> W: unable to extract a valid address from: Seth Heasley
-> W: unable to extract a valid address from: Jeff Garzik
-> 
-> It looks like it is trying to cc the e-mails in the patch, or am I
-> reading that wrong?
-> 
-> The poky/master commit I'm using is:
-> 
-> 1169f1b066d0028bd2ef7915440450bd42ef165e
-> 
-> Tom
-> 
->> --
->> Darren
->>
->>>
->>> Please pull into linux-yocto-2.6.37.
->>>
->>> Thanks,
->>>
->>> Tom
->>>
->>> Pull URL: git://git.yoctoproject.org/linux-yocto-2.6.37-contrib
->>>   Branch: tzanussi/romley-new-options-and-refactor-base
->>>   Browse: http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/romley-new-options-and-refactor-base
->>>
->>> Greg Rose (1):
->>>   Remove extra struct page member from the buffer info structure
->>>
->>> Seth Heasley (2):
->>>   x86/PCI: irq and pci_ids patch for Intel Patsburg
->>>   ahci: AHCI mode SATA patch for Intel Patsburg SATA RAID controller
->>>
->>>  arch/x86/pci/irq.c        |    3 ++-
->>>  drivers/ata/ahci.c        |    1 +
->>>  drivers/net/igbvf/igbvf.h |    1 -
->>>  include/linux/pci_ids.h   |    3 ++-
->>>  4 files changed, 5 insertions(+), 3 deletions(-)
->>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
-> 
-> 
+(Assuming packagename is the name of the package and 1.0 is the version you 
+want to select.)
 
+Cheers,
+Paul
 
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
