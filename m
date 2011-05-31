@@ -1,30 +1,26 @@
-Return-Path: <julie.n.fleischer@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id EE0D34C804FF
-	for <yocto@yoctoproject.org>; Tue, 31 May 2011 10:48:07 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 31 May 2011 08:48:07 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 45E6F4C804EF
+	for <yocto@yoctoproject.org>; Tue, 31 May 2011 18:10:45 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 31 May 2011 16:10:44 -0700
 X-ExtLoop1: 1
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by orsmga002.jf.intel.com with ESMTP; 31 May 2011 08:48:07 -0700
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 31 May 2011 08:48:07 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.114]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.209]) with mapi id
-	14.01.0289.001; Tue, 31 May 2011 08:48:06 -0700
-From: "Fleischer, Julie N" <julie.n.fleischer@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto Technical Team meeting minutes from May 31st
-Thread-Index: AQHMH6ohBjHverCN4E2iuuqaf9y3NA==
-Date: Tue, 31 May 2011 15:48:06 +0000
-Message-ID: <68002A430AC0584FB0A5391B435E93A902FB28@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.9.131.214]
+X-IronPort-AV: E=Sophos;i="4.65,299,1304319600"; 
+   d="scan'208";a="4845631"
+Received: from unknown (HELO [10.255.12.168]) ([10.255.12.168])
+	by azsmga001.ch.intel.com with ESMTP; 31 May 2011 16:10:24 -0700
+Message-ID: <4DE5755F.1080801@linux.intel.com>
+Date: Tue, 31 May 2011 16:10:23 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
 MIME-Version: 1.0
-Subject: Yocto Technical Team meeting minutes from May 31st
+To: "Xu, Jiajun" <jiajun.xu@intel.com>
+References: <D5AB6E638E5A3E4B8F4406B113A5A19A5262D035@shsmsx501.ccr.corp.intel.com>
+In-Reply-To: <D5AB6E638E5A3E4B8F4406B113A5A19A5262D035@shsmsx501.ccr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"poky@pokylinux.org" <poky@pokylinux.org>
+Subject: Re: Weekly Test Report for Yocto 1.1 M1 RC2 - 20110528
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,38 +32,1050 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 May 2011 15:48:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 31 May 2011 23:10:45 -0000
+Content-Type: text/plain; charset=GB2312
+Content-Transfer-Encoding: 8bit
 
-Attendees:  Saul, Darren, Paul, Jeff P, Richard, Jessica, Song, Dennis, Tom=
-, Julie, Jefro, Mark, Bruce
+On 05/31/2011 08:41 AM, Xu, Jiajun wrote:
+> Hi all,
+> 
+>        This is the weekly test report for Yocto 1.1 M1 RC2 build. There
+> is no new bugs found in this testing. 3 BLOCK issues found in RC1 are
+> fixed. The only one block issue is beagleboard build failed on
+> autobuilder.
 
-Agenda:
-1) Review Yocto 1.1 Release Criteria
-See details at:  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.1_Rele=
-ase_Criteria=20
-Julie/Song:  Ask Jiajun which distros he is testing against.
-Julie/Song:  Add tests for N+1 of Fedora and Ubuntu to our M2, M3, M4 relea=
-se criteria.
+I didn't see any bugs opened against Beagleboard mentioned below (nor
+via a bugzilla query). Are there bugs opened against these build failures?
 
-2) Discuss M1 1.1 Release Status
-RC2 was available on Sunday, May 29th.  Team will have a Go/No-Go meeting o=
-n June 7th during the Technical Team meeting.
+Thanks,
+--
+Darren
 
-3) Discuss M2 1.1 Scope=20
-Song is leading a meeting to discuss M2 1.1 scope with maintainers.
+> There are still 9 old open bugs. Grub installation fail on
+> 3 intel BSPs. Graphics testing on sugarbay is blocked.
+> 
+>        For bug fixing, the keyboard not work issue and toolchain not
+> built out issue are fixed. Meanwhile, the cvs compile issue is marked as
+> INVALID because it also fails on native. We also remove sudoku-savant
+> compile test in qemu because such error may be caused by limited memory
+> in qemu.
+> 
+>        If there is no new build for M1, QA will continue fullpass
+> testing against RC2.
+> 
+>  
+> 
+> *Test Summary*
+> 
+> *---------------------------------------*
+> 
+> 					
+> 									
+> 													
+> 																
+> 																				
+> 
+> *Test Result Summary*
+> 
+> 	
+> 
+>  
+> 
+> *Component*
+> 
+> 	
+> 
+> *Target*
+> 
+> 	
+> 
+> *Status*
+> 
+> 	
+> 
+> *Comments*
+> 
+> 	
+> 
+>  
+> 
+> *BSP*
+> 
+> 	
+> 
+> SugarBay
+> 
+> 	
+> 
+> GOOD
+> 
+> 	
+> 
+> Graphics testing is blocked; soft keyboard will be triggered with
+> terminal icon;
+> 
+> 	
+> 
+>  
+> 
+> 　
+> 
+> 	
+> 
+> CrownBay
+> 
+> 	
+> 
+> GOOD
+> 
+> 	
+> 
+> Grub installation failed;
+> 
+> 	
+> 
+>  
+> 
+> 　
+> 
+> 	
+> 
+> JasperForest
+> 
+> 	
+> 
+> GOOD
+> 
+> 	
+> 
+> Everything runs well
+> 
+> 	
+> 
+>  
+> 
+> 　
+> 
+> 	
+> 
+> Blacksand
+> 
+> 	
+> 
+> GOOD
+> 
+> 	
+> 
+> Grub installation failed; S3 does not work;
+> 
+> 	
+> 
+>  
+> 
+> 　
+> 
+> 	
+> 
+> eMenlow
+> 
+> 	
+> 
+> GOOD
+> 
+> 	
+> 
+> System installation failed; S3 does not work;
+> 
+> 	
+> 
+>  
+> 
+> 　
+> 
+> 	
+> 
+> Beagleboard
+> 
+> 	
+> 
+> BLOCK
+> 
+> 	
+> 
+> Build failed
+> 
+> 	
+> 
+>  
+> 
+> 　
+> 
+> 	
+> 
+> Routerstationpro
+> 
+> 	
+> 
+> GOOD
+> 
+> 	
+> 
+> Everything runs well
+> 
+> 	
+> 
+>  
+> 
+> 　
+> 
+> 	
+> 
+> Mpc8315e-rdb
+> 
+> 	
+> 
+> GOOD
+> 
+> 	
+> 
+> Everything runs well
+> 
+> 	
+> 
+>  
+> 
+> *QEMU*
+> 
+> 	
+> 
+> qemux86
+> 
+> 	
+> 
+> GOOD
+> 
+> 	
+> 
+> Everything runs well
+> 
+> 	
+> 
+>  
+> 
+> 　
+> 
+> 	
+> 
+> qemux86-64
+> 
+> 	
+> 
+> GOOD
+> 
+> 	
+> 
+> Everything runs well
+> 
+> 	
+> 
+>  
+> 
+> 　
+> 
+> 	
+> 
+> qemuarm
+> 
+> 	
+> 
+> GOOD
+> 
+> 	
+> 
+> Everything runs well
+> 
+> 	
+> 
+>  
+> 
+> 　
+> 
+> 	
+> 
+> qemuppc
+> 
+> 	
+> 
+> GOOD
+> 
+> 	
+> 
+> unfs does not work with qemuppc
+> 
+> 	
+> 
+>  
+> 
+> 　
+> 
+> 	
+> 
+> qemumips
+> 
+> 	
+> 
+> GOOD
+> 
+> 	
+> 
+> Everything runs well
+> 
+> 	
+> 
+>  
+> 
+> *ADT*
+> 
+> 	
+> 
+> 　
+> 
+> 	
+> 
+> Buggy
+> 
+> 	
+> 
+> unfs does not work with qemuppc
+> 
+> 	
+> 
+>  
+> 
+> 																								
+> 
+> * *
+> 
+> 　
+> 
+> 	
+> 
+> Critical bugs, more than 50% test cases are blocked
+> 
+> 	
+> 
+>  
+> 
+> 　
+> 
+> 	
+> 
+> Only Normal, Minor or Enhancement bugs, less than 10% test cases failed
+> 
+> 	
+> 
+>  
+> 
+> 　
+> 
+> 	
+> 
+> Normal, Major and Critical bugs, more than 10% test cases failed
+> 
+> 	
+> 
+>  
+> 
+> 							
+> 
+> *Detailed Test Result for each component*
+> 
+> 	
+> 
+>  
+> 
+> *Target*
+> 
+> 	
+> 
+> *Total TCs***
+> 
+> 	
+> 
+> *Not Run*
+> 
+> 	
+> 
+> *Passed***
+> 
+> 	
+> 
+> *Failed***
+> 
+> 	
+> 
+> *Not testable (Blocked)***
+> 
+> 	
+> 
+>  
+> 
+> *Sugarbay Sato-SDK*
+> 
+> 	
+> 
+> 55
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 53
+> 
+> 	
+> 
+> 1 (bug 1101)
+> 
+> 	
+> 
+> 1 (bug 1112)
+> 
+> 	
+> 
+>  
+> 
+> *Crownbay Sato-SDK*
+> 
+> 	
+> 
+> 54
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 49
+> 
+> 	
+> 
+> 1 (bug 1099)
+> 
+> 	
+> 
+> 4
+> 
+> 	
+> 
+>  
+> 
+> *Jasperforest LSB-SDK*
+> 
+> 	
+> 
+> 31
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 31
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+>  
+> 
+> *n450 Sato-SDK*
+> 
+> 	
+> 
+> 54
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 48
+> 
+> 	
+> 
+> 2 (bug 613, 1099)
+> 
+> 	
+> 
+> 4
+> 
+> 	
+> 
+>  
+> 
+> *eMenlow Sato-SDK*
+> 
+> 	
+> 
+> 54
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 48
+> 
+> 	
+> 
+> 2 (bug 1099, 503)
+> 
+> 	
+> 
+> 4
+> 
+> 	
+> 
+>  
+> 
+> *Routerstationpro Sato-SDK*
+> 
+> 	
+> 
+> 29
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 29
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+>  
+> 
+> *Mpc8315e-rdb Sato-SDK*
+> 
+> 	
+> 
+> 30
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 26
+> 
+> 	
+> 
+> 4 (bug 766)
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+>  
+> 
+> *Qemux86-64 Sato*
+> 
+> 	
+> 
+> 27
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 27
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+>  
+> 
+> *Qemux86-64 Sato-SDK*
+> 
+> 	
+> 
+> 30
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 30
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+>  
+> 
+> *Qemux86 Sato*
+> 
+> 	
+> 
+> 27
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 27
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+>  
+> 
+> *Qemux86 Sato-SDK*
+> 
+> 	
+> 
+> 30
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 30
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+>  
+> 
+> *Qemumips Sato*
+> 
+> 	
+> 
+> 26
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 26
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+>  
+> 
+> *Qemumips Sato-SDK*
+> 
+> 	
+> 
+> 32
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 32
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+>  
+> 
+> *Qemuppc Sato*
+> 
+> 	
+> 
+> 20
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 19
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 1 (bug 414)
+> 
+> 	
+> 
+>  
+> 
+> *Qemuppc Sato-SDK*
+> 
+> 	
+> 
+> 26
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 25
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 1 (bug 414)
+> 
+> 	
+> 
+>  
+> 
+> *Qemuarm Sato*
+> 
+> 	
+> 
+> 26
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 26
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+>  
+> 
+> *Qemuarm Sato-SDK*
+> 
+> 	
+> 
+> 32
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 32
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+>  
+> 
+> *ADT*
+> 
+> 	
+> 
+> 6
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 5
+> 
+> 	
+> 
+> 1 (bug 414)
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+>  
+> 
+> *Total*
+> 
+> 	
+> 
+> 589
+> 
+> 	
+> 
+> 0
+> 
+> 	
+> 
+> 563
+> 
+> 	
+> 
+> 11
+> 
+> 	
+> 
+> 15
+> 
+> 	
+> 
+>  
+> 
+> 													
+> 
+> * *
+> 
+> 							
+> 													
+> 																			
+> 																			
+> 
+> * You can check the detailed test result in attachment for each target.
+> 
+> ** The failed/blocked case number is listed with failed cases¨ bug number.
+> 
+>  
+> 
+> *Commit Information*
+> 
+> *---------------------------------------*
+> 
+> Tree/Branch: Poky/1.1_M1
+> 
+> Poky Commit: 4ff7af11ef69849ef9c16f585eae58ac920b222b
+> 
+> Meta Branch: 1.1_M1
+> 
+> Meta Commit: fc719f0cd6530ce15148b4aa274f1644b461b298
+> 
+>  
+> 
+> *Issue Summary*
+> 
+> *---------------------------------------*
+> 
+> *Component*
+> 
+> 	
+> 
+> *Bug Number*
+> 
+> 	
+> 
+> *Target Milestone*
+> 
+> *System & Core OS*
+> 
+> 	
+> 
+> *Installation & Boot*
+> 
+> 	
+> 
+> Bug 1099: [blacksand/emenlow/crownbay] grub install failed with sato-sdk
+> live image
+> 
+> 	
+> 
+> 1.1 M2
+> 
+> *Power Mangement*
+> 
+> 	
+> 
+> Bug 613: [Blacksand]system cannot enter S3 standby mode
+> 
+> 	
+> 
+> 1.1
+> 
+> Bug 503: [emenlow] system cannot enter S3 standby mode
+> 
+> 	
+> 
+> 1.1
+> 
+> *Others*
+> 
+> 	
+> 
+> Bug 1101: keyboard pop up when clicking terminal icon
+> 
+> 	
+> 
+> 1.0 M2
+> 
+> Bug 1107: Open or add person in contacts may segfault on sugarbay/blacksand
+> 
+> 	
+> 
+> 1.1 M2
+> 
+> Bug 1097: The mouse can not click accurate to the icons in qemumips X
+> 
+> 	
+> 
+> 1.1 M2
+> 
+> *Graphics*
+> 
+> 	
+> 
+> Bug 1112: [sugarbay] mesa-demos should be added into sato image for
+> graphics testing
+> 
+> 	
+> 
+> Not specified
+> 
+> Bug 883: [Sugarbay] GFX 3D game test fail to run with sugarbay BSP image
+> due to libsdl.so
+> 
+> 	
+> 
+> 1.1
+> 
+> *Multimedia*
+> 
+> 	
+> 
+> Works well in sugarbay/n450/eMenlow/crownbay
+> 
+> 	
+> 
+> 　
+> 
+> *ADT*
+> 
+> 	
+> 
+> Bug 414: [PPC] kernel panic when booting poky-image-sdk-qemuppc through UNFS
+> 
+> 	
+> 
+> 1.1 M3
+> 
+>  
+> 
+> Verified Fixed Bugs:
+> 
+> 1.     Bug 1100 <http://bugzilla.pokylinux.org/show_bug.cgi?id=1100>:
+> [emenlow/crownbay-noemgd] X window could not start up with sato-sdk image
+> 
+> 2.     Bug 1108 <http://bugzilla.pokylinux.org/show_bug.cgi?id=1108>:
+> keyboard could not work in qemux86/x86-64
+> 
+> 3.     Bug 1093 <http://bugzilla.pokylinux.org/show_bug.cgi?id=1093>:
+> meta-toolchain-gmae: eglibc fails to build with 4.6
+> 
+>  
+> 
+> Best Regards,
+> 
+> Jiajun
+> 
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-4) Opens
-
-Paul:  Quick Start should reference 5.0.1.  Paul will ask Beth to make sure=
- this happens.
-Richard:  We need a plan for bugs:
-1. [PPC] kernel panic when booting poky-image-sdk-qemuppc through UNFS
-    http://bugzilla.pokylinux.org/show_bug.cgi?id=3D414=20
-2. [mpc8315e-rdb] USB does not work on mpc8315e-rdb
-   http://bugzilla.pokylinux.org/show_bug.cgi?id=3D766=20
-Bruce/Mark will kick off the discussions.
-
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
