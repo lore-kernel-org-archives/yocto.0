@@ -1,23 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <julie.n.fleischer@intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 0D8E84C80334
-	for <yocto@yoctoproject.org>; Tue, 31 May 2011 03:44:45 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 31 May 2011 01:44:44 -0700
+	by mx1.pokylinux.org (Postfix) with ESMTP id 106824C800B4
+	for <yocto@yoctoproject.org>; Tue, 31 May 2011 09:02:52 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 31 May 2011 07:02:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,296,1304319600"; d="scan'208";a="11216274"
-Received: from unknown (HELO helios.localnet) ([10.255.13.73])
-	by fmsmga001.fm.intel.com with ESMTP; 31 May 2011 01:44:43 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 31 May 2011 09:44:42 +0100
-User-Agent: KMail/1.13.6 (Linux/2.6.38-8-generic-pae; KDE/4.6.2; i686; ; )
-References: <87C8C51E47F55D47ABF9BB39687792ED41FA2C@POCITMSEXMB01.LntUniverse.com>
-	<4ED62A07621E9C41B8CB2F608655EF45F5C1@POCITMSEXMB01.LntUniverse.com>
-In-Reply-To: <4ED62A07621E9C41B8CB2F608655EF45F5C1@POCITMSEXMB01.LntUniverse.com>
+X-IronPort-AV: E=Sophos;i="4.65,297,1304319600"; 
+   d="scan'208";a="9824913"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga002.fm.intel.com with ESMTP; 31 May 2011 07:02:41 -0700
+Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 31 May 2011 07:02:41 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.114]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.212]) with mapi id
+	14.01.0289.001; Tue, 31 May 2011 07:02:40 -0700
+From: "Fleischer, Julie N" <julie.n.fleischer@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto Technical Team meeting Agenda for Tuesday, May 31st, 8am
+	Pacific 
+Thread-Index: Acwfm2gjnzCnwsUVQAiXIm32TBen0w==
+Date: Tue, 31 May 2011 14:02:39 +0000
+Message-ID: <68002A430AC0584FB0A5391B435E93A902F76F@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.9.131.214]
 MIME-Version: 1.0
-Message-Id: <201105310944.42555.paul.eggleton@linux.intel.com>
-Subject: Re: FW: Problem to generate u-boot image
+Subject: Yocto Technical Team meeting Agenda for Tuesday, May 31st, 8am Pacific
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,36 +39,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 May 2011 08:44:45 -0000
-Content-Type: Text/Plain;
-  charset="iso-8859-15"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 31 May 2011 14:02:53 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Friday 27 May 2011 09:17:45 Nikhil Kamath wrote:
-> $ bitbake u-boot_git
+Yocto Technical Team,
+Here is an agenda for the Yocto Technical Team meeting on Tuesday, May 31st=
+.
+Thanks.
+- Julie
 
-When specifying a target for bitbake you can't include the version (the 
-underscore _ and everything after it). Poky will take care of selecting the 
-version for you; in this case there is only one. So you should run the 
-following instead:
+Dial in:  916-356-2663, Bridge: 94, Passcode: 8963523
 
-$ bitbake u-boot
+Agenda:
+1) Review Yocto 1.1 Release Criteria - https://wiki.yoctoproject.org/wiki/Y=
+octo_Project_v1.1_Release_Criteria  =20
+2) Discuss M1 1.1 Release Status - RC2 available (?); Go/No-Go for June 6th=
+?
+3) Discuss M2 1.1 Scope=20
+4) Opens
 
-FYI for future reference if you do have multiple version choices and want to 
-force one of them to be selected that is not the default, you need to add this 
-somewhere (initially local.conf, but it may become part of your custom distro 
-if you later create one):
+-----------------------
+Julie Fleischer
+Open Source Technology Center
+Intel Corporation
 
-PREFERRED_VERSION_packagename = "1.0"
-
-(Assuming packagename is the name of the package and 1.0 is the version you 
-want to select.)
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
