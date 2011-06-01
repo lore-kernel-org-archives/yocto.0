@@ -1,19 +1,19 @@
-Return-Path: <darren.hart@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 06E444C800A1
-	for <yocto@yoctoproject.org>; Wed,  1 Jun 2011 15:30:14 -0500 (CDT)
+Return-Path: <sgw@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 708964C80578
+	for <yocto@yoctoproject.org>; Wed,  1 Jun 2011 16:37:25 -0500 (CDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 01 Jun 2011 13:30:14 -0700
+	by azsmga101.ch.intel.com with ESMTP; 01 Jun 2011 14:37:24 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.65,305,1304319600"; 
-   d="scan'208";a="5469264"
-Received: from unknown (HELO [10.255.12.168]) ([10.255.12.168])
-	by azsmga001.ch.intel.com with ESMTP; 01 Jun 2011 13:30:13 -0700
-Message-ID: <4DE6A154.8000808@intel.com>
-Date: Wed, 01 Jun 2011 13:30:12 -0700
-From: Darren Hart <darren.hart@intel.com>
+   d="scan'208";a="5508686"
+Received: from unknown (HELO [10.255.13.41]) ([10.255.13.41])
+	by azsmga001.ch.intel.com with ESMTP; 01 Jun 2011 14:37:24 -0700
+Message-ID: <4DE6B113.1000904@linux.intel.com>
+Date: Wed, 01 Jun 2011 14:37:23 -0700
+From: Saul Wold <sgw@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
+	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc13 Thunderbird/3.1.10
 MIME-Version: 1.0
 To: "Liu, Song" <song.liu@intel.com>
 References: <D5AB6E638E5A3E4B8F4406B113A5A19A5262D035@shsmsx501.ccr.corp.intel.com>
@@ -21,7 +21,7 @@ References: <D5AB6E638E5A3E4B8F4406B113A5A19A5262D035@shsmsx501.ccr.corp.intel.c
 In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A010675@ORSMSX101.amr.corp.intel.com>
 Cc: "poky@pokylinux.org" <poky@pokylinux.org>,
 	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Weekly Test Report for Yocto 1.1 M1 RC2 - 20110528
+Subject: Re: [poky] Weekly Test Report for Yocto 1.1 M1 RC2 - 20110528
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,57 +33,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Jun 2011 20:30:15 -0000
+X-List-Received-Date: Wed, 01 Jun 2011 21:37:25 -0000
 Content-Type: text/plain; charset=ISO-2022-JP
 Content-Transfer-Encoding: 7bit
 
 On 06/01/2011 12:03 PM, Liu, Song wrote:
-> I don’t see anyone reply to this. Which bug is opened for the
+> I don’t see anyone reply to this. Which bug is opened for the 
 > Beagleboard BSP build failure? It seem to be a critical issue.
 > 
->  
-> 
 > Tom, shall you or someone else look into this?
-
-I am responsible for the Yocto beagleboard support. I was just asking to
-get the bugs opened so I can track them.
-
---
-Darren
-
 > 
->  
-> 
+Darren and I are looking into this, the 3 beagleboard bugs are
+1) qt4-x11-free does not compile, which blocks -sdk images, there is a
+gcc patch that I am working to integrate today (1130), which has been
+know about and I had a partial work around that was rejected.
+
+2) Wrong terminal is getting set someplace, Darren and Beth are looking
+at that. (1131)
+
+3) qemu-config blocks non-gplv3 build, this was know and a fix just went
+into master.
+
+more below.
+
 > Song
 > 
->  
-> 
-> *From:*poky-bounces@yoctoproject.org
+> *From:*poky-bounces@yoctoproject.org 
 > [mailto:poky-bounces@yoctoproject.org] *On Behalf Of *Xu, Jiajun
 > *Sent:* Tuesday, May 31, 2011 8:41 AM
 > *To:* poky@pokylinux.org; yocto@yoctoproject.org
 > *Subject:* [poky] Weekly Test Report for Yocto 1.1 M1 RC2 - 20110528
 > 
->  
-> 
 > Hi all,
 > 
->        This is the weekly test report for Yocto 1.1 M1 RC2 build. There
-> is no new bugs found in this testing. 3 BLOCK issues found in RC1 are
-> fixed. The only one block issue is beagleboard build failed on
-> autobuilder. There are still 9 old open bugs. Grub installation fail on
-> 3 intel BSPs. Graphics testing on sugarbay is blocked.
+> This is the weekly test report for Yocto 1.1 M1 RC2 build. There is no 
+> new bugs found in this testing. 3 BLOCK issues found in RC1 are fixed. 
+> The only one block issue is beagleboard build failed on autobuilder. 
+> There are still 9 old open bugs. Grub installation fail on 3 intel BSPs. 
+> Graphics testing on sugarbay is blocked.
 > 
->        For bug fixing, the keyboard not work issue and toolchain not
-> built out issue are fixed. Meanwhile, the cvs compile issue is marked as
-> INVALID because it also fails on native. We also remove sudoku-savant
-> compile test in qemu because such error may be caused by limited memory
-> in qemu.
+One question about the sugarbay, was how was this tested before, or is
+this a new requirement?  If it's new then it's not really blocking, the
+question is should mesa-demos be on all environments or just on targets
+that need them?  In which case this should be added to a sugarbay
+specific build.
+
+> For bug fixing, the keyboard not work issue and toolchain not built out 
+> issue are fixed. Meanwhile, the cvs compile issue is marked as INVALID 
+> because it also fails on native. We also remove sudoku-savant compile 
+> test in qemu because such error may be caused by limited memory in qemu.
 > 
->        If there is no new build for M1, QA will continue fullpass
-> testing against RC2.
-> 
->  
+> If there is no new build for M1, QA will continue fullpass testing 
+> against RC2.
 > 
 > *Test Summary*
 > 
@@ -98,8 +99,6 @@ Darren
 > *Test Result Summary*
 > 
 > 	
-> 
->  
 > 
 > *Component*
 > 
@@ -117,8 +116,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > *BSP*
 > 
 > 	
@@ -131,12 +128,10 @@ Darren
 > 
 > 	
 > 
-> Graphics testing is blocked; soft keyboard will be triggered with
+> Graphics testing is blocked; soft keyboard will be triggered with 
 > terminal icon;
 > 
 > 	
-> 
->  
 > 
 > 　
 > 
@@ -154,8 +149,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > 　
 > 
 > 	
@@ -171,8 +164,6 @@ Darren
 > Everything runs well
 > 
 > 	
-> 
->  
 > 
 > 　
 > 
@@ -190,8 +181,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > 　
 > 
 > 	
@@ -207,8 +196,6 @@ Darren
 > System installation failed; S3 does not work;
 > 
 > 	
-> 
->  
 > 
 > 　
 > 
@@ -226,8 +213,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > 　
 > 
 > 	
@@ -243,8 +228,6 @@ Darren
 > Everything runs well
 > 
 > 	
-> 
->  
 > 
 > 　
 > 
@@ -262,8 +245,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > *QEMU*
 > 
 > 	
@@ -279,8 +260,6 @@ Darren
 > Everything runs well
 > 
 > 	
-> 
->  
 > 
 > 　
 > 
@@ -298,8 +277,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > 　
 > 
 > 	
@@ -315,8 +292,6 @@ Darren
 > Everything runs well
 > 
 > 	
-> 
->  
 > 
 > 　
 > 
@@ -334,8 +309,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > 　
 > 
 > 	
@@ -351,8 +324,6 @@ Darren
 > Everything runs well
 > 
 > 	
-> 
->  
 > 
 > *ADT*
 > 
@@ -370,11 +341,9 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > 																								
 > 
-> * *
+> **
 > 
 > 　
 > 
@@ -384,8 +353,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > 　
 > 
 > 	
@@ -393,8 +360,6 @@ Darren
 > Only Normal, Minor or Enhancement bugs, less than 10% test cases failed
 > 
 > 	
-> 
->  
 > 
 > 　
 > 
@@ -404,15 +369,11 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > 							
 > 
 > *Detailed Test Result for each component*
 > 
 > 	
-> 
->  
 > 
 > *Target*
 > 
@@ -438,8 +399,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > *Sugarbay Sato-SDK*
 > 
 > 	
@@ -463,8 +422,6 @@ Darren
 > 1 (bug 1112)
 > 
 > 	
-> 
->  
 > 
 > *Crownbay Sato-SDK*
 > 
@@ -490,8 +447,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > *Jasperforest LSB-SDK*
 > 
 > 	
@@ -515,8 +470,6 @@ Darren
 > 0
 > 
 > 	
-> 
->  
 > 
 > *n450 Sato-SDK*
 > 
@@ -542,8 +495,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > *eMenlow Sato-SDK*
 > 
 > 	
@@ -567,8 +518,6 @@ Darren
 > 4
 > 
 > 	
-> 
->  
 > 
 > *Routerstationpro Sato-SDK*
 > 
@@ -594,8 +543,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > *Mpc8315e-rdb Sato-SDK*
 > 
 > 	
@@ -619,8 +566,6 @@ Darren
 > 0
 > 
 > 	
-> 
->  
 > 
 > *Qemux86-64 Sato*
 > 
@@ -646,8 +591,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > *Qemux86-64 Sato-SDK*
 > 
 > 	
@@ -671,8 +614,6 @@ Darren
 > 0
 > 
 > 	
-> 
->  
 > 
 > *Qemux86 Sato*
 > 
@@ -698,8 +639,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > *Qemux86 Sato-SDK*
 > 
 > 	
@@ -723,8 +662,6 @@ Darren
 > 0
 > 
 > 	
-> 
->  
 > 
 > *Qemumips Sato*
 > 
@@ -750,8 +687,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > *Qemumips Sato-SDK*
 > 
 > 	
@@ -775,8 +710,6 @@ Darren
 > 0
 > 
 > 	
-> 
->  
 > 
 > *Qemuppc Sato*
 > 
@@ -802,8 +735,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > *Qemuppc Sato-SDK*
 > 
 > 	
@@ -827,8 +758,6 @@ Darren
 > 1 (bug 414)
 > 
 > 	
-> 
->  
 > 
 > *Qemuarm Sato*
 > 
@@ -854,8 +783,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > *Qemuarm Sato-SDK*
 > 
 > 	
@@ -879,8 +806,6 @@ Darren
 > 0
 > 
 > 	
-> 
->  
 > 
 > *ADT*
 > 
@@ -906,8 +831,6 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > *Total*
 > 
 > 	
@@ -932,11 +855,9 @@ Darren
 > 
 > 	
 > 
->  
-> 
 > 													
 > 
-> * *
+> **
 > 
 > 							
 > 													
@@ -946,8 +867,6 @@ Darren
 > * You can check the detailed test result in attachment for each target.
 > 
 > ** The failed/blocked case number is listed with failed cases’ bug number.
-> 
->  
 > 
 > *Commit Information*
 > 
@@ -960,8 +879,6 @@ Darren
 > Meta Branch: 1.1_M1
 > 
 > Meta Commit: fc719f0cd6530ce15148b4aa274f1644b461b298
-> 
->  
 > 
 > *Issue Summary*
 > 
@@ -985,7 +902,7 @@ Darren
 > 
 > 	
 > 
-> Bug 1099: [blacksand/emenlow/crownbay] grub install failed with sato-sdk
+> Bug 1099: [blacksand/emenlow/crownbay] grub install failed with sato-sdk 
 > live image
 > 
 > 	
@@ -1034,14 +951,14 @@ Darren
 > 
 > 	
 > 
-> Bug 1112: [sugarbay] mesa-demos should be added into sato image for
+> Bug 1112: [sugarbay] mesa-demos should be added into sato image for 
 > graphics testing
 > 
 > 	
 > 
 > Not specified
 > 
-> Bug 883: [Sugarbay] GFX 3D game test fail to run with sugarbay BSP image
+> Bug 883: [Sugarbay] GFX 3D game test fail to run with sugarbay BSP image 
 > due to libsdl.so
 > 
 > 	
@@ -1068,20 +985,16 @@ Darren
 > 
 > 1.1 M3
 > 
->  
-> 
 > Verified Fixed Bugs:
 > 
-> 1.     Bug 1100 <http://bugzilla.pokylinux.org/show_bug.cgi?id=1100>:
+> 1.Bug 1100 <http://bugzilla.pokylinux.org/show_bug.cgi?id=1100>: 
 > [emenlow/crownbay-noemgd] X window could not start up with sato-sdk image
 > 
-> 2.     Bug 1108 <http://bugzilla.pokylinux.org/show_bug.cgi?id=1108>:
+> 2.Bug 1108 <http://bugzilla.pokylinux.org/show_bug.cgi?id=1108>: 
 > keyboard could not work in qemux86/x86-64
 > 
-> 3.     Bug 1093 <http://bugzilla.pokylinux.org/show_bug.cgi?id=1093>:
+> 3.Bug 1093 <http://bugzilla.pokylinux.org/show_bug.cgi?id=1093>: 
 > meta-toolchain-gmae: eglibc fails to build with 4.6
-> 
->  
 > 
 > Best Regards,
 > 
@@ -1090,13 +1003,7 @@ Darren
 > 
 > 
 > _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+> poky mailing list
+> poky@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/poky
 
