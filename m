@@ -1,24 +1,23 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 4E0C84C800A6
-	for <yocto@yoctoproject.org>; Wed,  1 Jun 2011 15:26:53 -0500 (CDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id BB0AC4C80578
+	for <yocto@yoctoproject.org>; Wed,  1 Jun 2011 15:27:56 -0500 (CDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 01 Jun 2011 13:26:52 -0700
+	by orsmga102.jf.intel.com with ESMTP; 01 Jun 2011 13:27:56 -0700
 X-ExtLoop1: 1
 Received: from unknown (HELO [10.255.12.168]) ([10.255.12.168])
-	by orsmga002.jf.intel.com with ESMTP; 01 Jun 2011 13:26:52 -0700
-Message-ID: <4DE6A08B.1050709@linux.intel.com>
-Date: Wed, 01 Jun 2011 13:26:51 -0700
+	by orsmga002.jf.intel.com with ESMTP; 01 Jun 2011 13:27:55 -0700
+Message-ID: <4DE6A0CB.3080103@linux.intel.com>
+Date: Wed, 01 Jun 2011 13:27:55 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
 	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
 MIME-Version: 1.0
 To: tom.zanussi@intel.com
-References: <5b509a5e7bc0fc37844d684ef3fb870d45e1b3ef.1306958045.git.tom.zanussi@intel.com>
-	<913e9ec56a756e5e9ab34a9d130dae51b23915c7.1306958045.git.tom.zanussi@intel.com>
-In-Reply-To: <913e9ec56a756e5e9ab34a9d130dae51b23915c7.1306958045.git.tom.zanussi@intel.com>
+References: <cover.1306958045.git.tom.zanussi@intel.com>
+In-Reply-To: <cover.1306958045.git.tom.zanussi@intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 6/6] meta-crownbay: update README with new build instructions.
+Subject: Re: [PATCH 0/6] meta-intel: emgd updrade
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,204 +29,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Jun 2011 20:26:53 -0000
+X-List-Received-Date: Wed, 01 Jun 2011 20:27:56 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Hi Tom,
 
-If you haven't already, I would suggest running the README changes past
-Scott R, even if you commit this first. Getting Scott involved should
-help keep our documentation precise, correct from a tech writing point
-of view, as well as help keep it consistent throughout the project.
 
---
-Darren
-
-On 06/01/2011 12:56 PM, tom.zanussi@intel.com wrote:
+On 06/01/2011 12:55 PM, tom.zanussi@intel.com wrote:
 > From: Tom Zanussi <tom.zanussi@intel.com>
 > 
-> EMGD 1.6 added a new non-clickthrough Linux tarball download; this
-> changes the README to make use of it and also updates new directory
-> naming, etc.
+> This patchset upgrades emgd to 1.6 Gold.
 > 
-> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
-> ---
->  meta-crownbay/README |   95 ++++++++++++++++++++++++++++++++++++++++---------
->  1 files changed, 77 insertions(+), 18 deletions(-)
+> The following changes since commit e94dba8309874a82a570db60223d18b2c723c3a5:
+>   Darren Hart (1):
+>         linux-yocto*: correct FILESEXTRAPATHS assignment in all layers
 > 
-> diff --git a/meta-crownbay/README b/meta-crownbay/README
-> index bb1e0c3..89056ed 100644
-> --- a/meta-crownbay/README
-> +++ b/meta-crownbay/README
-> @@ -6,7 +6,7 @@ The Crown Bay platform consists of the Intel Atom Z6xx processor,
->  plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff).
->  
->  It also supports the E6xx embedded on-chip graphics via the Intel
-> -Embedded Media and Graphics Driver (EMGD) 1.5 Gold Driver.
-> +Embedded Media and Graphics Driver (EMGD) 1.6 Gold Driver.
->  
->  Table of Contents
->  =================
-> @@ -33,7 +33,7 @@ bblayers.conf e.g.:
->  The meta-crownbay layer contains support for two different machine
->  configurations. These configurations are identical except for the fact
->  that the one prefixed with 'crownbay' makes use of the
-> -Intel-proprietary EMGD 1.5 graphics driver, while the one prefixed
-> +Intel-proprietary EMGD 1.6 graphics driver, while the one prefixed
->  with 'crownbay-noemgd' does not.
->  
->  If you want to enable the layer that supports EMGD graphics add
-> @@ -73,19 +73,71 @@ userspace drivers when building the "crownbay" machine (but not when
->  building the "crownbay-noemgd" machine).  If you got the BSP from the
->  'BSP Downloads' section of the Yocto website, the EMGD binaries needed
->  to perform the build will already be present in the BSP, located in
-> -the recipes-graphics/xorg-xserver/xserver-xf86-emgd-bin directory, and
-> +the recipes-graphics/xorg-xserver/emgd-driver-bin-1.6 directory, and
->  you can ignore the rest of this section.
->  
->  If you didn't get the BSP from the 'BSP Downloads' section of the
-> -Yocto website, you'll need to download the a Windows executable from
-> -the official EMGD website, extract the binaries from it, and copy them
-> -to the proper location in the meta-crownbay layer.
-> +Yocto website, you have two choices:
-> +
-> +- You can download a tarball containing an rpm that contains the
-> +  binaries and extract the binaries from that, and copy them to the
-> +  proper location in the meta-crownbay layer.
-> +
-> +- You can download a Windows executable from the official EMGD
-> +  website, extract the binaries from it, and copy them to the proper
-> +  location in the meta-crownbay layer.
-> +
-> +The following subsections describe each option in detail.
-> +
-> +
-> +IIa Downloading and extracting the binaries using the EMGD Linux tarball
-> +------------------------------------------------------------------------
-> +
-> +The first step of the process is to download the EMGD 1.6 Gold Driver.
-> +Here is the current link to the URL which it can be downloaded from:
-> +
-> +http://edc.intel.com/Software/Downloads/EMGD/
-> +
-> +In the Download Now tab, select:
-> +
-> +Intel® architecture-based product: Linux Tar Ball
-> +Operating System: MeeGo 1.0 IVI Linux (kernel 2.6.33.3, X.server 1.8.0)
-> +
-> +That will give you a large tar file:
-> +
-> +Lin_EMGD_1_6_RC_1922.tar
-> +
-> +Extract the files in the tar file, which will in turn give you a
-> +directory named IEMGD_HEAD_Linux.
-> +
-> +The binaries are contained in an rpm file; you can extract the
-> +binaries from the rpm file using rpm2cpio and cpio:
-> +
-> +$ cd IEMGD_HEAD_Linux/MeeGo1.2
-> +$ rpm2cpio emgd-bin-1922-1.6.i586.rpm > emgd-bin-1922-1.6.i586.cpio
-> +$ mkdir extracted; cd extracted
-> +$ cpio -idv < ../poky-image-minimal-initramfs-emenlow.cpio
-> +
-> +Finally, you can copy the xorg-xserver binaries to the
-> +emgd-driver-bin-1.6 directory in the meta-crownbay layer:
-> +
-> +$ cp -a usr/lib meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin-1.6
-> +
-> +You also need to copy the IEMGD License.txt file to the same directory:
-> +
-> +$ cp IEMGD_HEAD_Linux/License/License.txt meta-crownbay/recipes/xorg-xserver/emgd-driver-bin-1.6
-> +
-> +At this point, you should be able to build meta-crownbay images as usual.
-> +
-> +
-> +IIb Extracting the binaries using the graphical ced application
-> +---------------------------------------------------------------
->  
->  These steps require that you run a graphical application in Windows.
->  Windows 7 was used for these instructions, but it shouldn't matter
->  which version of Windows you use.
->  
-> -The first step of the process is to download the EMGD 1.5 Gold Driver.
-> +The first step of the process is to download the EMGD 1.6 Gold Driver.
->  Here is the current link to the URL which it can be downloaded from:
->  
->  http://edc.intel.com/Software/Downloads/EMGD/
-> @@ -97,14 +149,14 @@ Operating System: MeeGo 1.0 IVI Linux (kernel 2.6.33.3, X.server 1.8.0)
->  
->  That will give you a large zip file:
->  
-> -IEMGD_1_5_GOLD_ALL_1742.zip
-> +IEMGD_1_6_GOLD_1922.zip
->  
->  Extract the files in the zip file, which will in turn give you a large
->  .exe file:
->  
-> -IEMGD_1_5_GOLD_ALL_1742.exe
-> +IEMGD_1_6_GOLD_ALL_1922.exe
->  
-> -Run IEMGD_1_5_GOLD_ALL_1742.exe to install, accept licenses, etc.
-> +Run IEMGD_1_6_GOLD_ALL_1922.exe to install, accept licenses, etc.
->  
->  If it says to install watcom, follow the instructions to do that.
->  
-> @@ -157,32 +209,39 @@ system, and uncompress/untar it:
->  
->  $ tar cvfz IEMGD_HEAD_Linux.tgz
->  
-> -Finally, copy Xorg-xserver binaries in the Meego1.0 driver directory
-> -to the xserver-xf86-emgd-bin directory in the meta-crownbay layer:
-> +The binaries are contained in an rpm file; you can extract the
-> +binaries from the rpm file using rpm2cpio and cpio:
-> +
-> +$ cd IEMGD_HEAD_Linux/MeeGo1.2
-> +$ rpm2cpio emgd-bin-1922-1.6.i586.rpm > emgd-bin-1922-1.6.i586.cpio
-> +$ mkdir extracted; cd extracted
-> +$ cpio -idv < ../poky-image-minimal-initramfs-emenlow.cpio
-> +
-> +Finally, you can copy the xorg-xserver binaries to the
-> +emgd-driver-bin-1.6 directory in the meta-crownbay layer:
->  
-> -$ cp IEMGD_HEAD_Linux/MeeGo1.0/driver/Xorg-xserver-1.7.99/* meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-emgd-bin
-> +$ cp -a usr/lib meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin-1.6
->  
->  You also need to copy the IEMGD License.txt file to the same directory:
->  
-> -$ cp IEMGD_HEAD_Linux/License/License.txt meta-crownbay/recipes/xorg-xserver/xserver-xf86-emgd-bin
-> +$ cp IEMGD_HEAD_Linux/License/License.txt meta-crownbay/recipes/xorg-xserver/emgd-driver-bin-1.6
->  
->  At this point, you should be able to build meta-crownbay images as usual.
->  
->  ----
->  
->  For reference, the EMGD Driver documentation is also available at the
-> -above link (it's also part of the installation).
-> +above link.
->  
->  The specific text of the document is:
->  
->  User Guide: Intel® Embedded Media and Graphics Driver, EFI Video
-> -Driver, EPOG, and Video BIOS v1.5 for Windows* XP and Linux* Provides
-> +Driver, EPOG, and Video BIOS v1.6 for Windows* XP and Linux* Provides
->  installation requirements/procedures & describes the vbios/firmware,
->  configuration options, & functionality of Intel® EMGD under Windows* &
->  Linux*. Refer to guide for details.
->  
-> -File Type/Size: PDF 3,340KB
-> -Version: 008 : October 2010
-> +April 2011
->  
->  
->  II. Booting the images in /binary
+> are available in the git repository at:
 > 
+>   git://git.yoctoproject.org/meta-intel.git tzanussi/emgd-1.6-upgrade
+>   http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/emgd-1.6-upgrade
 > 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Tom Zanussi (6):
+>   meta-crownbay: new recipe for emgd 1.6 driver binaries
+>   meta-intel: add xserver-xf86-dri-lite_1.9.3 to common
+>   meta-crownbay: add common to BBFILES
+>   meta-crownbay: update crownbay.conf
+>   meta-crownbay: remove obsolete graphics recipes
+>   meta-crownbay: update README with new build instructions.
+
+With the exception of the patch upstream fields and giving Scott R a
+chance to review the README, these look good to me. With those addressed:
+
+Acked-by: Darren Hart <dvhart@linux.intel.com>
 
 -- 
 Darren Hart
