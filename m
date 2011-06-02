@@ -1,24 +1,24 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 4DC7E4C808B6
-	for <yocto@yoctoproject.org>; Thu,  2 Jun 2011 09:33:36 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 1BA904C808B6
+	for <yocto@yoctoproject.org>; Thu,  2 Jun 2011 09:33:37 -0500 (CDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
 	by azsmga102.ch.intel.com with ESMTP; 02 Jun 2011 07:33:36 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.65,309,1304319600"; 
-   d="scan'208";a="5947648"
+   d="scan'208";a="5947655"
 Received: from unknown (HELO helios.amr.corp.intel.com) ([10.255.12.204])
-	by azsmga001.ch.intel.com with ESMTP; 02 Jun 2011 07:33:35 -0700
+	by azsmga001.ch.intel.com with ESMTP; 02 Jun 2011 07:33:36 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  2 Jun 2011 15:32:06 +0100
-Message-Id: <1cdd04a4d2f0cf457e34ee2eb1f0ae1e3fdb1e8e.1307024851.git.paul.eggleton@linux.intel.com>
+Date: Thu,  2 Jun 2011 15:32:07 +0100
+Message-Id: <739a0db5315e4e626ccc713a4c02315fb832bc4a.1307024851.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 1.7.4.1
 In-Reply-To: <cover.1307024851.git.paul.eggleton@linux.intel.com>
 References: <cover.1307024851.git.paul.eggleton@linux.intel.com>
 In-Reply-To: <cover.1307024851.git.paul.eggleton@linux.intel.com>
 References: <cover.1307024851.git.paul.eggleton@linux.intel.com>
-Subject: [PATCH 1/2] meta-emenlow: remove obsolete bbappends
+Subject: [PATCH 2/2] meta-crownbay: tidy up layer configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,36 +30,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Jun 2011 14:33:36 -0000
+X-List-Received-Date: Thu, 02 Jun 2011 14:33:37 -0000
 
-Qt 4.6.3 and Clutter 1.4 have been removed from oe-core / poky.
+* We can't use machine overrides in layer.conf because MACHINE is not
+  defined yet (local.conf has not yet been parsed) so remove these
+* In light of the above having a separate collection configured for
+  crownbay-noemgd no longer does anything, so remove it as well.
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- .../clutter/clutter-1.4_1.4.2.bbappend             |    4 ----
- .../recipes-qt/qt4/qt4-x11-free_4.6.3.bbappend     |    2 --
- 2 files changed, 0 insertions(+), 6 deletions(-)
- delete mode 100644 meta-emenlow/recipes-graphics/clutter/clutter-1.4_1.4.2.bbappend
- delete mode 100644 meta-emenlow/recipes-qt/qt4/qt4-x11-free_4.6.3.bbappend
+ meta-crownbay/conf/layer.conf |    6 +-----
+ 1 files changed, 1 insertions(+), 5 deletions(-)
 
-diff --git a/meta-emenlow/recipes-graphics/clutter/clutter-1.4_1.4.2.bbappend b/meta-emenlow/recipes-graphics/clutter/clutter-1.4_1.4.2.bbappend
-deleted file mode 100644
-index 71677ad..0000000
---- a/meta-emenlow/recipes-graphics/clutter/clutter-1.4_1.4.2.bbappend
-+++ /dev/null
-@@ -1,4 +0,0 @@
--DEPENDS_emenlow = "${STDDEPENDS} virtual/xserver-xf86 virtual/libgl"
--EXTRA_OECONF_emenlow = "${BASE_CONF} --with-flavour=glx"
--PACKAGE_ARCH_emenlow = "${MACHINE_ARCH}"
+diff --git a/meta-crownbay/conf/layer.conf b/meta-crownbay/conf/layer.conf
+index 4ffeb2c..9c3794b 100644
+--- a/meta-crownbay/conf/layer.conf
++++ b/meta-crownbay/conf/layer.conf
+@@ -7,10 +7,6 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/../common/recipes-*/*/*.bb \
+ 	${LAYERDIR}/../common/recipes-*/*/*.bbappend"
+ 
+-BBFILE_COLLECTIONS_append_crownbay += "crownbay"
++BBFILE_COLLECTIONS += "crownbay"
+ BBFILE_PATTERN_crownbay := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_crownbay = "6"
 -
-diff --git a/meta-emenlow/recipes-qt/qt4/qt4-x11-free_4.6.3.bbappend b/meta-emenlow/recipes-qt/qt4/qt4-x11-free_4.6.3.bbappend
-deleted file mode 100644
-index 92eabf2..0000000
---- a/meta-emenlow/recipes-qt/qt4/qt4-x11-free_4.6.3.bbappend
-+++ /dev/null
-@@ -1,2 +0,0 @@
--QT_GLFLAGS_emenlow = "-opengl"
--
+-BBFILE_COLLECTIONS_append_crownbay-noemgd += "crownbay-noemgd"
+-BBFILE_PATTERN_crownbay-noemgd := "^${LAYERDIR}/"
+-BBFILE_PRIORITY_crownbay-noemgd = "6"
 -- 
 1.7.4.1
 
