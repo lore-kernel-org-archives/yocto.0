@@ -1,37 +1,26 @@
-Return-Path: <John_Cherry@mentor.com>
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by mx1.pokylinux.org (Postfix) with ESMTP id BE70D4C800A1
-	for <yocto@yoctoproject.org>; Thu,  2 Jun 2011 16:24:13 -0500 (CDT)
-Received: from svr-orw-fem-01.mgc.mentorg.com ([147.34.98.93])
-	by relay1.mentorg.com with esmtp 
-	id 1QSFNE-0001HL-RF from John_Cherry@mentor.com ;
-	Thu, 02 Jun 2011 14:24:12 -0700
-Received: from SVR-ORW-FEM-02.mgc.mentorg.com ([147.34.96.206]) by
-	svr-orw-fem-01.mgc.mentorg.com over TLS secured channel with
-	Microsoft SMTPSVC(6.0.3790.4675); Thu, 2 Jun 2011 14:24:12 -0700
-Received: from NA-MBX-02.mgc.mentorg.com ([169.254.2.166]) by
-	SVR-ORW-FEM-02.mgc.mentorg.com ([147.34.96.168]) with mapi id
-	14.01.0289.001; Thu, 2 Jun 2011 14:24:11 -0700
-From: "Cherry, John" <John_Cherry@mentor.com>
-To: Joshua Lock <josh@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] yoctoproject.org down?
-Thread-Index: AcwhNG6EdOOA6pn3Q3SH+NWNRZOkdQAAF/QQAAC2tZAAE5pigAABiRiAAAAfvQAACFzGAA==
-Date: Thu, 2 Jun 2011 21:24:12 +0000
-Message-ID: <43AE86686954984BA6E949465D9848400234F3@NA-MBX-02.mgc.mentorg.com>
-References: <43AE86686954984BA6E949465D98484002325C@NA-MBX-02.mgc.mentorg.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB12379F092@ORSMSX101.amr.corp.intel.com>
-	<43AE86686954984BA6E949465D9848400232CD@NA-MBX-02.mgc.mentorg.com>
-	<4DE7C9C5.1040401@intel.com> <4DE7D413.7040108@gmail.com>
-	<1307038971.2050.1.camel@scimitar>
-In-Reply-To: <1307038971.2050.1.camel@scimitar>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.34.91.1]
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 0EE724C800A6
+	for <yocto@yoctoproject.org>; Thu,  2 Jun 2011 18:09:19 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 02 Jun 2011 16:09:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.65,311,1304319600"; 
+   d="scan'208";a="8672934"
+Received: from doubt.jf.intel.com (HELO [10.7.199.154]) ([10.7.199.154])
+	by orsmga001.jf.intel.com with ESMTP; 02 Jun 2011 16:09:19 -0700
+Message-ID: <4DE8181F.5090201@linux.intel.com>
+Date: Thu, 02 Jun 2011 16:09:19 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
 MIME-Version: 1.0
-X-OriginalArrivalTime: 02 Jun 2011 21:24:12.0647 (UTC)
-	FILETIME=[6AF39F70:01CC216B]
+To: "Cherry, John" <John_Cherry@mentor.com>
+References: <43AE86686954984BA6E949465D98484002325C@NA-MBX-02.mgc.mentorg.com>	<41DEA4B02DBDEF40A0F3B6D0DDB12379F092@ORSMSX101.amr.corp.intel.com>	<43AE86686954984BA6E949465D9848400232CD@NA-MBX-02.mgc.mentorg.com>	<4DE7C9C5.1040401@intel.com>
+	<4DE7D413.7040108@gmail.com>	<1307038971.2050.1.camel@scimitar>
+	<43AE86686954984BA6E949465D9848400234F3@NA-MBX-02.mgc.mentorg.com>
+In-Reply-To: <43AE86686954984BA6E949465D9848400234F3@NA-MBX-02.mgc.mentorg.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: yoctoproject.org down?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -44,40 +33,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Jun 2011 21:24:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 02 Jun 2011 23:09:20 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-My issues were not https vs http.  Just intermittent access.  I can access =
-the site now.
+On 06/02/2011 02:24 PM, Cherry, John wrote:
+> My issues were not https vs http.  Just intermittent access.  I can access the site now.
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Joshua Lock
-> Sent: Thursday, June 02, 2011 11:23 AM
-> To: yocto@yoctoproject.org
-> Subject: Re: [yocto] yoctoproject.org down?
->=20
-> On Thu, 2011-06-02 at 11:18 -0700, Jeffrey Osier-Mixon wrote:
-> > Someone else mentioned it being down a day or two ago as showing up
-> with
-> > an unadorned Drupal page, unverified.
->=20
-> Is this a simple case of https://www.yoctoproject.org vs
-> http://www.yoctoproject.org ?
->=20
-> Trying to access the site via https gives you a drupal "Site off-line"
-> page.
->=20
-> Joshua
-> --
-> Joshua Lock
->         Yocto Build System Monkey
->         Intel Open Source Technology Centre
->=20
+Same here.
+
+> 
+>> -----Original Message-----
+>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>> bounces@yoctoproject.org] On Behalf Of Joshua Lock
+>> Sent: Thursday, June 02, 2011 11:23 AM
+>> To: yocto@yoctoproject.org
+>> Subject: Re: [yocto] yoctoproject.org down?
+>>
+>> On Thu, 2011-06-02 at 11:18 -0700, Jeffrey Osier-Mixon wrote:
+>>> Someone else mentioned it being down a day or two ago as showing up
+>> with
+>>> an unadorned Drupal page, unverified.
+>>
+>> Is this a simple case of https://www.yoctoproject.org vs
+>> http://www.yoctoproject.org ?
+>>
+>> Trying to access the site via https gives you a drupal "Site off-line"
+>> page.
+>>
+>> Joshua
+>> --
+>> Joshua Lock
+>>         Yocto Build System Monkey
+>>         Intel Open Source Technology Centre
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
