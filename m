@@ -1,31 +1,33 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D767A4C801BF
-	for <yocto@yoctoproject.org>; Sun,  5 Jun 2011 09:11:56 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 05 Jun 2011 07:11:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,323,1304319600"; d="scan'208";a="13882957"
-Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
-	by fmsmga001.fm.intel.com with ESMTP; 05 Jun 2011 07:11:55 -0700
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 5 Jun 2011 22:11:54 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi; Sun, 5 Jun 2011
-	22:11:54 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Sun, 5 Jun 2011 22:11:51 +0800
-Thread-Topic: Yocto weekly bug trend charts -- WW23
-Thread-Index: AcwjioRY+lwXCQi0QdeXkjxZtjb77Q==
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A5268C958@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <daryl.spitzer@gmail.com>
+Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
+	[209.85.220.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B29924C8005F
+	for <yocto@yoctoproject.org>; Mon,  6 Jun 2011 15:32:07 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by vxa37 with SMTP id 37so5183888vxa.35
+	for <yocto@yoctoproject.org>; Mon, 06 Jun 2011 13:32:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:from:date:message-id:subject:to
+	:content-type; bh=Z/3kAX5JqABNZc05J9BptvWuolnVYy60GyH8YbgVXy8=;
+	b=oNa4dYf3nXnqs8gvXKWp+0Rv6eLqJ0CEnJGxIVtkbG1b1Cyxp5M5OfkwkvnTdScrBH
+	R2T0feEIxFK8b40vKTVzb3W6KDRU4pPxDVFYYepYVyb/hjC2MQHoXXxcsXFgLTDLOFjo
+	ijsbMcqr6SPm8NNrCg/grhlNV5fwnVE8k2qYo=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	b=AQqkTZKdFZ+4PNIzrpMDas7LcH2H5EaKn/BNQMr3qV7vJQrB2qWCasa1QHWt8DGRfX
+	XkmztMFEh1e8dyCSLhvV7DWEUPhv2gm0cVZq4YE1nRrN9jJqBltCxr3ApLStvTZsT3i8
+	LpYGno9K9zRVNSvVcLWoyRd+Ist9nFeHduHgY=
+Received: by 10.52.181.99 with SMTP id dv3mr419125vdc.14.1307392327126; Mon,
+	06 Jun 2011 13:32:07 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW23
+Received: by 10.52.169.225 with HTTP; Mon, 6 Jun 2011 13:31:27 -0700 (PDT)
+From: Daryl Spitzer <daryl.spitzer@gmail.com>
+Date: Mon, 6 Jun 2011 13:31:27 -0700
+Message-ID: <BANLkTingnY36i1jeKg_ieTascwShwZ7H0g@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Problem with video on yoctoproject.org
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,18 +39,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 05 Jun 2011 14:11:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 06 Jun 2011 20:32:08 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi all,
-	The open bug number of last week decreased to 199. QA is performing fullpa=
-ss testing against Yocto 1.1 M1 RC2 build. The 2 block issues for beagleboa=
-rd are fixed. Bug status of WW23 could be found on https://wiki.pokylinux.o=
-rg/wiki/Yocto_Bug_Trend.
+I didn't see a discussion of this in the mailing list archives...
 
-Best Regards,
-Jiajun
+When I tried to play the video on http://www.yoctoproject.org/ I saw
+"This video is no longer available because the uploader has closed
+their YouTube account."
 
+--
+Daryl
 
