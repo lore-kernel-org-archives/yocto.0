@@ -1,24 +1,20 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id DA1044C800FB
-	for <yocto@yoctoproject.org>; Wed,  8 Jun 2011 11:12:37 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 08 Jun 2011 09:12:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,339,1304319600"; 
-   d="scan'208";a="9284469"
-Received: from unknown (HELO [10.255.13.55]) ([10.255.13.55])
-	by azsmga001.ch.intel.com with ESMTP; 08 Jun 2011 09:12:30 -0700
-Message-ID: <4DEF9F6D.5020100@linux.intel.com>
-Date: Wed, 08 Jun 2011 09:12:29 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc13 Thunderbird/3.1.10
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 2294B4C800BA
+	for <yocto@yoctoproject.org>; Wed,  8 Jun 2011 12:54:14 -0500 (CDT)
+Received: from mail-ew0-f52.google.com ([209.85.215.52])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 08 Jun 2011 10:54:13 -0700
+Received: by ewy28 with SMTP id 28so266657ewy.25
+	for <yocto@yoctoproject.org>; Wed, 08 Jun 2011 10:54:12 -0700 (PDT)
 MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>, 
-	'Patches and discussions about the oe-core layer'
-	<openembedded-core@lists.openembedded.org>
-Subject: Autobuilder DOWNTIME *IP Addr Change*
+Received: by 10.14.4.209 with SMTP id 57mr3099949eej.87.1307555651898; Wed, 08
+	Jun 2011 10:54:11 -0700 (PDT)
+Received: by 10.14.47.9 with HTTP; Wed, 8 Jun 2011 10:54:11 -0700 (PDT)
+Date: Wed, 8 Jun 2011 10:54:11 -0700
+Message-ID: <BANLkTi=dyBekPX9e33AovNk36DDs1dTzLg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+Subject: More autobuilder downtime and some new targets.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,25 +26,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jun 2011 16:12:38 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 08 Jun 2011 17:54:15 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
+Sorry for the delayed notice in this, it slipped my mind. The
+autobuilders are being moved to a different rack today. They will be
+unavailable for a few hours until DNS propagates. Once they come back
+on line, you should notice two (and maybe three) new buildtargets.
 
-We will be bringing the Autobuilder down and it will be changing IP 
-address around 10:15 to 11:15 today, this will mean that the PREMIRROR 
-and primary MIRROR will be offline for that period.
+The first two build targets will be "fuzzy-master" and "fuzzy-mut".
+These targets are random builders, that randomly select a MACHINE,
+SDKMACHINE and image type and attempt to build it from the latest of
+either master or stage/master_under_test (aka mut). They save no build
+output for the time being. They will be running continuously as long
+as a builder is available, unless manually stopped.
 
-We have reset the TTL to 5 minutes, but you may have other DNS caches so 
-please be aware of this change.
+These exist for a few reasons. I want to enable people to be able to
+get a better idea of the state of these two branches without having to
+wait the full 28 hours a full build cycle takes. These will help with
+that to some extent. Please keep an eye on these. We'll be also
+setting up an mail list so people can subscribe to build
+failures/passes, specifically for these two buildsets.
 
-Any updates will be provided in #yocto IRC
+The next target (which I'm working on right now) is "meta-image". This
+will be pushed up to the poky-autobuilder.git repo once it's fully
+hashed out and will enable us to have a way to build a small subset of
+our nightly without having to rip apart buildbot configs. It will also
+allow people running local instances of the autobuilder to have a
+quick and dirty web based image generator. It may get implemented
+today, but if not, look for it later this week.
 
--- 
-     Sau!
-
-Saul Wold
-Yocto Component Wrangler @ Intel
-Yocto Project / Poky Build System
-
+-b
 
