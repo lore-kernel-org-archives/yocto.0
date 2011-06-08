@@ -1,36 +1,33 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id AB91B4C80479
-	for <yocto@yoctoproject.org>; Tue,  7 Jun 2011 20:23:22 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 07 Jun 2011 18:23:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,335,1304319600"; d="scan'208";a="10462891"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by orsmga002.jf.intel.com with ESMTP; 07 Jun 2011 18:23:03 -0700
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 8 Jun 2011 09:23:02 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi; Wed, 8 Jun 2011
-	09:23:02 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: Saul Wold <sgw@linux.intel.com>
-Date: Wed, 8 Jun 2011 09:23:00 +0800
-Thread-Topic: [poky] Fullpass Test Report for Yocto 1.1 M1 RC2 - 20110528
-Thread-Index: AcwlPjkWE52nkqwCQvOmp6UmYcwuuQAO03eg
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A5271FF3C@shsmsx501.ccr.corp.intel.com>
-References: <D5AB6E638E5A3E4B8F4406B113A5A19A5271FA9F@shsmsx501.ccr.corp.intel.com>
-	<4DEE69A1.8000909@linux.intel.com>
-In-Reply-To: <4DEE69A1.8000909@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <daryl.spitzer@gmail.com>
+Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
+	[209.85.212.48])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 803D04C800A6
+	for <yocto@yoctoproject.org>; Tue,  7 Jun 2011 21:41:51 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by vws7 with SMTP id 7so86831vws.35
+	for <yocto@yoctoproject.org>; Tue, 07 Jun 2011 19:41:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:from:date:message-id:subject:to
+	:content-type; bh=M/Y0laFqpLOSo3wExgLfanjmRXHCMkp1SvUIESpKs58=;
+	b=FAIJ3OOCi6Rn5le6XxoWpZJpblJWb/ZtzlNhmuwIkyq/kt5QhVz/suKjbOmIHUOyhL
+	dAIpuHnvpHNNyTSqQ7XX8LeGleIldF/crsF2/WpvHGPIOY12h3bReKcbh8FtqQSi3Nb7
+	5g8YeUuJSG1iHhywGcwSqz+38uy7Sa/tF2xSA=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	b=k8jrHMB7EzhDfJW1KDm+vT96rQlPQxl8b/k8SBn3WhR8XzwHI40ExrBl2Sg1ib0d1U
+	5wfYDHIIALre9/+rpi6wy4z+s9GbyBzPVcFlkAgFpv78jIl2IjOw1BiOe54AzoCRbzuB
+	H1lunuwA9bX16rq8gVAdf1MFsxvtGBUAp2XIM=
+Received: by 10.52.73.234 with SMTP id o10mr441399vdv.174.1307500910061; Tue,
+	07 Jun 2011 19:41:50 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"poky@pokylinux.org" <poky@pokylinux.org>
-Subject: Re: [poky] Fullpass Test Report for Yocto 1.1 M1 RC2 - 20110528
+Received: by 10.52.169.225 with HTTP; Tue, 7 Jun 2011 19:41:10 -0700 (PDT)
+From: Daryl Spitzer <daryl.spitzer@gmail.com>
+Date: Tue, 7 Jun 2011 19:41:10 -0700
+Message-ID: <BANLkTikOugs9Yi93zVgMe0vhizJfBN3ZaA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: undefined reference to `pthread_getspecific' in perl-native_5.12.2.bb task do_compile?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,53 +39,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jun 2011 01:23:22 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 08 Jun 2011 02:41:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-> On 06/06/2011 09:36 PM, Xu, Jiajun wrote:
->> Hi all,
->>=20
->> This is the fullpass test report for Yocto 1.1 M1 RC2 build. There are
->> 3 new bugs found in this testing compared with weekly testing.
->> Non-GPLv3 build could not work and one new LTP failure found with new
->> kernel. The 2 BLOCK issues on have been addressed and a new build is
->> ready for QA testing. Except for LTP and POSIX failures, there are 13
->> open bugs for RC2 build. Grub installation fails on 3 intel BSPs.
->> Graphics testing on sugarbay is blocked because there are no mesa-demos
->> and libSDL.so installed.
->>=20
-> Jiajun, Yi Zhao,
->=20
-> What's the status of the Beagleboard testing, you show blocked below,
-> but I thought we unblocked last week, so is there any update on the
-> status of beagleboard testing?  We need to know this since we have a
-> conditional GO decision based on these results.
->=20
+The good news is that following the instructions in
+https://wiki.yoctoproject.org/wiki/Working_Behind_a_Network_Proxy
+seems to have solved my proxy problems.  But unfortunately I'm getting
+errors after running `bitbake -k poky-image-sato`, following the
+"Building an Image" instructions in the Yocto Project Quick Start.  (I
+didn't make any changes to the conf/local.conf file generated by
+`source poky-bernard-5.0/poky-init-build-env poky-5.0-build`, except
+to add the CVS setup lines as directed in the
+Working_Behind_a_Network_Proxy wiki page.)  When I repeat `bitbake -k
+poky-image-sato` I believe I get the same results.
 
-Hi Saul,
-Yi is doing testing for beagleboard and I think he would send out test stat=
-us today.
-
-> I would like to also understand the sugarbay graphics testing, this is
-> not a blocker, it's a new requirement, correct?  We have not had
-> mesa-demos included in any past release.  I am going to add it to the
-> sato-sdk build only, will that be?
->=20
-
-Sugarbay graphics testing was introduced during 1.0 M4. At that time, we ha=
-d to build mesa-demos by ourselves and copy it into target image. We submit=
-ted bugs for it during 1.1 M1 because we think it better to use mesa-demos =
-built from autobuilder.
-And yes, adding it into sato-sdk is good enough.
-
-Thanks a lot.
-
-> Sau!
+Here's the output, up to and including the first error:
 
 
-Best Regards,
-Jiajun
+Loading cache...done.
+Loaded 980 entries from dependency cache.
+Parsing recipes...done.
+Parsing of 783 .bb files complete (772 cached, 11 parsed). 991
+targets, 11 skipped, 0 masked, 0 errors.
 
+OE Build Configuration:
+BB_VERSION        = "1.11.0"
+METADATA_BRANCH   = "<unknown>"
+METADATA_REVISION = "<unknown>"
+TARGET_ARCH       = "i586"
+TARGET_OS         = "linux"
+MACHINE           = "qemux86"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.0"
+TARGET_FPU        = ""
+
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+NOTE: Running task 632 of 4961 (ID: 387,
+/home/daryls/yocto/poky-bernard-5.0/meta/recipes-devtools/perl/perl-native_5.12.2.bb,
+do_compile)
+NOTE: package perl-native-5.12.2-r7: task do_compile: Started
+ERROR: Function 'do_compile' failed (see
+/home/daryls/yocto/poky-5.0-build/tmp/work/x86_64-linux/perl-native-5.12.2-r7/temp/log.do_compile.27994
+for further information)
+...
+
+----------
+
+And here's the head of log.do_compile.27994:
+
+
+OTE: make -e MAKEFLAGS=
+gcc -L/home/daryls/yocto/poky-5.0-build/tmp/sysroots/x86_64-linux/usr/lib
+-Wl,-rpath-link,/home/daryls/yocto/poky-5.0-build/tmp/sysroots/x86_64-linux/usr/lib
+-Wl,-rpath,/home/daryls/yocto/poky-5.0-build/tmp/sysroots/x86_64-linux/usr/lib
+-Wl,-O1 -fstack-protector -L/usr/local/lib -o miniperl \
+	      gv.o toke.o perly.o pad.o regcomp.o dump.o util.o mg.o reentr.o
+mro.o hv.o av.o run.o pp_hot.o sv.o pp.o scope.o pp_ctl.o pp_sys.o
+doop.o doio.o regexec.o utf8.o taint.o deb.o universal.o globals.o
+perlio.o perlapi.o numeric.o mathoms.o locale.o pp_pack.o pp_sort.o
+\
+	    miniperlmain.o opmini.o perlmini.o
+util.o: In function `Perl_safesysmalloc':
+util.c:(.text+0x558): undefined reference to `pthread_getspecific'
+util.o: In function `Perl_safesysrealloc':
+util.c:(.text+0x5f0): undefined reference to `pthread_getspecific'
+util.o: In function `Perl_croak_nocontext':
+util.c:(.text+0x19b6): undefined reference to `pthread_getspecific'
+
+----------
+
+Does this look familiar?  Why would I be getting these errors when
+following the Yocto Project Quick Start instructions, without changes?
+ Did I miss something?
+
+--
+Daryl
 
