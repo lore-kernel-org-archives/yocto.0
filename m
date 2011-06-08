@@ -1,20 +1,39 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 2294B4C800BA
-	for <yocto@yoctoproject.org>; Wed,  8 Jun 2011 12:54:14 -0500 (CDT)
-Received: from mail-ew0-f52.google.com ([209.85.215.52])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 08 Jun 2011 10:54:13 -0700
-Received: by ewy28 with SMTP id 28so266657ewy.25
-	for <yocto@yoctoproject.org>; Wed, 08 Jun 2011 10:54:12 -0700 (PDT)
+Return-Path: <daryl.spitzer@gmail.com>
+Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
+	[209.85.212.48])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 3CC974C801BF
+	for <yocto@yoctoproject.org>; Wed,  8 Jun 2011 13:20:39 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by vws7 with SMTP id 7so958640vws.35
+	for <yocto@yoctoproject.org>; Wed, 08 Jun 2011 11:20:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:content-transfer-encoding;
+	bh=dUL8+89rpTcyFhVRS0+hTq9+o9q6qzt8pKFWCKIxfp0=;
+	b=jSruGItYBqI8C4VB3ttxN6sdEKQQlHvkaEY1uZo/+yTod5svTYobAVsp+Anxuyg9fW
+	d7cGOt5MIA7o2dfL95Wsttg00hwmRTG3L5GvqOnwfyfF20w8JPlbb2XpogCydPkTmfRu
+	gVJhSl3bA/yemm3x6OhrOfCcBAIudgQo3AF+U=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	b=OZNzMuFyHYfcn+fTjLVENYyQLqdo1Ek5YPwf9WQN/VHBfDIyvIgORIe59pDsPSlnQt
+	Mi4Q3f8S0mACSIZeU96IWIKzuOquiwExC9LIePgPmXYY6hoTN2yHVQ8s+zRhHlKWNsZT
+	kwLFLQjhDGMbyeqwJDwCCwRp2tVF0JdjjgTBk=
+Received: by 10.52.96.104 with SMTP id dr8mr1993723vdb.214.1307557238063; Wed,
+	08 Jun 2011 11:20:38 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.14.4.209 with SMTP id 57mr3099949eej.87.1307555651898; Wed, 08
-	Jun 2011 10:54:11 -0700 (PDT)
-Received: by 10.14.47.9 with HTTP; Wed, 8 Jun 2011 10:54:11 -0700 (PDT)
-Date: Wed, 8 Jun 2011 10:54:11 -0700
-Message-ID: <BANLkTi=dyBekPX9e33AovNk36DDs1dTzLg@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Received: by 10.52.169.225 with HTTP; Wed, 8 Jun 2011 11:19:58 -0700 (PDT)
+In-Reply-To: <BANLkTimg3S5E45Lrb+QHCUaWC2FxNLV3RA@mail.gmail.com>
+References: <BANLkTikOugs9Yi93zVgMe0vhizJfBN3ZaA@mail.gmail.com>
+	<1307507940.2123.9.camel@scimitar> <4DEF5A32.3060109@mlbassoc.com>
+	<BANLkTimg3S5E45Lrb+QHCUaWC2FxNLV3RA@mail.gmail.com>
+From: Daryl Spitzer <daryl.spitzer@gmail.com>
+Date: Wed, 8 Jun 2011 11:19:58 -0700
+Message-ID: <BANLkTi=BrYbxrkEKXrRvdovE74RYZOYdtw@mail.gmail.com>
 To: yocto@yoctoproject.org
-Subject: More autobuilder downtime and some new targets.
+Subject: Re: undefined reference to `pthread_getspecific' in perl-native_5.12.2.bb task do_compile?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,35 +45,203 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jun 2011 17:54:15 -0000
+X-List-Received-Date: Wed, 08 Jun 2011 18:20:39 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Sorry for the delayed notice in this, it slipped my mind. The
-autobuilders are being moved to a different rack today. They will be
-unavailable for a few hours until DNS propagates. Once they come back
-on line, you should notice two (and maybe three) new buildtargets.
+This email (on the gumstix mailing list) describes the problem:
+http://sourceforge.net/mailarchive/message.php?msg_id=3D27373548.  libc
+has moved in Ubuntu 11.04.
 
-The first two build targets will be "fuzzy-master" and "fuzzy-mut".
-These targets are random builders, that randomly select a MACHINE,
-SDKMACHINE and image type and attempt to build it from the latest of
-either master or stage/master_under_test (aka mut). They save no build
-output for the time being. They will be running continuously as long
-as a builder is available, unless manually stopped.
+Later in that thread is a link to this OE patch:
+http://patches.openembedded.org/patch/1659/.  Since I'm a Yocto and OE
+newbie, it's not clear to me if this patch can be applied to Yocto
+Project 1.0.1, and if so, how.
 
-These exist for a few reasons. I want to enable people to be able to
-get a better idea of the state of these two branches without having to
-wait the full 28 hours a full build cycle takes. These will help with
-that to some extent. Please keep an eye on these. We'll be also
-setting up an mail list so people can subscribe to build
-failures/passes, specifically for these two buildsets.
+I might be better off installing 10.10 on my machine.  (It's new, so I
+don't need to worry about backing up and restoring any files.)  But
+then I may be missing out on a learning opportunity and a chance to
+help out the community.
 
-The next target (which I'm working on right now) is "meta-image". This
-will be pushed up to the poky-autobuilder.git repo once it's fully
-hashed out and will enable us to have a way to build a small subset of
-our nightly without having to rip apart buildbot configs. It will also
-allow people running local instances of the autobuilder to have a
-quick and dirty web based image generator. It may get implemented
-today, but if not, look for it later this week.
+Would someone be able to walk me through applying or adapting this
+patch to Yocto?
 
--b
+--
+Daryl
+
+
+On Wed, Jun 8, 2011 at 6:48 AM, Daryl Spitzer <daryl.spitzer@gmail.com> wro=
+te:
+>>>> Does this look familiar? =A0Why would I be getting these errors when
+>>>> following the Yocto Project Quick Start instructions, without changes?
+>>>> =A0Did I miss something?
+>>>
+>>> It does not. However this is when trying to build perl-native, i.e. Pok=
+y
+>>> is trying to build its own version of Perl but linked against your
+>>> system libraries etc and is unable to find some pthread functions to
+>>> link to.
+>>>
+>>> Can you tell us which distribution/version combination you are using?
+>>>
+>>> Could be that we need to patch perl-native to -lpthread ?
+>>
+>> Is your host Ubuntu 11.04 on x86 (not x86_64)? =A0There was a patch for =
+this
+>> that I'm not sure got back ported into Bernard.
+>
+> Oops. =A0I forgot to provide those details...
+>
+> My host is Ubuntu 11.04 64 bit:
+>
+> $ cat /etc/lsb-release
+> DISTRIB_ID=3DUbuntu
+> DISTRIB_RELEASE=3D11.04
+> DISTRIB_CODENAME=3Dnatty
+> DISTRIB_DESCRIPTION=3D"Ubuntu 11.04"
+> $ uname -m
+> x86_64
+>
+> I ran `wget http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.t=
+ar.bz2`
+> (as directed in the Yocto Project Quick Start). =A0Does that 5.0
+> correspond to Yocto Project 1.0.1?
+>
+> I found http://bit.ly/lzyY5b (an email on the gumstix-users mailing
+> list, archived on old.nabble.com), which appears to be the same
+> problem. =A0I ran:
+>
+> $ sudo apt-get install pthread*
+> Reading package lists... Done
+> Building dependency tree
+> Reading state information... Done
+> Note, selecting 'libpthread-stubs0' for regex 'pthread*'
+> Note, selecting 'libpthread-stubs0-dev' for regex 'pthread*'
+> libpthread-stubs0 is already the newest version.
+> libpthread-stubs0 set to manually installed.
+> libpthread-stubs0-dev is already the newest version.
+> libpthread-stubs0-dev set to manually installed.
+> 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+>
+> I'll read through the rest of that thread to see if can find a
+> solution. =A0But I thought I'd send this information off in case it
+> triggers someone to suggest a solution specific to the Yocto Project.
+>
+> --
+> Daryl
+>
+>
+> On Wed, Jun 8, 2011 at 4:17 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+>> On 06/07/2011 10:38 PM, Joshua Lock wrote:
+>>>
+>>> On Tue, 2011-06-07 at 19:41 -0700, Daryl Spitzer wrote:
+>>>>
+>>>> The good news is that following the instructions in
+>>>> https://wiki.yoctoproject.org/wiki/Working_Behind_a_Network_Proxy
+>>>> seems to have solved my proxy problems. =A0But unfortunately I'm getti=
+ng
+>>>> errors after running `bitbake -k poky-image-sato`, following the
+>>>> "Building an Image" instructions in the Yocto Project Quick Start. =A0=
+(I
+>>>> didn't make any changes to the conf/local.conf file generated by
+>>>> `source poky-bernard-5.0/poky-init-build-env poky-5.0-build`, except
+>>>> to add the CVS setup lines as directed in the
+>>>> Working_Behind_a_Network_Proxy wiki page.) =A0When I repeat `bitbake -=
+k
+>>>> poky-image-sato` I believe I get the same results.
+>>>>
+>>>> Here's the output, up to and including the first error:
+>>>>
+>>>>
+>>>> Loading cache...done.
+>>>> Loaded 980 entries from dependency cache.
+>>>> Parsing recipes...done.
+>>>> Parsing of 783 .bb files complete (772 cached, 11 parsed). 991
+>>>> targets, 11 skipped, 0 masked, 0 errors.
+>>>>
+>>>> OE Build Configuration:
+>>>> BB_VERSION =A0 =A0 =A0 =A0=3D "1.11.0"
+>>>> METADATA_BRANCH =A0 =3D "<unknown>"
+>>>> METADATA_REVISION =3D "<unknown>"
+>>>> TARGET_ARCH =A0 =A0 =A0 =3D "i586"
+>>>> TARGET_OS =A0 =A0 =A0 =A0 =3D "linux"
+>>>> MACHINE =A0 =A0 =A0 =A0 =A0 =3D "qemux86"
+>>>> DISTRO =A0 =A0 =A0 =A0 =A0 =A0=3D "poky"
+>>>> DISTRO_VERSION =A0 =A0=3D "1.0"
+>>>> TARGET_FPU =A0 =A0 =A0 =A0=3D ""
+>>>>
+>>>> NOTE: Resolving any missing task queue dependencies
+>>>> NOTE: Preparing runqueue
+>>>> NOTE: Executing SetScene Tasks
+>>>> NOTE: Executing RunQueue Tasks
+>>>> NOTE: Running task 632 of 4961 (ID: 387,
+>>>>
+>>>> /home/daryls/yocto/poky-bernard-5.0/meta/recipes-devtools/perl/perl-na=
+tive_5.12.2.bb,
+>>>> do_compile)
+>>>> NOTE: package perl-native-5.12.2-r7: task do_compile: Started
+>>>> ERROR: Function 'do_compile' failed (see
+>>>>
+>>>> /home/daryls/yocto/poky-5.0-build/tmp/work/x86_64-linux/perl-native-5.=
+12.2-r7/temp/log.do_compile.27994
+>>>> for further information)
+>>>> ...
+>>>>
+>>>> ----------
+>>>>
+>>>> And here's the head of log.do_compile.27994:
+>>>>
+>>>>
+>>>> OTE: make -e MAKEFLAGS=3D
+>>>> gcc -L/home/daryls/yocto/poky-5.0-build/tmp/sysroots/x86_64-linux/usr/=
+lib
+>>>>
+>>>> -Wl,-rpath-link,/home/daryls/yocto/poky-5.0-build/tmp/sysroots/x86_64-=
+linux/usr/lib
+>>>>
+>>>> -Wl,-rpath,/home/daryls/yocto/poky-5.0-build/tmp/sysroots/x86_64-linux=
+/usr/lib
+>>>> -Wl,-O1 -fstack-protector -L/usr/local/lib -o miniperl \
+>>>> =A0 =A0 =A0 =A0 =A0 =A0 =A0gv.o toke.o perly.o pad.o regcomp.o dump.o =
+util.o mg.o
+>>>> reentr.o
+>>>> mro.o hv.o av.o run.o pp_hot.o sv.o pp.o scope.o pp_ctl.o pp_sys.o
+>>>> doop.o doio.o regexec.o utf8.o taint.o deb.o universal.o globals.o
+>>>> perlio.o perlapi.o numeric.o mathoms.o locale.o pp_pack.o pp_sort.o
+>>>> \
+>>>> =A0 =A0 =A0 =A0 =A0 =A0miniperlmain.o opmini.o perlmini.o
+>>>> util.o: In function `Perl_safesysmalloc':
+>>>> util.c:(.text+0x558): undefined reference to `pthread_getspecific'
+>>>> util.o: In function `Perl_safesysrealloc':
+>>>> util.c:(.text+0x5f0): undefined reference to `pthread_getspecific'
+>>>> util.o: In function `Perl_croak_nocontext':
+>>>> util.c:(.text+0x19b6): undefined reference to `pthread_getspecific'
+>>>>
+>>>> ----------
+>>>>
+>>>> Does this look familiar? =A0Why would I be getting these errors when
+>>>> following the Yocto Project Quick Start instructions, without changes?
+>>>> =A0Did I miss something?
+>>>
+>>> It does not. However this is when trying to build perl-native, i.e. Pok=
+y
+>>> is trying to build its own version of Perl but linked against your
+>>> system libraries etc and is unable to find some pthread functions to
+>>> link to.
+>>>
+>>> Can you tell us which distribution/version combination you are using?
+>>>
+>>> Could be that we need to patch perl-native to -lpthread ?
+>>
+>> Is your host Ubuntu 11.04 on x86 (not x86_64)? =A0There was a patch for =
+this
+>> that I'm not sure got back ported into Bernard.
+>>
+>> --
+>> ------------------------------------------------------------
+>> Gary Thomas =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =A0Consulting for the
+>> MLB Associates =A0 =A0 =A0 =A0 =A0 =A0 =A0| =A0 =A0Embedded world
+>> ------------------------------------------------------------
+>>
+>
 
