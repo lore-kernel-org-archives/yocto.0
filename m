@@ -1,25 +1,23 @@
-Return-Path: <josh@linux.intel.com>
+Return-Path: <dvhart@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D76544C80334
-	for <yocto@yoctoproject.org>; Wed,  8 Jun 2011 18:57:16 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 95DDD4C800FB
+	for <yocto@yoctoproject.org>; Wed,  8 Jun 2011 19:33:34 -0500 (CDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 08 Jun 2011 16:57:16 -0700
+	by orsmga102.jf.intel.com with ESMTP; 08 Jun 2011 17:33:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,340,1304319600"; d="scan'208";a="11469784"
-Received: from unknown (HELO [10.255.13.41]) ([10.255.13.41])
-	by orsmga001.jf.intel.com with ESMTP; 08 Jun 2011 16:57:15 -0700
-From: Joshua Lock <josh@linux.intel.com>
-To: Daryl Spitzer <daryl.spitzer@gmail.com>
-Date: Wed, 08 Jun 2011 16:57:16 -0700
-In-Reply-To: <BANLkTimg3S5E45Lrb+QHCUaWC2FxNLV3RA@mail.gmail.com>
-References: <BANLkTikOugs9Yi93zVgMe0vhizJfBN3ZaA@mail.gmail.com>
-	<1307507940.2123.9.camel@scimitar> <4DEF5A32.3060109@mlbassoc.com>
-	<BANLkTimg3S5E45Lrb+QHCUaWC2FxNLV3RA@mail.gmail.com>
-X-Mailer: Evolution 3.0.2 (3.0.2-1.fc15) 
-Message-ID: <1307577439.31471.4.camel@scimitar>
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: undefined reference to `pthread_getspecific' in perl-native_5.12.2.bb task do_compile?
+X-IronPort-AV: E=Sophos;i="4.65,340,1304319600"; d="scan'208";a="11484283"
+Received: from unknown (HELO [10.255.13.104]) ([10.255.13.104])
+	by orsmga001.jf.intel.com with ESMTP; 08 Jun 2011 17:33:33 -0700
+Message-ID: <4DF014D8.1080204@linux.intel.com>
+Date: Wed, 08 Jun 2011 17:33:28 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
+MIME-Version: 1.0
+To: Yocto Project <yocto@yoctoproject.org>
+Cc: Jeff Mitchell <mitchell@kde.org>,
+	Robert Berger <pokylinux@reliableembeddedsystems.com>
+Subject: Beagleboard BSP Status
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,54 +29,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jun 2011 23:57:17 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 09 Jun 2011 00:33:34 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2011-06-08 at 06:48 -0700, Daryl Spitzer wrote:
-> >>> Does this look familiar?  Why would I be getting these errors when
-> >>> following the Yocto Project Quick Start instructions, without changes?
-> >>>  Did I miss something?
-> >>
-> >> It does not. However this is when trying to build perl-native, i.e. Poky
-> >> is trying to build its own version of Perl but linked against your
-> >> system libraries etc and is unable to find some pthread functions to
-> >> link to.
-> >>
-> >> Can you tell us which distribution/version combination you are using?
-> >>
-> >> Could be that we need to patch perl-native to -lpthread ?
-> >
-> > Is your host Ubuntu 11.04 on x86 (not x86_64)?  There was a patch for this
-> > that I'm not sure got back ported into Bernard.
-> 
-> Oops.  I forgot to provide those details...
-> 
-> My host is Ubuntu 11.04 64 bit:
-> 
-> $ cat /etc/lsb-release
-> DISTRIB_ID=Ubuntu
-> DISTRIB_RELEASE=11.04
-> DISTRIB_CODENAME=natty
-> DISTRIB_DESCRIPTION="Ubuntu 11.04"
-> $ uname -m
-> x86_64
-> 
-> I ran `wget http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.tar.bz2`
-> (as directed in the Yocto Project Quick Start).  Does that 5.0
-> correspond to Yocto Project 1.0.1?
+As several people have been asking after improved Beagleboard support
+with the Yocto Project, and it has been taking longer than I hoped to
+refresh the BSP, I thought I'd fill you in on what the plans are and
+where we are with those.
 
-Hi Daryl,
+We met with the TI folks at ELC to try and sort out how to best support
+the Beagleboard in the Yocto Project while still preserving the
+excellent community surrounding the Beagleboard and the top-notch
+support of the Beagleboard from the meta-texasinstruments layer.
 
-Looks like we fixed this issue in our recent point release. Could you
-try
-http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.1.tar.bz2 ? 
+The plan is to merge the contents of the linux-omap_2.6.37.bb recipe
+into the linux-yocto_2.6.37.bb recipe. This involves merging linux-omap
+into linux-yocto as well as merging the 200 or so patches from the
+linux-omap recipe patch series. This work is complete. Thanks to Bruce
+Ashfield for merging the linux-omap git tree. Of the 200 patches, I was
+able to drop several that reverse applied to the linux-yocto tree, or
+that weren't particularly relevant to the Beagleboard.
 
-Cheers,
-Joshua
+Beyond the kernel patches, there is the question of the defconfig.
+Kernel configs are tricky as they include platform config, optional
+driver configs, and various bits of policy. The goal has been to include
+all of the platform config and the relevant driver configs, while
+ensuring the policy configs are consistent with the yocto/standard
+branch. This includes things like filesystem support, networking
+protocol options, etc. This work is about half complete.
+
+At this point I ran into the same problem reported by Gary Thomas here:
+https://lists.yoctoproject.org/pipermail/poky/2011-June/006634.html
+
+I found that by building with gcc 4.5.1, I am able to boot the
+Beagleboard using a linux-yocto-2.6.37 kernel and a core-image-sato
+image. I've tested serial, USB, ethernet, audio, and X. There are some
+quirks to be ironed out:
+
+o Fix gcc 4.6.0 build
+o Sometimes the /dev/fb0 device doesn't appear
+  - workaround is to create it manually:
+    # mknod /dev/fb0 char 29 0
+    but obviously a permanent solution is needed
+o Screen resolution doesn't fit on _my_display, need to see if this is
+  specific to me, or a general problem
+o Finish pruning the kernel config
+
+With that, we'll have decent general purpose support for the Beagleboard
+in the Yocto Project. meta-texasinstruments should still be considered
+the upstream, and there are some things that will remain only there.
+Such as the snazzy Beagleboard Linux boot logo and the orange screen on
+DVI from u-boot. At this time, we haven't yet explored video
+acceleration or expansion board support, although we will include the
+bluetooth and wifi drivers from the meta-ti config.
+
+I'd like to thank everyone who has shown interest in this effort and
+especially those who have tried the build, opened bugs, and are helping
+to investigate open bugs.
+
+Thanks,
+
 -- 
-Joshua Lock
-        Yocto Build System Monkey
-        Intel Open Source Technology Centre
-
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
