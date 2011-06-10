@@ -1,46 +1,43 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5395A4C8043A;
-	Fri, 10 Jun 2011 14:43:09 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 10 Jun 2011 12:43:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,348,1304319600"; d="scan'208";a="10988415"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by azsmga001.ch.intel.com with ESMTP; 10 Jun 2011 12:43:08 -0700
-Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 10 Jun 2011 12:43:05 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.26]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.236]) with mapi id
-	14.01.0289.001; Fri, 10 Jun 2011 12:43:04 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "'McCombe, Kevin'" <kevin.mccombe@windriver.com>, "Wold, Saul"
-	<saul.wold@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>,
-	"'deVries, Alex'" <Alex.deVries@windriver.com>, "'Polk, Jeffrey'"
-	<jeff.polk@windriver.com>, "'Hatle, Mark'" <mark.hatle@windriver.com>, 
-	"Purdie, Richard" <richard.purdie@intel.com>, "Li, Susie"
-	<susie.li@intel.com>, "Lock, Joshua" <joshua.lock@intel.com>, 'Bruce
-	Ashfield' <bruce.ashfield@windriver.com>, "Zanussi, Tom"
-	<tom.zanussi@intel.com>, "Hart, Darren" <darren.hart@intel.com>,
-	"Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>, "Stewart, David C"
-	<david.c.stewart@intel.com>, "'Lieu.Ta@windriver.com'"
-	<Lieu.Ta@windriver.com>, "'paul.anderson@windriver.com'"
-	<paul.anderson@windriver.com>, "Osier-mixon, Jeffrey"
-	<jeffrey.osier-mixon@intel.com>
-Thread-Topic: Yocto Technical Team
-Thread-Index: Acwm8Bnz0CbZMtcIQBiH9p4395y4/wAqhMSQ
-Date: Fri, 10 Jun 2011 19:43:04 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A02FE92@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.9.131.214]
+Return-Path: <daryl.spitzer@gmail.com>
+Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
+	[209.85.212.48])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 5391B4C800E0
+	for <yocto@yoctoproject.org>; Fri, 10 Jun 2011 16:43:44 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by vws7 with SMTP id 7so4135464vws.35
+	for <yocto@yoctoproject.org>; Fri, 10 Jun 2011 14:43:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=domainkey-signature:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:content-transfer-encoding;
+	bh=VJM/FncIvQwgIHSx8ZNZG/1Gv5PTLt5OfNwjg3dOUEE=;
+	b=RscznJSSDo5GlDpls0sWmWhOxELl7s7Pce2n0BPWHWXiFCE8AaIwczBSGD5z1ul860
+	Tz4KVxZFuLgE/EQfChnmxE9Kyh+ulc4lfjeF4NNqFPEQ+azBYozvdqMStENmMdf+Z5sa
+	bHIo9c+cZfo0g3hLqIovweqhGL56nrunX1iqI=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	b=VQzxRp0khVhljVYSFjxkMzbKmlhxbKmQLqODyYSS/G9YS67SlRddnV2Y2HjR1nlFSQ
+	rzi5dGteJ3TZigDbSuzVn1RM4rCy6F0FlvsOQnrvf4nkncTQ/o7xAM3E995ue+kQcr7u
+	SaGOQkANdA7Aix8hDzZTrYWWVTIXOUbWP5SYA=
+Received: by 10.52.98.40 with SMTP id ef8mr2336120vdb.54.1307742223460; Fri,
+	10 Jun 2011 14:43:43 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 10 Jun 2011 15:35:35 -0500
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"yocto-ab@yoctoproject.org" <yocto-ab@yoctoproject.org>
-Subject: Re: Yocto Technical Team
+Received: by 10.52.169.225 with HTTP; Fri, 10 Jun 2011 14:43:03 -0700 (PDT)
+In-Reply-To: <1307659962.30948.0.camel@scimitar>
+References: <BANLkTikOugs9Yi93zVgMe0vhizJfBN3ZaA@mail.gmail.com>
+	<1307507940.2123.9.camel@scimitar> <4DEF5A32.3060109@mlbassoc.com>
+	<BANLkTimg3S5E45Lrb+QHCUaWC2FxNLV3RA@mail.gmail.com>
+	<1307577439.31471.4.camel@scimitar>
+	<BANLkTi=fKNqwRUE_hm=p7ZVsFm1ra+Ybzw@mail.gmail.com>
+	<1307659962.30948.0.camel@scimitar>
+From: Daryl Spitzer <daryl.spitzer@gmail.com>
+Date: Fri, 10 Jun 2011 14:43:03 -0700
+Message-ID: <BANLkTinwu59xQdtBxSUDU2zW3ta+bCro_g@mail.gmail.com>
+To: Joshua Lock <josh@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: undefined reference to `pthread_getspecific' in perl-native_5.12.2.bb task do_compile?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,28 +49,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Jun 2011 19:43:09 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 10 Jun 2011 21:43:44 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Please let me know if you would like to add anything else to the Agenda. - =
-Song
+Thanks Joshua.  I assume that
+http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-project-qs.html
+won't be updated until the next release (if this makes it into the
+next release)?  And the patch should then be updated to match the new
+version numbers?
 
-Agenda:
-
-  - Final check on Yocto 1.1 M1 release - 5 min (Song)
-  - Review Yocto 1.1 M2 schedule and Release Criteria - 20 min (Song)
-      See details at:  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-1_Release_Criteria=20
-  - Design check (Sprint B, C features) - 20 min (Song)
-  - Opens - 10 min
+--
+Daryl
 
 
-
-Tuesday, June 14, 2011, 08:00 AM US Pacific Time=20
-916-356-2663, 8-356-2663, Bridge: 94, Passcode: 5995524
-Speed dialer: inteldialer://94,5995524 | Learn more
-
-
+On Thu, Jun 9, 2011 at 3:52 PM, Joshua Lock <josh@linux.intel.com> wrote:
+> On Thu, 2011-06-09 at 11:17 -0700, Daryl Spitzer wrote:
+>> > Looks like we fixed this issue in our recent point release. Could you
+>> > try http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.1.tar.=
+bz2 ?
+>>
+>> I tried it, and am getting what I think is an unrelated error. =A0I'll
+>> start a new thread for that.
+>>
+>> Shouldn't documentation references to
+>> "http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.tar.bz2"
+>> be changed to "http://www.yoctoproject.org/downloads/poky/poky-bernard-5=
+.0.1.tar.bz"
+>> (such as in http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-=
+project-qs.html)?
+>
+> You are right Daryl, apologies for any inconvenience. I've filed a bug
+> with a patch attached for the Quick Start doc.
+>
+> http://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1153
+>
+> Regards,
+> Joshua
+> --
+> Joshua Lock
+> =A0 =A0 =A0 =A0Yocto Build System Monkey
+> =A0 =A0 =A0 =A0Intel Open Source Technology Centre
+>
+>
 
