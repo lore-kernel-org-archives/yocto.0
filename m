@@ -1,27 +1,27 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 2C2CB4C8086F
-	for <yocto@yoctoproject.org>; Thu,  9 Jun 2011 17:52:47 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 09 Jun 2011 15:52:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,343,1304319600"; d="scan'208";a="10351947"
-Received: from unknown (HELO [10.255.12.249]) ([10.255.12.249])
-	by azsmga001.ch.intel.com with ESMTP; 09 Jun 2011 15:52:40 -0700
-From: Joshua Lock <josh@linux.intel.com>
-To: Daryl Spitzer <daryl.spitzer@gmail.com>
-Date: Thu, 09 Jun 2011 15:52:41 -0700
-In-Reply-To: <BANLkTi=fKNqwRUE_hm=p7ZVsFm1ra+Ybzw@mail.gmail.com>
-References: <BANLkTikOugs9Yi93zVgMe0vhizJfBN3ZaA@mail.gmail.com>
-	<1307507940.2123.9.camel@scimitar> <4DEF5A32.3060109@mlbassoc.com>
-	<BANLkTimg3S5E45Lrb+QHCUaWC2FxNLV3RA@mail.gmail.com>
-	<1307577439.31471.4.camel@scimitar>
-	<BANLkTi=fKNqwRUE_hm=p7ZVsFm1ra+Ybzw@mail.gmail.com>
-X-Mailer: Evolution 3.0.2 (3.0.2-2.fc15) 
-Message-ID: <1307659962.30948.0.camel@scimitar>
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8788A4C80188
+	for <yocto@yoctoproject.org>; Fri, 10 Jun 2011 03:44:19 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p5A8iIBE025111
+	for <yocto@yoctoproject.org>; Fri, 10 Jun 2011 09:44:18 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP id 24936-03 for <yocto@yoctoproject.org>;
+	Fri, 10 Jun 2011 09:44:14 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p5A8iDXI025105
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <yocto@yoctoproject.org>; Fri, 10 Jun 2011 09:44:14 +0100
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: yocto <yocto@yoctoproject.org>
+Date: Fri, 10 Jun 2011 09:44:02 +0100
+Message-ID: <1307695442.15712.208.camel@rex>
 Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: undefined reference to `pthread_getspecific' in perl-native_5.12.2.bb task do_compile?
+X-Mailer: Evolution 2.32.2 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Subject: Update on build time performance - not good
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,32 +33,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jun 2011 22:52:47 -0000
+X-List-Received-Date: Fri, 10 Jun 2011 08:44:20 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2011-06-09 at 11:17 -0700, Daryl Spitzer wrote:
-> > Looks like we fixed this issue in our recent point release. Could you
-> > try http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.1.tar.bz2 ?
-> 
-> I tried it, and am getting what I think is an unrelated error.  I'll
-> start a new thread for that.
-> 
-> Shouldn't documentation references to
-> "http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.tar.bz2"
-> be changed to "http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.1.tar.bz"
-> (such as in http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-project-qs.html)?
+We've merged a number of things which should have helped performance
+recently. Changes in my test included:
 
-You are right Daryl, apologies for any inconvenience. I've filed a bug
-with a patch attached for the Quick Start doc.
+* Splitting out the locale generation [not merged yet]
+* Not building tar-replacement-native when we don't need it
+* Cleaned up dependencies for native/nativesdk
+* Cleaned up dependencies for all-arch packages
+* Reduced dbus-native dependencies
 
-http://bugzilla.yoctoproject.org/show_bug.cgi?id=1153
+The time for the benchmark timing test against master with the locale
+split patch applied was:
 
-Regards,
-Joshua
--- 
-Joshua Lock
-        Yocto Build System Monkey
-        Intel Open Source Technology Centre
+real	105m5.813s
+user	386m39.170s
+sys	59m40.250s
+
+so not that much different from where we have been :(.
+
+I did observe things through the build process:
+
+* The first part of the build was *fast* getting through the first 2000 
+  of 4295 tasks in about 10 minutes.
+* The CPU usage was pretty much full for that time
+* The next 5 minutes covered the next 150 tasks
+* gettext-native didn't seem to get built until surprisingly late in 
+  the process
+* There was a highly serialised chain of gettext-native, libelf-native, 
+  binutils-native, binutils-cross etc.
+* Once eglibc/libgcc completed, processor usage was high again for the 
+  rest of the build
+
+I'm hoping my BB_NUMBER_THREADS (12 on a quad core machine) was too high
+causing too much context switching and as the build process might now be
+more efficient, lowering it might help. I am a bit disappointed in those
+numbers though.
+
+Cheers,
+
+Richard
+
+
 
 
