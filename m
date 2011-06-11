@@ -1,43 +1,28 @@
-Return-Path: <daryl.spitzer@gmail.com>
-Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
-	[209.85.212.48])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5391B4C800E0
-	for <yocto@yoctoproject.org>; Fri, 10 Jun 2011 16:43:44 -0500 (CDT)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by vws7 with SMTP id 7so4135464vws.35
-	for <yocto@yoctoproject.org>; Fri, 10 Jun 2011 14:43:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=domainkey-signature:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:content-transfer-encoding;
-	bh=VJM/FncIvQwgIHSx8ZNZG/1Gv5PTLt5OfNwjg3dOUEE=;
-	b=RscznJSSDo5GlDpls0sWmWhOxELl7s7Pce2n0BPWHWXiFCE8AaIwczBSGD5z1ul860
-	Tz4KVxZFuLgE/EQfChnmxE9Kyh+ulc4lfjeF4NNqFPEQ+azBYozvdqMStENmMdf+Z5sa
-	bHIo9c+cZfo0g3hLqIovweqhGL56nrunX1iqI=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	b=VQzxRp0khVhljVYSFjxkMzbKmlhxbKmQLqODyYSS/G9YS67SlRddnV2Y2HjR1nlFSQ
-	rzi5dGteJ3TZigDbSuzVn1RM4rCy6F0FlvsOQnrvf4nkncTQ/o7xAM3E995ue+kQcr7u
-	SaGOQkANdA7Aix8hDzZTrYWWVTIXOUbWP5SYA=
-Received: by 10.52.98.40 with SMTP id ef8mr2336120vdb.54.1307742223460; Fri,
-	10 Jun 2011 14:43:43 -0700 (PDT)
+Return-Path: <saul.wold@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 22AB34C803BA
+	for <yocto@yoctoproject.org>; Fri, 10 Jun 2011 19:31:45 -0500 (CDT)
+Received: from mail-pv0-f180.google.com ([74.125.83.180])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 10 Jun 2011 17:31:45 -0700
+Received: by pvc21 with SMTP id 21so1415815pvc.25
+	for <yocto@yoctoproject.org>; Fri, 10 Jun 2011 17:31:45 -0700 (PDT)
+Received: by 10.143.97.9 with SMTP id z9mr476680wfl.149.1307752305275;
+	Fri, 10 Jun 2011 17:31:45 -0700 (PDT)
+Received: from [10.6.18.205] (c-71-193-189-117.hsd1.wa.comcast.net
+	[71.193.189.117])
+	by mx.google.com with ESMTPS id y27sm264488wfl.0.2011.06.10.17.31.44
+	(version=SSLv3 cipher=OTHER); Fri, 10 Jun 2011 17:31:44 -0700 (PDT)
+Message-ID: <4DF2B76F.6020305@intel.com>
+Date: Fri, 10 Jun 2011 17:31:43 -0700
+From: Saul Wold <saul.wold@intel.com>
+Organization: Intel
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc13 Thunderbird/3.1.10
 MIME-Version: 1.0
-Received: by 10.52.169.225 with HTTP; Fri, 10 Jun 2011 14:43:03 -0700 (PDT)
-In-Reply-To: <1307659962.30948.0.camel@scimitar>
-References: <BANLkTikOugs9Yi93zVgMe0vhizJfBN3ZaA@mail.gmail.com>
-	<1307507940.2123.9.camel@scimitar> <4DEF5A32.3060109@mlbassoc.com>
-	<BANLkTimg3S5E45Lrb+QHCUaWC2FxNLV3RA@mail.gmail.com>
-	<1307577439.31471.4.camel@scimitar>
-	<BANLkTi=fKNqwRUE_hm=p7ZVsFm1ra+Ybzw@mail.gmail.com>
-	<1307659962.30948.0.camel@scimitar>
-From: Daryl Spitzer <daryl.spitzer@gmail.com>
-Date: Fri, 10 Jun 2011 14:43:03 -0700
-Message-ID: <BANLkTinwu59xQdtBxSUDU2zW3ta+bCro_g@mail.gmail.com>
-To: Joshua Lock <josh@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: undefined reference to `pthread_getspecific' in perl-native_5.12.2.bb task do_compile?
+To: yocto@yoctoproject.org
+References: <4DF26092.7020902@intel.com>
+In-Reply-To: <4DF26092.7020902@intel.com>
+Subject: Re: Results of the latest documentation audit, June 2011
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,47 +34,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Jun 2011 21:43:44 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 11 Jun 2011 00:31:46 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Thanks Joshua.  I assume that
-http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-project-qs.html
-won't be updated until the next release (if this makes it into the
-next release)?  And the patch should then be updated to match the new
-version numbers?
+On 06/10/2011 11:21 AM, Scott Garman wrote:
+> Hello,
+>
+> As a data point for where we stand in ensuring our packages are
+> producing documentation, I have some scripts which build all recipes
+> (using the output of bitbake -s, not world), and then check that a -doc
+> package is generated which is populated with files.
+>
+> A summary of the results using yesterday's master are as follows:
+>
+> 584 recipes in total
+> 307 recipes are building documentation
+> 277 recipes are not building documentation
+>
+> 20 recipes did not build, and are counted above as "not building
+> documentation"
+>
+> It's the impression of Saul and I that some of the recipes which do not
+> build are failing due to dependency issues. In this case, it's generally
+> not from a missing dependency, but having another recipe built first
+> which then gets picked up (e.g, during do_configure) and causes a build
+> failure.
+>
+> For comparison, here were the results from last month (May 6th):
+>
+> 591 recipes in total
+> 308 recipes are building documentation
+> 283 recipes are not building documentation
+>
+> 31 recipes did not build
+>
+> The lists of recipes are attached to this email. We'd like to improve
+> the percentage of recipes that produce documentation (separated into
+> -doc packages, of course) for our next major release in October.
+>
+> Our userspace recipe maintainers should look into setting aside some
+> time to know which of their recipes are in the "not building
+> documentation" list and work to improve them. A lot of this is likely to
+> be low-hanging fruit.
+>
+I have pending fixes for a number of the build_errors list, many where 
+dependency issues that build on a full build, I am going to research those.
 
---
-Daryl
+We have bugs for alsa-tools, gobject-interospection and clutter-box2d.
 
+So the recipe maintainers really just need to look at the not building 
+docs list, not the errors list at this time.
 
-On Thu, Jun 9, 2011 at 3:52 PM, Joshua Lock <josh@linux.intel.com> wrote:
-> On Thu, 2011-06-09 at 11:17 -0700, Daryl Spitzer wrote:
->> > Looks like we fixed this issue in our recent point release. Could you
->> > try http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.1.tar.=
-bz2 ?
->>
->> I tried it, and am getting what I think is an unrelated error. =A0I'll
->> start a new thread for that.
->>
->> Shouldn't documentation references to
->> "http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.tar.bz2"
->> be changed to "http://www.yoctoproject.org/downloads/poky/poky-bernard-5=
-.0.1.tar.bz"
->> (such as in http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-=
-project-qs.html)?
+Sau!
+
+> Thanks,
 >
-> You are right Daryl, apologies for any inconvenience. I've filed a bug
-> with a patch attached for the Quick Start doc.
->
-> http://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1153
->
-> Regards,
-> Joshua
-> --
-> Joshua Lock
-> =A0 =A0 =A0 =A0Yocto Build System Monkey
-> =A0 =A0 =A0 =A0Intel Open Source Technology Centre
+> Scott
 >
 >
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
