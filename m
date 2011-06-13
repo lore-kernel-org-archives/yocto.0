@@ -1,21 +1,19 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 40AC24C800B3
-	for <yocto@yoctoproject.org>; Mon, 13 Jun 2011 09:35:33 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 13 Jun 2011 07:35:32 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4886A4C800B3
+	for <yocto@yoctoproject.org>; Mon, 13 Jun 2011 09:35:44 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 13 Jun 2011 07:35:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,359,1304319600"; d="scan'208";a="13855525"
+X-IronPort-AV: E=Sophos;i="4.65,359,1304319600"; d="scan'208";a="12903699"
 Received: from unknown (HELO localhost) ([10.255.13.21])
-	by orsmga001.jf.intel.com with ESMTP; 13 Jun 2011 07:35:32 -0700
+	by orsmga002.jf.intel.com with ESMTP; 13 Jun 2011 07:35:43 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Mon, 13 Jun 2011 09:35:38 -0500
-Message-Id: <b80a72531a144db0931459be8c07d96cd6b18c9a.1307975029.git.tom.zanussi@intel.com>
+Date: Mon, 13 Jun 2011 09:32:20 -0500
+Message-Id: <cover.1307938815.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1307975029.git.tom.zanussi@intel.com>
-References: <cover.1307975029.git.tom.zanussi@intel.com>
-Subject: [KERNEL][PATCH] meta: add utrace feature for linux-yocto
+Subject: [PATCH 0/2] meta-intel: add bbappends for systemtap
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,52 +25,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Jun 2011 14:35:33 -0000
+X-List-Received-Date: Mon, 13 Jun 2011 14:35:44 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Add a 'utrace feature' that turns on the kernel options required
-for utrace, used mainly to enable userspace tracing for systemtap.
+Removing any old references to systemtap from meta means we need to add
+it here.  It also adds systemtap support for the other, previously
+uncovered meta-intel bsps.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta/cfg/kernel-cache/features/utrace/utrace.cfg   |    1 +
- meta/cfg/kernel-cache/features/utrace/utrace.scc   |    2 ++
- meta/cfg/kernel-cache/ktypes/standard/standard.scc |    3 +++
- 3 files changed, 6 insertions(+), 0 deletions(-)
- create mode 100644 meta/cfg/kernel-cache/features/utrace/utrace.cfg
- create mode 100644 meta/cfg/kernel-cache/features/utrace/utrace.scc
+The following changes since commit 01d1a545477cbc1b2a1da5b66edb52fd9e783206:
+  Tom Zanussi (1):
+        meta-intel: update kernel SRCREVs
 
-diff --git a/meta/cfg/kernel-cache/features/utrace/utrace.cfg b/meta/cfg/kernel-cache/features/utrace/utrace.cfg
-new file mode 100644
-index 0000000..bf85aa2
---- /dev/null
-+++ b/meta/cfg/kernel-cache/features/utrace/utrace.cfg
-@@ -0,0 +1 @@
-+CONFIG_UTRACE=y
-diff --git a/meta/cfg/kernel-cache/features/utrace/utrace.scc b/meta/cfg/kernel-cache/features/utrace/utrace.scc
-new file mode 100644
-index 0000000..0cab7d9
---- /dev/null
-+++ b/meta/cfg/kernel-cache/features/utrace/utrace.scc
-@@ -0,0 +1,2 @@
-+kconf non-hardware utrace.cfg
-+
-diff --git a/meta/cfg/kernel-cache/ktypes/standard/standard.scc b/meta/cfg/kernel-cache/ktypes/standard/standard.scc
-index 290c50a..ac80038 100644
---- a/meta/cfg/kernel-cache/ktypes/standard/standard.scc
-+++ b/meta/cfg/kernel-cache/ktypes/standard/standard.scc
-@@ -17,6 +17,9 @@ tag lttng
- include features/systemtap/systemtap.scc
- # tag systemtap
- 
-+include features/utrace/utrace.scc
-+# tag utrace
-+
- include arch/arm/arm.scc
- tag arm
- 
--- 
-1.7.0.4
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-intel.git tzanussi/systemtap-update
+  http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/systemtap-update
+
+Tom Zanussi (2):
+  meta-emenlow: add systemtap bbappend
+  meta-intel: add systemtap bbappends
+
+ .../recipes-core/tasks/task-core-tools.bbappend    |    3 +++
+ .../systemtap/systemtap_git.bbappend               |    1 +
+ .../systemtap/systemtap_git.bbappend               |    1 +
+ .../recipes-core/tasks/task-core-tools.bbappend    |    2 ++
+ .../systemtap/systemtap_git.bbappend               |    1 +
+ .../recipes-core/tasks/task-core-tools.bbappend    |    2 ++
+ .../systemtap/systemtap_git.bbappend               |    1 +
+ .../recipes-core/tasks/task-core-tools.bbappend    |    2 ++
+ .../systemtap/systemtap_git.bbappend               |    1 +
+ .../recipes-core/tasks/task-core-tools.bbappend    |    2 ++
+ .../systemtap/systemtap_git.bbappend               |    1 +
+ 11 files changed, 17 insertions(+), 0 deletions(-)
+ create mode 100644 meta-crownbay/recipes-core/tasks/task-core-tools.bbappend
+ create mode 100644 meta-crownbay/recipes-kernel/systemtap/systemtap_git.bbappend
+ create mode 100644 meta-emenlow/recipes-kernel/systemtap/systemtap_git.bbappend
+ create mode 100644 meta-fishriver/recipes-core/tasks/task-core-tools.bbappend
+ create mode 100644 meta-fishriver/recipes-kernel/systemtap/systemtap_git.bbappend
+ create mode 100644 meta-jasperforest/recipes-core/tasks/task-core-tools.bbappend
+ create mode 100644 meta-jasperforest/recipes-kernel/systemtap/systemtap_git.bbappend
+ create mode 100644 meta-n450/recipes-core/tasks/task-core-tools.bbappend
+ create mode 100644 meta-n450/recipes-kernel/systemtap/systemtap_git.bbappend
+ create mode 100644 meta-sugarbay/recipes-core/tasks/task-core-tools.bbappend
+ create mode 100644 meta-sugarbay/recipes-kernel/systemtap/systemtap_git.bbappend
 
 
