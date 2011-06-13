@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D96994C80052
-	for <yocto@yoctoproject.org>; Mon, 13 Jun 2011 13:49:38 -0500 (CDT)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 7F2474C800A3
+	for <yocto@yoctoproject.org>; Mon, 13 Jun 2011 14:09:25 -0500 (CDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 13 Jun 2011 11:49:38 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 13 Jun 2011 12:09:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,359,1304319600"; d="scan'208";a="17720537"
+X-IronPort-AV: E=Sophos;i="4.65,360,1304319600"; d="scan'208";a="17728297"
 Received: from unknown (HELO [10.255.13.21]) ([10.255.13.21])
-	by fmsmga001.fm.intel.com with ESMTP; 13 Jun 2011 11:49:37 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 13 Jun 2011 12:09:24 -0700
 From: Tom Zanussi <tom.zanussi@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-In-Reply-To: <4DF657B6.4030609@linux.intel.com>
-References: <cover.1307938815.git.tom.zanussi@intel.com>
-	<4DF657B6.4030609@linux.intel.com>
-Date: Mon, 13 Jun 2011 13:49:49 -0500
-Message-ID: <1307990989.10825.14.camel@elmorro>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <78149ae3ac9d00de0acf3e6172b6e5d76a1fde27.1307727998.git.paul.eggleton@linux.intel.com>
+References: <cover.1307727998.git.paul.eggleton@linux.intel.com>
+	<78149ae3ac9d00de0acf3e6172b6e5d76a1fde27.1307727998.git.paul.eggleton@linux.intel.com>
+Date: Mon, 13 Jun 2011 14:09:34 -0500
+Message-ID: <1307992174.10825.15.camel@elmorro>
 Mime-Version: 1.0
 X-Mailer: Evolution 2.28.3 
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/2] meta-intel: add bbappends for systemtap
+Subject: Re: [PATCH 1/1] meta-intel: fix formfactor bbappends to use FILESEXTRAPATHS_prepend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,87 +30,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Jun 2011 18:49:39 -0000
+X-List-Received-Date: Mon, 13 Jun 2011 19:09:25 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Mon, 2011-06-13 at 11:32 -0700, Darren Hart wrote:
-> On 06/13/2011 07:32 AM, tom.zanussi@intel.com wrote:
-> > From: Tom Zanussi <tom.zanussi@intel.com>
-> > 
-> > Removing any old references to systemtap from meta means we need to add
-> > it here.  It also adds systemtap support for the other, previously
-> > uncovered meta-intel bsps.
-> 
-> Wouldn't it make more sense to add systemtap to and image recipe, either
-> a new recipe or a bbappend? Also, it seems to me that RRECOMMENDS would
-> make more sense than RDEPENDS - as it isn't required for boot.
+On Fri, 2011-06-10 at 10:47 -0700, Paul Eggleton wrote:
+> This allows meta-intel sub-layers to coexist with meta-yocto when building
+> formfactor for different machines with the same layer setup.
 > 
 
-Hmm, not following you here - why would I want a new image recipe for
-systemtap?
+Tested-by: Tom Zanuss <tom.zanussi@intel.com>
 
-Systemtap fits in with the other profiling tools in the
-task-core-tools-profile as far as I can see; this patch essentially adds
-systemtap to that list, but since it won't run on half the architectures
-we support, it can't be simply added to the recipe but needs to be
-appended for each machine (well, that may change when I switch to
-COMPATIBLE_HOST as pointed out by a couple people, but that was the
-reason behind the current appends).
-
-And, yeah, maybe RRECOMMENDs makes more sense here, will think about
-changing that on the respin.
-
-Thanks,
-
-Tom
-
-> --
-> Darren
+> Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+> ---
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  6 files changed, 6 insertions(+), 6 deletions(-)
 > 
-> > 
-> > The following changes since commit 01d1a545477cbc1b2a1da5b66edb52fd9e783206:
-> >   Tom Zanussi (1):
-> >         meta-intel: update kernel SRCREVs
-> > 
-> > are available in the git repository at:
-> > 
-> >   git://git.yoctoproject.org/meta-intel.git tzanussi/systemtap-update
-> >   http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/systemtap-update
-> > 
-> > Tom Zanussi (2):
-> >   meta-emenlow: add systemtap bbappend
-> >   meta-intel: add systemtap bbappends
-> > 
-> >  .../recipes-core/tasks/task-core-tools.bbappend    |    3 +++
-> >  .../systemtap/systemtap_git.bbappend               |    1 +
-> >  .../systemtap/systemtap_git.bbappend               |    1 +
-> >  .../recipes-core/tasks/task-core-tools.bbappend    |    2 ++
-> >  .../systemtap/systemtap_git.bbappend               |    1 +
-> >  .../recipes-core/tasks/task-core-tools.bbappend    |    2 ++
-> >  .../systemtap/systemtap_git.bbappend               |    1 +
-> >  .../recipes-core/tasks/task-core-tools.bbappend    |    2 ++
-> >  .../systemtap/systemtap_git.bbappend               |    1 +
-> >  .../recipes-core/tasks/task-core-tools.bbappend    |    2 ++
-> >  .../systemtap/systemtap_git.bbappend               |    1 +
-> >  11 files changed, 17 insertions(+), 0 deletions(-)
-> >  create mode 100644 meta-crownbay/recipes-core/tasks/task-core-tools.bbappend
-> >  create mode 100644 meta-crownbay/recipes-kernel/systemtap/systemtap_git.bbappend
-> >  create mode 100644 meta-emenlow/recipes-kernel/systemtap/systemtap_git.bbappend
-> >  create mode 100644 meta-fishriver/recipes-core/tasks/task-core-tools.bbappend
-> >  create mode 100644 meta-fishriver/recipes-kernel/systemtap/systemtap_git.bbappend
-> >  create mode 100644 meta-jasperforest/recipes-core/tasks/task-core-tools.bbappend
-> >  create mode 100644 meta-jasperforest/recipes-kernel/systemtap/systemtap_git.bbappend
-> >  create mode 100644 meta-n450/recipes-core/tasks/task-core-tools.bbappend
-> >  create mode 100644 meta-n450/recipes-kernel/systemtap/systemtap_git.bbappend
-> >  create mode 100644 meta-sugarbay/recipes-core/tasks/task-core-tools.bbappend
-> >  create mode 100644 meta-sugarbay/recipes-kernel/systemtap/systemtap_git.bbappend
-> > 
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> 
+> diff --git a/meta-crownbay/recipes-bsp/formfactor/formfactor_0.0.bbappend b/meta-crownbay/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> index 4a41d48..54da0ff 100644
+> --- a/meta-crownbay/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-crownbay/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+> -FILESEXTRAPATHS := "${THISDIR}/${PN}"
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>   
+>  PRINC = "1"
+> diff --git a/meta-emenlow/recipes-bsp/formfactor/formfactor_0.0.bbappend b/meta-emenlow/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> index 4a41d48..54da0ff 100644
+> --- a/meta-emenlow/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-emenlow/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+> -FILESEXTRAPATHS := "${THISDIR}/${PN}"
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>   
+>  PRINC = "1"
+> diff --git a/meta-fishriver/recipes-bsp/formfactor/formfactor_0.0.bbappend b/meta-fishriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> index 4a41d48..54da0ff 100644
+> --- a/meta-fishriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-fishriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+> -FILESEXTRAPATHS := "${THISDIR}/${PN}"
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>   
+>  PRINC = "1"
+> diff --git a/meta-jasperforest/recipes-bsp/formfactor/formfactor_0.0.bbappend b/meta-jasperforest/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> index 4a41d48..54da0ff 100644
+> --- a/meta-jasperforest/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-jasperforest/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+> -FILESEXTRAPATHS := "${THISDIR}/${PN}"
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>   
+>  PRINC = "1"
+> diff --git a/meta-n450/recipes-bsp/formfactor/formfactor_0.0.bbappend b/meta-n450/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> index 4a41d48..54da0ff 100644
+> --- a/meta-n450/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-n450/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+> -FILESEXTRAPATHS := "${THISDIR}/${PN}"
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>   
+>  PRINC = "1"
+> diff --git a/meta-sugarbay/recipes-bsp/formfactor/formfactor_0.0.bbappend b/meta-sugarbay/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> index 4a41d48..54da0ff 100644
+> --- a/meta-sugarbay/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-sugarbay/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+> -FILESEXTRAPATHS := "${THISDIR}/${PN}"
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>   
+>  PRINC = "1"
 
 
 
