@@ -1,27 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 73F484C8009D
-	for <yocto@yoctoproject.org>; Wed, 15 Jun 2011 23:25:51 -0500 (CDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p5G4Pnl5002632
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 15 Jun 2011 21:25:49 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.21.230) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Wed, 15 Jun 2011 21:25:49 -0700
-Message-ID: <4DF985CB.7050801@windriver.com>
-Date: Thu, 16 Jun 2011 00:25:47 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.18) Gecko/20110613 Thunderbird/3.1.11
+Return-Path: <dongxiao.xu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 578CF4C800C0
+	for <yocto@yoctoproject.org>; Thu, 16 Jun 2011 00:14:28 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 15 Jun 2011 22:14:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.65,373,1304319600"; d="scan'208";a="13621551"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by azsmga001.ch.intel.com with ESMTP; 15 Jun 2011 22:14:26 -0700
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 16 Jun 2011 13:13:39 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Thu, 16 Jun 2011 13:13:38 +0800
+From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 16 Jun 2011 13:13:37 +0800
+Thread-Topic: [yocto] configure optimization feature update
+Thread-Index: AcwrxNE3kftDLycBT76fCwjlzn3X3QAHtxFg
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A52856536@shsmsx501.ccr.corp.intel.com>
+References: <D5AB6E638E5A3E4B8F4406B113A5A19A52800155@shsmsx501.ccr.corp.intel.com>
+	<BANLkTik50B-LRcUB1U99HA0_1piHn0sD5w@mail.gmail.com>
+In-Reply-To: <BANLkTik50B-LRcUB1U99HA0_1piHn0sD5w@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: Lu Jingdong <jingdong.lu@windriver.com>
-References: <cover.1308133815.git.jingdong.lu@windriver.com>	<4DF8B1D7.8050208@windriver.com>	<E44DE684-78F8-4C17-8FF8-837A46CECD58@dominion.thruhere.net>	<4DF8B44B.6080104@windriver.com>
-	<4DF8E279.1040206@linux.intel.com>	<4DF8E369.10000@windriver.com>
-	<4DF8ECD0.8090900@linux.intel.com> <4DF9692C.6010201@windriver.com>
-In-Reply-To: <4DF9692C.6010201@windriver.com>
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
-Subject: Re: [PATCH 0/1] Enable to set RTC for beagleboard
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: configure optimization feature update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,137 +41,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Jun 2011 04:25:52 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 16 Jun 2011 05:14:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 11-06-15 10:23 PM, Lu Jingdong wrote:
-> On 06/16/2011 01:33 AM, Darren Hart wrote:
->>
->> On 06/15/2011 09:52 AM, Bruce Ashfield wrote:
->>> On 06/15/11 12:48, Darren Hart wrote:
->>>>
->>>> On 06/15/2011 06:31 AM, Bruce Ashfield wrote:
->>>>> On 06/15/11 09:25, Koen Kooi wrote:
->>>>>> Op 15 jun 2011, om 15:21 heeft Bruce Ashfield het volgende
->>>>>> geschreven:
->>>>>>
->>>>>>> On 06/15/11 06:41, Jingdong Lu wrote:
->>>>>>>> From: Jingdong Lu<jingdong.lu@windriver.com>
->>>>>>>>
->>>>>>>> Ensure msecure is mux'd to be able to set the RTC for
->>>>>>>> beagleboard. Fixes bug [YOCTO #767]
->>>>>>> Jingdong,
->>>>>>>
->>>>>>> The fix looks reasonable to me, Darren has been refreshing the
->>>>>>> beagleboard support as well, so I've cc'd him here to see if we
->>>>>>> have this change present in the work in progress trees.
->>>>>>>
->>>>
->>>> I do not have something similar queued.
->>>>
->>>>
->>>>>>> What tests did you run to ensure that the RTC worked on the
->>>>>>> beagleboard ? There was some debate around whether or not you
->>>>>>> needed an add-on card to get this functionality available ?
-> The signal "msecure" on TPS65950 connects to "msecure" on OMAP3530 and
-> setting/writing RTC register is controlled by
-> OMAP3530 "msecure". So we should pull the "msecure" high on OMAP3530 so
-> that we can set/write RTC register on TPS65950.
->
-> We test RTC on beagleboard by adding this patch. RTC can be set a
-> correct date and
-> it works well when power on.
->>>>>> You need to remove some resistors and add a battery, or add an
->>>>>> expansionboard like the zippy or zippy2, which have a DS1307 RTC
->>>>>> with battery.
-> Because there is no backup battery on beagleboard C4, RTC can not be
-> saved when
-> power off. If we want to keep RTC without power, we should remove R66
-> and install
-> a battery on board.
-
-Ack'd. For me, this is reasonable. Having a working RTC even
-if it doesn't survive power cycle is worth having. In particular,
-since the patch is simple.
-
->
->>>>> Thanks Koen,
->>>>>
->>>>> This confirms what I thought (zippy*), so clearly this is either a
->>>>> board with that setup, or runtime testing was .. unique. Either way,
->>>>> more details and research is needed for this one.
->>>>
->>>> I'll wait to hear upstream status on this. Given the requirements for
->>>> use, I wouldn't mind just closing 767 as will not fix as it can't work
->>>> with the beagleboard out of the box anyway.
->>> I'm ok with that resolution .. for the bug. But if the patch
->>> isn't already in another upstream tree, it's worth having
->>> (if benign to the rest of the variants) and then we can get
->>> it sent upstream from there.
->>>
->>> I can change the bug's status if you like.
->>
->> I want to hear back from Jingdong regarding this patch first. Is this
->> new code? If so, then yes, let's get it to mainline as Bruce suggested.
->>
->
-> This patch can be found on linux-omap tree.
-> http://git.kernel.org/?p=linux/kernel/git/tmlind/linux-omap-2.6.git;a=commit;h=e2a346a2a054f702fd76f328ff747b9ad9264a4c
->
-
-perfect.
-
->
-> arm: omap3: beagle: Ensure msecure is mux'd to be able to set the RTC
-> Without msecure beeing high it isn't possible to set (or start)
-> the RTC.
->
-> Tested with a BeagleBoard C4.
->
-> Signed-off-by: Alexander Holler <holler@ahsoftware.de>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
->
-> So maybe I should recommit it by adding some upstream status and author.
-
-This is key. We must have this in our patch commits. I can provide
-examples if you aren't familiar and Mark Hatle just sent out some oe-core
-examples of the same thing.
-
-In this case you'd put something like:
-
-commit e2a346a2a054f7 from 
-git://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linux-omap-2.6.git
-
-after the shortlog, and before the long log. Add your Integrated-by:
-to the sign off section of the patch.
-
-Cheers,
-
-Bruce
-
-
->
-> regards,
->
-> Jingdong
->>> Cheers,
->>>
->>> Bruce
->>>
->>>>
->>>> --
->>>> Darren
->>>>
->>>>> Cheers,
->>>>>
->>>>> Bruce
->>>>>
->>>>>> regards,
->>>>>>
->>>>>> Koen
->>>>> _______________________________________________ yocto mailing list
->>>>> yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
->
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBLaGVtIFJhaiBbbWFpbHRvOnJh
+ai5raGVtQGdtYWlsLmNvbV0NCj4gU2VudDogVGh1cnNkYXksIEp1bmUgMTYsIDIwMTEgOToyOSBB
+TQ0KPiBUbzogWHUsIERvbmd4aWFvDQo+IENjOiBSaWNoYXJkIFB1cmRpZSAocmljaGFyZC5wdXJk
+aWVAbGludXhmb3VuZGF0aW9uLm9yZyk7DQo+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3Vi
+amVjdDogUmU6IFt5b2N0b10gY29uZmlndXJlIG9wdGltaXphdGlvbiBmZWF0dXJlIHVwZGF0ZQ0K
+PiANCj4gT24gV2VkLCBKdW4gMTUsIDIwMTEgYXQgNTo1NyBQTSwgWHUsIERvbmd4aWFvIDxkb25n
+eGlhby54dUBpbnRlbC5jb20+DQo+IHdyb3RlOg0KPiA+IEhpIFJpY2hhcmQsDQo+ID4NCj4gPiBS
+ZWNlbnRseSBJIHdhcyBkb2luZyB0aGUgImNvbmZpZ3VyZSBvcHRpbWl6YXRpb24iIGZlYXR1cmUg
+YW5kIGNvbGxlY3RpbmcgZGF0YQ0KPiBmb3IgaXQuDQo+ID4NCj4gPiBUaGUgbWFpbiBsb2dpYyBv
+ZiB0aGlzIGZlYXR1cmUgaXMgc3RyYWlnaHQgZm9yd2FyZDoNCj4gPg0KPiA+IDEuIFVzZSB0aGUg
+ZGlmZiBmaWxlIGFzIGF1dG9yZWNvbmYgY2FjaGUuIChJIHVzZSBjb21tYW5kOiAiZGlmZiAtcnVO
+DQo+IFNPVVJDRS1PUklHIFNPVVJDRSIsIGhlcmUgIlNPVVJDRS1PUklHIiBpcyB0aGUgc291cmNl
+IGRpcmVjdG9yeSBiZWZvcmUNCj4gcnVubmluZyBhdXRvcmVjb25mLCB3aGlsZSAiU09VUkNFIiBp
+cyB0aGUgZGlyZWN0b3J5IGFmdGVyIHJ1bm5pbmcgYXV0b3JlY29uZikuDQo+ID4gMi4gQWRkIFNS
+Q19VUkkgY2hlY2tzdW0gZm9yIGFsbCBwYXRjaGVzIG9mIHRoZSBzb3VyY2UgY29kZS4NCj4gPiAz
+LiBUYWcgZWFjaCBhdXRvcmVjb25mIGNhY2hlIGZpbGUgd2l0aCAke1BOfSBhbmQgdGhlIFNSQ19V
+UkkgY2hlY2tzdW0gb2YNCj4gc291cmNlIGNvZGUgYW5kIGFsbCBwYXRjaGVzLg0KPiA+IDQuIElm
+IHRoZSBjdXJyZW50bHkgU1JDX1VSSSBjaGVja3N1bSBtYXRjaGVzIHRoZSBjYWNoZWQgY2hlY2tz
+dW0sIHRoZW4gd2UNCj4gY2FuIHBhdGNoIHRoZSBjYWNoZSBpbnN0ZWFkIG9mIHJ1bm5pbmcgImF1
+dG9yZWNvbmYiIHN0YWdlLg0KPiA+DQo+IA0KPiBUaGUgYXV0b2NvbmYnaW5nIGlzIHNvcnQgb2Yg
+YXJiaXRyYXJ5IGF0IHRoZSBtb21lbnQuIERlcGVuZGluZyBvbiB3aGF0IGlzDQo+IHN0YWdlZCB0
+aGUgcmVzdWx0cyBtYXkgdmFyeS4gU28gc29tZSB3YXkgb2YgY3JlYXRpbmcgYSBjYWNoZSBpcyBu
+aWNlICBzaW5jZSBpdA0KPiBjYW4gYmUgdXNlZCB0byB2ZXJpZnkgaWYgcGFja2FnZSByZWJ1aWxk
+IGhhcHBlbnMgd2l0aCBzYW1lIGNvbmZpZ3VyZSB2YXJpYWJsZXMNCj4gb3Igbm90LiBTb21ldGlt
+ZXMgd2UgaGF2ZSBzZWVuIHNvbWUgcGFja2FnZXMgYXJlIGJ1aWxkIGRpZmZlcmVudGx5IGZpcnN0
+IHRpbWUNCj4gc2luY2UgbWFueSBwYWNrYWdlcyBhcmUgbm90IHN0YWdlZC4NCj4gDQo+IA0KPiA+
+IEkgZGlkIHNvbWUgdGVzdGluZ3MgZm9yIHNhdG8gYnVpbGQsIHRoZSByZXN1bHQgaXMgbm90IGFz
+IGdvb2QgYXMgd2UgZXhwZWN0ZWQ6DQo+ID4NCj4gPiBPbiBhIHNlcnZlciBidWlsZCBtYWNoaW5l
+IChHZW51aW5lIEludGVsKFIpIENQVSBAIDIuNDBHSHosIDIgc29ja2V0cyB3aXRoIDYNCj4gY29y
+ZSBlYWNoIGFuZCBoeXBlcnRocmVhZGluZywgdGh1cyAyNCBsb2dpY2FsIENQVXMgaW4gYWxsLCA2
+NkcgbWVtb3J5KToNCj4gPg0KPiA+IHcvbyB0aGUgb3B0aW1pemF0aW9uOg0KPiA+IHJlYWwgwqAg
+wqA4M200MC45NjNzDQo+ID4gdXNlciDCoCDCoDQ5Nm01OC41NTBzDQo+ID4gc3lzIMKgIMKgIDMy
+OW0xLjU5MHMNCj4gPg0KPiA+IHcvIHRoZSBvcHRpbWl6YXRpb246DQo+ID4gcmVhbCDCoCDCoDc5
+bTEuMDYycw0KPiA+IHVzZXIgwqAgwqA0NjBtNTguNjAwcw0KPiA+IHN5cyDCoCDCoCAzNDdtNDIu
+MTIwcw0KPiA+DQo+ID4gSXQgaGFzIGFib3V0IDUlIHBlcmZvcm1hbmNlIGdhaW4uDQo+ID4NCj4g
+PiBJIGFsc28gdGVzdGVkIHRoZSBwYXRjaCBvbiBhIGRlc2t0b3AgY29yZS1pNyBtYWNoaW5lIChJ
+bnRlbChSKSBDb3JlKFRNKSBpNw0KPiBDUFUgODcwIEAgMi45M0dIeiwgNCBjb3JlIDggbG9naWNh
+bCBDUFUsIDRHIG1lbW9yeSk6DQo+ID4NCj4gPiB3L28gdGhlIG9wdGltaXphdGlvbjoNCj4gPiBy
+ZWFsIMKgIMKgMTA1bTI1LjQzNnMNCj4gPiB1c2VyIMKgIMKgMzcybTQ4LjA0MHMNCj4gPiBzeXMg
+wqAgwqAgNTFtMjMuOTUwcw0KPiA+DQo+ID4gdy8gdGhlIG9wdGltaXphdGlvbjoNCj4gPiByZWFs
+IMKgIMKgMTAzbTM4LjMxNHMNCj4gPiB1c2VyIMKgIMKgMzMybTM1Ljc3MHMNCj4gPiBzeXMgwqAg
+wqAgNDltNC41MjBzDQo+ID4NCj4gPiBJdCBvbmx5IGhhcyBhYm91dCAyJSBwZXJmb3JtYW5jZSBn
+YWluLg0KPiA+DQo+ID4gVGhlIHJlc3VsdCBpcyBub3QgZW5jb3VyYWdpbmcuDQo+ID4NCj4gPiBU
+aGVyZSBhcmUgYWxzbyBzb21lIG90aGVyIHRoaW5ncyB3ZSBuZWVkIHRvIHRha2UgaW50byBjb25z
+aWRlcmF0aW9uIGZvciB0aGlzDQo+IGZlYXR1cmU6DQo+ID4NCj4gPiAxLiBJZiBhZGQgdGhpcyBm
+ZWF0dXJlLCB0aGUgZmlyc3QgYnVpbGQgdGltZSBzaG91bGQgYmUgbG9uZ2VyIHRoYW4gY3VycmVu
+dCBzaW5jZSBpdA0KPiBuZWVkcyB0byBidWlsZCB0aGUgYXV0b3JlY29uZiBjYWNoZS4NCj4gPiAy
+LiBNYWludGFpbmVycyBuZWVkcyB0byBtYWludGFpbiB0aGUgU1JDX1VSSSBjaGVja3N1bXMgbm90
+IG9ubHkgZm9yIHNvdXJjZQ0KPiBjb2RlLCBidXQgYWxzbyBhbGwgaXRzIHBhdGNoZXMuIEZvciBz
+b21lIHJlY2lwZXMsIGl0IGhhcyBtb3JlIHRoYW4gMjAgcGF0Y2hlcywNCj4gd2hpY2ggbmVlZHMg
+YXNzaWduYWJsZSBtYWludGVuYW5jZSBlZmZvcnQuDQo+IA0KPiBZZWFoIHRoYXRzIGRlZmluaXRl
+IHBhaW4uDQo+IA0KPiA+IDMuIEhvdyB0byBkaXN0cmlidXRlIHRoZSBjYWNoZXMgd2lsbCBiZSBh
+IHByb2JsZW0uIFRoZSB0b3RhbCBzaXplIG9mIHN1Y2ggY2FjaGUNCj4gaXMgYWJvdXQgOTAwTSAo
+YmVmb3JlIGNvbXByZXNzaW9uKSBhbmQgMjAwTSAoYWZ0ZXIgY29tcHJlc3Npb24pLiBTaW5jZSB0
+aGUNCj4gc2l6ZSBpcyBub3Qgc21hbGwsIGRpc3RyaWJ1dGluZyBpdCB3aXRoIFBva3kgc291cmNl
+IGNvZGUgZG9lc24ndCBtYWtlIHNlbnNlLiBPbg0KPiBhbm90aGVyIGFzcGVjdCwgd2UgY2FuIHVz
+ZSBzb21ldGhpbmcgbGlrZSAic3N0YXRlIi4gQnV0IHNpbmNlIHdlIGFscmVhZHkgaGF2ZQ0KPiBj
+YWNoZXMgb2Ygc3N0YXRlLCBJIHRoaW5rIGl0IGlzIG5vdCBuZWNlc3NhcnkgZm9yIHVzIHRvIGVu
+YWJsZSBhbm90aGVyIHNpbWlsYXINCj4gY2FjaGUgbWVjaGFuaXNtIHdpdGggbGl0dGxlIGltcHJv
+dmVtZW50Lg0KPiA+DQo+IA0KPiBobW0gdGhpcyBpcyBhIHJlYWwgcHJvYmxlbSBhbmQgcHJvYmFi
+bHkgdGhlIHBlcmYga2lsbGVyLiBJIHdvbmRlciB3aHkgdGhlIHNpemVzDQo+IGFyZSBzbyBiaWcu
+DQoNCkkgZGlmZiB0aGUgc291cmNlIGZpbGVzIGJlZm9yZSBhbmQgYWZ0ZXIgYXV0b3JlY29uZiBh
+bmQgdXNpbmcgdGhlIGdlbmVyYXRlZCBwYXRjaCBhcyBvdXIgYXV0b3JlY29uZiBjYWNoZS4gRm9y
+IGEgY2VydGFpbiBzb3VyY2UgY29kZSwgZm9yIGV4YW1wbGUgY29ubm1hbiwgc3VjaCBkaWZmIGZp
+bGUgd2lsbCBiZSBhcyBsYXJnZSBhcyAzTSwgYW5kIGZvciBhIHNhdG8gYnVpbGQsIHdlIGhhdmUg
+YWJvdXQgMzAwIHJlY2lwZXMgbmVlZCBhdXRvcmVjb25mLg0KDQpUaGFua3MsDQpEb25neGlhbw0K
+DQo+IA0KPiA+IFRoZXJlZm9yZSBteSBvcGluaW9uIGlzIHdlIG1heSBnaXZlIHVwIHRoaXMgZmVh
+dHVyZS4gV2hhdCdzIHlvdXIgY29tbWVudHMNCj4gYW5kIHN1Z2dlc3Rpb25zPw0KPiA+DQo+ID4g
+VGhhbmtzLA0KPiA+IERvbmd4aWFvDQo+ID4NCj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXw0KPiA+IHlvY3RvIG1haWxpbmcgbGlzdA0KPiA+IHlvY3Rv
+QHlvY3RvcHJvamVjdC5vcmcNCj4gPiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlz
+dGluZm8veW9jdG8NCj4gPg0K
 
