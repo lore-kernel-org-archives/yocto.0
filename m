@@ -1,29 +1,30 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-wy0-f176.google.com (mail-wy0-f176.google.com
-	[74.125.82.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id F18C84C8009D
-	for <yocto@yoctoproject.org>; Thu, 16 Jun 2011 09:59:12 -0500 (CDT)
-Received: by wyb40 with SMTP id 40so1695903wyb.35
-	for <yocto@yoctoproject.org>; Thu, 16 Jun 2011 07:59:11 -0700 (PDT)
-Received: by 10.227.156.70 with SMTP id v6mr1043701wbw.21.1308236351510;
-	Thu, 16 Jun 2011 07:59:11 -0700 (PDT)
-Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl [84.80.112.235])
-	by mx.google.com with ESMTPS id m8sm205159wbh.62.2011.06.16.07.59.09
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 16 Jun 2011 07:59:10 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1084)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <4DFA1722.7000008@linux.intel.com>
-Date: Thu, 16 Jun 2011 16:59:08 +0200
-Message-Id: <78F917CB-E518-4DCF-A2B1-2F71A16190A9@dominion.thruhere.net>
-References: <cover.1308133815.git.jingdong.lu@windriver.com>	<4DF8B1D7.8050208@windriver.com>	<E44DE684-78F8-4C17-8FF8-837A46CECD58@dominion.thruhere.net>	<4DF8B44B.6080104@windriver.com>
-	<4DF8E279.1040206@linux.intel.com>	<4DF8E369.10000@windriver.com>
-	<4DF8ECD0.8090900@linux.intel.com> <4DF9692C.6010201@windriver.com>
-	<4DF985CB.7050801@windriver.com> <4DFA1722.7000008@linux.intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-X-Mailer: Apple Mail (2.1084)
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/1] Enable to set RTC for beagleboard
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 494394C80186
+	for <yocto@yoctoproject.org>; Thu, 16 Jun 2011 10:01:20 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p5GF1GHe009772;
+	Thu, 16 Jun 2011 16:01:16 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 09380-06; Thu, 16 Jun 2011 16:01:12 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p5GF14oL009765
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 16 Jun 2011 16:01:07 +0100
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+In-Reply-To: <D5AB6E638E5A3E4B8F4406B113A5A19A52800155@shsmsx501.ccr.corp.intel.com>
+References: <D5AB6E638E5A3E4B8F4406B113A5A19A52800155@shsmsx501.ccr.corp.intel.com>
+Date: Thu, 16 Jun 2011 16:01:02 +0100
+Message-ID: <1308236462.15712.442.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: configure optimization feature update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,71 +36,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Jun 2011 14:59:13 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Thu, 16 Jun 2011 15:01:20 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
+Hi Dongxiao,
 
-Op 16 jun 2011, om 16:45 heeft Darren Hart het volgende geschreven:
-
+On Thu, 2011-06-16 at 08:57 +0800, Xu, Dongxiao wrote:
+> Recently I was doing the "configure optimization" feature and
+> collecting data for it.
 > 
-> On 06/15/2011 09:25 PM, Bruce Ashfield wrote:
->> On 11-06-15 10:23 PM, Lu Jingdong wrote:
->>> On 06/16/2011 01:33 AM, Darren Hart wrote:
->>>> 
->>>> On 06/15/2011 09:52 AM, Bruce Ashfield wrote:
->>>>> On 06/15/11 12:48, Darren Hart wrote:
->>>>>> 
->>>>>> On 06/15/2011 06:31 AM, Bruce Ashfield wrote:
->>>>>>> On 06/15/11 09:25, Koen Kooi wrote:
->>>>>>>> Op 15 jun 2011, om 15:21 heeft Bruce Ashfield het volgende
->>>>>>>> geschreven:
->>>>>>>> 
->>>>>>>>> On 06/15/11 06:41, Jingdong Lu wrote:
->>>>>>>>>> From: Jingdong Lu<jingdong.lu@windriver.com>
->>>>>>>>>> 
->>>>>>>>>> Ensure msecure is mux'd to be able to set the RTC for
->>>>>>>>>> beagleboard. Fixes bug [YOCTO #767]
->>>>>>>>> Jingdong,
->>>>>>>>> 
->>>>>>>>> The fix looks reasonable to me, Darren has been refreshing the
->>>>>>>>> beagleboard support as well, so I've cc'd him here to see if we
->>>>>>>>> have this change present in the work in progress trees.
->>>>>>>>> 
->>>>>> 
->>>>>> I do not have something similar queued.
->>>>>> 
->>>>>> 
->>>>>>>>> What tests did you run to ensure that the RTC worked on the
->>>>>>>>> beagleboard ? There was some debate around whether or not you
->>>>>>>>> needed an add-on card to get this functionality available ?
->>> The signal "msecure" on TPS65950 connects to "msecure" on OMAP3530 and
->>> setting/writing RTC register is controlled by
->>> OMAP3530 "msecure". So we should pull the "msecure" high on OMAP3530 so
->>> that we can set/write RTC register on TPS65950.
->>> 
->>> We test RTC on beagleboard by adding this patch. RTC can be set a
->>> correct date and
->>> it works well when power on.
->>>>>>>> You need to remove some resistors and add a battery, or add an
->>>>>>>> expansionboard like the zippy or zippy2, which have a DS1307 RTC
->>>>>>>> with battery.
->>> Because there is no backup battery on beagleboard C4, RTC can not be
->>> saved when
->>> power off. If we want to keep RTC without power, we should remove R66
->>> and install
->>> a battery on board.
->> 
->> Ack'd. For me, this is reasonable. Having a working RTC even
->> if it doesn't survive power cycle is worth having. In particular,
->> since the patch is simple.
+> The main logic of this feature is straight forward:
 > 
+> 1. Use the diff file as autoreconf cache. (I use command: "diff -ruN
+> SOURCE-ORIG SOURCE", here "SOURCE-ORIG" is the source directory before
+> running autoreconf, while "SOURCE" is the directory after running
+> autoreconf).
+> 2. Add SRC_URI checksum for all patches of the source code.
+> 3. Tag each autoreconf cache file with ${PN} and the SRC_URI checksum
+> of source code and all patches.
+> 4. If the currently SRC_URI checksum matches the cached checksum, then
+> we can patch the cache instead of running "autoreconf" stage.
 > 
-> Agreed.
+> I did some testings for sato build, the result is not as good as we
+> expected:
+> 
+> On a server build machine (Genuine Intel(R) CPU @ 2.40GHz, 2 sockets with 6 core each and hyperthreading, thus 24 logical CPUs in all, 66G memory):
+> 
+> w/o the optimization:
+> real    83m40.963s
+> user    496m58.550s
+> sys     329m1.590s
+> 
+> w/ the optimization:
+> real    79m1.062s
+> user    460m58.600s
+> sys     347m42.120s
+> 
+> It has about 5% performance gain.
 
-FWIW, it survives warm resests.
+Whats interesting there is the relatively large sys times compared to
+user. Any idea why that's happening? Spinning locks?
 
-regards,
+> I also tested the patch on a desktop core-i7 machine (Intel(R) Core(TM) i7 CPU 870 @ 2.93GHz, 4 core 8 logical CPU, 4G memory):
+> 
+> w/o the optimization:
+> real    105m25.436s
+> user    372m48.040s
+> sys     51m23.950s
+> 
+> w/ the optimization:
+> real    103m38.314s
+> user    332m35.770s
+> sys     49m4.520s
+> 
+> It only has about 2% performance gain.
+> 
+> The result is not encouraging.
 
-Koen
+Agreed, this isn't as good as we'd hoped for :(.
+
+> There are also some other things we need to take into consideration
+> for this feature:
+> 
+> 1. If add this feature, the first build time should be longer than
+> current since it needs to build the autoreconf cache.
+> 2. Maintainers needs to maintain the SRC_URI checksums not only for
+> source code, but also all its patches. For some recipes, it has more
+> than 20 patches, which needs assignable maintenance effort.
+> 3. How to distribute the caches will be a problem. The total size of
+> such cache is about 900M (before compression) and 200M (after
+> compression). Since the size is not small, distributing it with Poky
+> source code doesn't make sense. On another aspect, we can use
+> something like "sstate". But since we already have caches of sstate, I
+> think it is not necessary for us to enable another similar cache
+> mechanism with little improvement.
+> 
+> Therefore my opinion is we may give up this feature. What's your
+> comments and suggestions?
+
+I think we should put the patches together on a branch in contrib so we
+keep them somewhere in case we want them. Certainly tracking what
+changes the autoreconf process makes may be useful in other situations
+in future so its worth keeping the patches. I think you're right and we
+should shelve the idea for now though as it doesn't look to be worth the
+pain it entails.
+
+For reference, we probably do need to start tracking the file checksums
+for the benefit of sstate.
+
+The mediocre performance improvement is likely down to the size of the
+cache data but I can't immediately think of a way to improve that :(.
+
+Cheers,
+
+Richard
+
 
