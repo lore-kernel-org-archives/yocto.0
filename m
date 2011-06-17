@@ -1,25 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B5DA14C800BA
-	for <yocto@yoctoproject.org>; Thu, 16 Jun 2011 15:11:04 -0500 (CDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p5GKB3J6009352
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 16 Jun 2011 13:11:03 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 16 Jun 2011 13:11:03 -0700
-Message-ID: <4DFA6355.8030106@windriver.com>
-Date: Thu, 16 Jun 2011 16:11:01 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110424 Thunderbird/3.1.10 ThunderBrowse/3.3.5
+Return-Path: <dongxiao.xu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 03D274C800A6
+	for <yocto@yoctoproject.org>; Thu, 16 Jun 2011 21:19:57 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 16 Jun 2011 19:19:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.65,378,1304319600"; d="scan'208";a="17298638"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by fmsmga002.fm.intel.com with ESMTP; 16 Jun 2011 19:19:56 -0700
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 17 Jun 2011 10:19:31 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Fri, 17 Jun 2011 10:19:28 +0800
+From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date: Fri, 17 Jun 2011 10:19:26 +0800
+Thread-Topic: configure optimization feature update
+Thread-Index: AcwsNlD6Il6mpSvlQ0y9ites+qZzIwAXA0ew
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D6721BB7@shsmsx501.ccr.corp.intel.com>
+References: <D5AB6E638E5A3E4B8F4406B113A5A19A52800155@shsmsx501.ccr.corp.intel.com>
+	<1308236462.15712.442.camel@rex>
+In-Reply-To: <1308236462.15712.442.camel@rex>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: <tom.zanussi@intel.com>
-References: <cover.1307970929.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1307970929.git.tom.zanussi@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [KERNEL][PATCH] add utrace
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: configure optimization feature update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,57 +41,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Jun 2011 20:11:05 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 17 Jun 2011 02:19:58 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 06/13/11 10:35, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi<tom.zanussi@intel.com>
->
-> This adds support for utrace to linux-yocto, for userspace tracing
-> in systemtap.
->
-> Please pull into the yocto/base branch linux-yocto.
->
-> Pull URL: git://git.pokylinux.org/linux-yocto-2.6.37-contrib
->    Branch: tzanussi/yocto/base-utrace
->    Browse: http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/yocto/base-utrace
-
-These are merged, and pushed. I put this in a
-common location so all BSPs have the changes.
-
-I'm doing some final build testing now, but I'll have
-a SRCREV update for this later today.
-
-Cheers,
-
-Bruce
-
->
-> Tom Zanussi (1):
->    utrace: support for user space probing/tracing
->
->   Documentation/DocBook/Makefile    |    2 +-
->   Documentation/DocBook/utrace.tmpl |  589 +++++++++
->   fs/proc/array.c                   |    3 +
->   include/linux/ptrace.h            |    1 +
->   include/linux/sched.h             |    6 +
->   include/linux/tracehook.h         |   97 ++-
->   include/linux/utrace.h            |  692 +++++++++++
->   init/Kconfig                      |    9 +
->   kernel/Makefile                   |    1 +
->   kernel/fork.c                     |    3 +
->   kernel/ptrace.c                   |   16 +-
->   kernel/signal.c                   |    4 +-
->   kernel/utrace.c                   | 2440 +++++++++++++++++++++++++++++++++++++
->   13 files changed, 3853 insertions(+), 10 deletions(-)
->   create mode 100644 Documentation/DocBook/utrace.tmpl
->   create mode 100644 include/linux/utrace.h
->   create mode 100644 kernel/utrace.c
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+SGkgUmljaGFyZCwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSaWNo
+YXJkIFB1cmRpZSBbbWFpbHRvOnJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmddDQo+
+IFNlbnQ6IFRodXJzZGF5LCBKdW5lIDE2LCAyMDExIDExOjAxIFBNDQo+IFRvOiBYdSwgRG9uZ3hp
+YW8NCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogUmU6IGNvbmZpZ3Vy
+ZSBvcHRpbWl6YXRpb24gZmVhdHVyZSB1cGRhdGUNCj4gDQo+IEhpIERvbmd4aWFvLA0KPiANCj4g
+T24gVGh1LCAyMDExLTA2LTE2IGF0IDA4OjU3ICswODAwLCBYdSwgRG9uZ3hpYW8gd3JvdGU6DQo+
+ID4gUmVjZW50bHkgSSB3YXMgZG9pbmcgdGhlICJjb25maWd1cmUgb3B0aW1pemF0aW9uIiBmZWF0
+dXJlIGFuZA0KPiA+IGNvbGxlY3RpbmcgZGF0YSBmb3IgaXQuDQo+ID4NCj4gPiBUaGUgbWFpbiBs
+b2dpYyBvZiB0aGlzIGZlYXR1cmUgaXMgc3RyYWlnaHQgZm9yd2FyZDoNCj4gPg0KPiA+IDEuIFVz
+ZSB0aGUgZGlmZiBmaWxlIGFzIGF1dG9yZWNvbmYgY2FjaGUuIChJIHVzZSBjb21tYW5kOiAiZGlm
+ZiAtcnVODQo+ID4gU09VUkNFLU9SSUcgU09VUkNFIiwgaGVyZSAiU09VUkNFLU9SSUciIGlzIHRo
+ZSBzb3VyY2UgZGlyZWN0b3J5IGJlZm9yZQ0KPiA+IHJ1bm5pbmcgYXV0b3JlY29uZiwgd2hpbGUg
+IlNPVVJDRSIgaXMgdGhlIGRpcmVjdG9yeSBhZnRlciBydW5uaW5nDQo+ID4gYXV0b3JlY29uZiku
+DQo+ID4gMi4gQWRkIFNSQ19VUkkgY2hlY2tzdW0gZm9yIGFsbCBwYXRjaGVzIG9mIHRoZSBzb3Vy
+Y2UgY29kZS4NCj4gPiAzLiBUYWcgZWFjaCBhdXRvcmVjb25mIGNhY2hlIGZpbGUgd2l0aCAke1BO
+fSBhbmQgdGhlIFNSQ19VUkkgY2hlY2tzdW0NCj4gPiBvZiBzb3VyY2UgY29kZSBhbmQgYWxsIHBh
+dGNoZXMuDQo+ID4gNC4gSWYgdGhlIGN1cnJlbnRseSBTUkNfVVJJIGNoZWNrc3VtIG1hdGNoZXMg
+dGhlIGNhY2hlZCBjaGVja3N1bSwgdGhlbg0KPiA+IHdlIGNhbiBwYXRjaCB0aGUgY2FjaGUgaW5z
+dGVhZCBvZiBydW5uaW5nICJhdXRvcmVjb25mIiBzdGFnZS4NCj4gPg0KPiA+IEkgZGlkIHNvbWUg
+dGVzdGluZ3MgZm9yIHNhdG8gYnVpbGQsIHRoZSByZXN1bHQgaXMgbm90IGFzIGdvb2QgYXMgd2UN
+Cj4gPiBleHBlY3RlZDoNCj4gPg0KPiA+IE9uIGEgc2VydmVyIGJ1aWxkIG1hY2hpbmUgKEdlbnVp
+bmUgSW50ZWwoUikgQ1BVIEAgMi40MEdIeiwgMiBzb2NrZXRzIHdpdGggNg0KPiBjb3JlIGVhY2gg
+YW5kIGh5cGVydGhyZWFkaW5nLCB0aHVzIDI0IGxvZ2ljYWwgQ1BVcyBpbiBhbGwsIDY2RyBtZW1v
+cnkpOg0KPiA+DQo+ID4gdy9vIHRoZSBvcHRpbWl6YXRpb246DQo+ID4gcmVhbCAgICA4M200MC45
+NjNzDQo+ID4gdXNlciAgICA0OTZtNTguNTUwcw0KPiA+IHN5cyAgICAgMzI5bTEuNTkwcw0KPiA+
+DQo+ID4gdy8gdGhlIG9wdGltaXphdGlvbjoNCj4gPiByZWFsICAgIDc5bTEuMDYycw0KPiA+IHVz
+ZXIgICAgNDYwbTU4LjYwMHMNCj4gPiBzeXMgICAgIDM0N200Mi4xMjBzDQo+ID4NCj4gPiBJdCBo
+YXMgYWJvdXQgNSUgcGVyZm9ybWFuY2UgZ2Fpbi4NCj4gDQo+IFdoYXRzIGludGVyZXN0aW5nIHRo
+ZXJlIGlzIHRoZSByZWxhdGl2ZWx5IGxhcmdlIHN5cyB0aW1lcyBjb21wYXJlZCB0byB1c2VyLiBB
+bnkNCj4gaWRlYSB3aHkgdGhhdCdzIGhhcHBlbmluZz8gU3Bpbm5pbmcgbG9ja3M/DQoNClllcywg
+SSBhbHNvIG5vdGljZWQgdGhlIHRoZSBpbi1jb25zaXN0ZW50IGRhdGEgb2YgdXNlciBhbmQgc3lz
+Lg0KRHVyaW5nIHRoZSBidWlsZCwgc29tZXRpbWVzIEkgZm91bmQgdGhlIGJ1aWxkIHdpbGwgc3Vz
+cGVuZCBmb3Igc29tZSB0aW1lIGFuZCBzeXN0ZW0gaXMgZG9pbmcgImtqb3VybmFsZCIuDQpJdCBo
+YXBwZW5zIHJlbGF0aXZlbHkgZnJlcXVlbnQgb24gdGhhdCAyNCBDUFUncyBzZXJ2ZXIgd2l0aCAi
+NDgiIGFuZCAiLWo0OCIgYXNzaWduZWQgZm9yIGJ1aWxkIHBhcmFsbGVsIHBhcmFtZXRlcnMuDQpJ
+IGFtIG5vdCBzdXJlIHdoZXRoZXIgdGhpcyBjYXVzZWQgdGhlIGFib3ZlIHBoZW5vbWVub24uDQoN
+Cj4gDQo+ID4gSSBhbHNvIHRlc3RlZCB0aGUgcGF0Y2ggb24gYSBkZXNrdG9wIGNvcmUtaTcgbWFj
+aGluZSAoSW50ZWwoUikgQ29yZShUTSkgaTcNCj4gQ1BVIDg3MCBAIDIuOTNHSHosIDQgY29yZSA4
+IGxvZ2ljYWwgQ1BVLCA0RyBtZW1vcnkpOg0KPiA+DQo+ID4gdy9vIHRoZSBvcHRpbWl6YXRpb246
+DQo+ID4gcmVhbCAgICAxMDVtMjUuNDM2cw0KPiA+IHVzZXIgICAgMzcybTQ4LjA0MHMNCj4gPiBz
+eXMgICAgIDUxbTIzLjk1MHMNCj4gPg0KPiA+IHcvIHRoZSBvcHRpbWl6YXRpb246DQo+ID4gcmVh
+bCAgICAxMDNtMzguMzE0cw0KPiA+IHVzZXIgICAgMzMybTM1Ljc3MHMNCj4gPiBzeXMgICAgIDQ5
+bTQuNTIwcw0KPiA+DQo+ID4gSXQgb25seSBoYXMgYWJvdXQgMiUgcGVyZm9ybWFuY2UgZ2Fpbi4N
+Cj4gPg0KPiA+IFRoZSByZXN1bHQgaXMgbm90IGVuY291cmFnaW5nLg0KPiANCj4gQWdyZWVkLCB0
+aGlzIGlzbid0IGFzIGdvb2QgYXMgd2UnZCBob3BlZCBmb3IgOiguDQo+IA0KPiA+IFRoZXJlIGFy
+ZSBhbHNvIHNvbWUgb3RoZXIgdGhpbmdzIHdlIG5lZWQgdG8gdGFrZSBpbnRvIGNvbnNpZGVyYXRp
+b24NCj4gPiBmb3IgdGhpcyBmZWF0dXJlOg0KPiA+DQo+ID4gMS4gSWYgYWRkIHRoaXMgZmVhdHVy
+ZSwgdGhlIGZpcnN0IGJ1aWxkIHRpbWUgc2hvdWxkIGJlIGxvbmdlciB0aGFuDQo+ID4gY3VycmVu
+dCBzaW5jZSBpdCBuZWVkcyB0byBidWlsZCB0aGUgYXV0b3JlY29uZiBjYWNoZS4NCj4gPiAyLiBN
+YWludGFpbmVycyBuZWVkcyB0byBtYWludGFpbiB0aGUgU1JDX1VSSSBjaGVja3N1bXMgbm90IG9u
+bHkgZm9yDQo+ID4gc291cmNlIGNvZGUsIGJ1dCBhbHNvIGFsbCBpdHMgcGF0Y2hlcy4gRm9yIHNv
+bWUgcmVjaXBlcywgaXQgaGFzIG1vcmUNCj4gPiB0aGFuIDIwIHBhdGNoZXMsIHdoaWNoIG5lZWRz
+IGFzc2lnbmFibGUgbWFpbnRlbmFuY2UgZWZmb3J0Lg0KPiA+IDMuIEhvdyB0byBkaXN0cmlidXRl
+IHRoZSBjYWNoZXMgd2lsbCBiZSBhIHByb2JsZW0uIFRoZSB0b3RhbCBzaXplIG9mDQo+ID4gc3Vj
+aCBjYWNoZSBpcyBhYm91dCA5MDBNIChiZWZvcmUgY29tcHJlc3Npb24pIGFuZCAyMDBNIChhZnRl
+cg0KPiA+IGNvbXByZXNzaW9uKS4gU2luY2UgdGhlIHNpemUgaXMgbm90IHNtYWxsLCBkaXN0cmli
+dXRpbmcgaXQgd2l0aCBQb2t5DQo+ID4gc291cmNlIGNvZGUgZG9lc24ndCBtYWtlIHNlbnNlLiBP
+biBhbm90aGVyIGFzcGVjdCwgd2UgY2FuIHVzZQ0KPiA+IHNvbWV0aGluZyBsaWtlICJzc3RhdGUi
+LiBCdXQgc2luY2Ugd2UgYWxyZWFkeSBoYXZlIGNhY2hlcyBvZiBzc3RhdGUsIEkNCj4gPiB0aGlu
+ayBpdCBpcyBub3QgbmVjZXNzYXJ5IGZvciB1cyB0byBlbmFibGUgYW5vdGhlciBzaW1pbGFyIGNh
+Y2hlDQo+ID4gbWVjaGFuaXNtIHdpdGggbGl0dGxlIGltcHJvdmVtZW50Lg0KPiA+DQo+ID4gVGhl
+cmVmb3JlIG15IG9waW5pb24gaXMgd2UgbWF5IGdpdmUgdXAgdGhpcyBmZWF0dXJlLiBXaGF0J3Mg
+eW91cg0KPiA+IGNvbW1lbnRzIGFuZCBzdWdnZXN0aW9ucz8NCj4gDQo+IEkgdGhpbmsgd2Ugc2hv
+dWxkIHB1dCB0aGUgcGF0Y2hlcyB0b2dldGhlciBvbiBhIGJyYW5jaCBpbiBjb250cmliIHNvIHdl
+IGtlZXANCj4gdGhlbSBzb21ld2hlcmUgaW4gY2FzZSB3ZSB3YW50IHRoZW0uIENlcnRhaW5seSB0
+cmFja2luZyB3aGF0IGNoYW5nZXMgdGhlDQo+IGF1dG9yZWNvbmYgcHJvY2VzcyBtYWtlcyBtYXkg
+YmUgdXNlZnVsIGluIG90aGVyIHNpdHVhdGlvbnMgaW4gZnV0dXJlIHNvIGl0cw0KPiB3b3J0aCBr
+ZWVwaW5nIHRoZSBwYXRjaGVzLiBJIHRoaW5rIHlvdSdyZSByaWdodCBhbmQgd2Ugc2hvdWxkIHNo
+ZWx2ZSB0aGUgaWRlYQ0KPiBmb3Igbm93IHRob3VnaCBhcyBpdCBkb2Vzbid0IGxvb2sgdG8gYmUg
+d29ydGggdGhlIHBhaW4gaXQgZW50YWlscy4NCg0KT0ssIEkgd2lsbCBxdWV1ZSBteSBwYXRjaCBp
+bnRvIGEgY29udHJpYiB0cmVlIGFuZCBrZWVwIGl0IHRoZXJlLg0KDQo+IA0KPiBGb3IgcmVmZXJl
+bmNlLCB3ZSBwcm9iYWJseSBkbyBuZWVkIHRvIHN0YXJ0IHRyYWNraW5nIHRoZSBmaWxlIGNoZWNr
+c3VtcyBmb3IgdGhlDQo+IGJlbmVmaXQgb2Ygc3N0YXRlLg0KDQpDb3VsZCB5b3UgZXhwbGFpbiBt
+b3JlIGhlcmU/IEhlcmUgdGhlIGZpbGUgY2hlY2tzdW1zIHlvdSBtZW50aW9uZWQgaXMgU1JDX1VS
+SSBjaGVja3N1bT8NCkhvdyBjYW4gaXQgaGVscCBzc3RhdGU/DQoNClRoYW5rcywNCkRvbmd4aWFv
+DQoNCj4gDQo+IFRoZSBtZWRpb2NyZSBwZXJmb3JtYW5jZSBpbXByb3ZlbWVudCBpcyBsaWtlbHkg
+ZG93biB0byB0aGUgc2l6ZSBvZiB0aGUgY2FjaGUNCj4gZGF0YSBidXQgSSBjYW4ndCBpbW1lZGlh
+dGVseSB0aGluayBvZiBhIHdheSB0byBpbXByb3ZlIHRoYXQgOiguDQo+IA0KPiBDaGVlcnMsDQo+
+IA0KPiBSaWNoYXJkDQoNCg==
 
