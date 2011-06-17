@@ -1,25 +1,18 @@
-Return-Path: <Jingdong.Lu@windriver.com>
+Return-Path: <bruce.ashfield@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 83EE14C80191
-	for <yocto@yoctoproject.org>; Thu, 16 Jun 2011 22:25:36 -0500 (CDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p5H3Pa6J006584
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 16 Jun 2011 20:25:36 -0700 (PDT)
-Received: from localhost (128.224.162.215) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.1.255.0;
-	Thu, 16 Jun 2011 20:25:35 -0700
-Message-ID: <7a4a71175c12c51f9e8ee4664dce9700d5bc7f22.1308279734.git.jingdong.lu@windriver.com>
-In-Reply-To: <cover.1308279734.git.jingdong.lu@windriver.com>
-References: <cover.1308279734.git.jingdong.lu@windriver.com>
-Old-Date: Tue, 5 Apr 2011 15:40:08 +0200
-Date: Fri, 17 Jun 2011 11:26:12 +0800
-To: <yocto@yoctoproject.org>
-CC: 
-From: Jingdong Lu <jingdong.lu@windriver.com>
-MIME-Version: 1.0
-X-Originating-IP: [128.224.162.215]
-Subject: [PATCH 1/1] arm: omap3: beagle: Ensure msecure is mux'd to be able to set the RTC
+	by mx1.pokylinux.org (Postfix) with ESMTP id 490864C8009D
+	for <yocto@yoctoproject.org>; Thu, 16 Jun 2011 23:43:06 -0500 (CDT)
+Received: from localhost.localdomain (yow-bashfiel-d2.ottawa.windriver.com
+	[128.224.146.167])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p5H4h2Ih014986;
+	Thu, 16 Jun 2011 21:43:02 -0700 (PDT)
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+To: richard.purdie@linuxfoundation.org
+Date: Fri, 17 Jun 2011 00:41:12 -0400
+Message-Id: <cover.1308285199.git.bruce.ashfield@windriver.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: yocto@yoctoproject.org, saul.wold@intel.com
+Subject: [PATCH 0/1] linux-yocto/meta-yocto: bump SRCREVs for utrace
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,41 +24,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jun 2011 03:25:36 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 17 Jun 2011 04:43:06 -0000
 
-From: Alexander Holler <holler@ahsoftware.de>
+Richard/Saul,
 
-commit e2a346a2a054f702fd76f328ff747b9ad9264a4c from
-git://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linux-omap-2.6.git
+Updating the SRCREVs to take into acccount the utrace update from
+Tom. With this, the stage is set for systemtap support.
 
-Without msecure beeing high it isn't possible to set (or start)
-the RTC.
+The following changes since commit 2163461ec94528ecf046a04edc5db3d2dd3a6b8b:
+  Tom Zanussi (1):
+        systemtap: remove non-core COMPATIBLE_MACHINES
 
-Tested with a BeagleBoard C4.
+are available in the git repository at:
 
-Signed-off-by: Alexander Holler <holler@ahsoftware.de>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
-Integrated-by: Jingdong Lu<jingdong.lu@windriver.com>
----
- arch/arm/mach-omap2/board-omap3beagle.c |    3 +++
- 1 files changed, 3 insertions(+), 0 deletions(-)
+  git://git.pokylinux.org/poky-contrib zedd/kernel
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
 
-diff --git a/arch/arm/mach-omap2/board-omap3beagle.c b/arch/arm/mach-omap2/board-omap3beagle.c
-index af1166b..925c0b3 100644
---- a/arch/arm/mach-omap2/board-omap3beagle.c
-+++ b/arch/arm/mach-omap2/board-omap3beagle.c
-@@ -580,6 +580,9 @@ static void __init omap3_beagle_init(void)
- 	usb_ehci_init(&ehci_pdata);
- 	omap3beagle_flash_init();
- 
-+	/* Ensure msecure is mux'd to be able to set the RTC. */
-+	omap_mux_init_signal("sys_drm_msecure", OMAP_PIN_OFF_OUTPUT_HIGH);
-+
- 	/* Ensure SDRC pins are mux'd for self-refresh */
- 	omap_mux_init_signal("sdrc_cke0", OMAP_PIN_OUTPUT);
- 	omap_mux_init_signal("sdrc_cke1", OMAP_PIN_OUTPUT);
--- 
-1.7.0.4
+Bruce Ashfield (1):
+  linux-yocto/meta-yocto: update SRCREVs for utrace merge
+
+ .../linux/linux-yocto_2.6.37.bbappend              |   10 +++++-----
 
 
