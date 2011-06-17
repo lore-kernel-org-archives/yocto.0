@@ -1,23 +1,25 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D66004C800BA
-	for <yocto@yoctoproject.org>; Fri, 17 Jun 2011 09:34:00 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 17 Jun 2011 07:34:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,381,1304319600"; d="scan'208";a="14504696"
-Received: from unknown (HELO helios.localnet) ([10.255.16.248])
-	by azsmga001.ch.intel.com with ESMTP; 17 Jun 2011 07:33:59 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 17 Jun 2011 15:33:58 +0100
-User-Agent: KMail/1.13.6 (Linux/2.6.38-8-generic-pae; KDE/4.6.2; i686; ; )
-References: <87C8C51E47F55D47ABF9BB39687792ED42177A@POCITMSEXMB01.LntUniverse.com>
-	<4ED62A07621E9C41B8CB2F608655EF45011FA8@POCITMSEXMB01.LntUniverse.com>
-In-Reply-To: <4ED62A07621E9C41B8CB2F608655EF45011FA8@POCITMSEXMB01.LntUniverse.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 136554C800C0
+	for <yocto@yoctoproject.org>; Fri, 17 Jun 2011 12:28:34 -0500 (CDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p5HHSX7f009750
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 17 Jun 2011 10:28:33 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 17 Jun 2011 10:28:33 -0700
+Message-ID: <4DFB8EBF.1010303@windriver.com>
+Date: Fri, 17 Jun 2011 13:28:31 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110424 Thunderbird/3.1.10 ThunderBrowse/3.3.5
 MIME-Version: 1.0
-Message-Id: <201106171533.58569.paul.eggleton@linux.intel.com>
-Subject: Re: Problem while compiling directfb
+To: Jingdong Lu <jingdong.lu@windriver.com>
+References: <cover.1308279734.git.jingdong.lu@windriver.com>
+In-Reply-To: <cover.1308279734.git.jingdong.lu@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/1] arm: omap3: beagle: Ensure msecure is mux'd to	be able to set the RTC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,25 +31,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jun 2011 14:34:01 -0000
-Content-Type: Text/Plain;
-  charset="iso-8859-15"
+X-List-Received-Date: Fri, 17 Jun 2011 17:28:34 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Friday 17 June 2011 15:04:26 Nikhil Kamath wrote:
-> In poky when we run the command "bitbake -b directfb_1.4.1.bb", to compile
-> direct framebuffer 1.4.1 found in /meta/recipes-graphics/directfb , the
-> following error is thrown.
+On 06/16/11 23:26, Jingdong Lu wrote:
+> From: Jingdong Lu<jingdong.lu@windriver.com>
+>
+> arm: omap3: beagle: Ensure msecure is mux'd to be able to set the RTC
+> Fixes bug [YOCTO #767]
 
-What happens when you run "bitbake directfb"? This is the correct way of 
-building a recipe. The "-b" option does not handle any dependencies, and 
-should only used for debugging a recipe.
+Thanks Jindong,
+
+We'll make sure that this gets into the tree, either via
+Darren's beagleboard update, or as an individual commit.
 
 Cheers,
-Paul
 
--- 
+Bruce
 
-Paul Eggleton
-Intel Open Source Technology Centre
+>
+> Alexander Holler (1):
+>    arm: omap3: beagle: Ensure msecure is mux'd to be able to set the RTC
+>
+>   arch/arm/mach-omap2/board-omap3beagle.c |    3 +++
+>   1 files changed, 3 insertions(+), 0 deletions(-)
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
