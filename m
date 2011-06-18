@@ -1,24 +1,26 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 096F24C80A52
-	for <yocto@yoctoproject.org>; Fri, 17 Jun 2011 19:35:46 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 17 Jun 2011 17:35:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,384,1304319600"; d="scan'208";a="14959234"
-Received: from unknown (HELO localhost) ([10.255.13.112])
-	by orsmga002.jf.intel.com with ESMTP; 17 Jun 2011 17:35:46 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 17 Jun 2011 17:35:29 -0700
-Message-Id: <e5423c103c47c9e1c4cd4c9ce2ca877e54cdac03.1308357152.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.1
-In-Reply-To: <cover.1308357152.git.dvhart@linux.intel.com>
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
+	by mx1.pokylinux.org (Postfix) with ESMTP id A881A4C80186
+	for <yocto@yoctoproject.org>; Sat, 18 Jun 2011 03:05:58 -0500 (CDT)
+Received: by wwf4 with SMTP id 4so407282wwf.11
+	for <yocto@yoctoproject.org>; Sat, 18 Jun 2011 01:05:57 -0700 (PDT)
+Received: by 10.216.231.198 with SMTP id l48mr3205201weq.54.1308384357302;
+	Sat, 18 Jun 2011 01:05:57 -0700 (PDT)
+Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl [84.80.112.235])
+	by mx.google.com with ESMTPS id r20sm1775214wec.31.2011.06.18.01.05.55
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 18 Jun 2011 01:05:56 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <f66f8d260f0d9ca587e6dc55cba45a6e0ce224a6.1308357152.git.dvhart@linux.intel.com>
+Date: Sat, 18 Jun 2011 10:05:54 +0200
+Message-Id: <824516E3-FB4B-47E5-9172-E685149CAD49@dominion.thruhere.net>
 References: <cover.1308357152.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1308357152.git.dvhart@linux.intel.com>
-References: <cover.1308357152.git.dvhart@linux.intel.com>
-Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [PATCH 3/3] beagleboard: add basic audio mixer defaults
+	<f66f8d260f0d9ca587e6dc55cba45a6e0ce224a6.1308357152.git.dvhart@linux.intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+X-Mailer: Apple Mail (2.1084)
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 2/3] beagleboard: xserver-kdrive xorg.conf installation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,122 +32,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 18 Jun 2011 00:35:47 -0000
+X-List-Received-Date: Sat, 18 Jun 2011 08:05:59 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-We need a generic alsa based mechanism that we can use a bbappend to save
-default mixer controls per bsp. Until that is ready, this ensures the Audio Out
-on the Beagleboard is enabled out of the box.
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
----
- meta-yocto/conf/machine/beagleboard.conf           |    3 +
- .../beagleboard-audio/beagleboard-audio.bb         |   30 +++++++++++++
- .../beagleboard-audio/beagleboard-audio            |   44 ++++++++++++++++++++
- 3 files changed, 77 insertions(+), 0 deletions(-)
- create mode 100644 meta-yocto/recipes-bsp/beagleboard-audio/beagleboard-audio.bb
- create mode 100644 meta-yocto/recipes-bsp/beagleboard-audio/beagleboard-audio/beagleboard-audio
+Op 18 jun 2011, om 02:35 heeft Darren Hart het volgende geschreven:
 
-diff --git a/meta-yocto/conf/machine/beagleboard.conf b/meta-yocto/conf/machine/beagleboard.conf
-index 2670691..945744b 100644
---- a/meta-yocto/conf/machine/beagleboard.conf
-+++ b/meta-yocto/conf/machine/beagleboard.conf
-@@ -9,6 +9,9 @@ XSERVER = "xserver-kdrive-fbdev"
- # Ship all kernel modules by default
- MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
- 
-+# Setup sane default mixer settings
-+MACHINE_EXTRA_RRECOMMENDS += "beagleboard-audio"
-+
- # Allow for MMC booting (required by the NAND-less Beagleboard XM)
- EXTRA_IMAGEDEPENDS += "u-boot x-load"
- 
-diff --git a/meta-yocto/recipes-bsp/beagleboard-audio/beagleboard-audio.bb b/meta-yocto/recipes-bsp/beagleboard-audio/beagleboard-audio.bb
-new file mode 100644
-index 0000000..b0c2cd7
---- /dev/null
-+++ b/meta-yocto/recipes-bsp/beagleboard-audio/beagleboard-audio.bb
-@@ -0,0 +1,30 @@
-+SUMMARY = "Provide a basic init script to enable audio"
-+DESCRIPTION = "Set the volume and unmute the Front mixer setting during boot."
-+SECTION = "base"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
-+
-+PR = "r4"
-+
-+inherit update-rc.d
-+
-+RDEPENDS = "alsa-utils-amixer"
-+
-+SRC_URI = "file://beagleboard-audio"
-+
-+INITSCRIPT_NAME = "beagleboard-audio"
-+INITSCRIPT_PARAMS = "defaults 90"
-+
-+do_install() {
-+	install -d ${D}${sysconfdir} \
-+	           ${D}${sysconfdir}/init.d
-+	install -m 0755 ${WORKDIR}/beagleboard-audio ${D}${sysconfdir}/init.d
-+        cat ${WORKDIR}/${INITSCRIPT_NAME} | \
-+            sed -e 's,/etc,${sysconfdir},g' \
-+                -e 's,/usr/sbin,${sbindir},g' \
-+                -e 's,/var,${localstatedir},g' \
-+                -e 's,/usr/bin,${bindir},g' \
-+                -e 's,/usr,${prefix},g' > ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
-+        chmod 755 ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
-+}
-+
-diff --git a/meta-yocto/recipes-bsp/beagleboard-audio/beagleboard-audio/beagleboard-audio b/meta-yocto/recipes-bsp/beagleboard-audio/beagleboard-audio/beagleboard-audio
-new file mode 100644
-index 0000000..ed2bd50
---- /dev/null
-+++ b/meta-yocto/recipes-bsp/beagleboard-audio/beagleboard-audio/beagleboard-audio
-@@ -0,0 +1,44 @@
-+#!/bin/sh
-+### BEGIN INIT INFO
-+# Provides:          beagleboard mixer setup
-+# Required-Start:    $syslog
-+# Required-Stop:     $syslog
-+# Default-Start:     2 3 4 5
-+# Default-Stop:      0 1 6
-+# Short-Description: Initialize the beagleboard audio mixer
-+# Description:       Unmute FRONT and set volume to ~70%.
-+### END INIT INFO
-+
-+# Author: Darren Hart <dvhart@linux.intel.com>
-+# Based on /etc/init.d/skeleton
-+
-+PATH=/sbin:/usr/sbin:/bin:/usr/bin
-+DESC="Audio mixer settings"
-+NAME=beagleboard-audio
-+AMIXER=`which amixer`
-+SCRIPTNAME=/etc/init.d/$NAME
-+
-+# Exit if amixer is not installed
-+[ -x "$AMIXER" ] || exit 0
-+
-+do_start() {
-+	# Enable the Headset (Audio Out)
-+	$AMIXER sset "Headset" 2 > /dev/null
-+	$AMIXER sset "HeadsetL Mixer AudioL1" on > /dev/null
-+	$AMIXER sset "HeadsetR Mixer AudioR1" on > /dev/null
-+}
-+
-+case "$1" in
-+start)
-+	echo "$NAME: setting default mixer settings."
-+	do_start
-+	;;
-+stop)
-+	;;
-+*)
-+	echo "Usage: $SCRIPTNAME {start|stop}" >&2
-+	exit 3
-+	;;
-+esac
-+
-+exit 0
--- 
-1.7.1
+> Append xserver-kdrive to allow for BSP specific xorg.conf files. This =
+also
+> appears to drag in a runtime dependency on libhal, so add that to the
+> bbappend's RDEPENDS_${PN} as well.
+
+Since when does kdrive use xorg.conf?
+
+> Ultimately we probably want an xserver independent xorgconf recipe =
+that
+> enables installing BSP specific xorg.conf files for all the xservers. =
+This
+> works for now.
+
+Like xserver-xorg-conf in meta-oe?
+
+
+>=20
+> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+> ---
+> .../xserver-kdrive/beagleboard/xorg.conf           |   34 =
+++++++++++++++++++++
+> .../xorg-xserver/xserver-kdrive_1.7.99.2.bbappend  |   10 ++++++
+> 2 files changed, 44 insertions(+), 0 deletions(-)
+> create mode 100644 =
+meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive/beagleboard/xorg.c=
+onf
+> create mode 100644 =
+meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive_1.7.99.2.bbappend
+>=20
+> diff --git =
+a/meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive/beagleboard/xorg=
+.conf =
+b/meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive/beagleboard/xorg=
+.conf
+> new file mode 100644
+> index 0000000..0335e6a
+> --- /dev/null
+> +++ =
+b/meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive/beagleboard/xorg=
+.conf
+> @@ -0,0 +1,34 @@
+> +Section "Module"
+> +	Load	"extmod"
+> +	Load	"dbe"
+> +	Load	"glx"
+> +	Load	"freetype"
+> +	Load	"type1"
+> +	Load	"record"
+> +	Load	"dri"
+> +EndSection
+> +
+> +Section "Monitor"
+> +	Identifier	"Builtin Default Monitor"
+> +EndSection
+> +
+> +Section "Device"
+> +	Identifier	"Builtin Default fbdev Device 0"
+> +	Driver		"omapfb"
+> +EndSection
+> +
+> +Section "Screen"
+> +	Identifier	"Builtin Default fbdev Screen 0"
+> +	Device		"Builtin Default fbdev Device 0"
+> +	Monitor		"Builtin Default Monitor"
+> +EndSection
+> +
+> +Section "ServerLayout"
+> +	Identifier	"Builtin Default Layout"
+> +	Screen		"Builtin Default fbdev Screen 0"
+> +EndSection
+> +
+> +Section "ServerFlags"
+> +	Option		"DontZap"  "0"
+> +        Option		"AutoAddDevices" "False"
+> +EndSection
+> diff --git =
+a/meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive_1.7.99.2.bbappen=
+d =
+b/meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive_1.7.99.2.bbappen=
+d
+> new file mode 100644
+> index 0000000..cfa6c4f
+> --- /dev/null
+> +++ =
+b/meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive_1.7.99.2.bbappen=
+d
+> @@ -0,0 +1,10 @@
+> +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> +RDEPENDS_${PN} +=3D "libhal"
+> +SRC_URI +=3D "file://xorg.conf"
+> +
+> +do_install_append() {
+> +	install -d ${D}/${sysconfdir}/X11
+> +	install -m 0644 ${WORKDIR}/xorg.conf ${D}/${sysconfdir}/X11/
+> +}
+> +
+> +
+> --=20
+> 1.7.1
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
