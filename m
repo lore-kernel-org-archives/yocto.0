@@ -1,20 +1,24 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 84E3F4C80186
-	for <yocto@yoctoproject.org>; Fri, 17 Jun 2011 19:35:40 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 17 Jun 2011 17:35:40 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4577C4C80A52
+	for <yocto@yoctoproject.org>; Fri, 17 Jun 2011 19:35:44 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 17 Jun 2011 17:35:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,384,1304319600"; d="scan'208";a="17670557"
+X-IronPort-AV: E=Sophos;i="4.65,384,1304319600"; d="scan'208";a="14959228"
 Received: from unknown (HELO localhost) ([10.255.13.112])
-	by fmsmga002.fm.intel.com with ESMTP; 17 Jun 2011 17:35:39 -0700
+	by orsmga002.jf.intel.com with ESMTP; 17 Jun 2011 17:35:43 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Fri, 17 Jun 2011 17:35:26 -0700
-Message-Id: <cover.1308357152.git.dvhart@linux.intel.com>
+Date: Fri, 17 Jun 2011 17:35:27 -0700
+Message-Id: <ddfdbc4c00aabe482a251959c65cf5243e77cef1.1308357152.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.1
+In-Reply-To: <cover.1308357152.git.dvhart@linux.intel.com>
+References: <cover.1308357152.git.dvhart@linux.intel.com>
+In-Reply-To: <cover.1308357152.git.dvhart@linux.intel.com>
+References: <cover.1308357152.git.dvhart@linux.intel.com>
 Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [PATCH 0/3] beagleboard: machine conf, xorg, audio mixer
+Subject: [PATCH 1/3] beagleboard: cleanup machine config commentary
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,36 +30,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 18 Jun 2011 00:35:40 -0000
+X-List-Received-Date: Sat, 18 Jun 2011 00:35:44 -0000
 
-Refresh the meta-yocto components of the beagleboard BSP in support of
-the recently sent linux-yocto updates for the kernel. The xorg.conf
-and audio mixer patches are stop-gaps that should be eventually replaced
-with more generic implementations. With this, we have fb video support and
-sane default audio mixer settings.
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+---
+ meta-yocto/conf/machine/beagleboard.conf |    8 +++-----
+ 1 files changed, 3 insertions(+), 5 deletions(-)
 
-The following changes since commit 2163461ec94528ecf046a04edc5db3d2dd3a6b8b:
-
-  systemtap: remove non-core COMPATIBLE_MACHINES (2011-06-16 22:14:06 +0100)
-
-are available in the git repository at:
-  git://git.pokylinux.org/poky-contrib dvhart/beagle
-  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=dvhart/beagle
-
-Darren Hart (3):
-  beagleboard: cleanup machine config commentary
-  beagleboard: xserver-kdrive xorg.conf installation
-  beagleboard: add basic audio mixer defaults
-
- meta-yocto/conf/machine/beagleboard.conf           |   11 +++--
- .../beagleboard-audio/beagleboard-audio.bb         |   30 +++++++++++++
- .../beagleboard-audio/beagleboard-audio            |   44 ++++++++++++++++++++
- .../xserver-kdrive/beagleboard/xorg.conf           |   34 +++++++++++++++
- .../xorg-xserver/xserver-kdrive_1.7.99.2.bbappend  |   10 ++++
- 5 files changed, 124 insertions(+), 5 deletions(-)
- create mode 100644 meta-yocto/recipes-bsp/beagleboard-audio/beagleboard-audio.bb
- create mode 100644 meta-yocto/recipes-bsp/beagleboard-audio/beagleboard-audio/beagleboard-audio
- create mode 100644 meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive/beagleboard/xorg.conf
- create mode 100644 meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive_1.7.99.2.bbappend
+diff --git a/meta-yocto/conf/machine/beagleboard.conf b/meta-yocto/conf/machine/beagleboard.conf
+index d6eee6f..2670691 100644
+--- a/meta-yocto/conf/machine/beagleboard.conf
++++ b/meta-yocto/conf/machine/beagleboard.conf
+@@ -6,19 +6,19 @@ TARGET_ARCH = "arm"
+ PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
+ XSERVER = "xserver-kdrive-fbdev"
+ 
+-#Ship all kernel modules till the board support has matured enough
++# Ship all kernel modules by default
+ MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
+ 
+ # Allow for MMC booting (required by the NAND-less Beagleboard XM)
+ EXTRA_IMAGEDEPENDS += "u-boot x-load"
+ 
+-#include conf/machine/include/tune-arm1136jf-s.inc
+ include conf/machine/include/tune-cortexa8.inc
+ 
+ IMAGE_FSTYPES += "tar.bz2 jffs2"
+ EXTRA_IMAGECMD_jffs2 = "-lnp "
+ 
+-# Guesswork
++# 2.6.37 and later kernels use OMAP_SERIAL, ttyO2
++# earlier kernels use ttyS2
+ SERIAL_CONSOLE = "115200 ttyO2"
+ 
+ PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+@@ -30,6 +30,4 @@ UBOOT_MACHINE = "omap3_beagle_config"
+ UBOOT_ENTRYPOINT = "0x80008000"
+ UBOOT_LOADADDRESS = "0x80008000"
+ 
+-
+-# and sdio
+ MACHINE_FEATURES = "kernel26 apm usbgadget usbhost vfat alsa"
+-- 
+1.7.1
 
 
