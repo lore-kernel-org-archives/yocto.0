@@ -1,24 +1,24 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 4577C4C80A52
-	for <yocto@yoctoproject.org>; Fri, 17 Jun 2011 19:35:44 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 17 Jun 2011 17:35:43 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 172AF4C80A52
+	for <yocto@yoctoproject.org>; Fri, 17 Jun 2011 19:35:45 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 17 Jun 2011 17:35:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,384,1304319600"; d="scan'208";a="14959228"
+X-IronPort-AV: E=Sophos;i="4.65,384,1304319600"; d="scan'208";a="17670566"
 Received: from unknown (HELO localhost) ([10.255.13.112])
-	by orsmga002.jf.intel.com with ESMTP; 17 Jun 2011 17:35:43 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 17 Jun 2011 17:35:44 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Fri, 17 Jun 2011 17:35:27 -0700
-Message-Id: <ddfdbc4c00aabe482a251959c65cf5243e77cef1.1308357152.git.dvhart@linux.intel.com>
+Date: Fri, 17 Jun 2011 17:35:28 -0700
+Message-Id: <f66f8d260f0d9ca587e6dc55cba45a6e0ce224a6.1308357152.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.1
 In-Reply-To: <cover.1308357152.git.dvhart@linux.intel.com>
 References: <cover.1308357152.git.dvhart@linux.intel.com>
 In-Reply-To: <cover.1308357152.git.dvhart@linux.intel.com>
 References: <cover.1308357152.git.dvhart@linux.intel.com>
 Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [PATCH 1/3] beagleboard: cleanup machine config commentary
+Subject: [PATCH 2/3] beagleboard: xserver-kdrive xorg.conf installation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,47 +30,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 18 Jun 2011 00:35:44 -0000
+X-List-Received-Date: Sat, 18 Jun 2011 00:35:45 -0000
+
+Append xserver-kdrive to allow for BSP specific xorg.conf files. This also
+appears to drag in a runtime dependency on libhal, so add that to the
+bbappend's RDEPENDS_${PN} as well.
+
+Ultimately we probably want an xserver independent xorgconf recipe that
+enables installing BSP specific xorg.conf files for all the xservers. This
+works for now.
 
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- meta-yocto/conf/machine/beagleboard.conf |    8 +++-----
- 1 files changed, 3 insertions(+), 5 deletions(-)
+ .../xserver-kdrive/beagleboard/xorg.conf           |   34 ++++++++++++++++++++
+ .../xorg-xserver/xserver-kdrive_1.7.99.2.bbappend  |   10 ++++++
+ 2 files changed, 44 insertions(+), 0 deletions(-)
+ create mode 100644 meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive/beagleboard/xorg.conf
+ create mode 100644 meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive_1.7.99.2.bbappend
 
-diff --git a/meta-yocto/conf/machine/beagleboard.conf b/meta-yocto/conf/machine/beagleboard.conf
-index d6eee6f..2670691 100644
---- a/meta-yocto/conf/machine/beagleboard.conf
-+++ b/meta-yocto/conf/machine/beagleboard.conf
-@@ -6,19 +6,19 @@ TARGET_ARCH = "arm"
- PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
- XSERVER = "xserver-kdrive-fbdev"
- 
--#Ship all kernel modules till the board support has matured enough
-+# Ship all kernel modules by default
- MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
- 
- # Allow for MMC booting (required by the NAND-less Beagleboard XM)
- EXTRA_IMAGEDEPENDS += "u-boot x-load"
- 
--#include conf/machine/include/tune-arm1136jf-s.inc
- include conf/machine/include/tune-cortexa8.inc
- 
- IMAGE_FSTYPES += "tar.bz2 jffs2"
- EXTRA_IMAGECMD_jffs2 = "-lnp "
- 
--# Guesswork
-+# 2.6.37 and later kernels use OMAP_SERIAL, ttyO2
-+# earlier kernels use ttyS2
- SERIAL_CONSOLE = "115200 ttyO2"
- 
- PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
-@@ -30,6 +30,4 @@ UBOOT_MACHINE = "omap3_beagle_config"
- UBOOT_ENTRYPOINT = "0x80008000"
- UBOOT_LOADADDRESS = "0x80008000"
- 
--
--# and sdio
- MACHINE_FEATURES = "kernel26 apm usbgadget usbhost vfat alsa"
+diff --git a/meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive/beagleboard/xorg.conf b/meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive/beagleboard/xorg.conf
+new file mode 100644
+index 0000000..0335e6a
+--- /dev/null
++++ b/meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive/beagleboard/xorg.conf
+@@ -0,0 +1,34 @@
++Section "Module"
++	Load	"extmod"
++	Load	"dbe"
++	Load	"glx"
++	Load	"freetype"
++	Load	"type1"
++	Load	"record"
++	Load	"dri"
++EndSection
++
++Section "Monitor"
++	Identifier	"Builtin Default Monitor"
++EndSection
++
++Section "Device"
++	Identifier	"Builtin Default fbdev Device 0"
++	Driver		"omapfb"
++EndSection
++
++Section "Screen"
++	Identifier	"Builtin Default fbdev Screen 0"
++	Device		"Builtin Default fbdev Device 0"
++	Monitor		"Builtin Default Monitor"
++EndSection
++
++Section "ServerLayout"
++	Identifier	"Builtin Default Layout"
++	Screen		"Builtin Default fbdev Screen 0"
++EndSection
++
++Section "ServerFlags"
++	Option		"DontZap"  "0"
++        Option		"AutoAddDevices" "False"
++EndSection
+diff --git a/meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive_1.7.99.2.bbappend b/meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive_1.7.99.2.bbappend
+new file mode 100644
+index 0000000..cfa6c4f
+--- /dev/null
++++ b/meta-yocto/recipes-graphics/xorg-xserver/xserver-kdrive_1.7.99.2.bbappend
+@@ -0,0 +1,10 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++RDEPENDS_${PN} += "libhal"
++SRC_URI += "file://xorg.conf"
++
++do_install_append() {
++	install -d ${D}/${sysconfdir}/X11
++	install -m 0644 ${WORKDIR}/xorg.conf ${D}/${sysconfdir}/X11/
++}
++
++
 -- 
 1.7.1
 
