@@ -1,34 +1,32 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 653674C8086F
-	for <yocto@yoctoproject.org>; Sun, 19 Jun 2011 04:25:37 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 19 Jun 2011 02:25:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,388,1304319600"; d="scan'208";a="16790208"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by orsmga001.jf.intel.com with ESMTP; 19 Jun 2011 02:25:36 -0700
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 19 Jun 2011 17:25:35 +0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 19 Jun 2011 17:25:35 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Sun, 19 Jun 2011 17:25:34 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Sun, 19 Jun 2011 17:25:32 +0800
-Thread-Topic: Yocto weekly bug trend charts -- WW25
-Thread-Index: AcwuYtZY7V4jDgf1RvORoJW/3aBNqw==
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D67220B0@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW25
+Return-Path: <eha@dev.doredevelopment.dk>
+Received: from mail.doredevelopment.dk (unknown [77.233.226.4])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B518D4C800BA
+	for <yocto@yoctoproject.org>; Sun, 19 Jun 2011 15:02:14 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.doredevelopment.dk (Postfix) with ESMTP id 8CEB4CFC9;
+	Sun, 19 Jun 2011 22:02:13 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at dev.doredevelopment.dk
+Received: from mail.doredevelopment.dk ([127.0.0.1])
+	by localhost (public.doredevelopment.dk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 7w+e6JflR4a1; Sun, 19 Jun 2011 22:02:11 +0200 (CEST)
+Received: from [192.168.2.145] (unknown [94.18.139.21])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested) (Authenticated sender: eha)
+	by mail.doredevelopment.dk (Postfix) with ESMTPSA id 5C36756D3;
+	Sun, 19 Jun 2011 22:02:10 +0200 (CEST)
+From: Esben Haabendal <eha@dev.doredevelopment.dk>
+To: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <BANLkTik50B-LRcUB1U99HA0_1piHn0sD5w@mail.gmail.com>
+References: <D5AB6E638E5A3E4B8F4406B113A5A19A52800155@shsmsx501.ccr.corp.intel.com>
+	<BANLkTik50B-LRcUB1U99HA0_1piHn0sD5w@mail.gmail.com>
+Organization: DoreDevelopment ApS
+Date: Sun, 19 Jun 2011 22:02:08 +0200
+Message-ID: <1308513728.2527.2.camel@eha.ulstruplund.dk>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: configure optimization feature update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,18 +38,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 19 Jun 2011 09:25:37 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 19 Jun 2011 20:02:15 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi all,
-	The open bug number of last week increased to 221. And the weight number o=
-f all open bugs increased to 887. QA recovered weekly testing for upstream.=
- Bug status of WW25 could be found on https://wiki.pokylinux.org/wiki/Yocto=
-_Bug_Trend.
+On Wed, 2011-06-15 at 18:28 -0700, Khem Raj wrote:
+> On Wed, Jun 15, 2011 at 5:57 PM, Xu, Dongxiao <dongxiao.xu@intel.com> wrote:
+> > Hi Richard,
+> >
+> > Recently I was doing the "configure optimization" feature and collecting data for it.
+> >
+> > The main logic of this feature is straight forward:
+> >
+> > 1. Use the diff file as autoreconf cache. (I use command: "diff -ruN SOURCE-ORIG SOURCE", here "SOURCE-ORIG" is the source directory before running autoreconf, while "SOURCE" is the directory after running autoreconf).
+> > 2. Add SRC_URI checksum for all patches of the source code.
+> > 3. Tag each autoreconf cache file with ${PN} and the SRC_URI checksum of source code and all patches.
+> > 4. If the currently SRC_URI checksum matches the cached checksum, then we can patch the cache instead of running "autoreconf" stage.
+> >
+> 
+> The autoconf'ing is sort of arbitrary at the moment. Depending on what
+> is staged the results may vary.
 
-Best Regards,
-Jiajun
+Which can be properly fixed by using per-recipe (per-workdir) staging.
+
+/Esben
 
 
