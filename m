@@ -1,25 +1,32 @@
-Return-Path: <jay@jay-tech.ru>
-Received: from mail-bw0-f48.google.com (mail-bw0-f48.google.com
-	[209.85.214.48])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D0C714C800A9
-	for <yocto@yoctoproject.org>; Mon, 20 Jun 2011 03:36:31 -0500 (CDT)
-Received: by bwz8 with SMTP id 8so3237063bwz.35
-	for <yocto@yoctoproject.org>; Mon, 20 Jun 2011 01:36:30 -0700 (PDT)
-Received: by 10.204.75.71 with SMTP id x7mr277948bkj.22.1308558990206; Mon, 20
-	Jun 2011 01:36:30 -0700 (PDT)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 06F2E4C800AD
+	for <yocto@yoctoproject.org>; Mon, 20 Jun 2011 14:46:27 -0500 (CDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p5KJkQH3009720
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 20 Jun 2011 12:46:26 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Mon, 20 Jun 2011 12:46:25 -0700
+Message-ID: <4DFFA390.1020600@windriver.com>
+Date: Mon, 20 Jun 2011 15:46:24 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110516 Thunderbird/3.1.10 ThunderBrowse/3.3.5
 MIME-Version: 1.0
-Sender: jay@jay-tech.ru
-Received: by 10.204.65.18 with HTTP; Mon, 20 Jun 2011 01:36:10 -0700 (PDT)
-X-Originating-IP: [78.106.51.81]
-In-Reply-To: <1308546370.1543.11.camel@localhost.localdomain>
-References: <1308546370.1543.11.camel@localhost.localdomain>
-From: Yury Bushmelev <jay4mail@gmail.com>
-Date: Mon, 20 Jun 2011 12:36:10 +0400
-X-Google-Sender-Auth: jPRYog7AEuqMa8oskse8FvcwPck
-Message-ID: <BANLkTikbth7b0-vpZhkDrKmTa9PZnSzYaA@mail.gmail.com>
-To: NiQingliang <niqingliang@insigma.com.cn>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: the yocto under archlinux
+To: Koen Kooi <koen@dominion.thruhere.net>
+References: <cover.1308351938.git.dvhart@linux.intel.com>
+	<E7D9CEE2-98E3-42F4-B2C2-CF1B72049AB8@dominion.thruhere.net>
+	<4DFCBF67.4000808@linux.intel.com>
+	<430B8D35-8952-4193-9C39-445651FD25A7@dominion.thruhere.net>
+	<855B477A-4466-49C8-9886-36E2FC6AC9C8@dominion.thruhere.net>
+	<4DFCCDD5.2040005@windriver.com>
+	<6E8B5151-B486-4769-ACCD-DF97C0F77954@dominion.thruhere.net>
+In-Reply-To: <6E8B5151-B486-4769-ACCD-DF97C0F77954@dominion.thruhere.net>
+Cc: yocto Project <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: [PULL][linux-yocto] beagleboard: sync with meta-ti linux-omap_2.6.37
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,28 +38,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Jun 2011 08:36:32 -0000
-Content-Type: text/plain; charset=GB2312
+X-List-Received-Date: Mon, 20 Jun 2011 19:46:28 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-2011/6/20 NiQingliang <niqingliang@insigma.com.cn>:
-> Hello,
+On 06/18/11 12:32, Koen Kooi wrote:
 >
-> Is there someone using archlinux?
-> Under archlinux, the "env python" is pointing to python3, which result
-> in the bitbake's failure.
+> Op 18 jun 2011, om 18:09 heeft Bruce Ashfield het volgende geschreven:
 >
-> What I can do?
+>> On 11-06-18 11:13 AM, Koen Kooi wrote:
+>>>
+>>> Op 18 jun 2011, om 17:10 heeft Koen Kooi het volgende geschreven:
+>>>
+>>>>
+>>>> Op 18 jun 2011, om 17:08 heeft Darren Hart het volgende geschreven:
+>>>>
+>>>>>
+>>>>>
+>>>>> On 06/18/2011 01:11 AM, Koen Kooi wrote:
+>>>>>>
+>>>>>> Op 18 jun 2011, om 01:18 heeft Darren Hart het volgende geschreven:
+>>>>>>
+>>>>>>> From: Darren Hart<dvhart@linux.intel.com>
+>>>>>>>
+>>>>>>> The following commits have been pulled in from the meta-ti
+>>>>>>> linux-omap_2.6.37 recipe, with the exception of: USB: ehci: remove
+>>>>>>> structure packing from ehci_def which hails from mainline and
+>>>>>>> should be applied to yocto/base, while the rest should be applied
+>>>>>>> to yocto/standard/beagleboard.
+>>>>>>>
+>>>>>>> Fixes [YOCTO #764] Fixes [YOCTO #765] Fixes [YOCTO #767]
+>>>>>>>
+>>>>>>> This brings linux-yocto in sync with the meta-ti linux-omap_2.6.37
+>>>>>>> recipe and significantly improves Beagleboard support in
+>>>>>>> linux-yocto. As there are 115 patches in total, and none of them
+>>>>>>> are new, I have omitted them from the email.
+>>>>>>
+>>>>>>
+>>>>>> You seem to be including the patches that patch the  kernel from
+>>>>>> 37rc7 (or rc8, I forget) to .37 final, which shouldn't apply. So
+>>>>>> basically leave out the patches in the 'linus' directory.
+>>>>>
+>>>>> There were about 200 patches in total, I've removed all those that
+>>>>> reverse applied and failed do to a conflict that was obviously a merge
+>>>>> of a very similar patch. That accounted for most of the 37-rc[78] to 37
+>>>>> patches from the linus directory.
+>>>>>
+>>>>>> The camera
+>>>>>> interface also doesn't work, so the 'media' directory can be left out
+>>>>>> as well.
+>>>>>
+>>>>> The goal was to stay as close to the meta-ti/linux-omap_2.6.37 recipe as
+>>>>> possible with the linux-yocto kernel repository. Will you be removing
+>>>>> all of the media directory from there as well? I don't want to remove
+>>>>> them from here if you'll be *adding* to them there. However, if you'll
+>>>>> be sure to just be replacing them there, then I can drop them here.
+>>>>
+>>>> The .37 isn't used, developed or supported for beagleboard anymore, .39 is all the rage now :)
+>>>
+>>> Speaking of .39, is there a 'linux-yocto' type of tree for .39 mainline with a skeleton for machine support? If there is, I'd like to fork it to see if it can improve my current workflow which consist of self written scripts that emulate guilt.
+>>
+>> I've got the linux-yocto-dev recipe in poky-extras, meta-kernel-dev
+>> layer. That recipe tracked 2.6.39, and has now jumped to 3.0 (with
+>> a minor cheat as I work through the 3.0 naming issues). The kernel
+>> repo is hosted on git.yoctoproject.org as the linux-yocto-dev repo.
+>>
+>> The repo is fast forward for a given version, and then is re-generated
+>> when I jump it from version to version. I carry forward all the existing
+>> patches and keep the qemu machines working. Although at the moment,
+>> qemuppc is losing interrupts and can't get past init :)
+>>
+>> That's also the repo where I'm testing out some changes to kern-tools
+>> (but they are stable), which will show up shortly.
 >
-> I want use "env python=python2", but it doesn't work.
+> Thanks, I'll have a look at that. Is there already some doc out on how to create such a structure from scratch?
 
-I'm OpenEmbedded user but this case is similar.
-OE wiki have solution on "OE and your distro" page, but seems OE
-website is inaccessible now.
+At the moment, they are carried forward from kernel version
+to kernel version and then interpreted by the tools. But I
+do have some notes and other information that describe how to
+take upstream tree <foo>, feed it a kernel-cache (what you see
+in the meta branch) and create a new kernel tree ready to
+build.
 
-I'm just using lxc container with Debian 6.0 inside. This is more
-stable solution :)
+I've got to get a bit of 3.0-rcX behind me, but I'm writing this
+up and will contribute it, if that's what you are thinking
+of here.
 
--- 
-Yury Bushmelev
+Cheers,
+
+Bruce
+
+
 
