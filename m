@@ -1,25 +1,25 @@
-Return-Path: <eha@dev.doredevelopment.dk>
-Received: from eha.ulstruplund.dk (unknown [77.233.226.4])
-	by mx1.pokylinux.org (Postfix) with ESMTP id CB8664C800A9
-	for <yocto@yoctoproject.org>; Mon, 20 Jun 2011 02:55:37 -0500 (CDT)
-Received: by eha.ulstruplund.dk (Postfix, from userid 1000)
-	id B7D34207D1; Mon, 20 Jun 2011 09:55:36 +0200 (CEST)
-From: Esben Haabendal <eha@dev.doredevelopment.dk>
-To: Koen Kooi <koen@dominion.thruhere.net>
-References: <D5AB6E638E5A3E4B8F4406B113A5A19A52800155@shsmsx501.ccr.corp.intel.com>
-	<BANLkTik50B-LRcUB1U99HA0_1piHn0sD5w@mail.gmail.com>
-	<1308513728.2527.2.camel@eha.ulstruplund.dk>
-	<BANLkTi=taLE4t=1WDxEGoW-DsKRUrB04cQ@mail.gmail.com>
-	<1308545617.2527.10.camel@eha.ulstruplund.dk>
-	<A4210A7B-2830-4447-A056-FD55F35D2E33@dominion.thruhere.net>
-Date: Mon, 20 Jun 2011 09:55:36 +0200
-In-Reply-To: <A4210A7B-2830-4447-A056-FD55F35D2E33@dominion.thruhere.net>
-	(Koen Kooi's message of "Mon, 20 Jun 2011 09:38:39 +0200")
-Message-ID: <87pqm9c4xz.fsf@eha.ulstruplund.dk>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/23.2 (gnu/linux)
+Return-Path: <jay@jay-tech.ru>
+Received: from mail-bw0-f48.google.com (mail-bw0-f48.google.com
+	[209.85.214.48])
+	by mx1.pokylinux.org (Postfix) with ESMTP id D0C714C800A9
+	for <yocto@yoctoproject.org>; Mon, 20 Jun 2011 03:36:31 -0500 (CDT)
+Received: by bwz8 with SMTP id 8so3237063bwz.35
+	for <yocto@yoctoproject.org>; Mon, 20 Jun 2011 01:36:30 -0700 (PDT)
+Received: by 10.204.75.71 with SMTP id x7mr277948bkj.22.1308558990206; Mon, 20
+	Jun 2011 01:36:30 -0700 (PDT)
 MIME-Version: 1.0
+Sender: jay@jay-tech.ru
+Received: by 10.204.65.18 with HTTP; Mon, 20 Jun 2011 01:36:10 -0700 (PDT)
+X-Originating-IP: [78.106.51.81]
+In-Reply-To: <1308546370.1543.11.camel@localhost.localdomain>
+References: <1308546370.1543.11.camel@localhost.localdomain>
+From: Yury Bushmelev <jay4mail@gmail.com>
+Date: Mon, 20 Jun 2011 12:36:10 +0400
+X-Google-Sender-Auth: jPRYog7AEuqMa8oskse8FvcwPck
+Message-ID: <BANLkTikbth7b0-vpZhkDrKmTa9PZnSzYaA@mail.gmail.com>
+To: NiQingliang <niqingliang@insigma.com.cn>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: configure optimization feature update
+Subject: Re: the yocto under archlinux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,34 +31,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Jun 2011 07:55:38 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Mon, 20 Jun 2011 08:36:32 -0000
+Content-Type: text/plain; charset=GB2312
+Content-Transfer-Encoding: 7bit
 
-Koen Kooi <koen@dominion.thruhere.net> writes:
-
->> Yes. OE-lite: http://oe-lite.org
->> 
->> And it works so well, that I cannot understand why OE do not have a plan
->> for how to achieve the same. 
+2011/6/20 NiQingliang <niqingliang@insigma.com.cn>:
+> Hello,
 >
-> So why not send a patch to make OE-core have per recipe staging?
+> Is there someone using archlinux?
+> Under archlinux, the "env python" is pointing to python3, which result
+> in the bitbake's failure.
+>
+> What I can do?
+>
+> I want use "env python=python2", but it doesn't work.
 
-Several good/bad reasons:
+I'm OpenEmbedded user but this case is similar.
+OE wiki have solution on "OE and your distro" page, but seems OE
+website is inaccessible now.
 
-1. Communications so far has been rather clear that OE does not want
-this kind of change, at least not at this point in time.
+I'm just using lxc container with Debian 6.0 inside. This is more
+stable solution :)
 
-2. Implementing per recipe staging in OE-core, without dropping vital
-features of OE (most prominently package feeds) requires additional work
-that I do not have the manpower to do, nor any particular motivation
-given that chances of acceptance seems so low.
-
-So for now, all I can do is to raise attention to the benefits of doing
-per recipe staging sometime in the future, hoping to inspire some people
-to be willing to help get there.
-
-Given the current community/project situation around OE, an undertaking
-like this does not seem feasible within OE without YP behind it.
-
-/Esben
+-- 
+Yury Bushmelev
 
