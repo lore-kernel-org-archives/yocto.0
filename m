@@ -1,19 +1,19 @@
 Return-Path: <song.liu@intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 20D2A4C80132
-	for <yocto@yoctoproject.org>; Tue, 21 Jun 2011 14:10:46 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 73B394C808D8
+	for <yocto@yoctoproject.org>; Tue, 21 Jun 2011 15:07:54 -0500 (CDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 21 Jun 2011 12:10:45 -0700
+	by fmsmga102.fm.intel.com with ESMTP; 21 Jun 2011 13:07:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,402,1304319600"; d="scan'208";a="18953427"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 21 Jun 2011 12:10:45 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 21 Jun 2011 12:10:45 -0700
+X-IronPort-AV: E=Sophos;i="4.65,402,1304319600"; d="scan'208";a="18974020"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by fmsmga002.fm.intel.com with ESMTP; 21 Jun 2011 13:07:53 -0700
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 21 Jun 2011 13:07:53 -0700
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.138]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.32]) with mapi id
-	14.01.0289.001; Tue, 21 Jun 2011 12:10:44 -0700
+	ORSMSX106.amr.corp.intel.com ([169.254.5.75]) with mapi id
+	14.01.0289.001; Tue, 21 Jun 2011 13:07:53 -0700
 From: "Liu, Song" <song.liu@intel.com>
 To: "Liu, Song" <song.liu@intel.com>, "'McCombe, Kevin'"
 	<kevin.mccombe@windriver.com>, "Wold, Saul" <saul.wold@intel.com>, "Zhang, 
@@ -32,11 +32,10 @@ To: "Liu, Song" <song.liu@intel.com>, "'McCombe, Kevin'"
 	<jeffrey.osier-mixon@intel.com>
 Thread-Topic: Minutes: Yocto Technical Team (Tuesday, June 21, 2011 8:00
 	AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
-Thread-Index: AQHMMEbqi0e67NksNk6W4tizkkofZQ==
-Date: Tue, 21 Jun 2011 19:10:43 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A04EEF0@ORSMSX101.amr.corp.intel.com>
+Thread-Index: AQHMME7mdVcZdSQcdEK1SnToGKW5UQ==
+Date: Tue, 21 Jun 2011 20:07:52 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A04EF93@ORSMSX101.amr.corp.intel.com>
 References: <7E680CB2A76BB8438D08CF13C09FC53A02E3CE@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A02E3CE@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -48,7 +47,7 @@ Cc: "Mitchell, Mark" <mark_mitchell@mentor.com>,
 	Tracey M" <tracey.m.erway@intel.com>,
 	'Daniel Cauchy' <dcauchy@mvista.com>, "Hart,
 	Darren" <darren.hart@intel.com>
-Subject: Minutes: Yocto Technical Team (Tuesday, June 21, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+Subject: Re: Minutes: Yocto Technical Team (Tuesday, June 21, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,10 +59,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Jun 2011 19:10:46 -0000
+X-List-Received-Date: Tue, 21 Jun 2011 20:07:54 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Adding Attendees:
+
+Richard, Shane, Paul, Mark, Jason (TI), Koen (TI), Dave, Darren, Tom, Josh,=
+ Beth, Jessica, Sean (Dell), Daniel (TI).
+
+-----Original Message-----
+From: Liu, Song=20
+Sent: Tuesday, June 21, 2011 12:11 PM
+To: Liu, Song; 'McCombe, Kevin'; Wold, Saul; Zhang, Jessica; 'deVries, Alex=
+'; 'Polk, Jeffrey'; 'Hatle, Mark'; Purdie, Richard; Li, Susie; Lock, Joshua=
+; 'Bruce Ashfield'; Zanussi, Tom; Hart, Darren; Flanagan, Elizabeth; Stewar=
+t, David C; 'Lieu.Ta@windriver.com'; 'paul.anderson@windriver.com'; Osier-m=
+ixon, Jeffrey
+Cc: 'Sean_Hudson@Dell.com'; Erway, Tracey M; 'Elizabeth Flanagan'; 'Darren =
+Hart'; 'Daniel Cauchy'; 'Mitchell, Mark'; yocto@yoctoproject.org
+Subject: Minutes: Yocto Technical Team (Tuesday, June 21, 2011 8:00 AM-9:00=
+ AM (UTC-08:00) Pacific Time (US & Canada))
 
 Other than that the team needs to wade through all scheduled features and t=
 asks to deliver M2, just a few more notes and action items:
