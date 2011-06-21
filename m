@@ -1,25 +1,25 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 3F7074C804E4
-	for <yocto@yoctoproject.org>; Tue, 21 Jun 2011 09:47:01 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 21 Jun 2011 07:47:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,401,1304319600"; d="scan'208";a="18855253"
-Received: from unknown (HELO [10.255.13.238]) ([10.255.13.238])
-	by fmsmga002.fm.intel.com with ESMTP; 21 Jun 2011 07:47:00 -0700
-Message-ID: <4E00AEE4.20706@linux.intel.com>
-Date: Tue, 21 Jun 2011 07:47:00 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
+Return-Path: <jay@jay-tech.ru>
+Received: from mail-bw0-f48.google.com (mail-bw0-f48.google.com
+	[209.85.214.48])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B81014C80132
+	for <yocto@yoctoproject.org>; Tue, 21 Jun 2011 14:06:50 -0500 (CDT)
+Received: by bwz8 with SMTP id 8so336976bwz.35
+	for <yocto@yoctoproject.org>; Tue, 21 Jun 2011 12:06:49 -0700 (PDT)
+Received: by 10.204.16.130 with SMTP id o2mr2404147bka.211.1308683208525; Tue,
+	21 Jun 2011 12:06:48 -0700 (PDT)
 MIME-Version: 1.0
-To: Koen Kooi <koen@dominion.thruhere.net>
-References: <cover.1308639171.git.dvhart@linux.intel.com>	<6ba0b5880d906578d64713c1780aa8d67647bce9.1308639171.git.dvhart@linux.intel.com>	<53B1780F-C192-4AAA-806D-B94EDC47F03F@dominion.thruhere.net>
-	<93FA5058-9490-4E17-A1C9-93CFC28F6D92@dominion.thruhere.net>
-In-Reply-To: <93FA5058-9490-4E17-A1C9-93CFC28F6D92@dominion.thruhere.net>
-Cc: yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH 2/3] beagleboard: add basic audio mixer defaults
+Sender: jay@jay-tech.ru
+Received: by 10.204.65.18 with HTTP; Tue, 21 Jun 2011 12:06:28 -0700 (PDT)
+X-Originating-IP: [78.106.51.81]
+From: Yury Bushmelev <jay4mail@gmail.com>
+Date: Tue, 21 Jun 2011 23:06:28 +0400
+X-Google-Sender-Auth: TLTc9vgbjgCoqJs2ihhgMaNL1-w
+Message-ID: <BANLkTikeZVGKk8cTX8Bji2kWSyPRS8vatg@mail.gmail.com>
+To: Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>, 
+	Yocto Project <yocto@yoctoproject.org>, 
+	openembedded-devel <openembedded-devel@lists.openembedded.org>
+Subject: [cross-post] OE web- and git-server are down
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,36 +31,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Jun 2011 14:47:01 -0000
+X-List-Received-Date: Tue, 21 Jun 2011 19:06:51 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
+Hello!
 
+We have some problems on machine which are running OE web-site, OE
+git-server and patchwork.
+Our admins crew are working hardly to resolve this.
 
-On 06/21/2011 12:53 AM, Koen Kooi wrote:
-> 
-> Op 21 jun 2011, om 09:48 heeft Koen Kooi het volgende geschreven:
-> 
->>
->> Op 21 jun 2011, om 09:19 heeft Darren Hart het volgende geschreven:
->>
->>> We need a generic alsa based mechanism that we can use a bbappend to save
->>> default mixer controls per bsp. Until that is ready,
->>
->> Like the alsa-state we had in .dev for some years now? https://github.com/openembedded/openembedded/blob/master/recipes/alsa/alsa-state.bb
-> 
-> I really should start reading the coverletter first :)
+Please use our git mirror: https://github.com/openembedded/openembedded.git
 
-And I should read the entire thread first it seems ;)
+Thanks for your patience.
 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+P.S. This is cross-post. Please check your replies if any :)
 
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Yury Bushmelev
 
