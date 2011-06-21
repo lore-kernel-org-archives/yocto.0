@@ -1,26 +1,54 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 1568C4C80479
-	for <yocto@yoctoproject.org>; Fri, 24 Jun 2011 08:57:06 -0500 (CDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p5ODv50C021311
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Fri, 24 Jun 2011 06:57:05 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 24 Jun 2011 06:57:05 -0700
-Message-ID: <4E0497B0.4070102@windriver.com>
-Date: Fri, 24 Jun 2011 09:57:04 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110516 Thunderbird/3.1.10 ThunderBrowse/3.3.5
+Return-Path: <song.liu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 20D2A4C80132
+	for <yocto@yoctoproject.org>; Tue, 21 Jun 2011 14:10:46 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 21 Jun 2011 12:10:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.65,402,1304319600"; d="scan'208";a="18953427"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga002.fm.intel.com with ESMTP; 21 Jun 2011 12:10:45 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 21 Jun 2011 12:10:45 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.138]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.32]) with mapi id
+	14.01.0289.001; Tue, 21 Jun 2011 12:10:44 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "Liu, Song" <song.liu@intel.com>, "'McCombe, Kevin'"
+	<kevin.mccombe@windriver.com>, "Wold, Saul" <saul.wold@intel.com>, "Zhang, 
+	Jessica" <jessica.zhang@intel.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Polk, Jeffrey'" <jeff.polk@windriver.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "Li, Susie" <susie.li@intel.com>, "Lock,
+	Joshua"
+	<joshua.lock@intel.com>, 'Bruce Ashfield' <bruce.ashfield@windriver.com>,
+	"Zanussi, Tom" <tom.zanussi@intel.com>, "Hart, Darren"
+	<darren.hart@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Stewart, David C"
+	<david.c.stewart@intel.com>, "'Lieu.Ta@windriver.com'"
+	<Lieu.Ta@windriver.com>, "'paul.anderson@windriver.com'"
+	<paul.anderson@windriver.com>, "Osier-mixon, Jeffrey"
+	<jeffrey.osier-mixon@intel.com>
+Thread-Topic: Minutes: Yocto Technical Team (Tuesday, June 21, 2011 8:00
+	AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+Thread-Index: AQHMMEbqi0e67NksNk6W4tizkkofZQ==
+Date: Tue, 21 Jun 2011 19:10:43 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A04EEF0@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A02E3CE@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A02E3CE@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.9.131.214]
 MIME-Version: 1.0
-To: Jingdong Lu <jingdong.lu@windriver.com>
-References: <cover.1308896947.git.jingdong.lu@windriver.com>
-	<25bb8589b54c91ce817c904609e5d6326a483d8b.1308896947.git.jingdong.lu@windriver.com>
-In-Reply-To: <25bb8589b54c91ce817c904609e5d6326a483d8b.1308896947.git.jingdong.lu@windriver.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] routerstationpro: IPC config
+X-Mailman-Approved-At: Sat, 25 Jun 2011 23:38:59 -0500
+Cc: "Mitchell, Mark" <mark_mitchell@mentor.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Erway,
+	Tracey M" <tracey.m.erway@intel.com>,
+	'Daniel Cauchy' <dcauchy@mvista.com>, "Hart,
+	Darren" <darren.hart@intel.com>
+Subject: Minutes: Yocto Technical Team (Tuesday, June 21, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,52 +60,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jun 2011 13:57:06 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 21 Jun 2011 19:10:46 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 06/24/11 02:34, Jingdong Lu wrote:
-> From: Jingdong Lu<jingdong.lu@windriver.com>
->
-> Add IPC config for routestationpro
+Other than that the team needs to wade through all scheduled features and t=
+asks to deliver M2, just a few more notes and action items:
 
-I replied to what looked to be v2 of this change,
-so am dropping this patch. If they were indeed
-different, you'll need to point me at what I missed.
+The team starts to use the following state for status check on each feature=
+/task:
+  - Design
+  - Design Review
+  - Development/Dev
+  - Patch Review
+  - Done
 
-Also: I got direct email for all these, and a copy
-separate to the list. If you are having trouble
-with git send-email, feel free to send your workflow
-and we can likely help!
+  The definition of 'done' (we will refine more on this): patch checked int=
+o master or target repos.=20
 
-Cheers,
+Kernel version: current plan is to have 3.0 for Yocto 1.1 release. At the s=
+ame time we do have a backup plan to fall back.
 
-Bruce
+Action Items:
+  1. Song to update with a new simpler conference call setup.
+  2. Song to update Wiki as usual for new progress.
+  3. Bruce to split bug 414, have a plan to complete.
+  4. Bug 1007 design is done. Mark to get initial implementation in by the =
+first week of July.
+  5. Beth to work on autobuilder and get some builds for QA to test today.
 
->
-> Signed-off-by: Jingdong Lu<jingdong.lu@windriver.com>
-> ---
->   .../bsp/routerstationpro/routerstationpro.cfg      |    8 ++++++--
->   1 files changed, 6 insertions(+), 2 deletions(-)
->
-> diff --git a/meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg b/meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg
-> index f58dfe8..d0f8f58 100644
-> --- a/meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg
-> +++ b/meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg
-> @@ -215,8 +215,12 @@ CONFIG_INIT_ENV_ARG_LIMIT=32
->   CONFIG_LOCALVERSION=""
->   CONFIG_LOCALVERSION_AUTO=y
->   CONFIG_SWAP=y
-> -# CONFIG_SYSVIPC is not set
-> -# CONFIG_BSD_PROCESS_ACCT is not set
-> +CONFIG_SYSVIPC=y
-> +CONFIG_SYSVIPC_SYSCTL=y
-> +CONFIG_POSIX_MQUEUE=y
-> +CONFIG_POSIX_MQUEUE_SYSCTL=y
-> +CONFIG_BSD_PROCESS_ACCT=y
-> +CONFIG_BSD_PROCESS_ACCT_V3=y
->   # CONFIG_TASKSTATS is not set
->   # CONFIG_AUDIT is not set
->
 
 
