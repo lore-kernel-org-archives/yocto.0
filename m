@@ -1,27 +1,26 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5AEAA4C800BB
-	for <yocto@yoctoproject.org>; Tue, 28 Jun 2011 08:07:35 -0500 (CDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p5SD7YMl027294
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 28 Jun 2011 06:07:34 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 28 Jun 2011 06:07:34 -0700
-Message-ID: <4E09D214.1090704@windriver.com>
-Date: Tue, 28 Jun 2011 09:07:32 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110516 Thunderbird/3.1.10 ThunderBrowse/3.3.5
-MIME-Version: 1.0
-To: Lu Jingdong <jingdong.lu@windriver.com>
-References: <cover.1308898789.git.jingdong.lu@windriver.com>
-	<1e861537dffff5c5cd7f3f959e9b5e735e7747b2.1308898789.git.jingdong.lu@windriver.com>
-	<4E049740.1080102@windriver.com> <4E09A277.7070306@windriver.com>
-In-Reply-To: <4E09A277.7070306@windriver.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] routerstationpro: IPC config
+Return-Path: <denis@denix.org>
+Received: from vms173001pub.verizon.net (vms173001pub.verizon.net
+	[206.46.173.1])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 925904C800BB
+	for <yocto@yoctoproject.org>; Tue, 28 Jun 2011 10:09:02 -0500 (CDT)
+Received: from gandalf.denix.org ([unknown] [108.18.140.4])
+	by vms173001.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0LNI00HPTA2OM1O2@vms173001.mailsrvcs.net> for
+	yocto@yoctoproject.org; Tue, 28 Jun 2011 10:08:50 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id CA33514AF5D; Tue,
+	28 Jun 2011 11:08:48 -0400 (EDT)
+Date: Tue, 28 Jun 2011 11:08:48 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: "Liu, Song" <song.liu@intel.com>
+Message-id: <20110628150848.GA10798@denix.org>
+References: <7E680CB2A76BB8438D08CF13C09FC53A02E3CE@ORSMSX101.amr.corp.intel.com>
+	<7E680CB2A76BB8438D08CF13C09FC53A037D50@ORSMSX101.amr.corp.intel.com>
+MIME-version: 1.0
+In-reply-to: <7E680CB2A76BB8438D08CF13C09FC53A037D50@ORSMSX101.amr.corp.intel.com>
+User-Agent: Mutt/1.5.16 (2007-06-09)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Agenda: Yocto Technical Team (Tuesday, June 21, 2011	8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,121 +32,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jun 2011 13:07:35 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 28 Jun 2011 15:09:03 -0000
+Content-type: text/plain; charset=iso-8859-1
+Content-disposition: inline
+Content-transfer-encoding: 8bit
 
-On 06/28/11 05:44, Lu Jingdong wrote:
->
->
-> On 06/24/2011 09:55 PM, Bruce Ashfield wrote:
->> On 06/24/11 03:02, Jingdong Lu wrote:
->>> From: Jingdong Lu<jingdong.lu@windriver.com>
->>>
->>> Add IPC config for routestationpro
->>>
->>> Signed-off-by: Jingdong Lu<jingdong.lu@windriver.com>
->>> ---
->>> .../bsp/routerstationpro/routerstationpro.cfg | 10 +++++++---
->>> 1 files changed, 7 insertions(+), 3 deletions(-)
->>>
->>> diff --git
->>> a/meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg
->>> b/meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg
->>> index f58dfe8..88222ca 100644
->>> --- a/meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg
->>> +++ b/meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg
->>> @@ -209,14 +209,18 @@ CONFIG_CONSTRUCTORS=y
->>> #
->>> # General setup
->>> #
->>> -# CONFIG_EXPERIMENTAL is not set
->>> +CONFIG_EXPERIMENTAL=y
->>
->> We typically do not want to enable this. What options is
->> this triggering that are essential to the IPC config ?
-> Configuration "POSIX_MQUEUE" depends on "CONFIG_EXPERIMENTAL=y", so it
-> should be enabled.
-> This configuration has been enabled in
-> meta/cfg/kernel-cache/ktypes/base/base.cfg
-> #
-> # Code maturity level options
-> #
-> CONFIG_EXPERIMENTAL=y
->
-> But it was redefined in
-> meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg
-> #
-> # General setup
-> #
-> # CONFIG_EXPERIMENTAL is not set
->
-> So CONFIG_EXPERIMENTAL is not set in the final kernel config.
->
-> I also can find the redefinition in
-> .../meta/cfg/yocto/standard/routerstationpro/redefinition.txt
->
-> Value of CONFIG_EXPERIMENTAL is redefined by fragment
-> /home/eric/poky/poky/build-routerstation/tmp/work/routerstationpro-poky-linux/linux-yocto-2.6.37+git1+06d3793d459048ee1b4db7170f24670c479e8b29_1+d6aadb767fdcbb9886c430e90b92f49cd3a9ddcc-r18/linux/meta/cfg//kernel-cache/bsp/routerstationpro/routerstationpro.cfg:
->
-> Old value: CONFIG_EXPERIMENTAL=y
-> New value: # CONFIG_EXPERIMENTAL is not set
+On Fri, Jun 17, 2011 at 10:16:47PM +0000, Liu, Song wrote:
+> All,
+> 
+> In order to make the meeting more effective, I would like to suggest that we use the following status categories to track the status of each feature:
+> 
+> 1.	Design (still in design stage)
+> 2.	Design Review (who is reviewing it)
+> 3.	Development (if you can tell the % completed so far, it would be great. If it's too hard, don't bother)
+> 4.	Patch Review (Patch sent out for review)
+> 5.	Done (checked into master)
+> 
+> At the same time, we can certainly talk about blocking issues and any help you would like from the team. Let me know if you have any suggestions or would like to add anything to the Agenda.
+> 
+> 
+> Agenda:
+>  
+> - Review Yocto 1.1 M2 schedule and Release Criteria - 20 min (Song)
+> See details at: https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.1_Release_Criteria 
+> - Go over Sprint C items - 20 min (Song)
+> - Opens - 10 min
+> 
+> 
+> 
+> Tuesday, June 21, 2011, 08:00 AM US Pacific Time 
+> 916-356-2663, 8-356-2663, Bridge: 94, Passcode: 7964061
+> Speed dialer: inteldialer://94,7964061 | Learn more
 
-Indeed. So in this case, we should just be dropping the
-# CONFIG_EXPERIMENTAL is not set from this fragment.
+Hi,
 
->>
->>> CONFIG_BROKEN_ON_SMP=y
->>> CONFIG_INIT_ENV_ARG_LIMIT=32
->>> CONFIG_LOCALVERSION=""
->>> CONFIG_LOCALVERSION_AUTO=y
->>> CONFIG_SWAP=y
->>> -# CONFIG_SYSVIPC is not set
->>> -# CONFIG_BSD_PROCESS_ACCT is not set
->>> +CONFIG_SYSVIPC=y
->>> +CONFIG_SYSVIPC_SYSCTL=y
->>> +CONFIG_POSIX_MQUEUE=y
->>
->> These options are already provided by the base configuration
->> and are supposed to be baseline options for any BSP. Can
->> you elaborate on why you needed these here ?
->>
-> These options also were redefined in
-> meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg
-> # CONFIG_SYSVIPC is not set
-> # CONFIG_BSD_PROCESS_ACCT is not set
->
-> So these options were disabled in kernel configure file. But they are
-> needed by LTP test.
->
-> I took a look at the routerstationpro.cfg and found that it is a
-> complete configure file. It is different
-> from other BSPs. So I think we should modify routerstationpro.cfg and
-> only leave some special platform,
+Is there a meeting today (June 28th) and was the new bridge information 
+published anywhere?
 
-This definitely needs to be done, it was on our list to revisit, so
-perhaps this is a good time.
-
-> hardware configure options in it. Or at least we should omit the above
-> options which conflict with
-> the base configurations.
-
-At the minimum we should do this, BSPs should not be overriding
-base settings without good reasons .. and we definitely do not
-have good reasons here!
-
-Bruce
-
->> Bruce
->>
->>> +CONFIG_POSIX_MQUEUE_SYSCTL=y
->>> +CONFIG_BSD_PROCESS_ACCT=y
->>> +CONFIG_BSD_PROCESS_ACCT_V3=y
->>> # CONFIG_TASKSTATS is not set
->>> # CONFIG_AUDIT is not set
->>>
->>
->>
->
-
+-- 
+Denys
 
