@@ -1,25 +1,25 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B26D54C800BB
-	for <yocto@yoctoproject.org>; Tue, 28 Jun 2011 10:15:33 -0500 (CDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p5SFFX2R021747
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 28 Jun 2011 08:15:33 -0700 (PDT)
-Received: from Macintosh-5.local (172.25.36.229) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 28 Jun 2011 08:15:32 -0700
-Message-ID: <4E09F014.9060802@windriver.com>
-Date: Tue, 28 Jun 2011 10:15:32 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.18) Gecko/20110616 Thunderbird/3.1.11
-MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-wy0-f176.google.com (mail-wy0-f176.google.com
+	[74.125.82.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B9B284C800BB
+	for <yocto@yoctoproject.org>; Tue, 28 Jun 2011 10:21:32 -0500 (CDT)
+Received: by wyg34 with SMTP id 34so318576wyg.35
+	for <yocto@yoctoproject.org>; Tue, 28 Jun 2011 08:21:31 -0700 (PDT)
+Received: by 10.216.144.100 with SMTP id m78mr6538700wej.55.1309274491762;
+	Tue, 28 Jun 2011 08:21:31 -0700 (PDT)
+Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl [84.80.112.235])
+	by mx.google.com with ESMTPS id w62sm179460wec.18.2011.06.28.08.21.30
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 28 Jun 2011 08:21:31 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <4E09F014.9060802@windriver.com>
+Date: Tue, 28 Jun 2011 17:21:29 +0200
+Message-Id: <FB2E2A68-92D2-4087-996D-E08CA4A38640@dominion.thruhere.net>
 References: <7E680CB2A76BB8438D08CF13C09FC53A02E3CE@ORSMSX101.amr.corp.intel.com>	<7E680CB2A76BB8438D08CF13C09FC53A037D50@ORSMSX101.amr.corp.intel.com>
-	<20110628150848.GA10798@denix.org>
-In-Reply-To: <20110628150848.GA10798@denix.org>
+	<20110628150848.GA10798@denix.org> <4E09F014.9060802@windriver.com>
+To: yocto Project <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.1084)
 Subject: Re: Agenda: Yocto Technical Team (Tuesday, June 21, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -32,51 +32,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jun 2011 15:15:34 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
+X-List-Received-Date: Tue, 28 Jun 2011 15:21:33 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 
-Yes.  It seems like some mailers lost the dial-in info.
 
-Toll-Free 1-877-561-6828 (US)
-Toll 1-972-995-7777
+Op 28 jun 2011, om 17:15 heeft Mark Hatle het volgende geschreven:
 
-Participant Code  49611427
-
---Mark
-
-On 6/28/11 10:08 AM, Denys Dmytriyenko wrote:
-> On Fri, Jun 17, 2011 at 10:16:47PM +0000, Liu, Song wrote:
->> All,
->>
->> In order to make the meeting more effective, I would like to suggest that we use the following status categories to track the status of each feature:
->>
->> 1.	Design (still in design stage)
->> 2.	Design Review (who is reviewing it)
->> 3.	Development (if you can tell the % completed so far, it would be great. If it's too hard, don't bother)
->> 4.	Patch Review (Patch sent out for review)
->> 5.	Done (checked into master)
->>
->> At the same time, we can certainly talk about blocking issues and any help you would like from the team. Let me know if you have any suggestions or would like to add anything to the Agenda.
->>
->>
->> Agenda:
->>  
->> - Review Yocto 1.1 M2 schedule and Release Criteria - 20 min (Song)
->> See details at: https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.1_Release_Criteria 
->> - Go over Sprint C items - 20 min (Song)
->> - Opens - 10 min
->>
->>
->>
->> Tuesday, June 21, 2011, 08:00 AM US Pacific Time 
->> 916-356-2663, 8-356-2663, Bridge: 94, Passcode: 7964061
->> Speed dialer: inteldialer://94,7964061 | Learn more
+> Yes.  It seems like some mailers lost the dial-in info.
 > 
-> Hi,
-> 
-> Is there a meeting today (June 28th) and was the new bridge information 
-> published anywhere?
-> 
+> Toll-Free 1-877-561-6828 (US)
+> Toll 1-972-995-7777
 
+More dial-in numbers at: http://ticonferencing.com/globalaccess/
+
+
+> 
+> Participant Code  49611427
 
