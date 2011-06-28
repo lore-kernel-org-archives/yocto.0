@@ -1,25 +1,25 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 42C7C4C800B9
-	for <yocto@yoctoproject.org>; Mon, 27 Jun 2011 16:49:00 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 27 Jun 2011 14:48:59 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4C74E4C800AB
+	for <yocto@yoctoproject.org>; Mon, 27 Jun 2011 22:50:18 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 27 Jun 2011 20:50:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,434,1304319600"; d="scan'208";a="20753476"
-Received: from doubt.jf.intel.com (HELO [10.7.199.167]) ([10.7.199.167])
-	by orsmga001.jf.intel.com with ESMTP; 27 Jun 2011 14:48:59 -0700
-Message-ID: <4E08FACB.7060301@linux.intel.com>
-Date: Mon, 27 Jun 2011 14:48:59 -0700
+X-IronPort-AV: E=Sophos;i="4.65,436,1304319600"; d="scan'208";a="19083673"
+Received: from unknown (HELO [10.255.13.102]) ([10.255.13.102])
+	by orsmga002.jf.intel.com with ESMTP; 27 Jun 2011 20:50:17 -0700
+Message-ID: <4E094F79.2000708@linux.intel.com>
+Date: Mon, 27 Jun 2011 20:50:17 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
 	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <cover.1308896947.git.jingdong.lu@windriver.com>	<25bb8589b54c91ce817c904609e5d6326a483d8b.1308896947.git.jingdong.lu@windriver.com>
-	<4E0497B0.4070102@windriver.com>
-In-Reply-To: <4E0497B0.4070102@windriver.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+References: <BANLkTikfTbJD=5SoQH5ukrTMK6u6Ob0kZQ@mail.gmail.com>
+	<1307478020.15712.53.camel@rex>
+In-Reply-To: <1307478020.15712.53.camel@rex>
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] routerstationpro: IPC config
+Subject: Re: Configuring CVS to work through a proxy?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,60 +31,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Jun 2011 21:49:00 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 28 Jun 2011 03:50:18 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Hi Daryl,
 
+I have to apologize for not responding earlier. If this is still an
+issue for you, please respond to Richard's questions below and I'll pick
+it up from here.
 
-On 06/24/2011 06:57 AM, Bruce Ashfield wrote:
-> On 06/24/11 02:34, Jingdong Lu wrote:
->> From: Jingdong Lu<jingdong.lu@windriver.com>
+--
+Darren
+
+On 06/07/2011 01:20 PM, Richard Purdie wrote:
+> On Tue, 2011-06-07 at 10:47 -0700, Daryl Spitzer wrote:
+>> I followed the "Building an Image" instructions in the Yocto Project
+>> Quick Start (on a newly configured machine running Ubuntu 11.04 (64
+>> bit), and got an error.  The contents of the failure logfile is:
 >>
->> Add IPC config for routestationpro
+>> NOTE: fetch http://anonymous@autobuilder.yoctoproject.org/sources/config_cvs.sv.gnu.org__20080123.tar.gz
 > 
-> I replied to what looked to be v2 of this change,
-> so am dropping this patch. If they were indeed
-> different, you'll need to point me at what I missed.
+> What is odd/interesting here is that its trying the http address for the
+> cache of this. If I click the above link, I do get the file after a
+> warning about the anonymous user. I wonder if that username is upsetting
+> wget somehow and breaking our mirroring infrastructure?
 > 
-> Also: I got direct email for all these, and a copy
-> separate to the list. If you are having trouble
-> with git send-email, feel free to send your workflow
-> and we can likely help!
-
-scripts/send-pull-request will also work with the linux-yocto git
-repository. Same workflow that way.
-
+> "wget
+> http://anonymous@autobuilder.yoctoproject.org/sources/config_cvs.sv.gnu.org__20080123.tar.gz"
+> 
+> does seem to work here for me...
+> 
+>> NOTE: Fetch cvs://anonymous@cvs.sv.gnu.org/cvsroot/config;module=config;method=pserver;date=20080123
+>> cvs [checkout aborted]: connect to cvs.sv.gnu.org(140.186.70.72):2401
+>> failed: Connection timed out
+>> ERROR: Function 'Fetcher failure for URL:
+>> 'cvs://anonymous@cvs.sv.gnu.org/cvsroot/config;module=config;method=pserver;date=20080123'.
+>> Unable to fetch URL
+>> cvs://anonymous@cvs.sv.gnu.org/cvsroot/config;module=config;method=pserver;date=20080123
+>> from any source.' failed
+>>
+>> I'm guessing this problem is because I haven't configured CVS to work
+>> through my employer's HTTP proxy.
+>>
+>> I did a search, and didn't find any definitive instructions for
+>> configuring CVS.  (In fact, I found
+>> http://www.cygwin.com/ml/kawa/2003-q3/msg00069.html, which I'm hoping
+>> is out-of-date since it talks about a patch, which—8 years ago at
+>> least—wasn't included in GNU CVS.  I did try defining the CVS_PROXY
+>> environment variable as directed in that page just in case the CVS
+>> build I'm using includes that patch—but I got the same build error.)
+>>
+>> Can anyone point me to up-to-date instructions for configuring CVS to
+>> work through a proxy?
+> 
+> Good questions. I know we have people with this working behind firewalls
+> but I'm not sure how they have it working...
+> 
+> Does the wget command above work for you?
 > 
 > Cheers,
 > 
-> Bruce
-> 
->>
->> Signed-off-by: Jingdong Lu<jingdong.lu@windriver.com>
->> ---
->>   .../bsp/routerstationpro/routerstationpro.cfg      |    8 ++++++--
->>   1 files changed, 6 insertions(+), 2 deletions(-)
->>
->> diff --git a/meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg b/meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg
->> index f58dfe8..d0f8f58 100644
->> --- a/meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg
->> +++ b/meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg
->> @@ -215,8 +215,12 @@ CONFIG_INIT_ENV_ARG_LIMIT=32
->>   CONFIG_LOCALVERSION=""
->>   CONFIG_LOCALVERSION_AUTO=y
->>   CONFIG_SWAP=y
->> -# CONFIG_SYSVIPC is not set
->> -# CONFIG_BSD_PROCESS_ACCT is not set
->> +CONFIG_SYSVIPC=y
->> +CONFIG_SYSVIPC_SYSCTL=y
->> +CONFIG_POSIX_MQUEUE=y
->> +CONFIG_POSIX_MQUEUE_SYSCTL=y
->> +CONFIG_BSD_PROCESS_ACCT=y
->> +CONFIG_BSD_PROCESS_ACCT_V3=y
->>   # CONFIG_TASKSTATS is not set
->>   # CONFIG_AUDIT is not set
->>
+> Richard
 > 
 > _______________________________________________
 > yocto mailing list
