@@ -1,24 +1,53 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 184174C801D0
-	for <yocto@yoctoproject.org>; Tue, 28 Jun 2011 18:18:00 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 28 Jun 2011 16:17:50 -0700
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8D1834C800AB
+	for <yocto@yoctoproject.org>; Tue, 28 Jun 2011 13:36:47 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 28 Jun 2011 11:36:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,440,1304319600"; d="scan'208";a="24030378"
-Received: from swold-mobl.jf.intel.com (HELO [10.24.0.56]) ([10.24.0.56])
-	by fmsmga001.fm.intel.com with ESMTP; 28 Jun 2011 16:17:50 -0700
-Message-ID: <4E0A611D.9040604@linux.intel.com>
-Date: Tue, 28 Jun 2011 16:17:49 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc13 Thunderbird/3.1.10
+X-IronPort-AV: E=Sophos;i="4.65,438,1304319600"; d="scan'208";a="19359967"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga002.jf.intel.com with ESMTP; 28 Jun 2011 11:36:47 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 28 Jun 2011 11:36:46 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.138]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.5.9]) with mapi id
+	14.01.0289.001; Tue, 28 Jun 2011 11:36:46 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "Liu, Song" <song.liu@intel.com>, "'McCombe, Kevin'"
+	<kevin.mccombe@windriver.com>, "Wold, Saul" <saul.wold@intel.com>, "Zhang, 
+	Jessica" <jessica.zhang@intel.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Polk, Jeffrey'" <jeff.polk@windriver.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "Li, Susie" <susie.li@intel.com>, "Lock,
+	Joshua"
+	<joshua.lock@intel.com>, 'Bruce Ashfield' <bruce.ashfield@windriver.com>,
+	"Zanussi, Tom" <tom.zanussi@intel.com>, "Hart, Darren"
+	<darren.hart@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Stewart, David C"
+	<david.c.stewart@intel.com>, "'Lieu.Ta@windriver.com'"
+	<Lieu.Ta@windriver.com>, "'paul.anderson@windriver.com'"
+	<paul.anderson@windriver.com>, "Osier-mixon, Jeffrey"
+	<jeffrey.osier-mixon@intel.com>
+Thread-Topic: Minutes: Yocto Technical Team (Tuesday, June 28, 2011 8:00
+	AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+Thread-Index: AQHMNcJTPW88n/JEN0KhsiLbsk0Lxg==
+Date: Tue, 28 Jun 2011 18:36:43 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A056D60@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A02E3CE@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A02E3CE@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.9.131.214]
 MIME-Version: 1.0
-To: "O'donoghue, Bryan" <bryan.odonoghue@intel.com>
-References: <CFBC532374C38D45810FA00BC2D2C204016E851A48@irsmsx502.ger.corp.intel.com>
-In-Reply-To: <CFBC532374C38D45810FA00BC2D2C204016E851A48@irsmsx502.ger.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Getting pseudo from yocto/poky toolchain working with my	build
+X-Mailman-Approved-At: Tue, 28 Jun 2011 18:24:50 -0500
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Erway,
+	Tracey M" <tracey.m.erway@intel.com>,
+	'Daniel Cauchy' <dcauchy@mvista.com>, "Eggleton,
+	Paul" <paul.eggleton@intel.com>
+Subject: Minutes: Yocto Technical Team (Tuesday, June 28, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,156 +59,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jun 2011 23:18:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 28 Jun 2011 18:36:47 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+Status Summary:
+ - Thanks to the team for sending in status via email, now we have up to da=
+te status on the wiki before this meeting.
+ - 72 M2 features, 16 Done, 17 Patch Review, 34 Dev/Accept (10 in A/B/C), 1=
+ on-going, 3 Design, 1 Design Review.
+ - Half still in development but close to be done. Needs attention to catch=
+ up.
+=A0
+Issues
+  1. Layer tooling design review: this is done (Richard)
+  2. Build Yocto behind firewall - complete, patch review (Joshua/Darren): =
+There will be some improvement in for this in M2, we need additional follow=
+-on item for this one in M3
+  3. Item not on schedule: "Time limited kernel' (Bruce) : this is bug 1007=
+, design is done, working on development, making this in M2 is still a bubb=
+le.
+  4. Liping:=20
+     Image Creator: HOB performance enhancement=20
+     Blocked,Liping's code need to wait for Joshua's code to merge first. R=
+isk to slip=20
+  5. running post installs at rootfs gen time, Sprint D: Dexuan has a desig=
+n but the PRC team has no time for this one: Drop this from the 1.1 schedul=
+e but keep it on feature list for post 1.1 action.
+  6. Beth: need to discuss a 1.0 release of yocto-autobuilder: No need for =
+this now
+=A0
+Build status: A build out yesterday and there is a QA report this morning. =
+Team will look at the QA report and address bugs uncovered.
 
-Bryan,
+Bug Status:=20
+  1. 7 M2 new bugs: Richard (2), Saul (2), Nitin (3)
+  2. 3 M2 high bugs:
+      * 1134: Saul will give more info to Ke to recreate this.
+      * 1099: Song will send Dexuan email on the status of this one
+      * 1007: Bruce started development on this one.=20
+=A0
+Documentation: there is a draft of the Yocto development guide being review=
+ed. So this is done.
+=A0
+Sprint D (current week) items:
+  1. BSP config cleanup : need a follow on item for this in M3
+  2. Kernel Tools : move to M3
+  3. kernel bloat - development: move to M3
+  4. BBMX: done, Darren will open a new bug to track a related issue.
+  5. 3G - complete: working on some revision and fixes, needs attention, ri=
+sk to slip
+  6. Enhance the deploy part in remote debug: developer assigned to somethi=
+ng else, move to M3
+=A0
+Action Item:
+=A0
+  1. Song: update Google calendar with the new bridge info
+  2. Darren: open a new bug to track a BBXM related issue
+  3. Bruce: Split bug 414 into multiple ones to work and track separately
+  4. Song: send Dexuan note about bug 1099.
 
-Honestly this is not something we have tried, since we use the tools 
-built during the bitbake process itself.  The tools generated for the
-SDK are configured differently. I understand what you are trying to do here.
+No meeting next week due to US holiday on Tuesday
 
-Have you tried a clean generic build, ie not using the 
-environment-setup-i586* script or ASSUME_PROVIDED.
-
-Did you look at the www.yoctoproject.org Quickstart Doc?  It looks like 
-you might have.
-
-Some additional comments below.
-
-Sau!
-
-On 06/28/2011 10:29 AM, O'donoghue, Bryan wrote:
-> Greetings list.
->
-> Having a bit of an issue getting pseudo working when building poky-image-minimal @ poky-bernard-5.0.1
->
-> I'm running Debian 6.0.1. I've attempted to set up as many of the native packages as possible, to reduce compile time and I'm also using the yocto supplied gcc toolchain.
->
-> http://yoctoproject.org/downloads/yocto-1.0/toolchain/
->
-> root@wintermute# apt-get install sed wget cvs subversion git-core coreutils unzip texi2html texinfo libsdl1.2-dev docbook-utils gawk python-pysqlite2 diffstat help2man make gcc build-essential g++ desktop-file-utils chrpath libgl1-mesa-dev libglu1-mesa-dev mercurial autoconf automake groff git-core automake autoconf psyco quilt libtool gettext tcl sqlite3 libsqlite3-dev
->
-> I've installed /opt/poky/1.0/environment-setup-i586-poky-linux.
-> I've downloaded poky-bernard-5.0.1.tar.bz2 and extracted it to ~/Development/yocto
->
-> I do the following
->
-> 1.
->
-> source poky-bernard-5.0.1/poky-init-build-env poky-5.0.1-build
->
-> 2.
->
-> vim conf/local.conf
->
-> ------------------------
->
-> INHERIT += rm_work
->
-> ASSUME_PROVIDED += "m4-native tcl-native gettext-native libtool-native quilt-native autoconf-native automake-native perl-native sqlite3-native tar-replacement-native pseudo-native"
->
-> CVS_PROXY_HOST = "http://aaa.bbb.com"
-> CVS_PROXY_PORT = "1984"
->
->
-> 3.
->
-> deckard@wintermute:~/Development/yocto/poky-5.0.1-build$ source /opt/poky/1.0/environment-setup-i586-poky-linux
-> deckard@wintermute:~/Development/yocto/poky-5.0.1-build$ $CC -v
-> Using built-in specs.
-> COLLECT_GCC=i586-poky-linux-gcc
-> COLLECT_LTO_WRAPPER=/opt/poky/1.0/sysroots/i686-pokysdk-linux/usr/libexec/i586-poky-linux/gcc/i586-poky-linux/4.5.1/lto-wrapper
-> Target: i586-poky-linux
->
-> <snip>
-> Thread model: posix
-> gcc version 4.5.1 (GCC)
->
->
-> 4.
->
-> bitbake -v -k poky-image-minimal
->
-> 5.
->
-> I'm having a bit of difficulty with pseudo in the build though. I've tried building pseudo - which chokes on sqlite3 - and then I thought it might be an idea to use the pseudo that comes with the toolchain provided on the website.
->
-
-I would be good to get the failure information, my guess is that the 
-host version of sqlite3 is not what psuedo needs, so it's failing
-> 5a.
->
-> deckard@wintermute:~/Development/yocto/poky-5.0.1-build$ which pseudo
-> /opt/poky/1.0/sysroots/i686-pokysdk-linux/usr/bin/pseudo
->
->
-> bitbake doesn't pick it up though
->
-> deckard@wintermute:~/Development/yocto/poky-5.0.1-build$ bitbake -v -k poky-image-minimal
-> Pseudo is not present but is required, building this first before the main build
->
-> <snip>
->
-> NOTE: Tasks Summary: Attempted 0 tasks of which 0 didn't need to be rerun and 0 failed.
-> /home/deckard/Development/yocto/poky-bernard-5.0.1/scripts/bitbake: line 55: /home/deckard/Development/yocto/poky-5.0.1-build/tmp/sysroots/i686-linux/usr/bin/pseudo: No such file or directory
->
-There are some tests in bitbake for pseudo, I would be good to see your 
-full log, to understand what tasks ran and did not run,
->
-> 5b.
->
-> I try to set that explicitly by setting PSEUDOBINDIR
->
-> export PSEUDOBINDIR=/opt/poky/1.0/sysroots/i686-pokysdk-linux/usr/bin
->
-> Same error.
->
->
-> deckard@wintermute:~/Development/yocto/poky-5.0.1-build$ export PSEUDOBINDIR=/opt/poky/1.0/sysroots/i686-pokysdk-linux/usr/bin
-> deckard@wintermute:~/Development/yocto/poky-5.0.1-build$ bitbake -v -k poky-image-minimal
-> Pseudo is not present but is required, building this first before the main build
-> <snip>
->
-> /home/deckard/Development/yocto/poky-bernard-5.0.1/scripts/bitbake: line 55: /home/deckard/Development/yocto/poky-5.0.1-build/tmp/sysroots/i686-linux/usr/bin/pseudo: No such file or directory
->
-> Is there a way to get bitbake to recognize the pseudo in /opt/poky/1.0/sysroots/i686-pokysdk-linux/usr/bin/pseudo without modifying the bitbake script - or am I taking the wrong approach here ?
->
-> 6.
->
-> I've tried building pseudo but, get errors with using sqlite3-native == /home/deckard/Development/yocto/poky-5.0.1-build/tmp/sysroots/ as opposed to /usr/include/sqlite3.h - and errors with building sqlite3 of a different sort.
->
->
-> Is there a solution that's evading me here ?
->
-> My preference obviously is to use as many native packages as possible to reduce disk space, and cycles.
->
-This is probably not possible, given the potential differences in 
-configuration for what Yocto needs. This may have been possible with 
-past releases, but as you discovered not at this point.
-
-
-Sau!
-
-> Any pointers appreciated.
->
->
-> Bryan
-> -------------------------------------------------------------
-> Intel Ireland Limited (Branch)
-> Collinstown Industrial Park, Leixlip, County Kildare, Ireland
-> Registered Number: E902934
->
-> This e-mail and any attachments may contain confidential material for
-> the sole use of the intended recipient(s). Any review or distribution
-> by others is strictly prohibited. If you are not the intended
-> recipient, please contact the sender and delete all copies.
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
