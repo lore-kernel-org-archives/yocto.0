@@ -1,53 +1,39 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8D1834C800AB
-	for <yocto@yoctoproject.org>; Tue, 28 Jun 2011 13:36:47 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 28 Jun 2011 11:36:47 -0700
+Return-Path: <dongxiao.xu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id D4BCB4C800A1
+	for <yocto@yoctoproject.org>; Wed, 29 Jun 2011 03:47:56 -0500 (CDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 29 Jun 2011 01:47:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,438,1304319600"; d="scan'208";a="19359967"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga002.jf.intel.com with ESMTP; 28 Jun 2011 11:36:47 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 28 Jun 2011 11:36:46 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.138]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.5.9]) with mapi id
-	14.01.0289.001; Tue, 28 Jun 2011 11:36:46 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "Liu, Song" <song.liu@intel.com>, "'McCombe, Kevin'"
-	<kevin.mccombe@windriver.com>, "Wold, Saul" <saul.wold@intel.com>, "Zhang, 
-	Jessica" <jessica.zhang@intel.com>, "'deVries, Alex'"
-	<Alex.deVries@windriver.com>, "'Polk, Jeffrey'" <jeff.polk@windriver.com>, 
-	"'Hatle, Mark'" <mark.hatle@windriver.com>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "Li, Susie" <susie.li@intel.com>, "Lock,
-	Joshua"
-	<joshua.lock@intel.com>, 'Bruce Ashfield' <bruce.ashfield@windriver.com>,
-	"Zanussi, Tom" <tom.zanussi@intel.com>, "Hart, Darren"
-	<darren.hart@intel.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Stewart, David C"
-	<david.c.stewart@intel.com>, "'Lieu.Ta@windriver.com'"
-	<Lieu.Ta@windriver.com>, "'paul.anderson@windriver.com'"
-	<paul.anderson@windriver.com>, "Osier-mixon, Jeffrey"
-	<jeffrey.osier-mixon@intel.com>
-Thread-Topic: Minutes: Yocto Technical Team (Tuesday, June 28, 2011 8:00
-	AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
-Thread-Index: AQHMNcJTPW88n/JEN0KhsiLbsk0Lxg==
-Date: Tue, 28 Jun 2011 18:36:43 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A056D60@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A02E3CE@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A02E3CE@ORSMSX101.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.65,442,1304319600"; d="scan'208";a="24186385"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by fmsmga001.fm.intel.com with ESMTP; 29 Jun 2011 01:47:55 -0700
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 29 Jun 2011 16:47:50 +0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 29 Jun 2011 16:47:50 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Wed, 29 Jun 2011 16:47:49 +0800
+From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date: Wed, 29 Jun 2011 16:47:48 +0800
+Thread-Topic: configure optimization feature update
+Thread-Index: AcwsNlD6Il6mpSvlQ0y9ites+qZzIwAXA0ewAmmbSQA=
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D6B85B4A@shsmsx501.ccr.corp.intel.com>
+References: <D5AB6E638E5A3E4B8F4406B113A5A19A52800155@shsmsx501.ccr.corp.intel.com>
+	<1308236462.15712.442.camel@rex>
+	<D5AB6E638E5A3E4B8F4406B113A5A19A12D6721BB7@shsmsx501.ccr.corp.intel.com>
+In-Reply-To: <D5AB6E638E5A3E4B8F4406B113A5A19A12D6721BB7@shsmsx501.ccr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.9.131.214]
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 28 Jun 2011 18:24:50 -0500
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Erway,
-	Tracey M" <tracey.m.erway@intel.com>,
-	'Daniel Cauchy' <dcauchy@mvista.com>, "Eggleton,
-	Paul" <paul.eggleton@intel.com>
-Subject: Minutes: Yocto Technical Team (Tuesday, June 28, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: configure optimization feature update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,67 +45,161 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jun 2011 18:36:47 -0000
+X-List-Received-Date: Wed, 29 Jun 2011 08:47:57 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Status Summary:
- - Thanks to the team for sending in status via email, now we have up to da=
-te status on the wiki before this meeting.
- - 72 M2 features, 16 Done, 17 Patch Review, 34 Dev/Accept (10 in A/B/C), 1=
- on-going, 3 Design, 1 Design Review.
- - Half still in development but close to be done. Needs attention to catch=
- up.
-=A0
-Issues
-  1. Layer tooling design review: this is done (Richard)
-  2. Build Yocto behind firewall - complete, patch review (Joshua/Darren): =
-There will be some improvement in for this in M2, we need additional follow=
--on item for this one in M3
-  3. Item not on schedule: "Time limited kernel' (Bruce) : this is bug 1007=
-, design is done, working on development, making this in M2 is still a bubb=
-le.
-  4. Liping:=20
-     Image Creator: HOB performance enhancement=20
-     Blocked,Liping's code need to wait for Joshua's code to merge first. R=
-isk to slip=20
-  5. running post installs at rootfs gen time, Sprint D: Dexuan has a desig=
-n but the PRC team has no time for this one: Drop this from the 1.1 schedul=
-e but keep it on feature list for post 1.1 action.
-  6. Beth: need to discuss a 1.0 release of yocto-autobuilder: No need for =
-this now
-=A0
-Build status: A build out yesterday and there is a QA report this morning. =
-Team will look at the QA report and address bugs uncovered.
 
-Bug Status:=20
-  1. 7 M2 new bugs: Richard (2), Saul (2), Nitin (3)
-  2. 3 M2 high bugs:
-      * 1134: Saul will give more info to Ke to recreate this.
-      * 1099: Song will send Dexuan email on the status of this one
-      * 1007: Bruce started development on this one.=20
-=A0
-Documentation: there is a draft of the Yocto development guide being review=
-ed. So this is done.
-=A0
-Sprint D (current week) items:
-  1. BSP config cleanup : need a follow on item for this in M3
-  2. Kernel Tools : move to M3
-  3. kernel bloat - development: move to M3
-  4. BBMX: done, Darren will open a new bug to track a related issue.
-  5. 3G - complete: working on some revision and fixes, needs attention, ri=
-sk to slip
-  6. Enhance the deploy part in remote debug: developer assigned to somethi=
-ng else, move to M3
-=A0
-Action Item:
-=A0
-  1. Song: update Google calendar with the new bridge info
-  2. Darren: open a new bug to track a BBXM related issue
-  3. Bruce: Split bug 414 into multiple ones to work and track separately
-  4. Song: send Dexuan note about bug 1099.
 
-No meeting next week due to US holiday on Tuesday
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org
+> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Xu, Dongxiao
+> Sent: Friday, June 17, 2011 10:19 AM
+> To: Richard Purdie
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] configure optimization feature update
+>=20
+> Hi Richard,
+>=20
+> > -----Original Message-----
+> > From: Richard Purdie [mailto:richard.purdie@linuxfoundation.org]
+> > Sent: Thursday, June 16, 2011 11:01 PM
+> > To: Xu, Dongxiao
+> > Cc: yocto@yoctoproject.org
+> > Subject: Re: configure optimization feature update
+> >
+> > Hi Dongxiao,
+> >
+> > On Thu, 2011-06-16 at 08:57 +0800, Xu, Dongxiao wrote:
+> > > Recently I was doing the "configure optimization" feature and
+> > > collecting data for it.
+> > >
+> > > The main logic of this feature is straight forward:
+> > >
+> > > 1. Use the diff file as autoreconf cache. (I use command: "diff -ruN
+> > > SOURCE-ORIG SOURCE", here "SOURCE-ORIG" is the source directory
+> > > before running autoreconf, while "SOURCE" is the directory after
+> > > running autoreconf).
+> > > 2. Add SRC_URI checksum for all patches of the source code.
+> > > 3. Tag each autoreconf cache file with ${PN} and the SRC_URI
+> > > checksum of source code and all patches.
+> > > 4. If the currently SRC_URI checksum matches the cached checksum,
+> > > then we can patch the cache instead of running "autoreconf" stage.
+> > >
+> > > I did some testings for sato build, the result is not as good as we
+> > > expected:
+> > >
+> > > On a server build machine (Genuine Intel(R) CPU @ 2.40GHz, 2 sockets
+> > > with 6
+> > core each and hyperthreading, thus 24 logical CPUs in all, 66G memory):
+> > >
+> > > w/o the optimization:
+> > > real    83m40.963s
+> > > user    496m58.550s
+> > > sys     329m1.590s
+> > >
+> > > w/ the optimization:
+> > > real    79m1.062s
+> > > user    460m58.600s
+> > > sys     347m42.120s
+> > >
+> > > It has about 5% performance gain.
+> >
+> > Whats interesting there is the relatively large sys times compared to
+> > user. Any idea why that's happening? Spinning locks?
+>=20
+> Yes, I also noticed the the in-consistent data of user and sys.
+> During the build, sometimes I found the build will suspend for some time =
+and
+> system is doing "kjournald".
+> It happens relatively frequent on that 24 CPU's server with "48" and "-j4=
+8"
+> assigned for build parallel parameters.
+> I am not sure whether this caused the above phenomenon.
+>=20
+> >
+> > > I also tested the patch on a desktop core-i7 machine (Intel(R)
+> > > Core(TM) i7
+> > CPU 870 @ 2.93GHz, 4 core 8 logical CPU, 4G memory):
+> > >
+> > > w/o the optimization:
+> > > real    105m25.436s
+> > > user    372m48.040s
+> > > sys     51m23.950s
+> > >
+> > > w/ the optimization:
+> > > real    103m38.314s
+> > > user    332m35.770s
+> > > sys     49m4.520s
+> > >
+> > > It only has about 2% performance gain.
+> > >
+> > > The result is not encouraging.
+> >
+> > Agreed, this isn't as good as we'd hoped for :(.
+> >
+> > > There are also some other things we need to take into consideration
+> > > for this feature:
+> > >
+> > > 1. If add this feature, the first build time should be longer than
+> > > current since it needs to build the autoreconf cache.
+> > > 2. Maintainers needs to maintain the SRC_URI checksums not only for
+> > > source code, but also all its patches. For some recipes, it has more
+> > > than 20 patches, which needs assignable maintenance effort.
+> > > 3. How to distribute the caches will be a problem. The total size of
+> > > such cache is about 900M (before compression) and 200M (after
+> > > compression). Since the size is not small, distributing it with Poky
+> > > source code doesn't make sense. On another aspect, we can use
+> > > something like "sstate". But since we already have caches of sstate,
+> > > I think it is not necessary for us to enable another similar cache
+> > > mechanism with little improvement.
+> > >
+> > > Therefore my opinion is we may give up this feature. What's your
+> > > comments and suggestions?
+> >
+> > I think we should put the patches together on a branch in contrib so
+> > we keep them somewhere in case we want them. Certainly tracking what
+> > changes the autoreconf process makes may be useful in other situations
+> > in future so its worth keeping the patches. I think you're right and
+> > we should shelve the idea for now though as it doesn't look to be worth=
+ the
+> pain it entails.
+>=20
+> OK, I will queue my patch into a contrib tree and keep it there.
 
+The contrib tree to queue the configure optimization patch are located at:
+http://git.pokylinux.org/cgit/cgit.cgi/poky-contrib/log/?h=3Ddxu4/configure=
+-optimization
+
+it should have flaws and is not for merge.
+I will keep it there and see if we need it later.
+
+Thanks,
+Dongxiao
+
+>=20
+> >
+> > For reference, we probably do need to start tracking the file
+> > checksums for the benefit of sstate.
+>=20
+> Could you explain more here? Here the file checksums you mentioned is
+> SRC_URI checksum?
+> How can it help sstate?
+>=20
+> Thanks,
+> Dongxiao
+>=20
+> >
+> > The mediocre performance improvement is likely down to the size of the
+> > cache data but I can't immediately think of a way to improve that :(.
+> >
+> > Cheers,
+> >
+> > Richard
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
