@@ -1,34 +1,25 @@
-Return-Path: <bryan.odonoghue@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 53CE24C8007E
-	for <yocto@yoctoproject.org>; Wed, 29 Jun 2011 02:18:23 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 29 Jun 2011 00:18:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,442,1304319600"; d="scan'208";a="19576330"
-Received: from irsmsx601.ger.corp.intel.com ([163.33.7.164])
-	by orsmga002.jf.intel.com with ESMTP; 29 Jun 2011 00:18:20 -0700
-Received: from irsmsx502.ger.corp.intel.com ([163.33.7.249]) by
-	irsmsx601.ger.corp.intel.com ([163.33.7.164]) with mapi;
-	Wed, 29 Jun 2011 08:17:47 +0100
-From: "O'donoghue, Bryan" <bryan.odonoghue@intel.com>
-To: Saul Wold <sgw@linux.intel.com>, "richard.purdie@linuxfoundation.org"
-	<richard.purdie@linuxfoundation.org>
-Date: Wed, 29 Jun 2011 08:17:45 +0100
-Thread-Topic: [yocto] Getting pseudo from yocto/poky toolchain working with
-	my build
-Thread-Index: Acw16ZvTmwNlYoN/QIK9/kTJ3Nl+nAAQKzfg
-Message-ID: <CFBC532374C38D45810FA00BC2D2C204016E8BA010@irsmsx502.ger.corp.intel.com>
-References: <CFBC532374C38D45810FA00BC2D2C204016E851A48@irsmsx502.ger.corp.intel.com>
-	<4E0A611D.9040604@linux.intel.com>
-In-Reply-To: <4E0A611D.9040604@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 5B9D74C8007E
+	for <yocto@yoctoproject.org>; Wed, 29 Jun 2011 12:40:59 -0500 (CDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p5THeth9000457
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 29 Jun 2011 10:40:55 -0700 (PDT)
+Received: from Macintosh-5.local (172.25.36.229) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Wed, 29 Jun 2011 10:40:54 -0700
+Message-ID: <4E0B63A6.3040604@windriver.com>
+Date: Wed, 29 Jun 2011 12:40:54 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.18) Gecko/20110616 Thunderbird/3.1.11
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 29 Jun 2011 11:14:01 -0500
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+To: <yocto@yoctoproject.org>
+References: <CFBC532374C38D45810FA00BC2D2C204016E851A48@irsmsx502.ger.corp.intel.com>	<4E0A611D.9040604@linux.intel.com>
+	<CFBC532374C38D45810FA00BC2D2C204016E8BA010@irsmsx502.ger.corp.intel.com>
+In-Reply-To: <CFBC532374C38D45810FA00BC2D2C204016E8BA010@irsmsx502.ger.corp.intel.com>
 Subject: Re: Getting pseudo from yocto/poky toolchain working with my build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,37 +32,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jun 2011 07:18:23 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 29 Jun 2011 17:40:59 -0000
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
 
-Saul, Richard.
+On 6/29/11 2:17 AM, O'donoghue, Bryan wrote:
+> Saul, Richard.
+> 
+> Thanks for the suggestions re: building the whole thing from scratch.
+> 
+> In a previous life using openembedded our solutions for slow builds were an array of ASSUME_PROVIDEDs. I'll try the build the world approach instead !
+> 
+> Saul I'll send you along the logfiles off-list, one thing is that the build process looks for 
+> 
+> ASSUME_PROVIDED += "sqlite3-native"
+> /home/deckard/Development/yocto/poky-5.0.1-build/tmp/sysroots/i686-linux/usr/include/sqlite3.h
+> Instead of /usr/include/sqlite3.h !
 
-Thanks for the suggestions re: building the whole thing from scratch.
+I don't have time to implement/try this right now.. but one suggestion would be
+to change the meta/recipes-devtools/pseudo/pseudo.inc so that the configure
+calls pass the location of sqlite conditionally.  Currently it's using:
 
-In a previous life using openembedded our solutions for slow builds were an=
- array of ASSUME_PROVIDEDs. I'll try the build the world approach instead !
+--with-sqlite=${STAGING_DIR_TARGET}${exec_prefix}
 
-Saul I'll send you along the logfiles off-list, one thing is that the build=
- process looks for=20
+Simply checking for the existance of
+${STAGING_DIR_TARGET}${include_prefix}/sqlite3.h and only passing --with-sqlite=
+should be enough.  (it will fall back to the host otherwise.. and if the host
+version is not sufficient it will error.)
 
-ASSUME_PROVIDED +=3D "sqlite3-native"
-/home/deckard/Development/yocto/poky-5.0.1-build/tmp/sysroots/i686-linux/us=
-r/include/sqlite3.h
-Instead of /usr/include/sqlite3.h !
+--Mark
 
-
-Bryan
-
--------------------------------------------------------------
-Intel Ireland Limited (Branch)
-Collinstown Industrial Park, Leixlip, County Kildare, Ireland
-Registered Number: E902934
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+> 
+> Bryan
+> 
+> -------------------------------------------------------------
+> Intel Ireland Limited (Branch)
+> Collinstown Industrial Park, Leixlip, County Kildare, Ireland
+> Registered Number: E902934
+> 
+> This e-mail and any attachments may contain confidential material for
+> the sole use of the intended recipient(s). Any review or distribution
+> by others is strictly prohibited. If you are not the intended
+> recipient, please contact the sender and delete all copies.
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
