@@ -1,21 +1,33 @@
-Return-Path: <niqingliang@insigma.com.cn>
-Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 438F04C800C1
-	for <yocto@yoctoproject.org>; Wed, 29 Jun 2011 21:26:40 -0500 (CDT)
-Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
-	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
-	Thu, 30 Jun 2011 10:26:20 +0800
-Received: from [192.168.0.101] (122.224.76.38) by WX-ExchMB.insigma.com.cn
-	(10.0.1.203) with Microsoft SMTP Server id 8.1.240.5; Thu, 30 Jun 2011
-	10:26:19 +0800
-From: NiQingliang <niqingliang@insigma.com.cn>
-To: "Cui, Dexuan" <dexuan.cui@intel.com>
-Date: Thu, 30 Jun 2011 10:29:42 +0800
-In-Reply-To: <1865303E0DED764181A9D882DEF65FB6A1F4FC67BD@shsmsx502.ccr.corp.intel.com>
+Return-Path: <dexuan.cui@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id E07B34C80023
+	for <yocto@yoctoproject.org>; Wed, 29 Jun 2011 21:57:56 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 29 Jun 2011 19:57:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.65,447,1304319600"; d="scan'208";a="20661823"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by azsmga001.ch.intel.com with ESMTP; 29 Jun 2011 19:57:48 -0700
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 30 Jun 2011 10:57:21 +0800
+Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Thu, 30 Jun 2011 10:57:19 +0800
+From: "Cui, Dexuan" <dexuan.cui@intel.com>
+To: 'NiQingliang' <niqingliang@insigma.com.cn>
+Date: Thu, 30 Jun 2011 10:57:19 +0800
+Thread-Topic: [yocto] dependency gui problem
+Thread-Index: Acw2zUKOhvjAHjWrRqSpnESAWlWxXQAA007Q
+Message-ID: <1865303E0DED764181A9D882DEF65FB6A1F4FC67BF@shsmsx502.ccr.corp.intel.com>
 References: <1309399927.1876.7.camel@localhost.localdomain>
 	<1865303E0DED764181A9D882DEF65FB6A1F4FC67BD@shsmsx502.ccr.corp.intel.com>
-X-Mailer: Evolution 3.0.2 
-Message-ID: <1309400982.1876.10.camel@localhost.localdomain>
+	<1309400982.1876.10.camel@localhost.localdomain>
+In-Reply-To: <1309400982.1876.10.camel@localhost.localdomain>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: dependency gui problem
@@ -30,24 +42,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jun 2011 02:26:46 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 30 Jun 2011 02:57:57 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-once builded, is after executed "bitbake core-image-minimal" and
-generated the final image.
+NiQingliang wrote:
+> once builded, is after executed "bitbake core-image-minimal" and
+> generated the final image.
+I tried that just now on recent poky.git's master branch but can't reproduc=
+e the issue. :-(
+You may need to dig out where it hangs...
 
-On Thu, 2011-06-30 at 10:18 +0800, Cui, Dexuan wrote:
-> , and set env, follow cmd works normally.
-> > bitbake -g -u depexp core-image-minimal
-> >
-> > but once builded, the cmd works abnormal, the symptom like that:
-> What does "once builded" mean? 
--- 
-倪庆亮
-TEL:    13588371863
-E-MAIL: niqingliang@insigma.com.cn
-BLOG:   http://niqingliang2003.wordpress.com
+> On Thu, 2011-06-30 at 10:18 +0800, Cui, Dexuan wrote:
+>> , and set env, follow cmd works normally.
+>>> bitbake -g -u depexp core-image-minimal
+>>>=20
+>>> but once builded, the cmd works abnormal, the symptom like that:
+>>> What does "once builded" mean?=20
 
-
+Thanks,
+-- Dexuan=
 
