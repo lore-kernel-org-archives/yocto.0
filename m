@@ -1,24 +1,23 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5881C4C8009E
-	for <yocto@yoctoproject.org>; Wed,  6 Jul 2011 11:42:24 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Jul 2011 09:42:23 -0700
+Return-Path: <michaelx.d.halstead@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id E8BE14C804C2;
+	Wed,  6 Jul 2011 13:58:20 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 06 Jul 2011 11:58:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,488,1304319600"; d="scan'208";a="24460826"
-Received: from unknown (HELO [10.255.14.20]) ([10.255.14.20])
-	by fmsmga002.fm.intel.com with ESMTP; 06 Jul 2011 09:42:23 -0700
-Message-ID: <4E14906E.4050606@linux.intel.com>
-Date: Wed, 06 Jul 2011 09:42:22 -0700
-From: Darren Hart <dvhart@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.65,488,1304319600"; 
+	d="p7s'?scan'208";a="22273903"
+Received: from linux-mkad.jf.intel.com (HELO [10.7.202.54]) ([10.7.202.54])
+	by orsmga002.jf.intel.com with ESMTP; 06 Jul 2011 11:58:20 -0700
+Message-ID: <4E14AFC1.6030902@intel.com>
+Date: Wed, 06 Jul 2011 11:56:01 -0700
+From: Michael Halstead <michaelx.d.halstead@intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
+	rv:1.9.2.18) Gecko/20110616 SUSE/3.1.11 Thunderbird/3.1.11
 MIME-Version: 1.0
-To: G Rajender <G.Rajender@lnties.com>
-References: <9AAFA2F5BB120A448121E0997AE4438834482092@POCITMSEXMB03.LntUniverse.com>
-In-Reply-To: <9AAFA2F5BB120A448121E0997AE4438834482092@POCITMSEXMB03.LntUniverse.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: minimal yocto images not booting on Beagleboard-xM rev B
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	"yocto-announce@yoctoproject.org" <yocto-announce@yoctoproject.org>
+Subject: Update 24 delay: Yocto related websites are moving to a new host
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,109 +29,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jul 2011 16:42:25 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 06 Jul 2011 18:58:21 -0000
+X-Groupsio-MsgNum: 1779
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+	micalg=sha1; boundary="------------ms090007000507030309050306"
+
+--------------ms090007000507030309050306
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+The change originally scheduled for Wednesday July 6th has been delayed=20
+24 hours. It will now happen between 2 to 3pm PDT on Thursday July 7th=20
+2011.
+
+The change will move www.yoctoproject.org and www.pokylinux.org to new=20
+hardware hosted at the OSU Open Source Lab. The sites will be available=20
+during the transition but please refrain from making any changes to=20
+these sites until the move is complete.
+
+   Michael Halstead
+   Intel OTC Yocto
 
 
 
-On 07/06/2011 07:00 AM, G Rajender wrote:
-> Hi,
-> 
->  
-> 
-> I am new to Yocto project and Beagleboard.
-> 
->  
-> 
-> I am using Beagleboard-xM rev B. I got the information about Yocto
-> project by search. Yocto is a good open platform for Embedded developers
-> for target specific architectures.
-> 
->  
-> 
-> I have started working on Yocto project to build a LTP (Linux Test
-> Project) Test frame work for Beagleboard-xM rev B. I have downloaded the
-> Yocto release 1.0.1 and Beagleboard-xM BSP from the Yocto website. I
-> have installed the Yocto project poky build tool and demo image in my
-> Host PC (Ubuntu 10.04)as per poky quick start guide.
-> 
->  
-> 
-> *Now I am trying to execute the meta-bsp (meta-beagleboard) binaries
-> (built images) on beagleboard-xM rev B as per README. Hardware file. But
-> the beagleboard-xM revision B is not booting with theses BSP images.*
+--------------ms090007000507030309050306
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-Hi Rajender,
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIVbDCCAz0w
+ggKmoAMCAQICAwWw/zANBgkqhkiG9w0BAQUFADBOMQswCQYDVQQGEwJVUzEQMA4GA1UEChMHRXF1
+aWZheDEtMCsGA1UECxMkRXF1aWZheCBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MB4XDTA2
+MDIxNjE4MDEzMFoXDTE2MDIxOTE4MDEzMFowUjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVs
+IENvcnBvcmF0aW9uMScwJQYDVQQDEx5JbnRlbCBFeHRlcm5hbCBCYXNpYyBQb2xpY3kgQ0EwggEi
+MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDBpd/XOb9QVqEZ8mQ1042TdOIq3ATDIsV2xDyt
+30yLyMR5Wjtus0bn3B+he89BiNO/LP6+rFzEwlD55PlX+HLGIKeNNG97dqyc30FElEUjZzTZFq2N
+4e3kVJ/XAEEgANzV8v9qp7qWwxugPgfc3z9BkYot+CifozexHLb/hEZj+yISCU61kRZvuSQ0E11y
+YL4dRgcglJeaHo3oX57rvIckaLsYV5/1Aj+R8DM1Ppk965XQAKsHfnyT7C4S50T4lVn4lz36wOdN
+Zn/zegG1zp41lnoTFfT4KuKVJH5x7YD1p6KbgJCKLovnujGuohquBNfdXKpZkvz6pGv+iC1HawJd
+AgMBAAGjgaAwgZ0wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBQaxgxKxEdvqNutK/D0Vgaj7TdU
+DDA6BgNVHR8EMzAxMC+gLaArhilodHRwOi8vY3JsLmdlb3RydXN0LmNvbS9jcmxzL3NlY3VyZWNh
+LmNybDAfBgNVHSMEGDAWgBRI5mj5K9KylddH2CMgEE8zmJCf1DAPBgNVHRMBAf8EBTADAQH/MA0G
+CSqGSIb3DQEBBQUAA4GBABMQOK2kVKVIlUWwLTdywJ+e2O+PC/uQltK2F3lRyrPfBn69tOkIP4Sg
+DJOfsxyobIrPLe75kBLw+Dom13OBDp/EMZJZ1CglQfVV8co9mT3aZMjSGGQiMgkJLR3jMfr900fX
+ZKj5XeqCJ+JP0mEhJGEdVCY+FFlksJjV86fDrq1QMIIFijCCBHKgAwIBAgIKYSCKYgAAAAAACDAN
+BgkqhkiG9w0BAQUFADBSMQswCQYDVQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24x
+JzAlBgNVBAMTHkludGVsIEV4dGVybmFsIEJhc2ljIFBvbGljeSBDQTAeFw0wOTA1MTUxOTI3MjZa
+Fw0xNTA1MTUxOTM3MjZaMFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlv
+bjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQjCCASIwDQYJKoZI
+hvcNAQEBBQADggEPADCCAQoCggEBAKQEM1Wn9TU9vc9C+/Tc7KB+eiYElmrcEWE32WUdHvWG+IcQ
+HVQsikTmMyKKojNLw2B5s6Iekc8ivDo/wCfjZzX9JyftMnc+AArc0la87Olybzm8K9jXEfTBvTnU
+SFSiI9ZYefITdiUgqlAFuljFZEHYKYtLuhrRacpmQfP4mV63NKdc2bT804HRf6YptZFa4k6YN94z
+lrGNrBuQQ74WFzz/jLBusbUpEkro6Mu/ZYFOFWQrV9lBhF9Ruk8yN+3N6n9fUo/qBigiF2kEn9xV
+h1ykl7SCGL2jBUkXx4qgV27a6Si8lRRdgrHGtN/HWnSWlLXTH5l575H4Lq++77OFv38CAwEAAaOC
+AlwwggJYMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFA7GKvdZsggQkCVvw939imYxMCvFMAsG
+A1UdDwQEAwIBhjASBgkrBgEEAYI3FQEEBQIDAQABMCMGCSsGAQQBgjcVAgQWBBQ5oFY2ekKQ/5Kt
+im+VdMeSWb4QWTAZBgkrBgEEAYI3FAIEDB4KAFMAdQBiAEMAQTAfBgNVHSMEGDAWgBQaxgxKxEdv
+qNutK/D0Vgaj7TdUDDCBvQYDVR0fBIG1MIGyMIGvoIGsoIGphk5odHRwOi8vd3d3LmludGVsLmNv
+bS9yZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBQb2xpY3klMjBDQS5j
+cmyGV2h0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIw
+RXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUyMENBLmNybDCB4wYIKwYBBQUHAQEEgdYwgdMwYwYI
+KwYBBQUHMAKGV2h0dHA6Ly93d3cuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0lu
+dGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUyMENBLmNydDBsBggrBgEFBQcwAoZgaHR0
+cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwl
+MjBFeHRlcm5hbCUyMEJhc2ljJTIwUG9saWN5JTIwQ0EuY3J0MA0GCSqGSIb3DQEBBQUAA4IBAQCx
+tQEHchVQhXyjEqtMVUMe6gkmPsIczHxSeqNbo9dsD+6xbT65JT+oYgpIAtfEsYXeUJu1cChqpb22
+U5bMAz7eaQcW5bzefufWvA6lg2048B8oczBj/q+5P5NpYrUO8jOmN4jTjfJq3ElZ7yFWpy7rB3Vm
+/aN6ATYqWfMbS/xfh+JCxmH3droUmMJI0/aZJHsLtjbjFnNsHDNrJZX1vxlM78Lb1hjskTENPmhb
+VbfTj5i/ZGnhv4tmI8QZPCNtcegXJrfhRl2D9bWpdTOPrWiLDUqzy1Z6KL7TcOS/PCl8RHCJXkPa
+u/thTQCpIoDa2+c+3XA++gRTfAQ4svTO260NMIIGJzCCBQ+gAwIBAgIKYcadtAABAABwZDANBgkq
+hkiG9w0BAQUFADBWMQswCQYDVQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzAp
+BgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElzc3VpbmcgQ0EgM0IwHhcNMTEwNjE2MjEyNDU2
+WhcNMTQwNTMxMjEyNDU2WjBNMR0wGwYDVQQDExRIYWxzdGVhZCwgTWljaGFlbFggRDEsMCoGCSqG
+SIb3DQEJARYdbWljaGFlbHguZC5oYWxzdGVhZEBpbnRlbC5jb20wggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQCT54aUP7frrWIkjmUKeKI6kQZYPvxshfLcWDWoYLIbX7FjcvZk9f+fZKVv
+8DZEjW295Ok+mdlk1Nhd0p8pWWsY1LBnP0xUtoKbvvdVCW9iRnXW7rVrWDZWj7ClwY1YqVXP62MQ
+5S59UUkdNa58BOwrik97VL1GMirc3JWQq7rHONCsvFOgYrRGtoPEVXNJmCxQSNvtk+I8ca9MEZjt
+j3vfEfTXeFznIeoyDWf7URqi+gni2++dRbQrdZ8mLxmNJdMlJUAaqSx0G9SfPom6SKzqU9rCQm8M
+3SpIbABmsPXEPL0fp29QyFYZ5m82zvGyXMe9Pan1QGTBS0mzN8dXUflBAgMBAAGjggL+MIIC+jAL
+BgNVHQ8EBAMCB4AwPAYJKwYBBAGCNxUHBC8wLQYlKwYBBAGCNxUIhsOMdYSZ5VGD/YEohY6fU4KR
+wAlngd69OZXwQwIBZAIBCDAdBgNVHQ4EFgQUJk3jEVrxKZ64UR5dIZFYuae9EsowHwYDVR0jBBgw
+FoAUDsYq91myCBCQJW/D3f2KZjEwK8Uwgc8GA1UdHwSBxzCBxDCBwaCBvqCBu4ZXaHR0cDovL3d3
+dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNz
+dWluZyUyMENBJTIwM0IoMSkuY3JshmBodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBv
+c2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQigx
+KS5jcmwwgfUGCCsGAQUFBwEBBIHoMIHlMGwGCCsGAQUFBzAChmBodHRwOi8vd3d3LmludGVsLmNv
+bS9yZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1
+aW5nJTIwQ0ElMjAzQigxKS5jcnQwdQYIKwYBBQUHMAKGaWh0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50
+ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUy
+MElzc3VpbmclMjBDQSUyMDNCKDEpLmNydDAfBgNVHSUEGDAWBggrBgEFBQcDBAYKKwYBBAGCNwoD
+DDApBgkrBgEEAYI3FQoEHDAaMAoGCCsGAQUFBwMEMAwGCisGAQQBgjcKAwwwVwYDVR0RBFAwTqAt
+BgorBgEEAYI3FAIDoB8MHW1pY2hhZWx4LmQuaGFsc3RlYWRAaW50ZWwuY29tgR1taWNoYWVseC5k
+LmhhbHN0ZWFkQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEAYhkFmzYPyglQnUZ4eQ97qiqp
+tBjcYz7GQEJr8rw0i5tDicNe9kRuCd9WLdz+yA9pB3ilFGtwdu0iULXUInoeHthbPIWQOkRb7Gdz
+BRYXx7qcm8e9vzNd91bog9JFjPMK6/TTh1MfztT8p9vUYFjYzPYGXrFWvPpQk9eHzAWQPhfHnx39
+rkvHfXuV1oGvzNBb2KmFeZUBfHyyD8BTjZ+ys1Ib2XdBHeN0NxA4o50er8KhsB8ArFUc859fJRPy
+I7M9x8N4NGAeGOhL7ZkzMXAqJGaVOcDbww+L7v0bssb7rRDK510weUBUVcOw20MLc+NfW2tWjtIt
+Ze1KCoPk/LRw9zCCBm4wggVWoAMCAQICCmHEZr8AAQAAZWMwDQYJKoZIhvcNAQEFBQAwVjELMAkG
+A1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRl
+cm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBMB4XDTExMDYxNjIxNDcxNloXDTE0MDUzMTIxNDcxNlow
+TTEdMBsGA1UEAxMUSGFsc3RlYWQsIE1pY2hhZWxYIEQxLDAqBgkqhkiG9w0BCQEWHW1pY2hhZWx4
+LmQuaGFsc3RlYWRAaW50ZWwuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmsyV
+tXmiFwHyxGN9FZakm0tdpfQFob1JyjM2Yk+3oGWk1jJz4/WIEREAnzWwaeFn64fWrK9GHdjFJ/xY
+qYU3LFi+jZAIX+Ymenq9PUyIU9xj4dviBj5pjF+Cl9Pg55prEukHyGAosEcyD7+s1vSiRx3KXWz0
+FqHWx8m4dsnLjfzfWxWC2eixDN2n8yUISCXr88hM1RplQ5If/K9yho2KjPclwzH0MskIx83sOFOd
+XrTVSYNHeQ5KYRYg5GZlXOcawvvRrZdkeh2PdAdqCJN+R3+wMLpAbSR2CRj/3u5y2awKRoOYpyrz
+Q0FUtFA1VOK/Da3HbxdRqcHhrXceqHMW1QIDAQABo4IDRTCCA0EwCwYDVR0PBAQDAgQwMD0GCSsG
+AQQBgjcVBwQwMC4GJisGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OCkcAJZ4S52UGHhP9OAgFkAgEM
+MEQGCSqGSIb3DQEJDwQ3MDUwDgYIKoZIhvcNAwICAgCAMA4GCCqGSIb3DQMEAgIAgDAHBgUrDgMC
+BzAKBggqhkiG9w0DBzAdBgNVHQ4EFgQUPloMloRS6WhyKZkxS5yq0sJDMLYwHwYDVR0jBBgwFoAU
+qhZmr7c9VlNgrg3C7fPuB8tRYH4wgc8GA1UdHwSBxzCBxDCBwaCBvqCBu4ZXaHR0cDovL3d3dy5p
+bnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWlu
+ZyUyMENBJTIwM0EoMSkuY3JshmBodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0
+b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQSgxKS5j
+cmwwgfUGCCsGAQUFBwEBBIHoMIHlMGwGCCsGAQUFBzAChmBodHRwOi8vd3d3LmludGVsLmNvbS9y
+ZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5n
+JTIwQ0ElMjAzQSgxKS5jcnQwdQYIKwYBBQUHMAKGaWh0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwu
+Y29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElz
+c3VpbmclMjBDQSUyMDNBKDEpLmNydDAfBgNVHSUEGDAWBggrBgEFBQcDBAYKKwYBBAGCNwoDBDAp
+BgkrBgEEAYI3FQoEHDAaMAoGCCsGAQUFBwMEMAwGCisGAQQBgjcKAwQwVwYDVR0RBFAwTqAtBgor
+BgEEAYI3FAIDoB8MHW1pY2hhZWx4LmQuaGFsc3RlYWRAaW50ZWwuY29tgR1taWNoYWVseC5kLmhh
+bHN0ZWFkQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEADYbb8KolLSdsr/yaSsqnL7lztUly
+NciWyBqR7bedm1OFngMn0vp2MvooGVzdmzysmkrCqf1KAjgnN0rUEyQpp2GfBFjZBG3+y2JYxrtn
+jneqtPjrkK3qPrPKAa/mEgreV8tgyWGiZMUl0O2B3Mz27rmwDQEUx++QGIuO9A2emxGlarqz58PX
+rPxl2R4ocWNTI2DKdgTPNjsygdnb02NcgbOVdZekidfVYbQaGaV+DplF3LjRNT/WPLzZ4u4QAKD1
+eOs3yRMdotRu3BJnbFcgFcDnDnY6KXblLkPaDoS5WEQyBLqMlrHSA+A+1zc3D8dpEIozPTR8ANzd
+++v6BQOLQzGCAzkwggM1AgEBMGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBv
+cmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNCAgphxp20
+AAEAAHBkMAkGBSsOAwIaBQCgggGqMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTExMDcwNjE4NTYwMVowIwYJKoZIhvcNAQkEMRYEFO5wE6QUuPBKfnEqBwPTNDSqknuX
+MF8GCSqGSIb3DQEJDzFSMFAwCwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIA
+gDANBggqhkiG9w0DAgIBQDAHBgUrDgMCBzANBggqhkiG9w0DAgIBKDBzBgkrBgEEAYI3EAQxZjBk
+MFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50
+ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQQIKYcRmvwABAABlYzB1BgsqhkiG9w0BCRAC
+CzFmoGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQD
+EyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBAgphxGa/AAEAAGVjMA0GCSqGSIb3
+DQEBAQUABIIBAFje2N4caNncKvhZRFYoYOiIUc+QcJDeR5dVw1xhnFl3OqbI0I5r9SCO24Z+hkVs
+6RQBXG5pyFqDJulJCSzEMrugempOEQrCZJo3R/ILCnuyli1jPqtof0zTcug51JNI0SRNRQQack1r
+mTb4NgzHgY2458HesNsHLWb/I1gvRb4vL4BTly2Rjf29r/u8vcf0R+HHH6glz2d7OpSG6EVk28wJ
+1SQSWmx8XBoTvq4feDOXwmnGkuhKBqq2ie7eZXd8rPCsyrDgG6g8IhrmBXkHI1v3r36eYNAE0pyU
+BkenRjknz4fhO3P5cpXQL9k6eLyoi/ykXAp5XIqtRklTFSNB/8UAAAAAAAA=
 
-Welcome to the Yocto Project.
-
-We just recently completed a major overhaul to the meta-yocto
-beagleboard BSP, bringing it closer in line with the
-meta-texasinstruments BSP. I have tested on a C4 and an xM Rev A. I have
-reports of it working on rev B and not working on rev C, which we are
-looking into.
-
-For the best Yocto beagleboard support, I suggest building from the git
-repository until the 1.1 release later this year.
-
---
-Darren
-
-> 
-> * *
-> 
-> *Also I want add the Beagleboard BSP to the BBlayers of poky. I am
-> unable to understand the procedure explained in BSP developer’s guide.*
-> 
->  
-> 
-> *Can anyone suggest or share the experiences about above problems.*
-> 
->  
-> 
-> Thanks in advance and looking for your kind response.
-> 
->  
-> 
->  
-> 
-> Thanks and regards,
-> 
->  
-> 
-> Rajender.G
-> 
->  
-> 
->  
-> 
->  
-> 
->  
-> 
->  
-> 
-> 
-> 
-> *Larsen & Toubro Limited
-> 
-> www.larsentoubro.com
-> 
-> *This Email may contain confidential or privileged information for the
-> intended recipient (s) If you are not the intended recipient, please do
-> not use or disseminate the information, notify the sender and delete it
-> from your system.
-> 
-> 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
-
+--------------ms090007000507030309050306--
