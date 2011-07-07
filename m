@@ -1,29 +1,24 @@
-Return-Path: <prvs=6169f7b966=G.Rajender@lnties.com>
-Received: from mailout2.ltindia.com (mailout2.ltindia.com [125.18.18.171])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5462E4C80215
-	for <yocto@yoctoproject.org>; Thu,  7 Jul 2011 00:44:59 -0500 (CDT)
-X-AuditID: c0a8466b-b7b19ae000007f17-d0-4e1547da61a7
-Received: from POCITMSEXHUB02.LntUniverse.com ( [10.2.1.59])
-	by mailout2.ltindia.com (Symantec Mail Security) with SMTP id
-	F6.C1.32535.AD7451E4; Thu,  7 Jul 2011 11:14:58 +0530 (IST)
-Received: from POCITMSEXMB03.LntUniverse.com ([fe80::f495:7e6e:4c34:a3a9]) by
-	POCITMSEXHUB02.LntUniverse.com ([::1]) with mapi id 14.01.0218.012;
-	Thu, 7 Jul 2011 11:14:58 +0530
-From: G Rajender <G.Rajender@lnties.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: yocto Digest, Vol 10, Issue 6
-Thread-Index: AQHMO/5sJRC7VWBuI0OD3lN1CI4/oJTgWRzZ
-Date: Thu, 7 Jul 2011 05:44:57 +0000
-Message-ID: <9AAFA2F5BB120A448121E0997AE443883448213C@POCITMSEXMB03.LntUniverse.com>
-References: <mailman.1.1309971601.10703.yocto@yoctoproject.org>
-In-Reply-To: <mailman.1.1309971601.10703.yocto@yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.2.1.73]
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 730574C80579
+	for <yocto@yoctoproject.org>; Thu,  7 Jul 2011 15:34:34 -0500 (CDT)
+Received: from mail-ww0-f44.google.com ([74.125.82.44])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 07 Jul 2011 13:34:33 -0700
+Received: by wwe5 with SMTP id 5so903791wwe.13
+	for <yocto@yoctoproject.org>; Thu, 07 Jul 2011 13:34:32 -0700 (PDT)
 MIME-Version: 1.0
-X-Brightmail-Tracker: AAAAARiILoA=
-Subject: Re: yocto Digest, Vol 10, Issue 6
+Received: by 10.216.187.75 with SMTP id x53mr7033803wem.92.1310070871924; Thu,
+	07 Jul 2011 13:34:31 -0700 (PDT)
+Received: by 10.216.188.145 with HTTP; Thu, 7 Jul 2011 13:34:31 -0700 (PDT)
+Date: Thu, 7 Jul 2011 13:34:31 -0700
+Message-ID: <CAPhnLPAr4z9CagpCnWo=oyEHFzRQTSbhga8Zm5HnF3dKOX11_w@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org, 
+	Richard Purdie <richard.purdie@linuxfoundation.org>,
+	Saul Wold <saul.wold@intel.com>, "Zanussi, Tom" <tom.zanussi@intel.com>,
+	Bruce Ashfield <bruce.ashfield@windriver.com>, 
+	"Hart, Darren" <darren.hart@intel.com>
+Subject: Details on Bug #963 kernel tarball corruption.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,186 +30,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Jul 2011 05:45:01 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 07 Jul 2011 20:34:35 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Darren,
+I wanted to ping the list on this bug as I've drilled down into it and
+I see what's going on. These are the steps to reproduce it and I have
+some questions at the end....
 
-Thank you very much for your reply.
-now i am confident that meta-beagleboard BSP images will work on Beagleboar=
-d-xM rev B.
-Because i am beginner to Linux and kernels. Can you please suggest the step=
-s to follow on how to build from the git repository and execute on Beaglebo=
-ard-xM rev B.
-Thank you much for your valuable time spending on this. Looking for your ki=
-nd response.
+The issue: The autobuilder has been serving up bad kernel source
+tarballs. This is not an autobuilder issue. I've narrowed this down to
+being an issue with do_fetch and do_unpack....
 
-Thanks and regards,
+First, I created a local linux-yocto repo and modified
+meta/recipes-kernel/linux/linux-yocto_2.6.37.bb to point to it:
 
-Rajender.G
-________________________________________
-From: yocto-bounces@yoctoproject.org [yocto-bounces@yoctoproject.org] on be=
-half of yocto-request@yoctoproject.org [yocto-request@yoctoproject.org]
-Sent: Wednesday, July 06, 2011 10:30 PM
-To: yocto@yoctoproject.org
-Subject: yocto Digest, Vol 10, Issue 6
+SRCREV_machine = ${AUTOREV}
+SRCREV_meta = ${AUTOREV}
 
-Send yocto mailing list submissions to
-        yocto@yoctoproject.org
+SRC_URI = "git:///srv/build/build/repo/git.pokylinux.org.linux-yocto-2.6.37;protocol=file;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
 
-To subscribe or unsubscribe via the World Wide Web, visit
-        https://lists.yoctoproject.org/listinfo/yocto
-or, via email, send a message with subject or body 'help' to
-        yocto-request@yoctoproject.org
+I do bitbake virtual/kernel -c kernel_checkout -f and the repo is
+fetched into my DL_DIR, unpacked into
+tmp/work/qemux86-poky-linux/linux-yocto-2.6.37....r20/git and then
+do_kernel_checkout runs. At this point, everything is correct.
 
-You can reach the person managing the list at
-        yocto-owner@yoctoproject.org
+At this point my local SRC_URI repo is:
 
-When replying, please edit your Subject line so it is more specific
-than "Re: Contents of yocto digest..."
+* master
+  meta
+  yocto/base
+  yocto/eg20t
+  yocto/emgd
+  yocto/gma500
+....
 
+My clone in DL_DIR is the same.
 
-Today's Topics:
+My clone in  tmp/work/qemux86-poky-linux/linux-yocto-2.6.37....r20/linux
+looks like this:
 
-   1. Re: minimal yocto images not booting on Beagleboard-xM rev B
-      (Darren Hart)
+  master
+  meta
+  yocto/base
+  yocto/eg20t
+  yocto/emgd
+  yocto/gma500
+  ....
+  remotes/origin/master
+  remotes/origin/meta
+  remotes/origin/yocto/base
+  remotes/origin/yocto/eg20t
+  remotes/origin/yocto/emgd
+  remotes/origin/yocto/gma500
 
+With the local head branches and the remotes being the same.
 
-----------------------------------------------------------------------
+Now, on to where this gets ugly.
 
-Message: 1
-Date: Wed, 06 Jul 2011 09:42:22 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-To: G Rajender <G.Rajender@lnties.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [yocto] minimal yocto images not booting on
-        Beagleboard-xM rev B
-Message-ID: <4E14906E.4050606@linux.intel.com>
-Content-Type: text/plain; charset=3Dwindows-1252
+I commit a new branch to my SRC_URI repo:
 
+My SRC_URI:
 
+BAD_BRANCH
+master
+meta
+yocto/base
+yocto/eg20t
+yocto/emgd
+yocto/gma500
+....
 
-On 07/06/2011 07:00 AM, G Rajender wrote:
-> Hi,
->
->
->
-> I am new to Yocto project and Beagleboard.
->
->
->
-> I am using Beagleboard-xM rev B. I got the information about Yocto
-> project by search. Yocto is a good open platform for Embedded developers
-> for target specific architectures.
->
->
->
-> I have started working on Yocto project to build a LTP (Linux Test
-> Project) Test frame work for Beagleboard-xM rev B. I have downloaded the
-> Yocto release 1.0.1 and Beagleboard-xM BSP from the Yocto website. I
-> have installed the Yocto project poky build tool and demo image in my
-> Host PC (Ubuntu 10.04)as per poky quick start guide.
->
->
->
-> *Now I am trying to execute the meta-bsp (meta-beagleboard) binaries
-> (built images) on beagleboard-xM rev B as per README. Hardware file. But
-> the beagleboard-xM revision B is not booting with theses BSP images.*
+I re-run fetch and my DL_DIR looks like this:
 
-Hi Rajender,
+* master
+  meta
+  yocto/base
+  yocto/eg20t
+  yocto/emgd
+  yocto/gma500
+....
+  remotes/origin/BAD_BRANCH
+  remotes/origin/master
+  remotes/origin/meta
+  remotes/origin/yocto/base
+  remotes/origin/yocto/eg20t
+  remotes/origin/yocto/emgd
+  remotes/origin/yocto/gma500
 
-Welcome to the Yocto Project.
+Notice, the new BAD_BRANCH is now only in remotes. This *should* be
+ok, since after we do_unpack we run do_kernel_checkout which should
+copy the refs in remotes to heads. However....
 
-We just recently completed a major overhaul to the meta-yocto
-beagleboard BSP, bringing it closer in line with the
-meta-texasinstruments BSP. I have tested on a C4 and an xM Rev A. I have
-reports of it working on rev B and not working on rev C, which we are
-looking into.
+I clean out my workdir and run unpack. A git branch -a of the git dir
+it unpacks to shows that BAD_BRANCH does not exist:
 
-For the best Yocto beagleboard support, I suggest building from the git
-repository until the 1.1 release later this year.
+~/poky/build/tmp/work/qemux86-poky-linux/linux-yocto-2.6.37+git3+94bca94ff11276b4cfffc1818c1defa3051854b2_1+ea7bcd9e408ddfaf5ecd0bcc37956998add58e2d-r20/git>
+git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/meta
+  remotes/origin/yocto/base
+  remotes/origin/yocto/eg20t
+  remotes/origin/yocto/emgd
+  remotes/origin/yocto/gma500
 
---
-Darren
+So, do_kernel_checkout never even gets the chance to fix up the git repo.
 
->
-> * *
->
-> *Also I want add the Beagleboard BSP to the BBlayers of poky. I am
-> unable to understand the procedure explained in BSP developer?s guide.*
->
->
->
-> *Can anyone suggest or share the experiences about above problems.*
->
->
->
-> Thanks in advance and looking for your kind response.
->
->
->
->
->
-> Thanks and regards,
->
->
->
-> Rajender.G
->
->
->
->
->
->
->
->
->
->
->
->
->
-> *Larsen & Toubro Limited
->
-> www.larsentoubro.com
->
-> *This Email may contain confidential or privileged information for the
-> intended recipient (s) If you are not the intended recipient, please do
-> not use or disseminate the information, notify the sender and delete it
-> from your system.
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+My questions:
 
---
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+1. This appears to only be occurring with the kernel tarball, however,
+I'm concerned that it may also be happening elsewhere though. Without
+diving into the bb fetch code, should this be working like this?
+2. This could easily be fixed by ripping out:
 
+cp -r ${S}/.git/refs/remotes/origin/* ${S}/.git/refs/heads
+rmdir ${S}/.git/refs/remotes/origin
 
-------------------------------
+from do_kernel_checkout into a post_fetch target in
+kernel-yocto.bbclass, but if 1. is true, this obviously isn't the
+correct way to fix this.
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Ideas? Comments?
 
-
-End of yocto Digest, Vol 10, Issue 6
-************************************
-
-
-Larsen & Toubro Limited
-
-www.larsentoubro.com
-
-This Email may contain confidential or privileged information for the inten=
-ded recipient (s) If you are not the intended recipient, please do not use =
-or disseminate the information, notify the sender and delete it from your s=
-ystem.
+-b
 
