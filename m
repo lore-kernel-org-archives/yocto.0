@@ -1,31 +1,20 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id E8AC74C800A9
-	for <yocto@yoctoproject.org>; Thu,  7 Jul 2011 19:09:20 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6809FOt013108;
-	Fri, 8 Jul 2011 01:09:15 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 12733-08; Fri,  8 Jul 2011 01:09:11 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p68097dh013102
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Fri, 8 Jul 2011 01:09:08 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Darren Hart <darren.hart@intel.com>
-In-Reply-To: <4E164802.4000206@intel.com>
-References: <CAPhnLPAr4z9CagpCnWo=oyEHFzRQTSbhga8Zm5HnF3dKOX11_w@mail.gmail.com>
-	<1310073373.20015.847.camel@rex>  <4E164802.4000206@intel.com>
-Date: Fri, 08 Jul 2011 01:08:29 +0100
-Message-ID: <1310083709.20015.863.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org, Saul Wold <saul.wold@intel.com>
-Subject: Re: Details on Bug #963 kernel tarball corruption.
+Return-Path: <jeffrey.osier-mixon@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 1FA174C800A6
+	for <yocto@yoctoproject.org>; Fri,  8 Jul 2011 17:59:15 -0500 (CDT)
+Received: from mail-gw0-f52.google.com ([74.125.83.52])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 08 Jul 2011 15:59:15 -0700
+Received: by gwj15 with SMTP id 15so1221629gwj.25
+	for <yocto@yoctoproject.org>; Fri, 08 Jul 2011 15:59:14 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.236.136.72 with SMTP id v48mr3115187yhi.444.1310165954602;
+	Fri, 08 Jul 2011 15:59:14 -0700 (PDT)
+Received: by 10.236.109.10 with HTTP; Fri, 8 Jul 2011 15:59:14 -0700 (PDT)
+Date: Fri, 8 Jul 2011 15:59:14 -0700
+Message-ID: <CALZ2gZVe5WkdgaHen-5AJjBf+OO-bWxYx_PFCn5H9FOXYsLLCw@mail.gmail.com>
+From: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
+To: yocto@yoctoproject.org
+Subject: REMINDER: last day to submit abstracts for ELC-E
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,36 +26,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Jul 2011 00:09:21 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 08 Jul 2011 22:59:16 -0000
+Content-Type: multipart/alternative; boundary=20cf303dd1de5227b404a796c8cd
 
-On Thu, 2011-07-07 at 16:57 -0700, Darren Hart wrote:
-> On 07/07/2011 02:16 PM, Richard Purdie wrote:
-> > On Thu, 2011-07-07 at 13:34 -0700, Flanagan, Elizabeth wrote:
-> > diff --git a/bitbake/lib/bb/fetch2/git.py b/bitbake/lib/bb/fetch2/git.py
-> > index f3bc793..7954f66 100644
-> > --- a/bitbake/lib/bb/fetch2/git.py
-> > +++ b/bitbake/lib/bb/fetch2/git.py
-> > @@ -170,7 +170,7 @@ class Git(FetchMethod):
-> >  
-> >          # If the repo still doesn't exist, fallback to cloning it
-> >          if not os.path.exists(ud.clonedir):
-> > -            clone_cmd = "%s clone --bare %s://%s%s%s %s" % \
-> > +            clone_cmd = "%s clone --bare --mirror %s://%s%s%s %s" % \
-> 
-> 
-> --mirror implies --bare, so:
-> -            clone_cmd = "%s clone --bare %s://%s%s%s %s" % \
-> +            clone_cmd = "%s clone --mirror %s://%s%s%s %s" % \
-> 
-> should be adequate.
+--20cf303dd1de5227b404a796c8cd
+Content-Type: text/plain; charset=ISO-8859-1
 
-Right, I left it in as it makes it clearer to anyone looking at the
-command that we're really sure we want a bare clone...
+This is the final day to submit your presentations for Embedded Linux
+Conference Europe in Prague this coming October, as well as LinuxCon Europe.
+ Get those puppies in!
 
-Cheers,
+--20cf303dd1de5227b404a796c8cd
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Richard
+This is the final day to submit your presentations for Embedded Linux Confe=
+rence Europe in Prague this coming October, as well as LinuxCon Europe. =A0=
+Get those puppies in!
 
-
+--20cf303dd1de5227b404a796c8cd--
