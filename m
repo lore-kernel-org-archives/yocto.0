@@ -1,34 +1,19 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D2BEF4C804C5
-	for <yocto@yoctoproject.org>; Sun, 10 Jul 2011 04:00:23 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 10 Jul 2011 02:00:23 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8BFF14C800A9
+	for <yocto@yoctoproject.org>; Sun, 10 Jul 2011 11:26:02 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 10 Jul 2011 09:26:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,507,1304319600"; d="scan'208";a="25863463"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by orsmga001.jf.intel.com with ESMTP; 10 Jul 2011 02:00:00 -0700
-Received: from pgsmsx151.gar.corp.intel.com (172.30.236.41) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 10 Jul 2011 16:59:57 +0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	PGSMSX151.gar.corp.intel.com (172.30.236.41) with Microsoft SMTP Server
-	(TLS) id 14.1.289.1; Sun, 10 Jul 2011 16:59:57 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Sun, 10 Jul 2011 16:59:56 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Sun, 10 Jul 2011 16:59:52 +0800
-Thread-Topic: Yocto weekly bug trend charts -- WW28
-Thread-Index: Acw+37tqZN8DgOXOSIOyEmoMVlbJ8Q==
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D6D055E8@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW28
+X-IronPort-AV: E=Sophos;i="4.65,509,1304319600"; d="scan'208";a="26195291"
+Received: from unknown (HELO localhost) ([10.255.13.195])
+	by fmsmga002.fm.intel.com with ESMTP; 10 Jul 2011 09:26:01 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org
+Date: Sun, 10 Jul 2011 11:25:52 -0500
+Message-Id: <cover.1310314386.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/3][KERNEL] linux-yocto-dev meta updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,19 +25,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Jul 2011 09:00:24 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 10 Jul 2011 16:26:02 -0000
 
-Hi all,
-	Last week is for Yocto 1.1 M2 stabilization. QA finished testing for M2 RC=
-1. The new-submit vs. fixed bug is 22 vs. 23 for last week. The open bug nu=
-mber stays at 171(No enhancement bugs counted). WDD number decreased from 8=
-78 to 866. Yocto 1.1 M2 RC1 build is coming. Bug status of WW28 could be fo=
-und on https://wiki.pokylinux.org/wiki/Yocto_Bug_Trend.
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Best Regards,
-Jiajun
+This patchset adds a new eg20t feature to linux-yocto-dev, and
+makes crownbay use it.
+
+It also adds the initial BSP infrastructure for a new BSP, Fish
+River Island II, which also uses the new feature.
+
+Please pull the following branches into linux-yocto-dev:
+
+Pull URL: git://git.yoctoproject.org/linux-yocto-2.6.37-contrib
+  Branch: tzanussi/linux-3.0/yocto/standard/fri2
+  Browse: http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/linux-3.0/yocto/standard/fri2
+
+Pull URL: git://git.yoctoproject.org/linux-yocto-2.6.37-contrib
+  Branch: tzanussi/linux-3.0/meta/fri2
+  Browse: http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/linux-3.0/meta/fri2
+
+Tom Zanussi (3):
+  meta: add eg20t feature
+  meta/crownbay: remove eg20t.cfg and use new eg20t feature instead
+  meta/fri2: create initial BSP infrastructure
+
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc  |    2 +-
+ meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc |    7 ++
+ meta/cfg/kernel-cache/bsp/fri2/fri2.cfg          |   69 ++++++++++++++++++++++
+ meta/cfg/kernel-cache/bsp/fri2/fri2.scc          |   12 ++++
+ meta/cfg/kernel-cache/features/eg20t/eg20t.cfg   |   39 ++++++++++++
+ meta/cfg/kernel-cache/features/eg20t/eg20t.scc   |    1 +
+ 6 files changed, 129 insertions(+), 1 deletions(-)
+ create mode 100644 meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc
+ create mode 100644 meta/cfg/kernel-cache/bsp/fri2/fri2.cfg
+ create mode 100644 meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+ create mode 100644 meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/eg20t/eg20t.scc
 
 
