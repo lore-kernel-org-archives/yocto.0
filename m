@@ -1,26 +1,25 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id CA95D4C80332
-	for <yocto@yoctoproject.org>; Mon, 11 Jul 2011 11:25:28 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 11 Jul 2011 09:25:28 -0700
+	by mx1.pokylinux.org (Postfix) with ESMTP id 34BED4C803E4
+	for <yocto@yoctoproject.org>; Mon, 11 Jul 2011 11:49:17 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 11 Jul 2011 09:49:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,516,1304319600"; d="scan'208";a="24506163"
+X-IronPort-AV: E=Sophos;i="4.65,516,1304319600"; d="scan'208";a="26362415"
 Received: from doubt.jf.intel.com (HELO [10.7.199.62]) ([10.7.199.62])
-	by orsmga002.jf.intel.com with ESMTP; 11 Jul 2011 09:25:27 -0700
-Message-ID: <4E1B23F8.5070305@linux.intel.com>
-Date: Mon, 11 Jul 2011 09:25:28 -0700
+	by orsmga001.jf.intel.com with ESMTP; 11 Jul 2011 09:49:06 -0700
+Message-ID: <4E1B2982.4020102@linux.intel.com>
+Date: Mon, 11 Jul 2011 09:49:06 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
 	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
 MIME-Version: 1.0
-To: G Rajender <G.Rajender@lnties.com>
-References: <9AAFA2F5BB120A448121E0997AE4438834482092@POCITMSEXMB03.LntUniverse.com>,
-	<4E14906E.4050606@linux.intel.com>
-	<9AAFA2F5BB120A448121E0997AE44388344820FE@POCITMSEXMB03.LntUniverse.com>
-In-Reply-To: <9AAFA2F5BB120A448121E0997AE44388344820FE@POCITMSEXMB03.LntUniverse.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: minimal yocto images not booting on Beagleboard-xM rev B
+To: tom.zanussi@intel.com
+References: <cover.1310314386.git.tom.zanussi@intel.com>
+	<8b824f53292e21ccb9de938b2c115adf0a9b1aa0.1310314387.git.tom.zanussi@intel.com>
+In-Reply-To: <8b824f53292e21ccb9de938b2c115adf0a9b1aa0.1310314387.git.tom.zanussi@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/3][KERNEL] meta: add eg20t feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,151 +31,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jul 2011 16:25:30 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 11 Jul 2011 16:49:17 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-
-
-On 07/06/2011 10:26 PM, G Rajender wrote:
-> Hi Darren,
-> 
-> Thank you very much for your reply.
-> now i am confident that meta-beagleboard BSP images will work on Beagleboard-xM rev B.
-> Can you please suggest the steps to follow on how to build from the git repository and execute on Beagleboard-xM rev B.
-> Thank you much for your valuable time spending on this. Looking for your kind response.
-> 
-> Thanks and regards,
-
-
-The process is the same as it is for building from a release tarball,
-the only difference is how you get the source. Rather than unpacking the
-release tarball, just use git to clone the repository:
-
-$ git clone git://git.yoctoproject.org/poky.git
-
-Then cd into the new poky directory and follow the quick start guide.
+That is quite the assortment of config bits - are all of these necessary
+to explicitly support the eg20t? I'd like to see minimal config
+fragments both for simplicity as well as avoiding unnecessary kernel
+tool warnings about redefinitions.
 
 --
 Darren
 
+On 07/10/2011 09:26 AM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi <tom.zanussi@intel.com>
 > 
-> Rajender.G
+> Option group for Intel Platform Controller Hub EG20T (Topcliff).
 > 
+> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+> ---
+>  meta/cfg/kernel-cache/features/eg20t/eg20t.cfg |   39 ++++++++++++++++++++++++
+>  meta/cfg/kernel-cache/features/eg20t/eg20t.scc |    1 +
+>  2 files changed, 40 insertions(+), 0 deletions(-)
+>  create mode 100644 meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
+>  create mode 100644 meta/cfg/kernel-cache/features/eg20t/eg20t.scc
 > 
-> ________________________________________
-> From: Darren Hart [dvhart@linux.intel.com]
-> Sent: Wednesday, July 06, 2011 10:12 PM
-> To: G Rajender
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] minimal yocto images not booting on Beagleboard-xM rev B
-> 
-> On 07/06/2011 07:00 AM, G Rajender wrote:
->> Hi,
->>
->>
->>
->> I am new to Yocto project and Beagleboard.
->>
->>
->>
->> I am using Beagleboard-xM rev B. I got the information about Yocto
->> project by search. Yocto is a good open platform for Embedded developers
->> for target specific architectures.
->>
->>
->>
->> I have started working on Yocto project to build a LTP (Linux Test
->> Project) Test frame work for Beagleboard-xM rev B. I have downloaded the
->> Yocto release 1.0.1 and Beagleboard-xM BSP from the Yocto website. I
->> have installed the Yocto project poky build tool and demo image in my
->> Host PC (Ubuntu 10.04)as per poky quick start guide.
->>
->>
->>
->> *Now I am trying to execute the meta-bsp (meta-beagleboard) binaries
->> (built images) on beagleboard-xM rev B as per README. Hardware file. But
->> the beagleboard-xM revision B is not booting with theses BSP images.*
-> 
-> Hi Rajender,
-> 
-> Welcome to the Yocto Project.
-> 
-> We just recently completed a major overhaul to the meta-yocto
-> beagleboard BSP, bringing it closer in line with the
-> meta-texasinstruments BSP. I have tested on a C4 and an xM Rev A. I have
-> reports of it working on rev B and not working on rev C, which we are
-> looking into.
-> 
-> For the best Yocto beagleboard support, I suggest building from the git
-> repository until the 1.1 release later this year.
-> 
-> --
-> Darren
-> 
->>
->> * *
->>
->> *Also I want add the Beagleboard BSP to the BBlayers of poky. I am
->> unable to understand the procedure explained in BSP developer’s guide.*
->>
->>
->>
->> *Can anyone suggest or share the experiences about above problems.*
->>
->>
->>
->> Thanks in advance and looking for your kind response.
->>
->>
->>
->>
->>
->> Thanks and regards,
->>
->>
->>
->> Rajender.G
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->> *Larsen & Toubro Limited
->>
->> www.larsentoubro.com
->>
->> *This Email may contain confidential or privileged information for the
->> intended recipient (s) If you are not the intended recipient, please do
->> not use or disseminate the information, notify the sender and delete it
->> from your system.
->>
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> 
-> --
-> Darren Hart
-> Intel Open Source Technology Center
-> Yocto Project - Linux Kernel
-> 
-> 
-> Larsen & Toubro Limited
-> 
-> www.larsentoubro.com
-> 
-> This Email may contain confidential or privileged information for the intended recipient (s) If you are not the intended recipient, please do not use or disseminate the information, notify the sender and delete it from your system.
+> diff --git a/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg b/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
+> new file mode 100644
+> index 0000000..225581c
+> --- /dev/null
+> +++ b/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
+> @@ -0,0 +1,39 @@
+> +# Hardware support for the Platform Controller Hub EG20T
+> +
+> +CONFIG_PCH_DMA=y
+> +CONFIG_PCH_UART_DMA=y
+> +CONFIG_SERIAL_8250_PCI=y
+> +CONFIG_SERIAL_8250_PCH=y
+> +CONFIG_SERIAL_8250_PCH_DMA=y
+> +
+> +CONFIG_SERIAL_PCH_UART=y
+> +CONFIG_SERIAL_CORE=y
+> +
+> +CONFIG_SPI=y
+> +CONFIG_SPI_BITBANG=y
+> +CONFIG_SPI_GPIO=y
+> +CONFIG_SPI_TOPCLIFF_PCH=y
+> + 
+> +CONFIG_MISC_DEVICES=y
+> +CONFIG_PCH_PHUB=y
+> +
+> +CONFIG_NETDEVICES=y
+> +CONFIG_NETDEV_1000=y
+> +CONFIG_PCH_GBE=y
+> +
+> +CONFIG_PCH_USBDEV=y
+> +CONFIG_USB_GADGET=y
+> +CONFIG_USB_GADGET_EG20T=y
+> +CONFIG_USB_GADGET_DUALSPEED=y
+> +CONFIG_USB_GADGET_SELECTED=y
+> +
+> +CONFIG_I2C_EG20T=y
+> +
+> +CONFIG_GPIOLIB=y
+> +CONFIG_GPIO_PCH=y
+> +
+> +CONFIG_PCH_IEEE1588=y
+> +
+> +CONFIG_CAN=y
+> +CONFIG_CAN_DEV=y
+> +CONFIG_PCH_CAN=y
+> diff --git a/meta/cfg/kernel-cache/features/eg20t/eg20t.scc b/meta/cfg/kernel-cache/features/eg20t/eg20t.scc
+> new file mode 100644
+> index 0000000..d690469
+> --- /dev/null
+> +++ b/meta/cfg/kernel-cache/features/eg20t/eg20t.scc
+> @@ -0,0 +1 @@
+> +kconf hardware eg20t.cfg
 
 -- 
 Darren Hart
