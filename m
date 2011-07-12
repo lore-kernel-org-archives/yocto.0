@@ -1,21 +1,36 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B78F74C803E4
-	for <yocto@yoctoproject.org>; Mon, 11 Jul 2011 21:49:05 -0500 (CDT)
+Return-Path: <dongxiao.xu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id A128F4C800A9
+	for <yocto@yoctoproject.org>; Mon, 11 Jul 2011 21:55:47 -0500 (CDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 11 Jul 2011 19:49:04 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 11 Jul 2011 19:55:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,517,1304319600"; d="scan'208";a="26757131"
-Received: from unknown (HELO [10.255.14.4]) ([10.255.14.4])
-	by fmsmga002.fm.intel.com with ESMTP; 11 Jul 2011 19:49:04 -0700
-Message-ID: <4E1BB620.6040301@linux.intel.com>
-Date: Mon, 11 Jul 2011 19:49:04 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
+X-IronPort-AV: E=Sophos;i="4.65,517,1304319600"; d="scan'208";a="26759092"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by fmsmga002.fm.intel.com with ESMTP; 11 Jul 2011 19:55:46 -0700
+Received: from pgsmsx151.gar.corp.intel.com (172.30.236.41) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 12 Jul 2011 10:55:45 +0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	PGSMSX151.gar.corp.intel.com (172.30.236.41) with Microsoft SMTP Server
+	(TLS) id 14.1.289.1; Tue, 12 Jul 2011 10:55:44 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Tue, 12 Jul 2011 10:55:42 +0800
+From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+To: "Richard Purdie (richard.purdie@linuxfoundation.org)"
+	<richard.purdie@linuxfoundation.org>
+Date: Tue, 12 Jul 2011 10:55:41 +0800
+Thread-Topic: PACKAGES_DYNAMIC handling in multilib
+Thread-Index: AcxAPhW/BiV9JHW8S4CTE13r53bUnQ==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D6D05EAE@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: [PATCH][poky-extras] meta-kernel-dev: allow for dangling bbappend files
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: PACKAGES_DYNAMIC handling in multilib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,39 +42,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jul 2011 02:49:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 12 Jul 2011 02:55:47 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-With the bitbake commit:
-7a2a24de094ce8f2e2068bbee6709dfc2cdc69b9
-missing base recipe files for bbappends became an error. Rather than creating a
-separate kernel development layer for every layer containing a new kernel recipe
-name, conditionally set BB_DANGLINGAPPENDS_WARNONLY.
+Hi Richard,
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
-CC: Bruce Ashfield <bruce.ashfield@windriver.com>
-CC: Jeff Mitchell <jmitchell@ll.mit.edu>
----
- meta-kernel-dev/conf/layer.conf |    4 ++++
- 1 files changed, 4 insertions(+), 0 deletions(-)
+Recently I am doing some work related with multilib.
 
-diff --git a/meta-kernel-dev/conf/layer.conf b/meta-kernel-dev/conf/layer.conf
-index 33f1ca5..01e5b15 100644
---- a/meta-kernel-dev/conf/layer.conf
-+++ b/meta-kernel-dev/conf/layer.conf
-@@ -1,3 +1,7 @@
-+# Avoid having to split this into multiple layers
-+# Allow missing base recipe files for our bbappends
-+BB_DANGLINGAPPENDS_WARNONLY ?= "true"
-+
- # We have a conf and classes directory, add to BBPATH
- BBPATH := "${BBPATH}:${LAYERDIR}"
- 
--- 
-1.7.1
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+In current code logic, I see packages that defined in "PACKAGES" variable w=
+ill be automatically tagged with libxx-PN.
+
+However there seems no logic to handle the PACKAGES_DYNAMIC case. Is it mis=
+sed?
+
+Besides, there is runtime package split code, for example in perl recipe, t=
+here are perl-module-* packages split by the following code.
+
+python populate_packages_prepend () {
+        libdir =3D bb.data.expand('${libdir}/perl/${PV}', d)
+        do_split_packages(d, libdir, 'auto/(Encode/.[^/]*)/.*', 'perl-modul=
+e-%s', 'perl module %s', recursive=3DTrue, allow_dirs=3DFalse, match_path=
+=3DTrue, prepend=3DFalse)
+        do_split_packages(d, libdir, 'auto/([^/]*)/.*', 'perl-module-%s', '=
+perl module %s', recursive=3DTrue, allow_dirs=3DFalse, match_path=3DTrue, p=
+repend=3DFalse)
+        do_split_packages(d, libdir, 'Module/([^\/]*).*', 'perl-module-%s',=
+ 'perl module %s', recursive=3DTrue, allow_dirs=3DFalse, match_path=3DTrue,=
+ prepend=3DFalse)
+        do_split_packages(d, libdir, '(^(?!(CPAN\/|CPANPLUS\/|Module\/|unic=
+ore\/|auto\/)[^\/]).*)\.(pm|pl|e2x)', 'perl-module-%s', 'perl module %s', r=
+ecursive=3DTrue, allow_dirs=3DFalse, match_path=3DTrue, prepend=3DFalse)
+}
+
+To support lib32-perl/lib64-perl and other similar recipes, I think we may =
+have to specifically handle such pieces of code in current poky.=20
+
+Do you have suggestions on the above?
+
+Thanks,
+Dongxiao=20
+
 
