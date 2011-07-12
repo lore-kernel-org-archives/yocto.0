@@ -1,24 +1,29 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id EDEC64C80A47
-	for <yocto@yoctoproject.org>; Tue, 12 Jul 2011 15:59:50 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 12 Jul 2011 13:59:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,522,1304319600"; d="scan'208";a="29539860"
-Received: from unknown (HELO [10.255.13.191]) ([10.255.13.191])
-	by fmsmga001.fm.intel.com with ESMTP; 12 Jul 2011 13:59:50 -0700
-Message-ID: <4E1CB5C5.3070405@linux.intel.com>
-Date: Tue, 12 Jul 2011 13:59:49 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
-MIME-Version: 1.0
-To: Joshua Lock <josh@linux.intel.com>
-References: <1310496703.2162.17.camel@scimitar>	
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id A16CE4C80A47
+	for <yocto@yoctoproject.org>; Tue, 12 Jul 2011 16:08:14 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6CL8B3T023708;
+	Tue, 12 Jul 2011 22:08:11 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 22209-10; Tue, 12 Jul 2011 22:08:07 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6CL82Zh023702
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Tue, 12 Jul 2011 22:08:03 +0100
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4E1C9A00.5060005@linux.intel.com>
+References: <1310496703.2162.17.camel@scimitar>
 	<4E1C9A00.5060005@linux.intel.com>
-	<1310498767.2162.23.camel@scimitar>
-In-Reply-To: <1310498767.2162.23.camel@scimitar>
+Date: Tue, 12 Jul 2011 22:08:00 +0100
+Message-ID: <1310504880.20015.1080.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 
+X-Virus-Scanned: amavisd-new at rpsys.net
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: Supporting upcoming distribution releases
 X-BeenThere: yocto@yoctoproject.org
@@ -32,29 +37,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jul 2011 20:59:51 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 12 Jul 2011 21:08:15 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 07/12/2011 12:26 PM, Joshua Lock wrote:
-> On Tue, 2011-07-12 at 12:01 -0700, Darren Hart wrote:
->>
-
->>> Final note: I'm left wondering if this emails contents also make sense
->>> as a wiki page?
->>
->> Some sort of distro links for schedule page would be great. If people
->> want to share that they are testing the pre-release distros, that would
->> be useful, but we need to find a way to keep it concise and not into a
->> "getting it to work on XYZ" forum - although that would be useful a
->> separate page per distro.
+On Tue, 2011-07-12 at 12:01 -0700, Darren Hart wrote:
 > 
-> Or perhaps we should just integrate this information into our schedule?
+> On 07/12/2011 11:51 AM, Joshua Lock wrote:
+> > In our technical team call today we spent some time discussing how to
+> > support distribution releases that are due to happen around the time of
+> > Yocto 1.1.
+> > 
+> > Yocto 1.1 is scheduled for release on October 6th[1], the same month in
+> > which both Ubuntu and Fedora have new releases planned[2,3].
+> > OpenSUSE doesn't have a release scheduled until November 10th[4].
+> > 
+> > We should accommodate for these releases in our planning around 1.1 as
+> > we need to ensure that Yocto 1.1 can be used on the new versions of the
+> > chosen supported distros.
+> > 
+> > I had initially suggested we have people doing test and any relevant
+> > development around the beta cycles of Ubuntu and Fedora:
+> > 
+> > Fedora Beta (2011-09-20)
+> > Ubuntu (2011-09-01)
+> > In this time frame OpenSUSE will be on Milestone 5 (2011-09-01) which
+> > afaict (based on the 6th milestone being followed by an RC) should
+> > roughly equate to a beta.
+> > 
+> > However this aligns with our RC period at which point we may not want to
+> > accept large patches?
+> > 
+> > To meet our stabilise complete goal of August 29th we'd have to have
+> > people testing with:
+> > Fedora Alpha (2011-08-16)
+> > Ubuntu Alpha 3 (2011-08-04)
+> > OpenSUSE Milestone 4 (2011-08-11)
+> > 
+> > What are peoples thoughts on this?
+> 
+> At the very least a sanity test to know which sorts of issues we'll hit
+> with these would be valuable. However, I believe our policy is N-1, and
+> not N+1,N,N-1, so supporting not-yet released versions isn't something I
+> think we should spend too much time on. Minor fixes to support these
+> post release seem like good candidates for a point release.
 
-That is a great idea!
+Much as I'd like to agree with you, traditionally this does tend to bite
+us hard. The fixes some of the releases have needed are sometimes not so
+minor too :(.
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+The reason is that we have a community with a significant portion of
+people who do stay close to the edge as far as distros go. They'll take
+latest releases and expect Yocto to work on them even if the releases
+come out at the same time. Its not often realised how far in advance
+trees get frozen for stabilisation.
+
+So summary is I'm in favour of trying to identify problems early and
+then doing what we can to address them...
+
+As such, this time around I'll update my build machine to latest Ubuntu
+at the beginning of August....
+
+Cheers,
+
+Richard
+
 
