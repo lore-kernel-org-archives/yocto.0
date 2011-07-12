@@ -1,30 +1,20 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by mx1.pokylinux.org (Postfix) with ESMTP id F05784C800A3
-	for <yocto@yoctoproject.org>; Tue, 12 Jul 2011 08:57:36 -0500 (CDT)
-Received: from [128.224.252.2] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1QgdSy-0002Zn-3Z
-	for yocto@yoctoproject.org; Tue, 12 Jul 2011 09:57:36 -0400
-Date: Tue, 12 Jul 2011 09:57:30 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
+Return-Path: <josh@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 448584C80A47
+	for <yocto@yoctoproject.org>; Tue, 12 Jul 2011 13:51:44 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 12 Jul 2011 11:51:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.65,522,1304319600"; d="scan'208";a="26859550"
+Received: from unknown (HELO [10.255.13.215]) ([10.255.13.215])
+	by orsmga001.jf.intel.com with ESMTP; 12 Jul 2011 11:51:43 -0700
+From: Joshua Lock <josh@linux.intel.com>
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1107120955130.5749@localhost6.localdomain6>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH] DOCS: Rename "poky-init-build-env" to "oe-init-build-env"
+Date: Tue, 12 Jul 2011 11:51:38 -0700
+X-Mailer: Evolution 3.0.2 (3.0.2-3.fc15) 
+Message-ID: <1310496703.2162.17.camel@scimitar>
+Mime-Version: 1.0
+Subject: Supporting upcoming distribution releases
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,67 +26,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jul 2011 13:57:37 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 12 Jul 2011 18:51:44 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
+In our technical team call today we spent some time discussing how to
+support distribution releases that are due to happen around the time of
+Yocto 1.1.
 
-Adjust a couple doc files to reflect that the older
-poky-init-build-env command has been renamed to oe-init-build-env.
+Yocto 1.1 is scheduled for release on October 6th[1], the same month in
+which both Ubuntu and Fedora have new releases planned[2,3].
+OpenSUSE doesn't have a release scheduled until November 10th[4].
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+We should accommodate for these releases in our planning around 1.1 as
+we need to ensure that Yocto 1.1 can be used on the new versions of the
+chosen supported distros.
 
----
+I had initially suggested we have people doing test and any relevant
+development around the beta cycles of Ubuntu and Fedora:
 
-diff --git a/documentation/adt-manual/adt-prepare.xml b/documentation/adt-manual/adt-prepare.xml
-index 7fbc876..e6f5c9b 100644
---- a/documentation/adt-manual/adt-prepare.xml
-+++ b/documentation/adt-manual/adt-prepare.xml
-@@ -29,13 +29,13 @@
-         This term refers to the area where you run your builds.
-         The area is created when you source the Yocto Project setup environment script
-         that is found in the Yocto Project source directory
--        (e.g. <filename>poky-init-build-env</filename>).
-+        (e.g. <filename>oe-init-build-env</filename>).
-         You can create the Yocto Project build tree anywhere you want on your
-         development system.
-         Here is an example that creates the tree in <filename>mybuilds</filename>
-         and names the Yocto Project build directory <filename>YP-5.0.1</filename>:
-         <literallayout class='monospaced'>
--     $ source poky-bernard-5.0.1/poky-init-build-env $HOME/mybuilds/YP-5.0.1
-+     $ source poky-bernard-5.0.1/oe-init-build-env $HOME/mybuilds/YP-5.0.1
-         </literallayout>
-         If you don't specifically name the build directory then Bitbake creates it
-         in the current directory and uses the name <filename>build</filename>.
-@@ -110,7 +110,7 @@
-      $ cd yocto-project
-      $ wget http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.1.tar.bz2
-      $ tar xjf poky-bernard-5.0.1.tar.bz2
--     $ source poky-bernard-5.0.1/poky-init-build-env poky-5.0.1-build
-+     $ source poky-bernard-5.0.1/oe-init-build-env poky-5.0.1-build
-      $ bitbake adt-installer
-                 </literallayout>
-             </para>
-diff --git a/documentation/yocto-project-qs/yocto-project-qs.xml b/documentation/yocto-project-qs/yocto-project-qs.xml
-index 52f7391..500444f 100644
---- a/documentation/yocto-project-qs/yocto-project-qs.xml
-+++ b/documentation/yocto-project-qs/yocto-project-qs.xml
-@@ -296,7 +296,7 @@
-              <literallayout class='monospaced'>
-      $ wget http://www.yoctoproject.org/downloads/poky/poky-bernard-5.0.1.tar.bz2
-      $ tar xjf poky-bernard-5.0.1.tar.bz2
--     $ source poky-bernard-5.0.1/poky-init-build-env poky-5.0.1-build
-+     $ source poky-bernard-5.0.1/oe-init-build-env poky-5.0.1-build
-              </literallayout>
-          </para>
+Fedora Beta (2011-09-20)
+Ubuntu (2011-09-01)
+In this time frame OpenSUSE will be on Milestone 5 (2011-09-01) which
+afaict (based on the 6th milestone being followed by an RC) should
+roughly equate to a beta.
 
+However this aligns with our RC period at which point we may not want to
+accept large patches?
 
+To meet our stabilise complete goal of August 29th we'd have to have
+people testing with:
+Fedora Alpha (2011-08-16)
+Ubuntu Alpha 3 (2011-08-04)
+OpenSUSE Milestone 4 (2011-08-11)
+
+What are peoples thoughts on this? I think the onus for this testing
+will fall on engineers as the project QA is already pretty stretched. I
+have a tendency to update to early releases on at least one machine so
+will no doubt do some testing on Fedora but it would be nice to have a
+genuine strategy for this rather than relying on ad-hoc developer
+upgrades.
+
+Final note: I'm left wondering if this emails contents also make sense
+as a wiki page?
+
+Cheers,
+Joshua
+
+1. https://wiki.pokylinux.org/wiki/Yocto_1.1_Schedule
+2. https://wiki.ubuntu.com/OneiricReleaseSchedule
+3. http://fedoraproject.org/wiki/Releases/16/Schedule
+4. http://en.opensuse.org/Roadmap
 -- 
+Joshua Lock
+        Yocto Project "Johannes factotum"
+        Intel Open Source Technology Centre
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
