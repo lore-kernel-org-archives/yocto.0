@@ -1,30 +1,30 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 7B26D4C80A5B
-	for <yocto@yoctoproject.org>; Tue, 12 Jul 2011 03:44:55 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6C8ipWH018701;
-	Tue, 12 Jul 2011 09:44:51 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 18595-02; Tue, 12 Jul 2011 09:44:47 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6C8ijEQ018694
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Tue, 12 Jul 2011 09:44:46 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Turner Randy <Randy.Turner@technicolor.com>
-In-Reply-To: <CAE727EC-4F3C-4FD2-BCEE-F14BC42E981F@technicolor.com>
-References: <CAE727EC-4F3C-4FD2-BCEE-F14BC42E981F@technicolor.com>
-Date: Tue, 12 Jul 2011 09:43:58 +0100
-Message-ID: <1310460238.20015.1024.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Menu configuration
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by mx1.pokylinux.org (Postfix) with ESMTP id EFA114C800A9
+	for <yocto@yoctoproject.org>; Tue, 12 Jul 2011 06:17:45 -0500 (CDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1QgayG-0000J0-V7
+	for yocto@yoctoproject.org; Tue, 12 Jul 2011 07:17:45 -0400
+Date: Tue, 12 Jul 2011 07:17:40 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1107120714220.4716@localhost6.localdomain6>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: should dev docs replace "poky-init-build-env" with "oe-init-build-env"?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,31 +36,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jul 2011 08:44:55 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-On Mon, 2011-07-11 at 10:00 -0700, Turner Randy wrote:
-> Hello list,
-> 
-> Is there a interactive menu-based configuration for yocto/poky builds
-> similar to that provided in Buildroot? Or is someone working on this?
-
-At present there is not any interactive menu based configuration but
-there is work ongoing on a UI called hob which allows you to select
-packages and construct images of those packages so its a graphical front
-end to the system.
-
-We're also in the process of starting to better markup configuration
-variables in the metadata so that writing some kind of menu based
-configuration system would be easier in the future.
-
-We're certainly open to any help in those areas too!
-
-Cheers,
-
-Richard
+X-List-Received-Date: Tue, 12 Jul 2011 11:17:46 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
+  poking around my git clone and i notice a few references to what
+*seems* to be the older script for init'ing the build environment in
+the documentation directory:
 
+$ grep -rw poky-init-build-env *
+adt-manual/adt-prepare.xml:        (e.g. <filename>poky-init-build-env</filename>).
+adt-manual/adt-prepare.xml:     $ source poky-bernard-5.0.1/poky-init-build-env $HOME/mybuilds/YP-5.0.1
+... and a couple more ...
+$
+
+  as i read it, the correct name should be oe-init-build-env, no?  is
+someone already lined up to fix that?  if not, i can submit a patch.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
