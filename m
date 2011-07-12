@@ -1,36 +1,25 @@
-Return-Path: <dongxiao.xu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A128F4C800A9
-	for <yocto@yoctoproject.org>; Mon, 11 Jul 2011 21:55:47 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 11 Jul 2011 19:55:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,517,1304319600"; d="scan'208";a="26759092"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by fmsmga002.fm.intel.com with ESMTP; 11 Jul 2011 19:55:46 -0700
-Received: from pgsmsx151.gar.corp.intel.com (172.30.236.41) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 12 Jul 2011 10:55:45 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX151.gar.corp.intel.com (172.30.236.41) with Microsoft SMTP Server
-	(TLS) id 14.1.289.1; Tue, 12 Jul 2011 10:55:44 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Tue, 12 Jul 2011 10:55:42 +0800
-From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
-To: "Richard Purdie (richard.purdie@linuxfoundation.org)"
-	<richard.purdie@linuxfoundation.org>
-Date: Tue, 12 Jul 2011 10:55:41 +0800
-Thread-Topic: PACKAGES_DYNAMIC handling in multilib
-Thread-Index: AcxAPhW/BiV9JHW8S4CTE13r53bUnQ==
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D6D05EAE@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8DE074C80332
+	for <yocto@yoctoproject.org>; Mon, 11 Jul 2011 23:49:20 -0500 (CDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p6C4n8ra006371
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 11 Jul 2011 21:49:08 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.23.78) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Mon, 11 Jul 2011 21:49:07 -0700
+Message-ID: <4E1BD241.1070106@windriver.com>
+Date: Tue, 12 Jul 2011 00:49:05 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.18) Gecko/20110616 Thunderbird/3.1.11
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: PACKAGES_DYNAMIC handling in multilib
+To: Darren Hart <dvhart@linux.intel.com>
+References: <4E1BB620.6040301@linux.intel.com>
+In-Reply-To: <4E1BB620.6040301@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH][poky-extras] meta-kernel-dev: allow for dangling bbappend files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,46 +31,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jul 2011 02:55:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 12 Jul 2011 04:49:20 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Richard,
+On 11-07-11 10:49 PM, Darren Hart wrote:
+> With the bitbake commit:
+> 7a2a24de094ce8f2e2068bbee6709dfc2cdc69b9
+> missing base recipe files for bbappends became an error. Rather than creating a
+> separate kernel development layer for every layer containing a new kernel recipe
+> name, conditionally set BB_DANGLINGAPPENDS_WARNONLY.
+>
+> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
+> CC: Bruce Ashfield<bruce.ashfield@windriver.com>
 
-Recently I am doing some work related with multilib.
 
-In current code logic, I see packages that defined in "PACKAGES" variable w=
-ill be automatically tagged with libxx-PN.
+Agreed. This is the right solution.
 
-However there seems no logic to handle the PACKAGES_DYNAMIC case. Is it mis=
-sed?
+Acked-by: Bruce Ashfield <bruce.ashfield@windriver.com>
 
-Besides, there is runtime package split code, for example in perl recipe, t=
-here are perl-module-* packages split by the following code.
-
-python populate_packages_prepend () {
-        libdir =3D bb.data.expand('${libdir}/perl/${PV}', d)
-        do_split_packages(d, libdir, 'auto/(Encode/.[^/]*)/.*', 'perl-modul=
-e-%s', 'perl module %s', recursive=3DTrue, allow_dirs=3DFalse, match_path=
-=3DTrue, prepend=3DFalse)
-        do_split_packages(d, libdir, 'auto/([^/]*)/.*', 'perl-module-%s', '=
-perl module %s', recursive=3DTrue, allow_dirs=3DFalse, match_path=3DTrue, p=
-repend=3DFalse)
-        do_split_packages(d, libdir, 'Module/([^\/]*).*', 'perl-module-%s',=
- 'perl module %s', recursive=3DTrue, allow_dirs=3DFalse, match_path=3DTrue,=
- prepend=3DFalse)
-        do_split_packages(d, libdir, '(^(?!(CPAN\/|CPANPLUS\/|Module\/|unic=
-ore\/|auto\/)[^\/]).*)\.(pm|pl|e2x)', 'perl-module-%s', 'perl module %s', r=
-ecursive=3DTrue, allow_dirs=3DFalse, match_path=3DTrue, prepend=3DFalse)
-}
-
-To support lib32-perl/lib64-perl and other similar recipes, I think we may =
-have to specifically handle such pieces of code in current poky.=20
-
-Do you have suggestions on the above?
-
-Thanks,
-Dongxiao=20
+> CC: Jeff Mitchell<jmitchell@ll.mit.edu>
+> ---
+>   meta-kernel-dev/conf/layer.conf |    4 ++++
+>   1 files changed, 4 insertions(+), 0 deletions(-)
+>
+> diff --git a/meta-kernel-dev/conf/layer.conf b/meta-kernel-dev/conf/layer.conf
+> index 33f1ca5..01e5b15 100644
+> --- a/meta-kernel-dev/conf/layer.conf
+> +++ b/meta-kernel-dev/conf/layer.conf
+> @@ -1,3 +1,7 @@
+> +# Avoid having to split this into multiple layers
+> +# Allow missing base recipe files for our bbappends
+> +BB_DANGLINGAPPENDS_WARNONLY ?= "true"
+> +
+>   # We have a conf and classes directory, add to BBPATH
+>   BBPATH := "${BBPATH}:${LAYERDIR}"
+>
 
 
