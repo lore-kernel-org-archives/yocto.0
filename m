@@ -1,31 +1,22 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A16CE4C80A47
-	for <yocto@yoctoproject.org>; Tue, 12 Jul 2011 16:08:14 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6CL8B3T023708;
-	Tue, 12 Jul 2011 22:08:11 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 22209-10; Tue, 12 Jul 2011 22:08:07 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6CL82Zh023702
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Tue, 12 Jul 2011 22:08:03 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Darren Hart <dvhart@linux.intel.com>
-In-Reply-To: <4E1C9A00.5060005@linux.intel.com>
-References: <1310496703.2162.17.camel@scimitar>
-	<4E1C9A00.5060005@linux.intel.com>
-Date: Tue, 12 Jul 2011 22:08:00 +0100
-Message-ID: <1310504880.20015.1080.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Supporting upcoming distribution releases
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 17E994C80A47
+	for <yocto@yoctoproject.org>; Tue, 12 Jul 2011 18:25:36 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 12 Jul 2011 16:25:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.65,522,1304319600"; d="scan'208";a="25130983"
+Received: from unknown (HELO localhost) ([10.255.13.208])
+	by orsmga002.jf.intel.com with ESMTP; 12 Jul 2011 16:25:35 -0700
+From: tom.zanussi@intel.com
+To: bruce.ashfield@windriver.com,
+	yocto@yoctoproject.org
+Date: Tue, 12 Jul 2011 18:25:20 -0500
+Message-Id: <d2c6a3d2b150590c146a2409696351f98fabcd35.1310512705.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <cover.1310512705.git.tom.zanussi@intel.com>
+References: <cover.1310512705.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/2][KERNEL] meta: add mac80211 and iwlagn features
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,69 +28,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jul 2011 21:08:15 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 12 Jul 2011 23:25:37 -0000
 
-On Tue, 2011-07-12 at 12:01 -0700, Darren Hart wrote:
-> 
-> On 07/12/2011 11:51 AM, Joshua Lock wrote:
-> > In our technical team call today we spent some time discussing how to
-> > support distribution releases that are due to happen around the time of
-> > Yocto 1.1.
-> > 
-> > Yocto 1.1 is scheduled for release on October 6th[1], the same month in
-> > which both Ubuntu and Fedora have new releases planned[2,3].
-> > OpenSUSE doesn't have a release scheduled until November 10th[4].
-> > 
-> > We should accommodate for these releases in our planning around 1.1 as
-> > we need to ensure that Yocto 1.1 can be used on the new versions of the
-> > chosen supported distros.
-> > 
-> > I had initially suggested we have people doing test and any relevant
-> > development around the beta cycles of Ubuntu and Fedora:
-> > 
-> > Fedora Beta (2011-09-20)
-> > Ubuntu (2011-09-01)
-> > In this time frame OpenSUSE will be on Milestone 5 (2011-09-01) which
-> > afaict (based on the 6th milestone being followed by an RC) should
-> > roughly equate to a beta.
-> > 
-> > However this aligns with our RC period at which point we may not want to
-> > accept large patches?
-> > 
-> > To meet our stabilise complete goal of August 29th we'd have to have
-> > people testing with:
-> > Fedora Alpha (2011-08-16)
-> > Ubuntu Alpha 3 (2011-08-04)
-> > OpenSUSE Milestone 4 (2011-08-11)
-> > 
-> > What are peoples thoughts on this?
-> 
-> At the very least a sanity test to know which sorts of issues we'll hit
-> with these would be valuable. However, I believe our policy is N-1, and
-> not N+1,N,N-1, so supporting not-yet released versions isn't something I
-> think we should spend too much time on. Minor fixes to support these
-> post release seem like good candidates for a point release.
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Much as I'd like to agree with you, traditionally this does tend to bite
-us hard. The fixes some of the releases have needed are sometimes not so
-minor too :(.
+Add iwlagn feature (Intel Wirelss WiFi Next Gen AGN) and one of its
+dependencies, mac80211, as a feature, since there are a bunch of other
+config items that have the same dependency and could use it.
 
-The reason is that we have a community with a significant portion of
-people who do stay close to the edge as far as distros go. They'll take
-latest releases and expect Yocto to work on them even if the releases
-come out at the same time. Its not often realised how far in advance
-trees get frozen for stabilisation.
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ meta/cfg/kernel-cache/features/iwlagn/iwlagn.cfg   |    4 ++++
+ meta/cfg/kernel-cache/features/iwlagn/iwlagn.scc   |    3 +++
+ .../kernel-cache/features/mac80211/mac80211.cfg    |    5 +++++
+ .../kernel-cache/features/mac80211/mac80211.scc    |    1 +
+ 4 files changed, 13 insertions(+), 0 deletions(-)
+ create mode 100644 meta/cfg/kernel-cache/features/iwlagn/iwlagn.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/iwlagn/iwlagn.scc
+ create mode 100644 meta/cfg/kernel-cache/features/mac80211/mac80211.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/mac80211/mac80211.scc
 
-So summary is I'm in favour of trying to identify problems early and
-then doing what we can to address them...
-
-As such, this time around I'll update my build machine to latest Ubuntu
-at the beginning of August....
-
-Cheers,
-
-Richard
+diff --git a/meta/cfg/kernel-cache/features/iwlagn/iwlagn.cfg b/meta/cfg/kernel-cache/features/iwlagn/iwlagn.cfg
+new file mode 100644
+index 0000000..4119da7
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/iwlagn/iwlagn.cfg
+@@ -0,0 +1,4 @@
++# iwgaln depends on NETDEVICES (base.cfg), PCI and MAC80211
++CONFIG_PCI=y
++
++CONFIG_IWLAGN=m
+diff --git a/meta/cfg/kernel-cache/features/iwlagn/iwlagn.scc b/meta/cfg/kernel-cache/features/iwlagn/iwlagn.scc
+new file mode 100644
+index 0000000..afc76bc
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/iwlagn/iwlagn.scc
+@@ -0,0 +1,3 @@
++kconf hardware iwlagn.cfg
++
++include features/mac80211/mac80211.scc
+diff --git a/meta/cfg/kernel-cache/features/mac80211/mac80211.cfg b/meta/cfg/kernel-cache/features/mac80211/mac80211.cfg
+new file mode 100644
+index 0000000..d4a9374
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/mac80211/mac80211.cfg
+@@ -0,0 +1,5 @@
++# mac80211 depends on NET (base.cfg), WIRELESS <- WLAN and CFG80211
++CONFIG_WLAN=y
++
++CONFIG_MAC80211=m
++CONFIG_CFG80211=m
+diff --git a/meta/cfg/kernel-cache/features/mac80211/mac80211.scc b/meta/cfg/kernel-cache/features/mac80211/mac80211.scc
+new file mode 100644
+index 0000000..c2c02c8
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/mac80211/mac80211.scc
+@@ -0,0 +1 @@
++kconf hardware mac80211.cfg
+-- 
+1.7.0.4
 
 
