@@ -1,28 +1,30 @@
-Return-Path: <niqingliang@insigma.com.cn>
-Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 28D974C80BEE
-	for <yocto@yoctoproject.org>; Wed, 13 Jul 2011 03:12:34 -0500 (CDT)
-Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
-	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
-	Wed, 13 Jul 2011 16:00:57 +0800
-Received: from [192.168.0.101] (122.224.76.38) by WX-ExchMB.insigma.com.cn
-	(10.0.1.203) with Microsoft SMTP Server id 8.1.240.5; Wed, 13 Jul 2011
-	16:00:56 +0800
-From: NiQingliang <niqingliang@insigma.com.cn>
-To: Joshua Lock <josh@linux.intel.com>
-Date: Wed, 13 Jul 2011 16:04:21 +0800
-In-Reply-To: <1310524300.2162.28.camel@scimitar>
-References: <1310496703.2162.17.camel@scimitar>
-	<4E1C9A00.5060005@linux.intel.com> <1310504880.20015.1080.camel@rex>
-	<1310519752.2527.20.camel@localhost.localdomain>
-	<1310522900.2162.26.camel@scimitar>
-	<1310523594.2527.35.camel@localhost.localdomain>
-	<1310524300.2162.28.camel@scimitar>
-X-Mailer: Evolution 3.0.2 
-Message-ID: <1310544262.15433.3.camel@localhost.localdomain>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 3606E4C800B4
+	for <yocto@yoctoproject.org>; Wed, 13 Jul 2011 05:57:48 -0500 (CDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Qgx8V-0001Az-7L
+	for yocto@yoctoproject.org; Wed, 13 Jul 2011 06:57:47 -0400
+Date: Wed, 13 Jul 2011 06:57:39 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1107130653460.4203@localhost6.localdomain6>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Supporting upcoming distribution releases
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: docs: how to spell "bitbake", and docbook semantic markup for user input
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,75 +36,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jul 2011 08:12:50 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-first sorry about that, indeed I don't know how to commit a patch, so
-just paste the diff result here.
-
-diff --git a/oe-init-build-env b/oe-init-build-env
-index 77332a7..0da8bc0 100755
---- a/oe-init-build-env
-+++ b/oe-init-build-env
-@@ -39,6 +39,20 @@ else
-    $OEROOT/scripts/oe-setup-builddir
-    unset OEROOT
-    unset BBPATH
-+
-+   # find the python version 2.x
-+   # the 'python -V' need redirect to stdout
-+   # precondition:
-+   #    $BUILDDIR is not NULL, but I doubt when it will be NULL.
-+   #    user have not made the file $BUILDDIR/python by himself.
-+   for PY_BIN in `find /{usr/,}bin -regex '.*/python\(\|2\|2\.[0-9]*
-\)'`; do
-+      if [ -n "`$PY_BIN -V 2>&1|grep '^Python 2\.'`" ]; then
-+         ln -sf $PY_BIN $BUILDDIR/python
-+         export PATH="$BUILDDIR:$PATH"
-+         break
-+      fi
-+   done
-+
-    [ -n "$BUILDDIR" ] && cd $BUILDDIR
- fi
+X-List-Received-Date: Wed, 13 Jul 2011 10:57:48 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-On Wed, 2011-07-13 at 10:31 +0800, Joshua Lock wrote:
-> On Wed, 2011-07-13 at 10:19 +0800, NiQingliang wrote:
-> > /usr/bin/env python2
-> > /usr/bin/env python2.7
-> 
-> These are both valid on Fedora 15, iirc before distributions started
-> shipping Python 3 they were less common though...
-> 
-> > both of them are ok for archlinux, but I don't know which is ok for
-> > other distributions, maybe both are not.
-> >
-> > maybe we can make a shell script to detect the python version, and make
-> > a symbollink to the right one in some directory, and add the directory
-> > into env var "PATH".
-> 
-> Patches welcome :-)
-> 
-> I looked at it briefly and the work would require more time than I have
-> spare right now just to ensure it worked on all required distributions.
-> 
-> If you'd like to work on a patch I'd be happy to help test and review.
-> 
-> Cheers,
-> Joshua
-> --
-> Joshua Lock
->         Yocto Project "Johannes factotum"
->         Intel Open Source Technology Centre
-> 
+  just perusing the documentation in my typically pedantic fashion and
+a couple questions about style.  first, is the proper spelling
+"Bitbake" or "BitBake" since the doc source seems to bounce back and
+forth and it really should be consistent.
+
+  and second, this just doesn't seem right as semantic docbook markup:
+
+    "When the <filename>bitbake</filename> command completes ..."
+
+in that context, bitbake is not a filename, it's "userinput".  is
+there a reason all user input like that is marked up as "filename"?
+
+rday
 
 -- 
-倪庆亮
-TEL:    13588371863
-E-MAIL: niqingliang@insigma.com.cn
-BLOG:   http://niqingliang2003.wordpress.com
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
