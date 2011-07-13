@@ -1,27 +1,19 @@
 Return-Path: <josh@linux.intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 2B8974C800B4
-	for <yocto@yoctoproject.org>; Tue, 12 Jul 2011 21:31:41 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 12 Jul 2011 19:31:40 -0700
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4C5744C80AE6
+	for <yocto@yoctoproject.org>; Tue, 12 Jul 2011 21:32:34 -0500 (CDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 12 Jul 2011 19:32:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,523,1304319600"; d="scan'208";a="27226437"
-Received: from unknown (HELO [10.255.13.215]) ([10.255.13.215])
-	by fmsmga002.fm.intel.com with ESMTP; 12 Jul 2011 19:31:40 -0700
+X-IronPort-AV: E=Sophos;i="4.65,523,1304319600"; d="scan'208";a="29662682"
+Received: from unknown (HELO scimitar.amr.corp.intel.com) ([10.255.13.215])
+	by fmsmga001.fm.intel.com with ESMTP; 12 Jul 2011 19:32:33 -0700
 From: Joshua Lock <josh@linux.intel.com>
-To: NiQingliang <niqingliang@insigma.com.cn>
-Date: Tue, 12 Jul 2011 19:31:35 -0700
-In-Reply-To: <1310523594.2527.35.camel@localhost.localdomain>
-References: <1310496703.2162.17.camel@scimitar>
-	<4E1C9A00.5060005@linux.intel.com> <1310504880.20015.1080.camel@rex>
-	<1310519752.2527.20.camel@localhost.localdomain>
-	<1310522900.2162.26.camel@scimitar>
-	<1310523594.2527.35.camel@localhost.localdomain>
-X-Mailer: Evolution 3.0.2 (3.0.2-3.fc15) 
-Message-ID: <1310524300.2162.28.camel@scimitar>
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Supporting upcoming distribution releases
+To: yocto@yoctoproject.org
+Date: Tue, 12 Jul 2011 19:32:26 -0700
+Message-Id: <cover.1310524088.git.josh@linux.intel.com>
+X-Mailer: git-send-email 1.7.6
+Subject: [PATCH 0/1] Enable network sanity checks
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,36 +25,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jul 2011 02:31:41 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 13 Jul 2011 02:32:34 -0000
 
-On Wed, 2011-07-13 at 10:19 +0800, NiQingliang wrote:
-> /usr/bin/env python2 
-> /usr/bin/env python2.7
+Add some CONNECTIVITY_CHECK_URIS to local.conf.sample such that the network
+sanity checks are enabled for http, https and git sources.
 
-These are both valid on Fedora 15, iirc before distributions started
-shipping Python 3 they were less common though...
+The following changes since commit 7354fc9213f27aa1b643dbe88070437f1ee4c063:
 
-> both of them are ok for archlinux, but I don't know which is ok for
-> other distributions, maybe both are not.
-> 
-> maybe we can make a shell script to detect the python version, and make
-> a symbollink to the right one in some directory, and add the directory
-> into env var "PATH".
+  insane.bbclass: skip rdepends QA checks for kernel / modules (2011-07-12 15:22:09 +0100)
 
-Patches welcome :-)
+are available in the git repository at:
+  git://git.pokylinux.org/poky-contrib josh/sanity
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=josh/sanity
 
-I looked at it briefly and the work would require more time than I have
-spare right now just to ensure it worked on all required distributions.
+Joshua Lock (1):
+  local.conf.sample: add CONNECTIVITY_CHECK_URIS
 
-If you'd like to work on a patch I'd be happy to help test and review.
+ meta-yocto/conf/local.conf.sample |    8 ++++++++
+ 1 files changed, 8 insertions(+), 0 deletions(-)
 
-Cheers,
-Joshua
 -- 
-Joshua Lock
-        Yocto Project "Johannes factotum"
-        Intel Open Source Technology Centre
+1.7.6
 
 
