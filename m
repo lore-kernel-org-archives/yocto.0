@@ -1,24 +1,25 @@
-Return-Path: <niqingliang@insigma.com.cn>
-Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 294B24C800A9
-	for <yocto@yoctoproject.org>; Tue, 12 Jul 2011 21:16:39 -0500 (CDT)
-Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
-	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
-	Wed, 13 Jul 2011 10:16:30 +0800
-Received: from [192.168.0.101] (122.224.76.38) by WX-ExchMB.insigma.com.cn
-	(10.0.1.203) with Microsoft SMTP Server id 8.1.240.5; Wed, 13 Jul 2011
-	10:16:28 +0800
-From: NiQingliang <niqingliang@insigma.com.cn>
-To: Joshua Lock <josh@linux.intel.com>
-Date: Wed, 13 Jul 2011 10:19:53 +0800
-In-Reply-To: <1310522900.2162.26.camel@scimitar>
+Return-Path: <josh@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 2B8974C800B4
+	for <yocto@yoctoproject.org>; Tue, 12 Jul 2011 21:31:41 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 12 Jul 2011 19:31:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.65,523,1304319600"; d="scan'208";a="27226437"
+Received: from unknown (HELO [10.255.13.215]) ([10.255.13.215])
+	by fmsmga002.fm.intel.com with ESMTP; 12 Jul 2011 19:31:40 -0700
+From: Joshua Lock <josh@linux.intel.com>
+To: NiQingliang <niqingliang@insigma.com.cn>
+Date: Tue, 12 Jul 2011 19:31:35 -0700
+In-Reply-To: <1310523594.2527.35.camel@localhost.localdomain>
 References: <1310496703.2162.17.camel@scimitar>
 	<4E1C9A00.5060005@linux.intel.com> <1310504880.20015.1080.camel@rex>
 	<1310519752.2527.20.camel@localhost.localdomain>
 	<1310522900.2162.26.camel@scimitar>
-X-Mailer: Evolution 3.0.2 
-Message-ID: <1310523594.2527.35.camel@localhost.localdomain>
-MIME-Version: 1.0
+	<1310523594.2527.35.camel@localhost.localdomain>
+X-Mailer: Evolution 3.0.2 (3.0.2-3.fc15) 
+Message-ID: <1310524300.2162.28.camel@scimitar>
+Mime-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Supporting upcoming distribution releases
 X-BeenThere: yocto@yoctoproject.org
@@ -32,62 +33,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jul 2011 02:16:49 -0000
+X-List-Received-Date: Wed, 13 Jul 2011 02:31:41 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-/usr/bin/env python2 
-/usr/bin/env python2.7
-both of them are ok for archlinux, but I don't know which is ok for
-other distributions, maybe both are not.
+On Wed, 2011-07-13 at 10:19 +0800, NiQingliang wrote:
+> /usr/bin/env python2 
+> /usr/bin/env python2.7
 
-maybe we can make a shell script to detect the python version, and make
-a symbollink to the right one in some directory, and add the directory
-into env var "PATH".
+These are both valid on Fedora 15, iirc before distributions started
+shipping Python 3 they were less common though...
 
+> both of them are ok for archlinux, but I don't know which is ok for
+> other distributions, maybe both are not.
+> 
+> maybe we can make a shell script to detect the python version, and make
+> a symbollink to the right one in some directory, and add the directory
+> into env var "PATH".
 
-On Wed, 2011-07-13 at 10:08 +0800, Joshua Lock wrote:
-> On Wed, 2011-07-13 at 09:15 +0800, NiQingliang wrote:
-> > I think Archlinux is the preferred choice.-_-
-> > Just joke.
-> >
-> > I doubt why the bitbake need python2.x but just use /bin/env python. I
-> > think If it need a specific version python, it should write it in the
-> > shebang. e.g. /bin/env python2.6
-> 
-> I looked at this but not enough of the distributions we care to support
-> have a python2.6 binary:
-> 
-> joshual@scimitar:~
-> $ /usr/bin/env python2
-> Python 2.7.1 (r271:86832, Apr 12 2011, 16:16:18)
-> [GCC 4.6.0 20110331 (Red Hat 4.6.0-2)] on linux2
-> Type "help", "copyright", "credits" or "license" for more information.
-> >>>
-> joshual@scimitar:~
-> $ /usr/bin/env python2.6
-> /usr/bin/env: python2.6: No such file or directory
-> 
-> I'd love to support Arch more thoroughly but they aren't making it easy
-> for us ;-)
-> 
-> Cheers,
-> Joshua
-> --
-> Joshua Lock
->         Yocto Project "Johannes factotum"
->         Intel Open Source Technology Centre
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Patches welcome :-)
 
+I looked at it briefly and the work would require more time than I have
+spare right now just to ensure it worked on all required distributions.
+
+If you'd like to work on a patch I'd be happy to help test and review.
+
+Cheers,
+Joshua
 -- 
-倪庆亮
-TEL:    13588371863
-E-MAIL: niqingliang@insigma.com.cn
-BLOG:   http://niqingliang2003.wordpress.com
-
+Joshua Lock
+        Yocto Project "Johannes factotum"
+        Intel Open Source Technology Centre
 
 
