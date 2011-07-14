@@ -1,30 +1,37 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 7DD654C800AB
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 09:17:55 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6EEHoWK008180;
-	Thu, 14 Jul 2011 15:17:50 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 07232-10; Thu, 14 Jul 2011 15:17:46 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6EEHh8n008174
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Thu, 14 Jul 2011 15:17:44 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-In-Reply-To: <alpine.DEB.2.02.1107130742350.5302@localhost6.localdomain6>
-References: <alpine.DEB.2.02.1107130742350.5302@localhost6.localdomain6>
-Date: Thu, 14 Jul 2011 15:17:39 +0100
-Message-ID: <1310653059.20015.1163.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [PATCH] scripts: Rename "adt-install" to "adt-installer" in user help.
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by mx1.pokylinux.org (Postfix) with ESMTP id CC1FF4C800AB
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 09:29:20 -0500 (CDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1QhMui-0000sf-VU; Thu, 14 Jul 2011 10:29:17 -0400
+Date: Thu, 14 Jul 2011 10:29:13 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB12379030CFC@ORSMSX101.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1107141027160.5979@localhost6.localdomain6>
+References: <alpine.DEB.2.02.1107130653460.4203@localhost6.localdomain6>
+	<1310597317.2270.4.camel@scimitar> <4E1E627B.80801@linux.intel.com>
+	<alpine.DEB.2.02.1107140544380.3506@localhost6.localdomain6>
+	<1310637718.20015.1137.camel@rex>
+	<41DEA4B02DBDEF40A0F3B6D0DDB12379030CFC@ORSMSX101.amr.corp.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: docs: how to spell "bitbake", and docbook semantic markup for user input
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,35 +43,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2011 14:17:55 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Jul 2011 14:29:21 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Wed, 2011-07-13 at 07:43 -0400, Robert P. J. Day wrote:
-> Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
-> 
-> ---
-> 
->   i'm hoping the following is correct -- it's just user help output so
-> it's not fatal but it should still be correct.
-> 
-> diff --git a/scripts/oe-setup-builddir b/scripts/oe-setup-builddir
-> index bc4962a..d278c24 100755
-> --- a/scripts/oe-setup-builddir
-> +++ b/scripts/oe-setup-builddir
-> @@ -118,7 +118,7 @@ Common targets are:
->      core-image-sato
->      meta-toolchain
->      meta-toolchain-sdk
-> -    adt-install
-> +    adt-installer
->      meta-ide-support
-> 
->  You can also run generated qemu images with a command like 'runqemu qemux86'
-> 
+On Thu, 14 Jul 2011, Rifenbark, Scott M wrote:
 
-Merged to master, thanks.
+> Agreed that BitBake is the correct spelling.  I will be sure to make
+> a sweep through our Yocto manuals and make sure that when we are
+> referring to the tool and not indicating the command they say
+> "BitBake".
 
-Richard
+  and while you're at it, i was once lectured sternly that the proper
+spelling is "Git" when talking about the tool and "git" when referring
+to the actual command.  never "GIT".  at least that what i was told.
+do with that what you wish.
 
+rday
+
+p.s.  since i am, at this very moment, immersed in an XML publishing
+toolchain, i will probably have some thoughts on docbook markup in the
+near future.  stay tuned ...
 
