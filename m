@@ -1,41 +1,21 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 37FBB4C80205
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 09:31:47 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 14 Jul 2011 07:31:44 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by mx1.pokylinux.org (Postfix) with ESMTP id EFB7F4C800A1
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 10:42:52 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 14 Jul 2011 08:42:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,529,1304319600"; d="scan'208";a="27210012"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by azsmga001.ch.intel.com with ESMTP; 14 Jul 2011 07:31:43 -0700
-Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 14 Jul 2011 07:31:43 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.138]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.143]) with mapi id
-	14.01.0289.001; Thu, 14 Jul 2011 07:31:43 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Thread-Topic: [yocto] docs: how to spell "bitbake", and docbook semantic
-	markup for user input
-Thread-Index: AQHMQUu8gfE21a6ohE2bSkWwCfXp9pTrULuAgABOXICAAGmOgIAABD4A///OLPCAAHyAgP//iwyQ
-Date: Thu, 14 Jul 2011 14:31:42 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB12379030F5C@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1107130653460.4203@localhost6.localdomain6>
-	<1310597317.2270.4.camel@scimitar> <4E1E627B.80801@linux.intel.com>
-	<alpine.DEB.2.02.1107140544380.3506@localhost6.localdomain6>
-	<1310637718.20015.1137.camel@rex>
-	<41DEA4B02DBDEF40A0F3B6D0DDB12379030CFC@ORSMSX101.amr.corp.intel.com>
-	<alpine.DEB.2.02.1107141027160.5979@localhost6.localdomain6>
-In-Reply-To: <alpine.DEB.2.02.1107141027160.5979@localhost6.localdomain6>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.9.131.214]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>
-Subject: Re: docs: how to spell "bitbake", and docbook semantic markup for user input
+X-IronPort-AV: E=Sophos;i="4.65,529,1304319600"; d="scan'208";a="27958580"
+Received: from unknown (HELO localhost) ([10.255.14.7])
+	by fmsmga002.fm.intel.com with ESMTP; 14 Jul 2011 08:42:51 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org
+Date: Thu, 14 Jul 2011 10:42:45 -0500
+Message-Id: <96c247dad88b9fc0159b2a929216876d9fbb06dc.1310657858.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <cover.1310657858.git.tom.zanussi@intel.com>
+References: <cover.1310657858.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/1] meta-emenlow: fix glx bug
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,42 +27,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2011 14:31:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 14 Jul 2011 15:42:53 -0000
 
-Robert,=20
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-I know that and will work towards that end as well. There are a lot of hold=
-over things in our docs.
+AIGLX wasn't finding a couple libraries, causing errors such as Yocto
+bug #1235 - 'Running glxinfo and glxgears commands failed.'.  This
+provides symlinks allowing it to find the needed libraries.
 
-Thanks,=20
-Scott
+Fixes [YOCTO #1235]
 
------Original Message-----
-From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]=20
-Sent: Thursday, July 14, 2011 7:29 AM
-To: Rifenbark, Scott M
-Cc: Richard Purdie; Darren Hart; yocto@yoctoproject.org
-Subject: RE: [yocto] docs: how to spell "bitbake", and docbook semantic mar=
-kup for user input
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ .../libdrm-poulsbo/libdrm-poulsbo_2.3.0.bb         |    6 +++++-
+ .../recipes-graphics/xpsb-glx/xpsb-glx_0.18.bb     |    3 ++-
+ 2 files changed, 7 insertions(+), 2 deletions(-)
 
-On Thu, 14 Jul 2011, Rifenbark, Scott M wrote:
+diff --git a/meta-emenlow/recipes-graphics/libdrm-poulsbo/libdrm-poulsbo_2.3.0.bb b/meta-emenlow/recipes-graphics/libdrm-poulsbo/libdrm-poulsbo_2.3.0.bb
+index d0e14a5..5153054 100644
+--- a/meta-emenlow/recipes-graphics/libdrm-poulsbo/libdrm-poulsbo_2.3.0.bb
++++ b/meta-emenlow/recipes-graphics/libdrm-poulsbo/libdrm-poulsbo_2.3.0.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Userspace interface to kernel DRM services"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://MIT_License.txt;md5=732825ecdcf420261531d935fcd914a7"
+-PR = "r4"
++PR = "r5"
+ 
+ PROVIDES = "libdrm-poulsbo"
+ 
+@@ -17,3 +17,7 @@ do_configure_prepend() {
+ 	sed -e 's/-ldrm/-ldrm_poulsbo/' -e 's/libdrm/libdrm_poulsbo/' \
+ 	    < ${S}/libdrm.pc.in > ${S}/libdrm_poulsbo.pc.in
+ }
++
++do_install_append() {
++	ln -s libdrm_poulsbo.so.2.3.0 ${D}${libdir}/libdrm.so.2
++}
+diff --git a/meta-emenlow/recipes-graphics/xpsb-glx/xpsb-glx_0.18.bb b/meta-emenlow/recipes-graphics/xpsb-glx/xpsb-glx_0.18.bb
+index f4b43ab..0d675c6 100644
+--- a/meta-emenlow/recipes-graphics/xpsb-glx/xpsb-glx_0.18.bb
++++ b/meta-emenlow/recipes-graphics/xpsb-glx/xpsb-glx_0.18.bb
+@@ -4,7 +4,7 @@ DESCRIPTION = "X11 drivers for Poulsbo (psb) 3D acceleration"
+ # not Intel proprietary, but it has no obvious license attached to it.
+ LICENSE = "Intel-binary-only"
+ LIC_FILES_CHKSUM = "file://${WORKDIR}/${PN}-${PV}/COPYING;md5=02c597a2f082b4581596065bb5a521a8"
+-PR = "r6"
++PR = "r7"
+ 
+ inherit autotools
+ 
+@@ -29,6 +29,7 @@ do_install() {
+ 		${D}/${libdir}/xorg/modules/dri
+ 	install -m 0644 ${WORKDIR}/${PN}-${PV}/drivers/* \
+ 		${D}/${libdir}/xorg/modules/drivers
++	ln -s ${libdir}/xorg/modules/dri ${D}${libdir}/dri
+ }
+ 
+ S = "${WORKDIR}/${PN}-${PV}/mesa"
+-- 
+1.7.0.4
 
-> Agreed that BitBake is the correct spelling.  I will be sure to make
-> a sweep through our Yocto manuals and make sure that when we are
-> referring to the tool and not indicating the command they say
-> "BitBake".
-
-  and while you're at it, i was once lectured sternly that the proper
-spelling is "Git" when talking about the tool and "git" when referring
-to the actual command.  never "GIT".  at least that what i was told.
-do with that what you wish.
-
-rday
-
-p.s.  since i am, at this very moment, immersed in an XML publishing
-toolchain, i will probably have some thoughts on docbook markup in the
-near future.  stay tuned ...
 
