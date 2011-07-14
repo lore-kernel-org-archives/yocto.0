@@ -1,23 +1,26 @@
 Return-Path: <galak@kernel.crashing.org>
 Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
-	by mx1.pokylinux.org (Postfix) with ESMTP id DE2154C800AB
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 11:34:25 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 61AB44C800AB
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 11:34:56 -0500 (CDT)
 Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
-	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6EGYC8w009188;
-	Thu, 14 Jul 2011 11:34:13 -0500
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6EGYC8x009188;
+	Thu, 14 Jul 2011 11:34:49 -0500
 Mime-Version: 1.0 (Apple Message framework v1084)
 From: Kumar Gala <galak@kernel.crashing.org>
-In-Reply-To: <1310651543.20015.1148.camel@rex>
-Date: Thu, 14 Jul 2011 11:34:12 -0500
-Message-Id: <4C89CE44-6341-4FE7-A7AA-85F1FB6BD2F4@kernel.crashing.org>
-References: <CAE727EC-4F3C-4FD2-BCEE-F14BC42E981F@technicolor.com>
-	<1310460238.20015.1024.camel@rex>
-	<9D94299C-4B6A-4550-80A8-7821FB26D81C@kernel.crashing.org>
-	<1310651543.20015.1148.camel@rex>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
+In-Reply-To: <4E1F182E.6000501@windriver.com>
+Date: Thu, 14 Jul 2011 11:34:49 -0500
+Message-Id: <6C5647FD-A95C-41E6-90A6-6427DEA04E61@kernel.crashing.org>
+References: <F6CE52B0-7638-4DC3-BEC0-3DC44A6794A5@kernel.crashing.org>
+	<4E1EEB87.1020200@windriver.com>
+	<9BDFCF4A-EA10-4963-87E0-556604F3E0AB@dominion.thruhere.net>
+	<4E1EF577.2080807@windriver.com>
+	<AD2400E9-D0BD-4064-8905-40647AB26518@kernel.crashing.org>
+	<1943392B-9988-4CDD-8147-E25F8C8C7203@dominion.thruhere.net>
+	<4E1F182E.6000501@windriver.com>
+To: Bruce Ashfield <Bruce.Ashfield@windriver.com>
 X-Mailer: Apple Mail (2.1084)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Menu configuration
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: IMAGE_FSTYPES that are supported?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,50 +32,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2011 16:34:31 -0000
+X-List-Received-Date: Thu, 14 Jul 2011 16:34:56 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
 
-On Jul 14, 2011, at 8:52 AM, Richard Purdie wrote:
+On Jul 14, 2011, at 11:24 AM, Bruce Ashfield wrote:
 
-> On Thu, 2011-07-14 at 08:06 -0500, Kumar Gala wrote:
->> On Jul 12, 2011, at 3:43 AM, Richard Purdie wrote:
+> On 07/14/11 12:21, Koen Kooi wrote:
 >>=20
->>> On Mon, 2011-07-11 at 10:00 -0700, Turner Randy wrote:
->>>> Hello list,
+>> Op 14 jul 2011, om 18:20 heeft Kumar Gala het volgende geschreven:
+>>=20
+>>>=20
+>>> On Jul 14, 2011, at 8:56 AM, Bruce Ashfield wrote:
+>>>=20
+>>>> On 07/14/11 09:40, Koen Kooi wrote:
+>>>>>=20
+>>>>> Op 14 jul 2011, om 15:13 heeft Bruce Ashfield het volgende =
+geschreven:
+>>>>>=20
+>>>>>> On 07/14/11 09:05, Kumar Gala wrote:
+>>>>>>> Is there a list of which IMAGE_FSTYPES are supported.  I didn't =
+see anything in the docs.  Looking to see if a u-boot 'mkimage' wrapped =
+set of images is supported or not.
+>>>>>>=20
+>>>>>> I'm not 100% where the list is, but I can confirm that
+>>>>>> uImages are supported and work nicely. Assuming that
+>>>>>> you are talking about the common use case, and not something
+>>>>>> more exotic :)
+>>>>>=20
+>>>>>=20
+>>>>> I think he means partitioned uimages where you have a kernel + =
+initrd in a single uimage. We don't support that *yet*, but all the =
+needed blocks are there. And we finally get a usecase for having the =
+loadadresses in the machine.conf files :)
 >>>>=20
->>>> Is there a interactive menu-based configuration for yocto/poky =
-builds
->>>> similar to that provided in Buildroot? Or is someone working on =
-this?
+>>>> Yah, that's what I wondered as well. I've done this locally,
+>>>> but nothing out of the box .. so I had nagging doubts!
+>>>>=20
+>>>> Cheers,
+>>>>=20
+>>>> Bruce
+>>>>=20
 >>>=20
->>> At present there is not any interactive menu based configuration but
->>> there is work ongoing on a UI called hob which allows you to select
->>> packages and construct images of those packages so its a graphical =
-front
->>> end to the system.
->>>=20
->>> We're also in the process of starting to better markup configuration
->>> variables in the metadata so that writing some kind of menu based
->>> configuration system would be easier in the future.
->>>=20
->>> We're certainly open to any help in those areas too!
->>>=20
->>> Cheers,
->>>=20
->>> Richard
+>>> What's the IMAGE_FSTYPE for a normal uImage ?
 >>=20
->> Are there any docs for hob at this point?
+>> None, it's built by the kernel class, not the rootfs class.
 >=20
-> Not specifically. "bitbake -u hob" should let you see where things are
-> at. Please keep in mind that its under active development at the =
-moment
-> and can be considered "alpha" quality but feedback is welcome.
+> and to expand a bit, the machine conf would have:
+>=20
+> KERNEL_IMAGETYPE =3D "uImage"
+>=20
+> So the kernel class will build and produce a uImage for deployment.
 
-Are they thread of email discussion or anything.  I tried playing with =
-it, but a little confused on exactly what its trying to accomplish and =
-what the 'cfg' that is saved off ends up being.
+Ah, so there isnt support for getting a ramdisk wrapped via mkimage.
 
 - k=
 
