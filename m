@@ -1,38 +1,30 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A39DA4C800AB
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 16:24:40 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6ELOYfk010819;
-	Thu, 14 Jul 2011 22:24:34 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 10103-05; Thu, 14 Jul 2011 22:24:30 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6ELOONX010813
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Thu, 14 Jul 2011 22:24:25 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-In-Reply-To: <4E1F5814.1050201@windriver.com>
-References: <F6CE52B0-7638-4DC3-BEC0-3DC44A6794A5@kernel.crashing.org>
-	<4E1EEB87.1020200@windriver.com>
-	<9BDFCF4A-EA10-4963-87E0-556604F3E0AB@dominion.thruhere.net>
-	<4E1EF577.2080807@windriver.com>
-	<AD2400E9-D0BD-4064-8905-40647AB26518@kernel.crashing.org>
-	<1943392B-9988-4CDD-8147-E25F8C8C7203@dominion.thruhere.net>
-	<4E1F182E.6000501@windriver.com>
-	<6C5647FD-A95C-41E6-90A6-6427DEA04E61@kernel.crashing.org>
-	<4E1F5814.1050201@windriver.com>
-Date: Thu, 14 Jul 2011 22:24:23 +0100
-Message-ID: <1310678663.20015.1200.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: IMAGE_FSTYPES that are supported?
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C21994C800AB
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 16:32:30 -0500 (CDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1QhTWH-0007in-9U
+	for yocto@yoctoproject.org; Thu, 14 Jul 2011 17:32:29 -0400
+Date: Thu, 14 Jul 2011 17:32:21 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1107141729570.7692@localhost6.localdomain6>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: why does quick start guide refer to non-provided "poky-image-sato"?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,65 +36,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2011 21:24:43 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Jul 2011 21:32:31 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Thu, 2011-07-14 at 16:56 -0400, Bruce Ashfield wrote:
-> On 07/14/11 12:34, Kumar Gala wrote:
-> >
-> > On Jul 14, 2011, at 11:24 AM, Bruce Ashfield wrote:
-> >
-> >> On 07/14/11 12:21, Koen Kooi wrote:
-> >>>
-> >>> Op 14 jul 2011, om 18:20 heeft Kumar Gala het volgende geschreven:
-> >>>
-> >>>>
-> >>>> On Jul 14, 2011, at 8:56 AM, Bruce Ashfield wrote:
-> >>>>
-> >>>>> On 07/14/11 09:40, Koen Kooi wrote:
-> >>>>>>
-> >>>>>> Op 14 jul 2011, om 15:13 heeft Bruce Ashfield het volgende geschreven:
-> >>>>>>
-> >>>>>>> On 07/14/11 09:05, Kumar Gala wrote:
-> >>>>>>>> Is there a list of which IMAGE_FSTYPES are supported.  I didn't see anything in the docs.  Looking to see if a u-boot 'mkimage' wrapped set of images is supported or not.
-> >>>>>>>
-> >>>>>>> I'm not 100% where the list is, but I can confirm that
-> >>>>>>> uImages are supported and work nicely. Assuming that
-> >>>>>>> you are talking about the common use case, and not something
-> >>>>>>> more exotic :)
-> >>>>>>
-> >>>>>>
-> >>>>>> I think he means partitioned uimages where you have a kernel + initrd in a single uimage. We don't support that *yet*, but all the needed blocks are there. And we finally get a usecase for having the loadadresses in the machine.conf files :)
-> >>>>>
-> >>>>> Yah, that's what I wondered as well. I've done this locally,
-> >>>>> but nothing out of the box .. so I had nagging doubts!
-> >>>>>
-> >>>>> Cheers,
-> >>>>>
-> >>>>> Bruce
-> >>>>>
-> >>>>
-> >>>> What's the IMAGE_FSTYPE for a normal uImage ?
-> >>>
-> >>> None, it's built by the kernel class, not the rootfs class.
-> >>
-> >> and to expand a bit, the machine conf would have:
-> >>
-> >> KERNEL_IMAGETYPE = "uImage"
-> >>
-> >> So the kernel class will build and produce a uImage for deployment.
-> >
-> > Ah, so there isnt support for getting a ramdisk wrapped via mkimage.
-> 
-> Correct, or at least not that I've used out of the box, and
-> this is what Koen was commenting on.
 
-I think we have all the pieces there but someone would have to connect
-them up...
+  maybe i'm misreading something, but the yocto QS guide provides the
+sample command:
 
-Cheers,
+  $ bitbake -k poky-image-sato
 
-Richard
+however, nothing provides that target.  i can see the git log entry:
 
+commit 1947b17478187bb623da74484747e470ce42d206
+Author: Scott Rifenbark <scott.m.rifenbark@intel.com>
+Date:   Tue May 10 12:50:36 2011 -0500
+
+    documentation/yocto-project-qs/yocto-project-qs.xml: changed build command
+
+    The command used in the example to build an image was using
+    'bitbake core-image-sato', which is only available in master and
+    not Bernard.  So, I changed the command to be 'bitbake poky-image-sato'
+    at Dave Stewart's request.  He located and pointed out the error.
+
+    (From yocto-docs rev: 3fa83550aaec5a3549825814a77fa7a823a2daea)
+
+    Signed-off-by: Scott Rifenbark <scott.m.rifenbark@intel.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+but it seems that "core-image-sato" is perfectly valid, at least at
+the moment.  clarification?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
