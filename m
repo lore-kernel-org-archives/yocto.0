@@ -1,23 +1,25 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id F0CA24C80205
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 08:13:47 -0500 (CDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p6EDDjei021153
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 14 Jul 2011 06:13:45 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 14 Jul 2011 06:13:45 -0700
-Message-ID: <4E1EEB87.1020200@windriver.com>
-Date: Thu, 14 Jul 2011 09:13:43 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110516 Thunderbird/3.1.10 ThunderBrowse/3.3.5
-MIME-Version: 1.0
-To: Kumar Gala <galak@kernel.crashing.org>
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-wy0-f176.google.com (mail-wy0-f176.google.com
+	[74.125.82.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 2076C4C800C1
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 08:40:19 -0500 (CDT)
+Received: by wyg34 with SMTP id 34so231088wyg.35
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 06:40:19 -0700 (PDT)
+Received: by 10.227.177.12 with SMTP id bg12mr2122166wbb.59.1310650818885;
+	Thu, 14 Jul 2011 06:40:18 -0700 (PDT)
+Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl [84.80.112.235])
+	by mx.google.com with ESMTPS id eo18sm242196wbb.29.2011.07.14.06.40.17
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 14 Jul 2011 06:40:17 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <4E1EEB87.1020200@windriver.com>
+Date: Thu, 14 Jul 2011 15:40:15 +0200
+Message-Id: <9BDFCF4A-EA10-4963-87E0-556604F3E0AB@dominion.thruhere.net>
 References: <F6CE52B0-7638-4DC3-BEC0-3DC44A6794A5@kernel.crashing.org>
-In-Reply-To: <F6CE52B0-7638-4DC3-BEC0-3DC44A6794A5@kernel.crashing.org>
+	<4E1EEB87.1020200@windriver.com>
+To: Bruce Ashfield <Bruce.Ashfield@windriver.com>
+X-Mailer: Apple Mail (2.1084)
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: IMAGE_FSTYPES that are supported?
 X-BeenThere: yocto@yoctoproject.org
@@ -31,27 +33,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2011 13:13:48 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Jul 2011 13:40:20 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 07/14/11 09:05, Kumar Gala wrote:
-> Is there a list of which IMAGE_FSTYPES are supported.  I didn't see anything in the docs.  Looking to see if a u-boot 'mkimage' wrapped set of images is supported or not.
 
-I'm not 100% where the list is, but I can confirm that
-uImages are supported and work nicely. Assuming that
-you are talking about the common use case, and not something
-more exotic :)
+Op 14 jul 2011, om 15:13 heeft Bruce Ashfield het volgende geschreven:
 
-Cheers,
+> On 07/14/11 09:05, Kumar Gala wrote:
+>> Is there a list of which IMAGE_FSTYPES are supported.  I didn't see =
+anything in the docs.  Looking to see if a u-boot 'mkimage' wrapped set =
+of images is supported or not.
+>=20
+> I'm not 100% where the list is, but I can confirm that
+> uImages are supported and work nicely. Assuming that
+> you are talking about the common use case, and not something
+> more exotic :)
 
-Bruce
 
->
-> - k
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+I think he means partitioned uimages where you have a kernel + initrd in =
+a single uimage. We don't support that *yet*, but all the needed blocks =
+are there. And we finally get a usecase for having the loadadresses in =
+the machine.conf files :)=
 
