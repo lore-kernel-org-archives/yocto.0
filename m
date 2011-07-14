@@ -1,30 +1,30 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C200F4C800A1
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 12:30:35 -0500 (CDT)
-Received: from [128.224.252.2] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1QhPkB-0007MR-2c
-	for yocto@yoctoproject.org; Thu, 14 Jul 2011 13:30:35 -0400
-Date: Thu, 14 Jul 2011 13:30:26 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1107141327350.9115@localhost6.localdomain6>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH] DOCS: Fix some syntax errors in "opkg-cl" cmds in ADT manual.
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 62F124C80205
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 13:09:47 -0500 (CDT)
+Received: by wwf4 with SMTP id 4so557615wwf.11
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 11:09:46 -0700 (PDT)
+Received: by 10.216.136.18 with SMTP id v18mr2328090wei.23.1310666986032;
+	Thu, 14 Jul 2011 11:09:46 -0700 (PDT)
+Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl [84.80.112.235])
+	by mx.google.com with ESMTPS id m45sm300185wed.23.2011.07.14.11.09.43
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 14 Jul 2011 11:09:44 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <1310663344.2162.1.camel@vorpal.jf.intel.com>
+Date: Thu, 14 Jul 2011 20:09:37 +0200
+Message-Id: <2C8F1937-E69D-4815-98E5-57C952456574@dominion.thruhere.net>
+References: <CAE727EC-4F3C-4FD2-BCEE-F14BC42E981F@technicolor.com>
+	<1310460238.20015.1024.camel@rex>
+	<9D94299C-4B6A-4550-80A8-7821FB26D81C@kernel.crashing.org>
+	<1310651543.20015.1148.camel@rex>
+	<4C89CE44-6341-4FE7-A7AA-85F1FB6BD2F4@kernel.crashing.org>
+	<1310663344.2162.1.camel@vorpal.jf.intel.com>
+To: Joshua Lock <josh@linux.intel.com>
+X-Mailer: Apple Mail (2.1084)
+Cc: yocto@yoctoproject.org
+Subject: Re: Menu configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,59 +36,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2011 17:30:35 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323328-1631725556-1310664635=:9115"
-
---8323328-1631725556-1310664635=:9115
-Content-Type: TEXT/PLAIN; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+X-List-Received-Date: Thu, 14 Jul 2011 18:09:47 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
 
-Fix some obvious typoes in a couple "opkg-cl" commands in the ADT
-manual, packages chapter.
+Op 14 jul 2011, om 19:09 heeft Joshua Lock het volgende geschreven:
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+> On Thu, 2011-07-14 at 11:34 -0500, Kumar Gala wrote:
+>> On Jul 14, 2011, at 8:52 AM, Richard Purdie wrote:
+>>=20
+>>> On Thu, 2011-07-14 at 08:06 -0500, Kumar Gala wrote:
+>>>> On Jul 12, 2011, at 3:43 AM, Richard Purdie wrote:
+>>>>=20
+>>>>> On Mon, 2011-07-11 at 10:00 -0700, Turner Randy wrote:
+>>>>>> Hello list,
+>>>>>>=20
+>>>>>> Is there a interactive menu-based configuration for yocto/poky =
+builds
+>>>>>> similar to that provided in Buildroot? Or is someone working on =
+this?
+>>>>>=20
+>>>>> At present there is not any interactive menu based configuration =
+but
+>>>>> there is work ongoing on a UI called hob which allows you to =
+select
+>>>>> packages and construct images of those packages so its a graphical =
+front
+>>>>> end to the system.
+>>>>>=20
+>>>>> We're also in the process of starting to better markup =
+configuration
+>>>>> variables in the metadata so that writing some kind of menu based
+>>>>> configuration system would be easier in the future.
+>>>>>=20
+>>>>> We're certainly open to any help in those areas too!
+>>>>>=20
+>>>>> Cheers,
+>>>>>=20
+>>>>> Richard
+>>>>=20
+>>>> Are there any docs for hob at this point?
+>>>=20
+>>> Not specifically. "bitbake -u hob" should let you see where things =
+are
+>>> at. Please keep in mind that its under active development at the =
+moment
+>>> and can be considered "alpha" quality but feedback is welcome.
+>>=20
+>> Are they thread of email discussion or anything.  I tried playing =
+with it, but a little confused on exactly what its trying to accomplish =
+and what the 'cfg' that is saved off ends up being.
+>=20
+> If you have questions please ask them. The saved file should be a =
+recipe
+> for building a custom image. The purpose of the tool is to help you =
+put
+> together a custom image and build it.
 
----
+Try this:
 
-  i'm *hoping* i'm reading this correctly.  and i'll try to bundle
-fixes into larger single patch submissions as long as they're
-logically related.
+bitbake -u hob
 
-diff --git a/documentation/adt-manual/adt-package.xml b/documentation/adt-m=
-anual/adt-package.xml
-index 9f982d1..fd52747 100644
---- a/documentation/adt-manual/adt-package.xml
-+++ b/documentation/adt-manual/adt-package.xml
-@@ -70,8 +70,8 @@
-         The following command forms should now work:
-         <literallayout class=3D'monospaced'>
-      $ opkg-cl =E2=80=93f &lt;conf_file&gt; -o &lt;sysroot-dir&gt; update
--     $ opkg-cl =E2=80=93f &lt;cconf_file&gt;> -o &lt;sysroot-dir&gt; --for=
-ce-overwrite install libglade
--     $ opkg-cl =E2=80=93f &lt;cconf_file&gt; -o &lt;sysroot-dir&gt; --forc=
-e-overwrite install libglade-dbg
-+     $ opkg-cl =E2=80=93f &lt;conf_file&gt; -o &lt;sysroot-dir&gt; --force=
--overwrite install libglade
-+     $ opkg-cl =E2=80=93f &lt;conf_file&gt; -o &lt;sysroot-dir&gt; --force=
--overwrite install libglade-dbg
-      $ opkg-cl =E2=80=93f &lt;conf_file&gt; -o &lt;sysroot-dir&gt; --force=
--overwrite install libglade-dev
-         </literallayout>
-     </para>
+-> Python traceback
 
---=20
+change PARALLEL_MAKE from 'j8' to 'j 8'
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+bitbake -u hob
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+click save
 
---8323328-1631725556-1310664635=:9115--
+Open up recipe in editor
+
+-> 'require None.bb'
+
+So it looks like creating an image from scratch doesn't work.
+
+regards,
+
+Koen=
+
