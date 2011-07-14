@@ -1,26 +1,30 @@
-Return-Path: <galak@kernel.crashing.org>
-Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 61AB44C800AB
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 11:34:56 -0500 (CDT)
-Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
-	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6EGYC8x009188;
-	Thu, 14 Jul 2011 11:34:49 -0500
-Mime-Version: 1.0 (Apple Message framework v1084)
-From: Kumar Gala <galak@kernel.crashing.org>
-In-Reply-To: <4E1F182E.6000501@windriver.com>
-Date: Thu, 14 Jul 2011 11:34:49 -0500
-Message-Id: <6C5647FD-A95C-41E6-90A6-6427DEA04E61@kernel.crashing.org>
-References: <F6CE52B0-7638-4DC3-BEC0-3DC44A6794A5@kernel.crashing.org>
-	<4E1EEB87.1020200@windriver.com>
-	<9BDFCF4A-EA10-4963-87E0-556604F3E0AB@dominion.thruhere.net>
-	<4E1EF577.2080807@windriver.com>
-	<AD2400E9-D0BD-4064-8905-40647AB26518@kernel.crashing.org>
-	<1943392B-9988-4CDD-8147-E25F8C8C7203@dominion.thruhere.net>
-	<4E1F182E.6000501@windriver.com>
-To: Bruce Ashfield <Bruce.Ashfield@windriver.com>
-X-Mailer: Apple Mail (2.1084)
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: IMAGE_FSTYPES that are supported?
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 02F4D4C800AB
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 11:42:47 -0500 (CDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1QhOzu-0003DM-BI
+	for yocto@yoctoproject.org; Thu, 14 Jul 2011 12:42:46 -0400
+Date: Thu, 14 Jul 2011 12:42:40 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1107141240520.8471@localhost6.localdomain6>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: [PATCH] DOCS: Tidy up a couple git commands in the kernel manual.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,60 +36,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2011 16:34:56 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 14 Jul 2011 16:42:47 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-On Jul 14, 2011, at 11:24 AM, Bruce Ashfield wrote:
+Fix missing prompt, missing "git" and break overly long command in
+two since it disappears off the page in the PDF output.
 
-> On 07/14/11 12:21, Koen Kooi wrote:
->>=20
->> Op 14 jul 2011, om 18:20 heeft Kumar Gala het volgende geschreven:
->>=20
->>>=20
->>> On Jul 14, 2011, at 8:56 AM, Bruce Ashfield wrote:
->>>=20
->>>> On 07/14/11 09:40, Koen Kooi wrote:
->>>>>=20
->>>>> Op 14 jul 2011, om 15:13 heeft Bruce Ashfield het volgende =
-geschreven:
->>>>>=20
->>>>>> On 07/14/11 09:05, Kumar Gala wrote:
->>>>>>> Is there a list of which IMAGE_FSTYPES are supported.  I didn't =
-see anything in the docs.  Looking to see if a u-boot 'mkimage' wrapped =
-set of images is supported or not.
->>>>>>=20
->>>>>> I'm not 100% where the list is, but I can confirm that
->>>>>> uImages are supported and work nicely. Assuming that
->>>>>> you are talking about the common use case, and not something
->>>>>> more exotic :)
->>>>>=20
->>>>>=20
->>>>> I think he means partitioned uimages where you have a kernel + =
-initrd in a single uimage. We don't support that *yet*, but all the =
-needed blocks are there. And we finally get a usecase for having the =
-loadadresses in the machine.conf files :)
->>>>=20
->>>> Yah, that's what I wondered as well. I've done this locally,
->>>> but nothing out of the box .. so I had nagging doubts!
->>>>=20
->>>> Cheers,
->>>>=20
->>>> Bruce
->>>>=20
->>>=20
->>> What's the IMAGE_FSTYPE for a normal uImage ?
->>=20
->> None, it's built by the kernel class, not the rootfs class.
->=20
-> and to expand a bit, the machine conf would have:
->=20
-> KERNEL_IMAGETYPE =3D "uImage"
->=20
-> So the kernel class will build and produce a uImage for deployment.
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
-Ah, so there isnt support for getting a ramdisk wrapped via mkimage.
+---
 
-- k=
+  these fixes should be self-evident.
+
+diff --git a/documentation/kernel-manual/kernel-how-to.xml b/documentation/kernel-manual/kernel-how-to.xml
+index 0cb7154..5a0d975 100644
+--- a/documentation/kernel-manual/kernel-how-to.xml
++++ b/documentation/kernel-manual/kernel-how-to.xml
+@@ -727,7 +727,7 @@ repository.
+                     <para>
+                         Use this command form to push the changes:
+                     <literallayout class='monospaced'>
+-     git push ssh://&lt;master server&gt;/&lt;path to repo&gt; &lt;local branch&gt;:&lt;remote branch&gt;
++     &gt; git push ssh://&lt;master server&gt;/&lt;path to repo&gt; &lt;local branch&gt;:&lt;remote branch&gt;
+                     </literallayout>
+                     </para>
+
+@@ -736,7 +736,8 @@ repository.
+                         <filename>yocto/standard/common-pc/base</filename> to the remote branch with the same name
+                         in the master repository <filename>//git.mycompany.com/pub/git/kernel-2.6.37</filename>.
+                     <literallayout class='monospaced'>
+-     &gt; push ssh://git.mycompany.com/pub/git/kernel-2.6.37 yocto/standard/common-pc/base:yocto/standard/common-pc/base
++     &gt; git push ssh://git.mycompany.com/pub/git/kernel-2.6.37 \
++      yocto/standard/common-pc/base:yocto/standard/common-pc/base
+                     </literallayout>
+                     </para>
+
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
