@@ -1,32 +1,27 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 16D054C800C1
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 08:52:46 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6EDqcPs007952;
-	Thu, 14 Jul 2011 14:52:38 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 07232-03; Thu, 14 Jul 2011 14:52:33 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6EDqRZn007946
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Thu, 14 Jul 2011 14:52:28 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Kumar Gala <galak@kernel.crashing.org>
-In-Reply-To: <9D94299C-4B6A-4550-80A8-7821FB26D81C@kernel.crashing.org>
-References: <CAE727EC-4F3C-4FD2-BCEE-F14BC42E981F@technicolor.com>
-	<1310460238.20015.1024.camel@rex>
-	<9D94299C-4B6A-4550-80A8-7821FB26D81C@kernel.crashing.org>
-Date: Thu, 14 Jul 2011 14:52:23 +0100
-Message-ID: <1310651543.20015.1148.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Menu configuration
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6DBAD4C800C1
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 08:56:13 -0500 (CDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p6EDuAZe027049
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 14 Jul 2011 06:56:10 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Thu, 14 Jul 2011 06:56:10 -0700
+Message-ID: <4E1EF577.2080807@windriver.com>
+Date: Thu, 14 Jul 2011 09:56:07 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110516 Thunderbird/3.1.10 ThunderBrowse/3.3.5
+MIME-Version: 1.0
+To: Koen Kooi <koen@dominion.thruhere.net>
+References: <F6CE52B0-7638-4DC3-BEC0-3DC44A6794A5@kernel.crashing.org>
+	<4E1EEB87.1020200@windriver.com>
+	<9BDFCF4A-EA10-4963-87E0-556604F3E0AB@dominion.thruhere.net>
+In-Reply-To: <9BDFCF4A-EA10-4963-87E0-556604F3E0AB@dominion.thruhere.net>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: IMAGE_FSTYPES that are supported?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,42 +33,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2011 13:52:47 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 14 Jul 2011 13:56:13 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2011-07-14 at 08:06 -0500, Kumar Gala wrote:
-> On Jul 12, 2011, at 3:43 AM, Richard Purdie wrote:
-> 
-> > On Mon, 2011-07-11 at 10:00 -0700, Turner Randy wrote:
-> >> Hello list,
-> >> 
-> >> Is there a interactive menu-based configuration for yocto/poky builds
-> >> similar to that provided in Buildroot? Or is someone working on this?
-> > 
-> > At present there is not any interactive menu based configuration but
-> > there is work ongoing on a UI called hob which allows you to select
-> > packages and construct images of those packages so its a graphical front
-> > end to the system.
-> > 
-> > We're also in the process of starting to better markup configuration
-> > variables in the metadata so that writing some kind of menu based
-> > configuration system would be easier in the future.
-> > 
-> > We're certainly open to any help in those areas too!
-> > 
-> > Cheers,
-> > 
-> > Richard
-> 
-> Are there any docs for hob at this point?
+On 07/14/11 09:40, Koen Kooi wrote:
+>
+> Op 14 jul 2011, om 15:13 heeft Bruce Ashfield het volgende geschreven:
+>
+>> On 07/14/11 09:05, Kumar Gala wrote:
+>>> Is there a list of which IMAGE_FSTYPES are supported.  I didn't see anything in the docs.  Looking to see if a u-boot 'mkimage' wrapped set of images is supported or not.
+>>
+>> I'm not 100% where the list is, but I can confirm that
+>> uImages are supported and work nicely. Assuming that
+>> you are talking about the common use case, and not something
+>> more exotic :)
+>
+>
+> I think he means partitioned uimages where you have a kernel + initrd in a single uimage. We don't support that *yet*, but all the needed blocks are there. And we finally get a usecase for having the loadadresses in the machine.conf files :)
 
-Not specifically. "bitbake -u hob" should let you see where things are
-at. Please keep in mind that its under active development at the moment
-and can be considered "alpha" quality but feedback is welcome.
+Yah, that's what I wondered as well. I've done this locally,
+but nothing out of the box .. so I had nagging doubts!
 
 Cheers,
 
-Richard
+Bruce
+
 
 
