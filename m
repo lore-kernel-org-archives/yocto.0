@@ -1,26 +1,30 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 484C84C800A1
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 12:04:42 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 14 Jul 2011 10:04:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,529,1304319600"; d="scan'208";a="25897525"
-Received: from vorpal.jf.intel.com (HELO [10.7.199.64]) ([10.7.199.64])
-	by orsmga002.jf.intel.com with ESMTP; 14 Jul 2011 10:04:41 -0700
-From: Joshua Lock <josh@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 14 Jul 2011 10:09:04 -0700
-In-Reply-To: <4C89CE44-6341-4FE7-A7AA-85F1FB6BD2F4@kernel.crashing.org>
-References: <CAE727EC-4F3C-4FD2-BCEE-F14BC42E981F@technicolor.com>
-	<1310460238.20015.1024.camel@rex>
-	<9D94299C-4B6A-4550-80A8-7821FB26D81C@kernel.crashing.org>
-	<1310651543.20015.1148.camel@rex>
-	<4C89CE44-6341-4FE7-A7AA-85F1FB6BD2F4@kernel.crashing.org>
-X-Mailer: Evolution 3.0.2 (3.0.2-3.fc15) 
-Message-ID: <1310663344.2162.1.camel@vorpal.jf.intel.com>
-Mime-Version: 1.0
-Subject: Re: Menu configuration
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C200F4C800A1
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 12:30:35 -0500 (CDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1QhPkB-0007MR-2c
+	for yocto@yoctoproject.org; Thu, 14 Jul 2011 13:30:35 -0400
+Date: Thu, 14 Jul 2011 13:30:26 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1107141327350.9115@localhost6.localdomain6>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: [PATCH] DOCS: Fix some syntax errors in "opkg-cl" cmds in ADT manual.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,54 +36,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2011 17:04:42 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Jul 2011 17:30:35 -0000
+Content-Type: MULTIPART/MIXED; BOUNDARY="8323328-1631725556-1310664635=:9115"
 
-On Thu, 2011-07-14 at 11:34 -0500, Kumar Gala wrote:
-> On Jul 14, 2011, at 8:52 AM, Richard Purdie wrote:
-> 
-> > On Thu, 2011-07-14 at 08:06 -0500, Kumar Gala wrote:
-> >> On Jul 12, 2011, at 3:43 AM, Richard Purdie wrote:
-> >> 
-> >>> On Mon, 2011-07-11 at 10:00 -0700, Turner Randy wrote:
-> >>>> Hello list,
-> >>>> 
-> >>>> Is there a interactive menu-based configuration for yocto/poky builds
-> >>>> similar to that provided in Buildroot? Or is someone working on this?
-> >>> 
-> >>> At present there is not any interactive menu based configuration but
-> >>> there is work ongoing on a UI called hob which allows you to select
-> >>> packages and construct images of those packages so its a graphical front
-> >>> end to the system.
-> >>> 
-> >>> We're also in the process of starting to better markup configuration
-> >>> variables in the metadata so that writing some kind of menu based
-> >>> configuration system would be easier in the future.
-> >>> 
-> >>> We're certainly open to any help in those areas too!
-> >>> 
-> >>> Cheers,
-> >>> 
-> >>> Richard
-> >> 
-> >> Are there any docs for hob at this point?
-> > 
-> > Not specifically. "bitbake -u hob" should let you see where things are
-> > at. Please keep in mind that its under active development at the moment
-> > and can be considered "alpha" quality but feedback is welcome.
-> 
-> Are they thread of email discussion or anything.  I tried playing with it, but a little confused on exactly what its trying to accomplish and what the 'cfg' that is saved off ends up being.
-
-If you have questions please ask them. The saved file should be a recipe
-for building a custom image. The purpose of the tool is to help you put
-together a custom image and build it.
-
-Regards,
-Joshua
--- 
-Joshua Lock
-        Yocto Project "Johannes Factotum"
-        Intel Open Source Technology Centre
+--8323328-1631725556-1310664635=:9115
+Content-Type: TEXT/PLAIN; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
 
+Fix some obvious typoes in a couple "opkg-cl" commands in the ADT
+manual, packages chapter.
+
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+
+---
+
+  i'm *hoping* i'm reading this correctly.  and i'll try to bundle
+fixes into larger single patch submissions as long as they're
+logically related.
+
+diff --git a/documentation/adt-manual/adt-package.xml b/documentation/adt-m=
+anual/adt-package.xml
+index 9f982d1..fd52747 100644
+--- a/documentation/adt-manual/adt-package.xml
++++ b/documentation/adt-manual/adt-package.xml
+@@ -70,8 +70,8 @@
+         The following command forms should now work:
+         <literallayout class=3D'monospaced'>
+      $ opkg-cl =E2=80=93f &lt;conf_file&gt; -o &lt;sysroot-dir&gt; update
+-     $ opkg-cl =E2=80=93f &lt;cconf_file&gt;> -o &lt;sysroot-dir&gt; --for=
+ce-overwrite install libglade
+-     $ opkg-cl =E2=80=93f &lt;cconf_file&gt; -o &lt;sysroot-dir&gt; --forc=
+e-overwrite install libglade-dbg
++     $ opkg-cl =E2=80=93f &lt;conf_file&gt; -o &lt;sysroot-dir&gt; --force=
+-overwrite install libglade
++     $ opkg-cl =E2=80=93f &lt;conf_file&gt; -o &lt;sysroot-dir&gt; --force=
+-overwrite install libglade-dbg
+      $ opkg-cl =E2=80=93f &lt;conf_file&gt; -o &lt;sysroot-dir&gt; --force=
+-overwrite install libglade-dev
+         </literallayout>
+     </para>
+
+--=20
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+--8323328-1631725556-1310664635=:9115--
