@@ -1,21 +1,25 @@
-Return-Path: <galak@kernel.crashing.org>
-Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 251324C80908
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 08:07:01 -0500 (CDT)
-Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
-	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6ED6rXN032376;
-	Thu, 14 Jul 2011 08:06:54 -0500
-Mime-Version: 1.0 (Apple Message framework v1084)
-From: Kumar Gala <galak@kernel.crashing.org>
-In-Reply-To: <1310460238.20015.1024.camel@rex>
-Date: Thu, 14 Jul 2011 08:06:53 -0500
-Message-Id: <9D94299C-4B6A-4550-80A8-7821FB26D81C@kernel.crashing.org>
-References: <CAE727EC-4F3C-4FD2-BCEE-F14BC42E981F@technicolor.com>
-	<1310460238.20015.1024.camel@rex>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-X-Mailer: Apple Mail (2.1084)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Menu configuration
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id F0CA24C80205
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 08:13:47 -0500 (CDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p6EDDjei021153
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 14 Jul 2011 06:13:45 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Thu, 14 Jul 2011 06:13:45 -0700
+Message-ID: <4E1EEB87.1020200@windriver.com>
+Date: Thu, 14 Jul 2011 09:13:43 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110516 Thunderbird/3.1.10 ThunderBrowse/3.3.5
+MIME-Version: 1.0
+To: Kumar Gala <galak@kernel.crashing.org>
+References: <F6CE52B0-7638-4DC3-BEC0-3DC44A6794A5@kernel.crashing.org>
+In-Reply-To: <F6CE52B0-7638-4DC3-BEC0-3DC44A6794A5@kernel.crashing.org>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: IMAGE_FSTYPES that are supported?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,35 +31,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2011 13:07:02 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Thu, 14 Jul 2011 13:13:48 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
+On 07/14/11 09:05, Kumar Gala wrote:
+> Is there a list of which IMAGE_FSTYPES are supported.  I didn't see anything in the docs.  Looking to see if a u-boot 'mkimage' wrapped set of images is supported or not.
 
-On Jul 12, 2011, at 3:43 AM, Richard Purdie wrote:
+I'm not 100% where the list is, but I can confirm that
+uImages are supported and work nicely. Assuming that
+you are talking about the common use case, and not something
+more exotic :)
 
-> On Mon, 2011-07-11 at 10:00 -0700, Turner Randy wrote:
->> Hello list,
->> 
->> Is there a interactive menu-based configuration for yocto/poky builds
->> similar to that provided in Buildroot? Or is someone working on this?
-> 
-> At present there is not any interactive menu based configuration but
-> there is work ongoing on a UI called hob which allows you to select
-> packages and construct images of those packages so its a graphical front
-> end to the system.
-> 
-> We're also in the process of starting to better markup configuration
-> variables in the metadata so that writing some kind of menu based
-> configuration system would be easier in the future.
-> 
-> We're certainly open to any help in those areas too!
-> 
-> Cheers,
-> 
-> Richard
+Cheers,
 
-Are there any docs for hob at this point?
+Bruce
 
-- k
+>
+> - k
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
