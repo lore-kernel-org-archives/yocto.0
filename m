@@ -1,30 +1,34 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 518E24C8007E
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 17:30:08 -0500 (CDT)
-Received: from [128.224.252.2] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Qhqtb-0006MQ-9E
-	for yocto@yoctoproject.org; Fri, 15 Jul 2011 18:30:07 -0400
-Date: Fri, 15 Jul 2011 18:30:02 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1107151827400.18545@localhost6.localdomain6>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B6F974C80836
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 18:07:11 -0500 (CDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 15 Jul 2011 16:07:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,210,1309762800"; d="scan'208";a="30905033"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga001.fm.intel.com with ESMTP; 15 Jul 2011 16:07:11 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 15 Jul 2011 16:07:10 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.138]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.6.186]) with mapi id
+	14.01.0289.001; Fri, 15 Jul 2011 16:07:10 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH] DOCS: Correct format of command continuation.
+Thread-Index: AQHMQunAJjmcbUz5fEGX9awKxFO/2JTuAetQ
+Date: Fri, 15 Jul 2011 23:07:09 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB12379031B07@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1107150819450.24156@localhost6.localdomain6>
+In-Reply-To: <alpine.DEB.2.02.1107150819450.24156@localhost6.localdomain6>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.9.131.214]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH] DOCS: Fix typo in command, "-" should be "="
+Subject: Re: [PATCH] DOCS: Correct format of command continuation.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,41 +40,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 22:30:08 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 15 Jul 2011 23:07:11 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+Fixed.
 
-"--host-armv5te..." should be "--host=armv5te..."
+Thanks Robert.
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Robert P. J. Day
+Sent: Friday, July 15, 2011 5:21 AM
+To: Yocto discussion list
+Subject: [yocto] [PATCH] DOCS: Correct format of command continuation.
+
 
 Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
 ---
 
-  there's a fair amount in the ADT manual (and others) that can be
-cleaned in terms of proper docbook semantic markup and entity usage,
-but this looks like a fairly obvious error that should be fixed now.
+  i *think* this is what the author had in mind.
 
-diff --git a/documentation/adt-manual/adt-command.xml b/documentation/adt-manual/adt-command.xml
-index 28501b6..83c61d8 100644
---- a/documentation/adt-manual/adt-command.xml
-+++ b/documentation/adt-manual/adt-command.xml
-@@ -37,7 +37,7 @@
-         <filename>environment-setup-armv5te-poky-linux-gnueabi</filename>.
-         Thus, the following command works:
-         <literallayout class='monospaced'>
--     $ configure &dash;&dash;host-armv5te-poky-linux-gnueabi &dash;&dash;with-libtool-sysroot=&lt;sysroot-dir&gt;
-+     $ configure &dash;&dash;host=armv5te-poky-linux-gnueabi &dash;&dash;with-libtool-sysroot=&lt;sysroot-dir&gt;
-         </literallayout>
-     </para>
-     <para>
+diff --git a/documentation/yocto-project-qs/yocto-project-qs.xml b/document=
+ation/yocto-project-qs/yocto-project-qs.xml
+index 52f7391..d2e85ba 100644
+--- a/documentation/yocto-project-qs/yocto-project-qs.xml
++++ b/documentation/yocto-project-qs/yocto-project-qs.xml
+@@ -213,9 +213,9 @@
+             </literallayout>
 
--- 
+             <literallayout class=3D'monospaced'>
+-     $ sudo zypper install python gcc gcc-c++ libtool
+-     $ subversion git chrpath automake
+-     $ help2man diffstat texinfo mercurial wget
++     $ sudo zypper install python gcc gcc-c++ libtool \
++     subversion git chrpath automake \
++     help2man diffstat texinfo mercurial wget
+             </literallayout>
 
-========================================================================
+     </section>
+
+--=20
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 Robert P. J. Day                                 Ottawa, Ontario, CANADA
                         http://crashcourse.ca
 
 Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
