@@ -1,27 +1,49 @@
-Return-Path: <galak@kernel.crashing.org>
-Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
-	by mx1.pokylinux.org (Postfix) with ESMTP id E30BF4C8009D
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 09:08:15 -0500 (CDT)
-Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
-	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6JE7v4S032469;
-	Tue, 19 Jul 2011 09:07:57 -0500
-Mime-Version: 1.0 (Apple Message framework v1084)
-From: Kumar Gala <galak@kernel.crashing.org>
-In-Reply-To: <4537825C-7D8E-4260-88D2-C5F851FF827A@kernel.crashing.org>
-Date: Tue, 19 Jul 2011 09:07:57 -0500
-Message-Id: <E7D51FCF-F5DC-448D-8354-410E0217D10F@kernel.crashing.org>
-References: <1311052872-10569-1-git-send-email-galak@kernel.crashing.org>
-	<1311052872-10569-2-git-send-email-galak@kernel.crashing.org>
-	<CAMKF1sq4ho3-P6L0PfDVxpAscccS561LLRUNc64okvsU9R=f9Q@mail.gmail.com>
-	<4537825C-7D8E-4260-88D2-C5F851FF827A@kernel.crashing.org>
-To: Kumar Gala <galak@kernel.crashing.org>
-X-Mailer: Apple Mail (2.1084)
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	openembedded-core@lists.openembedded.org
-Subject: Re: [PATCH 1/5] gcc: Add gcc configure for PowerPC e500v2/SPE embedded floating point ABI
+Return-Path: <B29882@freescale.com>
+Received: from AM1EHSOBE005.bigfish.com (am1ehsobe005.messaging.microsoft.com
+	[213.199.154.208])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 1C8A04C800A3
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 16:23:50 -0500 (CDT)
+Received: from mail18-am1-R.bigfish.com (10.3.201.249) by
+	AM1EHSOBE005.bigfish.com (10.3.204.25) with Microsoft SMTP Server id
+	14.1.225.22; Fri, 15 Jul 2011 21:23:49 +0000
+Received: from mail18-am1 (localhost.localdomain [127.0.0.1])	by
+	mail18-am1-R.bigfish.com (Postfix) with ESMTP id 14F19D080A4	for
+	<yocto@yoctoproject.org>; Fri, 15 Jul 2011 21:23:50 +0000 (UTC)
+X-SpamScore: 0
+X-BigFish: VS0(zzzz1202hzz8275dhz2dh2a8h668h839h8e2h8e3h64h)
+X-Spam-TCS-SCL: 3:0
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
+	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
+Received: from mail18-am1 (localhost.localdomain [127.0.0.1]) by mail18-am1
+	(MessageSwitch) id 1310765029856150_29709;
+	Fri, 15 Jul 2011 21:23:49 +0000 (UTC)
+Received: from AM1EHSMHS008.bigfish.com (unknown [10.3.201.250])	by
+	mail18-am1.bigfish.com (Postfix) with ESMTP id CD4C125804B	for
+	<yocto@yoctoproject.org>; Fri, 15 Jul 2011 21:23:49 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS008.bigfish.com
+	(10.3.207.108) with Microsoft SMTP Server (TLS) id 14.1.225.22;
+	Fri, 15 Jul 2011 21:23:49 +0000
+Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.218]) by
+	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
+	14.01.0289.008; Fri, 15 Jul 2011 16:23:48 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: pseudo issue on CentOS5
+Thread-Index: AQHMQzV7PVcKPn8YX02CK8aui+9v7Q==
+Date: Fri, 15 Jul 2011 21:23:47 +0000
+Message-ID: <CAEsOVNdmyZSK2rv2+2zAQXpf8Txz_3=v62NZ85pO-D7esChwCQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [99.47.177.27]
+MIME-Version: 1.0
+X-OriginatorOrg: freescale.com
+X-Mailman-Approved-At: Tue, 19 Jul 2011 09:20:39 -0500
+Subject: pseudo issue on CentOS5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -30,98 +52,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jul 2011 14:08:17 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Fri, 15 Jul 2011 21:23:51 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <360B1D132F0F2C4E8DFCD536B220DAFE@freescale.net>
 Content-Transfer-Encoding: quoted-printable
 
-Adding openembedded-core to see if any feedback on my query.
+This bug: http://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1177 only
+occurs on my CentOS 5 boxes (not on my Fedora 13 box). I have
+determined that this git patch
+4b66ce472871618cfe4761861392b7f9c3c265b0 is causing the problem.
+Reverting the patch fixes this.
 
-- k
+Still looking at this more but I thought I would share this with
+everyone and see if anyone has a more specific reason why this is
+happening.
 
-On Jul 19, 2011, at 1:47 AM, Kumar Gala wrote:
-
->=20
-> On Jul 19, 2011, at 1:04 AM, Khem Raj wrote:
->=20
->> On Mon, Jul 18, 2011 at 10:21 PM, Kumar Gala =
-<galak@kernel.crashing.org> wrote:
->>> The e500v2 core utilizes a unique floating point programming model / =
-ABI.
->>> We utilize TARGET_FPU =3D "spe" to distinguish this choice.  When =
-building
->>> the toolchain for this ABI we need configure gcc with =
---enable-e500_double.
->>>=20
->>> Signed-off-by: Kumar Gala <galak@kernel.crashing.org>
->>> ---
->>> meta/recipes-devtools/gcc/gcc-4.6.inc    |    2 +-
->>> meta/recipes-devtools/gcc/gcc-common.inc |    2 ++
->>> 2 files changed, 3 insertions(+), 1 deletions(-)
->>>=20
->>> diff --git a/meta/recipes-devtools/gcc/gcc-4.6.inc =
-b/meta/recipes-devtools/gcc/gcc-4.6.inc
->>> index 56064b5..b719155 100644
->>> --- a/meta/recipes-devtools/gcc/gcc-4.6.inc
->>> +++ b/meta/recipes-devtools/gcc/gcc-4.6.inc
->>> @@ -1,6 +1,6 @@
->>> require gcc-common.inc
->>>=20
->>> -PR =3D "r8"
->>> +PR =3D "r9"
->>>=20
->>> # Third digit in PV should be incremented after a minor release
->>> # happens from this branch on gcc e.g. currently its 4.6.0
->>> diff --git a/meta/recipes-devtools/gcc/gcc-common.inc =
-b/meta/recipes-devtools/gcc/gcc-common.inc
->>> index 7bf036c..409ad01 100644
->>> --- a/meta/recipes-devtools/gcc/gcc-common.inc
->>> +++ b/meta/recipes-devtools/gcc/gcc-common.inc
->>> @@ -12,6 +12,8 @@ FILESDIR =3D =
-"${@os.path.dirname(bb.data.getVar('FILE',d,1))}/gcc-${PV}"
->>> def get_gcc_fpu_setting(bb, d):
->>>    if bb.data.getVar('TARGET_FPU', d, 1) in [ 'soft' ]:
->>>        return "--with-float=3Dsoft"
->>> +    if bb.data.getVar('TARGET_FPU', d, 1) in [ 'spe' ]:
->>> +        return "--enable-e500_double"
->>>    return ""
->>>=20
->>=20
->> this will enable e500_double even for e500v1 which IIRC does not have
->> DFP support
->> have you tried building for e500v1 with this ?
->=20
-> I think you are correct.  Any suggestions on how to distinguish e500v1 =
-vs e500v2?  Utilizing BASE_PACKAGE_ARCH has problems w/native builds =
-since it seems to get set to x86_64 at some point.
->=20
-> I could do:
->=20
-> TARGET_FPU =3D "ppc-efs"  [Embedded scalar single-precision =
-floating-point]
-> TARGET_FPU =3D "ppc-efd"  [Embedded scalar double-precision =
-floating-point]
->=20
-> Than meta/recipes-devtools/gcc/gcc-common.inc:
->=20
-> def get_gcc_fpu_setting(bb, d):
->    if bb.data.getVar('TARGET_FPU', d, 1) in [ 'soft' ]:
->        return "--with-float=3Dsoft"
-> +    if bb.data.getVar('TARGET_FPU', d, 1) in [ 'ppc-efd' ]:
-> +        return "--enable-e500_double"
->    return ""
->=20
-> And meta/conf/distro/include/tclibc-*libc.inc:
->=20
-> TARGET_OS_powerpc =3D =
-"linux${@['','-gnuspe'][bb.data.getVar('TARGET_FPU',d,1) in ['ppc-efs', =
-'ppc-efd']]}"
->=20
-> thoughts?
->=20
-> - k
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-M=
 
 
