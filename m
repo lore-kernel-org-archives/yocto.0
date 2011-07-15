@@ -1,30 +1,17 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D0A474C800A3
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 15:24:34 -0500 (CDT)
-Received: from [128.224.252.2] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Qhow5-0000Bl-Vp
-	for yocto@yoctoproject.org; Fri, 15 Jul 2011 16:24:34 -0400
-Date: Fri, 15 Jul 2011 16:24:27 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
+Return-Path: <galak@kernel.crashing.org>
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4708B4C80836
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 16:10:12 -0500 (CDT)
+Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6FLA4SK022863;
+	Fri, 15 Jul 2011 16:10:05 -0500
+From: Kumar Gala <galak@kernel.crashing.org>
+Date: Fri, 15 Jul 2011 16:10:05 -0500
+Message-Id: <2CA74704-73F9-4900-82C0-68A64AA6ED35@kernel.crashing.org>
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1107151622050.10903@localhost6.localdomain6>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH] DOCS: Add missing version number directory level to commands.
+Mime-Version: 1.0 (Apple Message framework v1084)
+X-Mailer: Apple Mail (2.1084)
+Subject: TARGET_OS issues with linux-gnuspe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,50 +23,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 20:24:34 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 15 Jul 2011 21:10:12 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+In my attempts to get an e500v2/gnuspe toolchain working I was able to =
+get core-image-minimal working.  However when I try the 'meta-toolchain' =
+I run into the following below.  I believe this is because of TARGET_OS =
+being 'linux-gnuspe'.
+
+Any ideas ?
+
+- k
+
+[kumar@right build-p2020]$ bitbake meta-toolchain
+
+OE Build Configuration:
+BB_VERSION        =3D "1.13.2"
+TARGET_ARCH       =3D "powerpc"
+TARGET_OS         =3D "linux-gnuspe"
+MACHINE           =3D "p2020-ds"
+DISTRO            =3D "poky"
+DISTRO_VERSION    =3D "1.0+snapshot-20110715"
+TARGET_FPU        =3D "spe"
+meta             =20
+meta-yocto        =3D "master:068839698fe192d8846c0ed4db65861448e8e524"
+
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing PROVIDES 'virtual/powerpc-poky-linux-libc-for-gcc'
+NOTE: Runtime target 'gcc-cross-canadian-powerpc' is unbuildable, =
+removing...
+Missing or unbuildable dependency chain was: =
+['gcc-cross-canadian-powerpc', =
+'virtual/powerpc-poky-linux-libc-for-gcc']
+NOTE: Runtime target 'task-cross-canadian-powerpc' is unbuildable, =
+removing...
+Missing or unbuildable dependency chain was: =
+['task-cross-canadian-powerpc', 'gcc-cross-canadian-powerpc', =
+'virtual/powerpc-poky-linux-libc-for-gcc']
+ERROR: Required build target 'meta-toolchain' has no buildable =
+providers.
+Missing or unbuildable dependency chain was: ['meta-toolchain', =
+'task-cross-canadian-powerpc', 'gcc-cross-canadian-powerpc', =
+'virtual/powerpc-poky-linux-libc-for-gcc']
+ERROR: Command execution failed: Traceback (most recent call last):
+  File "/local/home/kumar/git/poky/bitbake/lib/bb/command.py", line 102, =
+in runAsyncCommand
+    commandmethod(self.cmds_async, self, options)
+  File "/local/home/kumar/git/poky/bitbake/lib/bb/command.py", line 200, =
+in buildTargets
+    command.cooker.buildTargets(pkgs_to_build, task)
+  File "/local/home/kumar/git/poky/bitbake/lib/bb/cooker.py", line 996, =
+in buildTargets
+    taskdata.add_unresolved(localdata, self.status)
+  File "/local/home/kumar/git/poky/bitbake/lib/bb/taskdata.py", line =
+534, in add_unresolved
+    self.remove_buildtarget(targetid)
+  File "/local/home/kumar/git/poky/bitbake/lib/bb/taskdata.py", line =
+491, in remove_buildtarget
+    self.fail_fnid(fnid, missing_list)
+  File "/local/home/kumar/git/poky/bitbake/lib/bb/taskdata.py", line =
+476, in fail_fnid
+    self.remove_runtarget(target, missing_list)
+  File "/local/home/kumar/git/poky/bitbake/lib/bb/taskdata.py", line =
+517, in remove_runtarget
+    self.fail_fnid(fnid, missing_list)
+  File "/local/home/kumar/git/poky/bitbake/lib/bb/taskdata.py", line =
+476, in fail_fnid
+    self.remove_runtarget(target, missing_list)
+  File "/local/home/kumar/git/poky/bitbake/lib/bb/taskdata.py", line =
+517, in remove_runtarget
+    self.fail_fnid(fnid, missing_list)
+  File "/local/home/kumar/git/poky/bitbake/lib/bb/taskdata.py", line =
+471, in fail_fnid
+    self.remove_buildtarget(target, missing_list)
+  File "/local/home/kumar/git/poky/bitbake/lib/bb/taskdata.py", line =
+501, in remove_buildtarget
+    raise bb.providers.NoProvider(target)
+NoProvider: meta-toolchain
 
 
-A couple commands are missing the version number directory level under
-the /opt/poky toolchain installation directory.
-
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
-
----
-
-  i'll let scott take this as well, and decide whether it's worth
-fixing this or just waiting for 1.1.  either way works for me.
-
-diff --git a/documentation/yocto-project-qs/yocto-project-qs.xml b/documentation/yocto-project-qs/yocto-project-qs.xml
-index 52f7391..a09cb66 100644
---- a/documentation/yocto-project-qs/yocto-project-qs.xml
-+++ b/documentation/yocto-project-qs/yocto-project-qs.xml
-@@ -513,7 +513,7 @@
-          </para>
-
-          <literallayout class='monospaced'>
--     $ source /opt/poky/environment-setup-&lt;<emphasis>arch</emphasis>&gt;-poky-linux-&lt;<emphasis>if</emphasis>&gt;
-+     $ source /opt/poky/1.0/environment-setup-&lt;<emphasis>arch</emphasis>&gt;-poky-linux-&lt;<emphasis>if</emphasis>&gt;
-
-      Where:
-          &lt;<emphasis>arch</emphasis>&gt; is a string representing the target architecture:
-@@ -547,7 +547,7 @@
-          </para>
-
-          <literallayout class='monospaced'>
--     $ source /opt/poky/environment-setup-i686-poky-linux
-+     $ source /opt/poky/1.0/environment-setup-i686-poky-linux
-      $ poky-qemu qemux86 zImage-2.6.34-qemux86-1.0.bin yocto-image-sdk-qemux86-1.0.rootfs.ext3
-          </literallayout>
-
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
