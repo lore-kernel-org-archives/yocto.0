@@ -1,31 +1,23 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5C9DF4C800A1
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 19:01:57 -0500 (CDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.2.77] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1QhVqu-0006Lp-6B
-	for yocto@yoctoproject.org; Thu, 14 Jul 2011 20:01:56 -0400
-Date: Thu, 14 Jul 2011 20:01:49 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1107141957320.4687@localhost6.localdomain6>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: the proper way to report bitbake fetch errors?
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 07EC94C800AB
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 19:55:44 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 14 Jul 2011 17:55:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.65,532,1304319600"; d="scan'208";a="26062228"
+Received: from unknown (HELO localhost) ([10.255.14.7])
+	by orsmga002.jf.intel.com with ESMTP; 14 Jul 2011 17:55:43 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org
+Date: Thu, 14 Jul 2011 19:55:30 -0500
+Message-Id: <56e751579510768cf73f6ed5a04eed0895b18f03.1310689271.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <f69321f9d19943ec1815681e6568524387cfe5c0.1310689271.git.tom.zanussi@intel.com>
+References: <f69321f9d19943ec1815681e6568524387cfe5c0.1310689271.git.tom.zanussi@intel.com>
+In-Reply-To: <cover.1310689271.git.tom.zanussi@intel.com>
+References: <cover.1310689271.git.tom.zanussi@intel.com>
+Subject: [PATCH 2/6] meta-sugarbay: use common .inc files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,33 +29,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 00:01:57 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 15 Jul 2011 00:55:45 -0000
 
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-  just so i'm doing this the right way, what is the appropriate way to
-report bitbake fetch errors?  with a fully-updated git repo, i just
-ran:
+Have sugarbay.conf use the common-bsp-* .inc files and remove the
+open-coded machine settings.
 
- $ bitbake -c fetchall -k core-image-sato
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ meta-sugarbay/conf/machine/sugarbay.conf |   22 +++-------------------
+ 1 files changed, 3 insertions(+), 19 deletions(-)
 
-and got fetch errors for both of:
-
-  * sat-solver
-  * linux-libc-headers
-
-should i post the more detailed output of the command?  the contents
-of the log files?  etc, etc.
-
-rday
-
+diff --git a/meta-sugarbay/conf/machine/sugarbay.conf b/meta-sugarbay/conf/machine/sugarbay.conf
+index ebc6dbc..ed82506 100644
+--- a/meta-sugarbay/conf/machine/sugarbay.conf
++++ b/meta-sugarbay/conf/machine/sugarbay.conf
+@@ -9,18 +9,14 @@ PACKAGE_EXTRA_ARCHS = "x86 snb"
+ 
+ BASE_PACKAGE_ARCH="snb"
+ 
+-MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
+-                    acpi serial usbgadget"
++TARGET_CC_ARCH = "-m64"
+ 
+-KERNEL_IMAGETYPE = "bzImage"
++include ../common/common-bsp-mach.inc
++include ../common/common-bsp-x.inc
+ 
+ PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
+ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
+ 
+-PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
+-PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
+-PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xf86-dri-lite"
+-PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xf86-dri-lite"
+ XSERVER ?= "xserver-xf86-dri-lite \
+            xf86-input-mouse \
+            xf86-input-keyboard \
+@@ -30,17 +26,5 @@ XSERVER ?= "xserver-xf86-dri-lite \
+            mesa-dri \
+            mesa-dri-driver-i965"
+ 
+-SERIAL_CONSOLE = "115200 ttyS0"
+-
+-MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
+-
+-IMAGE_FSTYPES ?= "ext3 cpio.gz"
+-
+-GLIBC_ADDONS = "nptl"
+-GLIBC_EXTRA_OECONF = "--with-tls"
+-
+ MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
+-
+-TARGET_CC_ARCH = "-m64"
+-
+ PREFERRED_VERSION_grub ?= "1.98"
 -- 
+1.7.0.4
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
