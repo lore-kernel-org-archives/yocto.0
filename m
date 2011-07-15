@@ -1,33 +1,25 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C93834C800C1
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 14:12:21 -0500 (CDT)
-Received: from [128.224.252.2] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1QhnoC-0004I1-PU; Fri, 15 Jul 2011 15:12:21 -0400
-Date: Fri, 15 Jul 2011 15:12:14 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 77E794C800C1
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 14:12:44 -0500 (CDT)
+Received: by wwf4 with SMTP id 4so1496922wwf.11
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 12:12:43 -0700 (PDT)
+Received: by 10.227.58.65 with SMTP id f1mr3483058wbh.3.1310757162772;
+	Fri, 15 Jul 2011 12:12:42 -0700 (PDT)
+Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl [84.80.112.235])
+	by mx.google.com with ESMTPS id eo18sm1296612wbb.12.2011.07.15.12.12.40
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 15 Jul 2011 12:12:41 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <4E208803.3050306@linux.intel.com>
+Date: Fri, 15 Jul 2011 21:12:35 +0200
+Message-Id: <596D642B-8887-4A7B-8FEB-E9830351EABC@dominion.thruhere.net>
+References: <4E205D20.2060106@ll.mit.edu> <4E208803.3050306@linux.intel.com>
 To: Darren Hart <dvhart@linux.intel.com>
-In-Reply-To: <4E208580.3030505@linux.intel.com>
-Message-ID: <alpine.DEB.2.02.1107151454310.9651@localhost6.localdomain6>
-References: <alpine.DEB.2.02.1107141957320.4687@localhost6.localdomain6>
-	<4E208580.3030505@linux.intel.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: the proper way to report bitbake fetch errors?
+X-Mailer: Apple Mail (2.1084)
+Cc: yocto@yoctoproject.org
+Subject: Re: Color ghosting on BeagleBoard xM rev C
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,54 +31,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 19:12:22 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 15 Jul 2011 19:12:45 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 15 Jul 2011, Darren Hart wrote:
 
-> On 07/14/2011 05:01 PM, Robert P. J. Day wrote:
-> >
-> >   just so i'm doing this the right way, what is the appropriate way to
-> > report bitbake fetch errors?  with a fully-updated git repo, i just
-> > ran:
-> >
-> >  $ bitbake -c fetchall -k core-image-sato
-> >
-> > and got fetch errors for both of:
-> >
-> >   * sat-solver
-> >   * linux-libc-headers
-> >
-> > should i post the more detailed output of the command?  the contents
-> > of the log files?  etc, etc.
->
-> I would check the log files and verify it isn't a local network issue.
-> After that, sharing the relevant bits of the log.do_fetch logs for the
-> failed recipes is a good way to report them.
+Op 15 jul 2011, om 20:33 heeft Darren Hart het volgende geschreven:
 
-  ok, i'm still getting a fetch error for "sat-solver" when trying to
-do a fetchall for core-image-sato, and here's the log file:
+> Jason, Koen,
+>=20
+> Does anything spring to mind as an obvious fix for this? Perhaps some
+> kernel parameter initialization string for the graphics hardware?
 
-fatal: Not a git repository (or any of the parent directories): .git
- fatal: Not a git repository (or any of the parent directories): .git
-ERROR: Function 'Fetcher failure for URL:
-'git://gitorious.org/opensuse/sat-solver.git;protocol=git'. Unable to
-fetch URL git://gitorious.org/opensuse/sat-solver.git;protocol=git
-from any source.' failed
+I've never seen it in angstrom, so you'd have to see what meta-yocto is =
+doing different. In other news, for beagleboard please use the meta-ti =
+layer for that, it's the offcial upstream for beagle and is known to =
+work.
 
-  except that git repo looks fine, no?
+>=20
+> --
+> Darren
+>=20
+> On 07/15/2011 08:30 AM, Jeff Mitchell wrote:
+>> Darren Hart suggested I send this to the list...
+>>=20
+>> Attached is a picture of my screen running Terminal. This is on a=20
+>> BeagleBoard xM rev C connected via its HDMI out to a DVI adapter and=20=
 
-http://gitorious.org/opensuse/sat-solver
+>> then into a Dell UltraSharp monitor. Angstrom doesn't display these=20=
 
-rday
+>> problems, so the setup should be fine.
+>>=20
+>> I'm not quite sure what is causing this. The resolution is also =
+fairly=20
+>> low, and I haven't had any success using boot parameters (either the=20=
 
--- 
+>> older video=3Domapfb:mode variant or the newer DSS2 omapfb.mode =
+variant).
+>>=20
+>> Thanks,
+>> Jeff
+>>=20
+>>=20
+>>=20
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>=20
+> --=20
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Linux Kernel
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
