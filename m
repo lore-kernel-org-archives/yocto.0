@@ -1,16 +1,20 @@
-Return-Path: <galak@kernel.crashing.org>
-Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 807244C80FAD
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 23:56:58 -0500 (CDT)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6F4uutm026106
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 23:56:56 -0500
-From: Kumar Gala <galak@kernel.crashing.org>
-To: yocto@yoctoproject.org
-Date: Thu, 14 Jul 2011 23:56:56 -0500
-Message-Id: <1310705816-31653-1-git-send-email-galak@kernel.crashing.org>
-X-Mailer: git-send-email 1.5.6.5
-Subject: [PATCH] mpc8315e-rdb: Set TARGET_FPU correct
+Return-Path: <bruce.ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 963DB4C80FE0
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 00:27:01 -0500 (CDT)
+Received: from yow-bashfiel-l1.corp.ad.wrs.com
+	(dhcp-146-217.ottawa.windriver.com [128.224.146.217])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p6F5QvKK008920;
+	Thu, 14 Jul 2011 22:26:57 -0700 (PDT)
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+To: richard.purdie@linuxfoundation.org
+Date: Fri, 15 Jul 2011 01:26:55 -0400
+Message-Id: <cover.1310707201.git.bruce.ashfield@windriver.com>
+X-Mailer: git-send-email 1.7.4.1
+In-Reply-To: <\>
+References: <\>
+Cc: yocto@yoctoproject.org, saul.wold@intel.com
+Subject: [PATCH 0/1] linux-yocto/meta: update SRCREVs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -22,32 +26,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 04:56:59 -0000
+X-List-Received-Date: Fri, 15 Jul 2011 05:27:02 -0000
 
-The MPC8315E has a e300c3 core in it with 'classic' or normal PPC
-floating point.
+This is a repeat of the oe-core version of the patch, here's
+the duplicate text:
+    
+The patch itself says it all, but here's an update to the 2.6.37
+kernel that fixes a few issues. No sense sitting on this until
+3.0 is ready, but these same fixes have already been applied
+to the dev kernel as well.
 
-'SPE' floating point is what exists on the e500v2 core.
+The first change is to meta, to address a couple of bugs with
+the routerstation pro:
 
-Signed-off-by: Kumar Gala <galak@kernel.crashing.org>
----
- meta-yocto/conf/machine/mpc8315e-rdb.conf |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ Fixes bug [YOCTO #1161]
+ Fixes bug [YOCTO #773]
 
-diff --git a/meta-yocto/conf/machine/mpc8315e-rdb.conf b/meta-yocto/conf/machine/mpc8315e-rdb.conf
-index 095d113..3f946a0 100644
---- a/meta-yocto/conf/machine/mpc8315e-rdb.conf
-+++ b/meta-yocto/conf/machine/mpc8315e-rdb.conf
-@@ -2,7 +2,7 @@
- #@DESCRIPTION: Machine configuration for running 
- 
- TARGET_ARCH = "powerpc"
--TARGET_FPU = "spe"
-+TARGET_FPU = "hard"
- 
- require conf/machine/include/tune-ppc603e.inc
- 
+This streamlines the routerstation pro configuration to remove options
+that are either unecessary or that are causing bugs.
+
+Also added to all branches is:
+
+  commit ffd73d6b2a9bfa0de5710b90a2237f4be66ae9a7
+  Author: Yinghai Lu <yinghai@kernel.org>
+  Date:   Thu Jul 14 15:27:44 2011 -0700
+
+    mm: use alloc_bootmem_node_nopanic() on really needed path
+
+    commit 8f389a99b652aab5b42297280bd94d95933ad12f upstream.
+
+Which is a commit from Darren that he needed when working on the
+boot/footprint efforts.
+
+The following changes since commit f45c49d19403be3291ec2a144401c379ab0b0476:
+
+  linux-yocto/meta: update meta SRCREV for routerstation pro (2011-07-15 00:57:11 -0400)
+
+are available in the git repository at:
+  git://git.pokylinux.org/poky-contrib zedd/kernel-yocto
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
+
+Bruce Ashfield (1):
+  linux-yocto/meta-yocto: update SRCREVS
+
+ .../linux/linux-yocto_2.6.37.bbappend              |   10 +++++-----
+ 1 files changed, 5 insertions(+), 5 deletions(-)
+
 -- 
-1.7.3.4
+1.7.4.1
 
 
