@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 2DBBE4C80FAE
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 19:55:54 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 544B84C80B87
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 19:55:56 -0500 (CDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 14 Jul 2011 17:55:53 -0700
+	by azsmga102.ch.intel.com with ESMTP; 14 Jul 2011 17:55:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,532,1304319600"; d="scan'208";a="27439492"
+X-IronPort-AV: E=Sophos;i="4.65,532,1304319600"; d="scan'208";a="27439513"
 Received: from unknown (HELO localhost) ([10.255.14.7])
-	by azsmga001.ch.intel.com with ESMTP; 14 Jul 2011 17:55:52 -0700
+	by azsmga001.ch.intel.com with ESMTP; 14 Jul 2011 17:55:55 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Thu, 14 Jul 2011 19:55:33 -0500
-Message-Id: <6c787e4f9f310d5967e31d3eda8096f687eb6a93.1310689271.git.tom.zanussi@intel.com>
+Date: Thu, 14 Jul 2011 19:55:34 -0500
+Message-Id: <d19d1ae38faf0a3297359ee20ad364a2183fa270.1310689271.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <f69321f9d19943ec1815681e6568524387cfe5c0.1310689271.git.tom.zanussi@intel.com>
 References: <f69321f9d19943ec1815681e6568524387cfe5c0.1310689271.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1310689271.git.tom.zanussi@intel.com>
 References: <cover.1310689271.git.tom.zanussi@intel.com>
-Subject: [PATCH 5/6] meta-jasperforest: use common .inc files
+Subject: [PATCH 6/6] meta-emenlow: use common .inc files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,48 +29,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 00:55:54 -0000
+X-List-Received-Date: Fri, 15 Jul 2011 00:55:56 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Have jasperforest.conf use the common-bsp-* .inc files and remove the
+Have emenlow.conf use the common-bsp-* .inc files and remove the
 open-coded machine settings.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-jasperforest/conf/machine/jasperforest.conf |   22 +++-------------------
- 1 files changed, 3 insertions(+), 19 deletions(-)
+ meta-emenlow/conf/machine/emenlow.conf |   17 ++---------------
+ 1 files changed, 2 insertions(+), 15 deletions(-)
 
-diff --git a/meta-jasperforest/conf/machine/jasperforest.conf b/meta-jasperforest/conf/machine/jasperforest.conf
-index 3f8591a..b603d16 100644
---- a/meta-jasperforest/conf/machine/jasperforest.conf
-+++ b/meta-jasperforest/conf/machine/jasperforest.conf
-@@ -9,18 +9,14 @@ PACKAGE_EXTRA_ARCHS = "x86 xeon"
+diff --git a/meta-emenlow/conf/machine/emenlow.conf b/meta-emenlow/conf/machine/emenlow.conf
+index b0b7d5e..209f029 100644
+--- a/meta-emenlow/conf/machine/emenlow.conf
++++ b/meta-emenlow/conf/machine/emenlow.conf
+@@ -8,15 +8,11 @@ TARGET_ARCH = "i586"
  
- BASE_PACKAGE_ARCH="xeon"
+ include conf/machine/include/tune-atom.inc
  
+-BASE_PACKAGE_ARCH="core2"
+-
 -MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
 -                    acpi serial usbgadget"
-+TARGET_CC_ARCH = "-m64"
- 
+-
 -KERNEL_IMAGETYPE = "bzImage"
 +include ../common/common-bsp-mach.inc
-+include ../common/common-bsp-x.inc
  
  PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
  PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- 
--PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
--PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
--PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xf86-dri-lite"
--PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xf86-dri-lite"
- XSERVER ?= "xserver-xf86-dri-lite \
++
+ PREFERRED_PROVIDER_libdrm = "libdrm-poulsbo"
+ PREFERRED_PROVIDER_drm = "libdrm-poulsbo"
+ PREFERRED_PROVIDER_virtual/libx11 = "libx11-trim"
+@@ -29,12 +25,3 @@ XSERVER ?= "xserver-psb \
             xf86-input-mouse \
             xf86-input-keyboard \
-@@ -28,17 +24,5 @@ XSERVER ?= "xserver-xf86-dri-lite \
-            xf86-input-synaptics \
-            xf86-video-vesa"
- 
+            xf86-input-evdev"
+-
 -SERIAL_CONSOLE = "115200 ttyS0"
 -
 -MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
@@ -79,12 +76,6 @@ index 3f8591a..b603d16 100644
 -
 -GLIBC_ADDONS = "nptl"
 -GLIBC_EXTRA_OECONF = "--with-tls"
--
- MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
- PREFERRED_VERSION_grub ?= "1.98"
--
--TARGET_CC_ARCH = "-m64"
--
 -- 
 1.7.0.4
 
