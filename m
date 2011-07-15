@@ -1,25 +1,16 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8A70C4C800A1
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 22:57:28 -0500 (CDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p6F3vNll029514
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 14 Jul 2011 20:57:23 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.23.38) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Thu, 14 Jul 2011 20:57:23 -0700
-Message-ID: <4E1FBAA2.704@windriver.com>
-Date: Thu, 14 Jul 2011 23:57:22 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
-	rv:1.9.2.18) Gecko/20110616 Thunderbird/3.1.11
-MIME-Version: 1.0
-To: Kumar Gala <galak@kernel.crashing.org>
-References: <04B51588-62E1-4D77-8BB4-5EF0FB3DC73D@kernel.crashing.org>
-In-Reply-To: <04B51588-62E1-4D77-8BB4-5EF0FB3DC73D@kernel.crashing.org>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: toolchain queries
+Return-Path: <galak@kernel.crashing.org>
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 807244C80FAD
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 23:56:58 -0500 (CDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6F4uutm026106
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 23:56:56 -0500
+From: Kumar Gala <galak@kernel.crashing.org>
+To: yocto@yoctoproject.org
+Date: Thu, 14 Jul 2011 23:56:56 -0500
+Message-Id: <1310705816-31653-1-git-send-email-galak@kernel.crashing.org>
+X-Mailer: git-send-email 1.5.6.5
+Subject: [PATCH] mpc8315e-rdb: Set TARGET_FPU correct
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,39 +22,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 03:57:28 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 15 Jul 2011 04:56:59 -0000
 
-On 11-07-14 10:36 PM, Kumar Gala wrote:
-> Where is the best place to ask questions and try and get support for adding some toolchain variations in?
+The MPC8315E has a e300c3 core in it with 'classic' or normal PPC
+floating point.
 
-Here can work, or the oe-core lists.
+'SPE' floating point is what exists on the e500v2 core.
 
->
-> I'm wanting to add support in for a few different flavors of PPC that are not currently supported:
->
-> * e500v2 (gcc needs --enable-e500_double, eglibc
-> * e5500 (64-bit embedded ppc)
+Signed-off-by: Kumar Gala <galak@kernel.crashing.org>
+---
+ meta-yocto/conf/machine/mpc8315e-rdb.conf |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-There are oe and oe-dev references for at least the e500v2
-(that's what I've been working on importing .. slowly), and
-I haven't looked for others yet. So that's a good place to
-look for real world examples.
-
-Once I get a few kernel-3.0 issues sorted out, I'll be back
-to this and could definitely collaborate on these items.
-
-Cheers,
-
-Bruce
-
-> * e5500 - multilib support for 32/64-bit
->
-> - k
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+diff --git a/meta-yocto/conf/machine/mpc8315e-rdb.conf b/meta-yocto/conf/machine/mpc8315e-rdb.conf
+index 095d113..3f946a0 100644
+--- a/meta-yocto/conf/machine/mpc8315e-rdb.conf
++++ b/meta-yocto/conf/machine/mpc8315e-rdb.conf
+@@ -2,7 +2,7 @@
+ #@DESCRIPTION: Machine configuration for running 
+ 
+ TARGET_ARCH = "powerpc"
+-TARGET_FPU = "spe"
++TARGET_FPU = "hard"
+ 
+ require conf/machine/include/tune-ppc603e.inc
+ 
+-- 
+1.7.3.4
 
 
