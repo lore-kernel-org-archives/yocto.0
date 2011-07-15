@@ -1,23 +1,25 @@
-Return-Path: <bruce.ashfield@windriver.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B58884C80FE1
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 00:27:01 -0500 (CDT)
-Received: from yow-bashfiel-l1.corp.ad.wrs.com
-	(dhcp-146-217.ottawa.windriver.com [128.224.146.217])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p6F5QvKL008920;
-	Thu, 14 Jul 2011 22:26:58 -0700 (PDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 7A2594C80FE0
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 00:31:49 -0500 (CDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p6F5VmrY009598
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 14 Jul 2011 22:31:48 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.23.38) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Thu, 14 Jul 2011 22:31:48 -0700
+Message-ID: <4E1FD0C2.6000704@windriver.com>
+Date: Fri, 15 Jul 2011 01:31:46 -0400
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: richard.purdie@linuxfoundation.org
-Date: Fri, 15 Jul 2011 01:26:56 -0400
-Message-Id: <a9d457e0c55b74e9093dd657e66d6d80e201e357.1310707201.git.bruce.ashfield@windriver.com>
-X-Mailer: git-send-email 1.7.4.1
-In-Reply-To: <cover.1310707201.git.bruce.ashfield@windriver.com>
-References: <\>
- <cover.1310707201.git.bruce.ashfield@windriver.com>
-In-Reply-To: <cover.1310707201.git.bruce.ashfield@windriver.com>
-References: <cover.1310707201.git.bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, saul.wold@intel.com
-Subject: [PATCH 1/1] linux-yocto/meta-yocto: update SRCREVS
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US;
+	rv:1.9.2.18) Gecko/20110616 Thunderbird/3.1.11
+MIME-Version: 1.0
+To: Kumar Gala <galak@kernel.crashing.org>
+References: <1310705816-31653-1-git-send-email-galak@kernel.crashing.org>
+In-Reply-To: <1310705816-31653-1-git-send-email-galak@kernel.crashing.org>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] mpc8315e-rdb: Set TARGET_FPU correct
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,51 +31,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 05:27:02 -0000
+X-List-Received-Date: Fri, 15 Jul 2011 05:31:49 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Fixes bug [YOCTO #1161]
-Fixes bug [YOCTO #773]
+On 11-07-15 12:56 AM, Kumar Gala wrote:
+> The MPC8315E has a e300c3 core in it with 'classic' or normal PPC
+> floating point.
+>
+> 'SPE' floating point is what exists on the e500v2 core.
 
-This streamlines the routerstation pro configuration to remove options
-that are either unecessary or that are causing bugs.
+Acked-by: Bruce Ashfield <bruce.ashfield@windriver.com>
 
-Also added to all branches is:
+Been meaning to change this for a while, the good news, is that
+the setting doesn't make any difference at the moment :)
 
-  commit ffd73d6b2a9bfa0de5710b90a2237f4be66ae9a7
-  Author: Yinghai Lu <yinghai@kernel.org>
-  Date:   Thu Jul 14 15:27:44 2011 -0700
+Cheers,
 
-    mm: use alloc_bootmem_node_nopanic() on really needed path
+Bruce
 
-    commit 8f389a99b652aab5b42297280bd94d95933ad12f upstream.
-
-Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
----
- .../linux/linux-yocto_2.6.37.bbappend              |   10 +++++-----
- 1 files changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/meta-yocto/recipes-kernel/linux/linux-yocto_2.6.37.bbappend b/meta-yocto/recipes-kernel/linux/linux-yocto_2.6.37.bbappend
-index b12dcef..ba25c3a 100644
---- a/meta-yocto/recipes-kernel/linux/linux-yocto_2.6.37.bbappend
-+++ b/meta-yocto/recipes-kernel/linux/linux-yocto_2.6.37.bbappend
-@@ -3,11 +3,11 @@ KMACHINE_routerstationpro = "yocto/standard/routerstationpro"
- KMACHINE_mpc8315e-rdb = "yocto/standard/fsl-mpc8315e-rdb"
- KMACHINE_beagleboard = "yocto/standard/beagleboard"
- 
--SRCREV_machine_emenlow = "cc5662b9bec39205074c13f51ac4caba4af0afe7"
--SRCREV_machine_atom-pc = "687233649bbe0ec4ef26c2db4e369fecb1237f6f"
--SRCREV_machine_routerstationpro = "6214197a40b8fcb97dfad5b386d64384ce302b81"
--SRCREV_machine_mpc8315e-rdb = "e79b560f5bb709448d81e51609c0ce72253310fc"
--SRCREV_machine_beagleboard = "83544c00cd60f5842683d4b89a16a832271b599e"
-+SRCREV_machine_emenlow = "398d5adac19cb411cd80753e177769f6a666a7e7"
-+SRCREV_machine_atom-pc = "fce17f046d3756045e4dfb49221d1cf60fcae329"
-+SRCREV_machine_routerstationpro = "8f84c1aec0907766ab6d6ac79fcc3b7b9ce79b70"
-+SRCREV_machine_mpc8315e-rdb = "2c54835ac49cd8abaf294009a00ccc516daa31cd"
-+SRCREV_machine_beagleboard = "3ddb22772862a8223640fa97580569924f51bddc"
- 
- COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
- COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
--- 
-1.7.4.1
+>
+> Signed-off-by: Kumar Gala<galak@kernel.crashing.org>
+> ---
+>   meta-yocto/conf/machine/mpc8315e-rdb.conf |    2 +-
+>   1 files changed, 1 insertions(+), 1 deletions(-)
+>
+> diff --git a/meta-yocto/conf/machine/mpc8315e-rdb.conf b/meta-yocto/conf/machine/mpc8315e-rdb.conf
+> index 095d113..3f946a0 100644
+> --- a/meta-yocto/conf/machine/mpc8315e-rdb.conf
+> +++ b/meta-yocto/conf/machine/mpc8315e-rdb.conf
+> @@ -2,7 +2,7 @@
+>   #@DESCRIPTION: Machine configuration for running
+>
+>   TARGET_ARCH = "powerpc"
+> -TARGET_FPU = "spe"
+> +TARGET_FPU = "hard"
+>
+>   require conf/machine/include/tune-ppc603e.inc
+>
 
 
