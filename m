@@ -1,32 +1,32 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pv0-f176.google.com (mail-pv0-f176.google.com
-	[74.125.83.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id ABBE54C8007E
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 14:29:00 -0500 (CDT)
-Authentication-Results: mx1.pokylinux.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by pve37 with SMTP id 37so2183691pve.35
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 12:29:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=k+YEL49vUT/fneap7b6PS0X3ckykIuIraXLOAKWzv2Q=;
-	b=S3eCUfGwxLVJQvZuuWol42FIAJr2pDyl5BjOTIH3huIYigt4UV2hHOfnYDZvwEe5dD
-	R//47b/qJWBYZptPov05GEHP7Oo+P9+vf1mqDdEYqQvqQwJMTeLP1MeFWH6Veb4CHuM2
-	ijsWFvCvhq8mo4zQ1Mwae5cWUhEw2y3saYKok=
-Received: by 10.68.33.200 with SMTP id t8mr4455580pbi.144.1310758140225; Fri,
-	15 Jul 2011 12:29:00 -0700 (PDT)
+Return-Path: <prvs=6177fe60a2=jmitchell@ll.mit.edu>
+Received: from mx2.ll.mit.edu (MX2.LL.MIT.EDU [129.55.12.46])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 46C7D4C80836
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 14:33:02 -0500 (CDT)
+Received: from LLE2K7-HUB01.mitll.ad.local (LLE2K7-HUB01.mitll.ad.local) by
+	mx2.ll.mit.edu (unknown) with ESMTP id p6FJWauP019463;
+	Fri, 15 Jul 2011 15:32:58 -0400
+Message-ID: <4E2095E4.1080904@ll.mit.edu>
+Date: Fri, 15 Jul 2011 15:32:52 -0400
+From: Jeff Mitchell <jmitchell@ll.mit.edu>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110505 Lightning/1.0b3pre Thunderbird/3.1.10
 MIME-Version: 1.0
-Received: by 10.68.62.36 with HTTP; Fri, 15 Jul 2011 12:28:30 -0700 (PDT)
-In-Reply-To: <04B51588-62E1-4D77-8BB4-5EF0FB3DC73D@kernel.crashing.org>
-References: <04B51588-62E1-4D77-8BB4-5EF0FB3DC73D@kernel.crashing.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 15 Jul 2011 12:28:30 -0700
-Message-ID: <CAMKF1sp701jBJ3zX-bGURsdf0=wOJw3+rjw8sEEM3Gs5NfERUg@mail.gmail.com>
-To: Kumar Gala <galak@kernel.crashing.org>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: toolchain queries
+To: Koen Kooi <koen@dominion.thruhere.net>
+References: <4E205D20.2060106@ll.mit.edu> <4E208803.3050306@linux.intel.com>
+	<596D642B-8887-4A7B-8FEB-E9830351EABC@dominion.thruhere.net>
+In-Reply-To: <596D642B-8887-4A7B-8FEB-E9830351EABC@dominion.thruhere.net>
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.4.6813, 1.0.211,
+	0.0.0000
+	definitions=2011-07-15_06:2011-07-15, 2011-07-15,
+	1970-01-01 signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+	ipscore=0 suspectscore=2
+	phishscore=0 bulkscore=0 adultscore=0 classifier=spam adjust=0
+	reason=mlx
+	scancount=1 engine=6.0.2-1012030000 definitions=main-1107150161
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: Color ghosting on BeagleBoard xM rev C
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,35 +38,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 19:29:01 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 15 Jul 2011 19:33:02 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jul 14, 2011 at 7:36 PM, Kumar Gala <galak@kernel.crashing.org> wrote:
-> Where is the best place to ask questions and try and get support for adding some toolchain variations in?
+On 07/15/2011 03:12 PM, Koen Kooi wrote:
 >
-> I'm wanting to add support in for a few different flavors of PPC that are not currently supported:
+> Op 15 jul 2011, om 20:33 heeft Darren Hart het volgende geschreven:
 >
-> * e500v2 (gcc needs --enable-e500_double, eglibc
-
-this means ABI change especially due to double formats. This should be
-doable in machine.conf
-files or tune files.
-
-> * e5500 (64-bit embedded ppc)
-
-this is new I guess. Its like adding a new arch to OE. See around
-http://lists.linuxtogo.org/pipermail/openembedded-devel/2010-September/024661.html
-is roughly what can be helpful in getting ppc64 going
-
-> * e5500 - multilib support for 32/64-bit
-
-there is some thought and work RP has been doing on multilib.
-
+>> Jason, Koen,
+>>
+>> Does anything spring to mind as an obvious fix for this? Perhaps
+>> some kernel parameter initialization string for the graphics
+>> hardware?
 >
-> - k
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+> I've never seen it in angstrom, so you'd have to see what meta-yocto
+> is doing different. In other news, for beagleboard please use the
+> meta-ti layer for that, it's the offcial upstream for beagle and is
+> known to work.
+
+I'm not using meta-ti because I'm working with Darren to test out 
+support for the rev C board in meta-yocto. We just don't know what 
+difference is causing this  :-)
+
+--Jeff
 
