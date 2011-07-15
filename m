@@ -1,25 +1,30 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B02964C8007E
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 08:56:41 -0500 (CDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p6FDuc0U019395
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 15 Jul 2011 06:56:38 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 15 Jul 2011 06:56:38 -0700
-Message-ID: <4E204714.6030107@windriver.com>
-Date: Fri, 15 Jul 2011 09:56:36 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110516 Thunderbird/3.1.10 ThunderBrowse/3.3.5
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by mx1.pokylinux.org (Postfix) with ESMTP id B01314C8007E
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 09:15:08 -0500 (CDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1QhjAa-00074Q-2h
+	for yocto@yoctoproject.org; Fri, 15 Jul 2011 10:15:08 -0400
+Date: Fri, 15 Jul 2011 10:15:02 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1107151010270.1923@localhost6.localdomain6>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: Darren Hart <darren@dvhart.com>
-References: <cover.1310682167.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1310682167.git.dvhart@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/1][linux-yocto] Fix boot failure with less than 17 MB RAM
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: couple questions about toolchains from QS manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,41 +36,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 13:56:41 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 15 Jul 2011 14:15:08 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On 07/14/11 18:27, Darren Hart wrote:
-> From: Darren Hart<dvhart@linux.intel.com>
->
-> The following patch from mainline addresses an issues that prevented my
-> qemu testing from booting in less than 17M of memory. With this page,
-> the kernel can boot to init in 8M of memory.
->
-> Apply to yocto/standard/base
->
-> The following changes since commit bb8e31f2c99f5e007660d4540df246fb7ecfa746:
->
->    USB: ehci: remove structure packing from ehci_def (2011-06-22 14:23:26 -0400)
->
-> are available in the git repository at:
->    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib dvhart/mm
->    http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=dvhart/mm
 
-This has been merged and pushed to the kernel repos,
-the SRCREV updates are pending.
+  (look on the bright side -- eventually, after many, many patches, i
+will have nothing left to whine about.)
 
-Cheers,
+  from quick start manual, i notice that all toolchain tarballs have
+"sdk" in the filename, whereas the actual downloads have "gmae".  a
+simple textual fix, i'm assuming.  (what means "gmae"?)
 
-Bruce
+  more significantly, QS manual states that toolchains "should" be
+installed under /opt/poky.  "should" is a loaded word -- it implies a
+recommendation for some benefit but not an actual requirement.  and
+installing it there requires the reader to have root privilege,
+something to be avoided if at all possible.
 
->
-> Yinghai Lu (1):
->    mm: use alloc_bootmem_node_nopanic() on really needed path
->
->   include/linux/bootmem.h |    2 ++
->   mm/page_alloc.c         |    7 ++++---
->   2 files changed, 6 insertions(+), 3 deletions(-)
->
+  can someone clarify the "shouldness" or "mustness" of toolchain
+installation under /opt/poky?
 
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
