@@ -1,25 +1,32 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 77E794C800C1
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 14:12:44 -0500 (CDT)
-Received: by wwf4 with SMTP id 4so1496922wwf.11
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 12:12:43 -0700 (PDT)
-Received: by 10.227.58.65 with SMTP id f1mr3483058wbh.3.1310757162772;
-	Fri, 15 Jul 2011 12:12:42 -0700 (PDT)
-Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl [84.80.112.235])
-	by mx.google.com with ESMTPS id eo18sm1296612wbb.12.2011.07.15.12.12.40
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 15 Jul 2011 12:12:41 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1084)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <4E208803.3050306@linux.intel.com>
-Date: Fri, 15 Jul 2011 21:12:35 +0200
-Message-Id: <596D642B-8887-4A7B-8FEB-E9830351EABC@dominion.thruhere.net>
-References: <4E205D20.2060106@ll.mit.edu> <4E208803.3050306@linux.intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-X-Mailer: Apple Mail (2.1084)
-Cc: yocto@yoctoproject.org
-Subject: Re: Color ghosting on BeagleBoard xM rev C
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pv0-f176.google.com (mail-pv0-f176.google.com
+	[74.125.83.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id ABBE54C8007E
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 14:29:00 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by pve37 with SMTP id 37so2183691pve.35
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 12:29:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=k+YEL49vUT/fneap7b6PS0X3ckykIuIraXLOAKWzv2Q=;
+	b=S3eCUfGwxLVJQvZuuWol42FIAJr2pDyl5BjOTIH3huIYigt4UV2hHOfnYDZvwEe5dD
+	R//47b/qJWBYZptPov05GEHP7Oo+P9+vf1mqDdEYqQvqQwJMTeLP1MeFWH6Veb4CHuM2
+	ijsWFvCvhq8mo4zQ1Mwae5cWUhEw2y3saYKok=
+Received: by 10.68.33.200 with SMTP id t8mr4455580pbi.144.1310758140225; Fri,
+	15 Jul 2011 12:29:00 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.68.62.36 with HTTP; Fri, 15 Jul 2011 12:28:30 -0700 (PDT)
+In-Reply-To: <04B51588-62E1-4D77-8BB4-5EF0FB3DC73D@kernel.crashing.org>
+References: <04B51588-62E1-4D77-8BB4-5EF0FB3DC73D@kernel.crashing.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 15 Jul 2011 12:28:30 -0700
+Message-ID: <CAMKF1sp701jBJ3zX-bGURsdf0=wOJw3+rjw8sEEM3Gs5NfERUg@mail.gmail.com>
+To: Kumar Gala <galak@kernel.crashing.org>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: toolchain queries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,57 +38,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 19:12:45 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 15 Jul 2011 19:29:01 -0000
+Content-Type: text/plain; charset=UTF-8
 
+On Thu, Jul 14, 2011 at 7:36 PM, Kumar Gala <galak@kernel.crashing.org> wrote:
+> Where is the best place to ask questions and try and get support for adding some toolchain variations in?
+>
+> I'm wanting to add support in for a few different flavors of PPC that are not currently supported:
+>
+> * e500v2 (gcc needs --enable-e500_double, eglibc
 
-Op 15 jul 2011, om 20:33 heeft Darren Hart het volgende geschreven:
+this means ABI change especially due to double formats. This should be
+doable in machine.conf
+files or tune files.
 
-> Jason, Koen,
->=20
-> Does anything spring to mind as an obvious fix for this? Perhaps some
-> kernel parameter initialization string for the graphics hardware?
+> * e5500 (64-bit embedded ppc)
 
-I've never seen it in angstrom, so you'd have to see what meta-yocto is =
-doing different. In other news, for beagleboard please use the meta-ti =
-layer for that, it's the offcial upstream for beagle and is known to =
-work.
+this is new I guess. Its like adding a new arch to OE. See around
+http://lists.linuxtogo.org/pipermail/openembedded-devel/2010-September/024661.html
+is roughly what can be helpful in getting ppc64 going
 
->=20
-> --
-> Darren
->=20
-> On 07/15/2011 08:30 AM, Jeff Mitchell wrote:
->> Darren Hart suggested I send this to the list...
->>=20
->> Attached is a picture of my screen running Terminal. This is on a=20
->> BeagleBoard xM rev C connected via its HDMI out to a DVI adapter and=20=
+> * e5500 - multilib support for 32/64-bit
 
->> then into a Dell UltraSharp monitor. Angstrom doesn't display these=20=
+there is some thought and work RP has been doing on multilib.
 
->> problems, so the setup should be fine.
->>=20
->> I'm not quite sure what is causing this. The resolution is also =
-fairly=20
->> low, and I haven't had any success using boot parameters (either the=20=
-
->> older video=3Domapfb:mode variant or the newer DSS2 omapfb.mode =
-variant).
->>=20
->> Thanks,
->> Jeff
->>=20
->>=20
->>=20
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->=20
-> --=20
-> Darren Hart
-> Intel Open Source Technology Center
-> Yocto Project - Linux Kernel
-
+>
+> - k
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
