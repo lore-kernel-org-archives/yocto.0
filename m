@@ -1,18 +1,21 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 383934C8007E
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 09:47:18 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id DB7EA4C800C1
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 09:48:18 -0500 (CDT)
 Received: from [128.224.252.2] (helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
 	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Qhjfh-0000qh-C8
-	for yocto@yoctoproject.org; Fri, 15 Jul 2011 10:47:17 -0400
-Date: Fri, 15 Jul 2011 10:47:10 -0400 (EDT)
+	id 1Qhjge-0000x7-KK; Fri, 15 Jul 2011 10:48:16 -0400
+Date: Fri, 15 Jul 2011 10:48:10 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@localhost6.localdomain6
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1107151045290.9956@localhost6.localdomain6>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123790316DF@ORSMSX101.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1107151047540.15444@localhost6.localdomain6>
+References: <alpine.DEB.2.02.1107151010270.1923@localhost6.localdomain6>
+	<1310739913.20015.1243.camel@rex>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123790316DF@ORSMSX101.amr.corp.intel.com>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -24,7 +27,8 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: [PATCH] DOCS: Fix toolchain filenames in QS guide, "sdk" -> "gmae"
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: couple questions about toolchains from QS manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,59 +40,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 14:47:18 -0000
+X-List-Received-Date: Fri, 15 Jul 2011 14:48:19 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
+On Fri, 15 Jul 2011, Rifenbark, Scott M wrote:
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+> Wording change taken care of.
+>
+> Scott
 
----
-
-  i think i got them all, i didn't see any other references anywhere
-in the docs directory.  does this look right?
-
-
-diff --git a/documentation/yocto-project-qs/yocto-project-qs.xml b/documentation/yocto-project-qs/yocto-project-qs.xml
-index 52f7391..62c95ae 100644
---- a/documentation/yocto-project-qs/yocto-project-qs.xml
-+++ b/documentation/yocto-project-qs/yocto-project-qs.xml
-@@ -425,7 +425,7 @@
-          </para>
-
-          <literallayout class='monospaced'>
--     yocto-eglibc&lt;<emphasis>host_system</emphasis>&gt;-&lt;<emphasis>arch</emphasis>&gt;-toolchain-sdk-&lt;<emphasis>release</emphasis>&gt;.tar.bz2
-+     yocto-eglibc&lt;<emphasis>host_system</emphasis>&gt;-&lt;<emphasis>arch</emphasis>&gt;-toolchain-gmae-&lt;<emphasis>release</emphasis>&gt;.tar.bz2
-
-      Where:
-          &lt;<emphasis>host_system</emphasis>&gt; is a string representing your development system:
-@@ -443,7 +443,7 @@
-          </para>
-
-          <literallayout class='monospaced'>
--     yocto-eglibc-x86_64-i686-toolchain-sdk-1.0.tar.bz2
-+     yocto-eglibc-x86_64-i686-toolchain-gmae-1.0.tar.bz2
-          </literallayout>
-
-          <para>
-@@ -455,7 +455,7 @@
-          <para>
-              <literallayout class='monospaced'>
-      $ cd /
--     $ sudo tar -xvjf yocto-eglibc-x86_64-i686-toolchain-sdk-1.0.tar.bz2
-+     $ sudo tar -xvjf yocto-eglibc-x86_64-i686-toolchain-gmae-1.0.tar.bz2
-              </literallayout>
-          </para>
-          </section>
+  ok, i can cross that off my list, thanks.
 
 rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
