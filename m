@@ -1,25 +1,33 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 62F2D4C8007E
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 13:39:53 -0500 (CDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 15 Jul 2011 11:39:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,209,1309762800"; d="scan'208";a="28180180"
-Received: from unknown (HELO [10.255.14.29]) ([10.255.14.29])
-	by orsmga001.jf.intel.com with ESMTP; 15 Jul 2011 11:39:52 -0700
-Message-ID: <4E208976.7090502@linux.intel.com>
-Date: Fri, 15 Jul 2011 11:39:50 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110424 Lightning/1.0b2 Thunderbird/3.1.10
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C93834C800C1
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 14:12:21 -0500 (CDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1QhnoC-0004I1-PU; Fri, 15 Jul 2011 15:12:21 -0400
+Date: Fri, 15 Jul 2011 15:12:14 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4E208580.3030505@linux.intel.com>
+Message-ID: <alpine.DEB.2.02.1107151454310.9651@localhost6.localdomain6>
+References: <alpine.DEB.2.02.1107141957320.4687@localhost6.localdomain6>
+	<4E208580.3030505@linux.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: Scott Garman <scott.a.garman@intel.com>
-References: <alpine.DEB.2.02.1107151010270.1923@localhost6.localdomain6>
-	<4E2070F6.5070303@intel.com>
-In-Reply-To: <4E2070F6.5070303@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: couple questions about toolchains from QS manual
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: the proper way to report bitbake fetch errors?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,29 +39,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 18:39:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 15 Jul 2011 19:12:22 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
+On Fri, 15 Jul 2011, Darren Hart wrote:
 
+> On 07/14/2011 05:01 PM, Robert P. J. Day wrote:
+> >
+> >   just so i'm doing this the right way, what is the appropriate way to
+> > report bitbake fetch errors?  with a fully-updated git repo, i just
+> > ran:
+> >
+> >  $ bitbake -c fetchall -k core-image-sato
+> >
+> > and got fetch errors for both of:
+> >
+> >   * sat-solver
+> >   * linux-libc-headers
+> >
+> > should i post the more detailed output of the command?  the contents
+> > of the log files?  etc, etc.
+>
+> I would check the log files and verify it isn't a local network issue.
+> After that, sharing the relevant bits of the log.do_fetch logs for the
+> failed recipes is a good way to report them.
 
-On 07/15/2011 09:55 AM, Scott Garman wrote:
-> On 07/15/2011 07:15 AM, Robert P. J. Day wrote:
->>
->>    (look on the bright side -- eventually, after many, many patches, i
->> will have nothing left to whine about.)
-> 
-> :)
-> 
-> I know I can speak for the team in saying we're incredibly grateful for 
-> your help in combing through our documentation. This is a great 
-> contribution to the project.
+  ok, i'm still getting a fetch error for "sat-solver" when trying to
+do a fetchall for core-image-sato, and here's the log file:
 
-Agreed - thanks Robert!
+fatal: Not a git repository (or any of the parent directories): .git
+ fatal: Not a git repository (or any of the parent directories): .git
+ERROR: Function 'Fetcher failure for URL:
+'git://gitorious.org/opensuse/sat-solver.git;protocol=git'. Unable to
+fetch URL git://gitorious.org/opensuse/sat-solver.git;protocol=git
+from any source.' failed
 
+  except that git repo looks fine, no?
+
+http://gitorious.org/opensuse/sat-solver
+
+rday
 
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
