@@ -1,21 +1,19 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 5738C4C80FC6
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8A7A34C80FC6
 	for <yocto@yoctoproject.org>; Thu, 14 Jul 2011 19:55:57 -0500 (CDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
 	by fmsmga101.fm.intel.com with ESMTP; 14 Jul 2011 17:55:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.65,532,1304319600"; d="scan'208";a="30520857"
+X-IronPort-AV: E=Sophos;i="4.65,532,1304319600"; d="scan'208";a="30520850"
 Received: from unknown (HELO localhost) ([10.255.14.7])
-	by fmsmga001.fm.intel.com with ESMTP; 14 Jul 2011 17:55:41 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 14 Jul 2011 17:55:39 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Thu, 14 Jul 2011 19:55:29 -0500
-Message-Id: <f69321f9d19943ec1815681e6568524387cfe5c0.1310689271.git.tom.zanussi@intel.com>
+Date: Thu, 14 Jul 2011 19:55:28 -0500
+Message-Id: <cover.1310689271.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1310689271.git.tom.zanussi@intel.com>
-References: <cover.1310689271.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/6] meta-intel: add a couple common .inc files
+Subject: [PATCH 0/6] factor out some common meta-intel settings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,47 +29,45 @@ X-List-Received-Date: Fri, 15 Jul 2011 00:55:57 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-The meta-intel BSPs currently have a number of machine settings common
-to all - factor these out into a couple common include files.
+The meta-intel BSPs have some common settings - this just moves
+them out int separate .inc files to simplify them and ease
+maintenance.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- common/common-bsp-mach.inc |   13 +++++++++++++
- common/common-bsp-x.inc    |    4 ++++
- 2 files changed, 17 insertions(+), 0 deletions(-)
+I compiled and boot-tested into graphics using sato-live images
+for each, with the exception of fishriver (I accidentally pulled
+out a cable so can't boot into graphics at the moment) and
+crownbay-noemgd (same as crownbay, pretty much).
+
+I also didn't touch n450, since it's already factored out and
+simplified.
+
+The following changes since commit 92fc07a5f1b98779806cdcc2341487ff5ea5a238:
+  Dexuan Cui (1):
+        emenlow: fix some .bbappend files' name: poky -> core, etc.
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-intel.git tzanussi/mach-cleanup
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/mach-cleanup
+
+Tom Zanussi (6):
+  meta-intel: add a couple common .inc files
+  meta-sugarbay: use common .inc files
+  meta-crownbay: use common .inc files
+  meta-fishriver: use common .inc files
+  meta-jasperforest: use common .inc files
+  meta-emenlow: use common .inc files
+
+ common/common-bsp-mach.inc                       |   13 +++++++++++++
+ common/common-bsp-x.inc                          |    4 ++++
+ meta-crownbay/conf/machine/crownbay-noemgd.conf  |   19 ++-----------------
+ meta-crownbay/conf/machine/crownbay.conf         |   19 ++-----------------
+ meta-emenlow/conf/machine/emenlow.conf           |   17 ++---------------
+ meta-fishriver/conf/machine/fishriver.conf       |   20 +++-----------------
+ meta-jasperforest/conf/machine/jasperforest.conf |   22 +++-------------------
+ meta-sugarbay/conf/machine/sugarbay.conf         |   22 +++-------------------
+ 8 files changed, 32 insertions(+), 104 deletions(-)
  create mode 100644 common/common-bsp-mach.inc
  create mode 100644 common/common-bsp-x.inc
-
-diff --git a/common/common-bsp-mach.inc b/common/common-bsp-mach.inc
-new file mode 100644
-index 0000000..b020a84
---- /dev/null
-+++ b/common/common-bsp-mach.inc
-@@ -0,0 +1,13 @@
-+MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
-+                    acpi serial usbgadget"
-+
-+KERNEL_IMAGETYPE = "bzImage"
-+
-+SERIAL_CONSOLE = "115200 ttyS0"
-+
-+MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
-+
-+IMAGE_FSTYPES ?= "ext3 cpio.gz"
-+
-+GLIBC_ADDONS = "nptl"
-+GLIBC_EXTRA_OECONF = "--with-tls"
-diff --git a/common/common-bsp-x.inc b/common/common-bsp-x.inc
-new file mode 100644
-index 0000000..c012efd
---- /dev/null
-+++ b/common/common-bsp-x.inc
-@@ -0,0 +1,4 @@
-+PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
-+PREFERRED_PROVIDER_virtual/libgl ?= "mesa-dri"
-+PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xf86-dri-lite"
-+PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xf86-dri-lite"
--- 
-1.7.0.4
 
 
