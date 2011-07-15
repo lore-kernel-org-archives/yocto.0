@@ -1,18 +1,18 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 46EA64C80A8F
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 07:04:22 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id BF5164C80A8F
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 07:20:57 -0500 (CDT)
 Received: from [128.224.252.2] (helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
 	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Qhh81-0006au-6H
-	for yocto@yoctoproject.org; Fri, 15 Jul 2011 08:04:21 -0400
-Date: Fri, 15 Jul 2011 08:04:15 -0400 (EDT)
+	id 1QhhO4-0007Up-Ns
+	for yocto@yoctoproject.org; Fri, 15 Jul 2011 08:20:56 -0400
+Date: Fri, 15 Jul 2011 08:20:52 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@localhost6.localdomain6
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1107150803080.4879@localhost6.localdomain6>
+Message-ID: <alpine.DEB.2.02.1107150819450.24156@localhost6.localdomain6>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -24,7 +24,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: [PATCH] DOCS: Fix spelling error in link to Fedora sudo page.
+Subject: [PATCH] DOCS: Correct format of command continuation.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,7 +36,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2011 12:04:22 -0000
+X-List-Received-Date: Fri, 15 Jul 2011 12:20:57 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
@@ -44,19 +44,25 @@ Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
 ---
 
+  i *think* this is what the author had in mind.
+
 diff --git a/documentation/yocto-project-qs/yocto-project-qs.xml b/documentation/yocto-project-qs/yocto-project-qs.xml
-index 52f7391..c0ba207 100644
+index 52f7391..d2e85ba 100644
 --- a/documentation/yocto-project-qs/yocto-project-qs.xml
 +++ b/documentation/yocto-project-qs/yocto-project-qs.xml
-@@ -180,7 +180,7 @@
-         <note><para>
-             If you are using a Fedora version prior to version 15 you will need to take some
-             extra steps to enable <filename>sudo</filename>.
--            See <ulink url='https://fedoraproject.org/wiki/Configureing_Sudo'></ulink> for details.
-+            See <ulink url='https://fedoraproject.org/wiki/Configuring_Sudo'></ulink> for details.
-         </para></note>
+@@ -213,9 +213,9 @@
+             </literallayout>
 
-         <para>
+             <literallayout class='monospaced'>
+-     $ sudo zypper install python gcc gcc-c++ libtool
+-     $ subversion git chrpath automake
+-     $ help2man diffstat texinfo mercurial wget
++     $ sudo zypper install python gcc gcc-c++ libtool \
++     subversion git chrpath automake \
++     help2man diffstat texinfo mercurial wget
+             </literallayout>
+
+     </section>
 
 -- 
 
