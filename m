@@ -1,34 +1,23 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <josh@linux.intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 96D454C8007E
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 19:03:54 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id D277A4C800C1
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2011 19:10:31 -0500 (CDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 15 Jul 2011 17:03:53 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 15 Jul 2011 17:10:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,211,1309762800"; d="scan'208";a="28615309"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga002.fm.intel.com with ESMTP; 15 Jul 2011 17:03:53 -0700
-Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 15 Jul 2011 17:03:52 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.138]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.12]) with mapi id
-	14.01.0289.001; Fri, 15 Jul 2011 17:03:51 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] last observations about quick start guide, then moving on
-Thread-Index: AQHMQxISoqfv7XfLB0Ct+cI8ZhuIa5TuEWiQ
-Date: Sat, 16 Jul 2011 00:03:50 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB12379031B3D@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1107151302020.8631@localhost6.localdomain6>
-In-Reply-To: <alpine.DEB.2.02.1107151302020.8631@localhost6.localdomain6>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.9.131.214]
-MIME-Version: 1.0
-Subject: Re: last observations about quick start guide, then moving on
+X-IronPort-AV: E=Sophos;i="4.67,211,1309762800"; d="scan'208";a="28617273"
+Received: from unknown (HELO [10.255.14.32]) ([10.255.14.32])
+	by fmsmga002.fm.intel.com with ESMTP; 15 Jul 2011 17:10:31 -0700
+From: Joshua Lock <josh@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 15 Jul 2011 17:10:26 -0700
+In-Reply-To: <888DA70AE496A645A106B23AEC7F2A99B465F1B7@irsmsx505.ger.corp.intel.com>
+References: <888DA70AE496A645A106B23AEC7F2A99B465F1B7@irsmsx505.ger.corp.intel.com>
+X-Mailer: Evolution 3.0.2 (3.0.2-3.fc15) 
+Message-ID: <1310775031.2309.16.camel@scimitar>
+Mime-Version: 1.0
+Cc: mark.d.gray@intel.com
+Subject: Re: yocto build fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,63 +29,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Jul 2011 00:03:54 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 16 Jul 2011 00:10:32 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Robert,=20
+On Fri, 2011-07-15 at 11:44 +0100, Gray, Mark D wrote:
+> I have been trying to build on Ubuntu 11.0.4. I think I have followed
+> the online documentation correctly. I have also followed the wiki
+> page, which is required for me, to set up the proxy servers. However,
+> the build is still failing for me. This is for Bernard-5.0.1. I get
+> the following message
+<snip>
+> | NOTE: fetch
+> http://autobuilder.yoctoproject.org/sources/git2_git.pokylinux.org.linux-yocto-2.6.37.tar.gz
+> 
+> | Cloning into bare
+> repository /home/green/mdgray/yocto/poky-5.0.1-build/downloads/git2/git.pokylinux.org.linux-yocto-2.6.37...
+> 
+> |  nc: read failed (0/3): Broken pipe
 
-These are handled.
-
-Thanks again.
-
-ScottR
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Robert P. J. Day
-Sent: Friday, July 15, 2011 10:10 AM
-To: Yocto discussion list
-Subject: [yocto] last observations about quick start guide, then moving on
+This would lead me to make a guess at your proxy settings not being
+configured correctly for git with nc.
 
 
-1)  "This optional GNOME mobile-based UI, which is intended for
-     devices with resolution but restricted size screens ..."
+> On closer inspection, the file
+> http://autobuilder.yoctoproject.org/sources/git2_git.pokylinux.org.linux-yocto-2.6.37.tar.gz is unavailable in the repo. I did a search and I could only find http://autobuilder.yoctoproject.org/sources/git2_git.pokylinux.org.linux-yocto-2.6.37.tar.gz.bad
+> 
 
-     pretty sure there's a word missing before "resolution," no?
+Looks like we have a bad mirrored tarball. :-/
 
-2)  "OpenSUSE" vs "OpenSuse" ... actually, both of those are wrong,
-    it should be "openSUSE". :-P
+Cheers,
+Joshua
+-- 
+Joshua Lock
+        Yocto Project "Johannes factotum"
+        Intel Open Source Technology Centre
 
-3)  near bottom, sample command:
-
-    poky-qemu qemux86 zImage-2.6.34-qemux86-1.0.bin \
-       yocto-image-sdk-qemux86-1.0.rootfs.ext3
-
-    neither that kernel image nor rootfs are in downloads, should
-    pick args that exist if that matters
-
-  i'll let scott do with that what he will, and move on to manhandle
-the poky handbook. :-)
-
-rday
-
---=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
