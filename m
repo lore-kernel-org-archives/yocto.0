@@ -1,26 +1,22 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-wy0-f176.google.com (mail-wy0-f176.google.com
-	[74.125.82.176])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 573294C80A8A
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 02:44:52 -0500 (CDT)
-Received: by wyg34 with SMTP id 34so2620885wyg.35
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 00:44:51 -0700 (PDT)
-Received: by 10.227.53.210 with SMTP id n18mr2126486wbg.63.1311061491067;
-	Tue, 19 Jul 2011 00:44:51 -0700 (PDT)
-Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl [84.80.112.235])
-	by mx.google.com with ESMTPS id 20sm4114840wbw.2.2011.07.19.00.44.49
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 19 Jul 2011 00:44:50 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1084)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <1311052872-10569-1-git-send-email-galak@kernel.crashing.org>
-Date: Tue, 19 Jul 2011 09:44:44 +0200
-Message-Id: <AB1A5241-0B13-4DFF-A453-BECBB1ADD408@dominion.thruhere.net>
-References: <1311052872-10569-1-git-send-email-galak@kernel.crashing.org>
-To: Kumar Gala <galak@kernel.crashing.org>
-X-Mailer: Apple Mail (2.1084)
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/5] Add support for PowerPC e500v2/SPE
+Return-Path: <andre@bitwigglers.org>
+Received: from moutng.kundenserver.de (moutng.kundenserver.de [212.227.17.10])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 5DBFB4C80A8A
+	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 05:16:16 -0500 (CDT)
+Received: from localhost.localdomain ([145.253.109.106])
+	by mrelayeu.kundenserver.de (node=mreu0) with ESMTP (Nemesis)
+	id 0LiGlL-1RELYf3fbn-00n258; Tue, 19 Jul 2011 12:16:15 +0200
+Date: Tue, 19 Jul 2011 12:15:47 +0200
+From: Andre Haupt <andre@bitwigglers.org>
+To: yocto@yoctoproject.org
+Message-ID: <20110719101547.GA18149@localhost.localdomain>
+MIME-Version: 1.0
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Provags-ID: V02:K0:GEDuOyn1hvSoEDaEivO5lJjAqNglW/fQBy8WeSMdhzM
+	ZYTCEQF8rZ4Ssl1iYrkFWg0mdVoUG+dX3kPNo9QXPwD7XIer8p
+	EM3qoQ4NyVoDPPse/V/58w0FegI8NqieI+qmgPJftGvq5zn5Uu
+	GxedCT+0SIMdsb2G242zpDn28JsZQEvvc+7AV61aQggPqnfbTm
+	JJhzcwIFpc00dDkVuqrwPssDGzwcAOsJiNl2P7djxk=
+Subject: building crownbay images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,22 +28,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jul 2011 07:44:53 -0000
+X-List-Received-Date: Tue, 19 Jul 2011 10:16:17 -0000
 Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
+Hi all,
 
-Op 19 jul 2011, om 07:21 heeft Kumar Gala het volgende geschreven:
+I am new to Yocto and to Distro work in general.
 
-> The majority of support for the PowerPC e500v2/SPE target already
-> exists.  However some minor cleans are required to get things working
-> completely.
->=20
-> The e500v2 utilizes a unique floating point programming model / ABI =
-from
-> other PowerPC targets and thus requires special handling.
+I want to use Yocto on the Kontron nanoETXexpressTT boards.
+(http://de.kontron.com/products/computeronmodules/com+express/com+express+ultra/nanoetxexpresstt.html)
 
+These boards are based on the Intel Atom E6xx and the EG20T platform
+controller hub, so i think it is a good idea to start with the crownbay
+BSP.
 
-These should be sent to the oe-core list against the oe-core tree, not =
-the poky list against the poky tree=
+What would be the best, known to work, way to produce crownbay-noemgd images
+for poky bernard?
+Should i use git? Which branches should i use (the docs are contraditing
+at least in parts)?
+
+I read somewhere, that i should install Yocto to /usr/local/src/yocto.
+Is this really necessary?
+
+Thanks for any hints.
+
+regards,
+
+Andre
+
 
