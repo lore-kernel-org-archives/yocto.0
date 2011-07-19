@@ -1,22 +1,32 @@
-Return-Path: <galak@kernel.crashing.org>
-Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 9B8794C80A8A
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 00:21:18 -0500 (CDT)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6J5LHFL028586
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 00:21:17 -0500
-From: Kumar Gala <galak@kernel.crashing.org>
-To: yocto@yoctoproject.org
-Date: Tue, 19 Jul 2011 00:21:12 -0500
-Message-Id: <1311052872-10569-6-git-send-email-galak@kernel.crashing.org>
-X-Mailer: git-send-email 1.5.6.5
-In-Reply-To: <1311052872-10569-5-git-send-email-galak@kernel.crashing.org>
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pz0-f46.google.com (mail-pz0-f46.google.com
+	[209.85.210.46])
+	by mx1.pokylinux.org (Postfix) with ESMTP id A3C344C80579
+	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 01:01:17 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by pzk3 with SMTP id 3so4788711pzk.33
+	for <yocto@yoctoproject.org>; Mon, 18 Jul 2011 23:01:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=XKbQI524kxu2aWJIFCqaow17Poccjr0J50yZ6suzsTc=;
+	b=mi8poOtLWgbC2p8luHrtC5SSzKyuC/JJpubHJOTjgqiWKspJbgSI+zlHVHu3ClYheh
+	YlwJTY8Rk6uzOZu2UjbkAOcLEtXh/bEcy85vbwId02+yLu2y/xJIuhJZuZWx/Bvdd9l8
+	G3Ftrw4mEisHvLb1A+Pb1+eeccilp8khGPNv0=
+Received: by 10.68.29.200 with SMTP id m8mr610043pbh.278.1311055277062; Mon,
+	18 Jul 2011 23:01:17 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.68.62.36 with HTTP; Mon, 18 Jul 2011 23:00:47 -0700 (PDT)
+In-Reply-To: <1311052872-10569-1-git-send-email-galak@kernel.crashing.org>
 References: <1311052872-10569-1-git-send-email-galak@kernel.crashing.org>
-	<1311052872-10569-2-git-send-email-galak@kernel.crashing.org>
-	<1311052872-10569-3-git-send-email-galak@kernel.crashing.org>
-	<1311052872-10569-4-git-send-email-galak@kernel.crashing.org>
-	<1311052872-10569-5-git-send-email-galak@kernel.crashing.org>
-Subject: [PATCH 5/5] flac: fix build issues with e500v2 (gnuspe) toolchain
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 18 Jul 2011 23:00:47 -0700
+Message-ID: <CAMKF1soiord+ynt4Hy4tpG-hTd9qTaA-PGUPM1H4mp5RnUujCg@mail.gmail.com>
+To: Kumar Gala <galak@kernel.crashing.org>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/5] Add support for PowerPC e500v2/SPE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,129 +38,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jul 2011 05:21:18 -0000
+X-List-Received-Date: Tue, 19 Jul 2011 06:01:18 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-For a PPC target flac will try to build with altivec optimizations.
-Altivec and SPE are mutually exclusive options.  Between flac's
-configure choices and the ppce500v2 tune file options we'd end up with
-a compile invocation with the following arguments:
+On Mon, Jul 18, 2011 at 10:21 PM, Kumar Gala <galak@kernel.crashing.org> wr=
+ote:
+> The majority of support for the PowerPC e500v2/SPE target already
+> exists. =C2=A0However some minor cleans are required to get things workin=
+g
+> completely.
+>
+> The e500v2 utilizes a unique floating point programming model / ABI from
+> other PowerPC targets and thus requires special handling.
 
--mabi=spe -mspe -mabi=altivec -maltivec
+Hi Kumar
 
-Which would cause the compile to fail due to the mutual exclusion.
+Thanks for the patches
 
-Pulled in a patch from the debian SPE port that addresses this issue:
+all these patches should be CCed to
+openembedded-core@lists.openembedded.org as well
 
-http://lists.alioth.debian.org/pipermail/pkg-multimedia-maintainers/2010-June/010212.html
-
-Signed-off-by: Kumar Gala <galak@kernel.crashing.org>
----
- .../flac/flac-1.2.1/0001-No-AltiVec-on-SPE.patch   |   74 ++++++++++++++++++++
- meta/recipes-multimedia/flac/flac_1.2.1.bb         |    5 +-
- 2 files changed, 77 insertions(+), 2 deletions(-)
- create mode 100644 meta/recipes-multimedia/flac/flac-1.2.1/0001-No-AltiVec-on-SPE.patch
-
-diff --git a/meta/recipes-multimedia/flac/flac-1.2.1/0001-No-AltiVec-on-SPE.patch b/meta/recipes-multimedia/flac/flac-1.2.1/0001-No-AltiVec-on-SPE.patch
-new file mode 100644
-index 0000000..8626336
---- /dev/null
-+++ b/meta/recipes-multimedia/flac/flac-1.2.1/0001-No-AltiVec-on-SPE.patch
-@@ -0,0 +1,74 @@
-+From f9b017c2c958d968cc5dfd36dc68fc8e5fb89a58 Mon Sep 17 00:00:00 2001
-+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-+Date: Fri, 11 Jun 2010 09:48:58 +0200
-+Subject: [PATCH] No AltiVec on SPE
-+
-+Consider *gnuspe which matches powerpc-unknown-linux-gnuspe where
-+AltiVec is not available at all. This triplet uses SPE which is
-+incompatible with AltiVec shares the same opcode range and can't be used
-+at all.
-+
-+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-+---
-+ configure.in            |    8 ++++++++
-+ src/libFLAC/Makefile.am |   10 +++++++++-
-+ 2 files changed, 17 insertions(+), 1 deletions(-)
-+
-+diff --git a/configure.in b/configure.in
-+index bfa6d8e..17b7c73 100644
-+--- a/configure.in
-++++ b/configure.in
-+@@ -82,6 +82,14 @@ case "$host" in
-+ 	*) OBJ_FORMAT=elf ;;
-+ esac
-+ AC_SUBST(OBJ_FORMAT)
-++case "$host" in
-++	*-gnuspe)
-++		abi_spe=true
-++		AC_DEFINE(FLAC__CPU_PPC_SPE)
-++		AH_TEMPLATE(FLAC__CPU_PPC_SPE, [define if building for PowerPC with SPE ABI])
-++		;;
-++esac
-++AM_CONDITIONAL(FLaC__CPU_PPC_SPE, test "x$abi_spe" = xtrue)
-+ 
-+ # only needed because of ntohl() usage, can get rid of after that's gone:
-+ case "$host" in
-+diff --git a/src/libFLAC/Makefile.am b/src/libFLAC/Makefile.am
-+index cbfb0ac..5785372 100644
-+--- a/src/libFLAC/Makefile.am
-++++ b/src/libFLAC/Makefile.am
-+@@ -40,8 +40,13 @@ if FLaC__SYS_DARWIN
-+ CPUCFLAGS = -faltivec -force_cpusubtype_ALL -DFLAC__NO_ASM
-+ else
-+ # Linux-gcc for PPC does not have -force_cpusubtype_ALL, it is Darwin-specific
-++CPUCFLAGS =
-++if FLaC__CPU_PPC_SPE
-++else
-++CPUCFLAGS += -maltivec -mabi=altivec
-++endif
-+ #@@@ PPC optimizations temporarily disabled
-+-CPUCFLAGS = -maltivec -mabi=altivec -DFLAC__NO_ASM
-++CPUCFLAGS += -DFLAC__NO_ASM
-+ endif
-+ endif
-+ 
-+@@ -58,6 +63,8 @@ endif
-+ if FLaC__CPU_PPC
-+ ARCH_SUBDIRS = ppc
-+ if FLaC__HAS_AS__TEMPORARILY_DISABLED
-++if FLaC__CPU_PPC_SPE
-++else
-+ LOCAL_EXTRA_LIBADD = ppc/as/libFLAC-asm.la
-+ LOCAL_EXTRA_LDFLAGS = "-Wl,-read_only_relocs,warning"
-+ else
-+@@ -68,6 +75,7 @@ endif
-+ endif
-+ endif
-+ endif
-++endif
-+ 
-+ libFLAC_la_LIBADD = $(LOCAL_EXTRA_LIBADD) @OGG_LIBS@
-+ 
-+-- 
-+1.5.6.5
-+
-diff --git a/meta/recipes-multimedia/flac/flac_1.2.1.bb b/meta/recipes-multimedia/flac/flac_1.2.1.bb
-index 92bcec6..fc8e14f 100644
---- a/meta/recipes-multimedia/flac/flac_1.2.1.bb
-+++ b/meta/recipes-multimedia/flac/flac_1.2.1.bb
-@@ -14,12 +14,13 @@ LIC_FILES_CHKSUM = "file://COPYING.FDL;md5=ad1419ecc56e060eccf8184a87c4285f \
-                     file://include/FLAC/all.h;beginline=64;endline=69;md5=64474f2b22e9e77b28d8b8b25c983a48"
- DEPENDS = "libogg"
- 
--PR = "r0"
-+PR = "r1"
- 
- SRC_URI = "${SOURCEFORGE_MIRROR}/flac/flac-${PV}.tar.gz \
-            file://disable-xmms-plugin.patch;patch=1 \
-            file://flac-gcc43-fixes.patch;patch=1 \
--           file://xmms.m4"
-+           file://xmms.m4 \
-+           file://0001-No-AltiVec-on-SPE.patch"
- 
- SRC_URI[md5sum] = "153c8b15a54da428d1f0fadc756c22c7"
- SRC_URI[sha256sum] = "9635a44bceb478bbf2ee8a785cf6986fba525afb5fad1fd4bba73cf71f2d3edf"
--- 
-1.7.3.4
-
+>
+> - k
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
