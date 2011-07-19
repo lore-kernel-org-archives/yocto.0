@@ -1,30 +1,35 @@
-Return-Path: <Paul.Ourada@Covidien.com>
-Received: from mx01no.tycohealthcare.com (mx01no.tycohealthcare.com
-	[216.75.208.72])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B06A64C8009D
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 09:41:42 -0500 (CDT)
-X-IronPort-AV: E=Sophos;i="4.67,228,1309752000"; d="scan'208";a="273168664"
-Received: from unknown (HELO tamans-bh01.thcg.net) ([10.80.3.106])
-	by mx01no.tycohealthcare.com with ESMTP; 19 Jul 2011 10:41:12 -0400
-Received: from TAMANS-BE04.thcg.net ([10.80.3.121]) by tamans-bh01.thcg.net
-	with Microsoft SMTPSVC(6.0.3790.4675); 
-	Tue, 19 Jul 2011 10:41:12 -0400
-X-MimeOLE: Produced By Microsoft Exchange V6.5
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pz0-f46.google.com (mail-pz0-f46.google.com
+	[209.85.210.46])
+	by mx1.pokylinux.org (Postfix) with ESMTP id ED4184C8009D
+	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 10:02:40 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by pzk3 with SMTP id 3so5330242pzk.33
+	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 08:02:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=8aWJ8toS45o6cxc0HNC9e3ZcbMy53Cni2IZoI5QWovo=;
+	b=kKLrJMdk5raXdl4LmqsgQEBrk2NjyuWugjRo/Rkucz3q8Pwv191CqUkACMdGG++cqj
+	4A7vW//VJFtx3bDAIeC50MVXEAe/D1srtL6HQNm5J3pO9uqfzG4L1XIz9HWBH7B5p1O9
+	q47SALNU3riMhWbNDwsQ/vaex7FGoAeNg9RDU=
+Received: by 10.68.35.105 with SMTP id g9mr8407159pbj.479.1311087760312; Tue,
+	19 Jul 2011 08:02:40 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 19 Jul 2011 10:41:10 -0400
-Message-ID: <2A069A8019B2DF43BD330EE490B1EF527F2A16@TAMANS-BE04.thcg.net>
-In-Reply-To: <E7D51FCF-F5DC-448D-8354-410E0217D10F@kernel.crashing.org>
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-thread-topic: Trying to create OpenDDS recipe
-thread-index: AcxGHeyEAfvw+c5tSYO+b4o8R7mEBgAASq4Q
-References: <1311052872-10569-1-git-send-email-galak@kernel.crashing.org><1311052872-10569-2-git-send-email-galak@kernel.crashing.org><CAMKF1sq4ho3-P6L0PfDVxpAscccS561LLRUNc64okvsU9R=f9Q@mail.gmail.com><4537825C-7D8E-4260-88D2-C5F851FF827A@kernel.crashing.org>
-	<E7D51FCF-F5DC-448D-8354-410E0217D10F@kernel.crashing.org>
-From: "Ourada, Paul" <Paul.Ourada@Covidien.com>
-Cc: "Yocto discussion list" <yocto@yoctoproject.org>
-X-OriginalArrivalTime: 19 Jul 2011 14:41:12.0482 (UTC)
-	FILETIME=[E7DD8020:01CC4621]
-Subject: Trying to create OpenDDS recipe
+Received: by 10.68.62.36 with HTTP; Tue, 19 Jul 2011 08:02:10 -0700 (PDT)
+In-Reply-To: <4537825C-7D8E-4260-88D2-C5F851FF827A@kernel.crashing.org>
+References: <1311052872-10569-1-git-send-email-galak@kernel.crashing.org>
+	<1311052872-10569-2-git-send-email-galak@kernel.crashing.org>
+	<CAMKF1sq4ho3-P6L0PfDVxpAscccS561LLRUNc64okvsU9R=f9Q@mail.gmail.com>
+	<4537825C-7D8E-4260-88D2-C5F851FF827A@kernel.crashing.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 19 Jul 2011 08:02:10 -0700
+Message-ID: <CAMKF1soYf_JNc1nbxoioGmnRFjLYXQ=40rXhPo_7VFgyOr=Upg@mail.gmail.com>
+To: Kumar Gala <galak@kernel.crashing.org>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/5] gcc: Add gcc configure for PowerPC e500v2/SPE embedded floating point ABI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,128 +41,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jul 2011 14:41:43 -0000
-Content-class: urn:content-classes:message
-Content-Type: text/plain;
-	charset="us-ascii"
+X-List-Received-Date: Tue, 19 Jul 2011 15:02:41 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-I hope this is the correct place to post this. If not, please let me
-know.
+On Mon, Jul 18, 2011 at 11:47 PM, Kumar Gala <galak@kernel.crashing.org> wr=
+ote:
+>
+> On Jul 19, 2011, at 1:04 AM, Khem Raj wrote:
+>
+>> On Mon, Jul 18, 2011 at 10:21 PM, Kumar Gala <galak@kernel.crashing.org>=
+ wrote:
+>>> The e500v2 core utilizes a unique floating point programming model / AB=
+I.
+>>> We utilize TARGET_FPU =3D "spe" to distinguish this choice. =C2=A0When =
+building
+>>> the toolchain for this ABI we need configure gcc with --enable-e500_dou=
+ble.
+>>>
+>>> Signed-off-by: Kumar Gala <galak@kernel.crashing.org>
+>>> ---
+>>> =C2=A0meta/recipes-devtools/gcc/gcc-4.6.inc =C2=A0 =C2=A0| =C2=A0 =C2=
+=A02 +-
+>>> =C2=A0meta/recipes-devtools/gcc/gcc-common.inc | =C2=A0 =C2=A02 ++
+>>> =C2=A02 files changed, 3 insertions(+), 1 deletions(-)
+>>>
+>>> diff --git a/meta/recipes-devtools/gcc/gcc-4.6.inc b/meta/recipes-devto=
+ols/gcc/gcc-4.6.inc
+>>> index 56064b5..b719155 100644
+>>> --- a/meta/recipes-devtools/gcc/gcc-4.6.inc
+>>> +++ b/meta/recipes-devtools/gcc/gcc-4.6.inc
+>>> @@ -1,6 +1,6 @@
+>>> =C2=A0require gcc-common.inc
+>>>
+>>> -PR =3D "r8"
+>>> +PR =3D "r9"
+>>>
+>>> =C2=A0# Third digit in PV should be incremented after a minor release
+>>> =C2=A0# happens from this branch on gcc e.g. currently its 4.6.0
+>>> diff --git a/meta/recipes-devtools/gcc/gcc-common.inc b/meta/recipes-de=
+vtools/gcc/gcc-common.inc
+>>> index 7bf036c..409ad01 100644
+>>> --- a/meta/recipes-devtools/gcc/gcc-common.inc
+>>> +++ b/meta/recipes-devtools/gcc/gcc-common.inc
+>>> @@ -12,6 +12,8 @@ FILESDIR =3D "${@os.path.dirname(bb.data.getVar('FILE=
+',d,1))}/gcc-${PV}"
+>>> =C2=A0def get_gcc_fpu_setting(bb, d):
+>>> =C2=A0 =C2=A0 if bb.data.getVar('TARGET_FPU', d, 1) in [ 'soft' ]:
+>>> =C2=A0 =C2=A0 =C2=A0 =C2=A0 return "--with-float=3Dsoft"
+>>> + =C2=A0 =C2=A0if bb.data.getVar('TARGET_FPU', d, 1) in [ 'spe' ]:
+>>> + =C2=A0 =C2=A0 =C2=A0 =C2=A0return "--enable-e500_double"
+>>> =C2=A0 =C2=A0 return ""
+>>>
+>>
+>> this will enable e500_double even for e500v1 which IIRC does not have
+>> DFP support
+>> have you tried building for e500v1 with this ?
+>
+> I think you are correct. =C2=A0Any suggestions on how to distinguish e500=
+v1 vs e500v2? =C2=A0Utilizing BASE_PACKAGE_ARCH has problems w/native build=
+s since it seems to get set to x86_64 at some point.
+>
+> I could do:
+>
+> TARGET_FPU =3D "ppc-efs" =C2=A0[Embedded scalar single-precision floating=
+-point]
+> TARGET_FPU =3D "ppc-efd" =C2=A0[Embedded scalar double-precision floating=
+-point]
 
-I'm trying to create a recipe for OpenDDS. The recipe works so far as
-fetching, unpacking, and configuration. Or it seems to. :) Part of the
-configuration piece is that it also pulls down ACE+TAO real-time CORBA.
-This part works fine as well.
+thats fine. using spfp or dpfp is another option.
+however you have to make sure that TARGET_FPU is not checking for spe
+anywhere in whole tree
 
-I set S as follows to match the unpacking directories enforced by the
-tar file:
-
-S =3D ${WORKINGDIR}/DDS
-
-The package comes with a configuration script pre-built, and it expects
-to be told where glibc is. So, I write do_configure as follows:
-
-EXTRA_OECONF =3D "-glibc=3D${STAGING_DIR}/${MACHINE}/usr"
-
-do_configure() {
-    ${S}/configure ${EXTRA_OECONF}
-}
-
-The problem that I run into is during compilation. I write the following
-for do_compile()
-
-do_compile() {
-    oenote ${STAGING_DIR}
-    cd ${S} && make
-}
-
-This works right up until there is a compile error in ACE+TAO. Of
-course, I build the entire DDS package, including ACE+TAO, with no
-hiccups in Ubuntu, so I understand that this is a
-cross-compile/environment issue.
-
-The compile error is that it cannot find features.h, which is clearly in
-${STAGING_LIBDIR}/${MACHINE}/usr/include. The compile command which is
-being executed is as follows (this is going to be ugly, let me know if
-there's a better way to include this, such as a pastebin somewhere):
-
-| make[1]: Entering directory
-`/opt/yocto/poky-5.0.1-build/tmp/work/i586-poky-linux/opendds-2.3-r0/ACE
-_wrappers/TAO/TAO_IDL'
-|=20
-| GNUmakefile:
-/opt/yocto/poky-5.0.1-build/tmp/work/i586-poky-linux/opendds-2.3-r0/ACE_
-wrappers/TAO/TAO_IDL/GNUmakefile.TAO_IDL_EXE MAKEFLAGS=3Dw
-|=20
-| i586-poky-linux-g++ -march=3Di586
---sysroot=3D/opt/yocto/poky-5.0.1-build/tmp/sysroots/qemux86
--fvisibility=3Dhidden -fvisibility-inlines-hidden -W -Wall =
--Wpointer-arith
--ggdb -pipe -D_REENTRANT -DACE_HAS_AIO_CALLS -D_GNU_SOURCE
--I/opt/yocto/poky-5.0.1-build/tmp/work/i586-poky-linux/opendds-2.3-r0/AC
-E_wrappers -DACE_HAS_EXCEPTIONS -DACE_NO_INLINE -I../.. -Iinclude
--Ibe_include -Ife -I.. -DTAO_IDL_PREPROCESSOR=3D\"i586-poky-linux-g++
--march=3Di586 =
---sysroot=3D/opt/yocto/poky-5.0.1-build/tmp/sysroots/qemux86\"
--c -o .obj/driver/drv_preproc.o driver/drv_preproc.cpp
-| <command-line>:0:22: warning: missing terminating " character
-| In file included from
-/opt/yocto/poky-5.0.1-build/tmp/work/i586-poky-linux/opendds-2.3-r0/ACE_
-wrappers/ace/config-linux-common.h:30:0,
-|                  from
-/opt/yocto/poky-5.0.1-build/tmp/work/i586-poky-linux/opendds-2.3-r0/ACE_
-wrappers/ace/config-linux.h:14,
-|                  from
-/opt/yocto/poky-5.0.1-build/tmp/work/i586-poky-linux/opendds-2.3-r0/ACE_
-wrappers/ace/config.h:1,
-|                  from
-/opt/yocto/poky-5.0.1-build/tmp/work/i586-poky-linux/opendds-2.3-r0/ACE_
-wrappers/ace/config-macros.h:24,
-|                  from
-/opt/yocto/poky-5.0.1-build/tmp/work/i586-poky-linux/opendds-2.3-r0/ACE_
-wrappers/ace/config-lite.h:24,
-|                  from
-/opt/yocto/poky-5.0.1-build/tmp/work/i586-poky-linux/opendds-2.3-r0/ACE_
-wrappers/ace/os_include/os_limits.h:21,
-|                  from include/idl_defines.h:70,
-|                  from driver/drv_preproc.cpp:70:
-|
-/opt/yocto/poky-5.0.1-build/tmp/work/i586-poky-linux/opendds-2.3-r0/ACE_
-wrappers/ace/config-posix.h:7:20: fatal error: unistd.h: No such file or
-directory
-| compilation terminated.
-| make[1]: *** [.obj/driver/drv_preproc.o] Error 1
-| make[1]: Leaving directory
-`/opt/yocto/poky-5.0.1-build/tmp/work/i586-poky-linux/opendds-2.3-r0/ACE
-_wrappers/TAO/TAO_IDL'
-| make: *** [TAO_IDL_EXE] Error 2
-| ERROR: Function 'do_compile' failed (see
-/opt/yocto/poky-5.0.1-build/tmp/work/i586-poky-linux/opendds-2.3-r0/temp
-/log.do_compile.17412 for further information)
-NOTE: package opendds-2.3-r0: task do_compile: Failed
-ERROR: Task 5
-(/opt/yocto/poky-bernard-5.0.1/meta/recipes-middleware/opendds/opendds_2
-.3.bb, do_compile) failed with exit code '1'
-
-The thing that is puzzling me is that --sysroot seems to be pointing in
-the general direction of ${STAGING_DIR} and so the include directive,
-#include <features.h> should be good. I have checked, and features.h is
-in the /usr/include subdirectory there.
-
-Does anyone have a clue they could lend me?
-
-Thanks,
-
-Paul E. Ourada
-Sr. Principal Software Engineer
-Covidien, Energy-based Devices
-5920 Longbow Drive
-Boulder, CO 80301
-paul.ourada@covidien.com
-www.covidien.com
-Main: 303-530-2300
-Ofc: 303-581-6940
-Fax: 303-581-6741
-
+>
+> Than meta/recipes-devtools/gcc/gcc-common.inc:
+>
+> =C2=A0def get_gcc_fpu_setting(bb, d):
+> =C2=A0 =C2=A0if bb.data.getVar('TARGET_FPU', d, 1) in [ 'soft' ]:
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0return "--with-float=3Dsoft"
+> + =C2=A0 =C2=A0if bb.data.getVar('TARGET_FPU', d, 1) in [ 'ppc-efd' ]:
+> + =C2=A0 =C2=A0 =C2=A0 =C2=A0return "--enable-e500_double"
+> =C2=A0 =C2=A0return ""
+>
+> And meta/conf/distro/include/tclibc-*libc.inc:
+>
+> TARGET_OS_powerpc =3D "linux${@['','-gnuspe'][bb.data.getVar('TARGET_FPU'=
+,d,1) in ['ppc-efs', 'ppc-efd']]}"
+>
+> thoughts?
+>
+> - k
 
