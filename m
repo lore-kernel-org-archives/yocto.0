@@ -1,22 +1,19 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 6AD934C800A3
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 12:11:06 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 19 Jul 2011 10:06:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,229,1309762800"; d="scan'208";a="27669962"
-Received: from unknown (HELO [10.255.14.85]) ([10.255.14.85])
-	by orsmga002.jf.intel.com with ESMTP; 19 Jul 2011 10:06:51 -0700
-From: Joshua Lock <josh@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 19 Jul 2011 10:06:46 -0700
-In-Reply-To: <CAEsOVNdmyZSK2rv2+2zAQXpf8Txz_3=v62NZ85pO-D7esChwCQ@mail.gmail.com>
-References: <CAEsOVNdmyZSK2rv2+2zAQXpf8Txz_3=v62NZ85pO-D7esChwCQ@mail.gmail.com>
-X-Mailer: Evolution 3.0.2 (3.0.2-3.fc15) 
-Message-ID: <1311095211.2115.6.camel@scimitar>
-Mime-Version: 1.0
-Subject: Re: pseudo issue on CentOS5
+Return-Path: <galak@kernel.crashing.org>
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by mx1.pokylinux.org (Postfix) with ESMTP id BDD9D4C800A3
+	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 12:41:40 -0500 (CDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6JHfbuZ009955;
+	Tue, 19 Jul 2011 12:41:38 -0500
+From: Kumar Gala <galak@kernel.crashing.org>
+To: openembedded-core@lists.openembedded.org
+Date: Tue, 19 Jul 2011 12:41:32 -0500
+Message-Id: <1311097296-17200-2-git-send-email-galak@kernel.crashing.org>
+X-Mailer: git-send-email 1.5.6.5
+In-Reply-To: <1311097296-17200-1-git-send-email-galak@kernel.crashing.org>
+References: <1311097296-17200-1-git-send-email-galak@kernel.crashing.org>
+Cc: yocto@yoctoproject.org
+Subject: [PATCH v2 1/5] gcc: Add gcc configure for PowerPC e500v2/SPE embedded floating point ABI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,44 +25,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jul 2011 17:11:06 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 19 Jul 2011 17:41:41 -0000
 
-On Fri, 2011-07-15 at 21:23 +0000, McClintock Matthew-B29882 wrote:
-> This bug: http://bugzilla.yoctoproject.org/show_bug.cgi?id=1177 only
-> occurs on my CentOS 5 boxes (not on my Fedora 13 box). I have
-> determined that this git patch
-> 4b66ce472871618cfe4761861392b7f9c3c265b0 is causing the problem.
-> Reverting the patch fixes this.
-> 
-> Still looking at this more but I thought I would share this with
-> everyone and see if anyone has a more specific reason why this is
-> happening.
+The e500v2 core utilizes a unique floating point programming model / ABI.
+We utilize TARGET_FPU = "ppc-efd" to distinguish this choice (Embedded
+scalar single-precision floating-point).  When building the toolchain for
+this ABI we need configure gcc with --enable-e500_double.
 
-I filed bug #1251[1] based on our conversation on IRC and a brief follow
-on with Mark, who does some pseudo work.
+Signed-off-by: Kumar Gala <galak@kernel.crashing.org>
+---
+ meta/recipes-devtools/gcc/gcc-4.6.inc    |    2 +-
+ meta/recipes-devtools/gcc/gcc-common.inc |    2 ++
+ 2 files changed, 3 insertions(+), 1 deletions(-)
 
-Mark indicated that we'll need to check glibc on the CentOS machine and
-find the symbol and versions for all of the realpath functions.
-
-I need to set up a CentOS VM before I can get around to this but if you
-get opportunity you could do so and update the bug?
-
-You can use 'objdump -T' for this, i.e. (from my F15 box):
-joshual@scimitar:~
-$ objdump -T /lib/libc.so.6 | grep realpath
-416c3f00 g    DF .text	00000041 (GLIBC_2.0)  realpath
-415e60e0 g    DF .text	00000478  GLIBC_2.3   realpath
-4169a330 g    DF .text	00000037  GLIBC_2.4   __realpath_chk
-
-Thanks,
-Joshua
-
-1. http://bugzilla.yoctoproject.org/show_bug.cgi?id=1251
+diff --git a/meta/recipes-devtools/gcc/gcc-4.6.inc b/meta/recipes-devtools/gcc/gcc-4.6.inc
+index 56064b5..b719155 100644
+--- a/meta/recipes-devtools/gcc/gcc-4.6.inc
++++ b/meta/recipes-devtools/gcc/gcc-4.6.inc
+@@ -1,6 +1,6 @@
+ require gcc-common.inc
+ 
+-PR = "r8"
++PR = "r9"
+ 
+ # Third digit in PV should be incremented after a minor release
+ # happens from this branch on gcc e.g. currently its 4.6.0
+diff --git a/meta/recipes-devtools/gcc/gcc-common.inc b/meta/recipes-devtools/gcc/gcc-common.inc
+index 7bf036c..1684e78 100644
+--- a/meta/recipes-devtools/gcc/gcc-common.inc
++++ b/meta/recipes-devtools/gcc/gcc-common.inc
+@@ -12,6 +12,8 @@ FILESDIR = "${@os.path.dirname(bb.data.getVar('FILE',d,1))}/gcc-${PV}"
+ def get_gcc_fpu_setting(bb, d):
+     if bb.data.getVar('TARGET_FPU', d, 1) in [ 'soft' ]:
+         return "--with-float=soft"
++    if bb.data.getVar('TARGET_FPU', d, 1) in [ 'ppc-efd' ]:
++        return "--enable-e500_double"
+     return ""
+ 
+ def get_gcc_mips_plt_setting(bb, d):
 -- 
-Joshua Lock
-        Yocto Project "Johannes factotum"
-        Intel Open Source Technology Centre
+1.7.3.4
 
 
