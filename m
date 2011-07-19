@@ -1,27 +1,34 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 2C4F24C800A3
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 10:42:53 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 19 Jul 2011 08:42:52 -0700
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id D0B2A4C8009D
+	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 11:03:26 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 19 Jul 2011 09:03:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,229,1309762800"; d="scan'208";a="29791348"
-Received: from unknown (HELO [10.255.13.254]) ([10.255.13.254])
-	by fmsmga002.fm.intel.com with ESMTP; 19 Jul 2011 08:42:52 -0700
-Message-ID: <4E25A5FC.6080504@linux.intel.com>
-Date: Tue, 19 Jul 2011 08:42:52 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc13 Thunderbird/3.1.10
+X-IronPort-AV: E=Sophos;i="4.67,229,1309762800"; d="scan'208";a="27644479"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga002.jf.intel.com with ESMTP; 19 Jul 2011 09:03:26 -0700
+Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 19 Jul 2011 09:03:25 -0700
+Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
+	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
+	Tue, 19 Jul 2011 09:03:25 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: 'Andre Haupt' <andre@bitwigglers.org>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Tue, 19 Jul 2011 09:03:24 -0700
+Thread-Topic: [yocto] building crownbay images
+Thread-Index: AcxF/PCUZrB0bpRqT4SX2KOof+4B+AALQnXw
+Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A446@orsmsx501.amr.corp.intel.com>
+References: <20110719101547.GA18149@localhost.localdomain>
+In-Reply-To: <20110719101547.GA18149@localhost.localdomain>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: Kumar Gala <galak@kernel.crashing.org>
-References: <1311052872-10569-1-git-send-email-galak@kernel.crashing.org>	<AB1A5241-0B13-4DFF-A453-BECBB1ADD408@dominion.thruhere.net>
-	<9C2FF9D1-726F-45C2-A22B-DF4E07D48809@kernel.crashing.org>
-	<4E25A374.5010108@linux.intel.com>
-	<7F6E9823-395B-4AEC-8874-A56C3A098DC4@kernel.crashing.org>
-In-Reply-To: <7F6E9823-395B-4AEC-8874-A56C3A098DC4@kernel.crashing.org>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/5] Add support for PowerPC e500v2/SPE
+Subject: Re: building crownbay images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,50 +40,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jul 2011 15:42:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 19 Jul 2011 16:03:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 07/19/2011 08:40 AM, Kumar Gala wrote:
->
-> On Jul 19, 2011, at 10:32 AM, Saul Wold wrote:
->
->> On 07/19/2011 06:17 AM, Kumar Gala wrote:
->>>
->>> On Jul 19, 2011, at 2:44 AM, Koen Kooi wrote:
->>>
->>>>
->>>> Op 19 jul 2011, om 07:21 heeft Kumar Gala het volgende geschreven:
->>>>
->>>>> The majority of support for the PowerPC e500v2/SPE target already
->>>>> exists.  However some minor cleans are required to get things working
->>>>> completely.
->>>>>
->>>>> The e500v2 utilizes a unique floating point programming model / ABI from
->>>>> other PowerPC targets and thus requires special handling.
->>>>
->>>>
->>>> These should be sent to the oe-core list against the oe-core tree, not the poky list against the poky tree
->>>
->>> Will do so, it was unclear to me how patches go from oe-core to/from yocto.
->>>
->> Kumar,
->>
->> If it goes into the meta/recipes or meta/conf area then it goes to oe-core, if the patch is the PPC machine-specific and changes are in meta-yocto, then it should go to the yocto ml.
->>
->> As mentioned above, all these patches should go to oe-core
->>
->> I hope that clears things up.
->>
->> Sau!
->
-> Its a start, how to things go from oe-core git to yocto git?
->
-Richard Purdie the maintainer for both has a process he uses to merge 
-changes from oe-core to yocto. Anything in oe-core will be merged into 
-yocto's meta directory.
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Andre Haupt
+>=20
+> Hi all,
+>=20
+> I am new to Yocto and to Distro work in general.
+>=20
+> I want to use Yocto on the Kontron nanoETXexpressTT boards.
+> (http://de.kontron.com/products/computeronmodules/com+express/com+
+> express+ultra/nanoetxexpresstt.html)
+>=20
+> These boards are based on the Intel Atom E6xx and the EG20T platform
+> controller hub, so i think it is a good idea to start with the crownbay B=
+SP.
+>=20
+> What would be the best, known to work, way to produce crownbay-noemgd
+> images for poky bernard?
+> Should i use git? Which branches should i use (the docs are contraditing =
+at
+> least in parts)?
 
-Sau!
+Hi Andre - Tom is on holiday this week, so let me take a stab at this.=20
 
-> - k
+"Known to be good" - I try to make sure that the tarballs on the project we=
+bsite are a good way to go. These are on www.yoctoproject.org/download and =
+then click "BSP Downloads". You can also get them from a git branch, but I =
+don't know for sure which it is.
+
+> I read somewhere, that i should install Yocto to /usr/local/src/yocto.
+> Is this really necessary?
+
+I don't. I just create a subdirectory in my home dir and untar the release =
+there.=20
+
+If you create and use the App Developer Tools, installing the cross tools i=
+n /opt/ is common.
+
+> Thanks for any hints.
+>=20
+> regards,
+>=20
+> Andre
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
