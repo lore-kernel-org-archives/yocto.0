@@ -1,17 +1,21 @@
 Return-Path: <galak@kernel.crashing.org>
 Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 0AB7F4C800A9
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 12:41:40 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 8C8794C80205
+	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 12:41:42 -0500 (CDT)
 Received: from localhost (localhost.localdomain [127.0.0.1])
-	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6JHfa8j009943;
-	Tue, 19 Jul 2011 12:41:37 -0500
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6JHfdrl009980;
+	Tue, 19 Jul 2011 12:41:39 -0500
 From: Kumar Gala <galak@kernel.crashing.org>
 To: openembedded-core@lists.openembedded.org
-Date: Tue, 19 Jul 2011 12:41:31 -0500
-Message-Id: <1311097296-17200-1-git-send-email-galak@kernel.crashing.org>
+Date: Tue, 19 Jul 2011 12:41:34 -0500
+Message-Id: <1311097296-17200-4-git-send-email-galak@kernel.crashing.org>
 X-Mailer: git-send-email 1.5.6.5
+In-Reply-To: <1311097296-17200-3-git-send-email-galak@kernel.crashing.org>
+References: <1311097296-17200-1-git-send-email-galak@kernel.crashing.org>
+	<1311097296-17200-2-git-send-email-galak@kernel.crashing.org>
+	<1311097296-17200-3-git-send-email-galak@kernel.crashing.org>
 Cc: yocto@yoctoproject.org
-Subject: [PATCH v2 0/5] Add support for PowerPC e500v2/SPE
+Subject: [PATCH v2 3/5] tune-ppce500v2: Add a tune file for PowerPC e500v2 cores
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,14 +27,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jul 2011 17:41:41 -0000
+X-List-Received-Date: Tue, 19 Jul 2011 17:41:42 -0000
 
-The majority of support for the PowerPC e500v2/SPE target already
-exists.  However some minor cleans are required to get things working
-completely.
+Signed-off-by: Kumar Gala <galak@kernel.crashing.org>
+---
+ meta/conf/machine/include/tune-ppce500v2.inc |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+ create mode 100644 meta/conf/machine/include/tune-ppce500v2.inc
 
-The e500v2 utilizes a unique floating point programming model / ABI from
-other PowerPC targets and thus requires special handling.
+* Removed TARGET_OS_powerpc (not needed)
 
-- k
+diff --git a/meta/conf/machine/include/tune-ppce500v2.inc b/meta/conf/machine/include/tune-ppce500v2.inc
+new file mode 100644
+index 0000000..d76dbc9
+--- /dev/null
++++ b/meta/conf/machine/include/tune-ppce500v2.inc
+@@ -0,0 +1,4 @@
++TARGET_CC_ARCH = "-mcpu=8548 -mabi=spe -mspe"
++BASE_PACKAGE_ARCH = "ppce500v2"
++FEED_ARCH = "ppce500v2"
++PACKAGE_EXTRA_ARCHS = "powerpc ppce500v2"
+-- 
+1.7.3.4
+
 
