@@ -1,34 +1,22 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id D0B2A4C8009D
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 11:03:26 -0500 (CDT)
+Return-Path: <josh@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6AD934C800A3
+	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 12:11:06 -0500 (CDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 19 Jul 2011 09:03:26 -0700
+	by orsmga101.jf.intel.com with ESMTP; 19 Jul 2011 10:06:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,229,1309762800"; d="scan'208";a="27644479"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga002.jf.intel.com with ESMTP; 19 Jul 2011 09:03:26 -0700
-Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 19 Jul 2011 09:03:25 -0700
-Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
-	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
-	Tue, 19 Jul 2011 09:03:25 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: 'Andre Haupt' <andre@bitwigglers.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Tue, 19 Jul 2011 09:03:24 -0700
-Thread-Topic: [yocto] building crownbay images
-Thread-Index: AcxF/PCUZrB0bpRqT4SX2KOof+4B+AALQnXw
-Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A446@orsmsx501.amr.corp.intel.com>
-References: <20110719101547.GA18149@localhost.localdomain>
-In-Reply-To: <20110719101547.GA18149@localhost.localdomain>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: Re: building crownbay images
+X-IronPort-AV: E=Sophos;i="4.67,229,1309762800"; d="scan'208";a="27669962"
+Received: from unknown (HELO [10.255.14.85]) ([10.255.14.85])
+	by orsmga002.jf.intel.com with ESMTP; 19 Jul 2011 10:06:51 -0700
+From: Joshua Lock <josh@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 19 Jul 2011 10:06:46 -0700
+In-Reply-To: <CAEsOVNdmyZSK2rv2+2zAQXpf8Txz_3=v62NZ85pO-D7esChwCQ@mail.gmail.com>
+References: <CAEsOVNdmyZSK2rv2+2zAQXpf8Txz_3=v62NZ85pO-D7esChwCQ@mail.gmail.com>
+X-Mailer: Evolution 3.0.2 (3.0.2-3.fc15) 
+Message-ID: <1311095211.2115.6.camel@scimitar>
+Mime-Version: 1.0
+Subject: Re: pseudo issue on CentOS5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,56 +28,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jul 2011 16:03:27 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 19 Jul 2011 17:11:06 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Andre Haupt
->=20
-> Hi all,
->=20
-> I am new to Yocto and to Distro work in general.
->=20
-> I want to use Yocto on the Kontron nanoETXexpressTT boards.
-> (http://de.kontron.com/products/computeronmodules/com+express/com+
-> express+ultra/nanoetxexpresstt.html)
->=20
-> These boards are based on the Intel Atom E6xx and the EG20T platform
-> controller hub, so i think it is a good idea to start with the crownbay B=
-SP.
->=20
-> What would be the best, known to work, way to produce crownbay-noemgd
-> images for poky bernard?
-> Should i use git? Which branches should i use (the docs are contraditing =
-at
-> least in parts)?
+On Fri, 2011-07-15 at 21:23 +0000, McClintock Matthew-B29882 wrote:
+> This bug: http://bugzilla.yoctoproject.org/show_bug.cgi?id=1177 only
+> occurs on my CentOS 5 boxes (not on my Fedora 13 box). I have
+> determined that this git patch
+> 4b66ce472871618cfe4761861392b7f9c3c265b0 is causing the problem.
+> Reverting the patch fixes this.
+> 
+> Still looking at this more but I thought I would share this with
+> everyone and see if anyone has a more specific reason why this is
+> happening.
 
-Hi Andre - Tom is on holiday this week, so let me take a stab at this.=20
+I filed bug #1251[1] based on our conversation on IRC and a brief follow
+on with Mark, who does some pseudo work.
 
-"Known to be good" - I try to make sure that the tarballs on the project we=
-bsite are a good way to go. These are on www.yoctoproject.org/download and =
-then click "BSP Downloads". You can also get them from a git branch, but I =
-don't know for sure which it is.
+Mark indicated that we'll need to check glibc on the CentOS machine and
+find the symbol and versions for all of the realpath functions.
 
-> I read somewhere, that i should install Yocto to /usr/local/src/yocto.
-> Is this really necessary?
+I need to set up a CentOS VM before I can get around to this but if you
+get opportunity you could do so and update the bug?
 
-I don't. I just create a subdirectory in my home dir and untar the release =
-there.=20
+You can use 'objdump -T' for this, i.e. (from my F15 box):
+joshual@scimitar:~
+$ objdump -T /lib/libc.so.6 | grep realpath
+416c3f00 g    DF .text	00000041 (GLIBC_2.0)  realpath
+415e60e0 g    DF .text	00000478  GLIBC_2.3   realpath
+4169a330 g    DF .text	00000037  GLIBC_2.4   __realpath_chk
 
-If you create and use the App Developer Tools, installing the cross tools i=
-n /opt/ is common.
+Thanks,
+Joshua
 
-> Thanks for any hints.
->=20
-> regards,
->=20
-> Andre
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+1. http://bugzilla.yoctoproject.org/show_bug.cgi?id=1251
+-- 
+Joshua Lock
+        Yocto Project "Johannes factotum"
+        Intel Open Source Technology Centre
+
 
