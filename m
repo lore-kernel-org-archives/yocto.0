@@ -1,32 +1,44 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 826734C8009D
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 15:48:13 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 19 Jul 2011 13:48:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,230,1309762800"; d="scan'208";a="27755080"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by orsmga002.jf.intel.com with ESMTP; 19 Jul 2011 13:48:10 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 19 Jul 2011 13:48:10 -0700
-Received: from orsmsx102.amr.corp.intel.com ([169.254.1.32]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.5.9]) with mapi id
-	14.01.0289.001; Tue, 19 Jul 2011 13:48:10 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Technical Team (Tuesday, July 19, 2011 8:00
-	AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
-Thread-Index: AcxDEeZL651G2VRHRhykIexxkCPeDwDQmPoQAAAzHJA=
-Date: Tue, 19 Jul 2011 20:48:09 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A1372FF3D@ORSMSX102.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
+Return-Path: <B29882@freescale.com>
+Received: from AM1EHSOBE004.bigfish.com (am1ehsobe004.messaging.microsoft.com
+	[213.199.154.207])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 0D6494C800A3
+	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 18:37:29 -0500 (CDT)
+Received: from mail74-am1-R.bigfish.com (10.3.201.248) by
+	AM1EHSOBE004.bigfish.com (10.3.204.24) with Microsoft SMTP Server id
+	14.1.225.22; Tue, 19 Jul 2011 23:37:27 +0000
+Received: from mail74-am1 (localhost.localdomain [127.0.0.1])	by
+	mail74-am1-R.bigfish.com (Postfix) with ESMTP id EA4751AB01A8	for
+	<yocto@yoctoproject.org>; Tue, 19 Jul 2011 23:37:27 +0000 (UTC)
+X-SpamScore: 3
+X-BigFish: VS3(zz936eKc8kzz1202h1082kzz8275bhz2dh2a8h668h839h62h)
+X-Spam-TCS-SCL: 1:0
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
+	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
+Received: from mail74-am1 (localhost.localdomain [127.0.0.1]) by mail74-am1
+	(MessageSwitch) id 1311118647563469_14764;
+	Tue, 19 Jul 2011 23:37:27 +0000 (UTC)
+Received: from AM1EHSMHS008.bigfish.com (unknown [10.3.201.249])	by
+	mail74-am1.bigfish.com (Postfix) with ESMTP id 8610ACA804E	for
+	<yocto@yoctoproject.org>; Tue, 19 Jul 2011 23:37:27 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS008.bigfish.com
+	(10.3.207.108) with Microsoft SMTP Server (TLS) id 14.1.225.22;
+	Tue, 19 Jul 2011 23:37:27 +0000
+Received: from az33smr02.freescale.net (10.64.34.200) by
+	039-SN1MMR1-003.039d.mgd.msft.net (10.84.1.16) with Microsoft SMTP
+	Server id 14.1.289.8; Tue, 19 Jul 2011 18:37:25 -0500
+Received: from right.am.freescale.net (right.am.freescale.net [10.82.193.13])
+	by az33smr02.freescale.net (8.13.1/8.13.0) with ESMTP id
+	p6JNbPpU007849; Tue, 19 Jul 2011 18:37:25 -0500 (CDT)
+From: Matthew McClintock <msm@freescale.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 19 Jul 2011 18:37:24 -0500
+Message-ID: <1311118644-22937-1-git-send-email-msm@freescale.com>
+X-Mailer: git-send-email 1.7.5
 MIME-Version: 1.0
-Subject: Minutes: Yocto Technical Team (Tuesday, July 19, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+X-OriginatorOrg: freescale.com
+X-Mailman-Approved-At: Tue, 19 Jul 2011 18:40:29 -0500
+Cc: Matthew McClintock <msm@freescale.com>
+Subject: [PATCH] Add endianess macros used by previous endian-ness_handling.patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,95 +50,148 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jul 2011 20:48:13 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 19 Jul 2011 23:37:29 -0000
+Content-Type: text/plain
 
-Really sorry if many of the past meeting agenda and minutes have not been a=
-ble to reach you. I had some problems with the Yocto project mailing list. =
-Please let me know if you hear anyone still having this problem.
+Some distro's don't include these macros in /usr/include/endian.h
+so we include them via this patch
 
-Thanks!
-Song
+Signed-off-by: Matthew McClintock <msm@freescale.com>
+---
+This fixes builds on my CentOS 5.5 box
 
-Attendees:
-Mark, Dave, Paul, Shane, Saul, Beth, Richard, Josh, Jason (TI), Darren, Sea=
-n (Dell), Song
-=A0
-New action list:
-=A0
-  * Team: please take a look at the post 1.1 items on the wiki page and let=
- Song know if there is any comment or concerns.
-  * Saul: Talk to Jianjun, QA should work with developers to make sure we c=
-an cover more distro testing (informal) before major release. Joshua and Da=
-rren volunteers for some of these testing.
-  * Beth/Darren/ScottR: document the central location in the release, and p=
-ut any doc changes in the location after release.
-  * Song to setup go/no-go meeting next Monday to decide on the M2 release.
-=A0
-Agenda:
-=A0
-- opens - 5 min=A0
-- Review Yocto 1.1 M2 Release Criteria - 20 min (Song) See details at: http=
-s://wiki.yoctoproject.org/wiki/Yocto_Project_v1.1_Release_Criteria
-  * All M2 features are completed.
-  * 'Lock kernel version' should be moved to M4 and will be completed betwe=
-en 8/8/11 and 8/15/11.
-  * All release criteria are green except testing related ones. Please see =
-the wiki page.
-  * For M2 release, we should let Beth go ahead with the release as if we w=
-ould be releasing M2 on time next Monday. On the other hand, we let QA run =
-the full test. We will have a go/no-go meeting next Monday to decide if we =
-release M2 based on the full test result of RC3.
-=A0
-- Review M3 status and schedule - 10 min (Song)
-  * All M3 committed features are on track. We need someone to handle multi=
--lib 9 and 8 tasks after Mark is done with them.
-  * Darren's two features (reduce image size and reduce boot time) should b=
-e all marked risky for M3. Darren will work on them separately in independe=
-nt layers that won't affect 1.1 release so that his development work can be=
- extended with more time.
-=A0
-- Discussion of using Weighted Defect density as one of the release criteri=
-a: (4th graph at: https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend ) - 10=
- min
-=A0
-  * The team has concern that this will discourage developers from filing b=
-ugs.
-  * There is no perfect measure but it's better if we have measure to make =
-sure we deliver quality software.
-  * This should not discourage QA and developers in the community from fili=
-ng bugs.
-  * There are a lot of fixes that went in without leaving a track in Bugzil=
-la.
-  * We will talk about this in 1.2 planning and try this out in 1.2 develop=
-ment and see how it goes.
-=A0
--  Opens - 10 min
-  1. Darren: documentation process for release, making sure we can update t=
-he README.hardware after release if needed.
-    * We should have a central location for putting doc changes after relea=
-se. We don't have to update the release tarball.
-=A0
-=A0
-- Action Item Review - 5 min (Song)
-=A0
-Action item list:
-  * Saul: talk to Jianjun, QA should work with developers to make sure we c=
-an cover more distro testing (informal) before major release. Joshua and Da=
-rren volunteers for some of these testing.
-  * Song: check status with Jianjun on Stabilization tasks he owned. (Done)
-  * Darren/Song: define deliverables of 'Fast boot time' for M3 and Yocto 1=
-.1. (Done)
-  * Saul: circulate the idea of having a Sprint B for M3 via emails. (Done)=
-. Will just extend Sprint A to 27th.
-  * Saul: check update commits (one release criteria) (Done)
-  * Team: please take a look at the post 1.1 items on the wiki page and let=
- Song know if there is any comment or concerns.
+ .../ldconfig-native-2.12.1/endianess-header.patch  |  102 ++++++++++++++++++++
+ meta/recipes-core/eglibc/ldconfig-native_2.12.1.bb |    5 +-
+ 2 files changed, 105 insertions(+), 2 deletions(-)
+ create mode 100644 meta/recipes-core/eglibc/ldconfig-native-2.12.1/endianess-header.patch
 
-
-
+diff --git a/meta/recipes-core/eglibc/ldconfig-native-2.12.1/endianess-header.patch b/meta/recipes-core/eglibc/ldconfig-native-2.12.1/endianess-header.patch
+new file mode 100644
+index 0000000..3653967
+--- /dev/null
++++ b/meta/recipes-core/eglibc/ldconfig-native-2.12.1/endianess-header.patch
+@@ -0,0 +1,102 @@
++diff -purN ldconfig-native-2.12.1.orig/endian_extra.h ldconfig-native-2.12.1/endian_extra.h
++--- ldconfig-native-2.12.1.orig/endian_extra.h	1969-12-31 18:00:00.000000000 -0600
+++++ ldconfig-native-2.12.1/endian_extra.h	2011-07-19 18:09:14.323048417 -0500
++@@ -0,0 +1,61 @@
+++/* Copyright (C) 1992, 1996, 1997, 2000, 2008 Free Software Foundation, Inc.
+++   This file is part of the GNU C Library.
+++
+++   The GNU C Library is free software; you can redistribute it and/or
+++   modify it under the terms of the GNU Lesser General Public
+++   License as published by the Free Software Foundation; either
+++   version 2.1 of the License, or (at your option) any later version.
+++
+++   The GNU C Library is distributed in the hope that it will be useful,
+++   but WITHOUT ANY WARRANTY; without even the implied warranty of
+++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+++   Lesser General Public License for more details.
+++
+++   You should have received a copy of the GNU Lesser General Public
+++   License along with the GNU C Library; if not, write to the Free
+++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+++   02111-1307 USA.  */
+++
+++#include <endian.h>
+++
+++#ifndef	_ENDIAN_EXTRA_H
+++#define	_ENDIAN_EXTRA_H	1
+++
+++#ifdef __USE_BSD
+++/* Conversion interfaces.  */
+++# include <byteswap.h>
+++
+++# if __BYTE_ORDER == __LITTLE_ENDIAN
+++#  define htobe16(x) __bswap_16 (x)
+++#  define htole16(x) (x)
+++#  define be16toh(x) __bswap_16 (x)
+++#  define le16toh(x) (x)
+++
+++#  define htobe32(x) __bswap_32 (x)
+++#  define htole32(x) (x)
+++#  define be32toh(x) __bswap_32 (x)
+++#  define le32toh(x) (x)
+++
+++#  define htobe64(x) __bswap_64 (x)
+++#  define htole64(x) (x)
+++#  define be64toh(x) __bswap_64 (x)
+++#  define le64toh(x) (x)
+++# else
+++#  define htobe16(x) (x)
+++#  define htole16(x) __bswap_16 (x)
+++#  define be16toh(x) (x)
+++#  define le16toh(x) __bswap_16 (x)
+++
+++#  define htobe32(x) (x)
+++#  define htole32(x) __bswap_32 (x)
+++#  define be32toh(x) (x)
+++#  define le32toh(x) __bswap_32 (x)
+++
+++#  define htobe64(x) (x)
+++#  define htole64(x) __bswap_64 (x)
+++#  define be64toh(x) (x)
+++#  define le64toh(x) __bswap_64 (x)
+++# endif
+++#endif
+++
+++#endif	/* endian_extra.h */
++diff -purN ldconfig-native-2.12.1.orig/cache.c ldconfig-native-2.12.1/cache.c
++--- ldconfig-native-2.12.1.orig/cache.c	2011-07-19 18:21:28.347041301 -0500
+++++ ldconfig-native-2.12.1/cache.c	2011-07-19 18:22:54.118048064 -0500
++@@ -39,6 +39,8 @@
++ # define N_(msgid)  msgid
++ #define _(msg) msg
++ 
+++#include "endian_extra.h"
+++
++ extern int be;
++ 
++ static uint16_t write16(uint16_t x, int be)
++diff -purN ldconfig-native-2.12.1.orig/readelflib.c ldconfig-native-2.12.1/readelflib.c
++--- ldconfig-native-2.12.1.orig/readelflib.c	2011-07-19 18:21:28.346041593 -0500
+++++ ldconfig-native-2.12.1/readelflib.c	2011-07-19 18:23:05.324059875 -0500
++@@ -25,6 +25,9 @@
++ 
++ /* check_ptr checks that a pointer is in the mmaped file and doesn't
++    point outside it.  */
+++
+++#include "endian_extra.h"
+++
++ #undef check_ptr
++ #define check_ptr(ptr)						\
++ do								\
++diff -purN ldconfig-native-2.12.1.orig/readlib.c ldconfig-native-2.12.1/readlib.c
++--- ldconfig-native-2.12.1.orig/readlib.c	2011-07-19 18:21:28.346041593 -0500
+++++ ldconfig-native-2.12.1/readlib.c	2011-07-19 18:23:23.877046210 -0500
++@@ -40,6 +40,8 @@
++ 
++ #include "ldconfig.h"
++ 
+++#include "endian_extra.h"
+++
++ #define _(msg) msg
++ 
++ #define Elf32_CLASS ELFCLASS32
+diff --git a/meta/recipes-core/eglibc/ldconfig-native_2.12.1.bb b/meta/recipes-core/eglibc/ldconfig-native_2.12.1.bb
+index bacf9f8..00edb6e 100644
+--- a/meta/recipes-core/eglibc/ldconfig-native_2.12.1.bb
++++ b/meta/recipes-core/eglibc/ldconfig-native_2.12.1.bb
+@@ -9,9 +9,10 @@ SRC_URI = "file://ldconfig-native-2.12.1.tar.bz2 \
+            file://ldconfig_aux-cache_path_fix.patch \
+            file://32and64bit.patch \
+            file://endian-ness_handling.patch \
+-           file://flag_fix.patch "
++           file://flag_fix.patch \
++           file://endianess-header.patch"
+ 
+-PR = "r0"
++PR = "r1"
+ 
+ inherit native
+ 
+-- 
+1.7.5
 
 
 
