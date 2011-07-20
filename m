@@ -1,34 +1,35 @@
-Return-Path: <niqingliang@insigma.com.cn>
-Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8B6A74C8009D
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 21:37:49 -0500 (CDT)
-Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
-	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
-	Wed, 20 Jul 2011 10:37:39 +0800
-Received: from [192.168.0.101] (122.224.76.38) by WX-ExchMB.insigma.com.cn
-	(10.0.1.203) with Microsoft SMTP Server id 8.1.240.5; Wed, 20 Jul 2011
-	10:37:37 +0800
-From: NiQingliang <niqingliang@insigma.com.cn>
-To: Joshua Lock <josh@linux.intel.com>
-Date: Wed, 20 Jul 2011 10:48:35 +0800
-In-Reply-To: <1311129102.4280.13.camel@localhost.localdomain>
-References: <1310496703.2162.17.camel@scimitar>
-	<4E1C9A00.5060005@linux.intel.com> <1310504880.20015.1080.camel@rex>
-	<1310519752.2527.20.camel@localhost.localdomain>
-	<1310522900.2162.26.camel@scimitar>
-	<1310523594.2527.35.camel@localhost.localdomain>
-	<1310524300.2162.28.camel@scimitar>
-	<1310544262.15433.3.camel@localhost.localdomain>
-	<4E1DCF73.3030101@linux.intel.com>
-	<1310607271.946.1.camel@localhost.localdomain>
-	<1311124438.2115.33.camel@scimitar>
-	<1311129102.4280.13.camel@localhost.localdomain>
-X-Mailer: Evolution 3.0.2 
-Message-ID: <1311130116.6707.1.camel@localhost.localdomain>
+Return-Path: <simon.li@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id ED6AF4C8009D
+	for <yocto@yoctoproject.org>; Tue, 19 Jul 2011 21:51:07 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 19 Jul 2011 19:51:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,232,1309762800"; d="scan'208";a="27867170"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by orsmga002.jf.intel.com with ESMTP; 19 Jul 2011 19:51:01 -0700
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 20 Jul 2011 10:49:42 +0800
+Received: from pgsmsx507.gar.corp.intel.com ([10.221.43.89]) by
+	PGSMSX509.gar.corp.intel.com ([172.30.13.17]) with mapi;
+	Wed, 20 Jul 2011 10:49:41 +0800
+From: "Li, Simon" <simon.li@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Date: Wed, 20 Jul 2011 10:49:40 +0800
+Thread-Topic: [yocto] Build Yocto image for EeePC901
+Thread-Index: AcxGQrwPDe4+6+alTMq3aqqhiPEx0wARIjFQ
+Message-ID: <23F1A04A50711046AF124F3D4D1EB2ECD100C755@pgsmsx507.gar.corp.intel.com>
+References: <23F1A04A50711046AF124F3D4D1EB2ECD100C5F6@pgsmsx507.gar.corp.intel.com>
+	<4E25CE94.5080806@linux.intel.com>
+In-Reply-To: <4E25CE94.5080806@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>
-Subject: Re: Supporting upcoming distribution releases
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Build Yocto image for EeePC901
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,155 +41,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jul 2011 02:37:54 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 20 Jul 2011 02:51:08 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Oh, sorry, I have found the git tree of openembedded-core.
+Hi, Darren,
+Yes, I use poky-image-sato-live and it works well on EeePC901 now.
+Since it run from USB drive directly, it runs quite slow.
+Is there any way to install it into SSD driver from USB drive?
+Thanks.
 
+Best Regards,
 
-On Wed, 2011-07-20 at 10:31 +0800, NiQingliang wrote:
-> update accroding your suggestion.
-> This patch is for bitbake indeed, but bitbake is not part of
-> openembedded. Is it RIGHT?
-> 
-> 
-> diff --git a/oe-init-build-env b/oe-init-build-env
-> index 77332a7..acf4e96 100755
-> --- a/oe-init-build-env
-> +++ b/oe-init-build-env
-> @@ -39,6 +39,34 @@ else
->     $OEROOT/scripts/oe-setup-builddir
->     unset OEROOT
->     unset BBPATH
-> +
-> +   # find the python 2.x, if the default python is not.
-> +   # NOTE:
-> +   #    the 'python -V' need redirect to stdout
-> +   #    once we can ensure every distribution has 'python2' (currently,
-> except
-> +   #    ubuntu), we should change bitbake's shebang to '/usr/bin/env
-> python2',
-> +   #    and remove this patch.
-> +   # precondition:
-> +   #    $BUILDDIR is not NULL, but I doubt when it will be NULL.
-> +   #    user have not made the file $BUILDDIR/python by himself.
-> +   if [ -z "`/usr/bin/env python -V 2>&1|grep '^Python 2\.'`" ]; then
-> +      PYTHON2_BIN=""
-> +      for PY_BIN in `find /{usr/,}bin -regex '.*/python\(\|2\|2\.[0-9]*
-> \)'`; do
-> +         if [ -n "`$PY_BIN -V 2>&1|grep '^Python 2\.'`" ]; then
-> +            PYTHON2_BIN=$PY_BIN
-> +            break
-> +         fi
-> +      done
-> +      if [ -n "$PYTHON2_BIN" ]; then
-> +         ln -sf $PY_BIN $BUILDDIR/python
-> +         export PATH="$BUILDDIR:$PATH"
-> +         echo "NOTE: poky will use '$PY_BIN' to execute python code."
-> +      else
-> +         echo "ERROR: unable to find Python 2.x, BitBake requires
-> Python 2.6 or
-> +      fi
-> +      unset PYTHON2_BIN
-> +   fi
-> +
->     [ -n "$BUILDDIR" ] && cd $BUILDDIR
->  fi
-> 
-> 
-> On Wed, 2011-07-20 at 09:13 +0800, Joshua Lock wrote:
-> > On Thu, 2011-07-14 at 09:34 +0800, NiQingliang wrote:
-> > > new version
-> > >
-> > > diff --git a/oe-init-build-env b/oe-init-build-env
-> > > index 77332a7..0fe1b5e 100755
-> > > --- a/oe-init-build-env
-> > > +++ b/oe-init-build-env
-> > > @@ -39,6 +39,35 @@ else
-> > >     $OEROOT/scripts/oe-setup-builddir
-> > >     unset OEROOT
-> > >     unset BBPATH
-> > > +
-> > > +   # find the python 2.x, if the default python is not.
-> > > +   # NOTE:
-> > > +   #    the 'python -V' need redirect to stdout
-> > > +   #    once we can ensure every distribution has 'python2' (currently,
-> > > except
-> > > +   #    ubuntu), we should change bitbake's shebang to '/usr/bin/env
-> > > python2',
-> > > +   #    and remove this patch.
-> > > +   # precondition:
-> > > +   #    $BUILDDIR is not NULL, but I doubt when it will be NULL.
-> > > +   #    user have not made the file $BUILDDIR/python by himself.
-> > > +   if [ -z "`/usr/bin/env python -V 2>&1|grep '^Python 2\.'`" ]; then
-> > > +      echo "WARNING: your default python is not 2.x, so autodetect..."
-> >
-> > I'm not sure we need to print this.
-> >
-> > > +      PYTHON2_BIN=""
-> > > +      for PY_BIN in `find /{usr/,}bin -regex '.*/python\(\|2\|2\.[0-9]*
-> > > \)'`; do
-> > > +         if [ -n "`$PY_BIN -V 2>&1|grep '^Python 2\.'`" ]; then
-> > > +            PYTHON2_BIN=$PY_BIN
-> > > +            break
-> > > +         fi
-> > > +      done
-> > > +      if [ -n "$PYTHON2_BIN" ]; then
-> > > +         ln -sf $PY_BIN $BUILDDIR/python
-> > > +         export PATH="$BUILDDIR:$PATH"
-> > > +         echo "WARNING: poky will use '$PY_BIN' to execute python
-> > > code."
-> >
-> > I can live without this message but if we do leave it in we should
-> > probably call it a NOTE rather than WARNING.
-> >
-> > > +      else
-> > > +         echo "ERROR: poky can't find python 2.x."
-> >
-> > Perhaps make this a little more informative?
-> >
-> > ERROR: unable to find Python 2.x, BitBake requires Python 2.6 or 2.7.
-> >
-> > > +      fi
-> > > +      unset PYTHON2_BIN
-> > > +   fi
-> > > +
-> > >     [ -n "$BUILDDIR" ] && cd $BUILDDIR
-> > >  fi
-> >
-> > I can verify that this works as expected (i.e. does nothing) on my
-> > Fedora 15 machine with Python 2.7.1.
-> >
-> > Could you submit the patch to the openembedded-core mailing list so that
-> > it can be considered for inclusion in the Yocto project's shared
-> > upstream?
-> >
-> > Thanks,
-> > Joshua
-> > --
-> > Joshua Lock
-> >         Yocto Project "Johannes factotum"
-> >         Intel Open Source Technology Centre
-> >
-> 
-> --
-> 倪庆亮
-> TEL:    13588371863
-> E-MAIL: niqingliang@insigma.com.cn
-> BLOG:   http://niqingliang2003.wordpress.com
-> 
-> 
+Simon
+
+-----Original Message-----
+From: Darren Hart [mailto:dvhart@linux.intel.com]=20
+Sent: Wednesday, July 20, 2011 2:36 AM
+To: Li, Simon
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Build Yocto image for EeePC901
+
+On 07/18/2011 11:17 PM, Li, Simon wrote:
+> To whom may concern,
+>=20
+> I tried to build Yocto for a real device, which is EeePC901. Because of
+> README.hardware mentioned.
+>=20
+> Here are my steps:
+> # source poky-bernard-5.0.1/poky-init-build.env build-poky-5.0.1
+>=20
+> Modify the local.conf (As attachment)
+>=20
+> # bitbake poky-image-sato-directdisk
+>=20
+> However I got the build failed, please refer to the attachment,
+> build_fail_log.txt
+>=20
+> I think the key fail message is
+>=20
+> | ERROR: Function 'poky-image-sato-directdisk: LIC_FILES_CHKSUM points
+> to invalid file: ${COREBASE}/LICENSE' failed
+>=20
+> Is there any problem I got? Or where can I find the files? Thanks.
+
+I _think_ this has to do with the move from POKY to CORE in the naming.
+Looks like the directdisk image type may have been missed.
+
+I suggest you try the poky-image-sato-live image and install from that.
+The directdisk images have some known issues that I suspect will prevent
+them from working for you.
+
+--
+Darren
+
+>=20
+> =20
+>=20
+> Best Regards,
+>=20
+> =20
+>=20
+> Simon
+>=20
+> =20
+>=20
+>=20
+>=20
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
--- 
-倪庆亮
-TEL:    13588371863
-E-MAIL: niqingliang@insigma.com.cn
-BLOG:   http://niqingliang2003.wordpress.com
-
-
+--=20
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
