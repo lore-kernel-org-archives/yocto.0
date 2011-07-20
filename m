@@ -1,24 +1,21 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id DE5234C800AB
-	for <yocto@yoctoproject.org>; Wed, 20 Jul 2011 12:05:56 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 20 Jul 2011 10:05:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,236,1309762800"; d="scan'208";a="30297430"
-Received: from unknown (HELO [10.255.13.254]) ([10.255.13.254])
-	by fmsmga002.fm.intel.com with ESMTP; 20 Jul 2011 10:05:56 -0700
-Message-ID: <4E270AF4.3050401@linux.intel.com>
-Date: Wed, 20 Jul 2011 10:05:56 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc13 Thunderbird/3.1.10
-MIME-Version: 1.0
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
+Return-Path: <galak@kernel.crashing.org>
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 569774C80A53
+	for <yocto@yoctoproject.org>; Wed, 20 Jul 2011 15:33:42 -0500 (CDT)
+Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6KKXW2A003854;
+	Wed, 20 Jul 2011 15:33:33 -0500
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Kumar Gala <galak@kernel.crashing.org>
+In-Reply-To: <4E270AF4.3050401@linux.intel.com>
+Date: Wed, 20 Jul 2011 15:33:34 -0500
+Message-Id: <40CB4CC7-500E-4976-82BD-400979681CEE@kernel.crashing.org>
 References: <1311097296-17200-1-git-send-email-galak@kernel.crashing.org>
-In-Reply-To: <1311097296-17200-1-git-send-email-galak@kernel.crashing.org>
-Cc: yocto@yoctoproject.org
+	<4E270AF4.3050401@linux.intel.com>
+To: Saul Wold <sgw@linux.intel.com>
+X-Mailer: Apple Mail (2.1084)
+Cc: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
 Subject: Re: [OE-core] [PATCH v2 0/5] Add support for PowerPC e500v2/SPE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -31,28 +28,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jul 2011 17:05:57 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Wed, 20 Jul 2011 20:33:46 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 
-On 07/19/2011 10:41 AM, Kumar Gala wrote:
-> The majority of support for the PowerPC e500v2/SPE target already
-> exists.  However some minor cleans are required to get things working
-> completely.
->
-> The e500v2 utilizes a unique floating point programming model / ABI from
-> other PowerPC targets and thus requires special handling.
->
-> - k
->
-> _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-core
->
 
-Merged into OE-Core
+On Jul 20, 2011, at 12:05 PM, Saul Wold wrote:
 
-Thanks
-	Sau!
+> On 07/19/2011 10:41 AM, Kumar Gala wrote:
+>> The majority of support for the PowerPC e500v2/SPE target already
+>> exists.  However some minor cleans are required to get things working
+>> completely.
+>> 
+>> The e500v2 utilizes a unique floating point programming model / ABI from
+>> other PowerPC targets and thus requires special handling.
+>> 
+>> - k
+>> 
+>> _______________________________________________
+>> Openembedded-core mailing list
+>> Openembedded-core@lists.openembedded.org
+>> http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-core
+>> 
+> 
+> Merged into OE-Core
+> 
+> Thanks
+> 	Sau!
+
+Thanks, how does this propagate to poky?
+
+- k
 
