@@ -1,27 +1,33 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 146194C800A3
-	for <yocto@yoctoproject.org>; Wed, 20 Jul 2011 15:49:41 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 20 Jul 2011 13:49:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,237,1309762800"; d="scan'208";a="29583575"
-Received: from unknown (HELO [10.255.13.254]) ([10.255.13.254])
-	by azsmga001.ch.intel.com with ESMTP; 20 Jul 2011 13:49:40 -0700
-Message-ID: <4E273F64.9080305@linux.intel.com>
-Date: Wed, 20 Jul 2011 13:49:40 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc13 Thunderbird/3.1.10
+Return-Path: <fransmeulenbroeks@gmail.com>
+Received: from mail-gx0-f176.google.com (mail-gx0-f176.google.com
+	[209.85.161.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 1171B4C800AB
+	for <yocto@yoctoproject.org>; Wed, 20 Jul 2011 16:06:22 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by gxk7 with SMTP id 7so409548gxk.35
+	for <yocto@yoctoproject.org>; Wed, 20 Jul 2011 14:06:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=wN7zjP0hopNowx+in1cBGsJ4O3LTO1r2ngKJzmBluw8=;
+	b=VmTo93OF2I/FAmj4P8rvgSqHCfNQXS/Guu/58VynVy3LPY+X8RDC2kL2I6dJZ3aKZ3
+	+VTeL6i1HRA/QyDEgLWHHWgi7t8je+orrbKhu1ehdgyKvMe4MyD1zjiW4BhCRqnZjr3t
+	w+EnUrJQDv2Ko/g2kwdAJBHQdWqVRskB9aZjE=
 MIME-Version: 1.0
-To: Kumar Gala <galak@kernel.crashing.org>
-References: <1311097296-17200-1-git-send-email-galak@kernel.crashing.org>
-	<4E270AF4.3050401@linux.intel.com>
-	<40CB4CC7-500E-4976-82BD-400979681CEE@kernel.crashing.org>
-In-Reply-To: <40CB4CC7-500E-4976-82BD-400979681CEE@kernel.crashing.org>
-Cc: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [PATCH v2 0/5] Add support for PowerPC e500v2/SPE
+Received: by 10.91.96.18 with SMTP id y18mr8324816agl.0.1311195982327; Wed, 20
+	Jul 2011 14:06:22 -0700 (PDT)
+Received: by 10.90.223.19 with HTTP; Wed, 20 Jul 2011 14:06:22 -0700 (PDT)
+In-Reply-To: <4D5966FF.6010906@linux.intel.com>
+References: <AANLkTimVZq3JvBTk1EsLXDrtg-uQeFGNB+rrS7fcZerX@mail.gmail.com>
+	<4D5966FF.6010906@linux.intel.com>
+Date: Wed, 20 Jul 2011 23:06:22 +0200
+Message-ID: <CACW_hTYBOmNa+H9_DAResAmAn2jvjxw1_L0eDP2TgHYczhsrCw@mail.gmail.com>
+From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: bios upgrade for blacksand with N450 ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,44 +39,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jul 2011 20:49:42 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 20 Jul 2011 21:06:23 -0000
+Content-Type: multipart/alternative; boundary=0016e64718ecc1f07404a8869a19
 
-On 07/20/2011 01:33 PM, Kumar Gala wrote:
+--0016e64718ecc1f07404a8869a19
+Content-Type: text/plain; charset=ISO-8859-1
+
+2011/2/14 Darren Hart <dvhart@linux.intel.com>
+
+> On 02/13/2011 01:27 PM, Frans Meulenbroeks wrote:
 >
-> On Jul 20, 2011, at 12:05 PM, Saul Wold wrote:
->
->> On 07/19/2011 10:41 AM, Kumar Gala wrote:
->>> The majority of support for the PowerPC e500v2/SPE target already
->>> exists.  However some minor cleans are required to get things working
->>> completely.
->>>
->>> The e500v2 utilizes a unique floating point programming model / ABI from
->>> other PowerPC targets and thus requires special handling.
->>>
->>> - k
->>>
->>> _______________________________________________
->>> Openembedded-core mailing list
->>> Openembedded-core@lists.openembedded.org
->>> http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-core
->>>
+>> Hi,
 >>
->> Merged into OE-Core
+>> I got one of the blacksand boards with N450 that were given away at
+>> the ELC, and I am wondering if there happens to be a bios upgrade for
+>> it (or at least make the bios a little bit less chatty and faster
+>> starting).
+>> Anyone any idea?
 >>
->> Thanks
->> 	Sau!
+>>
+> Looking into it.
 >
-> Thanks, how does this propagate to poky?
+> --
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Linux Kernel
 >
-> - k
->
-Kumar,
 
-Once it's in OE-Core Richard (the maintainer of both) does a merge into 
-the poky git repo, so by the time you get an ACK email, it should be 
-propagated already.
+Darren
 
-Sau!
+I waswwondering if a newer bios has become available I haven't heard back
+from you after the above mail and I haven't found a newer bios myself (but
+maybe I looked at the wrong places). The one I got with the board is way too
+verbose making the boot take way too long, causing the board to be used only
+rarely.
 
+Frans
+
+--0016e64718ecc1f07404a8869a19
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<br><br><div class=3D"gmail_quote">2011/2/14 Darren Hart <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:dvhart@linux.intel.com">dvhart@linux.intel.com</a>&gt=
+;</span><br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex;">
+<div><div></div><div class=3D"h5">On 02/13/2011 01:27 PM, Frans Meulenbroek=
+s wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Hi,<br>
+<br>
+I got one of the blacksand boards with N450 that were given away at<br>
+the ELC, and I am wondering if there happens to be a bios upgrade for<br>
+it (or at least make the bios a little bit less chatty and faster<br>
+starting).<br>
+Anyone any idea?<br>
+<br>
+</blockquote>
+<br></div></div>
+Looking into it.<br><font color=3D"#888888">
+<br>
+-- <br>
+Darren Hart<br>
+Intel Open Source Technology Center<br>
+Yocto Project - Linux Kernel<br>
+</font></blockquote></div><br>Darren<br><br>I waswwondering if a newer bios=
+ has become available I haven&#39;t heard back from you after the above mai=
+l and I haven&#39;t found a newer bios myself (but maybe I looked at the wr=
+ong places). The one I got with the board is way too verbose making the boo=
+t take way too long, causing the board to be used only rarely.<br>
+<br>Frans<br>
+
+--0016e64718ecc1f07404a8869a19--
