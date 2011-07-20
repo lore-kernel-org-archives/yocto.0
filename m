@@ -1,34 +1,54 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 4E5834C803DB
-	for <yocto@yoctoproject.org>; Wed, 20 Jul 2011 09:52:03 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6KEppsQ023739;
-	Wed, 20 Jul 2011 15:51:51 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 23724-01; Wed, 20 Jul 2011 15:51:44 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6KEpdBD023727
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 20 Jul 2011 15:51:40 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-In-Reply-To: <a9d457e0c55b74e9093dd657e66d6d80e201e357.1310707201.git.bruce.ashfield@windriver.com>
-References: <\> <cover.1310707201.git.bruce.ashfield@windriver.com>
-	<a9d457e0c55b74e9093dd657e66d6d80e201e357.1310707201.git.bruce.ashfield@windriver.com>
-Date: Wed, 20 Jul 2011 15:51:36 +0100
-Message-ID: <1311173496.2344.54.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org, saul.wold@intel.com
-Subject: Re: [PATCH 1/1] linux-yocto/meta-yocto: update SRCREVS
+Return-Path: <B29882@freescale.com>
+Received: from VA3EHSOBE002.bigfish.com (va3ehsobe002.messaging.microsoft.com
+	[216.32.180.12])
+	by mx1.pokylinux.org (Postfix) with ESMTP id D7DFE4C800A3
+	for <yocto@yoctoproject.org>; Wed, 20 Jul 2011 11:42:11 -0500 (CDT)
+Received: from mail15-va3-R.bigfish.com (10.7.14.241) by
+	VA3EHSOBE002.bigfish.com (10.7.40.22) with Microsoft SMTP Server id
+	14.1.225.22; Wed, 20 Jul 2011 16:42:11 +0000
+Received: from mail15-va3 (localhost.localdomain [127.0.0.1])	by
+	mail15-va3-R.bigfish.com (Postfix) with ESMTP id 528521B08294;
+	Wed, 20 Jul 2011 16:42:11 +0000 (UTC)
+X-SpamScore: -14
+X-BigFish: VS-14(zz9371M1432N98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3h61h)
+X-Spam-TCS-SCL: 0:0
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
+	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
+Received: from mail15-va3 (localhost.localdomain [127.0.0.1]) by mail15-va3
+	(MessageSwitch) id 1311180131173868_15238;
+	Wed, 20 Jul 2011 16:42:11 +0000 (UTC)
+Received: from VA3EHSMHS018.bigfish.com (unknown [10.7.14.235])	by
+	mail15-va3.bigfish.com (Postfix) with ESMTP id 1E0C07804D;
+	Wed, 20 Jul 2011 16:42:11 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS018.bigfish.com
+	(10.7.99.28) with Microsoft SMTP Server (TLS) id 14.1.225.22;
+	Wed, 20 Jul 2011 16:41:56 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.56]) by
+	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
+	14.01.0289.008; Wed, 20 Jul 2011 11:41:52 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Saul Wold <sgw@linux.intel.com>
+Thread-Topic: [yocto] [PATCH] Add endianess macros used by previous
+	endian-ness_handling.patch
+Thread-Index: AQHMRmzQ+MK4MiUTgU6d3Pf0UqsIqpT1vrgA
+Date: Wed, 20 Jul 2011 16:41:51 +0000
+Message-ID: <CAEsOVNfZ-Bsom3yq1Oo_0GS7zbv0Cm1XNKmv-+P63zB4uYFkVg@mail.gmail.com>
+References: <1311118644-22937-1-git-send-email-msm@freescale.com>
+	<4E261A15.8030604@linux.intel.com>
+	<CAEsOVNcqRoHSoRe74P1Y8WKkgXaC=YMyXM-L+qeLjMvu-xOWcQ@mail.gmail.com>
+In-Reply-To: <CAEsOVNcqRoHSoRe74P1Y8WKkgXaC=YMyXM-L+qeLjMvu-xOWcQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [99.47.177.27]
+MIME-Version: 1.0
+X-OriginatorOrg: freescale.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH] Add endianess macros used by previous endian-ness_handling.patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -37,31 +57,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jul 2011 14:52:04 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 20 Jul 2011 16:42:12 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <30A85712B93CD8488E135FEF67CFECAA@freescale.net>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 2011-07-15 at 01:26 -0400, Bruce Ashfield wrote:
-> Fixes bug [YOCTO #1161]
-> Fixes bug [YOCTO #773]
-> 
-> This streamlines the routerstation pro configuration to remove options
-> that are either unecessary or that are causing bugs.
-> 
-> Also added to all branches is:
-> 
->   commit ffd73d6b2a9bfa0de5710b90a2237f4be66ae9a7
->   Author: Yinghai Lu <yinghai@kernel.org>
->   Date:   Thu Jul 14 15:27:44 2011 -0700
-> 
->     mm: use alloc_bootmem_node_nopanic() on really needed path
-> 
->     commit 8f389a99b652aab5b42297280bd94d95933ad12f upstream.
-> 
-> Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+On Tue, Jul 19, 2011 at 8:19 PM, Matthew McClintock <msm@freescale.com> wro=
+te:
+>> What will happen on distros that do include these macros? =A0Will we get
+>> redefines? =A0I don't see any conditional testing to determine if they e=
+xist
+>> already.
+>
+> I suspect redefines. I did compile this on a machine that did have the
+> defines in endian.h though and I got no messages from bitbake. I guess
+> I should check the compile log. Will do these things shortly.
 
-Merged to master, thanks.
+I have reason to believe that ldconfig-native is not even being built
+on my Fedora box. Does this make any sense? I've cleared sstate, run
+bitbake -c clean, and even manually run bitbake -c compile
+ldconfig-native. Is it somehow determining the host ldconfig is
+adequate?
 
-Richard
+-M=
 
 
