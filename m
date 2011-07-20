@@ -1,46 +1,27 @@
-Return-Path: <B29882@freescale.com>
-Received: from VA3EHSOBE008.bigfish.com (va3ehsobe001.messaging.microsoft.com
-	[216.32.180.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8026C4C804E4
-	for <yocto@yoctoproject.org>; Wed, 20 Jul 2011 15:18:12 -0500 (CDT)
-Received: from mail181-va3-R.bigfish.com (10.7.14.244) by
-	VA3EHSOBE008.bigfish.com (10.7.40.28) with Microsoft SMTP Server id
-	14.1.225.22; Wed, 20 Jul 2011 20:18:06 +0000
-Received: from mail181-va3 (localhost.localdomain [127.0.0.1])	by
-	mail181-va3-R.bigfish.com (Postfix) with ESMTP id 87049193838A;
-	Wed, 20 Jul 2011 20:18:06 +0000 (UTC)
-X-SpamScore: 0
-X-BigFish: VS0(zzbb2dK936eKc8kzz1202h1082kzz8275bhz2dh2a8h668h839h62h)
-X-Spam-TCS-SCL: 1:0
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
-	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail181-va3 (localhost.localdomain [127.0.0.1]) by mail181-va3
-	(MessageSwitch) id 1311193060469620_8836;
-	Wed, 20 Jul 2011 20:17:40 +0000 (UTC)
-Received: from VA3EHSMHS029.bigfish.com (unknown [10.7.14.240])	by
-	mail181-va3.bigfish.com (Postfix) with ESMTP id 25BB76B004D;
-	Wed, 20 Jul 2011 20:17:40 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS029.bigfish.com
-	(10.7.99.39) with Microsoft SMTP Server (TLS) id 14.1.225.22;
-	Wed, 20 Jul 2011 20:17:38 +0000
-Received: from az33smr01.freescale.net (10.64.34.199) by
-	039-SN1MMR1-003.039d.mgd.msft.net (10.84.1.16) with Microsoft SMTP
-	Server id 14.1.289.8; Wed, 20 Jul 2011 15:17:26 -0500
-Received: from right.am.freescale.net (right.am.freescale.net [10.82.193.13])
-	by az33smr01.freescale.net (8.13.1/8.13.0) with ESMTP id
-	p6KKHQZY013241; Wed, 20 Jul 2011 15:17:26 -0500 (CDT)
-From: Matthew McClintock <msm@freescale.com>
-To: <yocto@yoctoproject.org>, <openembedded-core@openembedded.org>
-Date: Wed, 20 Jul 2011 15:17:25 -0500
-Message-ID: <1311193046-4266-1-git-send-email-msm@freescale.com>
-X-Mailer: git-send-email 1.7.5
-In-Reply-To: <CAEsOVNfZ-Bsom3yq1Oo_0GS7zbv0Cm1XNKmv-+P63zB4uYFkVg@mail.gmail.com>
-References: <CAEsOVNfZ-Bsom3yq1Oo_0GS7zbv0Cm1XNKmv-+P63zB4uYFkVg@mail.gmail.com>
+Return-Path: <sgw@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 146194C800A3
+	for <yocto@yoctoproject.org>; Wed, 20 Jul 2011 15:49:41 -0500 (CDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 20 Jul 2011 13:49:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,237,1309762800"; d="scan'208";a="29583575"
+Received: from unknown (HELO [10.255.13.254]) ([10.255.13.254])
+	by azsmga001.ch.intel.com with ESMTP; 20 Jul 2011 13:49:40 -0700
+Message-ID: <4E273F64.9080305@linux.intel.com>
+Date: Wed, 20 Jul 2011 13:49:40 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc13 Thunderbird/3.1.10
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-X-Mailman-Approved-At: Wed, 20 Jul 2011 15:43:53 -0500
-Cc: Matthew McClintock <msm@freescale.com>
-Subject: [PATCH] Add endianess macros used by previous endian-ness_handling.patch
+To: Kumar Gala <galak@kernel.crashing.org>
+References: <1311097296-17200-1-git-send-email-galak@kernel.crashing.org>
+	<4E270AF4.3050401@linux.intel.com>
+	<40CB4CC7-500E-4976-82BD-400979681CEE@kernel.crashing.org>
+In-Reply-To: <40CB4CC7-500E-4976-82BD-400979681CEE@kernel.crashing.org>
+Cc: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [PATCH v2 0/5] Add support for PowerPC e500v2/SPE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,162 +33,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jul 2011 20:18:17 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 20 Jul 2011 20:49:42 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Some distro's don't include these macros in /usr/include/endian.h
-so we include them via this patch
+On 07/20/2011 01:33 PM, Kumar Gala wrote:
+>
+> On Jul 20, 2011, at 12:05 PM, Saul Wold wrote:
+>
+>> On 07/19/2011 10:41 AM, Kumar Gala wrote:
+>>> The majority of support for the PowerPC e500v2/SPE target already
+>>> exists.  However some minor cleans are required to get things working
+>>> completely.
+>>>
+>>> The e500v2 utilizes a unique floating point programming model / ABI from
+>>> other PowerPC targets and thus requires special handling.
+>>>
+>>> - k
+>>>
+>>> _______________________________________________
+>>> Openembedded-core mailing list
+>>> Openembedded-core@lists.openembedded.org
+>>> http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-core
+>>>
+>>
+>> Merged into OE-Core
+>>
+>> Thanks
+>> 	Sau!
+>
+> Thanks, how does this propagate to poky?
+>
+> - k
+>
+Kumar,
 
-Signed-off-by: Matthew McClintock <msm@freescale.com>
----
-v2: Added conditional check for macros already being defined, added
-    commentary to the patch itself, and added a signed-of-by line
+Once it's in OE-Core Richard (the maintainer of both) does a merge into 
+the poky git repo, so by the time you get an ACK email, it should be 
+propagated already.
 
-(resending including openembedded-core@openembedded.org)
-
- .../ldconfig-native-2.12.1/endianess-header.patch  |  113 ++++++++++++++++++++
- meta/recipes-core/eglibc/ldconfig-native_2.12.1.bb |    5 +-
- 2 files changed, 116 insertions(+), 2 deletions(-)
- create mode 100644 meta/recipes-core/eglibc/ldconfig-native-2.12.1/endianess-header.patch
-
-diff --git a/meta/recipes-core/eglibc/ldconfig-native-2.12.1/endianess-header.patch b/meta/recipes-core/eglibc/ldconfig-native-2.12.1/endianess-header.patch
-new file mode 100644
-index 0000000..a18b2c2
---- /dev/null
-+++ b/meta/recipes-core/eglibc/ldconfig-native-2.12.1/endianess-header.patch
-@@ -0,0 +1,113 @@
-+Upstream-Status: Inappropriate [fix poky patch]
-+
-+This patch fixes build issues with a previous endian-ness_handling.patch on
-+distros that don't have macros referenced
-+
-+7/20/2011
-+Matthew McClintock <msm@freescale.com>
-+
-+diff -purN ldconfig-native-2.12.1.orig/endian_extra.h ldconfig-native-2.12.1/endian_extra.h
-+--- ldconfig-native-2.12.1.orig/endian_extra.h	1969-12-31 18:00:00.000000000 -0600
-++++ ldconfig-native-2.12.1/endian_extra.h	2011-07-19 18:09:14.323048417 -0500
-+@@ -0,0 +1,64 @@
-++/* Copyright (C) 1992, 1996, 1997, 2000, 2008 Free Software Foundation, Inc.
-++   This file is part of the GNU C Library.
-++
-++   The GNU C Library is free software; you can redistribute it and/or
-++   modify it under the terms of the GNU Lesser General Public
-++   License as published by the Free Software Foundation; either
-++   version 2.1 of the License, or (at your option) any later version.
-++
-++   The GNU C Library is distributed in the hope that it will be useful,
-++   but WITHOUT ANY WARRANTY; without even the implied warranty of
-++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-++   Lesser General Public License for more details.
-++
-++   You should have received a copy of the GNU Lesser General Public
-++   License along with the GNU C Library; if not, write to the Free
-++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-++   02111-1307 USA.  */
-++
-++#include <endian.h>
-++
-++#ifndef	_ENDIAN_EXTRA_H
-++#define	_ENDIAN_EXTRA_H	1
-++
-++/* Don't redefine these macros if they already exist */
-++#ifndef htobe16
-++#ifdef __USE_BSD
-++/* Conversion interfaces.  */
-++# include <byteswap.h>
-++
-++# if __BYTE_ORDER == __LITTLE_ENDIAN
-++#  define htobe16(x) __bswap_16 (x)
-++#  define htole16(x) (x)
-++#  define be16toh(x) __bswap_16 (x)
-++#  define le16toh(x) (x)
-++
-++#  define htobe32(x) __bswap_32 (x)
-++#  define htole32(x) (x)
-++#  define be32toh(x) __bswap_32 (x)
-++#  define le32toh(x) (x)
-++
-++#  define htobe64(x) __bswap_64 (x)
-++#  define htole64(x) (x)
-++#  define be64toh(x) __bswap_64 (x)
-++#  define le64toh(x) (x)
-++# else
-++#  define htobe16(x) (x)
-++#  define htole16(x) __bswap_16 (x)
-++#  define be16toh(x) (x)
-++#  define le16toh(x) __bswap_16 (x)
-++
-++#  define htobe32(x) (x)
-++#  define htole32(x) __bswap_32 (x)
-++#  define be32toh(x) (x)
-++#  define le32toh(x) __bswap_32 (x)
-++
-++#  define htobe64(x) (x)
-++#  define htole64(x) __bswap_64 (x)
-++#  define be64toh(x) (x)
-++#  define le64toh(x) __bswap_64 (x)
-++# endif
-++#endif
-++#endif
-++
-++#endif	/* endian_extra.h */
-+diff -purN ldconfig-native-2.12.1.orig/cache.c ldconfig-native-2.12.1/cache.c
-+--- ldconfig-native-2.12.1.orig/cache.c	2011-07-19 18:21:28.347041301 -0500
-++++ ldconfig-native-2.12.1/cache.c	2011-07-19 18:22:54.118048064 -0500
-+@@ -39,6 +39,8 @@
-+ # define N_(msgid)  msgid
-+ #define _(msg) msg
-+ 
-++#include "endian_extra.h"
-++
-+ extern int be;
-+ 
-+ static uint16_t write16(uint16_t x, int be)
-+diff -purN ldconfig-native-2.12.1.orig/readelflib.c ldconfig-native-2.12.1/readelflib.c
-+--- ldconfig-native-2.12.1.orig/readelflib.c	2011-07-19 18:21:28.346041593 -0500
-++++ ldconfig-native-2.12.1/readelflib.c	2011-07-19 18:23:05.324059875 -0500
-+@@ -25,6 +25,9 @@
-+ 
-+ /* check_ptr checks that a pointer is in the mmaped file and doesn't
-+    point outside it.  */
-++
-++#include "endian_extra.h"
-++
-+ #undef check_ptr
-+ #define check_ptr(ptr)						\
-+ do								\
-+diff -purN ldconfig-native-2.12.1.orig/readlib.c ldconfig-native-2.12.1/readlib.c
-+--- ldconfig-native-2.12.1.orig/readlib.c	2011-07-19 18:21:28.346041593 -0500
-++++ ldconfig-native-2.12.1/readlib.c	2011-07-19 18:23:23.877046210 -0500
-+@@ -40,6 +40,8 @@
-+ 
-+ #include "ldconfig.h"
-+ 
-++#include "endian_extra.h"
-++
-+ #define _(msg) msg
-+ 
-+ #define Elf32_CLASS ELFCLASS32
-diff --git a/meta/recipes-core/eglibc/ldconfig-native_2.12.1.bb b/meta/recipes-core/eglibc/ldconfig-native_2.12.1.bb
-index bacf9f8..00edb6e 100644
---- a/meta/recipes-core/eglibc/ldconfig-native_2.12.1.bb
-+++ b/meta/recipes-core/eglibc/ldconfig-native_2.12.1.bb
-@@ -9,9 +9,10 @@ SRC_URI = "file://ldconfig-native-2.12.1.tar.bz2 \
-            file://ldconfig_aux-cache_path_fix.patch \
-            file://32and64bit.patch \
-            file://endian-ness_handling.patch \
--           file://flag_fix.patch "
-+           file://flag_fix.patch \
-+           file://endianess-header.patch"
- 
--PR = "r0"
-+PR = "r1"
- 
- inherit native
- 
--- 
-1.7.5
-
-
+Sau!
 
