@@ -1,23 +1,33 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id EB04B4C800A1
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2011 17:53:21 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 21 Jul 2011 15:53:20 -0700
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id A05474C8009D;
+	Thu, 21 Jul 2011 17:59:36 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 21 Jul 2011 15:59:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,244,1309762800"; d="scan'208";a="33194505"
-Received: from unknown (HELO [10.255.14.55]) ([10.255.14.55])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Jul 2011 15:53:19 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Andre Haupt <andre@bitwigglers.org>
-In-Reply-To: <20110719101547.GA18149@localhost.localdomain>
-References: <20110719101547.GA18149@localhost.localdomain>
-Date: Thu, 21 Jul 2011 17:53:17 -0500
-Message-ID: <1311288797.2316.20.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: building crownbay images
+X-IronPort-AV: E=Sophos;i="4.67,244,1309762800"; d="scan'208,217";a="30950244"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by fmsmga002.fm.intel.com with ESMTP; 21 Jul 2011 15:59:35 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 21 Jul 2011 15:59:36 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.233]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.5.9]) with mapi id
+	14.01.0289.001; Thu, 21 Jul 2011 15:59:35 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Poky Project <poky@yoctoproject.org>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: Yocto bug traige call for action: Please Verify Resolved bugs
+	in bugzilla
+Thread-Index: AcxH+dk748o3/UUXTS6RbXT17sE/pg==
+Date: Thu, 21 Jul 2011 22:59:34 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C136F8894@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+MIME-Version: 1.0
+Subject: Yocto bug traige call for action: Please Verify Resolved bugs in bugzilla
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,75 +39,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2011 22:53:22 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 21 Jul 2011 22:59:37 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C136F8894ORSMSX101amrcor_"
 
-On Tue, 2011-07-19 at 03:15 -0700, Andre Haupt wrote:
-> Hi all,
-> 
-> I am new to Yocto and to Distro work in general.
-> 
-> I want to use Yocto on the Kontron nanoETXexpressTT boards.
-> (http://de.kontron.com/products/computeronmodules/com+express/com+express+ultra/nanoetxexpresstt.html)
-> 
-> These boards are based on the Intel Atom E6xx and the EG20T platform
-> controller hub, so i think it is a good idea to start with the crownbay
-> BSP.
-> 
-> What would be the best, known to work, way to produce crownbay-noemgd images
-> for poky bernard?
-> Should i use git? Which branches should i use (the docs are contraditing
-> at least in parts)?
-> 
+--_000_C6510F6D410BB64A8C15398EDC6B847C136F8894ORSMSX101amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Andre,
-
-Sorry for not replying earlier - was (and still am) out on vacation.  In
-the Downloads | BSP section on the Yocto site, there's a 'transcript
-from git checkout to meta-intel BSP' link that you should be able to use
-to get started building meta-intel images using git, including crownbay.
-You'll have to adapt it slightly for crownbay-noemgd e.g. use
-'crownbay-noemgd' machine name instead of the 'fishriver' that the
-example uses, change directory names for your system, etc.
-
-Also, if you follow the 'Board Support Package (BSP) Downloads' link on
-the same page, to the 'Intel Atom Processor E660 with Intel Platform
-Controller Hub EG20T Development Kit', Version 5.0 Bernard, to the
-'Building the Meta-crownbay BSP Layer' section, you can find
-instructions on building the 'crownbay-noemgd' BSP from the
-poky-bernard-5.0 tarballs and the crownbay-noemgd-bernard-5.0 tarball.
-These are also contained in README file in the BSP download.
-
-You should be able to use either method to get a crownbay-noemgd image
-for bernard, depending only on your preference.
-
-If there are contradictions in the documentation, or if you can think of
-a better way to make this info accessible to new users, please let me
-know the specifics and we can fix the website and/or documentation...
-
-> I read somewhere, that i should install Yocto to /usr/local/src/yocto.
-> Is this really necessary?
-> 
-
-No, this isn't necessary - it just happens to be where I did the build
-for the example.  You can use any location you want for the BSP build
-directory.
-
-Hope that helps,
-
-Tom
-
-> Thanks for any hints.
-> 
-> regards,
-> 
-> Andre
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Hi All,
 
 
 
+In today's bug triage meeting, we noticed there're total 564 bugs that are =
+in "Resolved" status.  The process is once a bug is in Resolved status, the=
+ original reporter of the bug should verify the resolution, either a valid =
+fix or acceptable reason and mark the bug as "Verified".  So please take a =
+look at Yocto bugzilla (http://bugzilla.pokylinux.org/buglist.cgi?query_for=
+mat=3Dadvanced&bug_status=3DRESOLVED) and verify those bugs that you've rep=
+orted and now is marked as Resolved.
+
+
+
+Thanks,
+
+Jessica
+
+
+--_000_C6510F6D410BB64A8C15398EDC6B847C136F8894ORSMSX101amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi All,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-top:12.0pt">In today&#8217;s bug tri=
+age meeting, we noticed there&#8217;re total 564 bugs that are in &#8220;Re=
+solved&#8221; status.&nbsp; The process is once a bug is in Resolved status=
+, the original reporter of the bug should verify the resolution,
+ either a valid fix or acceptable reason and mark the bug as &#8220;Verifie=
+d&#8221;.&nbsp; So please take a look at Yocto bugzilla (<a href=3D"http://=
+bugzilla.pokylinux.org/buglist.cgi?query_format=3Dadvanced&amp;bug_status=
+=3DRESOLVED">http://bugzilla.pokylinux.org/buglist.cgi?query_format=3Dadvan=
+ced&amp;bug_status=3DRESOLVED</a>)
+ and verify those bugs that you&#8217;ve reported and now is marked as Reso=
+lved.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Jessica<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_C6510F6D410BB64A8C15398EDC6B847C136F8894ORSMSX101amrcor_--
