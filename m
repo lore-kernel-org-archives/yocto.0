@@ -1,25 +1,21 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 70EC14C800AB
-	for <yocto@yoctoproject.org>; Wed, 20 Jul 2011 18:27:32 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 20 Jul 2011 16:27:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,238,1309762800"; d="scan'208";a="30456815"
-Received: from unknown (HELO [10.255.14.84]) ([10.255.14.84])
-	by fmsmga002.fm.intel.com with ESMTP; 20 Jul 2011 16:27:31 -0700
-Message-ID: <4E276461.1060403@linux.intel.com>
-Date: Wed, 20 Jul 2011 16:27:29 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.18) Gecko/20110617 Lightning/1.0b2 Thunderbird/3.1.11
-MIME-Version: 1.0
-To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-References: <AANLkTimVZq3JvBTk1EsLXDrtg-uQeFGNB+rrS7fcZerX@mail.gmail.com>	<4D5966FF.6010906@linux.intel.com>
-	<CACW_hTYBOmNa+H9_DAResAmAn2jvjxw1_L0eDP2TgHYczhsrCw@mail.gmail.com>
-In-Reply-To: <CACW_hTYBOmNa+H9_DAResAmAn2jvjxw1_L0eDP2TgHYczhsrCw@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: bios upgrade for blacksand with N450 ?
+Return-Path: <galak@kernel.crashing.org>
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by mx1.pokylinux.org (Postfix) with ESMTP id D04094C800A3
+	for <yocto@yoctoproject.org>; Wed, 20 Jul 2011 21:53:12 -0500 (CDT)
+Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6L2r0Zm026855;
+	Wed, 20 Jul 2011 21:53:02 -0500
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Kumar Gala <galak@kernel.crashing.org>
+In-Reply-To: <4E1FD0C2.6000704@windriver.com>
+Date: Wed, 20 Jul 2011 21:53:00 -0500
+Message-Id: <6E49AB59-E015-426B-B3B3-6CE384869532@kernel.crashing.org>
+References: <1310705816-31653-1-git-send-email-galak@kernel.crashing.org>
+	<4E1FD0C2.6000704@windriver.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+X-Mailer: Apple Mail (2.1084)
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [PATCH] mpc8315e-rdb: Set TARGET_FPU correct
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,59 +27,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jul 2011 23:27:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 21 Jul 2011 02:53:14 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Hi Frans,
 
-I'm sorry for not getting back to you. I did ask, and unfortunately
-there is currently not a less noisy BIOS available for the Blacksand.
-I will forward your email and feedback to my internal contacts for this
-board and will be sure to let you know if I hear back from them.
+On Jul 15, 2011, at 12:31 AM, Bruce Ashfield wrote:
 
-Thanks,
+> On 11-07-15 12:56 AM, Kumar Gala wrote:
+>> The MPC8315E has a e300c3 core in it with 'classic' or normal PPC
+>> floating point.
+>>=20
+>> 'SPE' floating point is what exists on the e500v2 core.
+>=20
+> Acked-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+>=20
+> Been meaning to change this for a while, the good news, is that
+> the setting doesn't make any difference at the moment :)
+>=20
+> Cheers,
+>=20
+> Bruce
 
-Darren
+ping, this seems to have gotten lost w/regards to getting applied
 
-On 07/20/2011 02:06 PM, Frans Meulenbroeks wrote:
-> 
-> 
-> 2011/2/14 Darren Hart <dvhart@linux.intel.com
-> <mailto:dvhart@linux.intel.com>>
-> 
->     On 02/13/2011 01:27 PM, Frans Meulenbroeks wrote:
-> 
->         Hi,
-> 
->         I got one of the blacksand boards with N450 that were given away at
->         the ELC, and I am wondering if there happens to be a bios
->         upgrade for
->         it (or at least make the bios a little bit less chatty and faster
->         starting).
->         Anyone any idea?
-> 
-> 
->     Looking into it.
-> 
->     -- 
->     Darren Hart
->     Intel Open Source Technology Center
->     Yocto Project - Linux Kernel
-> 
-> 
-> Darren
-> 
-> I waswwondering if a newer bios has become available I haven't heard
-> back from you after the above mail and I haven't found a newer bios
-> myself (but maybe I looked at the wrong places). The one I got with the
-> board is way too verbose making the boot take way too long, causing the
-> board to be used only rarely.
-> 
-> Frans
+- k
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+>> Signed-off-by: Kumar Gala<galak@kernel.crashing.org>
+>> ---
+>>  meta-yocto/conf/machine/mpc8315e-rdb.conf |    2 +-
+>>  1 files changed, 1 insertions(+), 1 deletions(-)
+>>=20
+>> diff --git a/meta-yocto/conf/machine/mpc8315e-rdb.conf =
+b/meta-yocto/conf/machine/mpc8315e-rdb.conf
+>> index 095d113..3f946a0 100644
+>> --- a/meta-yocto/conf/machine/mpc8315e-rdb.conf
+>> +++ b/meta-yocto/conf/machine/mpc8315e-rdb.conf
+>> @@ -2,7 +2,7 @@
+>>  #@DESCRIPTION: Machine configuration for running
+>>=20
+>>  TARGET_ARCH =3D "powerpc"
+>> -TARGET_FPU =3D "spe"
+>> +TARGET_FPU =3D "hard"
+>>=20
+>>  require conf/machine/include/tune-ppc603e.inc
+>>=20
+
 
