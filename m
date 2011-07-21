@@ -1,32 +1,28 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 231B34C803DB
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2011 11:37:45 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6LGbYBN002231;
-	Thu, 21 Jul 2011 17:37:34 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 01441-05; Thu, 21 Jul 2011 17:37:30 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6LGbOHU002225
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Thu, 21 Jul 2011 17:37:29 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
+Return-Path: <scott.a.garman@intel.com>
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6E0854C8009D
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2011 11:43:17 -0500 (CDT)
+Received: from mail-iy0-f180.google.com ([209.85.210.180])
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 21 Jul 2011 09:43:16 -0700
+Received: by iyh42 with SMTP id 42so1077069iyh.25
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2011 09:43:16 -0700 (PDT)
+Received: by 10.231.29.100 with SMTP id p36mr364439ibc.123.1311266595949;
+	Thu, 21 Jul 2011 09:43:15 -0700 (PDT)
+Received: from [127.0.0.1] (masterfoo.zenlinux.com [207.192.74.254])
+	by mx.google.com with ESMTPS id x11sm1021506ibd.7.2011.07.21.09.43.14
+	(version=SSLv3 cipher=OTHER); Thu, 21 Jul 2011 09:43:15 -0700 (PDT)
+Message-ID: <4E285718.10302@intel.com>
+Date: Thu, 21 Jul 2011 09:43:04 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.18) Gecko/20110617 Lightning/1.0b2 Thunderbird/3.1.11
+MIME-Version: 1.0
 To: McClintock Matthew-B29882 <B29882@freescale.com>
-In-Reply-To: <CAEsOVNfranCtB=CHOjR6fjBibFEd8_9GRENR90K0Y40MbdCkRQ@mail.gmail.com>
 References: <97A98E06-5F1B-49D3-BE3F-D70A5CB1AAF6@kernel.crashing.org>
 	<4E2829B1.7080506@intel.com>
 	<CAEsOVNfranCtB=CHOjR6fjBibFEd8_9GRENR90K0Y40MbdCkRQ@mail.gmail.com>
-Date: Thu, 21 Jul 2011 17:37:21 +0100
-Message-ID: <1311266241.2344.81.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Scott Garman <scott.a.garman@intel.com>
+In-Reply-To: <CAEsOVNfranCtB=CHOjR6fjBibFEd8_9GRENR90K0Y40MbdCkRQ@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: best cfg for building all of yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -39,30 +35,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2011 16:37:46 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 21 Jul 2011 16:43:17 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2011-07-21 at 16:32 +0000, McClintock Matthew-B29882 wrote:
-> On Thu, Jul 21, 2011 at 8:29 AM, Scott Garman <scott.a.garman@intel.com> wrote:
-> > bitbake world should build all of the available packages that aren't
-> > explicitly excluded due to machine incompatibilities. It doesn't generate a
-> > final image though, just all of the output packages.
-> 
+On 07/21/2011 09:32 AM, McClintock Matthew-B29882 wrote:
+> On Thu, Jul 21, 2011 at 8:29 AM, Scott Garman<scott.a.garman@intel.com>  wrote:
+>> bitbake world should build all of the available packages that aren't
+>> explicitly excluded due to machine incompatibilities. It doesn't generate a
+>> final image though, just all of the output packages.
+>
 > Is there an easy way to remove a specific package from being built
 > with running bitbake world? There are unmet dependencies:
-> 
+>
 > NOTE: Resolving any missing task queue dependencies
 > ERROR: Nothing PROVIDES 'libmad'
 > ERROR: Required build target 'libomxil' has no buildable providers.
 > Missing or unbuildable dependency chain was: ['libomxil', 'libmad']
 
-EXCLUDE_FROM_WORLD_pn-libmad = "1"
+This happens because conf/distro/include/default-distrovars.inc excludes 
+some recipes which are known to use commercial licenses:
 
-should remove libmad from world builds.
+COMMERCIAL_LICENSE ?= "lame gst-fluendo-mp3 libmad mpeg2dec ffmpeg qmmp"
 
-Cheers,
+If you'd like to build these recipes, set COMMERCIAL_LICENSE = "" in 
+your local.conf.
 
-Richard
+Scott
 
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
