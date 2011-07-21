@@ -1,32 +1,25 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C2EDC4C800A1
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2011 12:39:17 -0500 (CDT)
-Received: from mail-iy0-f180.google.com ([209.85.210.180])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 21 Jul 2011 10:39:16 -0700
-Received: by iyh42 with SMTP id 42so1128357iyh.25
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2011 10:39:16 -0700 (PDT)
-Received: by 10.231.84.85 with SMTP id i21mr417217ibl.34.1311269956404;
-	Thu, 21 Jul 2011 10:39:16 -0700 (PDT)
-Received: from [127.0.0.1] (masterfoo.zenlinux.com [207.192.74.254])
-	by mx.google.com with ESMTPS id er13sm1048560ibb.19.2011.07.21.10.39.14
-	(version=SSLv3 cipher=OTHER); Thu, 21 Jul 2011 10:39:15 -0700 (PDT)
-Message-ID: <4E286439.6000601@intel.com>
-Date: Thu, 21 Jul 2011 10:39:05 -0700
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.18) Gecko/20110617 Lightning/1.0b2 Thunderbird/3.1.11
-MIME-Version: 1.0
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-References: <97A98E06-5F1B-49D3-BE3F-D70A5CB1AAF6@kernel.crashing.org>
-	<4E2829B1.7080506@intel.com>
-	<CAEsOVNfranCtB=CHOjR6fjBibFEd8_9GRENR90K0Y40MbdCkRQ@mail.gmail.com>
-	<4E285718.10302@intel.com>
-	<alpine.DEB.2.02.1107211307240.4686@localhost6.localdomain6>
-In-Reply-To: <alpine.DEB.2.02.1107211307240.4686@localhost6.localdomain6>
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: best cfg for building all of yocto?
+Return-Path: <josh@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 87D214C8009D
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2011 13:34:34 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 21 Jul 2011 11:34:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,242,1309762800"; d="scan'208";a="28650733"
+Received: from vorpal.jf.intel.com (HELO [10.7.199.57]) ([10.7.199.57])
+	by orsmga002.jf.intel.com with ESMTP; 21 Jul 2011 11:34:30 -0700
+From: Joshua Lock <josh@linux.intel.com>
+To: Koen Kooi <koen@dominion.thruhere.net>
+Date: Thu, 21 Jul 2011 11:38:59 -0700
+In-Reply-To: <C7884CFB-DBBE-4EB0-9C21-88BDE564DDB4@dominion.thruhere.net>
+References: <cover.1310696828.git.liping.ke@intel.com>
+	<6ac3109c3cf221687a96606685fb209cb5d68556.1310696828.git.liping.ke@intel.com>
+	<C7884CFB-DBBE-4EB0-9C21-88BDE564DDB4@dominion.thruhere.net>
+X-Mailer: Evolution 3.0.2 (3.0.2-3.fc15) 
+Message-ID: <1311273539.2172.1.camel@vorpal.jf.intel.com>
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org, bitbake-devel@lists.openembedded.org
+Subject: Re: [bitbake-devel] [PATCH 1/1][Image Creator] Remove unused target tree data for Hob
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,49 +31,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2011 17:39:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 21 Jul 2011 18:34:41 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 07/21/2011 10:08 AM, Robert P. J. Day wrote:
-> On Thu, 21 Jul 2011, Scott Garman wrote:
->
->> On 07/21/2011 09:32 AM, McClintock Matthew-B29882 wrote:
->>> On Thu, Jul 21, 2011 at 8:29 AM, Scott Garman<scott.a.garman@intel.com>
->>> wrote:
->>>> bitbake world should build all of the available packages that aren't
->>>> explicitly excluded due to machine incompatibilities. It doesn't generate
->>>> a
->>>> final image though, just all of the output packages.
->>>
->>> Is there an easy way to remove a specific package from being built
->>> with running bitbake world? There are unmet dependencies:
->>>
->>> NOTE: Resolving any missing task queue dependencies
->>> ERROR: Nothing PROVIDES 'libmad'
->>> ERROR: Required build target 'libomxil' has no buildable providers.
->>> Missing or unbuildable dependency chain was: ['libomxil', 'libmad']
->>
->> This happens because conf/distro/include/default-distrovars.inc excludes some
->> recipes which are known to use commercial licenses:
->>
->> COMMERCIAL_LICENSE ?= "lame gst-fluendo-mp3 libmad mpeg2dec ffmpeg qmmp"
->>
->> If you'd like to build these recipes, set COMMERCIAL_LICENSE = "" in your
->> local.conf.
->
->    related to richard's earlier post about how to exclude packages,
-> shouldn't the initial settings be consistent, then?  either a default
-> yocto setup should include commercial licenses, or exclude them (and
-> their packages) entirely.  it seems that running a simple "bitbake
-> world" shouldn't just fail.
+On Thu, 2011-07-21 at 11:04 +0200, Koen Kooi wrote:
+> Op 21 jul. 2011, om 07:50 heeft Ke Liping het volgende geschreven:
+> 
+> > From: Liping Ke <liping.ke@intel.com>
+> > 
+> > Since Hob only needes package dependency information, we can
+> > create a new version of package information retrieving methods,
+> > remove task dependency information, so that we can greatly
+> > reduce data loading time for Hob
+> 
+> 
+> Does this fix the bug where DEPENDS are leaking into the RDEPENDS list?
+> If you select something like systemd the gui will list 'gtk' as a
+> runtime dep for the image, while it's only a transitive buildtime one.
+> 
 
-I agree with Robert. I have filed bug #1262 to track this issue.
+It does not, 1263 filed.
 
-Scott
+http://bugzilla.pokylinux.org/show_bug.cgi?id=1263
 
+Regards,
+Joshua
 -- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+Joshua Lock
+        Yocto Project "Johannes Factotum"
+        Intel Open Source Technology Centre
+
 
