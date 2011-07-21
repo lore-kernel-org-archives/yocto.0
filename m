@@ -1,26 +1,16 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A099E4C80A4F
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2011 08:29:28 -0500 (CDT)
-Received: from mail-iw0-f180.google.com ([209.85.214.180])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 21 Jul 2011 06:29:27 -0700
-Received: by iwn9 with SMTP id 9so862854iwn.25
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2011 06:29:27 -0700 (PDT)
-Received: by 10.231.47.193 with SMTP id o1mr209270ibf.79.1311254967570;
-	Thu, 21 Jul 2011 06:29:27 -0700 (PDT)
-Received: from [127.0.0.1] (masterfoo.zenlinux.com [207.192.74.254])
-	by mx.google.com with ESMTPS id v16sm924391ibe.0.2011.07.21.06.29.26
-	(version=SSLv3 cipher=OTHER); Thu, 21 Jul 2011 06:29:26 -0700 (PDT)
-Message-ID: <4E2829B1.7080506@intel.com>
-Date: Thu, 21 Jul 2011 06:29:21 -0700
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.18) Gecko/20110617 Lightning/1.0b2 Thunderbird/3.1.11
-MIME-Version: 1.0
+Return-Path: <galak@kernel.crashing.org>
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 886734C8009D
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2011 09:04:52 -0500 (CDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6LE4ouj002945
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2011 09:04:51 -0500
+From: Kumar Gala <galak@kernel.crashing.org>
 To: yocto@yoctoproject.org
-References: <97A98E06-5F1B-49D3-BE3F-D70A5CB1AAF6@kernel.crashing.org>
-In-Reply-To: <97A98E06-5F1B-49D3-BE3F-D70A5CB1AAF6@kernel.crashing.org>
-Subject: Re: best cfg for building all of yocto?
+Date: Thu, 21 Jul 2011 09:04:50 -0500
+Message-Id: <1311257090-31643-1-git-send-email-galak@kernel.crashing.org>
+X-Mailer: git-send-email 1.5.6.5
+Subject: [PATCH] .gitignore: Update build ignores to have wildcard
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,26 +22,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2011 13:29:29 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 21 Jul 2011 14:04:52 -0000
 
-On 07/20/2011 10:10 PM, Kumar Gala wrote:
-> For a new bsp/target what's the best config choice to try and build all of yocto?  Is it core-image-sato?
->
-> - k
+ignore not just build/* but any build*/* cases.
 
-bitbake world should build all of the available packages that aren't 
-explicitly excluded due to machine incompatibilities. It doesn't 
-generate a final image though, just all of the output packages.
+Signed-off-by: Kumar Gala <galak@kernel.crashing.org>
+---
+ .gitignore |   12 ++++++------
+ 1 files changed, 6 insertions(+), 6 deletions(-)
 
-core-image-lsb builds a significantly larger set of packages than -sato 
-if you want a reference image that includes more packages.
-
-Scott
-
+diff --git a/.gitignore b/.gitignore
+index b13086d..d44e729 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,11 +1,11 @@
+ *.pyc
+ *.pyo
+-build/conf/local.conf
+-build/conf/bblayers.conf
+-build/downloads
+-build/tmp/
+-build/sstate-cache
+-build/pyshtables.py
++build*/conf/local.conf
++build*/conf/bblayers.conf
++build*/downloads
++build*/tmp/
++build*/sstate-cache
++build*/pyshtables.py
+ pstage/
+ scripts/oe-git-proxy-socks
+ sources/
 -- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+1.7.3.4
+
 
