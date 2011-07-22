@@ -1,33 +1,23 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id A05474C8009D;
-	Thu, 21 Jul 2011 17:59:36 -0500 (CDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 21 Jul 2011 15:59:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,244,1309762800"; d="scan'208,217";a="30950244"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by fmsmga002.fm.intel.com with ESMTP; 21 Jul 2011 15:59:35 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 21 Jul 2011 15:59:36 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.233]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.5.9]) with mapi id
-	14.01.0289.001; Thu, 21 Jul 2011 15:59:35 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Poky Project <poky@yoctoproject.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: Yocto bug traige call for action: Please Verify Resolved bugs
-	in bugzilla
-Thread-Index: AcxH+dk748o3/UUXTS6RbXT17sE/pg==
-Date: Thu, 21 Jul 2011 22:59:34 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C136F8894@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
+Return-Path: <andre@bitwigglers.org>
+Received: from moutng.kundenserver.de (moutng.kundenserver.de
+	[212.227.126.187])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 62B964C800A1
+	for <yocto@yoctoproject.org>; Fri, 22 Jul 2011 03:37:47 -0500 (CDT)
+Received: from localhost.localdomain ([145.253.109.106])
+	by mrelayeu.kundenserver.de (node=mrbap0) with ESMTP (Nemesis)
+	id 0M2ndG-1RcpGJ41n4-00s1hP; Fri, 22 Jul 2011 10:37:46 +0200
+Date: Fri, 22 Jul 2011 10:37:45 +0200
+From: Andre Haupt <andre@bitwigglers.org>
+To: yocto@yoctoproject.org
+Message-ID: <20110722083745.GA13064@localhost.localdomain>
 MIME-Version: 1.0
-Subject: Yocto bug traige call for action: Please Verify Resolved bugs in bugzilla
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Provags-ID: V02:K0:T68/BIpbluPqDLYlhAQGNaRTRvnQlKgYGeQYl6Rqhcd
+	uW5GHUMl1vURrbSriTwdQDg4DahNl9N17JKJqg3+KD8/3uH0Fp
+	pWIqEJQ+oE+EzZmA0pV1TIpbNwiVLsNxEpjTSP1DGno/31LtjV
+	krhdbtzkB/VV0IJN+3cNA1uuFZA+GsjqHa5BfuguuU0ePrJLhD
+	WN3C5Nsb0UNB285gs2kaOZz1y5n64EpTlDM49KY9cU=
+Subject: Bitbaking python fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,106 +29,330 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2011 22:59:37 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C136F8894ORSMSX101amrcor_"
+X-List-Received-Date: Fri, 22 Jul 2011 08:37:48 -0000
+X-Groupsio-MsgNum: 2051
+Content-Type: multipart/mixed; boundary="BOKacYhQ+x31HxR3"
+Content-Disposition: inline
 
---_000_C6510F6D410BB64A8C15398EDC6B847C136F8894ORSMSX101amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--BOKacYhQ+x31HxR3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi all,
+
+Building python for poky bernard fails for me with the following error:
+
+...
+...
+Looking in tk80 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/lib']
+Looking in tcl80 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/lib']
+*** WARNING: renaming "gdbm" since importing it failed: libgdbm.so.3:
+cannot open shared object file: No such file or directory
+/bin/sh: line 1: 12830 Illegal instruction     (core dumped)
+LD_LIBRARY_PATH=/home/ahaupt/yocto-git/build/tmp/work/core2-poky-
+linux/python-2.6.6-nk1.2/Python-2.6.6:/home/ahaupt/yocto-git/build
+/tmp/sysroots/i686-linux/usr/bin/../lib/pseudo/lib:/home/ahaupt
+/yocto-git/build/tmp/sysroots/i686-linux/usr/bin/../lib/pseudo/lib64
+CC='ccache i586-poky-linux-gcc -m32 -march=core2 -msse3
+-mtune=generic -mfpmath=sse
+--sysroot=/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc'
+LDSHARED='ccache i586-poky-linux-gcc -m32 -march=core2 -msse3
+-mtune=generic -mfpmath=sse
+--sysroot=/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc
+-shared' LDFLAGS='-Wl,-O1  -Wl,--as-needed'
+OPT='-fexpensive-optimizations -fomit-frame-pointer
+-frename-registers -O2 -ggdb -feliminate-unused-debug-types'
+/home/ahaupt/yocto-git/build/tmp/sysroots/i686-linux/usr/bin/python
+-E ./setup.py -q build
+make: *** [sharedmods] Error 132
+FATAL: oe_runmake failed
+ERROR: Function 'do_compile' failed (see
+/home/ahaupt/yocto-git/build/tmp/work/core2-poky-linux/
+python-2.6.6-nk1.2/temp/log.do_compile.12751
+for further information)
+
+Does this sound familiar to anyone? libgdbm.so.3 exists in
+/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/lib and points to
+libgdbm.so.3.0.0
+
+My target machine is atom-pc and my build host is Fedora 13 in a
+VirtualBox machine.
+
+regards,
+
+Andre
+
+
+--BOKacYhQ+x31HxR3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="log.do_compile"
 Content-Transfer-Encoding: quoted-printable
 
-Hi All,
+NOTE: make HOSTPGEN=3D/home/ahaupt/yocto-git/build/tmp/sysroots/i686-linux/=
+usr/bin/pgen HOSTPYTHON=3D/home/ahaupt/yocto-git/build/tmp/sysroots/i686-li=
+nux/usr/bin/python STAGING_LIBDIR=3D/home/ahaupt/yocto-git/build/tmp/sysroo=
+ts/atom-pc/usr/lib STAGING_INCDIR=3D/home/ahaupt/yocto-git/build/tmp/sysroo=
+ts/atom-pc/usr/include BUILD_SYS=3Di686-linux HOST_SYS=3Di586-poky-linux OP=
+T=3D -fexpensive-optimizations -fomit-frame-pointer -frename-registers -O2 =
+-ggdb -feliminate-unused-debug-types libpython2.6.so
+ccache i586-poky-linux-gcc -m32 -march=3Dcore2 -msse3 -mtune=3Dgeneric -mfp=
+math=3Dsse --sysroot=3D/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc -c=
+  -fexpensive-optimizations -fomit-frame-pointer -frename-registers -O2 -gg=
+db -feliminate-unused-debug-types -fexpensive-optimizations -fomit-frame-po=
+inter -frename-registers -O2 -ggdb -feliminate-unused-debug-types  -I. -IIn=
+clude -I./Include  -fPIC -DPy_BUILD_CORE -DPYTHONPATH=3D'":plat-linux2:lib-=
+tk:lib-old"' \
+		-DPREFIX=3D'"/usr"' \
+		-DEXEC_PREFIX=3D'"/usr"' \
+		-DVERSION=3D'"2.6"' \
+		-DVPATH=3D'""' \
+		-o Modules/getpath.o ./Modules/getpath.c
+ccache i586-poky-linux-gcc -m32 -march=3Dcore2 -msse3 -mtune=3Dgeneric -mfp=
+math=3Dsse --sysroot=3D/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc -c=
+  -fexpensive-optimizations -fomit-frame-pointer -frename-registers -O2 -gg=
+db -feliminate-unused-debug-types -fexpensive-optimizations -fomit-frame-po=
+inter -frename-registers -O2 -ggdb -feliminate-unused-debug-types  -I. -IIn=
+clude -I./Include  -fPIC -DPy_BUILD_CORE -DSVNVERSION=3D"\"`LC_ALL=3DC svnv=
+ersion .`\"" -o Modules/getbuildinfo.o ./Modules/getbuildinfo.c
+if test libpython2.6.so.1.0 !=3D libpython2.6.so; then \
+		ccache i586-poky-linux-gcc -m32 -march=3Dcore2 -msse3 -mtune=3Dgeneric -m=
+fpmath=3Dsse --sysroot=3D/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc =
+-shared -Wl,-O1  -Wl,--as-needed -Wl,-hlibpython2.6.so.1.0 -o libpython2.6.=
+so.1.0 Modules/getbuildinfo.o Parser/acceler.o Parser/grammar1.o Parser/lis=
+tnode.o Parser/node.o Parser/parser.o Parser/parsetok.o Parser/bitset.o Par=
+ser/metagrammar.o Parser/firstsets.o Parser/grammar.o Parser/pgen.o Parser/=
+myreadline.o Parser/tokenizer.o Objects/abstract.o Objects/boolobject.o Obj=
+ects/bufferobject.o Objects/bytes_methods.o Objects/bytearrayobject.o Objec=
+ts/cellobject.o Objects/classobject.o Objects/cobject.o Objects/codeobject.=
+o Objects/complexobject.o Objects/descrobject.o Objects/enumobject.o Object=
+s/exceptions.o Objects/genobject.o Objects/fileobject.o Objects/floatobject=
+.o Objects/frameobject.o Objects/funcobject.o Objects/intobject.o Objects/i=
+terobject.o Objects/listobject.o Objects/longobject.o Objects/dictobject.o =
+Objects/methodobject.o Objects/moduleobject.o Objects/object.o Objects/obma=
+lloc.o Objects/rangeobject.o Objects/setobject.o Objects/sliceobject.o Obje=
+cts/stringobject.o Objects/structseq.o Objects/tupleobject.o Objects/typeob=
+ject.o Objects/weakrefobject.o Objects/unicodeobject.o Objects/unicodectype=
+.o Python/_warnings.o Python/Python-ast.o Python/asdl.o Python/ast.o Python=
+/bltinmodule.o Python/ceval.o Python/compile.o Python/codecs.o Python/error=
+s.o Python/frozen.o Python/frozenmain.o Python/future.o Python/getargs.o Py=
+thon/getcompiler.o Python/getcopyright.o Python/getmtime.o Python/getplatfo=
+rm.o Python/getversion.o Python/graminit.o Python/import.o Python/importdl.=
+o Python/marshal.o Python/modsupport.o Python/mystrtoul.o Python/mysnprintf=
+.o Python/peephole.o Python/pyarena.o Python/pyfpe.o Python/pymath.o Python=
+/pystate.o Python/pythonrun.o Python/structmember.o Python/symtable.o Pytho=
+n/sysmodule.o Python/traceback.o Python/getopt.o Python/pystrcmp.o Python/p=
+ystrtod.o Python/formatter_unicode.o Python/formatter_string.o Python/dynlo=
+ad_shlib.o   Python/thread.o Modules/config.o Modules/getpath.o Modules/mai=
+n.o Modules/gcmodule.o  Modules/threadmodule.o  Modules/signalmodule.o  Mod=
+ules/posixmodule.o  Modules/errnomodule.o  Modules/pwdmodule.o  Modules/_sr=
+e.o  Modules/_codecsmodule.o  Modules/zipimport.o  Modules/symtablemodule.o=
+  Modules/xxsubtype.o   -lpthread -ldl  -lpthread -lutil  -lm ; \
+		ln -f libpython2.6.so.1.0 libpython2.6.so; \
+	else \
+		ccache i586-poky-linux-gcc -m32 -march=3Dcore2 -msse3 -mtune=3Dgeneric -m=
+fpmath=3Dsse --sysroot=3D/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc =
+-shared -Wl,-O1  -Wl,--as-needed -o libpython2.6.so Modules/getbuildinfo.o =
+Parser/acceler.o Parser/grammar1.o Parser/listnode.o Parser/node.o Parser/p=
+arser.o Parser/parsetok.o Parser/bitset.o Parser/metagrammar.o Parser/first=
+sets.o Parser/grammar.o Parser/pgen.o Parser/myreadline.o Parser/tokenizer.=
+o Objects/abstract.o Objects/boolobject.o Objects/bufferobject.o Objects/by=
+tes_methods.o Objects/bytearrayobject.o Objects/cellobject.o Objects/classo=
+bject.o Objects/cobject.o Objects/codeobject.o Objects/complexobject.o Obje=
+cts/descrobject.o Objects/enumobject.o Objects/exceptions.o Objects/genobje=
+ct.o Objects/fileobject.o Objects/floatobject.o Objects/frameobject.o Objec=
+ts/funcobject.o Objects/intobject.o Objects/iterobject.o Objects/listobject=
+.o Objects/longobject.o Objects/dictobject.o Objects/methodobject.o Objects=
+/moduleobject.o Objects/object.o Objects/obmalloc.o Objects/rangeobject.o O=
+bjects/setobject.o Objects/sliceobject.o Objects/stringobject.o Objects/str=
+uctseq.o Objects/tupleobject.o Objects/typeobject.o Objects/weakrefobject.o=
+ Objects/unicodeobject.o Objects/unicodectype.o Python/_warnings.o Python/P=
+ython-ast.o Python/asdl.o Python/ast.o Python/bltinmodule.o Python/ceval.o =
+Python/compile.o Python/codecs.o Python/errors.o Python/frozen.o Python/fro=
+zenmain.o Python/future.o Python/getargs.o Python/getcompiler.o Python/getc=
+opyright.o Python/getmtime.o Python/getplatform.o Python/getversion.o Pytho=
+n/graminit.o Python/import.o Python/importdl.o Python/marshal.o Python/mods=
+upport.o Python/mystrtoul.o Python/mysnprintf.o Python/peephole.o Python/py=
+arena.o Python/pyfpe.o Python/pymath.o Python/pystate.o Python/pythonrun.o =
+Python/structmember.o Python/symtable.o Python/sysmodule.o Python/traceback=
+.o Python/getopt.o Python/pystrcmp.o Python/pystrtod.o Python/formatter_uni=
+code.o Python/formatter_string.o Python/dynload_shlib.o   Python/thread.o M=
+odules/config.o Modules/getpath.o Modules/main.o Modules/gcmodule.o  Module=
+s/threadmodule.o  Modules/signalmodule.o  Modules/posixmodule.o  Modules/er=
+rnomodule.o  Modules/pwdmodule.o  Modules/_sre.o  Modules/_codecsmodule.o  =
+Modules/zipimport.o  Modules/symtablemodule.o  Modules/xxsubtype.o   -lpthr=
+ead -ldl  -lpthread -lutil  -lm ; \
+	fi
+oe_libinstall: cd /home/ahaupt/yocto-git/build/tmp/work/core2-poky-linux/py=
+thon-2.6.6-nk1.2/Python-2.6.6
+oe_libinstall: install -d /home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc=
+/usr/lib/
+oe_libinstall: install -m 0644 libpython2.6.a /home/ahaupt/yocto-git/build/=
+tmp/sysroots/atom-pc/usr/lib/
+oe_libinstall: install -m 0755 libpython2.6.so /home/ahaupt/yocto-git/build=
+/tmp/sysroots/atom-pc/usr/lib/
+oe_libinstall: install -m 0755 libpython2.6.so.1.0 /home/ahaupt/yocto-git/b=
+uild/tmp/sysroots/atom-pc/usr/lib/
+oe_libinstall: ln -sf libpython2.6.so.1.0 /home/ahaupt/yocto-git/build/tmp/=
+sysroots/atom-pc/usr/lib/libpython2.6.so
+oe_libinstall: cd /home/ahaupt/yocto-git/build/tmp/work/core2-poky-linux/py=
+thon-2.6.6-nk1.2/Python-2.6.6
+NOTE: make HOSTPGEN=3D/home/ahaupt/yocto-git/build/tmp/sysroots/i686-linux/=
+usr/bin/pgen HOSTPYTHON=3D/home/ahaupt/yocto-git/build/tmp/sysroots/i686-li=
+nux/usr/bin/python STAGING_LIBDIR=3D/home/ahaupt/yocto-git/build/tmp/sysroo=
+ts/atom-pc/usr/lib STAGING_INCDIR=3D/home/ahaupt/yocto-git/build/tmp/sysroo=
+ts/atom-pc/usr/include BUILD_SYS=3Di686-linux HOST_SYS=3Di586-poky-linux OP=
+T=3D -fexpensive-optimizations -fomit-frame-pointer -frename-registers -O2 =
+-ggdb -feliminate-unused-debug-types
+rm -f libpython2.6.a
+i586-poky-linux-ar cr libpython2.6.a Modules/getbuildinfo.o
+i586-poky-linux-ar cr libpython2.6.a Parser/acceler.o Parser/grammar1.o Par=
+ser/listnode.o Parser/node.o Parser/parser.o Parser/parsetok.o Parser/bitse=
+t.o Parser/metagrammar.o Parser/firstsets.o Parser/grammar.o Parser/pgen.o =
+Parser/myreadline.o Parser/tokenizer.o
+i586-poky-linux-ar cr libpython2.6.a Objects/abstract.o Objects/boolobject.=
+o Objects/bufferobject.o Objects/bytes_methods.o Objects/bytearrayobject.o =
+Objects/cellobject.o Objects/classobject.o Objects/cobject.o Objects/codeob=
+ject.o Objects/complexobject.o Objects/descrobject.o Objects/enumobject.o O=
+bjects/exceptions.o Objects/genobject.o Objects/fileobject.o Objects/floato=
+bject.o Objects/frameobject.o Objects/funcobject.o Objects/intobject.o Obje=
+cts/iterobject.o Objects/listobject.o Objects/longobject.o Objects/dictobje=
+ct.o Objects/methodobject.o Objects/moduleobject.o Objects/object.o Objects=
+/obmalloc.o Objects/rangeobject.o Objects/setobject.o Objects/sliceobject.o=
+ Objects/stringobject.o Objects/structseq.o Objects/tupleobject.o Objects/t=
+ypeobject.o Objects/weakrefobject.o Objects/unicodeobject.o Objects/unicode=
+ctype.o
+i586-poky-linux-ar cr libpython2.6.a Python/_warnings.o Python/Python-ast.o=
+ Python/asdl.o Python/ast.o Python/bltinmodule.o Python/ceval.o Python/comp=
+ile.o Python/codecs.o Python/errors.o Python/frozen.o Python/frozenmain.o P=
+ython/future.o Python/getargs.o Python/getcompiler.o Python/getcopyright.o =
+Python/getmtime.o Python/getplatform.o Python/getversion.o Python/graminit.=
+o Python/import.o Python/importdl.o Python/marshal.o Python/modsupport.o Py=
+thon/mystrtoul.o Python/mysnprintf.o Python/peephole.o Python/pyarena.o Pyt=
+hon/pyfpe.o Python/pymath.o Python/pystate.o Python/pythonrun.o Python/stru=
+ctmember.o Python/symtable.o Python/sysmodule.o Python/traceback.o Python/g=
+etopt.o Python/pystrcmp.o Python/pystrtod.o Python/formatter_unicode.o Pyth=
+on/formatter_string.o Python/dynload_shlib.o   Python/thread.o
+i586-poky-linux-ar cr libpython2.6.a Modules/config.o Modules/getpath.o Mod=
+ules/main.o Modules/gcmodule.o=20
+i586-poky-linux-ar cr libpython2.6.a Modules/threadmodule.o  Modules/signal=
+module.o  Modules/posixmodule.o  Modules/errnomodule.o  Modules/pwdmodule.o=
+  Modules/_sre.o  Modules/_codecsmodule.o  Modules/zipimport.o  Modules/sym=
+tablemodule.o  Modules/xxsubtype.o
+i586-poky-linux-ranlib libpython2.6.a
+ccache i586-poky-linux-gcc -m32 -march=3Dcore2 -msse3 -mtune=3Dgeneric -mfp=
+math=3Dsse --sysroot=3D/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc -W=
+l,-O1  -Wl,--as-needed -Xlinker -export-dynamic -o python \
+			Modules/python.o \
+			-L. -lpython2.6 -lpthread -ldl  -lpthread -lutil   -lm =20
+Looking in readline for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc=
+/usr/lib']
+Found /home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/lib/libreadline=
+.so
+Looking in ncursesw for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc=
+/usr/lib']
+Found /home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/lib/libncursesw=
+.so
+Looking in crypt for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+Found /home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/lib/libcrypt.so
+Looking in ssl for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/=
+lib', '/usr/local/ssl/lib', '/usr/contrib/ssl/lib/']
+Found /home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/lib/libssl.so
+Looking in sqlite3 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/=
+usr/include/../lib64', '/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/u=
+sr/include/../lib', '/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/=
+include/../../lib64', '/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/include/../../lib', '/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+Found /home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/include/../lib/=
+libsqlite3.so
+Looking in gdbm for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr=
+/lib']
+Found /home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/lib/libgdbm.so
+Looking in gdbm_compat for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom=
+-pc/usr/lib']
+Looking in gdbm for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr=
+/lib']
+Found /home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/lib/libgdbm.so
+Looking in nsl for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/=
+lib']
+Found /home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/lib/libnsl.so
+Looking in panelw for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/u=
+sr/lib']
+Found /home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/lib/libpanelw.s=
+o
+Looking in z for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/li=
+b']
+Found /home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/lib/libz.so
+Looking in bz2 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/=
+lib']
+Found /home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr/lib/libbz2.so
+Looking in tk8.5 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+Looking in tcl8.5 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/u=
+sr/lib']
+Looking in tk85 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr=
+/lib']
+Looking in tcl85 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+Looking in tk8.4 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+Looking in tcl8.4 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/u=
+sr/lib']
+Looking in tk84 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr=
+/lib']
+Looking in tcl84 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+Looking in tk8.3 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+Looking in tcl8.3 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/u=
+sr/lib']
+Looking in tk83 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr=
+/lib']
+Looking in tcl83 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+Looking in tk8.2 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+Looking in tcl8.2 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/u=
+sr/lib']
+Looking in tk82 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr=
+/lib']
+Looking in tcl82 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+Looking in tk8.1 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+Looking in tcl8.1 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/u=
+sr/lib']
+Looking in tk81 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr=
+/lib']
+Looking in tcl81 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+Looking in tk8.0 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+Looking in tcl8.0 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/u=
+sr/lib']
+Looking in tk80 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/usr=
+/lib']
+Looking in tcl80 for ['/home/ahaupt/yocto-git/build/tmp/sysroots/atom-pc/us=
+r/lib']
+*** WARNING: renaming "gdbm" since importing it failed: libgdbm.so.3: canno=
+t open shared object file: No such file or directory
+/bin/sh: line 1: 12830 Illegal instruction     (core dumped) LD_LIBRARY_PAT=
+H=3D/home/ahaupt/yocto-git/build/tmp/work/core2-poky-linux/python-2.6.6-nk1=
+.2/Python-2.6.6:/home/ahaupt/yocto-git/build/tmp/sysroots/i686-linux/usr/bi=
+n/../lib/pseudo/lib:/home/ahaupt/yocto-git/build/tmp/sysroots/i686-linux/us=
+r/bin/../lib/pseudo/lib64 CC=3D'ccache i586-poky-linux-gcc -m32 -march=3Dco=
+re2 -msse3 -mtune=3Dgeneric -mfpmath=3Dsse --sysroot=3D/home/ahaupt/yocto-g=
+it/build/tmp/sysroots/atom-pc' LDSHARED=3D'ccache i586-poky-linux-gcc -m32 =
+-march=3Dcore2 -msse3 -mtune=3Dgeneric -mfpmath=3Dsse --sysroot=3D/home/aha=
+upt/yocto-git/build/tmp/sysroots/atom-pc -shared' LDFLAGS=3D'-Wl,-O1  -Wl,-=
+-as-needed' OPT=3D'-fexpensive-optimizations -fomit-frame-pointer -frename-=
+registers -O2 -ggdb -feliminate-unused-debug-types' /home/ahaupt/yocto-git/=
+build/tmp/sysroots/i686-linux/usr/bin/python -E ./setup.py -q build
+make: *** [sharedmods] Error 132
+FATAL: oe_runmake failed
+ERROR: Function 'do_compile' failed (see /home/ahaupt/yocto-git/build/tmp/w=
+ork/core2-poky-linux/python-2.6.6-nk1.2/temp/log.do_compile.12751 for furth=
+er information)
 
-
-
-In today's bug triage meeting, we noticed there're total 564 bugs that are =
-in "Resolved" status.  The process is once a bug is in Resolved status, the=
- original reporter of the bug should verify the resolution, either a valid =
-fix or acceptable reason and mark the bug as "Verified".  So please take a =
-look at Yocto bugzilla (http://bugzilla.pokylinux.org/buglist.cgi?query_for=
-mat=3Dadvanced&bug_status=3DRESOLVED) and verify those bugs that you've rep=
-orted and now is marked as Resolved.
-
-
-
-Thanks,
-
-Jessica
-
-
---_000_C6510F6D410BB64A8C15398EDC6B847C136F8894ORSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-top:12.0pt">In today&#8217;s bug tri=
-age meeting, we noticed there&#8217;re total 564 bugs that are in &#8220;Re=
-solved&#8221; status.&nbsp; The process is once a bug is in Resolved status=
-, the original reporter of the bug should verify the resolution,
- either a valid fix or acceptable reason and mark the bug as &#8220;Verifie=
-d&#8221;.&nbsp; So please take a look at Yocto bugzilla (<a href=3D"http://=
-bugzilla.pokylinux.org/buglist.cgi?query_format=3Dadvanced&amp;bug_status=
-=3DRESOLVED">http://bugzilla.pokylinux.org/buglist.cgi?query_format=3Dadvan=
-ced&amp;bug_status=3DRESOLVED</a>)
- and verify those bugs that you&#8217;ve reported and now is marked as Reso=
-lved.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Jessica<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_C6510F6D410BB64A8C15398EDC6B847C136F8894ORSMSX101amrcor_--
+--BOKacYhQ+x31HxR3--
