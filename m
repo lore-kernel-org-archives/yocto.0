@@ -1,34 +1,21 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id C55254C800A6
-	for <yocto@yoctoproject.org>; Sun, 24 Jul 2011 05:00:29 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 24 Jul 2011 03:00:29 -0700
+Return-Path: <sgw@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by mx1.pokylinux.org (Postfix) with ESMTP id A55A54C801DA
+	for <yocto@yoctoproject.org>; Sun, 24 Jul 2011 18:57:14 -0500 (CDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 24 Jul 2011 16:57:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,255,1309762800"; d="scan'208";a="33892149"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by fmsmga001.fm.intel.com with ESMTP; 24 Jul 2011 03:00:28 -0700
-Received: from pgsmsx103.gar.corp.intel.com (10.221.44.82) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 24 Jul 2011 18:00:28 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX103.gar.corp.intel.com (10.221.44.82) with Microsoft SMTP Server
-	(TLS) id 14.1.289.1; Sun, 24 Jul 2011 18:00:27 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Sun, 24 Jul 2011 18:00:26 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Sun, 24 Jul 2011 18:00:25 +0800
-Thread-Topic: Yocto weekly bug trend charts -- WW30
-Thread-Index: AcxJ6IJV6KISyuuXTqyQZWwYfdS3Jg==
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D6EDD041@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+X-IronPort-AV: E=Sophos;i="4.67,258,1309762800"; d="scan'208";a="31796446"
+Received: from unknown (HELO [10.255.14.61]) ([10.255.14.61])
+	by fmsmga002.fm.intel.com with ESMTP; 24 Jul 2011 16:57:13 -0700
+Message-ID: <4E2CB159.5040706@linux.intel.com>
+Date: Sun, 24 Jul 2011 16:57:13 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc13 Thunderbird/3.1.10
 MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW30
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Weekly Build Status
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,19 +27,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 24 Jul 2011 10:00:30 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 24 Jul 2011 23:57:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi all,
-	RC3 is built out last week and QA is testing it. The new-submit vs. fixed =
-bug is 26 vs. 24 for last week. The open bug number increased to 185 (No en=
-hancement bugs counted). WDD number increased from 933 to 943. Several Crit=
-ical and Major bugs are fixed in RC3. Meanwhile, a lot of hob bugs are subm=
-itted. Bug status of WW30 could be found on https://wiki.pokylinux.org/wiki=
-/Yocto_Bug_Trend.
 
-Best Regards,
-Jiajun
+Folks,
+
+There is a build available from the autobuilder
+
+http://autobuilder.yoctoproject.org/nightly/20110723-2/
+
+There were a couple of failures in the LSB-QT3 Builds that are being 
+looked into. The failures occur in differnt packages for qemuarm and 
+qemux86 LSB builds. I am trying to determine this is related to some 
+shared state issues I have been seeing.
+
+The meta-toolchain builds are running again due to an autobuilder 
+related issue.
+
+Please begin weekly testing with what is available.
+
+Thanks
+-- 
+     Sau!
+
+Saul Wold
+Yocto Component Wrangler @ Intel
+Yocto Project / Poky Build System
+
 
