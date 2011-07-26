@@ -1,21 +1,28 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 9658F4C80A79
-	for <yocto@yoctoproject.org>; Tue, 26 Jul 2011 11:41:28 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 26 Jul 2011 09:41:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,270,1309762800"; d="scan'208";a="34683715"
-Received: from unknown (HELO localhost) ([10.255.14.104])
-	by fmsmga001.fm.intel.com with ESMTP; 26 Jul 2011 09:41:28 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Tue, 26 Jul 2011 11:41:24 -0500
-Message-Id: <3be9957211e54669825d1d55bb73c68d3f3354d0.1311697880.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1311697880.git.tom.zanussi@intel.com>
-References: <cover.1311697880.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/1] meta-sugarbay: switch to linux-yocto 3.0 kernel
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4F5C64C801DA
+	for <yocto@yoctoproject.org>; Tue, 26 Jul 2011 11:48:01 -0500 (CDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 999)
+	id CD41D166021E; Tue, 26 Jul 2011 10:48:00 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 0B74916601D5;
+	Tue, 26 Jul 2011 10:48:00 -0600 (MDT)
+Message-ID: <4E2EEFBF.5030804@mlbassoc.com>
+Date: Tue, 26 Jul 2011 10:47:59 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc15 Thunderbird/3.1.10
+MIME-Version: 1.0
+To: Jeff Mitchell <jmitchell@ll.mit.edu>
+References: <4E205D20.2060106@ll.mit.edu>
+In-Reply-To: <4E205D20.2060106@ll.mit.edu>
+Cc: yocto@yoctoproject.org
+Subject: Re: Color ghosting on BeagleBoard xM rev C
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,46 +34,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jul 2011 16:41:28 -0000
+X-List-Received-Date: Tue, 26 Jul 2011 16:48:01 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On 2011-07-15 09:30, Jeff Mitchell wrote:
+> Darren Hart suggested I send this to the list...
+>
+> Attached is a picture of my screen running Terminal. This is on a BeagleBoard xM rev C connected via its HDMI out to a DVI adapter and then into a Dell UltraSharp monitor. Angstrom
+> doesn't display these problems, so the setup should be fine.
+>
+> I'm not quite sure what is causing this. The resolution is also fairly low, and I haven't had any success using boot parameters (either the older video=omapfb:mode variant or the
+> newer DSS2 omapfb.mode variant).
 
-Switch sugarbay to the 3.0 kernel, lock it down, and update kernel
-SRCREVs.
+Did you ever find out what is causing this?
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-sugarbay/conf/machine/sugarbay.conf           |    1 +
- .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    7 +++++++
- 2 files changed, 8 insertions(+), 0 deletions(-)
- create mode 100644 meta-sugarbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
+When you say that it works on one system (Poky?) vs another (Angstrom?)
+are they both running the same version of U-Boot?  I'm seeing this same
+behaviour on one of my boards, but only when I run U-Boot from 2011.06
 
-diff --git a/meta-sugarbay/conf/machine/sugarbay.conf b/meta-sugarbay/conf/machine/sugarbay.conf
-index ebc6dbc..9450d97 100644
---- a/meta-sugarbay/conf/machine/sugarbay.conf
-+++ b/meta-sugarbay/conf/machine/sugarbay.conf
-@@ -15,6 +15,7 @@ MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
- KERNEL_IMAGETYPE = "bzImage"
- 
- PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
-+PREFERRED_VERSION_linux-yocto = "3.0+git%"
- PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- 
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
-diff --git a/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
-new file mode 100644
-index 0000000..57420f2
---- /dev/null
-+++ b/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
-@@ -0,0 +1,7 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+COMPATIBLE_MACHINE_sugarbay = "sugarbay"
-+KMACHINE_sugarbay  = "yocto/standard/common-pc-64/sugarbay"
-+
-+SRCREV_machine_pn-linux-yocto_sugarbay ?= "3216e7d5c3cada16161481826cdb39c930457587"
-+SRCREV_meta_pn-linux-yocto_sugarbay ?= "9010d1cbef2633dac7e559a7705c326b7601dd4c"
+BTW - why did you send your original query to the Poky list?
+
 -- 
-1.7.0.4
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
