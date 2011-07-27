@@ -1,23 +1,31 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id E76404C800A1
-	for <yocto@yoctoproject.org>; Wed, 27 Jul 2011 08:50:38 -0500 (CDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 27 Jul 2011 06:50:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,276,1309762800"; d="scan'208";a="32063903"
-Received: from unknown (HELO [10.255.14.104]) ([10.255.14.104])
-	by azsmga001.ch.intel.com with ESMTP; 27 Jul 2011 06:50:32 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Kumar Gala <galak@kernel.crashing.org>
-In-Reply-To: <66F46EDD-010E-41CC-BE5E-196894B3BA22@kernel.crashing.org>
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 3D00E4C803E4
+	for <yocto@yoctoproject.org>; Wed, 27 Jul 2011 08:52:28 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6RDqMii030257;
+	Wed, 27 Jul 2011 14:52:22 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 30197-01; Wed, 27 Jul 2011 14:52:18 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p6RDqDvD030251
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 27 Jul 2011 14:52:14 +0100
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+In-Reply-To: <4E3012D8.3080106@windriver.com>
 References: <FCF6621D-EE24-4113-AB03-A1FD94E3375C@kernel.crashing.org>
 	<1311756356.2344.332.camel@rex>
 	<66F46EDD-010E-41CC-BE5E-196894B3BA22@kernel.crashing.org>
-Date: Wed, 27 Jul 2011 08:50:20 -0500
-Message-ID: <1311774620.3739.49.camel@elmorro>
+	<4E3012D8.3080106@windriver.com>
+Date: Wed, 27 Jul 2011 14:52:03 +0100
+Message-ID: <1311774723.2344.373.camel@rex>
 Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
+X-Mailer: Evolution 2.32.2 
+X-Virus-Scanned: amavisd-new at rpsys.net
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: Additional / new BSP collection?
 X-BeenThere: yocto@yoctoproject.org
@@ -31,65 +39,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jul 2011 13:50:39 -0000
+X-List-Received-Date: Wed, 27 Jul 2011 13:52:28 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2011-07-27 at 05:40 -0700, Kumar Gala wrote:
-> On Jul 27, 2011, at 3:45 AM, Richard Purdie wrote:
+On Wed, 2011-07-27 at 09:30 -0400, Bruce Ashfield wrote:
+> As you know, I've been working on several kernel efforts
+> around the FSL parts as well (in particular the ones that
+> have enough pieces upstream to work out of the box).  I
+> definitely don't want to overlap in a way that doesn't
+> create complimentary efforts.
 > 
-> > On Wed, 2011-07-27 at 00:21 -0500, Kumar Gala wrote:
-> >> Who is the best person to ask about adding new BSPs into yocto.  What
-> >> I mean by this is having a meta layer hosted on git.yoctoproject.org
-> >> like meta-intel and the mechanics associated with this (getting new
-> >> repo on git server, autobuilder support, webpage details, etc.).
-> > 
-> > This list is as good a place as any! :)
-> > 
-> > Its relatively easy to arrange for a git repository. The main things we
-> > ask are that it has clearly defined maintainership (a clear maintainer
-> > and submission process) and a clear scope. Do you have any specific BSPs
-> > in mind?
+> What are your current thoughts around kernels and the
+> (nearly religious) kernel version question ? It would be
+> great to get some alignment on features (-rt, tracing,
+> boot, footprint reduction, etc, etc) and save some effort
+> on maintenance and validation. Also if we want to create
+> some yocto reference BSPs, having a kernel version and feature
+> set match is important as well (i.e. what we've done for
+> the intel ones).
 > 
-> Maintainership would be straight forward.  Not sure about submissions process, what is done for meta-intel today?
+> To that end, do you have an thoughts about using linux-yocto
+> as a base to any BSP work ? That statement doesn't do it
+> justice though, since when I say 'use linux-yocto as a base',
+> it really means that linux-yocto uses your BSPs as an
+> upstream/official reference and can pull support for them
+> into branches, and have the configuration and other tooling
+> get them any functionality that is being developed.
 > 
-
-Hi Kumar,
-
-For meta-intel, it's pretty simple and is summarized by this blurb from
-the meta-intel MAINTAINERS file: 
-
-"Please submit any patches against meta-intel BSPs to the Yocto mailing
-list (yocto@yoctoproject.org)."
-
-Basically, new patches get submitted to the mailing list, go through the
-standard on-list comment and review process, and then get pulled into
-master by whoever maintains the BSP when everything looks good.
-
-Hope that helps,
-
-Tom
-
-> BSP would be for Freescale PowerPC SoC and the reference designs produced by FSL for them.
+> No control over BSP content, or anything like this, is being
+> suggested or asserted here. Just looking to all push in the
+> same direction (embedded features and BSPs to upstream) and
+> re-use the work of BSPs available in the community. If the
+> base is the same (and hence kernel version), then this relationship
+> and workflow is very simple.
 > 
-> > The wiki is available to host information and we can work out links on
-> > the website as the specific needs come up. Autobuilder support is
-> > something we need to figure out since its a finite resource but we can
-> > likely figure something out there once we understand what kind of BSPs
-> > we're talking about.
-> > 
-> > Beth Flanagan <elizabeth.flanagan@intel.com> is the person who'd handle
-> > the mechanics of setting up the repository, the name is likely the
-> > hardest bit!
-> 
-> meta-fsl-ppc ;)
-> 
-> - k
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> ... and as a bonus, if the workflow doesn't work easily, then
+> there's a problem with it and we can work on something that
+> is suitable (change tools, etc).
 
+So just to put what Bruce says into other words, there isn't any hard
+requirement to use linux-yocto but we are asking people to try it and if
+it doesn't work, at least tell us why.
+
+I understand transitions and new ways of working take time and that
+meta-fsl-ppc might be enough of a step at first without the linux-yocto
+complications. That is fine but please do keep it in mind.
+
+Cheers,
+
+Richard
 
 
