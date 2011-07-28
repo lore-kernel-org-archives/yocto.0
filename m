@@ -1,17 +1,19 @@
 Return-Path: <galak@kernel.crashing.org>
 Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 6C7534C803E4
-	for <yocto@yoctoproject.org>; Wed, 27 Jul 2011 22:37:15 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id 4DA184C80094
+	for <yocto@yoctoproject.org>; Thu, 28 Jul 2011 09:26:37 -0500 (CDT)
 Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
-	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6S3bCOV005437
-	for <yocto@yoctoproject.org>; Wed, 27 Jul 2011 22:37:13 -0500
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6SEQMQt001422;
+	Thu, 28 Jul 2011 09:26:29 -0500
 From: Kumar Gala <galak@kernel.crashing.org>
-Date: Wed, 27 Jul 2011 22:37:12 -0500
-Message-Id: <A836DA06-E769-4562-99BF-16812ED33270@kernel.crashing.org>
-To: Yocto discussion list <yocto@yoctoproject.org>
+Date: Thu, 28 Jul 2011 09:26:23 -0500
+Message-Id: <1F827C13-EF18-4D1E-AAA1-381361929F39@kernel.crashing.org>
+To: Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
 Mime-Version: 1.0 (Apple Message framework v1084)
 X-Mailer: Apple Mail (2.1084)
-Subject: examples / docs on utilizing an external toolchain
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: mpc8315e-rdb core-image-minimal fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,23 +25,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jul 2011 03:37:15 -0000
+X-List-Received-Date: Thu, 28 Jul 2011 14:26:40 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-It seems like there is a way to use a prebuilt toolchain with poky but =
-no real details.
+Anyone got any ideas about the following:
 
-Some refs in the docs like:
-
-POKYMODE
-Toolchain selector. It can be external toolchain built from Poky or few =
-supported combinations of upstream GCC or CodeSourcery Labs toolchain.
-
-But grepping the code there doesn't seem to be any actual use of =
-POKYMODE.  There seems to be some references even on the autobuilder =
-about this 'nightly-external-toolchain'.  So wondering what the details =
-where on how to configure things to use an external toolchain.
+| ERROR: Function 'do_rootfs' failed (see =
+/local/home/galak/git/poky/build/tmp/work/mpc8315e_rdb-poky-linux/core-ima=
+ge-minimal-1.0-r0/temp/log.do_rootfs.19834 for fu
+rther information)
+| Generating solve db for =
+/local/home/galak/git/poky/build/tmp/deploy/rpm/mpc8315e_rdb...
+|    total:               1      0.000000 MB      1.573137 secs
+|    fingerprint:       816      0.004148 MB      0.062215 secs
+|    install:           272      0.000000 MB      0.384963 secs
+|    dbadd:             272      0.000000 MB      0.375238 secs
+|    dbget:            1111      0.000000 MB      0.003093 secs
+|    dbput:             272      1.315744 MB      0.302582 secs
+|    readhdr:          2721      2.573624 MB      0.178385 secs
+|    hdrload:          1360      3.828344 MB      0.007262 secs
+|    hdrget:          49259      0.000000 MB      0.048944 secs
+| Generating solve db for =
+/local/home/galak/git/poky/build/tmp/deploy/rpm/all...
+|    total:               1      0.000000 MB      0.111129 secs
+|    fingerprint:        18      0.000024 MB      0.000280 secs
+|    install:             6      0.000000 MB      0.044466 secs
+|    dbadd:               6      0.000000 MB      0.039504 secs
+|    dbget:              19      0.000000 MB      0.000103 secs
+|    dbput:               6      0.018916 MB      0.006250 secs
+|    readhdr:            61      0.038096 MB      0.000212 secs
+|    hdrload:            33      0.063864 MB      0.000327 secs
+|    hdrget:            983      0.000000 MB      0.001306 secs
+| Generating solve db for =
+/local/home/galak/git/poky/build/tmp/deploy/rpm/all...
+| Processing task-core-boot...
+| error: Failed dependencies:
+|       tinylogin is needed by task-core-boot-1.0-r7.mpc8315e_rdb
+|       busybox is needed by task-core-boot-1.0-r7.mpc8315e_rdb
+|       modutils-initscripts is needed by =
+task-core-boot-1.0-r7.mpc8315e_rdb
+|       initscripts is needed by task-core-boot-1.0-r7.mpc8315e_rdb
+|       update-alternatives-cworth is needed by =
+task-core-boot-1.0-r7.mpc8315e_rdb
+|       udev is needed by task-core-boot-1.0-r7.mpc8315e_rdb
+|       sysvinit is needed by task-core-boot-1.0-r7.mpc8315e_rdb
+|       netbase is needed by task-core-boot-1.0-r7.mpc8315e_rdb
+|       base-passwd is needed by task-core-boot-1.0-r7.mpc8315e_rdb
+|       console-tools is needed by keymaps-1.0-r19.mpc8315e_rdb
+|       initscripts is needed by keymaps-1.0-r19.mpc8315e_rdb
+|       /bin/sh is needed by keymaps-1.0-r19.mpc8315e_rdb
+NOTE: package core-image-minimal-1.0-r0: task do_rootfs: Failed
+ERROR: Task 8 =
+(/local/home/galak/git/poky/meta/recipes-core/images/core-image-minimal.bb=
+, do_rootfs) failed with exit code '1'
+ERROR: =
+'/local/home/galak/git/poky/meta/recipes-core/images/core-image-minimal.bb=
+' failed
 
 - k=
 
