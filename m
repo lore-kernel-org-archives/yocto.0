@@ -1,56 +1,27 @@
-Return-Path: <B29882@freescale.com>
-Received: from AM1EHSOBE003.bigfish.com (am1ehsobe003.messaging.microsoft.com
-	[213.199.154.206])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 3220E4C80094
-	for <yocto@yoctoproject.org>; Thu, 28 Jul 2011 11:26:45 -0500 (CDT)
-Received: from mail90-am1-R.bigfish.com (10.3.201.242) by
-	AM1EHSOBE003.bigfish.com (10.3.204.23) with Microsoft SMTP Server id
-	14.1.225.22; Thu, 28 Jul 2011 16:26:44 +0000
-Received: from mail90-am1 (localhost.localdomain [127.0.0.1])	by
-	mail90-am1-R.bigfish.com (Postfix) with ESMTP id 55C9A18902F4;
-	Thu, 28 Jul 2011 16:26:44 +0000 (UTC)
-X-SpamScore: -20
-X-BigFish: VS-20(zzbb2dK9371K148cM1432N98dKzz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3h61h)
-X-Spam-TCS-SCL: 0:0
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
-	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail90-am1 (localhost.localdomain [127.0.0.1]) by mail90-am1
-	(MessageSwitch) id 131187038441884_18606;
-	Thu, 28 Jul 2011 16:26:24 +0000 (UTC)
-Received: from AM1EHSMHS014.bigfish.com (unknown [10.3.201.243])	by
-	mail90-am1.bigfish.com (Postfix) with ESMTP id BE3E79A80BF;
-	Thu, 28 Jul 2011 16:25:15 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS014.bigfish.com
-	(10.3.207.152) with Microsoft SMTP Server (TLS) id 14.1.225.22;
-	Thu, 28 Jul 2011 16:24:58 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.56]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.01.0289.008; Thu, 28 Jul 2011 11:24:54 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
+Return-Path: <galak@kernel.crashing.org>
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by mx1.pokylinux.org (Postfix) with ESMTP id D83A54C800D8
+	for <yocto@yoctoproject.org>; Thu, 28 Jul 2011 13:48:53 -0500 (CDT)
+Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6SIhi9d032240;
+	Thu, 28 Jul 2011 13:43:45 -0500
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Kumar Gala <galak@kernel.crashing.org>
+In-Reply-To: <4E3188D3.8040405@linux.intel.com>
+Date: Thu, 28 Jul 2011 13:43:45 -0500
+Message-Id: <312066B0-7200-477F-A875-B610335E6153@kernel.crashing.org>
+References: <1F827C13-EF18-4D1E-AAA1-381361929F39@kernel.crashing.org>	<65A75BC37EC7EE4F88AB5EB98759A97003E6E32F@LONMLVEM04.e2k.ad.ge.com>
+	<315B4992-8E1A-4DD3-8D3D-E8FD2436B365@kernel.crashing.org>
+	<4E3188D3.8040405@linux.intel.com>
 To: Saul Wold <sgw@linux.intel.com>
-Thread-Topic: [yocto] [OE-core] [PATCH] Switch to using perl-native for
-	various packages instead of host perl
-Thread-Index: AQHMS8leWmpqeI+5xkiGoGtDn+MuR5UBZ4mAgADaXwA=
-Date: Thu, 28 Jul 2011 16:24:53 +0000
-Message-ID: <CAEsOVNf1VK+YsHqVcyY5c9rpRbS27uiN2Gz4wGoeT2j9+YgOYw@mail.gmail.com>
-References: <1311708150-24226-1-git-send-email-msm@freescale.com>
-	<4E30D611.1050002@linux.intel.com>
-In-Reply-To: <4E30D611.1050002@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [50.57.111.205]
-MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@openembedded.org" <openembedded-core@openembedded.org>,
+X-Mailer: Apple Mail (2.1084)
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
 	Patches and discussions about the oe-core layer
 	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [PATCH] Switch to using perl-native for various packages instead of host perl
+Subject: Re: mpc8315e-rdb core-image-minimal fails (PACKAGE_ARCHS question)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -59,34 +30,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jul 2011 16:26:45 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <C964FDDD0222D442AD4EAA68FBF0321F@freescale.net>
+X-List-Received-Date: Thu, 28 Jul 2011 18:48:55 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 27, 2011 at 10:22 PM, Saul Wold <sgw@linux.intel.com> wrote:
-> On 07/26/2011 12:22 PM, Matthew McClintock wrote:
->>
->> Several builds are using perl on the host instead of perl built by
->> poky. This fixes the issue for several packages.
->>
-> Matthew,
->
-> Thanks for submitting this.
->
-> A similar fix was recently rejected, as we are looking at a different way=
- to
-> accomplish this.
->
-> See
-> http://lists.linuxtogo.org/pipermail/openembedded-core/2011-July/006439.h=
-tml
 
-Why do we let the host perl in the path for target installs at all? Is
-there some precedence for what can be used from the host machine and
-what can not?
+On Jul 28, 2011, at 11:05 AM, Saul Wold wrote:
 
--M=
+> On 07/28/2011 08:45 AM, Kumar Gala wrote:
+>> I think I know the cause, let me dig up the change that is related.  =
+What bit is looking for just ppc603e?
+>>=20
+> This might also be related to the PACKAGE_EXTRA_ARCHS issue, please =
+try the patch that Koen posted.
+>=20
+> Thanks
+> 	Sau!
 
+so in conf/bitbake.conf
+
+PACKAGE_ARCH =3D "${TUNE_PKGARCH}"
+MACHINE_ARCH =3D "${@[bb.data.getVar('TUNE_PKGARCH', d, 1), =
+bb.data.getVar('MACHINE', d, 1)][bool(bb.data.getVar('MACHINE', d, =
+1))].replace('-', '_')}"
+PACKAGE_EXTRA_ARCHS ??=3D "${PACKAGE_EXTRA_ARCHS_tune-${DEFAULTTUNE}}"
+PACKAGE_ARCHS =3D "all any noarch ${PACKAGE_EXTRA_ARCHS} =
+${MACHINE_ARCH}"
+
+
+Shouldn't PACKAGE_ARCHS be:
+
+PACKAGE_ARCHS =3D "all any noarch ${PACKAGE_ARCH} ${PACKAGE_EXTRA_ARCHS} =
+${MACHINE_ARCH}"
+
+- k=
 
