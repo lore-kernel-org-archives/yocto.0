@@ -1,27 +1,56 @@
-Return-Path: <galak@kernel.crashing.org>
-Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 717F64C80094
-	for <yocto@yoctoproject.org>; Thu, 28 Jul 2011 11:08:42 -0500 (CDT)
-Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
-	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p6SG8WSo020450;
-	Thu, 28 Jul 2011 11:08:33 -0500
-Mime-Version: 1.0 (Apple Message framework v1084)
-From: Kumar Gala <galak@kernel.crashing.org>
-In-Reply-To: <4E3188D3.8040405@linux.intel.com>
-Date: Thu, 28 Jul 2011 11:08:33 -0500
-Message-Id: <E3FB12B3-2CA8-46D0-8C96-DE8540C91CEA@kernel.crashing.org>
-References: <1F827C13-EF18-4D1E-AAA1-381361929F39@kernel.crashing.org>	<65A75BC37EC7EE4F88AB5EB98759A97003E6E32F@LONMLVEM04.e2k.ad.ge.com>
-	<315B4992-8E1A-4DD3-8D3D-E8FD2436B365@kernel.crashing.org>
-	<4E3188D3.8040405@linux.intel.com>
+Return-Path: <B29882@freescale.com>
+Received: from AM1EHSOBE003.bigfish.com (am1ehsobe003.messaging.microsoft.com
+	[213.199.154.206])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 3220E4C80094
+	for <yocto@yoctoproject.org>; Thu, 28 Jul 2011 11:26:45 -0500 (CDT)
+Received: from mail90-am1-R.bigfish.com (10.3.201.242) by
+	AM1EHSOBE003.bigfish.com (10.3.204.23) with Microsoft SMTP Server id
+	14.1.225.22; Thu, 28 Jul 2011 16:26:44 +0000
+Received: from mail90-am1 (localhost.localdomain [127.0.0.1])	by
+	mail90-am1-R.bigfish.com (Postfix) with ESMTP id 55C9A18902F4;
+	Thu, 28 Jul 2011 16:26:44 +0000 (UTC)
+X-SpamScore: -20
+X-BigFish: VS-20(zzbb2dK9371K148cM1432N98dKzz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3h61h)
+X-Spam-TCS-SCL: 0:0
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
+	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
+Received: from mail90-am1 (localhost.localdomain [127.0.0.1]) by mail90-am1
+	(MessageSwitch) id 131187038441884_18606;
+	Thu, 28 Jul 2011 16:26:24 +0000 (UTC)
+Received: from AM1EHSMHS014.bigfish.com (unknown [10.3.201.243])	by
+	mail90-am1.bigfish.com (Postfix) with ESMTP id BE3E79A80BF;
+	Thu, 28 Jul 2011 16:25:15 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS014.bigfish.com
+	(10.3.207.152) with Microsoft SMTP Server (TLS) id 14.1.225.22;
+	Thu, 28 Jul 2011 16:24:58 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.56]) by
+	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
+	14.01.0289.008; Thu, 28 Jul 2011 11:24:54 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
 To: Saul Wold <sgw@linux.intel.com>
-X-Mailer: Apple Mail (2.1084)
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
+Thread-Topic: [yocto] [OE-core] [PATCH] Switch to using perl-native for
+	various packages instead of host perl
+Thread-Index: AQHMS8leWmpqeI+5xkiGoGtDn+MuR5UBZ4mAgADaXwA=
+Date: Thu, 28 Jul 2011 16:24:53 +0000
+Message-ID: <CAEsOVNf1VK+YsHqVcyY5c9rpRbS27uiN2Gz4wGoeT2j9+YgOYw@mail.gmail.com>
+References: <1311708150-24226-1-git-send-email-msm@freescale.com>
+	<4E30D611.1050002@linux.intel.com>
+In-Reply-To: <4E30D611.1050002@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [50.57.111.205]
+MIME-Version: 1.0
+X-OriginatorOrg: freescale.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@openembedded.org" <openembedded-core@openembedded.org>,
 	Patches and discussions about the oe-core layer
 	<openembedded-core@lists.openembedded.org>
-Subject: Re: mpc8315e-rdb core-image-minimal fails
+Subject: Re: [OE-core] [PATCH] Switch to using perl-native for various packages instead of host perl
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -30,129 +59,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jul 2011 16:08:42 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Thu, 28 Jul 2011 16:26:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <C964FDDD0222D442AD4EAA68FBF0321F@freescale.net>
 Content-Transfer-Encoding: quoted-printable
 
-I have, it doesn't help.  I believe its partly due to how we are =
-appending to TUNE_PKGARCH, but what's not clear to me is what case is =
-failing and looking for just ppc603e instead of powerpcppc603e
+On Wed, Jul 27, 2011 at 10:22 PM, Saul Wold <sgw@linux.intel.com> wrote:
+> On 07/26/2011 12:22 PM, Matthew McClintock wrote:
+>>
+>> Several builds are using perl on the host instead of perl built by
+>> poky. This fixes the issue for several packages.
+>>
+> Matthew,
+>
+> Thanks for submitting this.
+>
+> A similar fix was recently rejected, as we are looking at a different way=
+ to
+> accomplish this.
+>
+> See
+> http://lists.linuxtogo.org/pipermail/openembedded-core/2011-July/006439.h=
+tml
 
-- k
+Why do we let the host perl in the path for target installs at all? Is
+there some precedence for what can be used from the host machine and
+what can not?
 
-On Jul 28, 2011, at 11:05 AM, Saul Wold wrote:
-
-> On 07/28/2011 08:45 AM, Kumar Gala wrote:
->> I think I know the cause, let me dig up the change that is related.  =
-What bit is looking for just ppc603e?
->>=20
-> This might also be related to the PACKAGE_EXTRA_ARCHS issue, please =
-try the patch that Koen posted.
->=20
-> Thanks
-> 	Sau!
->=20
->> - k
->>=20
->> On Jul 28, 2011, at 10:42 AM, Crossley, Malcolm (GE Intelligent =
-Platforms) wrote:
->>=20
->>> Hi Kumar,
->>>=20
->>> I'm just debugging the same issue.
->>>=20
->>> It's caused by folder for the target specific packages being =
-mis-named
->>> "powerpcppc603e" instead of "ppc603e" which the rpm package bbclass =
-is
->>> expecting.
->>>=20
->>> I haven't figured out why this is happening yet but I have a =
-workaround
->>> which is to move ${BUILD_DIR}/deploy/rpm/powerpcppc603e to
->>> ${BUILD_DIR}/deploy/rpm/ppc603e.
->>>=20
->>> I will let you know as soon as I find the cause.
->>>=20
->>> Regards
->>>=20
->>> Malcolm
->>>=20
->>> -----Original Message-----
->>> From: yocto-bounces@yoctoproject.org
->>> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Kumar Gala
->>> Sent: 28 July 2011 15:26
->>> To: Patches and discussions about the oe-core layer
->>> Cc: Yocto discussion list
->>> Subject: [yocto] mpc8315e-rdb core-image-minimal fails
->>>=20
->>> Anyone got any ideas about the following:
->>>=20
->>> | ERROR: Function 'do_rootfs' failed (see
->>> =
-/local/home/galak/git/poky/build/tmp/work/mpc8315e_rdb-poky-linux/core-i
->>> mage-minimal-1.0-r0/temp/log.do_rootfs.19834 for fu
->>> rther information)
->>> | Generating solve db for
->>> /local/home/galak/git/poky/build/tmp/deploy/rpm/mpc8315e_rdb...
->>> |    total:               1      0.000000 MB      1.573137 secs
->>> |    fingerprint:       816      0.004148 MB      0.062215 secs
->>> |    install:           272      0.000000 MB      0.384963 secs
->>> |    dbadd:             272      0.000000 MB      0.375238 secs
->>> |    dbget:            1111      0.000000 MB      0.003093 secs
->>> |    dbput:             272      1.315744 MB      0.302582 secs
->>> |    readhdr:          2721      2.573624 MB      0.178385 secs
->>> |    hdrload:          1360      3.828344 MB      0.007262 secs
->>> |    hdrget:          49259      0.000000 MB      0.048944 secs
->>> | Generating solve db for
->>> /local/home/galak/git/poky/build/tmp/deploy/rpm/all...
->>> |    total:               1      0.000000 MB      0.111129 secs
->>> |    fingerprint:        18      0.000024 MB      0.000280 secs
->>> |    install:             6      0.000000 MB      0.044466 secs
->>> |    dbadd:               6      0.000000 MB      0.039504 secs
->>> |    dbget:              19      0.000000 MB      0.000103 secs
->>> |    dbput:               6      0.018916 MB      0.006250 secs
->>> |    readhdr:            61      0.038096 MB      0.000212 secs
->>> |    hdrload:            33      0.063864 MB      0.000327 secs
->>> |    hdrget:            983      0.000000 MB      0.001306 secs
->>> | Generating solve db for
->>> /local/home/galak/git/poky/build/tmp/deploy/rpm/all...
->>> | Processing task-core-boot...
->>> | error: Failed dependencies:
->>> |       tinylogin is needed by task-core-boot-1.0-r7.mpc8315e_rdb
->>> |       busybox is needed by task-core-boot-1.0-r7.mpc8315e_rdb
->>> |       modutils-initscripts is needed by
->>> task-core-boot-1.0-r7.mpc8315e_rdb
->>> |       initscripts is needed by task-core-boot-1.0-r7.mpc8315e_rdb
->>> |       update-alternatives-cworth is needed by
->>> task-core-boot-1.0-r7.mpc8315e_rdb
->>> |       udev is needed by task-core-boot-1.0-r7.mpc8315e_rdb
->>> |       sysvinit is needed by task-core-boot-1.0-r7.mpc8315e_rdb
->>> |       netbase is needed by task-core-boot-1.0-r7.mpc8315e_rdb
->>> |       base-passwd is needed by task-core-boot-1.0-r7.mpc8315e_rdb
->>> |       console-tools is needed by keymaps-1.0-r19.mpc8315e_rdb
->>> |       initscripts is needed by keymaps-1.0-r19.mpc8315e_rdb
->>> |       /bin/sh is needed by keymaps-1.0-r19.mpc8315e_rdb
->>> NOTE: package core-image-minimal-1.0-r0: task do_rootfs: Failed
->>> ERROR: Task 8
->>> =
-(/local/home/galak/git/poky/meta/recipes-core/images/core-image-minimal.
->>> bb, do_rootfs) failed with exit code '1'
->>> ERROR:
->>> =
-'/local/home/galak/git/poky/meta/recipes-core/images/core-image-minimal.
->>> bb' failed
->>>=20
->>> - k
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>=20
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>=20
+-M=
 
 
