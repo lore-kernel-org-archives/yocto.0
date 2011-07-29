@@ -1,27 +1,25 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 0055E4C800D8
-	for <yocto@yoctoproject.org>; Thu, 28 Jul 2011 18:59:41 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 28 Jul 2011 16:59:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,285,1309762800"; d="scan'208";a="35735822"
-Received: from unknown (HELO [10.255.14.105]) ([10.255.14.105])
-	by fmsmga001.fm.intel.com with ESMTP; 28 Jul 2011 16:59:41 -0700
-Message-ID: <4E31F800.4010501@linux.intel.com>
-Date: Thu, 28 Jul 2011 17:00:00 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.18) Gecko/20110617 Lightning/1.0b2 Thunderbird/3.1.11
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6AE624C803E4
+	for <yocto@yoctoproject.org>; Thu, 28 Jul 2011 20:38:50 -0500 (CDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p6T1cl5A023972
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 28 Jul 2011 18:38:47 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.20.112) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Thu, 28 Jul 2011 18:38:47 -0700
+Message-ID: <4E320F26.2060003@windriver.com>
+Date: Thu, 28 Jul 2011 21:38:46 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
+	rv:1.9.2.18) Gecko/20110616 Thunderbird/3.1.11
 MIME-Version: 1.0
-To: "Ourada, Paul" <Paul.Ourada@Covidien.com>
-References: <1311052872-10569-1-git-send-email-galak@kernel.crashing.org><1311052872-10569-2-git-send-email-galak@kernel.crashing.org><CAMKF1sq4ho3-P6L0PfDVxpAscccS561LLRUNc64okvsU9R=f9Q@mail.gmail.com><4537825C-7D8E-4260-88D2-C5F851FF827A@kernel.crashing.org>	<E7D51FCF-F5DC-448D-8354-410E0217D10F@kernel.crashing.org>
-	<2A069A8019B2DF43BD330EE490B1EF527F2A16@TAMANS-BE04.thcg.net>
-	<4E31D93E.2000606@linux.intel.com>
-	<4D9E0AFD9C2FCC428A8EAADA898F5B2D012F90@TAMANS-MB100V.thcg.net>
-In-Reply-To: <4D9E0AFD9C2FCC428A8EAADA898F5B2D012F90@TAMANS-MB100V.thcg.net>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Trying to create OpenDDS recipe
+To: Darren Hart <dvhart@linux.intel.com>
+References: <4E31F60D.2000504@linux.intel.com>
+In-Reply-To: <4E31F60D.2000504@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH][linux-yocto-3.0] drivers/misc/pch_phub.c: don't oops if dmi_get_system_info returns NULL
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,139 +31,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jul 2011 23:59:42 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 29 Jul 2011 01:38:50 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Nitin, Khem, some toolchain related (I think) questions inline below.
+On 11-07-28 7:51 PM, Darren Hart wrote:
+> Bruce,
+>
+> Please apply to yocto/base. Fixes a boot issue for a
+> tunnel creek development board.
 
-On 07/28/2011 04:16 PM, Ourada, Paul wrote:
-> Hi Darren -
-> 
-> Thanks for getting back to me. I have been able to get a lot further
-> with the recipe. It turns out that the problem is in the makefiles
-> for OpenDDS. I'll detail further below.
-> 
-> Paul E. Ourada Sr. Principal Software Engineer Covidien, Energy-based
-> Devices 5920 Longbow Drive Boulder, CO 80301 
-> paul.ourada@covidien.com www.covidien.com Main: 303-530-2300 Ofc:
-> 303-581-6940 Fax: 303-581-6741
-> 
-> 
->> Hi Paul,
-> 
-> On 07/19/2011 07:41 AM, Ourada, Paul wrote:
->>> I hope this is the correct place to post this. If not, please let
->>> me know.
-> 
->> This is the right place. In the future please don't reply to an
->> existing post as your message then gets threaded with the one you
->> replied to (likely why you didn't receive a response so far - that
->> I see anyway).
-> 
-> I guess I thought that changing the subject would have fixed that.
-> Guess the mail list s/w is smarter than that. :)
+I fetched and updated master in linux-yocto-3.0 and cherry picked
+this into yocto/base, and merged it out.
 
-In case you're actually curious :-) it's your mail client. It inserts
-the following header:
+    e6625fa..55f9c40  master -> master
+    935b896..c33fc74  yocto/base -> yocto/base
+    67283c12..30a2cec yocto/standard/arm-versatile-926ejs -> 
+yocto/standard/arm-versatile-926ejs
+    dee149a..318b059  yocto/standard/base -> yocto/standard/base
+    850784c..f79313d  yocto/standard/beagleboard -> 
+yocto/standard/beagleboard
+    b584e72..c30a568  yocto/standard/common-pc-64/base -> 
+yocto/standard/common-pc-64/base
+    8064012..61da1e3  yocto/standard/common-pc-64/jasperforest -> 
+yocto/standard/common-pc-64/jasperforest
+    69faf26..ac5c59d  yocto/standard/common-pc-64/romley -> 
+yocto/standard/common-pc-64/romley
+    1da9aad..c49c587  yocto/standard/common-pc-64/sugarbay -> 
+yocto/standard/common-pc-64/sugarbay
+    287479a..9e321ee  yocto/standard/common-pc/atom-pc -> 
+yocto/standard/common-pc/atom-pc
+    f56a137..efaab1f  yocto/standard/common-pc/base -> 
+yocto/standard/common-pc/base
+    34a9e0e..9a259cf  yocto/standard/crownbay -> yocto/standard/crownbay
+    311152b..8c09403  yocto/standard/emenlow -> yocto/standard/emenlow
+    813ec5a..e556c2a  yocto/standard/fishriver -> yocto/standard/fishriver
+    2d19d3f..5e08aa8  yocto/standard/fri2 -> yocto/standard/fri2
+    1562ec0..a8eef04  yocto/standard/fsl-mpc8315e-rdb -> 
+yocto/standard/fsl-mpc8315e-rdb
+    ac0f36e..f9b9688  yocto/standard/mti-malta32-be -> 
+yocto/standard/mti-malta32-be
+    7d24c08..bb024ac  yocto/standard/mti-malta32-le -> 
+yocto/standard/mti-malta32-le
+    40381c3..6c76d97  yocto/standard/preempt-rt/base -> 
+yocto/standard/preempt-rt/base
+    40381c3..5ae5cb6  yocto/standard/preempt-rt/common-pc -> 
+yocto/standard/preempt-rt/common-pc
+    38525f1..a46a4c3  yocto/standard/qemu-ppc32 -> yocto/standard/qemu-ppc32
+    5eaea5c..df9213c  yocto/standard/routerstationpro -> 
+yocto/standard/routerstationpro
 
-In-Reply-To: <E7D51FCF-F5DC-448D-8354-410E0217D10F@kernel.crashing.org>
+You'll need to use kernel-dev or update your SRCREVs manually to pick
+it up. I've got a pending update that I'll send out later. But we'd have
+to wait for it to merge into poky master anyway.
 
-Which a compliant mail reader will thread with that message.
+Cheers,
 
-> 
->>> 
->>> I'm trying to create a recipe for OpenDDS. The recipe works so
->>> far as fetching, unpacking, and configuration. Or it seems to. :)
->>> Part of the configuration piece is that it also pulls down
->>> ACE+TAO real-time CORBA. This part works fine as well.
->>> 
->>> I set S as follows to match the unpacking directories enforced by
->>> the tar file:
->>> 
->>> S = ${WORKINGDIR}/DDS
->>> 
->>> The package comes with a configuration script pre-built, and it
->>> expects to be told where glibc is. So, I write do_configure as
->>> follows:
->>> 
->>> EXTRA_OECONF = "-glibc=${STAGING_DIR}/${MACHINE}/usr"
->>> 
->>> do_configure() { ${S}/configure ${EXTRA_OECONF} }
->>> 
->>> The problem that I run into is during compilation. I write the
->>> following for do_compile()
->>> 
->>> do_compile() { oenote ${STAGING_DIR} cd ${S} && make }
-> 
->> Is there a reason you are overriding configure and compile? These
->> appear to be autoconf projects, which should just work for recipes
->> using autotools.bbclass.
-> 
-> I had tried that initially. The configuration file is already
-> supplied, so running autotools to create the configure script is not
-> necessary, but running ./configure is. Is there a better way to do
-> that?
+Bruce
 
-Does regenerating .configure actually cause a problem? If not, I would
-still suggest using the autotools base and simplify your recipe.
 
-> 
-> : : << most of the compiler command line gobblety-gook snipped>>
-> 
->>> -DTAO_IDL_PREPROCESSOR=\"i586-poky-linux-g++ -march=i586
->>> --sysroot=/opt/yocto/poky-5.0.1-build/tmp/sysroots/qemux86\"
-> 
-> 
->>> The thing that is puzzling me is that --sysroot seems to be
->>> pointing in the general direction of ${STAGING_DIR} and so the
->>> include directive, #include <features.h>> should be good. I have
->>> checked, and features.h is in the /usr/include subdirectory
->>> there.
-> 
->> I see unistd.h missing, not features.h.
-> 
-> You're right, it was complaining about unistd.h, but it turns out
-> that the real culprit was the TAO_IDL_PREPROCESSOR macro above. When
-> I compared it to what was being emitted in the Ubuntu compile, I saw
-> that the long, nasty, compound, double-quoted thing should have just
-> been "i586-poky-linux-g++." TAO_ID_PREPROCESSOR was being assigned
-> the value of ${CXX}.
-> 
-> It appears that instead of pre-pending the ${CPPFLAGS} variable,
-> yocto/poky recipes were appending the cross-compile build variables
-> to ${CXX}. I patched the OpenDDS makefile(s) to look for the first
-> word in the ${CXX} macro, and substituted that in the assignment of
-> TAO_IDL_PREPROCESSOR. Dunno if that's the "right" way to do it, or if
-> there's a bug in ${CXX} assignment?
+>
+> --
+>
+> commit 2b934c6236983392d01bef22e43af3051cac16f5
+>
+> If dmi_get_system_info() returns NULL, pch_phub_probe() will dereferencea
+> a zero pointer.
+>
+> This oops was observed on an Atom based board which has no BIOS, but a
+> bootloder which doesn't privde DMI data.
+>
+> Signed-off-by: Alexander Stein<alexander.stein@systec-electronic.com>
+> Cc: Tomoya MORINAGA<tomoya-linux@dsn.okisemi.com>
+> Cc: Greg KH<gregkh@suse.de>
+> Signed-off-by: Andrew Morton<akpm@linux-foundation.org>
+> Signed-off-by: Linus Torvalds<torvalds@linux-foundation.org>
+> ---
+>   drivers/misc/pch_phub.c |    5 ++++-
+>   1 files changed, 4 insertions(+), 1 deletions(-)
+>
+> diff --git a/drivers/misc/pch_phub.c b/drivers/misc/pch_phub.c
+> index 5fe79df..01eb67b 100644
+> --- a/drivers/misc/pch_phub.c
+> +++ b/drivers/misc/pch_phub.c
+> @@ -686,6 +686,8 @@ static int __devinit pch_phub_probe(struct pci_dev *pdev,
+>   	}
+>
+>   	if (id->driver_data == 1) { /* EG20T PCH */
+> +		const char *board_name;
+> +
+>   		retval = sysfs_create_file(&pdev->dev.kobj,
+>   					&dev_attr_pch_mac.attr);
+>   		if (retval)
+> @@ -701,7 +703,8 @@ static int __devinit pch_phub_probe(struct pci_dev *pdev,
+>   					       CLKCFG_CANCLK_MASK);
+>
+>   		/* quirk for CM-iTC board */
+> -		if (strstr(dmi_get_system_info(DMI_BOARD_NAME), "CM-iTC"))
+> +		board_name = dmi_get_system_info(DMI_BOARD_NAME);
+> +		if (board_name&&  strstr(board_name, "CM-iTC"))
+>   			pch_phub_read_modify_write_reg(chip,
+>   						(unsigned int)CLKCFG_REG_OFFSET,
+>   						CLKCFG_UART_48MHZ | CLKCFG_BAUDDIV |
 
-These are good toolchain questions for Nitin or Khem, now on CC.
-
-> 
-> Anyway, I think that I'm getting there w/the recipe. I'm sure that
-> there are some things I'm doing wrong. For instance, I'm no longer
-> cd'ing to ${S}, as OE already takes me there. I'm also using
-> oe_runmake in do_compile().
-
-If you're running oe_runmake from do_compile then you might be able to
-omit do_compile and use the base class implementation.
-
-> 
-> I expect that I'll be running some version of "make install" at some
-> point.
-
-Again, should be automagic.
-
-> 
-> I'm sure I'll have more questions as I go along.
-> 
-> Thanks for helping an OE/Yocto N00b!
-> 
-> Paul
-> 
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
