@@ -1,23 +1,26 @@
 Return-Path: <andre@bitwigglers.org>
 Received: from moutng.kundenserver.de (moutng.kundenserver.de
 	[212.227.126.171])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 298484C800D8
-	for <yocto@yoctoproject.org>; Fri, 29 Jul 2011 02:24:01 -0500 (CDT)
+	by mx1.pokylinux.org (Postfix) with ESMTP id F068D4C803E4
+	for <yocto@yoctoproject.org>; Fri, 29 Jul 2011 05:05:27 -0500 (CDT)
 Received: from localhost.localdomain ([145.253.109.106])
-	by mrelayeu.kundenserver.de (node=mreu2) with ESMTP (Nemesis)
-	id 0MZ9ey-1R7XhM0MSi-00Kwun; Fri, 29 Jul 2011 09:24:00 +0200
-Date: Fri, 29 Jul 2011 09:23:59 +0200
+	by mrelayeu.kundenserver.de (node=mrbap3) with ESMTP (Nemesis)
+	id 0M8zxV-1QhYL538k1-00CUnq; Fri, 29 Jul 2011 12:05:26 +0200
+Date: Fri, 29 Jul 2011 12:05:25 +0200
 From: Andre Haupt <andre@bitwigglers.org>
-To: yocto@yoctoproject.org
-Message-ID: <20110729072359.GA5109@localhost.localdomain>
+To: Andre Haupt <andre@bitwigglers.org>
+Message-ID: <20110729100525.GA26451@localhost.localdomain>
+References: <20110729072359.GA5109@localhost.localdomain>
 MIME-Version: 1.0
+In-Reply-To: <20110729072359.GA5109@localhost.localdomain>
 User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Provags-ID: V02:K0:dNixX84i56AtiytMglUO/rv47w02fAch2vBoxK/Iwik
-	mEImHZYjPkVc0eQ0Ai6oFwFQhLwjYEPeNryXwrh0eK/yKQayMH
-	l5YvySXDUYcQSeiIUdVETtb99pjBbpOrtLRowW7pwKvHyo4kwp
-	tqO8K+apAkv2OTTH4OVVy27B4XBWD1BFNPj7A+R7w3SBn95PEe
-	wyhXVWsESDIeiMH44RKq96dW5VjZvfpnB5GsmrMreo=
-Subject: crownbay-noemgd poky-image-minimal fails to build
+X-Provags-ID: V02:K0:MQuYjmeK5cF63ZRiJJIfeUisC6ROUbdfEr30/sAdoi6
+	pqIn7bTpE4CnmKlBDkwosoyH1Ibcpg2gIsIldUnr3hVIb7rbuE
+	yltH5JA7WbAxxfPTvc1bQGpYvpXYDIW4DdZ5nSfqqhVomz6JDj
+	XOzdNlwUR6T7htWmycKj9JRTG8DwkeArEFT5Q6TirxaDVhEgoB
+	LyDnlNaOtw4eLbwGa9Nb2roPxE/W8XrVM99kmEFMhc=
+Cc: yocto@yoctoproject.org
+Subject: Re: crownbay-noemgd poky-image-minimal fails to build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,122 +32,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Jul 2011 07:24:02 -0000
-X-Groupsio-MsgNum: 2118
-Content-Type: multipart/mixed; boundary="jRHKVT23PllUwdXP"
-Content-Disposition: inline
-
---jRHKVT23PllUwdXP
+X-List-Received-Date: Fri, 29 Jul 2011 10:05:28 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-Hi all,
+On Fri, Jul 29, 2011 at 09:23:59AM +0200, Andre Haupt wrote:
+> Hi all,
+> 
+> I am trying to build a poky bernard image for crownbay-noemgd.
+> For this i checked out the bernard branch of both poky and meta-intel
+> from git.yoctoproject.org.
+> 
+> Bitbake fails during the kernels compile_perf task complaining that it can not
+> find libdw.h and bfd.h and that using /usr/local/include as include
+> location is unsafe for cross compilation (full log attached).
+> 
+> What do i miss here?
 
-I am trying to build a poky bernard image for crownbay-noemgd.
-For this i checked out the bernard branch of both poky and meta-intel
-from git.yoctoproject.org.
+I did work around this with
 
-Bitbake fails during the kernels compile_perf task complaining that it can not
-find libdw.h and bfd.h and that using /usr/local/include as include
-location is unsafe for cross compilation (full log attached).
+diff --git a/meta/recipes-kernel/linux/linux-yocto-stable_git.bb b/meta/recipes-
+index 3c1e669..85caa92 100644
+--- a/meta/recipes-kernel/linux/linux-yocto-stable_git.bb
++++ b/meta/recipes-kernel/linux/linux-yocto-stable_git.bb
+@@ -42,4 +42,4 @@ KERNEL_FEATURES=features/netfilter
+ addtask kernel_link_vmlinux after do_compile before do_install
+  addtask validate_branches before do_patch after do_kernel_checkout
+   
+  -require linux-tools.inc
+  +#require linux-tools.inc
 
-What do i miss here?
 
-Btw, the build host is fedora 13.
-(this time on real hardware, not in a virtual machine)
+not sure that this is the right thing to do though.
 
-thanks,
+cheers,
 
 Andre
 
---jRHKVT23PllUwdXP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: attachment; filename="log.do_compile_perf.12050"
-
-NOTE: make -C /home/ahaupt/yocto-git/builds/crownbay-noemgd/tmp/work/crownbay_noemgd-poky-linux/linux-yocto-stable-2.6.34+git1+e1f85a470934a0cf6abde5d95533e74501822c6b_1+56fe215d3f1a2cc3a5a26482ac9809ba44495695-r1/linux/tools/perf CC=ccache i586-poky-linux-gcc -m32 -march=core2 -msse3 -mtune=generic -mfpmath=sse --sysroot=/home/ahaupt/yocto-git/builds/crownbay-noemgd/tmp/sysroots/crownbay-noemgd LD=i586-poky-linux-ld --sysroot=/home/ahaupt/yocto-git/builds/crownbay-noemgd/tmp/sysroots/crownbay-noemgd prefix=/usr NO_NEWT=1 NO_DWARF=1
-make: Entering directory `/home/ahaupt/yocto-git/builds/crownbay-noemgd/tmp/work/crownbay_noemgd-poky-linux/linux-yocto-stable-2.6.34+git1+e1f85a470934a0cf6abde5d95533e74501822c6b_1+56fe215d3f1a2cc3a5a26482ac9809ba44495695-r1/linux/tools/perf'
-Makefile:508: No libdw.h found or old libdw.h found, disables dwarf support. Please install elfutils-devel/elfutils-dev
-Makefile:563: No bfd.h/libbfd found, install binutils-dev[el]/zlib-static to gain symbol demangling
-PERF_VERSION = 0.0.2.PERF
-make: Leaving directory `/home/ahaupt/yocto-git/builds/crownbay-noemgd/tmp/work/crownbay_noemgd-poky-linux/linux-yocto-stable-2.6.34+git1+e1f85a470934a0cf6abde5d95533e74501822c6b_1+56fe215d3f1a2cc3a5a26482ac9809ba44495695-r1/linux/tools/perf'
-make: Entering directory `/home/ahaupt/yocto-git/builds/crownbay-noemgd/tmp/work/crownbay_noemgd-poky-linux/linux-yocto-stable-2.6.34+git1+e1f85a470934a0cf6abde5d95533e74501822c6b_1+56fe215d3f1a2cc3a5a26482ac9809ba44495695-r1/linux/tools/perf'
-Makefile:508: No libdw.h found or old libdw.h found, disables dwarf support. Please install elfutils-devel/elfutils-dev
-Makefile:563: No bfd.h/libbfd found, install binutils-dev[el]/zlib-static to gain symbol demangling
-    GEN common-cmds.h
-    * new build flags or prefix
-    CC perf.o
-    CC builtin-annotate.o
-    CC builtin-bench.o
-    CC bench/sched-messaging.o
-    CC bench/sched-pipe.o
-    CC bench/mem-memcpy.o
-    CC builtin-diff.o
-    CC builtin-help.o
-    CC builtin-sched.o
-    CC builtin-buildid-list.o
-    CC builtin-buildid-cache.o
-    CC builtin-list.o
-    CC builtin-record.o
-    CC builtin-report.o
-    CC builtin-stat.o
-    CC builtin-timechart.o
-    CC builtin-top.o
-    CC builtin-trace.o
-    CC builtin-probe.o
-    CC builtin-kmem.o
-    CC builtin-lock.o
-    CC util/abspath.o
-    CC util/alias.o
-    CC util/build-id.o
-    CC util/config.o
-    CC util/ctype.o
-    CC util/debugfs.o
-    CC util/environment.o
-    CC util/event.o
-    CC util/exec_cmd.o
-    CC util/help.o
-    CC util/levenshtein.o
-    CC util/parse-options.o
-    CC util/parse-events.o
-    CC util/path.o
-    CC util/rbtree.o
-    CC util/bitmap.o
-    CC util/hweight.o
-    CC util/find_next_bit.o
-    CC util/run-command.o
-    CC util/quote.o
-    CC util/strbuf.o
-    CC util/string.o
-    CC util/strlist.o
-    CC util/usage.o
-    CC util/wrapper.o
-    CC util/sigchain.o
-    CC util/symbol.o
-    CC util/color.o
-    CC util/pager.o
-    CC util/header.o
-    CC util/callchain.o
-    CC util/values.o
-    CC util/debug.o
-    CC util/map.o
-    CC util/session.o
-    CC util/thread.o
-    CC util/trace-event-parse.o
-    CC util/trace-event-read.o
-    CC util/trace-event-info.o
-    CC util/trace-event-scripting.o
-    CC util/svghelper.o
-    CC util/sort.o
-    CC util/hist.o
-    CC util/probe-event.o
-    CC util/util.o
-    CC util/cpumap.o
-    CC util/scripting-engines/trace-event-perl.o
-cc1: warnings being treated as errors
-cc1: error: include location "/usr/local/include" is unsafe for cross-compilation
-make: *** [util/scripting-engines/trace-event-perl.o] Error 1
-make: Leaving directory `/home/ahaupt/yocto-git/builds/crownbay-noemgd/tmp/work/crownbay_noemgd-poky-linux/linux-yocto-stable-2.6.34+git1+e1f85a470934a0cf6abde5d95533e74501822c6b_1+56fe215d3f1a2cc3a5a26482ac9809ba44495695-r1/linux/tools/perf'
-FATAL: oe_runmake failed
-ERROR: Function 'do_compile_perf' failed (see /home/ahaupt/yocto-git/builds/crownbay-noemgd/tmp/work/crownbay_noemgd-poky-linux/linux-yocto-stable-2.6.34+git1+e1f85a470934a0cf6abde5d95533e74501822c6b_1+56fe215d3f1a2cc3a5a26482ac9809ba44495695-r1/temp/log.do_compile_perf.12050 for further information)
-
---jRHKVT23PllUwdXP--
