@@ -1,28 +1,22 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 739DE4C8007E
-	for <yocto@yoctoproject.org>; Fri, 29 Jul 2011 09:56:58 -0500 (CDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p6TEusiC009062
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 29 Jul 2011 07:56:54 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 29 Jul 2011 07:56:54 -0700
-Message-ID: <4E32CA35.3070203@windriver.com>
-Date: Fri, 29 Jul 2011 10:56:53 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Return-Path: <michaelx.d.halstead@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by mx1.pokylinux.org (Postfix) with ESMTP id DD8224C8007E
+	for <yocto@yoctoproject.org>; Fri, 29 Jul 2011 19:02:17 -0500 (CDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 29 Jul 2011 17:02:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,289,1309762800"; 
+	d="p7s'?scan'208";a="32058276"
+Received: from linux-mkad.jf.intel.com (HELO [10.7.202.54]) ([10.7.202.54])
+	by orsmga002.jf.intel.com with ESMTP; 29 Jul 2011 17:02:17 -0700
+Message-ID: <4E334A09.3080409@intel.com>
+Date: Fri, 29 Jul 2011 17:02:17 -0700
+From: Michael Halstead <michaelx.d.halstead@intel.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11 ThunderBrowse/3.8
+	rv:1.9.2.18) Gecko/20110616 SUSE/3.1.11 Thunderbird/3.1.11
 MIME-Version: 1.0
-To: Malcolm Crossley <malcolm.crossley@ge.com>
-References: <20110729072359.GA5109@localhost.localdomain>	<20110729100525.GA26451@localhost.localdomain>	<4E32B1B6.4010608@windriver.com>
-	<4E32BC5C.7070305@ge.com> <4E32BD65.7080507@windriver.com>
-	<4E32BF7E.4070306@ge.com> <4E32C4C7.3020706@windriver.com>
-	<4E32C8FA.8040007@ge.com>
-In-Reply-To: <4E32C8FA.8040007@ge.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: crownbay-noemgd poky-image-minimal fails to build
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Mailing lists are moving to a new host
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,223 +28,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Jul 2011 14:56:58 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 30 Jul 2011 00:02:18 -0000
+X-Groupsio-MsgNum: 2130
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+	micalg=sha1; boundary="------------ms040902040000010205020507"
 
-On 07/29/11 10:51, Malcolm Crossley wrote:
-> On 29/07/2011 15:33, Bruce Ashfield wrote:
->> On 07/29/11 10:11, Malcolm Crossley wrote:
->>> On 29/07/2011 15:02, Bruce Ashfield wrote:
->>>> On 07/29/11 09:57, Malcolm Crossley wrote:
->>>>> On 29/07/2011 14:12, Bruce Ashfield wrote:
->>>>>> On 07/29/11 06:05, Andre Haupt wrote:
->>>>>>> On Fri, Jul 29, 2011 at 09:23:59AM +0200, Andre Haupt wrote:
->>>>>>>> Hi all,
->>>>>>>>
->>>>>>>> I am trying to build a poky bernard image for crownbay-noemgd.
->>>>>>>> For this i checked out the bernard branch of both poky and
->>>>>>>> meta-intel
->>>>>>>> from git.yoctoproject.org.
->>>>>>>>
->>>>>>>> Bitbake fails during the kernels compile_perf task complaining that
->>>>>>>> it can not
->>>>>>>> find libdw.h and bfd.h and that using /usr/local/include as include
->>>>>>>> location is unsafe for cross compilation (full log attached).
->>>>>>>>
->>>>>>>> What do i miss here?
->>>>>>>
->>>>>>> I did work around this with
->>>>>>>
->>>>>>> diff --git a/meta/recipes-kernel/linux/linux-yocto-stable_git.bb
->>>>>>> b/meta/recipes-
->>>>>>> index 3c1e669..85caa92 100644
->>>>>>> --- a/meta/recipes-kernel/linux/linux-yocto-stable_git.bb
->>>>>>> +++ b/meta/recipes-kernel/linux/linux-yocto-stable_git.bb
->>>>>>> @@ -42,4 +42,4 @@ KERNEL_FEATURES=features/netfilter
->>>>>>> addtask kernel_link_vmlinux after do_compile before do_install
->>>>>>> addtask validate_branches before do_patch after do_kernel_checkout
->>>>>>>
->>>>>>> -require linux-tools.inc
->>>>>>> +#require linux-tools.inc
->>>>>>>
->>>>>>>
->>>>>>> not sure that this is the right thing to do though.
->>>>>>
->>>>>> It's an acceptable work around to keep you building on your
->>>>>> local machine, assuming that you don't need perf. But the
->>>>>> linux-yocto recipes always want to provide perf, and hence
->>>>>> have that include.
->>>>>>
->>>>>> I'm trying to dust off my memory here. I know that this has
->>>>>> been seen, and I also know that this built fine in the bernard
->>>>>> release.
->>>>>>
->>>>>> The first part of the issue is the:
->>>>>>
->>>>>> Makefile:508: No libdw.h found or old libdw.h found, disables dwarf
->>>>>> support. Please install elfutils-devel/elfutils-dev
->>>>>>
->>>>>> We may have a missing host dependency in the checks. Have you
->>>>>> tried installing the relevant package for F13 ?
->>>>>>
->>>>>> As for the second, there's a patch in the 2.6.34 kernel tree
->>>>>> that is dealing with it:
->>>>>>
->>>>>> http://git.pokylinux.org/cgit/cgit.cgi/linux-yocto-2.6.34/commit/?h=standard&id=72ca49ab08b8eb475cec82a10049503602325791
->>>>>>
->>>>>>
->>>>>>
->>>>>>
->>>>>> It sounds like there may be a SRCREV problem for the board that
->>>>>> isn't picking up that change. Can you confirm that this commit
->>>>>> is in your board branch ? You can check in your build directory
->>>>>> for linux.
->>>>>
->>>>> I have found that stable branch 2.6.34 contains a bug when trying to
->>>>> build the perf tools. I have a patch but I've not been able to
->>>>> upstream
->>>>> it yet, I've copy pasted it inline here, hopefully it doesn't wrap too
->>>>> badly:
->>>>
->>>> Just so I've got all the context here. This failure is
->>>> on top of the one you were asking about ? (the unsafe
->>>> / includes). And this is unique to the 2.6.34-stable
->>>> perf variant (i.e. no other newer kernel release has
->>>> the issue) ?
->>> The patch is required on 2.6.34-stable but not on 2.6.34 vanilla. I have
->>> not tested newer kernels but I believe there would be some compliants if
->>> it was still broken. So I think there was some specific backporting
->>> breakage with 2.6.34-stable. Without the patch I got this error on
->>> 2.6.34.6:
->>
->> odd. Our autobuilders and local builds should have shown this,
->> since we are already past 2.6.34.6 for those boards.
->>
->> We'll have to look into this one a bit more.
->>
->
-> I saw this problem using Openembedded stable 2009 branch, so yocto could
-> be fine due to different environment setup. I was posting the patch in
-> case it helped with this issue because it looked similar.
+--------------ms040902040000010205020507
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-No worries! thanks for the report and the post, I'm
-going to keep this on my radar going forward.
+On Monday August 1st from 10pm to midnight PDT we will move mailing=20
+lists and related services to new hardware hosted at the
+OSU Open Source Lab. Archive access will be available during the entire=20
+process but changes using the web interface at lists.yoctoproject.org=20
+may be lost. E-mail sent to lists will be delayed until the transition=20
+is complete. If you send an e-mail to the list during the move expect=20
+that it will go through after a few hours. There should be no need to=20
+resend e-mail.
 
-Cheers,
-
-Bruce
-
->
-> Regards
->
-> Malcolm
->>
->>>
->>> NOTE: make -j 2
->>> DESTDIR=/home/gefanuc/auto/main/build/work/ge-sbc612-angstrom-linux/linux-ge-2.6.x+22411-r0/image
->>>
->>> CC=powerpc-angstrom-linux-gcc LD=powerpc-angstrom-linux-ld
->>> Makefile:508: No libdw.h found or old libdw.h found, disables dwarf
->>> support. Please install elfutils-devel/elfutils-dev
->>> touch .perf.dev.null
->>> CC perf.o
->>> CC bench/sched-messaging.o
->>> bench/sched-messaging.c:34: error: expected '=', ',', ';', 'asm' or
->>> '__attribute__' before 'use_pipes'
->>> bench/sched-messaging.c:36: error: expected '=', ',', ';', 'asm' or
->>> '__attribute__' before 'thread_mode'
->>> bench/sched-messaging.c: In function 'fdpair':
->>> bench/sched-messaging.c:61: error: 'use_pipes' undeclared (first use in
->>> this function)
->>> bench/sched-messaging.c:61: error: (Each undeclared identifier is
->>> reported only once
->>> bench/sched-messaging.c:61: error: for each function it appears in.)
->>> bench/sched-messaging.c: In function 'receiver':
->>> bench/sched-messaging.c:120: error: 'thread_mode' undeclared (first use
->>> in this function)
->>> bench/sched-messaging.c: In function 'create_worker':
->>> bench/sched-messaging.c:149: error: 'thread_mode' undeclared (first use
->>> in this function)
->>> bench/sched-messaging.c: In function 'reap_worker':
->>> bench/sched-messaging.c:189: error: 'thread_mode' undeclared (first use
->>> in this function)
->>> bench/sched-messaging.c: In function 'group':
->>> bench/sched-messaging.c:232: error: 'thread_mode' undeclared (first use
->>> in this function)
->>> bench/sched-messaging.c: At top level:
->>> bench/sched-messaging.c:255: error: 'use_pipes' undeclared here (not in
->>> a function)
->>> bench/sched-messaging.c:257: error: 'thread_mode' undeclared here (not
->>> in a function)
->>> make: *** [bench/sched-messaging.o] Error 1
->>> make: *** Waiting for unfinished jobs....
->>>
->>> Regards
->>>
->>> Malcolm
->>>
->>>
->>>>
->>>> with those answers, I can appropriately deal with it
->>>> and vector it to the right places.
->>>>
->>>> Cheers,
->>>>
->>>> Bruce
->>>>
->>>>>
->>>>> Author: Malcolm Crossley <malcolm.crossley@ge.com>
->>>>> Date: Fri Jul 22 22:44:53 2011 +0100
->>>>>
->>>>> Kernel version 2.6.34.6. has a bug with regards to it's perf tool
->>>>> source
->>>>> files. This patch adds a missing include directive.
->>>>>
->>>>> Signed-off-by: Malcolm Crossley <malcolm.crossley@ge.com>
->>>>>
->>>>> diff --git a/tools/perf/perf.h b/tools/perf/perf.h
->>>>> index 6fb379b..3c497c5 100644
->>>>> --- a/tools/perf/perf.h
->>>>> +++ b/tools/perf/perf.h
->>>>> @@ -73,6 +73,7 @@
->>>>> #include <unistd.h>
->>>>> #include <sys/types.h>
->>>>> #include <sys/syscall.h>
->>>>> +#include <stdbool.h>
->>>>>
->>>>> #include "../../include/linux/perf_event.h"
->>>>> #include "util/types.h"
->>>>>
->>>>>
->>>>> Regards
->>>>>
->>>>> Malcolm
->>>>>
->>>>>>
->>>>>> Bruce
->>>>>>
->>>>>>>
->>>>>>> cheers,
->>>>>>>
->>>>>>> Andre
->>>>>>> _______________________________________________
->>>>>>> yocto mailing list
->>>>>>> yocto@yoctoproject.org
->>>>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>>>
->>>>>> _______________________________________________
->>>>>> yocto mailing list
->>>>>> yocto@yoctoproject.org
->>>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>>
->>>>> _______________________________________________
->>>>> yocto mailing list
->>>>> yocto@yoctoproject.org
->>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>
->>>
->>
->
+Michael Halstead
+Intel OTC Yocto
 
 
+
+--------------ms040902040000010205020507
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIVbDCCAz0w
+ggKmoAMCAQICAwWw/zANBgkqhkiG9w0BAQUFADBOMQswCQYDVQQGEwJVUzEQMA4GA1UEChMHRXF1
+aWZheDEtMCsGA1UECxMkRXF1aWZheCBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MB4XDTA2
+MDIxNjE4MDEzMFoXDTE2MDIxOTE4MDEzMFowUjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVs
+IENvcnBvcmF0aW9uMScwJQYDVQQDEx5JbnRlbCBFeHRlcm5hbCBCYXNpYyBQb2xpY3kgQ0EwggEi
+MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDBpd/XOb9QVqEZ8mQ1042TdOIq3ATDIsV2xDyt
+30yLyMR5Wjtus0bn3B+he89BiNO/LP6+rFzEwlD55PlX+HLGIKeNNG97dqyc30FElEUjZzTZFq2N
+4e3kVJ/XAEEgANzV8v9qp7qWwxugPgfc3z9BkYot+CifozexHLb/hEZj+yISCU61kRZvuSQ0E11y
+YL4dRgcglJeaHo3oX57rvIckaLsYV5/1Aj+R8DM1Ppk965XQAKsHfnyT7C4S50T4lVn4lz36wOdN
+Zn/zegG1zp41lnoTFfT4KuKVJH5x7YD1p6KbgJCKLovnujGuohquBNfdXKpZkvz6pGv+iC1HawJd
+AgMBAAGjgaAwgZ0wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBQaxgxKxEdvqNutK/D0Vgaj7TdU
+DDA6BgNVHR8EMzAxMC+gLaArhilodHRwOi8vY3JsLmdlb3RydXN0LmNvbS9jcmxzL3NlY3VyZWNh
+LmNybDAfBgNVHSMEGDAWgBRI5mj5K9KylddH2CMgEE8zmJCf1DAPBgNVHRMBAf8EBTADAQH/MA0G
+CSqGSIb3DQEBBQUAA4GBABMQOK2kVKVIlUWwLTdywJ+e2O+PC/uQltK2F3lRyrPfBn69tOkIP4Sg
+DJOfsxyobIrPLe75kBLw+Dom13OBDp/EMZJZ1CglQfVV8co9mT3aZMjSGGQiMgkJLR3jMfr900fX
+ZKj5XeqCJ+JP0mEhJGEdVCY+FFlksJjV86fDrq1QMIIFijCCBHKgAwIBAgIKYSCKYgAAAAAACDAN
+BgkqhkiG9w0BAQUFADBSMQswCQYDVQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24x
+JzAlBgNVBAMTHkludGVsIEV4dGVybmFsIEJhc2ljIFBvbGljeSBDQTAeFw0wOTA1MTUxOTI3MjZa
+Fw0xNTA1MTUxOTM3MjZaMFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlv
+bjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQjCCASIwDQYJKoZI
+hvcNAQEBBQADggEPADCCAQoCggEBAKQEM1Wn9TU9vc9C+/Tc7KB+eiYElmrcEWE32WUdHvWG+IcQ
+HVQsikTmMyKKojNLw2B5s6Iekc8ivDo/wCfjZzX9JyftMnc+AArc0la87Olybzm8K9jXEfTBvTnU
+SFSiI9ZYefITdiUgqlAFuljFZEHYKYtLuhrRacpmQfP4mV63NKdc2bT804HRf6YptZFa4k6YN94z
+lrGNrBuQQ74WFzz/jLBusbUpEkro6Mu/ZYFOFWQrV9lBhF9Ruk8yN+3N6n9fUo/qBigiF2kEn9xV
+h1ykl7SCGL2jBUkXx4qgV27a6Si8lRRdgrHGtN/HWnSWlLXTH5l575H4Lq++77OFv38CAwEAAaOC
+AlwwggJYMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFA7GKvdZsggQkCVvw939imYxMCvFMAsG
+A1UdDwQEAwIBhjASBgkrBgEEAYI3FQEEBQIDAQABMCMGCSsGAQQBgjcVAgQWBBQ5oFY2ekKQ/5Kt
+im+VdMeSWb4QWTAZBgkrBgEEAYI3FAIEDB4KAFMAdQBiAEMAQTAfBgNVHSMEGDAWgBQaxgxKxEdv
+qNutK/D0Vgaj7TdUDDCBvQYDVR0fBIG1MIGyMIGvoIGsoIGphk5odHRwOi8vd3d3LmludGVsLmNv
+bS9yZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBQb2xpY3klMjBDQS5j
+cmyGV2h0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIw
+RXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUyMENBLmNybDCB4wYIKwYBBQUHAQEEgdYwgdMwYwYI
+KwYBBQUHMAKGV2h0dHA6Ly93d3cuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0lu
+dGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUyMENBLmNydDBsBggrBgEFBQcwAoZgaHR0
+cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwl
+MjBFeHRlcm5hbCUyMEJhc2ljJTIwUG9saWN5JTIwQ0EuY3J0MA0GCSqGSIb3DQEBBQUAA4IBAQCx
+tQEHchVQhXyjEqtMVUMe6gkmPsIczHxSeqNbo9dsD+6xbT65JT+oYgpIAtfEsYXeUJu1cChqpb22
+U5bMAz7eaQcW5bzefufWvA6lg2048B8oczBj/q+5P5NpYrUO8jOmN4jTjfJq3ElZ7yFWpy7rB3Vm
+/aN6ATYqWfMbS/xfh+JCxmH3droUmMJI0/aZJHsLtjbjFnNsHDNrJZX1vxlM78Lb1hjskTENPmhb
+VbfTj5i/ZGnhv4tmI8QZPCNtcegXJrfhRl2D9bWpdTOPrWiLDUqzy1Z6KL7TcOS/PCl8RHCJXkPa
+u/thTQCpIoDa2+c+3XA++gRTfAQ4svTO260NMIIGJzCCBQ+gAwIBAgIKYcadtAABAABwZDANBgkq
+hkiG9w0BAQUFADBWMQswCQYDVQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzAp
+BgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElzc3VpbmcgQ0EgM0IwHhcNMTEwNjE2MjEyNDU2
+WhcNMTQwNTMxMjEyNDU2WjBNMR0wGwYDVQQDExRIYWxzdGVhZCwgTWljaGFlbFggRDEsMCoGCSqG
+SIb3DQEJARYdbWljaGFlbHguZC5oYWxzdGVhZEBpbnRlbC5jb20wggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQCT54aUP7frrWIkjmUKeKI6kQZYPvxshfLcWDWoYLIbX7FjcvZk9f+fZKVv
+8DZEjW295Ok+mdlk1Nhd0p8pWWsY1LBnP0xUtoKbvvdVCW9iRnXW7rVrWDZWj7ClwY1YqVXP62MQ
+5S59UUkdNa58BOwrik97VL1GMirc3JWQq7rHONCsvFOgYrRGtoPEVXNJmCxQSNvtk+I8ca9MEZjt
+j3vfEfTXeFznIeoyDWf7URqi+gni2++dRbQrdZ8mLxmNJdMlJUAaqSx0G9SfPom6SKzqU9rCQm8M
+3SpIbABmsPXEPL0fp29QyFYZ5m82zvGyXMe9Pan1QGTBS0mzN8dXUflBAgMBAAGjggL+MIIC+jAL
+BgNVHQ8EBAMCB4AwPAYJKwYBBAGCNxUHBC8wLQYlKwYBBAGCNxUIhsOMdYSZ5VGD/YEohY6fU4KR
+wAlngd69OZXwQwIBZAIBCDAdBgNVHQ4EFgQUJk3jEVrxKZ64UR5dIZFYuae9EsowHwYDVR0jBBgw
+FoAUDsYq91myCBCQJW/D3f2KZjEwK8Uwgc8GA1UdHwSBxzCBxDCBwaCBvqCBu4ZXaHR0cDovL3d3
+dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNz
+dWluZyUyMENBJTIwM0IoMSkuY3JshmBodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBv
+c2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQigx
+KS5jcmwwgfUGCCsGAQUFBwEBBIHoMIHlMGwGCCsGAQUFBzAChmBodHRwOi8vd3d3LmludGVsLmNv
+bS9yZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1
+aW5nJTIwQ0ElMjAzQigxKS5jcnQwdQYIKwYBBQUHMAKGaWh0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50
+ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUy
+MElzc3VpbmclMjBDQSUyMDNCKDEpLmNydDAfBgNVHSUEGDAWBggrBgEFBQcDBAYKKwYBBAGCNwoD
+DDApBgkrBgEEAYI3FQoEHDAaMAoGCCsGAQUFBwMEMAwGCisGAQQBgjcKAwwwVwYDVR0RBFAwTqAt
+BgorBgEEAYI3FAIDoB8MHW1pY2hhZWx4LmQuaGFsc3RlYWRAaW50ZWwuY29tgR1taWNoYWVseC5k
+LmhhbHN0ZWFkQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEAYhkFmzYPyglQnUZ4eQ97qiqp
+tBjcYz7GQEJr8rw0i5tDicNe9kRuCd9WLdz+yA9pB3ilFGtwdu0iULXUInoeHthbPIWQOkRb7Gdz
+BRYXx7qcm8e9vzNd91bog9JFjPMK6/TTh1MfztT8p9vUYFjYzPYGXrFWvPpQk9eHzAWQPhfHnx39
+rkvHfXuV1oGvzNBb2KmFeZUBfHyyD8BTjZ+ys1Ib2XdBHeN0NxA4o50er8KhsB8ArFUc859fJRPy
+I7M9x8N4NGAeGOhL7ZkzMXAqJGaVOcDbww+L7v0bssb7rRDK510weUBUVcOw20MLc+NfW2tWjtIt
+Ze1KCoPk/LRw9zCCBm4wggVWoAMCAQICCmHEZr8AAQAAZWMwDQYJKoZIhvcNAQEFBQAwVjELMAkG
+A1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRl
+cm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBMB4XDTExMDYxNjIxNDcxNloXDTE0MDUzMTIxNDcxNlow
+TTEdMBsGA1UEAxMUSGFsc3RlYWQsIE1pY2hhZWxYIEQxLDAqBgkqhkiG9w0BCQEWHW1pY2hhZWx4
+LmQuaGFsc3RlYWRAaW50ZWwuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmsyV
+tXmiFwHyxGN9FZakm0tdpfQFob1JyjM2Yk+3oGWk1jJz4/WIEREAnzWwaeFn64fWrK9GHdjFJ/xY
+qYU3LFi+jZAIX+Ymenq9PUyIU9xj4dviBj5pjF+Cl9Pg55prEukHyGAosEcyD7+s1vSiRx3KXWz0
+FqHWx8m4dsnLjfzfWxWC2eixDN2n8yUISCXr88hM1RplQ5If/K9yho2KjPclwzH0MskIx83sOFOd
+XrTVSYNHeQ5KYRYg5GZlXOcawvvRrZdkeh2PdAdqCJN+R3+wMLpAbSR2CRj/3u5y2awKRoOYpyrz
+Q0FUtFA1VOK/Da3HbxdRqcHhrXceqHMW1QIDAQABo4IDRTCCA0EwCwYDVR0PBAQDAgQwMD0GCSsG
+AQQBgjcVBwQwMC4GJisGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OCkcAJZ4S52UGHhP9OAgFkAgEM
+MEQGCSqGSIb3DQEJDwQ3MDUwDgYIKoZIhvcNAwICAgCAMA4GCCqGSIb3DQMEAgIAgDAHBgUrDgMC
+BzAKBggqhkiG9w0DBzAdBgNVHQ4EFgQUPloMloRS6WhyKZkxS5yq0sJDMLYwHwYDVR0jBBgwFoAU
+qhZmr7c9VlNgrg3C7fPuB8tRYH4wgc8GA1UdHwSBxzCBxDCBwaCBvqCBu4ZXaHR0cDovL3d3dy5p
+bnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWlu
+ZyUyMENBJTIwM0EoMSkuY3JshmBodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0
+b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQSgxKS5j
+cmwwgfUGCCsGAQUFBwEBBIHoMIHlMGwGCCsGAQUFBzAChmBodHRwOi8vd3d3LmludGVsLmNvbS9y
+ZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5n
+JTIwQ0ElMjAzQSgxKS5jcnQwdQYIKwYBBQUHMAKGaWh0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwu
+Y29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElz
+c3VpbmclMjBDQSUyMDNBKDEpLmNydDAfBgNVHSUEGDAWBggrBgEFBQcDBAYKKwYBBAGCNwoDBDAp
+BgkrBgEEAYI3FQoEHDAaMAoGCCsGAQUFBwMEMAwGCisGAQQBgjcKAwQwVwYDVR0RBFAwTqAtBgor
+BgEEAYI3FAIDoB8MHW1pY2hhZWx4LmQuaGFsc3RlYWRAaW50ZWwuY29tgR1taWNoYWVseC5kLmhh
+bHN0ZWFkQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEADYbb8KolLSdsr/yaSsqnL7lztUly
+NciWyBqR7bedm1OFngMn0vp2MvooGVzdmzysmkrCqf1KAjgnN0rUEyQpp2GfBFjZBG3+y2JYxrtn
+jneqtPjrkK3qPrPKAa/mEgreV8tgyWGiZMUl0O2B3Mz27rmwDQEUx++QGIuO9A2emxGlarqz58PX
+rPxl2R4ocWNTI2DKdgTPNjsygdnb02NcgbOVdZekidfVYbQaGaV+DplF3LjRNT/WPLzZ4u4QAKD1
+eOs3yRMdotRu3BJnbFcgFcDnDnY6KXblLkPaDoS5WEQyBLqMlrHSA+A+1zc3D8dpEIozPTR8ANzd
+++v6BQOLQzGCAzkwggM1AgEBMGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBv
+cmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNCAgphxp20
+AAEAAHBkMAkGBSsOAwIaBQCgggGqMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTExMDczMDAwMDIxN1owIwYJKoZIhvcNAQkEMRYEFF5bL99nT4CIgtGSZxag1uEWjNil
+MF8GCSqGSIb3DQEJDzFSMFAwCwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIA
+gDANBggqhkiG9w0DAgIBQDAHBgUrDgMCBzANBggqhkiG9w0DAgIBKDBzBgkrBgEEAYI3EAQxZjBk
+MFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50
+ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQQIKYcRmvwABAABlYzB1BgsqhkiG9w0BCRAC
+CzFmoGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQD
+EyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBAgphxGa/AAEAAGVjMA0GCSqGSIb3
+DQEBAQUABIIBAFCa3rtbLpQDMm+fqvYTRJNa+vzpfYKL9EXiKoR9kjwzzGFxHvy8lWgwr7RKZWmF
+SpoIRljGsQ2unTDrDXuKgvH6VrzpwMaTSB29hH5Fbiik9UnpCem2S55Zbazgj2RF+S/eh5kpfwxh
+RQVajRv5kqz2+musI+XK+2JQ38NFy9VhejvjBGITbWYXm5OyjFCbKK6yfL35KMPntGO2Yi8MeDKc
+D4vwDgPBL0MpPcW5GOnJXCS2MzzAVZdceXPsKBICysYqqb68bKepu7sqNfpFAsbZSK9xiGE7B3si
+g8iybEENg56JJwqxWgRuZ11nADoJF2UWxFE0ok3xXKQmPlQtz68AAAAAAAA=
+
+--------------ms040902040000010205020507--
