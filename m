@@ -1,22 +1,36 @@
-Return-Path: <michaelx.d.halstead@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by mx1.pokylinux.org (Postfix) with ESMTP id DD8224C8007E
-	for <yocto@yoctoproject.org>; Fri, 29 Jul 2011 19:02:17 -0500 (CDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 29 Jul 2011 17:02:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,289,1309762800"; 
-	d="p7s'?scan'208";a="32058276"
-Received: from linux-mkad.jf.intel.com (HELO [10.7.202.54]) ([10.7.202.54])
-	by orsmga002.jf.intel.com with ESMTP; 29 Jul 2011 17:02:17 -0700
-Message-ID: <4E334A09.3080409@intel.com>
-Date: Fri, 29 Jul 2011 17:02:17 -0700
-From: Michael Halstead <michaelx.d.halstead@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.18) Gecko/20110616 SUSE/3.1.11 Thunderbird/3.1.11
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pz0-f50.google.com (mail-pz0-f50.google.com
+	[209.85.210.50])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 7D7424C8007E
+	for <yocto@yoctoproject.org>; Sat, 30 Jul 2011 13:34:18 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by pzk2 with SMTP id 2so12806347pzk.23
+	for <yocto@yoctoproject.org>; Sat, 30 Jul 2011 11:34:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=from:to:subject:date:message-id:organization:user-agent:in-reply-to
+	:references:mime-version:content-transfer-encoding:content-type;
+	bh=xf4ptsvUfSPD+/vqenEI0rh3sI2x+3PBY6V8geepqWE=;
+	b=g5CA53340G6diNe1CLfcGr7yzYmXBNMsaTkBY+B3AfDnmPccXNLEd4Tna1ltB8oTE5
+	wCEemxh1FUw723aYVG0A1SXkb1p0JCauvfPF8zQaQONnYTAUfJAMsut8sk30jH8r+V3d
+	YoNcRrA6Y/c4bIF7WOpwpKHqUxGCW9UJ4VQ+c=
+Received: by 10.142.143.19 with SMTP id q19mr1667196wfd.194.1312050858073;
+	Sat, 30 Jul 2011 11:34:18 -0700 (PDT)
+Received: from perseus.localnet (99-57-141-118.lightspeed.sntcca.sbcglobal.net
+	[99.57.141.118])
+	by mx.google.com with ESMTPS id t20sm1968403wfe.12.2011.07.30.11.34.17
+	(version=SSLv3 cipher=OTHER); Sat, 30 Jul 2011 11:34:17 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sat, 30 Jul 2011 11:34:15 -0700
+Message-ID: <2706741.aE89dPi517@perseus>
+Organization: Sakrah
+User-Agent: KMail/4.7.0  (Linux/2.6.38-10-generic; KDE/4.7.0; i686; ; )
+In-Reply-To: <4E31F60D.2000504@linux.intel.com>
+References: <4E31F60D.2000504@linux.intel.com>
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Mailing lists are moving to a new host
+Subject: Re: [PATCH][linux-yocto-3.0] drivers/misc/pch_phub.c: don't oops if dmi_get_system_info returns NULL
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,146 +42,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Jul 2011 00:02:18 -0000
-X-Groupsio-MsgNum: 2130
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
-	micalg=sha1; boundary="------------ms040902040000010205020507"
+X-List-Received-Date: Sat, 30 Jul 2011 18:34:18 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---------------ms040902040000010205020507
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+On Thursday, July 28, 2011 04:51:41 PM Darren Hart wrote:
+> Bruce,
+> 
+> Please apply to yocto/base. Fixes a boot issue for a
+> tunnel creek development board.
+> 
+> --
+> 
+> commit 2b934c6236983392d01bef22e43af3051cac16f5
+> 
+> If dmi_get_system_info() returns NULL, pch_phub_probe() will dereferencea
+> a zero pointer.
+> 
+> This oops was observed on an Atom based board which has no BIOS, but a
+> bootloder which doesn't privde DMI data.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@systec-electronic.com>
+> Cc: Tomoya MORINAGA <tomoya-linux@dsn.okisemi.com>
+> Cc: Greg KH <gregkh@suse.de>
+> Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+> Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+> ---
+>  drivers/misc/pch_phub.c |    5 ++++-
+>  1 files changed, 4 insertions(+), 1 deletions(-)
+> 
+> diff --git a/drivers/misc/pch_phub.c b/drivers/misc/pch_phub.c
+> index 5fe79df..01eb67b 100644
+> --- a/drivers/misc/pch_phub.c
+> +++ b/drivers/misc/pch_phub.c
+> @@ -686,6 +686,8 @@ static int __devinit pch_phub_probe(struct pci_dev
+> *pdev, }
+> 
+>  	if (id->driver_data == 1) { /* EG20T PCH */
+> +		const char *board_name;
+> +
+>  		retval = sysfs_create_file(&pdev->dev.kobj,
+>  					   &dev_attr_pch_mac.attr);
+>  		if (retval)
+> @@ -701,7 +703,8 @@ static int __devinit pch_phub_probe(struct pci_dev
+> *pdev, CLKCFG_CANCLK_MASK);
+> 
+>  		/* quirk for CM-iTC board */
+> -		if (strstr(dmi_get_system_info(DMI_BOARD_NAME), "CM-iTC"))
+> +		board_name = dmi_get_system_info(DMI_BOARD_NAME);
+> +		if (board_name && strstr(board_name, "CM-iTC"))
 
-On Monday August 1st from 10pm to midnight PDT we will move mailing=20
-lists and related services to new hardware hosted at the
-OSU Open Source Lab. Archive access will be available during the entire=20
-process but changes using the web interface at lists.yoctoproject.org=20
-may be lost. E-mail sent to lists will be delayed until the transition=20
-is complete. If you send an e-mail to the list during the move expect=20
-that it will go through after a few hours. There should be no need to=20
-resend e-mail.
+May be it could be just if ( dmi_get_system_info(DMI_BOARD_NAME) && 
+strstr(board_name, "CM-iTC"))
 
-Michael Halstead
-Intel OTC Yocto
+although I think compiler will already do it internally
 
+>  			pch_phub_read_modify_write_reg(chip,
+>  						(unsigned int)CLKCFG_REG_OFFSET,
+>  						CLKCFG_UART_48MHZ | CLKCFG_BAUDDIV |
+-- 
+Khem Raj
 
-
---------------ms040902040000010205020507
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIVbDCCAz0w
-ggKmoAMCAQICAwWw/zANBgkqhkiG9w0BAQUFADBOMQswCQYDVQQGEwJVUzEQMA4GA1UEChMHRXF1
-aWZheDEtMCsGA1UECxMkRXF1aWZheCBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MB4XDTA2
-MDIxNjE4MDEzMFoXDTE2MDIxOTE4MDEzMFowUjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVs
-IENvcnBvcmF0aW9uMScwJQYDVQQDEx5JbnRlbCBFeHRlcm5hbCBCYXNpYyBQb2xpY3kgQ0EwggEi
-MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDBpd/XOb9QVqEZ8mQ1042TdOIq3ATDIsV2xDyt
-30yLyMR5Wjtus0bn3B+he89BiNO/LP6+rFzEwlD55PlX+HLGIKeNNG97dqyc30FElEUjZzTZFq2N
-4e3kVJ/XAEEgANzV8v9qp7qWwxugPgfc3z9BkYot+CifozexHLb/hEZj+yISCU61kRZvuSQ0E11y
-YL4dRgcglJeaHo3oX57rvIckaLsYV5/1Aj+R8DM1Ppk965XQAKsHfnyT7C4S50T4lVn4lz36wOdN
-Zn/zegG1zp41lnoTFfT4KuKVJH5x7YD1p6KbgJCKLovnujGuohquBNfdXKpZkvz6pGv+iC1HawJd
-AgMBAAGjgaAwgZ0wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBQaxgxKxEdvqNutK/D0Vgaj7TdU
-DDA6BgNVHR8EMzAxMC+gLaArhilodHRwOi8vY3JsLmdlb3RydXN0LmNvbS9jcmxzL3NlY3VyZWNh
-LmNybDAfBgNVHSMEGDAWgBRI5mj5K9KylddH2CMgEE8zmJCf1DAPBgNVHRMBAf8EBTADAQH/MA0G
-CSqGSIb3DQEBBQUAA4GBABMQOK2kVKVIlUWwLTdywJ+e2O+PC/uQltK2F3lRyrPfBn69tOkIP4Sg
-DJOfsxyobIrPLe75kBLw+Dom13OBDp/EMZJZ1CglQfVV8co9mT3aZMjSGGQiMgkJLR3jMfr900fX
-ZKj5XeqCJ+JP0mEhJGEdVCY+FFlksJjV86fDrq1QMIIFijCCBHKgAwIBAgIKYSCKYgAAAAAACDAN
-BgkqhkiG9w0BAQUFADBSMQswCQYDVQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24x
-JzAlBgNVBAMTHkludGVsIEV4dGVybmFsIEJhc2ljIFBvbGljeSBDQTAeFw0wOTA1MTUxOTI3MjZa
-Fw0xNTA1MTUxOTM3MjZaMFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlv
-bjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQjCCASIwDQYJKoZI
-hvcNAQEBBQADggEPADCCAQoCggEBAKQEM1Wn9TU9vc9C+/Tc7KB+eiYElmrcEWE32WUdHvWG+IcQ
-HVQsikTmMyKKojNLw2B5s6Iekc8ivDo/wCfjZzX9JyftMnc+AArc0la87Olybzm8K9jXEfTBvTnU
-SFSiI9ZYefITdiUgqlAFuljFZEHYKYtLuhrRacpmQfP4mV63NKdc2bT804HRf6YptZFa4k6YN94z
-lrGNrBuQQ74WFzz/jLBusbUpEkro6Mu/ZYFOFWQrV9lBhF9Ruk8yN+3N6n9fUo/qBigiF2kEn9xV
-h1ykl7SCGL2jBUkXx4qgV27a6Si8lRRdgrHGtN/HWnSWlLXTH5l575H4Lq++77OFv38CAwEAAaOC
-AlwwggJYMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFA7GKvdZsggQkCVvw939imYxMCvFMAsG
-A1UdDwQEAwIBhjASBgkrBgEEAYI3FQEEBQIDAQABMCMGCSsGAQQBgjcVAgQWBBQ5oFY2ekKQ/5Kt
-im+VdMeSWb4QWTAZBgkrBgEEAYI3FAIEDB4KAFMAdQBiAEMAQTAfBgNVHSMEGDAWgBQaxgxKxEdv
-qNutK/D0Vgaj7TdUDDCBvQYDVR0fBIG1MIGyMIGvoIGsoIGphk5odHRwOi8vd3d3LmludGVsLmNv
-bS9yZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBQb2xpY3klMjBDQS5j
-cmyGV2h0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIw
-RXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUyMENBLmNybDCB4wYIKwYBBQUHAQEEgdYwgdMwYwYI
-KwYBBQUHMAKGV2h0dHA6Ly93d3cuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0lu
-dGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUyMENBLmNydDBsBggrBgEFBQcwAoZgaHR0
-cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwl
-MjBFeHRlcm5hbCUyMEJhc2ljJTIwUG9saWN5JTIwQ0EuY3J0MA0GCSqGSIb3DQEBBQUAA4IBAQCx
-tQEHchVQhXyjEqtMVUMe6gkmPsIczHxSeqNbo9dsD+6xbT65JT+oYgpIAtfEsYXeUJu1cChqpb22
-U5bMAz7eaQcW5bzefufWvA6lg2048B8oczBj/q+5P5NpYrUO8jOmN4jTjfJq3ElZ7yFWpy7rB3Vm
-/aN6ATYqWfMbS/xfh+JCxmH3droUmMJI0/aZJHsLtjbjFnNsHDNrJZX1vxlM78Lb1hjskTENPmhb
-VbfTj5i/ZGnhv4tmI8QZPCNtcegXJrfhRl2D9bWpdTOPrWiLDUqzy1Z6KL7TcOS/PCl8RHCJXkPa
-u/thTQCpIoDa2+c+3XA++gRTfAQ4svTO260NMIIGJzCCBQ+gAwIBAgIKYcadtAABAABwZDANBgkq
-hkiG9w0BAQUFADBWMQswCQYDVQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzAp
-BgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElzc3VpbmcgQ0EgM0IwHhcNMTEwNjE2MjEyNDU2
-WhcNMTQwNTMxMjEyNDU2WjBNMR0wGwYDVQQDExRIYWxzdGVhZCwgTWljaGFlbFggRDEsMCoGCSqG
-SIb3DQEJARYdbWljaGFlbHguZC5oYWxzdGVhZEBpbnRlbC5jb20wggEiMA0GCSqGSIb3DQEBAQUA
-A4IBDwAwggEKAoIBAQCT54aUP7frrWIkjmUKeKI6kQZYPvxshfLcWDWoYLIbX7FjcvZk9f+fZKVv
-8DZEjW295Ok+mdlk1Nhd0p8pWWsY1LBnP0xUtoKbvvdVCW9iRnXW7rVrWDZWj7ClwY1YqVXP62MQ
-5S59UUkdNa58BOwrik97VL1GMirc3JWQq7rHONCsvFOgYrRGtoPEVXNJmCxQSNvtk+I8ca9MEZjt
-j3vfEfTXeFznIeoyDWf7URqi+gni2++dRbQrdZ8mLxmNJdMlJUAaqSx0G9SfPom6SKzqU9rCQm8M
-3SpIbABmsPXEPL0fp29QyFYZ5m82zvGyXMe9Pan1QGTBS0mzN8dXUflBAgMBAAGjggL+MIIC+jAL
-BgNVHQ8EBAMCB4AwPAYJKwYBBAGCNxUHBC8wLQYlKwYBBAGCNxUIhsOMdYSZ5VGD/YEohY6fU4KR
-wAlngd69OZXwQwIBZAIBCDAdBgNVHQ4EFgQUJk3jEVrxKZ64UR5dIZFYuae9EsowHwYDVR0jBBgw
-FoAUDsYq91myCBCQJW/D3f2KZjEwK8Uwgc8GA1UdHwSBxzCBxDCBwaCBvqCBu4ZXaHR0cDovL3d3
-dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNz
-dWluZyUyMENBJTIwM0IoMSkuY3JshmBodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBv
-c2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQigx
-KS5jcmwwgfUGCCsGAQUFBwEBBIHoMIHlMGwGCCsGAQUFBzAChmBodHRwOi8vd3d3LmludGVsLmNv
-bS9yZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1
-aW5nJTIwQ0ElMjAzQigxKS5jcnQwdQYIKwYBBQUHMAKGaWh0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50
-ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUy
-MElzc3VpbmclMjBDQSUyMDNCKDEpLmNydDAfBgNVHSUEGDAWBggrBgEFBQcDBAYKKwYBBAGCNwoD
-DDApBgkrBgEEAYI3FQoEHDAaMAoGCCsGAQUFBwMEMAwGCisGAQQBgjcKAwwwVwYDVR0RBFAwTqAt
-BgorBgEEAYI3FAIDoB8MHW1pY2hhZWx4LmQuaGFsc3RlYWRAaW50ZWwuY29tgR1taWNoYWVseC5k
-LmhhbHN0ZWFkQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEAYhkFmzYPyglQnUZ4eQ97qiqp
-tBjcYz7GQEJr8rw0i5tDicNe9kRuCd9WLdz+yA9pB3ilFGtwdu0iULXUInoeHthbPIWQOkRb7Gdz
-BRYXx7qcm8e9vzNd91bog9JFjPMK6/TTh1MfztT8p9vUYFjYzPYGXrFWvPpQk9eHzAWQPhfHnx39
-rkvHfXuV1oGvzNBb2KmFeZUBfHyyD8BTjZ+ys1Ib2XdBHeN0NxA4o50er8KhsB8ArFUc859fJRPy
-I7M9x8N4NGAeGOhL7ZkzMXAqJGaVOcDbww+L7v0bssb7rRDK510weUBUVcOw20MLc+NfW2tWjtIt
-Ze1KCoPk/LRw9zCCBm4wggVWoAMCAQICCmHEZr8AAQAAZWMwDQYJKoZIhvcNAQEFBQAwVjELMAkG
-A1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRl
-cm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBMB4XDTExMDYxNjIxNDcxNloXDTE0MDUzMTIxNDcxNlow
-TTEdMBsGA1UEAxMUSGFsc3RlYWQsIE1pY2hhZWxYIEQxLDAqBgkqhkiG9w0BCQEWHW1pY2hhZWx4
-LmQuaGFsc3RlYWRAaW50ZWwuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmsyV
-tXmiFwHyxGN9FZakm0tdpfQFob1JyjM2Yk+3oGWk1jJz4/WIEREAnzWwaeFn64fWrK9GHdjFJ/xY
-qYU3LFi+jZAIX+Ymenq9PUyIU9xj4dviBj5pjF+Cl9Pg55prEukHyGAosEcyD7+s1vSiRx3KXWz0
-FqHWx8m4dsnLjfzfWxWC2eixDN2n8yUISCXr88hM1RplQ5If/K9yho2KjPclwzH0MskIx83sOFOd
-XrTVSYNHeQ5KYRYg5GZlXOcawvvRrZdkeh2PdAdqCJN+R3+wMLpAbSR2CRj/3u5y2awKRoOYpyrz
-Q0FUtFA1VOK/Da3HbxdRqcHhrXceqHMW1QIDAQABo4IDRTCCA0EwCwYDVR0PBAQDAgQwMD0GCSsG
-AQQBgjcVBwQwMC4GJisGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OCkcAJZ4S52UGHhP9OAgFkAgEM
-MEQGCSqGSIb3DQEJDwQ3MDUwDgYIKoZIhvcNAwICAgCAMA4GCCqGSIb3DQMEAgIAgDAHBgUrDgMC
-BzAKBggqhkiG9w0DBzAdBgNVHQ4EFgQUPloMloRS6WhyKZkxS5yq0sJDMLYwHwYDVR0jBBgwFoAU
-qhZmr7c9VlNgrg3C7fPuB8tRYH4wgc8GA1UdHwSBxzCBxDCBwaCBvqCBu4ZXaHR0cDovL3d3dy5p
-bnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWlu
-ZyUyMENBJTIwM0EoMSkuY3JshmBodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0
-b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQSgxKS5j
-cmwwgfUGCCsGAQUFBwEBBIHoMIHlMGwGCCsGAQUFBzAChmBodHRwOi8vd3d3LmludGVsLmNvbS9y
-ZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5n
-JTIwQ0ElMjAzQSgxKS5jcnQwdQYIKwYBBQUHMAKGaWh0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwu
-Y29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElz
-c3VpbmclMjBDQSUyMDNBKDEpLmNydDAfBgNVHSUEGDAWBggrBgEFBQcDBAYKKwYBBAGCNwoDBDAp
-BgkrBgEEAYI3FQoEHDAaMAoGCCsGAQUFBwMEMAwGCisGAQQBgjcKAwQwVwYDVR0RBFAwTqAtBgor
-BgEEAYI3FAIDoB8MHW1pY2hhZWx4LmQuaGFsc3RlYWRAaW50ZWwuY29tgR1taWNoYWVseC5kLmhh
-bHN0ZWFkQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEADYbb8KolLSdsr/yaSsqnL7lztUly
-NciWyBqR7bedm1OFngMn0vp2MvooGVzdmzysmkrCqf1KAjgnN0rUEyQpp2GfBFjZBG3+y2JYxrtn
-jneqtPjrkK3qPrPKAa/mEgreV8tgyWGiZMUl0O2B3Mz27rmwDQEUx++QGIuO9A2emxGlarqz58PX
-rPxl2R4ocWNTI2DKdgTPNjsygdnb02NcgbOVdZekidfVYbQaGaV+DplF3LjRNT/WPLzZ4u4QAKD1
-eOs3yRMdotRu3BJnbFcgFcDnDnY6KXblLkPaDoS5WEQyBLqMlrHSA+A+1zc3D8dpEIozPTR8ANzd
-++v6BQOLQzGCAzkwggM1AgEBMGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBv
-cmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNCAgphxp20
-AAEAAHBkMAkGBSsOAwIaBQCgggGqMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTExMDczMDAwMDIxN1owIwYJKoZIhvcNAQkEMRYEFF5bL99nT4CIgtGSZxag1uEWjNil
-MF8GCSqGSIb3DQEJDzFSMFAwCwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIA
-gDANBggqhkiG9w0DAgIBQDAHBgUrDgMCBzANBggqhkiG9w0DAgIBKDBzBgkrBgEEAYI3EAQxZjBk
-MFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50
-ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQQIKYcRmvwABAABlYzB1BgsqhkiG9w0BCRAC
-CzFmoGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQD
-EyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBAgphxGa/AAEAAGVjMA0GCSqGSIb3
-DQEBAQUABIIBAFCa3rtbLpQDMm+fqvYTRJNa+vzpfYKL9EXiKoR9kjwzzGFxHvy8lWgwr7RKZWmF
-SpoIRljGsQ2unTDrDXuKgvH6VrzpwMaTSB29hH5Fbiik9UnpCem2S55Zbazgj2RF+S/eh5kpfwxh
-RQVajRv5kqz2+musI+XK+2JQ38NFy9VhejvjBGITbWYXm5OyjFCbKK6yfL35KMPntGO2Yi8MeDKc
-D4vwDgPBL0MpPcW5GOnJXCS2MzzAVZdceXPsKBICysYqqb68bKepu7sqNfpFAsbZSK9xiGE7B3si
-g8iybEENg56JJwqxWgRuZ11nADoJF2UWxFE0ok3xXKQmPlQtz68AAAAAAAA=
-
---------------ms040902040000010205020507--
