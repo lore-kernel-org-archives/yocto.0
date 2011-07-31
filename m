@@ -1,35 +1,28 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by mx1.pokylinux.org (Postfix) with ESMTP id EFA934C8007E
-	for <yocto@yoctoproject.org>; Sun, 31 Jul 2011 02:28:38 -0500 (CDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 31 Jul 2011 00:28:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,295,1309762800"; 
-   d="scan'208";a="2703288"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by AZSMGA002.ch.intel.com with ESMTP; 31 Jul 2011 00:28:37 -0700
-Received: from pgsmsx104.gar.corp.intel.com (10.221.44.91) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 31 Jul 2011 15:28:36 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX104.gar.corp.intel.com (10.221.44.91) with Microsoft SMTP Server
-	(TLS) id 14.1.289.1; Sun, 31 Jul 2011 15:28:36 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Sun, 31 Jul 2011 15:28:35 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Sun, 31 Jul 2011 15:28:34 +0800
-Thread-Topic: Yocto weekly bug trend charts -- WW31
-Thread-Index: AcxPU3RgDaFOK7mWTvuav4RouKEcUA==
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D6FC05DF@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <francis.meyvis@gmail.com>
+Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
+	[209.85.220.176])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 16DAA4C80120
+	for <yocto@yoctoproject.org>; Sun, 31 Jul 2011 12:05:29 -0500 (CDT)
+Authentication-Results: mx1.pokylinux.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by vxh3 with SMTP id 3so6446162vxh.35
+	for <yocto@yoctoproject.org>; Sun, 31 Jul 2011 10:05:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=nOzgIMruRWgaN4zocTfnQGEbvlXFl30EyMRaisLhOUk=;
+	b=b6ztTS2uRhIppbj07akMIOoM+4H5iqaDtcOTrUEnlL9FMTp1bdy5dx18Hn7kTPqoRy
+	T6PSh5LJZQW680HZ7+5sep7Iy1+aUpJrzm76VralrrTNuJ6LxmorBCN+Se98kxkDt4OG
+	0wgq9GqGVIiQfhPDOoxgwwYP69kgAhmJ7moUk=
 MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW31
+Received: by 10.52.69.7 with SMTP id a7mr3503882vdu.303.1312131928503; Sun, 31
+	Jul 2011 10:05:28 -0700 (PDT)
+Received: by 10.52.106.170 with HTTP; Sun, 31 Jul 2011 10:05:28 -0700 (PDT)
+Date: Sun, 31 Jul 2011 19:05:28 +0200
+Message-ID: <CAHts6WT=hyiPVJHw3FAPOFi+qp3aLNx4VrWzOMWEUe0V+kOKRQ@mail.gmail.com>
+From: Francis Meyvis <francis.meyvis@gmail.com>
+To: yocto@yoctoproject.org
+Subject: libpam-1.1.4-r1 strange behavior
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,18 +34,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 31 Jul 2011 07:28:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 31 Jul 2011 17:05:29 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi all,
-	Yocto 1.1 M2 released last week. The new-submit vs. fixed bug is 28 vs. 36=
-. A lot of bugs are fixed, which make both open bug number and WDD number d=
-ecreased a lot -- Open bug number from 185 to 174; WDD number from 943 to 8=
-87. Bug status of WW30 could be found on https://wiki.pokylinux.org/wiki/Yo=
-cto_Bug_Trend.
+Hello,
 
-Best Regards,
-Jiajun
+My download directory is on a CIFS mounted drive.
+The idea was that other PCs could access the already downloaded files
+on the local network.
+
+The package libpam however failed processing.
+After changing the path on which I had mounted the CIFS partition,
+to a PC local download directory, the package libpam succeeded.
+
+What I saw:
+
+It seemed to get in a busy loop related to SMB when using files name
+"*.lock" and "*.done"
+I found this by starting a wireshark session to see what was going on.
+It seems to try to QUERY_PATH_INFO for *.lock in the download directory.
+The CIFS server responds STATUS_OBJECT_NAME_INVALID
+
+After I changed to a local download directory,
+I found these files after processing the package in the download directory:
+
+  -rw-r--r-- 1 franchan franchan       0 2011-07-31 18:38 99_pam.done
+  -rw-r--r-- 1 franchan franchan       0 2011-07-31 18:38 *.done
+  -rw-r--r-- 1 franchan franchan       0 2011-07-31 18:38
+libpam-xtests.patch.done
+  -rw-r--r-- 1 franchan franchan 1123186 2011-06-24 13:42
+Linux-PAM-1.1.4.tar.bz2
+  -rw-r--r-- 1 franchan franchan       0 2011-07-31 18:38
+Linux-PAM-1.1.4.tar.bz2.done
+
+According to me CIFS has troubles with these *.lock and *.done flag files.
+Could the libpam package be done in another way so that it works for
+CIFS files systems?
+Or should I not have used CIFS fs when using bitbake?
+
+Thanks,
+francis
 
