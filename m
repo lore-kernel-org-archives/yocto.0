@@ -1,29 +1,35 @@
-Return-Path: <andre@bitwigglers.org>
-Received: from moutng.kundenserver.de (moutng.kundenserver.de [212.227.17.10])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 21F094C80120
-	for <yocto@yoctoproject.org>; Mon,  1 Aug 2011 04:04:35 -0500 (CDT)
-Received: from localhost.localdomain ([145.253.109.106])
-	by mrelayeu.kundenserver.de (node=mreu3) with ESMTP (Nemesis)
-	id 0M15EC-1Rgryv3MAS-00tCzr; Mon, 01 Aug 2011 11:04:30 +0200
-Date: Mon, 1 Aug 2011 11:04:24 +0200
-From: Andre Haupt <andre@bitwigglers.org>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <20110801090424.GA19430@localhost.localdomain>
-References: <20110729072359.GA5109@localhost.localdomain>
-	<20110729100525.GA26451@localhost.localdomain>
-	<4E32B1B6.4010608@windriver.com>
-	<20110729140358.GA25648@localhost.localdomain>
-	<4E32BF09.5070005@windriver.com> <4E32C463.1000306@windriver.com>
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 7158C4C80053
+	for <yocto@yoctoproject.org>; Mon,  1 Aug 2011 11:14:49 -0500 (CDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 01 Aug 2011 09:12:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,301,1309762800"; 
+   d="scan'208";a="3064092"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by AZSMGA002.ch.intel.com with ESMTP; 01 Aug 2011 09:12:45 -0700
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 1 Aug 2011 09:12:44 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.233]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.75]) with mapi id
+	14.01.0289.001; Mon, 1 Aug 2011 09:12:44 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: "Lu, Lianhao" <lianhao.lu@intel.com>, "Ke, Liping" <liping.ke@intel.com>
+Thread-Topic: POKY_DISTRO_VERSION or OECORE_DISTRO_VERSION?
+Thread-Index: AcxQHt8hPoJ0FXH3TgGADW6cAFR/PgARpf6g
+Date: Mon, 1 Aug 2011 16:12:43 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C136FD380@ORSMSX101.amr.corp.intel.com>
+References: <C10D3FB0CD45994C8A51FEC1227CE22F2C844F9745@shsmsx502.ccr.corp.intel.com>
+In-Reply-To: <C10D3FB0CD45994C8A51FEC1227CE22F2C844F9745@shsmsx502.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-In-Reply-To: <4E32C463.1000306@windriver.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Provags-ID: V02:K0:c8eEjAfL3L58V46MfMkwkynYXWugrGnYh6L/bgy93MN
-	jfGLA2ktvrJeIKp8CvHyXw7RlQXtKF99Lld3EE7oDAVkRwv/TI
-	Hdl2GMt/dZ3w3xmqQW2LKXPNP7EhWMDRnp1JExvYtr7RkDumpR
-	vOWeh3nA0zE60b3Ge4okamRUcxkSca8ZvsQGXt2VQPsW8+PokG
-	loIt7mGwjTtT62sjQX5r0l8hs+YenCnwEt5zlg60ko=
-Cc: yocto@yoctoproject.org
-Subject: Re: crownbay-noemgd poky-image-minimal fails to build
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: POKY_DISTRO_VERSION or OECORE_DISTRO_VERSION?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,41 +41,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Aug 2011 09:04:36 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 01 Aug 2011 16:14:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 29, 2011 at 10:32:03AM -0400, Bruce Ashfield wrote:
-> >>>As for the second, there's a patch in the 2.6.34 kernel tree
-> >>>that is dealing with it:
-> >>>
-> >>>http://git.pokylinux.org/cgit/cgit.cgi/linux-yocto-2.6.34/commit/?h=standard&id=72ca49ab08b8eb475cec82a10049503602325791
-> >>>
-> >>>
-> >>>It sounds like there may be a SRCREV problem for the board that
-> >>>isn't picking up that change. Can you confirm that this commit
-> >>>is in your board branch ? You can check in your build directory
-> >>>for linux.
-> >>This commit is not in the crownbay-standard branch.
-> >
-> >Argh. That explains it. You can always cherry pick / apply
-> >it locally. This is intended to be a blanket fix, and
-> >I just double checked and I for some reason *don't* see
-> >it on that one branch either, which means it isn't a SRCREV
-> >error hiding it.
-> >
-> >I'm going to merge the patch out to the BSP branch now, but
-> >you'd still need a SRCREV update to see the change in your
-> >build.
-> 
-> I pushed out the change. If your SRCREV is
-> a945cd4a4b27c8f9165f4064c8c60e4df569b4c5 for the
-> crownbay, you'll pickup the commit.
+Lianhao,
 
-Thank you very much, Bruce. The patch is now picked up, and
-the build runs successfully.
+For DISTRO_VERSION, we still need to use POKY_DISTRO_VERSION since our dist=
+ro is "POKY" as to other rename to OECORE, are those variables that're dist=
+ro neutral.  Hope you get the idea.  I've asked RP the same question and hi=
+s answer is before we can figure out a mechanism to make everything distro =
+neutral, we have stay with the existing POKY naming convention for certain =
+variables that are specific to the distro.
 
-cheers,
+Thanks,
+Jessica
 
-Andre
+-----Original Message-----
+From: Lu, Lianhao
+Sent: Monday, August 01, 2011 12:45 AM
+To: Zhang, Jessica; Ke, Liping
+Cc: yocto@yoctoproject.org
+Subject: POKY_DISTRO_VERSION or OECORE_DISTRO_VERSION?
+
+Hi Jessica,
+
+I noticed the we still use POKY_DISTRO_VERSION in the environment while som=
+e other variables have changed their prefix to OECORE_ (e.g. OECORE_NATIVE_=
+SYSROOT, etc.)
+
+Which prefix should we use for those version related variables in the envir=
+onment files? OECORE_ or POKY_?
+
+-Lianhao
 
