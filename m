@@ -1,21 +1,18 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 148AA4C803E4
-	for <yocto@yoctoproject.org>; Tue,  2 Aug 2011 14:20:24 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 02 Aug 2011 12:20:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,307,1309762800"; d="scan'208";a="37179398"
-Received: from unknown (HELO localhost) ([10.255.14.150])
-	by fmsmga001.fm.intel.com with ESMTP; 02 Aug 2011 12:20:23 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Tue,  2 Aug 2011 14:20:20 -0500
-Message-Id: <7c582716d500dd81d9b66492c11d6f884f513c3b.1312312425.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1312312425.git.tom.zanussi@intel.com>
-References: <cover.1312312425.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/1] meta-crownbay: fix BBFILES in crownbay layer.conf
+Return-Path: <galak@kernel.crashing.org>
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by mx1.pokylinux.org (Postfix) with ESMTP id C40064C8009A
+	for <yocto@yoctoproject.org>; Tue,  2 Aug 2011 22:53:29 -0500 (CDT)
+Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p733rMQ4004140;
+	Tue, 2 Aug 2011 22:53:22 -0500
+From: Kumar Gala <galak@kernel.crashing.org>
+Date: Tue, 2 Aug 2011 22:53:22 -0500
+Message-Id: <1EAD01ED-EADA-4E8D-ADCA-DF4CA0EAF92D@kernel.crashing.org>
+To: "yocto@yoctoproject.org list" <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1084)
+X-Mailer: Apple Mail (2.1084)
+Cc: Li Yang-R58472 <r58472@freescale.com>
+Subject: Yocto website blocked by Great Firewall of China?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,37 +24,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Aug 2011 19:20:25 -0000
+X-List-Received-Date: Wed, 03 Aug 2011 03:53:30 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+One of my Chinese colleagues mentioned he was not able to get to the =
+http://www.yoctoproject.org/ website.  I was wondering if anyone else =
+might be experience this or not?
 
-The BBFILES append in crownbay's layer.conf is too broad and causes
-the wrong init-install.sh to be picked up, causing a bad grub install.
-Narrow down the BBFILES to include only what is actually needed.
+Is this something someone at LF can look into?
 
-Fixes [YOCTO #1257].
-
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-crownbay/conf/layer.conf |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/meta-crownbay/conf/layer.conf b/meta-crownbay/conf/layer.conf
-index 9c3794b..9b71700 100644
---- a/meta-crownbay/conf/layer.conf
-+++ b/meta-crownbay/conf/layer.conf
-@@ -4,8 +4,8 @@ BBPATH := "${BBPATH}:${LAYERDIR}"
- # We have a recipes directory, add to BBFILES
- BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
- 	${LAYERDIR}/recipes-*/*/*.bbappend \
--	${LAYERDIR}/../common/recipes-*/*/*.bb \
--	${LAYERDIR}/../common/recipes-*/*/*.bbappend"
-+	${LAYERDIR}/../common/recipes-graphics/*/*.bb \
-+	${LAYERDIR}/../common/recipes-graphics/*/*.bbappend"
- 
- BBFILE_COLLECTIONS += "crownbay"
- BBFILE_PATTERN_crownbay := "^${LAYERDIR}/"
--- 
-1.7.0.4
-
+- k
 
