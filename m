@@ -1,42 +1,28 @@
-Return-Path: <B29882@freescale.com>
-Received: from VA3EHSOBE002.bigfish.com (va3ehsobe002.messaging.microsoft.com
-	[216.32.180.12])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 8AEB34C804C5
-	for <yocto@yoctoproject.org>; Wed,  3 Aug 2011 11:33:29 -0500 (CDT)
-Received: from mail17-va3-R.bigfish.com (10.7.14.241) by
-	VA3EHSOBE002.bigfish.com (10.7.40.22) with Microsoft SMTP Server id
-	14.1.225.22; Wed, 3 Aug 2011 16:33:29 +0000
-Received: from mail17-va3 (localhost.localdomain [127.0.0.1])	by
-	mail17-va3-R.bigfish.com (Postfix) with ESMTP id 227979B8081;
-	Wed,  3 Aug 2011 16:33:29 +0000 (UTC)
-X-SpamScore: 3
-X-BigFish: VS3(zzzz1202h1082kzz8275bhz2dh2a8h668h839h62h)
-X-Spam-TCS-SCL: 1:0
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
-	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail17-va3 (localhost.localdomain [127.0.0.1]) by mail17-va3
-	(MessageSwitch) id 131238920942380_24119;
-	Wed,  3 Aug 2011 16:33:29 +0000 (UTC)
-Received: from VA3EHSMHS010.bigfish.com (unknown [10.7.14.236])	by
-	mail17-va3.bigfish.com (Postfix) with ESMTP id 059011B48011;
-	Wed,  3 Aug 2011 16:33:29 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS010.bigfish.com
-	(10.7.99.20) with Microsoft SMTP Server (TLS) id 14.1.225.22;
-	Wed, 3 Aug 2011 16:33:29 +0000
-Received: from az33smr02.freescale.net (10.64.34.200) by
-	039-SN1MMR1-003.039d.mgd.msft.net (10.84.1.16) with Microsoft SMTP
-	Server id 14.1.289.8; Wed, 3 Aug 2011 11:33:28 -0500
-Received: from right.am.freescale.net (right.am.freescale.net [10.82.193.13])
-	by az33smr02.freescale.net (8.13.1/8.13.0) with ESMTP id
-	p73GXRqD002036; Wed, 3 Aug 2011 11:33:27 -0500 (CDT)
-From: Matthew McClintock <msm@freescale.com>
-To: <yocto@yoctoproject.org>, <openembedded-core@openembedded.org>
-Date: Wed, 3 Aug 2011 11:33:26 -0500
-Message-ID: <1312389206-15422-1-git-send-email-msm@freescale.com>
-X-Mailer: git-send-email 1.7.5
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by mx1.pokylinux.org (Postfix) with ESMTP id F24474C804C5
+	for <yocto@yoctoproject.org>; Wed,  3 Aug 2011 11:44:26 -0500 (CDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 999)
+	id 79B761660520; Wed,  3 Aug 2011 10:44:26 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 67BA0166051F;
+	Wed,  3 Aug 2011 10:44:24 -0600 (MDT)
+Message-ID: <4E397AE8.5020707@mlbassoc.com>
+Date: Wed, 03 Aug 2011 10:44:24 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc15 Thunderbird/3.1.10
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Subject: [PATCH] Update intltool to set perl shebang correctly for installed tools
+To: Matthew McClintock <msm@freescale.com>
+References: <1312389206-15422-1-git-send-email-msm@freescale.com>
+In-Reply-To: <1312389206-15422-1-git-send-email-msm@freescale.com>
+Cc: yocto@yoctoproject.org, openembedded-core@openembedded.org
+Subject: Re: [PATCH] Update intltool to set perl shebang correctly for	installed tools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,44 +34,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Aug 2011 16:33:29 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 03 Aug 2011 16:44:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Several installed scripts set the perl shebang that is too long
-which can cause failures on certian older bash versions.
+On 2011-08-03 10:33, Matthew McClintock wrote:
+> Several installed scripts set the perl shebang that is too long
+> which can cause failures on certian older bash versions.
 
-Signed-off-by: Matthew McClintock <msm@freescale.com>
----
- meta/recipes-devtools/intltool/intltool.inc       |    2 +-
- meta/recipes-devtools/intltool/intltool_0.40.6.bb |    2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+How does the change below correspond to this comment?  It's not
+clear [at least to me] how changing that environment variable
+affects shebang constructs.  Can you give a more thorough explanation?
 
-diff --git a/meta/recipes-devtools/intltool/intltool.inc b/meta/recipes-devtools/intltool/intltool.inc
-index c934654..d8917ad 100644
---- a/meta/recipes-devtools/intltool/intltool.inc
-+++ b/meta/recipes-devtools/intltool/intltool.inc
-@@ -12,5 +12,5 @@ RRECOMMENDS_${PN} = "perl-modules"
- 
- inherit autotools pkgconfig perlnative
- 
--export PERL_virtclass-native = "/usr/bin/env perl"
-+export PERL = "/usr/bin/env perl"
- BBCLASSEXTEND = "native"
-diff --git a/meta/recipes-devtools/intltool/intltool_0.40.6.bb b/meta/recipes-devtools/intltool/intltool_0.40.6.bb
-index c7938e5..8b52cf8 100644
---- a/meta/recipes-devtools/intltool/intltool_0.40.6.bb
-+++ b/meta/recipes-devtools/intltool/intltool_0.40.6.bb
-@@ -1,7 +1,7 @@
- require intltool.inc
- LICENSE="GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
--PR = "r3"
-+PR = "r4"
- 
- SRC_URI_append = " file://intltool-nowarn-0.40.0.patch"
- 
+>
+> Signed-off-by: Matthew McClintock<msm@freescale.com>
+> ---
+>   meta/recipes-devtools/intltool/intltool.inc       |    2 +-
+>   meta/recipes-devtools/intltool/intltool_0.40.6.bb |    2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/meta/recipes-devtools/intltool/intltool.inc b/meta/recipes-devtools/intltool/intltool.inc
+> index c934654..d8917ad 100644
+> --- a/meta/recipes-devtools/intltool/intltool.inc
+> +++ b/meta/recipes-devtools/intltool/intltool.inc
+> @@ -12,5 +12,5 @@ RRECOMMENDS_${PN} = "perl-modules"
+>
+>   inherit autotools pkgconfig perlnative
+>
+> -export PERL_virtclass-native = "/usr/bin/env perl"
+> +export PERL = "/usr/bin/env perl"
+>   BBCLASSEXTEND = "native"
+> diff --git a/meta/recipes-devtools/intltool/intltool_0.40.6.bb b/meta/recipes-devtools/intltool/intltool_0.40.6.bb
+> index c7938e5..8b52cf8 100644
+> --- a/meta/recipes-devtools/intltool/intltool_0.40.6.bb
+> +++ b/meta/recipes-devtools/intltool/intltool_0.40.6.bb
+> @@ -1,7 +1,7 @@
+>   require intltool.inc
+>   LICENSE="GPLv2"
+>   LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
+> -PR = "r3"
+> +PR = "r4"
+>
+>   SRC_URI_append = " file://intltool-nowarn-0.40.0.patch"
+>
+
 -- 
-1.7.5
-
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
