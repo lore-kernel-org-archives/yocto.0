@@ -1,19 +1,21 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 174214C80053
-	for <yocto@yoctoproject.org>; Tue,  2 Aug 2011 23:05:20 -0500 (CDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 02 Aug 2011 21:05:20 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 9F5ED4C803E4
+	for <yocto@yoctoproject.org>; Tue,  2 Aug 2011 23:05:23 -0500 (CDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 02 Aug 2011 21:05:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,308,1309762800"; d="scan'208";a="37317061"
+X-IronPort-AV: E=Sophos;i="4.67,308,1309762800"; d="scan'208";a="34863507"
 Received: from unknown (HELO localhost) ([10.255.14.150])
-	by fmsmga001.fm.intel.com with ESMTP; 02 Aug 2011 21:05:20 -0700
+	by orsmga001.jf.intel.com with ESMTP; 02 Aug 2011 21:05:22 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Tue,  2 Aug 2011 23:05:14 -0500
-Message-Id: <cover.1312343514.git.tom.zanussi@intel.com>
+Date: Tue,  2 Aug 2011 23:05:16 -0500
+Message-Id: <3ef6aeff555624d7be783d11fe030e5e84de8b3c.1312343514.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/2] meta-intel: new fri2 BSP
+In-Reply-To: <cover.1312343514.git.tom.zanussi@intel.com>
+References: <cover.1312343514.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/2] meta-fri2: new layer for Fish River Island II (E6XX/EG20T) systems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,85 +27,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Aug 2011 04:05:21 -0000
+X-List-Received-Date: Wed, 03 Aug 2011 04:05:23 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This is the initial version of a BSP for the Fish River Island II.
-I don't actually have the hardware, but have successfully booted
-a sato image with wired networking and vesa graphics on the closest
-thing I have, the crownbay.
+This layer provides support for E6XX + EG20T Intel systems.
 
-This BSP uses the 3.0 kernel - the fri2 kernel modifications were
-originally pushed to linux-yocto-dev awhile ago, but the commit
-history was lost in the move to 3.0.  It's reproduced below,
-for reference.
+Currently it supports only vesa graphics, which will be upgraded
+shortly.
 
-commit 77d659c45fe47ef9e7f65f5b460a18d80f8c8f20
-Author: Tom Zanussi <tom.zanussi@intel.com>
-Date:   Tue Jul 12 18:25:21 2011 -0500
-
-    meta-fri2: use iwlagn feature
-    
-    Make use of the Intel wireless support for the Intel 6205 ABGN.
-    
-    Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
-
-commit 0008c9c1a16f816302be76b3c67b695c8a0064bd
-Author: Tom Zanussi <tom.zanussi@intel.com>
-Date:   Tue Jul 12 18:25:20 2011 -0500
-
-    meta: add mac80211 and iwlagn features
-    
-    Add iwlagn feature (Intel Wirelss WiFi Next Gen AGN) and one of its
-    dependencies, mac80211, as a feature, since there are a bunch of
-other
-    config items that have the same dependency and could use it.
-    
-    Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
-
-commit 451ce7990c1e4757f3316f247e9c4e52830bd7c4
-Author: Tom Zanussi <tom.zanussi@intel.com>
-Date:   Sun Jul 10 11:26:06 2011 -0500
-
-    meta/fri2: create initial BSP infrastructure
-    
-    Inital BSP infrastructure for Intel Fish River Island II.
-    
-    Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
-
-commit 115003b6882981b33ae6e763088fbfb9dd1c21b3
-Author: Tom Zanussi <tom.zanussi@intel.com>
-Date:   Sun Jul 10 11:26:05 2011 -0500
-
-    meta/crownbay: remove eg20t.cfg and use new eg20t feature instead
-    
-    Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
-
-commit baf6a74de2481d39beb29dc26674ddfd21467b0d
-Author: Tom Zanussi <tom.zanussi@intel.com>
-Date:   Sun Jul 10 11:26:04 2011 -0500
-
-    meta: add eg20t feature
-    
-    Option group for Intel Platform Controller Hub EG20T (Topcliff).
-    
-    Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
-
-
-The following changes since commit 3be9957211e54669825d1d55bb73c68d3f3354d0:
-  Tom Zanussi (1):
-        meta-sugarbay: switch to linux-yocto 3.0 kernel
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/meta-intel.git tzanussi/fri2.v1
-  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/fri2.v1
-
-Tom Zanussi (2):
-  meta-fri2: new layer for Fish River Island II (E6XX/EG20T) systems
-  meta-fri2: add 3g and wifi features
-
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
  meta-fri2/COPYING.MIT                              |   17 ++++
  meta-fri2/README                                   |   83 ++++++++++++++++++++
  meta-fri2/README.sources                           |   17 ++++
@@ -128,5 +62,283 @@ Tom Zanussi (2):
  create mode 100644 meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2/xorg.conf
  create mode 100644 meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend
+
+diff --git a/meta-fri2/COPYING.MIT b/meta-fri2/COPYING.MIT
+new file mode 100644
+index 0000000..fb950dc
+--- /dev/null
++++ b/meta-fri2/COPYING.MIT
+@@ -0,0 +1,17 @@
++Permission is hereby granted, free of charge, to any person obtaining a copy 
++of this software and associated documentation files (the "Software"), to deal 
++in the Software without restriction, including without limitation the rights 
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
++copies of the Software, and to permit persons to whom the Software is 
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in 
++all copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
++THE SOFTWARE.
+diff --git a/meta-fri2/README b/meta-fri2/README
+new file mode 100644
+index 0000000..7957a7f
+--- /dev/null
++++ b/meta-fri2/README
+@@ -0,0 +1,83 @@
++This README file contains information on building the meta-fri2 BSP
++layer, and booting the images contained in the /binary directory.
++Please see the corresponding sections below for details.
++
++
++Table of Contents
++=================
++
++  I. Special notes on the meta-fri2 BSP layer
++ II. Building the meta-fri2 BSP layer
++III. Booting the images in /binary
++
++
++II. Building the meta-fri2 BSP layer
++=========================================
++
++In order to build an image with BSP support for a given release, you
++need to download the corresponding BSP tarball from the 'Board Support
++Package (BSP) Downloads' page of the Yocto Project website.
++
++Having done that, and assuming you extracted the BSP tarball contents
++at the top-level of your yocto build tree, you can build a fri2 image
++by adding the location of the meta-fri2 layer to bblayers.conf e.g.:
++
++  yocto/meta-intel/meta-fri2 \
++
++To enable the fri2 layer, add the fri2 MACHINE to local.conf:
++
++  MACHINE ?= "fri2"
++
++You should then be able to build a fri2 image as such:
++
++  $ source poky-init-build-env
++  $ bitbake poky-image-sato-live
++
++At the end of a successful build, you should have a live image that
++you can boot from a USB flash drive (see instructions on how to do
++that below, in the section 'Booting the images from /binary').
++
++As an alternative to downloading the BSP tarball, you can also work
++directly from the meta-intel git repository.  For each BSP in the
++'meta-intel' repository, there are multiple branches, one
++corresponding to each major release starting with 'laverne' (0.90), in
++addition to the latest code which tracks the current master.  Instead
++of extracting a BSP tarball at the top level of your yocto build tree,
++you can equivalently check out the appropriate branch from the
++meta-intel repository at the same location.
++
++
++III. Booting the images in /binary
++==================================
++
++This BSP contains bootable live images, which can be used to directly
++boot Yocto off of a USB flash drive.
++
++Under Linux, insert a USB flash drive.  Assuming the USB flash drive
++takes device /dev/sdf, use dd to copy the live image to it.  For
++example:
++
++# dd if=poky-image-sato-live-fri2-20101207053738.hddimg of=/dev/sdf
++# sync
++# eject /dev/sdf
++
++This should give you a bootable USB flash device.  Insert the device
++into a bootable USB socket on the target, and power on.  This should
++result in a system booted to the Sato graphical desktop.
++
++If you want a terminal, use the arrows at the top of the UI to move to
++different pages of available applications, one of which is named
++'Terminal'.  Clicking that should give you a root terminal.
++
++If you want to ssh into the system, you can use the root terminal to
++ifconfig the IP address and use that to ssh in.  The root password is
++empty, so to log in type 'root' for the user name and hit 'Enter' at
++the Password prompt: and you should be in.
++
++----
++
++If you find you're getting corrupt images on the USB (it doesn't show
++the syslinux boot: prompt, or the boot: prompt contains strange
++characters), try doing this first:
++
++# dd if=/dev/zero of=/dev/sdf bs=1M count=512
+diff --git a/meta-fri2/README.sources b/meta-fri2/README.sources
+new file mode 100644
+index 0000000..5c8b5c7
+--- /dev/null
++++ b/meta-fri2/README.sources
+@@ -0,0 +1,17 @@
++The sources for the packages comprising the images shipped with this
++BSP can be found at the following location:
++
++http://autobuilder.yoctoproject.org/sources/
++
++The metadata used to generate the images shipped with this BSP, in
++addition to the code contained in this BSP, can be found at the
++following location:
++
++http://autobuilder.yoctoproject.org/downloads/yocto-1.0/poky-bernard-5.0.tar.bz2
++
++The metadata used to generate the images shipped with this BSP, in
++addition to the code contained in this BSP, can also be found at the
++following locations:
++
++git://git.yoctoproject.org/poky.git
++git://git.yoctoproject.org/meta-intel
+diff --git a/meta-fri2/binary/.gitignore b/meta-fri2/binary/.gitignore
+new file mode 100644
+index 0000000..e69de29
+diff --git a/meta-fri2/conf/layer.conf b/meta-fri2/conf/layer.conf
+new file mode 100644
+index 0000000..b30e776
+--- /dev/null
++++ b/meta-fri2/conf/layer.conf
+@@ -0,0 +1,10 @@
++# We have a conf and classes directory, add to BBPATH
++BBPATH := "${BBPATH}:${LAYERDIR}"
++
++# We have a recipes directory, add to BBFILES
++BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++	${LAYERDIR}/recipes-*/*/*.bbappend"
++
++BBFILE_COLLECTIONS += "fri2"
++BBFILE_PATTERN_fri2 := "^${LAYERDIR}/"
++BBFILE_PRIORITY_fri2 = "6"
+diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
+new file mode 100644
+index 0000000..61b102d
+--- /dev/null
++++ b/meta-fri2/conf/machine/fri2.conf
+@@ -0,0 +1,36 @@
++#@TYPE: Machine
++#@NAME: fri2
++
++#@DESCRIPTION: Machine configuration for Fish River Island II systems
++# i.e. E660 + EG20T
++
++include conf/machine/include/tune-atom.inc
++
++MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
++                    acpi serial usbgadget"
++
++KERNEL_IMAGETYPE = "bzImage"
++
++PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
++PREFERRED_VERSION_linux-yocto = "3.0+git%"
++
++PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
++PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
++PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
++PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xf86-dri-lite"
++PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xf86-dri-lite"
++XSERVER ?= "xserver-xf86-dri-lite \
++           xf86-input-mouse \
++           xf86-input-keyboard \
++           xf86-input-evdev \
++           xf86-input-synaptics \
++           xf86-video-vesa"
++
++SERIAL_CONSOLE = "115200 ttyS0"
++
++MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
++
++IMAGE_FSTYPES ?= "ext3 cpio.gz live"
++
++GLIBC_ADDONS = "nptl"
++GLIBC_EXTRA_OECONF = "--with-tls"
+diff --git a/meta-fri2/recipes-bsp/formfactor/formfactor/fri2/machconfig b/meta-fri2/recipes-bsp/formfactor/formfactor/fri2/machconfig
+new file mode 100644
+index 0000000..ffce012
+--- /dev/null
++++ b/meta-fri2/recipes-bsp/formfactor/formfactor/fri2/machconfig
+@@ -0,0 +1,3 @@
++# Assume a USB mouse and keyboard are connected
++HAVE_TOUCHSCREEN=0
++HAVE_KEYBOARD=1
+diff --git a/meta-fri2/recipes-bsp/formfactor/formfactor_0.0.bbappend b/meta-fri2/recipes-bsp/formfactor/formfactor_0.0.bbappend
+new file mode 100644
+index 0000000..54da0ff
+--- /dev/null
++++ b/meta-fri2/recipes-bsp/formfactor/formfactor_0.0.bbappend
+@@ -0,0 +1,3 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++ 
++PRINC = "1"
+diff --git a/meta-fri2/recipes-core/tasks/task-core-tools.bbappend b/meta-fri2/recipes-core/tasks/task-core-tools.bbappend
+new file mode 100644
+index 0000000..5accb2e
+--- /dev/null
++++ b/meta-fri2/recipes-core/tasks/task-core-tools.bbappend
+@@ -0,0 +1,2 @@
++RRECOMMENDS_task-core-tools-profile_append_fri2 = " systemtap"
++
+diff --git a/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2/xorg.conf b/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2/xorg.conf
+new file mode 100644
+index 0000000..da4fc3c
+--- /dev/null
++++ b/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2/xorg.conf
+@@ -0,0 +1,26 @@
++Section "Device"
++    Identifier	"Generic VESA"
++    Driver	"vesa"
++EndSection
++
++Section "Monitor"
++    Identifier    "Generic Monitor"
++    Option        "DPMS"
++EndSection
++
++Section "Screen"
++    Identifier    "Default Screen"
++    Device	  "Generic VESA"
++    Monitor       "Generic Monitor"
++    DefaultDepth  24
++EndSection
++
++Section "ServerLayout"
++    Identifier     "Default Layout"
++    Screen         "Default Screen"
++EndSection
++
++Section "ServerFlags"
++    Option        "DontZap"  "0"
++    Option        "AutoAddDevices"  "False"
++EndSection
+diff --git a/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend b/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+new file mode 100644
+index 0000000..4b8d0e6
+--- /dev/null
++++ b/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+@@ -0,0 +1,3 @@
++THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
++FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
++
+diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend
+new file mode 100644
+index 0000000..e280488
+--- /dev/null
++++ b/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend
+@@ -0,0 +1,6 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++COMPATIBLE_MACHINE_fri2 = "fri2"
++KMACHINE_fri2  = "yocto/standard/fri2"
++
++SRCREV_machine_pn-linux-yocto_fri2 ?= "5e08aa8dd62d9035498227de16b9148ab89e17c5"
++SRCREV_meta_pn-linux-yocto_fri2 ?= "fe8eac15e144a35a716cd32c9d2b296ecd5202ac"
+-- 
+1.7.0.4
 
 
