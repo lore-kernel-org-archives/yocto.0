@@ -1,34 +1,58 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by mx1.pokylinux.org (Postfix) with ESMTP id B44B84C800B2
-	for <yocto@yoctoproject.org>; Wed,  3 Aug 2011 15:01:50 -0500 (CDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 999)
-	id E9EBB1660510; Wed,  3 Aug 2011 14:01:48 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 4F962166050C;
-	Wed,  3 Aug 2011 14:01:47 -0600 (MDT)
-Message-ID: <4E39A92B.5040207@mlbassoc.com>
-Date: Wed, 03 Aug 2011 14:01:47 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc15 Thunderbird/3.1.10
-MIME-Version: 1.0
-To: McClintock Matthew-B29882 <B29882@freescale.com>
+Return-Path: <B29882@freescale.com>
+Received: from TX2EHSOBE009.bigfish.com (tx2ehsobe004.messaging.microsoft.com
+	[65.55.88.14])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 3A41F4C800A9
+	for <yocto@yoctoproject.org>; Wed,  3 Aug 2011 15:25:37 -0500 (CDT)
+Received: from mail163-tx2-R.bigfish.com (10.9.14.240) by
+	TX2EHSOBE009.bigfish.com (10.9.40.29) with Microsoft SMTP Server id
+	14.1.225.22; Wed, 3 Aug 2011 20:25:36 +0000
+Received: from mail163-tx2 (localhost.localdomain [127.0.0.1])	by
+	mail163-tx2-R.bigfish.com (Postfix) with ESMTP id AD17816E0443;
+	Wed,  3 Aug 2011 20:25:36 +0000 (UTC)
+X-SpamScore: -6
+X-BigFish: VS-6(zz9371K98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3h61h)
+X-Spam-TCS-SCL: 0:0
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
+	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
+Received: from mail163-tx2 (localhost.localdomain [127.0.0.1]) by mail163-tx2
+	(MessageSwitch) id 1312403136607941_3288;
+	Wed,  3 Aug 2011 20:25:36 +0000 (UTC)
+Received: from TX2EHSMHS027.bigfish.com (unknown [10.9.14.251])	by
+	mail163-tx2.bigfish.com (Postfix) with ESMTP id 7980417C8046;
+	Wed,  3 Aug 2011 20:25:36 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS027.bigfish.com
+	(10.9.99.127) with Microsoft SMTP Server (TLS) id 14.1.225.22;
+	Wed, 3 Aug 2011 20:25:35 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.56]) by
+	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
+	14.01.0289.008; Wed, 3 Aug 2011 15:25:33 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: [OE-core] [yocto] [PATCH] Update intltool to set perl shebang
+	correctly for installed tools
+Thread-Index: AQHMUhbmEsHhPnJ0UkSga/RIyQnjVZUL3/2AgAAGiwA=
+Date: Wed, 3 Aug 2011 20:25:32 +0000
+Message-ID: <CAEsOVNce5iFEm8tyFoYmeiy750zgnsX=D3txSAt4z=2MmsaMdA@mail.gmail.com>
 References: <1312389206-15422-1-git-send-email-msm@freescale.com>
 	<4E397AE8.5020707@mlbassoc.com>
 	<CAEsOVNf5eZ6PLkqw_Ya8XEEzr1uQprGXOeqc4aS7BCcja7Bsmw@mail.gmail.com>
-In-Reply-To: <CAEsOVNf5eZ6PLkqw_Ya8XEEzr1uQprGXOeqc4aS7BCcja7Bsmw@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	<4E39A92B.5040207@mlbassoc.com>
+In-Reply-To: <4E39A92B.5040207@mlbassoc.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [50.57.127.49]
+MIME-Version: 1.0
+X-OriginatorOrg: freescale.com
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	"openembedded-core@openembedded.org" <openembedded-core@openembedded.org>
-Subject: Re: [PATCH] Update intltool to set perl shebang correctly for installed tools
+Subject: Re: [OE-core] [PATCH] Update intltool to set perl shebang correctly for installed tools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -37,40 +61,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Aug 2011 20:01:51 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 03 Aug 2011 20:25:37 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <59E4918F8846E24CA9C4F628CFB6E033@freescale.net>
+Content-Transfer-Encoding: quoted-printable
 
-On 2011-08-03 13:52, McClintock Matthew-B29882 wrote:
-> (Sorry if this get sent twice...)
->
-> On Wed, Aug 3, 2011 at 11:44 AM, Gary Thomas<gary@mlbassoc.com>  wrote:
->> On 2011-08-03 10:33, Matthew McClintock wrote:
->>>
->>> Several installed scripts set the perl shebang that is too long
->>> which can cause failures on certian older bash versions.
->>
->> How does the change below correspond to this comment?  It's not
->> clear [at least to me] how changing that environment variable
->> affects shebang constructs.  Can you give a more thorough explanation?
->
-> The scripts intltool-{update,etc} installed in sysroot end up having
-> *really* long shebangs without this change. On older distros this
-> causes the intltool scripts to just fail usually during the configure
-> task. intltools recipe itself will
-> build and install fine. However, when a package that requires
-> intltool's is being configured they will all fail withing invoking
-> intltools.
+On Wed, Aug 3, 2011 at 3:01 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+> What I don't see is the "why" - why does defining PERL vs
+> PERL_virtclass-native
+> have this effect?
 
-This much was already clear from your explanation - the "what happens and
-why it needs fixing" part.
+That's an I don't know.
 
-What I don't see is the "why" - why does defining PERL vs PERL_virtclass-native
-have this effect?
+-M=
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
