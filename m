@@ -1,28 +1,23 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by mx1.pokylinux.org (Postfix) with ESMTP id F24474C804C5
-	for <yocto@yoctoproject.org>; Wed,  3 Aug 2011 11:44:26 -0500 (CDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 999)
-	id 79B761660520; Wed,  3 Aug 2011 10:44:26 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 67BA0166051F;
-	Wed,  3 Aug 2011 10:44:24 -0600 (MDT)
-Message-ID: <4E397AE8.5020707@mlbassoc.com>
-Date: Wed, 03 Aug 2011 10:44:24 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc15 Thunderbird/3.1.10
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 6DDBC4C800A9
+	for <yocto@yoctoproject.org>; Wed,  3 Aug 2011 11:57:45 -0500 (CDT)
+Received: from mail-gw0-f52.google.com ([74.125.83.52])
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 03 Aug 2011 09:57:43 -0700
+Received: by gwj15 with SMTP id 15so612652gwj.25
+	for <yocto@yoctoproject.org>; Wed, 03 Aug 2011 09:57:43 -0700 (PDT)
 MIME-Version: 1.0
-To: Matthew McClintock <msm@freescale.com>
-References: <1312389206-15422-1-git-send-email-msm@freescale.com>
-In-Reply-To: <1312389206-15422-1-git-send-email-msm@freescale.com>
-Cc: yocto@yoctoproject.org, openembedded-core@openembedded.org
-Subject: Re: [PATCH] Update intltool to set perl shebang correctly for	installed tools
+Received: by 10.236.152.98 with SMTP id c62mr6672490yhk.64.1312390661305; Wed,
+	03 Aug 2011 09:57:41 -0700 (PDT)
+Received: by 10.236.105.131 with HTTP; Wed, 3 Aug 2011 09:57:40 -0700 (PDT)
+In-Reply-To: <201108031707.07245.paul.eggleton@linux.intel.com>
+References: <201108031707.07245.paul.eggleton@linux.intel.com>
+Date: Wed, 3 Aug 2011 09:57:40 -0700
+Message-ID: <CAPhnLPBPJ0U=_Bn4jKQSKM6SoFQwDQUpC_kcEt-2NWc2+d9prw@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Autobuilder issue status
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,53 +29,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Aug 2011 16:44:27 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 03 Aug 2011 16:57:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 2011-08-03 10:33, Matthew McClintock wrote:
-> Several installed scripts set the perl shebang that is too long
-> which can cause failures on certian older bash versions.
+On Wed, Aug 3, 2011 at 9:07 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> Hi all,
+>
+> Richard requested a summary of the current issues shown up on the autobuilder,
+> here it is:
+>
+> 1. sstate not getting cleared (autobuilder script fix needed - maybe just
+> delete the whole sstate-cache dir?)
+> http://autobuilder.yoctoproject.org:8010/builders/crownbay-
+> noemgd/builds/27/steps/shell/logs/stdio
 
-How does the change below correspond to this comment?  It's not
-clear [at least to me] how changing that environment variable
-affects shebang constructs.  Can you give a more thorough explanation?
+I'll look at this today.
 
->
-> Signed-off-by: Matthew McClintock<msm@freescale.com>
-> ---
->   meta/recipes-devtools/intltool/intltool.inc       |    2 +-
->   meta/recipes-devtools/intltool/intltool_0.40.6.bb |    2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/meta/recipes-devtools/intltool/intltool.inc b/meta/recipes-devtools/intltool/intltool.inc
-> index c934654..d8917ad 100644
-> --- a/meta/recipes-devtools/intltool/intltool.inc
-> +++ b/meta/recipes-devtools/intltool/intltool.inc
-> @@ -12,5 +12,5 @@ RRECOMMENDS_${PN} = "perl-modules"
->
->   inherit autotools pkgconfig perlnative
->
-> -export PERL_virtclass-native = "/usr/bin/env perl"
-> +export PERL = "/usr/bin/env perl"
->   BBCLASSEXTEND = "native"
-> diff --git a/meta/recipes-devtools/intltool/intltool_0.40.6.bb b/meta/recipes-devtools/intltool/intltool_0.40.6.bb
-> index c7938e5..8b52cf8 100644
-> --- a/meta/recipes-devtools/intltool/intltool_0.40.6.bb
-> +++ b/meta/recipes-devtools/intltool/intltool_0.40.6.bb
-> @@ -1,7 +1,7 @@
->   require intltool.inc
->   LICENSE="GPLv2"
->   LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
-> -PR = "r3"
-> +PR = "r4"
->
->   SRC_URI_append = " file://intltool-nowarn-0.40.0.patch"
->
+> 7. -live images still being built:
+> Beth was fixing (has fixed?) this. It did bring up an interesting issue in that
+> -k makes the build look like it succeeded - have filed bug #1322 for this one.
+> http://autobuilder.yoctoproject.org:8010/builders/crownbay-
+> noemgd/builds/27/steps/shell_10/logs/stdio
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+This is a bug in the current buildbot. make reconfig blows up. I'm
+waiting to bring the builder down and back up once our current nightly
+is done
+
+> Cheers,
+> Paul
+
+Thanks, I'll get this done ASAP
+-b
 
