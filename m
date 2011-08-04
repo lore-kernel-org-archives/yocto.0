@@ -1,33 +1,21 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 7C5984C8009A
-	for <yocto@yoctoproject.org>; Wed,  3 Aug 2011 19:33:36 -0500 (CDT)
+Return-Path: <josh@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by mx1.pokylinux.org (Postfix) with ESMTP id 5CF2C4C8009A
+	for <yocto@yoctoproject.org>; Wed,  3 Aug 2011 19:40:35 -0500 (CDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 03 Aug 2011 17:33:35 -0700
+	by azsmga101.ch.intel.com with ESMTP; 03 Aug 2011 17:40:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,313,1309762800"; d="scan'208";a="34911173"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by azsmga001.ch.intel.com with ESMTP; 03 Aug 2011 17:33:35 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 3 Aug 2011 17:33:35 -0700
-Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
-	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
-	Wed, 3 Aug 2011 17:33:35 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: 'Tim Bird' <tim.bird@am.sony.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Wed, 3 Aug 2011 17:33:34 -0700
-Thread-Topic: [yocto] Build failure on recent yocto download
-Thread-Index: AcxSOw0Ov1xpLUHmTfKFS+BbgR5JPgAAv0lA
-Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A4F9@orsmsx501.amr.corp.intel.com>
-References: <4E39E30B.3080206@am.sony.com> <4E39E383.9080507@am.sony.com>
-In-Reply-To: <4E39E383.9080507@am.sony.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="4.67,313,1309762800"; d="scan'208";a="34913120"
+Received: from unknown (HELO [10.255.14.173]) ([10.255.14.173])
+	by azsmga001.ch.intel.com with ESMTP; 03 Aug 2011 17:40:34 -0700
+From: Joshua Lock <josh@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 03 Aug 2011 17:40:29 -0700
+In-Reply-To: <4E39E30B.3080206@am.sony.com>
+References: <4E39E30B.3080206@am.sony.com>
+X-Mailer: Evolution 3.0.2 (3.0.2-3.fc15) 
+Message-ID: <1312418434.31410.8.camel@scimitar>
+Mime-Version: 1.0
 Subject: Re: Build failure on recent yocto download
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,50 +28,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Aug 2011 00:33:36 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 04 Aug 2011 00:40:35 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
+On Wed, 2011-08-03 at 17:08 -0700, Tim Bird wrote:
+> Hi all,
+> 
+> I'm not sure where to report this, but I tried again to build
+> Yocto, without success.
+> 
+> I downloaded poky-bernard-4.0.tar.bz2, and followed instructions
+> for installing it.
+> 
+> I am using 'MACHINE ?= qemuarm' and doing 'bitbake poky-image-sato'
+> 
+> bitbake error messages follow below.
+> 
+> The first error is a failure to fetch the kernel, and a follow-on
+> failure to do a git-clone on the kernel.  I'm behind a firewall and
+> this is a perennial problem for me.  Is there another way to get this
+> code?  If I do a git-clone on a remote machine and copy it over to
+> my development host, where do I put it?  (Why did the first http-based
+> fetch fail, anyway?)  Any help would be appreciated.
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Tim Bird
-> Sent: Wednesday, August 03, 2011 5:11 PM
-> To: yocto@yoctoproject.org
-> Subject: Re: [yocto] Build failure on recent yocto download
->=20
-> On 08/03/2011 05:08 PM, Tim Bird wrote:
-> > Hi all,
-> >
-> > I'm not sure where to report this, but I tried again to build Yocto,
-> > without success.
-> >
-> > I downloaded poky-bernard-4.0.tar.bz2, and followed instructions for
-> > installing it.
-> Silly me.      poky-bernard-5.0.tar.bz2
->  -- Tim
+We seem to be missing the kernel tarball on our sources mirror... Let me
+try and chase that.
 
-Hey Tim - couple of things -=20
+Regards,
+Joshua
+-- 
+Joshua Lock
+        Yocto Project "Johannes factotum"
+        Intel Open Source Technology Centre
 
-The current release is http://autobuilder.yoctoproject.org/downloads/poky/p=
-oky-bernard-5.0.1.tar.bz2 - so I would hope you might try 5.0.1 instead of =
-5.0.
-
-The other thing is that we could use a little more detail on what distro & =
-version you are trying this on and what problem you had...  Thanks. :-)
-
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-> Tim Bird
-> Architecture Group Chair, CE Workgroup of the Linux Foundation Senior Sta=
-ff
-> Engineer, Sony Network Entertainment
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
