@@ -1,18 +1,18 @@
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from tim.rpsys.net (unknown [93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 660A0E011B3
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E83FE011B4
 	for <yocto@yoctoproject.org>; Thu,  4 Aug 2011 07:50:45 -0700 (PDT)
 Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p74EonMt002845;
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p74EonxY002842;
 	Thu, 4 Aug 2011 15:50:49 +0100
 Received: from tim.rpsys.net ([127.0.0.1])
 	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
 	port 10024) with LMTP
-	id 02492-05; Thu,  4 Aug 2011 15:50:41 +0100 (BST)
+	id 02625-03; Thu,  4 Aug 2011 15:50:41 +0100 (BST)
 Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p74EodcY002832
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p74Eoeu4002833
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Thu, 4 Aug 2011 15:50:39 +0100
+	Thu, 4 Aug 2011 15:50:41 +0100
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
 To: Kumar Gala <galak@kernel.crashing.org>
 In-Reply-To: <FB790EA9-69A9-4C7E-98BE-C21A7F256878@kernel.crashing.org>
@@ -24,8 +24,8 @@ References: <B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A4B7@orsmsx501.amr.corp.intel
 	<6A516D77-2A23-4163-BF82-2E05D67AC50D@kernel.crashing.org>
 	<1312384349.2344.677.camel@rex>
 	<FB790EA9-69A9-4C7E-98BE-C21A7F256878@kernel.crashing.org>
-Date: Thu, 04 Aug 2011 15:49:48 +0100
-Message-ID: <1312469410.14274.0.camel@rex>
+Date: Thu, 04 Aug 2011 15:50:19 +0100
+Message-ID: <1312469419.14274.1.camel@rex>
 Mime-Version: 1.0
 X-Mailer: Evolution 2.32.2 
 X-Virus-Scanned: amavisd-new at rpsys.net
@@ -42,7 +42,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Aug 2011 14:50:45 -0000
+X-List-Received-Date: Thu, 04 Aug 2011 14:50:46 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
