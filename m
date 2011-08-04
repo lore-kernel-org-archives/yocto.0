@@ -1,23 +1,19 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE0F7E011AF
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4C83E011A7
 	for <yocto@yoctoproject.org>; Thu,  4 Aug 2011 06:03:16 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
 	by fmsmga102.fm.intel.com with ESMTP; 04 Aug 2011 06:03:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,316,1309762800"; d="scan'208";a="37820736"
+X-IronPort-AV: E=Sophos;i="4.67,316,1309762800"; d="scan'208";a="37820731"
 Received: from unknown (HELO helios.ger.corp.intel.com) ([10.255.18.66])
-	by fmsmga001.fm.intel.com with ESMTP; 04 Aug 2011 06:03:17 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 04 Aug 2011 06:03:15 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  4 Aug 2011 14:03:13 +0100
-Message-Id: <0d335bc6a79307a8df4f16a60eb2a395b4379428.1312462806.git.paul.eggleton@linux.intel.com>
+Date: Thu,  4 Aug 2011 14:03:11 +0100
+Message-Id: <cover.1312462806.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 1.7.4.1
-In-Reply-To: <cover.1312462806.git.paul.eggleton@linux.intel.com>
-References: <cover.1312462806.git.paul.eggleton@linux.intel.com>
-In-Reply-To: <cover.1312462806.git.paul.eggleton@linux.intel.com>
-References: <cover.1312462806.git.paul.eggleton@linux.intel.com>
-Subject: [PATCH 2/2] meta-jasperforest: update machine configuration for recent tune file changes
+Subject: [PATCH 0/2] [meta-intel] Fix meta-intel BSPs for tune file changes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,30 +27,27 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 04 Aug 2011 13:03:16 -0000
 
-Require the tune file for x86_64, then TARGET_ARCH is set via the tune
-file and TRANSLATED_TARGET_ARCH is set automatically in bitbake.conf.
+Two patches to fix "TUNE_ARCH unset" and "PACKAGE_ARCHS variable does not
+contain TUNE_PKGARCH" on the autobuilder for sugarbay and jasperforest.
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
+The following changes since commit 567c3b6436b4cb9551c23845c15ab544542b5083:
+
+  meta-crownbay: remove obsolete dir (2011-08-03 12:14:39 -0500)
+
+are available in the git repository at:
+  git://git.yoctoproject.org/meta-intel-contrib paule/tune
+  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=paule/tune
+
+Paul Eggleton (2):
+  meta-sugarbay: update machine configuration for recent tune file
+    changes
+  meta-jasperforest: update machine configuration for recent tune file
+    changes
+
  meta-jasperforest/conf/machine/jasperforest.conf |    5 +++--
- 1 files changed, 3 insertions(+), 2 deletions(-)
+ meta-sugarbay/conf/machine/sugarbay.conf         |    5 +++--
+ 2 files changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/meta-jasperforest/conf/machine/jasperforest.conf b/meta-jasperforest/conf/machine/jasperforest.conf
-index 1d875b5..b21a417 100644
---- a/meta-jasperforest/conf/machine/jasperforest.conf
-+++ b/meta-jasperforest/conf/machine/jasperforest.conf
-@@ -4,8 +4,9 @@
- #@DESCRIPTION: Machine configuration for Jasper Forest Picket Post
- # systems i.e. Xeon C5500/C3500 + Intel 3420 chipset (Ibex Peak)
- 
--TARGET_ARCH = "x86_64"
--PACKAGE_EXTRA_ARCHS = "x86 xeon"
-+require conf/machine/include/tune-x86_64.inc
-+
-+PACKAGE_EXTRA_ARCHS = "x86_64 xeon"
- 
- BASE_PACKAGE_ARCH="xeon"
- 
 -- 
 1.7.4.4
 
