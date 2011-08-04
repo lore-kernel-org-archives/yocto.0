@@ -1,52 +1,59 @@
-Return-Path: <todd_cooper@yahoo.com>
-Received: from nm7.bullet.mail.bf1.yahoo.com (nm7.bullet.mail.bf1.yahoo.com
-	[98.139.212.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 6B99EE011B5
-	for <yocto@yoctoproject.org>; Thu,  4 Aug 2011 10:49:53 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@yahoo.com;
-	x-dkim-adsp=none (insecure policy)
-Received: from [98.139.212.148] by nm7.bullet.mail.bf1.yahoo.com with NNFMP;
-	04 Aug 2011 17:50:01 -0000
-Received: from [98.139.212.225] by tm5.bullet.mail.bf1.yahoo.com with NNFMP;
-	04 Aug 2011 17:50:01 -0000
-Received: from [127.0.0.1] by omp1034.mail.bf1.yahoo.com with NNFMP;
-	04 Aug 2011 17:50:01 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 499416.92704.bm@omp1034.mail.bf1.yahoo.com
-Received: (qmail 83552 invoked by uid 60001); 4 Aug 2011 17:50:01 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1312480201; bh=Kc47rfHXcZgogDfJmYa8OHqdB3u157ZbkEd898npdx4=;
-	h=X-YMail-OSG:Received:X-Mailer:References:Message-ID:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type;
-	b=FKUuNqNh49ffQwKRj+eFxliCAn/sulbJG4g6hw7LNfiKCox6QrRVl0AHFIjHjuVT23BIexGcoscF+wvDFxPkG2Gfj3J1yml1MhRxF+UfNIAH+UzZ+qN6pfU1PTZ8y7scoaF3n2lOmqaqgURHh4RbdlROXTBP72m76SjHkPsu8bc=
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
-	h=X-YMail-OSG:Received:X-Mailer:References:Message-ID:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type;
-	b=obTGyfjcV8KiI+lC+jNP0GfwEmKqkL8B6PSA4/GcYP4W7iqHtOD1UOclitMWDzalMrqR0hH1zVYff7D3yx/MPxemO/MgzSvqz6cGDT7d+5dekbh6XvK0D1hv4ntkQCgvzrqZjXQitP0vPFJbW/gR6pzRzDvKX/NuSf635Tc15qo=;
-X-YMail-OSG: LaGHFfEVM1n9e.aO98R6uWFrYspHo4A_3MRMIbSj85nnMBf
-	8JhNHvQ0kLQ6aOWzBuB5pth7SnsnEg4dmBw.f0oCEOpy7FwTsEHwNY_WAmeZ
-	5jQIxzq5I4ww.GQOc71bBSci2imdvlEFTvPmMShrmeWdDqkXeCnBUi_xaBKC
-	MZse0VkJ6gSWDO_DpLbXqhFXRH2TjLFP05zvvaAz0WpvwizBcKSOgUk51J_7
-	udBeL2sFzNThRUkFNzAE6qX39Dtmi4yBbzXfaFxaKn3.U53YdC9gl4ZM6j7D
-	GeJTfigBCj.N3SUDng5pETR7t7zjck397XG5lvMTYOFBirHsMC4dFmb3jjJj
-	R6V8ZgV9pVZadXvqCtZgRCD_Z6DJDX2F2Zwb36L1hEX8cPQhr3YbciXe3NTh
-	xo3PLoKtUoPx6FjFlPG9d.z_qSndPqP8b1aQ9nK.LQslQaovRfA--
-Received: from [209.104.237.170] by web161219.mail.bf1.yahoo.com via HTTP;
-	Thu, 04 Aug 2011 10:50:01 PDT
-X-Mailer: YahooMailWebService/0.8.113.313619
-References: <1312468953.58082.YahooMailNeo@web161219.mail.bf1.yahoo.com>
-	<1312469993.14274.10.camel@rex>
-Message-ID: <1312480201.81774.YahooMailNeo@web161219.mail.bf1.yahoo.com>
-Date: Thu, 4 Aug 2011 10:50:01 -0700 (PDT)
-From: Todd Cooper <todd_cooper@yahoo.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-In-Reply-To: <1312469993.14274.10.camel@rex>
+Return-Path: <>
+Received: from WA2EHSNDR003.bigfish.com (smtp-cpk.frontbridge.com
+	[204.231.192.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 834C6E011B5
+	for <yocto@yoctoproject.org>; Thu,  4 Aug 2011 11:52:05 -0700 (PDT)
+Received: from AM1EHSOBE002.bigfish.com (10.2.40.3) by
+	WA2EHSNDR003.bigfish.com (10.2.40.23) with Microsoft SMTP Server (TLS)
+	id 14.1.225.8; Thu, 4 Aug 2011 18:52:13 +0000
+Received: from mail33-am1-R.bigfish.com (10.3.201.253) by
+	AM1EHSOBE002.bigfish.com (10.3.204.22) with Microsoft SMTP Server id
+	14.1.225.22; Thu, 4 Aug 2011 18:52:02 +0000
+Received: from mail33-am1 (localhost.localdomain [127.0.0.1])	by
+	mail33-am1-R.bigfish.com (Postfix) with ESMTP id 4116D19C00EE	for
+	<yocto@yoctoproject.org>; Thu,  4 Aug 2011 18:52:02 +0000 (UTC)
+X-BigFish: VPS79(zzbb2dK9371K179dN1432N98dKzz1202hzz8275bhf73b6nlz2fh668h839h93fh)
+X-FB-OUTBOUND-SPAM: yes
+X-SpamScore: 79
+X-Forefront-Antispam-Report: CIP:160.33.98.74; KIP:(null); UIP:(null); IPVD:NLI;
+	H:mail7.fw-bc.sony.com; RD:mail7.fw-bc.sony.com; EFVD:NLI
+Received-SPF: pass (mail33-am1: domain of am.sony.com designates 160.33.98.74
+	as permitted sender) client-ip=160.33.98.74;
+	envelope-from=tim.bird@am.sony.com; helo=mail7.fw-bc.sony.com ;
+	-bc.sony.com ; 
+Received: from mail33-am1 (localhost.localdomain [127.0.0.1]) by mail33-am1
+	(MessageSwitch) id 1312483922158466_2998;
+	Thu,  4 Aug 2011 18:52:02 +0000 (UTC)
+Received: from AM1EHSMHS006.bigfish.com (unknown [10.3.201.251])	by
+	mail33-am1.bigfish.com (Postfix) with ESMTP id 22DF21C4804B	for
+	<yocto@yoctoproject.org>; Thu,  4 Aug 2011 18:52:02 +0000 (UTC)
+Received: from mail7.fw-bc.sony.com (160.33.98.74) by AM1EHSMHS006.bigfish.com
+	(10.3.207.106) with Microsoft SMTP Server id 14.1.225.22;
+	Thu, 4 Aug 2011 18:52:01 +0000
+Received: from mail1x.sgo.in.sel.sony.com (mailx.sgo.in.sel.sony.com
+	[43.130.1.112])	by mail7.fw-bc.sony.com (Switch-3.4.2/Switch-3.3.2mp)
+	with
+	ESMTP id p74Iq0x1026359	for <yocto@yoctoproject.org>; Thu, 4 Aug 2011
+	18:52:01 GMT
+Received: from timdesk.am.sony.com ([43.135.148.222])	by
+	mail1x.sgo.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
+	p74Ipnmr016869	for <yocto@yoctoproject.org>;
+	Thu, 4 Aug 2011 18:51:50 GMT
+Message-ID: <4E3AEA40.8060200@am.sony.com>
+Date: Thu, 4 Aug 2011 11:51:44 -0700
+From: Tim Bird <tim.bird@am.sony.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.12) Gecko/20100907 Fedora/3.0.7-1.fc12 Thunderbird/3.0.7
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: prebuilt pacakages
+To: <yocto@yoctoproject.org>
+References: <4E39E30B.3080206@am.sony.com> <1522642.ppiasj8dqr@perseus>
+In-Reply-To: <1522642.ppiasj8dqr@perseus>
+X-OriginatorOrg: am.sony.com
+Subject: Re: Build failure on recent yocto download
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Todd Cooper <todd_cooper@yahoo.com>
+Reply-To: tim.bird@am.sony.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -55,58 +62,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Aug 2011 17:49:54 -0000
-Content-Type: multipart/alternative; boundary="0-1755967948-1312480201=:81774"
+X-List-Received-Date: Thu, 04 Aug 2011 18:52:06 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---0-1755967948-1312480201=:81774
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+On 08/03/2011 06:44 PM, Khem Raj wrote:
+> On Wednesday, August 03, 2011 05:08:43 PM Tim Bird wrote:
+>> |                  from cairo-scaled-font-private.h:45,
+>> |                  from cairoint.h:380,
+>> |
+>> |                  from cairo-arc.c:37:
+>> | cairo-mutex-impl-private.h:262:3: error: #error "XXX: No mutex
+>> | implementation found.  Cairo will not work with multiple
+>> | threads.  Define CAIRO_NO_MUTEX to 1 to acknowledge and accept this
+>> | limitation
+>> and compile cairo without thread-safety support."
+>>
+>> | In file included from cairo-mutex-type-private.h:45:0,
+>> |
+>> |                  from cairo-scaled-font-private.h:45,
+>> |                  from cairoint.h:380,
+>> |
+>> |                  from cairo-arc.c:37:
+>> | cairo-mutex-impl-private.h:271:30: error: expected '=', ',', ';', 'asm'
+>> | or '__attribute__' before 'cairo_recursive_mutex_impl_t' In file
+>> | included from cairo-scaled-font-private.h:45:0,
+>> |
+>> |                  from cairoint.h:380,
+>> |
+>> |                  from cairo-arc.c:37:
+>> | cairo-mutex-type-private.h:49:3: error: #error "CAIRO_MUTEX_IMPL_LOCK
+>> | not defined.  Check cairo-mutex-impl-private.h."
+>> | cairo-mutex-type-private.h:52:3: error: #error "CAIRO_MUTEX_IMPL_UNLOCK
+>> | not defined.  Check cairo-mutex-impl-private.h."
+>> | cairo-mutex-type-private.h:55:3: error: #error
+>> | "CAIRO_MUTEX_IMPL_NIL_INITIALIZER not defined.  Check
+>> | cairo-mutex-impl-private.h." cairo-mutex-type-private.h:139:3: error:
+>> | #error "CAIRO_MUTEX_IMPL_LOCK not defined"
+>> | cairo-mutex-type-private.h:142:3: error: #error
+>> | "CAIRO_MUTEX_IMPL_UNLOCK not defined" cairo-mutex-type-private.h:151:3:
+>> | error: #error "CAIRO_MUTEX_IMPL_NIL_INITIALIZER not defined"
+>> | cairo-mutex-type-private.h:161:28: error: expected '=', ',', ';', 'asm'
+>> | or '__attribute__' before 'cairo_mutex_t'
+>> | cairo-mutex-type-private.h:162:38: error: expected '=', ',', ';', 'asm'
+>> | or '__attribute__' before 'cairo_recursive_mutex_t' In file included
+>> | from cairoint.h:380:0,
+>> |
+>> |                  from cairo-arc.c:37:
+>> | cairo-scaled-font-private.h:108:5: error: expected
+>> | specifier-qualifier-list before 'cairo_mutex_t' In file included from
+>> | cairo-mutex-type-private.h:45:0,
+>> |
+>> |                  from cairo-scaled-font-private.h:45,
+>> |                  from cairoint.h:380,
+>> |
+>> |                  from cairo-base64-stream.c:39:
+>> | cairo-mutex-impl-private.h:262:3: error: #error "XXX: No mutex
+>> | implementation found.  Cairo will not work with multiple
+>> | threads.  Define CAIRO_NO_MUTEX to 1 to acknowledge and accept this
+>> | limitation
+>> and compile cairo without thread-safety support."
+> 
+> hmmm this error means you dont have libc headers installed properly.
+> Seems something is broken in your environment. Its probably using some tools 
+> from your build system which are not quite in line with what configure wanted
+> Can you post the config.log of cairo somewhere ?
 
-Would this be worth putting on the list of items wished for in the future?=
-=A0 =0A=0AIt sounds like the problem is difficult, but not impossible.=0A=
-=0A=0A=0A=0A>________________________________=0A>From: Richard Purdie <rich=
-ard.purdie@linuxfoundation.org>=0A>To: Todd Cooper <todd_cooper@yahoo.com>=
-=0A>Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>=0A>Sent: Thursday=
-, August 4, 2011 10:59 AM=0A>Subject: Re: [yocto] prebuilt pacakages=0A>=0A=
->On Thu, 2011-08-04 at 07:42 -0700, Todd Cooper wrote:=0A>> Is there any wa=
-y to make Yocto try to get prebuilt packages from known=0A>> repositories r=
-ather than trying to rebuild the world?=0A>=0A>The system supports a cache =
-of prebuilt objects in the form of the=0A>sstate data to accelerate build t=
-imes if nothing changes. It doesn't=0A>directly support using prebuilt pack=
-ages directly though as its a much=0A>harder problem to solve than you firs=
-t realise.=0A>=0A>A an example, given a package feed, its very hard to work=
- out library=0A>provision within that package feed or dependency naming.=0A=
->=0A>Cheers,=0A>=0A>Richard=0A>=0A>=0A>=0A>=0A>=0A>=0A>
+OK.  I tried it all again, this time with Yocto 5.0.1, and I get the same cairo
+build error.  I found the config log for this in:
+poky-5.0.1.build/tmp/work/armv5te-poky-linux-gnueabi/cairo-1.10.2-r0/temp
+log.do_configure.
 
---0-1755967948-1312480201=:81774
-Content-Type: text/html; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+I pasted it at:
+http://pastebin.com/z0QqgVaE
 
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:ti=
-mes new roman, new york, times, serif;font-size:12pt"><div><span>Would this=
- be worth putting on the list of items wished for in the future?&nbsp; <br>=
-</span></div><div><span>It sounds like the problem is difficult, but not im=
-possible.<br></span></div><div><br><blockquote style=3D"border-left: 2px so=
-lid rgb(16, 16, 255); margin-left: 5px; padding-left: 5px;"><div style=3D"f=
-ont-family: times new roman, new york, times, serif; font-size: 12pt;"><div=
- style=3D"font-family: times new roman, new york, times, serif; font-size: =
-12pt;"><font size=3D"2" face=3D"Arial"><hr size=3D"1"><b><span style=3D"fon=
-t-weight:bold;">From:</span></b> Richard Purdie &lt;richard.purdie@linuxfou=
-ndation.org&gt;<br><b><span style=3D"font-weight: bold;">To:</span></b> Tod=
-d Cooper &lt;todd_cooper@yahoo.com&gt;<br><b><span style=3D"font-weight: bo=
-ld;">Cc:</span></b> "yocto@yoctoproject.org" &lt;yocto@yoctoproject.org&gt;=
-<br><b><span
- style=3D"font-weight: bold;">Sent:</span></b> Thursday, August 4, 2011 10:=
-59 AM<br><b><span style=3D"font-weight: bold;">Subject:</span></b> Re: [yoc=
-to] prebuilt pacakages<br></font><br>On Thu, 2011-08-04 at 07:42 -0700, Tod=
-d Cooper wrote:<br>&gt; Is there any way to make Yocto try to get prebuilt =
-packages from known<br>&gt; repositories rather than trying to rebuild the =
-world?<br><br>The system supports a cache of prebuilt objects in the form o=
-f the<br>sstate data to accelerate build times if nothing changes. It doesn=
-'t<br>directly support using prebuilt packages directly though as its a muc=
-h<br>harder problem to solve than you first realise.<br><br>A an example, g=
-iven a package feed, its very hard to work out library<br>provision within =
-that package feed or dependency naming.<br><br>Cheers,<br><br>Richard<br><b=
-r><br><br><br><br><br></div></div></blockquote></div></div></body></html>
+The only thing that looks suspicious to me is:
 
---0-1755967948-1312480201=:81774--
+ERROR: ld.so: object 'libpseudo.so' from LD_PRELOAD cannot be preloaded: ignored.
+
+I don't know anything about how libpseudo.so is used, so I don't know if this is
+a big problem or not (but I fear host tool or lib contamination if Pseudo is not
+being used correctly.
+
+There's also this inability to link with pthread.
+> checking for cairo's pthread feature...
+> checking whether cairo's pthread feature could be enabled... no (can't link with -lpthread or -pthread)
+
+That sounds like it might be related to a missing mutex compile problem. ??
+
+And this line from the compile output seems to be the start of the problem:
+| cairo-mutex-impl-private.h:262:3: error: #error "XXX: No mutex implementation found.  Cairo will not work with multiple threads.  Define CAIRO_NO_MUTEX to 1 to acknowledge and accept this limitation
+and compile cairo without thread-safety support."
+
+How would I define CAIRO_NO_MUTEX, and rebuild, to check this out?
+
+
+Once again, I'm running this on Fedora 12, 64-bit system.  (But I would have expected any lib dependencies and configure
+to have been sandboxed from the host libs and environment).
+
+Thanks for any help.
+ -- Tim
+
+
+=============================
+Tim Bird
+Architecture Group Chair, CE Workgroup of the Linux Foundation
+Senior Staff Engineer, Sony Network Entertainment
+=============================
+
+
