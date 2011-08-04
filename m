@@ -1,19 +1,30 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4C83E011A7
-	for <yocto@yoctoproject.org>; Thu,  4 Aug 2011 06:03:16 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 04 Aug 2011 06:03:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,316,1309762800"; d="scan'208";a="37820731"
-Received: from unknown (HELO helios.ger.corp.intel.com) ([10.255.18.66])
-	by fmsmga001.fm.intel.com with ESMTP; 04 Aug 2011 06:03:15 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Thu,  4 Aug 2011 14:03:11 +0100
-Message-Id: <cover.1312462806.git.paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 1.7.4.1
-Subject: [PATCH 0/2] [meta-intel] Fix meta-intel BSPs for tune file changes
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (unknown [93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E756E011A7
+	for <yocto@yoctoproject.org>; Thu,  4 Aug 2011 06:11:54 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p74DC0LO001986;
+	Thu, 4 Aug 2011 14:12:00 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 01579-04; Thu,  4 Aug 2011 14:11:56 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p74DBr4l001980
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 4 Aug 2011 14:11:54 +0100
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <ac54aeb02b6b887ea6274a9f61ec6bf5214b2198.1312462806.git.paul.eggleton@linux.intel.com>
+References: <cover.1312462806.git.paul.eggleton@linux.intel.com>
+	<ac54aeb02b6b887ea6274a9f61ec6bf5214b2198.1312462806.git.paul.eggleton@linux.intel.com>
+Date: Thu, 04 Aug 2011 14:11:34 +0100
+Message-ID: <1312463494.2344.739.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/2] meta-sugarbay: update machine configuration for recent tune file changes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,30 +36,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Aug 2011 13:03:16 -0000
+X-List-Received-Date: Thu, 04 Aug 2011 13:11:55 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Two patches to fix "TUNE_ARCH unset" and "PACKAGE_ARCHS variable does not
-contain TUNE_PKGARCH" on the autobuilder for sugarbay and jasperforest.
+On Thu, 2011-08-04 at 14:03 +0100, Paul Eggleton wrote:
+> Require the tune file for x86_64, then TARGET_ARCH is set via the tune
+> file and TRANSLATED_TARGET_ARCH is set automatically in bitbake.conf.
+> 
+> Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+> ---
+>  meta-sugarbay/conf/machine/sugarbay.conf |    5 +++--
+>  1 files changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/meta-sugarbay/conf/machine/sugarbay.conf b/meta-sugarbay/conf/machine/sugarbay.conf
+> index 9450d97..9add1ca 100644
+> --- a/meta-sugarbay/conf/machine/sugarbay.conf
+> +++ b/meta-sugarbay/conf/machine/sugarbay.conf
+> @@ -4,8 +4,9 @@
+>  #@DESCRIPTION: Machine configuration for Sugar Bay systems
+>  # i.e. Sandy Bridge + Cougar Point
+>  
+> -TARGET_ARCH = "x86_64"
+> -PACKAGE_EXTRA_ARCHS = "x86 snb"
+> +require conf/machine/include/tune-x86_64.inc
+> +
+> +PACKAGE_EXTRA_ARCHS = "x86_64 snb"
+>  
+>  BASE_PACKAGE_ARCH="snb"
 
-The following changes since commit 567c3b6436b4cb9551c23845c15ab544542b5083:
+What difference is BASE_PACKAGE_ARCH or snb making in this case?
 
-  meta-crownbay: remove obsolete dir (2011-08-03 12:14:39 -0500)
+Cheers,
 
-are available in the git repository at:
-  git://git.yoctoproject.org/meta-intel-contrib paule/tune
-  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=paule/tune
+Richard
 
-Paul Eggleton (2):
-  meta-sugarbay: update machine configuration for recent tune file
-    changes
-  meta-jasperforest: update machine configuration for recent tune file
-    changes
-
- meta-jasperforest/conf/machine/jasperforest.conf |    5 +++--
- meta-sugarbay/conf/machine/sugarbay.conf         |    5 +++--
- 2 files changed, 6 insertions(+), 4 deletions(-)
-
--- 
-1.7.4.4
 
 
