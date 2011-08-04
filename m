@@ -1,53 +1,29 @@
-Return-Path: <B29882@freescale.com>
-Received: from DB3EHSOBE005.bigfish.com (db3ehsobe005.messaging.microsoft.com
-	[213.199.154.143])
-	by mx1.pokylinux.org (Postfix) with ESMTP id 108944C8009A
-	for <yocto@yoctoproject.org>; Wed,  3 Aug 2011 22:38:44 -0500 (CDT)
-Received: from mail116-db3-R.bigfish.com (10.3.81.252) by
-	DB3EHSOBE005.bigfish.com (10.3.84.25) with Microsoft SMTP Server id
-	14.1.225.22; Thu, 4 Aug 2011 03:38:43 +0000
-Received: from mail116-db3 (localhost.localdomain [127.0.0.1])	by
-	mail116-db3-R.bigfish.com (Postfix) with ESMTP id 0343311682A4;
-	Thu,  4 Aug 2011 03:38:44 +0000 (UTC)
-X-SpamScore: -15
-X-BigFish: VS-15(zz9371K936eK1432N98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3h)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
-	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail116-db3 (localhost.localdomain [127.0.0.1]) by mail116-db3
-	(MessageSwitch) id 1312429123933489_25988;
-	Thu,  4 Aug 2011 03:38:43 +0000 (UTC)
-Received: from DB3EHSMHS017.bigfish.com (unknown [10.3.81.252])	by
-	mail116-db3.bigfish.com (Postfix) with ESMTP id D763D69004F;
-	Thu,  4 Aug 2011 03:38:43 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by DB3EHSMHS017.bigfish.com
-	(10.3.87.117) with Microsoft SMTP Server (TLS) id 14.1.225.22;
-	Thu, 4 Aug 2011 03:38:43 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.56]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.01.0289.008; Wed, 3 Aug 2011 22:38:43 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Thread-Topic: [yocto] [PATCH] Update intltool to set perl shebang correctly
-	for installed tools
-Thread-Index: AQHMUlgBDgLj7K1p4EyusORbGBS77w==
-Date: Thu, 4 Aug 2011 03:38:42 +0000
-Message-ID: <CAEsOVNdO-s97vJCAMh=PX4C4u6NGMQ2LaCd3y--gBKU10hfYvA@mail.gmail.com>
-References: <1312389206-15422-1-git-send-email-msm@freescale.com>
-	<4E397AE8.5020707@mlbassoc.com>
-In-Reply-To: <4E397AE8.5020707@mlbassoc.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
-MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@openembedded.org" <openembedded-core@openembedded.org>
-Subject: Re: [PATCH] Update intltool to set perl shebang correctly for installed tools
+Return-Path: <galak@kernel.crashing.org>
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C42FE00725
+	for <yocto@yoctoproject.org>; Wed,  3 Aug 2011 23:59:44 -0700 (PDT)
+Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p744xHfc000704;
+	Wed, 3 Aug 2011 23:59:18 -0500
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Kumar Gala <galak@kernel.crashing.org>
+In-Reply-To: <1312384349.2344.677.camel@rex>
+Date: Wed, 3 Aug 2011 23:59:17 -0500
+Message-Id: <FB790EA9-69A9-4C7E-98BE-C21A7F256878@kernel.crashing.org>
+References: <B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A4B7@orsmsx501.amr.corp.intel.com>
+	<D778EEB2-3D41-4E3C-A27B-F725748E8BCC@kernel.crashing.org>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237913700F07@ORSMSX101.amr.corp.intel.com>
+	<39D3DACD-5A1F-4992-BB52-C581EAD4B17C@kernel.crashing.org>
+	<1312381376.2344.671.camel@rex>
+	<6A516D77-2A23-4163-BF82-2E05D67AC50D@kernel.crashing.org>
+	<1312384349.2344.677.camel@rex>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+X-Mailer: Apple Mail (2.1084)
+Cc: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Subject: Re: examples / docs on utilizing an external toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -56,29 +32,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Aug 2011 03:38:45 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <25B872EB6240C74AA775C961F44A9DF6@freescale.net>
+X-List-Received-Date: Thu, 04 Aug 2011 06:59:45 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 3, 2011 at 11:44 AM, Gary Thomas <gary@mlbassoc.com> wrote:
-> On 2011-08-03 10:33, Matthew McClintock wrote:
->>
->> Several installed scripts set the perl shebang that is too long
->> which can cause failures on certian older bash versions.
->
-> How does the change below correspond to this comment? =A0It's not
-> clear [at least to me] how changing that environment variable
-> affects shebang constructs. =A0Can you give a more thorough explanation?
 
-The scripts intltool-{update,etc} installed in sysroot end up having
-*really* long shebangs without this change. On older distros this
-causes the intltool scripts to just fail. intltools recipe itself will
-build and install fine. However, when a package that requires
-intltool's is being configured they will all fail withing invoking
-intltools.
+On Aug 3, 2011, at 10:12 AM, Richard Purdie wrote:
 
--M=
+> On Wed, 2011-08-03 at 09:50 -0500, Kumar Gala wrote:
+>> On Aug 3, 2011, at 9:22 AM, Richard Purdie wrote:
+>>=20
+>>> On Wed, 2011-08-03 at 09:04 -0500, Kumar Gala wrote:
+>>>> Bug submitted:
+>>>>=20
+>>>> http://bugzilla.pokylinux.org/show_bug.cgi?id=3D1323
+>>>>=20
+>>>> My question still stands even w/o it being in formal docs.
+>>>=20
+>>> FWIW, POKYMODE was replaced by TCMODE as part of the OE-Core =
+changes.
+>>> I'd be interested to know where we've missed the references to it =
+and
+>>> get to get those references fixed.
+>>=20
+>> Ok, but how does one use TCMODE?  :)
+>>=20
+>> is there an example around anywhere?
+>=20
+> I'll explain on the condition that someone actually documents this =
+;-).
+>=20
+> TCMODE determines which of the files in
+> meta/conf/distro/include/tcmode-* is used. It defaults to "default" =
+and
+> our default toolchain definition is in tcmode-default.inc.
+>=20
+> There is another example there which is "external-csl2008q3". As you =
+can
+> see from the tcmode-external-csl2008q3 file, it sets up the system to
+> use an external toolchain instead.
+>=20
+> So you can define one of these files in your layer and then the system
+> can select alternative toolchain configurations.
+>=20
+> Does that help? :)
+>=20
+> There is a similar TCLIBC variable which controls which libc is used
+> (eglibc or uclibc).
 
+Yes that helps.  So it looks as if today there is not a means to point =
+to SDK prebuilt toolchain via this means.
+
+- k=
 
