@@ -1,48 +1,39 @@
-Return-Path: <todd_cooper@yahoo.com>
-Received: from nm22-vm0.bullet.mail.bf1.yahoo.com
-	(nm22-vm0.bullet.mail.bf1.yahoo.com [98.139.212.126])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 54D04E011B3
-	for <yocto@yoctoproject.org>; Thu,  4 Aug 2011 07:42:25 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@yahoo.com;
-	x-dkim-adsp=none (insecure policy)
-Received: from [98.139.212.152] by nm22.bullet.mail.bf1.yahoo.com with NNFMP;
-	04 Aug 2011 14:42:33 -0000
-Received: from [98.139.212.199] by tm9.bullet.mail.bf1.yahoo.com with NNFMP;
-	04 Aug 2011 14:42:33 -0000
-Received: from [127.0.0.1] by omp1008.mail.bf1.yahoo.com with NNFMP;
-	04 Aug 2011 14:42:33 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 359101.38951.bm@omp1008.mail.bf1.yahoo.com
-Received: (qmail 61307 invoked by uid 60001); 4 Aug 2011 14:42:33 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1312468953; bh=asEkBwbjbSE/KEcWsk0F1zMpjIu1cS5lljNRUnK7YpY=;
-	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=hBfAL1QNf2tIX9TYeoQT0XqPsjUb13rbR/2Xyrqby64xgRXlglDZtakTZdFQ2cKrrQ6Eli+7F7bB3Sva9kqHSGKKN1w14cpSvPnXXChwY+4+08v8EwWbwMf0nmlrgA4GU7tML4F5AE1iYRTDV50cPSrksLmcINwtglffyh5Yieo=
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
-	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=iNWepagSL26GdsJFeuAMEdNB7sT5HhFgPtpAiIj1XJy1p80KjDsQbtmP4GYnWV/VIG20hUONRUaKCkUsXbQcpBTp5Zmzdp/TwFY8WkvcGUIvRWbxv4cNZzioQ01rUyfvPoay20MgcdNb1hYc6GpaRZqps0NWn/6AxnNw3cGVeMc=;
-X-YMail-OSG: XJtt60kVM1nDdiCjft4PBlKsKj0Fav2hvSRE0ZPW1LEH.gL
-	5ASHeKyVhkn0YWSTuoLhONQtazfliWDzc_sk6xXMmvilc5LKElsd6xPRAcgd
-	99SQdl_G2WiRVbwnvUrH_aogzLDT.JgeXQ8wba4FlO3V3WkhmSfi_B_ZBCJR
-	tZAOq_Hfs2Wq8qjIU2R6q7Rh54V2Ze7A4IsJfGumZLGKKzoA6Iz9PJMPJIzQ
-	fAnmeu2N.VppAd7eYv1737oPPcmjys0RQwn1mcbJ8VvRGl3L7FSiFQGEzY7L
-	Tse5Lm2wo42JKf6mq9R2gcccGY5ihHqjUP.u_ZJthINkJ1aTeGB7pCoXOoWo
-	xkxIHEIqzsU65GQo_JZGx52ZBzclVjBtv1RgxB_trxcyDMDqb2l5H5LVZAdQ
-	7WduEWSkfYYhmTc1M1dDiazpTylBDMwzBycev4b7l.gG_nHc-
-Received: from [209.104.237.170] by web161219.mail.bf1.yahoo.com via HTTP;
-	Thu, 04 Aug 2011 07:42:33 PDT
-X-Mailer: YahooMailWebService/0.8.113.313619
-Message-ID: <1312468953.58082.YahooMailNeo@web161219.mail.bf1.yahoo.com>
-Date: Thu, 4 Aug 2011 07:42:33 -0700 (PDT)
-From: Todd Cooper <todd_cooper@yahoo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-MIME-Version: 1.0
-Subject: prebuilt pacakages
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (unknown [93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 660A0E011B3
+	for <yocto@yoctoproject.org>; Thu,  4 Aug 2011 07:50:45 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p74EonMt002845;
+	Thu, 4 Aug 2011 15:50:49 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 02492-05; Thu,  4 Aug 2011 15:50:41 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p74EodcY002832
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 4 Aug 2011 15:50:39 +0100
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Kumar Gala <galak@kernel.crashing.org>
+In-Reply-To: <FB790EA9-69A9-4C7E-98BE-C21A7F256878@kernel.crashing.org>
+References: <B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A4B7@orsmsx501.amr.corp.intel.com>
+	<D778EEB2-3D41-4E3C-A27B-F725748E8BCC@kernel.crashing.org>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237913700F07@ORSMSX101.amr.corp.intel.com>
+	<39D3DACD-5A1F-4992-BB52-C581EAD4B17C@kernel.crashing.org>
+	<1312381376.2344.671.camel@rex>
+	<6A516D77-2A23-4163-BF82-2E05D67AC50D@kernel.crashing.org>
+	<1312384349.2344.677.camel@rex>
+	<FB790EA9-69A9-4C7E-98BE-C21A7F256878@kernel.crashing.org>
+Date: Thu, 04 Aug 2011 15:49:48 +0100
+Message-ID: <1312469410.14274.0.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Subject: Re: examples / docs on utilizing an external toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Todd Cooper <todd_cooper@yahoo.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -51,19 +42,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Aug 2011 14:42:27 -0000
-Content-Type: multipart/alternative; boundary="0-988574811-1312468953=:58082"
+X-List-Received-Date: Thu, 04 Aug 2011 14:50:45 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---0-988574811-1312468953=:58082
-Content-Type: text/plain; charset=us-ascii
+On Wed, 2011-08-03 at 23:59 -0500, Kumar Gala wrote: 
+> On Aug 3, 2011, at 10:12 AM, Richard Purdie wrote:
+> 
+> > On Wed, 2011-08-03 at 09:50 -0500, Kumar Gala wrote:
+> >> On Aug 3, 2011, at 9:22 AM, Richard Purdie wrote:
+> >> 
+> >>> On Wed, 2011-08-03 at 09:04 -0500, Kumar Gala wrote:
+> >>>> Bug submitted:
+> >>>> 
+> >>>> http://bugzilla.pokylinux.org/show_bug.cgi?id=1323
+> >>>> 
+> >>>> My question still stands even w/o it being in formal docs.
+> >>> 
+> >>> FWIW, POKYMODE was replaced by TCMODE as part of the OE-Core changes.
+> >>> I'd be interested to know where we've missed the references to it and
+> >>> get to get those references fixed.
+> >> 
+> >> Ok, but how does one use TCMODE?  :)
+> >> 
+> >> is there an example around anywhere?
+> > 
+> > I'll explain on the condition that someone actually documents this ;-).
+> > 
+> > TCMODE determines which of the files in
+> > meta/conf/distro/include/tcmode-* is used. It defaults to "default" and
+> > our default toolchain definition is in tcmode-default.inc.
+> > 
+> > There is another example there which is "external-csl2008q3". As you can
+> > see from the tcmode-external-csl2008q3 file, it sets up the system to
+> > use an external toolchain instead.
+> > 
+> > So you can define one of these files in your layer and then the system
+> > can select alternative toolchain configurations.
+> > 
+> > Does that help? :)
+> > 
+> > There is a similar TCLIBC variable which controls which libc is used
+> > (eglibc or uclibc).
+> 
+> Yes that helps.  So it looks as if today there is not a means to point
+> to SDK prebuilt toolchain via this means.
 
-Is there any way to make Yocto try to get prebuilt packages from known repositories rather than trying to rebuild the world?
+We have supported this in the past but it got messy and I'd really
+prefer people to use sstate for this.
 
--Todd
+You obviously can use the SDK toolchain as a prebuilt external toolchain
+though since its no different from any other external toolchain.
 
---0-988574811-1312468953=:58082
-Content-Type: text/html; charset=us-ascii
+Cheers,
 
-<html><body><div style="color:#000; background-color:#fff; font-family:times new roman, new york, times, serif;font-size:12pt"><div>Is there any way to make Yocto try to get prebuilt packages from known repositories rather than trying to rebuild the world?</div><div><br></div><div>-Todd<br></div></div></body></html>
+Richard 
 
---0-988574811-1312468953=:58082--
+
