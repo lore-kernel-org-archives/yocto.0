@@ -1,26 +1,33 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8344E00771
-	for <yocto@yoctoproject.org>; Fri,  5 Aug 2011 11:11:01 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p75IAuGk025631
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 5 Aug 2011 11:10:56 -0700 (PDT)
-Received: from [128.224.147.214] (128.224.147.214) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 5 Aug 2011 11:10:56 -0700
-Message-ID: <4E3C322F.4050302@windriver.com>
-Date: Fri, 5 Aug 2011 14:10:55 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11 ThunderBrowse/3.8
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EC20E011B5
+	for <yocto@yoctoproject.org>; Fri,  5 Aug 2011 14:52:44 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 05 Aug 2011 14:52:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,325,1309762800"; d="scan'208";a="35060057"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga002.jf.intel.com with ESMTP; 05 Aug 2011 14:52:53 -0700
+Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 5 Aug 2011 14:52:52 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.180]) by
+	ORSMSX105.amr.corp.intel.com ([169.254.4.170]) with mapi id
+	14.01.0323.003; Fri, 5 Aug 2011 14:52:52 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Technical Team - (Tuesday, August 09, 2011 8:00
+	AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+Thread-Index: AQHMU7oF+KDd1DtnRUaj85I40oauxA==
+Date: Fri, 5 Aug 2011 21:52:50 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A137625AF@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A02E3CE@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: Philip Balister <philip@balister.org>
-References: <cover.1312523399.git.jingdong.lu@windriver.com>	<4E3C2997.30503@gmail.com>
-	<4E3C2AAF.9030601@windriver.com> <4E3C2E8C.8090404@balister.org>
-In-Reply-To: <4E3C2E8C.8090404@balister.org>
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
-Subject: Re: [PATCH 0/1] meta/pandaboard: add pandaboard bsp
+Subject: Agenda: Yocto Technical Team - (Tuesday, August 09, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,135 +39,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Aug 2011 18:11:02 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 05 Aug 2011 21:52:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 11-08-05 01:55 PM, Philip Balister wrote:
-> On 08/05/2011 01:38 PM, Bruce Ashfield wrote:
->> On 11-08-05 01:34 PM, Khem Raj wrote:
->>> -----BEGIN PGP SIGNED MESSAGE-----
->>> Hash: SHA1
->>>
->>> On 08/04/2011 10:58 PM, jingdong.lu@windriver.com wrote:
->>>> From: Jingdong Lu<jingdong.lu@windriver.com>
->>>>
->>>> Add pandaboard bsp
->>>
->>> why not use meta-ti ?
->>
->> I'm hoping to not repeat all the discussions that we've had
->> around the beagle board here. Anything that applies to that
->> applies here.
->>
->> This is a reference BSP done by the Wind River folks on top
->> of the linux-yocto kernel. It is not intended to be a replacement
->> for any existing pandaboard efforts, but is intended to be used
->> as an example of an integrated board.
->
-> Would you mind re-summarizing the discussion? I know there has been a
-> lot of back and forth, and it seems like a summary would be helpful for
-> people who stopped following the discussion.
-
-Darren's the right person to give a proper summary, since
-he was driving our beagleboard work. But he's out on Jury
-duty at the moment, so we'll have to wait. I can attempt
-a quick summary here.
-
-The goal of a BSP like this as part of meta-yocto and linux-yocto
-are this for any BSP:
-
-Goals:
-1) <vendor/semi> needs meta-<vendor/semi> to maintain its role
-    as the definitive source for <vendor/semi> BSPs and drive 
-fragmentation down.
-2) The Yocto Project meta-yocto layer has a goal to provide
-    stand-alone BSPs that demonstrates the multi-architecture
-    features of the Yocto Project.
-
-To to this, we have the challenges:
-
-A) Using meta-<vendor/semi> with the Yocto Project
-B) Aligning on kernel versions
-C) Kernel policy definition and ownership
-D) Not detract from upstream-first efforts
-.. and more.
-
-So the meta-<foo> issues will be solved going forward with
-layer tooling, the kernel version alignment will never
-be solved completely but can be addressed via working with
-the right upstream and sources with the right process.
-
-So to get that kernel alignment, tooling, common feature set
-and have a set of BSPs that can share tests, results, support,
-etc, there is a need to do yocto integrations of identified
-BSPs. We've (largely) agreed to live with some repeated effort
-in the short term and recognize that what you see here is
-not intended to replace a community or vendor effort, but
-should be considered as a stepping stone and proof of
-concept. If the latest and greatest, bleeding edge is what
-people want, then the other meta-* layers are the way to go.
-
-I think that's enough for now, I tried to do the conversations
-justice and keep this short, so my apologies to anyone reading
-this if I missed something.
-
-Cheers,
-
-Bruce
+Agenda:
+=A0
+1. Opens collection - 5 min (Song)
+2. M3 release criteria review - 15 min (team)
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.1_Release_Criteria
+3. M4 plan & schedule - 15 min (Song)=20
+4. Opens - 10 min
+5. Action item Review - 5 min
+=A0
+* The team to review ALL bugs they own and do some estimation. Please put t=
+he estimation on the white board by next Thursday (8/4/11)
+* ScottR will follow up with Paul on doc auto-generation and revision inclu=
+sion in the doc. The goal is to have docs refer to the release?=20
+* Song will follow up with Tracey to make sure marketing planning happens b=
+etween milestones so that there is no disruption to the development schedul=
+e.
+=A0
 
 
+Conference details=20
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
+Participants:=20
+30
+Duration:=20
+60 minutes=20
+Participant passcode:=20
+49611427=20
+Dial-in number:=20
+1.972.995.7777=20
+US Toll Free number:=20
+1.877.561.6828=20
+BlackBerry users, click this link to join your conference as a chairperson:
+1.972.995.7777x67184230#
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x49611427#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
 
->
-> It is very confusing for many of us to see duplicate and or competing
-> BSP's.
->
-> Philip
->
->>
->> Cheers,
->>
->> Bruce
->>
->>>
->>>>
->>>> Jingdong Lu (1): pandaboard: add pandaboard bsp
->>>>
->>>> .../bsp/pandaboard/pandaboard-non_hardware.cfg | 30 ++
->>>> .../bsp/pandaboard/pandaboard-standard.scc | 7 +
->>>> .../cfg/kernel-cache/bsp/pandaboard/pandaboard.cfg | 346
->>>> ++++++++++++++++++++
->>>> .../cfg/kernel-cache/bsp/pandaboard/pandaboard.scc | 5 + 4 files
->>>> changed, 388 insertions(+), 0 deletions(-) create mode 100644
->>>> meta/cfg/kernel-cache/bsp/pandaboard/pandaboard-non_hardware.cfg
->>>> create mode 100644
->>>> meta/cfg/kernel-cache/bsp/pandaboard/pandaboard-standard.scc create
->>>> mode 100644 meta/cfg/kernel-cache/bsp/pandaboard/pandaboard.cfg
->>>> create mode 100644
->>>> meta/cfg/kernel-cache/bsp/pandaboard/pandaboard.scc
->>>>
->>>> _______________________________________________ yocto mailing list
->>>> yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
->>>
->>>
->>> - --
->>> - -Khem
->>> -----BEGIN PGP SIGNATURE-----
->>> Version: GnuPG v1.4.11 (GNU/Linux)
->>>
->>> iEYEARECAAYFAk48KZcACgkQuwUzVZGdMxSjEwCdHLqsMwcYEhAblghgJio7tJPK
->>> Sm8An2Xps8CntGIGV0bFxTJw/dIAL6pV
->>> =PeJ+
->>> -----END PGP SIGNATURE-----
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
+Local and Global Access Numbers=20
+
+
+Country=20
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277=20
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322=20
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877=20
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777=20
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777=20
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799=20
+From Kuala Lumpur dial 4264 3799=20
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177=20
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777=20
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998=20
+From Seoul dial 5606998=20
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363=20
+From Taipei dial 2241 1363=20
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001=20
+then enter 877 633 1123=20
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences=20
+First scheduled conference:=20
+Tue Jun 28, 2011
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 22, 2012, 10:40 AM CDT
 
 
