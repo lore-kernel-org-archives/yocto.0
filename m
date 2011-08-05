@@ -1,38 +1,27 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (unknown [93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A11C8E011B8
-	for <yocto@yoctoproject.org>; Fri,  5 Aug 2011 01:25:28 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p758PX21010192;
-	Fri, 5 Aug 2011 09:25:33 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 08615-06; Fri,  5 Aug 2011 09:25:29 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p758PORP010186
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Fri, 5 Aug 2011 09:25:26 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Kumar Gala <galak@kernel.crashing.org>
-In-Reply-To: <F2101BA1-133A-4FBB-9CB8-A4A85413233C@kernel.crashing.org>
-References: <B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A4B7@orsmsx501.amr.corp.intel.com>
-	<D778EEB2-3D41-4E3C-A27B-F725748E8BCC@kernel.crashing.org>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237913700F07@ORSMSX101.amr.corp.intel.com>
-	<39D3DACD-5A1F-4992-BB52-C581EAD4B17C@kernel.crashing.org>
-	<1312381376.2344.671.camel@rex>
-	<6A516D77-2A23-4163-BF82-2E05D67AC50D@kernel.crashing.org>
-	<1312384349.2344.677.camel@rex>
-	<FB790EA9-69A9-4C7E-98BE-C21A7F256878@kernel.crashing.org>
-	<1312469410.14274.0.camel@rex>
-	<F2101BA1-133A-4FBB-9CB8-A4A85413233C@kernel.crashing.org>
-Date: Fri, 05 Aug 2011 09:25:01 +0100
-Message-ID: <1312532701.14274.65.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Subject: Re: examples / docs on utilizing an external toolchain
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B01DE011BA
+	for <yocto@yoctoproject.org>; Fri,  5 Aug 2011 05:51:44 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p75CpkM6020565
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 5 Aug 2011 05:51:46 -0700 (PDT)
+Received: from [128.224.147.214] (128.224.147.214) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 5 Aug 2011 05:51:46 -0700
+Message-ID: <4E3BE761.6070407@windriver.com>
+Date: Fri, 5 Aug 2011 08:51:45 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11 ThunderBrowse/3.8
+MIME-Version: 1.0
+To: Kumar Gala <kumar.gala@freescale.com>
+References: <5EF017EC-CCFD-4040-9455-D022611ACD0E@freescale.com>
+In-Reply-To: <5EF017EC-CCFD-4040-9455-D022611ACD0E@freescale.com>
+Cc: "yocto@yoctoproject.org list" <yocto@yoctoproject.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: Use of git.pokylinux.org vs git.yoctoproject.org in kernel recipe.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,69 +33,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Aug 2011 08:25:29 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 05 Aug 2011 12:51:44 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2011-08-04 at 19:05 -0500, Kumar Gala wrote:
-> >>>>>> http://bugzilla.pokylinux.org/show_bug.cgi?id=1323
-> >>>>>> 
-> >>>>>> My question still stands even w/o it being in formal docs.
-> >>>>> 
-> >>>>> FWIW, POKYMODE was replaced by TCMODE as part of the OE-Core changes.
-> >>>>> I'd be interested to know where we've missed the references to it and
-> >>>>> get to get those references fixed.
-> >>>> 
-> >>>> Ok, but how does one use TCMODE?  :)
-> >>>> 
-> >>>> is there an example around anywhere?
-> >>> 
-> >>> I'll explain on the condition that someone actually documents this ;-).
-> >>> 
-> >>> TCMODE determines which of the files in
-> >>> meta/conf/distro/include/tcmode-* is used. It defaults to "default" and
-> >>> our default toolchain definition is in tcmode-default.inc.
-> >>> 
-> >>> There is another example there which is "external-csl2008q3". As you can
-> >>> see from the tcmode-external-csl2008q3 file, it sets up the system to
-> >>> use an external toolchain instead.
-> >>> 
-> >>> So you can define one of these files in your layer and then the system
-> >>> can select alternative toolchain configurations.
-> >>> 
-> >>> Does that help? :)
-> >>> 
-> >>> There is a similar TCLIBC variable which controls which libc is used
-> >>> (eglibc or uclibc).
-> >> 
-> >> Yes that helps.  So it looks as if today there is not a means to point
-> >> to SDK prebuilt toolchain via this means.
-> > 
-> > We have supported this in the past but it got messy and I'd really
-> > prefer people to use sstate for this.
-> > 
-> > You obviously can use the SDK toolchain as a prebuilt external toolchain
-> > though since its no different from any other external toolchain.
-> 
-> 
-> What got mess about it?  Seems like a poky built sdk toolchain should work as an external toolchain w/o too much issue.
+On 11-08-05 08:50 AM, Kumar Gala wrote:
+> In the linux-yocto_3.0.bb recipe we have:
+>
+> meta/recipes-kernel/linux/linux-yocto_3.0.bb:SRC_URI = "git://git.pokylinux.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
+>
+> Should this really be git.yoctoproject.org?
 
-When you have an external toolchain you have to consider things like
-packaging up the libc locales and generating the pkgdata information
-about shared libraries amongst other things. We therefore went down the
-route of shipping that information with the toolchain rather than
-generating it each time along with the package files (ipk/rpm/deb). It
-turns out to get quite ugly trying to track all the pieces bitbake
-generates and deal with all the corner cases (like it packaged with ipk
-but you want rpm).
+Yep, it should be! I'm sending a pull request for queue of kernel
+changes, so I'll toss this on top of the pile.
 
-sstate is designed to be able to handle all those pieces.
+Bruce
 
-If you have an external toolchain and don't mind regenerating all that
-stuff, its fine.
-
-Cheers,
-
-Richard
+>
+> [ I think the sites might be interchangeable, but seems like being consistent is good.  With the name of the recipe being yocto, and with the 2.6.34. and 2.6.37 kernel recipes ]
+>
+> ---
+>
+> There is a more general question if yoctoproject.org should be preferred over pokylinux.org
+>
+> - k
 
 
