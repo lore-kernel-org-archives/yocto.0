@@ -1,52 +1,28 @@
-Return-Path: <tim.bird@am.sony.com>
-Received: from ch1outboundpool.messaging.microsoft.com
-	(ch1ehsobe002.messaging.microsoft.com [216.32.181.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 767C2E011B7
-	for <yocto@yoctoproject.org>; Thu,  4 Aug 2011 16:40:08 -0700 (PDT)
-Received: from mail99-ch1-R.bigfish.com (216.32.181.171) by
-	CH1EHSOBE018.bigfish.com (10.43.70.68) with Microsoft SMTP Server id
-	14.1.225.22; Thu, 4 Aug 2011 23:40:16 +0000
-Received: from mail99-ch1 (localhost.localdomain [127.0.0.1])	by
-	mail99-ch1-R.bigfish.com (Postfix) with ESMTP id 6EF2E19F840A;
-	Thu,  4 Aug 2011 23:40:16 +0000 (UTC)
-X-SpamScore: -22
-X-BigFish: VPS-22(zzbb2dK9371K936eK1432N98dK4015Lzz1202hzzz2fh668h839h93fh61h)
-X-Spam-TCS-SCL: 0:0
-X-Forefront-Antispam-Report: CIP:160.33.98.74; KIP:(null); UIP:(null); IPVD:NLI;
-	H:mail7.fw-bc.sony.com; RD:mail7.fw-bc.sony.com; EFVD:NLI
-Received-SPF: pass (mail99-ch1: domain of am.sony.com designates 160.33.98.74
-	as permitted sender) client-ip=160.33.98.74;
-	envelope-from=tim.bird@am.sony.com; helo=mail7.fw-bc.sony.com ;
-	-bc.sony.com ; 
-Received: from mail99-ch1 (localhost.localdomain [127.0.0.1]) by mail99-ch1
-	(MessageSwitch) id 1312501216328474_5993;
-	Thu,  4 Aug 2011 23:40:16 +0000 (UTC)
-Received: from CH1EHSMHS034.bigfish.com (snatpool1.int.messaging.microsoft.com
-	[10.43.68.245])	by mail99-ch1.bigfish.com (Postfix) with ESMTP id
-	4BAD611B804F;	Thu,  4 Aug 2011 23:40:16 +0000 (UTC)
-Received: from mail7.fw-bc.sony.com (160.33.98.74) by CH1EHSMHS034.bigfish.com
-	(10.43.70.34) with Microsoft SMTP Server id 14.1.225.22;
-	Thu, 4 Aug 2011 23:40:10 +0000
-Received: from mail1x.sgo.in.sel.sony.com (mail2.sgo.in.sel.sony.com
-	[43.130.1.112])	by mail7.fw-bc.sony.com (Switch-3.4.2/Switch-3.3.2mp)
-	with ESMTP id p74Ne9rv030832;	Thu, 4 Aug 2011 23:40:10 GMT
-Received: from timdesk.am.sony.com ([43.135.148.222])	by
-	mail1x.sgo.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
-	p74Ndwk9026708;	Thu, 4 Aug 2011 23:39:59 GMT
-Message-ID: <4E3B2DC9.5050302@am.sony.com>
-Date: Thu, 4 Aug 2011 16:39:53 -0700
-From: Tim Bird <tim.bird@am.sony.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.12) Gecko/20100907 Fedora/3.0.7-1.fc12 Thunderbird/3.0.7
-MIME-Version: 1.0
-To: Joshua Lock <josh@linux.intel.com>
-References: <4E39E30B.3080206@am.sony.com> <1522642.ppiasj8dqr@perseus>	
-	<4E3AEA40.8060200@am.sony.com>
-	<1312489379.2135.20.camel@vorpal.jf.intel.com>
-In-Reply-To: <1312489379.2135.20.camel@vorpal.jf.intel.com>
-X-OriginatorOrg: am.sony.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Build failure on recent yocto download
+Return-Path: <galak@kernel.crashing.org>
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 193AFE011B7
+	for <yocto@yoctoproject.org>; Thu,  4 Aug 2011 17:05:36 -0700 (PDT)
+Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p7505clj017549;
+	Thu, 4 Aug 2011 19:05:38 -0500
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Kumar Gala <galak@kernel.crashing.org>
+In-Reply-To: <1312469410.14274.0.camel@rex>
+Date: Thu, 4 Aug 2011 19:05:40 -0500
+Message-Id: <F2101BA1-133A-4FBB-9CB8-A4A85413233C@kernel.crashing.org>
+References: <B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A4B7@orsmsx501.amr.corp.intel.com>
+	<D778EEB2-3D41-4E3C-A27B-F725748E8BCC@kernel.crashing.org>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237913700F07@ORSMSX101.amr.corp.intel.com>
+	<39D3DACD-5A1F-4992-BB52-C581EAD4B17C@kernel.crashing.org>
+	<1312381376.2344.671.camel@rex>
+	<6A516D77-2A23-4163-BF82-2E05D67AC50D@kernel.crashing.org>
+	<1312384349.2344.677.camel@rex>
+	<FB790EA9-69A9-4C7E-98BE-C21A7F256878@kernel.crashing.org>
+	<1312469410.14274.0.camel@rex>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+X-Mailer: Apple Mail (2.1084)
+Cc: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Subject: Re: examples / docs on utilizing an external toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,37 +34,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Aug 2011 23:40:09 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 05 Aug 2011 00:05:37 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 08/04/2011 01:22 PM, Joshua Lock wrote:
-> On Thu, 2011-08-04 at 11:51 -0700, Tim Bird wrote:
->> The only thing that looks suspicious to me is:
->>
->> ERROR: ld.so: object 'libpseudo.so' from LD_PRELOAD cannot be preloaded: ignored.
-> 
-> This is concerning and may cause problems later on. One possible factor
-> here is SELINUX. Do you have that enabled? We've tried to ensure the
-> system works with SELINUX but the policay may vary quite a bit from
-> Fedora 12 to 14 (where I know a build with SELINUX has run).
-I'm not running SELinux.  Another developer doing a build of 5.0.1
-on an Ubuntu 11.04 platform had no problem with the cairo build, so
-I'm going to guess it's my distro.
+>>>>>> http://bugzilla.pokylinux.org/show_bug.cgi?id=3D1323
+>>>>>>=20
+>>>>>> My question still stands even w/o it being in formal docs.
+>>>>>=20
+>>>>> FWIW, POKYMODE was replaced by TCMODE as part of the OE-Core =
+changes.
+>>>>> I'd be interested to know where we've missed the references to it =
+and
+>>>>> get to get those references fixed.
+>>>>=20
+>>>> Ok, but how does one use TCMODE?  :)
+>>>>=20
+>>>> is there an example around anywhere?
+>>>=20
+>>> I'll explain on the condition that someone actually documents this =
+;-).
+>>>=20
+>>> TCMODE determines which of the files in
+>>> meta/conf/distro/include/tcmode-* is used. It defaults to "default" =
+and
+>>> our default toolchain definition is in tcmode-default.inc.
+>>>=20
+>>> There is another example there which is "external-csl2008q3". As you =
+can
+>>> see from the tcmode-external-csl2008q3 file, it sets up the system =
+to
+>>> use an external toolchain instead.
+>>>=20
+>>> So you can define one of these files in your layer and then the =
+system
+>>> can select alternative toolchain configurations.
+>>>=20
+>>> Does that help? :)
+>>>=20
+>>> There is a similar TCLIBC variable which controls which libc is used
+>>> (eglibc or uclibc).
+>>=20
+>> Yes that helps.  So it looks as if today there is not a means to =
+point
+>> to SDK prebuilt toolchain via this means.
+>=20
+> We have supported this in the past but it got messy and I'd really
+> prefer people to use sstate for this.
+>=20
+> You obviously can use the SDK toolchain as a prebuilt external =
+toolchain
+> though since its no different from any other external toolchain.
 
-I changed to building poky-image-minimal (GUI is not needed for
-what I'm doing at the moment), and it built, successfully, in
-about 30 seconds.  99% of what was needed was already built.
-The system booted in qemuarm, and I plan to do some more testing
-of the runtime in the next little bit.
 
-Thanks, all, for the help.
- -- Tim
+What got mess about it?  Seems like a poky built sdk toolchain should =
+work as an external toolchain w/o too much issue.
 
-=============================
-Tim Bird
-Architecture Group Chair, CE Workgroup of the Linux Foundation
-Senior Staff Engineer, Sony Network Entertainment
-=============================
-
+- k=
 
