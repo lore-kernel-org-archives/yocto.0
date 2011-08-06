@@ -1,28 +1,29 @@
-Return-Path: <song.liu@intel.com>
+Return-Path: <jessica.zhang@intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CB0AE011C0
-	for <yocto@yoctoproject.org>; Fri,  5 Aug 2011 17:31:00 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 05 Aug 2011 17:31:07 -0700
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC15DE011C3
+	for <yocto@yoctoproject.org>; Fri,  5 Aug 2011 23:13:38 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 05 Aug 2011 23:13:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,326,1309762800"; d="scan'208,217";a="36359838"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga002.fm.intel.com with ESMTP; 05 Aug 2011 17:31:07 -0700
-Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 5 Aug 2011 17:31:07 -0700
+X-IronPort-AV: E=Sophos;i="4.67,327,1309762800"; d="scan'208,217";a="38500623"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by fmsmga001.fm.intel.com with ESMTP; 05 Aug 2011 23:13:44 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 5 Aug 2011 23:13:44 -0700
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.180]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.170]) with mapi id
-	14.01.0323.003; Fri, 5 Aug 2011 17:31:07 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>, "yocto@yoctoproject.org"
+	ORSMSX102.amr.corp.intel.com ([169.254.1.81]) with mapi id
+	14.01.0323.003; Fri, 5 Aug 2011 23:13:44 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: "Liu, Song" <song.liu@intel.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
 Thread-Topic: M4 is bug fixing and stabilization milestone
-Thread-Index: AcxTizr6u4qI28tUQX2Hv6X5/wkGMAAQ8KJw
-Date: Sat, 6 Aug 2011 00:31:07 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A13763778@ORSMSX101.amr.corp.intel.com>
+Thread-Index: AcxTizr6u4qI28tUQX2Hv6X5/wkGMAAQ8KJwAAvXcLA=
+Date: Sat, 6 Aug 2011 06:13:43 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C13709615@ORSMSX101.amr.corp.intel.com>
 References: <C6510F6D410BB64A8C15398EDC6B847C13707160@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C13707160@ORSMSX101.amr.corp.intel.com>
+	<7E680CB2A76BB8438D08CF13C09FC53A13763778@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A13763778@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -40,25 +41,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 Aug 2011 00:31:00 -0000
+X-List-Received-Date: Sat, 06 Aug 2011 06:13:39 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A13763778ORSMSX101amrcor_"
+	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C13709615ORSMSX101amrcor_"
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A13763778ORSMSX101amrcor_
+--_000_C6510F6D410BB64A8C15398EDC6B847C13709615ORSMSX101amrcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Song,
+
+
+
+Thanks for pointing the white board info out.
+
+
+
+684 is med enhancement, in general,  people should focus on bug fixing.  En=
+hancements will be pushed out for post 1.1 unless people has no bug to work=
+ on and has bandwidth to work on enhancement.
+
+932 is waiting for upstream, I don't think that should impact the bug prior=
+ity but may impact whether the bug can be resolved in M4.
+
+
+
+Thanks,
+
+Jessica
+
+From: Liu, Song
+Sent: Friday, August 05, 2011 5:31 PM
+To: Zhang, Jessica; yocto@yoctoproject.org
+Subject: RE: M4 is bug fixing and stabilization milestone
+
+
 
 Jessica, the following 2 bugs have comments in the whiteboard asking not to=
  include them in 1.1 or lower the priority to low. I'm not sure if you guys=
  missed those or do not agree with the owners. Would you please double chec=
 k them?
 
+
+
 684
+
 932
 
+
+
 Thanks,
+
 Song
+
+
 
 From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
 ] On Behalf Of Zhang, Jessica
@@ -66,16 +103,23 @@ Sent: Friday, August 05, 2011 9:18 AM
 To: yocto@yoctoproject.org
 Subject: [yocto] M4 is bug fixing and stabilization milestone
 
+
+
 Hi All,
+
+
 
 As we marching into our final milestone M4, which is bug fixing and stabili=
 zation,  the bug triage team did a bug scrub on the medium+low bugs (since =
 we've been closely monitoring the high and major bugs) + the new multilib b=
 ugs to set a correct target for the bugs.
 
+
+
 We urge people to please start working on their bugs since bug fixing is as=
  important as feature implementation as to ensure a successful release.  He=
 re're couple guidelines that the bug triage team want to call out:
+
 
 
 1.       Please use the whiteboard field to update your bug status between =
@@ -86,6 +130,8 @@ pment, patch out for review, etc.
 re must be resolved for milestone.  Medium bugs should be resolved by relea=
 se.  And once we entered RC build phase.  To ensure stability, in general w=
 e will stop accepting medium bug fixes into the release branch.
+
+
 
 Here's a link to the list of 1.1 bugs(http://bugzilla.pokylinux.org/buglist=
 .cgi?query_format=3Dadvanced&bug_status=3DNEW&bug_status=3DACCEPTED&bug_sta=
@@ -100,18 +146,25 @@ lestone=3D1.1&target_milestone=3D1.1%20M1&target_milestone=3D1.1%20M2&targe=
 t_milestone=3D1.1%20M3&target_milestone=3D1.1%20M4&target_milestone=3DQ1&ta=
 rget_milestone=3DQ2&target_milestone=3DQ3&target_milestone=3DQ4).%20%20>
 
+
+
 Here's a link to the 1.1 RC build schedules (https://wiki.yoctoproject.org/=
 wiki/Yocto_1.1_Schedule#M4_.28Aug_15_to_Oct_6_--_Stabilize_Complete_Aug_29.=
 2C_Release_Complete_Oct_3.29<https://wiki.yoctoproject.org/wiki/Yocto_1.1_S=
 chedule%23M4_.28Aug_15_to_Oct_6_--_Stabilize_Complete_Aug_29.2C_Release_Com=
 plete_Oct_3.29>), so you can plan your bugs' fixes accordingly.
 
+
+
 Thanks for your hard works and continuous contributions to the Yocto Projec=
 t.
 
+
+
 Jessica
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A13763778ORSMSX101amrcor_
+
+--_000_C6510F6D410BB64A8C15398EDC6B847C13709615ORSMSX101amrcor_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -198,6 +251,10 @@ span.EmailStyle18
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
 span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle20
 	{mso-style-type:personal-reply;
 	font-family:"Calibri","sans-serif";
 	color:#1F497D;}
@@ -264,6 +321,43 @@ ul
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Song,<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Thanks for pointing th=
+e white board info out.&nbsp;
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">684 is med enhancement=
+, in general, &nbsp;people should focus on bug fixing.&nbsp; Enhancements w=
+ill be pushed out for post 1.1 unless people has no bug to work on and has =
+bandwidth to work on enhancement.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">932 is waiting for ups=
+tream, I don&#8217;t think that should impact the bug priority but may impa=
+ct whether the bug can be resolved in M4.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Thanks,<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Jessica<o:p></o:p></sp=
+an></p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Liu, Son=
+g
+<br>
+<b>Sent:</b> Friday, August 05, 2011 5:31 PM<br>
+<b>To:</b> Zhang, Jessica; yocto@yoctoproject.org<br>
+<b>Subject:</b> RE: M4 is bug fixing and stabilization milestone<o:p></o:p>=
+</span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Jessica, the following=
  2 bugs have comments in the whiteboard asking not to include them in 1.1 o=
 r lower the priority to low. I&#8217;m not sure if you guys missed those or=
@@ -361,4 +455,4 @@ ons to the Yocto Project.<o:p></o:p></p>
 </body>
 </html>
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A13763778ORSMSX101amrcor_--
+--_000_C6510F6D410BB64A8C15398EDC6B847C13709615ORSMSX101amrcor_--
