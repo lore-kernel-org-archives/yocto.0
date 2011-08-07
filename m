@@ -1,26 +1,26 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BF6FE011C9
-	for <yocto@yoctoproject.org>; Sat,  6 Aug 2011 19:47:14 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p772lKjQ017374
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sat, 6 Aug 2011 19:47:20 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.20.186) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Sat, 6 Aug 2011 19:47:20 -0700
-Message-ID: <4E3DFCB7.9050305@windriver.com>
-Date: Sat, 6 Aug 2011 22:47:19 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.18) Gecko/20110616 Thunderbird/3.1.11
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18F32E011C7
+	for <yocto@yoctoproject.org>; Sun,  7 Aug 2011 11:11:04 -0700 (PDT)
+Received: from mail-yw0-f52.google.com ([209.85.213.52])
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 07 Aug 2011 11:11:12 -0700
+Received: by ywb5 with SMTP id 5so5475414ywb.25
+	for <yocto@yoctoproject.org>; Sun, 07 Aug 2011 11:11:11 -0700 (PDT)
 MIME-Version: 1.0
-To: Philip Balister <philip@balister.org>
-References: <cover.1312523399.git.jingdong.lu@windriver.com>	<4E3C2997.30503@gmail.com>	<4E3C2AAF.9030601@windriver.com>
-	<4E3C2E8C.8090404@balister.org> <4E3C322F.4050302@windriver.com>
-In-Reply-To: <4E3C322F.4050302@windriver.com>
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
-Subject: Re: [PATCH 0/1] meta/pandaboard: add pandaboard bsp
+Received: by 10.236.145.8 with SMTP id o8mr4251371yhj.399.1312740670595; Sun,
+	07 Aug 2011 11:11:10 -0700 (PDT)
+Received: by 10.236.95.145 with HTTP; Sun, 7 Aug 2011 11:11:10 -0700 (PDT)
+In-Reply-To: <4E3DCC44.6050904@linux.intel.com>
+References: <4E3D86A2.9080802@linux.intel.com>
+	<4E3DCC44.6050904@linux.intel.com>
+Date: Sun, 7 Aug 2011 11:11:10 -0700
+Message-ID: <CAPhnLPBYMtEy-ny0Yo+QMHWU7chbk2zj4xG-rC1gqpGYMASTqA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Saul Wold <sgw@linux.intel.com>
+Cc: "Purdie, Richard" <richard.purdie@intel.com>, "Yan,
+	Xiaofeng" <Xiaofeng.Yan@windriver.com>,
+	Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: 3 Failures in RC3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,154 +32,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 07 Aug 2011 02:47:14 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 07 Aug 2011 18:11:04 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 11-08-05 2:10 PM, Bruce Ashfield wrote:
-> On 11-08-05 01:55 PM, Philip Balister wrote:
->> On 08/05/2011 01:38 PM, Bruce Ashfield wrote:
->>> On 11-08-05 01:34 PM, Khem Raj wrote:
->>>> -----BEGIN PGP SIGNED MESSAGE-----
->>>> Hash: SHA1
->>>>
->>>> On 08/04/2011 10:58 PM, jingdong.lu@windriver.com wrote:
->>>>> From: Jingdong Lu<jingdong.lu@windriver.com>
->>>>>
->>>>> Add pandaboard bsp
->>>>
->>>> why not use meta-ti ?
->>>
->>> I'm hoping to not repeat all the discussions that we've had
->>> around the beagle board here. Anything that applies to that
->>> applies here.
->>>
->>> This is a reference BSP done by the Wind River folks on top
->>> of the linux-yocto kernel. It is not intended to be a replacement
->>> for any existing pandaboard efforts, but is intended to be used
->>> as an example of an integrated board.
+On Sat, Aug 6, 2011 at 4:20 PM, Saul Wold <sgw@linux.intel.com> wrote:
+> On 08/06/2011 11:23 AM, Saul Wold wrote:
 >>
->> Would you mind re-summarizing the discussion? I know there has been a
->> lot of back and forth, and it seems like a summary would be helpful for
->> people who stopped following the discussion.
->
-> Darren's the right person to give a proper summary, since
-> he was driving our beagleboard work. But he's out on Jury
-> duty at the moment, so we'll have to wait. I can attempt
-> a quick summary here.
->
-> The goal of a BSP like this as part of meta-yocto and linux-yocto
-> are this for any BSP:
->
-> Goals:
-> 1) <vendor/semi> needs meta-<vendor/semi> to maintain its role
-> as the definitive source for <vendor/semi> BSPs and drive fragmentation
-> down.
-> 2) The Yocto Project meta-yocto layer has a goal to provide
-> stand-alone BSPs that demonstrates the multi-architecture
-> features of the Yocto Project.
->
-> To to this, we have the challenges:
->
-> A) Using meta-<vendor/semi> with the Yocto Project
-> B) Aligning on kernel versions
-> C) Kernel policy definition and ownership
-> D) Not detract from upstream-first efforts
-> .. and more.
->
-> So the meta-<foo> issues will be solved going forward with
-> layer tooling, the kernel version alignment will never
-> be solved completely but can be addressed via working with
-> the right upstream and sources with the right process.
->
-> So to get that kernel alignment, tooling, common feature set
-> and have a set of BSPs that can share tests, results, support,
-> etc, there is a need to do yocto integrations of identified
-> BSPs. We've (largely) agreed to live with some repeated effort
-> in the short term and recognize that what you see here is
-> not intended to replace a community or vendor effort, but
-> should be considered as a stepping stone and proof of
-> concept. If the latest and greatest, bleeding edge is what
-> people want, then the other meta-* layers are the way to go.
-
-I was thinking about this point over the weekend, and I realized
-that it may not have been clear that I'm talking largely about
-the kernel here. Not all the associated userspace/config, etc
-that we'd consider as part of a complete solution. Obviously
-any kernel tree can support multiple boards, and what we have
-here is an example against the 2.6.37 yocto kernel tree and
-kernel feature set.
-
-Cheers,
-
-Bruce
-
->
-> I think that's enough for now, I tried to do the conversations
-> justice and keep this short, so my apologies to anyone reading
-> this if I missed something.
->
-> Cheers,
->
-> Bruce
->
->
->
+>> Folks,
 >>
->> It is very confusing for many of us to see duplicate and or competing
->> BSP's.
+>> We currently have 3 failures on the RC3 build for M3. They are all
+>> related to LSB builds. If you are on the TO: line please review your
+>> issues as we need a prompt fix.
 >>
->> Philip
+>> 1348: Qt3 Fails to build for ARM LSB
 >>
->>>
->>> Cheers,
->>>
->>> Bruce
->>>
->>>>
->>>>>
->>>>> Jingdong Lu (1): pandaboard: add pandaboard bsp
->>>>>
->>>>> .../bsp/pandaboard/pandaboard-non_hardware.cfg | 30 ++
->>>>> .../bsp/pandaboard/pandaboard-standard.scc | 7 +
->>>>> .../cfg/kernel-cache/bsp/pandaboard/pandaboard.cfg | 346
->>>>> ++++++++++++++++++++
->>>>> .../cfg/kernel-cache/bsp/pandaboard/pandaboard.scc | 5 + 4 files
->>>>> changed, 388 insertions(+), 0 deletions(-) create mode 100644
->>>>> meta/cfg/kernel-cache/bsp/pandaboard/pandaboard-non_hardware.cfg
->>>>> create mode 100644
->>>>> meta/cfg/kernel-cache/bsp/pandaboard/pandaboard-standard.scc create
->>>>> mode 100644 meta/cfg/kernel-cache/bsp/pandaboard/pandaboard.cfg
->>>>> create mode 100644
->>>>> meta/cfg/kernel-cache/bsp/pandaboard/pandaboard.scc
->>>>>
->>>>> _______________________________________________ yocto mailing list
->>>>> yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
->>>>
->>>>
->>>> - --
->>>> - -Khem
->>>> -----BEGIN PGP SIGNATURE-----
->>>> Version: GnuPG v1.4.11 (GNU/Linux)
->>>>
->>>> iEYEARECAAYFAk48KZcACgkQuwUzVZGdMxSjEwCdHLqsMwcYEhAblghgJio7tJPK
->>>> Sm8An2Xps8CntGIGV0bFxTJw/dIAL6pV
->>>> =PeJ+
->>>> -----END PGP SIGNATURE-----
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
+>> 1349: Shared State Information gets lost for Mips FSTests
+>> I am trying to reproduce this on the Autobuilder
+>>
+> I am still working on reproducing this one, might be autobuilder related as
+> my local autobuilder build seems to be OK right now.
+> I have 2 sets of sstate for fstests, which may mean that something is
+> different between the poky and poky-lsb builds.
 >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> On the autobuilder, the sstate directory was empty, so I can't verify
+> short of restarting the build again.
 
+Look at http://autobuilder.yoctoproject.org/nightly/CURRENT/sstate-cache
+
+That is the saved sstate for that build.
+
+>
+>> 1450: ccache directory does not get created correct
+>
+> oops 1350 is the correct bugid!
+>
+>> I can reproduce this one very easily by building, saving the
+>> sstate-cache directory and then building again with a clean tmp
+>> directory. The ccache/x86-64-poky-linux directory does not get created
+>> and the kernel-configme task fail during the HOSTCC execution.
+>>
+> I have a fix for this one, in MUT and oe-contrib/sgw/stage.
+>
+
+Is this also what is occurring during the meta-intel builds?
+
+>> Please take a look or if you know of these issues, please let me know.
+>>
+>> Thanks
+>>
+>
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
