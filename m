@@ -1,21 +1,20 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 562D7E011DA
-	for <yocto@yoctoproject.org>; Tue,  9 Aug 2011 21:18:20 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 09 Aug 2011 21:18:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,348,1309762800"; d="scan'208";a="36236755"
-Received: from unknown (HELO envy.home) ([10.255.14.241])
-	by orsmga002.jf.intel.com with ESMTP; 09 Aug 2011 21:18:29 -0700
-Message-ID: <4E420695.4030804@linux.intel.com>
-Date: Tue, 09 Aug 2011 21:18:29 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:5.0) Gecko/20110707 Thunderbird/5.0
-MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: linux-yocto_3.0: pull powerpc compile fix for -0s in BOOTFLAGS
+Return-Path: <galak@kernel.crashing.org>
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF700E011DA
+	for <yocto@yoctoproject.org>; Tue,  9 Aug 2011 21:24:51 -0700 (PDT)
+Received: from [IPv6:::1] (localhost.localdomain [127.0.0.1])
+	by gate.crashing.org (8.14.1/8.13.8) with ESMTP id p7A4OuBv027763;
+	Tue, 9 Aug 2011 23:24:57 -0500
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Kumar Gala <galak@kernel.crashing.org>
+In-Reply-To: <4E420695.4030804@linux.intel.com>
+Date: Tue, 9 Aug 2011 23:24:57 -0500
+Message-Id: <DFB04F62-E333-4697-9967-8DBE77F6420B@kernel.crashing.org>
+References: <4E420695.4030804@linux.intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+X-Mailer: Apple Mail (2.1084)
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: linux-yocto_3.0: pull powerpc compile fix for -0s in BOOTFLAGS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,25 +26,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Aug 2011 04:18:20 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 10 Aug 2011 04:24:52 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Bruce,
 
-The following patch is needed for qemuppc and fsl-mpc8315e-rdb (same
-reasons as before). Can you pull this in from the 2.6.37 yocto tree?
+On Aug 9, 2011, at 11:18 PM, Darren Hart wrote:
 
-commit 5ff609967ffe87c49d534d7861a7e0b150517726
-Author: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date:   Thu Oct 14 16:38:00 2010 -0400
+> Bruce,
+>=20
+> The following patch is needed for qemuppc and fsl-mpc8315e-rdb (same
+> reasons as before). Can you pull this in from the 2.6.37 yocto tree?
+>=20
+> commit 5ff609967ffe87c49d534d7861a7e0b150517726
+> Author: Bruce Ashfield <bruce.ashfield@windriver.com>
+> Date:   Thu Oct 14 16:38:00 2010 -0400
+>=20
+>    powerpc/boot: remove -Os from BOOTFLAGS
+>=20
+> Thanks,
 
-    powerpc/boot: remove -Os from BOOTFLAGS
+Before we do this I have a query about default toolchain?  I just posted =
+a patch that should make this NOT needed if we utilize gcc-4.6
 
-Thanks,
+So wondering what the feeling was about a fix to kernel tree needed for =
+one version of toolchain and not another?
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+- k=
 
