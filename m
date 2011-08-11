@@ -1,25 +1,25 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70A10E011BC
-	for <yocto@yoctoproject.org>; Thu, 11 Aug 2011 06:53:53 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC4F3E011BC
+	for <yocto@yoctoproject.org>; Thu, 11 Aug 2011 08:00:17 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7BDs2Vm012544
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7BF0OvO023634
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 11 Aug 2011 06:54:02 -0700 (PDT)
+	Thu, 11 Aug 2011 08:00:24 -0700 (PDT)
 Received: from [128.224.147.214] (128.224.147.214) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 11 Aug 2011 06:54:02 -0700
-Message-ID: <4E43DEF8.5050704@windriver.com>
-Date: Thu, 11 Aug 2011 09:54:00 -0400
+	Thu, 11 Aug 2011 08:00:24 -0700
+Message-ID: <4E43EE86.9020407@windriver.com>
+Date: Thu, 11 Aug 2011 11:00:22 -0400
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
 	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11 ThunderBrowse/3.8
 MIME-Version: 1.0
 To: Darren Hart <dvhart@linux.intel.com>
-References: <cover.1313049765.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1313049765.git.dvhart@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/1][linux-yocto-3.0:routerstationpro] gpio Kconfig fix
+References: <4E438401.6010001@linux.intel.com>
+In-Reply-To: <4E438401.6010001@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [linux-yocto][PATCH] MIPS: ARC: Fix build of firmware library on
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,38 +31,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Aug 2011 13:53:53 -0000
+X-List-Received-Date: Thu, 11 Aug 2011 15:00:18 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 11-08-11 04:22 AM, Darren Hart wrote:
-> The following fix addresses a superfluous endif introduced by the patch
-> adding the gpio support for the nxp_74hc153. Applies to
-> yocto/standard/routerstationpro.
+On 11-08-11 03:25 AM, Darren Hart wrote:
+> commit 4f55fd752fb4770a354dd2401d5043c98236cc29 upstream
 >
-> A patch is included in my meta series to update the routerstationpro.scc
-> with this patch.
-> The following changes since commit 022556dea477e50b3e09140e1f2e328901b3664c:
+> Signed-off-by: Ralf Baechle<ralf@linux-mips.org>
+>
+> [applied to linux-yocto standard/base]
 
-Looks like a forward port artifact. Good find. Merging
-this now.
-
-Cheers,
+Merged. Will be part of the pull request I'm preparing now.
 
 Bruce
 
 >
->    Merge branch 'yocto/standard/base' into yocto/standard/routerstationpro (2011-08-10 09:59:50 -0400)
+> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
 >
-> are available in the git repository at:
+> ---
+>   arch/mips/include/asm/smp-ops.h |    2 ++
+>   1 files changed, 2 insertions(+), 0 deletions(-)
 >
->   git://git.kernel.org/pub/scm/linux/kernel/git/dvhart/yocto/linux-yocto-3.0.git  dvhart/yocto/standard/routerstationpro
+> diff --git a/arch/mips/include/asm/smp-ops.h
+> b/arch/mips/include/asm/smp-ops.h
+> index 48b03ff..ef2a804 100644
+> --- a/arch/mips/include/asm/smp-ops.h
+> +++ b/arch/mips/include/asm/smp-ops.h
+> @@ -11,6 +11,8 @@
+>   #ifndef __ASM_SMP_OPS_H
+>   #define __ASM_SMP_OPS_H
 >
-> Darren Hart (1):
->    routerstationpro: remove superfluous endif in gpio Kconfig
+> +#include<linux/errno.h>
+> +
+>   #ifdef CONFIG_SMP
 >
->   drivers/gpio/Kconfig |    2 --
->   1 files changed, 0 insertions(+), 2 deletions(-)
->
+>   #include<linux/cpumask.h>
 
 
