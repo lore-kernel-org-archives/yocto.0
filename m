@@ -1,21 +1,20 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2ACAE006AB
-	for <yocto@yoctoproject.org>; Thu, 11 Aug 2011 00:25:57 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 11 Aug 2011 00:26:07 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B278EE006AB
+	for <yocto@yoctoproject.org>; Thu, 11 Aug 2011 01:21:55 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 11 Aug 2011 01:22:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,355,1309762800"; d="scan'208";a="37353374"
-Received: from unknown (HELO envy.home) ([10.255.14.201])
-	by azsmga001.ch.intel.com with ESMTP; 11 Aug 2011 00:25:55 -0700
-Message-ID: <4E438401.6010001@linux.intel.com>
-Date: Thu, 11 Aug 2011 00:25:53 -0700
+X-IronPort-AV: E=Sophos;i="4.67,355,1309762800"; d="scan'208";a="38080958"
+Received: from unknown (HELO localhost) ([10.255.14.201])
+	by fmsmga002.fm.intel.com with ESMTP; 11 Aug 2011 01:22:04 -0700
 From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:5.0) Gecko/20110707 Thunderbird/5.0
-MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: [linux-yocto][PATCH] MIPS: ARC: Fix build of firmware library on
+To: yocto@yoctoproject.org,
+	bruce.ashfield@windriver.com
+Date: Thu, 11 Aug 2011 01:22:00 -0700
+Message-Id: <cover.1313049765.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.6
+Subject: [PATCH 0/1][linux-yocto-3.0:routerstationpro] gpio Kconfig fix
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,40 +26,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Aug 2011 07:25:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 11 Aug 2011 08:21:55 -0000
 
-commit 4f55fd752fb4770a354dd2401d5043c98236cc29 upstream
+The following fix addresses a superfluous endif introduced by the patch
+adding the gpio support for the nxp_74hc153. Applies to
+yocto/standard/routerstationpro.
 
-Signed-off-by: Ralf Baechle <ralf@linux-mips.org>
+A patch is included in my meta series to update the routerstationpro.scc
+with this patch.
+The following changes since commit 022556dea477e50b3e09140e1f2e328901b3664c:
 
-[applied to linux-yocto standard/base]
+  Merge branch 'yocto/standard/base' into yocto/standard/routerstationpro (2011-08-10 09:59:50 -0400)
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+are available in the git repository at:
 
----
- arch/mips/include/asm/smp-ops.h |    2 ++
- 1 files changed, 2 insertions(+), 0 deletions(-)
+ git://git.kernel.org/pub/scm/linux/kernel/git/dvhart/yocto/linux-yocto-3.0.git  dvhart/yocto/standard/routerstationpro
 
-diff --git a/arch/mips/include/asm/smp-ops.h
-b/arch/mips/include/asm/smp-ops.h
-index 48b03ff..ef2a804 100644
---- a/arch/mips/include/asm/smp-ops.h
-+++ b/arch/mips/include/asm/smp-ops.h
-@@ -11,6 +11,8 @@
- #ifndef __ASM_SMP_OPS_H
- #define __ASM_SMP_OPS_H
+Darren Hart (1):
+  routerstationpro: remove superfluous endif in gpio Kconfig
 
-+#include <linux/errno.h>
-+
- #ifdef CONFIG_SMP
+ drivers/gpio/Kconfig |    2 --
+ 1 files changed, 0 insertions(+), 2 deletions(-)
 
- #include <linux/cpumask.h>
 -- 
 1.7.6
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+
 
