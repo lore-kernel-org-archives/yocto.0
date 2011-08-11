@@ -1,29 +1,26 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08EBAE00771
-	for <yocto@yoctoproject.org>; Thu, 11 Aug 2011 16:51:40 -0700 (PDT)
-Received: from durham.keylevel.com ([109.224.134.115]:62117
-	helo=MacBook-Pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1Qrf2S-0001j1-B0
-	for yocto@yoctoproject.org; Fri, 12 Aug 2011 00:51:48 +0100
-Message-Id: <02B62B87-3FD5-421C-A344-9A808B1E9C99@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
+Return-Path: <scott.a.garman@intel.com>
+Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24B04E00771
+	for <yocto@yoctoproject.org>; Thu, 11 Aug 2011 16:57:35 -0700 (PDT)
+Received: from mail-iy0-f172.google.com ([209.85.210.172])
+	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 11 Aug 2011 16:57:44 -0700
+Received: by iye7 with SMTP id 7so4390184iye.17
+	for <yocto@yoctoproject.org>; Thu, 11 Aug 2011 16:57:44 -0700 (PDT)
+Received: by 10.231.93.135 with SMTP id v7mr639942ibm.18.1313107063983;
+	Thu, 11 Aug 2011 16:57:43 -0700 (PDT)
+Received: from [127.0.0.1] (masterfoo.zenlinux.com [207.192.74.254])
+	by mx.google.com with ESMTPS id fu7sm1848970ibb.53.2011.08.11.16.57.42
+	(version=SSLv3 cipher=OTHER); Thu, 11 Aug 2011 16:57:43 -0700 (PDT)
+Message-ID: <4E446C74.9070807@intel.com>
+Date: Thu, 11 Aug 2011 16:57:40 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.18) Gecko/20110617 Lightning/1.0b2 Thunderbird/3.1.11
+MIME-Version: 1.0
 To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Fri, 12 Aug 2011 00:51:45 +0100
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: bbappend - Where should my file be?
+References: <02B62B87-3FD5-421C-A344-9A808B1E9C99@keylevel.com>
+In-Reply-To: <02B62B87-3FD5-421C-A344-9A808B1E9C99@keylevel.com>
+Subject: Re: bbappend - Where should my file be?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,70 +32,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Aug 2011 23:51:41 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
+X-List-Received-Date: Thu, 11 Aug 2011 23:57:35 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-I've got a linux-wrs_git.bbappend file in a layer (under poky laverne  
-4.0.1) that contains:
+On 08/11/2011 04:51 PM, Chris Tapp wrote:
+> I've got a linux-wrs_git.bbappend file in a layer (under poky laverne
+> 4.0.1) that contains:
+>
+> COMPATIBLE_MACHINE_Vortex86DX = "Vortex86DX"
+> WRMACHINE_Vortex86DX = "common_pc"
+>
+> FILESEXTRAPATHS := "${THISDIR}/${PN}"
+>
+> SRC_URI += " file://defconfig"
+>
+> Where should the defconfig file be relative to the bbappend?
+>
+> I've tried:
+>
+> MyLayer
+> +--- recipies
+> +--- linux
+> +--- linux-wrs_git.bbappend
+> +--- linux-wrs_git
+> +--- defconfig
+>
+>
+> However, my defconfig file isn't being picked up during do_unpack:
+>
+> cp: cannot stat
+> `/home/chris/yocto/yocto-versions/laverne-4.0.1/meta/recipes-kernel/linux/files/defconfig':
+> No such file or directory
 
-COMPATIBLE_MACHINE_Vortex86DX = "Vortex86DX"
-WRMACHINE_Vortex86DX  = "common_pc"
+It looks like this is where the file is expected.
 
-FILESEXTRAPATHS := "${THISDIR}/${PN}"
+I believe also meta/recipes-kernel/linux/linux/defconfig should also work.
 
-SRC_URI += " file://defconfig"
+Scott
 
-Where should the defconfig file be relative to the bbappend?
-
-I've tried:
-
-MyLayer
-       +--- recipies
-                   +--- linux
-                            +--- linux-wrs_git.bbappend
-                            +--- linux-wrs_git
-                                             +--- defconfig
-
-
-However, my defconfig file isn't being picked up during do_unpack:
-
-cp: cannot stat `/home/chris/yocto/yocto-versions/laverne-4.0.1/meta/ 
-recipes-kernel/linux/files/defconfig': No such file or directory
-NOTE: Unpacking /home/chris/yocto/yocto-downloads/ 
-git_git.pokylinux.org.linux-2.6-windriver.git.tar.gz to /home/chris/ 
-yocto/mbox-3300-build/tmp/work/Vortex86DX-poky-linux/linux- 
-wrs 
--2.6.34 
-+ 
-git0 
-+ 
-b67e060194a38c6331da1532bd06446087a42b3b_0 
-+0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
-NOTE: Unpacking /home/chris/yocto/yocto-versions/laverne-4.0.1/meta/ 
-recipes-kernel/linux/files/defconfig to /home/chris/yocto/mbox-3300- 
-build/tmp/work/Vortex86DX-poky-linux/linux- 
-wrs 
--2.6.34 
-+ 
-git0 
-+ 
-b67e060194a38c6331da1532bd06446087a42b3b_0 
-+0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
-ERROR: Task failed:
-
-Which seems to show that it's not looking in FILESEXTRAPATHS.
-
-The .bbappend file seems to be processed, as commenting out the  
-SRC_URI line gets rid of the error.
-
-What have I got wrong?
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
