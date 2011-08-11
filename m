@@ -1,23 +1,23 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 227BBE011B6
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38FD7E00771
 	for <yocto@yoctoproject.org>; Thu, 11 Aug 2011 16:09:11 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
 	by orsmga102.jf.intel.com with ESMTP; 11 Aug 2011 16:09:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="36969840"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="37688907"
 Received: from unknown (HELO localhost) ([10.7.199.156])
-	by orsmga002.jf.intel.com with ESMTP; 11 Aug 2011 16:09:20 -0700
+	by orsmga001.jf.intel.com with ESMTP; 11 Aug 2011 16:09:20 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 To: bruce.ashfield@windriver.com, tom.zanussi@intel.com, yocto@yoctoproject.org
-Date: Thu, 11 Aug 2011 16:08:53 -0700
-Message-Id: <ca4633bee2cb6905a71559f9d73474ea3c564c2c.1313093647.git.dvhart@linux.intel.com>
+Date: Thu, 11 Aug 2011 16:08:54 -0700
+Message-Id: <19fa483730d1ce90ae2924c08af68698c489e070.1313093647.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.6
 In-Reply-To: <cover.1313093647.git.dvhart@linux.intel.com>
 References: <cover.1313093647.git.dvhart@linux.intel.com>
 In-Reply-To: <cover.1313093647.git.dvhart@linux.intel.com>
 References: <cover.1313093647.git.dvhart@linux.intel.com>
-Subject: [PATCH 1/2] meta-yocto: allow for virtual/kernel override
+Subject: [PATCH 2/2] meta-yocto: add linux-yocto-rt support for all meta-yocto machines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,42 +31,47 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 11 Aug 2011 23:09:11 -0000
 
-Conditionally assign the PREFERRED_PROVIDER_virtual/kernel in the meta-yocto
-machine configs to allow the user or other layers to override it. This is
-required to use the linux-yocto-rt kernel, for example.
+Provide the necessary info in the linux-yocto-rt_3.0.bbappend to
+support building the RT kernel for each of the meta-yocto example
+BSPs.
 
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- meta-yocto/conf/machine/mpc8315e-rdb.conf     |    2 +-
- meta-yocto/conf/machine/routerstationpro.conf |    2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ .../linux/linux-yocto-rt_3.0.bbappend              |   25 ++++++++++++++++++++
+ 1 files changed, 25 insertions(+), 0 deletions(-)
+ create mode 100644 meta-yocto/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
 
-diff --git a/meta-yocto/conf/machine/mpc8315e-rdb.conf b/meta-yocto/conf/machine/mpc8315e-rdb.conf
-index 172deec..b30c8af 100644
---- a/meta-yocto/conf/machine/mpc8315e-rdb.conf
-+++ b/meta-yocto/conf/machine/mpc8315e-rdb.conf
-@@ -11,7 +11,7 @@ SERIAL_CONSOLE = "115200 ttyS0"
- 
- MACHINE_FEATURES = "kernel26 keyboard pci ext2 ext3 serial"
- 
--PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
-+PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
- #PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
- XSERVER = "xserver-kdrive-fbdev"
-diff --git a/meta-yocto/conf/machine/routerstationpro.conf b/meta-yocto/conf/machine/routerstationpro.conf
-index e6f89d8..a0afd5d 100644
---- a/meta-yocto/conf/machine/routerstationpro.conf
-+++ b/meta-yocto/conf/machine/routerstationpro.conf
-@@ -10,7 +10,7 @@ MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 \
- KERNEL_IMAGETYPE = "vmlinux"
- KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
- 
--PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
-+PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
- #PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
- XSERVER = "xserver-kdrive-fbdev"
+diff --git a/meta-yocto/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-yocto/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+new file mode 100644
+index 0000000..a575105
+--- /dev/null
++++ b/meta-yocto/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+@@ -0,0 +1,25 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++# atom-pc support
++COMPATIBLE_MACHINE_atom-pc = "atom-pc"
++KMACHINE_atom-pc = "atom-pc"
++KBRANCH_atom-pc = "yocto/standard/preempt-rt/base"
++SRCREV_machine_pn-linux-yocto-rt_atom-pc = "7e1e5b6c8a13c615feb0d7b6d37988a094aae98f"
++
++# mpc8315e-rdb support
++COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
++KMACHINE_mpc8315e-rdb = "fsl-mpc8315e-rdb"
++KBRANCH_mpc8315e-rdb = "yocto/standard/preempt-rt/base"
++SRCREV_machine_pn-linux-yocto-rt_mpc8315e-rdb = "7e1e5b6c8a13c615feb0d7b6d37988a094aae98f"
++
++# beagleboard support - 3.0 support has not yet been completed, build failure
++#COMPATIBLE_MACHINE_beagleboard = "beagleboard"
++#KMACHINE_beagleboard = "beagleboard"
++#KBRANCH_beagleboard = "yocto/standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_beagleboard = 
++
++# routerstationpro support - preempt-rt kernel build failure
++#COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
++#KMACHINE_routerstationpro = "routerstationpro"
++#KBRANCH_routerstationpro = "yocto/standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_routerstationpro = "7e1e5b6c8a13c615feb0d7b6d37988a094aae98f"
 -- 
 1.7.6
 
