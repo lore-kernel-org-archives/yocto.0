@@ -1,32 +1,26 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70A20E011B6
-	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 02:09:10 -0700 (PDT)
-Received: from durham.keylevel.com ([109.224.134.115]:21144
-	helo=MacBook-Pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1QrmyU-0003MH-Gr
-	for yocto@yoctoproject.org; Fri, 12 Aug 2011 09:20:14 +0100
-Message-Id: <B44F0C76-F163-4264-B052-BA9E4CC4CDC3@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: yocto@yoctoproject.org
-In-Reply-To: <4E4473A4.4060403@windriver.com>
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Fri, 12 Aug 2011 09:20:11 +0100
-References: <02B62B87-3FD5-421C-A344-9A808B1E9C99@keylevel.com>
-	<4E446C74.9070807@intel.com> <4E4473A4.4060403@windriver.com>
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Re: bbappend - Where should my file be?
+Return-Path: <andre@bitwigglers.org>
+Received: from moutng.kundenserver.de (moutng.kundenserver.de [212.227.17.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB961E011B6
+	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 02:45:14 -0700 (PDT)
+Received: from localhost.localdomain ([145.253.109.106])
+	by mrelayeu.kundenserver.de (node=mrbap2) with ESMTP (Nemesis)
+	id 0Lby3Y-1RYX2N0T4u-00jlRG; Fri, 12 Aug 2011 11:45:23 +0200
+Date: Fri, 12 Aug 2011 11:45:22 +0200
+From: Andre Haupt <andre@bitwigglers.org>
+To: jani.uusi-rantala@nokia.com
+Message-ID: <20110812094522.GA24048@localhost.localdomain>
+References: <20110812082637.GA22860@localhost.localdomain>
+	<B497E783C723AE4386DDEA96AF1D2B989EED6E@008-AM1MPN1-013.mgdnok.nokia.com>
+MIME-Version: 1.0
+In-Reply-To: <B497E783C723AE4386DDEA96AF1D2B989EED6E@008-AM1MPN1-013.mgdnok.nokia.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Provags-ID: V02:K0:yY+T+PehkUb+ZTgcjAP3pKVPE0t0H4WP5n4+V+g7tES
+	w+KIZvlGCBj313QafHcn8V14COjyoymNVhHeJhfwFTTmQGOH1R
+	6hvPI54026NbW/ifouVOgLd3a79S9Xga/hWmfYGhStsUD7pby5
+	nyX+HCafdfq+HXrFDVEIJJm7j4n2yYImk3xqCWrz1ISr90asM+
+	AR4X3WuIXqNRkdL6k8Lm06di5AWjvP9K+KemrnSbp0=
+Cc: yocto@yoctoproject.org
+Subject: Re: glib-2.0-native build fails on bernard
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,84 +32,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2011 09:09:11 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 12 Aug 2011 09:45:15 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Scott / Bruce,
+On Fri, Aug 12, 2011 at 08:32:17AM +0000, jani.uusi-rantala@nokia.com wrote:
+> I had the same issue on 64-bit fedora R15. This patch fixed it for me:
+> 
+> http://patchwork.openembedded.org/patch/8233/
 
+for bernard (with MACHINE ??= qemux86 and DISTRO ?= poky) glib-2.0_2.26.1.bb is pulled in, so the above
+patch does not apply. I tried something similar:
 
-On 12 Aug 2011, at 00:57, Scott Garman wrote:
+diff --git a/meta/recipes-core/glib-2.0/glib-2.0_2.26.1.bb
+b/meta/recipes-core/glib-2.0/glib-2.0_2.26.1.bb
+index eace71a..e8964d9 100644
+--- a/meta/recipes-core/glib-2.0/glib-2.0_2.26.1.bb
++++ b/meta/recipes-core/glib-2.0/glib-2.0_2.26.1.bb
+@@ -1,7 +1,7 @@
+ require glib.inc
+ 
+ PE = "1"
+-PR = "r0"
++PR = "r1"
+ 
+ SRC_URI =
+"http://ftp.gnome.org/pub/GNOME/sources/glib/2.26/glib-${PV}.tar.bz2 \
+            file://configure-libtool.patch \
+@@ -14,3 +14,5 @@ SRC_URI[sha256sum] =
+"7a74ff12b6b9dee1f2d0e520b56b68b621920c4f4250bdf23468e51562
+ 
+ SRC_URI_append_virtclass-native = " file://glib-gettextize-dir.patch"
+ BBCLASSEXTEND = "native"
++
++EXTRA_OECONF_append = " --enable-dtrace=no"
 
->
->> cp: cannot stat
->> `/home/chris/yocto/yocto-versions/laverne-4.0.1/meta/recipes-kernel/ 
->> linux/files/defconfig':
->> No such file or directory
->
-> It looks like this is where the file is expected.
->
-> I believe also meta/recipes-kernel/linux/linux/defconfig should also  
-> work.
+Unfortunately that does not help.
 
-I should have mentioned that ;-) As the bbappend file is in my layer,  
-I was expecting (and want) the defconfig file to be stored/found in  
-it. I created this layer by copying another one that I've got. It's  
-unpack log shows:
+cheers,
 
-NOTE: Unpacking /home/chris/yocto/yocto-downloads/ 
-git_git.pokylinux.org.linux-2.6-windriver.git.tar.gz to /home/chris/ 
-yocto/sjs-build/tmp/work/LX800-poky-linux/linux- 
-wrs 
--2.6.34 
-+ 
-git0 
-+ 
-b67e060194a38c6331da1532bd06446087a42b3b_0 
-+0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
-NOTE: Unpacking /home/chris/yocto/meta-keylevel-sjs/recipes/linux/ 
-linux-wrs/defconfig to /home/chris/yocto/sjs-build/tmp/work/LX800-poky- 
-linux/linux- 
-wrs 
--2.6.34 
-+ 
-git0 
-+ 
-b67e060194a38c6331da1532bd06446087a42b3b_0 
-+0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
-
-I suspect I've got something configured wrong with the new layer, but...
-
-On 12 Aug 2011, at 01:28, Bruce Ashfield wrote:
-
->> I believe also meta/recipes-kernel/linux/linux/defconfig should  
->> also work.
->
-> Yep, bitbake is telling us where it is looking. The -wrs_git is the
-> extension to the recipe, so that isn't where it is looking.
-
-Sorry Bruce, that was a typo (see working log above for a layer that  
-works). I've tried using:
-
-MyLayer/recipies/linux/defconfig
-MyLayer/recipies/linux/files/defconfig (with no FILESEXTRAPATHS)
-MyLayer/recipies/linux/linux-wrs/defconfig
-
-> On another note, there's been a lot of fixes to the kern tools to
-> improve the process for adding BSPs and extending the tree (and
-> one defconfig bug fix), so I'll be interested to hear how this
-> goes.
-
-I'm planning to give it a try after the next release. I'm currently  
-just trying to migrate an existing (4.0.1) project to a new platform  
-and decided to add a new layer rather than change version at the same  
-time.
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+Andre
 
