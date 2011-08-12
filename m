@@ -1,34 +1,31 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A511E0048B
-	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 12:48:38 -0700 (PDT)
-Received: from durham.keylevel.com ([109.224.134.115]:50884
-	helo=MacBook-Pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1Qrxio-0001fh-Ur
-	for yocto@yoctoproject.org; Fri, 12 Aug 2011 20:48:47 +0100
-Message-Id: <36642C12-5231-4EE6-A267-D469D3E5B98F@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: yocto@yoctoproject.org
-In-Reply-To: <4E452396.1070506@windriver.com>
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Fri, 12 Aug 2011 20:48:44 +0100
-References: <02B62B87-3FD5-421C-A344-9A808B1E9C99@keylevel.com>	<4E446C74.9070807@intel.com>
-	<4E4473A4.4060403@windriver.com>
-	<B44F0C76-F163-4264-B052-BA9E4CC4CDC3@keylevel.com>
-	<4E452396.1070506@windriver.com>
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Re: bbappend - Where should my file be?
+Return-Path: <jefro.net@gmail.com>
+Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67641E011F0
+	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 14:32:52 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by yxl11 with SMTP id 11so3145691yxl.35
+	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 14:33:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
+	:from:to:content-type;
+	bh=TZEqmj4tbL4jDhnG71hv5LqxphBSRetFgaKRcvgQSVU=;
+	b=s2S3+1VeeRhFf+RsAI4LYxDobvhMvwilsVbGUXXywniKOUPi+jTvrL4PsFre+M8JvU
+	YplBGQXR52mGtlJwdcgYWmeB8Hq5SdN0XvICPn0p2KJyxJPEnOSxBlOiLhWrQuX2pmr+
+	rC6xzp6rYmBWs1fWm6BeuD8e6IDswU3gyfbZ4=
+MIME-Version: 1.0
+Received: by 10.236.73.162 with SMTP id v22mr2783771yhd.199.1313184781734;
+	Fri, 12 Aug 2011 14:33:01 -0700 (PDT)
+Sender: jefro.net@gmail.com
+Received: by 10.236.110.144 with HTTP; Fri, 12 Aug 2011 14:33:01 -0700 (PDT)
+Date: Fri, 12 Aug 2011 14:33:01 -0700
+X-Google-Sender-Auth: K97L4pfGWuqSvAFX-rVWHmUTaMk
+Message-ID: <CA+YB3rZRibZwEnBJvaMJvWUzP8vakBpDNN60aPpL0XQkNW1VzQ@mail.gmail.com>
+From: Jeff Osier-Mixon <jefro@jefro.net>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Yocto Project community statistics page
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,53 +37,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2011 19:48:38 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 12 Aug 2011 21:32:52 -0000
+Content-Type: multipart/alternative; boundary=20cf3005139c70918304aa55a86a
 
-On 12 Aug 2011, at 13:59, Bruce Ashfield wrote:
+--20cf3005139c70918304aa55a86a
+Content-Type: text/plain; charset=ISO-8859-1
 
->> NOTE: Unpacking
->> /home/chris/yocto/yocto-downloads/git_git.pokylinux.org.linux-2.6- 
->> windriver.git.tar.gz
->> to
->> /home/chris/yocto/sjs-build/tmp/work/LX800-poky-linux/linux- 
->> wrs 
->> -2.6.34 
->> + 
->> git0 
->> + 
->> b67e060194a38c6331da1532bd06446087a42b3b_0 
->> +0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
->>
->> NOTE: Unpacking
->> /home/chris/yocto/meta-keylevel-sjs/recipes/linux/linux-wrs/ 
->> defconfig to
->> /home/chris/yocto/sjs-build/tmp/work/LX800-poky-linux/linux- 
->> wrs 
->> -2.6.34 
->> + 
->> git0 
->> + 
->> b67e060194a38c6331da1532bd06446087a42b3b_0 
->> +0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
->>
->
-> That does look right!
+I have created a community statistics wiki page at
+https://wiki.yoctoproject.org/wiki/Community_Statistics.  All feedback is
+welcome.
 
-What are the rules for naming layers?
+thanks,
 
-I renamed the root for my new layer from 'meta-ebox-3300' to 'meta- 
-ebox3300', updated this in bblayers.conf and now my defconf file is  
-found as I was expecting...
+-- 
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
 
-It seems as if having -<numeric> at the end stops things working.
+--20cf3005139c70918304aa55a86a
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Chris Tapp
+I have created a community statistics wiki page at=A0<a href=3D"https://wik=
+i.yoctoproject.org/wiki/Community_Statistics">https://wiki.yoctoproject.org=
+/wiki/Community_Statistics</a>. =A0All feedback is welcome.<div><br></div><=
+div>
+thanks,<br clear=3D"all"><br>-- <br>Jeff Osier-Mixon <a href=3D"http://jefr=
+o.net/blog" target=3D"_blank">http://jefro.net/blog</a><div>Yocto Project C=
+ommunity Manager @Intel <a href=3D"http://yoctoproject.org" target=3D"_blan=
+k">http://yoctoproject.org</a></div>
+<br>
+</div>
 
-opensource@keylevel.com
-www.keylevel.com
-
-
-
-
+--20cf3005139c70918304aa55a86a--
