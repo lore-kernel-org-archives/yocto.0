@@ -1,27 +1,24 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3BD3E011B6
-	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 05:59:05 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7CCx4Sr021319
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 12 Aug 2011 05:59:04 -0700 (PDT)
-Received: from [128.224.147.214] (128.224.147.214) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 12 Aug 2011 05:59:04 -0700
-Message-ID: <4E452396.1070506@windriver.com>
-Date: Fri, 12 Aug 2011 08:59:02 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11 ThunderBrowse/3.8
+Return-Path: <darren.hart@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9757E011B1
+	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 07:31:04 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 12 Aug 2011 07:31:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,362,1309762800"; d="scan'208";a="38794762"
+Received: from unknown (HELO envy.home) ([10.255.14.228])
+	by fmsmga002.fm.intel.com with ESMTP; 12 Aug 2011 07:31:04 -0700
+Message-ID: <4E453928.6060202@intel.com>
+Date: Fri, 12 Aug 2011 07:31:04 -0700
+From: Darren Hart <darren.hart@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:5.0) Gecko/20110707 Thunderbird/5.0
 MIME-Version: 1.0
-To: Chris Tapp <opensource@keylevel.com>
-References: <02B62B87-3FD5-421C-A344-9A808B1E9C99@keylevel.com>	<4E446C74.9070807@intel.com>
-	<4E4473A4.4060403@windriver.com>
-	<B44F0C76-F163-4264-B052-BA9E4CC4CDC3@keylevel.com>
-In-Reply-To: <B44F0C76-F163-4264-B052-BA9E4CC4CDC3@keylevel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: bbappend - Where should my file be?
+To: bruce.ashfield@windriver.com, tom.zanussi@intel.com, 
+	yocto@yoctoproject.org
+References: <cover.1313092725.git.dvhart@linux.intel.com>
+In-Reply-To: <cover.1313092725.git.dvhart@linux.intel.com>
+Subject: Re: [PATCH 3/2] rt: simplify linux-yocto-rt.bbappend for all BSPs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,90 +30,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2011 12:59:06 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Fri, 12 Aug 2011 14:31:05 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 11-08-12 04:20 AM, Chris Tapp wrote:
-> Scott / Bruce,
->
->
-> On 12 Aug 2011, at 00:57, Scott Garman wrote:
->
->>
->>> cp: cannot stat
->>> `/home/chris/yocto/yocto-versions/laverne-4.0.1/meta/recipes-kernel/linux/files/defconfig':
->>>
->>> No such file or directory
->>
->> It looks like this is where the file is expected.
->>
->> I believe also meta/recipes-kernel/linux/linux/defconfig should also
->> work.
->
-> I should have mentioned that ;-) As the bbappend file is in my layer, I
-> was expecting (and want) the defconfig file to be stored/found in it. I
-> created this layer by copying another one that I've got. It's unpack log
-> shows:
+[rather than rebase, I've added this one to the series, here for review
+ as well]
 
-hah. For some reason that flew right over my head. Must be
-the 500 email I read a day :)
+As the all the BSPs use the same BSP branch and meta commit ID as the base
+recipe, there is no need specify the KBRANCH and SRCREVs. Not doing so
+greatly simplifies maintenance. Leaving the syntax in place, but commented
+out, serves as documentation should the need arise to use a different BSP
+branch or meta commit ID.
 
->
-> NOTE: Unpacking
-> /home/chris/yocto/yocto-downloads/git_git.pokylinux.org.linux-2.6-windriver.git.tar.gz
-> to
-> /home/chris/yocto/sjs-build/tmp/work/LX800-poky-linux/linux-wrs-2.6.34+git0+b67e060194a38c6331da1532bd06446087a42b3b_0+0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
->
-> NOTE: Unpacking
-> /home/chris/yocto/meta-keylevel-sjs/recipes/linux/linux-wrs/defconfig to
-> /home/chris/yocto/sjs-build/tmp/work/LX800-poky-linux/linux-wrs-2.6.34+git0+b67e060194a38c6331da1532bd06446087a42b3b_0+0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
->
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+---
+ .../linux/linux-yocto-rt_3.0.bbappend              |    7 ++++---
+ .../linux/linux-yocto-rt_3.0.bbappend              |    7 ++++---
+ .../linux/linux-yocto-rt_3.0.bbappend              |    7 ++++---
+ .../linux/linux-yocto-rt_3.0.bbappend              |    7 ++++---
+ .../linux/linux-yocto-rt_3.0.bbappend              |    7 ++++---
+ .../linux/linux-yocto-rt_3.0.bbappend              |    7 ++++---
+ .../linux/linux-yocto-rt_3.0.bbappend              |    7 ++++---
+ 7 files changed, 28 insertions(+), 21 deletions(-)
 
-That does look right!
-
->
-> I suspect I've got something configured wrong with the new layer, but...
->
-> On 12 Aug 2011, at 01:28, Bruce Ashfield wrote:
->
->>> I believe also meta/recipes-kernel/linux/linux/defconfig should also
->>> work.
->>
->> Yep, bitbake is telling us where it is looking. The -wrs_git is the
->> extension to the recipe, so that isn't where it is looking.
->
-> Sorry Bruce, that was a typo (see working log above for a layer that
-> works). I've tried using:
->
-> MyLayer/recipies/linux/defconfig
-> MyLayer/recipies/linux/files/defconfig (with no FILESEXTRAPATHS)
-> MyLayer/recipies/linux/linux-wrs/defconfig
->
->> On another note, there's been a lot of fixes to the kern tools to
->> improve the process for adding BSPs and extending the tree (and
->> one defconfig bug fix), so I'll be interested to hear how this
->> goes.
->
-> I'm planning to give it a try after the next release. I'm currently just
-> trying to migrate an existing (4.0.1) project to a new platform and
-> decided to add a new layer rather than change version at the same time.
-
-Sounds good.
-
-Bruce
-
->
-> Chris Tapp
->
-> opensource@keylevel.com
-> www.keylevel.com
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+index c257703..aaf5614 100644
+--- a/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
++++ b/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+@@ -1,9 +1,10 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
+ KMACHINE_crownbay-noemgd = "crownbay"
+-KBRANCH_crownbay-noemgd = "yocto/standard/preempt-rt/base"
+ 
+ KERNEL_FEATURES_append_crownbay-noemgd += " cfg/smp.scc"
+ 
+-SRCREV_machine_pn-linux-yocto-rt_crownbay-noemgd ?= ${AUTOREV}
+-SRCREV_meta_pn-linux-yocto-rt_crownbay-noemgd ?= ${AUTOREV}
++# Update the following to use a different BSP branch or meta SRCREV
++#KBRANCH_crownbay-noemgd = "yocto/standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_crownbay-noemgd ?= XXXX
++#SRCREV_meta_pn-linux-yocto-rt_crownbay-noemgd ?= XXXX
+diff --git a/meta-emenlow/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-emenlow/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+index fbff72d..fce01cb 100644
+--- a/meta-emenlow/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
++++ b/meta-emenlow/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+@@ -1,7 +1,8 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_emenlow = "emenlow"
+ KMACHINE_emenlow  = "emenlow"
+-KBRANCH_emenlow  = "yocto/standard/preempt-rt/base"
+ 
+-SRCREV_machine_pn-linux-yocto-rt_emenlow ?= ${AUTOREV}
+-SRCREV_meta_pn-linux-yocto-rt_emenlow ?= ${AUTOREV}
++# Update the following to use a different BSP branch or meta SRCREV
++#KBRANCH_emenlow  = "yocto/standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_emenlow ?= XXXX
++#SRCREV_meta_pn-linux-yocto-rt_emenlow ?= XXXX
+diff --git a/meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+index 4b1a2e1..7a502bd 100644
+--- a/meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
++++ b/meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+@@ -1,7 +1,8 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_fishriver = "fishriver"
+ KMACHINE_fishriver  = "fishriver"
+-KBRANCH_fishriver  = "yocto/standard/preempt-rt/base"
+ 
+-SRCREV_machine_pn-linux-yocto-rt_fishriver ?= ${AUTOREV}
+-SRCREV_meta_pn-linux-yocto-rt_fishriver ?= ${AUTOREV}
++# Update the following to use a different BSP branch or meta SRCREV
++#KBRANCH_fishriver  = "yocto/standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_fishriver ?= XXXX
++#SRCREV_meta_pn-linux-yocto-rt_fishriver ?= XXXX
+diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+index 13b68a3..2624176 100644
+--- a/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
++++ b/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+@@ -1,7 +1,8 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_fri2 = "fri2"
+ KMACHINE_fri2 = "fri2"
+-KBRANCH_fri2 = "yocto/standard/preempt-rt/base"
+ 
+-SRCREV_machine_pn-linux-yocto-rt_fri2 ?= ${AUTOREV}
+-SRCREV_meta_pn-linux-yocto-rt_fri2 ?= ${AUTOREV}
++# Update the following to use a different BSP branch or meta SRCREV
++#KBRANCH_fri2 = "yocto/standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_fri2 ?= XXXX
++#SRCREV_meta_pn-linux-yocto-rt_fri2 ?= XXXX
+diff --git a/meta-jasperforest/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-jasperforest/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+index ac18db0..1ddc78f 100644
+--- a/meta-jasperforest/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
++++ b/meta-jasperforest/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+@@ -1,7 +1,8 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_jasperforest = "jasperforest"
+ KMACHINE_jasperforest  = "jasperforest"
+-KBRANCH_jasperforest  = "yocto/standard/preempt-rt/base"
+ 
+-SRCREV_machine_pn-linux-yocto-rt_jasperforest ?= ${AUTOREV}
+-SRCREV_meta_pn-linux-yocto-rt_jasperforest ?= ${AUTOREV}
++# Update the following to use a different BSP branch or meta SRCREV
++#KBRANCH_jasperforest  = "yocto/standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_jasperforest ?= ${AUTOREV}
++#SRCREV_meta_pn-linux-yocto-rt_jasperforest ?= ${AUTOREV}
+diff --git a/meta-n450/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-n450/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+index 69e9304..1c7fef9 100644
+--- a/meta-n450/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
++++ b/meta-n450/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+@@ -1,9 +1,10 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_n450 = "n450"
+ KMACHINE_n450 = "atom-pc"
+-KBRANCH_n450 = "yocto/standard/preempt-rt/base"
+ 
+ KERNEL_FEATURES_append_n450 += " cfg/smp.scc"
+ 
+-SRCREV_machine_pn-linux-yocto-rt_n450 ?= ${AUTOREV}
+-SRCREV_meta_pn-linux-yocto-rt_n450 ?= ${AUTOREV}
++# Update the following to use a different BSP branch or meta SRCREV
++#KBRANCH_n450 = "yocto/standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_n450 ?= XXXX
++#SRCREV_meta_pn-linux-yocto-rt_n450 ?= XXXX
+diff --git a/meta-sugarbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-sugarbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+index 7564367..a63959c 100644
+--- a/meta-sugarbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
++++ b/meta-sugarbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+@@ -1,7 +1,8 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_sugarbay = "sugarbay"
+ KMACHINE_sugarbay  = "sugarbay"
+-KBRANCH_sugarbay  = "yocto/standard/preempt-rt/base"
+ 
+-SRCREV_machine_pn-linux-yocto-rt_sugarbay ?= ${AUTOREV}
+-SRCREV_meta_pn-linux-yocto-rt_sugarbay ?= ${AUTOREV}
++# Update the following to use a different BSP branch or meta SRCREV
++#KBRANCH_sugarbay  = "yocto/standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_sugarbay ?= XXXX
++#SRCREV_meta_pn-linux-yocto-rt_sugarbay ?= XXXX
+-- 
+1.7.6
 
