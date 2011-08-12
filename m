@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 925CBE01207
-	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 12:33:52 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 12 Aug 2011 12:34:02 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 277D7E01213
+	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 12:33:54 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 12 Aug 2011 12:34:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,364,1309762800"; d="scan'208";a="37941420"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="37282135"
 Received: from unknown (HELO localhost) ([10.255.14.198])
-	by azsmga001.ch.intel.com with ESMTP; 12 Aug 2011 12:34:01 -0700
+	by orsmga002.jf.intel.com with ESMTP; 12 Aug 2011 12:34:03 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Fri, 12 Aug 2011 14:33:50 -0500
-Message-Id: <a1f110becb45ffabb141f7981cfba928db2f692b.1313172146.git.tom.zanussi@intel.com>
+Date: Fri, 12 Aug 2011 14:33:51 -0500
+Message-Id: <9ea4713e114bca4149d45474fe7f51ee3b7ce859.1313172146.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <bbf43b0c5f15b04eba02debf43d19ed1899423ab.1313172146.git.tom.zanussi@intel.com>
 References: <bbf43b0c5f15b04eba02debf43d19ed1899423ab.1313172146.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1313172146.git.tom.zanussi@intel.com>
 References: <cover.1313172146.git.tom.zanussi@intel.com>
-Subject: [PATCH 4/6] meta-crownbay: make the use of emgd-driver-bin COMMERCIAL
+Subject: [PATCH 5/6] meta-crownbay: xorg.conf changes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,34 +29,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2011 19:33:52 -0000
+X-List-Received-Date: Fri, 12 Aug 2011 19:33:54 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-The emgd-driver-bin recipe now automatically downloads and installs
-EMGD using the new click-through-free tarball, but since the binaries
-still fall under a non-free license, we need to prevent it from being
-accidentally installed in an image.
-
-We therefore make sure it's labeled in the crownbay layer with
-'COMMERCIAL_LICENSE'.  In order to build a crownbay image, the user
-now needs to add a 'COMMERCIAL_LICENSE = ""' line to local.conf.
+Update to the ced-generated xorg.conf for 1.8.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-crownbay/conf/layer.conf |    2 ++
- 1 files changed, 2 insertions(+), 0 deletions(-)
+ .../xserver-xf86-config/crownbay/xorg.conf         |    3 ++-
+ .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    1 +
+ 2 files changed, 3 insertions(+), 1 deletions(-)
 
-diff --git a/meta-crownbay/conf/layer.conf b/meta-crownbay/conf/layer.conf
-index 9b71700..d4877d6 100644
---- a/meta-crownbay/conf/layer.conf
-+++ b/meta-crownbay/conf/layer.conf
-@@ -10,3 +10,5 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "crownbay"
- BBFILE_PATTERN_crownbay := "^${LAYERDIR}/"
- BBFILE_PRIORITY_crownbay = "6"
-+
-+COMMERCIAL_LICENSE += "emgd-driver-bin"
+diff --git a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
+index f78a538..fce58f8 100644
+--- a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
++++ b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
+@@ -26,11 +26,12 @@ Section "Device"
+     Option     "ALL/1/General/PortOrder"      "40000"
+     Option     "ALL/1/General/DisplayConfig"  "1"
+     Option     "ALL/1/General/DisplayDetect"  "1"
++    Option     "ALL/1/General/TuningWA" "1"
+     Option     "ALL/1/Port/4/General/name"           "lvds"
+     Option     "ALL/1/Port/4/General/EdidAvail"      "3"
+     Option     "ALL/1/Port/4/General/EdidNotAvail"   "1"
+     Option     "ALL/1/Port/4/General/Rotation"       "0"
+-    Option     "ALL/1/Port/4/General/Edid"           "1"
++    Option     "ALL/1/Port/4/General/Edid"           "0"
+ EndSection
+ 
+ Section "ServerLayout"
+diff --git a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+index 4b8d0e6..1461431 100644
+--- a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
++++ b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+@@ -1,3 +1,4 @@
+ THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
+ FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
+ 
++PR := "${PR}.1"
 -- 
 1.7.0.4
 
