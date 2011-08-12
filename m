@@ -1,24 +1,20 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15C5EE0048B
-	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 12:32:26 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 12 Aug 2011 12:32:31 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84F53E0048B
+	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 12:33:04 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 12 Aug 2011 12:33:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,364,1309762800"; d="scan'208";a="37941110"
+X-IronPort-AV: E=Sophos;i="4.67,364,1309762800"; d="scan'208";a="38911055"
 Received: from unknown (HELO localhost) ([10.255.14.198])
-	by azsmga001.ch.intel.com with ESMTP; 12 Aug 2011 12:32:30 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 12 Aug 2011 12:33:13 -0700
 From: tom.zanussi@intel.com
-To: bruce.ashfield@windriver.com,
+To: bruce.ashfield@windriver.com, dvhart@linux.intel.com,
 	yocto@yoctoproject.org
-Date: Fri, 12 Aug 2011 14:32:16 -0500
-Message-Id: <619aa75fd999a1b469a0349f8d709e81bb90683c.1313168895.git.tom.zanussi@intel.com>
+Date: Fri, 12 Aug 2011 14:33:08 -0500
+Message-Id: <cover.1313169409.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <9048e99eb65e2a5f743019540b8ccc5913b4d07c.1313168895.git.tom.zanussi@intel.com>
-References: <9048e99eb65e2a5f743019540b8ccc5913b4d07c.1313168895.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1313168890.git.tom.zanussi@intel.com>
-References: <cover.1313168890.git.tom.zanussi@intel.com>
-Subject: [PATCH 3/3][KERNEL] yocto/emgd: 3.0 fixes
+Subject: [PATCH][KERNEL] meta/crownbay: use hpet
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,313 +26,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2011 19:32:26 -0000
+X-List-Received-Date: Fri, 12 Aug 2011 19:33:04 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Fixes required for migration to Linux 3.0.
+This enables hpet for crownbay.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- .../gpu/drm/emgd/emgd/display/mode/plb/mode_plb.c  |    2 +-
- .../gpu/drm/emgd/emgd/display/mode/tnc/mode_tnc.c  |    2 +-
- drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c           |   12 ++++++------
- .../drm/emgd/pvr/services4/srvkm/common/resman.c   |    4 ----
- .../drm/emgd/pvr/services4/srvkm/env/linux/event.c |    4 ----
- .../drm/emgd/pvr/services4/srvkm/env/linux/mm.c    |    4 ----
- .../drm/emgd/pvr/services4/srvkm/env/linux/mm.h    |    4 ----
- .../drm/emgd/pvr/services4/srvkm/env/linux/mmap.c  |    4 ----
- .../emgd/pvr/services4/srvkm/env/linux/module.c    |    4 ----
- .../emgd/pvr/services4/srvkm/env/linux/mutils.c    |    3 ---
- .../emgd/pvr/services4/srvkm/env/linux/mutils.h    |    4 ----
- .../emgd/pvr/services4/srvkm/env/linux/osfunc.c    |   13 ++-----------
- .../drm/emgd/pvr/services4/srvkm/env/linux/proc.c  |    4 ----
- .../emgd/pvr/services4/srvkm/env/linux/pvr_debug.c |    6 +-----
- .../emgd/pvr/services4/srvkm/env/linux/pvr_drm.c   |    4 ----
- 15 files changed, 11 insertions(+), 63 deletions(-)
+Please pull into linux-yocto-3.0/meta.
 
-diff --git a/drivers/gpu/drm/emgd/emgd/display/mode/plb/mode_plb.c b/drivers/gpu/drm/emgd/emgd/display/mode/plb/mode_plb.c
-index 87ab2b8..bda3dc7 100644
---- a/drivers/gpu/drm/emgd/emgd/display/mode/plb/mode_plb.c
-+++ b/drivers/gpu/drm/emgd/emgd/display/mode/plb/mode_plb.c
-@@ -73,7 +73,7 @@ static unsigned long vblank_interrupt_state = 0;
- /* Spin lock for synchronization of the vblank_interrupt_state variable,
-  * between the VBlank interrupt handler and the non-interrupt handler code:
-  */
--static spinlock_t vblank_lock = SPIN_LOCK_UNLOCKED;
-+static DEFINE_SPINLOCK(vblank_lock);
- 
- 
- 
-diff --git a/drivers/gpu/drm/emgd/emgd/display/mode/tnc/mode_tnc.c b/drivers/gpu/drm/emgd/emgd/display/mode/tnc/mode_tnc.c
-index 653d511..656ed44 100644
---- a/drivers/gpu/drm/emgd/emgd/display/mode/tnc/mode_tnc.c
-+++ b/drivers/gpu/drm/emgd/emgd/display/mode/tnc/mode_tnc.c
-@@ -84,7 +84,7 @@ static unsigned long vblank_interrupt_state = 0;
- /* Spin lock for synchronization of the vblank_interrupt_state variable,
-  * between the VBlank interrupt handler and the non-interrupt handler code:
-  */
--static spinlock_t vblank_lock = SPIN_LOCK_UNLOCKED;
-+static DEFINE_SPINLOCK(vblank_lock);
- 
- 
- 
-diff --git a/drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c b/drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c
-index 301747c..87acb78 100644
---- a/drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c
-+++ b/drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c
-@@ -1936,10 +1936,6 @@ static struct drm_driver driver = {
- 		.poll    = drm_poll,
- 		.fasync  = drm_fasync,
- 	},
--	.pci_driver = {
--		.name     = DRIVER_NAME,
--		.id_table = pciidlist,
--	},
- 	.name                = DRIVER_NAME,
- 	.desc                = DRIVER_DESC,
- 	.date                = DRIVER_DATE,
-@@ -1948,6 +1944,10 @@ static struct drm_driver driver = {
- 	.patchlevel          = DRIVER_PATCHLEVEL,
- };
- 
-+static struct pci_driver emgd_pci_driver = {
-+	.name = DRIVER_NAME,
-+	.id_table = pciidlist,
-+};
- 
- /**
-  * Standard procedure to initialize this kernel module when it is loaded.
-@@ -1957,7 +1957,7 @@ static int __init emgd_init(void) {
- 
- 	EMGD_TRACE_ENTER;
- 	driver.num_ioctls = emgd_max_ioctl;
--	ret = drm_init(&driver);
-+	ret = drm_pci_init(&driver, &emgd_pci_driver);
- 	PVRDPFInit();
- 	printk(KERN_INFO "[EMGD] drm_init() returning %d\n", ret);
- 	EMGD_TRACE_EXIT;
-@@ -1969,7 +1969,7 @@ static int __init emgd_init(void) {
-  */
- static void __exit emgd_exit(void) {
- 	EMGD_TRACE_ENTER;
--	drm_exit(&driver);
-+	drm_pci_exit(&driver, &emgd_pci_driver);
- 	EMGD_TRACE_EXIT;
- }
- 
-diff --git a/drivers/gpu/drm/emgd/pvr/services4/srvkm/common/resman.c b/drivers/gpu/drm/emgd/pvr/services4/srvkm/common/resman.c
-index dcbaa4b..7bb860f 100644
---- a/drivers/gpu/drm/emgd/pvr/services4/srvkm/common/resman.c
-+++ b/drivers/gpu/drm/emgd/pvr/services4/srvkm/common/resman.c
-@@ -24,10 +24,6 @@
- #include "resman.h"
- 
- #ifdef __linux__
--#ifndef AUTOCONF_INCLUDED
-- #include <linux/config.h>
--#endif
--
- #include <linux/version.h>
- #include <linux/sched.h>
- #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,9)
-diff --git a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/event.c b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/event.c
-index c1c645c..d412f47 100644
---- a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/event.c
-+++ b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/event.c
-@@ -20,10 +20,6 @@
-  THE SOFTWARE.
-  ******************************************************************************/
- 
--#ifndef AUTOCONF_INCLUDED
-- #include <linux/config.h>
--#endif
--
- #include <linux/version.h>
- #include <asm/io.h>
- #include <asm/page.h>
-diff --git a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mm.c b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mm.c
-index a7c041e..5cda3c5 100644
---- a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mm.c
-+++ b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mm.c
-@@ -20,10 +20,6 @@
-  THE SOFTWARE.
-  ******************************************************************************/
- 
--#ifndef AUTOCONF_INCLUDED
-- #include <linux/config.h>
--#endif
--
- #include <linux/version.h>
- #include <linux/mm.h>
- #include <linux/vmalloc.h>
-diff --git a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mm.h b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mm.h
-index 35c51c6..6714b3c 100644
---- a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mm.h
-+++ b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mm.h
-@@ -23,10 +23,6 @@
- #ifndef __IMG_LINUX_MM_H__
- #define __IMG_LINUX_MM_H__
- 
--#ifndef AUTOCONF_INCLUDED
-- #include <linux/config.h>
--#endif
--
- #include <linux/version.h>
- #include <linux/slab.h>
- #include <linux/mm.h>
-diff --git a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mmap.c b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mmap.c
-index aabe488..c3264e3 100644
---- a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mmap.c
-+++ b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mmap.c
-@@ -20,10 +20,6 @@
-  THE SOFTWARE.
-  ******************************************************************************/
- 
--#ifndef AUTOCONF_INCLUDED
-- #include <linux/config.h>
--#endif
--
- #include <linux/version.h>
- #include <linux/mm.h>
- #include <linux/module.h>
-diff --git a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/module.c b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/module.c
-index 73b6f69..f6d4114 100644
---- a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/module.c
-+++ b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/module.c
-@@ -20,10 +20,6 @@
-  THE SOFTWARE.
-  ******************************************************************************/
- 
--#ifndef AUTOCONF_INCLUDED
-- #include <linux/config.h>
--#endif
--
- #if !defined(SUPPORT_DRI_DRM)
- 	
- 	#if defined(LDM_PLATFORM)
-diff --git a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mutils.c b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mutils.c
-index 5ee3a01..cfd1f02 100644
---- a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mutils.c
-+++ b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mutils.c
-@@ -20,9 +20,6 @@
-  THE SOFTWARE.
-  ******************************************************************************/
- 
--#ifndef AUTOCONF_INCLUDED
--#include <linux/config.h>
--#endif
- #include <linux/version.h>
- 
- #include <linux/spinlock.h>
-diff --git a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mutils.h b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mutils.h
-index 10473fa..ebc8a32 100644
---- a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mutils.h
-+++ b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mutils.h
-@@ -23,10 +23,6 @@
- #ifndef __IMG_LINUX_MUTILS_H__
- #define __IMG_LINUX_MUTILS_H__
- 
--#ifndef AUTOCONF_INCLUDED
--#include <linux/config.h>
--#endif
--
- #include <linux/version.h>
- 
- #if !(defined(__i386__) && (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,26)))
-diff --git a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/osfunc.c b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/osfunc.c
-index 96daf23..4f03922 100644
---- a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/osfunc.c
-+++ b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/osfunc.c
-@@ -20,10 +20,6 @@
-  THE SOFTWARE.
-  ******************************************************************************/
- 
--#ifndef AUTOCONF_INCLUDED
-- #include <linux/config.h>
--#endif
--
- #include <linux/version.h>
- #include <asm/io.h>
- #include <asm/page.h>
-@@ -1692,12 +1688,7 @@ PVRSRV_ERROR OSPCIResumeDev(PVRSRV_PCI_DEV_HANDLE hPVRPCI)
-             return PVRSRV_ERROR_GENERIC;
-     }
- 
--    err = pci_restore_state(psPVRPCI->psPCIDev);
--    if (err != 0)
--    {
--        PVR_DPF((PVR_DBG_ERROR, "OSPCIResumeDev: pci_restore_state failed (%d)", err));
--        return PVRSRV_ERROR_GENERIC;
--    }
-+    pci_restore_state(psPVRPCI->psPCIDev);
- 
-     err = pci_enable_device(psPVRPCI->psPCIDev);
-     if (err != 0)
-@@ -1752,7 +1743,7 @@ static TIMER_CALLBACK_DATA sTimers[OS_MAX_TIMERS];
- #if defined(PVR_LINUX_TIMERS_USING_WORKQUEUES)
- DEFINE_MUTEX(sTimerStructLock);
- #else
--static spinlock_t sTimerStructLock = SPIN_LOCK_UNLOCKED;
-+static DEFINE_SPINLOCK(sTimerStructLock);
- #endif
- 
- static void OSTimerCallbackBody(TIMER_CALLBACK_DATA *psTimerCBData)
-diff --git a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/proc.c b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/proc.c
-index 85d2266..a7f8850 100644
---- a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/proc.c
-+++ b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/proc.c
-@@ -20,10 +20,6 @@
-  THE SOFTWARE.
-  ******************************************************************************/
- 
--#ifndef AUTOCONF_INCLUDED
-- #include <linux/config.h>
--#endif
--
- #include <linux/init.h>
- #include <linux/module.h>
- #include <linux/version.h>
-diff --git a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/pvr_debug.c b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/pvr_debug.c
-index 28ad7cc..d7a9e9f 100644
---- a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/pvr_debug.c
-+++ b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/pvr_debug.c
-@@ -21,10 +21,6 @@
-  ******************************************************************************/
- 
-   
--#ifndef AUTOCONF_INCLUDED
-- #include <linux/config.h>
--#endif
--
- #include <asm/io.h>
- #include <asm/uaccess.h>
- #include <linux/kernel.h>
-@@ -56,7 +52,7 @@ static IMG_CHAR gszBufferIRQ[PVR_MAX_MSG_LEN + 1];
- 
- static struct mutex gsDebugMutexNonIRQ;
- 
--static spinlock_t gsDebugLockIRQ = SPIN_LOCK_UNLOCKED;
-+static DEFINE_SPINLOCK(gsDebugLockIRQ);
- 
- #define	USE_SPIN_LOCK (in_interrupt() || !preemptible())
- 
-diff --git a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/pvr_drm.c b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/pvr_drm.c
-index 62b3ab0..c8c27f3 100644
---- a/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/pvr_drm.c
-+++ b/drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/pvr_drm.c
-@@ -22,10 +22,6 @@
- 
- #if defined(SUPPORT_DRI_DRM)
- 
--#ifndef AUTOCONF_INCLUDED
-- #include <linux/config.h>
--#endif
--
- #include <linux/init.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
--- 
-1.7.0.4
+Thanks,
+
+Tom
+
+The following changes are available in the git repository at:
+
+  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/crownbay-updates-linux-yocto-3.0
+  http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/crownbay-updates-linux-yocto-3.0
+
+Tom Zanussi (1):
+  meta/crownbay: enable hpet
+
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
 
 
