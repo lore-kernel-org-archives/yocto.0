@@ -1,21 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CF92E0048B
-	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 12:33:47 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 12 Aug 2011 12:33:56 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B09D6E01200
+	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 12:33:48 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 12 Aug 2011 12:33:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="37982830"
+X-IronPort-AV: E=Sophos;i="4.67,364,1309762800"; d="scan'208";a="40963204"
 Received: from unknown (HELO localhost) ([10.255.14.198])
-	by orsmga001.jf.intel.com with ESMTP; 12 Aug 2011 12:33:56 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 12 Aug 2011 12:33:58 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Fri, 12 Aug 2011 14:33:47 -0500
-Message-Id: <bbf43b0c5f15b04eba02debf43d19ed1899423ab.1313172146.git.tom.zanussi@intel.com>
+Date: Fri, 12 Aug 2011 14:33:48 -0500
+Message-Id: <155cb0e4dee07ed85680dca4af3c48940e294738.1313172146.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <bbf43b0c5f15b04eba02debf43d19ed1899423ab.1313172146.git.tom.zanussi@intel.com>
+References: <bbf43b0c5f15b04eba02debf43d19ed1899423ab.1313172146.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1313172146.git.tom.zanussi@intel.com>
 References: <cover.1313172146.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/6] meta-crownbay: switch to linux-yocto 3.0 kernel
+Subject: [PATCH 2/6] meta-crownbay: new recipe for emgd 1.8 driver binaries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,68 +29,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2011 19:33:47 -0000
+X-List-Received-Date: Fri, 12 Aug 2011 19:33:48 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Switch crownbay and crownbay-noemgd to the 3.0 kernel, lock it down,
-and update kernel SRCREVs.
+This adds a new recipe for the emgd 1.8 driver binaries.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-crownbay/conf/machine/crownbay-noemgd.conf    |    2 ++
- meta-crownbay/conf/machine/crownbay.conf           |    2 ++
- .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |   15 +++++++++++++++
- 3 files changed, 19 insertions(+), 0 deletions(-)
- create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
+ .../xorg-xserver/emgd-driver-bin_1.8.bb            |   36 ++++++++++++++++++++
+ 1 files changed, 36 insertions(+), 0 deletions(-)
+ create mode 100644 meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
 
-diff --git a/meta-crownbay/conf/machine/crownbay-noemgd.conf b/meta-crownbay/conf/machine/crownbay-noemgd.conf
-index 0219bd1..0a82b54 100644
---- a/meta-crownbay/conf/machine/crownbay-noemgd.conf
-+++ b/meta-crownbay/conf/machine/crownbay-noemgd.conf
-@@ -12,6 +12,8 @@ MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
- KERNEL_IMAGETYPE = "bzImage"
- 
- PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
-+PREFERRED_VERSION_linux-yocto = "3.0+git%"
-+
- PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
-diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
-index 323c8c1..b4ea4b4 100644
---- a/meta-crownbay/conf/machine/crownbay.conf
-+++ b/meta-crownbay/conf/machine/crownbay.conf
-@@ -12,6 +12,8 @@ MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
- KERNEL_IMAGETYPE = "bzImage"
- 
- PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
-+PREFERRED_VERSION_linux-yocto = "3.0+git%"
-+
- PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
-diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
+diff --git a/meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb b/meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
 new file mode 100644
-index 0000000..c9aef72
+index 0000000..64578cc
 --- /dev/null
-+++ b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
-@@ -0,0 +1,15 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++++ b/meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
+@@ -0,0 +1,36 @@
++SUMMARY = "EMGD 1.8 xserver binaries"
++DESCRIPTION = "EMGD 1.8 includes some userspace binaries that use non-free \
++licensing, which are now available via a non-click-through downloadable \
++tarball, and is what this recipe now uses.  Since it is a non-free license, \
++this recipe is marked as 'commercial' and you need to add COMMERCIAL_LICENSE \
++= \"\" in order to enable it in a build."
++LICENSE = "Intel-binary-only"
++PR = "r0"
 +
-+COMPATIBLE_MACHINE_crownbay = "crownbay"
-+KMACHINE_crownbay  = "yocto/standard/crownbay"
-+KERNEL_FEATURES_append_crownbay += " cfg/smp.scc"
++EMGD_LICDIR = "IEMGD_HEAD_Linux/License"
++EMGD_RPMDIR = "IEMGD_HEAD_Linux/MeeGo1.2"
 +
-+COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
-+KMACHINE_crownbay-noemgd  = "yocto/standard/crownbay"
-+KERNEL_FEATURES_append_crownbay-noemgd += " cfg/smp.scc"
++LIC_FILES_CHKSUM = "file://${WORKDIR}/${EMGD_LICDIR}/License.txt;md5=b54f01caaf8483b3cb60c0c40f2bf22d"
 +
-+SRCREV_machine_pn-linux-yocto_crownbay ?= "9a259cf4f6d404db2820642df755a295bbfb7fe7"
-+SRCREV_meta_pn-linux-yocto_crownbay ?= "fe8eac15e144a35a716cd32c9d2b296ecd5202ac"
++SRC_URI = "http://edc.intel.com/App_Shared/Downloads/Lin_EMGD_1_8_RC_2032.tgz"
 +
-+SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?= "9a259cf4f6d404db2820642df755a295bbfb7fe7"
-+SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?= "fe8eac15e144a35a716cd32c9d2b296ecd5202ac"
++FILES_${PN} += "${libdir}/dri ${libdir}/xorg/modules/drivers"
++FILES_${PN}-dbg += "${libdir}/xorg/modules/drivers/.debug ${libdir}/dri/.debug"
++
++S = "${WORKDIR}/${EMGD_RPMDIR}"
++
++do_install () {
++    rpm2cpio.sh ${S}/emgd-bin*.rpm | cpio -id
++
++    install -d -m 0755                    ${D}/${libdir}/dri
++    install -d -m 0755                    ${D}/${libdir}/xorg/modules/drivers
++    install -m 0755 ${S}/usr/lib/*.so.*   ${D}${libdir}/
++    install -m 0755 ${S}/usr/lib/dri/*    ${D}${libdir}/dri/
++    install -m 0755 ${S}/usr/lib/xorg/modules/drivers/* ${D}${libdir}/xorg/modules/drivers/
++
++    ln -sf libEGl.so.1                    ${D}${libdir}/libEGl.so
++    ln -sf libGLES_CM.so.1                ${D}${libdir}/libGLES_CM.so
++    ln -sf libGLESv2.so.2                 ${D}${libdir}/libGLESv2.so
++}
++
++LEAD_SONAME = "libEGL.so"
 -- 
 1.7.0.4
 
