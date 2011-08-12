@@ -1,20 +1,22 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39113E0048B
-	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 12:32:10 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 12 Aug 2011 12:32:19 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C5D5E01201
+	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 12:32:11 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 12 Aug 2011 12:32:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="37982584"
+X-IronPort-AV: E=Sophos;i="4.67,364,1309762800"; d="scan'208";a="40962897"
 Received: from unknown (HELO localhost) ([10.255.14.198])
-	by orsmga001.jf.intel.com with ESMTP; 12 Aug 2011 12:32:17 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 12 Aug 2011 12:32:20 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com,
 	yocto@yoctoproject.org
-Date: Fri, 12 Aug 2011 14:32:10 -0500
-Message-Id: <cover.1313168890.git.tom.zanussi@intel.com>
+Date: Fri, 12 Aug 2011 14:32:14 -0500
+Message-Id: <9048e99eb65e2a5f743019540b8ccc5913b4d07c.1313168895.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/3][KERNEL] yocto/emgd: add emgd 1.8
+In-Reply-To: <cover.1313168890.git.tom.zanussi@intel.com>
+References: <cover.1313168890.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/3][KERNEL] yocto/emgd: emgd 1.8 driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,30 +28,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2011 19:32:10 -0000
+X-List-Received-Date: Fri, 12 Aug 2011 19:32:11 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This patchset adds emgd 1.8 to yocto/emgd.  Please pull into
-linux-yocto-3.0/yocto/emgd.
+The starting-point code that subsequent patches will modify.  This is
+a straight copy of the code in the emgd 1.8 emgd driver, specifically
+IEMGD_HEAD_Linux/common/drm/emgd_drm.tgz from
+Lin_EMGD_1_8_RC_2032.tgz, the 'Linux Tar Ball' release downloaded from
+http://edc.intel.com/Software/Downloads/EMGD/.
 
-Thanks,
-
-Tom
-
-The following changes are available in the git repository at:
-
-  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/emgd-linux-yocto-3.0
-  http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/emgd-linux-yocto-3.0
-
-Tom Zanussi (3):
-  yocto/emgd: emgd 1.8 driver
-  yocto/emgd: build fixups
-  yocto/emgd: 3.0 fixes
-
- drivers/gpu/drm/Kconfig                            |    9 +
- drivers/gpu/drm/Makefile                           |    1 +
- drivers/gpu/drm/emgd/Makefile                      |  284 ++
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ drivers/gpu/drm/emgd/Makefile                      |  316 ++
  drivers/gpu/drm/emgd/emgd/cfg/config.h             |  126 +
  drivers/gpu/drm/emgd/emgd/cfg/config_default.h     |  197 +
  drivers/gpu/drm/emgd/emgd/cfg/config_helper.c      |  239 ++
@@ -284,7 +275,7 @@ Tom Zanussi (3):
  .../drm/emgd/pvr/services4/srvkm/common/pvrsrv.c   | 1194 +++++++
  .../drm/emgd/pvr/services4/srvkm/common/queue.c    | 1161 ++++++
  .../gpu/drm/emgd/pvr/services4/srvkm/common/ra.c   | 1867 ++++++++++
- .../drm/emgd/pvr/services4/srvkm/common/resman.c   |  703 ++++
+ .../drm/emgd/pvr/services4/srvkm/common/resman.c   |  707 ++++
  .../drm/emgd/pvr/services4/srvkm/devices/sgx/mmu.c | 2772 +++++++++++++++
  .../drm/emgd/pvr/services4/srvkm/devices/sgx/mmu.h |  135 +
  .../drm/emgd/pvr/services4/srvkm/devices/sgx/pb.c  |  454 +++
@@ -300,29 +291,29 @@ Tom Zanussi (3):
  .../pvr/services4/srvkm/devices/sgx/sgxutils.h     |   95 +
  .../emgd/pvr/services4/srvkm/env/linux/env_data.h  |   62 +
  .../pvr/services4/srvkm/env/linux/env_perproc.h    |   52 +
- .../drm/emgd/pvr/services4/srvkm/env/linux/event.c |  265 ++
+ .../drm/emgd/pvr/services4/srvkm/env/linux/event.c |  269 ++
  .../drm/emgd/pvr/services4/srvkm/env/linux/event.h |   28 +
  .../pvr/services4/srvkm/env/linux/kbuild/Makefile  |  151 +
  .../emgd/pvr/services4/srvkm/env/linux/linkage.h   |   57 +
  .../drm/emgd/pvr/services4/srvkm/env/linux/lock.h  |   28 +
- .../drm/emgd/pvr/services4/srvkm/env/linux/mm.c    | 2377 +++++++++++++
- .../drm/emgd/pvr/services4/srvkm/env/linux/mm.h    |  323 ++
- .../drm/emgd/pvr/services4/srvkm/env/linux/mmap.c  | 1149 ++++++
+ .../drm/emgd/pvr/services4/srvkm/env/linux/mm.c    | 2381 +++++++++++++
+ .../drm/emgd/pvr/services4/srvkm/env/linux/mm.h    |  327 ++
+ .../drm/emgd/pvr/services4/srvkm/env/linux/mmap.c  | 1153 ++++++
  .../drm/emgd/pvr/services4/srvkm/env/linux/mmap.h  |  103 +
- .../emgd/pvr/services4/srvkm/env/linux/module.c    |  756 ++++
+ .../emgd/pvr/services4/srvkm/env/linux/module.c    |  760 ++++
  .../drm/emgd/pvr/services4/srvkm/env/linux/mutex.c |   28 +
  .../drm/emgd/pvr/services4/srvkm/env/linux/mutex.h |   37 +
- .../emgd/pvr/services4/srvkm/env/linux/mutils.c    |  126 +
- .../emgd/pvr/services4/srvkm/env/linux/mutils.h    |   93 +
- .../emgd/pvr/services4/srvkm/env/linux/osfunc.c    | 2545 +++++++++++++
+ .../emgd/pvr/services4/srvkm/env/linux/mutils.c    |  129 +
+ .../emgd/pvr/services4/srvkm/env/linux/mutils.h    |   97 +
+ .../emgd/pvr/services4/srvkm/env/linux/osfunc.c    | 2554 ++++++++++++++
  .../emgd/pvr/services4/srvkm/env/linux/osperproc.c |  109 +
  .../drm/emgd/pvr/services4/srvkm/env/linux/pdump.c |  658 ++++
  .../pvr/services4/srvkm/env/linux/private_data.h   |   63 +
- .../drm/emgd/pvr/services4/srvkm/env/linux/proc.c  |  962 +++++
+ .../drm/emgd/pvr/services4/srvkm/env/linux/proc.c  |  966 +++++
  .../drm/emgd/pvr/services4/srvkm/env/linux/proc.h  |  111 +
  .../pvr/services4/srvkm/env/linux/pvr_bridge_k.c   |  647 ++++
- .../emgd/pvr/services4/srvkm/env/linux/pvr_debug.c |  418 +++
- .../emgd/pvr/services4/srvkm/env/linux/pvr_drm.c   |  301 ++
+ .../emgd/pvr/services4/srvkm/env/linux/pvr_debug.c |  422 +++
+ .../emgd/pvr/services4/srvkm/env/linux/pvr_drm.c   |  305 ++
  .../emgd/pvr/services4/srvkm/env/linux/pvr_drm.h   |   65 +
  .../emgd/pvr/services4/srvkm/hwdefs/sgx535defs.h   |  633 ++++
  .../emgd/pvr/services4/srvkm/hwdefs/sgx540defs.h   |  586 +++
@@ -372,329 +363,7 @@ Tom Zanussi (3):
  .../intern/debug/dbgdriv/linux/kbuild/Makefile     |   33 +
  .../pvr/tools/intern/debug/dbgdriv/linux/main.c    |  294 ++
  .../debug/dbgdriv/linux/makefile.linux.common      |   38 +
- 325 files changed, 157561 insertions(+), 0 deletions(-)
- create mode 100755 drivers/gpu/drm/emgd/Makefile
- create mode 100644 drivers/gpu/drm/emgd/emgd/cfg/config.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/cfg/config_default.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/cfg/config_helper.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/core/init/cmn/igd_global.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/core/init/cmn/igd_init.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/core/init/cmn/init_dispatch.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/core/init/plb/init_plb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/core/init/plb/micro_init_plb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/core/init/tnc/init_tnc.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/core/init/tnc/micro_init_tnc.c
- create mode 100755 drivers/gpu/drm/emgd/emgd/display/dsp/cmn/dsp.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/dsp/cmn/dsp_dispatch.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/dsp/plb/dsp_plb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/dsp/tnc/dsp_tnc.c
- create mode 100755 drivers/gpu/drm/emgd/emgd/display/mode/cmn/igd_mode.c
- create mode 100755 drivers/gpu/drm/emgd/emgd/display/mode/cmn/match.c
- create mode 100755 drivers/gpu/drm/emgd/emgd/display/mode/cmn/match.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/mode/cmn/micro_mode.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/mode/cmn/mode_dispatch.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/mode/cmn/vga_mode.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/mode/plb/clocks_plb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/mode/plb/micro_mode_plb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/mode/plb/mode_plb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/mode/tnc/clocks_tnc.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/mode/tnc/micro_mode_tnc.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/mode/tnc/mode_tnc.c
- create mode 100755 drivers/gpu/drm/emgd/emgd/display/pd/cmn/pd.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/pi/cmn/displayid.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/pi/cmn/edid.c
- create mode 100755 drivers/gpu/drm/emgd/emgd/display/pi/cmn/i2c_dispatch.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/pi/cmn/igd_pi.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/pi/cmn/mode_table.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/pi/cmn/pd_init_all.c
- create mode 100755 drivers/gpu/drm/emgd/emgd/display/pi/cmn/pi.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/pi/plb/i2c_plb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/pi/tnc/i2c_bitbash_tnc.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/display/pi/tnc/i2c_gmbus_tnc.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/drm/drm_emgd_private.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/drm/emgd_drv.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/drm/emgd_fb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/drm/emgd_interface.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/drm/emgd_mmap.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/drm/emgd_test_pvrsrv.c
- create mode 100755 drivers/gpu/drm/emgd/emgd/drm/image_data.h
- create mode 100755 drivers/gpu/drm/emgd/emgd/drm/splash_screen.c
- create mode 100755 drivers/gpu/drm/emgd/emgd/drm/splash_screen.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/drm/user_config.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/drm/user_config.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/gmm/gmm.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/gmm/gtt.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/cmd.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/context.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/debug.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/decode.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/dispatch.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/dispatch_utils.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/displayid.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/dsp.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/edid.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/general.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/instr_common.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/intelpci.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/math_fix.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/memlist.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/memory.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/mode.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/mode_access.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/module_init.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/msvdx.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/pci.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/pd.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/pd_init.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/pi.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/plb/appcontext.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/plb/cmd.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/plb/context.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/plb/instr.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/plb/mi.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/plb/regs.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/plb/sgx.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/plb/state3d.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/plb/state3d_plb.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/psb_regs.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/rb.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/reset.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/sched.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/state2d.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/tnc/appcontext.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/tnc/cmd.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/tnc/context.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/tnc/igd_tnc_wa.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/tnc/instr.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/tnc/mi.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/tnc/regs.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/tnc/sgx.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/tnc/state3d.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/tnc/state3d_plb.h
- create mode 100755 drivers/gpu/drm/emgd/emgd/include/topaz.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/utils.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/include/vga.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/oal/src/math_fix.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/oal/src/memmap.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/oal/src/pci.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/Makefile.include
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/lpd/lpd.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/lpd/pd_print.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/lvds/lvds.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/lvds/lvds.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/sdvo/sdvo.def
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/sdvo/sdvo_attr.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/sdvo/sdvo_attr.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/sdvo/sdvo_hdmi.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/sdvo/sdvo_hdmi.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/sdvo/sdvo_intf.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/sdvo/sdvo_intf.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/sdvo/sdvo_port.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/pal/sdvo/sdvo_port.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/state/appcontext/cmn/appcontext_dispatch.h
- create mode 100755 drivers/gpu/drm/emgd/emgd/state/appcontext/cmn/igd_appcontext.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/state/appcontext/plb/appcontext_plb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/state/power/cmn/igd_pwr.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/state/power/cmn/pwr_dispatch.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/state/power/plb/pwr_plb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/state/reg/cmn/reg.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/state/reg/cmn/reg_dispatch.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/state/reg/plb/reg_plb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/state/reg/tnc/reg_tnc.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/utils/math_fix.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/utils/memmap.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/utils/pci.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/msvdx/msvdx.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/msvdx/msvdx_init.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/msvdx/msvdx_pvr.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/msvdx/msvdx_pvr.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/cmn/igd_ovl.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/cmn/micro_ovl.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/cmn/ovl_coeff.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/cmn/ovl_coeff.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/cmn/ovl_dispatch.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/cmn/ovl_virt.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/plb/micro_ovl_plb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/plb/ovl2_plb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/plb/ovl2_plb.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/plb/ovl2_regs_plb.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/plb/ovl_plb.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/plb/ovl_plb_cache.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/plb/ovl_plb_cache.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/plb/ovl_regs_plb.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/tnc/micro_ovl_tnc.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/tnc/ovl2_regs_tnc.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/tnc/ovl2_tnc.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/tnc/ovl2_tnc.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/tnc/ovl_regs_tnc.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/tnc/ovl_tnc.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/tnc/ovl_tnc_cache.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/overlay/tnc/ovl_tnc_cache.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/topaz/topaz.c
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/topaz/topaz_hdr.h
- create mode 100644 drivers/gpu/drm/emgd/emgd/video/topaz/topaz_init.c
- create mode 100644 drivers/gpu/drm/emgd/include/emgd_drm.h
- create mode 100644 drivers/gpu/drm/emgd/include/emgd_shared.h
- create mode 100644 drivers/gpu/drm/emgd/include/gart.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_2d.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_appcontext.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_blend.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_debug.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_errno.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_gart.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_gmm.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_init.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_interrupt.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_mode.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_ovl.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_pd.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_pi.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_pwr.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_rb.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_render.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_reset.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_version.h
- create mode 100644 drivers/gpu/drm/emgd/include/igd_vga.h
- create mode 100644 drivers/gpu/drm/emgd/include/io.h
- create mode 100644 drivers/gpu/drm/emgd/include/memmap.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/dbgdrvif.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/img_defs.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/img_types.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/ioctldef.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/pdumpdefs.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/pvr_debug.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/pvrmodule.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/pvrversion.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/regpaths.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/services.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/servicesext.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/sgx_options.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/sgxapi_km.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/include4/sgxscript.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/3rdparty/emgd_displayclass/emgd_dc.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/3rdparty/emgd_displayclass/emgd_dc.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/3rdparty/emgd_displayclass/emgd_dc_linux.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/include/env/linux/pvr_drm_shared.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/include/kernelbuffer.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/include/kerneldisplay.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/include/pvr_bridge.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/include/pvr_bridge_km.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/include/pvrmmap.h
- create mode 100755 drivers/gpu/drm/emgd/pvr/services4/include/pvrsrv_errors.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/include/servicesint.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/include/sgx_bridge.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/include/sgx_mkif_km.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/include/sgxinfo.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/bridged/bridged_pvr_bridge.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/bridged/bridged_pvr_bridge.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/bridged/bridged_support.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/bridged/bridged_support.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/bridged/sgx/bridged_sgx_bridge.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/bridged/sgx/bridged_sgx_bridge.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/buffer_manager.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/deviceclass.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/devicemem.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/handle.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/hash.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/lists.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/mem.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/mem_debug.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/metrics.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/pdump_common.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/perproc.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/power.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/pvrsrv.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/queue.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/ra.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/common/resman.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/devices/sgx/mmu.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/devices/sgx/mmu.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/devices/sgx/pb.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/devices/sgx/sgx_bridge_km.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/devices/sgx/sgxconfig.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/devices/sgx/sgxinfokm.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/devices/sgx/sgxinit.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/devices/sgx/sgxkick.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/devices/sgx/sgxpower.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/devices/sgx/sgxreset.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/devices/sgx/sgxtransfer.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/devices/sgx/sgxutils.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/devices/sgx/sgxutils.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/env_data.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/env_perproc.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/event.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/event.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/kbuild/Makefile
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/linkage.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/lock.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mm.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mm.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mmap.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mmap.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/module.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mutex.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mutex.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mutils.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/mutils.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/osfunc.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/osperproc.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/pdump.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/private_data.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/proc.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/proc.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/pvr_bridge_k.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/pvr_debug.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/pvr_drm.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/env/linux/pvr_drm.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/hwdefs/sgx535defs.h
- create mode 100755 drivers/gpu/drm/emgd/pvr/services4/srvkm/hwdefs/sgx540defs.h
- create mode 100755 drivers/gpu/drm/emgd/pvr/services4/srvkm/hwdefs/sgx545defs.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/hwdefs/sgxdefs.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/hwdefs/sgxerrata.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/hwdefs/sgxfeaturedefs.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/hwdefs/sgxmmu.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/buffer_manager.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/device.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/handle.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/hash.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/lists.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/metrics.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/osfunc.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/osperproc.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/pdump_km.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/pdump_osfunc.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/perproc.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/power.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/queue.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/ra.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/resman.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/services_headers.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/srvkm/include/srvkm.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/system/common/sysconfig.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/system/common/sysutils.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/system/include/oemfuncs.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/system/include/sys_pvr_drm_shared.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/system/include/syscommon.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/system/include/sysconfig.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/system/include/sysinfo.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/system/include/syslocal.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/system/plb/sysconfig.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/system/plb/sysplb.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/system/tnc/sysconfig.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/services4/system/tnc/systnc.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/client/linuxsrv.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/dbgdriv/common/dbgdriv.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/dbgdriv/common/dbgdriv.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/dbgdriv/common/hostfunc.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/dbgdriv/common/hotkey.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/dbgdriv/common/hotkey.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/dbgdriv/common/ioctl.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/dbgdriv/common/ioctl.h
- create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/dbgdriv/linux/hostfunc.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/dbgdriv/linux/kbuild/Makefile
- create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/dbgdriv/linux/main.c
- create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/dbgdriv/linux/makefile.linux.common
+ 323 files changed, 157635 insertions(+), 0 deletions(-)
 
+Patch too large to post - please see git branch for details.
 
