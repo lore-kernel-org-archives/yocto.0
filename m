@@ -1,25 +1,20 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BEE8E00771
-	for <yocto@yoctoproject.org>; Thu, 11 Aug 2011 17:41:24 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7C0fWPf019864
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 11 Aug 2011 17:41:32 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.18.204) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Thu, 11 Aug 2011 17:41:32 -0700
-Message-ID: <4E4476B9.9040405@windriver.com>
-Date: Thu, 11 Aug 2011 20:41:29 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.20) Gecko/20110804 Thunderbird/3.1.12
+Return-Path: <jeffrey.osier-mixon@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D98BAE011B6
+	for <yocto@yoctoproject.org>; Thu, 11 Aug 2011 18:12:27 -0700 (PDT)
+Received: from mail-wy0-f180.google.com ([74.125.82.180])
+	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 11 Aug 2011 18:12:36 -0700
+Received: by wyj26 with SMTP id 26so1747178wyj.25
+	for <yocto@yoctoproject.org>; Thu, 11 Aug 2011 18:12:35 -0700 (PDT)
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <cover.1313093647.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1313093647.git.dvhart@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/2] preempt-rt support for meta-yocto BSPs
+Received: by 10.216.38.76 with SMTP id z54mr213575wea.102.1313111555402; Thu,
+	11 Aug 2011 18:12:35 -0700 (PDT)
+Received: by 10.216.158.66 with HTTP; Thu, 11 Aug 2011 18:12:35 -0700 (PDT)
+Date: Thu, 11 Aug 2011 18:12:35 -0700
+Message-ID: <CALZ2gZUiMOkF9q4h8QVaHp7DxnV5YbRE0iJ6bqcyVsncbW1ZfA@mail.gmail.com>
+From: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
+To: yocto@yoctoproject.org
+Subject: ELCE Presentations
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,35 +26,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2011 00:41:24 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 12 Aug 2011 01:12:28 -0000
+Content-Type: multipart/alternative; boundary=0016e6454998cf6ae804aa449bfe
 
-On 11-08-11 7:08 PM, Darren Hart wrote:
-> This series add build and boot tested support for the atom-pc and mpc8315e-rdb.
-> The routerstationpro and beagleboard still suffer from build failures and are
-> commented out.
->
-> The following changes since commit 760d79558c5e35b9b0e73734bb90ebadf427f208:
->
->    recipes-rt: add a README documenting the contents of recipes-rt (2011-08-11 12:36:02 -0700)
->
-> are available in the git repository at:
->    git://git.pokylinux.org/poky-contrib dvhart/rt-yocto
->    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=dvhart/rt-yocto
->
-> Darren Hart (2):
->    meta-yocto: allow for virtual/kernel override
->    meta-yocto: add linux-yocto-rt support for all meta-yocto machines
+--0016e6454998cf6ae804aa449bfe
+Content-Type: text/plain; charset=ISO-8859-1
 
-Acked-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+Hi all,
 
->
->   meta-yocto/conf/machine/mpc8315e-rdb.conf          |    2 +-
->   meta-yocto/conf/machine/routerstationpro.conf      |    2 +-
->   .../linux/linux-yocto-rt_3.0.bbappend              |   25 ++++++++++++++++++++
->   3 files changed, 27 insertions(+), 2 deletions(-)
->   create mode 100644 meta-yocto/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
->
+The Linux Foundation is rolling out responses to submissions for ELCE.  If
+you submitted a talk that is related to the Yocto Project that was accepted,
+please let me know so I can keep track of such things.
 
+thanks!
 
+Jeff
+
+--0016e6454998cf6ae804aa449bfe
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,<div><br></div><div>The Linux Foundation is rolling out responses to=
+ submissions for ELCE. =A0If you submitted a talk that is related to the Yo=
+cto Project that was accepted, please let me know so I can keep track of su=
+ch things.</div>
+<div><br></div><div>thanks!</div><div><br></div><div>Jeff</div>
+
+--0016e6454998cf6ae804aa449bfe--
