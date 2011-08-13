@@ -1,22 +1,19 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B50DAE011F0
-	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 15:54:21 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 999)
-	id 15024166034B; Fri, 12 Aug 2011 16:54:30 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 98336166025F;
-	Fri, 12 Aug 2011 16:54:28 -0600 (MDT)
-Message-ID: <4E45AF24.5070804@mlbassoc.com>
-Date: Fri, 12 Aug 2011 16:54:28 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.17) Gecko/20110428 Fedora/3.1.10-1.fc15 Thunderbird/3.1.10
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A83EAE011F0
+	for <yocto@yoctoproject.org>; Fri, 12 Aug 2011 18:24:02 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7D1NNv0004889
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 12 Aug 2011 18:23:53 -0700 (PDT)
+Received: from [128.224.147.214] (128.224.147.214) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 12 Aug 2011 18:22:59 -0700
+Message-ID: <4E45D1F2.6040902@windriver.com>
+Date: Fri, 12 Aug 2011 21:22:58 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11 ThunderBrowse/3.8
 MIME-Version: 1.0
 To: Chris Tapp <opensource@keylevel.com>
 References: <56EF2FAC-D4B5-4EC7-ADC1-6AE0848A51FD@keylevel.com>
@@ -34,40 +31,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2011 22:54:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Sat, 13 Aug 2011 01:24:03 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2011-08-12 16:31, Chris Tapp wrote:
-> What is the best way to configure a layer to support multiple targets that share a common base?
+On 11-08-12 06:31 PM, Chris Tapp wrote:
+> What is the best way to configure a layer to support multiple targets
+> that share a common base?
 >
-> For example, a set of targets that use the Vortex86DX SOC share common peripherals and also have per-variant peripherals.
+> For example, a set of targets that use the Vortex86DX SOC share common
+> peripherals and also have per-variant peripherals.
 >
 > I was thinking:
 >
 > 1) Have a conf/machine file for each variant;
 > 2) Make these use an include for the Vortex86DX SOC.
 >
-> However, I can't work out how to get a per-machine defconfig file. Is there some way of using the machine name to do this? Can I just use
+> However, I can't work out how to get a per-machine defconfig file. Is
+> there some way of using the machine name to do this? Can I just use
+
+What's your yocto release / base kernel ? IF you happen to
+be using linux-yocto there are several ways to avoid using
+defconfigs at all, and share your common base of kernel
+configuration items.
+
+Cheers,
+
+Bruce
+
 >
 > FILESEXTRAPATHS := "${THISDIR}/${PN}/${MACHINE}"
 >
 > in a kernel .bbappend file?
+>
+> Chris Tapp
+>
+> opensource@keylevel.com
+> www.keylevel.com
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-That shouldn't even be necessary. Just something like this:
-   FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}"
-and it will look for files in various directories
-   ${THISDIR}/${PN}/${MACHINE}
-   ${THISDIR}/${PN}
-(and maybe some others)
-
-For example, I have one layer for a project which supports
-three different targets (all part of the same platform) using
-this technique.
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
