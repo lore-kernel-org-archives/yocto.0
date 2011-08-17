@@ -1,25 +1,25 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4216AE011C6
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2011 10:18:40 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 17 Aug 2011 10:18:50 -0700
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F15F3E011C6
+	for <yocto@yoctoproject.org>; Wed, 17 Aug 2011 10:25:21 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 17 Aug 2011 10:25:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,240,1312182000"; d="scan'208";a="42372027"
+X-IronPort-AV: E=Sophos;i="4.68,240,1312182000"; d="scan'208";a="40678490"
 Received: from unknown (HELO envy.home) ([10.255.14.197])
-	by fmsmga001.fm.intel.com with ESMTP; 17 Aug 2011 10:18:50 -0700
-Message-ID: <4E4BF7F8.4030308@linux.intel.com>
-Date: Wed, 17 Aug 2011 10:18:48 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 17 Aug 2011 10:25:32 -0700
+Message-ID: <4E4BF98A.5090501@linux.intel.com>
+Date: Wed, 17 Aug 2011 10:25:30 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:5.0) Gecko/20110707 Thunderbird/5.0
 MIME-Version: 1.0
 To: tom.zanussi@intel.com
-References: <0fdd02a74ec09889077473c5c2b6423f0d5ce758.1313598858.git.tom.zanussi@intel.com>
-	<49c96ae040bb44f4d0d699d35fd0bded1e909550.1313598858.git.tom.zanussi@intel.com>
-In-Reply-To: <49c96ae040bb44f4d0d699d35fd0bded1e909550.1313598858.git.tom.zanussi@intel.com>
+References: <9391ba93d0385e0768062df5c4c087d9673a827b.1313598804.git.tom.zanussi@intel.com>
+	<0bb19ed262106171280812cbd463b6697e848d4d.1313598804.git.tom.zanussi@intel.com>
+In-Reply-To: <0bb19ed262106171280812cbd463b6697e848d4d.1313598804.git.tom.zanussi@intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 2/2][KERNEL] bsp/fri2: use EMGD feature
+Subject: Re: [PATCH 10/12] meta-fri2: make the use of emgd-driver-bin COMMERCIAL
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,37 +31,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2011 17:18:40 -0000
+X-List-Received-Date: Wed, 17 Aug 2011 17:25:22 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
 
 
-On 08/17/2011 09:50 AM, tom.zanussi@intel.com wrote:
+On 08/17/2011 09:51 AM, tom.zanussi@intel.com wrote:
 > From: Tom Zanussi <tom.zanussi@intel.com>
 > 
-> Add kernel options needed for enabling EMGD.
+> The emgd-driver-bin recipe now automatically downloads and installs
+> EMGD using the new click-through-free tarball, but since the binaries
+> still fall under a non-free license, we need to prevent it from being
+> accidentally installed in an image.
+> 
+> We therefore make sure it's labeled in the fri2 layer with
+> 'COMMERCIAL_LICENSE'.  In order to build an fri2 image, the user
+> now needs to add a 'COMMERCIAL_LICENSE = ""' line to local.conf.
 > 
 > Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
-
-Acked-by: Darren Hart <dvhart@linux.intel.com>
-
 > ---
->  meta/cfg/kernel-cache/bsp/fri2/fri2.scc |    1 +
->  1 files changed, 1 insertions(+), 0 deletions(-)
+>  meta-fri2/conf/layer.conf |    2 ++
+>  1 files changed, 2 insertions(+), 0 deletions(-)
 > 
-> diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
-> index a87ce7e..2d30049 100644
-> --- a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
-> +++ b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
-> @@ -4,6 +4,7 @@ git merge yocto/emgd
->  
->  include features/eg20t/eg20t.scc
->  include features/intel-e1xxxx/intel-e1xxxx.scc
-> +include features/drm-emgd/drm-emgd.scc
->  include features/dmaengine/dmaengine.scc
->  include features/serial/8250.scc
->  include features/ericsson-3g/f5521gw.scc
+> diff --git a/meta-fri2/conf/layer.conf b/meta-fri2/conf/layer.conf
+> index 261cccc..eb17336 100644
+> --- a/meta-fri2/conf/layer.conf
+> +++ b/meta-fri2/conf/layer.conf
+> @@ -10,3 +10,5 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>  BBFILE_COLLECTIONS += "fri2"
+>  BBFILE_PATTERN_fri2 := "^${LAYERDIR}/"
+>  BBFILE_PRIORITY_fri2 = "6"
+> +
+> +COMMERCIAL_LICENSE += "emgd-driver-bin"
+
+Can't this be done in the common emgd driver recipe? Seems wrong to have
+to specify commercial license for recipe in a machine config... A
+different machine could just omit it and the user would not have to add
+COMMERCIAL_LICENSE = "" to their local.conf and it would be fine?
+
 
 -- 
 Darren Hart
