@@ -1,24 +1,25 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30EC9E01238
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2011 09:51:20 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 17 Aug 2011 09:51:30 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04C33E011C6
+	for <yocto@yoctoproject.org>; Wed, 17 Aug 2011 10:18:31 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 17 Aug 2011 10:18:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,240,1312182000"; d="scan'208";a="39480917"
-Received: from unknown (HELO localhost) ([10.255.14.5])
-	by azsmga001.ch.intel.com with ESMTP; 17 Aug 2011 09:51:30 -0700
-From: tom.zanussi@intel.com
-To: dvhart@linux.intel.com,
-	yocto@yoctoproject.org
-Date: Wed, 17 Aug 2011 11:51:13 -0500
-Message-Id: <dd97478bd641fe78c84fff98cbecef9b159874a8.1313598804.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <9391ba93d0385e0768062df5c4c087d9673a827b.1313598804.git.tom.zanussi@intel.com>
-References: <9391ba93d0385e0768062df5c4c087d9673a827b.1313598804.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1313598804.git.tom.zanussi@intel.com>
-References: <cover.1313598804.git.tom.zanussi@intel.com>
-Subject: [PATCH 12/12] meta-intel: crownbay/fri2 README update for COMMERCIAL_LICENSE
+X-IronPort-AV: E=Sophos;i="4.68,240,1312182000"; d="scan'208";a="42372011"
+Received: from unknown (HELO envy.home) ([10.255.14.197])
+	by fmsmga001.fm.intel.com with ESMTP; 17 Aug 2011 10:18:42 -0700
+Message-ID: <4E4BF7F0.1090203@linux.intel.com>
+Date: Wed, 17 Aug 2011 10:18:40 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:5.0) Gecko/20110707 Thunderbird/5.0
+MIME-Version: 1.0
+To: tom.zanussi@intel.com
+References: <cover.1313598858.git.tom.zanussi@intel.com>
+	<0fdd02a74ec09889077473c5c2b6423f0d5ce758.1313598858.git.tom.zanussi@intel.com>
+In-Reply-To: <0fdd02a74ec09889077473c5c2b6423f0d5ce758.1313598858.git.tom.zanussi@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/2][KERNEL] bsp/fri2: merge emgd branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,54 +31,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2011 16:51:20 -0000
+X-List-Received-Date: Wed, 17 Aug 2011 17:18:32 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
 
-Document an alternative mechanism for users to deal with
-COMMERCIAL_LICENSE in the crownbay and fri2 BSPs.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-crownbay/README |    6 ++++++
- meta-fri2/README     |    6 ++++++
- 2 files changed, 12 insertions(+), 0 deletions(-)
+On 08/17/2011 09:50 AM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi <tom.zanussi@intel.com>
+> 
+> Add scc commands to merge the yocto/emgd branch into the fri2 BSP.
+> 
+> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 
-diff --git a/meta-crownbay/README b/meta-crownbay/README
-index c82f2c4..c3d2520 100644
---- a/meta-crownbay/README
-+++ b/meta-crownbay/README
-@@ -85,6 +85,12 @@ As mentioned in Section I, you need to add the line:
- 
- to the local.conf file in order for the build to succeed.
- 
-+Alternatively, if clearing COMMERCIAL_LICENSE is not precise enough
-+for your needs, you can also simply comment out the following line in
-+meta-crownbay/conf/layer.conf to achieve the same result:
-+
-+  COMMERCIAL_LICENSE += "emgd-driver-bin"
-+
- The crownbay BSP COMMERCIAL_LICENSE default setting causes the build
- to fail in order to prevent users from inadvertently creating and
- possibly distributing images containing packages with non-free
-diff --git a/meta-fri2/README b/meta-fri2/README
-index e2e7bd0..81ced36 100644
---- a/meta-fri2/README
-+++ b/meta-fri2/README
-@@ -87,6 +87,12 @@ As mentioned in Section I, you need to add the line:
- 
- to the local.conf file in order for the build to succeed.
- 
-+Alternatively, if clearing COMMERCIAL_LICENSE is not precise enough
-+for your needs, you can also simply comment out the following line in
-+meta-fri/conf/layer.conf to achieve the same result:
-+
-+  COMMERCIAL_LICENSE += "emgd-driver-bin"
-+
- The fri2 BSP COMMERCIAL_LICENSE default setting causes the build to
- fail in order to prevent users from inadvertently creating and
- possibly distributing images containing packages with non-free
+Acked-by: Darren Hart <dvhart@linux.intel.com>
+
+> ---
+>  meta/cfg/kernel-cache/bsp/fri2/fri2.scc |    2 ++
+>  1 files changed, 2 insertions(+), 0 deletions(-)
+> 
+> diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+> index 6ac0bfb..a87ce7e 100644
+> --- a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+> +++ b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+> @@ -1,5 +1,7 @@
+>  kconf hardware fri2.cfg
+>  
+> +git merge yocto/emgd
+> +
+>  include features/eg20t/eg20t.scc
+>  include features/intel-e1xxxx/intel-e1xxxx.scc
+>  include features/dmaengine/dmaengine.scc
+
 -- 
-1.7.0.4
-
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
