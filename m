@@ -1,21 +1,26 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09794E011C6
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2011 09:15:31 -0700 (PDT)
+Return-Path: <josh@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9F6EE011C6
+	for <yocto@yoctoproject.org>; Wed, 17 Aug 2011 09:33:02 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 17 Aug 2011 09:15:35 -0700
+	by azsmga101.ch.intel.com with ESMTP; 17 Aug 2011 09:32:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,240,1312182000"; d="scan'208";a="39468011"
-Received: from unknown (HELO envy.home) ([10.255.14.197])
-	by azsmga001.ch.intel.com with ESMTP; 17 Aug 2011 09:15:35 -0700
-Message-ID: <4E4BE925.1070605@linux.intel.com>
-Date: Wed, 17 Aug 2011 09:15:33 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:5.0) Gecko/20110707 Thunderbird/5.0
-MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: linux-yocto: bitbake restarts with do_fetch after a -c configure
+X-IronPort-AV: E=Sophos;i="4.68,240,1312182000"; d="scan'208";a="39474506"
+Received: from unknown (HELO [10.255.14.198]) ([10.255.14.198])
+	by azsmga001.ch.intel.com with ESMTP; 17 Aug 2011 09:32:13 -0700
+From: Joshua Lock <josh@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 17 Aug 2011 09:32:08 -0700
+In-Reply-To: <36642C12-5231-4EE6-A267-D469D3E5B98F@keylevel.com>
+References: <02B62B87-3FD5-421C-A344-9A808B1E9C99@keylevel.com>
+	<4E446C74.9070807@intel.com> <4E4473A4.4060403@windriver.com>
+	<B44F0C76-F163-4264-B052-BA9E4CC4CDC3@keylevel.com>
+	<4E452396.1070506@windriver.com>
+	<36642C12-5231-4EE6-A267-D469D3E5B98F@keylevel.com>
+X-Mailer: Evolution 3.0.2 (3.0.2-3.fc15) 
+Message-ID: <1313598733.2205.6.camel@scimitar>
+Mime-Version: 1.0
+Subject: Re: bbappend - Where should my file be?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,57 +32,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2011 16:15:32 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 17 Aug 2011 16:33:03 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-I was having some trouble doing some iterative kernel development and
-noticed that bitbake was restarting with do_fetch no matter what stage I
-had completed with the previous command. I thought it might be
-triggering on a source change, but just running the following without
-any other changes had the same result:
+On Fri, 2011-08-12 at 20:48 +0100, Chris Tapp wrote:
+> On 12 Aug 2011, at 13:59, Bruce Ashfield wrote:
+> 
+> >> NOTE: Unpacking
+> >> /home/chris/yocto/yocto-downloads/git_git.pokylinux.org.linux-2.6- 
+> >> windriver.git.tar.gz
+> >> to
+> >> /home/chris/yocto/sjs-build/tmp/work/LX800-poky-linux/linux- 
+> >> wrs 
+> >> -2.6.34 
+> >> + 
+> >> git0 
+> >> + 
+> >> b67e060194a38c6331da1532bd06446087a42b3b_0 
+> >> +0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
+> >>
+> >> NOTE: Unpacking
+> >> /home/chris/yocto/meta-keylevel-sjs/recipes/linux/linux-wrs/ 
+> >> defconfig to
+> >> /home/chris/yocto/sjs-build/tmp/work/LX800-poky-linux/linux- 
+> >> wrs 
+> >> -2.6.34 
+> >> + 
+> >> git0 
+> >> + 
+> >> b67e060194a38c6331da1532bd06446087a42b3b_0 
+> >> +0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
+> >>
+> >
+> > That does look right!
+> 
+> What are the rules for naming layers?
+> 
+> I renamed the root for my new layer from 'meta-ebox-3300' to 'meta- 
+> ebox3300', updated this in bblayers.conf and now my defconf file is  
+> found as I was expecting...
+> 
+> It seems as if having -<numeric> at the end stops things working.
 
-$ bitbake linux-yocto -c configure
-...
-$ bitbake linux-yocto
-$ bitbake linux-yocto
-Loading cache: 100%
-|######################################################################################################|
-ETA:  00:00:00
-Loaded 1019 entries from dependency cache.
-Parsing recipes: 100%
-|####################################################################################################|
-Time: 00:00:01
-Parsing of 790 .bb files complete (788 cached, 2 parsed). 1020 targets,
-37 skipped, 0 masked, 0 errors.
+This sounds like a bug so I filed it here:
+http://bugzilla.yoctoproject.org/show_bug.cgi?id=1379
 
-OE Build Configuration:
-BB_VERSION        = "1.13.3"
-TARGET_ARCH       = "powerpc"
-TARGET_OS         = "linux"
-MACHINE           = "qemuppc"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.0+snapshot-20110817"
-TUNE_FEATURES     = "m32 fpu-hard ppc603e"
-TARGET_FPU        = ""
-meta
-meta-yocto        = "master:288c947ee69131cc29e9c367523cc71e4df56a76"
-meta-kernel-dev   = "master:5193f2986c82d4c9a3b5e3cffb96877406664151"
-
-NOTE: Resolving any missing task queue dependencies
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-NOTE: Running task 484 of 860 (ID: 6,
-/home/dvhart/source/poky.git/meta/recipes-kernel/linux/linux-yocto_2.6.37.bb,
-do_fetch)
-
-
-This prevents any sort of iterative development as the unpack and
-subsequent steps undue any local changes to the source tree. This
-appears to be a regression.
+Regards,
+Joshua
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Joshua Lock
+        Yocto Project "Johannes factotum"
+        Intel Open Source Technology Centre
+
 
