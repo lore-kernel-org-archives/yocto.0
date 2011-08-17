@@ -1,26 +1,22 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9F6EE011C6
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2011 09:33:02 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 17 Aug 2011 09:32:13 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EC81E011C6
+	for <yocto@yoctoproject.org>; Wed, 17 Aug 2011 09:49:59 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 17 Aug 2011 09:50:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,240,1312182000"; d="scan'208";a="39474506"
-Received: from unknown (HELO [10.255.14.198]) ([10.255.14.198])
-	by azsmga001.ch.intel.com with ESMTP; 17 Aug 2011 09:32:13 -0700
-From: Joshua Lock <josh@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 17 Aug 2011 09:32:08 -0700
-In-Reply-To: <36642C12-5231-4EE6-A267-D469D3E5B98F@keylevel.com>
-References: <02B62B87-3FD5-421C-A344-9A808B1E9C99@keylevel.com>
-	<4E446C74.9070807@intel.com> <4E4473A4.4060403@windriver.com>
-	<B44F0C76-F163-4264-B052-BA9E4CC4CDC3@keylevel.com>
-	<4E452396.1070506@windriver.com>
-	<36642C12-5231-4EE6-A267-D469D3E5B98F@keylevel.com>
-X-Mailer: Evolution 3.0.2 (3.0.2-3.fc15) 
-Message-ID: <1313598733.2205.6.camel@scimitar>
-Mime-Version: 1.0
-Subject: Re: bbappend - Where should my file be?
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="38702533"
+Received: from unknown (HELO localhost) ([10.255.14.5])
+	by orsmga002.jf.intel.com with ESMTP; 17 Aug 2011 09:50:09 -0700
+From: tom.zanussi@intel.com
+To: bruce.ashfield@windriver.com, dvhart@linux.intel.com,
+	yocto@yoctoproject.org
+Date: Wed, 17 Aug 2011 11:50:13 -0500
+Message-Id: <0fdd02a74ec09889077473c5c2b6423f0d5ce758.1313598858.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <cover.1313598858.git.tom.zanussi@intel.com>
+References: <cover.1313598858.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/2][KERNEL] bsp/fri2: merge emgd branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,57 +28,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2011 16:33:03 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 17 Aug 2011 16:49:59 -0000
 
-On Fri, 2011-08-12 at 20:48 +0100, Chris Tapp wrote:
-> On 12 Aug 2011, at 13:59, Bruce Ashfield wrote:
-> 
-> >> NOTE: Unpacking
-> >> /home/chris/yocto/yocto-downloads/git_git.pokylinux.org.linux-2.6- 
-> >> windriver.git.tar.gz
-> >> to
-> >> /home/chris/yocto/sjs-build/tmp/work/LX800-poky-linux/linux- 
-> >> wrs 
-> >> -2.6.34 
-> >> + 
-> >> git0 
-> >> + 
-> >> b67e060194a38c6331da1532bd06446087a42b3b_0 
-> >> +0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
-> >>
-> >> NOTE: Unpacking
-> >> /home/chris/yocto/meta-keylevel-sjs/recipes/linux/linux-wrs/ 
-> >> defconfig to
-> >> /home/chris/yocto/sjs-build/tmp/work/LX800-poky-linux/linux- 
-> >> wrs 
-> >> -2.6.34 
-> >> + 
-> >> git0 
-> >> + 
-> >> b67e060194a38c6331da1532bd06446087a42b3b_0 
-> >> +0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
-> >>
-> >
-> > That does look right!
-> 
-> What are the rules for naming layers?
-> 
-> I renamed the root for my new layer from 'meta-ebox-3300' to 'meta- 
-> ebox3300', updated this in bblayers.conf and now my defconf file is  
-> found as I was expecting...
-> 
-> It seems as if having -<numeric> at the end stops things working.
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-This sounds like a bug so I filed it here:
-http://bugzilla.yoctoproject.org/show_bug.cgi?id=1379
+Add scc commands to merge the yocto/emgd branch into the fri2 BSP.
 
-Regards,
-Joshua
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ meta/cfg/kernel-cache/bsp/fri2/fri2.scc |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+index 6ac0bfb..a87ce7e 100644
+--- a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
++++ b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+@@ -1,5 +1,7 @@
+ kconf hardware fri2.cfg
+ 
++git merge yocto/emgd
++
+ include features/eg20t/eg20t.scc
+ include features/intel-e1xxxx/intel-e1xxxx.scc
+ include features/dmaengine/dmaengine.scc
 -- 
-Joshua Lock
-        Yocto Project "Johannes factotum"
-        Intel Open Source Technology Centre
+1.7.0.4
 
 
