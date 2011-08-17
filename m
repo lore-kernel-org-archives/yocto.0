@@ -1,21 +1,22 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DE47E011C6
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2011 09:50:46 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 17 Aug 2011 09:50:07 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5292FE011C6
+	for <yocto@yoctoproject.org>; Wed, 17 Aug 2011 09:50:58 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 17 Aug 2011 09:51:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,240,1312182000"; 
-   d="scan'208";a="8190341"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="39346605"
 Received: from unknown (HELO localhost) ([10.255.14.5])
-	by AZSMGA002.ch.intel.com with ESMTP; 17 Aug 2011 09:50:06 -0700
+	by orsmga001.jf.intel.com with ESMTP; 17 Aug 2011 09:51:08 -0700
 From: tom.zanussi@intel.com
-To: bruce.ashfield@windriver.com, dvhart@linux.intel.com,
+To: dvhart@linux.intel.com,
 	yocto@yoctoproject.org
-Date: Wed, 17 Aug 2011 11:50:05 -0500
-Message-Id: <cover.1313598858.git.tom.zanussi@intel.com>
+Date: Wed, 17 Aug 2011 11:51:02 -0500
+Message-Id: <9391ba93d0385e0768062df5c4c087d9673a827b.1313598804.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/2][KERNEL] meta-/fri2: add EMGD support
+In-Reply-To: <cover.1313598804.git.tom.zanussi@intel.com>
+References: <cover.1313598804.git.tom.zanussi@intel.com>
+Subject: [PATCH 01/12] meta-crownbay: switch to linux-yocto 3.0 kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,27 +28,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2011 16:50:46 -0000
+X-List-Received-Date: Wed, 17 Aug 2011 16:50:58 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This patchset makes fri2 use emgd.  Please pull into
-linux-yocto-3.0/meta.
+Switch crownbay and crownbay-noemgd to the 3.0 kernel, lock it down,
+and update kernel SRCREVs.
 
-Thanks,
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ meta-crownbay/conf/machine/crownbay-noemgd.conf    |    2 ++
+ meta-crownbay/conf/machine/crownbay.conf           |    2 ++
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |   15 +++++++++++++++
+ 3 files changed, 19 insertions(+), 0 deletions(-)
+ create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
 
-Tom
-
-The following changes are available in the git repository at:
-
-  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/meta-fri2-emgd-linux-yocto-3.0
-  http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/meta-fri2-emgd-linux-yocto-3.0
-
-Tom Zanussi (2):
-  bsp/fri2: merge emgd branch
-  bsp/fri2: use EMGD feature
-
- meta/cfg/kernel-cache/bsp/fri2/fri2.scc |    3 +++
- 1 files changed, 3 insertions(+), 0 deletions(-)
+diff --git a/meta-crownbay/conf/machine/crownbay-noemgd.conf b/meta-crownbay/conf/machine/crownbay-noemgd.conf
+index 0219bd1..0a82b54 100644
+--- a/meta-crownbay/conf/machine/crownbay-noemgd.conf
++++ b/meta-crownbay/conf/machine/crownbay-noemgd.conf
+@@ -12,6 +12,8 @@ MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
+ KERNEL_IMAGETYPE = "bzImage"
+ 
+ PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
++PREFERRED_VERSION_linux-yocto = "3.0+git%"
++
+ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
+ PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
+ PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
+diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
+index 323c8c1..b4ea4b4 100644
+--- a/meta-crownbay/conf/machine/crownbay.conf
++++ b/meta-crownbay/conf/machine/crownbay.conf
+@@ -12,6 +12,8 @@ MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
+ KERNEL_IMAGETYPE = "bzImage"
+ 
+ PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
++PREFERRED_VERSION_linux-yocto = "3.0+git%"
++
+ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
+ PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
+ PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
+diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
+new file mode 100644
+index 0000000..c9aef72
+--- /dev/null
++++ b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
+@@ -0,0 +1,15 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++COMPATIBLE_MACHINE_crownbay = "crownbay"
++KMACHINE_crownbay  = "yocto/standard/crownbay"
++KERNEL_FEATURES_append_crownbay += " cfg/smp.scc"
++
++COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
++KMACHINE_crownbay-noemgd  = "yocto/standard/crownbay"
++KERNEL_FEATURES_append_crownbay-noemgd += " cfg/smp.scc"
++
++SRCREV_machine_pn-linux-yocto_crownbay ?= "9a259cf4f6d404db2820642df755a295bbfb7fe7"
++SRCREV_meta_pn-linux-yocto_crownbay ?= "fe8eac15e144a35a716cd32c9d2b296ecd5202ac"
++
++SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?= "9a259cf4f6d404db2820642df755a295bbfb7fe7"
++SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?= "fe8eac15e144a35a716cd32c9d2b296ecd5202ac"
+-- 
+1.7.0.4
 
 
