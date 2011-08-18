@@ -1,24 +1,36 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19BDEE011B7
-	for <yocto@yoctoproject.org>; Thu, 18 Aug 2011 06:40:41 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7IDeo9N028426
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 18 Aug 2011 06:40:50 -0700 (PDT)
-Received: from [128.224.147.214] (128.224.147.214) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 18 Aug 2011 06:40:50 -0700
-Message-ID: <4E4D1660.6050803@windriver.com>
-Date: Thu, 18 Aug 2011 09:40:48 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11 ThunderBrowse/3.8
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-bw0-f48.google.com (mail-bw0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D56C3E011B7
+	for <yocto@yoctoproject.org>; Thu, 18 Aug 2011 06:43:21 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by bkat2 with SMTP id t2so2345373bka.35
+	for <yocto@yoctoproject.org>; Thu, 18 Aug 2011 06:43:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=GQmMwl69PIRkoR4W/dKmGVB6BIP2uJL307/KMm8hC7s=;
+	b=gIACKJBRxvvt+4nSH19pdWvEwK0fPZLPPyU6IHTLPW0/+/z32DHBc513xaWEcG+2gY
+	GCarp2YGgpBodEIF6AkaaJyPBQ0s11Jz++FpPAlvvWh7agrSniNHtcJVw7ARkmUXmqVu
+	R2ZLWfyd+3RlNcjFS1pbJIE/HencytdWT1BuE=
+Received: by 10.204.171.66 with SMTP id g2mr390855bkz.17.1313675011280;
+	Thu, 18 Aug 2011 06:43:31 -0700 (PDT)
+Received: from localhost ([94.230.152.246])
+	by mx.google.com with ESMTPS id q1sm4442605faa.1.2011.08.18.06.43.29
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 18 Aug 2011 06:43:30 -0700 (PDT)
+Date: Thu, 18 Aug 2011 15:43:22 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <20110818134322.GC6465@jama.jama.net>
+References: <4E4C85B8.3000301@linux.intel.com> <4E4C90F2.7040904@windriver.com>
+	<4E4C97B3.1060308@windriver.com> <4E4CA3B0.8070607@linux.intel.com>
+	<4E4D149D.60704@windriver.com>
 MIME-Version: 1.0
-To: Tom Zanussi <tom.zanussi@intel.com>
-References: <4E4C85B8.3000301@linux.intel.com>	
-	<4E4C90F2.7040904@windriver.com> <1313672567.2394.35.camel@elmorro>
-In-Reply-To: <1313672567.2394.35.camel@elmorro>
+In-Reply-To: <4E4D149D.60704@windriver.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: Yocto Project <yocto@yoctoproject.org>,
 	Darren Hart <dvhart@linux.intel.com>
 Subject: Re: linux-yocto 3.0.1 upgrade broke PREFERRED_VERSION setting in BSPs
@@ -33,77 +45,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Aug 2011 13:40:41 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 18 Aug 2011 13:43:22 -0000
+X-Groupsio-MsgNum: 2400
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="GPJrCs/72TxItFYR"
+Content-Disposition: inline
 
-On 11-08-18 09:02 AM, Tom Zanussi wrote:
-> On Wed, 2011-08-17 at 21:11 -0700, Bruce Ashfield wrote:
->> On 11-08-17 11:23 PM, Darren Hart wrote:
->>> We have just rolled out PREFERRED_VERSION="3.0+git%", and these now fail
->>> with messages like:
->>>
->>> NOTE: preferred version 3.0+git% of linux-yocto not available (for item
->>> virtual/kernel)
->>>
->>> I could patch everything really quick to use 3.0.1+git%... but 3.0.2 was
->>> just released and I'd have to do it again tomorrow. For 2.6.37, the
->>> LINUX_VERSION remained the same across point releases. I recommend we do
->>> the same for 3.0. I really don't want to have to go through and update
->>> all the PREFERRED_VERSIONs in addition to all the SRCREVs everytime a
->>> point release comes out.
->>
->> I made this change due to some other explicit requests about the
->> kernel version not being obvious. I don't really see this as a big
->> deal, I'm already updating SRCREVs, we are already updating the
->> SRCREVs in the meta-* layers .. so I fail to see how this is much
->> more load.
->>
->
-> Maybe the extra load isn't a big deal, but at least the SRCREVs can
-> change most of the time without breaking everything like this does.
->
->> I'd argue that 2.6.37 was a mistake, and you shouldn't even need
->> to set the preferred version anymore once the latest kernel works
->> for your machines. It will always be selected and you shouldn't
->> need to force it. We only needed this during the transition phase,
->> and I'm about to change the default in meta-yocto .. so you definitely
->> won't need it.
->>
->
-> It would be great not to have to set the preferred version at all - how
-> do I get that to work?
+--GPJrCs/72TxItFYR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-We can get away from it without setting preferred version by
-either the default preference scheme, or by virtue of removing
-the default preferred version from poky.conf. I'm working on
-the latter right now (some final builds of boards are problematic).
+On Thu, Aug 18, 2011 at 09:33:17AM -0400, Bruce Ashfield wrote:
+> On 11-08-18 01:31 AM, Darren Hart wrote:
+> >
+> >
+> > On 08/17/2011 09:40 PM, Bruce Ashfield wrote:
+> >> On 11-08-18 12:11 AM, Bruce Ashfield wrote:
+> >>> On 11-08-17 11:23 PM, Darren Hart wrote:
+> >>>> We have just rolled out PREFERRED_VERSION=3D"3.0+git%", and these no=
+w fail
+> >>>> with messages like:
+> >>>>
+> >>>> NOTE: preferred version 3.0+git% of linux-yocto not available (for i=
+tem
+> >>>> virtual/kernel)
+> >>>>
+> >>>> I could patch everything really quick to use 3.0.1+git%... but 3.0.2=
+ was
+> >>>> just released and I'd have to do it again tomorrow. For 2.6.37, the
+> >
+> > and 3.0.3 is out...
+> >
+> >>>> LINUX_VERSION remained the same across point releases. I recommend w=
+e do
+> >>>> the same for 3.0. I really don't want to have to go through and upda=
+te
+> >>>> all the PREFERRED_VERSIONs in addition to all the SRCREVs everytime a
+> >>>> point release comes out.
+> >>>
+> >>> I made this change due to some other explicit requests about the
+> >>> kernel version not being obvious. I don't really see this as a big
+> >>> deal, I'm already updating SRCREVs, we are already updating the
+> >>> SRCREVs in the meta-* layers .. so I fail to see how this is much
+> >>> more load.
+> >
+> > Don't forget the -rt variant, it is still at 3.0.
+> >
+> >>> I'd argue that 2.6.37 was a mistake, and you shouldn't even need
+> >>> to set the preferred version anymore once the latest kernel works
+> >>> for your machines. It will always be selected and you shouldn't
+> >>> need to force it. We only needed this during the transition phase,
+> >>> and I'm about to change the default in meta-yocto .. so you definitely
+> >>> won't need it.
+> >>
+> >> Another thought on this is that we follow up on the discussion that
+> >> we had when I first had to force some boards back to 2.6.37. We drop
+> >> all the preferred version manipulations and control this via
+> >> DEFAULT_PREFERENCE.
+> >>
+> >> I can just set DEFAULT_PREFERENCE =3D -1 in the linux-yocto_<ver>.bb
+> >> file, and as machines are tested/validated, they'll just set
+> >> the DEFAULT_PREFERENCE_$MACHINE in their recipe/bbappend file. That
+> >> saves us all the PREFERRED version fun.
+> >
+> > It makes a lot more sense to me to specify the kernel to use in the
+> > machine config and not allow whatever recipe claim DEFAULT_PREFERENCE
+> > for the machines.
+> >
+> >>
+> >> Alternatively, we go back to just setting it to 3.0 and leaving it
+> >> there and those folks that don't want to check the tags in the kernel
+> >> I can put a comment in the recipe that lets them know the true
+> >> version.
+> >
+> > It is a bit odd to have to specify a version that doesn't match the
+> > filename itself. But I guess we already have to do that in part with the
+> > "+git%" thing. What is the "%" by the way - is it a wildcard? If so, can
+> > we use a wildcard to include point releases?
+>=20
+> It is a wildcard .. I tried briefly to get it to match the point
+> release. I had the same problem here, and didn't get the right
+> combination to match the point release. I'll look at it more today
+> as well .. or if someone knows the matching semantics off the top
+> of their head, feel free to speak up! :)
 
-Once we are in a stable state, this won't be required at all, since
-it is the default. But when we bump to the next kernel version, the
-same thing happens. The newest is picked by bitbake and you'd need
-to set the preferred version to what you want all over again. That's
-where default_preference comes into play and saves us any wildcard
-issues.
+'%' can be used only at the end and it's expected to produce only 1
+match=20
 
-That all being said, I'm going to revert the part of the change
-that bumped the version string and send it out for merge. So leave
-your preferred version strings as they currently are. Post 1.1 we'll
-move to a scheme that makes more sense (and at a time when we can
-properly think about it).
+like 1.0+git%
 
-Bruce
+if there is only one version starting '1.0+git' and we just don't know
+exact SRCPV/SRCREV used.
 
->
-> Tom
->
->> Cheers,
->>
->> Bruce
->>
->>>
->>
->
->
+http://git.openembedded.org/cgit.cgi/bitbake/commit/?id=3D2d1203f446a3527e4=
+d261828b3c10df249119007
 
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
+--GPJrCs/72TxItFYR
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.18 (GNU/Linux)
+
+iEYEARECAAYFAk5NFvoACgkQN1Ujt2V2gBzS0ACeIn8UdCc1oQQ5EmHEiYotAzRG
+Yj4An3F2ZKcxf3wy9LZfK9Vt2uctctDs
+=3XW0
+-----END PGP SIGNATURE-----
+
+--GPJrCs/72TxItFYR--
