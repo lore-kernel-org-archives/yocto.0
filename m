@@ -1,39 +1,25 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-bw0-f48.google.com (mail-bw0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D56C3E011B7
-	for <yocto@yoctoproject.org>; Thu, 18 Aug 2011 06:43:21 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by bkat2 with SMTP id t2so2345373bka.35
-	for <yocto@yoctoproject.org>; Thu, 18 Aug 2011 06:43:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=GQmMwl69PIRkoR4W/dKmGVB6BIP2uJL307/KMm8hC7s=;
-	b=gIACKJBRxvvt+4nSH19pdWvEwK0fPZLPPyU6IHTLPW0/+/z32DHBc513xaWEcG+2gY
-	GCarp2YGgpBodEIF6AkaaJyPBQ0s11Jz++FpPAlvvWh7agrSniNHtcJVw7ARkmUXmqVu
-	R2ZLWfyd+3RlNcjFS1pbJIE/HencytdWT1BuE=
-Received: by 10.204.171.66 with SMTP id g2mr390855bkz.17.1313675011280;
-	Thu, 18 Aug 2011 06:43:31 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id q1sm4442605faa.1.2011.08.18.06.43.29
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 18 Aug 2011 06:43:30 -0700 (PDT)
-Date: Thu, 18 Aug 2011 15:43:22 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <20110818134322.GC6465@jama.jama.net>
-References: <4E4C85B8.3000301@linux.intel.com> <4E4C90F2.7040904@windriver.com>
-	<4E4C97B3.1060308@windriver.com> <4E4CA3B0.8070607@linux.intel.com>
-	<4E4D149D.60704@windriver.com>
+Return-Path: <sgw@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7141E006AB
+	for <yocto@yoctoproject.org>; Thu, 18 Aug 2011 11:12:27 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 18 Aug 2011 11:12:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,246,1312182000"; d="scan'208";a="42765315"
+Received: from unknown (HELO [10.255.15.10]) ([10.255.15.10])
+	by fmsmga001.fm.intel.com with ESMTP; 18 Aug 2011 11:12:37 -0700
+Message-ID: <4E4D560F.9080900@linux.intel.com>
+Date: Thu, 18 Aug 2011 11:12:31 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:5.0) Gecko/20110707 Thunderbird/5.0
 MIME-Version: 1.0
-In-Reply-To: <4E4D149D.60704@windriver.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>
-Subject: Re: linux-yocto 3.0.1 upgrade broke PREFERRED_VERSION setting in BSPs
+To: tom.zanussi@intel.com
+References: <9391ba93d0385e0768062df5c4c087d9673a827b.1313598804.git.tom.zanussi@intel.com>
+	<d2029009d899475336f96e23e0708e16a56dabd7.1313598804.git.tom.zanussi@intel.com>
+In-Reply-To: <d2029009d899475336f96e23e0708e16a56dabd7.1313598804.git.tom.zanussi@intel.com>
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
+Subject: Re: [PATCH 06/12] meta-crownbay: update README
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,115 +31,318 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Aug 2011 13:43:22 -0000
-X-Groupsio-MsgNum: 2400
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="GPJrCs/72TxItFYR"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 18 Aug 2011 18:12:28 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 8bit
 
---GPJrCs/72TxItFYR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 08/17/2011 09:51 AM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi<tom.zanussi@intel.com>
+>
+> With the new emgd-driver-bin recipe, the extensive instructions on how
+> to manually download and set up EMGD for the build are no longer
+> necessary.  Those instructions have been replaced with the simpler set
+> of instructions now needed to build crownbay with EMGD.
+>
+> Changes to reflect the new image names and a couple other minor
+> cleanups are also included.
+>
+> Signed-off-by: Tom Zanussi<tom.zanussi@intel.com>
+> ---
+>   meta-crownbay/README |  207 ++++++++++----------------------------------------
+>   1 files changed, 42 insertions(+), 165 deletions(-)
+>
+> diff --git a/meta-crownbay/README b/meta-crownbay/README
+> index 89056ed..c82f2c4 100644
+> --- a/meta-crownbay/README
+> +++ b/meta-crownbay/README
+> @@ -6,7 +6,7 @@ The Crown Bay platform consists of the Intel Atom Z6xx processor,
+>   plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff).
+>
+>   It also supports the E6xx embedded on-chip graphics via the Intel
+> -Embedded Media and Graphics Driver (EMGD) 1.6 Gold Driver.
+> +Embedded Media and Graphics Driver (EMGD) 1.8 Driver.
+>
+>   Table of Contents
+>   =================
+> @@ -33,14 +33,20 @@ bblayers.conf e.g.:
+>   The meta-crownbay layer contains support for two different machine
+>   configurations. These configurations are identical except for the fact
+>   that the one prefixed with 'crownbay' makes use of the
+> -Intel-proprietary EMGD 1.6 graphics driver, while the one prefixed
+> +Intel-proprietary EMGD 1.8 graphics driver, while the one prefixed
+>   with 'crownbay-noemgd' does not.
+>
+> -If you want to enable the layer that supports EMGD graphics add
+> +If you want to enable the layer that supports EMGD graphics add the
+>   following to the local.conf file:
+>
+>     MACHINE ?= "crownbay"
+>
+> +You also need to add the line:
+> +
+> +  COMMERCIAL_LICENSE = ""
+> +
+Tom,
 
-On Thu, Aug 18, 2011 at 09:33:17AM -0400, Bruce Ashfield wrote:
-> On 11-08-18 01:31 AM, Darren Hart wrote:
-> >
-> >
-> > On 08/17/2011 09:40 PM, Bruce Ashfield wrote:
-> >> On 11-08-18 12:11 AM, Bruce Ashfield wrote:
-> >>> On 11-08-17 11:23 PM, Darren Hart wrote:
-> >>>> We have just rolled out PREFERRED_VERSION=3D"3.0+git%", and these no=
-w fail
-> >>>> with messages like:
-> >>>>
-> >>>> NOTE: preferred version 3.0+git% of linux-yocto not available (for i=
-tem
-> >>>> virtual/kernel)
-> >>>>
-> >>>> I could patch everything really quick to use 3.0.1+git%... but 3.0.2=
- was
-> >>>> just released and I'd have to do it again tomorrow. For 2.6.37, the
-> >
-> > and 3.0.3 is out...
-> >
-> >>>> LINUX_VERSION remained the same across point releases. I recommend w=
-e do
-> >>>> the same for 3.0. I really don't want to have to go through and upda=
-te
-> >>>> all the PREFERRED_VERSIONs in addition to all the SRCREVs everytime a
-> >>>> point release comes out.
-> >>>
-> >>> I made this change due to some other explicit requests about the
-> >>> kernel version not being obvious. I don't really see this as a big
-> >>> deal, I'm already updating SRCREVs, we are already updating the
-> >>> SRCREVs in the meta-* layers .. so I fail to see how this is much
-> >>> more load.
-> >
-> > Don't forget the -rt variant, it is still at 3.0.
-> >
-> >>> I'd argue that 2.6.37 was a mistake, and you shouldn't even need
-> >>> to set the preferred version anymore once the latest kernel works
-> >>> for your machines. It will always be selected and you shouldn't
-> >>> need to force it. We only needed this during the transition phase,
-> >>> and I'm about to change the default in meta-yocto .. so you definitely
-> >>> won't need it.
-> >>
-> >> Another thought on this is that we follow up on the discussion that
-> >> we had when I first had to force some boards back to 2.6.37. We drop
-> >> all the preferred version manipulations and control this via
-> >> DEFAULT_PREFERENCE.
-> >>
-> >> I can just set DEFAULT_PREFERENCE =3D -1 in the linux-yocto_<ver>.bb
-> >> file, and as machines are tested/validated, they'll just set
-> >> the DEFAULT_PREFERENCE_$MACHINE in their recipe/bbappend file. That
-> >> saves us all the PREFERRED version fun.
-> >
-> > It makes a lot more sense to me to specify the kernel to use in the
-> > machine config and not allow whatever recipe claim DEFAULT_PREFERENCE
-> > for the machines.
-> >
-> >>
-> >> Alternatively, we go back to just setting it to 3.0 and leaving it
-> >> there and those folks that don't want to check the tags in the kernel
-> >> I can put a comment in the recipe that lets them know the true
-> >> version.
-> >
-> > It is a bit odd to have to specify a version that doesn't match the
-> > filename itself. But I guess we already have to do that in part with the
-> > "+git%" thing. What is the "%" by the way - is it a wildcard? If so, can
-> > we use a wildcard to include point releases?
->=20
-> It is a wildcard .. I tried briefly to get it to match the point
-> release. I had the same problem here, and didn't get the right
-> combination to match the point release. I'll look at it more today
-> as well .. or if someone knows the matching semantics off the top
-> of their head, feel free to speak up! :)
+I thought we talked about using the oe_filter mechanism here instead of 
+a flat override, since this will bring in other COMMERCIAL_LICENSED content.
 
-'%' can be used only at the end and it's expected to produce only 1
-match=20
+Sau!
 
-like 1.0+git%
+> +to the local.conf file.
+> +
+>   If you want to enable the layer that does not support EMGD graphics
+>   add the following to the local.conf file:
+>
+> @@ -48,8 +54,8 @@ add the following to the local.conf file:
+>
+>   You should then be able to build a crownbay image as such:
+>
+> -  $ source poky-init-build-env
+> -  $ bitbake poky-image-sato-live
+> +  $ source oe-init-build-env
+> +  $ bitbake core-image-sato
+>
+>   At the end of a successful build, you should have a live image that
+>   you can boot from a USB flash drive (see instructions on how to do
+> @@ -59,10 +65,11 @@ As an alternative to downloading the BSP tarball, you can also work
+>   directly from the meta-intel git repository.  For each BSP in the
+>   'meta-intel' repository, there are multiple branches, one
+>   corresponding to each major release starting with 'laverne' (0.90), in
+> -addition to the latest code which tracks the current master.  Instead
+> -of extracting a BSP tarball at the top level of your yocto build tree,
+> -you can equivalently check out the appropriate branch from the
+> -meta-intel repository at the same location.
+> +addition to the latest code which tracks the current master (note that
+> +not all BSPs are present in every release).  Instead of extracting
+> +a BSP tarball at the top level of your yocto build tree, you can
+> +equivalently check out the appropriate branch from the meta-intel
+> +repository at the same location.
+>
+>
+>   II. Special notes for building the meta-crownbay BSP layer
+> @@ -70,182 +77,52 @@ II. Special notes for building the meta-crownbay BSP layer
+>
+>   The meta-crownbay layer makes use of the proprietary Intel EMGD
+>   userspace drivers when building the "crownbay" machine (but not when
+> -building the "crownbay-noemgd" machine).  If you got the BSP from the
+> -'BSP Downloads' section of the Yocto website, the EMGD binaries needed
+> -to perform the build will already be present in the BSP, located in
+> -the recipes-graphics/xorg-xserver/emgd-driver-bin-1.6 directory, and
+> -you can ignore the rest of this section.
+> +building the "crownbay-noemgd" machine).
+>
+> -If you didn't get the BSP from the 'BSP Downloads' section of the
+> -Yocto website, you have two choices:
+> +As mentioned in Section I, you need to add the line:
+>
+> -- You can download a tarball containing an rpm that contains the
+> -  binaries and extract the binaries from that, and copy them to the
+> -  proper location in the meta-crownbay layer.
+> +  COMMERCIAL_LICENSE = ""
+>
+> -- You can download a Windows executable from the official EMGD
+> -  website, extract the binaries from it, and copy them to the proper
+> -  location in the meta-crownbay layer.
+> +to the local.conf file in order for the build to succeed.
+>
+> -The following subsections describe each option in detail.
+> +The crownbay BSP COMMERCIAL_LICENSE default setting causes the build
+> +to fail in order to prevent users from inadvertently creating and
+> +possibly distributing images containing packages with non-free
+> +licenses.  Clearing the COMMERCIAL_LICENSE variable as shown above
+> +essentially tells the build system that you're OK with the fact that
+> +packages with non-free licenses such as EMGD will be installed in the
+> +image.
+>
+> +Once you've done a build, you can examine the EMGD license(s) in the
+> +IEMGD_HEAD_Linux/License directory of the emgd-driver-bin work
+> +directory of the build.
+>
+> -IIa Downloading and extracting the binaries using the EMGD Linux tarball
+> -------------------------------------------------------------------------
+> +Alternatively, you can examine the licenses before building by
+> +downloading the EMGD 1.8 Driver and looking at the licenses in the
+> +downloaded tarball.
+>
+> -The first step of the process is to download the EMGD 1.6 Gold Driver.
+> -Here is the current link to the URL which it can be downloaded from:
+> +Here is the current link to the URL from which it can be downloaded:
+>
+>   http://edc.intel.com/Software/Downloads/EMGD/
+>
+>   In the Download Now tab, select:
+>
+>   Intel® architecture-based product: Linux Tar Ball
+> -Operating System: MeeGo 1.0 IVI Linux (kernel 2.6.33.3, X.server 1.8.0)
+> +Operating System: MeeGo* 1.2 IVI Linux* (kernel 2.6.37, X.server 1.9, Mesa 7.9)
+>
+> -That will give you a large tar file:
+> +That will give you a large .tgz file:
+>
+> -Lin_EMGD_1_6_RC_1922.tar
+> +Lin_EMGD_1_8_RC_2032.tgz
+>
+>   Extract the files in the tar file, which will in turn give you a
+>   directory named IEMGD_HEAD_Linux.
+>
+> -The binaries are contained in an rpm file; you can extract the
+> -binaries from the rpm file using rpm2cpio and cpio:
+> -
+> -$ cd IEMGD_HEAD_Linux/MeeGo1.2
+> -$ rpm2cpio emgd-bin-1922-1.6.i586.rpm>  emgd-bin-1922-1.6.i586.cpio
+> -$ mkdir extracted; cd extracted
+> -$ cpio -idv<  ../poky-image-minimal-initramfs-emenlow.cpio
+> -
+> -Finally, you can copy the xorg-xserver binaries to the
+> -emgd-driver-bin-1.6 directory in the meta-crownbay layer:
+> -
+> -$ cp -a usr/lib meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin-1.6
+> -
+> -You also need to copy the IEMGD License.txt file to the same directory:
+> -
+> -$ cp IEMGD_HEAD_Linux/License/License.txt meta-crownbay/recipes/xorg-xserver/emgd-driver-bin-1.6
+> -
+> -At this point, you should be able to build meta-crownbay images as usual.
+> -
+> -
+> -IIb Extracting the binaries using the graphical ced application
+> ----------------------------------------------------------------
+> -
+> -These steps require that you run a graphical application in Windows.
+> -Windows 7 was used for these instructions, but it shouldn't matter
+> -which version of Windows you use.
+> -
+> -The first step of the process is to download the EMGD 1.6 Gold Driver.
+> -Here is the current link to the URL which it can be downloaded from:
+> -
+> -http://edc.intel.com/Software/Downloads/EMGD/
+> -
+> -In the Download Now tab, select:
+> -
+> -Intel® architecture-based product: Intel Atom Processor E6XX Series
+> -Operating System: MeeGo 1.0 IVI Linux (kernel 2.6.33.3, X.server 1.8.0)
+> -
+> -That will give you a large zip file:
+> -
+> -IEMGD_1_6_GOLD_1922.zip
+> -
+> -Extract the files in the zip file, which will in turn give you a large
+> -.exe file:
+> -
+> -IEMGD_1_6_GOLD_ALL_1922.exe
+> -
+> -Run IEMGD_1_6_GOLD_ALL_1922.exe to install, accept licenses, etc.
+> -
+> -If it says to install watcom, follow the instructions to do that.
+> -
+> -When the installation completes, an application named "emgd-ced" will
+> -be present in the install directory.  Double-click to run it.
+> -
+> -Select the menu item: New Configuration
+> -
+> -In the tabbed page, make the following selections and/or enter the
+> -specified data:
+> -
+> -Configuration File Name: myconfig
+> -Platform Chipset: Intel Atom Processor E6xx
+> -Port Devices: LVDS, sDVO
+> -
+> -Hit the 'Next' button.
+> +The applicable Licenses are contained in the License directory under
+> +IEMGD_HEAD_Linux.
+>
+> -On the next tabbed page, make the following selections and/or enter
+> -the specified data:
+>
+> -Readable Port Name: portname0
+> -Encoder Configuration: Select sDVO Device: Internal LVDS
+> -
+> -Hit the 'Finish' button.
+> -
+> -Select the menu item: New Package
+> -
+> -In the tabbed page, make the following selections and/or enter the
+> -specified data:
+> -
+> -Package File Name: mypackage
+> -Configurations: selec myconfig.cnfg
+> -Target OS: Linux operating System
+> -
+> -Hit the 'Finish' button.
+> -
+> -Select the menu item: Generate Installation
+> -
+> -This will create the EMGD installation package:
+> -
+> -Generating EMGD installation...
+> -
+> -The installation package should now be under the 'workspace'
+> -subdirectory of the directory you installed to:
+> -
+> -workspace/installation/mypackage.pkg_installation/IEMGD_HEAD_Linux/IEMGD_HEAD_Linux.tgz
+> -
+> -This is the file you are interested in.  Copy it to your Poky build
+> -system, and uncompress/untar it:
+> -
+> -$ tar cvfz IEMGD_HEAD_Linux.tgz
+> -
+> -The binaries are contained in an rpm file; you can extract the
+> -binaries from the rpm file using rpm2cpio and cpio:
+> -
+> -$ cd IEMGD_HEAD_Linux/MeeGo1.2
+> -$ rpm2cpio emgd-bin-1922-1.6.i586.rpm>  emgd-bin-1922-1.6.i586.cpio
+> -$ mkdir extracted; cd extracted
+> -$ cpio -idv<  ../poky-image-minimal-initramfs-emenlow.cpio
+> -
+> -Finally, you can copy the xorg-xserver binaries to the
+> -emgd-driver-bin-1.6 directory in the meta-crownbay layer:
+> -
+> -$ cp -a usr/lib meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin-1.6
+> -
+> -You also need to copy the IEMGD License.txt file to the same directory:
+> -
+> -$ cp IEMGD_HEAD_Linux/License/License.txt meta-crownbay/recipes/xorg-xserver/emgd-driver-bin-1.6
+> -
+> -At this point, you should be able to build meta-crownbay images as usual.
+> -
+> -----
+> -
+> -For reference, the EMGD Driver documentation is also available at the
+> -above link.
+> -
+> -The specific text of the document is:
+> -
+> -User Guide: Intel® Embedded Media and Graphics Driver, EFI Video
+> -Driver, EPOG, and Video BIOS v1.6 for Windows* XP and Linux* Provides
+> -installation requirements/procedures&  describes the vbios/firmware,
+> -configuration options,&  functionality of Intel® EMGD under Windows*&
+> -Linux*. Refer to guide for details.
+> -
+> -April 2011
+> -
+> -
+> -II. Booting the images in /binary
+> -=================================
+> +III. Booting the images in /binary
+> +==================================
+>
+>   This BSP contains bootable live images, which can be used to directly
+>   boot Yocto off of a USB flash drive.
+> @@ -254,7 +131,7 @@ Under Linux, insert a USB flash drive.  Assuming the USB flash drive
+>   takes device /dev/sdf, use dd to copy the live image to it.  For
+>   example:
+>
+> -# dd if=poky-image-sato-live-crownbay-20101207053738.hddimg of=/dev/sdf
+> +# dd if=core-image-sato-crownbay-20101207053738.hddimg of=/dev/sdf
+>   # sync
+>   # eject /dev/sdf
+>
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-if there is only one version starting '1.0+git' and we just don't know
-exact SRCPV/SRCREV used.
-
-http://git.openembedded.org/cgit.cgi/bitbake/commit/?id=3D2d1203f446a3527e4=
-d261828b3c10df249119007
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---GPJrCs/72TxItFYR
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.18 (GNU/Linux)
-
-iEYEARECAAYFAk5NFvoACgkQN1Ujt2V2gBzS0ACeIn8UdCc1oQQ5EmHEiYotAzRG
-Yj4An3F2ZKcxf3wy9LZfK9Vt2uctctDs
-=3XW0
------END PGP SIGNATURE-----
-
---GPJrCs/72TxItFYR--
