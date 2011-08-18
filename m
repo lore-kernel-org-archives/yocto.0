@@ -1,30 +1,22 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23331E01211
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2011 14:02:00 -0700 (PDT)
-Received: from [216.123.155.199] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1QtnFY-0000Ua-MG
-	for yocto@yoctoproject.org; Wed, 17 Aug 2011 17:02:10 -0400
-Date: Wed, 17 Aug 2011 17:01:32 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1108171656380.8101@localhost6.localdomain6>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1160CE01211
+	for <yocto@yoctoproject.org>; Wed, 17 Aug 2011 20:23:28 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 17 Aug 2011 20:23:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,242,1312182000"; d="scan'208";a="40909072"
+Received: from unknown (HELO envy.home) ([10.255.14.197])
+	by fmsmga002.fm.intel.com with ESMTP; 17 Aug 2011 20:23:37 -0700
+Message-ID: <4E4C85B8.3000301@linux.intel.com>
+Date: Wed, 17 Aug 2011 20:23:36 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:5.0) Gecko/20110707 Thunderbird/5.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: setting preferred provider for "virtual/libx11"?
+To: "Ashfield, Bruce" <Bruce.Ashfield@windriver.com>, 
+	Yocto Project <yocto@yoctoproject.org>
+Subject: linux-yocto 3.0.1 upgrade broke PREFERRED_VERSION setting in BSPs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,52 +28,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2011 21:02:00 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 18 Aug 2011 03:23:28 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
+We have just rolled out PREFERRED_VERSION="3.0+git%", and these now fail
+with messages like:
 
-  with latest poky git pull, did "bitbake -c fetchall world" just for
-fun and got:
+NOTE: preferred version 3.0+git% of linux-yocto not available (for item
+virtual/kernel)
 
-NOTE: Resolving any missing task queue dependencies
-NOTE: Preparing runqueue
-ERROR: Multiple .bb files are due to be built which each provide
-virtual/libx11
-(/home/rpjday/yocto/poky.git/meta/recipes-graphics/xorg-lib/libx11-trim_1.3.4.bb
-/home/rpjday/yocto/poky.git/meta/recipes-graphics/xorg-lib/libx11_1.3.4.bb).
- This usually means one provides something the other doesn't and
-should.
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-NOTE: Tasks Summary: Attempted 1359 tasks of which 1359 didn't need to
-be rerun and 0 failed.
-
-  i'm *assuming* that, since both of those .bb files pull in
-libx11.inc, this is the offending line from that libx11.inc file:
-
-PROVIDES = "virtual/libx11"
-
-and that (as saul just explained to me before his linuxcon talk
-starts), what is needed is a PREFERRED_PROVIDER for this virtual
-package to distinguish between them, correct?
-
-  i can see several directives throughout the tree:
-
-PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
-
-but, obviously(?), there's none being included in my specific example
-of doing a fetchall for world.  feel free to explain why i have no
-idea what i'm talking about.
-
-rday
+I could patch everything really quick to use 3.0.1+git%... but 3.0.2 was
+just released and I'd have to do it again tomorrow. For 2.6.37, the
+LINUX_VERSION remained the same across point releases. I recommend we do
+the same for 3.0. I really don't want to have to go through and update
+all the PREFERRED_VERSIONs in addition to all the SRCREVs everytime a
+point release comes out.
 
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
