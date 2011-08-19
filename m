@@ -1,30 +1,32 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB615E00771
-	for <yocto@yoctoproject.org>; Fri, 19 Aug 2011 09:28:38 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p7JGSWWB030337;
-	Fri, 19 Aug 2011 17:28:32 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 28745-06; Fri, 19 Aug 2011 17:28:28 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p7JGSK0i030331
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Fri, 19 Aug 2011 17:28:22 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Liming Wang <liming.wang@windriver.com>
-In-Reply-To: <1313748398-31102-1-git-send-email-liming.wang@windriver.com>
-References: <1313748398-31102-1-git-send-email-liming.wang@windriver.com>
-Date: Fri, 19 Aug 2011 09:28:18 -0700
-Message-ID: <1313771298.13995.116.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
-Subject: Re: [PATCH] script/runqemu: change boot command line for qemuppc
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30DC5E00777
+	for <yocto@yoctoproject.org>; Fri, 19 Aug 2011 13:03:20 -0700 (PDT)
+Received: from durham.keylevel.com ([109.224.134.115]:4905
+	helo=MacBook-Pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1QuUyZ-0007PZ-JJ
+	for yocto@yoctoproject.org; Fri, 19 Aug 2011 20:43:31 +0100
+Message-Id: <BD6545AE-F137-4DF9-99FB-8337A2306780@keylevel.com>
+From: Chris Tapp <opensource@keylevel.com>
+To: yocto@yoctoproject.org
+In-Reply-To: <1313770598.13995.115.camel@rex>
+Mime-Version: 1.0 (Apple Message framework v936)
+Date: Fri, 19 Aug 2011 20:43:29 +0100
+References: <1D7CE6A2-A65C-44F7-89F9-F66374E58B36@keylevel.com>
+	<1313770598.13995.115.camel@rex>
+X-Mailer: Apple Mail (2.936)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Re: Build fails moving from 4.0.1 to 5.0.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,49 +38,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Aug 2011 16:28:39 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 19 Aug 2011 20:03:21 -0000
+Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2011-08-19 at 18:06 +0800, Liming Wang wrote:
-> Because qemuppc has no graphic emulation, remove console=tty0
-> and make it run into 3 run level. This can reduce boot time
-> for qemuppc booting.
-> 
-> Signed-off-by: Liming Wang <liming.wang@windriver.com>
-> ---
->  scripts/runqemu-internal |    4 ++--
->  1 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/scripts/runqemu-internal b/scripts/runqemu-internal
-> index c15632d..883fa5b 100755
-> --- a/scripts/runqemu-internal
-> +++ b/scripts/runqemu-internal
-> @@ -384,7 +384,7 @@ if [ "$MACHINE" = "qemuppc" ]; then
->      BIOS=powerpc_rom.bin
->      QEMU_UI_OPTIONS="$QEMU_UI_OPTIONS -nographic"
->      if [ "$FSTYPE" = "ext3" -o "$FSTYPE" = "btrfs" ]; then
-> -        KERNCMDLINE="root=/dev/hda rw console=ttyS0 console=tty0 $KERNEL_NETWORK_CMD mem=$QEMU_MEMORY"
-> +        KERNCMDLINE="root=/dev/hda rw console=ttyS0 3 $KERNEL_NETWORK_CMD mem=$QEMU_MEMORY"
->          QEMUOPTIONS="$QEMU_NETWORK_CMD -cpu $CPU_SUBTYPE -M $MACHINE_SUBTYPE -bios $BIOS -hda $ROOTFS -no-reboot $QEMU_UI_OPTIONS"
->      fi
->      if [ "$FSTYPE" = "nfs" ]; then
-> @@ -393,7 +393,7 @@ if [ "$MACHINE" = "qemuppc" ]; then
->              cleanup
->              return
->          fi
-> -        KERNCMDLINE="root=/dev/nfs console=ttyS0 console=tty0 nfsroot=$NFS_SERVER:$NFS_DIR,$UNFS_OPTS rw $KERNEL_NETWORK_CMD mem=$QEMU_MEMORY"
-> +        KERNCMDLINE="root=/dev/nfs console=ttyS0 3 nfsroot=$NFS_SERVER:$NFS_DIR,$UNFS_OPTS rw $KERNEL_NETWORK_CMD mem=$QEMU_MEMORY"
->          QEMUOPTIONS="$QEMU_NETWORK_CMD -cpu $CPU_SUBTYPE -M $MACHINE_SUBTYPE -bios $BIOS -no-reboot $QEMU_UI_OPTIONS"
->      fi
->  fi
+On 19 Aug 2011, at 17:16, Richard Purdie wrote:
 
-Can we not fix the X scripts so that if an fbdev X server is in use and
-the framebuffer device node does not exist, it just exits cleanly with a
-suitable message and doesn't timeout on boot?
+> On Fri, 2011-08-19 at 08:29 +0100, Chris Tapp wrote:
+>> I've got a configuration that builds ok under 4.0.1, but when I build
+>> under 5.0.1 I get the following right at the end:
+>>
+>> Installing task-poky-boot (1.0-r7) to root...
+>> Downloading file:/home/chris/yocto/ebox3300-build/tmp/deploy/ipk/
+>> Vortex86DX/task-poky-boot_1.0-r7_Vortex86DX.ipk.
+>> Installing task-sjs (1.0-r0) to root...
+>> Downloading file:/home/chris/yocto/ebox3300-build/tmp/deploy/ipk/
+>> Vortex86DX/task-sjs_1.0-r0_Vortex86DX.ipk.
+>> Unknown package 'run-postinsts'.
+>> Collected errors:
+>>  * satisfy_dependencies_for: Cannot satisfy the following
+>> dependencies for task-poky-boot:
+>>  * 	tinylogin * 	busybox * 	modutils-initscripts * 	initscripts * 	
+>> console-tools * 	initscripts * 	udev * 	sysvinit * 	netbase * 	base-
+>> passwd *
+>>  * opkg_install_cmd: Cannot install package task-poky-boot.
+>>  * satisfy_dependencies_for: Cannot satisfy the following
+>> dependencies for task-sjs:
+>>  * 	yocto-wallboard * 	psplash * 	syslinux *
+>>  * opkg_install_cmd: Cannot install package task-sjs.
+>>  * opkg_install_cmd: Cannot install package run-postinsts.
+>> ERROR: Function 'do_rootfs' failed (see ...
+>>
+>> If I look in tmp/work, it looks as if the missing dependencies have
+>> all been built and packaged within their work areas.
+>>
+>> I tried cleaning and rebuilding 'task-sjs', but that made no
+>> difference to the errors reported against it.
+>>
+>> Where should I start looking to work out what's going wrong here? Is
+>> it as simple as needing to add something like RDEPENDS?
+>
+> This sounds like the machine specific packages are failing to be found
+> so it sounds like a package feed issue. Is sounds like PACKAGE_ARCHS
+> isn't listing everything it needs to (such as the machine name) or the
+> package system isn't finding a group of packages for some other  
+> reason.
 
-Cheers,
+Thanks, but that's way over my head at the moment ;-)
 
-Richard
+I've searched through the meta data for PACKAGE_ARCHS, but that's not  
+thrown anything up to make me think there was anything I should look at.
+
+I'm using my own machine recipe. Is this were I should be looking?
+
+Chris
 
 
