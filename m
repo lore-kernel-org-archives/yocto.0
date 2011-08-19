@@ -1,33 +1,20 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C40F6E00777
-	for <yocto@yoctoproject.org>; Fri, 19 Aug 2011 14:49:12 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Aug 2011 14:49:12 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EC24E00777
+	for <yocto@yoctoproject.org>; Fri, 19 Aug 2011 15:23:29 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 19 Aug 2011 15:23:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,253,1312182000"; d="scan'208";a="43212709"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga001.fm.intel.com with ESMTP; 19 Aug 2011 14:49:12 -0700
-Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 19 Aug 2011 14:49:11 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.116]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.235]) with mapi id
-	14.01.0323.003; Fri, 19 Aug 2011 14:49:10 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Technical Team Meeting - (Tuesday, August 23,
-	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
-Thread-Index: AQHMXrnTK3Bz6k/OFE+wfUUuUgNDHQ==
-Date: Fri, 19 Aug 2011 21:49:09 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16ECBB67@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
-MIME-Version: 1.0
-Subject: Agenda: Yocto Technical Team Meeting - (Tuesday, August 23, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+X-IronPort-AV: E=Sophos;i="4.68,253,1312182000"; d="scan'208";a="41876006"
+Received: from unknown (HELO localhost) ([10.255.13.233])
+	by fmsmga002.fm.intel.com with ESMTP; 19 Aug 2011 15:23:28 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 19 Aug 2011 15:23:25 -0700
+Message-Id: <cover.1313792192.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.6
+Cc: Darren Hart <dvhart@linux.intel.com>
+Subject: [PATCH 0/1] beagleboard: enable hard floating point abi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,138 +26,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Aug 2011 21:49:12 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 19 Aug 2011 22:23:29 -0000
 
-Agenda
+There have been requests to enable the hard floating point abi for the
+Yocto Project Beagleboard BSP. With the recent cortexa8 tune file changes
+I submitted to oe-core, subject "tune: update arm7a and cortexa8 tune files",
+it is now possible for the machine config to change DEFAULTTUNE to take
+advantage of the newly added "hf" tune variants.
 
-* Opens collection - 5 min (Song)
-* Yocto 1.1 M4 status review and issues - 20 min (team)
-   https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.1_Release_Criteria#M=
-ilestone_
-  - Build and QA status (Beth/Song)
-  - Release criteria review (Song)
-    . Bug fixing
-    . High bugs
-    . Build performance
-* Opens
-* Action item review
+Some binary libraries are incompatible with hardfp, as is 3D support on the
+Beagleboard. We don't ship either, so I feel it makes sense to take advantage
+of as much of the core CPU features as possible.
 
-Action Item List:
-  * Song to update wiki page and the Google calendar for w4 schedules.=20
-  * Song to schedule the go/no-go meeting for M3.
-  * Richard to follow up with Mark on bug 1325 to decide if we need this fo=
-r M3 once we have the resolutions.=20
-  * Song to follow up with ScottR offline on doc issues: auto-generation, r=
-evisions, central location for docs changes, etc.
+This addresses [YOCTO 1203]
+http://bugzilla.yoctoproject.org/show_bug.cgi?id=1204
 
+I don't feel very strongly about this however. So if someone would like to
+argue for hardfp not being the default, please do so and I can easily
+comment out the DEFAULTTUNE change and add a comment in the machine config
+describing how to enable hardfp.
 
-Conference details=20
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
-Participants:=20
-30
-Duration:=20
-60 minutes=20
-Participant passcode:=20
-49611427=20
-Dial-in number:=20
-1.972.995.7777=20
-US Toll Free number:=20
-1.877.561.6828=20
-BlackBerry users, click this link to join your conference as a chairperson:
-1.972.995.7777x67184230#
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x49611427#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
+The following changes since commit 53bdf3fd520b75730cc802f52121dd394894e130:
 
-Local and Global Access Numbers=20
+  tune: Add hard floating point variants of cortexa8 tunes (2011-08-19 15:02:10 -0700)
 
+are available in the git repository at:
+  git://git.pokylinux.org/poky-contrib dvhart/beagleboard-hardfp
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=dvhart/beagleboard-hardfp
 
-Country=20
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277=20
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322=20
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877=20
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777=20
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777=20
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799=20
-From Kuala Lumpur dial 4264 3799=20
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177=20
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777=20
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998=20
-From Seoul dial 5606998=20
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363=20
-From Taipei dial 2241 1363=20
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001=20
-then enter 877 633 1123=20
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
+Darren Hart (1):
+  beagleboard: enable hard floating point abi
 
-Recurring conferences=20
-First scheduled conference:=20
-Tue Jun 28, 2011
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 22, 2012, 10:40 AM CDT
+ meta-yocto/conf/machine/beagleboard.conf |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+-- 
+1.7.6
 
 
