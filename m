@@ -1,34 +1,33 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C988AE00777
-	for <yocto@yoctoproject.org>; Fri, 19 Aug 2011 14:23:08 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p7JLN1tg000562;
-	Fri, 19 Aug 2011 22:23:01 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 32371-06; Fri, 19 Aug 2011 22:22:57 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p7JLMoXq000556
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Fri, 19 Aug 2011 22:22:54 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CF307BEE-0981-4EC1-8BAA-8071B8B2071A@keylevel.com>
-References: <1D7CE6A2-A65C-44F7-89F9-F66374E58B36@keylevel.com>
-	<1313770598.13995.115.camel@rex>
-	<BD6545AE-F137-4DF9-99FB-8337A2306780@keylevel.com>
-	<1313786982.13995.126.camel@rex>
-	<CF307BEE-0981-4EC1-8BAA-8071B8B2071A@keylevel.com>
-Date: Fri, 19 Aug 2011 14:22:48 -0700
-Message-ID: <1313788968.13995.127.camel@rex>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org
-Subject: Re: Build fails moving from 4.0.1 to 5.0.1
+Return-Path: <song.liu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C40F6E00777
+	for <yocto@yoctoproject.org>; Fri, 19 Aug 2011 14:49:12 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 19 Aug 2011 14:49:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,253,1312182000"; d="scan'208";a="43212709"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by fmsmga001.fm.intel.com with ESMTP; 19 Aug 2011 14:49:12 -0700
+Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 19 Aug 2011 14:49:11 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.116]) by
+	ORSMSX105.amr.corp.intel.com ([169.254.4.235]) with mapi id
+	14.01.0323.003; Fri, 19 Aug 2011 14:49:10 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Technical Team Meeting - (Tuesday, August 23,
+	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+Thread-Index: AQHMXrnTK3Bz6k/OFE+wfUUuUgNDHQ==
+Date: Fri, 19 Aug 2011 21:49:09 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16ECBB67@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
+MIME-Version: 1.0
+Subject: Agenda: Yocto Technical Team Meeting - (Tuesday, August 23, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,90 +39,138 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Aug 2011 21:23:09 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 19 Aug 2011 21:49:12 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 2011-08-19 at 21:58 +0100, Chris Tapp wrote:
-> On 19 Aug 2011, at 21:49, Richard Purdie wrote:
-> 
-> > On Fri, 2011-08-19 at 20:43 +0100, Chris Tapp wrote:
-> >> On 19 Aug 2011, at 17:16, Richard Purdie wrote:
-> >>
-> >>> On Fri, 2011-08-19 at 08:29 +0100, Chris Tapp wrote:
-> >>>> I've got a configuration that builds ok under 4.0.1, but when I  
-> >>>> build
-> >>>> under 5.0.1 I get the following right at the end:
-> >>>>
-> >>>> Installing task-poky-boot (1.0-r7) to root...
-> >>>> Downloading file:/home/chris/yocto/ebox3300-build/tmp/deploy/ipk/
-> >>>> Vortex86DX/task-poky-boot_1.0-r7_Vortex86DX.ipk.
-> >>>> Installing task-sjs (1.0-r0) to root...
-> >>>> Downloading file:/home/chris/yocto/ebox3300-build/tmp/deploy/ipk/
-> >>>> Vortex86DX/task-sjs_1.0-r0_Vortex86DX.ipk.
-> >>>> Unknown package 'run-postinsts'.
-> >>>> Collected errors:
-> >>>> * satisfy_dependencies_for: Cannot satisfy the following
-> >>>> dependencies for task-poky-boot:
-> >>>> * 	tinylogin * 	busybox * 	modutils-initscripts * 	initscripts * 	
-> >>>> console-tools * 	initscripts * 	udev * 	sysvinit * 	netbase * 	 
-> >>>> base-
-> >>>> passwd *
-> >>>> * opkg_install_cmd: Cannot install package task-poky-boot.
-> >>>> * satisfy_dependencies_for: Cannot satisfy the following
-> >>>> dependencies for task-sjs:
-> >>>> * 	yocto-wallboard * 	psplash * 	syslinux *
-> >>>> * opkg_install_cmd: Cannot install package task-sjs.
-> >>>> * opkg_install_cmd: Cannot install package run-postinsts.
-> >>>> ERROR: Function 'do_rootfs' failed (see ...
-> >>>>
-> >>>> If I look in tmp/work, it looks as if the missing dependencies have
-> >>>> all been built and packaged within their work areas.
-> >>>>
-> >>>> I tried cleaning and rebuilding 'task-sjs', but that made no
-> >>>> difference to the errors reported against it.
-> >>>>
-> >>>> Where should I start looking to work out what's going wrong here?  
-> >>>> Is
-> >>>> it as simple as needing to add something like RDEPENDS?
-> >>>
-> >>> This sounds like the machine specific packages are failing to be  
-> >>> found
-> >>> so it sounds like a package feed issue. Is sounds like PACKAGE_ARCHS
-> >>> isn't listing everything it needs to (such as the machine name) or  
-> >>> the
-> >>> package system isn't finding a group of packages for some other
-> >>> reason.
-> >>
-> >> Thanks, but that's way over my head at the moment ;-)
-> >>
-> >> I've searched through the meta data for PACKAGE_ARCHS, but that's not
-> >> thrown anything up to make me think there was anything I should  
-> >> look at.
-> >>
-> >> I'm using my own machine recipe. Is this were I should be looking?
-> >
-> > Yes, I suspect something about your machine config is resulting in  
-> > this
-> > but its hard to me to say what.
-> >
-> > You can do things like "bitbake -e | grep ^PACKAGE_ARCHS" to see the
-> > contents of variables. I'm curious if your machine name is listed in
-> > that list.
-> 
-> chris@ubuntu:~/yocto/ebox3300-build$ bitbake -e |grep "PACKAGE_ARCHS"
-> 
-> # PACKAGE_ARCHS=all any noarch ${PACKAGE_EXTRA_ARCHS} ${MACHINE_ARCH}
-> PACKAGE_ARCHS="all any noarch x86 Vortex86DX"
-> 		ipkg_archs = bb.data.getVar('PACKAGE_ARCHS',d)
-> 			bb.error("PACKAGE_ARCHS missing")
-> 
-> My machine is "Vortex86DX"
+Agenda
 
-What does "ls /home/chris/yocto/ebox3300-build/tmp/deploy/ipk" say?
+* Opens collection - 5 min (Song)
+* Yocto 1.1 M4 status review and issues - 20 min (team)
+   https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.1_Release_Criteria#M=
+ilestone_
+  - Build and QA status (Beth/Song)
+  - Release criteria review (Song)
+    . Bug fixing
+    . High bugs
+    . Build performance
+* Opens
+* Action item review
 
-Cheers,
+Action Item List:
+  * Song to update wiki page and the Google calendar for w4 schedules.=20
+  * Song to schedule the go/no-go meeting for M3.
+  * Richard to follow up with Mark on bug 1325 to decide if we need this fo=
+r M3 once we have the resolutions.=20
+  * Song to follow up with ScottR offline on doc issues: auto-generation, r=
+evisions, central location for docs changes, etc.
 
-Richard
+
+Conference details=20
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
+Participants:=20
+30
+Duration:=20
+60 minutes=20
+Participant passcode:=20
+49611427=20
+Dial-in number:=20
+1.972.995.7777=20
+US Toll Free number:=20
+1.877.561.6828=20
+BlackBerry users, click this link to join your conference as a chairperson:
+1.972.995.7777x67184230#
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x49611427#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+
+Local and Global Access Numbers=20
+
+
+Country=20
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277=20
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322=20
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877=20
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777=20
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777=20
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799=20
+From Kuala Lumpur dial 4264 3799=20
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177=20
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777=20
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998=20
+From Seoul dial 5606998=20
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363=20
+From Taipei dial 2241 1363=20
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001=20
+then enter 877 633 1123=20
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences=20
+First scheduled conference:=20
+Tue Jun 28, 2011
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 22, 2012, 10:40 AM CDT
 
 
