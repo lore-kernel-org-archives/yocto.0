@@ -1,32 +1,30 @@
-Return-Path: <walimisdev@gmail.com>
-Received: from mail-ww0-f42.google.com (mail-ww0-f42.google.com [74.125.82.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE74CE011B2
-	for <yocto@yoctoproject.org>; Fri, 19 Aug 2011 03:00:04 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by wwe5 with SMTP id 5so306100wwe.5
-	for <yocto@yoctoproject.org>; Fri, 19 Aug 2011 03:00:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=NYdQHLFtBJls1hTgeYieo8XeVlnrd1QcNI4uco0SGN4=;
-	b=cff7eAG4FH7Szc2yMxDQOJ5ha8GSqL+6fL1uAp99H1sfK532CyTf//K49JrRHNEp+7
-	RXt5Xc+nMLeBhmDvFRUsyLGRKfrH3ivT15cAH6E5dk1v5lWg8JG8O0Eds49lc+sUn1N2
-	Idyfr7KQ+aKp892NZ0Yq5AXRojlgpbgtseSws=
-Received: by 10.216.160.66 with SMTP id t44mr295731wek.56.1313748003388;
-	Fri, 19 Aug 2011 03:00:03 -0700 (PDT)
-Received: from localhost ([61.148.56.138])
-	by mx.google.com with ESMTPS id y61sm2053979wec.30.2011.08.19.03.00.01
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 19 Aug 2011 03:00:02 -0700 (PDT)
-From: walimis <walimisdev@gmail.com>
-To: Bruce.Ashfield@windriver.com
-Date: Fri, 19 Aug 2011 17:43:49 +0800
-Message-Id: <1313747029-10209-1-git-send-email-walimisdev@gmail.com>
-X-Mailer: git-send-email 1.7.0.4
-X-Mailman-Approved-At: Fri, 19 Aug 2011 07:54:14 -0700
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
-Subject: [PATCH] meta: add APM Emulation option to beagleboard
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F07ADE00771
+	for <yocto@yoctoproject.org>; Fri, 19 Aug 2011 09:16:56 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p7JGGooF030211;
+	Fri, 19 Aug 2011 17:16:50 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 28569-05; Fri, 19 Aug 2011 17:16:46 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p7JGGfTj030203
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Fri, 19 Aug 2011 17:16:43 +0100
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <1D7CE6A2-A65C-44F7-89F9-F66374E58B36@keylevel.com>
+References: <1D7CE6A2-A65C-44F7-89F9-F66374E58B36@keylevel.com>
+Date: Fri, 19 Aug 2011 09:16:38 -0700
+Message-ID: <1313770598.13995.115.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org
+Subject: Re: Build fails moving from 4.0.1 to 5.0.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,32 +36,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Aug 2011 10:00:05 -0000
+X-List-Received-Date: Fri, 19 Aug 2011 16:16:57 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-From: Liming Wang <liming.wang@windriver.com>
+On Fri, 2011-08-19 at 08:29 +0100, Chris Tapp wrote:
+> I've got a configuration that builds ok under 4.0.1, but when I build  
+> under 5.0.1 I get the following right at the end:
+> 
+> Installing task-poky-boot (1.0-r7) to root...
+> Downloading file:/home/chris/yocto/ebox3300-build/tmp/deploy/ipk/ 
+> Vortex86DX/task-poky-boot_1.0-r7_Vortex86DX.ipk.
+> Installing task-sjs (1.0-r0) to root...
+> Downloading file:/home/chris/yocto/ebox3300-build/tmp/deploy/ipk/ 
+> Vortex86DX/task-sjs_1.0-r0_Vortex86DX.ipk.
+> Unknown package 'run-postinsts'.
+> Collected errors:
+>   * satisfy_dependencies_for: Cannot satisfy the following  
+> dependencies for task-poky-boot:
+>   * 	tinylogin * 	busybox * 	modutils-initscripts * 	initscripts * 	 
+> console-tools * 	initscripts * 	udev * 	sysvinit * 	netbase * 	base- 
+> passwd *
+>   * opkg_install_cmd: Cannot install package task-poky-boot.
+>   * satisfy_dependencies_for: Cannot satisfy the following  
+> dependencies for task-sjs:
+>   * 	yocto-wallboard * 	psplash * 	syslinux *
+>   * opkg_install_cmd: Cannot install package task-sjs.
+>   * opkg_install_cmd: Cannot install package run-postinsts.
+> ERROR: Function 'do_rootfs' failed (see ...
+> 
+> If I look in tmp/work, it looks as if the missing dependencies have  
+> all been built and packaged within their work areas.
+> 
+> I tried cleaning and rebuilding 'task-sjs', but that made no  
+> difference to the errors reported against it.
+> 
+> Where should I start looking to work out what's going wrong here? Is  
+> it as simple as needing to add something like RDEPENDS?
 
-apmd daemon needs this option to work, so add this to beagleboard
-kernel config file.
+This sounds like the machine specific packages are failing to be found
+so it sounds like a package feed issue. Is sounds like PACKAGE_ARCHS
+isn't listing everything it needs to (such as the machine name) or the
+package system isn't finding a group of packages for some other reason.
 
-Signed-off-by: Liming Wang <liming.wang@windriver.com>
----
- .../kernel-cache/bsp/beagleboard/beagleboard.cfg   |    5 +++++
- 1 files changed, 5 insertions(+), 0 deletions(-)
+Cheers,
 
-diff --git a/meta/cfg/kernel-cache/bsp/beagleboard/beagleboard.cfg b/meta/cfg/kernel-cache/bsp/beagleboard/beagleboard.cfg
-index 00485d2..56fce58 100644
---- a/meta/cfg/kernel-cache/bsp/beagleboard/beagleboard.cfg
-+++ b/meta/cfg/kernel-cache/bsp/beagleboard/beagleboard.cfg
-@@ -328,3 +328,8 @@ CONFIG_VIDEO_OMAP3_ISP=y
- # CONFIG_VIDEO_OMAP34XX_ISP_PREVIEWER is not set
- CONFIG_VIDEO_OMAP34XX_ISP_RESIZER=y
- # CONFIG_VIDEO_HELPER_CHIPS_AUTO is not set
-+
-+#
-+# Advanced Power Management Emulation support
-+#
-+CONFIG_APM_EMULATION=y
--- 
-1.7.0.4
+Richard
 
 
