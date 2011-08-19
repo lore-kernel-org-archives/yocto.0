@@ -1,35 +1,29 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-gy0-f176.google.com (mail-gy0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F282E011B2
-	for <yocto@yoctoproject.org>; Thu, 18 Aug 2011 23:00:07 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by gyg13 with SMTP id 13so2756720gyg.35
-	for <yocto@yoctoproject.org>; Thu, 18 Aug 2011 23:00:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=lugWlgMeEGl5qewvntLYSdVZDjYs/5HWOI4uRIx7sXw=;
-	b=Uo3wW3ucuJ/1RgS8fx+hTeYwXGy+ZydFMGlgsYl3fxQmE87HdsQgGnwOXIXsm51VUg
-	+xIUOQKzFQ8nOK5QVbeHpu27/ERjEwSqfPg1MB+lUMJJ1MsJXW8HTxqfcQ028r5zrOJu
-	gQnQZrZ7dJN8Sv1Ae71Le5g6KeoEgUYntf9cw=
-Received: by 10.236.187.104 with SMTP id x68mr4017598yhm.130.1313733606557;
-	Thu, 18 Aug 2011 23:00:06 -0700 (PDT)
-Received: from [192.168.1.70] (99-57-141-118.lightspeed.sntcca.sbcglobal.net
-	[99.57.141.118])
-	by mx.google.com with ESMTPS id b4sm503683iba.15.2011.08.18.23.00.04
-	(version=SSLv3 cipher=OTHER); Thu, 18 Aug 2011 23:00:05 -0700 (PDT)
-Message-ID: <4E4DFBE2.7090708@gmail.com>
-Date: Thu, 18 Aug 2011 23:00:02 -0700
-From: Khem Raj <raj.khem@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:6.0) Gecko/20110812 Thunderbird/6.0
-MIME-Version: 1.0
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF5A5E01216
+	for <yocto@yoctoproject.org>; Fri, 19 Aug 2011 00:29:40 -0700 (PDT)
+Received: from durham.keylevel.com ([109.224.134.115]:13217
+	helo=MacBook-Pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1QuJWN-0002Z3-IR
+	for yocto@yoctoproject.org; Fri, 19 Aug 2011 08:29:39 +0100
+Message-Id: <1D7CE6A2-A65C-44F7-89F9-F66374E58B36@keylevel.com>
+From: Chris Tapp <opensource@keylevel.com>
 To: yocto@yoctoproject.org
-References: <4E4C85B8.3000301@linux.intel.com>
-In-Reply-To: <4E4C85B8.3000301@linux.intel.com>
-Subject: Re: linux-yocto 3.0.1 upgrade broke PREFERRED_VERSION setting in BSPs
+Mime-Version: 1.0 (Apple Message framework v936)
+Date: Fri, 19 Aug 2011 08:29:37 +0100
+X-Mailer: Apple Mail (2.936)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Build fails moving from 4.0.1 to 5.0.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,26 +35,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Aug 2011 06:00:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Fri, 19 Aug 2011 07:29:41 -0000
+Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
 Content-Transfer-Encoding: 7bit
 
-On 8/17/2011 8:23 PM, Darren Hart wrote:
-> We have just rolled out PREFERRED_VERSION="3.0+git%", and these now fail
-> with messages like:
->
-> NOTE: preferred version 3.0+git% of linux-yocto not available (for item
-> virtual/kernel)
->
-> I could patch everything really quick to use 3.0.1+git%... but 3.0.2 was
-> just released and I'd have to do it again tomorrow. For 2.6.37, the
-> LINUX_VERSION remained the same across point releases. I recommend we do
-> the same for 3.0. I really don't want to have to go through and update
-> all the PREFERRED_VERSIONs in addition to all the SRCREVs everytime a
-> point release comes out.
->
+I've got a configuration that builds ok under 4.0.1, but when I build  
+under 5.0.1 I get the following right at the end:
 
-In my understanding 2.6 has now become 3 and .40 became .0 making it 3.0
-therefore versions should be 3.0+gitrXXXX 3.1+gitrXXXX etc. 3.0.1 is 
-similar to naming scheme 2.6.39.1 in olden days
+Installing task-poky-boot (1.0-r7) to root...
+Downloading file:/home/chris/yocto/ebox3300-build/tmp/deploy/ipk/ 
+Vortex86DX/task-poky-boot_1.0-r7_Vortex86DX.ipk.
+Installing task-sjs (1.0-r0) to root...
+Downloading file:/home/chris/yocto/ebox3300-build/tmp/deploy/ipk/ 
+Vortex86DX/task-sjs_1.0-r0_Vortex86DX.ipk.
+Unknown package 'run-postinsts'.
+Collected errors:
+  * satisfy_dependencies_for: Cannot satisfy the following  
+dependencies for task-poky-boot:
+  * 	tinylogin * 	busybox * 	modutils-initscripts * 	initscripts * 	 
+console-tools * 	initscripts * 	udev * 	sysvinit * 	netbase * 	base- 
+passwd *
+  * opkg_install_cmd: Cannot install package task-poky-boot.
+  * satisfy_dependencies_for: Cannot satisfy the following  
+dependencies for task-sjs:
+  * 	yocto-wallboard * 	psplash * 	syslinux *
+  * opkg_install_cmd: Cannot install package task-sjs.
+  * opkg_install_cmd: Cannot install package run-postinsts.
+ERROR: Function 'do_rootfs' failed (see ...
+
+If I look in tmp/work, it looks as if the missing dependencies have  
+all been built and packaged within their work areas.
+
+I tried cleaning and rebuilding 'task-sjs', but that made no  
+difference to the errors reported against it.
+
+Where should I start looking to work out what's going wrong here? Is  
+it as simple as needing to add something like RDEPENDS?
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
