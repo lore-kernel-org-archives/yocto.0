@@ -1,29 +1,35 @@
-Return-Path: <saul.wold@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE9B8E011B2
-	for <yocto@yoctoproject.org>; Thu, 18 Aug 2011 22:50:43 -0700 (PDT)
-Received: from mail-pz0-f45.google.com ([209.85.210.45])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 18 Aug 2011 22:50:43 -0700
-Received: by pzk33 with SMTP id 33so5107771pzk.4
-	for <yocto@yoctoproject.org>; Thu, 18 Aug 2011 22:50:43 -0700 (PDT)
-Received: by 10.142.172.6 with SMTP id u6mr262437wfe.156.1313733043060;
-	Thu, 18 Aug 2011 22:50:43 -0700 (PDT)
-Received: from [206.191.100.36] ([206.191.100.36])
-	by mx.google.com with ESMTPS id e3sm755985wfg.15.2011.08.18.22.50.42
-	(version=SSLv3 cipher=OTHER); Thu, 18 Aug 2011 22:50:42 -0700 (PDT)
-Message-ID: <4E4DF9B2.5060505@intel.com>
-Date: Thu, 18 Aug 2011 22:50:42 -0700
-From: Saul Wold <saul.wold@intel.com>
-Organization: Intel
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:5.0) Gecko/20110707 Thunderbird/5.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-gy0-f176.google.com (mail-gy0-f176.google.com
+	[209.85.160.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F282E011B2
+	for <yocto@yoctoproject.org>; Thu, 18 Aug 2011 23:00:07 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by gyg13 with SMTP id 13so2756720gyg.35
+	for <yocto@yoctoproject.org>; Thu, 18 Aug 2011 23:00:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=lugWlgMeEGl5qewvntLYSdVZDjYs/5HWOI4uRIx7sXw=;
+	b=Uo3wW3ucuJ/1RgS8fx+hTeYwXGy+ZydFMGlgsYl3fxQmE87HdsQgGnwOXIXsm51VUg
+	+xIUOQKzFQ8nOK5QVbeHpu27/ERjEwSqfPg1MB+lUMJJ1MsJXW8HTxqfcQ028r5zrOJu
+	gQnQZrZ7dJN8Sv1Ae71Le5g6KeoEgUYntf9cw=
+Received: by 10.236.187.104 with SMTP id x68mr4017598yhm.130.1313733606557;
+	Thu, 18 Aug 2011 23:00:06 -0700 (PDT)
+Received: from [192.168.1.70] (99-57-141-118.lightspeed.sntcca.sbcglobal.net
+	[99.57.141.118])
+	by mx.google.com with ESMTPS id b4sm503683iba.15.2011.08.18.23.00.04
+	(version=SSLv3 cipher=OTHER); Thu, 18 Aug 2011 23:00:05 -0700 (PDT)
+Message-ID: <4E4DFBE2.7090708@gmail.com>
+Date: Thu, 18 Aug 2011 23:00:02 -0700
+From: Khem Raj <raj.khem@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:6.0) Gecko/20110812 Thunderbird/6.0
 MIME-Version: 1.0
-To: Darren Hart <darren.hart@intel.com>
-References: <cover.1313093647.git.dvhart@linux.intel.com>
-	<4E4D7347.7090108@intel.com>
-In-Reply-To: <4E4D7347.7090108@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/2] preempt-rt support for meta-yocto BSPs
+To: yocto@yoctoproject.org
+References: <4E4C85B8.3000301@linux.intel.com>
+In-Reply-To: <4E4C85B8.3000301@linux.intel.com>
+Subject: Re: linux-yocto 3.0.1 upgrade broke PREFERRED_VERSION setting in BSPs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,47 +41,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Aug 2011 05:50:44 -0000
+X-List-Received-Date: Fri, 19 Aug 2011 06:00:07 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 08/18/2011 01:17 PM, Darren Hart wrote:
-> I haven't seen this merged yet, been a week. Is there a concern with the
-> series, or maybe it just got lost in the mix?
+On 8/17/2011 8:23 PM, Darren Hart wrote:
+> We have just rolled out PREFERRED_VERSION="3.0+git%", and these now fail
+> with messages like:
 >
-> Thanks,
+> NOTE: preferred version 3.0+git% of linux-yocto not available (for item
+> virtual/kernel)
 >
-> Darren
+> I could patch everything really quick to use 3.0.1+git%... but 3.0.2 was
+> just released and I'd have to do it again tomorrow. For 2.6.37, the
+> LINUX_VERSION remained the same across point releases. I recommend we do
+> the same for 3.0. I really don't want to have to go through and update
+> all the PREFERRED_VERSIONs in addition to all the SRCREVs everytime a
+> point release comes out.
 >
-> On 08/11/2011 04:08 PM, Darren Hart wrote:
->> This series add build and boot tested support for the atom-pc and mpc8315e-rdb.
->> The routerstationpro and beagleboard still suffer from build failures and are
->> commented out.
->>
->> The following changes since commit 760d79558c5e35b9b0e73734bb90ebadf427f208:
->>
->>    recipes-rt: add a README documenting the contents of recipes-rt (2011-08-11 12:36:02 -0700)
->>
->> are available in the git repository at:
->>    git://git.pokylinux.org/poky-contrib dvhart/rt-yocto
->>    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=dvhart/rt-yocto
->>
->> Darren Hart (2):
->>    meta-yocto: allow for virtual/kernel override
->>    meta-yocto: add linux-yocto-rt support for all meta-yocto machines
->>
->>   meta-yocto/conf/machine/mpc8315e-rdb.conf          |    2 +-
->>   meta-yocto/conf/machine/routerstationpro.conf      |    2 +-
->>   .../linux/linux-yocto-rt_3.0.bbappend              |   25 ++++++++++++++++++++
->>   3 files changed, 27 insertions(+), 2 deletions(-)
->>   create mode 100644 meta-yocto/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
->>
->
->
-Pushed to Poky/Master
 
-Sorry about this one, just got lost in the flood.
-
-Sau!
-
+In my understanding 2.6 has now become 3 and .40 became .0 making it 3.0
+therefore versions should be 3.0+gitrXXXX 3.1+gitrXXXX etc. 3.0.1 is 
+similar to naming scheme 2.6.39.1 in olden days
 
