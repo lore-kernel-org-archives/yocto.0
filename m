@@ -1,23 +1,21 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 150E5E011C0
-	for <yocto@yoctoproject.org>; Fri, 19 Aug 2011 15:23:31 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 19 Aug 2011 15:23:30 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EFB9E011F2
+	for <yocto@yoctoproject.org>; Sat, 20 Aug 2011 08:26:30 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 20 Aug 2011 08:26:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,253,1312182000"; 
-   d="scan'208";a="9097522"
-Received: from unknown (HELO localhost) ([10.255.13.233])
-	by AZSMGA002.ch.intel.com with ESMTP; 19 Aug 2011 15:23:29 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 19 Aug 2011 15:23:29 -0700
-Message-Id: <0c8f4cdc6cf96da157b4c4bae8f4e13fca6d46e8.1313792192.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.6
-In-Reply-To: <cover.1313792192.git.dvhart@linux.intel.com>
-References: <cover.1313792192.git.dvhart@linux.intel.com>
-Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [PATCH 1/1] beagleboard: enable hard floating point abi
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="39754920"
+Received: from unknown (HELO localhost) ([10.255.14.5])
+	by orsmga002.jf.intel.com with ESMTP; 20 Aug 2011 08:26:29 -0700
+From: tom.zanussi@intel.com
+To: dvhart@linux.intel.com,
+	saul.wold@intel.com,
+	yocto@yoctoproject.org
+Date: Sat, 20 Aug 2011 10:26:56 -0500
+Message-Id: <cover.1313853536.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/9] meta-intel: EMGD 1.8 and 3.0 kernel upgrade, v3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,40 +27,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Aug 2011 22:23:31 -0000
+X-List-Received-Date: Sat, 20 Aug 2011 15:26:30 -0000
 
-Fixes [YOCTO #1203]
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Using the hard floating point abi is incompatible with some binary libaries and
-3D support for the Beagleboard. As we do not provide these in poky and
-meta-yocto, we can take advantage of the hard floating point abi. This can be
-easily disabled by anyone building on top of meta-yocto if they need the soft
-abi by overriding DEFAULT_TUNE.
+This patchset switches crownbay to the 3.0 kernel and upgrades emgd
+to 1.8.  Both crownbay and crownbay-noemgd were successfully built and
+boot tested into sato.
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
-CC: Jason Kridner <jkridner@beagleboard.org>
-CC: Koen Kooi <koen@dominion.thruhere.net>
----
- meta-yocto/conf/machine/beagleboard.conf |    5 +++++
- 1 files changed, 5 insertions(+), 0 deletions(-)
+It also does the same for fri2, after adding a new fri2 machine config
+and renaming the current one to fri2-noemgd.  Both fri2 and fri2-noemgd
+were successfully built and boot tested into sato.
 
-diff --git a/meta-yocto/conf/machine/beagleboard.conf b/meta-yocto/conf/machine/beagleboard.conf
-index 0b3cebc..8f11732 100644
---- a/meta-yocto/conf/machine/beagleboard.conf
-+++ b/meta-yocto/conf/machine/beagleboard.conf
-@@ -18,6 +18,11 @@ MACHINE_EXTRA_RRECOMMENDS += "beagleboard-audio"
- # Allow for MMC booting (required by the NAND-less Beagleboard XM)
- EXTRA_IMAGEDEPENDS += "u-boot x-load"
- 
-+# Use the hard floating point abi. This breaks some binary libraries and
-+# 3D. Since poky and meta-yocto do not provide these by default, enable the
-+# hard floating point abi. Comment out the following or override it to disable
-+# it.
-+DEFAULTTUNE ?= "cortexa8hf-neon"
- include conf/machine/include/tune-cortexa8.inc
- 
- IMAGE_FSTYPES += "tar.bz2 jffs2"
--- 
-1.7.6
+One major change coming out of this patchset is that the emgd binary
+bits no longer have to be downloaded and extracted manually - the new
+emgd-driver-bin recipe takes care of that now.
+
+However, after these changes the crownbay and fri2 (but not the
+crownbay-noemgd and fri2-noemgd) recipes will not build successfully
+unless the user specifies EMGD_LICENSE = "yes" as mentioned in the READMEs.
+
+Changes since v2:
+
+  - removed COMMERCIAL_LICENSE from crownbay and fri2 layers
+  - added EMGD_LICENSE to emgd-driver-bin recipe
+  - updated READMEs to reflect EMGD_LICENSE
+
+The following changes since commit fa92a44396b16be74f0de10256b0d42e52cf0bb6:
+  Tom Zanussi (1):
+        meta-intel: update linux-yocto 3.0 kernel SRCREVs
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-intel.git tzanussi/emgd-1.8v3
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/emgd-1.8v3
+
+Tom Zanussi (9):
+  meta-crownbay: switch to linux-yocto 3.0 kernel
+  meta-crownbay: new recipe for emgd 1.8 driver binaries
+  meta-crownbay: select emgd 1.8
+  meta-crownbay: xorg.conf changes
+  meta-crownbay: update README
+  meta-fri2: add EMGD 1.8 capabilities to fri2
+  meta-intel: move emgd-driver-bin_1.8 to common
+  meta-fri2: add common/recipes-graphics to BBFILES
+  meta-fri2: update README
+
+ .../xorg-xserver/emgd-driver-bin_1.8.bb            |   46 +++++
+ meta-crownbay/README                               |  206 ++++----------------
+ meta-crownbay/conf/machine/crownbay-noemgd.conf    |    2 +
+ meta-crownbay/conf/machine/crownbay.conf           |    4 +-
+ .../xserver-xf86-config/crownbay/xorg.conf         |    3 +-
+ .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    1 +
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |   15 ++
+ meta-fri2/README                                   |   95 ++++++++-
+ meta-fri2/conf/layer.conf                          |    4 +-
+ meta-fri2/conf/machine/fri2-noemgd.conf            |   36 ++++
+ meta-fri2/conf/machine/fri2.conf                   |    5 +-
+ .../formfactor/formfactor/fri2-noemgd/machconfig   |    3 +
+ .../recipes-core/tasks/task-core-tools.bbappend    |    1 +
+ .../xserver-xf86-config/fri2-noemgd/xorg.conf      |   26 +++
+ .../xserver-xf86-config/fri2/xorg.conf             |   48 ++++--
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    9 +
+ 16 files changed, 312 insertions(+), 192 deletions(-)
+ create mode 100644 common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
+ create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
+ create mode 100644 meta-fri2/conf/machine/fri2-noemgd.conf
+ create mode 100644 meta-fri2/recipes-bsp/formfactor/formfactor/fri2-noemgd/machconfig
+ create mode 100644 meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2-noemgd/xorg.conf
 
 
