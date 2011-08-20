@@ -1,25 +1,30 @@
-Return-Path: <tom.zanussi@intel.com>
+Return-Path: <saul.wold@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70900E011F2
-	for <yocto@yoctoproject.org>; Sat, 20 Aug 2011 08:26:52 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 20 Aug 2011 08:26:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="40340209"
-Received: from unknown (HELO localhost) ([10.255.14.5])
-	by orsmga001.jf.intel.com with ESMTP; 20 Aug 2011 08:26:51 -0700
-From: tom.zanussi@intel.com
-To: dvhart@linux.intel.com,
-	saul.wold@intel.com,
-	yocto@yoctoproject.org
-Date: Sat, 20 Aug 2011 10:26:59 -0500
-Message-Id: <8ed218c9ca7224f07b196f6f9eacf00091c61833.1313853536.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cee71456f21be0ce11ce74fc677a6d8d27647481.1313853536.git.tom.zanussi@intel.com>
-References: <cee71456f21be0ce11ce74fc677a6d8d27647481.1313853536.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1313853536.git.tom.zanussi@intel.com>
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 285E3E0048B
+	for <yocto@yoctoproject.org>; Sat, 20 Aug 2011 10:45:50 -0700 (PDT)
+Received: from mail-iy0-f172.google.com ([209.85.210.172])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 20 Aug 2011 10:45:50 -0700
+Received: by iye7 with SMTP id 7so14242726iye.17
+	for <yocto@yoctoproject.org>; Sat, 20 Aug 2011 10:45:49 -0700 (PDT)
+Received: by 10.231.4.72 with SMTP id 8mr1624921ibq.49.1313862347939;
+	Sat, 20 Aug 2011 10:45:47 -0700 (PDT)
+Received: from [10.6.18.207] (c-71-193-189-117.hsd1.wa.comcast.net
+	[71.193.189.117])
+	by mx.google.com with ESMTPS id m21sm2291077ibf.8.2011.08.20.10.45.46
+	(version=SSLv3 cipher=OTHER); Sat, 20 Aug 2011 10:45:47 -0700 (PDT)
+Message-ID: <4E4FF2CA.4010202@intel.com>
+Date: Sat, 20 Aug 2011 10:45:46 -0700
+From: Saul Wold <saul.wold@intel.com>
+Organization: Intel
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:5.0) Gecko/20110707 Thunderbird/5.0
+MIME-Version: 1.0
+To: tom.zanussi@intel.com
 References: <cover.1313853536.git.tom.zanussi@intel.com>
-Subject: [PATCH 9/9] meta-fri2: update README
+	<2b6c0ba64301de0406e94ebf51684e3abe088555.1313853536.git.tom.zanussi@intel.com>
+In-Reply-To: <2b6c0ba64301de0406e94ebf51684e3abe088555.1313853536.git.tom.zanussi@intel.com>
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
+Subject: Re: [PATCH 2/9] meta-crownbay: new recipe for emgd 1.8 driver binaries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,158 +36,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 20 Aug 2011 15:26:52 -0000
+X-List-Received-Date: Sat, 20 Aug 2011 17:45:50 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On 08/20/2011 08:26 AM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi<tom.zanussi@intel.com>
+>
+> This adds a new recipe for the emgd 1.8 driver binaries.
+>
+> The emgd-driver-bin recipe now automatically downloads and installs
+> EMGD using the new click-through-free tarball, but since the binaries
+> still fall under a non-free license, we need to prevent it from being
+> accidentally installed in an image.
+>
+> We therefore make sure it's labeled with 'EMGD_LICENSE'.  In order to
+> build an image that contains EMGD, the user now needs to add a
+> 'EMGD_LICENSE = "yes"' line to local.conf.
+>
+> Signed-off-by: Tom Zanussi<tom.zanussi@intel.com>
+> ---
+>   .../xorg-xserver/emgd-driver-bin_1.8.bb            |   46 ++++++++++++++++++++
+>   1 files changed, 46 insertions(+), 0 deletions(-)
+>   create mode 100644 meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
+>
+> diff --git a/meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb b/meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
+> new file mode 100644
+> index 0000000..be19e5e
+> --- /dev/null
+> +++ b/meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
+> @@ -0,0 +1,46 @@
+> +SUMMARY = "EMGD 1.8 xserver binaries"
+> +DESCRIPTION = "EMGD 1.8 includes some userspace binaries that use non-free \
+> +licensing, which are now available via a non-click-through downloadable \
+> +tarball, and is what this recipe now uses.  Since it is a non-free license, \
+> +this recipe is marked as 'commercial' and you need to add COMMERCIAL_LICENSE \
+> += \"\" in order to enable it in a build."
 
-Update the meta-fri2 README to reflect the addtion of the EMGD
-capabilities and new machine.
+This DESCRIPTION does not match the implementation, I want to talk with 
+Richard about adding another way to exclude commercially licensed 
+recipes.  We can talk on Monday about this further.
 
-Changes were also made to reflect the new image names and a couple
-other minor cleanups.
+Thanks
+	Sau!
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-fri2/README |   95 ++++++++++++++++++++++++++++++++++++++++++++++++------
- 1 files changed, 85 insertions(+), 10 deletions(-)
 
-diff --git a/meta-fri2/README b/meta-fri2/README
-index 7957a7f..eb5baae 100644
---- a/meta-fri2/README
-+++ b/meta-fri2/README
-@@ -2,12 +2,20 @@ This README file contains information on building the meta-fri2 BSP
- layer, and booting the images contained in the /binary directory.
- Please see the corresponding sections below for details.
- 
-+The Fish River Island II platform consists of the Intel Atom Z6xx
-+processor, plus the Intel EG20T Platform Controller Hub (Tunnel Creek
-++ Topcliff), along with a varied assortment of communications options
-+and various other machine-to-machine (m2m) capabilities.
-+
-+It also supports the E6xx embedded on-chip graphics via the Intel
-+Embedded Media and Graphics Driver (EMGD) 1.8 Driver.
-+
- 
- Table of Contents
- =================
- 
--  I. Special notes on the meta-fri2 BSP layer
-- II. Building the meta-fri2 BSP layer
-+  I. Building the meta-fri2 BSP layer
-+ II. Special notes for building the meta-fri2 BSP layer
- III. Booting the images in /binary
- 
- 
-@@ -24,14 +32,32 @@ by adding the location of the meta-fri2 layer to bblayers.conf e.g.:
- 
-   yocto/meta-intel/meta-fri2 \
- 
--To enable the fri2 layer, add the fri2 MACHINE to local.conf:
-+The meta-fri2 layer contains support for two different machine
-+configurations. These configurations are identical except for the fact
-+that the one prefixed with 'fri2' makes use of the Intel-proprietary
-+EMGD 1.8 graphics driver, while the one prefixed with 'fri2-noemgd'
-+does not.
-+
-+If you want to enable the layer that supports EMGD graphics add the
-+following to the local.conf file:
- 
-   MACHINE ?= "fri2"
- 
-+You also need to add the line:
-+
-+  EMGD_LICENSE = "yes"
-+
-+to the local.conf file.
-+
-+If you want to enable the layer that does not support EMGD graphics
-+add the following to the local.conf file:
-+
-+  MACHINE ?= "fri2-noemgd"
-+
- You should then be able to build a fri2 image as such:
- 
--  $ source poky-init-build-env
--  $ bitbake poky-image-sato-live
-+  $ source oe-init-build-env
-+  $ bitbake core-image-sato
- 
- At the end of a successful build, you should have a live image that
- you can boot from a USB flash drive (see instructions on how to do
-@@ -41,10 +67,59 @@ As an alternative to downloading the BSP tarball, you can also work
- directly from the meta-intel git repository.  For each BSP in the
- 'meta-intel' repository, there are multiple branches, one
- corresponding to each major release starting with 'laverne' (0.90), in
--addition to the latest code which tracks the current master.  Instead
--of extracting a BSP tarball at the top level of your yocto build tree,
--you can equivalently check out the appropriate branch from the
--meta-intel repository at the same location.
-+addition to the latest code which tracks the current master (note that
-+not all BSPs are present in every release).  Instead of extracting
-+a BSP tarball at the top level of your yocto build tree, you can
-+equivalently check out the appropriate branch from the meta-intel
-+repository at the same location.
-+
-+
-+II. Special notes for building the meta-fri2 BSP layer
-+======================================================
-+
-+The meta-fri2 layer makes use of the proprietary Intel EMGD userspace
-+drivers when building the "fri2" machine (but not when building the
-+"fri2-noemgd" machine).
-+
-+As mentioned in Section I, you need to add the line:
-+
-+  EMGD_LICENSE = "yes"
-+
-+to the local.conf file in order for the build to succeed.
-+
-+The fri2 BSP EMGD_LICENSE default setting causes the build to fail in
-+order to prevent users from inadvertently creating and possibly
-+distributing images containing the non-free EMGD package.  Setting the
-+EMGD_LICENSE variable as shown above essentially tells the build
-+system that you're OK with the fact that the non-free EMGD package
-+will be installed in the image.
-+
-+Once you've done a build, you can examine the EMGD license(s) in the
-+IEMGD_HEAD_Linux/License directory of the emgd-driver-bin work
-+directory of the build.
-+
-+Alternatively, you can examine the licenses before building by
-+downloading the EMGD 1.8 Driver and looking at the licenses in the
-+downloaded tarball.
-+
-+Here is the current link to the URL from which it can be downloaded:
-+
-+http://edc.intel.com/Software/Downloads/EMGD/
-+
-+In the Download Now tab, select:
-+
-+Intel® architecture-based product: Linux Tar Ball
-+Operating System: MeeGo* 1.2 IVI Linux* (kernel 2.6.37, X.server 1.9, Mesa 7.9)
-+
-+That will give you a large .tgz file:
-+
-+Lin_EMGD_1_8_RC_2032.tgz
-+
-+Extract the files in the tar file, which will in turn give you a
-+directory named IEMGD_HEAD_Linux.
-+
-+The applicable Licenses are contained in the License directory under
-+IEMGD_HEAD_Linux.
- 
- 
- III. Booting the images in /binary
-@@ -57,7 +132,7 @@ Under Linux, insert a USB flash drive.  Assuming the USB flash drive
- takes device /dev/sdf, use dd to copy the live image to it.  For
- example:
- 
--# dd if=poky-image-sato-live-fri2-20101207053738.hddimg of=/dev/sdf
-+# dd if=core-image-sato-fri2-20101207053738.hddimg of=/dev/sdf
- # sync
- # eject /dev/sdf
- 
--- 
-1.7.0.4
+> +LICENSE = "Intel-binary-only"
+> +PR = "r0"
+> +
+> +EMGD_LICDIR = "IEMGD_HEAD_Linux/License"
+> +EMGD_RPMDIR = "IEMGD_HEAD_Linux/MeeGo1.2"
+> +
+> +LIC_FILES_CHKSUM = "file://${WORKDIR}/${EMGD_LICDIR}/License.txt;md5=b54f01caaf8483b3cb60c0c40f2bf22d"
+> +
+> +SRC_URI = "http://edc.intel.com/App_Shared/Downloads/Lin_EMGD_1_8_RC_2032.tgz"
+> +
+> +FILES_${PN} += "${libdir}/dri ${libdir}/xorg/modules/drivers"
+> +FILES_${PN}-dbg += "${libdir}/xorg/modules/drivers/.debug ${libdir}/dri/.debug"
+> +
+> +S = "${WORKDIR}/${EMGD_RPMDIR}"
+> +
+> +do_install () {
+> +    rpm2cpio.sh ${S}/emgd-bin*.rpm | cpio -id
+> +
+> +    install -d -m 0755                    ${D}/${libdir}/dri
+> +    install -d -m 0755                    ${D}/${libdir}/xorg/modules/drivers
+> +    install -m 0755 ${S}/usr/lib/*.so.*   ${D}${libdir}/
+> +    install -m 0755 ${S}/usr/lib/dri/*    ${D}${libdir}/dri/
+> +    install -m 0755 ${S}/usr/lib/xorg/modules/drivers/* ${D}${libdir}/xorg/modules/drivers/
+> +
+> +    ln -sf libEGl.so.1                    ${D}${libdir}/libEGl.so
+> +    ln -sf libGLES_CM.so.1                ${D}${libdir}/libGLES_CM.so
+> +    ln -sf libGLESv2.so.2                 ${D}${libdir}/libGLESv2.so
+> +}
+> +
+> +LEAD_SONAME = "libEGL.so"
+> +
+> +addtask check_emgd_license before do_fetch
+> +
+> +python do_check_emgd_license() {
+> +    pn = bb.data.getVar('PN', d, 1)
+> +    emgd_license = bb.data.getVar('EMGD_LICENSE', d, 1)
+> +    if not emgd_license or not emgd_license.lower() == "yes":
+> +        bb.debug(1, "Skipping %s because it has a non-free license" % pn)
+> +        raise bb.parse.SkipPackage("because it requires EMGD_LICENSE = \"yes\" in local.conf to ship")
+> +}
 
 
