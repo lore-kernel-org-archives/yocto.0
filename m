@@ -1,37 +1,31 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83A01E0048B
-	for <yocto@yoctoproject.org>; Sun, 21 Aug 2011 05:13:28 -0700 (PDT)
-Received: from durham.keylevel.com ([109.224.134.115]:7737
-	helo=MacBook-Pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1Qv64y-0007iD-0C
-	for yocto@yoctoproject.org; Sun, 21 Aug 2011 12:20:36 +0100
-Message-Id: <DB98A6C7-B673-4397-9D06-C14F2B01266D@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: yocto@yoctoproject.org
-In-Reply-To: <A0C1441E-0D7E-4E39-B917-53F486935D42@keylevel.com>
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Sun, 21 Aug 2011 12:20:36 +0100
-References: <1D7CE6A2-A65C-44F7-89F9-F66374E58B36@keylevel.com>
-	<1313770598.13995.115.camel@rex>
-	<BD6545AE-F137-4DF9-99FB-8337A2306780@keylevel.com>
-	<1313786982.13995.126.camel@rex>
-	<CF307BEE-0981-4EC1-8BAA-8071B8B2071A@keylevel.com>
-	<1313788968.13995.127.camel@rex>
-	<A0C1441E-0D7E-4E39-B917-53F486935D42@keylevel.com>
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Re: Build fails moving from 4.0.1 to 5.0.1
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44989E0048B
+	for <yocto@yoctoproject.org>; Sun, 21 Aug 2011 06:05:19 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 21 Aug 2011 06:05:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="39947434"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by orsmga002.jf.intel.com with ESMTP; 21 Aug 2011 06:05:18 -0700
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Sun, 21 Aug 2011 21:05:17 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Sun, 21 Aug 2011 21:05:17 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Sun, 21 Aug 2011 21:05:15 +0800
+Thread-Topic: Yocto weekly bug trend charts -- WW34
+Thread-Index: AcxgAvflSxcx3BbESyOsJeuTlN6wow==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D724BC0A@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: Yocto weekly bug trend charts -- WW34
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,33 +37,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 21 Aug 2011 12:13:28 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 21 Aug 2011 13:05:19 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 21 Aug 2011, at 10:19, Chris Tapp wrote:
+Hi all,
+	The overall open bug trend goes down last week. The new-submit vs. fixed b=
+ug is 20 vs. 33. Open bug number decreased to 146. WDD number decreased to =
+739. Bug status of WW34 could be found on https://wiki.yoctoproject.org/wik=
+i/Yocto_Bug_Trend.
 
->> What does "ls /home/chris/yocto/ebox3300-build/tmp/deploy/ipk" say?
->>
->
-> drwxr-xr-x 2 chris chris   4096 2011-08-19 21:12 all
-> drwxr-xr-x 2 chris chris 143360 2011-08-19 21:12 i586
-> -rw-r--r-- 1 chris chris      0 2011-08-19 21:12 Packages
-> -rw-r--r-- 1 chris chris      0 2011-08-19 21:12 Packages.filelist
-> -rwxr--r-- 1 chris chris      0 2011-08-19 03:19 Packages.flock
-> -rwxr--r-- 1 chris chris     20 2011-08-19 21:12 Packages.gz
-> -rw-r--r-- 1 chris chris      0 2011-08-19 21:12 Packages.stamps
-> drwxr-xr-x 2 chris chris   4096 2011-08-19 21:12 Vortex86DX
-
-
-I don't know if it helps, but all the missing dependencies have .ipk  
-files in the i586 directory shown above.
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+Best Regards,
+Jiajun
 
