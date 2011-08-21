@@ -1,25 +1,36 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8DF8E0048B
-	for <yocto@yoctoproject.org>; Sat, 20 Aug 2011 21:41:17 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7L4fG8T026837
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sat, 20 Aug 2011 21:41:16 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.19.102) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Sat, 20 Aug 2011 21:41:15 -0700
-Message-ID: <4E508C69.4030501@windriver.com>
-Date: Sun, 21 Aug 2011 00:41:13 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.20) Gecko/20110804 Thunderbird/3.1.12
-MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <4E4C85B8.3000301@linux.intel.com> <4E4DFBE2.7090708@gmail.com>
-In-Reply-To: <4E4DFBE2.7090708@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: linux-yocto 3.0.1 upgrade broke PREFERRED_VERSION setting in BSPs
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4484CE0048B
+	for <yocto@yoctoproject.org>; Sun, 21 Aug 2011 03:13:33 -0700 (PDT)
+Received: from durham.keylevel.com ([109.224.134.115]:7018
+	helo=MacBook-Pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1Qv4BQ-0004d4-6e
+	for yocto@yoctoproject.org; Sun, 21 Aug 2011 10:19:08 +0100
+Message-Id: <A0C1441E-0D7E-4E39-B917-53F486935D42@keylevel.com>
+From: Chris Tapp <opensource@keylevel.com>
+To: yocto@yoctoproject.org
+In-Reply-To: <1313788968.13995.127.camel@rex>
+Mime-Version: 1.0 (Apple Message framework v936)
+Date: Sun, 21 Aug 2011 10:19:07 +0100
+References: <1D7CE6A2-A65C-44F7-89F9-F66374E58B36@keylevel.com>
+	<1313770598.13995.115.camel@rex>
+	<BD6545AE-F137-4DF9-99FB-8337A2306780@keylevel.com>
+	<1313786982.13995.126.camel@rex>
+	<CF307BEE-0981-4EC1-8BAA-8071B8B2071A@keylevel.com>
+	<1313788968.13995.127.camel@rex>
+X-Mailer: Apple Mail (2.936)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Re: Build fails moving from 4.0.1 to 5.0.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,41 +42,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 21 Aug 2011 04:41:18 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Sun, 21 Aug 2011 10:13:35 -0000
+Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
 Content-Transfer-Encoding: 7bit
 
-On 11-08-19 2:00 AM, Khem Raj wrote:
-> On 8/17/2011 8:23 PM, Darren Hart wrote:
->> We have just rolled out PREFERRED_VERSION="3.0+git%", and these now fail
->> with messages like:
+On 19 Aug 2011, at 22:22, Richard Purdie wrote:
+
+> On Fri, 2011-08-19 at 21:58 +0100, Chris Tapp wrote:
+>> On 19 Aug 2011, at 21:49, Richard Purdie wrote:
 >>
->> NOTE: preferred version 3.0+git% of linux-yocto not available (for item
->> virtual/kernel)
+>>> On Fri, 2011-08-19 at 20:43 +0100, Chris Tapp wrote:
+>>>> On 19 Aug 2011, at 17:16, Richard Purdie wrote:
+>>>>
+>>>>> On Fri, 2011-08-19 at 08:29 +0100, Chris Tapp wrote:
+>>>>>> I've got a configuration that builds ok under 4.0.1, but when I
+>>>>>> build
+>>>>>> under 5.0.1 I get the following right at the end:
+>>>>>>
+>>>>>> Installing task-poky-boot (1.0-r7) to root...
+>>>>>> Downloading file:/home/chris/yocto/ebox3300-build/tmp/deploy/ipk/
+>>>>>> Vortex86DX/task-poky-boot_1.0-r7_Vortex86DX.ipk.
+>>>>>> Installing task-sjs (1.0-r0) to root...
+>>>>>> Downloading file:/home/chris/yocto/ebox3300-build/tmp/deploy/ipk/
+>>>>>> Vortex86DX/task-sjs_1.0-r0_Vortex86DX.ipk.
+>>>>>> Unknown package 'run-postinsts'.
+>>>>>> Collected errors:
+>>>>>> * satisfy_dependencies_for: Cannot satisfy the following
+>>>>>> dependencies for task-poky-boot:
+>>>>>> * 	tinylogin * 	busybox * 	modutils-initscripts * 	initscripts  
+>>>>>> * 	
+>>>>>> console-tools * 	initscripts * 	udev * 	sysvinit * 	netbase * 	
+>>>>>> base-
+>>>>>> passwd *
+>>>>>> * opkg_install_cmd: Cannot install package task-poky-boot.
+>>>>>> * satisfy_dependencies_for: Cannot satisfy the following
+>>>>>> dependencies for task-sjs:
+>>>>>> * 	yocto-wallboard * 	psplash * 	syslinux *
+>>>>>> * opkg_install_cmd: Cannot install package task-sjs.
+>>>>>> * opkg_install_cmd: Cannot install package run-postinsts.
+>>>>>> ERROR: Function 'do_rootfs' failed (see ...
+>>>>>>
+>>>>>> If I look in tmp/work, it looks as if the missing dependencies  
+>>>>>> have
+>>>>>> all been built and packaged within their work areas.
+>>>>>>
+>>>>>> I tried cleaning and rebuilding 'task-sjs', but that made no
+>>>>>> difference to the errors reported against it.
+>>>>>>
+>>>>>> Where should I start looking to work out what's going wrong here?
+>>>>>> Is
+>>>>>> it as simple as needing to add something like RDEPENDS?
+>>>>>
+>>>>> This sounds like the machine specific packages are failing to be
+>>>>> found
+>>>>> so it sounds like a package feed issue. Is sounds like  
+>>>>> PACKAGE_ARCHS
+>>>>> isn't listing everything it needs to (such as the machine name) or
+>>>>> the
+>>>>> package system isn't finding a group of packages for some other
+>>>>> reason.
+>>>>
+>>>> Thanks, but that's way over my head at the moment ;-)
+>>>>
+>>>> I've searched through the meta data for PACKAGE_ARCHS, but that's  
+>>>> not
+>>>> thrown anything up to make me think there was anything I should
+>>>> look at.
+>>>>
+>>>> I'm using my own machine recipe. Is this were I should be looking?
+>>>
+>>> Yes, I suspect something about your machine config is resulting in
+>>> this
+>>> but its hard to me to say what.
+>>>
+>>> You can do things like "bitbake -e | grep ^PACKAGE_ARCHS" to see the
+>>> contents of variables. I'm curious if your machine name is listed in
+>>> that list.
 >>
->> I could patch everything really quick to use 3.0.1+git%... but 3.0.2 was
->> just released and I'd have to do it again tomorrow. For 2.6.37, the
->> LINUX_VERSION remained the same across point releases. I recommend we do
->> the same for 3.0. I really don't want to have to go through and update
->> all the PREFERRED_VERSIONs in addition to all the SRCREVs everytime a
->> point release comes out.
+>> chris@ubuntu:~/yocto/ebox3300-build$ bitbake -e |grep "PACKAGE_ARCHS"
 >>
+>> # PACKAGE_ARCHS=all any noarch ${PACKAGE_EXTRA_ARCHS} ${MACHINE_ARCH}
+>> PACKAGE_ARCHS="all any noarch x86 Vortex86DX"
+>> 		ipkg_archs = bb.data.getVar('PACKAGE_ARCHS',d)
+>> 			bb.error("PACKAGE_ARCHS missing")
+>>
+>> My machine is "Vortex86DX"
 >
-> In my understanding 2.6 has now become 3 and .40 became .0 making it 3.0
-> therefore versions should be 3.0+gitrXXXX 3.1+gitrXXXX etc. 3.0.1 is
-> similar to naming scheme 2.6.39.1 in olden days
+> What does "ls /home/chris/yocto/ebox3300-build/tmp/deploy/ipk" say?
+>
 
-Correct. The 3rd digit is the domain of the -stable udpates, just
-like the 4th digit used to be. So we'll expect 5 or 6 updates to this
-for each supported kernel.
+drwxr-xr-x 2 chris chris   4096 2011-08-19 21:12 all
+drwxr-xr-x 2 chris chris 143360 2011-08-19 21:12 i586
+-rw-r--r-- 1 chris chris      0 2011-08-19 21:12 Packages
+-rw-r--r-- 1 chris chris      0 2011-08-19 21:12 Packages.filelist
+-rwxr--r-- 1 chris chris      0 2011-08-19 03:19 Packages.flock
+-rwxr--r-- 1 chris chris     20 2011-08-19 21:12 Packages.gz
+-rw-r--r-- 1 chris chris      0 2011-08-19 21:12 Packages.stamps
+drwxr-xr-x 2 chris chris   4096 2011-08-19 21:12 Vortex86DX
 
-Cheers,
-
-Bruce
-
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Chris
 
 
