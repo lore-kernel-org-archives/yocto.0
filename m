@@ -1,23 +1,25 @@
-Return-Path: <philip@balister.org>
-Received: from starfish.geekisp.com (mail.geekisp.com [216.168.135.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1B55E00321
-	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 10:11:48 -0700 (PDT)
-Received: (qmail 3125 invoked by uid 1003); 23 Aug 2011 17:11:44 -0000
-Received: from unknown (HELO ?192.168.1.148?) (philip@opensdr.com@157.22.28.13)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	23 Aug 2011 17:11:44 -0000
-Message-ID: <4E53DF4C.7080801@balister.org>
-Date: Tue, 23 Aug 2011 10:11:40 -0700
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.18) Gecko/20110621 Fedora/3.1.11-1.fc14 Thunderbird/3.1.11
+Return-Path: <sgw@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41E73E00321
+	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 10:55:02 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 23 Aug 2011 10:55:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,270,1312182000"; d="scan'208";a="43389269"
+Received: from unknown (HELO [10.255.14.203]) ([10.255.14.203])
+	by fmsmga002.fm.intel.com with ESMTP; 23 Aug 2011 10:55:01 -0700
+Message-ID: <4E53E975.1070901@linux.intel.com>
+Date: Tue, 23 Aug 2011 10:55:01 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:5.0) Gecko/20110707 Thunderbird/5.0
 MIME-Version: 1.0
-To: Koen Kooi <koen@dominion.thruhere.net>
-References: <cover.1313792192.git.dvhart@linux.intel.com>	<0c8f4cdc6cf96da157b4c4bae8f4e13fca6d46e8.1313792192.git.dvhart@linux.intel.com>
-	<CAD08DEC-FD47-4799-9871-289CA89279FE@dominion.thruhere.net>
-In-Reply-To: <CAD08DEC-FD47-4799-9871-289CA89279FE@dominion.thruhere.net>
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
-Subject: Re: [PATCH 1/1] beagleboard: enable hard floating point abi
+To: Darren Hart <dvhart@linux.intel.com>
+References: <cover.1313968374.git.sgw@linux.intel.com>
+	<4E53DC59.1090202@linux.intel.com>
+In-Reply-To: <4E53DC59.1090202@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/1] Add Time-Limited-Kernel Layer to meta-intel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,34 +31,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Aug 2011 17:11:49 -0000
+X-List-Received-Date: Tue, 23 Aug 2011 17:55:02 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 08/23/2011 05:38 AM, Koen Kooi wrote:
+On 08/23/2011 09:59 AM, Darren Hart wrote:
 >
-> Op 20 aug. 2011, om 00:23 heeft Darren Hart het volgende geschreven:
 >
->> Fixes [YOCTO #1203]
+> On 08/21/2011 04:15 PM, Saul Wold wrote:
+>> Tom, Darren:
 >>
->> Using the hard floating point abi is incompatible with some binary libaries and
->> 3D support for the Beagleboard. As we do not provide these in poky and
->> meta-yocto, we can take advantage of the hard floating point abi.
+>> This adds Bruce's changes to allow for a time limited kernel, the
+>> default is set for 10 days.
 >
-> What advantage are you talking about? So far everyone has been unable to provide real-world numbers[1] that show hardfp making a difference compared to a properly configured softfp. The numbers debian and meego are showing are comparing it against completely vfpless builds, which borders on fraud.
+> I presume we need a linux-yocto-rt_3.0.bbappend as well?
 >
-> Yocto is of course free to do what it pleases, but switching to hardfp isn't going to make beagle support better, only worse. But if that's your goal, go for it, meta-ti is still there to provide the absolute best beagle support.
+Are we building and delivering RT images for the release?  If not then 
+there is no need.
+
+Sau!
+
+> --
+> Darren
 >
-> [1] povray is the only outlier, but I don't think people will build beagle based renderfarms in the near future.
-
-The big win for hard float ABI (emphasis mine) is functions that return 
-floating point values. I personally care about this, but we also know 
-returning floats is "bad" so we sort of avoid it.
-
-I agree with Phil Blundell that this is not a beagle specific thing.
-
-Long term I expect hard float to become normal, but I see no need to 
-rush there (no matter what other distros are claiming).
-
-Philip
+>>
+>> This layer will only be added to the meta-intel BSP on the Auto-builder.
+>>
+>> Sau!
+>>
+>>
+>> The following changes since commit 5c41b9b6a245664543e6ddd440d10a0696caaf7b:
+>>
+>>    n450: decouple from meta-yocto atom-pc machine config (2011-08-19 14:22:21 -0700)
+>>
+>> are available in the git repository at:
+>>    git://git.yoctoproject.org/meta-intel sgw/tlk
+>>    http://git.yoctoproject.org/cgit.cgi/meta-intel/log/?h=sgw/tlk
+>>
+>> Bruce Ashfield (1):
+>>    meta-tlk: initial creation
+>>
+>>   meta-tlk/README                                    |    6 ++++++
+>>   meta-tlk/conf/layer.conf                           |    6 ++++++
+>>   .../linux/linux-yocto/time-limited-kernel.cfg      |    3 +++
+>>   .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    4 ++++
+>>   4 files changed, 19 insertions(+), 0 deletions(-)
+>>   create mode 100644 meta-tlk/README
+>>   create mode 100644 meta-tlk/conf/layer.conf
+>>   create mode 100644 meta-tlk/recipes-kernel/linux/linux-yocto/time-limited-kernel.cfg
+>>   create mode 100644 meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend
+>>
+>
 
