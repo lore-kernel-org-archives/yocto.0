@@ -1,33 +1,28 @@
-Return-Path: <gordan@bobich.net>
-Received: from external.sentinel2 (78-86-195-58.zone2.bethere.co.uk
-	[78.86.195.58])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5AE2E00321
-	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 09:25:43 -0700 (PDT)
-Received: from mail.shatteredsilicon.net (localhost [127.0.0.1])
-	by external.sentinel2 (Postfix) with ESMTP id 2AC4B29BF;
-	Tue, 23 Aug 2011 17:25:35 +0100 (BST)
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B20CCE00321
+	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 09:55:50 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 23 Aug 2011 09:55:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="41397062"
+Received: from unknown (HELO envy.home) ([10.7.199.154])
+	by orsmga001.jf.intel.com with ESMTP; 23 Aug 2011 09:55:50 -0700
+Message-ID: <4E53DB94.80106@linux.intel.com>
+Date: Tue, 23 Aug 2011 09:55:48 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:5.0) Gecko/20110707 Thunderbird/5.0
 MIME-Version: 1.0
-Date: Tue, 23 Aug 2011 17:25:34 +0100
-From: Gordan Bobic <gordan@bobich.net>
-To: <cross-distro@lists.linaro.org>
-In-Reply-To: <20110823161134.GV3053@linaro.org>
-References: <20110809181534.GR10171@einval.com>
-	<20110823161134.GV3053@linaro.org>
-Message-ID: <efc47c3039402c1507d76f381a790115@mail.shatteredsilicon.net>
-X-Sender: gordan@bobich.net
-User-Agent: Roundcube Webmail/0.4.2
-X-Mailman-Approved-At: Tue, 23 Aug 2011 09:26:45 -0700
-Cc: GCC developers <gcc@gcc.gnu.org>,
-	Ubuntu Devel <ubuntu-devel@lists.ubuntu.com>, yocto@yoctoproject.org,
-	Gentoo Embedded <gentoo-embedded@lists.gentoo.org>,
-	Debian ARM <debian-arm@lists.debian.org>,
-	Fedora ARM <arm@lists.fedoraproject.org>,
-	OLPC Devel <devel@lists.laptop.org>,
-	OpenEmbedded Devel <openembedded-devel@lists.openembedded.org>,
-	cooker@mandrivalinux.org, MeeGo Dev <meego-dev@meego.com>,
-	LSB discuss <lsb-discuss@lists.freestandards.org>,
-	Mageia Dev <mageia-dev@mageia.org>
-Subject: Re: [fedora-arm] ARM summit at Plumbers 2011
+To: Tom Rini <tom.rini@gmail.com>
+References: <cover.1313792192.git.dvhart@linux.intel.com>
+	<0c8f4cdc6cf96da157b4c4bae8f4e13fca6d46e8.1313792192.git.dvhart@linux.intel.com>
+	<CAD08DEC-FD47-4799-9871-289CA89279FE@dominion.thruhere.net>
+	<4E53ABC1.3050906@linux.intel.com>
+	<CA+M6bXn7z4+y+PF3AOm+vCJ8y_7rpM2A8Q0JoXVOLhg9dwz1ag@mail.gmail.com>
+In-Reply-To: <CA+M6bXn7z4+y+PF3AOm+vCJ8y_7rpM2A8Q0JoXVOLhg9dwz1ag@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/1] beagleboard: enable hard floating point abi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,72 +34,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Aug 2011 16:25:45 -0000
-Content-Type: text/plain;
- charset=UTF-8;
- format=flowed
+X-List-Received-Date: Tue, 23 Aug 2011 16:55:50 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
- On Tue, 23 Aug 2011 17:11:34 +0100, Steve McIntyre 
- <steve.mcintyre@linaro.org> wrote:
-> On Tue, Aug 09, 2011 at 07:15:34PM +0100, Steve McIntyre wrote:
->>Hi folks,
->>
->>Following on from the founding of the cross-distro ARM mailing list,
->>I'd like to propose an ARM summit at this year's Linux Plumbers
->>conference [1]. I'm hoping for a slot on Thursday evening, but this
->>remains to be confirmed at this point.
->>
->>We had some lively discussion about the state of ARM Linux distros at
->>the Linaro Connect [2] event in Cambridge last week. It rapidly 
->> became
->>clear that some of the topics we discussed deserve a wider audience,
->>so we're suggesting a meetup at Plumbers for that bigger
->>discussion. The initial proposed agenda is:
->>
->> * ARM hard-float
->>   + What is it and why does it matter?
->>   + How can distributions keep compatible (i.e. gcc triplet to
->>     describe the port)?
->>
->> * Adding support for ARM as an architecture to the Linux Standard
->>   Base (LSB)
->>   + Does it matter?
->>   + What's needed?
->>
->> * FHS - multi-arch coming soon, how do we proceed?
->>
->> * 3D support on ARM platforms
->>   + Open GL vs. GLES - which is appropriate?
->>
->>but I'm sure that other people will think of more issues they'd like
->>to discuss. :-)
->>
->>If you wish to attend, please reply to the cross-distro list and let
->>us know to expect you. Make sure you're registered to attend Plumbers
->>Conf, and get your travel and accommodation organised ASAP.
->>
->>[1] http://www.linuxplumbersconf.org/2011/
->>[2] http://connect.linaro.org/
->
-> UPDATE: we've not had many people confirm interest in this event yet,
-> which is a shame. If you would like to join us for this session,
-> please reply and let me know. If we don't get enough interest by the
-> end of Sunday (28th August), then we'll have to cancel the meeting.
 
- Unfortunately there is no way I could make it, but on the subject of 3D 
- support on ARM, Luke recently mentioned something that initially seemed 
- outlandish but upon closer examination doesn't seem like a bad idea. As 
- we all know, the state of openness of specifications of commonly used 
- ARM 3D GPUs is at best dire. What has been proposed is a bit radical, 
- but it doesn't actually seem that implausible. Specifically, combining 
- Open Graphics Project (http://wiki.opengraphics.org/tiki-index.php) and 
- the xilinx zynq-7000 or similar (dual core Cortex A9 + FPGA). The idea 
- is to have an OGP GPU in firmware in FPGA. In terms of the power budget, 
- it seems to work relatively sanely considering what it is, and it is as 
- ideal as it gets as far as openness and flexibility goes.
 
- I just thought it's worthy of a mention.
+On 08/23/2011 08:34 AM, Tom Rini wrote:
+> On Tue, Aug 23, 2011 at 8:31 AM, Darren Hart <dvhart@linux.intel.com> wrote:
+>> On 08/23/2011 05:38 AM, Koen Kooi wrote:
+>>>
+>>> Op 20 aug. 2011, om 00:23 heeft Darren Hart het volgende geschreven:
+>>>
+>>>> Fixes [YOCTO #1203]
+>>>>
+>>>> Using the hard floating point abi is incompatible with some binary
+>>>> libaries and 3D support for the Beagleboard. As we do not provide
+>>>> these in poky and meta-yocto, we can take advantage of the hard
+>>>> floating point abi.
+>>>
+>>> What advantage are you talking about? So far everyone has been unable
+>>> to provide real-world numbers[1] that show hardfp making a difference
+>>> compared to a properly configured softfp. The numbers debian and
+>>> meego are showing are comparing it against completely vfpless builds,
+>>
+>>
+>> That's good reasoning to stick with softfp+neon. Unfortunately I can't
+>> find the mail threads that first got me looking into adding hardfp
+>> support. As I said, I'm not sold on the idea, but it was requested so I
+>> looked into how to address it.
+>>
+>> If nobody comes forward saying they would really like to have this, I'm
+>> going to modify the patch series to disable hardfp by default, but leave
+>> the infrastructure in place so people can enable if they like.
+> 
+> Well, are there some softfp related config bits we need on the yocto
+> side that meta-ti has, in order to bring that performance back in
+> line?
 
- Gordan
+Are you referring to a specific performance measure?
+
+Jason, Koen, are there any such config bits? We are currently using the
+cortexa8-neon tune configuration from oe-core.
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
