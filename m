@@ -1,23 +1,25 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC4DBE0120C
-	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 11:36:10 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 23 Aug 2011 11:36:10 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DB1CE0071A
+	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 12:06:32 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 23 Aug 2011 12:06:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,270,1312182000"; d="scan'208";a="43410086"
-Received: from unknown (HELO swold-MOBL.bigsur.com) ([10.255.14.203])
-	by fmsmga002.fm.intel.com with ESMTP; 23 Aug 2011 11:36:10 -0700
-From: Saul Wold <sgw@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 23 Aug 2011 11:36:07 -0700
-Message-Id: <99367a7d66c6bdfc56780cc9cfc7d50b55095591.1314124511.git.sgw@linux.intel.com>
-X-Mailer: git-send-email 1.7.6
-In-Reply-To: <cover.1314124511.git.sgw@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="41440840"
+Received: from unknown (HELO envy.home) ([10.7.199.154])
+	by orsmga001.jf.intel.com with ESMTP; 23 Aug 2011 12:06:30 -0700
+Message-ID: <4E53FA35.9050306@linux.intel.com>
+Date: Tue, 23 Aug 2011 12:06:29 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:5.0) Gecko/20110707 Thunderbird/5.0
+MIME-Version: 1.0
+To: Saul Wold <sgw@linux.intel.com>
 References: <cover.1314124511.git.sgw@linux.intel.com>
-In-Reply-To: <cover.1314124511.git.sgw@linux.intel.com>
-References: <cover.1314124511.git.sgw@linux.intel.com>
-Subject: [PATCH 1/1] beagleboard.conf: set DEFAULT_TUNE to cortexa8
+	<99367a7d66c6bdfc56780cc9cfc7d50b55095591.1314124511.git.sgw@linux.intel.com>
+In-Reply-To: <99367a7d66c6bdfc56780cc9cfc7d50b55095591.1314124511.git.sgw@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/1] beagleboard.conf: set DEFAULT_TUNE to cortexa8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,39 +31,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Aug 2011 18:36:10 -0000
+X-List-Received-Date: Tue, 23 Aug 2011 19:06:32 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-    [YOCTO #1381]
 
-    lttng-ust generates an ICE when building for armv7, so change it to armv5
-    | vfprintf.c:956:1: error: unrecognizable insn:
-    | (insn 3968 3967 3969 145 (set (subreg:SI (reg/v:DI 160 [ _umax ]) 0)
-    |         (sign_extend:SI (mem:QI (plus:SI (mult:SI (reg/v:SI 166 [ nextarg ])
-    |                         (const_int 8 [0x8]))
-    |                     (reg/f:SI 370 [ argtable.7 ])) [0 *D.6937_569+0 S1
-    A32]))) vfprintf.c:555 -1
-    |      (nil))
-    | vfprintf.c:956:1: internal compiler error: in extract_insn, at recog.c:2109
 
-Signed-off-by: Saul Wold <sgw@linux.intel.com>
----
- meta-yocto/conf/machine/beagleboard.conf |    2 ++
- 1 files changed, 2 insertions(+), 0 deletions(-)
+On 08/23/2011 11:36 AM, Saul Wold wrote:
+>     [YOCTO #1381]
+> 
+>     lttng-ust generates an ICE when building for armv7, so change it to armv5
+>     | vfprintf.c:956:1: error: unrecognizable insn:
+>     | (insn 3968 3967 3969 145 (set (subreg:SI (reg/v:DI 160 [ _umax ]) 0)
+>     |         (sign_extend:SI (mem:QI (plus:SI (mult:SI (reg/v:SI 166 [ nextarg ])
+>     |                         (const_int 8 [0x8]))
+>     |                     (reg/f:SI 370 [ argtable.7 ])) [0 *D.6937_569+0 S1
+>     A32]))) vfprintf.c:555 -1
+>     |      (nil))
+>     | vfprintf.c:956:1: internal compiler error: in extract_insn, at recog.c:2109
+> 
+> Signed-off-by: Saul Wold <sgw@linux.intel.com>
+> ---
+>  meta-yocto/conf/machine/beagleboard.conf |    2 ++
+>  1 files changed, 2 insertions(+), 0 deletions(-)
+> 
+> diff --git a/meta-yocto/conf/machine/beagleboard.conf b/meta-yocto/conf/machine/beagleboard.conf
+> index 0b3cebc..9ed8c59 100644
+> --- a/meta-yocto/conf/machine/beagleboard.conf
+> +++ b/meta-yocto/conf/machine/beagleboard.conf
+> @@ -18,6 +18,8 @@ MACHINE_EXTRA_RRECOMMENDS += "beagleboard-audio"
+>  # Allow for MMC booting (required by the NAND-less Beagleboard XM)
+>  EXTRA_IMAGEDEPENDS += "u-boot x-load"
+>  
+> +DEFAULT_TUNE = "cortexa8"
+> +
 
-diff --git a/meta-yocto/conf/machine/beagleboard.conf b/meta-yocto/conf/machine/beagleboard.conf
-index 0b3cebc..9ed8c59 100644
---- a/meta-yocto/conf/machine/beagleboard.conf
-+++ b/meta-yocto/conf/machine/beagleboard.conf
-@@ -18,6 +18,8 @@ MACHINE_EXTRA_RRECOMMENDS += "beagleboard-audio"
- # Allow for MMC booting (required by the NAND-less Beagleboard XM)
- EXTRA_IMAGEDEPENDS += "u-boot x-load"
- 
-+DEFAULT_TUNE = "cortexa8"
-+
- include conf/machine/include/tune-cortexa8.inc
- 
- IMAGE_FSTYPES += "tar.bz2 jffs2"
+Sorry, I didn't mean for this to be a final solution, just a means to
+determine the problem. Removing neon eliminates the vector floating
+point, which we do not want to do. The correct fix for this is probably
+in gcc. I'd rather not build lttng for beagleboard than change the tune
+default to DEFAULT_TUNE to "cortexa8".
+
 -- 
-1.7.6
-
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
