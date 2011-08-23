@@ -1,39 +1,35 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-fx0-f48.google.com (mail-fx0-f48.google.com
-	[209.85.161.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 308CFE0071A
-	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 14:58:04 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by fxg7 with SMTP id 7so874792fxg.35
-	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 14:58:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=LQiLcrDAlynxClPr+4tQrI2l+LdhYTkGL9HIk2s6Pkk=;
-	b=N5kjB1DlUs5i+ywIX3KR9fi/O5zmDEXmmSm1QQK63pbWKobmaeYXuE1Esa8BAYkLZ4
-	1vTbPNYTdPdHemtXhqAG6fJgxTtIOs1aS+gbAc2GTfKsrB3xaO9763TbehaUw6nGp4/2
-	dRniXRgUzS/vr9f3jpu/uuaDJTeq+trv3e6c8=
-Received: by 10.223.63.139 with SMTP id b11mr6007656fai.111.1314136682715;
-	Tue, 23 Aug 2011 14:58:02 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id g16sm309007faa.27.2011.08.23.14.58.00
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 23 Aug 2011 14:58:01 -0700 (PDT)
-Date: Tue, 23 Aug 2011 23:57:54 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Saul Wold <sgw@linux.intel.com>
-Message-ID: <20110823215754.GA5522@jama.jama.net>
-References: <cover.1314124511.git.sgw@linux.intel.com>
-	<99367a7d66c6bdfc56780cc9cfc7d50b55095591.1314124511.git.sgw@linux.intel.com>
-	<CA+M6bX=vjB5gV572LVemMdeiO3TuFFUK_L6xTA2pDrVu-0ZZvw@mail.gmail.com>
-	<4E541AEE.2000305@linux.intel.com>
+Return-Path: <gordan@bobich.net>
+Received: from external.sentinel2 (78-86-195-58.zone2.bethere.co.uk
+	[78.86.195.58])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10CEEE0071A
+	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 15:26:08 -0700 (PDT)
+Received: from ariia.shatteredsilicon.net (unknown [10.2.3.1])
+	(using TLSv1 with cipher DHE-RSA-CAMELLIA256-SHA (256/256 bits))
+	(No client certificate requested)
+	by external.sentinel2 (Postfix) with ESMTPSA id 7B25029BF;
+	Tue, 23 Aug 2011 23:26:02 +0100 (BST)
+Message-ID: <4E5428F8.2050000@bobich.net>
+Date: Tue, 23 Aug 2011 23:26:00 +0100
+From: Gordan Bobic <gordan@bobich.net>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.20) Gecko/20110816 Red Hat/3.1.12-1.el6_1 Lightning/1.0b2
+	Thunderbird/3.1.12
 MIME-Version: 1.0
-In-Reply-To: <4E541AEE.2000305@linux.intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] beagleboard.conf: set DEFAULT_TUNE to cortexa8
+To: omalleys@msu.edu
+References: <20110809181534.GR10171@einval.com>	<20110823161134.GV3053@linaro.org>	<efc47c3039402c1507d76f381a790115@mail.shatteredsilicon.net>
+	<20110823140143.11573jx2b3qwm51j@mail.msu.edu>
+In-Reply-To: <20110823140143.11573jx2b3qwm51j@mail.msu.edu>
+Cc: cross-distro@lists.linaro.org, Ubuntu Devel <ubuntu-devel@lists.ubuntu.com>,
+	GCC developers <gcc@gcc.gnu.org>, yocto@yoctoproject.org,
+	Gentoo Embedded <gentoo-embedded@lists.gentoo.org>,
+	Debian ARM <debian-arm@lists.debian.org>,
+	Fedora ARM <arm@lists.fedoraproject.org>,
+	OLPC Devel <devel@lists.laptop.org>,
+	OpenEmbedded Devel <openembedded-devel@lists.openembedded.org>,
+	cooker@mandrivalinux.org, MeeGo Dev <meego-dev@meego.com>,
+	LSB discuss <lsb-discuss@lists.freestandards.org>,
+	Mageia Dev <mageia-dev@mageia.org>
+Subject: Re: ARM 3D support was Re: [fedora-arm] ARM summit at Plumbers 2011
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,109 +41,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Aug 2011 21:58:04 -0000
-X-Groupsio-MsgNum: 2493
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="opJtzjQTFsWo+cga"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 23 Aug 2011 22:26:08 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---opJtzjQTFsWo+cga
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 08/23/2011 07:01 PM, omalleys@msu.edu wrote:
+> Quoting Gordan Bobic <gordan@bobich.net>:
+>> Unfortunately there is no way I could make it, but on the subject of 3D
+>> support on ARM, Luke recently mentioned something that initially seemed
+>> outlandish but upon closer examination doesn't seem like a bad idea. As
+>> we all know, the state of openness of specifications of commonly used
+>> ARM 3D GPUs is at best dire. What has been proposed is a bit radical,
+>> but it doesn't actually seem that implausible. Specifically, combining
+>> Open Graphics Project (http://wiki.opengraphics.org/tiki-index.php) and
+>> the xilinx zynq-7000 or similar (dual core Cortex A9 + FPGA). The idea
+>> is to have an OGP GPU in firmware in FPGA. In terms of the power budget,
+>> it seems to work relatively sanely considering what it is, and it is as
+>> ideal as it gets as far as openness and flexibility goes.
+>>
+>> I just thought it's worthy of a mention.
+>
+> It does seem outlandish, but it is kind of cool. Is it going to give
+> enough 3d speed? The next gen tegra is supposed to have a 24 core GPU.
 
-On Tue, Aug 23, 2011 at 02:26:06PM -0700, Saul Wold wrote:
-> On 08/23/2011 12:35 PM, Tom Rini wrote:
-> > On Tue, Aug 23, 2011 at 1:36 PM, Saul Wold<sgw@linux.intel.com>  wrote:
-> >>     [YOCTO #1381]
-> >>
-> >>     lttng-ust generates an ICE when building for armv7, so change it t=
-o armv5
-> >>     | vfprintf.c:956:1: error: unrecognizable insn:
-> >>     | (insn 3968 3967 3969 145 (set (subreg:SI (reg/v:DI 160 [ _umax ]=
-) 0)
-> >>     |         (sign_extend:SI (mem:QI (plus:SI (mult:SI (reg/v:SI 166 =
-[ nextarg ])
-> >>     |                         (const_int 8 [0x8]))
-> >>     |                     (reg/f:SI 370 [ argtable.7 ])) [0 *D.6937_56=
-9+0 S1
-> >>     A32]))) vfprintf.c:555 -1
-> >>     |      (nil))
-> >>     | vfprintf.c:956:1: internal compiler error: in extract_insn, at r=
-ecog.c:2109
-> >
-> > Which version of lttng-ust is this exactly?  In addition to what
-> > Darren is saying about how this should be papered-over at the recipe
-> > level until gcc itself is fixed...
-> >
-> Sorry, this was my mis-understanding of Darren's comment.
->=20
-> Version of lttng-ust is 0.15.
->=20
-> Initially I tried to do something with tcmode-default, setting lttng-ust=
-=20
-> similar to meta-xlib which also had a ICE issue.
->=20
-> TARGET_CC_ARCH_arm_pn-mesa-xlib :=3D=20
-> "${@'${TARGET_CC_ARCH}'.replace('armv7-a','armv5')}"
->=20
-> That caused the compiler to complain about a mode issue, probably due to=
-=20
-> mixing of tune parameters:
->=20
-> | arm-poky-linux-gnueabi-libtool: compile:  ccache=20
-> arm-poky-linux-gnueabi-gcc
-> -march=3Darmv5 -fno-tree-vectorize -mthumb-interwork -mfloat-abi=3Dsoftfp
-> -mfpu=3Dneon -mtune=3Dcortex-a8
-> --sysroot=3D/vol/1/sgw/autobuilder/yab/yocto-slave/external/build/build/t=
-mp/sysroots/beagleboard
-> -DHAVE_CONFIG_H -I. -I.. -I../include/ust -I../include -I../libustcomm
-> -DUST_COMPONENT=3Dlibust -fno-strict-aliasing -Wall -pipe -g
-> -feliminate-unused-debug-types -MT libust_la-marker-control.lo -MD -MP -MF
-> .deps/libust_la-marker-control.Tpo -c marker-control.c -o
-> libust_la-marker-control.o >/dev/null 2>&1
-> | mv -f .deps/libust_la-tracercore.Tpo .deps/libust_la-tracercore.Plo
-> | {standard input}: Assembler messages:
-> | {standard input}:190: Error: selected processor does not support ARM=20
-> mode `dmb'
->=20
-> Yes, we are trying to solve Compiler issue, when I first started working=
-=20
-> on the last week there was not a compiler bug filed, but now there seems=
-=20
-> to be one!
->=20
-> http://gcc.gnu.org/bugzilla/show_bug.cgi?id=3D43137
->=20
-> Which looks like it is resolved also!
+If you can quantify what "enough 3D speed" means, then perhaps that can 
+be assessed. There really aren't many applications around at the moment 
+to make this an issue. I'd be more interested in it's ability to decode 
+1080p.
 
-This is better bug report:
-http://gcc.gnu.org/bugzilla/show_bug.cgi?id=3D50099
+Then again - it's FPGA! You can load a different "firmware" depending on 
+whether you need 1080p decoding or 3D rendering, or some other kind of 
+specialized DSP offload with only bare minimal VGA. :)
 
-Regards,
+Personally, I think OGP would be worth it even if just for the fact that 
+we would no longer have to beg (in vain) the vendors for decent drivers 
+or published specs. The added flexibility on top is just a "free extra". :)
 
-> I will move this to Nitin to see if he can incorporate the patch into gcc.
->=20
-> Sau!
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Gordan
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---opJtzjQTFsWo+cga
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.18 (GNU/Linux)
-
-iEYEARECAAYFAk5UImIACgkQN1Ujt2V2gByPogCgrMNogDBmPQrDvwLQ0LsaVHUR
-ffEAn2LlhbtLxE7l/GdlZBtAU75CscrD
-=GBUI
------END PGP SIGNATURE-----
-
---opJtzjQTFsWo+cga--
