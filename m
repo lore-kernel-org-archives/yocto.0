@@ -1,35 +1,20 @@
-Return-Path: <tom.rini@gmail.com>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E590E011D6
-	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 08:34:46 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by yxp4 with SMTP id 4so235843yxp.35
-	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 08:34:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=LVsktx16qLxx/UKA+WezGesVLI3k4i7E1EU4Rz01dJY=;
-	b=R1+zqWzzr/XSO0TdEVKzyReYpC48B9r1Y9ZAmX9W+AT/NVAYsp+LKI2d/IjnHatkDx
-	v+cIxzMK5z03WkYW0Z4GFZ+18uc+hiVHYNLVnOUipw8sup8jAhvWL+t0Hxv/z05xcqKu
-	8bxO75l3gzHI9j8wuR9tCbS2+oYmwSon5kxvk=
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEDBAE011D6
+	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 08:42:57 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 23 Aug 2011 08:42:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,270,1312182000"; d="scan'208";a="44242213"
+Received: from unknown (HELO helios.localnet) ([10.255.18.129])
+	by fmsmga001.fm.intel.com with ESMTP; 23 Aug 2011 08:42:50 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 23 Aug 2011 16:42:49 +0100
+User-Agent: KMail/1.13.6 (Linux/2.6.38-10-generic-pae; KDE/4.6.2; i686; ; )
 MIME-Version: 1.0
-Received: by 10.42.145.73 with SMTP id e9mr3605102icv.238.1314113685715; Tue,
-	23 Aug 2011 08:34:45 -0700 (PDT)
-Received: by 10.42.220.70 with HTTP; Tue, 23 Aug 2011 08:34:45 -0700 (PDT)
-In-Reply-To: <4E53ABC1.3050906@linux.intel.com>
-References: <cover.1313792192.git.dvhart@linux.intel.com>
-	<0c8f4cdc6cf96da157b4c4bae8f4e13fca6d46e8.1313792192.git.dvhart@linux.intel.com>
-	<CAD08DEC-FD47-4799-9871-289CA89279FE@dominion.thruhere.net>
-	<4E53ABC1.3050906@linux.intel.com>
-Date: Tue, 23 Aug 2011 10:34:45 -0500
-Message-ID: <CA+M6bXn7z4+y+PF3AOm+vCJ8y_7rpM2A8Q0JoXVOLhg9dwz1ag@mail.gmail.com>
-From: Tom Rini <tom.rini@gmail.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] beagleboard: enable hard floating point abi
+Message-Id: <201108231642.49667.paul.eggleton@linux.intel.com>
+Subject: Tested host distros for 1.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,40 +26,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Aug 2011 15:34:46 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 23 Aug 2011 15:42:58 -0000
+Content-Type: Text/Plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Tue, Aug 23, 2011 at 8:31 AM, Darren Hart <dvhart@linux.intel.com> wrote:
-> On 08/23/2011 05:38 AM, Koen Kooi wrote:
->>
->> Op 20 aug. 2011, om 00:23 heeft Darren Hart het volgende geschreven:
->>
->>> Fixes [YOCTO #1203]
->>>
->>> Using the hard floating point abi is incompatible with some binary
->>> libaries and 3D support for the Beagleboard. As we do not provide
->>> these in poky and meta-yocto, we can take advantage of the hard
->>> floating point abi.
->>
->> What advantage are you talking about? So far everyone has been unable
->> to provide real-world numbers[1] that show hardfp making a difference
->> compared to a properly configured softfp. The numbers debian and
->> meego are showing are comparing it against completely vfpless builds,
->
->
-> That's good reasoning to stick with softfp+neon. Unfortunately I can't
-> find the mail threads that first got me looking into adding hardfp
-> support. As I said, I'm not sold on the idea, but it was requested so I
-> looked into how to address it.
->
-> If nobody comes forward saying they would really like to have this, I'm
-> going to modify the patch series to disable hardfp by default, but leave
-> the infrastructure in place so people can enable if they like.
+Hi all,
 
-Well, are there some softfp related config bits we need on the yocto
-side that meta-ti has, in order to bring that performance back in
-line?
+We now have the mechanism for fixing bug #1096 [1] i.e. showing a warning if 
+the user is running a build on a distro that has not been tested; however to 
+make this work what we now need is a list of distributions we want to consider 
+tested. What distros specifically are we going to list for 1.1?
+
+Cheers,
+Paul
+
+[1] http://bugzilla.pokylinux.org/show_bug.cgi?id=1096
+
 
 -- 
-Tom
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
