@@ -1,23 +1,24 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45ED7E01235
-	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 08:31:08 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17505E01235
+	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 08:31:09 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
 	by fmsmga101.fm.intel.com with ESMTP; 23 Aug 2011 08:31:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,270,1312182000"; d="scan'208";a="43313463"
+X-IronPort-AV: E=Sophos;i="4.68,270,1312182000"; d="scan'208";a="43313472"
 Received: from unknown (HELO helios.ger.corp.intel.com) ([10.255.18.129])
-	by fmsmga002.fm.intel.com with ESMTP; 23 Aug 2011 08:31:07 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 23 Aug 2011 08:31:08 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Tue, 23 Aug 2011 16:30:42 +0100
-Message-Id: <c948e16d47487d59d4d32093f6224c50c703efac.1314113115.git.paul.eggleton@linux.intel.com>
+Date: Tue, 23 Aug 2011 16:30:43 +0100
+Message-Id: <dce61980f3263d7aee4224e877e7941194fd9ab0.1314113115.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 1.7.4.1
 In-Reply-To: <cover.1314113115.git.paul.eggleton@linux.intel.com>
 References: <cover.1314113115.git.paul.eggleton@linux.intel.com>
 In-Reply-To: <cover.1314113115.git.paul.eggleton@linux.intel.com>
 References: <cover.1314113115.git.paul.eggleton@linux.intel.com>
-Subject: [PATCH 09/14] documentation: update TERMCMD/TERMCMDRUN documentation
+MIME-Version: 1.0
+Subject: [PATCH 10/14] documentation: update for directdisk/live image changes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,53 +30,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Aug 2011 15:31:08 -0000
+X-List-Received-Date: Tue, 23 Aug 2011 15:31:09 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-* xterm is now the default
-* Konsole from KDE 4.x will no longer work due to changes in behaviour
+-live and -directdisk image have been removed; add a tip about using the
+live option in IMAGE_FSTYPES to build any image as a live image.
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- documentation/poky-ref-manual/development.xml   |    2 +-
- documentation/poky-ref-manual/ref-variables.xml |   10 +++++++++-
- 2 files changed, 10 insertions(+), 2 deletions(-)
+ documentation/poky-ref-manual/ref-images.xml |   62 +++-----------------------
+ 1 files changed, 7 insertions(+), 55 deletions(-)
 
-diff --git a/documentation/poky-ref-manual/development.xml b/documentation/poky-ref-manual/development.xml
-index c37b481..c3aeeb8 100644
---- a/documentation/poky-ref-manual/development.xml
-+++ b/documentation/poky-ref-manual/development.xml
-@@ -561,7 +561,7 @@
-         </para>
- 
-         <para>
--            The default shell used by "devshell" is the gnome-terminal. 
-+            The default shell used by "devshell" is xterm.
-             You can use other forms of terminal can by setting the <glossterm>
-             <link linkend='var-TERMCMD'>TERMCMD</link></glossterm> and <glossterm>
-             <link linkend='var-TERMCMDRUN'>TERMCMDRUN</link></glossterm> variables 
-diff --git a/documentation/poky-ref-manual/ref-variables.xml b/documentation/poky-ref-manual/ref-variables.xml
-index 095ccf6..eab3bda 100644
---- a/documentation/poky-ref-manual/ref-variables.xml
-+++ b/documentation/poky-ref-manual/ref-variables.xml
-@@ -965,9 +965,17 @@ recipes-graphics/xorg-font/fiont-alias_1.0.2.bb:PR - "$(INC_PR).0"
+diff --git a/documentation/poky-ref-manual/ref-images.xml b/documentation/poky-ref-manual/ref-images.xml
+index f8c888d..3ace353 100644
+--- a/documentation/poky-ref-manual/ref-images.xml
++++ b/documentation/poky-ref-manual/ref-images.xml
+@@ -64,13 +64,6 @@
+             </listitem>
+             <listitem>
                  <para>
-                     This command is used by BitBake to launch a terminal window with a
-                     shell. The shell is unspecified so the user's default shell is used. 
--                    By default it is set to <command>gnome-terminal</command> but it can 
-+                    By default it is set to <command>xterm</command> but it can
-                     be any X11 terminal application or terminal multiplexers like screen.
+-                    <emphasis><filename>core-image-minimal-directdisk</filename></emphasis> – A 
+-                    <filename>core-image-minimal</filename>  image that you can 
+-                    copy directly to the disk of the target device.
+-                </para>
+-            </listitem>
+-            <listitem>
+-                <para>
+                     <emphasis><filename>core-image-minimal-initramfs</filename></emphasis> – 
+                     A <filename>core-image-minimal</filename> image that has the Minimal RAM-based 
+                     Initial Root Filesystem (<filename>initramfs</filename>) as part of the kernel, 
+@@ -79,13 +72,6 @@
+             </listitem>
+             <listitem>
+                 <para>
+-                    <emphasis><filename>core-image-minimal-live</filename></emphasis> – A 
+-                    <filename>core-image-minimal</filename> image you can run from a 
+-                    USB device or CD as is.
+-                </para>
+-            </listitem>
+-            <listitem>
+-                <para>
+                     <emphasis><filename>core-image-minimal-mtdutils</filename></emphasis> – A 
+                     <filename>core-image-minimal</filename> image that has support 
+                     for the Minimal MTD Utilities, which let the user interact with the 
+@@ -114,12 +100,6 @@
+             </listitem>
+             <listitem>
+                 <para>
+-                    <emphasis><filename>core-image-lsb-live</filename></emphasis> - A
+-                    <filename>core-image-lsb</filename> image that you run from a USB device or CD as is.
+-                </para>
+-            </listitem>
+-            <listitem>
+-                <para>
+                     <emphasis><filename>core-image-lsb-sdk</filename></emphasis> - A
+                     <filename>core-image-lsb</filename> that includes everything in meta-toolchain 
+                     but also includes development 
+@@ -130,13 +110,6 @@
+             </listitem>
+             <listitem>
+                 <para>
+-                    <emphasis><filename>core-image-lsb-sdk-live</filename></emphasis> - A 
+-<!--                     <filename>core-image-lsb-sdk</filename> image with the ability to run the image -->
+-                    from a USB device or CD as is.
+-                </para>
+-            </listitem>
+-            <listitem>
+-                <para>
+                     <emphasis><filename>core-image-clutter</filename></emphasis> - An image with 
+                     support for 
+                     the Open GL-based toolkit Clutter, which enables development of rich and animated
+@@ -163,20 +136,6 @@
+             </listitem>
+             <listitem>
+                 <para>
+-                    <emphasis><filename>core-image-sato-directdisk</filename></emphasis> - A
+-                    <filename>core-image-sato</filename> image that can be copied directly to the 
+-                    disk of the target device.
+-                </para>
+-            </listitem>
+-            <listitem>
+-                <para>
+-                    <emphasis><filename>core-image-sato-live</filename></emphasis> - A
+-                    <filename>core-image-sato</filename> image with the ability to run 
+-                    from a USB device or CD as is.
+-                </para>
+-            </listitem>
+-            <listitem>
+-                <para>
+                     <emphasis><filename>core-image-sato-sdk</filename></emphasis> - A
+                     <filename>core-image-sato</filename> image that includes everything in meta-toolchain. 
+                     The image also includes development headers and libraries to form a complete standalone SDK. 
+@@ -184,21 +143,14 @@
+                     External Development Using the Poky SDK</link> section for more information..
                  </para>
-+                <para>
-+                    NOTE: whilst KONSOLE_TERMCMD and KONSOLE_TERMCMDRUN are provided
-+                    and will work with KDE's Konsole terminal application Konsole from KDE 3,
-+                    Konsole in KDE 4.0 and later will no longer work here due to the fact
-+                    that it now launches in the background by default, and it is not practically
-+                    possible to wait until it has terminated. It is hoped that this can be fixed
-+                    in a future version.
-+                </para>
-             </glossdef>
-         </glossentry>
- 
+             </listitem>
+-            <listitem>
+-                <para>
+-                    <emphasis><filename>core-image-sato-sdk-directdisk</filename></emphasis> - A
+-                    <filename>core-image-sato-sdk</filename> image that can be copied directly to the 
+-                    disk of the target device.
+-                </para>
+-            </listitem>
+-            <listitem>
+-                <para>
+-                    <emphasis><filename>core-image-sato-sdk-live</filename></emphasis> - A
+-                    <filename>core-image-sato-sdk</filename> image that you can run  
+-                    from a USB device or CD as is.
+-                </para>
+-            </listitem>
+     </itemizedlist>
++
++    <tip>
++        From Yocto release 1.1 onwards, -live and -directdisk images have been replaced by a "live"
++        option in IMAGE_FSTYPES that will work with any image. To build a live image, simply add
++        "live" to IMAGE_FSTYPES within local.conf or whereever appropriate and then build the desired
++        image as normal.
++    </tip>
+ </appendix>
+ <!-- 
+ vim: expandtab tw=80 ts=4 
 -- 
 1.7.4.1
 
