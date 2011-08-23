@@ -1,27 +1,45 @@
-Return-Path: <liming.wang@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD498E0120D
-	for <yocto@yoctoproject.org>; Wed, 24 Aug 2011 07:55:56 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7OEttO4012535
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 24 Aug 2011 07:55:55 -0700 (PDT)
-Received: from [128.224.162.211] (128.224.162.211) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 24 Aug 2011 07:55:55 -0700
-Message-ID: <4E550D23.8020104@windriver.com>
-Date: Wed, 24 Aug 2011 22:39:31 +0800
-From: Wang Liming <liming.wang@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11
+Return-Path: <omalleys@msu.edu>
+Received: from webmail-3.internal.mail.msu.edu (webmail-3.mail.msu.edu
+	[35.9.75.153])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6889AE00321
+	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 11:01:53 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@msu.edu;
+	x-dkim-adsp=none (insecure policy)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=msu.edu;
+	s=mail; 
+	h=Content-Transfer-Encoding:Content-Type:MIME-Version:In-Reply-To:References:Subject:Cc:To:From:Date:Message-ID;
+	bh=1Zzxw8ZBtV8mg8J40fLU0TUaeLlzqZ9f9X6C0UxJj1g=; 
+	b=ewV+9QPkoaqetp/Sy0ZoztwwAfxQwlnf3lpdfwyqJZY57+mi/OFuE69nqrY5+RBZvmeCcuTpuT2AWKyYO0UvJmi1zN5fqafxwRBpXn3WT9ZdM9Pmsxjaz0HFMroPVJNYQPlMIouuz1ZI4aATItm1SnG+3tQ9POY6wb3A3iePu0c=;
+Received: from localhost.msu.edu ([127.0.0.1] helo=msu.edu)
+	by webmail-3.internal.mail.msu.edu with esmtp (Exim 4.72 #1)
+	id 1QvvIF-00038j-4K; Tue, 23 Aug 2011 14:01:43 -0400
+Received: from eclipse.cl.msu.edu (eclipse.cl.msu.edu [35.8.1.153]) by
+	mail.msu.edu (Horde Framework) with HTTP;
+	Tue, 23 Aug 2011 14:01:43 -0400
+Message-ID: <20110823140143.11573jx2b3qwm51j@mail.msu.edu>
+Date: Tue, 23 Aug 2011 14:01:43 -0400
+From: omalleys@msu.edu
+To: Gordan Bobic <gordan@bobich.net>
+References: <20110809181534.GR10171@einval.com>
+	<20110823161134.GV3053@linaro.org>
+	<efc47c3039402c1507d76f381a790115@mail.shatteredsilicon.net>
+In-Reply-To: <efc47c3039402c1507d76f381a790115@mail.shatteredsilicon.net>
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <1314153919-5306-1-git-send-email-liming.wang@windriver.com>
-	<1314153919-5306-2-git-send-email-liming.wang@windriver.com>
-	<4E54FF43.8050102@windriver.com>
-In-Reply-To: <4E54FF43.8050102@windriver.com>
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
-Subject: Re: [PATCH 1/1] x86: fix a bug of wrong return erorr.
+User-Agent: Internet Messaging Program (IMP) H3 (4.3.6)
+X-Virus: None found by Clam AV
+X-Mailman-Approved-At: Wed, 24 Aug 2011 09:32:19 -0700
+Cc: cross-distro@lists.linaro.org, Ubuntu Devel <ubuntu-devel@lists.ubuntu.com>,
+	GCC developers <gcc@gcc.gnu.org>, yocto@yoctoproject.org,
+	Gentoo Embedded <gentoo-embedded@lists.gentoo.org>,
+	Debian ARM <debian-arm@lists.debian.org>,
+	Fedora ARM <arm@lists.fedoraproject.org>,
+	OLPC Devel <devel@lists.laptop.org>,
+	OpenEmbedded Devel <openembedded-devel@lists.openembedded.org>,
+	cooker@mandrivalinux.org, MeeGo Dev <meego-dev@meego.com>,
+	LSB discuss <lsb-discuss@lists.freestandards.org>,
+	Mageia Dev <mageia-dev@mageia.org>
+Subject: ARM 3D support was Re: [fedora-arm] ARM summit at Plumbers 2011
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,58 +51,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Aug 2011 14:55:57 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Tue, 23 Aug 2011 18:01:54 -0000
+Content-Type: text/plain;
+ charset=ISO-8859-1;
+ DelSp="Yes";
+ format="flowed"
+Content-Disposition: inline
 Content-Transfer-Encoding: 7bit
 
-On 08/24/11 21:40, Bruce Ashfield wrote:
-> On 11-08-23 10:45 PM, Liming Wang wrote:
->> __vdso_clock_gettime should fall back to call vdso_fallback_gettime
->> function
->> if no clockid is selected, not just return error.
+Quoting Gordan Bobic <gordan@bobich.net>:
+>  Unfortunately there is no way I could make it, but on the subject of 3D
+>  support on ARM, Luke recently mentioned something that initially seemed
+>  outlandish but upon closer examination doesn't seem like a bad idea. As
+>  we all know, the state of openness of specifications of commonly used
+>  ARM 3D GPUs is at best dire. What has been proposed is a bit radical,
+>  but it doesn't actually seem that implausible. Specifically, combining
+>  Open Graphics Project (http://wiki.opengraphics.org/tiki-index.php) and
+>  the xilinx zynq-7000 or similar (dual core Cortex A9 + FPGA). The idea
+>  is to have an OGP GPU in firmware in FPGA. In terms of the power budget,
+>  it seems to work relatively sanely considering what it is, and it is as
+>  ideal as it gets as far as openness and flexibility goes.
 >
-> At a glance, this seems reasonable to me .. and then I
-> looked a bit more. This is in fact introduced by lttng and
-> the ENIVAL does look wrong. It's worth checking out the
-> latest lttng to make sure that this error isn't there as
-It's still in the latest lttng patch:
-http://git.kernel.org/?p=linux/kernel/git/compudj/linux-2.6-lttng.git;a=blobdiff;f=arch/x86/vdso/vclock_gettime.c;h=7bc481508d004c4e8dd0f5cff51aeeac8bfd0766;hp=ee55754cc3c5ff378b76f2065a610b72e757f088;hb=98052998fe2aee4423dc24fccfe991b305969656;hpb=b6c4d0eaca66305984cf1ce6bc9d49a3244b412b
-> well. Our 3.0 kernel won't have this bug yet, but I'll
-Yes, our 3.0 kernel hasn't this bug.
+>  I just thought it's worthy of a mention.
 
-> keep an eye out for this during any lttng work.
->
-> I'll merge this into the 2.6.37 tree shortly.
-Please replace subject "erorr" with "error" for my fault.
+It does seem outlandish, but it is kind of cool. Is it going to give  
+enough 3d speed? The next gen tegra is supposed to have a 24 core GPU.
 
-Liming Wang
->
-> Cheers,
->
-> Bruce
->
->>
->> Signed-off-by: Liming Wang<liming.wang@windriver.com>
->> ---
->> arch/x86/vdso/vclock_gettime.c | 2 --
->> 1 files changed, 0 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/x86/vdso/vclock_gettime.c
->> b/arch/x86/vdso/vclock_gettime.c
->> index 7bc4815..2365a5b 100644
->> --- a/arch/x86/vdso/vclock_gettime.c
->> +++ b/arch/x86/vdso/vclock_gettime.c
->> @@ -173,8 +173,6 @@ notrace int __vdso_clock_gettime(clockid_t clock,
->> struct timespec *ts)
->> return do_trace_clock(ts);
->> case CLOCK_TRACE_FREQ:
->> return do_trace_clock_freq(ts);
->> - default:
->> - return -EINVAL;
->> }
->> return vdso_fallback_gettime(clock, ts);
->> }
->
->
+It is probably more sane then my idea of just having a test suite from  
+digital video out -> digital video receiver/capture card to get known  
+test results. Then you could set up a hinted genetic algorithm based  
+on a comparison. It would only work with digital video signals though.
+
+
+
+
 
 
