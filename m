@@ -1,26 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D4BCE00320
-	for <yocto@yoctoproject.org>; Wed, 24 Aug 2011 11:33:08 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7OIX4gD018780
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 24 Aug 2011 11:33:04 -0700 (PDT)
-Received: from [128.224.147.214] (128.224.147.214) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 24 Aug 2011 11:33:04 -0700
-Message-ID: <4E5543DC.8090501@windriver.com>
-Date: Wed, 24 Aug 2011 14:33:00 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11 ThunderBrowse/3.8
-MIME-Version: 1.0
-To: Liming Wang <liming.wang@windriver.com>
-References: <1314175707-9214-1-git-send-email-liming.wang@windriver.com>
-In-Reply-To: <1314175707-9214-1-git-send-email-liming.wang@windriver.com>
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com,
-	Saul Wold <saul.wold@intel.com>
-Subject: Re: [PATCH 0/1] script/runqemu: change boot command line for qemuppc
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C440E00321
+	for <yocto@yoctoproject.org>; Wed, 24 Aug 2011 12:36:40 -0700 (PDT)
+Received: from durham.keylevel.com ([109.224.134.115]:19243
+	helo=MacBook-Pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>)
+	id 1QwJFe-0000lt-K1; Wed, 24 Aug 2011 20:36:38 +0100
+Message-Id: <B55759D6-D0E8-42A2-9B18-AAEA39383DA6@keylevel.com>
+From: Chris Tapp <opensource@keylevel.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <201108241211.27202.paul.eggleton@linux.intel.com>
+Mime-Version: 1.0 (Apple Message framework v936)
+Date: Wed, 24 Aug 2011 20:36:35 +0100
+References: <56EF2FAC-D4B5-4EC7-ADC1-6AE0848A51FD@keylevel.com>
+	<4E45AF24.5070804@mlbassoc.com>
+	<42B4E483-BD49-4DC2-9007-3D424A73614D@keylevel.com>
+	<201108241211.27202.paul.eggleton@linux.intel.com>
+X-Mailer: Apple Mail (2.936)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: Missing patch files in SRC_URIs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,52 +41,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Aug 2011 18:33:08 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Wed, 24 Aug 2011 19:36:41 -0000
+Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
 Content-Transfer-Encoding: 7bit
 
-On 11-08-24 04:48 AM, Liming Wang wrote:
-> This patch is just a workaround to speed up boot time of qemuppc, because
-> qemuppc has no framebuffer support, no need to start X server for qemuppc.
->
-> Richard suggested to fix the X scripts so that if an fbdev X server is in use and
-> the framebuffer device node does not exist, it just exits cleanly with a
-> suitable message and doesn't timeout on boot.
->
-> But I think it needs more time to implement and test.
->> X scripts serve for all the boards. And we also can't assume all the
->> boards use the same
->> framebuffer device. So how to detect whether the framebuffer device
->> exists is board dependent.
->> Maybe we can see whether the device /dev/fb0 exists(it could be created
->> manually, so we should try to open it to verify)
->> or the file /proc/fb exists to confirm the framebuffer device. Anyway,
->> any modification should be
->> tested on all boards to see whether it works. I prefer to mark it as
->> todo task in 1.1
+Hi Paul,
 
-We need to cc Richard/Saul on this, so they can re-consider
-and merge this as appropriate. But for me, I'm acking this
-change.
+On 24 Aug 2011, at 12:11, Paul Eggleton wrote:
 
-Bruce
+> Hi Chris,
+>
+> On Wednesday 24 August 2011 08:59:15 Chris Tapp wrote:
+>> bitbake doesn't seem to be detecting missing patch files. In
+>> a .bbappend file (for linux-wrs_git) I have:
+>>
+>> SRC_URI += " file://defconfig"
+>>
+>> SRC_URI_append_Vortex86DX = "\
+>> 	   file://there-is-no.patch;patch=1 "
+>
+> FYI patch=1 is no longer necessary as of quite some time ago -  
+> the .patch (or
+> .diff) extension is enough to indicate that it's a patch.
 
+It seems as if it's this that's causing the problem. I had a 'real'  
+patch file in place and it wasn't being processed during do_unpack.  
+Removing the 'patch=1' fixed this and it was processed as expected. It  
+seems as if adding the 'patch=1' to the file means it's not used as a  
+file or patch and is simply ignored, which would explain what I was  
+seeing. A 'missing' file without 'patch=1' is reported as an error.
+
+>> bitbake -c patch -f virtual/kernel
+>>
+>> runs without reporting any errors, even though linux-wrs_Vortex86DX/
+>> does not contain 'there-is-no.patch'.
 >
-> Bruce also suggests:
->> I know I'm ok with this strategy, since time is short in the
->> 1.1 cycle. We can always open a bugzilla item to track this,
->> just to be sure it isn't forgotten. Preferably we'll get a
->> qemuppc with a framebuffer in 1.x timeframe and we won't need
->> this at all. Coming up with something generic and the amount
->> of testing required doesn't fit the timeframe that we currently
->> have for 1.1.
->
->
-> Liming Wang (1):
->        script/runqemu: change boot command line for qemuppc
->
->   scripts/runqemu-internal |    4 ++--
->   1 files changed, 2 insertions(+), 2 deletions(-)
->
+> Are you sure there is no patch of this name elsewhere in the search  
+> path for
+> this recipe? This is buggy behaviour if there isn't. (bitbake -e  
+> linux-wrs |
+> grep "^FILESPATH" will give you the entire path it is using.) In any  
+> case the
+> directory it should search for the patch in is linux-wrs/Vortex86DX  
+> not linux-
+> wrs_Vortex86DX.
+
+I'm certain - I made this file name up specially for testing ;-)
+
+My, doesn't FILESPATH get complicated !
+
+> I'd also recommend for consistency if it's not too difficult to  
+> change at this
+> point that you use an all-lowercase machine name.
+
+Easily done, as this is only experimental at the moment. I'll try and  
+remember to change it when I finish later on so I can run a complete  
+rebuild over night.
+
+Thanks for the pointer.
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
 
 
