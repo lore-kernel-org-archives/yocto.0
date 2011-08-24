@@ -1,37 +1,22 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 327A2E006AB
-	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 18:59:26 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 23 Aug 2011 18:59:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,273,1312182000"; d="scan'208";a="43597594"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by fmsmga002.fm.intel.com with ESMTP; 23 Aug 2011 18:59:25 -0700
-Received: from pgsmsx104.gar.corp.intel.com (10.221.44.91) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 24 Aug 2011 09:59:09 +0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	PGSMSX104.gar.corp.intel.com (10.221.44.91) with Microsoft SMTP Server
-	(TLS) id 14.1.323.3; Wed, 24 Aug 2011 09:59:09 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Wed, 24 Aug 2011 09:59:09 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Wed, 24 Aug 2011 09:59:07 +0800
-Thread-Topic: [yocto] Tested host distros for 1.1
-Thread-Index: Acxhq1zRiDUpDPU1SjWfLqmw73LIXQAVbaeA
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D724C96B@shsmsx501.ccr.corp.intel.com>
-References: <201108231642.49667.paul.eggleton@linux.intel.com>
-In-Reply-To: <201108231642.49667.paul.eggleton@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <liming.wang@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51429E0071A
+	for <yocto@yoctoproject.org>; Tue, 23 Aug 2011 20:01:53 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7O31q9g002136
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 23 Aug 2011 20:01:52 -0700 (PDT)
+Received: from localhost.localdomain (128.224.162.211) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Tue, 23 Aug 2011 20:01:51 -0700
+From: Liming Wang <liming.wang@windriver.com>
+To: <Bruce.Ashfield@windriver.com>
+Date: Wed, 24 Aug 2011 10:45:18 +0800
+Message-ID: <1314153919-5306-1-git-send-email-liming.wang@windriver.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-Subject: Re: Tested host distros for 1.1
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
+Subject: [PATCH 0/1] x86: fix a bug of wrong return erorr.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,32 +28,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Aug 2011 01:59:26 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 24 Aug 2011 03:01:53 -0000
+Content-Type: text/plain
 
-> Hi all,
->=20
-> We now have the mechanism for fixing bug #1096 [1] i.e. showing a
-> warning if the user is running a build on a distro that has not been
-> tested; however to make this work what we now need is a list of
-> distributions we want to consider tested. What distros specifically are w=
-e going to list for 1.1?
->=20
+Fix a bug to make a ltp test work on qemux86-64:
+bug 900: [LTP] clock_nanosleep01 fails on qemux86-64
 
-We check Ubuntu, Opensuse and Fedora in our regular testing. So at least, t=
-he 3 distros should be added as support.
+Liming Wang (1):
+      x86: fix a bug of wrong return erorr.
 
-> Cheers,
-> Paul
->=20
-> [1] http://bugzilla.pokylinux.org/show_bug.cgi?id=3D1096
->=20
->
-
-Best Regards,
-Jiajun
+ arch/x86/vdso/vclock_gettime.c |    2 --
+ 1 files changed, 0 insertions(+), 2 deletions(-)
 
 
 
