@@ -1,24 +1,22 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 117D0E006AB
-	for <yocto@yoctoproject.org>; Wed, 24 Aug 2011 01:16:20 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 24 Aug 2011 01:16:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,274,1312182000"; d="scan'208";a="10487160"
-Received: from unknown (HELO helios.localnet) ([10.255.18.108])
-	by AZSMGA002.ch.intel.com with ESMTP; 24 Aug 2011 01:16:16 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Xu, Jiajun" <jiajun.xu@intel.com>
-Date: Wed, 24 Aug 2011 09:16:15 +0100
-User-Agent: KMail/1.13.6 (Linux/2.6.38-10-generic-pae; KDE/4.6.2; i686; ; )
-References: <201108231642.49667.paul.eggleton@linux.intel.com>
-	<D5AB6E638E5A3E4B8F4406B113A5A19A12D724C96B@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <D5AB6E638E5A3E4B8F4406B113A5A19A12D724C96B@shsmsx501.ccr.corp.intel.com>
+Return-Path: <liming.wang@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AF18E006AB
+	for <yocto@yoctoproject.org>; Wed, 24 Aug 2011 02:04:56 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7O94sgF019910
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 24 Aug 2011 02:04:55 -0700 (PDT)
+Received: from localhost.localdomain (128.224.162.211) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Wed, 24 Aug 2011 02:04:54 -0700
+From: Liming Wang <liming.wang@windriver.com>
+To: <Bruce.Ashfield@windriver.com>
+Date: Wed, 24 Aug 2011 16:48:26 +0800
+Message-ID: <1314175707-9214-1-git-send-email-liming.wang@windriver.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-Message-Id: <201108240916.15490.paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Tested host distros for 1.1
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
+Subject: [PATCH 0/1] script/runqemu: change boot command line for qemuppc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,29 +28,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Aug 2011 08:16:20 -0000
-Content-Type: Text/Plain;
-  charset="iso-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 24 Aug 2011 09:04:56 -0000
+Content-Type: text/plain
 
-On Wednesday 24 August 2011 02:59:07 you wrote:
-> > We now have the mechanism for fixing bug #1096 [1] i.e. showing a
-> > warning if the user is running a build on a distro that has not been
-> > tested; however to make this work what we now need is a list of
-> > distributions we want to consider tested. What distros specifically are
-> > we going to list for 1.1?
-> 
-> We check Ubuntu, Opensuse and Fedora in our regular testing. So at least,
-> the 3 distros should be added as support.
+This patch is just a workaround to speed up boot time of qemuppc, because
+qemuppc has no framebuffer support, no need to start X server for qemuppc.
 
-Sorry, I wasn't clear in my original message, but for this to work we will 
-need to declare the specific versions of distros we will consider tested.
+Richard suggested to fix the X scripts so that if an fbdev X server is in use and
+the framebuffer device node does not exist, it just exits cleanly with a
+suitable message and doesn't timeout on boot.
 
-Cheers,
-Paul
+But I think it needs more time to implement and test.
+> X scripts serve for all the boards. And we also can't assume all the
+> boards use the same
+> framebuffer device. So how to detect whether the framebuffer device
+> exists is board dependent.
+> Maybe we can see whether the device /dev/fb0 exists(it could be created
+> manually, so we should try to open it to verify)
+> or the file /proc/fb exists to confirm the framebuffer device. Anyway,
+> any modification should be
+> tested on all boards to see whether it works. I prefer to mark it as
+> todo task in 1.1
 
--- 
+Bruce also suggests:
+> I know I'm ok with this strategy, since time is short in the
+> 1.1 cycle. We can always open a bugzilla item to track this,
+> just to be sure it isn't forgotten. Preferably we'll get a
+> qemuppc with a framebuffer in 1.x timeframe and we won't need
+> this at all. Coming up with something generic and the amount
+> of testing required doesn't fit the timeframe that we currently
+> have for 1.1.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+
+Liming Wang (1):
+      script/runqemu: change boot command line for qemuppc
+
+ scripts/runqemu-internal |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
 
