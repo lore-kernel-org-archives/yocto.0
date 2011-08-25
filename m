@@ -1,39 +1,19 @@
-Return-Path: <david@lang.hm>
-Received: from bifrost.lang.hm (mail.lang.hm [64.81.33.126])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DBB0E006AB
-	for <yocto@yoctoproject.org>; Wed, 24 Aug 2011 16:58:06 -0700 (PDT)
-Received: from asgard.lang.hm (asgard.lang.hm [10.0.0.100])
-	by bifrost.lang.hm (8.13.4/8.13.4/Debian-3) with ESMTP id
-	p7ONtEMO026551; Wed, 24 Aug 2011 16:55:14 -0700
-Date: Wed, 24 Aug 2011 16:55:14 -0700 (PDT)
-From: david@lang.hm
-X-X-Sender: dlang@asgard.lang.hm
-To: Bill Gatliff <bgat@billgatliff.com>
-In-Reply-To: <CADkCAuuaH5k2duuvUdmj1j9=6oaCKORN-NJGg4gt2ovEshHYmw@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1108241648360.29431@asgard.lang.hm>
-References: <20110809181534.GR10171@einval.com>
-	<20110823161134.GV3053@linaro.org>
-	<efc47c3039402c1507d76f381a790115@mail.shatteredsilicon.net>
-	<CAPweEDwkVWH=r_moJj1_CKLxRUkkbBgHenZhwi8CzY9z3BO-Cw@mail.gmail.com>
-	<CADkCAuuaH5k2duuvUdmj1j9=6oaCKORN-NJGg4gt2ovEshHYmw@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 25 Aug 2011 10:56:59 -0700
-Cc: cross-distro@lists.linaro.org, Russell King <linux@arm.linux.org.uk>,
-	Ubuntu Devel <ubuntu-devel@lists.ubuntu.com>,
-	GCC developers <gcc@gcc.gnu.org>, yocto@yoctoproject.org,
-	Gentoo Embedded <gentoo-embedded@lists.gentoo.org>,
-	Bruce Perens <bruce@perens.com>,
-	LSB discuss <lsb-discuss@lists.freestandards.org>,
-	Debian ARM <debian-arm@lists.debian.org>,
-	Fedora ARM <arm@lists.fedoraproject.org>,
-	OLPC Devel <devel@lists.laptop.org>,
-	OpenEmbedded Devel <openembedded-devel@lists.openembedded.org>,
-	cooker@mandrivalinux.org, MeeGo Dev <meego-dev@meego.com>,
-	Luke Kenneth Casson Leighton <lkcl@lkcl.net>,
-	Linux on small ARM machines <arm-netbook@lists.phcomp.co.uk>,
-	torvalds@linux-foundation.org, Mageia Dev <mageia-dev@mageia.org>
-Subject: Re: [fedora-arm] ARM summit at Plumbers 2011
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17EB5E006AB
+	for <yocto@yoctoproject.org>; Thu, 25 Aug 2011 11:19:47 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 25 Aug 2011 11:19:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="41931564"
+Received: from jzhang-desktop.jf.intel.com (HELO localhost) ([10.7.201.178])
+	by orsmga002.jf.intel.com with ESMTP; 25 Aug 2011 11:19:46 -0700
+From: Jessica Zhang <jessica.zhang@intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 25 Aug 2011 11:49:11 -0700
+Message-Id: <cover.1314297940.git.jessica.zhang@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/1] [YOCTO #1396] Fix adt-installer for consistent naming for powerpc and add all arch template for installation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,33 +25,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Aug 2011 23:58:06 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII; format=flowed
+X-List-Received-Date: Thu, 25 Aug 2011 18:19:47 -0000
 
-On Wed, 24 Aug 2011, Bill Gatliff wrote:
+The following changes since commit 1759d6dac3fe4022183f73898c035322c3f49865:
+  Jessica Zhang (1):
+        Merge branch 'master' of ssh://git.yoctoproject.org/poky
 
-> I have observed all the hand-wringing regarding the state of ARM
-> Linux, and it's obvious to everyone that there is still work to be
-> done.  ARM isn't like PCs, and that's obviously inconvenient for Linus
-> but it's an essential part of ARM's success.
+are available in the git repository at:
 
-I think that the thing being disputed isn't that ARM is different from 
-PCs, but rather the issue that different ARM SOs do the same thing in 
-different ways.
+  git://git.yoctoproject.org/poky-contrib jzhang/1396
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=jzhang/1396
 
-in the early days of the PC we had the same issues (those who were around 
-to remember the 'almost' PC compatible machines (from some of the biggest 
-names in the business). they all thought that they had good reasons to do 
-things differently, but over time they all changed to hide the differences 
-from the system.
+Jessica Zhang (1):
+  [YOCTO #1396] Fix adt-installer for consistent naming for powerpc and
+    add all arch template for installation
 
-ARM is currently in worse shape than the PC market ever was in this 
-aspect, but in this case it's less a matter of getting the hardware guys 
-to change what they do than it is to get better documentation of what the 
-hardware is really doing and not duplicating drivers for cases where the 
-right answer is just replacing a constant with a variable (just as an 
-example of the very common case where the same component is wired to a 
-different address)
+ .../installer/adt-installer/adt_installer.conf     |   17 +++++++++++++++--
+ .../adt-installer/scripts/adt_installer_internal   |    2 +-
+ .../installer/adt-installer/scripts/data_define    |    2 +-
+ 3 files changed, 17 insertions(+), 4 deletions(-)
 
-David Lang
 
