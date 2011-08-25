@@ -1,24 +1,19 @@
-Return-Path: <liming.wang@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0194BE01239
-	for <yocto@yoctoproject.org>; Thu, 25 Aug 2011 08:02:44 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7PF2iNF005895
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 25 Aug 2011 08:02:44 -0700 (PDT)
-Received: from localhost.localdomain (128.224.162.211) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Thu, 25 Aug 2011 08:02:43 -0700
-From: Liming Wang <liming.wang@windriver.com>
-To: <Bruce.Ashfield@windriver.com>
-Date: Thu, 25 Aug 2011 22:45:29 +0800
-Message-ID: <1314283529-20888-2-git-send-email-liming.wang@windriver.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1314283529-20888-1-git-send-email-liming.wang@windriver.com>
-References: <1314283529-20888-1-git-send-email-liming.wang@windriver.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: [PATCH RESEND v2 1/1] scripts/runqemu: disable unfs boot mode for qemuppc
+Return-Path: <josh@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49E50E0120D
+	for <yocto@yoctoproject.org>; Thu, 25 Aug 2011 10:16:04 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 25 Aug 2011 10:16:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,281,1312182000"; d="scan'208";a="11059297"
+Received: from unknown (HELO scimitar.amr.corp.intel.com) ([10.255.13.243])
+	by AZSMGA002.ch.intel.com with ESMTP; 25 Aug 2011 10:16:01 -0700
+From: Joshua Lock <josh@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 25 Aug 2011 10:15:54 -0700
+Message-Id: <cover.1314288840.git.josh@linux.intel.com>
+X-Mailer: git-send-email 1.7.6
+Subject: [PATCH 0/1] Enable network sanity checks for Poky derived distros
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,35 +25,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Aug 2011 15:02:45 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 25 Aug 2011 17:16:04 -0000
 
-Because unfs boot mode is unstable for qemuppc, disable
-it temporarily.
+With recent enhancements to the network sanity check we can now enable this
+for Poky derived distributions without significant impact to the user.
 
-Signed-off-by: Liming Wang <liming.wang@windriver.com>
----
- scripts/runqemu |    6 ++++++
- 1 files changed, 6 insertions(+), 0 deletions(-)
+The following changes since commit 6c2b7beac3cd23ed44bd3e195c6360a0932876bf:
 
-diff --git a/scripts/runqemu b/scripts/runqemu
-index ed8c05b..f6cc6f4 100755
---- a/scripts/runqemu
-+++ b/scripts/runqemu
-@@ -351,6 +351,12 @@ if [ -z "$FSTYPE" ]; then
-         usage
-     fi
- fi
-+
-+if [ "$FSTYPE" = "nfs" -a "$MACHINE" = "qemuppc" ]; then
-+    echo "Error: usermode NFS boot is not available for qemuppc."
-+    exit 1
-+fi
-+
- # FSTYPE is now set for all cases
- 
- # Handle cases where a ROOTFS type is given instead of a filename, e.g.
+  classes/sanity: enhance the network connectivity test (2011-08-25 08:51:30 -0700)
+
+are available in the git repository at:
+  git://git.pokylinux.org/poky-contrib josh/connection-test
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=josh/connection-test
+
+Joshua Lock (1):
+  poky.conf: perform network sanity check by default for poky distros
+
+ meta-yocto/conf/distro/poky.conf |    7 ++++++-
+ 1 files changed, 6 insertions(+), 1 deletions(-)
+
 -- 
-1.7.0.4
+1.7.6
 
 
