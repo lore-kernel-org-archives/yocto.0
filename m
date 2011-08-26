@@ -1,27 +1,41 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57DF1E011BE
-	for <yocto@yoctoproject.org>; Fri, 26 Aug 2011 09:13:44 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7QGDh3c002254
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 26 Aug 2011 09:13:43 -0700 (PDT)
-Received: from [128.224.147.214] (128.224.147.214) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 26 Aug 2011 09:13:43 -0700
-Message-ID: <4E57C633.7090402@windriver.com>
-Date: Fri, 26 Aug 2011 12:13:39 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11 ThunderBrowse/3.8
+Return-Path: <bgat@billgatliff.com>
+Received: from mail-qw0-f48.google.com (mail-qw0-f48.google.com
+	[209.85.216.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7133E011B8
+	for <yocto@yoctoproject.org>; Fri, 26 Aug 2011 09:11:42 -0700 (PDT)
+Received: by qwj9 with SMTP id 9so3113222qwj.35
+	for <yocto@yoctoproject.org>; Fri, 26 Aug 2011 09:11:42 -0700 (PDT)
 MIME-Version: 1.0
-To: Gary Thomas <gary@mlbassoc.com>
-References: <4E57BC7E.7070209@mlbassoc.com>
-	<4E57BE73.8050809@windriver.com>	<4E57C144.2060901@mlbassoc.com>
-	<4E57C5FC.60909@windriver.com>
-In-Reply-To: <4E57C5FC.60909@windriver.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Strange build warning
+Received: by 10.229.1.224 with SMTP id 32mr1723097qcg.157.1314375101974; Fri,
+	26 Aug 2011 09:11:41 -0700 (PDT)
+Received: by 10.229.110.11 with HTTP; Fri, 26 Aug 2011 09:11:41 -0700 (PDT)
+In-Reply-To: <alpine.DEB.2.02.1108241648360.29431@asgard.lang.hm>
+References: <20110809181534.GR10171@einval.com>
+	<20110823161134.GV3053@linaro.org>
+	<efc47c3039402c1507d76f381a790115@mail.shatteredsilicon.net>
+	<CAPweEDwkVWH=r_moJj1_CKLxRUkkbBgHenZhwi8CzY9z3BO-Cw@mail.gmail.com>
+	<CADkCAuuaH5k2duuvUdmj1j9=6oaCKORN-NJGg4gt2ovEshHYmw@mail.gmail.com>
+	<alpine.DEB.2.02.1108241648360.29431@asgard.lang.hm>
+Date: Fri, 26 Aug 2011 11:11:41 -0500
+Message-ID: <CADkCAut2sMMKcCLiG0g+Rwt5z4dXJgRZYyvUAzCQVTQQMPFJmA@mail.gmail.com>
+From: Bill Gatliff <bgat@billgatliff.com>
+To: david@lang.hm
+X-Mailman-Approved-At: Fri, 26 Aug 2011 09:20:12 -0700
+Cc: cross-distro@lists.linaro.org, Russell King <linux@arm.linux.org.uk>,
+	Ubuntu Devel <ubuntu-devel@lists.ubuntu.com>,
+	GCC developers <gcc@gcc.gnu.org>, yocto@yoctoproject.org,
+	Gentoo Embedded <gentoo-embedded@lists.gentoo.org>,
+	Bruce Perens <bruce@perens.com>,
+	LSB discuss <lsb-discuss@lists.freestandards.org>,
+	Debian ARM <debian-arm@lists.debian.org>,
+	Fedora ARM <arm@lists.fedoraproject.org>,
+	OLPC Devel <devel@lists.laptop.org>,
+	OpenEmbedded Devel <openembedded-devel@lists.openembedded.org>,
+	cooker@mandrivalinux.org, MeeGo Dev <meego-dev@meego.com>,
+	Luke Kenneth Casson Leighton <lkcl@lkcl.net>,
+	Linux on small ARM machines <arm-netbook@lists.phcomp.co.uk>,
+	torvalds@linux-foundation.org, Mageia Dev <mageia-dev@mageia.org>
+Subject: Re: [fedora-arm] ARM summit at Plumbers 2011
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,88 +47,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Aug 2011 16:13:44 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 26 Aug 2011 16:11:43 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 11-08-26 12:12 PM, Bruce Ashfield wrote:
-> On 11-08-26 11:52 AM, Gary Thomas wrote:
->> On 2011-08-26 09:40, Bruce Ashfield wrote:
->>> On 11-08-26 11:32 AM, Gary Thomas wrote:
->>>> Building 'bitbake core-image-sato' from scratch:
->>>> OE Build Configuration:
->>>> BB_VERSION = "1.13.3"
->>>> TARGET_ARCH = "i586"
->>>> TARGET_OS = "linux"
->>>> MACHINE = "qemux86"
->>>> DISTRO = "poky"
->>>> DISTRO_VERSION = "1.0+snapshot-20110826"
->>>> TUNE_FEATURES = "m32 i586"
->>>> TARGET_FPU = ""
->>>> meta
->>>> meta-yocto = "master:6c2b7beac3cd23ed44bd3e195c6360a0932876bf"
->>>>
->>>> I saw this warning:
->>>> =======================================================
->>>> This BSP sets 1 invalid/obsolete kernel options.
->>>> These config options are not offered anywhere within this kernel.
->>>> The full list can be found in your workspace at:
->>>> /local/pc_poky/tmp/work/atom_pc-poky-linux/linux-yocto-3.0.3+git1+5b535279e61197cb194bb2dfceb8b7a04128387c_1+ead7d8334e4c075906d029789333f43e54f6257a-r1/linux/meta/cfg/yocto/standard/common-pc/atom-pc/invalid.cfg
->>>>
->>>>
->>>>
->>>>
->>>>
->>>> This BSP sets 11 kernel options that are possibly non-hardware related.
->>>> The full list can be found in your workspace at:
->>>> /local/pc_poky/tmp/work/atom_pc-poky-linux/linux-yocto-3.0.3+git1+5b535279e61197cb194bb2dfceb8b7a04128387c_1+ead7d8334e4c075906d029789333f43e54f6257a-r1/linux/meta/cfg/yocto/standard/common-pc/atom-pc/specified_non_hdw.cfg
->>>>
->>>>
->>>>
->>>>
->>>>
->>>> WARNING: There were 88 hardware options requested that do not
->>>> have a corresponding value present in the final ".config" file.
->>>> This probably means you aren't getting the config you wanted.
->>>> The full list can be found in your workspace at:
->>>> /local/pc_poky/tmp/work/atom_pc-poky-linux/linux-yocto-3.0.3+git1+5b535279e61197cb194bb2dfceb8b7a04128387c_1+ead7d8334e4c075906d029789333f43e54f6257a-r1/linux/meta/cfg/yocto/standard/common-pc/atom-pc/mismatch.cfg
->>>>
->>>>
->>>>
->>>>
->>>> ========================================================
->>>> along with a note that the build was pausing for a few seconds so I
->>>> would notice the error/warning.
->>>>
->>>> Is this important? If not, why scare me like this?
->>>
->>> It was a temporary warning when I forgot to bump the internal
->>> version in the kernel tree, to match the external recipe one.
->>>
->>> It's just telling you that it couldn't audit to be sure that
->>> any configs you asked for .. made it to the final build. But
->>> in this case, I can assure you that they did.
->>
->> So, is it fixed, or should I file a bug like Joshua recommended?
->
-> Fixed:
->
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=c03195482276d7c96d52f21562f8fa6a636f68a7
+David:
 
-but I should add, if you are using meta-intel, and the meta
-SRCREV hasn't been bumped yet, you'd still see this.
+On Wed, Aug 24, 2011 at 6:55 PM,  <david@lang.hm> wrote:
+> ARM is currently in worse shape than the PC market ever was in this aspect,
+> but in this case it's less a matter of getting the hardware guys to change
+> what they do than it is to get better documentation of what the hardware is
+> really doing and not duplicating drivers for cases where the right answer is
+> just replacing a constant with a variable (just as an example of the very
+> common case where the same component is wired to a different address)
 
-Bruce
+I agree.
 
->
->
-> Bruce
->
->>
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Maybe Linaro or an equivalent organization could provide a "ARM kernel
+janitor" service to the community, where they refactor existing ARM
+platform/driver code to make it more common.  This is something that's
+difficult for a single person with experience in only one or two SoCs
+to do, but it would be pretty straightforward work for a team of three
+or four people with broad coverage of the SoC devices the kernel
+supports now.
 
+As such refactoring consolidated larger and larger chunks of kernel
+code, new designs would gravitate towards those consolidated
+implementations because they would be the dominant references.
+
+
+b.g.
+-- 
+Bill Gatliff
+bgat@billgatliff.com
 
