@@ -1,26 +1,24 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE579E00777
-	for <yocto@yoctoproject.org>; Fri, 26 Aug 2011 08:38:15 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 999)
-	id A4EA41660617; Fri, 26 Aug 2011 09:38:15 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id E4D6E1660615;
-	Fri, 26 Aug 2011 09:38:13 -0600 (MDT)
-Message-ID: <4E57BDE5.9060606@mlbassoc.com>
-Date: Fri, 26 Aug 2011 09:38:13 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:5.0) Gecko/20110707 Thunderbird/5.0
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDDB2E00777
+	for <yocto@yoctoproject.org>; Fri, 26 Aug 2011 08:40:41 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p7QFedk1026156
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 26 Aug 2011 08:40:39 -0700 (PDT)
+Received: from [128.224.147.214] (128.224.147.214) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 26 Aug 2011 08:40:39 -0700
+Message-ID: <4E57BE73.8050809@windriver.com>
+Date: Fri, 26 Aug 2011 11:40:35 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11 ThunderBrowse/3.8
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
+To: Gary Thomas <gary@mlbassoc.com>
 References: <4E57BC7E.7070209@mlbassoc.com>
 In-Reply-To: <4E57BC7E.7070209@mlbassoc.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Strange build warning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -33,20 +31,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Aug 2011 15:38:16 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Fri, 26 Aug 2011 15:40:42 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2011-08-26 09:32, Gary Thomas wrote:
+On 11-08-26 11:32 AM, Gary Thomas wrote:
 > Building 'bitbake core-image-sato' from scratch:
 > OE Build Configuration:
 > BB_VERSION = "1.13.3"
 > TARGET_ARCH = "i586"
 > TARGET_OS = "linux"
 > MACHINE = "qemux86"
-
-Actually, MACHINE="atom_pc" (I grabbed the wrong screenshot)
-
 > DISTRO = "poky"
 > DISTRO_VERSION = "1.0+snapshot-20110826"
 > TUNE_FEATURES = "m32 i586"
@@ -78,11 +73,16 @@ Actually, MACHINE="atom_pc" (I grabbed the wrong screenshot)
 > would notice the error/warning.
 >
 > Is this important? If not, why scare me like this?
+
+It was a temporary warning when I forgot to bump the internal
+version in the kernel tree, to match the external recipe one.
+
+It's just telling you that it couldn't audit to be sure that
+any configs you asked for .. made it to the final build. But
+in this case, I can assure you that they did.
+
+Bruce
+
 >
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
