@@ -1,30 +1,25 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 802CDE00320
-	for <yocto@yoctoproject.org>; Fri, 26 Aug 2011 04:27:23 -0700 (PDT)
-Received: from [128.224.252.2] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1QwuZG-0001wT-13
-	for yocto@yoctoproject.org; Fri, 26 Aug 2011 07:27:22 -0400
-Date: Fri, 26 Aug 2011 07:27:16 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1108260723110.8380@localhost6.localdomain6>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3469E00777
+	for <yocto@yoctoproject.org>; Fri, 26 Aug 2011 08:32:16 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 999)
+	id 1A84516605F4; Fri, 26 Aug 2011 09:32:16 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 1A93B166058E;
+	Fri, 26 Aug 2011 09:32:15 -0600 (MDT)
+Message-ID: <4E57BC7E.7070209@mlbassoc.com>
+Date: Fri, 26 Aug 2011 09:32:14 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:5.0) Gecko/20110707 Thunderbird/5.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: documentation Makefile seems overly strict WRT "VER" variable
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Strange build warning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,41 +31,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Aug 2011 11:27:24 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 26 Aug 2011 15:32:17 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Building 'bitbake core-image-sato' from scratch:
+OE Build Configuration:
+BB_VERSION        = "1.13.3"
+TARGET_ARCH       = "i586"
+TARGET_OS         = "linux"
+MACHINE           = "qemux86"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.0+snapshot-20110826"
+TUNE_FEATURES     = "m32 i586"
+TARGET_FPU        = ""
+meta
+meta-yocto        = "master:6c2b7beac3cd23ed44bd3e195c6360a0932876bf"
 
-  more pedantry: the documentation Makefile reads:
+I saw this warning:
+=======================================================
+This BSP sets 1 invalid/obsolete kernel options.
+These config options are not offered anywhere within this kernel.
+The full list can be found in your workspace at:
+/local/pc_poky/tmp/work/atom_pc-poky-linux/linux-yocto-3.0.3+git1+5b535279e61197cb194bb2dfceb8b7a04128387c_1+ead7d8334e4c075906d029789333f43e54f6257a-r1/linux/meta/cfg/yocto/standard/common-pc/atom-pc/invalid.cfg
 
-... The command-line argument VER represents the distro
-# version of the Yocto Release for which the manuals are being generated.
-# You must invoke the Makefile with the DOC and VER arguments.
-# Examples:
-#
-#     make DOC=bsp-guide VER=1.1
-#     make DOC=yocto-project-qs VER=1.1
-#     make pdf DOC=yocto-project-qs VER=1.1
+This BSP sets 11 kernel options that are possibly non-hardware related.
+The full list can be found in your workspace at:
+/local/pc_poky/tmp/work/atom_pc-poky-linux/linux-yocto-3.0.3+git1+5b535279e61197cb194bb2dfceb8b7a04128387c_1+ead7d8334e4c075906d029789333f43e54f6257a-r1/linux/meta/cfg/yocto/standard/common-pc/atom-pc/specified_non_hdw.cfg
 
-  i don't see that setting VER is actually required unless you're
-"publish"ing, where VER is clearly necessary for the "scp" operation
-to work properly:
+WARNING: There were 88 hardware options requested that do not
+          have a corresponding value present in the final ".config" file.
+          This probably means you aren't getting the config you wanted.
+The full list can be found in your workspace at:
+/local/pc_poky/tmp/work/atom_pc-poky-linux/linux-yocto-3.0.3+git1+5b535279e61197cb194bb2dfceb8b7a04128387c_1+ead7d8334e4c075906d029789333f43e54f6257a-r1/linux/meta/cfg/yocto/standard/common-pc/atom-pc/mismatch.cfg
+========================================================
+along with a note that the build was pausing for a few seconds so I
+would notice the error/warning.
 
-publish:
-        scp -r $(MANUALS) $(STYLESHEET) www.yoctoproject.org:/srv/www/www.yoctoproject.org-docs/$(VER)/$(DOC)
-        cd $(DOC); scp -r $(FIGURES) www.yoctoproject.org:/srv/www/www.yoctoproject.org-docs/$(VER)/$(DOC)/figures
-
-  would it make sense to back off slightly on that claim that setting
-VER is essential for building the docs?
-
-rday
+Is this important?  If not, why scare me like this?
 
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
