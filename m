@@ -1,41 +1,35 @@
-Return-Path: <bgat@billgatliff.com>
-Received: from mail-qw0-f48.google.com (mail-qw0-f48.google.com
-	[209.85.216.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7133E011B8
-	for <yocto@yoctoproject.org>; Fri, 26 Aug 2011 09:11:42 -0700 (PDT)
-Received: by qwj9 with SMTP id 9so3113222qwj.35
-	for <yocto@yoctoproject.org>; Fri, 26 Aug 2011 09:11:42 -0700 (PDT)
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F92BE011C1
+	for <yocto@yoctoproject.org>; Fri, 26 Aug 2011 13:19:05 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 26 Aug 2011 13:18:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="42638120"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga001.jf.intel.com with ESMTP; 26 Aug 2011 13:18:57 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 26 Aug 2011 13:18:58 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.116]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.126]) with mapi id
+	14.01.0323.003; Fri, 26 Aug 2011 13:18:57 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] documentation Makefile seems overly strict WRT "VER"
+	variable
+Thread-Index: AQHMY+MmkYa8vt92BEyXbCBjBarExJUvksPA
+Date: Fri, 26 Aug 2011 20:18:56 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237916E5C757@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1108260723110.8380@localhost6.localdomain6>
+In-Reply-To: <alpine.DEB.2.02.1108260723110.8380@localhost6.localdomain6>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.229.1.224 with SMTP id 32mr1723097qcg.157.1314375101974; Fri,
-	26 Aug 2011 09:11:41 -0700 (PDT)
-Received: by 10.229.110.11 with HTTP; Fri, 26 Aug 2011 09:11:41 -0700 (PDT)
-In-Reply-To: <alpine.DEB.2.02.1108241648360.29431@asgard.lang.hm>
-References: <20110809181534.GR10171@einval.com>
-	<20110823161134.GV3053@linaro.org>
-	<efc47c3039402c1507d76f381a790115@mail.shatteredsilicon.net>
-	<CAPweEDwkVWH=r_moJj1_CKLxRUkkbBgHenZhwi8CzY9z3BO-Cw@mail.gmail.com>
-	<CADkCAuuaH5k2duuvUdmj1j9=6oaCKORN-NJGg4gt2ovEshHYmw@mail.gmail.com>
-	<alpine.DEB.2.02.1108241648360.29431@asgard.lang.hm>
-Date: Fri, 26 Aug 2011 11:11:41 -0500
-Message-ID: <CADkCAut2sMMKcCLiG0g+Rwt5z4dXJgRZYyvUAzCQVTQQMPFJmA@mail.gmail.com>
-From: Bill Gatliff <bgat@billgatliff.com>
-To: david@lang.hm
-X-Mailman-Approved-At: Fri, 26 Aug 2011 09:20:12 -0700
-Cc: cross-distro@lists.linaro.org, Russell King <linux@arm.linux.org.uk>,
-	Ubuntu Devel <ubuntu-devel@lists.ubuntu.com>,
-	GCC developers <gcc@gcc.gnu.org>, yocto@yoctoproject.org,
-	Gentoo Embedded <gentoo-embedded@lists.gentoo.org>,
-	Bruce Perens <bruce@perens.com>,
-	LSB discuss <lsb-discuss@lists.freestandards.org>,
-	Debian ARM <debian-arm@lists.debian.org>,
-	Fedora ARM <arm@lists.fedoraproject.org>,
-	OLPC Devel <devel@lists.laptop.org>,
-	OpenEmbedded Devel <openembedded-devel@lists.openembedded.org>,
-	cooker@mandrivalinux.org, MeeGo Dev <meego-dev@meego.com>,
-	Luke Kenneth Casson Leighton <lkcl@lkcl.net>,
-	Linux on small ARM machines <arm-netbook@lists.phcomp.co.uk>,
-	torvalds@linux-foundation.org, Mageia Dev <mageia-dev@mageia.org>
-Subject: Re: [fedora-arm] ARM summit at Plumbers 2011
+Subject: Re: documentation Makefile seems overly strict WRT "VER"	variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,36 +41,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Aug 2011 16:11:43 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 26 Aug 2011 20:19:05 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-David:
+Robert,=20
 
-On Wed, Aug 24, 2011 at 6:55 PM,  <david@lang.hm> wrote:
-> ARM is currently in worse shape than the PC market ever was in this aspect,
-> but in this case it's less a matter of getting the hardware guys to change
-> what they do than it is to get better documentation of what the hardware is
-> really doing and not duplicating drivers for cases where the right answer is
-> just replacing a constant with a variable (just as an example of the very
-> common case where the same component is wired to a different address)
+Good point.  I will update the comments about how to invoke this.=20
 
-I agree.
+Scott
 
-Maybe Linaro or an equivalent organization could provide a "ARM kernel
-janitor" service to the community, where they refactor existing ARM
-platform/driver code to make it more common.  This is something that's
-difficult for a single person with experience in only one or two SoCs
-to do, but it would be pretty straightforward work for a team of three
-or four people with broad coverage of the SoC devices the kernel
-supports now.
-
-As such refactoring consolidated larger and larger chunks of kernel
-code, new designs would gravitate towards those consolidated
-implementations because they would be the dominant references.
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Robert P. J. Day
+Sent: Friday, August 26, 2011 4:27 AM
+To: Yocto discussion list
+Subject: [yocto] documentation Makefile seems overly strict WRT "VER" varia=
+ble
 
 
-b.g.
--- 
-Bill Gatliff
-bgat@billgatliff.com
+  more pedantry: the documentation Makefile reads:
+
+... The command-line argument VER represents the distro
+# version of the Yocto Release for which the manuals are being generated.
+# You must invoke the Makefile with the DOC and VER arguments.
+# Examples:
+#
+#     make DOC=3Dbsp-guide VER=3D1.1
+#     make DOC=3Dyocto-project-qs VER=3D1.1
+#     make pdf DOC=3Dyocto-project-qs VER=3D1.1
+
+  i don't see that setting VER is actually required unless you're
+"publish"ing, where VER is clearly necessary for the "scp" operation
+to work properly:
+
+publish:
+        scp -r $(MANUALS) $(STYLESHEET) www.yoctoproject.org:/srv/www/www.y=
+octoproject.org-docs/$(VER)/$(DOC)
+        cd $(DOC); scp -r $(FIGURES) www.yoctoproject.org:/srv/www/www.yoct=
+oproject.org-docs/$(VER)/$(DOC)/figures
+
+  would it make sense to back off slightly on that claim that setting
+VER is essential for building the docs?
+
+rday
+
+--=20
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
