@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33E3BE01239
-	for <yocto@yoctoproject.org>; Thu, 25 Aug 2011 21:00:11 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 25 Aug 2011 21:00:11 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7ECAE01239
+	for <yocto@yoctoproject.org>; Thu, 25 Aug 2011 21:00:14 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 25 Aug 2011 21:00:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="42398108"
+X-IronPort-AV: E=Sophos;i="4.68,283,1312182000"; d="scan'208";a="11229006"
 Received: from unknown (HELO localhost) ([10.255.13.254])
-	by orsmga001.jf.intel.com with ESMTP; 25 Aug 2011 21:00:10 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 25 Aug 2011 21:00:13 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Thu, 25 Aug 2011 22:59:07 -0500
-Message-Id: <b3cf3a9825bbe81179632b88635fa8f3eb07018c.1314330614.git.tom.zanussi@intel.com>
+Date: Thu, 25 Aug 2011 22:59:08 -0500
+Message-Id: <fded1e74900a5c991ee2778cebd9f7d2746fa76d.1314330614.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <d5130815aff9d230c44ed0be60ca06bb1cb4225a.1314330614.git.tom.zanussi@intel.com>
 References: <d5130815aff9d230c44ed0be60ca06bb1cb4225a.1314330614.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1314330614.git.tom.zanussi@intel.com>
 References: <cover.1314330614.git.tom.zanussi@intel.com>
-Subject: [PATCH 09/10] meta-crownbay: update README
+Subject: [PATCH 10/10] meta-fri2: update README
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,60 +29,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Aug 2011 04:00:11 -0000
+X-List-Received-Date: Fri, 26 Aug 2011 04:00:15 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-With the new emgd-driver-bin recipe, some of the extensive
-instructions on how to manually download and set up EMGD for the build
-are no longer necessary.
+Update the meta-fri2 README to reflect the addtion of the EMGD
+capabilities and new machine.
 
-Changes to reflect the new image names and a couple other minor
-cleanups are also included.
+Changes were also made to reflect the new image names and a couple
+other minor cleanups.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-crownbay/README |  181 +++++++++-----------------------------------------
- 1 files changed, 31 insertions(+), 150 deletions(-)
+ meta-fri2/README |  108 +++++++++++++++++++++++++++++++++++++++++++++++-------
+ 1 files changed, 94 insertions(+), 14 deletions(-)
 
-diff --git a/meta-crownbay/README b/meta-crownbay/README
-index 89056ed..439b8c7 100644
---- a/meta-crownbay/README
-+++ b/meta-crownbay/README
-@@ -6,7 +6,7 @@ The Crown Bay platform consists of the Intel Atom Z6xx processor,
- plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff).
+diff --git a/meta-fri2/README b/meta-fri2/README
+index 7957a7f..29f2618 100644
+--- a/meta-fri2/README
++++ b/meta-fri2/README
+@@ -2,36 +2,56 @@ This README file contains information on building the meta-fri2 BSP
+ layer, and booting the images contained in the /binary directory.
+ Please see the corresponding sections below for details.
  
- It also supports the E6xx embedded on-chip graphics via the Intel
--Embedded Media and Graphics Driver (EMGD) 1.6 Gold Driver.
++The Fish River Island II platform consists of the Intel Atom Z6xx
++processor, plus the Intel EG20T Platform Controller Hub (Tunnel Creek
+++ Topcliff), along with a varied assortment of communications options
++and various other machine-to-machine (m2m) capabilities.
++
++It also supports the E6xx embedded on-chip graphics via the Intel
 +Embedded Media and Graphics Driver (EMGD) 1.8 Driver.
++
  
  Table of Contents
  =================
-@@ -33,10 +33,10 @@ bblayers.conf e.g.:
- The meta-crownbay layer contains support for two different machine
- configurations. These configurations are identical except for the fact
- that the one prefixed with 'crownbay' makes use of the
--Intel-proprietary EMGD 1.6 graphics driver, while the one prefixed
-+Intel-proprietary EMGD 1.8 graphics driver, while the one prefixed
- with 'crownbay-noemgd' does not.
  
--If you want to enable the layer that supports EMGD graphics add
+-  I. Special notes on the meta-fri2 BSP layer
+- II. Building the meta-fri2 BSP layer
++  I. Building the meta-fri2 BSP layer
++ II. Special notes for building the meta-fri2 BSP layer
+ III. Booting the images in /binary
+ 
+ 
+-II. Building the meta-fri2 BSP layer
+-=========================================
++I. Building the meta-fri2 BSP layer
++===================================
+ 
+ In order to build an image with BSP support for a given release, you
+ need to download the corresponding BSP tarball from the 'Board Support
+ Package (BSP) Downloads' page of the Yocto Project website.
+ 
+ Having done that, and assuming you extracted the BSP tarball contents
+-at the top-level of your yocto build tree, you can build a fri2 image
++at the top-level of your yocto build tree, you can build an fri2 image
+ by adding the location of the meta-fri2 layer to bblayers.conf e.g.:
+ 
+   yocto/meta-intel/meta-fri2 \
+ 
+-To enable the fri2 layer, add the fri2 MACHINE to local.conf:
++The meta-fri2 layer contains support for two different machine
++configurations. These configurations are identical except for the fact
++that the one prefixed with 'fri2' makes use of the Intel-proprietary
++EMGD 1.8 graphics driver, while the one prefixed with 'fri2-noemgd'
++does not.
++
 +If you want to enable the layer that supports EMGD graphics add the
- following to the local.conf file:
++following to the local.conf file:
  
-   MACHINE ?= "crownbay"
-@@ -48,8 +48,8 @@ add the following to the local.conf file:
+   MACHINE ?= "fri2"
  
- You should then be able to build a crownbay image as such:
+-You should then be able to build a fri2 image as such:
++If you want to enable the layer that does not support EMGD graphics
++add the following to the local.conf file:
++
++  MACHINE ?= "fri2-noemgd"
  
 -  $ source poky-init-build-env
 -  $ bitbake poky-image-sato-live
++You should then be able to build an fri2 image as such:
++
 +  $ source oe-init-build-env
 +  $ bitbake core-image-sato
  
  At the end of a successful build, you should have a live image that
  you can boot from a USB flash drive (see instructions on how to do
-@@ -59,10 +59,11 @@ As an alternative to downloading the BSP tarball, you can also work
+@@ -41,10 +61,70 @@ As an alternative to downloading the BSP tarball, you can also work
  directly from the meta-intel git repository.  For each BSP in the
  'meta-intel' repository, there are multiple branches, one
  corresponding to each major release starting with 'laverne' (0.90), in
@@ -91,218 +123,78 @@ index 89056ed..439b8c7 100644
 -you can equivalently check out the appropriate branch from the
 -meta-intel repository at the same location.
 +addition to the latest code which tracks the current master (note that
-+not all BSPs are present in every release).  Instead of extracting
-+a BSP tarball at the top level of your yocto build tree, you can
++not all BSPs are present in every release).  Instead of extracting a
++BSP tarball at the top level of your yocto build tree, you can
 +equivalently check out the appropriate branch from the meta-intel
 +repository at the same location.
- 
- 
- II. Special notes for building the meta-crownbay BSP layer
-@@ -73,39 +74,33 @@ userspace drivers when building the "crownbay" machine (but not when
- building the "crownbay-noemgd" machine).  If you got the BSP from the
- 'BSP Downloads' section of the Yocto website, the EMGD binaries needed
- to perform the build will already be present in the BSP, located in
--the recipes-graphics/xorg-xserver/emgd-driver-bin-1.6 directory, and
--you can ignore the rest of this section.
-+the meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8
++
++
++II. Special notes for building the meta-fri2 BSP layer
++======================================================
++
++The meta-fri2 layer makes use of the proprietary Intel EMGD userspace
++drivers when building the "fri2" machine (but not when building the
++"fri2-noemgd" machine).  If you got the BSP from the 'BSP Downloads'
++section of the Yocto website, the EMGD binaries needed to perform the
++build will already be present in the BSP, located in the
++meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8
 +directory, and you can ignore the rest of this section.
- 
- If you didn't get the BSP from the 'BSP Downloads' section of the
--Yocto website, you have two choices:
++
++If you didn't get the BSP from the 'BSP Downloads' section of the
 +Yocto website, you can download a tarball containing an rpm that
 +contains the binaries and extract the binaries from that, and copy
-+them to the proper location in the meta-crownbay layer.
- 
--- You can download a tarball containing an rpm that contains the
--  binaries and extract the binaries from that, and copy them to the
--  proper location in the meta-crownbay layer.
++them to the proper location in the meta-fri2 layer.
++
 +The following subsection describes that process in detail.
- 
--- You can download a Windows executable from the official EMGD
--  website, extract the binaries from it, and copy them to the proper
--  location in the meta-crownbay layer.
- 
--The following subsections describe each option in detail.
++
++
 +Downloading and extracting the binaries using the EMGD Linux tarball
 +--------------------------------------------------------------------
- 
--
--IIa Downloading and extracting the binaries using the EMGD Linux tarball
--------------------------------------------------------------------------
--
--The first step of the process is to download the EMGD 1.6 Gold Driver.
--Here is the current link to the URL which it can be downloaded from:
++
 +The first step of the process is to download the EMGD 1.8 Driver.
 +Here is the current link to the URL from which it can be downloaded:
- 
- http://edc.intel.com/Software/Downloads/EMGD/
- 
- In the Download Now tab, select:
- 
- Intel® architecture-based product: Linux Tar Ball
--Operating System: MeeGo 1.0 IVI Linux (kernel 2.6.33.3, X.server 1.8.0)
++
++http://edc.intel.com/Software/Downloads/EMGD/
++
++In the Download Now tab, select:
++
++Intel® architecture-based product: Linux Tar Ball
 +Operating System: MeeGo* 1.2 IVI Linux* (kernel 2.6.37, X.server 1.9, Mesa 7.9)
- 
--That will give you a large tar file:
++
 +That will give you a large .tgz file:
- 
--Lin_EMGD_1_6_RC_1922.tar
++
 +Lin_EMGD_1_8_RC_2032.tgz
- 
- Extract the files in the tar file, which will in turn give you a
- directory named IEMGD_HEAD_Linux.
-@@ -114,138 +109,24 @@ The binaries are contained in an rpm file; you can extract the
- binaries from the rpm file using rpm2cpio and cpio:
- 
- $ cd IEMGD_HEAD_Linux/MeeGo1.2
--$ rpm2cpio emgd-bin-1922-1.6.i586.rpm > emgd-bin-1922-1.6.i586.cpio
++
++Extract the files in the tar file, which will in turn give you a
++directory named IEMGD_HEAD_Linux.
++
++The binaries are contained in an rpm file; you can extract the
++binaries from the rpm file using rpm2cpio and cpio:
++
++$ cd IEMGD_HEAD_Linux/MeeGo1.2
 +$ rpm2cpio emgd-bin-2032-1.6.i586.rpm > emgd-bin-2032-1.6.i586.cpio
- $ mkdir extracted; cd extracted
--$ cpio -idv < ../poky-image-minimal-initramfs-emenlow.cpio
++$ mkdir extracted; cd extracted
 +$ cpio -idv < ../emgd-bin-2032-1.6.i586.cpio
- 
- Finally, you can copy the xorg-xserver binaries to the
--emgd-driver-bin-1.6 directory in the meta-crownbay layer:
++
++Finally, you can copy the xorg-xserver binaries to the
 +emgd-driver-bin-1.8 directory in meta-intel/common:
- 
--$ cp -a usr/lib meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin-1.6
++
 +$ cp -a usr/lib meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8
- 
- You also need to copy the IEMGD License.txt file to the same directory:
- 
--$ cp IEMGD_HEAD_Linux/License/License.txt meta-crownbay/recipes/xorg-xserver/emgd-driver-bin-1.6
++
++You also need to copy the IEMGD License.txt file to the same directory:
++
 +$ cp IEMGD_HEAD_Linux/License/License.txt meta-intel/common/recipes/xorg-xserver/emgd-driver-bin-1.8
++
++At this point, you should be able to build meta-fri2 images as usual.
  
- At this point, you should be able to build meta-crownbay images as usual.
  
- 
--IIb Extracting the binaries using the graphical ced application
-----------------------------------------------------------------
--
--These steps require that you run a graphical application in Windows.
--Windows 7 was used for these instructions, but it shouldn't matter
--which version of Windows you use.
--
--The first step of the process is to download the EMGD 1.6 Gold Driver.
--Here is the current link to the URL which it can be downloaded from:
--
--http://edc.intel.com/Software/Downloads/EMGD/
--
--In the Download Now tab, select:
--
--Intel® architecture-based product: Intel Atom Processor E6XX Series
--Operating System: MeeGo 1.0 IVI Linux (kernel 2.6.33.3, X.server 1.8.0)
--
--That will give you a large zip file:
--
--IEMGD_1_6_GOLD_1922.zip
--
--Extract the files in the zip file, which will in turn give you a large
--.exe file:
--
--IEMGD_1_6_GOLD_ALL_1922.exe
--
--Run IEMGD_1_6_GOLD_ALL_1922.exe to install, accept licenses, etc.
--
--If it says to install watcom, follow the instructions to do that.
--
--When the installation completes, an application named "emgd-ced" will
--be present in the install directory.  Double-click to run it.
--
--Select the menu item: New Configuration
--
--In the tabbed page, make the following selections and/or enter the
--specified data:
--
--Configuration File Name: myconfig
--Platform Chipset: Intel Atom Processor E6xx
--Port Devices: LVDS, sDVO
--
--Hit the 'Next' button.
--
--On the next tabbed page, make the following selections and/or enter
--the specified data:
--
--Readable Port Name: portname0
--Encoder Configuration: Select sDVO Device: Internal LVDS
--
--Hit the 'Finish' button.
--
--Select the menu item: New Package
--
--In the tabbed page, make the following selections and/or enter the
--specified data:
--
--Package File Name: mypackage
--Configurations: selec myconfig.cnfg
--Target OS: Linux operating System
--
--Hit the 'Finish' button.
--
--Select the menu item: Generate Installation
--
--This will create the EMGD installation package:
--
--Generating EMGD installation...
--
--The installation package should now be under the 'workspace'
--subdirectory of the directory you installed to:
--
--workspace/installation/mypackage.pkg_installation/IEMGD_HEAD_Linux/IEMGD_HEAD_Linux.tgz
--
--This is the file you are interested in.  Copy it to your Poky build
--system, and uncompress/untar it:
--
--$ tar cvfz IEMGD_HEAD_Linux.tgz
--
--The binaries are contained in an rpm file; you can extract the
--binaries from the rpm file using rpm2cpio and cpio:
--
--$ cd IEMGD_HEAD_Linux/MeeGo1.2
--$ rpm2cpio emgd-bin-1922-1.6.i586.rpm > emgd-bin-1922-1.6.i586.cpio
--$ mkdir extracted; cd extracted
--$ cpio -idv < ../poky-image-minimal-initramfs-emenlow.cpio
--
--Finally, you can copy the xorg-xserver binaries to the
--emgd-driver-bin-1.6 directory in the meta-crownbay layer:
--
--$ cp -a usr/lib meta-crownbay/recipes-graphics/xorg-xserver/emgd-driver-bin-1.6
--
--You also need to copy the IEMGD License.txt file to the same directory:
--
--$ cp IEMGD_HEAD_Linux/License/License.txt meta-crownbay/recipes/xorg-xserver/emgd-driver-bin-1.6
--
--At this point, you should be able to build meta-crownbay images as usual.
--
------
--
--For reference, the EMGD Driver documentation is also available at the
--above link.
--
--The specific text of the document is:
--
--User Guide: Intel® Embedded Media and Graphics Driver, EFI Video
--Driver, EPOG, and Video BIOS v1.6 for Windows* XP and Linux* Provides
--installation requirements/procedures & describes the vbios/firmware,
--configuration options, & functionality of Intel® EMGD under Windows* &
--Linux*. Refer to guide for details.
--
--April 2011
--
--
--II. Booting the images in /binary
--=================================
-+III. Booting the images in /binary
-+==================================
- 
- This BSP contains bootable live images, which can be used to directly
- boot Yocto off of a USB flash drive.
-@@ -254,7 +135,7 @@ Under Linux, insert a USB flash drive.  Assuming the USB flash drive
+ III. Booting the images in /binary
+@@ -57,7 +137,7 @@ Under Linux, insert a USB flash drive.  Assuming the USB flash drive
  takes device /dev/sdf, use dd to copy the live image to it.  For
  example:
  
--# dd if=poky-image-sato-live-crownbay-20101207053738.hddimg of=/dev/sdf
-+# dd if=core-image-sato-crownbay-20101207053738.hddimg of=/dev/sdf
+-# dd if=poky-image-sato-live-fri2-20101207053738.hddimg of=/dev/sdf
++# dd if=core-image-sato-fri2-20101207053738.hddimg of=/dev/sdf
  # sync
  # eject /dev/sdf
  
