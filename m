@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25232E01239
-	for <yocto@yoctoproject.org>; Thu, 25 Aug 2011 20:59:35 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 25 Aug 2011 20:59:35 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33372E01239
+	for <yocto@yoctoproject.org>; Thu, 25 Aug 2011 20:59:40 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 25 Aug 2011 20:59:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,283,1312182000"; d="scan'208";a="44811869"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="42086844"
 Received: from unknown (HELO localhost) ([10.255.13.254])
-	by fmsmga002.fm.intel.com with ESMTP; 25 Aug 2011 20:59:34 -0700
+	by orsmga002.jf.intel.com with ESMTP; 25 Aug 2011 20:59:39 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Thu, 25 Aug 2011 22:59:02 -0500
-Message-Id: <51baa983b3505dcd0084611d6181a125e91ee063.1314330614.git.tom.zanussi@intel.com>
+Date: Thu, 25 Aug 2011 22:59:03 -0500
+Message-Id: <7658dbaa94638f86bab45f5763565370e8854853.1314330614.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <d5130815aff9d230c44ed0be60ca06bb1cb4225a.1314330614.git.tom.zanussi@intel.com>
 References: <d5130815aff9d230c44ed0be60ca06bb1cb4225a.1314330614.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1314330614.git.tom.zanussi@intel.com>
 References: <cover.1314330614.git.tom.zanussi@intel.com>
-Subject: [PATCH 04/10] meta-crownbay: xorg.conf changes
+Subject: [PATCH 05/10] meta-fri2: add EMGD 1.8 capabilities to fri2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,45 +29,224 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Aug 2011 03:59:35 -0000
+X-List-Received-Date: Fri, 26 Aug 2011 03:59:40 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Update to the ced-generated xorg.conf for 1.8.
+This patch essentially adds a new EMGD-capable 'fri2' machine to
+meta-fri2.
+
+The current version with vesa graphics will become fri2-noemgd; fri2
+will become the version with EMGD graphics.  This patch does the
+fri2->fri2-noemgd renaming and adds the new files for fri2, and
+updates the necessary .bbappends to support both fri2 and fri2-noemgd.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../xserver-xf86-config/crownbay/xorg.conf         |    3 ++-
- .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    1 +
- 2 files changed, 3 insertions(+), 1 deletions(-)
+ meta-fri2/conf/machine/fri2-noemgd.conf            |   36 +++++++++++++++
+ meta-fri2/conf/machine/fri2.conf                   |    5 ++-
+ .../formfactor/formfactor/fri2-noemgd/machconfig   |    3 +
+ .../recipes-core/tasks/task-core-tools.bbappend    |    1 +
+ .../xserver-xf86-config/fri2-noemgd/xorg.conf      |   26 +++++++++++
+ .../xserver-xf86-config/fri2/xorg.conf             |   48 ++++++++++++++-----
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |   13 +++++-
+ 7 files changed, 116 insertions(+), 16 deletions(-)
+ create mode 100644 meta-fri2/conf/machine/fri2-noemgd.conf
+ create mode 100644 meta-fri2/recipes-bsp/formfactor/formfactor/fri2-noemgd/machconfig
+ create mode 100644 meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2-noemgd/xorg.conf
 
-diff --git a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
-index f78a538..fce58f8 100644
---- a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
-+++ b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
-@@ -26,11 +26,12 @@ Section "Device"
-     Option     "ALL/1/General/PortOrder"      "40000"
-     Option     "ALL/1/General/DisplayConfig"  "1"
-     Option     "ALL/1/General/DisplayDetect"  "1"
+diff --git a/meta-fri2/conf/machine/fri2-noemgd.conf b/meta-fri2/conf/machine/fri2-noemgd.conf
+new file mode 100644
+index 0000000..a871529
+--- /dev/null
++++ b/meta-fri2/conf/machine/fri2-noemgd.conf
+@@ -0,0 +1,36 @@
++#@TYPE: Machine
++#@NAME: fri2
++
++#@DESCRIPTION: Machine configuration for Fish River Island II systems
++# i.e. E660 + EG20T
++
++include conf/machine/include/tune-atom.inc
++
++MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
++                    acpi serial usbgadget wifi 3g"
++
++KERNEL_IMAGETYPE = "bzImage"
++
++PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
++PREFERRED_VERSION_linux-yocto ?= "3.0%"
++
++PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
++PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
++PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
++PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xf86-dri-lite"
++PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xf86-dri-lite"
++XSERVER ?= "xserver-xf86-dri-lite \
++           xf86-input-mouse \
++           xf86-input-keyboard \
++           xf86-input-evdev \
++           xf86-input-synaptics \
++           xf86-video-vesa"
++
++SERIAL_CONSOLE = "115200 ttyS0"
++
++MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
++
++IMAGE_FSTYPES ?= "ext3 cpio.gz live"
++
++GLIBC_ADDONS = "nptl"
++GLIBC_EXTRA_OECONF = "--with-tls"
+diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
+index a871529..4b81fab 100644
+--- a/meta-fri2/conf/machine/fri2.conf
++++ b/meta-fri2/conf/machine/fri2.conf
+@@ -24,7 +24,10 @@ XSERVER ?= "xserver-xf86-dri-lite \
+            xf86-input-keyboard \
+            xf86-input-evdev \
+            xf86-input-synaptics \
+-           xf86-video-vesa"
++           emgd-driver-bin"
++
++PREFERRED_VERSION_xserver-xf86-dri-lite ?= "1.9.3"
++PREFERRED_VERSION_emgd-driver-bin ?= "1.8"
+ 
+ SERIAL_CONSOLE = "115200 ttyS0"
+ 
+diff --git a/meta-fri2/recipes-bsp/formfactor/formfactor/fri2-noemgd/machconfig b/meta-fri2/recipes-bsp/formfactor/formfactor/fri2-noemgd/machconfig
+new file mode 100644
+index 0000000..ffce012
+--- /dev/null
++++ b/meta-fri2/recipes-bsp/formfactor/formfactor/fri2-noemgd/machconfig
+@@ -0,0 +1,3 @@
++# Assume a USB mouse and keyboard are connected
++HAVE_TOUCHSCREEN=0
++HAVE_KEYBOARD=1
+diff --git a/meta-fri2/recipes-core/tasks/task-core-tools.bbappend b/meta-fri2/recipes-core/tasks/task-core-tools.bbappend
+index 5accb2e..aa50c91 100644
+--- a/meta-fri2/recipes-core/tasks/task-core-tools.bbappend
++++ b/meta-fri2/recipes-core/tasks/task-core-tools.bbappend
+@@ -1,2 +1,3 @@
+ RRECOMMENDS_task-core-tools-profile_append_fri2 = " systemtap"
++RRECOMMENDS_task-core-tools-profile_append_fri2-noemgd = " systemtap"
+ 
+diff --git a/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2-noemgd/xorg.conf b/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2-noemgd/xorg.conf
+new file mode 100644
+index 0000000..da4fc3c
+--- /dev/null
++++ b/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2-noemgd/xorg.conf
+@@ -0,0 +1,26 @@
++Section "Device"
++    Identifier	"Generic VESA"
++    Driver	"vesa"
++EndSection
++
++Section "Monitor"
++    Identifier    "Generic Monitor"
++    Option        "DPMS"
++EndSection
++
++Section "Screen"
++    Identifier    "Default Screen"
++    Device	  "Generic VESA"
++    Monitor       "Generic Monitor"
++    DefaultDepth  24
++EndSection
++
++Section "ServerLayout"
++    Identifier     "Default Layout"
++    Screen         "Default Screen"
++EndSection
++
++Section "ServerFlags"
++    Option        "DontZap"  "0"
++    Option        "AutoAddDevices"  "False"
++EndSection
+diff --git a/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2/xorg.conf b/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2/xorg.conf
+index da4fc3c..fce58f8 100644
+--- a/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2/xorg.conf
++++ b/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2/xorg.conf
+@@ -1,23 +1,45 @@
+-Section "Device"
+-    Identifier	"Generic VESA"
+-    Driver	"vesa"
+-EndSection
++##
++## X Config options generated from CED
++## x11 conf skeleton
++## DriverVer=
++##
+ 
+-Section "Monitor"
+-    Identifier    "Generic Monitor"
+-    Option        "DPMS"
++Section "Screen"
++    Identifier    "Screen0"
++    Device        "IntelEMGD-0"
++    Monitor       "Monitor0"
++    SubSection    "Display"
++    EndSubSection
+ EndSection
+ 
+-Section "Screen"
+-    Identifier    "Default Screen"
+-    Device	  "Generic VESA"
+-    Monitor       "Generic Monitor"
+-    DefaultDepth  24
++# Primary (First/only) display
++Section "Device"
++    Identifier "IntelEMGD-0"
++    Driver     "emgd"
++    VendorName "Intel(R) DEG"
++    BoardName  "Embedded Graphics"
++    BusID      "0:2:0"
++    Screen      0
++    Option     "PcfVersion"            "1792"
++    Option     "ConfigId"              "1"
++    Option     "ALL/1/name"                   "e6xx"
++    Option     "ALL/1/General/PortOrder"      "40000"
++    Option     "ALL/1/General/DisplayConfig"  "1"
++    Option     "ALL/1/General/DisplayDetect"  "1"
 +    Option     "ALL/1/General/TuningWA" "1"
-     Option     "ALL/1/Port/4/General/name"           "lvds"
-     Option     "ALL/1/Port/4/General/EdidAvail"      "3"
-     Option     "ALL/1/Port/4/General/EdidNotAvail"   "1"
-     Option     "ALL/1/Port/4/General/Rotation"       "0"
--    Option     "ALL/1/Port/4/General/Edid"           "1"
++    Option     "ALL/1/Port/4/General/name"           "lvds"
++    Option     "ALL/1/Port/4/General/EdidAvail"      "3"
++    Option     "ALL/1/Port/4/General/EdidNotAvail"   "1"
++    Option     "ALL/1/Port/4/General/Rotation"       "0"
 +    Option     "ALL/1/Port/4/General/Edid"           "0"
  EndSection
  
  Section "ServerLayout"
-diff --git a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
-index 4b8d0e6..1461431 100644
---- a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
-+++ b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
-@@ -1,3 +1,4 @@
- THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
- FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
+     Identifier     "Default Layout"
+-    Screen         "Default Screen"
++    Screen 0       "Screen0" 0 0
++   # InputDevice    "Mouse0" "CorePointer"
++   # InputDevice    "Keyboard0" "CoreKeyboard"
++   # InputDevice    "DevInputMice" "SendCoreEvents"
+ EndSection
  
-+PR := "${PR}.1"
+ Section "ServerFlags"
+diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend
+index 739e799..0719ded 100644
+--- a/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend
++++ b/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend
+@@ -1,6 +1,15 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
+ COMPATIBLE_MACHINE_fri2 = "fri2"
+ KMACHINE_fri2  = "yocto/standard/fri2"
++KERNEL_FEATURES_append_fri2 += " cfg/smp.scc"
++
++COMPATIBLE_MACHINE_fri2-noemgd = "fri2-noemgd"
++KMACHINE_fri2-noemgd  = "yocto/standard/fri2"
++KERNEL_FEATURES_append_fri2-noemgd += " cfg/smp.scc"
++
++SRCREV_machine_pn-linux-yocto_fri2 ?= "f1167dd736c4a4aea834b853d73c51f9863151b4"
++SRCREV_meta_pn-linux-yocto_fri2 ?= "5b535279e61197cb194bb2dfceb8b7a04128387c"
+ 
+-SRCREV_machine_pn-linux-yocto_fri2 ?= "493b09ef2c7124f977421a40955750743a5293d3"
+-SRCREV_meta_pn-linux-yocto_fri2 ?= "d588bdafc0d9b4d2386144b7d76a1d379e2d16c0"
++SRCREV_machine_pn-linux-yocto_fri2-noemgd ?= "f1167dd736c4a4aea834b853d73c51f9863151b4"
++SRCREV_meta_pn-linux-yocto_fri2-noemgd ?= "5b535279e61197cb194bb2dfceb8b7a04128387c"
 -- 
 1.7.0.4
 
