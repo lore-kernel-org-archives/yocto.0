@@ -1,35 +1,19 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3758EE00320
-	for <yocto@yoctoproject.org>; Thu, 25 Aug 2011 12:43:24 -0700 (PDT)
-Received: from durham.keylevel.com ([109.224.134.115]:57926
-	helo=MacBook-Pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1Qwfpj-0007RJ-80; Thu, 25 Aug 2011 20:43:23 +0100
-Message-Id: <DA02772B-1B73-4F86-AADA-FBEA9D1E1240@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: Gary Thomas <gary@mlbassoc.com>
-In-Reply-To: <4E56A452.1070802@mlbassoc.com>
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Thu, 25 Aug 2011 20:43:20 +0100
-References: <AAFBB6E0-E03A-4045-8C57-C522EAF735B3@keylevel.com>
-	<4E569F39.3000500@mlbassoc.com>
-	<A615BA66-D76B-4749-91D4-2C3121FDC78E@keylevel.com>
-	<4E56A452.1070802@mlbassoc.com>
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: Adding X to image
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98548E01239
+	for <yocto@yoctoproject.org>; Thu, 25 Aug 2011 20:59:14 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 25 Aug 2011 20:59:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,283,1312182000"; d="scan'208";a="44811811"
+Received: from unknown (HELO localhost) ([10.255.13.254])
+	by fmsmga002.fm.intel.com with ESMTP; 25 Aug 2011 20:59:13 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org
+Date: Thu, 25 Aug 2011 22:59:04 -0500
+Message-Id: <cover.1314330614.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 00/10] meta-intel: EMGD 1.8 and 3.0 kernel upgrade, v4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,47 +25,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Aug 2011 19:43:24 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 26 Aug 2011 03:59:14 -0000
 
-On 25 Aug 2011, at 20:36, Gary Thomas wrote:
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-> On 2011-08-25 13:33, Chris Tapp wrote:
->> On 25 Aug 2011, at 20:15, Gary Thomas wrote:
->>
->>> On 2011-08-25 13:07, Chris Tapp wrote:
->>>> What do I need to add where to get 'X' in to my image?
->>>>
->>>> I've built poky-image-base (under 4.0.1) and things like xinit  
->>>> have been built and are in the tmp/work tree.
->>>>
->>>> What do I need to add so that xinit (and dependencies) are added  
->>>> to the image? Should I be building a different image?
->>>
->>> Try core-image-sato - it has a full-up X [matchbox based] X desktop
->>
->> Thanks Gary,
->>
->> I can't find that one, bit I'm trying task-poky-x11-sato...
->
-> If you're not using the bleeding-edge-master, it might be named poky- 
-> image-sato
->
-> task-poky-x11-sato is just a collection of packages needed for X.   
-> It won't
-> build a final root file system.
+This patchset switches crownbay to the 3.0 kernel and upgrades emgd
+to 1.8.  Both crownbay and crownbay-noemgd were successfully built and
+boot tested into sato.
 
-Sure. I should have mentioned that I will add this to my project  
-image ;-)
+It also does the same for fri2, after adding a new fri2 machine config
+and renaming the current one to fri2-noemgd.  Both fri2 and fri2-noemgd
+were successfully built and boot tested into sato.
 
-However, poky-image-sato sounds like it's worth a try first. Building...
+Changes since v2:
 
-Chris Tapp
+  - reworked the emgd-driver-bin 1.8 recipe to require manual setup
+  - removed EMGD_LICENSE and anything license-related
+  - updated READMEs to re-add manual instructions
+  - updated to use new kernel wildcard scheme
 
-opensource@keylevel.com
-www.keylevel.com
+The following changes since commit fb15cc4e1c4be75c81acaf6a1dd33675a9142975:
+  Bruce Ashfield (1):
+        meta-tlk: initial creation
 
+are available in the git repository at:
 
+  git://git.yoctoproject.org/meta-intel.git tzanussi/emgd-1.8v4
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/emgd-1.8v4
+
+Tom Zanussi (10):
+  meta-crownbay: switch to linux-yocto 3.0 kernel
+  meta-crownbay: new recipe for emgd 1.8 driver binaries
+  meta-crownbay: select emgd 1.8
+  meta-crownbay: xorg.conf changes
+  meta-fri2: add EMGD 1.8 capabilities to fri2
+  meta-intel: move emgd-driver-bin_1.8 to common
+  meta-fri2: add common/recipes-graphics to BBFILES
+  meta-intel: update meta-crownbay kernel SRCREVs
+  meta-crownbay: update README
+  meta-fri2: update README
+
+ .../xorg-xserver/emgd-driver-bin_1.8.bb            |   35 ++++
+ meta-crownbay/README                               |  181 ++++----------------
+ meta-crownbay/conf/machine/crownbay-noemgd.conf    |    2 +
+ meta-crownbay/conf/machine/crownbay.conf           |    4 +-
+ .../xserver-xf86-config/crownbay/xorg.conf         |    3 +-
+ .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    1 +
+ .../linux/linux-yocto-rt_3.0.bbappend              |   10 -
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |   15 ++
+ meta-fri2/README                                   |  108 ++++++++++--
+ meta-fri2/conf/layer.conf                          |    4 +-
+ meta-fri2/conf/machine/fri2-noemgd.conf            |   36 ++++
+ meta-fri2/conf/machine/fri2.conf                   |    5 +-
+ .../formfactor/formfactor/fri2-noemgd/machconfig   |    3 +
+ .../recipes-core/tasks/task-core-tools.bbappend    |    1 +
+ .../xserver-xf86-config/fri2-noemgd/xorg.conf      |   26 +++
+ .../xserver-xf86-config/fri2/xorg.conf             |   48 ++++--
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |   13 ++-
+ 17 files changed, 302 insertions(+), 193 deletions(-)
+ create mode 100644 common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8/.gitignore
+ create mode 100644 common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
+ delete mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+ create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
+ create mode 100644 meta-fri2/conf/machine/fri2-noemgd.conf
+ create mode 100644 meta-fri2/recipes-bsp/formfactor/formfactor/fri2-noemgd/machconfig
+ create mode 100644 meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2-noemgd/xorg.conf
 
 
