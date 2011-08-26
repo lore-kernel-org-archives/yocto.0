@@ -1,25 +1,54 @@
-Return-Path: <darren.hart@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F125CE0125F
-	for <yocto@yoctoproject.org>; Tue, 30 Aug 2011 19:51:52 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 30 Aug 2011 19:51:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,305,1312182000"; d="scan'208";a="46852927"
-Received: from unknown (HELO envy.home) ([10.255.14.55])
-	by fmsmga002.fm.intel.com with ESMTP; 30 Aug 2011 19:51:50 -0700
-Message-ID: <4E5DA1C6.2040207@intel.com>
-Date: Tue, 30 Aug 2011 19:51:50 -0700
-From: Darren Hart <darren.hart@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:6.0) Gecko/20110816 Thunderbird/6.0
+Return-Path: <linux+yocto=yoctoproject.org@arm.linux.org.uk>
+Received: from caramon.arm.linux.org.uk (caramon.arm.linux.org.uk
+	[78.32.30.218])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE27DE011B8
+	for <yocto@yoctoproject.org>; Fri, 26 Aug 2011 09:36:32 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@arm.linux.org.uk;
+	x-dkim-adsp=none (insecure policy)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=arm.linux.org.uk; s=caramon; 
+	h=Sender:In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date;
+	bh=Ujkd1bhBYpIbsQTJrxBZk3pmjQOHhjh2qmELK0xuJcg=; 
+	b=h1m1XfS+iVvaykpgxgpQ1w3LYko4e6os09at6IkiwFH30J8pqPNxLU7tRnUWDI7qX8s+YRMl2CIdbJxb+ftoxRE4ZsqNJQI3iIgvmPV12uubVZjQaBBNDVNyt+4U+hTkyKxj16KFEdjyliNhS1kLVAWyhvuDitsn+fbWh4wkxdA=;
+Received: from n2100.arm.linux.org.uk ([2002:4e20:1eda:1:214:fdff:fe10:4f86])
+	by caramon.arm.linux.org.uk with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.72) (envelope-from <linux@arm.linux.org.uk>)
+	id 1QwzN2-0003Xw-FF; Fri, 26 Aug 2011 17:35:05 +0100
+Received: from linux by n2100.arm.linux.org.uk with local (Exim 4.72)
+	(envelope-from <linux@n2100.arm.linux.org.uk>)
+	id 1QwzN0-0006wc-JP; Fri, 26 Aug 2011 17:35:02 +0100
+Date: Fri, 26 Aug 2011 17:35:02 +0100
+From: Russell King - ARM Linux <linux@arm.linux.org.uk>
+To: Bill Gatliff <bgat@billgatliff.com>
+Message-ID: <20110826163502.GB23469@n2100.arm.linux.org.uk>
+References: <20110809181534.GR10171@einval.com>
+	<20110823161134.GV3053@linaro.org>
+	<efc47c3039402c1507d76f381a790115@mail.shatteredsilicon.net>
+	<CAPweEDwkVWH=r_moJj1_CKLxRUkkbBgHenZhwi8CzY9z3BO-Cw@mail.gmail.com>
+	<CADkCAuuaH5k2duuvUdmj1j9=6oaCKORN-NJGg4gt2ovEshHYmw@mail.gmail.com>
+	<alpine.DEB.2.02.1108241648360.29431@asgard.lang.hm>
+	<CADkCAut2sMMKcCLiG0g+Rwt5z4dXJgRZYyvUAzCQVTQQMPFJmA@mail.gmail.com>
 MIME-Version: 1.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-References: <4BD43A85686FC34D819098DB1C3999D9018894C6CA@orsmsx502.amr.corp.intel.com>
-	<1314749498.5939.450.camel@rex>
-In-Reply-To: <1314749498.5939.450.camel@rex>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: linux-yocto-rt build fail for sugarbay bsp on grub recipe
+In-Reply-To: <CADkCAut2sMMKcCLiG0g+Rwt5z4dXJgRZYyvUAzCQVTQQMPFJmA@mail.gmail.com>
+User-Agent: Mutt/1.5.19 (2009-01-05)
+Sender: Russell King - ARM Linux <linux@arm.linux.org.uk>
+X-Mailman-Approved-At: Tue, 30 Aug 2011 21:37:51 -0700
+Cc: david@lang.hm, cross-distro@lists.linaro.org,
+	Ubuntu Devel <ubuntu-devel@lists.ubuntu.com>,
+	GCC developers <gcc@gcc.gnu.org>, yocto@yoctoproject.org,
+	Gentoo Embedded <gentoo-embedded@lists.gentoo.org>,
+	Bruce Perens <bruce@perens.com>,
+	LSB discuss <lsb-discuss@lists.freestandards.org>,
+	Debian ARM <debian-arm@lists.debian.org>,
+	Fedora ARM <arm@lists.fedoraproject.org>,
+	OLPC Devel <devel@lists.laptop.org>,
+	OpenEmbedded Devel <openembedded-devel@lists.openembedded.org>,
+	cooker@mandrivalinux.org, MeeGo Dev <meego-dev@meego.com>,
+	Luke Kenneth Casson Leighton <lkcl@lkcl.net>,
+	Linux on small ARM machines <arm-netbook@lists.phcomp.co.uk>,
+	torvalds@linux-foundation.org, Mageia Dev <mageia-dev@mageia.org>
+Subject: Re: [fedora-arm] ARM summit at Plumbers 2011
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,67 +60,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Aug 2011 02:51:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 26 Aug 2011 16:36:34 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 08/30/2011 05:11 PM, Richard Purdie wrote:
-> On Tue, 2011-08-30 at 16:59 -0700, Bodke, Kishore K wrote:
->> Hello All,
->>
->>  
->>
->> I am trying to build linux-yocto with rt kernel for sugarbay bsp and
->> it fails for the grub recipe.
->>
->>  
->>
->> Attached is the build log.  
->>
->>  
->>
->> kishore@kishore-desktop:/usr/local/src/crf/test/buildsugarbayrt$
->> bitbake -e | egrep "^WARN_QA="
->>
->> WARN_QA="dev-so rpaths debug-deps dev-deps debug-files arch la2
->> pkgconfig desktop la ldflags perms useless-rpaths"
->>
->> kishore@kishore-desktop:/usr/local/src/crf/test/buildsugarbayrt$
->> bitbake -e | egrep "^ERROR_QA="
->>
->> kishore@kishore-desktop:/usr/local/src/crf/test/buildsugarbayrt$
->>
->>  
->>
->> Please let me know what could be the issue.
-> 
-> Could you include the config.log file mentioned in the error report
-> please?
-> 
-> This should be somewhere like
-> usr/local/src/crf/test/buildsugarbayrt/tmp/work/x86_64-poky-linux/grub-1.98-r1/*/config.log
-> 
+On Fri, Aug 26, 2011 at 11:11:41AM -0500, Bill Gatliff wrote:
+> As such refactoring consolidated larger and larger chunks of kernel
+> code, new designs would gravitate towards those consolidated
+> implementations because they would be the dominant references.
 
-I replied with this and a comparison file, but it was rejected due to
-being over 200k :(.
+Don't bet on it.  That's not how it works (unfortunately.)
 
-Short of it is that Kishore's config.log shows it picking up the
-freetype libs from his host system. The patch I proposed adds a DEPENDS
-to grub on freetype.
+Just look at the many serial port inventions dreamt up by SoC designers -
+everyone is different from each other.  Now consider: why didn't they use
+a well established standard 16550A or later design?
 
-> Cheers,
-> 
-> Richard
-> 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Also consider why ARM Ltd designed the PL010 and PL011 primecells which
+are different from the 16550A.
 
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+This "need to be different" is so heavily embedded in the mindset of the
+hardware people that I doubt "providing consolidated implementations"
+will make the blind bit of difference.  I doubt that hardware people
+coming up with these abominations even care one bit about what's in
+the kernel.
 
