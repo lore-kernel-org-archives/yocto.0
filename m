@@ -1,35 +1,24 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56B07E0120E
-	for <yocto@yoctoproject.org>; Mon, 29 Aug 2011 09:34:55 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 29 Aug 2011 09:34:54 -0700
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3791FE0120E
+	for <yocto@yoctoproject.org>; Mon, 29 Aug 2011 09:38:43 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 29 Aug 2011 09:38:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,297,1312182000"; d="scan'208";a="46133339"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga001.fm.intel.com with ESMTP; 29 Aug 2011 09:34:54 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 29 Aug 2011 09:34:29 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.116]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.187]) with mapi id
-	14.01.0323.003; Mon, 29 Aug 2011 09:34:29 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Tested host distros for 1.1
-Thread-Index: AQHMYatcIeBLunnO90OcfqsSBiPEd5U0BniwgAB+MgD//4ra8A==
-Date: Mon, 29 Aug 2011 16:34:28 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237916E5CC35@ORSMSX101.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="43053730"
+Received: from unknown (HELO helios.localnet) ([10.255.18.171])
+	by orsmga002.jf.intel.com with ESMTP; 29 Aug 2011 09:38:42 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+Date: Mon, 29 Aug 2011 17:38:41 +0100
+User-Agent: KMail/1.13.6 (Linux/2.6.38-10-generic-pae; KDE/4.6.2; i686; ; )
 References: <201108231642.49667.paul.eggleton@linux.intel.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237916E5CBD6@ORSMSX101.amr.corp.intel.com>
 	<201108291733.06834.paul.eggleton@linux.intel.com>
-In-Reply-To: <201108291733.06834.paul.eggleton@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237916E5CC35@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237916E5CC35@ORSMSX101.amr.corp.intel.com>
 MIME-Version: 1.0
+Message-Id: <201108291738.41299.paul.eggleton@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Tested host distros for 1.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,41 +31,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Aug 2011 16:34:55 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 29 Aug 2011 16:38:43 -0000
+Content-Type: Text/Plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
 
-Paul,=20
+On Monday 29 August 2011 17:34:28 Rifenbark, Scott M wrote:
+> Do you know where I can get the full list?
 
-Do you know where I can get the full list?
-
-ScottR
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Paul Eggleton
-Sent: Monday, August 29, 2011 9:33 AM
-To: yocto@yoctoproject.org
-Subject: Re: [yocto] Tested host distros for 1.1
-
-On Monday 29 August 2011 17:02:07 Rifenbark, Scott M wrote:
-> So the official list of distros we test against includes?:
->=20
->         Ubuntu 11.04
->         Fedora release 14 (Laughlin)
-
-I think it should include these, but that's not the full list.
+No, that's why I started the discussion :)
 
 Cheers,
 Paul
 
---=20
+-- 
 
 Paul Eggleton
 Intel Open Source Technology Centre
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
