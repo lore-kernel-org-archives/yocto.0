@@ -1,25 +1,29 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3791FE0120E
-	for <yocto@yoctoproject.org>; Mon, 29 Aug 2011 09:38:43 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 29 Aug 2011 09:38:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="43053730"
-Received: from unknown (HELO helios.localnet) ([10.255.18.171])
-	by orsmga002.jf.intel.com with ESMTP; 29 Aug 2011 09:38:42 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-Date: Mon, 29 Aug 2011 17:38:41 +0100
-User-Agent: KMail/1.13.6 (Linux/2.6.38-10-generic-pae; KDE/4.6.2; i686; ; )
-References: <201108231642.49667.paul.eggleton@linux.intel.com>
-	<201108291733.06834.paul.eggleton@linux.intel.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237916E5CC35@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237916E5CC35@ORSMSX101.amr.corp.intel.com>
-MIME-Version: 1.0
-Message-Id: <201108291738.41299.paul.eggleton@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Tested host distros for 1.1
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CC6FE0124B
+	for <yocto@yoctoproject.org>; Mon, 29 Aug 2011 15:03:34 -0700 (PDT)
+Received: from durham.keylevel.com ([109.224.134.115]:47322
+	helo=MacBook-Pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1Qy9NH-0001Xp-Gj
+	for yocto@yoctoproject.org; Mon, 29 Aug 2011 22:28:07 +0100
+Message-Id: <B5DD37CA-CC9E-47D1-867A-001473E601BA@keylevel.com>
+From: Chris Tapp <opensource@keylevel.com>
+To: yocto@yoctoproject.org
+Mime-Version: 1.0 (Apple Message framework v936)
+Date: Mon, 29 Aug 2011 22:28:04 +0100
+X-Mailer: Apple Mail (2.936)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Best way to override EXTRA_OECONF
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,21 +35,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Aug 2011 16:38:43 -0000
-Content-Type: Text/Plain;
-  charset="iso-8859-1"
+X-List-Received-Date: Mon, 29 Aug 2011 22:03:35 -0000
+Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
 Content-Transfer-Encoding: 7bit
 
-On Monday 29 August 2011 17:34:28 Rifenbark, Scott M wrote:
-> Do you know where I can get the full list?
+I'm using libGL provided by mesa-xlib, which includes mesa-common.
 
-No, that's why I started the discussion :)
+I also want to use libglu, but mesa-common says:
 
-Cheers,
-Paul
+EXTRA_OECONF = "--disable-glu \
 
--- 
+Is there a way I can override this without having to alter mesa- 
+common.inc.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Would a mesa-xlib.bbappend file with
+
+EXTRA_OECONF += "--enable-glu \
+
+do it?
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
