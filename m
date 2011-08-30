@@ -1,33 +1,30 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1779E01200
-	for <yocto@yoctoproject.org>; Tue, 30 Aug 2011 10:05:06 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 30 Aug 2011 10:05:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,303,1312182000"; d="scan'208";a="43964472"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by azsmga001.ch.intel.com with ESMTP; 30 Aug 2011 10:05:06 -0700
-Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 30 Aug 2011 10:05:05 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.116]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.193]) with mapi id
-	14.01.0323.003; Tue, 30 Aug 2011 10:05:05 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Technical Team Meeting - (August 30, 2011 8:00
-	AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
-Thread-Index: AQHMZzb2oU6Qpa1M2UO2zm+g8/GQpQ==
-Date: Tue, 30 Aug 2011 17:05:05 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16EDC304@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
-MIME-Version: 1.0
-Subject: Minutes: Yocto Technical Team Meeting - (August 30, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8327AE01200
+	for <yocto@yoctoproject.org>; Tue, 30 Aug 2011 11:08:14 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p7UI85dM020796;
+	Tue, 30 Aug 2011 19:08:05 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 19923-09; Tue, 30 Aug 2011 19:08:01 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id p7UI7rBq020790
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Tue, 30 Aug 2011 19:07:56 +0100
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <02B62B87-3FD5-421C-A344-9A808B1E9C99@keylevel.com>
+References: <02B62B87-3FD5-421C-A344-9A808B1E9C99@keylevel.com>
+Date: Tue, 30 Aug 2011 19:07:42 +0100
+Message-ID: <1314727662.5939.388.camel@rex>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org
+Subject: Re: bbappend - Where should my file be?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,51 +36,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Aug 2011 17:05:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 30 Aug 2011 18:08:15 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Attendees:
-Paul, Beth, Jessica, Tom,  Scott, Richard, Darren, Denys, Mark, Josh, Matth=
-ew, Dave, Bruce
-=A0
-Minutes:
-=A0
-* Opens collection - 5 min (Song)
-* Yocto 1.1 M4 status review and issues - 20 min (team) https://wiki.yoctop=
-roject.org/wiki/Yocto_Project_v1.1_Release_Criteria#Milestone_=20
-    - Status summary
-       1. We are making good progress on bug fixes. Fixed 10 more bugs last=
- week than the week before. (if we keep this acceleration, we should not ha=
-ve many medium bugs left before RC1). If you look at the bug trend chart, o=
-ur weighted defect density number is pretty close to our lowest point in hi=
-story. So great work, thank you all for your hard work in the past weeks.
-      2. All M4 tasks on schedule are still on track.=20
-      3. ScottR will follow up with Jessica on ADT and HOB videos.     =20
-    - Build status (Beth)
-      * Have some issues with autobuilder master, resolving them. In the pr=
-ocess of upgrading autobuilder infrastructure. Will run autobuilder on both=
- the existing and upgraded infrastructure. Will compare build images this W=
-ednesday, if everything is well, will complete the upgrade this week. New i=
-nfrastructure will improve build performance significantly. =20
-      * Will have autobuilder down time this Thursday.=20
-    - Build performance: We had many new features in Yocto 1.1, which impac=
-ted our build performance.  At this point, there seems nothing we can do fo=
-r this in the 1.1 timeframe. So we don't have any release target for build =
-performance.  Although, Dongxiao has signed up to do some analysis and impr=
-ovement on build performance.
-=A0
-*  Opens
-   1. Paul: supported distros for yocto 1.1
-       - Song will send the list of distros we support to Paul and Scott. (=
-done, also updated the wiki page: https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.1_Release_Criteria#Milestone_4 with this )
-       - We should create a list of distros that the community have tested =
-and include that list in our release document. (Song will talk to Jiajun ab=
-out this)
-       - Beth will add this list in the release check list.=20
-       - Dave will consider adding a new feature for Yocto 1.2: automating =
-distros we test
+On Fri, 2011-08-12 at 00:51 +0100, Chris Tapp wrote:
+> I've got a linux-wrs_git.bbappend file in a layer (under poky laverne  
+> 4.0.1) that contains:
+> 
+> COMPATIBLE_MACHINE_Vortex86DX = "Vortex86DX"
+> WRMACHINE_Vortex86DX  = "common_pc"
+> 
+> FILESEXTRAPATHS := "${THISDIR}/${PN}"
+> 
+> SRC_URI += " file://defconfig"
+> 
+> Where should the defconfig file be relative to the bbappend?
+> 
+> I've tried:
+> 
+> MyLayer
+>        +--- recipies
+>                    +--- linux
+>                             +--- linux-wrs_git.bbappend
+>                             +--- linux-wrs_git
+>                                              +--- defconfig
+> 
+> 
+> However, my defconfig file isn't being picked up during do_unpack:
+> 
+> cp: cannot stat `/home/chris/yocto/yocto-versions/laverne-4.0.1/meta/ 
+> recipes-kernel/linux/files/defconfig': No such file or directory
+> NOTE: Unpacking /home/chris/yocto/yocto-downloads/ 
+> git_git.pokylinux.org.linux-2.6-windriver.git.tar.gz to /home/chris/ 
+> yocto/mbox-3300-build/tmp/work/Vortex86DX-poky-linux/linux- 
+> wrs 
+> -2.6.34 
+> + 
+> git0 
+> + 
+> b67e060194a38c6331da1532bd06446087a42b3b_0 
+> +0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
+> NOTE: Unpacking /home/chris/yocto/yocto-versions/laverne-4.0.1/meta/ 
+> recipes-kernel/linux/files/defconfig to /home/chris/yocto/mbox-3300- 
+> build/tmp/work/Vortex86DX-poky-linux/linux- 
+> wrs 
+> -2.6.34 
+> + 
+> git0 
+> + 
+> b67e060194a38c6331da1532bd06446087a42b3b_0 
+> +0431115c9d720fee5bb105f6a7411efb4f851d26-r12/
+> ERROR: Task failed:
+> 
+> Which seems to show that it's not looking in FILESEXTRAPATHS.
+> 
+> The .bbappend file seems to be processed, as commenting out the  
+> SRC_URI line gets rid of the error.
+> 
+> What have I got wrong?
+
+I've just been looking at the open bug related to this
+(http://bugzilla.yoctoproject.org/show_bug.cgi?id=1379) and I can't
+reproduce an issue with layers ending with -numeric causing a
+problem :/.
+
+In the above example, 
+
+recipies/linux/linux-wrs/defconfig
+
+is the correct path since PN == "linux-wrs". (you had linux-wrs_git).
+Could you check whether the layer numeric part is a red herring please
+and whether the above path works?
+
+Cheers,
+
+Richard
+
 
 
