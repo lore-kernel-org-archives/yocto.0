@@ -1,34 +1,28 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44061E0124B
-	for <yocto@yoctoproject.org>; Mon, 29 Aug 2011 18:04:58 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 29 Aug 2011 18:04:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,299,1312182000"; d="scan'208";a="12300651"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by AZSMGA002.ch.intel.com with ESMTP; 29 Aug 2011 18:04:57 -0700
-Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 29 Aug 2011 18:04:57 -0700
-Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
-	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
-	Mon, 29 Aug 2011 18:04:57 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: "Xu, Jiajun" <jiajun.xu@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Mon, 29 Aug 2011 18:04:55 -0700
-Thread-Topic: Yocto weekly bug trend charts -- WW35
-Thread-Index: Acxl6lf85Z9QMkamT8et36bmP+GJVwAxm2hA
-Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B260BFECDA2@orsmsx501.amr.corp.intel.com>
-References: <D5AB6E638E5A3E4B8F4406B113A5A19A12D735D43D@shsmsx501.ccr.corp.intel.com>
-In-Reply-To: <D5AB6E638E5A3E4B8F4406B113A5A19A12D735D43D@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <eballetbo@gmail.com>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42FE3E0124B
+	for <yocto@yoctoproject.org>; Tue, 30 Aug 2011 02:41:26 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iafi7 with SMTP id i7so2020927iaf.35
+	for <yocto@yoctoproject.org>; Tue, 30 Aug 2011 02:41:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Y3/Kw1FFwdkJErF+FCSKTV/DNTDqUaK5k8v9aEUpkHo=;
+	b=CVkBDFcGJ/KCDSXTIS9Pmt2TfCd1VWznec1LNJtI0zi/I/XbbJHBnd9ovDqQz0b5Kj
+	wh3GreMeL5wRMpl3cYmVPonEV1F+XsM7TUYnLkfeORPyECS1qyB9GmetMUf1MFXc95wr
+	8gLMKsEpBJxfFeSVsir/dN1jqevnvupzMZCVs=
 MIME-Version: 1.0
-Subject: Re: Yocto weekly bug trend charts -- WW35
+Received: by 10.231.55.210 with SMTP id v18mr12750787ibg.26.1314697285044;
+	Tue, 30 Aug 2011 02:41:25 -0700 (PDT)
+Received: by 10.231.54.4 with HTTP; Tue, 30 Aug 2011 02:41:24 -0700 (PDT)
+Date: Tue, 30 Aug 2011 11:41:24 +0200
+Message-ID: <CAFqH_53pVga6ptkRQxdNzztuae0Wd33rixq+BAGCfjGHfjorxA@mail.gmail.com>
+From: =?UTF-8?Q?Enric_Balletb=C3=B2_i_Serra?= <eballetbo@gmail.com>
+To: yocto@yoctoproject.org
+Subject: lttng-ust fails to build in current mainline for beagleboard.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,32 +34,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Aug 2011 01:04:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 30 Aug 2011 09:41:26 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Very cool to see the trend continue in a good direction - thanks everyone f=
-or your hard work - it really counts!!
+Hi all,
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Xu, Jiajun
->Sent: Sunday, August 28, 2011 6:24 PM
->To: yocto@yoctoproject.org
->Subject: [yocto] Yocto weekly bug trend charts -- WW35
->
->Hi all,
->	The overall open bug trend continue to decrease last week. The new-
->submit vs. fixed bug is 35 vs. 40. Open bug number decreased to 136. WDD
->number decreased to 675, which is close to the number of 1.0 release. Bug
->status of WW35 could be found on
->https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
->
->Best Regards,
->Jiajun
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+Seems the package lttng-ust fails to build in current mainline, is
+currently the build for beagleboard broken ?
+
+The log looks like:
+
+ERROR: Function 'do_compile' failed (see
+/home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/temp/log.do_compile.24087
+for further information)
+ERROR: Logfile of failure stored in:
+/home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/temp/log.do_compile.24087
+Log data follows:
+| DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
+'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi',
+'common']
+| NOTE: make -j 4
+| make  all-recursive
+| make[1]: Entering directory
+`/home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/ust-0.15'
+| Making all in snprintf
+| make[2]: Entering directory
+`/home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/ust-0.15/snprintf'
+| /bin/sh ../arm-poky-linux-gnueabi-libtool  --tag=CC   --mode=compile
+arm-poky-linux-gnueabi-gcc  -march=armv7-a -fno-tree-vectorize
+-mthumb-interwork -mfloat-abi=softfp -mfpu=neon -mtune=cortex-a8
+--sysroot=/home/eballetbo/Workspace/yocto/build/tmp/sysroots/igep0020
+-DHAVE_CONFIG_H -I. -I.. -I../include/ust  -I../include
+-I../libustcomm  -DUST_COMPONENT="ust_snprintf" -fPIC
+-fno-strict-aliasing -Wall -O2 -pipe -g -feliminate-unused-debug-types
+-MT libustsnprintf_la-vfprintf.lo -MD -MP -MF
+.deps/libustsnprintf_la-vfprintf.Tpo -c -o
+libustsnprintf_la-vfprintf.lo `test -f 'vfprintf.c' || echo
+'./'`vfprintf.c
+| arm-poky-linux-gnueabi-libtool: compile:  arm-poky-linux-gnueabi-gcc
+-march=armv7-a -fno-tree-vectorize -mthumb-interwork
+-mfloat-abi=softfp -mfpu=neon -mtune=cortex-a8
+--sysroot=/home/eballetbo/Workspace/yocto/build/tmp/sysroots/igep0020
+-DHAVE_CONFIG_H -I. -I.. -I../include/ust -I../include -I../libustcomm
+-DUST_COMPONENT=ust_snprintf -fPIC -fno-strict-aliasing -Wall -O2
+-pipe -g -feliminate-unused-debug-types -MT
+libustsnprintf_la-vfprintf.lo -MD -MP -MF
+.deps/libustsnprintf_la-vfprintf.Tpo -c vfprintf.c  -fPIC -DPIC -o
+.libs/libustsnprintf_la-vfprintf.o
+| vfprintf.c: In function 'ust_safe_vfprintf':
+| vfprintf.c:956:1: error: unrecognizable insn:
+| (insn 3968 3967 3969 145 (set (subreg:SI (reg/v:DI 160 [ _umax ]) 0)
+|         (sign_extend:SI (mem:QI (plus:SI (mult:SI (reg/v:SI 166 [ nextarg ])
+|                         (const_int 8 [0x8]))
+|                     (reg/f:SI 370 [ argtable.7 ])) [0 *D.6937_569+0
+S1 A32]))) vfprintf.c:555 -1
+|      (nil))
+| vfprintf.c:956:1: internal compiler error: in extract_insn, at recog.c:2109
+| Please submit a full bug report,
+| with preprocessed source if appropriate.
+| See <http://gcc.gnu.org/bugs.html> for instructions.
+| make[2]: *** [libustsnprintf_la-vfprintf.lo] Error 1
+| make[2]: Leaving directory
+`/home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/ust-0.15/snprintf'
+| make[1]: *** [all-recursive] Error 1
+| make[1]: Leaving directory
+`/home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/ust-0.15'
+| make: *** [all] Error 2
+| ERROR: oe_runmake failed
+| ERROR: Function 'do_compile' failed (see
+/home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/temp/log.do_compile.24087
+for further information)
+NOTE: package lttng-ust-0.15-r2: task do_compile: Failed
+ERROR: Task 2016
+(/home/eballetbo/Workspace/yocto/meta/recipes-kernel/lttng/lttng-ust_0.15.bb,
+do_compile) failed with exit code '1'
+
+Cheers,
+   Enric
 
