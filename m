@@ -1,34 +1,24 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10303E0071A
-	for <yocto@yoctoproject.org>; Wed, 31 Aug 2011 10:02:32 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 31 Aug 2011 10:02:28 -0700
+Return-Path: <sgw@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0688E0071A
+	for <yocto@yoctoproject.org>; Wed, 31 Aug 2011 11:18:56 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 31 Aug 2011 11:18:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,308,1312182000"; d="scan'208";a="47151063"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by fmsmga002.fm.intel.com with ESMTP; 31 Aug 2011 10:02:28 -0700
-Received: from orsmsx502.amr.corp.intel.com ([10.22.226.210]) by
-	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
-	Wed, 31 Aug 2011 10:02:28 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: "Hart, Darren" <darren.hart@intel.com>
-Date: Wed, 31 Aug 2011 10:02:27 -0700
-Thread-Topic: [yocto] linux-yocto-rt build fail for sugarbay bsp on grub recipe
-Thread-Index: Acxn/3ao1pAHwv0xSnay5so45y3EgwAAA0yw
-Message-ID: <4BD43A85686FC34D819098DB1C3999D9018894C9F5@orsmsx502.amr.corp.intel.com>
-References: <4BD43A85686FC34D819098DB1C3999D9018894C6CA@orsmsx502.amr.corp.intel.com>
-	<1314749498.5939.450.camel@rex> <4E5DA1C6.2040207@intel.com>
-	<4BD43A85686FC34D819098DB1C3999D9018894C9BB@orsmsx502.amr.corp.intel.com>
-	<4E5E68A1.4030404@intel.com>
-In-Reply-To: <4E5E68A1.4030404@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="43856219"
+Received: from unknown (HELO [10.255.14.3]) ([10.255.14.3])
+	by orsmga002.jf.intel.com with ESMTP; 31 Aug 2011 11:18:56 -0700
+Message-ID: <4E5E7B0F.8030901@linux.intel.com>
+Date: Wed, 31 Aug 2011 11:18:55 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:6.0) Gecko/20110816 Thunderbird/6.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: linux-yocto-rt build fail for sugarbay bsp on grub recipe
+To: =?ISO-8859-1?Q?Enric_Balletb=F2_i_Serra?= <eballetbo@gmail.com>
+References: <CAFqH_53pVga6ptkRQxdNzztuae0Wd33rixq+BAGCfjGHfjorxA@mail.gmail.com>
+In-Reply-To: <CAFqH_53pVga6ptkRQxdNzztuae0Wd33rixq+BAGCfjGHfjorxA@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: lttng-ust fails to build in current mainline for beagleboard.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,116 +30,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Aug 2011 17:02:32 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 31 Aug 2011 18:18:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 8bit
 
-No.=20
-First I tried without applying the patch by building freetype and then grub=
- as per your suggestion in the thread. =20
-It built.
+On 08/30/2011 02:41 AM, Enric Balletbò i Serra wrote:
+> Hi all,
+>
+> Seems the package lttng-ust fails to build in current mainline, is
+> currently the build for beagleboard broken ?
+>
+This is a known issue, see
+http://bugzilla.pokylinux.org/show_bug.cgi?id=1381
 
-I will try a fresh build by applying the patch and let you know.
+The problem appears to be an issue in the Compiler.
 
-Thanks
-Kishore.
+Sau!
 
------Original Message-----
-From: Hart, Darren=20
-Sent: Wednesday, August 31, 2011 10:00 AM
-To: Bodke, Kishore K
-Cc: Richard Purdie; yocto@yoctoproject.org
-Subject: Re: [yocto] linux-yocto-rt build fail for sugarbay bsp on grub rec=
-ipe
-
-On 08/31/2011 09:51 AM, Bodke, Kishore K wrote:
-> When I do bitbake freetype followed by bitbake grub , the grub build succ=
-essfully.
->=20
-> Attached is the freetype.log and grub.log.
->=20
-> It fails if I first build the bitbake grub. =20
-
-
-Did you apply the patch I provided?
-
---
-Darren
-
-
->=20
-> Thanks
-> Kishore.
->=20
-> -----Original Message-----
-> From: Hart, Darren=20
-> Sent: Tuesday, August 30, 2011 7:52 PM
-> To: Richard Purdie
-> Cc: Bodke, Kishore K; yocto@yoctoproject.org
-> Subject: Re: [yocto] linux-yocto-rt build fail for sugarbay bsp on grub r=
-ecipe
->=20
-> On 08/30/2011 05:11 PM, Richard Purdie wrote:
->> On Tue, 2011-08-30 at 16:59 -0700, Bodke, Kishore K wrote:
->>> Hello All,
->>>
->>> =20
->>>
->>> I am trying to build linux-yocto with rt kernel for sugarbay bsp and
->>> it fails for the grub recipe.
->>>
->>> =20
->>>
->>> Attached is the build log. =20
->>>
->>> =20
->>>
->>> kishore@kishore-desktop:/usr/local/src/crf/test/buildsugarbayrt$
->>> bitbake -e | egrep "^WARN_QA=3D"
->>>
->>> WARN_QA=3D"dev-so rpaths debug-deps dev-deps debug-files arch la2
->>> pkgconfig desktop la ldflags perms useless-rpaths"
->>>
->>> kishore@kishore-desktop:/usr/local/src/crf/test/buildsugarbayrt$
->>> bitbake -e | egrep "^ERROR_QA=3D"
->>>
->>> kishore@kishore-desktop:/usr/local/src/crf/test/buildsugarbayrt$
->>>
->>> =20
->>>
->>> Please let me know what could be the issue.
->>
->> Could you include the config.log file mentioned in the error report
->> please?
->>
->> This should be somewhere like
->> usr/local/src/crf/test/buildsugarbayrt/tmp/work/x86_64-poky-linux/grub-1=
-.98-r1/*/config.log
->>
->=20
-> I replied with this and a comparison file, but it was rejected due to
-> being over 200k :(.
->=20
-> Short of it is that Kishore's config.log shows it picking up the
-> freetype libs from his host system. The patch I proposed adds a DEPENDS
-> to grub on freetype.
->=20
->> Cheers,
->>
->> Richard
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->=20
->=20
-
-
---=20
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+> The log looks like:
+>
+> ERROR: Function 'do_compile' failed (see
+> /home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/temp/log.do_compile.24087
+> for further information)
+> ERROR: Logfile of failure stored in:
+> /home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/temp/log.do_compile.24087
+> Log data follows:
+> | DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
+> 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi',
+> 'common']
+> | NOTE: make -j 4
+> | make  all-recursive
+> | make[1]: Entering directory
+> `/home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/ust-0.15'
+> | Making all in snprintf
+> | make[2]: Entering directory
+> `/home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/ust-0.15/snprintf'
+> | /bin/sh ../arm-poky-linux-gnueabi-libtool  --tag=CC   --mode=compile
+> arm-poky-linux-gnueabi-gcc  -march=armv7-a -fno-tree-vectorize
+> -mthumb-interwork -mfloat-abi=softfp -mfpu=neon -mtune=cortex-a8
+> --sysroot=/home/eballetbo/Workspace/yocto/build/tmp/sysroots/igep0020
+> -DHAVE_CONFIG_H -I. -I.. -I../include/ust  -I../include
+> -I../libustcomm  -DUST_COMPONENT="ust_snprintf" -fPIC
+> -fno-strict-aliasing -Wall -O2 -pipe -g -feliminate-unused-debug-types
+> -MT libustsnprintf_la-vfprintf.lo -MD -MP -MF
+> .deps/libustsnprintf_la-vfprintf.Tpo -c -o
+> libustsnprintf_la-vfprintf.lo `test -f 'vfprintf.c' || echo
+> './'`vfprintf.c
+> | arm-poky-linux-gnueabi-libtool: compile:  arm-poky-linux-gnueabi-gcc
+> -march=armv7-a -fno-tree-vectorize -mthumb-interwork
+> -mfloat-abi=softfp -mfpu=neon -mtune=cortex-a8
+> --sysroot=/home/eballetbo/Workspace/yocto/build/tmp/sysroots/igep0020
+> -DHAVE_CONFIG_H -I. -I.. -I../include/ust -I../include -I../libustcomm
+> -DUST_COMPONENT=ust_snprintf -fPIC -fno-strict-aliasing -Wall -O2
+> -pipe -g -feliminate-unused-debug-types -MT
+> libustsnprintf_la-vfprintf.lo -MD -MP -MF
+> .deps/libustsnprintf_la-vfprintf.Tpo -c vfprintf.c  -fPIC -DPIC -o
+> .libs/libustsnprintf_la-vfprintf.o
+> | vfprintf.c: In function 'ust_safe_vfprintf':
+> | vfprintf.c:956:1: error: unrecognizable insn:
+> | (insn 3968 3967 3969 145 (set (subreg:SI (reg/v:DI 160 [ _umax ]) 0)
+> |         (sign_extend:SI (mem:QI (plus:SI (mult:SI (reg/v:SI 166 [ nextarg ])
+> |                         (const_int 8 [0x8]))
+> |                     (reg/f:SI 370 [ argtable.7 ])) [0 *D.6937_569+0
+> S1 A32]))) vfprintf.c:555 -1
+> |      (nil))
+> | vfprintf.c:956:1: internal compiler error: in extract_insn, at recog.c:2109
+> | Please submit a full bug report,
+> | with preprocessed source if appropriate.
+> | See<http://gcc.gnu.org/bugs.html>  for instructions.
+> | make[2]: *** [libustsnprintf_la-vfprintf.lo] Error 1
+> | make[2]: Leaving directory
+> `/home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/ust-0.15/snprintf'
+> | make[1]: *** [all-recursive] Error 1
+> | make[1]: Leaving directory
+> `/home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/ust-0.15'
+> | make: *** [all] Error 2
+> | ERROR: oe_runmake failed
+> | ERROR: Function 'do_compile' failed (see
+> /home/eballetbo/Workspace/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/lttng-ust-0.15-r2/temp/log.do_compile.24087
+> for further information)
+> NOTE: package lttng-ust-0.15-r2: task do_compile: Failed
+> ERROR: Task 2016
+> (/home/eballetbo/Workspace/yocto/meta/recipes-kernel/lttng/lttng-ust_0.15.bb,
+> do_compile) failed with exit code '1'
+>
+> Cheers,
+>     Enric
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
