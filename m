@@ -1,32 +1,32 @@
 Return-Path: <rahul.saxena@intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3290E01260
-	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 13:41:50 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77727E01264
+	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 13:41:55 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 01 Sep 2011 13:41:50 -0700
+	by azsmga101.ch.intel.com with ESMTP; 01 Sep 2011 13:41:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,315,1312182000"; d="scan'208,217";a="44818978"
+X-IronPort-AV: E=Sophos;i="4.68,315,1312182000"; d="scan'208,217";a="44819015"
 Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by azsmga001.ch.intel.com with ESMTP; 01 Sep 2011 13:41:50 -0700
-Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
+	by azsmga001.ch.intel.com with ESMTP; 01 Sep 2011 13:41:55 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
 	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 1 Sep 2011 13:41:50 -0700
+	(TLS) id 8.2.255.0; Thu, 1 Sep 2011 13:41:55 -0700
 Received: from orsmsx505.amr.corp.intel.com ([10.22.226.208]) by
-	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi; Thu, 1 Sep 2011
-	13:41:49 -0700
+	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
+	Thu, 1 Sep 2011 13:41:54 -0700
 From: "Saxena, Rahul" <rahul.saxena@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 1 Sep 2011 13:41:48 -0700
-Thread-Topic: [PATCH 1/2] [KERNEL] Removed duplicate statement
-Thread-Index: Acxo55JRYd//ZmJNTHyladlpmUt6xw==
-Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E1E5AF0@orsmsx505.amr.corp.intel.com>
+Date: Thu, 1 Sep 2011 13:41:53 -0700
+Thread-Topic: [PATCH 2/2] [KERNEL] Removed unused cfg file
+Thread-Index: Acxo55Ta+FrG9VjXQGG+h4labpsP5g==
+Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E1E5AF1@orsmsx505.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
 Cc: Bruce Ashfield <bruce.ashfield@gmail.com>
-Subject: [PATCH 1/2] [KERNEL] Removed duplicate statement
+Subject: [PATCH 2/2] [KERNEL] Removed unused cfg file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,37 +38,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Sep 2011 20:41:51 -0000
+X-List-Received-Date: Thu, 01 Sep 2011 20:41:55 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AF0orsmsx505amrc_"
+	boundary="_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AF1orsmsx505amrc_"
 
---_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AF0orsmsx505amrc_
+--_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AF1orsmsx505amrc_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Removed duplicate statement
-
+Removed unused cfg file
 ---
- meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc |    1 -
- 1 files changed, 0 insertions(+), 1 deletions(-)
+ meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg |   39 ---------------------=
+----
+ 1 files changed, 0 insertions(+), 39 deletions(-)
+ delete mode 100644 meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg
 
-diff --git a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc b/meta/cfg/k=
-ernel-cache/bsp/fishriver/fishriver.scc
-index 0abde0d..6e3d385 100644
---- a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
-+++ b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
-@@ -1,5 +1,4 @@
- kconf hardware fishriver.cfg
--kconf hardware fishriver.cfg
-
- git merge yocto/emgd
-
+diff --git a/meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg b/meta/cfg/kerne=
+l-cache/bsp/fishriver/eg20t.cfg
+deleted file mode 100644
+index 225581c..0000000
+--- a/meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg
++++ /dev/null
+@@ -1,39 +0,0 @@
+-# Hardware support for the Platform Controller Hub EG20T
+-
+-CONFIG_PCH_DMA=3Dy
+-CONFIG_PCH_UART_DMA=3Dy
+-CONFIG_SERIAL_8250_PCI=3Dy
+-CONFIG_SERIAL_8250_PCH=3Dy
+-CONFIG_SERIAL_8250_PCH_DMA=3Dy
+-
+-CONFIG_SERIAL_PCH_UART=3Dy
+-CONFIG_SERIAL_CORE=3Dy
+-
+-CONFIG_SPI=3Dy
+-CONFIG_SPI_BITBANG=3Dy
+-CONFIG_SPI_GPIO=3Dy
+-CONFIG_SPI_TOPCLIFF_PCH=3Dy
+-
+-CONFIG_MISC_DEVICES=3Dy
+-CONFIG_PCH_PHUB=3Dy
+-
+-CONFIG_NETDEVICES=3Dy
+-CONFIG_NETDEV_1000=3Dy
+-CONFIG_PCH_GBE=3Dy
+-
+-CONFIG_PCH_USBDEV=3Dy
+-CONFIG_USB_GADGET=3Dy
+-CONFIG_USB_GADGET_EG20T=3Dy
+-CONFIG_USB_GADGET_DUALSPEED=3Dy
+-CONFIG_USB_GADGET_SELECTED=3Dy
+-
+-CONFIG_I2C_EG20T=3Dy
+-
+-CONFIG_GPIOLIB=3Dy
+-CONFIG_GPIO_PCH=3Dy
+-
+-CONFIG_PCH_IEEE1588=3Dy
+-
+-CONFIG_CAN=3Dy
+-CONFIG_CAN_DEV=3Dy
+-CONFIG_PCH_CAN=3Dy
 --
 1.7.0.4
 
 
---_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AF0orsmsx505amrc_
+--_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AF1orsmsx505amrc_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -162,44 +198,114 @@ div.WordSection1
 
 <div class=3DWordSection1>
 
-<p class=3DMsoNormal>Removed duplicate statement<o:p></o:p></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+<p class=3DMsoNormal>Removed unused cfg file<o:p></o:p></p>
 
 <p class=3DMsoNormal>---<o:p></o:p></p>
 
-<p class=3DMsoNormal>&nbsp;meta/cfg/kernel-cache/bsp/fishriver/fishriver.sc=
-c
-|&nbsp;&nbsp;&nbsp; 1 -<o:p></o:p></p>
+<p class=3DMsoNormal>&nbsp;meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg
+|&nbsp;&nbsp; 39 -------------------------<o:p></o:p></p>
 
-<p class=3DMsoNormal>&nbsp;1 files changed, 0 insertions(+), 1 deletions(-)=
-<o:p></o:p></p>
+<p class=3DMsoNormal>&nbsp;1 files changed, 0 insertions(+), 39 deletions(-=
+)<o:p></o:p></p>
+
+<p class=3DMsoNormal>&nbsp;delete mode 100644
+meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg<o:p></o:p></p>
 
 <p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=3DMsoNormal>diff --git a/meta/cfg/kernel-cache/bsp/fishriver/fishr=
-iver.scc
-b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc<o:p></o:p></p>
+<p class=3DMsoNormal>diff --git a/meta/cfg/kernel-cache/bsp/fishriver/eg20t=
+.cfg
+b/meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg<o:p></o:p></p>
 
-<p class=3DMsoNormal>index 0abde0d..6e3d385 100644<o:p></o:p></p>
+<p class=3DMsoNormal>deleted file mode 100644<o:p></o:p></p>
 
-<p class=3DMsoNormal>--- a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.sc=
-c<o:p></o:p></p>
+<p class=3DMsoNormal>index 225581c..0000000<o:p></o:p></p>
 
-<p class=3DMsoNormal>+++ b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.sc=
-c<o:p></o:p></p>
+<p class=3DMsoNormal>--- a/meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg<o:=
+p></o:p></p>
 
-<p class=3DMsoNormal>@@ -1,5 +1,4 @@<o:p></o:p></p>
+<p class=3DMsoNormal>+++ /dev/null<o:p></o:p></p>
 
-<p class=3DMsoNormal>&nbsp;kconf hardware fishriver.cfg<o:p></o:p></p>
+<p class=3DMsoNormal>@@ -1,39 +0,0 @@<o:p></o:p></p>
 
-<p class=3DMsoNormal>-kconf hardware fishriver.cfg<o:p></o:p></p>
+<p class=3DMsoNormal>-# Hardware support for the Platform Controller Hub EG=
+20T<o:p></o:p></p>
 
-<p class=3DMsoNormal>&nbsp;<o:p></o:p></p>
+<p class=3DMsoNormal>-<o:p></o:p></p>
 
-<p class=3DMsoNormal>&nbsp;git merge yocto/emgd<o:p></o:p></p>
+<p class=3DMsoNormal>-CONFIG_PCH_DMA=3Dy<o:p></o:p></p>
 
-<p class=3DMsoNormal>&nbsp;<o:p></o:p></p>
+<p class=3DMsoNormal>-CONFIG_PCH_UART_DMA=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_SERIAL_8250_PCI=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_SERIAL_8250_PCH=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_SERIAL_8250_PCH_DMA=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_SERIAL_PCH_UART=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_SERIAL_CORE=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_SPI=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_SPI_BITBANG=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_SPI_GPIO=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_SPI_TOPCLIFF_PCH=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>- <o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_MISC_DEVICES=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_PCH_PHUB=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_NETDEVICES=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_NETDEV_1000=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_PCH_GBE=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_PCH_USBDEV=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_USB_GADGET=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_USB_GADGET_EG20T=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_USB_GADGET_DUALSPEED=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_USB_GADGET_SELECTED=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_I2C_EG20T=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_GPIOLIB=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_GPIO_PCH=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_PCH_IEEE1588=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_CAN=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_CAN_DEV=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-CONFIG_PCH_CAN=3Dy<o:p></o:p></p>
 
 <p class=3DMsoNormal>-- <o:p></o:p></p>
 
@@ -213,4 +319,4 @@ c<o:p></o:p></p>
 
 </html>
 
---_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AF0orsmsx505amrc_--
+--_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AF1orsmsx505amrc_--
