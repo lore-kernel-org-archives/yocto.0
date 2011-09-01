@@ -1,25 +1,23 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D152E0122C
-	for <yocto@yoctoproject.org>; Wed, 31 Aug 2011 21:19:26 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 31 Aug 2011 21:19:25 -0700
+Return-Path: <sgw@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CED1AE01211
+	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 10:20:06 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 01 Sep 2011 10:19:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,311,1312182000"; d="scan'208";a="13084002"
-Received: from unknown (HELO [10.255.14.33]) ([10.255.14.33])
-	by AZSMGA002.ch.intel.com with ESMTP; 31 Aug 2011 21:19:24 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-In-Reply-To: <4BD43A85686FC34D819098DB1C3999D901889D799F@orsmsx502.amr.corp.intel.com>
-References: <4BD43A85686FC34D819098DB1C3999D901889D799F@orsmsx502.amr.corp.intel.com>
-Date: Wed, 31 Aug 2011 23:19:20 -0500
-Message-ID: <1314850760.10191.3.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>, "Hart,
-	Darren" <darren.hart@intel.com>
-Subject: Re: RT kernel with core-image-sato build failed for sugarbay
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="44445619"
+Received: from unknown (HELO [10.255.14.3]) ([10.255.14.3])
+	by orsmga001.jf.intel.com with ESMTP; 01 Sep 2011 10:19:49 -0700
+Message-ID: <4E5FBEB5.8080407@linux.intel.com>
+Date: Thu, 01 Sep 2011 10:19:49 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:6.0) Gecko/20110816 Thunderbird/6.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <24a30eaf49c25c0b5d8b5d7405691c6c1b67588d.1314844442.git.dvhart@linux.intel.com>
+In-Reply-To: <24a30eaf49c25c0b5d8b5d7405691c6c1b67588d.1314844442.git.dvhart@linux.intel.com>
+Subject: Re: [PATCH][meta-intel] grub: remove the dependency on freetype, disable grub-mkfont
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,50 +29,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Sep 2011 04:19:26 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 01 Sep 2011 17:20:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
-On Wed, 2011-08-31 at 16:49 -0700, Bodke, Kishore K wrote:
-> Hi,
-> 
->  
-> 
-> I am trying to build core-image-sato with rt kernel for sugarbay and
-> it fails for the do_rootfs .
-> 
+Seeing this change reminded me that we really should move grub_1.98 to 
+oe-core, is there any objection to this?  Any reason this should not be 
+part of oe-core to support general x86_64 machines?
 
-FWIW, I was able to build and boot core-image-sato with the rt kernel:
-
-Linux sugarbay 3.0.3-rt8-yocto-preempt-rt+ #1 SMP PREEMPT RT Wed Aug 31
-21:33:27 CDT 2011 x86_64 GNU/Linux
-
-using the following commits:
-
-poky/master 705ec50edda7f7fb8c132238fe3f1477384a470e
-meta/intel 902d2f3c919cd1d870dc8d35a7521cbba42e53ea
-
-Actually, meta/intel was that commit with Darren's grub patch on top
-(meta-intel/dvhart/grub-freetype).
-
-Tom
-
->  
-> 
-> Attached is the build log.
-> 
->  
-> 
-> Could you please let me know what went wrong?
-> 
->  
-> 
-> Thanks
-> 
-> Kishore.
-> 
-> 
+Sau!
 
 
+On 08/31/2011 07:34 PM, Darren Hart wrote:
+> Grub's configure task was picking up the host freetype libraries if
+> bitbake hadn't gotten around building freetype yet. We could add a
+> dependency on freetype, but it's only used for the optional grub-mkfont
+> utility which we don't really need.
+>
+> Disable grub-mkfont via EXTRA_OECONF, removing the dependency on freetype.
+>
+> Testing: core-image-minimal build and install on sugarbay.
+>
+> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
+> Tested-by: Tom Zanussi<tom.zanussi@intel.com>
+> ---
+>   common/recipes-bsp/grub/grub_1.98.bb |    2 +-
+>   1 files changed, 1 insertions(+), 1 deletions(-)
+>
+> diff --git a/common/recipes-bsp/grub/grub_1.98.bb b/common/recipes-bsp/grub/grub_1.98.bb
+> index 0cd3a40..802733f 100644
+> --- a/common/recipes-bsp/grub/grub_1.98.bb
+> +++ b/common/recipes-bsp/grub/grub_1.98.bb
+> @@ -24,7 +24,7 @@ SRC_URI = "ftp://alpha.gnu.org/gnu/grub/grub-${PV}.tar.gz \
+>   inherit autotools
+>   inherit gettext
+>
+> -EXTRA_OECONF = "--with-platform=pc --target=i386"
+> +EXTRA_OECONF = "--with-platform=pc --target=i386 --disable-grub-mkfont"
+>
+>   do_configure() {
+>       oe_runconf
 
