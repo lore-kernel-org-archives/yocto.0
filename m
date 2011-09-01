@@ -1,33 +1,32 @@
 Return-Path: <rahul.saxena@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7AE2E0071A
-	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 13:41:46 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 01 Sep 2011 13:41:46 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3290E01260
+	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 13:41:50 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 01 Sep 2011 13:41:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,315,1312182000"; d="scan'208,217";a="13315498"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by AZSMGA002.ch.intel.com with ESMTP; 01 Sep 2011 13:41:46 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 1 Sep 2011 13:41:45 -0700
+X-IronPort-AV: E=Sophos;i="4.68,315,1312182000"; d="scan'208,217";a="44818978"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by azsmga001.ch.intel.com with ESMTP; 01 Sep 2011 13:41:50 -0700
+Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 1 Sep 2011 13:41:50 -0700
 Received: from orsmsx505.amr.corp.intel.com ([10.22.226.208]) by
-	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
-	Thu, 1 Sep 2011 13:41:45 -0700
+	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi; Thu, 1 Sep 2011
+	13:41:49 -0700
 From: "Saxena, Rahul" <rahul.saxena@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 1 Sep 2011 13:41:44 -0700
-Thread-Topic: [PATCH 0/2] [KERNEL] Cover letter for the delete duplicate
-	statement and delete unused cfg fragment patches
-Thread-Index: Acxo54/yMT71zgyiSbOmEHlNYB7j4g==
-Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E1E5AEF@orsmsx505.amr.corp.intel.com>
+Date: Thu, 1 Sep 2011 13:41:48 -0700
+Thread-Topic: [PATCH 1/2] [KERNEL] Removed duplicate statement
+Thread-Index: Acxo55JRYd//ZmJNTHyladlpmUt6xw==
+Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E1E5AF0@orsmsx505.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
 Cc: Bruce Ashfield <bruce.ashfield@gmail.com>
-Subject: [PATCH 0/2] [KERNEL] Cover letter for the delete duplicate statement and delete unused cfg fragment patches
+Subject: [PATCH 1/2] [KERNEL] Removed duplicate statement
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,30 +38,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Sep 2011 20:41:47 -0000
+X-List-Received-Date: Thu, 01 Sep 2011 20:41:51 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AEForsmsx505amrc_"
+	boundary="_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AF0orsmsx505amrc_"
 
---_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AEForsmsx505amrc_
+--_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AF0orsmsx505amrc_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+Removed duplicate statement
 
-Cover letter for the delete duplicate statement and delete unused cfg fragm=
-ent patches
-
-Rahul Saxena (2):
-  Removed duplicate statement
-  Removed unused cfg file
-
- meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg     |   39 -----------------=
-----
+---
  meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc |    1 -
- 2 files changed, 0 insertions(+), 40 deletions(-)
- delete mode 100644 meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg
+ 1 files changed, 0 insertions(+), 1 deletions(-)
 
---_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AEForsmsx505amrc_
+diff --git a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc b/meta/cfg/k=
+ernel-cache/bsp/fishriver/fishriver.scc
+index 0abde0d..6e3d385 100644
+--- a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
++++ b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
+@@ -1,5 +1,4 @@
+ kconf hardware fishriver.cfg
+-kconf hardware fishriver.cfg
+
+ git merge yocto/emgd
+
+--
+1.7.0.4
+
+
+--_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AF0orsmsx505amrc_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -156,35 +162,50 @@ div.WordSection1
 
 <div class=3DWordSection1>
 
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal>Cover letter for the delete duplicate statement and de=
-lete
-unused cfg fragment patches<o:p></o:p></p>
+<p class=3DMsoNormal>Removed duplicate statement<o:p></o:p></p>
 
 <p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=3DMsoNormal>Rahul Saxena (2):<o:p></o:p></p>
-
-<p class=3DMsoNormal>&nbsp; Removed duplicate statement<o:p></o:p></p>
-
-<p class=3DMsoNormal>&nbsp; Removed unused cfg file<o:p></o:p></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal>&nbsp;meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg&nb=
-sp;&nbsp;&nbsp;&nbsp;
-|&nbsp;&nbsp; 39 ---------------------<o:p></o:p></p>
+<p class=3DMsoNormal>---<o:p></o:p></p>
 
 <p class=3DMsoNormal>&nbsp;meta/cfg/kernel-cache/bsp/fishriver/fishriver.sc=
 c
 |&nbsp;&nbsp;&nbsp; 1 -<o:p></o:p></p>
 
-<p class=3DMsoNormal>&nbsp;2 files changed, 0 insertions(+), 40 deletions(-=
-)<o:p></o:p></p>
+<p class=3DMsoNormal>&nbsp;1 files changed, 0 insertions(+), 1 deletions(-)=
+<o:p></o:p></p>
 
-<p class=3DMsoNormal>&nbsp;delete mode 100644
-meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg<o:p></o:p></p>
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>diff --git a/meta/cfg/kernel-cache/bsp/fishriver/fishr=
+iver.scc
+b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc<o:p></o:p></p>
+
+<p class=3DMsoNormal>index 0abde0d..6e3d385 100644<o:p></o:p></p>
+
+<p class=3DMsoNormal>--- a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.sc=
+c<o:p></o:p></p>
+
+<p class=3DMsoNormal>+++ b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.sc=
+c<o:p></o:p></p>
+
+<p class=3DMsoNormal>@@ -1,5 +1,4 @@<o:p></o:p></p>
+
+<p class=3DMsoNormal>&nbsp;kconf hardware fishriver.cfg<o:p></o:p></p>
+
+<p class=3DMsoNormal>-kconf hardware fishriver.cfg<o:p></o:p></p>
+
+<p class=3DMsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=3DMsoNormal>&nbsp;git merge yocto/emgd<o:p></o:p></p>
+
+<p class=3DMsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=3DMsoNormal>-- <o:p></o:p></p>
+
+<p class=3DMsoNormal>1.7.0.4<o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
 </div>
 
@@ -192,4 +213,4 @@ meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg<o:p></o:p></p>
 
 </html>
 
---_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AEForsmsx505amrc_--
+--_000_4FF5AC937153B0459463C1A88EB478F2012E1E5AF0orsmsx505amrc_--
