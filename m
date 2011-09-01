@@ -1,26 +1,28 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A59FE0071A
-	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 14:03:33 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p81L3SQW011846
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 1 Sep 2011 14:03:28 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.21.218) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Thu, 1 Sep 2011 14:03:28 -0700
-Message-ID: <4E5FF31E.3080906@windriver.com>
-Date: Thu, 1 Sep 2011 17:03:26 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.21) Gecko/20110830 Thunderbird/3.1.13
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F1B8E0071A
+	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 14:07:32 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 01 Sep 2011 14:07:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,315,1312182000"; d="scan'208";a="47740979"
+Received: from unknown (HELO envy.home) ([10.255.14.97])
+	by fmsmga002.fm.intel.com with ESMTP; 01 Sep 2011 14:07:31 -0700
+Message-ID: <4E5FF413.1090205@linux.intel.com>
+Date: Thu, 01 Sep 2011 14:07:31 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:6.0) Gecko/20110816 Thunderbird/6.0
 MIME-Version: 1.0
-To: "Saxena, Rahul" <rahul.saxena@intel.com>
-References: <4FF5AC937153B0459463C1A88EB478F2012E1E5AEF@orsmsx505.amr.corp.intel.com>
-In-Reply-To: <4FF5AC937153B0459463C1A88EB478F2012E1E5AEF@orsmsx505.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Bruce Ashfield <bruce.ashfield@gmail.com>
-Subject: Re: [PATCH 0/2] [KERNEL] Cover letter for the delete duplicate statement and delete unused cfg fragment patches
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+References: <4BD43A85686FC34D819098DB1C3999D901889D799F@orsmsx502.amr.corp.intel.com>
+	<1314850760.10191.3.camel@elmorro>
+	<4E5FF19D.6000409@linux.intel.com>
+	<4BD43A85686FC34D819098DB1C3999D901889D7F2E@orsmsx502.amr.corp.intel.com>
+In-Reply-To: <4BD43A85686FC34D819098DB1C3999D901889D7F2E@orsmsx502.amr.corp.intel.com>
+Cc: "Hart, Darren" <darren.hart@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: RT kernel with core-image-sato build failed for sugarbay
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,39 +34,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Sep 2011 21:03:33 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Thu, 01 Sep 2011 21:07:32 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11-09-01 4:41 PM, Saxena, Rahul wrote:
-> Cover letter for the delete duplicate statement and delete unused cfg
-> fragment patches
->
+On 09/01/2011 02:01 PM, Bodke, Kishore K wrote:
+> Clean build with the below TOM's two commit IDs worked for me, if I
+> do not add IMAGE_INSTALL += "rttests" for sugarbay.
+> 
+> It failed if I add the IMAGE_INSTALL += "rttests"
 
-Thanks. These look good. I'm preparing a pull request right now, so I'll
-merge these and include them in that update.
+Do you get the same error? If so, it's starting to sound like the second
+build is what fails since neither of your failure scenarios include
+a change that's related to the failure. Perhaps an issue with sstate...
 
-Bruce
+--
+Darren
 
-> Rahul Saxena (2):
->
-> Removed duplicate statement
->
-> Removed unused cfg file
->
-> meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg | 39 ---------------------
->
-> meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc | 1 -
->
-> 2 files changed, 0 insertions(+), 40 deletions(-)
->
-> delete mode 100644 meta/cfg/kernel-cache/bsp/fishriver/eg20t.cfg
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> 
+> Thanks Kishore. -----Original Message----- From: Darren Hart
+> [mailto:dvhart@linux.intel.com] Sent: Thursday, September 01, 2011
+> 1:57 PM To: Zanussi, Tom Cc: Bodke, Kishore K;
+> yocto@yoctoproject.org; Hart, Darren; Saxena, Rahul Subject: Re: RT
+> kernel with core-image-sato build failed for sugarbay
+> 
+> 
+> 
+> On 08/31/2011 09:19 PM, Tom Zanussi wrote:
+>> 
+>> On Wed, 2011-08-31 at 16:49 -0700, Bodke, Kishore K wrote:
+>>> Hi,
+>>> 
+>>> 
+>>> 
+>>> I am trying to build core-image-sato with rt kernel for sugarbay
+>>> and it fails for the do_rootfs .
+>>> 
+>> 
+>> FWIW, I was able to build and boot core-image-sato with the rt
+>> kernel:
+>> 
+>> Linux sugarbay 3.0.3-rt8-yocto-preempt-rt+ #1 SMP PREEMPT RT Wed
+>> Aug 31 21:33:27 CDT 2011 x86_64 GNU/Linux
+>> 
+>> using the following commits:
+>> 
+>> poky/master 705ec50edda7f7fb8c132238fe3f1477384a470e meta/intel
+>> 902d2f3c919cd1d870dc8d35a7521cbba42e53ea
+>> 
+>> Actually, meta/intel was that commit with Darren's grub patch on
+>> top (meta-intel/dvhart/grub-freetype).
+>> 
+> 
+> Kishore, would you try with a clean build and see if this works for
+> you?
+> 
+> I'm going to try and build first without -rt and then with rt and see
+> if I can reproduce the issue.
+> 
+> Thanks,
+> 
+> Darren
+> 
+>> Tom
+>> 
+>>> 
+>>> 
+>>> Attached is the build log.
+>>> 
+>>> 
+>>> 
+>>> Could you please let me know what went wrong?
+>>> 
+>>> 
+>>> 
+>>> Thanks
+>>> 
+>>> Kishore.
+>>> 
+>>> 
+>> 
+>> 
+> 
 
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
