@@ -1,24 +1,26 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A71DE0071A
-	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 13:55:32 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 921CEE0071A
+	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 13:57:03 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 01 Sep 2011 13:55:32 -0700
+	by azsmga102.ch.intel.com with ESMTP; 01 Sep 2011 13:57:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,315,1312182000"; d="scan'208";a="13319820"
+X-IronPort-AV: E=Sophos;i="4.68,315,1312182000"; d="scan'208";a="13320148"
 Received: from unknown (HELO envy.home) ([10.255.14.97])
-	by AZSMGA002.ch.intel.com with ESMTP; 01 Sep 2011 13:55:31 -0700
-Message-ID: <4E5FF143.9010007@linux.intel.com>
-Date: Thu, 01 Sep 2011 13:55:31 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 01 Sep 2011 13:57:01 -0700
+Message-ID: <4E5FF19D.6000409@linux.intel.com>
+Date: Thu, 01 Sep 2011 13:57:01 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:6.0) Gecko/20110816 Thunderbird/6.0
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <24a30eaf49c25c0b5d8b5d7405691c6c1b67588d.1314844442.git.dvhart@linux.intel.com>
-In-Reply-To: <24a30eaf49c25c0b5d8b5d7405691c6c1b67588d.1314844442.git.dvhart@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH][meta-intel] grub: remove the dependency on freetype, disable grub-mkfont
+To: Tom Zanussi <tom.zanussi@intel.com>
+References: <4BD43A85686FC34D819098DB1C3999D901889D799F@orsmsx502.amr.corp.intel.com>
+	<1314850760.10191.3.camel@elmorro>
+In-Reply-To: <1314850760.10191.3.camel@elmorro>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
+	Darren" <darren.hart@intel.com>
+Subject: Re: RT kernel with core-image-sato build failed for sugarbay
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,43 +32,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Sep 2011 20:55:32 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 01 Sep 2011 20:57:03 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
 
-On 08/31/2011 07:34 PM, Darren Hart wrote:
-> Grub's configure task was picking up the host freetype libraries if
-> bitbake hadn't gotten around building freetype yet. We could add a
-> dependency on freetype, but it's only used for the optional grub-mkfont
-> utility which we don't really need.
+On 08/31/2011 09:19 PM, Tom Zanussi wrote:
 > 
-> Disable grub-mkfont via EXTRA_OECONF, removing the dependency on freetype.
+> On Wed, 2011-08-31 at 16:49 -0700, Bodke, Kishore K wrote:
+>> Hi,
+>>
+>>  
+>>
+>> I am trying to build core-image-sato with rt kernel for sugarbay and
+>> it fails for the do_rootfs .
+>>
 > 
-> Testing: core-image-minimal build and install on sugarbay.
+> FWIW, I was able to build and boot core-image-sato with the rt kernel:
 > 
-> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
-> Tested-by: Tom Zanussi <tom.zanussi@intel.com>
-> ---
->  common/recipes-bsp/grub/grub_1.98.bb |    2 +-
->  1 files changed, 1 insertions(+), 1 deletions(-)
+> Linux sugarbay 3.0.3-rt8-yocto-preempt-rt+ #1 SMP PREEMPT RT Wed Aug 31
+> 21:33:27 CDT 2011 x86_64 GNU/Linux
 > 
-> diff --git a/common/recipes-bsp/grub/grub_1.98.bb b/common/recipes-bsp/grub/grub_1.98.bb
-> index 0cd3a40..802733f 100644
-> --- a/common/recipes-bsp/grub/grub_1.98.bb
-> +++ b/common/recipes-bsp/grub/grub_1.98.bb
-> @@ -24,7 +24,7 @@ SRC_URI = "ftp://alpha.gnu.org/gnu/grub/grub-${PV}.tar.gz \
->  inherit autotools
->  inherit gettext
->  
-> -EXTRA_OECONF = "--with-platform=pc --target=i386"
-> +EXTRA_OECONF = "--with-platform=pc --target=i386 --disable-grub-mkfont"
->  
->  do_configure() {
->      oe_runconf
+> using the following commits:
+> 
+> poky/master 705ec50edda7f7fb8c132238fe3f1477384a470e
+> meta/intel 902d2f3c919cd1d870dc8d35a7521cbba42e53ea
+> 
+> Actually, meta/intel was that commit with Darren's grub patch on top
+> (meta-intel/dvhart/grub-freetype).
+> 
 
-Merged to meta-intel:master.
+Kishore, would you try with a clean build and see if this works for you?
+
+I'm going to try and build first without -rt and then with rt and see if
+I can reproduce the issue.
+
+Thanks,
+
+Darren
+
+> Tom
+> 
+>>  
+>>
+>> Attached is the build log.
+>>
+>>  
+>>
+>> Could you please let me know what went wrong?
+>>
+>>  
+>>
+>> Thanks
+>>
+>> Kishore.
+>>
+>>
+> 
+> 
 
 -- 
 Darren Hart
