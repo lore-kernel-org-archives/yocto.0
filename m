@@ -1,23 +1,34 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 921CEE0071A
-	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 13:57:03 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 01 Sep 2011 13:57:03 -0700
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D144E0071A
+	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 14:01:52 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 01 Sep 2011 14:01:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,315,1312182000"; d="scan'208";a="13320148"
-Received: from unknown (HELO envy.home) ([10.255.14.97])
-	by AZSMGA002.ch.intel.com with ESMTP; 01 Sep 2011 13:57:01 -0700
-Message-ID: <4E5FF19D.6000409@linux.intel.com>
-Date: Thu, 01 Sep 2011 13:57:01 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:6.0) Gecko/20110816 Thunderbird/6.0
-MIME-Version: 1.0
-To: Tom Zanussi <tom.zanussi@intel.com>
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="44272787"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga002.jf.intel.com with ESMTP; 01 Sep 2011 14:01:51 -0700
+Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 1 Sep 2011 14:01:51 -0700
+Received: from orsmsx502.amr.corp.intel.com ([10.22.226.210]) by
+	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi; Thu, 1 Sep 2011
+	14:01:51 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>, "Zanussi, Tom"
+	<tom.zanussi@intel.com>
+Date: Thu, 1 Sep 2011 14:01:47 -0700
+Thread-Topic: RT kernel with core-image-sato build failed for sugarbay
+Thread-Index: Acxo6bWN73LaWavjStyLFPFBGWYNtAAACEFw
+Message-ID: <4BD43A85686FC34D819098DB1C3999D901889D7F2E@orsmsx502.amr.corp.intel.com>
 References: <4BD43A85686FC34D819098DB1C3999D901889D799F@orsmsx502.amr.corp.intel.com>
-	<1314850760.10191.3.camel@elmorro>
-In-Reply-To: <1314850760.10191.3.camel@elmorro>
+	<1314850760.10191.3.camel@elmorro> <4E5FF19D.6000409@linux.intel.com>
+In-Reply-To: <4E5FF19D.6000409@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
 	Darren" <darren.hart@intel.com>
 Subject: Re: RT kernel with core-image-sato build failed for sugarbay
@@ -32,68 +43,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Sep 2011 20:57:03 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 01 Sep 2011 21:01:52 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-
-
-On 08/31/2011 09:19 PM, Tom Zanussi wrote:
-> 
-> On Wed, 2011-08-31 at 16:49 -0700, Bodke, Kishore K wrote:
->> Hi,
->>
->>  
->>
->> I am trying to build core-image-sato with rt kernel for sugarbay and
->> it fails for the do_rootfs .
->>
-> 
-> FWIW, I was able to build and boot core-image-sato with the rt kernel:
-> 
-> Linux sugarbay 3.0.3-rt8-yocto-preempt-rt+ #1 SMP PREEMPT RT Wed Aug 31
-> 21:33:27 CDT 2011 x86_64 GNU/Linux
-> 
-> using the following commits:
-> 
-> poky/master 705ec50edda7f7fb8c132238fe3f1477384a470e
-> meta/intel 902d2f3c919cd1d870dc8d35a7521cbba42e53ea
-> 
-> Actually, meta/intel was that commit with Darren's grub patch on top
-> (meta-intel/dvhart/grub-freetype).
-> 
-
-Kishore, would you try with a clean build and see if this works for you?
-
-I'm going to try and build first without -rt and then with rt and see if
-I can reproduce the issue.
-
-Thanks,
-
-Darren
-
-> Tom
-> 
->>  
->>
->> Attached is the build log.
->>
->>  
->>
->> Could you please let me know what went wrong?
->>
->>  
->>
->> Thanks
->>
->> Kishore.
->>
->>
-> 
-> 
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Q2xlYW4gYnVpbGQgd2l0aCB0aGUgYmVsb3cgVE9NJ3MgdHdvIGNvbW1pdCBJRHMgd29ya2VkIGZv
+ciBtZSwgaWYgSSBkbyBub3QgYWRkIElNQUdFX0lOU1RBTEwgKz0gInJ0dGVzdHMiIGZvciBzdWdh
+cmJheS4NCg0KSXQgZmFpbGVkIGlmIEkgYWRkIHRoZSBJTUFHRV9JTlNUQUxMICs9ICJydHRlc3Rz
+Ig0KDQpUaGFua3MNCktpc2hvcmUuDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTog
+RGFycmVuIEhhcnQgW21haWx0bzpkdmhhcnRAbGludXguaW50ZWwuY29tXSANClNlbnQ6IFRodXJz
+ZGF5LCBTZXB0ZW1iZXIgMDEsIDIwMTEgMTo1NyBQTQ0KVG86IFphbnVzc2ksIFRvbQ0KQ2M6IEJv
+ZGtlLCBLaXNob3JlIEs7IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc7IEhhcnQsIERhcnJlbjsgU2F4
+ZW5hLCBSYWh1bA0KU3ViamVjdDogUmU6IFJUIGtlcm5lbCB3aXRoIGNvcmUtaW1hZ2Utc2F0byBi
+dWlsZCBmYWlsZWQgZm9yIHN1Z2FyYmF5DQoNCg0KDQpPbiAwOC8zMS8yMDExIDA5OjE5IFBNLCBU
+b20gWmFudXNzaSB3cm90ZToNCj4gDQo+IE9uIFdlZCwgMjAxMS0wOC0zMSBhdCAxNjo0OSAtMDcw
+MCwgQm9ka2UsIEtpc2hvcmUgSyB3cm90ZToNCj4+IEhpLA0KPj4NCj4+ICANCj4+DQo+PiBJIGFt
+IHRyeWluZyB0byBidWlsZCBjb3JlLWltYWdlLXNhdG8gd2l0aCBydCBrZXJuZWwgZm9yIHN1Z2Fy
+YmF5IGFuZA0KPj4gaXQgZmFpbHMgZm9yIHRoZSBkb19yb290ZnMgLg0KPj4NCj4gDQo+IEZXSVcs
+IEkgd2FzIGFibGUgdG8gYnVpbGQgYW5kIGJvb3QgY29yZS1pbWFnZS1zYXRvIHdpdGggdGhlIHJ0
+IGtlcm5lbDoNCj4gDQo+IExpbnV4IHN1Z2FyYmF5IDMuMC4zLXJ0OC15b2N0by1wcmVlbXB0LXJ0
+KyAjMSBTTVAgUFJFRU1QVCBSVCBXZWQgQXVnIDMxDQo+IDIxOjMzOjI3IENEVCAyMDExIHg4Nl82
+NCBHTlUvTGludXgNCj4gDQo+IHVzaW5nIHRoZSBmb2xsb3dpbmcgY29tbWl0czoNCj4gDQo+IHBv
+a3kvbWFzdGVyIDcwNWVjNTBlZGRhN2Y3ZmI4YzEzMjIzOGZlM2YxNDc3Mzg0YTQ3MGUNCj4gbWV0
+YS9pbnRlbCA5MDJkMmYzYzkxOWNkMWQ4NzBkYzhkMzVhNzUyMWNiYmE0MmU1M2VhDQo+IA0KPiBB
+Y3R1YWxseSwgbWV0YS9pbnRlbCB3YXMgdGhhdCBjb21taXQgd2l0aCBEYXJyZW4ncyBncnViIHBh
+dGNoIG9uIHRvcA0KPiAobWV0YS1pbnRlbC9kdmhhcnQvZ3J1Yi1mcmVldHlwZSkuDQo+IA0KDQpL
+aXNob3JlLCB3b3VsZCB5b3UgdHJ5IHdpdGggYSBjbGVhbiBidWlsZCBhbmQgc2VlIGlmIHRoaXMg
+d29ya3MgZm9yIHlvdT8NCg0KSSdtIGdvaW5nIHRvIHRyeSBhbmQgYnVpbGQgZmlyc3Qgd2l0aG91
+dCAtcnQgYW5kIHRoZW4gd2l0aCBydCBhbmQgc2VlIGlmDQpJIGNhbiByZXByb2R1Y2UgdGhlIGlz
+c3VlLg0KDQpUaGFua3MsDQoNCkRhcnJlbg0KDQo+IFRvbQ0KPiANCj4+ICANCj4+DQo+PiBBdHRh
+Y2hlZCBpcyB0aGUgYnVpbGQgbG9nLg0KPj4NCj4+ICANCj4+DQo+PiBDb3VsZCB5b3UgcGxlYXNl
+IGxldCBtZSBrbm93IHdoYXQgd2VudCB3cm9uZz8NCj4+DQo+PiAgDQo+Pg0KPj4gVGhhbmtzDQo+
+Pg0KPj4gS2lzaG9yZS4NCj4+DQo+Pg0KPiANCj4gDQoNCi0tIA0KRGFycmVuIEhhcnQNCkludGVs
+IE9wZW4gU291cmNlIFRlY2hub2xvZ3kgQ2VudGVyDQpZb2N0byBQcm9qZWN0IC0gTGludXggS2Vy
+bmVsDQo=
 
