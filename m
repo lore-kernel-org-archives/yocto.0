@@ -1,25 +1,32 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F1B8E0071A
-	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 14:07:32 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 01 Sep 2011 14:07:31 -0700
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E258CE0071A
+	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 14:14:26 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 01 Sep 2011 14:14:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,315,1312182000"; d="scan'208";a="47740979"
-Received: from unknown (HELO envy.home) ([10.255.14.97])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Sep 2011 14:07:31 -0700
-Message-ID: <4E5FF413.1090205@linux.intel.com>
-Date: Thu, 01 Sep 2011 14:07:31 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:6.0) Gecko/20110816 Thunderbird/6.0
-MIME-Version: 1.0
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="44514301"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga001.jf.intel.com with ESMTP; 01 Sep 2011 14:14:26 -0700
+Received: from orsmsx502.amr.corp.intel.com ([10.22.226.210]) by
+	orsmsx604.amr.corp.intel.com ([10.250.113.17]) with mapi;
+	Thu, 1 Sep 2011 14:14:26 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Date: Thu, 1 Sep 2011 14:14:24 -0700
+Thread-Topic: RT kernel with core-image-sato build failed for sugarbay
+Thread-Index: Acxo6yryxwMdBx6GSaGcpQc5ir0EDQAALz1A
+Message-ID: <4BD43A85686FC34D819098DB1C3999D901889D7F5C@orsmsx502.amr.corp.intel.com>
 References: <4BD43A85686FC34D819098DB1C3999D901889D799F@orsmsx502.amr.corp.intel.com>
-	<1314850760.10191.3.camel@elmorro>
-	<4E5FF19D.6000409@linux.intel.com>
+	<1314850760.10191.3.camel@elmorro> <4E5FF19D.6000409@linux.intel.com>
 	<4BD43A85686FC34D819098DB1C3999D901889D7F2E@orsmsx502.amr.corp.intel.com>
-In-Reply-To: <4BD43A85686FC34D819098DB1C3999D901889D7F2E@orsmsx502.amr.corp.intel.com>
+	<4E5FF413.1090205@linux.intel.com>
+In-Reply-To: <4E5FF413.1090205@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
 Cc: "Hart, Darren" <darren.hart@intel.com>,
 	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: RT kernel with core-image-sato build failed for sugarbay
@@ -34,91 +41,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Sep 2011 21:07:32 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 01 Sep 2011 21:14:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 09/01/2011 02:01 PM, Bodke, Kishore K wrote:
-> Clean build with the below TOM's two commit IDs worked for me, if I
-> do not add IMAGE_INSTALL += "rttests" for sugarbay.
-> 
-> It failed if I add the IMAGE_INSTALL += "rttests"
-
-Do you get the same error? If so, it's starting to sound like the second
-build is what fails since neither of your failure scenarios include
-a change that's related to the failure. Perhaps an issue with sstate...
-
---
-Darren
-
-> 
-> Thanks Kishore. -----Original Message----- From: Darren Hart
-> [mailto:dvhart@linux.intel.com] Sent: Thursday, September 01, 2011
-> 1:57 PM To: Zanussi, Tom Cc: Bodke, Kishore K;
-> yocto@yoctoproject.org; Hart, Darren; Saxena, Rahul Subject: Re: RT
-> kernel with core-image-sato build failed for sugarbay
-> 
-> 
-> 
-> On 08/31/2011 09:19 PM, Tom Zanussi wrote:
->> 
->> On Wed, 2011-08-31 at 16:49 -0700, Bodke, Kishore K wrote:
->>> Hi,
->>> 
->>> 
->>> 
->>> I am trying to build core-image-sato with rt kernel for sugarbay
->>> and it fails for the do_rootfs .
->>> 
->> 
->> FWIW, I was able to build and boot core-image-sato with the rt
->> kernel:
->> 
->> Linux sugarbay 3.0.3-rt8-yocto-preempt-rt+ #1 SMP PREEMPT RT Wed
->> Aug 31 21:33:27 CDT 2011 x86_64 GNU/Linux
->> 
->> using the following commits:
->> 
->> poky/master 705ec50edda7f7fb8c132238fe3f1477384a470e meta/intel
->> 902d2f3c919cd1d870dc8d35a7521cbba42e53ea
->> 
->> Actually, meta/intel was that commit with Darren's grub patch on
->> top (meta-intel/dvhart/grub-freetype).
->> 
-> 
-> Kishore, would you try with a clean build and see if this works for
-> you?
-> 
-> I'm going to try and build first without -rt and then with rt and see
-> if I can reproduce the issue.
-> 
-> Thanks,
-> 
-> Darren
-> 
->> Tom
->> 
->>> 
->>> 
->>> Attached is the build log.
->>> 
->>> 
->>> 
->>> Could you please let me know what went wrong?
->>> 
->>> 
->>> 
->>> Thanks
->>> 
->>> Kishore.
->>> 
->>> 
->> 
->> 
-> 
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+WWVhaCwgaXQgaXMgdGhlIHNhbWUgZG9fcm9vdGZzIGZhaWx1cmUgSSBnZXQgZm9yIGJvdGggdGhl
+IGJ1aWxkcy4NClRoYW5rcw0KS2lzaG9yZS4NCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0N
+CkZyb206IERhcnJlbiBIYXJ0IFttYWlsdG86ZHZoYXJ0QGxpbnV4LmludGVsLmNvbV0gDQpTZW50
+OiBUaHVyc2RheSwgU2VwdGVtYmVyIDAxLCAyMDExIDI6MDggUE0NClRvOiBCb2RrZSwgS2lzaG9y
+ZSBLDQpDYzogWmFudXNzaSwgVG9tOyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnOyBIYXJ0LCBEYXJy
+ZW47IFNheGVuYSwgUmFodWwNClN1YmplY3Q6IFJlOiBSVCBrZXJuZWwgd2l0aCBjb3JlLWltYWdl
+LXNhdG8gYnVpbGQgZmFpbGVkIGZvciBzdWdhcmJheQ0KDQpPbiAwOS8wMS8yMDExIDAyOjAxIFBN
+LCBCb2RrZSwgS2lzaG9yZSBLIHdyb3RlOg0KPiBDbGVhbiBidWlsZCB3aXRoIHRoZSBiZWxvdyBU
+T00ncyB0d28gY29tbWl0IElEcyB3b3JrZWQgZm9yIG1lLCBpZiBJDQo+IGRvIG5vdCBhZGQgSU1B
+R0VfSU5TVEFMTCArPSAicnR0ZXN0cyIgZm9yIHN1Z2FyYmF5Lg0KPiANCj4gSXQgZmFpbGVkIGlm
+IEkgYWRkIHRoZSBJTUFHRV9JTlNUQUxMICs9ICJydHRlc3RzIg0KDQpEbyB5b3UgZ2V0IHRoZSBz
+YW1lIGVycm9yPyBJZiBzbywgaXQncyBzdGFydGluZyB0byBzb3VuZCBsaWtlIHRoZSBzZWNvbmQN
+CmJ1aWxkIGlzIHdoYXQgZmFpbHMgc2luY2UgbmVpdGhlciBvZiB5b3VyIGZhaWx1cmUgc2NlbmFy
+aW9zIGluY2x1ZGUNCmEgY2hhbmdlIHRoYXQncyByZWxhdGVkIHRvIHRoZSBmYWlsdXJlLiBQZXJo
+YXBzIGFuIGlzc3VlIHdpdGggc3N0YXRlLi4uDQoNCi0tDQpEYXJyZW4NCg0KPiANCj4gVGhhbmtz
+IEtpc2hvcmUuIC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tIEZyb206IERhcnJlbiBIYXJ0DQo+
+IFttYWlsdG86ZHZoYXJ0QGxpbnV4LmludGVsLmNvbV0gU2VudDogVGh1cnNkYXksIFNlcHRlbWJl
+ciAwMSwgMjAxMQ0KPiAxOjU3IFBNIFRvOiBaYW51c3NpLCBUb20gQ2M6IEJvZGtlLCBLaXNob3Jl
+IEs7DQo+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc7IEhhcnQsIERhcnJlbjsgU2F4ZW5hLCBSYWh1
+bCBTdWJqZWN0OiBSZTogUlQNCj4ga2VybmVsIHdpdGggY29yZS1pbWFnZS1zYXRvIGJ1aWxkIGZh
+aWxlZCBmb3Igc3VnYXJiYXkNCj4gDQo+IA0KPiANCj4gT24gMDgvMzEvMjAxMSAwOToxOSBQTSwg
+VG9tIFphbnVzc2kgd3JvdGU6DQo+PiANCj4+IE9uIFdlZCwgMjAxMS0wOC0zMSBhdCAxNjo0OSAt
+MDcwMCwgQm9ka2UsIEtpc2hvcmUgSyB3cm90ZToNCj4+PiBIaSwNCj4+PiANCj4+PiANCj4+PiAN
+Cj4+PiBJIGFtIHRyeWluZyB0byBidWlsZCBjb3JlLWltYWdlLXNhdG8gd2l0aCBydCBrZXJuZWwg
+Zm9yIHN1Z2FyYmF5DQo+Pj4gYW5kIGl0IGZhaWxzIGZvciB0aGUgZG9fcm9vdGZzIC4NCj4+PiAN
+Cj4+IA0KPj4gRldJVywgSSB3YXMgYWJsZSB0byBidWlsZCBhbmQgYm9vdCBjb3JlLWltYWdlLXNh
+dG8gd2l0aCB0aGUgcnQNCj4+IGtlcm5lbDoNCj4+IA0KPj4gTGludXggc3VnYXJiYXkgMy4wLjMt
+cnQ4LXlvY3RvLXByZWVtcHQtcnQrICMxIFNNUCBQUkVFTVBUIFJUIFdlZA0KPj4gQXVnIDMxIDIx
+OjMzOjI3IENEVCAyMDExIHg4Nl82NCBHTlUvTGludXgNCj4+IA0KPj4gdXNpbmcgdGhlIGZvbGxv
+d2luZyBjb21taXRzOg0KPj4gDQo+PiBwb2t5L21hc3RlciA3MDVlYzUwZWRkYTdmN2ZiOGMxMzIy
+MzhmZTNmMTQ3NzM4NGE0NzBlIG1ldGEvaW50ZWwNCj4+IDkwMmQyZjNjOTE5Y2QxZDg3MGRjOGQz
+NWE3NTIxY2JiYTQyZTUzZWENCj4+IA0KPj4gQWN0dWFsbHksIG1ldGEvaW50ZWwgd2FzIHRoYXQg
+Y29tbWl0IHdpdGggRGFycmVuJ3MgZ3J1YiBwYXRjaCBvbg0KPj4gdG9wIChtZXRhLWludGVsL2R2
+aGFydC9ncnViLWZyZWV0eXBlKS4NCj4+IA0KPiANCj4gS2lzaG9yZSwgd291bGQgeW91IHRyeSB3
+aXRoIGEgY2xlYW4gYnVpbGQgYW5kIHNlZSBpZiB0aGlzIHdvcmtzIGZvcg0KPiB5b3U/DQo+IA0K
+PiBJJ20gZ29pbmcgdG8gdHJ5IGFuZCBidWlsZCBmaXJzdCB3aXRob3V0IC1ydCBhbmQgdGhlbiB3
+aXRoIHJ0IGFuZCBzZWUNCj4gaWYgSSBjYW4gcmVwcm9kdWNlIHRoZSBpc3N1ZS4NCj4gDQo+IFRo
+YW5rcywNCj4gDQo+IERhcnJlbg0KPiANCj4+IFRvbQ0KPj4gDQo+Pj4gDQo+Pj4gDQo+Pj4gQXR0
+YWNoZWQgaXMgdGhlIGJ1aWxkIGxvZy4NCj4+PiANCj4+PiANCj4+PiANCj4+PiBDb3VsZCB5b3Ug
+cGxlYXNlIGxldCBtZSBrbm93IHdoYXQgd2VudCB3cm9uZz8NCj4+PiANCj4+PiANCj4+PiANCj4+
+PiBUaGFua3MNCj4+PiANCj4+PiBLaXNob3JlLg0KPj4+IA0KPj4+IA0KPj4gDQo+PiANCj4gDQoN
+Ci0tIA0KRGFycmVuIEhhcnQNCkludGVsIE9wZW4gU291cmNlIFRlY2hub2xvZ3kgQ2VudGVyDQpZ
+b2N0byBQcm9qZWN0IC0gTGludXggS2VybmVsDQo=
 
