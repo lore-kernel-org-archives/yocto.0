@@ -1,29 +1,25 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E2D2E01211
-	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 11:11:53 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 01 Sep 2011 11:11:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,314,1312182000"; d="scan'208";a="47669359"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Sep 2011 11:11:34 -0700
-Received: from orsmsx505.amr.corp.intel.com ([10.22.226.208]) by
-	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
-	Thu, 1 Sep 2011 11:11:34 -0700
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 1 Sep 2011 11:11:32 -0700
-Thread-Topic: [yocto] e100 driver does not build
-Thread-Index: AcxoRjyW9uilmDt/ScGMFYgAS87tKwAHPvKwABshLDA=
-Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E1E590F@orsmsx505.amr.corp.intel.com>
-References: <4FF5AC937153B0459463C1A88EB478F2012E1E54F9@orsmsx505.amr.corp.intel.com>
-In-Reply-To: <4FF5AC937153B0459463C1A88EB478F2012E1E54F9@orsmsx505.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B75AE01211
+	for <yocto@yoctoproject.org>; Thu,  1 Sep 2011 11:20:25 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p81IKPbl016935
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 1 Sep 2011 11:20:25 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.21.218) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Thu, 1 Sep 2011 11:20:25 -0700
+Message-ID: <4E5FCCE7.4000906@windriver.com>
+Date: Thu, 1 Sep 2011 14:20:23 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
+	rv:1.9.2.21) Gecko/20110830 Thunderbird/3.1.13
 MIME-Version: 1.0
+To: "Saxena, Rahul" <rahul.saxena@intel.com>
+References: <4FF5AC937153B0459463C1A88EB478F2012E1E54F9@orsmsx505.amr.corp.intel.com>
+	<4FF5AC937153B0459463C1A88EB478F2012E1E590F@orsmsx505.amr.corp.intel.com>
+In-Reply-To: <4FF5AC937153B0459463C1A88EB478F2012E1E590F@orsmsx505.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: e100 driver does not build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -36,97 +32,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Sep 2011 18:11:53 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 01 Sep 2011 18:20:26 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Yes, the problem was due to missing dependent options..
-I had incorrectly assumed that dependent options would get pulled in=20
-or perhaps a error would  be generated.
-It worked after I added following 3 options stated as dependent options
-in a Kernel configuration database that I saw:
+On 11-09-01 2:11 PM, Saxena, Rahul wrote:
+> Yes, the problem was due to missing dependent options..
+> I had incorrectly assumed that dependent options would get pulled in
+> or perhaps a error would  be generated.
 
-CONFIG_ISA
-CONFIG_EISA
-CONFIG_NET_PCI
+A warning can (and will) be generated for options that are
+set by a BSP and don't end up in a final .config, but that's only
+if you've placed them in a .cfg file and fed them through the
+config auditing steps of the linux-yocto build (this is automatic).
 
-I am still iterating to check if all three of the above are really needed o=
-r
-or if just the CONFIG_NET_PCI option is needed.=20
+dependencies won't be set automatically, it's the opposite,
+you must ensure they are set or a particular Kconfig value must
+select them.
 
-I had enabled the option using a .cfg file.  Also checking again to see if =
-a warning
-gets generated when the dependent options are not included.
-
-BTW what does a message such as following in the .config file mean ?
-
-"CONFIG_xxxxx is not set" =20
-
-
-Thanks
-Rahul
-
------Original Message-----
-From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
-Sent: Wednesday, August 31, 2011 6:27 PM
-To: Zanussi, Tom
-Cc: Saxena, Rahul; yocto@yoctoproject.org
-Subject: Re: [yocto] e100 driver does not build
-
-On 11-08-31 7:18 PM, Tom Zanussi wrote:
+> It worked after I added following 3 options stated as dependent options
+> in a Kernel configuration database that I saw:
 >
-> On Wed, 2011-08-31 at 16:04 -0700, Saxena, Rahul wrote:
->> I am unable to get the e100 driver to build for my BSP.
->>
->> I have configured to build it as a module. I do  not see the e100.ko
->> file being generated nor does
->>
->>   CONFIG_E100 appear in the generated .config file in my build area.
->>
->>
->>
->> However I do see the driver source file e100.c in
->>    tmp/work/bspname-poky-linux/linux-yocto-3.0.3+git1
->> +xxxx ../linux/drivers/net
->>
->>
->>
->> I do not have any problems with other drivers (igb, E1000 etc)  that I
->> have configured in exactly similar way.
->>
->>
->>
->> Any insight on this issue ?
->>
+> CONFIG_ISA
+> CONFIG_EISA
+> CONFIG_NET_PCI
 >
-> It's probably missing another option it depends on e.g. is
-> CONFIG_NET_PCI and CONFIG_MII enabled in your .config?
+> I am still iterating to check if all three of the above are really needed or
+> or if just the CONFIG_NET_PCI option is needed.
+>
+> I had enabled the option using a .cfg file.  Also checking again to see if a warning
+> gets generated when the dependent options are not included.
+>
+> BTW what does a message such as following in the .config file mean ?
+>
+> "CONFIG_xxxxx is not set"
 
-This is most likely what it is.
+It should be:
 
-Out of curiosity, how did you enable the option ? Via a config fragement
-(.cfg file) or via menuconfig .. or something else?
+# CONFIG_foo is not set
 
-If you tried to set something via a fragment and it doesn't make it to
-the final .config, you should see a warning during the kernel build
-phase.
-
-Cheers,
+And that is should be read as "config foo is disabled"
 
 Bruce
 
 >
-> Tom
+>
+> Thanks
+> Rahul
+>
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+> Sent: Wednesday, August 31, 2011 6:27 PM
+> To: Zanussi, Tom
+> Cc: Saxena, Rahul; yocto@yoctoproject.org
+> Subject: Re: [yocto] e100 driver does not build
+>
+> On 11-08-31 7:18 PM, Tom Zanussi wrote:
+>>
+>> On Wed, 2011-08-31 at 16:04 -0700, Saxena, Rahul wrote:
+>>> I am unable to get the e100 driver to build for my BSP.
+>>>
+>>> I have configured to build it as a module. I do  not see the e100.ko
+>>> file being generated nor does
+>>>
+>>>    CONFIG_E100 appear in the generated .config file in my build area.
+>>>
+>>>
+>>>
+>>> However I do see the driver source file e100.c in
+>>>     tmp/work/bspname-poky-linux/linux-yocto-3.0.3+git1
+>>> +xxxx ../linux/drivers/net
+>>>
+>>>
+>>>
+>>> I do not have any problems with other drivers (igb, E1000 etc)  that I
+>>> have configured in exactly similar way.
+>>>
+>>>
+>>>
+>>> Any insight on this issue ?
+>>>
+>>
+>> It's probably missing another option it depends on e.g. is
+>> CONFIG_NET_PCI and CONFIG_MII enabled in your .config?
+>
+> This is most likely what it is.
+>
+> Out of curiosity, how did you enable the option ? Via a config fragement
+> (.cfg file) or via menuconfig .. or something else?
+>
+> If you tried to set something via a fragment and it doesn't make it to
+> the final .config, you should see a warning during the kernel build
+> phase.
+>
+> Cheers,
+>
+> Bruce
 >
 >>
+>> Tom
 >>
->> Thanks
+>>>
+>>>
+>>> Thanks
+>>>
+>>> Rahul
+>>>
+>>>
 >>
->> Rahul
 >>
->>
->
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 >
 > _______________________________________________
 > yocto mailing list
