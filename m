@@ -1,52 +1,28 @@
-Return-Path: <B29882@freescale.com>
-Received: from AM1EHSOBE001.bigfish.com (am1ehsobe001.messaging.microsoft.com
-	[213.199.154.204])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E77EE0120F
-	for <yocto@yoctoproject.org>; Fri,  2 Sep 2011 08:41:02 -0700 (PDT)
-Received: from mail106-am1-R.bigfish.com (10.3.201.247) by
-	AM1EHSOBE001.bigfish.com (10.3.204.21) with Microsoft SMTP Server id
-	14.1.225.22; Fri, 2 Sep 2011 15:41:01 +0000
-Received: from mail106-am1 (localhost.localdomain [127.0.0.1])	by
-	mail106-am1-R.bigfish.com (Postfix) with ESMTP id 1EB56350161;
-	Fri,  2 Sep 2011 15:41:01 +0000 (UTC)
-X-SpamScore: -12
-X-BigFish: VS-12(zz9371K1432N98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3h61h)
-X-Spam-TCS-SCL: 0:0
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
-	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail106-am1 (localhost.localdomain [127.0.0.1]) by mail106-am1
-	(MessageSwitch) id 1314978060673211_20643;
-	Fri,  2 Sep 2011 15:41:00 +0000 (UTC)
-Received: from AM1EHSMHS002.bigfish.com (unknown [10.3.201.243])	by
-	mail106-am1.bigfish.com (Postfix) with ESMTP id 9ED3786004F;
-	Fri,  2 Sep 2011 15:41:00 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS002.bigfish.com
-	(10.3.207.102) with Microsoft SMTP Server (TLS) id 14.1.225.22;
-	Fri, 2 Sep 2011 15:40:59 +0000
-Received: from 039-SN1MPN1-003.039d.mgd.msft.net ([169.254.3.205]) by
-	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
-	14.01.0323.002; Fri, 2 Sep 2011 10:40:04 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-Thread-Topic: [yocto] RPM multilib package installation issue
-Thread-Index: AQHMaYaVWl4p2YpWqEiD6/aZWrPpig==
-Date: Fri, 2 Sep 2011 15:40:03 +0000
-Message-ID: <CAEsOVNcKFXTJ9WhvVsoO4q-T6zFLhN96_wLnMySW2oyo6ZCcNw@mail.gmail.com>
-References: <D5AB6E638E5A3E4B8F4406B113A5A19A12D73C60DC@shsmsx501.ccr.corp.intel.com>
-	<4E60F024.4030000@windriver.com>
-In-Reply-To: <4E60F024.4030000@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79CB2E0120F
+	for <yocto@yoctoproject.org>; Fri,  2 Sep 2011 08:48:23 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p82FmAlD019478
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 2 Sep 2011 08:48:10 -0700 (PDT)
+Received: from [128.224.147.214] (128.224.147.214) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 2 Sep 2011 08:48:10 -0700
+Message-ID: <4E60FAB5.8050605@windriver.com>
+Date: Fri, 2 Sep 2011 11:48:05 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11 ThunderBrowse/3.8
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RPM multilib package installation issue
+To: Chris Tapp <opensource@keylevel.com>
+References: <B1028606-FA51-475C-A6D5-6EBC31929292@keylevel.com>
+In-Reply-To: <B1028606-FA51-475C-A6D5-6EBC31929292@keylevel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Splitting processor and target in BSPs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -55,34 +31,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Sep 2011 15:41:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <839FD28ED24B134CA783C0A0CBC4DBB9@freescale.net>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 02 Sep 2011 15:48:23 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Sep 2, 2011 at 10:03 AM, Mark Hatle <mark.hatle@windriver.com> wrot=
-e:
->> However in run time testing I met a problem that, for those libraries wh=
-ose
->> base/multilib versions packages will be both built out (like libgtk, it =
-has
->> "libgtk-2.0-2.22.1-r2.x86_64.rpm" and "libgtk-2.0-2.22.1-r2.x86.rpm"), t=
-he
->> rpm will only installs the lib32 version of it.
+On 11-09-02 03:26 AM, Chris Tapp wrote:
+> How should meta data be structured so that a layer can support a set of
+> systems using a set of processors?
 >
-> During filesystem construction the system uses dependencies to decide wha=
-t to
-> install. =A0If you build a 32-bit connman-gnome and it requires other 32-=
-bit
-> libraries the dependency scanner will either pick them up and install the=
-m, or
-> error due to missing dependencies.
+> For example, many of the 'eBox' systems use variants of the Vortex86
+> SoC. So, a set of machine files are needed for these (e.g. ebox-3300,
+> ebox-3500mx, etc.).
+>
+> These have different peripherals available (e.g. some have serial, some
+> don't) and use different SoC variants with different cpu, sound, etc. It
+> would therefore make sense for the machine configuration to inherit the
+> SoC attributes (for the common features) and add (or remove) machine
+> specific attributes (e.g. serial) to these. This can be done by putting
+> the SoC bits in to an include.
+>
+> However, kernel configuration becomes a little bit more complicated as
+> this is done by machine name. A kernel recipe will be needed for each
+> machine (e.g. for the different sound drivers), but I can't work out how
+> to do this using a base configuration for the SoCs that are shared and
+> then adding machine specific parts. I can do it using (for example) a
+> .defconfig for each machine, but that would require updates to multiple
+> files to change the SoC configuration.
+>
+> I guess what I'm really asking is, is it possible to have a base CPU
+> configuration and add a machine configuration to this ?
+>
+> I've recently seen discussion of .cfg kernel fragment files. Are these
+> what I should be looking at? Are these available in the releases or only
+> in the development branch?
 
-Some you are saying since we do not build an actual binary that
-depends on the 64bit library we just drop the libraries we requested
-to be installed?
+What you've described is one of the primary reasons that the
+configuration fragments exist :) You define a common set of
+config fragments, extend and then select what you want.
 
--M=
+These are available in all the releases, but the capabilities
+are evolving and I merge more changes into the yocto bindings
+for manipulating the configuration fragments outside of a kernel
+tree proper.
+
+If you have your own kernel repository based on linux-yocto, you
+could implement any of this inside the tree. If you are re-using
+existing machines/branches in the linux-yocto tree, you can also
+do what you want, but have to do it via a collection of configuration
+fragments that are appended to the SRC_URI based on the machine
+you are building,.
+
+Cheers,
+
+Bruce
+
+>
+> Chris Tapp
+>
+> opensource@keylevel.com
+> www.keylevel.com
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
