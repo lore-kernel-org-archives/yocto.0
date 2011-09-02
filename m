@@ -1,31 +1,51 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F04FE01264
-	for <yocto@yoctoproject.org>; Fri,  2 Sep 2011 08:48:24 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p82FmLj1019497
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 2 Sep 2011 08:48:21 -0700 (PDT)
-Received: from Macintosh-5.local (172.25.36.227) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 2 Sep 2011 08:48:19 -0700
-Message-ID: <4E60FAC3.5030100@windriver.com>
-Date: Fri, 2 Sep 2011 10:48:19 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:6.0.1) Gecko/20110830 Thunderbird/6.0.1
+Return-Path: <B29882@freescale.com>
+Received: from ch1outboundpool.messaging.microsoft.com
+	(ch1ehsobe001.messaging.microsoft.com [216.32.181.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3194E0120F
+	for <yocto@yoctoproject.org>; Fri,  2 Sep 2011 08:49:45 -0700 (PDT)
+Received: from mail101-ch1-R.bigfish.com (216.32.181.171) by
+	CH1EHSOBE008.bigfish.com (10.43.70.58) with Microsoft SMTP Server id
+	14.1.225.22; Fri, 2 Sep 2011 15:49:45 +0000
+Received: from mail101-ch1 (localhost.localdomain [127.0.0.1])	by
+	mail101-ch1-R.bigfish.com (Postfix) with ESMTP id 2A9FE1828141;
+	Fri,  2 Sep 2011 15:49:45 +0000 (UTC)
+X-SpamScore: -12
+X-BigFish: VS-12(zz9371K1432N98dKzz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3h61h)
+X-Spam-TCS-SCL: 0:0
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
+	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
+Received: from mail101-ch1 (localhost.localdomain [127.0.0.1]) by mail101-ch1
+	(MessageSwitch) id 131497855834763_17850;
+	Fri,  2 Sep 2011 15:49:18 +0000 (UTC)
+Received: from CH1EHSMHS006.bigfish.com (snatpool1.int.messaging.microsoft.com
+	[10.43.68.244])	by mail101-ch1.bigfish.com (Postfix) with ESMTP id
+	08972F4806E;	Fri,  2 Sep 2011 15:49:12 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS006.bigfish.com
+	(10.43.70.6) with Microsoft SMTP Server (TLS) id 14.1.225.22;
+	Fri, 2 Sep 2011 15:49:10 +0000
+Received: from 039-SN1MPN1-003.039d.mgd.msft.net ([169.254.3.205]) by
+	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
+	14.01.0323.002; Fri, 2 Sep 2011 10:49:09 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Chris Tapp <opensource@keylevel.com>
+Thread-Topic: [yocto] Splitting processor and target in BSPs
+Thread-Index: AQHMaYfa7CaogJeg+Ee0Gy5TKhtawA==
+Date: Fri, 2 Sep 2011 15:49:09 +0000
+Message-ID: <CAEsOVNd2i3Mn4zPdW5c1jRjKVwURUv9fYD3c_ghy+9gqsNgnsQ@mail.gmail.com>
+References: <B1028606-FA51-475C-A6D5-6EBC31929292@keylevel.com>
+In-Reply-To: <B1028606-FA51-475C-A6D5-6EBC31929292@keylevel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [99.47.177.27]
 MIME-Version: 1.0
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-References: <D5AB6E638E5A3E4B8F4406B113A5A19A12D73C60DC@shsmsx501.ccr.corp.intel.com>
-	<4E60F024.4030000@windriver.com>
-	<CAEsOVNcKFXTJ9WhvVsoO4q-T6zFLhN96_wLnMySW2oyo6ZCcNw@mail.gmail.com>
-In-Reply-To: <CAEsOVNcKFXTJ9WhvVsoO4q-T6zFLhN96_wLnMySW2oyo6ZCcNw@mail.gmail.com>
+X-OriginatorOrg: freescale.com
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RPM multilib package installation issue
+Subject: Re: Splitting processor and target in BSPs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -34,44 +54,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Sep 2011 15:48:24 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 02 Sep 2011 15:49:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <C4283A5CC3345B448272739A426E415C@freescale.net>
+Content-Transfer-Encoding: quoted-printable
 
-On 9/2/11 10:40 AM, McClintock Matthew-B29882 wrote:
-> On Fri, Sep 2, 2011 at 10:03 AM, Mark Hatle <mark.hatle@windriver.com> wrote:
->>> However in run time testing I met a problem that, for those libraries whose
->>> base/multilib versions packages will be both built out (like libgtk, it has
->>> "libgtk-2.0-2.22.1-r2.x86_64.rpm" and "libgtk-2.0-2.22.1-r2.x86.rpm"), the
->>> rpm will only installs the lib32 version of it.
->>
->> During filesystem construction the system uses dependencies to decide what to
->> install.  If you build a 32-bit connman-gnome and it requires other 32-bit
->> libraries the dependency scanner will either pick them up and install them, or
->> error due to missing dependencies.
-> 
-> Some you are saying since we do not build an actual binary that
-> depends on the 64bit library we just drop the libraries we requested
-> to be installed?
-> 
-> -M
+On Fri, Sep 2, 2011 at 2:26 AM, Chris Tapp <opensource@keylevel.com> wrote:
+> However, kernel configuration becomes a little bit more complicated as th=
+is
+> is done by machine name. A kernel recipe will be needed for each machine
+> (e.g. for the different sound drivers), but I can't work out how to do th=
+is
+> using a base configuration for the SoCs that are shared and then adding
+> machine specific parts. I can do it using (for example) a .defconfig for
+> each machine, but that would require updates to multiple files to change =
+the
+> SoC configuration.
+>
+> I guess what I'm really asking is, is it possible to have a base CPU
+> configuration and add a machine configuration to this ?
+>
+> I've recently seen discussion of .cfg kernel fragment files. Are these wh=
+at
+> I should be looking at? Are these available in the releases or only in th=
+e
+> development branch?
 
-The normal OE approach is to resolve all items by run-time dependencies.  That
-is why a lot more is built then installed.
+I think this is a good solution for you. It's a little confusing to
+find were this work is but you can look in the linux-yocto kernel tree
+- then the actual cfg fragment stuff on different branches.
 
-So if you want a system capable of running bash, you would create a task (and
-related image) that simply has a RDEPENDS on "bash".  Everything else is
-determined automatically.  So even if you build ncurses for 32-bit and 64-bit,
-only the one needed by bash will be installed.
+http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.0/
 
-If you change this and specify that your task RDEPENDS is "bash lib64-ncurses".
- Then the system will determine the dependencies based on both bash and the
-64-bit ncurses.  This will result in a system (likely 32-bit in this example)
-that includes bash and lib64-ncurses and all of it's dependencies...
+meta branch contains meta/ which contains a lot of the cfg fragments,
+and patches, etc. There is also a document in the git repo as well
+which is worth a look.
 
-The point is, if you explicitly tell the system to install something it is
-expected to be installed.  If you don't the automatic resolution is used to
-determine install components and not everything you want may be installed.
+-M=
 
---Mark
 
