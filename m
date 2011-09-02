@@ -1,29 +1,26 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 250F4E01220
-	for <yocto@yoctoproject.org>; Fri,  2 Sep 2011 01:03:47 -0700 (PDT)
-Received: from durham.keylevel.com ([109.224.134.115]:48743
-	helo=MacBook-Pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1QzO9B-0007IU-7F
-	for yocto@yoctoproject.org; Fri, 02 Sep 2011 08:26:41 +0100
-Message-Id: <B1028606-FA51-475C-A6D5-6EBC31929292@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Fri, 2 Sep 2011 08:26:38 +0100
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Splitting processor and target in BSPs
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0E32E0120F
+	for <yocto@yoctoproject.org>; Fri,  2 Sep 2011 08:03:32 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p82F32ZO012354
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 2 Sep 2011 08:03:02 -0700 (PDT)
+Received: from Macintosh-5.local (172.25.36.227) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 2 Sep 2011 08:03:01 -0700
+Message-ID: <4E60F024.4030000@windriver.com>
+Date: Fri, 2 Sep 2011 10:03:00 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
+	rv:6.0.1) Gecko/20110830 Thunderbird/6.0.1
+MIME-Version: 1.0
+To: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+References: <D5AB6E638E5A3E4B8F4406B113A5A19A12D73C60DC@shsmsx501.ccr.corp.intel.com>
+In-Reply-To: <D5AB6E638E5A3E4B8F4406B113A5A19A12D73C60DC@shsmsx501.ccr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: RPM multilib package installation issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,44 +32,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Sep 2011 08:03:48 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
+X-List-Received-Date: Fri, 02 Sep 2011 15:03:33 -0000
+Content-Type: text/plain; charset="ISO-8859-1"
 Content-Transfer-Encoding: 7bit
 
-How should meta data be structured so that a layer can support a set  
-of systems using a set of processors?
+On 9/2/11 2:33 AM, Xu, Dongxiao wrote:
+> Hi Mark and Richard,
+> 
+> I am trying to setup a RPM multilib system that, it is a qemux86-64 base
+> image with MULTILIB_IMAGE_INSTALL = "lib32-connman-gnome". With several
+> fixes, the build can pass.
+> 
+> However in run time testing I met a problem that, for those libraries whose
+> base/multilib versions packages will be both built out (like libgtk, it has
+> "libgtk-2.0-2.22.1-r2.x86_64.rpm" and "libgtk-2.0-2.22.1-r2.x86.rpm"), the
+> rpm will only installs the lib32 version of it.
 
-For example, many of the 'eBox' systems use variants of the Vortex86  
-SoC. So, a set of machine files are needed for these (e.g. ebox-3300,  
-ebox-3500mx, etc.).
+During filesystem construction the system uses dependencies to decide what to
+install.  If you build a 32-bit connman-gnome and it requires other 32-bit
+libraries the dependency scanner will either pick them up and install them, or
+error due to missing dependencies.
 
-These have different peripherals available (e.g. some have serial,  
-some don't) and use different SoC variants with different cpu, sound,  
-etc. It would therefore make sense for the machine configuration to  
-inherit the SoC attributes (for the common features) and add (or  
-remove) machine specific attributes (e.g. serial) to these. This can  
-be done by putting the SoC bits in to an include.
+In the manual case you would use "rpm -Uhv <path>" manually specifying which one
+you want.  RPM will detect a multilib package and will allow installation of
+both versions.  (Note always use rpm -U and not rpm -i..  rpm -i just blindly
+installs the software with no checking if an existing version exists.)
 
-However, kernel configuration becomes a little bit more complicated as  
-this is done by machine name. A kernel recipe will be needed for each  
-machine (e.g. for the different sound drivers), but I can't work out  
-how to do this using a base configuration for the SoCs that are shared  
-and then adding machine specific parts. I can do it using (for  
-example) a .defconfig for each machine, but that would require updates  
-to multiple files to change the SoC configuration.
+> Therefore one question is, if there are two rpm packages with the same PN,
+> PV, PR, but different architecture (like our multilib case), then we run
+> command "rpm -ivh libgtk", which version of libgtk will be installed? Or does
+> rpm have any parameter to force installing them both? Actually multilib
+> requires to install them both with certain order.
 
-I guess what I'm really asking is, is it possible to have a base CPU  
-configuration and add a machine configuration to this ?
+No specific order should be necessary on a multilib system.  As long as the end
+dependencies are satisfied the resulting filesystem will work.  (Exceptions to
+this are when there are pre and post install scripts that have their own unique
+dependencies.. but those are not the normal case for OE-Core/Yocto.)
 
-I've recently seen discussion of .cfg kernel fragment files. Are these  
-what I should be looking at? Are these available in the releases or  
-only in the development branch?
+--Mark
 
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
+> Thanks, Dongxiao
+> 
 
 
