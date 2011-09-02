@@ -1,37 +1,29 @@
-Return-Path: <dongxiao.xu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65C3FE01220
-	for <yocto@yoctoproject.org>; Fri,  2 Sep 2011 00:34:40 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 02 Sep 2011 00:34:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,317,1312182000"; d="scan'208";a="13448064"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by AZSMGA002.ch.intel.com with ESMTP; 02 Sep 2011 00:34:32 -0700
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 2 Sep 2011 15:33:47 +0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 2 Sep 2011 15:33:47 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi; Fri, 2 Sep 2011
-	15:33:46 +0800
-From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
-To: "Mark Hatle (mark.hatle@windriver.com)" <mark.hatle@windriver.com>,
-	"Richard Purdie (richard.purdie@linuxfoundation.org)"
-	<richard.purdie@linuxfoundation.org>
-Date: Fri, 2 Sep 2011 15:33:44 +0800
-Thread-Topic: RPM multilib package installation issue
-Thread-Index: AcxpQp6wGM8PXmYYRZ6MCmmuvqYvuA==
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D73C60DC@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: RPM multilib package installation issue
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 250F4E01220
+	for <yocto@yoctoproject.org>; Fri,  2 Sep 2011 01:03:47 -0700 (PDT)
+Received: from durham.keylevel.com ([109.224.134.115]:48743
+	helo=MacBook-Pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1QzO9B-0007IU-7F
+	for yocto@yoctoproject.org; Fri, 02 Sep 2011 08:26:41 +0100
+Message-Id: <B1028606-FA51-475C-A6D5-6EBC31929292@keylevel.com>
+From: Chris Tapp <opensource@keylevel.com>
+To: yocto@yoctoproject.org
+Mime-Version: 1.0 (Apple Message framework v936)
+Date: Fri, 2 Sep 2011 08:26:38 +0100
+X-Mailer: Apple Mail (2.936)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Splitting processor and target in BSPs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,29 +35,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Sep 2011 07:34:41 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 02 Sep 2011 08:03:48 -0000
+Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
+Content-Transfer-Encoding: 7bit
 
-Hi Mark and Richard,
+How should meta data be structured so that a layer can support a set  
+of systems using a set of processors?
 
-I am trying to setup a RPM multilib system that, it is a qemux86-64 base im=
-age with MULTILIB_IMAGE_INSTALL =3D "lib32-connman-gnome". With several fix=
-es, the build can pass.
+For example, many of the 'eBox' systems use variants of the Vortex86  
+SoC. So, a set of machine files are needed for these (e.g. ebox-3300,  
+ebox-3500mx, etc.).
 
-However in run time testing I met a problem that, for those libraries whose=
- base/multilib versions packages will be both built out (like libgtk, it ha=
-s "libgtk-2.0-2.22.1-r2.x86_64.rpm" and "libgtk-2.0-2.22.1-r2.x86.rpm"), th=
-e rpm will only installs the lib32 version of it.
+These have different peripherals available (e.g. some have serial,  
+some don't) and use different SoC variants with different cpu, sound,  
+etc. It would therefore make sense for the machine configuration to  
+inherit the SoC attributes (for the common features) and add (or  
+remove) machine specific attributes (e.g. serial) to these. This can  
+be done by putting the SoC bits in to an include.
 
-Therefore one question is, if there are two rpm packages with the same PN, =
-PV, PR, but different architecture (like our multilib case), then we run co=
-mmand "rpm -ivh libgtk", which version of libgtk will be installed? Or does=
- rpm have any parameter to force installing them both? Actually multilib re=
-quires to install them both with certain order.=20
+However, kernel configuration becomes a little bit more complicated as  
+this is done by machine name. A kernel recipe will be needed for each  
+machine (e.g. for the different sound drivers), but I can't work out  
+how to do this using a base configuration for the SoCs that are shared  
+and then adding machine specific parts. I can do it using (for  
+example) a .defconfig for each machine, but that would require updates  
+to multiple files to change the SoC configuration.
 
-Thanks,
-Dongxiao=20
+I guess what I'm really asking is, is it possible to have a base CPU  
+configuration and add a machine configuration to this ?
+
+I've recently seen discussion of .cfg kernel fragment files. Are these  
+what I should be looking at? Are these available in the releases or  
+only in the development branch?
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
 
 
