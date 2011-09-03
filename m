@@ -1,21 +1,25 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D744E01273
-	for <yocto@yoctoproject.org>; Fri,  2 Sep 2011 21:45:26 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 02 Sep 2011 21:45:25 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68E06E0126A
+	for <yocto@yoctoproject.org>; Fri,  2 Sep 2011 22:09:16 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 02 Sep 2011 22:09:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="44911271"
-Received: from unknown (HELO [10.255.14.13]) ([10.255.14.13])
-	by orsmga001.jf.intel.com with ESMTP; 02 Sep 2011 21:45:25 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Fri, 02 Sep 2011 23:45:12 -0500
-Message-ID: <1315025112.31478.139.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: Bruce Ashfield <bruce.ashfield@gmail.com>
-Subject: [PATCH 1/1][KERNEL] meta: re-enable systemtap feature for linux-yocto
+X-IronPort-AV: E=Sophos;i="4.68,323,1312182000"; d="scan'208";a="13706848"
+Received: from unknown (HELO envy.home) ([10.255.14.151])
+	by AZSMGA002.ch.intel.com with ESMTP; 02 Sep 2011 22:09:15 -0700
+Message-ID: <4E61B67B.7070809@linux.intel.com>
+Date: Fri, 02 Sep 2011 22:09:15 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:6.0) Gecko/20110816 Thunderbird/6.0
+MIME-Version: 1.0
+To: Saul Wold <sgw@linux.intel.com>
+References: <24a30eaf49c25c0b5d8b5d7405691c6c1b67588d.1314844442.git.dvhart@linux.intel.com>
+	<4E5FBEB5.8080407@linux.intel.com>
+In-Reply-To: <4E5FBEB5.8080407@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH][meta-intel] grub: remove the dependency on freetype, disable grub-mkfont
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,36 +31,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 03 Sep 2011 04:45:26 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Sat, 03 Sep 2011 05:09:16 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Re-enable the 'systemtap feature' that turns on the kernel options required
-for systemtap, a system-wide tracing tool.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta/cfg/kernel-cache/ktypes/standard/standard.scc |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/ktypes/standard/standard.scc b/meta/cfg/kernel-cache/ktypes/standard/standard.scc
-index 8f1e808..38034d9 100644
---- a/meta/cfg/kernel-cache/ktypes/standard/standard.scc
-+++ b/meta/cfg/kernel-cache/ktypes/standard/standard.scc
-@@ -14,8 +14,8 @@ tag kgdb
- 
- include features/lttng/lttng.scc
- 
--#include features/systemtap/systemtap.scc
--#tag systemtap
-+include features/systemtap/systemtap.scc
-+tag systemtap
- 
- include arch/arm/arm.scc
- tag arm
+On 09/01/2011 10:19 AM, Saul Wold wrote:
+> 
+> Seeing this change reminded me that we really should move grub_1.98 to 
+> oe-core, is there any objection to this?  Any reason this should not be 
+> part of oe-core to support general x86_64 machines?
+
+I am considering pushing to drop grub entirely from meta-intel and using
+syslinux and efilinux recipes. I don't see any added value in grub for
+embedded Intel platforms.
+
+So in that sense, I'd be happy to see it go to OE - but whether it needs
+to be in OE or OE-Core, I don't know. Is anyone using grub on non-x86
+platforms?
+
+--
+Darren
+
+> 
+> Sau!
+> 
+> 
+> On 08/31/2011 07:34 PM, Darren Hart wrote:
+>> Grub's configure task was picking up the host freetype libraries if
+>> bitbake hadn't gotten around building freetype yet. We could add a
+>> dependency on freetype, but it's only used for the optional grub-mkfont
+>> utility which we don't really need.
+>>
+>> Disable grub-mkfont via EXTRA_OECONF, removing the dependency on freetype.
+>>
+>> Testing: core-image-minimal build and install on sugarbay.
+>>
+>> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
+>> Tested-by: Tom Zanussi<tom.zanussi@intel.com>
+>> ---
+>>   common/recipes-bsp/grub/grub_1.98.bb |    2 +-
+>>   1 files changed, 1 insertions(+), 1 deletions(-)
+>>
+>> diff --git a/common/recipes-bsp/grub/grub_1.98.bb b/common/recipes-bsp/grub/grub_1.98.bb
+>> index 0cd3a40..802733f 100644
+>> --- a/common/recipes-bsp/grub/grub_1.98.bb
+>> +++ b/common/recipes-bsp/grub/grub_1.98.bb
+>> @@ -24,7 +24,7 @@ SRC_URI = "ftp://alpha.gnu.org/gnu/grub/grub-${PV}.tar.gz \
+>>   inherit autotools
+>>   inherit gettext
+>>
+>> -EXTRA_OECONF = "--with-platform=pc --target=i386"
+>> +EXTRA_OECONF = "--with-platform=pc --target=i386 --disable-grub-mkfont"
+>>
+>>   do_configure() {
+>>       oe_runconf
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 -- 
-1.7.0.4
-
-
-
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
