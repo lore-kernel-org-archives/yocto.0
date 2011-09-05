@@ -1,31 +1,20 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC815E0126C
-	for <yocto@yoctoproject.org>; Sun,  4 Sep 2011 01:45:34 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 04 Sep 2011 01:45:34 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2483E01242
+	for <yocto@yoctoproject.org>; Sun,  4 Sep 2011 21:11:29 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 04 Sep 2011 21:11:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,327,1312182000"; d="scan'208";a="47981288"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by fmsmga001.fm.intel.com with ESMTP; 04 Sep 2011 01:45:34 -0700
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 4 Sep 2011 16:45:33 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi; Sun, 4 Sep 2011
-	16:45:32 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="45253929"
+Received: from unknown (HELO [10.255.14.5]) ([10.255.14.5])
+	by orsmga001.jf.intel.com with ESMTP; 04 Sep 2011 21:11:28 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Sun, 4 Sep 2011 16:45:31 +0800
-Thread-Topic: Yocto weekly bug trend charts -- WW36
-Thread-Index: Acxq3wDgTdvqaCcSS3aaQetzlh3cnA==
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D73C62D9@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW36
+Date: Sun, 04 Sep 2011 23:11:05 -0500
+Message-ID: <1315195865.31478.155.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Subject: [PATCH] crownbay: change preferred display order
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,17 +26,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 04 Sep 2011 08:45:35 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 05 Sep 2011 04:11:30 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi all,
-	The overall open bug trend keep flat last week. The new-submit vs. fixed b=
-ug is 27 vs. 30. Open bug number decreased to 134. WDD number decreased to =
-674. Bug status of WW36 could be found on https://wiki.yoctoproject.org/wik=
-i/Yocto_Bug_Trend.
+The current PortOrder value assumes LVDS.  Change the value to first
+try SDVO output, and fallback to LVDS if not present.
 
-Best Regards,
-Jiajun
+Fixes [YOCTO #1430]
+
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ .../xserver-xf86-config/crownbay/xorg.conf         |    2 +-
+ .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
+index fce58f8..662f60f 100644
+--- a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
++++ b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
+@@ -23,7 +23,7 @@ Section "Device"
+     Option     "PcfVersion"            "1792"
+     Option     "ConfigId"              "1"
+     Option     "ALL/1/name"                   "e6xx"
+-    Option     "ALL/1/General/PortOrder"      "40000"
++    Option     "ALL/1/General/PortOrder"      "24000"
+     Option     "ALL/1/General/DisplayConfig"  "1"
+     Option     "ALL/1/General/DisplayDetect"  "1"
+     Option     "ALL/1/General/TuningWA" "1"
+diff --git a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+index 1461431..3fe0e9f 100644
+--- a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
++++ b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+@@ -1,4 +1,4 @@
+ THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
+ FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
+ 
+-PR := "${PR}.1"
++PR := "${PR}.2"
+-- 
+1.7.0.4
+
+
+
 
