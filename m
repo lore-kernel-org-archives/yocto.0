@@ -1,32 +1,61 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2E57E01285
-	for <yocto@yoctoproject.org>; Tue,  6 Sep 2011 06:45:05 -0700 (PDT)
-Received: from [128.224.252.2] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1R0vxZ-0003Cl-0D; Tue, 06 Sep 2011 09:45:05 -0400
-Date: Tue, 6 Sep 2011 09:45:02 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: Brian Duffy <brduffy@gmail.com>
-In-Reply-To: <CAHrDPkoTdEHMFM5k6oOPr9grBXubPgaGfUhu_G90qdrz6g8LdA@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1109060943570.17596@localhost6.localdomain6>
-References: <CAHrDPkoTdEHMFM5k6oOPr9grBXubPgaGfUhu_G90qdrz6g8LdA@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <song.liu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E3BBE00771;
+	Mon,  5 Sep 2011 11:58:47 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 05 Sep 2011 11:58:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,335,1312182000"; d="scan'208";a="14209830"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by AZSMGA002.ch.intel.com with ESMTP; 05 Sep 2011 11:58:45 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 5 Sep 2011 11:58:45 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.19]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.126]) with mapi id
+	14.01.0323.003; Mon, 5 Sep 2011 11:58:44 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "Liu, Song" <song.liu@intel.com>, "'McCombe, Kevin'"
+	<kevin.mccombe@windriver.com>, "Wold, Saul" <saul.wold@intel.com>, "Zhang, 
+	Jessica" <jessica.zhang@intel.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Polk, Jeffrey'" <jeff.polk@windriver.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "Li, Susie" <susie.li@intel.com>, "Lock,
+	Joshua"
+	<joshua.lock@intel.com>, 'Bruce Ashfield' <bruce.ashfield@windriver.com>,
+	"Zanussi, Tom" <tom.zanussi@intel.com>, "Hart, Darren"
+	<darren.hart@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Stewart, David C"
+	<david.c.stewart@intel.com>, "'Lieu.Ta@windriver.com'"
+	<Lieu.Ta@windriver.com>, "'paul.anderson@windriver.com'"
+	<paul.anderson@windriver.com>, "Osier-mixon, Jeffrey"
+	<jeffrey.osier-mixon@intel.com>, "Dmytriyenko, Denys" <denys@ti.com>,
+	"Kooi, Koen" <k-kooi@ti.com>, "'yocto-ab@yoctoproject.org'"
+	<yocto-ab@yoctoproject.org>, "Erway, Tracey M" <tracey.m.erway@intel.com>, 
+	'Daniel Cauchy' <dcauchy@mvista.com>, "Wang,
+	Shane" <shane.wang@intel.com>, 
+	"'Kridner, Jason'" <jdk@ti.com>, "Yu, Ke" <ke.yu@intel.com>, "Rifenbark,
+	Scott M" <scott.m.rifenbark@intel.com>, "'Dixon, Brad'"
+	<Brad_Dixon@mentor.com>, 'Jeremy Puhlman' <jpuhlman@gmail.com>, "Hart, 
+	Darren" <darren.hart@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>,
+	"'shsift-yocto@yahoo.com'" <shsift-yocto@yahoo.com>
+Thread-Topic: Agenda: Yocto Technical Team Meeting - (Tuesday, September 06,
+	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+Thread-Index: AQHMa/3V2YzdWYHfFUOmtbj9f2ygZg==
+Date: Mon, 5 Sep 2011 18:58:44 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F04732@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: Mailing List
+X-Mailman-Approved-At: Tue, 06 Sep 2011 08:25:59 -0700
+Cc: "'Ruff, Nithya'" <Nithya.Ruff@windriver.com>,
+	"'morvek@mvista.com'" <morvek@mvista.com>
+Subject: Agenda: Yocto Technical Team Meeting - (Tuesday, September 06, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,37 +67,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Sep 2011 13:45:06 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 05 Sep 2011 18:58:48 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 6 Sep 2011, Brian Duffy wrote:
+* Opens collection - 5 min (Song)
+* Yocto 1.1 M4 status review and issues - 20 min (team)=20
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.1_Release_Criteria
+  - Status summary for bug fixes.
+  - Documentation status (Scott Rifenbark)
+  - Build status (Beth)
+* Opens - 15 min
+=A0
+---------------------------------------------------
 
-> Is there a mailing list specifically for users? I am getting a bunch
-> of mails focused on commits to the project and other project
-> development related stuff that I am not particularly interested in.
-> I just don't want to be bothering the wrong people with my simple
-> questions if I am on the wrong list ;-)
 
-  this is also something i should have asked about earlier --
-depending on what component you're interested in, there's a different
-mailing list:
+Conference details=20
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
+Participants:=20
+30
+Duration:=20
+60 minutes=20
+Participant passcode:=20
+49611427=20
+Dial-in number:=20
+1.972.995.7777=20
+US Toll Free number:=20
+1.877.561.6828=20
+BlackBerry users, click this link to join your conference as a chairperson:
+1.972.995.7777x67184230#
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x49611427#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
 
-  bitbake devel list
-  poky list
-  yocto list
+Local and Global Access Numbers=20
 
-and perhaps others, and sometimes it's never clear which list you want
-to address.
 
-rday
+Country=20
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277=20
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322=20
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877=20
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777=20
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777=20
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799=20
+From Kuala Lumpur dial 4264 3799=20
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177=20
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777=20
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998=20
+From Seoul dial 5606998=20
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363=20
+From Taipei dial 2241 1363=20
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001=20
+then enter 877 633 1123=20
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
 
--- 
+Recurring conferences=20
+First scheduled conference:=20
+Tue Jun 28, 2011
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 22, 2012, 10:40 AM CDT
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
