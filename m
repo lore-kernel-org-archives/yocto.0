@@ -1,33 +1,26 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C91C8E0075D
-	for <yocto@yoctoproject.org>; Mon,  5 Sep 2011 12:01:18 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 05 Sep 2011 12:01:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,335,1312182000"; d="scan'208";a="14210423"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by AZSMGA002.ch.intel.com with ESMTP; 05 Sep 2011 12:01:18 -0700
-Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 5 Sep 2011 12:01:17 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.19]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.115]) with mapi id
-	14.01.0323.003; Mon, 5 Sep 2011 12:01:17 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Technical Team Meeting - (Tuesday, September 06,
-	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
-Thread-Index: AQHMa/4w7Fym6ZLFzE+V7y6g9CiBjg==
-Date: Mon, 5 Sep 2011 19:01:17 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F057A2@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D370CE0075D
+	for <yocto@yoctoproject.org>; Mon,  5 Sep 2011 12:36:14 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p85JaBGv027293
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 5 Sep 2011 12:36:11 -0700 (PDT)
+Received: from [128.224.147.214] (128.224.147.214) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Mon, 5 Sep 2011 12:36:10 -0700
+Message-ID: <4E6524A5.7030300@windriver.com>
+Date: Mon, 5 Sep 2011 15:36:05 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11 ThunderBrowse/3.8
 MIME-Version: 1.0
-Subject: Agenda: Yocto Technical Team Meeting - (Tuesday, September 06, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+To: Tom Zanussi <tom.zanussi@intel.com>
+References: <1315238690.31478.198.camel@elmorro>
+In-Reply-To: <1315238690.31478.198.camel@elmorro>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Bruce Ashfield <bruce.ashfield@gmail.com>
+Subject: Re: [PATCH 0/1][KERNEL] linux-yocto-3.0/meta: re-enable utrace
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,126 +32,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Sep 2011 19:01:18 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 05 Sep 2011 19:36:15 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-* Opens collection - 5 min (Song)
-* Yocto 1.1 M4 status review and issues - 20 min (team)=20
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.1_Release_Criteria
-  - Status summary for bug fixes.
-  - Documentation status (Scott Rifenbark)
-  - Build status (Beth)
-* Opens - 15 min
-=A0
----------------------------------------------------
+On 11-09-05 12:04 PM, Tom Zanussi wrote:
+> This patchset re-enables utrace.  Tested on qemuppc, qemux86, qemux86-64,
+> qemuarm (where it doesn't work, as expected - utrace doesn't currently
+> support arm), and sugarbay.
+>
+> Please pull into linux-yocto-3.0/meta.
 
+merged to both 3.0 and yocto-dev (so it won't go missing again).
 
-Conference details=20
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
-Participants:=20
-30
-Duration:=20
-60 minutes=20
-Participant passcode:=20
-49611427=20
-Dial-in number:=20
-1.972.995.7777=20
-US Toll Free number:=20
-1.877.561.6828=20
-BlackBerry users, click this link to join your conference as a chairperson:
-1.972.995.7777x67184230#
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x49611427#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
+Bruce
 
-Local and Global Access Numbers=20
-
-
-Country=20
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277=20
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322=20
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877=20
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777=20
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777=20
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799=20
-From Kuala Lumpur dial 4264 3799=20
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177=20
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777=20
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998=20
-From Seoul dial 5606998=20
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363=20
-From Taipei dial 2241 1363=20
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001=20
-then enter 877 633 1123=20
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
-
-Recurring conferences=20
-First scheduled conference:=20
-Tue Jun 28, 2011
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 22, 2012, 10:40 AM CDT
+>
+> The following changes are available in the git repository at:
+>
+>    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git utrace-meta
+>    http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=utrace-meta
+>
+> Tom Zanussi (1):
+>    meta: re-enable utrace feature for linux-yocto
+>
+>   meta/cfg/kernel-cache/ktypes/standard/standard.scc |    3 +++
+>   1 files changed, 3 insertions(+), 0 deletions(-)
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
