@@ -1,29 +1,39 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 411ACE0075D
-	for <yocto@yoctoproject.org>; Tue,  6 Sep 2011 10:42:29 -0700 (PDT)
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A33ADE0071A
+	for <yocto@yoctoproject.org>; Tue,  6 Sep 2011 11:03:56 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 06 Sep 2011 10:42:28 -0700
+	by azsmga101.ch.intel.com with ESMTP; 06 Sep 2011 11:03:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,339,1312182000"; d="scan'208";a="14498731"
-Received: from unknown (HELO envy.home) ([10.255.14.186])
-	by AZSMGA002.ch.intel.com with ESMTP; 06 Sep 2011 10:42:28 -0700
-Message-ID: <4E665B84.3010006@linux.intel.com>
-Date: Tue, 06 Sep 2011 10:42:28 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:6.0) Gecko/20110816 Thunderbird/6.0
-MIME-Version: 1.0
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+X-IronPort-AV: E=Sophos;i="4.68,340,1312182000"; d="scan'208";a="14506418"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by AZSMGA002.ch.intel.com with ESMTP; 06 Sep 2011 11:03:55 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 6 Sep 2011 11:03:53 -0700
+Received: from orsmsx502.amr.corp.intel.com ([10.22.226.210]) by
+	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
+	Tue, 6 Sep 2011 11:03:52 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Date: Tue, 6 Sep 2011 11:03:50 -0700
+Thread-Topic: [yocto] RT kernel with core-image-sato build failed for sugarbay
+Thread-Index: AcxsvFvHpq+Rd8CrS0SADl73I+BqUQAApl3g
+Message-ID: <4BD43A85686FC34D819098DB1C3999D90188A4C06E@orsmsx502.amr.corp.intel.com>
 References: <4BD43A85686FC34D819098DB1C3999D901889D799F@orsmsx502.amr.corp.intel.com>
-	<1314850760.10191.3.camel@elmorro>
-	<4E5FF19D.6000409@linux.intel.com>
+	<1314850760.10191.3.camel@elmorro> <4E5FF19D.6000409@linux.intel.com>
 	<4BD43A85686FC34D819098DB1C3999D901889D7F2E@orsmsx502.amr.corp.intel.com>
 	<4E5FF413.1090205@linux.intel.com>
 	<4BD43A85686FC34D819098DB1C3999D901889D7F5C@orsmsx502.amr.corp.intel.com>
 	<4E5FFE8F.3020307@linux.intel.com>
 	<4BD43A85686FC34D819098DB1C3999D901889D7FF4@orsmsx502.amr.corp.intel.com>
-In-Reply-To: <4BD43A85686FC34D819098DB1C3999D901889D7FF4@orsmsx502.amr.corp.intel.com>
+	<4E665B84.3010006@linux.intel.com>
+In-Reply-To: <4E665B84.3010006@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: RT kernel with core-image-sato build failed for sugarbay
 X-BeenThere: yocto@yoctoproject.org
@@ -37,18 +47,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Sep 2011 17:42:29 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 06 Sep 2011 18:03:56 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darren,
+
+With the below Tom's commit IDs, the build was success and I am moving ahea=
+d with this.
+I am not blocked.  I was also able to build and boot the Crystalforest BSP.
+
+Thanks
+Kishore.
+
+
+-----Original Message-----
+From: Darren Hart [mailto:dvhart@linux.intel.com]=20
+Sent: Tuesday, September 06, 2011 10:42 AM
+To: Bodke, Kishore K
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] RT kernel with core-image-sato build failed for sugarb=
+ay
 
 On 09/01/2011 03:05 PM, Bodke, Kishore K wrote:
-> For the build I removed the rttests in the IMAGE_INSTALL , so it is not showing up here.
-> 
-> bitbake -e core-image-sato | egrep "IMAGE_INSTALL="                                           
-> # MULTILIB_IMAGE_INSTALL= 
-> # IMAGE_INSTALL=${POKY_BASE_INSTALL}
-> IMAGE_INSTALL="task-core-boot     task-base-extended"
-> 
+> For the build I removed the rttests in the IMAGE_INSTALL , so it is not s=
+howing up here.
+>=20
+> bitbake -e core-image-sato | egrep "IMAGE_INSTALL=3D"                    =
+                      =20
+> # MULTILIB_IMAGE_INSTALL=3D=20
+> # IMAGE_INSTALL=3D${POKY_BASE_INSTALL}
+> IMAGE_INSTALL=3D"task-core-boot     task-base-extended"
+>=20
 > I will rebuild with rttests and send the output.
 
 Hi Kishore,
@@ -59,32 +90,32 @@ Thanks,
 
 Darren
 
-> 
+>=20
 > Thanks
 > Kishore.
-> 
+>=20
 > -----Original Message-----
-> From: Darren Hart [mailto:dvhart@linux.intel.com] 
+> From: Darren Hart [mailto:dvhart@linux.intel.com]=20
 > Sent: Thursday, September 01, 2011 2:52 PM
 > To: Bodke, Kishore K
 > Cc: Zanussi, Tom; yocto@yoctoproject.org; Hart, Darren; Saxena, Rahul
 > Subject: Re: RT kernel with core-image-sato build failed for sugarbay
-> 
+>=20
 > Can you report the output of:
-> 
-> $ bitbake -e core-image-sato | egrep "^IMAGE_INSTALL="
-> 
+>=20
+> $ bitbake -e core-image-sato | egrep "^IMAGE_INSTALL=3D"
+>=20
 > Thanks,
-> 
+>=20
 > Darren
-> 
+>=20
 > On 09/01/2011 02:14 PM, Bodke, Kishore K wrote:
 >> Yeah, it is the same do_rootfs failure I get for both the builds.
 >> Thanks
 >> Kishore.
 >>
 >> -----Original Message-----
->> From: Darren Hart [mailto:dvhart@linux.intel.com] 
+>> From: Darren Hart [mailto:dvhart@linux.intel.com]=20
 >> Sent: Thursday, September 01, 2011 2:08 PM
 >> To: Bodke, Kishore K
 >> Cc: Zanussi, Tom; yocto@yoctoproject.org; Hart, Darren; Saxena, Rahul
@@ -92,9 +123,9 @@ Darren
 >>
 >> On 09/01/2011 02:01 PM, Bodke, Kishore K wrote:
 >>> Clean build with the below TOM's two commit IDs worked for me, if I
->>> do not add IMAGE_INSTALL += "rttests" for sugarbay.
+>>> do not add IMAGE_INSTALL +=3D "rttests" for sugarbay.
 >>>
->>> It failed if I add the IMAGE_INSTALL += "rttests"
+>>> It failed if I add the IMAGE_INSTALL +=3D "rttests"
 >>
 >> Do you get the same error? If so, it's starting to sound like the second
 >> build is what fails since neither of your failure scenarios include
@@ -169,9 +200,9 @@ Darren
 >>>>
 >>>
 >>
-> 
+>=20
 
--- 
+--=20
 Darren Hart
 Intel Open Source Technology Center
 Yocto Project - Linux Kernel
