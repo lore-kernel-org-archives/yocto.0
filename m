@@ -1,35 +1,30 @@
-Return-Path: <eballetbo@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6488EE0128E
-	for <yocto@yoctoproject.org>; Tue,  6 Sep 2011 02:22:33 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iafi7 with SMTP id i7so10537754iaf.35
-	for <yocto@yoctoproject.org>; Tue, 06 Sep 2011 02:22:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=Q9GhjdFNxT6dVhoZJgkVOa9iIxziK0BmC6UsKePWjVM=;
-	b=gsKKwE+j7ICyWLJjxslVrtbPLxS6nljQn+EjD17Cp/c9Hgz/olOwji9JMd8jSX2M3U
-	WiXUMf0+mcQ0jUg5jAAyblvy6RA6et6eBuaP8e1eXZPEDQngyxuaEmH7ty7aNB2wn8Bt
-	TDtYrXWNaSJOwfTc6DlBJCDujW67YlNHv2c1I=
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD0C7E01295
+	for <yocto@yoctoproject.org>; Tue,  6 Sep 2011 03:27:54 -0700 (PDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1R0ssj-0007qw-Ii
+	for yocto@yoctoproject.org; Tue, 06 Sep 2011 06:27:53 -0400
+Date: Tue, 6 Sep 2011 06:27:48 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1109060616150.3852@localhost6.localdomain6>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.231.6.165 with SMTP id 37mr9227609ibz.64.1315300951842; Tue,
-	06 Sep 2011 02:22:31 -0700 (PDT)
-Received: by 10.231.158.72 with HTTP; Tue, 6 Sep 2011 02:22:31 -0700 (PDT)
-In-Reply-To: <C10D3FB0CD45994C8A51FEC1227CE22F30C590D755@shsmsx502.ccr.corp.intel.com>
-References: <CAFqH_53qx7d13w-AcNErp5qm9HmhOOkPU62pD03Xv222YMO8YQ@mail.gmail.com>
-	<C10D3FB0CD45994C8A51FEC1227CE22F30C590D6B8@shsmsx502.ccr.corp.intel.com>
-	<CAFqH_520LDVehR==BXrmLxG_9y=Dsh5NydND1KCkG4QKOd6bdQ@mail.gmail.com>
-	<C10D3FB0CD45994C8A51FEC1227CE22F30C590D755@shsmsx502.ccr.corp.intel.com>
-Date: Tue, 6 Sep 2011 11:22:31 +0200
-Message-ID: <CAFqH_53thaUBy3Qd_ZBmSefoHa9ijLWs9p-Qe+dg6JCP_PR3jg@mail.gmail.com>
-From: =?UTF-8?Q?Enric_Balletb=C3=B2_i_Serra?= <eballetbo@gmail.com>
-To: "Lu, Lianhao" <lianhao.lu@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Error Creating Project with Eclipse IDE
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: trying to summarize all the top-level yocto-related docs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,62 +36,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Sep 2011 09:22:33 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 06 Sep 2011 10:27:55 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-2011/9/6 Lu, Lianhao <lianhao.lu@intel.com>:
-> Enric Balletb=C3=B2 i Serra wrote on 2011-09-06:
->> Hi Lianhao,
->>
->> 2011/9/6 Lu, Lianhao <lianhao.lu@intel.com>:
->>> Hi Enric,
->>>
->>> Which version of the Yocto eclipse plug-in did you use?
->>
->> I'm using version 1.0 from
->> http://www.yoctoproject.org/downloads/eclipse-plugin/1.0 with latest
->> yocto mainline from git.
->
-> I believe the latest changes in Yocto mainline is not compatible with the=
- 1.0 plugin due to some file/variable name changes in the Yocto mainline.
 
-Ah ok, that could explain my problem, thanks
->
-> -Lianhao
->
->>
->>> Have you configure the plug-in as mentioned in manual section 4.1.3?
->>
->> Yes, I followed these steps I will review the steps to see if I'm
->> missing something ...
->>
->> Cheers,
->> =C2=A0 Enric
->>>
->>> Best Regards,
->>> -Lianhao
->>>
->>> Enric Balletb=C3=B2 i Serra wrote on 2011-09-06:
->>>> Hi all,
->>>>
->>>> Following
->>>> http://www.yoctoproject.org/docs/1.1/adt-manual/adt-manual.htm
->>>> (chapter 4.2), when I=E2=80=99m creating a New Project I=E2=80=99m get=
-ting the message:
->>>>
->>>> =C2=A0 Error Creating Project
->>>> =C2=A0 Project cannot be created
->>>> =C2=A0 Reason: Internal Error: java.lang.NullPointerException I'm
->>>> running Eclipse Helios (Version: Helios Service Release 2, Build
->>>> id: 20110301-1815) on Ubuntu 10.10 machine.
->>>>
->>>> Any clue with this ?
->>>>
->>>> Thanks in advance,
->>>> =C2=A0 =C2=A0Enric
->>>
->
->
->
+  in trying to resolve a minor issue this weekend regarding
+PREMIRRORS, i tried to summarize the current set of yocto-related docs
+and wound up just a bit confused so i'm hoping someone can clarify the
+canonical set of documentation someone getting into yocto would want
+to have.
+
+  as i read it, one can look at yocto in a series of intellectual
+layers, simplest to most complex:
+
+  * bitbake
+  * OE-core
+  * poky
+  * yocto
+
+  first, is that a reasonable way to look at the software collection?
+if so, how do the docs line up against this?
+
+  first, there's the bitbake user manual here:
+
+  http://bitbake.berlios.de/manual/index.html
+
+it seems like that manual hasn't been updated for a while (or has
+it?).  is that the current state of the documentation for bitbake?  it
+seems incomplete, unless i'm unclear on how the software is broken up.
+
+  next, there's OE-core, for which the wiki page seems to be the most
+current doc:
+
+  http://www.openembedded.org/wiki/OpenEmbedded-Core
+
+moving on to poky, the web site http://pokylinux.org/ really doesn't
+take care to distinguish between poky and yocto since the "About" link
+immediately jumps one over to the yocto project "About" page, which
+really blurs the line between poky and yocto, deliberately or
+otherwise.
+
+  as for poky documentation, the Documentation tab over at yocto has a
+link to the "Poky Reference Manual" but there is also a Poky Handbook
+which is *not* linked from there and is not even clearly linked from
+the poky site itself -- here's the handbook:
+
+  http://pokylinux.org/doc/poky-handbook.html
+
+which is clearly back at the poky site but you would be hard-pressed
+to find that handbook starting at the poky linux main page and
+following links.
+
+  so ... what is the state of docs and support these days, for both
+documentation and mailing lists?  i was wondering about something
+involving PREMIRRORS and i ended up unsure as to what to read or which
+mailing list i could consult.
+
+  thoughts?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
