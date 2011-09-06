@@ -1,25 +1,38 @@
-Return-Path: <caizhenjun@insigma.com.cn>
-Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2198EE01285
-	for <yocto@yoctoproject.org>; Mon,  5 Sep 2011 23:19:02 -0700 (PDT)
-Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
-	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
-	Tue, 6 Sep 2011 14:18:48 +0800
-Received: from WX-ExchMB.insigma.com.cn ([fe80::5efe:10.0.1.203]) by
-	WX-ExchMB.insigma.com.cn ([fe80::5efe:10.0.1.203%12]) with mapi;
-	Tue, 6 Sep 2011 14:18:47 +0800
-From: =?gb2312?B?sszV8b78?= <caizhenjun@insigma.com.cn>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 6 Sep 2011 14:19:06 +0800
+Return-Path: <lianhao.lu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2302E01285
+	for <yocto@yoctoproject.org>; Mon,  5 Sep 2011 23:28:57 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 05 Sep 2011 23:28:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; 
+	d="png'150?scan'150,208,217,150";a="45364949"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by orsmga002.jf.intel.com with ESMTP; 05 Sep 2011 23:28:55 -0700
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 6 Sep 2011 14:28:51 +0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 6 Sep 2011 14:28:51 +0800
+Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi; Tue, 6 Sep 2011
+	14:28:49 +0800
+From: "Lu, Lianhao" <lianhao.lu@intel.com>
+To: =?gb2312?B?sszV8b78?= <caizhenjun@insigma.com.cn>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 6 Sep 2011 14:28:48 +0800
 Thread-Topic: ecplise plug-in can't connect to QEMU
-Thread-Index: AcxsXOGuvo6qpHyuRCiNg1m7DIJ8JA==
-Message-ID: <DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EA5E2F3@WX-ExchMB.insigma.com.cn>
-Accept-Language: zh-CN
+Thread-Index: AcxsXOGuvo6qpHyuRCiNg1m7DIJ8JAAAFKmw
+Message-ID: <C10D3FB0CD45994C8A51FEC1227CE22F30C590D5C1@shsmsx502.ccr.corp.intel.com>
+References: <DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EA5E2F3@WX-ExchMB.insigma.com.cn>
+In-Reply-To: <DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EA5E2F3@WX-ExchMB.insigma.com.cn>
+Accept-Language: zh-CN, en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN
+acceptlanguage: zh-CN, en-US
 MIME-Version: 1.0
-Subject: ecplise plug-in can't connect to QEMU
+Subject: Re: ecplise plug-in can't connect to QEMU
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,36 +44,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Sep 2011 06:19:05 -0000
-X-Groupsio-MsgNum: 2670
-Content-Language: zh-CN
+X-List-Received-Date: Tue, 06 Sep 2011 06:28:58 -0000
+X-Groupsio-MsgNum: 2671
+Content-Language: en-US
 Content-Type: multipart/related;
-	boundary="_005_DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EA5E2F3WXExchMBinsig_";
+	boundary="_005_C10D3FB0CD45994C8A51FEC1227CE22F30C590D5C1shsmsx502ccrc_";
 	type="multipart/alternative"
 
---_005_DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EA5E2F3WXExchMBinsig_
+--_005_C10D3FB0CD45994C8A51FEC1227CE22F30C590D5C1shsmsx502ccrc_
 Content-Type: multipart/alternative;
-	boundary="_000_DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EA5E2F3WXExchMBinsig_"
+	boundary="_000_C10D3FB0CD45994C8A51FEC1227CE22F30C590D5C1shsmsx502ccrc_"
 
---_000_DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EA5E2F3WXExchMBinsig_
+--_000_C10D3FB0CD45994C8A51FEC1227CE22F30C590D5C1shsmsx502ccrc_
 Content-Type: text/plain; charset="gb2312"
 Content-Transfer-Encoding: base64
 
-SGkgQUxMLA0KICAgICAgICAgQXQgdGhlIHN0ZXAgIKGwNC42LiBEZXBsb3lpbmcgYW5kIERlYnVn
-Z2luZyB0aGUgQXBwbGljYXRpb26hsSBvZiBBcHBsaWNhdGlvbiBEZXZlbG9wbWVudCBUb29sa2l0
-IChBRFQpIFVzZXIncyBHdWlkZTxodHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy8xLjEv
-YWR0LW1hbnVhbC9hZHQtbWFudWFsLmh0bWw+ICxJIGVuY291bnRlciBhIHByb2JsZW0gdGhhdCBk
-ZWJ1ZyBwcm9jZXNzIGNhbqGvdCBjb25uZWN0IHRvIFFFTVUuIFRoZSBwaWN0dXJlIG9mIHByb2Js
-ZW0gYXMgZm9sbG93Og0KDQpbY2lkOmltYWdlMDAxLnBuZ0AwMUNDNkM5RS5FMDNFMTdBMF0NCg0K
-ICAgICAgICAgQW5vdGhlciB0cm91YmxlIEkgZG9uoa90IGtub3cgaG93IHRvIGRlbGV0ZSBhIGNv
-bm5lY3Rpb24gYW5kIGNoYW5nZSBpZC1wYXNzd29yZCBvZiBvbmUgY29ubmVjdGlvbi4NCiAgICAg
+SGkgRmV5ZSwNCg0KV2hpY2ggdGFyZ2V0IGltYWdlIGRpZCB5b3UgdXNlPyBBRFQgcmVxdWlyZXMg
+dGNmLWFnZW50KHdoaWNoIGlzIGluY2x1ZGVkIGluIHRoZSBjb3JlLWltYWdlLXNhdG8tc2RrIGlt
+YWdlIGRlZmF1bHQpIHJ1bm5pbmcgb24gdGhlIHRhcmdldCBtYWNoaW5lIGZvciBjb21tdW5pY2F0
+aW9uIGJldHdlZW4gaG9zdCBhbmQgdGFyZ2V0LiBTbyBwbGVhc2UgbWFrZSBzdXJlIHRoZSB0Y2Yt
+YWdlbnQgaXMgcnVubmluZyBvbiB0aGUgdGFyZ2V0IG1hY2hpbmUuDQoNClRvIGRlbGV0ZSB0aGUg
+Y29ubmVjdGlvbiwgcGxlYXNlIHN3aXRjaCB0byB0aGUgUlNFIHBlcnNwZWN0aXZlIGJ5IGNsaWNr
+aW5nIHRoZSBtZW51IGVudHJ5IKGwV2luZG93obEtPqGxT3BlbiBQZXJzcGVjdGl2ZaGxLT6hsU90
+aGVyoa2hsS0+obFSZW1vdGUgU3lzdGVtIEV4cGxvcmVyobEtPqGxT0uhsS4gWW91oa9sbCBmaW5k
+IGFsbCB0aGUgY29uZWVjdGlvbnMgaW4gdGhlIHZpZXcgbmFtZWQgobBSZW1vdGUgU3lzdGVtc6Gx
+IG9uIHRoZSBsZWZ0IHNpZGUgb2YgeW91ciB3b3JrYmVuY2guDQoNClVzaW5nIHRoZSBSU0UgcGVy
+c3BlY2l0dmUsIHlvdSBtYXkgYWxzbyBkZXRlY3Qgd2hldGhlciB0Y2YtYWdlbnQgaXMgcnVubmlu
+ZyBvbiB0aGUgdGFyZ2V0IGJ5IHRyeWluZyB0byBsYXVuY2ggYSB0ZXJtaW5hbCB0byB0aGUgdGFy
+Z2V0Lg0KDQpCZXN0IFJlZ2FyZHMsDQpMaWFuaGFvDQoNCkZyb206IHlvY3RvLWJvdW5jZXNAeW9j
+dG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10gT24g
+QmVoYWxmIE9mILLM1fG+/A0KU2VudDogVHVlc2RheSwgU2VwdGVtYmVyIDA2LCAyMDExIDI6MTkg
+UE0NClRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBbeW9jdG9dIGVjcGxpc2Ug
+cGx1Zy1pbiBjYW4ndCBjb25uZWN0IHRvIFFFTVUNCg0KSGkgQUxMLA0KICAgICAgICAgQXQgdGhl
+IHN0ZXAgIKGwNC42LiBEZXBsb3lpbmcgYW5kIERlYnVnZ2luZyB0aGUgQXBwbGljYXRpb26hsSBv
+ZiBBcHBsaWNhdGlvbiBEZXZlbG9wbWVudCBUb29sa2l0IChBRFQpIFVzZXIncyBHdWlkZTxodHRw
+Oi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy8xLjEvYWR0LW1hbnVhbC9hZHQtbWFudWFsLmh0
+bWw+ICxJIGVuY291bnRlciBhIHByb2JsZW0gdGhhdCBkZWJ1ZyBwcm9jZXNzIGNhbqGvdCBjb25u
+ZWN0IHRvIFFFTVUuIFRoZSBwaWN0dXJlIG9mIHByb2JsZW0gYXMgZm9sbG93Og0KDQpbY2lkOmlt
+YWdlMDAxLnBuZ0AwMUNDNkNBMS40N0MwNDg2MF0NCg0KICAgICAgICAgQW5vdGhlciB0cm91Ymxl
+IEkgZG9uoa90IGtub3cgaG93IHRvIGRlbGV0ZSBhIGNvbm5lY3Rpb24gYW5kIGNoYW5nZSBpZC1w
+YXNzd29yZCBvZiBvbmUgY29ubmVjdGlvbi4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
 ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBbY2lkOmlt
-YWdlMDAyLnBuZ0AwMUNDNkM5Ri5CQzdDM0JDMF0NCg0KVGhhbmtzDQpmZXllDQoNCrLM1fG+/A0K
-zfjQwry8yvXT0M/euavLvs7vwarN+MrC0rWyvw0KurzW3czsxL/JvcK3MjI2usXN+NDCtPPPww0K
-tee7sC0xMzggNjc0NSAxOTEwDQoNCg==
+ICAgICAgICAgICAgICAgICAgICAgICAgICBbY2lkOmltYWdlMDAyLnBuZ0AwMUNDNkNBMS40N0Mw
+NDg2MF0NCg0KVGhhbmtzDQpmZXllDQoNCrLM1fG+/A0KzfjQwry8yvXT0M/euavLvs7vwarN+MrC
+0rWyvw0KurzW3czsxL/JvcK3MjI2usXN+NDCtPPPww0Ktee7sC0xMzggNjc0NSAxOTEwDQoNCg==
 
---_000_DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EA5E2F3WXExchMBinsig_
+--_000_C10D3FB0CD45994C8A51FEC1227CE22F30C590D5C1shsmsx502ccrc_
 Content-Type: text/html; charset="gb2312"
 Content-Transfer-Encoding: quoted-printable
 
@@ -69,7 +98,7 @@ osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 //www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
 =3D"text/html; charset=3Dgb2312"><meta name=3DGenerator content=3D"Microsof=
-t Word 12 (filtered medium)"><!--[if !mso]><style>v\:* {behavior:url(#defau=
+t Word 14 (filtered medium)"><!--[if !mso]><style>v\:* {behavior:url(#defau=
 lt#VML);}
 o\:* {behavior:url(#default#VML);}
 w\:* {behavior:url(#default#VML);}
@@ -80,11 +109,14 @@ w\:* {behavior:url(#default#VML);}
 	{font-family:=CB=CE=CC=E5;
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
+	{font-family:=CB=CE=CC=E5;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
 @font-face
 	{font-family:"\@=CB=CE=CC=E5";
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
@@ -109,89 +141,143 @@ a:visited, span.MsoHyperlinkFollowed
 	text-decoration:underline;}
 p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
 	{mso-style-priority:99;
-	mso-style-link:"=C5=FA=D7=A2=BF=F2=CE=C4=B1=BE Char";
+	mso-style-link:"Balloon Text Char";
 	margin:0cm;
 	margin-bottom:.0001pt;
 	text-align:justify;
 	text-justify:inter-ideograph;
 	font-size:9.0pt;
 	font-family:"Calibri","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Calibri","sans-serif";}
+span.EmailStyle19
+	{mso-style-type:personal;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
+p.a, li.a, div.a
+	{mso-style-name:=C5=FA=D7=A2=BF=F2=CE=C4=B1=BE;
+	mso-style-link:"=C5=FA=D7=A2=BF=F2=CE=C4=B1=BE Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.5pt;
+	font-family:"Calibri","sans-serif";}
 span.Char
 	{mso-style-name:"=C5=FA=D7=A2=BF=F2=CE=C4=B1=BE Char";
 	mso-style-priority:99;
 	mso-style-link:=C5=FA=D7=A2=BF=F2=CE=C4=B1=BE;}
+span.EmailStyle22
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
 .MsoChpDefault
-	{mso-style-type:export-only;}
-/* Page Definitions */
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
 @page WordSection1
 	{size:612.0pt 792.0pt;
 	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"2050" />
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]--></head><body lang=3DZH-CN link=3Dblue vli=
 nk=3Dpurple style=3D'text-justify-trim:punctuation'><div class=3DWordSectio=
-n1><p class=3DMsoNormal><span lang=3DEN-US>Hi ALL,<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; At the step &nbsp;=A1=B0</span><span lang=3DEN style=3D'font-fam=
-ily:"Verdana","sans-serif";color:#333333'>4.6. Deploying and Debugging the =
-Application</span><span lang=3DEN-US>=A1=B1 of </span><span lang=3DEN><a hr=
-ef=3D"http://www.yoctoproject.org/docs/1.1/adt-manual/adt-manual.html" targ=
-et=3D"_blank">Application Development Toolkit (ADT) User's Guide</a> ,I enc=
-ounter a problem that debug process can=A1=AFt connect to QEMU. The picture=
- of problem as follow:<o:p></o:p></span></p><p class=3DMsoNormal><span lang=
-=3DEN><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal style=3D'margin-left=
-:231.0pt;text-indent:21.0pt'><span lang=3DEN-US><img border=3D0 width=3D529=
- height=3D377 id=3D"=CD=BC=C6=AC_x0020_1" src=3D"cid:image001.png@01CC6C9E.=
-E03E17A0"></span><span lang=3DEN><o:p></o:p></span></p><p class=3DMsoNormal=
-><span lang=3DEN><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lan=
-g=3DEN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Another trouble I d=
-on=A1=AFt know how to delete a connection and change id-password of one con=
-nection.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN>&nbsp;&n=
+n1><p class=3DMsoNormal><span lang=3DEN-US style=3D'color:#1F497D'>Hi Feye,=
+<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'colo=
+r:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN=
+-US style=3D'color:#1F497D'>Which target image did you use? ADT requires tc=
+f-agent(which is included in the core-image-sato-sdk image default) running=
+ on the target machine for communication between host and target. So please=
+ make sure the tcf-agent is running on the target machine.<o:p></o:p></span=
+></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'color:#1F497D'><o:p>&=
+nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'colo=
+r:#1F497D'>To delete the connection, please switch to the RSE perspective b=
+y clicking the menu entry =A1=B0Window=A1=B1-&gt;=A1=B1Open Perspective=A1=
+=B1-&gt;=A1=B1Other=A1=AD=A1=B1-&gt;=A1=B1Remote System Explorer=A1=B1-&gt;=
+=A1=B1OK=A1=B1. You=A1=AFll find all the coneections in the view named =A1=
+=B0Remote Systems=A1=B1 on the left side of your workbench.<o:p></o:p></spa=
+n></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'color:#1F497D'><o:p>=
+&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'col=
+or:#1F497D'>Using the RSE perspecitve, you may also detect whether tcf-agen=
+t is running on the target by trying to launch a terminal to the target.<o:=
+p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'color:#=
+1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US=
+ style=3D'color:#1F497D'>Best Regards,<o:p></o:p></span></p><p class=3DMsoN=
+ormal><span lang=3DEN-US style=3D'color:#1F497D'>Lianhao<o:p></o:p></span><=
+/p><p class=3DMsoNormal><span lang=3DEN-US style=3D'color:#1F497D'><o:p>&nb=
+sp;</o:p></span></p><div style=3D'border:none;border-left:solid blue 1.5pt;=
+padding:0cm 0cm 0cm 4.0pt'><div><div style=3D'border:none;border-top:solid =
+#B5C4DF 1.0pt;padding:3.0pt 0cm 0cm 0cm'><p class=3DMsoNormal align=3Dleft =
+style=3D'text-align:left'><b><span lang=3DEN-US style=3D'font-size:10.0pt;f=
+ont-family:"Tahoma","sans-serif"'>From:</span></b><span lang=3DEN-US style=
+=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> yocto-bounces@yoct=
+oproject.org [mailto:yocto-bounces@yoctoproject.org] <b>On Behalf Of </b></=
+span><span style=3D'font-size:10.0pt;font-family:=CB=CE=CC=E5'>=B2=CC=D5=F1=
+=BE=FC</span><span lang=3DEN-US style=3D'font-size:10.0pt;font-family:"Taho=
+ma","sans-serif"'><br><b>Sent:</b> Tuesday, September 06, 2011 2:19 PM<br><=
+b>To:</b> yocto@yoctoproject.org<br><b>Subject:</b> [yocto] ecplise plug-in=
+ can't connect to QEMU<o:p></o:p></span></p></div></div><p class=3DMsoNorma=
+l align=3Dleft style=3D'text-align:left'><span lang=3DEN-US><o:p>&nbsp;</o:=
+p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Hi ALL,<o:p></o:p></sp=
+an></p><p class=3DMsoNormal><span lang=3DEN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; At the step &nbsp;=A1=B0</span><span lang=3DEN style=
+=3D'font-family:"Verdana","sans-serif";color:#333333'>4.6. Deploying and De=
+bugging the Application</span><span lang=3DEN-US>=A1=B1 of </span><span lan=
+g=3DEN><a href=3D"http://www.yoctoproject.org/docs/1.1/adt-manual/adt-manua=
+l.html" target=3D"_blank">Application Development Toolkit (ADT) User's Guid=
+e</a> ,I encounter a problem that debug process can=A1=AFt connect to QEMU.=
+ The picture of problem as follow:<o:p></o:p></span></p><p class=3DMsoNorma=
+l><span lang=3DEN><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal style=3D=
+'margin-left:231.0pt;text-indent:21.0pt'><span lang=3DEN-US><img border=3D0=
+ width=3D529 height=3D377 id=3D"=CD=BC=C6=AC_x0020_1" src=3D"cid:image001.p=
+ng@01CC6CA1.47C04860"></span><span lang=3DEN><o:p></o:p></span></p><p class=
+=3DMsoNormal><span lang=3DEN><o:p>&nbsp;</o:p></span></p><p class=3DMsoNorm=
+al><span lang=3DEN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Another=
+ trouble I don=A1=AFt know how to delete a connection and change id-passwor=
+d of one connection.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=
+=3DEN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
 bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
 ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang=3DEN-US>=
-<img border=3D0 width=3D605 height=3D77 id=3D"=CD=BC=C6=AC_x0020_2" src=3D"=
-cid:image002.png@01CC6C9F.BC7C3BC0"></span><span lang=3DEN><o:p></o:p></spa=
-n></p><p class=3DMsoNormal><span lang=3DEN><o:p>&nbsp;</o:p></span></p><p c=
-lass=3DMsoNormal><span lang=3DEN>Thanks<o:p></o:p></span></p><p class=3DMso=
-Normal><span lang=3DEN>feye<o:p></o:p></span></p><p class=3DMsoNormal><span=
- lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span style=
-=3D'font-family:=CB=CE=CC=E5'>=B2=CC=D5=F1=BE=FC</span><span lang=3DEN-US><=
-o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-family:=CB=CE=
-=CC=E5'>=CD=F8=D0=C2=BC=BC=CA=F5=D3=D0=CF=DE=B9=AB=CB=BE=CE=EF=C1=AA=CD=F8=
-=CA=C2=D2=B5=B2=BF</span><span lang=3DEN-US><o:p></o:p></span></p><p class=
-=3DMsoNormal><span style=3D'font-family:=CB=CE=CC=E5'>=BA=BC=D6=DD=CC=EC=C4=
-=BF=C9=BD=C2=B7</span><span lang=3DEN-US>226</span><span style=3D'font-fami=
-ly:=CB=CE=CC=E5'>=BA=C5=CD=F8=D0=C2=B4=F3=CF=C3</span><span lang=3DEN-US><o=
-:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-family:=CB=CE=
-=CC=E5'>=B5=E7=BB=B0</span><span lang=3DEN-US>-138 6745 1910<o:p></o:p></sp=
-an></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>=
-</div></body></html>=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span=
+ lang=3DEN-US><img border=3D0 width=3D605 height=3D77 id=3D"=CD=BC=C6=AC_x0=
+020_2" src=3D"cid:image002.png@01CC6CA1.47C04860"></span><span lang=3DEN><o=
+:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN><o:p>&nbsp;</o:p><=
+/span></p><p class=3DMsoNormal><span lang=3DEN>Thanks<o:p></o:p></span></p>=
+<p class=3DMsoNormal><span lang=3DEN>feye<o:p></o:p></span></p><p class=3DM=
+soNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNorma=
+l><span style=3D'font-family:=CB=CE=CC=E5'>=B2=CC=D5=F1=BE=FC</span><span l=
+ang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-=
+family:=CB=CE=CC=E5'>=CD=F8=D0=C2=BC=BC=CA=F5=D3=D0=CF=DE=B9=AB=CB=BE=CE=EF=
+=C1=AA=CD=F8=CA=C2=D2=B5=B2=BF</span><span lang=3DEN-US><o:p></o:p></span><=
+/p><p class=3DMsoNormal><span style=3D'font-family:=CB=CE=CC=E5'>=BA=BC=D6=
+=DD=CC=EC=C4=BF=C9=BD=C2=B7</span><span lang=3DEN-US>226</span><span style=
+=3D'font-family:=CB=CE=CC=E5'>=BA=C5=CD=F8=D0=C2=B4=F3=CF=C3</span><span la=
+ng=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-f=
+amily:=CB=CE=CC=E5'>=B5=E7=BB=B0</span><span lang=3DEN-US>-138 6745 1910<o:=
+p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p=
+></span></p></div></div></body></html>=
 
---_000_DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EA5E2F3WXExchMBinsig_--
+--_000_C10D3FB0CD45994C8A51FEC1227CE22F30C590D5C1shsmsx502ccrc_--
 
---_005_DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EA5E2F3WXExchMBinsig_
+--_005_C10D3FB0CD45994C8A51FEC1227CE22F30C590D5C1shsmsx502ccrc_
 Content-Type: image/png; name="image001.png"
 Content-Description: image001.png
 Content-Disposition: inline; filename="image001.png"; size=47334;
-	creation-date="Tue, 06 Sep 2011 14:18:46 GMT";
-	modification-date="Tue, 06 Sep 2011 14:18:46 GMT"
-Content-ID: <image001.png@01CC6C9E.E03E17A0>
+	creation-date="Tue, 06 Sep 2011 14:28:48 GMT";
+	modification-date="Tue, 06 Sep 2011 14:28:48 GMT"
+Content-ID: <image001.png@01CC6CA1.47C04860>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAAAhEAAAF5CAIAAACus+/vAAAAAXNSR0IArs4c6QAAuKBJREFUeF7s
@@ -1026,13 +1112,13 @@ SmLmQR2GRHltuRycIlQdVUkowTaAABCQkQD4DBkBKsp0QuMMHPkMMlnM4taKQgD0AAJAYAgIgM8Y
 AshDsQRxcQbOZl4vvsvWNkEFVaABASAABIQIgM9QkgOCoDgD5ZvSU9VzO0IPjg0ch6pkQwMCQAAI
 vE/gP6H8nwsC98kXAAAAAElFTkSuQmCC
 
---_005_DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EA5E2F3WXExchMBinsig_
+--_005_C10D3FB0CD45994C8A51FEC1227CE22F30C590D5C1shsmsx502ccrc_
 Content-Type: image/png; name="image002.png"
 Content-Description: image002.png
 Content-Disposition: inline; filename="image002.png"; size=13467;
-	creation-date="Tue, 06 Sep 2011 14:18:46 GMT";
-	modification-date="Tue, 06 Sep 2011 14:18:46 GMT"
-Content-ID: <image002.png@01CC6C9F.BC7C3BC0>
+	creation-date="Tue, 06 Sep 2011 14:28:49 GMT";
+	modification-date="Tue, 06 Sep 2011 14:28:49 GMT"
+Content-ID: <image002.png@01CC6CA1.47C04860>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAAAl0AAABNCAIAAAATqUbOAAAAAXNSR0IArs4c6QAANFVJREFUeF7t
@@ -1273,4 +1359,4 @@ AYRA50cA8WLnr2OkIUIAIYAQQAgojgDiRcWxQikRAggBhABCoPMjgHix89cx0hAhgBBACCAEFEcA
 8aLiWKGUCAGEAEIAIdD5EUC82PnrGGmIEEAIIAQQAoojgHhRcaxQSoQAQgAhgBDo/Aj8H9FpvTUG
 5KnFAAAAAElFTkSuQmCC
 
---_005_DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EA5E2F3WXExchMBinsig_--
+--_005_C10D3FB0CD45994C8A51FEC1227CE22F30C590D5C1shsmsx502ccrc_--
