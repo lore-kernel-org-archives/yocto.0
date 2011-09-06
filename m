@@ -1,28 +1,32 @@
-Return-Path: <brduffy@gmail.com>
-Received: from mail-wy0-f176.google.com (mail-wy0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81892E01285
-	for <yocto@yoctoproject.org>; Tue,  6 Sep 2011 06:25:01 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by wyg30 with SMTP id 30so6647421wyg.35
-	for <yocto@yoctoproject.org>; Tue, 06 Sep 2011 06:25:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=g/CkqXQfD7RnRjXRK+zzN9ODuzqr9NRb22gX3AlbNtc=;
-	b=Na17jIcqKRZQlpCgWnAiPoEXmgELs6A0ire4f8x6Y0izyqlAM5gl6ys7BDoE1h6NlG
-	o0AbkpyJGfLmPqG3UnTuXCYVxZNsLLQJkk2s76Tf9AtTP6RdTyFDQBTF+7jQ+c65x6nj
-	RWeSf5meShx+HxBrOrOrwKKf1AutPgfCUZfAQ=
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2E57E01285
+	for <yocto@yoctoproject.org>; Tue,  6 Sep 2011 06:45:05 -0700 (PDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1R0vxZ-0003Cl-0D; Tue, 06 Sep 2011 09:45:05 -0400
+Date: Tue, 6 Sep 2011 09:45:02 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Brian Duffy <brduffy@gmail.com>
+In-Reply-To: <CAHrDPkoTdEHMFM5k6oOPr9grBXubPgaGfUhu_G90qdrz6g8LdA@mail.gmail.com>
+Message-ID: <alpine.DEB.2.02.1109060943570.17596@localhost6.localdomain6>
+References: <CAHrDPkoTdEHMFM5k6oOPr9grBXubPgaGfUhu_G90qdrz6g8LdA@mail.gmail.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.216.230.89 with SMTP id i67mr1093905weq.79.1315315500000; Tue,
-	06 Sep 2011 06:25:00 -0700 (PDT)
-Received: by 10.216.168.147 with HTTP; Tue, 6 Sep 2011 06:24:59 -0700 (PDT)
-Date: Tue, 6 Sep 2011 09:24:59 -0400
-Message-ID: <CAHrDPkoTdEHMFM5k6oOPr9grBXubPgaGfUhu_G90qdrz6g8LdA@mail.gmail.com>
-From: Brian Duffy <brduffy@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Mailing List
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: Mailing List
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,30 +38,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Sep 2011 13:25:02 -0000
-Content-Type: multipart/alternative; boundary=0016e64718f02523d404ac45c18c
+X-List-Received-Date: Tue, 06 Sep 2011 13:45:06 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
---0016e64718f02523d404ac45c18c
-Content-Type: text/plain; charset=ISO-8859-1
+On Tue, 6 Sep 2011, Brian Duffy wrote:
 
-Is there a mailing list specifically for users? I am getting a bunch of
-mails focused on commits to the project and other project development
-related stuff that I am not particularly interested in. I just don't want to
-be bothering the wrong people with my simple questions if I am on the wrong
-list ;-)
+> Is there a mailing list specifically for users? I am getting a bunch
+> of mails focused on commits to the project and other project
+> development related stuff that I am not particularly interested in.
+> I just don't want to be bothering the wrong people with my simple
+> questions if I am on the wrong list ;-)
+
+  this is also something i should have asked about earlier --
+depending on what component you're interested in, there's a different
+mailing list:
+
+  bitbake devel list
+  poky list
+  yocto list
+
+and perhaps others, and sometimes it's never clear which list you want
+to address.
+
+rday
 
 -- 
-Duff
 
---0016e64718f02523d404ac45c18c
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
-Is there a mailing list specifically for users? I am getting a bunch of mai=
-ls focused on commits to the project and other project development related =
-stuff that I am not particularly interested in. I just don&#39;t want to be=
- bothering the wrong people with my simple questions if I am on the wrong l=
-ist ;-)<br clear=3D"all">
-<div><br></div>-- <br>Duff<br>
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
---0016e64718f02523d404ac45c18c--
