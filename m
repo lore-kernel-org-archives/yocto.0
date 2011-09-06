@@ -1,36 +1,32 @@
-Return-Path: <lianhao.lu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AF75E01285
-	for <yocto@yoctoproject.org>; Tue,  6 Sep 2011 01:07:08 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Sep 2011 01:07:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,337,1312182000"; d="scan'208";a="48415287"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by fmsmga001.fm.intel.com with ESMTP; 06 Sep 2011 01:07:08 -0700
-Received: from pgsmsx104.gar.corp.intel.com (10.221.44.91) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 6 Sep 2011 16:06:38 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX104.gar.corp.intel.com (10.221.44.91) with Microsoft SMTP Server
-	(TLS) id 14.1.323.3; Tue, 6 Sep 2011 16:06:37 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi; Tue, 6 Sep 2011
-	16:06:35 +0800
-From: "Lu, Lianhao" <lianhao.lu@intel.com>
-To: =?utf-8?B?RW5yaWMgQmFsbGV0YsOyIGkgU2VycmE=?= <eballetbo@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 6 Sep 2011 16:06:35 +0800
-Thread-Topic: [yocto] Error Creating Project with Eclipse IDE
-Thread-Index: AcxsZtii6ED/beADQiO5/6JpxLo0agABHjlg
-Message-ID: <C10D3FB0CD45994C8A51FEC1227CE22F30C590D6B8@shsmsx502.ccr.corp.intel.com>
-References: <CAFqH_53qx7d13w-AcNErp5qm9HmhOOkPU62pD03Xv222YMO8YQ@mail.gmail.com>
-In-Reply-To: <CAFqH_53qx7d13w-AcNErp5qm9HmhOOkPU62pD03Xv222YMO8YQ@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN, en-US
+Return-Path: <eballetbo@gmail.com>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 047BAE01285
+	for <yocto@yoctoproject.org>; Tue,  6 Sep 2011 02:07:23 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iafi7 with SMTP id i7so10522745iaf.35
+	for <yocto@yoctoproject.org>; Tue, 06 Sep 2011 02:07:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=pMoywrKnaLs0JVaAZC/SabZYwtDyfYD5mxGTwSRvuCQ=;
+	b=YTziWhl+NWzOhIoEHDBmYWAhp+E0NWFdr0fescLtHMeGC3whL47DL3osZTB61YkwAK
+	P3lTgsuoXAQ/qI5p8CIgi3yQpYSSaT1zT2AxMbX8nE+wE8jRbREV4aJEZOguVIAdTJ9y
+	SqFdvU1Ii4l0SoopGKYBuym1vXsXjhhgbWn1A=
 MIME-Version: 1.0
+Received: by 10.231.83.135 with SMTP id f7mr9321273ibl.90.1315300043531; Tue,
+	06 Sep 2011 02:07:23 -0700 (PDT)
+Received: by 10.231.158.72 with HTTP; Tue, 6 Sep 2011 02:07:23 -0700 (PDT)
+In-Reply-To: <C10D3FB0CD45994C8A51FEC1227CE22F30C590D6B8@shsmsx502.ccr.corp.intel.com>
+References: <CAFqH_53qx7d13w-AcNErp5qm9HmhOOkPU62pD03Xv222YMO8YQ@mail.gmail.com>
+	<C10D3FB0CD45994C8A51FEC1227CE22F30C590D6B8@shsmsx502.ccr.corp.intel.com>
+Date: Tue, 6 Sep 2011 11:07:23 +0200
+Message-ID: <CAFqH_520LDVehR==BXrmLxG_9y=Dsh5NydND1KCkG4QKOd6bdQ@mail.gmail.com>
+From: =?UTF-8?Q?Enric_Balletb=C3=B2_i_Serra?= <eballetbo@gmail.com>
+To: "Lu, Lianhao" <lianhao.lu@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Error Creating Project with Eclipse IDE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -43,24 +39,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Sep 2011 08:07:09 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 06 Sep 2011 09:07:24 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-SGkgRW5yaWMsDQoNCldoaWNoIHZlcnNpb24gb2YgdGhlIFlvY3RvIGVjbGlwc2UgcGx1Zy1pbiBk
-aWQgeW91IHVzZT8gSGF2ZSB5b3UgY29uZmlndXJlIHRoZSBwbHVnLWluIGFzIG1lbnRpb25lZCBp
-biBtYW51YWwgc2VjdGlvbiA0LjEuMz8NCg0KQmVzdCBSZWdhcmRzLA0KLUxpYW5oYW8NCg0KRW5y
-aWMgQmFsbGV0YsOyIGkgU2VycmEgd3JvdGUgb24gMjAxMS0wOS0wNjoNCj4gSGkgYWxsLA0KPiAN
-Cj4gRm9sbG93aW5nIGh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzEuMS9hZHQtbWFu
-dWFsL2FkdC1tYW51YWwuaHRtDQo+IChjaGFwdGVyIDQuMiksIHdoZW4gSeKAmW0gY3JlYXRpbmcg
-YSBOZXcgUHJvamVjdCBJ4oCZbSBnZXR0aW5nIHRoZSBtZXNzYWdlOg0KPiANCj4gICBFcnJvciBD
-cmVhdGluZyBQcm9qZWN0DQo+ICAgUHJvamVjdCBjYW5ub3QgYmUgY3JlYXRlZA0KPiAgIFJlYXNv
-bjogSW50ZXJuYWwgRXJyb3I6IGphdmEubGFuZy5OdWxsUG9pbnRlckV4Y2VwdGlvbg0KPiBJJ20g
-cnVubmluZyBFY2xpcHNlIEhlbGlvcyAoVmVyc2lvbjogSGVsaW9zIFNlcnZpY2UgUmVsZWFzZSAy
-LCBCdWlsZA0KPiBpZDogMjAxMTAzMDEtMTgxNSkgb24gVWJ1bnR1IDEwLjEwIG1hY2hpbmUuDQo+
-IA0KPiBBbnkgY2x1ZSB3aXRoIHRoaXMgPw0KPiANCj4gVGhhbmtzIGluIGFkdmFuY2UsDQo+ICAg
-IEVucmljDQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-DQo+IHlvY3RvIG1haWxpbmcgbGlzdA0KPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IGh0dHBz
-Oi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KDQoNCg0K
+Hi Lianhao,
+
+2011/9/6 Lu, Lianhao <lianhao.lu@intel.com>:
+> Hi Enric,
+>
+> Which version of the Yocto eclipse plug-in did you use?
+
+I'm using version 1.0 from
+http://www.yoctoproject.org/downloads/eclipse-plugin/1.0 with latest
+yocto mainline from git.
+
+> Have you configure the plug-in as mentioned in manual section 4.1.3?
+
+Yes, I followed these steps I will review the steps to see if I'm
+missing something ...
+
+Cheers,
+  Enric
+
+>
+> Best Regards,
+> -Lianhao
+>
+> Enric Balletb=C3=B2 i Serra wrote on 2011-09-06:
+>> Hi all,
+>>
+>> Following http://www.yoctoproject.org/docs/1.1/adt-manual/adt-manual.htm
+>> (chapter 4.2), when I=E2=80=99m creating a New Project I=E2=80=99m getti=
+ng the message:
+>>
+>> =C2=A0 Error Creating Project
+>> =C2=A0 Project cannot be created
+>> =C2=A0 Reason: Internal Error: java.lang.NullPointerException
+>> I'm running Eclipse Helios (Version: Helios Service Release 2, Build
+>> id: 20110301-1815) on Ubuntu 10.10 machine.
+>>
+>> Any clue with this ?
+>>
+>> Thanks in advance,
+>> =C2=A0 =C2=A0Enric
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+>
 
