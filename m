@@ -1,34 +1,30 @@
-Return-Path: <brduffy@gmail.com>
-Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68581E0071A
-	for <yocto@yoctoproject.org>; Tue,  6 Sep 2011 16:51:40 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by wwe3 with SMTP id 3so1454908wwe.11
-	for <yocto@yoctoproject.org>; Tue, 06 Sep 2011 16:51:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=rMzPPXYioCZ1yQX6HQkEYFCP0vGmuaK3yDpK2Dt5QN8=;
-	b=GiMLUnQCMvMlfPyU2ptl4yAEuJZtm5AKzi4LhVNlNfbfn2iE44qEYBXih6hIQxdR9P
-	+/Xq9dEoA1tvcOVr22htFDHSUt6oO2EFxuRMR3YoyYL96j92n8IrFgOSCyrrYhxDYojA
-	KU9T85FLTBC+NRtrKr69CPRQnCF4aj532v+dE=
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEADBE0071A
+	for <yocto@yoctoproject.org>; Tue,  6 Sep 2011 18:07:05 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 06 Sep 2011 18:07:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,342,1312182000"; d="scan'208";a="14630688"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by AZSMGA002.ch.intel.com with ESMTP; 06 Sep 2011 18:07:05 -0700
+Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
+	orsmsx603.amr.corp.intel.com ([10.22.226.49]) with mapi; Tue, 6 Sep 2011
+	18:07:04 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "'brduffy@gmail.com'" <brduffy@gmail.com>, "Osier-mixon, Jeffrey"
+	<jeffrey.osier-mixon@intel.com>, "'yocto@yoctoproject.org'"
+	<yocto@yoctoproject.org>
+Date: Tue, 6 Sep 2011 18:07:03 -0700
+Thread-Topic: [yocto] Yocto 1.1 Beta Questions
+Thread-Index: Acxs7/nHaZ/A/4GQQJC6/lnyLUuZ7wACoTxW
+Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A652@orsmsx501.amr.corp.intel.com>
+In-Reply-To: <CAHrDPkrjfG7A-78tkL1qmaBRab7=tbNKqooqjQ5Aw_ednMD9cg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-Received: by 10.216.172.198 with SMTP id t48mr137231wel.79.1315353094411; Tue,
-	06 Sep 2011 16:51:34 -0700 (PDT)
-Received: by 10.216.168.147 with HTTP; Tue, 6 Sep 2011 16:51:34 -0700 (PDT)
-In-Reply-To: <CALZ2gZU-3OzD74P2HNnCr4nYj7w7WOVMHXbJ41-GRzUEJYFBLw@mail.gmail.com>
-References: <CAHrDPkp-=NLeqi-3MbM7EffJDGX=mHy0_Rkw4faz-Jgi8ro4rw@mail.gmail.com>
-	<CA+T6QPmL2ybO0wxRDPkj7d2AcDz66xfFMtk90w4KwgvXB=kqHQ@mail.gmail.com>
-	<CALZ2gZWttWUa9DEW1E0t7NE0nntRQGo-bGKe_P_nQ062zi4ebg@mail.gmail.com>
-	<CAHrDPkq0zoJHV1uhyT=6WSP3XX5_OqLg=-FN0OfVpdCpSu7U9g@mail.gmail.com>
-	<CALZ2gZU_bd2Gh-JQH5g+vHOnUQ9S7YdP=VbDNC4trFq+Yt-Qaw@mail.gmail.com>
-	<CALZ2gZU-3OzD74P2HNnCr4nYj7w7WOVMHXbJ41-GRzUEJYFBLw@mail.gmail.com>
-Date: Tue, 6 Sep 2011 19:51:34 -0400
-Message-ID: <CAHrDPkrjfG7A-78tkL1qmaBRab7=tbNKqooqjQ5Aw_ednMD9cg@mail.gmail.com>
-From: Brian Duffy <brduffy@gmail.com>
-To: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>,
-	yocto@yoctoproject.org
 Subject: Re: Yocto 1.1 Beta Questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,367 +37,271 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Sep 2011 23:51:41 -0000
-Content-Type: multipart/alternative; boundary=0016367b6004f2555804ac4e8135
+X-List-Received-Date: Wed, 07 Sep 2011 01:07:06 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A652orsmsx501amrc_"
 
---0016367b6004f2555804ac4e8135
-Content-Type: text/plain; charset=ISO-8859-1
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A652orsmsx501amrc_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Okay, so it turns out that I had already downloaded what I needed with the
-instructions from the latest blog post for the beta release. It specifically
-mentions certain command to replace from the quick start guide. So I went
-into the "oe-beta" directory and ran . ./oe-init-build-env ~/my-build and
-that set up my environment variables. When I ran bitbake core-image-minimal
-I got an error stating that xterm was not installed. That might be something
-to include in the quick start section of things to install first. Anyway, it
-seems to be happily building a minimal linux distro for the emulator to run.
-I'll let you know if it works out.
+WWVhaCwgSSByYW4gaW50byB0aGUgc2FtZSB0aGluZywgQnJpYW4uIEluc3RhbGxpbmcgeHRlcm0g
+aXMgbWlzc2luZyBmcm9tIHRoZSBxdWlja3N0YXJ0IGFuZCB0aGUgYmV0YSBpbnN0cnVjdGlvbnMu
+IFNvcnJ5IGFib3V0IHRoYXQuDQoNCg0KU2VudCBmcm9tIG15IEJsYWNrYmVycnkNCg0KRnJvbTog
+QnJpYW4gRHVmZnkgW21haWx0bzpicmR1ZmZ5QGdtYWlsLmNvbV0NClNlbnQ6IFR1ZXNkYXksIFNl
+cHRlbWJlciAwNiwgMjAxMSAwNDo1MSBQTQ0KVG86IE9zaWVyLW1peG9uLCBKZWZmcmV5OyB5b2N0
+b0B5b2N0b3Byb2plY3Qub3JnIDx5b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KU3ViamVjdDogUmU6
+IFt5b2N0b10gWW9jdG8gMS4xIEJldGEgUXVlc3Rpb25zDQoNCk9rYXksIHNvIGl0IHR1cm5zIG91
+dCB0aGF0IEkgaGFkIGFscmVhZHkgZG93bmxvYWRlZCB3aGF0IEkgbmVlZGVkIHdpdGggdGhlIGlu
+c3RydWN0aW9ucyBmcm9tIHRoZSBsYXRlc3QgYmxvZyBwb3N0IGZvciB0aGUgYmV0YSByZWxlYXNl
+LiBJdCBzcGVjaWZpY2FsbHkgbWVudGlvbnMgY2VydGFpbiBjb21tYW5kIHRvIHJlcGxhY2UgZnJv
+bSB0aGUgcXVpY2sgc3RhcnQgZ3VpZGUuIFNvIEkgd2VudCBpbnRvIHRoZSAib2UtYmV0YSIgZGly
+ZWN0b3J5IGFuZCByYW4gLiAuL29lLWluaXQtYnVpbGQtZW52IH4vbXktYnVpbGQgYW5kIHRoYXQg
+c2V0IHVwIG15IGVudmlyb25tZW50IHZhcmlhYmxlcy4gV2hlbiBJIHJhbiBiaXRiYWtlIGNvcmUt
+aW1hZ2UtbWluaW1hbCBJIGdvdCBhbiBlcnJvciBzdGF0aW5nIHRoYXQgeHRlcm0gd2FzIG5vdCBp
+bnN0YWxsZWQuIFRoYXQgbWlnaHQgYmUgc29tZXRoaW5nIHRvIGluY2x1ZGUgaW4gdGhlIHF1aWNr
+IHN0YXJ0IHNlY3Rpb24gb2YgdGhpbmdzIHRvIGluc3RhbGwgZmlyc3QuIEFueXdheSwgaXQgc2Vl
+bXMgdG8gYmUgaGFwcGlseSBidWlsZGluZyBhIG1pbmltYWwgbGludXggZGlzdHJvIGZvciB0aGUg
+ZW11bGF0b3IgdG8gcnVuLiBJJ2xsIGxldCB5b3Uga25vdyBpZiBpdCB3b3JrcyBvdXQuDQoNCnRo
+bngNCg0KQnJpYW4NCg0KT24gVHVlLCBTZXAgNiwgMjAxMSBhdCAzOjI4IFBNLCBPc2llci1taXhv
+biwgSmVmZnJleSA8amVmZnJleS5vc2llci1taXhvbkBpbnRlbC5jb208bWFpbHRvOmplZmZyZXku
+b3NpZXItbWl4b25AaW50ZWwuY29tPj4gd3JvdGU6DQpPbmUgbW9yZSB0aGluZyAtIGlmIHlvdSBw
+cmVmZXIgYSB0YXJiYWxsIHRvIGdpdCAoZWFzaWVyIG9uIHNvbWUgY29ycG9yYXRlIG5ldHdvcmtz
+KSB0aGUgcHJvY2VzcyBpcyB0aGUgc2FtZSwganVzdCB1bi10YXIgdGhlIHRhcmJhbGwgaW50byBh
+IHdvcmtpbmcgZGlyZWN0b3J5IGFuZCBjZCBpbnRvIHRoZSBwb2t5IHN1YmRpciBhbmQgZ28gZnJv
+bSB0aGVyZS4gVGhlIHRhcmJhbGwgc2hvdWxkIGJlIHRoZSBsYXRlc3Qgc3RhYmxlIHJlbGVhc2Uu
+DQoNCg0KT24gVHVlLCBTZXAgNiwgMjAxMSBhdCAxMjoyNyBQTSwgT3NpZXItbWl4b24sIEplZmZy
+ZXkgPGplZmZyZXkub3NpZXItbWl4b25AaW50ZWwuY29tPG1haWx0bzpqZWZmcmV5Lm9zaWVyLW1p
+eG9uQGludGVsLmNvbT4+IHdyb3RlOg0KSGkgQnJpYW4sIHNvcnJ5IGZvciB0aGUgZGVsYXkuDQoN
+CklmIHlvdSBkb3dubG9hZCB0aGUgcG9reSB0YXJiYWxsIG9yIHVzZSBnaXQgdG8gZ3JhYiBpdCBh
+bmQgdGhlbiBmb2xsb3cgdGhlIGluc3RydWN0aW9ucyBvbiB0aGUgcXVpY2stc3RhcnQsIHRoZSB0
+b29scyBzaG91bGQgYnVpbGQgYXV0b21hdGljYWxseS4gIEluIGEgbnV0c2hlbGwsIHRyeSB0aGlz
+Og0KDQpnaXQgY2xvbmUgZ2l0Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvcG9reS5naXQ8aHR0cDov
+L2dpdC55b2N0b3Byb2plY3Qub3JnL3Bva3kuZ2l0Pg0KY2QgcG9reQ0KLiAuL29lLWNvcmUtYnVp
+bGQtZW52DQpbdGhhdCBzaG91bGQgcHV0IHlvdSBpbnRvIGEgYnVpbGQgZGlyZWN0b3J5XQ0Kdmkg
+Y29uZi9sb2NhbC5jb25mICBbc2V0IGF0IGxlYXN0IE1BQ0hJTkUsIGluc3RydWN0aW9ucyBpbiB0
+aGUgZmlsZV0NCmJpdGJha2UgY29yZS1taW5pbWFsDQoNCkkgaG9wZSB0aGlzIGhlbHBzISAgSSdt
+IG9uIElSQyBhcyBKZWZybyBvciBhdmFpbGFibGUgYnkgZW1haWwsIGxldCBtZSBrbm93IGlmIEkg
+Y2FuIGhlbHAgYXQgYWxsLg0KDQoNCk9uIFNhdCwgU2VwIDMsIDIwMTEgYXQgNTo1MiBQTSwgQnJp
+YW4gRHVmZnkgPGJyZHVmZnlAZ21haWwuY29tPG1haWx0bzpicmR1ZmZ5QGdtYWlsLmNvbT4+IHdy
+b3RlOg0KVGhhbmtzIGZvciB0aGUgaW5wdXQgSmVmZi4gSSBoYXZlIG5vdCBkb3dubG9hZGVkIHRo
+ZSB0b29scyB5ZXQuIEknbGwgcHJvYmFibHkgZG93bmxvYWQgdGhlIHRhcmJhbGwgc2luY2UgSSBk
+b24ndCBoYXZlIG11Y2ggZXhwZXJpZW5jZSB3aXRoIGdpdC4gSSdsbCBzZXQgdGhlIGJicGF0aCBp
+biBsb2NhbC5jb25mIGFuZCB1bmluc3RhbGwgYml0YmFrZSBmcm9tIHRoZSBwYWNrYWdlIG1hbmFn
+ZXIgYmVmb3JlIEkgZG8gc28uIEkgZ3Vlc3MgYnVpbGRpbmcgdGhlIHRvb2xzIHdpbGwgdGFrZSBj
+YXJlIG9mIGJpdGJha2UgYW5kIHBzZXVkby4gQW55IGhlbHAgd2l0aCBob3cgdG8gYnVpbGQgdGhl
+IHRvb2xzIHdvdWxkIGJlIGFwcHJlY2lhdGVkLCBidXQgbm8gaHVycnksIGVuam95IHRoZSBob2xp
+ZGF5IQ0KDQp0aG54DQoNCkJyaWFuDQoNCg0KT24gU2F0LCBTZXAgMywgMjAxMSBhdCA1OjUwIFBN
+LCBPc2llci1taXhvbiwgSmVmZnJleSA8amVmZnJleS5vc2llci1taXhvbkBpbnRlbC5jb208bWFp
+bHRvOmplZmZyZXkub3NpZXItbWl4b25AaW50ZWwuY29tPj4gd3JvdGU6DQpIaSBCcmlhbiAtIGJv
+dGggYml0YmFrZSBhbmQgcHNldWRvIGFyZSBwYXJ0IG9mIHRoZSBZb2N0byB0b29sc2V0LiBUaGUg
+c3RhbmRhcmQgYml0YmFrZSBmcm9tIHRoZSBwYWNrYWdlIG1hbmFnZXIgb24geW91ciBob3N0IGlz
+IG5vdCB0aGUgY29ycmVjdCBvbmUuIE1ha2Ugc3VyZSB5b3UgaGF2ZSBzZXQgeW91ciBlbnZpcm9u
+bWVudCBwcm9wZXJseSBieSBzb3VyY2luZyB0aGUgYnVpbGQtZW52IHNjcmlwdCwgYW5kIGl0IHNo
+b3VsZCBiZSBzZXQgY29ycmVjdGx5Lg0KDQpBcyBKYXNvbiBzYXlzLCBzZXQgQkJQQVRIIGluIHlv
+dXIgcHJvamVjdCBkaXJlY3RvcnkgaW4gY29uZi9sb2NhbC5jb25mDQoNCkhvdyBkaWQgeW91IGRv
+d25sb2FkIHRoZSB0b29scywgdGFyYmFsbCBvciBnaXQ/ICBJIGZpbmQgaXQgZWFzaWVzdCB0byBk
+byB0aGlzOg0KDQpnaXQgY2xvbmUgZ2l0Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvcG9reS5naXQ8
+aHR0cDovL2dpdC55b2N0b3Byb2plY3Qub3JnL3Bva3kuZ2l0Pg0KDQpOb3RlIHRoYXQgcmVzcG9u
+c2VzIG1heSBiZSBkZWxheWVkIG9uIGEgVVMgaG9saWRheSB3ZWVrZW5kIDopDQoNCk9uIFNhdCwg
+U2VwIDMsIDIwMTEgYXQgMTo0OCBQTSwgSmFzb24gS3JpZG5lciA8amtyaWRuZXJAYmVhZ2xlYm9h
+cmQub3JnPG1haWx0bzpqa3JpZG5lckBiZWFnbGVib2FyZC5vcmc+PiB3cm90ZToNCk9uIFNhdCwg
+U2VwIDMsIDIwMTEgYXQgMjo0MyBQTSwgQnJpYW4gRHVmZnkgPGJyZHVmZnlAZ21haWwuY29tPG1h
+aWx0bzpicmR1ZmZ5QGdtYWlsLmNvbT4+IHdyb3RlOg0KPiBIaSBZb2N0byBncm91cC4gSSBhbSBu
+ZXcgdG8gWW9jdG8uIEkgZm9sbG93ZWQgdGhlIHN0YXJ0ZXJzIGd1aWRlIGFuZCBXaGVuDQo+IHJ1
+bm5pbmcgYml0YmFrZSBJIGdldCBzb21lIGVycm9ycy4gZmlyc3QgaXQgY29tcGxhaW5zIHRoYXQg
+cHNldWRvIGlzIG5vdA0KPiBhdmFpbGFibGUgYnV0IHJlcXVpcmVkLCBhbmQgdGhlbiBpdCBjb21w
+bGFpbnMgdGhhdCBiYnBhdGggaXMgbm90IHNldC4gV2hhdA0KPiBpcyBwc2V1ZG8/DQoNCkdvb2ds
+ZSBzaG91bGQgaGF2ZSBoZWxwZWQgeW91IHdpdGggdGhpcyBxdWVzdGlvbjoNCmh0dHA6Ly93d3cu
+eW9jdG9wcm9qZWN0Lm9yZy9wcm9qZWN0cy9wc2V1ZG8uDQoNCkkgYmVsaWV2ZSB0aGUgcHJpbWFy
+eSBwdXJwb3NlIGlzIHRvIGJlIGFibGUgdG8gY3JlYXRlIGZpbGVzIHdpdGggcm9vdA0Kb3duZXJz
+aGlwIHdpdGhvdXQgcm9vdCBhY2Nlc3MuICBUaGlzIGlzIGNyaXRpY2FsIGZvciBidWlsZGluZyB5
+b3VyDQpmaWxlIHN5c3RlbS4NCg0KPiBJIGhhdmUgc3VkbyBpbnN0YWxsZWQgYW5kIHNldHVwIHRv
+IHdvcmsgZm9yIG1lLCBidXQgSSBkb24ndCBrbm93DQo+IHdoYXQgcHNldWRvIGlzLiBBbHNvLCBi
+aXRiYWtlIHdhcyBub3QgaW5zdGFsbGVkIG9uIG15IGZyZXNoIGluc3RhbGwgb2YNCj4gRmVkb3Jh
+IDE1IHNvIEkgaW5zdGFsbGVkIGl0IHRocm91Z2ggdGhlIHBhY2thZ2UgbWFuYWdlci4NCg0KSSBk
+b3VidCB5b3Ugd2FudCB0byBkbyB0aGF0LCBidXQgSSBkb24ndCBzZWUgYW55dGhpbmcgaW4gdGhl
+DQppbnN0cnVjdGlvbnMgcHJvdmlkZWQgdG8gdGVsbCB5b3Ugd2hlcmUgdG8gZ2V0IGl0IGVpdGhl
+ci4NCg0KPiBJIGd1ZXNzIHRoYXQgd2FzDQo+IG5vdCBpbmNsdWRlZCBpbiB0aGUgcGFja2FnZXMg
+ZnJvbSB0aGUgZ2V0dGluZyBzdGFydGVkIGd1aWRlLiBXaGVyZSBkbyBJIHNldA0KPiB0aGUgYmJw
+YXRoPw0KDQpEaWQgeW91IGVkaXQgY29uZi9sb2NhbC5jb25mPw0KDQo+IEkgZm9sbG93ZWQgdGhl
+IGdldHRpbmcgc3RhcnRlZCBndWlkZSBhbmQgcmVwbGFjZWQgdGhlDQo+IGFwcHJvcHJpYXRlIGNv
+bW1hbmRzIHdpdGggdGhlIG9uZXMgZnJvbSBEYXZpZHMgYmxvZyBwb3N0IGZvciB0aGUgbGF0ZXN0
+DQo+IHJlbGVhc2UuDQo+DQo+IHRobngNCj4gQnJpYW4NCj4gLS0NCj4gRHVmZg0KPg0KPiBfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiB5b2N0byBtYWls
+aW5nIGxpc3QNCj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9jdG9wcm9q
+ZWN0Lm9yZz4NCj4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3Rv
+DQo+DQo+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
+eW9jdG8gbWFpbGluZyBsaXN0DQp5b2N0b0B5b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0b0B5
+b2N0b3Byb2plY3Qub3JnPg0KaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZv
+L3lvY3RvDQoNCg0KDQotLQ0KSmVmZiBPc2llci1NaXhvbiBodHRwOi8vamVmcm8ubmV0L2Jsb2cN
+CllvY3RvIFByb2plY3QgQ29tbXVuaXR5IE1hbmFnZXIgQEludGVsIGh0dHA6Ly95b2N0b3Byb2pl
+Y3Qub3JnPGh0dHA6Ly95b2N0b3Byb2plY3Qub3JnLz4NCg0KDQoNCg0KLS0NCkR1ZmYNCg0KDQoN
+Ci0tDQpKZWZmIE9zaWVyLU1peG9uIGh0dHA6Ly9qZWZyby5uZXQvYmxvZw0KWW9jdG8gUHJvamVj
+dCBDb21tdW5pdHkgTWFuYWdlciBASW50ZWwgaHR0cDovL3lvY3RvcHJvamVjdC5vcmc8aHR0cDov
+L3lvY3RvcHJvamVjdC5vcmcvPg0KDQoNCg0KDQotLQ0KSmVmZiBPc2llci1NaXhvbiBodHRwOi8v
+amVmcm8ubmV0L2Jsb2cNCllvY3RvIFByb2plY3QgQ29tbXVuaXR5IE1hbmFnZXIgQEludGVsIGh0
+dHA6Ly95b2N0b3Byb2plY3Qub3JnPGh0dHA6Ly95b2N0b3Byb2plY3Qub3JnLz4NCg0KDQoNCg0K
+LS0NCkR1ZmYNCg==
 
-thnx
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A652orsmsx501amrc_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Brian
+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPg0KWWVhaCwgSSByYW4g
+aW50byB0aGUgc2FtZSB0aGluZywgQnJpYW4uIEluc3RhbGxpbmcgeHRlcm0gaXMgbWlzc2luZyBm
+cm9tIHRoZSBxdWlja3N0YXJ0IGFuZCB0aGUgYmV0YSBpbnN0cnVjdGlvbnMuIFNvcnJ5IGFib3V0
+IHRoYXQuPGJyPjxicj4NPGJyPlNlbnQgZnJvbSBteSBCbGFja2JlcnJ5PC9mb250Pjxicj4mbmJz
+cDs8YnI+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYg
+MS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8Zm9udCBzdHlsZT0iZm9udC1zaXpl
+OjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
+dW90OyI+DQo8Yj5Gcm9tPC9iPjogQnJpYW4gRHVmZnkgW21haWx0bzpicmR1ZmZ5QGdtYWlsLmNv
+bV0NPGJyPjxiPlNlbnQ8L2I+OiBUdWVzZGF5LCBTZXB0ZW1iZXIgMDYsIDIwMTEgMDQ6NTEgUE08
+YnI+PGI+VG88L2I+OiBPc2llci1taXhvbiwgSmVmZnJleTsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9y
+ZyAmbHQ7eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyZndDsNPGJyPjxiPlN1YmplY3Q8L2I+OiBSZTog
+W3lvY3RvXSBZb2N0byAxLjEgQmV0YSBRdWVzdGlvbnMNPGJyPjwvZm9udD4mbmJzcDs8YnI+PC9k
+aXY+DQpPa2F5LCBzbyBpdCB0dXJucyBvdXQgdGhhdCBJIGhhZCBhbHJlYWR5IGRvd25sb2FkZWQg
+d2hhdCBJIG5lZWRlZCB3aXRoIHRoZSBpbnN0cnVjdGlvbnMgZnJvbSB0aGUgbGF0ZXN0IGJsb2cg
+cG9zdCBmb3IgdGhlIGJldGEgcmVsZWFzZS4gSXQgc3BlY2lmaWNhbGx5IG1lbnRpb25zIGNlcnRh
+aW4gY29tbWFuZCB0byByZXBsYWNlIGZyb20gdGhlIHF1aWNrIHN0YXJ0IGd1aWRlLiBTbyBJIHdl
+bnQgaW50byB0aGUgJnF1b3Q7b2UtYmV0YSZxdW90OyBkaXJlY3RvcnkgYW5kIHJhbiAuIC4vb2Ut
+aW5pdC1idWlsZC1lbnYgfi9teS1idWlsZCBhbmQgdGhhdCBzZXQgdXAgbXkgZW52aXJvbm1lbnQg
+dmFyaWFibGVzLiBXaGVuIEkgcmFuIGJpdGJha2UgY29yZS1pbWFnZS1taW5pbWFsIEkgZ290IGFu
+IGVycm9yIHN0YXRpbmcgdGhhdCB4dGVybSB3YXMgbm90IGluc3RhbGxlZC4gVGhhdCBtaWdodCBi
+ZSBzb21ldGhpbmcgdG8gaW5jbHVkZSBpbiB0aGUgcXVpY2sgc3RhcnQgc2VjdGlvbiBvZiB0aGlu
+Z3MgdG8gaW5zdGFsbCBmaXJzdC4gQW55d2F5LCBpdCBzZWVtcyB0byBiZSBoYXBwaWx5IGJ1aWxk
+aW5nIGEgbWluaW1hbCBsaW51eCBkaXN0cm8gZm9yIHRoZSBlbXVsYXRvciB0byBydW4uIEkmIzM5
+O2xsIGxldCB5b3Uga25vdyBpZiBpdCB3b3JrcyBvdXQuPGRpdj4NCjxicj48L2Rpdj48ZGl2PnRo
+bng8L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkJyaWFuPGJyPjxicj48ZGl2IGNsYXNzPSJnbWFp
+bF9xdW90ZSI+T24gVHVlLCBTZXAgNiwgMjAxMSBhdCAzOjI4IFBNLCBPc2llci1taXhvbiwgSmVm
+ZnJleSA8c3BhbiBkaXI9Imx0ciI+Jmx0OzxhIGhyZWY9Im1haWx0bzpqZWZmcmV5Lm9zaWVyLW1p
+eG9uQGludGVsLmNvbSI+amVmZnJleS5vc2llci1taXhvbkBpbnRlbC5jb208L2E+Jmd0Ozwvc3Bh
+bj4gd3JvdGU6PGJyPg0KPGJsb2NrcXVvdGUgY2xhc3M9ImdtYWlsX3F1b3RlIiBzdHlsZT0ibWFy
+Z2luOjAgMCAwIC44ZXg7Ym9yZGVyLWxlZnQ6MXB4ICNjY2Mgc29saWQ7cGFkZGluZy1sZWZ0OjFl
+eDsiPk9uZSBtb3JlIHRoaW5nIC0gaWYgeW91IHByZWZlciBhIHRhcmJhbGwgdG8gZ2l0IChlYXNp
+ZXIgb24gc29tZSBjb3Jwb3JhdGUgbmV0d29ya3MpIHRoZSBwcm9jZXNzIGlzIHRoZSBzYW1lLCBq
+dXN0IHVuLXRhciB0aGUgdGFyYmFsbCBpbnRvIGEgd29ya2luZyBkaXJlY3RvcnkgYW5kIGNkIGlu
+dG8gdGhlIHBva3kgc3ViZGlyIGFuZCBnbyBmcm9tIHRoZXJlLiBUaGUgdGFyYmFsbCBzaG91bGQg
+YmUgdGhlIGxhdGVzdCBzdGFibGUgcmVsZWFzZS48ZGl2Pg0KPGRpdj48L2Rpdj48ZGl2IGNsYXNz
+PSJoNSI+PGJyPg0KPGJyPjxkaXYgY2xhc3M9ImdtYWlsX3F1b3RlIj5PbiBUdWUsIFNlcCA2LCAy
+MDExIGF0IDEyOjI3IFBNLCBPc2llci1taXhvbiwgSmVmZnJleSA8c3BhbiBkaXI9Imx0ciI+Jmx0
+OzxhIGhyZWY9Im1haWx0bzpqZWZmcmV5Lm9zaWVyLW1peG9uQGludGVsLmNvbSIgdGFyZ2V0PSJf
+YmxhbmsiPmplZmZyZXkub3NpZXItbWl4b25AaW50ZWwuY29tPC9hPiZndDs8L3NwYW4+IHdyb3Rl
+Ojxicj4NCjxibG9ja3F1b3RlIGNsYXNzPSJnbWFpbF9xdW90ZSIgc3R5bGU9Im1hcmdpbjowIDAg
+MCAuOGV4O2JvcmRlci1sZWZ0OjFweCAjY2NjIHNvbGlkO3BhZGRpbmctbGVmdDoxZXgiPg0KSGkg
+QnJpYW4sIHNvcnJ5IGZvciB0aGUgZGVsYXkuIMKgPGRpdj48YnI+PC9kaXY+PGRpdj5JZiB5b3Ug
+ZG93bmxvYWQgdGhlIHBva3kgdGFyYmFsbCBvciB1c2UgZ2l0IHRvIGdyYWIgaXQgYW5kIHRoZW4g
+Zm9sbG93IHRoZSBpbnN0cnVjdGlvbnMgb24gdGhlIHF1aWNrLXN0YXJ0LCB0aGUgdG9vbHMgc2hv
+dWxkIGJ1aWxkIGF1dG9tYXRpY2FsbHkuIMKgSW4gYSBudXRzaGVsbCwgdHJ5IHRoaXM6PC9kaXY+
+DQoNCjxkaXY+DQo8ZGl2Pjxicj48L2Rpdj48ZGl2PmdpdCBjbG9uZSBnaXQ6Ly88YSBocmVmPSJo
+dHRwOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvcG9reS5naXQiIHRhcmdldD0iX2JsYW5rIj5naXQu
+eW9jdG9wcm9qZWN0Lm9yZy9wb2t5LmdpdDwvYT48L2Rpdj48L2Rpdj48ZGl2PmNkIHBva3k8L2Rp
+dj48ZGl2Pi4gLi9vZS1jb3JlLWJ1aWxkLWVudjwvZGl2PjxkaXY+W3RoYXQgc2hvdWxkIHB1dCB5
+b3UgaW50byBhIGJ1aWxkIGRpcmVjdG9yeV08L2Rpdj4NCg0KDQo8ZGl2PnZpIGNvbmYvbG9jYWwu
+Y29uZiDCoFtzZXQgYXQgbGVhc3QgTUFDSElORSwgaW5zdHJ1Y3Rpb25zIGluIHRoZSBmaWxlXTwv
+ZGl2PjxkaXY+Yml0YmFrZSBjb3JlLW1pbmltYWw8L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2Pkkg
+aG9wZSB0aGlzIGhlbHBzISDCoEkmIzM5O20gb24gSVJDIGFzIEplZnJvIG9yIGF2YWlsYWJsZSBi
+eSBlbWFpbCwgbGV0IG1lIGtub3cgaWYgSSBjYW4gaGVscCBhdCBhbGwuPGRpdj4NCg0KPGRpdj48
+L2Rpdj48ZGl2Pjxicj4NCjxicj48ZGl2IGNsYXNzPSJnbWFpbF9xdW90ZSI+T24gU2F0LCBTZXAg
+MywgMjAxMSBhdCA1OjUyIFBNLCBCcmlhbiBEdWZmeSA8c3BhbiBkaXI9Imx0ciI+Jmx0OzxhIGhy
+ZWY9Im1haWx0bzpicmR1ZmZ5QGdtYWlsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmJyZHVmZnlAZ21h
+aWwuY29tPC9hPiZndDs8L3NwYW4+IHdyb3RlOjxicj48YmxvY2txdW90ZSBjbGFzcz0iZ21haWxf
+cXVvdGUiIHN0eWxlPSJtYXJnaW46MCAwIDAgLjhleDtib3JkZXItbGVmdDoxcHggI2NjYyBzb2xp
+ZDtwYWRkaW5nLWxlZnQ6MWV4Ij4NCg0KDQpUaGFua3MgZm9yIHRoZSBpbnB1dCBKZWZmLiBJIGhh
+dmUgbm90IGRvd25sb2FkZWQgdGhlIHRvb2xzIHlldC4gSSYjMzk7bGwgcHJvYmFibHkgZG93bmxv
+YWQgdGhlIHRhcmJhbGwgc2luY2UgSSBkb24mIzM5O3QgaGF2ZSBtdWNoIGV4cGVyaWVuY2Ugd2l0
+aCBnaXQuIEkmIzM5O2xsIHNldCB0aGUgYmJwYXRoIGluIGxvY2FsLmNvbmYgYW5kIHVuaW5zdGFs
+bCBiaXRiYWtlIGZyb20gdGhlIHBhY2thZ2UgbWFuYWdlciBiZWZvcmUgSSBkbyBzby4gSSBndWVz
+cyBidWlsZGluZyB0aGUgdG9vbHMgd2lsbCB0YWtlIGNhcmUgb2YgYml0YmFrZSBhbmQgcHNldWRv
+LiBBbnkgaGVscCB3aXRoIGhvdyB0byBidWlsZCB0aGUgdG9vbHMgd291bGQgYmUgYXBwcmVjaWF0
+ZWQsIGJ1dCBubyBodXJyeSwgZW5qb3kgdGhlIGhvbGlkYXkhPGRpdj4NCg0KDQoNCjxicj48L2Rp
+dj48ZGl2PnRobng8L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkJyaWFuPGRpdj48ZGl2PjwvZGl2
+PjxkaXY+PGJyPjxicj48ZGl2IGNsYXNzPSJnbWFpbF9xdW90ZSI+T24gU2F0LCBTZXAgMywgMjAx
+MSBhdCA1OjUwIFBNLCBPc2llci1taXhvbiwgSmVmZnJleSA8c3BhbiBkaXI9Imx0ciI+Jmx0Ozxh
+IGhyZWY9Im1haWx0bzpqZWZmcmV5Lm9zaWVyLW1peG9uQGludGVsLmNvbSIgdGFyZ2V0PSJfYmxh
+bmsiPmplZmZyZXkub3NpZXItbWl4b25AaW50ZWwuY29tPC9hPiZndDs8L3NwYW4+IHdyb3RlOjxi
+cj4NCg0KDQoNCjxibG9ja3F1b3RlIGNsYXNzPSJnbWFpbF9xdW90ZSIgc3R5bGU9Im1hcmdpbjow
+IDAgMCAuOGV4O2JvcmRlci1sZWZ0OjFweCAjY2NjIHNvbGlkO3BhZGRpbmctbGVmdDoxZXgiPkhp
+IEJyaWFuIC0gYm90aCBiaXRiYWtlIGFuZCBwc2V1ZG8gYXJlIHBhcnQgb2YgdGhlIFlvY3RvIHRv
+b2xzZXQuIFRoZSBzdGFuZGFyZCBiaXRiYWtlIGZyb20gdGhlIHBhY2thZ2UgbWFuYWdlciBvbiB5
+b3VyIGhvc3QgaXMgbm90IHRoZSBjb3JyZWN0IG9uZS4gTWFrZSBzdXJlIHlvdSBoYXZlIHNldCB5
+b3VyIGVudmlyb25tZW50IHByb3Blcmx5IGJ5IHNvdXJjaW5nIHRoZSBidWlsZC1lbnYgc2NyaXB0
+LCBhbmQgaXQgc2hvdWxkIGJlIHNldCBjb3JyZWN0bHkuPGRpdj4NCg0KDQoNCg0KPGJyPjwvZGl2
+PjxkaXY+QXMgSmFzb24gc2F5cywgc2V0IEJCUEFUSCBpbiB5b3VyIHByb2plY3QgZGlyZWN0b3J5
+IGluIGNvbmYvbG9jYWwuY29uZjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+SG93IGRpZCB5b3Ug
+ZG93bmxvYWQgdGhlIHRvb2xzLCB0YXJiYWxsIG9yIGdpdD8gwqBJIGZpbmQgaXQgZWFzaWVzdCB0
+byBkbyB0aGlzOjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+Z2l0IGNsb25lIGdpdDovLzxhIGhy
+ZWY9Imh0dHA6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9wb2t5LmdpdCIgdGFyZ2V0PSJfYmxhbmsi
+PmdpdC55b2N0b3Byb2plY3Qub3JnL3Bva3kuZ2l0PC9hPjwvZGl2Pg0KDQoNCg0KDQo8ZGl2Pjxi
+cj48L2Rpdj48ZGl2Pk5vdGUgdGhhdCByZXNwb25zZXMgbWF5IGJlIGRlbGF5ZWQgb24gYSBVUyBo
+b2xpZGF5IHdlZWtlbmQgOik8L2Rpdj48ZGl2PjxkaXY+PGRpdj48ZGl2PjwvZGl2PjxkaXY+PGJy
+PjxkaXYgY2xhc3M9ImdtYWlsX3F1b3RlIj5PbiBTYXQsIFNlcCAzLCAyMDExIGF0IDE6NDggUE0s
+IEphc29uIEtyaWRuZXIgPHNwYW4gZGlyPSJsdHIiPiZsdDs8YSBocmVmPSJtYWlsdG86amtyaWRu
+ZXJAYmVhZ2xlYm9hcmQub3JnIiB0YXJnZXQ9Il9ibGFuayI+amtyaWRuZXJAYmVhZ2xlYm9hcmQu
+b3JnPC9hPiZndDs8L3NwYW4+IHdyb3RlOjxicj4NCg0KDQoNCg0KPGJsb2NrcXVvdGUgY2xhc3M9
+ImdtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjAgMCAwIC44ZXg7Ym9yZGVyLWxlZnQ6MXB4ICNj
+Y2Mgc29saWQ7cGFkZGluZy1sZWZ0OjFleCI+PGRpdj5PbiBTYXQsIFNlcCAzLCAyMDExIGF0IDI6
+NDMgUE0sIEJyaWFuIER1ZmZ5ICZsdDs8YSBocmVmPSJtYWlsdG86YnJkdWZmeUBnbWFpbC5jb20i
+IHRhcmdldD0iX2JsYW5rIj5icmR1ZmZ5QGdtYWlsLmNvbTwvYT4mZ3Q7IHdyb3RlOjxicj4NCg0K
+DQoNCg0KDQomZ3Q7IEhpIFlvY3RvIGdyb3VwLiBJIGFtIG5ldyB0byBZb2N0by4gSSBmb2xsb3dl
+ZCB0aGUgc3RhcnRlcnMgZ3VpZGUgYW5kIFdoZW48YnI+DQomZ3Q7IHJ1bm5pbmcgYml0YmFrZSBJ
+IGdldCBzb21lIGVycm9ycy4gZmlyc3QgaXQgY29tcGxhaW5zIHRoYXQgcHNldWRvIGlzIG5vdDxi
+cj4NCiZndDsgYXZhaWxhYmxlIGJ1dCByZXF1aXJlZCwgYW5kIHRoZW4gaXQgY29tcGxhaW5zIHRo
+YXQgYmJwYXRoIGlzIG5vdCBzZXQuIFdoYXQ8YnI+DQomZ3Q7IGlzIHBzZXVkbz88YnI+DQo8YnI+
+DQo8L2Rpdj5Hb29nbGUgc2hvdWxkIGhhdmUgaGVscGVkIHlvdSB3aXRoIHRoaXMgcXVlc3Rpb246
+PGJyPg0KPGEgaHJlZj0iaHR0cDovL3d3dy55b2N0b3Byb2plY3Qub3JnL3Byb2plY3RzL3BzZXVk
+byIgdGFyZ2V0PSJfYmxhbmsiPmh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9wcm9qZWN0cy9w
+c2V1ZG88L2E+Ljxicj4NCjxicj4NCkkgYmVsaWV2ZSB0aGUgcHJpbWFyeSBwdXJwb3NlIGlzIHRv
+IGJlIGFibGUgdG8gY3JlYXRlIGZpbGVzIHdpdGggcm9vdDxicj4NCm93bmVyc2hpcCB3aXRob3V0
+IHJvb3QgYWNjZXNzLiDCoFRoaXMgaXMgY3JpdGljYWwgZm9yIGJ1aWxkaW5nIHlvdXI8YnI+DQpm
+aWxlIHN5c3RlbS48YnI+DQo8ZGl2Pjxicj4NCiZndDsgSSBoYXZlIHN1ZG8gaW5zdGFsbGVkIGFu
+ZCBzZXR1cCB0byB3b3JrIGZvciBtZSwgYnV0IEkgZG9uJiMzOTt0IGtub3c8YnI+DQomZ3Q7IHdo
+YXQgcHNldWRvIGlzLiBBbHNvLCBiaXRiYWtlIHdhcyBub3QgaW5zdGFsbGVkIG9uIG15IGZyZXNo
+IGluc3RhbGwgb2Y8YnI+DQomZ3Q7IEZlZG9yYSAxNSBzbyBJIGluc3RhbGxlZCBpdCB0aHJvdWdo
+IHRoZSBwYWNrYWdlIG1hbmFnZXIuPGJyPg0KPGJyPg0KPC9kaXY+SSBkb3VidCB5b3Ugd2FudCB0
+byBkbyB0aGF0LCBidXQgSSBkb24mIzM5O3Qgc2VlIGFueXRoaW5nIGluIHRoZTxicj4NCmluc3Ry
+dWN0aW9ucyBwcm92aWRlZCB0byB0ZWxsIHlvdSB3aGVyZSB0byBnZXQgaXQgZWl0aGVyLjxicj4N
+CjxkaXY+PGJyPg0KJmd0OyBJIGd1ZXNzIHRoYXQgd2FzPGJyPg0KJmd0OyBub3QgaW5jbHVkZWQg
+aW4gdGhlIHBhY2thZ2VzIGZyb20gdGhlIGdldHRpbmcgc3RhcnRlZCBndWlkZS4gV2hlcmUgZG8g
+SSBzZXQ8YnI+DQomZ3Q7IHRoZSBiYnBhdGg/PGJyPg0KPGJyPg0KPC9kaXY+RGlkIHlvdSBlZGl0
+IGNvbmYvbG9jYWwuY29uZj88YnI+DQo8ZGl2Pjxicj4NCiZndDsgSSBmb2xsb3dlZCB0aGUgZ2V0
+dGluZyBzdGFydGVkIGd1aWRlIGFuZCByZXBsYWNlZCB0aGU8YnI+DQomZ3Q7IGFwcHJvcHJpYXRl
+IGNvbW1hbmRzIHdpdGggdGhlIG9uZXMgZnJvbSBEYXZpZHMgYmxvZyBwb3N0IGZvciB0aGUgbGF0
+ZXN0PGJyPg0KJmd0OyByZWxlYXNlLjxicj4NCiZndDs8YnI+DQomZ3Q7IHRobng8YnI+DQomZ3Q7
+IEJyaWFuPGJyPg0KJmd0OyAtLTxicj4NCiZndDsgRHVmZjxicj4NCiZndDs8YnI+DQo8L2Rpdj4m
+Z3Q7IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0K
+Jmd0OyB5b2N0byBtYWlsaW5nIGxpc3Q8YnI+DQomZ3Q7IDxhIGhyZWY9Im1haWx0bzp5b2N0b0B5
+b2N0b3Byb2plY3Qub3JnIiB0YXJnZXQ9Il9ibGFuayI+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzwv
+YT48YnI+DQomZ3Q7IDxhIGhyZWY9Imh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0
+aW5mby95b2N0byIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9y
+Zy9saXN0aW5mby95b2N0bzwvYT48YnI+DQomZ3Q7PGJyPg0KJmd0Ozxicj4NCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KeW9jdG8gbWFpbGluZyBs
+aXN0PGJyPg0KPGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmciIHRhcmdldD0i
+X2JsYW5rIj55b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9hPjxicj4NCjxhIGhyZWY9Imh0dHBzOi8v
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0byIgdGFyZ2V0PSJfYmxhbmsiPmh0
+dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bzwvYT48YnI+DQo8L2Js
+b2NrcXVvdGU+PC9kaXY+PGJyPjxiciBjbGVhcj0iYWxsIj48ZGl2Pjxicj48L2Rpdj48L2Rpdj48
+L2Rpdj48Zm9udCBjb2xvcj0iIzg4ODg4OCI+LS0gPGJyPkplZmYgT3NpZXItTWl4b27CoDxhIGhy
+ZWY9Imh0dHA6Ly9qZWZyby5uZXQvYmxvZyIgdGFyZ2V0PSJfYmxhbmsiPmh0dHA6Ly9qZWZyby5u
+ZXQvYmxvZzwvYT48ZGl2PllvY3RvIFByb2plY3QgQ29tbXVuaXR5IE1hbmFnZXIgQEludGVswqA8
+YSBocmVmPSJodHRwOi8veW9jdG9wcm9qZWN0Lm9yZy8iIHRhcmdldD0iX2JsYW5rIj5odHRwOi8v
+eW9jdG9wcm9qZWN0Lm9yZzwvYT48L2Rpdj4NCg0KDQoNCg0KPGJyPg0KPC9mb250PjwvZGl2Pjwv
+ZGl2Pg0KPC9ibG9ja3F1b3RlPjwvZGl2Pjxicj48YnIgY2xlYXI9ImFsbCI+PGRpdj48YnI+PC9k
+aXY+PC9kaXY+PC9kaXY+PGZvbnQgY29sb3I9IiM4ODg4ODgiPi0tIDxicj5EdWZmPGJyPg0KPC9m
+b250PjwvZGl2Pg0KPC9ibG9ja3F1b3RlPjwvZGl2Pjxicj48YnIgY2xlYXI9ImFsbCI+PGRpdj48
+YnI+PC9kaXY+LS0gPGJyPkplZmYgT3NpZXItTWl4b27CoDxhIGhyZWY9Imh0dHA6Ly9qZWZyby5u
+ZXQvYmxvZyIgdGFyZ2V0PSJfYmxhbmsiPmh0dHA6Ly9qZWZyby5uZXQvYmxvZzwvYT48ZGl2Pllv
+Y3RvIFByb2plY3QgQ29tbXVuaXR5IE1hbmFnZXIgQEludGVswqA8YSBocmVmPSJodHRwOi8veW9j
+dG9wcm9qZWN0Lm9yZy8iIHRhcmdldD0iX2JsYW5rIj5odHRwOi8veW9jdG9wcm9qZWN0Lm9yZzwv
+YT48L2Rpdj4NCg0KDQo8YnI+DQo8L2Rpdj48L2Rpdj48L2Rpdj4NCjwvYmxvY2txdW90ZT48L2Rp
+dj48YnI+PGJyIGNsZWFyPSJhbGwiPjxkaXY+PGJyPjwvZGl2Pi0tIDxicj5KZWZmIE9zaWVyLU1p
+eG9uwqA8YSBocmVmPSJodHRwOi8vamVmcm8ubmV0L2Jsb2ciIHRhcmdldD0iX2JsYW5rIj5odHRw
+Oi8vamVmcm8ubmV0L2Jsb2c8L2E+PGRpdj5Zb2N0byBQcm9qZWN0IENvbW11bml0eSBNYW5hZ2Vy
+IEBJbnRlbMKgPGEgaHJlZj0iaHR0cDovL3lvY3RvcHJvamVjdC5vcmcvIiB0YXJnZXQ9Il9ibGFu
+ayI+aHR0cDovL3lvY3RvcHJvamVjdC5vcmc8L2E+PC9kaXY+DQoNCjxicj4NCjwvZGl2PjwvZGl2
+PjwvYmxvY2txdW90ZT48L2Rpdj48YnI+PGJyIGNsZWFyPSJhbGwiPjxkaXY+PGJyPjwvZGl2Pi0t
+IDxicj5EdWZmPGJyPg0KPC9kaXY+DQo=
 
-On Tue, Sep 6, 2011 at 3:28 PM, Osier-mixon, Jeffrey <
-jeffrey.osier-mixon@intel.com> wrote:
-
-> One more thing - if you prefer a tarball to git (easier on some corporate
-> networks) the process is the same, just un-tar the tarball into a working
-> directory and cd into the poky subdir and go from there. The tarball should
-> be the latest stable release.
->
->
-> On Tue, Sep 6, 2011 at 12:27 PM, Osier-mixon, Jeffrey <
-> jeffrey.osier-mixon@intel.com> wrote:
->
->> Hi Brian, sorry for the delay.
->>
->> If you download the poky tarball or use git to grab it and then follow the
->> instructions on the quick-start, the tools should build automatically.  In a
->> nutshell, try this:
->>
->> git clone git://git.yoctoproject.org/poky.git
->> cd poky
->> . ./oe-core-build-env
->> [that should put you into a build directory]
->> vi conf/local.conf  [set at least MACHINE, instructions in the file]
->> bitbake core-minimal
->>
->> I hope this helps!  I'm on IRC as Jefro or available by email, let me know
->> if I can help at all.
->>
->>
->> On Sat, Sep 3, 2011 at 5:52 PM, Brian Duffy <brduffy@gmail.com> wrote:
->>
->>> Thanks for the input Jeff. I have not downloaded the tools yet. I'll
->>> probably download the tarball since I don't have much experience with git.
->>> I'll set the bbpath in local.conf and uninstall bitbake from the package
->>> manager before I do so. I guess building the tools will take care of bitbake
->>> and pseudo. Any help with how to build the tools would be appreciated, but
->>> no hurry, enjoy the holiday!
->>>
->>> thnx
->>>
->>> Brian
->>>
->>>
->>> On Sat, Sep 3, 2011 at 5:50 PM, Osier-mixon, Jeffrey <
->>> jeffrey.osier-mixon@intel.com> wrote:
->>>
->>>> Hi Brian - both bitbake and pseudo are part of the Yocto toolset. The
->>>> standard bitbake from the package manager on your host is not the correct
->>>> one. Make sure you have set your environment properly by sourcing the
->>>> build-env script, and it should be set correctly.
->>>>
->>>> As Jason says, set BBPATH in your project directory in conf/local.conf
->>>>
->>>> How did you download the tools, tarball or git?  I find it easiest to do
->>>> this:
->>>>
->>>> git clone git://git.yoctoproject.org/poky.git
->>>>
->>>> Note that responses may be delayed on a US holiday weekend :)
->>>>
->>>> On Sat, Sep 3, 2011 at 1:48 PM, Jason Kridner <jkridner@beagleboard.org
->>>> > wrote:
->>>>
->>>>> On Sat, Sep 3, 2011 at 2:43 PM, Brian Duffy <brduffy@gmail.com> wrote:
->>>>> > Hi Yocto group. I am new to Yocto. I followed the starters guide and
->>>>> When
->>>>> > running bitbake I get some errors. first it complains that pseudo is
->>>>> not
->>>>> > available but required, and then it complains that bbpath is not set.
->>>>> What
->>>>> > is pseudo?
->>>>>
->>>>> Google should have helped you with this question:
->>>>> http://www.yoctoproject.org/projects/pseudo.
->>>>>
->>>>> I believe the primary purpose is to be able to create files with root
->>>>> ownership without root access.  This is critical for building your
->>>>> file system.
->>>>>
->>>>> > I have sudo installed and setup to work for me, but I don't know
->>>>> > what pseudo is. Also, bitbake was not installed on my fresh install
->>>>> of
->>>>> > Fedora 15 so I installed it through the package manager.
->>>>>
->>>>> I doubt you want to do that, but I don't see anything in the
->>>>> instructions provided to tell you where to get it either.
->>>>>
->>>>> > I guess that was
->>>>> > not included in the packages from the getting started guide. Where do
->>>>> I set
->>>>> > the bbpath?
->>>>>
->>>>> Did you edit conf/local.conf?
->>>>>
->>>>> > I followed the getting started guide and replaced the
->>>>> > appropriate commands with the ones from Davids blog post for the
->>>>> latest
->>>>> > release.
->>>>> >
->>>>> > thnx
->>>>> > Brian
->>>>> > --
->>>>> > Duff
->>>>> >
->>>>> > _______________________________________________
->>>>> > yocto mailing list
->>>>> > yocto@yoctoproject.org
->>>>> > https://lists.yoctoproject.org/listinfo/yocto
->>>>> >
->>>>> >
->>>>> _______________________________________________
->>>>> yocto mailing list
->>>>> yocto@yoctoproject.org
->>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>>
->>>>
->>>>
->>>>
->>>> --
->>>> Jeff Osier-Mixon http://jefro.net/blog
->>>> Yocto Project Community Manager @Intel http://yoctoproject.org
->>>>
->>>>
->>>
->>>
->>> --
->>> Duff
->>>
->>
->>
->>
->> --
->> Jeff Osier-Mixon http://jefro.net/blog
->> Yocto Project Community Manager @Intel http://yoctoproject.org
->>
->>
->
->
-> --
-> Jeff Osier-Mixon http://jefro.net/blog
-> Yocto Project Community Manager @Intel http://yoctoproject.org
->
->
-
-
--- 
-Duff
-
---0016367b6004f2555804ac4e8135
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Okay, so it turns out that I had already downloaded what I needed with the =
-instructions from the latest blog post for the beta release. It specificall=
-y mentions certain command to replace from the quick start guide. So I went=
- into the &quot;oe-beta&quot; directory and ran . ./oe-init-build-env ~/my-=
-build and that set up my environment variables. When I ran bitbake core-ima=
-ge-minimal I got an error stating that xterm was not installed. That might =
-be something to include in the quick start section of things to install fir=
-st. Anyway, it seems to be happily building a minimal linux distro for the =
-emulator to run. I&#39;ll let you know if it works out.<div>
-<br></div><div>thnx</div><div><br></div><div>Brian<br><br><div class=3D"gma=
-il_quote">On Tue, Sep 6, 2011 at 3:28 PM, Osier-mixon, Jeffrey <span dir=3D=
-"ltr">&lt;<a href=3D"mailto:jeffrey.osier-mixon@intel.com">jeffrey.osier-mi=
-xon@intel.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex;">One more thing - if you prefer a tarball to=
- git (easier on some corporate networks) the process is the same, just un-t=
-ar the tarball into a working directory and cd into the poky subdir and go =
-from there. The tarball should be the latest stable release.<div>
-<div></div><div class=3D"h5"><br>
-<br><div class=3D"gmail_quote">On Tue, Sep 6, 2011 at 12:27 PM, Osier-mixon=
-, Jeffrey <span dir=3D"ltr">&lt;<a href=3D"mailto:jeffrey.osier-mixon@intel=
-.com" target=3D"_blank">jeffrey.osier-mixon@intel.com</a>&gt;</span> wrote:=
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-Hi Brian, sorry for the delay. =A0<div><br></div><div>If you download the p=
-oky tarball or use git to grab it and then follow the instructions on the q=
-uick-start, the tools should build automatically. =A0In a nutshell, try thi=
-s:</div>
-
-<div>
-<div><br></div><div>git clone git://<a href=3D"http://git.yoctoproject.org/=
-poky.git" target=3D"_blank">git.yoctoproject.org/poky.git</a></div></div><d=
-iv>cd poky</div><div>. ./oe-core-build-env</div><div>[that should put you i=
-nto a build directory]</div>
-
-
-<div>vi conf/local.conf =A0[set at least MACHINE, instructions in the file]=
-</div><div>bitbake core-minimal</div><div><br></div><div>I hope this helps!=
- =A0I&#39;m on IRC as Jefro or available by email, let me know if I can hel=
-p at all.<div>
-
-<div></div><div><br>
-<br><div class=3D"gmail_quote">On Sat, Sep 3, 2011 at 5:52 PM, Brian Duffy =
-<span dir=3D"ltr">&lt;<a href=3D"mailto:brduffy@gmail.com" target=3D"_blank=
-">brduffy@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
->
-
-
-Thanks for the input Jeff. I have not downloaded the tools yet. I&#39;ll pr=
-obably download the tarball since I don&#39;t have much experience with git=
-. I&#39;ll set the bbpath in local.conf and uninstall bitbake from the pack=
-age manager before I do so. I guess building the tools will take care of bi=
-tbake and pseudo. Any help with how to build the tools would be appreciated=
-, but no hurry, enjoy the holiday!<div>
-
-
-
-<br></div><div>thnx</div><div><br></div><div>Brian<div><div></div><div><br>=
-<br><div class=3D"gmail_quote">On Sat, Sep 3, 2011 at 5:50 PM, Osier-mixon,=
- Jeffrey <span dir=3D"ltr">&lt;<a href=3D"mailto:jeffrey.osier-mixon@intel.=
-com" target=3D"_blank">jeffrey.osier-mixon@intel.com</a>&gt;</span> wrote:<=
-br>
-
-
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Hi Brian - both bitbake and pseudo are part =
-of the Yocto toolset. The standard bitbake from the package manager on your=
- host is not the correct one. Make sure you have set your environment prope=
-rly by sourcing the build-env script, and it should be set correctly.<div>
-
-
-
-
-<br></div><div>As Jason says, set BBPATH in your project directory in conf/=
-local.conf</div><div><br></div><div>How did you download the tools, tarball=
- or git? =A0I find it easiest to do this:</div><div><br></div><div>git clon=
-e git://<a href=3D"http://git.yoctoproject.org/poky.git" target=3D"_blank">=
-git.yoctoproject.org/poky.git</a></div>
-
-
-
-
-<div><br></div><div>Note that responses may be delayed on a US holiday week=
-end :)</div><div><div><div><div></div><div><br><div class=3D"gmail_quote">O=
-n Sat, Sep 3, 2011 at 1:48 PM, Jason Kridner <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:jkridner@beagleboard.org" target=3D"_blank">jkridner@beagleboard=
-.org</a>&gt;</span> wrote:<br>
-
-
-
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div>On Sat, Sep 3, 2011 at 2:43 PM, Brian D=
-uffy &lt;<a href=3D"mailto:brduffy@gmail.com" target=3D"_blank">brduffy@gma=
-il.com</a>&gt; wrote:<br>
-
-
-
-
-
-&gt; Hi Yocto group. I am new to Yocto. I followed the starters guide and W=
-hen<br>
-&gt; running bitbake I get some errors. first it complains that pseudo is n=
-ot<br>
-&gt; available but required, and then it complains that bbpath is not set. =
-What<br>
-&gt; is pseudo?<br>
-<br>
-</div>Google should have helped you with this question:<br>
-<a href=3D"http://www.yoctoproject.org/projects/pseudo" target=3D"_blank">h=
-ttp://www.yoctoproject.org/projects/pseudo</a>.<br>
-<br>
-I believe the primary purpose is to be able to create files with root<br>
-ownership without root access. =A0This is critical for building your<br>
-file system.<br>
-<div><br>
-&gt; I have sudo installed and setup to work for me, but I don&#39;t know<b=
-r>
-&gt; what pseudo is. Also, bitbake was not installed on my fresh install of=
-<br>
-&gt; Fedora 15 so I installed it through the package manager.<br>
-<br>
-</div>I doubt you want to do that, but I don&#39;t see anything in the<br>
-instructions provided to tell you where to get it either.<br>
-<div><br>
-&gt; I guess that was<br>
-&gt; not included in the packages from the getting started guide. Where do =
-I set<br>
-&gt; the bbpath?<br>
-<br>
-</div>Did you edit conf/local.conf?<br>
-<div><br>
-&gt; I followed the getting started guide and replaced the<br>
-&gt; appropriate commands with the ones from Davids blog post for the lates=
-t<br>
-&gt; release.<br>
-&gt;<br>
-&gt; thnx<br>
-&gt; Brian<br>
-&gt; --<br>
-&gt; Duff<br>
-&gt;<br>
-</div>&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
-lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;<br>
-&gt;<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br><br clear=3D"all"><div><br></div></div></div><font c=
-olor=3D"#888888">-- <br>Jeff Osier-Mixon=A0<a href=3D"http://jefro.net/blog=
-" target=3D"_blank">http://jefro.net/blog</a><div>Yocto Project Community M=
-anager @Intel=A0<a href=3D"http://yoctoproject.org/" target=3D"_blank">http=
-://yoctoproject.org</a></div>
-
-
-
-
-<br>
-</font></div></div>
-</blockquote></div><br><br clear=3D"all"><div><br></div></div></div><font c=
-olor=3D"#888888">-- <br>Duff<br>
-</font></div>
-</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>Jeff Osier-M=
-ixon=A0<a href=3D"http://jefro.net/blog" target=3D"_blank">http://jefro.net=
-/blog</a><div>Yocto Project Community Manager @Intel=A0<a href=3D"http://yo=
-ctoproject.org/" target=3D"_blank">http://yoctoproject.org</a></div>
-
-
-<br>
-</div></div></div>
-</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>Jeff Osier-M=
-ixon=A0<a href=3D"http://jefro.net/blog" target=3D"_blank">http://jefro.net=
-/blog</a><div>Yocto Project Community Manager @Intel=A0<a href=3D"http://yo=
-ctoproject.org/" target=3D"_blank">http://yoctoproject.org</a></div>
-
-<br>
-</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
-Duff<br>
-</div>
-
---0016367b6004f2555804ac4e8135--
+--_000_B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A652orsmsx501amrc_--
