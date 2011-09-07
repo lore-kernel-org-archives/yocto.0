@@ -1,27 +1,20 @@
-Return-Path: <brduffy@gmail.com>
-Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26B07E0075D
-	for <yocto@yoctoproject.org>; Wed,  7 Sep 2011 03:27:29 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by wwe3 with SMTP id 3so1818750wwe.11
-	for <yocto@yoctoproject.org>; Wed, 07 Sep 2011 03:27:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=ESJVCFavcZ9taKM3Nt3RVtVOQ4fK5ECfP+RmEIhEbl4=;
-	b=ney10ocmfzWg7RODFezbTK9wcIa8pvvJM+UwEYLbu1hs2S+YIC/R+nQ16iACmrpJlM
-	Tx48Cugu2QGz5GOxKKdgCQ1TOF360B4lpLFgbRK/NaEea3/JrL5n7cR5xTGlvPmGsNMA
-	bT2UTtJ7EBT85Lp/pN8YSndsWnueKnvba3N4U=
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D8A5E0075D
+	for <yocto@yoctoproject.org>; Wed,  7 Sep 2011 03:28:51 -0700 (PDT)
+Received: from [192.168.0.55] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id 4217F2275F
+	for <yocto@yoctoproject.org>; Wed,  7 Sep 2011 11:17:16 +0100 (BST)
+Message-ID: <4E674761.5080404@communistcode.co.uk>
+Date: Wed, 07 Sep 2011 11:28:49 +0100
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:6.0.2) Gecko/20110902 Thunderbird/6.0.2
 MIME-Version: 1.0
-Received: by 10.216.185.207 with SMTP id u57mr2624721wem.109.1315391249009;
-	Wed, 07 Sep 2011 03:27:29 -0700 (PDT)
-Received: by 10.216.168.147 with HTTP; Wed, 7 Sep 2011 03:27:28 -0700 (PDT)
-Date: Wed, 7 Sep 2011 06:27:28 -0400
-Message-ID: <CAHrDPkpK-VGzJxEH4JGN3Q7KoQpuPxkJ5spD1ehMvPYgQND0WQ@mail.gmail.com>
-From: Brian Duffy <brduffy@gmail.com>
 To: yocto@yoctoproject.org
-Subject: Login/Password?
+References: <CAHrDPkpK-VGzJxEH4JGN3Q7KoQpuPxkJ5spD1ehMvPYgQND0WQ@mail.gmail.com>
+In-Reply-To: <CAHrDPkpK-VGzJxEH4JGN3Q7KoQpuPxkJ5spD1ehMvPYgQND0WQ@mail.gmail.com>
+Subject: Re: Login/Password?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,22 +26,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Sep 2011 10:27:30 -0000
-Content-Type: multipart/alternative; boundary=0016367faf71234da804ac5764b3
+X-List-Received-Date: Wed, 07 Sep 2011 10:28:56 -0000
+Content-Type: multipart/alternative;
+	boundary="------------030302060901080800000600"
 
---0016367faf71234da804ac5764b3
-Content-Type: text/plain; charset=ISO-8859-1
+--------------030302060901080800000600
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-My image runs in the emulator fine, but what is my login/password? The
-combination I use for my Fedora box does not work. Still, yay!! for a
-*working* image.
+On 07/09/2011 11:27, Brian Duffy wrote:
+> My image runs in the emulator fine, but what is my login/password? The 
+> combination I use for my Fedora box does not work. Still, yay!! for a 
+> *working* image.
+>
+> -- 
+> Duff
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
--- 
-Duff
+It should be:
 
---0016367faf71234da804ac5764b3
+user: root
+
+with a blank password.
+
+Jack.
+
+--------------030302060901080800000600
 Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-My image runs in the emulator fine, but what is my login/password? The combination I use for my Fedora box does not work. Still, yay!! for a *working* image.<br clear="all"><div><br></div>-- <br>Duff<br>
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    On 07/09/2011 11:27, Brian Duffy wrote:
+    <blockquote
+cite="mid:CAHrDPkpK-VGzJxEH4JGN3Q7KoQpuPxkJ5spD1ehMvPYgQND0WQ@mail.gmail.com"
+      type="cite">My image runs in the emulator fine, but what is my
+      login/password? The combination I use for my Fedora box does not
+      work. Still, yay!! for a *working* image.<br clear="all">
+      <div><br>
+      </div>
+      -- <br>
+      Duff<br>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+</pre>
+    </blockquote>
+    <br>
+    It should be:<br>
+    <br>
+    user: root<br>
+    <br>
+    with a blank password.<br>
+    <br>
+    Jack.<br>
+  </body>
+</html>
 
---0016367faf71234da804ac5764b3--
+--------------030302060901080800000600--
