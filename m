@@ -1,34 +1,31 @@
-Return-Path: <brduffy@gmail.com>
-Received: from mail-wy0-f176.google.com (mail-wy0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67940E0075D
-	for <yocto@yoctoproject.org>; Wed,  7 Sep 2011 04:44:47 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by wyg30 with SMTP id 30so7841826wyg.35
-	for <yocto@yoctoproject.org>; Wed, 07 Sep 2011 04:44:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=O+Ehx25WyCOztovrbme2ynhSA3qTDbN1ClNs818tMIs=;
-	b=fSB/QEwOz/7zGCTPw93togPJ9QsKSt2Kxa/fTm3/1HaO+AVjRmA4BNvRBRzF4RitfL
-	vWe3difgBGcSuKMzP6Ng4r02LMhp5yCw8FMm1xtIm4R2eGdKVK7we0wBcoadVnmktj3q
-	4xkoIQrykyh4tkaFiBm/z/6NxEqeSHMlX8P0U=
+Return-Path: <jkridner@beagleboard.org>
+Received: from mail-gx0-f174.google.com (mail-gx0-f174.google.com
+	[209.85.161.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F5A5E0075D
+	for <yocto@yoctoproject.org>; Wed,  7 Sep 2011 05:41:31 -0700 (PDT)
+Received: by gxk21 with SMTP id 21so5987526gxk.33
+	for <yocto@yoctoproject.org>; Wed, 07 Sep 2011 05:41:30 -0700 (PDT)
+Received: by 10.236.128.177 with SMTP id f37mr31442989yhi.116.1315399290472;
+	Wed, 07 Sep 2011 05:41:30 -0700 (PDT)
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by mx.google.com with ESMTPS id c62sm3239852yhj.25.2011.09.07.05.41.28
+	(version=SSLv3 cipher=OTHER); Wed, 07 Sep 2011 05:41:28 -0700 (PDT)
+Received: by ywb26 with SMTP id 26so164156ywb.35
+	for <yocto@yoctoproject.org>; Wed, 07 Sep 2011 05:41:27 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.216.136.216 with SMTP id w66mr4651927wei.94.1315395886278;
-	Wed, 07 Sep 2011 04:44:46 -0700 (PDT)
-Received: by 10.216.168.147 with HTTP; Wed, 7 Sep 2011 04:44:46 -0700 (PDT)
-In-Reply-To: <201109071147.39307.paul.eggleton@linux.intel.com>
-References: <CAHrDPkpK-VGzJxEH4JGN3Q7KoQpuPxkJ5spD1ehMvPYgQND0WQ@mail.gmail.com>
-	<4E674761.5080404@communistcode.co.uk>
-	<201109071147.39307.paul.eggleton@linux.intel.com>
-Date: Wed, 7 Sep 2011 07:44:46 -0400
-Message-ID: <CAHrDPkro4y03uCpniysxNyCsx+Y=Lfir6b8ykDmYVWKS8aZkzw@mail.gmail.com>
-From: Brian Duffy <brduffy@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Login/Password?
+Received: by 10.150.113.13 with SMTP id l13mr4761884ybc.335.1315399287881;
+	Wed, 07 Sep 2011 05:41:27 -0700 (PDT)
+Received: by 10.151.112.21 with HTTP; Wed, 7 Sep 2011 05:41:27 -0700 (PDT)
+In-Reply-To: <B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A652@orsmsx501.amr.corp.intel.com>
+References: <CAHrDPkrjfG7A-78tkL1qmaBRab7=tbNKqooqjQ5Aw_ednMD9cg@mail.gmail.com>
+	<B27EBC40D200ED48A3F4CC2EBEABAE0B260B53A652@orsmsx501.amr.corp.intel.com>
+Date: Wed, 7 Sep 2011 08:41:27 -0400
+Message-ID: <CA+T6QPmfbrMmWKP_-jamDxEvQjRwvd4vPxoouGpE2ZvvH2x13A@mail.gmail.com>
+From: Jason Kridner <jkridner@beagleboard.org>
+To: "Stewart, David C" <david.c.stewart@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto 1.1 Beta Questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,88 +37,195 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Sep 2011 11:44:48 -0000
-Content-Type: multipart/alternative; boundary=001636eeffa28a678b04ac5878c9
-
---001636eeffa28a678b04ac5878c9
+X-List-Received-Date: Wed, 07 Sep 2011 12:41:31 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-
-Okay, I was able to login with root/no password. Its a nice start, thanks
-for all of your help. Off to work.
-
-On Wed, Sep 7, 2011 at 6:47 AM, Paul Eggleton <paul.eggleton@linux.intel.com
-> wrote:
-
-> On Wednesday 07 September 2011 11:28:49 Jack Mitchell wrote:
-> > It should be:
-> >
-> > user: root
-> >
-> > with a blank password.
->
-> Yes, that's correct.
->
-> For reference, when it comes time to do release/production images you
-> should
-> remove debug-tweaks from IMAGE_FEATURES (and if you're not rebuilding
-> everything from scratch ensure dropbear is rebuilt) and probably add
-> zap_root_password to ROOTFS_POSTPROCESS_COMMAND as well. Actually we should
-> ensure zap_root_password gets added automatically without debug-tweaks for
-> core-image at least, I'll try to fix that today.
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
-
-
-
--- 
-Duff
-
---001636eeffa28a678b04ac5878c9
-Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Okay, I was able to login with root/no password. Its a nice start, thanks f=
-or all of your help. Off to work.<br><br><div class=3D"gmail_quote">On Wed,=
- Sep 7, 2011 at 6:47 AM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:paul.eggleton@linux.intel.com">paul.eggleton@linux.intel.com</a>&gt;</s=
-pan> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex;"><div class=3D"im">On Wednesday 07 September=
- 2011 11:28:49 Jack Mitchell wrote:<br>
-&gt; It should be:<br>
-&gt;<br>
-&gt; user: root<br>
-&gt;<br>
-&gt; with a blank password.<br>
-<br>
-</div>Yes, that&#39;s correct.<br>
-<br>
-For reference, when it comes time to do release/production images you shoul=
-d<br>
-remove debug-tweaks from IMAGE_FEATURES (and if you&#39;re not rebuilding<b=
-r>
-everything from scratch ensure dropbear is rebuilt) and probably add<br>
-zap_root_password to ROOTFS_POSTPROCESS_COMMAND as well. Actually we should=
-<br>
-ensure zap_root_password gets added automatically without debug-tweaks for<=
-br>
-core-image at least, I&#39;ll try to fix that today.<br>
-<br>
-Cheers,<br>
-Paul<br>
-<font color=3D"#888888"><br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</font></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>Duff<=
-br>
+Isn't bitbake supposed to be smart enough to discover and use 'screen'
+instead now?
 
---001636eeffa28a678b04ac5878c9--
+On Tue, Sep 6, 2011 at 9:07 PM, Stewart, David C
+<david.c.stewart@intel.com> wrote:
+> Yeah, I ran into the same thing, Brian. Installing xterm is missing from =
+the
+> quickstart and the beta instructions. Sorry about that.
+>
+>
+> Sent from my Blackberry
+>
+> From: Brian Duffy [mailto:brduffy@gmail.com]
+> Sent: Tuesday, September 06, 2011 04:51 PM
+> To: Osier-mixon, Jeffrey; yocto@yoctoproject.org <yocto@yoctoproject.org>
+> Subject: Re: [yocto] Yocto 1.1 Beta Questions
+>
+> Okay, so it turns out that I had already downloaded what I needed with th=
+e
+> instructions from the latest blog post for the beta release. It specifica=
+lly
+> mentions certain command to replace from the quick start guide. So I went
+> into the "oe-beta" directory and ran . ./oe-init-build-env ~/my-build and
+> that set up my environment variables. When I ran bitbake core-image-minim=
+al
+> I got an error stating that xterm was not installed. That might be someth=
+ing
+> to include in the quick start section of things to install first. Anyway,=
+ it
+> seems to be happily building a minimal linux distro for the emulator to r=
+un.
+> I'll let you know if it works out.
+> thnx
+> Brian
+>
+> On Tue, Sep 6, 2011 at 3:28 PM, Osier-mixon, Jeffrey
+> <jeffrey.osier-mixon@intel.com> wrote:
+>>
+>> One more thing - if you prefer a tarball to git (easier on some corporat=
+e
+>> networks) the process is the same, just un-tar the tarball into a workin=
+g
+>> directory and cd into the poky subdir and go from there. The tarball sho=
+uld
+>> be the latest stable release.
+>>
+>> On Tue, Sep 6, 2011 at 12:27 PM, Osier-mixon, Jeffrey
+>> <jeffrey.osier-mixon@intel.com> wrote:
+>>>
+>>> Hi Brian, sorry for the delay.
+>>> If you download the poky tarball or use git to grab it and then follow
+>>> the instructions on the quick-start, the tools should build automatical=
+ly.
+>>> =A0In a nutshell, try this:
+>>> git clone git://git.yoctoproject.org/poky.git
+>>> cd poky
+>>> . ./oe-core-build-env
+>>> [that should put you into a build directory]
+>>> vi conf/local.conf =A0[set at least MACHINE, instructions in the file]
+>>> bitbake core-minimal
+>>> I hope this helps! =A0I'm on IRC as Jefro or available by email, let me
+>>> know if I can help at all.
+>>>
+>>> On Sat, Sep 3, 2011 at 5:52 PM, Brian Duffy <brduffy@gmail.com> wrote:
+>>>>
+>>>> Thanks for the input Jeff. I have not downloaded the tools yet. I'll
+>>>> probably download the tarball since I don't have much experience with =
+git.
+>>>> I'll set the bbpath in local.conf and uninstall bitbake from the packa=
+ge
+>>>> manager before I do so. I guess building the tools will take care of b=
+itbake
+>>>> and pseudo. Any help with how to build the tools would be appreciated,=
+ but
+>>>> no hurry, enjoy the holiday!
+>>>> thnx
+>>>> Brian
+>>>>
+>>>> On Sat, Sep 3, 2011 at 5:50 PM, Osier-mixon, Jeffrey
+>>>> <jeffrey.osier-mixon@intel.com> wrote:
+>>>>>
+>>>>> Hi Brian - both bitbake and pseudo are part of the Yocto toolset. The
+>>>>> standard bitbake from the package manager on your host is not the cor=
+rect
+>>>>> one. Make sure you have set your environment properly by sourcing the
+>>>>> build-env script, and it should be set correctly.
+>>>>> As Jason says, set BBPATH in your project directory in conf/local.con=
+f
+>>>>> How did you download the tools, tarball or git? =A0I find it easiest =
+to
+>>>>> do this:
+>>>>> git clone git://git.yoctoproject.org/poky.git
+>>>>> Note that responses may be delayed on a US holiday weekend :)
+>>>>> On Sat, Sep 3, 2011 at 1:48 PM, Jason Kridner
+>>>>> <jkridner@beagleboard.org> wrote:
+>>>>>>
+>>>>>> On Sat, Sep 3, 2011 at 2:43 PM, Brian Duffy <brduffy@gmail.com> wrot=
+e:
+>>>>>> > Hi Yocto group. I am new to Yocto. I followed the starters guide a=
+nd
+>>>>>> > When
+>>>>>> > running bitbake I get some errors. first it complains that pseudo =
+is
+>>>>>> > not
+>>>>>> > available but required, and then it complains that bbpath is not
+>>>>>> > set. What
+>>>>>> > is pseudo?
+>>>>>>
+>>>>>> Google should have helped you with this question:
+>>>>>> http://www.yoctoproject.org/projects/pseudo.
+>>>>>>
+>>>>>> I believe the primary purpose is to be able to create files with roo=
+t
+>>>>>> ownership without root access. =A0This is critical for building your
+>>>>>> file system.
+>>>>>>
+>>>>>> > I have sudo installed and setup to work for me, but I don't know
+>>>>>> > what pseudo is. Also, bitbake was not installed on my fresh instal=
+l
+>>>>>> > of
+>>>>>> > Fedora 15 so I installed it through the package manager.
+>>>>>>
+>>>>>> I doubt you want to do that, but I don't see anything in the
+>>>>>> instructions provided to tell you where to get it either.
+>>>>>>
+>>>>>> > I guess that was
+>>>>>> > not included in the packages from the getting started guide. Where
+>>>>>> > do I set
+>>>>>> > the bbpath?
+>>>>>>
+>>>>>> Did you edit conf/local.conf?
+>>>>>>
+>>>>>> > I followed the getting started guide and replaced the
+>>>>>> > appropriate commands with the ones from Davids blog post for the
+>>>>>> > latest
+>>>>>> > release.
+>>>>>> >
+>>>>>> > thnx
+>>>>>> > Brian
+>>>>>> > --
+>>>>>> > Duff
+>>>>>> >
+>>>>>> > _______________________________________________
+>>>>>> > yocto mailing list
+>>>>>> > yocto@yoctoproject.org
+>>>>>> > https://lists.yoctoproject.org/listinfo/yocto
+>>>>>> >
+>>>>>> >
+>>>>>> _______________________________________________
+>>>>>> yocto mailing list
+>>>>>> yocto@yoctoproject.org
+>>>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>>
+>>>>>
+>>>>>
+>>>>> --
+>>>>> Jeff Osier-Mixon=A0http://jefro.net/blog
+>>>>> Yocto Project Community Manager @Intel=A0http://yoctoproject.org
+>>>>
+>>>>
+>>>>
+>>>> --
+>>>> Duff
+>>>
+>>>
+>>>
+>>> --
+>>> Jeff Osier-Mixon=A0http://jefro.net/blog
+>>> Yocto Project Community Manager @Intel=A0http://yoctoproject.org
+>>
+>>
+>>
+>> --
+>> Jeff Osier-Mixon=A0http://jefro.net/blog
+>> Yocto Project Community Manager @Intel=A0http://yoctoproject.org
+>
+>
+>
+> --
+> Duff
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
