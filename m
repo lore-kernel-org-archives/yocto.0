@@ -1,35 +1,35 @@
 Return-Path: <brduffy@gmail.com>
 Received: from mail-wy0-f176.google.com (mail-wy0-f176.google.com
 	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFF0FE01254
-	for <yocto@yoctoproject.org>; Wed,  7 Sep 2011 10:46:53 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D4EDE01254
+	for <yocto@yoctoproject.org>; Wed,  7 Sep 2011 14:49:05 -0700 (PDT)
 Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
 	(1024-bit key; insecure key) header.i=@gmail.com;
 	x-dkim-adsp=none (insecure policy)
-Received: by wyg30 with SMTP id 30so8285633wyg.35
-	for <yocto@yoctoproject.org>; Wed, 07 Sep 2011 10:46:52 -0700 (PDT)
+Received: by wyg30 with SMTP id 30so137938wyg.35
+	for <yocto@yoctoproject.org>; Wed, 07 Sep 2011 14:49:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=80X3Ewk82V1sztxPG6O4EGKzDmGSx26ZnJcvcJxGzjA=;
-	b=giB2DwGO+SAV74h7goVCeaRPwZLocg8+KH9KXC3nu86cY+lnfWFU/0552MOKO3I4Bt
-	ZG0rt/605d8YuD06BptQAnMWt7846XLU5dkrgUMpaLOFKFSuN3uARq3jWls3xxOFrheE
-	F11bZvrfUbWRv7In53t3UZYbqkgSgBVoEcnLU=
+	bh=uhfi4mY0j8km42MrCoH3fZOFJ+ugsFmwrOMXxKvh5XU=;
+	b=axrHO61ppqy8uyppTWYBigZepn9odsEzeMwgcfzHpWc7Yz9rTzO2mLuHXgkHe6WZHS
+	Onbp5zkh7JM8BjK6YsvdbAJNuvpwZ28Dee3yEzasKK1KfWCfokUtYkYyFl3V+zxtwrFS
+	7PJCp8RIdYBGiPv8CEmXtaZRHWhEHbKJd7Iec=
 MIME-Version: 1.0
-Received: by 10.216.158.4 with SMTP id p4mr595170wek.93.1315417612488; Wed, 07
-	Sep 2011 10:46:52 -0700 (PDT)
-Received: by 10.216.168.147 with HTTP; Wed, 7 Sep 2011 10:46:52 -0700 (PDT)
+Received: by 10.216.131.134 with SMTP id m6mr660394wei.78.1315432144664; Wed,
+	07 Sep 2011 14:49:04 -0700 (PDT)
+Received: by 10.216.168.147 with HTTP; Wed, 7 Sep 2011 14:49:04 -0700 (PDT)
 In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C16E6EA58@ORSMSX101.amr.corp.intel.com>
 References: <CAHrDPkpb38_1KwKi35v2cteF5LFmPeF_pfPz5E-2JUw6o-ge2Q@mail.gmail.com>
 	<C6510F6D410BB64A8C15398EDC6B847C16E6E9CB@ORSMSX101.amr.corp.intel.com>
 	<CAHrDPkrtx6BTFSxFX2QPiS4uavVWgbxmuKF0O79reN+ztvsx2Q@mail.gmail.com>
 	<CAHrDPkqw6eNEiNiFtZrW2RtA4qmp41fdwiHs8dvQW+Kcmpg7AA@mail.gmail.com>
 	<C6510F6D410BB64A8C15398EDC6B847C16E6EA58@ORSMSX101.amr.corp.intel.com>
-Date: Wed, 7 Sep 2011 13:46:52 -0400
-Message-ID: <CAHrDPkpY-XGnx7Rm-GqmCBtdRpnVdKfEWUt8w-N2m2MrMCTsiA@mail.gmail.com>
+Date: Wed, 7 Sep 2011 17:49:04 -0400
+Message-ID: <CAHrDPkquSOJ8Wbbgkq+acGmTdg-od4H-h3p1Vju6=1YvSN1xmA@mail.gmail.com>
 From: Brian Duffy <brduffy@gmail.com>
 To: "Zhang, Jessica" <jessica.zhang@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: yocto@yoctoproject.org
 Subject: Re: HOB failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,16 +42,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Sep 2011 17:46:54 -0000
-Content-Type: multipart/alternative; boundary=0016e64973ec8611ea04ac5d87b1
+X-List-Received-Date: Wed, 07 Sep 2011 21:49:07 -0000
+Content-Type: multipart/alternative; boundary=0016e6d589f0b5796604ac60e9f0
 
---0016e64973ec8611ea04ac5d87b1
+--0016e6d589f0b5796604ac60e9f0
 Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-Okay, I'll try that when I get home from work. Thanks!
+Right on Jessica,
 
-Brian
+The Human Oriented Builder launched successfully with your help. I feel mor=
+e
+human already ;-)
 
 On Wed, Sep 7, 2011 at 1:36 PM, Zhang, Jessica <jessica.zhang@intel.com>wro=
 te:
@@ -259,14 +261,15 @@ un
 --=20
 Duff
 
---0016e64973ec8611ea04ac5d87b1
+--0016e6d589f0b5796604ac60e9f0
 Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-Okay, I&#39;ll try that when I get home from work. Thanks!<div><br></div><d=
-iv>Brian<br><br><div class=3D"gmail_quote">On Wed, Sep 7, 2011 at 1:36 PM, =
-Zhang, Jessica <span dir=3D"ltr">&lt;<a href=3D"mailto:jessica.zhang@intel.=
-com">jessica.zhang@intel.com</a>&gt;</span> wrote:<br>
+Right on Jessica,<div><br></div><div>The Human Oriented Builder launched su=
+ccessfully with your help. I feel more human already ;-)<br><br><div class=
+=3D"gmail_quote">On Wed, Sep 7, 2011 at 1:36 PM, Zhang, Jessica <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:jessica.zhang@intel.com">jessica.zhang@intel=
+.com</a>&gt;</span> wrote:<br>
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
 x #ccc solid;padding-left:1ex;">
 
@@ -559,4 +562,4 @@ Duff<u></u><u></u></p>
 </blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>Duff<br>
 </div>
 
---0016e64973ec8611ea04ac5d87b1--
+--0016e6d589f0b5796604ac60e9f0--
