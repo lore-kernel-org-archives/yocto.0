@@ -1,19 +1,22 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D8A5E0075D
-	for <yocto@yoctoproject.org>; Wed,  7 Sep 2011 03:28:51 -0700 (PDT)
-Received: from [192.168.0.55] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 4217F2275F
-	for <yocto@yoctoproject.org>; Wed,  7 Sep 2011 11:17:16 +0100 (BST)
-Message-ID: <4E674761.5080404@communistcode.co.uk>
-Date: Wed, 07 Sep 2011 11:28:49 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:6.0.2) Gecko/20110902 Thunderbird/6.0.2
-MIME-Version: 1.0
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C45F1E0075D
+	for <yocto@yoctoproject.org>; Wed,  7 Sep 2011 03:47:41 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 07 Sep 2011 03:47:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="46006380"
+Received: from unknown (HELO helios.localnet) ([10.252.120.53])
+	by orsmga001.jf.intel.com with ESMTP; 07 Sep 2011 03:47:40 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
+Date: Wed, 7 Sep 2011 11:47:39 +0100
+User-Agent: KMail/1.13.6 (Linux/2.6.38-10-generic-pae; KDE/4.6.2; i686; ; )
 References: <CAHrDPkpK-VGzJxEH4JGN3Q7KoQpuPxkJ5spD1ehMvPYgQND0WQ@mail.gmail.com>
-In-Reply-To: <CAHrDPkpK-VGzJxEH4JGN3Q7KoQpuPxkJ5spD1ehMvPYgQND0WQ@mail.gmail.com>
+	<4E674761.5080404@communistcode.co.uk>
+In-Reply-To: <4E674761.5080404@communistcode.co.uk>
+MIME-Version: 1.0
+Message-Id: <201109071147.39307.paul.eggleton@linux.intel.com>
 Subject: Re: Login/Password?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -26,74 +29,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Sep 2011 10:28:56 -0000
-Content-Type: multipart/alternative;
-	boundary="------------030302060901080800000600"
-
---------------030302060901080800000600
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Wed, 07 Sep 2011 10:47:42 -0000
+Content-Type: Text/Plain;
+  charset="iso-8859-15"
 Content-Transfer-Encoding: 7bit
 
-On 07/09/2011 11:27, Brian Duffy wrote:
-> My image runs in the emulator fine, but what is my login/password? The 
-> combination I use for my Fedora box does not work. Still, yay!! for a 
-> *working* image.
->
-> -- 
-> Duff
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+On Wednesday 07 September 2011 11:28:49 Jack Mitchell wrote:
+> It should be:
+> 
+> user: root
+> 
+> with a blank password.
 
-It should be:
+Yes, that's correct.
 
-user: root
+For reference, when it comes time to do release/production images you should 
+remove debug-tweaks from IMAGE_FEATURES (and if you're not rebuilding 
+everything from scratch ensure dropbear is rebuilt) and probably add 
+zap_root_password to ROOTFS_POSTPROCESS_COMMAND as well. Actually we should 
+ensure zap_root_password gets added automatically without debug-tweaks for 
+core-image at least, I'll try to fix that today.
 
-with a blank password.
+Cheers,
+Paul
 
-Jack.
+-- 
 
---------------030302060901080800000600
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+Paul Eggleton
+Intel Open Source Technology Centre
 
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    On 07/09/2011 11:27, Brian Duffy wrote:
-    <blockquote
-cite="mid:CAHrDPkpK-VGzJxEH4JGN3Q7KoQpuPxkJ5spD1ehMvPYgQND0WQ@mail.gmail.com"
-      type="cite">My image runs in the emulator fine, but what is my
-      login/password? The combination I use for my Fedora box does not
-      work. Still, yay!! for a *working* image.<br clear="all">
-      <div><br>
-      </div>
-      -- <br>
-      Duff<br>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-yocto mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
-</pre>
-    </blockquote>
-    <br>
-    It should be:<br>
-    <br>
-    user: root<br>
-    <br>
-    with a blank password.<br>
-    <br>
-    Jack.<br>
-  </body>
-</html>
-
---------------030302060901080800000600--
