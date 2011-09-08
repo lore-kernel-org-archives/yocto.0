@@ -1,29 +1,32 @@
 Return-Path: <rahul.saxena@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB0C3E012BD
-	for <yocto@yoctoproject.org>; Thu,  8 Sep 2011 16:31:04 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 08 Sep 2011 16:31:04 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B92B7E012C4
+	for <yocto@yoctoproject.org>; Thu,  8 Sep 2011 16:31:07 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 08 Sep 2011 16:31:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,353,1312182000"; d="scan'208,217";a="49463693"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga001.fm.intel.com with ESMTP; 08 Sep 2011 16:31:04 -0700
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208,217";a="46460917"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga002.jf.intel.com with ESMTP; 08 Sep 2011 16:31:07 -0700
+Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 8 Sep 2011 16:31:07 -0700
 Received: from orsmsx505.amr.corp.intel.com ([10.22.226.208]) by
-	orsmsx603.amr.corp.intel.com ([10.22.226.49]) with mapi; Thu, 8 Sep 2011
-	16:31:04 -0700
+	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
+	Thu, 8 Sep 2011 16:31:07 -0700
 From: "Saxena, Rahul" <rahul.saxena@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 8 Sep 2011 16:31:02 -0700
-Thread-Topic: [PATCH 2/3] [KERNEL]  Add separate feature for 10/100 LAN support
-Thread-Index: Acxuf18/g/zdYPrcQ7ykHZjBNn6KWQ==
-Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E3F41C0@orsmsx505.amr.corp.intel.com>
+Date: Thu, 8 Sep 2011 16:31:05 -0700
+Thread-Topic: [PATCH 3/3] [KERNEL] Add e100 feature configuration to all boards
+Thread-Index: Acxuf2EALhG8PXEfTjapxo4CSrf/Ow==
+Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E3F41C1@orsmsx505.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
 Cc: Bruce Ashfield <bruce.ashfield@gmail.com>
-Subject: [PATCH 2/3] [KERNEL] Add separate feature for 10/100 LAN support
+Subject: [PATCH 3/3] [KERNEL] Add e100 feature configuration to all boards
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,12 +38,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Sep 2011 23:31:05 -0000
+X-List-Received-Date: Thu, 08 Sep 2011 23:31:07 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_4FF5AC937153B0459463C1A88EB478F2012E3F41C0orsmsx505amrc_"
+	boundary="_000_4FF5AC937153B0459463C1A88EB478F2012E3F41C1orsmsx505amrc_"
 
---_000_4FF5AC937153B0459463C1A88EB478F2012E3F41C0orsmsx505amrc_
+--_000_4FF5AC937153B0459463C1A88EB478F2012E3F41C1orsmsx505amrc_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -49,35 +52,114 @@ Signed-off-by: Rahul Saxena<Rahul.saxena@intel.com<mailto:Rahul.saxena@inte=
 l.com>>
 
 ---
- .../features/intel-e1xxxx/intel-e100.cfg           |    2 ++
- .../features/intel-e1xxxx/intel-e100.scc           |    1 +
- 2 files changed, 3 insertions(+), 0 deletions(-)
- create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.=
-cfg
- create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.=
-scc
+ .../kernel-cache/bsp/common-pc-64/common-pc-64.scc |    1 +
+ meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc  |    1 +
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    1 +
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc      |    2 +-
+ meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc  |    1 +
+ meta/cfg/kernel-cache/bsp/fri2/fri2.scc            |    1 +
+ meta/cfg/kernel-cache/bsp/romley/romley.scc        |    1 +
+ 7 files changed, 7 insertions(+), 1 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg b/m=
-eta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg
-new file mode 100644
-index 0000000..65c96d9
---- /dev/null
-+++ b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg
-@@ -0,0 +1,2 @@
-+CONFIG_NET_PCI=3Dy
-+CONFIG_E100=3Dy
-diff --git a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc b/m=
-eta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc
-new file mode 100644
-index 0000000..f21b629
---- /dev/null
-+++ b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc
-@@ -0,0 +1 @@
-+kconf hardware intel-e100.cfg
+diff --git a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc b/meta=
+/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
+index 58dab18..a7f6cff 100644
+--- a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
++++ b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
+@@ -3,6 +3,7 @@ kconf hardware common-pc-64-graphics.cfg
+
+ include features/hpet/hpet.scc
+ include features/igb/igb.scc
++include features/intel-e1xxxx/intel-e100.scc
+ include features/intel-e1xxxx/intel-e1xxxx.scc
+
+ include features/latencytop/latencytop.scc
+diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc b/meta/cfg/k=
+ernel-cache/bsp/common-pc/common-pc.scc
+index d7dda80..77c3d26 100644
+--- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
++++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
+@@ -1,6 +1,7 @@
+ kconf hardware common-pc.cfg
+ kconf hardware common-pc-gfx.cfg
+
++include features/intel-e1xxxx/intel-e100.scc
+ include features/intel-e1xxxx/intel-e1xxxx.scc
+ include features/latencytop/latencytop.scc
+ include features/profiling/profiling.scc
+diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc b/meta/cfg/ker=
+nel-cache/bsp/crownbay/crownbay.scc
+index c7cd538..63b7ad6 100644
+--- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
++++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
+@@ -3,6 +3,7 @@ kconf hardware crownbay.cfg
+ git merge yocto/emgd
+
+ include features/eg20t/eg20t.scc
++include features/intel-e1xxxx/intel-e100.scc
+ include features/intel-e1xxxx/intel-e1xxxx.scc
+ include features/drm-emgd/drm-emgd.scc
+ include features/dmaengine/dmaengine.scc
+diff --git a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc b/meta/cfg/kerne=
+l-cache/bsp/emenlow/emenlow.scc
+index 2a83303..6e4cc40 100644
+--- a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
++++ b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
+@@ -1,7 +1,7 @@
+ kconf hardware emenlow.cfg
+
+ kconf non-hardware reboot-quirk.cfg
+-
++include features/intel-e1xxxx/intel-e100.scc
+ include features/intel-e1xxxx/intel-e1xxxx.scc
+ include features/drm-psb/drm-psb.scc
+ include features/serial/8250.scc
+diff --git a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc b/meta/cfg/k=
+ernel-cache/bsp/fishriver/fishriver.scc
+index 6e3d385..696ccf7 100644
+--- a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
++++ b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
+@@ -2,6 +2,7 @@ kconf hardware fishriver.cfg
+
+ git merge yocto/emgd
+
++include features/intel-e1xxxx/intel-e100.scc
+ include features/intel-e1xxxx/intel-e1xxxx.scc
+ include features/drm-emgd/drm-emgd.scc
+ include features/dmaengine/dmaengine.scc
+diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc b/meta/cfg/kernel-cach=
+e/bsp/fri2/fri2.scc
+index 2d30049..ff38b2d 100644
+--- a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
++++ b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+@@ -3,6 +3,7 @@ kconf hardware fri2.cfg
+ git merge yocto/emgd
+
+ include features/eg20t/eg20t.scc
++include features/intel-e1xxxx/intel-e100.scc
+ include features/intel-e1xxxx/intel-e1xxxx.scc
+ include features/drm-emgd/drm-emgd.scc
+ include features/dmaengine/dmaengine.scc
+diff --git a/meta/cfg/kernel-cache/bsp/romley/romley.scc b/meta/cfg/kernel-=
+cache/bsp/romley/romley.scc
+index 4152816..5d997e1 100644
+--- a/meta/cfg/kernel-cache/bsp/romley/romley.scc
++++ b/meta/cfg/kernel-cache/bsp/romley/romley.scc
+@@ -4,6 +4,7 @@ include features/i915/i915.scc
+ include features/serial/8250.scc
+ include features/uio/uio.scc
+ include features/hugetlb/hugetlb.scc
++include features/intel-e1xxxx/intel-e100.scc
+ include features/intel-e1xxxx/intel-e1xxxx.scc
+ include features/ixgbe/ixgbe.scc
+
 --
+1.7.0.4
 
 
---_000_4FF5AC937153B0459463C1A88EB478F2012E3F41C0orsmsx505amrc_
+
+
+--_000_4FF5AC937153B0459463C1A88EB478F2012E3F41C1orsmsx505amrc_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -156,32 +238,50 @@ font-family:"Courier New"'>---<o:p></o:p></span></p>
 
 <p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
 :10.0pt;
-font-family:"Courier New"'>&nbsp;.../features/intel-e1xxxx/intel-e100.cfg&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-|&nbsp;&nbsp;&nbsp; 2 ++<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;.../features/intel-e1xxxx/intel-e100.scc&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+font-family:"Courier New"'>&nbsp;.../kernel-cache/bsp/common-pc-64/common-p=
+c-64.scc
 |&nbsp;&nbsp;&nbsp; 1 +<o:p></o:p></span></p>
 
 <p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
 :10.0pt;
-font-family:"Courier New"'>&nbsp;2 files changed, 3 insertions(+), 0
+font-family:"Courier New"'>&nbsp;meta/cfg/kernel-cache/bsp/common-pc/common=
+-pc.scc&nbsp;
+|&nbsp;&nbsp;&nbsp; 1 +<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;meta/cfg/kernel-cache/bsp/crownbay/crownba=
+y.scc&nbsp;&nbsp;&nbsp;
+|&nbsp;&nbsp;&nbsp; 1 +<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;meta/cfg/kernel-cache/bsp/emenlow/emenlow.=
+scc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|&nbsp;&nbsp;&nbsp; 2 +-<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;meta/cfg/kernel-cache/bsp/fishriver/fishri=
+ver.scc&nbsp;
+|&nbsp;&nbsp;&nbsp; 1 +<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;meta/cfg/kernel-cache/bsp/fri2/fri2.scc&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|&nbsp;&nbsp;&nbsp; 1 +<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;meta/cfg/kernel-cache/bsp/romley/romley.sc=
+c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|&nbsp;&nbsp;&nbsp; 1 +<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;7 files changed, 7 insertions(+), 1
 deletions(-)<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;create mode 100644
-meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg<o:p></o:p></span=
-></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;create mode 100644
-meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc<o:p></o:p></span=
-></p>
 
 <p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
 :10.0pt;
@@ -190,76 +290,438 @@ font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
 <p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
 :10.0pt;
 font-family:"Courier New"'>diff --git
-a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg b/meta/cfg/ker=
-nel-cache/features/intel-e1xxxx/intel-e100.cfg<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>new file mode 100644<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>index 0000000..65c96d9<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>--- /dev/null<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>+++
-b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg<o:p></o:p></sp=
-an></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>@@ -0,0 +1,2 @@<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>+CONFIG_NET_PCI=3Dy<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>+CONFIG_E100=3Dy<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>diff --git a/meta/cfg/kernel-cache/features/inte=
-l-e1xxxx/intel-e100.scc
-b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc<o:p></o:p></sp=
-an></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>new file mode 100644<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>index 0000000..f21b629<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>--- /dev/null<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>+++
-b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc<o:p></o:p></sp=
-an></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>@@ -0,0 +1 @@<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>+kconf hardware intel-e100.cfg<o:p></o:p></span>=
+a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
+b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc<o:p></o:p></span>=
 </p>
 
 <p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
 :10.0pt;
+font-family:"Courier New"'>index 58dab18..a7f6cff 100644<o:p></o:p></span><=
+/p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>---
+a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc<o:p></o:p></span>=
+</p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+++
+b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc<o:p></o:p></span>=
+</p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>@@ -3,6 +3,7 @@ kconf hardware
+common-pc-64-graphics.cfg<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/hpet/hpet.scc<o:p></o:p><=
+/span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/igb/igb.scc<o:p></o:p></s=
+pan></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+include features/intel-e1xxxx/intel-e100.scc<o:=
+p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/intel-e1xxxx/intel-e1xxxx=
+.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/latencytop/latencytop.scc=
+<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>diff --git
+a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc b/meta/cfg/kernel-cache=
+/bsp/common-pc/common-pc.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>index d7dda80..77c3d26 100644<o:p></o:p></span><=
+/p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>---
+a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+++
+b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>@@ -1,6 +1,7 @@<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;kconf hardware common-pc.cfg<o:p></o:p></s=
+pan></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;kconf hardware common-pc-gfx.cfg<o:p></o:p=
+></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+include features/intel-e1xxxx/intel-e100.scc<o:=
+p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/intel-e1xxxx/intel-e1xxxx=
+.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/latencytop/latencytop.scc=
+<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/profiling/profiling.scc<o=
+:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>diff --git
+a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
+b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>index c7cd538..63b7ad6 100644<o:p></o:p></span><=
+/p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>---
+a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+++
+b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>@@ -3,6 +3,7 @@ kconf hardware crownbay.cfg<o:p>=
+</o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;git merge yocto/emgd<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/eg20t/eg20t.scc<o:p></o:p=
+></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+include features/intel-e1xxxx/intel-e100.scc<o:=
+p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/intel-e1xxxx/intel-e1xxxx=
+.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/drm-emgd/drm-emgd.scc<o:p=
+></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/dmaengine/dmaengine.scc<o=
+:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>diff --git a/meta/cfg/kernel-cache/bsp/emenlow/e=
+menlow.scc
+b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>index 2a83303..6e4cc40 100644<o:p></o:p></span><=
+/p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>--- a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.=
+scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+++ b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.=
+scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>@@ -1,7 +1,7 @@<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;kconf hardware emenlow.cfg<o:p></o:p></spa=
+n></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;kconf non-hardware reboot-quirk.cfg <o:p><=
+/o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>-<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+include features/intel-e1xxxx/intel-e100.scc<o:=
+p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/intel-e1xxxx/intel-e1xxxx=
+.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/drm-psb/drm-psb.scc<o:p><=
+/o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/serial/8250.scc<o:p></o:p=
+></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>diff --git
+a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc b/meta/cfg/kernel-cache=
+/bsp/fishriver/fishriver.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>index 6e3d385..696ccf7 100644<o:p></o:p></span><=
+/p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>---
+a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+++
+b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>@@ -2,6 +2,7 @@ kconf hardware fishriver.cfg<o:p=
+></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;git merge yocto/emgd<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+include features/intel-e1xxxx/intel-e100.scc<o:=
+p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/intel-e1xxxx/intel-e1xxxx=
+.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/drm-emgd/drm-emgd.scc<o:p=
+></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/dmaengine/dmaengine.scc<o=
+:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2=
+.scc
+b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>index 2d30049..ff38b2d 100644<o:p></o:p></span><=
+/p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>--- a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc<o:=
+p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+++ b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc<o:=
+p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>@@ -3,6 +3,7 @@ kconf hardware fri2.cfg<o:p></o:=
+p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;git merge yocto/emgd<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/eg20t/eg20t.scc<o:p></o:p=
+></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+include features/intel-e1xxxx/intel-e100.scc<o:=
+p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/intel-e1xxxx/intel-e1xxxx=
+.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/drm-emgd/drm-emgd.scc<o:p=
+></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/dmaengine/dmaengine.scc<o=
+:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>diff --git
+a/meta/cfg/kernel-cache/bsp/romley/romley.scc b/meta/cfg/kernel-cache/bsp/r=
+omley/romley.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>index 4152816..5d997e1 100644<o:p></o:p></span><=
+/p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>--- a/meta/cfg/kernel-cache/bsp/romley/romley.sc=
+c<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+++ b/meta/cfg/kernel-cache/bsp/romley/romley.sc=
+c<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>@@ -4,6 +4,7 @@ include features/i915/i915.scc<o=
+:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/serial/8250.scc<o:p></o:p=
+></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/uio/uio.scc<o:p></o:p></s=
+pan></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/hugetlb/hugetlb.scc<o:p><=
+/o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>+include features/intel-e1xxxx/intel-e100.scc<o:=
+p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/intel-e1xxxx/intel-e1xxxx=
+.scc<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;include features/ixgbe/ixgbe.scc<o:p></o:p=
+></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>&nbsp;<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
 font-family:"Courier New"'>-- <o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'>1.7.0.4<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
+:10.0pt;
+font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
 
 <p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
@@ -269,4 +731,4 @@ font-family:"Courier New"'>-- <o:p></o:p></span></p>
 
 </html>
 
---_000_4FF5AC937153B0459463C1A88EB478F2012E3F41C0orsmsx505amrc_--
+--_000_4FF5AC937153B0459463C1A88EB478F2012E3F41C1orsmsx505amrc_--
