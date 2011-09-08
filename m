@@ -1,33 +1,30 @@
 Return-Path: <rahul.saxena@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89725E0071A
-	for <yocto@yoctoproject.org>; Thu,  8 Sep 2011 15:05:57 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 08 Sep 2011 15:05:57 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB9BEE0071A
+	for <yocto@yoctoproject.org>; Thu,  8 Sep 2011 15:06:22 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 08 Sep 2011 15:06:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,352,1312182000"; d="scan'208,217";a="50743308"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 08 Sep 2011 15:05:57 -0700
-Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 8 Sep 2011 15:05:56 -0700
+X-IronPort-AV: E=Sophos;i="4.68,352,1312182000"; d="scan'208,217";a="49442480"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by fmsmga001.fm.intel.com with ESMTP; 08 Sep 2011 15:06:22 -0700
 Received: from orsmsx505.amr.corp.intel.com ([10.22.226.208]) by
-	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi; Thu, 8 Sep 2011
-	15:05:56 -0700
+	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
+	Thu, 8 Sep 2011 15:06:22 -0700
 From: "Saxena, Rahul" <rahul.saxena@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 8 Sep 2011 15:05:53 -0700
-Thread-Topic: [PATCH 0/2] [KERNEL] Cover letter for seperating 10/100 LAN
-	feature from 1G and 10G
-Thread-Index: Acxuc3pB1m+GjNc+Q5O9B/3exsupSw==
-Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E3F406F@orsmsx505.amr.corp.intel.com>
+Date: Thu, 8 Sep 2011 15:06:20 -0700
+Thread-Topic: [PATCH 1/2] [KERNEL] Remove 10/100 LAN support. 10/100 LAN
+	will be configured by separate files
+Thread-Index: Acxuc4ps9lWPdStSReebk0sd1LB41g==
+Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E3F4070@orsmsx505.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
 Cc: Bruce Ashfield <bruce.ashfield@gmail.com>
-Subject: [PATCH 0/2] [KERNEL] Cover letter for seperating 10/100 LAN feature from 1G and 10G
+Subject: [PATCH 1/2] [KERNEL] Remove 10/100 LAN support. 10/100 LAN will be configured by separate files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,36 +36,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Sep 2011 22:05:57 -0000
+X-List-Received-Date: Thu, 08 Sep 2011 22:06:22 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_4FF5AC937153B0459463C1A88EB478F2012E3F406Forsmsx505amrc_"
+	boundary="_000_4FF5AC937153B0459463C1A88EB478F2012E3F4070orsmsx505amrc_"
 
---_000_4FF5AC937153B0459463C1A88EB478F2012E3F406Forsmsx505amrc_
+--_000_4FF5AC937153B0459463C1A88EB478F2012E3F4070orsmsx505amrc_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-
-Cover letter for separating 10/100 LAN feature from 1G and 10G. Typically a=
- machine does not need both of 10/100 and 1G/10G drivers.
-
+Remove 10/100 LAN support. 10/100 LAN will be configured by separate files
 Signed-off-by: Rahul Saxena<Rahul.saxena@intel.com>
 
-Rahul Saxena (2):
-  Remove 10/100 LAN support. 10/100 LAN will be configured by seperate
-    files
-  Added seperate feature for 10/100 LAN support
-
- .../features/intel-e1xxxx/intel-e100.cfg           |    2 ++
- .../features/intel-e1xxxx/intel-e100.scc           |    1 +
+---
  .../features/intel-e1xxxx/intel-e1xxxx.cfg         |    1 -
- 3 files changed, 3 insertions(+), 1 deletions(-)
- create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.=
-cfg
- create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.=
-scc
+ 1 files changed, 0 insertions(+), 1 deletions(-)
 
---_000_4FF5AC937153B0459463C1A88EB478F2012E3F406Forsmsx505amrc_
+diff --git a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg b=
+/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
+index ea9f7e9..34af860 100644
+--- a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
++++ b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
+@@ -1,4 +1,3 @@
+ CONFIG_NETDEV_1000=3Dy
+-CONFIG_E100=3Dy
+ CONFIG_E1000E=3Dy
+ CONFIG_E1000=3Dy
+--
+1.7.0.4
+
+--_000_4FF5AC937153B0459463C1A88EB478F2012E3F4070orsmsx505amrc_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -126,86 +123,56 @@ div.WordSection1
 
 <div class=3DWordSection1>
 
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>Cover letter for separating 10/100 LAN feature f=
-rom
-1G and 10G. Typically a machine does not need both of 10/100 and 1G/10G dri=
-vers.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+<p class=3DMsoNormal>Remove 10/100 LAN support. 10/100 LAN will be configur=
+ed by
+separate files<o:p></o:p></p>
 
 <p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
 :10.0pt;
 font-family:"Courier New"'>Signed-off-by: Rahul
 Saxena&lt;Rahul.saxena@intel.com&gt;<o:p></o:p></span></p>
 
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>Rahul Saxena (2):<o:p></o:p></span></p>
+<p class=3DMsoNormal>---<o:p></o:p></p>
 
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp; Remove 10/100 LAN support. 10/100 LAN wil=
-l be
-configured by seperate<o:p></o:p></span></p>
+<p class=3DMsoNormal>&nbsp;.../features/intel-e1xxxx/intel-e1xxxx.cfg&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|&nbsp;&nbsp;&nbsp; 1 -<o:p></o:p></p>
 
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;&nbsp;&nbsp; files<o:p></o:p></span></p>
+<p class=3DMsoNormal>&nbsp;1 files changed, 0 insertions(+), 1 deletions(-)=
+<o:p></o:p></p>
 
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp; Added seperate feature for 10/100 LAN sup=
-port<o:p></o:p></span></p>
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+<p class=3DMsoNormal>diff --git a/meta/cfg/kernel-cache/features/intel-e1xx=
+xx/intel-e1xxxx.cfg
+b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg<o:p></o:p></=
+p>
 
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;.../features/intel-e1xxxx/intel-e100.cfg&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-|&nbsp;&nbsp;&nbsp; 2 ++<o:p></o:p></span></p>
+<p class=3DMsoNormal>index ea9f7e9..34af860 100644<o:p></o:p></p>
 
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;.../features/intel-e1xxxx/intel-e100.scc&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-|&nbsp;&nbsp;&nbsp; 1 +<o:p></o:p></span></p>
+<p class=3DMsoNormal>---
+a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg<o:p></o:p></=
+p>
 
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;.../features/intel-e1xxxx/intel-e1xxxx.cfg=
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-1 -<o:p></o:p></span></p>
+<p class=3DMsoNormal>+++
+b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg<o:p></o:p></=
+p>
 
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;3 files changed, 3 insertions(+), 1
-deletions(-)<o:p></o:p></span></p>
+<p class=3DMsoNormal>@@ -1,4 +1,3 @@<o:p></o:p></p>
 
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;create mode 100644
-meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg<o:p></o:p></span=
-></p>
+<p class=3DMsoNormal>&nbsp;CONFIG_NETDEV_1000=3Dy<o:p></o:p></p>
 
-<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Courier N=
-ew"'>&nbsp;create
-mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc</spa=
-n><o:p></o:p></p>
+<p class=3DMsoNormal>-CONFIG_E100=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>&nbsp;CONFIG_E1000E=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>&nbsp;CONFIG_E1000=3Dy<o:p></o:p></p>
+
+<p class=3DMsoNormal>-- <o:p></o:p></p>
+
+<p class=3DMsoNormal>1.7.0.4<o:p></o:p></p>
 
 </div>
 
@@ -213,4 +180,4 @@ n><o:p></o:p></p>
 
 </html>
 
---_000_4FF5AC937153B0459463C1A88EB478F2012E3F406Forsmsx505amrc_--
+--_000_4FF5AC937153B0459463C1A88EB478F2012E3F4070orsmsx505amrc_--
