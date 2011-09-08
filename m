@@ -1,32 +1,26 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40E48E0071A
-	for <yocto@yoctoproject.org>; Thu,  8 Sep 2011 15:06:36 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 08 Sep 2011 15:06:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,352,1312182000"; d="scan'208,217";a="50743780"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 08 Sep 2011 15:06:35 -0700
-Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 8 Sep 2011 15:06:35 -0700
-Received: from orsmsx505.amr.corp.intel.com ([10.22.226.208]) by
-	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
-	Thu, 8 Sep 2011 15:06:35 -0700
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 8 Sep 2011 15:06:33 -0700
-Thread-Topic: [PATCH 2/2] [KERNEL]  Add separate feature for 10/100 LAN support
-Thread-Index: Acxuc5H3vWHAQy77Tbq7M7heQF/w3A==
-Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E3F4072@orsmsx505.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D86CE0071A
+	for <yocto@yoctoproject.org>; Thu,  8 Sep 2011 15:14:56 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p88MEr2q027544
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 8 Sep 2011 15:14:53 -0700 (PDT)
+Received: from [147.11.118.182] (147.11.118.182) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Thu, 8 Sep 2011 15:14:53 -0700
+Message-ID: <4E693E5A.7040204@windriver.com>
+Date: Thu, 8 Sep 2011 18:14:50 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.17) Gecko/20110516 Thunderbird/3.1.10
 MIME-Version: 1.0
-Cc: Bruce Ashfield <bruce.ashfield@gmail.com>
-Subject: [PATCH 2/2] [KERNEL] Add separate feature for 10/100 LAN support
+To: "Saxena, Rahul" <rahul.saxena@intel.com>
+References: <4FF5AC937153B0459463C1A88EB478F2012E3F406F@orsmsx505.amr.corp.intel.com>
+In-Reply-To: <4FF5AC937153B0459463C1A88EB478F2012E3F406F@orsmsx505.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Bruce Ashfield <bruce.ashfield@gmail.com>
+Subject: Re: [PATCH 0/2] [KERNEL] Cover letter for seperating 10/100 LAN feature from 1G and 10G
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,251 +32,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Sep 2011 22:06:36 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_4FF5AC937153B0459463C1A88EB478F2012E3F4072orsmsx505amrc_"
+X-List-Received-Date: Thu, 08 Sep 2011 22:14:57 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_4FF5AC937153B0459463C1A88EB478F2012E3F4072orsmsx505amrc_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On 11-09-08 06:05 PM, Saxena, Rahul wrote:
+> Cover letter for separating 10/100 LAN feature from 1G and 10G.
+> Typically a machine does not need both of 10/100 and 1G/10G drivers.
 
-Added separate feature for 10/100 LAN support.
-Signed-off-by: Rahul Saxena<Rahul.saxena@intel.com>
+The change looks fine, and I'd agree that this is a useful split.
+BUT (there's always a but), there are a set of boards that are currently
+including the e1xxxx feature that would currently be getting the e100,
+and they'll no longer have it.
 
----
- .../features/intel-e1xxxx/intel-e100.cfg           |    2 ++
- .../features/intel-e1xxxx/intel-e100.scc           |    1 +
- 2 files changed, 3 insertions(+), 0 deletions(-)
- create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.=
-cfg
- create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.=
-scc
+./bsp/common-pc/common-pc.scc:include features/intel-e1xxxx/intel-e1xxxx.scc
+./bsp/fri2/fri2.scc:include features/intel-e1xxxx/intel-e1xxxx.scc
+./bsp/fishriver/fishriver.scc:include features/intel-e1xxxx/intel-e1xxxx.scc
+./bsp/romley/romley.scc:include features/intel-e1xxxx/intel-e1xxxx.scc
+./bsp/emenlow/emenlow.scc:include features/intel-e1xxxx/intel-e1xxxx.scc
+./bsp/crownbay/crownbay.scc:include features/intel-e1xxxx/intel-e1xxxx.scc
+./bsp/common-pc-64/common-pc-64.scc:include 
+features/intel-e1xxxx/intel-e1xxxx.scc
 
-diff --git a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg b/m=
-eta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg
-new file mode 100644
-index 0000000..65c96d9
---- /dev/null
-+++ b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg
-@@ -0,0 +1,2 @@
-+CONFIG_NET_PCI=3Dy
-+CONFIG_E100=3Dy
-diff --git a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc b/m=
-eta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc
-new file mode 100644
-index 0000000..f21b629
---- /dev/null
-+++ b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc
-@@ -0,0 +1 @@
-+kconf hardware intel-e100.cfg
---
-1.7.0.4
+In particular the common-pc really does want that config (for qemu).
+So we should do the split, but also update all those boards to include
+your new feature as part of this change.
+
+Can you try and resend with that addition ? You don't need to built/boot,
+just make the touches to the files listed above and I can take care of
+the rest.
+
+Bruce
+
+>
+> Signed-off-by: Rahul Saxena<Rahul.saxena@intel.com>
+>
+> Rahul Saxena (2):
+>
+> Remove 10/100 LAN support. 10/100 LAN will be configured by seperate
+>
+> files
+>
+> Added seperate feature for 10/100 LAN support
+>
+> .../features/intel-e1xxxx/intel-e100.cfg | 2 ++
+>
+> .../features/intel-e1xxxx/intel-e100.scc | 1 +
+>
+> .../features/intel-e1xxxx/intel-e1xxxx.cfg | 1 -
+>
+> 3 files changed, 3 insertions(+), 1 deletions(-)
+>
+> create mode 100644
+> meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg
+>
+> create mode 100644
+> meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
-
-
---_000_4FF5AC937153B0459463C1A88EB478F2012E3F4072orsmsx505amrc_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-
-<head>
-<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dus-ascii">
-<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
--->
-</style>
-<!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
- </o:shapelayout></xml><![endif]-->
-</head>
-
-<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
-
-<div class=3DWordSection1>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>Added separate feature for 10/100 LAN support. <=
-o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>Signed-off-by: Rahul
-Saxena&lt;Rahul.saxena@intel.com&gt;<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>---<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;.../features/intel-e1xxxx/intel-e100.cfg&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;|&nbsp;&nbsp;&nbsp; 2 ++<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;.../features/intel-e1xxxx/intel-e100.scc&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-|&nbsp;&nbsp;&nbsp; 1 +<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;2 files changed, 3 insertions(+), 0
-deletions(-)<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;create mode 100644
-meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg<o:p></o:p></span=
-></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>&nbsp;create mode 100644
-meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc<o:p></o:p></span=
-></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>diff --git
-a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg
-b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg<o:p></o:p></sp=
-an></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>new file mode 100644<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>index 0000000..65c96d9<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>--- /dev/null<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>+++ b/meta/cfg/kernel-cache/features/intel-e1xxx=
-x/intel-e100.cfg<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>@@ -0,0 +1,2 @@<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>+CONFIG_NET_PCI=3Dy<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>+CONFIG_E100=3Dy<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>diff --git
-a/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc
-b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc<o:p></o:p></sp=
-an></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>new file mode 100644<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>index 0000000..f21b629<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>--- /dev/null<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>+++
-b/meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc<o:p></o:p></sp=
-an></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>@@ -0,0 +1 @@<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>+kconf hardware intel-e100.cfg<o:p></o:p></span>=
-</p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>-- <o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'>1.7.0.4<o:p></o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal style=3D'text-autospace:none'><span style=3D'font-size=
-:10.0pt;
-font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-</div>
-
-</body>
-
-</html>
-
---_000_4FF5AC937153B0459463C1A88EB478F2012E3F4072orsmsx505amrc_--
