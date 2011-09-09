@@ -1,23 +1,31 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED54DE01213
-	for <yocto@yoctoproject.org>; Fri,  9 Sep 2011 11:52:00 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p89Ipu3i016217
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 9 Sep 2011 11:51:56 -0700 (PDT)
-Received: from [147.11.119.55] (147.11.119.55) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 9 Sep 2011 11:51:56 -0700
-Message-ID: <4E6A604C.40304@windriver.com>
-Date: Fri, 9 Sep 2011 14:51:56 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110516 Thunderbird/3.1.10
-MIME-Version: 1.0
-To: "Saxena, Rahul" <rahul.saxena@intel.com>
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8AEDE012AA
+	for <yocto@yoctoproject.org>; Fri,  9 Sep 2011 12:04:21 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 09 Sep 2011 12:04:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,357,1312182000"; d="scan'208";a="15641509"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by AZSMGA002.ch.intel.com with ESMTP; 09 Sep 2011 12:03:47 -0700
+Received: from orsmsx505.amr.corp.intel.com ([10.22.226.208]) by
+	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
+	Fri, 9 Sep 2011 12:03:39 -0700
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Fri, 9 Sep 2011 12:03:35 -0700
+Thread-Topic: [yocto] [PATCH 0/3] [KERNEL] Cover letter for seperating
+	10/100 LAN feature from 1G and 10G
+Thread-Index: AcxvIY54woYywGugQ0GFbGI2Nc1+AgAAXXVw
+Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E3F48D0@orsmsx505.amr.corp.intel.com>
 References: <4FF5AC937153B0459463C1A88EB478F2012E3F41BD@orsmsx505.amr.corp.intel.com>
-In-Reply-To: <4FF5AC937153B0459463C1A88EB478F2012E3F41BD@orsmsx505.amr.corp.intel.com>
+	<4E6A604C.40304@windriver.com>
+In-Reply-To: <4E6A604C.40304@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	Bruce Ashfield <bruce.ashfield@gmail.com>
 Subject: Re: [PATCH 0/3] [KERNEL] Cover letter for seperating 10/100 LAN feature from 1G and 10G
@@ -32,9 +40,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Sep 2011 18:52:01 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 09 Sep 2011 19:04:22 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Bruce,
+
+Sorry about that. I will push them to a git contrib branch and send you a l=
+ink.
+
+Thanks
+Rahul
+
+-----Original Message-----
+From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
+Sent: Friday, September 09, 2011 11:52 AM
+To: Saxena, Rahul
+Cc: yocto@yoctoproject.org; Bruce Ashfield; Zanussi, Tom
+Subject: Re: [yocto] [PATCH 0/3] [KERNEL] Cover letter for seperating 10/10=
+0 LAN feature from 1G and 10G
 
 On 11-09-08 07:30 PM, Saxena, Rahul wrote:
 > Cover letter for separating 10/100 LAN feature from 1G and 10G.
