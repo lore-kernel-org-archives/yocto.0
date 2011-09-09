@@ -1,24 +1,35 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B377CE0125A
-	for <yocto@yoctoproject.org>; Fri,  9 Sep 2011 06:57:47 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 09 Sep 2011 06:57:26 -0700
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2FA2E01213
+	for <yocto@yoctoproject.org>; Fri,  9 Sep 2011 09:14:31 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 09 Sep 2011 09:14:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,356,1312182000"; d="scan'208";a="15551900"
-Received: from unknown (HELO [10.255.14.214]) ([10.255.14.214])
-	by AZSMGA002.ch.intel.com with ESMTP; 09 Sep 2011 06:57:25 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-In-Reply-To: <1315574255.1986.0.camel@ted>
-References: <cover.1315509303.git.tom.zanussi@intel.com>
-	<1315574255.1986.0.camel@ted>
-Date: Fri, 09 Sep 2011 08:57:23 -0500
-Message-ID: <1315576643.2367.25.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/2] More fixes for bug 1428
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="46686229"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga002.jf.intel.com with ESMTP; 09 Sep 2011 09:14:31 -0700
+Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
+	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
+	Fri, 9 Sep 2011 09:14:31 -0700
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Fri, 9 Sep 2011 09:14:30 -0700
+Thread-Topic: [yocto] [PATCH 1/1] btrfs: Add a new kernel feature to enable
+	the	btrfs support
+Thread-Index: Acxs09eGhTWkGt2ES9eoxspoulci9wCN3Wnw
+Message-ID: <9DA5872FEF993D41B7173F58FCF6BE94DF053854@orsmsx504.amr.corp.intel.com>
+References: <cover.1315338837.git.nitin.a.kamble@intel.com>
+	<b33495af418b4fe8b8a2c6ba1ff8a67e84dd0a29.1315338837.git.nitin.a.kamble@intel.com>
+	<4E6682E5.5070907@windriver.com>
+In-Reply-To: <4E6682E5.5070907@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
+	Darren" <darren.hart@intel.com>
+Subject: Re: [PATCH 1/1] btrfs: Add a new kernel feature to enable the	btrfs support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,53 +41,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Sep 2011 13:57:48 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 09 Sep 2011 16:14:31 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 2011-09-09 at 06:17 -0700, Richard Purdie wrote:
-> On Thu, 2011-09-08 at 14:27 -0500, tom.zanussi@intel.com wrote:
-> > From: Tom Zanussi <tom.zanussi@intel.com>
-> > 
-> > oe-core commit dc3a8274c7e935fa564eea142d2535c9bcf2b272 for YOCTO #1428
-> > broke meta-intel x86_64 builds:
-> > 
-> > NOTE: Resolving any missing task queue dependencies
-> > ERROR: Nothing RPROVIDES 'initramfs-live-install' (but /usr/local/src/yocto/sugarbay/meta/recipes-core/images/core-image-minimal-initramfs.bb RDEPENDS on or otherwise requires it)
-> > ERROR: initramfs-live-install was skipped: incompatible with host x86_64-poky-linux
-> > 
-> > This patchset restores the build.
-> > 
-> > Build and install-tested on sugarbay and crownbay.
-> > 
-> > More fixes for [YOCTO #1428]
-> > 
-> > The following changes since commit b86f811663d834064af1e6778c408eb904fad0b9:
-> >   Darren Hart (1):
-> >         n450: update linux-yocto PREFERRED_VERSION to 3.0%
-> > 
-> > are available in the git repository at:
-> > 
-> >   git://git.yoctoproject.org/meta-intel.git tzanussi/1428-fix
-> >   http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/1428-fix
-> > 
-> > Tom Zanussi (2):
-> >   meta-intel/common: create a grub2 version initramfs-live-install
-> >   meta-intel/common: remove initramfs-live-install 1.0 bbappend
-> 
-> Is there a disadvantage to moving to grub2 in OE-Core and then bringing
-> these pieces into sync?
-> 
+Thanks Bruce,
+  BTW we should enable this btrfs feature for linux-yocto-3 kernel. What is=
+ the right way to do it? Shall I send a patch for the Linux-yocot-3.0 recip=
+e in the oe-core repository?
 
-Yes, it would make sense - the plan was to do that during the 1.2
-cycle...
+Thanks,
+Nitin
 
-Tom
 
-> Cheers,
-> 
-> Richard
-> 
-
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+> Sent: Tuesday, September 06, 2011 1:30 PM
+> To: Kamble, Nitin A
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] [PATCH 1/1] btrfs: Add a new kernel feature to
+> enable the btrfs support
+>=20
+> On 11-09-06 03:56 PM, nitin.a.kamble@intel.com wrote:
+> > From: Nitin A Kamble<nitin.a.kamble@intel.com>
+>=20
+> Looks good. If we are merging this as config only, I've been
+> putting them in meta/cfg/kernel-cache/cfg/
+>=20
+> So I relocated this configuration to that directory. I'll have
+> it pushed out in the next day or so (I'm getting on a plane
+> shortly).
+>=20
+> Bruce
+>=20
+> >
+> > Signed-off-by: Nitin A Kamble<nitin.a.kamble@intel.com>
+> > ---
+> >   meta/cfg/kernel-cache/features/btrfs/btrfs.cfg |    1 +
+> >   meta/cfg/kernel-cache/features/btrfs/btrfs.scc |    1 +
+> >   2 files changed, 2 insertions(+), 0 deletions(-)
+> >   create mode 100644 meta/cfg/kernel-cache/features/btrfs/btrfs.cfg
+> >   create mode 100644 meta/cfg/kernel-cache/features/btrfs/btrfs.scc
+> >
+> > diff --git a/meta/cfg/kernel-cache/features/btrfs/btrfs.cfg
+> b/meta/cfg/kernel-cache/features/btrfs/btrfs.cfg
+> > new file mode 100644
+> > index 0000000..605c183
+> > --- /dev/null
+> > +++ b/meta/cfg/kernel-cache/features/btrfs/btrfs.cfg
+> > @@ -0,0 +1 @@
+> > +CONFIG_BTRFS_FS=3Dy
+> > diff --git a/meta/cfg/kernel-cache/features/btrfs/btrfs.scc
+> b/meta/cfg/kernel-cache/features/btrfs/btrfs.scc
+> > new file mode 100644
+> > index 0000000..cf18a2e
+> > --- /dev/null
+> > +++ b/meta/cfg/kernel-cache/features/btrfs/btrfs.scc
+> > @@ -0,0 +1 @@
+> > +kconf non-hardware btrfs.cfg
 
 
