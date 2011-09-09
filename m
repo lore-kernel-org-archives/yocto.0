@@ -1,27 +1,34 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10837E012AA
-	for <yocto@yoctoproject.org>; Fri,  9 Sep 2011 14:22:51 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 09 Sep 2011 14:22:50 -0700
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B49FE012AA
+	for <yocto@yoctoproject.org>; Fri,  9 Sep 2011 14:28:09 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 09 Sep 2011 14:28:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="46912304"
-Received: from unknown (HELO envy.home) ([10.255.14.250])
-	by orsmga001.jf.intel.com with ESMTP; 09 Sep 2011 14:22:50 -0700
-Message-ID: <4E6A83AA.3030005@linux.intel.com>
-Date: Fri, 09 Sep 2011 14:22:50 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:6.0) Gecko/20110816 Thunderbird/6.0
+X-IronPort-AV: E=Sophos;i="4.68,358,1312182000"; d="scan'208";a="47274175"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by azsmga001.ch.intel.com with ESMTP; 09 Sep 2011 14:28:08 -0700
+Received: from orsmsx505.amr.corp.intel.com ([10.22.226.208]) by
+	orsmsx603.amr.corp.intel.com ([10.22.226.49]) with mapi; Fri, 9 Sep 2011
+	14:28:07 -0700
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Fri, 9 Sep 2011 14:28:06 -0700
+Thread-Topic: [yocto] [PATCH 0/3] [KERNEL] Cover letter for seperating
+	10/100 LAN feature from 1G and 10G
+Thread-Index: AcxvIY54woYywGugQ0GFbGI2Nc1+AgAFavIA
+Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E3F4AF5@orsmsx505.amr.corp.intel.com>
+References: <4FF5AC937153B0459463C1A88EB478F2012E3F41BD@orsmsx505.amr.corp.intel.com>
+	<4E6A604C.40304@windriver.com>
+In-Reply-To: <4E6A604C.40304@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: Mark Hatle <mark.hatle@windriver.com>
-References: <cover.1315509303.git.tom.zanussi@intel.com>
-	<1315574255.1986.0.camel@ted> <1315576643.2367.25.camel@elmorro>
-	<1315590304.1986.10.camel@ted> <1315595628.2367.67.camel@elmorro>
-	<4E6A70A5.3090204@windriver.com>
-In-Reply-To: <4E6A70A5.3090204@windriver.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/2] More fixes for bug 1428
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Bruce Ashfield <bruce.ashfield@gmail.com>
+Subject: Re: [PATCH 0/3] [KERNEL] Cover letter for seperating 10/100 LAN feature from 1G and 10G
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,47 +40,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Sep 2011 21:22:51 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 09 Sep 2011 21:28:09 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Bruce,
 
+I have pushed the pacthes to meta-intel-contrib, link given below:
 
-On 09/09/2011 01:01 PM, Mark Hatle wrote:
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel-contrib/tree/?h=3D10-1=
+00-patch
 
-> We need to keep the older grub 0.97 as well.  grub2 is GPLv3 and a lot of people
-> will refuse to use it based on that.
+Let me know if this works.
 
-This is a concern, iirc we needed GRUB 2 for x86_64. I was considering
-dropping grub entirely and using syslinux in the 1.2 timeframe. I asked
-on list if there were any non-x86 grub users and didn't get any responses.
+Thanks
+Rahul
 
---
-Darren
+-----Original Message-----
+From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
+Sent: Friday, September 09, 2011 11:52 AM
+To: Saxena, Rahul
+Cc: yocto@yoctoproject.org; Bruce Ashfield; Zanussi, Tom
+Subject: Re: [yocto] [PATCH 0/3] [KERNEL] Cover letter for seperating 10/10=
+0 LAN feature from 1G and 10G
 
-> 
-> --Mark
-> 
->> Tom
->>
->>> Cheers,
->>>
->>> Richard
->>>
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> 
+On 11-09-08 07:30 PM, Saxena, Rahul wrote:
+> Cover letter for separating 10/100 LAN feature from 1G and 10G.
+> Typically a machine does not need both of 10/100 and 1G/10G drivers.
+
+These look good now, but when I went to merge the patches I see they
+are multipart, and html-ized. Which is causing me considerable pain
+in getting them applied.
+
+Can you resend the patches via git-send-email ? Or push them to a
+contrib branch ? If you are not sure about how to do either of these,
+we can help and Tom may have some practical tips to share.
+
+Cheers,
+
+Bruce
+
+>
+> Signed-off-by: Rahul SaxenaRahul.saxena@intel.com
+> <mailto:Rahul.saxena@intel.com>
+>
+> Rahul Saxena (3):
+>
+> Remove 10/100 LAN support. 10/100 LAN will be configured by seperate
+>
+> files
+>
+> Added seperate feature for 10/100 LAN support
+>
+> Added e100 feature configuration to remaining boards
+>
+> .../kernel-cache/bsp/common-pc-64/common-pc-64.scc | 1 +
+>
+> meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc | 1 +
+>
+> meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc | 1 +
+>
+> meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc | 2 +-
+>
+> meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc | 1 +
+>
+> meta/cfg/kernel-cache/bsp/fri2/fri2.scc | 1 +
+>
+> meta/cfg/kernel-cache/bsp/romley/romley.scc | 1 +
+>
+> .../features/intel-e1xxxx/intel-e100.cfg | 2 ++
+>
+> .../features/intel-e1xxxx/intel-e100.scc | 1 +
+>
+> .../features/intel-e1xxxx/intel-e1xxxx.cfg | 1 -
+>
+> 10 files changed, 10 insertions(+), 2 deletions(-)
+>
+> create mode 100644
+> meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg
+>
+> create mode 100644
+> meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc
+>
+>
+>
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
