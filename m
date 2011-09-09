@@ -1,30 +1,29 @@
-Return-Path: <caizhenjun@insigma.com.cn>
-Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 918EAE0071A
-	for <yocto@yoctoproject.org>; Thu,  8 Sep 2011 18:32:37 -0700 (PDT)
-Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
-	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
-	Fri, 9 Sep 2011 09:32:11 +0800
-Received: from WX-ExchMB.insigma.com.cn ([fe80::5efe:10.0.1.203]) by
-	WX-ExchMB.insigma.com.cn ([fe80::5efe:10.0.1.203%12]) with mapi;
-	Fri, 9 Sep 2011 09:32:10 +0800
-From: =?gb2312?B?sszV8b78?= <caizhenjun@insigma.com.cn>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, "scott.a.garman@intel.com"
-	<scott.a.garman@intel.com>
-Date: Fri, 9 Sep 2011 09:32:41 +0800
-Thread-Topic: [yocto] qemu boot fail(root-nfs: unknown option: mountprog=21111)
-Thread-Index: AcxuHRCoGOHKxAjzTAuPFRUDgeb/5AAci1MQ
-Message-ID: <DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EB82BF8@WX-ExchMB.insigma.com.cn>
-References: <DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EB829AE@WX-ExchMB.insigma.com.cn>
-	<4E6870E1.30408@windriver.com>
-In-Reply-To: <4E6870E1.30408@windriver.com>
-Accept-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: =?UTF-8?B?562U5aSNOiBxZW11IGJvb3QgZmFpbChyb290LW5mczogdW5rbm93biBvcHRpb246IG1vdW50cHJvZz0yMTExMSk=?=
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38D12E012B8
+	for <yocto@yoctoproject.org>; Fri,  9 Sep 2011 06:17:50 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.2/8.14.2/Debian-2build1) with ESMTP id
+	p89DNiJt001569; Fri, 9 Sep 2011 14:23:45 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id sZpW28Oq6sI3; Fri,  9 Sep 2011 14:23:44 +0100 (BST)
+Received: from [192.168.1.43] (tim [93.97.173.237]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.2/8.14.2/Debian-2build1) with ESMTP id
+	p89DNeUK001562
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
+	Fri, 9 Sep 2011 14:23:42 +0100
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: tom.zanussi@intel.com
+In-Reply-To: <cover.1315509303.git.tom.zanussi@intel.com>
+References: <cover.1315509303.git.tom.zanussi@intel.com>
+Date: Fri, 09 Sep 2011 14:17:35 +0100
+Message-ID: <1315574255.1986.0.camel@ted>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/2] More fixes for bug 1428
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,37 +35,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Sep 2011 01:32:48 -0000
-Content-Language: zh-CN
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 09 Sep 2011 13:17:50 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-SGkgQnJ1c2UsU2NvdHQNCiAgICAgICAgVGhlIGluZm9ybWF0aW9uIHlvdSBzdXBwbHkgaXMgaGVs
-cGZ1bCB0byBtZS4gSSBoYXZlIGtub3duIHdoYXQgSSBuZWVkIHRvIG1ha2UgUUVNVSBydW4uDQoN
-ClRoYW5rcyAoKl5fX14qKQ0KRmV5ZQ0KDQoNCi0tLS0t08q8/tStvP4tLS0tLQ0Kt6K8/sjLOiBC
-cnVjZSBBc2hmaWVsZCBbbWFpbHRvOmJydWNlLmFzaGZpZWxkQHdpbmRyaXZlci5jb21dDQq3osvN
-yrG85DogMjAxMcTqOdTCOMjVIDE1OjM4DQrK1bz+yMs6ILLM1fG+/A0Ks63LzTogeW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZw0K1vfM4jogUmU6IFt5b2N0b10gcWVtdSBib290IGZhaWwocm9vdC1uZnM6
-IHVua25vd24gb3B0aW9uOiBtb3VudHByb2c9MjExMTEpDQoNCk9uIDExLTA5LTA4IDAxOjQ5IEFN
-LCCyzNXxvvwgd3JvdGU6DQo+IEhpIEFMTA0KPg0KPiBRRU1VIHJ1biB3ZWxsIHdpdGggYSBwcmUt
-YnVpbGQga2VybmVsIGltYWdlIGZyb20geW9jdG8gc2l0ZS4gTm93IGp1c3QNCj4gY2hhbmdlIHRo
-ZSBrZXJuZWwgdG8gb25lIGJ1aWx0IG15c2VsZiwgc29tZSBlcnJvciBpbmZvcm1hdGlvbiBhcHBl
-YXJlZA0KPiBhYm91dCBuZnMuIE15IGtlcm5lbCBpbWFnZSB2ZXJzaW9uIGlzIDIuNi4zNSBjb25m
-aWd1cmVkIGJ5DQo+IHZlcnNhdGlsZV9kZWZjb25maWcuIEVycm9yIGluZm9ybWF0aW9uIGFzIGZv
-bGxvd2luZzoNCj4NCj4gobByb290LW5mczogdW5rbm93biBvcHRpb246IG1vdW50cHJvZz0yMTEx
-MaGxLHRoaXMgbWVzc2FnZSBzZWFyY2ggbm90aGluZw0KPiBvbiBnb29nbGUuDQo+DQo+IElzIHRo
-ZXJlIHNvbWV0aGluZyB3cm9uZyB3aXRoIC5jb25maWc/IEFkZCBub3JtYWxseSBpcyB0aGVyZSBz
-b21lDQo+IHNwZWNpYWwgY29uZmlndXJhdGlvbiBJIHNob3VsZCBkbyB3aXRoIGtlcm5lbCB0byBm
-aXQgUUVNVQ0KDQpZb3UgY2FuJ3QgY2hhbmdlIG91dCB0aGUga2VybmVsIHZlcnNpb24gLyB0cmVl
-IGFuZCBleHBlY3QgdG8gdXNlIHRoZSBmdWxsDQpmdW5jdGlvbmFsaXR5IHByb3ZpZGVkIGJ5IHRo
-ZSBsaW51eC15b2N0byBrZXJuZWwuIEluIHRoaXMgY2FzZSB0aGVyZSBhcmUNCmNoYW5nZXMgdG8g
-TkZTIGFuZCBycGMgdG8gc3VwcG9ydCBhbHRlcm5hdGUgcnBjIHBvcnRzIGJlaW5nIHVzZWQgdG8g
-c3VwcG9ydA0KdXNlcm1vZGUgTkZTLiBZb3Ugd291bGQgbmVlZCB0byBwb3J0IGFuZCB0ZXN0IHRo
-ZSBwYXRjaGVzIGZvciB0aGlzDQp3aGljaCBjYW4gYmUgZm91bmQgb24geW9jdG8vc3RhbmRhcmQv
-YmFzZQ0KDQpDaGVlcnMsDQoNCkJydWNlDQoNCj4NCj4gQmVzdCByZWdhcmRzDQo+DQo+IEZleWUN
-Cj4NCj4gsszV8b78DQo+DQo+IM340MK8vMr109DP3rmry77O78GqzfjKwtK1sr8NCj4NCj4gurzW
-3czsxL/JvcK3MjI2usXN+NDCtPPPww0KPg0KPiC157uwLTEzOCA2NzQ1IDE5MTANCj4NCj4NCj4N
-Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4geW9j
-dG8gbWFpbGluZyBsaXN0DQo+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gaHR0cHM6Ly9saXN0
-cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvDQoNCg==
+On Thu, 2011-09-08 at 14:27 -0500, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi <tom.zanussi@intel.com>
+> 
+> oe-core commit dc3a8274c7e935fa564eea142d2535c9bcf2b272 for YOCTO #1428
+> broke meta-intel x86_64 builds:
+> 
+> NOTE: Resolving any missing task queue dependencies
+> ERROR: Nothing RPROVIDES 'initramfs-live-install' (but /usr/local/src/yocto/sugarbay/meta/recipes-core/images/core-image-minimal-initramfs.bb RDEPENDS on or otherwise requires it)
+> ERROR: initramfs-live-install was skipped: incompatible with host x86_64-poky-linux
+> 
+> This patchset restores the build.
+> 
+> Build and install-tested on sugarbay and crownbay.
+> 
+> More fixes for [YOCTO #1428]
+> 
+> The following changes since commit b86f811663d834064af1e6778c408eb904fad0b9:
+>   Darren Hart (1):
+>         n450: update linux-yocto PREFERRED_VERSION to 3.0%
+> 
+> are available in the git repository at:
+> 
+>   git://git.yoctoproject.org/meta-intel.git tzanussi/1428-fix
+>   http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/1428-fix
+> 
+> Tom Zanussi (2):
+>   meta-intel/common: create a grub2 version initramfs-live-install
+>   meta-intel/common: remove initramfs-live-install 1.0 bbappend
+
+Is there a disadvantage to moving to grub2 in OE-Core and then bringing
+these pieces into sync?
+
+Cheers,
+
+Richard
+
 
