@@ -1,34 +1,25 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8AEDE012AA
-	for <yocto@yoctoproject.org>; Fri,  9 Sep 2011 12:04:21 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 09 Sep 2011 12:04:03 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7501E012AA
+	for <yocto@yoctoproject.org>; Fri,  9 Sep 2011 12:14:04 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 09 Sep 2011 12:13:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,357,1312182000"; d="scan'208";a="15641509"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by AZSMGA002.ch.intel.com with ESMTP; 09 Sep 2011 12:03:47 -0700
-Received: from orsmsx505.amr.corp.intel.com ([10.22.226.208]) by
-	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
-	Fri, 9 Sep 2011 12:03:39 -0700
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date: Fri, 9 Sep 2011 12:03:35 -0700
-Thread-Topic: [yocto] [PATCH 0/3] [KERNEL] Cover letter for seperating
-	10/100 LAN feature from 1G and 10G
-Thread-Index: AcxvIY54woYywGugQ0GFbGI2Nc1+AgAAXXVw
-Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E3F48D0@orsmsx505.amr.corp.intel.com>
-References: <4FF5AC937153B0459463C1A88EB478F2012E3F41BD@orsmsx505.amr.corp.intel.com>
-	<4E6A604C.40304@windriver.com>
-In-Reply-To: <4E6A604C.40304@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Bruce Ashfield <bruce.ashfield@gmail.com>
-Subject: Re: [PATCH 0/3] [KERNEL] Cover letter for seperating 10/100 LAN feature from 1G and 10G
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="46740237"
+Received: from unknown (HELO [10.255.14.214]) ([10.255.14.214])
+	by orsmga002.jf.intel.com with ESMTP; 09 Sep 2011 12:13:51 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+In-Reply-To: <1315590304.1986.10.camel@ted>
+References: <cover.1315509303.git.tom.zanussi@intel.com>
+	<1315574255.1986.0.camel@ted>  <1315576643.2367.25.camel@elmorro>
+	<1315590304.1986.10.camel@ted>
+Date: Fri, 09 Sep 2011 14:13:48 -0500
+Message-ID: <1315595628.2367.67.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/2] More fixes for bug 1428
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,90 +31,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Sep 2011 19:04:22 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 09 Sep 2011 19:14:04 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi Bruce,
+On Fri, 2011-09-09 at 10:45 -0700, Richard Purdie wrote:
+> On Fri, 2011-09-09 at 08:57 -0500, Tom Zanussi wrote:
+> > On Fri, 2011-09-09 at 06:17 -0700, Richard Purdie wrote:
+> > > On Thu, 2011-09-08 at 14:27 -0500, tom.zanussi@intel.com wrote:
+> > > > From: Tom Zanussi <tom.zanussi@intel.com>
+> > > > 
+> > > > oe-core commit dc3a8274c7e935fa564eea142d2535c9bcf2b272 for YOCTO #1428
+> > > > broke meta-intel x86_64 builds:
+> > > > 
+> > > > NOTE: Resolving any missing task queue dependencies
+> > > > ERROR: Nothing RPROVIDES 'initramfs-live-install' (but /usr/local/src/yocto/sugarbay/meta/recipes-core/images/core-image-minimal-initramfs.bb RDEPENDS on or otherwise requires it)
+> > > > ERROR: initramfs-live-install was skipped: incompatible with host x86_64-poky-linux
+> > > > 
+> > > > This patchset restores the build.
+> > > > 
+> > > > Build and install-tested on sugarbay and crownbay.
+> > > > 
+> > > > More fixes for [YOCTO #1428]
+> > > > 
+> > > > The following changes since commit b86f811663d834064af1e6778c408eb904fad0b9:
+> > > >   Darren Hart (1):
+> > > >         n450: update linux-yocto PREFERRED_VERSION to 3.0%
+> > > > 
+> > > > are available in the git repository at:
+> > > > 
+> > > >   git://git.yoctoproject.org/meta-intel.git tzanussi/1428-fix
+> > > >   http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/1428-fix
+> > > > 
+> > > > Tom Zanussi (2):
+> > > >   meta-intel/common: create a grub2 version initramfs-live-install
+> > > >   meta-intel/common: remove initramfs-live-install 1.0 bbappend
+> > > 
+> > > Is there a disadvantage to moving to grub2 in OE-Core and then bringing
+> > > these pieces into sync?
+> > > 
+> > 
+> > Yes, it would make sense - the plan was to do that during the 1.2
+> > cycle...
+> 
+> If someone can confirm that 32 and 64 bit live images work with grub2
+> and there is no good reason not to do this, I'd be in favour of doing
+> this now rather than explain why its a mess...
+> 
 
-Sorry about that. I will push them to a git contrib branch and send you a l=
-ink.
+I haven't tried the 32-bit BSPs with grub2 - been focused on other
+things until this incomplete fix for 1428 seems to have forced the
+issue, but can try it over the weekend and see what happens.
 
-Thanks
-Rahul
+grub2 isn't a simple version bump from the legacy grub 0.97, but is a
+completely incompatible re-write - I thought being more cautious in
+removing the grub 0.97 that's worked fine for everything but the couple
+of 64-bit meta-intel BSPs that need it would be something for 1.2, but
+if it can go in now, why not...
 
------Original Message-----
-From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
-Sent: Friday, September 09, 2011 11:52 AM
-To: Saxena, Rahul
-Cc: yocto@yoctoproject.org; Bruce Ashfield; Zanussi, Tom
-Subject: Re: [yocto] [PATCH 0/3] [KERNEL] Cover letter for seperating 10/10=
-0 LAN feature from 1G and 10G
+Tom
 
-On 11-09-08 07:30 PM, Saxena, Rahul wrote:
-> Cover letter for separating 10/100 LAN feature from 1G and 10G.
-> Typically a machine does not need both of 10/100 and 1G/10G drivers.
+> Cheers,
+> 
+> Richard
+> 
 
-These look good now, but when I went to merge the patches I see they
-are multipart, and html-ized. Which is causing me considerable pain
-in getting them applied.
-
-Can you resend the patches via git-send-email ? Or push them to a
-contrib branch ? If you are not sure about how to do either of these,
-we can help and Tom may have some practical tips to share.
-
-Cheers,
-
-Bruce
-
->
-> Signed-off-by: Rahul SaxenaRahul.saxena@intel.com
-> <mailto:Rahul.saxena@intel.com>
->
-> Rahul Saxena (3):
->
-> Remove 10/100 LAN support. 10/100 LAN will be configured by seperate
->
-> files
->
-> Added seperate feature for 10/100 LAN support
->
-> Added e100 feature configuration to remaining boards
->
-> .../kernel-cache/bsp/common-pc-64/common-pc-64.scc | 1 +
->
-> meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc | 1 +
->
-> meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc | 1 +
->
-> meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc | 2 +-
->
-> meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc | 1 +
->
-> meta/cfg/kernel-cache/bsp/fri2/fri2.scc | 1 +
->
-> meta/cfg/kernel-cache/bsp/romley/romley.scc | 1 +
->
-> .../features/intel-e1xxxx/intel-e100.cfg | 2 ++
->
-> .../features/intel-e1xxxx/intel-e100.scc | 1 +
->
-> .../features/intel-e1xxxx/intel-e1xxxx.cfg | 1 -
->
-> 10 files changed, 10 insertions(+), 2 deletions(-)
->
-> create mode 100644
-> meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg
->
-> create mode 100644
-> meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
 
