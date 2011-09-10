@@ -1,19 +1,22 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37ACAE012D8
-	for <yocto@yoctoproject.org>; Fri,  9 Sep 2011 20:58:54 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p8A3wp9Y014801
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 9 Sep 2011 20:58:51 -0700 (PDT)
-Received: from [128.224.22.82] (128.224.22.82) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 9 Sep 2011 20:58:51 -0700
-Message-ID: <4E6AE079.6000700@windriver.com>
-Date: Fri, 9 Sep 2011 23:58:49 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.17) Gecko/20110516 Thunderbird/3.1.10
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A833E0071A
+	for <yocto@yoctoproject.org>; Sat, 10 Sep 2011 06:13:43 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 999)
+	id 7E2B91660B0D; Sat, 10 Sep 2011 07:13:42 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id E430E1660B0A;
+	Sat, 10 Sep 2011 07:13:40 -0600 (MDT)
+Message-ID: <4E6B6284.2020701@mlbassoc.com>
+Date: Sat, 10 Sep 2011 07:13:40 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:6.0) Gecko/20110816 Thunderbird/6.0
 MIME-Version: 1.0
 To: "Zhang, Jessica" <jessica.zhang@intel.com>
 References: <C6510F6D410BB64A8C15398EDC6B847C16E6F441@ORSMSX101.amr.corp.intel.com>
@@ -31,17 +34,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 10 Sep 2011 03:58:55 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Sat, 10 Sep 2011 13:13:43 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 11-09-09 07:09 PM, Zhang, Jessica wrote:
+On 2011-09-09 17:09, Zhang, Jessica wrote:
 > Hi,
 >
-> Has anybody ran into kernel panic when boot up core-image-sato-sdk for
-> qemux86. I’ve been having this issue with several clean build for two
-> days. And my latest build tree is a freshly cloned tree against
-> poky-master with commit:
+> Has anybody ran into kernel panic when boot up core-image-sato-sdk for qemux86. I’ve been having this issue with several clean build for two days. And my latest build tree is a
+> freshly cloned tree against poky-master with commit:
 >
 > commit 20dbf0024385eaef61a04d8773fd7640e3c8cc6d
 >
@@ -53,39 +54,25 @@ On 11-09-09 07:09 PM, Zhang, Jessica wrote:
 >
 > INIT: version 2.88 booting
 >
-> Init[1]: segfault at 38 ip 495076c7 sp bfd9b60c error 4 in
-> libc-2.13.so[49492000+15f000]
+> Init[1]: segfault at 38 ip 495076c7 sp bfd9b60c error 4 in libc-2.13.so[49492000+15f000]
 >
-> Init[1]: segfault at 16 ip 0804b3c7 sp bfd9b280 error 4 in
-> init.sysvinit[8048000+7000]
+> Init[1]: segfault at 16 ip 0804b3c7 sp bfd9b280 error 4 in init.sysvinit[8048000+7000]
 >
 > Kernel panic – not syncing: Attempted to kill init!
 >
 > Pid: 1, comm: init Not tainted 3.0.4-yocto-standard+ #1
->
-> Any idea?
 
-Since I've been at Linux plumbers since Wednesday, I can confirm
-that nothing has changed in the kernel itself. And I just booted
-an older userspace with a brand new kernel a few minutes ago. That means
-that something else has changed which is producing the segfault
-(toolchain, libs, .. something) and tossing you out to the panic.
+Verified - fails for me here as well.  A Bruce said, a build from just a few days
+ago did work.  Note: I only tried core-image-sato
 
-If you try an older filesystem with your recent kernel, do you see
-a good boot.
+As far as I can tell, the only packages that were rebuilt since my last go on
+Aug 31 were virtual/kernel & perf
 
-Bruce
+Looks like it's something to do with kernel changes.
 
->
-> Thanks,
->
-> Jessica
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
