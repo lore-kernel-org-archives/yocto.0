@@ -1,23 +1,34 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 953B8E006D5
-	for <yocto@yoctoproject.org>; Tue, 13 Sep 2011 22:41:24 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 13 Sep 2011 22:41:24 -0700
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EEFFE006CC
+	for <yocto@yoctoproject.org>; Tue, 13 Sep 2011 13:17:45 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 13 Sep 2011 13:17:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,378,1312182000"; d="scan'208";a="51048055"
-Received: from unknown (HELO localhost) ([10.255.14.200])
-	by fmsmga001.fm.intel.com with ESMTP; 13 Sep 2011 22:41:23 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Wed, 14 Sep 2011 00:41:06 -0500
-Message-Id: <b254d171d395ffee1a718db36cf2d61da5d40bf1.1315977970.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <c081ed51d8ba76c293bcd2afdad8cbfef556cf49.1315977970.git.tom.zanussi@intel.com>
-References: <c081ed51d8ba76c293bcd2afdad8cbfef556cf49.1315977970.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1315977969.git.tom.zanussi@intel.com>
-References: <cover.1315977969.git.tom.zanussi@intel.com>
-Subject: [PATCH 2/5] meta-intel/MAINTAINERS: remove grub
+X-IronPort-AV: E=Sophos;i="4.68,375,1312182000"; d="scan'208";a="48401452"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by azsmga001.ch.intel.com with ESMTP; 13 Sep 2011 13:16:44 -0700
+Received: from orsmsx504.amr.corp.intel.com ([10.22.226.207]) by
+	orsmsx604.amr.corp.intel.com ([10.250.113.17]) with mapi;
+	Tue, 13 Sep 2011 13:16:43 -0700
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Tue, 13 Sep 2011 13:16:42 -0700
+Thread-Topic: [yocto] [PATCH 1/1] btrfs: Add a new kernel feature to enable
+	the	btrfs support
+Thread-Index: Acxs09eGhTWkGt2ES9eoxspoulci9wFfgyog
+Message-ID: <9DA5872FEF993D41B7173F58FCF6BE94DF10E8B8@orsmsx504.amr.corp.intel.com>
+References: <cover.1315338837.git.nitin.a.kamble@intel.com>
+	<b33495af418b4fe8b8a2c6ba1ff8a67e84dd0a29.1315338837.git.nitin.a.kamble@intel.com>
+	<4E6682E5.5070907@windriver.com>
+In-Reply-To: <4E6682E5.5070907@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 1/1] btrfs: Add a new kernel feature to enable the	btrfs support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,29 +41,62 @@ List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 15 Sep 2011 03:50:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+Hi Bruce,=20
+  I am seeing that the patch is still not part of the Linux-yocto-3.0 repos=
+itory. Is there any reason it is being hold?
 
-Remove the entry for grub, since it is no longer a part of meta-intel.
+Thanks,
+Nitin
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- MAINTAINERS |    1 -
- 1 files changed, 0 insertions(+), 1 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 328136f..fda48ad 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -35,7 +35,6 @@ Maintainers List (try to look for most precise areas first)
- 
- COMMON
- M:	Tom Zanussi <tom.zanussi@intel.com>
--F:	common/recipes-bsp/grub/
- F:	common/recipes-core/
- 
- CROWNBAY
--- 
-1.7.0.4
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+> Sent: Tuesday, September 06, 2011 1:30 PM
+> To: Kamble, Nitin A
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] [PATCH 1/1] btrfs: Add a new kernel feature to
+> enable the btrfs support
+>=20
+> On 11-09-06 03:56 PM, nitin.a.kamble@intel.com wrote:
+> > From: Nitin A Kamble<nitin.a.kamble@intel.com>
+>=20
+> Looks good. If we are merging this as config only, I've been
+> putting them in meta/cfg/kernel-cache/cfg/
+>=20
+> So I relocated this configuration to that directory. I'll have
+> it pushed out in the next day or so (I'm getting on a plane
+> shortly).
+>=20
+> Bruce
+>=20
+> >
+> > Signed-off-by: Nitin A Kamble<nitin.a.kamble@intel.com>
+> > ---
+> >   meta/cfg/kernel-cache/features/btrfs/btrfs.cfg |    1 +
+> >   meta/cfg/kernel-cache/features/btrfs/btrfs.scc |    1 +
+> >   2 files changed, 2 insertions(+), 0 deletions(-)
+> >   create mode 100644 meta/cfg/kernel-cache/features/btrfs/btrfs.cfg
+> >   create mode 100644 meta/cfg/kernel-cache/features/btrfs/btrfs.scc
+> >
+> > diff --git a/meta/cfg/kernel-cache/features/btrfs/btrfs.cfg
+> b/meta/cfg/kernel-cache/features/btrfs/btrfs.cfg
+> > new file mode 100644
+> > index 0000000..605c183
+> > --- /dev/null
+> > +++ b/meta/cfg/kernel-cache/features/btrfs/btrfs.cfg
+> > @@ -0,0 +1 @@
+> > +CONFIG_BTRFS_FS=3Dy
+> > diff --git a/meta/cfg/kernel-cache/features/btrfs/btrfs.scc
+> b/meta/cfg/kernel-cache/features/btrfs/btrfs.scc
+> > new file mode 100644
+> > index 0000000..cf18a2e
+> > --- /dev/null
+> > +++ b/meta/cfg/kernel-cache/features/btrfs/btrfs.scc
+> > @@ -0,0 +1 @@
+> > +kconf non-hardware btrfs.cfg
 
 
