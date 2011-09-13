@@ -1,23 +1,34 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C3C6E006E0
-	for <yocto@yoctoproject.org>; Tue, 13 Sep 2011 22:41:31 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 13 Sep 2011 22:41:31 -0700
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 407C4E006B6
+	for <yocto@yoctoproject.org>; Mon, 12 Sep 2011 23:29:12 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 12 Sep 2011 23:29:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="48195086"
-Received: from unknown (HELO localhost) ([10.255.14.200])
-	by orsmga001.jf.intel.com with ESMTP; 13 Sep 2011 22:41:30 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Wed, 14 Sep 2011 00:41:09 -0500
-Message-Id: <3189a1333c14f9c843e1518a445548d8f0cf03c1.1315977970.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <c081ed51d8ba76c293bcd2afdad8cbfef556cf49.1315977970.git.tom.zanussi@intel.com>
-References: <c081ed51d8ba76c293bcd2afdad8cbfef556cf49.1315977970.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1315977969.git.tom.zanussi@intel.com>
-References: <cover.1315977969.git.tom.zanussi@intel.com>
-Subject: [PATCH 5/5] meta-jasperforest: prefer grub 1.99
+X-IronPort-AV: E=Sophos;i="4.68,372,1312182000"; d="scan'208";a="48093852"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by azsmga001.ch.intel.com with ESMTP; 12 Sep 2011 23:29:10 -0700
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 13 Sep 2011 14:28:38 +0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 13 Sep 2011 14:28:38 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Tue, 13 Sep 2011 14:28:36 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 13 Sep 2011 14:28:35 +0800
+Thread-Topic: Yocto weekly bug trend charts -- WW37
+Thread-Index: Acxx3l1r8irfDB6ERLWS2obQWjMSUA==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D754B27E@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: Yocto weekly bug trend charts -- WW37
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,28 +41,16 @@ List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 15 Sep 2011 03:50:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+Hi all,
+	The overall open bug trend kept decreasing last week. The new-submit vs. f=
+ixed bug is 20 vs. 31. Open bug number decreased to 121. WDD number decreas=
+ed to 616. Bug status of WW37 could be found on https://wiki.yoctoproject.o=
+rg/wiki/Yocto_Bug_Trend.
 
-Switch from grub 1.98 to 1.99
-
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-jasperforest/conf/machine/jasperforest.conf |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
-
-diff --git a/meta-jasperforest/conf/machine/jasperforest.conf b/meta-jasperforest/conf/machine/jasperforest.conf
-index 3013fe4..20eab77 100644
---- a/meta-jasperforest/conf/machine/jasperforest.conf
-+++ b/meta-jasperforest/conf/machine/jasperforest.conf
-@@ -36,5 +36,5 @@ GLIBC_ADDONS = "nptl"
- GLIBC_EXTRA_OECONF = "--with-tls"
- 
- MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
--PREFERRED_VERSION_grub ?= "1.98"
-+PREFERRED_VERSION_grub ?= "1.99"
- 
--- 
-1.7.0.4
-
+Best Regards,
+Jiajun
 
