@@ -1,25 +1,20 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F60DE006D1
-	for <yocto@yoctoproject.org>; Tue, 13 Sep 2011 21:46:12 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p8E4k9Hw005597
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 13 Sep 2011 21:46:09 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.22.77) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Tue, 13 Sep 2011 21:46:07 -0700
-Message-ID: <4E703188.3070509@windriver.com>
-Date: Wed, 14 Sep 2011 00:46:00 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.22) Gecko/20110902 Thunderbird/3.1.14
-MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <4E6FB00C.2070200@linux.intel.com>
-In-Reply-To: <4E6FB00C.2070200@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH][linux-yocto] preempt-rt/base: correct 3.0.3->3.0.4 mismerge for, stop_machine.c
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 717ABE004D8
+	for <yocto@yoctoproject.org>; Wed, 14 Sep 2011 16:16:00 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 14 Sep 2011 16:15:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="48533263"
+Received: from unknown (HELO localhost) ([10.255.14.200])
+	by orsmga001.jf.intel.com with ESMTP; 14 Sep 2011 16:15:47 -0700
+From: tom.zanussi@intel.com
+To: dvhart@linux.intel.com,
+	yocto@yoctoproject.org
+Date: Wed, 14 Sep 2011 18:15:36 -0500
+Message-Id: <cover.1316041909.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/4] Remove grub2 to oe-core and make BSPs use it [v2]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,44 +26,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Sep 2011 03:50:27 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 15 Sep 2011 04:05:27 -0000
 
-On 11-09-13 3:33 PM, Darren Hart wrote:
-> Commit 0b805cce57f61a244eb3b8fce460b14f1be442b3 dropped a change making
-> stop_cpus_mutex non-static, resulting in a build failure for 3.0.4-rt
-> kernels.
->
-> Restore the move to non-static from commit
-> 6857336c7fddaf460a13adc0c395698fcf9423ff.
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Acked. I'm doing a kernel merge tomorrow, so this will be part of
-that update.
+This patchset removes grub2 from meta-intel, since it's been moved by
+another patchset to oe-core.  It also moves all the meta-intel BSPs to
+grub2 (1.99).
 
-Bruce
+A future patch will factor out the common parts being added to the
+machine configs - this initial patchset essentially just fixes what's
+necessary for YOCTO bug #1428 in order to get things working again.
 
->
-> Reported-by: Kishore Bodke<kishore.k.bodke@intel.com>
-> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
-> CC: Bruce Ashfield<bruce.ashfield@windriver.com>
-> ---
->   kernel/stop_machine.c |    2 +-
->   1 files changed, 1 insertions(+), 1 deletions(-)
->
-> diff --git a/kernel/stop_machine.c b/kernel/stop_machine.c
-> index c54d0fa..d6b3ac2 100644
-> --- a/kernel/stop_machine.c
-> +++ b/kernel/stop_machine.c
-> @@ -150,8 +150,8 @@ void stop_one_cpu_nowait(unsigned int cpu, cpu_stop_fn_t fn, void *arg,
->   	cpu_stop_queue_work(&per_cpu(cpu_stopper, cpu), work_buf);
->   }
->
-> +DEFINE_MUTEX(stop_cpus_mutex);
->   /* static data for stop_cpus */
-> -static DEFINE_MUTEX(stop_cpus_mutex);
->   static DEFINE_MUTEX(stopper_lock);
->   static DEFINE_PER_CPU(struct cpu_stop_work, stop_cpus_work);
->
+Changes since v2:
+
+Forgot to remove initramfs-live-install in v1, and remove explicit
+preferred versions.
+
+The following changes since commit 3b5a3cb7393d0e9a56ff38a0b41c61751afab2b5:
+  Tom Zanussi (1):
+        grub2: update license version
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-intel.git tzanussi/move-grub2v2
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/move-grub2v2
+
+Tom Zanussi (4):
+  meta-intel/common: remove grub-1.98
+  meta-intel/MAINTAINERS: remove grub
+  meta-intel: update BSPs to use grub2
+  meta-intel/common: remove initramfs-live-install .bbappend
+
+ MAINTAINERS                                        |    1 -
+ common/recipes-bsp/grub/grub-1.98/40_custom        |    9 -
+ .../grub/grub-1.98/gentrigtables-compile-fix.patch |   52 ------
+ .../grub/grub-1.98/grub-install.in.patch           |   13 --
+ .../grub/grub-1.98/uninit-shdr-fix.patch           |   31 ----
+ common/recipes-bsp/grub/grub_1.98.bb               |   46 -----
+ .../initramfs-live-install/init-install.sh         |  188 --------------------
+ .../initramfs-live-install_1.0.bbappend            |    2 -
+ meta-crownbay/conf/machine/crownbay-noemgd.conf    |    2 +
+ meta-crownbay/conf/machine/crownbay.conf           |    2 +
+ meta-emenlow/conf/machine/emenlow.conf             |    3 +
+ meta-fishriver/conf/machine/fishriver.conf         |    3 +
+ meta-fri2/conf/machine/fri2-noemgd.conf            |    2 +
+ meta-fri2/conf/machine/fri2.conf                   |    3 +
+ meta-jasperforest/conf/machine/jasperforest.conf   |    1 -
+ meta-n450/conf/machine/n450.conf                   |    3 +
+ meta-sugarbay/conf/machine/sugarbay.conf           |    2 -
+ 17 files changed, 18 insertions(+), 345 deletions(-)
+ delete mode 100755 common/recipes-bsp/grub/grub-1.98/40_custom
+ delete mode 100644 common/recipes-bsp/grub/grub-1.98/gentrigtables-compile-fix.patch
+ delete mode 100644 common/recipes-bsp/grub/grub-1.98/grub-install.in.patch
+ delete mode 100644 common/recipes-bsp/grub/grub-1.98/uninit-shdr-fix.patch
+ delete mode 100644 common/recipes-bsp/grub/grub_1.98.bb
+ delete mode 100644 common/recipes-core/initrdscripts/initramfs-live-install/init-install.sh
+ delete mode 100644 common/recipes-core/initrdscripts/initramfs-live-install_1.0.bbappend
 
 
