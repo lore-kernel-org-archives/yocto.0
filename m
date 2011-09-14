@@ -1,22 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29B83E004CF
-	for <yocto@yoctoproject.org>; Wed, 14 Sep 2011 16:15:51 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 14 Sep 2011 16:15:50 -0700
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1C86E004D1
+	for <yocto@yoctoproject.org>; Wed, 14 Sep 2011 16:15:54 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 14 Sep 2011 16:15:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,383,1312182000"; d="scan'208";a="53491064"
+X-IronPort-AV: E=Sophos;i="4.68,383,1312182000"; d="scan'208";a="51492694"
 Received: from unknown (HELO localhost) ([10.255.14.200])
-	by fmsmga002.fm.intel.com with ESMTP; 14 Sep 2011 16:15:50 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 14 Sep 2011 16:15:54 -0700
 From: tom.zanussi@intel.com
 To: dvhart@linux.intel.com,
 	yocto@yoctoproject.org
-Date: Wed, 14 Sep 2011 18:15:37 -0500
-Message-Id: <c081ed51d8ba76c293bcd2afdad8cbfef556cf49.1316041909.git.tom.zanussi@intel.com>
+Date: Wed, 14 Sep 2011 18:15:39 -0500
+Message-Id: <3890c613e6c0ba182648d76d3c190f551d31732b.1316041909.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <c081ed51d8ba76c293bcd2afdad8cbfef556cf49.1316041909.git.tom.zanussi@intel.com>
+References: <c081ed51d8ba76c293bcd2afdad8cbfef556cf49.1316041909.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1316041909.git.tom.zanussi@intel.com>
 References: <cover.1316041909.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/4] meta-intel/common: remove grub-1.98
+Subject: [PATCH 3/4] meta-intel: update BSPs to use grub2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,203 +34,117 @@ X-List-Received-Date: Thu, 15 Sep 2011 04:05:27 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This has been moved into oe-core, so remove it from meta-intel.
+grub2 is now the default, so explicit preferred entries are
+unnecessary.  It also needs to be installed in the rootfs, so we need
+to add it as a dependency.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- common/recipes-bsp/grub/grub-1.98/40_custom        |    9 ---
- .../grub/grub-1.98/gentrigtables-compile-fix.patch |   52 --------------------
- .../grub/grub-1.98/grub-install.in.patch           |   13 -----
- .../grub/grub-1.98/uninit-shdr-fix.patch           |   31 ------------
- common/recipes-bsp/grub/grub_1.98.bb               |   46 -----------------
- 5 files changed, 0 insertions(+), 151 deletions(-)
- delete mode 100755 common/recipes-bsp/grub/grub-1.98/40_custom
- delete mode 100644 common/recipes-bsp/grub/grub-1.98/gentrigtables-compile-fix.patch
- delete mode 100644 common/recipes-bsp/grub/grub-1.98/grub-install.in.patch
- delete mode 100644 common/recipes-bsp/grub/grub-1.98/uninit-shdr-fix.patch
- delete mode 100644 common/recipes-bsp/grub/grub_1.98.bb
+ meta-crownbay/conf/machine/crownbay-noemgd.conf  |    2 ++
+ meta-crownbay/conf/machine/crownbay.conf         |    2 ++
+ meta-emenlow/conf/machine/emenlow.conf           |    3 +++
+ meta-fishriver/conf/machine/fishriver.conf       |    3 +++
+ meta-fri2/conf/machine/fri2-noemgd.conf          |    2 ++
+ meta-fri2/conf/machine/fri2.conf                 |    3 +++
+ meta-jasperforest/conf/machine/jasperforest.conf |    1 -
+ meta-n450/conf/machine/n450.conf                 |    3 +++
+ meta-sugarbay/conf/machine/sugarbay.conf         |    2 --
+ 9 files changed, 18 insertions(+), 3 deletions(-)
 
-diff --git a/common/recipes-bsp/grub/grub-1.98/40_custom b/common/recipes-bsp/grub/grub-1.98/40_custom
-deleted file mode 100755
-index 30dad39..0000000
---- a/common/recipes-bsp/grub/grub-1.98/40_custom
-+++ /dev/null
-@@ -1,9 +0,0 @@
--#!/bin/sh
--exec tail -n +3 $0
--# This file provides an easy way to add custom menu entries.  Simply type the
--# menu entries you want to add after this comment.  Be careful not to change
--# the 'exec tail' line above.
--menuentry "Yocto Linux" {
--    set root=(hd0,1)
--    linux /boot/vmlinuz root=__ROOTFS__ rw __VIDEO_MODE__ __VGA_MODE__ quiet
--}
-diff --git a/common/recipes-bsp/grub/grub-1.98/gentrigtables-compile-fix.patch b/common/recipes-bsp/grub/grub-1.98/gentrigtables-compile-fix.patch
-deleted file mode 100644
-index d09ecf5..0000000
---- a/common/recipes-bsp/grub/grub-1.98/gentrigtables-compile-fix.patch
-+++ /dev/null
-@@ -1,52 +0,0 @@
--Index: grub-1.98/conf/any-emu.mk
--===================================================================
----- grub-1.98.orig/conf/any-emu.mk	2011-02-24 00:54:20.825116207 -0600
--+++ grub-1.98/conf/any-emu.mk	2011-02-24 00:55:55.465116194 -0600
--@@ -820,7 +820,7 @@
-- 	./gentrigtables > $@
-- DISTCLEANFILES += trigtables.c
-- gentrigtables: gentrigtables.c
---	$(CC) -o $@ $^ $(CPPFLAGS) -lm
--+	$(BUILD_CC) -o $@ $^ $(BUILD_CPPFLAGS) -I${top_srcdir}/include -lm
-- DISTCLEANFILES += gentrigtables
-- 
-- # For grub-mkfont.
--Index: grub-1.98/conf/any-emu.rmk
--===================================================================
----- grub-1.98.orig/conf/any-emu.rmk	2011-02-24 00:54:24.565116208 -0600
--+++ grub-1.98/conf/any-emu.rmk	2011-02-24 00:56:40.665116186 -0600
--@@ -110,7 +110,7 @@
-- 	./gentrigtables > $@
-- DISTCLEANFILES += trigtables.c
-- gentrigtables: gentrigtables.c
---	$(CC) -o $@ $^ $(CPPFLAGS) -lm
--+	$(BUILD_CC) -o $@ $^ $(BUILD_CPPFLAGS) -I${top_srcdir}/include -lm
-- DISTCLEANFILES += gentrigtables
-- 
-- # For grub-mkfont.
--Index: grub-1.98/conf/common.mk
--===================================================================
----- grub-1.98.orig/conf/common.mk	2011-02-24 00:54:30.345116207 -0600
--+++ grub-1.98/conf/common.mk	2011-02-24 00:57:08.415116181 -0600
--@@ -11159,7 +11159,7 @@
-- 	./gentrigtables > $@
-- DISTCLEANFILES += trigtables.c
-- gentrigtables: gentrigtables.c
---	$(CC) -o $@ $^ $(CPPFLAGS) -lm
--+	$(BUILD_CC) -o $@ $^ $(BUILD_CPPFLAGS) -I${top_srcdir}/include -lm
-- DISTCLEANFILES += gentrigtables
-- 
-- pkglib_MODULES += setjmp.mod
--Index: grub-1.98/conf/common.rmk
--===================================================================
----- grub-1.98.orig/conf/common.rmk	2011-02-24 00:54:34.035116205 -0600
--+++ grub-1.98/conf/common.rmk	2011-02-24 00:57:31.045116179 -0600
--@@ -736,7 +736,7 @@
-- 	./gentrigtables > $@
-- DISTCLEANFILES += trigtables.c
-- gentrigtables: gentrigtables.c
---	$(CC) -o $@ $^ $(CPPFLAGS) -lm
--+	$(BUILD_CC) -o $@ $^ $(BUILD_CPPFLAGS) -I${top_srcdir}/include -lm
-- DISTCLEANFILES += gentrigtables
-- 
-- pkglib_MODULES += setjmp.mod
-diff --git a/common/recipes-bsp/grub/grub-1.98/grub-install.in.patch b/common/recipes-bsp/grub/grub-1.98/grub-install.in.patch
-deleted file mode 100644
-index ac96419..0000000
---- a/common/recipes-bsp/grub/grub-1.98/grub-install.in.patch
-+++ /dev/null
-@@ -1,13 +0,0 @@
--Index: grub-1.98/util/grub-install.in
--===================================================================
----- grub-1.98.orig/util/grub-install.in	2011-01-25 23:47:05.587521825 -0600
--+++ grub-1.98/util/grub-install.in	2011-01-25 23:47:23.867521822 -0600
--@@ -306,7 +306,7 @@
-- 
-- if [ "x${devabstraction_module}" = "x" ] ; then
--     if [ x"${install_device}" != x ]; then
---      if echo "${install_device}" | grep -qx "(.*)" ; then
--+      if echo "${install_device}" | grep -q "(.*)" ; then
--         install_drive="${install_device}"
--       else
--         install_drive="`$grub_probe --target=drive --device ${install_device}`"
-diff --git a/common/recipes-bsp/grub/grub-1.98/uninit-shdr-fix.patch b/common/recipes-bsp/grub/grub-1.98/uninit-shdr-fix.patch
-deleted file mode 100644
-index 67af594..0000000
---- a/common/recipes-bsp/grub/grub-1.98/uninit-shdr-fix.patch
-+++ /dev/null
-@@ -1,31 +0,0 @@
--Index: grub-1.98/loader/i386/bsdXX.c
--===================================================================
----- grub-1.98.orig/loader/i386/bsdXX.c	2011-01-25 00:12:14.967535179 -0600
--+++ grub-1.98/loader/i386/bsdXX.c	2011-01-25 00:13:16.387535169 -0600
--@@ -80,7 +80,7 @@
-- {
--   Elf_Ehdr e;
--   Elf_Shdr *s;
---  char *shdr;
--+  char *shdr = NULL;
--   grub_addr_t curload, module;
--   grub_err_t err;
-- 
--@@ -148,7 +148,7 @@
-- {
--   Elf_Ehdr e;
--   Elf_Shdr *s;
---  char *shdr;
--+  char *shdr = NULL;
--   grub_addr_t curload, module;
--   grub_err_t err;
-- 
--@@ -223,7 +223,7 @@
--   grub_err_t err;
--   Elf_Ehdr e;
--   Elf_Shdr *s;
---  char *shdr;
--+  char *shdr = NULL;
--   unsigned symoff, stroff, symsize, strsize;
--   grub_addr_t curload;
--   grub_freebsd_addr_t symstart, symend, symentsize, dynamic;
-diff --git a/common/recipes-bsp/grub/grub_1.98.bb b/common/recipes-bsp/grub/grub_1.98.bb
-deleted file mode 100644
-index 1b3040b..0000000
---- a/common/recipes-bsp/grub/grub_1.98.bb
-+++ /dev/null
-@@ -1,46 +0,0 @@
--SUMMARY = "GRUB2 is the next-generation GRand Unified Bootloader"
+diff --git a/meta-crownbay/conf/machine/crownbay-noemgd.conf b/meta-crownbay/conf/machine/crownbay-noemgd.conf
+index 30c575a..c668f4a 100644
+--- a/meta-crownbay/conf/machine/crownbay-noemgd.conf
++++ b/meta-crownbay/conf/machine/crownbay-noemgd.conf
+@@ -34,3 +34,5 @@ IMAGE_FSTYPES ?= "ext3 cpio.gz live"
+ 
+ GLIBC_ADDONS = "nptl"
+ GLIBC_EXTRA_OECONF = "--with-tls"
++
++MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
+diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
+index 96dc784..457bdfc 100644
+--- a/meta-crownbay/conf/machine/crownbay.conf
++++ b/meta-crownbay/conf/machine/crownbay.conf
+@@ -38,3 +38,5 @@ IMAGE_FSTYPES ?= "ext3 cpio.gz live"
+ 
+ GLIBC_ADDONS = "nptl"
+ GLIBC_EXTRA_OECONF = "--with-tls"
++
++MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
+diff --git a/meta-emenlow/conf/machine/emenlow.conf b/meta-emenlow/conf/machine/emenlow.conf
+index de6794e..39930a0 100644
+--- a/meta-emenlow/conf/machine/emenlow.conf
++++ b/meta-emenlow/conf/machine/emenlow.conf
+@@ -34,3 +34,6 @@ IMAGE_FSTYPES ?= "ext3 cpio.gz live"
+ 
+ GLIBC_ADDONS = "nptl"
+ GLIBC_EXTRA_OECONF = "--with-tls"
++
++MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
++
+diff --git a/meta-fishriver/conf/machine/fishriver.conf b/meta-fishriver/conf/machine/fishriver.conf
+index 0cee5d0..2fe78e8 100644
+--- a/meta-fishriver/conf/machine/fishriver.conf
++++ b/meta-fishriver/conf/machine/fishriver.conf
+@@ -34,3 +34,6 @@ IMAGE_FSTYPES ?= "ext3 cpio.gz live"
+ 
+ GLIBC_ADDONS = "nptl"
+ GLIBC_EXTRA_OECONF = "--with-tls"
++
++MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
++
+diff --git a/meta-fri2/conf/machine/fri2-noemgd.conf b/meta-fri2/conf/machine/fri2-noemgd.conf
+index a871529..b02e037 100644
+--- a/meta-fri2/conf/machine/fri2-noemgd.conf
++++ b/meta-fri2/conf/machine/fri2-noemgd.conf
+@@ -34,3 +34,5 @@ IMAGE_FSTYPES ?= "ext3 cpio.gz live"
+ 
+ GLIBC_ADDONS = "nptl"
+ GLIBC_EXTRA_OECONF = "--with-tls"
++
++MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
+diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
+index 4b81fab..eab4b50 100644
+--- a/meta-fri2/conf/machine/fri2.conf
++++ b/meta-fri2/conf/machine/fri2.conf
+@@ -37,3 +37,6 @@ IMAGE_FSTYPES ?= "ext3 cpio.gz live"
+ 
+ GLIBC_ADDONS = "nptl"
+ GLIBC_EXTRA_OECONF = "--with-tls"
++
++MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
++
+diff --git a/meta-jasperforest/conf/machine/jasperforest.conf b/meta-jasperforest/conf/machine/jasperforest.conf
+index 3013fe4..9fdb968 100644
+--- a/meta-jasperforest/conf/machine/jasperforest.conf
++++ b/meta-jasperforest/conf/machine/jasperforest.conf
+@@ -36,5 +36,4 @@ GLIBC_ADDONS = "nptl"
+ GLIBC_EXTRA_OECONF = "--with-tls"
+ 
+ MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
+-PREFERRED_VERSION_grub ?= "1.98"
+ 
+diff --git a/meta-n450/conf/machine/n450.conf b/meta-n450/conf/machine/n450.conf
+index c0ff0cf..79970d1 100644
+--- a/meta-n450/conf/machine/n450.conf
++++ b/meta-n450/conf/machine/n450.conf
+@@ -37,3 +37,6 @@ GLIBC_ADDONS = "nptl"
+ GLIBC_EXTRA_OECONF = "--with-tls"
+ 
+ ROOTLESS_X = "1"
++
++MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
++
+diff --git a/meta-sugarbay/conf/machine/sugarbay.conf b/meta-sugarbay/conf/machine/sugarbay.conf
+index ea8d98a..6277e20 100644
+--- a/meta-sugarbay/conf/machine/sugarbay.conf
++++ b/meta-sugarbay/conf/machine/sugarbay.conf
+@@ -38,5 +38,3 @@ GLIBC_ADDONS = "nptl"
+ GLIBC_EXTRA_OECONF = "--with-tls"
+ 
+ MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
 -
--DESCRIPTION = "GRUB2 is the next generaion of a GPLed bootloader \
--intended to unify bootloading across x86 operating systems. In \
--addition to loading the Linux kernel, it implements the Multiboot \
--standard, which allows for flexible loading of multiple boot images."
--
--HOMEPAGE = "http://www.gnu.org/software/grub/"
--SECTION = "bootloaders"
--PRIORITY = "optional"
--
--LICENSE = "GPLv3"
--LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
--
--RDEPENDS = "diffutils freetype"
--PR = "r1"
--
--SRC_URI = "ftp://alpha.gnu.org/gnu/grub/grub-${PV}.tar.gz \
--          file://uninit-shdr-fix.patch;apply=yes \
--          file://grub-install.in.patch;apply=yes \
--          file://gentrigtables-compile-fix.patch;apply=yes \
--          file://40_custom"
--
--inherit autotools
--inherit gettext
--
--EXTRA_OECONF = "--with-platform=pc --target=i386 --disable-grub-mkfont"
--
--do_configure() {
--    oe_runconf
--}
--
--python __anonymous () {
--    import re
--    host = bb.data.getVar('HOST_SYS', d, 1)
--    if not re.match('x86.64.*-linux', host):
--        raise bb.parse.SkipPackage("incompatible with host %s" % host)
--}
--
--do_install_append () {
--    install -m 0755 ${WORKDIR}/40_custom ${D}${sysconfdir}/grub.d/40_custom
--}
--
--FILES_${PN}-doc = "${datadir}"
--FILES_${PN} = "/usr /etc"
--
+-PREFERRED_VERSION_grub ?= "1.98"
 -- 
 1.7.0.4
 
