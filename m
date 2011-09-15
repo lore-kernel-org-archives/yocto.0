@@ -1,24 +1,25 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26C4DE004D9
-	for <yocto@yoctoproject.org>; Wed, 14 Sep 2011 16:16:02 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 14 Sep 2011 16:15:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="48533271"
-Received: from unknown (HELO localhost) ([10.255.14.200])
-	by orsmga001.jf.intel.com with ESMTP; 14 Sep 2011 16:15:52 -0700
-From: tom.zanussi@intel.com
-To: dvhart@linux.intel.com,
-	yocto@yoctoproject.org
-Date: Wed, 14 Sep 2011 18:15:38 -0500
-Message-Id: <b254d171d395ffee1a718db36cf2d61da5d40bf1.1316041909.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <c081ed51d8ba76c293bcd2afdad8cbfef556cf49.1316041909.git.tom.zanussi@intel.com>
-References: <c081ed51d8ba76c293bcd2afdad8cbfef556cf49.1316041909.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1316041909.git.tom.zanussi@intel.com>
-References: <cover.1316041909.git.tom.zanussi@intel.com>
-Subject: [PATCH 2/4] meta-intel/MAINTAINERS: remove grub
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDB66E004CF
+	for <yocto@yoctoproject.org>; Wed, 14 Sep 2011 21:08:32 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p8F48VuQ000246
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 14 Sep 2011 21:08:31 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.22.125) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Wed, 14 Sep 2011 21:08:31 -0700
+Message-ID: <4E717A3E.20500@windriver.com>
+Date: Thu, 15 Sep 2011 00:08:30 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
+	rv:1.9.2.22) Gecko/20110902 Thunderbird/3.1.14
+MIME-Version: 1.0
+To: "Ashfield, Bruce" <Bruce.Ashfield@windriver.com>
+References: <3A933C74C1C9A847A5738584DEE9CCE90E8769DF@ALA-MBB.corp.ad.wrs.com>
+In-Reply-To: <3A933C74C1C9A847A5738584DEE9CCE90E8769DF@ALA-MBB.corp.ad.wrs.com>
+Cc: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 1/1] btrfs: Add a new kernel feature to enable the	btrfs support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,30 +31,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Sep 2011 04:05:27 -0000
+X-List-Received-Date: Thu, 15 Sep 2011 04:08:33 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On 11-09-13 4:17 PM, Ashfield, Bruce wrote:
+> It's there. Have a look in the cfg Sabourin
 
-Remove the entry for grub, since it is no longer a part of meta-intel.
+Ech. This just looped around now after a few days delay. Sorry
+about the garbled message .. "sabourin" looked like "subdir"
+on my phone when I sent this.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- MAINTAINERS |    1 -
- 1 files changed, 0 insertions(+), 1 deletions(-)
+Bruce
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 328136f..fda48ad 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -35,7 +35,6 @@ Maintainers List (try to look for most precise areas first)
- 
- COMMON
- M:	Tom Zanussi <tom.zanussi@intel.com>
--F:	common/recipes-bsp/grub/
- F:	common/recipes-core/
- 
- CROWNBAY
--- 
-1.7.0.4
+>
+> Bruce
+>
+> ----- Original Message -----
+> From: Kamble, Nitin A [mailto:nitin.a.kamble@intel.com]
+> Sent: Tuesday, September 13, 2011 01:16 PM
+> To: Ashfield, Bruce
+> Cc: yocto@yoctoproject.org<yocto@yoctoproject.org>
+> Subject: RE: [yocto] [PATCH 1/1] btrfs: Add a new kernel feature to enable the	btrfs support
+>
+> Hi Bruce,
+>    I am seeing that the patch is still not part of the Linux-yocto-3.0 repository. Is there any reason it is being hold?
+>
+> Thanks,
+> Nitin
+>
+>
+>> -----Original Message-----
+>> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+>> Sent: Tuesday, September 06, 2011 1:30 PM
+>> To: Kamble, Nitin A
+>> Cc: yocto@yoctoproject.org
+>> Subject: Re: [yocto] [PATCH 1/1] btrfs: Add a new kernel feature to
+>> enable the btrfs support
+>>
+>> On 11-09-06 03:56 PM, nitin.a.kamble@intel.com wrote:
+>>> From: Nitin A Kamble<nitin.a.kamble@intel.com>
+>>
+>> Looks good. If we are merging this as config only, I've been
+>> putting them in meta/cfg/kernel-cache/cfg/
+>>
+>> So I relocated this configuration to that directory. I'll have
+>> it pushed out in the next day or so (I'm getting on a plane
+>> shortly).
+>>
+>> Bruce
+>>
+>>>
+>>> Signed-off-by: Nitin A Kamble<nitin.a.kamble@intel.com>
+>>> ---
+>>>    meta/cfg/kernel-cache/features/btrfs/btrfs.cfg |    1 +
+>>>    meta/cfg/kernel-cache/features/btrfs/btrfs.scc |    1 +
+>>>    2 files changed, 2 insertions(+), 0 deletions(-)
+>>>    create mode 100644 meta/cfg/kernel-cache/features/btrfs/btrfs.cfg
+>>>    create mode 100644 meta/cfg/kernel-cache/features/btrfs/btrfs.scc
+>>>
+>>> diff --git a/meta/cfg/kernel-cache/features/btrfs/btrfs.cfg
+>> b/meta/cfg/kernel-cache/features/btrfs/btrfs.cfg
+>>> new file mode 100644
+>>> index 0000000..605c183
+>>> --- /dev/null
+>>> +++ b/meta/cfg/kernel-cache/features/btrfs/btrfs.cfg
+>>> @@ -0,0 +1 @@
+>>> +CONFIG_BTRFS_FS=y
+>>> diff --git a/meta/cfg/kernel-cache/features/btrfs/btrfs.scc
+>> b/meta/cfg/kernel-cache/features/btrfs/btrfs.scc
+>>> new file mode 100644
+>>> index 0000000..cf18a2e
+>>> --- /dev/null
+>>> +++ b/meta/cfg/kernel-cache/features/btrfs/btrfs.scc
+>>> @@ -0,0 +1 @@
+>>> +kconf non-hardware btrfs.cfg
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
