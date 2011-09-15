@@ -1,32 +1,36 @@
-Return-Path: <eballetbo@gmail.com>
-Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F00C1E004F1
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 07:54:58 -0700 (PDT)
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-bw0-f48.google.com (mail-bw0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3A07E004F1
+	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 08:06:31 -0700 (PDT)
 Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
 	(1024-bit key; insecure key) header.i=@gmail.com;
 	x-dkim-adsp=none (insecure policy)
-Received: by wwf5 with SMTP id 5so3223383wwf.11
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 07:54:56 -0700 (PDT)
+Received: by bkbzu5 with SMTP id zu5so3704800bkb.35
+	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 08:06:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=2sSMf6HPF/U23DgEUeK1I6/nNVD4E4x9MUJ+z31Oq/A=;
-	b=BKqiAsKPbnNjDnZznXDXXNgm9Ldy+WGt0smC4ZY5hlynh3Uo9YK8PR0JFzopGyNwEO
-	QsQX3tQbRbw8/iHQPcOGmASI1eHaHF3Dhzc+gh8i0pKIvH8CS0FGitl7LC0oBBb4ptJS
-	QdqMa4x0qJbjTxfhyfEpLvRB52vNRMKWRSggk=
-Received: by 10.216.221.93 with SMTP id q71mr3784815wep.0.1316098496353;
-	Thu, 15 Sep 2011 07:54:56 -0700 (PDT)
-Received: from localhost.localdomain (249.Red-80-33-164.staticIP.rima-tde.net.
-	[80.33.164.249])
-	by mx.google.com with ESMTPS id r27sm8187992wbn.10.2011.09.15.07.54.50
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=AUQ0whwi8QLFWDl6UQXPzTNctIGZ3cppa4JOPBWSXj8=;
+	b=LMKhGHf771nTMnfyTZfrups2p6Qz0GbD9h+KfOBZSEgMDrqxgGMjkDGAc5p4lWHzIq
+	MxW88CYwJQl3rx+N+B/gSQK2ehWFTVSt1Muh1YrbeUTrjkOQvCfO8849inDtHoWCtB8w
+	n+ZiiJ7pGZxwJKSY029QbaWWRa1RuIUG03l3w=
+Received: by 10.204.132.9 with SMTP id z9mr821285bks.333.1316099188605;
+	Thu, 15 Sep 2011 08:06:28 -0700 (PDT)
+Received: from localhost ([94.230.152.246])
+	by mx.google.com with ESMTPS id t16sm3693680bkv.11.2011.09.15.08.06.26
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 15 Sep 2011 07:54:51 -0700 (PDT)
-From: Enric Balletbo i Serra <eballetbo@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu, 15 Sep 2011 16:54:43 +0200
-Message-Id: <1316098483-3446-1-git-send-email-eballetbo@gmail.com>
-X-Mailer: git-send-email 1.7.1
-Cc: Enric Balletbo i Serra <eballetbo@iseebcn.com>
-Subject: [PATCH] openssh: Create /etc/ssh/ssh_host_ecdsa_key if it doesn't exist
+	Thu, 15 Sep 2011 08:06:27 -0700 (PDT)
+Date: Thu, 15 Sep 2011 17:06:19 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Enric Balletbo i Serra <eballetbo@gmail.com>
+Message-ID: <20110915150619.GC7445@jama.jama.net>
+References: <1316098483-3446-1-git-send-email-eballetbo@gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <1316098483-3446-1-git-send-email-eballetbo@gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org, Enric Balletbo i Serra <eballetbo@iseebcn.com>
+Subject: Re: [PATCH] openssh: Create /etc/ssh/ssh_host_ecdsa_key if it doesn't exist
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,54 +42,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Sep 2011 14:54:59 -0000
+X-List-Received-Date: Thu, 15 Sep 2011 15:06:32 -0000
+X-Groupsio-MsgNum: 2787
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="t0UkRYy7tHLRMCai"
+Content-Disposition: inline
 
-From: Enric Balletbo i Serra <eballetbo@iseebcn.com>
+--t0UkRYy7tHLRMCai
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-After OpenSSH 5.7 the ECDSA is the preferred key algorithm when
-both the client and server support it.
+On Thu, Sep 15, 2011 at 04:54:43PM +0200, Enric Balletbo i Serra wrote:
+> From: Enric Balletbo i Serra <eballetbo@iseebcn.com>
+>=20
+> After OpenSSH 5.7 the ECDSA is the preferred key algorithm when
+> both the client and server support it.
 
-This patch solves the error that shows:
+Please use right mailing list for oe-core patches..
+http://lists.linuxtogo.org/pipermail/openembedded-core/2011-September/00961=
+3.html
 
-        Could not load host key: /etc/ssh_host_ecdsa_key
+--t0UkRYy7tHLRMCai
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-creating a ECDSA key if it doesn't exist.
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.18 (GNU/Linux)
 
-Signed-off-by: Enric Balletbo i Serra <eballetbo@gmail.com>
----
- .../openssh/openssh-5.8p2/init                     |    4 ++++
- meta/recipes-connectivity/openssh/openssh_5.8p2.bb |    2 +-
- 2 files changed, 5 insertions(+), 1 deletions(-)
+iEYEARECAAYFAk5yFGsACgkQN1Ujt2V2gBwPhwCbBIioLpHkVx3fRyf/YtPgpC+d
+RoMAn013t2p1aU4fW1zYArBnqo4emL0V
+=uIwf
+-----END PGP SIGNATURE-----
 
-diff --git a/meta/recipes-connectivity/openssh/openssh-5.8p2/init b/meta/recipes-connectivity/openssh/openssh-5.8p2/init
-index b16cbd6..8145ec9 100644
---- a/meta/recipes-connectivity/openssh/openssh-5.8p2/init
-+++ b/meta/recipes-connectivity/openssh/openssh-5.8p2/init
-@@ -40,6 +40,10 @@ check_keys() {
- 		echo "  generating ssh DSA key..."
- 		ssh-keygen -q -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa
- 	fi
-+	if [ ! -f /etc/ssh/ssh_host_ecdsa_key ]; then
-+		echo "  generating ssh ECDSA key..."
-+		ssh-keygen -q -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa
-+	fi
- }
- 
- export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
-diff --git a/meta/recipes-connectivity/openssh/openssh_5.8p2.bb b/meta/recipes-connectivity/openssh/openssh_5.8p2.bb
-index 89b011d..030a83b 100644
---- a/meta/recipes-connectivity/openssh/openssh_5.8p2.bb
-+++ b/meta/recipes-connectivity/openssh/openssh_5.8p2.bb
-@@ -7,7 +7,7 @@ SECTION = "console/network"
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://LICENCE;md5=bae9a689be41581503bcf95d8fb42c4e"
- 
--PR = "r1"
-+PR = "r2"
- 
- DEPENDS = "zlib openssl"
- DEPENDS += "${@base_contains('DISTRO_FEATURES', 'pam', 'libpam', '', d)}"
--- 
-1.7.1
-
-
+--t0UkRYy7tHLRMCai--
