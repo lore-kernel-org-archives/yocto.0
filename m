@@ -1,22 +1,60 @@
-Return-Path: <jeffrey.osier-mixon@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E714BE004DD
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 10:40:14 -0700 (PDT)
-Received: from mail-wy0-f172.google.com ([74.125.82.172])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 15 Sep 2011 10:40:14 -0700
-Received: by wyg24 with SMTP id 24so4067081wyg.17
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 10:40:12 -0700 (PDT)
+Return-Path: <song.liu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6001E004DD;
+	Thu, 15 Sep 2011 15:15:26 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 15 Sep 2011 15:15:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,389,1312182000"; d="scan'208,217";a="17599586"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by AZSMGA002.ch.intel.com with ESMTP; 15 Sep 2011 15:15:24 -0700
+Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 15 Sep 2011 15:15:24 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.19]) by
+	ORSMSX103.amr.corp.intel.com ([169.254.2.115]) with mapi id
+	14.01.0323.003; Thu, 15 Sep 2011 15:15:23 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "Liu, Song" <song.liu@intel.com>, "'McCombe, Kevin'"
+	<kevin.mccombe@windriver.com>, "Wold, Saul" <saul.wold@intel.com>, "Zhang, 
+	Jessica" <jessica.zhang@intel.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Polk, Jeffrey'" <jeff.polk@windriver.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "Li, Susie" <susie.li@intel.com>, "Lock,
+	Joshua"
+	<joshua.lock@intel.com>, 'Bruce Ashfield' <bruce.ashfield@windriver.com>,
+	"Zanussi, Tom" <tom.zanussi@intel.com>, "Hart, Darren"
+	<darren.hart@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Stewart, David C"
+	<david.c.stewart@intel.com>, "'Lieu.Ta@windriver.com'"
+	<Lieu.Ta@windriver.com>, "'paul.anderson@windriver.com'"
+	<paul.anderson@windriver.com>, "Osier-mixon, Jeffrey"
+	<jeffrey.osier-mixon@intel.com>, "Dmytriyenko, Denys" <denys@ti.com>,
+	"Kooi, Koen" <k-kooi@ti.com>, "'yocto-ab@yoctoproject.org'"
+	<yocto-ab@yoctoproject.org>, "Erway, Tracey M" <tracey.m.erway@intel.com>, 
+	'Daniel Cauchy' <dcauchy@mvista.com>, "Wang,
+	Shane" <shane.wang@intel.com>, 
+	"'Kridner, Jason'" <jdk@ti.com>, "Yu, Ke" <ke.yu@intel.com>, "Rifenbark,
+	Scott M" <scott.m.rifenbark@intel.com>, "'Dixon, Brad'"
+	<Brad_Dixon@mentor.com>, 'Jeremy Puhlman' <jpuhlman@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"'shsift-yocto@yahoo.com'"
+	<shsift-yocto@yahoo.com>, "'morvek@mvista.com'" <morvek@mvista.com>,
+	"'Ruff, Nithya'" <Nithya.Ruff@windriver.com>, "Moeller, Thorsten"
+	<thorsten.moeller@intel.com>, "Saxena, Rahul" <rahul.saxena@intel.com>, 
+	"'Ranslam, Rob'" <Rob.Ranslam@windriver.com>, 'Anders Darander'
+	<anders@chargestorm.se>, "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+Thread-Topic: Yocto Project 1.1 release go/no-go meeting
+Thread-Index: Acxz9PVxafe+k7T8RjCH3rgiZLJndg==
+Date: Thu, 15 Sep 2011 22:15:22 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F0AE96@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.216.49.148 with SMTP id x20mr532990web.73.1316108412170; Thu,
-	15 Sep 2011 10:40:12 -0700 (PDT)
-Received: by 10.216.205.139 with HTTP; Thu, 15 Sep 2011 10:40:12 -0700 (PDT)
-In-Reply-To: <CALZ2gZUiMOkF9q4h8QVaHp7DxnV5YbRE0iJ6bqcyVsncbW1ZfA@mail.gmail.com>
-References: <CALZ2gZUiMOkF9q4h8QVaHp7DxnV5YbRE0iJ6bqcyVsncbW1ZfA@mail.gmail.com>
-Date: Thu, 15 Sep 2011 10:40:12 -0700
-Message-ID: <CALZ2gZUkkkyEyJNThkzEk7S0x0JuH5Fi9VeriY4AnopmnC8S1A@mail.gmail.com>
-From: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
-To: yocto@yoctoproject.org
-Subject: Re: ELCE Presentations
+X-Mailman-Approved-At: Thu, 15 Sep 2011 16:04:34 -0700
+Subject: Yocto Project 1.1 release go/no-go meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,63 +66,183 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Sep 2011 17:40:15 -0000
-Content-Type: multipart/alternative; boundary=001485f7d49a64b44c04acfe5ed3
+X-List-Received-Date: Thu, 15 Sep 2011 22:15:27 -0000
+X-Groupsio-MsgNum: 2791
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A16F0AE96ORSMSX101amrcor_"
 
---001485f7d49a64b44c04acfe5ed3
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi folks - by now anyone who has had a presentation accepted at ELCE should
-be notified and registered. If you have been accepted to present about the
-Yocto Project, please let me know (and congratulations). If you already
-responded to this message earlier, you don't have to do so again. :)
-
-thanks
-
-On Thu, Aug 11, 2011 at 6:12 PM, Osier-mixon, Jeffrey <
-jeffrey.osier-mixon@intel.com> wrote:
-
-> Hi all,
->
-> The Linux Foundation is rolling out responses to submissions for ELCE.  If
-> you submitted a talk that is related to the Yocto Project that was accepted,
-> please let me know so I can keep track of such things.
->
-> thanks!
->
-> Jeff
->
-
-
-
--- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
-
---001485f7d49a64b44c04acfe5ed3
-Content-Type: text/html; charset=ISO-8859-1
+--_000_7E680CB2A76BB8438D08CF13C09FC53A16F0AE96ORSMSX101amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi folks - by now anyone who has had a presentation accepted at ELCE should=
- be notified and registered. If you have been accepted to present about the=
- Yocto Project, please let me know (and congratulations). If you already re=
-sponded to this message earlier, you don&#39;t have to do so again. :)<div>
-<br></div><div>thanks<br><br><div class=3D"gmail_quote">On Thu, Aug 11, 201=
-1 at 6:12 PM, Osier-mixon, Jeffrey <span dir=3D"ltr">&lt;<a href=3D"mailto:=
-jeffrey.osier-mixon@intel.com">jeffrey.osier-mixon@intel.com</a>&gt;</span>=
- wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex;">Hi all,<div><br></div><div>The Linux Founda=
-tion is rolling out responses to submissions for ELCE. =A0If you submitted =
-a talk that is related to the Yocto Project that was accepted, please let m=
-e know so I can keep track of such things.</div>
+When: Monday, October 03, 2011 8:00 AM-8:30 AM (UTC-08:00) Pacific Time (US=
+ & Canada).
+Where: Bridge Info Encosed
 
-<div><br></div><div>thanks!</div><div><br></div><div>Jeff</div>
-</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>Jeff Osier-M=
-ixon=A0<a href=3D"http://jefro.net/blog" target=3D"_blank">http://jefro.net=
-/blog</a><div>Yocto Project Community Manager @Intel=A0<a href=3D"http://yo=
-ctoproject.org/" target=3D"_blank">http://yoctoproject.org</a></div>
+Note: The GMT offset above does not reflect daylight saving time adjustment=
+s.
+
+*~*~*~*~*~*~*~*~*~*
+
+Monday, October 03, 2011, 08:00 AM US Pacific Time
+916-356-2663, 8-356-2663, Bridge: 94, Passcode: 4176277
+Speed dialer: inteldialer://94,4176277 | Learn more<http://it.intel.com/pro=
+ducts/handhelds/speeddial.htm>
+
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A16F0AE96ORSMSX101amrcor_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
+<div>When: Monday, October 03, 2011 8:00 AM-8:30 AM (UTC-08:00) Pacific Tim=
+e (US &amp; Canada).</div>
+<div>Where: Bridge Info Encosed</div>
+<div>&nbsp;</div>
+<div>Note: The GMT offset above does not reflect daylight saving time adjus=
+tments.</div>
+<div>&nbsp;</div>
+<div>*~*~*~*~*~*~*~*~*~*</div>
+<div>&nbsp;</div>
+<div><font face=3D"Verdana" size=3D"2" color=3D"#444444"><span style=3D"fon=
+t-size:8.5pt;"><b>Monday, October 03, 2011, 08:00 AM US Pacific Time
 <br>
-</div>
 
---001485f7d49a64b44c04acfe5ed3--
+</b>916-356-2663, 8-356-2663, Bridge: 94, Passcode: 4176277<br>
+
+Speed dialer: inteldialer://94,4176277 | <a href=3D"http://it.intel.com/pro=
+ducts/handhelds/speeddial.htm"><font color=3D"blue"><u>Learn more</u></font=
+></a></span></font></div>
+<div>&nbsp;</div>
+</span></font>
+</body>
+</html>
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A16F0AE96ORSMSX101amrcor_
+Content-Type: text/calendar; charset="utf-8"; method=REQUEST
+Content-Transfer-Encoding: base64
+
+QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
+ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpQYWNpZmlj
+IFN0YW5kYXJkIFRpbWUNCkJFR0lOOlNUQU5EQVJEDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0K
+VFpPRkZTRVRGUk9NOi0wNzAwDQpUWk9GRlNFVFRPOi0wODAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJ
+TlRFUlZBTD0xO0JZREFZPTFTVTtCWU1PTlRIPTExDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJ
+R0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOi0wODAwDQpUWk9GRlNF
+VFRPOi0wNzAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPTJTVTtCWU1PTlRI
+PTMNCkVORDpEQVlMSUdIVA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpPUkdBTklaRVI7
+Q049IkxpdSwgU29uZyI6TUFJTFRPOnNvbmcubGl1QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
+RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iTGl1LCBT
+b25nIjoNCiBNQUlMVE86c29uZy5saXVAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJU
+SUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSInTWNDb21iZSwgDQog
+S2V2aW4nIjpNQUlMVE86a2V2aW4ubWNjb21iZUB3aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xF
+PVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJXb2xk
+LCBTYXVsIg0KIDpNQUlMVE86c2F1bC53b2xkQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEt
+UEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iWmhhbmcsIEpl
+cw0KIHNpY2EiOk1BSUxUTzpqZXNzaWNhLnpoYW5nQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
+RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iJ2RlVnJp
+ZXMsIA0KIEFsZXgnIjpNQUlMVE86QWxleC5kZVZyaWVzQHdpbmRyaXZlci5jb20NCkFUVEVOREVF
+O1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049
+IidQb2xrLCBKZWYNCiBmcmV5JyI6TUFJTFRPOmplZmYucG9sa0B3aW5kcml2ZXIuY29tDQpBVFRF
+TkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVF
+O0NOPSInSGF0bGUsIE1hDQogcmsnIjpNQUlMVE86bWFyay5oYXRsZUB3aW5kcml2ZXIuY29tDQpB
+VFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1U
+UlVFO0NOPSJQdXJkaWUsIFJpDQogY2hhcmQiOk1BSUxUTzpyaWNoYXJkLnB1cmRpZUBpbnRlbC5j
+b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
+U1ZQPVRSVUU7Q049IkxpLCBTdXNpZSI6DQogTUFJTFRPOnN1c2llLmxpQGludGVsLmNvbQ0KQVRU
+RU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJV
+RTtDTj0iTG9jaywgSm9zaA0KIHVhIjpNQUlMVE86am9zaHVhLmxvY2tAaW50ZWwuY29tDQpBVFRF
+TkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVF
+O0NOPSdCcnVjZSBBc2gNCiBmaWVsZCc6TUFJTFRPOmJydWNlLmFzaGZpZWxkQHdpbmRyaXZlci5j
+b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
+U1ZQPVRSVUU7Q049IlphbnVzc2ksIFQNCiBvbSI6TUFJTFRPOnRvbS56YW51c3NpQGludGVsLmNv
+bQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JT
+VlA9VFJVRTtDTj0iSGFydCwgRGFycg0KIGVuIjpNQUlMVE86ZGFycmVuLmhhcnRAaW50ZWwuY29t
+DQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNW
+UD1UUlVFO0NOPSJGbGFuYWdhbiwgDQogRWxpemFiZXRoIjpNQUlMVE86ZWxpemFiZXRoLmZsYW5h
+Z2FuQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVF
+RFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iU3Rld2FydCwgRA0KIGF2aWQgQyI6TUFJTFRPOmRhdmlk
+LmMuc3Rld2FydEBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRT
+VEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049J0xpZXUuVGFAdw0KIGluZHJpdmVyLmNvbSc6
+TUFJTFRPOkxpZXUuVGFAd2luZHJpdmVyLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
+TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0ncGF1bC5hbmRlDQogcnNvbkB3
+aW5kcml2ZXIuY29tJzpNQUlMVE86cGF1bC5hbmRlcnNvbkB3aW5kcml2ZXIuY29tDQpBVFRFTkRF
+RTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NO
+PSJPc2llci1taXhvDQogbiwgSmVmZnJleSI6TUFJTFRPOmplZmZyZXkub3NpZXItbWl4b25AaW50
+ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJ
+T047UlNWUD1UUlVFO0NOPSJEbXl0cml5ZW5rDQogbywgRGVueXMiOk1BSUxUTzpkZW55c0B0aS5j
+b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
+U1ZQPVRSVUU7Q049Iktvb2ksIEtvZW4iDQogOk1BSUxUTzprLWtvb2lAdGkuY29tDQpBVFRFTkRF
+RTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NO
+PSd5b2N0by1hYkANCiB5b2N0b3Byb2plY3Qub3JnJzpNQUlMVE86eW9jdG8tYWJAeW9jdG9wcm9q
+ZWN0Lm9yZw0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNU
+SU9OO1JTVlA9VFJVRTtDTj0iRXJ3YXksIFRyYQ0KIGNleSBNIjpNQUlMVE86dHJhY2V5Lm0uZXJ3
+YXlAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVE
+Uy1BQ1RJT047UlNWUD1UUlVFO0NOPSdEYW5pZWwgQ2ENCiB1Y2h5JzpNQUlMVE86ZGNhdWNoeUBt
+dmlzdGEuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1B
+Q1RJT047UlNWUD1UUlVFO0NOPSJXYW5nLCBTaGFuDQogZSI6TUFJTFRPOnNoYW5lLndhbmdAaW50
+ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJ
+T047UlNWUD1UUlVFO0NOPSInS3JpZG5lciwgDQogSmFzb24nIjpNQUlMVE86amRrQHRpLmNvbQ0K
+QVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9
+VFJVRTtDTj0iWXUsIEtlIjpNQUkNCiBMVE86a2UueXVAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xF
+PVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJSaWZl
+bmJhcmssDQogIFNjb3R0IE0iOk1BSUxUTzpzY290dC5tLnJpZmVuYmFya0BpbnRlbC5jb20NCkFU
+VEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRS
+VUU7Q049IidEaXhvbiwgQnINCiBhZCciOk1BSUxUTzpCcmFkX0RpeG9uQG1lbnRvci5jb20NCkFU
+VEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRS
+VUU7Q049J0plcmVteSBQdQ0KIGhsbWFuJzpNQUlMVE86anB1aGxtYW5AZ21haWwuY29tDQpBVFRF
+TkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVF
+O0NOPXlvY3RvQHlvY3QNCiBvcHJvamVjdC5vcmc6TUFJTFRPOnlvY3RvQHlvY3RvcHJvamVjdC5v
+cmcNCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
+U1ZQPVRSVUU7Q049J3Noc2lmdC15bw0KIGN0b0B5YWhvby5jb20nOk1BSUxUTzpzaHNpZnQteW9j
+dG9AeWFob28uY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVE
+Uy1BQ1RJT047UlNWUD1UUlVFO0NOPSdtb3J2ZWtAbXYNCiBpc3RhLmNvbSc6TUFJTFRPOm1vcnZl
+a0BtdmlzdGEuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVE
+Uy1BQ1RJT047UlNWUD1UUlVFO0NOPSInUnVmZiwgTml0DQogaHlhJyI6TUFJTFRPOk5pdGh5YS5S
+dWZmQHdpbmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFU
+PU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049Ik1vZWxsZXIsIFQNCiBob3JzdGVuIjpNQUlMVE86
+dGhvcnN0ZW4ubW9lbGxlckBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5U
+O1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlNheGVuYSwgUmENCiBodWwiOk1B
+SUxUTzpyYWh1bC5zYXhlbmFAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFO
+VDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSInUmFuc2xhbSwgDQogUm9iJyI6
+TUFJTFRPOlJvYi5SYW5zbGFtQHdpbmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJ
+Q0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049J0FuZGVycyBEYQ0KIHJh
+bmRlcic6TUFJTFRPOmFuZGVyc0BjaGFyZ2VzdG9ybS5zZQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFS
+VElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iQm9ka2UsIEtpcw0K
+IGhvcmUgSyI6TUFJTFRPOmtpc2hvcmUuay5ib2RrZUBpbnRlbC5jb20NCkRFU0NSSVBUSU9OO0xB
+TkdVQUdFPWVuLVVTOldoZW46IE1vbmRheVwsIE9jdG9iZXIgMDNcLCAyMDExIDg6MDAgQU0tODoz
+MCBBTQ0KICAoVVRDLTA4OjAwKSBQYWNpZmljIFRpbWUgKFVTICYgQ2FuYWRhKS5cbldoZXJlOiBC
+cmlkZ2UgSW5mbyBFbmNvc2VkXG5cbk5vDQogdGU6IFRoZSBHTVQgb2Zmc2V0IGFib3ZlIGRvZXMg
+bm90IHJlZmxlY3QgZGF5bGlnaHQgc2F2aW5nIHRpbWUgYWRqdXN0bWVudHMNCiAuXG5cbip+Kn4q
+fip+Kn4qfip+Kn4qfipcblxuTW9uZGF5XCwgT2N0b2JlciAwM1wsIDIwMTFcLCAwODowMCBBTSBV
+UyBQYWNpZg0KIGljIFRpbWVcbjkxNi0zNTYtMjY2M1wsIDgtMzU2LTI2NjNcLCBCcmlkZ2U6IDk0
+XCwgUGFzc2NvZGU6IDQxNzYyNzdcblNwZWVkDQogIGRpYWxlcjogaW50ZWxkaWFsZXI6Ly85NFws
+NDE3NjI3NyB8IExlYXJuIG1vcmU8aHR0cDovL2l0LmludGVsLmNvbS9wcm9kdWMNCiB0cy9oYW5k
+aGVsZHMvc3BlZWRkaWFsLmh0bT5cblxuDQpTVU1NQVJZO0xBTkdVQUdFPWVuLVVTOllvY3RvIFBy
+b2plY3QgMS4xIHJlbGVhc2UgZ28vbm8tZ28gbWVldGluZw0KRFRTVEFSVDtUWklEPVBhY2lmaWMg
+U3RhbmRhcmQgVGltZToyMDExMTAwM1QwODAwMDANCkRURU5EO1RaSUQ9UGFjaWZpYyBTdGFuZGFy
+ZCBUaW1lOjIwMTExMDAzVDA4MzAwMA0KVUlEOjA0MDAwMDAwODIwMEUwMDA3NEM1QjcxMDFBODJF
+MDA4MDAwMDAwMDBGMDdGQUEyQUJBNzNDQzAxMDAwMDAwMDAwMDAwMDAwDQogMDEwMDAwMDAwMzZE
+RUFFOTY3MDAxNEQ0MkExOEEyRTJFNTBBRjZBODYNCkNMQVNTOlBVQkxJQw0KUFJJT1JJVFk6NQ0K
+RFRTVEFNUDoyMDExMDkxNVQyMjE1MjFaDQpUUkFOU1A6T1BBUVVFDQpTVEFUVVM6Q09ORklSTUVE
+DQpTRVFVRU5DRTowDQpMT0NBVElPTjtMQU5HVUFHRT1lbi1VUzpCcmlkZ2UgSW5mbyBFbmNvc2Vk
+DQpYLU1JQ1JPU09GVC1DRE8tQVBQVC1TRVFVRU5DRTowDQpYLU1JQ1JPU09GVC1DRE8tT1dORVJB
+UFBUSUQ6MTc4NTY5ODI2Nw0KWC1NSUNST1NPRlQtQ0RPLUJVU1lTVEFUVVM6VEVOVEFUSVZFDQpY
+LU1JQ1JPU09GVC1DRE8tSU5URU5ERURTVEFUVVM6QlVTWQ0KWC1NSUNST1NPRlQtQ0RPLUFMTERB
+WUVWRU5UOkZBTFNFDQpYLU1JQ1JPU09GVC1DRE8tSU1QT1JUQU5DRToxDQpYLU1JQ1JPU09GVC1D
+RE8tSU5TVFRZUEU6MA0KWC1NSUNST1NPRlQtRElTQUxMT1ctQ09VTlRFUjpGQUxTRQ0KQkVHSU46
+VkFMQVJNDQpBQ1RJT046RElTUExBWQ0KREVTQ1JJUFRJT046UkVNSU5ERVINClRSSUdHRVI7UkVM
+QVRFRD1TVEFSVDotUFQxNU0NCkVORDpWQUxBUk0NCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVIN
+Cg==
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A16F0AE96ORSMSX101amrcor_--
