@@ -1,26 +1,32 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DB8AE004F1
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 07:35:59 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p8FEZww2000957
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 07:35:58 -0700 (PDT)
-Received: from Macintosh-5.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 15 Sep 2011 07:35:51 -0700
-Message-ID: <4E720D40.9080409@windriver.com>
-Date: Thu, 15 Sep 2011 09:35:44 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:6.0.2) Gecko/20110902 Thunderbird/6.0.2
-MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EC00638@WX-ExchMB.insigma.com.cn>
-	<1865303E0DED764181A9D882DEF65FB6BC05D6E36B@shsmsx502.ccr.corp.intel.com>
-In-Reply-To: <1865303E0DED764181A9D882DEF65FB6BC05D6E36B@shsmsx502.ccr.corp.intel.com>
-Subject: Re: tcf-agent fail to run on imx28evk
+Return-Path: <eballetbo@gmail.com>
+Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F00C1E004F1
+	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 07:54:58 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by wwf5 with SMTP id 5so3223383wwf.11
+	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 07:54:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=2sSMf6HPF/U23DgEUeK1I6/nNVD4E4x9MUJ+z31Oq/A=;
+	b=BKqiAsKPbnNjDnZznXDXXNgm9Ldy+WGt0smC4ZY5hlynh3Uo9YK8PR0JFzopGyNwEO
+	QsQX3tQbRbw8/iHQPcOGmASI1eHaHF3Dhzc+gh8i0pKIvH8CS0FGitl7LC0oBBb4ptJS
+	QdqMa4x0qJbjTxfhyfEpLvRB52vNRMKWRSggk=
+Received: by 10.216.221.93 with SMTP id q71mr3784815wep.0.1316098496353;
+	Thu, 15 Sep 2011 07:54:56 -0700 (PDT)
+Received: from localhost.localdomain (249.Red-80-33-164.staticIP.rima-tde.net.
+	[80.33.164.249])
+	by mx.google.com with ESMTPS id r27sm8187992wbn.10.2011.09.15.07.54.50
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 15 Sep 2011 07:54:51 -0700 (PDT)
+From: Enric Balletbo i Serra <eballetbo@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 15 Sep 2011 16:54:43 +0200
+Message-Id: <1316098483-3446-1-git-send-email-eballetbo@gmail.com>
+X-Mailer: git-send-email 1.7.1
+Cc: Enric Balletbo i Serra <eballetbo@iseebcn.com>
+Subject: [PATCH] openssh: Create /etc/ssh/ssh_host_ecdsa_key if it doesn't exist
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,94 +38,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Sep 2011 14:35:59 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 15 Sep 2011 14:54:59 -0000
 
-On 9/15/11 8:43 AM, Cui, Dexuan wrote:
-> Can you please try to remove “image-prelink" from conf/local.conf’s USER_CLASSES
-> and re-build an image to see if that would make a difference?
-> 
->  
-> 
-> Recently looks prelinking was broken and this causes segfaults in some packages.
-> 
+From: Enric Balletbo i Serra <eballetbo@iseebcn.com>
 
-I believe the latest prelinker update went in this morning (US time).  So try
-again and see if that resolves the issue.
+After OpenSSH 5.7 the ECDSA is the preferred key algorithm when
+both the client and server support it.
 
-To check if you are running the latest version of the prelinker,
-meta/recipes-devtools/prelink/prelink_git.bb should reference the SRCREV of
-3e3f9b0876aa5ac83a783a95b8bab52cb38ed785
+This patch solves the error that shows:
 
-There was a printf issue that was causing things using threading, specifically
-thread local storage, to not always prelink properly.  ARM seemed to have
-components that were randomly affected.
+        Could not load host key: /etc/ssh_host_ecdsa_key
 
---Mark
+creating a ECDSA key if it doesn't exist.
 
-> 
-> Thanks,
-> 
-> -- Dexuan
-> 
->  
-> 
-> *From:*yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-> *On Behalf Of *蔡振军
-> *Sent:* Thursday, September 15, 2011 5:27 PM
-> *To:* yocto@yoctoproject.org
-> *Subject:* [yocto] tcf-agent fail to run on imx28evk
-> 
->  
-> 
-> Hi ALL,
-> 
->          I build one image for imx28evk. But tcf-agent fail to start in boot
-> process and get same fault when I run it manually.
-> 
-> Log like this:
-> 
->                 /INIT: Entering runlevel: 5/
-> 
-> /Starting syslogd/klogd: done/
-> 
-> /Starting tcf-agent: Alignment trap: tcf-agent (1526) PC=0x4e704ca4
-> Instr=0xe7913103 Address=0xfffffffe FSR 0x001/
-> 
-> /Segmentation fault/
-> 
-> /FAIL/
-> 
-> /Stopping Bootlog daemon: bootlogd./
-> 
->          I have tried to update the version of tcf-agent. Error still exist.
-> 
->  
-> 
-> Best regards
-> 
-> Feye
-> 
->  
-> 
->  
-> 
-> 蔡振军
-> 
-> 网新技术有限公司物联网事业部
-> 
-> 杭州天目山路226号网新大厦
-> 
-> 电话-138 6745 1910
-> 
->  
-> 
-> 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Signed-off-by: Enric Balletbo i Serra <eballetbo@gmail.com>
+---
+ .../openssh/openssh-5.8p2/init                     |    4 ++++
+ meta/recipes-connectivity/openssh/openssh_5.8p2.bb |    2 +-
+ 2 files changed, 5 insertions(+), 1 deletions(-)
+
+diff --git a/meta/recipes-connectivity/openssh/openssh-5.8p2/init b/meta/recipes-connectivity/openssh/openssh-5.8p2/init
+index b16cbd6..8145ec9 100644
+--- a/meta/recipes-connectivity/openssh/openssh-5.8p2/init
++++ b/meta/recipes-connectivity/openssh/openssh-5.8p2/init
+@@ -40,6 +40,10 @@ check_keys() {
+ 		echo "  generating ssh DSA key..."
+ 		ssh-keygen -q -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa
+ 	fi
++	if [ ! -f /etc/ssh/ssh_host_ecdsa_key ]; then
++		echo "  generating ssh ECDSA key..."
++		ssh-keygen -q -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa
++	fi
+ }
+ 
+ export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
+diff --git a/meta/recipes-connectivity/openssh/openssh_5.8p2.bb b/meta/recipes-connectivity/openssh/openssh_5.8p2.bb
+index 89b011d..030a83b 100644
+--- a/meta/recipes-connectivity/openssh/openssh_5.8p2.bb
++++ b/meta/recipes-connectivity/openssh/openssh_5.8p2.bb
+@@ -7,7 +7,7 @@ SECTION = "console/network"
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://LICENCE;md5=bae9a689be41581503bcf95d8fb42c4e"
+ 
+-PR = "r1"
++PR = "r2"
+ 
+ DEPENDS = "zlib openssl"
+ DEPENDS += "${@base_contains('DISTRO_FEATURES', 'pam', 'libpam', '', d)}"
+-- 
+1.7.1
 
 
