@@ -1,36 +1,25 @@
-Return-Path: <eballetbo@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 712EEE004D1
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 01:35:05 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iabz7 with SMTP id z7so1566998iab.35
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 01:35:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=/PvXqiaxBS6udAoxg8aa2TjuTaqKBDxpa3QT9VjEvZo=;
-	b=EbMRJ/Gw/IprKswrQ7Mj80nwmgY4yVpJq24Y8SQMecK3vyGZTb3TtKcLfjJiMM784J
-	OopMs18FcsfA4mId71qxH7+z/yC1t4+TI87CclFrx3bqDudiLUEn12bMhkENByKRCMao
-	RQB2Lwx3HknvVjQccHVqBfJL5LaYrKGI84+6k=
+Return-Path: <caizhenjun@insigma.com.cn>
+Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5995FE004D1
+	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 02:27:05 -0700 (PDT)
+Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
+	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
+	Thu, 15 Sep 2011 17:26:52 +0800
+Received: from WX-ExchMB.insigma.com.cn ([fe80::5efe:10.0.1.203]) by
+	WX-ExchMB.insigma.com.cn ([fe80::5efe:10.0.1.203%12]) with mapi;
+	Thu, 15 Sep 2011 17:26:50 +0800
+From: =?gb2312?B?sszV8b78?= <caizhenjun@insigma.com.cn>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Thu, 15 Sep 2011 17:27:15 +0800
+Thread-Topic: tcf-agent fail to run on imx28evk
+Thread-Index: AcxziahIeUfV53xdRHK0lEPBIN69DQ==
+Message-ID: <DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EC00638@WX-ExchMB.insigma.com.cn>
+Accept-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN
 MIME-Version: 1.0
-Received: by 10.231.83.135 with SMTP id f7mr1419449ibl.90.1316075704909; Thu,
-	15 Sep 2011 01:35:04 -0700 (PDT)
-Received: by 10.231.158.72 with HTTP; Thu, 15 Sep 2011 01:35:04 -0700 (PDT)
-In-Reply-To: <CAFqH_53thaUBy3Qd_ZBmSefoHa9ijLWs9p-Qe+dg6JCP_PR3jg@mail.gmail.com>
-References: <CAFqH_53qx7d13w-AcNErp5qm9HmhOOkPU62pD03Xv222YMO8YQ@mail.gmail.com>
-	<C10D3FB0CD45994C8A51FEC1227CE22F30C590D6B8@shsmsx502.ccr.corp.intel.com>
-	<CAFqH_520LDVehR==BXrmLxG_9y=Dsh5NydND1KCkG4QKOd6bdQ@mail.gmail.com>
-	<C10D3FB0CD45994C8A51FEC1227CE22F30C590D755@shsmsx502.ccr.corp.intel.com>
-	<CAFqH_53thaUBy3Qd_ZBmSefoHa9ijLWs9p-Qe+dg6JCP_PR3jg@mail.gmail.com>
-Date: Thu, 15 Sep 2011 10:35:04 +0200
-Message-ID: <CAFqH_51jJjMvVMJpr6a6RazvnToB7reXVNU-+6c86FqzuFvFzA@mail.gmail.com>
-From: =?UTF-8?Q?Enric_Balletb=C3=B2_i_Serra?= <eballetbo@gmail.com>
-To: "Lu, Lianhao" <lianhao.lu@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Error Creating Project with Eclipse IDE
+Subject: tcf-agent fail to run on imx28evk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,70 +31,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Sep 2011 08:35:05 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 15 Sep 2011 09:27:09 -0000
+Content-Language: zh-CN
+Content-Type: multipart/alternative;
+	boundary="_000_DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EC00638WXExchMBinsig_"
+
+--_000_DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EC00638WXExchMBinsig_
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
+
+SGkgQUxMLA0KICAgICAgICAgSSBidWlsZCBvbmUgaW1hZ2UgZm9yIGlteDI4ZXZrLiBCdXQgdGNm
+LWFnZW50IGZhaWwgdG8gc3RhcnQgaW4gYm9vdCBwcm9jZXNzIGFuZCBnZXQgc2FtZSBmYXVsdCB3
+aGVuIEkgcnVuIGl0IG1hbnVhbGx5Lg0KTG9nIGxpa2UgdGhpczoNCiAgICAgICAgICAgICAgICBJ
+TklUOiBFbnRlcmluZyBydW5sZXZlbDogNQ0KU3RhcnRpbmcgc3lzbG9nZC9rbG9nZDogZG9uZQ0K
+U3RhcnRpbmcgdGNmLWFnZW50OiBBbGlnbm1lbnQgdHJhcDogdGNmLWFnZW50ICgxNTI2KSBQQz0w
+eDRlNzA0Y2E0IEluc3RyPTB4ZTc5MTMxMDMgQWRkcmVzcz0weGZmZmZmZmZlIEZTUiAweDAwMQ0K
+U2VnbWVudGF0aW9uIGZhdWx0DQpGQUlMDQpTdG9wcGluZyBCb290bG9nIGRhZW1vbjogYm9vdGxv
+Z2QuDQogICAgICAgICBJIGhhdmUgdHJpZWQgdG8gdXBkYXRlIHRoZSB2ZXJzaW9uIG9mIHRjZi1h
+Z2VudC4gRXJyb3Igc3RpbGwgZXhpc3QuDQoNCkJlc3QgcmVnYXJkcw0KRmV5ZQ0KDQoNCrLM1fG+
+/A0KzfjQwry8yvXT0M/euavLvs7vwarN+MrC0rWyvw0KurzW3czsxL/JvcK3MjI2usXN+NDCtPPP
+ww0Ktee7sC0xMzggNjc0NSAxOTEwDQoNCg==
+
+--_000_DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EC00638WXExchMBinsig_
+Content-Type: text/html; charset="gb2312"
 Content-Transfer-Encoding: quoted-printable
 
-2011/9/6 Enric Balletb=C3=B2 i Serra <eballetbo@gmail.com>:
-> 2011/9/6 Lu, Lianhao <lianhao.lu@intel.com>:
->> Enric Balletb=C3=B2 i Serra wrote on 2011-09-06:
->>> Hi Lianhao,
->>>
->>> 2011/9/6 Lu, Lianhao <lianhao.lu@intel.com>:
->>>> Hi Enric,
->>>>
->>>> Which version of the Yocto eclipse plug-in did you use?
->>>
->>> I'm using version 1.0 from
->>> http://www.yoctoproject.org/downloads/eclipse-plugin/1.0 with latest
->>> yocto mainline from git.
->>
->> I believe the latest changes in Yocto mainline is not compatible with th=
-e 1.0 plugin due to some file/variable name changes in the Yocto mainline.
->
-> Ah ok, that could explain my problem, thanks
->>
->> -Lianhao
->>
->>>
->>>> Have you configure the plug-in as mentioned in manual section 4.1.3?
->>>
->>> Yes, I followed these steps I will review the steps to see if I'm
->>> missing something ...
->>>
->>> Cheers,
->>> =C2=A0 Enric
->>>>
->>>> Best Regards,
->>>> -Lianhao
->>>>
->>>> Enric Balletb=C3=B2 i Serra wrote on 2011-09-06:
->>>>> Hi all,
->>>>>
->>>>> Following
->>>>> http://www.yoctoproject.org/docs/1.1/adt-manual/adt-manual.htm
->>>>> (chapter 4.2), when I=E2=80=99m creating a New Project I=E2=80=99m ge=
-tting the message:
->>>>>
->>>>> =C2=A0 Error Creating Project
->>>>> =C2=A0 Project cannot be created
->>>>> =C2=A0 Reason: Internal Error: java.lang.NullPointerException I'm
->>>>> running Eclipse Helios (Version: Helios Service Release 2, Build
->>>>> id: 20110301-1815) on Ubuntu 10.10 machine.
->>>>>
->>>>> Any clue with this ?
->>>>>
->>>>> Thanks in advance,
->>>>> =C2=A0 =C2=A0Enric
->>>>
->>
->>
->>
->
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40"><head><meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dg=
+b2312"><meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium=
+)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:=CB=CE=CC=E5;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@=CB=CE=CC=E5";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.5pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+/* Page Definitions */
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DZH-CN link=3Dblue vli=
+nk=3Dpurple style=3D'text-justify-trim:punctuation'><div class=3DWordSectio=
+n1><p class=3DMsoNormal><span lang=3DEN-US>Hi ALL,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; I build one image for imx28evk. But tcf-agent fail to start in b=
+oot process and get same fault when I run it manually.<o:p></o:p></span></p=
+><p class=3DMsoNormal><span lang=3DEN-US>Log like this:<o:p></o:p></span></=
+p><p class=3DMsoNormal><span lang=3DEN-US> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>INIT: Enterin=
+g runlevel: 5<o:p></o:p></i></span></p><p class=3DMsoNormal style=3D'margin=
+-left:42.0pt;mso-para-margin-left:4.0gd'><i><span lang=3DEN-US>Starting sys=
+logd/klogd: done<o:p></o:p></span></i></p><p class=3DMsoNormal style=3D'mar=
+gin-left:42.0pt;mso-para-margin-left:4.0gd'><i><span lang=3DEN-US>Starting =
+tcf-agent: Alignment trap: tcf-agent (1526) PC=3D0x4e704ca4 Instr=3D0xe7913=
+103 Address=3D0xfffffffe FSR 0x001<o:p></o:p></span></i></p><p class=3DMsoN=
+ormal style=3D'margin-left:42.0pt;mso-para-margin-left:4.0gd'><i><span lang=
+=3DEN-US>Segmentation fault<o:p></o:p></span></i></p><p class=3DMsoNormal s=
+tyle=3D'margin-left:42.0pt;mso-para-margin-left:4.0gd'><i><span lang=3DEN-U=
+S>FAIL<o:p></o:p></span></i></p><p class=3DMsoNormal style=3D'margin-left:4=
+2.0pt;mso-para-margin-left:4.0gd'><i><span lang=3DEN-US>Stopping Bootlog da=
+emon: bootlogd.<o:p></o:p></span></i></p><p class=3DMsoNormal><span lang=3D=
+EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have tried to upda=
+te the version of tcf-agent. Error still exist.<o:p></o:p></span></p><p cla=
+ss=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMs=
+oNormal><span lang=3DEN-US>Best regards<o:p></o:p></span></p><p class=3DMso=
+Normal><span lang=3DEN-US>Feye<o:p></o:p></span></p><p class=3DMsoNormal><s=
+pan lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lan=
+g=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span style=3D'f=
+ont-family:=CB=CE=CC=E5'>=B2=CC=D5=F1=BE=FC</span><span lang=3DEN-US><o:p><=
+/o:p></span></p><p class=3DMsoNormal><span style=3D'font-family:=CB=CE=CC=
+=E5'>=CD=F8=D0=C2=BC=BC=CA=F5=D3=D0=CF=DE=B9=AB=CB=BE=CE=EF=C1=AA=CD=F8=CA=
+=C2=D2=B5=B2=BF</span><span lang=3DEN-US><o:p></o:p></span></p><p class=3DM=
+soNormal><span style=3D'font-family:=CB=CE=CC=E5'>=BA=BC=D6=DD=CC=EC=C4=BF=
+=C9=BD=C2=B7</span><span lang=3DEN-US>226</span><span style=3D'font-family:=
+=CB=CE=CC=E5'>=BA=C5=CD=F8=D0=C2=B4=F3=CF=C3</span><span lang=3DEN-US><o:p>=
+</o:p></span></p><p class=3DMsoNormal><span style=3D'font-family:=CB=CE=CC=
+=E5'>=B5=E7=BB=B0</span><span lang=3DEN-US>-138 6745 1910<o:p></o:p></span>=
+</p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p></d=
+iv></body></html>=
 
-I see the same error using 1.1_M3.final tag from git repositories, is
-this problem solved anywhere ? Maybe in master ?
-
-Thanks,
-  Enric
-
+--_000_DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EC00638WXExchMBinsig_--
