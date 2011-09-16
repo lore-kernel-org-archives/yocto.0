@@ -1,30 +1,38 @@
-Return-Path: <caizhenjun@insigma.com.cn>
-Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BAC8E004DD
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 21:24:05 -0700 (PDT)
-Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
-	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
-	Fri, 16 Sep 2011 12:23:49 +0800
-Received: from WX-ExchMB.insigma.com.cn ([fe80::5efe:10.0.1.203]) by
-	WX-ExchMB.insigma.com.cn ([fe80::5efe:10.0.1.203%12]) with mapi;
-	Fri, 16 Sep 2011 12:23:48 +0800
-From: =?utf-8?B?6JSh5oyv5Yab?= <caizhenjun@insigma.com.cn>
-To: Mark Hatle <mark.hatle@windriver.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "Cui, Dexuan" <dexuan.cui@intel.com>
-Date: Fri, 16 Sep 2011 12:24:00 +0800
-Thread-Topic: [yocto] tcf-agent fail to run on imx28evk
-Thread-Index: AcxztN+pl+kJrqxCSPqXPnD+nZXycgAcw7Tw
-Message-ID: <DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EC00766@WX-ExchMB.insigma.com.cn>
-References: <DBA535A2DF028041BB0EB6E8A5E8C6CE2D1EC00638@WX-ExchMB.insigma.com.cn>
-	<1865303E0DED764181A9D882DEF65FB6BC05D6E36B@shsmsx502.ccr.corp.intel.com>
-	<4E720D40.9080409@windriver.com>
-In-Reply-To: <4E720D40.9080409@windriver.com>
-Accept-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN
+Return-Path: <eballetbo@gmail.com>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6BFFE00506
+	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 23:58:17 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iabz7 with SMTP id z7so3176545iab.35
+	for <yocto@yoctoproject.org>; Thu, 15 Sep 2011 23:58:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=ThPqn429aBB14vNGv6LsBPOayBzmggWMiTk0nFi0gGY=;
+	b=fvPoqHQvZ2pPOIDb6Rn3L4sfGta+jGBRCx/o/kXrNN6cvz4fWM+Mw9dHJgo6oO9xOu
+	ViDjNeOKjkpL7H1OxbpicTLDDq1wzUFWOiE4QP4i/vMSCpi0+93VKjuxDj6c5hUoW2/4
+	5Aa6k1So6wwol3HuLakZe9/Z4+X6IA44h9VjQ=
 MIME-Version: 1.0
-Subject: =?UTF-8?B?562U5aSNOiB0Y2YtYWdlbnQgZmFpbCB0byBydW4gb24gaW14Mjhldms=?=
+Received: by 10.231.45.73 with SMTP id d9mr3296547ibf.64.1316156296813; Thu,
+	15 Sep 2011 23:58:16 -0700 (PDT)
+Received: by 10.231.158.72 with HTTP; Thu, 15 Sep 2011 23:58:16 -0700 (PDT)
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C16E703EB@ORSMSX101.amr.corp.intel.com>
+References: <CAFqH_53qx7d13w-AcNErp5qm9HmhOOkPU62pD03Xv222YMO8YQ@mail.gmail.com>
+	<C10D3FB0CD45994C8A51FEC1227CE22F30C590D6B8@shsmsx502.ccr.corp.intel.com>
+	<CAFqH_520LDVehR==BXrmLxG_9y=Dsh5NydND1KCkG4QKOd6bdQ@mail.gmail.com>
+	<C10D3FB0CD45994C8A51FEC1227CE22F30C590D755@shsmsx502.ccr.corp.intel.com>
+	<CAFqH_53thaUBy3Qd_ZBmSefoHa9ijLWs9p-Qe+dg6JCP_PR3jg@mail.gmail.com>
+	<CAFqH_51jJjMvVMJpr6a6RazvnToB7reXVNU-+6c86FqzuFvFzA@mail.gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C16E703EB@ORSMSX101.amr.corp.intel.com>
+Date: Fri, 16 Sep 2011 08:58:16 +0200
+Message-ID: <CAFqH_51sZFsP_pqZ=quEed54YK06yWq8ZLjZPwM+NMHZn_2nbg@mail.gmail.com>
+From: =?UTF-8?Q?Enric_Balletb=C3=B2_i_Serra?= <eballetbo@gmail.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Error Creating Project with Eclipse IDE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,54 +44,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Sep 2011 04:24:08 -0000
-Content-Language: zh-CN
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 16 Sep 2011 06:58:18 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-SGkgTWFyayBEZXh1YW4sDQoNCiAgICAgICAgVXBkYXRpbmcgUG9reSB0byBsYXRlc3QgdmVyc2lv
-biwgdGhlIGlzc3VlIGlzIHJlc29sdmVkLiBOb3cgdGNmLWFnZW50IHJ1biB3ZWxsLg0KDQpUaGFu
-a3MNCkZleWUNCg0KLS0tLS3pgq7ku7bljp/ku7YtLS0tLQ0K5Y+R5Lu25Lq6OiB5b2N0by1ib3Vu
-Y2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5v
-cmddIOS7o+ihqCBNYXJrIEhhdGxlDQrlj5HpgIHml7bpl7Q6IDIwMTHlubQ55pyIMTXml6UgMjI6
-MzYNCuaUtuS7tuS6ujogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0K5Li76aKYOiBSZTogW3lvY3Rv
-XSB0Y2YtYWdlbnQgZmFpbCB0byBydW4gb24gaW14MjhldmsNCg0KT24gOS8xNS8xMSA4OjQzIEFN
-LCBDdWksIERleHVhbiB3cm90ZToNCj4gQ2FuIHlvdSBwbGVhc2UgdHJ5IHRvIHJlbW92ZSDigJxp
-bWFnZS1wcmVsaW5rIiBmcm9tIGNvbmYvbG9jYWwuY29uZuKAmXMgVVNFUl9DTEFTU0VTDQo+IGFu
-ZCByZS1idWlsZCBhbiBpbWFnZSB0byBzZWUgaWYgdGhhdCB3b3VsZCBtYWtlIGEgZGlmZmVyZW5j
-ZT8NCj4NCj4NCj4NCj4gUmVjZW50bHkgbG9va3MgcHJlbGlua2luZyB3YXMgYnJva2VuIGFuZCB0
-aGlzIGNhdXNlcyBzZWdmYXVsdHMgaW4gc29tZSBwYWNrYWdlcy4NCj4NCg0KSSBiZWxpZXZlIHRo
-ZSBsYXRlc3QgcHJlbGlua2VyIHVwZGF0ZSB3ZW50IGluIHRoaXMgbW9ybmluZyAoVVMgdGltZSku
-ICBTbyB0cnkNCmFnYWluIGFuZCBzZWUgaWYgdGhhdCByZXNvbHZlcyB0aGUgaXNzdWUuDQoNClRv
-IGNoZWNrIGlmIHlvdSBhcmUgcnVubmluZyB0aGUgbGF0ZXN0IHZlcnNpb24gb2YgdGhlIHByZWxp
-bmtlciwNCm1ldGEvcmVjaXBlcy1kZXZ0b29scy9wcmVsaW5rL3ByZWxpbmtfZ2l0LmJiIHNob3Vs
-ZCByZWZlcmVuY2UgdGhlIFNSQ1JFViBvZg0KM2UzZjliMDg3NmFhNWFjODNhNzgzYTk1YjhiYWI1
-MmNiMzhlZDc4NQ0KDQpUaGVyZSB3YXMgYSBwcmludGYgaXNzdWUgdGhhdCB3YXMgY2F1c2luZyB0
-aGluZ3MgdXNpbmcgdGhyZWFkaW5nLCBzcGVjaWZpY2FsbHkNCnRocmVhZCBsb2NhbCBzdG9yYWdl
-LCB0byBub3QgYWx3YXlzIHByZWxpbmsgcHJvcGVybHkuICBBUk0gc2VlbWVkIHRvIGhhdmUNCmNv
-bXBvbmVudHMgdGhhdCB3ZXJlIHJhbmRvbWx5IGFmZmVjdGVkLg0KDQotLU1hcmsNCg0KPg0KPiBU
-aGFua3MsDQo+DQo+IC0tIERleHVhbg0KPg0KPg0KPg0KPiAqRnJvbToqeW9jdG8tYm91bmNlc0B5
-b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXQ0K
-PiAqT24gQmVoYWxmIE9mICrolKHmjK/lhpsNCj4gKlNlbnQ6KiBUaHVyc2RheSwgU2VwdGVtYmVy
-IDE1LCAyMDExIDU6MjcgUE0NCj4gKlRvOiogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiAqU3Vi
-amVjdDoqIFt5b2N0b10gdGNmLWFnZW50IGZhaWwgdG8gcnVuIG9uIGlteDI4ZXZrDQo+DQo+DQo+
-DQo+IEhpIEFMTCwNCj4NCj4gICAgICAgICAgSSBidWlsZCBvbmUgaW1hZ2UgZm9yIGlteDI4ZXZr
-LiBCdXQgdGNmLWFnZW50IGZhaWwgdG8gc3RhcnQgaW4gYm9vdA0KPiBwcm9jZXNzIGFuZCBnZXQg
-c2FtZSBmYXVsdCB3aGVuIEkgcnVuIGl0IG1hbnVhbGx5Lg0KPg0KPiBMb2cgbGlrZSB0aGlzOg0K
-Pg0KPiAgICAgICAgICAgICAgICAgL0lOSVQ6IEVudGVyaW5nIHJ1bmxldmVsOiA1Lw0KPg0KPiAv
-U3RhcnRpbmcgc3lzbG9nZC9rbG9nZDogZG9uZS8NCj4NCj4gL1N0YXJ0aW5nIHRjZi1hZ2VudDog
-QWxpZ25tZW50IHRyYXA6IHRjZi1hZ2VudCAoMTUyNikgUEM9MHg0ZTcwNGNhNA0KPiBJbnN0cj0w
-eGU3OTEzMTAzIEFkZHJlc3M9MHhmZmZmZmZmZSBGU1IgMHgwMDEvDQo+DQo+IC9TZWdtZW50YXRp
-b24gZmF1bHQvDQo+DQo+IC9GQUlMLw0KPg0KPiAvU3RvcHBpbmcgQm9vdGxvZyBkYWVtb246IGJv
-b3Rsb2dkLi8NCj4NCj4gICAgICAgICAgSSBoYXZlIHRyaWVkIHRvIHVwZGF0ZSB0aGUgdmVyc2lv
-biBvZiB0Y2YtYWdlbnQuIEVycm9yIHN0aWxsIGV4aXN0Lg0KPg0KPg0KPg0KPiBCZXN0IHJlZ2Fy
-ZHMNCj4NCj4gRmV5ZQ0KPg0KPg0KPg0KPg0KPg0KPiDolKHmjK/lhpsNCj4NCj4g572R5paw5oqA
-5pyv5pyJ6ZmQ5YWs5Y+454mp6IGU572R5LqL5Lia6YOoDQo+DQo+IOadreW3nuWkqeebruWxsei3
-rzIyNuWPt+e9keaWsOWkp+WOpg0KPg0KPiDnlLXor50tMTM4IDY3NDUgMTkxMA0KPg0KPg0KPg0K
-Pg0KPg0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
-PiB5b2N0byBtYWlsaW5nIGxpc3QNCj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBodHRwczov
-L2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg0KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCnlvY3RvIG1haWxpbmcgbGlzdA0KeW9j
-dG9AeW9jdG9wcm9qZWN0Lm9yZw0KaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3Rp
-bmZvL3lvY3RvDQo=
+2011/9/15 Zhang, Jessica <jessica.zhang@intel.com>:
+> Hi Eric,
+>
+> The eclipse 1.0 works with Yocto 1.0 release. =C2=A0For the latest Yocto =
+mainline, we'd advise you to update to eclipse Indigo, 1.1_M3.final is upda=
+ted for Indigo. =C2=A0We're working on the document including how to config=
+ure Indigo at the moment for the upcoming Yocto Oct. release. =C2=A0Below i=
+s the section talks about how to configure your Indigo to work with Yocto p=
+lug-in. =C2=A0After doing this, you can just use the yocto eclipse of maste=
+r. =C2=A0Hope this will get you going.
+>
+> Thanks,
+> Jessica
+>
+> 1. =C2=A0 =C2=A0 =C2=A0Start the Eclipse IDE.
+> 2. =C2=A0 =C2=A0 =C2=A0Select "Install New Software" from the "Help" pull=
+-down menu.
+> 3. =C2=A0 =C2=A0 =C2=A0Select Indego - http://download.eclipse.org/releas=
+es/indego from the "Work with:" pull-down menu.
+> 4. =C2=A0 =C2=A0 =C2=A0Expand the box next to Programming Languages and s=
+elect the Autotools Support for CDT (incubation) and C/C++ Development Tool=
+s boxes.
+> 5. =C2=A0 =C2=A0 =C2=A0Complete the installation and restart the Eclipse =
+IDE.
+> 6. =C2=A0 =C2=A0 =C2=A0Select "Install New Software" from the "Help" pull=
+-down menu.
+> 7. =C2=A0 =C2=A0 =C2=A0After the Eclipse IDE restarts, click the "Availab=
+le Software Sites" link.
+> 8. =C2=A0 =C2=A0 =C2=A0Check the box next to http://download.eclipse.org/=
+tm/updates/3.3 and click "OK".
+> 9. =C2=A0 =C2=A0 =C2=A0Select http://download.eclipse.org/tm/updates/3.3 =
+from the "Work with:" pull-down menu.
+> 10. =C2=A0 =C2=A0 Check the box next to TM and RSE Main Features.
+> 11. =C2=A0 =C2=A0 Expand the box next to TM and RSE Optional Add-ons and =
+select every item except RSE Unit Tests and RSE WinCE Services (incubation)=
+.
+> 12. =C2=A0 =C2=A0 Complete the installation and restart the Eclipse IDE.
+> 13. =C2=A0 =C2=A0 After the Eclipse IDE restarts, click the "Available So=
+ftware Sites" link.
+> 14. =C2=A0 =C2=A0 Check the box next to http://download.eclipse.org/tools=
+/cdt/releases/indego and click "OK".
+> 15. =C2=A0 =C2=A0 Select http://download.eclipse.org/tools/cdt/releases/i=
+ndego from the "Work with:" pull-down menu.
+> 16. =C2=A0 =C2=A0 Check the box next to CDT Main Features.
+> 17. =C2=A0 =C2=A0 Expand the box next to CDT Optional Features and select=
+ C/C++ Remote Launch and Target Communication Framework (incubation).
+> 18. =C2=A0 =C2=A0 Complete the installation and restart the Eclipse IDE.
+>
+>
+
+Hi Jessica,
+
+Thanks for the instructions, they work.
+
+Best regards,
+  Enric
+
+>
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
+rg] On Behalf Of Enric Balletb=C3=B2 i Serra
+> Sent: Thursday, September 15, 2011 1:35 AM
+> To: Lu, Lianhao
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Error Creating Project with Eclipse IDE
+>
+> 2011/9/6 Enric Balletb=C3=B2 i Serra <eballetbo@gmail.com>:
+>> 2011/9/6 Lu, Lianhao <lianhao.lu@intel.com>:
+>>> Enric Balletb=C3=B2 i Serra wrote on 2011-09-06:
+>>>> Hi Lianhao,
+>>>>
+>>>> 2011/9/6 Lu, Lianhao <lianhao.lu@intel.com>:
+>>>>> Hi Enric,
+>>>>>
+>>>>> Which version of the Yocto eclipse plug-in did you use?
+>>>>
+>>>> I'm using version 1.0 from
+>>>> http://www.yoctoproject.org/downloads/eclipse-plugin/1.0 with latest
+>>>> yocto mainline from git.
+>>>
+>>> I believe the latest changes in Yocto mainline is not compatible with t=
+he 1.0 plugin due to some file/variable name changes in the Yocto mainline.
+>>
+>> Ah ok, that could explain my problem, thanks
+>>>
+>>> -Lianhao
+>>>
+>>>>
+>>>>> Have you configure the plug-in as mentioned in manual section 4.1.3?
+>>>>
+>>>> Yes, I followed these steps I will review the steps to see if I'm
+>>>> missing something ...
+>>>>
+>>>> Cheers,
+>>>> =C2=A0 Enric
+>>>>>
+>>>>> Best Regards,
+>>>>> -Lianhao
+>>>>>
+>>>>> Enric Balletb=C3=B2 i Serra wrote on 2011-09-06:
+>>>>>> Hi all,
+>>>>>>
+>>>>>> Following
+>>>>>> http://www.yoctoproject.org/docs/1.1/adt-manual/adt-manual.htm
+>>>>>> (chapter 4.2), when I=E2=80=99m creating a New Project I=E2=80=99m g=
+etting the message:
+>>>>>>
+>>>>>> =C2=A0 Error Creating Project
+>>>>>> =C2=A0 Project cannot be created
+>>>>>> =C2=A0 Reason: Internal Error: java.lang.NullPointerException I'm
+>>>>>> running Eclipse Helios (Version: Helios Service Release 2, Build
+>>>>>> id: 20110301-1815) on Ubuntu 10.10 machine.
+>>>>>>
+>>>>>> Any clue with this ?
+>>>>>>
+>>>>>> Thanks in advance,
+>>>>>> =C2=A0 =C2=A0Enric
+>>>>>
+>>>
+>>>
+>>>
+>>
+>
+> I see the same error using 1.1_M3.final tag from git repositories, is
+> this problem solved anywhere ? Maybe in master ?
+>
+> Thanks,
+> =C2=A0Enric
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
