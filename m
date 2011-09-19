@@ -1,34 +1,20 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B525E00514
-	for <yocto@yoctoproject.org>; Sun, 18 Sep 2011 00:53:02 -0700 (PDT)
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F350DE00522
+	for <yocto@yoctoproject.org>; Sun, 18 Sep 2011 20:35:06 -0700 (PDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 18 Sep 2011 00:53:00 -0700
+	by orsmga101.jf.intel.com with ESMTP; 18 Sep 2011 20:35:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="49562445"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by orsmga001.jf.intel.com with ESMTP; 18 Sep 2011 00:52:59 -0700
-Received: from pgsmsx103.gar.corp.intel.com (10.221.44.82) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 18 Sep 2011 15:52:59 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX103.gar.corp.intel.com (10.221.44.82) with Microsoft SMTP Server
-	(TLS) id 14.1.323.3; Sun, 18 Sep 2011 15:52:58 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Sun, 18 Sep 2011 15:52:57 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Sun, 18 Sep 2011 15:52:56 +0800
-Thread-Topic: Yocto weekly bug trend charts -- WW38
-Thread-Index: Acx11/pYffMos+BCQ3uxxC6BcuDq8w==
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D84DF3EB@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW38
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="49736298"
+Received: from unknown (HELO localhost) ([10.255.14.162])
+	by orsmga001.jf.intel.com with ESMTP; 18 Sep 2011 20:35:05 -0700
+From: tom.zanussi@intel.com
+To: bruce.ashfield@windriver.com,
+	yocto@yoctoproject.org
+Date: Sun, 18 Sep 2011 22:34:48 -0500
+Message-Id: <cover.1316402566.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/1][KERNEL] re-enable blktrace
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,17 +26,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 18 Sep 2011 07:53:02 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 19 Sep 2011 03:35:07 -0000
 
-Hi all,
-	The overall open bug trend increased a little last week. The new-submit vs=
-. fixed bug is 23 vs. 16. Open bug number increased to 130. WDD number incr=
-eased to 655. M4 RC2 build does not 100% pass. Bug status of WW38 could be =
-found on https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Best Regards,
-Jiajun
+This patch re-adds the blktrace feature into linux-yocto-3.0.
+
+Please pull into linux-yocto-3.0/meta.
+
+Pull URL: git://git.pokylinux.org/linux-yocto-2.6.37-contrib
+  Branch: tzanussi/yocto-3.0-blktrace
+  Browse: http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/yocto-3.0-blktrace
+
+Tom Zanussi (1):
+  meta: add blktrace feature
+
+ .../kernel-cache/features/blktrace/blktrace.cfg    |    1 +
+ .../kernel-cache/features/blktrace/blktrace.scc    |    1 +
+ meta/cfg/kernel-cache/ktypes/standard/standard.scc |    3 +++
+ 3 files changed, 5 insertions(+), 0 deletions(-)
+ create mode 100644 meta/cfg/kernel-cache/features/blktrace/blktrace.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/blktrace/blktrace.scc
+
 
