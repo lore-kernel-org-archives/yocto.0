@@ -1,26 +1,31 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BD89E00522
-	for <yocto@yoctoproject.org>; Sun, 18 Sep 2011 20:48:48 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p8J3mlNX015378
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 18 Sep 2011 20:48:47 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.22.159) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Sun, 18 Sep 2011 20:48:46 -0700
-Message-ID: <4E76BB9E.3060507@windriver.com>
-Date: Sun, 18 Sep 2011 23:48:46 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.22) Gecko/20110902 Thunderbird/3.1.14
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97A58E00561
+	for <yocto@yoctoproject.org>; Mon, 19 Sep 2011 14:23:43 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 19 Sep 2011 14:23:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208,217";a="50303425"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga002.jf.intel.com with ESMTP; 19 Sep 2011 14:23:43 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 19 Sep 2011 14:23:43 -0700
+Received: from orsmsx505.amr.corp.intel.com ([10.22.226.208]) by
+	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
+	Mon, 19 Sep 2011 14:23:43 -0700
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 19 Sep 2011 14:23:41 -0700
+Thread-Topic: Debian packages on Yocto Target
+Thread-Index: Acx3EmeBmF+JFMW/TS292M3+7HhqMA==
+Message-ID: <4FF5AC937153B0459463C1A88EB478F2012E6E8DEF@orsmsx505.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: <tom.zanussi@intel.com>
-References: <cover.1316402566.git.tom.zanussi@intel.com>
-	<9c5fbbb4a372de910cccb6b9065c8e1d6bac6637.1316402566.git.tom.zanussi@intel.com>
-In-Reply-To: <9c5fbbb4a372de910cccb6b9065c8e1d6bac6637.1316402566.git.tom.zanussi@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1][KERNEL] meta: add blktrace feature
+Subject: Debian packages on Yocto Target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,61 +37,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Sep 2011 03:48:48 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 19 Sep 2011 21:23:43 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_4FF5AC937153B0459463C1A88EB478F2012E6E8DEForsmsx505amrc_"
 
-On 11-09-18 11:34 PM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi<tom.zanussi@intel.com>
+--_000_4FF5AC937153B0459463C1A88EB478F2012E6E8DEForsmsx505amrc_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hello folks,
+
+
+
+We are able to use RPM package manager on a Yocto built image.
+
+
+
+Is it possible to generate images that support Debian packages ?
+
+If so how does one do it  ? A general pointer will be enough,I don't
+
+need details at this point.
+
+
+
+Thanks
+
+Rahul
+
+
+--_000_4FF5AC937153B0459463C1A88EB478F2012E6E8DEForsmsx505amrc_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+
+<head>
+<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; charset=3Dus-ascii"=
 >
-> Add a 'blktrace feature' that turns on kernel support for blktrace, a
-> block I/O tracing tool.  Added to 'standard' alongside similar tracing
-> tool config.
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
 
-Ack'd. I've merged this to the 3.0 tree, and the -dev tree so it will
-automatically appear in future trees.
+<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
 
-I'll send a pull request for this on Monday.
+<div class=3DWordSection1>
 
-Bruce
+<p class=3DMsoPlainText>Hello folks,<o:p></o:p></p>
 
->
-> Signed-off-by: Tom Zanussi<tom.zanussi@intel.com>
-> ---
->   .../kernel-cache/features/blktrace/blktrace.cfg    |    1 +
->   .../kernel-cache/features/blktrace/blktrace.scc    |    1 +
->   meta/cfg/kernel-cache/ktypes/standard/standard.scc |    3 +++
->   3 files changed, 5 insertions(+), 0 deletions(-)
->   create mode 100644 meta/cfg/kernel-cache/features/blktrace/blktrace.cfg
->   create mode 100644 meta/cfg/kernel-cache/features/blktrace/blktrace.scc
->
-> diff --git a/meta/cfg/kernel-cache/features/blktrace/blktrace.cfg b/meta/cfg/kernel-cache/features/blktrace/blktrace.cfg
-> new file mode 100644
-> index 0000000..3e61f2b
-> --- /dev/null
-> +++ b/meta/cfg/kernel-cache/features/blktrace/blktrace.cfg
-> @@ -0,0 +1 @@
-> +CONFIG_BLK_DEV_IO_TRACE=y
-> diff --git a/meta/cfg/kernel-cache/features/blktrace/blktrace.scc b/meta/cfg/kernel-cache/features/blktrace/blktrace.scc
-> new file mode 100644
-> index 0000000..945714b
-> --- /dev/null
-> +++ b/meta/cfg/kernel-cache/features/blktrace/blktrace.scc
-> @@ -0,0 +1 @@
-> +kconf non-hardware blktrace.cfg
-> diff --git a/meta/cfg/kernel-cache/ktypes/standard/standard.scc b/meta/cfg/kernel-cache/ktypes/standard/standard.scc
-> index b4e22d0..c8654cc 100644
-> --- a/meta/cfg/kernel-cache/ktypes/standard/standard.scc
-> +++ b/meta/cfg/kernel-cache/ktypes/standard/standard.scc
-> @@ -14,6 +14,9 @@ tag kgdb
->
->   include features/lttng/lttng.scc
->
-> +include features/blktrace/blktrace.scc
-> +tag blktrace
-> +
->   include features/systemtap/systemtap.scc
->   tag systemtap
->
+<p class=3DMsoPlainText><o:p>&nbsp;</o:p></p>
 
+<p class=3DMsoPlainText>We are able to use RPM package manager on a Yocto b=
+uilt
+image.<o:p></o:p></p>
 
+<p class=3DMsoPlainText>&nbsp;<o:p></o:p></p>
+
+<p class=3DMsoPlainText>Is it possible to generate images that support Debi=
+an
+packages ? <o:p></o:p></p>
+
+<p class=3DMsoPlainText>If so how does one do it &nbsp;? A general pointer =
+will be
+enough,I don&#8217;t<o:p></o:p></p>
+
+<p class=3DMsoPlainText>need details at this point.<o:p></o:p></p>
+
+<p class=3DMsoPlainText><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoPlainText>Thanks<o:p></o:p></p>
+
+<p class=3DMsoPlainText>Rahul<o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</body>
+
+</html>
+
+--_000_4FF5AC937153B0459463C1A88EB478F2012E6E8DEForsmsx505amrc_--
