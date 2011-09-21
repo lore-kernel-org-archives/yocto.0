@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0645E006C8
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2011 13:33:48 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B680BE006CA
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2011 13:33:52 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 21 Sep 2011 13:33:48 -0700
+	by azsmga101.ch.intel.com with ESMTP; 21 Sep 2011 13:33:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,419,1312182000"; d="scan'208";a="19340988"
+X-IronPort-AV: E=Sophos;i="4.68,419,1312182000"; d="scan'208";a="19341004"
 Received: from unknown (HELO localhost) ([10.255.14.159])
-	by AZSMGA002.ch.intel.com with ESMTP; 21 Sep 2011 13:33:47 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 21 Sep 2011 13:33:51 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com,
 	yocto@yoctoproject.org
-Date: Wed, 21 Sep 2011 15:33:15 -0500
-Message-Id: <47fbe18b478d6882ae72cd9f55ad2dcd4cb7230d.1316615344.git.tom.zanussi@intel.com>
+Date: Wed, 21 Sep 2011 15:33:17 -0500
+Message-Id: <154306d23e8dbf5c2170f6a145ca83a575fb5522.1316615344.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <0fa4664e00412c0ef3f7d1ce991d8c7b5e7c0052.1316615343.git.tom.zanussi@intel.com>
 References: <0fa4664e00412c0ef3f7d1ce991d8c7b5e7c0052.1316615343.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1316615343.git.tom.zanussi@intel.com>
 References: <cover.1316615343.git.tom.zanussi@intel.com>
-Subject: [PATCH 13/16][KERNEL] drm-psb: add DRM_UNLOCKED flag
+Subject: [PATCH 15/16][KERNEL] drm-psb: initialize backlight type
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,52 +30,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Sep 2011 20:33:48 -0000
+X-List-Received-Date: Wed, 21 Sep 2011 20:33:52 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Add DRM_UNLOCKED to allow us to call handlers that do their own
-locking without the global lock.
+If unset, props.type gets the value 0, which is no longer maps to a
+valid type value, so initialize it explicitly.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- drivers/gpu/drm-psb/drmP.h    |    1 +
- drivers/gpu/drm-psb/drm_drv.c |   10 +++++++---
- 2 files changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm-psb/intel_lvds.c |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
 
-diff --git a/drivers/gpu/drm-psb/drmP.h b/drivers/gpu/drm-psb/drmP.h
-index 3cca5fe..9d5bb5c 100644
---- a/drivers/gpu/drm-psb/drmP.h
-+++ b/drivers/gpu/drm-psb/drmP.h
-@@ -309,6 +309,7 @@ typedef int drm_ioctl_compat_t(struct file *filp, unsigned int cmd,
- #define DRM_AUTH        0x1
- #define DRM_MASTER      0x2
- #define DRM_ROOT_ONLY   0x4
-+#define DRM_UNLOCKED    0x8
- 
- struct drm_ioctl_desc {
- 	unsigned int cmd;
-diff --git a/drivers/gpu/drm-psb/drm_drv.c b/drivers/gpu/drm-psb/drm_drv.c
-index 472859b..396dcda 100644
---- a/drivers/gpu/drm-psb/drm_drv.c
-+++ b/drivers/gpu/drm-psb/drm_drv.c
-@@ -663,9 +663,13 @@ long drm_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
- 		   ((ioctl->flags & DRM_MASTER) && !file_priv->master)) {
- 		retcode = -EACCES;
- 	} else {
--		mutex_lock(&drm_global_mutex);
--		retcode = func(dev, kdata, file_priv);
--		mutex_unlock(&drm_global_mutex);
-+		if (ioctl->flags & DRM_UNLOCKED)
-+			retcode = func(dev, kdata, file_priv);
-+		else {
-+			mutex_lock(&drm_global_mutex);
-+			retcode = func(dev, kdata, file_priv);
-+			mutex_unlock(&drm_global_mutex);
-+		}
- 	}
- 
- 	if ((retcode == 0) && (cmd & IOC_OUT)) {
+diff --git a/drivers/gpu/drm-psb/intel_lvds.c b/drivers/gpu/drm-psb/intel_lvds.c
+index a778436..9511c04 100644
+--- a/drivers/gpu/drm-psb/intel_lvds.c
++++ b/drivers/gpu/drm-psb/intel_lvds.c
+@@ -803,6 +803,7 @@ void intel_lvds_init(struct drm_device *dev)
+ 	if ((blc_type == BLC_I2C_TYPE) || (blc_type == BLC_PWM_TYPE)){	
+ 		struct backlight_properties props;
+ 		memset(&props, 0, sizeof(struct backlight_properties));
++		props.type = BACKLIGHT_RAW;
+ 		/* add /sys/class/backlight interface as standard */
+ 		psbbl_device = backlight_device_register("psblvds", &dev->pdev->dev, dev, &psbbl_ops, &props);
+ 		if (psbbl_device){
 -- 
 1.7.0.4
 
