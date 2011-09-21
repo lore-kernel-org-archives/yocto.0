@@ -1,33 +1,36 @@
 Return-Path: <song.liu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8F55E0055C
-	for <yocto@yoctoproject.org>; Tue, 20 Sep 2011 22:05:13 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 20 Sep 2011 22:05:13 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F40CE0055C
+	for <yocto@yoctoproject.org>; Tue, 20 Sep 2011 22:20:59 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 20 Sep 2011 22:20:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,414,1312182000"; d="scan'208";a="51200417"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by azsmga001.ch.intel.com with ESMTP; 20 Sep 2011 22:05:12 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 20 Sep 2011 22:05:12 -0700
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="50579274"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga001.jf.intel.com with ESMTP; 20 Sep 2011 22:20:58 -0700
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 20 Sep 2011 22:20:58 -0700
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.109]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.146]) with mapi id
-	14.01.0323.003; Tue, 20 Sep 2011 22:05:12 -0700
+	ORSMSX106.amr.corp.intel.com ([169.254.5.101]) with mapi id
+	14.01.0323.003; Tue, 20 Sep 2011 22:20:58 -0700
 From: "Liu, Song" <song.liu@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Technical Team Meeting - (Tuesday, September
-	20, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
-Thread-Index: AQHMeBwKnmjsDlNMt0qM/SxlN/Bbvg==
-Date: Wed, 21 Sep 2011 05:05:11 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F23FE4@ORSMSX101.amr.corp.intel.com>
+Thread-Topic: [yocto] Minutes: Yocto Technical Team Meeting - (Tuesday,
+	September 20,
+	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+Thread-Index: AQHMeBwKnmjsDlNMt0qM/SxlN/BbvpVXwZpQ
+Date: Wed, 21 Sep 2011 05:20:57 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F2402C@ORSMSX101.amr.corp.intel.com>
 References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+	<7E680CB2A76BB8438D08CF13C09FC53A16F23FE4@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A16F23FE4@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Subject: Minutes: Yocto Technical Team Meeting - (Tuesday, September 20, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+Subject: Re: Minutes: Yocto Technical Team Meeting - (Tuesday, September 20, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,10 +42,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Sep 2011 05:05:14 -0000
+X-List-Received-Date: Wed, 21 Sep 2011 05:20:59 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+Sorry, missed the information from the Shanghai team:
+
+Jiajun/Wenhua:
+Last week they were testing M4 RC2, it was still ongoing because BSP blocke=
+d testing.
+This week plan to finish RC2 testing. It seems the BSP sharing folder issue=
+ was resolved.
+
+Dexuan:
+Last week fixed 1070 and identified 1443 was prelink issue owned by Mark.
+This week continue to work on 1085.
+
+Dongxiao:
+Fixed multiple providers issue for multilib. (no bug number) Communicated w=
+ith Mark on another multilib issue.
+This week continued to work on 1457, and other new bugs.
+
+Ke:
+Last week worked on 1442, OpenGL issue, and prepared for v1.2 UI review. An=
+d processed some pending patches for upstream.
+This week 1442 was transferred to Edwin, and this week will do UI review an=
+d ops review.
+
+Edwin:
+Fixed 1440.
+This week will fix 1442.
+
+Lianhao
+Fixed 1486 last week.
+This week continue to fix 1489.
+
+All:
+Update distro_tracking_fields.inc for those 63 packages missing 2 major dis=
+tros.
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Liu, Song
+Sent: Tuesday, September 20, 2011 10:05 PM
+To: yocto@yoctoproject.org
+Subject: [yocto] Minutes: Yocto Technical Team Meeting - (Tuesday, Septembe=
+r 20, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
 
 Action Items:
 =A0
@@ -131,4 +177,8 @@ e places in the kernel to focus on. Sending out review request on this and =
 will do another round of changes
 
 
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
