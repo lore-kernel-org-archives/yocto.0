@@ -1,24 +1,21 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DF39E006D1
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2011 13:34:10 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 21 Sep 2011 13:34:10 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8E88E004E9
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2011 13:34:59 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 21 Sep 2011 13:34:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="51554585"
+X-IronPort-AV: E=Sophos;i="4.68,419,1312182000"; d="scan'208";a="51974929"
 Received: from unknown (HELO localhost) ([10.255.14.159])
-	by orsmga001.jf.intel.com with ESMTP; 21 Sep 2011 13:33:49 -0700
+	by azsmga001.ch.intel.com with ESMTP; 21 Sep 2011 13:34:59 -0700
 From: tom.zanussi@intel.com
-To: bruce.ashfield@windriver.com,
-	yocto@yoctoproject.org
-Date: Wed, 21 Sep 2011 15:33:16 -0500
-Message-Id: <eefecf4d7635ba6a9cda32da8526db9eeadf0929.1316615344.git.tom.zanussi@intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 21 Sep 2011 15:34:53 -0500
+Message-Id: <b06469a71dee028cbfc7ac70fa4e62fe9f7f766a.1316616207.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <0fa4664e00412c0ef3f7d1ce991d8c7b5e7c0052.1316615343.git.tom.zanussi@intel.com>
-References: <0fa4664e00412c0ef3f7d1ce991d8c7b5e7c0052.1316615343.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1316615343.git.tom.zanussi@intel.com>
-References: <cover.1316615343.git.tom.zanussi@intel.com>
-Subject: [PATCH 14/16][KERNEL] drm-psb: mark unlocked ioctls
+In-Reply-To: <cover.1316616207.git.tom.zanussi@intel.com>
+References: <cover.1316616207.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/1] meta-emenlow: switch to linux-yocto 3.0 kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,78 +27,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Sep 2011 20:34:10 -0000
+X-List-Received-Date: Wed, 21 Sep 2011 20:35:00 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Mark the ioctls that already do their own locking DRM_UNLOCKED.
+Switch emenlow to the 3.0 kernel, lock it down, and update kernel
+SRCREVs.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- drivers/gpu/drm-psb/drm_drv.c |   24 ++++++++++++------------
- drivers/gpu/drm-psb/psb_drv.c |   10 +++++-----
- 2 files changed, 17 insertions(+), 17 deletions(-)
+ meta-emenlow/conf/machine/emenlow.conf             |    2 ++
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    8 ++++++++
+ 2 files changed, 10 insertions(+), 0 deletions(-)
+ create mode 100644 meta-emenlow/recipes-kernel/linux/linux-yocto_3.0.bbappend
 
-diff --git a/drivers/gpu/drm-psb/drm_drv.c b/drivers/gpu/drm-psb/drm_drv.c
-index 396dcda..30af3fa 100644
---- a/drivers/gpu/drm-psb/drm_drv.c
-+++ b/drivers/gpu/drm-psb/drm_drv.c
-@@ -117,18 +117,18 @@ static struct drm_ioctl_desc drm_ioctls[] = {
- 	DRM_IOCTL_DEF(DRM_IOCTL_SG_FREE, drm_sg_free, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
- 	DRM_IOCTL_DEF(DRM_IOCTL_WAIT_VBLANK, drm_wait_vblank, 0),
- 	DRM_IOCTL_DEF(DRM_IOCTL_UPDATE_DRAW, drm_update_drawable_info, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETRESOURCES, drm_mode_getresources, DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETCRTC, drm_mode_getcrtc, DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETOUTPUT, drm_mode_getoutput, DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_SETCRTC, drm_mode_setcrtc, DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_ADDFB, drm_mode_addfb, DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_RMFB, drm_mode_rmfb, DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETFB, drm_mode_getfb, DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_ADDMODE, drm_mode_addmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_RMMODE, drm_mode_rmmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_ATTACHMODE, drm_mode_attachmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_DETACHMODE, drm_mode_detachmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETPROPERTY, drm_mode_getproperty_ioctl, DRM_MASTER | DRM_ROOT_ONLY),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETRESOURCES, drm_mode_getresources, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETCRTC, drm_mode_getcrtc, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETOUTPUT, drm_mode_getoutput, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_SETCRTC, drm_mode_setcrtc, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_ADDFB, drm_mode_addfb, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_RMFB, drm_mode_rmfb, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETFB, drm_mode_getfb, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_ADDMODE, drm_mode_addmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_RMMODE, drm_mode_rmmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_ATTACHMODE, drm_mode_attachmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_DETACHMODE, drm_mode_detachmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETPROPERTY, drm_mode_getproperty_ioctl, DRM_MASTER | DRM_ROOT_ONLY|DRM_UNLOCKED),
+diff --git a/meta-emenlow/conf/machine/emenlow.conf b/meta-emenlow/conf/machine/emenlow.conf
+index 39930a0..9745531 100644
+--- a/meta-emenlow/conf/machine/emenlow.conf
++++ b/meta-emenlow/conf/machine/emenlow.conf
+@@ -12,6 +12,8 @@ MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
+ KERNEL_IMAGETYPE = "bzImage"
  
- 	DRM_IOCTL_DEF(DRM_IOCTL_MM_INIT, drm_mm_init_ioctl,
- 		      DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
-diff --git a/drivers/gpu/drm-psb/psb_drv.c b/drivers/gpu/drm-psb/psb_drv.c
-index 471481e..3873c7e 100644
---- a/drivers/gpu/drm-psb/psb_drv.c
-+++ b/drivers/gpu/drm-psb/psb_drv.c
-@@ -100,15 +100,15 @@ static struct pci_device_id pciidlist[] = {
- #define DRM_PSB_KMS_ON_IOCTL	DRM_IO(DRM_PSB_KMS_ON)
- 
- static struct drm_ioctl_desc psb_ioctls[] = {
--	DRM_IOCTL_DEF(DRM_PSB_CMDBUF_IOCTL, psb_cmdbuf_ioctl, DRM_AUTH),
-+	DRM_IOCTL_DEF(DRM_PSB_CMDBUF_IOCTL, psb_cmdbuf_ioctl, DRM_AUTH|DRM_UNLOCKED),
- 	DRM_IOCTL_DEF(DRM_PSB_XHW_INIT_IOCTL, psb_xhw_init_ioctl,
- 		      DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_PSB_XHW_IOCTL, psb_xhw_ioctl, DRM_AUTH),
-+	DRM_IOCTL_DEF(DRM_PSB_XHW_IOCTL, psb_xhw_ioctl, DRM_AUTH|DRM_UNLOCKED|DRM_UNLOCKED),
- 	DRM_IOCTL_DEF(DRM_PSB_SCENE_UNREF_IOCTL, drm_psb_scene_unref_ioctl,
--		      DRM_AUTH),
-+		      DRM_AUTH|DRM_UNLOCKED),
- 	DRM_IOCTL_DEF(DRM_PSB_KMS_OFF_IOCTL, psbfb_kms_off_ioctl,
--		      DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_PSB_KMS_ON_IOCTL, psbfb_kms_on_ioctl, DRM_ROOT_ONLY),
-+		      DRM_ROOT_ONLY|DRM_UNLOCKED),
-+	DRM_IOCTL_DEF(DRM_PSB_KMS_ON_IOCTL, psbfb_kms_on_ioctl, DRM_ROOT_ONLY|DRM_UNLOCKED),
- 	DRM_IOCTL_DEF(DRM_PSB_HW_INFO_IOCTL, psb_hw_info_ioctl, DRM_AUTH),
- };
- static int psb_max_ioctl = DRM_ARRAY_SIZE(psb_ioctls);
+ PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
++PREFERRED_VERSION_linux-yocto ?= "3.0%"
++
+ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
+ PREFERRED_PROVIDER_libdrm = "libdrm-poulsbo"
+ PREFERRED_PROVIDER_drm = "libdrm-poulsbo"
+diff --git a/meta-emenlow/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-emenlow/recipes-kernel/linux/linux-yocto_3.0.bbappend
+new file mode 100644
+index 0000000..40984f6
+--- /dev/null
++++ b/meta-emenlow/recipes-kernel/linux/linux-yocto_3.0.bbappend
+@@ -0,0 +1,8 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++COMPATIBLE_MACHINE_emenlow = "emenlow"
++KMACHINE_emenlow  = "yocto/standard/emenlow"
++KERNEL_FEATURES_append_emenlow += " cfg/smp.scc"
++
++SRCREV_machine_pn-linux-yocto_emenlow ?= "493b09ef2c7124f977421a40955750743a5293d3"
++SRCREV_meta_pn-linux-yocto_emenlow ?= "d588bdafc0d9b4d2386144b7d76a1d379e2d16c0"
 -- 
 1.7.0.4
 
