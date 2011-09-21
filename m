@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4CFAE005B6
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2011 13:33:26 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 21 Sep 2011 13:33:26 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDA7FE005B5
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2011 13:33:28 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 21 Sep 2011 13:33:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,419,1312182000"; d="scan'208";a="56338897"
+X-IronPort-AV: E=Sophos;i="4.68,419,1312182000"; d="scan'208";a="51973217"
 Received: from unknown (HELO localhost) ([10.255.14.159])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Sep 2011 13:33:25 -0700
+	by azsmga001.ch.intel.com with ESMTP; 21 Sep 2011 13:33:27 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com,
 	yocto@yoctoproject.org
-Date: Wed, 21 Sep 2011 15:33:04 -0500
-Message-Id: <40e4f298eaa352e44b0c5d68a272e6be79230331.1316615344.git.tom.zanussi@intel.com>
+Date: Wed, 21 Sep 2011 15:33:05 -0500
+Message-Id: <e429c006a294013c02f245233166ff7fea6fe198.1316615344.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <0fa4664e00412c0ef3f7d1ce991d8c7b5e7c0052.1316615343.git.tom.zanussi@intel.com>
 References: <0fa4664e00412c0ef3f7d1ce991d8c7b5e7c0052.1316615343.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1316615343.git.tom.zanussi@intel.com>
 References: <cover.1316615343.git.tom.zanussi@intel.com>
-Subject: [PATCH 02/16][KERNEL] drm-psb: remove the package Makefile and replace it with the kernel Makefile
+Subject: [PATCH 03/16][KERNEL] drm: apply psb-kernel-source package's build.patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,545 +30,166 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Sep 2011 20:33:27 -0000
+X-List-Received-Date: Wed, 21 Sep 2011 20:33:29 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-The default Makefile is meant for building the modules externally.
-Replace it with the normal kernel Makefile (Makefile.kernel).
+Build mods required for compilation.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- drivers/gpu/drm-psb/Makefile        |  433 ++++++-----------------------------
- drivers/gpu/drm-psb/Makefile.kernel |   76 ------
- 2 files changed, 71 insertions(+), 438 deletions(-)
- delete mode 100644 drivers/gpu/drm-psb/Makefile.kernel
+ drivers/gpu/drm-psb/drm_agpsupport.c |    2 +-
+ drivers/gpu/drm-psb/drm_edid.c       |    3 ++-
+ drivers/gpu/drm-psb/drm_memory.c     |    4 ++--
+ drivers/gpu/drm-psb/drm_os_linux.h   |    6 ------
+ drivers/gpu/drm-psb/drm_ttm.c        |    2 ++
+ drivers/gpu/drm-psb/drm_vm.c         |    4 ++--
+ drivers/gpu/drm-psb/intel_lvds.c     |    1 +
+ drivers/gpu/drm-psb/psb_drv.c        |    4 +++-
+ drivers/gpu/drm-psb/psb_drv.h        |    2 +-
+ 9 files changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm-psb/Makefile b/drivers/gpu/drm-psb/Makefile
-index ffb397e..702bf28 100644
---- a/drivers/gpu/drm-psb/Makefile
-+++ b/drivers/gpu/drm-psb/Makefile
-@@ -1,367 +1,76 @@
--# Makefile -- For the Direct Rendering Manager module (drm)
- #
--# Based on David Woodhouse's mtd build.
--#
--# Modified to handle the DRM requirements and builds on a wider range of
--# platforms in a flexible way by David Dawes.  It's not clear, however,
--# that this approach is simpler than the old one.
--#
--# The purpose of this Makefile is to handle setting up everything
--# needed for an out-of-kernel source build.  Makefile.kernel contains
--# everything required for in-kernel source builds.  It is included into
--# this file, so none of that should be duplicated here.
--#
--# $XFree86: xc/programs/Xserver/hw/xfree86/os-support/linux/drm/kernel/Makefile.linux,v 1.40 2003/08/17 17:12:25 dawes Exp $
--#
--
--#
--# By default, the build is done against the running linux kernel source.
--# To build against a different kernel source tree, set LINUXDIR:
--#
--#    make LINUXDIR=/path/to/kernel/source
--
--#
--# To build only some modules, either set DRM_MODULES to the list of modules,
--# or specify the modules as targets:
-+# Makefile for the drm device driver.  This driver provides support for the
-+# Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
- #
--#    make r128.o radeon.o
--#
--# or:
-+# Based on David Woodhouse's mtd build.
- #
--#    make DRM_MODULES="r128 radeon"
-+# $XFree86: xc/programs/Xserver/hw/xfree86/os-support/linux/drm/kernel/Makefile.kernel,v 1.18 2003/08/16 17:59:17 dawes Exp $
- #
+diff --git a/drivers/gpu/drm-psb/drm_agpsupport.c b/drivers/gpu/drm-psb/drm_agpsupport.c
+index a1af119..8b739d2 100644
+--- a/drivers/gpu/drm-psb/drm_agpsupport.c
++++ b/drivers/gpu/drm-psb/drm_agpsupport.c
+@@ -524,7 +524,7 @@ static int drm_agp_populate(struct drm_ttm_backend *backend,
+ 	DRM_DEBUG("Current page count is %ld\n", (long) mem->page_count);
+ 	mem->page_count = 0;
+ 	for (cur_page = pages; cur_page < last_page; ++cur_page)
+-		mem->pages[mem->page_count++] = phys_to_gart(page_to_phys(*cur_page));
++		mem->pages[mem->page_count++] = page_to_phys(*cur_page);
+ 	agp_be->mem = mem;
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm-psb/drm_edid.c b/drivers/gpu/drm-psb/drm_edid.c
+index 6307cdc..54d27c6 100644
+--- a/drivers/gpu/drm-psb/drm_edid.c
++++ b/drivers/gpu/drm-psb/drm_edid.c
+@@ -11,6 +11,7 @@
+ #include "drm_edid.h"
  
--SHELL=/bin/sh
--
--.SUFFIXES:
--
--ifndef LINUXDIR
--RUNNING_REL := $(shell uname -r)
--
--LINUXDIR := $(shell if [ -e /lib/modules/$(RUNNING_REL)/source ]; then \
--		 echo /lib/modules/$(RUNNING_REL)/source; \
--		 else echo /lib/modules/$(RUNNING_REL)/build; fi)
--endif
--
--ifndef O
--O := $(shell if [ -e /lib/modules/$(RUNNING_REL)/build ]; then \
--		 echo /lib/modules/$(RUNNING_REL)/build; \
--		 else echo ""; fi)
--#O := $(LINUXDIR)
--endif
--
--ifdef ARCH
--MACHINE := $(ARCH)
--else
--MACHINE := $(shell uname -m)
--endif
--
--# Modules for all architectures
--MODULE_LIST := drm.o tdfx.o r128.o radeon.o mga.o sis.o savage.o via.o \
--               mach64.o nv.o nouveau.o psb.o xgi.o
--
--# Modules only for ix86 architectures
--ifneq (,$(findstring 86,$(MACHINE)))
--ARCHX86 := 1
--MODULE_LIST += i810.o i915.o
--endif
--
--ifneq (,$(findstring sparc64,$(MACHINE)))
--ARCHSPARC64 := 1
--#MODULE_LIST += ffb.o
--endif
--
--DRM_MODULES ?= $(MODULE_LIST)
--
--# These definitions are for handling dependencies in the out of kernel build.
--
--DRMHEADERS =    drmP.h drm_compat.h drm_os_linux.h drm.h drm_sarea.h
--COREHEADERS =   drm_core.h drm_sman.h drm_hashtab.h 
--
--TDFXHEADERS =   tdfx_drv.h $(DRMHEADERS)
--R128HEADERS =   r128_drv.h r128_drm.h $(DRMHEADERS)
--RADEONHEADERS = radeon_drv.h radeon_drm.h r300_reg.h $(DRMHEADERS)
--MGAHEADERS =    mga_drv.h mga_drm.h mga_ucode.h $(DRMHEADERS)
--I810HEADERS =   i810_drv.h i810_drm.h $(DRMHEADERS)
--I915HEADERS =   i915_drv.h i915_drm.h $(DRMHEADERS)
--SISHEADERS=     sis_drv.h sis_drm.h drm_hashtab.h drm_sman.h $(DRMHEADERS)
--SAVAGEHEADERS=  savage_drv.h savage_drm.h $(DRMHEADERS)
--VIAHEADERS =	via_drm.h via_drv.h via_3d_reg.h via_verifier.h $(DRMHEADERS)
--MACH64HEADERS = mach64_drv.h mach64_drm.h $(DRMHEADERS)
--NVHEADERS =     nv_drv.h $(DRMHEADERS)
--FFBHEADERS = 	ffb_drv.h $(DRMHEADERS)
--NOUVEAUHEADERS = nouveau_drv.h nouveau_drm.h nouveau_reg.h $(DRMHEADERS)
--PSBHEADERS=    psb_drv.h psb_drm.h psb_reg.h psb_kreg.h psb_scene.h \
--	psb_schedule.h psb_detear.h $(DRMHEADERS)
--XGIHEADERS = xgi_cmdlist.h xgi_drv.h xgi_misc.h xgi_regs.h $(DRMHEADERS)
--
--PROGS = dristat drmstat
--
--CLEANFILES = *.o *.ko $(PROGS) .depend .*.flags .*.d .*.cmd *.mod.c .tmp_versions
--
--# VERSION is not defined from the initial invocation.  It is defined when
--# this Makefile is invoked from the kernel's root Makefile.
--
--ifndef VERSION
--
--ifdef RUNNING_REL
--
--# SuSE has the version.h and autoconf.h headers for the current kernel
--# in /boot as /boot/vmlinuz.version.h and /boot/vmlinuz.autoconf.h.
--# Check these first to see if they match the running kernel.
--
--BOOTVERSION_PREFIX = /boot/vmlinuz.
--
--V := $(shell if [ -f $(BOOTVERSION_PREFIX)version.h ]; then \
--	grep UTS_RELEASE $(BOOTVERSION_PREFIX)version.h | \
--	cut -d' ' -f3; fi)
--
--ifeq ($(V),"$(RUNNING_REL)")
--HEADERFROMBOOT := 1
--GETCONFIG := MAKEFILES=$(shell pwd)/.config
--HAVECONFIG := y
--endif
--
--# On Red Hat we need to check if there is a .config file in the kernel
--# source directory.  If there isn't, we need to check if there's a
--# matching file in the configs subdirectory.
--
--ifneq ($(HAVECONFIG),y)
--HAVECONFIG := $(shell if [ -e $(LINUXDIR)/.config ]; then echo y; fi)
--endif
--
--ifneq ($(HAVECONFIG),y)
--REL_BASE := $(shell echo $(RUNNING_REL) | sed 's/-.*//')
--REL_TYPE := $(shell echo $(RUNNING_REL) | sed 's/[0-9.-]//g')
--ifeq ($(REL_TYPE),)
--RHCONFIG := configs/kernel-$(REL_BASE)-$(MACHINE).config
--else
--RHCONFIG := configs/kernel-$(REL_BASE)-$(MACHINE)-$(REL_TYPE).config
--endif
--HAVECONFIG := $(shell if [ -e $(LINUXDIR)/$(RHCONFIG) ]; then echo y; fi)
--ifneq ($(HAVECONFIG),y)
--RHCONFIG :=
--endif
--endif
--
--ifneq ($(HAVECONFIG),y)
--ifneq ($(0),$(LINUXDIR))
--GETCONFIG += O=$(O)
--endif
--HAVECONFIG := $(shell if [ -e $(O)/.config ]; then echo y; fi)
--endif
--
--ifneq ($(HAVECONFIG),y)
--$(error Cannot find a kernel config file)
--endif
--
--endif
--
--CLEANCONFIG := $(shell if cmp -s $(LINUXDIR)/.config .config; then echo y; fi)
--ifeq ($(CLEANCONFIG),y)
--CLEANFILES += $(LINUXDIR)/.config .config $(LINUXDIR)/tmp_include_depends
--endif
--
--all: modules
--
--modules: includes
--	+make -C $(LINUXDIR) $(GETCONFIG) SUBDIRS=`pwd` DRMSRCDIR=`pwd` modules
--
--ifeq ($(HEADERFROMBOOT),1)
--
--BOOTHEADERS = version.h autoconf.h
--BOOTCONFIG = .config
--
--CLEANFILES += $(BOOTHEADERS) $(BOOTCONFIG)
--
--includes:: $(BOOTHEADERS) $(BOOTCONFIG)
--
--version.h: $(BOOTVERSION_PREFIX)version.h
--	rm -f $@
--	ln -s $< $@
--
--autoconf.h: $(BOOTVERSION_PREFIX)autoconf.h
--	rm -f $@
--	ln -s $< $@
--
--.config: $(BOOTVERSION_PREFIX)config
--	rm -f $@
--	ln -s $< $@
--endif
--
--# This prepares an unused Red Hat kernel tree for the build.
--ifneq ($(RHCONFIG),)
--includes:: $(LINUXDIR)/.config $(LINUXDIR)/tmp_include_depends .config
--
--$(LINUXDIR)/.config: $(LINUXDIR)/$(RHCONFIG)
--	rm -f $@
--	ln -s $< $@
--
--.config: $(LINUXDIR)/$(RHCONFIG)
--	rm -f $@
--	ln -s $< $@
--
--$(LINUXDIR)/tmp_include_depends:
--	echo all: > $@
--endif
--
--# Make sure that the shared source files are linked into this directory.
--
--
--SHAREDDIR := .
--
--ifeq ($(shell if [ -d $(SHAREDDIR) ]; then echo y; fi),y)
--includes::  drm_pciids.h
--
--drm_pciids.h: $(SHAREDDIR)/drm_pciids.txt
--	sh ./create_linux_pci_lists.sh < $(SHAREDDIR)/drm_pciids.txt
--else
--includes::
--
--endif
--
--clean cleandir:
--	rm -rf $(CLEANFILES)
--
--$(MODULE_LIST)::
--	make DRM_MODULES=$@ modules
--
--# Build test utilities
--
--PRGCFLAGS = $(CFLAGS) -g -ansi -pedantic -DPOSIX_C_SOURCE=199309L \
--	    -D_POSIX_SOURCE -D_XOPEN_SOURCE -D_BSD_SOURCE -D_SVID_SOURCE \
--	    -I. -I../../..
--
--DRMSTATLIBS = -L../../.. -L.. -ldrm -lxf86_os \
--	      -L../../../../dummylib -ldummy -lm
--
--programs: $(PROGS)
--
--dristat: dristat.c
--	$(CC) $(PRGCFLAGS) $< -o $@
--
--drmstat: drmstat.c
--	$(CC) $(PRGCFLAGS) $< -o $@ $(DRMSTATLIBS)
--
--install:
--	make -C $(LINUXDIR) $(GETCONFIG) SUBDIRS=`pwd` DRMSRCDIR=`pwd` modules_install
--
--else
--
--# Check for kernel versions that we don't support.
--
--BELOW26 := $(shell if [ $(VERSION) -lt 2 -o $(PATCHLEVEL) -lt 6 ]; then \
--		echo y; fi)
--
--ifeq ($(BELOW26),y)
--$(error Only 2.6.x and later kernels are supported \
--	($(VERSION).$(PATCHLEVEL).$(SUBLEVEL)))
--endif
--
--ifdef ARCHX86
--ifndef CONFIG_X86_CMPXCHG
--$(error CONFIG_X86_CMPXCHG needs to be enabled in the kernel)
--endif
--endif
--
--# This needs to go before all other include paths.
--CC += -I$(DRMSRCDIR)
--
--# Check for PAGE_AGP definition
--PAGE_AGP := $(shell cat $(LINUXDIR)/include/asm/agp.h 2>/dev/null | \
--		grep -c PAGE_AGP)
--
--ifneq ($(PAGE_AGP),0)
--EXTRA_CFLAGS += -DHAVE_PAGE_AGP
--endif
--
--# Start with all modules turned off.
--CONFIG_DRM_GAMMA := n
--CONFIG_DRM_TDFX := n
--CONFIG_DRM_MGA := n
--CONFIG_DRM_I810 := n
--CONFIG_DRM_R128 := n
--CONFIG_DRM_RADEON := n
--CONFIG_DRM_I915 := n
--CONFIG_DRM_SIS := n
--CONFIG_DRM_FFB := n
--CONFIG_DRM_SAVAGE := n
--CONFIG_DRM_VIA := n
--CONFIG_DRM_MACH64 := n
--CONFIG_DRM_NV := n
--CONFIG_DRM_NOUVEAU := n
--CONFIG_DRM_PSB := n
--CONFIG_DRM_XGI := n
--
--# Enable module builds for the modules requested/supported.
--
--ifneq (,$(findstring tdfx,$(DRM_MODULES)))
--CONFIG_DRM_TDFX := m
--endif
--ifneq (,$(findstring r128,$(DRM_MODULES)))
--CONFIG_DRM_R128 := m
--endif
--ifneq (,$(findstring radeon,$(DRM_MODULES)))
--CONFIG_DRM_RADEON := m
--endif
--ifneq (,$(findstring sis,$(DRM_MODULES)))
--CONFIG_DRM_SIS := m
--endif
--ifneq (,$(findstring via,$(DRM_MODULES)))
--CONFIG_DRM_VIA := m
--endif
--ifneq (,$(findstring mach64,$(DRM_MODULES)))
--CONFIG_DRM_MACH64 := m
--endif
--ifneq (,$(findstring ffb,$(DRM_MODULES)))
--CONFIG_DRM_FFB := m
--endif
--ifneq (,$(findstring savage,$(DRM_MODULES)))
--CONFIG_DRM_SAVAGE := m
--endif
--ifneq (,$(findstring mga,$(DRM_MODULES)))
--CONFIG_DRM_MGA := m
--endif
--ifneq (,$(findstring nv,$(DRM_MODULES)))
--CONFIG_DRM_NV := m
--endif
--ifneq (,$(findstring nouveau,$(DRM_MODULES)))
--CONFIG_DRM_NOUVEAU := m
--endif
--ifneq (,$(findstring xgi,$(DRM_MODULES)))
--CONFIG_DRM_XGI := m
--endif
--
--# These require AGP support
--
--ifneq (,$(findstring i810,$(DRM_MODULES)))
--CONFIG_DRM_I810 := m
--endif
--ifneq (,$(findstring i915,$(DRM_MODULES)))
--CONFIG_DRM_I915 := m
--endif
--ifneq (,$(findstring psb,$(DRM_MODULES)))
--CONFIG_DRM_PSB := m
--endif
--include $(DRMSRCDIR)/Makefile.kernel
--
--# Depencencies
--$(drm-objs):	$(DRMHEADERS) $(COREHEADERS)
--$(tdfx-objs):	$(TDFXHEADERS)
--$(r128-objs):	$(R128HEADERS)
--$(mga-objs):	$(MGAHEADERS)
--$(i810-objs):	$(I810HEADERS)
--$(i915-objs):	$(I915HEADERS)
--$(radeon-objs):	$(RADEONHEADERS)
--$(sis-objs):	$(SISHEADERS)
--$(ffb-objs):	$(FFBHEADERS)
--$(savage-objs): $(SAVAGEHEADERS)
--$(via-objs):	$(VIAHEADERS)
--$(mach64-objs): $(MACH64HEADERS)
--$(nv-objs):     $(NVHEADERS)
--$(nouveau-objs): $(NOUVEAUHEADERS)
--$(psb-objs):   $(PSBHEADERS)
--$(xgi-objs):    $(XGIHEADERS)
--
--endif
--
-+drm-objs    := drm_auth.o drm_bufs.o drm_context.o drm_dma.o drm_drawable.o \
-+		drm_drv.o drm_fops.o drm_ioctl.o drm_irq.o \
-+		drm_lock.o drm_memory.o drm_proc.o drm_stub.o drm_vm.o \
-+		drm_sysfs.o drm_pci.o drm_agpsupport.o drm_scatter.o \
-+		drm_memory_debug.o ati_pcigart.o drm_sman.o \
-+		drm_hashtab.o drm_mm.o drm_object.o drm_compat.o \
-+	        drm_fence.o drm_ttm.o drm_bo.o drm_bo_move.o drm_crtc.o \
-+		drm_edid.o drm_modes.o drm_bo_lock.o drm_regman.o drm_vm_nopage_compat.o
-+tdfx-objs   := tdfx_drv.o
-+r128-objs   := r128_drv.o r128_cce.o r128_state.o r128_irq.o
-+mga-objs    := mga_drv.o mga_dma.o mga_state.o mga_warp.o mga_irq.o
-+i810-objs   := i810_drv.o i810_dma.o
-+i915-objs   := i915_drv.o i915_dma.o i915_irq.o i915_mem.o i915_fence.o \
-+		i915_buffer.o intel_setup.o intel_i2c.o i915_init.o intel_fb.o \
-+		i915_compat.o
-+nouveau-objs := nouveau_drv.o nouveau_state.o nouveau_fifo.o nouveau_mem.o \
-+		nouveau_object.o nouveau_irq.o nouveau_notifier.o nouveau_swmthd.o \
-+		nouveau_sgdma.o nouveau_dma.o nouveau_buffer.o nouveau_fence.o \
-+		nv04_timer.o \
-+		nv04_mc.o nv40_mc.o nv50_mc.o \
-+		nv04_fb.o nv10_fb.o nv40_fb.o \
-+		nv04_fifo.o nv10_fifo.o nv40_fifo.o nv50_fifo.o \
-+		nv04_graph.o nv10_graph.o nv20_graph.o \
-+		nv40_graph.o nv50_graph.o \
-+		nv04_instmem.o nv50_instmem.o
-+radeon-objs := radeon_drv.o radeon_cp.o radeon_state.o radeon_mem.o radeon_irq.o r300_cmdbuf.o radeon_fence.o radeon_buffer.o
-+sis-objs    := sis_drv.o sis_mm.o
-+ffb-objs    := ffb_drv.o ffb_context.o
-+savage-objs := savage_drv.o savage_bci.o savage_state.o
-+via-objs    := via_irq.o via_drv.o via_map.o via_mm.o via_dma.o via_verifier.o \
-+		via_video.o via_dmablit.o via_fence.o via_buffer.o
-+mach64-objs := mach64_drv.o mach64_dma.o mach64_irq.o mach64_state.o
-+nv-objs := nv_drv.o
-+psb-objs    := psb_drv.o psb_mmu.o psb_sgx.o psb_irq.o psb_fence.o \
-+		psb_buffer.o psb_gtt.o psb_setup.o psb_i2c.o psb_fb.o \
-+		psb_schedule.o psb_scene.o psb_reset.o \
-+		psb_regman.o psb_xhw.o psb_msvdx.o psb_msvdxinit.o \
-+		psb_detear.o
-+xgi-objs    := xgi_cmdlist.o xgi_drv.o xgi_fb.o xgi_misc.o xgi_pcie.o \
-+		xgi_fence.o
-+
-+ifeq ($(CONFIG_COMPAT),y)
-+drm-objs    += drm_ioc32.o
-+radeon-objs += radeon_ioc32.o
-+mga-objs    += mga_ioc32.o
-+r128-objs   += r128_ioc32.o
-+i915-objs   += i915_ioc32.o
-+nouveau-objs += nouveau_ioc32.o
-+xgi-objs    += xgi_ioc32.o
-+endif
-+
-+obj-m			+= drm.o
-+obj-$(CONFIG_DRM_TDFX)	+= tdfx.o
-+obj-$(CONFIG_DRM_R128)	+= r128.o
-+obj-$(CONFIG_DRM_RADEON)+= radeon.o
-+obj-$(CONFIG_DRM_MGA)	+= mga.o
-+obj-$(CONFIG_DRM_I810)	+= i810.o
-+obj-$(CONFIG_DRM_I915)	+= i915.o
-+obj-$(CONFIG_DRM_SIS)   += sis.o
-+obj-$(CONFIG_DRM_FFB)   += ffb.o
-+obj-$(CONFIG_DRM_SAVAGE)+= savage.o
-+obj-$(CONFIG_DRM_VIA)   += via.o
-+obj-$(CONFIG_DRM_MACH64)+= mach64.o
-+obj-$(CONFIG_DRM_NV)    += nv.o
-+obj-$(CONFIG_DRM_NOUVEAU) += nouveau.o
-+obj-$(CONFIG_DRM_PSB)   += psb.o
-+obj-$(CONFIG_DRM_XGI)   += xgi.o
-diff --git a/drivers/gpu/drm-psb/Makefile.kernel b/drivers/gpu/drm-psb/Makefile.kernel
-deleted file mode 100644
-index 702bf28..0000000
---- a/drivers/gpu/drm-psb/Makefile.kernel
-+++ /dev/null
-@@ -1,76 +0,0 @@
--#
--# Makefile for the drm device driver.  This driver provides support for the
--# Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
--#
--# Based on David Woodhouse's mtd build.
--#
--# $XFree86: xc/programs/Xserver/hw/xfree86/os-support/linux/drm/kernel/Makefile.kernel,v 1.18 2003/08/16 17:59:17 dawes Exp $
--#
--
--drm-objs    := drm_auth.o drm_bufs.o drm_context.o drm_dma.o drm_drawable.o \
--		drm_drv.o drm_fops.o drm_ioctl.o drm_irq.o \
--		drm_lock.o drm_memory.o drm_proc.o drm_stub.o drm_vm.o \
--		drm_sysfs.o drm_pci.o drm_agpsupport.o drm_scatter.o \
--		drm_memory_debug.o ati_pcigart.o drm_sman.o \
--		drm_hashtab.o drm_mm.o drm_object.o drm_compat.o \
--	        drm_fence.o drm_ttm.o drm_bo.o drm_bo_move.o drm_crtc.o \
--		drm_edid.o drm_modes.o drm_bo_lock.o drm_regman.o drm_vm_nopage_compat.o
--tdfx-objs   := tdfx_drv.o
--r128-objs   := r128_drv.o r128_cce.o r128_state.o r128_irq.o
--mga-objs    := mga_drv.o mga_dma.o mga_state.o mga_warp.o mga_irq.o
--i810-objs   := i810_drv.o i810_dma.o
--i915-objs   := i915_drv.o i915_dma.o i915_irq.o i915_mem.o i915_fence.o \
--		i915_buffer.o intel_setup.o intel_i2c.o i915_init.o intel_fb.o \
--		i915_compat.o
--nouveau-objs := nouveau_drv.o nouveau_state.o nouveau_fifo.o nouveau_mem.o \
--		nouveau_object.o nouveau_irq.o nouveau_notifier.o nouveau_swmthd.o \
--		nouveau_sgdma.o nouveau_dma.o nouveau_buffer.o nouveau_fence.o \
--		nv04_timer.o \
--		nv04_mc.o nv40_mc.o nv50_mc.o \
--		nv04_fb.o nv10_fb.o nv40_fb.o \
--		nv04_fifo.o nv10_fifo.o nv40_fifo.o nv50_fifo.o \
--		nv04_graph.o nv10_graph.o nv20_graph.o \
--		nv40_graph.o nv50_graph.o \
--		nv04_instmem.o nv50_instmem.o
--radeon-objs := radeon_drv.o radeon_cp.o radeon_state.o radeon_mem.o radeon_irq.o r300_cmdbuf.o radeon_fence.o radeon_buffer.o
--sis-objs    := sis_drv.o sis_mm.o
--ffb-objs    := ffb_drv.o ffb_context.o
--savage-objs := savage_drv.o savage_bci.o savage_state.o
--via-objs    := via_irq.o via_drv.o via_map.o via_mm.o via_dma.o via_verifier.o \
--		via_video.o via_dmablit.o via_fence.o via_buffer.o
--mach64-objs := mach64_drv.o mach64_dma.o mach64_irq.o mach64_state.o
--nv-objs := nv_drv.o
--psb-objs    := psb_drv.o psb_mmu.o psb_sgx.o psb_irq.o psb_fence.o \
--		psb_buffer.o psb_gtt.o psb_setup.o psb_i2c.o psb_fb.o \
--		psb_schedule.o psb_scene.o psb_reset.o \
--		psb_regman.o psb_xhw.o psb_msvdx.o psb_msvdxinit.o \
--		psb_detear.o
--xgi-objs    := xgi_cmdlist.o xgi_drv.o xgi_fb.o xgi_misc.o xgi_pcie.o \
--		xgi_fence.o
--
--ifeq ($(CONFIG_COMPAT),y)
--drm-objs    += drm_ioc32.o
--radeon-objs += radeon_ioc32.o
--mga-objs    += mga_ioc32.o
--r128-objs   += r128_ioc32.o
--i915-objs   += i915_ioc32.o
--nouveau-objs += nouveau_ioc32.o
--xgi-objs    += xgi_ioc32.o
--endif
--
--obj-m			+= drm.o
--obj-$(CONFIG_DRM_TDFX)	+= tdfx.o
--obj-$(CONFIG_DRM_R128)	+= r128.o
--obj-$(CONFIG_DRM_RADEON)+= radeon.o
--obj-$(CONFIG_DRM_MGA)	+= mga.o
--obj-$(CONFIG_DRM_I810)	+= i810.o
--obj-$(CONFIG_DRM_I915)	+= i915.o
--obj-$(CONFIG_DRM_SIS)   += sis.o
--obj-$(CONFIG_DRM_FFB)   += ffb.o
--obj-$(CONFIG_DRM_SAVAGE)+= savage.o
--obj-$(CONFIG_DRM_VIA)   += via.o
--obj-$(CONFIG_DRM_MACH64)+= mach64.o
--obj-$(CONFIG_DRM_NV)    += nv.o
--obj-$(CONFIG_DRM_NOUVEAU) += nouveau.o
--obj-$(CONFIG_DRM_PSB)   += psb.o
--obj-$(CONFIG_DRM_XGI)   += xgi.o
+ #include <acpi/acpi_drivers.h>
++#include <linux/i2c.h>
+ 
+ /* Valid EDID header has these bytes */
+ static u8 edid_header[] = { 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00 };
+@@ -39,7 +40,7 @@ int drm_get_acpi_edid(char *method, char *edid, ssize_t length)
+ 	if (obj && obj->type == ACPI_TYPE_BUFFER)
+ 		memcpy(edid, obj->buffer.pointer, obj->buffer.length);
+ 	else {
+-		printk(KERN_ERR PREFIX "Invalid _DDC data\n");
++		printk(KERN_ERR "Invalid _DDC data\n");
+ 		status = -EFAULT;
+ 		kfree(obj);
+ 	}
+diff --git a/drivers/gpu/drm-psb/drm_memory.c b/drivers/gpu/drm-psb/drm_memory.c
+index becca1e..c890499 100644
+--- a/drivers/gpu/drm-psb/drm_memory.c
++++ b/drivers/gpu/drm-psb/drm_memory.c
+@@ -264,9 +264,9 @@ static void *agp_remap(unsigned long offset, unsigned long size,
+ 		return NULL;
+ 
+ 	phys_addr_map =
+-	    agpmem->memory->memory + (offset - agpmem->bound) / PAGE_SIZE;
++	    agpmem->memory->pages + (offset - agpmem->bound) / PAGE_SIZE;
+ 	for (i = 0; i < num_pages; ++i)
+-		page_map[i] = pfn_to_page(phys_addr_map[i] >> PAGE_SHIFT);
++                page_map[i] = phys_addr_map[i];
+ 	addr = vmap(page_map, num_pages, VM_IOREMAP, PAGE_AGP);
+ 	vfree(page_map);
+ 
+diff --git a/drivers/gpu/drm-psb/drm_os_linux.h b/drivers/gpu/drm-psb/drm_os_linux.h
+index f52f0eb..ac5051b 100644
+--- a/drivers/gpu/drm-psb/drm_os_linux.h
++++ b/drivers/gpu/drm-psb/drm_os_linux.h
+@@ -50,12 +50,6 @@
+ 
+ /** IRQ handler arguments and return type and values */
+ #define DRM_IRQ_ARGS		int irq, void *arg
+-/** backwards compatibility with old irq return values */
+-#ifndef IRQ_HANDLED
+-typedef void irqreturn_t;
+-#define IRQ_HANDLED		/* nothing */
+-#define IRQ_NONE		/* nothing */
+-#endif
+ 
+ /** AGP types */
+ #if __OS_HAS_AGP
+diff --git a/drivers/gpu/drm-psb/drm_ttm.c b/drivers/gpu/drm-psb/drm_ttm.c
+index e0afb04..8aa3947 100644
+--- a/drivers/gpu/drm-psb/drm_ttm.c
++++ b/drivers/gpu/drm-psb/drm_ttm.c
+@@ -28,6 +28,8 @@
+  * Authors: Thomas Hellström <thomas-at-tungstengraphics-dot-com>
+  */
+ 
++#include "linux/spinlock.h"
++#include "asm/agp.h"
+ #include "drmP.h"
+ 
+ static void drm_ttm_ipi_handler(void *null)
+diff --git a/drivers/gpu/drm-psb/drm_vm.c b/drivers/gpu/drm-psb/drm_vm.c
+index 5baefee..7adbf7b 100644
+--- a/drivers/gpu/drm-psb/drm_vm.c
++++ b/drivers/gpu/drm-psb/drm_vm.c
+@@ -145,13 +145,13 @@ static int drm_do_vm_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
+ 		 * Get the page, inc the use count, and return it
+ 		 */
+ 		offset = (baddr - agpmem->bound) >> PAGE_SHIFT;
+-		page = virt_to_page(__va(agpmem->memory->memory[offset]));
++		page = agpmem->memory->pages[offset];
+ 		get_page(page);
+ 		vmf->page = page;
+ 
+ 		DRM_DEBUG
+ 		    ("baddr = 0x%lx page = 0x%p, offset = 0x%lx, count=%d\n",
+-		     baddr, __va(agpmem->memory->memory[offset]), offset,
++		     baddr, agpmem->memory->pages[offset], offset,
+ 		     page_count(page));
+ 		return 0;
+ 	}
+diff --git a/drivers/gpu/drm-psb/intel_lvds.c b/drivers/gpu/drm-psb/intel_lvds.c
+index 208f3ad..16fbd79 100644
+--- a/drivers/gpu/drm-psb/intel_lvds.c
++++ b/drivers/gpu/drm-psb/intel_lvds.c
+@@ -29,6 +29,7 @@
+ 
+ #include <linux/i2c.h>
+ #include <linux/backlight.h>
++#include <linux/i2c.h>
+ #include "drm_crtc.h"
+ #include "drm_edid.h"
+ #include "intel_lvds.h"
+diff --git a/drivers/gpu/drm-psb/psb_drv.c b/drivers/gpu/drm-psb/psb_drv.c
+index 2a2e8d4..794c180 100644
+--- a/drivers/gpu/drm-psb/psb_drv.c
++++ b/drivers/gpu/drm-psb/psb_drv.c
+@@ -34,8 +34,10 @@
+ #include <linux/cpu.h>
+ #include <linux/notifier.h>
+ #include <linux/fb.h>
++#include "linux/spinlock.h"
++#include "asm/agp.h"
+ 
+-int drm_psb_debug = 0;
++int drm_psb_debug = 255;
+ EXPORT_SYMBOL(drm_psb_debug);
+ static int drm_psb_trap_pagefaults = 0;
+ static int drm_psb_clock_gating = 0;
+diff --git a/drivers/gpu/drm-psb/psb_drv.h b/drivers/gpu/drm-psb/psb_drv.h
+index f2c2657..ad0c36c 100644
+--- a/drivers/gpu/drm-psb/psb_drv.h
++++ b/drivers/gpu/drm-psb/psb_drv.h
+@@ -808,7 +808,7 @@ extern int drm_psb_detear;
+ #define PSB_DEBUG(_flag, _fmt, _arg...)					\
+ 	do {								\
+ 	  if (unlikely((_flag) & drm_psb_debug))			\
+-			printk(KERN_DEBUG				\
++			printk(KERN_ERR				\
+ 			       "[psb:0x%02x:%s] " _fmt , _flag,	\
+ 			       __FUNCTION__ , ##_arg);			\
+ 	} while (0)
 -- 
 1.7.0.4
 
