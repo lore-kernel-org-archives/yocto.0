@@ -1,26 +1,21 @@
 Return-Path: <niqingliang@insigma.com.cn>
 Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F33E8E004E9
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2011 18:02:40 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7611CE004E9
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2011 18:58:50 -0700 (PDT)
 Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
 	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
-	Thu, 22 Sep 2011 09:02:28 +0800
+	Thu, 22 Sep 2011 09:56:38 +0800
 Received: from [192.168.0.98] (122.224.76.38) by WX-ExchMB.insigma.com.cn
 	(10.0.1.203) with Microsoft SMTP Server id 8.1.240.5; Thu, 22 Sep 2011
-	09:02:26 +0800
+	09:56:37 +0800
 From: Ni Qingliang <niqingliang@insigma.com.cn>
-To: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 22 Sep 2011 09:01:48 +0800
-In-Reply-To: <CAMKF1sqW2u5gCEg63hmSJ_94RCQVSidHFH+Kf_rGfT5vTz6jtQ@mail.gmail.com>
-References: <1316584904.17177.53.camel@localhost.localdomain>
-	<4E79DFB0.3060405@windriver.com>
-	<CAMKF1sqW2u5gCEg63hmSJ_94RCQVSidHFH+Kf_rGfT5vTz6jtQ@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Thu, 22 Sep 2011 09:56:13 +0800
 Organization: Insigma
 X-Mailer: Evolution 3.0.3 
-Message-ID: <1316653322.17177.59.camel@localhost.localdomain>
+Message-ID: <1316656573.17177.66.camel@localhost.localdomain>
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: why the version of "linux-libc-headers-yocto_git" stay on 2.6.37 ?
+Subject: image_types_uboot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,21 +28,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Sep 2011 01:02:53 -0000
+X-List-Received-Date: Thu, 22 Sep 2011 01:58:51 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-OK, I got it.
+Hello, All:
 
-maybe we can manual download the package from one mirror of kernel site?
+when using "IMAGE_FSTYPES="ext2.gz.u-boot", I can't get what was
+expected.
 
-On Wed, 2011-09-21 at 22:37 +0800, Khem Raj wrote:
-> 
-> Please go ahead. I dont have cached copy of 3.x sources here and site
-> it still down
-> thats why I am restricted.
-> 
-> 
+I can found it in "image_types_uboot.bbclass", but "image.bbclass" only
+"inherit image_types", not "image_types_uboot".
+
+what can I do? How about substitute the "inherit image_types" by
+"inherit image_types_uboot" in "image.bbclass"?
+
+Thanks!
+
 -- 
 Yi Qingliang
 niqingliang@insigma.com.cn
