@@ -1,25 +1,30 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C10EE004E9
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2011 14:29:34 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 21 Sep 2011 14:29:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="52041966"
-Received: from unknown (HELO envy.home) ([10.255.14.210])
-	by orsmga002.jf.intel.com with ESMTP; 21 Sep 2011 14:29:33 -0700
-Message-ID: <4E7A573D.8040207@linux.intel.com>
-Date: Wed, 21 Sep 2011 14:29:33 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:6.0.2) Gecko/20110906 Thunderbird/6.0.2
+Return-Path: <niqingliang@insigma.com.cn>
+Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F33E8E004E9
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2011 18:02:40 -0700 (PDT)
+Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
+	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
+	Thu, 22 Sep 2011 09:02:28 +0800
+Received: from [192.168.0.98] (122.224.76.38) by WX-ExchMB.insigma.com.cn
+	(10.0.1.203) with Microsoft SMTP Server id 8.1.240.5; Thu, 22 Sep 2011
+	09:02:26 +0800
+From: Ni Qingliang <niqingliang@insigma.com.cn>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 22 Sep 2011 09:01:48 +0800
+In-Reply-To: <CAMKF1sqW2u5gCEg63hmSJ_94RCQVSidHFH+Kf_rGfT5vTz6jtQ@mail.gmail.com>
+References: <1316584904.17177.53.camel@localhost.localdomain>
+	<4E79DFB0.3060405@windriver.com>
+	<CAMKF1sqW2u5gCEg63hmSJ_94RCQVSidHFH+Kf_rGfT5vTz6jtQ@mail.gmail.com>
+Organization: Insigma
+X-Mailer: Evolution 3.0.3 
+Message-ID: <1316653322.17177.59.camel@localhost.localdomain>
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Cc: "Wold, Saul" <saul.wold@intel.com>
-Subject: MACHINE_EXTRA_* and MACHINE_ESSENTIAL_* documentation
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: why the version of "linux-libc-headers-yocto_git" stay on 2.6.37 ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: niqingliang@insigma.com.cn
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -28,120 +33,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Sep 2011 21:29:34 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 22 Sep 2011 01:02:53 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-This is something I've run into frequently and have been putting off
-trying to resolve. Hopefully the following will help illustrate the path
-a BSP developer might go down trying to use the MACHINE_ESSENTIAL* and
-MACHINE_EXTRA* variables. If someone with more knowledge on the subject
-could fill in the gaps noted below, I'll be happy to test and work with
-Scott to improve the documentation.
+OK, I got it.
 
-I am unable to discern from the following text in the reference manual,
-which variable I should be using to include a firmware package in the
-images for a given BSP.
+maybe we can manual download the package from one mirror of kernel site?
 
-From
-http://www.yoctoproject.org/docs/1.1/poky-ref-manual/poky-ref-manual.html:
-
-"
-MACHINE_ESSENTIAL_RDEPENDS
-
-    List of packages required to boot device
-MACHINE_ESSENTIAL_RRECOMMENDS
-
-    List of packages required to boot device (usually additional kernel
-modules)
-MACHINE_EXTRA_RDEPENDS
-
-    List of packages required to use device
-MACHINE_EXTRA_RRECOMMNEDS  (<-- typo still present)
-
-    List of packages useful to use device (for example additional kernel
-modules)
-"
-
-From the above, I don't learn anything about what the impact of using
-each of these variables is. Which ones add the packages to the rootfs,
-which only build them, do they impact the initrd (one might assume a
-package required for boot should be in the initrd). The difference
-between RDEPENDS and RRECOMMENDS is unclear. Three of the four use the
-term "required" while the other uses "useful" in the description.
-Neither semantic split (RDEPENDS vs. RRECOMMENDS, ESSENTIAL vs. EXTRA)
-can be understood from the available descriptions.
-
-The firmware I want to add is needed for wireless functionality. This is
-likely not required for boot, so I added it to MACHINE_EXTRA_RRECOMMENDS
-as it is only needed if the wireless driver is used. This resulted in
-the package being built, but not installed. In practice this would mean
-that people building the BSP would need to manually add the firmware
-package to IMAGE_INSTALL or install it manually later. This strikes me
-as unnecessarily complex.
-
-This was also unexpected given the definition of RRECOMMENDS in the
-manual, which would have led me to believe the package should have been
-installed:
-
-"
-RRECOMMENDS
-
-    List of packages which extend usability of the package. Those
-packages will be automatically installed but can be removed by user.
-"
-
-I wasn't able to find a general meaning for the term "EXTRA" by
-searching through the manual.
-
-I then tried the remaining 3 variables, doing the following after
-setting each:
-
-$ bitbake -c cleanall task-machine-base task-core-boot
-linux-firmware-core-image-sato
-$ bitbake -u depexp -g core-image-sato
-$ bitbake core-image-sato
-
-I then determined if the linux-firmware package appeared in the list
-presented by the depexp UI and whether or not the linux-firmware package
-was built and installed. The results follow:
-
-MACHINE_EXTRA_RDEPENDS = "linux-firmware-iwlwifi-6000g2a-5"
-# appears in depexp with no rdepends, builds, does not install
-
-#MACHINE_EXTRA_RECOMMENDS += "linux-firmware-iwlwifi-6000g2a-5"
-# does not appear in depexp, does not build
-
-#MACHINE_ESSENTIAL_RDEPENDS = "linux-firmware-iwlwifi-6000g2a-5"
-# does not appear in depexp, does not build
-
-
-I've tried searching the sources for these variables, and quickly lose
-their scent. Here is what I did find:
-
-task-base.bb:
-#
-# packages added by machine config
-#
-RDEPENDS_task-machine-base = "${MACHINE_EXTRA_RDEPENDS}"
-RRECOMMENDS_task-machine-base = "${MACHINE_EXTRA_RRECOMMENDS}"
-
-task-core-boot.bb:
-RDEPENDS_task-core-boot = "\
-    ...
-    ${MACHINE_ESSENTIAL_EXTRA_RDEPENDS}"
-
-RRECOMMENDS_task-core-boot = "\
-    ${MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS}"
-
-
-How these should impact the final image is not clear to me.
-
-
-Thanks,
-
+On Wed, 2011-09-21 at 22:37 +0800, Khem Raj wrote:
+> 
+> Please go ahead. I dont have cached copy of 3.x sources here and site
+> it still down
+> thats why I am restricted.
+> 
+> 
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Yi Qingliang
+niqingliang@insigma.com.cn
+http://niqingliang2003.wordpress.com
+
+
 
