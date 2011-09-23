@@ -1,25 +1,26 @@
 Return-Path: <niqingliang@insigma.com.cn>
 Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA32BE00502
-	for <yocto@yoctoproject.org>; Thu, 22 Sep 2011 20:51:46 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF1C1E00502
+	for <yocto@yoctoproject.org>; Thu, 22 Sep 2011 20:55:55 -0700 (PDT)
 Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
 	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
-	Fri, 23 Sep 2011 11:51:30 +0800
+	Fri, 23 Sep 2011 11:55:39 +0800
 Received: from [192.168.0.98] (122.224.76.38) by WX-ExchMB.insigma.com.cn
 	(10.0.1.203) with Microsoft SMTP Server id 8.1.240.5; Fri, 23 Sep 2011
-	11:51:29 +0800
+	11:55:37 +0800
 From: Ni Qingliang <niqingliang@insigma.com.cn>
 To: McClintock Matthew-B29882 <B29882@freescale.com>
-Date: Fri, 23 Sep 2011 11:51:07 +0800
-In-Reply-To: <CAEsOVNeZK0+-KKovDG46TPnUj8GQPpRuJ+5PDzspWXbPv5KN2w@mail.gmail.com>
+Date: Fri, 23 Sep 2011 11:55:16 +0800
+In-Reply-To: <1316749868.17177.86.camel@localhost.localdomain>
 References: <1316656573.17177.66.camel@localhost.localdomain>
 	<CAEsOVNc2uOTzhxqbh4VzopYVC0-iUPBccXfNb3ey5wKZFA_VZQ@mail.gmail.com>
 	<1316668170.17177.72.camel@localhost.localdomain>
 	<1316740588.17177.76.camel@localhost.localdomain>
 	<CAEsOVNeZK0+-KKovDG46TPnUj8GQPpRuJ+5PDzspWXbPv5KN2w@mail.gmail.com>
+	<1316749868.17177.86.camel@localhost.localdomain>
 Organization: Insigma
 X-Mailer: Evolution 3.0.3 
-Message-ID: <1316749868.17177.86.camel@localhost.localdomain>
+Message-ID: <1316750116.17177.89.camel@localhost.localdomain>
 MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: image_types_uboot
@@ -35,35 +36,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Sep 2011 03:51:53 -0000
+X-List-Received-Date: Fri, 23 Sep 2011 03:55:56 -0000
+X-Groupsio-MsgNum: 2852
+Content-Type: multipart/mixed; boundary="=-BPSlMWk3cfjhLKW32Sf5"
+
+--=-BPSlMWk3cfjhLKW32Sf5
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-I had modified the "image.bbclass", and can generate ext2.gz.u-boot
+attachement is the bootlog on serial console.
+I'm using mpc8314, I'm using the official kernel 3.0.4, and
+linux-libc-headers also is 3.0.4, update the udev to 173.
 
-and have new problem, when booting, I got that:
 
-/etc/udhcpc.d/50default: line 63: /etc/resolv.conf: No space left on
-device
-
-after login, I execute "echo -n > /etc/resolv.conf" success, and I can't
-find file /var/log/messages, there is only "wtmp" in "/var/log".
-
-On Fri, 2011-09-23 at 09:20 +0800, McClintock Matthew-B29882 wrote:
-> On Thu, Sep 22, 2011 at 8:16 PM, Ni Qingliang
-> <niqingliang@insigma.com.cn> wrote:
-> > maybe somethings wrong, after add "INHERIT += image_types_uboot" in the
-> > local.conf, I got that:
-> > ERROR: cannot map 'allarch' to a linux kernel architecture
+On Fri, 2011-09-23 at 11:51 +0800, 倪庆亮 wrote:
+> I had modified the "image.bbclass", and can generate ext2.gz.u-boot
+> 
+> and have new problem, when booting, I got that:
+> 
+> /etc/udhcpc.d/50default: line 63: /etc/resolv.conf: No space left on
+> device
+> 
+> after login, I execute "echo -n > /etc/resolv.conf" success, and I can't
+> find file /var/log/messages, there is only "wtmp" in "/var/log".
+> 
+> On Fri, 2011-09-23 at 09:20 +0800, McClintock Matthew-B29882 wrote:
+> > On Thu, Sep 22, 2011 at 8:16 PM, Ni Qingliang
+> > <niqingliang@insigma.com.cn> wrote:
+> > > maybe somethings wrong, after add "INHERIT += image_types_uboot" in the
+> > > local.conf, I got that:
+> > > ERROR: cannot map 'allarch' to a linux kernel architecture
+> > >
+> > > Any suggestion?
 > >
-> > Any suggestion?
+> > Interesting. I have been seeing this same error and did not yet know
+> > what was causing it. It has not caused any problems with the actual
+> > build so far, but it's nice to know what is causing it. It's on my
+> > list and I plan on looking into it.
+> >
+> > -M
 > 
-> Interesting. I have been seeing this same error and did not yet know
-> what was causing it. It has not caused any problems with the actual
-> build so far, but it's nice to know what is causing it. It's on my
-> list and I plan on looking into it.
+> --
+> Yi Qingliang
+> niqingliang@insigma.com.cn
+> http://niqingliang2003.wordpress.com
 > 
-> -M
+> 
 
 -- 
 Yi Qingliang
@@ -71,4 +89,178 @@ niqingliang@insigma.com.cn
 http://niqingliang2003.wordpress.com
 
 
+--=-BPSlMWk3cfjhLKW32Sf5
+Content-Disposition: attachment; filename="log.txt"
+Content-Type: text/plain; name="log.txt"; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Description: log.txt
 
+## Booting kernel from Legacy Image at fc100000 ...
+   Image Name:   Linux-3.0.4
+   Created:      2011-09-21   8:45:32 UTC
+   Image Type:   PowerPC Linux Kernel Image (gzip compressed)
+   Data Size:    2262322 Bytes =  2.2 MB
+   Load Address: 00000000
+   Entry Point:  00000000
+   Verifying Checksum ... OK
+## Loading init Ramdisk from Legacy Image at fc500000 ...
+   Image Name:   core-image-sa735-sa735-201109230
+   Created:      2011-09-23   3:35:58 UTC
+   Image Type:   PowerPC Linux RAMDisk Image (gzip compressed)
+   Data Size:    4311933 Bytes =  4.1 MB
+   Load Address: 00000000
+   Entry Point:  00000000
+   Verifying Checksum ... OK
+## Flattened Device Tree blob at fc0e0000
+   Booting using the fdt blob at 0xfc0e0000
+   Uncompressing Kernel Image ... OK
+   Loading Ramdisk to 0faf5000, end 0ff11b7d ... OK
+   Loading Device Tree to 007fa000, end 007ff4ed ... OK
+Using MPC831x RDB machine description
+Linux version 3.0.4 (ll@myhost) (gcc version 4.6.1 20110627 (prerelease) (GCC) ) #1 Wed Sep 21 16:45:26 CST 2011
+Found initrd at 0xcfaf5000:0xcff11b7d
+bootconsole [udbg0] enabled
+setup_arch: bootmem
+mpc831x_rdb_setup_arch()
+Found FSL PCI host bridge at 0x00000000e0008500. Firmware bus number: 0->0
+PCI host bridge /pci@e0008500 (primary) ranges:
+ MEM 0x0000000090000000..0x000000009fffffff -> 0x0000000090000000 
+ MEM 0x0000000080000000..0x000000008fffffff -> 0x0000000080000000 Prefetch
+  IO 0x00000000e0300000..0x00000000e03fffff -> 0x0000000000000000
+arch: exit
+Zone PFN ranges:
+  DMA      0x00000000 -> 0x00010000
+  Normal   empty
+Movable zone start PFN for each node
+early_node_map[1] active PFN ranges
+    0: 0x00000000 -> 0x00010000
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 65024
+Kernel command line: root=/dev/ram rw ramdisk_size=65535 console=ttyS1,115200
+PID hash table entries: 1024 (order: 0, 4096 bytes)
+Dentry cache hash table entries: 32768 (order: 5, 131072 bytes)
+Inode-cache hash table entries: 16384 (order: 4, 65536 bytes)
+Memory: 249928k/262144k available (4392k kernel code, 12216k reserved, 156k data, 1111k bss, 172k init)
+Kernel virtual memory layout:
+  * 0xfffdf000..0xfffff000  : fixmap
+  * 0xfdefd000..0xfe000000  : early ioremap
+  * 0xd1000000..0xfdefd000  : vmalloc & ioremap
+NR_IRQS:512 nr_irqs:512 16
+IPIC (128 IRQ sources) at d1000700
+clocksource: timebase mult[7800001] shift[22] registered
+pid_max: default: 32768 minimum: 301
+Mount-cache hash table entries: 512
+devtmpfs: initialized
+NET: Registered protocol family 16
+             
+PCI: Probing PCI hardware
+bio: create slab <bio-0> at 0
+Freescale Elo / Elo Plus DMA driver
+vgaarb: loaded
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+Switching to clocksource timebase
+NET: Registered protocol family 2
+IP route cache hash table entries: 2048 (order: 1, 8192 bytes)
+TCP established hash table entries: 8192 (order: 4, 65536 bytes)
+TCP bind hash table entries: 8192 (order: 3, 32768 bytes)
+TCP: Hash tables configured (established 8192 bind 8192)
+TCP reno registered
+UDP hash table entries: 256 (order: 0, 4096 bytes)
+UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+NET: Registered protocol family 1
+RPC: Registered named UNIX socket transport module.
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+RPC: Registered tcp NFSv4.1 backchannel transport module.
+Trying to unpack rootfs image as initramfs...
+rootfs image is not initramfs (no cpio magic); looks like an initrd
+Freeing initrd memory: 4212k freed
+WDT driver for MPC8xxx initialized. mode:reset timeout=65535 (32 seconds)
+fsl-elo-dma e00082a8.dma: #0 (fsl,elo-dma-channel), irq 71
+fsl-elo-dma e00082a8.dma: #1 (fsl,elo-dma-channel), irq 71
+fsl-elo-dma e00082a8.dma: #2 (fsl,elo-dma-channel), irq 71
+fsl-elo-dma e00082a8.dma: #3 (fsl,elo-dma-channel), irq 71
+JFFS2 version 2.2. (NAND) © 2001-2006 Red Hat, Inc.
+msgmni has been set to 498
+io scheduler noop registered
+io scheduler deadline registered
+io scheduler cfq registered (default)
+Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+serial8250.0: ttyS0 at MMIO 0xe0004500 (irq = 16) is a 16550A
+serial8250.0: ttyS1 at MMIO 0xe0004600 (irq = 17) is a 16550A
+console [ttyS1] enabled, bootconsole disabled
+console [ttyS1] enabled, bootconsole disabled
+Freescale QUICC Engine UART device driver
+brd: module loaded
+loop: module loaded
+fc000000.flash: Found 1 x16 devices at 0x0 in 16-bit bank. Manufacturer ID 0x000089 Chip ID 0x00227e
+Amd/Fujitsu Extended Query Table at 0x0040
+  Amd/Fujitsu Extended Query version 1.3.
+number of CFI chips: 1
+Creating 7 MTD partitions on "fc000000.flash":
+0x0000000c0000-0x0000000e0000 : "NOR (RO) Platform Version Info"
+0x0000000e0000-0x000000100000 : "NOR (RO) Device Tree Blob"
+0x000000100000-0x000000500000 : "NOR (RO) Linux Kernel Image"
+0x000000500000-0x000002000000 : "NOR (RO) Ramdisk Root File System"
+0x000002000000-0x000004000000 : "NOR (RW) JFFS2 User File System"
+0x000000000000-0x000000080000 : "NOR (RO) U-Boot Image"
+0x000000080000-0x0000000a0000 : "NOR (RO) U-Boot Environment"
+Fixed MDIO Bus: probed
+eth0: Gianfar Ethernet Controller Version 1.2, 04:00:00:00:00:0a
+eth0: Running with NAPI enabled
+eth0: RX BD ring size for Q[0]: 256
+eth0: TX BD ring size for Q[0]: 256
+eth1: Gianfar Ethernet Controller Version 1.2, 04:00:00:00:00:0b
+eth1: Running with NAPI enabled
+eth1: RX BD ring size for Q[0]: 256
+eth1: TX BD ring size for Q[0]: 256
+ucc_geth: QE UCC Gigabit Ethernet Controller
+Freescale PowerQUICC MII Bus: probed
+Freescale PowerQUICC MII Bus: probed
+usbmon: debugfs is not available
+ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+i2c /dev entries driver
+mpc-i2c e0003000.i2c: timeout 1000000 us
+at24 0-0050: 256 byte 24c02 EEPROM, writable, 1 bytes/write
+rtc-ds1374 0-0068: rtc core: registered ds1374 as rtc0
+at24 0-0051: 256 byte 24c02 EEPROM, writable, 1 bytes/write
+pcf857x: probe of 0-0021 failed with error -5
+lm75 0-0048: hwmon0: sensor 'tcn75'
+lm75: probe of 0-0049 failed with error -5
+usbcore: registered new interface driver usbhid
+usbhid: USB HID core driver
+oprofile: using timer interrupt.
+TCP cubic registered
+Initializing XFRM netlink socket
+NET: Registered protocol family 17
+NET: Registered protocol family 15
+Registering the dns_resolver key type
+rtc-ds1374 0-0068: setting system clock to 2011-09-22 12:17:13 UTC (1316693833)
+RAMDISK: gzip image found at block 0
+VFS: Mounted root (ext2 filesystem) on device 1:0.
+devtmpfs: mounted
+Freeing unused kernel memory: 172k init
+INIT: version 2.88 booting
+Starting udev
+Starting Bootlog daemon: bootlogd.
+Configuring network interfaces... udhcpc (v1.18.5) started
+Sending discover...
+PHY: mdio@e0024520:02 - Link is Up - 100/Full
+Sending discover...
+Sending select for 192.168.0.108...
+Lease of 192.168.0.108 obtained, lease time 604800
+/etc/udhcpc.d/50default: line 63: /etc/resolv.conf: No space left on device
+adding dns 192.168.0.1
+/etc/udhcpc.d/50default: line 67: /etc/resolv.conf: No space left on device
+done.
+Fri Sep 23 03:35:00 UTC 2011
+Running postinst /etc/rpm-postinsts/*.sh...
+ERROR: postinst /etc/rpm-postinsts/*.sh failed.
+INIT: Entering runlevel: 5
+Starting internet superserver: inetd.
+Starting syslogd/klogd: done
+Stopping Bootlog daemon: bootlogd.
+
+
+--=-BPSlMWk3cfjhLKW32Sf5--
