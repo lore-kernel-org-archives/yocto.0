@@ -1,37 +1,34 @@
-Return-Path: <lianhao.lu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF56BE005B7
-	for <yocto@yoctoproject.org>; Fri, 23 Sep 2011 19:22:27 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 23 Sep 2011 19:22:27 -0700
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25E46E004EB
+	for <yocto@yoctoproject.org>; Sun, 25 Sep 2011 05:36:13 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 25 Sep 2011 05:36:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="55414736"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by orsmga001.jf.intel.com with ESMTP; 23 Sep 2011 19:22:27 -0700
-Received: from pgsmsx102.gar.corp.intel.com (10.221.44.80) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sat, 24 Sep 2011 10:22:26 +0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	PGSMSX102.gar.corp.intel.com (10.221.44.80) with Microsoft SMTP Server
-	(TLS) id 14.1.323.3; Sat, 24 Sep 2011 10:22:25 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Sat, 24 Sep 2011 10:22:24 +0800
-From: "Lu, Lianhao" <lianhao.lu@intel.com>
+X-IronPort-AV: E=Sophos;i="4.68,439,1312182000"; d="scan'208";a="67276598"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by fmsmga001.fm.intel.com with ESMTP; 25 Sep 2011 05:36:11 -0700
+Received: from pgsmsx104.gar.corp.intel.com (10.221.44.91) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Sun, 25 Sep 2011 20:36:11 +0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	PGSMSX104.gar.corp.intel.com (10.221.44.91) with Microsoft SMTP Server
+	(TLS) id 14.1.323.3; Sun, 25 Sep 2011 20:36:10 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Sun, 25 Sep 2011 20:36:10 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Sat, 24 Sep 2011 10:22:23 +0800
-Thread-Topic: [yocto] Eclipse Plugin 1.1-M4
-Thread-Index: Acx5+vokbkl1TCBCRSK2w3CXlQSjhAAZH3tg
-Message-ID: <C10D3FB0CD45994C8A51FEC1227CE22F31BD344D6C@shsmsx502.ccr.corp.intel.com>
-References: <4E7C918D.5050407@communistcode.co.uk>
-	<4E7C93EE.2030509@communistcode.co.uk>
-In-Reply-To: <4E7C93EE.2030509@communistcode.co.uk>
-Accept-Language: zh-CN, en-US
+Date: Sun, 25 Sep 2011 20:36:08 +0800
+Thread-Topic: Yocto weekly bug trend charts -- WW39
+Thread-Index: Acx7f7MjhP1jZiR/STuC0K2PWJexxA==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D8673993@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN, en-US
+acceptlanguage: en-US
 MIME-Version: 1.0
-Subject: Re: Eclipse Plugin 1.1-M4
+Subject: Yocto weekly bug trend charts -- WW39
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,70 +40,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Sep 2011 02:22:28 -0000
+X-List-Received-Date: Sun, 25 Sep 2011 12:36:13 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Jack,
+Hi all,
+	The overall open bug trend continued increasing last week. The new-submit =
+vs. fixed bug is 30 vs. 21. Open bug number increased to 136. WDD number in=
+creased to 683. QA finished RC2 testing and there are still some open issue=
+s for hob and multi-lib. Bug status of WW39 could be found on https://wiki.=
+yoctoproject.org/wiki/Yocto_Bug_Trend.
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org
-> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Jack Mitchell
-> Sent: Friday, September 23, 2011 10:13 PM
-> To: yocto@yoctoproject.org
-> Subject: Re: [yocto] Eclipse Plugin 1.1-M4
->=20
-> On 23/09/2011 15:02, Jack Mitchell wrote:
-> > I am trying to get the latest plugin working with Eclipse Indigo and
-> > have followed the instructions listed here:
-> >
-> > http://permalink.gmane.org/gmane.linux.embedded.yocto.general/2596
-> >
-> > The instructions all work fine until I point Eclipse to a local git
-> > clone of the EclipsePlugin directory. When I try to install the plugin
-> > I recieve this error message:
-> >
-> > Cannot complete the install because one or more required items could
-> > not be found.
-> >   Software being installed: Yocto Plugin for Eclipse 1.1.0.qualifier
-> > (org.yocto.sdk.feature.group 1.1.0.qualifier)
-> >   Missing requirement: Yocto Plugin for Eclipse 1.1.0.qualifier
-> > (org.yocto.sdk.feature.group 1.1.0.qualifier) requires
-> > 'org.yocto.sdk.source.feature.group 0.0.0' but it could not be found
-> >
-> > Could anyone shed any light on the situation?
-
-How did you build out the plugin? You many try out using the scripts/build.=
-sh to build the 1.1M4 plugin upon your own Indigo.
-  ECLIPSE_HOME=3D<dir where you installed your Indigo> scripts/build.sh 1.1=
-M4 <your release name>
-You should find the file org.yocto.sdk-<your release name>-<date>-archive.z=
-ip after a successful build. Please try install that archive zip file and s=
-ee if it works.
-
-> > Regards,
-> > Jack.
->=20
-> Ok, I managed to get it installed by adding the 1.0 repository so that it=
- could
-> find the'group' it was looking for. When installed I then tried to alter =
-the
-> preferences and promtly recieved this message:
-
-Do you mean you installed the 1.0 plugin? I don't think 1.0 plugin would wo=
-rk with Indigo.
-
-> Unable to create the selected preference page.
-> org.yocto.sdk.ide.preferences.YoctoSDKPreferencePage
->=20
-> Screenshot: http://i.imgur.com/Ieibg.png
->=20
-> If I try to create a project using the yocto plugin it throws a nullPoint=
-er error -
-> am I missing something here or are there still issues to be ironed out on=
- the
-> new 1.1 git?
->=20
-
+Best Regards,
+Jiajun
 
