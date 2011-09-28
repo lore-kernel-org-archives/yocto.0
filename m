@@ -1,49 +1,29 @@
-Return-Path: <B29882@freescale.com>
-Received: from AM1EHSOBE005.bigfish.com (am1ehsobe005.messaging.microsoft.com
-	[213.199.154.208])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F7A2E004DD
-	for <yocto@yoctoproject.org>; Tue, 27 Sep 2011 15:37:12 -0700 (PDT)
-Received: from mail54-am1-R.bigfish.com (10.3.201.251) by
-	AM1EHSOBE005.bigfish.com (10.3.204.25) with Microsoft SMTP Server id
-	14.1.225.22; Tue, 27 Sep 2011 22:37:10 +0000
-Received: from mail54-am1 (localhost.localdomain [127.0.0.1])	by
-	mail54-am1-R.bigfish.com (Postfix) with ESMTP id CC78C1AE8496	for
-	<yocto@yoctoproject.org>; Tue, 27 Sep 2011 22:37:10 +0000 (UTC)
-X-SpamScore: 0
-X-BigFish: VS0(zzzz1202hzzz2dh2a8h668h839h8e2h8e3h62h)
-X-Spam-TCS-SCL: 1:0
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
-	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
-X-FB-SS: 0,
-Received: from mail54-am1 (localhost.localdomain [127.0.0.1]) by mail54-am1
-	(MessageSwitch) id 131716299689570_29274;
-	Tue, 27 Sep 2011 22:36:36 +0000 (UTC)
-Received: from AM1EHSMHS006.bigfish.com (unknown [10.3.201.243])	by
-	mail54-am1.bigfish.com (Postfix) with ESMTP id 11710BD0054	for
-	<yocto@yoctoproject.org>; Tue, 27 Sep 2011 22:36:36 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS006.bigfish.com
-	(10.3.207.106) with Microsoft SMTP Server (TLS) id 14.1.225.22;
-	Tue, 27 Sep 2011 22:36:35 +0000
-Received: from 039-SN1MPN1-003.039d.mgd.msft.net ([169.254.3.230]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.01.0323.007; Tue, 27 Sep 2011 17:36:33 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: multilib issue when setting DEFAULTTUNE
-Thread-Index: AQHMfWXotaNYxB3+l0KTk/lIIVTwBA==
-Date: Tue, 27 Sep 2011 22:36:33 +0000
-Message-ID: <CAEsOVNcU7Rw4C7EkBCb6uw0dz_3U+9B=L+OW4or1t08bv_pBCg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
+Return-Path: <niqingliang@insigma.com.cn>
+Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F5A6E004DD
+	for <yocto@yoctoproject.org>; Tue, 27 Sep 2011 18:01:15 -0700 (PDT)
+Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
+	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
+	Wed, 28 Sep 2011 09:01:06 +0800
+Received: from [192.168.0.98] (122.224.76.38) by WX-ExchMB.insigma.com.cn
+	(10.0.1.203) with Microsoft SMTP Server id 8.1.240.5; Wed, 28 Sep 2011
+	09:01:05 +0800
+From: Ni Qingliang <niqingliang@insigma.com.cn>
+To: McClintock Matthew-B29882 <B29882@freescale.com>
+Date: Wed, 28 Sep 2011 09:00:32 +0800
+In-Reply-To: <CAEsOVNc84ON5Oxri1=eAHG74NGT9B14QYUDs8JXa9KhrG0XaSw@mail.gmail.com>
+References: <1317093523.6536.58.camel@localhost.localdomain>
+	<CAEsOVNc84ON5Oxri1=eAHG74NGT9B14QYUDs8JXa9KhrG0XaSw@mail.gmail.com>
+Organization: Insigma
+X-Mailer: Evolution 3.0.3 
+Message-ID: <1317171633.6536.86.camel@localhost.localdomain>
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Subject: multilib issue when setting DEFAULTTUNE
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: ntpclient compile fail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
+Reply-To: niqingliang@insigma.com.cn
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -52,44 +32,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Sep 2011 22:37:12 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <AF3188534A8688499F3866675D6CC433@freescale.net>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 28 Sep 2011 01:01:18 -0000
+X-Groupsio-MsgNum: 2891
+Content-Type: multipart/mixed; boundary="=-mKd0vzT0fet+thYIAqDn"
 
-All,
+--=-mKd0vzT0fet+thYIAqDn
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-I'm having a problem building multilib for ppc64e5500. My local.conf
-looks like this following:
+Thanks!
 
-require conf/multilib.conf
-MULTILIBS =3D "multilib:lib64"
-DEFAULTTUNE_virtclass-multilib-lib64 =3D "ppc64e5500"
+the attachement is the bb file and Makefile(modified),
 
-If I change the last time to:
+after 'override' CFLAGS/LDFLAGS in Makefile, I have added
+override LDFLAGS += -Wl,--no-as-needed
+in the Makefile to neutralize the '-Wl,--as-needed' in the original
+LDFLAGS.
 
-DEFAULTTUNE_virtclass-multilib-lib64 =3D "powerpc64"
+and then the world clear.
 
-Everything works just fine. We get images built, sysroot created, etc
+On Tue, 2011-09-27 at 23:46 +0800, McClintock Matthew-B29882 wrote:
+> On Mon, Sep 26, 2011 at 10:18 PM, Ni Qingliang
+> <niqingliang@insigma.com.cn> wrote:
+> > Hello:
+> > I'm adding ntpclient into my distro.
+> >
+> > but build fail, reason is the CFLAGS/LDFLAGS in it's Makefile didn't
+> > take effect.
+> 
+> If the CFLAGS are not taking effect from the Makefile are you over
+> ridding the value in the recipe? Can you point us at a copy of the
+> recipe you are using?
+> 
+> -M
 
-Obviously we want the first one to work as it has additional compiler
-flags for that target. I've tried tweaking tune-ppce5500-64b.inc to
-look like arch-powerpc64.inc almost exactly but I'm really just
-guessing here...
-
-What happens is bitbake essentially locks up if I enable -DDD the
-output will usually look something like this:
-
-DEBUG: LOAD /local/home/mattsm/git/poky/meta-yocto/recipes-core/netbase/net=
-base_4.45.bbappend
-DEBUG: BB :0: inheriting classes/multilib.bbclass
-
-And freeze, the last class it freezes on could be one of several but
-the multilib.bbclass is always close to being the last one loaded.
-
-Does anyone have any pointers about where to start looking?
-
--Matthew=
+-- 
+Yi Qingliang
+niqingliang@insigma.com.cn
+http://niqingliang2003.wordpress.com
 
 
+--=-mKd0vzT0fet+thYIAqDn
+Content-Disposition: attachment; filename="ntpclient.bb"
+Content-Type: text/plain; name="ntpclient.bb"; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Content-Description: ntpclient.bb
+
+DESCRIPTION = "ntpclient"
+SECTION = "iotproduct"
+LICENSE = "Google"
+LIC_FILES_CHKSUM = "file://README;md5=098a6a289094e42f974b11e2151f5644"
+PR = "r0"
+PV = "2010_365"
+
+
+SRC_URI = "http://doolittle.icarus.com/ntpclient/ntpclient_${PV}.tar.gz \
+           file://Makefile"
+
+S = "${WORKDIR}/${PN}-2010"
+
+do_patch () {
+	cp -f ${WORKDIR}/Makefile ${S}/
+}
+
+do_compile () {
+	oe_runmake
+}
+
+do_install () {
+	install -d ${D}/bin/
+	install -m 0755 ${S}/ntpclient ${D}/bin/
+}
+
+
+--=-mKd0vzT0fet+thYIAqDn
+Content-Disposition: attachment; filename="Makefile"
+Content-Type: text/x-makefile; name="Makefile"; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Content-Description: Makefile
+
+# A long time ago, far, far away, under Solaris, you needed to
+#    CFLAGS += -xO2 -Xc
+#    LDLIBS += -lnsl -lsocket
+# To cross-compile
+#    CC = arm-linux-gcc
+# To check for lint
+#    CFLAGS += -Wpointer-arith -Wcast-align -Wcast-qual -Wshadow -Wundef \
+#     -Waggregate-return -Wnested-externs -Winline -Wwrite-strings -Wstrict-prototypes
+
+# This is old-school networking code, making the traditional cast between
+# struct sockaddr* and struct sockaddr_in*.  Thus a modern gcc needs:
+override CFLAGS += -fno-strict-aliasing
+
+override CFLAGS += -std=c89
+override CFLAGS += -W -Wall
+override CFLAGS += -O2
+# CFLAGS += -DPRECISION_SIOCGSTAMP
+override CFLAGS += -DENABLE_DEBUG
+override CFLAGS += -DENABLE_REPLAY
+# CFLAGS += -DUSE_OBSOLETE_GETTIMEOFDAY
+
+override LDFLAGS += -Wl,--no-as-needed
+override LDFLAGS += -Wl,-lrt
+
+all: ntpclient
+
+test: ntpclient
+	./ntpclient -d -r <test.dat
+
+ntpclient: ntpclient.o phaselock.o
+
+ntpclient.o phaselock.o: ntpclient.h
+
+adjtimex: adjtimex.o
+
+clean:
+	rm -f ntpclient adjtimex *.o
+
+--=-mKd0vzT0fet+thYIAqDn--
