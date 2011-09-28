@@ -1,48 +1,28 @@
-Return-Path: <B29882@freescale.com>
-Received: from TX2EHSOBE002.bigfish.com (tx2ehsobe001.messaging.microsoft.com
-	[65.55.88.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0891EE004DD
-	for <yocto@yoctoproject.org>; Tue, 27 Sep 2011 23:58:41 -0700 (PDT)
-Received: from mail15-tx2-R.bigfish.com (10.9.14.252) by
-	TX2EHSOBE002.bigfish.com (10.9.40.22) with Microsoft SMTP Server id
-	14.1.225.22; Wed, 28 Sep 2011 06:58:39 +0000
-Received: from mail15-tx2 (localhost.localdomain [127.0.0.1])	by
-	mail15-tx2-R.bigfish.com (Postfix) with ESMTP id 84C257782FA	for
-	<yocto@yoctoproject.org>; Wed, 28 Sep 2011 06:58:39 +0000 (UTC)
-X-SpamScore: -3
-X-BigFish: VS-3(zz98bKzz1202hzzz2dh2a8h668h839h8e2h8e3h)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
-	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
-X-FB-SS: 13,
-Received: from mail15-tx2 (localhost.localdomain [127.0.0.1]) by mail15-tx2
-	(MessageSwitch) id 1317193055380202_32348;
-	Wed, 28 Sep 2011 06:57:35 +0000 (UTC)
-Received: from TX2EHSMHS039.bigfish.com (unknown [10.9.14.248])	by
-	mail15-tx2.bigfish.com (Postfix) with ESMTP id A304DDE80A3	for
-	<yocto@yoctoproject.org>; Wed, 28 Sep 2011 06:55:34 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS039.bigfish.com
-	(10.9.99.139) with Microsoft SMTP Server (TLS) id 14.1.225.22;
-	Wed, 28 Sep 2011 06:55:33 +0000
-Received: from 039-SN1MPN1-003.039d.mgd.msft.net ([169.254.3.230]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.01.0323.007; Wed, 28 Sep 2011 01:55:33 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: meta-toolchain-sdk build issue
-Thread-Index: AQHMfaudka2w22cFUkOWhAfemjFCdQ==
-Date: Wed, 28 Sep 2011 06:55:32 +0000
-Message-ID: <CAEsOVNe2YSDfDXWNmZUP_t13aGOGD0pys7C=Gx28-PyLJDKxew@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
+Return-Path: <edwin.zhai@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0EB9E004DD
+	for <yocto@yoctoproject.org>; Wed, 28 Sep 2011 00:03:12 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 28 Sep 2011 00:03:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,453,1312182000"; d="scan'208";a="21360334"
+Received: from edwin-gen.sh.intel.com (HELO [10.239.36.111]) ([10.239.36.111])
+	by AZSMGA002.ch.intel.com with ESMTP; 28 Sep 2011 00:03:11 -0700
+Message-ID: <4E82C632.6030500@intel.com>
+Date: Wed, 28 Sep 2011 15:01:06 +0800
+From: "Zhai, Edwin" <edwin.zhai@intel.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.14) Gecko/20110223 Lightning/1.0b2 Thunderbird/3.1.8
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Subject: meta-toolchain-sdk build issue
+To: "Zanussi, Tom" <tom.zanussi@intel.com>
+References: <cover.1317084972.git.edwin.zhai@intel.com>
+	<1317154129.16543.237.camel@elmorro>
+In-Reply-To: <1317154129.16543.237.camel@elmorro>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/3] [RFC] enable Pegasus touch screen
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -51,90 +31,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Sep 2011 06:58:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <A2CCBFB36A93E248BFDCD35C66ED472D@freescale.net>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 28 Sep 2011 07:03:13 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I'm seeing the following on a fresh meta-toolchain-sdk build. Is this
-being addressed in one of the recent RPM fixups?
 
--M
+On 09/28/2011 04:08 AM, Zanussi, Tom wrote:
+> On Mon, 2011-09-26 at 18:03 -0700, Zhai, Edwin wrote:
+>> From: Zhai Edwin<edwin.zhai@intel.com>
+>>
+>> Tom,
+>> These changes, based on meta-intel/tzanussi/pegasus, are needed to enable
+>> eGalax touch screen on Pegasus. Could you pls. help to review?
+>>
+>
+> Hi Edwin,
+>
+> First, I don't think this is the correct list for meta-intel stuff,
+> please use the yocto list.
 
-Log data follows:
-| ERROR: Function 'do_populate_sdk' failed (see
-/opt/yocto/cache-build/p2020ds/build_p2020ds_release/tmp/work/ppce500v2-fsl=
--linux-gnuspe/meta-toolchain-gmae-1.0-r6/temp/log.do_populate_sdk.19005
-for further information)
-| Generating solve db for
-/opt/yocto/cache-build/p2020ds/build_p2020ds_release/tmp/deploy/rpm/p2020ds=
-...
-|    total:               1      0.000000 MB      0.363415 secs
-|    fingerprint:         9      0.000010 MB      0.000208 secs
-|    install:             3      0.000000 MB      0.020971 secs
-|    dbadd:               3      0.000000 MB      0.018530 secs
-|    dbget:              12      0.000000 MB      0.000043 secs
-|    dbput:               3      0.009264 MB      0.002016 secs
-|    readhdr:            31      0.018504 MB      0.011336 secs
-|    hdrload:            15      0.027000 MB      0.000092 secs
-|    hdrget:            489      0.000000 MB      0.000833 secs
-| Generating solve db for
-/opt/yocto/cache-build/p2020ds/build_p2020ds_release/tmp/deploy/rpm/ppce500=
-v2...
-|    total:               1      0.000000 MB     45.155298 secs
-|    fingerprint:     12252      0.148182 MB     10.303211 secs
-|    install:          4084      0.000000 MB      6.286617 secs
-|    dbadd:            4084      0.000000 MB      6.162064 secs
-|    dbget:           44399      0.000000 MB      0.090908 secs
-|    dbput:            4084     21.316012 MB      5.347684 secs
-|    readhdr:         40841     42.252986 MB     18.715437 secs
-|    hdrload:         21468     68.054034 MB      0.126545 secs
-|    hdrget:         731362      0.000000 MB      1.124512 secs
-| Generating solve db for
-/opt/yocto/cache-build/p2020ds/build_p2020ds_release/tmp/deploy/rpm/all...
-|    total:               1      0.000000 MB      0.359030 secs
-|    fingerprint:        21      0.000750 MB      0.263044 secs
-|    install:             7      0.000000 MB      0.023569 secs
-|    dbadd:               7      0.000000 MB      0.021483 secs
-|    dbget:              82      0.000000 MB      0.000153 secs
-|    dbput:               7      0.050776 MB      0.005504 secs
-|    readhdr:            71      0.100808 MB      0.031987 secs
-|    hdrload:            35      0.149920 MB      0.000166 secs
-|    hdrget:           1167      0.000000 MB      0.001608 secs
-| Generating solve db for
-/opt/yocto/cache-build/p2020ds/build_p2020ds_release/tmp/deploy/rpm/x86_64-=
-nativesdk...
-|    total:               1      0.000000 MB      2.310403 secs
-|    fingerprint:       555      0.025268 MB      0.140790 secs
-|    install:           185      0.000000 MB      0.389988 secs
-|    dbadd:             185      0.000000 MB      0.382386 secs
-|    dbget:            8904      0.000000 MB      0.013013 secs
-|    dbput:             185      2.038600 MB      0.321168 secs
-|    readhdr:          1851      4.040990 MB      1.196836 secs
-|    hdrload:          1076      7.384418 MB      0.007267 secs
-|    hdrget:          31599      0.000000 MB      0.057209 secs
-| Generating solve db for
-/opt/yocto/cache-build/p2020ds/build_p2020ds_release/tmp/deploy/rpm/all...
-|    total:               1      0.000000 MB      0.099607 secs
-|    fingerprint:        21      0.000750 MB      0.002739 secs
-|    install:             7      0.000000 MB      0.048432 secs
-|    dbadd:               7      0.000000 MB      0.044145 secs
-|    dbget:              82      0.000000 MB      0.000276 secs
-|    dbput:               7      0.050776 MB      0.010381 secs
-|    readhdr:            71      0.100808 MB      0.000313 secs
-|    hdrload:            35      0.149920 MB      0.000322 secs
-|    hdrget:           1167      0.000000 MB      0.002785 secs
-| Processing task-core-standalone-gmae-sdk-target...
-| Processing task-core-standalone-gmae-sdk-target-dbg...
-| error: Failed dependencies:
-| 	/bin/sh is needed by gstreamer-0.10.32-r1.ppce500v2
-NOTE: package meta-toolchain-gmae-1.0-r6: task do_populate_sdk: Failed
-ERROR: Task 8 (/opt/yocto/cache-build/p2020ds/meta/recipes-core/meta/meta-t=
-oolchain-gmae.bb,
-do_populate_sdk) failed with exit code '1'
-ERROR: '/opt/yocto/cache-build/p2020ds/meta/recipes-core/meta/meta-toolchai=
-n-gmae.bb'
-failed=
+Change it now:)
+
+>
+> Anyway, the first two patches look ok to me, but the 3rd seems to be a
+> combination of what it says in the title, enabling touch screen kernel
+> config, and updating the BSP to work with the current kernel recipes.
+> The latter should I think be squashed into the base BSP, which isn't
+> posted.
+>
+>> When will you push Pegasus changes into meta-intel/master? We can have a common
+>> place for people to try pegasus...
+>>
+>
+> The meta-pegasus you pointed to seems to be an old version, basically
+> the same prototype version I gave you for the demo.  I thought the
+> current one had been updated to address the comments from the quick
+> review of Aug 9:
+>
+> - meta-pegasus - commented-out stuff in pegasus.conf, xorg.conf,
+> linux-yocto-2.6.37.bbappend, ReleaseNotes are unrelated to the BSP, etc.
+>
+> Also, it has a blacksand.pdf and has old kernel recipes, etc.
+>
+> Basically, it needs to be cleaned up a bit before it can be pulled in,
+> and should be buildable without relying on later patches.
+
+Do you mean we need rebased against branch of 
+meta-intel/tzanussi/pegasus-v2?
+
+>
+> Also, I'm wondering if there's a reason it's using 2.6.37 - we're at 3.0
+> now, and it would be good if it used that.
+
+Have we tested 3.0 on Pegasus or N450 system? I remember your mentioned 
+graphic crash with linux 3.0...
+
+>
+> Finally, please also add yourself or whoever will be the maintainer
+> going forward to meta-intel/MAINTAINERS...
+
+Sure.
+Tom,
+Thanks for your comments!
+
+>
+> Thanks,
+>
+> Tom
+>
+>> Thanks,
+>> Edwin
+>>
+>> The following changes since commit 59dc67f6e64a836fc01fa91a1200e76264bb954d:
+>>
+>>    meta-pegasus: new layer for Pegasus (N455) systems (2011-06-15 23:27:47 -0500)
+>>
+>> are available in the git repository at:
+>>    git://git.pokylinux.org/poky-contrib gzhai/pegasus
+>>    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=gzhai/pegasus
+>>
+>> Zhai Edwin (3):
+>>    eGalax touchscreen offical xorg driver
+>>    Config xorg.conf with eGalax touchscreen input driver
+>>    Enabled kernel module for eGalax touch screen.
+>>
+>>   meta-pegasus/conf/machine/pegasus.conf             |    2 +-
+>>   .../xf86-input-egalax/88eGalaxCalibrate.sh         |    5 ++
+>>   .../xorg-driver/xf86-input-egalax_3.06.5605.bb     |   49 ++++++++++++++++++++
+>>   .../xserver-xf86-config/pegasus/xorg.conf          |   10 ++++
+>>   .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    2 +
+>>   .../recipes-kernel/linux/linux-yocto/pegasus.cfg   |    4 ++
+>>   .../linux/linux-yocto_2.6.37.bbappend              |   12 +++++
+>>   7 files changed, 83 insertions(+), 1 deletions(-)
+>>   create mode 100755 meta-pegasus/recipes-graphics/xorg-driver/xf86-input-egalax/88eGalaxCalibrate.sh
+>>   create mode 100644 meta-pegasus/recipes-graphics/xorg-driver/xf86-input-egalax_3.06.5605.bb
+>>   create mode 100644 meta-pegasus/recipes-kernel/linux/linux-yocto/pegasus.cfg
+>>   create mode 100644 meta-pegasus/recipes-kernel/linux/linux-yocto_2.6.37.bbappend
+>>
+>
+>
 
 
