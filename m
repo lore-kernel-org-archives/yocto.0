@@ -1,44 +1,43 @@
 Return-Path: <B29882@freescale.com>
-Received: from TX2EHSOBE004.bigfish.com (tx2ehsobe002.messaging.microsoft.com
-	[65.55.88.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 951A7E004CF
+Received: from TX2EHSOBE010.bigfish.com (tx2ehsobe005.messaging.microsoft.com
+	[65.55.88.15])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAA04E01271
 	for <yocto@yoctoproject.org>; Wed, 28 Sep 2011 22:52:38 -0700 (PDT)
-Received: from mail2-tx2-R.bigfish.com (10.9.14.244) by
-	TX2EHSOBE004.bigfish.com (10.9.40.24) with Microsoft SMTP Server id
-	14.1.225.22; Thu, 29 Sep 2011 05:52:37 +0000
-Received: from mail2-tx2 (localhost.localdomain [127.0.0.1])	by
-	mail2-tx2-R.bigfish.com (Postfix) with ESMTP id 928A916301EA	for
-	<yocto@yoctoproject.org>; Thu, 29 Sep 2011 05:52:37 +0000 (UTC)
+Received: from mail133-tx2-R.bigfish.com (10.9.14.244) by
+	TX2EHSOBE010.bigfish.com (10.9.40.30) with Microsoft SMTP Server id
+	14.1.225.22; Thu, 29 Sep 2011 05:52:35 +0000
+Received: from mail133-tx2 (localhost.localdomain [127.0.0.1])	by
+	mail133-tx2-R.bigfish.com (Postfix) with ESMTP id 947707013B	for
+	<yocto@yoctoproject.org>; Thu, 29 Sep 2011 05:52:35 +0000 (UTC)
 X-SpamScore: 3
 X-BigFish: VS3(zzzz1202h1082kzz8275bhz2dh2a8h668h839h)
 X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
 	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail2-tx2 (localhost.localdomain [127.0.0.1]) by mail2-tx2
-	(MessageSwitch) id 1317275557442794_28769;
-	Thu, 29 Sep 2011 05:52:37 +0000 (UTC)
-Received: from TX2EHSMHS022.bigfish.com (unknown [10.9.14.246])	by
-	mail2-tx2.bigfish.com (Postfix) with ESMTP id 5C56F43804F	for
-	<yocto@yoctoproject.org>; Thu, 29 Sep 2011 05:52:37 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS022.bigfish.com
-	(10.9.99.122) with Microsoft SMTP Server (TLS) id 14.1.225.22;
-	Thu, 29 Sep 2011 05:52:37 +0000
+X-FB-SS: 0,
+Received: from mail133-tx2 (localhost.localdomain [127.0.0.1]) by mail133-tx2
+	(MessageSwitch) id 1317275555431521_29937;
+	Thu, 29 Sep 2011 05:52:35 +0000 (UTC)
+Received: from TX2EHSMHS046.bigfish.com (unknown [10.9.14.249])	by
+	mail133-tx2.bigfish.com (Postfix) with ESMTP id 5B08E95004B	for
+	<yocto@yoctoproject.org>; Thu, 29 Sep 2011 05:52:35 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS046.bigfish.com
+	(10.9.99.146) with Microsoft SMTP Server (TLS) id 14.1.225.22;
+	Thu, 29 Sep 2011 05:52:35 +0000
 Received: from az33smr02.freescale.net (10.64.34.200) by
-	039-SN1MMR1-002.039d.mgd.msft.net (10.84.1.15) with Microsoft SMTP
-	Server id 14.1.323.7; Thu, 29 Sep 2011 00:52:36 -0500
+	039-SN1MMR1-001.039d.mgd.msft.net (10.84.1.13) with Microsoft SMTP
+	Server id 14.1.323.7; Thu, 29 Sep 2011 00:52:35 -0500
 Received: from right.am.freescale.net (right.am.freescale.net [10.82.193.13])
 	by az33smr02.freescale.net (8.13.1/8.13.0) with ESMTP id
-	p8T5qXmu014523	for
-	<yocto@yoctoproject.org>; Thu, 29 Sep 2011 00:52:36 -0500 (CDT)
+	p8T5qXmo014523	for
+	<yocto@yoctoproject.org>; Thu, 29 Sep 2011 00:52:34 -0500 (CDT)
 From: Matthew McClintock <msm@freescale.com>
 To: <yocto@yoctoproject.org>
-Date: Thu, 29 Sep 2011 00:52:32 -0500
-Message-ID: <1317275552-19908-7-git-send-email-msm@freescale.com>
+Date: Thu, 29 Sep 2011 00:52:26 -0500
+Message-ID: <1317275552-19908-1-git-send-email-msm@freescale.com>
 X-Mailer: git-send-email 1.7.6.1
-In-Reply-To: <1317275552-19908-1-git-send-email-msm@freescale.com>
-References: <1317275552-19908-1-git-send-email-msm@freescale.com>
 MIME-Version: 1.0
 X-OriginatorOrg: freescale.com
-Subject: [PATCH 7/7] Add proper deps for nfs-utils, util-linux, and strace
+Subject: [PATCH 1/7] Add support for generating ext2.bz2{, .u-boot} images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,59 +52,74 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 X-List-Received-Date: Thu, 29 Sep 2011 05:52:39 -0000
 Content-Type: text/plain
 
-These packages need these deps for the RPM generation stage:
-
- error: Failed dependencies:
-| 	/usr/bin/python is needed by nfs-utils-1.2.3-r2.ppce5500
-| 	/usr/bin/perl is needed by util-linux-2.19.1-r4.ppce5500
-| 	/usr/bin/perl is needed by strace-4.5.20-r2.ppce5500
+Machines can now add ext2.bz2 and ext2.bz2.u-boot images as a
+generated image type. This also adds an extra parameter to
+oe_mkimage which is the image compression type for mkimage
 
 Signed-off-by: Matthew McClintock <msm@freescale.com>
 ---
- .../nfs-utils/nfs-utils_1.2.3.bb                   |    2 +-
- meta/recipes-core/util-linux/util-linux.inc        |    2 +-
- meta/recipes-devtools/strace/strace_4.5.20.bb      |    2 ++
- 3 files changed, 4 insertions(+), 2 deletions(-)
+ meta/classes/image_types.bbclass       |    9 ++++++++-
+ meta/classes/image_types_uboot.bbclass |   14 +++++++++-----
+ 2 files changed, 17 insertions(+), 6 deletions(-)
 
-diff --git a/meta/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bb b/meta/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bb
-index 08468fe..e8b0490 100644
---- a/meta/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bb
-+++ b/meta/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bb
-@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3"
+diff --git a/meta/classes/image_types.bbclass b/meta/classes/image_types.bbclass
+index c24b326..4619ebe 100644
+--- a/meta/classes/image_types.bbclass
++++ b/meta/classes/image_types.bbclass
+@@ -46,6 +46,13 @@ IMAGE_CMD_ext2.gz () {
+ 	mv ${DEPLOY_DIR_IMAGE}/tmp.gz-${PN}/${IMAGE_NAME}.rootfs.ext2.gz ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.ext2.gz
+ 	rmdir ${DEPLOY_DIR_IMAGE}/tmp.gz-${PN}
+ }
++IMAGE_CMD_ext2.bz2 () {
++	rm -rf ${DEPLOY_DIR_IMAGE}/tmp.gz && mkdir ${DEPLOY_DIR_IMAGE}/tmp.gz
++	genext2fs -b $ROOTFS_SIZE -d ${IMAGE_ROOTFS} ${EXTRA_IMAGECMD} ${DEPLOY_DIR_IMAGE}/tmp.gz/${IMAGE_NAME}.rootfs.ext2
++	bzip2 -f -9 ${DEPLOY_DIR_IMAGE}/tmp.gz/${IMAGE_NAME}.rootfs.ext2
++	mv ${DEPLOY_DIR_IMAGE}/tmp.gz/${IMAGE_NAME}.rootfs.ext2.bz2 ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.ext2.bz2
++	rmdir ${DEPLOY_DIR_IMAGE}/tmp.gz
++}
  
- # util-linux for libblkid
- DEPENDS = "libcap libnfsidmap libevent util-linux tcp-wrappers"
--RDEPENDS_${PN} = "portmap"
-+RDEPENDS_${PN} = "portmap python"
- RRECOMMENDS_${PN} = "kernel-module-nfsd"
+ IMAGE_CMD_ext3 () {
+ 	genext2fs -b $ROOTFS_SIZE -d ${IMAGE_ROOTFS} ${EXTRA_IMAGECMD} ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.ext3
+@@ -141,4 +148,4 @@ IMAGE_DEPENDS_ubi = "mtd-utils-native"
+ IMAGE_DEPENDS_ubifs = "mtd-utils-native"
  
- PR = "r2"
-diff --git a/meta/recipes-core/util-linux/util-linux.inc b/meta/recipes-core/util-linux/util-linux.inc
-index 1f242b7..afce673 100644
---- a/meta/recipes-core/util-linux/util-linux.inc
-+++ b/meta/recipes-core/util-linux/util-linux.inc
-@@ -55,7 +55,7 @@ FILES_util-linux-libuuid-dev = "${libdir}/libuuid.so ${libdir}/libuuid.a ${libdi
- FILES_util-linux-lscpu = "${bindir}/lscpu"
+ # This variable is available to request which values are suitable for IMAGE_FSTYPES
+-IMAGE_TYPES = "jffs2 cramfs ext2 ext2.gz ext3 ext3.gz live squashfs squashfs-lzma ubi tar tar.gz tar.bz2 tar.xz cpio cpio.gz cpio.xz cpio.lzma"
++IMAGE_TYPES = "jffs2 cramfs ext2 ext2.gz ext2.bz2 ext3 ext3.gz live squashfs squashfs-lzma ubi tar tar.gz tar.bz2 tar.xz cpio cpio.gz cpio.xz cpio.lzma"
+diff --git a/meta/classes/image_types_uboot.bbclass b/meta/classes/image_types_uboot.bbclass
+index 10fa2f7..aee88a6 100644
+--- a/meta/classes/image_types_uboot.bbclass
++++ b/meta/classes/image_types_uboot.bbclass
+@@ -1,20 +1,24 @@
+ inherit image_types kernel-arch
  
- RRECOMMENDS_${PN} = "util-linux-fdisk util-linux-cfdisk util-linux-sfdisk util-linux-mount util-linux-readprofile "
--RDEPENDS_${PN} = "util-linux-umount util-linux-swaponoff util-linux-losetup"
-+RDEPENDS_${PN} = "util-linux-umount util-linux-swaponoff util-linux-losetup perl"
+ oe_mkimage () {
+-    mkimage -A ${UBOOT_ARCH} -O linux -T ramdisk -C gzip -n ${IMAGE_NAME} \
++    mkimage -A ${UBOOT_ARCH} -O linux -T ramdisk -C $2 -n ${IMAGE_NAME} \
+         -d ${DEPLOY_DIR_IMAGE}/$1 ${DEPLOY_DIR_IMAGE}/$1.u-boot
+ }
  
- RRECOMMENDS_${PN}_virtclass-native = ""
- RDEPENDS_${PN}_virtclass-native = ""
-diff --git a/meta/recipes-devtools/strace/strace_4.5.20.bb b/meta/recipes-devtools/strace/strace_4.5.20.bb
-index 391669f..b3d2aa5 100644
---- a/meta/recipes-devtools/strace/strace_4.5.20.bb
-+++ b/meta/recipes-devtools/strace/strace_4.5.20.bb
-@@ -5,6 +5,8 @@ LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=4535377ede62550fdeaf39f595fd550a"
- PR = "r2"
- 
-+RDEPENDS = "perl"
+ IMAGE_DEPENDS_ext2.gz.u-boot = "genext2fs-native e2fsprogs-native u-boot-mkimage-native"
+ IMAGE_CMD_ext2.gz.u-boot      = "${IMAGE_CMD_ext2.gz} \
+-                                 oe_mkimage ${IMAGE_NAME}.rootfs.ext2.gz"
++                                 oe_mkimage ${IMAGE_NAME}.rootfs.ext2.gz gzip"
 +
- SRC_URI = "${SOURCEFORGE_MIRROR}/strace/strace-${PV}.tar.bz2 \
-            file://sigmask.patch \
-           "
++IMAGE_DEPENDS_ext2.bz2.u-boot = "genext2fs-native e2fsprogs-native u-boot-mkimage-native"
++IMAGE_CMD_ext2.bz2.u-boot      = "${IMAGE_CMD_ext2.bz2} \
++                                 oe_mkimage ${IMAGE_NAME}.rootfs.ext2.bz2 bzip2"
+ 
+ IMAGE_DEPENDS_ext3.gz.u-boot = "genext2fs-native e2fsprogs-native u-boot-mkimage-native"
+ IMAGE_CMD_ext3.gz.u-boot      = "${IMAGE_CMD_ext3.gz} \
+-                                 oe_mkimage ${IMAGE_NAME}.rootfs.ext3.gz"
++                                 oe_mkimage ${IMAGE_NAME}.rootfs.ext3.gz gzip"
+ 
+ IMAGE_DEPENDS_ext4.gz.u-boot = "genext2fs-native e2fsprogs-native u-boot-mkimage-native"
+ IMAGE_CMD_ext4.gz.u-boot      = "${IMAGE_CMD_ext4.gz} \
+-                                 oe_mkimage ${IMAGE_NAME}.rootfs.ext4.gz"
++                                 oe_mkimage ${IMAGE_NAME}.rootfs.ext4.gz gzip"
+ 
+-IMAGE_TYPES += "ext2.gz.u-boot ext3.gz.u-boot ext4.gz.u-boot"
++IMAGE_TYPES += "ext2.gz.u-boot ext2.bz2.u-boot ext3.gz.u-boot ext4.gz.u-boot"
 -- 
 1.7.6.1
 
