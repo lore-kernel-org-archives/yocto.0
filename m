@@ -1,48 +1,52 @@
 Return-Path: <B29882@freescale.com>
-Received: from TX2EHSOBE003.bigfish.com (tx2ehsobe002.messaging.microsoft.com
-	[65.55.88.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CA7DE004CF
-	for <yocto@yoctoproject.org>; Wed, 28 Sep 2011 22:55:33 -0700 (PDT)
-Received: from mail172-tx2-R.bigfish.com (10.9.14.252) by
-	TX2EHSOBE003.bigfish.com (10.9.40.23) with Microsoft SMTP Server id
-	14.1.225.22; Thu, 29 Sep 2011 05:55:33 +0000
-Received: from mail172-tx2 (localhost.localdomain [127.0.0.1])	by
-	mail172-tx2-R.bigfish.com (Postfix) with ESMTP id A8622C482F5	for
-	<yocto@yoctoproject.org>; Thu, 29 Sep 2011 05:55:32 +0000 (UTC)
-X-SpamScore: 3
-X-BigFish: VS3(zzzz1202h1082kzz8275bhz2dh2a8h668h839h)
+Received: from DB3EHSOBE004.bigfish.com (db3ehsobe004.messaging.microsoft.com
+	[213.199.154.142])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0093E004CF
+	for <yocto@yoctoproject.org>; Wed, 28 Sep 2011 22:58:47 -0700 (PDT)
+Received: from mail110-db3-R.bigfish.com (10.3.81.250) by
+	DB3EHSOBE004.bigfish.com (10.3.84.24) with Microsoft SMTP Server id
+	14.1.225.22; Thu, 29 Sep 2011 05:58:46 +0000
+Received: from mail110-db3 (localhost.localdomain [127.0.0.1])	by
+	mail110-db3-R.bigfish.com (Postfix) with ESMTP id 1BC738C84BA	for
+	<yocto@yoctoproject.org>; Thu, 29 Sep 2011 05:58:46 +0000 (UTC)
+X-SpamScore: -12
+X-BigFish: VS-12(zz9371K1432N98dKzz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3h62h)
+X-Spam-TCS-SCL: 1:0
 X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
 	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
-X-FB-SS: 13,
-Received: from mail172-tx2 (localhost.localdomain [127.0.0.1]) by mail172-tx2
-	(MessageSwitch) id 1317275670768522_10157;
-	Thu, 29 Sep 2011 05:54:30 +0000 (UTC)
-Received: from TX2EHSMHS024.bigfish.com (unknown [10.9.14.252])	by
-	mail172-tx2.bigfish.com (Postfix) with ESMTP id 1EE1C13780E4	for
-	<yocto@yoctoproject.org>; Thu, 29 Sep 2011 05:52:36 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS024.bigfish.com
-	(10.9.99.124) with Microsoft SMTP Server (TLS) id 14.1.225.22;
-	Thu, 29 Sep 2011 05:52:36 +0000
-Received: from az33smr02.freescale.net (10.64.34.200) by
-	039-SN1MMR1-002.039d.mgd.msft.net (10.84.1.15) with Microsoft SMTP
-	Server id 14.1.323.7; Thu, 29 Sep 2011 00:52:35 -0500
-Received: from right.am.freescale.net (right.am.freescale.net [10.82.193.13])
-	by az33smr02.freescale.net (8.13.1/8.13.0) with ESMTP id
-	p8T5qXmr014523	for
-	<yocto@yoctoproject.org>; Thu, 29 Sep 2011 00:52:35 -0500 (CDT)
-From: Matthew McClintock <msm@freescale.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 29 Sep 2011 00:52:29 -0500
-Message-ID: <1317275552-19908-4-git-send-email-msm@freescale.com>
-X-Mailer: git-send-email 1.7.6.1
-In-Reply-To: <1317275552-19908-1-git-send-email-msm@freescale.com>
+Received: from mail110-db3 (localhost.localdomain [127.0.0.1]) by mail110-db3
+	(MessageSwitch) id 1317275906897090_2654;
+	Thu, 29 Sep 2011 05:58:26 +0000 (UTC)
+Received: from DB3EHSMHS017.bigfish.com (unknown [10.3.81.241])	by
+	mail110-db3.bigfish.com (Postfix) with ESMTP id CF92210C8052	for
+	<yocto@yoctoproject.org>; Thu, 29 Sep 2011 05:58:26 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by DB3EHSMHS017.bigfish.com
+	(10.3.87.117) with Microsoft SMTP Server (TLS) id 14.1.225.22;
+	Thu, 29 Sep 2011 05:58:26 +0000
+Received: from 039-SN1MPN1-003.039d.mgd.msft.net ([169.254.3.230]) by
+	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
+	14.01.0323.007; Thu, 29 Sep 2011 00:58:25 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH 5/7] scripts/oe-buildenv-internal: Add
+	SOCKS5_{USER, PASSWD} to BB_ENV_EXTRAWHITE
+Thread-Index: AQHMfmzMuvbB4gwjIEy/ur9MsgpFrQ==
+Date: Thu, 29 Sep 2011 05:58:24 +0000
+Message-ID: <CAEsOVNe+8gAVDPQ3qrTOYmiApSa4EY7odqQTdnhQ94qF2cZv8g@mail.gmail.com>
 References: <1317275552-19908-1-git-send-email-msm@freescale.com>
+	<1317275552-19908-5-git-send-email-msm@freescale.com>
+In-Reply-To: <1317275552-19908-5-git-send-email-msm@freescale.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [99.47.177.27]
 MIME-Version: 1.0
 X-OriginatorOrg: freescale.com
-Subject: [PATCH 4/7] Add new IMAGE_CLASSES variable for classes for image generation
+Subject: Re: [PATCH 5/7] scripts/oe-buildenv-internal: Add SOCKS5_{USER, PASSWD} to BB_ENV_EXTRAWHITE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -51,51 +55,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Sep 2011 05:55:33 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 29 Sep 2011 05:58:48 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <867F8BA747FD1445A9D038B36CB59641@freescale.net>
+Content-Transfer-Encoding: quoted-printable
 
-Allows us to import classes only for images and not to the global
-namespace
+On Thu, Sep 29, 2011 at 12:52 AM, Matthew McClintock <msm@freescale.com> wr=
+ote:
+> From: Kumar Gala <galak@kernel.crashing.org>
+>
+> If a SOCKS5 gateway is needed for a proxy access like git it might also
+> require authentication to the proxy via a password and username. =A0Addin=
+g
+> SOCKS5_USER & SOCKS5_PASSWD to BB_ENV_EXTRAWHITE allow for automation
+> of the authentication request to occur when something like a git fetch
+> is going through the proxy.
+>
+> Also, add several require git variables to be exported to the fetcher
 
-Signed-off-by: Matthew McClintock <msm@freescale.com>
----
- meta-yocto/conf/local.conf.sample |    6 ++++++
- meta/classes/image.bbclass        |    3 ++-
- 2 files changed, 8 insertions(+), 1 deletions(-)
+I did not realize this when I just sent, but should this be two
+separate patches with one going to bitbake-devel?
 
-diff --git a/meta-yocto/conf/local.conf.sample b/meta-yocto/conf/local.conf.sample
-index f6951b0..b4eec0b 100644
---- a/meta-yocto/conf/local.conf.sample
-+++ b/meta-yocto/conf/local.conf.sample
-@@ -163,6 +163,12 @@ EXTRA_IMAGE_FEATURES = "debug-tweaks"
- # NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
- USER_CLASSES ?= "image-mklibs image-prelink"
- 
-+# Additional image generation features
-+#
-+# The following is a list of classes to import to use in the generation of images
-+# currently an example class is image_types_uboot
-+# IMAGE_CLASSES ?= "image_types_uboot"
-+
- #
- # Runtime testing of images
- #
-diff --git a/meta/classes/image.bbclass b/meta/classes/image.bbclass
-index f17e989..f03df5b 100644
---- a/meta/classes/image.bbclass
-+++ b/meta/classes/image.bbclass
-@@ -111,7 +111,8 @@ def get_devtable_list(d):
-         str += " %s" % bb.which(bb.data.getVar('BBPATH', d, 1), devtable)
-     return str
- 
--inherit image_types
-+IMAGE_CLASESS ??= ""
-+inherit image_types ${IMAGE_CLASSES}
- 
- IMAGE_POSTPROCESS_COMMAND ?= ""
- MACHINE_POSTPROCESS_COMMAND ?= ""
--- 
-1.7.6.1
-
+-M=
 
 
