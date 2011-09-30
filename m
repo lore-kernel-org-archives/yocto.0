@@ -1,23 +1,32 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FD0CE01296
-	for <yocto@yoctoproject.org>; Thu, 29 Sep 2011 15:52:41 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 29 Sep 2011 15:52:41 -0700
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B2F8E00502
+	for <yocto@yoctoproject.org>; Thu, 29 Sep 2011 17:55:04 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 29 Sep 2011 17:54:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,464,1312182000"; d="scan'208";a="68817972"
-Received: from unknown (HELO localhost) ([10.255.15.15])
-	by fmsmga001.fm.intel.com with ESMTP; 29 Sep 2011 15:52:41 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Thu, 29 Sep 2011 17:52:35 -0500
-Message-Id: <1cc5918efea1344c763841adc5afc2dcbaee125c.1317336374.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <97a3c8c6a268ba27a64acc447111a250a2f6f562.1317336374.git.tom.zanussi@intel.com>
-References: <97a3c8c6a268ba27a64acc447111a250a2f6f562.1317336374.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1317336374.git.tom.zanussi@intel.com>
-References: <cover.1317336374.git.tom.zanussi@intel.com>
-Subject: [PATCH 4/4] jasperforest: set boot vga mode
+X-IronPort-AV: E=Sophos;i="4.68,464,1312182000"; d="scan'208,217";a="57179931"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by azsmga001.ch.intel.com with ESMTP; 29 Sep 2011 17:54:53 -0700
+Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 29 Sep 2011 17:54:53 -0700
+Received: from orsmsx502.amr.corp.intel.com ([10.22.226.210]) by
+	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
+	Thu, 29 Sep 2011 17:54:52 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Thu, 29 Sep 2011 17:54:51 -0700
+Thread-Topic: preempt-rt kernel shutdown now command does not work
+Thread-Index: Acx/C49UsrRYq+a9Tsq3rsQ6y7DKvw==
+Message-ID: <4BD43A85686FC34D819098DB1C3999D9018A7E818B@orsmsx502.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Cc: "Hart, Darren" <darren.hart@intel.com>
+Subject: preempt-rt kernel shutdown now command does not work
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,32 +38,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Sep 2011 22:52:41 -0000
+X-List-Received-Date: Fri, 30 Sep 2011 00:55:05 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_4BD43A85686FC34D819098DB1C3999D9018A7E818Borsmsx502amrc_"
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+--_000_4BD43A85686FC34D819098DB1C3999D9018A7E818Borsmsx502amrc_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Set boot params to get a vesafb 1024x768 graphics mode and can see the
-splash screen.
+Hi,
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-jasperforest/conf/machine/jasperforest.conf |    2 ++
- 1 files changed, 2 insertions(+), 0 deletions(-)
+"shutdown -h now" command is not working on core-image-sato image with pree=
+mpt-rt kernel 3.0.4  on Romley and crystal forest BSP
 
-diff --git a/meta-jasperforest/conf/machine/jasperforest.conf b/meta-jasperforest/conf/machine/jasperforest.conf
-index 9fdb968..b72497d 100644
---- a/meta-jasperforest/conf/machine/jasperforest.conf
-+++ b/meta-jasperforest/conf/machine/jasperforest.conf
-@@ -28,6 +28,8 @@ XSERVER ?= "xserver-xf86-dri-lite \
- 
- SERIAL_CONSOLE = "115200 ttyS0"
- 
-+APPEND += "video=vesafb vga=0x318"
-+
- MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
- 
- IMAGE_FSTYPES ?= "ext3 cpio.gz live"
--- 
-1.7.0.4
+I get
+Warning**: could not initialize ACPI battery.
+Xinit: connection to X server lost.
+xinit: uexpected signal 15
 
+Does anybody see the same problem on other meta-intel BSPs?
 
+Thanks
+Kishore.
+
+--_000_4BD43A85686FC34D819098DB1C3999D9018A7E818Borsmsx502amrc_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
+icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
+:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
+uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
+t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
+m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
+t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
+:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
+soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
+icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
+schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
+point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
+/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
+=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
+schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
+.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
+/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
+://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
+repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
+ xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
+schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
+/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
+ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
+p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
+/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
+mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
+crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
+s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
+ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
+om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
+ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
+partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
+06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
+6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
+deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
+Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
+st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta http-equi=
+v=3DContent-Type content=3D"text/html; charset=3Dus-ascii"><meta name=3DGen=
+erator content=3D"Microsoft Word 12 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue vli=
+nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>Hi,<o:p></o:p></=
+p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>&#8220;shu=
+tdown &#8211;h now&#8221; command is not working on core-image-sato image w=
+ith preempt-rt kernel 3.0.4 &nbsp;on Romley and crystal forest BSP<o:p></o:=
+p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I get =
+<o:p></o:p></p><p class=3DMsoNormal>Warning**: could not initialize ACPI ba=
+ttery.<o:p></o:p></p><p class=3DMsoNormal>Xinit: connection to X server los=
+t.<o:p></o:p></p><p class=3DMsoNormal>xinit: uexpected signal 15<o:p></o:p>=
+</p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Does any=
+body see the same problem on other meta-intel BSPs?<o:p></o:p></p><p class=
+=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Thanks<o:p></o:p></p=
+><p class=3DMsoNormal>Kishore.<o:p></o:p></p></div></body></html>=
+
+--_000_4BD43A85686FC34D819098DB1C3999D9018A7E818Borsmsx502amrc_--
