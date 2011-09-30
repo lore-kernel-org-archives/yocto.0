@@ -1,28 +1,26 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A203FE004E4
-	for <yocto@yoctoproject.org>; Fri, 30 Sep 2011 06:53:32 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 999)
-	id 8006C16601A1; Fri, 30 Sep 2011 07:53:31 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id CAB5C166019E;
-	Fri, 30 Sep 2011 07:53:30 -0600 (MDT)
-Message-ID: <4E85C9DA.2040701@mlbassoc.com>
-Date: Fri, 30 Sep 2011 07:53:30 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:6.0.2) Gecko/20110906 Thunderbird/6.0.2
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 994BDE004E4
+	for <yocto@yoctoproject.org>; Fri, 30 Sep 2011 07:23:41 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p8UENdM5013303
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 30 Sep 2011 07:23:39 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 30 Sep 2011 07:23:38 -0700
+Message-ID: <4E85D0E9.5070709@windriver.com>
+Date: Fri, 30 Sep 2011 10:23:37 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110925 Thunderbird/7.0
 MIME-Version: 1.0
-To: "Vellemans, Noel" <Noel.Vellemans@visionBMS.com>
-References: <1531E53627F1F749B4FE809BF2A4EB6702ADC4A9@WETMEX10.loepfe.com>
-In-Reply-To: <1531E53627F1F749B4FE809BF2A4EB6702ADC4A9@WETMEX10.loepfe.com>
+To: <tom.zanussi@intel.com>
+References: <cover.1317326894.git.tom.zanussi@intel.com>
+	<b33bc7ad590e46d721bdb16adfb1e90c7d74e221.1317326894.git.tom.zanussi@intel.com>
+In-Reply-To: <b33bc7ad590e46d721bdb16adfb1e90c7d74e221.1317326894.git.tom.zanussi@intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: Virtual keyboard ?
+Subject: Re: [PATCH 1/5][KERNEL] features/drm-psb: add related config options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,30 +32,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Sep 2011 13:53:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Fri, 30 Sep 2011 14:23:42 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2011-09-30 07:31, Vellemans, Noel wrote:
-> Hi all,
+On 11-09-29 04:17 PM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi<tom.zanussi@intel.com>
 >
-> I have a question where I can not find an direct answer to on the Yocto-web/wiki.
+> This allows us to move them out of the bsp config.
+
+Good cleanup.
+
+Bruce
+
 >
-> I wonder if the Yocto-arm-sato build supports a device that has no-REAL keyboard but only a touch-screen.
+> Signed-off-by: Tom Zanussi<tom.zanussi@intel.com>
+> ---
+>   meta/cfg/kernel-cache/features/drm-psb/drm-psb.cfg |   13 +++++++++++++
+>   1 files changed, 13 insertions(+), 0 deletions(-)
 >
-> If so, does the VIRTUAL-keyboard pup-op automatically, if you touch something that is editable (like in android and/or meego) ?
+> diff --git a/meta/cfg/kernel-cache/features/drm-psb/drm-psb.cfg b/meta/cfg/kernel-cache/features/drm-psb/drm-psb.cfg
+> index cdd805b..ea7cbfc 100644
+> --- a/meta/cfg/kernel-cache/features/drm-psb/drm-psb.cfg
+> +++ b/meta/cfg/kernel-cache/features/drm-psb/drm-psb.cfg
+> @@ -1,2 +1,15 @@
+>   CONFIG_DRM=y
+>   CONFIG_DRM_PSB=m
+> +
+> +CONFIG_I2C=y
+> +CONFIG_VIDEO_V4L2=y
+> +CONFIG_VIDEO_IVTV=y
+> +CONFIG_MEDIA_SUPPORT=y
+> +CONFIG_VIDEO_CAPTURE_DRIVERS=y
+> +CONFIG_VIDEO_DEV=y
+> +CONFIG_VIDEO_V4L2_COMMON=y
+> +CONFIG_I2C_ALGOBIT=y
+> +CONFIG_FB_CFB_COPYAREA=y
+> +CONFIG_FB_CFB_IMAGEBLIT=y
+> +CONFIG_FB_CFB_FILLRECT=y
+> +CONFIG_VIDEO_FB_IVTV=y
 
-Yes, this works fine.  You just need to set these in /etc/formfactor/machconfig:
-   HAVE_TOUCHSCREEN=1
-   HAVE_KEYBOARD=0
-
-> NOTE : I've been playing with the Yocto-1.0 build into qemu and I do not find how to 'REMOVE' the virtual keyboard once it is visible on screen.
-
-If it comes up by demand, it will go away when you press enter.
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
