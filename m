@@ -1,25 +1,28 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB555E004E4
-	for <yocto@yoctoproject.org>; Fri, 30 Sep 2011 07:25:26 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p8UEPQbc013499
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 30 Sep 2011 07:25:26 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 30 Sep 2011 07:25:25 -0700
-Message-ID: <4E85D154.100@windriver.com>
-Date: Fri, 30 Sep 2011 10:25:24 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110925 Thunderbird/7.0
+Return-Path: <Noel.Vellemans@visionBMS.com>
+Received: from mail206.messagelabs.com (mail206.messagelabs.com
+	[85.158.139.211])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id E1F7DE00566
+	for <yocto@yoctoproject.org>; Fri, 30 Sep 2011 07:28:21 -0700 (PDT)
+X-Env-Sender: Noel.Vellemans@visionBMS.com
+X-Msg-Ref: server-8.tower-206.messagelabs.com!1317392898!60363791!1
+X-Originating-IP: [195.134.156.204]
+X-StarScan-Version: 6.3.6; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 15348 invoked from network); 30 Sep 2011 14:28:19 -0000
+Received: from gateway.loepfe.com (HELO gateway.loepfe.com) (195.134.156.204)
+	by server-8.tower-206.messagelabs.com with SMTP;
+	30 Sep 2011 14:28:19 -0000
+X-MimeOLE: Produced By Microsoft Exchange V6.5
 MIME-Version: 1.0
-To: <tom.zanussi@intel.com>
-References: <cover.1317326894.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1317326894.git.tom.zanussi@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/5][KERNEL] some meta-intel bsp cleanup
+Date: Fri, 30 Sep 2011 16:28:11 +0200
+Message-ID: <1531E53627F1F749B4FE809BF2A4EB6702ADC504@WETMEX10.loepfe.com>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Thread-Topic: [yocto] Virtual keyboard ?
+thread-index: Acx/enlwtqFwAz3lSbaUqDXPz1GCVwAAJjtwAACE8iA=
+From: "Vellemans, Noel" <Noel.Vellemans@visionBMS.com>
+To: <yocto@yoctoproject.org>
+Subject: FW: Virtual keyboard ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,55 +34,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Sep 2011 14:25:26 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 30 Sep 2011 14:28:22 -0000
+Content-class: urn:content-classes:message
+Content-Type: text/plain;
+	charset="US-ASCII"
+Content-Transfer-Encoding: quoted-printable
 
-On 11-09-29 04:17 PM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi<tom.zanussi@intel.com>
->
-> This patchset is another step in some cleanup I'm doing for
-> the meta-intel bsps, basically removing unneeded or redundant
-> options and abstracting out useful features, in this case a
-> new vesafb feature used in this patchset by crownbay, emenlow,
-> and jasperforest.
->
-> Please pull into linux-yocto-3.0-(next).
+=20
+Hi Gary,
 
-All good stuff. I'll stage this to be in 3.0 for post 1.1
-updates, and in the -dev kernel for the next kernel version
-that is pushed out.
+Tweaked my arm configuration (with touch-screen) as you said and, ok I
+see a virtual keyboard poping-up as YOU expected. So far so good.
 
-Bruce
+But now I'm facing another question that I would like to try.
 
->
-> Pull URL: git://git.pokylinux.org/linux-yocto-2.6.37-contrib
->    Branch: tzanussi/bsp-cleanup-2
->    Browse: http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/bsp-cleanup-2
->
-> Thanks,
->
-> Tom
->
-> Tom Zanussi (5):
->    features/drm-psb: add related config options
->    meta: add vesafb feature
->    crownbay: cleanup bsp config
->    emenlow: cleanup bsp config
->    jasperforest: cleanup bsp config
->
->   meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |   34 ++++--------------
->   meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    5 ++-
->   meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |   35 +++++--------------
->   meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc      |    2 +
->   .../kernel-cache/bsp/jasperforest/jasperforest.cfg |    7 +---
->   .../kernel-cache/bsp/jasperforest/jasperforest.scc |    2 +
->   meta/cfg/kernel-cache/features/drm-psb/drm-psb.cfg |   13 +++++++
->   .../kernel-cache/features/framebuffer/vesafb.cfg   |    8 ++++
->   .../kernel-cache/features/framebuffer/vesafb.scc   |    1 +
->   9 files changed, 48 insertions(+), 59 deletions(-)
->   create mode 100644 meta/cfg/kernel-cache/features/framebuffer/vesafb.cfg
->   create mode 100644 meta/cfg/kernel-cache/features/framebuffer/vesafb.scc
->
+I would like to open a web-page (BUT do not have WEB-browser on this
+yocto-1.0 build, correct me if I'm wrong {please} ) I wonder what will
+happen if I touch an edit-field located on the 'bottom' of the screen
+(this is where the virtual key-board-pops-up)?
 
+Do you have (or know wher to find) any INFO onhow this 'auto-pupop' of
+the virtual keyboard is working (in other words how does the key-board
+getting triggered to be shown/hidden) ?
+
+Regards Noel.
+
+
+PS: sorry for forgetting the CC to the mailing list.
+
+
+
+
+
+
+-----Original Message-----
+From: Gary Thomas [mailto:gary@mlbassoc.com]
+Sent: 30Sep11 16:09
+To: Vellemans, Noel
+Subject: Re: [yocto] Virtual keyboard ?
+
+On 2011-09-30 08:05, Vellemans, Noel wrote:
+> Ok, I'll give it a try...
+>
+> At this time I'm running an ARMV7 build on imx537 cpu (w. a mouse and=20
+> keyb), but I'll tweak the config and connect a Touch-screen to it ..
+> To give it a try.
+>
+> Thanks for the response
+
+Good luck.  Note: it's polite to copy replies on the mailing list so
+that everyone can see it and benefit from the discussion.
+
+> -----Original Message-----
+> From: Gary Thomas [mailto:gary@mlbassoc.com]
+> Sent: 30Sep11 15:54
+> To: Vellemans, Noel
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Virtual keyboard ?
+>
+> On 2011-09-30 07:31, Vellemans, Noel wrote:
+>> Hi all,
+>>
+>> I have a question where I can not find an direct answer to on the
+> Yocto-web/wiki.
+>>
+>> I wonder if the Yocto-arm-sato build supports a device that has
+> no-REAL keyboard but only a touch-screen.
+>>
+>> If so, does the VIRTUAL-keyboard pup-op automatically, if you touch
+> something that is editable (like in android and/or meego) ?
+>
+> Yes, this works fine.  You just need to set these in
+> /etc/formfactor/machconfig:
+>     HAVE_TOUCHSCREEN=3D1
+>     HAVE_KEYBOARD=3D0
+>
+>> NOTE : I've been playing with the Yocto-1.0 build into qemu and I do
+> not find how to 'REMOVE' the virtual keyboard once it is visible on=20
+> screen.
+>
+> If it comes up by demand, it will go away when you press enter.
+>
+> --
+> ------------------------------------------------------------
+> Gary Thomas                 |  Consulting for the
+> MLB Associates              |    Embedded world
+> ------------------------------------------------------------
+
+--
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
