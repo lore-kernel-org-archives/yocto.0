@@ -1,27 +1,21 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED2E2E00536
-	for <yocto@yoctoproject.org>; Mon,  3 Oct 2011 12:02:11 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.2/8.14.2/Debian-2build1) with ESMTP id
-	p93J8RfK032495; Mon, 3 Oct 2011 20:08:27 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id 49hx8Xa9+1qH; Mon,  3 Oct 2011 20:08:27 +0100 (BST)
-Received: from [192.168.1.40] (tim [93.97.173.237]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.2/8.14.2/Debian-2build1) with ESMTP id
-	p93J8KKh032489
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
-	Mon, 3 Oct 2011 20:08:23 +0100
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67C04E00536
+	for <yocto@yoctoproject.org>; Mon,  3 Oct 2011 12:05:00 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 03 Oct 2011 12:04:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,481,1312182000"; d="scan'208";a="69879953"
+Received: from unknown (HELO [10.255.15.15]) ([10.255.15.15])
+	by fmsmga001.fm.intel.com with ESMTP; 03 Oct 2011 12:04:55 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
 To: Darren Hart <dvhart@linux.intel.com>
-Date: Mon, 03 Oct 2011 20:01:50 +0100
 In-Reply-To: <4E8A0380.1030502@linux.intel.com>
 References: <4E8A0380.1030502@linux.intel.com>
-X-Mailer: Evolution 3.1.91- 
-Message-ID: <1317668520.12684.8.camel@ted>
+Date: Mon, 03 Oct 2011 14:05:31 -0500
+Message-ID: <1317668731.2323.22.camel@elmorro>
 Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
 Cc: Yocto Project <yocto@yoctoproject.org>, "Wold, Saul" <saul.wold@intel.com>
 Subject: Re: GRUB fix for 1.1: Preferred approach for default grub version
 X-BeenThere: yocto@yoctoproject.org
@@ -35,9 +29,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Oct 2011 19:02:12 -0000
+X-List-Received-Date: Mon, 03 Oct 2011 19:05:00 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+
 
 On Mon, 2011-10-03 at 11:48 -0700, Darren Hart wrote:
 > When grub2 was merged int oe-core, it became the default (rather than
@@ -56,18 +51,15 @@ On Mon, 2011-10-03 at 11:48 -0700, Darren Hart wrote:
 > 
 > Given the time frame, I'd prefer to agree on the approach before writing
 > and testing patches. Preferences?
+> 
 
-I thought I'd been assured grub2 worked fine for our 32 and 64 bit
-platforms? :/.
+Not sure why it wouldn't work for the n450 - it worked for the other
+32-bit BSPs in meta-intel.  Let me take a look...
 
-The correct question here is why doesn't grub2 work on 32 bit platforms?
+Tom
 
-The answer might be "we need for time than is available in the 1.1
-release to fix it" but I'd at least like to see the answer to the
-question before we start with workarounds.
+> Thanks,
+> 
 
-Cheers,
-
-Richard
 
 
