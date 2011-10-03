@@ -1,32 +1,34 @@
 Return-Path: <song.liu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F413E004E9
-	for <yocto@yoctoproject.org>; Mon,  3 Oct 2011 08:55:10 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 03 Oct 2011 08:55:09 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB690E00536
+	for <yocto@yoctoproject.org>; Mon,  3 Oct 2011 09:30:57 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 03 Oct 2011 09:30:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,480,1312182000"; d="scan'208";a="22823127"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by AZSMGA002.ch.intel.com with ESMTP; 03 Oct 2011 08:55:07 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 3 Oct 2011 08:55:05 -0700
+X-IronPort-AV: E=Sophos;i="4.68,480,1312182000"; d="scan'208";a="58228459"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by azsmga001.ch.intel.com with ESMTP; 03 Oct 2011 09:30:56 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 3 Oct 2011 09:30:56 -0700
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.109]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.52]) with mapi id
-	14.01.0323.003; Mon, 3 Oct 2011 08:55:05 -0700
+	ORSMSX102.amr.corp.intel.com ([169.254.1.146]) with mapi id
+	14.01.0323.003; Mon, 3 Oct 2011 09:30:56 -0700
 From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project 1.1 release go/no-go meeting
-Thread-Index: Acxz9PVq5XlRxMNfRPe54lpsXNiQzAN72HsgAAAW9NA=
-Date: Mon, 3 Oct 2011 15:55:05 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F2DFB9@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A16F0AEBB@ORSMSX101.amr.corp.intel.com>
+To: "Garman, Scott A" <scott.a.garman@intel.com>
+Thread-Topic: Fixes to consider for a Bernard point release.
+Thread-Index: AQHMgenTOi9qC4GYf0K6CCQDgazd6Q==
+Date: Mon, 3 Oct 2011 16:30:55 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F2E061@ORSMSX101.amr.corp.intel.com>
+References: <4E86510E.1000207@intel.com>
+In-Reply-To: <4E86510E.1000207@intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project 1.1 release go/no-go meeting
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Fixes to consider for a Bernard point release.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,48 +40,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Oct 2011 15:55:10 -0000
+X-List-Received-Date: Mon, 03 Oct 2011 16:30:58 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Attendees:
-Beth, Josh, Scott Rifenbark, Richard, Mark, Dirk, Saul, John Cherry, Dave, =
-Darren, Song
-=A0
-* Background:=20
-Linux Foundation security breach knocked out our access to build and repos =
-servers for a few days. We were also upgrading autobuilder at the time and =
-we had some issues with the upgrade also. So we have to delay our release. =
-We have brought the release date change recommendation to the Yocto CCB (Ch=
-ange Control Board), and the board has approved the change. The new release=
- date is Oct 17th. (Our QA team in Shanghai has a national holiday from Oct=
-. 1st to Oct. 7th). So the purpose of this meeting is to go over things we =
-are going to put in RC4, and come up with a contingency plan if RC4 fails o=
-ur release standard.
-=A0
-* RC3 status: Mostly green, Some HOB and mutilib issues, fixes for HOB and =
-multilib,=20
-=A0
-* What fixes are being recommended to include in RC4:
-  - HOB fixes
-  - Small kernel update, fix some configuration issues,=20
-  - Multi-lib issues: most of them are low risk, one invasive change, but w=
-e will test it this week
-  - QA team (Shanghai) is on a 7-day holiday. We have time to test these fi=
-xes before QA next week
-  - We already have the patches in edison contrib branch, other than the x =
-qt3 issues, our build is green
-  - X32 recipe kernel.org URL issue, blocking X32 test, recommend include
-  - Fixes for 1523/1533, already in master, recommend to include
-=A0
-* Action item: Triage team will review all open bugs and work out a list of=
- items we will document in 1.1 release note.
-=A0
-* Contingency plan:=20
-  - IF RC4 has some serious issues, we have 2 options, one is to go back to=
- RC3, the other is to have another RC5. We will have one week before ELCE a=
-fter Oct. 17th and our mirror sites are still down.=20
-  - The team agrees that we should go with RC5 for contingency.
+Thank you Scott. This is a great list to start with.=20
 
+Hi Everyone,
+
+I changed the email subject and moved this thread to the public mailing lis=
+t. Let's use this thread as the place to collect patches we recommend for t=
+he 1.0 Bernard point release. So please contribute if you have something in=
+ mind. But please make sure that this effort won't affect any of your 1.1 r=
+elease related work. 1.1 release is our priority now.
+
+Thanks!
+Song
+
+-----Original Message-----
+From: Scott Garman [mailto:scott.a.garman@intel.com]=20
+Sent: Friday, September 30, 2011 4:30 PM
+To: Liu, Song
+Cc: Yocto Project Discussions
+Subject: Security related fixes to consider for a Bernard point release.
+
+Hi Song,
+
+At the last staff meeting, Paul brought up the possibility of doing=20
+another point-release for Bernard, at least to include some security=20
+fixes. I went and ran a scan on the bernard recipe versions using my CVE=20
+checker scripts, and came up with this short list of security fixes that=20
+we may wish to consider:
+
+python CVE-2011-1015=20
+http://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2011-1015
+libpng CVE-2011-2690=20
+http://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2011-2690
+libpng CVE-2011-2692=20
+http://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2011-2692
+
+So it looks like only the python and libpng recipes would need to be=20
+upgraded.
+
+Scott
+
+--=20
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
