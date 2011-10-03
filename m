@@ -1,23 +1,32 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C4AEE0130D
-	for <yocto@yoctoproject.org>; Mon,  3 Oct 2011 07:24:34 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 03 Oct 2011 07:24:34 -0700
+Return-Path: <song.liu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F413E004E9
+	for <yocto@yoctoproject.org>; Mon,  3 Oct 2011 08:55:10 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 03 Oct 2011 08:55:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="58464470"
-Received: from unknown (HELO localhost) ([10.255.15.15])
-	by orsmga001.jf.intel.com with ESMTP; 03 Oct 2011 07:24:32 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Mon,  3 Oct 2011 09:24:45 -0500
-Message-Id: <f975067cd2f53aea968f1102cf22abdc482e7b42.1317651502.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <066719d0c01d768672078fc5bc7663f8cd8646e0.1317651502.git.tom.zanussi@intel.com>
-References: <066719d0c01d768672078fc5bc7663f8cd8646e0.1317651502.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1317651502.git.tom.zanussi@intel.com>
-References: <cover.1317651502.git.tom.zanussi@intel.com>
-Subject: [PATCH 4/4] meta-sugarbay: update README
+X-IronPort-AV: E=Sophos;i="4.68,480,1312182000"; d="scan'208";a="22823127"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by AZSMGA002.ch.intel.com with ESMTP; 03 Oct 2011 08:55:07 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 3 Oct 2011 08:55:05 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.109]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.52]) with mapi id
+	14.01.0323.003; Mon, 3 Oct 2011 08:55:05 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project 1.1 release go/no-go meeting
+Thread-Index: Acxz9PVq5XlRxMNfRPe54lpsXNiQzAN72HsgAAAW9NA=
+Date: Mon, 3 Oct 2011 15:55:05 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F2DFB9@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A16F0AEBB@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Subject: Minutes: Yocto Project 1.1 release go/no-go meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,69 +38,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Oct 2011 14:24:34 -0000
+X-List-Received-Date: Mon, 03 Oct 2011 15:55:10 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-From: Tom Zanussi <tom.zanussi@intel.com>
-
-Update meta-sugarbay to reflect the new image names and a couple other
-minor cleanups.
-
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-sugarbay/README |   18 +++++++++---------
- 1 files changed, 9 insertions(+), 9 deletions(-)
-
-diff --git a/meta-sugarbay/README b/meta-sugarbay/README
-index 7899205..2d72f8a 100644
---- a/meta-sugarbay/README
-+++ b/meta-sugarbay/README
-@@ -10,8 +10,7 @@ Table of Contents
- =================
- 
-   I. Building the meta-sugarbay BSP layer
-- II. Special notes for building the meta-sugarbay BSP layer
--III. Booting the images in /binary
-+ II. Booting the images in /binary
- 
- 
- I. Building the meta-sugarbay BSP layer
-@@ -34,8 +33,8 @@ To enable the sugarbay layer, add the sugarbay MACHINE to local.conf:
- 
- You should then be able to build a sugarbay image as such:
- 
--  $ source poky-init-build-env
--  $ bitbake poky-image-sato-live
-+  $ source oe-init-build-env
-+  $ bitbake core-image-sato
- 
- At the end of a successful build, you should have a live image that
- you can boot from a USB flash drive (see instructions on how to do
-@@ -45,10 +44,11 @@ As an alternative to downloading the BSP tarball, you can also work
- directly from the meta-intel git repository.  For each BSP in the
- 'meta-intel' repository, there are multiple branches, one
- corresponding to each major release starting with 'laverne' (0.90), in
--addition to the latest code which tracks the current master.  Instead
--of extracting a BSP tarball at the top level of your yocto build tree,
--you can equivalently check out the appropriate branch from the
--meta-intel repository at the same location.
-+addition to the latest code which tracks the current master (note that
-+not all BSPs are present in every release).  Instead of extracting a
-+BSP tarball at the top level of your yocto build tree, you can
-+equivalently check out the appropriate branch from the meta-intel
-+repository at the same location.
- 
- 
- II. Booting the images in /binary
-@@ -61,7 +61,7 @@ Under Linux, insert a USB flash drive.  Assuming the USB flash drive
- takes device /dev/sdf, use dd to copy the live image to it.  For
- example:
- 
--# dd if=poky-image-sato-live-sugarbay-20101207053738.hddimg of=/dev/sdf
-+# dd if=core-image-sato-sugarbay-20101207053738.hddimg of=/dev/sdf
- # sync
- # eject /dev/sdf
- 
--- 
-1.7.0.4
+Attendees:
+Beth, Josh, Scott Rifenbark, Richard, Mark, Dirk, Saul, John Cherry, Dave, =
+Darren, Song
+=A0
+* Background:=20
+Linux Foundation security breach knocked out our access to build and repos =
+servers for a few days. We were also upgrading autobuilder at the time and =
+we had some issues with the upgrade also. So we have to delay our release. =
+We have brought the release date change recommendation to the Yocto CCB (Ch=
+ange Control Board), and the board has approved the change. The new release=
+ date is Oct 17th. (Our QA team in Shanghai has a national holiday from Oct=
+. 1st to Oct. 7th). So the purpose of this meeting is to go over things we =
+are going to put in RC4, and come up with a contingency plan if RC4 fails o=
+ur release standard.
+=A0
+* RC3 status: Mostly green, Some HOB and mutilib issues, fixes for HOB and =
+multilib,=20
+=A0
+* What fixes are being recommended to include in RC4:
+  - HOB fixes
+  - Small kernel update, fix some configuration issues,=20
+  - Multi-lib issues: most of them are low risk, one invasive change, but w=
+e will test it this week
+  - QA team (Shanghai) is on a 7-day holiday. We have time to test these fi=
+xes before QA next week
+  - We already have the patches in edison contrib branch, other than the x =
+qt3 issues, our build is green
+  - X32 recipe kernel.org URL issue, blocking X32 test, recommend include
+  - Fixes for 1523/1533, already in master, recommend to include
+=A0
+* Action item: Triage team will review all open bugs and work out a list of=
+ items we will document in 1.1 release note.
+=A0
+* Contingency plan:=20
+  - IF RC4 has some serious issues, we have 2 options, one is to go back to=
+ RC3, the other is to have another RC5. We will have one week before ELCE a=
+fter Oct. 17th and our mirror sites are still down.=20
+  - The team agrees that we should go with RC5 for contingency.
 
 
