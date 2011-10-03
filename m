@@ -1,34 +1,22 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB690E00536
-	for <yocto@yoctoproject.org>; Mon,  3 Oct 2011 09:30:57 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 03 Oct 2011 09:30:57 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BF79E00536
+	for <yocto@yoctoproject.org>; Mon,  3 Oct 2011 11:48:33 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 03 Oct 2011 11:48:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,480,1312182000"; d="scan'208";a="58228459"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by azsmga001.ch.intel.com with ESMTP; 03 Oct 2011 09:30:56 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 3 Oct 2011 09:30:56 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.109]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.146]) with mapi id
-	14.01.0323.003; Mon, 3 Oct 2011 09:30:56 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "Garman, Scott A" <scott.a.garman@intel.com>
-Thread-Topic: Fixes to consider for a Bernard point release.
-Thread-Index: AQHMgenTOi9qC4GYf0K6CCQDgazd6Q==
-Date: Mon, 3 Oct 2011 16:30:55 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F2E061@ORSMSX101.amr.corp.intel.com>
-References: <4E86510E.1000207@intel.com>
-In-Reply-To: <4E86510E.1000207@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="58562528"
+Received: from unknown (HELO envy.home) ([10.7.199.150])
+	by orsmga001.jf.intel.com with ESMTP; 03 Oct 2011 11:48:32 -0700
+Message-ID: <4E8A0380.1030502@linux.intel.com>
+Date: Mon, 03 Oct 2011 11:48:32 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:6.0.2) Gecko/20110906 Thunderbird/6.0.2
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Fixes to consider for a Bernard point release.
+To: Yocto Project <yocto@yoctoproject.org>
+Cc: "Wold, Saul" <saul.wold@intel.com>
+Subject: GRUB fix for 1.1: Preferred approach for default grub version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,53 +28,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Oct 2011 16:30:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 03 Oct 2011 18:48:33 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Thank you Scott. This is a great list to start with.=20
+When grub2 was merged int oe-core, it became the default (rather than
+being explicitly requested by the 64b meta-intel BSPs). This breaks the
+live install on 32b systems, like the n450 - installing grub v1.99 with
+a grub v1 config.
 
-Hi Everyone,
+We have a couple options on how to fix this.
 
-I changed the email subject and moved this thread to the public mailing lis=
-t. Let's use this thread as the place to collect patches we recommend for t=
-he 1.0 Bernard point release. So please contribute if you have something in=
- mind. But please make sure that this effort won't affect any of your 1.1 r=
-elease related work. 1.1 release is our priority now.
+1) Set PREFERRED_PROVIDER_grub="0.97" in all 32b x86 machine configs
+2) Set DEFAULT_PREFERENCE="-1" in the grub_1.99.bb recipe which would
+   affect all of oe-core.
+3) Some alternate approach which would be the equivalent of
+   DEFAULT_PREFERENCE, but only for meta-yocto BSPs or the poky
+   "distro".
 
-Thanks!
-Song
+Given the time frame, I'd prefer to agree on the approach before writing
+and testing patches. Preferences?
 
------Original Message-----
-From: Scott Garman [mailto:scott.a.garman@intel.com]=20
-Sent: Friday, September 30, 2011 4:30 PM
-To: Liu, Song
-Cc: Yocto Project Discussions
-Subject: Security related fixes to consider for a Bernard point release.
+Thanks,
 
-Hi Song,
-
-At the last staff meeting, Paul brought up the possibility of doing=20
-another point-release for Bernard, at least to include some security=20
-fixes. I went and ran a scan on the bernard recipe versions using my CVE=20
-checker scripts, and came up with this short list of security fixes that=20
-we may wish to consider:
-
-python CVE-2011-1015=20
-http://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2011-1015
-libpng CVE-2011-2690=20
-http://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2011-2690
-libpng CVE-2011-2692=20
-http://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2011-2692
-
-So it looks like only the python and libpng recipes would need to be=20
-upgraded.
-
-Scott
-
---=20
-Scott Garman
-Embedded Linux Engineer - Yocto Project
+-- 
+Darren Hart
 Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
