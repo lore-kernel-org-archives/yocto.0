@@ -1,24 +1,28 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93614E00569
-	for <yocto@yoctoproject.org>; Mon,  3 Oct 2011 20:36:30 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 03 Oct 2011 20:36:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,483,1312182000"; d="scan'208";a="58428159"
-Received: from unknown (HELO [10.255.15.15]) ([10.255.15.15])
-	by azsmga001.ch.intel.com with ESMTP; 03 Oct 2011 20:36:28 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-In-Reply-To: <4BD43A85686FC34D819098DB1C3999D9018A8A048F@orsmsx502.amr.corp.intel.com>
-References: <4BD43A85686FC34D819098DB1C3999D9018A8A048F@orsmsx502.amr.corp.intel.com>
-Date: Mon, 03 Oct 2011 22:37:07 -0500
-Message-ID: <1317699427.2323.52.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>
-Subject: Re: ISO image does not boot
+Return-Path: <Noel.Vellemans@visionBMS.com>
+Received: from mail178.messagelabs.com (mail178.messagelabs.com
+	[85.158.139.19])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 7513BE0131A
+	for <yocto@yoctoproject.org>; Tue,  4 Oct 2011 06:26:04 -0700 (PDT)
+X-Env-Sender: Noel.Vellemans@visionBMS.com
+X-Msg-Ref: server-11.tower-178.messagelabs.com!1317734755!74401546!1
+X-Originating-IP: [195.134.156.204]
+X-StarScan-Version: 6.3.6; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 24161 invoked from network); 4 Oct 2011 13:25:55 -0000
+Received: from gateway.loepfe.com (HELO gateway.loepfe.com) (195.134.156.204)
+	by server-11.tower-178.messagelabs.com with SMTP;
+	4 Oct 2011 13:25:55 -0000
+X-MimeOLE: Produced By Microsoft Exchange V6.5
+MIME-Version: 1.0
+Date: Tue, 4 Oct 2011 15:26:00 +0200
+Message-ID: <1531E53627F1F749B4FE809BF2A4EB6702B130EF@WETMEX10.loepfe.com>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Thread-Topic: Yocto  webbrowser ?
+thread-index: AcyCmSiVZHnRUdQeRjmEkati45mWgw==
+From: "Vellemans, Noel" <Noel.Vellemans@visionBMS.com>
+To: <yocto@yoctoproject.org>
+Subject: Yocto webbrowser ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,41 +34,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Oct 2011 03:36:31 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 04 Oct 2011 13:26:05 -0000
+Content-class: urn:content-classes:message
+Content-Type: multipart/alternative;
+	boundary="----_=_NextPart_001_01CC8299.2917B30E"
 
-On Mon, 2011-10-03 at 13:56 -0700, Bodke, Kishore K wrote:
-> Hi All ,
-> 
->  
-> 
-> I tried booting Yocto ISO image for Romley.  It crashed .
-> 
->  
-> 
-> Attached is the screen shot .
-> 
->  
-> 
-> Does anybody booted the yocto Image on meta-intel, other than USB?
-> 
+------_=_NextPart_001_01CC8299.2917B30E
+Content-Type: text/plain;
+	charset="US-ASCII"
+Content-Transfer-Encoding: quoted-printable
 
-Yes, jasperforest works.  So should romley, since like jasperforest,
-it's derived from common-pc-64.  I'm guessing if you updated your kernel
-SRCREVs, it would also work.
 
-Tom
+Hi all,
 
->  
-> 
->  
-> 
-> Thanks
-> 
-> Kishore.
-> 
-> 
+I've been building the current-release of yocto (which succeeds) [
+sato-qemu-arm build]
+
+
+1) At this time I would like to 'include' the web-browser
+(webkit-web-browser)  into this build but I can not find any doc's on
+how to do this?
+Any pointers ?
+
+2) If the Web-browser build succeeds, how can I install this on the
+target ?
 
 
 
+
+Regards Noel
+=20
+
+
+
+------_=_NextPart_001_01CC8299.2917B30E
+Content-Type: text/html;
+	charset="US-ASCII"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii">
+<META NAME=3D"Generator" CONTENT=3D"MS Exchange Server version =
+6.5.7654.12">
+<TITLE>Yocto  webbrowser ?</TITLE>
+</HEAD>
+<BODY>
+<!-- Converted from text/rtf format -->
+<BR>
+
+<P><SPAN LANG=3D"en-us"><FONT SIZE=3D2 FACE=3D"Verdana">Hi =
+all,</FONT></SPAN>
+</P>
+
+<P><SPAN LANG=3D"en-us"><FONT SIZE=3D2 FACE=3D"Verdana">I've been =
+building the current-release of yocto (which succeeds) [ sato-qemu-arm =
+build]</FONT></SPAN>
+</P>
+<BR>
+
+<P><SPAN LANG=3D"en-us"><FONT SIZE=3D2 FACE=3D"Verdana">1) At this time =
+I would like to 'include' the web-browser (webkit-web-browser)&nbsp; =
+into this build but I can not find any doc's on how to do =
+this?</FONT></SPAN></P>
+
+<P><SPAN LANG=3D"en-us"><FONT SIZE=3D2 FACE=3D"Verdana">Any pointers =
+?</FONT></SPAN>
+</P>
+
+<P><SPAN LANG=3D"en-us"><FONT SIZE=3D2 FACE=3D"Verdana">2) If the =
+Web-browser build succeeds, how can I install this on the target =
+?</FONT></SPAN>
+</P>
+<BR>
+<BR>
+<BR>
+
+<P><SPAN LANG=3D"en-us"><FONT SIZE=3D2 FACE=3D"Verdana">Regards =
+Noel</FONT></SPAN>
+
+<BR><SPAN LANG=3D"en-us"><FONT SIZE=3D2 =
+FACE=3D"Verdana">&nbsp;</FONT></SPAN>
+</P>
+<BR>
+
+</BODY>
+</HTML>
+
+------_=_NextPart_001_01CC8299.2917B30E--
