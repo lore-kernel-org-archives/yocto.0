@@ -1,32 +1,33 @@
-Return-Path: <knygar@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA112E006B4
-	for <yocto@yoctoproject.org>; Tue,  4 Oct 2011 08:53:26 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iabz7 with SMTP id z7so994902iab.35
-	for <yocto@yoctoproject.org>; Tue, 04 Oct 2011 08:53:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:content-type:content-transfer-encoding;
-	bh=Wavu9whN5W69bRembzP+LkqelWmgTZQAfQ32JHHDvkg=;
-	b=fH+6FSfM7J0fcsoYxLdEUk/p6ShJTMcfs69mKTF+T+Vn57YgreQTVBNrmgeOuXMRVC
-	DwRFV4m7itOjMh7se5o6DelSCnebSxkiWmKNIy/rjWI/YhiJM8XLUZSVlp3oGZObB1k3
-	XmDYkW771X7R4Jb0JbwBMDmMAEVEI9EOodI48=
-Received: by 10.231.73.139 with SMTP id q11mr2334412ibj.97.1317743605079; Tue,
-	04 Oct 2011 08:53:25 -0700 (PDT)
+Return-Path: <song.liu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7485E004E9
+	for <yocto@yoctoproject.org>; Tue,  4 Oct 2011 10:04:59 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 04 Oct 2011 10:04:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,486,1312182000"; d="scan'208";a="74470224"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by fmsmga002.fm.intel.com with ESMTP; 04 Oct 2011 10:04:49 -0700
+Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 4 Oct 2011 10:04:28 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.109]) by
+	ORSMSX103.amr.corp.intel.com ([169.254.2.90]) with mapi id
+	14.01.0323.003; Tue, 4 Oct 2011 10:04:28 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Technical Team Meeting - (Tuesday, October 04,
+	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+Thread-Index: AQHMgresWYdrbiX80kG841u3JOD+uA==
+Date: Tue, 4 Oct 2011 17:04:27 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F2EAC6@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.231.34.137 with HTTP; Tue, 4 Oct 2011 08:53:05 -0700 (PDT)
-In-Reply-To: <1317743223.2229.17.camel@scimitar>
-References: <1531E53627F1F749B4FE809BF2A4EB6702B130EF@WETMEX10.loepfe.com>
-	<1317743223.2229.17.camel@scimitar>
-From: ya knygar <knygar@gmail.com>
-Date: Tue, 4 Oct 2011 15:53:05 +0000
-Message-ID: <CAJVWO9YXNmZO0W49Yh++dfqmkXpR82HPSrfVJe8-3+H2t_G62w@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: Yocto webbrowser ?
+Subject: Minutes: Yocto Technical Team Meeting - (Tuesday, October 04, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,59 +39,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Oct 2011 15:53:27 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 04 Oct 2011 17:05:00 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Attendees:
+=A0Saul, Darren, Tom, Matthew, Jessica, Scott, Richard, Josh, Jeff, Beth, M=
+ark, Dave, Song
+=A0
+Agenda
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.1 M4 status review and issues - 15 min (team) https://wiki.yoctop=
+roject.org/wiki/Yocto_Project_v1.1_Release_Criteria#Milestone_=20
+    - All release criteria are ready or on track for the release except wai=
+ting for QA to start testing on RC4.=20
+    - Tom found one BSP problem over the weekend, already have patch. Tom a=
+nd Richard will investigate. If it's not happening on autobuilder, then it =
+may not be a problem. Tom will follow up.
+   - 24 patches upstreamed last quarter
+   - Document on track, URL questions.
+    - Build status (Beth):=20
+      . Everything seems green so far, we are in a good position for RC4. N=
+othing is blocking our RC4 build at this point.
+      . Richard has taken all patches to the Edison branch.
+      . Multi-lib is a weak area, need more stress testing, need help from =
+the team since Richard may not have enough time for this.
+    - Release schedule and contingency plan:
+      . We will start RC4 this Wednesday, should have RC4 this Thursday. QA=
+ team will be back this Saturday (Beijing time) to start testing on RC4. (I=
+f RC4 goes bad, we will have RC5 in the following week)
+* Opens - 10 min
+   . Grub (Saul/Darren): install have grub 2 installed, but it has a .list =
+file in grub 1 format. This happens only on n450. It's good to see Atom-PC =
+since they are similar. Saul will redo the build for these 2. worst case us=
+e grub 1. Darren will try to debug, we at least need to understand the root=
+ cause of this. Saul will help Darren on this.
+   . State Cache on autobuilder, (Matthew): where I can look at the informa=
+tion about state cache? Would like to compare with what Matthew is doing at=
+ Freescale. Changing directories/machines, wondering if Yocto team has the =
+same thing. Is there other machines using cache published by the master mac=
+hines? (RP)Different machines share the same state cache. We are not going =
+back to check duplication. Follow up email reusing email. Matthew is really=
+ interested in what we are doing for protecting cache. The cache is really =
+important for Matthew's work at Freescale. (RP) We have 1.2 features relate=
+d to shared state.
+   . URL (Scott): Looking for a response to his email. RP is good with the =
+change.
+   =20
+* Weekly team sharing (30 min)
+  Mark: last week attended the ELC conference on the east coast. Had a pres=
+entation on Yocto introduction. 120 people showed up, very well received. 4=
+00-500 people in the conference.
+  Jeff: Nothing today
+  Josh: working on the same thing as last week, video, HOB.
+  Richard: doing patch review, 1.2 feature list, migrating them into bugzil=
+la, sort through wiki page for 1.2.
+  Scott: last week mostly manuals. First path multi-lib section, implemente=
+d RP's changes on that. BSP manual, ADT manual. As many examples as I can. =
+This Wednesday send pull request for docs
+  Jessica: working on internal Intel tools, finalize some loose items. Star=
+ting some research for 1.2 release features for ADT and Eclipse plug-in.
+  Matthew: shared state, already covered in the open.
+  Tom: Same thing as last week, Meta-intel BSPs. have the patch for ISO pro=
+blem. Doc, BSP review will continue.
+  Darren: mostly working on minimal image size and boot time. Putting toget=
+her the tiny image layer. But build untested. This week first fix the Grub =
+issue, continue on the tiny image layer.
+  Saul: Working on the release 1.1. Will help Tom and Darren with Grub thin=
+gs. Complete the release this week.
 
-but why "webkit-web-browser" and not some gecko build? Isn't
-'re-branding' of mobile firefox would not be easier than building a
-powerful stand-alone mobile webkit browser? Isn't the Mozilla's work
-more important than supporting webkit now, at all?
 
-The gecko's memory consumption has been stretched for the mobiles,
-adding the UX efforts, extensions, and that Firefox Mobile is almost
-the only floss mobile browser, i can't understand why not to try with
-it now.
 
-On Tue, Oct 4, 2011 at 3:46 PM, Joshua Lock <josh@linux.intel.com> wrote:
-> On Tue, 2011-10-04 at 15:26 +0200, Vellemans, Noel wrote:
->>
->> Hi all,
->>
->> I've been building the current-release of yocto (which succeeds)
->> [ sato-qemu-arm build]
->>
->>
->> 1) At this time I would like to 'include' the web-browser
->> (webkit-web-browser) =C2=A0into this build but I can not find any doc's =
-on
->> how to do this?
->> Any pointers ?
->
-> You'll need to customise an image to include the web browser:
-> http://www.yoctoproject.org/docs/1.1/poky-ref-manual/poky-ref-manual.html=
-#usingpoky-extend-customimage
->
->> 2) If the Web-browser build succeeds, how can I install this on the
->> target ?
->
-> Alternatively you can scp the built package (probably
-> build/tmp/deploy/rpm/ARCH/packagename if you're using the default
-> settings) to the target device and install with the on-device package
-> management tools.
->
-> Regards,
-> Joshua
-> --
-> Joshua Lock
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0Yocto Project "Johannes factotum"
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0Intel Open Source Technology Centre
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
