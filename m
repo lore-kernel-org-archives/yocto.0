@@ -1,19 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91384E006B4
-	for <yocto@yoctoproject.org>; Tue,  4 Oct 2011 08:40:01 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 04 Oct 2011 08:40:01 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CDE9E01321
+	for <yocto@yoctoproject.org>; Tue,  4 Oct 2011 08:40:11 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 04 Oct 2011 08:40:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="58903342"
+X-IronPort-AV: E=Sophos;i="4.68,485,1312182000"; d="scan'208";a="58656081"
 Received: from unknown (HELO localhost) ([10.255.15.15])
-	by orsmga001.jf.intel.com with ESMTP; 04 Oct 2011 08:40:00 -0700
+	by azsmga001.ch.intel.com with ESMTP; 04 Oct 2011 08:40:09 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Tue,  4 Oct 2011 10:40:42 -0500
-Message-Id: <cover.1317740914.git.tom.zanussi@intel.com>
+Date: Tue,  4 Oct 2011 10:40:44 -0500
+Message-Id: <fa734c750d722998af6392af8f55d4e164c0a9ea.1317740914.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/4][KERNEL] enable booting from iso
+In-Reply-To: <e35e25b5fa73bd8f54cd11a25eb9707539f84a15.1317740914.git.tom.zanussi@intel.com>
+References: <e35e25b5fa73bd8f54cd11a25eb9707539f84a15.1317740914.git.tom.zanussi@intel.com>
+In-Reply-To: <cover.1317740914.git.tom.zanussi@intel.com>
+References: <cover.1317740914.git.tom.zanussi@intel.com>
+Subject: [PATCH 2/4][KERNEL] meta/emenlow: enable booting from iso
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,36 +29,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Oct 2011 15:40:01 -0000
+X-List-Received-Date: Tue, 04 Oct 2011 15:40:11 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-A few of the 32-bit meta-intel BSPs need the boot-live config turned on
-in order boot from iso images.  This patchset does that for crownbay,
-emenlow, fishriver, and fri2.
+Include boot-live.scc to enable booting from iso.
 
-Tested on crownbay.
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg |    3 +++
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc |    1 +
+ 2 files changed, 4 insertions(+), 0 deletions(-)
 
-Please pull into linux-yocto-3.0/meta.
-
-Pull URL: git://git.pokylinux.org/linux-yocto-2.6.37-contrib
-  Branch: tzanussi/isoboot-fixes-2
-  Browse: http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/isoboot-fixes-2
-
-Tom Zanussi (4):
-  meta/crownbay: enable booting from iso
-  meta/emenlow: enable booting from iso
-  meta/fishriver: enable booting from iso
-  meta/fri2: enable booting from iso
-
- meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg   |    3 +++
- meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc   |    1 +
- meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg     |    3 +++
- meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc     |    1 +
- meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg |    3 +++
- meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc |    1 +
- meta/cfg/kernel-cache/bsp/fri2/fri2.cfg           |    3 +++
- meta/cfg/kernel-cache/bsp/fri2/fri2.scc           |    1 +
- 8 files changed, 16 insertions(+), 0 deletions(-)
+diff --git a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
+index 9bc250c..d527e8d 100644
+--- a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
++++ b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
+@@ -64,3 +64,6 @@ CONFIG_BLK_DEV_INITRD=y
+ CONFIG_RD_GZIP=y
+ CONFIG_NLS_CODEPAGE_437=y
+ CONFIG_NLS_ISO8859_1=y
++
++# Needed for booting (and using) CD images
++CONFIG_BLK_DEV_SR=y
+diff --git a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
+index 6e4cc40..e5b2097 100644
+--- a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
++++ b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
+@@ -5,6 +5,7 @@ include features/intel-e1xxxx/intel-e100.scc
+ include features/intel-e1xxxx/intel-e1xxxx.scc
+ include features/drm-psb/drm-psb.scc
+ include features/serial/8250.scc
++include cfg/boot-live.scc
+ 
+ include features/logbuf/size-normal.scc
+ 
+-- 
+1.7.0.4
 
 
