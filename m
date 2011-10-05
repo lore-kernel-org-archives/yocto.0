@@ -1,25 +1,20 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5383E004E9
-	for <yocto@yoctoproject.org>; Tue,  4 Oct 2011 13:59:40 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p94Kxa0u006977
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 4 Oct 2011 13:59:36 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 4 Oct 2011 13:59:36 -0700
-Message-ID: <4E8B73B7.70008@windriver.com>
-Date: Tue, 4 Oct 2011 16:59:35 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
-MIME-Version: 1.0
-To: <tom.zanussi@intel.com>
-References: <cover.1317740914.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1317740914.git.tom.zanussi@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/4][KERNEL] enable booting from iso
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3F3FE01328
+	for <yocto@yoctoproject.org>; Tue,  4 Oct 2011 20:25:43 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 04 Oct 2011 20:25:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,489,1312182000"; d="scan'208";a="58893176"
+Received: from unknown (HELO localhost) ([10.255.15.15])
+	by azsmga001.ch.intel.com with ESMTP; 04 Oct 2011 20:25:41 -0700
+From: tom.zanussi@intel.com
+To: elizabeth.flanagan@intel.com, scott.m.rifenbark@intel.com,
+	yocto@yoctoproject.org
+Date: Tue,  4 Oct 2011 22:26:28 -0500
+Message-Id: <cover.1317784655.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/7] meta-intel: update README.sources
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,50 +26,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Oct 2011 20:59:41 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 05 Oct 2011 03:25:43 -0000
 
-On 11-10-04 11:40 AM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi<tom.zanussi@intel.com>
->
-> A few of the 32-bit meta-intel BSPs need the boot-live config turned on
-> in order boot from iso images.  This patchset does that for crownbay,
-> emenlow, fishriver, and fri2.
->
-> Tested on crownbay.
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-merged and out in the kernel repo. SRCREV update is arriving
-shortly to an inbox near you.
+This updates the README.sources to point to the new URLs for edison.
 
-Bruce
+The following changes since commit d24b9522a6a82d660e54f272ac680a23a474cef4:
+  Tom Zanussi (1):
+        meta-intel: update SRCREVs
 
->
-> Please pull into linux-yocto-3.0/meta.
->
-> Pull URL: git://git.pokylinux.org/linux-yocto-2.6.37-contrib
->    Branch: tzanussi/isoboot-fixes-2
->    Browse: http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/isoboot-fixes-2
->
-> Tom Zanussi (4):
->    meta/crownbay: enable booting from iso
->    meta/emenlow: enable booting from iso
->    meta/fishriver: enable booting from iso
->    meta/fri2: enable booting from iso
->
->   meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg   |    3 +++
->   meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc   |    1 +
->   meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg     |    3 +++
->   meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc     |    1 +
->   meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg |    3 +++
->   meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc |    1 +
->   meta/cfg/kernel-cache/bsp/fri2/fri2.cfg           |    3 +++
->   meta/cfg/kernel-cache/bsp/fri2/fri2.scc           |    1 +
->   8 files changed, 16 insertions(+), 0 deletions(-)
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-intel.git tzanussi/readme.sources-updates-2
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/readme.sources-updates-2
+
+Tom Zanussi (7):
+  meta-crownbay: update README.sources
+  meta-emenlow: update README.sources
+  meta-fishriver: update README.sources
+  meta-fri2: update README.sources
+  meta-jasperforest: update README.sources
+  meta-n450: update README.sources
+  meta-sugarbay: update README.sources
+
+ meta-crownbay/README.sources     |    4 ++--
+ meta-emenlow/README.sources      |    4 ++--
+ meta-fishriver/README.sources    |    4 ++--
+ meta-fri2/README.sources         |    4 ++--
+ meta-jasperforest/README.sources |    4 ++--
+ meta-n450/README.sources         |    4 ++--
+ meta-sugarbay/README.sources     |    4 ++--
+ 7 files changed, 14 insertions(+), 14 deletions(-)
 
 
