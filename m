@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4EC9E01331
-	for <yocto@yoctoproject.org>; Tue,  4 Oct 2011 20:25:55 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 04 Oct 2011 20:25:55 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF988E01334
+	for <yocto@yoctoproject.org>; Tue,  4 Oct 2011 20:26:00 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 04 Oct 2011 20:26:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,489,1312182000"; d="scan'208";a="74701317"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="59111624"
 Received: from unknown (HELO localhost) ([10.255.15.15])
-	by fmsmga002.fm.intel.com with ESMTP; 04 Oct 2011 20:25:55 -0700
+	by orsmga001.jf.intel.com with ESMTP; 04 Oct 2011 20:25:59 -0700
 From: tom.zanussi@intel.com
 To: elizabeth.flanagan@intel.com, scott.m.rifenbark@intel.com,
 	yocto@yoctoproject.org
-Date: Tue,  4 Oct 2011 22:26:31 -0500
-Message-Id: <e41d1e1fd25233b5164ef8ebc3fe31d8d041f63f.1317784655.git.tom.zanussi@intel.com>
+Date: Tue,  4 Oct 2011 22:26:32 -0500
+Message-Id: <b2a88d588518d0b841b68af53294418633d1f04d.1317784655.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <0b5bf1f86c99488e715cd44b8bae306aee20dd3d.1317784655.git.tom.zanussi@intel.com>
 References: <0b5bf1f86c99488e715cd44b8bae306aee20dd3d.1317784655.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1317784655.git.tom.zanussi@intel.com>
 References: <cover.1317784655.git.tom.zanussi@intel.com>
-Subject: [PATCH 6/7] meta-n450: update README.sources
+Subject: [PATCH 7/7] meta-sugarbay: update README.sources
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,7 +30,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Oct 2011 03:25:55 -0000
+X-List-Received-Date: Wed, 05 Oct 2011 03:26:01 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
@@ -39,13 +39,13 @@ edison.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-n450/README.sources |    4 ++--
+ meta-sugarbay/README.sources |    4 ++--
  1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-n450/README.sources b/meta-n450/README.sources
+diff --git a/meta-sugarbay/README.sources b/meta-sugarbay/README.sources
 index 5c8b5c7..8e006fb 100644
---- a/meta-n450/README.sources
-+++ b/meta-n450/README.sources
+--- a/meta-sugarbay/README.sources
++++ b/meta-sugarbay/README.sources
 @@ -1,13 +1,13 @@
  The sources for the packages comprising the images shipped with this
  BSP can be found at the following location:
