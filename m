@@ -1,31 +1,20 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89096E004CF
-	for <yocto@yoctoproject.org>; Thu,  6 Oct 2011 18:17:34 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iabz7 with SMTP id z7so5466858iab.35
-	for <yocto@yoctoproject.org>; Thu, 06 Oct 2011 18:17:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
-	:from:to:content-type;
-	bh=eSBfK/CA6n7fcINjtwqCINoQ+1ao2n+gTwB5/vyYXzM=;
-	b=kKatpnjFqbcdqMjvMd6vV28+DATiFwn3xhjlh1dkBOyBzZ6OnqON6eKBiPLfLsvPXP
-	XFl2DlmwCUh7XfqzJNLb/eZPPGsgZrByRb8dUGjoPBAPNd+hw5hUiiV/9I+Bol9xPD71
-	dYPLhJ6vFX1xE+Fb9nXwElZuKGgvdgtVEakow=
-MIME-Version: 1.0
-Received: by 10.42.19.67 with SMTP id a3mr8732686icb.21.1317950252612; Thu, 06
-	Oct 2011 18:17:32 -0700 (PDT)
-Sender: jefro.net@gmail.com
-Received: by 10.42.240.8 with HTTP; Thu, 6 Oct 2011 18:17:32 -0700 (PDT)
-Date: Thu, 6 Oct 2011 18:17:32 -0700
-X-Google-Sender-Auth: Qz5ab4zq-EdjgdXtX5INPoLeR5Q
-Message-ID: <CA+YB3rYfr8QHurfGnaJLbWrfK7KZHZJv0wnW5u2scf-u2ZPEiQ@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Yocto Project on Ohloh
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB016E004CF
+	for <yocto@yoctoproject.org>; Fri,  7 Oct 2011 06:14:27 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 07 Oct 2011 06:14:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,502,1312182000"; d="scan'208";a="71251099"
+Received: from unknown (HELO localhost) ([10.255.15.15])
+	by fmsmga001.fm.intel.com with ESMTP; 07 Oct 2011 06:14:26 -0700
+From: tom.zanussi@intel.com
+To: bruce.ashfield@windriver.com,
+	yocto@yoctoproject.org
+Date: Fri,  7 Oct 2011 08:15:36 -0500
+Message-Id: <cover.1317993031.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/5][KERNEL] some meta-intel bsp cleanup, v2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,53 +26,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Oct 2011 01:17:34 -0000
-Content-Type: multipart/alternative; boundary=20cf30426cb4a37bcb04aeab345a
+X-List-Received-Date: Fri, 07 Oct 2011 13:14:28 -0000
 
---20cf30426cb4a37bcb04aeab345a
-Content-Type: text/plain; charset=ISO-8859-1
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-The Yocto Project has a page on Ohloh, a site that assembles metrics on open
-source projects and their contributors and users:
+This patchset is another step in some cleanup I'm doing for
+the meta-intel bsps, basically removing unneeded or redundant
+options and abstracting out useful features, in this case a
+new vesafb feature used in this patchset by crownbay, emenlow,
+and jasperforest.
 
-https://www.ohloh.net/p/YoctoProject
+v2: rebased on top of intervening changes
 
-If you work on or use the Yocto Project, I encourage you to link to us on
-this site. This enables the project to better reflect the number of
-contributors and users, and also enables you to get visible credit for your
-work in a public forum. If you don't already have an account on Ohloh, I
-strongly suggest creating one and linking it to all the projects you work
-on.
+Please pull into linux-yocto-3.0.
 
--- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
+Pull URL: git://git.pokylinux.org/linux-yocto-2.6.37-contrib
+  Branch: tzanussi/bsp-cleanup-v2
+  Browse: http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/bsp-cleanup-v2
 
---20cf30426cb4a37bcb04aeab345a
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Thanks,
 
-The Yocto Project has a page on Ohloh, a site that assembles metrics on ope=
-n source projects and their contributors and users:<div><br><div><a href=3D=
-"https://www.ohloh.net/p/YoctoProject" target=3D"_blank">https://www.ohloh.=
-net/p/YoctoProject</a></div>
+Tom
 
+Tom Zanussi (5):
+  features/drm-psb: add related config options
+  meta: add vesafb feature
+  crownbay: cleanup bsp config
+  emenlow: cleanup bsp config
+  jasperforest: cleanup bsp config
 
-<div><br></div><div>If you work on or use the Yocto Project, I encourage yo=
-u to link to us on this site. This enables the project to better reflect th=
-e number of contributors and users, and also enables you to get visible cre=
-dit for your work in a public forum.=A0If you don&#39;t already have an acc=
-ount on Ohloh, I strongly suggest creating one and linking it to all the pr=
-ojects you work on.=A0<div>
-
-
-<br></div>-- <br>Jeff Osier-Mixon <a href=3D"http://jefro.net/blog" target=
-=3D"_blank">http://jefro.net/blog</a><div>Yocto Project Community Manager @=
-Intel <a href=3D"http://yoctoproject.org" target=3D"_blank">http://yoctopro=
-ject.org</a></div>
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |   34 ++++--------------
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    5 ++-
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |   35 +++++--------------
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc      |    2 +
+ .../kernel-cache/bsp/jasperforest/jasperforest.cfg |    7 +---
+ .../kernel-cache/bsp/jasperforest/jasperforest.scc |    2 +
+ meta/cfg/kernel-cache/features/drm-psb/drm-psb.cfg |   13 +++++++
+ .../kernel-cache/features/framebuffer/vesafb.cfg   |    8 ++++
+ .../kernel-cache/features/framebuffer/vesafb.scc   |    1 +
+ 9 files changed, 48 insertions(+), 59 deletions(-)
+ create mode 100644 meta/cfg/kernel-cache/features/framebuffer/vesafb.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/framebuffer/vesafb.scc
 
 
-<br>
-</div></div>
-
---20cf30426cb4a37bcb04aeab345a--
