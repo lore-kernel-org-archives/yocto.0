@@ -1,32 +1,20 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-bw0-f48.google.com (mail-bw0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12B44E006B2
-	for <yocto@yoctoproject.org>; Sun,  9 Oct 2011 11:26:18 -0700 (PDT)
-Received: by bkbzu5 with SMTP id zu5so9872147bkb.35
-	for <yocto@yoctoproject.org>; Sun, 09 Oct 2011 11:26:15 -0700 (PDT)
-Received: by 10.223.76.11 with SMTP id a11mr21634894fak.1.1318184774571;
-	Sun, 09 Oct 2011 11:26:14 -0700 (PDT)
-Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl.
-	[84.80.112.235])
-	by mx.google.com with ESMTPS id n12sm26640271fan.9.2011.10.09.11.26.11
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sun, 09 Oct 2011 11:26:12 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1244.3)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <1317146705.26109.215.camel@ted>
-Date: Sun, 9 Oct 2011 20:26:06 +0200
-Message-Id: <D58EF702-80C1-4DB6-9AAE-8791F23F505F@dominion.thruhere.net>
-References: <4E7A573D.8040207@linux.intel.com> <4E81F113.1050706@intel.com>
-	<1317146705.26109.215.camel@ted>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-X-Mailer: Apple Mail (2.1244.3)
-Cc: Darren Hart <darren.hart@intel.com>,
-	Paul Eggleton <paul.eggleton@intel.com>, "Wold,
-	Saul" <saul.wold@intel.com>, Yocto Project <yocto@yoctoproject.org>
-Subject: Re: MACHINE_EXTRA_* and MACHINE_ESSENTIAL_* documentation
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 008E8E01348
+	for <yocto@yoctoproject.org>; Sun,  9 Oct 2011 20:34:52 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 09 Oct 2011 20:34:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="60972363"
+Received: from unknown (HELO localhost) ([10.255.15.6])
+	by orsmga001.jf.intel.com with ESMTP; 09 Oct 2011 20:34:51 -0700
+From: tom.zanussi@intel.com
+To: bruce.ashfield@windriver.com,
+	yocto@yoctoproject.org
+Date: Sun,  9 Oct 2011 22:34:44 -0500
+Message-Id: <cover.1318217109.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/8][KERNEL] some meta-intel bsp cleanup, v4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,47 +26,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 09 Oct 2011 18:26:19 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 10 Oct 2011 03:34:53 -0000
 
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Op 27 sep. 2011, om 20:04 heeft Richard Purdie het volgende geschreven:
+This patchset is another step in some cleanup I'm doing for
+the meta-intel bsps, basically removing unneeded or redundant
+options and abstracting out useful features, in this case a
+new vesafb feature used in this patchset by crownbay, emenlow,
+and jasperforest.
 
-[..]
+This patchset doesn't change any of the previous patches - I'm
+just resending them all to avoid confusion since I accidentally
+named the v2 branch v3.  So this patchset keeps everything
+up-to-date and supersedes the previous "v2" patchset.
 
-> So if you change MACHINE_EXTRA* you need to rebuild task-base, if you
-> change MACHINE_ESSENTIAL_EXTRA* you need to rebuild task-core-boot.
-> Confusing and the checksum code we'll enable soon should make this
-> automatic.
->=20
-> The task-core-boot is included into task-base by task-distro-base
-> through DISTRO_EXTRA_RDEPENDS which in meta-yocto is set to
-> task-core-boot. Both sets of variables should therefore appear in most
-> images except minimal and basic which should only get the essential
-> ones.
->=20
-> I hope that at least clarifies what should happen...
+v2: rebased on top of intervening changes
+v3: misnamed
+v4: added fishriver, sugarbay, fri2
 
-To combat the confusion I did it slightly different in task-basic:
+Please pull into linux-yocto-3.0.
 
-=
-https://github.com/openembedded/meta-oe/blob/master/meta-oe/recipes-core/t=
-asks/task-basic.bb
+Pull URL: git://git.pokylinux.org/linux-yocto-2.6.37-contrib
+  Branch: tzanussi/bsp-cleanup-v4
+  Browse: http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/bsp-cleanup-v4
 
-Any var besides *_FEATURES you can poke is prefixed with TASK_BASIC:
+Thanks,
 
-TASK_BASIC_SSHDAEMON
+Tom
 
-I would propose that if the EXTRA and ESSENTIAL stuff is only used a =
-single recipe that they should be prefixed to give people a better =
-chance at finding out what it impacts.
+Tom Zanussi (8):
+  features/drm-psb: add related config options
+  meta: add vesafb feature
+  crownbay: cleanup bsp config
+  emenlow: cleanup bsp config
+  jasperforest: cleanup bsp config
+  fishriver: cleanup bsp config
+  sugarbay: cleanup bsp config
+  fri2: cleanup bsp config
 
-Right now you'd need to call it =
-BUMP_PR_OF_TASK_CORE_RECIPE_IF_YOU_CHANGE_ME_MACHINE_ESSENTIAL_*, but =
-that's a different discussion :)
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |   34 ++++--------------
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    5 ++-
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |   35 +++++--------------
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc      |    2 +
+ meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg  |   34 ++++--------------
+ meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc  |    2 +
+ meta/cfg/kernel-cache/bsp/fri2/fri2.cfg            |   34 ++++--------------
+ meta/cfg/kernel-cache/bsp/fri2/fri2.scc            |    2 +
+ .../kernel-cache/bsp/jasperforest/jasperforest.cfg |    7 +---
+ .../kernel-cache/bsp/jasperforest/jasperforest.scc |    2 +
+ meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg    |   22 +-----------
+ meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc    |    1 +
+ meta/cfg/kernel-cache/features/drm-psb/drm-psb.cfg |   13 +++++++
+ .../kernel-cache/features/framebuffer/vesafb.cfg   |    8 ++++
+ .../kernel-cache/features/framebuffer/vesafb.scc   |    1 +
+ 15 files changed, 71 insertions(+), 131 deletions(-)
+ create mode 100644 meta/cfg/kernel-cache/features/framebuffer/vesafb.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/framebuffer/vesafb.scc
 
-regards,
-
-Koen=
 
