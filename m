@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCAD2E0134E
-	for <yocto@yoctoproject.org>; Sun,  9 Oct 2011 20:34:56 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 09 Oct 2011 20:34:56 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 893E6E01349
+	for <yocto@yoctoproject.org>; Sun,  9 Oct 2011 20:34:59 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 09 Oct 2011 20:34:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="61566873"
+X-IronPort-AV: E=Sophos;i="4.68,515,1312182000"; d="scan'208";a="71858923"
 Received: from unknown (HELO localhost) ([10.255.15.6])
-	by orsmga002.jf.intel.com with ESMTP; 09 Oct 2011 20:34:56 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 09 Oct 2011 20:34:57 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com,
 	yocto@yoctoproject.org
-Date: Sun,  9 Oct 2011 22:34:42 -0500
-Message-Id: <ad2d621ebff1f8bb9070d898969164817deab62c.1318217109.git.tom.zanussi@intel.com>
+Date: Sun,  9 Oct 2011 22:34:43 -0500
+Message-Id: <d32a651c5b1776d27207db198e42731c78fba930.1318217109.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <913facfef4ffff121bbbad386a4f30e69541455b.1318217109.git.tom.zanussi@intel.com>
 References: <913facfef4ffff121bbbad386a4f30e69541455b.1318217109.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1318217109.git.tom.zanussi@intel.com>
 References: <cover.1318217109.git.tom.zanussi@intel.com>
-Subject: [PATCH 2/8][KERNEL] meta: add vesafb feature
+Subject: [PATCH 3/8][KERNEL] crownbay: cleanup bsp config
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,41 +30,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Oct 2011 03:34:56 -0000
+X-List-Received-Date: Mon, 10 Oct 2011 03:34:59 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Add a 'vesafb feature' that adds basic vesa framebuffer support.
+Remove unnecessary options or options already defined in base configs.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../kernel-cache/features/framebuffer/vesafb.cfg   |    8 ++++++++
- .../kernel-cache/features/framebuffer/vesafb.scc   |    1 +
- 2 files changed, 9 insertions(+), 0 deletions(-)
- create mode 100644 meta/cfg/kernel-cache/features/framebuffer/vesafb.cfg
- create mode 100644 meta/cfg/kernel-cache/features/framebuffer/vesafb.scc
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg |   34 +++++-----------------
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc |    5 ++-
+ 2 files changed, 11 insertions(+), 28 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/features/framebuffer/vesafb.cfg b/meta/cfg/kernel-cache/features/framebuffer/vesafb.cfg
-new file mode 100644
-index 0000000..9c7f35d
---- /dev/null
-+++ b/meta/cfg/kernel-cache/features/framebuffer/vesafb.cfg
-@@ -0,0 +1,8 @@
-+CONFIG_FB=y
-+CONFIG_FB_VESA=y
-+CONFIG_FB_BOOT_VESA_SUPPORT=y
-+CONFIG_FB_MODE_HELPERS=y
-+CONFIG_FB_CFB_COPYAREA=y
-+CONFIG_FB_CFB_IMAGEBLIT=y
-+CONFIG_FB_CFB_FILLRECT=y
-+CONFIG_FRAMEBUFFER_CONSOLE=y
-diff --git a/meta/cfg/kernel-cache/features/framebuffer/vesafb.scc b/meta/cfg/kernel-cache/features/framebuffer/vesafb.scc
-new file mode 100644
-index 0000000..c113097
---- /dev/null
-+++ b/meta/cfg/kernel-cache/features/framebuffer/vesafb.scc
-@@ -0,0 +1 @@
-+kconf non-hardware vesafb.cfg
+diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
+index 8081001..e93c0b8 100644
+--- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
++++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
+@@ -27,6 +27,12 @@ CONFIG_SOUND=y
+ CONFIG_SND=y
+ CONFIG_SND_HDA_INTEL=y
+ CONFIG_SATA_AHCI=y
++CONFIG_AGP=y
++CONFIG_PM=y
++CONFIG_ACPI=y
++CONFIG_BACKLIGHT_LCD_SUPPORT=y
++CONFIG_BACKLIGHT_CLASS_DEVICE=y
++CONFIG_INPUT=y
+ 
+ # Make sure these are on, otherwise the bootup won't be fun
+ CONFIG_EXT3_FS=y
+@@ -37,36 +43,12 @@ CONFIG_SHMEM=y
+ CONFIG_TMPFS=y
+ CONFIG_PACKET=y
+ 
+-# These are needed for the Poulsbo kernel modules
+-CONFIG_I2C=y
+-CONFIG_AGP=y
+-CONFIG_VFAT_FS=y
+-CONFIG_PM=y
+-CONFIG_ACPI=y
+-CONFIG_FB=y
+-CONFIG_BACKLIGHT_LCD_SUPPORT=y
+-CONFIG_BACKLIGHT_CLASS_DEVICE=y
+-CONFIG_INPUT=y
+-CONFIG_VIDEO_V4L2=y
+-CONFIG_VIDEO_IVTV=y
+-CONFIG_MEDIA_SUPPORT=y
+-CONFIG_VIDEO_CAPTURE_DRIVERS=y
+-CONFIG_VIDEO_DEV=y
+-CONFIG_VIDEO_V4L2_COMMON=y
+-CONFIG_I2C_ALGOBIT=y
+-CONFIG_FB_CFB_COPYAREA=y
+-CONFIG_FB_CFB_IMAGEBLIT=y
+-CONFIG_FB_CFB_FILLRECT=y
+-CONFIG_VIDEO_FB_IVTV=y
+-
+ # Needed for booting (and using) USB memory sticks
+-CONFIG_USB_STORAGE=y
+-CONFIG_BLK_DEV_RAM=y
+ CONFIG_BLK_DEV_LOOP=y
+-CONFIG_BLK_DEV_INITRD=y
+-CONFIG_RD_GZIP=y
+ CONFIG_NLS_CODEPAGE_437=y
+ CONFIG_NLS_ISO8859_1=y
+ 
++CONFIG_RD_GZIP=y
++
+ # Needed for booting (and using) CD images
+ CONFIG_BLK_DEV_SR=y
+diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
+index 54284b2..391b955 100644
+--- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
++++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
+@@ -8,11 +8,12 @@ include features/intel-e1xxxx/intel-e1xxxx.scc
+ include features/drm-emgd/drm-emgd.scc
+ include features/dmaengine/dmaengine.scc
+ include features/serial/8250.scc
++include features/hpet/hpet.scc
++include features/framebuffer/vesafb.scc
++include cfg/usb-mass-storage.scc
+ include cfg/boot-live.scc
+ 
+ include features/logbuf/size-normal.scc
+ 
+ include features/latencytop/latencytop.scc
+ include features/profiling/profiling.scc
+-
+-include features/hpet/hpet.scc
 -- 
 1.7.0.4
 
