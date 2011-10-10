@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51A90E0134F
-	for <yocto@yoctoproject.org>; Sun,  9 Oct 2011 20:35:00 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 09 Oct 2011 20:35:00 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EFD3E01350
+	for <yocto@yoctoproject.org>; Sun,  9 Oct 2011 20:35:02 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 09 Oct 2011 20:35:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.68,515,1312182000"; d="scan'208";a="76423597"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="60972447"
 Received: from unknown (HELO localhost) ([10.255.15.6])
-	by fmsmga002.fm.intel.com with ESMTP; 09 Oct 2011 20:34:59 -0700
+	by orsmga001.jf.intel.com with ESMTP; 09 Oct 2011 20:35:01 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com,
 	yocto@yoctoproject.org
-Date: Sun,  9 Oct 2011 22:34:44 -0500
-Message-Id: <07f7e894b17c1302eb718a1fc74f8affcacef646.1318217109.git.tom.zanussi@intel.com>
+Date: Sun,  9 Oct 2011 22:34:45 -0500
+Message-Id: <ad6edab4b625a6c54319bb07c5e83bc1c936f9ff.1318217109.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <913facfef4ffff121bbbad386a4f30e69541455b.1318217109.git.tom.zanussi@intel.com>
 References: <913facfef4ffff121bbbad386a4f30e69541455b.1318217109.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1318217109.git.tom.zanussi@intel.com>
 References: <cover.1318217109.git.tom.zanussi@intel.com>
-Subject: [PATCH 4/8][KERNEL] emenlow: cleanup bsp config
+Subject: [PATCH 5/8][KERNEL] jasperforest: cleanup bsp config
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,7 +30,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Oct 2011 03:35:00 -0000
+X-List-Received-Date: Mon, 10 Oct 2011 03:35:02 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
@@ -38,54 +38,23 @@ Remove unnecessary options or options already defined in base configs.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg |   35 ++++++------------------
- meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc |    2 +
- 2 files changed, 11 insertions(+), 26 deletions(-)
+ .../kernel-cache/bsp/jasperforest/jasperforest.cfg |    7 ++-----
+ .../kernel-cache/bsp/jasperforest/jasperforest.scc |    2 ++
+ 2 files changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
-index d527e8d..b9704c5 100644
---- a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
-+++ b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
-@@ -24,6 +24,13 @@ CONFIG_CHR_DEV_SG=y
- CONFIG_SOUND=y
- CONFIG_SND=y
- CONFIG_SND_HDA_INTEL=y
-+CONFIG_I2C=y
-+CONFIG_AGP=y
-+CONFIG_PM=y
-+CONFIG_ACPI=y
-+CONFIG_BACKLIGHT_LCD_SUPPORT=y
-+CONFIG_BACKLIGHT_CLASS_DEVICE=y
-+CONFIG_INPUT=y
+diff --git a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
+index b0f993b..743fc7d 100644
+--- a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
++++ b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
+@@ -35,20 +35,17 @@ CONFIG_PACKET=y
  
- # Make sure these are on, otherwise the bootup won't be fun
- CONFIG_EXT3_FS=y
-@@ -34,36 +41,12 @@ CONFIG_SHMEM=y
- CONFIG_TMPFS=y
- CONFIG_PACKET=y
- 
--# These are needed for the Poulsbo kernel modules
--CONFIG_I2C=y
--CONFIG_AGP=y
+ CONFIG_I2C=y
+ CONFIG_AGP=y
 -CONFIG_VFAT_FS=y
--CONFIG_PM=y
--CONFIG_ACPI=y
--CONFIG_FB=y
--CONFIG_BACKLIGHT_LCD_SUPPORT=y
--CONFIG_BACKLIGHT_CLASS_DEVICE=y
--CONFIG_INPUT=y
--CONFIG_VIDEO_V4L2=y
--CONFIG_VIDEO_IVTV=y
--CONFIG_MEDIA_SUPPORT=y
--CONFIG_VIDEO_CAPTURE_DRIVERS=y
--CONFIG_VIDEO_DEV=y
--CONFIG_VIDEO_V4L2_COMMON=y
--CONFIG_I2C_ALGOBIT=y
--CONFIG_FB_CFB_COPYAREA=y
--CONFIG_FB_CFB_IMAGEBLIT=y
--CONFIG_FB_CFB_FILLRECT=y
--CONFIG_VIDEO_FB_IVTV=y
--
+ CONFIG_PM=y
+ CONFIG_ACPI=y
+ CONFIG_INPUT=y
+ 
  # Needed for booting (and using) USB memory sticks
 -CONFIG_USB_STORAGE=y
 -CONFIG_BLK_DEV_RAM=y
@@ -97,21 +66,22 @@ index d527e8d..b9704c5 100644
  
 +CONFIG_RD_GZIP=y
 +
- # Needed for booting (and using) CD images
- CONFIG_BLK_DEV_SR=y
-diff --git a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
-index e5b2097..8ee3558 100644
---- a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
-+++ b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
-@@ -5,6 +5,8 @@ include features/intel-e1xxxx/intel-e100.scc
- include features/intel-e1xxxx/intel-e1xxxx.scc
- include features/drm-psb/drm-psb.scc
+ # NUMA support
+ CONFIG_NUMA=y
+ CONFIG_X86_64_ACPI_NUMA=y
+diff --git a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc
+index 9e5ca8d..defddec 100644
+--- a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc
++++ b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc
+@@ -1,6 +1,8 @@
+ kconf hardware jasperforest.cfg
+ 
  include features/serial/8250.scc
 +include features/framebuffer/vesafb.scc
 +include cfg/usb-mass-storage.scc
- include cfg/boot-live.scc
  
  include features/logbuf/size-normal.scc
+ 
 -- 
 1.7.0.4
 
