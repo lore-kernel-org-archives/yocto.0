@@ -1,27 +1,21 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87DADE005BB
-	for <yocto@yoctoproject.org>; Tue, 11 Oct 2011 11:03:37 -0700 (PDT)
-Received: from mail-qy0-f173.google.com ([209.85.216.173])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 11 Oct 2011 11:02:31 -0700
-Received: by qyc1 with SMTP id 1so5647977qyc.4
-	for <yocto@yoctoproject.org>; Tue, 11 Oct 2011 11:02:30 -0700 (PDT)
-Received: by 10.68.74.194 with SMTP id w2mr37173663pbv.91.1318356149898;
-	Tue, 11 Oct 2011 11:02:29 -0700 (PDT)
-Received: from [192.168.1.12] (c-98-246-160-155.hsd1.or.comcast.net.
-	[98.246.160.155])
-	by mx.google.com with ESMTPS id h5sm1071472pbq.11.2011.10.11.11.02.28
-	(version=SSLv3 cipher=OTHER); Tue, 11 Oct 2011 11:02:28 -0700 (PDT)
-Message-ID: <4E9484B3.9010605@intel.com>
-Date: Tue, 11 Oct 2011 11:02:27 -0700
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.23) Gecko/20110922 Lightning/1.0b2 Thunderbird/3.1.15
-MIME-Version: 1.0
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0445E005BB
+	for <yocto@yoctoproject.org>; Tue, 11 Oct 2011 14:30:46 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 11 Oct 2011 14:30:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.68,525,1312182000"; d="scan'208";a="25354102"
+Received: from unknown (HELO localhost) ([10.255.15.13])
+	by AZSMGA002.ch.intel.com with ESMTP; 11 Oct 2011 14:30:42 -0700
+From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-References: <4E9463A3.3090005@communistcode.co.uk>
-In-Reply-To: <4E9463A3.3090005@communistcode.co.uk>
-Subject: Re: QEmu Script Error Checking
+Date: Tue, 11 Oct 2011 16:30:33 -0500
+Message-Id: <c3e12aa981e97261093abee05bb0301c35f54c23.1318368128.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <cover.1318368128.git.tom.zanussi@intel.com>
+References: <cover.1318368128.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/1] meta-emenlow: switch edison back to linux-yocto-2.6.37 kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,42 +27,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Oct 2011 18:03:37 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 11 Oct 2011 21:30:47 -0000
 
-On 10/11/2011 08:41 AM, Jack Mitchell wrote:
-> I have run into the following issue where the tap device is in use due
-> to the QEmu machine unexpectedly crashing. The error I recieve is here:
->
-> http://i.imgur.com/5t9U1.png (appologies for the screenshot but it
-> wouldn't let me copy the text)
->
-> Is there any leaway for more robust error checking or a way to forcibly
-> destroy the tap node to allow a new one to be created?
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Hi Jack,
+To minimize risk for the edison release, back up to the tried-and-true
+2.6.37 kernel until more testing can be done in master.
 
-Since qemu is being run from a parent shell script (runqemu), if qemu 
-were to crash, I would think the parent shell script would continue on 
-and destroy the tap device normally. Might you be killing the runqemu 
-process instead of qemu itself?
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ meta-emenlow/conf/machine/emenlow.conf |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-I'm not sure if there is a way we could reliably force a cleanup of tap 
-devices when runqemu starts, because we need to support the case where 
-multiple instances of qemu sessions are running simultaneously (each 
-with their own tap device). Off the top of my head I think this would 
-make the state of tap devices non-deterministic.
-
-Furthermore, we support a mode where an administrator can set up one or 
-more tap devices, allowing the runqemu user to not need sudo privileges. 
-So checking for the case where a tap device exists but no qemu process 
-is running wouldn't work.
-
-Scott
-
+diff --git a/meta-emenlow/conf/machine/emenlow.conf b/meta-emenlow/conf/machine/emenlow.conf
+index 9745531..f9172bc 100644
+--- a/meta-emenlow/conf/machine/emenlow.conf
++++ b/meta-emenlow/conf/machine/emenlow.conf
+@@ -12,7 +12,7 @@ MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
+ KERNEL_IMAGETYPE = "bzImage"
+ 
+ PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+-PREFERRED_VERSION_linux-yocto ?= "3.0%"
++PREFERRED_VERSION_linux-yocto ?= "2.6.37+git%"
+ 
+ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
+ PREFERRED_PROVIDER_libdrm = "libdrm-poulsbo"
 -- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+1.7.0.4
+
 
