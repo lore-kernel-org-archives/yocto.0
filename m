@@ -1,20 +1,33 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0533DE005BB
-	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 03:12:11 -0700 (PDT)
-Received: from [192.168.0.57] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 7CC0923385
-	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 09:52:45 +0100 (BST)
-Message-ID: <4E9567F9.2040003@communistcode.co.uk>
-Date: Wed, 12 Oct 2011 11:12:09 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C504E005BB
+	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 05:06:34 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by pzk36 with SMTP id 36so1485232pzk.7
+	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 05:06:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=Hkd3IBKX0Nf/x6VaDfdv5WRrXTf9hm3DCKXOzGdrx5s=;
+	b=uRtKoQS+MWA+Jx6bfORlqHHwOVV7PrhUDRCjZgB1YY6MZG3810V4BN2E2O9FmHI6HU
+	Fu06W8LwaPbKCL3c05ExDilLfylHnWiFFDWiLznPWfHLQ2hmvWrNf6qtUUGguNxE5kD2
+	psWHNT9tCXI0vaoZLrCJkX1gDYv5xAUUruIRM=
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <4E9463A3.3090005@communistcode.co.uk> <4E9484B3.9010605@intel.com>
-In-Reply-To: <4E9484B3.9010605@intel.com>
-Subject: Re: QEmu Script Error Checking
+Received: by 10.68.31.131 with SMTP id a3mr964495pbi.24.1318421192844; Wed, 12
+	Oct 2011 05:06:32 -0700 (PDT)
+Received: by 10.142.172.12 with HTTP; Wed, 12 Oct 2011 05:06:32 -0700 (PDT)
+In-Reply-To: <1317275552-19908-7-git-send-email-msm@freescale.com>
+References: <1317275552-19908-1-git-send-email-msm@freescale.com>
+	<1317275552-19908-7-git-send-email-msm@freescale.com>
+Date: Wed, 12 Oct 2011 14:06:32 +0200
+Message-ID: <CA+chaQerLbLcFTuuHZs_KimTQmqOHkhyFUCx-7FzTZfKHFkMgQ@mail.gmail.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Matthew McClintock <msm@freescale.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 7/7] Add proper deps for nfs-utils, util-linux, and strace
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,83 +39,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Oct 2011 10:12:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 12 Oct 2011 12:06:34 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 11/10/2011 19:02, Scott Garman wrote:
-> On 10/11/2011 08:41 AM, Jack Mitchell wrote:
->> I have run into the following issue where the tap device is in use due
->> to the QEmu machine unexpectedly crashing. The error I recieve is here:
->>
->> http://i.imgur.com/5t9U1.png (appologies for the screenshot but it
->> wouldn't let me copy the text)
->>
->> Is there any leaway for more robust error checking or a way to forcibly
->> destroy the tap node to allow a new one to be created?
+On Thu, Sep 29, 2011 at 7:52 AM, Matthew McClintock <msm@freescale.com> wro=
+te:
+> These packages need these deps for the RPM generation stage:
+
+This was already applied, but I'll reply here and please send next
+patch adressing those comments.
+
+Today I've noticed that perl and libperl are pulled to my images only
+because of util-linux and strace I belive I don't need them, see
+inline comments
+
+> =C2=A0error: Failed dependencies:
+> | =C2=A0 =C2=A0 =C2=A0 /usr/bin/python is needed by nfs-utils-1.2.3-r2.pp=
+ce5500
+> | =C2=A0 =C2=A0 =C2=A0 /usr/bin/perl is needed by util-linux-2.19.1-r4.pp=
+ce5500
+> | =C2=A0 =C2=A0 =C2=A0 /usr/bin/perl is needed by strace-4.5.20-r2.ppce55=
+00
 >
-> Hi Jack,
+> Signed-off-by: Matthew McClintock <msm@freescale.com>
+> ---
+> =C2=A0.../nfs-utils/nfs-utils_1.2.3.bb =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A02 +-
+> =C2=A0meta/recipes-core/util-linux/util-linux.inc =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0| =C2=A0 =C2=A02 +-
+> =C2=A0meta/recipes-devtools/strace/strace_4.5.20.bb =C2=A0 =C2=A0 =C2=A0|=
+ =C2=A0 =C2=A02 ++
+> =C2=A03 files changed, 4 insertions(+), 2 deletions(-)
 >
-> Since qemu is being run from a parent shell script (runqemu), if qemu 
-> were to crash, I would think the parent shell script would continue on 
-> and destroy the tap device normally. Might you be killing the runqemu 
-> process instead of qemu itself?
+> diff --git a/meta/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bb b/met=
+a/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bb
+> index 08468fe..e8b0490 100644
+> --- a/meta/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bb
+> +++ b/meta/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bb
+> @@ -9,7 +9,7 @@ LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D0636e73ff0215e=
+8d672dc4c32c317bb3"
 >
-> I'm not sure if there is a way we could reliably force a cleanup of 
-> tap devices when runqemu starts, because we need to support the case 
-> where multiple instances of qemu sessions are running simultaneously 
-> (each with their own tap device). Off the top of my head I think this 
-> would make the state of tap devices non-deterministic.
+> =C2=A0# util-linux for libblkid
+> =C2=A0DEPENDS =3D "libcap libnfsidmap libevent util-linux tcp-wrappers"
+> -RDEPENDS_${PN} =3D "portmap"
+> +RDEPENDS_${PN} =3D "portmap python"
+
+python is needed only for
+./usr/sbin/mountstats:#!/usr/bin/env python
+./usr/sbin/nfsiostat:#!/usr/bin/python
+could you please move them to separate packages and keep python
+runtime dependency only there?
+
+> =C2=A0RRECOMMENDS_${PN} =3D "kernel-module-nfsd"
 >
-> Furthermore, we support a mode where an administrator can set up one 
-> or more tap devices, allowing the runqemu user to not need sudo 
-> privileges. So checking for the case where a tap device exists but no 
-> qemu process is running wouldn't work.
+> =C2=A0PR =3D "r2"
+> diff --git a/meta/recipes-core/util-linux/util-linux.inc b/meta/recipes-c=
+ore/util-linux/util-linux.inc
+> index 1f242b7..afce673 100644
+> --- a/meta/recipes-core/util-linux/util-linux.inc
+> +++ b/meta/recipes-core/util-linux/util-linux.inc
+> @@ -55,7 +55,7 @@ FILES_util-linux-libuuid-dev =3D "${libdir}/libuuid.so =
+${libdir}/libuuid.a ${libdi
+> =C2=A0FILES_util-linux-lscpu =3D "${bindir}/lscpu"
 >
-> Scott
+> =C2=A0RRECOMMENDS_${PN} =3D "util-linux-fdisk util-linux-cfdisk util-linu=
+x-sfdisk util-linux-mount util-linux-readprofile "
+> -RDEPENDS_${PN} =3D "util-linux-umount util-linux-swaponoff util-linux-lo=
+setup"
+> +RDEPENDS_${PN} =3D "util-linux-umount util-linux-swaponoff util-linux-lo=
+setup perl"
+
+perl is needed only for
+/usr/bin/chkdupexe
+could you please move chkdupexe to separate package and add perl only
+to RDEPENDS_${PN}-chkdupexe?
+
+> =C2=A0RRECOMMENDS_${PN}_virtclass-native =3D ""
+> =C2=A0RDEPENDS_${PN}_virtclass-native =3D ""
+> diff --git a/meta/recipes-devtools/strace/strace_4.5.20.bb b/meta/recipes=
+-devtools/strace/strace_4.5.20.bb
+> index 391669f..b3d2aa5 100644
+> --- a/meta/recipes-devtools/strace/strace_4.5.20.bb
+> +++ b/meta/recipes-devtools/strace/strace_4.5.20.bb
+> @@ -5,6 +5,8 @@ LICENSE =3D "BSD"
+> =C2=A0LIC_FILES_CHKSUM =3D "file://COPYRIGHT;md5=3D4535377ede62550fdeaf39=
+f595fd550a"
+> =C2=A0PR =3D "r2"
 >
+> +RDEPENDS =3D "perl"
 
-Ok, thank you for the information Scott. I think I found the issue today 
-which is causing the QEmu script to terminate pre-maturely.
+This should be RDEPENDS_${PN}
+and much better would be to split
+strace-graph to separate package and add perl only to
+RDEPENDS_${PN}-graph
 
-I am using the eclipse-poky master branch as my eclipse plugin and it 
-threw an error today when I tried to debug - which coincided with the 
-QEmu and terminal window terminating. The errror I recieved was:
+> +
+> =C2=A0SRC_URI =3D "${SOURCEFORGE_MIRROR}/strace/strace-${PV}.tar.bz2 \
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://sigmask.patch \
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 "
+> --
+> 1.7.6.1
 
-!SESSION 2011-10-12 09:22:49.135 
------------------------------------------------
-eclipse.buildId=I20110613-1736
-java.version=1.6.0_22
-java.vendor=Sun Microsystems Inc.
-BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_GB
-Framework arguments:  -product org.eclipse.sdk.ide
-Command-line arguments:  -product org.eclipse.sdk.ide -data 
-/home/developer/jackdaw/../runtime-EclipseApplication -dev 
-file:/home/developer/jackdaw/.metadata/.plugins/org.eclipse.pde.core/Eclipse 
-Application/dev.properties -os linux -ws gtk -arch x86_64 -consoleLog
+And also you need to bump PR when you're changing RDEPENDs (otherwise
+issues are shown much later when it's rebuild because of some other
+changes).
 
-!ENTRY org.eclipse.cdt.debug.mi.core 4 42 2011-10-12 09:24:47.192
-!MESSAGE Internal Error
-!STACK 0
-org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: Inferior terminated[]
-     at 
-org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.getMIShareds(SharedLibraryManager.java:123)
-     at 
-org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.updateState(SharedLibraryManager.java:188)
-     at 
-org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.update(SharedLibraryManager.java:136)
-     at 
-org.eclipse.cdt.debug.mi.core.cdi.EventManager.processSuspendedEvent(EventManager.java:326)
-     at 
-org.eclipse.cdt.debug.mi.core.cdi.EventManager.update(EventManager.java:100)
-     at java.util.Observable.notifyObservers(Observable.java:159)
-     at 
-org.eclipse.cdt.debug.mi.core.MISession.notifyObservers(MISession.java:791)
-     at org.eclipse.cdt.debug.mi.core.EventThread.run(EventThread.java:46)
-
-Which looks like a CDT bug or the interfacing with CDT. I could file a 
-bug report if you think it is related to the poky-eclipse plugin?
-
-Cheers,
-Jack.
+Regards,
 
