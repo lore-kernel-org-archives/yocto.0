@@ -1,51 +1,35 @@
-Return-Path: <tim.bird@am.sony.com>
-Received: from AM1EHSOBE003.bigfish.com (am1ehsobe003.messaging.microsoft.com
-	[213.199.154.206])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6BD5E004E9
-	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 10:20:25 -0700 (PDT)
-Received: from mail8-am1-R.bigfish.com (10.3.201.242) by
-	AM1EHSOBE003.bigfish.com (10.3.204.23) with Microsoft SMTP Server id
-	14.1.225.22; Wed, 12 Oct 2011 17:20:21 +0000
-Received: from mail8-am1 (localhost.localdomain [127.0.0.1])	by
-	mail8-am1-R.bigfish.com (Postfix) with ESMTP id 06642C90227;
-	Wed, 12 Oct 2011 17:20:21 +0000 (UTC)
-X-SpamScore: -8
-X-BigFish: VPS-8(zzbb2dK9371K1432N98dKbdf2ozz1202hzzz2fh668h839h93fh61h)
-X-Spam-TCS-SCL: 0:0
-X-Forefront-Antispam-Report: CIP:160.33.98.74; KIP:(null); UIP:(null); IPVD:NLI;
-	H:mail7.fw-bc.sony.com; RD:mail7.fw-bc.sony.com; EFVD:NLI
-Received-SPF: pass (mail8-am1: domain of am.sony.com designates 160.33.98.74
-	as permitted sender) client-ip=160.33.98.74;
-	envelope-from=tim.bird@am.sony.com; helo=mail7.fw-bc.sony.com ;
-	-bc.sony.com ; 
-Received: from mail8-am1 (localhost.localdomain [127.0.0.1]) by mail8-am1
-	(MessageSwitch) id 1318440019828744_22652;
-	Wed, 12 Oct 2011 17:20:19 +0000 (UTC)
-Received: from AM1EHSMHS018.bigfish.com (unknown [10.3.201.246])	by
-	mail8-am1.bigfish.com (Postfix) with ESMTP id BAE141888058;
-	Wed, 12 Oct 2011 17:20:19 +0000 (UTC)
-Received: from mail7.fw-bc.sony.com (160.33.98.74) by AM1EHSMHS018.bigfish.com
-	(10.3.206.21) with Microsoft SMTP Server id 14.1.225.22;
-	Wed, 12 Oct 2011 17:20:15 +0000
-Received: from mail1x.sgo.in.sel.sony.com (mail2.sgo.in.sel.sony.com
-	[43.130.1.112])	by mail7.fw-bc.sony.com (Switch-3.4.2/Switch-3.3.2mp)
-	with ESMTP id p9CHKEld021439;	Wed, 12 Oct 2011 17:20:14 GMT
-Received: from timdesk.am.sony.com ([43.135.148.222])	by
-	mail1x.sgo.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
-	p9CHK3C0001415;	Wed, 12 Oct 2011 17:20:03 GMT
-Message-ID: <4E95CC3E.9010308@am.sony.com>
-Date: Wed, 12 Oct 2011 10:19:58 -0700
-From: Tim Bird <tim.bird@am.sony.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.12) Gecko/20100907 Fedora/3.0.7-1.fc12 Thunderbird/3.0.7
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C559CE004E9
+	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 10:53:04 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 12 Oct 2011 10:53:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="62293468"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga001.jf.intel.com with ESMTP; 12 Oct 2011 10:53:04 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 12 Oct 2011 10:53:03 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.109]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.146]) with mapi id
+	14.01.0323.003; Wed, 12 Oct 2011 10:53:03 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Jack Mitchell <ml@communistcode.co.uk>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] QEmu Script Error Checking
+Thread-Index: AQHMiCxgB6U9U6ypAUSqtwjN01/DLJV35N+AgAEO7oCAAAmHYA==
+Date: Wed, 12 Oct 2011 17:52:57 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C16E8A252@ORSMSX101.amr.corp.intel.com>
+References: <4E9463A3.3090005@communistcode.co.uk>
+	<4E9484B3.9010605@intel.com> <4E9567F9.2040003@communistcode.co.uk>
+In-Reply-To: <4E9567F9.2040003@communistcode.co.uk>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <4E933C41.4000207@linux.intel.com> <4E94D624.1020107@am.sony.com>
-	<4E95C787.3020000@linux.intel.com>
-In-Reply-To: <4E95C787.3020000@linux.intel.com>
-X-OriginatorOrg: am.sony.com
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: RFC: User configurable recipe features
+Subject: Re: QEmu Script Error Checking
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,64 +41,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Oct 2011 17:20:26 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 12 Oct 2011 17:53:05 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/12/2011 09:59 AM, Darren Hart wrote:
-> On 10/11/2011 04:49 PM, Tim Bird wrote:
->> On 10/10/2011 11:41 AM, Darren Hart wrote:
->>> As part of working on meta-tiny, I've come across a need (want?) to
->>> present users with the ability to select some set of features in a local
->>> configuration file that will impact the build of the image and a set of
->>> recipes.
+Hi Jack,
+
+When and how did you trigger the error.  It looks more like a CDT issue tha=
+n a Yocto issue, but can you tell us more what exactly you were doing with =
+Yocto plug-in while this crash happened?  So you mean when you click on the=
+ debug, it caused qemu crashes? Or the qemu crashed 1st. then you got the e=
+clipse error msg.
+
+Thanks,
+Jessica
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Jack Mitchell
+Sent: Wednesday, October 12, 2011 3:12 AM
+To: yocto@yoctoproject.org
+Subject: Re: [yocto] QEmu Script Error Checking
+
+On 11/10/2011 19:02, Scott Garman wrote:
+> On 10/11/2011 08:41 AM, Jack Mitchell wrote:
+>> I have run into the following issue where the tap device is in use due
+>> to the QEmu machine unexpectedly crashing. The error I recieve is here:
 >>
->> Can you tell me more about meta-tiny?  this is the first I've heard
->> about this (sorry if discussion went by on the mailing list and I
->> missed it), and I'm very interested.
+>> http://i.imgur.com/5t9U1.png (appologies for the screenshot but it
+>> wouldn't let me copy the text)
 >>
->> I'm currently doing some size-related work for Sony (including
->> some work to support 4K stacks).
->>
-> 
-> Perhaps while I have the attention of a few interested parties, it would
-> be a good time for a poll. I'm interested in your motivation for smaller
-> images.
-> 
-> Are you building SoC's with memory on die and needing to keep the memory
-> footprint down to save precious die real-estate?
+>> Is there any leaway for more robust error checking or a way to forcibly
+>> destroy the tap node to allow a new one to be created?
+>
+> Hi Jack,
+>
+> Since qemu is being run from a parent shell script (runqemu), if qemu
+> were to crash, I would think the parent shell script would continue on
+> and destroy the tap device normally. Might you be killing the runqemu
+> process instead of qemu itself?
+>
+> I'm not sure if there is a way we could reliably force a cleanup of
+> tap devices when runqemu starts, because we need to support the case
+> where multiple instances of qemu sessions are running simultaneously
+> (each with their own tap device). Off the top of my head I think this
+> would make the state of tap devices non-deterministic.
+>
+> Furthermore, we support a mode where an administrator can set up one
+> or more tap devices, allowing the runqemu user to not need sudo
+> privileges. So checking for the case where a tap device exists but no
+> qemu process is running wouldn't work.
+>
+> Scott
+>
 
-No.
+Ok, thank you for the information Scott. I think I found the issue today
+which is causing the QEmu script to terminate pre-maturely.
 
-> Are you looking at creating mass-market products and saving a few
-> pennies on the flash storage translates to real money, so you want to
-> minimize the physical size?
+I am using the eclipse-poky master branch as my eclipse plugin and it
+threw an error today when I tried to debug - which coincided with the
+QEmu and terminal window terminating. The errror I recieved was:
 
-Yes. - this is the primary one for me/Sony.  We have dual-core/dual-OS cameras
-where the ram budget for the Linux side of the device is only 10 meg.
-We are working on medical products with flash budgets of 8 meg and ram
-budgets of 4 meg.
+!SESSION 2011-10-12 09:22:49.135
+-----------------------------------------------
+eclipse.buildId=3DI20110613-1736
+java.version=3D1.6.0_22
+java.vendor=3DSun Microsystems Inc.
+BootLoader constants: OS=3Dlinux, ARCH=3Dx86_64, WS=3Dgtk, NL=3Den_GB
+Framework arguments:  -product org.eclipse.sdk.ide
+Command-line arguments:  -product org.eclipse.sdk.ide -data
+/home/developer/jackdaw/../runtime-EclipseApplication -dev
+file:/home/developer/jackdaw/.metadata/.plugins/org.eclipse.pde.core/Eclips=
+e
+Application/dev.properties -os linux -ws gtk -arch x86_64 -consoleLog
 
-We are currently doing a fair amount with execute in place, to conserve
-RAM versus flash.
+!ENTRY org.eclipse.cdt.debug.mi.core 4 42 2011-10-12 09:24:47.192
+!MESSAGE Internal Error
+!STACK 0
+org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: Inferior terminated[]
+     at
+org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.getMIShareds(SharedL=
+ibraryManager.java:123)
+     at
+org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.updateState(SharedLi=
+braryManager.java:188)
+     at
+org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.update(SharedLibrary=
+Manager.java:136)
+     at
+org.eclipse.cdt.debug.mi.core.cdi.EventManager.processSuspendedEvent(EventM=
+anager.java:326)
+     at
+org.eclipse.cdt.debug.mi.core.cdi.EventManager.update(EventManager.java:100=
+)
+     at java.util.Observable.notifyObservers(Observable.java:159)
+     at
+org.eclipse.cdt.debug.mi.core.MISession.notifyObservers(MISession.java:791)
+     at org.eclipse.cdt.debug.mi.core.EventThread.run(EventThread.java:46)
 
-> Are you concerned with boot time, and have connected larger image sizes
-> with longer boot times?
-Yes.
+Which looks like a CDT bug or the interfacing with CDT. I could file a
+bug report if you think it is related to the poky-eclipse plugin?
 
-> Is there another motivating factor for your interest in small images?
-Smaller images should theoretically run faster, due to less pressure
-on CPU caches.  I don't know of any meaningful measurements of this,
-but it's an interesting possibility.
-
-Also, it's nice to minimize the memory footprint to reduce power
-consumption.
- -- Tim
-
-=============================
-Tim Bird
-Architecture Group Chair, CE Workgroup of the Linux Foundation
-Senior Staff Engineer, Sony Network Entertainment
-=============================
-
+Cheers,
+Jack.
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
