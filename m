@@ -1,33 +1,25 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C504E005BB
-	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 05:06:34 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by pzk36 with SMTP id 36so1485232pzk.7
-	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 05:06:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=Hkd3IBKX0Nf/x6VaDfdv5WRrXTf9hm3DCKXOzGdrx5s=;
-	b=uRtKoQS+MWA+Jx6bfORlqHHwOVV7PrhUDRCjZgB1YY6MZG3810V4BN2E2O9FmHI6HU
-	Fu06W8LwaPbKCL3c05ExDilLfylHnWiFFDWiLznPWfHLQ2hmvWrNf6qtUUGguNxE5kD2
-	psWHNT9tCXI0vaoZLrCJkX1gDYv5xAUUruIRM=
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3104E004CF
+	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 08:40:14 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 12 Oct 2011 08:40:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="62247752"
+Received: from unknown (HELO envy.home) ([10.255.14.198])
+	by orsmga001.jf.intel.com with ESMTP; 12 Oct 2011 08:40:14 -0700
+Message-ID: <4E95B4DD.5090401@linux.intel.com>
+Date: Wed, 12 Oct 2011 08:40:13 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-Received: by 10.68.31.131 with SMTP id a3mr964495pbi.24.1318421192844; Wed, 12
-	Oct 2011 05:06:32 -0700 (PDT)
-Received: by 10.142.172.12 with HTTP; Wed, 12 Oct 2011 05:06:32 -0700 (PDT)
-In-Reply-To: <1317275552-19908-7-git-send-email-msm@freescale.com>
-References: <1317275552-19908-1-git-send-email-msm@freescale.com>
-	<1317275552-19908-7-git-send-email-msm@freescale.com>
-Date: Wed, 12 Oct 2011 14:06:32 +0200
-Message-ID: <CA+chaQerLbLcFTuuHZs_KimTQmqOHkhyFUCx-7FzTZfKHFkMgQ@mail.gmail.com>
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Matthew McClintock <msm@freescale.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 7/7] Add proper deps for nfs-utils, util-linux, and strace
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+References: <4E933C41.4000207@linux.intel.com> <1318371311.23801.128.camel@ted>
+In-Reply-To: <1318371311.23801.128.camel@ted>
+X-Enigmail-Version: 1.3.2
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: RFC: User configurable recipe features
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,111 +31,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Oct 2011 12:06:34 -0000
+X-List-Received-Date: Wed, 12 Oct 2011 15:40:15 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Thu, Sep 29, 2011 at 7:52 AM, Matthew McClintock <msm@freescale.com> wro=
-te:
-> These packages need these deps for the RPM generation stage:
 
-This was already applied, but I'll reply here and please send next
-patch adressing those comments.
 
-Today I've noticed that perl and libperl are pulled to my images only
-because of util-linux and strace I belive I don't need them, see
-inline comments
+On 10/11/2011 03:15 PM, Richard Purdie wrote:
+> On Mon, 2011-10-10 at 11:41 -0700, Darren Hart wrote:
+>> As part of working on meta-tiny, I've come across a need (want?) to
+>> present users with the ability to select some set of features in a local
+>> configuration file that will impact the build of the image and a set of
+>> recipes.
+>>
+>> It is currently possible to affect which packages are installed in an
+>> image with variables like POKY_EXTRA_INSTALL. What I'm not finding a way
+>> to do is specify some set of features that will impact how a recipe is
+>> built.
+>>
+>> For example, a user may or may not want networking support or virtual
+>> terminal support in their image. This impacts both the kernel and
+>> busybox (at least). The linux-yocto infrastructure provides us with
+>> config fragment functionality, something similar will need to be added
+>> to busybox. Access to that is still bound to the machine config by means
+>> of the SRC_URI machine override mechanism, but it would be useful to be
+>> able to influence it from the image config or the user's local config.
+>>
+>> For example, when building a tiny image I may decide I do not want VT
+>> nor INET support. I might wish to specify this like this (by removing
+>> them from the default features):
+>>
+>> local.conf:
+>> #CORE_IMAGE_TINY_FEATURES = "VT INET MDEV"
+>> CORE_IMAGE_TINY_FEATURES = "MDEV"
+>>
+>> I would want this to affect linux-yocto-tiny by dropping the vt.cfg and
+>> inet.cfg fragments from the SRC_URI (or from the .scc descriptor files
+>> assembled by the linux-yocto meta indrastructure).
+>>
+>> Busybox would need a similar configuration mechanism, and would also
+>> need to add a "no-vt-support.patch" patch to the SRC_URI to avoid a
+>> bug/oversight in the busybox init routine.
+>>
+>> I'd appreciate some help determining the proper bitbake way of doing
+>> this. I want to avoid having to create a new machine.conf and/or recipes
+>> for every possible combination of features that a user may want to turn
+>> on or off.
+> 
 
-> =C2=A0error: Failed dependencies:
-> | =C2=A0 =C2=A0 =C2=A0 /usr/bin/python is needed by nfs-utils-1.2.3-r2.pp=
-ce5500
-> | =C2=A0 =C2=A0 =C2=A0 /usr/bin/perl is needed by util-linux-2.19.1-r4.pp=
-ce5500
-> | =C2=A0 =C2=A0 =C2=A0 /usr/bin/perl is needed by strace-4.5.20-r2.ppce55=
-00
->
-> Signed-off-by: Matthew McClintock <msm@freescale.com>
-> ---
-> =C2=A0.../nfs-utils/nfs-utils_1.2.3.bb =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A02 +-
-> =C2=A0meta/recipes-core/util-linux/util-linux.inc =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0| =C2=A0 =C2=A02 +-
-> =C2=A0meta/recipes-devtools/strace/strace_4.5.20.bb =C2=A0 =C2=A0 =C2=A0|=
- =C2=A0 =C2=A02 ++
-> =C2=A03 files changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/meta/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bb b/met=
-a/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bb
-> index 08468fe..e8b0490 100644
-> --- a/meta/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bb
-> +++ b/meta/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bb
-> @@ -9,7 +9,7 @@ LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D0636e73ff0215e=
-8d672dc4c32c317bb3"
->
-> =C2=A0# util-linux for libblkid
-> =C2=A0DEPENDS =3D "libcap libnfsidmap libevent util-linux tcp-wrappers"
-> -RDEPENDS_${PN} =3D "portmap"
-> +RDEPENDS_${PN} =3D "portmap python"
+Hi RP,
 
-python is needed only for
-./usr/sbin/mountstats:#!/usr/bin/env python
-./usr/sbin/nfsiostat:#!/usr/bin/python
-could you please move them to separate packages and keep python
-runtime dependency only there?
+Thanks for the thoughts, gives me some places to look for examples and
+flesh this idea out more.
 
-> =C2=A0RRECOMMENDS_${PN} =3D "kernel-module-nfsd"
->
-> =C2=A0PR =3D "r2"
-> diff --git a/meta/recipes-core/util-linux/util-linux.inc b/meta/recipes-c=
-ore/util-linux/util-linux.inc
-> index 1f242b7..afce673 100644
-> --- a/meta/recipes-core/util-linux/util-linux.inc
-> +++ b/meta/recipes-core/util-linux/util-linux.inc
-> @@ -55,7 +55,7 @@ FILES_util-linux-libuuid-dev =3D "${libdir}/libuuid.so =
-${libdir}/libuuid.a ${libdi
-> =C2=A0FILES_util-linux-lscpu =3D "${bindir}/lscpu"
->
-> =C2=A0RRECOMMENDS_${PN} =3D "util-linux-fdisk util-linux-cfdisk util-linu=
-x-sfdisk util-linux-mount util-linux-readprofile "
-> -RDEPENDS_${PN} =3D "util-linux-umount util-linux-swaponoff util-linux-lo=
-setup"
-> +RDEPENDS_${PN} =3D "util-linux-umount util-linux-swaponoff util-linux-lo=
-setup perl"
+> We have a few mechanisms around for this but its a difficult problem to
+> do totally generically since everyone has their own ideas about what
+> should/shouldn't happen.
+> 
+> One tricky aspect is that some people care about package feeds and the
+> output into those needs to be deterministic. This is why DISTRO_FEATURES
+> exist which state things like "does x11 make sense"? This means dbus may
+> or may not be compiled with X but given a set of policy decisions by the
+> distro, the output is determined.
+> 
+> Recently we've taken the idea of PACKAGECONFIG on board. This is recipe
+> level policy which can enable/disable features in a given recipe (e.g.
+> does gsteamer depend on and build flac or not?). Whilst we have a high
+> level setup for this for autotools recipes, this is probably something
+> we need to do a more custom implementation of for busybox and the
+> features you mention above would map well to this. It would be good to
+> have a standardised way of representing this (and we may also want to
+> look at moving the kernel feature control towards this variable name
+> too).
+> 
+> What we need to be really really careful about is getting the
+> namespacing right and your CORE_IMAGE_TINY_FEATURES = "VT INET MDEV"
+> example above scares me as it mixes up several different things. My
 
-perl is needed only for
-/usr/bin/chkdupexe
-could you please move chkdupexe to separate package and add perl only
-to RDEPENDS_${PN}-chkdupexe?
+Sure, I'm not attached to it, it was just for illustration.
 
-> =C2=A0RRECOMMENDS_${PN}_virtclass-native =3D ""
-> =C2=A0RDEPENDS_${PN}_virtclass-native =3D ""
-> diff --git a/meta/recipes-devtools/strace/strace_4.5.20.bb b/meta/recipes=
--devtools/strace/strace_4.5.20.bb
-> index 391669f..b3d2aa5 100644
-> --- a/meta/recipes-devtools/strace/strace_4.5.20.bb
-> +++ b/meta/recipes-devtools/strace/strace_4.5.20.bb
-> @@ -5,6 +5,8 @@ LICENSE =3D "BSD"
-> =C2=A0LIC_FILES_CHKSUM =3D "file://COPYRIGHT;md5=3D4535377ede62550fdeaf39=
-f595fd550a"
-> =C2=A0PR =3D "r2"
->
-> +RDEPENDS =3D "perl"
+> worry is for example trying to build two different versions of busybox
+> in the same tmpdir depending on what image you build, for example what
+> does "bitbake core-image-tiny core-image-sato" do?
 
-This should be RDEPENDS_${PN}
-and much better would be to split
-strace-graph to separate package and add perl only to
-RDEPENDS_${PN}-graph
+Yes, I see the problem. I notice that uclibc uses a different tmp space
+that the eglibc build.
 
-> +
-> =C2=A0SRC_URI =3D "${SOURCEFORGE_MIRROR}/strace/strace-${PV}.tar.bz2 \
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://sigmask.patch \
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 "
-> --
-> 1.7.6.1
+> 
+> Contrast this to some settings:
+> 
+> PACKAGECONFIG_pn-linux-yocto = "vt inet"
+> PACKAGECONFIG_pn-busybox = "mdev"
 
-And also you need to bump PR when you're changing RDEPENDs (otherwise
-issues are shown much later when it's rebuild because of some other
-changes).
+OK, but it would need to be:
 
-Regards,
+PACKAGECONFIG_pn-linux-yocto = "vt inet"
+PACKAGECONFIG_pn-busybox = "vt inet mdev"
+
+Since busybox needs to disable various vt support configs if the kernel
+doesn't support vt. If don't support networking in the kernel, we might
+as well disable it in busybox (and eglibc or uclibc for that matter).
+The idea behind the single features variable was to avoid having to keep
+them all in sync. Perhaps the busybox one could also read
+PACKAGECONFIG_pn-virtual/kernel, but if they have explicitly different
+settings - because someone wants a generic busybox recipe for multiple
+kernels for example - I'm not sure how we would reconcile that.
+
+> 
+> which then mean you have one set of configuration for these recipes and
+> its clear what the bitbake command above would result in.
+> 
+> One of the bigger problems we're going to have with tiny is its
+> effectively a different set of distro settings to our normal builds. The
+> side effect of that is that you couldn't share a tmpdir with a "big"
+> build but I'm not sure that is an issue in practise, we just need to do
+> it in a way which doesn't give us the nasty configuration corner cases.
+
+For now it has been working alright. I wrote a task-core-tiny task and a
+core-image-tiny image recipe which just install less stuff, so those
+work out fine, and get us all the way down to a 3.2M rootfs (down from
+11M with minimal) without rewriting recipes or reconfiguring them. So we
+can do a lot in the existing tmp space.
+
+Obviously with reconfigured recipes or altered sources, we'd either need
+a new tmp space, or perhaps renamed recipes. I already use
+linux-yocto-tiny, perhaps busybox-tiny would make sense (although it
+sounds a tad redundant ;). I don't much like the -tiny recipes as they
+duplicate code - and the PACKAGECONFIG should do all we need.
+
+> 
+> So I guess what I'm saying is the end result of your work is likely a
+> "poky-tiny" distro setting which would take the "poky" distro but tweak
+> some pieces for really small images. It would need a separate tmpdir and
+> we should look in the PACKAGECONFIG variable direction for handling
+> recipe specific customisations...
+
+Thanks RP,
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
