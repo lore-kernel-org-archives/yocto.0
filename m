@@ -1,49 +1,33 @@
-Return-Path: <tim.bird@am.sony.com>
-Received: from TX2EHSOBE004.bigfish.com (tx2ehsobe002.messaging.microsoft.com
-	[65.55.88.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF488E004E9
-	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 12:13:26 -0700 (PDT)
-Received: from mail51-tx2-R.bigfish.com (10.9.14.246) by
-	TX2EHSOBE004.bigfish.com (10.9.40.24) with Microsoft SMTP Server id
-	14.1.225.22; Wed, 12 Oct 2011 19:13:21 +0000
-Received: from mail51-tx2 (localhost.localdomain [127.0.0.1])	by
-	mail51-tx2-R.bigfish.com (Postfix) with ESMTP id 9F9CF14D81FA;
-	Wed, 12 Oct 2011 19:13:21 +0000 (UTC)
-X-SpamScore: -15
-X-BigFish: VPS-15(zzbb2dK9371K1432N98dKzz1202hzz8275dhz2fh668h839h93fh61h)
-X-Spam-TCS-SCL: 0:0
-X-Forefront-Antispam-Report: CIP:160.33.98.74; KIP:(null); UIP:(null); IPVD:NLI;
-	H:mail7.fw-bc.sony.com; RD:mail7.fw-bc.sony.com; EFVD:NLI
-Received-SPF: pass (mail51-tx2: domain of am.sony.com designates 160.33.98.74
-	as permitted sender) client-ip=160.33.98.74;
-	envelope-from=tim.bird@am.sony.com; helo=mail7.fw-bc.sony.com ;
-	-bc.sony.com ; 
-Received: from mail51-tx2 (localhost.localdomain [127.0.0.1]) by mail51-tx2
-	(MessageSwitch) id 1318446801296824_20829;
-	Wed, 12 Oct 2011 19:13:21 +0000 (UTC)
-Received: from TX2EHSMHS037.bigfish.com (unknown [10.9.14.253])	by
-	mail51-tx2.bigfish.com (Postfix) with ESMTP id 369C11198051;
-	Wed, 12 Oct 2011 19:13:21 +0000 (UTC)
-Received: from mail7.fw-bc.sony.com (160.33.98.74) by TX2EHSMHS037.bigfish.com
-	(10.9.99.137) with Microsoft SMTP Server id 14.1.225.22;
-	Wed, 12 Oct 2011 19:13:20 +0000
-Received: from mail1x.sgo.in.sel.sony.com (mail.sgo.in.sel.sony.com
-	[43.130.1.112])	by mail7.fw-bc.sony.com (Switch-3.4.2/Switch-3.3.2mp)
-	with ESMTP id p9CJDJe6024199;	Wed, 12 Oct 2011 19:13:19 GMT
-Received: from timdesk.am.sony.com ([43.135.148.222])	by
-	mail1x.sgo.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
-	p9CJD8wv032613;	Wed, 12 Oct 2011 19:13:08 GMT
-Message-ID: <4E95E6BF.6010802@am.sony.com>
-Date: Wed, 12 Oct 2011 12:13:03 -0700
-From: Tim Bird <tim.bird@am.sony.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.12) Gecko/20100907 Fedora/3.0.7-1.fc12 Thunderbird/3.0.7
+Return-Path: <wmills@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E24C4E004E9
+	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 12:22:14 -0700 (PDT)
+Received: from dlep36.itg.ti.com ([157.170.170.91])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id p9CJMBOP019808
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 12 Oct 2011 14:22:12 -0500
+Received: from dlep26.itg.ti.com (smtp-le.itg.ti.com [157.170.170.27])
+	by dlep36.itg.ti.com (8.13.8/8.13.8) with ESMTP id p9CJMBgF012600;
+	Wed, 12 Oct 2011 14:22:11 -0500 (CDT)
+Received: from DFLE70.ent.ti.com (localhost [127.0.0.1])
+	by dlep26.itg.ti.com (8.13.8/8.13.8) with ESMTP id p9CJMBch002403;
+	Wed, 12 Oct 2011 14:22:11 -0500 (CDT)
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle70.ent.ti.com
+	(128.247.5.40) with Microsoft SMTP Server id 14.1.323.3;
+	Wed, 12 Oct 2011 14:22:11 -0500
+Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
+	[158.218.100.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	p9CJMABC024458;	Wed, 12 Oct 2011 14:22:10 -0500
+Message-ID: <4E95E8E2.5010202@ti.com>
+Date: Wed, 12 Oct 2011 15:22:10 -0400
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11
 MIME-Version: 1.0
 To: Darren Hart <dvhart@linux.intel.com>
 References: <4E933C41.4000207@linux.intel.com> <4E94D624.1020107@am.sony.com>
-	<4E95B87E.6050300@linux.intel.com>
-In-Reply-To: <4E95B87E.6050300@linux.intel.com>
-X-OriginatorOrg: am.sony.com
+	<4E95C787.3020000@linux.intel.com>
+In-Reply-To: <4E95C787.3020000@linux.intel.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: RFC: User configurable recipe features
 X-BeenThere: yocto@yoctoproject.org
@@ -57,70 +41,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Oct 2011 19:13:27 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 12 Oct 2011 19:22:15 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/12/2011 08:55 AM, Darren Hart wrote:
-> meta-tiny is my experimental layer where I'm looking at what we can
-> build with our existing sources and infrastructure. I've found that we
-> can cut the image size to about 10% of core-image-minimal without
-> changes to source code, but dropping a lot of functionality. We can get
-> to something like 20% while still maintaining ipv4 networking.
 
-This sounds cool.
 
-> This "recipe features" thread stems from this work. Before I can
-> integrate something like this into Yocto, it needs a more suitable user
-> exposed configuration mechanism.
-> 
-> I'm working from a public git repository, but it isn't in sync with my
-> local development branch as things are changing by the minute still. I
-> will be pushing this to a Yocto hosted git repository in time for ELCE,
-> but it will still be development/experimental. If you are interested in
-> seeing what is there now, you can have a look to get an idea of what I'm
-> doing. Please note this tree WILL rebase, it WILL fail to build, it WILL
-> destroy your tmp dir, your sstate, and waste your time as you try and
-> pick through the various options to get something that builds and boots
-> ;-) Also, this repo will disappear in the next few days, but if you just
-> want to see it, it's here:
-> 
-> http://git.infradead.org/users/dvhart/meta-tiny.git
-> 
+On 10/12/2011 12:59 PM, Darren Hart wrote:
+>
+>
+> On 10/11/2011 04:49 PM, Tim Bird wrote:
+>> On 10/10/2011 11:41 AM, Darren Hart wrote:
+>>> As part of working on meta-tiny, I've come across a need (want?) to
+>>> present users with the ability to select some set of features in a local
+>>> configuration file that will impact the build of the image and a set of
+>>> recipes.
+>>
+>> Can you tell me more about meta-tiny?  this is the first I've heard
+>> about this (sorry if discussion went by on the mailing list and I
+>> missed it), and I'm very interested.
 >>
 >> I'm currently doing some size-related work for Sony (including
 >> some work to support 4K stacks).
-> 
-> I'd like to have a look - is there anything out there I can read through?
-Not at the moment.  I've been meaning to send my patch
-for 4K stack support for ARM to linux-ARM, but haven't had
-the time.  I'll see if I can push it out this week (but it
-might collide with the 3.2 merge window, and I wouldn't
-expect it to go straight in without it dwelling in someone's
--next tree for a bit.)
+>>
+>
+> Perhaps while I have the attention of a few interested parties, it would
+> be a good time for a poll. I'm interested in your motivation for smaller
+> images.
 
-In our cameras, this saves about 300K of kernel memory.
+I am not on the front line but here is my take.
 
-I have no problem sending that to you if you'd like.  Just let
-me know.  If mainline doesn't take it straight-away for some reason,
-I'll probably hand it off to the linux-tiny project, which is back
-in full swing.
+>
+> Are you building SoC's with memory on die and needing to keep the memory
+> footprint down to save precious die real-estate?
 
-> Post ELCE, I'd like to look at more source level changes we can make. In
-> particular I'd like to see the >200k bzImage increase for ipv4 come
-> down. In addition to that, I'm hoping to take a closer look at dynamic
-> memory usage in the Linux kernel for small systems.
+no.
 
-I have some patches for monitoring slab allocations that are helpful
-for this (also something I should have already mainlined, but didn't
-get to... ;-(
+However we sometimes run the full fileystem from DDR so there is no 
+flash per say.  (Full filesystem image gets transfered at boot time). 
+Board with N devices, all with DDR and ethernet and nothing else.  Don't 
+use NFS for latency/performance consistency issues.
 
- -- Tim
+>
+> Are you looking at creating mass-market products and saving a few
+> pennies on the flash storage translates to real money, so you want to
+> minimize the physical size?
 
-=============================
-Tim Bird
-Architecture Group Chair, CE Workgroup of the Linux Foundation
-Senior Staff Engineer, Sony Network Entertainment
-=============================
+Yes.
 
+We still see flash size == to RAM size or 1/2 RAM.
+32 MB RAM, 16 MB Flash
+64 MB RAM, 32 MB flash
+
+We had one EVM w/ 8 MB SPI flash and we fit a fairly decent headless 
+system into that.  Not sure if that was customer driven or bad EVM 
+definition.  Fortunity that EVM also had a MMC/SD card reader for the > 
+8MB use case.
+
+Of course once you go above a certain size (128/256 MB), people go 
+MMC/SD and then minimums go way up.  1 GB is probably as cheap as 512MB.
+
+We have not seen the situation Tim talked about with RAM < NVMEM (at 
+least not for several years)
+
+If you start getting into the oversize microcontroller area then you 
+start getting very small.  However you are also probably only a kernel, 
+uclibc, a very cut down busybox and one or two custom apps.
+
+>
+> Are you concerned with boot time, and have connected larger image sizes
+> with longer boot times?
+>
+
+That is a nice benefit but not the main objective.
+
+Better use case for seep cases is a partitioned NVMEM configuration with 
+small faster flash (32MB-256MB parallel NAND) and slower larger storage 
+(1+ GB SD Card etc).
+
+With this config do you:
+* treat the NAND as a dynamic FS cache
+* use it to store the "core" os (/ but not /usr or /opt)
+* use it to store only readahead like data
+
+> Is there another motivating factor for your interest in small images?
+>
+> Thanks,
+>
 
