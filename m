@@ -1,24 +1,26 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11AB8E004CF
-	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 08:55:42 -0700 (PDT)
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9893E004E9
+	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 09:50:04 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 12 Oct 2011 08:55:42 -0700
+	by azsmga102.ch.intel.com with ESMTP; 12 Oct 2011 09:50:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,335,1315206000"; d="scan'208";a="61529768"
+X-IronPort-AV: E=Sophos;i="4.69,335,1315206000"; d="scan'208";a="61552970"
 Received: from unknown (HELO envy.home) ([10.255.14.198])
-	by azsmga001.ch.intel.com with ESMTP; 12 Oct 2011 08:55:42 -0700
-Message-ID: <4E95B87E.6050300@linux.intel.com>
-Date: Wed, 12 Oct 2011 08:55:42 -0700
+	by azsmga001.ch.intel.com with ESMTP; 12 Oct 2011 09:49:49 -0700
+Message-ID: <4E95C52C.3040201@linux.intel.com>
+Date: Wed, 12 Oct 2011 09:49:48 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-To: Tim Bird <tim.bird@am.sony.com>
-References: <4E933C41.4000207@linux.intel.com> <4E94D624.1020107@am.sony.com>
-In-Reply-To: <4E94D624.1020107@am.sony.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <4E933C41.4000207@linux.intel.com> <4E94DCD5.2060200@balister.org>
+	<4E95B544.2020907@linux.intel.com>
+	<201110121652.05343.paul.eggleton@linux.intel.com>
+In-Reply-To: <201110121652.05343.paul.eggleton@linux.intel.com>
 X-Enigmail-Version: 1.3.2
-Cc: Yocto Project <yocto@yoctoproject.org>
+Cc: yocto@yoctoproject.org
 Subject: Re: RFC: User configurable recipe features
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -31,66 +33,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Oct 2011 15:55:43 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 12 Oct 2011 16:50:05 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Hi Tim,
 
-On 10/11/2011 04:49 PM, Tim Bird wrote:
-> On 10/10/2011 11:41 AM, Darren Hart wrote:
->> As part of working on meta-tiny, I've come across a need (want?) to
->> present users with the ability to select some set of features in a local
->> configuration file that will impact the build of the image and a set of
->> recipes.
+
+On 10/12/2011 08:52 AM, Paul Eggleton wrote:
+> On Wednesday 12 October 2011 16:41:56 Darren Hart wrote:
+>> Hrm... the micro distro? What's this?
 > 
-> Can you tell me more about meta-tiny?  this is the first I've heard
-> about this (sorry if discussion went by on the mailing list and I
-> missed it), and I'm very interested.
-
-
-Tim,
-
-I'll be presenting things in more detail at ELCE, Friday @ 3:45 PM in
-the Kepler room. The summary is that I have received a lot of questions
-along the lines of "How small of an image can I build with Yocto?".
-core-image-minimal does a decent job at a small general purpose image,
-but it still has a lot of baggage that a truly size conscious developer
-doesn't need for a custom BSP.
-
-meta-tiny is my experimental layer where I'm looking at what we can
-build with our existing sources and infrastructure. I've found that we
-can cut the image size to about 10% of core-image-minimal without
-changes to source code, but dropping a lot of functionality. We can get
-to something like 20% while still maintaining ipv4 networking.
-
-This "recipe features" thread stems from this work. Before I can
-integrate something like this into Yocto, it needs a more suitable user
-exposed configuration mechanism.
-
-I'm working from a public git repository, but it isn't in sync with my
-local development branch as things are changing by the minute still. I
-will be pushing this to a Yocto hosted git repository in time for ELCE,
-but it will still be development/experimental. If you are interested in
-seeing what is there now, you can have a look to get an idea of what I'm
-doing. Please note this tree WILL rebase, it WILL fail to build, it WILL
-destroy your tmp dir, your sstate, and waste your time as you try and
-pick through the various options to get something that builds and boots
-;-) Also, this repo will disappear in the next few days, but if you just
-want to see it, it's here:
-
-http://git.infradead.org/users/dvhart/meta-tiny.git
-
+> http://cgit.openembedded.org/meta-micro/
 > 
-> I'm currently doing some size-related work for Sony (including
-> some work to support 4K stacks).
+> It's maintained by Phil Blundell. I believe he's been pretty successful in 
+> reducing size of the resulting image whilst keeping the system fairly 
+> functional. He is using uclibc however.
 
-I'd like to have a look - is there anything out there I can read through?
+I wish I had run across this a few months ago. meta-micro in fact has
+both an eglibc and a uclibc distro definition. I haven't tried a build,
+but it does seem to be attempting the same basic thing as meta-tiny -
+only in a more generally usable way.
 
-Post ELCE, I'd like to look at more source level changes we can make. In
-particular I'd like to see the >200k bzImage increase for ipv4 come
-down. In addition to that, I'm hoping to take a closer look at dynamic
-memory usage in the Linux kernel for small systems.
+This is fine as the end result of meta-tiny is likely to be some
+improved configuration mechanisms for things like busybox, libc, and the
+kernel, which should prove useful to meta-micro as well.
 
 Thanks,
 
