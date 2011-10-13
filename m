@@ -1,34 +1,37 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-qw0-f48.google.com (mail-qw0-f48.google.com
-	[209.85.216.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A391E0129F
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2011 13:51:05 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by qadb14 with SMTP id b14so664298qad.35
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2011 13:51:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=y/zqydup64Pdyy0lTHGMHnWKAFH1ffORUb6d6b+BxJg=;
-	b=ubyTfnbGEJK3bAE2hsqsN/hZjHRbHlxguF+J0sycqrOMo8V7Ppg5U+1+99jwz0J0Cj
-	DUQMx5023/oS4OjhtTbTW9g0jHsK+8c4jnyK/D9K0ZT4QEU8Az/4no+xZcK8Yh1Pnqjg
-	qdxO/c/OpNYUVYDGf1csj0sCXTbGyA/qEOZEQ=
-Received: by 10.68.74.4 with SMTP id p4mr11437942pbv.47.1318539064072; Thu, 13
-	Oct 2011 13:51:04 -0700 (PDT)
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 486FBE0129F
+	for <yocto@yoctoproject.org>; Thu, 13 Oct 2011 14:07:44 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 13 Oct 2011 14:07:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,342,1315206000"; d="scan'208";a="26523036"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by AZSMGA002.ch.intel.com with ESMTP; 13 Oct 2011 14:07:43 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 13 Oct 2011 14:07:31 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.109]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.132]) with mapi id
+	14.01.0323.003; Thu, 13 Oct 2011 14:07:31 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Jack Mitchell <ml@communistcode.co.uk>
+Thread-Topic: [yocto] QEmu Script Error Checking
+Thread-Index: AQHMiCxgB6U9U6ypAUSqtwjN01/DLJV35N+AgAEO7oCAAAmHYIABseqAgAAXtSA=
+Date: Thu, 13 Oct 2011 21:07:22 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C16E8AA9A@ORSMSX101.amr.corp.intel.com>
+References: <4E9463A3.3090005@communistcode.co.uk>
+	<4E9484B3.9010605@intel.com> <4E9567F9.2040003@communistcode.co.uk>
+	<C6510F6D410BB64A8C15398EDC6B847C16E8A252@ORSMSX101.amr.corp.intel.com>
+	<4E96DBF5.4060808@communistcode.co.uk>
+In-Reply-To: <4E96DBF5.4060808@communistcode.co.uk>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.68.48.230 with HTTP; Thu, 13 Oct 2011 13:50:34 -0700 (PDT)
-In-Reply-To: <4E972F04.4030908@ti.com>
-References: <4E933C41.4000207@linux.intel.com> <4E94D624.1020107@am.sony.com>
-	<4E95C787.3020000@linux.intel.com>
-	<4E96A198.9030109@communistcode.co.uk> <4E972F04.4030908@ti.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 13 Oct 2011 13:50:34 -0700
-Message-ID: <CAMKF1sqdCsSbPnL4e-e3MHgdpwwH1UqZzSn4rD4V+-b+EN5D-g@mail.gmail.com>
-To: William Mills <wmills@ti.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: RFC: User configurable recipe features
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: QEmu Script Error Checking
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,136 +43,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Oct 2011 20:51:06 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 13 Oct 2011 21:07:44 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 13, 2011 at 11:33 AM, William Mills <wmills@ti.com> wrote:
->
->
-> On 10/13/2011 04:30 AM, Jack Mitchell wrote:
->>
->> On 12/10/2011 17:59, Darren Hart wrote:
->>>
->>> On 10/11/2011 04:49 PM, Tim Bird wrote:
->>>>
->>>> On 10/10/2011 11:41 AM, Darren Hart wrote:
->>>>>
->>>>> As part of working on meta-tiny, I've come across a need (want?) to
->>>>> present users with the ability to select some set of features in a
->>>>> local
->>>>> configuration file that will impact the build of the image and a set =
-of
->>>>> recipes.
->>>>
->>>> Can you tell me more about meta-tiny? =C2=A0this is the first I've hea=
-rd
->>>> about this (sorry if discussion went by on the mailing list and I
->>>> missed it), and I'm very interested.
->>>>
->>>> I'm currently doing some size-related work for Sony (including
->>>> some work to support 4K stacks).
->>>>
->>> Perhaps while I have the attention of a few interested parties, it woul=
-d
->>> be a good time for a poll. I'm interested in your motivation for smalle=
-r
->>> images.
->>>
->>> Are you building SoC's with memory on die and needing to keep the memor=
-y
->>> footprint down to save precious die real-estate?
->>
->> no
->>
->>>
->>> Are you looking at creating mass-market products and saving a few
->>> pennies on the flash storage translates to real money, so you want to
->>> minimize the physical size?
->>
->> no
->>
->>>
->>> Are you concerned with boot time, and have connected larger image sizes
->>> with longer boot times?
->>
->> I am concerned with boot time, but don't believe it is image size that
->> ramps it up.
->>
->>>
->>> Is there another motivating factor for your interest in small images?
->>
->> Yes, a smaller system which is easier to check, build and maintain. In m=
-y
->> office I am the leading driver for using linux in a team of 3 (two softw=
-are,
->> one fpga developer) so the less time I spend building, rebuilding and
->> checking features I don't need, to ensure they don't comprimise the
->> stability of the system, the more faith they have in the system I'm putt=
-ing
->> forward.
->>
->
-> Ahhh, nice one Jack.
->
-> I had a similar thought this morning. =C2=A0As the target system gets sma=
-ller the
-> tolerance for spending X amount of time building non-target code goes dow=
-n
-> and the expectation of being able to use a "modest machine" goes up.
->
-> What is a modest machine? =C2=A0Yocto quotes build times for a "refernce =
-machine"
-> that is pretty up to date and not on the low end. =C2=A0To me, a modest m=
-achine
-> is the laptop Mom & Dad bought "Stacy" when she graduated from High Schoo=
-l
-> and went off to College. =C2=A0Stacy is now a junior and is exploring emb=
-edded
-> Linux. =C2=A0This might be an i3 2 GB machine. =C2=A0A China based startu=
-p may also
-> give its engineers modest machines. =C2=A0I think many TI'ers would claim=
- they
-> have been stuck on modest machines for long periods.
->
-> So If a sato image takes 1 hour to build on the reference machine it may
-> take 4 hours to build on a modest machine. =C2=A0Of that time perhaps 1 h=
-r is
-> spent building host side stuff.
->
-> If your image is just kernel, busybox, and uclibc you probably only spend
-> 1/2 hour building that on a modest machine. =C2=A0Question is does oe-cor=
-e/poky
-> still make you build 1 hr worth of host stuff?
+Hi Jack,
 
-Usually some of the host distros have sane(for OE sense) versions of
-host packages. You might experiment using
-ASSUME_PROVIDED for the build host packages this will then use the
-packages from your build system
-however the results you get might be different than others that's one
-reason for host packages
+What is your target architecture?  There's a known issue (bug 1489) that tc=
+f-agent may segfault on qemux86, but it's never caused the whole qemu to cr=
+ash.  One way to work around your issue is before your do the remote debugg=
+ing, can you bring up a terminal in qemu to make sure the tcf-agent is up a=
+nd running, if it's not, you can manually bring it up then do the remote de=
+bug.
 
-A lot of stuff in OE environment is done to ensure predictability of
-builds on different host distros
-which is a good thing IMO.
+Thanks,
+Jessica
 
+-----Original Message-----
+From: Jack Mitchell [mailto:ml@communistcode.co.uk]
+Sent: Thursday, October 13, 2011 5:39 AM
+To: Zhang, Jessica
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] QEmu Script Error Checking
+
+On 12/10/2011 18:52, Zhang, Jessica wrote:
+> Hi Jack,
 >
-> I know Richard's answer will be shared state but I want to see how that
-> really works out. =C2=A0This is an area we plan on playing with over the =
-next
-> release cycle.
+> When and how did you trigger the error.  It looks more like a CDT issue t=
+han a Yocto issue, but can you tell us more what exactly you were doing wit=
+h Yocto plug-in while this crash happened?  So you mean when you click on t=
+he debug, it caused qemu crashes? Or the qemu crashed 1st. then you got the=
+ eclipse error msg.
 >
+> Thanks,
+> Jessica
 >
->>> Thanks,
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
+rg] On Behalf Of Jack Mitchell
+> Sent: Wednesday, October 12, 2011 3:12 AM
+> To: yocto@yoctoproject.org
+> Subject: Re: [yocto] QEmu Script Error Checking
+>
+> On 11/10/2011 19:02, Scott Garman wrote:
+>> On 10/11/2011 08:41 AM, Jack Mitchell wrote:
+>>> I have run into the following issue where the tap device is in use due
+>>> to the QEmu machine unexpectedly crashing. The error I recieve is here:
 >>>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+>>> http://i.imgur.com/5t9U1.png (appologies for the screenshot but it
+>>> wouldn't let me copy the text)
+>>>
+>>> Is there any leaway for more robust error checking or a way to forcibly
+>>> destroy the tap node to allow a new one to be created?
+>> Hi Jack,
+>>
+>> Since qemu is being run from a parent shell script (runqemu), if qemu
+>> were to crash, I would think the parent shell script would continue on
+>> and destroy the tap device normally. Might you be killing the runqemu
+>> process instead of qemu itself?
+>>
+>> I'm not sure if there is a way we could reliably force a cleanup of
+>> tap devices when runqemu starts, because we need to support the case
+>> where multiple instances of qemu sessions are running simultaneously
+>> (each with their own tap device). Off the top of my head I think this
+>> would make the state of tap devices non-deterministic.
+>>
+>> Furthermore, we support a mode where an administrator can set up one
+>> or more tap devices, allowing the runqemu user to not need sudo
+>> privileges. So checking for the case where a tap device exists but no
+>> qemu process is running wouldn't work.
+>>
+>> Scott
+>>
+> Ok, thank you for the information Scott. I think I found the issue today
+> which is causing the QEmu script to terminate pre-maturely.
 >
+> I am using the eclipse-poky master branch as my eclipse plugin and it
+> threw an error today when I tried to debug - which coincided with the
+> QEmu and terminal window terminating. The errror I recieved was:
+>
+> !SESSION 2011-10-12 09:22:49.135
+> -----------------------------------------------
+> eclipse.buildId=3DI20110613-1736
+> java.version=3D1.6.0_22
+> java.vendor=3DSun Microsystems Inc.
+> BootLoader constants: OS=3Dlinux, ARCH=3Dx86_64, WS=3Dgtk, NL=3Den_GB
+> Framework arguments:  -product org.eclipse.sdk.ide
+> Command-line arguments:  -product org.eclipse.sdk.ide -data
+> /home/developer/jackdaw/../runtime-EclipseApplication -dev
+> file:/home/developer/jackdaw/.metadata/.plugins/org.eclipse.pde.core/Ecli=
+pse
+> Application/dev.properties -os linux -ws gtk -arch x86_64 -consoleLog
+>
+> !ENTRY org.eclipse.cdt.debug.mi.core 4 42 2011-10-12 09:24:47.192
+> !MESSAGE Internal Error
+> !STACK 0
+> org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: Inferior terminated[]
+>       at
+> org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.getMIShareds(Share=
+dLibraryManager.java:123)
+>       at
+> org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.updateState(Shared=
+LibraryManager.java:188)
+>       at
+> org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.update(SharedLibra=
+ryManager.java:136)
+>       at
+> org.eclipse.cdt.debug.mi.core.cdi.EventManager.processSuspendedEvent(Even=
+tManager.java:326)
+>       at
+> org.eclipse.cdt.debug.mi.core.cdi.EventManager.update(EventManager.java:1=
+00)
+>       at java.util.Observable.notifyObservers(Observable.java:159)
+>       at
+> org.eclipse.cdt.debug.mi.core.MISession.notifyObservers(MISession.java:79=
+1)
+>       at org.eclipse.cdt.debug.mi.core.EventThread.run(EventThread.java:4=
+6)
+>
+> Which looks like a CDT bug or the interfacing with CDT. I could file a
+> bug report if you think it is related to the poky-eclipse plugin?
+>
+> Cheers,
+> Jack.
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->
+
+Jessica,
+
+I have attached another error log which seems to be more verbose when I
+had this issue earlier today. Some of the errors seem to propogate from
+my code but there are also some CDT errors in there. The log is located
+here: http://pastebin.com/JHuE838B
+
+Regards,
+Jack
 
