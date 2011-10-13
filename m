@@ -1,24 +1,25 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AEA7E0124A
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2011 01:30:18 -0700 (PDT)
-Received: from [192.168.0.57] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 166CC22D09
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2011 08:09:03 +0100 (BST)
-Message-ID: <4E96A198.9030109@communistcode.co.uk>
-Date: Thu, 13 Oct 2011 09:30:16 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
+Return-Path: <niqingliang@insigma.com.cn>
+Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF456E00B11
+	for <yocto@yoctoproject.org>; Thu, 13 Oct 2011 02:38:20 -0700 (PDT)
+Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
+	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
+	Thu, 13 Oct 2011 17:37:58 +0800
+Received: from [192.168.0.98] (122.224.76.38) by WX-ExchMB.insigma.com.cn
+	(10.0.1.203) with Microsoft SMTP Server id 8.1.240.5; Thu, 13 Oct 2011
+	17:37:55 +0800
+From: Ni Qingliang <niqingliang@insigma.com.cn>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Thu, 13 Oct 2011 17:37:28 +0800
+Organization: Insigma
+X-Mailer: Evolution 3.0.3 
+Message-ID: <1318498649.1352.11.camel@localhost.localdomain>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4E933C41.4000207@linux.intel.com> <4E94D624.1020107@am.sony.com>
-	<4E95C787.3020000@linux.intel.com>
-In-Reply-To: <4E95C787.3020000@linux.intel.com>
-Subject: Re: RFC: User configurable recipe features
+Subject: about symbol link of library
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: niqingliang@insigma.com.cn
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -27,60 +28,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Oct 2011 08:30:24 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 13 Oct 2011 09:38:23 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 12/10/2011 17:59, Darren Hart wrote:
->
-> On 10/11/2011 04:49 PM, Tim Bird wrote:
->> On 10/10/2011 11:41 AM, Darren Hart wrote:
->>> As part of working on meta-tiny, I've come across a need (want?) to
->>> present users with the ability to select some set of features in a 
->>> local
->>> configuration file that will impact the build of the image and a set of
->>> recipes.
->> Can you tell me more about meta-tiny?  this is the first I've heard
->> about this (sorry if discussion went by on the mailing list and I
->> missed it), and I'm very interested.
->>
->> I'm currently doing some size-related work for Sony (including
->> some work to support 4K stacks).
->>
-> Perhaps while I have the attention of a few interested parties, it would
-> be a good time for a poll. I'm interested in your motivation for smaller
-> images.
->
-> Are you building SoC's with memory on die and needing to keep the memory
-> footprint down to save precious die real-estate?
+hello all.
 
-no
+I have added 2 packages, one is lib, and the other is bin.
 
->
-> Are you looking at creating mass-market products and saving a few
-> pennies on the flash storage translates to real money, so you want to
-> minimize the physical size?
+the lib will generate 2 files:
+	libx.so.1.0.1
+	libx.so -> libx.so.1.0.1
+the latter linked to the other one.
 
-no
+the bin package will link to the libx.so.
 
->
-> Are you concerned with boot time, and have connected larger image sizes
-> with longer boot times?
+compile/install are all OK, but when populate rootfs, I got error:
+error: Failed dependencies:
+| 	libx.so is needed by bin......
 
-I am concerned with boot time, but don't believe it is image size that 
-ramps it up.
+after checked the rpm, the libx.so is located in libx-dev, but not in
+libx.
 
->
-> Is there another motivating factor for your interest in small images?
+what is the right way to resolve this problem?
 
-Yes, a smaller system which is easier to check, build and maintain. In 
-my office I am the leading driver for using linux in a team of 3 (two 
-software, one fpga developer) so the less time I spend building, 
-rebuilding and checking features I don't need, to ensure they don't 
-comprimise the stability of the system, the more faith they have in the 
-system I'm putting forward.
 
->
-> Thanks,
->
+
+
+-- 
+Yi Qingliang
+niqingliang@insigma.com.cn
+http://niqingliang2003.wordpress.com
+
+
 
