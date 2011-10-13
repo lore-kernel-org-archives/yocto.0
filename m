@@ -1,33 +1,19 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99A22E004E9
-	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 13:38:39 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 12 Oct 2011 13:38:38 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7018FE00502
+	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 22:07:33 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 12 Oct 2011 22:07:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="62340028"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by orsmga001.jf.intel.com with ESMTP; 12 Oct 2011 13:38:38 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 12 Oct 2011 13:38:38 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.109]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.52]) with mapi id
-	14.01.0323.003; Wed, 12 Oct 2011 13:38:38 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Technical Team Meeting - (Tuesday, October 11,
-	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
-Thread-Index: AQHMiR7o1Lix8E4upEGWpiMbIZLblQ==
-Date: Wed, 12 Oct 2011 20:38:32 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F33591@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Subject: Minutes: Yocto Technical Team Meeting - (Tuesday, October 11, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada))
+X-IronPort-AV: E=Sophos;i="4.69,338,1315206000"; d="scan'208";a="73057466"
+Received: from unknown (HELO localhost) ([10.255.14.245])
+	by fmsmga001.fm.intel.com with ESMTP; 12 Oct 2011 22:07:32 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org
+Date: Thu, 13 Oct 2011 00:07:17 -0500
+Message-Id: <cover.1318481569.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 00/10] meta-intel: xserver-xorg rename fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,57 +25,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Oct 2011 20:38:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 13 Oct 2011 05:07:33 -0000
 
-Attendees:
-Scott, Dave, Jessica, Saul, Richard, Bruce, Joshua, Tom, Matthew, Darren, J=
-eff, Denys, Paul, Sean, Song.
-=A0
-Agenda:
-=A0
-* Opens collection - 5 min (Song)
-* Yocto 1.1 M4 status review and issues - 15 min (team) https://wiki.yoctop=
-roject.org/wiki/Yocto_Project_v1.1_Release_Criteria#Milestone_=20
-  1235: Tom has a fix, one issue is slow running currently. Glxgear has not=
- been tested for 3.0. Tom will figure out if glxgear will work for 3.0. The=
-n decide on which direction we should go. BSP issue will not affect release=
- 1.1.
-  1587: workaround in this release. The fix will be in the next release.
-* Opens - 10 min
-  None
-* Weekly team sharing (30 min)
-  Sean: Joined Mentor, nothing this week.
-  Paul: been away last week. Processing of changes, work out patches for 1.=
-0.2 point release.
-  Denys: working on the demo, meta-ti layer, have to cancel trip to ELCE, s=
-omeone else will be there for the demo
-  Jeff: having some meetings for WRS demo for ELCE. Won't be in ELCE..
-  Darren: preparing for and work on the tiny layer. Identify some gaps, goo=
-d progress, 1.3 MB image. Would like to share this at ELCE to get some feed=
-back and come up with ways for improvement for 1.2.
-  Matthew: looking at shared state cache on Edison. Trying to figure out ho=
-w everything works.
-  Tom: most of my time updating meta-intel BSP fix, other bugs, 1.2 plannin=
-g features. More BSP clean up and other bug fixes this week.
-  Joshua: working on HOB, a few point release patches, working on things fo=
-r the next cycle.
-  Bruce: monitoring kernel release, streamlining for next release. Generall=
-y putting in what we should change and for 1.2. streamline the process to w=
-ork with kernel and make it easier
-  Richard: patches review, amending and testing various things. Written var=
-ious patches for parallelism. Looking into shared states with Matthew, cont=
-inue 1.2 planning and build speed improvement. Break down and analyze where=
- the differences are.=20
-  Saul: wrapping up 1.1 bits, working to get all issues resolved. Working o=
-n 1.2 planning. Package upgrade. Nothing blocked.
-  Jessica: focused on 1.2 features. Create video for eclipse for marketing.=
- Naming issue, hob issue.
-  Scott: Packed up 1.1 doc last week. Sent the auto and video put things to=
-gether, about done. Working on website, trying to get doc into certain area=
-s. Nothing blocked.=20
-=A0
+From: Tom Zanussi <tom.zanussi@intel.com>
+
+This patchset is a first pass at the fixes needed to fix up the server-xorg
+renaming in meta-intel.
+
+So far sugarbay has been build and boot-tested successfully into sato.
+crownbay has been build tested but failed to start X - in any case it
+builds, which is a step forward.  I applied the same changes to the other
+BSPs but haven't yet built or booted them; I'll be doing that over the
+next couple of days, but they should at least compile and not prevent
+autobuilder from going green.
+
+I did have one problem in that xf86-video-intel failed do_patch, and
+had to respin the buidfix.patch as below, which doesn't make any sense
+since I verified that the S = "${WORKDIR}/${BPN}-${PV}" assignment in
+xorg-driver-common.inc was actually getting the right value for the
+existing patch, and there shoule be no reason for it to fail.  Anyway,
+that's another thing I'll look into tomorrow if nobody else does.
+
+Index: xf86-video-intel-2.16.0/src/intel.h
+===================================================================
+--- xf86-video-intel-2.16.0.orig/src/intel.h    2011-10-12 21:50:29.794427760 -0500
++++ xf86-video-intel-2.16.0/src/intel.h 2011-10-12 21:52:04.953637183 -0500
+@@ -65,9 +65,7 @@
+ #include <pciaccess.h>
+ 
+ #include "xf86drm.h"
+-#include "sarea.h"
+ #define _XF86DRI_SERVER_
+-#include "dri.h"
+ #include "dri2.h"
+ #include "intel_bufmgr.h"
+ #include "i915_drm.h"
+
+
+The following changes since commit e0e52850cf5f84fb4ee1bfa15571aaf61e068450:
+  Tom Zanussi (1):
+        meta-emenlow: restore /usr/lib/dri for xpsb-glx
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-intel.git tzanussi/xorg-rename-fixes-v0
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/xorg-rename-fixes-v0
+
+Tom Zanussi (10):
+  meta-intel: /common xserver-xorg name change
+  meta-sugarbay: xserver-xorg rename
+  meta-sugarbay: remove meta-intel/common from BBFILES
+  meta-crownbay: xserver-xorg renaming updates
+  meta-fishriver: xserver-xorg renaming updates
+  meta-fri2: xserver-xorg renaming updates
+  meta-jasperforest: remove meta-intel/common from BBFILES
+  meta-jasperforest: xserver-xorg renaming updates
+  meta-jasperforest: remove obsolete xserver-xf86-dri-lite .bbappend
+  meta-n450: xserver-xorg renaming updates
+
+ ...86-dri-lite_1.9.3.bb => xserver-xorg-1.9.3.inc} |   16 ++++++----------
+ .../crosscompile.patch                             |    0
+ .../fix_open_max_preprocessor_error.patch          |    0
+ .../macro_tweak.patch                              |    0
+ .../nodolt.patch                                   |    0
+ .../xorg-xserver/xserver-xorg_1.9.3.bb             |    4 ++++
+ meta-crownbay/conf/machine/crownbay-noemgd.conf    |    6 +++---
+ meta-crownbay/conf/machine/crownbay.conf           |    8 ++++----
+ meta-fishriver/conf/machine/fishriver.conf         |    6 +++---
+ meta-fri2/conf/machine/fri2-noemgd.conf            |    6 +++---
+ meta-fri2/conf/machine/fri2.conf                   |    8 ++++----
+ meta-jasperforest/conf/layer.conf                  |    4 +---
+ meta-jasperforest/conf/machine/jasperforest.conf   |    6 +++---
+ .../xserver-xf86-dri-lite_1.9.3.bbappend           |    1 -
+ meta-n450/conf/machine/n450.conf                   |    6 +++---
+ meta-sugarbay/conf/layer.conf                      |    4 +---
+ meta-sugarbay/conf/machine/sugarbay.conf           |    6 +++---
+ 17 files changed, 38 insertions(+), 43 deletions(-)
+ rename common/recipes-graphics/xorg-xserver/{xserver-xf86-dri-lite_1.9.3.bb => xserver-xorg-1.9.3.inc} (83%)
+ rename common/recipes-graphics/xorg-xserver/{xserver-xf86-dri-lite => xserver-xorg-1.9.3}/crosscompile.patch (100%)
+ rename common/recipes-graphics/xorg-xserver/{xserver-xf86-dri-lite => xserver-xorg-1.9.3}/fix_open_max_preprocessor_error.patch (100%)
+ rename common/recipes-graphics/xorg-xserver/{xserver-xf86-dri-lite => xserver-xorg-1.9.3}/macro_tweak.patch (100%)
+ rename common/recipes-graphics/xorg-xserver/{xserver-xf86-dri-lite => xserver-xorg-1.9.3}/nodolt.patch (100%)
+ create mode 100644 common/recipes-graphics/xorg-xserver/xserver-xorg_1.9.3.bb
+ delete mode 100644 meta-jasperforest/recipes-graphics/xorg-xserver/xserver-xf86-dri-lite_1.9.3.bbappend
 
 
