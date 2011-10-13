@@ -1,23 +1,21 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78F45E01395
-	for <yocto@yoctoproject.org>; Wed, 12 Oct 2011 22:07:50 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 12 Oct 2011 22:07:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,338,1315206000"; d="scan'208";a="77607080"
-Received: from unknown (HELO localhost) ([10.255.14.245])
-	by fmsmga002.fm.intel.com with ESMTP; 12 Oct 2011 22:07:49 -0700
-From: tom.zanussi@intel.com
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AEA7E0124A
+	for <yocto@yoctoproject.org>; Thu, 13 Oct 2011 01:30:18 -0700 (PDT)
+Received: from [192.168.0.57] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id 166CC22D09
+	for <yocto@yoctoproject.org>; Thu, 13 Oct 2011 08:09:03 +0100 (BST)
+Message-ID: <4E96A198.9030109@communistcode.co.uk>
+Date: Thu, 13 Oct 2011 09:30:16 +0100
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
+MIME-Version: 1.0
 To: yocto@yoctoproject.org
-Date: Thu, 13 Oct 2011 00:07:23 -0500
-Message-Id: <f9825d64e7c2eecbd54f6c014025c6ba6ea2a116.1318481569.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <57876222731972088b7d40943f78e960efc2562a.1318481569.git.tom.zanussi@intel.com>
-References: <57876222731972088b7d40943f78e960efc2562a.1318481569.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1318481569.git.tom.zanussi@intel.com>
-References: <cover.1318481569.git.tom.zanussi@intel.com>
-Subject: [PATCH 10/10] meta-n450: xserver-xorg renaming updates
+References: <4E933C41.4000207@linux.intel.com> <4E94D624.1020107@am.sony.com>
+	<4E95C787.3020000@linux.intel.com>
+In-Reply-To: <4E95C787.3020000@linux.intel.com>
+Subject: Re: RFC: User configurable recipe features
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,35 +27,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Oct 2011 05:07:50 -0000
+X-List-Received-Date: Thu, 13 Oct 2011 08:30:24 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On 12/10/2011 17:59, Darren Hart wrote:
+>
+> On 10/11/2011 04:49 PM, Tim Bird wrote:
+>> On 10/10/2011 11:41 AM, Darren Hart wrote:
+>>> As part of working on meta-tiny, I've come across a need (want?) to
+>>> present users with the ability to select some set of features in a 
+>>> local
+>>> configuration file that will impact the build of the image and a set of
+>>> recipes.
+>> Can you tell me more about meta-tiny?  this is the first I've heard
+>> about this (sorry if discussion went by on the mailing list and I
+>> missed it), and I'm very interested.
+>>
+>> I'm currently doing some size-related work for Sony (including
+>> some work to support 4K stacks).
+>>
+> Perhaps while I have the attention of a few interested parties, it would
+> be a good time for a poll. I'm interested in your motivation for smaller
+> images.
+>
+> Are you building SoC's with memory on die and needing to keep the memory
+> footprint down to save precious die real-estate?
 
-Update n450 to reflect the new xserver-xorg naming.
+no
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-n450/conf/machine/n450.conf |    6 +++---
- 1 files changed, 3 insertions(+), 3 deletions(-)
+>
+> Are you looking at creating mass-market products and saving a few
+> pennies on the flash storage translates to real money, so you want to
+> minimize the physical size?
 
-diff --git a/meta-n450/conf/machine/n450.conf b/meta-n450/conf/machine/n450.conf
-index 79970d1..ed9850a 100644
---- a/meta-n450/conf/machine/n450.conf
-+++ b/meta-n450/conf/machine/n450.conf
-@@ -15,9 +15,9 @@ PREFERRED_VERSION_linux-yocto = "3.0%"
- PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
--PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xf86-dri-lite"
--PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xf86-dri-lite"
--XSERVER ?= "xserver-xf86-dri-lite \
-+PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
-+PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xorg"
-+XSERVER ?= "xserver-xorg \
-            xf86-input-mouse \
-            xf86-input-keyboard \
-            xf86-input-evdev \
--- 
-1.7.0.4
+no
 
+>
+> Are you concerned with boot time, and have connected larger image sizes
+> with longer boot times?
+
+I am concerned with boot time, but don't believe it is image size that 
+ramps it up.
+
+>
+> Is there another motivating factor for your interest in small images?
+
+Yes, a smaller system which is easier to check, build and maintain. In 
+my office I am the leading driver for using linux in a team of 3 (two 
+software, one fpga developer) so the less time I spend building, 
+rebuilding and checking features I don't need, to ensure they don't 
+comprimise the stability of the system, the more faith they have in the 
+system I'm putting forward.
+
+>
+> Thanks,
+>
 
