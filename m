@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81BD1E013BA
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2011 21:09:12 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 13 Oct 2011 21:09:12 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 290BFE013BD
+	for <yocto@yoctoproject.org>; Thu, 13 Oct 2011 21:09:14 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 13 Oct 2011 21:09:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,344,1315206000"; d="scan'208";a="77985582"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="62839558"
 Received: from unknown (HELO localhost) ([10.255.14.245])
-	by fmsmga002.fm.intel.com with ESMTP; 13 Oct 2011 21:09:11 -0700
+	by orsmga001.jf.intel.com with ESMTP; 13 Oct 2011 21:09:13 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Thu, 13 Oct 2011 23:08:44 -0500
-Message-Id: <ec77b598cad5c0d58825188f96345fc1994a7852.1318564650.git.tom.zanussi@intel.com>
+Date: Thu, 13 Oct 2011 23:08:45 -0500
+Message-Id: <ca389f06ceaea872f33bbfd94000ed4d179262ac.1318564650.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <0fb53ad3e4b7ec6e21823fb1848636af057f6e73.1318564650.git.tom.zanussi@intel.com>
 References: <0fb53ad3e4b7ec6e21823fb1848636af057f6e73.1318564650.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1318564650.git.tom.zanussi@intel.com>
 References: <cover.1318564650.git.tom.zanussi@intel.com>
-Subject: [PATCH 07/10] meta-jasperforest: remove meta-intel/common from BBFILES
+Subject: [PATCH 08/10] meta-jasperforest: xserver-xorg renaming updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,33 +29,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Oct 2011 04:09:12 -0000
+X-List-Received-Date: Fri, 14 Oct 2011 04:09:14 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-There's nothing in meta-intel/common used by jasperforest any longer,
-and is too broad anyway, so remove it from BBFILES.
+Update jasperforest to reflect the new xserver-xorg naming.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-jasperforest/conf/layer.conf |    4 +---
- 1 files changed, 1 insertions(+), 3 deletions(-)
+ meta-jasperforest/conf/machine/jasperforest.conf |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-jasperforest/conf/layer.conf b/meta-jasperforest/conf/layer.conf
-index 8125659..bfd7fc3 100644
---- a/meta-jasperforest/conf/layer.conf
-+++ b/meta-jasperforest/conf/layer.conf
-@@ -3,9 +3,7 @@ BBPATH := "${BBPATH}:${LAYERDIR}"
- 
- # We have a recipes directory, add to BBFILES
- BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
--	${LAYERDIR}/recipes-*/*/*.bbappend \
--	${LAYERDIR}/../common/recipes-*/*/*.bb \
--	${LAYERDIR}/../common/recipes-*/*/*.bbappend"
-+	${LAYERDIR}/recipes-*/*/*.bbappend"
- 
- BBFILE_COLLECTIONS += "jasperforest"
- BBFILE_PATTERN_jasperforest := "^${LAYERDIR}/"
+diff --git a/meta-jasperforest/conf/machine/jasperforest.conf b/meta-jasperforest/conf/machine/jasperforest.conf
+index 9fdb968..f117860 100644
+--- a/meta-jasperforest/conf/machine/jasperforest.conf
++++ b/meta-jasperforest/conf/machine/jasperforest.conf
+@@ -17,9 +17,9 @@ PREFERRED_VERSION_linux-yocto ?= "3.0%"
+ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
+ PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
+ PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
+-PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xf86-dri-lite"
+-PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xf86-dri-lite"
+-XSERVER ?= "xserver-xf86-dri-lite \
++PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
++PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xorg"
++XSERVER ?= "xserver-xorg \
+            xf86-input-mouse \
+            xf86-input-keyboard \
+            xf86-input-evdev \
 -- 
 1.7.0.4
 
