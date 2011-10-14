@@ -1,35 +1,29 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 625C1E01327
-	for <yocto@yoctoproject.org>; Fri, 14 Oct 2011 00:18:26 -0700 (PDT)
-Received: from durham.keylevel.com ([109.224.134.115]:36406
-	helo=MacBook-Pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1REc28-0001aF-PB
-	for yocto@yoctoproject.org; Fri, 14 Oct 2011 08:18:20 +0100
-Message-Id: <6660D129-DDBB-4EC7-B99D-2EB728D1A00E@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: yocto@yoctoproject.org
-In-Reply-To: <CAMKF1sqBeaNSGNzGK=vqr9aVG9KOq60YxuqZ1QAXaib0Wua_NA@mail.gmail.com>
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Fri, 14 Oct 2011 08:18:18 +0100
-References: <D03B2E35-B463-4120-8B97-D52C736B7D56@keylevel.com>
-	<CAMKF1sqBeaNSGNzGK=vqr9aVG9KOq60YxuqZ1QAXaib0Wua_NA@mail.gmail.com>
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Re: Adding mp3 support to gstreamer
+Return-Path: <niqingliang@insigma.com.cn>
+Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A22A9E013B2
+	for <yocto@yoctoproject.org>; Fri, 14 Oct 2011 02:02:56 -0700 (PDT)
+Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
+	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
+	Fri, 14 Oct 2011 17:02:35 +0800
+Received: from [192.168.0.98] (122.224.76.38) by WX-ExchMB.insigma.com.cn
+	(10.0.1.203) with Microsoft SMTP Server id 8.1.240.5; Fri, 14 Oct 2011
+	17:02:33 +0800
+From: Ni Qingliang <niqingliang@insigma.com.cn>
+To: Mark Hatle <mark.hatle@windriver.com>
+Date: Fri, 14 Oct 2011 17:02:08 +0800
+In-Reply-To: <4E970517.9080207@windriver.com>
+References: <1318498649.1352.11.camel@localhost.localdomain>
+	<4E970517.9080207@windriver.com>
+Organization: Insigma
+X-Mailer: Evolution 3.0.3 
+Message-ID: <1318582928.1352.25.camel@localhost.localdomain>
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: about symbol link of library
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: niqingliang@insigma.com.cn
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -38,48 +32,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Oct 2011 07:18:27 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
+X-List-Received-Date: Fri, 14 Oct 2011 09:02:59 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 14 Oct 2011, at 01:26, Khem Raj wrote:
+thanks! It looks like OK now.
 
-> On Thu, Oct 13, 2011 at 4:36 PM, Chris Tapp  
-> <opensource@keylevel.com> wrote:
->> I'm trying to add mp3 support to gstreamer.
->>
->> I've got a task that RDEPENDS on gst-meta-audio. The image produced  
->> includes
->> gstreamer, as expected.
->>
->> However, there is no mp3 decoder included. I've tried setting:
->>
->> COMMERCIAL_AUDIO_PLUGINS = "gst-plugins-ugly-mad", but there was  
->> still no
->> mp3 support.
->>
->> I then tried adding an RDEPENDS on gst-ffmpeg. gst-inspect -b  
->> showed this as
->> 'blacklisted'.
->>
->> So, I then tried gst-fluendo-mp3, but I get a "nothing provides"  
->> error at
->> build time.
->>
->> What do I need to do to get mp3 decoding added to the image?
->
-> what does COMMERCIAL_LICENSE has in it ?
-> You might want to see that package is part of this variable or not
+the libx package contain symlink libx.so now.
 
-bitbake -e reports:
+On Thu, 2011-10-13 at 23:34 +0800, Mark Hatle wrote:
+> On 10/13/11 4:37 AM, Ni Qingliang wrote:
+> > hello all.
+> >
+> > I have added 2 packages, one is lib, and the other is bin.
+> >
+> > the lib will generate 2 files:
+> >       libx.so.1.0.1
+> >       libx.so -> libx.so.1.0.1
+> > the latter linked to the other one.
+> >
+> > the bin package will link to the libx.so.
+> >
+> > compile/install are all OK, but when populate rootfs, I got error:
+> > error: Failed dependencies:
+> > |     libx.so is needed by bin......
+> 
+> I suspect your libx.so.1.0.1 is missing an SONAME.  One should be added to it
+> that matches the filename of the "real" library.  (It's possible that it has an
+> soname already, it just doesn't match the filename.)
+> 
+> Once that is done, then the dynamic linker should be able to find it w/o the
+> libx.so link.
+> 
+> (The links should only ever be used for development.  This is a somewhat common
+> bug, and a good way to find these problems.)
+> 
+> I'd also suggest we add a sanity check for this condition, so it will be easier
+> for people to identify in the future.
+> 
+> --Mark
+> 
+> > after checked the rpm, the libx.so is located in libx-dev, but not in
+> > libx.
+> >
+> > what is the right way to resolve this problem?
+> >
+> >
+> >
+> >
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-COMMERCIAL_LICENSE="lame gst-fluendo-mp3 libmad mpeg2dec ffmpeg qmmp"
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
+-- 
+Yi Qingliang
+niqingliang@insigma.com.cn
+http://niqingliang2003.wordpress.com
 
 
 
