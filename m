@@ -1,23 +1,32 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46476E013BF
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2011 21:09:18 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 13 Oct 2011 21:09:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,343,1315206000"; d="scan'208";a="62468317"
-Received: from unknown (HELO localhost) ([10.255.14.245])
-	by azsmga001.ch.intel.com with ESMTP; 13 Oct 2011 21:09:17 -0700
-From: tom.zanussi@intel.com
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 625C1E01327
+	for <yocto@yoctoproject.org>; Fri, 14 Oct 2011 00:18:26 -0700 (PDT)
+Received: from durham.keylevel.com ([109.224.134.115]:36406
+	helo=MacBook-Pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1REc28-0001aF-PB
+	for yocto@yoctoproject.org; Fri, 14 Oct 2011 08:18:20 +0100
+Message-Id: <6660D129-DDBB-4EC7-B99D-2EB728D1A00E@keylevel.com>
+From: Chris Tapp <opensource@keylevel.com>
 To: yocto@yoctoproject.org
-Date: Thu, 13 Oct 2011 23:08:47 -0500
-Message-Id: <8811a97832e112383a4a811d6b9a7d75a68f1f67.1318564650.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <0fb53ad3e4b7ec6e21823fb1848636af057f6e73.1318564650.git.tom.zanussi@intel.com>
-References: <0fb53ad3e4b7ec6e21823fb1848636af057f6e73.1318564650.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1318564650.git.tom.zanussi@intel.com>
-References: <cover.1318564650.git.tom.zanussi@intel.com>
-Subject: [PATCH 10/10] meta-n450: xserver-xorg renaming updates
+In-Reply-To: <CAMKF1sqBeaNSGNzGK=vqr9aVG9KOq60YxuqZ1QAXaib0Wua_NA@mail.gmail.com>
+Mime-Version: 1.0 (Apple Message framework v936)
+Date: Fri, 14 Oct 2011 08:18:18 +0100
+References: <D03B2E35-B463-4120-8B97-D52C736B7D56@keylevel.com>
+	<CAMKF1sqBeaNSGNzGK=vqr9aVG9KOq60YxuqZ1QAXaib0Wua_NA@mail.gmail.com>
+X-Mailer: Apple Mail (2.936)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Re: Adding mp3 support to gstreamer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,35 +38,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Oct 2011 04:09:18 -0000
+X-List-Received-Date: Fri, 14 Oct 2011 07:18:27 -0000
+Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On 14 Oct 2011, at 01:26, Khem Raj wrote:
 
-Update n450 to reflect the new xserver-xorg naming.
+> On Thu, Oct 13, 2011 at 4:36 PM, Chris Tapp  
+> <opensource@keylevel.com> wrote:
+>> I'm trying to add mp3 support to gstreamer.
+>>
+>> I've got a task that RDEPENDS on gst-meta-audio. The image produced  
+>> includes
+>> gstreamer, as expected.
+>>
+>> However, there is no mp3 decoder included. I've tried setting:
+>>
+>> COMMERCIAL_AUDIO_PLUGINS = "gst-plugins-ugly-mad", but there was  
+>> still no
+>> mp3 support.
+>>
+>> I then tried adding an RDEPENDS on gst-ffmpeg. gst-inspect -b  
+>> showed this as
+>> 'blacklisted'.
+>>
+>> So, I then tried gst-fluendo-mp3, but I get a "nothing provides"  
+>> error at
+>> build time.
+>>
+>> What do I need to do to get mp3 decoding added to the image?
+>
+> what does COMMERCIAL_LICENSE has in it ?
+> You might want to see that package is part of this variable or not
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-n450/conf/machine/n450.conf |    6 +++---
- 1 files changed, 3 insertions(+), 3 deletions(-)
+bitbake -e reports:
 
-diff --git a/meta-n450/conf/machine/n450.conf b/meta-n450/conf/machine/n450.conf
-index 79970d1..ed9850a 100644
---- a/meta-n450/conf/machine/n450.conf
-+++ b/meta-n450/conf/machine/n450.conf
-@@ -15,9 +15,9 @@ PREFERRED_VERSION_linux-yocto = "3.0%"
- PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
--PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xf86-dri-lite"
--PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xf86-dri-lite"
--XSERVER ?= "xserver-xf86-dri-lite \
-+PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
-+PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xorg"
-+XSERVER ?= "xserver-xorg \
-            xf86-input-mouse \
-            xf86-input-keyboard \
-            xf86-input-evdev \
--- 
-1.7.0.4
+COMMERCIAL_LICENSE="lame gst-fluendo-mp3 libmad mpeg2dec ffmpeg qmmp"
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
 
 
