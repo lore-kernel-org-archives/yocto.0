@@ -1,29 +1,28 @@
-Return-Path: <niqingliang@insigma.com.cn>
-Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A22A9E013B2
-	for <yocto@yoctoproject.org>; Fri, 14 Oct 2011 02:02:56 -0700 (PDT)
-Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
-	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
-	Fri, 14 Oct 2011 17:02:35 +0800
-Received: from [192.168.0.98] (122.224.76.38) by WX-ExchMB.insigma.com.cn
-	(10.0.1.203) with Microsoft SMTP Server id 8.1.240.5; Fri, 14 Oct 2011
-	17:02:33 +0800
-From: Ni Qingliang <niqingliang@insigma.com.cn>
-To: Mark Hatle <mark.hatle@windriver.com>
-Date: Fri, 14 Oct 2011 17:02:08 +0800
-In-Reply-To: <4E970517.9080207@windriver.com>
-References: <1318498649.1352.11.camel@localhost.localdomain>
-	<4E970517.9080207@windriver.com>
-Organization: Insigma
-X-Mailer: Evolution 3.0.3 
-Message-ID: <1318582928.1352.25.camel@localhost.localdomain>
+Return-Path: <josh@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E608E01327
+	for <yocto@yoctoproject.org>; Fri, 14 Oct 2011 09:17:40 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 14 Oct 2011 09:17:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="63011239"
+Received: from unknown (HELO [10.255.15.133]) ([10.255.15.133])
+	by orsmga001.jf.intel.com with ESMTP; 14 Oct 2011 09:17:39 -0700
+Message-ID: <4E9860A3.1070107@linux.intel.com>
+Date: Fri, 14 Oct 2011 09:17:39 -0700
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0.1) Gecko/20110930 Thunderbird/7.0.1
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: about symbol link of library
+To: yocto@yoctoproject.org
+References: <D03B2E35-B463-4120-8B97-D52C736B7D56@keylevel.com>
+	<CAMKF1sqBeaNSGNzGK=vqr9aVG9KOq60YxuqZ1QAXaib0Wua_NA@mail.gmail.com>
+	<6660D129-DDBB-4EC7-B99D-2EB728D1A00E@keylevel.com>
+In-Reply-To: <6660D129-DDBB-4EC7-B99D-2EB728D1A00E@keylevel.com>
+Subject: Re: Adding mp3 support to gstreamer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: niqingliang@insigma.com.cn
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -32,64 +31,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Oct 2011 09:02:59 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 14 Oct 2011 16:17:40 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-thanks! It looks like OK now.
+On 10/14/2011 12:18 AM, Chris Tapp wrote:
+> On 14 Oct 2011, at 01:26, Khem Raj wrote:
+> 
+>> On Thu, Oct 13, 2011 at 4:36 PM, Chris Tapp <opensource@keylevel.com>
+>> wrote:
+>>> I'm trying to add mp3 support to gstreamer.
+>>>
+>>> I've got a task that RDEPENDS on gst-meta-audio. The image produced
+>>> includes
+>>> gstreamer, as expected.
+>>>
+>>> However, there is no mp3 decoder included. I've tried setting:
+>>>
+>>> COMMERCIAL_AUDIO_PLUGINS = "gst-plugins-ugly-mad", but there was
+>>> still no
+>>> mp3 support.
+>>>
+>>> I then tried adding an RDEPENDS on gst-ffmpeg. gst-inspect -b showed
+>>> this as
+>>> 'blacklisted'.
+>>>
+>>> So, I then tried gst-fluendo-mp3, but I get a "nothing provides"
+>>> error at
+>>> build time.
+>>>
+>>> What do I need to do to get mp3 decoding added to the image?
+>>
+>> what does COMMERCIAL_LICENSE has in it ?
+>> You might want to see that package is part of this variable or not
+> 
+> bitbake -e reports:
+> 
+> COMMERCIAL_LICENSE="lame gst-fluendo-mp3 libmad mpeg2dec ffmpeg qmmp"
 
-the libx package contain symlink libx.so now.
+Right, I'm struggling to find documentation further than what's in the
+code[1] and bugzilla[2] (there's probably stuff in the mail archives
+too) but, COMMERCIAL_LICENSE is a blacklist - so you have to remove
+items from that list to acknowledge that there are likely commercial
+implications of using those recipes.
 
-On Thu, 2011-10-13 at 23:34 +0800, Mark Hatle wrote:
-> On 10/13/11 4:37 AM, Ni Qingliang wrote:
-> > hello all.
-> >
-> > I have added 2 packages, one is lib, and the other is bin.
-> >
-> > the lib will generate 2 files:
-> >       libx.so.1.0.1
-> >       libx.so -> libx.so.1.0.1
-> > the latter linked to the other one.
-> >
-> > the bin package will link to the libx.so.
-> >
-> > compile/install are all OK, but when populate rootfs, I got error:
-> > error: Failed dependencies:
-> > |     libx.so is needed by bin......
-> 
-> I suspect your libx.so.1.0.1 is missing an SONAME.  One should be added to it
-> that matches the filename of the "real" library.  (It's possible that it has an
-> soname already, it just doesn't match the filename.)
-> 
-> Once that is done, then the dynamic linker should be able to find it w/o the
-> libx.so link.
-> 
-> (The links should only ever be used for development.  This is a somewhat common
-> bug, and a good way to find these problems.)
-> 
-> I'd also suggest we add a sanity check for this condition, so it will be easier
-> for people to identify in the future.
-> 
-> --Mark
-> 
-> > after checked the rpm, the libx.so is located in libx-dev, but not in
-> > libx.
-> >
-> > what is the right way to resolve this problem?
-> >
-> >
-> >
-> >
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Furthermore, there are white lists of permitted commercially licensed
+packages, to which you need to add the output of COMMERCIAL_LICENSE
+recipes that you want to include in images (by way of appending them to
+default installation targets in various recipes).
 
+COMMERCIAL_AUDIO_PLUGINS, COMMERCIAL_VIDEO_PLUGINS, and COMMERCIAL_QT
+
+Hope this helps,
+
+Joshua
+
+1.
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/conf/distro/include/default-distrovars.inc#n29
+2. http://bugzilla.pokylinux.org/show_bug.cgi?id=576
 -- 
-Yi Qingliang
-niqingliang@insigma.com.cn
-http://niqingliang2003.wordpress.com
-
-
+Joshua Lock
+        Yocto Project "Johannes factotum"
+        Intel Open Source Technology Centre
 
