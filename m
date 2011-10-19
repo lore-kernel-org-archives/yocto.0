@@ -1,35 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-gx0-f176.google.com (mail-gx0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE69CE00B11
-	for <yocto@yoctoproject.org>; Wed, 19 Oct 2011 08:00:02 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by ggnr1 with SMTP id r1so1053654ggn.35
-	for <yocto@yoctoproject.org>; Wed, 19 Oct 2011 08:00:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=ATcS5E9jRV4PhGeFx0Lyf5KT0QKJIv6GbJt/tKp3NX0=;
-	b=cfaG7SdKhTZ20PmQzIGCLxf6REw/exR5oiicn5appQzYSsjm9crZvariMw1VsU7Ciq
-	aIyGB6HzzVJ6oQEz12OQRLujhrpdy8tWdOxsb00lAv9DT5sKbvvAMhch1UU0rHmZUAP3
-	yIvfM+eX/xsWT/tq8VjyRpBXpqCqDPtTfvJQ8=
-Received: by 10.68.30.65 with SMTP id q1mr13123493pbh.91.1319036401095;
-	Wed, 19 Oct 2011 08:00:01 -0700 (PDT)
-Received: from [192.168.1.70] (99-57-141-118.lightspeed.sntcca.sbcglobal.net.
-	[99.57.141.118])
-	by mx.google.com with ESMTPS id z3sm8192757pbu.7.2011.10.19.07.59.58
-	(version=SSLv3 cipher=OTHER); Wed, 19 Oct 2011 07:59:58 -0700 (PDT)
-Message-ID: <4E9EE5E8.50400@gmail.com>
-Date: Wed, 19 Oct 2011 07:59:52 -0700
-From: Khem Raj <raj.khem@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1;
-	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
+Return-Path: <wmills@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2F4EE004E9
+	for <yocto@yoctoproject.org>; Wed, 19 Oct 2011 08:49:15 -0700 (PDT)
+Received: from dlep36.itg.ti.com ([157.170.170.91])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id p9JFnAiv001069
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 19 Oct 2011 10:49:11 -0500
+Received: from dlep26.itg.ti.com (smtp-le.itg.ti.com [157.170.170.27])
+	by dlep36.itg.ti.com (8.13.8/8.13.8) with ESMTP id p9JFnAuD006740;
+	Wed, 19 Oct 2011 10:49:10 -0500 (CDT)
+Received: from DFLE70.ent.ti.com (localhost [127.0.0.1])
+	by dlep26.itg.ti.com (8.13.8/8.13.8) with ESMTP id p9JFnAoW022241;
+	Wed, 19 Oct 2011 10:49:10 -0500 (CDT)
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle70.ent.ti.com
+	(128.247.5.40) with Microsoft SMTP Server id 14.1.323.3;
+	Wed, 19 Oct 2011 10:49:10 -0500
+Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
+	[158.218.100.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	p9JFn9at004935;	Wed, 19 Oct 2011 10:49:10 -0500
+Message-ID: <4E9EF175.1050605@ti.com>
+Date: Wed, 19 Oct 2011 11:49:09 -0400
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
+To: Rainer Koenig <Rainer.Koenig@ts.fujitsu.com>
 References: <4E9EC5ED.6050503@ts.fujitsu.com>
 In-Reply-To: <4E9EC5ED.6050503@ts.fujitsu.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Questions from a greenhorn about build problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,11 +40,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Oct 2011 15:00:03 -0000
-Content-Type: text/plain; charset=ISO-8859-15; format=flowed
+X-List-Received-Date: Wed, 19 Oct 2011 15:49:16 -0000
+Content-Type: text/plain; charset="ISO-8859-15"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/19/2011 5:43 AM, Rainer Koenig wrote:
+
+
+On 10/19/2011 08:43 AM, Rainer Koenig wrote:
 > Hi all,
 >
 > I'm using yoctoproject since one week now and got the latest
@@ -64,6 +64,38 @@ On 10/19/2011 5:43 AM, Rainer Koenig wrote:
 > and looked a bit around in that. conf/machine shows a conf for
 > c6a814x-evm so I replaced the machine "beagleboard" with "c6a814x-evm"
 > in my local conf.
+
+Rainer:
+
+I think your probably running a bit ahead of us.
+
+Keep in mind that at this point meta-texasinstruments has not been 
+tested with the poky layer stack.  It is a work in progress and is being 
+tested with a layer stack that includes oe-core + meta-oe + meta-angstrom.
+
+It is certainly in scope for meta-ti (new name) to work w/ a stock poky 
+release or snapshot, were just not verified that yet.  As of now our 
+plan includes building and testing the following layer combinations:
+
+oe-core + meta-ti
+oe-core + meta-ti + meta-openembedded + meta-angstrom
+poky + meta-ti
+oe-core + meta-ti + meta-openembedded + meta-arago <= TI SDKs
+
+[layer names and order not to scale]
+
+We will keep a mirror of meta-ti active at the angstrom URL are using so 
+no worries.  We are also working to publish a mirror on yoctoproject.org.
+
+I would encourage you to subscribe to our brand spanking new meta-ti 
+mailing list to discuss, monitor and prod.
+
+https://lists.yoctoproject.org/listinfo/
+
+I don't think any of this explains why you are having proxy issues and 
+we will let the rest of the thread play out for that.  I just wanted to 
+set your expectations.
+
 >
 > I started `bitbake -k core-image-sato` and after builing around 4100 of
 > the 4221 recipes I got an error on a kernel tree from the arago-project
@@ -91,15 +123,7 @@ On 10/19/2011 5:43 AM, Rainer Koenig wrote:
 > build process is working on the machine/script level and why are the
 > recipes from yocto behaving different than to the ones that I imported
 > with the meta-texasinstruments layer?
-
-they should not behave differently but since kernels and uboot are 
-machine specific they will be different and might have fetching problems
-
-Read through meta/conf/site.conf.sample there it lists how to use SOCKS
-
-
 >
 > Best regards
 > Rainer
-
 
