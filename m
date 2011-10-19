@@ -1,20 +1,47 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96654E004E9
-	for <yocto@yoctoproject.org>; Tue, 18 Oct 2011 12:38:04 -0700 (PDT)
-Received: from mail-qw0-f52.google.com ([209.85.216.52])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 18 Oct 2011 12:38:04 -0700
-Received: by qaea17 with SMTP id a17so1493242qae.25
-	for <yocto@yoctoproject.org>; Tue, 18 Oct 2011 12:38:03 -0700 (PDT)
+Return-Path: <Rainer.Koenig@ts.fujitsu.com>
+Received: from dgate20.ts.fujitsu.com (dgate20.ts.fujitsu.com [80.70.172.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D407DE005A1
+	for <yocto@yoctoproject.org>; Wed, 19 Oct 2011 05:43:27 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1536-bit key; insecure key) header.i=Rainer.Koenig@ts.fujitsu.com;
+	x-dkim-adsp=none (insecure policy)
+DomainKey-Signature: s=s1536a; d=ts.fujitsu.com; c=nofws; q=dns;
+	h=X-SBRSScore:X-IronPort-AV:Received:X-IronPort-AV:
+	Received:Message-ID:Date:From:User-Agent:MIME-Version:To:
+	Subject:X-Enigmail-Version:Content-Type:
+	Content-Transfer-Encoding;
+	b=NH6X/bGjwuO5/rcPSn+bIZ+JVhk5Boaf5plZKs9qPL+ZiXzfPjPBYZSl
+	9QrLKRmmNV7P9bTsyccyb4A1ZATF5gkh4r0TKTas7cMHXXP639ICYv4mc
+	Ed4ycUPlG/SO9fVpkUbOEj+bYWW5vtMCh0TjkN9WM28Co5pAApKQWkNk9
+	24EXHTbFVaZcv//S0q+yUBLthuBRTXT4VjC1xVpRJn5FcJOAcMX128+Xi
+	KM7LqINaExSdHWAXQL5Bx+exFQ8Zn;
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=ts.fujitsu.com; i=Rainer.Koenig@ts.fujitsu.com;
+	q=dns/txt; s=s1536b; t=1319028208; x=1350564208;
+	h=message-id:date:from:mime-version:to:subject:
+	content-transfer-encoding;
+	bh=qU3tZqb6N+twR8L/cfG93s0v+M5FlP7pn+ACTWQ7eA8=;
+	b=Vu5ECQDOtE1UKZHnM8h7dMWYv3xW6OKbJ4ZNLKBpo1rpgBiEPlN+b1Zl
+	vjUumFSLBrg304+7DoszXbLkPMzUyxeVShV5RR9sc8hXpSO4Z6gC21J1W
+	c8bxKqk2zQYaD47wRjHdDKIBxlozN8Fahng2VDI2xWaZ+t3VF9nErDfnz
+	z+h5xiIqZ+P8xhXTIAuURvTcLSNAOJYLpYI7JaBrtp5KS8N5eKf1duzF4
+	dnGNY8sA8XFMMs4c138D650KiJ8dG;
+X-SBRSScore: None
+X-IronPort-AV: E=Sophos;i="4.69,370,1315173600"; d="scan'208";a="77077090"
+Received: from abgdgate30u.abg.fsc.net ([172.25.138.66])
+	by dgate20u.abg.fsc.net with ESMTP; 19 Oct 2011 14:43:26 +0200
+X-IronPort-AV: E=Sophos;i="4.69,371,1315173600"; d="scan'208";a="121522167"
+Received: from abg3595c.abg.fsc.net (HELO [172.25.145.158]) ([172.25.145.158])
+	by abgdgate30u.abg.fsc.net with ESMTP; 19 Oct 2011 14:43:25 +0200
+Message-ID: <4E9EC5ED.6050503@ts.fujitsu.com>
+Date: Wed, 19 Oct 2011 14:43:25 +0200
+From: Rainer Koenig <Rainer.Koenig@ts.fujitsu.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.1.16) Gecko/20111004 Icedove/3.0.11
 MIME-Version: 1.0
-Received: by 10.229.73.87 with SMTP id p23mr838972qcj.267.1318966683318; Tue,
-	18 Oct 2011 12:38:03 -0700 (PDT)
-Received: by 10.229.237.141 with HTTP; Tue, 18 Oct 2011 12:38:03 -0700 (PDT)
-Date: Tue, 18 Oct 2011 12:38:03 -0700
-Message-ID: <CAPhnLPDxBCkzUDBhnr=7bnieTnT8Y=exhkUakcHP1UE+0ka8mg@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-Subject: Small change to edison release.
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.0.1
+Subject: Questions from a greenhorn about build problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,75 +53,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Oct 2011 19:38:04 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 19 Oct 2011 12:43:29 -0000
+Content-Type: text/plain; charset=ISO-8859-15
+Content-Transfer-Encoding: 8bit
 
-All
+Hi all,
 
-Two small issues I wanted to bring to the communities attention.
+I'm using yoctoproject since one week now and got the latest
+yocto-1.1/edison-6.0 git tree. I have been able to build core-image-sato
+for the Beagleboard xM rev. A and the image works fine.
 
-First, we found a small issue with the edison tarball this morning in
-how it was packaged that caused an inconsistency with what was
-documented. I've fixed this issue  in the tarball. The tarball now
-extracts to poky-edison-6.0 as is referenced in the quick start guide.
-The new md5sum of this tarball is: 49a4c748aac1ab40d22834d54c84510a.
-The edison-6.0.md5sum file has been updated to reflect this change and
-resigned with the yocto release gpg key.
+Now my next goal is to build an image for the TI 8148 EVM board. Since
+Yocto is based on OE-core I thought it was a good idea to get the
+meta-texasinstruments layer that is listed in the OE wiki:
+http://www.openembedded.org/wiki/LayerIndex
 
-The second issue I found late last night while verifying the release.
-I had included older md5sums in the release announcement. I've
-corrected these on the release webpage:
+So I cloned my git tree for meta-texasinstruments from
+git://git.angstrom-distribution.org/meta-texasinstruments
 
-    * poky
-      - Git location: git://git.yoctoproject.org/poky.git
-      - Git branch: edison
-      - Git tag: edison-6.0
-      - Git rev: 1924f52cc894d4dd6b9d9c1a2248b32fc0a24c8c
-      - Download:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/poky-edison-6.0.tar.bz2
-      - Mirror:
-http://mirrors.kernel.org/yocto/yocto/yocto-1.1/poky-edison-6.0.tar.bz2
-      - md5sum: 49a4c748aac1ab40d22834d54c84510a
-    * meta-qt3
-      - Git location: git://git.yoctoproject.org/meta-qt3.git
-      - Git branch: edison
-      - Git tag: edison-6.0
-      - Git rev: 0e9784d26df51bd564b8f23bd40a6c36969abd5c
-      - Download Links:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/meta-qt3-edison-6.0.tar.bz2
-      - Mirror:
-http://mirrors.kernel.org/yocto/yocto/yocto-1.1/meta-qt3-edison-6.0.tar.bz2
-      - md5sum: 72487d69975fa5f2b70adaddbd6f3f77
-    * meta-x32
-      - Git location: git://git.yoctoproject.org/experimental/meta-x32.git
-      - Git branch: edison
-      - Git tag: edison-6.0
-      - Git rev: 78a8f65718b7ad7c93103a82026575687271cf5d
-      - Download Links:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/meta-x32-edison-6.0.tar.bz2
-      - Mirror:
-http://mirrors.kernel.org/yocto/yocto/yocto-1.1/meta-x32-edison-6.0.tar.bz2
-      - md5sum: 6feac672080c471774e64d3b7474d35e
-    * eclipse-poky
-      - Git location: git://git.yoctoproject.org/experimental/eclipse-poky.git
-      - Git branch: edison
-      - Git tag: edison-6.0
-      - Git rev: 63bad411b63fe2913ac7dff44e1e8b03ee4f8505
-      - Download Links:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/eclipse-poky-edison-6.0.tar.bz2
-      - Mirror:
-http://mirrors.kernel.org/yocto/yocto/yocto-1.1/eclipse-poky-edison-6.0.tar.bz2
-      - md5sum: a91b2abf7fe42c07f7d2974faf93f286
+and looked a bit around in that. conf/machine shows a conf for
+c6a814x-evm so I replaced the machine "beagleboard" with "c6a814x-evm"
+in my local conf.
 
-Please note, the md5 table, edison-6.0.md5sum should always contain
-the correct md5 values and should be used as the md5sum table of
-record. This is a new part of the release process that I've begun
-doing so as to be able to validate that the build artifacts that we
-generate are original and not compromised in any way.
+I started `bitbake -k core-image-sato` and after builing around 4100 of
+the 4221 recipes I got an error on a kernel tree from the arago-project
+and from the u-boot compilation. I guess the second error occurs because
+of the first error, so I had a better look at the first error.
 
+The buildstats for this packet show, that fetch failed. I tried to fetch
+the SRC_URL by hand and it worked without any problem. Note: I'm behind
+a firewall, so to clone git://... I need to go over a SOCKS proxy.
+Therefore I created an /etc/gitconfig that works fine and the downloads
+show, that lots of git-repos from the yocto recipes worked without any
+probem, but now those from the meta-texasinstruments layer seem not to
+work. I tried a bit around with bitbake -b -D and saw long commandlines
+with lots of export before.
 
+It exports a GIT_CONFIG which points to
+poky/tmp/sysroots/x86_64linux/usr/etc/gitconfig.
+
+First I replaced this gitconfig with my own gitconfig from /etc, but
+that didn't work. Looking at the file structure there it seems that
+../sysroots/x86_64linux/ is chroot'ed somehow so I put gitconfig under
+that chroot's /etc and now it seems that fetch is working.
+
+So stupid question: Is there a documentation that explains how that
+build process is working on the machine/script level and why are the
+recipes from yocto behaving different than to the ones that I imported
+with the meta-texasinstruments layer?
+
+Best regards
+Rainer
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Dipl.-Inf. (FH) Rainer Koenig
+Project Manager Linux Clients
+Dept. PDG WPS R&D SW OSE
+
+Fujitsu Technology Solutions
+Bürgermeister-Ullrich-Str. 100
+86199 Augsburg
+Germany
+
+Telephone: +49-821-804-3321
+Telefax:   +49-821-804-2131
+Mail:      mailto:Rainer.Koenig@ts.fujitsu.com
+
+Internet         ts.fujtsu.com
+Company Details  ts.fujitsu.com/imprint.html
 
