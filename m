@@ -1,20 +1,31 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52ADAE01341
-	for <yocto@yoctoproject.org>; Thu, 20 Oct 2011 10:47:14 -0700 (PDT)
-Received: from webmail.embed.me.uk (localhost.localdomain [127.0.0.1])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 21D152384E
-	for <yocto@yoctoproject.org>; Thu, 20 Oct 2011 17:11:41 +0100 (BST)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-gy0-f176.google.com (mail-gy0-f176.google.com
+	[209.85.160.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2B37E01341
+	for <yocto@yoctoproject.org>; Thu, 20 Oct 2011 14:10:54 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by gyh3 with SMTP id 3so4391225gyh.35
+	for <yocto@yoctoproject.org>; Thu, 20 Oct 2011 14:10:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=jiYH2dVgMc0ce4YDsYX1mE/4t9J8QCl8dSctAzGsEkI=;
+	b=HcecPH4j6Ga2f/XHD3EDYwIahtYnYo/7G25SJFFR+Rg5Nv7yP6OsOgDPalcbbDudW8
+	6BhNL0f/1b+F8cIbMNq/6XvPgNfzjaBktHR9KEmYW0MCpbrHfXWfCjvBnbXZRqf9xnUr
+	tN4pW2laqnlcQ1VO9q/iNGbrDBeca1/1BBexA=
+Received: by 10.68.17.193 with SMTP id q1mr22273361pbd.98.1319145053059; Thu,
+	20 Oct 2011 14:10:53 -0700 (PDT)
 MIME-Version: 1.0
-Date: Thu, 20 Oct 2011 17:11:41 +0100
-From: ml@communistcode.co.uk
-To: <yocto@yoctoproject.org>
-In-Reply-To: <4EA0488E.5080009@mlbassoc.com>
+Received: by 10.68.48.230 with HTTP; Thu, 20 Oct 2011 14:10:23 -0700 (PDT)
+In-Reply-To: <4EA025EF.8020008@communistcode.co.uk>
 References: <4EA025EF.8020008@communistcode.co.uk>
-	<4EA0488E.5080009@mlbassoc.com>
-Message-ID: <eb824c620876338564cc1460f7ccb9f1@communistcode.co.uk>
-X-Sender: ml@communistcode.co.uk
-User-Agent: Roundcube Webmail/0.6
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 20 Oct 2011 14:10:23 -0700
+Message-ID: <CAMKF1spiM4Hrz=GWBK=MF3JHhKkLy55vX8HKsu3cFdo7+P9d7A@mail.gmail.com>
+To: Jack Mitchell <ml@communistcode.co.uk>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Sysprof build error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -27,47 +38,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Oct 2011 17:47:21 -0000
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 20 Oct 2011 21:10:55 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 20.10.2011 17:13, Gary Thomas wrote:
-> On 2011-10-20 07:45, Jack Mitchell wrote:
->> I have been sucessfully compiling using the git master branch of 
->> poky for the past month or so. I switched branches to Edison yesterday 
->> so I would be working with the stable branch
->> instead and now I cannot compile my build.
->>
->> I am currently getting errors with sysprof, however if I clean the 
->> shared state of sysprof I then get errors with Avahi, so I then clean 
->> shared state of Avahi and it goes back to
->> sysprof errors. Anyway, my error log is as shown below:
->>
->> http://pastebin.com/j5vf6wzj
->>
->> I have tried cleaning and recompiling glib-2.0 due to this error:
->>
->> | 
->> mnt/yocto/poky/qemuarm-toolchain/tmp/sysroots/qemuarm/usr/lib/libgtk-x11-2.0.so: 
->> undefined reference to `g_datalist_get_data'
->>
->> Which I believe is glib related, however this might not be the 
->> fundamental error?
->>
->> Anyway, any help would be appreciated!
+On Thu, Oct 20, 2011 at 6:45 AM, Jack Mitchell <ml@communistcode.co.uk> wrote:
+> I have tried cleaning and recompiling glib-2.0 due to this error:
 >
-> Did you try a totally clean build?
+> |
+> mnt/yocto/poky/qemuarm-toolchain/tmp/sysroots/qemuarm/usr/lib/libgtk-x11-2.0.so:
+> undefined reference to `g_datalist_get_data'
+>
+> Which I believe is glib related, however this might not be the fundamental
+> error?
+>
 
-I have left a full clean build to run overnight, it ran into race 
-condition early on which was overcome by setting it going a second time 
-and it was still running about 2/3 complete when I left work. I will 
-update tomorrow.
-
-I am building the core-image-rt-sdk with dropbear, lighttpd and php, I 
-believe the race condition is something to do with the error that I 
-receive at the start stating that two kernels have been defined a non-rt 
-and the rt - this might be something someone wants to check on?
-
-
+This means you need to rebuild glib-2.0 along with libgtk-x11
+bitbake -ccleansstate glib-2.0
+bitbake sysprof
 
