@@ -1,57 +1,33 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2BB3E011AC;
-	Mon, 24 Oct 2011 10:18:08 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 24 Oct 2011 10:18:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,399,1315206000"; d="scan'208,217";a="76908287"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga001.fm.intel.com with ESMTP; 24 Oct 2011 10:18:07 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 24 Oct 2011 10:18:07 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.14]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.179]) with mapi id
-	14.01.0323.003; Mon, 24 Oct 2011 10:18:06 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "'McCombe, Kevin'" <kevin.mccombe@windriver.com>, "Wold, Saul"
-	<saul.wold@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>,
-	"'deVries, Alex'" <Alex.deVries@windriver.com>, "'Polk, Jeffrey'"
-	<jeff.polk@windriver.com>, "'Hatle, Mark'" <mark.hatle@windriver.com>, 
-	"Purdie, Richard" <richard.purdie@intel.com>, "Li, Susie"
-	<susie.li@intel.com>, "Lock, Joshua" <joshua.lock@intel.com>, 'Bruce
-	Ashfield' <bruce.ashfield@windriver.com>, "Zanussi, Tom"
-	<tom.zanussi@intel.com>, "Hart, Darren" <darren.hart@intel.com>,
-	"Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>, "Stewart, David C"
-	<david.c.stewart@intel.com>, "'Lieu.Ta@windriver.com'"
-	<Lieu.Ta@windriver.com>, "'paul.anderson@windriver.com'"
-	<paul.anderson@windriver.com>, "Osier-mixon, Jeffrey"
-	<jeffrey.osier-mixon@intel.com>, "Dmytriyenko, Denys" <denys@ti.com>,
-	"Kooi, Koen" <k-kooi@ti.com>, "'yocto-ab@yoctoproject.org'"
-	<yocto-ab@yoctoproject.org>, "Erway, Tracey M" <tracey.m.erway@intel.com>, 
-	'Daniel Cauchy' <dcauchy@mvista.com>, "Wang,
-	Shane" <shane.wang@intel.com>, 
-	"'Kridner, Jason'" <jdk@ti.com>, "Yu, Ke" <ke.yu@intel.com>, "Rifenbark,
-	Scott M" <scott.m.rifenbark@intel.com>, "'Dixon, Brad'"
-	<Brad_Dixon@mentor.com>, 'Jeremy Puhlman' <jpuhlman@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"'shsift-yocto@yahoo.com'" <shsift-yocto@yahoo.com>
-Thread-Topic: Yocto Technical Team Meeting
-Thread-Index: AcxcY5uDk1Tqi18nQbuMxWeDHuCfag2DUeuA
-Importance: high
-X-Priority: 1
-Date: Mon, 24 Oct 2011 17:18:05 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F54418@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <scanli@126.com>
+Received: from m15-51.126.com (m15-51.126.com [220.181.15.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18D56E01376
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2011 01:59:41 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@126.com;
+	x-dkim-adsp=none (insecure policy)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Received:Date:From:To:Message-ID:Subject:
+	MIME-Version:Content-Type; bh=bCgPtUI44fsFkMCADAbfZUNniN/T3kOMg3
+	KJGPH6Wx8=; b=EZPcon0LJnzgXnpiFbTN1WovYaj9NMN5iHj4JAWS/DPPGixud9
+	V8nAe6xLnPKyHV9/iHMq9qmXpGeL8maMTBCvIWMAwr8zQkQz6HgCNiUwCSOe+Am7
+	8h8T5VE23FR5KN37eYGjVDb/3yLb2sgtiwxuATLknGSbWUr36+p/QiuFY=
+Received: from scanli ( [61.232.14.94] ) by ajax-webmail-wmsvr51 (Coremail)
+	; Mon, 24 Oct 2011 16:59:34 +0800 (CST)
+Date: Mon, 24 Oct 2011 16:59:34 +0800 (CST)
+From: =?GBK?B?wO698LPJ?= <scanli@126.com>
+To: yocto@yoctoproject.org
+Message-ID: <75936f7e.c207.133352801f7.Coremail.scanli@126.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 24 Oct 2011 22:15:11 -0700
-Cc: "'Ruff, Nithya'" <Nithya.Ruff@windriver.com>,
-	"'morvek@mvista.com'" <morvek@mvista.com>
-Subject: Canceled: Yocto Technical Team Meeting
+X-Originating-IP: [61.232.14.94]
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
+	111010(15198.4106.4075) Copyright (c) 2002-2011 www.mailtech.cn 126com
+X-CM-CTRLDATA: UHqcp2Zvb3Rlcl9odG09Mzg0Ojgx
+X-CM-TRANSID: M8qowECJm0H2KKVOejUFAA--.17795W
+X-CM-SenderInfo: hvfd0zbl6rjloofrz/1tbi7hDidE0vKdrJTQADs+
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+X-Mailman-Approved-At: Mon, 24 Oct 2011 22:15:55 -0700
+Subject: I Need instructional video,Thanks
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,175 +39,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Oct 2011 17:18:09 -0000
-X-Groupsio-MsgNum: 3136
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A16F54418ORSMSX101amrcor_"
+X-List-Received-Date: Mon, 24 Oct 2011 08:59:43 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_133337_1351196150.1319446774263"
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A16F54418ORSMSX101amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+------=_Part_133337_1351196150.1319446774263
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: 7bit
 
-When: Tuesday, October 25, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (U=
-S & Canada).
-Where: Bridge Info Enclosed
+Hi everyone!
+I'm a chineses,I can't view instructional videos inhttp://vimeo.com and http://www.youtube.com,because we can,t connect this web in China.So pls give us thoses instructional videos in another way.
 
-Note: The GMT offset above does not reflect daylight saving time adjustment=
-s.
+Chineases Thans you verymuch!
 
-*~*~*~*~*~*~*~*~*~*
+------=_Part_133337_1351196150.1319446774263
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: 7bit
 
-Cancelling the meeting this week due to ELCE travel, please let me know if =
-you have any urgent issue to discuss.
+<div style="line-height:1.7;color:#000000;font-size:14px;font-family:arial">Hi everyone!<br>I'm a chineses,I can't view instructional videos in <a href="http://vimeo.com/" target="_blank">http://vimeo.com</a> and http://www.youtube.com,because we can,t connect this web in China.So pls give us thoses instructional videos in another way.<br><br>Chineases Thans you verymuch!<br></div><br><br><span title="neteasefooter"><span id="netease_mail_footer"></span></span>
 
-Song
-
-
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A16F54418ORSMSX101amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
-<div>When: Tuesday, October 25, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Ti=
-me (US &amp; Canada).</div>
-<div>Where: Bridge Info Enclosed</div>
-<div>&nbsp;</div>
-<div>Note: The GMT offset above does not reflect daylight saving time adjus=
-tments.</div>
-<div>&nbsp;</div>
-<div>*~*~*~*~*~*~*~*~*~*</div>
-<div>&nbsp;</div>
-<div>Cancelling the meeting this week due to ELCE travel, please let me kno=
-w if you have any urgent issue to discuss.</div>
-<div>&nbsp;</div>
-<div>Song</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A16F54418ORSMSX101amrcor_
-Content-Type: text/calendar; charset="utf-8"; method=CANCEL
-Content-Transfer-Encoding: base64
-
-QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6Q0FOQ0VMDQpQUk9ESUQ6TWljcm9zb2Z0IEV4Y2hhbmdl
-IFNlcnZlciAyMDEwDQpWRVJTSU9OOjIuMA0KQkVHSU46VlRJTUVaT05FDQpUWklEOlBhY2lmaWMg
-U3RhbmRhcmQgVGltZQ0KQkVHSU46U1RBTkRBUkQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpU
-Wk9GRlNFVEZST006LTA3MDANClRaT0ZGU0VUVE86LTA4MDANClJSVUxFOkZSRVE9WUVBUkxZO0lO
-VEVSVkFMPTE7QllEQVk9MVNVO0JZTU9OVEg9MTENCkVORDpTVEFOREFSRA0KQkVHSU46REFZTElH
-SFQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpUWk9GRlNFVEZST006LTA4MDANClRaT0ZGU0VU
-VE86LTA3MDANClJSVUxFOkZSRVE9WUVBUkxZO0lOVEVSVkFMPTE7QllEQVk9MlNVO0JZTU9OVEg9
-Mw0KRU5EOkRBWUxJR0hUDQpFTkQ6VlRJTUVaT05FDQpCRUdJTjpWRVZFTlQNCk9SR0FOSVpFUjtD
-Tj0iTGl1LCBTb25nIjpNQUlMVE86c29uZy5saXVAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJF
-US1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSInTWNDb21i
-ZSwgDQogS2V2aW4nIjpNQUlMVE86a2V2aW4ubWNjb21iZUB3aW5kcml2ZXIuY29tDQpBVFRFTkRF
-RTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NO
-PSJXb2xkLCBTYXVsIg0KIDpNQUlMVE86c2F1bC53b2xkQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9M
-RT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iWmhh
-bmcsIEplcw0KIHNpY2EiOk1BSUxUTzpqZXNzaWNhLnpoYW5nQGludGVsLmNvbQ0KQVRURU5ERUU7
-Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0i
-J2RlVnJpZXMsIA0KIEFsZXgnIjpNQUlMVE86QWxleC5kZVZyaWVzQHdpbmRyaXZlci5jb20NCkFU
-VEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRS
-VUU7Q049IidQb2xrLCBKZWYNCiBmcmV5JyI6TUFJTFRPOmplZmYucG9sa0B3aW5kcml2ZXIuY29t
-DQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNW
-UD1UUlVFO0NOPSInSGF0bGUsIE1hDQogcmsnIjpNQUlMVE86bWFyay5oYXRsZUB3aW5kcml2ZXIu
-Y29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047
-UlNWUD1UUlVFO0NOPSJQdXJkaWUsIFJpDQogY2hhcmQiOk1BSUxUTzpyaWNoYXJkLnB1cmRpZUBp
-bnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
-VElPTjtSU1ZQPVRSVUU7Q049IkxpLCBTdXNpZSI6DQogTUFJTFRPOnN1c2llLmxpQGludGVsLmNv
-bQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JT
-VlA9VFJVRTtDTj0iTG9jaywgSm9zaA0KIHVhIjpNQUlMVE86am9zaHVhLmxvY2tAaW50ZWwuY29t
-DQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNW
-UD1UUlVFO0NOPSdCcnVjZSBBc2gNCiBmaWVsZCc6TUFJTFRPOmJydWNlLmFzaGZpZWxkQHdpbmRy
-aXZlci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
-VElPTjtSU1ZQPVRSVUU7Q049IlphbnVzc2ksIFQNCiBvbSI6TUFJTFRPOnRvbS56YW51c3NpQGlu
-dGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNU
-SU9OO1JTVlA9VFJVRTtDTj0iSGFydCwgRGFycg0KIGVuIjpNQUlMVE86ZGFycmVuLmhhcnRAaW50
-ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJ
-T047UlNWUD1UUlVFO0NOPSJGbGFuYWdhbiwgDQogRWxpemFiZXRoIjpNQUlMVE86ZWxpemFiZXRo
-LmZsYW5hZ2FuQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNU
-QVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iU3Rld2FydCwgRA0KIGF2aWQgQyI6TUFJTFRP
-OmRhdmlkLmMuc3Rld2FydEBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5U
-O1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049J0xpZXUuVGFAdw0KIGluZHJpdmVy
-LmNvbSc6TUFJTFRPOkxpZXUuVGFAd2luZHJpdmVyLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFS
-VElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0ncGF1bC5hbmRlDQog
-cnNvbkB3aW5kcml2ZXIuY29tJzpNQUlMVE86cGF1bC5hbmRlcnNvbkB3aW5kcml2ZXIuY29tDQpB
-VFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1U
-UlVFO0NOPSJPc2llci1taXhvDQogbiwgSmVmZnJleSI6TUFJTFRPOmplZmZyZXkub3NpZXItbWl4
-b25AaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVE
-Uy1BQ1RJT047UlNWUD1UUlVFO0NOPSJEbXl0cml5ZW5rDQogbywgRGVueXMiOk1BSUxUTzpkZW55
-c0B0aS5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
-VElPTjtSU1ZQPVRSVUU7Q049Iktvb2ksIEtvZW4iDQogOk1BSUxUTzprLWtvb2lAdGkuY29tDQpB
-VFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1U
-UlVFO0NOPSd5b2N0by1hYkANCiB5b2N0b3Byb2plY3Qub3JnJzpNQUlMVE86eW9jdG8tYWJAeW9j
-dG9wcm9qZWN0Lm9yZw0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVF
-RFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iRXJ3YXksIFRyYQ0KIGNleSBNIjpNQUlMVE86dHJhY2V5
-Lm0uZXJ3YXlAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RB
-VD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdEYW5pZWwgQ2ENCiB1Y2h5JzpNQUlMVE86ZGNh
-dWNoeUBtdmlzdGEuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
-RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJXYW5nLCBTaGFuDQogZSI6TUFJTFRPOnNoYW5lLndh
-bmdAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVE
-Uy1BQ1RJT047UlNWUD1UUlVFO0NOPSInS3JpZG5lciwgDQogSmFzb24nIjpNQUlMVE86amRrQHRp
-LmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9O
-O1JTVlA9VFJVRTtDTj0iWXUsIEtlIjpNQUkNCiBMVE86a2UueXVAaW50ZWwuY29tDQpBVFRFTkRF
-RTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NO
-PSJSaWZlbmJhcmssDQogIFNjb3R0IE0iOk1BSUxUTzpzY290dC5tLnJpZmVuYmFya0BpbnRlbC5j
-b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
-U1ZQPVRSVUU7Q049IidEaXhvbiwgQnINCiBhZCciOk1BSUxUTzpCcmFkX0RpeG9uQG1lbnRvci5j
-b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
-U1ZQPVRSVUU7Q049J0plcmVteSBQdQ0KIGhsbWFuJzpNQUlMVE86anB1aGxtYW5AZ21haWwuY29t
-DQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNW
-UD1UUlVFO0NOPXlvY3RvQHlvY3QNCiBvcHJvamVjdC5vcmc6TUFJTFRPOnlvY3RvQHlvY3RvcHJv
-amVjdC5vcmcNCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
-VElPTjtSU1ZQPVRSVUU7Q049J3Noc2lmdC15bw0KIGN0b0B5YWhvby5jb20nOk1BSUxUTzpzaHNp
-ZnQteW9jdG9AeWFob28uY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RB
-VD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdtb3J2ZWtAbXYNCiBpc3RhLmNvbSc6TUFJTFRP
-Om1vcnZla0BtdmlzdGEuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RB
-VD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSInUnVmZiwgTml0DQogaHlhJyI6TUFJTFRPOk5p
-dGh5YS5SdWZmQHdpbmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BB
-UlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049Ik1vZWxsZXIsIFQNCiBob3JzdGVuIjpN
-QUlMVE86dGhvcnN0ZW4ubW9lbGxlckBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJ
-Q0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlNheGVuYSwgUmENCiBo
-dWwiOk1BSUxUTzpyYWh1bC5zYXhlbmFAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJU
-SUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSInUmFuc2xhbSwgDQog
-Um9iJyI6TUFJTFRPOlJvYi5SYW5zbGFtQHdpbmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9T1BU
-LVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049J0FuZGVycyBE
-YQ0KIHJhbmRlcic6TUFJTFRPOmFuZGVyc0BjaGFyZ2VzdG9ybS5zZQ0KQVRURU5ERUU7Uk9MRT1P
-UFQtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iQm9ka2Us
-IEtpcw0KIGhvcmUgSyI6TUFJTFRPOmtpc2hvcmUuay5ib2RrZUBpbnRlbC5jb20NCkRFU0NSSVBU
-SU9OO0xBTkdVQUdFPWVuLVVTOldoZW46IFR1ZXNkYXlcLCBPY3RvYmVyIDI1XCwgMjAxMSA4OjAw
-IEFNLTk6MDAgQQ0KIE0gKFVUQy0wODowMCkgUGFjaWZpYyBUaW1lIChVUyAmIENhbmFkYSkuXG5X
-aGVyZTogQnJpZGdlIEluZm8gRW5jbG9zZWRcblxuDQogTm90ZTogVGhlIEdNVCBvZmZzZXQgYWJv
-dmUgZG9lcyBub3QgcmVmbGVjdCBkYXlsaWdodCBzYXZpbmcgdGltZSBhZGp1c3RtZW4NCiB0cy5c
-blxuKn4qfip+Kn4qfip+Kn4qfip+KlxuXG5DYW5jZWxsaW5nIHRoZSBtZWV0aW5nIHRoaXMgd2Vl
-ayBkdWUgdG8gRUxDRQ0KICB0cmF2ZWxcLCBwbGVhc2UgbGV0IG1lIGtub3cgaWYgeW91IGhhdmUg
-YW55IHVyZ2VudCBpc3N1ZSB0byBkaXNjdXNzLlxuXG5TDQogb25nXG5cblxuDQpTVU1NQVJZO0xB
-TkdVQUdFPWVuLVVTOkNhbmNlbGVkOiBZb2N0byBUZWNobmljYWwgVGVhbSBNZWV0aW5nDQpEVFNU
-QVJUO1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTExMDI1VDA4MDAwMA0KRFRFTkQ7VFpJ
-RD1QYWNpZmljIFN0YW5kYXJkIFRpbWU6MjAxMTEwMjVUMDkwMDAwDQpVSUQ6MDQwMDAwMDA4MjAw
-RTAwMDc0QzVCNzEwMUE4MkUwMDgwMDAwMDAwMDAwNkUyMkVGMjg1Q0NDMDEwMDAwMDAwMDAwMDAw
-MDANCiAwMTAwMDAwMDBFNkZFMzY2RDhCMTRBODQ1ODlGMThENjA1NEU4NTIyNA0KUkVDVVJSRU5D
-RS1JRDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDExMTAyNVQwODAwMDANCkNMQVNTOlBV
-QkxJQw0KUFJJT1JJVFk6MQ0KRFRTVEFNUDoyMDExMTAyNFQxNzE4MDRaDQpUUkFOU1A6T1BBUVVF
-DQpTVEFUVVM6Q0FOQ0VMTEVEDQpTRVFVRU5DRTo2DQpMT0NBVElPTjtMQU5HVUFHRT1lbi1VUzpC
-cmlkZ2UgSW5mbyBFbmNsb3NlZA0KWC1NSUNST1NPRlQtQ0RPLUFQUFQtU0VRVUVOQ0U6Ng0KWC1N
-SUNST1NPRlQtQ0RPLU9XTkVSQVBQVElEOjE0MDYxNzUxOTUNClgtTUlDUk9TT0ZULUNETy1CVVNZ
-U1RBVFVTOkZSRUUNClgtTUlDUk9TT0ZULUNETy1JTlRFTkRFRFNUQVRVUzpGUkVFDQpYLU1JQ1JP
-U09GVC1DRE8tQUxMREFZRVZFTlQ6RkFMU0UNClgtTUlDUk9TT0ZULUNETy1JTVBPUlRBTkNFOjIN
-ClgtTUlDUk9TT0ZULUNETy1JTlNUVFlQRTozDQpYLU1JQ1JPU09GVC1ESVNBTExPVy1DT1VOVEVS
-OkZBTFNFDQpFTkQ6VkVWRU5UDQpFTkQ6VkNBTEVOREFSDQo=
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A16F54418ORSMSX101amrcor_--
+------=_Part_133337_1351196150.1319446774263--
