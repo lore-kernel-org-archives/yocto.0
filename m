@@ -1,34 +1,18 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A9BFE01376
-	for <yocto@yoctoproject.org>; Sun, 23 Oct 2011 20:37:23 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 23 Oct 2011 20:37:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,395,1315206000"; d="scan'208";a="29434963"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by AZSMGA002.ch.intel.com with ESMTP; 23 Oct 2011 20:37:21 -0700
-Received: from pgsmsx103.gar.corp.intel.com (10.221.44.82) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 24 Oct 2011 11:36:29 +0800
-Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
-	PGSMSX103.gar.corp.intel.com (10.221.44.82) with Microsoft SMTP Server
-	(TLS) id 14.1.323.3; Mon, 24 Oct 2011 11:36:28 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
-	Mon, 24 Oct 2011 11:36:28 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 24 Oct 2011 11:36:27 +0800
-Thread-Topic: Yocto weekly bug trend charts -- WW43
-Thread-Index: AcyR/hx3AgRgssfcRNiA/8yQKpr34g==
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D8A0751B@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38425E0137B
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2011 02:03:45 -0700 (PDT)
+Received: from [192.168.0.69] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id 4D47921FC1
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2011 08:21:08 +0100 (BST)
+Message-ID: <4EA529F5.4010706@communistcode.co.uk>
+Date: Mon, 24 Oct 2011 10:03:49 +0100
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
 MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW43
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Eclipse Plugin: ADT Version too old
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,16 +24,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Oct 2011 03:37:23 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 24 Oct 2011 09:03:52 -0000
+Content-Type: multipart/alternative;
+	boundary="------------040600040303060507070501"
 
-Hi all,
-	The overall open bug trend keep flat last week. Open bug and WDD number in=
-creased to 140 and 699. Yocto 1.1 released last week. Bug status of WW43 co=
-uld be found on https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
+--------------040600040303060507070501
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Best Regards,
-Jiajun
+I am trying to use the new eclipse plugin, which I have had working fine 
+for the past couple of weeks until I switched from the master branch to 
+edison.
 
+I performed a fresh build using the stable edison branch, installed the 
+new 1.1 eclipse plugin and now whenever I try to setup the Yocto eclipse 
+environment I receive the following error:
+
+Yocto Preferences Configuration Error!
+OECORE related items are not found in envrionement setup files.
+The ADT version you're using is too old.
+Please upgrade to our latest ADT Version!
+
+This pops up in a message box, not the eclipse console. I have followed 
+the ADT Setup guide to the letter and it's not playing ball - could 
+someone confirm this as working or point me towards a reason why I may 
+be getting this error?
+
+Cheers,
+Jack.
+
+--------------040600040303060507070501
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    I am trying to use the new eclipse plugin, which I have had working
+    fine for the past couple of weeks until I switched from the master
+    branch to edison.<br>
+    <br>
+    I performed a fresh build using the stable edison branch, installed
+    the new 1.1 eclipse plugin and now whenever I try to setup the Yocto
+    eclipse environment I receive the following error:<br>
+    <br>
+    <font face="Courier New, Courier, monospace">Yocto Preferences
+      Configuration Error!<br>
+      OECORE related items are not found in envrionement setup files.<br>
+      The ADT version you're using is too old.<br>
+      Please upgrade to our latest ADT Version!<br>
+      <br>
+    </font>This pops up in a message box, not the eclipse console. I
+    have followed the ADT Setup guide to the letter and it's not playing
+    ball - could someone confirm this as working or point me towards a
+    reason why I may be getting this error?<br>
+    <br>
+    Cheers,<br>
+    Jack.<br>
+  </body>
+</html>
+
+--------------040600040303060507070501--
