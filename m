@@ -1,35 +1,34 @@
-Return-Path: <ke.yu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F084E012F3
-	for <yocto@yoctoproject.org>; Sun, 23 Oct 2011 20:12:47 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 23 Oct 2011 20:12:46 -0700
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A9BFE01376
+	for <yocto@yoctoproject.org>; Sun, 23 Oct 2011 20:37:23 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 23 Oct 2011 20:37:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,396,1315206000"; d="scan'208";a="65552579"
+X-IronPort-AV: E=Sophos;i="4.69,395,1315206000"; d="scan'208";a="29434963"
 Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by azsmga001.ch.intel.com with ESMTP; 23 Oct 2011 20:12:45 -0700
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	by AZSMGA002.ch.intel.com with ESMTP; 23 Oct 2011 20:37:21 -0700
+Received: from pgsmsx103.gar.corp.intel.com (10.221.44.82) by
 	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 24 Oct 2011 11:12:13 +0800
+	(TLS) id 8.2.255.0; Mon, 24 Oct 2011 11:36:29 +0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	PGSMSX103.gar.corp.intel.com (10.221.44.82) with Microsoft SMTP Server
+	(TLS) id 14.1.323.3; Mon, 24 Oct 2011 11:36:28 +0800
 Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Mon, 24 Oct 2011 11:12:13 +0800
-From: "Yu, Ke" <ke.yu@intel.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Date: Mon, 24 Oct 2011 11:12:12 +0800
-Thread-Topic: [yocto] Proposed roadmap and design for Hob improvement
-Thread-Index: AQHMkDZTpBw+KHCQZkuO0BR9k/nt2JWKzEWw
-Message-ID: <33AB447FBD802F4E932063B962385B3512DB2DBA09@shsmsx501.ccr.corp.intel.com>
-References: <33AB447FBD802F4E932063B962385B3512DB258EA4@shsmsx501.ccr.corp.intel.com>
-	<CAEsOVNeCEA73vjHeaL8S4S7wxWgus3TZ5XSQr0i=5m8KOwJrvg@mail.gmail.com>
-In-Reply-To: <CAEsOVNeCEA73vjHeaL8S4S7wxWgus3TZ5XSQr0i=5m8KOwJrvg@mail.gmail.com>
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Mon, 24 Oct 2011 11:36:28 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 24 Oct 2011 11:36:27 +0800
+Thread-Topic: Yocto weekly bug trend charts -- WW43
+Thread-Index: AcyR/hx3AgRgssfcRNiA/8yQKpr34g==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12D8A0751B@shsmsx501.ccr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: Proposed roadmap and design for Hob improvement
+Subject: Yocto weekly bug trend charts -- WW43
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,39 +40,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Oct 2011 03:12:47 -0000
+X-List-Received-Date: Mon, 24 Oct 2011 03:37:23 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: McClintock Matthew-B29882 [mailto:B29882@freescale.com]
-> Sent: Saturday, October 22, 2011 5:14 AM
-> To: Yu, Ke
-> Cc: Yocto Project Discussion
-> Subject: Re: [yocto] Proposed roadmap and design for Hob improvement
->=20
-> On Thu, Oct 20, 2011 at 10:16 PM, Yu, Ke <ke.yu@intel.com> wrote:
-> > Hi,
-> >
-> > As the Yocto 1.2. plan is starting
-> (https://wiki.yoctoproject.org/wiki/Yocto_1.2_Features ), here I draft a
-> proposal for the roadmap and design on HOB improvement task
-> (http://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1588) . Please review=
-. Any
-> feedback is welcome.
->=20
-> Seems like with the build packages and build image steps separated you co=
-uld
-> skip the build step completly for most packages if we ship or host pre-bu=
-ilt build
-> packages
->=20
-> -M
+Hi all,
+	The overall open bug trend keep flat last week. Open bug and WDD number in=
+creased to 140 and 699. Yocto 1.1 released last week. Bug status of WW43 co=
+uld be found on https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
 
-Yes, current design supports this scenario, i.e. if some packages are alrea=
-dy pre-built, HOB will notice that and won't build them again.
-
-Regards
-Ke
+Best Regards,
+Jiajun
 
