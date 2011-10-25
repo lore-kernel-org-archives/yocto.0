@@ -1,20 +1,22 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F35C6E006AC
-	for <yocto@yoctoproject.org>; Tue, 25 Oct 2011 12:18:12 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 25 Oct 2011 12:18:12 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4024DE013A0
+	for <yocto@yoctoproject.org>; Tue, 25 Oct 2011 12:18:15 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 25 Oct 2011 12:18:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="67032780"
+X-IronPort-AV: E=Sophos;i="4.69,405,1315206000"; d="scan'208";a="81916852"
 Received: from unknown (HELO localhost) ([10.255.15.57])
-	by orsmga002.jf.intel.com with ESMTP; 25 Oct 2011 12:18:11 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 25 Oct 2011 12:18:14 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com,
 	yocto@yoctoproject.org
-Date: Tue, 25 Oct 2011 14:17:35 -0500
-Message-Id: <cover.1319552233.git.tom.zanussi@intel.com>
+Date: Tue, 25 Oct 2011 14:17:36 -0500
+Message-Id: <e5bd0dd3266789e6e107f2b41f0d03e4e2054ce6.1319552233.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/4][KERNEL] more bsp cleanup and new power/intel feature
+In-Reply-To: <cover.1319552233.git.tom.zanussi@intel.com>
+References: <cover.1319552233.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/4][KERNEL] meta: add power feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,38 +28,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Oct 2011 19:18:13 -0000
+X-List-Received-Date: Tue, 25 Oct 2011 19:18:15 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This patchset adds a new power/intel feature containing power-related
-config items for intel bsps and initially makes sugarbay and crownbay
-use it.
+Add a 'power feature' that collects power-friendly config options and
+populate an initial intel-specific set.
 
-It also removes the igb feature from common-pc-64, which shouldn't
-be there and was responsible for Yocto bug #1188.
-
-Fixes [YOCTO #1188]
-
-Please pull into linux-yocto-3.0 and linux-yocto-dev.
-
-Pull URL: git://git.pokylinux.org/linux-yocto-2.6.37-contrib
-  Branch: tzanussi/bsp-cleanup2-v0
-  Browse: http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/bsp-cleanup2-v0
-
-Tom Zanussi (4):
-  meta: add power feature
-  meta/sugarbay: use power/intel feature
-  meta/crownbay: use power/intel feature
-  meta/common-pc-64: remove igb
-
- .../kernel-cache/bsp/common-pc-64/common-pc-64.scc |    1 -
- meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    1 +
- meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc    |    1 +
- meta/cfg/kernel-cache/features/power/intel.cfg     |   28 ++++++++++++++++++++
- meta/cfg/kernel-cache/features/power/intel.scc     |    1 +
- 5 files changed, 31 insertions(+), 1 deletions(-)
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ meta/cfg/kernel-cache/features/power/intel.cfg |   28 ++++++++++++++++++++++++
+ meta/cfg/kernel-cache/features/power/intel.scc |    1 +
+ 2 files changed, 29 insertions(+), 0 deletions(-)
  create mode 100644 meta/cfg/kernel-cache/features/power/intel.cfg
  create mode 100644 meta/cfg/kernel-cache/features/power/intel.scc
+
+diff --git a/meta/cfg/kernel-cache/features/power/intel.cfg b/meta/cfg/kernel-cache/features/power/intel.cfg
+new file mode 100644
+index 0000000..3ba7415
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/power/intel.cfg
+@@ -0,0 +1,28 @@
++# use the native intel cpuidle driver for recent Intel processors
++CONFIG_INTEL_IDLE=y
++
++# cut out the top source of unnecessary wakeups
++CONFIG_NO_HZ=y
++
++# enable apps to cut down on polling
++CONFIG_INOTIFY_USER=y
++
++# enable cpu frequency scaling and stats for powertop
++CONFIG_CPU_FREQ=y
++CONFIG_CPU_FREQ_STAT=y
++CONFIG_CPU_FREQ_TABLE=y
++CONFIG_X86_ACPI_CPUFREQ=y
++CONFIG_CPU_FREQ_GOV_ONDEMAND=y
++CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
++CONFIG_CPU_FREQ_DEFAULT_GOV_ONDEMAND=y
++
++# enable power management debugging for tools like powertop
++CONFIG_PM_DEBUG=y
++CONFIG_PM_ADVANCED_DEBUG=y
++CONFIG_CAN_PM_TRACE=y
++
++# turn on run-time power management
++CONFIG_PM_RUNTIME=y
++
++# allow usb runtime power management
++CONFIG_USB_SUSPEND=y
+diff --git a/meta/cfg/kernel-cache/features/power/intel.scc b/meta/cfg/kernel-cache/features/power/intel.scc
+new file mode 100644
+index 0000000..99ff880
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/power/intel.scc
+@@ -0,0 +1 @@
++kconf non-hardware intel.cfg
+-- 
+1.7.0.4
 
 
