@@ -1,29 +1,26 @@
 Return-Path: <josh@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C0A7E006AC
-	for <yocto@yoctoproject.org>; Tue, 25 Oct 2011 11:05:24 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 25 Oct 2011 11:05:23 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EE8FE01398
+	for <yocto@yoctoproject.org>; Tue, 25 Oct 2011 11:09:05 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 25 Oct 2011 11:09:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="67309454"
+X-IronPort-AV: E=Sophos;i="4.69,404,1315206000"; d="scan'208";a="30036266"
 Received: from unknown (HELO [10.255.15.132]) ([10.255.15.132])
-	by orsmga001.jf.intel.com with ESMTP; 25 Oct 2011 11:05:23 -0700
-Message-ID: <4EA6FA63.8070609@linux.intel.com>
-Date: Tue, 25 Oct 2011 11:05:23 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 25 Oct 2011 11:09:04 -0700
+Message-ID: <4EA6FB40.7050600@linux.intel.com>
+Date: Tue, 25 Oct 2011 11:09:04 -0700
 From: Joshua Lock <josh@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:7.0.1) Gecko/20110930 Thunderbird/7.0.1
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-References: <4EA529F5.4010706@communistcode.co.uk>
-	<C10D3FB0CD45994C8A51FEC1227CE22F340768DA90@shsmsx502.ccr.corp.intel.com>
-	<4EA52E9F.9070001@communistcode.co.uk>
-	<C6510F6D410BB64A8C15398EDC6B847C16E996E5@ORSMSX101.amr.corp.intel.com>
-	<4EA587D6.1090406@communistcode.co.uk>
-	<C6510F6D410BB64A8C15398EDC6B847C16E9970A@ORSMSX101.amr.corp.intel.com>
-	<4EA6CB6F.9060304@communistcode.co.uk>
-In-Reply-To: <4EA6CB6F.9060304@communistcode.co.uk>
-Subject: Re: Eclipse Plugin: ADT Version too old
+References: <33AB447FBD802F4E932063B962385B3512DB258EA4@shsmsx501.ccr.corp.intel.com>
+	<CAEsOVNeCEA73vjHeaL8S4S7wxWgus3TZ5XSQr0i=5m8KOwJrvg@mail.gmail.com>
+	<33AB447FBD802F4E932063B962385B3512DB2DBA09@shsmsx501.ccr.corp.intel.com>
+	<CAEsOVNdfJ_VRRNVRGNf3C7ziBdn4uaa3hNUk5hSAQnj9zimkYQ@mail.gmail.com>
+In-Reply-To: <CAEsOVNdfJ_VRRNVRGNf3C7ziBdn4uaa3hNUk5hSAQnj9zimkYQ@mail.gmail.com>
+Subject: Re: Proposed roadmap and design for Hob improvement
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,48 +32,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Oct 2011 18:05:24 -0000
+X-List-Received-Date: Tue, 25 Oct 2011 18:09:05 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
 
-On 25/10/11 07:45, Jack Mitchell wrote:
-> Hi Jessica,
+
+On 25/10/11 09:08, McClintock Matthew-B29882 wrote:
+> On Sun, Oct 23, 2011 at 10:12 PM, Yu, Ke <ke.yu@intel.com> wrote:
+>>> Seems like with the build packages and build image steps separated you could
+>>> skip the build step completly for most packages if we ship or host pre-built build
+>>> packages
+>>>
+>>> -M
+>>
+>> Yes, current design supports this scenario, i.e. if some packages are already pre-built, HOB will notice that and won't build them again.
 > 
-> I just did a full fresh re-build from scratch and now my environment
-> variables are as follows:
-> 
-> http://ix.io/1Wf
-> 
-> My current git status is:
-> 
-> # On branch edision
-> # Untracked files:
-> #   (use "git add <file>..." to include in what will be committed)
-> #
-> #    ../bitbake/lib/bb/pysh/pyshtables.py
-> #    ../conf/
-> #    ./
-> #    ../qemuarm-toolchain/
-> nothing added to commit but untracked files present (use "git add" to
-> track)
-> 
-> The environment variables are still wrong, can I manually change them, I
-> understand this is bad practice but I can't develop until I fix this.
+> It would be nice to be able to skip the package generation if the RPM
+> already exists somewhere. This could provide significant speedup above
+> what is already provided by sstate-cache. Although other issues might
+> need to be solved....
 
-Jack,
+I think this falls in line with the proposed design. If we create the
+images from package feeds we needn't build when the package feeds are
+already available.
 
-I think Jessica is travelling to Prague for ELC-E so I say change the
-environment variables manually and get on with your development. :-)
+Of course with ambiguous terms like *somewhere* I'm not sure we're
+thinking along exactly the same lines but we're definitely looking to
+speed up and re-use in as many places as possible.
 
-If you could file a bug against the ADT on bugzilla.yoctoproject.org I'm
-sure someone will look into this.
-
-Looks like there may be some out of sync metadata somewhere that we need
-to track down.
-
-Regards,
-
+Cheers,
 Joshua
 -- 
 Joshua Lock
