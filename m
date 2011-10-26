@@ -1,16 +1,28 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2DDDE006AC
-	for <yocto@yoctoproject.org>; Tue, 25 Oct 2011 14:40:51 -0700 (PDT)
-Received: from mail-iy0-f180.google.com ([209.85.210.180])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 25 Oct 2011 14:40:41 -0700
-Received: by iakc1 with SMTP id c1so1493286iak.25
-	for <yocto@yoctoproject.org>; Tue, 25 Oct 2011 14:40:40 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.42.159.1 with SMTP id j1mr46697388icx.20.1319578840637; Tue,
-	25 Oct 2011 14:40:40 -0700 (PDT)
-Received: by 10.50.190.229 with HTTP; Tue, 25 Oct 2011 14:40:40 -0700 (PDT)
-In-Reply-To: <4EA6CB6F.9060304@communistcode.co.uk>
+Return-Path: <lianhao.lu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A613E005BB
+	for <yocto@yoctoproject.org>; Tue, 25 Oct 2011 18:59:36 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 25 Oct 2011 18:59:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,406,1315206000"; d="scan'208";a="82201047"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by fmsmga002.fm.intel.com with ESMTP; 25 Oct 2011 18:59:35 -0700
+Received: from pgsmsx103.gar.corp.intel.com (10.221.44.82) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 26 Oct 2011 09:59:14 +0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	PGSMSX103.gar.corp.intel.com (10.221.44.82) with Microsoft SMTP Server
+	(TLS) id 14.1.323.3; Wed, 26 Oct 2011 09:59:14 +0800
+Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Wed, 26 Oct 2011 09:59:13 +0800
+From: "Lu, Lianhao" <lianhao.lu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Wed, 26 Oct 2011 09:59:12 +0800
+Thread-Topic: [yocto] Eclipse Plugin:  ADT Version too old
+Thread-Index: AcyTJPC1I1v0SM3gS8yMPDh5HBHjCgAW7AFg
+Message-ID: <C10D3FB0CD45994C8A51FEC1227CE22F340768E39E@shsmsx502.ccr.corp.intel.com>
 References: <4EA529F5.4010706@communistcode.co.uk>
 	<C10D3FB0CD45994C8A51FEC1227CE22F340768DA90@shsmsx502.ccr.corp.intel.com>
 	<4EA52E9F.9070001@communistcode.co.uk>
@@ -18,11 +30,12 @@ References: <4EA529F5.4010706@communistcode.co.uk>
 	<4EA587D6.1090406@communistcode.co.uk>
 	<C6510F6D410BB64A8C15398EDC6B847C16E9970A@ORSMSX101.amr.corp.intel.com>
 	<4EA6CB6F.9060304@communistcode.co.uk>
-Date: Tue, 25 Oct 2011 14:40:40 -0700
-Message-ID: <CAPhnLPD5jXHHtjS=8Z-Yv-+2-qe5r5zhr6P7F1x3G3QFRTgLKA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Jack Mitchell <ml@communistcode.co.uk>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+In-Reply-To: <4EA6CB6F.9060304@communistcode.co.uk>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: zh-CN, en-US
+MIME-Version: 1.0
 Subject: Re: Eclipse Plugin: ADT Version too old
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -35,56 +48,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Oct 2011 21:40:51 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 26 Oct 2011 01:59:36 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 25, 2011 at 7:45 AM, Jack Mitchell <ml@communistcode.co.uk> wro=
-te:
->
+Jack Mitchell wrote on 2011-10-25:
+>=20
 > Hi Jessica,
->
-> I posted my environment settings earlier, which are located here:
-> http://pastebin.com/4vnWPAD2
->
-> Yes, I did use bitbake meta-ide-support to build my roo
->
-> Hi Jessica,
->
-> I just did a full fresh re-build from scratch and now my environment
+>=20
+> I just did a full fresh re-build from scratch and now my environment=20
 > variables are as follows:
->
+>=20
 > http://ix.io/1Wf
->
+>=20
 > My current git status is:
->
-> # On branch edision
-> # Untracked files:
-> #=A0=A0 (use "git add <file>..." to include in what will be committed)
-> #
-> #=A0=A0=A0 ../bitbake/lib/bb/pysh/pyshtables.py
-> #=A0=A0=A0 ../conf/
-> #=A0=A0=A0 ./
-> #=A0=A0=A0 ../qemuarm-toolchain/
-> nothing added to commit but untracked files present (use "git add" to tra=
-ck)
-
+>=20
+> # On branch edision # Untracked files: #   (use "git add <file>..." to
+> include in what will be committed) # #  =20
+> ../bitbake/lib/bb/pysh/pyshtables.py #    ../conf/ #    ./ #  =20
+> ../qemuarm-toolchain/ nothing added to commit but untracked files=20
+> present (use "git add" to track)
+>=20
+> The environment variables are still wrong, can I manually change them,=20
+> I understand this is bad practice but I can't develop until I fix this.
+>=20
 Jack,
 
-I just checked out a clean edison and ran bitbake meta-ide-support. My
-env is showing export OECORE_DISTRO_VERSION=3D"1.1". My guess is that,
-since you are not in master, then you have a TMPDIR from a master
-build, or perhaps are using something left over from one, as the only
-place DISTRO_VERSION =3D "1.1+snapshot-${DATE}" would be there. Prior to
-c88b991 on edison, DISTRO_VERSION =3D "1.0+snapshot-${DATE}". So you're
-picking that up from some prior master build. It's not an older
-version of edison as if it was an older version of edison it would be
-1.0+snapshot-${DATE
+You may manually change them, but I doubt this suggesting that there might =
+be some mismatch in your local git branch. The "bitbake meta-ide-support" o=
+f Edison branch on my machine could generate the right OECORE_DISTRO_VERSIO=
+N and OECORE_SDK_VERSION, with the value of "1.1", not "1.1+snapshot".=20
 
--b
+Could you check your file of meta-yocto/conf/distro/poky.conf for the varia=
+ble DISTRO_VERSION, it should be "1.1'.=20
 
---=20
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+b.t.w. When you "bitbake meta-ide-support", there will be some configuratio=
+n information on the console which might help you identify the version and =
+configurations, e.g.
+
+OE Build Configuration:
+BB_VERSION        =3D "1.13.3"
+TARGET_ARCH       =3D "arm"
+TARGET_OS         =3D "linux-gnueabi"
+MACHINE           =3D "qemuarm"
+DISTRO            =3D "poky"
+DISTRO_VERSION    =3D "1.1"
+TUNE_FEATURES     =3D "armv5 dsp thumb arm926ejs"
+TARGET_FPU        =3D "soft"
+meta
+meta-yocto        =3D "(nobranch):1924f52cc894d4dd6b9d9c1a2248b32fc0a24c8c"
+
+Best Regards,
+Lianhao
+
 
