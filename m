@@ -1,55 +1,30 @@
-Return-Path: <B29882@freescale.com>
-Received: from TX2EHSOBE007.bigfish.com (tx2ehsobe004.messaging.microsoft.com
-	[65.55.88.14])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A61DE005BB
-	for <yocto@yoctoproject.org>; Tue, 25 Oct 2011 19:16:24 -0700 (PDT)
-Received: from mail146-tx2-R.bigfish.com (10.9.14.252) by
-	TX2EHSOBE007.bigfish.com (10.9.40.27) with Microsoft SMTP Server id
-	14.1.225.22; Wed, 26 Oct 2011 02:16:18 +0000
-Received: from mail146-tx2 (localhost.localdomain [127.0.0.1])	by
-	mail146-tx2-R.bigfish.com (Postfix) with ESMTP id 677BBA68092;
-	Wed, 26 Oct 2011 02:16:20 +0000 (UTC)
-X-SpamScore: -12
-X-BigFish: VS-12(zz9371K1432N98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3h61h)
-X-Spam-TCS-SCL: 0:0
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
-	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail146-tx2 (localhost.localdomain [127.0.0.1]) by mail146-tx2
-	(MessageSwitch) id 1319595379310203_14875;
-	Wed, 26 Oct 2011 02:16:19 +0000 (UTC)
-Received: from TX2EHSMHS044.bigfish.com (unknown [10.9.14.240])	by
-	mail146-tx2.bigfish.com (Postfix) with ESMTP id 2EEE5EE805F;
-	Wed, 26 Oct 2011 02:16:19 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS044.bigfish.com
-	(10.9.99.144) with Microsoft SMTP Server (TLS) id 14.1.225.22;
-	Wed, 26 Oct 2011 02:16:13 +0000
-Received: from 039-SN1MPN1-003.039d.mgd.msft.net ([169.254.3.150]) by
-	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
-	14.01.0339.002; Tue, 25 Oct 2011 21:16:18 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Thread-Topic: [yocto] [PATCH 7/7] Add proper deps for nfs-utils, util-linux,
-	and strace
-Thread-Index: AQHMiNdjLeXu1UqgjU6Y1Hrxbu+h4JWNHVuAgAEvKoA=
-Date: Wed, 26 Oct 2011 02:16:18 +0000
-Message-ID: <CAEsOVNf-eWcAnqjoMf2=e4B6OP+=9yhvRQYQo8dLe-RvhQ5=Hg@mail.gmail.com>
-References: <1317275552-19908-1-git-send-email-msm@freescale.com>
-	<1317275552-19908-7-git-send-email-msm@freescale.com>
-	<CA+chaQerLbLcFTuuHZs_KimTQmqOHkhyFUCx-7FzTZfKHFkMgQ@mail.gmail.com>
-	<CA+chaQfYyHq5urZwLty9=Na_CM53xmvLV7tURK6DeZ6ZWkE65A@mail.gmail.com>
-In-Reply-To: <CA+chaQfYyHq5urZwLty9=Na_CM53xmvLV7tURK6DeZ6ZWkE65A@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A195BE005BB
+	for <yocto@yoctoproject.org>; Wed, 26 Oct 2011 01:20:59 -0700 (PDT)
+Received: from [192.168.0.69] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id D9A0F235CE
+	for <yocto@yoctoproject.org>; Wed, 26 Oct 2011 07:34:32 +0100 (BST)
+Message-ID: <4EA7C2AD.5000308@communistcode.co.uk>
+Date: Wed, 26 Oct 2011 09:19:57 +0100
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 7/7] Add proper deps for nfs-utils, util-linux, and strace
+CC: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <4EA529F5.4010706@communistcode.co.uk>
+	<C10D3FB0CD45994C8A51FEC1227CE22F340768DA90@shsmsx502.ccr.corp.intel.com>
+	<4EA52E9F.9070001@communistcode.co.uk>
+	<C6510F6D410BB64A8C15398EDC6B847C16E996E5@ORSMSX101.amr.corp.intel.com>
+	<4EA587D6.1090406@communistcode.co.uk>
+	<C6510F6D410BB64A8C15398EDC6B847C16E9970A@ORSMSX101.amr.corp.intel.com>
+	<4EA6CB6F.9060304@communistcode.co.uk>
+	<CAPhnLPD5jXHHtjS=8Z-Yv-+2-qe5r5zhr6P7F1x3G3QFRTgLKA@mail.gmail.com>
+In-Reply-To: <CAPhnLPD5jXHHtjS=8Z-Yv-+2-qe5r5zhr6P7F1x3G3QFRTgLKA@mail.gmail.com>
+Subject: Re: Eclipse Plugin: ADT Version too old
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -58,21 +33,174 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Oct 2011 02:16:25 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <E0026E6180086545AF3D64E24CAB9DB5@freescale.net>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 26 Oct 2011 08:21:05 -0000
+Content-Type: multipart/alternative;
+	boundary="------------030505030707040405030708"
 
-On Tue, Oct 25, 2011 at 3:10 AM, Martin Jansa <martin.jansa@gmail.com> wrot=
-e:
-> PING
+--------------030505030707040405030708
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 25/10/2011 22:40, Flanagan, Elizabeth wrote:
+> On Tue, Oct 25, 2011 at 7:45 AM, Jack Mitchell<ml@communistcode.co.uk>  wrote:
+>> Hi Jessica,
+>>
+>> I posted my environment settings earlier, which are located here:
+>> http://pastebin.com/4vnWPAD2
+>>
+>> Yes, I did use bitbake meta-ide-support to build my roo
+>>
+>> Hi Jessica,
+>>
+>> I just did a full fresh re-build from scratch and now my environment
+>> variables are as follows:
+>>
+>> http://ix.io/1Wf
+>>
+>> My current git status is:
+>>
+>> # On branch edision
+>> # Untracked files:
+>> #   (use "git add<file>..." to include in what will be committed)
+>> #
+>> #    ../bitbake/lib/bb/pysh/pyshtables.py
+>> #    ../conf/
+>> #    ./
+>> #    ../qemuarm-toolchain/
+>> nothing added to commit but untracked files present (use "git add" to track)
+> Jack,
 >
-> I've fixed nfs_utils, could you please fix util-linux and strace as sugge=
-sted?
+> I just checked out a clean edison and ran bitbake meta-ide-support. My
+> env is showing export OECORE_DISTRO_VERSION="1.1". My guess is that,
+> since you are not in master, then you have a TMPDIR from a master
+> build, or perhaps are using something left over from one, as the only
+> place DISTRO_VERSION = "1.1+snapshot-${DATE}" would be there. Prior to
+> c88b991 on edison, DISTRO_VERSION = "1.0+snapshot-${DATE}". So you're
+> picking that up from some prior master build. It's not an older
+> version of edison as if it was an older version of edison it would be
+> 1.0+snapshot-${DATE
+>
+> -b
+>
 
-This is still on my list but I'm not sure when I will be able to get to it.
+Ok, this is some more debug info:
 
--M=
+OE Build Configuration:
+BB_VERSION        = "1.13.3"
+TARGET_ARCH       = "arm"
+TARGET_OS         = "linux-gnueabi"
+MACHINE           = "qemuarm"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.1+snapshot-20111026"
+TUNE_FEATURES     = "armv5 dsp thumb arm926ejs"
+TARGET_FPU        = "soft"
+meta
+meta-yocto
+meta-db-generic   = "edision:b4757833c3548b5ee3a1cce58e2f059b3f63cb09"
+
+Could it be that because I have my own layer present it's skewing the 
+git? Should the eclipse plug-in not match 1.1*?
+
+Could you check your file of meta-yocto/conf/distro/poky.conf for the 
+variable DISTRO_VERSION, it should be "1.1'.
+
+It does indeed state 1.1.
 
 
+
+
+
+--------------030505030707040405030708
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    On 25/10/2011 22:40, Flanagan, Elizabeth wrote:
+    <blockquote
+cite="mid:CAPhnLPD5jXHHtjS=8Z-Yv-+2-qe5r5zhr6P7F1x3G3QFRTgLKA@mail.gmail.com"
+      type="cite">
+      <pre wrap="">On Tue, Oct 25, 2011 at 7:45 AM, Jack Mitchell <a class="moz-txt-link-rfc2396E" href="mailto:ml@communistcode.co.uk">&lt;ml@communistcode.co.uk&gt;</a> wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">
+Hi Jessica,
+
+I posted my environment settings earlier, which are located here:
+<a class="moz-txt-link-freetext" href="http://pastebin.com/4vnWPAD2">http://pastebin.com/4vnWPAD2</a>
+
+Yes, I did use bitbake meta-ide-support to build my roo
+
+Hi Jessica,
+
+I just did a full fresh re-build from scratch and now my environment
+variables are as follows:
+
+<a class="moz-txt-link-freetext" href="http://ix.io/1Wf">http://ix.io/1Wf</a>
+
+My current git status is:
+
+# On branch edision
+# Untracked files:
+#&nbsp;&nbsp; (use "git add &lt;file&gt;..." to include in what will be committed)
+#
+#&nbsp;&nbsp;&nbsp; ../bitbake/lib/bb/pysh/pyshtables.py
+#&nbsp;&nbsp;&nbsp; ../conf/
+#&nbsp;&nbsp;&nbsp; ./
+#&nbsp;&nbsp;&nbsp; ../qemuarm-toolchain/
+nothing added to commit but untracked files present (use "git add" to track)
+</pre>
+      </blockquote>
+      <pre wrap="">
+Jack,
+
+I just checked out a clean edison and ran bitbake meta-ide-support. My
+env is showing export OECORE_DISTRO_VERSION="1.1". My guess is that,
+since you are not in master, then you have a TMPDIR from a master
+build, or perhaps are using something left over from one, as the only
+place DISTRO_VERSION = "1.1+snapshot-${DATE}" would be there. Prior to
+c88b991 on edison, DISTRO_VERSION = "1.0+snapshot-${DATE}". So you're
+picking that up from some prior master build. It's not an older
+version of edison as if it was an older version of edison it would be
+1.0+snapshot-${DATE
+
+-b
+
+</pre>
+    </blockquote>
+    <br>
+    Ok, this is some more debug info:<br>
+    <br>
+    OE Build Configuration:<br>
+    BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "1.13.3"<br>
+    TARGET_ARCH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "arm"<br>
+    TARGET_OS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "linux-gnueabi"<br>
+    MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "qemuarm"<br>
+    DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "poky"<br>
+    DISTRO_VERSION&nbsp;&nbsp;&nbsp; = "1.1+snapshot-20111026"<br>
+    TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; = "armv5 dsp thumb arm926ejs"<br>
+    TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "soft"<br>
+    meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+    meta-yocto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+    meta-db-generic&nbsp;&nbsp; =
+    "edision:b4757833c3548b5ee3a1cce58e2f059b3f63cb09"<br>
+    <br>
+    Could it be that because I have my own layer present it's skewing
+    the git? Should the eclipse plug-in not match 1.1*?<br>
+    <font face="Courier New, Courier, monospace"><br>
+      Could you check your file of meta-yocto/conf/distro/poky.conf for
+      the variable DISTRO_VERSION, it should be "1.1'. </font><br>
+    <br>
+    It does indeed state 1.1.<br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------030505030707040405030708--
