@@ -1,42 +1,24 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 000D5E006B4
-	for <yocto@yoctoproject.org>; Wed, 26 Oct 2011 08:13:24 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 26 Oct 2011 08:13:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,409,1315206000"; d="scan'208,217";a="82607009"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga002.fm.intel.com with ESMTP; 26 Oct 2011 08:13:24 -0700
-Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 26 Oct 2011 08:13:24 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.14]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.181]) with mapi id
-	14.01.0323.003; Wed, 26 Oct 2011 08:13:23 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Jack Mitchell <ml@communistcode.co.uk>
-Thread-Topic: [yocto] Eclipse Plugin: ADT Version too old
-Thread-Index: AQHMk17adrQ2KdJ0uUCj9KD+WXtam5WOvrKA///9LzA=
-Date: Wed, 26 Oct 2011 15:13:22 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C16E9A084@ORSMSX101.amr.corp.intel.com>
-References: <4EA529F5.4010706@communistcode.co.uk>
-	<C10D3FB0CD45994C8A51FEC1227CE22F340768DA90@shsmsx502.ccr.corp.intel.com>
-	<4EA52E9F.9070001@communistcode.co.uk>
-	<C6510F6D410BB64A8C15398EDC6B847C16E996E5@ORSMSX101.amr.corp.intel.com>
-	<4EA587D6.1090406@communistcode.co.uk>
-	<C6510F6D410BB64A8C15398EDC6B847C16E9970A@ORSMSX101.amr.corp.intel.com>
-	<4EA6CB6F.9060304@communistcode.co.uk>
-	<CAPhnLPD5jXHHtjS=8Z-Yv-+2-qe5r5zhr6P7F1x3G3QFRTgLKA@mail.gmail.com>
-	<4EA7C2AD.5000308@communistcode.co.uk>
-In-Reply-To: <4EA7C2AD.5000308@communistcode.co.uk>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <scott.a.garman@intel.com>
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43D7EE006B4
+	for <yocto@yoctoproject.org>; Wed, 26 Oct 2011 10:40:05 -0700 (PDT)
+Received: from mail-ey0-f180.google.com ([209.85.215.180])
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 26 Oct 2011 10:40:03 -0700
+Received: by eyg5 with SMTP id 5so1853145eyg.25
+	for <yocto@yoctoproject.org>; Wed, 26 Oct 2011 10:40:02 -0700 (PDT)
+Received: by 10.216.229.30 with SMTP id g30mr12485249weq.51.1319650801976;
+	Wed, 26 Oct 2011 10:40:01 -0700 (PDT)
+Received: from [127.0.0.1] (masterfoo.zenlinux.com. [207.192.74.254])
+	by mx.google.com with ESMTPS id fr4sm4467847wbb.0.2011.10.26.10.39.59
+	(version=SSLv3 cipher=OTHER); Wed, 26 Oct 2011 10:40:01 -0700 (PDT)
+Message-ID: <4EA845DB.6010408@intel.com>
+Date: Wed, 26 Oct 2011 10:39:39 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Eclipse Plugin: ADT Version too old
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Results of the latest documentation audit, October 2011
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,374 +30,936 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Oct 2011 15:13:25 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C16E9A084ORSMSX101amrcor_"
+X-List-Received-Date: Wed, 26 Oct 2011 17:40:05 -0000
+X-Groupsio-MsgNum: 3164
+Content-Type: multipart/mixed; boundary="------------020508070305070907000509"
 
---_000_C6510F6D410BB64A8C15398EDC6B847C16E9A084ORSMSX101amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--------------020508070305070907000509
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Jack,
+Hello,
 
+Here are the results of the latest documentation audit, using a recent 
+Poky master (72a1e63b67445c65954c21f5cbfab74d617a257f):
 
+587 recipes in total
+334 recipes are building documentation
+252 recipes are not building documentation
 
-I push out a support in Eclipse for post 1.1 (1.1+snapshort*), you can upda=
-te your eclipse plug-in against latest eclipse-poky master following the st=
-eps in the ADT manual.  But it seems you still have some strange thing goin=
-g on with your Edison build, it shouldn't contain "1.1+snapshot*" as versio=
-n for both distro and adt.
+7 recipes did not build, and are counted above as "not building 
+documentation"
 
+For comparison, here were the results from my last audit (September 29):
 
+589 recipes in total
+324 recipes are building documentation
+265 recipes are not building documentation
 
-Cheers,
+6 recipes did not build.
 
-Jessica
+So progress continues to be made.
 
+The lists of recipes are attached to this email. We'd like to improve 
+the percentage of recipes that produce documentation (separated into 
+-doc packages, of course) for our next major release (1.2, in April).
 
+Our userspace recipe maintainers should look into setting aside some 
+time to know which of their recipes are in the "not building 
+documentation" list and work to improve them. A lot of this is likely to 
+be low-hanging fruit, and is easy to do when upgrading your recipes.
 
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Jack Mitchell
-Sent: Wednesday, October 26, 2011 1:20 AM
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Eclipse Plugin: ADT Version too old
+Thanks,
 
+Scott
 
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
-On 25/10/2011 22:40, Flanagan, Elizabeth wrote:
+--------------020508070305070907000509
+Content-Type: text/plain;
+ name="build_errors.txt"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="build_errors.txt"
 
-On Tue, Oct 25, 2011 at 7:45 AM, Jack Mitchell <ml@communistcode.co.uk><mai=
-lto:ml@communistcode.co.uk> wrote:
+clutter
+cogl
+gobject-introspection
+opkg-nogpg
+qmmp
+quicky
+update-alternatives-dpkg
 
+--------------020508070305070907000509
+Content-Type: text/plain;
+ name="documentation_exists.txt"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="documentation_exists.txt"
 
-   Hi Jessica,
+acl
+acpid
+alsa-utils
+apt
+aspell
+at
+atk
+attr
+augeas
+autoconf
+automake
+avahi
+base-files
+base-passwd
+bash
+bc
+bigreqsproto
+bind
+binutils
+bison
+blktool
+blktrace
+bluez-hcidump
+bluez4
+btrfs-tools
+byacc
+bzip2
+cairo
+ccache
+chrpath
+clutter-box2d-1.6
+clutter-gst-1.6
+cmake
+compositeproto
+console-tools
+contacts
+coreutils
+cpio
+createrepo
+cronie
+cups
+curl
+damageproto
+dates
+db
+dbus
+dbus-glib
+dhcp
+diffstat
+diffutils
+directfb
+distcc
+dosfstools
+dpkg
+dri2proto
+e2fsprogs
+ed
+eglibc
+enchant
+ethtool
+expat
+file
+findutils
+fixesproto
+flac
+flex
+fontsproto
+foomatic-filters
+fotowall
+gail
+gawk
+gcc
+gcc-cross
+gcc-cross-initial
+gcc-cross-intermediate
+gcc-crosssdk
+gcc-crosssdk-initial
+gcc-crosssdk-intermediate
+gcc-runtime
+gccmakedep
+gconf-dbus
+gdb
+gdbm
+gdk-pixbuf
+genext2fs
+gettext
+ghostscript
+git
+gmp
+gnome-desktop
+gnome-doc-utils
+gnome-keyring
+gnutls
+gperf
+gpgme
+grep
+groff
+gssdp
+gst-plugin-bluetooth
+gst-plugins-base
+gstreamer
+gthumb
+gtk+
+gupnp
+gupnp-av
+gypsy
+gzip
+hdparm
+icu
+imake
+inputproto
+insserv
+intltool
+iproute2
+iptables
+iputils
+jpeg
+json-glib
+lame
+less
+liba52
+libacpi
+libarchive
+libassuan
+libcanberra
+libcap
+libcheck
+libdaemon
+libdmx
+libevent
+libexif
+libffi
+libgalago
+libgcc
+libgcrypt
+libgdata
+libglade
+libgnome-keyring
+libice
+libidn
+libmpc
+libnewt
+libnfsidmap
+libogg
+liboil
+libpam
+libpcap
+libpcre
+libpng
+librsvg
+libsdl
+libsm
+libsndfile1
+libsoup
+libsoup-2.4
+libtasn1
+libtirpc
+libtool
+libunique
+libuser
+libvorbis
+libx11
+libx11-diet
+libx11-trim
+libxau
+libxcb
+libxcomposite
+libxcursor
+libxdmcp
+libxext
+libxfixes
+libxfontcache
+libxft
+libxi
+libxinerama
+libxml2
+libxmu
+libxp
+libxpm
+libxrandr
+libxrender
+libxres
+libxscrnsaver
+libxslt
+libxt
+libxtst
+libxv
+libxvmc
+libxxf86dga
+libxxf86misc
+libxxf86vm
+lighttpd
+logrotate
+lsb
+lsof
+lttng-ust
+lzo
+m4
+mailx
+make
+makedepend
+mc
+mdadm
+metacity
+mingetty
+minicom
+mkfontdir
+mkfontscale
+mktemp
+mpeg2dec
+mpfr
+msmtp
+mtd-utils
+mtools
+nasm
+ncurses
+neon
+net-tools
+nfs-utils
+ofono
+opensp
+openssh
+openssl
+opkg
+opkg-nogpg
+oprofile
+oprofileui
+pango
+parted
+patch
+pax
+pax-utils
+pciutils
+pcmciautils
+perl
+pkgconfig
+pm-utils
+popt
+portmap
+powertop
+ppp
+printproto
+procps
+psmisc
+pth
+pulseaudio
+python-dbus
+python-imaging
+python-pycurl
+python-scons
+qemu
+qt4-x11-free
+quilt
+randrproto
+readline
+recordproto
+renderproto
+resolvconf
+resourceproto
+rgb
+rpcbind
+rpm
+rsync
+rt-tests
+rxvt-unicode
+screen
+sed
+setserial
+shadow
+shared-mime-info
+slang
+speex
+sqlite3
+strace
+subversion
+sudo
+sysfsutils
+sysklogd
+syslinux
+sysstat
+systemtap
+sysvinit
+tar
+tcl
+tcp-wrappers
+telepathy-glib
+telepathy-idle
+telepathy-mission-control
+texinfo
+tiff
+time
+ttf-bitstream-vera
+udev
+unzip
+usbutils
+util-linux
+valgrind
+videoproto
+vte
+watchdog
+which
+wireless-tools
+wpa-supplicant
+x11perf
+x11vnc
+xauth
+xcmiscproto
+xdg-utils
+xdpyinfo
+xf86-input-evdev
+xf86-input-keyboard
+xf86-input-mouse
+xf86-input-synaptics
+xf86-input-vmmouse
+xf86-video-intel
+xf86-video-vesa
+xf86-video-vmware
+xhost
+xinit
+xkbcomp
+xmodmap
+xprop
+xrandr
+xrestop
+xserver-kdrive
+xserver-xorg
+xserver-xorg-lite
+xset
+xtrans
+xvinfo
+xwininfo
+xz
+zip
+zypper
 
-   I posted my environment settings earlier, which are located here:
-   http://pastebin.com/4vnWPAD2
+--------------020508070305070907000509
+Content-Type: text/plain;
+ name="documentation_missing.txt"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="documentation_missing.txt"
 
-   Yes, I did use bitbake meta-ide-support to build my roo
+alsa-lib
+alsa-tools
+apmd
+apr
+apr-util
+avahi-ui
+beecrypt
+binutils-cross
+binutils-crosssdk
+boost
+busybox
+calibrateproto
+chkconfig
+clutter
+clutter-1.6
+clutter-box2d
+cogl
+connman
+connman-gnome
+consolekit
+cracklib
+cwautomacros
+dbus-wait
+dmxproto
+dropbear
+dtc
+eds-dbus
+eee-acpi-scripts
+eggdbus
+eglibc-initial
+eglibc-locale
+elfutils
+encodings
+evieext
+font-alias
+font-util
+fontcacheproto
+fontconfig
+formfactor
+freetype
+fstests
+gaku
+galago-daemon
+gamin
+gdb-cross
+glew
+glib-2.0
+glib-networking
+glproto
+gnome-common
+gnome-icon-theme
+gnome-mime-data
+gnu-config
+gobject-introspection
+grub
+gst-ffmpeg
+gst-fluendo-mp3
+gst-fluendo-mpegdemux
+gst-meta-base
+gst-openmax
+gst-plugins-bad
+gst-plugins-good
+gst-plugins-ugly
+gtk-doc
+gtk-engines
+gtk-sato-engine
+gtk-theme-torturer
+gtkhtml2
+gupnp-tools
+hello-mod
+hicolor-icon-theme
+hostap-conf
+hostap-utils
+initramfs-boot
+initramfs-live-boot
+initramfs-live-install
+initscripts
+irda-utils
+js
+kbproto
+kernelshark
+kexec-tools
+keymaps
+latencytop
+leafpad
+libaio
+libart-lgpl
+libatomics-ops
+libconvert-asn1-perl
+libcroco
+libdrm
+liberation-fonts
+libfakekey
+libfm
+libfontenc
+libgdbus
+libgpg-error
+libgsmd
+libical
+libid3tag
+libmad
+libmatchbox
+libmusicbrainz
+libnl
+libnss-mdns
+libomxil
+libowl
+libowl-av
+libpciaccess
+libproxy
+libpthread-stubs
+libsamplerate0
+libtelepathy
+libtheora
+libtimedate-perl
+libtool-cross
+liburcu
+liburi-perl
+libusb-compat
+libusb1
+libxcalibrate
+libxdamage
+libxfont
+libxkbfile
+libxml-namespacesupport-perl
+libxml-parser-perl
+libxml-perl
+libxml-sax-perl
+libxml-simple-perl
+libxprintapputil
+libxprintutil
+libxsettings-client
+libxtrap
+libzypp
+lrzsz
+lsbsetup
+lttng-control
+lttng-viewer
+makedevs
+man
+man-pages
+matchbox-config-gtk
+matchbox-desktop
+matchbox-desktop-sato
+matchbox-keyboard
+matchbox-panel-2
+matchbox-session
+matchbox-session-sato
+matchbox-stroke
+matchbox-terminal
+matchbox-theme-sato
+matchbox-theme-sato-2
+matchbox-wm
+matchbox-wm-2
+menu-cache
+mesa-demos
+mesa-dri
+mesa-xlib
+module-init-tools
+module-init-tools-cross
+modutils-initscripts
+mutter
+netbase
+oh-puzzles
+opkg-collateral
+opkg-config-base
+opkg-utils
+orinoco-conf
+owl-video
+pcmanfm
+pixman
+pointercal
+poky-feed-config-opkg
+polkit
+polkit-gnome
+ppp-dialin
+prelink
+pseudo
+psplash
+puzzles
+python
+python-argparse
+python-gst
+python-pycairo
+python-pygobject
+python-pygtk
+python-pyrex
+python-setuptools
+qemu-config
+qemugl
+qmmp
+qt-demo-init
+quicky
+quota
+run-postinsts
+sat-solver
+sato-icon-theme
+screenshot
+scrnsaverproto
+settings-daemon
+sgml-common
+shadow-sysroot
+startup-notification
+sysprof
+sysvinit-inittab
+taglib
+tasks
+tcf-agent
+telepathy-python
+tinylogin
+trace-cmd
+trapproto
+tremor
+tslib
+tzdata
+u-boot-mkimage
+ubootchart
+udev-extraconf
+update-alternatives-dpkg
+update-modules
+update-rc.d
+usbinit
+util-macros
+v86d
+web
+web-webkit
+webkit-gtk
+x11-common
+xcb-proto
+xcb-util
+xcursor-transparent-theme
+xextproto
+xf86-video-omapfb
+xf86bigfontproto
+xf86dgaproto
+xf86driproto
+xf86miscproto
+xf86rushproto
+xf86vidmodeproto
+xineramaproto
+xinetd
+xkeyboard-config
+xorg-cf-files
+xorg-minimal-fonts
+xproto
+xserver-nodm-init
+xserver-xf86-config
+xtscal
+xvideo-tests
+zaurusd
+zeroconf
+zlib
 
-   Hi Jessica,
+--------------020508070305070907000509
+Content-Type: text/plain;
+ name="documentation_missing_detail.txt"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="documentation_missing_detail.txt"
 
-   I just did a full fresh re-build from scratch and now my environment
-   variables are as follows:
+No files shipped with the -doc package: alsa-lib
+No files shipped with the -doc package: alsa-tools
+No files shipped with the -doc package: apmd
+No files shipped with the -doc package: apr
+No files shipped with the -doc package: apr-util
+No -doc package: avahi-ui
+No files shipped with the -doc package: beecrypt
+No -doc package: binutils-cross
+No -doc package: binutils-crosssdk
+No -doc package: boost
+No files shipped with the -doc package: busybox
+No files shipped with the -doc package: calibrateproto
+No files shipped with the -doc package: chkconfig
+There was an error building package clutter
+No -doc package: clutter
+No files shipped with the -doc package: clutter-1.6
+No files shipped with the -doc package: clutter-box2d
+There was an error building package cogl
+No -doc package: cogl
+No files shipped with the -doc package: connman
+No files shipped with the -doc package: connman-gnome
+No files shipped with the -doc package: consolekit
+No files shipped with the -doc package: cracklib
+No files shipped with the -doc package: cwautomacros
+No files shipped with the -doc package: dbus-wait
+No files shipped with the -doc package: dmxproto
+No files shipped with the -doc package: dropbear
+No files shipped with the -doc package: dtc
+No files shipped with the -doc package: eds-dbus
+No files shipped with the -doc package: eee-acpi-scripts
+No files shipped with the -doc package: eggdbus
+No -doc package: eglibc-initial
+No -doc package: eglibc-locale
+No files shipped with the -doc package: elfutils
+No files shipped with the -doc package: encodings
+No files shipped with the -doc package: evieext
+No files shipped with the -doc package: font-alias
+No files shipped with the -doc package: font-util
+No files shipped with the -doc package: fontcacheproto
+No files shipped with the -doc package: fontconfig
+No files shipped with the -doc package: formfactor
+No files shipped with the -doc package: freetype
+No files shipped with the -doc package: fstests
+No files shipped with the -doc package: gaku
+No files shipped with the -doc package: galago-daemon
+No files shipped with the -doc package: gamin
+No -doc package: gdb-cross
+No files shipped with the -doc package: glew
+No files shipped with the -doc package: glib-2.0
+No files shipped with the -doc package: glib-networking
+No files shipped with the -doc package: glproto
+No files shipped with the -doc package: gnome-common
+No files shipped with the -doc package: gnome-icon-theme
+No files shipped with the -doc package: gnome-mime-data
+No -doc package: gnu-config
+There was an error building package gobject-introspection
+No -doc package: gobject-introspection
+No files shipped with the -doc package: grub
+No files shipped with the -doc package: gst-ffmpeg
+No files shipped with the -doc package: gst-fluendo-mp3
+No files shipped with the -doc package: gst-fluendo-mpegdemux
+No -doc package: gst-meta-base
+No files shipped with the -doc package: gst-openmax
+No files shipped with the -doc package: gst-plugins-bad
+No files shipped with the -doc package: gst-plugins-good
+No files shipped with the -doc package: gst-plugins-ugly
+No files shipped with the -doc package: gtk-doc
+No files shipped with the -doc package: gtk-engines
+No files shipped with the -doc package: gtk-sato-engine
+No files shipped with the -doc package: gtk-theme-torturer
+No files shipped with the -doc package: gtkhtml2
+No files shipped with the -doc package: gupnp-tools
+No files shipped with the -doc package: hello-mod
+No files shipped with the -doc package: hicolor-icon-theme
+No files shipped with the -doc package: hostap-conf
+No files shipped with the -doc package: hostap-utils
+No files shipped with the -doc package: initramfs-boot
+No files shipped with the -doc package: initramfs-live-boot
+No files shipped with the -doc package: initramfs-live-install
+No files shipped with the -doc package: initscripts
+No files shipped with the -doc package: irda-utils
+No files shipped with the -doc package: js
+No files shipped with the -doc package: kbproto
+No files shipped with the -doc package: kernelshark
+No files shipped with the -doc package: kexec-tools
+No files shipped with the -doc package: keymaps
+No files shipped with the -doc package: latencytop
+No files shipped with the -doc package: leafpad
+No files shipped with the -doc package: libaio
+No files shipped with the -doc package: libart-lgpl
+No files shipped with the -doc package: libatomics-ops
+No files shipped with the -doc package: libconvert-asn1-perl
+No files shipped with the -doc package: libcroco
+No files shipped with the -doc package: libdrm
+No -doc package: liberation-fonts
+No files shipped with the -doc package: libfakekey
+No files shipped with the -doc package: libfm
+No files shipped with the -doc package: libfontenc
+No files shipped with the -doc package: libgdbus
+No files shipped with the -doc package: libgpg-error
+No files shipped with the -doc package: libgsmd
+No files shipped with the -doc package: libical
+No files shipped with the -doc package: libid3tag
+No files shipped with the -doc package: libmad
+No files shipped with the -doc package: libmatchbox
+No files shipped with the -doc package: libmusicbrainz
+No files shipped with the -doc package: libnl
+No files shipped with the -doc package: libnss-mdns
+No files shipped with the -doc package: libomxil
+No files shipped with the -doc package: libowl
+No files shipped with the -doc package: libowl-av
+No files shipped with the -doc package: libpciaccess
+No files shipped with the -doc package: libproxy
+No files shipped with the -doc package: libpthread-stubs
+No files shipped with the -doc package: libsamplerate0
+No files shipped with the -doc package: libtelepathy
+No files shipped with the -doc package: libtheora
+No files shipped with the -doc package: libtimedate-perl
+No -doc package: libtool-cross
+No files shipped with the -doc package: liburcu
+No files shipped with the -doc package: liburi-perl
+No files shipped with the -doc package: libusb-compat
+No files shipped with the -doc package: libusb1
+No files shipped with the -doc package: libxcalibrate
+No files shipped with the -doc package: libxdamage
+No files shipped with the -doc package: libxfont
+No files shipped with the -doc package: libxkbfile
+No files shipped with the -doc package: libxml-namespacesupport-perl
+No files shipped with the -doc package: libxml-parser-perl
+No files shipped with the -doc package: libxml-perl
+No files shipped with the -doc package: libxml-sax-perl
+No files shipped with the -doc package: libxml-simple-perl
+No files shipped with the -doc package: libxprintapputil
+No files shipped with the -doc package: libxprintutil
+No files shipped with the -doc package: libxsettings-client
+No files shipped with the -doc package: libxtrap
+No files shipped with the -doc package: libzypp
+No files shipped with the -doc package: lrzsz
+No files shipped with the -doc package: lsbsetup
+No files shipped with the -doc package: lttng-control
+No files shipped with the -doc package: lttng-viewer
+No files shipped with the -doc package: makedevs
+No files shipped with the -doc package: man
+No files shipped with the -doc package: man-pages
+No files shipped with the -doc package: matchbox-config-gtk
+No files shipped with the -doc package: matchbox-desktop
+No files shipped with the -doc package: matchbox-desktop-sato
+No files shipped with the -doc package: matchbox-keyboard
+No files shipped with the -doc package: matchbox-panel-2
+No files shipped with the -doc package: matchbox-session
+No files shipped with the -doc package: matchbox-session-sato
+No files shipped with the -doc package: matchbox-stroke
+No files shipped with the -doc package: matchbox-terminal
+No files shipped with the -doc package: matchbox-theme-sato
+No files shipped with the -doc package: matchbox-theme-sato-2
+No files shipped with the -doc package: matchbox-wm
+No files shipped with the -doc package: matchbox-wm-2
+No files shipped with the -doc package: menu-cache
+No files shipped with the -doc package: mesa-demos
+No files shipped with the -doc package: mesa-dri
+No files shipped with the -doc package: mesa-xlib
+No files shipped with the -doc package: module-init-tools
+No -doc package: module-init-tools-cross
+No files shipped with the -doc package: modutils-initscripts
+No files shipped with the -doc package: mutter
+No files shipped with the -doc package: netbase
+No files shipped with the -doc package: oh-puzzles
+No files shipped with the -doc package: opkg-collateral
+No files shipped with the -doc package: opkg-config-base
+There was an error building package opkg-nogpg
+No files shipped with the -doc package: opkg-utils
+No files shipped with the -doc package: orinoco-conf
+No files shipped with the -doc package: owl-video
+No files shipped with the -doc package: pcmanfm
+No files shipped with the -doc package: pixman
+No files shipped with the -doc package: pointercal
+No files shipped with the -doc package: poky-feed-config-opkg
+No files shipped with the -doc package: polkit
+No files shipped with the -doc package: polkit-gnome
+No files shipped with the -doc package: ppp-dialin
+No files shipped with the -doc package: prelink
+No files shipped with the -doc package: pseudo
+No files shipped with the -doc package: psplash
+No files shipped with the -doc package: puzzles
+No -doc package: python
+No files shipped with the -doc package: python-argparse
+No files shipped with the -doc package: python-gst
+No files shipped with the -doc package: python-pycairo
+No files shipped with the -doc package: python-pygobject
+No files shipped with the -doc package: python-pygtk
+No files shipped with the -doc package: python-pyrex
+No files shipped with the -doc package: python-setuptools
+No files shipped with the -doc package: qemu-config
+No files shipped with the -doc package: qemugl
+There was an error building package qmmp
+No -doc package: qmmp
+No files shipped with the -doc package: qt-demo-init
+There was an error building package quicky
+No -doc package: quicky
+No files shipped with the -doc package: quota
+No files shipped with the -doc package: run-postinsts
+No files shipped with the -doc package: sat-solver
+No files shipped with the -doc package: sato-icon-theme
+No files shipped with the -doc package: screenshot
+No files shipped with the -doc package: scrnsaverproto
+No files shipped with the -doc package: settings-daemon
+No files shipped with the -doc package: sgml-common
+No files shipped with the -doc package: shadow-sysroot
+No files shipped with the -doc package: startup-notification
+No files shipped with the -doc package: sysprof
+No files shipped with the -doc package: sysvinit-inittab
+No files shipped with the -doc package: taglib
+No files shipped with the -doc package: tasks
+No files shipped with the -doc package: tcf-agent
+No files shipped with the -doc package: telepathy-python
+No files shipped with the -doc package: tinylogin
+No files shipped with the -doc package: trace-cmd
+No files shipped with the -doc package: trapproto
+No files shipped with the -doc package: tremor
+No files shipped with the -doc package: tslib
+No -doc package: tzdata
+No files shipped with the -doc package: u-boot-mkimage
+No files shipped with the -doc package: ubootchart
+No files shipped with the -doc package: udev-extraconf
+There was an error building package update-alternatives-dpkg
+No files shipped with the -doc package: update-alternatives-dpkg
+No files shipped with the -doc package: update-modules
+No files shipped with the -doc package: update-rc.d
+No files shipped with the -doc package: usbinit
+No files shipped with the -doc package: util-macros
+No files shipped with the -doc package: v86d
+No files shipped with the -doc package: web
+No files shipped with the -doc package: web-webkit
+No files shipped with the -doc package: webkit-gtk
+No files shipped with the -doc package: x11-common
+No files shipped with the -doc package: xcb-proto
+No files shipped with the -doc package: xcb-util
+No files shipped with the -doc package: xcursor-transparent-theme
+No files shipped with the -doc package: xextproto
+No files shipped with the -doc package: xf86-video-omapfb
+No files shipped with the -doc package: xf86bigfontproto
+No files shipped with the -doc package: xf86dgaproto
+No files shipped with the -doc package: xf86driproto
+No files shipped with the -doc package: xf86miscproto
+No files shipped with the -doc package: xf86rushproto
+No files shipped with the -doc package: xf86vidmodeproto
+No files shipped with the -doc package: xineramaproto
+No files shipped with the -doc package: xinetd
+No files shipped with the -doc package: xkeyboard-config
+No files shipped with the -doc package: xorg-cf-files
+No -doc package: xorg-minimal-fonts
+No files shipped with the -doc package: xproto
+No files shipped with the -doc package: xserver-nodm-init
+No files shipped with the -doc package: xserver-xf86-config
+No files shipped with the -doc package: xtscal
+No files shipped with the -doc package: xvideo-tests
+No files shipped with the -doc package: zaurusd
+No files shipped with the -doc package: zeroconf
+No files shipped with the -doc package: zlib
 
-   http://ix.io/1Wf
-
-   My current git status is:
-
-   # On branch edision
-   # Untracked files:
-   #   (use "git add <file>..." to include in what will be committed)
-   #
-   #    ../bitbake/lib/bb/pysh/pyshtables.py
-   #    ../conf/
-   #    ./
-   #    ../qemuarm-toolchain/
-   nothing added to commit but untracked files present (use "git add" to tr=
-ack)
-
-
-Jack,
-
-I just checked out a clean edison and ran bitbake meta-ide-support. My
-env is showing export OECORE_DISTRO_VERSION=3D"1.1". My guess is that,
-since you are not in master, then you have a TMPDIR from a master
-build, or perhaps are using something left over from one, as the only
-place DISTRO_VERSION =3D "1.1+snapshot-${DATE}" would be there. Prior to
-c88b991 on edison, DISTRO_VERSION =3D "1.0+snapshot-${DATE}". So you're
-picking that up from some prior master build. It's not an older
-version of edison as if it was an older version of edison it would be
-1.0+snapshot-${DATE
-
--b
-
-
-
-Ok, this is some more debug info:
-
-OE Build Configuration:
-BB_VERSION        =3D "1.13.3"
-TARGET_ARCH       =3D "arm"
-TARGET_OS         =3D "linux-gnueabi"
-MACHINE           =3D "qemuarm"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.1+snapshot-20111026"
-TUNE_FEATURES     =3D "armv5 dsp thumb arm926ejs"
-TARGET_FPU        =3D "soft"
-meta
-meta-yocto
-meta-db-generic   =3D "edision:b4757833c3548b5ee3a1cce58e2f059b3f63cb09"
-
-Could it be that because I have my own layer present it's skewing the git? =
-Should the eclipse plug-in not match 1.1*?
-
-Could you check your file of meta-yocto/conf/distro/poky.conf for the varia=
-ble DISTRO_VERSION, it should be "1.1'.
-
-It does indeed state 1.1.
-
-
-
-
-
-
---_000_C6510F6D410BB64A8C15398EDC6B847C16E9A084ORSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	color:black;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";
-	color:black;}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:Consolas;
-	color:black;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body bgcolor=3D"white" lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Jack,<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">I push out a support in E=
-clipse for post 1.1 (1.1&#43;snapshort*), you can update your eclipse plug-=
-in against latest eclipse-poky master following the steps in
- the ADT manual.&nbsp; But it seems you still have some strange thing going=
- on with your Edison build, it shouldn&#8217;t contain &#8220;1.1&#43;snaps=
-hot*&#8221; as version for both distro and adt.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Cheers,<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Jessica<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;;color:windowtext">From:</span></b><spa=
-n style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif=
-&quot;;color:windowtext"> yocto-bounces@yoctoproject.org [mailto:yocto-boun=
-ces@yoctoproject.org]
-<b>On Behalf Of </b>Jack Mitchell<br>
-<b>Sent:</b> Wednesday, October 26, 2011 1:20 AM<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] Eclipse Plugin: ADT Version too old<o:p></o:p><=
-/span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">On 25/10/2011 22:40, Flanagan, Elizabeth wrote: <o:p=
-></o:p></p>
-<pre>On Tue, Oct 25, 2011 at 7:45 AM, Jack Mitchell <a href=3D"mailto:ml@co=
-mmunistcode.co.uk">&lt;ml@communistcode.co.uk&gt;</a> wrote:<o:p></o:p></pr=
-e>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<pre><o:p>&nbsp;</o:p></pre>
-<pre>Hi Jessica,<o:p></o:p></pre>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre>I posted my environment settings earlier, which are located here:<o:p>=
-</o:p></pre>
-<pre><a href=3D"http://pastebin.com/4vnWPAD2">http://pastebin.com/4vnWPAD2<=
-/a><o:p></o:p></pre>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre>Yes, I did use bitbake meta-ide-support to build my roo<o:p></o:p></pr=
-e>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre>Hi Jessica,<o:p></o:p></pre>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre>I just did a full fresh re-build from scratch and now my environment<o=
-:p></o:p></pre>
-<pre>variables are as follows:<o:p></o:p></pre>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre><a href=3D"http://ix.io/1Wf">http://ix.io/1Wf</a><o:p></o:p></pre>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre>My current git status is:<o:p></o:p></pre>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre># On branch edision<o:p></o:p></pre>
-<pre># Untracked files:<o:p></o:p></pre>
-<pre>#&nbsp;&nbsp; (use &quot;git add &lt;file&gt;...&quot; to include in w=
-hat will be committed)<o:p></o:p></pre>
-<pre>#<o:p></o:p></pre>
-<pre>#&nbsp;&nbsp;&nbsp; ../bitbake/lib/bb/pysh/pyshtables.py<o:p></o:p></p=
-re>
-<pre>#&nbsp;&nbsp;&nbsp; ../conf/<o:p></o:p></pre>
-<pre>#&nbsp;&nbsp;&nbsp; ./<o:p></o:p></pre>
-<pre>#&nbsp;&nbsp;&nbsp; ../qemuarm-toolchain/<o:p></o:p></pre>
-<pre>nothing added to commit but untracked files present (use &quot;git add=
-&quot; to track)<o:p></o:p></pre>
-</blockquote>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre>Jack,<o:p></o:p></pre>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre>I just checked out a clean edison and ran bitbake meta-ide-support. My=
-<o:p></o:p></pre>
-<pre>env is showing export OECORE_DISTRO_VERSION=3D&quot;1.1&quot;. My gues=
-s is that,<o:p></o:p></pre>
-<pre>since you are not in master, then you have a TMPDIR from a master<o:p>=
-</o:p></pre>
-<pre>build, or perhaps are using something left over from one, as the only<=
-o:p></o:p></pre>
-<pre>place DISTRO_VERSION =3D &quot;1.1&#43;snapshot-${DATE}&quot; would be=
- there. Prior to<o:p></o:p></pre>
-<pre>c88b991 on edison, DISTRO_VERSION =3D &quot;1.0&#43;snapshot-${DATE}&q=
-uot;. So you're<o:p></o:p></pre>
-<pre>picking that up from some prior master build. It's not an older<o:p></=
-o:p></pre>
-<pre>version of edison as if it was an older version of edison it would be<=
-o:p></o:p></pre>
-<pre>1.0&#43;snapshot-${DATE<o:p></o:p></pre>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre>-b<o:p></o:p></pre>
-<pre><o:p>&nbsp;</o:p></pre>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><br>
-Ok, this is some more debug info:<br>
-<br>
-OE Build Configuration:<br>
-BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;1.13.3&quot;=
-<br>
-TARGET_ARCH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;arm&quot;<br>
-TARGET_OS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;linux-g=
-nueabi&quot;<br>
-MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &qu=
-ot;qemuarm&quot;<br>
-DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-=3D &quot;poky&quot;<br>
-DISTRO_VERSION&nbsp;&nbsp;&nbsp; =3D &quot;1.1&#43;snapshot-20111026&quot;<=
-br>
-TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;armv5 dsp thumb arm926ejs&q=
-uot;<br>
-TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;soft&quot;<b=
-r>
-meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; <br>
-meta-yocto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
-meta-db-generic&nbsp;&nbsp; =3D &quot;edision:b4757833c3548b5ee3a1cce58e2f0=
-59b3f63cb09&quot;<br>
-<br>
-Could it be that because I have my own layer present it's skewing the git? =
-Should the eclipse plug-in not match 1.1*?<br>
-<span style=3D"font-family:&quot;Courier New&quot;"><br>
-Could you check your file of meta-yocto/conf/distro/poky.conf for the varia=
-ble DISTRO_VERSION, it should be &quot;1.1'.
-</span><br>
-<br>
-It does indeed state 1.1.<br>
-<br>
-<br>
-<br>
-<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_C6510F6D410BB64A8C15398EDC6B847C16E9A084ORSMSX101amrcor_--
+--------------020508070305070907000509--
