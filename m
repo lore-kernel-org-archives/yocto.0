@@ -1,23 +1,20 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3C97E006B4
-	for <yocto@yoctoproject.org>; Wed, 26 Oct 2011 10:41:29 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p9QHfTpJ016633
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 26 Oct 2011 10:41:29 -0700 (PDT)
-Received: from Macintosh-5.local (172.25.36.229) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 26 Oct 2011 10:41:28 -0700
-Message-ID: <4EA84648.8040206@windriver.com>
-Date: Wed, 26 Oct 2011 12:41:28 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
-MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: prelink-cross project sync update
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A5A6E006B4
+	for <yocto@yoctoproject.org>; Wed, 26 Oct 2011 16:25:40 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 26 Oct 2011 16:25:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,412,1315206000"; d="scan'208";a="82797848"
+Received: from kishore-desktop.sc.intel.com (HELO localhost)
+	([143.183.188.157])
+	by fmsmga002.fm.intel.com with ESMTP; 26 Oct 2011 16:25:39 -0700
+From: kishore.k.bodke@intel.com
+To: yocto@yoctoproject.org
+Date: Wed, 26 Oct 2011 16:25:29 -0700
+Message-Id: <cover.1319666230.git.kishore.k.bodke@intel.com>
+X-Mailer: git-send-email 1.7.5.4
+Subject: [PATCH 0/7] New meta-romley BSP created.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,53 +26,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Oct 2011 17:41:30 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 26 Oct 2011 23:25:40 -0000
 
-(I'm going to try to send out these quick blurbs as prelink-cross is synced to
-the upstream.  Upstream changes are fairly infrequent, so this will be a low
-volume set of emails.  Most emails in the future will be shorted then this one.)
+From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-prelink-cross has been synced up to the latest upstream prelink changes.
+Hi All,
 
-The latest changes include:
 
-2011-10-12  Jakub Jelinek  <jakub@redhat.com>
+This layer provides  new BSP meta-romley and tested against the master branch.
+This provides the support for Romley + Patsburg Chipset for Intel Systems.
+Romley refers to the Intel Rosecity Board.
+This has been verified by Tom Zanussi, and wanted to pull this BSP into the 
+main line.
 
-        * src/main.c (layout_page_size): New variable.
-        (OPT_LAYOUT_PAGE_SIZE): Define.
-        (options): Add --layout-page-size option.
-        (set_default_layout_page_size): New function in i?86/x86_64
-        resp. empty macro on other architectures.
-        (main): Call it.
-        * src/arch-i386.c (i386_layout_libs_init): Fail if
-        l->max_page_size is larger than 2MB and exec_shield is true.
-        Compute reg0s as REG0S rounded up to l->max_page_size
-        boundary and use it instead of REG0S.
-        (i386_layout_libs_pre): Compute reg0s as REG0S rounded up to
-        l->max_page_size boundary and use it instead of REG0S.
-        Fix up a pasto in computation of virt parameter for
-        third i386_find_free_addr call.
-        * src/prelink.h (layout_page_size): New decl.
-        * src/layout.c (layout_libs): Set max_page_size and
-        l.max_page_size to maximum of plarch->max_page_size
-        and layout_page_size.  Fail if mmap_base or mmap_end
-        aren't max_page_size aligned.
-        * src/arch-ppc.c (ppc_layout_libs_pre): Give up if
-        l->max_page_size is larger than 64KB.
+Please let me know if anything is required further to get into the main line.
 
-In essence what this does is adds a new option "--layout-page-size" that allows
-someone to override the "max_page_size" value when necessary.  (It's not a true
-override as the max_page_size is set to either the existing value or
-layout-page-size whichever is larger.)
+Please pull.
 
-The upstream change also added dynamic run-time detection for the AMD Bulldozer
-platform, setting the default to 32k.  Since run-time detection is contrary to
-the existing prelink-cross usage, the code has been disabled.
+Thanks
+Kishore.
 
-As usual, the upstream version is in the "master" branch, and the cross version
-is in the "cross_prelink" branch.
 
---Mark
+The following changes since commit b5c9f0af18b80c2b4c478fd7cfb537e0a04a4e22:
+
+  meta-fri2: README correction (2011-10-25 14:52:36 -0500)
+
+are available in the git repository at:
+  git://git.pokylinux.org/meta-intel-contrib master0
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=master0
+
+Kishore Bodke (3):
+  New Romley BSP added.
+  Romley BSP tested against master branch and with new xorg changes.
+  Updated the romley.conf and removed linux-yocto_2.6.37.bbappend file.
+        Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+
+Tom Zanussi (4):
+  meta-romley: remove meta-intel/common from BBFILES
+  meta-romley: xserver-xorg renaming updates
+  add enable-dga to the xserver to get rid of DGAInit startup error
+  add missing xaa module
+
+ MAINTAINERS                                        |    4 +
+ meta-romley/COPYING.MIT                            |   17 ++++
+ meta-romley/README                                 |   86 ++++++++++++++++++++
+ meta-romley/README.sources                         |   17 ++++
+ meta-romley/conf/layer.conf                        |   10 +++
+ meta-romley/conf/machine/romley.conf               |   46 +++++++++++
+ .../formfactor/formfactor/romley/machconfig        |    3 +
+ .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    3 +
+ .../recipes-core/tasks/task-core-tools.bbappend    |    2 +
+ .../xorg-driver/xf86-video-mga_1.4.13.bb           |   19 +++++
+ .../xserver-xf86-config/romley/xorg.conf           |   26 ++++++
+ .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    3 +
+ .../xorg-xserver/xserver-xorg_1.11.1.bbappend      |    1 +
+ .../linux/linux-yocto-rt_3.0.bbappend              |    8 ++
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    7 ++
+ meta-sugarbay/conf/machine/sugarbay.conf           |    4 +-
+ 16 files changed, 253 insertions(+), 3 deletions(-)
+ create mode 100644 meta-romley/COPYING.MIT
+ create mode 100644 meta-romley/README
+ create mode 100644 meta-romley/README.sources
+ create mode 100644 meta-romley/binary/.gitignore
+ create mode 100644 meta-romley/conf/layer.conf
+ create mode 100644 meta-romley/conf/machine/romley.conf
+ create mode 100644 meta-romley/recipes-bsp/formfactor/formfactor/romley/machconfig
+ create mode 100644 meta-romley/recipes-bsp/formfactor/formfactor_0.0.bbappend
+ create mode 100644 meta-romley/recipes-core/tasks/task-core-tools.bbappend
+ create mode 100755 meta-romley/recipes-graphics/xorg-driver/xf86-video-mga_1.4.13.bb
+ create mode 100644 meta-romley/recipes-graphics/xorg-xserver/xserver-xf86-config/romley/xorg.conf
+ create mode 100644 meta-romley/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+ create mode 100644 meta-romley/recipes-graphics/xorg-xserver/xserver-xorg_1.11.1.bbappend
+ create mode 100644 meta-romley/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+ create mode 100644 meta-romley/recipes-kernel/linux/linux-yocto_3.0.bbappend
+
+-- 
+1.7.5.4
+
 
