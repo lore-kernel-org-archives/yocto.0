@@ -1,28 +1,20 @@
-Return-Path: <Noel.Vellemans@visionBMS.com>
-Received: from mail206.messagelabs.com (mail206.messagelabs.com
-	[85.158.139.211])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 222E7E006F9
-	for <yocto@yoctoproject.org>; Thu, 27 Oct 2011 09:10:48 -0700 (PDT)
-X-Env-Sender: Noel.Vellemans@visionBMS.com
-X-Msg-Ref: server-8.tower-206.messagelabs.com!1319731846!683175!1
-X-Originating-IP: [195.134.156.204]
-X-StarScan-Version: 6.3.6; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 27166 invoked from network); 27 Oct 2011 16:10:46 -0000
-Received: from gateway.loepfe.com (HELO gateway.loepfe.com) (195.134.156.204)
-	by server-8.tower-206.messagelabs.com with SMTP;
-	27 Oct 2011 16:10:46 -0000
-X-MimeOLE: Produced By Microsoft Exchange V6.5
-MIME-Version: 1.0
-Date: Thu, 27 Oct 2011 18:10:45 +0200
-Message-ID: <1531E53627F1F749B4FE809BF2A4EB6702BCEA88@WETMEX10.loepfe.com>
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Thread-Topic: Slow-startup.
-thread-index: AcyUwvuRdXztc/sjT1K5HvIqSI0bZw==
-From: "Vellemans, Noel" <Noel.Vellemans@visionBMS.com>
-To: <yocto@yoctoproject.org>
-Subject: Slow-startup.
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 908CBE006F9
+	for <yocto@yoctoproject.org>; Thu, 27 Oct 2011 10:51:46 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 27 Oct 2011 10:51:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,414,1315206000"; d="scan'208";a="67702570"
+Received: from kishore-desktop.sc.intel.com (HELO localhost)
+	([143.183.188.161])
+	by azsmga001.ch.intel.com with ESMTP; 27 Oct 2011 10:51:45 -0700
+From: kishore.k.bodke@intel.com
+To: yocto@yoctoproject.org
+Date: Thu, 27 Oct 2011 10:51:25 -0700
+Message-Id: <cover.1319737612.git.kishore.k.bodke@intel.com>
+X-Mailer: git-send-email 1.7.5.4
+Subject: [PATCH 0/1] New meta-romley BSP created.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,99 +26,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Oct 2011 16:10:50 -0000
-Content-class: urn:content-classes:message
-Content-Type: multipart/alternative;
-	boundary="----_=_NextPart_001_01CC94C2.FBED3F34"
+X-List-Received-Date: Thu, 27 Oct 2011 17:51:46 -0000
 
-------_=_NextPart_001_01CC94C2.FBED3F34
-Content-Type: text/plain;
-	charset="US-ASCII"
-Content-Transfer-Encoding: quoted-printable
+From: Kishore Bodke <kishore.k.bodke@intel.com>
+
+ Hi All
+
+ This layer provides  new BSP meta-romley and tested against the master branch.
+ This provides the support for Romley + Patsburg Chipset for Intel Systems.
+ Romley refers to the Intel Rosecity Board.
+ This has been verified by Tom Zanussi, and wanted to pull this BSP into the 
+ main line.
+ 
+ I had incorporated the comments mentioned by Tom.
+
+ Please let me know if anything is required further to get into the main line.
+ 
+ Please pull.
+
+Thanks
+Kishore.
+
+The following changes since commit b5c9f0af18b80c2b4c478fd7cfb537e0a04a4e22:
+
+  meta-fri2: README correction (2011-10-25 14:52:36 -0500)
+
+are available in the git repository at:
+  git://git.pokylinux.org/meta-intel-contrib master0
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=master0
+
+Kishore Bodke (1):
+  Romley BSP created. Uses Matrox MGA graphics driver.    
+    Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+
+ meta-romley/COPYING.MIT                            |   17 ++++
+ meta-romley/README                                 |   88 ++++++++++++++++++++
+ meta-romley/README.sources                         |   17 ++++
+ meta-romley/conf/layer.conf                        |   10 ++
+ meta-romley/conf/machine/romley.conf               |   46 ++++++++++
+ .../formfactor/formfactor/romley/machconfig        |    3 +
+ .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    3 +
+ .../recipes-core/tasks/task-core-tools.bbappend    |    2 +
+ .../xorg-driver/xf86-video-mga_1.4.13.bb           |   19 ++++
+ .../xserver-xf86-config/romley/xorg.conf           |   26 ++++++
+ .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    3 +
+ .../xorg-xserver/xserver-xorg_1.11.1.bbappend      |    1 +
+ .../linux/linux-yocto-rt_3.0.bbappend              |    8 ++
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    7 ++
+ 14 files changed, 250 insertions(+), 0 deletions(-)
+ create mode 100644 meta-romley/COPYING.MIT
+ create mode 100644 meta-romley/README
+ create mode 100644 meta-romley/README.sources
+ create mode 100644 meta-romley/binary/.gitignore
+ create mode 100644 meta-romley/conf/layer.conf
+ create mode 100644 meta-romley/conf/machine/romley.conf
+ create mode 100644 meta-romley/recipes-bsp/formfactor/formfactor/romley/machconfig
+ create mode 100644 meta-romley/recipes-bsp/formfactor/formfactor_0.0.bbappend
+ create mode 100644 meta-romley/recipes-core/tasks/task-core-tools.bbappend
+ create mode 100755 meta-romley/recipes-graphics/xorg-driver/xf86-video-mga_1.4.13.bb
+ create mode 100644 meta-romley/recipes-graphics/xorg-xserver/xserver-xf86-config/romley/xorg.conf
+ create mode 100644 meta-romley/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+ create mode 100644 meta-romley/recipes-graphics/xorg-xserver/xserver-xorg_1.11.1.bbappend
+ create mode 100644 meta-romley/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+ create mode 100644 meta-romley/recipes-kernel/linux/linux-yocto_3.0.bbappend
+
+-- 
+1.7.5.4
 
 
-Hi all,
-
-I'm test-driving the yocto-edison version, Target-armv7 (testing on
-imx-53x cpu).
-
-But,  I'm having a strange problem.=20
-
-It takes very long to start the device, every time [not only the first
-time], at each reboot cycle it takes up to 3 minutes before I get the
-desktop.
-
-At the current time I got to the point (by using printf into the code on
-1001 places)  that it is the _mb_font_load() in matchbox-lib that makes
-the startup extremely slow. (system seems to 'hang' for more the 3
-minutes before the matchbox-desktop pops up.)
-
-
-Any information available on this?
-Any hints where to look at ?
-
-
-Kind regards
-Noel
-
-
-------_=_NextPart_001_01CC94C2.FBED3F34
-Content-Type: text/html;
-	charset="US-ASCII"
-Content-Transfer-Encoding: quoted-printable
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
-<HTML>
-<HEAD>
-<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dus-ascii">
-<META NAME=3D"Generator" CONTENT=3D"MS Exchange Server version =
-6.5.7654.12">
-<TITLE>Slow-startup.</TITLE>
-</HEAD>
-<BODY>
-<!-- Converted from text/rtf format -->
-<BR>
-
-<P><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">Hi all,</FONT></SPAN>
-</P>
-
-<P><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">I'm test-driving the =
-yocto-edison version, Target-armv7 (testing on imx-53x =
-cpu).</FONT></SPAN>
-</P>
-
-<P><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">But,&nbsp; I&#8217;m =
-having a strange problem. </FONT></SPAN>
-</P>
-
-<P><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">It takes very long to =
-start the device, every time [not only the first time], at each reboot =
-cycle it takes up to 3 minutes before I get the =
-desktop.</FONT></SPAN></P>
-
-<P><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">At the current time I got =
-to the point (by using printf into the code on 1001 places)&nbsp; that =
-it is the _mb_font_load() in matchbox-lib that makes the startup =
-extremely slow. (system seems to &#8216;hang&#8217; for more the 3 =
-minutes before the matchbox-desktop pops up.)</FONT></SPAN></P>
-<BR>
-
-<P><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">Any information available =
-on this?</FONT></SPAN>
-
-<BR><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">Any hints where to look =
-at ?</FONT></SPAN>
-</P>
-<BR>
-
-<P><SPAN LANG=3D"nl-be"><FONT FACE=3D"Verdana">Kind =
-regards</FONT></SPAN>
-
-<BR><SPAN LANG=3D"nl-be"><FONT FACE=3D"Verdana">Noel</FONT></SPAN>
-</P>
-
-</BODY>
-</HTML>
-
-------_=_NextPart_001_01CC94C2.FBED3F34--
