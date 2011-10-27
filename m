@@ -1,24 +1,29 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AA3AE006D1
-	for <yocto@yoctoproject.org>; Wed, 26 Oct 2011 17:05:46 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 26 Oct 2011 17:05:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="67911700"
-Received: from unknown (HELO [10.255.15.57]) ([10.255.15.57])
-	by orsmga002.jf.intel.com with ESMTP; 26 Oct 2011 17:05:45 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "kishore.k.bodke@intel.com" <kishore.k.bodke@intel.com>
-In-Reply-To: <9a822879f487777536cf56f8c329fd03f0586a14.1319666230.git.kishore.k.bodke@intel.com>
-References: <cover.1319666230.git.kishore.k.bodke@intel.com>
-	<9a822879f487777536cf56f8c329fd03f0586a14.1319666230.git.kishore.k.bodke@intel.com>
-Date: Wed, 26 Oct 2011 19:05:02 -0500
-Message-ID: <1319673902.3945.34.camel@elmorro>
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from lo.gmane.org (lo.gmane.org [80.91.229.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2403E006B4
+	for <yocto@yoctoproject.org>; Wed, 26 Oct 2011 21:40:18 -0700 (PDT)
+Received: from list by lo.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1RJHl8-0007Ol-Ln
+	for yocto@yoctoproject.org; Thu, 27 Oct 2011 06:40:10 +0200
+Received: from gw01.embeddedwireless.com ([210.19.225.8])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 27 Oct 2011 06:40:06 +0200
+Received: from adrian.miller87 by gw01.embeddedwireless.com with local (Gmexim
+	0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 27 Oct 2011 06:40:06 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Adrian Miller <adrian.miller87@gmail.com>
+Date: Thu, 27 Oct 2011 04:37:39 +0000 (UTC)
+Message-ID: <loom.20111027T063445-590@post.gmane.org>
 Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 7/7] Updated the romley.conf and removed linux-yocto_2.6.37.bbappend file. Signed-off-by: Kishore	Bodke <kishore.k.bodke@intel.com>
+X-Complaints-To: usenet@dough.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 210.19.225.8 (Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.8) Gecko/20100723 Ubuntu/10.04 (lucid) Firefox/3.6.8)
+Subject: Yocto Login Username and Password on MPC8315E-RDB
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,69 +35,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Oct 2011 00:05:46 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 27 Oct 2011 04:40:19 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2011-10-26 at 16:25 -0700, kishore.k.bodke@intel.com wrote:
-> From: Kishore Bodke <kishore.k.bodke@intel.com>
-> 
-> ---
->  MAINTAINERS                                        |    4 ++++
->  meta-romley/conf/machine/romley.conf               |    4 +---
->  .../linux/linux-yocto_2.6.37.bbappend              |    7 -------
->  3 files changed, 5 insertions(+), 10 deletions(-)
->  delete mode 100644 meta-romley/recipes-kernel/linux/linux-yocto_2.6.37.bbappend
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index fda48ad..54559dd 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -61,3 +61,7 @@ SUGARBAY
->  M:	Tom Zanussi <tom.zanussi@intel.com>
->  F:	meta-sugarbay/
->  
-> +ROMLEY
-> +M:      Kishore Bodke <kishore.k.bodke@intel.com>
-> +F:      meta-romley/
-> +
+Hi, 
 
-This is fine, and should be the only thing in the patch.  Also please
-add your Signed-off-by.
+After I successfully load the kernel onto my board, I get this:
 
-> diff --git a/meta-romley/conf/machine/romley.conf b/meta-romley/conf/machine/romley.conf
-> index 1035d82..38bd17a 100644
-> --- a/meta-romley/conf/machine/romley.conf
-> +++ b/meta-romley/conf/machine/romley.conf
-> @@ -32,9 +32,7 @@ XSERVER ?= "xserver-xorg \
->             xf86-input-evdev \
->             xf86-input-synaptics \
->  	   xf86-video-mga \
-> -           xf86-video-intel \
-> -           mesa-dri \
-> -           mesa-dri-driver-i965"
-> +           mesa-dri"
->  
->  SERIAL_CONSOLE = "115200 ttyS0"
->  
-> diff --git a/meta-romley/recipes-kernel/linux/linux-yocto_2.6.37.bbappend b/meta-romley/recipes-kernel/linux/linux-yocto_2.6.37.bbappend
-> deleted file mode 100644
-> index 4e0af5a..0000000
-> --- a/meta-romley/recipes-kernel/linux/linux-yocto_2.6.37.bbappend
-> +++ /dev/null
-> @@ -1,7 +0,0 @@
-> -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> -
-> -COMPATIBLE_MACHINE_romley = "romley"
-> -KMACHINE_romley  = "yocto/standard/common-pc-64/romley"
-> -
-> -SRCREV_machine_pn-linux-yocto_romley ?= "7f495be2ccaa209bf505b8a8899cea64cfd968bb"
-> -SRCREV_meta_pn-linux-yocto_romley ?= "d5d3c6480d61f83503ccef7fbcd765f7aca8b71b"
+Yocto (Built by Poky 5.0) 1.0 mpc8315e-rdb ttyS0
 
-Please squash these into previous patches as mentioned.
+mpc8315e-rdb login:
 
-Thanks,
 
-Tom
+This is where it requests a username and password. I am wondering where can I
+find or set the login details. 
+
+
+Thank you for your assistance.
+
+Adrian Miller
 
 
