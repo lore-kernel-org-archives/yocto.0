@@ -1,25 +1,31 @@
-Return-Path: <niqingliang@insigma.com.cn>
-Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB684E006B4
-	for <yocto@yoctoproject.org>; Thu, 27 Oct 2011 01:46:56 -0700 (PDT)
-Received: from WX-ExchMB.insigma.com.cn (10.0.1.203) by WX-Edge.insigma.com.cn
-	(10.0.1.205) with Microsoft SMTP Server (TLS) id 8.1.436.0;
-	Thu, 27 Oct 2011 16:46:44 +0800
-Received: from [192.168.0.98] (122.224.76.38) by WX-ExchMB.insigma.com.cn
-	(10.0.1.203) with Microsoft SMTP Server id 8.1.240.5; Thu, 27 Oct 2011
-	16:46:42 +0800
-From: Ni Qingliang <niqingliang@insigma.com.cn>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 27 Oct 2011 16:45:54 +0800
-Organization: Insigma
-X-Mailer: Evolution 3.0.3 
-Message-ID: <1319705155.10032.40.camel@localhost.localdomain>
+Return-Path: <Noel.Vellemans@visionBMS.com>
+Received: from mail206.messagelabs.com (mail206.messagelabs.com
+	[85.158.139.211])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 222E7E006F9
+	for <yocto@yoctoproject.org>; Thu, 27 Oct 2011 09:10:48 -0700 (PDT)
+X-Env-Sender: Noel.Vellemans@visionBMS.com
+X-Msg-Ref: server-8.tower-206.messagelabs.com!1319731846!683175!1
+X-Originating-IP: [195.134.156.204]
+X-StarScan-Version: 6.3.6; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 27166 invoked from network); 27 Oct 2011 16:10:46 -0000
+Received: from gateway.loepfe.com (HELO gateway.loepfe.com) (195.134.156.204)
+	by server-8.tower-206.messagelabs.com with SMTP;
+	27 Oct 2011 16:10:46 -0000
+X-MimeOLE: Produced By Microsoft Exchange V6.5
 MIME-Version: 1.0
-Subject: how to set timezone
+Date: Thu, 27 Oct 2011 18:10:45 +0200
+Message-ID: <1531E53627F1F749B4FE809BF2A4EB6702BCEA88@WETMEX10.loepfe.com>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Thread-Topic: Slow-startup.
+thread-index: AcyUwvuRdXztc/sjT1K5HvIqSI0bZw==
+From: "Vellemans, Noel" <Noel.Vellemans@visionBMS.com>
+To: <yocto@yoctoproject.org>
+Subject: Slow-startup.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: niqingliang@insigma.com.cn
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -28,31 +34,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Oct 2011 08:46:59 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 27 Oct 2011 16:10:50 -0000
+Content-class: urn:content-classes:message
+Content-Type: multipart/alternative;
+	boundary="----_=_NextPart_001_01CC94C2.FBED3F34"
 
-Hello All:
-
-what is the right way to set timezone?
-
-I have added tzdata into my image, and can find some variables in the
-etc, e.g. 'TZ'.
-
-on my archlinux, I can set TIMEZONE in the rc.conf, and used in
-rc.sysvinit (which will link the /etc/localtime using TIMEZONE).
-
-what is the right place to locate similar setting code (e.g. link
-the /etc/localtime) in the yocto?
-
-thanks!
+------_=_NextPart_001_01CC94C2.FBED3F34
+Content-Type: text/plain;
+	charset="US-ASCII"
+Content-Transfer-Encoding: quoted-printable
 
 
+Hi all,
 
--- 
-Yi Qingliang
-niqingliang@insigma.com.cn
-http://niqingliang2003.wordpress.com
+I'm test-driving the yocto-edison version, Target-armv7 (testing on
+imx-53x cpu).
+
+But,  I'm having a strange problem.=20
+
+It takes very long to start the device, every time [not only the first
+time], at each reboot cycle it takes up to 3 minutes before I get the
+desktop.
+
+At the current time I got to the point (by using printf into the code on
+1001 places)  that it is the _mb_font_load() in matchbox-lib that makes
+the startup extremely slow. (system seems to 'hang' for more the 3
+minutes before the matchbox-desktop pops up.)
 
 
+Any information available on this?
+Any hints where to look at ?
 
+
+Kind regards
+Noel
+
+
+------_=_NextPart_001_01CC94C2.FBED3F34
+Content-Type: text/html;
+	charset="US-ASCII"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii">
+<META NAME=3D"Generator" CONTENT=3D"MS Exchange Server version =
+6.5.7654.12">
+<TITLE>Slow-startup.</TITLE>
+</HEAD>
+<BODY>
+<!-- Converted from text/rtf format -->
+<BR>
+
+<P><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">Hi all,</FONT></SPAN>
+</P>
+
+<P><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">I'm test-driving the =
+yocto-edison version, Target-armv7 (testing on imx-53x =
+cpu).</FONT></SPAN>
+</P>
+
+<P><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">But,&nbsp; I&#8217;m =
+having a strange problem. </FONT></SPAN>
+</P>
+
+<P><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">It takes very long to =
+start the device, every time [not only the first time], at each reboot =
+cycle it takes up to 3 minutes before I get the =
+desktop.</FONT></SPAN></P>
+
+<P><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">At the current time I got =
+to the point (by using printf into the code on 1001 places)&nbsp; that =
+it is the _mb_font_load() in matchbox-lib that makes the startup =
+extremely slow. (system seems to &#8216;hang&#8217; for more the 3 =
+minutes before the matchbox-desktop pops up.)</FONT></SPAN></P>
+<BR>
+
+<P><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">Any information available =
+on this?</FONT></SPAN>
+
+<BR><SPAN LANG=3D"en-us"><FONT FACE=3D"Verdana">Any hints where to look =
+at ?</FONT></SPAN>
+</P>
+<BR>
+
+<P><SPAN LANG=3D"nl-be"><FONT FACE=3D"Verdana">Kind =
+regards</FONT></SPAN>
+
+<BR><SPAN LANG=3D"nl-be"><FONT FACE=3D"Verdana">Noel</FONT></SPAN>
+</P>
+
+</BODY>
+</HTML>
+
+------_=_NextPart_001_01CC94C2.FBED3F34--
