@@ -1,32 +1,26 @@
-Return-Path: <xiaoxianghua@gmail.com>
-Received: from mail-qy0-f169.google.com (mail-qy0-f169.google.com
-	[209.85.216.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73A3DE01404
-	for <yocto@yoctoproject.org>; Fri, 28 Oct 2011 09:20:43 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by qyk29 with SMTP id 29so2612323qyk.14
-	for <yocto@yoctoproject.org>; Fri, 28 Oct 2011 09:20:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=t5g3qFcMEt+2BBFcf3cheYaPHp+VvbCT7cAGodvTaJ0=;
-	b=pd81KWjm4WRFLUrk3XFrMsXN4xbh+8G5q/BopcCea3vTsTTJF0Z69hMof+JrBww3tj
-	cbBXB5WEWkIrQT3cIGChQstHpyAQAaqd9W+nQrFrMEVDEmYrjSrcxjhR/NDIM9XKnR/8
-	y4KjoGBsUsNMK8tB38trQkFZB2n+KnosMvbxk=
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 575BAE01404
+	for <yocto@yoctoproject.org>; Fri, 28 Oct 2011 09:23:39 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p9SGNbPD001127
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 28 Oct 2011 09:23:37 -0700 (PDT)
+Received: from Macintosh-5.local (172.25.36.229) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 28 Oct 2011 09:23:37 -0700
+Message-ID: <4EAAD708.5030909@windriver.com>
+Date: Fri, 28 Oct 2011 11:23:36 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
+	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
 MIME-Version: 1.0
-Received: by 10.229.68.26 with SMTP id t26mr873822qci.78.1319818842507; Fri,
-	28 Oct 2011 09:20:42 -0700 (PDT)
-Received: by 10.229.188.3 with HTTP; Fri, 28 Oct 2011 09:20:42 -0700 (PDT)
-In-Reply-To: <CAP7cwttTXcGySrqmKvv+7saHFyF0xuUczY8h5693f232RCA_Sg@mail.gmail.com>
+To: Xianghua Xiao <xiaoxianghua@gmail.com>
 References: <CAP7cwtu-T9LdUy78MSG+JOanSHw6UTK5D-4zFu-bVzsRp9XwwA@mail.gmail.com>
 	<4EAAC008.4050406@windriver.com>
 	<CAP7cwttTXcGySrqmKvv+7saHFyF0xuUczY8h5693f232RCA_Sg@mail.gmail.com>
-Date: Fri, 28 Oct 2011 11:20:42 -0500
-Message-ID: <CAP7cwtvdz1G9YsoF6aDj0EUAQ4=WQmus2J2Ep5FYA=d8+9ZmYQ@mail.gmail.com>
-From: Xianghua Xiao <xiaoxianghua@gmail.com>
-To: Mark Hatle <mark.hatle@windriver.com>
+In-Reply-To: <CAP7cwttTXcGySrqmKvv+7saHFyF0xuUczY8h5693f232RCA_Sg@mail.gmail.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: building and using yocto 1.1
 X-BeenThere: yocto@yoctoproject.org
@@ -40,41 +34,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Oct 2011 16:20:43 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 28 Oct 2011 16:23:39 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-sorry for the typo in my previous email.
-
-guess I need get a i7 and start to use parallel build again.
-
-is there a way that, when a release is made, all the related source
-tarballs can be download as a whole? the separate download  slows
-build a lot for the out-of-box test as well.
-
-thanks,
-xianghua
-
-On Fri, Oct 28, 2011 at 11:13 AM, Xianghua Xiao <xiaoxianghua@gmail.com> wr=
-ote:
-> core2duo E7200 2.53Ghz =C2=A04GB 500GB
->
+On 10/28/11 11:13 AM, Xianghua Xiao wrote:
+> core2duo E7200 2.53Ghz  4GB 500GB
+> 
 > 1 thread 1 parallel due to past experience I had from the
 > past(parallel make did not work well reliably)
->
+
+It is a goal of the Yocto Project (and Open Embedded) that parallel building is
+full supported, and any identified bugs are fixed quickly.
+
+Enable parallel builds and your performance will be significantly better.
+
+If you have hyperthreading enabled, and setup a 4/4 parallel build.  I would
+expect about a 4-5 hour build time.  (May be faster)
+
+--Mark
+
 > thanks,
 > xianghua
->
->
-> On Fri, Oct 28, 2011 at 9:45 AM, Mark Hatle <mark.hatle@windriver.com> wr=
-ote:
+> 
+> 
+> On Fri, Oct 28, 2011 at 9:45 AM, Mark Hatle <mark.hatle@windriver.com> wrote:
 >> What machine are you using (amount of ram, disk space, and cpu cores)?
 >>
 >> What configuration did you set for parallel builds?
 >>
 >> I can build 1.1 on an 8 core i7 system w/ 8 GB of ram, set with parallel
->> settings of 8 thread and 8 parallel make jobs, in about 100 minutes (or =
-less).
+>> settings of 8 thread and 8 parallel make jobs, in about 100 minutes (or less).
 >>
 >> --Mark
 >>
@@ -102,5 +92,5 @@ less).
 >> yocto@yoctoproject.org
 >> https://lists.yoctoproject.org/listinfo/yocto
 >>
->
+
 
