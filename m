@@ -1,24 +1,25 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E73EE01416
-	for <yocto@yoctoproject.org>; Fri, 28 Oct 2011 11:40:37 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 28 Oct 2011 11:40:30 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED876E0132F
+	for <yocto@yoctoproject.org>; Fri, 28 Oct 2011 11:59:52 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 28 Oct 2011 11:59:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="68664838"
-Received: from unknown (HELO localhost) ([10.255.15.170])
-	by orsmga002.jf.intel.com with ESMTP; 28 Oct 2011 11:40:29 -0700
-From: tom.zanussi@intel.com
-To: dvhart@linux.intel.com,
-	yocto@yoctoproject.org
-Date: Fri, 28 Oct 2011 13:40:19 -0500
-Message-Id: <bdf5b42c29aedc53bcdf7ac560a3ddf24b82d2d9.1319826880.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <267db6a013519fcca15413253008a213c957b738.1319826880.git.tom.zanussi@intel.com>
-References: <267db6a013519fcca15413253008a213c957b738.1319826880.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1319826880.git.tom.zanussi@intel.com>
+X-IronPort-AV: E=Sophos;i="4.69,419,1315206000"; d="scan'208";a="31159834"
+Received: from unknown (HELO envy.home) ([10.255.15.78])
+	by AZSMGA002.ch.intel.com with ESMTP; 28 Oct 2011 11:59:51 -0700
+Message-ID: <4EAAFBA6.5040806@linux.intel.com>
+Date: Fri, 28 Oct 2011 20:59:50 +0200
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
+MIME-Version: 1.0
+To: tom.zanussi@intel.com
 References: <cover.1319826880.git.tom.zanussi@intel.com>
-Subject: [PATCH 3/3] meta-crownbay: allow linux-yocto-rt to be used for crownbay
+In-Reply-To: <cover.1319826880.git.tom.zanussi@intel.com>
+X-Enigmail-Version: 1.3.2
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/3] meta-intel: linux-yocto-rt fixes for crownbay and fri2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,44 +31,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Oct 2011 18:40:37 -0000
+X-List-Received-Date: Fri, 28 Oct 2011 18:59:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On 10/28/2011 08:40 PM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi <tom.zanussi@intel.com>
+> 
+> Trying to build rt images for crownbay and fri2, I ran in to a few build
+> problems - this patchset fixes them up.
+> 
+> The following changes since commit 478969defe862a2779bf7eb3bca30e2067827d7e:
+>   Kishore Bodke (1):
+>         New Romley BSP created. Uses Matrox MGA graphics driver.
+> 
+> are available in the git repository at:
+> 
+>   git://git.yoctoproject.org/meta-intel.git tzanussi/rt-fixes
+>   http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/rt-fixes
+> 
+> Tom Zanussi (3):
+>   meta-crownbay: add linux-yocto-rt_3.0.bbappend
+>   meta-fri2: allow linux-yocto-rt to be used for fri2-noemgd
+>   meta-crownbay: allow linux-yocto-rt to be used for crownbay
 
-The crownbay linux-yocto-rt .bbappend is missing settings needed for use
-with crownbay - this adds them.
+For all three:
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- .../linux/linux-yocto-rt_3.0.bbappend              |   10 ++++++++++
- 1 files changed, 10 insertions(+), 0 deletions(-)
+Acked-by: Darren Hart <dvhart@linux.intel.com>
 
-diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-index aaf5614..dee9bce 100644
---- a/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-+++ b/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-@@ -1,10 +1,20 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
- COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
- KMACHINE_crownbay-noemgd = "crownbay"
- 
- KERNEL_FEATURES_append_crownbay-noemgd += " cfg/smp.scc"
- 
-+COMPATIBLE_MACHINE_crownbay = "crownbay"
-+KMACHINE_crownbay = "crownbay"
-+
-+KERNEL_FEATURES_append_crownbay += " cfg/smp.scc"
-+
- # Update the following to use a different BSP branch or meta SRCREV
- #KBRANCH_crownbay-noemgd = "yocto/standard/preempt-rt/base"
- #SRCREV_machine_pn-linux-yocto-rt_crownbay-noemgd ?= XXXX
- #SRCREV_meta_pn-linux-yocto-rt_crownbay-noemgd ?= XXXX
-+
-+#KBRANCH_crownbay = "yocto/standard/preempt-rt/base"
-+#SRCREV_machine_pn-linux-yocto-rt_crownbay ?= XXXX
-+#SRCREV_meta_pn-linux-yocto-rt_crownbay ?= XXXX
+> 
+>  .../linux/linux-yocto-rt_3.0.bbappend              |   20 ++++++++++++++++++++
+>  .../linux/linux-yocto-rt_3.0.bbappend              |    2 ++
+>  2 files changed, 22 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+> 
+
 -- 
-1.7.0.4
-
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
