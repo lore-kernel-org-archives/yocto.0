@@ -1,35 +1,36 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6941EE01404
-	for <yocto@yoctoproject.org>; Fri, 28 Oct 2011 10:16:53 -0700 (PDT)
-Received: from [142.204.70.21] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1RJq32-0005p3-33; Fri, 28 Oct 2011 13:16:52 -0400
-Date: Fri, 28 Oct 2011 13:16:38 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: Joshua Lock <josh@linux.intel.com>
-In-Reply-To: <4EAAE2E7.6030004@linux.intel.com>
-Message-ID: <alpine.DEB.2.02.1110281315040.5965@localhost6.localdomain6>
-References: <alpine.DEB.2.02.1110281201530.17318@localhost6.localdomain6>
-	<4EAAE14B.4060503@linux.intel.com>
-	<alpine.DEB.2.02.1110281309120.31199@localhost6.localdomain6>
-	<4EAAE2E7.6030004@linux.intel.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <xiaoxianghua@gmail.com>
+Received: from mail-bw0-f48.google.com (mail-bw0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5B44E01414
+	for <yocto@yoctoproject.org>; Fri, 28 Oct 2011 10:17:48 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by bkat2 with SMTP id t2so510981bka.35
+	for <yocto@yoctoproject.org>; Fri, 28 Oct 2011 10:17:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=mRFRu9Y0CM7Su8kpXfttppmp7VJCsOa/d/ssx4zk/hk=;
+	b=QMyHrfuwcPVQxB3ccRcC49h9eylvdMehni7RqOxjtNRPhkwqSBh4vjyKzwSZn4rdcB
+	Usza/NQBPRqK/AAnWzZIguGggNqx1Zbxfyf/spHKZk/rDptdVM9KLmhuvPTD5zvjmLVU
+	MZGUQHuMWCl7GrsrdX6HkIjtYembtfIkJ516Y=
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Received: by 10.182.114.2 with SMTP id jc2mr835387obb.27.1319822266639; Fri,
+	28 Oct 2011 10:17:46 -0700 (PDT)
+Received: by 10.182.108.36 with HTTP; Fri, 28 Oct 2011 10:17:46 -0700 (PDT)
+In-Reply-To: <4EAADC39.8060000@linux.intel.com>
+References: <CAP7cwtu-T9LdUy78MSG+JOanSHw6UTK5D-4zFu-bVzsRp9XwwA@mail.gmail.com>
+	<4EAAC008.4050406@windriver.com>
+	<CAP7cwttTXcGySrqmKvv+7saHFyF0xuUczY8h5693f232RCA_Sg@mail.gmail.com>
+	<CAP7cwtvdz1G9YsoF6aDj0EUAQ4=WQmus2J2Ep5FYA=d8+9ZmYQ@mail.gmail.com>
+	<4EAADC39.8060000@linux.intel.com>
+Date: Fri, 28 Oct 2011 12:17:46 -0500
+Message-ID: <CAP7cwtuaZZqLWfRX=uH5b4G_iRJEAPj15ZOY_-u3jE=e8cFsWw@mail.gmail.com>
+From: Xianghua Xiao <xiaoxianghua@gmail.com>
+To: Joshua Lock <josh@linux.intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: am i the only person having trouble fetching sat-solver?
+Subject: Re: building and using yocto 1.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,26 +42,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Oct 2011 17:16:53 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 28 Oct 2011 17:17:49 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 28 Oct 2011, Joshua Lock wrote:
+filed a bug on sato-input.
 
-> Probably that a stale tarball was still on your system. Can you tell me
-> how you're proceeding when the fetch has failed?
+thanks!
 
-  i'm guessing it was exactly that -- a stale tarball i didn't realize
-i was picking up.  since now i can't reproduce so i'm going to forget
-about it unless it happens again.
-
-> > HOMEPAGE = "http://en.opensue.org/Portal:Libzypp"
-> >                       ^^^^^^^
-> >
-> > shall i submit a patch to the mailing list?
+On Fri, Oct 28, 2011 at 11:45 AM, Joshua Lock <josh@linux.intel.com> wrote:
+> On 28/10/11 09:20, Xianghua Xiao wrote:
+>> is there a way that, when a release is made, all the related source
+>> tarballs can be download as a whole? the separate download =C2=A0slows
+>> build a lot for the out-of-box test as well.
 >
-> Please do, that'd be great.
-
-  coming shortly.
-
-rday
+> We have a BitBake command to fetch all of the sources without actually
+> doing the build:
+>
+> bitbake <target> -c fetchall
+>
+> i.e.
+>
+> bitbake core-image-sato -c fetchall
+>
+> OR
+>
+> bitbake world -c fetchall
+>
+> Cheers,
+> Joshua
+> --
+> Joshua Lock
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0Yocto Project "Johannes factotum"
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0Intel Open Source Technology Centre
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
