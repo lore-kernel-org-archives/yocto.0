@@ -1,25 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 888D4E006F9
-	for <yocto@yoctoproject.org>; Thu, 27 Oct 2011 21:52:00 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p9S4pwk5026342
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 27 Oct 2011 21:51:58 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.18.120) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Thu, 27 Oct 2011 21:51:57 -0700
-Message-ID: <4EAA34EB.5060205@windriver.com>
-Date: Fri, 28 Oct 2011 00:51:55 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.23) Gecko/20110920 Thunderbird/3.1.15
+Return-Path: <s.stirtzel@googlemail.com>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C08FBE006F9
+	for <yocto@yoctoproject.org>; Thu, 27 Oct 2011 23:32:12 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@googlemail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iakh37 with SMTP id h37so5928432iak.35
+	for <yocto@yoctoproject.org>; Thu, 27 Oct 2011 23:32:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=qh0aMFxeBrIisTHI4XCTfUQuWLkYe9tThL94Uh6NCrw=;
+	b=T8+6f9yUOTMfODbDHP+Dc0cV7xHVANRoY/7cVBFuCRqG9kt7kWEcIe+btC+1SNWcYt
+	iimV02GvQ9d65COf1/bIwlqTXFFcNa/9oBTj8eiSL+gYeN1JIFf24+kyQIkjBeZrGLKj
+	uFMI96gT7gXdvZOOXdgrVFWCbL1FNI9KBUVOY=
 MIME-Version: 1.0
-To: Brian Park <bsp2020@gmail.com>
-References: <CAFNE1kTTFYhhqK_nopj4MG7VNzWKriZTbGJYAZt-shTinw_ROA@mail.gmail.com>
-In-Reply-To: <CAFNE1kTTFYhhqK_nopj4MG7VNzWKriZTbGJYAZt-shTinw_ROA@mail.gmail.com>
+Received: by 10.42.166.9 with SMTP id m9mr2264393icy.54.1319783532103; Thu, 27
+	Oct 2011 23:32:12 -0700 (PDT)
+Received: by 10.42.240.66 with HTTP; Thu, 27 Oct 2011 23:32:12 -0700 (PDT)
+In-Reply-To: <1319780499.10032.46.camel@localhost.localdomain>
+References: <1319780499.10032.46.camel@localhost.localdomain>
+Date: Fri, 28 Oct 2011 08:32:12 +0200
+Message-ID: <CAGiJk9eo4FvhLZ6o9qdb75YyuZ5om19GYRLR6gDFEN_r0VWeuw@mail.gmail.com>
+From: Samuel Stirtzel <s.stirtzel@googlemail.com>
+To: niqingliang@insigma.com.cn, 
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
 Cc: yocto@yoctoproject.org
-Subject: Re: Building for pandaboard
+Subject: Re: [OE-core] how to set time zone
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,68 +41,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Oct 2011 04:52:01 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 28 Oct 2011 06:32:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 11-10-27 8:45 PM, Brian Park wrote:
-> Hi,
-> I'm interested in using Yocto to build linux for PandaBoard. It seems
-> there are already patches some where that I can use to build for panda,
-> as I found some discussions mentioning PandaBoard patch in the archive.
-> But I could not apply it. I'd appreciate some pointers on how to find
-> and apply the right patch.
+2011/10/28 Ni Qingliang <niqingliang@insigma.com.cn>:
+> Hello All:
 >
-> Just trying to apply
-> http://article.gmane.org/gmane.linux.embedded.yocto.general/2037/match=pandaboard
-> as a patch using "git am" command gave the following error. I'm using
-> release 1.1 Edison.
+> what is the right way to set timezone?
 >
-> briansp@LinuxMint11 ~/poky $ git am < ~/Documents/pandaboard.patch
-> previous rebase directory /home/briansp/poky/.git/rebase-apply still
-> exists but mbox given.
+> I have added tzdata into my image, and can find some variables in the
+> etc, e.g. 'TZ'.
 >
-> I'm new to developing for linux and yocto. So, any help would be
-> appreciated.
-
-Those same patches are merged into the 2.6.37 kernel tree here:
-
-http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37/log/?h=yocto/standard/pandaboard
-
-So if you do want to use the linux-yocto kernel, you could set
-your preferred kernel version to 2.6.37 and you'd get that
-kernel and branch for the board.
-
-But like anything, nothing is completely simple, the support in
-the 2.6.37 tree was contributed in an effort to add some more board
-support to a yocto tested/standardized kernel. There are multiple
-sources for pandaboard support, with different functionality (i.e. 
-deeper, different kernel version, etc), different integration and
-different goals. i.e. angstrom and meta-texasinstruments.
-
-To use the 2.6.37 support you'd need a configuration of the machine and
-a meta layer defining the userspace. There was a prototype one that
-floated around, but it was being re-worked to use layer tooling and not
-duplicate effort that is in other layers already.
-
-If you like, I can locate that layer and send it along, or you can
-try out the other references I mentioned (others may have better /
-more detailed information).
-
-Cheers,
-
-Bruce
-
+> on my archlinux, I can set TIMEZONE in the rc.conf, which is used in
+> rc.sysvinit (which will link the /etc/localtime using TIMEZONE).
 >
-> Thank you
+> what is the right place to locate similar setting code (e.g. link
+> the /etc/localtime) in the yocto?
 >
-> Brian
+> thanks!
+>
+>
+>
+> --
+> Yi Qingliang
+> niqingliang@insigma.com.cn
+> http://niqingliang2003.wordpress.com
 >
 >
 >
 > _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Openembedded-core mailing list
+> Openembedded-core@lists.openembedded.org
+> http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-core
+>
 
+Hi,
+
+you could try the following:
+http://www.rwhitby.net/blog/nslu2-linux/setting-the-openmoko-timezone.html
+
+Well this is the first entry when using google with "openembedded time
+zone", so please consider using search engines first next time.
+
+Also this is the very same process like it is done on a desktop
+computer, googling for "set time zone linux command line" gives this
+result:
+http://www.cyberciti.biz/faq/howto-linux-unix-change-setup-timezone-tz-variable/
+Which shows more precise steps at the headline "Set timezone using
+/etc/localtime configuration file [any Linux distro]".
+
+
+(Sorry for cross posting, but this was carried over to the OE-Core list)
+
+-- 
+Regards
+Samuel
 
