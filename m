@@ -1,25 +1,29 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED876E0132F
-	for <yocto@yoctoproject.org>; Fri, 28 Oct 2011 11:59:52 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 28 Oct 2011 11:59:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,419,1315206000"; d="scan'208";a="31159834"
-Received: from unknown (HELO envy.home) ([10.255.15.78])
-	by AZSMGA002.ch.intel.com with ESMTP; 28 Oct 2011 11:59:51 -0700
-Message-ID: <4EAAFBA6.5040806@linux.intel.com>
-Date: Fri, 28 Oct 2011 20:59:50 +0200
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
-MIME-Version: 1.0
-To: tom.zanussi@intel.com
-References: <cover.1319826880.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1319826880.git.tom.zanussi@intel.com>
-X-Enigmail-Version: 1.3.2
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/3] meta-intel: linux-yocto-rt fixes for crownbay and fri2
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31C9CE0132F
+	for <yocto@yoctoproject.org>; Fri, 28 Oct 2011 15:11:27 -0700 (PDT)
+Received: from durham.keylevel.com ([109.224.134.115]:40093
+	helo=MacBook-Pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1RJue4-00022w-QL
+	for yocto@yoctoproject.org; Fri, 28 Oct 2011 23:11:24 +0100
+Message-Id: <6722EDB4-6AD2-4E51-A826-B00D3AABC6A0@keylevel.com>
+From: Chris Tapp <opensource@keylevel.com>
+To: yocto@yoctoproject.org
+Mime-Version: 1.0 (Apple Message framework v936)
+Date: Fri, 28 Oct 2011 23:11:22 +0100
+X-Mailer: Apple Mail (2.936)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Which filesystem for target?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,43 +35,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Oct 2011 18:59:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 28 Oct 2011 22:11:29 -0000
+Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
 Content-Transfer-Encoding: 7bit
 
-On 10/28/2011 08:40 PM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi <tom.zanussi@intel.com>
-> 
-> Trying to build rt images for crownbay and fri2, I ran in to a few build
-> problems - this patchset fixes them up.
-> 
-> The following changes since commit 478969defe862a2779bf7eb3bca30e2067827d7e:
->   Kishore Bodke (1):
->         New Romley BSP created. Uses Matrox MGA graphics driver.
-> 
-> are available in the git repository at:
-> 
->   git://git.yoctoproject.org/meta-intel.git tzanussi/rt-fixes
->   http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/rt-fixes
-> 
-> Tom Zanussi (3):
->   meta-crownbay: add linux-yocto-rt_3.0.bbappend
->   meta-fri2: allow linux-yocto-rt to be used for fri2-noemgd
->   meta-crownbay: allow linux-yocto-rt to be used for crownbay
+A bit of an open-ended question, but...
 
-For all three:
+Which is the 'best' filesystem to use for an embedded device that's  
+using a CF card?
 
-Acked-by: Darren Hart <dvhart@linux.intel.com>
+It needs to survive loss-of-power, have a RO root filesystem, allow  
+user configuration data to persist and (ideally) only use 'Busybox'  
+commands.
 
-> 
->  .../linux/linux-yocto-rt_3.0.bbappend              |   20 ++++++++++++++++++++
->  .../linux/linux-yocto-rt_3.0.bbappend              |    2 ++
->  2 files changed, 22 insertions(+), 0 deletions(-)
->  create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-> 
+This seems to imply the use of a partition for booting (mount RO) and  
+a second partition or a loop-device on the boot partition for  
+persistent storage.
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+I would normally go for ext3, but Busybox doesn't support it (afaik).  
+The Busybox tune2fs also only supports -L, so I can't stop 'disk needs  
+checking after <n> mounts' messages.
+
+Is btrfs a suitable alternative?
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
