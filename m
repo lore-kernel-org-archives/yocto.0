@@ -1,30 +1,22 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B4D9E0132F
-	for <yocto@yoctoproject.org>; Fri, 28 Oct 2011 10:27:29 -0700 (PDT)
-Received: from [142.204.70.21] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1RJqDH-0006O2-TD
-	for yocto@yoctoproject.org; Fri, 28 Oct 2011 13:27:27 -0400
-Date: Fri, 28 Oct 2011 13:27:26 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1110281320260.5965@localhost6.localdomain6>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH] Fix HOMEPAGE values in libzypp and sat-solver .bb files
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 303ECE0132F
+	for <yocto@yoctoproject.org>; Fri, 28 Oct 2011 11:40:31 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 28 Oct 2011 11:40:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,419,1315206000"; d="scan'208";a="68136028"
+Received: from unknown (HELO localhost) ([10.255.15.170])
+	by azsmga001.ch.intel.com with ESMTP; 28 Oct 2011 11:40:25 -0700
+From: tom.zanussi@intel.com
+To: dvhart@linux.intel.com,
+	yocto@yoctoproject.org
+Date: Fri, 28 Oct 2011 13:40:17 -0500
+Message-Id: <267db6a013519fcca15413253008a213c957b738.1319826880.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <cover.1319826880.git.tom.zanussi@intel.com>
+References: <cover.1319826880.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/3] meta-crownbay: add linux-yocto-rt_3.0.bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,47 +28,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Oct 2011 17:27:29 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 28 Oct 2011 18:40:31 -0000
 
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Fix obvious typoes in .bb files for libzypp and sat-solver packages,
-and update the HOMEPAGE for sat-solver to refer to the sat-solver home
-page itself, rather than the libzypp home page.
+commit 061f3187e8cbec70d5970928b6e8252cb0958f4a (meta-intel: move
+emgd-driver-bin_1.8 to common) somehow mistakenly removed the
+unrelated linux-yocto-rt_3.0.bbappend from meta-crownbay.  This adds
+it back.
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
-
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
+ .../linux/linux-yocto-rt_3.0.bbappend              |   10 ++++++++++
+ 1 files changed, 10 insertions(+), 0 deletions(-)
+ create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
 
-diff --git a/meta/recipes-extended/libzypp/libzypp_git.bb b/meta/recipes-extended/libzypp/libzypp_git.bb
-index 7d9382a..20e8f7c 100644
---- a/meta/recipes-extended/libzypp/libzypp_git.bb
-+++ b/meta/recipes-extended/libzypp/libzypp_git.bb
-@@ -1,4 +1,4 @@
--HOMEPAGE = "http://en.opensue.org/Portal:Libzypp"
-+HOMEPAGE = "http://en.opensuse.org/Portal:Libzypp"
- DESCRIPTION  = "The ZYpp Linux Software management framework"
-
- LICENSE  = "GPLv2+"
-diff --git a/meta/recipes-extended/sat-solver/sat-solver_git.bb b/meta/recipes-extended/sat-solver/sat-solver_git.bb
-index b616c57..e243c6a 100644
---- a/meta/recipes-extended/sat-solver/sat-solver_git.bb
-+++ b/meta/recipes-extended/sat-solver/sat-solver_git.bb
-@@ -1,5 +1,5 @@
- DESCRIPTION  = "Sat Solver"
--HOMEPAGE = "http://en.opensue.org/Portal:Libzypp"
-+HOMEPAGE = "http://http://en.opensuse.org/openSUSE:Libzypp_satsolver"
-
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://LICENSE.BSD;md5=62272bd11c97396d4aaf1c41bc11f7d8"
-
+diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+new file mode 100644
+index 0000000..aaf5614
+--- /dev/null
++++ b/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+@@ -0,0 +1,10 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
++KMACHINE_crownbay-noemgd = "crownbay"
++
++KERNEL_FEATURES_append_crownbay-noemgd += " cfg/smp.scc"
++
++# Update the following to use a different BSP branch or meta SRCREV
++#KBRANCH_crownbay-noemgd = "yocto/standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_crownbay-noemgd ?= XXXX
++#SRCREV_meta_pn-linux-yocto-rt_crownbay-noemgd ?= XXXX
 -- 
+1.7.0.4
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
