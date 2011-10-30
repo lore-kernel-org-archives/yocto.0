@@ -1,31 +1,30 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0D33E012F3
-	for <yocto@yoctoproject.org>; Sun, 30 Oct 2011 09:25:34 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.2.77] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1RKYCS-0005Se-OW
-	for yocto@yoctoproject.org; Sun, 30 Oct 2011 12:25:32 -0400
-Date: Sun, 30 Oct 2011 12:25:27 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1110301221390.997@localhost6.localdomain6>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60B4EE012F3
+	for <yocto@yoctoproject.org>; Sun, 30 Oct 2011 09:34:45 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 30 Oct 2011 09:34:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="69384182"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga001.jf.intel.com with ESMTP; 30 Oct 2011 09:34:45 -0700
+Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
+	orsmsx604.amr.corp.intel.com ([10.250.113.17]) with mapi;
+	Sun, 30 Oct 2011 09:34:44 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "'opensource@keylevel.com'" <opensource@keylevel.com>,
+	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Date: Sun, 30 Oct 2011 09:34:44 -0700
+Thread-Topic: [yocto] Which filesystem for target?
+Thread-Index: AcyVvplSXbJQxFPrRwyxJhbDku7wrwBYz3nF
+Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B261A69694D@orsmsx501.amr.corp.intel.com>
+In-Reply-To: <6722EDB4-6AD2-4E51-A826-B00D3AABC6A0@keylevel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: a couple cleanups at the toolchains download location
+Subject: Re: Which filesystem for target?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,34 +36,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 30 Oct 2011 16:25:35 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Sun, 30 Oct 2011 16:34:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Anybody got an answer for Chris? =20
+
+(A lot of folks are traveling back from a conference, Chris, so might expla=
+in slowness)
+Sent from my Blackberry
+
+----- Original Message -----
+From: Chris Tapp [mailto:opensource@keylevel.com]
+Sent: Friday, October 28, 2011 03:11 PM=0A=
+To: yocto@yoctoproject.org <yocto@yoctoproject.org>
+Subject: [yocto] Which filesystem for target?
+
+A bit of an open-ended question, but...
+
+Which is the 'best' filesystem to use for an embedded device that's =20
+using a CF card?
+
+It needs to survive loss-of-power, have a RO root filesystem, allow =20
+user configuration data to persist and (ideally) only use 'Busybox' =20
+commands.
+
+This seems to imply the use of a partition for booting (mount RO) and =20
+a second partition or a loop-device on the boot partition for =20
+persistent storage.
+
+I would normally go for ext3, but Busybox doesn't support it (afaik). =20
+The Busybox tune2fs also only supports -L, so I can't stop 'disk needs =20
+checking after <n> mounts' messages.
+
+Is btrfs a suitable alternative?
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
 
 
-  (yes, i *am* going to be this pedantic all day long. at least until
-football starts.)
 
-over at
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/toolchain/,
-a couple optional fixups:
-
-1) the toolchain ...i686-x86_64... doesn't appear to belong under the
-x86-64 directory.  (it *does* live properly under the i686 directory.)
-
-2) the directory name is "x86-64" while all the toolchain tarball
-names contain "x86_64".  any reason why these can't be consistent?
-what's the standard?  it just seems confusing to keep bouncing back
-and forth.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
