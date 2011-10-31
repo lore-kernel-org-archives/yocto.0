@@ -1,33 +1,34 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3401EE006CC
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 05:01:12 -0700 (PDT)
-Received: from [128.224.252.2] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1RKqYA-0005Xd-8V; Mon, 31 Oct 2011 08:01:10 -0400
-Date: Mon, 31 Oct 2011 08:01:05 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <BA8B50AF-70FB-4FF4-B1DA-BF9315C85EF4@dominion.thruhere.net>
-Message-ID: <alpine.DEB.2.02.1110310757470.5055@localhost6.localdomain6>
-References: <alpine.DEB.2.02.1110290915450.7280@localhost6.localdomain6>
-	<BA8B50AF-70FB-4FF4-B1DA-BF9315C85EF4@dominion.thruhere.net>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E394AE0132B
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 07:43:39 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 31 Oct 2011 07:43:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="69380184"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga002.jf.intel.com with ESMTP; 31 Oct 2011 07:43:39 -0700
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 31 Oct 2011 07:43:39 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.38]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.170]) with mapi id
+	14.01.0323.003; Mon, 31 Oct 2011 07:43:38 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] couple questions about cleaning up the Quick Start Guide
+Thread-Index: AQHMlxEZEWKC20B4UUS6qMVwXYn4SJWWh1fg
+Date: Mon, 31 Oct 2011 14:43:38 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237916E9FEFB@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1110301030050.32341@localhost6.localdomain6>
+In-Reply-To: <alpine.DEB.2.02.1110301030050.32341@localhost6.localdomain6>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: is there a filesystem issue with kernel 3.0.x on pandaboards?
+Subject: Re: couple questions about cleaning up the Quick Start Guide
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,49 +40,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Oct 2011 12:01:12 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 31 Oct 2011 14:43:40 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 31 Oct 2011, Koen Kooi wrote:
+Robert,=20
 
->
-> Op 29 okt. 2011, om 15:19 heeft Robert P. J. Day het volgende geschreven:
->
-> >  possibly off-topic but i'm sitting in a fedora/ARM talk right
-> > this minute at FSOSS/linuxfest at york u, and the presenter
-> > mentioned that when building fedora for pandaboards, they had to
-> > back off from kernel 3.0.4 to 2.6.35 because, in that situation,
-> > the filesystem had a bad habit of switching unpredictably into
-> > read-only mode.
-> >
-> >  is this a known issue in any yocto context?  again, sorry if this
-> > is wandering far afield but yocto on a pandaboard was at the top
-> > of my TODO list for this coming week.
->
-> I'm not seeing that problem on the pandaboard that's running 3.0.x
-> and angstrom. The default in angstrom/meta-ti is 2.6.35 due to
-> multimedia acceleration madness.
+Thanks for the stuff and the look here.  Regarding your first point - I don=
+'t have a problem using the real link over the redirect.  The only things t=
+hat come to mind are if they work why change them?  But, if the community w=
+ants the downloads.yoctoproject.org/releases URL in there I can certainly g=
+o in and make changes to master. =20
 
-  i wish i had more info on this.  the topic came up when i was
-chatting with the people who run the fedora arm farm at seneca
-college, so they're pretty knowledgeable.  the symptom was that after
-they installed a fedora ARM build with a 3.0.x kernel on their
-pandaboards, when they started pounding on them with massive writes to
-the root filesystem, on a regular basis, the root filesystem would
-suddenly switch to read-only mode.  when they backed off to a 2.6.35
-kernel, all was good.
+On the second point - you are absolutely correct here.  I will fix that in =
+master to reflect where the tarball really is.  I think as the project move=
+s forward there will be more consistency.  Early life jitters I guess :)
 
-  if i hear more and it sounds relevant, i'll post here.
+Thanks for your input.
+
+Scott
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Robert P. J. Day
+Sent: Sunday, October 30, 2011 7:34 AM
+To: Yocto discussion list
+Subject: [yocto] couple questions about cleaning up the Quick Start Guide
+
+
+  perusing the QS guide in prep for giving a yocto talk this week to
+my local LUG and some cosmetic changes i can submit a patch for:
+
+1) www.yoctoproject.org/downloads clearly redirects to
+   downloads.yoctoproject.org/releases these days.  any objection
+   to my just changing the former references to the latter throughout
+   the QS guide?
+
+2) there's a reference to the edison tarball
+
+http://www.yoctoproject.org/downloads/poky/poky-edison-6.0.tar.bz2
+
+   but there's no such tarball, it's at
+
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/poky-edison-6.0.=
+tar.bz2
+
+  although *older* tarballs are under the "downloads" directory.
+what's the proper directory location for this stuff?  can it be made
+consistent?  thanks.
 
 rday
 
--- 
+--=20
 
-========================================================================
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 Robert P. J. Day                                 Ottawa, Ontario, CANADA
                         http://crashcourse.ca
 
 Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
