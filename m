@@ -1,36 +1,25 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0E24E00559
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 10:03:49 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 31 Oct 2011 10:03:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,433,1315206000"; d="scan'208";a="79753699"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga001.fm.intel.com with ESMTP; 31 Oct 2011 10:03:49 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.226.213) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 31 Oct 2011 10:03:48 -0700
-Received: from orsmsx502.amr.corp.intel.com ([10.22.226.210]) by
-	orsmsx601.amr.corp.intel.com ([10.22.226.213]) with mapi;
-	Mon, 31 Oct 2011 10:03:49 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: "Zanussi, Tom" <tom.zanussi@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Mon, 31 Oct 2011 10:03:47 -0700
-Thread-Topic: [yocto] [PATCH 2/2] meta-romley: change references to sugarbay
-	in	linux-yocto-rt_3.0.bbappend
-Thread-Index: AcyVefqdFaZ15ZTcRg+59QDScYFpzACdQJWQ
-Message-ID: <4BD43A85686FC34D819098DB1C3999D9018F709021@orsmsx502.amr.corp.intel.com>
-References: <cover.1319810084.git.tom.zanussi@intel.com>
-	<03a680b265874eda3d07704a048c247c007f35dd.1319810084.git.tom.zanussi@intel.com>
-In-Reply-To: <03a680b265874eda3d07704a048c247c007f35dd.1319810084.git.tom.zanussi@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7982AE00559
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 10:12:10 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id p9VHC94V012217
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 10:12:09 -0700 (PDT)
+Received: from Macintosh-5.local (172.25.34.21) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Mon, 31 Oct 2011 10:12:09 -0700
+Message-ID: <4EAED6E8.3080800@windriver.com>
+Date: Mon, 31 Oct 2011 12:12:08 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
+	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/2] meta-romley: change references to sugarbay in	linux-yocto-rt_3.0.bbappend
+To: <yocto@yoctoproject.org>
+References: <CALs2vtdUjnMxtTfhqPB2Teui4ZKmzzxRWfBxgU=qG9giUFAwrg@mail.gmail.com>
+In-Reply-To: <CALs2vtdUjnMxtTfhqPB2Teui4ZKmzzxRWfBxgU=qG9giUFAwrg@mail.gmail.com>
+Subject: Re: root paths in packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,54 +31,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Oct 2011 17:03:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 31 Oct 2011 17:12:10 -0000
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
 
-Acked-by: Kishore Bodke  <Kishore.k.bodke@intel.com>
+On 10/31/11 5:57 AM, Mike Tsukerman wrote:
+> Hello,
+> 
+> I've build rpm packages and met some interesting things. 
+> In the rpm all scripts and files include root paths from machine that i've build on.
+> how can i change that?
 
-Thanks
-Kishore.
+Examples of the problem are definitely needed.  There are some cases where
+embedded paths simply refer to the place on the disk a source file or similar
+came from during the build.  Depending on where these references are, they may
+be considered safe and acceptable.  However, in most places something like this
+would be considered an error.
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of tom.zanussi@intel.com
-Sent: Friday, October 28, 2011 7:00 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCH 2/2] meta-romley: change references to sugarbay in =
-linux-yocto-rt_3.0.bbappend
+--Mark
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+> -- 
+> Best regards, Mike Tsukerman
+> 
+> jabber: miketsukerman@gmail.com <mailto:miketsukerman@gmail.com>
+> jabber: warzon@jabnet.org <mailto:warzon@jabnet.org>
+> skype: w_a_r_z_o_n
+> 
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-There are still references to sugarbay in linux-yocto-rt_3.0.bbappend;
-this changes them to romley.
-
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- .../linux/linux-yocto-rt_3.0.bbappend              |    6 +++---
- 1 files changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/meta-romley/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b=
-/meta-romley/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-index d630dc4..1551ccf 100644
---- a/meta-romley/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-+++ b/meta-romley/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-@@ -3,6 +3,6 @@ COMPATIBLE_MACHINE_romley =3D "romley"
- KMACHINE_romley  =3D "romley"
-=20
- # Update the following to use a different BSP branch or meta SRCREV
--#KBRANCH_sugarbay  =3D "yocto/standard/preempt-rt/base"
--#SRCREV_machine_pn-linux-yocto-rt_sugarbay ?=3D XXXX
--#SRCREV_meta_pn-linux-yocto-rt_sugarbay ?=3D XXXX
-+#KBRANCH_romley  =3D "yocto/standard/preempt-rt/base"
-+#SRCREV_machine_pn-linux-yocto-rt_romley ?=3D XXXX
-+#SRCREV_meta_pn-linux-yocto-rt_romley ?=3D XXXX
---=20
-1.7.0.4
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
