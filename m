@@ -1,36 +1,51 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CD7BE00559
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 09:01:32 -0700 (PDT)
-Received: from [128.224.252.2] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1RKuIj-0007KX-Kp; Mon, 31 Oct 2011 12:01:29 -0400
-Date: Mon, 31 Oct 2011 12:01:26 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237916E9FF2E@ORSMSX101.amr.corp.intel.com>
-Message-ID: <alpine.DEB.2.02.1110311150440.7448@localhost6.localdomain6>
-References: <alpine.DEB.2.02.1110301034330.32366@localhost6.localdomain6>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237916E9FF2E@ORSMSX101.amr.corp.intel.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <B29882@freescale.com>
+Received: from ch1outboundpool.messaging.microsoft.com
+	(ch1ehsobe003.messaging.microsoft.com [216.32.181.183])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0745EE00559
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 09:32:43 -0700 (PDT)
+Received: from mail196-ch1-R.bigfish.com (10.43.68.248) by
+	CH1EHSOBE005.bigfish.com (10.43.70.55) with Microsoft SMTP Server id
+	14.1.225.22; Mon, 31 Oct 2011 16:32:30 +0000
+Received: from mail196-ch1 (localhost.localdomain [127.0.0.1])	by
+	mail196-ch1-R.bigfish.com (Postfix) with ESMTP id E7C7BDC8563;
+	Mon, 31 Oct 2011 16:32:36 +0000 (UTC)
+X-SpamScore: -6
+X-BigFish: VS-6(zz9371K98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3h)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
+	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
+X-FB-SS: 13,
+Received: from mail196-ch1 (localhost.localdomain [127.0.0.1]) by mail196-ch1
+	(MessageSwitch) id 1320078755113926_27030;
+	Mon, 31 Oct 2011 16:32:35 +0000 (UTC)
+Received: from CH1EHSMHS024.bigfish.com (snatpool1.int.messaging.microsoft.com
+	[10.43.68.252])	by mail196-ch1.bigfish.com (Postfix) with ESMTP id
+	306B5105811E;	Mon, 31 Oct 2011 16:32:21 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS024.bigfish.com
+	(10.43.70.24) with Microsoft SMTP Server (TLS) id 14.1.225.22;
+	Mon, 31 Oct 2011 16:32:24 +0000
+Received: from 039-SN1MPN1-003.039d.mgd.msft.net ([169.254.3.150]) by
+	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
+	14.01.0339.002; Mon, 31 Oct 2011 11:32:24 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Mike Tsukerman <miketsukerman@gmail.com>
+Thread-Topic: [yocto] root paths in packages
+Thread-Index: AQHMl+qr9qJQiHHMskO9Yhuz+Mww9Q==
+Date: Mon, 31 Oct 2011 16:32:23 +0000
+Message-ID: <CAEsOVNd18cWS5JeaxHMLTR9-pr+65bb4s=qc7H_6Prq1PpTzbw@mail.gmail.com>
+References: <CALs2vtdUjnMxtTfhqPB2Teui4ZKmzzxRWfBxgU=qG9giUFAwrg@mail.gmail.com>
+In-Reply-To: <CALs2vtdUjnMxtTfhqPB2Teui4ZKmzzxRWfBxgU=qG9giUFAwrg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [99.47.177.27]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: any objection to adding a PREMIRRORS section to the QS guide?
+X-OriginatorOrg: freescale.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: root paths in packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -39,52 +54,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Oct 2011 16:01:32 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 31 Oct 2011 16:32:44 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <42D94B71C6F39D4D92A82FD5E04EFF43@freescale.net>
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 31 Oct 2011, Rifenbark, Scott M wrote:
+On Mon, Oct 31, 2011 at 5:57 AM, Mike Tsukerman <miketsukerman@gmail.com> w=
+rote:
+> Hello,
+> I've build rpm packages and met some interesting things.
+> In the rpm all scripts and files include root paths from machine that i'v=
+e
+> build on.
+> how can i change that?
 
-> Robert,
->
-> We do have a question addressed in the Yocto Project Reference
-> Manual that talks about premirrors and how Poky finds stuff.  See
-> the H.24 section of the manual
-> http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.html.
-> Maybe this information is a bit too buried to be useful.  I could
-> specifically reference that FAQ entry from within the QS in the same
-> area that I mention the other "useful" items to consider in the
-> local.conf file, such as BB_NUMBER_THREADS, etc.
->
-> Scott
+Which package? Can you give some examples?
 
-  i know about the PREMIRRORS stuff in the poky reference manual -- i
-was just toying with the idea that knowing how PREMIRRORS works would
-be useful, even for a beginner.
+-M=
 
-  perhaps i'm not using it properly, but in my case, it's handy since
-i have a downloads directory of nothing but tarballs that i've been
-accumulating over the last while that i've used for openembedded and
-other projects. i'm using PREMIRRORS_prepend to take advantage of all
-that content to avoid any unnecessary downloading.  and every time i
-*do* end up downloading a newer version of a tarball that i didn't
-have, i copy it to that central downloads directory for the next time.
-does that make sense?  and, as i said, even beginners should be able
-to appreciate taking advantage of local content they may have
-collected for other reasons.
-
-  in any event, i have some different ideas for the design of a
-beginner's guide i plan on using in some of my own presentations, so i
-don't have to inflict all of my ideas on everyone else.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
