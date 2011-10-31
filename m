@@ -1,27 +1,23 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-wy0-f176.google.com (mail-wy0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CF9AE01347
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 00:27:14 -0700 (PDT)
-Received: by wyg34 with SMTP id 34so343691wyg.35
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 00:27:14 -0700 (PDT)
-Received: by 10.227.207.205 with SMTP id fz13mr16519883wbb.0.1320046034197;
-	Mon, 31 Oct 2011 00:27:14 -0700 (PDT)
-Received: from [172.20.1.32] (ip545070eb.adsl-surfen.hetnet.nl.
-	[84.80.112.235])
-	by mx.google.com with ESMTPS id e7sm30768730wbh.12.2011.10.31.00.27.12
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 31 Oct 2011 00:27:13 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1251.1)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <alpine.DEB.2.02.1110290915450.7280@localhost6.localdomain6>
-Date: Mon, 31 Oct 2011 08:27:11 +0100
-Message-Id: <BA8B50AF-70FB-4FF4-B1DA-BF9315C85EF4@dominion.thruhere.net>
-References: <alpine.DEB.2.02.1110290915450.7280@localhost6.localdomain6>
-To: Robert P. J. Day <rpjday@crashcourse.ca>
-X-Mailer: Apple Mail (2.1251.1)
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: is there a filesystem issue with kernel 3.0.x on pandaboards?
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E883CE012F3
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 03:16:16 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 31 Oct 2011 03:16:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="69549434"
+Received: from unknown (HELO helios.localnet) ([10.252.121.56])
+	by orsmga001.jf.intel.com with ESMTP; 31 Oct 2011 03:16:15 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Chris Tapp <opensource@keylevel.com>
+Date: Mon, 31 Oct 2011 10:16:00 +0000
+User-Agent: KMail/1.13.6 (Linux/2.6.38-11-generic-pae; KDE/4.6.5; i686; ; )
+References: <6722EDB4-6AD2-4E51-A826-B00D3AABC6A0@keylevel.com>
+In-Reply-To: <6722EDB4-6AD2-4E51-A826-B00D3AABC6A0@keylevel.com>
+MIME-Version: 1.0
+Message-Id: <201110311016.00534.paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Which filesystem for target?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,26 +29,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Oct 2011 07:27:15 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 31 Oct 2011 10:16:17 -0000
+Content-Type: Text/Plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
 
+On Friday 28 October 2011 23:11:22 Chris Tapp wrote:
+> Which is the 'best' filesystem to use for an embedded device that's
+> using a CF card?
+> 
+> It needs to survive loss-of-power, have a RO root filesystem, allow
+> user configuration data to persist and (ideally) only use 'Busybox'
+> commands.
+> 
+> This seems to imply the use of a partition for booting (mount RO) and
+> a second partition or a loop-device on the boot partition for
+> persistent storage.
+> 
+> I would normally go for ext3, but Busybox doesn't support it (afaik).
+> The Busybox tune2fs also only supports -L, so I can't stop 'disk needs
+> checking after <n> mounts' messages.
+> 
+> Is btrfs a suitable alternative?
 
-Op 29 okt. 2011, om 15:19 heeft Robert P. J. Day het volgende =
-geschreven:
+Arnd Bergmann gave a talk at ELCE on flash drive performance (something he has 
+done quite a lot of research on); I did not attend but Darren and I spoke to 
+him later on, and if I recall correctly in his tests btrfs performed the best. 
+Hopefully the talk video will be available soon thanks to the folks at Free 
+Electrons; in the mean time there's an earlier article by Arnd on this topic 
+here:
 
->=20
->  possibly off-topic but i'm sitting in a fedora/ARM talk right this
-> minute at FSOSS/linuxfest at york u, and the presenter mentioned that
-> when building fedora for pandaboards, they had to back off from kernel
-> 3.0.4 to 2.6.35 because, in that situation, the filesystem had a bad
-> habit of switching unpredictably into read-only mode.
->=20
->  is this a known issue in any yocto context?  again, sorry if this is
-> wandering far afield but yocto on a pandaboard was at the top of my
-> TODO list for this coming week.
+http://lwn.net/Articles/428584/
 
-I'm not seeing that problem on the pandaboard that's running 3.0.x and =
-angstrom. The default in angstrom/meta-ti is 2.6.35 due to multimedia =
-acceleration madness.=
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
