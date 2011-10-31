@@ -1,35 +1,33 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C723E00559
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 08:10:36 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 31 Oct 2011 08:10:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,432,1315206000"; d="scan'208";a="79710468"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by fmsmga001.fm.intel.com with ESMTP; 31 Oct 2011 08:10:25 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 31 Oct 2011 08:10:25 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.38]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.179]) with mapi id
-	14.01.0323.003; Mon, 31 Oct 2011 08:10:24 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] any objection to adding a PREMIRRORS section to the QS
-	guide?
-Thread-Index: AQHMlxH7BCsCldGKikewFCRSVBsb8pWWjsJA
-Date: Mon, 31 Oct 2011 15:10:24 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237916E9FF2E@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1110301034330.32366@localhost6.localdomain6>
-In-Reply-To: <alpine.DEB.2.02.1110301034330.32366@localhost6.localdomain6>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5265E00559
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 08:47:10 -0700 (PDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1RKu4p-0004Gb-SL; Mon, 31 Oct 2011 11:47:07 -0400
+Date: Mon, 31 Oct 2011 11:47:02 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237916E9FEFB@ORSMSX101.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1110311144500.7448@localhost6.localdomain6>
+References: <alpine.DEB.2.02.1110301030050.32341@localhost6.localdomain6>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237916E9FEFB@ORSMSX101.amr.corp.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Subject: Re: any objection to adding a PREMIRRORS section to the QS	guide?
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: couple questions about cleaning up the Quick Start Guide
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,74 +39,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Oct 2011 15:10:36 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 31 Oct 2011 15:47:11 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Robert,=20
+On Mon, 31 Oct 2011, Rifenbark, Scott M wrote:
 
-We do have a question addressed in the Yocto Project Reference Manual that =
-talks about premirrors and how Poky finds stuff.  See the H.24 section of t=
-he manual http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref=
--manual.html.  Maybe this information is a bit too buried to be useful.  I =
-could specifically reference that FAQ entry from within the QS in the same =
-area that I mention the other "useful" items to consider in the local.conf =
-file, such as BB_NUMBER_THREADS, etc.
+> Robert,
+>
+> Thanks for the stuff and the look here.  Regarding your first point
+> - I don't have a problem using the real link over the redirect.
+> The only things that come to mind are if they work why change them?
+> But, if the community wants the downloads.yoctoproject.org/releases
+> URL in there I can certainly go in and make changes to master.
 
-Scott
+  yes, that's a judgment call, someone else can make that decision.
+obviously, not a critical change.
 
+> On the second point - you are absolutely correct here.  I will fix
+> that in master to reflect where the tarball really is.  I think as
+> the project moves forward there will be more consistency.  Early
+> life jitters I guess :)
 
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Robert P. J. Day
-Sent: Sunday, October 30, 2011 7:40 AM
-To: Yocto discussion list
-Subject: [yocto] any objection to adding a PREMIRRORS section to the QS gui=
-de?
-
-
-  perhaps outside the scope of QS, but might it be worth adding a
-short section on appending something like this to one's local.conf
-file before starting the download?
-
-PREMIRRORS_prepend =3D "\
-git://.*/.* file:///home/rpjday/dl/ \n \
-svn://.*/.* file:///home/rpjday/dl/ \n \
-cvs://.*/.* file:///home/rpjday/dl/ \n \
-ftp://.*/.* file:///home/rpjday/dl/ \n \
-http://.*/.* file:///home/rpjday/dl/ \n \
-https://.*/.* file:///home/rpjday/dl/ \n"
-
-  the rationale is that, like myself, a number of people could be
-coming to yocto from OE and already have a sizable downloads directory
-somewhere on their system that they want to take advantage of and,
-with the above, if my downloads directory is up to date, i end up not
-having to download a single tarball from the net.
-
-  thoughts?  is the above relatively complete or is there anything
-else i would want to add to that variable?  and, again, is it worth
-adding a side reference to that for people who could take advantage
-of it?
+  i suspect you've already seen the two patches i posted yesterday.
+just apply what you think is useful, i've already moved on to the next
+manual i'm fighting with. :-)
 
 rday
 
---=20
+-- 
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+========================================================================
 Robert P. J. Day                                 Ottawa, Ontario, CANADA
                         http://crashcourse.ca
 
 Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+========================================================================
 
