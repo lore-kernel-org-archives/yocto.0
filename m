@@ -1,23 +1,28 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E883CE012F3
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 03:16:16 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 31 Oct 2011 03:16:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="69549434"
-Received: from unknown (HELO helios.localnet) ([10.252.121.56])
-	by orsmga001.jf.intel.com with ESMTP; 31 Oct 2011 03:16:15 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Chris Tapp <opensource@keylevel.com>
-Date: Mon, 31 Oct 2011 10:16:00 +0000
-User-Agent: KMail/1.13.6 (Linux/2.6.38-11-generic-pae; KDE/4.6.5; i686; ; )
-References: <6722EDB4-6AD2-4E51-A826-B00D3AABC6A0@keylevel.com>
-In-Reply-To: <6722EDB4-6AD2-4E51-A826-B00D3AABC6A0@keylevel.com>
+Return-Path: <miketsukerman@gmail.com>
+Received: from mail-gy0-f176.google.com (mail-gy0-f176.google.com
+	[209.85.160.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02141E012F3
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 03:57:22 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by gyc15 with SMTP id 15so1815208gyc.35
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 03:57:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=U5b0LMVW4c7Zp8wlV7lk/eBt6EHCJJx9iubCSOTijB4=;
+	b=RTvpRpRi2OMmgHYI5uE8+83QJgxC7Jv5niYdYvw0LMSL0wEKNpYZKKD4wtW6j305+m
+	4DZ4kHnpBg9Ud4+ZudZrxtNBIyPxWWJkleKKONdYHZrfZyWQ9gJkG/4Fs+pJd4fSApUX
+	6aoCeCgAisTFpdWJnW/DNSCinucg5v7Nuf2lg=
 MIME-Version: 1.0
-Message-Id: <201110311016.00534.paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Which filesystem for target?
+Received: by 10.68.208.229 with SMTP id mh5mr22772353pbc.124.1320058641762;
+	Mon, 31 Oct 2011 03:57:21 -0700 (PDT)
+Received: by 10.68.52.202 with HTTP; Mon, 31 Oct 2011 03:57:21 -0700 (PDT)
+Date: Mon, 31 Oct 2011 13:57:21 +0300
+Message-ID: <CALs2vtdUjnMxtTfhqPB2Teui4ZKmzzxRWfBxgU=qG9giUFAwrg@mail.gmail.com>
+From: Mike Tsukerman <miketsukerman@gmail.com>
+To: yocto@yoctoproject.org
+Subject: root paths in packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,43 +34,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Oct 2011 10:16:17 -0000
-Content-Type: Text/Plain;
-  charset="iso-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 31 Oct 2011 10:57:23 -0000
+Content-Type: multipart/alternative; boundary=14dae9c09a8a6cc97204b0961a2b
 
-On Friday 28 October 2011 23:11:22 Chris Tapp wrote:
-> Which is the 'best' filesystem to use for an embedded device that's
-> using a CF card?
-> 
-> It needs to survive loss-of-power, have a RO root filesystem, allow
-> user configuration data to persist and (ideally) only use 'Busybox'
-> commands.
-> 
-> This seems to imply the use of a partition for booting (mount RO) and
-> a second partition or a loop-device on the boot partition for
-> persistent storage.
-> 
-> I would normally go for ext3, but Busybox doesn't support it (afaik).
-> The Busybox tune2fs also only supports -L, so I can't stop 'disk needs
-> checking after <n> mounts' messages.
-> 
-> Is btrfs a suitable alternative?
+--14dae9c09a8a6cc97204b0961a2b
+Content-Type: text/plain; charset=ISO-8859-1
 
-Arnd Bergmann gave a talk at ELCE on flash drive performance (something he has 
-done quite a lot of research on); I did not attend but Darren and I spoke to 
-him later on, and if I recall correctly in his tests btrfs performed the best. 
-Hopefully the talk video will be available soon thanks to the folks at Free 
-Electrons; in the mean time there's an earlier article by Arnd on this topic 
-here:
+Hello,
 
-http://lwn.net/Articles/428584/
-
-Cheers,
-Paul
+I've build rpm packages and met some interesting things.
+In the rpm all scripts and files include root paths from machine that i've
+build on.
+how can i change that?
 
 -- 
+Best regards, Mike Tsukerman
 
-Paul Eggleton
-Intel Open Source Technology Centre
+jabber: miketsukerman@gmail.com
+jabber: warzon@jabnet.org
+skype: w_a_r_z_o_n
 
+--14dae9c09a8a6cc97204b0961a2b
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hello,<div><br></div><div>I&#39;ve build rpm packages and met some interest=
+ing things.=A0</div><div>In the rpm all scripts and files include root path=
+s from machine that i&#39;ve build on.</div><div>how can i change that?</di=
+v>
+<div><div><br></div>-- <br><font style=3D"color:rgb(51, 51, 51)" size=3D"2"=
+>Best regards, Mike Tsukerman<br><br><span style=3D"color:rgb(0, 0, 0)">jab=
+ber</span>: <a href=3D"mailto:miketsukerman@gmail.com" target=3D"_blank">mi=
+ketsukerman@gmail.com</a><br>
+<span style=3D"color:rgb(0, 0, 0)">jabber</span>: <a href=3D"mailto:warzon@=
+jabnet.org" target=3D"_blank">warzon@jabnet.org</a><br><span style=3D"color=
+:rgb(0, 0, 0)">skype</span>: w_a_r_z_o_n</font><br><br>
+</div>
+
+--14dae9c09a8a6cc97204b0961a2b--
