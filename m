@@ -1,51 +1,36 @@
-Return-Path: <B29882@freescale.com>
-Received: from ch1outboundpool.messaging.microsoft.com
-	(ch1ehsobe003.messaging.microsoft.com [216.32.181.183])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0745EE00559
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 09:32:43 -0700 (PDT)
-Received: from mail196-ch1-R.bigfish.com (10.43.68.248) by
-	CH1EHSOBE005.bigfish.com (10.43.70.55) with Microsoft SMTP Server id
-	14.1.225.22; Mon, 31 Oct 2011 16:32:30 +0000
-Received: from mail196-ch1 (localhost.localdomain [127.0.0.1])	by
-	mail196-ch1-R.bigfish.com (Postfix) with ESMTP id E7C7BDC8563;
-	Mon, 31 Oct 2011 16:32:36 +0000 (UTC)
-X-SpamScore: -6
-X-BigFish: VS-6(zz9371K98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3h)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null);
-	IPVD:NLI; H:mail.freescale.net; RD:none; EFVD:NLI
-X-FB-SS: 13,
-Received: from mail196-ch1 (localhost.localdomain [127.0.0.1]) by mail196-ch1
-	(MessageSwitch) id 1320078755113926_27030;
-	Mon, 31 Oct 2011 16:32:35 +0000 (UTC)
-Received: from CH1EHSMHS024.bigfish.com (snatpool1.int.messaging.microsoft.com
-	[10.43.68.252])	by mail196-ch1.bigfish.com (Postfix) with ESMTP id
-	306B5105811E;	Mon, 31 Oct 2011 16:32:21 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS024.bigfish.com
-	(10.43.70.24) with Microsoft SMTP Server (TLS) id 14.1.225.22;
-	Mon, 31 Oct 2011 16:32:24 +0000
-Received: from 039-SN1MPN1-003.039d.mgd.msft.net ([169.254.3.150]) by
-	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
-	14.01.0339.002; Mon, 31 Oct 2011 11:32:24 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Mike Tsukerman <miketsukerman@gmail.com>
-Thread-Topic: [yocto] root paths in packages
-Thread-Index: AQHMl+qr9qJQiHHMskO9Yhuz+Mww9Q==
-Date: Mon, 31 Oct 2011 16:32:23 +0000
-Message-ID: <CAEsOVNd18cWS5JeaxHMLTR9-pr+65bb4s=qc7H_6Prq1PpTzbw@mail.gmail.com>
-References: <CALs2vtdUjnMxtTfhqPB2Teui4ZKmzzxRWfBxgU=qG9giUFAwrg@mail.gmail.com>
-In-Reply-To: <CALs2vtdUjnMxtTfhqPB2Teui4ZKmzzxRWfBxgU=qG9giUFAwrg@mail.gmail.com>
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2B70E00559
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 10:01:09 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 31 Oct 2011 10:01:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,432,1315206000"; d="scan'208";a="31817153"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by AZSMGA002.ch.intel.com with ESMTP; 31 Oct 2011 10:01:08 -0700
+Received: from orsmsx502.amr.corp.intel.com ([10.22.226.210]) by
+	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
+	Mon, 31 Oct 2011 10:01:09 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: "Zanussi, Tom" <tom.zanussi@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Mon, 31 Oct 2011 10:01:06 -0700
+Thread-Topic: [yocto] [PATCH 1/2] meta-romley: Fix BSP description in
+	romley.conf
+Thread-Index: AcyVegZVkckvOVrGQIu8k0VO3+k66ACdHk2Q
+Message-ID: <4BD43A85686FC34D819098DB1C3999D9018F70901D@orsmsx502.amr.corp.intel.com>
+References: <cover.1319810084.git.tom.zanussi@intel.com>
+	<3cf02697e2c7cf03c9f38b4c7d2192c1aceddc56.1319810084.git.tom.zanussi@intel.com>
+In-Reply-To: <3cf02697e2c7cf03c9f38b4c7d2192c1aceddc56.1319810084.git.tom.zanussi@intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: root paths in packages
+Subject: Re: [PATCH 1/2] meta-romley: Fix BSP description in romley.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,23 +39,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Oct 2011 16:32:44 -0000
+X-List-Received-Date: Mon, 31 Oct 2011 17:01:10 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <42D94B71C6F39D4D92A82FD5E04EFF43@freescale.net>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 31, 2011 at 5:57 AM, Mike Tsukerman <miketsukerman@gmail.com> w=
-rote:
-> Hello,
-> I've build rpm packages and met some interesting things.
-> In the rpm all scripts and files include root paths from machine that i'v=
-e
-> build on.
-> how can i change that?
+Acked-by: Kishore Bodke  <Kishore.k.bodke@intel.com>
 
-Which package? Can you give some examples?
+Thanks
+Kishore.
 
--M=
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of tom.zanussi@intel.com
+Sent: Friday, October 28, 2011 7:00 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] [PATCH 1/2] meta-romley: Fix BSP description in romley.con=
+f
 
+From: Tom Zanussi <tom.zanussi@intel.com>
+
+The description still had a reference to Sugar Bay; this changes it to
+Romley.
+
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ meta-romley/conf/machine/romley.conf |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/meta-romley/conf/machine/romley.conf b/meta-romley/conf/machin=
+e/romley.conf
+index 38bd17a..2dcb5db 100644
+--- a/meta-romley/conf/machine/romley.conf
++++ b/meta-romley/conf/machine/romley.conf
+@@ -1,7 +1,7 @@
+ #@TYPE: Machine
+ #@NAME: romley
+=20
+-#@DESCRIPTION: Machine configuration for Sugar Bay systems
++#@DESCRIPTION: Machine configuration for Romley systems
+ # i.e. Sandy Bridge + Patsburg Chipset
+=20
+ require conf/machine/include/tune-x86_64.inc
+--=20
+1.7.0.4
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
