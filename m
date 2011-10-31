@@ -1,28 +1,33 @@
-Return-Path: <miketsukerman@gmail.com>
-Received: from mail-gy0-f176.google.com (mail-gy0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02141E012F3
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 03:57:22 -0700 (PDT)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by gyc15 with SMTP id 15so1815208gyc.35
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 03:57:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=U5b0LMVW4c7Zp8wlV7lk/eBt6EHCJJx9iubCSOTijB4=;
-	b=RTvpRpRi2OMmgHYI5uE8+83QJgxC7Jv5niYdYvw0LMSL0wEKNpYZKKD4wtW6j305+m
-	4DZ4kHnpBg9Ud4+ZudZrxtNBIyPxWWJkleKKONdYHZrfZyWQ9gJkG/4Fs+pJd4fSApUX
-	6aoCeCgAisTFpdWJnW/DNSCinucg5v7Nuf2lg=
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3401EE006CC
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 05:01:12 -0700 (PDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1RKqYA-0005Xd-8V; Mon, 31 Oct 2011 08:01:10 -0400
+Date: Mon, 31 Oct 2011 08:01:05 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <BA8B50AF-70FB-4FF4-B1DA-BF9315C85EF4@dominion.thruhere.net>
+Message-ID: <alpine.DEB.2.02.1110310757470.5055@localhost6.localdomain6>
+References: <alpine.DEB.2.02.1110290915450.7280@localhost6.localdomain6>
+	<BA8B50AF-70FB-4FF4-B1DA-BF9315C85EF4@dominion.thruhere.net>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.68.208.229 with SMTP id mh5mr22772353pbc.124.1320058641762;
-	Mon, 31 Oct 2011 03:57:21 -0700 (PDT)
-Received: by 10.68.52.202 with HTTP; Mon, 31 Oct 2011 03:57:21 -0700 (PDT)
-Date: Mon, 31 Oct 2011 13:57:21 +0300
-Message-ID: <CALs2vtdUjnMxtTfhqPB2Teui4ZKmzzxRWfBxgU=qG9giUFAwrg@mail.gmail.com>
-From: Mike Tsukerman <miketsukerman@gmail.com>
-To: yocto@yoctoproject.org
-Subject: root paths in packages
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: is there a filesystem issue with kernel 3.0.x on pandaboards?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,41 +39,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Oct 2011 10:57:23 -0000
-Content-Type: multipart/alternative; boundary=14dae9c09a8a6cc97204b0961a2b
+X-List-Received-Date: Mon, 31 Oct 2011 12:01:12 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
---14dae9c09a8a6cc97204b0961a2b
-Content-Type: text/plain; charset=ISO-8859-1
+On Mon, 31 Oct 2011, Koen Kooi wrote:
 
-Hello,
+>
+> Op 29 okt. 2011, om 15:19 heeft Robert P. J. Day het volgende geschreven:
+>
+> >  possibly off-topic but i'm sitting in a fedora/ARM talk right
+> > this minute at FSOSS/linuxfest at york u, and the presenter
+> > mentioned that when building fedora for pandaboards, they had to
+> > back off from kernel 3.0.4 to 2.6.35 because, in that situation,
+> > the filesystem had a bad habit of switching unpredictably into
+> > read-only mode.
+> >
+> >  is this a known issue in any yocto context?  again, sorry if this
+> > is wandering far afield but yocto on a pandaboard was at the top
+> > of my TODO list for this coming week.
+>
+> I'm not seeing that problem on the pandaboard that's running 3.0.x
+> and angstrom. The default in angstrom/meta-ti is 2.6.35 due to
+> multimedia acceleration madness.
 
-I've build rpm packages and met some interesting things.
-In the rpm all scripts and files include root paths from machine that i've
-build on.
-how can i change that?
+  i wish i had more info on this.  the topic came up when i was
+chatting with the people who run the fedora arm farm at seneca
+college, so they're pretty knowledgeable.  the symptom was that after
+they installed a fedora ARM build with a 3.0.x kernel on their
+pandaboards, when they started pounding on them with massive writes to
+the root filesystem, on a regular basis, the root filesystem would
+suddenly switch to read-only mode.  when they backed off to a 2.6.35
+kernel, all was good.
+
+  if i hear more and it sounds relevant, i'll post here.
+
+rday
 
 -- 
-Best regards, Mike Tsukerman
 
-jabber: miketsukerman@gmail.com
-jabber: warzon@jabnet.org
-skype: w_a_r_z_o_n
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
---14dae9c09a8a6cc97204b0961a2b
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
-Hello,<div><br></div><div>I&#39;ve build rpm packages and met some interest=
-ing things.=A0</div><div>In the rpm all scripts and files include root path=
-s from machine that i&#39;ve build on.</div><div>how can i change that?</di=
-v>
-<div><div><br></div>-- <br><font style=3D"color:rgb(51, 51, 51)" size=3D"2"=
->Best regards, Mike Tsukerman<br><br><span style=3D"color:rgb(0, 0, 0)">jab=
-ber</span>: <a href=3D"mailto:miketsukerman@gmail.com" target=3D"_blank">mi=
-ketsukerman@gmail.com</a><br>
-<span style=3D"color:rgb(0, 0, 0)">jabber</span>: <a href=3D"mailto:warzon@=
-jabnet.org" target=3D"_blank">warzon@jabnet.org</a><br><span style=3D"color=
-:rgb(0, 0, 0)">skype</span>: w_a_r_z_o_n</font><br><br>
-</div>
-
---14dae9c09a8a6cc97204b0961a2b--
