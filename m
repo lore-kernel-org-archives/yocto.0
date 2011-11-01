@@ -1,27 +1,30 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78B07E0120B
-	for <yocto@yoctoproject.org>; Tue,  1 Nov 2011 00:38:24 -0700 (PDT)
-Received: by wwf10 with SMTP id 10so2173669wwf.11
-	for <yocto@yoctoproject.org>; Tue, 01 Nov 2011 00:38:22 -0700 (PDT)
-Received: by 10.227.206.147 with SMTP id fu19mr22450766wbb.22.1320133102221;
-	Tue, 01 Nov 2011 00:38:22 -0700 (PDT)
-Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl.
-	[84.80.112.235])
-	by mx.google.com with ESMTPS id fi11sm36810331wbb.9.2011.11.01.00.38.14
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 01 Nov 2011 00:38:15 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1251.1)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <CALs2vtcT-MhE5cPrTyNdFk1DO7o8yrBaPSHnMy7z6Hz-FjtY6w@mail.gmail.com>
-Date: Tue, 1 Nov 2011 08:38:11 +0100
-Message-Id: <81D983E9-CDA9-4235-A1D2-02F47B1ACACD@dominion.thruhere.net>
-References: <mailman.205.1320085760.2193.yocto@yoctoproject.org>
-	<CALs2vtcT-MhE5cPrTyNdFk1DO7o8yrBaPSHnMy7z6Hz-FjtY6w@mail.gmail.com>
-To: Mike Tsukerman <miketsukerman@gmail.com>
-X-Mailer: Apple Mail (2.1251.1)
-Cc: yocto@yoctoproject.org
-Subject: digest mail replies, was Re: yocto Digest, Vol 13, Issue 54
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0C52E0120B
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2011 03:27:02 -0700 (PDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1RLBYa-0006Qu-GE
+	for yocto@yoctoproject.org; Tue, 01 Nov 2011 06:27:00 -0400
+Date: Tue, 1 Nov 2011 06:26:46 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1111010623070.3830@localhost6.localdomain6>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: list of images in appendix D of poky ref manual seems incomplete
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,45 +36,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Nov 2011 07:38:29 -0000
-X-Groupsio-MsgNum: 3265
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_A72B0753-EDBE-43C6-B062-F45AB44C8F5B";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
-
---Apple-Mail=_A72B0753-EDBE-43C6-B062-F45AB44C8F5B
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain;
-	charset=iso-8859-1
+X-List-Received-Date: Tue, 01 Nov 2011 10:27:03 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-Op 31 okt. 2011, om 19:42 heeft Mike Tsukerman het volgende geschreven:
+  just noticed that Appendix D of the poky reference manual lists the
+supported images, and suggests you can see them all with:
 
-> 
-> 
-> On Mon, Oct 31, 2011 at 10:29 PM, <yocto-request@yoctoproject.org> wrote:
+  $ ls meta*/recipes*/images/*.bb
 
-[..]
+but the list in that appendix doesn't mention the following:
 
-> When replying, please edit your Subject line so it is more specific
-> than "Re: Contents of yocto digest..."
+meta/recipes-qt/images/qt4e-demo-image.bb
+meta/recipes-rt/images/core-image-rt.bb
+meta/recipes-rt/images/core-image-rt-sdk.bb
 
+should it?
 
-Please pay attention to the above!
+rday
 
---Apple-Mail=_A72B0753-EDBE-43C6-B062-F45AB44C8F5B
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
+-- 
 
------BEGIN PGP SIGNATURE-----
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
-iEYEARECAAYFAk6voeMACgkQMkyGM64RGpFESgCgvHNRgfBzG6Q0AVYwm3dL9MRn
-PGoAn14hWu7ispoF907iUTFHErr4+XEO
-=SEOT
------END PGP SIGNATURE-----
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
---Apple-Mail=_A72B0753-EDBE-43C6-B062-F45AB44C8F5B--
