@@ -1,30 +1,23 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AC69E0054F
-	for <yocto@yoctoproject.org>; Tue,  1 Nov 2011 11:59:41 -0700 (PDT)
-Received: from [128.224.252.2] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1RLIPh-0003Gv-Sy
-	for yocto@yoctoproject.org; Tue, 01 Nov 2011 13:46:17 -0400
-Date: Tue, 1 Nov 2011 13:46:00 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1111011341350.9089@localhost6.localdomain6>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: many "pkgconfig is needed" errors when building core-image-sato-dev for beagle
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36038E0054F
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2011 12:40:58 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 01 Nov 2011 12:40:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="69908421"
+Received: from unknown (HELO [10.255.15.209]) ([10.255.15.209])
+	by orsmga002.jf.intel.com with ESMTP; 01 Nov 2011 12:40:42 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: James Abernathy <jfabernathy@gmail.com>
+In-Reply-To: <CANFv2EkrNFQw57X=tV5Wz+a5F-cqp_GQHsOpLhOh7pXeTSnpXg@mail.gmail.com>
+References: <CANFv2EkrNFQw57X=tV5Wz+a5F-cqp_GQHsOpLhOh7pXeTSnpXg@mail.gmail.com>
+Date: Tue, 01 Nov 2011 14:40:49 -0500
+Message-ID: <1320176449.2400.63.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Build error while following Appendix A. Yocto Project Development manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,40 +29,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Nov 2011 18:59:42 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 01 Nov 2011 19:40:58 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+On Tue, 2011-11-01 at 11:37 -0700, James Abernathy wrote:
+> I tried to duplicate the Yocto Project Decelopment Manual Appendix A
+> build of a Crownbay NOEMGD image,  no changes just dulicate the
+> instructions.  This is using the latest Yocto 1.1.  I did get a long
+> way down the line, but had a fatal error in the last 2 steps.
+>  
+> The only change I had to make was related to A.5.2.4.  The commit
+> string for the SRCREV_meta_pn was different on the
+> git.yoctoproject.org/cgit/cgi for the Meta commit so I used what I
+> found online.  The first section of 126 task completed without error.
+> The next section of 4394 tasks failed on 4393.  Not sure if the error
+> is obvious, but I wanted to run it by someone. Console error log
+> below:
+> 
+
+Hmm, not sure what's going on here - I'm sure this example was verified
+several times, but just to make sure, what you're doing is going through
+'Appendix A. BSP Development Example' verbatim and getting this?
+
+The SRCREVs in either case look ok for this, so that shouldn't be the
+problem...
+
+But let me go over the steps myself and see what I come up with - will
+let you know either way...
+
+Tom
+
+>  NOTE: package core-image-sato-1.0-r0: task do_bootimg: Started
+> ERROR: Function 'build_boot_bin' failed
+> (see /home/jim/poky/yocto-build/tmp/work/mymachine-poky-linux/core-image-sato-1.0-r0/temp/log.do_bootimg.31418 for further information)
+> ERROR: Logfile of failure stored
+> in: /home/jim/poky/yocto-build/tmp/work/mymachine-poky-linux/core-image-sato-1.0-r0/temp/log.do_bootimg.31418
+> Log data follows:
+> | install: cannot stat
+> `/home/jim/poky/yocto-build/tmp/sysroots/mymachine/kernel/bzImage': No
+> such file or directory
+> | ERROR: Function 'build_boot_bin' failed
+> (see /home/jim/poky/yocto-build/tmp/work/mymachine-poky-linux/core-image-sato-1.0-r0/temp/log.do_bootimg.31418 for further information)
+> NOTE: package core-image-sato-1.0-r0: task do_bootimg: Failed
+> ERROR: Task 9
+> (/home/jim/poky/meta/recipes-sato/images/core-image-sato.bb,
+> do_bootimg) failed with exit code '1'
+> ERROR: '/home/jim/poky/meta/recipes-sato/images/core-image-sato.bb'
+> failed
+> jim@jim-ubuntu-10:~/poky/yocto-build$ 
+> 
 
 
-  i'm sure there's a simple solution for this but i'm building
-core-image-sato-dev for the beagleboard on my 64-bit ubuntu system
-and the build eventually fails with *numerous* errors of the form:
-
-Processing ...something...-dev:
-   error: Failed dependencies:
-   pkgconfig is needed ...
-   pkgconfig is needed ...
-   ... etc etc ...
-
-there are *pages* of that type of output for multiple tasks (the build
-of core-image-sato worked fine).
-
-  i suspect the solution is something along the lines of this patch by
-tom zanussi:
-
-http://comments.gmane.org/gmane.linux.embedded.yocto.general/2716
-
-but i'm not sure where to make the change.  suggestions?
-
-rday
-
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
