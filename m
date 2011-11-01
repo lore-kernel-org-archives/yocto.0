@@ -1,23 +1,24 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69789E0054F
-	for <yocto@yoctoproject.org>; Tue,  1 Nov 2011 14:56:14 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97815E0054F
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2011 15:47:56 -0700 (PDT)
 Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
 	([99.241.2.77] helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
 	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1RLMJW-0003tX-P6; Tue, 01 Nov 2011 17:56:10 -0400
-Date: Tue, 1 Nov 2011 17:56:03 -0400 (EDT)
+	id 1RLN7Y-0007NQ-Ty; Tue, 01 Nov 2011 18:47:53 -0400
+Date: Tue, 1 Nov 2011 18:47:48 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@localhost6.localdomain6
 To: Tom Zanussi <tom.zanussi@intel.com>
-In-Reply-To: <1320183968.2400.83.camel@elmorro>
-Message-ID: <alpine.DEB.2.02.1111011755030.5630@localhost6.localdomain6>
+In-Reply-To: <1320184489.2400.88.camel@elmorro>
+Message-ID: <alpine.DEB.2.02.1111011835470.5888@localhost6.localdomain6>
 References: <CANFv2EkrNFQw57X=tV5Wz+a5F-cqp_GQHsOpLhOh7pXeTSnpXg@mail.gmail.com>
 	<1320176449.2400.63.camel@elmorro>
 	<alpine.DEB.2.02.1111011733510.5226@localhost6.localdomain6>
 	<1320183968.2400.83.camel@elmorro>
+	<1320184489.2400.88.camel@elmorro>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -42,41 +43,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Nov 2011 21:56:14 -0000
+X-List-Received-Date: Tue, 01 Nov 2011 22:47:56 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Tue, 1 Nov 2011, Tom Zanussi wrote:
 
-> On Tue, 2011-11-01 at 14:37 -0700, Robert P. J. Day wrote:
-> > On Tue, 1 Nov 2011, Tom Zanussi wrote:
+  some questions/observations as i'm getting close to the end of this
+appendix (some of which you've already seen and addressed), all done
+on my 64-bit ubuntu 11.10 system:
 
-... snip ...
+  * section A.3: rather than force the reader to follow a link or go
+to an earlier section, why not just supply the command to check out
+meta-intel/?
 
-> > > Hmm, not sure what's going on here - I'm sure this example was
-> > > verified several times, but just to make sure, what you're doing is
-> > > going through 'Appendix A. BSP Development Example' verbatim and
-> > > getting this?
-> >
-> >   ironically, i'm working on this very example and something in the
-> > dev manual doesn't look right.  section A.5.2.1:
-> >
-> > These commands take care of the recipes-bsp recipes:
-> >
-> >   $ rm -rf meta-mymachine/recipes-graphics/xorg-xserver/*emgd*
-> >   ... snip ...
-> >
-> > why is that command referring to the recipes-graphics directory when
-> > this section is supposed to be adjusting recipes-bsp?
-> >
-> > or have i screwed something up?
->
-> You're right, that line shouldn't be there (it should be removed
-> from the instructions).  The emgd recipes were moved out of
-> meta-crownbay and into meta-intel/common, so this step is no longer
-> needed.
+  $ git clone http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel
 
-  let me finish following this through and i'll make notes on anything
-else that looks odd and report back.
+  * section A.5.1: is it actually *necessary* to delete the
+crownbay.conf file, and to change the comments in the mymachine.conf
+file?  admittedly, it's nice to keep things consistent, but if the
+text claims that something is "needed", then it really should be
+required.
+
+  * section A.5.2.1: as we've noted, that first command can be tossed.
+in addition, should one remove the "crownbay" directory from that
+location?  since "crownbay" content is being removed from other
+locations, it would be nice to be consistent.
+
+  * section A.5.2.2: delete first command
+
+  * section A.5.2.4: the "SRCREV_meta" values listed in the appendix
+don't match what's in the actual file.  so what are the correct
+values?
+
+  ... back to work ...
 
 rday
 
