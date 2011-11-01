@@ -1,60 +1,32 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8F39E0054F;
-	Mon, 31 Oct 2011 17:07:42 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 31 Oct 2011 17:07:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,435,1315206000"; d="scan'208";a="79893009"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga001.fm.intel.com with ESMTP; 31 Oct 2011 17:07:41 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 31 Oct 2011 17:07:41 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.38]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.240]) with mapi id
-	14.01.0323.003; Mon, 31 Oct 2011 17:07:13 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "Liu, Song" <song.liu@intel.com>, "'McCombe, Kevin'"
-	<kevin.mccombe@windriver.com>, "Wold, Saul" <saul.wold@intel.com>, "Zhang, 
-	Jessica" <jessica.zhang@intel.com>, "'deVries, Alex'"
-	<Alex.deVries@windriver.com>, "'Polk, Jeffrey'" <jeff.polk@windriver.com>, 
-	"'Hatle, Mark'" <mark.hatle@windriver.com>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "Li, Susie" <susie.li@intel.com>, "Lock,
-	Joshua"
-	<joshua.lock@intel.com>, 'Bruce Ashfield' <bruce.ashfield@windriver.com>,
-	"Zanussi, Tom" <tom.zanussi@intel.com>, "Hart, Darren"
-	<darren.hart@intel.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Stewart, David C"
-	<david.c.stewart@intel.com>, "'Lieu.Ta@windriver.com'"
-	<Lieu.Ta@windriver.com>, "'paul.anderson@windriver.com'"
-	<paul.anderson@windriver.com>, "Osier-mixon, Jeffrey"
-	<jeffrey.osier-mixon@intel.com>, "Dmytriyenko, Denys" <denys@ti.com>,
-	"Kooi, Koen" <k-kooi@ti.com>, "'yocto-ab@yoctoproject.org'"
-	<yocto-ab@yoctoproject.org>, "Erway, Tracey M" <tracey.m.erway@intel.com>, 
-	'Daniel Cauchy' <dcauchy@mvista.com>, "Wang,
-	Shane" <shane.wang@intel.com>, 
-	"'Kridner, Jason'" <jdk@ti.com>, "Yu, Ke" <ke.yu@intel.com>, "Rifenbark,
-	Scott M" <scott.m.rifenbark@intel.com>, "'Dixon, Brad'"
-	<Brad_Dixon@mentor.com>, 'Jeremy Puhlman' <jpuhlman@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"'shsift-yocto@yahoo.com'" <shsift-yocto@yahoo.com>
-Thread-Topic: Agenda: Yocto Technical Team Meeting - Tuesday, November 01,
-	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
-Thread-Index: AQHMmCpEk4bizYBEA02N2NSqdJvuWw==
-Date: Tue, 1 Nov 2011 00:07:39 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F6CA1D@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <aalonso00@gmail.com>
+Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2515E00559
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 19:21:32 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by vcdn13 with SMTP id n13so8162383vcd.35
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2011 19:21:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=8foePGhuoIOkRGLy00RMZzzv2ij72nbsEW5XnMsV0Z8=;
+	b=BdPMbeyieGvGj44OLQVNZ1rLaIhMos9m+tQYAH4I9wPDkCTHhGDo8U5sI9vJJ4e8b1
+	35EEhS+BzGe00XOzNTWDP8l4CZdWyYRHC8HTpJM+kyc09mfgST2PT2tzv2r4eiC2M3fA
+	waven2SS4isWjTEifcOTv/1dgIkYUW7zavamw=
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 31 Oct 2011 17:08:54 -0700
-Cc: "'Ruff, Nithya'" <Nithya.Ruff@windriver.com>,
-	"'morvek@mvista.com'" <morvek@mvista.com>
-Subject: Agenda: Yocto Technical Team Meeting - Tuesday, November 01, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
+Received: by 10.52.32.73 with SMTP id g9mr6282882vdi.125.1320114091747; Mon,
+	31 Oct 2011 19:21:31 -0700 (PDT)
+Received: by 10.220.177.76 with HTTP; Mon, 31 Oct 2011 19:21:31 -0700 (PDT)
+In-Reply-To: <1531E53627F1F749B4FE809BF2A4EB6702BCEA88@WETMEX10.loepfe.com>
+References: <1531E53627F1F749B4FE809BF2A4EB6702BCEA88@WETMEX10.loepfe.com>
+Date: Mon, 31 Oct 2011 20:21:31 -0600
+Message-ID: <CAAB-1ywUGuwxU7CWz6-xQojtwAHim7qf3xa9JHCkBBkyx69-cA@mail.gmail.com>
+From: Adrian Alonso <aalonso00@gmail.com>
+To: "Vellemans, Noel" <Noel.Vellemans@visionbms.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Slow-startup.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,144 +38,152 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Nov 2011 00:07:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 01 Nov 2011 02:21:33 -0000
+Content-Type: multipart/alternative; boundary=bcaec51d2e3880678204b0a3035d
+
+--bcaec51d2e3880678204b0a3035d
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-* Opens collection - 5 min (Song)
-* Yocto 1.0.2 and 1.1.1 point release update - 5 min (Josh)
-* Yocto 1.2 planning and M1 planning - 20 min (team)
-  https://wiki.yoctoproject.org/wiki/Yocto_1.2_Schedule
-  https://wiki.yoctoproject.org/wiki/Yocto_1.2_Features=20
-* Opens - 10 min
-* Weekly team sharing (20 min)
+Hi Noel,
+
+Are you also integrating Freescale xorg driver and related libs?
+Also Freescale has a large set of patchs for the kernel that are not
+in mainstream, you can take a look at
+L2.6.35_11.09.01_ER_source_boundle.tar.gz
+located at [1] and [2] which is an experimental meta layer than I'm working
+on for adding
+Freescale Arm support but still has some problems thanks to the way
+Fsl distributes it's
+source code and need to manually copy some source packages in Pokys
+download dir;
+
+[1]
+http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=3DLEIMX&fpsp=
+=3D1&tab=3DDesign_Tools_Tab
+[2] https://www.gitorious.org/yocto/meta-freescale
+
+On Thu, Oct 27, 2011 at 11:10 AM, Vellemans, Noel <
+Noel.Vellemans@visionbms.com> wrote:
+
+> **
+>
+> Hi all,
+>
+> I'm test-driving the yocto-edison version, Target-armv7 (testing on
+> imx-53x cpu).
+>
+> But,  I=92m having a strange problem.
+>
+> It takes very long to start the device, every time [not only the first
+> time], at each reboot cycle it takes up to 3 minutes before I get the
+> desktop.
+>
+> At the current time I got to the point (by using printf into the code on
+> 1001 places)  that it is the _mb_font_load() in matchbox-lib that makes t=
+he
+> startup extremely slow. (system seems to =91hang=92 for more the 3 minute=
+s
+> before the matchbox-desktop pops up.)
+>
+> Any information available on this?
+> Any hints where to look at ?
+>
+> Kind regards
+> Noel
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
 
------Original Appointment-----
-From: Liu, Song=20
-Sent: Tuesday, August 16, 2011 3:27 PM
-To: 'McCombe, Kevin'; Wold, Saul; Zhang, Jessica; 'deVries, Alex'; 'Polk, J=
-effrey'; 'Hatle, Mark'; Purdie, Richard; Li, Susie; Lock, Joshua; 'Bruce As=
-hfield'; Zanussi, Tom; Hart, Darren; Flanagan, Elizabeth; Stewart, David C;=
- 'Lieu.Ta@windriver.com'; 'paul.anderson@windriver.com'; Osier-mixon, Jeffr=
-ey; Dmytriyenko, Denys; Kooi, Koen; 'yocto-ab@yoctoproject.org'; Erway, Tra=
-cey M; 'Daniel Cauchy'; Wang, Shane; 'Kridner, Jason'; Yu, Ke; Rifenbark, S=
-cott M; 'Dixon, Brad'; 'Jeremy Puhlman'; yocto@yoctoproject.org; 'shsift-yo=
-cto@yahoo.com'
-Cc: 'morvek@mvista.com'; 'Ruff, Nithya'; Moeller, Thorsten; Saxena, Rahul; =
-'Ranslam, Rob'; 'Anders Darander'; Bodke, Kishore K
-Subject: Yocto Technical Team Meeting
-When: Tuesday, November 01, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (=
-US & Canada).
-Where: Bridge Info Enclosed
+--=20
+Saludos
+Adrian Alonso
+http://aalonso.wordpress.com
+
+--bcaec51d2e3880678204b0a3035d
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+Hi Noel,<div><br></div><div>Are you also integrating Freescale xorg driver =
+and related libs?</div><div>Also Freescale has a large set of patchs for th=
+e kernel that are not</div><div>in mainstream, you can take a look at L2.6.=
+35_11.09.01_ER_source_boundle.tar.gz</div>
+<div>located at [1] and [2] which is an experimental=A0meta layer than I&#3=
+9;m working on for adding</div><div>Freescale Arm support but still has som=
+e problems=A0thanks to the way Fsl=A0distributes it&#39;s</div><div>source =
+code and need to manually copy=A0some source packages in Pokys download dir=
+;</div>
+<div><br></div><div>[1] <a href=3D"http://www.freescale.com/webapp/sps/site=
+/prod_summary.jsp?code=3DLEIMX&amp;fpsp=3D1&amp;tab=3DDesign_Tools_Tab">htt=
+p://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=3DLEIMX&amp;fps=
+p=3D1&amp;tab=3DDesign_Tools_Tab</a></div>
+<div>[2]=A0<a href=3D"https://www.gitorious.org/yocto/meta-freescale">https=
+://www.gitorious.org/yocto/meta-freescale</a><br><br><div class=3D"gmail_qu=
+ote">On Thu, Oct 27, 2011 at 11:10 AM, Vellemans, Noel <span dir=3D"ltr">&l=
+t;<a href=3D"mailto:Noel.Vellemans@visionbms.com">Noel.Vellemans@visionbms.=
+com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex;"><u></u>
 
 
 
-Conference details=20
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
-Participants:=20
-30
-Duration:=20
-60 minutes=20
-Participant passcode:=20
-49611427=20
-Dial-in number:=20
-1.972.995.7777=20
-US Toll Free number:=20
-1.877.561.6828=20
-BlackBerry users, click this link to join your conference as a chairperson:
-1.972.995.7777x67184230#
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x49611427#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
-
-Local and Global Access Numbers=20
 
 
-Country=20
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277=20
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322=20
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877=20
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777=20
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777=20
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799=20
-From Kuala Lumpur dial 4264 3799=20
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177=20
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777=20
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998=20
-From Seoul dial 5606998=20
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363=20
-From Taipei dial 2241 1363=20
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001=20
-then enter 877 633 1123=20
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
 
-Recurring conferences=20
-First scheduled conference:=20
-Tue Jun 28, 2011
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 22, 2012, 10:40 AM CDT
+<div>
 
+<br>
 
+<p><span lang=3D"en-us"><font face=3D"Verdana">Hi all,</font></span>
+</p>
+
+<p><span lang=3D"en-us"><font face=3D"Verdana">I&#39;m test-driving the yoc=
+to-edison version, Target-armv7 (testing on imx-53x cpu).</font></span>
+</p>
+
+<p><span lang=3D"en-us"><font face=3D"Verdana">But,=A0 I=92m having a stran=
+ge problem.</font></span></p>
+
+<p><span lang=3D"en-us"><font face=3D"Verdana">It takes very long to start =
+the device, every time [not only the first time], at each reboot cycle it t=
+akes up to 3 minutes before I get the desktop.</font></span></p>
+
+<p><span lang=3D"en-us"><font face=3D"Verdana">At the current time I got to=
+ the point (by using printf into the code on 1001 places)=A0 that it is the=
+ _mb_font_load() in matchbox-lib that makes the startup extremely slow. (sy=
+stem seems to =91hang=92 for more the 3 minutes before the matchbox-desktop=
+ pops up.)</font></span></p>
+
+<br>
+
+<p><span lang=3D"en-us"><font face=3D"Verdana">Any information available on=
+ this?</font></span>
+
+<br><span lang=3D"en-us"><font face=3D"Verdana">Any hints where to look at =
+?</font></span>
+</p>
+<br>
+
+<p><span lang=3D"nl-be"><font face=3D"Verdana">Kind regards</font></span>
+
+<br><font color=3D"#888888"><span lang=3D"nl-be"><font face=3D"Verdana">Noe=
+l</font></span>
+</font></p>
+
+</div>
+<br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>Saludos<=
+br>Adrian Alonso<br><a href=3D"http://aalonso.wordpress.com">http://aalonso=
+.wordpress.com</a><br><br>
+</div>
+
+--bcaec51d2e3880678204b0a3035d--
