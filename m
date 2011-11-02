@@ -1,26 +1,42 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC0B9E006B4
-	for <yocto@yoctoproject.org>; Wed,  2 Nov 2011 11:54:28 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 02 Nov 2011 11:54:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,445,1315206000"; d="scan'208";a="85357475"
-Received: from unknown (HELO [10.255.15.209]) ([10.255.15.209])
-	by fmsmga002.fm.intel.com with ESMTP; 02 Nov 2011 11:54:27 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-In-Reply-To: <CAPhnLPBvBGVZS==k7NkEPRuT43VrF5mjP_wHu+n9uXoZnp12HQ@mail.gmail.com>
-References: <1320251874.32216.4.camel@elmorro>
-	<CAPhnLPBvBGVZS==k7NkEPRuT43VrF5mjP_wHu+n9uXoZnp12HQ@mail.gmail.com>
-Date: Wed, 02 Nov 2011 13:54:40 -0500
-Message-ID: <1320260080.32216.15.camel@elmorro>
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0D1EE006B4
+	for <yocto@yoctoproject.org>; Wed,  2 Nov 2011 12:18:09 -0700 (PDT)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by vcdn13 with SMTP id n13so693947vcd.35
+	for <yocto@yoctoproject.org>; Wed, 02 Nov 2011 12:18:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=subject:from:to:cc:in-reply-to:references:content-type:date
+	:message-id:mime-version:x-mailer:content-transfer-encoding;
+	bh=7ro6wFvEdNBOTlV/0nvQod9qwnqKFG7iq4L/Lk1PP6Y=;
+	b=eFsmzqSpryhfFlzyHgH8iXltL+QTA3TW2asPJ95bNbeMhrbvC9qyvSPQaCuo+bSQaK
+	kapijfkVMxMkhB/eFuXJX/oZej9bdA3zhczKLE4JKWLcS5D3cA18cIQ6E1hF4lJ5QxFn
+	oNWVdYcf+c/F4hudnd6TmZemBxuGNDP/cs7xs=
+Received: by 10.52.90.228 with SMTP id bz4mr5862755vdb.74.1320261488723;
+	Wed, 02 Nov 2011 12:18:08 -0700 (PDT)
+Received: from [10.0.1.36] ([67.239.164.153])
+	by mx.google.com with ESMTPS id cp16sm4422552vdb.20.2011.11.02.12.18.06
+	(version=SSLv3 cipher=OTHER); Wed, 02 Nov 2011 12:18:07 -0700 (PDT)
+From: Jim Abernathy <jfabernathy@gmail.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+In-Reply-To: <1320248073.26655.86.camel@elmorro>
+References: <CANFv2EkrNFQw57X=tV5Wz+a5F-cqp_GQHsOpLhOh7pXeTSnpXg@mail.gmail.com>
+	<1320176449.2400.63.camel@elmorro>
+	<CANFv2Emacwk4+Z+bYNs3MXZL-uxHmPUiB5tFXNM7Kx+NgFOnig@mail.gmail.com>
+	<1320194738.26655.26.camel@elmorro>
+	<1320243867.13661.6.camel@jim-ubuntu-10>
+	<1320244912.26655.61.camel@elmorro>
+	<1320246467.13661.10.camel@jim-ubuntu-10>
+	<1320248073.26655.86.camel@elmorro>
+Date: Wed, 02 Nov 2011 15:18:18 -0400
+Message-ID: <1320261498.13661.13.camel@jim-ubuntu-10>
 Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>, "Lock,
-	Joshua" <joshua.lock@intel.com>
-Subject: Re: meta-intel candidate branch for 1.1 edison point release
+X-Mailer: Evolution 2.30.3 
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Build error while following Appendix A. Yocto Project Development manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,41 +48,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Nov 2011 18:54:29 -0000
+X-List-Received-Date: Wed, 02 Nov 2011 19:18:10 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2011-11-02 at 10:17 -0700, Flanagan, Elizabeth wrote:
-> On Wed, Nov 2, 2011 at 9:37 AM, Tom Zanussi <tom.zanussi@intel.com> wrote:
-> > Hi,
-> >
-> > I've created a new meta-intel/edison-next branch to hold commits
-> > intended for the upcoming 1.1 point release.
-> >
-> 
-> From a build perspective, it would be better if these commits ended up
-> in the meta-intel/edison branch. It's generally what we do for
-> poky.git and I'd like to keep meta-intel the same. Also, the
-> autobuilder, when it builds out release branches like this, actually
-> will end up requiring that the release branches for all layers are the
-> same (at least until full layer support is implemented.)
-> 
-
-Yes, they will end up there, as the next paragraph mentions:
-
-"I'll be collecting candidate commits for a 1.1 point release there
-until
-it's time to cut the 1.1 point release, and will pull those into edison
-proper at that point, assuming we have agreement on the set of patches
-in the branch."
-
-Tom
 
 
-> -b
-> 
-> 
-> 
+Well, I finally got a "successful" build without erros of the Appendix A
+example for Crownbay, but the image created was only 216MB in size and
+kernel panic'ed because it couldn't find a valid root file system.
 
+I'm going to try again from scratch and see if I missed anything. If
+that fails, I'll report out.
+
+Jim A
 
 
