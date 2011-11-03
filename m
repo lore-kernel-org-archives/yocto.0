@@ -1,37 +1,27 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73B6DE006B4
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2011 10:41:43 -0700 (PDT)
-Received: from [128.224.252.2] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1RM1II-0005WR-Ff; Thu, 03 Nov 2011 13:41:38 -0400
-Date: Thu, 3 Nov 2011 13:41:31 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: Darren Hart <dvhart@linux.intel.com>
-In-Reply-To: <4EB2D044.7050207@linux.intel.com>
-Message-ID: <alpine.DEB.2.02.1111031340010.6799@localhost6.localdomain6>
-References: <alpine.DEB.2.02.1110301131040.522@localhost6.localdomain6>
-	<4EAD7542.4070204@gna.org>
-	<alpine.DEB.2.02.1110301214180.915@localhost6.localdomain6>
-	<4EAED7B0.4050909@windriver.com>
-	<alpine.DEB.2.02.1110311323050.8545@localhost6.localdomain6>
-	<4EAEDD3A.9070601@mlbassoc.com> <4EB2D044.7050207@linux.intel.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <josh@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B63AE00559
+	for <yocto@yoctoproject.org>; Thu,  3 Nov 2011 11:47:49 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 03 Nov 2011 11:47:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="70909753"
+Received: from unknown (HELO [10.7.199.72]) ([10.7.199.72])
+	by orsmga001.jf.intel.com with ESMTP; 03 Nov 2011 11:47:45 -0700
+Message-ID: <4EB2E1D1.5030505@linux.intel.com>
+Date: Thu, 03 Nov 2011 11:47:45 -0700
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0.1) Gecko/20110930 Thunderbird/7.0.1
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: what's the proper value for BB_NUMBER_THREADS?
+To: yocto@yoctoproject.org
+References: <4EB1E5F1.3050106@linux.intel.com>
+	<4EB222D0.6050301@linux.intel.com>
+	<CAEsOVNcRQGEszBiG=KhoaWeeH9ynX4xB+YVMsT++tvgh6PAcjA@mail.gmail.com>
+	<4EB224EB.4040804@linux.intel.com>
+	<4EB26098.20204@communistcode.co.uk>
+In-Reply-To: <4EB26098.20204@communistcode.co.uk>
+Subject: Re: Help diagnosing a build failure involving ncurses, gettext, and eglibc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,75 +33,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Nov 2011 17:41:44 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 03 Nov 2011 18:47:49 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Thu, 3 Nov 2011, Darren Hart wrote:
+On 03/11/11 02:36, Jack Mitchell wrote:
+> On 03/11/2011 05:21, Darren Hart wrote:
+>>
+>> On 11/02/2011 10:16 PM, McClintock Matthew-B29882 wrote:
+>>> On Thu, Nov 3, 2011 at 12:12 AM, Darren Hart<dvhart@linux.intel.com> 
+>>> wrote:
+>>>> I came up with the following to ensure I have a log of every bitbake
+>>>> command I run along with some useful stats. Feel free to use it or
+>>>> flame it:
+>>>>
+>>>>
+>>>> #!/bin/bash
+>>>> TIMESTAMP=$(date -u "+%Y%m%d%H%M%S")
+>>>> LOG=$(mktemp --suffix=".log" bb-$TIMESTAMP-XXX)
+>>>> if [ -z "$LOG" ]; then
+>>>>         echo "ERROR: failed to create log file"
+>>>>         exit 1
+>>>> fi
+>>>>
+>>>> (
+>>>>         echo "Start: $TIMESTAMP"
+>>>>         echo "========================================"
+>>>>         /usr/bin/time 2>&1 -v bitbake $@
+>>>>         echo "========================================"
+>>>>         echo "End: $(date -u '+%Y%m%d%H%M%S')"
+>>>> ) | tee $LOG
+>>>>
+>>>> echo "Logfile: $LOG"
+>>> It would be nice if we had this as a selectable option in the bitbake
+>>> wrapper somehow and it saved off logs to tmp/bitbake/logs/ or
+>>> something appropriate.
+>> I was having similar thoughts just after having pressed send :)
+>>
+>> Given how annoying it is to not have the log when you forget to capture
+>> it, I think this might actually make a reasonable default. The important
+>> bits are of course already recorded in
+>> tmp/blah/blah/blah/temp/log.blah.PID... but the above serves almost like
+>> an index into the individual files. I'm all for logging it by default -
+>> as well as collecting summary stats. I don't know if the above is the
+>> best way to go about it - but a functional equivalent would be nice.
+>>
+>> For all I know something like this already exists and I just haven't
+>> stumbled upon it yet.
+>>
+> 
+> I agree, something which actually logs what you are doing and how it was
+> done rather than just the output/error logging we have at the moment
+> would be a great addition. It would make it much easier to track errors
+> and help pin down bugs - especially if you have taken a long winded
+> route to get to a particular point.
 
->
->
-> On 10/31/2011 10:39 AM, Gary Thomas wrote:
-> > On 2011-10-31 11:25, Robert P. J. Day wrote:
-> >> On Mon, 31 Oct 2011, Mark Hatle wrote:
-> >>
-> >>> On 10/30/11 11:15 AM, Robert P. J. Day wrote:
-> >>>> On Sun, 30 Oct 2011, Christian Gagneraud wrote:
-> >>>>
-> >>>>> On 30/10/11 15:32, Robert P. J. Day wrote:
-> >>>>>>
-> >>>>>>     all the docs recommend twice the number of cores (AFAICT), yet the
-> >>>>>> template local.conf file suggests that, for a quad core, the value of
-> >>>>>> 4 would be appropriate.  shouldn't that say 8?  same with
-> >>>>>> PARALLEL_MAKE?
-> >>>>>
-> >>>>> Hi Robert,
-> >>>>>
-> >>>>> The Poky ref manual says (rule of thumb) x2 for BB_NUMBER_THREADS,
-> >>>>> and x1.5 for PARALLEL_MAKE.
-> >>>>
-> >>>>    if that's the case, anyone object to my submitting a patch to
-> >>>> update local.conf.sample appropriately?
-> >>>>
-> >>>> rday
-> >>>>
-> >>>
-> >>> I agree the manual and local.conf files should match.  The issue
-> >>> seems to be that the perfect values are subjective.  Things like
-> >>> memory, disk speed, chipset latency, and of course processor
-> >>> speed/cores all affect the optimal setting. But we do need a
-> >>> consistent rule of thumb..  I myself usually use x2 for both THREADS
-> >>> and MAKE.
-> >>
-> >>    that's what i would normally use, assuming that having an overly
-> >> high value for either of those settings can't possibly hurt.  if
-> >> that's the consensus, i can adjust the references to say 2x everywhere
-> >> that i know of.  just let me know.
-> >
-> > Look back in the archives - I think it was Richard that did a fairly
-> > extensive study of this and he (whoever it was) found that there were
-> > saturation points and trying to get beyond them had a negative impact.
->
-> 2x on each works well up to about 12 in my experience. Richard has found
-> benefits using 24 on a similar system with more memory. However, if you
-> aren't building on a monster machine, then 2x serves as a reasonable
-> rule of thumb.
+Sounds like people would find this feature useful, can someone please
+file a bug report?
 
-  since i vaguely recall that i was the one who asked about this, i
-can submit a patch for this unless someone else already wants to.  i
-can see that the places to change would be in some of the docs, as
-well as the comment in local.conf.sample.
-
-  anyone else want to take care of that?  anyone?  bueller?
-
-rday
-
+Cheers,
+Joshua
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Joshua Lock
+        Yocto Project "Johannes factotum"
+        Intel Open Source Technology Centre
 
