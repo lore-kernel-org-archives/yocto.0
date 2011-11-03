@@ -1,24 +1,37 @@
-Return-Path: <michaelx.d.halstead@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6C7AE006B4
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2011 10:39:23 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 03 Nov 2011 10:39:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; 
-	d="p7s'?scan'208";a="70887015"
-Received: from linux-mkad.jf.intel.com (HELO [10.7.202.54]) ([10.7.202.54])
-	by orsmga001.jf.intel.com with ESMTP; 03 Nov 2011 10:39:23 -0700
-Message-ID: <4EB2D1CB.2060806@intel.com>
-Date: Thu, 03 Nov 2011 10:39:23 -0700
-From: Michael Halstead <michaelx.d.halstead@intel.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.23) Gecko/20110920 SUSE/3.1.15 Thunderbird/3.1.15
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73B6DE006B4
+	for <yocto@yoctoproject.org>; Thu,  3 Nov 2011 10:41:43 -0700 (PDT)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1RM1II-0005WR-Ff; Thu, 03 Nov 2011 13:41:38 -0400
+Date: Thu, 3 Nov 2011 13:41:31 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4EB2D044.7050207@linux.intel.com>
+Message-ID: <alpine.DEB.2.02.1111031340010.6799@localhost6.localdomain6>
+References: <alpine.DEB.2.02.1110301131040.522@localhost6.localdomain6>
+	<4EAD7542.4070204@gna.org>
+	<alpine.DEB.2.02.1110301214180.915@localhost6.localdomain6>
+	<4EAED7B0.4050909@windriver.com>
+	<alpine.DEB.2.02.1110311323050.8545@localhost6.localdomain6>
+	<4EAEDD3A.9070601@mlbassoc.com> <4EB2D044.7050207@linux.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <alpine.DEB.2.02.1111030934370.5788@localhost6.localdomain6>
-In-Reply-To: <alpine.DEB.2.02.1111030934370.5788@localhost6.localdomain6>
-Subject: Re: is there some rationale for the various yocto "download" URLs?
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: what's the proper value for BB_NUMBER_THREADS?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,160 +43,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Nov 2011 17:39:23 -0000
-X-Groupsio-MsgNum: 3316
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
-	micalg=sha1; boundary="------------ms090109050508030708070006"
+X-List-Received-Date: Thu, 03 Nov 2011 17:41:44 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
---------------ms090109050508030708070006
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+On Thu, 3 Nov 2011, Darren Hart wrote:
 
-On 11/03/2011 06:38 AM, Robert P. J. Day wrote:
-> currently the download URLs are a bit confusing.  first, there's
 >
->      http://www.yoctoproject.org/download
 >
-This is the project download page. It is meant to provide information=20
-about downloads but not a complete listing.
-> which takes you to the "download" page.  then there's the ever so
-> similar URL:
+> On 10/31/2011 10:39 AM, Gary Thomas wrote:
+> > On 2011-10-31 11:25, Robert P. J. Day wrote:
+> >> On Mon, 31 Oct 2011, Mark Hatle wrote:
+> >>
+> >>> On 10/30/11 11:15 AM, Robert P. J. Day wrote:
+> >>>> On Sun, 30 Oct 2011, Christian Gagneraud wrote:
+> >>>>
+> >>>>> On 30/10/11 15:32, Robert P. J. Day wrote:
+> >>>>>>
+> >>>>>>     all the docs recommend twice the number of cores (AFAICT), yet the
+> >>>>>> template local.conf file suggests that, for a quad core, the value of
+> >>>>>> 4 would be appropriate.  shouldn't that say 8?  same with
+> >>>>>> PARALLEL_MAKE?
+> >>>>>
+> >>>>> Hi Robert,
+> >>>>>
+> >>>>> The Poky ref manual says (rule of thumb) x2 for BB_NUMBER_THREADS,
+> >>>>> and x1.5 for PARALLEL_MAKE.
+> >>>>
+> >>>>    if that's the case, anyone object to my submitting a patch to
+> >>>> update local.conf.sample appropriately?
+> >>>>
+> >>>> rday
+> >>>>
+> >>>
+> >>> I agree the manual and local.conf files should match.  The issue
+> >>> seems to be that the perfect values are subjective.  Things like
+> >>> memory, disk speed, chipset latency, and of course processor
+> >>> speed/cores all affect the optimal setting. But we do need a
+> >>> consistent rule of thumb..  I myself usually use x2 for both THREADS
+> >>> and MAKE.
+> >>
+> >>    that's what i would normally use, assuming that having an overly
+> >> high value for either of those settings can't possibly hurt.  if
+> >> that's the consensus, i can adjust the references to say 2x everywhere
+> >> that i know of.  just let me know.
+> >
+> > Look back in the archives - I think it was Richard that did a fairly
+> > extensive study of this and he (whoever it was) found that there were
+> > saturation points and trying to get beyond them had a negative impact.
 >
->      http://www.yoctoproject.org/downloads
-This URL is the old URL for releases. It shouldn't be used in new work.=20
-The redirect will move visitors to the current releases listing.
-> which redirects you to:
->
->      http://downloads.yoctoproject.org/releases/
-> finally, there's the subdomain:
->
->      http://downloads.yoctoproject.org/
->
-> is there an official distinction between these URLs?
-The downloads.yoctoproject.org is where we would like all Yocto hosted=20
-downloads to live.
-> rday
->
-Michael Halstead
+> 2x on each works well up to about 12 in my experience. Richard has found
+> benefits using 24 on a similar system with more memory. However, if you
+> aren't building on a monster machine, then 2x serves as a reasonable
+> rule of thumb.
 
+  since i vaguely recall that i was the one who asked about this, i
+can submit a patch for this unless someone else already wants to.  i
+can see that the places to change would be in some of the docs, as
+well as the comment in local.conf.sample.
 
---------------ms090109050508030708070006
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+  anyone else want to take care of that?  anyone?  bueller?
 
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIVbDCCAz0w
-ggKmoAMCAQICAwWw/zANBgkqhkiG9w0BAQUFADBOMQswCQYDVQQGEwJVUzEQMA4GA1UEChMHRXF1
-aWZheDEtMCsGA1UECxMkRXF1aWZheCBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MB4XDTA2
-MDIxNjE4MDEzMFoXDTE2MDIxOTE4MDEzMFowUjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVs
-IENvcnBvcmF0aW9uMScwJQYDVQQDEx5JbnRlbCBFeHRlcm5hbCBCYXNpYyBQb2xpY3kgQ0EwggEi
-MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDBpd/XOb9QVqEZ8mQ1042TdOIq3ATDIsV2xDyt
-30yLyMR5Wjtus0bn3B+he89BiNO/LP6+rFzEwlD55PlX+HLGIKeNNG97dqyc30FElEUjZzTZFq2N
-4e3kVJ/XAEEgANzV8v9qp7qWwxugPgfc3z9BkYot+CifozexHLb/hEZj+yISCU61kRZvuSQ0E11y
-YL4dRgcglJeaHo3oX57rvIckaLsYV5/1Aj+R8DM1Ppk965XQAKsHfnyT7C4S50T4lVn4lz36wOdN
-Zn/zegG1zp41lnoTFfT4KuKVJH5x7YD1p6KbgJCKLovnujGuohquBNfdXKpZkvz6pGv+iC1HawJd
-AgMBAAGjgaAwgZ0wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBQaxgxKxEdvqNutK/D0Vgaj7TdU
-DDA6BgNVHR8EMzAxMC+gLaArhilodHRwOi8vY3JsLmdlb3RydXN0LmNvbS9jcmxzL3NlY3VyZWNh
-LmNybDAfBgNVHSMEGDAWgBRI5mj5K9KylddH2CMgEE8zmJCf1DAPBgNVHRMBAf8EBTADAQH/MA0G
-CSqGSIb3DQEBBQUAA4GBABMQOK2kVKVIlUWwLTdywJ+e2O+PC/uQltK2F3lRyrPfBn69tOkIP4Sg
-DJOfsxyobIrPLe75kBLw+Dom13OBDp/EMZJZ1CglQfVV8co9mT3aZMjSGGQiMgkJLR3jMfr900fX
-ZKj5XeqCJ+JP0mEhJGEdVCY+FFlksJjV86fDrq1QMIIFijCCBHKgAwIBAgIKYSCKYgAAAAAACDAN
-BgkqhkiG9w0BAQUFADBSMQswCQYDVQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24x
-JzAlBgNVBAMTHkludGVsIEV4dGVybmFsIEJhc2ljIFBvbGljeSBDQTAeFw0wOTA1MTUxOTI3MjZa
-Fw0xNTA1MTUxOTM3MjZaMFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlv
-bjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQjCCASIwDQYJKoZI
-hvcNAQEBBQADggEPADCCAQoCggEBAKQEM1Wn9TU9vc9C+/Tc7KB+eiYElmrcEWE32WUdHvWG+IcQ
-HVQsikTmMyKKojNLw2B5s6Iekc8ivDo/wCfjZzX9JyftMnc+AArc0la87Olybzm8K9jXEfTBvTnU
-SFSiI9ZYefITdiUgqlAFuljFZEHYKYtLuhrRacpmQfP4mV63NKdc2bT804HRf6YptZFa4k6YN94z
-lrGNrBuQQ74WFzz/jLBusbUpEkro6Mu/ZYFOFWQrV9lBhF9Ruk8yN+3N6n9fUo/qBigiF2kEn9xV
-h1ykl7SCGL2jBUkXx4qgV27a6Si8lRRdgrHGtN/HWnSWlLXTH5l575H4Lq++77OFv38CAwEAAaOC
-AlwwggJYMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFA7GKvdZsggQkCVvw939imYxMCvFMAsG
-A1UdDwQEAwIBhjASBgkrBgEEAYI3FQEEBQIDAQABMCMGCSsGAQQBgjcVAgQWBBQ5oFY2ekKQ/5Kt
-im+VdMeSWb4QWTAZBgkrBgEEAYI3FAIEDB4KAFMAdQBiAEMAQTAfBgNVHSMEGDAWgBQaxgxKxEdv
-qNutK/D0Vgaj7TdUDDCBvQYDVR0fBIG1MIGyMIGvoIGsoIGphk5odHRwOi8vd3d3LmludGVsLmNv
-bS9yZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBQb2xpY3klMjBDQS5j
-cmyGV2h0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIw
-RXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUyMENBLmNybDCB4wYIKwYBBQUHAQEEgdYwgdMwYwYI
-KwYBBQUHMAKGV2h0dHA6Ly93d3cuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0lu
-dGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMFBvbGljeSUyMENBLmNydDBsBggrBgEFBQcwAoZgaHR0
-cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwl
-MjBFeHRlcm5hbCUyMEJhc2ljJTIwUG9saWN5JTIwQ0EuY3J0MA0GCSqGSIb3DQEBBQUAA4IBAQCx
-tQEHchVQhXyjEqtMVUMe6gkmPsIczHxSeqNbo9dsD+6xbT65JT+oYgpIAtfEsYXeUJu1cChqpb22
-U5bMAz7eaQcW5bzefufWvA6lg2048B8oczBj/q+5P5NpYrUO8jOmN4jTjfJq3ElZ7yFWpy7rB3Vm
-/aN6ATYqWfMbS/xfh+JCxmH3droUmMJI0/aZJHsLtjbjFnNsHDNrJZX1vxlM78Lb1hjskTENPmhb
-VbfTj5i/ZGnhv4tmI8QZPCNtcegXJrfhRl2D9bWpdTOPrWiLDUqzy1Z6KL7TcOS/PCl8RHCJXkPa
-u/thTQCpIoDa2+c+3XA++gRTfAQ4svTO260NMIIGJzCCBQ+gAwIBAgIKYcadtAABAABwZDANBgkq
-hkiG9w0BAQUFADBWMQswCQYDVQQGEwJVUzEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzAp
-BgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElzc3VpbmcgQ0EgM0IwHhcNMTEwNjE2MjEyNDU2
-WhcNMTQwNTMxMjEyNDU2WjBNMR0wGwYDVQQDExRIYWxzdGVhZCwgTWljaGFlbFggRDEsMCoGCSqG
-SIb3DQEJARYdbWljaGFlbHguZC5oYWxzdGVhZEBpbnRlbC5jb20wggEiMA0GCSqGSIb3DQEBAQUA
-A4IBDwAwggEKAoIBAQCT54aUP7frrWIkjmUKeKI6kQZYPvxshfLcWDWoYLIbX7FjcvZk9f+fZKVv
-8DZEjW295Ok+mdlk1Nhd0p8pWWsY1LBnP0xUtoKbvvdVCW9iRnXW7rVrWDZWj7ClwY1YqVXP62MQ
-5S59UUkdNa58BOwrik97VL1GMirc3JWQq7rHONCsvFOgYrRGtoPEVXNJmCxQSNvtk+I8ca9MEZjt
-j3vfEfTXeFznIeoyDWf7URqi+gni2++dRbQrdZ8mLxmNJdMlJUAaqSx0G9SfPom6SKzqU9rCQm8M
-3SpIbABmsPXEPL0fp29QyFYZ5m82zvGyXMe9Pan1QGTBS0mzN8dXUflBAgMBAAGjggL+MIIC+jAL
-BgNVHQ8EBAMCB4AwPAYJKwYBBAGCNxUHBC8wLQYlKwYBBAGCNxUIhsOMdYSZ5VGD/YEohY6fU4KR
-wAlngd69OZXwQwIBZAIBCDAdBgNVHQ4EFgQUJk3jEVrxKZ64UR5dIZFYuae9EsowHwYDVR0jBBgw
-FoAUDsYq91myCBCQJW/D3f2KZjEwK8Uwgc8GA1UdHwSBxzCBxDCBwaCBvqCBu4ZXaHR0cDovL3d3
-dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNz
-dWluZyUyMENBJTIwM0IoMSkuY3JshmBodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBv
-c2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQigx
-KS5jcmwwgfUGCCsGAQUFBwEBBIHoMIHlMGwGCCsGAQUFBzAChmBodHRwOi8vd3d3LmludGVsLmNv
-bS9yZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1
-aW5nJTIwQ0ElMjAzQigxKS5jcnQwdQYIKwYBBQUHMAKGaWh0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50
-ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUy
-MElzc3VpbmclMjBDQSUyMDNCKDEpLmNydDAfBgNVHSUEGDAWBggrBgEFBQcDBAYKKwYBBAGCNwoD
-DDApBgkrBgEEAYI3FQoEHDAaMAoGCCsGAQUFBwMEMAwGCisGAQQBgjcKAwwwVwYDVR0RBFAwTqAt
-BgorBgEEAYI3FAIDoB8MHW1pY2hhZWx4LmQuaGFsc3RlYWRAaW50ZWwuY29tgR1taWNoYWVseC5k
-LmhhbHN0ZWFkQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEAYhkFmzYPyglQnUZ4eQ97qiqp
-tBjcYz7GQEJr8rw0i5tDicNe9kRuCd9WLdz+yA9pB3ilFGtwdu0iULXUInoeHthbPIWQOkRb7Gdz
-BRYXx7qcm8e9vzNd91bog9JFjPMK6/TTh1MfztT8p9vUYFjYzPYGXrFWvPpQk9eHzAWQPhfHnx39
-rkvHfXuV1oGvzNBb2KmFeZUBfHyyD8BTjZ+ys1Ib2XdBHeN0NxA4o50er8KhsB8ArFUc859fJRPy
-I7M9x8N4NGAeGOhL7ZkzMXAqJGaVOcDbww+L7v0bssb7rRDK510weUBUVcOw20MLc+NfW2tWjtIt
-Ze1KCoPk/LRw9zCCBm4wggVWoAMCAQICCmHEZr8AAQAAZWMwDQYJKoZIhvcNAQEFBQAwVjELMAkG
-A1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRl
-cm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBMB4XDTExMDYxNjIxNDcxNloXDTE0MDUzMTIxNDcxNlow
-TTEdMBsGA1UEAxMUSGFsc3RlYWQsIE1pY2hhZWxYIEQxLDAqBgkqhkiG9w0BCQEWHW1pY2hhZWx4
-LmQuaGFsc3RlYWRAaW50ZWwuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmsyV
-tXmiFwHyxGN9FZakm0tdpfQFob1JyjM2Yk+3oGWk1jJz4/WIEREAnzWwaeFn64fWrK9GHdjFJ/xY
-qYU3LFi+jZAIX+Ymenq9PUyIU9xj4dviBj5pjF+Cl9Pg55prEukHyGAosEcyD7+s1vSiRx3KXWz0
-FqHWx8m4dsnLjfzfWxWC2eixDN2n8yUISCXr88hM1RplQ5If/K9yho2KjPclwzH0MskIx83sOFOd
-XrTVSYNHeQ5KYRYg5GZlXOcawvvRrZdkeh2PdAdqCJN+R3+wMLpAbSR2CRj/3u5y2awKRoOYpyrz
-Q0FUtFA1VOK/Da3HbxdRqcHhrXceqHMW1QIDAQABo4IDRTCCA0EwCwYDVR0PBAQDAgQwMD0GCSsG
-AQQBgjcVBwQwMC4GJisGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OCkcAJZ4S52UGHhP9OAgFkAgEM
-MEQGCSqGSIb3DQEJDwQ3MDUwDgYIKoZIhvcNAwICAgCAMA4GCCqGSIb3DQMEAgIAgDAHBgUrDgMC
-BzAKBggqhkiG9w0DBzAdBgNVHQ4EFgQUPloMloRS6WhyKZkxS5yq0sJDMLYwHwYDVR0jBBgwFoAU
-qhZmr7c9VlNgrg3C7fPuB8tRYH4wgc8GA1UdHwSBxzCBxDCBwaCBvqCBu4ZXaHR0cDovL3d3dy5p
-bnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWlu
-ZyUyMENBJTIwM0EoMSkuY3JshmBodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0
-b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQSgxKS5j
-cmwwgfUGCCsGAQUFBwEBBIHoMIHlMGwGCCsGAQUFBzAChmBodHRwOi8vd3d3LmludGVsLmNvbS9y
-ZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5n
-JTIwQ0ElMjAzQSgxKS5jcnQwdQYIKwYBBQUHMAKGaWh0dHA6Ly9jZXJ0aWZpY2F0ZXMuaW50ZWwu
-Y29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElz
-c3VpbmclMjBDQSUyMDNBKDEpLmNydDAfBgNVHSUEGDAWBggrBgEFBQcDBAYKKwYBBAGCNwoDBDAp
-BgkrBgEEAYI3FQoEHDAaMAoGCCsGAQUFBwMEMAwGCisGAQQBgjcKAwQwVwYDVR0RBFAwTqAtBgor
-BgEEAYI3FAIDoB8MHW1pY2hhZWx4LmQuaGFsc3RlYWRAaW50ZWwuY29tgR1taWNoYWVseC5kLmhh
-bHN0ZWFkQGludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEADYbb8KolLSdsr/yaSsqnL7lztUly
-NciWyBqR7bedm1OFngMn0vp2MvooGVzdmzysmkrCqf1KAjgnN0rUEyQpp2GfBFjZBG3+y2JYxrtn
-jneqtPjrkK3qPrPKAa/mEgreV8tgyWGiZMUl0O2B3Mz27rmwDQEUx++QGIuO9A2emxGlarqz58PX
-rPxl2R4ocWNTI2DKdgTPNjsygdnb02NcgbOVdZekidfVYbQaGaV+DplF3LjRNT/WPLzZ4u4QAKD1
-eOs3yRMdotRu3BJnbFcgFcDnDnY6KXblLkPaDoS5WEQyBLqMlrHSA+A+1zc3D8dpEIozPTR8ANzd
-++v6BQOLQzGCAzkwggM1AgEBMGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBv
-cmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNCAgphxp20
-AAEAAHBkMAkGBSsOAwIaBQCgggGqMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTExMTEwMzE3MzkyM1owIwYJKoZIhvcNAQkEMRYEFFrRRUYszwmDYUUghHPTMvYPSTaO
-MF8GCSqGSIb3DQEJDzFSMFAwCwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIA
-gDANBggqhkiG9w0DAgIBQDAHBgUrDgMCBzANBggqhkiG9w0DAgIBKDBzBgkrBgEEAYI3EAQxZjBk
-MFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50
-ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQQIKYcRmvwABAABlYzB1BgsqhkiG9w0BCRAC
-CzFmoGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQD
-EyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBAgphxGa/AAEAAGVjMA0GCSqGSIb3
-DQEBAQUABIIBAC9dWRigHAp2Kj20g58A0cCXRIykpJ24gngjbK/+UoUZZ2iKI9EGj7l/OA2FVQUv
-jixveUTUbMYOkDrel+uM8loDhMuKvS/fKx0cgGqNSOakGiFZSMFjt1Sycd34kqVVnWjDFjhtItFW
-vdQ/LSLhwvLNC8a8UiWeW6CrmeK0KiKBkNLfakKwe3CLEgSCSkCTb77tFYMdvO3w1fJjiDFl9NOt
-/znibX9GIXHMkVEVmucILzJuQbozsWC1mMIWea0VyOVzgLvqE/T8LQ/f2AYDDmGM8D9N5dZiIj/6
-M8e5fXZI31Rol0PZdJKlEuBS+8MBgFMTBVoi1hQtPWnkGTdEBP0AAAAAAAA=
+rday
 
---------------ms090109050508030708070006--
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
