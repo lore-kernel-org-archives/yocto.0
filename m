@@ -1,44 +1,31 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B039DE00307
-	for <yocto@yoctoproject.org>; Fri,  4 Nov 2011 08:44:30 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 04 Nov 2011 08:44:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,456,1315206000"; d="scan'208";a="81273066"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by fmsmga001.fm.intel.com with ESMTP; 04 Nov 2011 08:44:29 -0700
-Received: from pgsmsx102.gar.corp.intel.com (10.221.44.80) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 4 Nov 2011 23:44:27 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX102.gar.corp.intel.com (10.221.44.80) with Microsoft SMTP Server
-	(TLS) id 14.1.323.3; Fri, 4 Nov 2011 23:44:27 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi; Fri, 4 Nov 2011
-	23:44:26 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "poky@pokylinux.org" <poky@pokylinux.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Fri, 4 Nov 2011 23:44:19 +0800
-Thread-Topic: build result by diabling nls and reducing -native dependencies
-	for gettext
-Thread-Index: AcybCJ392MwIgoz5SwmcUOoLpyTH/A==
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12DBA30CDD@shsmsx501.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-cr-puzzleid: {4474457B-A0DB-452D-BE82-F9B1D32CD75E}
-x-cr-hashedpuzzle: Csss DJhv EEOg ELcQ EQlk EYi6 FCoX IzmM Jv0l K8+z NNHl
-	NtDu N4GR OGIw OhNW QbGS; 2;
-	cABvAGsAeQBAAHAAbwBrAHkAbABpAG4AdQB4AC4AbwByAGcAOwB5AG8AYwB0AG8AQAB5AG8AYwB0AG8AcAByAG8AagBlAGMAdAAuAG8AcgBnAA==;
-	Sosha1_v1; 7; {4474457B-A0DB-452D-BE82-F9B1D32CD75E};
-	agBpAGEAagB1AG4ALgB4AHUAQABpAG4AdABlAGwALgBjAG8AbQA=; Fri,
-	04 Nov 2011 15:44:20 GMT;
-	YgB1AGkAbABkACAAcgBlAHMAdQBsAHQAIABiAHkAIABkAGkAYQBiAGwAaQBuAGcAIABuAGwAcwAgAGEAbgBkACAAcgBlAGQAdQBjAGkAbgBnACAALQBuAGEAdABpAHYAZQAgAGQAZQBwAGUAbgBkAGUAbgBjAGkAZQBzACAAZgBvAHIAIABnAGUAdAB0AGUAeAB0AA==
-acceptlanguage: en-US
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D44BE00307
+	for <yocto@yoctoproject.org>; Fri,  4 Nov 2011 08:57:53 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.2.77] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1RMM9P-00021B-Iv
+	for yocto@yoctoproject.org; Fri, 04 Nov 2011 11:57:51 -0400
+Date: Fri, 4 Nov 2011 11:57:46 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1111041153170.6678@localhost6.localdomain6>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Subject: build result by diabling nls and reducing -native dependencies for gettext
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: why do numerous .bb files set "PARALLEL_MAKE"?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,35 +37,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Nov 2011 15:44:30 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 04 Nov 2011 15:57:54 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Hi all,
-I have a test with Richard's recent patch to improve build performance - "g=
-ettext: Switch to disabling nls and reducing -native build dependencies to =
-a set of pre built m4 macros", http://git.yoctoproject.org/cgit.cgi/poky/co=
-mmit/?id=3Db090fde5c184a64d3dd77c5f87b9596854e272ec.
 
-With the patch, the build time of core-image-sato against qemux86 costs 106=
- minutes. Without the patch, the build time is 114 minutes. So the patch co=
-uld give 7% performance gain. Detailed result as above:
-w/ commit b090fde5c184a6...
-real 106m20s
-user 376m39s
-sys 51m51s
+  stumbled over this so i did a more thorough search:
 
-w/o commit b090fde5c184a6...
-w/o
-real 114m17s
-user 370m3s
-sys 50m59s
+$ grep -w PARALLEL_MAKE $(find . -name *.bb)
+./meta/recipes-qt/qt-apps/qmmp_0.5.1.bb:PARALLEL_MAKE = ""
+./meta/recipes-core/eggdbus/eggdbus_0.6.bb:PARALLEL_MAKE = ""
+./meta/recipes-core/gettext/gettext_0.16.1.bb:PARALLEL_MAKE = ""
+./meta/recipes-core/gettext/gettext_0.18.1.1.bb:#PARALLEL_MAKE = ""
+./meta/recipes-bsp/pciutils/pciutils_3.1.7.bb:PARALLEL_MAKE = ""
+./meta/recipes-extended/sat-solver/sat-solver_git.bb:PARALLEL_MAKE=""
+./meta/recipes-extended/bash/bash_3.2.48.bb:PARALLEL_MAKE = ""
+./meta/recipes-extended/tcp-wrappers/tcp-wrappers_7.6.bb:PARALLEL_MAKE = ""
+./meta/recipes-extended/groff/groff_1.20.1.bb:PARALLEL_MAKE = ""
+... more snipped ...
 
-My testing is performed on a 4-core Core-i7 system with 4GB memory. BB_NUMB=
-ER_THREADS and PARALLEL_MAKE are set to 8.
+  why are individual recipes setting PARALLEL_MAKE to the empty
+string?  it's a *build* option, why would it have any relevance to
+individual .bb files?
 
-Best Regards,
-Jiajun
+  conversely, i don't see a single .bb file that sets
+BB_NUMBER_THREADS.  the above just looks ... odd.
 
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
