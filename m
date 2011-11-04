@@ -1,24 +1,34 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78724E00307
-	for <yocto@yoctoproject.org>; Fri,  4 Nov 2011 09:46:09 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 04 Nov 2011 09:46:08 -0700
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EC11E00313
+	for <yocto@yoctoproject.org>; Fri,  4 Nov 2011 10:35:12 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 04 Nov 2011 10:35:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,456,1315206000"; d="scan'208";a="33377240"
-Received: from unknown (HELO envy.home) ([10.255.15.209])
-	by AZSMGA002.ch.intel.com with ESMTP; 04 Nov 2011 09:46:07 -0700
-Message-ID: <4EB416CF.8010204@linux.intel.com>
-Date: Fri, 04 Nov 2011 09:46:07 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
-MIME-Version: 1.0
-To: kishore.k.bodke@intel.com
+X-IronPort-AV: E=Sophos;i="4.69,456,1315206000"; d="scan'208";a="70657199"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by azsmga001.ch.intel.com with ESMTP; 04 Nov 2011 10:35:10 -0700
+Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 4 Nov 2011 10:35:09 -0700
+Received: from orsmsx502.amr.corp.intel.com ([10.22.226.210]) by
+	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
+	Fri, 4 Nov 2011 10:35:08 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Date: Fri, 4 Nov 2011 10:35:07 -0700
+Thread-Topic: [yocto] [PATCH 00/66] Crystal Forest Machine Branch Created
+Thread-Index: AcybEUgDSLO22wI+QA2B4TfAYW5KjQABnsEA
+Message-ID: <4BD43A85686FC34D819098DB1C3999D9018F875883@orsmsx502.amr.corp.intel.com>
 References: <cover.1320345864.git.kishore.k.bodke@intel.com>
-In-Reply-To: <cover.1320345864.git.kishore.k.bodke@intel.com>
-X-Enigmail-Version: 1.3.2
-Cc: yocto@yoctoproject.org
+	<4EB416CF.8010204@linux.intel.com>
+In-Reply-To: <4EB416CF.8010204@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [PATCH 00/66] Crystal Forest Machine Branch Created
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -31,15 +41,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Nov 2011 16:46:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 04 Nov 2011 17:35:13 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darren,
+
+I will resend the new pull request, after I make sure it is updated with or=
+gin/master.
+Please ignore this pull request.
+
+Thanks
+Kishore.
+
+-----Original Message-----
+From: Darren Hart [mailto:dvhart@linux.intel.com]
+Sent: Friday, November 04, 2011 9:46 AM
+To: Bodke, Kishore K
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] [PATCH 00/66] Crystal Forest Machine Branch Created
 
 On 11/03/2011 01:55 PM, kishore.k.bodke@intel.com wrote:
 > From: Kishore Bodke <kishore.k.bodke@intel.com>
-> 
+>
 > Hi All,
-> 
+>
 > I have created a new Machine Branch for the CrystalForest BSP.
 
 Hi Kishore - this pull request suggests some 63 patches being in this
@@ -51,21 +78,24 @@ you need to bring your master up to date with origin/master.
 --
 Darren
 
-> 
+>
 > Please Pull.
-> 
+>
 > Thanks
 > Kishore.
-> 
-> The following changes since commit 55f9c40ff632d03c527d6a6ceddcda0a224587a6:
-> 
->   Merge git://git.kernel.org/pub/scm/linux/kernel/git/davem/sparc (2011-07-28 05:59:19 -0700)
-> 
+>
+> The following changes since commit 55f9c40ff632d03c527d6a6ceddcda0a224587=
+a6:
+>
+>   Merge git://git.kernel.org/pub/scm/linux/kernel/git/davem/sparc (2011-0=
+7-28 05:59:19 -0700)
+>
 > are available in the git repository at:
-> 
+>
 >   git://git.pokylinux.org/linux-yocto-2.6.37-contrib meta-crystalforest
->   http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=meta-crystalforest
-> 
+>   http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=3Dm=
+eta-crystalforest
+>
 > Bruce Ashfield (23):
 >   This is the cache of the kernel patches for the "next" kernel layer.
 >   checkpoint dir: meta/scripts
@@ -81,16 +111,16 @@ Darren
 >   meta/rt: updating to rt8
 >   meta/rt: remove explicit patch references
 >   boot: move -Os patch to standard branch
->   meta/beagleboard: adding CONFIG_USB_MUSB_OMAP2PLUS=y
+>   meta/beagleboard: adding CONFIG_USB_MUSB_OMAP2PLUS=3Dy
 >   meta/atom-pc: update boot live cfg
->   meta/common-pc: add CONFIG_BLK_DEV_IDECD=y to configuration
+>   meta/common-pc: add CONFIG_BLK_DEV_IDECD=3Dy to configuration
 >   meta: bumping kver to 3.0.3
 >   meta/qemuppc: board description fixes
 >   meta: remove configuration warnings
 >   meta: remove unused eg20t configuration fragments
 >   meta: update kver to v3.0.4
 >   meta: kconfig warning cleanup
-> 
+>
 > Darren Hart (15):
 >   meta/rt: use CONFIG_PREEMPT_RT_FULL for 3.0 kernels
 >   meta/rt: beagleboard preempt-rt support
@@ -107,27 +137,27 @@ Darren
 >   meta/rt: common-pc[-64] preempt-rt no branch fix
 >   meta/rt: sugarbay preempt-rt support
 >   routerstationpro: remove CONFIG_PREEMPT* definitions
-> 
+>
 > Jingdong Lu (4):
 >   meta: update boot live config and move it to cfg/
 >   meta/atom-pc: enable live booting for atom-pc
 >   meta/common-pc: enable live booting for common-pc
 >   meta/common-pc-64: enable live booting for common-pc-64
-> 
+>
 > Kishore Bodke (1):
 >   Crystal Forest Machine Added.     Signed-off-by: Kishore Bodke
 >     <kishore.k.bodke@intel.com>
-> 
+>
 > Liming Wang (1):
 >   meta: add APM Emulation option to beagleboard
-> 
+>
 > Rahul Saxena (2):
 >   meta: Remove 10/100 LAN support.
 >   meta: create seperate feature for 10/100 LAN support
-> 
+>
 > Saxena, Rahul (1):
 >   meta: remove duplicate statement
-> 
+>
 > Tom Zanussi (19):
 >   meta/crownbay: enable hpet
 >   bsp/fri2: merge emgd branch
@@ -148,7 +178,7 @@ Darren
 >   fishriver: cleanup bsp config
 >   sugarbay: cleanup bsp config
 >   fri2: cleanup bsp config
-> 
+>
 >  meta/.gitignore                                    |    1 +
 >  meta/cfg/branch_status                             |   22 +
 >  meta/cfg/kernel-cache/00-README                    |    3 +
@@ -358,7 +388,8 @@ Darren
 >  meta/cfg/kernel-cache/features/emgd/emgd.scc       |    7 +
 >  .../features/emgd/yocto-emgd-2.6.39-fixes.patch    |  310 +
 >  .../features/emgd/yocto-emgd-build-fixups.patch    |  122 +
->  .../emgd/yocto-emgd-emgd-1.61-driver.patch         |158395 ++++++++++++++++++++
+>  .../emgd/yocto-emgd-emgd-1.61-driver.patch         |158395 +++++++++++++=
++++++++
 >  .../kernel-cache/features/ericsson-3g/f5521gw.cfg  |    3 +
 >  .../kernel-cache/features/ericsson-3g/f5521gw.scc  |    3 +
 >  .../features/evlog/evlog-add-evlog-support.patch   | 1842 +
@@ -643,7 +674,7 @@ Darren
 >  .../rt/sched-no-work-when-pi-blocked.patch         |   58 +
 >  .../features/rt/sched-prevent-idle-boost.patch     |   46 +
 >  ...ove-useless-preempt-disable-in-sched-fork.patch |   52 +
->  ...-rename-=rtmutex-set-prio-to-task-setprio.patch |   65 +
+>  ...-rename-=3Drtmutex-set-prio-to-task-setprio.patch |   65 +
 >  .../features/rt/sched-rt-mutex-wakeup.patch        |   88 +
 >  ...parate-the-scheduler-entry-for-preemption.patch |   83 +
 >  .../rt/sched-show-state-no-task-list-lock.patch    |   31 +
@@ -863,134 +894,223 @@ Darren
 >  create mode 100644 meta/.gitignore
 >  create mode 100644 meta/cfg/branch_status
 >  create mode 100644 meta/cfg/kernel-cache/00-README
->  create mode 100644 meta/cfg/kernel-cache/arch/arm/arm-ARM-EABI-socketcall.patch
+>  create mode 100644 meta/cfg/kernel-cache/arch/arm/arm-ARM-EABI-socketcal=
+l.patch
 >  create mode 100644 meta/cfg/kernel-cache/arch/arm/arm.cfg
 >  create mode 100644 meta/cfg/kernel-cache/arch/arm/arm.scc
 >  create mode 100644 meta/cfg/kernel-cache/arch/arm/hardware.cfg
->  create mode 100644 meta/cfg/kernel-cache/arch/mips/4kc-cache-tlb-hazard-tlbp-cache-coherency.patch
->  create mode 100644 meta/cfg/kernel-cache/arch/mips/malta-uhci-quirks-make-allowance-for-slow-4k-e-c.patch
->  create mode 100644 meta/cfg/kernel-cache/arch/mips/mips-support-preemptible-kernel.patch
+>  create mode 100644 meta/cfg/kernel-cache/arch/mips/4kc-cache-tlb-hazard-=
+tlbp-cache-coherency.patch
+>  create mode 100644 meta/cfg/kernel-cache/arch/mips/malta-uhci-quirks-mak=
+e-allowance-for-slow-4k-e-c.patch
+>  create mode 100644 meta/cfg/kernel-cache/arch/mips/mips-support-preempti=
+ble-kernel.patch
 >  create mode 100644 meta/cfg/kernel-cache/arch/mips/mips.scc
 >  create mode 100644 meta/cfg/kernel-cache/arch/omap/omap.scc
->  create mode 100644 meta/cfg/kernel-cache/arch/powerpc/powerpc-Add-unwind-information-for-SPE-registers-of-.patch
->  create mode 100644 meta/cfg/kernel-cache/arch/powerpc/powerpc-add-crtsavres.o-to-archprepare-for-kbuild.patch
->  create mode 100644 meta/cfg/kernel-cache/arch/powerpc/powerpc-kexec-fix-for-powerpc64.patch
+>  create mode 100644 meta/cfg/kernel-cache/arch/powerpc/powerpc-Add-unwind=
+-information-for-SPE-registers-of-.patch
+>  create mode 100644 meta/cfg/kernel-cache/arch/powerpc/powerpc-add-crtsav=
+res.o-to-archprepare-for-kbuild.patch
+>  create mode 100644 meta/cfg/kernel-cache/arch/powerpc/powerpc-kexec-fix-=
+for-powerpc64.patch
 >  create mode 100644 meta/cfg/kernel-cache/arch/powerpc/powerpc.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm-versatile-926ejs-gfx.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm-versatile-926ejs-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm-versatile-926ejs-standard.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm-versatile-926ejs.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm-versatile-926ejs.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm_versatile_926ejs-add-default-nor-flash-mtd-parts.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm_versatile_926ejs-kick-off-PrimeCell-RTC-PL031.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/hardware.cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm-ve=
+rsatile-926ejs-gfx.cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm-ve=
+rsatile-926ejs-preempt-rt.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm-ve=
+rsatile-926ejs-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm-ve=
+rsatile-926ejs.cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm-ve=
+rsatile-926ejs.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm_ve=
+rsatile_926ejs-add-default-nor-flash-mtd-parts.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/arm_ve=
+rsatile_926ejs-kick-off-PrimeCell-RTC-PL031.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/arm-versatile-926ejs/hardwa=
+re.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/atom-pc/atom-pc-eth.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/atom-pc/atom-pc-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/atom-pc/atom-pc-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/atom-pc/atom-pc-preempt-rt.=
+scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/atom-pc/atom-pc-standard.sc=
+c
 >  create mode 100644 meta/cfg/kernel-cache/bsp/atom-pc/atom-pc-wifi.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/atom-pc/atom-pc.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/beagleboard/beagleboard-non_hardware.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/beagleboard/beagleboard-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/beagleboard/beagleboard-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/beagleboard/beagleboard-non=
+_hardware.cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/beagleboard/beagleboard-pre=
+empt-rt.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/beagleboard/beagleboard-sta=
+ndard.scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/beagleboard/beagleboard.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/beagleboard/beagleboard.scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/beagleboard/wifi.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/beagleboard/wifi.scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/beagleboard/wl1271.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/beagleboard/wl1271.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64-graphics.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64-standard.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64-g=
+raphics.cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64-p=
+reempt-rt.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64-s=
+tandard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.c=
+fg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.s=
+cc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc-64/hardware.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc/common-pc-gfx.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc/common-pc-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc/common-pc-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc/common-pc-preempt=
+-rt.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc/common-pc-standar=
+d.scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/common-pc/hardware.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/crownbay/crownbay-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/crownbay/crownbay-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/crownbay/crownbay-preempt-r=
+t.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/crownbay/crownbay-standard.=
+scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/emenlow/emenlow-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/emenlow/emenlow-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest=
+-preempt-rt.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest=
+-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest=
+.cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest=
+.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/emenlow/emenlow-preempt-rt.=
+scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/emenlow/emenlow-standard.sc=
+c
 >  create mode 100644 meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/emenlow/reboot-quirk.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/fishriver/fishriver-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/fishriver/fishriver-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/fishriver/fishriver-preempt=
+-rt.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/fishriver/fishriver-standar=
+d.scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/fri2/fri2.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/fri2/fri2.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/fsl-mpc8315e-rdb/fsl-mpc8315e-rdb-Enable-EEPROM.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/fsl-mpc8315e-rdb/fsl-mpc8315e-rdb-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/fsl-mpc8315e-rdb/fsl-mpc8315e-rdb-standard.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/fsl-mpc8315e-rdb/fsl-mpc8315e-rdb.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/fsl-mpc8315e-rdb/fsl-mpc8315e-rdb.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/fsl-mpc8315e-rdb/mpc8315erdb-fix-ethernet-at-boot-time.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/jasperforest/jasperforest-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/jasperforest/jasperforest-standard.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/0001-MIPS-Fix-build-errors-in-sc-mips.c.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/fsl-mpc8315e-rdb/fsl-mpc831=
+5e-rdb-Enable-EEPROM.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/fsl-mpc8315e-rdb/fsl-mpc831=
+5e-rdb-preempt-rt.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/fsl-mpc8315e-rdb/fsl-mpc831=
+5e-rdb-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/fsl-mpc8315e-rdb/fsl-mpc831=
+5e-rdb.cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/fsl-mpc8315e-rdb/fsl-mpc831=
+5e-rdb.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/fsl-mpc8315e-rdb/mpc8315erd=
+b-fix-ethernet-at-boot-time.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/jasperforest/jasperforest-p=
+reempt-rt.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/jasperforest/jasperforest-s=
+tandard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.c=
+fg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.s=
+cc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/0001-MIPS-Fix-b=
+uild-errors-in-sc-mips.c.patch
 >  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/hardware.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mousedev-mousedev-patch-for-qemumips.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-be-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-be-standard.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-be.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-common.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-gfx.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-le-standard.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-le.cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mousedev-moused=
+ev-patch-for-qemumips.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-be-=
+preempt-rt.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-be-=
+standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-be.=
+cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-com=
+mon.cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-gfx=
+.cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-le-=
+standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32-le.=
+cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti-malta32.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti_malta32-fix-the-pci-resource-conflicts.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/0001-qemuppc-irq-disable-fixups.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/mti-malta32/mti_malta32-fix=
+-the-pci-resource-conflicts.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/0001-qemuppc-irq=
+-disable-fixups.patch
 >  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/hardware.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/powerpc-special-load-offset-for-qemu.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-platform-v2.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-powerpc-Added-qemu_restart-function.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-powerpc-work-around-for-qemu-powerpc-32-interru.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-ppc32-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-ppc32-rt.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-ppc32-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/powerpc-special-=
+load-offset-for-qemu.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-platform-v2=
+.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-powerpc-Add=
+ed-qemu_restart-function.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-powerpc-wor=
+k-around-for-qemu-powerpc-32-interru.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-ppc32-preem=
+pt-rt.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-ppc32-rt.cf=
+g
+>  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-ppc32-stand=
+ard.scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-ppc32.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu-ppc32.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu_ppc-enable-IDE-support.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu_ppc32-support-multiple-ethernet-interfaces.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu_ppc-enable-=
+IDE-support.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/qemu-ppc32/qemu_ppc32-suppo=
+rt-multiple-ethernet-interfaces.patch
 >  create mode 100644 meta/cfg/kernel-cache/bsp/romley/romley-standard.scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/romley/romley.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/romley/romley.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-NET_DSA_MV88E6063-support-for-ar71xx.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-arch-suport-for-ar71xx.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-generic-support-for-mips.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-gpio-support-for-nxp_74hc153.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-include-file-support-ar71xx.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-leds-support-for-ar71xx.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-mtd-support-ar71xx.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-myloader-support-for-ar71xx.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-net-driver-support-ar71xx.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-pci-supoprt-for-ar7xxx.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-spi-support-for-ar71xx.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-usb-controller-support-for-ar71xx.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Get-compare_irq-from-function.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/fix-compiling-errors.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/fix-mtd-bugs-for-ar71xx.patch
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro-standard.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/routerstationpro.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/watchdog.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-NET_DS=
+A_MV88E6063-support-for-ar71xx.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-arch-s=
+uport-for-ar71xx.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-generi=
+c-support-for-mips.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-gpio-s=
+upport-for-nxp_74hc153.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-includ=
+e-file-support-ar71xx.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-leds-s=
+upport-for-ar71xx.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-mtd-su=
+pport-ar71xx.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-myload=
+er-support-for-ar71xx.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-net-dr=
+iver-support-ar71xx.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-pci-su=
+poprt-for-ar7xxx.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-spi-su=
+pport-for-ar71xx.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Add-usb-co=
+ntroller-support-for-ar71xx.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/Get-compar=
+e_irq-from-function.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/fix-compil=
+ing-errors.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/fix-mtd-bu=
+gs-for-ar71xx.patch
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/routerstat=
+ionpro-preempt-rt.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/routerstat=
+ionpro-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/routerstat=
+ionpro.cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/routerstat=
+ionpro.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/routerstationpro/watchdog.c=
+fg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-preempt-r=
+t.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-standard.=
+scc
 >  create mode 100644 meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg
 >  create mode 100644 meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc
 >  create mode 100644 meta/cfg/kernel-cache/cfg/boot-live.cfg
@@ -1012,36 +1132,55 @@ Darren
 >  create mode 100644 meta/cfg/kernel-cache/features/axfs/axfs.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/blktrace/blktrace.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/blktrace/blktrace.scc
->  create mode 100644 meta/cfg/kernel-cache/features/bsdjail/bsdjail-fix-getprocattr-to-return-useful-information.patch
->  create mode 100644 meta/cfg/kernel-cache/features/bsdjail/bsdjail-fix-kernel-panic-when-using-clone_ns.patch
->  create mode 100644 meta/cfg/kernel-cache/features/bsdjail/bsdjail-importing-bsdjail-base-patch.patch
->  create mode 100644 meta/cfg/kernel-cache/features/bsdjail/bsdjail-port-BSD-jail-to-2.6.34.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/bsdjail/bsdjail-fix-ge=
+tprocattr-to-return-useful-information.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/bsdjail/bsdjail-fix-ke=
+rnel-panic-when-using-clone_ns.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/bsdjail/bsdjail-import=
+ing-bsdjail-base-patch.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/bsdjail/bsdjail-port-B=
+SD-jail-to-2.6.34.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/bsdjail/bsdjail.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/bsdjail/bsdjail.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/cgroups/README.cgroups
->  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-fix-compiling-error.patch
->  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-v13-body.patch
->  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-v13-doc.patch
->  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-v13-hook.patch
->  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-v13-ioband-doc.patch
->  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-v13-ioband.patch
->  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-v13-iocontext.patch
->  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-v13-pagecgroup.patch
->  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-dm-ioband.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-=
+fix-compiling-error.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-=
+v13-body.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-=
+v13-doc.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-=
+v13-hook.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-=
+v13-ioband-doc.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-=
+v13-ioband.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-=
+v13-iocontext.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-blkio-=
+v13-pagecgroup.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups-dm-iob=
+and.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/cgroups/cgroups.scc
->  create mode 100644 meta/cfg/kernel-cache/features/cgroups/dm_ioband_blkio.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/cgroups/dm_ioband_blkio.scc
->  create mode 100644 meta/cfg/kernel-cache/features/cgroups/net_traffic_controller.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/cgroups/net_traffic_controller.scc
+>  create mode 100644 meta/cfg/kernel-cache/features/cgroups/dm_ioband_blki=
+o.cfg
+>  create mode 100644 meta/cfg/kernel-cache/features/cgroups/dm_ioband_blki=
+o.scc
+>  create mode 100644 meta/cfg/kernel-cache/features/cgroups/net_traffic_co=
+ntroller.cfg
+>  create mode 100644 meta/cfg/kernel-cache/features/cgroups/net_traffic_co=
+ntroller.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/cpuisol/cpuisol.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/davinci/davinci.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/dca/dca.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/dca/dca.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/debugfs/debugfs.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/debugfs/debugfs.scc
->  create mode 100644 meta/cfg/kernel-cache/features/dmaengine/dmaengine.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/dmaengine/dmaengine.scc
+>  create mode 100644 meta/cfg/kernel-cache/features/dmaengine/dmaengine.cf=
+g
+>  create mode 100644 meta/cfg/kernel-cache/features/dmaengine/dmaengine.sc=
+c
 >  create mode 100644 meta/cfg/kernel-cache/features/drm-emgd/drm-emgd.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/drm-emgd/drm-emgd.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/drm-psb/drm-psb.cfg
@@ -1050,30 +1189,51 @@ Darren
 >  create mode 100644 meta/cfg/kernel-cache/features/edac/edac.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/edf/edf.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/edf/edf.scc
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-SCHED_DEADLINE-policy-implementation.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-a-syscall-to-wait-for-the-next-instance.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-bandwidth-management-for-sched_dl.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-extended-scheduling-interface.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-extended-syscalls-for-powerpc-and-mips.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-latency-tracing-for-deadline-tasks.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-reclaiming-logic-to-deadline-tasks.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-resource-limits-for-deadline-tasks.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-sched_class-task_dead.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-sched_dl-documentation.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-special-task-handling-in-SCHED_DEADLINE.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-the-sched-debug-bits-for-sched_dl.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-first-draft-of-deadline-inheritance.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-fix-errors-for-api-change.patch
->  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-send-SIGXCPU-at-deadline-task-overruns.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-SCHED_DEADLI=
+NE-policy-implementation.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-a-syscal=
+l-to-wait-for-the-next-instance.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-bandwidt=
+h-management-for-sched_dl.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-extended=
+-scheduling-interface.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-extended=
+-syscalls-for-powerpc-and-mips.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-latency-=
+tracing-for-deadline-tasks.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-reclaimi=
+ng-logic-to-deadline-tasks.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-resource=
+-limits-for-deadline-tasks.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-sched_cl=
+ass-task_dead.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-sched_dl=
+-documentation.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-special-=
+task-handling-in-SCHED_DEADLINE.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-add-the-sche=
+d-debug-bits-for-sched_dl.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-first-draft-=
+of-deadline-inheritance.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-fix-errors-f=
+or-api-change.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/edf/sched-send-SIGXCPU=
+-at-deadline-task-overruns.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/eg20t/eg20t.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/emgd/emgd.scc
->  create mode 100644 meta/cfg/kernel-cache/features/emgd/yocto-emgd-2.6.39-fixes.patch
->  create mode 100644 meta/cfg/kernel-cache/features/emgd/yocto-emgd-build-fixups.patch
->  create mode 100644 meta/cfg/kernel-cache/features/emgd/yocto-emgd-emgd-1.61-driver.patch
->  create mode 100644 meta/cfg/kernel-cache/features/ericsson-3g/f5521gw.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/ericsson-3g/f5521gw.scc
->  create mode 100644 meta/cfg/kernel-cache/features/evlog/evlog-add-evlog-support.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/emgd/yocto-emgd-2.6.39=
+-fixes.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/emgd/yocto-emgd-build-=
+fixups.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/emgd/yocto-emgd-emgd-1=
+.61-driver.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/ericsson-3g/f5521gw.cf=
+g
+>  create mode 100644 meta/cfg/kernel-cache/features/ericsson-3g/f5521gw.sc=
+c
+>  create mode 100644 meta/cfg/kernel-cache/features/evlog/evlog-add-evlog-=
+support.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/evlog/evlog.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/framebuffer/vesafb.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/framebuffer/vesafb.scc
@@ -1099,12 +1259,18 @@ Darren
 >  create mode 100644 meta/cfg/kernel-cache/features/igb/igb.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/igb/igb.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/initramfs/README
->  create mode 100644 meta/cfg/kernel-cache/features/initramfs/initramfs-add-wrapper.patch
->  create mode 100644 meta/cfg/kernel-cache/features/initramfs/initramfs.scc
->  create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e100.scc
->  create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1xxxx.scc
+>  create mode 100644 meta/cfg/kernel-cache/features/initramfs/initramfs-ad=
+d-wrapper.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/initramfs/initramfs.sc=
+c
+>  create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e10=
+0.cfg
+>  create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e10=
+0.scc
+>  create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1x=
+xxx.cfg
+>  create mode 100644 meta/cfg/kernel-cache/features/intel-e1xxxx/intel-e1x=
+xxx.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/ipmi/ipmi.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/ipmi/ipmi.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/irq/irq.cfg
@@ -1118,333 +1284,616 @@ Darren
 >  create mode 100644 meta/cfg/kernel-cache/features/kgdb/kgdb.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/kgdb/kgdb.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/kmemcheck/README
->  create mode 100644 meta/cfg/kernel-cache/features/kmemcheck/kmemcheck-enable.scc
->  create mode 100644 meta/cfg/kernel-cache/features/kmemcheck/kmemcheck.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/kmemcheck/kmemcheck.scc
+>  create mode 100644 meta/cfg/kernel-cache/features/kmemcheck/kmemcheck-en=
+able.scc
+>  create mode 100644 meta/cfg/kernel-cache/features/kmemcheck/kmemcheck.cf=
+g
+>  create mode 100644 meta/cfg/kernel-cache/features/kmemcheck/kmemcheck.sc=
+c
 >  create mode 100644 meta/cfg/kernel-cache/features/kvm/kvm.scc
->  create mode 100644 meta/cfg/kernel-cache/features/kvm/qemu-kvm-enable.scc
+>  create mode 100644 meta/cfg/kernel-cache/features/kvm/qemu-kvm-enable.sc=
+c
 >  create mode 100644 meta/cfg/kernel-cache/features/kvm/qemu-kvm.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/latencytop/latencytop.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/latencytop/latencytop.scc
+>  create mode 100644 meta/cfg/kernel-cache/features/latencytop/latencytop.=
+cfg
+>  create mode 100644 meta/cfg/kernel-cache/features/latencytop/latencytop.=
+scc
 >  create mode 100644 meta/cfg/kernel-cache/features/logbuf/size-normal.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/logbuf/size-normal.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/lttng/lttng.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/lttng/lttng.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/mac80211/mac80211.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/mac80211/mac80211.scc
->  create mode 100644 meta/cfg/kernel-cache/features/memmon/memmon-detailed-monitoring-of-process-memory-pages.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/memmon/memmon-detailed=
+-monitoring-of-process-memory-pages.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/memmon/memmon.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/memmon/memmon.scc
->  create mode 100644 meta/cfg/kernel-cache/features/namespaces/namespaces-experimental.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/namespaces/namespaces.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/namespaces/namespaces.scc
->  create mode 100644 meta/cfg/kernel-cache/features/netfilter/netfilter.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/netfilter/netfilter.scc
+>  create mode 100644 meta/cfg/kernel-cache/features/namespaces/namespaces-=
+experimental.cfg
+>  create mode 100644 meta/cfg/kernel-cache/features/namespaces/namespaces.=
+cfg
+>  create mode 100644 meta/cfg/kernel-cache/features/namespaces/namespaces.=
+scc
+>  create mode 100644 meta/cfg/kernel-cache/features/netfilter/netfilter.cf=
+g
+>  create mode 100644 meta/cfg/kernel-cache/features/netfilter/netfilter.sc=
+c
 >  create mode 100644 meta/cfg/kernel-cache/features/ocf/ocf.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/ocf/ocf.scc
->  create mode 100644 meta/cfg/kernel-cache/features/oom/oom-protection-from-the-out-of-memory-killer.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/oom/oom-protection-fro=
+m-the-out-of-memory-killer.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/oom/oom.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/oprofile/oprofile.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/powertop/powertop.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/pramfs/pramfs.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/preempt_irq/README-irq
 >  create mode 100644 meta/cfg/kernel-cache/features/preempt_irq/README-usb
->  create mode 100644 meta/cfg/kernel-cache/features/preempt_irq/preempt_irq.scc
->  create mode 100644 meta/cfg/kernel-cache/features/profiling/profiling.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/profiling/profiling.scc
->  create mode 100644 meta/cfg/kernel-cache/features/ramconsole/ramconsole-introduce-RAM-based-console.patch
->  create mode 100644 meta/cfg/kernel-cache/features/ramconsole/ramconsole.scc
->  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-add-to-documentation-V7-From-Pekka-Enberg-pen.patch
->  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-add-to-makefile-V7.patch
->  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-core-code-V7-From-Pekka-Enberg-penberg-cs.hel.patch
->  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-file-inode-and-address-space-operations-V7-Fr.patch
->  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-inode-revoke-lock-V7-From-Pekka-Enberg-penber.patch
->  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-mips-syscall-wireups.patch
->  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-special-mmap-handling-V7-From-Pekka-Enberg-pe.patch
->  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-support-for-ext2-and-ext3-V7-From-Pekka-Enber.patch
->  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-support-for-nfs.patch
->  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-use-proper-fync-op.patch
->  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-wire-up-i386-system-call-V7-From-Pekka-Enberg.patch
->  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-wire-up-powerpc-system-calls.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/preempt_irq/preempt_ir=
+q.scc
+>  create mode 100644 meta/cfg/kernel-cache/features/profiling/profiling.cf=
+g
+>  create mode 100644 meta/cfg/kernel-cache/features/profiling/profiling.sc=
+c
+>  create mode 100644 meta/cfg/kernel-cache/features/ramconsole/ramconsole-=
+introduce-RAM-based-console.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/ramconsole/ramconsole.=
+scc
+>  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-add-to-d=
+ocumentation-V7-From-Pekka-Enberg-pen.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-add-to-m=
+akefile-V7.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-core-cod=
+e-V7-From-Pekka-Enberg-penberg-cs.hel.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-file-ino=
+de-and-address-space-operations-V7-Fr.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-inode-re=
+voke-lock-V7-From-Pekka-Enberg-penber.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-mips-sys=
+call-wireups.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-special-=
+mmap-handling-V7-From-Pekka-Enberg-pe.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-support-=
+for-ext2-and-ext3-V7-From-Pekka-Enber.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-support-=
+for-nfs.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-use-prop=
+er-fync-op.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-wire-up-=
+i386-system-call-V7-From-Pekka-Enberg.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke-wire-up-=
+powerpc-system-calls.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/revoke/revoke.scc
->  create mode 100644 meta/cfg/kernel-cache/features/rt/acpi-convert-c3lock-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/acpi-use-local-irq-nort.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/arch-use-pagefault-disabled.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-allow-irq-threading.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-at91-pit-remove-irq-handler-when-clock-is-unused.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-at91-tclib-default-to-tclib-timer-for-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-disable-highmem-on-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-enable-interrupts-in-signal-code.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-mark-pmu-interupt-no-thread.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-raw_lock-conversions.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/ata-disable-interrupts-if-non-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/block-shorten-interrupt-disabled-regions.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/bug-rt-dependend-variants.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/clocksource-make-reset-watchdog-lockless.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/clocksource-tclib-allow-higher-clockrates.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/cond-resched-lock-rt-tweak.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/cond-resched-softirq-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/console-make-rt-friendly.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/cpu-rt-variants.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/debugobjects-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/dma-ipu-convert-back_lock-to-a-raw-spinlock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/dmar-make-qi-lock-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/dmar-make-register-lock-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/dmar-mark-dmar-irq-no-thread.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-dca-convert-dcalock-to-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-floppy-use-timer-del-sync.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-ide-fix-irq-flags-madness.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-8139-disable-irq-nosync.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-at91-make-mdio-protection-rt-safe.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-ehea-mark-rx-irq-no-thread.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-fix-livelock-issues.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-gianfar-make-rt-aware.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-tulip-add-missing-pci-disable.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-vortex-fix-locking-issues.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-random-reduce-preempt-disabled-region.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-serial-call-flush_to_ldisc-when-the-irq-is-t.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-serial-cleanup-locking-for-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-tty-fix-omap-lock-crap.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/drm-more-moronic-crap.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/acpi-convert-c3lock=
+-raw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/acpi-use-local-irq-=
+nort.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/arch-use-pagefault-=
+disabled.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-allow-irq-threa=
+ding.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-at91-pit-remove=
+-irq-handler-when-clock-is-unused.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-at91-tclib-defa=
+ult-to-tclib-timer-for-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-disable-highmem=
+-on-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-enable-interrup=
+ts-in-signal-code.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-mark-pmu-interu=
+pt-no-thread.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/arm-raw_lock-conver=
+sions.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/ata-disable-interru=
+pts-if-non-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/block-shorten-inter=
+rupt-disabled-regions.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/bug-rt-dependend-va=
+riants.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/clocksource-make-re=
+set-watchdog-lockless.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/clocksource-tclib-a=
+llow-higher-clockrates.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/cond-resched-lock-r=
+t-tweak.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/cond-resched-softir=
+q-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/console-make-rt-fri=
+endly.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/cpu-rt-variants.pat=
+ch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/debugobjects-rt.pat=
+ch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/dma-ipu-convert-bac=
+k_lock-to-a-raw-spinlock.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/dmar-make-qi-lock-r=
+aw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/dmar-make-register-=
+lock-raw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/dmar-mark-dmar-irq-=
+no-thread.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-dca-convert=
+-dcalock-to-raw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-floppy-use-=
+timer-del-sync.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-ide-fix-irq=
+-flags-madness.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-8139-di=
+sable-irq-nosync.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-at91-ma=
+ke-mdio-protection-rt-safe.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-ehea-ma=
+rk-rx-irq-no-thread.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-fix-liv=
+elock-issues.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-gianfar=
+-make-rt-aware.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-tulip-a=
+dd-missing-pci-disable.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-net-vortex-=
+fix-locking-issues.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-random-redu=
+ce-preempt-disabled-region.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-serial-call=
+-flush_to_ldisc-when-the-irq-is-t.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-serial-clea=
+nup-locking-for-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drivers-tty-fix-oma=
+p-lock-crap.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/drm-more-moronic-cr=
+ap.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/rt/drm-sigh.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/early-printk-consolidate.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/epoll-use-get-cpu-light.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/filemap-fix-up.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-add-missing-rcu-protection.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-block-rt-support.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-btrfs-locking-workaround-for-preempt-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-convert-i-alloc-sem-to-rw-anon.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-jbd-replace-bh_state-lock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-namespace-preemption-fix.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-ntfs-disable-interrupt-non-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-replace-bh_uptodate_lock-for-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/ftrace-hash-fix.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/ftrace-migrate-disable-tracing.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/generic-cmpxchg-use-raw-local-irq.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/genirq-disable-irqpoll-on-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/genirq-disable-random-call-on-preempt-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/genirq-force-threading.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/genirq-nodebug-shirq.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/hotplug-light-get-online-cpus.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/hotplug-use-migrate-disable.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/hrtimer-fixup-hrtimer-callback-changes-for-preempt-r.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/hrtimers-prepare-full-preemption.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/early-printk-consol=
+idate.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/epoll-use-get-cpu-l=
+ight.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/filemap-fix-up.patc=
+h
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-add-missing-rcu-=
+protection.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-block-rt-support=
+.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-btrfs-locking-wo=
+rkaround-for-preempt-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-convert-i-alloc-=
+sem-to-rw-anon.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-jbd-replace-bh_s=
+tate-lock.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-namespace-preemp=
+tion-fix.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-ntfs-disable-int=
+errupt-non-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/fs-replace-bh_uptod=
+ate_lock-for-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/ftrace-hash-fix.pat=
+ch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/ftrace-migrate-disa=
+ble-tracing.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/generic-cmpxchg-use=
+-raw-local-irq.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/genirq-disable-irqp=
+oll-on-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/genirq-disable-rand=
+om-call-on-preempt-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/genirq-force-thread=
+ing.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/genirq-nodebug-shir=
+q.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/hotplug-light-get-o=
+nline-cpus.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/hotplug-use-migrate=
+-disable.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/hrtimer-fixup-hrtim=
+er-callback-changes-for-preempt-r.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/hrtimers-prepare-fu=
+ll-preemption.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/rt/hwlatdetect.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/ide-use-nort-local-irq-variants.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/infiniband-mellanox-ib-use-nort-irq.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/inpt-gameport-use-local-irq-nort.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/ipc-make-rt-aware.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/ipc-mqueue-add-a-critical-section-to-avoid-a-deadlock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/jdb-shared-state-bits.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/ide-use-nort-local-=
+irq-variants.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/infiniband-mellanox=
+-ib-use-nort-irq.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/inpt-gameport-use-l=
+ocal-irq-nort.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/ipc-make-rt-aware.p=
+atch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/ipc-mqueue-add-a-cr=
+itical-section-to-avoid-a-deadlock.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/jdb-shared-state-bi=
+ts.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/rt/jump-label-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/kconfig-disable-a-few-options-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/kconfig-preempt-rt-full.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/kgb-serial-hackaround.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/kprobes-use-raw-lock.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/kconfig-disable-a-f=
+ew-options-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/kconfig-preempt-rt-=
+full.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/kgb-serial-hackarou=
+nd.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/kprobes-use-raw-loc=
+k.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/rt/latency-hist.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/latency-top-lock-raw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/latency-top-lock-ra=
+w.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/rt/lglocks-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/list-add-list-last-entry.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/local-irq-rt-depending-variants.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/list-add-list-last-=
+entry.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/local-irq-rt-depend=
+ing-variants.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/rt/local-var.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/local-vars-migrate-disable.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/local-vars-migrate-=
+disable.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/rt/localversion.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/lock-debugging-clean-up-rtmutex-debug.h.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/lockdep-no-softirq-accounting-on-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/locking-various-init-fixes.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/md-raid5-percpu-handling-rt-aware.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/migrate-disable-rt-variant.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-allow-irq-threading.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-disable-highmem-on-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-enable-interrupts-in-signal.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-ftrace-fix-non-dynamic-crappola.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-loongson-mark-cascade-interrupts-non-thread.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-make-die-lock-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-mark-cascade-interrupts-nothread.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-sibyte-fix-irq-chip.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-allow-slab-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-cgroup-page-bit-spinlock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-convert-swap-to-percpu-locked.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-make-vmstat-rt-aware.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/lock-debugging-clea=
+n-up-rtmutex-debug.h.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/lockdep-no-softirq-=
+accounting-on-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/locking-various-ini=
+t-fixes.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/md-raid5-percpu-han=
+dling-rt-aware.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/migrate-disable-rt-=
+variant.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-allow-irq-thre=
+ading.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-disable-highme=
+m-on-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-enable-interru=
+pts-in-signal.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-ftrace-fix-non=
+-dynamic-crappola.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-loongson-mark-=
+cascade-interrupts-non-thread.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-make-die-lock-=
+raw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-mark-cascade-i=
+nterrupts-nothread.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mips-sibyte-fix-irq=
+-chip.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-allow-slab-rt.pa=
+tch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-cgroup-page-bit-=
+spinlock.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-convert-swap-to-=
+percpu-locked.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-make-vmstat-rt-a=
+ware.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-memory-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-page-alloc-fix.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-page-alloc-use-list-last-entry.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-page_alloc-reduce-lock-sections-further.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-page_alloc-rt-friendly-per-cpu-pages.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-prepare-pf-disable-discoupling.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-protect-activate-switch-mm.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-remove-preempt-count-from-pf.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-scatterlist-dont-disable-irqs-on-RT.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-shrink-the-page-frame-to-rt-size.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-slab-more-lock-breaks.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-slab-move-debug-out.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-slab-wrap-functions.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-vmalloc-use-get-cpu-light.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-vmstat-fix-the-irq-lock-asymetry.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/mutex-no-spin-on-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/net-flip-lock-dep-thingy.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/net-ipv4-route-use-locks-on-up-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/net-netfilter-use-proper-rw-init.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/net-netif_rx_ni-migrate-disable.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/net-wireless-warn-nort.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/of-convert-devtree-lock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/of-fixup-recursive-locking.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/oprofile-fslock-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/panic-disable-random-on-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/pci-intr-remapping-make-irte-lock-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/percpu-cpunter-raw-lock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/perf-move-irq-work-to-softirq-in-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/perf-x86-no-kfree-in-cpu_starting.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/peter_zijlstra-fix-cpufreq.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/peter_zijlstra-re-_3_0-rt4.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/peter_zijlstra-slab_lockdep-annotate_debug_object_slabs.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/peter_zijlstra-slab_lockdep-annotate_the_locks_before_using.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/peterz-frob-posix-timers.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/peterz-raw_pagefault_disable.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/pid-h-include-atomic-h.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-page-alloc-fix.p=
+atch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-page-alloc-use-l=
+ist-last-entry.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-page_alloc-reduc=
+e-lock-sections-further.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-page_alloc-rt-fr=
+iendly-per-cpu-pages.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-prepare-pf-disab=
+le-discoupling.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-protect-activate=
+-switch-mm.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-remove-preempt-c=
+ount-from-pf.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-scatterlist-dont=
+-disable-irqs-on-RT.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-shrink-the-page-=
+frame-to-rt-size.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-slab-more-lock-b=
+reaks.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-slab-move-debug-=
+out.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-slab-wrap-functi=
+ons.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-vmalloc-use-get-=
+cpu-light.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mm-vmstat-fix-the-i=
+rq-lock-asymetry.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/mutex-no-spin-on-rt=
+.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/net-flip-lock-dep-t=
+hingy.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/net-ipv4-route-use-=
+locks-on-up-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/net-netfilter-use-p=
+roper-rw-init.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/net-netif_rx_ni-mig=
+rate-disable.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/net-wireless-warn-n=
+ort.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/of-convert-devtree-=
+lock.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/of-fixup-recursive-=
+locking.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/oprofile-fslock-raw=
+.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/panic-disable-rando=
+m-on-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/pci-intr-remapping-=
+make-irte-lock-raw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/percpu-cpunter-raw-=
+lock.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/perf-move-irq-work-=
+to-softirq-in-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/perf-x86-no-kfree-i=
+n-cpu_starting.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/peter_zijlstra-fix-=
+cpufreq.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/peter_zijlstra-re-_=
+3_0-rt4.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/peter_zijlstra-slab=
+_lockdep-annotate_debug_object_slabs.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/peter_zijlstra-slab=
+_lockdep-annotate_the_locks_before_using.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/peterz-frob-posix-t=
+imers.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/peterz-raw_pagefaul=
+t_disable.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/pid-h-include-atomi=
+c-h.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/rt/ping-sysrq.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/plist-remove-spinlock-types-dependency.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/posix-timers-avoid-wakeups-when-no-timers-are-active.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/posix-timers-no-broadcast.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/posix-timers-shorten-cpu-timers-thread.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/posix-timers-thread-posix-cpu-timers-on-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/power-allow-irq-threading.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/power-disable-highmem-on-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/power-use-generic-rwsem-on-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/powerpc-85xx-mark-cascade-irq-no-thread.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/powerpc-uic-lock-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/preempt-mark-legitimated-no-resched-sites.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/preempt-nort-rt-variants.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/prink-convert-logbuf-lock-raw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/plist-remove-spinlo=
+ck-types-dependency.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/posix-timers-avoid-=
+wakeups-when-no-timers-are-active.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/posix-timers-no-bro=
+adcast.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/posix-timers-shorte=
+n-cpu-timers-thread.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/posix-timers-thread=
+-posix-cpu-timers-on-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/power-allow-irq-thr=
+eading.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/power-disable-highm=
+em-on-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/power-use-generic-r=
+wsem-on-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/powerpc-85xx-mark-c=
+ascade-irq-no-thread.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/powerpc-uic-lock-ra=
+w.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/preempt-mark-legiti=
+mated-no-resched-sites.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/preempt-nort-rt-var=
+iants.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/prink-convert-logbu=
+f-lock-raw.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/rt/printk-kill.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/proportions-raw-lock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/radix-tree-rt-aware.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rcu-disable-the-rcu-bh-stuff-for-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rcu-force-preempt-rcu-for-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rcu-reduce-lock-section.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/re-migrate_disable-race-with-cpu-hotplug-3f.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/relay-fix-timer-madness.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/resource-counters-use-localirq-nort.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rt-add-rt-locks.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rt-add-rt-spinlock-to-headers.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rt-add-rt-to-mutex-headers.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rt-local-irq-lock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rt-mutex-add-sleeping-spinlocks-support.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rt-preempt-base-config.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/proportions-raw-loc=
+k.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/radix-tree-rt-aware=
+.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rcu-disable-the-rcu=
+-bh-stuff-for-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rcu-force-preempt-r=
+cu-for-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rcu-reduce-lock-sec=
+tion.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/re-migrate_disable-=
+race-with-cpu-hotplug-3f.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/relay-fix-timer-mad=
+ness.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/resource-counters-u=
+se-localirq-nort.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rt-add-rt-locks.pat=
+ch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rt-add-rt-spinlock-=
+to-headers.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rt-add-rt-to-mutex-=
+headers.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rt-local-irq-lock.p=
+atch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rt-mutex-add-sleepi=
+ng-spinlocks-support.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rt-preempt-base-con=
+fig.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/rt/rt.scc
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rtmutex-avoid-include-hell.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rtmutex-debug-cleanup.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rtmutex-futex-prepare-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rtmutex-lock-killable.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rwsem-add-rt-variant.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rwsem-implement-anon-rwsems.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/rwsem-make-inner-lock-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-cond-resched.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-convert-cgroups-release-lock-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-copy-cpumask-in-one-place.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-create-schedule-preempt-disabled.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-delay-put-task.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-disable-rt-group-sched-on-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-distangle-worker-accounting-from-rq-3elock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-limit-nr-migrate.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-load-balance-break-on-rq-contention.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-might-sleep-do-not-account-rcu-depth.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-migrate-disable.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-mmdrop-delayed.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-move-blk_schedule_flush_plug-out-of-__schedule.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-no-work-when-pi-blocked.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-prevent-idle-boost.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-remove-useless-preempt-disable-in-sched-fork.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-rename-=rtmutex-set-prio-to-task-setprio.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-rt-mutex-wakeup.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-separate-the-scheduler-entry-for-preemption.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-show-state-no-task-list-lock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-thread-group-cputimer-lock-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-use-schedule-preempt-disabled.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-use-task-allowed-accessor.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-warn-on-throttle.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sema-make-lock-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/seqlock-raw-seqlock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/seqlock-remove-unused-functions.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/seqlock-use-seqcount.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/signal-fix-up-rcu-wreckage.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/signals-allow-rt-tasks-to-cache-one-sigqueue-struct.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/signals-do-not-wake-self.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/skbufhead-raw-lock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/softirq-disable-softirq-stacks-for-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/softirq-local-lock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/softirq-make-fifo.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/softirq-sanitize-softirq-pending.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/softirq-split-out-code.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/softirq-thread-do-softirq.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/spinlock-types-separate-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/steven_rostedt-cpupri-fix_memory_barriers_for_vec_updates_to_always.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/steven_rostedt-sched_cpupri-remove_the_vec-_lock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/stomp-machine-mark-stomper-thread.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/stomp-machine-raw-lock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/stop_machine-convert-stop_machine_run-to-PREEMPT_RT.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/suspend-prevernt-might-sleep-splats.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/sysfs-realtime-entry.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/tejun_heo-lockdep-clear_whole_lockdep_map_on_initialization.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/timekeeping-covert-xtimelock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/timer-delay-waking-softirqs-from-the-jiffy-tick.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/timer-handle-idle-trylock-in-get-next-timer-irq.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/timer-stats-raw-table-lock.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/timers-avoid-the-base-null-otptimization-on-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/timers-fix-timer-hotplug-on-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/timers-mov-printk_tick-to-soft-interrupt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/timers-preempt-rt-support.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/timers-prepare-for-full-preemption.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/trace-convert-various-locks-to-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/tty-use-local-irq-nort.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/usb-fix-mouse-problem-copying-large-data.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/usb-hcd-use-local-irq-nort.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/user-use-local-irq-nort.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/video-convert-vga-console-lock-to-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/watchdog-madness.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/workqueue-avoid-the-lock-in-cpu-dying.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/workqueue-use-get-cpu-light.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-32-fix-signal-crap.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-amd-nb-kill-atomic-allocation.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-amd-remove-bogus-free.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-cache-info-kill-the-moronic-shadow-struct.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-disable-debug-stack.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-highmem-warn.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-io-apic-migra-no-unmask.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-kprobes-remove-bogus-preempt-enable.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-mce-cmc-lock-raw.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-mce-timer-hrtimer.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-stackprot-no-random-on-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-use-gen-rwsem-spinlocks-rt.patch
->  create mode 100644 meta/cfg/kernel-cache/features/rt/xfs-convert-mr-lock-to-rw-anon.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rtmutex-avoid-inclu=
+de-hell.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rtmutex-debug-clean=
+up.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rtmutex-futex-prepa=
+re-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rtmutex-lock-killab=
+le.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rwsem-add-rt-varian=
+t.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rwsem-implement-ano=
+n-rwsems.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/rwsem-make-inner-lo=
+ck-raw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-cond-resched.=
+patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-convert-cgrou=
+ps-release-lock-raw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-copy-cpumask-=
+in-one-place.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-create-schedu=
+le-preempt-disabled.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-delay-put-tas=
+k.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-disable-rt-gr=
+oup-sched-on-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-distangle-wor=
+ker-accounting-from-rq-3elock.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-limit-nr-migr=
+ate.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-load-balance-=
+break-on-rq-contention.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-might-sleep-d=
+o-not-account-rcu-depth.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-migrate-disab=
+le.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-mmdrop-delaye=
+d.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-move-blk_sche=
+dule_flush_plug-out-of-__schedule.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-no-work-when-=
+pi-blocked.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-prevent-idle-=
+boost.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-remove-useles=
+s-preempt-disable-in-sched-fork.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-rename-=3Drtm=
+utex-set-prio-to-task-setprio.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-rt-mutex-wake=
+up.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-separate-the-=
+scheduler-entry-for-preemption.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-show-state-no=
+-task-list-lock.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-thread-group-=
+cputimer-lock-raw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-use-schedule-=
+preempt-disabled.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-use-task-allo=
+wed-accessor.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sched-warn-on-throt=
+tle.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sema-make-lock-raw.=
+patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/seqlock-raw-seqlock=
+.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/seqlock-remove-unus=
+ed-functions.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/seqlock-use-seqcoun=
+t.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/signal-fix-up-rcu-w=
+reckage.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/signals-allow-rt-ta=
+sks-to-cache-one-sigqueue-struct.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/signals-do-not-wake=
+-self.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/skbufhead-raw-lock.=
+patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/softirq-disable-sof=
+tirq-stacks-for-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/softirq-local-lock.=
+patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/softirq-make-fifo.p=
+atch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/softirq-sanitize-so=
+ftirq-pending.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/softirq-split-out-c=
+ode.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/softirq-thread-do-s=
+oftirq.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/spinlock-types-sepa=
+rate-raw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/steven_rostedt-cpup=
+ri-fix_memory_barriers_for_vec_updates_to_always.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/steven_rostedt-sche=
+d_cpupri-remove_the_vec-_lock.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/stomp-machine-mark-=
+stomper-thread.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/stomp-machine-raw-l=
+ock.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/stop_machine-conver=
+t-stop_machine_run-to-PREEMPT_RT.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/suspend-prevernt-mi=
+ght-sleep-splats.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/sysfs-realtime-entr=
+y.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/tejun_heo-lockdep-c=
+lear_whole_lockdep_map_on_initialization.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/timekeeping-covert-=
+xtimelock.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/timer-delay-waking-=
+softirqs-from-the-jiffy-tick.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/timer-handle-idle-t=
+rylock-in-get-next-timer-irq.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/timer-stats-raw-tab=
+le-lock.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/timers-avoid-the-ba=
+se-null-otptimization-on-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/timers-fix-timer-ho=
+tplug-on-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/timers-mov-printk_t=
+ick-to-soft-interrupt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/timers-preempt-rt-s=
+upport.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/timers-prepare-for-=
+full-preemption.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/trace-convert-vario=
+us-locks-to-raw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/tty-use-local-irq-n=
+ort.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/usb-fix-mouse-probl=
+em-copying-large-data.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/usb-hcd-use-local-i=
+rq-nort.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/user-use-local-irq-=
+nort.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/video-convert-vga-c=
+onsole-lock-to-raw.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/watchdog-madness.pa=
+tch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/workqueue-avoid-the=
+-lock-in-cpu-dying.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/workqueue-use-get-c=
+pu-light.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-32-fix-signal-c=
+rap.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-amd-nb-kill-ato=
+mic-allocation.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-amd-remove-bogu=
+s-free.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-cache-info-kill=
+-the-moronic-shadow-struct.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-disable-debug-s=
+tack.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-highmem-warn.pa=
+tch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-io-apic-migra-n=
+o-unmask.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-kprobes-remove-=
+bogus-preempt-enable.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-mce-cmc-lock-ra=
+w.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-mce-timer-hrtim=
+er.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-stackprot-no-ra=
+ndom-on-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/x86-use-gen-rwsem-s=
+pinlocks-rt.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/rt/xfs-convert-mr-lock=
+-to-rw-anon.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/serial/8250.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/serial/8250.scc
->  create mode 100644 meta/cfg/kernel-cache/features/systemtap/systemtap.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/systemtap/systemtap.scc
->  create mode 100644 meta/cfg/kernel-cache/features/taskstats/taskstats.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/taskstats/taskstats.scc
+>  create mode 100644 meta/cfg/kernel-cache/features/systemtap/systemtap.cf=
+g
+>  create mode 100644 meta/cfg/kernel-cache/features/systemtap/systemtap.sc=
+c
+>  create mode 100644 meta/cfg/kernel-cache/features/taskstats/taskstats.cf=
+g
+>  create mode 100644 meta/cfg/kernel-cache/features/taskstats/taskstats.sc=
+c
 >  create mode 100644 meta/cfg/kernel-cache/features/tipc/tipc.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/uio/uio.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/uio/uio.scc
->  create mode 100644 meta/cfg/kernel-cache/features/unionfs/unionfs-2.5.4-integration.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/unionfs/unionfs-2.5.4-=
+integration.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/unionfs/unionfs.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/unionfs/unionfs.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/usb-net/usb-net.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/usb-net/usb-net.scc
 >  create mode 100644 meta/cfg/kernel-cache/features/utrace/utrace.cfg
 >  create mode 100644 meta/cfg/kernel-cache/features/utrace/utrace.scc
->  create mode 100644 meta/cfg/kernel-cache/features/vfat/FAT-Add-CONFIG_VFAT_FS_NO_DUALNAMES-option.patch
->  create mode 100644 meta/cfg/kernel-cache/features/vfat/FAT-Add-CONFIG_VFAT_NO_CREATE_WITH_LONGNAMES-option.patch
->  create mode 100644 meta/cfg/kernel-cache/features/vfat/FAT-Added-FAT_NO_83NAME.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/vfat/FAT-Add-CONFIG_VF=
+AT_FS_NO_DUALNAMES-option.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/vfat/FAT-Add-CONFIG_VF=
+AT_NO_CREATE_WITH_LONGNAMES-option.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/vfat/FAT-Added-FAT_NO_=
+83NAME.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/vfat/README
 >  create mode 100644 meta/cfg/kernel-cache/features/vfat/vfat.scc
->  create mode 100644 meta/cfg/kernel-cache/features/xip/cramfs-and-linear-XIP.patch
->  create mode 100644 meta/cfg/kernel-cache/features/xip/cramfs-support-36-bit-physical-sapce.patch
->  create mode 100644 meta/cfg/kernel-cache/features/xip/cramfs-xip-pass-virtual-address-to-do-flush-tlb.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/xip/cramfs-and-linear-=
+XIP.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/xip/cramfs-support-36-=
+bit-physical-sapce.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/xip/cramfs-xip-pass-vi=
+rtual-address-to-do-flush-tlb.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/xip/xip.scc
->  create mode 100644 meta/cfg/kernel-cache/features/yaffs2/yaffs2-fix-semaphore-self-blocked.patch
->  create mode 100644 meta/cfg/kernel-cache/features/yaffs2/yaffs2-fix-ugly-strcopy-and-kmalloc.patch
->  create mode 100644 meta/cfg/kernel-cache/features/yaffs2/yaffs2-import-yaffs2-core-support.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/yaffs2/yaffs2-fix-sema=
+phore-self-blocked.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/yaffs2/yaffs2-fix-ugly=
+-strcopy-and-kmalloc.patch
+>  create mode 100644 meta/cfg/kernel-cache/features/yaffs2/yaffs2-import-y=
+affs2-core-support.patch
 >  create mode 100644 meta/cfg/kernel-cache/features/yaffs2/yaffs2.scc
 >  create mode 100644 meta/cfg/kernel-cache/ktypes/base/base.cfg
 >  create mode 100644 meta/cfg/kernel-cache/ktypes/base/base.scc
@@ -1452,55 +1901,87 @@ Darren
 >  create mode 100644 meta/cfg/kernel-cache/ktypes/base/hardware.kcf
 >  create mode 100644 meta/cfg/kernel-cache/ktypes/base/non-hardware.cfg
 >  create mode 100644 meta/cfg/kernel-cache/ktypes/base/non-hardware.kcf
->  create mode 100644 meta/cfg/kernel-cache/ktypes/preempt-rt/preempt-rt.cfg
->  create mode 100644 meta/cfg/kernel-cache/ktypes/preempt-rt/preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/ktypes/standard/perf-force-include-of-stdbool.h.patch
->  create mode 100644 meta/cfg/kernel-cache/ktypes/standard/perf-hard-code-NO_LIBPERL-NO_LIBPYTHON.patch
+>  create mode 100644 meta/cfg/kernel-cache/ktypes/preempt-rt/preempt-rt.cf=
+g
+>  create mode 100644 meta/cfg/kernel-cache/ktypes/preempt-rt/preempt-rt.sc=
+c
+>  create mode 100644 meta/cfg/kernel-cache/ktypes/standard/perf-force-incl=
+ude-of-stdbool.h.patch
+>  create mode 100644 meta/cfg/kernel-cache/ktypes/standard/perf-hard-code-=
+NO_LIBPERL-NO_LIBPYTHON.patch
 >  create mode 100644 meta/cfg/kernel-cache/ktypes/standard/standard.cfg
 >  create mode 100644 meta/cfg/kernel-cache/ktypes/standard/standard.scc
->  create mode 100644 meta/cfg/kernel-cache/ktypes/standard/x86-add-TIF_32BIT-compatibility-define.patch
+>  create mode 100644 meta/cfg/kernel-cache/ktypes/standard/x86-add-TIF_32B=
+IT-compatibility-define.patch
 >  create mode 100644 meta/cfg/kernel-cache/kver
->  create mode 100644 meta/cfg/kernel-cache/patches/boot/NFS-allow-nfs-root-mount-to-use-alternate-rpc-ports.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/boot/NFS-allow-nfs-root=
+-mount-to-use-alternate-rpc-ports.patch
 >  create mode 100644 meta/cfg/kernel-cache/patches/boot/boot.scc
->  create mode 100644 meta/cfg/kernel-cache/patches/boot/check-console-device-file-on-fs-when-booting.patch
->  create mode 100644 meta/cfg/kernel-cache/patches/boot/mount_root-clarify-error-messages-for-when-no-rootfs.patch
->  create mode 100644 meta/cfg/kernel-cache/patches/boot/nfs-Allow-default-io-size-to-be-configured.patch
->  create mode 100644 meta/cfg/kernel-cache/patches/boot/powerpc-boot-remove-Os-from-BOOTFLAGS.patch
->  create mode 100644 meta/cfg/kernel-cache/patches/build/arm-serialize-build-targets.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/boot/check-console-devi=
+ce-file-on-fs-when-booting.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/boot/mount_root-clarify=
+-error-messages-for-when-no-rootfs.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/boot/nfs-Allow-default-=
+io-size-to-be-configured.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/boot/powerpc-boot-remov=
+e-Os-from-BOOTFLAGS.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/build/arm-serialize-bui=
+ld-targets.patch
 >  create mode 100644 meta/cfg/kernel-cache/patches/build/build.scc
->  create mode 100644 meta/cfg/kernel-cache/patches/build/kbuild-add-meta-files-to-the-ignore-li.patch
->  create mode 100644 meta/cfg/kernel-cache/patches/build/kbuild-exclude-meta-directory-from-distclean-processi.patch
->  create mode 100644 meta/cfg/kernel-cache/patches/build/modpost-mask-trivial-warnings.patch
->  create mode 100644 meta/cfg/kernel-cache/patches/build/powerpc-serialize-image-targets.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/build/kbuild-add-meta-f=
+iles-to-the-ignore-li.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/build/kbuild-exclude-me=
+ta-directory-from-distclean-processi.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/build/modpost-mask-triv=
+ial-warnings.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/build/powerpc-serialize=
+-image-targets.patch
 >  create mode 100644 meta/cfg/kernel-cache/patches/debug/debug.scc
->  create mode 100644 meta/cfg/kernel-cache/patches/drivers/MIPS-i8259-Use-struct-syscore_ops-instead-of-sysdevs.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/drivers/MIPS-i8259-Use-=
+struct-syscore_ops-instead-of-sysdevs.patch
 >  create mode 100644 meta/cfg/kernel-cache/patches/drivers/drivers.scc
->  create mode 100644 meta/cfg/kernel-cache/patches/exports/cleanup-a.out-header-for-export.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/exports/cleanup-a.out-h=
+eader-for-export.patch
 >  create mode 100644 meta/cfg/kernel-cache/patches/exports/exports.scc
 >  create mode 100644 meta/cfg/kernel-cache/patches/misc/misc.scc
->  create mode 100644 meta/cfg/kernel-cache/patches/misc/vmware-include-jiffies.h.patch
->  create mode 100644 meta/cfg/kernel-cache/patches/net/Resolve-jiffies-wrapping-about-arp.patch
->  create mode 100644 meta/cfg/kernel-cache/patches/net/fix-leap-second-message-hang.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/misc/vmware-include-jif=
+fies.h.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/net/Resolve-jiffies-wra=
+pping-about-arp.patch
+>  create mode 100644 meta/cfg/kernel-cache/patches/net/fix-leap-second-mes=
+sage-hang.patch
 >  create mode 100644 meta/cfg/kernel-cache/patches/net/net.scc
 >  create mode 100644 meta/cfg/kernel-cache/patches/patches.scc
 >  create mode 100755 meta/cfg/kernel-cache/scripts/bsp-check
 >  create mode 100755 meta/cfg/kernel-cache/scripts/rr-fix
->  create mode 100644 meta/cfg/kernel-cache/small/BFS-wind-river-fixups.patch
->  create mode 100644 meta/cfg/kernel-cache/small/add-functions-for-ltt.patch
+>  create mode 100644 meta/cfg/kernel-cache/small/BFS-wind-river-fixups.pat=
+ch
+>  create mode 100644 meta/cfg/kernel-cache/small/add-functions-for-ltt.pat=
+ch
 >  create mode 100644 meta/cfg/kernel-cache/small/ck-BFS-import.patch
->  create mode 100644 meta/cfg/kernel-cache/small/ck-bfs-cpufreq-tweaks.patch
->  create mode 100644 meta/cfg/kernel-cache/small/ck-change-default-HZ-to-1000.patch
->  create mode 100644 meta/cfg/kernel-cache/small/ck-cleanup-swapiness-tunable.patch
->  create mode 100644 meta/cfg/kernel-cache/small/ck-expose-vmsplit-and-lowmem.patch
->  create mode 100644 meta/cfg/kernel-cache/small/ck-force-swappiness-to-be-honest.patch
->  create mode 100644 meta/cfg/kernel-cache/small/ck-free-swapcache-whenever-we-can.patch
+>  create mode 100644 meta/cfg/kernel-cache/small/ck-bfs-cpufreq-tweaks.pat=
+ch
+>  create mode 100644 meta/cfg/kernel-cache/small/ck-change-default-HZ-to-1=
+000.patch
+>  create mode 100644 meta/cfg/kernel-cache/small/ck-cleanup-swapiness-tuna=
+ble.patch
+>  create mode 100644 meta/cfg/kernel-cache/small/ck-expose-vmsplit-and-low=
+mem.patch
+>  create mode 100644 meta/cfg/kernel-cache/small/ck-force-swappiness-to-be=
+-honest.patch
+>  create mode 100644 meta/cfg/kernel-cache/small/ck-free-swapcache-wheneve=
+r-we-can.patch
 >  create mode 100644 meta/cfg/kernel-cache/small/ck-idleprio-tasks.patch
->  create mode 100644 meta/cfg/kernel-cache/small/ck-introduce-above_background_load.patch
+>  create mode 100644 meta/cfg/kernel-cache/small/ck-introduce-above_backgr=
+ound_load.patch
 >  create mode 100644 meta/cfg/kernel-cache/small/ck-lru-for-files.patch
->  create mode 100644 meta/cfg/kernel-cache/small/ck-make-swap-token-active-only-when-swap-is-more-tha.patch
->  create mode 100644 meta/cfg/kernel-cache/small/ck-no-default-250-HZ.patch
+>  create mode 100644 meta/cfg/kernel-cache/small/ck-make-swap-token-active=
+-only-when-swap-is-more-tha.patch
+>  create mode 100644 meta/cfg/kernel-cache/small/ck-no-default-250-HZ.patc=
+h
 >  create mode 100644 meta/cfg/kernel-cache/small/ck-raise-maxium-HZ.patch
->  create mode 100644 meta/cfg/kernel-cache/small/ck-set-the-priority-of-kswapd-to-that-of-the-calling.patch
+>  create mode 100644 meta/cfg/kernel-cache/small/ck-set-the-priority-of-ks=
+wapd-to-that-of-the-calling.patch
 >  create mode 100644 meta/cfg/kernel-cache/small/ck-watermarks.patch
 >  create mode 100644 meta/cfg/kernel-cache/small/small-ck.cfg
 >  create mode 100644 meta/cfg/kernel-cache/small/small-ck.scc
@@ -1531,10 +2012,14 @@ Darren
 >  create mode 100644 meta/patches/.gitignore
 >  create mode 100644 meta/patches/yocto/base/series
 >  create mode 100644 meta/patches/yocto/base/status
->  create mode 120000 meta/patches/yocto/standard/arm-versatile-926ejs/links
->  create mode 100644 meta/patches/yocto/standard/arm-versatile-926ejs/mbox_patches
->  create mode 100644 meta/patches/yocto/standard/arm-versatile-926ejs/series
->  create mode 100644 meta/patches/yocto/standard/arm-versatile-926ejs/status
+>  create mode 120000 meta/patches/yocto/standard/arm-versatile-926ejs/link=
+s
+>  create mode 100644 meta/patches/yocto/standard/arm-versatile-926ejs/mbox=
+_patches
+>  create mode 100644 meta/patches/yocto/standard/arm-versatile-926ejs/seri=
+es
+>  create mode 100644 meta/patches/yocto/standard/arm-versatile-926ejs/stat=
+us
 >  create mode 120000 meta/patches/yocto/standard/base/links
 >  create mode 100644 meta/patches/yocto/standard/base/series
 >  create mode 100644 meta/patches/yocto/standard/base/status
@@ -1542,12 +2027,18 @@ Darren
 >  create mode 100644 meta/patches/yocto/standard/beagleboard/status
 >  create mode 100644 meta/patches/yocto/standard/common-pc-64/base/series
 >  create mode 100644 meta/patches/yocto/standard/common-pc-64/base/status
->  create mode 100644 meta/patches/yocto/standard/common-pc-64/jasperforest/series
->  create mode 100644 meta/patches/yocto/standard/common-pc-64/jasperforest/status
->  create mode 100644 meta/patches/yocto/standard/common-pc-64/romley/series
->  create mode 100644 meta/patches/yocto/standard/common-pc-64/romley/status
->  create mode 100644 meta/patches/yocto/standard/common-pc-64/sugarbay/series
->  create mode 100644 meta/patches/yocto/standard/common-pc-64/sugarbay/status
+>  create mode 100644 meta/patches/yocto/standard/common-pc-64/jasperforest=
+/series
+>  create mode 100644 meta/patches/yocto/standard/common-pc-64/jasperforest=
+/status
+>  create mode 100644 meta/patches/yocto/standard/common-pc-64/romley/serie=
+s
+>  create mode 100644 meta/patches/yocto/standard/common-pc-64/romley/statu=
+s
+>  create mode 100644 meta/patches/yocto/standard/common-pc-64/sugarbay/ser=
+ies
+>  create mode 100644 meta/patches/yocto/standard/common-pc-64/sugarbay/sta=
+tus
 >  create mode 100644 meta/patches/yocto/standard/common-pc/atom-pc/series
 >  create mode 100644 meta/patches/yocto/standard/common-pc/atom-pc/status
 >  create mode 100644 meta/patches/yocto/standard/common-pc/base/series
@@ -1561,33 +2052,43 @@ Darren
 >  create mode 100644 meta/patches/yocto/standard/fri2/series
 >  create mode 100644 meta/patches/yocto/standard/fri2/status
 >  create mode 120000 meta/patches/yocto/standard/fsl-mpc8315e-rdb/links
->  create mode 100644 meta/patches/yocto/standard/fsl-mpc8315e-rdb/mbox_patches
+>  create mode 100644 meta/patches/yocto/standard/fsl-mpc8315e-rdb/mbox_pat=
+ches
 >  create mode 100644 meta/patches/yocto/standard/fsl-mpc8315e-rdb/series
 >  create mode 100644 meta/patches/yocto/standard/fsl-mpc8315e-rdb/status
 >  create mode 120000 meta/patches/yocto/standard/mti-malta32-be/links
->  create mode 100644 meta/patches/yocto/standard/mti-malta32-be/mbox_patches
+>  create mode 100644 meta/patches/yocto/standard/mti-malta32-be/mbox_patch=
+es
 >  create mode 100644 meta/patches/yocto/standard/mti-malta32-be/series
 >  create mode 100644 meta/patches/yocto/standard/mti-malta32-be/status
 >  create mode 120000 meta/patches/yocto/standard/mti-malta32-le/links
->  create mode 100644 meta/patches/yocto/standard/mti-malta32-le/mbox_patches
+>  create mode 100644 meta/patches/yocto/standard/mti-malta32-le/mbox_patch=
+es
 >  create mode 100644 meta/patches/yocto/standard/mti-malta32-le/series
 >  create mode 100644 meta/patches/yocto/standard/mti-malta32-le/status
 >  create mode 120000 meta/patches/yocto/standard/preempt-rt/base/links
 >  create mode 100644 meta/patches/yocto/standard/preempt-rt/base/series
 >  create mode 100644 meta/patches/yocto/standard/preempt-rt/base/status
->  create mode 100644 meta/patches/yocto/standard/preempt-rt/common-pc-64/series
->  create mode 100644 meta/patches/yocto/standard/preempt-rt/common-pc-64/status
->  create mode 100644 meta/patches/yocto/standard/preempt-rt/common-pc/series
->  create mode 100644 meta/patches/yocto/standard/preempt-rt/common-pc/status
+>  create mode 100644 meta/patches/yocto/standard/preempt-rt/common-pc-64/s=
+eries
+>  create mode 100644 meta/patches/yocto/standard/preempt-rt/common-pc-64/s=
+tatus
+>  create mode 100644 meta/patches/yocto/standard/preempt-rt/common-pc/seri=
+es
+>  create mode 100644 meta/patches/yocto/standard/preempt-rt/common-pc/stat=
+us
 >  create mode 120000 meta/patches/yocto/standard/preempt-rt/qemu-ppc32/cfg
->  create mode 100644 meta/patches/yocto/standard/preempt-rt/qemu-ppc32/series
->  create mode 100644 meta/patches/yocto/standard/preempt-rt/qemu-ppc32/status
+>  create mode 100644 meta/patches/yocto/standard/preempt-rt/qemu-ppc32/ser=
+ies
+>  create mode 100644 meta/patches/yocto/standard/preempt-rt/qemu-ppc32/sta=
+tus
 >  create mode 120000 meta/patches/yocto/standard/qemu-ppc32/links
 >  create mode 100644 meta/patches/yocto/standard/qemu-ppc32/mbox_patches
 >  create mode 100644 meta/patches/yocto/standard/qemu-ppc32/series
 >  create mode 100644 meta/patches/yocto/standard/qemu-ppc32/status
 >  create mode 120000 meta/patches/yocto/standard/routerstationpro/links
->  create mode 100644 meta/patches/yocto/standard/routerstationpro/mbox_patches
+>  create mode 100644 meta/patches/yocto/standard/routerstationpro/mbox_pat=
+ches
 >  create mode 100644 meta/patches/yocto/standard/routerstationpro/series
 >  create mode 100644 meta/patches/yocto/standard/routerstationpro/status
 >  create mode 100755 meta/scripts/configme
@@ -1601,9 +2102,9 @@ Darren
 >  create mode 100755 meta/scripts/kgit-publish
 >  create mode 100755 meta/scripts/kgit-scc
 >  create mode 100755 meta/scripts/scc
-> 
+>
 
--- 
+--
 Darren Hart
 Intel Open Source Technology Center
 Yocto Project - Linux Kernel
