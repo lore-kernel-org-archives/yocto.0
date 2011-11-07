@@ -1,22 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F078E01371
-	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 07:56:23 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 07 Nov 2011 07:56:22 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07549E01376
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 07:56:24 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 07 Nov 2011 07:56:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,470,1315206000"; d="scan'208";a="87070951"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="71956191"
 Received: from unknown (HELO localhost) ([10.255.15.253])
-	by fmsmga002.fm.intel.com with ESMTP; 07 Nov 2011 07:56:22 -0800
+	by orsmga001.jf.intel.com with ESMTP; 07 Nov 2011 07:56:24 -0800
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com,
 	yocto@yoctoproject.org
-Date: Mon,  7 Nov 2011 09:56:52 -0600
-Message-Id: <3cf438aafc41692895a077d01895cc7b9244479d.1320637311.git.tom.zanussi@intel.com>
+Date: Mon,  7 Nov 2011 09:56:53 -0600
+Message-Id: <30e1c0f31e6b1dd079f651d26c9decc3a1c4462c.1320637311.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <3cf438aafc41692895a077d01895cc7b9244479d.1320637311.git.tom.zanussi@intel.com>
+References: <3cf438aafc41692895a077d01895cc7b9244479d.1320637311.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1320637311.git.tom.zanussi@intel.com>
 References: <cover.1320637311.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/4][KERNEL] meta/fishriver: use power/intel feature
+Subject: [PATCH 2/4][KERNEL] meta/fri2: use power/intel feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,22 +30,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2011 15:56:23 -0000
+X-List-Received-Date: Mon, 07 Nov 2011 15:56:25 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Have fishriver use more power-friendly settings.
+Have fri2 use more power-friendly settings.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc |    1 +
+ meta/cfg/kernel-cache/bsp/fri2/fri2.scc |    1 +
  1 files changed, 1 insertions(+), 0 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
-index 2409bdd..b944a70 100644
---- a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
-+++ b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
-@@ -11,6 +11,7 @@ include features/ericsson-3g/f5521gw.scc
+diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+index d44cd68..f5eef84 100644
+--- a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
++++ b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+@@ -13,6 +13,7 @@ include features/iwlagn/iwlagn.scc
  include features/framebuffer/vesafb.scc
  include cfg/usb-mass-storage.scc
  include cfg/boot-live.scc
