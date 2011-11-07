@@ -1,28 +1,28 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD6FDE00307
-	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 13:59:34 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by ywm14 with SMTP id 14so8025786ywm.35
-	for <yocto@yoctoproject.org>; Mon, 07 Nov 2011 13:59:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Pse8HuOx6R9ESMpQW1WSg4HP7BDMonvN7XRC7zih+i4=;
-	b=JDEgRLESOnCJ1Ng756HHVH1sScJP7uwzkMHMqDZ7Uwz2I0DcsA6LqkELCDJrqPd8nW
-	aRG9xvLl70iNvbkfG9fh8FsCvDLgxljhv+QSIuCRMIVLrD152yKK/jYURVpE/LU+MIc/
-	40KVXb/SOIEMR2rJj4MJljihkwyLiIs0eiJLQ=
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB1AFE0138C
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 14:04:58 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 999)
+	id 2210116608B2; Mon,  7 Nov 2011 15:04:54 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 10AA1166089B;
+	Mon,  7 Nov 2011 15:04:53 -0700 (MST)
+Message-ID: <4EB85604.50109@mlbassoc.com>
+Date: Mon, 07 Nov 2011 15:04:52 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:7.0.1) Gecko/20110930 Thunderbird/7.0.1
 MIME-Version: 1.0
-Received: by 10.236.129.208 with SMTP id h56mr37256263yhi.74.1320703173887;
-	Mon, 07 Nov 2011 13:59:33 -0800 (PST)
-Received: by 10.236.109.134 with HTTP; Mon, 7 Nov 2011 13:59:32 -0800 (PST)
-Date: Mon, 7 Nov 2011 16:59:32 -0500
-Message-ID: <CANFv2Ene=ZfVOzs76fsW7XNRm7K_0DNDB=q90AHV5Zs3KxcjNw@mail.gmail.com>
-From: James Abernathy <jfabernathy@gmail.com>
-To: yocto@yoctoproject.org
-Subject: use case howto?
+To: James Abernathy <jfabernathy@gmail.com>
+References: <CANFv2Ene=ZfVOzs76fsW7XNRm7K_0DNDB=q90AHV5Zs3KxcjNw@mail.gmail.com>
+In-Reply-To: <CANFv2Ene=ZfVOzs76fsW7XNRm7K_0DNDB=q90AHV5Zs3KxcjNw@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: use case howto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,46 +34,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2011 21:59:35 -0000
-Content-Type: multipart/alternative; boundary=20cf3010e95188888e04b12c2bfe
+X-List-Received-Date: Mon, 07 Nov 2011 22:04:59 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---20cf3010e95188888e04b12c2bfe
-Content-Type: text/plain; charset=ISO-8859-1
+On 2011-11-07 14:59, James Abernathy wrote:
+> I approach embedded Linux from a path of taking a Distro like Ubuntu or Fedora and chopping it down to a working set of code that forms the final solution.  Obviously, not the same
+> methology as Yocto.  With some success with the current methods, it's difficult to see the advantages of Yocto.  I'm reading what I can find to get smarting on Yocto, but like most
+> new concepts, you try to compare what you used to do with how to do it with the new concept.
+> For example, if I use a distro, I can install packages really simply with yum or apt-get; update them the same way. If I start with a Yocto meta-??? that's closest to my hardware
+> solution, and get it working at a base level, how do I add things, like browsers, or other application?
 
-I approach embedded Linux from a path of taking a Distro like Ubuntu or
-Fedora and chopping it down to a working set of code that forms the final
-solution.  Obviously, not the same methology as Yocto.  With some success
-with the current methods, it's difficult to see the advantages of Yocto.
-I'm reading what I can find to get smarting on Yocto, but like most new
-concepts, you try to compare what you used to do with how to do it with the
-new concept.
+Using very similar tools - zypper is just like yum, or if
+you choose to use ipk packages, opkg
 
-For example, if I use a distro, I can install packages really simply with
-yum or apt-get; update them the same way. If I start with a Yocto meta-???
-that's closest to my hardware solution, and get it working at a base level,
-how do I add things, like browsers, or other application?
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-Jim A
-
---20cf3010e95188888e04b12c2bfe
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div>I approach embedded Linux from a path of taking a Distro like Ubuntu o=
-r Fedora and chopping=A0it down to a working set of code that forms the fin=
-al solution.=A0 Obviously, not the same methology as Yocto.=A0 With some su=
-ccess with the current methods, it&#39;s difficult to see the advantages of=
- Yocto.=A0 I&#39;m reading what I can find to get smarting on Yocto, but li=
-ke most new concepts, you try to compare what you used to do with how to do=
- it with the new concept.</div>
-
-<div>=A0</div>
-<div>For example, if I use a distro, I can install packages really simply w=
-ith yum or apt-get; update them the same way. If I start with a Yocto meta-=
-??? that&#39;s closest to my hardware solution, and get it working at a bas=
-e level, how do I add things, like browsers, or other application?</div>
-
-<div>=A0</div>
-<div>Jim A</div>
-
---20cf3010e95188888e04b12c2bfe--
