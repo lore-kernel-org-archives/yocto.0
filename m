@@ -1,25 +1,30 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 047DFE00307
-	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 09:21:03 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pA7HL2DQ006188
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 7 Nov 2011 09:21:02 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Mon, 7 Nov 2011 09:21:02 -0800
-Message-ID: <4EB81378.6070008@windriver.com>
-Date: Mon, 7 Nov 2011 12:20:56 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C698E01358
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 09:35:12 -0800 (PST)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1RNT6A-0007jp-Jq
+	for yocto@yoctoproject.org; Mon, 07 Nov 2011 12:35:06 -0500
+Date: Mon, 7 Nov 2011 12:35:02 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1111071232470.20844@localhost6.localdomain6>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: <tom.zanussi@intel.com>
-References: <cover.1320637311.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1320637311.git.tom.zanussi@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/4][KERNEL] some more bsp cleanups
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: [PATCH] Add Atom PC to list of core supported machines in README.hardware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,43 +36,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2011 17:21:04 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 07 Nov 2011 17:35:12 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On 11-11-07 10:56 AM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi<tom.zanussi@intel.com>
->
-> This just finishes up the previous set of meta-intel cleanups.  All
-> machines were build- and run-tested.
->
-> Please pull into linux-yocto-3.0 and linux-yocto-dev.
->
-> The following changes since commit 4095bb597a7bcd647856aa35b5fb8637ed7ff975:
->    Tom Zanussi (1):
->          meta/common-pc-64: remove igb
->
-> are available in the git repository at:
->
->    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/bsp-cleanup3
->    http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/bsp-cleanup3
 
-These all look good to me, I've grabbed them and will push them
-out in the next day or so.
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
-Bruce
+---
 
->
-> Tom Zanussi (4):
->    meta/fishriver: use power/intel feature
->    meta/fri2: use power/intel feature
->    meta/jasperforest: use power/intel feature
->    meta/fishriver: enable hpet
->
->   meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc  |    2 ++
->   meta/cfg/kernel-cache/bsp/fri2/fri2.scc            |    1 +
->   .../kernel-cache/bsp/jasperforest/jasperforest.scc |    1 +
->   3 files changed, 4 insertions(+), 0 deletions(-)
->
+  all of the atom pc info is already in that file, all that was
+missing was the entry for it in the early list.
 
+diff --git a/README.hardware b/README.hardware
+index d4f7b47..462e6d1 100644
+--- a/README.hardware
++++ b/README.hardware
+@@ -39,6 +39,7 @@ Hardware Reference Boards
+
+ The following boards are supported by Poky's core layer:
+
++  * Intel Atom PC (atom-pc)
+   * Texas Instruments Beagleboard (beagleboard)
+   * Freescale MPC8315E-RDB (mpc8315e-rdb)
+   * Ubiquiti Networks RouterStation Pro (routerstationpro)
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
