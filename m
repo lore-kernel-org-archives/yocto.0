@@ -1,31 +1,34 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FF59E00307
-	for <yocto@yoctoproject.org>; Fri,  4 Nov 2011 15:01:08 -0700 (PDT)
-Received: from durham.keylevel.com ([109.224.134.115]:45151
-	helo=MacBook-Pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1RMRov-0000p4-Km
-	for yocto@yoctoproject.org; Fri, 04 Nov 2011 22:01:05 +0000
-Message-Id: <7C2B93F5-C4A1-4AB7-8FD9-61BCBC2F18B0@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: yocto@yoctoproject.org
-In-Reply-To: <CAMRMzCDszc7p0-dD0twCJ-hxMR6i4VVuF75g49g5cvv=8cGxtQ@mail.gmail.com>
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Fri, 4 Nov 2011 22:01:02 +0000
-References: <CAMRMzCDszc7p0-dD0twCJ-hxMR6i4VVuF75g49g5cvv=8cGxtQ@mail.gmail.com>
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Re: Change splash screen
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8B53E0136D
+	for <yocto@yoctoproject.org>; Sun,  6 Nov 2011 20:11:05 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 06 Nov 2011 20:11:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="71781300"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by orsmga001.jf.intel.com with ESMTP; 06 Nov 2011 20:11:02 -0800
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 7 Nov 2011 12:11:01 +0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 7 Nov 2011 12:11:01 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi; Mon, 7 Nov 2011
+	12:11:00 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 7 Nov 2011 12:10:58 +0800
+Thread-Topic: Yocto weekly bug trend charts -- WW45
+Thread-Index: AcydA0DjNzZpUWYuTgG4VZ8BdWoMWQ==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12DBA31117@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: Yocto weekly bug trend charts -- WW45
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,41 +40,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Nov 2011 22:01:09 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 07 Nov 2011 04:11:06 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 4 Nov 2011, at 21:44, Marc Ferland wrote:
+Hi all,
+	The overall open bug trend continue increasing last week. Open bug and WDD=
+ number increased to 165 and 841. Bug status of WW45 could be found on http=
+s://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
 
-> Hi,
->
-> What's the proper way to change the splash screen in Yocto? I have  
-> re-generated the psplash-poky-img.h file but I don't know where to  
-> put this file in my local layer. I guess this question also applies  
-> to all recipes containing references to local files in the SRC_URI.
->
-> I could replace the current file with the one I just generated but  
-> that doesn't seem right...!
-
-
-I did it by creating a .bbappend file in an overlay (which holds all  
-my changes):
-
---------
-
-overlay-directory/recipes/psplash/psplash_svn.bbappend:
-
-FILESEXTRAPATHS := "${THISDIR}/files"
-
----------
-
-overlay-directory/recipes/psplash/files/psplash-poky-img.h --- your  
-new image file
-
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
+Best Regards,
+Jiajun
 
