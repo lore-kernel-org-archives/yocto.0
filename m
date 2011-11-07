@@ -1,32 +1,59 @@
 Return-Path: <song.liu@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33393E013A0
-	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 09:58:24 -0800 (PST)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8D59E00307;
+	Mon,  7 Nov 2011 09:58:10 -0800 (PST)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 07 Nov 2011 09:58:23 -0800
+	by fmsmga101.fm.intel.com with ESMTP; 07 Nov 2011 09:58:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,471,1315206000"; d="scan'208";a="87115126"
+X-IronPort-AV: E=Sophos;i="4.69,471,1315206000"; d="scan'208";a="87115010"
 Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 07 Nov 2011 09:58:23 -0800
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	by fmsmga002.fm.intel.com with ESMTP; 07 Nov 2011 09:58:06 -0800
+Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
 	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 7 Nov 2011 09:58:20 -0800
+	(TLS) id 8.2.255.0; Mon, 7 Nov 2011 09:57:49 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.38]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.240]) with mapi id
-	14.01.0323.003; Mon, 7 Nov 2011 09:58:20 -0800
+	ORSMSX104.amr.corp.intel.com ([169.254.3.146]) with mapi id
+	14.01.0323.003; Mon, 7 Nov 2011 09:57:41 -0800
 From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+To: "Liu, Song" <song.liu@intel.com>, "'McCombe, Kevin'"
+	<kevin.mccombe@windriver.com>, "Wold, Saul" <saul.wold@intel.com>, "Zhang, 
+	Jessica" <jessica.zhang@intel.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Polk, Jeffrey'" <jeff.polk@windriver.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "Li, Susie" <susie.li@intel.com>, "Lock,
+	Joshua"
+	<joshua.lock@intel.com>, 'Bruce Ashfield' <bruce.ashfield@windriver.com>,
+	"Zanussi, Tom" <tom.zanussi@intel.com>, "Hart, Darren"
+	<darren.hart@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Stewart, David C"
+	<david.c.stewart@intel.com>, "'Lieu.Ta@windriver.com'"
+	<Lieu.Ta@windriver.com>, "'paul.anderson@windriver.com'"
+	<paul.anderson@windriver.com>, "Osier-mixon, Jeffrey"
+	<jeffrey.osier-mixon@intel.com>, "Dmytriyenko, Denys" <denys@ti.com>,
+	"Kooi, Koen" <k-kooi@ti.com>, "'yocto-ab@yoctoproject.org'"
+	<yocto-ab@yoctoproject.org>, "Erway, Tracey M" <tracey.m.erway@intel.com>, 
+	'Daniel Cauchy' <dcauchy@mvista.com>, "Wang,
+	Shane" <shane.wang@intel.com>, 
+	"'Kridner, Jason'" <jdk@ti.com>, "Yu, Ke" <ke.yu@intel.com>, "Rifenbark,
+	Scott M" <scott.m.rifenbark@intel.com>, "'Dixon, Brad'"
+	<Brad_Dixon@mentor.com>, 'Jeremy Puhlman' <jpuhlman@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"'shsift-yocto@yahoo.com'" <shsift-yocto@yahoo.com>
 Thread-Topic: Agenda: Yocto Technical Team Meeting - Tuesday, November 08,
 	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
-Thread-Index: AQHMnXbVOnnY377WEkuY+NCVTUWQqA==
-Date: Mon, 7 Nov 2011 17:58:19 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F7100F@ORSMSX101.amr.corp.intel.com>
+Thread-Index: AQHMnXa+/YuVFuz5U0S9RC6gw5mETg==
+Date: Mon, 7 Nov 2011 17:57:40 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F70FEC@ORSMSX101.amr.corp.intel.com>
 References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
+X-Mailman-Approved-At: Mon, 07 Nov 2011 10:49:49 -0800
+Cc: "'Ruff, Nithya'" <Nithya.Ruff@windriver.com>,
+	"'morvek@mvista.com'" <morvek@mvista.com>
 Subject: Agenda: Yocto Technical Team Meeting - Tuesday, November 08, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -39,11 +66,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2011 17:58:24 -0000
+X-List-Received-Date: Mon, 07 Nov 2011 17:58:11 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-
 
 Agenda:
 =A0
