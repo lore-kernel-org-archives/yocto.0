@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC4FDE0137C
-	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 07:56:26 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 07 Nov 2011 07:56:26 -0800
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD19EE0137D
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 07:56:28 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 07 Nov 2011 07:56:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="71956192"
+X-IronPort-AV: E=Sophos;i="4.69,470,1315206000"; d="scan'208";a="34085756"
 Received: from unknown (HELO localhost) ([10.255.15.253])
-	by orsmga001.jf.intel.com with ESMTP; 07 Nov 2011 07:56:26 -0800
+	by AZSMGA002.ch.intel.com with ESMTP; 07 Nov 2011 07:56:27 -0800
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com,
 	yocto@yoctoproject.org
-Date: Mon,  7 Nov 2011 09:56:54 -0600
-Message-Id: <1caee99a0b6defe8fad8a95a081589b525d8774a.1320637311.git.tom.zanussi@intel.com>
+Date: Mon,  7 Nov 2011 09:56:55 -0600
+Message-Id: <6135d1d9c7ad80f40c9d343d9749b8845cef9c62.1320637311.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <3cf438aafc41692895a077d01895cc7b9244479d.1320637311.git.tom.zanussi@intel.com>
 References: <3cf438aafc41692895a077d01895cc7b9244479d.1320637311.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1320637311.git.tom.zanussi@intel.com>
 References: <cover.1320637311.git.tom.zanussi@intel.com>
-Subject: [PATCH 3/4][KERNEL] meta/jasperforest: use power/intel feature
+Subject: [PATCH 4/4][KERNEL] meta/fishriver: enable hpet
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,29 +30,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2011 15:56:26 -0000
+X-List-Received-Date: Mon, 07 Nov 2011 15:56:29 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Have jasperforest use more power-friendly settings.
+The fishriver reference board has HPET hardware - enable it.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../kernel-cache/bsp/jasperforest/jasperforest.scc |    1 +
+ meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc |    1 +
  1 files changed, 1 insertions(+), 0 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc
-index defddec..d935534 100644
---- a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc
-+++ b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc
-@@ -3,6 +3,7 @@ kconf hardware jasperforest.cfg
+diff --git a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
+index b944a70..96d7778 100644
+--- a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
++++ b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
+@@ -7,6 +7,7 @@ include features/intel-e1xxxx/intel-e1xxxx.scc
+ include features/drm-emgd/drm-emgd.scc
+ include features/dmaengine/dmaengine.scc
  include features/serial/8250.scc
++include features/hpet/hpet.scc
+ include features/ericsson-3g/f5521gw.scc
  include features/framebuffer/vesafb.scc
  include cfg/usb-mass-storage.scc
-+include features/power/intel.scc
- 
- include features/logbuf/size-normal.scc
- 
 -- 
 1.7.0.4
 
