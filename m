@@ -1,60 +1,20 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8D59E00307;
-	Mon,  7 Nov 2011 09:58:10 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 07 Nov 2011 09:58:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,471,1315206000"; d="scan'208";a="87115010"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 07 Nov 2011 09:58:06 -0800
-Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 7 Nov 2011 09:57:49 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.38]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.146]) with mapi id
-	14.01.0323.003; Mon, 7 Nov 2011 09:57:41 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: "Liu, Song" <song.liu@intel.com>, "'McCombe, Kevin'"
-	<kevin.mccombe@windriver.com>, "Wold, Saul" <saul.wold@intel.com>, "Zhang, 
-	Jessica" <jessica.zhang@intel.com>, "'deVries, Alex'"
-	<Alex.deVries@windriver.com>, "'Polk, Jeffrey'" <jeff.polk@windriver.com>, 
-	"'Hatle, Mark'" <mark.hatle@windriver.com>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "Li, Susie" <susie.li@intel.com>, "Lock,
-	Joshua"
-	<joshua.lock@intel.com>, 'Bruce Ashfield' <bruce.ashfield@windriver.com>,
-	"Zanussi, Tom" <tom.zanussi@intel.com>, "Hart, Darren"
-	<darren.hart@intel.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Stewart, David C"
-	<david.c.stewart@intel.com>, "'Lieu.Ta@windriver.com'"
-	<Lieu.Ta@windriver.com>, "'paul.anderson@windriver.com'"
-	<paul.anderson@windriver.com>, "Osier-mixon, Jeffrey"
-	<jeffrey.osier-mixon@intel.com>, "Dmytriyenko, Denys" <denys@ti.com>,
-	"Kooi, Koen" <k-kooi@ti.com>, "'yocto-ab@yoctoproject.org'"
-	<yocto-ab@yoctoproject.org>, "Erway, Tracey M" <tracey.m.erway@intel.com>, 
-	'Daniel Cauchy' <dcauchy@mvista.com>, "Wang,
-	Shane" <shane.wang@intel.com>, 
-	"'Kridner, Jason'" <jdk@ti.com>, "Yu, Ke" <ke.yu@intel.com>, "Rifenbark,
-	Scott M" <scott.m.rifenbark@intel.com>, "'Dixon, Brad'"
-	<Brad_Dixon@mentor.com>, 'Jeremy Puhlman' <jpuhlman@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"'shsift-yocto@yahoo.com'" <shsift-yocto@yahoo.com>
-Thread-Topic: Agenda: Yocto Technical Team Meeting - Tuesday, November 08,
-	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
-Thread-Index: AQHMnXa+/YuVFuz5U0S9RC6gw5mETg==
-Date: Mon, 7 Nov 2011 17:57:40 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F70FEC@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08F93E00307
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 11:51:52 -0800 (PST)
+Received: from mail-qy0-f180.google.com ([209.85.216.180])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 07 Nov 2011 11:50:27 -0800
+Received: by qyl38 with SMTP id 38so6182953qyl.4
+	for <yocto@yoctoproject.org>; Mon, 07 Nov 2011 11:50:26 -0800 (PST)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 07 Nov 2011 10:49:49 -0800
-Cc: "'Ruff, Nithya'" <Nithya.Ruff@windriver.com>,
-	"'morvek@mvista.com'" <morvek@mvista.com>
-Subject: Agenda: Yocto Technical Team Meeting - Tuesday, November 08, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
+Received: by 10.50.104.137 with SMTP id ge9mr46404058igb.38.1320695426637;
+	Mon, 07 Nov 2011 11:50:26 -0800 (PST)
+Received: by 10.50.190.229 with HTTP; Mon, 7 Nov 2011 11:50:26 -0800 (PST)
+Date: Mon, 7 Nov 2011 11:50:26 -0800
+Message-ID: <CAPhnLPDNie6oGyNszyOC-H23U=jJrjf9zM2XsPF4Ciubvr2AbA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+Subject: [RFC] Milestone Pull Request Deadlines.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,140 +26,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2011 17:58:11 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 07 Nov 2011 19:51:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Agenda:
-=A0
-* Opens collection - 5 min (Song)
-* Yocto 1.0.2 and 1.1.1 point release update - 5 min (Josh)
-* Yocto 1.2 planning and M1 Status - 10 min (Song)
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status=20
-https://wiki.yoctoproject.org/wiki/Yocto_1.2_Schedule=20
-* Opens - 10 min
-* Action item Review - 5 min
-  1. Song will work with Jiajun to get the QA plan ready for point releases=
-.
-  2. Matthew will send out patch recommendations for Yocto 1.1.1 to the mai=
-ling list.
-  3. Saul will work with the team to complete the planning for the meta cor=
-e team.
-  4. Richard will review unsorted features and prioritize them.
-  5. Song will change 1.2 schedule and extend M1, M3, M4 by one week due to=
- no ELC in April next year.
-  6. Song to work with Shanghai team to break epic features into smaller on=
-es.
-* Weekly team sharing (20 min)
+All,
 
+Here is my tentative plan for the upcoming cut off times for 1.2
+milestone releases. Working backwards from when the buildout needs to
+be delivered to QA:
 
------Original Appointment-----
+Milestone Build Finished and Delivered to QA
+=====================================
+Portland, OR: Wed 6:00 PM
+Shanghai: Thu 10:00 AM
+New York: Wed 9:00 PM
+London: Thu 2:00 AM
 
-Conference details=20
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
-Participants:=20
-30
-Duration:=20
-60 minutes=20
-Participant passcode:=20
-49611427=20
-Dial-in number:=20
-1.972.995.7777=20
-US Toll Free number:=20
-1.877.561.6828=20
-BlackBerry users, click this link to join your conference as a chairperson:
-1.972.995.7777x67184230#
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x49611427#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
+Milestone Build Started.
+All Pull Requests Merged to Milestone Branch
+=====================================
+Portland, OR: Wed 7:00 AM
+Shanghai: Wed 11:00 PM
+New York: Wed 10:00 AM
+London: Wed 3:00 PM
 
-Local and Global Access Numbers=20
+Pull Requests Posted to the list
+=====================================
+Portland, OR: Sun Midnight
+Shanghai: Mon 4:00 PM
+New York: Mon 3:00 AM
+London: Mon 8:00 AM
 
+You'll notice that there is a slight change to the pull request cut
+off time. This is so we give RP time to do code review prior to merge
+into the release branch. It also allows sgw and I a few shots at MUT
+builds before the merge so we can be assured of a good build. The
+prior pain points tended to be around the amount of time needed for
+code review/test builds. This gives us an extra day and a half to
+ensure that we'll have a successful buildout for QA.
 
-Country=20
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277=20
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322=20
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877=20
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777=20
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777=20
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799=20
-From Kuala Lumpur dial 4264 3799=20
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177=20
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777=20
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998=20
-From Seoul dial 5606998=20
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363=20
-From Taipei dial 2241 1363=20
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001=20
-then enter 877 633 1123=20
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
+A full calendar update is in the works to incorporate these dates. Let
+me know if you have any issues/concerns/comments.
 
-Recurring conferences=20
-First scheduled conference:=20
-Tue Jun 28, 2011
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 22, 2012, 10:40 AM CDT
-
+--
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
