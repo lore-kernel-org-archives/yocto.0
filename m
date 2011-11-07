@@ -1,31 +1,19 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 831B3E012F3
-	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 02:22:44 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pA7AMWaD017594;
-	Mon, 7 Nov 2011 10:22:32 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 16639-06; Mon,  7 Nov 2011 10:22:28 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pA7AMOtW017588
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Mon, 7 Nov 2011 10:22:24 GMT
-Message-ID: <1320661346.23708.9.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Martin Jansa <martin.jansa@gmail.com>
-Date: Mon, 07 Nov 2011 10:22:26 +0000
-In-Reply-To: <20111104160759.GX9949@jama.jama.net>
-References: <alpine.DEB.2.02.1111041153170.6678@localhost6.localdomain6>
-	<20111104160759.GX9949@jama.jama.net>
-X-Mailer: Evolution 3.2.1- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: why do numerous .bb files set "PARALLEL_MAKE"?
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0390E01356
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 07:53:59 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 07 Nov 2011 07:53:59 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,470,1315206000"; d="scan'208";a="34084705"
+Received: from unknown (HELO localhost) ([10.255.15.253])
+	by AZSMGA002.ch.intel.com with ESMTP; 07 Nov 2011 07:53:58 -0800
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org
+Date: Mon,  7 Nov 2011 09:54:30 -0600
+Message-Id: <cover.1320680881.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/2] meta-intel: tune updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,41 +25,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2011 10:22:50 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 07 Nov 2011 15:54:00 -0000
 
-On Fri, 2011-11-04 at 17:07 +0100, Martin Jansa wrote:
-> On Fri, Nov 04, 2011 at 11:57:46AM -0400, Robert P. J. Day wrote:
-> > 
-> >   stumbled over this so i did a more thorough search:
-> > 
-> > $ grep -w PARALLEL_MAKE $(find . -name *.bb)
-> > ./meta/recipes-qt/qt-apps/qmmp_0.5.1.bb:PARALLEL_MAKE = ""
-> > ./meta/recipes-core/eggdbus/eggdbus_0.6.bb:PARALLEL_MAKE = ""
-> > ./meta/recipes-core/gettext/gettext_0.16.1.bb:PARALLEL_MAKE = ""
-> > ./meta/recipes-core/gettext/gettext_0.18.1.1.bb:#PARALLEL_MAKE = ""
-> > ./meta/recipes-bsp/pciutils/pciutils_3.1.7.bb:PARALLEL_MAKE = ""
-> > ./meta/recipes-extended/sat-solver/sat-solver_git.bb:PARALLEL_MAKE=""
-> > ./meta/recipes-extended/bash/bash_3.2.48.bb:PARALLEL_MAKE = ""
-> > ./meta/recipes-extended/tcp-wrappers/tcp-wrappers_7.6.bb:PARALLEL_MAKE = ""
-> > ./meta/recipes-extended/groff/groff_1.20.1.bb:PARALLEL_MAKE = ""
-> > ... more snipped ...
-> > 
-> >   why are individual recipes setting PARALLEL_MAKE to the empty
-> > string?  it's a *build* option, why would it have any relevance to
-> > individual .bb files?
-> 
-> because some projects fail to build in parallel and we don't have
-> manpower to fix them all?
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Just for reference we have actually fixed a lot of these in other
-places, particularly where they're on the critical path. The situation
-is a lot better than it ever used to be although obviously still room
-for improvement!
+This patchset makes sugarbay and jasperforest use the corei7 tune files.
 
-Cheers,
+The following changes since commit 63253211b4ca30c3a5fa2b4dd9a393247217816e:
+  Tom Zanussi (1):
+        meta-romley: change references to sugarbay in linux-yocto-rt_3.0.bbappend
 
-Richard
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-intel.git tzanussi/newtune-v0
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/newtune-v0
+
+Tom Zanussi (2):
+  meta-sugarbay: use corei7 tune file
+  meta-jasperforest: use corei7 tune file
+
+ meta-jasperforest/conf/machine/jasperforest.conf |    2 +-
+ meta-sugarbay/conf/machine/sugarbay.conf         |    3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
 
