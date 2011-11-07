@@ -1,28 +1,25 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF09BE00307
-	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 08:32:30 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 047DFE00307
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 09:21:03 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pA7GWRw0027368
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pA7HL2DQ006188
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 7 Nov 2011 08:32:27 -0800 (PST)
-Received: from Macintosh-5.local (172.25.36.232) by ALA-HCA.corp.ad.wrs.com
+	Mon, 7 Nov 2011 09:21:02 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Mon, 7 Nov 2011 08:32:27 -0800
-Message-ID: <4EB8081A.5020501@windriver.com>
-Date: Mon, 7 Nov 2011 10:32:26 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
+	Mon, 7 Nov 2011 09:21:02 -0800
+Message-ID: <4EB81378.6070008@windriver.com>
+Date: Mon, 7 Nov 2011 12:20:56 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
 MIME-Version: 1.0
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-References: <alpine.DEB.2.02.1111071058550.1246@localhost6.localdomain6>
-	<4EB8020E.6000005@windriver.com>
-	<alpine.DEB.2.02.1111071120080.4441@localhost6.localdomain6>
-In-Reply-To: <alpine.DEB.2.02.1111071120080.4441@localhost6.localdomain6>
+To: <tom.zanussi@intel.com>
+References: <cover.1320637311.git.tom.zanussi@intel.com>
+In-Reply-To: <cover.1320637311.git.tom.zanussi@intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: do all recipes really need LIC_FILES_CHKSUM?
+Subject: Re: [PATCH 0/4][KERNEL] some more bsp cleanups
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,50 +31,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2011 16:32:30 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
+X-List-Received-Date: Mon, 07 Nov 2011 17:21:04 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 11/7/11 10:24 AM, Robert P. J. Day wrote:
-> On Mon, 7 Nov 2011, Mark Hatle wrote:
-> 
->> On 11/7/11 10:01 AM, Robert P. J. Day wrote:
->>>
->>>   current poky ref manual seems pretty adamant about need for
->>> LIC_FILES_CHKSUM:
->>>
->>> "Note that this variable is mandatory for all recipes, unless the
->>> LICENSE variable is set to "CLOSED".
->>>
->>> but there's at least one counter-example,
->>> meta-demoapps/recipes-graphics/pong-clock/pong-clock_1.0.bb:
->>
->> Bug in the example.. it should be fixed.
+On 11-11-07 10:56 AM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi<tom.zanussi@intel.com>
+>
+> This just finishes up the previous set of meta-intel cleanups.  All
+> machines were build- and run-tested.
+>
+> Please pull into linux-yocto-3.0 and linux-yocto-dev.
+>
+> The following changes since commit 4095bb597a7bcd647856aa35b5fb8637ed7ff975:
+>    Tom Zanussi (1):
+>          meta/common-pc-64: remove igb
+>
+> are available in the git repository at:
+>
+>    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/bsp-cleanup3
+>    http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/bsp-cleanup3
 
-I'm not surprised that meta-demoapps is missing this stuff..  AFAIK the stuff
-here isn't run though the normal build/QA process.
+These all look good to me, I've grabbed them and will push them
+out in the next day or so.
 
-If this information isn't deprecated as Gary thought it might be... then it
-absolutely should be fixed.
+Bruce
 
->   oooookay, but it's really not hard to find more examples like that,
-> such as meta-demoapps/recipes-graphics/libxklavier/libxklavier_3.9.bb:
-> 
-> DESCRIPTION = "Utility library to make using XKB easier"
-> SECTION = "x11/libs"
-> DEPENDS = "iso-codes libxml2 glib-2.0 libxkbfile"
-> LICENSE = "LGPL"
-> PR = "r2"
-> 
-> SRC_URI = "${SOURCEFORGE_MIRROR}/gswitchit/libxklavier-${PV}.tar.bz2 \
->            file://pkgconfigfix.patch;patch=1"
-> 
-> inherit autotools
-> 
->   or "xournal" in the same directory, etc, etc.  i'm not trying to be
-> annoyingly pedantic (he lied), just pointing out the inconsistencies.
-> 
-> rday
-> 
+>
+> Tom Zanussi (4):
+>    meta/fishriver: use power/intel feature
+>    meta/fri2: use power/intel feature
+>    meta/jasperforest: use power/intel feature
+>    meta/fishriver: enable hpet
+>
+>   meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc  |    2 ++
+>   meta/cfg/kernel-cache/bsp/fri2/fri2.scc            |    1 +
+>   .../kernel-cache/bsp/jasperforest/jasperforest.scc |    1 +
+>   3 files changed, 4 insertions(+), 0 deletions(-)
+>
 
 
