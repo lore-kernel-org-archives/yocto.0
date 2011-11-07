@@ -1,20 +1,28 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08F93E00307
-	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 11:51:52 -0800 (PST)
-Received: from mail-qy0-f180.google.com ([209.85.216.180])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 07 Nov 2011 11:50:27 -0800
-Received: by qyl38 with SMTP id 38so6182953qyl.4
-	for <yocto@yoctoproject.org>; Mon, 07 Nov 2011 11:50:26 -0800 (PST)
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD6FDE00307
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 13:59:34 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by ywm14 with SMTP id 14so8025786ywm.35
+	for <yocto@yoctoproject.org>; Mon, 07 Nov 2011 13:59:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Pse8HuOx6R9ESMpQW1WSg4HP7BDMonvN7XRC7zih+i4=;
+	b=JDEgRLESOnCJ1Ng756HHVH1sScJP7uwzkMHMqDZ7Uwz2I0DcsA6LqkELCDJrqPd8nW
+	aRG9xvLl70iNvbkfG9fh8FsCvDLgxljhv+QSIuCRMIVLrD152yKK/jYURVpE/LU+MIc/
+	40KVXb/SOIEMR2rJj4MJljihkwyLiIs0eiJLQ=
 MIME-Version: 1.0
-Received: by 10.50.104.137 with SMTP id ge9mr46404058igb.38.1320695426637;
-	Mon, 07 Nov 2011 11:50:26 -0800 (PST)
-Received: by 10.50.190.229 with HTTP; Mon, 7 Nov 2011 11:50:26 -0800 (PST)
-Date: Mon, 7 Nov 2011 11:50:26 -0800
-Message-ID: <CAPhnLPDNie6oGyNszyOC-H23U=jJrjf9zM2XsPF4Ciubvr2AbA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Received: by 10.236.129.208 with SMTP id h56mr37256263yhi.74.1320703173887;
+	Mon, 07 Nov 2011 13:59:33 -0800 (PST)
+Received: by 10.236.109.134 with HTTP; Mon, 7 Nov 2011 13:59:32 -0800 (PST)
+Date: Mon, 7 Nov 2011 16:59:32 -0500
+Message-ID: <CANFv2Ene=ZfVOzs76fsW7XNRm7K_0DNDB=q90AHV5Zs3KxcjNw@mail.gmail.com>
+From: James Abernathy <jfabernathy@gmail.com>
 To: yocto@yoctoproject.org
-Subject: [RFC] Milestone Pull Request Deadlines.
+Subject: use case howto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,50 +34,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2011 19:51:53 -0000
+X-List-Received-Date: Mon, 07 Nov 2011 21:59:35 -0000
+Content-Type: multipart/alternative; boundary=20cf3010e95188888e04b12c2bfe
+
+--20cf3010e95188888e04b12c2bfe
 Content-Type: text/plain; charset=ISO-8859-1
 
-All,
+I approach embedded Linux from a path of taking a Distro like Ubuntu or
+Fedora and chopping it down to a working set of code that forms the final
+solution.  Obviously, not the same methology as Yocto.  With some success
+with the current methods, it's difficult to see the advantages of Yocto.
+I'm reading what I can find to get smarting on Yocto, but like most new
+concepts, you try to compare what you used to do with how to do it with the
+new concept.
 
-Here is my tentative plan for the upcoming cut off times for 1.2
-milestone releases. Working backwards from when the buildout needs to
-be delivered to QA:
+For example, if I use a distro, I can install packages really simply with
+yum or apt-get; update them the same way. If I start with a Yocto meta-???
+that's closest to my hardware solution, and get it working at a base level,
+how do I add things, like browsers, or other application?
 
-Milestone Build Finished and Delivered to QA
-=====================================
-Portland, OR: Wed 6:00 PM
-Shanghai: Thu 10:00 AM
-New York: Wed 9:00 PM
-London: Thu 2:00 AM
+Jim A
 
-Milestone Build Started.
-All Pull Requests Merged to Milestone Branch
-=====================================
-Portland, OR: Wed 7:00 AM
-Shanghai: Wed 11:00 PM
-New York: Wed 10:00 AM
-London: Wed 3:00 PM
+--20cf3010e95188888e04b12c2bfe
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Pull Requests Posted to the list
-=====================================
-Portland, OR: Sun Midnight
-Shanghai: Mon 4:00 PM
-New York: Mon 3:00 AM
-London: Mon 8:00 AM
+<div>I approach embedded Linux from a path of taking a Distro like Ubuntu o=
+r Fedora and chopping=A0it down to a working set of code that forms the fin=
+al solution.=A0 Obviously, not the same methology as Yocto.=A0 With some su=
+ccess with the current methods, it&#39;s difficult to see the advantages of=
+ Yocto.=A0 I&#39;m reading what I can find to get smarting on Yocto, but li=
+ke most new concepts, you try to compare what you used to do with how to do=
+ it with the new concept.</div>
 
-You'll notice that there is a slight change to the pull request cut
-off time. This is so we give RP time to do code review prior to merge
-into the release branch. It also allows sgw and I a few shots at MUT
-builds before the merge so we can be assured of a good build. The
-prior pain points tended to be around the amount of time needed for
-code review/test builds. This gives us an extra day and a half to
-ensure that we'll have a successful buildout for QA.
+<div>=A0</div>
+<div>For example, if I use a distro, I can install packages really simply w=
+ith yum or apt-get; update them the same way. If I start with a Yocto meta-=
+??? that&#39;s closest to my hardware solution, and get it working at a bas=
+e level, how do I add things, like browsers, or other application?</div>
 
-A full calendar update is in the works to incorporate these dates. Let
-me know if you have any issues/concerns/comments.
+<div>=A0</div>
+<div>Jim A</div>
 
---
-Elizabeth Flanagan
-Yocto Project
-Build and Release
-
+--20cf3010e95188888e04b12c2bfe--
