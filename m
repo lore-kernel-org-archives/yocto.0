@@ -1,25 +1,24 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39085E01390
-	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 09:40:03 -0800 (PST)
-Received: from mail-qy0-f173.google.com ([209.85.216.173])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 07 Nov 2011 09:40:02 -0800
-Received: by qyk30 with SMTP id 30so3494812qyk.4
-	for <yocto@yoctoproject.org>; Mon, 07 Nov 2011 09:40:02 -0800 (PST)
-Received: by 10.68.73.33 with SMTP id i1mr720791pbv.81.1320687601563;
-	Mon, 07 Nov 2011 09:40:01 -0800 (PST)
-Received: from [192.168.1.12] (c-98-246-160-155.hsd1.or.comcast.net.
-	[98.246.160.155])
-	by mx.google.com with ESMTPS id lt8sm37973253pbb.0.2011.11.07.09.40.00
-	(version=SSLv3 cipher=OTHER); Mon, 07 Nov 2011 09:40:00 -0800 (PST)
-Message-ID: <4EB817F9.4040704@intel.com>
-Date: Mon, 07 Nov 2011 09:40:09 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBF91E0138C
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 09:40:22 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 07 Nov 2011 09:40:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,471,1315206000"; d="scan'208";a="34124343"
+Received: from unknown (HELO helios.localnet) ([10.252.121.109])
+	by AZSMGA002.ch.intel.com with ESMTP; 07 Nov 2011 09:40:21 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Date: Mon, 07 Nov 2011 17:40:19 +0000
+Message-ID: <28713377.p70T57MiQS@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.7.2 (Linux/3.0.0-12-generic-pae; KDE/4.7.2; i686; ; )
+In-Reply-To: <alpine.DEB.2.02.1111071232470.20844@localhost6.localdomain6>
+References: <alpine.DEB.2.02.1111071232470.20844@localhost6.localdomain6>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: Including additional layers for doc audit?
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] Add Atom PC to list of core supported machines in README.hardware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,23 +30,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2011 17:40:03 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 07 Nov 2011 17:40:22 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Robert's emails about recipes in meta-demoapps missing LIC_FILES_CHKSUM 
-made me realize that for my documentation audit runs, I'm only using the 
-default layers Poky gives you when you source the build environment script.
+On Monday 07 November 2011 12:35:02 Robert P. J. Day wrote:
+> Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+> 
+> ---
+> 
+>   all of the atom pc info is already in that file, all that was
+> missing was the entry for it in the early list.
+> 
+> diff --git a/README.hardware b/README.hardware
+> index d4f7b47..462e6d1 100644
+> --- a/README.hardware
+> +++ b/README.hardware
+> @@ -39,6 +39,7 @@ Hardware Reference Boards
+> 
+>  The following boards are supported by Poky's core layer:
+> 
+> +  * Intel Atom PC (atom-pc)
+>    * Texas Instruments Beagleboard (beagleboard)
+>    * Freescale MPC8315E-RDB (mpc8315e-rdb)
+>    * Ubiquiti Networks RouterStation Pro (routerstationpro)
 
-Shall I change this to include all meta- layers we ship with? This would 
-add meta-demoapps and meta-skeleton (perhaps the latter is not 
-necessary). It will of course have an impact on the statistics I've been 
-generating.
+atom-pc is already listed in the section underneath ("consumer devices").
 
-Scott
+Cheers,
+Paul
 
 -- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
