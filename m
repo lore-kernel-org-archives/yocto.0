@@ -1,33 +1,33 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85167E00307
-	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 09:45:10 -0800 (PST)
-Received: from [128.224.252.2] (helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1RNTFs-0008RP-IZ; Mon, 07 Nov 2011 12:45:08 -0500
-Date: Mon, 7 Nov 2011 12:45:04 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost6.localdomain6
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-In-Reply-To: <28713377.p70T57MiQS@helios>
-Message-ID: <alpine.DEB.2.02.1111071244500.30638@localhost6.localdomain6>
-References: <alpine.DEB.2.02.1111071232470.20844@localhost6.localdomain6>
-	<28713377.p70T57MiQS@helios>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <song.liu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33393E013A0
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 09:58:24 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 07 Nov 2011 09:58:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,471,1315206000"; d="scan'208";a="87115126"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga002.fm.intel.com with ESMTP; 07 Nov 2011 09:58:23 -0800
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 7 Nov 2011 09:58:20 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.38]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.240]) with mapi id
+	14.01.0323.003; Mon, 7 Nov 2011 09:58:20 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Technical Team Meeting - Tuesday, November 08,
+	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
+Thread-Index: AQHMnXbVOnnY377WEkuY+NCVTUWQqA==
+Date: Mon, 7 Nov 2011 17:58:19 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F7100F@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] Add Atom PC to list of core supported machines in README.hardware
+Subject: Agenda: Yocto Technical Team Meeting - Tuesday, November 08, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,45 +39,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2011 17:45:10 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 07 Nov 2011 17:58:24 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 7 Nov 2011, Paul Eggleton wrote:
 
-> On Monday 07 November 2011 12:35:02 Robert P. J. Day wrote:
-> > Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
-> >
-> > ---
-> >
-> >   all of the atom pc info is already in that file, all that was
-> > missing was the entry for it in the early list.
-> >
-> > diff --git a/README.hardware b/README.hardware
-> > index d4f7b47..462e6d1 100644
-> > --- a/README.hardware
-> > +++ b/README.hardware
-> > @@ -39,6 +39,7 @@ Hardware Reference Boards
-> >
-> >  The following boards are supported by Poky's core layer:
-> >
-> > +  * Intel Atom PC (atom-pc)
-> >    * Texas Instruments Beagleboard (beagleboard)
-> >    * Freescale MPC8315E-RDB (mpc8315e-rdb)
-> >    * Ubiquiti Networks RouterStation Pro (routerstationpro)
->
-> atom-pc is already listed in the section underneath ("consumer devices").
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.0.2 and 1.1.1 point release update - 5 min (Josh)
+* Yocto 1.2 planning and M1 Status - 10 min (Song)
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status=20
+https://wiki.yoctoproject.org/wiki/Yocto_1.2_Schedule=20
+* Opens - 10 min
+* Action item Review - 5 min
+  1. Song will work with Jiajun to get the QA plan ready for point releases=
+.
+  2. Matthew will send out patch recommendations for Yocto 1.1.1 to the mai=
+ling list.
+  3. Saul will work with the team to complete the planning for the meta cor=
+e team.
+  4. Richard will review unsorted features and prioritize them.
+  5. Song will change 1.2 schedule and extend M1, M3, M4 by one week due to=
+ no ELC in April next year.
+  6. Song to work with Shanghai team to break epic features into smaller on=
+es.
+* Weekly team sharing (20 min)
 
-  oh, crap, you're right.  sorry.
 
-rday
+-----Original Appointment-----
 
--- 
+Conference details=20
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
+Participants:=20
+30
+Duration:=20
+60 minutes=20
+Participant passcode:=20
+49611427=20
+Dial-in number:=20
+1.972.995.7777=20
+US Toll Free number:=20
+1.877.561.6828=20
+BlackBerry users, click this link to join your conference as a chairperson:
+1.972.995.7777x67184230#
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x49611427#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+Local and Global Access Numbers=20
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+
+Country=20
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277=20
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322=20
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877=20
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777=20
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777=20
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799=20
+From Kuala Lumpur dial 4264 3799=20
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177=20
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777=20
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998=20
+From Seoul dial 5606998=20
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363=20
+From Taipei dial 2241 1363=20
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001=20
+then enter 877 633 1123=20
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences=20
+First scheduled conference:=20
+Tue Jun 28, 2011
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 22, 2012, 10:40 AM CDT
+
 
