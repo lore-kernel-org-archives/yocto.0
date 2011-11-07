@@ -1,24 +1,30 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD19EE0137D
-	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 07:56:28 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 07 Nov 2011 07:56:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,470,1315206000"; d="scan'208";a="34085756"
-Received: from unknown (HELO localhost) ([10.255.15.253])
-	by AZSMGA002.ch.intel.com with ESMTP; 07 Nov 2011 07:56:27 -0800
-From: tom.zanussi@intel.com
-To: bruce.ashfield@windriver.com,
-	yocto@yoctoproject.org
-Date: Mon,  7 Nov 2011 09:56:55 -0600
-Message-Id: <6135d1d9c7ad80f40c9d343d9749b8845cef9c62.1320637311.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <3cf438aafc41692895a077d01895cc7b9244479d.1320637311.git.tom.zanussi@intel.com>
-References: <3cf438aafc41692895a077d01895cc7b9244479d.1320637311.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1320637311.git.tom.zanussi@intel.com>
-References: <cover.1320637311.git.tom.zanussi@intel.com>
-Subject: [PATCH 4/4][KERNEL] meta/fishriver: enable hpet
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B03AE00307
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2011 08:01:20 -0800 (PST)
+Received: from [128.224.252.2] (helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1RNRdO-0000x9-W2
+	for yocto@yoctoproject.org; Mon, 07 Nov 2011 11:01:19 -0500
+Date: Mon, 7 Nov 2011 11:01:13 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost6.localdomain6
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1111071058550.1246@localhost6.localdomain6>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: do all recipes really need LIC_FILES_CHKSUM?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,30 +36,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2011 15:56:29 -0000
+X-List-Received-Date: Mon, 07 Nov 2011 16:01:21 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-From: Tom Zanussi <tom.zanussi@intel.com>
 
-The fishriver reference board has HPET hardware - enable it.
+  current poky ref manual seems pretty adamant about need for
+LIC_FILES_CHKSUM:
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc |    1 +
- 1 files changed, 1 insertions(+), 0 deletions(-)
+"Note that this variable is mandatory for all recipes, unless the
+LICENSE variable is set to "CLOSED".
 
-diff --git a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
-index b944a70..96d7778 100644
---- a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
-+++ b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
-@@ -7,6 +7,7 @@ include features/intel-e1xxxx/intel-e1xxxx.scc
- include features/drm-emgd/drm-emgd.scc
- include features/dmaengine/dmaengine.scc
- include features/serial/8250.scc
-+include features/hpet/hpet.scc
- include features/ericsson-3g/f5521gw.scc
- include features/framebuffer/vesafb.scc
- include cfg/usb-mass-storage.scc
+but there's at least one counter-example,
+meta-demoapps/recipes-graphics/pong-clock/pong-clock_1.0.bb:
+
+=====
+
+DESCRIPTION = "A clock combined with a game of pong"
+LICENSE = "GPLv2+"
+DEPENDS = "virtual/libx11 xdmcp xau"
+
+SRC_URI = "file://pong-clock-no-flicker.c"
+
+S = "${WORKDIR}"
+
+do_compile () {
+        ${CC} -o pong-clock pong-clock-no-flicker.c `pkg-config --cflags --libs x11 xau xdmcp`
+}
+
+do_install () {
+        install -d ${D}${bindir}
+        install -m 0755 pong-clock ${D}${bindir}
+}
+
+=====
+
+so what's the story here?
+
+rday
+
 -- 
-1.7.0.4
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
