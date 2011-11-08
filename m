@@ -1,36 +1,33 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 085C3E013B0
-	for <yocto@yoctoproject.org>; Tue,  8 Nov 2011 13:39:28 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 08 Nov 2011 13:39:27 -0800
+Return-Path: <song.liu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C39EE00305
+	for <yocto@yoctoproject.org>; Tue,  8 Nov 2011 15:17:58 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 08 Nov 2011 15:17:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,479,1315206000"; d="scan'208,217";a="82571885"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga001.fm.intel.com with ESMTP; 08 Nov 2011 13:39:27 -0800
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 8 Nov 2011 13:39:27 -0800
+X-IronPort-AV: E=Sophos;i="4.69,479,1315206000"; d="scan'208";a="72034634"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by azsmga001.ch.intel.com with ESMTP; 08 Nov 2011 15:17:57 -0800
+Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 8 Nov 2011 15:17:57 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.38]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.9]) with mapi id
-	14.01.0323.003; Tue, 8 Nov 2011 13:39:26 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>, Michael Tomer
-	<michael.tomer@kokofitclub.com>
-Thread-Topic: Incorrect link in Yocto ADT manual
-Thread-Index: AQHMnlxUdBW6EpClpEmbkwWSD9TvF5WjfJBwgAAEEGA=
-Date: Tue, 8 Nov 2011 21:39:26 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237916EA329F@ORSMSX101.amr.corp.intel.com>
-References: <A2EFAA8D-2D6C-4966-8BD9-5E0CCE8F4E79@kokofitclub.com>
-	<C6510F6D410BB64A8C15398EDC6B847C16EA8F1C@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C16EA8F1C@ORSMSX101.amr.corp.intel.com>
+	ORSMSX104.amr.corp.intel.com ([169.254.3.146]) with mapi id
+	14.01.0323.003; Tue, 8 Nov 2011 15:17:56 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Technical Team Meeting - Tuesday, November 08,
+	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
+Thread-Index: AQHMnmymiNMlhMSu+0mIkUA7kvzkxA==
+Date: Tue, 8 Nov 2011 23:17:56 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F7307E@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Incorrect link in Yocto ADT manual
+Subject: Re: Minutes: Yocto Technical Team Meeting - Tuesday, November 08, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,221 +39,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Nov 2011 21:39:28 -0000
+X-List-Received-Date: Tue, 08 Nov 2011 23:17:58 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EA329FORSMSX101amrcor_"
-
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EA329FORSMSX101amrcor_
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-This link has been fixed and the 1.1 version of the manual on the web refle=
-cts the change (http://www.yoctoproject.org/docs/1.1/adt-manual/adt-manual.=
-html).  I will request a backport into Edison for this change.
+Attendees:
+Jeff, Beth, Paul, Darren, Tom, Jessica, Joshua, Matthew, Sean, Saul, Richar=
+d, Dave, ScottR, Song
+=A0
+Agenda:
+=A0
+New Action Item List:
+1. Richard will review unsorted features and prioritize them.
 
-Thanks for finding this Michael.
+The current focus of the team:
+1. Development for 1.2 release, especially P1 features.
+2. Urgent need to help Richard and Saul work on high bugs, fix build issues=
+ and get a green build going.
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.0.2 and 1.1.1 point release update - 5 min (Josh)
+  . 1.0.2, Sent changes to the mailing list. 1759 is blocking the build: re=
+created, not an autobuilder issue, master works on that machine. Try to hav=
+e the build ready sometime this week.
+  . 1.1.1, Matthew proposed some changes. No progress so far.
+* Yocto 1.2 planning and M1 Status - 10 min (Song)
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status=20
+https://wiki.yoctoproject.org/wiki/Yocto_1.2_Schedule=20
+2. Wiki Pages Status page, Feature/Task Board
+3. Focus on 1-2 features/bugs at a time, don't start new ones until you com=
+mit the existing one. don't accumulate pull requests. Otherwise, we have to=
+ go back to week by week schedule and it may be a headache for all of us.
+4. Release Criteria Review
+1. Package update should be one of these
+2. Any new meta-intel BSPs, give Beth a headsup.
+3. Any no-meta-intel BSPs, give Beth a headsup. 3rd party release process, =
+Beth will send it out again.=20
+4. Performance should at least be the same.
+5. 100% for update status is the new target.
+5. Beth: some failures are occurring on the autobuilder, will look at it. A=
+uto email will be sent to mailing list about autobuilder failures, team mem=
+bers need to look at that proactively. Milestone pull request, pull request=
+ cut off time are in Google Calendar.=20
+6. High bug review: 7 high bugs.
+7. Rotating Chair to debug autobuilder failures: It's a good, may have impa=
+ct people's work. Song will think about the procedure.
+=A0
+* Opens - 10 min
+=A0
+* Action item Review - 5 min
+1. Song will work with Jiajun to get the QA plan ready for point releases. =
+(Done)
+2. Matthew will send out patch recommendations for Yocto 1.1.1 to the maili=
+ng list. (Done)
+3. Saul will work with the team to complete the planning for the meta core =
+team. (Done)
+4. Richard will review unsorted features and prioritize them. (WIP)
+5. Song will change 1.2 schedule and extend M1, M3, M4 by one week due to n=
+o ELC in April next year. (Done)
+6. Song to work with Shanghai team to break epic features into smaller ones=
+. (Done)
 
-Scott
+* Weekly team sharing (20 min): (Skipped due to the lack of time in this me=
+eting. Sorry about this.)
 
-From: Zhang, Jessica
-Sent: Tuesday, November 08, 2011 1:24 PM
-To: Michael Tomer
-Cc: Rifenbark, Scott M; yocto@yoctoproject.org
-Subject: RE: Incorrect link in Yocto ADT manual
 
-Hi Michael,
-
-Thanks for reporting the issue and we'll have it fixed.
-
-Thanks,
-Jessica
-
-From: Michael Tomer [mailto:michael.tomer@kokofitclub.com]
-Sent: Tuesday, November 08, 2011 1:21 PM
-To: Zhang, Jessica
-Subject: Incorrect link in Yocto ADT manual
-
-Hi Jessica, my name is Michael and I'm a software developer for Koko Fitclu=
-b.
-
-I just wanted to let you know that the Yocto ADT documentation appears to h=
-ave a bad link. The link is in section 2.1 with the text, "Setting Up the C=
-ross-Development Environment".
-
-The link should be "http://downloads.yoctoproject.org/releases/yocto/yocto-=
-1.1/adt_installer/" (with an underscore) instead of "http://downloads.yocto=
-project.org/releases/yocto/yocto-1.1/adt-installer/" (with a hyphen).
-
-Thanks!
-
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EA329FORSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple" style=3D"word-wrap: bre=
-ak-word;-webkit-nbsp-mode: space;-webkit-line-break: after-white-space">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">This link has been fixed =
-and the 1.1 version of the manual on the web reflects the change (<a href=
-=3D"http://www.yoctoproject.org/docs/1.1/adt-manual/adt-manual.html">http:/=
-/www.yoctoproject.org/docs/1.1/adt-manual/adt-manual.html</a>).&nbsp;
- I will request a backport into Edison for this change.<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks for finding this M=
-ichael.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Scott<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Zhang, J=
-essica
-<br>
-<b>Sent:</b> Tuesday, November 08, 2011 1:24 PM<br>
-<b>To:</b> Michael Tomer<br>
-<b>Cc:</b> Rifenbark, Scott M; yocto@yoctoproject.org<br>
-<b>Subject:</b> RE: Incorrect link in Yocto ADT manual<o:p></o:p></span></p=
->
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi Michael,<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks for reporting the =
-issue and we&#8217;ll have it fixed.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks,<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Jessica<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Michael =
-Tomer [mailto:michael.tomer@kokofitclub.com]
-<br>
-<b>Sent:</b> Tuesday, November 08, 2011 1:21 PM<br>
-<b>To:</b> Zhang, Jessica<br>
-<b>Subject:</b> Incorrect link in Yocto ADT manual<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Hi Jessica, my name is Michael and I'm a software de=
-veloper for Koko Fitclub.<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I just wanted to let you know that the Yocto ADT doc=
-umentation appears to have a bad link. The link is in section 2.1 with the =
-text, &quot;Setting Up the Cross-Development Environment&quot;.<o:p></o:p><=
-/p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">The link should be &quot;<a href=3D"http://downloads=
-.yoctoproject.org/releases/yocto/yocto-1.1/adt_installer/">http://downloads=
-.yoctoproject.org/releases/yocto/yocto-1.1/adt_installer/</a>&quot; (with a=
-n underscore) instead of &quot;<a href=3D"http://downloads.yoctoproject.org=
-/releases/yocto/yocto-1.1/adt-installer/">http://downloads.yoctoproject.org=
-/releases/yocto/yocto-1.1/adt-installer/</a>&quot;
- (with a hyphen).<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Thanks!<o:p></o:p></p>
-</div>
-</div>
-</body>
-</html>
-
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EA329FORSMSX101amrcor_--
