@@ -1,26 +1,25 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86DF5E013B0
-	for <yocto@yoctoproject.org>; Tue,  8 Nov 2011 11:26:52 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 08 Nov 2011 11:26:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,478,1315206000"; d="scan'208";a="82533965"
-Received: from unknown (HELO envy.home) ([10.255.12.17])
-	by fmsmga001.fm.intel.com with ESMTP; 08 Nov 2011 11:26:52 -0800
-Message-ID: <4EB9827B.5070009@linux.intel.com>
-Date: Tue, 08 Nov 2011 11:26:51 -0800
-From: Darren Hart <dvhart@linux.intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBC27E013B0
+	for <yocto@yoctoproject.org>; Tue,  8 Nov 2011 13:06:53 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pA8L6nIg006412
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 8 Nov 2011 13:06:49 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Tue, 8 Nov 2011 13:06:49 -0800
+Message-ID: <4EB999E3.7020600@windriver.com>
+Date: Tue, 8 Nov 2011 16:06:43 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
+	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
 MIME-Version: 1.0
-To: kishore.k.bodke@intel.com
+To: <kishore.k.bodke@intel.com>
 References: <cover.1320777520.git.kishore.k.bodke@intel.com>
-	<e92b154fb3f469c4497a6725a0397fb94c73327b.1320777520.git.kishore.k.bodke@intel.com>
-In-Reply-To: <e92b154fb3f469c4497a6725a0397fb94c73327b.1320777520.git.kishore.k.bodke@intel.com>
-X-Enigmail-Version: 1.3.2
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] [KERNEL]meta/romley: Add rt support
+In-Reply-To: <cover.1320777520.git.kishore.k.bodke@intel.com>
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
+Subject: Re: [PATCH 0/1] [KERNEL] Add rt support to meta branch for romley.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,43 +31,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Nov 2011 19:26:52 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 08 Nov 2011 21:06:54 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Thanks Kishore!
+On 11-11-08 02:22 PM, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke<kishore.k.bodke@intel.com>
+>
+> Hi All,
+>
+> This is the patch to support rt in the kernel meta branch for romley.
+>
+> Please pull into linux-yocto-3.0/meta and linux-yocto-dev/meta.
 
-On 11/08/2011 11:22 AM, kishore.k.bodke@intel.com wrote:
-> From: Kishore Bodke <kishore.k.bodke@intel.com>
-> 
-> Add rt support to the meta branch for romley.
-> 
-> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+pull into my local repos, I'll have an update for this later today
+or early tomorrow.
 
-Acked-by: Darren Hart <dvhart@linux.intel.com>
+Bruce
 
-> ---
->  .../kernel-cache/bsp/romley/romley-preempt-rt.scc  |    8 ++++++++
->  1 files changed, 8 insertions(+), 0 deletions(-)
->  create mode 100644 meta/cfg/kernel-cache/bsp/romley/romley-preempt-rt.scc
-> 
-> diff --git a/meta/cfg/kernel-cache/bsp/romley/romley-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/romley/romley-preempt-rt.scc
-> new file mode 100644
-> index 0000000..634d244
-> --- /dev/null
-> +++ b/meta/cfg/kernel-cache/bsp/romley/romley-preempt-rt.scc
-> @@ -0,0 +1,8 @@
-> +define KMACHINE romley
-> +define KTYPE preempt-rt
-> +define KARCH x86_64
-> +
-> +# no new branch required, re-use the ktypes/preempt-rt branch
-> +include ktypes/preempt-rt
-> +include bsp/common-pc-64/common-pc-64.scc
-> +include romley.scc
+>
+>
+> Thanks
+> Kishore.
+>
+> The following changes since commit 4095bb597a7bcd647856aa35b5fb8637ed7ff975:
+>
+>    meta/common-pc-64: remove igb (2011-11-02 16:23:13 -0400)
+>
+> are available in the git repository at:
+>    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib kishore/meta-romley
+>    http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=kishore/meta-romley
+>
+> Kishore Bodke (1):
+>    meta/romley: Add rt support
+>    Add rt support to the meta branch for romley.
+>
+>   .../kernel-cache/bsp/romley/romley-preempt-rt.scc  |    8 ++++++++
+>   1 files changed, 8 insertions(+), 0 deletions(-)
+>   create mode 100644 meta/cfg/kernel-cache/bsp/romley/romley-preempt-rt.scc
+>
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
