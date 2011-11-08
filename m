@@ -1,24 +1,20 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C208DE013AD
-	for <yocto@yoctoproject.org>; Tue,  8 Nov 2011 08:22:59 -0800 (PST)
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9BBFE013B0
+	for <yocto@yoctoproject.org>; Tue,  8 Nov 2011 11:23:20 -0800 (PST)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 08 Nov 2011 08:22:58 -0800
+	by azsmga101.ch.intel.com with ESMTP; 08 Nov 2011 11:23:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,477,1315206000"; d="scan'208";a="71886002"
-Received: from unknown (HELO helios.localnet) ([10.252.121.141])
-	by azsmga001.ch.intel.com with ESMTP; 08 Nov 2011 08:22:57 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Anders Darander <anders@chargestorm.se>
-Date: Tue, 08 Nov 2011 16:22:56 +0000
-Message-ID: <3423753.SGxEVnGZhz@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.7.2 (Linux/3.0.0-12-generic-pae; KDE/4.7.2; i686; ; )
-In-Reply-To: <20111107091851.GA3677@ad.chargestorm.se>
-References: <20111107091851.GA3677@ad.chargestorm.se>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [rpm] Problems with package upgrades
+X-IronPort-AV: E=Sophos;i="4.69,478,1315206000"; d="scan'208";a="71956957"
+Received: from rp614v4.sc.intel.com (HELO localhost) ([143.183.188.157])
+	by azsmga001.ch.intel.com with ESMTP; 08 Nov 2011 11:23:14 -0800
+From: kishore.k.bodke@intel.com
+To: bruce.ashfield@windriver.com, dvhart@linux.intel.com,
+	yocto@yoctoproject.org
+Date: Tue,  8 Nov 2011 11:22:54 -0800
+Message-Id: <cover.1320777520.git.kishore.k.bodke@intel.com>
+X-Mailer: git-send-email 1.7.5.4
+Subject: [PATCH 0/1] [KERNEL] Add rt support to meta branch for romley.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,47 +26,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Nov 2011 16:22:59 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 08 Nov 2011 19:23:21 -0000
 
-Hi Anders,
+From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-On Monday 07 November 2011 10:18:51 Anders Darander wrote:
-> We have found a problem with upgrading packages on our own image.
-> (Hopefully it'll show up to an error from our side).
-> 
-> After upgrading system packages, like busybox, we render our system
-> unusable... In the busybox case, all symlinks pointing to busybox has
-> been removed, and not reinstated during the post-install script.
-> 
-> The output from the rpm upgrade is shown below [2].
-> 
-> In order to get some feedback, I've reproduced the problem using a
-> sligthly modified core-image-minimal built for qemux86. In the image, we
-> increased the rootfs size, removed the removing of packaging data files
-> and added rpm (dropbear was added to be able to easily tranfser a test
-> rpm to the system). The patch is at the end of the mail [1].
-> 
-> Once this was done, the image was built, and after that, we bumped the
-> PR of busybox and rebuilt that package. We transfered the updated
-> busybox rpm to a running qemux86 instance, and tried to `rpm -Uvh
-> busybox-1.18.5-r2`. After running this, all links normally pointing to
-> /bin/busybox are non-existing, most certainly due to problems in the
-> post-install script.
+Hi All,
 
-I looked into this yesterday and there's definitely a problem. I have filed bug 
-#1760 [1] to track it and as described there should have a working fix very 
-soon. Thanks for the concise example that helped me to reproduce the issue 
-easily.
+This is the patch to support rt in the kernel meta branch for romley.
 
-Cheers,
-Paul
+Please pull into linux-yocto-3.0/meta and linux-yocto-dev/meta.
 
-[1] http://bugzilla.pokylinux.org/show_bug.cgi?id=1760
+
+Thanks
+Kishore.
+
+The following changes since commit 4095bb597a7bcd647856aa35b5fb8637ed7ff975:
+
+  meta/common-pc-64: remove igb (2011-11-02 16:23:13 -0400)
+
+are available in the git repository at:
+  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib kishore/meta-romley
+  http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=kishore/meta-romley
+
+Kishore Bodke (1):
+  meta/romley: Add rt support     
+  Add rt support to the meta branch for romley.
+
+ .../kernel-cache/bsp/romley/romley-preempt-rt.scc  |    8 ++++++++
+ 1 files changed, 8 insertions(+), 0 deletions(-)
+ create mode 100644 meta/cfg/kernel-cache/bsp/romley/romley-preempt-rt.scc
 
 -- 
+1.7.5.4
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
