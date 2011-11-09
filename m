@@ -1,24 +1,32 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 228D4E00309
-	for <yocto@yoctoproject.org>; Wed,  9 Nov 2011 06:41:43 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 09 Nov 2011 06:41:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,484,1315206000"; d="scan'208";a="72322617"
-Received: from unknown (HELO helios.localnet) ([10.252.121.129])
-	by azsmga001.ch.intel.com with ESMTP; 09 Nov 2011 06:41:27 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: James Abernathy <jfabernathy@gmail.com>
-Date: Wed, 09 Nov 2011 14:41:26 +0000
-Message-ID: <1589795.WumM70vV8d@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.7.2 (Linux/3.0.0-12-generic-pae; KDE/4.7.2; i686; ; )
-In-Reply-To: <CANFv2EkEsY92-+=Beqw_L68K0bT5HHSfy3fkw90xJgBre4wfHQ@mail.gmail.com>
-References: <CANFv2EkEsY92-+=Beqw_L68K0bT5HHSfy3fkw90xJgBre4wfHQ@mail.gmail.com>
+Return-Path: <tom.rini@gmail.com>
+Received: from mail-qy0-f169.google.com (mail-qy0-f169.google.com
+	[209.85.216.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82556E00307
+	for <yocto@yoctoproject.org>; Wed,  9 Nov 2011 08:00:53 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by qyk31 with SMTP id 31so6292895qyk.14
+	for <yocto@yoctoproject.org>; Wed, 09 Nov 2011 08:00:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=rlYl9JpOOxlSjuf2WbWWJ+/mpxmHYu9QW8/67u59/m4=;
+	b=N1y5zGBYOe/UfLU2UgHIbJiumzwiyVtssUo+IKB2cR6Dx/bKLj2unMa8Aut/eyBACd
+	+X+Njivs5vZox0QhohHm3PqUyP0vFkBLS+OIMvKpB0L7Aa966iRKqjIqHhnHzSMPRPqU
+	sh5c2FJj5hUqxVxbtfKgOH+BLsEEIzyi3H100=
 MIME-Version: 1.0
+Received: by 10.224.195.2 with SMTP id ea2mr2556040qab.70.1320854452702; Wed,
+	09 Nov 2011 08:00:52 -0800 (PST)
+Received: by 10.229.94.72 with HTTP; Wed, 9 Nov 2011 08:00:52 -0800 (PST)
+In-Reply-To: <CAPhnLPCKxivJQtQJ23=f4Y7GmPAoHZ2FncB0KT4GUu+t-qiUtA@mail.gmail.com>
+References: <CAPhnLPCKxivJQtQJ23=f4Y7GmPAoHZ2FncB0KT4GUu+t-qiUtA@mail.gmail.com>
+Date: Wed, 9 Nov 2011 09:00:52 -0700
+Message-ID: <CA+M6bXkgwL53FytKNc78UxAYd24tKM_s3P4t46Bc6Ncm82fMuA@mail.gmail.com>
+From: Tom Rini <tom.rini@gmail.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: README.hardware
+Subject: Re: New ways of keeping up with the status of the build.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,32 +38,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Nov 2011 14:41:43 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 09 Nov 2011 16:00:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wednesday 09 November 2011 09:34:40 James Abernathy wrote:
-> In the atom-pc platform section, the Hard Disk option mentions a bitbake
-> target of 'core-image-minimal-directdisk'.  This target is not listed as an
-> option for bitbake after 'source oe-init-build-env' and if you try to use
-> it, the bake will fail at some point due to invalid target.
-> 
-> Am I missing something or is this a documentation problem.
+On Tue, Nov 8, 2011 at 2:17 PM, Flanagan, Elizabeth
+<elizabeth.flanagan@intel.com> wrote:
+> I've implemented two new ways of keeping up with the yocto
+> autobuilder's build status (other than the obvious way of looking at
+> autobuilder.yoctoproject.org:8010 of course)
+>
+> First is through the yocto-builds@yoctoproject.org email list. If you
+> haven't joined it yet, please do. It's in testing phase right now and
+> only sends out the last 20 lines of the autobuilder log on a failure
+> and the URL to the steps that failed.
+> The second is through the #yoctobuildstatus irc channel. yocto-ab-bot
+> is the yocto-autobuilder IRC bot which announces build events to the
+> channel or via PM. I'm keeping it off of #yocto to keep it from
+> spamming the channel but it should be relatively low traffic. Again,
+> this is all still in testing phase, so things may change.
 
-This is a documentation problem - for 1.1 there are no -directdisk or -live 
-images; instead this is done by adding "live" to IMAGE_FSTYPES which is done 
-automatically if MACHINE is set to atom-pc, so all you need to do is build the 
-image you want (e.g. core-image-minimal) and you will also get a corresponding 
-live image.
-
-I noticed that we missed updating this document the other day and am putting 
-together a patch for README.hardware to fix it.
-
-Cheers,
-Paul
+There's also http://autobuilder.yoctoproject.org:8010/rss which I
+suspect is under-utilized by people.
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Tom
 
