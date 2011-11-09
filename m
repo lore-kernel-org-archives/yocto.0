@@ -1,28 +1,24 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-gx0-f176.google.com (mail-gx0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99886E00309
-	for <yocto@yoctoproject.org>; Wed,  9 Nov 2011 06:34:41 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by ggnc4 with SMTP id c4so1734018ggn.35
-	for <yocto@yoctoproject.org>; Wed, 09 Nov 2011 06:34:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=0+hZsmlUqg1M7FBJxZyXCtU7bGaRHzl8V/GcS7+Qw98=;
-	b=m/D8dEH3y+uMb2Lq9huDjhOn6F3bucZH3aafHPPdYER+kJhEif94B7+WaP4RinLhI3
-	9uGhdj3iix1uA7CEDdZ12GN7ZGnIxjuNqWMfWvDzYd34PGvcWs1j1FI9jySRtLQYSWXF
-	ZwgBKo7U1sFOJrBl9EU+UnPhu1pg6ErO6RViM=
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 228D4E00309
+	for <yocto@yoctoproject.org>; Wed,  9 Nov 2011 06:41:43 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 09 Nov 2011 06:41:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,484,1315206000"; d="scan'208";a="72322617"
+Received: from unknown (HELO helios.localnet) ([10.252.121.129])
+	by azsmga001.ch.intel.com with ESMTP; 09 Nov 2011 06:41:27 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: James Abernathy <jfabernathy@gmail.com>
+Date: Wed, 09 Nov 2011 14:41:26 +0000
+Message-ID: <1589795.WumM70vV8d@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.7.2 (Linux/3.0.0-12-generic-pae; KDE/4.7.2; i686; ; )
+In-Reply-To: <CANFv2EkEsY92-+=Beqw_L68K0bT5HHSfy3fkw90xJgBre4wfHQ@mail.gmail.com>
+References: <CANFv2EkEsY92-+=Beqw_L68K0bT5HHSfy3fkw90xJgBre4wfHQ@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.101.177.9 with SMTP id e9mr1252899anp.152.1320849280851; Wed,
-	09 Nov 2011 06:34:40 -0800 (PST)
-Received: by 10.236.157.138 with HTTP; Wed, 9 Nov 2011 06:34:40 -0800 (PST)
-Date: Wed, 9 Nov 2011 09:34:40 -0500
-Message-ID: <CANFv2EkEsY92-+=Beqw_L68K0bT5HHSfy3fkw90xJgBre4wfHQ@mail.gmail.com>
-From: James Abernathy <jfabernathy@gmail.com>
-To: yocto@yoctoproject.org
-Subject: README.hardware
+Cc: yocto@yoctoproject.org
+Subject: Re: README.hardware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,38 +30,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Nov 2011 14:34:42 -0000
-Content-Type: multipart/alternative; boundary=00163691fb3d2fdd2f04b14e3083
+X-List-Received-Date: Wed, 09 Nov 2011 14:41:43 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---00163691fb3d2fdd2f04b14e3083
-Content-Type: text/plain; charset=ISO-8859-1
+On Wednesday 09 November 2011 09:34:40 James Abernathy wrote:
+> In the atom-pc platform section, the Hard Disk option mentions a bitbake
+> target of 'core-image-minimal-directdisk'.  This target is not listed as an
+> option for bitbake after 'source oe-init-build-env' and if you try to use
+> it, the bake will fail at some point due to invalid target.
+> 
+> Am I missing something or is this a documentation problem.
 
-Question on the subject document:
+This is a documentation problem - for 1.1 there are no -directdisk or -live 
+images; instead this is done by adding "live" to IMAGE_FSTYPES which is done 
+automatically if MACHINE is set to atom-pc, so all you need to do is build the 
+image you want (e.g. core-image-minimal) and you will also get a corresponding 
+live image.
 
-In the atom-pc platform section, the Hard Disk option mentions a bitbake
-target of 'core-image-minimal-directdisk'.  This target is not listed as an
-option for bitbake after 'source oe-init-build-env' and if you try to use
-it, the bake will fail at some point due to invalid target.
+I noticed that we missed updating this document the other day and am putting 
+together a patch for README.hardware to fix it.
 
-Am I missing something or is this a documentation problem.
+Cheers,
+Paul
 
-Jim A
+-- 
 
---00163691fb3d2fdd2f04b14e3083
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Paul Eggleton
+Intel Open Source Technology Centre
 
-<div>Question on the subject document:</div>
-<div>=A0</div>
-<div>In the atom-pc platform section, the Hard Disk option mentions a bitba=
-ke target of &#39;core-image-minimal-directdisk&#39;.=A0 This target is not=
- listed as an option for bitbake after &#39;source oe-init-build-env&#39; a=
-nd if you try to use it, the bake will fail at some point due to invalid ta=
-rget.</div>
-
-<div>=A0</div>
-<div>Am I missing something or is this a documentation problem.</div>
-<div>=A0</div>
-<div>Jim A</div>
-
---00163691fb3d2fdd2f04b14e3083--
