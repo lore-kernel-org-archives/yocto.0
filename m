@@ -1,28 +1,28 @@
 Return-Path: <jfabernathy@gmail.com>
-Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03611E00307
-	for <yocto@yoctoproject.org>; Wed,  9 Nov 2011 06:27:50 -0800 (PST)
+Received: from mail-gx0-f176.google.com (mail-gx0-f176.google.com
+	[209.85.161.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99886E00309
+	for <yocto@yoctoproject.org>; Wed,  9 Nov 2011 06:34:41 -0800 (PST)
 Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
 	(1024-bit key; insecure key) header.i=@gmail.com;
 	x-dkim-adsp=none (insecure policy)
-Received: by ywm14 with SMTP id 14so3070763ywm.35
-	for <yocto@yoctoproject.org>; Wed, 09 Nov 2011 06:27:50 -0800 (PST)
+Received: by ggnc4 with SMTP id c4so1734018ggn.35
+	for <yocto@yoctoproject.org>; Wed, 09 Nov 2011 06:34:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
 	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=X5d17CCh+/nIrMONBy3Jl1bse7Opt6As/BpVQ34MTLQ=;
-	b=OpVbv5L17i1Ve/fzmA3W/c0EhcFPJpF+kWjT3oIgXW5A01aXz63//OhGXLcx7F3Bwf
-	8dTrH8bVAC87HkvTI1eWGkhXbk5xp8F6m2n3stEIFNcmA+urS1coVzRes6HsKda6HCbv
-	BvQsrTVzRL6W64DWqXN1jInhT3mWJzW77enJs=
+	bh=0+hZsmlUqg1M7FBJxZyXCtU7bGaRHzl8V/GcS7+Qw98=;
+	b=m/D8dEH3y+uMb2Lq9huDjhOn6F3bucZH3aafHPPdYER+kJhEif94B7+WaP4RinLhI3
+	9uGhdj3iix1uA7CEDdZ12GN7ZGnIxjuNqWMfWvDzYd34PGvcWs1j1FI9jySRtLQYSWXF
+	ZwgBKo7U1sFOJrBl9EU+UnPhu1pg6ErO6RViM=
 MIME-Version: 1.0
-Received: by 10.101.9.3 with SMTP id m3mr1286333ani.130.1320848776595; Wed, 09
-	Nov 2011 06:26:16 -0800 (PST)
-Received: by 10.236.157.138 with HTTP; Wed, 9 Nov 2011 06:26:16 -0800 (PST)
-Date: Wed, 9 Nov 2011 09:26:16 -0500
-Message-ID: <CANFv2Enj-gEHZi25b0CgwT=hnAuNaPdBFOYz7d4Jv07kAbU+Ow@mail.gmail.com>
+Received: by 10.101.177.9 with SMTP id e9mr1252899anp.152.1320849280851; Wed,
+	09 Nov 2011 06:34:40 -0800 (PST)
+Received: by 10.236.157.138 with HTTP; Wed, 9 Nov 2011 06:34:40 -0800 (PST)
+Date: Wed, 9 Nov 2011 09:34:40 -0500
+Message-ID: <CANFv2EkEsY92-+=Beqw_L68K0bT5HHSfy3fkw90xJgBre4wfHQ@mail.gmail.com>
 From: James Abernathy <jfabernathy@gmail.com>
 To: yocto@yoctoproject.org
-Subject: meta-crownbay/README
+Subject: README.hardware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,33 +34,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Nov 2011 14:27:51 -0000
-Content-Type: multipart/alternative; boundary=0016e6d260d221898d04b14e1259
+X-List-Received-Date: Wed, 09 Nov 2011 14:34:42 -0000
+Content-Type: multipart/alternative; boundary=00163691fb3d2fdd2f04b14e3083
 
---0016e6d260d221898d04b14e1259
+--00163691fb3d2fdd2f04b14e3083
 Content-Type: text/plain; charset=ISO-8859-1
 
-A couple of items I think need changed in the subject document.
+Question on the subject document:
 
-1. the command to copy the license needs recipe changed to recipe-graphics.
-2. both of the cp commands need some additional directory reference since
-meta-intel is not in the IEMGD_HEAD_Linux directoy anywhere.
+In the atom-pc platform section, the Hard Disk option mentions a bitbake
+target of 'core-image-minimal-directdisk'.  This target is not listed as an
+option for bitbake after 'source oe-init-build-env' and if you try to use
+it, the bake will fail at some point due to invalid target.
 
-Jim a
+Am I missing something or is this a documentation problem.
 
---0016e6d260d221898d04b14e1259
+Jim A
+
+--00163691fb3d2fdd2f04b14e3083
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div>A couple of=A0items I think need changed in the subject document.</div=
->
+<div>Question on the subject document:</div>
 <div>=A0</div>
-<div>1. the command to copy the license needs recipe changed to recipe-grap=
-hics.</div>
-<div>2. both of the cp commands need some additional directory=A0reference =
-since meta-intel is not in the IEMGD_HEAD_Linux directoy anywhere.</div>
-<div>=A0</div>
-<div>Jim a</div>
-<div>=A0</div>
+<div>In the atom-pc platform section, the Hard Disk option mentions a bitba=
+ke target of &#39;core-image-minimal-directdisk&#39;.=A0 This target is not=
+ listed as an option for bitbake after &#39;source oe-init-build-env&#39; a=
+nd if you try to use it, the bake will fail at some point due to invalid ta=
+rget.</div>
 
---0016e6d260d221898d04b14e1259--
+<div>=A0</div>
+<div>Am I missing something or is this a documentation problem.</div>
+<div>=A0</div>
+<div>Jim A</div>
+
+--00163691fb3d2fdd2f04b14e3083--
