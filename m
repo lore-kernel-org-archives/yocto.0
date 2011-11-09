@@ -1,27 +1,28 @@
-Return-Path: <anders@chargestorm.se>
-Received: from STOEXHUB01.domain01.net (STOEXHUB01.domain01.net
-	[83.145.59.142])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AFE4E013B5
-	for <yocto@yoctoproject.org>; Wed,  9 Nov 2011 01:03:09 -0800 (PST)
-Received: from ad.chargestorm.se (193.235.91.228) by STOEXHUB01.domain01.net
-	(10.12.10.1) with Microsoft SMTP Server (TLS) id 8.3.137.0;
-	Wed, 9 Nov 2011 10:03:07 +0100
-Date: Wed, 9 Nov 2011 10:03:07 +0100
-From: Anders Darander <anders@chargestorm.se>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <20111109090307.GA5579@ad.chargestorm.se>
-Mail-Followup-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <20111107091851.GA3677@ad.chargestorm.se>
-	<3423753.SGxEVnGZhz@helios>
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03611E00307
+	for <yocto@yoctoproject.org>; Wed,  9 Nov 2011 06:27:50 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by ywm14 with SMTP id 14so3070763ywm.35
+	for <yocto@yoctoproject.org>; Wed, 09 Nov 2011 06:27:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=X5d17CCh+/nIrMONBy3Jl1bse7Opt6As/BpVQ34MTLQ=;
+	b=OpVbv5L17i1Ve/fzmA3W/c0EhcFPJpF+kWjT3oIgXW5A01aXz63//OhGXLcx7F3Bwf
+	8dTrH8bVAC87HkvTI1eWGkhXbk5xp8F6m2n3stEIFNcmA+urS1coVzRes6HsKda6HCbv
+	BvQsrTVzRL6W64DWqXN1jInhT3mWJzW77enJs=
 MIME-Version: 1.0
-In-Reply-To: <3423753.SGxEVnGZhz@helios>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: Re: [rpm] Problems with package upgrades
+Received: by 10.101.9.3 with SMTP id m3mr1286333ani.130.1320848776595; Wed, 09
+	Nov 2011 06:26:16 -0800 (PST)
+Received: by 10.236.157.138 with HTTP; Wed, 9 Nov 2011 06:26:16 -0800 (PST)
+Date: Wed, 9 Nov 2011 09:26:16 -0500
+Message-ID: <CANFv2Enj-gEHZi25b0CgwT=hnAuNaPdBFOYz7d4Jv07kAbU+Ow@mail.gmail.com>
+From: James Abernathy <jfabernathy@gmail.com>
+To: yocto@yoctoproject.org
+Subject: meta-crownbay/README
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,48 +34,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Nov 2011 09:03:11 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 09 Nov 2011 14:27:51 -0000
+Content-Type: multipart/alternative; boundary=0016e6d260d221898d04b14e1259
 
-* Paul Eggleton <paul.eggleton@linux.intel.com> [111108 17:23]:
-> On Monday 07 November 2011 10:18:51 Anders Darander wrote:
-> > We have found a problem with upgrading packages on our own image.
-> > (Hopefully it'll show up to an error from our side).
+--0016e6d260d221898d04b14e1259
+Content-Type: text/plain; charset=ISO-8859-1
 
-> > After upgrading system packages, like busybox, we render our system
-> > unusable... In the busybox case, all symlinks pointing to busybox has
-> > been removed, and not reinstated during the post-install script.
+A couple of items I think need changed in the subject document.
 
-> > The output from the rpm upgrade is shown below [2].
+1. the command to copy the license needs recipe changed to recipe-graphics.
+2. both of the cp commands need some additional directory reference since
+meta-intel is not in the IEMGD_HEAD_Linux directoy anywhere.
 
-> > In order to get some feedback, I've reproduced the problem using a
-> > sligthly modified core-image-minimal built for qemux86. In the image, we
-> > increased the rootfs size, removed the removing of packaging data files
-> > and added rpm (dropbear was added to be able to easily tranfser a test
-> > rpm to the system). The patch is at the end of the mail [1].
+Jim a
 
-> > Once this was done, the image was built, and after that, we bumped the
-> > PR of busybox and rebuilt that package. We transfered the updated
-> > busybox rpm to a running qemux86 instance, and tried to `rpm -Uvh
-> > busybox-1.18.5-r2`. After running this, all links normally pointing to
-> > /bin/busybox are non-existing, most certainly due to problems in the
-> > post-install script.
+--0016e6d260d221898d04b14e1259
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-> I looked into this yesterday and there's definitely a problem. I have filed bug 
-> #1760 [1] to track it and as described there should have a working fix very 
-> soon. Thanks for the concise example that helped me to reproduce the issue 
-> easily.
+<div>A couple of=A0items I think need changed in the subject document.</div=
+>
+<div>=A0</div>
+<div>1. the command to copy the license needs recipe changed to recipe-grap=
+hics.</div>
+<div>2. both of the cp commands need some additional directory=A0reference =
+since meta-intel is not in the IEMGD_HEAD_Linux directoy anywhere.</div>
+<div>=A0</div>
+<div>Jim a</div>
+<div>=A0</div>
 
-Thanks, for looking into this.
-
-Sounds great that you are close to a working fix!
-
-Cheers,
-Anders
-
-> [1] http://bugzilla.pokylinux.org/show_bug.cgi?id=1760
--- 
-Anders Darander
-ChargeStorm AB / eStorm AB
-
+--0016e6d260d221898d04b14e1259--
