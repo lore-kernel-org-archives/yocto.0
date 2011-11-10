@@ -1,20 +1,28 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D4C5E00307
-	for <yocto@yoctoproject.org>; Wed,  9 Nov 2011 18:10:26 -0800 (PST)
-Received: from mail-gx0-f180.google.com ([209.85.161.180])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 09 Nov 2011 18:10:24 -0800
-Received: by ggnv5 with SMTP id v5so4765343ggn.25
-	for <yocto@yoctoproject.org>; Wed, 09 Nov 2011 18:10:23 -0800 (PST)
+Return-Path: <miketsukerman@gmail.com>
+Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FF3FE00307
+	for <yocto@yoctoproject.org>; Thu, 10 Nov 2011 04:05:45 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by vcbfk14 with SMTP id fk14so4460495vcb.35
+	for <yocto@yoctoproject.org>; Thu, 10 Nov 2011 04:05:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=CmNS7nhShz2g65KN2+/8/1UXAzPt2krKSY0NQLS2kr8=;
+	b=K+T0Q8x4CY8Yg/Z6F2jTFntrXXLp0RPgzE740tkaWPeLnoBc1l8MTYBzFE8RWtaSlz
+	+VZslzHvsH/g2fdXUiUdB7uE1mtzYc+yraUyAaLxZV8DzxW/wMBweeCZ4JcvtMey1miP
+	qSkTOb1LOUobAC4WpwwNHt5kuwni63mEqnt3A=
 MIME-Version: 1.0
-Received: by 10.50.173.74 with SMTP id bi10mr6137125igc.4.1320891021332; Wed,
-	09 Nov 2011 18:10:21 -0800 (PST)
-Received: by 10.50.40.194 with HTTP; Wed, 9 Nov 2011 18:10:21 -0800 (PST)
-Date: Wed, 9 Nov 2011 18:10:21 -0800
-Message-ID: <CAPhnLPB2Q1wu4yv6Sp6TfyAra1n45KAqhBgwdenhNoUtdvm6sQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Received: by 10.68.38.169 with SMTP id h9mr14087984pbk.113.1320926744775; Thu,
+	10 Nov 2011 04:05:44 -0800 (PST)
+Received: by 10.68.47.97 with HTTP; Thu, 10 Nov 2011 04:05:44 -0800 (PST)
+Date: Thu, 10 Nov 2011 15:05:44 +0300
+Message-ID: <CALs2vtdqmVTy9MXJSfrBoFPXkLmVuJ8=SmY-nYTce4UbOxHd7Q@mail.gmail.com>
+From: Mike Tsukerman <miketsukerman@gmail.com>
 To: yocto@yoctoproject.org
-Subject: Core Team Meeting Minutes: Nov 9th 2011
+Subject: setscene package versions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,53 +34,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Nov 2011 02:10:26 -0000
+X-List-Received-Date: Thu, 10 Nov 2011 12:05:46 -0000
+Content-Type: multipart/alternative; boundary=bcaec520f1bd658d2b04b160392b
+
+--bcaec520f1bd658d2b04b160392b
 Content-Type: text/plain; charset=ISO-8859-1
 
-Core Team Meeting:
-Attending: Shane, Dongxiao, Edwin, Dexuan, Ke, Lianhao, Robert,
-ScottG, Saul, Beth, Jaijun
-Scribe: Beth
+Hello,
 
-1.0.2 Status
------------------
-We're attempting to get a clean 1.0.2 build, however this weekend we
-ran into a bitbake db locking issue and we're currently running into
-some libtool-native issues. (possibly undefined macro:
-AM_INIT_AUTOMAKE)
-Josh and Beth have been looking at this to try to get out a good
-1.0.2. Beth has been able to replicate libtool-native issue on the
-autobuilder and will spend some time on it tonight.
-
-Autobuilder Update
----------------------------
-- We have new ways of viewing autobuilder status
-- RSS feed: http://autobuilder.yoctoproject.org:8010/rss
-- Freenode IRC bot: yocto-ab-bot@#yoctobuildstatus
-- maillist: yocto-builds@yoctoproject.org
-
-1.2 Status
----------------
-- Please review the Yocto Project Schedule @
-https://wiki.yoctoproject.org/wiki/Yocto_1.2_Schedule
-- Please update Song and Saul on status of activities by Monday AM PST
-- We will be using bugzilla as the primary place to update status of features
-- Put as much design info into bugzilla as appropriate (link to wiki,
-if it's too large, otherwise, place it in the bug report)
-
-ARs:
--------
-- All: Please subscribe to build status updates in one of the ways
-provided above and spend more time identifying/fixing failures the AB
-identifies
-- Dongxiao: Nov 30 meeting: Multilib demo
-- When we have time: Try samba profiling on windows machine.
-- When we have time: Do various profiling eliminating samba or NFS to
-see where NAS performance issue lies (Samba or NFS?)
-- Song: Legal review of 'Building NAS with Yocto'
+How can i change package version in setscene tasks?
+In usual tasks PREFERRED_VERSION_pn working well,
+but not affects setscene tasks
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Best regards, Mike Tsukerman
 
+jabber: miketsukerman@gmail.com
+jabber: warzon@jabnet.org
+skype: w_a_r_z_o_n
+
+--bcaec520f1bd658d2b04b160392b
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hello,<div><br></div><div>How can i change package version in setscene task=
+s?=A0</div><div>In usual tasks PREFERRED_VERSION_pn working well,</div><div=
+>but not affects setscene tasks</div><div><div><br></div>-- <br><font style=
+=3D"color:rgb(51, 51, 51)" size=3D"2">Best regards, Mike Tsukerman<br>
+<br><span style=3D"color:rgb(0, 0, 0)">jabber</span>: <a href=3D"mailto:mik=
+etsukerman@gmail.com" target=3D"_blank">miketsukerman@gmail.com</a><br><spa=
+n style=3D"color:rgb(0, 0, 0)">jabber</span>: <a href=3D"mailto:warzon@jabn=
+et.org" target=3D"_blank">warzon@jabnet.org</a><br>
+<span style=3D"color:rgb(0, 0, 0)">skype</span>: w_a_r_z_o_n</font><br><br>
+</div>
+
+--bcaec520f1bd658d2b04b160392b--
