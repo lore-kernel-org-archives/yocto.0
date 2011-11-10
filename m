@@ -1,28 +1,21 @@
-Return-Path: <marc.ferland@gmail.com>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0636DE0059C
-	for <yocto@yoctoproject.org>; Thu, 10 Nov 2011 12:48:16 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by yenq10 with SMTP id q10so864097yen.35
-	for <yocto@yoctoproject.org>; Thu, 10 Nov 2011 12:48:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=70O4IpHX3iwAOCS8qgxCr2DBppk1hVLDl1knQYOUfsw=;
-	b=YgJtUsjlVNIVpEzoXslKrgsyPSOimxLRIEo4OHktcMMBI09DGGrR7+V4df2eNL6TWe
-	GQILj+IXG+Ud+5shxiSF5Z8c3Zy12rr7R6Y2YQzCT8oVI7X0xc0iUbnDVvsI7oT1yf97
-	uTxKkISXJoXcGzSTGkGthmXdEQuUBiwhFKIO4=
+Return-Path: <Michael_E_Brown@Dell.com>
+Received: from ausxipps301.us.dell.com (ausxipps301.us.dell.com
+	[143.166.148.223])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FAB4E0059C
+	for <yocto@yoctoproject.org>; Thu, 10 Nov 2011 14:36:47 -0800 (PST)
+X-Loopcount0: from 10.175.216.251
+From: <Michael_E_Brown@Dell.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 10 Nov 2011 16:36:45 -0600
+Thread-Topic: SH4 build failure fix
+Thread-Index: AQHMn/k5DNKfuvujVk+xPJByWnze6g==
+Message-ID: <DB6E482E89290547898851B8CC9D81108D109394@AUSX7MCPS302.AMER.DELL.COM>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-Received: by 10.50.242.1 with SMTP id wm1mr10240534igc.30.1320958095743; Thu,
-	10 Nov 2011 12:48:15 -0800 (PST)
-Received: by 10.50.34.166 with HTTP; Thu, 10 Nov 2011 12:48:15 -0800 (PST)
-Date: Thu, 10 Nov 2011 15:48:15 -0500
-Message-ID: <CAMRMzCC+m_LrpexrghHb49JWD5bVL3-89O8bhh0=hwLpWi3ffA@mail.gmail.com>
-From: Marc Ferland <marc.ferland@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Yocto reference manual: error in given example
+Subject: SH4 build failure fix
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,32 +27,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Nov 2011 20:48:17 -0000
-Content-Type: multipart/alternative; boundary=f46d044795050f5a0b04b16786b0
+X-List-Received-Date: Thu, 10 Nov 2011 22:36:48 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---f46d044795050f5a0b04b16786b0
-Content-Type: text/plain; charset=UTF-8
 
-Hi,
+I'm presently working on porting the build environment for three existing e=
+mbedded projects over to use yocto. Unfortunately, the project which has to=
+ go first is based on an SH4 chip, which isn't on the officially supported =
+yocto architecture list. I gave the compile a go, and ran into a build erro=
+r in gcc-cross-intermediate:
 
-The example given in section 3.2.2 is missing a:
+build-edison-sh4/tmp/sysroots/i686-linux/usr/bin/sh4-poky-linux/sh4-poky-li=
+nux-ld: cannot find crti.o: No such file or directory
+build-edison-sh4/tmp/sysroots/i686-linux/usr/bin/sh4-poky-linux/sh4-poky-li=
+nux-ld: cannot find -lc
+build-edison-sh4/tmp/sysroots/i686-linux/usr/bin/sh4-poky-linux/sh4-poky-li=
+nux-ld: cannot find crtn.o: No such file or directory
 
-inherit task
+Trying to figure out the source of this build error, I found that base open=
+embedded does compile this package successfully, so I started focusing on t=
+he differences. I narrowed the build failure down to this line in gcc-cross=
+4.inc, which is present in openembedded, but absent in yocto/poky:
+    gcc-cross4.inc
+    EXTRA_OECONF_append_sh4 =3D " --with-multilib-list=3D --enable-incomple=
+te-targets "
 
-instruction.
+After I added this one line, I was able to sucessfully build a base yocto i=
+mage for qemu sh4. Is it possible to get this added to the upstream yocto b=
+uild?
+--
+Michael Brown
 
-Could also have been ALLOW_EMPTY = "1".
-
-I realized this after a couple hours of debugging!
-
-Regards,
-
-Marc
-
---f46d044795050f5a0b04b16786b0
-Content-Type: text/html; charset=UTF-8
-
-Hi,<br><br>The example given in section 3.2.2 is missing a:<br><br>inherit task<br><br>instruction.<br><br>Could also have been ALLOW_EMPTY = &quot;1&quot;.<br><br>I realized this after a couple hours of debugging!<br><br>
-Regards, <br><br>Marc<br>
-
---f46d044795050f5a0b04b16786b0--
