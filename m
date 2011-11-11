@@ -1,33 +1,35 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55557E0030C
-	for <yocto@yoctoproject.org>; Fri, 11 Nov 2011 13:50:58 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 11 Nov 2011 13:50:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="74286065"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga001.jf.intel.com with ESMTP; 11 Nov 2011 13:50:57 -0800
-Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 11 Nov 2011 13:50:57 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.228]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.243]) with mapi id
-	14.01.0355.002; Fri, 11 Nov 2011 13:50:57 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Technical Team Meeting - Tuesday, November 15,
-	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
-Thread-Index: AQHMoLv+q+l66YMhXkWxWPjCwNyIbg==
-Date: Fri, 11 Nov 2011 21:50:56 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F8D288@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <wmills@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B345BE0030C
+	for <yocto@yoctoproject.org>; Fri, 11 Nov 2011 14:26:18 -0800 (PST)
+Received: from dlep36.itg.ti.com ([157.170.170.91])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id pABMQD0r030261
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Fri, 11 Nov 2011 16:26:14 -0600
+Received: from dlep26.itg.ti.com (smtp-le.itg.ti.com [157.170.170.27])
+	by dlep36.itg.ti.com (8.13.8/8.13.8) with ESMTP id pABMQDrr024477;
+	Fri, 11 Nov 2011 16:26:13 -0600 (CST)
+Received: from DLEE74.ent.ti.com (localhost [127.0.0.1])
+	by dlep26.itg.ti.com (8.13.8/8.13.8) with ESMTP id pABMQDBf020222;
+	Fri, 11 Nov 2011 16:26:13 -0600 (CST)
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
+	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
+	Fri, 11 Nov 2011 16:26:13 -0600
+Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
+	[158.218.100.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	pABMQDuP008921;	Fri, 11 Nov 2011 16:26:13 -0600
+Message-ID: <4EBDA104.3040007@ti.com>
+Date: Fri, 11 Nov 2011 17:26:12 -0500
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11
 MIME-Version: 1.0
-Subject: Agenda: Yocto Technical Team Meeting - Tuesday, November 15, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+References: <alpine.DEB.2.02.1110301030050.32341@localhost6.localdomain6>	<41DEA4B02DBDEF40A0F3B6D0DDB1237916E9FEFB@ORSMSX101.amr.corp.intel.com>
+	<alpine.DEB.2.02.1110311144500.7448@localhost6.localdomain6>
+In-Reply-To: <alpine.DEB.2.02.1110311144500.7448@localhost6.localdomain6>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: couple questions about cleaning up the Quick Start Guide
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,127 +41,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Nov 2011 21:50:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-* Opens collection - 5 min (Song)
-* Yocto 1.0.2 and 1.1.1 point release update - 5 min (Josh)
-* Yocto 1.2 M1 Status (features development and bug fixing) - 10 min (Song)
-* Opens - 10 min
-* Action item Review - 5 min
-  1. Richard will review unsorted features and prioritize them. (WIP)
-* Weekly team sharing (20 min)
+X-List-Received-Date: Fri, 11 Nov 2011 22:26:18 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
------Original Appointment-----
 
+On 10/31/2011 11:47 AM, Robert P. J. Day wrote:
+> On Mon, 31 Oct 2011, Rifenbark, Scott M wrote:
+>
+>> Robert,
+>>
+>> Thanks for the stuff and the look here.  Regarding your first point
+>> - I don't have a problem using the real link over the redirect.
+>> The only things that come to mind are if they work why change them?
+>> But, if the community wants the downloads.yoctoproject.org/releases
+>> URL in there I can certainly go in and make changes to master.
+>
+>    yes, that's a judgment call, someone else can make that decision.
+> obviously, not a critical change.
+>
 
-Conference details=20
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
-Participants:=20
-30
-Duration:=20
-60 minutes=20
-Participant passcode:=20
-49611427=20
-Dial-in number:=20
-1.972.995.7777=20
-US Toll Free number:=20
-1.877.561.6828=20
-BlackBerry users, click this link to join your conference as a chairperson:
-1.972.995.7777x67184230#
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x49611427#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
+I think someone tried to "fix" the quick start based on Robert's input 
+and it got broken instead.
 
-Local and Global Access Numbers=20
+The quick start I downloaded on Oct 21 was fine and said:
 
+$ wget http://www.yoctoproject.org/downloads/poky/poky-edison-6.0.tar.bz2
 
-Country=20
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277=20
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322=20
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877=20
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777=20
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777=20
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799=20
-From Kuala Lumpur dial 4264 3799=20
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177=20
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777=20
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998=20
-From Seoul dial 5606998=20
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363=20
-From Taipei dial 2241 1363=20
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001=20
-then enter 877 633 1123=20
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
+The one I get today from
+http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html 
 
-Recurring conferences=20
-First scheduled conference:=20
-Tue Jun 28, 2011
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 22, 2012, 10:40 AM CDT
+does not work and says:
 
+$ wget 
+http://www.downloads.yoctoproject.org/releases/yocto/yocto-1.1/poky-edison-6.0.tar.bz2
+
+If you lose the "www." it should work.
 
