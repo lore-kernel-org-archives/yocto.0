@@ -1,25 +1,37 @@
-Return-Path: <Michael_E_Brown@Dell.com>
-Received: from ausxipps301.us.dell.com (ausxipps301.us.dell.com
-	[143.166.148.223])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D664E0059F
-	for <yocto@yoctoproject.org>; Thu, 10 Nov 2011 19:20:49 -0800 (PST)
-X-Loopcount0: from 10.9.160.253
-From: Michael E Brown <Michael_E_Brown@Dell.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Date: Thu, 10 Nov 2011 21:20:47 -0600
-In-Reply-To: <CAEsOVNcTkNVbXB6UtnJC32o=pa3XKW6ftTKEmmLUFB7sS5bZcg@mail.gmail.com>
-References: <DB6E482E89290547898851B8CC9D81108D109394@AUSX7MCPS302.AMER.DELL.COM>
-	<CAEsOVNcTkNVbXB6UtnJC32o=pa3XKW6ftTKEmmLUFB7sS5bZcg@mail.gmail.com>
-Organization: Dell, Inc
-X-Mailer: Evolution 3.0.3 (3.0.3-1.fc15) 
-Message-ID: <1320981647.23774.1.camel@phenom.localdomain>
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: SH4 build failure fix
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72AB5E0059F
+	for <yocto@yoctoproject.org>; Thu, 10 Nov 2011 20:24:12 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 10 Nov 2011 20:24:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,492,1315206000"; d="scan'208";a="83834086"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga001.fm.intel.com with ESMTP; 10 Nov 2011 20:24:11 -0800
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 10 Nov 2011 20:24:11 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.228]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.149]) with mapi id
+	14.01.0355.002; Thu, 10 Nov 2011 20:24:11 -0800
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: autif khan <autif.mlist@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Trying to cross compile Mono - glib link error
+Thread-Index: AQHMoBvW5JPBSwUPB0CyAVqH9VykV5WnEXZw
+Date: Fri, 11 Nov 2011 04:24:10 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C16EB4658@ORSMSX101.amr.corp.intel.com>
+References: <CADzUK1KLXD17HGgmXvuFkfYWwSzA=tj5O+XK-LfyQsSkbKZhNQ@mail.gmail.com>
+In-Reply-To: <CADzUK1KLXD17HGgmXvuFkfYWwSzA=tj5O+XK-LfyQsSkbKZhNQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
+MIME-Version: 1.0
+Subject: Re: Trying to cross compile Mono - glib link error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Michael_E_Brown@Dell.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -28,81 +40,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Nov 2011 03:20:49 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 11 Nov 2011 04:24:12 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2011-11-10 at 16:50 -0600, McClintock Matthew-B29882 wrote:
-> On Thu, Nov 10, 2011 at 4:36 PM,  <Michael_E_Brown@dell.com> wrote:
-> > I'm presently working on porting the build environment for three existing embedded projects over to use yocto. Unfortunately, the project which has to go first is based on an SH4 chip, which isn't on the officially supported yocto architecture list. I gave the compile a go, and ran into a build error in gcc-cross-intermediate:
-> >
-> > build-edison-sh4/tmp/sysroots/i686-linux/usr/bin/sh4-poky-linux/sh4-poky-linux-ld: cannot find crti.o: No such file or directory
-> > build-edison-sh4/tmp/sysroots/i686-linux/usr/bin/sh4-poky-linux/sh4-poky-linux-ld: cannot find -lc
-> > build-edison-sh4/tmp/sysroots/i686-linux/usr/bin/sh4-poky-linux/sh4-poky-linux-ld: cannot find crtn.o: No such file or directory
-> >
-> > Trying to figure out the source of this build error, I found that base openembedded does compile this package successfully, so I started focusing on the differences. I narrowed the build failure down to this line in gcc-cross4.inc, which is present in openembedded, but absent in yocto/poky:
-> >    gcc-cross4.inc
-> >    EXTRA_OECONF_append_sh4 = " --with-multilib-list= --enable-incomplete-targets "
-> >
-> > After I added this one line, I was able to sucessfully build a base yocto image for qemu sh4. Is it possible to get this added to the upstream yocto build?
-> 
-> Can you find the offending commit with 'git blame'?
+Hi Autif,
 
-Nope. It's been exactly that way since it was first checked in to poky,
-as far as I can tell. All of the commits referencing this file are
-missing this line.
+It seems the libgmodule-2.0.la is missing from the 1.1 tarball sysroot but =
+I've checked it does exist under the sysroot that extracted from the core-i=
+mage-sato-sdk image.  So, you have to do the following steps:
+1. bitbake core-image-sato-sdk
+2. source the environment-setup script under /opt/poky/1.1
+3. Run runqemu-extract-sdk against the built out image file, it should be u=
+nder your .../build/tmp/deploy/image/core-image-sato-sdk.tar.bz2 and the di=
+rectory you want the sysroot to be extracted to e.g. $HOME/qemux86
+4. change your sysroot setting to point to the newly created sysroot direct=
+ory.
 
-Additionally, upstream openembedded has one additional
-"sh4-multilib.patch" that isnt carried in poky. I dont know if I need
-this, actually. It builds without it.
+Or, you can following the ADT manual and using the part that use adt-instal=
+ler to setup your cross development environment.
 
-$  git log --follow  ./gcc-cross4.inc 
-commit 29d6678fd546377459ef75cf54abeef5b969b5cf
-Author: Richard Purdie <rpurdie@linux.intel.com>
-Date:   Fri Aug 27 15:14:24 2010 +0100
+Hope these can get you going.
 
-    Major layout change to the packages directory
-    
-    Having one monolithic packages directory makes it hard to find
-things
-    and is generally overwhelming. This commit splits it into several
-    logical sections roughly based on function, recipes.txt gives more
-    information about the classifications used.
-    
-    The opportunity is also used to switch from "packages" to "recipes"
-    as used in OpenEmbedded as the term "packages" can be confusing to
-    people and has many different meanings.
-    
-    Not all recipes have been classified yet, this is just a first pass
-    at separating things out. Some packages are moved to meta-extras as
-    they're no longer actively used or maintained.
-    
-    Signed-off-by: Richard Purdie <rpurdie@linux.intel.com>
+Jessica
 
-commit 70abb2e3e8671b3d10c7db5a16e37d646014a4b6
-Author: Richard Purdie <rpurdie@linux.intel.com>
-Date:   Wed Mar 31 13:43:09 2010 +0100
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of autif khan
+Sent: Thursday, November 10, 2011 6:44 PM
+To: yocto@yoctoproject.org
+Subject: [yocto] Trying to cross compile Mono - glib link error
 
-    gcc-cross: Use NATIVEDEPS
-    
-    Signed-off-by: Richard Purdie <rpurdie@linux.intel.com>
+I followed the instructions and installed the ADT from the 1.1 tarball
+as outlined in documentation. And tested a few simple GTK apps.
+Everything worked well.
 
-commit 91d2e7d1bc725f2c3a39b4c7413bf96e85d17375
-Author: Joshua Lock <josh@linux.intel.com>
-Date:   Tue Dec 22 15:41:01 2009 +0000
+After that I am trying to cross compile mono and I am getting the
+following error:
 
-    gcc: add gettext to dependencies
-    
-    Signed-off-by: Joshua Lock <josh@linux.intel.com>
+LD      test-glib
+libtool: link: warning: library
+`/opt/poky/1.1/sysroots/i586-poky-linux/usr/lib/libgmodule-2.0.la' was
+moved.
+libtool: link: cannot find the library `=3D/usr/lib/libglib-2.0.la' or
+unhandled argument `=3D/usr/lib/libglib-2.0.la'
+make[4]: *** [test-glib] Error 1
+make[4]: Leaving directory
+`/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib/test'
+make[3]: *** [all-recursive] Error 1
+make[3]: Leaving directory
+`/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib'
+make[2]: *** [all] Error 2
+make[2]: Leaving directory
+`/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/home/autif/data/dev/projects/yocto/mono-2.10.6=
+'
+make: *** [all] Error 2
 
-commit b905e04eae5e557199c689ac63f56f996c3da27c
-Author: Richard Purdie <richard@openedhand.com>
-Date:   Tue Mar 18 10:44:24 2008 +0000
+compiler flags seem to look fine
 
-    gcc: Add missing files + changes from the last commit
-    
-    git-svn-id: https://svn.o-hand.com/repos/poky/trunk@4039
-311d38ba-8fff-0310-9ca6-ca027cbcb966
+autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep LD
+BUILDDIR=3D/home/autif/data/dev/projects/yocto/poky-edison-6.0/build
+LDFLAGS=3D'  --sysroot=3D/opt/poky/1.1/sysroots/i586-poky-linux'
+OLDPWD=3D/home/autif/data/dev/projects/yocto
 
+autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep CPP
+CPPFLAGS=3D' -m32   -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i586-p=
+oky-linux'
 
+autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep CXX
+CXX=3Di586-poky-linux-g++
+CXXFLAGS=3D' -m32   -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i586-p=
+oky-linux'
+
+autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep FLAGS
+CFLAGS=3D' -m32   -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i586-pok=
+y-linux'
+CONFIGURE_FLAGS=3D'--target=3Di586-poky-linux --host=3Di586-poky-linux
+--build=3Dx86_64-linux
+--with-libtool-sysroot=3D/opt/poky/1.1/sysroots/i586-poky-linux'
+CPPFLAGS=3D' -m32   -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i586-p=
+oky-linux'
+CXXFLAGS=3D' -m32   -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i586-p=
+oky-linux'
+LDFLAGS=3D'  --sysroot=3D/opt/poky/1.1/sysroots/i586-poky-linux'
+
+Please advise.
+
+Thanks!
+
+Autif
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
