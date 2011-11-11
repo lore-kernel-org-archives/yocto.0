@@ -1,21 +1,28 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71A2CE005A0
-	for <yocto@yoctoproject.org>; Thu, 10 Nov 2011 14:58:23 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 10 Nov 2011 14:58:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,490,1315206000"; d="scan'208";a="35593112"
-Received: from unknown (HELO localhost) ([10.255.15.253])
-	by AZSMGA002.ch.intel.com with ESMTP; 10 Nov 2011 14:58:22 -0800
-From: tom.zanussi@intel.com
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-gx0-f176.google.com (mail-gx0-f176.google.com
+	[209.85.161.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E724E0059D
+	for <yocto@yoctoproject.org>; Thu, 10 Nov 2011 18:43:36 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by ggnc4 with SMTP id c4so4407167ggn.35
+	for <yocto@yoctoproject.org>; Thu, 10 Nov 2011 18:43:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=9epDNzS1AK1Jg7gFNu4sxZof0+N+j1JXfUFiMzCCm+4=;
+	b=m5LYLNaNu5bpdejQ6bNy/FEtLFGtaPnRJTsrhfQYNmbFI2S8sRM134hVCIfUfkmnCx
+	GBkSO6dlJF/vjFdtQUPbzbAQnMj7GqRJhhn2VA06NMBZvMTz711PD8d3z6WjA3hb1jhF
+	5P3oyyrIs5uDRZaQpEnK5SEdXC1Ohp1BpBp+M=
+MIME-Version: 1.0
+Received: by 10.101.7.23 with SMTP id k23mr4518423ani.76.1320979415764; Thu,
+	10 Nov 2011 18:43:35 -0800 (PST)
+Received: by 10.236.208.194 with HTTP; Thu, 10 Nov 2011 18:43:35 -0800 (PST)
+Date: Thu, 10 Nov 2011 21:43:35 -0500
+Message-ID: <CADzUK1KLXD17HGgmXvuFkfYWwSzA=tj5O+XK-LfyQsSkbKZhNQ@mail.gmail.com>
+From: autif khan <autif.mlist@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 10 Nov 2011 16:59:49 -0600
-Message-Id: <eb5b35766f8c3438a65a6ad8b856092f7090090b.1320965782.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1320965782.git.tom.zanussi@intel.com>
-References: <cover.1320965782.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/1] meta-emenlow: fix mesa-dri multiple-providers warning
+Subject: Trying to cross compile Mono - glib link error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,36 +34,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Nov 2011 22:58:23 -0000
+X-List-Received-Date: Fri, 11 Nov 2011 02:43:36 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+I followed the instructions and installed the ADT from the 1.1 tarball
+as outlined in documentation. And tested a few simple GTK apps.
+Everything worked well.
 
-commit 8e14cee (xserver-xorg: Add mesa-dri to depends instead of
-virtual/libgl) caused meta-emenlow to start failing with:
+After that I am trying to cross compile mono and I am getting the
+following error:
 
-NOTE: multiple providers are available for mesa-dri (mesa-dri, xpsb-glx)
-NOTE: consider defining a PREFERRED_PROVIDER entry to match mesa-dri
+LD	test-glib
+libtool: link: warning: library
+`/opt/poky/1.1/sysroots/i586-poky-linux/usr/lib/libgmodule-2.0.la' was
+moved.
+libtool: link: cannot find the library `=/usr/lib/libglib-2.0.la' or
+unhandled argument `=/usr/lib/libglib-2.0.la'
+make[4]: *** [test-glib] Error 1
+make[4]: Leaving directory
+`/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib/test'
+make[3]: *** [all-recursive] Error 1
+make[3]: Leaving directory
+`/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib'
+make[2]: *** [all] Error 2
+make[2]: Leaving directory
+`/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/home/autif/data/dev/projects/yocto/mono-2.10.6'
+make: *** [all] Error 2
 
-This adds a PREFERRED_PROVIDER for mesa-dri and fixes the problem.
+compiler flags seem to look fine
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-emenlow/conf/machine/emenlow.conf |    1 +
- 1 files changed, 1 insertions(+), 0 deletions(-)
+autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep LD
+BUILDDIR=/home/autif/data/dev/projects/yocto/poky-edison-6.0/build
+LDFLAGS='  --sysroot=/opt/poky/1.1/sysroots/i586-poky-linux'
+OLDPWD=/home/autif/data/dev/projects/yocto
 
-diff --git a/meta-emenlow/conf/machine/emenlow.conf b/meta-emenlow/conf/machine/emenlow.conf
-index 57a96c3..774ef08 100644
---- a/meta-emenlow/conf/machine/emenlow.conf
-+++ b/meta-emenlow/conf/machine/emenlow.conf
-@@ -21,6 +21,7 @@ PREFERRED_PROVIDER_virtual/libx11 = "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl = "xpsb-glx"
- PREFERRED_PROVIDER_virtual/xserver = "xserver-psb"
- PREFERRED_PROVIDER_virtual/xserver-xf86 = "xserver-psb"
-+PREFERRED_PROVIDER_mesa-dri = "xpsb-glx"
- XSERVER ?= "xserver-psb \
-            xserver-psb-extension-dri \
-            xserver-psb-extension-dri2 \
--- 
-1.7.0.4
+autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep CPP
+CPPFLAGS=' -m32   -march=i586 --sysroot=/opt/poky/1.1/sysroots/i586-poky-linux'
 
+autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep CXX
+CXX=i586-poky-linux-g++
+CXXFLAGS=' -m32   -march=i586 --sysroot=/opt/poky/1.1/sysroots/i586-poky-linux'
+
+autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep FLAGS
+CFLAGS=' -m32   -march=i586 --sysroot=/opt/poky/1.1/sysroots/i586-poky-linux'
+CONFIGURE_FLAGS='--target=i586-poky-linux --host=i586-poky-linux
+--build=x86_64-linux
+--with-libtool-sysroot=/opt/poky/1.1/sysroots/i586-poky-linux'
+CPPFLAGS=' -m32   -march=i586 --sysroot=/opt/poky/1.1/sysroots/i586-poky-linux'
+CXXFLAGS=' -m32   -march=i586 --sysroot=/opt/poky/1.1/sysroots/i586-poky-linux'
+LDFLAGS='  --sysroot=/opt/poky/1.1/sysroots/i586-poky-linux'
+
+Please advise.
+
+Thanks!
+
+Autif
 
