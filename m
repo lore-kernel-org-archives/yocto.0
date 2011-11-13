@@ -1,31 +1,36 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F1C5E006AF
-	for <yocto@yoctoproject.org>; Fri, 11 Nov 2011 16:30:00 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 11 Nov 2011 16:29:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,497,1315206000"; d="scan'208,217";a="73823495"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by azsmga001.ch.intel.com with ESMTP; 11 Nov 2011 16:29:59 -0800
-Received: from orsmsx505.amr.corp.intel.com ([10.22.226.208]) by
-	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
-	Fri, 11 Nov 2011 16:29:59 -0800
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: "Saxena, Rahul" <rahul.saxena@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Fri, 11 Nov 2011 16:29:57 -0800
-Thread-Topic: web-webkit poky package
-Thread-Index: Acyg0VuLUeGZjaf5Q/qb9NNTA7t88gAAFapQ
-Message-ID: <4FF5AC937153B0459463C1A88EB478F2017DCCA001@orsmsx505.amr.corp.intel.com>
-References: <4FF5AC937153B0459463C1A88EB478F2017DCC9FE6@orsmsx505.amr.corp.intel.com>
-In-Reply-To: <4FF5AC937153B0459463C1A88EB478F2017DCC9FE6@orsmsx505.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <joaohf@gmail.com>
+Received: from mail-bw0-f48.google.com (mail-bw0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C03DE00304
+	for <yocto@yoctoproject.org>; Sat, 12 Nov 2011 17:05:51 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by bkar19 with SMTP id r19so8137849bka.35
+	for <yocto@yoctoproject.org>; Sat, 12 Nov 2011 17:05:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=mPSeEBEPYTuAjZDATIs8zXEN1Gv5D1dU+ZQ5srJndHE=;
+	b=PAthxuq8H6vkaNc9tSd9D8MVl+0TJIMMOWCDkR53hwfS86u66a62eIAPHwK8CUqN5K
+	ZyXf00h7iOSeJHfIVkifLvOu5J8PzAUH6euDUPlnahMRGNb1jWOlnqZhYTyi0vUqzwxu
+	5eprWv5RxfhEOqQWpjSQxlSVcAxNdrh8M/lPA=
 MIME-Version: 1.0
-Subject: Re: web-webkit poky package
+Received: by 10.205.132.68 with SMTP id ht4mr5784710bkc.133.1321146350714;
+	Sat, 12 Nov 2011 17:05:50 -0800 (PST)
+Received: by 10.204.36.139 with HTTP; Sat, 12 Nov 2011 17:05:50 -0800 (PST)
+In-Reply-To: <20110722123240.GA25142@localhost.localdomain>
+References: <20110722083745.GA13064@localhost.localdomain>
+	<1311325191.2344.101.camel@rex>
+	<20110722093722.GA8668@localhost.localdomain>
+	<1311328132.2344.106.camel@rex>
+	<20110722123240.GA25142@localhost.localdomain>
+Date: Sat, 12 Nov 2011 23:05:50 -0200
+Message-ID: <CANFVK7-NbBJ4wH90JgS3LKSH92r6riOr+y0ZCxZ1S140bQvQQA@mail.gmail.com>
+From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
+To: Andre Haupt <andre@bitwigglers.org>
+Cc: yocto@yoctoproject.org
+Subject: Re: Bitbaking python fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,205 +42,179 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 12 Nov 2011 00:30:00 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_4FF5AC937153B0459463C1A88EB478F2017DCCA001orsmsx505amrc_"
+X-List-Received-Date: Sun, 13 Nov 2011 01:05:52 -0000
+Content-Type: multipart/alternative; boundary=000e0ce03d5eee413004b1935add
 
---_000_4FF5AC937153B0459463C1A88EB478F2017DCCA001orsmsx505amrc_
-Content-Type: text/plain; charset="us-ascii"
+--000e0ce03d5eee413004b1935add
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-
-Just wanted to add I am using  "edison" branch of poky.
-Rahul
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Saxena, Rahul
-Sent: Friday, November 11, 2011 4:24 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] web-webkit poky package
 
 Hi,
 
-I have installed the web-webkit package in my core-image-sato image.
-However I am facing two issues.
+To fix it in Yocto 1.1.0 I tryed this:
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D23d2eaf9d283cae=
+47e52d1151f0d4ad53bbbe8a0
 
-
-1.       I am operating inside a corporate firewall and the browser does no=
-t seem to be picking up the proxy settings.
-
-I have the following set in my /etc/profile file:
-
-http_proxy=3Dhttp://<intel proxy server address>:911/<http://%3cintel%20pro=
-xy%20server%20address%3e:911/>
-
-
-
-export http_proxy
-
-
-
-2.       Also when I access sites within our firewall the rendering is all =
-messed up. What could be the issue here ?
-
-
-
-   Any help on the above would be greatly appreciated.
-
+Works, my build host is Ubuntu 11.10 x86.
 
 Thanks
-Rahul
 
---_000_4FF5AC937153B0459463C1A88EB478F2017DCCA001orsmsx505amrc_
-Content-Type: text/html; charset="us-ascii"
+
+PS: this paths works for me.
+
+diff --git
+a/meta/recipes-devtools/python/python/setup_py_skip_cross_import_check.patc=
+h
+b/meta/recipes-devtools/python/python/setup_py_skip_cross_import_check.patc=
+h
+new file mode 100644
+index 0000000..aeef78f
+--- /dev/null
++++
+b/meta/recipes-devtools/python/python/setup_py_skip_cross_import_check.patc=
+h
+@@ -0,0 +1,19 @@
++Index: Python-2.6.6/setup.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.6.6.orig/setup.py    2011-11-12 22:54:14.257053822 -0200
+++++ Python-2.6.6/setup.py    2011-11-12 22:54:19.701053981 -0200
++@@ -287,6 +287,14 @@
++                           (ext.name, sys.exc_info()[1]))
++             self.failed.append(ext.name)
++             return
+++        # If we're cross-compiling, we want to skip the import check
+++        # i.e. we shouldn't be dynamically loading target shared libs
+++        if os.environ.get('CROSS_COMPILE') is not None:
+++            self.announce(
+++                 'WARNING: skipping import check for cross-compiled "%s"'
+%
+++                 ext.name)
+++            return
+++
++         # Workaround for Mac OS X: The Carbon-based modules cannot be
++         # reliably imported into a command-line Python
++         if 'Carbon' in ext.extra_link_args:
+diff --git a/meta/recipes-devtools/python/python_2.6.6.bbb/meta/recipes-dev=
+tools/python/
+python_2.6.6.bb
+index aa7ec3c..3f12576 100644
+--- a/meta/recipes-devtools/python/python_2.6.6.bb
++++ b/meta/recipes-devtools/python/python_2.6.6.bb
+@@ -21,6 +21,7 @@ SRC_URI =3D "\
+   file://multilib.patch \
+   file://security_issue_2254_fix.patch \
+   file://cgi_py.patch \
++  file://setup_py_skip_cross_import_check.patch \
+ "
+
+ SRC_URI[md5sum] =3D "cf4e6881bb84a7ce6089e4a307f71f14"
+@@ -61,6 +62,8 @@ do_compile() {
+     # then call do_install twice we get Makefile.orig =3D=3D Makefile.sysr=
+oot
+     install -m 0644 Makefile Makefile.sysroot
+
++        export CROSS_COMPILE=3D"${TARGET_PREFIX}"
++
+     oe_runmake HOSTPGEN=3D${STAGING_BINDIR_NATIVE}/pgen \
+         HOSTPYTHON=3D${STAGING_BINDIR_NATIVE}/python \
+         STAGING_LIBDIR=3D${STAGING_LIBDIR} \
+@@ -82,6 +85,8 @@ do_install() {
+     # make install needs the original Makefile, or otherwise the inclues
+would
+     # go to ${D}${STAGING...}/...
+     install -m 0644 Makefile.orig Makefile
++
++        export CROSS_COMPILE=3D"${TARGET_PREFIX}"
+
+     oe_runmake HOSTPGEN=3D${STAGING_BINDIR_NATIVE}/pgen \
+         HOSTPYTHON=3D${STAGING_BINDIR_NATIVE}/python \
+
+
+--=20
+-----------------------------------------------------------
+Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
+Campinas-SP-Brasil
+BSD051283
+LPI 1
+http://www.joaohfreitas.eti.br
+
+--000e0ce03d5eee413004b1935add
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"Content-Type" CONTENT=
-=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
-oft Word 12 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1730231512;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1263518030 67698703 67698713 67698715 67698703 6769=
-8713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level2
-	{mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level3
-	{mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level4
-	{mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level5
-	{mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level6
-	{mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level7
-	{mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level8
-	{mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level9
-	{mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue vli=
-nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span style=3D'c=
-olor:#1F497D'>Just wanted to add I am using &nbsp;&#8220;edison&#8221; bran=
-ch of poky.<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'color:=
-#1F497D'>Rahul<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'col=
-or:#1F497D'><o:p>&nbsp;</o:p></span></p><div><div style=3D'border:none;bord=
-er-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNormal>=
-<b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:=
-</span></b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif=
-"'> yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] =
-<b>On Behalf Of </b>Saxena, Rahul<br><b>Sent:</b> Friday, November 11, 2011=
- 4:24 PM<br><b>To:</b> yocto@yoctoproject.org<br><b>Subject:</b> [yocto] we=
-b-webkit poky package<o:p></o:p></span></p></div></div><p class=3DMsoNormal=
-><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Hi,<o:p></o:p></p><p class=3DMso=
-Normal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I have installed the web-w=
-ebkit package in my core-image-sato image.<o:p></o:p></p><p class=3DMsoNorm=
-al>However I am facing two issues.<o:p></o:p></p><p class=3DMsoNormal><o:p>=
-&nbsp;</o:p></p><p class=3DMsoListParagraph style=3D'text-indent:-.25in;mso=
--list:l0 level1 lfo2'><![if !supportLists]><span style=3D'mso-list:Ignore'>=
-1.<span style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp; </span></span><![endif]>I am operating inside a corporate firewall=
- and the browser does not seem to be picking up the proxy settings.<o:p></o=
-:p></p><p class=3DMsoListParagraph>I have the following set in my /etc/prof=
-ile file:<o:p></o:p></p><p class=3DMsoListParagraph>http_proxy=3D<a href=3D=
-"http://%3cintel%20proxy%20server%20address%3e:911/">http://&lt;intel proxy=
- server address&gt;:911/</a><o:p></o:p></p><p class=3DMsoListParagraph><o:p=
->&nbsp;</o:p></p><p class=3DMsoListParagraph>export <span style=3D'font-siz=
-e:9.0pt;font-family:"Verdana","sans-serif";color:#333333'>http_proxy</span>=
-<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNorm=
-al><o:p>&nbsp;</o:p></p><p class=3DMsoListParagraph style=3D'text-indent:-.=
-25in;mso-list:l0 level1 lfo2'><![if !supportLists]><span style=3D'mso-list:=
-Ignore'>2.<span style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; </span></span><![endif]>Also when I access sites within ou=
-r firewall the rendering is all messed up. What could be the issue here ?<o=
-:p></o:p></p><p class=3DMsoNormal style=3D'margin-left:.25in'><o:p>&nbsp;</=
-o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><o:p=
->&nbsp;</o:p></p><p class=3DMsoNormal>&nbsp;&nbsp; Any help on the above wo=
-uld be greatly appreciated.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;<=
-/o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Tha=
-nks<o:p></o:p></p><p class=3DMsoNormal>Rahul<o:p></o:p></p></div></body></h=
-tml>=
+Hi,<br><br>To fix it in Yocto 1.1.0 I tryed this: <a href=3D"http://git.yoc=
+toproject.org/cgit/cgit.cgi/poky/commit/?id=3D23d2eaf9d283cae47e52d1151f0d4=
+ad53bbbe8a0">http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D23=
+d2eaf9d283cae47e52d1151f0d4ad53bbbe8a0</a><br>
+<br>Works, my build host is Ubuntu 11.10 x86.<br><br>Thanks<br><br><br>PS: =
+this paths works for me.<br><br>diff --git a/meta/recipes-devtools/python/p=
+ython/setup_py_skip_cross_import_check.patch b/meta/recipes-devtools/python=
+/python/setup_py_skip_cross_import_check.patch<br>
+new file mode 100644<br>index 0000000..aeef78f<br>--- /dev/null<br>+++ b/me=
+ta/recipes-devtools/python/python/setup_py_skip_cross_import_check.patch<br=
+>@@ -0,0 +1,19 @@<br>+Index: Python-2.6.6/setup.py<br>+=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
++--- Python-2.6.6.orig/setup.py=C2=A0=C2=A0=C2=A0 2011-11-12 22:54:14.25705=
+3822 -0200<br>++++ Python-2.6.6/setup.py=C2=A0=C2=A0=C2=A0 2011-11-12 22:54=
+:19.701053981 -0200<br>+@@ -287,6 +287,14 @@<br>+=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (<a href=3D"http:=
+//ext.name">ext.name</a>, sys.exc_info()[1]))<br>
++=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 s=
+elf.failed.append(<a href=3D"http://ext.name">ext.name</a>)<br>+=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return<br>+=
++=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # If we&#39;re cross-compiling,=
+ we want to skip the import check<br>++=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 # i.e. we shouldn&#39;t be dynamically loading target shared libs<br=
+>
+++=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if os.environ.get(&#39;CROSS_C=
+OMPILE&#39;) is not None:<br>++=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 self.announce(<br>++=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &#39;WAR=
+NING: skipping import check for cross-compiled &quot;%s&quot;&#39; %<br>++=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 <a href=3D"http://ext.name">ext.name</a>)<br>
+++=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return=
+<br>++<br>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Workaround fo=
+r Mac OS X: The Carbon-based modules cannot be<br>+=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 # reliably imported into a command-line Python<br>=
++=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if &#39;Carbon&#39; in ex=
+t.extra_link_args:<br>
+diff --git a/meta/recipes-devtools/python/<a href=3D"http://python_2.6.6.bb=
+">python_2.6.6.bb</a> b/meta/recipes-devtools/python/<a href=3D"http://pyth=
+on_2.6.6.bb">python_2.6.6.bb</a><br>index aa7ec3c..3f12576 100644<br>--- a/=
+meta/recipes-devtools/python/<a href=3D"http://python_2.6.6.bb">python_2.6.=
+6.bb</a><br>
++++ b/meta/recipes-devtools/python/<a href=3D"http://python_2.6.6.bb">pytho=
+n_2.6.6.bb</a><br>@@ -21,6 +21,7 @@ SRC_URI =3D &quot;\<br>=C2=A0=C2=A0 fil=
+e://multilib.patch \<br>=C2=A0=C2=A0 file://security_issue_2254_fix.patch \=
+<br>=C2=A0=C2=A0 file://cgi_py.patch \<br>
++=C2=A0 file://setup_py_skip_cross_import_check.patch \<br>=C2=A0&quot;<br>=
+=C2=A0<br>=C2=A0SRC_URI[md5sum] =3D &quot;cf4e6881bb84a7ce6089e4a307f71f14&=
+quot;<br>@@ -61,6 +62,8 @@ do_compile() {<br>=C2=A0=C2=A0=C2=A0=C2=A0 # the=
+n call do_install twice we get Makefile.orig =3D=3D Makefile.sysroot<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 install -m 0644 Makefile Makefile.sysroot<br>=C2=
+=A0<br>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 export CROSS_COMPILE=3D&=
+quot;${TARGET_PREFIX}&quot;<br>+<br>=C2=A0=C2=A0=C2=A0=C2=A0 oe_runmake HOS=
+TPGEN=3D${STAGING_BINDIR_NATIVE}/pgen \<br>=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=
+=C2=A0=C2=A0 HOSTPYTHON=3D${STAGING_BINDIR_NATIVE}/python \<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 STAGING_LIBDIR=3D${STAGING_LIBD=
+IR} \<br>@@ -82,6 +85,8 @@ do_install() {<br>=C2=A0=C2=A0=C2=A0=C2=A0 # mak=
+e install needs the original Makefile, or otherwise the inclues would<br>=
+=C2=A0=C2=A0=C2=A0=C2=A0 # go to ${D}${STAGING...}/...<br>=C2=A0=C2=A0=C2=
+=A0=C2=A0 install -m 0644 Makefile.orig Makefile<br>
++<br>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 export CROSS_COMPILE=3D&qu=
+ot;${TARGET_PREFIX}&quot;<br>=C2=A0=C2=A0=C2=A0=C2=A0 <br>=C2=A0=C2=A0=C2=
+=A0=C2=A0 oe_runmake HOSTPGEN=3D${STAGING_BINDIR_NATIVE}/pgen \<br>=C2=A0=
+=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 HOSTPYTHON=3D${STAGING_BINDIR_NATIVE}=
+/python \<br><br><br>-- <br>-----------------------------------------------=
+------------<br>
+Jo=C3=A3o Henrique Freitas - <a href=3D"http://joaohf_at_gmail.com">joaohf_=
+at_gmail.com</a><br>Campinas-SP-Brasil<br>BSD051283<br>LPI 1<br><a href=3D"=
+http://www.joaohfreitas.eti.br">http://www.joaohfreitas.eti.br</a><br>
 
---_000_4FF5AC937153B0459463C1A88EB478F2017DCCA001orsmsx505amrc_--
+--000e0ce03d5eee413004b1935add--
