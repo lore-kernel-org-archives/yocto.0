@@ -1,60 +1,33 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C142E0030C;
-	Fri, 11 Nov 2011 13:48:19 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 11 Nov 2011 13:48:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,496,1315206000"; d="scan'208";a="73771667"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by azsmga001.ch.intel.com with ESMTP; 11 Nov 2011 13:48:17 -0800
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 11 Nov 2011 13:48:17 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.228]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.149]) with mapi id
-	14.01.0355.002; Fri, 11 Nov 2011 13:48:16 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: "Liu, Song" <song.liu@intel.com>, "'McCombe, Kevin'"
-	<kevin.mccombe@windriver.com>, "Wold, Saul" <saul.wold@intel.com>, "Zhang, 
-	Jessica" <jessica.zhang@intel.com>, "'deVries, Alex'"
-	<Alex.deVries@windriver.com>, "'Polk, Jeffrey'" <jeff.polk@windriver.com>, 
-	"'Hatle, Mark'" <mark.hatle@windriver.com>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "Li, Susie" <susie.li@intel.com>, "Lock,
-	Joshua"
-	<joshua.lock@intel.com>, 'Bruce Ashfield' <bruce.ashfield@windriver.com>,
-	"Zanussi, Tom" <tom.zanussi@intel.com>, "Hart, Darren"
-	<darren.hart@intel.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Stewart, David C"
-	<david.c.stewart@intel.com>, "'Lieu.Ta@windriver.com'"
-	<Lieu.Ta@windriver.com>, "'paul.anderson@windriver.com'"
-	<paul.anderson@windriver.com>, "Osier-mixon, Jeffrey"
-	<jeffrey.osier-mixon@intel.com>, "Dmytriyenko, Denys" <denys@ti.com>,
-	"Kooi, Koen" <k-kooi@ti.com>, "'yocto-ab@yoctoproject.org'"
-	<yocto-ab@yoctoproject.org>, "Erway, Tracey M" <tracey.m.erway@intel.com>, 
-	'Daniel Cauchy' <dcauchy@mvista.com>, "Wang,
-	Shane" <shane.wang@intel.com>, 
-	"'Kridner, Jason'" <jdk@ti.com>, "Yu, Ke" <ke.yu@intel.com>, "Rifenbark,
-	Scott M" <scott.m.rifenbark@intel.com>, "'Dixon, Brad'"
-	<Brad_Dixon@mentor.com>, 'Jeremy Puhlman' <jpuhlman@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"'shsift-yocto@yahoo.com'" <shsift-yocto@yahoo.com>
-Thread-Topic: Agenda: Yocto Technical Team Meeting - Tuesday, November 15,
-	2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
-Thread-Index: AQHMoLuepm1bD79X9E6R7WuCdDRnSg==
-Date: Fri, 11 Nov 2011 21:48:15 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F8D262@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-gy0-f176.google.com (mail-gy0-f176.google.com
+	[209.85.160.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECDDAE00303
+	for <yocto@yoctoproject.org>; Sun, 13 Nov 2011 17:07:47 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by gyh3 with SMTP id 3so6619893gyh.35
+	for <yocto@yoctoproject.org>; Sun, 13 Nov 2011 17:07:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=GksyCwuYiSjxeXItYYIXaalUKVm5MdBna5qjIch38vI=;
+	b=IUvwSkl8vvk/Mc6cEzX+9IjcY9w4npuWO9pKoK7+RisTFzLsVGN2Z/fESkciFUSqOl
+	brOYvzEHjAtxCJYfC1cx5fUOFN8Z0tRePKWrQoqTSVdB0HJGLtDsE8wBd0o2pZ10UCja
+	WykqnXSqVcepDxjtFAPvQForaTEe95r4cA6E0=
 MIME-Version: 1.0
-X-Mailman-Approved-At: Sun, 13 Nov 2011 11:40:29 -0800
-Cc: "'Ruff, Nithya'" <Nithya.Ruff@windriver.com>,
-	"'morvek@mvista.com'" <morvek@mvista.com>
-Subject: Agenda: Yocto Technical Team Meeting - Tuesday, November 15, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
+Received: by 10.236.155.74 with SMTP id i50mr11110768yhk.23.1321232866600;
+	Sun, 13 Nov 2011 17:07:46 -0800 (PST)
+Received: by 10.236.208.194 with HTTP; Sun, 13 Nov 2011 17:07:46 -0800 (PST)
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C16EB4658@ORSMSX101.amr.corp.intel.com>
+References: <CADzUK1KLXD17HGgmXvuFkfYWwSzA=tj5O+XK-LfyQsSkbKZhNQ@mail.gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C16EB4658@ORSMSX101.amr.corp.intel.com>
+Date: Sun, 13 Nov 2011 20:07:46 -0500
+Message-ID: <CADzUK1Lxg+H_T+7FpBjgc0_XnNfpM03gwxBSUiDHNi1fhX5XEg@mail.gmail.com>
+From: autif khan <autif.mlist@gmail.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Trying to cross compile Mono - glib link error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,127 +39,206 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Nov 2011 21:48:19 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Mon, 14 Nov 2011 01:07:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-* Opens collection - 5 min (Song)
-* Yocto 1.0.2 and 1.1.1 point release update - 5 min (Josh)
-* Yocto 1.2 M1 Status (features development and bug fixing) - 10 min (Song)
-* Opens - 10 min
-* Action item Review - 5 min
-1. Richard will review unsorted features and prioritize them. (WIP)
-* Weekly team sharing (20 min)
+I bitbaked core-image-sato-sdk
+
+It did not produce a tar.gz of the file system
+
+I improvised and (-o loop) mounted the
+core-image-sato-sdk-atom-pc.ext3 at
+/home/autif/data/dev/projects/yocto/sysroot
+
+autif@hp8440w:~/data/dev/projects/yocto/sysroot$ ls
+bin   dev  home  lost+found  mnt   sbin  tmp  var
+boot  etc  lib   media       proc  sys   usr
+
+I changed the environment file as follows (notice how sysroot is
+updated for all variables):
+
+export PATH=3D/opt/poky/1.1/sysroots/x86_64-pokysdk-linux/usr/bin:/opt/poky=
+/1.1/sysroots/x86_64-pokysdk-linux/usr/bin/i586-poky-linux:$PATH
+export PKG_CONFIG_SYSROOT_DIR=3D/home/autif/data/dev/projects/yocto/sysroot
+export PKG_CONFIG_PATH=3D/home/autif/data/dev/projects/yocto/sysroot/usr/li=
+b/pkgconfig
+export CONFIG_SITE=3D/opt/poky/1.1/site-config-i586-poky-linux
+export CC=3Di586-poky-linux-gcc
+export CXX=3Di586-poky-linux-g++
+export GDB=3Di586-poky-linux-gdb
+export TARGET_PREFIX=3Di586-poky-linux-
+export CONFIGURE_FLAGS=3D"--target=3Di586-poky-linux
+--host=3Di586-poky-linux --build=3Dx86_64-linux
+--with-libtool-sysroot=3D/home/autif/data/dev/projects/yocto/sysroot"
+export CFLAGS=3D" -m32   -march=3Di586
+--sysroot=3D/home/autif/data/dev/projects/yocto/sysroot"
+export CXXFLAGS=3D" -m32   -march=3Di586
+--sysroot=3D/home/autif/data/dev/projects/yocto/sysroot"
+export LDFLAGS=3D"  --sysroot=3D/home/autif/data/dev/projects/yocto/sysroot=
+"
+export CPPFLAGS=3D" -m32   -march=3Di586
+--sysroot=3D/home/autif/data/dev/projects/yocto/sysroot"
+export OECORE_NATIVE_SYSROOT=3D"/opt/poky/1.1/sysroots/x86_64-pokysdk-linux=
+"
+export OECORE_TARGET_SYSROOT=3D"/home/autif/data/dev/projects/yocto/sysroot=
+"
+export OECORE_ACLOCAL_OPTS=3D"-I
+/opt/poky/1.1/sysroots/x86_64-pokysdk-linux/usr/share/aclocal"
+export OECORE_DISTRO_VERSION=3D"1.1"
+export OECORE_SDK_VERSION=3D"1.1"
+
+And I am still getting the same error.
+
+LD	test-glib
+libtool: link: warning: library
+`/opt/poky/1.1/sysroots/i586-poky-linux/usr/lib/libgmodule-2.0.la' was
+moved.
+libtool: link: cannot find the library `=3D/usr/lib/libglib-2.0.la' or
+unhandled argument `=3D/usr/lib/libglib-2.0.la'
+make[4]: *** [test-glib] Error 1
+make[4]: Leaving directory
+`/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib/test'
+make[3]: *** [all-recursive] Error 1
+make[3]: Leaving directory
+`/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib'
+make[2]: *** [all] Error 2
+make[2]: Leaving directory
+`/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/home/autif/data/dev/projects/yocto/mono-2.10.6=
+'
+make: *** [all] Error 2
+Command exited with non-zero status 2
+7.05user 1.36system 0:12.62elapsed 66%CPU (0avgtext+0avgdata 60832maxreside=
+nt)k
+0inputs+37504outputs (0major+1185664minor)pagefaults 0swaps
+autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep FLAGS
+CFLAGS=3D' -m32   -march=3Di586
+--sysroot=3D/home/autif/data/dev/projects/yocto/sysroot'
+CONFIGURE_FLAGS=3D'--target=3Di586-poky-linux --host=3Di586-poky-linux
+--build=3Dx86_64-linux
+--with-libtool-sysroot=3D/home/autif/data/dev/projects/yocto/sysroot'
+CPPFLAGS=3D' -m32   -march=3Di586
+--sysroot=3D/home/autif/data/dev/projects/yocto/sysroot'
+CXXFLAGS=3D' -m32   -march=3Di586
+--sysroot=3D/home/autif/data/dev/projects/yocto/sysroot'
+LDFLAGS=3D'  --sysroot=3D/home/autif/data/dev/projects/yocto/sysroot'
+autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep CXX
+CXX=3Di586-poky-linux-g++
+CXXFLAGS=3D' -m32   -march=3Di586
+--sysroot=3D/home/autif/data/dev/projects/yocto/sysroot'
+autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep CC
+CC=3Di586-poky-linux-gcc
+                        SLAVE NONE ACCEPT' -- "$cur" ));
+                COMPREPLY=3D($( compgen -W 'ACCEPT DROP LOG ULOG REJECT \
+                    COMPREPLY=3D($( compgen -W 'ACCEPT DROP LOG ULOG REJECT=
+ \
+                        COMPREPLY=3D($( compgen -W 'ACCEPT DROP LOG ULOG RE=
+JECT \
+autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ ls
+/home/autif/data/dev/projects/yocto/sysroot
 
 
------Original Appointment-----
+Please advise. Did I set the environment correctly?
+
+Thanks
+
+Autif
 
 
-Conference details=20
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
-Participants:=20
-30
-Duration:=20
-60 minutes=20
-Participant passcode:=20
-49611427=20
-Dial-in number:=20
-1.972.995.7777=20
-US Toll Free number:=20
-1.877.561.6828=20
-BlackBerry users, click this link to join your conference as a chairperson:
-1.972.995.7777x67184230#
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x49611427#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
-
-Local and Global Access Numbers=20
-
-
-Country=20
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277=20
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322=20
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877=20
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777=20
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777=20
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799=20
-From Kuala Lumpur dial 4264 3799=20
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177=20
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777=20
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998=20
-From Seoul dial 5606998=20
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363=20
-From Taipei dial 2241 1363=20
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001=20
-then enter 877 633 1123=20
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
-
-Recurring conferences=20
-First scheduled conference:=20
-Tue Jun 28, 2011
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 22, 2012, 10:40 AM CDT
-
+On Thu, Nov 10, 2011 at 11:24 PM, Zhang, Jessica
+<jessica.zhang@intel.com> wrote:
+> Hi Autif,
+>
+> It seems the libgmodule-2.0.la is missing from the 1.1 tarball sysroot bu=
+t I've checked it does exist under the sysroot that extracted from the core=
+-image-sato-sdk image. =A0So, you have to do the following steps:
+> 1. bitbake core-image-sato-sdk
+> 2. source the environment-setup script under /opt/poky/1.1
+> 3. Run runqemu-extract-sdk against the built out image file, it should be=
+ under your .../build/tmp/deploy/image/core-image-sato-sdk.tar.bz2 and the =
+directory you want the sysroot to be extracted to e.g. $HOME/qemux86
+> 4. change your sysroot setting to point to the newly created sysroot dire=
+ctory.
+>
+> Or, you can following the ADT manual and using the part that use adt-inst=
+aller to setup your cross development environment.
+>
+> Hope these can get you going.
+>
+> Jessica
+>
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
+rg] On Behalf Of autif khan
+> Sent: Thursday, November 10, 2011 6:44 PM
+> To: yocto@yoctoproject.org
+> Subject: [yocto] Trying to cross compile Mono - glib link error
+>
+> I followed the instructions and installed the ADT from the 1.1 tarball
+> as outlined in documentation. And tested a few simple GTK apps.
+> Everything worked well.
+>
+> After that I am trying to cross compile mono and I am getting the
+> following error:
+>
+> LD =A0 =A0 =A0test-glib
+> libtool: link: warning: library
+> `/opt/poky/1.1/sysroots/i586-poky-linux/usr/lib/libgmodule-2.0.la' was
+> moved.
+> libtool: link: cannot find the library `=3D/usr/lib/libglib-2.0.la' or
+> unhandled argument `=3D/usr/lib/libglib-2.0.la'
+> make[4]: *** [test-glib] Error 1
+> make[4]: Leaving directory
+> `/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib/test'
+> make[3]: *** [all-recursive] Error 1
+> make[3]: Leaving directory
+> `/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib'
+> make[2]: *** [all] Error 2
+> make[2]: Leaving directory
+> `/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib'
+> make[1]: *** [all-recursive] Error 1
+> make[1]: Leaving directory `/home/autif/data/dev/projects/yocto/mono-2.10=
+.6'
+> make: *** [all] Error 2
+>
+> compiler flags seem to look fine
+>
+> autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep LD
+> BUILDDIR=3D/home/autif/data/dev/projects/yocto/poky-edison-6.0/build
+> LDFLAGS=3D' =A0--sysroot=3D/opt/poky/1.1/sysroots/i586-poky-linux'
+> OLDPWD=3D/home/autif/data/dev/projects/yocto
+>
+> autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep CPP
+> CPPFLAGS=3D' -m32 =A0 -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i5=
+86-poky-linux'
+>
+> autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep CXX
+> CXX=3Di586-poky-linux-g++
+> CXXFLAGS=3D' -m32 =A0 -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i5=
+86-poky-linux'
+>
+> autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep FLAGS
+> CFLAGS=3D' -m32 =A0 -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i586=
+-poky-linux'
+> CONFIGURE_FLAGS=3D'--target=3Di586-poky-linux --host=3Di586-poky-linux
+> --build=3Dx86_64-linux
+> --with-libtool-sysroot=3D/opt/poky/1.1/sysroots/i586-poky-linux'
+> CPPFLAGS=3D' -m32 =A0 -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i5=
+86-poky-linux'
+> CXXFLAGS=3D' -m32 =A0 -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i5=
+86-poky-linux'
+> LDFLAGS=3D' =A0--sysroot=3D/opt/poky/1.1/sysroots/i586-poky-linux'
+>
+> Please advise.
+>
+> Thanks!
+>
+> Autif
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
