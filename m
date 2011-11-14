@@ -1,33 +1,34 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-gy0-f176.google.com (mail-gy0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECDDAE00303
-	for <yocto@yoctoproject.org>; Sun, 13 Nov 2011 17:07:47 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by gyh3 with SMTP id 3so6619893gyh.35
-	for <yocto@yoctoproject.org>; Sun, 13 Nov 2011 17:07:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=GksyCwuYiSjxeXItYYIXaalUKVm5MdBna5qjIch38vI=;
-	b=IUvwSkl8vvk/Mc6cEzX+9IjcY9w4npuWO9pKoK7+RisTFzLsVGN2Z/fESkciFUSqOl
-	brOYvzEHjAtxCJYfC1cx5fUOFN8Z0tRePKWrQoqTSVdB0HJGLtDsE8wBd0o2pZ10UCja
-	WykqnXSqVcepDxjtFAPvQForaTEe95r4cA6E0=
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CAD6E00303
+	for <yocto@yoctoproject.org>; Sun, 13 Nov 2011 17:45:54 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 13 Nov 2011 17:45:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,504,1315206000"; d="scan'208";a="90002770"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by fmsmga002.fm.intel.com with ESMTP; 13 Nov 2011 17:45:53 -0800
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 14 Nov 2011 09:45:49 +0800
+Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
+	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 14 Nov 2011 09:45:49 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
+	Mon, 14 Nov 2011 09:45:45 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 14 Nov 2011 09:45:44 +0800
+Thread-Topic: Yocto weekly bug trend charts -- WW46
+Thread-Index: Acyibx/bAqgzhuRlQ0u5obdJHirqUg==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12DBB56A89@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-Received: by 10.236.155.74 with SMTP id i50mr11110768yhk.23.1321232866600;
-	Sun, 13 Nov 2011 17:07:46 -0800 (PST)
-Received: by 10.236.208.194 with HTTP; Sun, 13 Nov 2011 17:07:46 -0800 (PST)
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C16EB4658@ORSMSX101.amr.corp.intel.com>
-References: <CADzUK1KLXD17HGgmXvuFkfYWwSzA=tj5O+XK-LfyQsSkbKZhNQ@mail.gmail.com>
-	<C6510F6D410BB64A8C15398EDC6B847C16EB4658@ORSMSX101.amr.corp.intel.com>
-Date: Sun, 13 Nov 2011 20:07:46 -0500
-Message-ID: <CADzUK1Lxg+H_T+7FpBjgc0_XnNfpM03gwxBSUiDHNi1fhX5XEg@mail.gmail.com>
-From: autif khan <autif.mlist@gmail.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Trying to cross compile Mono - glib link error
+Subject: Yocto weekly bug trend charts -- WW46
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,206 +40,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Nov 2011 01:07:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 14 Nov 2011 01:45:54 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I bitbaked core-image-sato-sdk
+Hi all,
+	The overall open bug trend continue increasing last week. Open bug and WDD=
+ number increased to 165 and 846. Bug status of WW46 could be found on http=
+s://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
 
-It did not produce a tar.gz of the file system
-
-I improvised and (-o loop) mounted the
-core-image-sato-sdk-atom-pc.ext3 at
-/home/autif/data/dev/projects/yocto/sysroot
-
-autif@hp8440w:~/data/dev/projects/yocto/sysroot$ ls
-bin   dev  home  lost+found  mnt   sbin  tmp  var
-boot  etc  lib   media       proc  sys   usr
-
-I changed the environment file as follows (notice how sysroot is
-updated for all variables):
-
-export PATH=3D/opt/poky/1.1/sysroots/x86_64-pokysdk-linux/usr/bin:/opt/poky=
-/1.1/sysroots/x86_64-pokysdk-linux/usr/bin/i586-poky-linux:$PATH
-export PKG_CONFIG_SYSROOT_DIR=3D/home/autif/data/dev/projects/yocto/sysroot
-export PKG_CONFIG_PATH=3D/home/autif/data/dev/projects/yocto/sysroot/usr/li=
-b/pkgconfig
-export CONFIG_SITE=3D/opt/poky/1.1/site-config-i586-poky-linux
-export CC=3Di586-poky-linux-gcc
-export CXX=3Di586-poky-linux-g++
-export GDB=3Di586-poky-linux-gdb
-export TARGET_PREFIX=3Di586-poky-linux-
-export CONFIGURE_FLAGS=3D"--target=3Di586-poky-linux
---host=3Di586-poky-linux --build=3Dx86_64-linux
---with-libtool-sysroot=3D/home/autif/data/dev/projects/yocto/sysroot"
-export CFLAGS=3D" -m32   -march=3Di586
---sysroot=3D/home/autif/data/dev/projects/yocto/sysroot"
-export CXXFLAGS=3D" -m32   -march=3Di586
---sysroot=3D/home/autif/data/dev/projects/yocto/sysroot"
-export LDFLAGS=3D"  --sysroot=3D/home/autif/data/dev/projects/yocto/sysroot=
-"
-export CPPFLAGS=3D" -m32   -march=3Di586
---sysroot=3D/home/autif/data/dev/projects/yocto/sysroot"
-export OECORE_NATIVE_SYSROOT=3D"/opt/poky/1.1/sysroots/x86_64-pokysdk-linux=
-"
-export OECORE_TARGET_SYSROOT=3D"/home/autif/data/dev/projects/yocto/sysroot=
-"
-export OECORE_ACLOCAL_OPTS=3D"-I
-/opt/poky/1.1/sysroots/x86_64-pokysdk-linux/usr/share/aclocal"
-export OECORE_DISTRO_VERSION=3D"1.1"
-export OECORE_SDK_VERSION=3D"1.1"
-
-And I am still getting the same error.
-
-LD	test-glib
-libtool: link: warning: library
-`/opt/poky/1.1/sysroots/i586-poky-linux/usr/lib/libgmodule-2.0.la' was
-moved.
-libtool: link: cannot find the library `=3D/usr/lib/libglib-2.0.la' or
-unhandled argument `=3D/usr/lib/libglib-2.0.la'
-make[4]: *** [test-glib] Error 1
-make[4]: Leaving directory
-`/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib/test'
-make[3]: *** [all-recursive] Error 1
-make[3]: Leaving directory
-`/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib'
-make[2]: *** [all] Error 2
-make[2]: Leaving directory
-`/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib'
-make[1]: *** [all-recursive] Error 1
-make[1]: Leaving directory `/home/autif/data/dev/projects/yocto/mono-2.10.6=
-'
-make: *** [all] Error 2
-Command exited with non-zero status 2
-7.05user 1.36system 0:12.62elapsed 66%CPU (0avgtext+0avgdata 60832maxreside=
-nt)k
-0inputs+37504outputs (0major+1185664minor)pagefaults 0swaps
-autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep FLAGS
-CFLAGS=3D' -m32   -march=3Di586
---sysroot=3D/home/autif/data/dev/projects/yocto/sysroot'
-CONFIGURE_FLAGS=3D'--target=3Di586-poky-linux --host=3Di586-poky-linux
---build=3Dx86_64-linux
---with-libtool-sysroot=3D/home/autif/data/dev/projects/yocto/sysroot'
-CPPFLAGS=3D' -m32   -march=3Di586
---sysroot=3D/home/autif/data/dev/projects/yocto/sysroot'
-CXXFLAGS=3D' -m32   -march=3Di586
---sysroot=3D/home/autif/data/dev/projects/yocto/sysroot'
-LDFLAGS=3D'  --sysroot=3D/home/autif/data/dev/projects/yocto/sysroot'
-autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep CXX
-CXX=3Di586-poky-linux-g++
-CXXFLAGS=3D' -m32   -march=3Di586
---sysroot=3D/home/autif/data/dev/projects/yocto/sysroot'
-autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep CC
-CC=3Di586-poky-linux-gcc
-                        SLAVE NONE ACCEPT' -- "$cur" ));
-                COMPREPLY=3D($( compgen -W 'ACCEPT DROP LOG ULOG REJECT \
-                    COMPREPLY=3D($( compgen -W 'ACCEPT DROP LOG ULOG REJECT=
- \
-                        COMPREPLY=3D($( compgen -W 'ACCEPT DROP LOG ULOG RE=
-JECT \
-autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ ls
-/home/autif/data/dev/projects/yocto/sysroot
-
-
-Please advise. Did I set the environment correctly?
-
-Thanks
-
-Autif
-
-
-On Thu, Nov 10, 2011 at 11:24 PM, Zhang, Jessica
-<jessica.zhang@intel.com> wrote:
-> Hi Autif,
->
-> It seems the libgmodule-2.0.la is missing from the 1.1 tarball sysroot bu=
-t I've checked it does exist under the sysroot that extracted from the core=
--image-sato-sdk image. =A0So, you have to do the following steps:
-> 1. bitbake core-image-sato-sdk
-> 2. source the environment-setup script under /opt/poky/1.1
-> 3. Run runqemu-extract-sdk against the built out image file, it should be=
- under your .../build/tmp/deploy/image/core-image-sato-sdk.tar.bz2 and the =
-directory you want the sysroot to be extracted to e.g. $HOME/qemux86
-> 4. change your sysroot setting to point to the newly created sysroot dire=
-ctory.
->
-> Or, you can following the ADT manual and using the part that use adt-inst=
-aller to setup your cross development environment.
->
-> Hope these can get you going.
->
-> Jessica
->
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
-rg] On Behalf Of autif khan
-> Sent: Thursday, November 10, 2011 6:44 PM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] Trying to cross compile Mono - glib link error
->
-> I followed the instructions and installed the ADT from the 1.1 tarball
-> as outlined in documentation. And tested a few simple GTK apps.
-> Everything worked well.
->
-> After that I am trying to cross compile mono and I am getting the
-> following error:
->
-> LD =A0 =A0 =A0test-glib
-> libtool: link: warning: library
-> `/opt/poky/1.1/sysroots/i586-poky-linux/usr/lib/libgmodule-2.0.la' was
-> moved.
-> libtool: link: cannot find the library `=3D/usr/lib/libglib-2.0.la' or
-> unhandled argument `=3D/usr/lib/libglib-2.0.la'
-> make[4]: *** [test-glib] Error 1
-> make[4]: Leaving directory
-> `/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib/test'
-> make[3]: *** [all-recursive] Error 1
-> make[3]: Leaving directory
-> `/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib'
-> make[2]: *** [all] Error 2
-> make[2]: Leaving directory
-> `/home/autif/data/dev/projects/yocto/mono-2.10.6/eglib'
-> make[1]: *** [all-recursive] Error 1
-> make[1]: Leaving directory `/home/autif/data/dev/projects/yocto/mono-2.10=
-.6'
-> make: *** [all] Error 2
->
-> compiler flags seem to look fine
->
-> autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep LD
-> BUILDDIR=3D/home/autif/data/dev/projects/yocto/poky-edison-6.0/build
-> LDFLAGS=3D' =A0--sysroot=3D/opt/poky/1.1/sysroots/i586-poky-linux'
-> OLDPWD=3D/home/autif/data/dev/projects/yocto
->
-> autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep CPP
-> CPPFLAGS=3D' -m32 =A0 -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i5=
-86-poky-linux'
->
-> autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep CXX
-> CXX=3Di586-poky-linux-g++
-> CXXFLAGS=3D' -m32 =A0 -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i5=
-86-poky-linux'
->
-> autif@hp8440w:~/data/dev/projects/yocto/mono-2.10.6$ set | grep FLAGS
-> CFLAGS=3D' -m32 =A0 -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i586=
--poky-linux'
-> CONFIGURE_FLAGS=3D'--target=3Di586-poky-linux --host=3Di586-poky-linux
-> --build=3Dx86_64-linux
-> --with-libtool-sysroot=3D/opt/poky/1.1/sysroots/i586-poky-linux'
-> CPPFLAGS=3D' -m32 =A0 -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i5=
-86-poky-linux'
-> CXXFLAGS=3D' -m32 =A0 -march=3Di586 --sysroot=3D/opt/poky/1.1/sysroots/i5=
-86-poky-linux'
-> LDFLAGS=3D' =A0--sysroot=3D/opt/poky/1.1/sysroots/i586-poky-linux'
->
-> Please advise.
->
-> Thanks!
->
-> Autif
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+Best Regards,
+Jiajun
 
