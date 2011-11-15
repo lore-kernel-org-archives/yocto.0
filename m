@@ -1,25 +1,34 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC896E006BA
-	for <yocto@yoctoproject.org>; Tue, 15 Nov 2011 13:01:58 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 15 Nov 2011 13:01:58 -0800
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9517E0030F
+	for <yocto@yoctoproject.org>; Tue, 15 Nov 2011 14:44:52 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 15 Nov 2011 14:44:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,517,1315206000"; d="scan'208";a="90963075"
-Received: from unknown (HELO envy.home) ([10.255.12.20])
-	by fmsmga002.fm.intel.com with ESMTP; 15 Nov 2011 13:01:40 -0800
-Message-ID: <4EC2D334.50105@linux.intel.com>
-Date: Tue, 15 Nov 2011 13:01:40 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208,217";a="76028699"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga001.jf.intel.com with ESMTP; 15 Nov 2011 14:44:52 -0800
+Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 15 Nov 2011 14:44:51 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.228]) by
+	ORSMSX105.amr.corp.intel.com ([169.254.4.168]) with mapi id
+	14.01.0355.002; Tue, 15 Nov 2011 14:44:51 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Marc Ferland <marc.ferland@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Yocto reference manual: error in given example
+Thread-Index: AQHMn+y7yUw2iQ+1L02yWXfkw1CXrZWujVOA
+Date: Tue, 15 Nov 2011 22:44:50 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237916EB04BD@ORSMSX101.amr.corp.intel.com>
+References: <CAMRMzCC+m_LrpexrghHb49JWD5bVL3-89O8bhh0=hwLpWi3ffA@mail.gmail.com>
+In-Reply-To: <CAMRMzCC+m_LrpexrghHb49JWD5bVL3-89O8bhh0=hwLpWi3ffA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: Paul Gortmaker <paul.gortmaker@windriver.com>
-References: <4EC2C94E.6000202@linux.intel.com> <4EC2D1E1.60204@windriver.com>
-In-Reply-To: <4EC2D1E1.60204@windriver.com>
-X-Enigmail-Version: 1.3.3
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH][linux-yocto] mount_root: clarify error messages for when no rootfs found (V2)
+Subject: Re: Yocto reference manual: error in given example
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,121 +40,154 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Nov 2011 21:01:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 15 Nov 2011 22:44:52 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EB04BDORSMSX101amrcor_"
 
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EB04BDORSMSX101amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+SGksDQoNCkkgYW0gbG9va2luZyBhdCB0aGUgWVAgUmVmZXJlbmNlIG1hbnVhbCBhbmQgdGhlIGV4
+YW1wbGUgaW4gdGhpcyBzZWN0aW9uIHVzZXMgbWV0YS9yZWNpcGVzLXNhdG8vdGFza3MvdGFzay1w
+b2t5LmJiLCB3aGljaCBkb2VzbuKAmXQgc2VlbSB0byBleGlzdCBpbiB0aGUgUG9reSB0cmVlLiAg
+IFNpbmNlIHRoZSBleGFtcGxlIGluIHRoZSBzZWN0aW9uIDMuMi4yIGlzIGNyZWF0ZWQganVzdCBm
+b3IgaW5zdHJ1Y3Rpb25hbCBwdXJwb3NlcyBJIGFtIGdvaW5nIHRvIGdldCByaWQgb2YgdGhlIHJl
+ZmVyZW5jZSB0byB0aGUg4oCYbWV0YS9yZWNpcGVzLXNhdG8vdGFza3MvdGFzay1wb2t5LmJi4oCZ
+IHBhdGguDQoNClRvIG1ha2UgdGhlIGV4YW1wbGUgY29ycmVjdCwgY2FuIEkgc2ltcGx5IGluc2Vy
+dCB0aGUg4oCYQUxMT1dfRU1QVFkgPSDigJwx4oCdIHN0YXRlbWVudCBhcyBmb2xsb3dzOg0KDQoN
+CkRFU0NSSVBUSU9OID0gIk15IEN1c3RvbSBUYXNrcyINCg0KICAgICBQQUNLQUdFUyA9ICJcDQog
+ICAgICAgICB0YXNrLWN1c3RvbS1hcHBzIFwNCiAgICAgICAgIHRhc2stY3VzdG9tLWFwcHMtZGJn
+IFwNCiAgICAgICAgIHRhc2stY3VzdG9tLWFwcHMtZGV2IFwNCiAgICAgICAgIHRhc2stY3VzdG9t
+LXRvb2xzIFwNCg0KDQogICAgICAgICB0YXNrLWN1c3RvbS10b29scy1kYmcgXA0KICAgICAgICAg
+dGFzay1jdXN0b20tdG9vbHMtZGV2IFwNCiAgICAgICAgICINCg0KDQoNCiAgICAgQUxMT1dfRU1Q
+VFkgPSAiMSINCg0KICAgICBSREVQRU5EU190YXNrLWN1c3RvbS1hcHBzID0gIlwNCiAgICAgICAg
+IGRyb3BiZWFyIFwNCiAgICAgICAgIHBvcnRtYXAgXA0KICAgICAgICAgcHNwbGFzaCINCg0KICAg
+ICBSREVQRU5EU190YXNrLWN1c3RvbS10b29scyA9ICJcDQoNCg0KICAgICAgICAgb3Byb2ZpbGUg
+XA0KICAgICAgICAgb3Byb2ZpbGV1aS1zZXJ2ZXIgXA0KICAgICAgICAgbHR0bmctY29udHJvbCBc
+DQogICAgICAgICBsdHRuZy12aWV3ZXIiDQoNCiAgICAgUlJFQ09NTUVORFNfdGFzay1jdXN0b20t
+dG9vbHMgPSAiXA0KICAgICAgICAga2VybmVsLW1vZHVsZS1vcHJvZmlsZSINCg0KDQpGcm9tOiB5
+b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlvY3Rv
+cHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBNYXJjIEZlcmxhbmQNClNlbnQ6IFRodXJzZGF5LCBO
+b3ZlbWJlciAxMCwgMjAxMSAxMjo0OCBQTQ0KVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1
+YmplY3Q6IFt5b2N0b10gWW9jdG8gcmVmZXJlbmNlIG1hbnVhbDogZXJyb3IgaW4gZ2l2ZW4gZXhh
+bXBsZQ0KDQpIaSwNCg0KVGhlIGV4YW1wbGUgZ2l2ZW4gaW4gc2VjdGlvbiAzLjIuMiBpcyBtaXNz
+aW5nIGE6DQoNCmluaGVyaXQgdGFzaw0KDQppbnN0cnVjdGlvbi4NCg0KQ291bGQgYWxzbyBoYXZl
+IGJlZW4gQUxMT1dfRU1QVFkgPSAiMSIuDQoNCkkgcmVhbGl6ZWQgdGhpcyBhZnRlciBhIGNvdXBs
+ZSBob3VycyBvZiBkZWJ1Z2dpbmchDQoNClJlZ2FyZHMsDQoNCk1hcmMNCg==
 
-On 11/15/2011 12:56 PM, Paul Gortmaker wrote:
-> On 11-11-15 03:19 PM, Darren Hart wrote:
->> The following is a modified version the patch at:
->>
->> meta/cfg/kernel-cache/patches/boot/mount_root-clarify-error-messages-for-when-no-rootfs.patch
->>
->> in the linux-yocto-3.0 git repository. This version adds KERN_EMERG
->> so that even using loglevel=1 at boot, the end user will see:
->>
->> [    0.217462] VFS: Unable to mount root fs on unknown-block(8,2)
->> [    0.223457] User configuration error - no valid root filesystem found
->> [    0.230057] Kernel panic - not syncing: Invalid configuration from end user preg
->> [    0.238992] Pid: 1, comm: swapper Not tainted 3.0.4-yocto-standard+ #2
->> [    0.245691] Call Trace:                                                         
->> [    0.248218]  [<c04eddbc>] ? 0xc04eddbc                                          
->> [    0.252071]  [<c05549ad>] ? 0xc05549ad                                          
->> [    0.255928]  [<c05549fa>] ? 0xc05549fa                                          
->> [    0.259790]  [<c0554623>] ? 0xc0554623                                          
->> [    0.263650]  [<c0554b1c>] ? 0xc0554b1c                                          
->> [    0.267497]  [<c055472a>] ? 0xc055472a                                          
->> [    0.271344]  [<c04f0df6>] ? 0xc04f0df6                                          
->>
->> Instead of just:
->>
->> [    0.230057] Kernel panic - not syncing: Invalid configuration from end user preg
->> ...
->>
->> Which is arguably no better than what this patch originally attempted to address.
->>
->> Paul, has this patch been sent upstream for inclusion? I don't see it in Linus' tree.
-> 
-> No, I never sent it upstream.  It seemed like such a trivial and
-> cosmetic change.  If you want to put the V2 comment below the ---
-> and send it upstream, feel free to do so.
-> 
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EB04BDORSMSX101amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-OK. We really shouldn't be holding on to patches like these. If they are
-good for us, they should be good for upstream. If they are not good for
-upstream, then we don't want to differ in such a way that causes
-confusion for people trying to debug.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3NlLTE6MiAxMSA2
+IDQgMyA1IDQgNCAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBs
+aS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9t
+Oi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJv
+bWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
+aW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
+OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
+Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnByZQ0K
+CXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0
+dGVkIENoYXIiOw0KCW1hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQt
+c2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQpzcGFuLkVtYWlsU3R5
+bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2Fs
+aWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0Kc3Bhbi5IVE1MUHJlZm9ybWF0
+dGVkQ2hhcg0KCXttc28tc3R5bGUtbmFtZToiSFRNTCBQcmVmb3JtYXR0ZWQgQ2hhciI7DQoJbXNv
+LXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJIVE1MIFByZWZvcm1hdHRlZCI7
+DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5
+bGUtdHlwZTpleHBvcnQtb25seTt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAx
+MS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlv
+bjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+
+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8
+L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0
+IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNo
+YXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMi
+IGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjoj
+MUY0OTdEIj5IaSwNCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
+aWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SSBhbSBsb29raW5nIGF0IHRoZSBZUCBSZWZlcmVuY2Ug
+bWFudWFsIGFuZCB0aGUgZXhhbXBsZSBpbiB0aGlzIHNlY3Rpb24gdXNlcyBtZXRhL3JlY2lwZXMt
+c2F0by90YXNrcy90YXNrLXBva3kuYmIsIHdoaWNoIGRvZXNu4oCZdCBzZWVtIHRvIGV4aXN0IGlu
+IHRoZSBQb2t5IHRyZWUuDQogJm5ic3A7Jm5ic3A7U2luY2UgdGhlIGV4YW1wbGUgaW4gdGhlIHNl
+Y3Rpb24gMy4yLjIgaXMgY3JlYXRlZCBqdXN0IGZvciBpbnN0cnVjdGlvbmFsIHB1cnBvc2VzIEkg
+YW0gZ29pbmcgdG8gZ2V0IHJpZCBvZiB0aGUgcmVmZXJlbmNlIHRvIHRoZSDigJhtZXRhL3JlY2lw
+ZXMtc2F0by90YXNrcy90YXNrLXBva3kuYmLigJkgcGF0aC4mbmJzcDsNCjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
+Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
+dDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+VG8g
+bWFrZSB0aGUgZXhhbXBsZSBjb3JyZWN0LCBjYW4gSSBzaW1wbHkgaW5zZXJ0IHRoZSDigJhBTExP
+V19FTVBUWSA9IOKAnDHigJ0gc3RhdGVtZW50IGFzIGZvbGxvd3M6PG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2Nv
+bG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwcmU+REVTQ1JJUFRJ
+T04gPSAmcXVvdDtNeSBDdXN0b20gVGFza3MmcXVvdDs8YnI+PGJyPiZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyBQQUNLQUdFUyA9ICZxdW90O1w8YnI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHRhc2stY3VzdG9tLWFwcHMgXDxicj4mbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgdGFzay1jdXN0b20tYXBwcy1kYmcg
+XDxicj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgdGFz
+ay1jdXN0b20tYXBwcy1kZXYgXDxicj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsgdGFzay1jdXN0b20tdG9vbHMgXDxicj48YnI+PG86cD48L286cD48L3By
+ZT4NCjxwcmU+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+IHRhc2stY3VzdG9tLXRvb2xzLWRiZyBcPGJyPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyB0YXNrLWN1c3RvbS10b29scy1kZXYgXDxicj4mbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgJnF1b3Q7PG86cD48L286cD48
+L3ByZT4NCjxwcmU+PG86cD4mbmJzcDs8L286cD48L3ByZT4NCjxwcmU+Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7IEFMTE9XX0VNUFRZID0gJnF1b3Q7MSZxdW90Ozxicj48YnI+Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7IFJERVBFTkRTX3Rhc2stY3VzdG9tLWFwcHMgPSAmcXVvdDtcPGJyPiZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBkcm9wYmVhciBcPGJy
+PiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBwb3J0bWFw
+IFw8YnI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHBz
+cGxhc2gmcXVvdDs8YnI+PGJyPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBSREVQRU5EU190YXNr
+LWN1c3RvbS10b29scyA9ICZxdW90O1w8YnI+PGJyPjxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBvcHJvZmlsZSBc
+PGJyPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBvcHJv
+ZmlsZXVpLXNlcnZlciBcPGJyPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyBsdHRuZy1jb250cm9sIFw8YnI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGx0dG5nLXZpZXdlciZxdW90Ozxicj48YnI+Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7IFJSRUNPTU1FTkRTX3Rhc2stY3VzdG9tLXRvb2xzID0gJnF1b3Q7XDxi
+cj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsga2VybmVs
+LW1vZHVsZS1vcHJvZmlsZSZxdW90OzxvOnA+PC9vOnA+PC9wcmU+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
+YnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJz
+cDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5z
+LXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
+CjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0I1QzRERiAxLjBwdDtw
+YWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90Oywm
+cXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
+aWYmcXVvdDsiPiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1i
+b3VuY2VzQHlvY3RvcHJvamVjdC5vcmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPk1hcmMgRmVybGFu
+ZDxicj4NCjxiPlNlbnQ6PC9iPiBUaHVyc2RheSwgTm92ZW1iZXIgMTAsIDIwMTEgMTI6NDggUE08
+YnI+DQo8Yj5Ubzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0Ojwv
+Yj4gW3lvY3RvXSBZb2N0byByZWZlcmVuY2UgbWFudWFsOiBlcnJvciBpbiBnaXZlbiBleGFtcGxl
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpw
+PiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhpLDxicj4NCjxicj4NClRo
+ZSBleGFtcGxlIGdpdmVuIGluIHNlY3Rpb24gMy4yLjIgaXMgbWlzc2luZyBhOjxicj4NCjxicj4N
+CmluaGVyaXQgdGFzazxicj4NCjxicj4NCmluc3RydWN0aW9uLjxicj4NCjxicj4NCkNvdWxkIGFs
+c28gaGF2ZSBiZWVuIEFMTE9XX0VNUFRZID0gJnF1b3Q7MSZxdW90Oy48YnI+DQo8YnI+DQpJIHJl
+YWxpemVkIHRoaXMgYWZ0ZXIgYSBjb3VwbGUgaG91cnMgb2YgZGVidWdnaW5nITxicj4NCjxicj4N
+ClJlZ2FyZHMsIDxicj4NCjxicj4NCk1hcmM8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9ib2R5
+Pg0KPC9odG1sPg0K
 
-For example, I saw the latter message, thought it was due to the new
-bootloader I was trying, and the bootloader author couldn't find that
-string in the upstream kernel sources he develops with.
-
---
-Darren
-
-> P.
-> 
->>
->> Thanks,
->>
->> Darren
->>
->> ----------------------
->>
->> To an end user who doesn't really know linux that well, a
->> message like:
->>
->>   Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)
->>
->> may just look like cryptic computer speak indicating some
->> deep and complex problem, instead of the reality that they
->> have a simple local configuration problem.  Ideally it would
->> be nice to not use the misleading "panic" at all, but since
->> various panic notifiers are historically expecting to be
->> called when there is no valid rootfs, we can't change that.
->>
->> So instead, this tries to make it 100% clear to folks of
->> any background that it is an end user configuration issue.
->>
->> V2: Use KERN_EMERG so the printk context isn't lost when using loglevel
->>
->> Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
->> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
->> ---
->>  init/do_mounts.c |    8 ++++++--
->>  1 files changed, 6 insertions(+), 2 deletions(-)
->>
->> diff --git a/init/do_mounts.c b/init/do_mounts.c
->> index bb008d0..d24b8c7 100644
->> --- a/init/do_mounts.c
->> +++ b/init/do_mounts.c
->> @@ -270,7 +270,9 @@ retry:
->>  		printk("DEBUG_BLOCK_EXT_DEVT is enabled, you need to specify "
->>  		       "explicit textual name for \"root=\" boot option.\n");
->>  #endif
->> -		panic("VFS: Unable to mount root fs on %s", b);
->> +		printk(KERN_EMERG "VFS: Unable to mount root fs on %s\n", b);
->> +		printk(KERN_EMERG "User configuration error - no valid root filesystem found\n");
->> +		panic("Invalid configuration from end user prevents continuing");
->>  	}
->>  
->>  	printk("List of all partitions:\n");
->> @@ -282,7 +284,9 @@ retry:
->>  #ifdef CONFIG_BLOCK
->>  	__bdevname(ROOT_DEV, b);
->>  #endif
->> -	panic("VFS: Unable to mount root fs on %s", b);
->> +	printk(KERN_EMERG "VFS: Unable to mount root fs on %s\n", b);
->> +	printk(KERN_EMERG "User configuration error - no valid root filesystem found\n");
->> +	panic("Invalid configuration from end user prevents continuing");
->>  out:
->>  	putname(fs_names);
->>  }
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
-
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EB04BDORSMSX101amrcor_--
