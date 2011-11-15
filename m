@@ -1,39 +1,59 @@
-Return-Path: <shane.wang@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B24B6E00305
-	for <yocto@yoctoproject.org>; Tue, 15 Nov 2011 06:41:25 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 15 Nov 2011 06:41:24 -0800
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C511E0030F;
+	Tue, 15 Nov 2011 08:13:23 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 15 Nov 2011 08:13:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,515,1315206000"; d="scan'208";a="90743490"
-Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
-	by fmsmga002.fm.intel.com with ESMTP; 15 Nov 2011 06:41:24 -0800
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 15 Nov 2011 22:41:20 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 15 Nov 2011 22:41:20 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Tue, 15 Nov 2011 22:41:19 +0800
-From: "Wang, Shane" <shane.wang@intel.com>
-To: "Lu, Lianhao" <lianhao.lu@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "Barros Pena,
-	Belen" <belen.barros.pena@intel.com>
-Date: Tue, 15 Nov 2011 22:41:18 +0800
-Thread-Topic: UI skelecton of hob v2 is updated in wiki.
-Thread-Index: Acyi8HvI+Fm5vHZSRnyH7OYZ9CutkAAAgBNQACwDJnA=
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12DBBE341F@shsmsx501.ccr.corp.intel.com>
-References: <D5AB6E638E5A3E4B8F4406B113A5A19A12DBBE2D6B@shsmsx501.ccr.corp.intel.com>
-	<C10D3FB0CD45994C8A51FEC1227CE22F365BE28EB1@shsmsx502.ccr.corp.intel.com>
-In-Reply-To: <C10D3FB0CD45994C8A51FEC1227CE22F365BE28EB1@shsmsx502.ccr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208,217";a="75667766"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga002.jf.intel.com with ESMTP; 15 Nov 2011 08:13:14 -0800
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 15 Nov 2011 08:13:14 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.228]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.87]) with mapi id
+	14.01.0355.002; Tue, 15 Nov 2011 08:13:13 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "Liu, Song" <song.liu@intel.com>, "'McCombe, Kevin'"
+	<kevin.mccombe@windriver.com>, "Wold, Saul" <saul.wold@intel.com>, "Zhang, 
+	Jessica" <jessica.zhang@intel.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Polk, Jeffrey'" <jeff.polk@windriver.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "Li, Susie" <susie.li@intel.com>, "Lock,
+	Joshua"
+	<joshua.lock@intel.com>, 'Bruce Ashfield' <bruce.ashfield@windriver.com>,
+	"Zanussi, Tom" <tom.zanussi@intel.com>, "Hart, Darren"
+	<darren.hart@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Stewart, David C"
+	<david.c.stewart@intel.com>, "'Lieu.Ta@windriver.com'"
+	<Lieu.Ta@windriver.com>, "'paul.anderson@windriver.com'"
+	<paul.anderson@windriver.com>, "Osier-mixon, Jeffrey"
+	<jeffrey.osier-mixon@intel.com>, "Dmytriyenko, Denys" <denys@ti.com>,
+	"Kooi, Koen" <k-kooi@ti.com>, "'yocto-ab@yoctoproject.org'"
+	<yocto-ab@yoctoproject.org>, "Erway, Tracey M" <tracey.m.erway@intel.com>, 
+	'Daniel Cauchy' <dcauchy@mvista.com>, "Wang,
+	Shane" <shane.wang@intel.com>, 
+	"'Kridner, Jason'" <jdk@ti.com>, "Yu, Ke" <ke.yu@intel.com>, "Rifenbark,
+	Scott M" <scott.m.rifenbark@intel.com>, "'Dixon, Brad'"
+	<Brad_Dixon@mentor.com>, 'Jeremy Puhlman' <jpuhlman@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"'shsift-yocto@yahoo.com'" <shsift-yocto@yahoo.com>
+Thread-Topic: Yocto Technical Team Meeting
+Thread-Index: AcxcY5uDDBwqkSloQ7q7AP39wdnkdBHkOuzw
+Date: Tue, 15 Nov 2011 16:13:12 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A16F92376@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: Re: UI skelecton of hob v2 is updated in wiki.
+X-Mailman-Approved-At: Tue, 15 Nov 2011 08:17:12 -0800
+Cc: "'Ruff, Nithya'" <Nithya.Ruff@windriver.com>,
+	"'morvek@mvista.com'" <morvek@mvista.com>
+Subject: Re: Yocto Technical Team Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,108 +65,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Nov 2011 14:41:25 -0000
+X-List-Received-Date: Tue, 15 Nov 2011 16:13:24 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A16F92376ORSMSX101amrcor_"
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A16F92376ORSMSX101amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Thank you for the comments, Lianhao.
-See mine below.
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status
 
---
-Shane
-
-Lu, Lianhao wrote on=A02011-11-15:
-
-> Some comments:
->=20
-> 1. Do we need the "Window" menu to "to switch to any step from any step"?
-> I don't think the users are allowed to skip step 2 by directly swtiching =
-from
-> step1 to step3. The "Back" and "Next" in each step should do the work.
-OK, it is open. And up to Belen.
-What if the user has built recipes before, and doesn't want to go step 2 fo=
-r recipe selection but want to try another image making directly?
-I agree we should consider the workflow carefully to allow/disallow user's =
-input at some stage. Can we disable the menu item if it is disallowed?
-
-
->=20
-> 2. Do we need those "View ***.conf" and open "Open directory" items
-> under "Tools" menu? I think hob is designed to help users to avoid
-> viewing/editing those configuration files and recipes. What's the differe=
-nce
-> between build log and make log? I think we might not want to put too many
-> items under menus.
-Log for building recipes, and log for making image from packages.
-Hob v1 can view log for debugging.
-
->=20
-> 3. In step 1 configuration, maybe we can replace the configuration variab=
-le
-> names with their actual meaning, at least for the basic configurtaion
-> dialogue. If we can't define the actual meaning of a configuration variab=
-le,
-> we then might need to think about whether we should put that configuratio=
-n
-> item into the UI.
-Their names are TBD. Agree. But for one variable, we need abbreviate it to =
-2-3 words because the small window doesn't allow the long description in th=
-e code.
-
->=20
-> 4. In the advanced configuration dialogue, it'd better if we group those =
-items
-> by their meanings and influence, not by the filename where the configure
-> variable is defined.=09
-Yes.
-
->=20
-> 5. Is it possible that we move some image-only related configuration item=
-s,
-> i.e. IMAGE_FSTYPES, ROOTFS_FLASH_SIZE, FREE_SPCE, etc. from step1
-> dialogue into the step3 dialogue?
-In my previous discussion with Dongxiao, we want keep them both in step 1 a=
-nd in step 3.
-So, in step 1, user can do settings. But in step 3, he/she still has the ch=
-ance to change.
-But if we put them in step 3 only, it means we will have another "configura=
-tion and settings" stage.
-The workflow would be:
-step 1 (setting for build recipes) -> step 2 (recipe selection) -> step 3 (=
-setting for making image) -> step 4 (package selection).
-I am not sure which is better for developer experience.
-
-
->=20
-> Best Regards,
-> Lianhao
->=20
->=20
->> -----Original Message-----
->> From: yocto-bounces@yoctoproject.org
->> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Wang, Shane
->> Sent: Monday, November 14, 2011 9:12 AM
->> To: yocto@yoctoproject.org
->> Subject: [yocto] UI skelecton of hob v2 is updated in wiki.
->>=20
->> See https://wiki.yoctoproject.org/wiki/Hob2_(Hob_v2)#UI_Skelecton for
->> more details.
->>=20
->> Please comment.
->>=20
->> Thank you.
->> --
->> Shane
->>=20
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-----Original Appointment-----
+From: Liu, Song
+Sent: Tuesday, August 16, 2011 3:27 PM
+To: 'McCombe, Kevin'; Wold, Saul; Zhang, Jessica; 'deVries, Alex'; 'Polk, J=
+effrey'; 'Hatle, Mark'; Purdie, Richard; Li, Susie; Lock, Joshua; 'Bruce As=
+hfield'; Zanussi, Tom; Hart, Darren; Flanagan, Elizabeth; Stewart, David C;=
+ 'Lieu.Ta@windriver.com'; 'paul.anderson@windriver.com'; Osier-mixon, Jeffr=
+ey; Dmytriyenko, Denys; Kooi, Koen; 'yocto-ab@yoctoproject.org'; Erway, Tra=
+cey M; 'Daniel Cauchy'; Wang, Shane; 'Kridner, Jason'; Yu, Ke; Rifenbark, S=
+cott M; 'Dixon, Brad'; 'Jeremy Puhlman'; yocto@yoctoproject.org; 'shsift-yo=
+cto@yahoo.com'
+Cc: 'morvek@mvista.com'; 'Ruff, Nithya'; Moeller, Thorsten; Saxena, Rahul; =
+'Ranslam, Rob'; 'Anders Darander'; Bodke, Kishore K; Lu, Lianhao
+Subject: Yocto Technical Team Meeting
+When: Tuesday, November 15, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (=
+US & Canada).
+Where: Bridge Info Enclosed
 
 
 
+
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A16F92376ORSMSX101amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Statu=
+s"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_Project=
+_v1.2_Status</u></font></a></div>
+<div><font color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Tahoma" size=3D"2"><span style=3D"font-size:10pt;">-----=
+Original Appointment-----<br>
+
+<b>From:</b> Liu, Song <br>
+
+<b>Sent:</b> Tuesday, August 16, 2011 3:27 PM<br>
+
+<b>To:</b> 'McCombe, Kevin'; Wold, Saul; Zhang, Jessica; 'deVries, Alex'; '=
+Polk, Jeffrey'; 'Hatle, Mark'; Purdie, Richard; Li, Susie; Lock, Joshua; 'B=
+ruce Ashfield'; Zanussi, Tom; Hart, Darren; Flanagan, Elizabeth; Stewart, D=
+avid C; 'Lieu.Ta@windriver.com';
+'paul.anderson@windriver.com'; Osier-mixon, Jeffrey; Dmytriyenko, Denys; Ko=
+oi, Koen; 'yocto-ab@yoctoproject.org'; Erway, Tracey M; 'Daniel Cauchy'; Wa=
+ng, Shane; 'Kridner, Jason'; Yu, Ke; Rifenbark, Scott M; 'Dixon, Brad'; 'Je=
+remy Puhlman'; yocto@yoctoproject.org;
+'shsift-yocto@yahoo.com'<br>
+
+<b>Cc:</b> 'morvek@mvista.com'; 'Ruff, Nithya'; Moeller, Thorsten; Saxena, =
+Rahul; 'Ranslam, Rob'; 'Anders Darander'; Bodke, Kishore K; Lu, Lianhao<br>
+
+<b>Subject:</b> Yocto Technical Team Meeting<br>
+
+<b>When:</b> Tuesday, November 15, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific=
+ Time (US &amp; Canada).<br>
+
+<b>Where:</b> Bridge Info Enclosed</span></font></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+</span></font>
+</body>
+</html>
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A16F92376ORSMSX101amrcor_--
