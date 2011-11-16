@@ -1,28 +1,25 @@
-Return-Path: <miketsukerman@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A634E006BD
-	for <yocto@yoctoproject.org>; Tue, 15 Nov 2011 20:19:18 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by pzk32 with SMTP id 32so19152602pzk.7
-	for <yocto@yoctoproject.org>; Tue, 15 Nov 2011 20:19:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=31ZNIE5CfbBkV8dn/ckgXUlBYX85v2DRMuG+6L9Owfs=;
-	b=a/hbrhTQsr5AsTHCSLe2jajncKu8JL49+uLkUeeowR2CF1CMXOjV8JxPYFfSQCDiSu
-	QjZFUpz+gyN1Zf3py7GXvp42c0WEOD5OrCBBp5m/Lksmo923mj6d3uc3yiJDSJ9KQJvp
-	rutsmw4Dvoo/DMwAvlEmWQLFT/UD+FK4Aop9Y=
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 410CCE006BB
+	for <yocto@yoctoproject.org>; Tue, 15 Nov 2011 21:36:39 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pAG5ac7k015745
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 15 Nov 2011 21:36:38 -0800 (PST)
+Received: from bruce-ashfields-macbook.local (128.224.20.238) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Tue, 15 Nov 2011 21:36:37 -0800
+Message-ID: <4EC34BE4.5030508@windriver.com>
+Date: Wed, 16 Nov 2011 00:36:36 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
+	rv:1.9.2.24) Gecko/20111101 Thunderbird/3.1.16
 MIME-Version: 1.0
-Received: by 10.68.7.132 with SMTP id j4mr4943687pba.79.1321417157584; Tue, 15
-	Nov 2011 20:19:17 -0800 (PST)
-Received: by 10.68.47.97 with HTTP; Tue, 15 Nov 2011 20:19:17 -0800 (PST)
-Date: Wed, 16 Nov 2011 08:19:17 +0400
-Message-ID: <CALs2vteGvK75Kwu8B4sxL+gPyrgN1SwOKTC97Bd=Xh_bdC==Lg@mail.gmail.com>
-From: Mike Tsukerman <miketsukerman@gmail.com>
-To: yocto@yoctoproject.org
-Subject: /usr/bin/env dependencies
+To: Darren Hart <dvhart@linux.intel.com>
+References: <4EC2C94E.6000202@linux.intel.com>
+In-Reply-To: <4EC2C94E.6000202@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH][linux-yocto] mount_root: clarify error messages for when no rootfs found (V2)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,64 +31,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Nov 2011 04:19:18 -0000
-Content-Type: multipart/alternative; boundary=bcaec5215c4d4728cd04b1d2683c
+X-List-Received-Date: Wed, 16 Nov 2011 05:36:39 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---bcaec5215c4d4728cd04b1d2683c
-Content-Type: text/plain; charset=ISO-8859-1
+On 11-11-15 3:19 PM, Darren Hart wrote:
+> The following is a modified version the patch at:
 
-Hello,
+Works for me as well, I'll update the variant in the yocto kernel
+trees, while we wait to see if anyone upstream has any interest.
 
-I'm trying to build my own image for my own machine configuration ( based
-on beagleboard )
-and get some errors. Please tell me what package is missing?
+Bruce
 
-error: Failed dependencies:
-| /usr/bin/env is needed by automake-1.11.1-r4.armv7ahf
-| /usr/bin/env is needed by slang-2.2.4-r6.armv7ahf
-| /usr/bin/env is needed by mc-4.7.5.2-r2.armv7ahf
-| /usr/bin/env is needed by autoconf-2.68-r3.armv7ahf
-| /usr/bin/env is needed by intltool-0.40.6-r5.armv7ahf
-| /usr/bin/env is needed by python-core-2.7.2-r0.0.armv7ahf
-| /usr/bin/env is needed by gnu-config-0.1+cvs20080123-r4.armv7ahf
+>
+> meta/cfg/kernel-cache/patches/boot/mount_root-clarify-error-messages-for-when-no-rootfs.patch
+>
+> in the linux-yocto-3.0 git repository. This version adds KERN_EMERG
+> so that even using loglevel=1 at boot, the end user will see:
+>
+> [    0.217462] VFS: Unable to mount root fs on unknown-block(8,2)
+> [    0.223457] User configuration error - no valid root filesystem found
+> [    0.230057] Kernel panic - not syncing: Invalid configuration from end user preg
+> [    0.238992] Pid: 1, comm: swapper Not tainted 3.0.4-yocto-standard+ #2
+> [    0.245691] Call Trace:
+> [    0.248218]  [<c04eddbc>] ? 0xc04eddbc
+> [    0.252071]  [<c05549ad>] ? 0xc05549ad
+> [    0.255928]  [<c05549fa>] ? 0xc05549fa
+> [    0.259790]  [<c0554623>] ? 0xc0554623
+> [    0.263650]  [<c0554b1c>] ? 0xc0554b1c
+> [    0.267497]  [<c055472a>] ? 0xc055472a
+> [    0.271344]  [<c04f0df6>] ? 0xc04f0df6
+>
+> Instead of just:
+>
+> [    0.230057] Kernel panic - not syncing: Invalid configuration from end user preg
+> ...
+>
+> Which is arguably no better than what this patch originally attempted to address.
+>
+> Paul, has this patch been sent upstream for inclusion? I don't see it in Linus' tree.
+>
+> Thanks,
+>
+> Darren
+>
+> ----------------------
+>
+> To an end user who doesn't really know linux that well, a
+> message like:
+>
+>    Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)
+>
+> may just look like cryptic computer speak indicating some
+> deep and complex problem, instead of the reality that they
+> have a simple local configuration problem.  Ideally it would
+> be nice to not use the misleading "panic" at all, but since
+> various panic notifiers are historically expecting to be
+> called when there is no valid rootfs, we can't change that.
+>
+> So instead, this tries to make it 100% clear to folks of
+> any background that it is an end user configuration issue.
+>
+> V2: Use KERN_EMERG so the printk context isn't lost when using loglevel
+>
+> Signed-off-by: Paul Gortmaker<paul.gortmaker@windriver.com>
+> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
+> ---
+>   init/do_mounts.c |    8 ++++++--
+>   1 files changed, 6 insertions(+), 2 deletions(-)
+>
+> diff --git a/init/do_mounts.c b/init/do_mounts.c
+> index bb008d0..d24b8c7 100644
+> --- a/init/do_mounts.c
+> +++ b/init/do_mounts.c
+> @@ -270,7 +270,9 @@ retry:
+>   		printk("DEBUG_BLOCK_EXT_DEVT is enabled, you need to specify "
+>   		       "explicit textual name for \"root=\" boot option.\n");
+>   #endif
+> -		panic("VFS: Unable to mount root fs on %s", b);
+> +		printk(KERN_EMERG "VFS: Unable to mount root fs on %s\n", b);
+> +		printk(KERN_EMERG "User configuration error - no valid root filesystem found\n");
+> +		panic("Invalid configuration from end user prevents continuing");
+>   	}
+>
+>   	printk("List of all partitions:\n");
+> @@ -282,7 +284,9 @@ retry:
+>   #ifdef CONFIG_BLOCK
+>   	__bdevname(ROOT_DEV, b);
+>   #endif
+> -	panic("VFS: Unable to mount root fs on %s", b);
+> +	printk(KERN_EMERG "VFS: Unable to mount root fs on %s\n", b);
+> +	printk(KERN_EMERG "User configuration error - no valid root filesystem found\n");
+> +	panic("Invalid configuration from end user prevents continuing");
+>   out:
+>   	putname(fs_names);
+>   }
 
 
--- 
-Best regards, Mike Tsukerman
-
-jabber: miketsukerman@gmail.com
-jabber: warzon@jabnet.org
-skype: w_a_r_z_o_n
-
---bcaec5215c4d4728cd04b1d2683c
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hello,<div><br></div><div>I&#39;m trying to build my own image for my own m=
-achine configuration ( based on beagleboard )=A0</div><div>and get some err=
-ors. Please tell me what package is missing?=A0</div><div><br></div><div><d=
-iv>
-error: Failed dependencies:</div><div>| <span class=3D"Apple-tab-span" styl=
-e=3D"white-space:pre">	</span>/usr/bin/env is needed by automake-1.11.1-r4.=
-armv7ahf</div><div>| <span class=3D"Apple-tab-span" style=3D"white-space:pr=
-e">	</span>/usr/bin/env is needed by slang-2.2.4-r6.armv7ahf</div>
-<div>| <span class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>/us=
-r/bin/env is needed by mc-4.7.5.2-r2.armv7ahf</div><div>| <span class=3D"Ap=
-ple-tab-span" style=3D"white-space:pre">	</span>/usr/bin/env is needed by a=
-utoconf-2.68-r3.armv7ahf</div>
-<div>| <span class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>/us=
-r/bin/env is needed by intltool-0.40.6-r5.armv7ahf</div><div>| <span class=
-=3D"Apple-tab-span" style=3D"white-space:pre">	</span>/usr/bin/env is neede=
-d by python-core-2.7.2-r0.0.armv7ahf</div>
-<div>| <span class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>/us=
-r/bin/env is needed by gnu-config-0.1+cvs20080123-r4.armv7ahf</div><div><br=
-></div><div><br></div>-- <br><font style=3D"color:rgb(51, 51, 51)" size=3D"=
-2">Best regards, Mike Tsukerman<br>
-<br><span style=3D"color:rgb(0, 0, 0)">jabber</span>: <a href=3D"mailto:mik=
-etsukerman@gmail.com" target=3D"_blank">miketsukerman@gmail.com</a><br><spa=
-n style=3D"color:rgb(0, 0, 0)">jabber</span>: <a href=3D"mailto:warzon@jabn=
-et.org" target=3D"_blank">warzon@jabnet.org</a><br>
-<span style=3D"color:rgb(0, 0, 0)">skype</span>: w_a_r_z_o_n</font><br><br>
-</div>
-
---bcaec5215c4d4728cd04b1d2683c--
