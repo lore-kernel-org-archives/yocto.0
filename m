@@ -1,31 +1,26 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95CE1E00307
-	for <yocto@yoctoproject.org>; Wed, 16 Nov 2011 14:07:31 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by pzk32 with SMTP id 32so653222pzk.7
-	for <yocto@yoctoproject.org>; Wed, 16 Nov 2011 14:07:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
-	:from:to:content-type;
-	bh=cXEo+PPkiHhrwYQntUp8wRt9F9lt8n22Fp5JjnuVNLc=;
-	b=lezCRmBfG/HlxqIanjxyBjQFAxOYKFOQlHIC+kP+0UaRrrTY7NljVgwOq5D4k3sHvM
-	8axVv1XOLSug32MLouYwoeqCp9eRH0UmzgSDhAgcH9E7mfjS6hulhzT1ueNJYnBno5HK
-	V4lUplpvbj6PJ66iDQi4lIaitL7dk70meFgug=
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05727E00307
+	for <yocto@yoctoproject.org>; Wed, 16 Nov 2011 14:11:57 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 16 Nov 2011 14:11:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,523,1315206000"; d="scan'208";a="91553777"
+Received: from unknown (HELO envy.home) ([10.255.12.86])
+	by fmsmga002.fm.intel.com with ESMTP; 16 Nov 2011 14:11:57 -0800
+Message-ID: <4EC4352C.8020600@linux.intel.com>
+Date: Wed, 16 Nov 2011 14:11:56 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-Received: by 10.50.188.225 with SMTP id gd1mr35570194igc.50.1321481250669;
-	Wed, 16 Nov 2011 14:07:30 -0800 (PST)
-Sender: jefro.net@gmail.com
-Received: by 10.50.187.225 with HTTP; Wed, 16 Nov 2011 14:07:30 -0800 (PST)
-Date: Wed, 16 Nov 2011 14:07:30 -0800
-X-Google-Sender-Auth: hVgWSH7YLIN5Wy0aohRkmd1bLoc
-Message-ID: <CA+YB3ray8bX94Y1subz+7CQYUzRJWjHS2CQX_W2boA2BV7A5ZA@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Yocto usability questions
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+References: <4EC3FC68.9080200@linux.intel.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237916EB0B15@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237916EB0B15@ORSMSX101.amr.corp.intel.com>
+X-Enigmail-Version: 1.3.3
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: EXTRA_IMAGEDEPENDS documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,75 +32,183 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Nov 2011 22:07:31 -0000
-Content-Type: multipart/alternative; boundary=14dae93411f986038604b1e154b3
-
---14dae93411f986038604b1e154b3
+X-List-Received-Date: Wed, 16 Nov 2011 22:11:58 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Mark Hatle said:
 
-> Yocto is a cross-compiled build environment.  This is a departure to a lot
-> of the Moblin/MeeGo work that has occurred in the past.  The advantages are
-> you can use any commodity PC to target any (supported) architecture.
->  Disadvantages are that when you introduce new code, you need to ensure
-> that it has a recipe (build instructions for bitbake) and can cross
-> compile.  If everyone has to do the same work over and over, this can be
-> time consuming and counter productive.  If people work together, the time
-> and support burden are dramatically reduced. This can help negate issues
-> people have had in the past with cross compiling. Note: Yocto -does- have a
-> self hosted compile environment if it is needed, this is usually when cross
-> compiling isn't easy to do for some reason.
->
 
-Mark & everyone else listening:
+On 11/16/2011 12:52 PM, Rifenbark, Scott M wrote:
+> Darren, 
+> 
+> Regarding *DEPENDS....  Right now these variables are documented in the YP Reference Manual.  Your email says that the *DEPENDS variables impact the root filesystem.  That is sort of vague.  
+> Can I just add that to each of these descriptions below?
 
-Would you say that (1) the need for a recipe and (2) the requirement to
-cross-compile are two of the most major usability or learning-curve
-disadvantages of working with the Yocto Project (and oe-core)? What would
-be a third disadvantage from a usability standpoint?
+I believe so, yes. Any place we refer to "packages" we are talking about
+the root filesystem. One exception below is LAYERDEPENDS, that one does
+not impact the root filesystem.
 
-Another way to put it: if you could change three things about the Yocto
-Project to make it more approachable for someone who has never used it
-before, what would they be?
+--
+Darren
+
+> 
+> 	DEPENDS - A list of build-time dependencies for a given recipe.  
+>                 The variable indicates recipes that must have been 
+>                 staged before a particular recipe can configure.
+> 
+> 	DISTRO_EXTRA_RDEPENDS - The list of packages required by the 
+>                 distribution.
+> 
+> 	LAYERDEPENDS - Lists the layers that this recipe depends upon, 
+>                 separated by spaces.  Optionally, you can dspecify a 
+>                 specific layer version for a dependency by adding it 
+>                 to the end of the layer name with a colon 
+>                 (e.g. "anotherlayer:3" to be compared against 
+>                 LAYERVERSION_anotherlayer in this case).  An error will 
+>                 be produced if any dependency is missing or the 
+>                 version numbers do not match exactly (if specified).  
+>                 This variable is used in the conf/layer.conf file and
+>                 must be suffixed with the name of the specific layer 
+>                 (e.g. LAYERDEPENDS_mylayer).
+> 
+> 	MACHINE_ESSENTIAL_EXTRA_RDEPENDS - A list of required packages 
+>                 to install as part of the package being built.  The 
+>                 build process depends on these packages being present.  
+>                 Furthermore, because this is a "machine essential" 
+>                 variable, the list of packages are essential for the 
+>                 machine to boot.  The impact of this variable affects 
+>                 images based on task-core-boot including the 
+>                 core-image-minimal image.
+> 
+>                 This variable is similar to the 
+>                 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS variable with the 
+>                 exception that the package being built has a build 
+>                 dependency on the variable's list of packages.  In other 
+>                 words, the image will not beuild if a file in this list 
+>                 is not found.
+> 
+>                 For example, suppose you are building a a runtime 
+>                 package that depends on a certain disk driver.  In this 
+>                 case, you would use the following:
+> 
+>                   MACHINE_ESSENTIAL_EXTRA_RDEPENDS += "<disk_driver>"
+> 
+> 	MACHINE_EXTRA_RDEPENDS - A list of optional but non-machine 
+>                     essential packages to install as part of the package 
+>                     being built.  Even though these packages are not 
+>                     essential for the machine to boot, the build process 
+>                     depends on them being present.  The impact of this 
+>                     variable affects all images based on task-base, which 
+>                     does not include the core-image-minimal or 
+>                     core-image-basic images.
+> 
+>                     This variable is similar to the 
+>                     MACHINE_EXTRA_RRECOMMENDS variable with the exception 
+>                     that the package being built has a build dependency on 
+>                     the variable's list of packages.  In other words, the 
+>                     image will not build if a file in this list is not 
+>                     found.
+> 
+>                     An example is a machine that might or might not have a 
+>                     WiFi card.  The package containing the WiFi support is 
+>                     not essential for the machine to boot the image.
+>                     If it is not there, the machine will boot but not be able 
+>                     to use the WiFi functionality.  However, if you include 
+>                     the package with the WiFi support as part of the 
+>                     variable's package list, the build process depends on 
+>                     finding the package.  In this case, you would use the 
+>                     following:
+> 
+>                         MACHINE_EXTRA_RDEPENDS += "<wifi_driver>"
+> 
+> 	RDEPENDS - A list of packages that must be installed as part of a 
+>                     package being built.  The package being built has a runtime 
+>                     dependency on the packages in the variable's list.  In 
+>                     other words, in order for the package being built to run 
+>                     correctly, it depends on these listed packages.  If a 
+>                     package in this list cannot be found during the build, 
+>                     the build will not complete.
+> 
+>                     Because the RDEPENDS variable applies to packages 
+>                     being built, you should always attach an override to the 
+>                     variable to specify the particular runtime package
+>                     that has the dependency.  For example, suppose you are 
+>                     building a development package that depends on the 
+>                     perl package.  In this case, you would use the following 
+>                     RDEPENDS statement:
+> 
+>                         RDEPENDS_${PN}-dev += "perl"
+> 
+>                     In the example, the package name (${PN}-dev) must 
+>                     appear as it would in the PACKAGES namespace before any 
+>                     renaming of the output package by classes like 
+>                     debian.bbclass.
+> 
+>                     Some automatic handling occurs around the 
+>                     RDEPENDS variable:
+> 
+>                       * shlibdeps:  If a runtime package contains a shared 
+>                             library (.so), the build processes the library 
+>                             in order to determine other libraries to which it 
+>                             is dynamically linked.  The build process adds 
+>                             these libraries to RDEPENDS to create the runtime 
+>                             package.
+> 
+>                       * pcdeps:  If the package ships a pkg-config information 
+>                             file, the build process uses this file to add items
+>                             to the RDEPENDS variable to create the runtime 
+>                             packages.
+> 	
+> It is safe to note in each of these descriptions that the root filesystem is impacted?  
+> 
+> 
+> -----Original Message-----
+> From: Darren Hart [mailto:dvhart@linux.intel.com] 
+> Sent: Wednesday, November 16, 2011 10:10 AM
+> To: Yocto Project
+> Cc: Rifenbark, Scott M; Richard Purdie
+> Subject: EXTRA_IMAGEDEPENDS documentation
+> 
+> For the situation where a recipe is required to build a final image, but
+> the output is not needed in the root filesystem, the EXTRA_IMAGEDEPENDS
+> variable can be used to define this dependency. Bootloaders seem to be
+> the common example for this (such as the beagleboard dependency on uboot).
+> 
+> This variable is not defined in the poky manual nor in the documentation
+> tags (meta/conf/documentation.conf).
+> 
+> Another aspect of this that could be made more explicit in the manual is
+> that the various *RRECOMMENDS and *RDEPENDS variables impact what is
+> installed in the root filesystem (because they operate on packages - not
+> recipes). Scott, I'd recommend a few extra words in the *RRECOMMENDS and
+> *RDEPENDS documentation to this effect. For example, "... a list of
+> packages to install TO THE ROOT FILESYSTEM ...".
+> 
+> As for the EXTRA_IMAGEDEPENDS definition, perhaps something like this:
+> 
+> in documentation.conf:
+> 
+> EXTRA_IMAGEDEPENDS[doc] = "Recipes to build that do not install packages
+> to the root filesystem, such as bootloaders."
+> 
+> in the reference manual:
+> 
+> EXTRA_IMAGEDEPENDS
+> A list of recipes to be built that do not provide packages to be
+> installed in the root filesystem. This is typically used to specify a
+> required bootloader in a machine config.
+> 
+> Note: To add packages to the root filesystem, see the various *DEPENDS
+> and *RECOMMENDS variables.
+> 
+> Scott, I'll leave the reference manual changes to you. RP, if you agree
+> with my doc tag, I can submit a patch for that.
+> 
+> Thanks,
+> 
 
 -- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
---14dae93411f986038604b1e154b3
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Mark Hatle said:<div><div class=3D"gmail_quote"><blockquote class=3D"gmail_=
-quote" style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
-gin-left: 0.8ex; border-left-width: 1px; border-left-color: rgb(204, 204, 2=
-04); border-left-style: solid; padding-left: 1ex; ">
-Yocto is a cross-compiled build environment. =A0This is a departure to a lo=
-t of the Moblin/MeeGo work that has occurred in the past. =A0The advantages=
- are you can use any commodity PC to target any (supported) architecture. =
-=A0Disadvantages are that when you introduce new code, you need to ensure t=
-hat it has a recipe (build instructions for bitbake) and can cross compile.=
- =A0If everyone has to do the same work over and over, this can be time con=
-suming and counter productive. =A0If people work together, the time and sup=
-port burden are dramatically reduced. This can help negate issues people ha=
-ve had in the past with cross compiling. Note: Yocto -does- have a self hos=
-ted compile environment if it is needed, this is usually when cross compili=
-ng isn&#39;t easy to do for some reason.<br>
-</blockquote><div><br></div><div>Mark &amp; everyone else listening:</div><=
-div><br></div><div>Would you say that (1) the need for a recipe and (2) the=
- requirement to cross-compile are two of the most major usability or learni=
-ng-curve disadvantages of working with the Yocto Project (and oe-core)? Wha=
-t would be a third disadvantage from a usability standpoint?=A0</div>
-<div><br></div><div>Another way to put it: if you could change three things=
- about the Yocto Project to make it more approachable for someone who has n=
-ever used it before, what would they be?</div><div><br></div></div>--=A0<br=
->
-Jeff Osier-Mixon=A0<a href=3D"http://jefro.net/blog" target=3D"_blank">http=
-://jefro.net/blog</a><div>Yocto Project Community Manager @Intel=A0<a href=
-=3D"http://yoctoproject.org/" target=3D"_blank">http://yoctoproject.org</a>=
-</div><div>
-<br></div>
-</div>
-
---14dae93411f986038604b1e154b3--
