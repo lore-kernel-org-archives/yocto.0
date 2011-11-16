@@ -1,25 +1,28 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 410CCE006BB
-	for <yocto@yoctoproject.org>; Tue, 15 Nov 2011 21:36:39 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pAG5ac7k015745
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 15 Nov 2011 21:36:38 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.20.238) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Tue, 15 Nov 2011 21:36:37 -0800
-Message-ID: <4EC34BE4.5030508@windriver.com>
-Date: Wed, 16 Nov 2011 00:36:36 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.24) Gecko/20111101 Thunderbird/3.1.16
+Return-Path: <serg.lychagin@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93C57E0059D
+	for <yocto@yoctoproject.org>; Wed, 16 Nov 2011 04:07:07 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by pzk32 with SMTP id 32so20013625pzk.7
+	for <yocto@yoctoproject.org>; Wed, 16 Nov 2011 04:07:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=BCBxZ/d/mx6KQ9WZ5HeOaw2iEaC2D0sVWeAeO/z6QmA=;
+	b=aYNfECvsm2hyCJKx0F2FXVADTLunp2y9p8HYh/EJ2sUbehkF1mLJKvCyhUhabjBS2W
+	ram5wnaUvSV+fsFKY87NyYB4v9nG7946uqLOSX5WPXtFFWwy2GVjuNffgRXcPg9PwYIy
+	YaR4A5NX9Zd2HnzWLpwnJzq2xuZefHMP3ZHQE=
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <4EC2C94E.6000202@linux.intel.com>
-In-Reply-To: <4EC2C94E.6000202@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH][linux-yocto] mount_root: clarify error messages for when no rootfs found (V2)
+Received: by 10.68.14.132 with SMTP id p4mr43742711pbc.31.1321445227310; Wed,
+	16 Nov 2011 04:07:07 -0800 (PST)
+Received: by 10.68.66.8 with HTTP; Wed, 16 Nov 2011 04:07:07 -0800 (PST)
+Date: Wed, 16 Nov 2011 16:07:07 +0400
+Message-ID: <CAMVXEj+bjMKtrxUwAYpEiigLTEe9ywuq=wWLgAk=WeebVZq0zg@mail.gmail.com>
+From: Sergey Lychagin <serg.lychagin@gmail.com>
+To: yocto@yoctoproject.org
+Subject: qemuarm: Unable to mount rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,100 +34,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Nov 2011 05:36:39 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 16 Nov 2011 12:07:08 -0000
+Content-Type: multipart/alternative; boundary=bcaec51dd1315d2ee904b1d8f1e4
 
-On 11-11-15 3:19 PM, Darren Hart wrote:
-> The following is a modified version the patch at:
+--bcaec51dd1315d2ee904b1d8f1e4
+Content-Type: text/plain; charset=ISO-8859-1
 
-Works for me as well, I'll update the variant in the yocto kernel
-trees, while we wait to see if anyone upstream has any interest.
+Hello,
 
-Bruce
+I've faced the following problem: "VFS: unable to mount root fs via NFS"
+during staring pre-compiled kernel/rootfs images in quemu.
+The screen-shot: http://imgur.com/XtvRc
+I'm trying to start it via Eclipse as it is shown in
+http://vimeo.com/30557368
 
->
-> meta/cfg/kernel-cache/patches/boot/mount_root-clarify-error-messages-for-when-no-rootfs.patch
->
-> in the linux-yocto-3.0 git repository. This version adds KERN_EMERG
-> so that even using loglevel=1 at boot, the end user will see:
->
-> [    0.217462] VFS: Unable to mount root fs on unknown-block(8,2)
-> [    0.223457] User configuration error - no valid root filesystem found
-> [    0.230057] Kernel panic - not syncing: Invalid configuration from end user preg
-> [    0.238992] Pid: 1, comm: swapper Not tainted 3.0.4-yocto-standard+ #2
-> [    0.245691] Call Trace:
-> [    0.248218]  [<c04eddbc>] ? 0xc04eddbc
-> [    0.252071]  [<c05549ad>] ? 0xc05549ad
-> [    0.255928]  [<c05549fa>] ? 0xc05549fa
-> [    0.259790]  [<c0554623>] ? 0xc0554623
-> [    0.263650]  [<c0554b1c>] ? 0xc0554b1c
-> [    0.267497]  [<c055472a>] ? 0xc055472a
-> [    0.271344]  [<c04f0df6>] ? 0xc04f0df6
->
-> Instead of just:
->
-> [    0.230057] Kernel panic - not syncing: Invalid configuration from end user preg
-> ...
->
-> Which is arguably no better than what this patch originally attempted to address.
->
-> Paul, has this patch been sent upstream for inclusion? I don't see it in Linus' tree.
->
-> Thanks,
->
-> Darren
->
-> ----------------------
->
-> To an end user who doesn't really know linux that well, a
-> message like:
->
->    Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)
->
-> may just look like cryptic computer speak indicating some
-> deep and complex problem, instead of the reality that they
-> have a simple local configuration problem.  Ideally it would
-> be nice to not use the misleading "panic" at all, but since
-> various panic notifiers are historically expecting to be
-> called when there is no valid rootfs, we can't change that.
->
-> So instead, this tries to make it 100% clear to folks of
-> any background that it is an end user configuration issue.
->
-> V2: Use KERN_EMERG so the printk context isn't lost when using loglevel
->
-> Signed-off-by: Paul Gortmaker<paul.gortmaker@windriver.com>
-> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
-> ---
->   init/do_mounts.c |    8 ++++++--
->   1 files changed, 6 insertions(+), 2 deletions(-)
->
-> diff --git a/init/do_mounts.c b/init/do_mounts.c
-> index bb008d0..d24b8c7 100644
-> --- a/init/do_mounts.c
-> +++ b/init/do_mounts.c
-> @@ -270,7 +270,9 @@ retry:
->   		printk("DEBUG_BLOCK_EXT_DEVT is enabled, you need to specify "
->   		       "explicit textual name for \"root=\" boot option.\n");
->   #endif
-> -		panic("VFS: Unable to mount root fs on %s", b);
-> +		printk(KERN_EMERG "VFS: Unable to mount root fs on %s\n", b);
-> +		printk(KERN_EMERG "User configuration error - no valid root filesystem found\n");
-> +		panic("Invalid configuration from end user prevents continuing");
->   	}
->
->   	printk("List of all partitions:\n");
-> @@ -282,7 +284,9 @@ retry:
->   #ifdef CONFIG_BLOCK
->   	__bdevname(ROOT_DEV, b);
->   #endif
-> -	panic("VFS: Unable to mount root fs on %s", b);
-> +	printk(KERN_EMERG "VFS: Unable to mount root fs on %s\n", b);
-> +	printk(KERN_EMERG "User configuration error - no valid root filesystem found\n");
-> +	panic("Invalid configuration from end user prevents continuing");
->   out:
->   	putname(fs_names);
->   }
+I also followed the instructions described ADT user guide:
+http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.html
+Target is qemuarm. kernel & rootfs (core-image-sato-sdkqemuarm &
+zImage-qemuarm.bin) are precompiled and downloaded from here:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/machines/qemu/qemuarm/
 
+As far as I know this kernel image should support NFS.
+Could you please help me?
 
+Thanks in advance
+Sergey
+
+--bcaec51dd1315d2ee904b1d8f1e4
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hello,<br><br>I&#39;ve faced the following problem: &quot;VFS: unable to mo=
+unt root fs via NFS&quot; during staring pre-compiled kernel/rootfs images =
+in quemu.<br>The screen-shot: <a href=3D"http://imgur.com/XtvRc">http://img=
+ur.com/XtvRc</a><br>
+I&#39;m trying to start it via Eclipse as it is shown in <a href=3D"http://=
+vimeo.com/30557368">http://vimeo.com/30557368</a><br><br>I also followed th=
+e instructions described ADT user guide: <a href=3D"http://www.yoctoproject=
+.org/docs/current/adt-manual/adt-manual.html">http://www.yoctoproject.org/d=
+ocs/current/adt-manual/adt-manual.html</a><br>
+Target is qemuarm. kernel &amp; rootfs (core-image-sato-sdkqemuarm &amp; zI=
+mage-qemuarm.bin) are precompiled and downloaded from here: <a href=3D"http=
+://downloads.yoctoproject.org/releases/yocto/yocto-1.1/machines/qemu/qemuar=
+m/">http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/machines/qem=
+u/qemuarm/</a><br>
+<br>As far as I know this kernel image should support NFS.<br>Could you ple=
+ase help me?<br><br>Thanks in advance<br>Sergey<br>
+
+--bcaec51dd1315d2ee904b1d8f1e4--
