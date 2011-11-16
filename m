@@ -1,22 +1,26 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBDB0E00307
-	for <yocto@yoctoproject.org>; Wed, 16 Nov 2011 10:09:45 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 16 Nov 2011 10:09:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,522,1315206000"; d="scan'208";a="91446274"
-Received: from unknown (HELO envy.home) ([10.255.15.228])
-	by fmsmga002.fm.intel.com with ESMTP; 16 Nov 2011 10:09:45 -0800
-Message-ID: <4EC3FC68.9080200@linux.intel.com>
-Date: Wed, 16 Nov 2011 10:09:44 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3D77E00307
+	for <yocto@yoctoproject.org>; Wed, 16 Nov 2011 10:37:41 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pAGIbeTs019737
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 16 Nov 2011 10:37:40 -0800 (PST)
+Received: from Macintosh-5.local (172.25.36.235) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Wed, 16 Nov 2011 10:37:40 -0800
+Message-ID: <4EC402F3.9080201@windriver.com>
+Date: Wed, 16 Nov 2011 12:37:39 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
+	rv:8.0) Gecko/20111105 Thunderbird/8.0
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-X-Enigmail-Version: 1.3.3
-Subject: EXTRA_IMAGEDEPENDS documentation
+To: <yocto@yoctoproject.org>
+References: <DB6E482E89290547898851B8CC9D81108F6183B1@AUSX7MCPS302.AMER.DELL.COM>
+	<1321412775.23774.26.camel@phenom.localdomain>
+In-Reply-To: <1321412775.23774.26.camel@phenom.localdomain>
+Subject: Re: rpm dependency errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,49 +32,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Nov 2011 18:09:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 16 Nov 2011 18:37:41 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-For the situation where a recipe is required to build a final image, but
-the output is not needed in the root filesystem, the EXTRA_IMAGEDEPENDS
-variable can be used to define this dependency. Bootloaders seem to be
-the common example for this (such as the beagleboard dependency on uboot).
+On 11/15/11 9:06 PM, Michael E Brown wrote:
+> On Mon, 2011-11-14 at 22:16 -0600, Michael E Brown wrote:
+>> I've now run across this same error in two different contexts, and am
+>> having difficulty trying to figure out what is going on
+>>
+>> First, while building meta-toolchain-sdk, I ran into
+>> http://pastebin.com/BT02UYk1
+>>   ... cut ...
+>> Processing task-core-standalone-gmae-sdk-target-dbg...
+>> | error: Failed dependencies:
+>> |       libgthread-2.0.so.0 is needed by libgupnp-1.0-3-0.16.1-r0.sh4
+>> |       libresolv.so.2 is needed by libgupnp-1.0-3-0.16.1-r0.sh4
+>>
+>> I've confirmed that the libgupnp rpm has only SH4 binaries in it.
+>>
+>> Next, while building a custom image, I ran across the same error with
+>> portmap and tcp-wrappers:
+>>
+>> http://pastebin.com/dRb5Dum8
+>>
+>> Note in the pastebin I extracted tcp-wrappers and 'file' says that
+>> everything is SH4.
+>
+> As a bit more information, I found that when I changed to "package_ipk"
+> vs rpm in my local.conf, I was able to do image build and sdk builds
+> without incident. So this problem looks like something specific to rpm
+> package builds. Is there any solution to this other than just not using
+> rpm?
 
-This variable is not defined in the poky manual nor in the documentation
-tags (meta/conf/documentation.conf).
+RPM packages contain more dependency information then ipk and deb packages. 
+This is not a bug, but a feature.  When using RPM packages not only are 
+specified dependencies there, but also soname and file level dependencies.
 
-Another aspect of this that could be made more explicit in the manual is
-that the various *RRECOMMENDS and *RDEPENDS variables impact what is
-installed in the root filesystem (because they operate on packages - not
-recipes). Scott, I'd recommend a few extra words in the *RRECOMMENDS and
-*RDEPENDS documentation to this effect. For example, "... a list of
-packages to install TO THE ROOT FILESYSTEM ...".
+There is an outstanding item to add these soname and file level dependencies to 
+the OE/Yocto deb and ipk implementations as well.
 
-As for the EXTRA_IMAGEDEPENDS definition, perhaps something like this:
+Trust me, if the dependency is failing, then there is something wrong with the 
+packages or the binaries within the packages (or they're not compatible with the 
+elfutils mechanisms used to dump that information.)
 
-in documentation.conf:
+You really do need to understand the actual files present in the packages, and 
+if they have the corresponding sonames that the dependent packages are looking for.
 
-EXTRA_IMAGEDEPENDS[doc] = "Recipes to build that do not install packages
-to the root filesystem, such as bootloaders."
+If you post your layer somewhere, I can attempt to reproduce the problem.
 
-in the reference manual:
+--Mark
 
-EXTRA_IMAGEDEPENDS
-A list of recipes to be built that do not provide packages to be
-installed in the root filesystem. This is typically used to specify a
-required bootloader in a machine config.
+> --
+> Michael
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Note: To add packages to the root filesystem, see the various *DEPENDS
-and *RECOMMENDS variables.
-
-Scott, I'll leave the reference manual changes to you. RP, if you agree
-with my doc tag, I can submit a patch for that.
-
-Thanks,
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
