@@ -1,26 +1,32 @@
-Return-Path: <jeffrey.osier-mixon@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89A09E005A0
-	for <yocto@yoctoproject.org>; Fri, 18 Nov 2011 09:20:57 -0800 (PST)
-Received: from mail-yw0-f52.google.com ([209.85.213.52])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 18 Nov 2011 09:20:57 -0800
-Received: by ywb5 with SMTP id 5so4897641ywb.25
-	for <yocto@yoctoproject.org>; Fri, 18 Nov 2011 09:20:56 -0800 (PST)
+Return-Path: <madeeha.mailz@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB639E005A0
+	for <yocto@yoctoproject.org>; Fri, 18 Nov 2011 09:42:21 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by eyh5 with SMTP id 5so4828107eyh.35
+	for <yocto@yoctoproject.org>; Fri, 18 Nov 2011 09:42:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=CtmjkTcpa+VfQize1dP7uzLo74HXuOAg20Lzs30Q248=;
+	b=sIZC+xiPx0caDmwjg52U0qrkCCmeZz33syQ9hkuemnWaJgMcSm8MI90fbU0OjPyK25
+	rV241wfJkcU/fm7UFKruvJbK3Az4cBKVuQplZ/nFTSH1sxU35Ptyd/tgtGeqESUNTK9F
+	0ShxVk+VUJyyIbtNxkX1J5lA1wHn8loLi+veQ=
 MIME-Version: 1.0
-Received: by 10.236.114.227 with SMTP id c63mr6584062yhh.47.1321636856444;
-	Fri, 18 Nov 2011 09:20:56 -0800 (PST)
-Received: by 10.100.7.7 with HTTP; Fri, 18 Nov 2011 09:20:56 -0800 (PST)
-In-Reply-To: <4D9E0AFD9C2FCC428A8EAADA898F5B2D0E8A96@TAMANS-MB100V.thcg.net>
-References: <CA+YB3ray8bX94Y1subz+7CQYUzRJWjHS2CQX_W2boA2BV7A5ZA@mail.gmail.com>
-	<94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com>
-	<4EC6280B.1010308@communistcode.co.uk>
-	<4D9E0AFD9C2FCC428A8EAADA898F5B2D0E8A96@TAMANS-MB100V.thcg.net>
-Date: Fri, 18 Nov 2011 09:20:56 -0800
-Message-ID: <CALZ2gZWw-366GLR40783Qn4bHGCM5voPpCVpk17FpnWyAoLqLw@mail.gmail.com>
-From: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
-To: "Ourada, Paul" <Paul.Ourada@covidien.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto usability questions
+Received: by 10.14.17.224 with SMTP id j72mr336859eej.20.1321638140371; Fri,
+	18 Nov 2011 09:42:20 -0800 (PST)
+Received: by 10.213.8.134 with HTTP; Fri, 18 Nov 2011 09:42:20 -0800 (PST)
+In-Reply-To: <96B1F0A7-736F-49EC-8B8E-5D3066F70CE9@keylevel.com>
+References: <96B1F0A7-736F-49EC-8B8E-5D3066F70CE9@keylevel.com>
+Date: Fri, 18 Nov 2011 22:42:20 +0500
+Message-ID: <CAJV8fDYwYTS495jYxLRVixdqaFJa+v-HJ0=rBvmaXUBdHpttuA@mail.gmail.com>
+From: madeeha javed <madeeha.mailz@gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: xserver-kdrive keyboard support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,59 +38,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Nov 2011 17:20:57 -0000
-Content-Type: multipart/alternative; boundary=20cf303ddc7059b50f04b2058f92
-
---20cf303ddc7059b50f04b2058f92
+X-List-Received-Date: Fri, 18 Nov 2011 17:42:22 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Fri, Nov 18, 2011 at 7:02 AM, Ourada, Paul <Paul.Ourada@covidien.com>wrote:
+Chris, if it doesnt work by default, you might need to add an
+xorg.conf and add an Section "InputClass" or Section "InputDevice" for
+keyboard.
 
+On Fri, Nov 18, 2011 at 3:02 AM, Chris Tapp <opensource@keylevel.com> wrote:
+> Do I need to do anything other than have:
 >
-> I would just add that for some corporate/enterprise customers (such as
-> myself), while IRC is great, it isn't as great an option because corporate
-> IS locks down IRC protocols. To use IRC, I would have to do so from a
-> non-work computer and likely outside of normal work hours, of which I
-> already put in way more than my wife would prefer. :)
+> PREFERED_PROVIDER-virtual/xserver = "xserver-kdrive"
+> XSERVER = "xserver-kdrive-fbdev"
+>
+> to get a working keyboard under kdrive?
+>
+> I've got a system that boots in to an application, but I can't use
+> Ctrl+Alt+Backspace to terminate it...
+>
+> Keyboard works just fine on console screens.
+>
+> Chris Tapp
+>
+> opensource@keylevel.com
+> www.keylevel.com
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
-Hi Paul - I would never endorse an end-run around anyone's corporate rules,
-and I strongly encourage you to talk to your boss and IT's boss about
-enabling IRC.
-
-That being said - you can connect to IRC at Freenode on a webpage at
-webchat.freenode.net. I recommend this often to folks who have proxy issues.
-
--- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
-
---20cf303ddc7059b50f04b2058f92
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<br><br><div class=3D"gmail_quote">On Fri, Nov 18, 2011 at 7:02 AM, Ourada,=
- Paul <span dir=3D"ltr">&lt;<a href=3D"mailto:Paul.Ourada@covidien.com">Pau=
-l.Ourada@covidien.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1e=
-x;">
-<div class=3D"im"><br>
-</div>I would just add that for some corporate/enterprise customers (such a=
-s myself), while IRC is great, it isn&#39;t as great an option because corp=
-orate IS locks down IRC protocols. To use IRC, I would have to do so from a=
- non-work computer and likely outside of normal work hours, of which I alre=
-ady put in way more than my wife would prefer. :)<br>
-</blockquote><div><br></div><div>Hi Paul - I would never endorse an end-run=
- around anyone&#39;s corporate rules, and I strongly encourage you to talk =
-to your boss and IT&#39;s boss about enabling IRC.</div><div><br></div>
-<div>That being said - you can connect to IRC at Freenode on a webpage at <=
-a href=3D"http://webchat.freenode.net">webchat.freenode.net</a>. I recommen=
-d this often to folks who have proxy issues.</div><div>=A0</div></div>-- <b=
-r>
-Jeff Osier-Mixon=A0<a href=3D"http://jefro.net/blog" target=3D"_blank">http=
-://jefro.net/blog</a><div>Yocto Project Community Manager @Intel=A0<a href=
-=3D"http://yoctoproject.org/" target=3D"_blank">http://yoctoproject.org</a>=
-</div><br>
-
-
---20cf303ddc7059b50f04b2058f92--
