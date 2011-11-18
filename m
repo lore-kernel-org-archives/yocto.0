@@ -1,20 +1,40 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E25F3E0030B
-	for <yocto@yoctoproject.org>; Fri, 18 Nov 2011 01:40:40 -0800 (PST)
-Received: from [192.168.0.56] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 7278A24C51
-	for <yocto@yoctoproject.org>; Fri, 18 Nov 2011 09:40:01 +0000 (GMT)
-Message-ID: <4EC6280B.1010308@communistcode.co.uk>
-Date: Fri, 18 Nov 2011 09:40:27 +0000
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:8.0) Gecko/20111105 Thunderbird/8.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
+Return-Path: <Paul.Ourada@Covidien.com>
+Received: from mail171.messagelabs.com (mail171.messagelabs.com
+	[216.82.253.243])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92B40E0030C
+	for <yocto@yoctoproject.org>; Fri, 18 Nov 2011 07:02:25 -0800 (PST)
+X-Env-Sender: Paul.Ourada@Covidien.com
+X-Msg-Ref: server-10.tower-171.messagelabs.com!1321628542!35334982!3
+X-Originating-IP: [216.75.208.31]
+X-StarScan-Version: 6.3.6; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 26954 invoked from network); 18 Nov 2011 15:02:24 -0000
+Received: from mx03ni.covidien.com (HELO XAMANS-EG100V.thcex.com)
+	(216.75.208.31)
+	by server-10.tower-171.messagelabs.com with AES128-SHA encrypted SMTP;
+	18 Nov 2011 15:02:24 -0000
+Received: from TAMANS-HT100V.thcg.net (10.80.9.28) by mx03ni.covidien.com
+	(216.75.208.31) with Microsoft SMTP Server (TLS) id 14.1.339.1;
+	Fri, 18 Nov 2011 10:02:13 -0500
+Received: from TAMANS-MB100V.thcg.net ([169.254.8.76]) by
+	TAMANS-HT100V.thcg.net ([10.80.9.28]) with mapi id 14.01.0339.001;
+	Fri, 18 Nov 2011 10:02:21 -0500
+From: "Ourada, Paul" <Paul.Ourada@Covidien.com>
+To: Jack Mitchell <ml@communistcode.co.uk>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Yocto usability questions
+Thread-Index: AQHMpKxPA89sJAXelkm9stGBBvvorpWx7OGAgADJzICAAAOqEA==
+Date: Fri, 18 Nov 2011 15:02:21 +0000
+Message-ID: <4D9E0AFD9C2FCC428A8EAADA898F5B2D0E8A96@TAMANS-MB100V.thcg.net>
 References: <CA+YB3ray8bX94Y1subz+7CQYUzRJWjHS2CQX_W2boA2BV7A5ZA@mail.gmail.com>
 	<94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com>
-In-Reply-To: <94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com>
+	<4EC6280B.1010308@communistcode.co.uk>
+In-Reply-To: <4EC6280B.1010308@communistcode.co.uk>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.80.12.22]
+MIME-Version: 1.0
 Subject: Re: Yocto usability questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -27,295 +47,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Nov 2011 09:40:46 -0000
-Content-Type: multipart/alternative;
-	boundary="------------040809070404050902010107"
+X-List-Received-Date: Fri, 18 Nov 2011 15:02:26 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---------------040809070404050902010107
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+Jack said:
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.or=
+g] On Behalf Of Jack Mitchell
+>Sent: Friday, November 18, 2011 2:40 AM
+>To: yocto@yoctoproject.org
+>Subject: Re: [yocto] Yocto usability questions
+>
+>On 17/11/2011 21:38, Chris Tapp wrote:=20
+>On 16 Nov 2011, at 22:07, Jeff Osier-Mixon wrote:=20
+>
+>
+>Mark & everyone else listening:=20
+>
+>
+>It is very frustrating when you come to an issue that isn't documented, ho=
+wever I have found the IRC an invaluable >resource as well as this mailing =
+list. If documentation was to become more extensive I feel the categories s=
+hould be >defined further and split into more documents.
 
-On 17/11/2011 21:38, Chris Tapp wrote:
-> On 16 Nov 2011, at 22:07, Jeff Osier-Mixon wrote:
->
->> Mark & everyone else listening:
->>
->> Would you say that (1) the need for a recipe and (2) the requirement 
->> to cross-compile are two of the most major usability or 
->> learning-curve disadvantages of working with the Yocto Project (and 
->> oe-core)? What would be a third disadvantage from a usability 
->> standpoint?
->>
->> Another way to put it: if you could change three things about the 
->> Yocto Project to make it more approachable for someone who has never 
->> used it before, what would they be?
->
-> As another very experienced embedded systems developer who is 
-> relatively new to embedded linux I would say that documentation and 
-> worked examples are what I would really be after.
->
-I am a fairly in-experienced embedded systems developer (fresh graduate, 
-6 months real work exp) and have used Linux for a few years now and I 
-concur that written examples, tutorials if you will, would be a great idea.
-> It can be really frustrating when you can't get something going 
-> because you don't understand the phrases / terminology that's being 
-> used and it isn't readily available via the documentation. I've seen 
-> quite a few posts on here relating to the documentation and it does 
-> look like good progress is being made. As someone said earlier in this 
-> thread, it would be good it run stuff through new (or relatively new) 
-> adopters to see if they can get the examples to work without a fight. 
-> I'm more than happy to help (and learn!).
-It is very frustrating when you come to an issue that isn't documented, 
-however I have found the IRC an invaluable resource as well as this 
-mailing list. If documentation was to become more extensive I feel the 
-categories should be defined further and split into more documents.
->
-> I to started with OE and failed to get a build to complete. Yocto got 
-> me there first time, so it is already much better for a novice 'baker' !
->
-> Some worked examples for 'how to do xxx' would also be nice. E.g.
->
-> 1) How do I configure the kernel ?
-This has been covered fairly extensively but a full worked example 
-wouldn't go amiss.
-> 2) What do I need to do when I change my recipe to ensure that the 
-> changes make it in to the image ?
-I don't know how to properly do this so +1
-> 3) How do I change and add startup scripts ?
-I read a lot about startup scripts to figure out how to do this the 
-correct way - although it is more generic linux knowledge I believe an 
-easy introduction to this with further reading wouldn't go amiss.
->
-> 4) How do I add data files to the image ?
-I would image these to go in with the software you are developing.. 
-however the fact I don't have a good answer may mean it needs addressing?
-> 5) How do I make sure dependencies (e.g. libraries) are included in 
-> the image ? i.e. what do DEPENDS, RDEPENDS, etc. do.
-See 8
-> 6) How can I use a layer to hold my project files ?
-See 8
-> 7) Do I need to delete tmp/ and rebuild to ensure I've got a valid 
-> project build configured ? (i.e. it doesn't rely on staged items that 
-> don't build when I bitbake MyProject).
-Would be very good to get an example of how to ensure your build process 
-is stable and will work every time from scratch.
-> 8) How do I make my existing autobuild project in to a recipe ?
-*THIS.* I currently have no idea how to port my autobuild project coded 
-using the Eclipse plugin to a recipe structure, couple this with 5 and 6 
-and it would make a fantastic from 'start to finish' style manual.
-> 9) How do I set / change the root password ?
-This seems fairly minor, is there a section in the wiki which could be 
-devoted to things like this, rather than the faff of creating a new pdf 
-etc.. this would also allow for the community to add tricks and tips in 
-an easily accessible manner.
+I would just add that for some corporate/enterprise customers (such as myse=
+lf), while IRC is great, it isn't as great an option because corporate IS l=
+ocks down IRC protocols. To use IRC, I would have to do so from a non-work =
+computer and likely outside of normal work hours, of which I already put in=
+ way more than my wife would prefer. :)
 
-I have had reams of help from the users and project employees already 
-for which I am very grateful. I think this is a fantastic project and 
-something I will definitely keep with. I am currently in the process of 
-proposing this as my new companies base architecture and will hopefully 
-be becoming very adept in OE and Yocto over the coming year.
+I really like Jack's list, though. I would like to pile on (again :)) that =
+documentation, examples and explanation of terms are very important.
 
-Thanks for all the work done and help provided so far, may it continue!
+Paul
 
-Jack.
-
->
-> These items would help explain how to create a recipe and to use 
-> bbappend. Ideally they should be worded so that they can be followed 
-> by someone with a general embedded background who has minimal exposure 
-> to embedded linux. However, it probably doesn't want to be an embedded 
-> linux primer.
->
-> This project is already easier to use than many others and is 
-> supported by a really knowledgeable group who are willing to help 
-> newcomers out. As it grows it would be unreasonable to expect the same 
-> (relatively small) group to be able to support a much wider user-base. 
-> Comprehensive documentation and non-trivial worked example should help 
-> to reduce the workload and allow the group to assist those who have a 
-> genuine need of help.
->
-> Chris Tapp
->
-> opensource@keylevel.com
-> www.keylevel.com
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Paul E. Ourada
+Sr. Principal Software Engineer
+Covidien, Energy-based Devices
+5920 Longbow Drive
+Boulder, CO 80301
+paul.ourada@covidien.com
+www.covidien.com
+Main: 303-530-2300
+Ofc: 303-581-6940
+Fax: 303-581-6741
 
 
---------------040809070404050902010107
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    On 17/11/2011 21:38, Chris Tapp wrote:
-    <blockquote
-      cite="mid:94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com"
-      type="cite">On 16 Nov 2011, at 22:07, Jeff Osier-Mixon wrote: <br>
-      <br>
-      <blockquote type="cite">Mark &amp; everyone else listening:
-        <br>
-        <br>
-        Would you say that (1) the need for a recipe and (2) the
-        requirement to cross-compile are two of the most major usability
-        or learning-curve disadvantages of working with the Yocto
-        Project (and oe-core)? What would be a third disadvantage from a
-        usability standpoint?
-        <br>
-        <br>
-        Another way to put it: if you could change three things about
-        the Yocto Project to make it more approachable for someone who
-        has never used it before, what would they be?
-        <br>
-      </blockquote>
-      <br>
-      As another very experienced embedded systems developer who is
-      relatively new to embedded linux I would say that documentation
-      and worked examples are what I would really be after. <br>
-      <br>
-    </blockquote>
-    I am a fairly in-experienced embedded systems developer (fresh
-    graduate, 6 months real work exp) and have used Linux for a few
-    years now and I concur that written examples, tutorials if you will,
-    would be a great idea.<br>
-    <blockquote
-      cite="mid:94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com"
-      type="cite">It can be really frustrating when you can't get
-      something going because you don't understand the phrases /
-      terminology that's being used and it isn't readily available via
-      the documentation. I've seen quite a few posts on here relating to
-      the documentation and it does look like good progress is being
-      made. As someone said earlier in this thread, it would be good it
-      run stuff through new (or relatively new) adopters to see if they
-      can get the examples to work without a fight. I'm more than happy
-      to help (and learn!). <br>
-    </blockquote>
-    It is very frustrating when you come to an issue that isn't
-    documented, however I have found the IRC an invaluable resource as
-    well as this mailing list. If documentation was to become more
-    extensive I feel the categories should be defined further and split
-    into more documents.<br>
-    <blockquote
-      cite="mid:94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com"
-      type="cite"> <br>
-      I to started with OE and failed to get a build to complete. Yocto
-      got me there first time, so it is already much better for a novice
-      'baker' ! <br>
-      <br>
-      Some worked examples for 'how to do xxx' would also be nice. E.g.
-      <br>
-      <br>
-      1) How do I configure the kernel ? <br>
-    </blockquote>
-    This has been covered fairly extensively but a full worked example
-    wouldn't go amiss.<br>
-    <blockquote
-      cite="mid:94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com"
-      type="cite">2) What do I need to do when I change my recipe to
-      ensure that the changes make it in to the image ? <br>
-    </blockquote>
-    I don't know how to properly do this so +1<br>
-    <blockquote
-      cite="mid:94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com"
-      type="cite">3) How do I change and add startup scripts ?</blockquote>
-    I read a lot about startup scripts to figure out how to do this the
-    correct way - although it is more generic linux knowledge I believe
-    an easy introduction to this with further reading wouldn't go amiss.
-    <br>
-    <blockquote
-      cite="mid:94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com"
-      type="cite"> <br>
-      4) How do I add data files to the image ? <br>
-    </blockquote>
-    I would image these to go in with the software you are developing..
-    however the fact I don't have a good answer may mean it needs
-    addressing?<br>
-    <blockquote
-      cite="mid:94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com"
-      type="cite">5) How do I make sure dependencies (e.g. libraries)
-      are included in the image ? i.e. what do DEPENDS, RDEPENDS, etc.
-      do. <br>
-    </blockquote>
-    See 8<br>
-    <blockquote
-      cite="mid:94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com"
-      type="cite">6) How can I use a layer to hold my project files ? <br>
-    </blockquote>
-    See 8<br>
-    <blockquote
-      cite="mid:94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com"
-      type="cite">7) Do I need to delete tmp/ and rebuild to ensure I've
-      got a valid project build configured ? (i.e. it doesn't rely on
-      staged items that don't build when I bitbake MyProject). <br>
-    </blockquote>
-    Would be very good to get an example of how to ensure your build
-    process is stable and will work every time from scratch. <br>
-    <blockquote
-      cite="mid:94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com"
-      type="cite">8) How do I make my existing autobuild project in to a
-      recipe ? <br>
-    </blockquote>
-    <b>THIS.</b> I currently have no idea how to port my autobuild
-    project coded using the Eclipse plugin to a recipe structure, couple
-    this with 5 and 6 and it would make a fantastic from 'start to
-    finish' style manual.<br>
-    <blockquote
-      cite="mid:94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com"
-      type="cite">9) How do I set / change the root password ? <br>
-    </blockquote>
-    This seems fairly minor, is there a section in the wiki which could
-    be devoted to things like this, rather than the faff of creating a
-    new pdf etc.. this would also allow for the community to add tricks
-    and tips in an easily accessible manner.<br>
-    <br>
-    I have had reams of help from the users and project employees
-    already for which I am very grateful. I think this is a fantastic
-    project and something I will definitely keep with. I am currently in
-    the process of proposing this as my new companies base architecture
-    and will hopefully be becoming very adept in OE and Yocto over the
-    coming year.<br>
-    <br>
-    Thanks for all the work done and help provided so far, may it
-    continue!<br>
-    <br>
-    Jack.<br>
-    <br>
-    <blockquote
-      cite="mid:94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com"
-      type="cite"> <br>
-      These items would help explain how to create a recipe and to use
-      bbappend. Ideally they should be worded so that they can be
-      followed by someone with a general embedded background who has
-      minimal exposure to embedded linux. However, it probably doesn't
-      want to be an embedded linux primer. <br>
-      <br>
-      This project is already easier to use than many others and is
-      supported by a really knowledgeable group who are willing to help
-      newcomers out. As it grows it would be unreasonable to expect the
-      same (relatively small) group to be able to support a much wider
-      user-base. Comprehensive documentation and non-trivial worked
-      example should help to reduce the workload and allow the group to
-      assist those who have a genuine need of help. <br>
-      <br>
-      Chris Tapp <br>
-      <br>
-      <a class="moz-txt-link-abbreviated" href="mailto:opensource@keylevel.com">opensource@keylevel.com</a> <br>
-      <a class="moz-txt-link-abbreviated" href="http://www.keylevel.com">www.keylevel.com</a> <br>
-      <br>
-      _______________________________________________ <br>
-      yocto mailing list <br>
-      <a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a> <br>
-      <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a> <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------040809070404050902010107--
