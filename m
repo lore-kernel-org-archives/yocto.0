@@ -1,23 +1,30 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 678A2E00720
-	for <yocto@yoctoproject.org>; Sat, 19 Nov 2011 20:12:30 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 19 Nov 2011 20:12:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="77987558"
-Received: from unknown (HELO localhost) ([10.255.15.232])
-	by orsmga002.jf.intel.com with ESMTP; 19 Nov 2011 20:12:29 -0800
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Sat, 19 Nov 2011 22:16:04 -0600
-Message-Id: <7355285bad6bcfe7f0d157a8bad6b80201d10a15.1321762384.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <ba97cb7d2dddf3e86e38752d2bce9ff2661d390f.1321762384.git.tom.zanussi@intel.com>
-References: <ba97cb7d2dddf3e86e38752d2bce9ff2661d390f.1321762384.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1321762384.git.tom.zanussi@intel.com>
-References: <cover.1321762384.git.tom.zanussi@intel.com>
-Subject: [PATCH 14/14] meta-intel: update READMEs with new layer info
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB629E005B1
+	for <yocto@yoctoproject.org>; Sun, 20 Nov 2011 02:32:09 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pAKAW685021812;
+	Sun, 20 Nov 2011 10:32:06 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 16418-03; Sun, 20 Nov 2011 10:32:00 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pAKAVsTl021801
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Sun, 20 Nov 2011 10:31:56 GMT
+Message-ID: <1321785120.18926.3.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Jeffrey Moore <jeff@kokofitclub.com>
+Date: Sun, 20 Nov 2011 10:32:00 +0000
+In-Reply-To: <A4579E89-DAD0-4BA2-BD7D-976040983CBF@kokofitclub.com>
+References: <A4579E89-DAD0-4BA2-BD7D-976040983CBF@kokofitclub.com>
+X-Mailer: Evolution 3.2.1- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org
+Subject: =?UTF-8?B?UmU6ICfigKZiekltYWdlJzogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeSB3aGVuIGJ1aWxkaW5nIGNvcmUtaW1hZ2UtbWluaW1hbC1pbml0cmFtZnM=?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,144 +36,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 20 Nov 2011 04:12:30 -0000
+X-List-Received-Date: Sun, 20 Nov 2011 10:32:15 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On Sat, 2011-11-19 at 16:20 -0500, Jeffrey Moore wrote:
+> I have a problem in  that the kernel bzImage is apparently not being
+> built.  Here is my error:
+> | install: cannot stat
+> `/media/jwm/minimal-initramfs/tmp/sysroots/crownbay-noemgd/kernel/bzImage': No such file or directory
+> | ERROR: Function 'build_boot_bin' failed
+> (see /media/jwm/minimal-initramfs/tmp/work/crownbay_noemgd-poky-linux/core-image-minimal-initramfs-1.0-r0/temp/log.do_bootimg.25097 for further information)
+> NOTE: package core-image-minimal-initramfs-1.0-r0: task do_bootimg:
+> Failed
+> ERROR: Task 9
+> (/home/jeff/poky-edison-6.0/meta/recipes-core/images/core-image-minimal-initramfs.bb, do_bootimg) failed with exit code '1'
+> ERROR:
+> '/home/jeff/poky-edison-6.0/meta/recipes-core/images/core-image-minimal-initramfs.bb' failed
+>
+> My setup:
+>
+> vanilla, out of the box poky setup with the addition of:
+>
+> meta-intel layer for meta-crownbay  in the bblayers.conf 
+> & 
+> MACHINE ?= "crownbay-noemgd" in the local.conf
+>
+> bitbake -k core-image-minimal-initramfs
+>
+> If I build any other type of image such
+> as: core-image-minimal-mtdutils or core-image-minimal, everything is
+> fine and I get a clean build.  Any help would be appreciated.
 
-The affected BSPs now need to access common metadata in locations off
-of the top level of meta-intel, so need to add meta-intel itself to
-their layer configuration.  This updates the READMEs for those BSPs to
-mention that.
+I'm chasing a bug that looks very like this at the moment. I don't have
+a proper fix for it yet but you could try and "bitbake linux-yocto -c
+populate_sysroot -f" and then try and build your image again which
+should work around the problem.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-crownbay/README     |    4 +++-
- meta-emenlow/README      |    4 +++-
- meta-fishriver/README    |    4 +++-
- meta-fri2/README         |    5 ++++-
- meta-jasperforest/README |    8 +++++---
- meta-romley/README       |    4 +++-
- meta-sugarbay/README     |    4 +++-
- 7 files changed, 24 insertions(+), 9 deletions(-)
+I'm assuming this is with master rather than the release and you might
+have rm_work enabled?
 
-diff --git a/meta-crownbay/README b/meta-crownbay/README
-index de9f1f1..7d96bc2 100644
---- a/meta-crownbay/README
-+++ b/meta-crownbay/README
-@@ -26,8 +26,10 @@ Package (BSP) Downloads' page of the Yocto Project website.
- Having done that, and assuming you extracted the BSP tarball contents
- at the top-level of your yocto build tree, you can build a crownbay
- image by adding the location of the meta-crownbay layer to
--bblayers.conf e.g.:
-+bblayers.conf, along with the meta-intel layer itself (to access
-+common metadata shared between BSPs) e.g.:
- 
-+  yocto/meta-intel \
-   yocto/meta-intel/meta-crownbay \
- 
- The meta-crownbay layer contains support for two different machine
-diff --git a/meta-emenlow/README b/meta-emenlow/README
-index fc3317e..d802bfb 100644
---- a/meta-emenlow/README
-+++ b/meta-emenlow/README
-@@ -30,8 +30,10 @@ Package (BSP) Downloads' page of the Yocto Project website.
- Having done that, and assuming you extracted the BSP tarball contents
- at the top-level of your yocto build tree, you can build an emenlow
- image by adding the location of the meta-emenlow layer to
--bblayers.conf e.g.:
-+bblayers.conf, along with the meta-intel layer itself (to access
-+common metadata shared between BSPs) e.g.:
- 
-+  yocto/meta-intel \
-   yocto/meta-intel/meta-emenlow \
- 
- To enable the emenlow layer, add the emenlow MACHINE to local.conf:
-diff --git a/meta-fishriver/README b/meta-fishriver/README
-index b76056c..6425432 100644
---- a/meta-fishriver/README
-+++ b/meta-fishriver/README
-@@ -20,8 +20,10 @@ Package (BSP) Downloads' page of the Yocto Project website.
- Having done that, and assuming you extracted the BSP tarball contents
- at the top-level of your yocto build tree, you can build a fishriver
- image by adding the location of the meta-fishriver layer to
--bblayers.conf e.g.:
-+bblayers.conf, along with the meta-intel layer itself (to access
-+common metadata shared between BSPs) e.g.:
- 
-+  yocto/meta-intel \
-   yocto/meta-intel/meta-fishriver \
- 
- To enable the fishriver layer, add the fishriver MACHINE to local.conf:
-diff --git a/meta-fri2/README b/meta-fri2/README
-index 4dc135b..12b0b37 100644
---- a/meta-fri2/README
-+++ b/meta-fri2/README
-@@ -28,8 +28,11 @@ Package (BSP) Downloads' page of the Yocto Project website.
- 
- Having done that, and assuming you extracted the BSP tarball contents
- at the top-level of your yocto build tree, you can build an fri2 image
--by adding the location of the meta-fri2 layer to bblayers.conf e.g.:
-+by adding the location of the meta-fri2 layer to bblayers.conf, along
-+with the meta-intel layer itself (to access common metadata shared
-+between BSPs) e.g.:
- 
-+  yocto/meta-intel \
-   yocto/meta-intel/meta-fri2 \
- 
- The meta-fri2 layer contains support for two different machine
-diff --git a/meta-jasperforest/README b/meta-jasperforest/README
-index 7652da0..a464a11 100644
---- a/meta-jasperforest/README
-+++ b/meta-jasperforest/README
-@@ -23,10 +23,12 @@ need to download the corresponding BSP tarball from the 'Board Support
- Package (BSP) Downloads' page of the Yocto Project website.
- 
- Having done that, and assuming you extracted the BSP tarball contents
--at the top-level of your yocto build tree, you can build a jasperforest
--image by adding the location of the meta-jasperforest layer to
--bblayers.conf e.g.:
-+at the top-level of your yocto build tree, you can build a
-+jasperforest image by adding the location of the meta-jasperforest
-+layer to bblayers.conf, along with the meta-intel layer itself (to
-+access common metadata shared between BSPs) e.g.:
- 
-+  yocto/meta-intel \
-   yocto/meta-intel/meta-jasperforest \
- 
- To enable the jasperforest layer, add the jasperforest MACHINE to local.conf:
-diff --git a/meta-romley/README b/meta-romley/README
-index d242534..6c13ea6 100644
---- a/meta-romley/README
-+++ b/meta-romley/README
-@@ -22,8 +22,10 @@ Package (BSP) Downloads' page of the Yocto Project website.
- Having done that, and assuming you extracted the BSP tarball contents
- at the top-level of your yocto build tree, you can build a romley
- image by adding the location of the meta-romley layer to
--bblayers.conf e.g.:
-+bblayers.conf, along with the meta-intel layer itself (to access
-+common metadata shared between BSPs) e.g.:
- 
-+  yocto/meta-intel \
-   yocto/meta-intel/meta-romley \
- 
- To enable the romley layer, add the romley MACHINE to local.conf:
-diff --git a/meta-sugarbay/README b/meta-sugarbay/README
-index 2d72f8a..72b1faf 100644
---- a/meta-sugarbay/README
-+++ b/meta-sugarbay/README
-@@ -23,8 +23,10 @@ Package (BSP) Downloads' page of the Yocto Project website.
- Having done that, and assuming you extracted the BSP tarball contents
- at the top-level of your yocto build tree, you can build a sugarbay
- image by adding the location of the meta-sugarbay layer to
--bblayers.conf e.g.:
-+bblayers.conf, along with the meta-intel layer itself (to access
-+common metadata shared between BSPs) e.g.:
- 
-+  yocto/meta-intel \
-   yocto/meta-intel/meta-sugarbay \
- 
- To enable the sugarbay layer, add the sugarbay MACHINE to local.conf:
--- 
-1.7.0.4
+Cheers,
+
+Richard
+
 
 
