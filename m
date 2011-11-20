@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19434E0070D
-	for <yocto@yoctoproject.org>; Sat, 19 Nov 2011 20:12:24 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 19 Nov 2011 20:12:23 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4F24E0070E
+	for <yocto@yoctoproject.org>; Sat, 19 Nov 2011 20:12:26 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 19 Nov 2011 20:12:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,540,1315206000"; d="scan'208";a="39417355"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="78046357"
 Received: from unknown (HELO localhost) ([10.255.15.232])
-	by AZSMGA002.ch.intel.com with ESMTP; 19 Nov 2011 20:12:23 -0800
+	by orsmga001.jf.intel.com with ESMTP; 19 Nov 2011 20:12:26 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Sat, 19 Nov 2011 22:16:00 -0600
-Message-Id: <e548cac8cc8a892b42ba100a6c628a6ed5dbdd64.1321762384.git.tom.zanussi@intel.com>
+Date: Sat, 19 Nov 2011 22:16:02 -0600
+Message-Id: <f476e68ed808b79fe48d329668cd2e33cf4e9597.1321762384.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <ba97cb7d2dddf3e86e38752d2bce9ff2661d390f.1321762384.git.tom.zanussi@intel.com>
 References: <ba97cb7d2dddf3e86e38752d2bce9ff2661d390f.1321762384.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1321762384.git.tom.zanussi@intel.com>
 References: <cover.1321762384.git.tom.zanussi@intel.com>
-Subject: [PATCH 10/14] Have jasperforest.conf use the common ia32-base .inc file and remove the open-coded machine settings.
+Subject: [PATCH 12/14] Have romley.conf use the common ia32-base .inc file and remove the open-coded machine settings.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,24 +29,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 20 Nov 2011 04:12:24 -0000
+X-List-Received-Date: Sun, 20 Nov 2011 04:12:27 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-jasperforest/conf/machine/jasperforest.conf |   41 +++-------------------
- 1 files changed, 5 insertions(+), 36 deletions(-)
+ meta-romley/conf/machine/romley.conf |   39 +++------------------------------
+ 1 files changed, 4 insertions(+), 35 deletions(-)
 
-diff --git a/meta-jasperforest/conf/machine/jasperforest.conf b/meta-jasperforest/conf/machine/jasperforest.conf
-index c668c64..9767010 100644
---- a/meta-jasperforest/conf/machine/jasperforest.conf
-+++ b/meta-jasperforest/conf/machine/jasperforest.conf
-@@ -5,42 +5,11 @@
- # systems i.e. Xeon C5500/C3500 + Intel 3420 chipset (Ibex Peak)
+diff --git a/meta-romley/conf/machine/romley.conf b/meta-romley/conf/machine/romley.conf
+index 3d41db5..7b6014c 100644
+--- a/meta-romley/conf/machine/romley.conf
++++ b/meta-romley/conf/machine/romley.conf
+@@ -5,41 +5,10 @@
+ # i.e. Sandy Bridge + Patsburg Chipset
  
  require conf/machine/include/tune-x86_64.inc
-+require conf/machine/include/ia32-base.inc
++include conf/machine/include/ia32-base.inc
  
 -MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
 -                    acpi serial usbgadget"
@@ -54,7 +54,7 @@ index c668c64..9767010 100644
 -KERNEL_IMAGETYPE = "bzImage"
 -
 -PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
--PREFERRED_VERSION_linux-yocto ?= "3.0%"
+-PREFERRED_VERSION_linux-yocto = "3.0%"
 -
 -PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
 -PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
@@ -67,19 +67,17 @@ index c668c64..9767010 100644
 -           xserver-xorg-extension-extmod \
 -           xserver-xorg-extension-dbe \
 -           xserver-xorg-module-libint10 \
++XSERVER ?= "${XSERVER_IA32_BASE} \
++           ${XSERVER_IA32_EXT} \
+            xserver-xorg-module-xaa \
 -           xf86-input-mouse \
 -           xf86-input-keyboard \
 -           xf86-input-evdev \
 -           xf86-input-synaptics \
--           xf86-video-vesa"
+ 	   xf86-video-mga \
+-           mesa-dri"
 -
 -SERIAL_CONSOLE = "115200 ttyS0"
-+XSERVER ?= "${XSERVER_IA32_BASE} \
-+           ${XSERVER_IA32_EXT} \
-+           ${XSERVER_IA32_VESA} \
-+           "
- 
- APPEND += "video=vesafb vga=0x318"
 -
 -MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
 -
@@ -89,7 +87,7 @@ index c668c64..9767010 100644
 -GLIBC_EXTRA_OECONF = "--with-tls"
 -
 -MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
--
++           "
 -- 
 1.7.0.4
 
