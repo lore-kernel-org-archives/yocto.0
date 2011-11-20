@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97637E006DD
-	for <yocto@yoctoproject.org>; Sat, 19 Nov 2011 20:12:17 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34593E0070A
+	for <yocto@yoctoproject.org>; Sat, 19 Nov 2011 20:12:19 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 19 Nov 2011 20:12:17 -0800
+	by orsmga102.jf.intel.com with ESMTP; 19 Nov 2011 20:12:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="77987525"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="77987531"
 Received: from unknown (HELO localhost) ([10.255.15.232])
-	by orsmga002.jf.intel.com with ESMTP; 19 Nov 2011 20:12:17 -0800
+	by orsmga002.jf.intel.com with ESMTP; 19 Nov 2011 20:12:18 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Sat, 19 Nov 2011 22:15:56 -0600
-Message-Id: <13ef42f29308473b087623f62f1f86bddf3dd301.1321762384.git.tom.zanussi@intel.com>
+Date: Sat, 19 Nov 2011 22:15:57 -0600
+Message-Id: <6b34878de2259b548e10a0816702f7891b8a633b.1321762384.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <ba97cb7d2dddf3e86e38752d2bce9ff2661d390f.1321762384.git.tom.zanussi@intel.com>
 References: <ba97cb7d2dddf3e86e38752d2bce9ff2661d390f.1321762384.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1321762384.git.tom.zanussi@intel.com>
 References: <cover.1321762384.git.tom.zanussi@intel.com>
-Subject: [PATCH 06/14] Have crownbay.conf use the common ia32-base .inc file and remove the open-coded machine settings.
+Subject: [PATCH 07/14] Have crownbay-noemgd.conf use the common ia32-base .inc file and remove the open-coded machine settings.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,20 +29,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 20 Nov 2011 04:12:17 -0000
+X-List-Received-Date: Sun, 20 Nov 2011 04:12:19 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-crownbay/conf/machine/crownbay.conf |   42 ++++-------------------------
- 1 files changed, 6 insertions(+), 36 deletions(-)
+ meta-crownbay/conf/machine/crownbay-noemgd.conf |   42 +++--------------------
+ 1 files changed, 5 insertions(+), 37 deletions(-)
 
-diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
-index 9315e82..a57cc1c 100644
---- a/meta-crownbay/conf/machine/crownbay.conf
-+++ b/meta-crownbay/conf/machine/crownbay.conf
-@@ -5,45 +5,15 @@
+diff --git a/meta-crownbay/conf/machine/crownbay-noemgd.conf b/meta-crownbay/conf/machine/crownbay-noemgd.conf
+index aa9e732..80fc2a6 100644
+--- a/meta-crownbay/conf/machine/crownbay-noemgd.conf
++++ b/meta-crownbay/conf/machine/crownbay-noemgd.conf
+@@ -5,43 +5,11 @@
  # i.e. E660 + EG20T
  
  include conf/machine/include/tune-atom.inc
@@ -67,23 +67,20 @@ index 9315e82..a57cc1c 100644
 -           xserver-xorg-extension-extmod \
 -           xserver-xorg-extension-dbe \
 -           xserver-xorg-module-libint10 \
--           emgd-driver-bin \
 -           xf86-input-mouse \
 -           xf86-input-keyboard \
 -           xf86-input-evdev \
 -           xf86-input-synaptics \
 -           xf86-video-vesa"
+-
+-PREFERRED_VERSION_xserver-xorg ?= "1.11.1"
+-
+-SERIAL_CONSOLE = "115200 ttyS0"
 +XSERVER ?= "${XSERVER_IA32_BASE} \
 +           ${XSERVER_IA32_EXT} \
-+           ${XSERVER_IA32_EMGD} \
++           ${XSERVER_IA32_VESA} \
 +           "
  
- PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
-+PREFERRED_VERSION_mesa-dri ?= "7.11"
- PREFERRED_VERSION_emgd-driver-bin ?= "1.8"
- 
--SERIAL_CONSOLE = "115200 ttyS0"
--
  APPEND += "video=vesafb vga=0x318"
 -
 -MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
