@@ -1,24 +1,19 @@
-Return-Path: <jeff@kokofitclub.com>
-Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A174E005B1
-	for <yocto@yoctoproject.org>; Sat, 19 Nov 2011 13:20:36 -0800 (PST)
-Received: by vcbfk13 with SMTP id fk13so6278691vcb.35
-	for <yocto@yoctoproject.org>; Sat, 19 Nov 2011 13:20:36 -0800 (PST)
-Received: by 10.220.182.77 with SMTP id cb13mr580200vcb.149.1321737635543;
-	Sat, 19 Nov 2011 13:20:35 -0800 (PST)
-Received: from [10.0.1.13] (c-24-63-246-141.hsd1.ma.comcast.net.
-	[24.63.246.141])
-	by mx.google.com with ESMTPS id c7sm6943985vdh.12.2011.11.19.13.20.34
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 19 Nov 2011 13:20:34 -0800 (PST)
-From: Jeffrey Moore <jeff@kokofitclub.com>
-Date: Sat, 19 Nov 2011 16:20:33 -0500
-Message-Id: <A4579E89-DAD0-4BA2-BD7D-976040983CBF@kokofitclub.com>
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF8F3E006BF
+	for <yocto@yoctoproject.org>; Sat, 19 Nov 2011 20:12:07 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 19 Nov 2011 20:12:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,541,1315206000"; d="scan'208";a="93221707"
+Received: from unknown (HELO localhost) ([10.255.15.232])
+	by fmsmga002.fm.intel.com with ESMTP; 19 Nov 2011 20:12:06 -0800
+From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Apple Message framework v1251.1)
-X-Mailer: Apple Mail (2.1251.1)
-Subject: =?UTF-8?B?J+KApmJ6SW1hZ2UnOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5IHdoZW4gYnVpbGRpbmcgY29yZS1pbWFnZS1taW5pbWFsLWluaXRyYW1mcw==?=
+Date: Sat, 19 Nov 2011 22:16:01 -0600
+Message-Id: <cover.1321762384.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 00/14] meta-intel: machine config cleanup, v1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,108 +25,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 19 Nov 2011 21:20:37 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_A24ACFCF-BFA2-49DE-8E40-74ABF91FB510"
+X-List-Received-Date: Sun, 20 Nov 2011 04:12:07 -0000
 
---Apple-Mail=_A24ACFCF-BFA2-49DE-8E40-74ABF91FB510
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-I have a problem in  that the kernel bzImage is apparently not being =
-built.  Here is my error:
-| install: cannot stat =
-`/media/jwm/minimal-initramfs/tmp/sysroots/crownbay-noemgd/kernel/bzImage'=
-: No such file or directory
-| ERROR: Function 'build_boot_bin' failed (see =
-/media/jwm/minimal-initramfs/tmp/work/crownbay_noemgd-poky-linux/core-imag=
-e-minimal-initramfs-1.0-r0/temp/log.do_bootimg.25097 for further =
-information)
-NOTE: package core-image-minimal-initramfs-1.0-r0: task do_bootimg: =
-Failed
-ERROR: Task 9 =
-(/home/jeff/poky-edison-6.0/meta/recipes-core/images/core-image-minimal-in=
-itramfs.bb, do_bootimg) failed with exit code '1'
-ERROR: =
-'/home/jeff/poky-edison-6.0/meta/recipes-core/images/core-image-minimal-in=
-itramfs.bb' failed
+This patchset cleans up the BSPs in meta-intel by having them use the
+new ia32-base.inc file containing common BSP settings.
 
-My setup:
+The following BSPs were build- and boot-tested: sugarbay, crownbay,
+crownbay-noemgd, emenlow, and n450.  These represent all the main
+variations and all were verified to work the same before as after.
+This includes the n450, which wasn't able to start X either before
+or after.
 
-vanilla, out of the box poky setup with the addition of:
+The other BSPs are the same or similar to those tested, so shouldn't
+see any changes either, but will have to be tested later.
 
-meta-intel layer for meta-crownbay  in the bblayers.conf=20
-&=20
-MACHINE ?=3D "crownbay-noemgd" in the local.conf
+v1: the original patchset had ia32-base.inc in oe-core.  This version
+moves it back to meta-intel and adds a new meta-intel layer that keeps
+everything else the same.
 
-bitbake -k core-image-minimal-initramfs
+The following changes since commit 2a41ae377613b1f14829179f437aa76bbb1bc39e:
+  Tom Zanussi (1):
+        meta-intel: update kernel SRCREVs
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-intel.git tzanussi/conf-cleanup-v1
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/conf-cleanup-v1
+
+Tom Zanussi (14):
+  meta-intel: remove virtual/xserver-xf86 references
+  meta-intel: make meta-intel itself a layer
+  ia32-base.inc: new include file
+  Have sugarbay.conf use the common ia32-base .inc file and remove the 
+       open-coded machine settings.
+  Have fishriver.conf use the common ia32-base .inc file and remove the
+        open-coded machine settings.
+  Have crownbay.conf use the common ia32-base .inc file and remove the 
+       open-coded machine settings.
+  Have crownbay-noemgd.conf use the common ia32-base .inc file and    
+    remove the open-coded machine settings.
+  Have fri2.conf use the common ia32-base .inc file and remove the    
+    open-coded machine settings.
+  Have fri2-noemgd.conf use the common ia32-base .inc file and    
+    remove the open-coded machine settings.
+  Have jasperforest.conf use the common ia32-base .inc file and    
+    remove the open-coded machine settings.
+  Have n450.conf use the common ia32-base .inc file and remove the    
+    open-coded machine settings.
+  Have romley.conf use the common ia32-base .inc file and remove the   
+     open-coded machine settings.
+  Have emenlow.conf use the common ia32-base .inc file and remove the  
+      open-coded machine settings.
+  meta-intel: update READMEs with new layer info
+
+ conf/layer.conf                                  |    2 +
+ conf/machine/include/ia32-base.inc               |   58 ++++++++++++++++++++++
+ meta-crownbay/README                             |    4 +-
+ meta-crownbay/conf/machine/crownbay-noemgd.conf  |   43 ++--------------
+ meta-crownbay/conf/machine/crownbay.conf         |   43 ++--------------
+ meta-emenlow/README                              |    4 +-
+ meta-emenlow/conf/machine/emenlow.conf           |   22 +--------
+ meta-fishriver/README                            |    4 +-
+ meta-fishriver/conf/machine/fishriver.conf       |   42 ++--------------
+ meta-fri2/README                                 |    5 ++-
+ meta-fri2/conf/machine/fri2-noemgd.conf          |   43 ++--------------
+ meta-fri2/conf/machine/fri2.conf                 |   43 +++-------------
+ meta-jasperforest/README                         |    8 ++-
+ meta-jasperforest/conf/machine/jasperforest.conf |   42 ++--------------
+ meta-n450/conf/machine/n450.conf                 |   40 ++-------------
+ meta-romley/README                               |    4 +-
+ meta-romley/conf/machine/romley.conf             |   40 ++-------------
+ meta-sugarbay/README                             |    4 +-
+ meta-sugarbay/conf/machine/sugarbay.conf         |   43 ++--------------
+ 19 files changed, 134 insertions(+), 360 deletions(-)
+ create mode 100644 conf/layer.conf
+ create mode 100644 conf/machine/include/ia32-base.inc
 
 
-If I build any other type of image such as: core-image-minimal-mtdutils =
-or core-image-minimal, everything is fine and I get a clean build.  Any =
-help would be appreciated.
-
-Thanks,
-Jeff Moore
-
-
-
-
-
-
---Apple-Mail=_A24ACFCF-BFA2-49DE-8E40-74ABF91FB510
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; ">I =
-have a problem in &nbsp;that the kernel bzImage is apparently not being =
-built. &nbsp;Here is my error:<div>| install: cannot stat =
-`/media/jwm/minimal-initramfs/tmp/sysroots/crownbay-noemgd/kernel/bzImage'=
-: No such file or directory</div><div>| ERROR: Function 'build_boot_bin' =
-failed (see =
-/media/jwm/minimal-initramfs/tmp/work/crownbay_noemgd-poky-linux/core-imag=
-e-minimal-initramfs-1.0-r0/temp/log.do_bootimg.25097 for further =
-information)</div><div>NOTE: package =
-core-image-minimal-initramfs-1.0-r0: task do_bootimg: =
-Failed</div><div>ERROR: Task 9 =
-(/home/jeff/poky-edison-6.0/meta/recipes-core/images/core-image-minimal-in=
-itramfs.bb, do_bootimg) failed with exit code '1'</div><div>ERROR: =
-'/home/jeff/poky-edison-6.0/meta/recipes-core/images/core-image-minimal-in=
-itramfs.bb' failed</div><div><br></div><div>My =
-setup:<div><br></div><div>vanilla, out of the box poky setup with the =
-addition of:</div><div><br></div><div>meta-intel layer for meta-crownbay =
-&nbsp;in the bblayers.conf&nbsp;</div><div>&amp;&nbsp;</div><div>MACHINE =
-?=3D "crownbay-noemgd" in the =
-local.conf</div><div><br></div><div><div>bitbake =
--k&nbsp;core-image-minimal-initramfs</div><div><br></div><div><br></div><d=
-iv>If I build any other type of image such as:&nbsp;<span =
-class=3D"Apple-style-span" style=3D"color: rgb(51, 51, 51); font-family: =
-Verdana, Sans, sans-serif; line-height: 24px; "><code class=3D"filename" =
-style=3D"font-size: medium; font-family: Courier, monospace; "><b =
-style=3D"font-style: italic; ">core-image-minimal-mtdutils</b> =
-or&nbsp;</code></span><span class=3D"Apple-style-span" style=3D"color: =
-rgb(51, 51, 51); font-family: Verdana, Sans, sans-serif; line-height: =
-24px; "><code class=3D"filename" style=3D"font-size: medium; =
-font-family: Courier, monospace; "><i style=3D"font-weight: bold; =
-">core-image-minimal</i>,<i style=3D"font-weight: bold; "> =
-</i>everything is fine and I get a clean build. &nbsp;Any help would be =
-appreciated.</code></span></div><div><span class=3D"Apple-style-span" =
-style=3D"color: rgb(51, 51, 51); font-family: Verdana, Sans, sans-serif; =
-font-weight: bold; line-height: 24px; "><em><code class=3D"filename" =
-style=3D"font-size: medium; font-family: Courier, monospace; =
-"><br></code></em></span></div><div>Thanks,</div><div>Jeff Moore<div =
-apple-content-edited=3D"true"><div style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; "><div =
-style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
--webkit-line-break: after-white-space; =
-"><div><div><br></div></div></div><br =
-class=3D"Apple-interchange-newline"></div><br =
-class=3D"Apple-interchange-newline"><br =
-class=3D"Apple-interchange-newline">
-</div>
-<br></div></div></div></body></html>=
-
---Apple-Mail=_A24ACFCF-BFA2-49DE-8E40-74ABF91FB510--
