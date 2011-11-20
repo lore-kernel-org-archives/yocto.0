@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC906E0070B
-	for <yocto@yoctoproject.org>; Sat, 19 Nov 2011 20:12:20 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Nov 2011 20:12:20 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4297BE0070C
+	for <yocto@yoctoproject.org>; Sat, 19 Nov 2011 20:12:22 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 19 Nov 2011 20:12:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,541,1315206000"; d="scan'208";a="87389417"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="78046354"
 Received: from unknown (HELO localhost) ([10.255.15.232])
-	by fmsmga001.fm.intel.com with ESMTP; 19 Nov 2011 20:12:20 -0800
+	by orsmga001.jf.intel.com with ESMTP; 19 Nov 2011 20:12:21 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Sat, 19 Nov 2011 22:15:58 -0600
-Message-Id: <51eb400bf5071321dfae0d317e012b81f8c54b76.1321762384.git.tom.zanussi@intel.com>
+Date: Sat, 19 Nov 2011 22:15:59 -0600
+Message-Id: <a79ad174b9d9953f63444dda2f0ef012a423bf5c.1321762384.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <ba97cb7d2dddf3e86e38752d2bce9ff2661d390f.1321762384.git.tom.zanussi@intel.com>
 References: <ba97cb7d2dddf3e86e38752d2bce9ff2661d390f.1321762384.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1321762384.git.tom.zanussi@intel.com>
 References: <cover.1321762384.git.tom.zanussi@intel.com>
-Subject: [PATCH 08/14] Have fri2.conf use the common ia32-base .inc file and remove the open-coded machine settings.
+Subject: [PATCH 09/14] Have fri2-noemgd.conf use the common ia32-base .inc file and remove the open-coded machine settings.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,20 +29,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 20 Nov 2011 04:12:20 -0000
+X-List-Received-Date: Sun, 20 Nov 2011 04:12:22 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-fri2/conf/machine/fri2.conf |   42 ++++++-------------------------------
- 1 files changed, 7 insertions(+), 35 deletions(-)
+ meta-fri2/conf/machine/fri2-noemgd.conf |   42 ++++--------------------------
+ 1 files changed, 6 insertions(+), 36 deletions(-)
 
-diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
-index 80fa43b..15036a4 100644
---- a/meta-fri2/conf/machine/fri2.conf
-+++ b/meta-fri2/conf/machine/fri2.conf
-@@ -5,45 +5,17 @@
+diff --git a/meta-fri2/conf/machine/fri2-noemgd.conf b/meta-fri2/conf/machine/fri2-noemgd.conf
+index d70e06f..1871cad 100644
+--- a/meta-fri2/conf/machine/fri2-noemgd.conf
++++ b/meta-fri2/conf/machine/fri2-noemgd.conf
+@@ -5,43 +5,13 @@
  # i.e. E660 + EG20T
  
  include conf/machine/include/tune-atom.inc
@@ -72,18 +72,16 @@ index 80fa43b..15036a4 100644
 -           xf86-input-keyboard \
 -           xf86-input-evdev \
 -           xf86-input-synaptics \
--           emgd-driver-bin"
+-           xf86-video-vesa"
+-
+-PREFERRED_VERSION_xserver-xorg ?= "1.11.1"
+-
+-SERIAL_CONSOLE = "115200 ttyS0"
 +XSERVER ?= "${XSERVER_IA32_BASE} \
 +           ${XSERVER_IA32_EXT} \
-+           ${XSERVER_IA32_EMGD} \
++           ${XSERVER_IA32_VESA} \
 +           "
  
- PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
-+PREFERRED_VERSION_mesa-dri ?= "7.11"
- PREFERRED_VERSION_emgd-driver-bin ?= "1.8"
- 
--SERIAL_CONSOLE = "115200 ttyS0"
--
  APPEND += "video=vesafb vga=0x318"
 -
 -MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
@@ -94,7 +92,6 @@ index 80fa43b..15036a4 100644
 -GLIBC_EXTRA_OECONF = "--with-tls"
 -
 -MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
--
 -- 
 1.7.0.4
 
