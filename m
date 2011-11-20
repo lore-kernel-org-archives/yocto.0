@@ -1,21 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A13DCE006F2
-	for <yocto@yoctoproject.org>; Sat, 19 Nov 2011 20:12:09 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 19 Nov 2011 20:12:09 -0800
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9B2EE006F3
+	for <yocto@yoctoproject.org>; Sat, 19 Nov 2011 20:12:12 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 19 Nov 2011 20:12:12 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,541,1315206000"; d="scan'208";a="77203401"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="77987518"
 Received: from unknown (HELO localhost) ([10.255.15.232])
-	by azsmga001.ch.intel.com with ESMTP; 19 Nov 2011 20:12:08 -0800
+	by orsmga002.jf.intel.com with ESMTP; 19 Nov 2011 20:12:12 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Sat, 19 Nov 2011 22:15:51 -0600
-Message-Id: <ba97cb7d2dddf3e86e38752d2bce9ff2661d390f.1321762384.git.tom.zanussi@intel.com>
+Date: Sat, 19 Nov 2011 22:15:53 -0600
+Message-Id: <dd2d3e62e92fb08d21ccd99d2e82e8a5fa27d881.1321762384.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <ba97cb7d2dddf3e86e38752d2bce9ff2661d390f.1321762384.git.tom.zanussi@intel.com>
+References: <ba97cb7d2dddf3e86e38752d2bce9ff2661d390f.1321762384.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1321762384.git.tom.zanussi@intel.com>
 References: <cover.1321762384.git.tom.zanussi@intel.com>
-Subject: [PATCH 01/14] meta-intel: remove virtual/xserver-xf86 references
+Subject: [PATCH 03/14] ia32-base.inc: new include file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,147 +29,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 20 Nov 2011 04:12:09 -0000
+X-List-Received-Date: Sun, 20 Nov 2011 04:12:13 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-These are now deprecated (in favor of just virtual/xserver), so remove
-them.
+The meta-intel BSPs currently have a number of machine settings common
+to all - factor these out into a common include file.
+
+Also add several new intel-specific XSERVER variables for building
+XSERVER variables in BSPs.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-crownbay/conf/machine/crownbay-noemgd.conf  |    1 -
- meta-crownbay/conf/machine/crownbay.conf         |    1 -
- meta-emenlow/conf/machine/emenlow.conf           |    1 -
- meta-fishriver/conf/machine/fishriver.conf       |    1 -
- meta-fri2/conf/machine/fri2-noemgd.conf          |    1 -
- meta-fri2/conf/machine/fri2.conf                 |    1 -
- meta-jasperforest/conf/machine/jasperforest.conf |    1 -
- meta-n450/conf/machine/n450.conf                 |    1 -
- meta-romley/conf/machine/romley.conf             |    1 -
- meta-sugarbay/conf/machine/sugarbay.conf         |    1 -
- 10 files changed, 0 insertions(+), 10 deletions(-)
+ conf/machine/include/ia32-base.inc |   58 ++++++++++++++++++++++++++++++++++++
+ 1 files changed, 58 insertions(+), 0 deletions(-)
+ create mode 100644 conf/machine/include/ia32-base.inc
 
-diff --git a/meta-crownbay/conf/machine/crownbay-noemgd.conf b/meta-crownbay/conf/machine/crownbay-noemgd.conf
-index f61c75a..aa9e732 100644
---- a/meta-crownbay/conf/machine/crownbay-noemgd.conf
-+++ b/meta-crownbay/conf/machine/crownbay-noemgd.conf
-@@ -18,7 +18,6 @@ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
- PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
--PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xorg"
- XSERVER ?= "xserver-xorg \
-            xserver-xorg-extension-dri \
-            xserver-xorg-extension-dri2 \
-diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
-index defa4e5..9315e82 100644
---- a/meta-crownbay/conf/machine/crownbay.conf
-+++ b/meta-crownbay/conf/machine/crownbay.conf
-@@ -18,7 +18,6 @@ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
- PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
--PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xorg"
- XSERVER ?= "xserver-xorg \
-            xserver-xorg-extension-dri \
-            xserver-xorg-extension-dri2 \
-diff --git a/meta-emenlow/conf/machine/emenlow.conf b/meta-emenlow/conf/machine/emenlow.conf
-index 774ef08..06cba37 100644
---- a/meta-emenlow/conf/machine/emenlow.conf
-+++ b/meta-emenlow/conf/machine/emenlow.conf
-@@ -20,7 +20,6 @@ PREFERRED_PROVIDER_drm = "libdrm-poulsbo"
- PREFERRED_PROVIDER_virtual/libx11 = "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl = "xpsb-glx"
- PREFERRED_PROVIDER_virtual/xserver = "xserver-psb"
--PREFERRED_PROVIDER_virtual/xserver-xf86 = "xserver-psb"
- PREFERRED_PROVIDER_mesa-dri = "xpsb-glx"
- XSERVER ?= "xserver-psb \
-            xserver-psb-extension-dri \
-diff --git a/meta-fishriver/conf/machine/fishriver.conf b/meta-fishriver/conf/machine/fishriver.conf
-index 79bf349..8cc43f8 100644
---- a/meta-fishriver/conf/machine/fishriver.conf
-+++ b/meta-fishriver/conf/machine/fishriver.conf
-@@ -18,7 +18,6 @@ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
- PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
--PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xorg"
- XSERVER ?= "xserver-xorg \
-            xserver-xorg-extension-dri \
-            xserver-xorg-extension-dri2 \
-diff --git a/meta-fri2/conf/machine/fri2-noemgd.conf b/meta-fri2/conf/machine/fri2-noemgd.conf
-index 089861f..d70e06f 100644
---- a/meta-fri2/conf/machine/fri2-noemgd.conf
-+++ b/meta-fri2/conf/machine/fri2-noemgd.conf
-@@ -18,7 +18,6 @@ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
- PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
--PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xorg"
- XSERVER ?= "xserver-xorg \
-            xserver-xorg-extension-dri \
-            xserver-xorg-extension-dri2 \
-diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
-index 6029cee..80fa43b 100644
---- a/meta-fri2/conf/machine/fri2.conf
-+++ b/meta-fri2/conf/machine/fri2.conf
-@@ -18,7 +18,6 @@ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
- PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
--PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xorg"
- XSERVER ?= "xserver-xorg \
-            xserver-xorg-extension-dri \
-            xserver-xorg-extension-dri2 \
-diff --git a/meta-jasperforest/conf/machine/jasperforest.conf b/meta-jasperforest/conf/machine/jasperforest.conf
-index 17468de..c668c64 100644
---- a/meta-jasperforest/conf/machine/jasperforest.conf
-+++ b/meta-jasperforest/conf/machine/jasperforest.conf
-@@ -18,7 +18,6 @@ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
- PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
--PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xorg"
- XSERVER ?= "xserver-xorg \
-            xserver-xorg-extension-dri \
-            xserver-xorg-extension-dri2 \
-diff --git a/meta-n450/conf/machine/n450.conf b/meta-n450/conf/machine/n450.conf
-index 431a6c5..b28f57f 100644
---- a/meta-n450/conf/machine/n450.conf
-+++ b/meta-n450/conf/machine/n450.conf
-@@ -16,7 +16,6 @@ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
- PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
--PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xorg"
- XSERVER ?= "xserver-xorg \
-            xserver-xorg-extension-dri \
-            xserver-xorg-extension-dri2 \
-diff --git a/meta-romley/conf/machine/romley.conf b/meta-romley/conf/machine/romley.conf
-index 2dcb5db..3d41db5 100644
---- a/meta-romley/conf/machine/romley.conf
-+++ b/meta-romley/conf/machine/romley.conf
-@@ -18,7 +18,6 @@ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
- PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
--PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xorg"
- XSERVER ?= "xserver-xorg \
-            xserver-xorg-extension-dri \
-            xserver-xorg-extension-dri2 \
-diff --git a/meta-sugarbay/conf/machine/sugarbay.conf b/meta-sugarbay/conf/machine/sugarbay.conf
-index 3ea9ca3..0b4541f 100644
---- a/meta-sugarbay/conf/machine/sugarbay.conf
-+++ b/meta-sugarbay/conf/machine/sugarbay.conf
-@@ -18,7 +18,6 @@ PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
- PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
- PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
--PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xorg"
- XSERVER ?= "xserver-xorg \
-            xserver-xorg-extension-dri \
-            xserver-xorg-extension-dri2 \
+diff --git a/conf/machine/include/ia32-base.inc b/conf/machine/include/ia32-base.inc
+new file mode 100644
+index 0000000..5cf2f4f
+--- /dev/null
++++ b/conf/machine/include/ia32-base.inc
+@@ -0,0 +1,58 @@
++#
++# base machine settings for ia32-architecture BSPs
++#
++
++#
++# common settings for Intel-based machines
++#
++MACHINE_FEATURES += "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
++                     acpi serial usbgadget"
++
++MACHINE_EXTRA_RRECOMMENDS += "kernel-modules eee-acpi-scripts"
++MACHINE_ESSENTIAL_EXTRA_RDEPENDS += "grub"
++
++IMAGE_FSTYPES += "ext3 cpio.gz live"
++
++KERNEL_IMAGETYPE ?= "bzImage"
++
++SERIAL_CONSOLE ?= "115200 ttyS0"
++
++#
++# glibc-related variables
++#
++GLIBC_ADDONS ?= "nptl"
++GLIBC_EXTRA_OECONF += "--with-tls"
++
++#
++# kernel-related variables
++#
++PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
++PREFERRED_VERSION_linux-yocto ?= "3.0%"
++PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
++
++#
++# XSERVER subcomponents, used to build the XSERVER variable
++#
++XSERVER_IA32_BASE = "xserver-xorg \
++           xf86-input-mouse \
++           xf86-input-keyboard \
++           xf86-input-evdev \
++           xf86-input-synaptics \
++           mesa-dri \
++           "
++
++XSERVER_IA32_EXT = "xserver-xorg-extension-dri \
++           xserver-xorg-extension-dri2 \
++           xserver-xorg-extension-glx \
++           xserver-xorg-extension-extmod \
++           xserver-xorg-extension-dbe \
++           xserver-xorg-module-libint10 \
++           "
++
++XSERVER_IA32_I915 = "xf86-video-intel \
++           mesa-dri-driver-i965 \
++           "
++
++XSERVER_IA32_EMGD = "emgd-driver-bin"
++
++XSERVER_IA32_VESA = "xf86-video-vesa"
 -- 
 1.7.0.4
 
