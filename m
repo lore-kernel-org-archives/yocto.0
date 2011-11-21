@@ -1,28 +1,19 @@
-Return-Path: <marc.ferland@gmail.com>
-Received: from mail-gy0-f176.google.com (mail-gy0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E055E00502
-	for <yocto@yoctoproject.org>; Mon, 21 Nov 2011 13:30:31 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by ghbg2 with SMTP id g2so4322424ghb.35
-	for <yocto@yoctoproject.org>; Mon, 21 Nov 2011 13:30:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=QDYEsZHC6lbPiFFExJDm1rsXvM/UrQ5OHpegV9Ut3Ew=;
-	b=SOHkTHV6Ep3PLPHFdypvvmJWOYoAP5eJSsJeMXZnflpq7tvr8nrXBB4WmNkEwh+OHu
-	KMEX6IUKhR8aMwSPJ5Smv0eVBAEPEoen2DjA3ElhzJT+rw0a/FFljgJSmLlY7y1hK6N+
-	vMBnuk1HtV8bq4SmEvB2qnk6UdWFwv4R65h5Q=
-MIME-Version: 1.0
-Received: by 10.50.100.194 with SMTP id fa2mr16330506igb.49.1321911029724;
-	Mon, 21 Nov 2011 13:30:29 -0800 (PST)
-Received: by 10.50.34.166 with HTTP; Mon, 21 Nov 2011 13:30:29 -0800 (PST)
-Date: Mon, 21 Nov 2011 16:30:29 -0500
-Message-ID: <CAMRMzCB2muhMQK02h_6jFH2QNypNXEego=smX-CZGGAGsP_c-A@mail.gmail.com>
-From: Marc Ferland <marc.ferland@gmail.com>
-To: yocto@yoctoproject.org
-Subject: /dev/root entry in mtab file
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDC37E00502
+	for <yocto@yoctoproject.org>; Mon, 21 Nov 2011 14:44:24 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 21 Nov 2011 14:44:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,549,1315206000"; d="scan'208";a="87883753"
+Received: from unknown (HELO localhost) ([10.255.15.246])
+	by fmsmga001.fm.intel.com with ESMTP; 21 Nov 2011 14:44:23 -0800
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org, dvhart@linux.intel.com, kishore.k.bodke@intel.com
+Date: Mon, 21 Nov 2011 16:44:29 -0600
+Message-Id: <cover.1321915192.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 00/17] meta-intel: machine config cleanup, v2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,65 +25,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Nov 2011 21:30:31 -0000
-Content-Type: multipart/alternative; boundary=e89a8f3ba4d559f66a04b245659e
+X-List-Received-Date: Mon, 21 Nov 2011 22:44:25 -0000
 
---e89a8f3ba4d559f66a04b245659e
-Content-Type: text/plain; charset=UTF-8
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Hi,
+This patchset cleans up the BSPs in meta-intel by having them use the
+new ia32-base.inc file containing common BSP settings.
 
-I noticed that the /etc/mtab file on my system image contains the /dev/root
-entry which doesn't exist on the file system. This causes some problems
-with applications that parse mtab to list currently mounted file systems.
+The following BSPs were build- and boot-tested: sugarbay, crownbay,
+crownbay-noemgd, emenlow, and n450.  These represent all the main
+variations and all were verified to work the same before as after.
+This includes the n450, which wasn't able to start X either before
+or after.
 
-So far my only option has been to parse the kernel command line and extract
-the "root" option... it works but then I have to handle cases like
-"root=UUID=".
+The other BSPs are the same or similar to those tested, so shouldn't
+see any changes either, but will have to be tested later.
 
-Is this a known issue? If this is normal behavior, is there a generic way
-to list mounted partitions correctly?
+v2: Add common metadata to intel layer and add a layer dependency
+section to BSP READMEs.
 
-Here's my /etc/mtab:
-rootfs / rootfs rw 0 0
-/dev/root / ext3 rw,relatime,barrier=0,data=ordered 0 0
-devtmpfs /dev devtmpfs rw,relatime,size=60248k,nr_inodes=15062,mode=755 0 0
-proc /proc proc rw,relatime 0 0
-tmpfs /mnt/.psplash tmpfs rw,relatime,size=40k 0 0
-sysfs /sys sysfs rw,relatime 0 0
-none /dev tmpfs rw,relatime,mode=755 0 0
-devpts /dev/pts devpts rw,relatime,gid=5,mode=620 0 0
-tmpfs /var/volatile tmpfs rw,relatime 0 0
-tmpfs /media/ram tmpfs rw,relatime 0 0
+The following changes since commit 2a41ae377613b1f14829179f437aa76bbb1bc39e:
+  Tom Zanussi (1):
+        meta-intel: update kernel SRCREVs
 
-Any help appreciated!
+are available in the git repository at:
 
-Regards,
+  git://git.yoctoproject.org/meta-intel.git tzanussi/conf-cleanup-v2
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/conf-cleanup-v2
 
-Marc
+Tom Zanussi (17):
+  meta-intel: remove virtual/xserver-xf86 references
+  meta-intel: make meta-intel itself a layer
+  ia32-base.inc: new include file
+  Have sugarbay.conf use the common ia32-base .inc file and remove the 
+       open-coded machine settings.
+  Have fishriver.conf use the common ia32-base .inc file and remove the
+        open-coded machine settings.
+  Have crownbay.conf use the common ia32-base .inc file and remove the 
+       open-coded machine settings.
+  Have crownbay-noemgd.conf use the common ia32-base .inc file and    
+    remove the open-coded machine settings.
+  Have fri2.conf use the common ia32-base .inc file and remove the    
+    open-coded machine settings.
+  Have fri2-noemgd.conf use the common ia32-base .inc file and    
+    remove the open-coded machine settings.
+  Have jasperforest.conf use the common ia32-base .inc file and    
+    remove the open-coded machine settings.
+  Have n450.conf use the common ia32-base .inc file and remove the    
+    open-coded machine settings.
+  Have romley.conf use the common ia32-base .inc file and remove the   
+     open-coded machine settings.
+  Have emenlow.conf use the common ia32-base .inc file and remove the  
+      open-coded machine settings.
+  meta-intel: update READMEs with new layer info
+  meta-crownbay: remove common from BBFILES
+  meta-fri2: remove common from BBFILES
+  meta-intel: update READMEs with layer dependency list
 
---e89a8f3ba4d559f66a04b245659e
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+ conf/layer.conf                                  |   10 ++++
+ conf/machine/include/ia32-base.inc               |   58 ++++++++++++++++++++++
+ meta-crownbay/README                             |   22 ++++++++-
+ meta-crownbay/conf/layer.conf                    |    4 +-
+ meta-crownbay/conf/machine/crownbay-noemgd.conf  |   43 ++--------------
+ meta-crownbay/conf/machine/crownbay.conf         |   43 ++--------------
+ meta-emenlow/README                              |   21 ++++++++-
+ meta-emenlow/conf/machine/emenlow.conf           |   22 +--------
+ meta-fishriver/README                            |   21 ++++++++-
+ meta-fishriver/conf/machine/fishriver.conf       |   42 ++--------------
+ meta-fri2/README                                 |   22 ++++++++-
+ meta-fri2/conf/layer.conf                        |    4 +-
+ meta-fri2/conf/machine/fri2-noemgd.conf          |   43 ++--------------
+ meta-fri2/conf/machine/fri2.conf                 |   43 +++-------------
+ meta-jasperforest/README                         |   25 ++++++++-
+ meta-jasperforest/conf/machine/jasperforest.conf |   42 ++--------------
+ meta-n450/ReleaseNotes                           |    4 ++
+ meta-n450/conf/machine/n450.conf                 |   40 ++-------------
+ meta-romley/README                               |   22 ++++++++-
+ meta-romley/conf/machine/romley.conf             |   40 ++-------------
+ meta-sugarbay/README                             |   22 ++++++++-
+ meta-sugarbay/conf/machine/sugarbay.conf         |   43 ++--------------
+ 22 files changed, 270 insertions(+), 366 deletions(-)
+ create mode 100644 conf/layer.conf
+ create mode 100644 conf/machine/include/ia32-base.inc
 
-Hi,<br><br>I noticed that the /etc/mtab file on my system image contains th=
-e /dev/root entry which doesn&#39;t exist on the file system. This causes s=
-ome problems with applications that parse mtab to list currently mounted fi=
-le systems. <br>
-<br>So far my only option has been to parse the kernel command line and ext=
-ract the &quot;root&quot; option... it works but then I have to handle case=
-s like &quot;root=3DUUID=3D&quot;. <br><br>Is this a known issue? If this i=
-s normal behavior, is there a generic way to list mounted partitions correc=
-tly?<br>
-<br>Here&#39;s my /etc/mtab:<br>rootfs / rootfs rw 0 0<br>/dev/root / ext3 =
-rw,relatime,barrier=3D0,data=3Dordered 0 0<br>devtmpfs /dev devtmpfs rw,rel=
-atime,size=3D60248k,nr_inodes=3D15062,mode=3D755 0 0<br>proc /proc proc rw,=
-relatime 0 0<br>
-tmpfs /mnt/.psplash tmpfs rw,relatime,size=3D40k 0 0<br>sysfs /sys sysfs rw=
-,relatime 0 0<br>none /dev tmpfs rw,relatime,mode=3D755 0 0<br>devpts /dev/=
-pts devpts rw,relatime,gid=3D5,mode=3D620 0 0<br>tmpfs /var/volatile tmpfs =
-rw,relatime 0 0<br>
-tmpfs /media/ram tmpfs rw,relatime 0 0<br><br>Any help appreciated!<br><br>=
-Regards, <br><br>Marc<br>
 
---e89a8f3ba4d559f66a04b245659e--
