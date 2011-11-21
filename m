@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6F96E00736
-	for <yocto@yoctoproject.org>; Mon, 21 Nov 2011 14:44:41 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 21 Nov 2011 14:44:41 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA232E00738
+	for <yocto@yoctoproject.org>; Mon, 21 Nov 2011 14:44:43 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 21 Nov 2011 14:44:43 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,549,1315206000"; d="scan'208";a="87883811"
+X-IronPort-AV: E=Sophos;i="4.69,549,1315206000"; d="scan'208";a="39893447"
 Received: from unknown (HELO localhost) ([10.255.15.246])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Nov 2011 14:44:40 -0800
+	by AZSMGA002.ch.intel.com with ESMTP; 21 Nov 2011 14:44:42 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org, dvhart@linux.intel.com, kishore.k.bodke@intel.com
-Date: Mon, 21 Nov 2011 16:44:25 -0600
-Message-Id: <1b996c073fe4d5c9aaf6dea912d476b4f2006641.1321915193.git.tom.zanussi@intel.com>
+Date: Mon, 21 Nov 2011 16:44:26 -0600
+Message-Id: <d2b3d84827ffb1edf01932255f650f2f7f9496d4.1321915193.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <ba97cb7d2dddf3e86e38752d2bce9ff2661d390f.1321915193.git.tom.zanussi@intel.com>
 References: <ba97cb7d2dddf3e86e38752d2bce9ff2661d390f.1321915193.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1321915192.git.tom.zanussi@intel.com>
 References: <cover.1321915192.git.tom.zanussi@intel.com>
-Subject: [PATCH 09/17] Have fri2-noemgd.conf use the common ia32-base .inc file and remove the open-coded machine settings.
+Subject: [PATCH 10/17] Have jasperforest.conf use the common ia32-base .inc file and remove the open-coded machine settings.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,29 +29,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Nov 2011 22:44:41 -0000
+X-List-Received-Date: Mon, 21 Nov 2011 22:44:43 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-fri2/conf/machine/fri2-noemgd.conf |   42 ++++--------------------------
- 1 files changed, 6 insertions(+), 36 deletions(-)
+ meta-jasperforest/conf/machine/jasperforest.conf |   41 +++-------------------
+ 1 files changed, 5 insertions(+), 36 deletions(-)
 
-diff --git a/meta-fri2/conf/machine/fri2-noemgd.conf b/meta-fri2/conf/machine/fri2-noemgd.conf
-index d70e06f..1871cad 100644
---- a/meta-fri2/conf/machine/fri2-noemgd.conf
-+++ b/meta-fri2/conf/machine/fri2-noemgd.conf
-@@ -5,43 +5,13 @@
- # i.e. E660 + EG20T
+diff --git a/meta-jasperforest/conf/machine/jasperforest.conf b/meta-jasperforest/conf/machine/jasperforest.conf
+index c668c64..9767010 100644
+--- a/meta-jasperforest/conf/machine/jasperforest.conf
++++ b/meta-jasperforest/conf/machine/jasperforest.conf
+@@ -5,42 +5,11 @@
+ # systems i.e. Xeon C5500/C3500 + Intel 3420 chipset (Ibex Peak)
  
- include conf/machine/include/tune-atom.inc
-+include conf/machine/include/ia32-base.inc
+ require conf/machine/include/tune-x86_64.inc
++require conf/machine/include/ia32-base.inc
  
 -MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
--                    acpi serial usbgadget wifi 3g"
-+MACHINE_FEATURES += "wifi 3g"
- 
+-                    acpi serial usbgadget"
+-
 -KERNEL_IMAGETYPE = "bzImage"
 -
 -PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
@@ -74,8 +73,6 @@ index d70e06f..1871cad 100644
 -           xf86-input-synaptics \
 -           xf86-video-vesa"
 -
--PREFERRED_VERSION_xserver-xorg ?= "1.11.1"
--
 -SERIAL_CONSOLE = "115200 ttyS0"
 +XSERVER ?= "${XSERVER_IA32_BASE} \
 +           ${XSERVER_IA32_EXT} \
@@ -92,6 +89,7 @@ index d70e06f..1871cad 100644
 -GLIBC_EXTRA_OECONF = "--with-tls"
 -
 -MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
+-
 -- 
 1.7.0.4
 
