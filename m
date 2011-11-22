@@ -1,27 +1,32 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4867BE00727
-	for <yocto@yoctoproject.org>; Tue, 22 Nov 2011 14:52:07 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 22 Nov 2011 14:52:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,556,1315206000"; d="scan'208";a="88300109"
-Received: from unknown (HELO [10.255.12.38]) ([10.255.12.38])
-	by fmsmga001.fm.intel.com with ESMTP; 22 Nov 2011 14:52:06 -0800
-Message-ID: <4ECC2796.6040900@linux.intel.com>
-Date: Tue, 22 Nov 2011 14:52:06 -0800
-From: Joshua Lock <josh@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-fx0-f48.google.com (mail-fx0-f48.google.com
+	[209.85.161.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D9DAE006BA
+	for <yocto@yoctoproject.org>; Tue, 22 Nov 2011 15:36:41 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by faap19 with SMTP id p19so1500686faa.35
+	for <yocto@yoctoproject.org>; Tue, 22 Nov 2011 15:36:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=Gb+eSIySyB4d8F40qTjYEVNCEeo4ye2b6YLwxJENgBU=;
+	b=Pc55Yni7gL4wj6DBjSrycrGLOj/vsLEwO7FDAH94n2K2ALvBzQUjQ+FKQ1/V0GvEHN
+	9pM+/+ZOmgkKzQ9yFJXq8P3bsU/HPBU9Mt3Xk/tQCrLfxRBWV4Hy5+igdZOCgY/B/XPZ
+	qPC334UQmI1T6ScXBIKyDOp/ywMTEH8TS22qE=
+Received: by 10.152.111.1 with SMTP id ie1mr330778lab.7.1322005000103; Tue, 22
+	Nov 2011 15:36:40 -0800 (PST)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CA+YB3ray8bX94Y1subz+7CQYUzRJWjHS2CQX_W2boA2BV7A5ZA@mail.gmail.com>	<94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com>	<4EC6280B.1010308@communistcode.co.uk>
-	<4EC6BC19.60501@linux.intel.com> <1321649677.9657.24.camel@elmorro>
-	<4ECB9B23.5060305@ts.fujitsu.com>
-	<4ECBD2A7.5060105@linux.intel.com>
-	<723A693C-B023-4E36-9338-CD0F8B88452B@keylevel.com>
-In-Reply-To: <723A693C-B023-4E36-9338-CD0F8B88452B@keylevel.com>
-Subject: Re: Yocto usability questions
+Received: by 10.152.24.36 with HTTP; Tue, 22 Nov 2011 15:36:09 -0800 (PST)
+In-Reply-To: <alpine.DEB.2.02.1110301221390.997@localhost6.localdomain6>
+References: <alpine.DEB.2.02.1110301221390.997@localhost6.localdomain6>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 22 Nov 2011 15:36:09 -0800
+Message-ID: <CAMKF1srt7BLwzGJFv7KSOmGDHy4-VAURTiu1X_Sd0uvDXZZQBQ@mail.gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: a couple cleanups at the toolchains download location
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,53 +38,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Nov 2011 22:52:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 22 Nov 2011 23:36:42 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 22/11/11 13:03, Chris Tapp wrote:
-> Hi Joshua,
+On Sun, Oct 30, 2011 at 9:25 AM, Robert P. J. Day <rpjday@crashcourse.ca> w=
+rote:
 >
-> On 22 Nov 2011, at 16:49, Joshua Lock wrote:
->> On 22/11/11 04:52, Rainer Koenig wrote:
->>> Hi Tom,
->>>
->>> On 18.11.2011 21:54, Tom Zanussi wrote:
->>>
->>>> I'd be happy to work with anyone who wants to in helping getting
->>>> something like that started, whether it be a variation on the above, or
->>>> something from scratch, whatever.
->>>
->>> I just added a few FAQ entries to the wiki. I used the questions from
->>> Chris Tapp and what came to my mind recently. And I used categories, so
->>> that there is a hope for a sort of workflow. See
->>>
->>> https://wiki.yoctoproject.org/wiki/Category:FAQ
->>
->> Any feedback from you, Chris or anyone else as to whether the
->> documentation I linked to for some of those questions is sufficient? If
->> not I can work on enhancing that documentation.
+> =C2=A0(yes, i *am* going to be this pedantic all day long. at least until
+> football starts.)
 >
+> over at
+> http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/toolchain/,
+> a couple optional fixups:
 >
-> Yes, that looks good to me. I've already started a draft for the startup
-> scripts FAQ under the https://wiki.yoctoproject.org/wiki/Cookbook page
-> that Jeffrey started at the end of last week. Where should it go?
-
-I like the format Rainer came up with, I'd go with that for now.
-
+> 1) the toolchain ...i686-x86_64... doesn't appear to belong under the
+> x86-64 directory. =C2=A0(it *does* live properly under the i686 directory=
+.)
 >
-> PS Sorry it's taken a while to reply - Yocto is the night job, not the
-> day one ;-)
+> 2) the directory name is "x86-64" while all the toolchain tarball
+> names contain "x86_64". =C2=A0any reason why these can't be consistent?
+> what's the standard? =C2=A0it just seems confusing to keep bouncing back
+> and forth.
 >
 
-No problem at all, I just wanted to make sure I'd provided enough 
-information to keep you going before I ran off for a long turkey break :-)
+since x86_64 (which is more familiar) has an 'underscore' in it and
+bitbake reserved that
+for overrides we had a potential conflict here thats why alternate
+name x86-64 is used
+actually they both mean the same thing.
 
-Joshua
--- 
-Joshua Lock
-         Yocto Project "Johannes factotum"
-         Intel Open Source Technology Centre
+> rday
+>
+> --
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> Robert P. J. Day =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Ottawa, Ontario, CA=
+NADA
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0http://crashcourse.ca
+>
+> Twitter: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 http:=
+//twitter.com/rpjday
+> LinkedIn: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 http://ca.linkedin.com/in/rpjday
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
