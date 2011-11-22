@@ -1,49 +1,25 @@
-Return-Path: <Rainer.Koenig@ts.fujitsu.com>
-Received: from dgate20.ts.fujitsu.com (dgate20.ts.fujitsu.com [80.70.172.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC535E00303
-	for <yocto@yoctoproject.org>; Tue, 22 Nov 2011 04:52:53 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1536-bit key; insecure key) header.i=Rainer.Koenig@ts.fujitsu.com;
-	x-dkim-adsp=none (insecure policy)
-DomainKey-Signature: s=s1536a; d=ts.fujitsu.com; c=nofws; q=dns;
-	h=X-SBRSScore:X-IronPort-AV:Received:X-IronPort-AV:
-	Received:Message-ID:Date:From:User-Agent:MIME-Version:To:
-	Subject:References:In-Reply-To:X-Enigmail-Version:
-	Content-Type:Content-Transfer-Encoding;
-	b=LRbL7tuGVex00/ckwwv38FwbgPLv/pke4sYwTjcUb8Eo2oFO9AI1Pzab
-	r4goioD2X8uiIZbGEQQ6WvWfcl0JApaMpqb/4MTtARhCY6DCrfs1NDEf+
-	FbkUxdLdMZSyYO9n7AZsStUUo4BUlvdxzAT7MQ8jnQef2uS+Tjop6WhUR
-	saHXQxZTPKGg3zrRlN98FwD0IFdppfpNr+jyLe6PWJ/LHkpWu49sTaWT3
-	t4SMU1iBAdfwG3WayZv5FWX933xCc;
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-	d=ts.fujitsu.com; i=Rainer.Koenig@ts.fujitsu.com;
-	q=dns/txt; s=s1536b; t=1321966374; x=1353502374;
-	h=message-id:date:from:mime-version:to:subject:references:
-	in-reply-to:content-transfer-encoding;
-	bh=Qzh6VV0nFpKqFTXqcTifgx9+iWfAIFE9gwwO+2u/iVU=;
-	b=gCanN/t8TRadojOe/cUYIK9OYMnQyQVvLgV59avvYTzV9Fbind5qV4yh
-	M9slS/RwCW4+htpnQGtQA9IqQalMyvQ0E5K6rJFygxH8a2PePgkaemS5L
-	am5WXQVbZJpOITzlidBp8GtRTYE6UJ5Mln3YvGYEBuuwYgnTTllrtjR+5
-	Xck6PLz9oUmTuu71D5whXWVFmy/koamnornEpvBmcA1vCCteLlqeaAL0K
-	exrsqe6kzcVj76mssgs2j2spt/VP/;
-X-SBRSScore: None
-X-IronPort-AV: E=Sophos;i="4.69,553,1315173600"; d="scan'208";a="79609856"
-Received: from abgdgate40u.abg.fsc.net ([172.25.138.90])
-	by dgate20u.abg.fsc.net with ESMTP; 22 Nov 2011 13:52:51 +0100
-X-IronPort-AV: E=Sophos;i="4.69,552,1315173600"; d="scan'208";a="123932266"
-Received: from abg3595c.abg.fsc.net (HELO [172.25.145.158]) ([172.25.145.158])
-	by abgdgate40u.abg.fsc.net with ESMTP; 22 Nov 2011 13:52:51 +0100
-Message-ID: <4ECB9B23.5060305@ts.fujitsu.com>
-Date: Tue, 22 Nov 2011 13:52:51 +0100
-From: Rainer Koenig <Rainer.Koenig@ts.fujitsu.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.1.16) Gecko/20111110 Icedove/3.0.11
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CA+YB3ray8bX94Y1subz+7CQYUzRJWjHS2CQX_W2boA2BV7A5ZA@mail.gmail.com>	<94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com>	<4EC6280B.1010308@communistcode.co.uk>
-	<4EC6BC19.60501@linux.intel.com> <1321649677.9657.24.camel@elmorro>
-In-Reply-To: <1321649677.9657.24.camel@elmorro>
-X-Enigmail-Version: 1.0.1
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7895E0059C
+	for <yocto@yoctoproject.org>; Tue, 22 Nov 2011 07:23:08 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 22 Nov 2011 07:23:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,553,1315206000"; d="scan'208";a="40125279"
+Received: from unknown (HELO [10.255.12.73]) ([10.255.12.73])
+	by AZSMGA002.ch.intel.com with ESMTP; 22 Nov 2011 07:23:07 -0800
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Rainer Koenig <Rainer.Koenig@ts.fujitsu.com>
+In-Reply-To: <4ECB9B23.5060305@ts.fujitsu.com>
+References: <CA+YB3ray8bX94Y1subz+7CQYUzRJWjHS2CQX_W2boA2BV7A5ZA@mail.gmail.com>
+	<94FEB92A-6B46-4F5E-A331-B558F109B796@keylevel.com>
+	<4EC6280B.1010308@communistcode.co.uk>	<4EC6BC19.60501@linux.intel.com>
+	<1321649677.9657.24.camel@elmorro>  <4ECB9B23.5060305@ts.fujitsu.com>
+Date: Tue, 22 Nov 2011 09:23:07 -0600
+Message-ID: <1321975387.2321.25.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Yocto usability questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -56,33 +32,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Nov 2011 12:52:54 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 22 Nov 2011 15:23:09 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-Hi Tom,
+Hi Rainer,
 
-On 18.11.2011 21:54, Tom Zanussi wrote:
+On Tue, 2011-11-22 at 04:52 -0800, Rainer Koenig wrote:
+> Hi Tom,
+> 
+> On 18.11.2011 21:54, Tom Zanussi wrote:
+> 
+> > I'd be happy to work with anyone who wants to in helping getting
+> > something like that started, whether it be a variation on the above, or
+> > something from scratch, whatever.
+> 
+> I just added a few FAQ entries to the wiki. I used the questions from
+> Chris Tapp and what came to my mind recently. And I used categories, so
+> that there is a hope for a sort of workflow. See
+> 
+> https://wiki.yoctoproject.org/wiki/Category:FAQ
+> 
+> for details.
+> 
 
-> I'd be happy to work with anyone who wants to in helping getting
-> something like that started, whether it be a variation on the above, or
-> something from scratch, whatever.
+I really like this arrangement for the FAQs - it makes it much easier to
+find relevant questions (even better if it were eventually categorized
+even further e.g. by topic), and more importantly much easier to find
+the questions that still need to be answered. ;-)
 
-I just added a few FAQ entries to the wiki. I used the questions from
-Chris Tapp and what came to my mind recently. And I used categories, so
-that there is a hope for a sort of workflow. See
+> > In any case, it would be nice to have some concrete ideas on what would
+> > make for a good walked-through example or set of examples...
+> 
+> Actually I'm still thinking if the wiki approach is helpful or if
+> someone (maybe even me) should write a book. ;-)
+> 
 
-https://wiki.yoctoproject.org/wiki/Category:FAQ
+To me, the wiki does make a lot sense for FAQs at least.  For other
+things like examples or walk-throughs or longer articles on specific
+topics, I kind of informally think of the wiki as a staging area for
+stuff that could eventually go into one of the official Yocto manuals,
+most likely the Development Manual, which seems to want to become the
+kind of book you're thinking about, and this has already happened in a
+couple cases.
 
-for details.
+If you're thinking more along the lines of something like an O'Reilly
+book on Yocto, though, I'm guessing you could probably also find
+volunteers for that too here.  ;-)
 
-> In any case, it would be nice to have some concrete ideas on what would
-> make for a good walked-through example or set of examples...
+Tom
 
-Actually I'm still thinking if the wiki approach is helpful or if
-someone (maybe even me) should write a book. ;-)
+> Regards
+> Rainer
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Regards
-Rainer
 
 
