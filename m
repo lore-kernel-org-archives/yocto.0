@@ -1,23 +1,35 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0726FE005B4
-	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 15:41:38 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 23 Nov 2011 15:41:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="79357057"
-Received: from unknown (HELO helios.localnet) ([10.252.121.173])
-	by orsmga001.jf.intel.com with ESMTP; 23 Nov 2011 15:41:37 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Saxena, Rahul" <rahul.saxena@intel.com>
-Date: Wed, 23 Nov 2011 23:41:36 +0000
-Message-ID: <3229545.vvJnxo6DNZ@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.7.3 (Linux/3.0.0-13-generic-pae; KDE/4.7.3; i686; ; )
-In-Reply-To: <4FF5AC937153B0459463C1A88EB478F201A8D4E47F@orsmsx505.amr.corp.intel.com>
-References: <4FF5AC937153B0459463C1A88EB478F201A8D4E47F@orsmsx505.amr.corp.intel.com>
+Return-Path: <kergoth@gmail.com>
+Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 493EBE00743
+	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 15:42:12 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by wwn31 with SMTP id 31so1505209wwn.11
+	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 15:42:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type
+	:content-transfer-encoding;
+	bh=jNDUrJdOFf8GRFDOj6NFq/5vmRwdlUciOoSFKXzR5HY=;
+	b=A841xKOaiiIBeztrEca4WRUyyfOxWdzj+P5RR4vQedlN/fCF0gIYofx8lm3Iemp8YJ
+	U4bqgZCS6HG6oIPo2Lc9WPFhz0C/gAiggc4pTS/VbMfraimXk2bpcb1msq3r5RzKJmem
+	au//3oUGABN28Wh4eR7L3nVIK3AIsghbK0fqw=
+Received: by 10.227.204.143 with SMTP id fm15mr16348647wbb.26.1322091731166;
+	Wed, 23 Nov 2011 15:42:11 -0800 (PST)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
+Sender: kergoth@gmail.com
+Received: by 10.216.28.138 with HTTP; Wed, 23 Nov 2011 15:41:50 -0800 (PST)
+In-Reply-To: <4FF5AC937153B0459463C1A88EB478F201A8D4E497@orsmsx505.amr.corp.intel.com>
+References: <4FF5AC937153B0459463C1A88EB478F201A8D4E47F@orsmsx505.amr.corp.intel.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237916EB3833@ORSMSX101.amr.corp.intel.com>
+	<4FF5AC937153B0459463C1A88EB478F201A8D4E497@orsmsx505.amr.corp.intel.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Wed, 23 Nov 2011 16:41:50 -0700
+X-Google-Sender-Auth: D4X48Kfg5KNgdShrsSWuq7FdlLI
+Message-ID: <CABcZANniDRkOzd_mu-Ey8oeVeE5uuXriW-Uono+dorCAC-cM1w@mail.gmail.com>
+To: "Saxena, Rahul" <rahul.saxena@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: SRCREV variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -30,28 +42,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Nov 2011 23:41:39 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 23 Nov 2011 23:42:12 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Wednesday 23 November 2011 15:19:01 Saxena, Rahul wrote:
-> For example if my source is MesaLib-7.9.tar.bz2 file from following
-> site...what steps do I need to do to get the SRCREV ?
-> 
-> ftp://ftp.freedesktop.org/pub/mesa/7.9/
+On Wed, Nov 23, 2011 at 4:35 PM, Saxena, Rahul <rahul.saxena@intel.com> wro=
+te:
+> Yes I saw this other stuff too=E2=80=A6but I don=E2=80=99t see anywhere t=
+he explanation of
+> how a revision identifier is generated or obtained.
 
-SRCREV is only used when you are fetching from some remote version control 
-system (git, etc.). If it's complaining about it not being present then there 
-must be some reference to a VCS in your SRC_URI. You can check this by running 
-the following (replacing targetname as appropriate):
 
-bitbake -e targetname | grep ^SRC_URI
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+The value is entirely dependent upon the scm in use. git hash, svn
+revision #, etc.
+--=20
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
 
