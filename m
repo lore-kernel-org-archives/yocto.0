@@ -1,25 +1,25 @@
 Return-Path: <scott.m.rifenbark@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16EDDE00730
-	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 09:30:54 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 23 Nov 2011 09:30:53 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 765B0E00721
+	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 10:22:52 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 23 Nov 2011 10:22:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="79305891"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by orsmga002.jf.intel.com with ESMTP; 23 Nov 2011 09:30:53 -0800
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 23 Nov 2011 09:30:53 -0800
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="79279337"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga001.jf.intel.com with ESMTP; 23 Nov 2011 10:22:52 -0800
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 23 Nov 2011 10:22:52 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.228]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.80]) with mapi id
-	14.01.0355.002; Wed, 23 Nov 2011 09:30:53 -0800
+	ORSMSX106.amr.corp.intel.com ([169.254.5.87]) with mapi id
+	14.01.0355.002; Wed, 23 Nov 2011 10:22:51 -0800
 From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
 To: James Abernathy <jfabernathy@gmail.com>
 Thread-Topic: [yocto] ADT installer
-Thread-Index: AQHMqf9bUdjsgeesZkOpb0fIubsEOZW6rTYwgACPeQD//3nmcA==
-Date: Wed, 23 Nov 2011 17:30:52 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237916EB36E2@ORSMSX101.amr.corp.intel.com>
+Thread-Index: AQHMqf9bUdjsgeesZkOpb0fIubsEOZW6rTYwgACPeQD//4hr0A==
+Date: Wed, 23 Nov 2011 18:22:50 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237916EB3710@ORSMSX101.amr.corp.intel.com>
 References: <1322066687.24623.4.camel@jim-ubuntu>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237916EB36A7@ORSMSX101.amr.corp.intel.com>
 	<C30646E8-D4E8-4344-AE3D-25F3EC259C70@gmail.com>
@@ -42,23 +42,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Nov 2011 17:30:54 -0000
+X-List-Received-Date: Wed, 23 Nov 2011 18:22:52 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I am running it right now (slow machine) and followed the instructions in t=
-he manual.  So far, it is building.  The only problem I encountered is that=
- the wget command uses a bad URL.  I have changed that to the following:
+Jim,=20
 
-	wget http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/poky-ediso=
-n-6.0.tar.bz2
+My machine finished and it built the adt_installer.tar.bz2 in ~/yocto-proje=
+ct/build/tmp/deploy/sdk as advertised. =20
 
-The instructions purposely don't 'cd' into the directory where oe-init-buil=
-d-env resides. =20
-
-My machine is still cranking away....
-
+The only change I made was  the URL change to get the Edison tarball using =
+wget.
 
 Scott
 
