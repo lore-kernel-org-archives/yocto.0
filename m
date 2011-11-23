@@ -1,28 +1,34 @@
-Return-Path: <rahul.saxena@intel.com>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E41EE005B4
-	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 15:19:03 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A84FE005B4
+	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 15:29:50 -0800 (PST)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 23 Nov 2011 15:19:02 -0800
+	by azsmga102.ch.intel.com with ESMTP; 23 Nov 2011 15:29:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,562,1315206000"; d="scan'208,217";a="40682884"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by AZSMGA002.ch.intel.com with ESMTP; 23 Nov 2011 15:19:02 -0800
-Received: from orsmsx505.amr.corp.intel.com ([10.22.226.208]) by
-	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
-	Wed, 23 Nov 2011 15:19:02 -0800
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 23 Nov 2011 15:19:01 -0800
+X-IronPort-AV: E=Sophos;i="4.69,562,1315206000"; d="scan'208,217";a="40685152"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by AZSMGA002.ch.intel.com with ESMTP; 23 Nov 2011 15:29:49 -0800
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 23 Nov 2011 15:29:48 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.228]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.51]) with mapi id
+	14.01.0355.002; Wed, 23 Nov 2011 15:29:48 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Saxena, Rahul" <rahul.saxena@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
 Thread-Topic: SRCREV variable
-Thread-Index: AcyqNkif/8LE2gP5RwywxT9n4j/93A==
-Message-ID: <4FF5AC937153B0459463C1A88EB478F201A8D4E47F@orsmsx505.amr.corp.intel.com>
+Thread-Index: AcyqNkif/8LE2gP5RwywxT9n4j/93AAANGtw
+Date: Wed, 23 Nov 2011 23:29:47 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237916EB3833@ORSMSX101.amr.corp.intel.com>
+References: <4FF5AC937153B0459463C1A88EB478F201A8D4E47F@orsmsx505.amr.corp.intel.com>
+In-Reply-To: <4FF5AC937153B0459463C1A88EB478F201A8D4E47F@orsmsx505.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Subject: SRCREV variable
+Subject: Re: SRCREV variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,14 +40,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Nov 2011 23:19:03 -0000
+X-List-Received-Date: Wed, 23 Nov 2011 23:29:50 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_4FF5AC937153B0459463C1A88EB478F201A8D4E47Forsmsx505amrc_"
+	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EB3833ORSMSX101amrcor_"
 
---_000_4FF5AC937153B0459463C1A88EB478F201A8D4E47Forsmsx505amrc_
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EB3833ORSMSX101amrcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+There is a bit more in the Yocto Project Reference Manual at http://www.yoc=
+toproject.org/docs/latest/poky-ref-manual/poky-ref-manual.html.   It states=
+:
+
+SRCREV - The revision of the source code used to build the package.  This v=
+ariable applies to Subversion, Git, Mercurial and Bazaar only.  Note that i=
+f you wish to build a fixed revision and you wish to avoid performing a que=
+ry on the remote repository every time BitBake parses your recipe, you shou=
+ld specify a SRCREV that is a full revision identifier and not just a tag.
+
+Also, Section 5.1.6 of that reference manual has some information on develo=
+ping within Yocto Project for a package that uses an external SCM.
+
+I am not sure if these will help you but this is where the latest documenta=
+tion is for SRCREV.
+
+ScottR
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Saxena, Rahul
+Sent: Wednesday, November 23, 2011 3:19 PM
+To: yocto@yoctoproject.org
+Subject: [yocto] SRCREV variable
 
 Hi ,
 
@@ -65,7 +95,7 @@ ftp://ftp.freedesktop.org/pub/mesa/7.9/
 Thanks
 Rahul
 
---_000_4FF5AC937153B0459463C1A88EB478F201A8D4E47Forsmsx505amrc_
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EB3833ORSMSX101amrcor_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -108,13 +138,22 @@ partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
 6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
 deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
 Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta http-equi=
-v=3DContent-Type content=3D"text/html; charset=3Dus-ascii"><meta name=3DGen=
-erator content=3D"Microsoft Word 12 (filtered medium)"><style><!--
+st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
 /* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
@@ -130,11 +169,16 @@ a:visited, span.MsoHyperlinkFollowed
 	color:purple;
 	text-decoration:underline;}
 span.EmailStyle17
-	{mso-style-type:personal-compose;
+	{mso-style-type:personal;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
 .MsoChpDefault
-	{mso-style-type:export-only;}
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -145,25 +189,86 @@ div.WordSection1
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue vli=
-nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>Hi ,<o:p></o:p><=
-/p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Can anyon=
-e explain how to set the SRCREV variable for a recipe ?<o:p></o:p></p><p cl=
-ass=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I get a error: &#=
-8220;Please Set SRCREV to a valid value&#8221; <o:p></o:p></p><p class=3DMs=
-oNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>The poky manual simply ha=
-s the following explanation:<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;=
-</o:p></p><p class=3DMsoNormal>&#8216;SRCREV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Revision of source co=
-de used to build package (Subversion, GIT, Bazaar only). &#8216; <o:p></o:p=
-></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><o:p>&n=
-bsp;</o:p></p><p class=3DMsoNormal>For example if my source is MesaLib-7.9.=
-tar.bz2 file from following site&#8230;what steps do I need to do to get th=
-e SRCREV ?<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=
-=3DMsoNormal><a href=3D"ftp://ftp.freedesktop.org/pub/mesa/7.9/">ftp://ftp.=
-freedesktop.org/pub/mesa/7.9/</a><o:p></o:p></p><p class=3DMsoNormal><o:p>&=
-nbsp;</o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNorm=
-al><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Thanks<o:p></o:p></p><p class=
-=3DMsoNormal>Rahul<o:p></o:p></p></div></body></html>=
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">There is a bit more in=
+ the Yocto Project Reference Manual at
+<a href=3D"http://www.yoctoproject.org/docs/latest/poky-ref-manual/poky-ref=
+-manual.html">
+http://www.yoctoproject.org/docs/latest/poky-ref-manual/poky-ref-manual.htm=
+l</a>.&nbsp;&nbsp; It states:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">SRCREV &#8211; The rev=
+ision of the source code used to build the package.&nbsp; This variable app=
+lies to Subversion, Git, Mercurial and Bazaar only.&nbsp; Note that if you =
+wish to build a fixed revision and you wish to avoid
+ performing a query on the remote repository every time BitBake parses your=
+ recipe, you should specify a SRCREV that is a full revision identifier and=
+ not just a tag.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Also, Section 5.1.6 of=
+ that reference manual has some information on developing within Yocto Proj=
+ect for a package that uses an external SCM.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I am not sure if these=
+ will help you but this is where the latest documentation is for SRCREV.&nb=
+sp;
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">ScottR<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Saxena, Rahul<br>
+<b>Sent:</b> Wednesday, November 23, 2011 3:19 PM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] SRCREV variable<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Hi ,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can anyone explain how to set the SRCREV variable fo=
+r a recipe ?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I get a error: &#8220;Please Set SRCREV to a valid v=
+alue&#8221; <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The poky manual simply has the following explanation=
+:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&#8216;SRCREV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Revision of source code used =
+to build package (Subversion, GIT, Bazaar only). &#8216;
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">For example if my source is MesaLib-7.9.tar.bz2 file=
+ from following site&#8230;what steps do I need to do to get the SRCREV ?<o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><a href=3D"ftp://ftp.freedesktop.org/pub/mesa/7.9/">=
+ftp://ftp.freedesktop.org/pub/mesa/7.9/</a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks<o:p></o:p></p>
+<p class=3D"MsoNormal">Rahul<o:p></o:p></p>
+</div>
+</body>
+</html>
 
---_000_4FF5AC937153B0459463C1A88EB478F201A8D4E47Forsmsx505amrc_--
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EB3833ORSMSX101amrcor_--
