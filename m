@@ -1,35 +1,23 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89546E005B4
-	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 15:36:47 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0726FE005B4
+	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 15:41:38 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 23 Nov 2011 15:36:47 -0800
+	by orsmga101.jf.intel.com with ESMTP; 23 Nov 2011 15:41:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208,217";a="79356261"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga001.jf.intel.com with ESMTP; 23 Nov 2011 15:36:46 -0800
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 23 Nov 2011 15:36:45 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.228]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.149]) with mapi id
-	14.01.0355.002; Wed, 23 Nov 2011 15:36:45 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Saxena, Rahul" <rahul.saxena@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: SRCREV variable
-Thread-Index: AcyqNkif/8LE2gP5RwywxT9n4j/93AAANGtwAABOnXAAABH+YA==
-Date: Wed, 23 Nov 2011 23:36:45 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237916EB384F@ORSMSX101.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="79357057"
+Received: from unknown (HELO helios.localnet) ([10.252.121.173])
+	by orsmga001.jf.intel.com with ESMTP; 23 Nov 2011 15:41:37 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Saxena, Rahul" <rahul.saxena@intel.com>
+Date: Wed, 23 Nov 2011 23:41:36 +0000
+Message-ID: <3229545.vvJnxo6DNZ@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.7.3 (Linux/3.0.0-13-generic-pae; KDE/4.7.3; i686; ; )
+In-Reply-To: <4FF5AC937153B0459463C1A88EB478F201A8D4E47F@orsmsx505.amr.corp.intel.com>
 References: <4FF5AC937153B0459463C1A88EB478F201A8D4E47F@orsmsx505.amr.corp.intel.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237916EB3833@ORSMSX101.amr.corp.intel.com>
-	<4FF5AC937153B0459463C1A88EB478F201A8D4E497@orsmsx505.amr.corp.intel.com>
-In-Reply-To: <4FF5AC937153B0459463C1A88EB478F201A8D4E497@orsmsx505.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
 Subject: Re: SRCREV variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,324 +30,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Nov 2011 23:36:47 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EB384FORSMSX101amrcor_"
-
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EB384FORSMSX101amrcor_
+X-List-Received-Date: Wed, 23 Nov 2011 23:41:39 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Rahul,
+On Wednesday 23 November 2011 15:19:01 Saxena, Rahul wrote:
+> For example if my source is MesaLib-7.9.tar.bz2 file from following
+> site...what steps do I need to do to get the SRCREV ?
+> 
+> ftp://ftp.freedesktop.org/pub/mesa/7.9/
 
-Okay - I was not sure whether it would help.  Hopefully one of the develope=
-rs will chime in here and help.  My stuff was from the technical documentat=
-ion point of view.
+SRCREV is only used when you are fetching from some remote version control 
+system (git, etc.). If it's complaining about it not being present then there 
+must be some reference to a VCS in your SRC_URI. You can check this by running 
+the following (replacing targetname as appropriate):
 
-Scott
+bitbake -e targetname | grep ^SRC_URI
 
-From: Saxena, Rahul
-Sent: Wednesday, November 23, 2011 3:35 PM
-To: Rifenbark, Scott M; yocto@yoctoproject.org
-Subject: RE: SRCREV variable
+Cheers,
+Paul
 
-Yes I saw this other stuff too...but I don't see anywhere the explanation o=
-f how a revision identifier is generated or obtained.
+-- 
 
-Thanks
-Rahul
+Paul Eggleton
+Intel Open Source Technology Centre
 
-
-From: Rifenbark, Scott M
-Sent: Wednesday, November 23, 2011 3:30 PM
-To: Saxena, Rahul; yocto@yoctoproject.org
-Subject: RE: SRCREV variable
-
-There is a bit more in the Yocto Project Reference Manual at http://www.yoc=
-toproject.org/docs/latest/poky-ref-manual/poky-ref-manual.html.   It states=
-:
-
-SRCREV - The revision of the source code used to build the package.  This v=
-ariable applies to Subversion, Git, Mercurial and Bazaar only.  Note that i=
-f you wish to build a fixed revision and you wish to avoid performing a que=
-ry on the remote repository every time BitBake parses your recipe, you shou=
-ld specify a SRCREV that is a full revision identifier and not just a tag.
-
-Also, Section 5.1.6 of that reference manual has some information on develo=
-ping within Yocto Project for a package that uses an external SCM.
-
-I am not sure if these will help you but this is where the latest documenta=
-tion is for SRCREV.
-
-ScottR
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Saxena, Rahul
-Sent: Wednesday, November 23, 2011 3:19 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] SRCREV variable
-
-Hi ,
-
-Can anyone explain how to set the SRCREV variable for a recipe ?
-
-I get a error: "Please Set SRCREV to a valid value"
-
-The poky manual simply has the following explanation:
-
-'SRCREV               Revision of source code used to build package (Subver=
-sion, GIT, Bazaar only). '
-
-
-For example if my source is MesaLib-7.9.tar.bz2 file from following site...=
-what steps do I need to do to get the SRCREV ?
-
-ftp://ftp.freedesktop.org/pub/mesa/7.9/
-
-
-
-Thanks
-Rahul
-
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EB384FORSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Rahul, <o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Okay &#8211; I was not=
- sure whether it would help.&nbsp; Hopefully one of the developers will chi=
-me in here and help.&nbsp; My stuff was from the technical documentation po=
-int of view.&nbsp;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Scott<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Saxena, =
-Rahul
-<br>
-<b>Sent:</b> Wednesday, November 23, 2011 3:35 PM<br>
-<b>To:</b> Rifenbark, Scott M; yocto@yoctoproject.org<br>
-<b>Subject:</b> RE: SRCREV variable<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Yes I saw this other s=
-tuff too&#8230;but I don&#8217;t see anywhere the explanation of how a revi=
-sion identifier is generated or obtained.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Thanks<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Rahul<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Rifenbar=
-k, Scott M
-<br>
-<b>Sent:</b> Wednesday, November 23, 2011 3:30 PM<br>
-<b>To:</b> Saxena, Rahul; yocto@yoctoproject.org<br>
-<b>Subject:</b> RE: SRCREV variable<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">There is a bit more in=
- the Yocto Project Reference Manual at
-<a href=3D"http://www.yoctoproject.org/docs/latest/poky-ref-manual/poky-ref=
--manual.html">
-http://www.yoctoproject.org/docs/latest/poky-ref-manual/poky-ref-manual.htm=
-l</a>.&nbsp;&nbsp; It states:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">SRCREV &#8211; The rev=
-ision of the source code used to build the package.&nbsp; This variable app=
-lies to Subversion, Git, Mercurial and Bazaar only.&nbsp; Note that if you =
-wish to build a fixed revision and you wish to avoid
- performing a query on the remote repository every time BitBake parses your=
- recipe, you should specify a SRCREV that is a full revision identifier and=
- not just a tag.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Also, Section 5.1.6 of=
- that reference manual has some information on developing within Yocto Proj=
-ect for a package that uses an external SCM.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I am not sure if these=
- will help you but this is where the latest documentation is for SRCREV.&nb=
-sp;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">ScottR<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
-unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Saxena, Rahul<br>
-<b>Sent:</b> Wednesday, November 23, 2011 3:19 PM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] SRCREV variable<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Hi ,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Can anyone explain how to set the SRCREV variable fo=
-r a recipe ?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I get a error: &#8220;Please Set SRCREV to a valid v=
-alue&#8221; <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The poky manual simply has the following explanation=
-:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&#8216;SRCREV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Revision of source code used =
-to build package (Subversion, GIT, Bazaar only). &#8216;
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">For example if my source is MesaLib-7.9.tar.bz2 file=
- from following site&#8230;what steps do I need to do to get the SRCREV ?<o=
-:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><a href=3D"ftp://ftp.freedesktop.org/pub/mesa/7.9/">=
-ftp://ftp.freedesktop.org/pub/mesa/7.9/</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks<o:p></o:p></p>
-<p class=3D"MsoNormal">Rahul<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237916EB384FORSMSX101amrcor_--
