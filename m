@@ -1,33 +1,34 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12C14E00309
-	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 08:44:35 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by vbnl22 with SMTP id l22so2141720vbn.35
-	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 08:44:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=subject:from:to:content-type:date:message-id:mime-version:x-mailer
-	:content-transfer-encoding;
-	bh=2NCsV8p2qrnUmade/08DzzUpPToSw1SWBQalD468yI0=;
-	b=grJHwrTIIGlnYx0pI9YZv6nObJL6E8nGGwTlpYXCVfeAgjNpriQPeBIkX2r7DyhUnH
-	HzPF+HC2N6NRGhWc8TywrFiKDScmm/u71XkX6zy2BdgTuy0DA6D70S2lnTkbKWq5gBzP
-	RZFTRhOOmZuu0AtbB4meAZPlJx8T9wCc4a0F0=
-Received: by 10.52.65.14 with SMTP id t14mr26182301vds.47.1322066675384;
-	Wed, 23 Nov 2011 08:44:35 -0800 (PST)
-Received: from [10.0.1.36] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
-	by mx.google.com with ESMTPS id
-	ey9sm24582424vdc.19.2011.11.23.08.44.33 (version=SSLv3 cipher=OTHER);
-	Wed, 23 Nov 2011 08:44:34 -0800 (PST)
-From: Jim Abernathy <jfabernathy@gmail.com>
-To: yocto@yoctoproject.org
-Date: Wed, 23 Nov 2011 11:44:47 -0500
-Message-ID: <1322066687.24623.4.camel@jim-ubuntu>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Subject: ADT installer
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A60CE005B4
+	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 08:55:47 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 23 Nov 2011 08:55:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,560,1315206000"; d="scan'208";a="88559438"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by fmsmga001.fm.intel.com with ESMTP; 23 Nov 2011 08:55:46 -0800
+Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 23 Nov 2011 08:55:46 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.228]) by
+	ORSMSX103.amr.corp.intel.com ([169.254.2.243]) with mapi id
+	14.01.0355.002; Wed, 23 Nov 2011 08:55:45 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Jim Abernathy <jfabernathy@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] ADT installer
+Thread-Index: AQHMqf9bUdjsgeesZkOpb0fIubsEOZW6rTYw
+Date: Wed, 23 Nov 2011 16:55:45 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237916EB36A7@ORSMSX101.amr.corp.intel.com>
+References: <1322066687.24623.4.camel@jim-ubuntu>
+In-Reply-To: <1322066687.24623.4.camel@jim-ubuntu>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
+MIME-Version: 1.0
+Subject: Re: ADT installer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,9 +40,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Nov 2011 16:44:36 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 23 Nov 2011 16:55:47 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Jim,=20
+
+Let me try and replicate this from the manual.  I will get back momentarily=
+.
+
+Scott
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Jim Abernathy
+Sent: Wednesday, November 23, 2011 8:45 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] ADT installer
 
 I was following the ADT manual online, section 2.1.1.1, and everything
 seemed to complete as expected, but adt_installer.tar.bz2 was not
@@ -53,4 +69,8 @@ on my Ubuntu development system.
 Jim A
 
 
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
