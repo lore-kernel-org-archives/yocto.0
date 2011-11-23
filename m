@@ -1,23 +1,31 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 902B5E00309
-	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 11:43:50 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 23 Nov 2011 11:43:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,560,1315206000"; d="scan'208";a="78584947"
-Received: from unknown (HELO envy.home) ([10.255.12.65])
-	by azsmga001.ch.intel.com with ESMTP; 23 Nov 2011 11:43:49 -0800
-Message-ID: <4ECD4CF8.4020005@linux.intel.com>
-Date: Wed, 23 Nov 2011 11:43:52 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7DE2E00309
+	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 11:51:36 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by ywp31 with SMTP id 31so1790085ywp.35
+	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 11:51:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=uyxAUw0LQlJhwAPaChPbOQONBjFgLHCT2+M90FsF1KM=;
+	b=V8x/N0Hbyqs/vGWwzQQVUI/xuoZoRiCbfIubvzH5ezZCdkvqk4whhrpzTGSb7+gXgo
+	cGdeTNGYzpPwJ855qEtYf8SDhqYcwq8Ri117BsdS4SAIyLD3EOZi+Pflr9E6mfrNMw/v
+	K5QKIm8jyKT6h3KpaOZvO+un/DWEDiz8i6Nmk=
+Received: by 10.152.111.1 with SMTP id ie1mr2826709lab.7.1322077895063; Wed,
+	23 Nov 2011 11:51:35 -0800 (PST)
 MIME-Version: 1.0
-To: Joshua Lock <josh@linux.intel.com>
+Received: by 10.152.24.36 with HTTP; Wed, 23 Nov 2011 11:51:05 -0800 (PST)
+In-Reply-To: <4ECD4CF8.4020005@linux.intel.com>
 References: <4ECAF89E.1030505@mindchasers.com> <4ECC2718.50008@linux.intel.com>
-In-Reply-To: <4ECC2718.50008@linux.intel.com>
-X-Enigmail-Version: 1.3.3
+	<4ECD4CF8.4020005@linux.intel.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 23 Nov 2011 11:51:05 -0800
+Message-ID: <CAMKF1spQGcQM9NwTrHyntYMmZByS0ztkqUGUC6=3sZOztvqWBw@mail.gmail.com>
+To: Darren Hart <dvhart@linux.intel.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: Atom netbook recommendation?
 X-BeenThere: yocto@yoctoproject.org
@@ -31,40 +39,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Nov 2011 19:43:50 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 23 Nov 2011 19:51:37 -0000
+Content-Type: text/plain; charset=UTF-8
 
+On Wed, Nov 23, 2011 at 11:43 AM, Darren Hart <dvhart@linux.intel.com> wrote:
+> We also have things working on the Toshiba NB305. The atom-pc machine
+>
 
-On 11/22/2011 02:50 PM, Joshua Lock wrote:
-> Hi Bob,
-> 
-> On 21/11/11 17:19, Bob Cochran wrote:
->> Hello,
->>
->> We're going to bring an Atom based netbook in house for some additional
->> yocto testing. I would greatly appreciate any recommendations for ones
->> that behave well with the yocto project & are solid in general. Also,
->> letting me know about any netbooks to avoid would also be appreciated.
-> 
-> I assume the plan is to build for the netbooks, not on the netbooks? :-)
-> 
-> I've run Poky built images on a bunch of older netbooks I have lying 
-> around by Samsung, Acer and Asus.
-> 
-> I think you should be fine with pretty much any netbook you can get but 
-> I strongly recommend you avoid anything which requires non-open drivers 
-> - that way you have a better chance of the stock kernel just working.
-> 
-> Just last week I built an image for my Samsung NC10 and the stock kernel 
-> worked fine.
-> 
-
-We also have things working on the Toshiba NB305. The atom-pc machine
-config lists some others - although they aren't particularly current.
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+FWIW I have asus eepc here and it works great with yocto/oe-core/meta-intel
 
