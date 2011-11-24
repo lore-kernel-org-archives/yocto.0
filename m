@@ -1,36 +1,34 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 493EBE00743
-	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 15:42:12 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by wwn31 with SMTP id 31so1505209wwn.11
-	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 15:42:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type
-	:content-transfer-encoding;
-	bh=jNDUrJdOFf8GRFDOj6NFq/5vmRwdlUciOoSFKXzR5HY=;
-	b=A841xKOaiiIBeztrEca4WRUyyfOxWdzj+P5RR4vQedlN/fCF0gIYofx8lm3Iemp8YJ
-	U4bqgZCS6HG6oIPo2Lc9WPFhz0C/gAiggc4pTS/VbMfraimXk2bpcb1msq3r5RzKJmem
-	au//3oUGABN28Wh4eR7L3nVIK3AIsghbK0fqw=
-Received: by 10.227.204.143 with SMTP id fm15mr16348647wbb.26.1322091731166;
-	Wed, 23 Nov 2011 15:42:11 -0800 (PST)
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24C0BE00309
+	for <yocto@yoctoproject.org>; Wed, 23 Nov 2011 17:48:16 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 23 Nov 2011 17:48:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,562,1315206000"; d="scan'208";a="78676967"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by azsmga001.ch.intel.com with ESMTP; 23 Nov 2011 17:48:14 -0800
+Received: from pgsmsx102.gar.corp.intel.com (10.221.44.80) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 24 Nov 2011 09:47:38 +0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	PGSMSX102.gar.corp.intel.com (10.221.44.80) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 24 Nov 2011 09:47:37 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Thu, 24 Nov 2011 09:47:35 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Thu, 24 Nov 2011 09:47:34 +0800
+Thread-Topic: Core Team Meeting Minutes: Nov 24th 2011
+Thread-Index: AcyqSwmEO6F2sSQJQ3i8XbHBlBxmyA==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12DBD4FC3B@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.216.28.138 with HTTP; Wed, 23 Nov 2011 15:41:50 -0800 (PST)
-In-Reply-To: <4FF5AC937153B0459463C1A88EB478F201A8D4E497@orsmsx505.amr.corp.intel.com>
-References: <4FF5AC937153B0459463C1A88EB478F201A8D4E47F@orsmsx505.amr.corp.intel.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237916EB3833@ORSMSX101.amr.corp.intel.com>
-	<4FF5AC937153B0459463C1A88EB478F201A8D4E497@orsmsx505.amr.corp.intel.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Wed, 23 Nov 2011 16:41:50 -0700
-X-Google-Sender-Auth: D4X48Kfg5KNgdShrsSWuq7FdlLI
-Message-ID: <CABcZANniDRkOzd_mu-Ey8oeVeE5uuXriW-Uono+dorCAC-cM1w@mail.gmail.com>
-To: "Saxena, Rahul" <rahul.saxena@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: SRCREV variable
+Subject: Core Team Meeting Minutes: Nov 24th 2011
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,23 +40,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Nov 2011 23:42:12 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 24 Nov 2011 01:48:16 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 23, 2011 at 4:35 PM, Saxena, Rahul <rahul.saxena@intel.com> wro=
-te:
-> Yes I saw this other stuff too=E2=80=A6but I don=E2=80=99t see anywhere t=
-he explanation of
-> how a revision identifier is generated or obtained.
+Core Team Meeting:
+Shane, Dongxiao, Edwin, Dexuan, Lianhao, Saul, Beth, ScottG, Robert, Nitin,=
+ Jiajun
+Scribe: Jiajun
+
+1.2 Status
+---------------
+- Review the Yocto Project Status @ https://wiki.yoctoproject.org/wiki/Yoct=
+o_Project_v1.2_Status, "Feature Board" is used to track feature status and =
+"Project Dashboard" could show project trend from different view.
+- Saul: there is a Debian command called "uscan", which could be used to sc=
+an upstream sources
+- Windirver team could help to update distro tracking file
+- We should provide design information on bugzilla for each feature
+
+Scott:
+- 20% completion for sanity check
+
+ARs:
+--------------
+- Dongxiao will talk about multilib @ Nov 30 meeting
+- Make sure rebase patches on oe-core before sending pull request
+- After you upstream some patches, pls. update Upstream-Status in source tr=
+ee
 
 
-The value is entirely dependent upon the scm in use. git hash, svn
-revision #, etc.
---=20
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
+Best Regards,
+Jiajun
+
 
