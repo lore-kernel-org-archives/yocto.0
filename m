@@ -1,32 +1,30 @@
-Return-Path: <matthias@kaehlcke.net>
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net
-	[217.70.183.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4D36E0030C
-	for <yocto@yoctoproject.org>; Sat, 26 Nov 2011 05:52:27 -0800 (PST)
-X-Originating-IP: 217.70.178.144
-Received: from mfilter16-d.gandi.net (mfilter16-d.gandi.net [217.70.178.144])
-	by relay3-d.mail.gandi.net (Postfix) with ESMTP id 28CC3A8222
-	for <yocto@yoctoproject.org>; Sat, 26 Nov 2011 14:52:26 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mfilter16-d.gandi.net
-Received: from relay3-d.mail.gandi.net ([217.70.183.195])
-	by mfilter16-d.gandi.net (mfilter16-d.gandi.net [10.0.15.180])
-	(amavisd-new, port 10024)
-	with ESMTP id v9--JE2C-eQF for <yocto@yoctoproject.org>;
-	Sat, 26 Nov 2011 14:52:24 +0100 (CET)
-X-Originating-IP: 83.160.107.163
-Received: from d4rwin.no-ip.org (a83-160-107-163.adsl.xs4all.nl
-	[83.160.107.163]) (Authenticated sender: matthias@kaehlcke.net)
-	by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 8C2C9A8495
-	for <yocto@yoctoproject.org>; Sat, 26 Nov 2011 14:52:24 +0100 (CET)
-Received: by d4rwin.no-ip.org (Postfix, from userid 1000)
-	id B79C41415FA; Sat, 26 Nov 2011 14:51:00 +0100 (CET)
-Date: Sat, 26 Nov 2011 14:51:00 +0100
-From: Matthias Kaehlcke <matthias@kaehlcke.net>
-To: yocto@yoctoproject.org
-Message-ID: <20111126135100.GE29616@darwin>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: [PATCH] recipes-kernel: add powerdebug_0.6.1 recipe
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 315ECE0030C
+	for <yocto@yoctoproject.org>; Sat, 26 Nov 2011 06:03:19 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pAQE3Dok013564;
+	Sat, 26 Nov 2011 14:03:13 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 12340-06; Sat, 26 Nov 2011 14:03:09 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pAQE33pm013558
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Sat, 26 Nov 2011 14:03:05 GMT
+Message-ID: <1322316191.25382.15.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Saxena, Rahul" <rahul.saxena@intel.com>
+Date: Sat, 26 Nov 2011 14:03:11 +0000
+In-Reply-To: <4FF5AC937153B0459463C1A88EB478F201A8D4E47F@orsmsx505.amr.corp.intel.com>
+References: <4FF5AC937153B0459463C1A88EB478F201A8D4E47F@orsmsx505.amr.corp.intel.com>
+X-Mailer: Evolution 3.2.1- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: SRCREV variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,50 +36,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 26 Nov 2011 13:52:28 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Sat, 26 Nov 2011 14:03:24 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Add recipe for v0.6.1 of PowerDebug tool from Linaro
+On Wed, 2011-11-23 at 15:19 -0800, Saxena, Rahul wrote:
+> Can anyone explain how to set the SRCREV variable for a recipe ?
+>  
+> I get a error: “Please Set SRCREV to a valid value” 
 
-Signed-off-by: Matthias Kaehlcke <matthias@kaehlcke.net>
----
- meta/recipes-kernel/powerdebug/powerdebug_0.6.1.bb |   25 ++++++++++++++++++++
- 1 files changed, 25 insertions(+), 0 deletions(-)
- create mode 100644 meta/recipes-kernel/powerdebug/powerdebug_0.6.1.bb
+Could you post some logs of the build showing this problem please?
 
-diff --git a/meta/recipes-kernel/powerdebug/powerdebug_0.6.1.bb b/meta/recipes-kernel/powerdebug/powerdebug_0.6.1.bb
-new file mode 100644
-index 0000000..ef88f5a
---- /dev/null
-+++ b/meta/recipes-kernel/powerdebug/powerdebug_0.6.1.bb
-@@ -0,0 +1,25 @@
-+SUMMARY = "A tool to display regulator and sensor information"
-+DESCRIPTION = "PowerDebug, is a tool that provides users extra information \
-+about how the power is being managed in the system"
-+HOMEPAGE = "https://wiki.linaro.org/WorkingGroups/PowerManagement/Doc/PowerDebug"
-+BUGTRACKER = "https://bugs.launchpad.net/linaro-powerdebug"
-+
-+LICENSE = "EPL-1"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=cdd7b8fa70e88be67e325baae3b8ee95"
-+
-+DEPENDS = "ncurses"
-+
-+SRCREV = "8df301c8986c694393c246fd274f96cc5cb61cdd"
-+
-+PR = "r0"
-+
-+SRC_URI = "git://git.linaro.org/tools/powerdebug.git;protocol=git"
-+
-+S = "${WORKDIR}/git"
-+
-+CFLAGS += "${LDFLAGS}"
-+
-+do_install () {
-+    oe_runmake install DESTDIR=${D}
-+}
-+
--- 
-1.7.7.1
+> For example if my source is MesaLib-7.9.tar.bz2 file from following
+> site…what steps do I need to do to get the SRCREV ?
+>  
+> ftp://ftp.freedesktop.org/pub/mesa/7.9/
+> 
+Elsewhere you pointed out a recipe with a plain SRC_URI = "ftp://xxx"
+address which would be the correct way to do this.
+
+I suspect you have multiple mesa recipes and its selecting a "git://"
+based one over the "ftp://" one you think its using. The "easy" way to
+tell would be to delete the git mesa recipes and then it will probably
+use the one you're expecting.
+
+The better way to tell it to use the right recipe would be:
+
+PREFERRED_VERSION_mesa = "7.9"
+
+(assuming the recipe is called mesa)
+
+It would be easier to help if we had some logs and more information
+about what you're trying to do though, I'm just having to guess.
+
+Cheers,
+
+Richard
+
 
 
