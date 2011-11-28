@@ -1,30 +1,34 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 315ECE0030C
-	for <yocto@yoctoproject.org>; Sat, 26 Nov 2011 06:03:19 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pAQE3Dok013564;
-	Sat, 26 Nov 2011 14:03:13 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 12340-06; Sat, 26 Nov 2011 14:03:09 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pAQE33pm013558
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Sat, 26 Nov 2011 14:03:05 GMT
-Message-ID: <1322316191.25382.15.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Saxena, Rahul" <rahul.saxena@intel.com>
-Date: Sat, 26 Nov 2011 14:03:11 +0000
-In-Reply-To: <4FF5AC937153B0459463C1A88EB478F201A8D4E47F@orsmsx505.amr.corp.intel.com>
-References: <4FF5AC937153B0459463C1A88EB478F201A8D4E47F@orsmsx505.amr.corp.intel.com>
-X-Mailer: Evolution 3.2.1- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: SRCREV variable
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AC4BE00305
+	for <yocto@yoctoproject.org>; Sun, 27 Nov 2011 17:56:24 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 27 Nov 2011 17:56:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,580,1315206000"; d="scan'208";a="95878410"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by fmsmga002.fm.intel.com with ESMTP; 27 Nov 2011 17:56:23 -0800
+Received: from pgsmsx151.gar.corp.intel.com (172.30.236.41) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 28 Nov 2011 09:55:05 +0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	PGSMSX151.gar.corp.intel.com (172.30.236.41) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 28 Nov 2011 09:55:05 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Mon, 28 Nov 2011 09:55:04 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 28 Nov 2011 09:55:02 +0800
+Thread-Topic: Yocto weekly bug trend charts -- WW48
+Thread-Index: AcytcL5Ns9jxuN5XR9mS2h9+xgPUGQ==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12DBDC5FC6@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: Yocto weekly bug trend charts -- WW48
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,42 +40,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 26 Nov 2011 14:03:24 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 28 Nov 2011 01:56:24 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 2011-11-23 at 15:19 -0800, Saxena, Rahul wrote:
-> Can anyone explain how to set the SRCREV variable for a recipe ?
->  
-> I get a error: “Please Set SRCREV to a valid value” 
+Hi all,
+	The overall open bug trend decreased a lot last week. The new submitted bu=
+g vs. fixed bug number is 11 vs. 37. Open bug and WDD number decreased to 1=
+38 and 682. Bug status of WW48 could be found on https://wiki.yoctoproject.=
+org/wiki/Yocto_Bug_Trend.
 
-Could you post some logs of the build showing this problem please?
-
-> For example if my source is MesaLib-7.9.tar.bz2 file from following
-> site…what steps do I need to do to get the SRCREV ?
->  
-> ftp://ftp.freedesktop.org/pub/mesa/7.9/
-> 
-Elsewhere you pointed out a recipe with a plain SRC_URI = "ftp://xxx"
-address which would be the correct way to do this.
-
-I suspect you have multiple mesa recipes and its selecting a "git://"
-based one over the "ftp://" one you think its using. The "easy" way to
-tell would be to delete the git mesa recipes and then it will probably
-use the one you're expecting.
-
-The better way to tell it to use the right recipe would be:
-
-PREFERRED_VERSION_mesa = "7.9"
-
-(assuming the recipe is called mesa)
-
-It would be easier to help if we had some logs and more information
-about what you're trying to do though, I'm just having to guess.
-
-Cheers,
-
-Richard
-
+Best Regards,
+Jiajun
 
 
