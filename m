@@ -1,36 +1,25 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-bw0-f48.google.com (mail-bw0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75E68E006B0
-	for <yocto@yoctoproject.org>; Tue, 29 Nov 2011 15:05:01 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by bkbc12 with SMTP id c12so13209823bkb.35
-	for <yocto@yoctoproject.org>; Tue, 29 Nov 2011 15:05:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=6HLiGjWOkPqdEzotodObaolJ9gU7vu2+oFdKMTqPrvs=;
-	b=im2V1QT3p9Zb3q5d0gZlEXjpeS00OuOryLSTSJLnNVUxeoJ8u7wv67tM5LeLw+EgsL
-	AdGzZeVO8HIf305BSLE2tNNwJU535IGEm6Huy8Ifurpw64QnF+78m/+2qJQrsuGNJMG8
-	Zsgolk8NQaLDjAjLHHGZNpEh8hBtxqCtMVZ6E=
-Received: by 10.204.50.88 with SMTP id y24mr52284399bkf.53.1322607900056;
-	Tue, 29 Nov 2011 15:05:00 -0800 (PST)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id q6sm40214523bka.6.2011.11.29.15.04.57
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 29 Nov 2011 15:04:58 -0800 (PST)
-Date: Wed, 30 Nov 2011 00:04:46 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Message-ID: <20111129230446.GL7441@jama.jama.net>
-References: <alpine.DEB.2.02.1111291759160.17235@oneiric>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21B16E006B0
+	for <yocto@yoctoproject.org>; Tue, 29 Nov 2011 15:14:10 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pATNE994003958
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 29 Nov 2011 15:14:09 -0800 (PST)
+Received: from [128.224.21.117] (128.224.21.117) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Tue, 29 Nov 2011 15:14:08 -0800
+Message-ID: <4ED5673D.4070304@windriver.com>
+Date: Tue, 29 Nov 2011 18:14:05 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.23) Gecko/20110922 Thunderbird/3.1.15
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.02.1111291759160.17235@oneiric>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: how to cleanly exit a QEMU session?
+To: Darren Hart <dvhart@linux.intel.com>
+References: <4ED550FD.7090105@linux.intel.com>
+In-Reply-To: <4ED550FD.7090105@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: linux-yocto: doesn't maintain patch order from SRC_URI?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,43 +31,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Nov 2011 23:05:02 -0000
-X-Groupsio-MsgNum: 3610
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="TnYVF1hk1c8rpHiF"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 29 Nov 2011 23:14:11 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---TnYVF1hk1c8rpHiF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 11-11-29 04:39 PM, Darren Hart wrote:
+> I'm experimenting with Matt Fleming's EFI_STUB patches. The first 10 patches were working fine, but when I try to add the 11th, the do_patch fails. I found that it isn't trying to apply the patches in the order listed in the recipe - no in any other recognizable pattern for that matter.
+>
 
-On Tue, Nov 29, 2011 at 06:00:31PM -0500, Robert P. J. Day wrote:
->=20
->   i'm sure it's in one of the docs i missed, but how does one cleanly
-> shut down a QEMU session and get back to the original terminal
-> session?  i've tried shutdown and poweroff but neither of those gives
-> me my shell prompt back.
+It's shell order. You really should just create a .scc file, put IT
+on the SRC_URI and list the patches. You'll have no problems after
+that.
 
-Ctrl+Alt+2 to open QEMU monitor and 'quit'
+I do have a fix for this, but can't send it right now due to travel.
 
-or Ctrl+A+C when you're using -nographics
+You are using the compatibility mode for more than I originally intended
+it for. So just dropping a .scc file into place will fix things
+up nicely.
 
-Cheers,
+Bruce
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+> The recipe contains:
+>
+> # Add the efi-stub
+> SRC_URI += "file://0001-x86-Add-missing-bzImage-fields-to-struct-setup_heade.patch \
+>              file://0002-x86-efi-Make-efi_call_phys_prelog-CONFIG_RELOCATABLE.patch \
+>              file://0003-x86-Don-t-use-magic-strings-for-EFI-loader-signature.patch \
+>              file://0004-efi.h-Add-struct-definition-for-boot-time-services.patch \
+>              file://0005-efi.h-Add-efi_image_loaded_t.patch \
+>              file://0006-efi.h-Add-allocation-types-for-boottime-allocate_pag.patch \
+>              file://0007-efi.h-Add-graphics-protocol-guids.patch \
+>              file://0008-efi.h-Add-boottime-locate_handle-search-types.patch \
+>              file://0009-efi-Add-EFI-file-I-O-data-types.patch \
+>              file://0010-x86-efi-EFI-boot-stub-support.patch \
+> 	    file://0011-x86-efi-Break-up-large-initrd-reads.patch \
+>              "
+>
+> do_patch fails with:
+> Log data follows:
+> | Deleted branch meta-temp (was 620917d).
+> | warning: could not find (or was already included): ktypes/yocto.scc
+> | ./0-standard-yocto-61b5e146f9d113375883df8c51449722.sco: line 14: yocto_68b329da9893e34099c7d8ad5cb9c940: command not found
+> | [INFO] validating against known patches  (standard-yocto-meta)
+> error: arch/x86/boot/compressed/eboot.c: does not exist in index09 %)
+> | To force apply this patch, use 'guilt push -f'
+> | [ERROR] unable to complete push
+> | pending patches are:
+> | Patches directory doesn't exist, try guilt-init
+> | ERROR. could not update git tree
+> | ERROR: Function 'do_patch' failed (see /build/poky/ie/tmp/work/ie_phase1-poky-linux/linux-yocto-ie-3.0.4+git1+d51b0e743599a41a42e119f29f8dfa89854b3b5e_1+6b2c7d65b844e686eae7d5cccb9b638887afe28e-r4/temp/log.do_patch.2768 for further information)
+>
+> and meta/patches/standard/series contains:
+>
+> $ cat standard/series
+> links/scratch/obj/0002-x86-efi-Make-efi_call_phys_prelog-CONFIG_RELOCATABLE.patch
+> links/scratch/obj/0003-x86-Don-t-use-magic-strings-for-EFI-loader-signature.patch
+> links/scratch/obj/0004-efi.h-Add-struct-definition-for-boot-time-services.patch
+> links/scratch/obj/0005-efi.h-Add-efi_image_loaded_t.patch
+> links/scratch/obj/0011-x86-efi-Break-up-large-initrd-reads.patch
+>
+> This needs to come after 10.
+>
+> links/scratch/obj/0007-efi.h-Add-graphics-protocol-guids.patch
+> links/scratch/obj/0001-x86-Add-missing-bzImage-fields-to-struct-setup_heade.patch
+> links/scratch/obj/0009-efi-Add-EFI-file-I-O-data-types.patch
+> links/scratch/obj/0008-efi.h-Add-boottime-locate_handle-search-types.patch
+> links/scratch/obj/0006-efi.h-Add-allocation-types-for-boottime-allocate_pag.patch
+> links/scratch/obj/0010-x86-efi-EFI-boot-stub-support.patch
+>
+>
+>
 
---TnYVF1hk1c8rpHiF
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.18 (GNU/Linux)
-
-iEYEARECAAYFAk7VZQ4ACgkQN1Ujt2V2gBzRrQCeK2O+/YbkxHCO4gUK8nATBQPc
-tScAniL2TCNkMVpXoADyeHDrcydpuhO7
-=+82o
------END PGP SIGNATURE-----
-
---TnYVF1hk1c8rpHiF--
