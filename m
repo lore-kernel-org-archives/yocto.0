@@ -1,37 +1,39 @@
-Return-Path: <dexuan.cui@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC430E0030A
-	for <yocto@yoctoproject.org>; Mon, 28 Nov 2011 19:20:47 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 28 Nov 2011 19:20:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,589,1315206000"; d="scan'208,217";a="41958014"
-Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
-	by AZSMGA002.ch.intel.com with ESMTP; 28 Nov 2011 19:20:46 -0800
-Received: from pgsmsx101.gar.corp.intel.com (10.221.44.78) by
-	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 29 Nov 2011 11:19:06 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX101.gar.corp.intel.com (10.221.44.78) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Tue, 29 Nov 2011 11:19:06 +0800
-Received: from shsmsx502.ccr.corp.intel.com ([10.239.4.96]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Tue, 29 Nov 2011 11:19:05 +0800
-From: "Cui, Dexuan" <dexuan.cui@intel.com>
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Tue, 29 Nov 2011 11:19:05 +0800
-Thread-Topic: Chromium browser for Yocto BSPs
-Thread-Index: AcyuGKqZrz2neMy8TUW/5+1MSEnhfAALJGaA
-Message-ID: <1865303E0DED764181A9D882DEF65FB6E8EDB8D78A@shsmsx502.ccr.corp.intel.com>
-References: <4BD43A85686FC34D819098DB1C3999D9018FD98C59@orsmsx502.amr.corp.intel.com>
-In-Reply-To: <4BD43A85686FC34D819098DB1C3999D9018FD98C59@orsmsx502.amr.corp.intel.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: zh-CN, en-US
+Return-Path: <josefahmad1@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08888E0030A
+	for <yocto@yoctoproject.org>; Tue, 29 Nov 2011 01:06:50 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by eaal12 with SMTP id l12so3946965eaa.35
+	for <yocto@yoctoproject.org>; Tue, 29 Nov 2011 01:06:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
+	bh=Sg8k2mLI/+snlrcQ9DevhrFtDmHnIJ3mgFHxfS9PmII=;
+	b=TvcO3ZZW330xWbTgzYYuh12SWutWlqSalQZF5XX7/t6fX6b8BieLCV/yeRHFyrIXBR
+	RU/oFBB70yFfmDOoBSJTZ1OWQtCF7kXuCxbRhj6DnglN66klSsZpkqSXN7wGcCS+uY8K
+	fEvSxLJcTHLZXY8kGoro6j1QSl9LF7TKviW1k=
 MIME-Version: 1.0
-Subject: Re: Chromium browser for Yocto BSPs
+Received: by 10.213.4.208 with SMTP id 16mr2533414ebs.60.1322557609470; Tue,
+	29 Nov 2011 01:06:49 -0800 (PST)
+Sender: josefahmad1@gmail.com
+Received: by 10.213.19.194 with HTTP; Tue, 29 Nov 2011 01:06:49 -0800 (PST)
+In-Reply-To: <4ED3A1AE.3090107@linux.intel.com>
+References: <CACJvPv2FrniU=pVT1WfLPv+4vnNNxxR0WgGFwUER3sYy5HoVtw@mail.gmail.com>
+	<4ECD138D.50401@linux.intel.com>
+	<CACJvPv3f-zZ6zK6roH0F5-WnoK6JRt6YEFQBvi2B_dz0ZKOeAg@mail.gmail.com>
+	<4ECE6A6D.8000309@linux.intel.com>
+	<CACJvPv3J+8y+GNGqXJC2oE720jzk0A8cYKHL_EFgpik7kCOeHg@mail.gmail.com>
+	<4ED3A1AE.3090107@linux.intel.com>
+Date: Tue, 29 Nov 2011 09:06:49 +0000
+X-Google-Sender-Auth: v8Dbd0-VzTr1k4Lo-xW2idiOq6Y
+Message-ID: <CACJvPv0tg6dHbwUFCxvDs_gkEYvDQ+PPCL+3J_RoTtttm1cSQQ@mail.gmail.com>
+From: Josef Ahmad <josef.ahmad@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] EFI support for IA
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,150 +45,309 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Nov 2011 03:20:48 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_1865303E0DED764181A9D882DEF65FB6E8EDB8D78Ashsmsx502ccrc_"
+X-List-Received-Date: Tue, 29 Nov 2011 09:06:51 -0000
+Content-Type: multipart/alternative; boundary=00151750d87c81eae504b2dbf0a7
 
---_000_1865303E0DED764181A9D882DEF65FB6E8EDB8D78Ashsmsx502ccrc_
-Content-Type: text/plain; charset="us-ascii"
+--00151750d87c81eae504b2dbf0a7
+Content-Type: text/plain; charset=ISO-8859-1
+
+Darren,
+
+My bad. I added the two configuration statements into local.conf.
+Now I moved the two statements into my machine configuration files, and I
+confirm it works. The system image is deployed including bootia32.efi and
+configuration file, and I successfully booted the kernel.
+
+Good work!
+Regarding Grub vs Syslinux as the adopted bootloader, I agree with choosing
+the second one as the default, as soon as an EFI release of Syslinux shows
+up.
+At the same time though, I reckon it might be worthy to keep Grub as a
+second choice for EFI bootloading, rather than drop its support. Also,
+because of the way you refactored the boot image generation procedure,
+adding further bootloaders doesn't require any longer a big effort.
+
+Josef
+
+On 28 November 2011 14:58, Darren Hart <dvhart@linux.intel.com> wrote:
+
+>
+>
+> On 11/28/2011 01:06 AM, Josef Ahmad wrote:
+> > Hi Darren,
+> >
+> > I checked out your dvhart/efi branch and attempted to build my BSP.
+> > I inlcuded "efi" to my MACHINE_FEATURES, and "live" to my IMAGE_FSTYPES,
+> > so as to get an .hddimg file.
+> >
+> > I haven't found GRUB in my deployed hddimg though. Maybe I'm missing
+> > something?
+>
+>
+> Hi Josef,
+>
+> Do you see bootia32.efi and grub.cfg in the root directory of the
+> hddimg? That is all it installs.
+>
+> --
+> Darren
+>
+> >
+> > Thanks
+> >
+> > Josef
+> >
+> > On 24 November 2011 16:01, Darren Hart <dvhart@linux.intel.com
+> > <mailto:dvhart@linux.intel.com>> wrote:
+> >
+> >     On 11/24/2011 12:48 AM, Josef Ahmad wrote:
+> >     > Hi Darren,
+> >     >
+> >     > I'll track your branch to sync our efforts.
+> >
+> >     Hi Josef,
+> >
+> >     Great. I just sent an RFC patch series to this list last night.
+> Please
+> >     try it out and see how it goes.
+> >
+> >     >
+> >     > I meant to only generate the Grub EFI binary for the target,
+> without
+> >     > including any tool/library into the root filesystem: I assumed
+> >     that it's
+> >     > sufficient to deploy the bootloader onto the top-level image.
+> >     That's why
+> >
+> >     Agreed.
+> >
+> >     > I build natively the mkimage tool and run that on the host to get
+> the
+> >     > EFI executable. Now, as you justly point out, there's a target
+> >     mismatch:
+> >     > mkimage incorrectly calls out the host architecture under the -O
+> >     switch,
+> >     > whereas it should have been something like ${TARGET_ARCH}-efi.
+> >
+> >     Right. That took some doing, but it is now resolved in my branch.
+> >
+> >     >
+> >     > That said, surely a solution that embodies the GRUB tools into the
+> >     root
+> >     > filesystem is desirable.
+> >
+> >     That can be accomplished using the grub_1.99 recipe. Perhaps we
+> should
+> >     enable building with EFI if MACHINE_FEATURES includes "efi". I
+> consider
+> >     that to be separate from this effort.
+> >
+> >
+> >     > Feel free to merge my grub config generator into your branch, as
+> >     well as
+> >     > any of my contrib you may like. Speaking of grub.bbclass, I named
+> >     it so
+> >     > as it's not specifically tied to the EFI mode. It basically builds
+> up
+> >     > the grub configuration menu, based off machine-specific
+> parameters. I
+> >     > implemented it among the lines of syslinux.bbclass.
+> >
+> >     While the menu creation isn't necessarily EFI specific, the rest of
+> the
+> >     bbclass is. If we wanted to, we could create another grub.bbclass
+> that
+> >     can do a live image with GRUB legacy booting. However, I'm also
+> working
+> >     to use the syslinux family of loaders wherever possible. I'm using
+> >     grub-efi as a stop-gap until an EFI syslinux becomes available. The
+> idea
+> >     here is to keep things consistent from the live image to the
+> installed
+> >     image, as well as reduce the number of bootloaders and configuration
+> >     files we need deal with for a given BSP.
+> >
+> >     Please review the patch series I sent out and let me know if it works
+> >     for your purposes. General code review is needed as well.
+> >
+> >     Thanks Josef!
+> >
+> >     --
+> >     Darren Hart
+> >     Intel Open Source Technology Center
+> >     Yocto Project - Linux Kernel
+> >     _______________________________________________
+> >     yocto mailing list
+> >     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> >     https://lists.yoctoproject.org/listinfo/yocto
+> >
+> >
+>
+> --
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Linux Kernel
+>
+
+--00151750d87c81eae504b2dbf0a7
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi Kishore,
-The download link for flash-10 seems invalid now: it returns "ERROR 404: No=
-t Found".
-flash-11 was released and we may want to use that.
+Darren,<br><br>My bad. I added the two configuration statements into local.=
+conf. <br>Now
+ I moved the two statements into my machine configuration files, and I=20
+confirm it works. The system image is deployed including bootia32.efi=20
+and configuration file, and I successfully booted the kernel.<br><br>Good w=
+ork! <br>Regarding
+ Grub vs Syslinux as the adopted bootloader, I agree with choosing the=20
+second one as the default, as soon as an EFI release of Syslinux shows=20
+up.<br>At the same time though, I reckon it might be worthy to keep Grub
+ as a second choice for EFI bootloading, rather than drop its support.=20
+Also, because of the way you refactored the boot image generation=20
+procedure, adding further bootloaders doesn&#39;t require  any longer a big=
+=20
+effort.<br>
+<br>
+Josef <br><br><div class=3D"gmail_quote">On 28 November 2011 14:58, Darren =
+Hart <span dir=3D"ltr">&lt;<a href=3D"mailto:dvhart@linux.intel.com">dvhart=
+@linux.intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex;">
+<div class=3D"im"><br>
+<br>
+On 11/28/2011 01:06 AM, Josef Ahmad wrote:<br>
+&gt; Hi Darren,<br>
+&gt;<br>
+</div><div class=3D"im">&gt; I checked out your dvhart/efi branch and attem=
+pted to build my BSP.<br>
+&gt; I inlcuded &quot;efi&quot; to my MACHINE_FEATURES, and &quot;live&quot=
+; to my IMAGE_FSTYPES,<br>
+&gt; so as to get an .hddimg file.<br>
+&gt;<br>
+&gt; I haven&#39;t found GRUB in my deployed hddimg though. Maybe I&#39;m m=
+issing<br>
+&gt; something?<br>
+<br>
+<br>
+</div>Hi Josef,<br>
+<br>
+Do you see bootia32.efi and grub.cfg in the root directory of the<br>
+hddimg? That is all it installs.<br>
+<br>
+--<br>
+Darren<br>
+<div class=3D"im"><br>
+&gt;<br>
+&gt; Thanks<br>
+&gt;<br>
+&gt; Josef<br>
+&gt;<br>
+&gt; On 24 November 2011 16:01, Darren Hart &lt;<a href=3D"mailto:dvhart@li=
+nux.intel.com">dvhart@linux.intel.com</a><br>
+</div><div><div class=3D"h5">&gt; &lt;mailto:<a href=3D"mailto:dvhart@linux=
+.intel.com">dvhart@linux.intel.com</a>&gt;&gt; wrote:<br>
+&gt;<br>
+&gt; =A0 =A0 On 11/24/2011 12:48 AM, Josef Ahmad wrote:<br>
+&gt; =A0 =A0 &gt; Hi Darren,<br>
+&gt; =A0 =A0 &gt;<br>
+&gt; =A0 =A0 &gt; I&#39;ll track your branch to sync our efforts.<br>
+&gt;<br>
+&gt; =A0 =A0 Hi Josef,<br>
+&gt;<br>
+&gt; =A0 =A0 Great. I just sent an RFC patch series to this list last night=
+. Please<br>
+&gt; =A0 =A0 try it out and see how it goes.<br>
+&gt;<br>
+&gt; =A0 =A0 &gt;<br>
+&gt; =A0 =A0 &gt; I meant to only generate the Grub EFI binary for the targ=
+et, without<br>
+&gt; =A0 =A0 &gt; including any tool/library into the root filesystem: I as=
+sumed<br>
+&gt; =A0 =A0 that it&#39;s<br>
+&gt; =A0 =A0 &gt; sufficient to deploy the bootloader onto the top-level im=
+age.<br>
+&gt; =A0 =A0 That&#39;s why<br>
+&gt;<br>
+&gt; =A0 =A0 Agreed.<br>
+&gt;<br>
+&gt; =A0 =A0 &gt; I build natively the mkimage tool and run that on the hos=
+t to get the<br>
+&gt; =A0 =A0 &gt; EFI executable. Now, as you justly point out, there&#39;s=
+ a target<br>
+&gt; =A0 =A0 mismatch:<br>
+&gt; =A0 =A0 &gt; mkimage incorrectly calls out the host architecture under=
+ the -O<br>
+&gt; =A0 =A0 switch,<br>
+&gt; =A0 =A0 &gt; whereas it should have been something like ${TARGET_ARCH}=
+-efi.<br>
+&gt;<br>
+&gt; =A0 =A0 Right. That took some doing, but it is now resolved in my bran=
+ch.<br>
+&gt;<br>
+&gt; =A0 =A0 &gt;<br>
+&gt; =A0 =A0 &gt; That said, surely a solution that embodies the GRUB tools=
+ into the<br>
+&gt; =A0 =A0 root<br>
+&gt; =A0 =A0 &gt; filesystem is desirable.<br>
+&gt;<br>
+&gt; =A0 =A0 That can be accomplished using the grub_1.99 recipe. Perhaps w=
+e should<br>
+&gt; =A0 =A0 enable building with EFI if MACHINE_FEATURES includes &quot;ef=
+i&quot;. I consider<br>
+&gt; =A0 =A0 that to be separate from this effort.<br>
+&gt;<br>
+&gt;<br>
+&gt; =A0 =A0 &gt; Feel free to merge my grub config generator into your bra=
+nch, as<br>
+&gt; =A0 =A0 well as<br>
+&gt; =A0 =A0 &gt; any of my contrib you may like. Speaking of grub.bbclass,=
+ I named<br>
+&gt; =A0 =A0 it so<br>
+&gt; =A0 =A0 &gt; as it&#39;s not specifically tied to the EFI mode. It bas=
+ically builds up<br>
+&gt; =A0 =A0 &gt; the grub configuration menu, based off machine-specific p=
+arameters. I<br>
+&gt; =A0 =A0 &gt; implemented it among the lines of syslinux.bbclass.<br>
+&gt;<br>
+&gt; =A0 =A0 While the menu creation isn&#39;t necessarily EFI specific, th=
+e rest of the<br>
+&gt; =A0 =A0 bbclass is. If we wanted to, we could create another grub.bbcl=
+ass that<br>
+&gt; =A0 =A0 can do a live image with GRUB legacy booting. However, I&#39;m=
+ also working<br>
+&gt; =A0 =A0 to use the syslinux family of loaders wherever possible. I&#39=
+;m using<br>
+&gt; =A0 =A0 grub-efi as a stop-gap until an EFI syslinux becomes available=
+. The idea<br>
+&gt; =A0 =A0 here is to keep things consistent from the live image to the i=
+nstalled<br>
+&gt; =A0 =A0 image, as well as reduce the number of bootloaders and configu=
+ration<br>
+&gt; =A0 =A0 files we need deal with for a given BSP.<br>
+&gt;<br>
+&gt; =A0 =A0 Please review the patch series I sent out and let me know if i=
+t works<br>
+&gt; =A0 =A0 for your purposes. General code review is needed as well.<br>
+&gt;<br>
+&gt; =A0 =A0 Thanks Josef!<br>
+&gt;<br>
+&gt; =A0 =A0 --<br>
+&gt; =A0 =A0 Darren Hart<br>
+&gt; =A0 =A0 Intel Open Source Technology Center<br>
+&gt; =A0 =A0 Yocto Project - Linux Kernel<br>
+&gt; =A0 =A0 _______________________________________________<br>
+&gt; =A0 =A0 yocto mailing list<br>
+</div></div>&gt; =A0 =A0 <a href=3D"mailto:yocto@yoctoproject.org">yocto@yo=
+ctoproject.org</a> &lt;mailto:<a href=3D"mailto:yocto@yoctoproject.org">yoc=
+to@yoctoproject.org</a>&gt;<br>
+&gt; =A0 =A0 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" targ=
+et=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<div class=3D"HOEnZb"><div class=3D"h5">&gt;<br>
+&gt;<br>
+<br>
+--<br>
+Darren Hart<br>
+Intel Open Source Technology Center<br>
+Yocto Project - Linux Kernel<br>
+</div></div></blockquote></div><br>
 
-Thanks,
--- Dexuan
-
-From: Bodke, Kishore K
-Sent: Tuesday, November 29, 2011 5:57 AM
-To: yocto@yoctoproject.org; Cui, Dexuan
-Cc: Saxena, Rahul
-Subject: Chromium browser for Yocto BSPs
-
-Hi,
-I am trying to plugin the Chromium browser for one of meta-intel bsp.
-
-I get the build failure flash-plugin_10.3.183.10.bb<http://git.yoctoproject=
-.org/cgit/cgit.cgi/poky-contrib/tree/meta-chromium/recipes-plugins/adobe-fl=
-ash/flash-plugin_10.3.183.10.bb?h=3Ddcui/bsp/pegasus> file for trying to fe=
-tch the flash plugin from different mirrors and not able to find.
-
-I am building with bitbake core-image-m2m-jdk.
-
-Attached is the log.
-
-Does anyone saw the same failure?
-
-Thanks
-Kishore.
-
---_000_1865303E0DED764181A9D882DEF65FB6E8EDB8D78Ashsmsx502ccrc_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
-=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
-oft Word 12 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DZH-CN link=3Dblue vli=
-nk=3Dpurple><div class=3DWordSection1><div><p class=3DMsoNormal><span lang=
-=3DEN-US style=3D'font-size:10.5pt;color:#1F497D'>Hi Kishore,<o:p></o:p></s=
-pan></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'font-size:10.5pt;c=
-olor:#1F497D'>The download link for flash-10 seems invalid now: it returns =
-&#8220;ERROR 404: Not Found&#8221;.<o:p></o:p></span></p><p class=3DMsoNorm=
-al><span lang=3DEN-US style=3D'font-size:10.5pt;color:#1F497D'>flash-11 was=
- released and we may want to use that.</span><span lang=3DEN style=3D'font-=
-size:12.0pt;font-family:SimSun;color:#1F497D'><o:p></o:p></span></p><p clas=
-s=3DMsoNormal><span lang=3DEN style=3D'font-size:12.0pt;font-family:SimSun;=
-color:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal style=3D'te=
-xt-align:justify'><span lang=3DEN-US style=3D'font-size:10.5pt;color:#1F497=
-D'>Thanks,<o:p></o:p></span></p><p class=3DMsoNormal style=3D'text-align:ju=
-stify'><span lang=3DEN-US style=3D'font-size:10.5pt;color:#1F497D'>-- Dexua=
-n<o:p></o:p></span></p></div><p class=3DMsoNormal><span lang=3DEN-US style=
-=3D'font-size:10.5pt;color:#1F497D'><o:p>&nbsp;</o:p></span></p><div style=
-=3D'border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm 4.0pt'><di=
-v><div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0c=
-m 0cm 0cm'><p class=3DMsoNormal><b><span lang=3DEN-US style=3D'font-size:10=
-.0pt;font-family:"Tahoma","sans-serif"'>From:</span></b><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> Bodke, Kishor=
-e K <br><b>Sent:</b> Tuesday, November 29, 2011 5:57 AM<br><b>To:</b> yocto=
-@yoctoproject.org; Cui, Dexuan<br><b>Cc:</b> Saxena, Rahul<br><b>Subject:</=
-b> Chromium browser for Yocto BSPs<o:p></o:p></span></p></div></div><p clas=
-s=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMso=
-Normal><span lang=3DEN-US>Hi,<o:p></o:p></span></p><p class=3DMsoNormal><sp=
-an lang=3DEN-US>I am trying to plugin the Chromium browser for one of meta-=
-intel bsp.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:=
-p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>I get the =
-build failure <a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky-con=
-trib/tree/meta-chromium/recipes-plugins/adobe-flash/flash-plugin_10.3.183.1=
-0.bb?h=3Ddcui/bsp/pegasus"><span style=3D'color:windowtext;text-decoration:=
-none'>flash-plugin_10.3.183.10.bb</span></a> file for trying to fetch the f=
-lash plugin from different mirrors and not able to find.<o:p></o:p></span><=
-/p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p c=
-lass=3DMsoNormal><span lang=3DEN-US>I am building with bitbake core-image-m=
-2m-jdk.&nbsp; <o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US=
-><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Attach=
-ed is the log.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US=
-><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Does a=
-nyone saw the same failure? <o:p></o:p></span></p><p class=3DMsoNormal><spa=
-n lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=
-=3DEN-US>Thanks<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-U=
-S>Kishore.<o:p></o:p></span></p></div></div></body></html>=
-
---_000_1865303E0DED764181A9D882DEF65FB6E8EDB8D78Ashsmsx502ccrc_--
+--00151750d87c81eae504b2dbf0a7--
