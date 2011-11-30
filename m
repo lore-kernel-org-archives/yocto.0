@@ -1,24 +1,34 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79325E00502
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2011 14:42:51 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pAUMgnNd027790
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 30 Nov 2011 14:42:49 -0800 (PST)
-Received: from [128.224.21.107] (128.224.21.107) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 30 Nov 2011 14:42:49 -0800
-Message-ID: <4ED6B167.2030500@windriver.com>
-Date: Wed, 30 Nov 2011 17:42:47 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.23) Gecko/20110922 Thunderbird/3.1.15
-MIME-Version: 1.0
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CC8BE00502
+	for <yocto@yoctoproject.org>; Wed, 30 Nov 2011 14:47:20 -0800 (PST)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 2424D188A178;
+	Wed, 30 Nov 2011 23:50:50 +0100 (CET)
+X-Auth-Info: Hi3h0YeXBqAZsHVsF9jZ3gxVit8SlT+LqflISdG6bLw=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216])
+	by smtp-auth.mnet-online.de (Postfix) with ESMTPA id CFC201C00047;
+	Wed, 30 Nov 2011 23:47:17 +0100 (CET)
+Received: from gemini.denx.de (unknown [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 893D21A62D8;
+	Wed, 30 Nov 2011 23:47:17 +0100 (CET)
+Received: from gemini.denx.de (localhost.localdomain [127.0.0.1])
+	by gemini.denx.de (Postfix) with ESMTP id 709871828FD3;
+	Wed, 30 Nov 2011 23:47:17 +0100 (CET)
 To: Joshua Lock <josh@linux.intel.com>
-References: <alpine.DEB.2.02.1111291759160.17235@oneiric>	<1592821.2ngvXcyh81@helios>	<alpine.DEB.2.02.1111300644120.18752@oneiric>
+From: Wolfgang Denk <wd@denx.de>
+MIME-Version: 1.0
+In-reply-to: <4ED6AED5.8070308@linux.intel.com>
+References: <alpine.DEB.2.02.1111291759160.17235@oneiric>
+	<1592821.2ngvXcyh81@helios>
+	<alpine.DEB.2.02.1111300644120.18752@oneiric>
 	<4ED6AED5.8070308@linux.intel.com>
-In-Reply-To: <4ED6AED5.8070308@linux.intel.com>
+Comments: In-reply-to Joshua Lock <josh@linux.intel.com>
+	message dated "Wed, 30 Nov 2011 14:31:49 -0800."
+Date: Wed, 30 Nov 2011 23:47:17 +0100
+Message-Id: <20111130224717.709871828FD3@gemini.denx.de>
 Cc: yocto@yoctoproject.org
 Subject: Re: how to cleanly exit a QEMU session?
 X-BeenThere: yocto@yoctoproject.org
@@ -32,43 +42,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Nov 2011 22:42:51 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 30 Nov 2011 22:47:22 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-On 11-11-30 05:31 PM, Joshua Lock wrote:
-> On 30/11/11 03:46, Robert P. J. Day wrote:
->> On Wed, 30 Nov 2011, Paul Eggleton wrote:
->>
->>> On Tuesday 29 November 2011 18:00:31 Robert P. J. Day wrote:
->>>>    i'm sure it's in one of the docs i missed, but how does one cleanly
->>>> shut down a QEMU session and get back to the original terminal
->>>> session?  i've tried shutdown and poweroff but neither of those gives
->>>> me my shell prompt back.
->>>
->>> Which machine are you running within the emulator? I know some emulated
->>> machines don't seem to support actually powering off - does reboot work?
->>
->>    qemuppc, core-image-minimal.  interestingly, "poweroff" doesn't
->> completely close the QEMU session, but "reboot" does.  it might be
->> worth adding that to the quick start guide.
->
-> The same is also true for qemuarm, we work around it in sato by munging
-> the shutdown.desktop file to all restart and having the qemu scripts
-> start qemu with -norestart.
->
-> Clearly we should also do the shutdown.desktop munging for qemuppc
+Dear Joshua Lock,
+
+In message <4ED6AED5.8070308@linux.intel.com> you wrote:
 >
 > What do people think to the idea of putting something into the image for
 > those two specific machines which aliases poweroff to reboot?
 
-I'd be fine with such a change, I pushed for the ARM mapping to
-reboot originally, so doing the same here and an alias would make
-the command line consistent with the GUI.
+I consider it a really bad idea, as "poweroff" is actually a very
+different action than "reboot" - the former should shut down and halt
+the system, while the latter should actually restart it.
 
-Bruce
+It appears both operations are not properly working and need to be
+fixed.
 
->
-> Joshua
+Best regards,
 
+Wolfgang Denk
+
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+"If the code and  the  comments  disagree,  then  both  are  probably
+wrong."                                                - Norm Schryer
 
