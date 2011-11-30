@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6132E00730
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2011 08:39:00 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 30 Nov 2011 08:39:00 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB783E00735
+	for <yocto@yoctoproject.org>; Wed, 30 Nov 2011 08:39:02 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 30 Nov 2011 08:39:02 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,597,1315206000"; d="scan'208";a="97048999"
+X-IronPort-AV: E=Sophos;i="4.69,597,1315206000"; d="scan'208";a="42555667"
 Received: from unknown (HELO localhost) ([10.255.12.29])
-	by fmsmga002.fm.intel.com with ESMTP; 30 Nov 2011 08:39:00 -0800
+	by AZSMGA002.ch.intel.com with ESMTP; 30 Nov 2011 08:39:02 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Wed, 30 Nov 2011 10:38:55 -0600
-Message-Id: <bd5f30615b4574bf505992a2dd5ca780ef4d20f3.1322670614.git.tom.zanussi@intel.com>
+Date: Wed, 30 Nov 2011 10:38:56 -0600
+Message-Id: <ef4a40da852eb9ff69494abb64ff9658fdaeccf6.1322670614.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <7da6b2be458f0c479334d3bf87b2c76b57563a54.1322670614.git.tom.zanussi@intel.com>
 References: <7da6b2be458f0c479334d3bf87b2c76b57563a54.1322670614.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1322670614.git.tom.zanussi@intel.com>
 References: <cover.1322670614.git.tom.zanussi@intel.com>
-Subject: [PATCH 3/6] emgd-driver-bin: add video components
+Subject: [PATCH 4/6] meta-crownbay: update README with EMGD video plugin instructions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,73 +29,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Nov 2011 16:39:01 -0000
+X-List-Received-Date: Wed, 30 Nov 2011 16:39:02 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This adds the video binaries extracted from the following EMGD 1.8
-binary rpms (emgd/1.8.2032/IEMGD_HEAD_Linux/common/video_plugin):
-
-gst-plugins-mixvideo-0.10.30-1.i586.rpm
-gst-plugins-va-0.10.7MFLD-1.i586.rpm
-gst-vabuffer-0.10.5MFLD-1.i586.rpm
-mixcommon-0.1.9-1.i586.rpm
-mixvbp-0.1.24-1.i586.rpm
-mixvideo-0.1.31-1.i586.rpm
+Adding support for video acceleration means some new components need
+to be installed - update the instructions to reflect that.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../xorg-xserver/emgd-driver-bin_1.8.bb            |   22 ++++++++++---------
- 1 files changed, 12 insertions(+), 10 deletions(-)
+ meta-crownbay/README |   27 +++++++++++++++++++++------
+ 1 files changed, 21 insertions(+), 6 deletions(-)
 
-diff --git a/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb b/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
-index 8dc43ea..bb98962 100644
---- a/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
-+++ b/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
-@@ -6,7 +6,7 @@ see the README in meta-crownbay/ for instructions on the (simple) manual \
- steps necessary to make the necessary binaries available to this recipe.  \
- Please do that before building an image."
- LICENSE = "Intel-binary-only"
--PR = "r7"
-+PR = "r8"
+diff --git a/meta-crownbay/README b/meta-crownbay/README
+index c0e8119..bca41cb 100644
+--- a/meta-crownbay/README
++++ b/meta-crownbay/README
+@@ -133,8 +133,8 @@ $ rpm2cpio emgd-bin-2032-1.6.i586.rpm > emgd-bin-2032-1.6.i586.cpio
+ $ mkdir extracted; cd extracted
+ $ cpio -idv < ../emgd-bin-2032-1.6.i586.cpio
  
- LIC_FILES_CHKSUM = "file://${WORKDIR}/License.txt;md5=b54f01caaf8483b3cb60c0c40f2bf22d"
+-Finally, you can copy the xorg-xserver binaries to the
+-emgd-driver-bin-1.8 directory in meta-intel/common:
++You can now copy the xorg-xserver binaries to the emgd-driver-bin-1.8
++directory in meta-intel/common:
  
-@@ -15,23 +15,25 @@ FILESPATH = "${FILE_DIRNAME}/emgd-driver-bin-1.8"
- SRC_URI = "file://lib \
-            file://License.txt"
+ $ cp -a usr/lib meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8
  
--FILES_${PN} += "${libdir}/dri ${libdir}/xorg/modules/drivers"
-+FILES_${PN} += "${libdir}/dri ${libdir}/gstreamer-0.10 ${libdir}/xorg/modules/drivers"
- FILES_${PN}-dev += "${libdir}/*.so"
- FILES_${PN}-dbg += "${libdir}/xorg/modules/drivers/.debug ${libdir}/dri/.debug"
+@@ -142,10 +142,25 @@ You also need to copy the IEMGD License.txt file to the same directory:
  
- S = "${WORKDIR}"
+ $ cp IEMGD_HEAD_Linux/License/License.txt meta-intel/common/recipes/xorg-xserver/emgd-driver-bin-1.8
  
- do_install () {
--    install -d -m 0755                    ${D}/${libdir}/dri
--    install -d -m 0755                    ${D}/${libdir}/xorg/modules/drivers
--    install -m 0755 ${S}/lib/*.so.*       ${D}${libdir}/
--    install -m 0755 ${S}/lib/dri/*        ${D}${libdir}/dri/
-+    install -d -m 0755                              ${D}/${libdir}/dri
-+    install -d -m 0755                              ${D}/${libdir}/gstreamer-0.10
-+    install -d -m 0755                              ${D}/${libdir}/xorg/modules/drivers
-+    install -m 0755 ${S}/lib/*.so.*                 ${D}${libdir}/
-+    install -m 0755 ${S}/lib/dri/*                  ${D}${libdir}/dri/
-+    install -m 0755 ${S}/lib/gstreamer-0.10/*       ${D}${libdir}/gstreamer-0.10/
-     install -m 0755 ${S}/lib/xorg/modules/drivers/* ${D}${libdir}/xorg/modules/drivers/
+-Additionally, you should remove the following unused file from the
+-emgd binaries in order to avoid a packaging error at build-time:
+-
+-$ rm meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8/lib/dri/emgd_drv_video.so
++Finally, you need to extract and copy the video plugins to the
++emgd-driver-bin-1.8 directory in meta-intel/common:
++ 
++$ cd IEMGD_HEAD_Linux/common/video_plugin
++$ rpm2cpio gst-plugins-mixvideo-0.10.30-1.i586.rpm > gst-plugins-mixvideo-0.10.30-1.i586.cpio
++$ rpm2cpio gst-plugins-va-0.10.7MFLD-1.i586.rpm > gst-plugins-va-0.10.7MFLD-1.i586.cpio
++$ rpm2cpio gst-vabuffer-0.10.5MFLD-1.i586.rpm > gst-vabuffer-0.10.5MFLD-1.i586.cpio
++$ rpm2cpio mixcommon-0.1.9-1.i586.rpm > mixcommon-0.1.9-1.i586.cpio
++$ rpm2cpio mixvbp-0.1.24-1.i586.rpm > mixvbp-0.1.24-1.i586.cpio
++$ rpm2cpio mixvideo-0.1.31-1.i586.rpm > mixvideo-0.1.31-1.i586.cpio
++$ mkdir extracted; cd extracted
++$ cpio -idv < ../gst-plugins-mixvideo-0.10.30-1.i586.cpio
++$ cpio -idv < ../gst-plugins-va-0.10.7MFLD-1.i586.cpio
++$ cpio -idv < ../gst-vabuffer-0.10.5MFLD-1.i586.cpio
++$ cpio -idv < ../mixcommon-0.1.9-1.i586.cpio
++$ cpio -idv < ../mixvbp-0.1.24-1.i586.cpio
++$ cpio -idv < ../mixvideo-0.1.31-1.i586.cpio
++$ rm usr/lib/*.so.0
++$ cp -a usr/lib meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8
  
--    ln -sf libEGL.so.1                    ${D}${libdir}/libEGL.so
--    ln -sf libGLES_CM.so.1                ${D}${libdir}/libGLES_CM.so
--    ln -sf libGLESv2.so.2                 ${D}${libdir}/libGLESv2.so
--    ln -sf libEMGDScopeServices.so.1.5.15.3226 ${D}${libdir}/libPVRScopeServices.so
-+    ln -sf libEGL.so.1                              ${D}${libdir}/libEGL.so
-+    ln -sf libGLES_CM.so.1                          ${D}${libdir}/libGLES_CM.so
-+    ln -sf libGLESv2.so.2                           ${D}${libdir}/libGLESv2.so
-+    ln -sf libEMGDScopeServices.so.1.5.15.3226      ${D}${libdir}/libPVRScopeServices.so
- }
+ At this point, you should be able to build meta-crownbay images as usual.
  
- LEAD_SONAME = "libEGL.so"
 -- 
 1.7.0.4
 
