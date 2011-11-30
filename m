@@ -1,15 +1,15 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3858E00307
-	for <yocto@yoctoproject.org>; Tue, 29 Nov 2011 16:41:50 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 29 Nov 2011 16:41:50 -0800
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BCA4E006B0
+	for <yocto@yoctoproject.org>; Tue, 29 Nov 2011 16:46:02 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 29 Nov 2011 16:46:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,594,1315206000"; d="scan'208";a="80435868"
+X-IronPort-AV: E=Sophos;i="4.69,594,1315206000"; d="scan'208";a="90384132"
 Received: from unknown (HELO envy.home) ([10.255.15.150])
-	by azsmga001.ch.intel.com with ESMTP; 29 Nov 2011 16:41:49 -0800
-Message-ID: <4ED57BD2.8010009@linux.intel.com>
-Date: Tue, 29 Nov 2011 16:41:54 -0800
+	by fmsmga001.fm.intel.com with ESMTP; 29 Nov 2011 16:46:01 -0800
+Message-ID: <4ED57CCE.2090309@linux.intel.com>
+Date: Tue, 29 Nov 2011 16:46:06 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:7.0) Gecko/20110927 Thunderbird/7.0
@@ -31,7 +31,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Nov 2011 00:41:51 -0000
+X-List-Received-Date: Wed, 30 Nov 2011 00:46:02 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
@@ -42,7 +42,29 @@ On 11/29/2011 03:14 PM, Bruce Ashfield wrote:
 >> I'm experimenting with Matt Fleming's EFI_STUB patches. The first 10 patches were working fine, but when I try to add the 11th, the do_patch fails. I found that it isn't trying to apply the patches in the order listed in the recipe - no in any other recognizable pattern for that matter.
 >>
 > 
-> It's shell order. You really should just create a .scc file, put IT
+> It's shell order. 
+
+Oh, how is this shell order?
+
+$ ls *patch
+0001-x86-Add-missing-bzImage-fields-to-struct-setup_heade.patch
+0002-x86-efi-Make-efi_call_phys_prelog-CONFIG_RELOCATABLE.patch
+0003-x86-Don-t-use-magic-strings-for-EFI-loader-signature.patch
+0004-efi.h-Add-struct-definition-for-boot-time-services.patch
+0005-efi.h-Add-efi_image_loaded_t.patch
+0006-efi.h-Add-allocation-types-for-boottime-allocate_pag.patch
+0007-efi.h-Add-graphics-protocol-guids.patch
+0008-efi.h-Add-boottime-locate_handle-search-types.patch
+0009-efi-Add-EFI-file-I-O-data-types.patch
+0010-x86-efi-EFI-boot-stub-support.patch
+0011-x86-efi-Break-up-large-initrd-reads.patch
+
+This is the order I would expect and seems to match shell order...
+
+--
+Darren
+
+> You really should just create a .scc file, put IT
 > on the SRC_URI and list the patches. You'll have no problems after
 > that.
 > 
@@ -51,22 +73,6 @@ On 11/29/2011 03:14 PM, Bruce Ashfield wrote:
 > You are using the compatibility mode for more than I originally intended
 > it for. So just dropping a .scc file into place will fix things
 > up nicely.
-
-OK, I like that better than the monolith patch I plugged the leak with :-)
-
-I understand I am using the compatibility mode more than the original
-intent - and in part I'm doing this on purpose. The "recipe-space"
-iterative development model is going to be the most familiar to OE
-developers and is the fastest way to prototype changes. We need to
-ensure it works well. Once I'm done here, I fully intend to push it into
-a proper in-tree scc file - but for now, it makes the most sense in
-recipe-space while we tweak it and the patches are under heavy development.
-
-Thanks Bruce!
-
---
-Darren
-
 > 
 > Bruce
 > 
