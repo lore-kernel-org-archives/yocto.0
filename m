@@ -1,23 +1,23 @@
 Return-Path: <darren.hart@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC961E00307
-	for <yocto@yoctoproject.org>; Tue, 29 Nov 2011 17:15:02 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 29 Nov 2011 17:15:02 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2114BE006B0
+	for <yocto@yoctoproject.org>; Tue, 29 Nov 2011 17:22:01 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 29 Nov 2011 17:21:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,595,1315206000"; d="scan'208";a="80444610"
+X-IronPort-AV: E=Sophos;i="4.69,595,1315206000"; d="scan'208";a="42317974"
 Received: from unknown (HELO envy.home) ([10.255.15.150])
-	by azsmga001.ch.intel.com with ESMTP; 29 Nov 2011 17:15:00 -0800
-Message-ID: <4ED58399.2030609@intel.com>
-Date: Tue, 29 Nov 2011 17:15:05 -0800
+	by AZSMGA002.ch.intel.com with ESMTP; 29 Nov 2011 17:21:54 -0800
+Message-ID: <4ED58537.5030702@intel.com>
+Date: Tue, 29 Nov 2011 17:21:59 -0800
 From: Darren Hart <darren.hart@intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
 To: Bruce Ashfield <bruce.ashfield@windriver.com>
 References: <4ED550FD.7090105@linux.intel.com> <4ED5673D.4070304@windriver.com>
-	<4ED57BD2.8010009@linux.intel.com>
-In-Reply-To: <4ED57BD2.8010009@linux.intel.com>
+	<4ED57BD2.8010009@linux.intel.com> <4ED58399.2030609@intel.com>
+In-Reply-To: <4ED58399.2030609@intel.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: linux-yocto: doesn't maintain patch order from SRC_URI?
 X-BeenThere: yocto@yoctoproject.org
@@ -31,134 +31,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Nov 2011 01:15:03 -0000
+X-List-Received-Date: Wed, 30 Nov 2011 01:22:01 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 11/29/2011 04:41 PM, Darren Hart wrote:
-> 
-> 
-> On 11/29/2011 03:14 PM, Bruce Ashfield wrote:
->> On 11-11-29 04:39 PM, Darren Hart wrote:
->>> I'm experimenting with Matt Fleming's EFI_STUB patches. The first 10 patches were working fine, but when I try to add the 11th, the do_patch fails. I found that it isn't trying to apply the patches in the order listed in the recipe - no in any other recognizable pattern for that matter.
->>>
+On 11/29/2011 05:15 PM, Darren Hart wrote:
+> On 11/29/2011 04:41 PM, Darren Hart wrote:
 >>
->> It's shell order. You really should just create a .scc file, put IT
->> on the SRC_URI and list the patches. You'll have no problems after
->> that.
 >>
->> I do have a fix for this, but can't send it right now due to travel.
+>> On 11/29/2011 03:14 PM, Bruce Ashfield wrote:
+>>> On 11-11-29 04:39 PM, Darren Hart wrote:
+>>>> I'm experimenting with Matt Fleming's EFI_STUB patches. The first 10 patches were working fine, but when I try to add the 11th, the do_patch fails. I found that it isn't trying to apply the patches in the order listed in the recipe - no in any other recognizable pattern for that matter.
+>>>>
+>>>
+>>> It's shell order. You really should just create a .scc file, put IT
+>>> on the SRC_URI and list the patches. You'll have no problems after
+>>> that.
+>>>
+>>> I do have a fix for this, but can't send it right now due to travel.
+>>>
+>>> You are using the compatibility mode for more than I originally intended
+>>> it for. So just dropping a .scc file into place will fix things
+>>> up nicely.
 >>
->> You are using the compatibility mode for more than I originally intended
->> it for. So just dropping a .scc file into place will fix things
->> up nicely.
+>> OK, I like that better than the monolith patch I plugged the leak with :-)
 > 
-> OK, I like that better than the monolith patch I plugged the leak with :-)
-
-So I'm trying this:
-
-$ cat linux-yocto-dvhart/efi-stub.scc
-patch 0001-x86-Add-missing-bzImage-fields-to-struct-setup_heade.patch
-patch 0002-x86-efi-Make-efi_call_phys_prelog-CONFIG_RELOCATABLE.patch
-patch 0003-x86-Don-t-use-magic-strings-for-EFI-loader-signature.patch
-patch 0004-efi.h-Add-struct-definition-for-boot-time-services.patch
-patch 0005-efi.h-Add-efi_image_loaded_t.patch
-patch 0006-efi.h-Add-allocation-types-for-boottime-allocate_pag.patch
-patch 0007-efi.h-Add-graphics-protocol-guids.patch
-patch 0008-efi.h-Add-boottime-locate_handle-search-types.patch
-patch 0009-efi-Add-EFI-file-I-O-data-types.patch
-patch 0010-x86-efi-EFI-boot-stub-support.patch
-patch 0011-x86-efi-Break-up-large-initrd-reads.patch
-
-And in the recipe:
-SRC_URI += "file://efi-stub.scc"
-
-In the meta-series I see:
-
-# _mark efi_stub_947530aea4d2a819b340fe2b49d765de start
-# _mark efi_stub_947530aea4d2a819b340fe2b49d765de end
-
-But the patches do not get applied.
-
-The Yocto Kernel Architecture and Use Manual does not appear to cover
-this case. Do I need to do something more?
-
-Thanks,
-
-Darren
-
-
-
+> So I'm trying this:
 > 
-> I understand I am using the compatibility mode more than the original
-> intent - and in part I'm doing this on purpose. The "recipe-space"
-> iterative development model is going to be the most familiar to OE
-> developers and is the fastest way to prototype changes. We need to
-> ensure it works well. Once I'm done here, I fully intend to push it into
-> a proper in-tree scc file - but for now, it makes the most sense in
-> recipe-space while we tweak it and the patches are under heavy development.
+> $ cat linux-yocto-dvhart/efi-stub.scc
+> patch 0001-x86-Add-missing-bzImage-fields-to-struct-setup_heade.patch
+> patch 0002-x86-efi-Make-efi_call_phys_prelog-CONFIG_RELOCATABLE.patch
+> patch 0003-x86-Don-t-use-magic-strings-for-EFI-loader-signature.patch
+> patch 0004-efi.h-Add-struct-definition-for-boot-time-services.patch
+> patch 0005-efi.h-Add-efi_image_loaded_t.patch
+> patch 0006-efi.h-Add-allocation-types-for-boottime-allocate_pag.patch
+> patch 0007-efi.h-Add-graphics-protocol-guids.patch
+> patch 0008-efi.h-Add-boottime-locate_handle-search-types.patch
+> patch 0009-efi-Add-EFI-file-I-O-data-types.patch
+> patch 0010-x86-efi-EFI-boot-stub-support.patch
+> patch 0011-x86-efi-Break-up-large-initrd-reads.patch
 > 
-> Thanks Bruce!
+> And in the recipe:
+> SRC_URI += "file://efi-stub.scc"
 > 
-> --
-> Darren
+> In the meta-series I see:
 > 
->>
->> Bruce
->>
->>> The recipe contains:
->>>
->>> # Add the efi-stub
->>> SRC_URI += "file://0001-x86-Add-missing-bzImage-fields-to-struct-setup_heade.patch \
->>>              file://0002-x86-efi-Make-efi_call_phys_prelog-CONFIG_RELOCATABLE.patch \
->>>              file://0003-x86-Don-t-use-magic-strings-for-EFI-loader-signature.patch \
->>>              file://0004-efi.h-Add-struct-definition-for-boot-time-services.patch \
->>>              file://0005-efi.h-Add-efi_image_loaded_t.patch \
->>>              file://0006-efi.h-Add-allocation-types-for-boottime-allocate_pag.patch \
->>>              file://0007-efi.h-Add-graphics-protocol-guids.patch \
->>>              file://0008-efi.h-Add-boottime-locate_handle-search-types.patch \
->>>              file://0009-efi-Add-EFI-file-I-O-data-types.patch \
->>>              file://0010-x86-efi-EFI-boot-stub-support.patch \
->>> 	    file://0011-x86-efi-Break-up-large-initrd-reads.patch \
->>>              "
->>>
->>> do_patch fails with:
->>> Log data follows:
->>> | Deleted branch meta-temp (was 620917d).
->>> | warning: could not find (or was already included): ktypes/yocto.scc
->>> | ./0-standard-yocto-61b5e146f9d113375883df8c51449722.sco: line 14: yocto_68b329da9893e34099c7d8ad5cb9c940: command not found
->>> | [INFO] validating against known patches  (standard-yocto-meta)
->>> error: arch/x86/boot/compressed/eboot.c: does not exist in index09 %)
->>> | To force apply this patch, use 'guilt push -f'
->>> | [ERROR] unable to complete push
->>> | pending patches are:
->>> | Patches directory doesn't exist, try guilt-init
->>> | ERROR. could not update git tree
->>> | ERROR: Function 'do_patch' failed (see /build/poky/ie/tmp/work/ie_phase1-poky-linux/linux-yocto-ie-3.0.4+git1+d51b0e743599a41a42e119f29f8dfa89854b3b5e_1+6b2c7d65b844e686eae7d5cccb9b638887afe28e-r4/temp/log.do_patch.2768 for further information)
->>>
->>> and meta/patches/standard/series contains:
->>>
->>> $ cat standard/series
->>> links/scratch/obj/0002-x86-efi-Make-efi_call_phys_prelog-CONFIG_RELOCATABLE.patch
->>> links/scratch/obj/0003-x86-Don-t-use-magic-strings-for-EFI-loader-signature.patch
->>> links/scratch/obj/0004-efi.h-Add-struct-definition-for-boot-time-services.patch
->>> links/scratch/obj/0005-efi.h-Add-efi_image_loaded_t.patch
->>> links/scratch/obj/0011-x86-efi-Break-up-large-initrd-reads.patch
->>>
->>> This needs to come after 10.
->>>
->>> links/scratch/obj/0007-efi.h-Add-graphics-protocol-guids.patch
->>> links/scratch/obj/0001-x86-Add-missing-bzImage-fields-to-struct-setup_heade.patch
->>> links/scratch/obj/0009-efi-Add-EFI-file-I-O-data-types.patch
->>> links/scratch/obj/0008-efi.h-Add-boottime-locate_handle-search-types.patch
->>> links/scratch/obj/0006-efi.h-Add-allocation-types-for-boottime-allocate_pag.patch
->>> links/scratch/obj/0010-x86-efi-EFI-boot-stub-support.patch
->>>
->>>
->>>
->>
+> # _mark efi_stub_947530aea4d2a819b340fe2b49d765de start
+> # _mark efi_stub_947530aea4d2a819b340fe2b49d765de end
 > 
+> But the patches do not get applied.
+> 
+> The Yocto Kernel Architecture and Use Manual does not appear to cover
+> this case. Do I need to do something more?
 
+Ah, I need to include the patches explicitly too. That makes sense from
+a bitbake perspective. OK, I'm rolling again, nice.
 
 -- 
 Darren Hart
