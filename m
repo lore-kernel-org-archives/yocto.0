@@ -1,19 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0718CE0030A
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2011 08:38:58 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 30 Nov 2011 08:38:57 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0D76E0072F
+	for <yocto@yoctoproject.org>; Wed, 30 Nov 2011 08:38:59 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 30 Nov 2011 08:38:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.69,597,1315206000"; d="scan'208";a="97048962"
+X-IronPort-AV: E=Sophos;i="4.69,597,1315206000"; d="scan'208";a="80705162"
 Received: from unknown (HELO localhost) ([10.255.12.29])
-	by fmsmga002.fm.intel.com with ESMTP; 30 Nov 2011 08:38:54 -0800
+	by azsmga001.ch.intel.com with ESMTP; 30 Nov 2011 08:38:58 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Wed, 30 Nov 2011 10:38:55 -0600
-Message-Id: <cover.1322670614.git.tom.zanussi@intel.com>
+Date: Wed, 30 Nov 2011 10:38:54 -0600
+Message-Id: <36ad680b04280a215a3deef5dd4f7789ba640a2c.1322670614.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/6] meta-intel: enable video acceleration for crownbay
+In-Reply-To: <7da6b2be458f0c479334d3bf87b2c76b57563a54.1322670614.git.tom.zanussi@intel.com>
+References: <7da6b2be458f0c479334d3bf87b2c76b57563a54.1322670614.git.tom.zanussi@intel.com>
+In-Reply-To: <cover.1322670614.git.tom.zanussi@intel.com>
+References: <cover.1322670614.git.tom.zanussi@intel.com>
+Subject: [PATCH 2/6] libva: upgrade to 1.0.12 and factor out common settings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,42 +29,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Nov 2011 16:38:58 -0000
+X-List-Received-Date: Wed, 30 Nov 2011 16:39:00 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This patchset enables video acceleration for crownbay by adding the
-video components from EMGD along with a libva recipe and an additional
-bbappend to install plugins for demuxing mp4 videos.
+EMGD 1.8 requires libva-1.0.12, so upgrade to that version, and we
+don't actually need the 1.0.10 recipe, so remove it.
 
-So far tested with the 'Big Buck Bunny' H.264 1920x1080 video.
+This also adds -dbg and -dev packaging fixes to fix QA problems,
+removes some unnecessary settings, updates checksums, etc.
 
-The following changes since commit 68c6b19d623b34a504090ad2c706859ecc946256:
-  Tom Zanussi (1):
-        meta-intel: update READMEs with layer dependency list
+Also create and use a common libva.inc, as we'll soon be adding a more
+updated version of libva to the current version.
 
-are available in the git repository at:
-
-  git://git.yoctoproject.org/meta-intel.git tzanussi/va-v0
-  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/va-v0
-
-Tom Zanussi (6):
-  libva: new recipe for video acceleration
-  libva: upgrade to 1.0.12 and factor out common settings
-  emgd-driver-bin: add video components
-  meta-crownbay: update README with EMGD video plugin instructions
-  meta-intel: add libva to xserver-xorg
-  meta-intel: add gst-meta-base .bbappend
-
- .../xorg-xserver/emgd-driver-bin_1.8.bb            |   22 ++++++-----
- .../xorg-xserver/xserver-xorg-1.9.3.inc            |    2 +
- .../gstreamer/gst-meta-base_0.10.bbappend          |    2 +
- common/recipes-multimedia/libva/libva.inc          |   41 ++++++++++++++++++++
- common/recipes-multimedia/libva/libva_1.0.12.bb    |    8 ++++
- meta-crownbay/README                               |   27 ++++++++++---
- 6 files changed, 86 insertions(+), 16 deletions(-)
- create mode 100644 common/recipes-multimedia/gstreamer/gst-meta-base_0.10.bbappend
- create mode 100644 common/recipes-multimedia/libva/libva.inc
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ .../libva/{libva_1.0.10.bb => libva.inc}           |   19 +++++++++++--------
+ common/recipes-multimedia/libva/libva_1.0.12.bb    |    8 ++++++++
+ 2 files changed, 19 insertions(+), 8 deletions(-)
+ rename common/recipes-multimedia/libva/{libva_1.0.10.bb => libva.inc} (78%)
  create mode 100644 common/recipes-multimedia/libva/libva_1.0.12.bb
+
+diff --git a/common/recipes-multimedia/libva/libva_1.0.10.bb b/common/recipes-multimedia/libva/libva.inc
+similarity index 78%
+rename from common/recipes-multimedia/libva/libva_1.0.10.bb
+rename to common/recipes-multimedia/libva/libva.inc
+index 0cd0444..93b3cae 100644
+--- a/common/recipes-multimedia/libva/libva_1.0.10.bb
++++ b/common/recipes-multimedia/libva/libva.inc
+@@ -17,21 +17,24 @@ SECTION = "x11"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=2e48940f94acb0af582e5ef03537800f"
+ 
+-PR = "r1"
++INC_PR = "r0"
+ 
+ DEPENDS = "libxext libxfixes libdrm"
+ 
+-SRC_URI = "http://cgit.freedesktop.org/libva/snapshot/libva-${PV}.tar.bz2"
+-
+-SRC_URI[md5sum] = "959de03d47654adab855e10bff614df3"
+-SRC_URI[sha256sum] = "05f757f0043dce9f753d354d15e0cb772b1240cc9d29d26bbb5526285a203693"
+-
+ inherit autotools pkgconfig
+ 
+-LEAD_SONAME = "libva.so"
+-
+ PACKAGES =+ "${PN}-x11 ${PN}-tpi ${PN}-glx ${PN}-egl"
++PACKAGES =+ "${PN}-x11-dev ${PN}-tpi-dev ${PN}-glx-dev ${PN}-egl-dev"
++
+ RDEPENDS_${PN} =+ "${PN}-x11 ${PN}-tpi ${PN}-glx ${PN}-egl"
++
++FILES_${PN}-dbg += "${libdir}/dri/.debug"
++FILES_${PN} += "${libdir}/dri"
++
++FILES_${PN}-x11-dev =+ "${libdir}/libva-x11.so"
++FILES_${PN}-tpi-dev =+ "${libdir}/libva-tpi.so"
++FILES_${PN}-glx-dev =+ "${libdir}/libva-glx.so"
++FILES_${PN}-egl-dev =+ "${libdir}/libva-egl.so"
+ FILES_${PN}-x11 =+ "${libdir}/libva-x11.*"
+ FILES_${PN}-tpi =+ "${libdir}/libva-tpi.*"
+ FILES_${PN}-glx =+ "${libdir}/libva-glx.*"
+diff --git a/common/recipes-multimedia/libva/libva_1.0.12.bb b/common/recipes-multimedia/libva/libva_1.0.12.bb
+new file mode 100644
+index 0000000..490e60f
+--- /dev/null
++++ b/common/recipes-multimedia/libva/libva_1.0.12.bb
+@@ -0,0 +1,8 @@
++require libva.inc
++
++PR = "${INC_PR}.0"
++
++SRC_URI = "http://cgit.freedesktop.org/libva/snapshot/libva-${PV}.tar.bz2"
++
++SRC_URI[md5sum] = "84408a0746a63b8cf308dc7b9f2451cf"
++SRC_URI[sha256sum] = "e80aae68fc78d237d046be6525d333f072fd57fe4f4d8f981e869703ebfee8f5"
+-- 
+1.7.0.4
 
 
