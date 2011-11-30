@@ -1,21 +1,20 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDC9BE00736
-	for <yocto@yoctoproject.org>; Tue, 29 Nov 2011 16:56:26 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pAU0uPMP029378
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 29 Nov 2011 16:56:25 -0800 (PST)
-Received: from [128.224.21.117] (128.224.21.117) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 29 Nov 2011 16:56:25 -0800
-Message-ID: <4ED57F36.2050109@windriver.com>
-Date: Tue, 29 Nov 2011 19:56:22 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.23) Gecko/20110922 Thunderbird/3.1.15
+Return-Path: <darren.hart@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC961E00307
+	for <yocto@yoctoproject.org>; Tue, 29 Nov 2011 17:15:02 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 29 Nov 2011 17:15:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.69,595,1315206000"; d="scan'208";a="80444610"
+Received: from unknown (HELO envy.home) ([10.255.15.150])
+	by azsmga001.ch.intel.com with ESMTP; 29 Nov 2011 17:15:00 -0800
+Message-ID: <4ED58399.2030609@intel.com>
+Date: Tue, 29 Nov 2011 17:15:05 -0800
+From: Darren Hart <darren.hart@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
 References: <4ED550FD.7090105@linux.intel.com> <4ED5673D.4070304@windriver.com>
 	<4ED57BD2.8010009@linux.intel.com>
 In-Reply-To: <4ED57BD2.8010009@linux.intel.com>
@@ -32,13 +31,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Nov 2011 00:56:27 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Wed, 30 Nov 2011 01:15:03 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 11-11-29 07:41 PM, Darren Hart wrote:
->
->
+On 11/29/2011 04:41 PM, Darren Hart wrote:
+> 
+> 
 > On 11/29/2011 03:14 PM, Bruce Ashfield wrote:
 >> On 11-11-29 04:39 PM, Darren Hart wrote:
 >>> I'm experimenting with Matt Fleming's EFI_STUB patches. The first 10 patches were working fine, but when I try to add the 11th, the do_patch fails. I found that it isn't trying to apply the patches in the order listed in the recipe - no in any other recognizable pattern for that matter.
@@ -53,9 +52,44 @@ On 11-11-29 07:41 PM, Darren Hart wrote:
 >> You are using the compatibility mode for more than I originally intended
 >> it for. So just dropping a .scc file into place will fix things
 >> up nicely.
->
+> 
 > OK, I like that better than the monolith patch I plugged the leak with :-)
->
+
+So I'm trying this:
+
+$ cat linux-yocto-dvhart/efi-stub.scc
+patch 0001-x86-Add-missing-bzImage-fields-to-struct-setup_heade.patch
+patch 0002-x86-efi-Make-efi_call_phys_prelog-CONFIG_RELOCATABLE.patch
+patch 0003-x86-Don-t-use-magic-strings-for-EFI-loader-signature.patch
+patch 0004-efi.h-Add-struct-definition-for-boot-time-services.patch
+patch 0005-efi.h-Add-efi_image_loaded_t.patch
+patch 0006-efi.h-Add-allocation-types-for-boottime-allocate_pag.patch
+patch 0007-efi.h-Add-graphics-protocol-guids.patch
+patch 0008-efi.h-Add-boottime-locate_handle-search-types.patch
+patch 0009-efi-Add-EFI-file-I-O-data-types.patch
+patch 0010-x86-efi-EFI-boot-stub-support.patch
+patch 0011-x86-efi-Break-up-large-initrd-reads.patch
+
+And in the recipe:
+SRC_URI += "file://efi-stub.scc"
+
+In the meta-series I see:
+
+# _mark efi_stub_947530aea4d2a819b340fe2b49d765de start
+# _mark efi_stub_947530aea4d2a819b340fe2b49d765de end
+
+But the patches do not get applied.
+
+The Yocto Kernel Architecture and Use Manual does not appear to cover
+this case. Do I need to do something more?
+
+Thanks,
+
+Darren
+
+
+
+> 
 > I understand I am using the compatibility mode more than the original
 > intent - and in part I'm doing this on purpose. The "recipe-space"
 > iterative development model is going to be the most familiar to OE
@@ -63,23 +97,12 @@ On 11-11-29 07:41 PM, Darren Hart wrote:
 > ensure it works well. Once I'm done here, I fully intend to push it into
 > a proper in-tree scc file - but for now, it makes the most sense in
 > recipe-space while we tweak it and the patches are under heavy development.
-
-Agreed. There's nothing wrong with this model, and you are just doing
-something that I hadn't tried until now. The fixes were simple, so I
-definitely wouldn't leave this broken. As I said in my other email, I'm
-just now looking at how to integrate this nicely and not duplicate SRC_URI
-parsing code.
-
-Cheers,
-
-Bruce
-
->
+> 
 > Thanks Bruce!
->
+> 
 > --
 > Darren
->
+> 
 >>
 >> Bruce
 >>
@@ -87,17 +110,17 @@ Bruce
 >>>
 >>> # Add the efi-stub
 >>> SRC_URI += "file://0001-x86-Add-missing-bzImage-fields-to-struct-setup_heade.patch \
->>>               file://0002-x86-efi-Make-efi_call_phys_prelog-CONFIG_RELOCATABLE.patch \
->>>               file://0003-x86-Don-t-use-magic-strings-for-EFI-loader-signature.patch \
->>>               file://0004-efi.h-Add-struct-definition-for-boot-time-services.patch \
->>>               file://0005-efi.h-Add-efi_image_loaded_t.patch \
->>>               file://0006-efi.h-Add-allocation-types-for-boottime-allocate_pag.patch \
->>>               file://0007-efi.h-Add-graphics-protocol-guids.patch \
->>>               file://0008-efi.h-Add-boottime-locate_handle-search-types.patch \
->>>               file://0009-efi-Add-EFI-file-I-O-data-types.patch \
->>>               file://0010-x86-efi-EFI-boot-stub-support.patch \
+>>>              file://0002-x86-efi-Make-efi_call_phys_prelog-CONFIG_RELOCATABLE.patch \
+>>>              file://0003-x86-Don-t-use-magic-strings-for-EFI-loader-signature.patch \
+>>>              file://0004-efi.h-Add-struct-definition-for-boot-time-services.patch \
+>>>              file://0005-efi.h-Add-efi_image_loaded_t.patch \
+>>>              file://0006-efi.h-Add-allocation-types-for-boottime-allocate_pag.patch \
+>>>              file://0007-efi.h-Add-graphics-protocol-guids.patch \
+>>>              file://0008-efi.h-Add-boottime-locate_handle-search-types.patch \
+>>>              file://0009-efi-Add-EFI-file-I-O-data-types.patch \
+>>>              file://0010-x86-efi-EFI-boot-stub-support.patch \
 >>> 	    file://0011-x86-efi-Break-up-large-initrd-reads.patch \
->>>               "
+>>>              "
 >>>
 >>> do_patch fails with:
 >>> Log data follows:
@@ -134,6 +157,11 @@ Bruce
 >>>
 >>>
 >>
->
+> 
 
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
