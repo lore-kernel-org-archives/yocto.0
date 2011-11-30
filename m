@@ -1,34 +1,21 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7957EE00307
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2011 03:46:48 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.2.77] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1RVicg-0001aY-Gi; Wed, 30 Nov 2011 06:46:46 -0500
-Date: Wed, 30 Nov 2011 06:46:36 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-In-Reply-To: <1592821.2ngvXcyh81@helios>
-Message-ID: <alpine.DEB.2.02.1111300644120.18752@oneiric>
-References: <alpine.DEB.2.02.1111291759160.17235@oneiric>
-	<1592821.2ngvXcyh81@helios>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: how to cleanly exit a QEMU session?
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C429BE0030A
+	for <yocto@yoctoproject.org>; Wed, 30 Nov 2011 08:38:57 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 30 Nov 2011 08:38:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="81648583"
+Received: from unknown (HELO localhost) ([10.255.12.29])
+	by orsmga002.jf.intel.com with ESMTP; 30 Nov 2011 08:38:56 -0800
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org
+Date: Wed, 30 Nov 2011 10:38:53 -0600
+Message-Id: <7da6b2be458f0c479334d3bf87b2c76b57563a54.1322670614.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <cover.1322670614.git.tom.zanussi@intel.com>
+References: <cover.1322670614.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/6] libva: new recipe for video acceleration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,33 +27,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Nov 2011 11:46:49 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 30 Nov 2011 16:38:57 -0000
 
-On Wed, 30 Nov 2011, Paul Eggleton wrote:
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-> On Tuesday 29 November 2011 18:00:31 Robert P. J. Day wrote:
-> >   i'm sure it's in one of the docs i missed, but how does one cleanly
-> > shut down a QEMU session and get back to the original terminal
-> > session?  i've tried shutdown and poweroff but neither of those gives
-> > me my shell prompt back.
->
-> Which machine are you running within the emulator? I know some emulated
-> machines don't seem to support actually powering off - does reboot work?
+This adds the libva_1.0.10 recipe based on the poky-contrib recipe
+by Yu Ke (commit msg copied below).
 
-  qemuppc, core-image-minimal.  interestingly, "poweroff" doesn't
-completely close the QEMU session, but "reboot" does.  it might be
-worth adding that to the quick start guide.
+The original recipe was in meta/recipes-graphics; this patch moves it
+to meta-intel/recipes-multimedia since it's multimedia- and
+Intel-specific.
 
-rday
+The original commit messages (indented):
 
+    libva: add new recpies libva
+
+    libva is a library implementation of "Video Acceleration (VA) API for Linux".
+    libva enables and provides access to graphics hardware (GPU) acceleration for
+    video processing on Linux and UNIX, includes video decoding, video encoding,
+    subpicture blending and rendering.
+
+    This patch add the libva recipes.
+
+    Signed-off-by: Yu Ke <ke.yu@intel.com>
+
+    libva: install some missing .so files
+
+    Signed-off-by: Dexuan Cui <dexuan.cui@intel.com>
+
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ common/recipes-multimedia/libva/libva_1.0.10.bb |   38 +++++++++++++++++++++++
+ 1 files changed, 38 insertions(+), 0 deletions(-)
+ create mode 100644 common/recipes-multimedia/libva/libva_1.0.10.bb
+
+diff --git a/common/recipes-multimedia/libva/libva_1.0.10.bb b/common/recipes-multimedia/libva/libva_1.0.10.bb
+new file mode 100644
+index 0000000..0cd0444
+--- /dev/null
++++ b/common/recipes-multimedia/libva/libva_1.0.10.bb
+@@ -0,0 +1,38 @@
++SUMMARY = "Video Acceleration (VA) API for Linux"
++DESCRIPTION = "Video Acceleration API (VA API) is a library (libVA) \
++and API specification which enables and provides access to graphics \
++hardware (GPU) acceleration for video processing on Linux and UNIX \
++based operating systems. Accelerated processing includes video \
++decoding, video encoding, subpicture blending and rendering. The \
++specification was originally designed by Intel for its GMA (Graphics \
++Media Accelerator) series of GPU hardware, the API is however not \
++limited to GPUs or Intel specific hardware, as other hardware and \
++manufacturers can also freely use this API for hardware accelerated \
++video decoding."
++
++HOMEPAGE = "http://www.freedesktop.org/wiki/Software/vaapi"
++BUGTRACKER = "https://bugs.freedesktop.org"
++
++SECTION = "x11"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://COPYING;md5=2e48940f94acb0af582e5ef03537800f"
++
++PR = "r1"
++
++DEPENDS = "libxext libxfixes libdrm"
++
++SRC_URI = "http://cgit.freedesktop.org/libva/snapshot/libva-${PV}.tar.bz2"
++
++SRC_URI[md5sum] = "959de03d47654adab855e10bff614df3"
++SRC_URI[sha256sum] = "05f757f0043dce9f753d354d15e0cb772b1240cc9d29d26bbb5526285a203693"
++
++inherit autotools pkgconfig
++
++LEAD_SONAME = "libva.so"
++
++PACKAGES =+ "${PN}-x11 ${PN}-tpi ${PN}-glx ${PN}-egl"
++RDEPENDS_${PN} =+ "${PN}-x11 ${PN}-tpi ${PN}-glx ${PN}-egl"
++FILES_${PN}-x11 =+ "${libdir}/libva-x11.*"
++FILES_${PN}-tpi =+ "${libdir}/libva-tpi.*"
++FILES_${PN}-glx =+ "${libdir}/libva-glx.*"
++FILES_${PN}-egl =+ "${libdir}/libva-egl.*"
 -- 
+1.7.0.4
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
