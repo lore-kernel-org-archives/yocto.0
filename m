@@ -1,28 +1,19 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 376B7E0030A
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2011 18:16:49 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 30 Nov 2011 18:16:48 -0800
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2880E0059F
+	for <yocto@yoctoproject.org>; Thu,  1 Dec 2011 10:05:45 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 01 Dec 2011 10:05:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,275,1320652800"; d="scan'208";a="97253293"
-Received: from unknown (HELO [10.255.15.172]) ([10.255.15.172])
-	by fmsmga002.fm.intel.com with ESMTP; 30 Nov 2011 18:16:48 -0800
-Message-ID: <4ED6E390.5020705@linux.intel.com>
-Date: Wed, 30 Nov 2011 18:16:48 -0800
-From: Joshua Lock <josh@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
-MIME-Version: 1.0
-To: Wolfgang Denk <wd@denx.de>
-References: <alpine.DEB.2.02.1111291759160.17235@oneiric>
-	<1592821.2ngvXcyh81@helios>
-	<alpine.DEB.2.02.1111300644120.18752@oneiric>
-	<4ED6AED5.8070308@linux.intel.com>
-	<20111130224717.709871828FD3@gemini.denx.de>
-In-Reply-To: <20111130224717.709871828FD3@gemini.denx.de>
-Cc: yocto@yoctoproject.org
-Subject: Re: how to cleanly exit a QEMU session?
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="81842203"
+Received: from unknown (HELO localhost) ([10.255.12.29])
+	by orsmga001.jf.intel.com with ESMTP; 01 Dec 2011 10:05:44 -0800
+From: tom.zanussi@intel.com
+To: dvhart@linux.intel.com, kishore.k.bodke@intel.com, yocto@yoctoproject.org
+Date: Thu,  1 Dec 2011 12:05:48 -0600
+Message-Id: <cover.1322762434.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/4] meta-intel: remove obsolete .bbappends and update READMEs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,35 +25,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Dec 2011 02:16:49 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 01 Dec 2011 18:05:46 -0000
 
+From: Tom Zanussi <tom.zanussi@intel.com>
 
+This patchset fixes some dangling .bbappend problems caused by an oe-core update
+in the middle of the night, and adds some usability to READMES.
 
-On 30/11/11 14:47, Wolfgang Denk wrote:
-> Dear Joshua Lock,
-> 
-> In message <4ED6AED5.8070308@linux.intel.com> you wrote:
->>
->> What do people think to the idea of putting something into the image for
->> those two specific machines which aliases poweroff to reboot?
-> 
-> I consider it a really bad idea, as "poweroff" is actually a very
-> different action than "reboot" - the former should shut down and halt
-> the system, while the latter should actually restart it.
+The following changes since commit f5b0682e5add5def4b59cdfa9daf52bfb1a96338:
+  Richard Purdie (1):
+        meta-jaspterforest: Sync with xserver-xorg version update
 
-I understand the difference and I'm not proposing we set that for all
-machines, however we already explicitly prevent all qemu machines booted
-via our scripts from restarting - so I think in this case the alias
-makes sense.
+are available in the git repository at:
 
-Having said that it was just a suggestion, I'll not lose sleep if folks
-don't like the idea.
+  git://git.yoctoproject.org/meta-intel.git tzanussi/upstream-bbappend-borkage-fixups
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/upstream-bbappend-borkage-fixups
 
-Joshua
--- 
-Joshua Lock
-        Yocto Project "Johannes factotum"
-        Intel Open Source Technology Centre
+Tom Zanussi (4):
+  meta-jasperforest: Remove xserver-xorg .bbappend.
+  meta-intel: add Patches section to BSP READMEs
+  meta-intel: point the top-level README to the BSP READMEs
+  meta-romley: Remove xserver-xorg .bbappend.
+
+ README                                             |    5 ++++-
+ meta-crownbay/README                               |   11 +++++++++++
+ meta-emenlow/README                                |   11 +++++++++++
+ meta-fishriver/README                              |   11 +++++++++++
+ meta-fri2/README                                   |   11 +++++++++++
+ meta-jasperforest/README                           |   11 +++++++++++
+ .../xorg-xserver/xserver-xorg_1.11.2.bbappend      |    1 -
+ meta-n450/ReleaseNotes                             |   11 +++++++++++
+ meta-romley/README                                 |   11 +++++++++++
+ .../xorg-xserver/xserver-xorg_1.11.1.bbappend      |    1 -
+ meta-sugarbay/README                               |   11 +++++++++++
+ 11 files changed, 92 insertions(+), 3 deletions(-)
+ delete mode 100644 meta-jasperforest/recipes-graphics/xorg-xserver/xserver-xorg_1.11.2.bbappend
+ delete mode 100644 meta-romley/recipes-graphics/xorg-xserver/xserver-xorg_1.11.1.bbappend
+
 
