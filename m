@@ -1,24 +1,28 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3696E00738
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2011 18:01:35 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 30 Nov 2011 18:01:35 -0800
+Return-Path: <josh@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 376B7E0030A
+	for <yocto@yoctoproject.org>; Wed, 30 Nov 2011 18:16:49 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 30 Nov 2011 18:16:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="81561876"
-Received: from unknown (HELO localhost) ([10.255.12.29])
-	by orsmga001.jf.intel.com with ESMTP; 30 Nov 2011 18:01:34 -0800
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org,
-	bruce.ashfield@windriver.com
-Date: Wed, 30 Nov 2011 20:01:25 -0600
-Message-Id: <ebf7d8aaabaa2270afa9936b7a70e7df9640a194.1322704583.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <8ae139fe7a08de13a8b0fd572c3a6efabf3afba2.1322704583.git.tom.zanussi@intel.com>
-References: <8ae139fe7a08de13a8b0fd572c3a6efabf3afba2.1322704583.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1322704583.git.tom.zanussi@intel.com>
-References: <cover.1322704583.git.tom.zanussi@intel.com>
-Subject: [PATCH 6/6] meta-n450: remove 2.6.34 .bbappend
+X-IronPort-AV: E=Sophos;i="4.71,275,1320652800"; d="scan'208";a="97253293"
+Received: from unknown (HELO [10.255.15.172]) ([10.255.15.172])
+	by fmsmga002.fm.intel.com with ESMTP; 30 Nov 2011 18:16:48 -0800
+Message-ID: <4ED6E390.5020705@linux.intel.com>
+Date: Wed, 30 Nov 2011 18:16:48 -0800
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:8.0) Gecko/20111115 Thunderbird/8.0
+MIME-Version: 1.0
+To: Wolfgang Denk <wd@denx.de>
+References: <alpine.DEB.2.02.1111291759160.17235@oneiric>
+	<1592821.2ngvXcyh81@helios>
+	<alpine.DEB.2.02.1111300644120.18752@oneiric>
+	<4ED6AED5.8070308@linux.intel.com>
+	<20111130224717.709871828FD3@gemini.denx.de>
+In-Reply-To: <20111130224717.709871828FD3@gemini.denx.de>
+Cc: yocto@yoctoproject.org
+Subject: Re: how to cleanly exit a QEMU session?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,36 +34,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Dec 2011 02:01:35 -0000
+X-List-Received-Date: Thu, 01 Dec 2011 02:16:49 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
 
-The linux-2.6.34 recipe was removed, so the .append needs to be
-removed as well.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- .../linux/linux-yocto_2.6.34.bbappend              |   10 ----------
- 1 files changed, 0 insertions(+), 10 deletions(-)
- delete mode 100644 meta-n450/recipes-kernel/linux/linux-yocto_2.6.34.bbappend
+On 30/11/11 14:47, Wolfgang Denk wrote:
+> Dear Joshua Lock,
+> 
+> In message <4ED6AED5.8070308@linux.intel.com> you wrote:
+>>
+>> What do people think to the idea of putting something into the image for
+>> those two specific machines which aliases poweroff to reboot?
+> 
+> I consider it a really bad idea, as "poweroff" is actually a very
+> different action than "reboot" - the former should shut down and halt
+> the system, while the latter should actually restart it.
 
-diff --git a/meta-n450/recipes-kernel/linux/linux-yocto_2.6.34.bbappend b/meta-n450/recipes-kernel/linux/linux-yocto_2.6.34.bbappend
-deleted file mode 100644
-index 18d4999..0000000
---- a/meta-n450/recipes-kernel/linux/linux-yocto_2.6.34.bbappend
-+++ /dev/null
-@@ -1,10 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--KMACHINE_n450 = "atom-pc"
--COMPATIBLE_MACHINE_n450 = "n450"
--
--# The n450 is a single core hypterthreaded CPU
--KERNEL_FEATURES_append_n450 += " cfg/smp.scc"
--
--# We use the atom-pc machine SRCREV and the default meta SRCREV
--#SRCREV_machine_pn-linux-yocto-stable_n450 = ""
--#SRCREV_meta_pn-linux-yocto-stable_n450 ?= ""
+I understand the difference and I'm not proposing we set that for all
+machines, however we already explicitly prevent all qemu machines booted
+via our scripts from restarting - so I think in this case the alias
+makes sense.
+
+Having said that it was just a suggestion, I'll not lose sleep if folks
+don't like the idea.
+
+Joshua
 -- 
-1.7.0.4
-
+Joshua Lock
+        Yocto Project "Johannes factotum"
+        Intel Open Source Technology Centre
 
