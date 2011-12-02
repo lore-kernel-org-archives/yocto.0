@@ -1,26 +1,19 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C5D8E005B9
-	for <yocto@yoctoproject.org>; Thu,  1 Dec 2011 19:48:35 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 01 Dec 2011 19:48:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,281,1320652800"; d="scan'208";a="43154242"
-Received: from unknown (HELO [10.255.15.144]) ([10.255.15.144])
-	by AZSMGA002.ch.intel.com with ESMTP; 01 Dec 2011 19:48:34 -0800
-Message-ID: <4ED84A92.5020403@linux.intel.com>
-Date: Thu, 01 Dec 2011 19:48:34 -0800
-From: Joshua Lock <josh@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
-MIME-Version: 1.0
-To: David Smoot <davidsmoot@gmail.com>
-References: <CA+5N1gw_Tn0uPj_-YHpj4_3bRm+nFJiemNkp=VjOiHT6_V_bfA@mail.gmail.com>
-	<4ED84560.2040807@linux.intel.com>
-	<CA+5N1gz25ntd_yMwpdQ6V6CAB2JoGkMjNxc6ZFQj-z4hcdWUAQ@mail.gmail.com>
-In-Reply-To: <CA+5N1gz25ntd_yMwpdQ6V6CAB2JoGkMjNxc6ZFQj-z4hcdWUAQ@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: building the examples from "meta-demo"
+Return-Path: <Michael_E_Brown@dell.com>
+Received: from ausxipps301.us.dell.com (ausxipps301.us.dell.com
+	[143.166.148.223])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A64C4E0054C
+	for <yocto@yoctoproject.org>; Fri,  2 Dec 2011 08:08:50 -0800 (PST)
+X-Loopcount0: from 10.9.160.253
+From: Michael E Brown <Michael_E_Brown@dell.com>
+To: Marc Ferland <marc.ferland@gmail.com>
+Date: Fri, 02 Dec 2011 10:08:51 -0600
+In-Reply-To: <CAMRMzCCzyoJp3JBk94hxmH8tpaAuACCedZnhYPWC6+7=nDqAOw@mail.gmail.com>
+References: <CAMRMzCCzyoJp3JBk94hxmH8tpaAuACCedZnhYPWC6+7=nDqAOw@mail.gmail.com>
+X-Mailer: Evolution 3.0.3 (3.0.3-1.fc15) 
+Message-ID: <1322842131.2418.21.camel@duo>
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Adding line to ld.so.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,32 +25,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Dec 2011 03:48:35 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 02 Dec 2011 16:08:51 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 01/12/11 19:36, David Smoot wrote:
-> Thank you.  Nice job... you managed to anticipate and answer my
-> question before I asked it.
+On Mon, 2011-11-21 at 09:35 -0600, Marc Ferland wrote:
+> Hi,
 > 
-> Maybe I'll tackle updating the demo but I have a lot to learn.
+> What's the proper way to add a line to the ld.so.conf file for a new
+> library I am adding?
 
-That'd be great! I've just pushed a few changes to make the layer
-actually parse.
+Does yocto support /etc/ld.so.conf.d/ (like every other distro out there
+from the past 7 years or so?)
 
-On top of that you'll need to accept that there is software in the layer
-which may have commercial licensing implications. If you accept this you
-can add the following to your build/conf/local.conf:
+You could just drop a file into that directory with the lines you want
+rather than editing the global file.
+--
+Michael
 
-COMMERCIAL_LICENSE = ""
-
-With the latest git and that change set you should at least be able to
-get started with demo-image-mediatomb.
-
-Cheers,
-Joshua
--- 
-Joshua Lock
-        Yocto Project "Johannes factotum"
-        Intel Open Source Technology Centre
 
