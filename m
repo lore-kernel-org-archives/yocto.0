@@ -1,26 +1,19 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECBEBE0054C
-	for <yocto@yoctoproject.org>; Fri,  2 Dec 2011 08:27:39 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pB2GRbBo006184
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Fri, 2 Dec 2011 08:27:37 -0800 (PST)
-Received: from Macintosh-5.local (172.25.36.232) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 2 Dec 2011 08:27:35 -0800
-Message-ID: <4ED8FC77.3040404@windriver.com>
-Date: Fri, 2 Dec 2011 10:27:35 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:8.0) Gecko/20111105 Thunderbird/8.0
-MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CAMRMzCCzyoJp3JBk94hxmH8tpaAuACCedZnhYPWC6+7=nDqAOw@mail.gmail.com>
-	<1322842131.2418.21.camel@duo>
-In-Reply-To: <1322842131.2418.21.camel@duo>
-Subject: Re: Adding line to ld.so.conf
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08B5BE0054C
+	for <yocto@yoctoproject.org>; Fri,  2 Dec 2011 15:54:37 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 02 Dec 2011 15:54:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="82812397"
+Received: from unknown (HELO localhost) ([10.255.12.29])
+	by orsmga002.jf.intel.com with ESMTP; 02 Dec 2011 15:54:37 -0800
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org
+Date: Fri,  2 Dec 2011 17:54:45 -0600
+Message-Id: <cover.1322867339.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/1] meta-intel: fix gst-meta-base problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,42 +25,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Dec 2011 16:27:40 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 02 Dec 2011 23:54:38 -0000
 
-On 12/2/11 10:08 AM, Michael E Brown wrote:
-> On Mon, 2011-11-21 at 09:35 -0600, Marc Ferland wrote:
->> Hi,
->>
->> What's the proper way to add a line to the ld.so.conf file for a new
->> library I am adding?
->
-> Does yocto support /etc/ld.so.conf.d/ (like every other distro out there
-> from the past 7 years or so?)
->
-> You could just drop a file into that directory with the lines you want
-> rather than editing the global file.
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-This is accomplished by having the following line in the /etc/ld.so.conf file.
+This reverts a build problem introduced by the gst-meta-base append
+that added the gstreamer components for testing.
 
-include ld.so.conf.d/*.conf
+The following changes since commit c882e7c2c6e6035471c8839ef4624b57720236d1:
+  Tom Zanussi (1):
+        meta-intel: add libva to EGMD xserver
 
-However, this then still requires the file to exist on the target filesystem. 
-I've got many systems where ld.so.conf simply doesn't exist, nor do I want it to.
+are available in the git repository at:
 
-See my previous reply on a better was to resolve the issue using rpath and/or 
-proper soname handling inside of the libraries.
+  git://git.yoctoproject.org/meta-intel.git master
+  http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/gst-meta-base-revert
 
---Mark
+Tom Zanussi (1):
+  Revert "meta-intel: add gst-meta-base .bbappend"
 
-
-> --
-> Michael
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+ .../gstreamer/gst-meta-base_0.10.bbappend          |    9 ---------
+ 1 files changed, 0 insertions(+), 9 deletions(-)
+ delete mode 100644 common/recipes-multimedia/gstreamer/gst-meta-base_0.10.bbappend
 
 
