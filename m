@@ -1,23 +1,30 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F945E006B5
-	for <yocto@yoctoproject.org>; Thu,  1 Dec 2011 19:42:11 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 01 Dec 2011 19:42:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,281,1320652800"; d="scan'208";a="97741081"
-Received: from unknown (HELO [10.255.15.144]) ([10.255.15.144])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Dec 2011 19:42:10 -0800
-Message-ID: <4ED84912.2000906@linux.intel.com>
-Date: Thu, 01 Dec 2011 19:42:10 -0800
-From: Joshua Lock <josh@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
+Return-Path: <davidsmoot@gmail.com>
+Received: from mail-bw0-f48.google.com (mail-bw0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82426E006B5
+	for <yocto@yoctoproject.org>; Thu,  1 Dec 2011 19:43:29 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by bkbzs8 with SMTP id zs8so2672016bkb.35
+	for <yocto@yoctoproject.org>; Thu, 01 Dec 2011 19:43:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=8of8/AcCm9QvSuJXRkf76ABOgWVDGfgJkRvUWoiolIw=;
+	b=i5HYq8sW1EyOefh2TekbNkCgX+QoNUPUck/pd8qUPkECsaKzt3IfzUkGjueHFB3aZ/
+	/mjGWUBquCvKADdegMQjcGVRTXUcXsiXHcRUZSRyLmRLu8xklBG2/rMVtoqnmvvIOaa/
+	6YvMELefgiPMv79UHfNzuSWFYoli31apt1D4I=
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
+Received: by 10.180.80.98 with SMTP id q2mr6977944wix.53.1322797408223; Thu,
+	01 Dec 2011 19:43:28 -0800 (PST)
+Received: by 10.216.154.81 with HTTP; Thu, 1 Dec 2011 19:43:28 -0800 (PST)
+In-Reply-To: <CA+5N1gzpSU1vj5HkUUPisj9_wWUrmg_ReunPmmxj_ER8AgvoJQ@mail.gmail.com>
 References: <CA+5N1gw_Tn0uPj_-YHpj4_3bRm+nFJiemNkp=VjOiHT6_V_bfA@mail.gmail.com>
 	<CA+5N1gzpSU1vj5HkUUPisj9_wWUrmg_ReunPmmxj_ER8AgvoJQ@mail.gmail.com>
-In-Reply-To: <CA+5N1gzpSU1vj5HkUUPisj9_wWUrmg_ReunPmmxj_ER8AgvoJQ@mail.gmail.com>
+Date: Thu, 1 Dec 2011 21:43:28 -0600
+Message-ID: <CA+5N1gzC-aYBxauCOQbGiNNZu84X11Ds8gbdes+SMHoe9jK+6g@mail.gmail.com>
+From: David Smoot <davidsmoot@gmail.com>
+To: yocto@yoctoproject.org
 Subject: Re: building the examples from "meta-demo"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -30,52 +37,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Dec 2011 03:42:11 -0000
+X-List-Received-Date: Fri, 02 Dec 2011 03:43:30 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-On 01/12/11 19:30, David Smoot wrote:
+On Thu, Dec 1, 2011 at 9:30 PM, David Smoot <davidsmoot@gmail.com> wrote:
 > On Thu, Dec 1, 2011 at 8:18 PM, David Smoot <davidsmoot@gmail.com> wrote:
 > <snip background>
->>
->> Obviously I have missed a step to tell poky how to find that image but
->> so far I have not been able to google the answer to my mistake.
->>
+
 >> Thanks in advance for any answers and thanks for such a cool tool.
 >>
 >> David Smoot
-> 
-> I think I solved my original question but ran into another problem:
-> 
-> In my build directory, I edited conf/bblayer.conf to add the path to
-> the "meta-demo" folder to the BBLAYERS variable.
-> 
-> That got me further but it appears now that the meta-demo recipes
-> reference things I do not have in my poky tree.  I am guessing that
-> the demo was coded for the yocto 1.0 release and is broken by the
-> yocto 1.1 structure.
-> 
-> I got an error "ERROR: Could not include required file
-> recipes-core/images/core-image-live.inc".  I did not need a live image
-> for what I was working on so I simply removed the -live recipes and
-> that got me past that error but to a new error:
-> ERROR: No recipes available for:
-> /opt/yocto/poky/meta-demo/recipes-kernel/linux/linux-wrs_git.bbappend
-> /opt/yocto/poky/meta-demo/recipes-kernel/linux/linux-yocto_git.bbappend"
-> 
-> So two questions:
-> Is my assumption about 1.0 vs 1.1 appear to be correct or is there
-> another source of error (I am very new at Yocto)?
+>
+> <snip second round of questions>
+>
+> thanks again,
+> David
 
-This is correct.
+Josh answered my question before I hit send.  Thank you.  I'll look
+into updating / adapting the meta-demo layer as I learn more.
 
-> Has anyone ported the upnp demo apps to 1.1 yet?
+I've only been experimenting with Yocto for a few days, the
+documentation is very good for such a powerful tool.
 
-Not that I'm aware of, it is on my to do list though.
-
-Joshua
--- 
-Joshua Lock
-        Yocto Project "Johannes factotum"
-        Intel Open Source Technology Centre
+David
 
