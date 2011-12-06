@@ -1,52 +1,26 @@
-Return-Path: <B29882@freescale.com>
-Received: from TX2EHSOBE003.bigfish.com (tx2ehsobe002.messaging.microsoft.com
-	[65.55.88.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4D72E00307
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2011 08:01:44 -0800 (PST)
-Received: from mail151-tx2-R.bigfish.com (10.9.14.239) by
-	TX2EHSOBE003.bigfish.com (10.9.40.23) with Microsoft SMTP Server id
-	14.1.225.23; Tue, 6 Dec 2011 16:01:43 +0000
-Received: from mail151-tx2 (localhost [127.0.0.1])	by
-	mail151-tx2-R.bigfish.com (Postfix) with ESMTP id 02FAF6003D6;
-	Tue,  6 Dec 2011 16:01:43 +0000 (UTC)
-X-SpamScore: -19
-X-BigFish: VS-19(zz9371K1432N98dK14ffOzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3h61h)
-X-Spam-TCS-SCL: 0:0
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail151-tx2 (localhost.localdomain [127.0.0.1]) by mail151-tx2
-	(MessageSwitch) id 1323187182222530_21678;
-	Tue,  6 Dec 2011 15:59:42 +0000 (UTC)
-Received: from TX2EHSMHS038.bigfish.com (unknown [10.9.14.235])	by
-	mail151-tx2.bigfish.com (Postfix) with ESMTP id E0D0D400042;
-	Tue,  6 Dec 2011 15:59:41 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS038.bigfish.com
-	(10.9.99.138) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Tue, 6 Dec 2011 15:59:41 +0000
-Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.83]) by
-	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
-	14.01.0339.002; Tue, 6 Dec 2011 09:59:40 -0600
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] Sanity tested distributions list
-Thread-Index: AQHMtDAPtBql9ggqGkKAisss96BpDg==
-Date: Tue, 6 Dec 2011 15:59:39 +0000
-Message-ID: <CAEsOVNdiJT7MfCBYgaimSd2jcQpJxfmgcYihvV_BDfhy6ZrshQ@mail.gmail.com>
-References: <1408073.zz37vY4uZy@helios>
-In-Reply-To: <1408073.zz37vY4uZy@helios>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
+Return-Path: <sgw@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2949E00307
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2011 08:44:15 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 06 Dec 2011 08:44:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="84073516"
+Received: from unknown (HELO [10.255.12.199]) ([10.255.12.199])
+	by orsmga002.jf.intel.com with ESMTP; 06 Dec 2011 08:44:14 -0800
+Message-ID: <4EDE465E.4000800@linux.intel.com>
+Date: Tue, 06 Dec 2011 08:44:14 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"saul.wold@intel.com" <saul.wold@intel.com>
-Subject: Re: Sanity tested distributions list
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+Subject: Minutes: Yocto Technical Team Meeting - Tuesday, December 06, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -55,31 +29,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2011 16:01:45 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <EE208198C7BE7B4DBB0A77481189C506@freescale.net>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 06 Dec 2011 16:44:15 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 6, 2011 at 9:43 AM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> Hi all,
->
-> We had some discussions [1] [2] about this last cycle but I don't feel we
-> reached a proper conclusion on the list of tested distributions we want t=
-o set
-> (SANITY_TESTED_DISTROS) and I assume we want to support a few more distro=
-s
-> (latest versions of Fedora & Ubuntu, presumably?). I'd like to update and=
- re-
-> post the patch [3] so we can close bug #1096 [4] but for that we need to =
-agree
-> on the list.
+Attendees:
+Beth, Darren, Tom, Matthew, Scott R., Sean, Richard, Paul, Jeff, Denys,
+Bruce, Mark, Dave, Song
 
-I'm fairly comprehensively testing something close to the edison 1.1.1
-release on CentOS 5.5 and Ubuntu 10.04 LTS. We plan on adding more but
-maybe not in time for our next release.
+New Action Item List:
+* Action item Review - 5 min
+   1. Mark will review unsorted features from Wind River team and try to 
+have them scheduled (WIP)
 
--M=
+Focus of the current week:
+   M1 development and bug fixing, keep features on schedule, get patches 
+reviewed or pre-reviewed as soon as possible.
+
+Agenda:
+
+* Opens collection - 5 min (Song)
+
+
+* Opens - 10 min
+  - Tested Distro - Paul requested that people review the Tested Distro 
+list and send updates.
+
+* Yocto 1.0.2 and 1.1.1 point release update - 10 min (Josh/Beth)
+   . Had an almost complete build for 1.0.2 last week, but still have 
+some problems. Joshua is working on it. Targeting this week to have a build.
+   . Will have CCB review the overall patch strategy for 1.1.1 tomorrow.
+* Yocto 1.2 M1 Status (features development) - 10 min (Song/Beth)
+   https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status     . We 
+are in the 5th week of M1. Feature complete coming this weekend
+     . The build is green, no high bugs.
+     . Test plan for all testable features have been completed, will be 
+executed when the feature is in the build.
+     . Great progress on P1 features last week, One small P1 has 20% 
+done. all others are more than 70% complete. Most of them are more than 
+80% complete.
+     . Last week has a great surprise on bug fixing, fixed about 20 
+bugs. Richard contributed most of them
+     . Not great update on package update. Only one package update  last 
+week, Saul and Song will follow up on that.
+     . Darren 1635: this one may have to be rescheduled. Darren will see 
+  how to fit this one into the rest of his schedule.
+     . Issue: lots of features in the development stage, there could be 
+a stampede of patch review and pull request in this last development week.
+       - Consensus of the team: most of the people are working 
+diligently to keep the features on schedule and also get patches 
+pre-reviewed. We should allow more time for this to work.
+       - We should publish the current process we are using so that the 
+community can understand it better.
+
+* Action item Review - 5 min
+   1. Mark will review unsorted features from Wind River team and try to 
+have them scheduled (WIP)
+
+* Weekly team sharing (20 min)
+  Dave: Manager and
+  Mark: Internal WR stuff, Bitbake runtask work - mechanism to call into 
+bitbake, prelinker maybe ARM-eabi prevents linkage
+  Bruce: Traveling, M2 dev on schedule dev kernel 3.2rc4, Tracking 
+Stable 3.0rt, Main RT at 3.2, kernel updating and BSP refreshes 1.2 will 
+be at least 3.2
+  Denys: Nothing
+  Jeff: Nothing
+  Paul: Finished BuildHistory - enable on AB?, QT 4.8.0 release, 
+bugfixing no blockers
+  Richard: Patch pulling, slowed down by HW issue, moving forward to 
+address M1 and master updating.
+  Sean: Nothing
+  Scott R: Cleaning up Doc Bugs 1773, 1500, continuing with bugs and 
+working on Website doc pages, no blockers
+  Matthew: Nothing
+  Tom: Finished off M1 Intel video acceleration, internal bsp and support
+  Darren: EFI Support (pounding head on desk), looking into other odd 
+behavior, internal BSP work.
+  Beth: License M1 task - custom license, license manifest, license 
+cleanup, License Audit (team effort in the future), Gearing up for M1
+  Saul: Recovering from Sick, Pull wrangling, helping Joshua out with 
+1.0.2 debugging, selfhosted image work
+
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
 
