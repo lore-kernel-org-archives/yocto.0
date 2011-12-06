@@ -1,28 +1,25 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B94E3E00307
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2011 09:40:31 -0800 (PST)
-Received: from mail-qy0-f180.google.com ([209.85.216.180])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 06 Dec 2011 09:40:30 -0800
-Received: by qcse1 with SMTP id e1so2683504qcs.25
-	for <yocto@yoctoproject.org>; Tue, 06 Dec 2011 09:40:29 -0800 (PST)
+Return-Path: <sgw@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADF8AE00307
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2011 09:48:16 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 06 Dec 2011 09:48:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,306,1320652800"; d="scan'208";a="82833364"
+Received: from unknown (HELO [10.255.12.199]) ([10.255.12.199])
+	by azsmga001.ch.intel.com with ESMTP; 06 Dec 2011 09:48:15 -0800
+Message-ID: <4EDE555F.3070802@linux.intel.com>
+Date: Tue, 06 Dec 2011 09:48:15 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-Received: by 10.50.236.5 with SMTP id uq5mr15930186igc.47.1323193229522; Tue,
-	06 Dec 2011 09:40:29 -0800 (PST)
-Received: by 10.50.184.166 with HTTP; Tue, 6 Dec 2011 09:40:29 -0800 (PST)
-In-Reply-To: <3244761.NJgrNtUbj7@helios>
-References: <1408073.zz37vY4uZy@helios>
-	<CAEsOVNdiJT7MfCBYgaimSd2jcQpJxfmgcYihvV_BDfhy6ZrshQ@mail.gmail.com>
-	<CAPhnLPCC9Bq5=yE1Zyyq_H7ZrJ6DZ4tkr9ZLi_hXAXhUwKegxA@mail.gmail.com>
-	<3244761.NJgrNtUbj7@helios>
-Date: Tue, 6 Dec 2011 09:40:29 -0800
-Message-ID: <CAPhnLPCiyrmhdbSLXice9_GAjTwJE=kpt9CmZHeoF2kbOs0_hg@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"saul.wold@intel.com" <saul.wold@intel.com>
-Subject: Re: Sanity tested distributions list
+To: Saul Wold <sgw@linux.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+	<4EDE465E.4000800@linux.intel.com>
+In-Reply-To: <4EDE465E.4000800@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Minutes: Yocto Technical Team Meeting - Tuesday, December 06, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,82 +31,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2011 17:40:31 -0000
-Content-Type: multipart/alternative; boundary=14dae93404616a36f704b36fee06
+X-List-Received-Date: Tue, 06 Dec 2011 17:48:16 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---14dae93404616a36f704b36fee06
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Tue, Dec 6, 2011 at 9:09 AM, Paul Eggleton <paul.eggleton@linux.intel.com
-> wrote:
-
-> On Tuesday 06 December 2011 08:54:30 Flanagan, Elizabeth wrote:
-> > The autobuilders are on openSuSE 11.4 x86-64 at this point. We lost
-> > I'm testing on Ubuntu 10.10 (with a planned switch over on one dev
-> machine
-> > to openSuSE 12.1)
+On 12/06/2011 08:44 AM, Saul Wold wrote:
+> Attendees:
+> Beth, Darren, Tom, Matthew, Scott R., Sean, Richard, Paul, Jeff, Denys,
+> Bruce, Mark, Dave, Song
+>
+> New Action Item List:
+> * Action item Review - 5 min
+> 1. Mark will review unsorted features from Wind River team and try to
+> have them scheduled (WIP)
+>
+> Focus of the current week:
+> M1 development and bug fixing, keep features on schedule, get patches
+> reviewed or pre-reviewed as soon as possible.
+>
+> Agenda:
+>
+> * Opens collection - 5 min (Song)
 >
 >
-heh, multitasking.
-
-We've standardized the distro on the ab infrastructure, so we lost the host
-testing (for now) that the ab provided. We'll be gaining that back when I
-move the ab slaves to VMs, but for the time being, we're only host testing
-opensuse on the abs
-
-
-> Sorry, what did we lose?
+> * Opens - 10 min
+> - Tested Distro - Paul requested that people review the Tested Distro
+> list and send updates.
 >
-> Cheers,
-> Paul
+Sorry folks, I did not edit this section below correctly, hit the send 
+button too quickly.
+
+> * Yocto 1.0.2 and 1.1.1 point release update - 10 min (Josh/Beth)
+1.0.2 is on QA now, there was a problem with the x86-64 build the 
+OpenSuSE 11.4 Autobuilder machines, we tracked it down to an 
+LD_LIBRARY_PATH issue inside of binutils. Briefly, binutils builds a 
+host binary which seems to pick up some target based libraries (since on 
+an x86-64 host the target x86-64 libraries match), we are still 
+investigating why this only occurs on OpenSuSE 11.4, so this will be 
+release note item.
+
+> * Yocto 1.2 M1 Status (features development) - 10 min (Song/Beth)
+> https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status . We are in
+> the 5th week of M1. Feature complete coming this weekend
+
+Saul Completely forget to use the Status page, partly because it was not 
+updated since last week!
+
+A couple of notes
+  * The build is stable and almost green, issues are identified and 
+being worked
+  * P1 Features (Package History & Initial Self-Hosted Minimal Build) 
+are in, Some P2 work is in also.
+  * We had 46 packages updated, which should allow us to reach the 50% 
+goal for M1
+
 >
-> --
+> * Action item Review - 5 min
+> 1. Mark will review unsorted features from Wind River team and try to
+> have them scheduled (WIP)
 >
-> Paul Eggleton
-> Intel Open Source Technology Centre
+> * Weekly team sharing (20 min)
+> Dave: Manager and
+> Mark: Internal WR stuff, Bitbake runtask work - mechanism to call into
+> bitbake, prelinker maybe ARM-eabi prevents linkage
+> Bruce: Traveling, M2 dev on schedule dev kernel 3.2rc4, Tracking Stable
+> 3.0rt, Main RT at 3.2, kernel updating and BSP refreshes 1.2 will be at
+> least 3.2
+> Denys: Nothing
+> Jeff: Nothing
+> Paul: Finished BuildHistory - enable on AB?, QT 4.8.0 release, bugfixing
+> no blockers
+> Richard: Patch pulling, slowed down by HW issue, moving forward to
+> address M1 and master updating.
+> Sean: Nothing
+> Scott R: Cleaning up Doc Bugs 1773, 1500, continuing with bugs and
+> working on Website doc pages, no blockers
+> Matthew: Nothing
+> Tom: Finished off M1 Intel video acceleration, internal bsp and support
+> Darren: EFI Support (pounding head on desk), looking into other odd
+> behavior, internal BSP work.
+> Beth: License M1 task - custom license, license manifest, license
+> cleanup, License Audit (team effort in the future), Gearing up for M1
+> Saul: Recovering from Sick, Pull wrangling, helping Joshua out with
+> 1.0.2 debugging, selfhosted image work
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
-
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
-
---14dae93404616a36f704b36fee06
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<br><br><div class=3D"gmail_quote">On Tue, Dec 6, 2011 at 9:09 AM, Paul Egg=
-leton <span dir=3D"ltr">&lt;<a href=3D"mailto:paul.eggleton@linux.intel.com=
-">paul.eggleton@linux.intel.com</a>&gt;</span> wrote:<br><blockquote class=
-=3D"gmail_quote" style=3D"margin: 0pt 0pt 0pt 0.8ex; border-left: 1px solid=
- rgb(204, 204, 204); padding-left: 1ex;">
-<div class=3D"im">On Tuesday 06 December 2011 08:54:30 Flanagan, Elizabeth =
-wrote:<br>
-&gt; The autobuilders are on openSuSE 11.4 x86-64 at this point. We lost<br=
->
-&gt; I&#39;m testing on Ubuntu 10.10 (with a planned switch over on one dev=
- machine<br>
-&gt; to openSuSE 12.1)<br>
-<br></div></blockquote><div><br>heh, multitasking.<br><br>We&#39;ve standar=
-dized the distro on the ab infrastructure, so we lost the host testing (for=
- now) that the ab provided. We&#39;ll be gaining that back when I move the =
-ab slaves to VMs, but for the time being, we&#39;re only host testing opens=
-use on the abs<br>
-=A0</div><blockquote class=3D"gmail_quote" style=3D"margin: 0pt 0pt 0pt 0.8=
-ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;"><div cla=
-ss=3D"im">
-</div>Sorry, what did we lose?<br>
-<br>
-Cheers,<br>
-<font color=3D"#888888">Paul<br>
-</font><div><div></div><div class=3D"h5"><br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</div></div></blockquote></div><br><br clear=3D"all"><br>-- <br>Elizabeth F=
-lanagan<br>Yocto Project<br>Build and Release<br>
-
---14dae93404616a36f704b36fee06--
