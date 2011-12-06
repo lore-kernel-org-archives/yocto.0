@@ -1,25 +1,27 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96CC7E005B4
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2011 08:54:33 -0800 (PST)
-Received: from mail-fx0-f52.google.com ([209.85.161.52])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 06 Dec 2011 08:54:32 -0800
-Received: by faao24 with SMTP id o24so3984226faa.25
-	for <yocto@yoctoproject.org>; Tue, 06 Dec 2011 08:54:31 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.50.216.137 with SMTP id oq9mr15789455igc.40.1323190470563;
-	Tue, 06 Dec 2011 08:54:30 -0800 (PST)
-Received: by 10.50.184.166 with HTTP; Tue, 6 Dec 2011 08:54:30 -0800 (PST)
-In-Reply-To: <CAEsOVNdiJT7MfCBYgaimSd2jcQpJxfmgcYihvV_BDfhy6ZrshQ@mail.gmail.com>
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B30E2E00307
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2011 09:09:20 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 06 Dec 2011 09:09:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="83507290"
+Received: from unknown (HELO helios.localnet) ([10.252.121.246])
+	by orsmga001.jf.intel.com with ESMTP; 06 Dec 2011 09:09:12 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Date: Tue, 06 Dec 2011 17:09:11 +0000
+Message-ID: <3244761.NJgrNtUbj7@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.7.3 (Linux/3.0.0-13-generic-pae; KDE/4.7.3; i686; ; )
+In-Reply-To: <CAPhnLPCC9Bq5=yE1Zyyq_H7ZrJ6DZ4tkr9ZLi_hXAXhUwKegxA@mail.gmail.com>
 References: <1408073.zz37vY4uZy@helios>
 	<CAEsOVNdiJT7MfCBYgaimSd2jcQpJxfmgcYihvV_BDfhy6ZrshQ@mail.gmail.com>
-Date: Tue, 6 Dec 2011 08:54:30 -0800
-Message-ID: <CAPhnLPCC9Bq5=yE1Zyyq_H7ZrJ6DZ4tkr9ZLi_hXAXhUwKegxA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"saul.wold@intel.com" <saul.wold@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<CAPhnLPCC9Bq5=yE1Zyyq_H7ZrJ6DZ4tkr9ZLi_hXAXhUwKegxA@mail.gmail.com>
+MIME-Version: 1.0
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"saul.wold@intel.com" <saul.wold@intel.com>
 Subject: Re: Sanity tested distributions list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -32,101 +34,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2011 16:54:33 -0000
-Content-Type: multipart/alternative; boundary=14dae934048bf7d78204b36f4937
+X-List-Received-Date: Tue, 06 Dec 2011 17:09:20 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---14dae934048bf7d78204b36f4937
-Content-Type: text/plain; charset=ISO-8859-1
+On Tuesday 06 December 2011 08:54:30 Flanagan, Elizabeth wrote:
+> The autobuilders are on openSuSE 11.4 x86-64 at this point. We lost
+> I'm testing on Ubuntu 10.10 (with a planned switch over on one dev machine
+> to openSuSE 12.1)
 
-On Tue, Dec 6, 2011 at 7:59 AM, McClintock Matthew-B29882 <
-B29882@freescale.com> wrote:
+Sorry, what did we lose?
 
-> On Tue, Dec 6, 2011 at 9:43 AM, Paul Eggleton
-> <paul.eggleton@linux.intel.com> wrote:
-> > Hi all,
-> >
-> > We had some discussions [1] [2] about this last cycle but I don't feel we
-> > reached a proper conclusion on the list of tested distributions we want
-> to set
-> > (SANITY_TESTED_DISTROS) and I assume we want to support a few more
-> distros
-> > (latest versions of Fedora & Ubuntu, presumably?). I'd like to update
-> and re-
-> > post the patch [3] so we can close bug #1096 [4] but for that we need to
-> agree
-> > on the list.
->
-> I'm fairly comprehensively testing something close to the edison 1.1.1
-> release on CentOS 5.5 and Ubuntu 10.04 LTS. We plan on adding more but
-> maybe not in time for our next release.
->
-
-The autobuilders are on openSuSE 11.4 x86-64 at this point. We lost
-I'm testing on Ubuntu 10.10 (with a planned switch over on one dev machine
-to openSuSE 12.1)
-
--b
-
-
-> -M
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
-
+Cheers,
+Paul
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
 
---14dae934048bf7d78204b36f4937
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Paul Eggleton
+Intel Open Source Technology Centre
 
-<br><br><div class=3D"gmail_quote">On Tue, Dec 6, 2011 at 7:59 AM, McClinto=
-ck Matthew-B29882 <span dir=3D"ltr">&lt;<a href=3D"mailto:B29882@freescale.=
-com">B29882@freescale.com</a>&gt;</span> wrote:<br><blockquote class=3D"gma=
-il_quote" style=3D"margin: 0pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(20=
-4, 204, 204); padding-left: 1ex;">
-<div class=3D"im">On Tue, Dec 6, 2011 at 9:43 AM, Paul Eggleton<br>
-&lt;<a href=3D"mailto:paul.eggleton@linux.intel.com">paul.eggleton@linux.in=
-tel.com</a>&gt; wrote:<br>
-&gt; Hi all,<br>
-&gt;<br>
-&gt; We had some discussions [1] [2] about this last cycle but I don&#39;t =
-feel we<br>
-&gt; reached a proper conclusion on the list of tested distributions we wan=
-t to set<br>
-&gt; (SANITY_TESTED_DISTROS) and I assume we want to support a few more dis=
-tros<br>
-&gt; (latest versions of Fedora &amp; Ubuntu, presumably?). I&#39;d like to=
- update and re-<br>
-&gt; post the patch [3] so we can close bug #1096 [4] but for that we need =
-to agree<br>
-&gt; on the list.<br>
-<br>
-</div>I&#39;m fairly comprehensively testing something close to the edison =
-1.1.1<br>
-release on CentOS 5.5 and Ubuntu 10.04 LTS. We plan on adding more but<br>
-maybe not in time for our next release.<br></blockquote><div><br>The autobu=
-ilders are on openSuSE 11.4 x86-64 at this point. We lost <br>I&#39;m testi=
-ng on Ubuntu 10.10 (with a planned switch over on one dev machine to openSu=
-SE 12.1)<br>
-=A0<br>-b<br><br></div><blockquote class=3D"gmail_quote" style=3D"margin: 0=
-pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: =
-1ex;">
-<font color=3D"#888888"><br>
--M<br>
-</font><div><div></div><div class=3D"h5">__________________________________=
-_____________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</div></div></blockquote></div><br><br clear=3D"all"><br>-- <br>Elizabeth F=
-lanagan<br>Yocto Project<br>Build and Release<br>
-
---14dae934048bf7d78204b36f4937--
