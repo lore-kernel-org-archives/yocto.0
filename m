@@ -1,23 +1,26 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2949E00307
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2011 08:44:15 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 06 Dec 2011 08:44:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="84073516"
-Received: from unknown (HELO [10.255.12.199]) ([10.255.12.199])
-	by orsmga002.jf.intel.com with ESMTP; 06 Dec 2011 08:44:14 -0800
-Message-ID: <4EDE465E.4000800@linux.intel.com>
-Date: Tue, 06 Dec 2011 08:44:14 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96CC7E005B4
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2011 08:54:33 -0800 (PST)
+Received: from mail-fx0-f52.google.com ([209.85.161.52])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 06 Dec 2011 08:54:32 -0800
+Received: by faao24 with SMTP id o24so3984226faa.25
+	for <yocto@yoctoproject.org>; Tue, 06 Dec 2011 08:54:31 -0800 (PST)
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-Subject: Minutes: Yocto Technical Team Meeting - Tuesday, December 06, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Received: by 10.50.216.137 with SMTP id oq9mr15789455igc.40.1323190470563;
+	Tue, 06 Dec 2011 08:54:30 -0800 (PST)
+Received: by 10.50.184.166 with HTTP; Tue, 6 Dec 2011 08:54:30 -0800 (PST)
+In-Reply-To: <CAEsOVNdiJT7MfCBYgaimSd2jcQpJxfmgcYihvV_BDfhy6ZrshQ@mail.gmail.com>
+References: <1408073.zz37vY4uZy@helios>
+	<CAEsOVNdiJT7MfCBYgaimSd2jcQpJxfmgcYihvV_BDfhy6ZrshQ@mail.gmail.com>
+Date: Tue, 6 Dec 2011 08:54:30 -0800
+Message-ID: <CAPhnLPCC9Bq5=yE1Zyyq_H7ZrJ6DZ4tkr9ZLi_hXAXhUwKegxA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: McClintock Matthew-B29882 <B29882@freescale.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"saul.wold@intel.com" <saul.wold@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Sanity tested distributions list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,92 +32,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2011 16:44:15 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 06 Dec 2011 16:54:33 -0000
+Content-Type: multipart/alternative; boundary=14dae934048bf7d78204b36f4937
 
-Attendees:
-Beth, Darren, Tom, Matthew, Scott R., Sean, Richard, Paul, Jeff, Denys,
-Bruce, Mark, Dave, Song
+--14dae934048bf7d78204b36f4937
+Content-Type: text/plain; charset=ISO-8859-1
 
-New Action Item List:
-* Action item Review - 5 min
-   1. Mark will review unsorted features from Wind River team and try to 
-have them scheduled (WIP)
+On Tue, Dec 6, 2011 at 7:59 AM, McClintock Matthew-B29882 <
+B29882@freescale.com> wrote:
 
-Focus of the current week:
-   M1 development and bug fixing, keep features on schedule, get patches 
-reviewed or pre-reviewed as soon as possible.
+> On Tue, Dec 6, 2011 at 9:43 AM, Paul Eggleton
+> <paul.eggleton@linux.intel.com> wrote:
+> > Hi all,
+> >
+> > We had some discussions [1] [2] about this last cycle but I don't feel we
+> > reached a proper conclusion on the list of tested distributions we want
+> to set
+> > (SANITY_TESTED_DISTROS) and I assume we want to support a few more
+> distros
+> > (latest versions of Fedora & Ubuntu, presumably?). I'd like to update
+> and re-
+> > post the patch [3] so we can close bug #1096 [4] but for that we need to
+> agree
+> > on the list.
+>
+> I'm fairly comprehensively testing something close to the edison 1.1.1
+> release on CentOS 5.5 and Ubuntu 10.04 LTS. We plan on adding more but
+> maybe not in time for our next release.
+>
 
-Agenda:
+The autobuilders are on openSuSE 11.4 x86-64 at this point. We lost
+I'm testing on Ubuntu 10.10 (with a planned switch over on one dev machine
+to openSuSE 12.1)
 
-* Opens collection - 5 min (Song)
-
-
-* Opens - 10 min
-  - Tested Distro - Paul requested that people review the Tested Distro 
-list and send updates.
-
-* Yocto 1.0.2 and 1.1.1 point release update - 10 min (Josh/Beth)
-   . Had an almost complete build for 1.0.2 last week, but still have 
-some problems. Joshua is working on it. Targeting this week to have a build.
-   . Will have CCB review the overall patch strategy for 1.1.1 tomorrow.
-* Yocto 1.2 M1 Status (features development) - 10 min (Song/Beth)
-   https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status     . We 
-are in the 5th week of M1. Feature complete coming this weekend
-     . The build is green, no high bugs.
-     . Test plan for all testable features have been completed, will be 
-executed when the feature is in the build.
-     . Great progress on P1 features last week, One small P1 has 20% 
-done. all others are more than 70% complete. Most of them are more than 
-80% complete.
-     . Last week has a great surprise on bug fixing, fixed about 20 
-bugs. Richard contributed most of them
-     . Not great update on package update. Only one package update  last 
-week, Saul and Song will follow up on that.
-     . Darren 1635: this one may have to be rescheduled. Darren will see 
-  how to fit this one into the rest of his schedule.
-     . Issue: lots of features in the development stage, there could be 
-a stampede of patch review and pull request in this last development week.
-       - Consensus of the team: most of the people are working 
-diligently to keep the features on schedule and also get patches 
-pre-reviewed. We should allow more time for this to work.
-       - We should publish the current process we are using so that the 
-community can understand it better.
-
-* Action item Review - 5 min
-   1. Mark will review unsorted features from Wind River team and try to 
-have them scheduled (WIP)
-
-* Weekly team sharing (20 min)
-  Dave: Manager and
-  Mark: Internal WR stuff, Bitbake runtask work - mechanism to call into 
-bitbake, prelinker maybe ARM-eabi prevents linkage
-  Bruce: Traveling, M2 dev on schedule dev kernel 3.2rc4, Tracking 
-Stable 3.0rt, Main RT at 3.2, kernel updating and BSP refreshes 1.2 will 
-be at least 3.2
-  Denys: Nothing
-  Jeff: Nothing
-  Paul: Finished BuildHistory - enable on AB?, QT 4.8.0 release, 
-bugfixing no blockers
-  Richard: Patch pulling, slowed down by HW issue, moving forward to 
-address M1 and master updating.
-  Sean: Nothing
-  Scott R: Cleaning up Doc Bugs 1773, 1500, continuing with bugs and 
-working on Website doc pages, no blockers
-  Matthew: Nothing
-  Tom: Finished off M1 Intel video acceleration, internal bsp and support
-  Darren: EFI Support (pounding head on desk), looking into other odd 
-behavior, internal BSP work.
-  Beth: License M1 task - custom license, license manifest, license 
-cleanup, License Audit (team effort in the future), Gearing up for M1
-  Saul: Recovering from Sick, Pull wrangling, helping Joshua out with 
-1.0.2 debugging, selfhosted image work
+-b
 
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+> -M
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
 
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
+
+--14dae934048bf7d78204b36f4937
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<br><br><div class=3D"gmail_quote">On Tue, Dec 6, 2011 at 7:59 AM, McClinto=
+ck Matthew-B29882 <span dir=3D"ltr">&lt;<a href=3D"mailto:B29882@freescale.=
+com">B29882@freescale.com</a>&gt;</span> wrote:<br><blockquote class=3D"gma=
+il_quote" style=3D"margin: 0pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(20=
+4, 204, 204); padding-left: 1ex;">
+<div class=3D"im">On Tue, Dec 6, 2011 at 9:43 AM, Paul Eggleton<br>
+&lt;<a href=3D"mailto:paul.eggleton@linux.intel.com">paul.eggleton@linux.in=
+tel.com</a>&gt; wrote:<br>
+&gt; Hi all,<br>
+&gt;<br>
+&gt; We had some discussions [1] [2] about this last cycle but I don&#39;t =
+feel we<br>
+&gt; reached a proper conclusion on the list of tested distributions we wan=
+t to set<br>
+&gt; (SANITY_TESTED_DISTROS) and I assume we want to support a few more dis=
+tros<br>
+&gt; (latest versions of Fedora &amp; Ubuntu, presumably?). I&#39;d like to=
+ update and re-<br>
+&gt; post the patch [3] so we can close bug #1096 [4] but for that we need =
+to agree<br>
+&gt; on the list.<br>
+<br>
+</div>I&#39;m fairly comprehensively testing something close to the edison =
+1.1.1<br>
+release on CentOS 5.5 and Ubuntu 10.04 LTS. We plan on adding more but<br>
+maybe not in time for our next release.<br></blockquote><div><br>The autobu=
+ilders are on openSuSE 11.4 x86-64 at this point. We lost <br>I&#39;m testi=
+ng on Ubuntu 10.10 (with a planned switch over on one dev machine to openSu=
+SE 12.1)<br>
+=A0<br>-b<br><br></div><blockquote class=3D"gmail_quote" style=3D"margin: 0=
+pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: =
+1ex;">
+<font color=3D"#888888"><br>
+-M<br>
+</font><div><div></div><div class=3D"h5">__________________________________=
+_____________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div></div></blockquote></div><br><br clear=3D"all"><br>-- <br>Elizabeth F=
+lanagan<br>Yocto Project<br>Build and Release<br>
+
+--14dae934048bf7d78204b36f4937--
