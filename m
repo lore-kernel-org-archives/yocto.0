@@ -1,31 +1,25 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93D0DE006AF
-	for <yocto@yoctoproject.org>; Wed,  7 Dec 2011 05:52:47 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by qcsc2 with SMTP id c2so396013qcs.35
-	for <yocto@yoctoproject.org>; Wed, 07 Dec 2011 05:52:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=bOkIfm3OlNOUwWyNRiC5+r5ixo7UMZunBsHs5xYKBuc=;
-	b=YZXksfgi7EVRk237MkelDfBMfcS+fYS6DuC46fEZlqApu3ttye6znbKASUcf7dKrue
-	9K+rDWE/ClEsyxjEK9t5KBSLxroKwRedj/d+l29TBM7A4iURPc2k7Yx2J+7FAxkl/5RF
-	KEeWCrNcb0H3M3BbCH/nPJLe7axaOavDsCPQE=
-Received: by 10.229.49.143 with SMTP id v15mr2536682qcf.220.1323265966841;
-	Wed, 07 Dec 2011 05:52:46 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.229.73.200 with HTTP; Wed, 7 Dec 2011 05:52:25 -0800 (PST)
-In-Reply-To: <88701C38B5D07249817D428430999C910B774261@sestoex09.enea.se>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E264E0030C
+	for <yocto@yoctoproject.org>; Wed,  7 Dec 2011 06:05:55 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 07 Dec 2011 06:05:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,313,1320652800"; d="scan'208";a="93474235"
+Received: from unknown (HELO helios.localnet) ([10.252.122.2])
+	by fmsmga001.fm.intel.com with ESMTP; 07 Dec 2011 06:05:53 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Chris Larson <kergoth@gmail.com>
+Date: Wed, 07 Dec 2011 14:05:52 +0000
+Message-ID: <1605255.ltn5bNtJ0l@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.7.3 (Linux/3.0.0-13-generic-pae; KDE/4.7.3; i686; ; )
+In-Reply-To: <CABcZANkovWJH9dFUpRngNzrQH5VAxYOiO1dK3H2pPB4SM9GS6A@mail.gmail.com>
 References: <88701C38B5D07249817D428430999C910B774261@sestoex09.enea.se>
-From: Chris Larson <kergoth@gmail.com>
-Date: Wed, 7 Dec 2011 06:52:25 -0700
-Message-ID: <CABcZANkovWJH9dFUpRngNzrQH5VAxYOiO1dK3H2pPB4SM9GS6A@mail.gmail.com>
-To: =?UTF-8?Q?David_Nystr=C3=B6m?= <David.Nystrom@enea.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<CABcZANkovWJH9dFUpRngNzrQH5VAxYOiO1dK3H2pPB4SM9GS6A@mail.gmail.com>
+MIME-Version: 1.0
+Cc: David =?ISO-8859-1?Q?Nystr=F6m?= <David.Nystrom@enea.com>,
+	yocto@yoctoproject.org
 Subject: Re: Variable locality too restricted.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -38,31 +32,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Dec 2011 13:52:48 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 07 Dec 2011 14:05:55 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Wed, Dec 7, 2011 at 6:44 AM, David Nystr=C3=B6m <David.Nystrom@enea.com>=
- wrote:
-> I'm trying to create a setup for qemuppc.
->
-> Goals:
-> core-image-minimal + virtual/kernel.
-> core-image-minimal + virtual/kernel with modified .config for debug flavo=
-ured kernel.
->
-> Problems:
-> PREFERRED_PROVIDER seems to be restricted to local.conf, distro and machi=
-ne.
+On Wednesday 07 December 2011 06:52:25 Chris Larson wrote:
+> On Wed, Dec 7, 2011 at 6:44 AM, David Nystr=F6m <David.Nystrom@enea.c=
+om>=20
+wrote:
+> > I'm trying to create a setup for qemuppc.
+> >=20
+> > Goals:
+> > core-image-minimal + virtual/kernel.
+> > core-image-minimal + virtual/kernel with modified .config for debug=
 
+> > flavoured kernel.
+> >=20
+> > Problems:
+> > PREFERRED_PROVIDER seems to be restricted to local.conf, distro and=
 
-This is incorrect. It can be anywhere in the configuration metadata.
-bitbake.conf includes a variety of config files, not just
-distro/machine. Read that to see other existing files which get
-included. Further, you could create a .conf/.inc which you include
-from your machine .conf, if your goal is just to avoid duplication.
+> > machine.
+> This is incorrect. It can be anywhere in the configuration metadata.
+> bitbake.conf includes a variety of config files, not just
+> distro/machine. Read that to see other existing files which get
+> included. Further, you could create a .conf/.inc which you include
+> from your machine .conf, if your goal is just to avoid duplication.
+
+Changing MACHINE has other implications though; do we not have any othe=
+r way=20
+to switch out the kernel on a per-image basis?
+
+Cheers,
+Paul
+
 --=20
-Christopher Larson
-clarson at kergoth dot com
-Senior Software Engineer, Mentor Graphics
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
