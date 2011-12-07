@@ -1,24 +1,25 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC4D8E00735
-	for <yocto@yoctoproject.org>; Wed,  7 Dec 2011 11:19:26 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 07 Dec 2011 11:19:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="83318783"
-Received: from unknown (HELO localhost) ([10.255.12.239])
-	by azsmga001.ch.intel.com with ESMTP; 07 Dec 2011 11:19:26 -0800
-From: Darren Hart <darren@dvhart.com>
-To: yocto@yoctoproject.org, Bruce Ashfield <bruce.ashfield@windriver.com>,
-	Tom Zanussi <tom.zanussi@intel.com>
-Date: Wed,  7 Dec 2011 11:19:09 -0800
-Message-Id: <cf1ea71a91b56b6774eca1b1b305db45ee32edb6.1323285225.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.6.4
-In-Reply-To: <cover.1323285225.git.dvhart@linux.intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E305E0030C
+	for <yocto@yoctoproject.org>; Wed,  7 Dec 2011 11:43:39 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pB7JhbPY017347
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 7 Dec 2011 11:43:37 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Wed, 7 Dec 2011 11:43:37 -0800
+Message-ID: <4EDFC1E8.8090005@windriver.com>
+Date: Wed, 7 Dec 2011 14:43:36 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
+MIME-Version: 1.0
+To: Darren Hart <darren@dvhart.com>
 References: <cover.1323285225.git.dvhart@linux.intel.com>
 In-Reply-To: <cover.1323285225.git.dvhart@linux.intel.com>
-References: <cover.1323285225.git.dvhart@linux.intel.com>
-Subject: [PATCH 3/3] x86, efi: Convert efi_phys_get_time() args to physical addresses
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/3][linux-yocto-3.0] EFI support backports
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,46 +31,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Dec 2011 19:19:27 -0000
+X-List-Received-Date: Wed, 07 Dec 2011 19:43:39 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Maurice Ma <maurice.ma@intel.com>
+On 11-12-07 02:19 PM, Darren Hart wrote:
+> From: Darren Hart<dvhart@linux.intel.com>
+>
+> The following patches have been merged back from upstream to address various
+> issues with the EFI boot process. These are intended to be merged with
+> yocto/standard/base.
+>
+> Please watch for a subsequent patch adding a series of efi config fragments.
 
-Because callers of efi_phys_get_time() pass virtual stack addresses as
-arguments, we need to find their corresponding physical addresses and
-when calling GetTime() in physical mode.
+Merged to base and all the BSP branches. I've put it in with my
+pending 3.0.12 pull request, which should be out ASAP.
 
-Without this patch the following line is printed on boot,
+Bruce
 
-	"Oops: efitime: can't read time!"
-
-Cc: Matthew Garrett <mjg@redhat.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>
-Cc: Ingo Molnar <mingo@elte.hu>
-Cc: "H. Peter Anvin" <hpa@zytor.com>
-Cc: x86@kernel.org
-Cc: Zhang Rui <rui.zhang@intel.com>
-Signed-off-by: Maurice Ma <maurice.ma@intel.com>
-Signed-off-by: Matt Fleming <matt.fleming@intel.com>
-Integrated-by: Darren Hart <dvhart@linux.intel.com>
----
- arch/x86/platform/efi/efi.c |    3 ++-
- 1 files changed, 2 insertions(+), 1 deletions(-)
-
-diff --git a/arch/x86/platform/efi/efi.c b/arch/x86/platform/efi/efi.c
-index 899e393..4fd8217 100644
---- a/arch/x86/platform/efi/efi.c
-+++ b/arch/x86/platform/efi/efi.c
-@@ -167,7 +167,8 @@ static efi_status_t __init phys_efi_get_time(efi_time_t *tm,
- 	efi_status_t status;
- 
- 	efi_call_phys_prelog();
--	status = efi_call_phys2(efi_phys.get_time, tm, tc);
-+	status = efi_call_phys2(efi_phys.get_time, virt_to_phys(tm),
-+				virt_to_phys(tc));
- 	efi_call_phys_epilog();
- 	return status;
- }
--- 
-1.7.6.4
+>
+> The following changes since commit ab1de8c21d2b1d084b8488496d75cc54fcd94f02:
+>
+>    Merge commit 'v3.0.10' into yocto/standard/base (2011-11-23 00:31:29 -0500)
+>
+> are available in the git repository at:
+>
+>    git://git.infradead.org/users/dvhart/linux-yocto-3.0.git dvhart/standard/efi
+>    http://git.infradead.org/users/dvhart/linux-yocto-3.0.git/shortlog/refs/heads/dvhart/standard/efi
+>
+> Matt Fleming (2):
+>    x86/rtc: Don't recursively acquire rtc_lock
+>    x86, efi: Make efi_call_phys_prelog() CONFIG_RELOCATABLE-aware
+>
+> Maurice Ma (1):
+>    x86, efi: Convert efi_phys_get_time() args to physical addresses
+>
+>   arch/x86/kernel/rtc.c          |   23 ++++++++++++-----------
+>   arch/x86/platform/efi/efi.c    |    3 ++-
+>   arch/x86/platform/efi/efi_32.c |   22 +++++++++++++---------
+>   arch/x86/platform/mrst/vrtc.c  |    9 +++++++++
+>   4 files changed, 36 insertions(+), 21 deletions(-)
+>
 
 
