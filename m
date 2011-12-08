@@ -1,23 +1,23 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22E5DE011B0
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B35CAE011B0
 	for <yocto@yoctoproject.org>; Wed,  7 Dec 2011 16:31:31 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 07 Dec 2011 16:31:30 -0800
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 07 Dec 2011 16:31:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="84751250"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="84104104"
 Received: from unknown (HELO localhost) ([10.255.12.239])
-	by orsmga002.jf.intel.com with ESMTP; 07 Dec 2011 16:31:30 -0800
+	by orsmga001.jf.intel.com with ESMTP; 07 Dec 2011 16:31:31 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 To: Yocto Project <yocto@yoctoproject.org>, Tom Zanussi <tom.zanussi@intel.com>
-Date: Wed,  7 Dec 2011 16:31:31 -0800
-Message-Id: <4157c57dc7c90fb96256c1653eb89ae6273c875d.1323303673.git.dvhart@linux.intel.com>
+Date: Wed,  7 Dec 2011 16:31:32 -0800
+Message-Id: <5003358f2647f937b57e97c1655e39bf08d85fb0.1323303673.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.6.4
 In-Reply-To: <cover.1323303673.git.dvhart@linux.intel.com>
 References: <cover.1323303673.git.dvhart@linux.intel.com>
 In-Reply-To: <cover.1323303673.git.dvhart@linux.intel.com>
 References: <cover.1323303673.git.dvhart@linux.intel.com>
-Subject: [PATCH 3/7] linux-firmware: append support for the iwlwifi-6000g2a-5 firmware
+Subject: [PATCH 4/7] fri2: include linux-firmware for iwlwifi in images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,40 +31,46 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 08 Dec 2011 00:31:31 -0000
 
-Add firmware required by the Intel Centrino Adnanced-N 6205 mini-pcie card.
-The content is already available in the linux-firmware repository, this patch
-just adds the meta-data to include the right files and define a package.
+Include the firmware package for the iwlwifi card for task-base based images
+using the MACHINE_EXTRA_RRECOMMENDS variable. This will exclude the firmware
+from being installed in core-image-minimal, but it doesn't have the tooling
+required to connect over wifi anyway.
 
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- .../linux-firmware/linux-firmware_git.bbappend     |   18 ++++++++++++++++++
- 1 files changed, 18 insertions(+), 0 deletions(-)
- create mode 100644 meta-fri2/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+ meta-fri2/conf/machine/fri2-noemgd.conf |    2 ++
+ meta-fri2/conf/machine/fri2.conf        |    1 +
+ 2 files changed, 3 insertions(+), 0 deletions(-)
 
-diff --git a/meta-fri2/recipes-kernel/linux-firmware/linux-firmware_git.bbappend b/meta-fri2/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
-new file mode 100644
-index 0000000..97e64a5
---- /dev/null
-+++ b/meta-fri2/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
-@@ -0,0 +1,18 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR/${PN}:"
+diff --git a/meta-fri2/conf/machine/fri2-noemgd.conf b/meta-fri2/conf/machine/fri2-noemgd.conf
+index 3ac60c2..7e99486 100644
+--- a/meta-fri2/conf/machine/fri2-noemgd.conf
++++ b/meta-fri2/conf/machine/fri2-noemgd.conf
+@@ -8,6 +8,7 @@ include conf/machine/include/tune-atom.inc
+ include conf/machine/include/ia32-base.inc
+ 
+ MACHINE_FEATURES += "wifi 3g"
++MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-iwlwifi-6000g2a-5"
+ 
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+            ${XSERVER_IA32_EXT} \
+@@ -19,3 +20,4 @@ SERIAL_CONSOLE = "115200 ttyS0"
+ APPEND += "console=ttyS0,115200 console=tty0"
+ 
+ APPEND += "video=vesafb vga=0x318"
 +
-+# This exists in Yocto 1.1, but include it here for completeness
-+LIC_FILES_CHKSUM += "file://LICENCE.iwlwifi_firmware;md5=311cc823df5b1be4f00fbf0f17d96a6b"
-+
-+FWPATH = "/lib/firmware"
-+
-+do_install_append() {
-+	install -m 0644 LICENCE.iwlwifi_firmware ${D}${FWPATH}
-+	install -m 0644 iwlwifi-6000g2a-5.ucode ${D}${FWPATH}
-+}
-+
-+PACKAGES =+ "${PN}-iwlwifi-6000g2a-5"
-+
-+FILES_${PN}-iwlwifi-6000g2a-5 = "  \
-+  ${FWPATH}/LICENCE.iwlwifi_firmware \
-+  ${FWPATH}/iwlwifi-6000g2a-5.ucode  \
-+"
+diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
+index ae69742..72d7a48 100644
+--- a/meta-fri2/conf/machine/fri2.conf
++++ b/meta-fri2/conf/machine/fri2.conf
+@@ -8,6 +8,7 @@ include conf/machine/include/tune-atom.inc
+ include conf/machine/include/ia32-base.inc
+ 
+ MACHINE_FEATURES += "wifi 3g"
++MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-iwlwifi-6000g2a-5"
+ 
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+            ${XSERVER_IA32_EXT} \
 -- 
 1.7.6.4
 
