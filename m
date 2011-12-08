@@ -1,23 +1,24 @@
 Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F03AE0123F
-	for <yocto@yoctoproject.org>; Thu,  8 Dec 2011 07:18:26 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 08 Dec 2011 07:18:26 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEBB1E005B9
+	for <yocto@yoctoproject.org>; Thu,  8 Dec 2011 09:59:56 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 08 Dec 2011 09:59:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="93969984"
-Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.121.254])
-	by fmsmga001.fm.intel.com with ESMTP; 08 Dec 2011 07:18:25 -0800
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="45300735"
+Received: from unknown (HELO helios.localnet) ([10.252.121.254])
+	by AZSMGA002.ch.intel.com with ESMTP; 08 Dec 2011 09:59:55 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Thu,  8 Dec 2011 15:18:19 +0000
-Message-Id: <9d58aef10d75fe5168cc0c561c480c751266d54b.1323357349.git.paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <cover.1323357349.git.paul.eggleton@linux.intel.com>
-References: <cover.1323357349.git.paul.eggleton@linux.intel.com>
-In-Reply-To: <cover.1323357349.git.paul.eggleton@linux.intel.com>
-References: <cover.1323357349.git.paul.eggleton@linux.intel.com>
-Subject: [meta-qt3] [PATCH 5/5] classes: remove qt3e.bbclass
+To: Andre Haupt <andre@bitwigglers.org>
+Date: Thu, 08 Dec 2011 17:59:54 +0000
+Message-ID: <2114600.jU6JroCYZj@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.7.3 (Linux/3.0.0-13-generic-pae; KDE/4.7.3; i686; ; )
+In-Reply-To: <20110817091730.GA21560@localhost.localdomain>
+References: <20110817091730.GA21560@localhost.localdomain>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: meta-qt3: qt3-x11-native compile fix on Fedora 15 x86-64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,35 +30,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Dec 2011 15:18:26 -0000
+X-List-Received-Date: Thu, 08 Dec 2011 17:59:57 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-We can't make use of this class since we don't have qt3-embedded, so
-remove it.
+Hi Andre,
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- classes/qt3e.bbclass |   11 -----------
- 1 files changed, 0 insertions(+), 11 deletions(-)
- delete mode 100644 classes/qt3e.bbclass
+On Wednesday 17 August 2011 11:17:30 Andre Haupt wrote:
+> This patch fixes compilation of qt-x11-native_3.3.5 on Fedora 15 x86-64.
+> The compiler was complainig about unknown type ptrdiff_t. Including the
+> appropriate header in qvaluelist.h helps.
 
-diff --git a/classes/qt3e.bbclass b/classes/qt3e.bbclass
-deleted file mode 100644
-index d3d4a14..0000000
---- a/classes/qt3e.bbclass
-+++ /dev/null
-@@ -1,11 +0,0 @@
--#
--# override variables set by qmake_base to compile Qt/X11 apps
--#
--export QTDIR="${STAGING_DIR_HOST}/qte3"
--export QTEDIR="${STAGING_DIR_HOST}/qte3"
--export OE_QMAKE_UIC="${STAGING_BINDIR_NATIVE}/uic3"
--export OE_QMAKE_MOC="${STAGING_BINDIR_NATIVE}/moc3"
--export OE_QMAKE_CXXFLAGS="${CXXFLAGS} "
--export OE_QMAKE_INCDIR_QT="${STAGING_INCDIR}/qte3/include"
--export OE_QMAKE_LIBDIR_QT="${STAGING_LIBDIR}/qte3/lib"
--export OE_QMAKE_LIBS_QT="qte"
+Unfortunately this patch seems to have fallen through the cracks. However the 
+same fix has now been merged into meta-qt3. Sorry about the delay!
+
+Cheers,
+Paul
+
 -- 
-1.7.5.4
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
