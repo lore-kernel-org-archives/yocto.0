@@ -1,23 +1,23 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E546AE0030C
-	for <yocto@yoctoproject.org>; Wed,  7 Dec 2011 16:29:00 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 07 Dec 2011 16:29:00 -0800
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C3B7E0074A
+	for <yocto@yoctoproject.org>; Wed,  7 Dec 2011 16:29:01 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 07 Dec 2011 16:29:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="99867100"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="84103452"
 Received: from unknown (HELO localhost) ([10.255.12.239])
-	by fmsmga002.fm.intel.com with ESMTP; 07 Dec 2011 16:29:00 -0800
+	by orsmga001.jf.intel.com with ESMTP; 07 Dec 2011 16:29:00 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 To: Yocto Project <yocto@yoctoproject.org>, Tom Zanussi <tom.zanussi@intel.com>
-Date: Wed,  7 Dec 2011 16:29:05 -0800
-Message-Id: <f0633103c6905a33b9435d045907f8e7c11530d0.1323303722.git.dvhart@linux.intel.com>
+Date: Wed,  7 Dec 2011 16:29:06 -0800
+Message-Id: <6d315ec7bf2d4585d1da91880cdf849503e74992.1323303722.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.6.4
 In-Reply-To: <cover.1323303722.git.dvhart@linux.intel.com>
 References: <cover.1323303722.git.dvhart@linux.intel.com>
 In-Reply-To: <cover.1323303722.git.dvhart@linux.intel.com>
 References: <cover.1323303722.git.dvhart@linux.intel.com>
-Subject: [PATCH 2/4] fri2: change preferred display order
+Subject: [PATCH 3/4] linux-firmware: append support for the iwlwifi-6000g2a-5 firmware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,28 +31,40 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 08 Dec 2011 00:29:01 -0000
 
-The current PortOrder value assumes LVDS. Change the value to first try the
-primary SDVO output, then the secondary SDVO, and fallback to LVDS if neither
-are present.
+Add firmware required by the Intel Centrino Adnanced-N 6205 mini-pcie card.
+The content is already available in the linux-firmware repository, this patch
+just adds the meta-data to include the right files and define a package.
 
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- .../xserver-xf86-config/fri2/xorg.conf             |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ .../linux-firmware/linux-firmware_git.bbappend     |   18 ++++++++++++++++++
+ 1 files changed, 18 insertions(+), 0 deletions(-)
+ create mode 100644 meta-fri2/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
 
-diff --git a/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2/xorg.conf b/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2/xorg.conf
-index fce58f8..73736ac 100644
---- a/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2/xorg.conf
-+++ b/meta-fri2/recipes-graphics/xorg-xserver/xserver-xf86-config/fri2/xorg.conf
-@@ -23,7 +23,7 @@ Section "Device"
-     Option     "PcfVersion"            "1792"
-     Option     "ConfigId"              "1"
-     Option     "ALL/1/name"                   "e6xx"
--    Option     "ALL/1/General/PortOrder"      "40000"
-+    Option     "ALL/1/General/PortOrder"      "32400"
-     Option     "ALL/1/General/DisplayConfig"  "1"
-     Option     "ALL/1/General/DisplayDetect"  "1"
-     Option     "ALL/1/General/TuningWA" "1"
+diff --git a/meta-fri2/recipes-kernel/linux-firmware/linux-firmware_git.bbappend b/meta-fri2/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+new file mode 100644
+index 0000000..97e64a5
+--- /dev/null
++++ b/meta-fri2/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+@@ -0,0 +1,18 @@
++FILESEXTRAPATHS_prepend := "${THISDIR/${PN}:"
++
++# This exists in Yocto 1.1, but include it here for completeness
++LIC_FILES_CHKSUM += "file://LICENCE.iwlwifi_firmware;md5=311cc823df5b1be4f00fbf0f17d96a6b"
++
++FWPATH = "/lib/firmware"
++
++do_install_append() {
++	install -m 0644 LICENCE.iwlwifi_firmware ${D}${FWPATH}
++	install -m 0644 iwlwifi-6000g2a-5.ucode ${D}${FWPATH}
++}
++
++PACKAGES =+ "${PN}-iwlwifi-6000g2a-5"
++
++FILES_${PN}-iwlwifi-6000g2a-5 = "  \
++  ${FWPATH}/LICENCE.iwlwifi_firmware \
++  ${FWPATH}/iwlwifi-6000g2a-5.ucode  \
++"
 -- 
 1.7.6.4
 
