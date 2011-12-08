@@ -1,24 +1,19 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E056CE0072B
-	for <yocto@yoctoproject.org>; Wed,  7 Dec 2011 14:50:00 -0800 (PST)
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05309E0030C
+	for <yocto@yoctoproject.org>; Wed,  7 Dec 2011 16:28:59 -0800 (PST)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 07 Dec 2011 14:50:00 -0800
+	by azsmga101.ch.intel.com with ESMTP; 07 Dec 2011 16:28:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="44978380"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="45018459"
 Received: from unknown (HELO localhost) ([10.255.12.239])
-	by AZSMGA002.ch.intel.com with ESMTP; 07 Dec 2011 14:50:00 -0800
+	by AZSMGA002.ch.intel.com with ESMTP; 07 Dec 2011 16:28:59 -0800
 From: Darren Hart <dvhart@linux.intel.com>
-To: yocto@yoctoproject.org, Bruce Ashfield <bruce.ashfield@windriver.com>,
-	Tom Zanussi <tom.zanussi@intel.com>
-Date: Wed,  7 Dec 2011 14:50:06 -0800
-Message-Id: <0a9adcbec9243c3e8d37113d441c9804d6d02a5b.1323296855.git.dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>, Tom Zanussi <tom.zanussi@intel.com>
+Date: Wed,  7 Dec 2011 16:29:03 -0800
+Message-Id: <cover.1323303722.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.6.4
-In-Reply-To: <cover.1323296855.git.dvhart@linux.intel.com>
-References: <cover.1323296855.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1323296855.git.dvhart@linux.intel.com>
-References: <cover.1323296855.git.dvhart@linux.intel.com>
-Subject: [PATCH 1/1] Add EFI scc and cfg files
+Subject: [PATCH 0/4][meta-intel] fri2: Update display, wifi, and serial console
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,80 +25,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Dec 2011 22:50:01 -0000
+X-List-Received-Date: Thu, 08 Dec 2011 00:29:00 -0000
 
-Basic EFI support only requires CONFIG_EFI=y, this is sufficient for
-some boards, and desirable for small configs. This is done with efi.scc.
+The following changes since commit c3e12aa981e97261093abee05bb0301c35f54c23:
 
-Additional support for CONFIG_EFI_VARS, CONFIG_EFI_PARTITION, and CONFIG_FB_EFI
-is provided via efi-ext.scc (extended) as this pulls in the block layer,
-framebuffer support, and virtual terminals.
+  meta-emenlow: switch edison back to linux-yocto-2.6.37 kernel (2011-10-11 13:54:59 -0500)
 
-I'd like EFI_VARS to be part of the base config, but I have received
-reports of it failing in some situations. Keeping it separate ensures
-basic boot can work with the fragments as defined.
+are available in the git repository at:
+  git://git.yoctoproject.org/meta-intel-contrib dvhart/edison/fri2
+  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=dvhart/edison/fri2
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
----
- meta/cfg/kernel-cache/cfg/efi-ext.cfg |   14 ++++++++++++++
- meta/cfg/kernel-cache/cfg/efi-ext.scc |    2 ++
- meta/cfg/kernel-cache/cfg/efi.cfg     |    8 ++++++++
- meta/cfg/kernel-cache/cfg/efi.scc     |    1 +
- 4 files changed, 25 insertions(+), 0 deletions(-)
- create mode 100644 meta/cfg/kernel-cache/cfg/efi-ext.cfg
- create mode 100644 meta/cfg/kernel-cache/cfg/efi-ext.scc
- create mode 100644 meta/cfg/kernel-cache/cfg/efi.cfg
- create mode 100644 meta/cfg/kernel-cache/cfg/efi.scc
+Darren Hart (4):
+  fri2: use ttyS0,115200 for serial console and syslinux
+  fri2: change preferred display order
+  linux-firmware: append support for the iwlwifi-6000g2a-5 firmware
+  fri2: include linux-firmware for iwlwifi in images
 
-diff --git a/meta/cfg/kernel-cache/cfg/efi-ext.cfg b/meta/cfg/kernel-cache/cfg/efi-ext.cfg
-new file mode 100644
-index 0000000..6371da2
---- /dev/null
-+++ b/meta/cfg/kernel-cache/cfg/efi-ext.cfg
-@@ -0,0 +1,14 @@
-+# Extended EFI support
-+
-+# Dependencies
-+# efi.cfg
-+CONFIG_FB=y
-+CONFIG_VT=y
-+CONFIG_BLOCK=y
-+CONFIG_PARTITION_ADVANCED=y
-+
-+# Add support for optional EFI features
-+CONFIG_FRAMEBUFFER_CONSOLE=y
-+CONFIG_FB_EFI=y
-+CONFIG_EFI_VARS=y
-+CONFIG_EFI_PARTITION=y
-diff --git a/meta/cfg/kernel-cache/cfg/efi-ext.scc b/meta/cfg/kernel-cache/cfg/efi-ext.scc
-new file mode 100644
-index 0000000..4d827d6
---- /dev/null
-+++ b/meta/cfg/kernel-cache/cfg/efi-ext.scc
-@@ -0,0 +1,2 @@
-+kconf hardware efi.cfg
-+kconf hardware efi-ext.cfg
-diff --git a/meta/cfg/kernel-cache/cfg/efi.cfg b/meta/cfg/kernel-cache/cfg/efi.cfg
-new file mode 100644
-index 0000000..7f1a062
---- /dev/null
-+++ b/meta/cfg/kernel-cache/cfg/efi.cfg
-@@ -0,0 +1,8 @@
-+# EFI Support
-+
-+# Dependencies
-+CONFIG_PCI=y
-+CONFIG_ACPI=y
-+
-+# Enable basic EFI support
-+CONFIG_EFI=y
-diff --git a/meta/cfg/kernel-cache/cfg/efi.scc b/meta/cfg/kernel-cache/cfg/efi.scc
-new file mode 100644
-index 0000000..2e42dd6
---- /dev/null
-+++ b/meta/cfg/kernel-cache/cfg/efi.scc
-@@ -0,0 +1 @@
-+kconf hardware efi.cfg
+ meta-fri2/conf/machine/fri2-noemgd.conf            |    5 ++++-
+ meta-fri2/conf/machine/fri2.conf                   |    5 ++++-
+ .../xserver-xf86-config/fri2/xorg.conf             |    2 +-
+ .../linux-firmware/linux-firmware_git.bbappend     |   18 ++++++++++++++++++
+ 4 files changed, 27 insertions(+), 3 deletions(-)
+ create mode 100644 meta-fri2/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+
 -- 
 1.7.6.4
 
