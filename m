@@ -1,19 +1,23 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05309E0030C
-	for <yocto@yoctoproject.org>; Wed,  7 Dec 2011 16:28:59 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 07 Dec 2011 16:28:59 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44F5DE0030C
+	for <yocto@yoctoproject.org>; Wed,  7 Dec 2011 16:29:00 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 07 Dec 2011 16:29:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="45018459"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="83419412"
 Received: from unknown (HELO localhost) ([10.255.12.239])
-	by AZSMGA002.ch.intel.com with ESMTP; 07 Dec 2011 16:28:59 -0800
+	by azsmga001.ch.intel.com with ESMTP; 07 Dec 2011 16:28:59 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 To: Yocto Project <yocto@yoctoproject.org>, Tom Zanussi <tom.zanussi@intel.com>
-Date: Wed,  7 Dec 2011 16:29:03 -0800
-Message-Id: <cover.1323303722.git.dvhart@linux.intel.com>
+Date: Wed,  7 Dec 2011 16:29:04 -0800
+Message-Id: <2b7d28a882b6565e20eee3234ef0d053810b4e39.1323303722.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.6.4
-Subject: [PATCH 0/4][meta-intel] fri2: Update display, wifi, and serial console
+In-Reply-To: <cover.1323303722.git.dvhart@linux.intel.com>
+References: <cover.1323303722.git.dvhart@linux.intel.com>
+In-Reply-To: <cover.1323303722.git.dvhart@linux.intel.com>
+References: <cover.1323303722.git.dvhart@linux.intel.com>
+Subject: [PATCH 1/4] fri2: use ttyS0, 115200 for serial console and syslinux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,27 +31,48 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 08 Dec 2011 00:29:00 -0000
 
-The following changes since commit c3e12aa981e97261093abee05bb0301c35f54c23:
+The FRI2 has an optional serial expansion board. Enable the use of this
+as a console for both syslinux and the OS.
 
-  meta-emenlow: switch edison back to linux-yocto-2.6.37 kernel (2011-10-11 13:54:59 -0500)
+Note: while the settings all appear to be correct, the serial port is
+      not working on my test device in syslinux or the getty. The
+      kernel messages do make their way to the serial port after PCI
+      initialization.
 
-are available in the git repository at:
-  git://git.yoctoproject.org/meta-intel-contrib dvhart/edison/fri2
-  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=dvhart/edison/fri2
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+---
+ meta-fri2/conf/machine/fri2-noemgd.conf |    2 ++
+ meta-fri2/conf/machine/fri2.conf        |    2 ++
+ 2 files changed, 4 insertions(+), 0 deletions(-)
 
-Darren Hart (4):
-  fri2: use ttyS0,115200 for serial console and syslinux
-  fri2: change preferred display order
-  linux-firmware: append support for the iwlwifi-6000g2a-5 firmware
-  fri2: include linux-firmware for iwlwifi in images
-
- meta-fri2/conf/machine/fri2-noemgd.conf            |    5 ++++-
- meta-fri2/conf/machine/fri2.conf                   |    5 ++++-
- .../xserver-xf86-config/fri2/xorg.conf             |    2 +-
- .../linux-firmware/linux-firmware_git.bbappend     |   18 ++++++++++++++++++
- 4 files changed, 27 insertions(+), 3 deletions(-)
- create mode 100644 meta-fri2/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
-
+diff --git a/meta-fri2/conf/machine/fri2-noemgd.conf b/meta-fri2/conf/machine/fri2-noemgd.conf
+index a871529..8137912 100644
+--- a/meta-fri2/conf/machine/fri2-noemgd.conf
++++ b/meta-fri2/conf/machine/fri2-noemgd.conf
+@@ -26,7 +26,9 @@ XSERVER ?= "xserver-xf86-dri-lite \
+            xf86-input-synaptics \
+            xf86-video-vesa"
+ 
++SYSLINUX_OPTS = "serial 0 115200"
+ SERIAL_CONSOLE = "115200 ttyS0"
++APPEND += "console=ttyS0,115200 console=tty0"
+ 
+ MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
+ 
+diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
+index 4b81fab..941d9f0 100644
+--- a/meta-fri2/conf/machine/fri2.conf
++++ b/meta-fri2/conf/machine/fri2.conf
+@@ -29,7 +29,9 @@ XSERVER ?= "xserver-xf86-dri-lite \
+ PREFERRED_VERSION_xserver-xf86-dri-lite ?= "1.9.3"
+ PREFERRED_VERSION_emgd-driver-bin ?= "1.8"
+ 
++SYSLINUX_OPTS = "serial 0 115200"
+ SERIAL_CONSOLE = "115200 ttyS0"
++APPEND += "console=ttyS0,115200 console=tty0"
+ 
+ MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
+ 
 -- 
 1.7.6.4
 
