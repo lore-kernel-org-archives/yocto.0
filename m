@@ -1,23 +1,24 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1A52E0074A
-	for <yocto@yoctoproject.org>; Wed,  7 Dec 2011 16:29:01 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 07 Dec 2011 16:29:01 -0800
+Return-Path: <darren.hart@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CB1DE011BB
+	for <yocto@yoctoproject.org>; Wed,  7 Dec 2011 16:30:11 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 07 Dec 2011 16:30:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="84103458"
-Received: from unknown (HELO localhost) ([10.255.12.239])
-	by orsmga001.jf.intel.com with ESMTP; 07 Dec 2011 16:29:01 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>, Tom Zanussi <tom.zanussi@intel.com>
-Date: Wed,  7 Dec 2011 16:29:07 -0800
-Message-Id: <4530ca9d18dc417decc7e651e24bb024c9b8e9b5.1323303722.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.6.4
-In-Reply-To: <cover.1323303722.git.dvhart@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="83419757"
+Received: from unknown (HELO envy.home) ([10.255.12.239])
+	by azsmga001.ch.intel.com with ESMTP; 07 Dec 2011 16:30:10 -0800
+Message-ID: <4EE0051E.9030900@intel.com>
+Date: Wed, 07 Dec 2011 16:30:22 -0800
+From: Darren Hart <darren.hart@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
+MIME-Version: 1.0
+To: Yocto Project <yocto@yoctoproject.org>, 
+	Tom Zanussi <tom.zanussi@intel.com>
 References: <cover.1323303722.git.dvhart@linux.intel.com>
 In-Reply-To: <cover.1323303722.git.dvhart@linux.intel.com>
-References: <cover.1323303722.git.dvhart@linux.intel.com>
-Subject: [PATCH 4/4] fri2: include linux-firmware for iwlwifi in images
+Subject: Re: [PATCH 0/4][meta-intel] fri2: Update display, wifi, and serial console
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,48 +30,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Dec 2011 00:29:02 -0000
+X-List-Received-Date: Thu, 08 Dec 2011 00:30:11 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Include the firmware package for the iwlwifi card for task-base based images
-using the MACHINE_EXTRA_RRECOMMENDS variable. This will exclude the firmware
-from being installed in core-image-minimal, but it doesn't have the tooling
-required to connect over wifi anyway.
+This series applies to edison.
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
----
- meta-fri2/conf/machine/fri2-noemgd.conf |    3 ++-
- meta-fri2/conf/machine/fri2.conf        |    3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+On 12/07/2011 04:29 PM, Darren Hart wrote:
+> The following changes since commit c3e12aa981e97261093abee05bb0301c35f54c23:
+> 
+>   meta-emenlow: switch edison back to linux-yocto-2.6.37 kernel (2011-10-11 13:54:59 -0500)
+> 
+> are available in the git repository at:
+>   git://git.yoctoproject.org/meta-intel-contrib dvhart/edison/fri2
+>   http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=dvhart/edison/fri2
+> 
+> Darren Hart (4):
+>   fri2: use ttyS0,115200 for serial console and syslinux
+>   fri2: change preferred display order
+>   linux-firmware: append support for the iwlwifi-6000g2a-5 firmware
+>   fri2: include linux-firmware for iwlwifi in images
+> 
+>  meta-fri2/conf/machine/fri2-noemgd.conf            |    5 ++++-
+>  meta-fri2/conf/machine/fri2.conf                   |    5 ++++-
+>  .../xserver-xf86-config/fri2/xorg.conf             |    2 +-
+>  .../linux-firmware/linux-firmware_git.bbappend     |   18 ++++++++++++++++++
+>  4 files changed, 27 insertions(+), 3 deletions(-)
+>  create mode 100644 meta-fri2/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+> 
 
-diff --git a/meta-fri2/conf/machine/fri2-noemgd.conf b/meta-fri2/conf/machine/fri2-noemgd.conf
-index 8137912..292c925 100644
---- a/meta-fri2/conf/machine/fri2-noemgd.conf
-+++ b/meta-fri2/conf/machine/fri2-noemgd.conf
-@@ -30,7 +30,8 @@ SYSLINUX_OPTS = "serial 0 115200"
- SERIAL_CONSOLE = "115200 ttyS0"
- APPEND += "console=ttyS0,115200 console=tty0"
- 
--MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
-+MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts \
-+                             linux-firmware-iwlwifi-6000g2a-5"
- 
- IMAGE_FSTYPES ?= "ext3 cpio.gz live"
- 
-diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
-index 941d9f0..1d84c30 100644
---- a/meta-fri2/conf/machine/fri2.conf
-+++ b/meta-fri2/conf/machine/fri2.conf
-@@ -33,7 +33,8 @@ SYSLINUX_OPTS = "serial 0 115200"
- SERIAL_CONSOLE = "115200 ttyS0"
- APPEND += "console=ttyS0,115200 console=tty0"
- 
--MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
-+MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts \
-+                             linux-firmware-iwlwifi-6000g2a-5"
- 
- IMAGE_FSTYPES ?= "ext3 cpio.gz live"
- 
+
 -- 
-1.7.6.4
-
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
