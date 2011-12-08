@@ -1,23 +1,23 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34655E006B0
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5497FE006B5
 	for <yocto@yoctoproject.org>; Thu,  8 Dec 2011 11:56:55 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 08 Dec 2011 11:56:53 -0800
+	by orsmga101.jf.intel.com with ESMTP; 08 Dec 2011 11:56:51 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="84429900"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="84429874"
 Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.121.254])
-	by orsmga001.jf.intel.com with ESMTP; 08 Dec 2011 11:56:52 -0800
+	by orsmga001.jf.intel.com with ESMTP; 08 Dec 2011 11:56:50 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  8 Dec 2011 19:56:47 +0000
-Message-Id: <016ed1af2a0986cd90bdd073091537d954588813.1323374147.git.paul.eggleton@linux.intel.com>
+Date: Thu,  8 Dec 2011 19:56:45 +0000
+Message-Id: <d6eabbc05e39f78d50a0e6b9b41d356abc862741.1323374147.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 1.7.5.4
 In-Reply-To: <cover.1323374147.git.paul.eggleton@linux.intel.com>
 References: <cover.1323374147.git.paul.eggleton@linux.intel.com>
 In-Reply-To: <cover.1323374147.git.paul.eggleton@linux.intel.com>
 References: <cover.1323374147.git.paul.eggleton@linux.intel.com>
-Subject: [meta-qt3] [PATCH 3/3] qt3: fix interaction between qt3 and qt4 in the sysroot
+Subject: [meta-qt3] [PATCH 1/3] qt-x11-free: fix installation and packaging
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,130 +31,132 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 08 Dec 2011 19:56:55 -0000
 
-* Add a -qt3 suffix to all installed utilities so that they do not clash
-  with their qt4 counterparts. This fixes errors mentioning
-  QtCore/QVariant, Q3Support etc. which occur due to the Qt4 version of
-  uic/moc being used that output source files containing references to
-  Qt4 headers. qt3x11.bbclass has been updated to point to these renamed
-  executables so any recipes using this class should be unaffected by
-  this renaming.
-* Install libraries using the standard oe_libinstall method
-
-Fixes [YOCTO #1810].
+* You cannot install files into the sysroot, this will cause interaction
+  problems with shared state.
+* Fixed packaging to install to sensible paths and remove most of the
+  warnings.
+* Merged prepends/appends and their associated functions within the same
+  recipe
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- classes/qt3x11.bbclass                      |    5 +++--
- recipes-qt3/qt3/qt-x11-free-common.inc      |   18 +++++++++---------
- recipes-qt3/qt3/qt-x11-free-native_3.3.5.bb |   12 ++++--------
- 3 files changed, 16 insertions(+), 19 deletions(-)
+ recipes-qt3/qt3/qt-x11-free-common.inc |   55 +++++++++++++------------------
+ recipes-qt3/qt3/qt-x11-free_3.3.7.bb   |    2 +-
+ 2 files changed, 24 insertions(+), 33 deletions(-)
 
-diff --git a/classes/qt3x11.bbclass b/classes/qt3x11.bbclass
-index 5408b7f..79664f2 100644
---- a/classes/qt3x11.bbclass
-+++ b/classes/qt3x11.bbclass
-@@ -4,8 +4,9 @@ EXTRA_QMAKEVARS_POST += "CONFIG+=thread"
- # override variables set by qmake_base to compile Qt/X11 apps
- #
- export QTDIR = "${STAGING_DIR_HOST}/qt3"
--export OE_QMAKE_UIC = "${STAGING_BINDIR_NATIVE}/uic3"
--export OE_QMAKE_MOC = "${STAGING_BINDIR_NATIVE}/moc3"
-+export OE_QMAKE_QMAKE = "${STAGING_BINDIR_NATIVE}/qmake-qt3"
-+export OE_QMAKE_UIC = "${STAGING_BINDIR_NATIVE}/uic-qt3"
-+export OE_QMAKE_MOC = "${STAGING_BINDIR_NATIVE}/moc-qt3"
- export OE_QMAKE_CXXFLAGS = "${CXXFLAGS} -DQT_NO_XIM"
- export OE_QMAKE_INCDIR_QT = "${QTDIR}/include"
- export OE_QMAKE_LIBDIR_QT = "${QTDIR}/lib"
 diff --git a/recipes-qt3/qt3/qt-x11-free-common.inc b/recipes-qt3/qt3/qt-x11-free-common.inc
-index 3bd4e4a..4c16b73 100644
+index c92d883..1e00138 100644
 --- a/recipes-qt3/qt3/qt-x11-free-common.inc
 +++ b/recipes-qt3/qt3/qt-x11-free-common.inc
-@@ -2,7 +2,7 @@ DESCRIPTION = "Qt/X11 Version ${PV} is a full fledged cross-platform application
- SECTION = "x11/libs"
+@@ -3,7 +3,7 @@ SECTION = "x11/libs"
+ PRIORITY = "optional"
  LICENSE = "GPL | QPL"
  HOMEPAGE = "http://www.trolltech.com"
--INC_PR = "r4"
-+INC_PR = "r5"
+-INC_PR = "r3"
++INC_PR = "r4"
  
  S = "${WORKDIR}/qt-x11-free-${PV}"
  
-@@ -16,11 +16,11 @@ EXTRA_OEMAKE = "-e"
- QT_CONFIG_FLAGS = "-release -shared -qt-zlib -no-nas-sound -no-sm -qt-libpng -no-gif -no-xinerama \
-                    -no-tablet -no-xkb -no-dlopen-opengl -no-nis -no-cups -thread  -verbose"
+@@ -11,7 +11,6 @@ S = "${WORKDIR}/qt-x11-free-${PV}"
+ inherit qmake_base qt3x11
  
--EXTRA_ENV = 'QMAKE="${STAGING_BINDIR_NATIVE}/qmake -after INCPATH+=${STAGING_INCDIR} \
-+EXTRA_ENV = 'QMAKE="${OE_QMAKE_QMAKE} -after INCPATH+=${STAGING_INCDIR} \
-              INCPATH+=${STAGING_INCDIR}/freetype2 LIBS+=-L${STAGING_LIBDIR}" \
-              QMAKESPEC="${QMAKESPEC}" LINK="${CXX} -Wl,-rpath-link,${STAGING_LIBDIR}" \
+ export QTDIR = "${S}"
+-STAGING_QT_DIR = "${STAGING_DIR_HOST}/qt3"
+ ARCH_i686 = "x86"
+ EXTRA_OEMAKE = "-e"
+ 
+@@ -24,13 +23,11 @@ EXTRA_ENV = 'QMAKE="${STAGING_BINDIR_NATIVE}/qmake -after INCPATH+=${STAGING_INC
               AR="${TARGET_PREFIX}ar cqs" \
--             MOC="${STAGING_BINDIR_NATIVE}/moc3" UIC="${STAGING_BINDIR_NATIVE}/uic3" MAKE="make -e"'
-+             MOC="${OE_QMAKE_MOC}" UIC="${OE_QMAKE_UIC}" MAKE="make -e"'
+              MOC="${STAGING_BINDIR_NATIVE}/moc3" UIC="${STAGING_BINDIR_NATIVE}/uic3" MAKE="make -e"'
  
+-do_configure_prepend() {
+-    if [ ! -L ${QMAKE_MKSPEC_PATH}/${TARGET_OS}-oe-g++ ]; then
+-        ln -sf ${QMAKE_MKSPEC_PATH}/linux-g++ ${QMAKE_MKSPEC_PATH}/${TARGET_OS}-oe-g++
+-    fi
+-}
+-
  do_configure() {
- 	if [ ! -L ${QMAKE_MKSPEC_PATH}/${TARGET_OS}-oe-g++ ]; then
-@@ -34,18 +34,18 @@ do_configure() {
- 	rm -f src/qtmain.pro
- 	cat Makefile >makefile
- 	find . -name "Makefile"|xargs rm -f
--	(cd src && qmake -spec ${QMAKESPEC} )
--	(cd plugins/src && qmake -spec ${QMAKESPEC} )
--	(cd tools && qmake -spec ${QMAKESPEC} )
--	(cd tools/qvfb && qmake -spec ${QMAKESPEC} )
-+	(cd src && ${OE_QMAKE_QMAKE} -spec ${QMAKESPEC} )
-+	(cd plugins/src && ${OE_QMAKE_QMAKE} -spec ${QMAKESPEC} )
-+	(cd tools && ${OE_QMAKE_QMAKE} -spec ${QMAKESPEC} )
-+	(cd tools/qvfb && ${OE_QMAKE_QMAKE} -spec ${QMAKESPEC} )
++	if [ ! -L ${QMAKE_MKSPEC_PATH}/${TARGET_OS}-oe-g++ ]; then
++		ln -sf ${QMAKE_MKSPEC_PATH}/linux-g++ ${QMAKE_MKSPEC_PATH}/${TARGET_OS}-oe-g++
++	fi
++
+ 	echo "yes" | ./configure -prefix ${prefix} ${QT_CONFIG_FLAGS} -no-fast \
+ 		-L${STAGING_LIBDIR} -I${STAGING_INCDIR} -I${STAGING_INCDIR}/freetype2 -I${STAGING_INCDIR}/mysql
+ 
+@@ -56,43 +53,37 @@ do_compile() {
+ 	oe_runmake -C tools ${EXTRA_ENV}
  }
  
- do_compile() {
- 	unset CFLAGS
- 	unset CXXFLAGS
- 
--	install -m 0755 ${STAGING_BINDIR_NATIVE}/moc3 ${S}/bin/moc
--	install -m 0755 ${STAGING_BINDIR_NATIVE}/uic3 ${S}/bin/uic
-+	install -m 0755 ${OE_QMAKE_MOC} ${S}/bin/moc
-+	install -m 0755 ${OE_QMAKE_UIC} ${S}/bin/uic
- 
- 	oe_runmake -C src ${EXTRA_ENV}
- 	oe_runmake -C plugins/src ${EXTRA_ENV}
-diff --git a/recipes-qt3/qt3/qt-x11-free-native_3.3.5.bb b/recipes-qt3/qt3/qt-x11-free-native_3.3.5.bb
-index 48fc3a0..d70c373 100644
---- a/recipes-qt3/qt3/qt-x11-free-native_3.3.5.bb
-+++ b/recipes-qt3/qt3/qt-x11-free-native_3.3.5.bb
-@@ -3,7 +3,7 @@ SECTION = "libs"
- LICENSE = "GPL | QPL"
- DEPENDS = "xmu-native"
- HOMEPAGE = "http://www.trolltech.com"
--PR = "r2"
-+PR = "r3"
- 
- FILESDIR = "${@os.path.dirname(bb.data.getVar('FILE',d,1))}/qt-x11-free"
- 
-@@ -48,9 +48,9 @@ do_compile() {
- 
- do_install() {
-     install -d ${D}${bindir}/
--    install -m 0755 bin/qmake ${D}${bindir}/qmake3
-+    install -m 0755 bin/qmake ${D}${bindir}/qmake-qt3
-     for i in moc uic  lrelease lupdate; do
--        install -m 0755 bin/${i} ${D}${bindir}/${i}3
-+        install -m 0755 bin/${i} ${D}${bindir}/${i}-qt3
-     done
-  
-     install -d ${D}${datadir}/qt3/
-@@ -58,11 +58,7 @@ do_install() {
-     ln -sf linux-g++ ${D}${datadir}/qt3/mkspecs/${TARGET_OS}-oe-g++
-     ln -sf qt3/mkspecs ${D}${datadir}/qmake
-     install -d ${D}${libdir}/
--    oe_soinstall lib/libqt-mt.so.${PV} ${D}${libdir}/
--    cd ${D}${bindir}
--    for i in qmake moc uic lrelease lupdate;do
--        ln -s ${i}3 ${i}
--    done
-+    oe_libinstall -so -C lib libqt-mt ${D}${libdir}
+-do_install_prepend() {
+-	install -d ${STAGING_QT_DIR}/bin
+-	ln -sf ${STAGING_BINDIR_NATIVE}/moc3 ${STAGING_QT_DIR}/bin/moc
+-	ln -sf ${STAGING_BINDIR_NATIVE}/uic3 ${STAGING_QT_DIR}/bin/uic
+-	ln -sf ${STAGING_BINDIR_NATIVE}/qmake ${STAGING_QT_DIR}/bin/qmake
+-	install -d ${STAGING_QT_DIR}/lib
+-	oe_soinstall lib/libqt-mt.so.${PV} ${STAGING_QT_DIR}/lib
+-	install -d ${STAGING_QT_DIR}/include/private
++do_install() {
++	install -d ${D}${includedir}
++	install -d ${D}${includedir}/qt3
++	install -d ${D}${includedir}/qt3/private
+ 	for f in include/*.h
+ 	do
+-		install -m 0644 $f ${STAGING_QT_DIR}/include/
++		install -m 0644 $f ${D}${includedir}/qt3
+ 	done
+ 	for f in include/private/*.h
+ 	do
+-		install -m 0644 $f ${STAGING_QT_DIR}/include/private
++		install -m 0644 $f ${D}${includedir}/qt3/private
+ 	done
++	install -d ${D}${libdir}
++	install -d ${D}${libdir}/qt3
+ 	for f in lib/*.prl
+ 	do
+-		install -m 0644 $f ${STAGING_QT_DIR}/lib
++		install -m 0644 $f ${D}${libdir}/qt3
+ 	done
+-}
+-
+-do_install() {
+-	install -d ${D}${libdir}/
+-	oe_soinstall lib/libqt-mt.so.${PV} ${D}${libdir}/
+-	install -d ${D}${bindir}/
+-	install -d ${D}${prefix}/plugins/
+-	cp -pPR plugins/imageformats plugins/sqldrivers plugins/designer ${D}${prefix}/plugins/
++	oe_libinstall -so -C lib libqt-mt ${D}${libdir}
++	install -d ${D}${libdir}/qt3/plugins/
++	cp -pPR plugins/imageformats plugins/sqldrivers plugins/designer ${D}${libdir}/qt3/plugins/
  }
  
+ PACKAGES =+ " libqt-mt3 qt-x11-plugins-imageformats qt-x11-plugins-sqldrivers qt-x11-plugins-designer \
+              qt-x11-designer qt-x11-assistant qt-x11-qvfb qt-x11-qtconfig"
+-FILES_libqt-mt3 = "${D}/{libdir}/libqt-mt*"
+-FILES_qt-x11-plugins-imageformats = "${prefix}/plugins/imageformats/*.so"
+-FILES_qt-x11-plugins-sqldrivers = "${prefix}/plugins/sqldrivers/*.so"
+-FILES_qt-x11-plugins-designer = "${prefix}/plugins/designer/*.so"
++FILES_libqt-mt3 = "${libdir}/libqt-mt.so.*"
++FILES_${PN}-dev += "${libdir}/qt3/*.prl"
++FILES_qt-x11-plugins-imageformats = "${libdir}/qt3/plugins/imageformats/*.so"
++FILES_qt-x11-plugins-sqldrivers = "${libdir}/qt3/plugins/sqldrivers/*.so"
++FILES_qt-x11-plugins-designer = "${libdir}/qt3/plugins/designer/*.so"
+ FILES_qt-x11-designer = "${bindir}/designer"
+ FILES_qt-x11-assistant = "${bindir}/assistant"
+ FILES_qt-x11-qtconfig = "${bindir}/qtconfig"
+-FILES_qt-x11-dbg += "${prefix}/plugins/*/.debug ${D}/qt-x11-plugins-debug"
++FILES_${PN}-dbg += "${libdir}/qt3/plugins/*/.debug"
+diff --git a/recipes-qt3/qt3/qt-x11-free_3.3.7.bb b/recipes-qt3/qt3/qt-x11-free_3.3.7.bb
+index a67dd63..cf3b878 100644
+--- a/recipes-qt3/qt3/qt-x11-free_3.3.7.bb
++++ b/recipes-qt3/qt3/qt-x11-free_3.3.7.bb
+@@ -1,6 +1,6 @@
+ DEPENDS = "qt-x11-free-native freetype virtual/libx11 libxmu libxft libxext libxrender libxrandr libxcursor  virtual/libgl"
+ PROVIDES = "qt3x11"
+-PR = "${INC_PR}.1"
++PR = "${INC_PR}.0"
  
+ LIC_FILES_CHKSUM = "file://LICENSE.GPL;md5=b07b0d5ac6b1822effe47173a1744433 \
+                     file://LICENSE.QPL;md5=b81b6b6fc04ed873adde5aa901c0613b"
 -- 
 1.7.5.4
 
