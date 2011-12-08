@@ -1,26 +1,19 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11898E005B9
-	for <yocto@yoctoproject.org>; Thu,  8 Dec 2011 11:50:45 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 08 Dec 2011 11:50:44 -0800
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3C99E006B0
+	for <yocto@yoctoproject.org>; Thu,  8 Dec 2011 11:56:54 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 08 Dec 2011 11:56:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="85110905"
-Received: from sharon1-mobl1.amr.corp.intel.com (HELO envy.home)
-	([10.7.199.161])
-	by orsmga002.jf.intel.com with ESMTP; 08 Dec 2011 11:50:44 -0800
-Message-ID: <4EE11521.40100@linux.intel.com>
-Date: Thu, 08 Dec 2011 11:50:57 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
-MIME-Version: 1.0
-To: Marc Ferland <marc.ferland@gmail.com>
-References: <CAMRMzCDCBX15T8k+sAojLKiCwn_xReuFc-xyFCCGnBVYwzj7iQ@mail.gmail.com>
-In-Reply-To: <CAMRMzCDCBX15T8k+sAojLKiCwn_xReuFc-xyFCCGnBVYwzj7iQ@mail.gmail.com>
-X-Enigmail-Version: 1.3.3
-Cc: yocto@yoctoproject.org
-Subject: Re: Adding features to a machine
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="84429863"
+Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.121.254])
+	by orsmga001.jf.intel.com with ESMTP; 08 Dec 2011 11:56:49 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu,  8 Dec 2011 19:56:44 +0000
+Message-Id: <cover.1323374147.git.paul.eggleton@linux.intel.com>
+X-Mailer: git-send-email 1.7.5.4
+Subject: [meta-qt3] [PATCH 0/3] More Qt3 fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,25 +25,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Dec 2011 19:50:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 08 Dec 2011 19:56:55 -0000
 
-On 12/08/2011 11:13 AM, Marc Ferland wrote:
-> Hi,
-> 
-> I have a crownbay based machine here and I would like to add the
-> bluetooth machine feature to it. Do I have to create a whole new BSP for
-> this? I haven't seen any examples showing how to _modify_ a machine
-> description.
+These should address the failures we have been seeing on the autobuilder
+and clean up a few other things.
 
+The following changes since commit 9d58aef10d75fe5168cc0c561c480c751266d54b:
 
-Have you tried modifying either MACHINE_FEATURES_crownbay or
-KERNEL_FEATURES_crownbay from local.conf? I haven't attempted this
-myself, but I believe it should work.
+  classes: remove qt3e.bbclass (2011-12-08 15:09:06 +0000)
+
+are available in the git repository at:
+  git://git.yoctoproject.org/poky-contrib paule/qt3-fixes2
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=paule/qt3-fixes2
+
+Paul Eggleton (3):
+  qt-x11-free: fix installation and packaging
+  qt-x11-free(-native): remove PRIORITY
+  qt3: fix interaction between qt3 and qt4 in the sysroot
+
+ classes/qt3x11.bbclass                      |    5 +-
+ recipes-qt3/qt3/qt-x11-free-common.inc      |   72 +++++++++++---------------
+ recipes-qt3/qt3/qt-x11-free-native_3.3.5.bb |   13 ++---
+ recipes-qt3/qt3/qt-x11-free_3.3.7.bb        |    2 +-
+ 4 files changed, 39 insertions(+), 53 deletions(-)
 
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+1.7.5.4
+
 
