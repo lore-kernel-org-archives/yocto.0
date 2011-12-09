@@ -1,40 +1,40 @@
-Return-Path: <prvs=0324ce98bd=NAVANI.Srivastava@lnties.com>
-Received: from mailout2.ltindia.com (mailout2.ltindia.com [125.18.18.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 983D6E006B0
-	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 02:56:14 -0800 (PST)
-X-AuditID: c0a8466b-b7cb2ae000006238-09-4ee1e5befd46
-Received: from POCITMSEXHUB03.LntUniverse.com ( [10.2.1.60])
-	by mailout2.ltindia.com (Symantec Mail Security) with SMTP id
-	6C.9E.25144.EB5E1EE4; Fri,  9 Dec 2011 16:11:03 +0530 (IST)
-Received: from POCITMSEXMB03.LntUniverse.com ([fe80::f495:7e6e:4c34:a3a9]) by
-	POCITMSEXHUB03.LntUniverse.com ([::1]) with mapi id 14.01.0218.012;
-	Fri, 9 Dec 2011 16:11:02 +0530
-From: Navani Kamal Srivastava <NAVANI.Srivastava@lnties.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Problem related to moc and uic binaries
-Thread-Index: Acy2XrbP4xVb9KCnSjWh3W912timhw==
-Date: Fri, 9 Dec 2011 10:41:01 +0000
-Message-ID: <9BACABF0C6B14A4D8C33B42A795119BE096D651C@POCITMSEXMB03.LntUniverse.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.37.159]
+Return-Path: <twoerner@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02F52E00303
+	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 09:10:08 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by dadi14 with SMTP id i14so4310583dad.35
+	for <yocto@yoctoproject.org>; Fri, 09 Dec 2011 09:10:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=VMIUPu4/s7QhdFmeChouKRjxicoUdWGSddnJ5D0Cjg0=;
+	b=CIgJY7/U15U6xhwWVR40X1V5rGqL6ayURpV2u4xG3ueQMcIHAj3GZBzvPRoGKIEpRf
+	RaDUNiWVrGZabd1kPdivjZfaEoAyMsm80MBLhx0J2yWVodcoeV2PCBJJl6mHordmKZ1T
+	Wokk6RKR5V+2xe4kljdmv+ooax+u3eDxkz7r4=
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprNKsWRmVeSWpSXmKPExsXCxcRoo+v28qGfwY6bLBaTXq5hc2D0aD/R
-	xxbAGMVtk5RYUhacmZ6nb5fAnXH7JmtBu27FlQXn2RoYF6t3MXJySAiYSMz5/okdwhaTuHBv
-	PVsXIxeHkMAORokrD5YwQzhbGCW2rbjIDFLFJmAj8fj8OhYQW0TAVOLFsS9sILawgIHElX37
-	2WDiuzfcgqrRk3jQuRIsziKgIvHn5nKwOK9AiMTb5mesIDYj0Obvp9YwgdjMAuISt57MZ4K4
-	SEBiyZ7zzBC2qMTLx/+A6jmAbCWJxys5QUxmgXyJqZv1ICYKSpyc+YRlAqPQLCSDZiFUzUJS
-	BVGiI7Fg9yc2CFtbYtnC18ww9pkDj5mQxRcwsq9iFMlNzMzJLy0x0sspycxLyUzUS87P3cQI
-	jIYDK9yydzB+3KNyiFGAg1GJh9dS4KGfEGtiWXFl7iFGSQ4mJVFe/edAIb6k/JTKjMTijPii
-	0pzU4kOMEhzMSiK8xy4C5XhTEiurUovyYVLSHCxK4rzn5I/5CQmkJ5akZqemFqQWwWRlODiU
-	JHgnvwBqFCxKTU+tSMvMKUFIM3FwgggukA08QBtOgBTyFhck5hZnpkMUnWKUlBLnXQCSEABJ
-	ZJTmwQ14xSgO9Icw7wSQLA8wxcF1vQIayAQ08Ev2A5CBJYkIKakGxqZPP0sF87fFzrdunlwt
-	2qFe3VemdEq2OoUlNaUi4l1z8mvXFivJm1uNjnx/nKwTvP4sU/SdBDmvJd/mWfHuWnl7lb5c
-	pUObbfNHcdeFG5SMFmW0H7XmTvsl7DBBZdWjW2y9Uw8sP3X0J7/fsz98/futMyeefv1kJe/Z
-	SWd6J+rmTrvM+n5VgxJLcUaioRZzUXEiANlHBdcuAwAA
-X-Mailman-Approved-At: Fri, 09 Dec 2011 09:02:35 -0800
-Subject: Problem related to moc and uic binaries
+Received: by 10.68.208.225 with SMTP id mh1mr3553968pbc.20.1323450608605; Fri,
+	09 Dec 2011 09:10:08 -0800 (PST)
+Received: by 10.68.25.4 with HTTP; Fri, 9 Dec 2011 09:10:08 -0800 (PST)
+In-Reply-To: <1323384424.5309.85.camel@ted>
+References: <88701C38B5D07249817D428430999C910B774261@sestoex09.enea.se>
+	<CABcZANkovWJH9dFUpRngNzrQH5VAxYOiO1dK3H2pPB4SM9GS6A@mail.gmail.com>
+	<1605255.ltn5bNtJ0l@helios>
+	<752D6B50-3DE9-4257-B160-AE1CAA99F2C7@dominion.thruhere.net>
+	<88701C38B5D07249817D428430999C910B774381@sestoex09.enea.se>
+	<CADkTA4O1DeNXkfVk0Oc3Gspsz2erGf0pJTRE0XOLypww8M2n_Q@mail.gmail.com>
+	<4EE106CB.6080104@linux.intel.com> <1323384424.5309.85.camel@ted>
+Date: Fri, 9 Dec 2011 12:10:08 -0500
+Message-ID: <CAHUNapQ3MW4m7q5h+cT3zLgSrskFaKkRzvU7W-qDrN=be_yvOg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: =?ISO-8859-1?Q?David_Nystr=F6m?= <David.Nystrom@enea.com>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: Variable locality too restricted.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,161 +46,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Dec 2011 10:56:17 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9BACABF0C6B14A4D8C33B42A795119BE096D651CPOCITMSEXMB03Ln_"
+X-List-Received-Date: Fri, 09 Dec 2011 17:10:09 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---_000_9BACABF0C6B14A4D8C33B42A795119BE096D651CPOCITMSEXMB03Ln_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-I am compiling Qt-4.6.3 with yocto for ARM architecture. Can you please tel=
-l me which and all utilities I am supposed to compile to get moc and uic bi=
-naries. I tried bitbake -b meta-toolchain.bb to get theses binaries but it =
-it giving me following error-
-
-Processing task-poky-standalone-sdk-target...
-Unable to find package task-poky-standalone-sdk-target!.
-
-To get task-poky-standalone-sdk-target I compiled recipes-gnome/tasks/task-=
-poky-standalone-gmae-sdk-target.bb. On successful compilation of task-poky-=
-standalone-gmae-sdk-target.bb also I am getting the same error. Please let =
-me know where I am doing wrong.
-
-Thanks & Regards,
-Navani Kamal Srivastava
-
-
-Larsen & Toubro Limited
-
-www.larsentoubro.com<http://www.larsentoubro.com/>
-
-This mail is classified as: ( ) L&T Proprietary ( ) L&T Confidential (X) L&=
-T Internal Use ( ) L&T General Business
-This email may contain confidential or privileged information for the inten=
-ded recipient(s). If you are not the intended recipient, please do not use =
-or disseminate the information, notify the sender and delete it from your s=
-ystem.
-
-
-
-
-Larsen & Toubro Limited
-
-www.larsentoubro.com
-
-This Email may contain confidential or privileged information for the inten=
-ded recipient (s) If you are not the intended recipient, please do not use =
-or disseminate the information, notify the sender and delete it from your s=
-ystem.
-
---_000_9BACABF0C6B14A4D8C33B42A795119BE096D651CPOCITMSEXMB03Ln_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Thu, Dec 8, 2011 at 5:47 PM, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+> Imagine you have:
 >
-<style>
-<!--
-@font-face
-	{font-family:Calibri}
-@font-face
-	{font-family:Tahoma}
-@font-face
-	{font-family:"Poor Richard"}
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif"}
-a:link, span.MsoHyperlink
-	{color:blue;
-	text-decoration:underline}
-a:visited, span.MsoHyperlinkFollowed
-	{color:purple;
-	text-decoration:underline}
-span.EmailStyle17
-	{font-family:"Tahoma","sans-serif";
-	color:windowtext}
-.MsoChpDefault
-	{font-family:"Calibri","sans-serif"}
-@page WordSection1
-	{margin:1.0in 1.0in 1.0in 1.0in}
-div.WordSection1
-	{}
--->
-</style>
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">Hi,</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">I am compiling Qt-4.6.3 with yocto for A=
-RM architecture. Can you please tell me which and all utilities I am suppos=
-ed to compile to get moc and uic binaries. I tried bitbake
- -b meta-toolchain.bb to get theses binaries but it it giving me following =
-error-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">Processing task-poky-standalone-sdk-targ=
-et...</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">Unable to find package task-poky-standal=
-one-sdk-target!.</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">To get task-poky-standalone-sdk-target I=
- compiled recipes-gnome/tasks/task-poky-standalone-gmae-sdk-target.bb. On s=
-uccessful compilation of task-poky-standalone-gmae-sdk-target.bb
- also I am getting the same error. Please let me know where I am doing wron=
-g.</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal">Thanks &amp; Regards,</p>
-<p class=3D"MsoNormal">Navani Kamal Srivastava</p>
-<p class=3D"MsoNormal"><br>
-<br>
-<b>Larsen &amp; Toubro Limited <br>
-<br>
-<a href=3D"http://www.larsentoubro.com/"><span style=3D"color:blue">www.lar=
-sentoubro.com</span></a>
-<br>
-<br>
-</b><span style=3D"font-family:&quot;Poor Richard&quot;,&quot;serif&quot;; =
-color:black">This mail is classified as: ( ) L&amp;T Proprietary ( ) L&amp;=
-T Confidential (X) L&amp;T Internal Use ( ) L&amp;T General Business</span>=
-<span style=3D"font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-s=
-erif&quot;; color:black"><br>
-This email may contain confidential or privileged information for the inten=
-ded recipient(s). If you are not the intended recipient, please do not use =
-or disseminate the information, notify the sender and delete it from your s=
-ystem.
-<br>
-<br>
-</span></p>
-<p class=3D"MsoNormal">&nbsp;</p>
-</div>
-<br>
-<br>
-<b>Larsen &amp; Toubro Limited <br>
-<br>
-www.larsentoubro.com <br>
-<br>
-</b>This Email may contain confidential or privileged information for the i=
-ntended recipient (s) If you are not the intended recipient, please do not =
-use or disseminate the information, notify the sender and delete it from yo=
-ur system.
-</body>
-</html>
+> core-image-minimal setting PREFERRED_PROVIDER = "kernelA" and
+> core-image-minima-debug setting PREFERRED_PROVIDER = "kernelB". Both
+> would depend on "virtual/kernel". You then run:
+>
+> "bitbake core-image-minimal core-image-minimal-debug"
+>
+> What would you expect bitbake to do?
 
---_000_9BACABF0C6B14A4D8C33B42A795119BE096D651CPOCITMSEXMB03Ln_--
+Would it be possible to have both kernels built and installed to the
+image with the PREFERRED_PROVIDER selecting the default kernel to boot
+(i.e. grub/lilo/<whatever> configuration setting)?
+
