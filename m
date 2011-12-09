@@ -1,34 +1,32 @@
 Return-Path: <raj.khem@gmail.com>
 Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
 	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0FCEE00303
-	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 11:56:24 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7375E00303
+	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 12:08:38 -0800 (PST)
 Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
 	(1024-bit key; insecure key) header.i=@gmail.com;
 	x-dkim-adsp=none (insecure policy)
-Received: by laam7 with SMTP id m7so229951laa.35
-	for <yocto@yoctoproject.org>; Fri, 09 Dec 2011 11:56:23 -0800 (PST)
+Received: by laam7 with SMTP id m7so236603laa.35
+	for <yocto@yoctoproject.org>; Fri, 09 Dec 2011 12:08:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=rXPgQTxjsIT0GNZyvhFNx4mltiRdsISx4V4I/rPaLhM=;
-	b=CjJKCBhdIU0tq1HZZGM4MpXoHQ9J4XYNA1ljlLSjJO8L2nn8sflhLTDT/IsQw7LClg
-	zvJuM1S0VMWsMNuC1+f26cLwhDwkDMjEDrmeuZCpD0GRJBaXwadp2E4i1asNf3udb1cp
-	DAcT2GXT4AzJWqGreMcRX1nP5gv4GFxvLLkHo=
-Received: by 10.152.106.115 with SMTP id gt19mr5837089lab.27.1323460583286;
-	Fri, 09 Dec 2011 11:56:23 -0800 (PST)
+	bh=gB0Er7NkdfWl5AKA7l/hmVQZ77mrdSXu0+GHiQLQZUw=;
+	b=T1gh9GGYuJdfYjM5E4tNkeqimFG8wXPT6ndbJm8xyroC+bMsL23y+RZ/x6HMYmklzr
+	kqBHjanqy+NvyPpoG7zBXFP5NakjFQIDkegxlF7ZKQtDslrZdLFvwT6C2vtmisiVtZuV
+	W9iwXzbc/eBOGYX267H3bGnUN6WRZtpWxOADk=
+Received: by 10.152.104.206 with SMTP id gg14mr5824682lab.41.1323461317314;
+	Fri, 09 Dec 2011 12:08:37 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.152.24.36 with HTTP; Fri, 9 Dec 2011 11:55:52 -0800 (PST)
-In-Reply-To: <CAEsOVNexQiXQkWQH8hEBq+4JFGihda7_azWPrxeTG9J+M3wgvw@mail.gmail.com>
-References: <CAEsOVNeYZ4hwvV8dXMadkzchyA_nRHeZ63_s-XgJBzaEymUKdg@mail.gmail.com>
-	<1323431474.5309.128.camel@ted>
-	<CAEsOVNexQiXQkWQH8hEBq+4JFGihda7_azWPrxeTG9J+M3wgvw@mail.gmail.com>
+Received: by 10.152.24.36 with HTTP; Fri, 9 Dec 2011 12:08:06 -0800 (PST)
+In-Reply-To: <9BACABF0C6B14A4D8C33B42A795119BE096D651C@POCITMSEXMB03.LntUniverse.com>
+References: <9BACABF0C6B14A4D8C33B42A795119BE096D651C@POCITMSEXMB03.LntUniverse.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 9 Dec 2011 11:55:52 -0800
-Message-ID: <CAMKF1spwM8nHzdaYnDquF9UgrvE2bdhmcGZpjyxPqkXzuub5Yw@mail.gmail.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
+Date: Fri, 9 Dec 2011 12:08:06 -0800
+Message-ID: <CAMKF1sqdzs8GNCE+FidZ=qPrF8CDVgHLPbXGFy9F8OHcqV=FfA@mail.gmail.com>
+To: Navani Kamal Srivastava <NAVANI.Srivastava@lnties.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-oe branch for edison?
+Subject: Re: Problem related to moc and uic binaries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,21 +38,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Dec 2011 19:56:25 -0000
+X-List-Received-Date: Fri, 09 Dec 2011 20:08:39 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Fri, Dec 9, 2011 at 7:46 AM, McClintock Matthew-B29882
-<B29882@freescale.com> wrote:
->> I'd certainly be happy to see such a branch. It might be more
->> appropriate to call it 2011-1 which corresponds to the OE-Core branch
->> name that is edison in the poky repo.
+On Fri, Dec 9, 2011 at 2:41 AM, Navani Kamal Srivastava
+<NAVANI.Srivastava@lnties.com> wrote:
+> Hi,
 >
-> Well I don't particularly care if we create a repo or not. I just want
-> a place to go for a working meta-oe for all future releases of Yocto.
-> I had to figure this out on my own, but I'm can imagine others will
-> attempt similar things.
+>
+>
+> I am compiling Qt-4.6.3 with yocto for ARM architecture. Can you please tell
+> me which and all utilities I am supposed to compile to get moc and uic
+> binaries. I tried bitbake -b meta-toolchain.bb to get theses binaries but it
+> it giving me following error-
 
-essentially you are asking for meta-oe release. I think layers dont
-release in conjunction with oe-core but it would be beneficial if they
-had similar time frames.
+
+they come with QT so bitbake meta-toolchain-qte
+
+-b option to bitbake will not build dependencies. read through bitbake
+--help output
+
+
+> This Email may contain confidential or privileged information for the
+> intended recipient (s) If you are not the intended recipient, please do not
+> use or disseminate the information, notify the sender and delete it from
+> your system.
+
+you are interacting on a public mailing list. Please avoid attaching
+these notices in future.
 
