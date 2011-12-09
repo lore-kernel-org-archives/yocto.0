@@ -1,26 +1,23 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC39DE00303
-	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 13:23:26 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D300CE00303
+	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 14:51:59 -0800 (PST)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 09 Dec 2011 13:23:25 -0800
+	by azsmga101.ch.intel.com with ESMTP; 09 Dec 2011 14:51:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="45734501"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="45756605"
 Received: from unknown (HELO envy.home) ([10.255.12.30])
-	by AZSMGA002.ch.intel.com with ESMTP; 09 Dec 2011 13:23:25 -0800
-Message-ID: <4EE27C5C.60407@linux.intel.com>
-Date: Fri, 09 Dec 2011 13:23:40 -0800
+	by AZSMGA002.ch.intel.com with ESMTP; 09 Dec 2011 14:51:58 -0800
+Message-ID: <4EE2911E.3090708@linux.intel.com>
+Date: Fri, 09 Dec 2011 14:52:14 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-To: "Stewart, David C" <david.c.stewart@intel.com>
-References: <4EE274E8.4000605@linux.intel.com>
-	<B27EBC40D200ED48A3F4CC2EBEABAE0B261BD3A06A@orsmsx501.amr.corp.intel.com>
-In-Reply-To: <B27EBC40D200ED48A3F4CC2EBEABAE0B261BD3A06A@orsmsx501.amr.corp.intel.com>
+To: "Ashfield, Bruce" <Bruce.Ashfield@windriver.com>, 
+	Yocto Project <yocto@yoctoproject.org>
 X-Enigmail-Version: 1.3.3
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH] n450: drop ROOTLESS_X as it breaks X
+Subject: linux-yocto: ktypes/tiny and some questions along the way
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,71 +29,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Dec 2011 21:23:27 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 09 Dec 2011 22:52:00 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 12/09/2011 01:17 PM, Stewart, David C wrote:
-> Are we going to diagnose why rootless X  is broken and fix it?
+Bruce,
 
-We should indeed, and I am testing on atom-pc now to confirm it also
-fails there as I suspect it will. Then I will open a ROOTLESS_X bug. But
-for M1, just dropping it is the right fix. We can easily add it
-back later.
+I'm looking at introducing a new kernel type, ktypes/tiny.
 
---
-Darren
+Tiny will define a core set of kernel policy options, such as proc, sys,
+devtmpfs, futex, epoll, elf bin format, etc. It will not enable any
+drivers, filesystems, debug options, or networking options by default.
+This would be the responsibility of the BSP to add a named feature
+implementing this.
 
+Taking a look at the ktypes we have now resulted in some questions:
 
->> -----Original Message-----
->> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->> bounces@yoctoproject.org] On Behalf Of Darren Hart
->> Sent: Friday, December 09, 2011 12:52 PM
->> To: Yocto Project; Zanussi, Tom; Saul Wold
->> Subject: [yocto] [PATCH] n450: drop ROOTLESS_X as it breaks X
->>
->> Fixes [YOCTO #1797]
->>
->> Building with ROOTLESS_X results in X failing start with
->> the following error:
->>
->> i915 0000:00:02.0: VGA-1: EDID block 0 invalid.
->> (EE) AIGLX error: dlopen of /usr/lib/dri/i915_dri.so failed
->> (/usr/lib/dri/i915_dri)
->> (EE) AIGLX: reverting to software rendering
->> (EE) AIGLX error: dlopen of /usr/lib/dri/swrast_dri.so failed
->> (/usr/lib/dri/swrast)
->> (EE) GLX: could not load software renderer
->>
->> The n450 BSP is the only BSP in meta-intel using ROOTLESS_X. Dropping
->> it restores functionality and brings it inline with the rest of the BSPs.
->>
->> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
->> ---
->> meta-n450/conf/machine/n450.conf |    2 --
->> 1 files changed, 0 insertions(+), 2 deletions(-)
->>
->> diff --git a/meta-n450/conf/machine/n450.conf
->> b/meta-n450/conf/machine/n450.conf
->> index 7210da8..3e6a541 100644
->> --- a/meta-n450/conf/machine/n450.conf
->> +++ b/meta-n450/conf/machine/n450.conf
->> @@ -16,5 +16,3 @@ SERIAL_CONSOLE = "115200 ttyS0"
->> APPEND += "console=ttyS0,115200 console=tty0"
->>
->> MACHINE_EXTRA_RRECOMMENDS += "n450-audio"
->> -
->> -ROOTLESS_X = "1"
->> --
->> 1.7.5.4
->> --
->> Darren Hart
->> Intel Open Source Technology Center
->> Yocto Project - Linux Kernel
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+dvhart@envy:~/source/linux/linux-yocto-3.0/meta/cfg/kernel-cache/ktypes
+$ tree
+.
+├── base
+│   ├── base.cfg
+│   ├── base.scc
+│   ├── hardware.cfg
+│   ├── hardware.kcf
+│   ├── non-hardware.cfg
+│   └── non-hardware.kcf
+├── preempt-rt
+│   ├── preempt-rt.cfg
+│   └── preempt-rt.scc
+├── standard
+│   ├── perf-force-include-of-stdbool.h.patch
+│   ├── perf-hard-code-NO_LIBPERL-NO_LIBPYTHON.patch
+│   ├── standard-patches.scc
+│   ├── standard.cfg
+│   ├── standard.scc
+│   └── x86-add-TIF_32BIT-compatibility-define.patch
+
+These form a hiearchy, each inheriting from the layer beneath like so:
+
+base/standard/preempt-rt
+
+As I dig into this I see that some policy is infact laid down by base,
+including things like:
+
+CONFIG_MODULES=y
+CONFIG_INET=y
+CONFIG_PREEMPT=y
+CONFIG_NFS_FS=y
+CONFIG_MSDOS_PARTITION=y
+
+These pull in the IP stack, the block layer, etc. Because of this, I
+can't really inherit from base for ktypes/tiny. I would like to inherit
+the hardware and non-hardware kcf files though, as well as any patches
+that might make their way into base. Which leads me to standard. I would
+like to see a much smaller set of config policy options set in base.
+Most likely these should be exactly what we agree on for tiny, and tiny
+wouldn't add any additional policy as it implements only what is
+required for a Yocto Project built kernel.
+
+NOTE: kernel version is 3.0+
+$ cat base/base.scc | head -n 1
+set_kernel_version 2.6.37
+
+There are three patches in standard, only two of which (the perf ones)
+are listed in the standard.scc. As I believe any kernel we build should
+have these, I would like to see any global patches applied to base,
+leaving standard to define policy, and include named features.
+
+With these changes, I could add ktypes/tiny as follows:
+$ cat tiny/tiny.scc
+include ktypes/base
+branch tiny
+include features/xyz/xyz.scc
+include cfg/abc.scc
+
+Another point of interest is preempt-rt, as I can see people wanting to
+build tiny preempt-rt. I think the best approach here is to create
+ktypes/tiny/preempt-rt-tiny/preempt-rt-tiny.scc.
+
+Note: I believe this fails with .patch.patch
+$ cat features/rt/rt.scc | grep patch
+patch rt-apply-patch-3.0.10-rt27.patch.patch
+
+I'm working on a patch series that implements the suggestions I've made
+above. Bruce, do you have any issues with this approach?
 
 -- 
 Darren Hart
