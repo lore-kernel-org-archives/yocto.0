@@ -1,32 +1,23 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7375E00303
-	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 12:08:38 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by laam7 with SMTP id m7so236603laa.35
-	for <yocto@yoctoproject.org>; Fri, 09 Dec 2011 12:08:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=gB0Er7NkdfWl5AKA7l/hmVQZ77mrdSXu0+GHiQLQZUw=;
-	b=T1gh9GGYuJdfYjM5E4tNkeqimFG8wXPT6ndbJm8xyroC+bMsL23y+RZ/x6HMYmklzr
-	kqBHjanqy+NvyPpoG7zBXFP5NakjFQIDkegxlF7ZKQtDslrZdLFvwT6C2vtmisiVtZuV
-	W9iwXzbc/eBOGYX267H3bGnUN6WRZtpWxOADk=
-Received: by 10.152.104.206 with SMTP id gg14mr5824682lab.41.1323461317314;
-	Fri, 09 Dec 2011 12:08:37 -0800 (PST)
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F8F4E00303
+	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 12:51:38 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 09 Dec 2011 12:51:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="45727179"
+Received: from unknown (HELO envy.home) ([10.255.12.30])
+	by AZSMGA002.ch.intel.com with ESMTP; 09 Dec 2011 12:51:37 -0800
+Message-ID: <4EE274E8.4000605@linux.intel.com>
+Date: Fri, 09 Dec 2011 12:51:52 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-Received: by 10.152.24.36 with HTTP; Fri, 9 Dec 2011 12:08:06 -0800 (PST)
-In-Reply-To: <9BACABF0C6B14A4D8C33B42A795119BE096D651C@POCITMSEXMB03.LntUniverse.com>
-References: <9BACABF0C6B14A4D8C33B42A795119BE096D651C@POCITMSEXMB03.LntUniverse.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 9 Dec 2011 12:08:06 -0800
-Message-ID: <CAMKF1sqdzs8GNCE+FidZ=qPrF8CDVgHLPbXGFy9F8OHcqV=FfA@mail.gmail.com>
-To: Navani Kamal Srivastava <NAVANI.Srivastava@lnties.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem related to moc and uic binaries
+To: Yocto Project <yocto@yoctoproject.org>, 
+	"Zanussi, Tom" <tom.zanussi@intel.com>, Saul Wold <sgw@linux.intel.com>
+X-Enigmail-Version: 1.3.3
+Subject: [PATCH] n450: drop ROOTLESS_X as it breaks X
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,32 +29,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Dec 2011 20:08:39 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 09 Dec 2011 20:51:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Fri, Dec 9, 2011 at 2:41 AM, Navani Kamal Srivastava
-<NAVANI.Srivastava@lnties.com> wrote:
-> Hi,
->
->
->
-> I am compiling Qt-4.6.3 with yocto for ARM architecture. Can you please tell
-> me which and all utilities I am supposed to compile to get moc and uic
-> binaries. I tried bitbake -b meta-toolchain.bb to get theses binaries but it
-> it giving me following error-
+Fixes [YOCTO #1797]
 
+Building with ROOTLESS_X results in X failing start with
+the following error:
 
-they come with QT so bitbake meta-toolchain-qte
+i915 0000:00:02.0: VGA-1: EDID block 0 invalid.
+(EE) AIGLX error: dlopen of /usr/lib/dri/i915_dri.so failed
+(/usr/lib/dri/i915_dri)
+(EE) AIGLX: reverting to software rendering
+(EE) AIGLX error: dlopen of /usr/lib/dri/swrast_dri.so failed
+(/usr/lib/dri/swrast)
+(EE) GLX: could not load software renderer
 
--b option to bitbake will not build dependencies. read through bitbake
---help output
+The n450 BSP is the only BSP in meta-intel using ROOTLESS_X. Dropping
+it restores functionality and brings it inline with the rest of the BSPs.
 
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+---
+ meta-n450/conf/machine/n450.conf |    2 --
+ 1 files changed, 0 insertions(+), 2 deletions(-)
 
-> This Email may contain confidential or privileged information for the
-> intended recipient (s) If you are not the intended recipient, please do not
-> use or disseminate the information, notify the sender and delete it from
-> your system.
+diff --git a/meta-n450/conf/machine/n450.conf
+b/meta-n450/conf/machine/n450.conf
+index 7210da8..3e6a541 100644
+--- a/meta-n450/conf/machine/n450.conf
++++ b/meta-n450/conf/machine/n450.conf
+@@ -16,5 +16,3 @@ SERIAL_CONSOLE = "115200 ttyS0"
+ APPEND += "console=ttyS0,115200 console=tty0"
 
-you are interacting on a public mailing list. Please avoid attaching
-these notices in future.
+ MACHINE_EXTRA_RRECOMMENDS += "n450-audio"
+-
+-ROOTLESS_X = "1"
+-- 
+1.7.5.4
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
