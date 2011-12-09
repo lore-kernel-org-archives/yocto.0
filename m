@@ -1,20 +1,33 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE23AE006B5
-	for <yocto@yoctoproject.org>; Thu,  8 Dec 2011 19:33:47 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 08 Dec 2011 19:33:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="94223376"
-Received: from unknown (HELO swold-mobl.bigsur.com) ([10.255.12.35])
-	by fmsmga001.fm.intel.com with ESMTP; 08 Dec 2011 19:33:46 -0800
-From: Saul Wold <sgw@linux.intel.com>
-To: yocto@yoctoproject.org,
-	paul.eggleton@intel.com
-Date: Thu,  8 Dec 2011 19:33:46 -0800
-Message-Id: <1323401626-10525-1-git-send-email-sgw@linux.intel.com>
-X-Mailer: git-send-email 1.7.6.4
-Subject: [PATCH] task-core-qt3: Fix package names
+Return-Path: <bewithsathish@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBEDDE006B5
+	for <yocto@yoctoproject.org>; Thu,  8 Dec 2011 20:52:04 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by dadi14 with SMTP id i14so3529667dad.35
+	for <yocto@yoctoproject.org>; Thu, 08 Dec 2011 20:52:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=aZAoBBlFH9cziNMin71WV7dthPehPzZJfxNCSLRYK4I=;
+	b=fsGaEJj+Qir22OJpMOWZomHru8aPAWP2qidndsb/bgWWhl34AEGVBpW1ievk59zIik
+	ERrY/1fJg+4Iz6vqeeCBygmEPYA3IwGh2FcULaFnKfeLS9seMbAnbh87J/VNYKV+YvkH
+	avP0/YEm5+dGqV14ktu3j5+o3ZkijHtm7pOuw=
+MIME-Version: 1.0
+Received: by 10.68.190.37 with SMTP id gn5mr3088109pbc.6.1323406324477; Thu,
+	08 Dec 2011 20:52:04 -0800 (PST)
+Received: by 10.68.48.227 with HTTP; Thu, 8 Dec 2011 20:52:04 -0800 (PST)
+In-Reply-To: <4EE132C5.6040007@linux.intel.com>
+References: <CAJV8fDYuV2Hb3jdU25prLoW5-CxFFH0tWvmMUWGfwrqdNJx3+w@mail.gmail.com>
+	<4EE132C5.6040007@linux.intel.com>
+Date: Fri, 9 Dec 2011 10:22:04 +0530
+Message-ID: <CANJvwR-GVN+=JaS29oxmGM6mr-D6ncv+vsyVT2OaT+vOEaU8qA@mail.gmail.com>
+From: Sathishkumar Duraisamy <bewithsathish@gmail.com>
+To: Joshua Lock <josh@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: HOB usage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,35 +39,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Dec 2011 03:33:48 -0000
+X-List-Received-Date: Fri, 09 Dec 2011 04:52:05 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Saul Wold <sgw@linux.intel.com>
----
- recipes-qt3/tasks/task-core-qt3.bb |    3 +--
- 1 files changed, 1 insertions(+), 2 deletions(-)
+Hi,
 
-diff --git a/recipes-qt3/tasks/task-core-qt3.bb b/recipes-qt3/tasks/task-core-qt3.bb
-index 81479d9..fa41fb5 100644
---- a/recipes-qt3/tasks/task-core-qt3.bb
-+++ b/recipes-qt3/tasks/task-core-qt3.bb
-@@ -3,7 +3,7 @@
- #
- 
- DESCRIPTION = "Create qt3 Tasks"
--PR = "r0"
-+PR = "r1"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
-                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-@@ -17,7 +17,6 @@ ALLOW_EMPTY = "1"
- 
- 
- RDEPENDS_task-core-qt-mt3 = "\
--    qt-x11-free \
-     libqt-mt3 \
- "
- 
+I migrating from Openembedded to yocto project and using Beagleboard
+as playground.
+
+On Fri, Dec 9, 2011 at 3:27 AM, Joshua Lock <josh@linux.intel.com> wrote:
+>
+> On 05/12/11 10:35, madeeha javed wrote:
+>> I an using Yocto Edison. My machine configuration is beagleboard. And
+>> when I launch hob and Bake. I get a message that Output Image Type is
+>> not set.When I Edit-> Preferences, I see that jffs2 and tar.bz2 are
+>> set. And even if I select a different type, the message keeps is
+>> there.
+>
+I too faced similar problem for hob.
+
+> Madeeha,
+>
+> I'm not able to replicate this issue. Have you modified any of the
+> configuration files by hand? The three key files in build/conf are
+> hob-post.conf, hob-pre.conf, local.conf
+
+Please find these files in the attachment.
+
+>
+> It's possible you've hard-assigned the variable in there.
+>
+> If you can provide more information I can try and replicate. A copy of
+> the above configuration files would be useful.
+
+In openembedded, I see the some lines like this
+
+# Add the required image file system types below. Valid are
+# jffs2, tar(.gz|bz2), cpio(.gz), cramfs, ext2(.gz), ext3(.gz), ext4(.gz|.bz2),
+# squashfs, squashfs-lzma
+IMAGE_FSTYPES = "jffs2 tar"
+
+which is moved to hob-post.conf, which may causing the problems I hope.
 -- 
-1.7.3.4
-
+Regards,
+Sathishkumar D
+http://flowersopenlab.weebly.com/
 
