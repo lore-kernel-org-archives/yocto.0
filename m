@@ -1,28 +1,34 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A3EAE00303
-	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 11:38:10 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 09 Dec 2011 11:38:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="85521742"
-Received: from unknown (HELO [10.255.13.9]) ([10.255.13.9])
-	by orsmga002.jf.intel.com with ESMTP; 09 Dec 2011 11:38:09 -0800
-Message-ID: <4EE263A1.4080604@linux.intel.com>
-Date: Fri, 09 Dec 2011 11:38:09 -0800
-From: Joshua Lock <josh@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0FCEE00303
+	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 11:56:24 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by laam7 with SMTP id m7so229951laa.35
+	for <yocto@yoctoproject.org>; Fri, 09 Dec 2011 11:56:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=rXPgQTxjsIT0GNZyvhFNx4mltiRdsISx4V4I/rPaLhM=;
+	b=CjJKCBhdIU0tq1HZZGM4MpXoHQ9J4XYNA1ljlLSjJO8L2nn8sflhLTDT/IsQw7LClg
+	zvJuM1S0VMWsMNuC1+f26cLwhDwkDMjEDrmeuZCpD0GRJBaXwadp2E4i1asNf3udb1cp
+	DAcT2GXT4AzJWqGreMcRX1nP5gv4GFxvLLkHo=
+Received: by 10.152.106.115 with SMTP id gt19mr5837089lab.27.1323460583286;
+	Fri, 09 Dec 2011 11:56:23 -0800 (PST)
 MIME-Version: 1.0
-To: Sathishkumar Duraisamy <bewithsathish@gmail.com>
-References: <CAJV8fDYuV2Hb3jdU25prLoW5-CxFFH0tWvmMUWGfwrqdNJx3+w@mail.gmail.com>
-	<4EE132C5.6040007@linux.intel.com>
-	<CANJvwR-GVN+=JaS29oxmGM6mr-D6ncv+vsyVT2OaT+vOEaU8qA@mail.gmail.com>
-	<4EE1957E.1060506@linux.intel.com>
-	<CANJvwR9dvuxk8Mz_67igs2cge5LY=mi4PnnaKocQSmPF3kL95Q@mail.gmail.com>
-In-Reply-To: <CANJvwR9dvuxk8Mz_67igs2cge5LY=mi4PnnaKocQSmPF3kL95Q@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: HOB usage
+Received: by 10.152.24.36 with HTTP; Fri, 9 Dec 2011 11:55:52 -0800 (PST)
+In-Reply-To: <CAEsOVNexQiXQkWQH8hEBq+4JFGihda7_azWPrxeTG9J+M3wgvw@mail.gmail.com>
+References: <CAEsOVNeYZ4hwvV8dXMadkzchyA_nRHeZ63_s-XgJBzaEymUKdg@mail.gmail.com>
+	<1323431474.5309.128.camel@ted>
+	<CAEsOVNexQiXQkWQH8hEBq+4JFGihda7_azWPrxeTG9J+M3wgvw@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 9 Dec 2011 11:55:52 -0800
+Message-ID: <CAMKF1spwM8nHzdaYnDquF9UgrvE2bdhmcGZpjyxPqkXzuub5Yw@mail.gmail.com>
+To: McClintock Matthew-B29882 <B29882@freescale.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: meta-oe branch for edison?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,55 +40,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Dec 2011 19:38:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 09 Dec 2011 19:56:25 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 08/12/11 21:07, Sathishkumar Duraisamy wrote:
-> On Fri, Dec 9, 2011 at 10:28 AM, Joshua Lock <josh@linux.intel.com> wrote:
->> On 08/12/11 20:52, Sathishkumar Duraisamy wrote:
->>> Hi,
->>>
->>> I migrating from Openembedded to yocto project and using Beagleboard
->>> as playground.
->>>
->>> On Fri, Dec 9, 2011 at 3:27 AM, Joshua Lock <josh@linux.intel.com> wrote:
->>>>
->>>> On 05/12/11 10:35, madeeha javed wrote:
->>>>> I an using Yocto Edison. My machine configuration is beagleboard. And
->>>>> when I launch hob and Bake. I get a message that Output Image Type is
->>>>> not set.When I Edit-> Preferences, I see that jffs2 and tar.bz2 are
->>>>> set. And even if I select a different type, the message keeps is
->>>>> there.
->>>>
->>> I too faced similar problem for hob.
->>>
->>>> Madeeha,
->>>>
->>>> I'm not able to replicate this issue. Have you modified any of the
->>>> configuration files by hand? The three key files in build/conf are
->>>> hob-post.conf, hob-pre.conf, local.conf
->>>
->>> Please find these files in the attachment.
+On Fri, Dec 9, 2011 at 7:46 AM, McClintock Matthew-B29882
+<B29882@freescale.com> wrote:
+>> I'd certainly be happy to see such a branch. It might be more
+>> appropriate to call it 2011-1 which corresponds to the OE-Core branch
+>> name that is edison in the poky repo.
+>
+> Well I don't particularly care if we create a repo or not. I just want
+> a place to go for a working meta-oe for all future releases of Yocto.
+> I had to figure this out on my own, but I'm can imagine others will
+> attempt similar things.
 
-Nothing is jumping out here. Interesting.
-
-Would you be willing to file a bug at bugzilla.yoctoproject.org where we
-can track and resolve this issue?
-
-Could you provide information on what MACHINE you're building for and
-any custom configuration files?
-For example if this is a machine which isn't in OE-Core/Yocto it'd be
-useful to have a look at the machine.conf
-
-Further can you share in that report the method you use to start the Hob
-GUI, i.e. wrapper script or some other invocation.
-
-Thanks,
-Joshua
-
--- 
-Joshua Lock
-        Yocto Project "Johannes factotum"
-        Intel Open Source Technology Centre
+essentially you are asking for meta-oe release. I think layers dont
+release in conjunction with oe-core but it would be beneficial if they
+had similar time frames.
 
