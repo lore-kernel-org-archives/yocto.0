@@ -1,40 +1,19 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02F52E00303
-	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 09:10:08 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by dadi14 with SMTP id i14so4310583dad.35
-	for <yocto@yoctoproject.org>; Fri, 09 Dec 2011 09:10:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=VMIUPu4/s7QhdFmeChouKRjxicoUdWGSddnJ5D0Cjg0=;
-	b=CIgJY7/U15U6xhwWVR40X1V5rGqL6ayURpV2u4xG3ueQMcIHAj3GZBzvPRoGKIEpRf
-	RaDUNiWVrGZabd1kPdivjZfaEoAyMsm80MBLhx0J2yWVodcoeV2PCBJJl6mHordmKZ1T
-	Wokk6RKR5V+2xe4kljdmv+ooax+u3eDxkz7r4=
-MIME-Version: 1.0
-Received: by 10.68.208.225 with SMTP id mh1mr3553968pbc.20.1323450608605; Fri,
-	09 Dec 2011 09:10:08 -0800 (PST)
-Received: by 10.68.25.4 with HTTP; Fri, 9 Dec 2011 09:10:08 -0800 (PST)
-In-Reply-To: <1323384424.5309.85.camel@ted>
-References: <88701C38B5D07249817D428430999C910B774261@sestoex09.enea.se>
-	<CABcZANkovWJH9dFUpRngNzrQH5VAxYOiO1dK3H2pPB4SM9GS6A@mail.gmail.com>
-	<1605255.ltn5bNtJ0l@helios>
-	<752D6B50-3DE9-4257-B160-AE1CAA99F2C7@dominion.thruhere.net>
-	<88701C38B5D07249817D428430999C910B774381@sestoex09.enea.se>
-	<CADkTA4O1DeNXkfVk0Oc3Gspsz2erGf0pJTRE0XOLypww8M2n_Q@mail.gmail.com>
-	<4EE106CB.6080104@linux.intel.com> <1323384424.5309.85.camel@ted>
-Date: Fri, 9 Dec 2011 12:10:08 -0500
-Message-ID: <CAHUNapQ3MW4m7q5h+cT3zLgSrskFaKkRzvU7W-qDrN=be_yvOg@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Cc: =?ISO-8859-1?Q?David_Nystr=F6m?= <David.Nystrom@enea.com>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>,
-	Darren Hart <dvhart@linux.intel.com>
-Subject: Re: Variable locality too restricted.
+Return-Path: <sgw@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 449A2E00303
+	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 09:35:23 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 09 Dec 2011 09:35:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="84764910"
+Received: from unknown (HELO swold-mobl.bigsur.com) ([10.255.12.35])
+	by orsmga001.jf.intel.com with ESMTP; 09 Dec 2011 09:35:22 -0800
+From: Saul Wold <sgw@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri,  9 Dec 2011 09:35:22 -0800
+Message-Id: <1323452122-29987-1-git-send-email-sgw@linux.intel.com>
+X-Mailer: git-send-email 1.7.6.4
+Subject: [PATCH] meta-tlk: Add COPYING MIT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,22 +25,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Dec 2011 17:10:09 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 09 Dec 2011 17:35:23 -0000
 
-On Thu, Dec 8, 2011 at 5:47 PM, Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
-> Imagine you have:
->
-> core-image-minimal setting PREFERRED_PROVIDER = "kernelA" and
-> core-image-minima-debug setting PREFERRED_PROVIDER = "kernelB". Both
-> would depend on "virtual/kernel". You then run:
->
-> "bitbake core-image-minimal core-image-minimal-debug"
->
-> What would you expect bitbake to do?
+Adds License File
 
-Would it be possible to have both kernels built and installed to the
-image with the PREFERRED_PROVIDER selecting the default kernel to boot
-(i.e. grub/lilo/<whatever> configuration setting)?
+Fixes [YOCTO #1816]
+
+Signed-off-by: Saul Wold <sgw@linux.intel.com>
+---
+ meta-tlk/COPYING.MIT |   17 +++++++++++++++++
+ 1 files changed, 17 insertions(+), 0 deletions(-)
+ create mode 100644 meta-tlk/COPYING.MIT
+
+diff --git a/meta-tlk/COPYING.MIT b/meta-tlk/COPYING.MIT
+new file mode 100644
+index 0000000..fb950dc
+--- /dev/null
++++ b/meta-tlk/COPYING.MIT
+@@ -0,0 +1,17 @@
++Permission is hereby granted, free of charge, to any person obtaining a copy 
++of this software and associated documentation files (the "Software"), to deal 
++in the Software without restriction, including without limitation the rights 
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
++copies of the Software, and to permit persons to whom the Software is 
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in 
++all copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
++THE SOFTWARE.
+-- 
+1.7.6.4
+
 
