@@ -1,23 +1,34 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B2FBE0030C
-	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 15:43:58 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 09 Dec 2011 15:43:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="45767963"
-Received: from unknown (HELO [10.255.13.9]) ([10.255.13.9])
-	by AZSMGA002.ch.intel.com with ESMTP; 09 Dec 2011 15:43:57 -0800
-Message-ID: <4EE29D3D.10002@linux.intel.com>
-Date: Fri, 09 Dec 2011 15:43:57 -0800
-From: Joshua Lock <josh@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CA+5N1gx-t5BZeZxy7ooHLWoYK=B2Dr36AVWpca2LZ6M95_MbSw@mail.gmail.com>
-In-Reply-To: <CA+5N1gx-t5BZeZxy7ooHLWoYK=B2Dr36AVWpca2LZ6M95_MbSw@mail.gmail.com>
-Subject: Re: Routerstation Pro hardware is being discontinued
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0334DE00303
+	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 16:10:49 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pBA0Ac46008247;
+	Sat, 10 Dec 2011 00:10:38 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 07588-09; Sat, 10 Dec 2011 00:10:33 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pBA0ATeg008241
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Sat, 10 Dec 2011 00:10:29 GMT
+Message-ID: <1323475840.5309.201.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Philip Balister <philip@balister.org>
+Date: Sat, 10 Dec 2011 00:10:40 +0000
+In-Reply-To: <4EE2392A.1040302@balister.org>
+References: <CAEsOVNeYZ4hwvV8dXMadkzchyA_nRHeZ63_s-XgJBzaEymUKdg@mail.gmail.com>
+	<1323431474.5309.128.camel@ted>
+	<CAEsOVNexQiXQkWQH8hEBq+4JFGihda7_azWPrxeTG9J+M3wgvw@mail.gmail.com>
+	<1323447637.5309.180.camel@ted> <4EE2392A.1040302@balister.org>
+X-Mailer: Evolution 3.2.1- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: meta-oe branch for edison?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,32 +40,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Dec 2011 23:43:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 10 Dec 2011 00:10:55 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 09/12/11 15:42, David Smoot wrote:
-> I noticed that the routerstation pro hardware no longer appears on
-> Ubiquiti Networks product page.  Their sales rep confirmed it is being
-> EOL February 1, 2012.  Since that is the Yocto reference MIPS
-> platform, I thought you would like to know.
+On Fri, 2011-12-09 at 11:36 -0500, Philip Balister wrote:
+> On 12/09/2011 11:20 AM, Richard Purdie wrote:
+> > On Fri, 2011-12-09 at 15:46 +0000, McClintock Matthew-B29882 wrote:
+> >> On Fri, Dec 9, 2011 at 5:51 AM, Richard Purdie
+> >> <richard.purdie@linuxfoundation.org> wrote:
+> >>> On Thu, 2011-12-08 at 20:01 +0000, McClintock Matthew-B29882 wrote:
+> >>>> Hi all,
+> >>>>
+> >>>> Can we create a meta-oe repo in git.yoctoproject.org?
+> >>>
+> >>> This might create a little friction with the OE community. What would be
+> >>> the reason for the repository?
+> >>>
+> >>>>  I'd like to also
+> >>>> create a branh within the repo that tracks a valid version of the repo
+> >>>> for specific Yocto releases.
+> >>>>
+> >>>> (I can add that in my investigation so far -
+> >>>> f78f3f31c06c669006fcb567c8f503d4dbec68da looks like a good starting
+> >>>> commit for edison)
+> >>>
+> >>> I'd certainly be happy to see such a branch. It might be more
+> >>> appropriate to call it 2011-1 which corresponds to the OE-Core branch
+> >>> name that is edison in the poky repo.
+> >>
+> >> Well I don't particularly care if we create a repo or not. I just want
+> >> a place to go for a working meta-oe for all future releases of Yocto.
+> >> I had to figure this out on my own, but I'm can imagine others will
+> >> attempt similar things.
+> > 
+> > I think it should be fine to add an appropriate branch to the meta-oe
+> > repository itself.
+> 
+> We should probably have this discussion on the oe list.
+> 
+> Basically, we should have a way to create a "stable" branch for oe-core
+> and meta-oe. There also needs to be some "policy" in place for commits.
+> The primary concern is making sure the development branches get all
+> needed fixes that go into the branches.
 
-Yikes, thanks for the notice David!
+There is a 2011-1 branch in oe-core and there is going to be an update
+policy of bugfixes but not upgrades or new features for that.
 
-> It does make my problem with Mediatomb seg faulting on the RS Pro
-> obsolete.  For the record, I had made two minor patches to the
-> "meta-demo" branch and had been successful in compiling
-> demo-image-mediatomb for the routerstation and the beagleboard.
-> Mediatomb worked fine on beagleboard but segfaulted during
-> initialization on the routerstation.  That's one bug overcome by
-> events.
+Cheers,
 
-Great. I look forward to reviewing the patches!
+Richard
 
-Regards,
-Joshua
--- 
-Joshua Lock
-        Yocto Project "Johannes factotum"
-        Intel Open Source Technology Centre
 
