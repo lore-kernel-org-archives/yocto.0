@@ -1,54 +1,28 @@
-Return-Path: <B29882@freescale.com>
-Received: from ch1outboundpool.messaging.microsoft.com
-	(ch1ehsobe002.messaging.microsoft.com [216.32.181.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41ECDE00303
-	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 21:45:15 -0800 (PST)
-Received: from mail182-ch1-R.bigfish.com (10.43.68.240) by
-	CH1EHSOBE003.bigfish.com (10.43.70.53) with Microsoft SMTP Server id
-	14.1.225.23; Sat, 10 Dec 2011 05:44:57 +0000
-Received: from mail182-ch1 (localhost [127.0.0.1])	by
-	mail182-ch1-R.bigfish.com (Postfix) with ESMTP id 76BEF500517;
-	Sat, 10 Dec 2011 05:45:26 +0000 (UTC)
-X-SpamScore: -10
-X-BigFish: VS-10(zz9371I1432N98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3h)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail182-ch1 (localhost.localdomain [127.0.0.1]) by mail182-ch1
-	(MessageSwitch) id 1323495922459814_18649;
-	Sat, 10 Dec 2011 05:45:22 +0000 (UTC)
-Received: from CH1EHSMHS001.bigfish.com (snatpool1.int.messaging.microsoft.com
-	[10.43.68.251])	by mail182-ch1.bigfish.com (Postfix) with ESMTP id
-	D58BE58005C;	Sat, 10 Dec 2011 05:44:48 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS001.bigfish.com
-	(10.43.70.1) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Sat, 10 Dec 2011 05:44:16 +0000
-Received: from 039-SN1MPN1-003.039d.mgd.msft.net ([169.254.3.28]) by
-	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
-	14.01.0339.002; Fri, 9 Dec 2011 23:44:31 -0600
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] meta-oe branch for edison?
-Thread-Index: AQHMteQwytOI18ogW0meDZb20Uyq2ZXTyoEAgABBtYCAAEWyAIAApFuA
-Date: Sat, 10 Dec 2011 05:44:30 +0000
-Message-ID: <CAEsOVNcC9zjECw0WaW3=jVwB_e=MiZU7xiHwON0aFkTLgDvwSw@mail.gmail.com>
-References: <CAEsOVNeYZ4hwvV8dXMadkzchyA_nRHeZ63_s-XgJBzaEymUKdg@mail.gmail.com>
-	<1323431474.5309.128.camel@ted>
-	<CAEsOVNexQiXQkWQH8hEBq+4JFGihda7_azWPrxeTG9J+M3wgvw@mail.gmail.com>
-	<CAMKF1spwM8nHzdaYnDquF9UgrvE2bdhmcGZpjyxPqkXzuub5Yw@mail.gmail.com>
-In-Reply-To: <CAMKF1spwM8nHzdaYnDquF9UgrvE2bdhmcGZpjyxPqkXzuub5Yw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94270E00303
+	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 22:53:59 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBA6rqJR024235
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 9 Dec 2011 22:53:52 -0800 (PST)
+Received: from bruce-ashfields-macbook.local (128.224.22.36) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Fri, 9 Dec 2011 22:53:52 -0800
+Message-ID: <4EE301FF.9040200@windriver.com>
+Date: Sat, 10 Dec 2011 01:53:51 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
+	rv:1.9.2.24) Gecko/20111103 Thunderbird/3.1.16
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-oe branch for edison?
+To: Darren Hart <dvhart@linux.intel.com>
+References: <4EE2911E.3090708@linux.intel.com>
+In-Reply-To: <4EE2911E.3090708@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: linux-yocto: ktypes/tiny and some questions along the way
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -57,31 +31,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 10 Dec 2011 05:45:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <D5650203B829254FB40B5FBD4DF3EAF3@freescale.net>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 10 Dec 2011 06:53:59 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Dec 9, 2011 at 1:55 PM, Khem Raj <raj.khem@gmail.com> wrote:
-> On Fri, Dec 9, 2011 at 7:46 AM, McClintock Matthew-B29882
-> <B29882@freescale.com> wrote:
->>> I'd certainly be happy to see such a branch. It might be more
->>> appropriate to call it 2011-1 which corresponds to the OE-Core branch
->>> name that is edison in the poky repo.
->>
->> Well I don't particularly care if we create a repo or not. I just want
->> a place to go for a working meta-oe for all future releases of Yocto.
->> I had to figure this out on my own, but I'm can imagine others will
->> attempt similar things.
+On 11-12-09 5:52 PM, Darren Hart wrote:
+> Bruce,
 >
-> essentially you are asking for meta-oe release. I think layers dont
-> release in conjunction with oe-core but it would be beneficial if they
-> had similar time frames.
+> I'm looking at introducing a new kernel type, ktypes/tiny.
+>
+> Tiny will define a core set of kernel policy options, such as proc, sys,
+> devtmpfs, futex, epoll, elf bin format, etc. It will not enable any
+> drivers, filesystems, debug options, or networking options by default.
+> This would be the responsibility of the BSP to add a named feature
+> implementing this.
+>
+> Taking a look at the ktypes we have now resulted in some questions:
+>
+> dvhart@envy:~/source/linux/linux-yocto-3.0/meta/cfg/kernel-cache/ktypes
+> $ tree
+> .
+> ├── base
+> │   ├── base.cfg
+> │   ├── base.scc
+> │   ├── hardware.cfg
+> │   ├── hardware.kcf
+> │   ├── non-hardware.cfg
+> │   └── non-hardware.kcf
+> ├── preempt-rt
+> │   ├── preempt-rt.cfg
+> │   └── preempt-rt.scc
+> ├── standard
+> │   ├── perf-force-include-of-stdbool.h.patch
+> │   ├── perf-hard-code-NO_LIBPERL-NO_LIBPYTHON.patch
+> │   ├── standard-patches.scc
+> │   ├── standard.cfg
+> │   ├── standard.scc
+> │   └── x86-add-TIF_32BIT-compatibility-define.patch
+>
+> These form a hiearchy, each inheriting from the layer beneath like so:
+>
+> base/standard/preempt-rt
+>
+> As I dig into this I see that some policy is infact laid down by base,
+> including things like:
+>
+> CONFIG_MODULES=y
+> CONFIG_INET=y
+> CONFIG_PREEMPT=y
+> CONFIG_NFS_FS=y
+> CONFIG_MSDOS_PARTITION=y
+>
+> These pull in the IP stack, the block layer, etc. Because of this, I
+> can't really inherit from base for ktypes/tiny. I would like to inherit
+> the hardware and non-hardware kcf files though, as well as any patches
+> that might make their way into base. Which leads me to standard. I would
+> like to see a much smaller set of config policy options set in base.
+> Most likely these should be exactly what we agree on for tiny, and tiny
+> wouldn't add any additional policy as it implements only what is
+> required for a Yocto Project built kernel.
+>
+> NOTE: kernel version is 3.0+
+> $ cat base/base.scc | head -n 1
+> set_kernel_version 2.6.37
+>
+> There are three patches in standard, only two of which (the perf ones)
+> are listed in the standard.scc. As I believe any kernel we build should
+> have these, I would like to see any global patches applied to base,
+> leaving standard to define policy, and include named features.
+>
+> With these changes, I could add ktypes/tiny as follows:
+> $ cat tiny/tiny.scc
+> include ktypes/base
+> branch tiny
+> include features/xyz/xyz.scc
+> include cfg/abc.scc
+>
+> Another point of interest is preempt-rt, as I can see people wanting to
+> build tiny preempt-rt. I think the best approach here is to create
+> ktypes/tiny/preempt-rt-tiny/preempt-rt-tiny.scc.
+>
+> Note: I believe this fails with .patch.patch
+> $ cat features/rt/rt.scc | grep patch
+> patch rt-apply-patch-3.0.10-rt27.patch.patch
+>
+> I'm working on a patch series that implements the suggestions I've made
+> above. Bruce, do you have any issues with this approach?
 
-A release is one thing, just a simple tag or branch so people know
-where to go to get started with specific releases.
+FYI: I have a response to this .. but it's just not reading very well here.
+And it's late, so I'm going to respond over the weekend when I get a
+chance to revise what I've written into something legible. :)
 
--M=
+Cheers,
+
+Bruce
+
+>
 
 
