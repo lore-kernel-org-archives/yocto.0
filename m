@@ -1,25 +1,34 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94270E00303
-	for <yocto@yoctoproject.org>; Fri,  9 Dec 2011 22:53:59 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBA6rqJR024235
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 9 Dec 2011 22:53:52 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.22.36) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Fri, 9 Dec 2011 22:53:52 -0800
-Message-ID: <4EE301FF.9040200@windriver.com>
-Date: Sat, 10 Dec 2011 01:53:51 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.24) Gecko/20111103 Thunderbird/3.1.16
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3F4CE0030B
+	for <yocto@yoctoproject.org>; Sun, 11 Dec 2011 07:12:15 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 11 Dec 2011 07:12:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="85975020"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by orsmga002.jf.intel.com with ESMTP; 11 Dec 2011 07:12:14 -0800
+Received: from pgsmsx104.gar.corp.intel.com (10.221.44.91) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Sun, 11 Dec 2011 23:10:35 +0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	PGSMSX104.gar.corp.intel.com (10.221.44.91) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Sun, 11 Dec 2011 23:10:34 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Sun, 11 Dec 2011 23:10:34 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Sun, 11 Dec 2011 23:10:33 +0800
+Thread-Topic: Yocto weekly bug trend charts -- WW50
+Thread-Index: Acy4FwdY90tyq+gmQdqTtHFtChRPSw==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12DBF69128@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <4EE2911E.3090708@linux.intel.com>
-In-Reply-To: <4EE2911E.3090708@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: linux-yocto: ktypes/tiny and some questions along the way
+Subject: Yocto weekly bug trend charts -- WW50
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,101 +40,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 10 Dec 2011 06:53:59 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sun, 11 Dec 2011 15:12:16 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 11-12-09 5:52 PM, Darren Hart wrote:
-> Bruce,
->
-> I'm looking at introducing a new kernel type, ktypes/tiny.
->
-> Tiny will define a core set of kernel policy options, such as proc, sys,
-> devtmpfs, futex, epoll, elf bin format, etc. It will not enable any
-> drivers, filesystems, debug options, or networking options by default.
-> This would be the responsibility of the BSP to add a named feature
-> implementing this.
->
-> Taking a look at the ktypes we have now resulted in some questions:
->
-> dvhart@envy:~/source/linux/linux-yocto-3.0/meta/cfg/kernel-cache/ktypes
-> $ tree
-> .
-> ├── base
-> │   ├── base.cfg
-> │   ├── base.scc
-> │   ├── hardware.cfg
-> │   ├── hardware.kcf
-> │   ├── non-hardware.cfg
-> │   └── non-hardware.kcf
-> ├── preempt-rt
-> │   ├── preempt-rt.cfg
-> │   └── preempt-rt.scc
-> ├── standard
-> │   ├── perf-force-include-of-stdbool.h.patch
-> │   ├── perf-hard-code-NO_LIBPERL-NO_LIBPYTHON.patch
-> │   ├── standard-patches.scc
-> │   ├── standard.cfg
-> │   ├── standard.scc
-> │   └── x86-add-TIF_32BIT-compatibility-define.patch
->
-> These form a hiearchy, each inheriting from the layer beneath like so:
->
-> base/standard/preempt-rt
->
-> As I dig into this I see that some policy is infact laid down by base,
-> including things like:
->
-> CONFIG_MODULES=y
-> CONFIG_INET=y
-> CONFIG_PREEMPT=y
-> CONFIG_NFS_FS=y
-> CONFIG_MSDOS_PARTITION=y
->
-> These pull in the IP stack, the block layer, etc. Because of this, I
-> can't really inherit from base for ktypes/tiny. I would like to inherit
-> the hardware and non-hardware kcf files though, as well as any patches
-> that might make their way into base. Which leads me to standard. I would
-> like to see a much smaller set of config policy options set in base.
-> Most likely these should be exactly what we agree on for tiny, and tiny
-> wouldn't add any additional policy as it implements only what is
-> required for a Yocto Project built kernel.
->
-> NOTE: kernel version is 3.0+
-> $ cat base/base.scc | head -n 1
-> set_kernel_version 2.6.37
->
-> There are three patches in standard, only two of which (the perf ones)
-> are listed in the standard.scc. As I believe any kernel we build should
-> have these, I would like to see any global patches applied to base,
-> leaving standard to define policy, and include named features.
->
-> With these changes, I could add ktypes/tiny as follows:
-> $ cat tiny/tiny.scc
-> include ktypes/base
-> branch tiny
-> include features/xyz/xyz.scc
-> include cfg/abc.scc
->
-> Another point of interest is preempt-rt, as I can see people wanting to
-> build tiny preempt-rt. I think the best approach here is to create
-> ktypes/tiny/preempt-rt-tiny/preempt-rt-tiny.scc.
->
-> Note: I believe this fails with .patch.patch
-> $ cat features/rt/rt.scc | grep patch
-> patch rt-apply-patch-3.0.10-rt27.patch.patch
->
-> I'm working on a patch series that implements the suggestions I've made
-> above. Bruce, do you have any issues with this approach?
+Hi all,
+	The overall open bug trend increased a little last week. The new submitted=
+ bug vs. fixed bug number is 14 vs. 9. Open bug and WDD number decreased to=
+ 142 and 702. Bug status of WW50 could be found on https://wiki.yoctoprojec=
+t.org/wiki/Yocto_Bug_Trend.
 
-FYI: I have a response to this .. but it's just not reading very well here.
-And it's late, so I'm going to respond over the weekend when I get a
-chance to revise what I've written into something legible. :)
-
-Cheers,
-
-Bruce
-
->
+Best Regards,
+Jiajun
 
 
