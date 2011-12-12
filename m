@@ -1,20 +1,25 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <dvhart@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31952E0132F
-	for <yocto@yoctoproject.org>; Mon, 12 Dec 2011 11:22:54 -0800 (PST)
-Received: from mail-qy0-f180.google.com ([209.85.216.180])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 12 Dec 2011 11:22:53 -0800
-Received: by qcse1 with SMTP id e1so3870375qcs.25
-	for <yocto@yoctoproject.org>; Mon, 12 Dec 2011 11:22:52 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13B59E006DF
+	for <yocto@yoctoproject.org>; Mon, 12 Dec 2011 15:18:06 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 12 Dec 2011 15:18:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="85802996"
+Received: from unknown (HELO envy.home) ([10.7.199.93])
+	by orsmga001.jf.intel.com with ESMTP; 12 Dec 2011 15:18:05 -0800
+Message-ID: <4EE68B9A.8080602@linux.intel.com>
+Date: Mon, 12 Dec 2011 15:17:46 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-Received: by 10.50.237.5 with SMTP id uy5mr16250496igc.50.1323717772073; Mon,
-	12 Dec 2011 11:22:52 -0800 (PST)
-Received: by 10.50.66.2 with HTTP; Mon, 12 Dec 2011 11:22:52 -0800 (PST)
-Date: Mon, 12 Dec 2011 11:22:52 -0800
-Message-ID: <CAPhnLPApkRzc0VABdz=duP1_BRsBoNkxU8650EBbuM3WzXkCaw@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-Subject: Yocto Mirroring.
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <4EE2911E.3090708@linux.intel.com> <4EE58DA5.9070301@windriver.com>
+In-Reply-To: <4EE58DA5.9070301@windriver.com>
+X-Enigmail-Version: 1.3.3
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: linux-yocto: ktypes/tiny and some questions along the way
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,61 +31,220 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Dec 2011 19:22:54 -0000
-Content-Type: multipart/alternative; boundary=f46d044787fb965be604b3ea0f2f
+X-List-Received-Date: Mon, 12 Dec 2011 23:18:06 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---f46d044787fb965be604b3ea0f2f
-Content-Type: text/plain; charset=ISO-8859-1
+On 12/11/2011 09:14 PM, Bruce Ashfield wrote:
+> On 11-12-09 5:52 PM, Darren Hart wrote:
+>> Bruce,
+>>
+>> I'm looking at introducing a new kernel type, ktypes/tiny.
+>>
+>> Tiny will define a core set of kernel policy options, such as proc, sys,
+>> devtmpfs, futex, epoll, elf bin format, etc. It will not enable any
+>> drivers, filesystems, debug options, or networking options by default.
+>> This would be the responsibility of the BSP to add a named feature
+>> implementing this.
+>>
+>> Taking a look at the ktypes we have now resulted in some questions:
+>>
+>> dvhart@envy:~/source/linux/linux-yocto-3.0/meta/cfg/kernel-cache/ktypes
+>> $ tree
+>> .
+>> ├── base
+>> │   ├── base.cfg
+>> │   ├── base.scc
+>> │   ├── hardware.cfg
+>> │   ├── hardware.kcf
+>> │   ├── non-hardware.cfg
+>> │   └── non-hardware.kcf
+>> ├── preempt-rt
+>> │   ├── preempt-rt.cfg
+>> │   └── preempt-rt.scc
+>> ├── standard
+>> │   ├── perf-force-include-of-stdbool.h.patch
+>> │   ├── perf-hard-code-NO_LIBPERL-NO_LIBPYTHON.patch
+>> │   ├── standard-patches.scc
+>> │   ├── standard.cfg
+>> │   ├── standard.scc
+>> │   └── x86-add-TIF_32BIT-compatibility-define.patch
+>>
+>> These form a hiearchy, each inheriting from the layer beneath like so:
+>>
+>> base/standard/preempt-rt
+>>
+>> As I dig into this I see that some policy is infact laid down by base,
+>> including things like:
+>>
+>> CONFIG_MODULES=y
+>> CONFIG_INET=y
+>> CONFIG_PREEMPT=y
+>> CONFIG_NFS_FS=y
+>> CONFIG_MSDOS_PARTITION=y
+>>
+>> These pull in the IP stack, the block layer, etc. Because of this, I
+>> can't really inherit from base for ktypes/tiny. I would like to inherit
+>> the hardware and non-hardware kcf files though, as well as any patches
+>> that might make their way into base. Which leads me to standard. I would
+>> like to see a much smaller set of config policy options set in base.
+>> Most likely these should be exactly what we agree on for tiny, and tiny
+>> wouldn't add any additional policy as it implements only what is
+>> required for a Yocto Project built kernel.
+>>
+>> NOTE: kernel version is 3.0+
+>> $ cat base/base.scc | head -n 1
+>> set_kernel_version 2.6.37
+> 
+> FYI: nothing uses this at the moment. But I fixed that here.
+> 
+>>
+>> There are three patches in standard, only two of which (the perf ones)
+>> are listed in the standard.scc. As I believe any kernel we build should
+>> have these, I would like to see any global patches applied to base,
+>> leaving standard to define policy, and include named features.
+> 
+> standard only includes 3 patches because they were a bit hard to
+> classify elsewhere. In a more fully populated kernel, it does include
+> quite a bit more directly.
 
-All,
+directly = git repository commits?
 
-You may have noticed over the past few days some slowness when trying to
-access the autobuilder or the downloads area on the yocto websites. This
-was due to someone attempting to wget the entire downloads directory and
-accounting for about 75% of the hits against the webserver over a period of
-a few days.
+>>
+>> With these changes, I could add ktypes/tiny as follows:
+>> $ cat tiny/tiny.scc
+>> include ktypes/base
+>> branch tiny
+>> include features/xyz/xyz.scc
+>> include cfg/abc.scc
+>>
+>> Another point of interest is preempt-rt, as I can see people wanting to
+>> build tiny preempt-rt. I think the best approach here is to create
+>> ktypes/tiny/preempt-rt-tiny/preempt-rt-tiny.scc.
+>>
+>> Note: I believe this fails with .patch.patch
+>> $ cat features/rt/rt.scc | grep patch
+>> patch rt-apply-patch-3.0.10-rt27.patch.patch
+> 
+> Love my "patch.patch". Script went wild on that one, luckily the content
+> in the branch is king :) I fixed that here when I was auditing 3.0.12+rt
+> so that looks more sane now.
+> 
+>>
+>> I'm working on a patch series that implements the suggestions I've made
+>> above. Bruce, do you have any issues with this approach?
+> 
+> Allow me to ramble a bit below ...
+> 
+> No big issues. At some level(s) it is just a shell game. We can move
+> configs and patches around to the appropriate level to get the building
+> blocks that we need and get common functionality into a common location.
+> 
+> base was (is) intended to document the branch point from the mainline
+> kernel, and contain largely configuration and very few patches. Any
+> important or larger size functional additions go into the standard
+> kernel.
 
-Please, if you are attempting to mirror via wget, don't.
+What is the value of having base and standard as separate branches?
+Isn't base easily derivable from the standard git history? Still if it
+isn't used anywhere, then the branch is a no-op and adds no complexity,
+so that's fine.
 
-- It's inefficient. rsync is better.
-- You really don't need all of downloads.yoctoproject.org, do you? If you
-do, see above and email me.
-- If you end up doing it and your wget ends up causing bandwidth issues due
-to flooding our connection, you will end up bandwidth limited (which is bad
-if you ever need to use the autobuilder PREMIRRORS/MIRRORS)
-- It effects other users and it's really not the right way of doing it.
+> 
+> So branching from base for a new kernel type is something we can do, but
+> it will risk missing additions (say for example tracing fixes, or the
+> next super-duper debug via kprobes patch series), since they'll go into
+> the standard kernel.
 
-If you wish to mirror the yocto download site, please contact me and I can
-tell you how to go about doing it correctly. Also, please remember that we
-are mirrored via kernel.org @ http://mirrors.kernel.org/yocto
+OK, that's no good. My moving patches down to base was intended to avoid
+just that problem. And given the above, leaving them in standard is
+preferred. OK, that poses some issues.... discussed below.
+
+> If I just slide all the patches down into base,
+> why not just call 'base' 'standard' or just make standard have the
+> configuration you are working on for tiny.
+> 
+> The point I'm attempting to make, is that the base/common point can be
+> whatever we decide it needs to be, "standard" can be renamed, content
+> moved up and down, etc. i.e. standard could have it's config changed,
+> a new branch created off standard ( and options moved there), or
+> standard  could be streamlined and the boards include more common
+> config options manually vs inheriting them, etc.
+> 
+> I need a bit more time to think about that myself.
+
+The above is fine. Or rather, any of the above can work. Let's discuss
+which one :-)
+
+> 
+> Another option is to let tiny inherit from standard, but force a
+> new baseline for configuration options. i.e. your allnoconfig
+> technique buried in the middle of inheritance tree. With the
+> optional/required designations I'm finishing up for 1.2 you won't get
+> hit with reams of redefined configuration warnings. With that set, you
+> can then go about adding kernel type specific options/features/patches
+> as we see fit .. and you'll pickup those features that I was talking
+> about above. If you bear with me by doing some of this manually for
+> now (setting the baseline), it is easy to add a construct to do that
+> reset automagically.
+
+I really want to avoid setting a base config, and then backtracking to
+reset it to something else in a derived branch. Chasing those overrides,
+etc can be a massive pain. Much better to get the main SOURCES and
+essential policy into a single branch, then let standard and tiny branch
+from there. Intuitively, Standard and Tiny should be siblings, not
+ancestors of eachother. Keeping this relationship apparent in the
+branching and source and config inheritance should help keep things
+clear and maintainable.
+
+> 
+> It's the features and patch balancing that's the hard part, not getting
+> the configs how we want them. I've lived the madness of the other!
+
+I agree the source-work should not be duplicated.
+
+
+> What we don't want to get into (I've been there, with an old "small"
+> kernel type) is having a different stack of patches and fixes on
+> multiple kernel types. The patches start failing, and you end up always
+> merging a fix in two different ways due to changes in the feature mix
+> on each kernel type. 
+
+Agreed
+
+> (This comment more applies to the tiny and -rt
+> mix). Better mileage might be gained by doing.
+> 
+>    yocto/standard/preempt-rt/tiny
+> 
+> versus moving the big patch onto yocto/tiny/preempt-rt, but that implies
+> that tiny is providing a set of configuration values that clobber what
+> has been set by both standard and -rt .. something that trades patch 
+> maintenance with config maintenance.
+
+I intend to keep Tiny as config options as much as possible (but I can
+see some new Kconfig options from linux-tiny (or tiny-linux, whatever it
+is) creeping their way in. Still, I prefer tiny/preempt-rt for the
+reasons stated above.
+
+> 
+> Working through all that, what I'm saying is that I'd prefer to make
+> standard do what you want, and keep the base similar to what it is.
+> We can shuffle undesirable standard configuration items up versus
+> shuffling all patches and functionality down to yocto/base. But the
+> approach is fundamentally the same.
+> 
+> i.e. I see no reason why the tiny config wouldn't be fine as
+> the standard config or as something that makes significant changes
+> to standard's configuration. But definitely something that wants the
+> patches and features in standard.
+
+Agreed.
+
+I'll re-work accordingly.
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
---f46d044787fb965be604b3ea0f2f
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-All,<br><br>You may have noticed over the past few days some slowness when =
-trying to access the autobuilder or the downloads area on the yocto website=
-s. This was due to someone attempting to wget the entire downloads director=
-y and accounting for about 75% of the hits against the webserver over a per=
-iod of a few days.<br>
-<br>Please, if you are attempting to mirror via wget, don&#39;t. <br><br>- =
-It&#39;s inefficient. rsync is better.<br>- You really don&#39;t need all o=
-f <a href=3D"http://downloads.yoctoproject.org">downloads.yoctoproject.org<=
-/a>, do you? If you do, see above and email me.<br>
-- If you end up doing it and your wget ends up causing bandwidth issues due=
- to flooding our connection, you will end up bandwidth limited (which is ba=
-d if you ever need to use the autobuilder PREMIRRORS/MIRRORS) <br>- It effe=
-cts other users and it&#39;s really not the right way of doing it. <br>
-<br>If you wish to mirror the yocto download site, please contact me and I =
-can tell you how to go about doing it correctly. Also, please remember that=
- we are mirrored via <a href=3D"http://kernel.org">kernel.org</a> @ <a href=
-=3D"http://mirrors.kernel.org/yocto">http://mirrors.kernel.org/yocto</a> <b=
-r clear=3D"all">
-<br>-- <br>Elizabeth Flanagan<br>Yocto Project<br>Build and Release<br>
-
---f46d044787fb965be604b3ea0f2f--
