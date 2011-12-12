@@ -1,37 +1,26 @@
-Return-Path: <bewithsathish@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45584E0127D
-	for <yocto@yoctoproject.org>; Sun, 11 Dec 2011 21:20:21 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by dadi14 with SMTP id i14so6655306dad.35
-	for <yocto@yoctoproject.org>; Sun, 11 Dec 2011 21:20:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=rqhGWaI3nNaeHq31g6u2YVobojzYMugaSEHVY/5XAcU=;
-	b=GkqjrJriLcVQETXRRGmfY08WoU5ABR7zIusnr87KPjh5BXjMHc6BmJRvXd9Odcn9pg
-	SOCdGxmpo7I0gwMZqScY1goDcdvw0mvN1w7T7PkrJgYUmBMLK8R3fIsi6zh6sXkRZeM/
-	WvNAg8F6vlpzVaro726YFRLu1Of4LHuMQRIjk=
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C3A7E005B4
+	for <yocto@yoctoproject.org>; Mon, 12 Dec 2011 06:22:27 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 12 Dec 2011 06:22:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="95211139"
+Received: from unknown (HELO helios.localnet) ([10.252.122.29])
+	by fmsmga001.fm.intel.com with ESMTP; 12 Dec 2011 06:22:19 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Navani Kamal Srivastava <NAVANI.Srivastava@lnties.com>
+Date: Mon, 12 Dec 2011 14:22:16 +0000
+Message-ID: <2431074.vm1x8Vpkla@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.7.3 (Linux/3.0.0-14-generic-pae; KDE/4.7.3; i686; ; )
+In-Reply-To: <9BACABF0C6B14A4D8C33B42A795119BE096D5FF8@POCITMSEXMB03.LntUniverse.com>
+References: <9BACABF0C6B14A4D8C33B42A795119BE096B7D3B@POCITMSEXMB02.LntUniverse.com>
+	<1660455.ndYTU6ffEm@helios>
+	<9BACABF0C6B14A4D8C33B42A795119BE096D5FF8@POCITMSEXMB03.LntUniverse.com>
 MIME-Version: 1.0
-Received: by 10.68.72.198 with SMTP id f6mr19163576pbv.6.1323667220877; Sun,
-	11 Dec 2011 21:20:20 -0800 (PST)
-Received: by 10.68.48.227 with HTTP; Sun, 11 Dec 2011 21:20:20 -0800 (PST)
-In-Reply-To: <4EE263A1.4080604@linux.intel.com>
-References: <CAJV8fDYuV2Hb3jdU25prLoW5-CxFFH0tWvmMUWGfwrqdNJx3+w@mail.gmail.com>
-	<4EE132C5.6040007@linux.intel.com>
-	<CANJvwR-GVN+=JaS29oxmGM6mr-D6ncv+vsyVT2OaT+vOEaU8qA@mail.gmail.com>
-	<4EE1957E.1060506@linux.intel.com>
-	<CANJvwR9dvuxk8Mz_67igs2cge5LY=mi4PnnaKocQSmPF3kL95Q@mail.gmail.com>
-	<4EE263A1.4080604@linux.intel.com>
-Date: Mon, 12 Dec 2011 10:50:20 +0530
-Message-ID: <CANJvwR-T-6a4ofVw7GYF8x9DeJuW0VDyO+rQNCUgrRKio2xKHg@mail.gmail.com>
-From: Sathishkumar Duraisamy <bewithsathish@gmail.com>
-To: Joshua Lock <josh@linux.intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: HOB usage
+Subject: Re: related to telnetd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,57 +32,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Dec 2011 05:20:21 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 12 Dec 2011 14:22:27 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
+On Wednesday 07 December 2011 06:51:55 Navani Kamal Srivastava wrote:
+> Can you please confirm me that
+> 1- busybox utilities are sufficient to take telnet session of the board or
+> do I need to install netkit-telnet-1.17 package? 
 
-Today, I tried to reproduce the problem and magically, today, hob
-works as expected.  So, I started once again with new config, and
-again I tried to reproduce the problem. But the problem exists.
+Yes this will work if you enable CONFIG_TELNETD and CONFIG_TELNETD_STANDALONE 
+in the busybox configuration. telnetd will not be started automatically though, 
+you will need to add an initscript. However I would suggest you consider using 
+ssh if you have no reason not to - you won't need to do any additional work 
+then.
 
-The reason for this, once we select our images in the
-edit->preference, it writes our preference in the file hob-post.conf
-file. But it doesn't parses it again unless we are restarting the hob
-again.
+> 2- I require
+> /etc/securetty in my rootfs. Which and all option I need to configure in
+> busybox configuration to get  this particular file. I have already enabled
+> CONFIG_FEATURE_SECURETTY feature.
 
-Here are some code snippets that it confirms this:
+This file is provided by shadow, so you'd need to add that to your 
+IMAGE_INSTALL (or POKY_EXTRA_INSTALL).
 
-In file scripts/hob,
-
-#hob is started with reading these files.
-bitbake -r conf/hob-pre.conf -R conf/hob-post.conf -u hob
-
-In file poky-edison-6.0/bitbake/lib/bb/ui/hob.py
-
-    def preferences_cb(self, action):
-        resp = self.prefs.run()
-        self.prefs.write_changes()
-        self.prefs.hide()
-
-which ultimately, calls poky-edison-6.0/bitbake/lib/bb/ui/crumbs/configrator.py
-
-    def writeConfFile(self, conffile, contents):
-        """
-        Make a backup copy of conffile and write a new file in its stead with
-        the lines in the contents list.
-        """
-        # Create a backup of the conf file
-        bkup = "%s~" % conffile
-        os.rename(conffile, bkup)
-
-        # Write the contents list object to the conf file
-        with open(conffile, "w") as new:
-            new.write("".join(contents))
-
-
-Here it just writes, but never parses it again. So, unless, we close
-and restart hob, preferences doesn't take change.
-
-So, have to fix this, to ask to parses it again once the changes are written.
+Cheers,
+Paul
 
 -- 
-Regards,
-Sathishkumar D
-http://flowersopenlab.weebly.com/
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
