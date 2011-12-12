@@ -1,23 +1,23 @@
 Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C3A7E005B4
-	for <yocto@yoctoproject.org>; Mon, 12 Dec 2011 06:22:27 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 12 Dec 2011 06:22:20 -0800
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BD64E006DF
+	for <yocto@yoctoproject.org>; Mon, 12 Dec 2011 07:10:02 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 12 Dec 2011 07:10:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="95211139"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="85451670"
 Received: from unknown (HELO helios.localnet) ([10.252.122.29])
-	by fmsmga001.fm.intel.com with ESMTP; 12 Dec 2011 06:22:19 -0800
+	by orsmga001.jf.intel.com with ESMTP; 12 Dec 2011 07:10:00 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: Navani Kamal Srivastava <NAVANI.Srivastava@lnties.com>
-Date: Mon, 12 Dec 2011 14:22:16 +0000
-Message-ID: <2431074.vm1x8Vpkla@helios>
+Date: Mon, 12 Dec 2011 15:09:58 +0000
+Message-ID: <7235615.4WBMjblq2r@helios>
 Organization: Intel Corporation
 User-Agent: KMail/4.7.3 (Linux/3.0.0-14-generic-pae; KDE/4.7.3; i686; ; )
-In-Reply-To: <9BACABF0C6B14A4D8C33B42A795119BE096D5FF8@POCITMSEXMB03.LntUniverse.com>
+In-Reply-To: <9BACABF0C6B14A4D8C33B42A795119BE096D6D68@POCITMSEXMB03.LntUniverse.com>
 References: <9BACABF0C6B14A4D8C33B42A795119BE096B7D3B@POCITMSEXMB02.LntUniverse.com>
-	<1660455.ndYTU6ffEm@helios>
-	<9BACABF0C6B14A4D8C33B42A795119BE096D5FF8@POCITMSEXMB03.LntUniverse.com>
+	<2431074.vm1x8Vpkla@helios>
+	<9BACABF0C6B14A4D8C33B42A795119BE096D6D68@POCITMSEXMB03.LntUniverse.com>
 MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: related to telnetd
@@ -32,28 +32,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Dec 2011 14:22:27 -0000
+X-List-Received-Date: Mon, 12 Dec 2011 15:10:02 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-On Wednesday 07 December 2011 06:51:55 Navani Kamal Srivastava wrote:
-> Can you please confirm me that
-> 1- busybox utilities are sufficient to take telnet session of the board or
-> do I need to install netkit-telnet-1.17 package? 
+On Monday 12 December 2011 14:45:23 Navani Kamal Srivastava wrote:
+> I did the same , it worked for me. Thanks a lot. As per our project
+> requirement we can't go with ssh that's why I am struggling with telnet..
+> Can you please tell me how I can add an initscript?
 
-Yes this will work if you enable CONFIG_TELNETD and CONFIG_TELNETD_STANDALONE 
-in the busybox configuration. telnetd will not be started automatically though, 
-you will need to add an initscript. However I would suggest you consider using 
-ssh if you have no reason not to - you won't need to do any additional work 
-then.
+I would suggest having a look at how it is done for other items in 
+busybox.inc. You'll need to put ${sbindir}/telnetd in its own package.
 
-> 2- I require
-> /etc/securetty in my rootfs. Which and all option I need to configure in
-> busybox configuration to get  this particular file. I have already enabled
-> CONFIG_FEATURE_SECURETTY feature.
+> One more thing I want to ask is what modification I need to do to generate
+> poky image, which can load kernel module automatically at startup?
 
-This file is provided by shadow, so you'd need to add that to your 
-IMAGE_INSTALL (or POKY_EXTRA_INSTALL).
+There was a discussion about this previously:
+https://lists.yoctoproject.org/pipermail/poky/2011-April/005521.html
 
 Cheers,
 Paul
