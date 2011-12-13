@@ -1,30 +1,22 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 725C9E00742
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 12:14:36 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 13 Dec 2011 12:14:35 -0800
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C891CE00742
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 12:24:00 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 13 Dec 2011 12:24:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="46847728"
-Received: from unknown (HELO [10.255.12.215]) ([10.255.12.215])
-	by AZSMGA002.ch.intel.com with ESMTP; 13 Dec 2011 12:14:35 -0800
-Message-ID: <4EE7B22B.80303@linux.intel.com>
-Date: Tue, 13 Dec 2011 12:14:35 -0800
-From: Joshua Lock <josh@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="86886598"
+Received: from unknown (HELO envy.home) ([10.255.12.211])
+	by orsmga002.jf.intel.com with ESMTP; 13 Dec 2011 12:24:00 -0800
+Message-ID: <4EE7B44D.7000301@linux.intel.com>
+Date: Tue, 13 Dec 2011 12:23:41 -0800
+From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-To: Sathishkumar Duraisamy <bewithsathish@gmail.com>
-References: <CAJV8fDYuV2Hb3jdU25prLoW5-CxFFH0tWvmMUWGfwrqdNJx3+w@mail.gmail.com>
-	<4EE132C5.6040007@linux.intel.com>
-	<CANJvwR-GVN+=JaS29oxmGM6mr-D6ncv+vsyVT2OaT+vOEaU8qA@mail.gmail.com>
-	<4EE1957E.1060506@linux.intel.com>
-	<CANJvwR9dvuxk8Mz_67igs2cge5LY=mi4PnnaKocQSmPF3kL95Q@mail.gmail.com>
-	<4EE263A1.4080604@linux.intel.com>
-	<CANJvwR-T-6a4ofVw7GYF8x9DeJuW0VDyO+rQNCUgrRKio2xKHg@mail.gmail.com>
-In-Reply-To: <CANJvwR-T-6a4ofVw7GYF8x9DeJuW0VDyO+rQNCUgrRKio2xKHg@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: HOB usage
+To: Yocto Project <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.3.3
+Subject: The role of "distro" and "image"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,53 +28,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2011 20:14:36 -0000
+X-List-Received-Date: Tue, 13 Dec 2011 20:24:00 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 11/12/11 21:20, Sathishkumar Duraisamy wrote:
-> Hi,
-> 
-> Today, I tried to reproduce the problem and magically, today, hob
-> works as expected.  So, I started once again with new config, and
-> again I tried to reproduce the problem. But the problem exists.
-> 
-> The reason for this, once we select our images in the
-> edit->preference, it writes our preference in the file hob-post.conf
-> file. But it doesn't parses it again unless we are restarting the hob
-> again.
+I'm trying to wrap up my work on meta-tiny and integrate it into poky
+proper. I'm having some difficulty drawing a line between the
+responsibility of the distro definition versus that of the image definition.
 
-Hmm, your analysis seems sound enough. We do call the setVariable
-command on the cooker which I had expected to ensure the variable was
-set appropriately without a reparse.
+For example, if I define a distro which uses tmpdevfs (no udev or mdev)
+and specifies KMACHINE=yocto/standard/tiny to build the tiny variant of
+the linux-yocto kernel, and customizes the busybox build to leave out
+various things - would it make sense for someone to then try to build
+core-image-sato with it? It doesn't to me, but nothing prevents the user
+from doing that (other than a likely build failure).
 
-We can easily add a patch to trigger a reparse once IMAGE_FSTYPES is
-changed, as we do with several of the other preference values.
+So what does the distro define and what does the image define?
 
-Something like:
+Digging around in conf/distro for meta and meta-yocto, I see things like
+naming convention, additional dependencies, choice of toolchain and
+libc, source mirrors, default virtual providers, etc.
 
-joshual@shamshir:~/Projects/Yocto/poky-stable [josh/edison *]
-$ git diff
-diff --git a/bitbake/lib/bb/ui/crumbs/hobprefs.py
-b/bitbake/lib/bb/ui/crumbs/hob
-index 5dfb0e6..3f6f128 100644
---- a/bitbake/lib/bb/ui/crumbs/hobprefs.py
-+++ b/bitbake/lib/bb/ui/crumbs/hobprefs.py
-@@ -39,6 +39,7 @@ class HobPrefs(gtk.Dialog):
-             self.selected_image_types =
-handler.remove_image_output_type(ot)
+The image seems to basically define the package list for the image as
+well as the format of the rootfs and boot media.
 
-         self.configurator.setConfVar('IMAGE_FSTYPES', "%s" % "
-".join(self.sele
-+        self.reload_required = True
+If I understand this correctly, a new "tiny" distro definition would
+change the preferred linux-yocto provider to a linux-yocto-tiny recipe
+(which would in turn specify the default KMACHINE/KTYPE as well, the
+TCLIBC, DISTRO_FEATURES_LIBC, and some naming rules.
 
-     def sdk_machine_combo_changed_cb(self, combo, handler):
-         sdk_mach = combo.get_active_text()
+I currently define a new task-core-tiny.bb to reset some
+MACHINE_ESSENTIAL bits (qemu pulls in more than is necessary for tiny)
+and redefine the REDEPENDS for the image. I believe I could do this
+instead with assignments in the new distro definition and reuse
+task-core-boot.bb.
 
-Cheers,
-Joshua
+As for images, I might be able to reuse core-image-minimal - but it
+oddly contains "${POKY_EXTRA_INSTALL}" in the IMAGE_INSTALL. Since
+core-image-minimal.bb is defined in oe-core and POKY is a distro notion
+of meta-yocto, this contributes to my confusion over distro vs. image.
+
+I'd appreciate some discussion to help me clarify where these lines
+should be.
+
+Thanks,
+
+
 -- 
-Joshua Lock
-        Yocto Project "Johannes factotum"
-        Intel Open Source Technology Centre
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
