@@ -1,38 +1,23 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A09AE00742
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 08:44:11 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by qcsc2 with SMTP id c2so5755131qcs.35
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 08:44:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=subject:from:to:cc:in-reply-to:references:content-type:date
-	:message-id:mime-version:x-mailer:content-transfer-encoding;
-	bh=2DMAvGYn21qXnPPf3VO5SOkiFwzP7KbwZTHL8mbs96E=;
-	b=N2Fq1LNCsmdi/jCL7KqyZunxbsEvQYwuNz78wIncig7VsMZS0q5u5d1kZhLPO25NGh
-	c9/6Dy3hWoyj+wfEEUBqSh2SN2TWHR4+RGx1HOSs7d/60gpcFikMEyJPe+cxpA27a5Eb
-	TRcuCoiT88+j8Itj005L00LmyZMBYbR9gB9p0=
-Received: by 10.229.135.77 with SMTP id m13mr1112724qct.119.1323794650575;
-	Tue, 13 Dec 2011 08:44:10 -0800 (PST)
-Received: from [10.0.1.39] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
-	by mx.google.com with ESMTPS id
-	df3sm44510253qab.6.2011.12.13.08.44.09 (version=SSLv3 cipher=OTHER);
-	Tue, 13 Dec 2011 08:44:10 -0800 (PST)
-From: Jim Abernathy <jfabernathy@gmail.com>
-To: autif khan <autif.mlist@gmail.com>
-In-Reply-To: <CADzUK1L9a_VUPD=wvmCW-wiPjMJ0Sdvh2BOrpKU9V9Sovx7Zhg@mail.gmail.com>
-References: <CADzUK1Jr=9+-Q0Y+nQtdyELinjZdxz_27tTWDuCHTCF14x0Kcw@mail.gmail.com>
-	<1323793712.1631.1.camel@jim-ubuntu>
-	<CADzUK1L9a_VUPD=wvmCW-wiPjMJ0Sdvh2BOrpKU9V9Sovx7Zhg@mail.gmail.com>
-Date: Tue, 13 Dec 2011 11:44:09 -0500
-Message-ID: <1323794649.1951.2.camel@jim-ubuntu>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: yocto@yoctoproject.org
-Subject: Re: Where is the emgd.ko module?
+Return-Path: <sgw@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A63BE00742
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 09:56:31 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 13 Dec 2011 09:56:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="85278049"
+Received: from unknown (HELO [10.255.12.219]) ([10.255.12.219])
+	by azsmga001.ch.intel.com with ESMTP; 13 Dec 2011 09:56:30 -0800
+Message-ID: <4EE791CE.1020309@linux.intel.com>
+Date: Tue, 13 Dec 2011 09:56:30 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
+MIME-Version: 1.0
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+Subject: Minutes: Yocto Technical Team Meeting - Tuesday, December 13, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,159 +29,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2011 16:44:11 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 13 Dec 2011 17:56:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, 2011-12-13 at 11:37 -0500, autif khan wrote:
-> I think that I did. Included is an excerpt that says that I need not
-> do anything except bitbake core image sato when MACHINE="crownbay".
-> 
-> As instructed, I followed the steps in section one (Building the
-> meta-crownbay BSP layer) and ignored everything in section two
-> (Special notes for building the meta-crownbay BSP layer) which
-> includes instructions to patch a "crownbay-noemgd" with the Intel
-> driver.
-> 
-> Included below is the excerpt from the README. Is there a section that
-> I am overlooking?
-> 
-> Thanks
-> 
-> Autif
-> 
-> The meta-crownbay layer makes use of the proprietary Intel EMGD
-> userspace drivers when building the "crownbay" machine (but not when
-> building the "crownbay-noemgd" machine).  If you got the BSP from the
-> 'BSP Downloads' section of the Yocto website, the EMGD binaries needed
-> to perform the build will already be present in the BSP, located in
-> the meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8
-> directory, and you can ignore the rest of this section.
-> 
-If you use the prebuilt binaries they have EMGD already included. I had
-to download and install the EMGD  before baking it all, as mentioned in
-the README below:
+Attendees:
+Sean, Beth, Tom, Richard, Darren, Bruce, Dave, Joshua, Mark, ScottR, Saul
 
-Downloading and extracting the binaries using the EMGD Linux tarball
---------------------------------------------------------------------
+New Action Item List:
+* Action item Review - 5 min
+   1. Mark will review unsorted features from Wind River team and try to 
+have them scheduled (WIP)
 
-The first step of the process is to download the EMGD 1.8 Driver.
-Here is the current link to the URL from which it can be downloaded:
+Focus of the current week:
+   M1 Stabilization, M2 Planning
 
-http://edc.intel.com/Software/Downloads/EMGD/
+Agenda:
 
-In the Download Now tab, select:
+* Opens collection - 5 min (Saul)
+   RP: Autobuild & Bugs
 
-Intel® architecture-based product: Linux Tar Ball
-Operating System: MeeGo* 1.2 IVI Linux* (kernel 2.6.37, X.server 1.9,
-Mesa 7.9)
+* Opens - 10 min
+  - Folded into 1.2 Status
 
-That will give you a large .tgz file:
+* Yocto 1.0.2 and 1.1.1 point release update - 10 min (Josh/Beth)
+   - Build issue on OpenSuse 11.04 with Host Intrusion
+   - QA ran and found 7 problems, 1 will need to be fixed.
+     - DISTRO_VERSION needs to be updated
+   *  AR Josh: Email to CCB to review QA Result
+   - 1.1.1 Status
+     - CCB will review size of patch set in New Year
+     - 1.1.1rc1 will be built before Christmas
+     - QA will do a run between Christmas and New Years
 
-Lin_EMGD_1_8_RC_2032.tgz
+* Yocto 1.2 M1 Status (features development) - 10 min (Song/Beth)
+   https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status
+   - We are coming up on M1 RC2 with a couple of issues related
+     QT, the Auto builder and sanity testing, Saul will pull and
+     get a test spin rolling
 
-Extract the files in the tar file, which will in turn give you a
-directory named IEMGD_HEAD_Linux.
+   - Richard has been clearing the Patch Queue and fixing issues with
+     the build, we need to do a better job of testing patches
+   - M1 Review:
+     - All P1 Features made it into M1
+       - Hob2 work occured in Hob2 branch
+       - Self-Hosted Build Appliance can build almost all of world
+         under 6 recipes failures, with pending fixes
+     - Many P2 Features were also completed
+       - Autoconf/Automake
+       - Video Acceleration
+       - Meta-Intel Config Update
+       - Package History
+       - Autobuilder sstate option
+       - BuildStats Memory Measurements
+     - Other M1 P2 Items that are close and will be delivered soon
+       - GTK/Directfb (in Master now)
+       - Sanity Check for Userspace (Pending fixing errors discovered by
+         said sanity checks)
+       - Host Intrusion (M2 Planning)
+       - EFI (in Master now, bug fixes pending)
+       - Grub for Syslinux Change (pending)
 
-The binaries are contained in an rpm file; you can extract the
-binaries from the rpm file using rpm2cpio and cpio:
+    - M2 Planning, please send Song Update as well as update Bug/Enhancment
+    - Reveiwed Bug WDD and Bug Count
 
-$ cd IEMGD_HEAD_Linux/MeeGo1.2
-$ rpm2cpio emgd-bin-2032-1.6.i586.rpm > emgd-bin-2032-1.6.i586.cpio
-$ mkdir extracted; cd extracted
-$ cpio -idv < ../emgd-bin-2032-1.6.i586.cpio
+* Action item Review - 5 min
+   1. Mark will review unsorted features from Wind River team and try to 
+have them scheduled (WIP)
+   2. Saul to look at RC1 image for issues with dbus
+   3. Saul to pull Qt, Qemu and useradd patches into M1 Rc2 and get spin
 
-Finally, you can copy the xorg-xserver binaries to the
-emgd-driver-bin-1.8 directory in meta-intel/common:
+* Weekly team sharing (20 min)
 
-$ cp -a usr/lib
-meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8
+Scott R:
+  Shared State documentation, Virtual Machine Appliance (Fedora Hosted), 
+Webcast, Waiting for feedback from RP on Sstate
+Mark: Windriver stuff
+Joshua: Stable release, Planning M2 Tasks
+Dave: Managing
+Bruce: Working on M1 Late M2 Planning, Discussing with Tom/Darren Config 
+Options, Standalone Linux-Yocto tree build
+Darren: Meta-Tiny Update, Intel BSP Support Work, Bug Fixing
+Richard: Chasing Autobuilder failures, sstate, patch merge Queue, Bug 
+counte reduction
+Tom: Intel BSP  work, Updated EMGD, Kernel Usability
+Beth: License Stuff in Master, Milestone release, Stable 1.0.2 Release, 
+Autobuilder fixes
+Sean: Mentor
+Saul: Non-Gplv3 Self Hosted, Bug investigation, Patch queue
 
-You also need to copy the IEMGD License.txt file to the same directory:
 
-$ cp IEMGD_HEAD_Linux/License/License.txt
-meta-intel/common/recipes/xorg-xserver/emgd-driver-bin-1.8
 
-At this point, you should be able to build meta-crownbay images as
-usual.
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
-> 
-> On Tue, Dec 13, 2011 at 11:28 AM, Jim Abernathy <jfabernathy@gmail.com> wrote:
-> > On Tue, 2011-12-13 at 11:13 -0500, autif khan wrote:
-> >> I built the "crownbay" (not crownbay-noemgd) image as outlined in the
-> >> E660 development kit (link
-> >> http://www.yoctoproject.org/download/bsp/intel-atom-processor-e660-intel-platform-controller-hub-eg20t-development-kit-1)
-> >>
-> >> I used poky-edison-6.0.tar.bz2 and crownbay-edison-6.0.0.tar.bz2 and
-> >> followed the instructions (short version - extract, move, add
-> >> meta-intel/meta-crownbay to bblayers.conf, add MACHINE="crownbay" to
-> >> local.conf, bitbake core-image-sato)
-> >>
-> >> The result was the expected set of images in tmp/deploy/images
-> >>
-> >> I loop mounted the core-image-sato-crownbay.ext3 and tried to find
-> >> emgd.ko in the file system - I could not find it. (find output
-> >> attached - notice that there is no emgd.ko)
-> >>
-> >> Here is the kicker - crownbay-edison-6.0.0.tar.bz2 has a directory
-> >> called "binary" which contains core-image-sato-crownbay.hddimg, which
-> >> contains rootfs.img, which I also loop mounted and was able to find
-> >> the emgd.ko (however this image does not work with my hardware, I am
-> >> not sure why). Find output for this is also included below.
-> >>
-> >> I very much doubt that it is included as a part of the kernel, I
-> >> looked at the kernel's .config (in
-> >> tmp/work/crownbay-poky-linux/linux-yocto-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+2247da9131ea7e46ed4766a69bb1353dba22f873-r2/linux-crownbay-standard-build)
-> >> and could not find emgd there either.
-> >>
-> >> So, my questions is if I am doing something wrong? Do I need to do
-> >> something to get the emgd.ko to build? I am using the latest release
-> >> (6.0 "Edison" (released on October 17th, 2011)). Please advise.
-> >>
-> > Check out the README file in the meta-crownbay directory. There are
-> > instructions on integrating the EMGD driver files into the build.
-> >
-> > Jim A
-> >
-> >> Thanks
-> >>
-> >> Autif
-> >>
-> >> autif@xu:~/data/dev/yocto/emgd/tmp/deploy/images/1$ sudo find . | grep emgd
-> >> ./usr/lib/libemgdsrv_um.so.1.5.15.3226
-> >> ./usr/lib/libemgdsrv_um.so
-> >> ./usr/lib/libemgdglslcompiler.so.1.5.15.3226
-> >> ./usr/lib/libemgdPVR2D_DRIWSEGL.so
-> >> ./usr/lib/xorg/modules/drivers/emgd_drv.so
-> >> ./usr/lib/libemgdPVR2D_DRIWSEGL.so.1.5.15.3226
-> >> ./usr/lib/libemgdsrv_init.so
-> >> ./usr/lib/libemgdsrv_init.so.1.5.15.3226
-> >> ./usr/lib/libemgdglslcompiler.so
-> >> ./usr/lib/dri/emgd_dri.so
-> >> autif@xu:~/data/dev/yocto/emgd/tmp/deploy/images/1$
-> >>
-> >> autif@xu:~/data/dev/yocto/poky-edison-6.0/meta-intel/meta-crownbay/binary/2$
-> >> sudo find . | grep emgd
-> >> ./usr/lib/libemgdsrv_um.so
-> >> ./usr/lib/dri/emgd_dri.so
-> >> ./usr/lib/libemgdsrv_init.so.1.5.15.3226
-> >> ./usr/lib/libemgdsrv_init.so
-> >> ./usr/lib/xorg/modules/drivers/emgd_drv.so
-> >> ./usr/lib/libemgdPVR2D_DRIWSEGL.so.1.5.15.3226
-> >> ./usr/lib/libemgdglslcompiler.so.1.5.15.3226
-> >> ./usr/lib/libemgdsrv_um.so.1.5.15.3226
-> >> ./usr/lib/libemgdPVR2D_DRIWSEGL.so
-> >> ./usr/lib/libemgdglslcompiler.so
-> >> ./lib/modules/3.0.4-yocto-standard+/kernel/drivers/gpu/drm/emgd
-> >> ./lib/modules/3.0.4-yocto-standard+/kernel/drivers/gpu/drm/emgd/emgd.ko
-> >> ./etc/rpm-postinsts/kernel-module-emgd.sh.done
-> >> autif@xu:~/data/dev/yocto/poky-edison-6.0/meta-intel/meta-crownbay/binary/2$
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >
-> >
-
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
 
