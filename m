@@ -1,25 +1,24 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60A67E00305
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 15:28:19 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBDNSHAh013858
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 13 Dec 2011 15:28:17 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.22.98) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Tue, 13 Dec 2011 15:28:17 -0800
-Message-ID: <4EE7DF90.1060000@windriver.com>
-Date: Tue, 13 Dec 2011 18:28:16 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.24) Gecko/20111103 Thunderbird/3.1.16
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36A60E00305
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 15:33:30 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 13 Dec 2011 15:33:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="101877093"
+Received: from unknown (HELO envy.home) ([10.255.12.211])
+	by fmsmga002.fm.intel.com with ESMTP; 13 Dec 2011 15:33:29 -0800
+Message-ID: <4EE7E0B6.5020009@linux.intel.com>
+Date: Tue, 13 Dec 2011 15:33:10 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-To: David Smoot <davidsmoot@gmail.com>
-References: <021F09F7-E9C9-4088-A8CB-881FAF0FBF85@gmail.com>
-In-Reply-To: <021F09F7-E9C9-4088-A8CB-881FAF0FBF85@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Error in routerstation pro machine.conf?
+To: Yocto Project <yocto@yoctoproject.org>, 
+	"Ashfield, Bruce" <Bruce.Ashfield@windriver.com>,
+	"Zanussi, Tom" <tom.zanussi@intel.com>
+X-Enigmail-Version: 1.3.3
+Subject: linux-libc-headers 2.6.37
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,58 +30,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2011 23:28:19 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Tue, 13 Dec 2011 23:33:30 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 11-12-13 6:05 PM, David Smoot wrote:
-> I'm still very new and very clueless but I humbly submit what looks like
-> a bug to me..
->
-> "routerstationpro.conf" in meta-yocto/conf/machine/ lists machine
-> features the hardware does not have.
->
-> http://www.ubnt.com/wiki/RouterStation_Pro lists the hardware specs and
-> it lacks a display adapter (hence no screen nor keyboard) and it also
-> lacks USB slave hardware (hence no point in usbgadget).
->
-> File a bugzilla report or is there a reason for that configuration?
+We currently build at least some MACHINES with 2.6.37 of
+linux-libc-headers. This can cause problems for newer packages (such as
+connman) that expect more recent headers (if_alg.h is missing prior to
+2.6.39). While the proper fix is to ensure these packages can cope with
+older headers, for MACHINES shipping 3.0+ kernels, seems to me we should
+be using the linux-libc-headers matching the kernels. I know this has
+come up in the past, but I don't recall if we have clearly stated and
+justified what our policy is here.
 
-It's based off a generic MIPS configuration, the extra configs are there
-from that effort and do no harm at the moment, so I'm inclined to leave
-them as is. i.e. screen doesn't really trigger anything to be added
-to the image (last I checked anyway), and keyboard gets us the keymaps
-(which IIRC is used on the console). So neither does any harm.
+Any thoughts on this?
 
-gadget on the other hand, doesn't do us any good.
-
-The boards features are planned to be documented in a README file,
-rather than the conf file.
-
-We have an update for this to the 3.0 kernel shortly which will include
-the mentioned README file.
-
-But a low level bugzilla can't hurt for the gadget issue. We can fix
-it while updating the board.
-
-Cheers,
-
-Bruce
-
->
->
-> David
->
-> David Smoot
-> davidsmoot@gmail.com <mailto:davidsmoot@gmail.com>
->
->
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
