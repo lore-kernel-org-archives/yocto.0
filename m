@@ -1,36 +1,25 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96AE1E00305
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 15:27:01 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 13 Dec 2011 15:27:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="86950788"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga002.jf.intel.com with ESMTP; 13 Dec 2011 15:27:01 -0800
-Received: from orsmsx502.amr.corp.intel.com ([10.22.226.210]) by
-	orsmsx604.amr.corp.intel.com ([10.250.113.17]) with mapi;
-	Tue, 13 Dec 2011 15:27:00 -0800
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date: Tue, 13 Dec 2011 15:26:58 -0800
-Thread-Topic: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison
-	branch.
-Thread-Index: Acy57nBn+BAJ1h3bTz2ze3LPV8TFHwAABmGA
-Message-ID: <4BD43A85686FC34D819098DB1C3999D901900BC3A3@orsmsx502.amr.corp.intel.com>
-References: <4BD43A85686FC34D819098DB1C3999D901900BC33C@orsmsx502.amr.corp.intel.com>
-	<4EE7DA4D.4080500@windriver.com> <4EE7DC81.6030609@intel.com>
-	<4BD43A85686FC34D819098DB1C3999D901900BC38A@orsmsx502.amr.corp.intel.com>
-	<4EE7DEC2.5050803@windriver.com>
-In-Reply-To: <4EE7DEC2.5050803@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60A67E00305
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 15:28:19 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBDNSHAh013858
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 13 Dec 2011 15:28:17 -0800 (PST)
+Received: from bruce-ashfields-macbook.local (128.224.22.98) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Tue, 13 Dec 2011 15:28:17 -0800
+Message-ID: <4EE7DF90.1060000@windriver.com>
+Date: Tue, 13 Dec 2011 18:28:16 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
+	rv:1.9.2.24) Gecko/20111103 Thunderbird/3.1.16
 MIME-Version: 1.0
-Cc: "Hart, Darren" <darren.hart@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison branch.
+To: David Smoot <davidsmoot@gmail.com>
+References: <021F09F7-E9C9-4088-A8CB-881FAF0FBF85@gmail.com>
+In-Reply-To: <021F09F7-E9C9-4088-A8CB-881FAF0FBF85@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Error in routerstation pro machine.conf?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,231 +31,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2011 23:27:01 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 13 Dec 2011 23:28:19 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Yes.=20
-Its with poky Edison with poky-extras/meta-kernel-dev master branch I am us=
-ing for my build.
+On 11-12-13 6:05 PM, David Smoot wrote:
+> I'm still very new and very clueless but I humbly submit what looks like
+> a bug to me..
+>
+> "routerstationpro.conf" in meta-yocto/conf/machine/ lists machine
+> features the hardware does not have.
+>
+> http://www.ubnt.com/wiki/RouterStation_Pro lists the hardware specs and
+> it lacks a display adapter (hence no screen nor keyboard) and it also
+> lacks USB slave hardware (hence no point in usbgadget).
+>
+> File a bugzilla report or is there a reason for that configuration?
 
-Thanks
-Kishore.
+It's based off a generic MIPS configuration, the extra configs are there
+from that effort and do no harm at the moment, so I'm inclined to leave
+them as is. i.e. screen doesn't really trigger anything to be added
+to the image (last I checked anyway), and keyboard gets us the keymaps
+(which IIRC is used on the console). So neither does any harm.
 
------Original Message-----
-From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
-Sent: Tuesday, December 13, 2011 3:25 PM
-To: Bodke, Kishore K
-Cc: Hart, Darren; yocto@yoctoproject.org
-Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison =
-branch.
+gadget on the other hand, doesn't do us any good.
 
-On 11-12-13 6:17 PM, Bodke, Kishore K wrote:
-> Yeah.  I am using local bare clone for the linux-yocto-3.0 and using poky=
--extras/meta-kernel-dev in my bblayers.conf for my build.
-> Sorry for not mentioning this before.
+The boards features are planned to be documented in a README file,
+rather than the conf file.
 
-Aha. This is completely different then. As Darren mentioned, the bbappend
-should be getting the latest tools, I can look into that.
+We have an update for this to the 3.0 kernel shortly which will include
+the mentioned README file.
 
-But to be clear, is this an edison branch + meta-kernel-dev ? That
-will cause problems at some point (and I'm not sure if that is what
-is happening here yet), since recipe updates to use the new tools
-wouldn't be reflected in that branch while you are fed the new tools.
+But a low level bugzilla can't hurt for the gadget issue. We can fix
+it while updating the board.
 
 Cheers,
 
 Bruce
 
 >
-> Thanks
-> Kishore.
 >
-> -----Original Message-----
-> From: Hart, Darren
-> Sent: Tuesday, December 13, 2011 3:15 PM
-> To: Bruce Ashfield
-> Cc: Bodke, Kishore K; yocto@yoctoproject.org
-> Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/ediso=
-n branch.
+> David
 >
-> On 12/13/2011 03:05 PM, Bruce Ashfield wrote:
->> On 11-12-13 5:50 PM, Bodke, Kishore K wrote:
->>> Hi,
->>>
->>> I get failure for the linux-yoctort_3.0.bb file for the poky Edison bra=
-nch.
->>>
->>> Darren told that it was fixed and merged to master.
->>
->> This shouldn't be happening on edison at all. The changes to the
->> kernel recipes/tools to use the merge_config.sh should never have
->> showed up in edison. That's yocto 1.2 development work.
->>
->> So the fix for this is to find out what leaked into edison and
->> revert it. I'll have a look at that later tonight.
->
-> No no. Kishore is using meta-kernel-dev. As such he is getting the
-> latest linux-yocto repository and SRC_REVs. The question, I think, is
-> really why isn't the kern-tools-native bbappend from meta-kernel-dev
-> doing this for him.
->
-> --
-> Darren
->
->>
->> Bruce
->>
->>>
->>> I wanted to bring to the list about this error message.
->>>
->>> ERROR: Function 'do_kernel_configme' failed (see
->>> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-pok=
-y-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_=
-1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configme.1=
-8502
->>> for further information)
->>>
->>> ERROR: Logfile of failure stored in:
->>> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-pok=
-y-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_=
-1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configme.1=
-8502
->>>
->>> Log data follows:
->>>
->>> | [INFO] doing kernel configme
->>>
->>> | [INFO] Branch yocto/standard/preempt-rt/base used by
->>> common-pc-preempt-rt.scc
->>>
->>> | [INFO] collecting configs in ./meta/meta-series
->>>
->>> | mv: cannot stat
->>> `/usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-po=
-ky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52=
-_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/linux-crystalforest-preempt-=
-rt-build/.tmp.config*':
->>> No such file or directory
->>>
->>> | creation of pre-processed config data failed
->>>
->>> | config of yocto/standard/preempt-rt/base (common-pc-preempt-rt.scc) f=
-ailed
->>>
->>> | ERROR: Function 'do_kernel_configme' failed (see
->>> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-pok=
-y-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_=
-1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configme.1=
-8502
->>> for further information)
->>>
->>> NOTE: package
->>> linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+09=
-36e13cc65d816f1759e2322c5e3fc82a5037f3-r1:
->>> task do_kernel_configme: Failed
->>>
->>> ERROR: Task 716
->>> (/usr/local/src/yocto_1_1_release/poky/meta/recipes-kernel/linux/linux-=
-yocto-rt_3.0.bb,
->>> do_kernel_configme) failed with exit code '1'
->>>
->>> Waiting for 7 active tasks to finish:
->>>
->>> 0: acl-native-2.2.51-r2 do_configure (pid 12164)
->>>
->>> 1: elfutils-native-0.148-r3 do_install (pid 19851)
->>>
->>> 2: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
->>>
->>> 3: font-util-native-1.2.0-r2.1 do_configure (pid 14632)
->>>
->>> 4: bison-native-2.5-r1 do_configure (pid 20206)
->>>
->>> 5: dbus-native-1.4.12-r0 do_configure (pid 20209)
->>>
->>> 6: opensp-native-1.5-r2 do_configure (pid 20213)
->>>
->>> Waiting for 6 active tasks to finish:
->>>
->>> 0: acl-native-2.2.51-r2 do_configure (pid 12164)
->>>
->>> 1: elfutils-native-0.148-r3 do_install (pid 19851)
->>>
->>> 2: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
->>>
->>> 3: font-util-native-1.2.0-r2.1 do_configure (pid 14632)
->>>
->>> 4: bison-native-2.5-r1 do_configure (pid 20206)
->>>
->>> 5: dbus-native-1.4.12-r0 do_configure (pid 20209)
->>>
->>> NOTE: package opensp-native-1.5-r2: task do_configure: Succeeded
->>>
->>> Waiting for 5 active tasks to finish:
->>>
->>> 0: acl-native-2.2.51-r2 do_configure (pid 12164)
->>>
->>> 1: elfutils-native-0.148-r3 do_install (pid 19851)
->>>
->>> 2: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
->>>
->>> 3: bison-native-2.5-r1 do_configure (pid 20206)
->>>
->>> 4: dbus-native-1.4.12-r0 do_configure (pid 20209)
->>>
->>> NOTE: package font-util-native-1.2.0-r2.1: task do_configure: Succeeded
->>>
->>> Waiting for 4 active tasks to finish:
->>>
->>> 0: acl-native-2.2.51-r2 do_configure (pid 12164)
->>>
->>> 1: elfutils-native-0.148-r3 do_install (pid 19851)
->>>
->>> 2: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
->>>
->>> 3: bison-native-2.5-r1 do_configure (pid 20206)
->>>
->>> NOTE: package dbus-native-1.4.12-r0: task do_configure: Succeeded
->>>
->>> Waiting for 3 active tasks to finish:
->>>
->>> 0: elfutils-native-0.148-r3 do_install (pid 19851)
->>>
->>> 1: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
->>>
->>> 2: bison-native-2.5-r1 do_configure (pid 20206)
->>>
->>> NOTE: package acl-native-2.2.51-r2: task do_configure: Succeeded
->>>
->>> Waiting for 2 active tasks to finish:
->>>
->>> 0: elfutils-native-0.148-r3 do_install (pid 19851)
->>>
->>> 1: bison-native-2.5-r1 do_configure (pid 20206)
->>>
->>> NOTE: package kbproto-native-1_1.0.5-r0: task do_configure: Succeeded
->>>
->>> Waiting for 1 active tasks to finish:
->>>
->>> 0: bison-native-2.5-r1 do_configure (pid 20206)
->>>
->>> NOTE: package elfutils-native-0.148-r3: task do_install: Succeeded
->>>
->>> NOTE: package bison-native-2.5-r1: task do_configure: Succeeded
->>>
->>> ERROR:
->>> '/usr/local/src/yocto_1_1_release/poky/meta/recipes-kernel/linux/linux-=
-yocto-rt_3.0.bb'
->>> failed
->>>
->>> Thanks
->>>
->>> Kishore.
->>>
->>
+> David Smoot
+> davidsmoot@gmail.com <mailto:davidsmoot@gmail.com>
 >
 >
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
