@@ -1,22 +1,32 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F702E00742
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 12:36:49 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 13 Dec 2011 12:36:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="86891121"
-Received: from unknown (HELO [10.255.12.215]) ([10.255.12.215])
-	by orsmga002.jf.intel.com with ESMTP; 13 Dec 2011 12:36:34 -0800
-Message-ID: <4EE7B752.7050802@linux.intel.com>
-Date: Tue, 13 Dec 2011 12:36:34 -0800
-From: Joshua Lock <josh@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07A0CE00742
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 12:40:11 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by laam7 with SMTP id m7so56369laa.35
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 12:40:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=WAYC2IloPJ8wQJOb2QLp90gInZ5hFw46f8pvWVAVFEY=;
+	b=baDCoKdJLaEBbGeg5BOe/xXjOj2GKT66JQONsjRqSmVZ6tLFbUXlhOobyZRH+CbBmS
+	9tlar0qPDLTWaqdMOvLHxmwkuDBMLwsHeBcli7DLmhzWm8S8mlzg5lMU0acGE7/jpClF
+	cPI8JcL2JkZnrYwtAKUpFP3s100zWNwVbD4po=
+Received: by 10.152.130.232 with SMTP id oh8mr5975184lab.6.1323808810310; Tue,
+	13 Dec 2011 12:40:10 -0800 (PST)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
+Received: by 10.152.24.36 with HTTP; Tue, 13 Dec 2011 12:39:39 -0800 (PST)
+In-Reply-To: <4EE7B752.7050802@linux.intel.com>
 References: <4EE7B44D.7000301@linux.intel.com>
-In-Reply-To: <4EE7B44D.7000301@linux.intel.com>
+	<4EE7B752.7050802@linux.intel.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 13 Dec 2011 12:39:39 -0800
+Message-ID: <CAMKF1srLz=mRMTb7r6ZMY4tM+7PLux47gU4Dc2MLrwBdTPwD0g@mail.gmail.com>
+To: Joshua Lock <josh@linux.intel.com>
+Cc: yocto@yoctoproject.org
 Subject: Re: The role of "distro" and "image"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -29,83 +39,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2011 20:36:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 13 Dec 2011 20:40:12 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 13/12/11 12:23, Darren Hart wrote:
-> I'm trying to wrap up my work on meta-tiny and integrate it into poky
-> proper. I'm having some difficulty drawing a line between the
-> responsibility of the distro definition versus that of the image definition.
-> 
-> For example, if I define a distro which uses tmpdevfs (no udev or mdev)
-> and specifies KMACHINE=yocto/standard/tiny to build the tiny variant of
-> the linux-yocto kernel, and customizes the busybox build to leave out
-> various things - would it make sense for someone to then try to build
-> core-image-sato with it? It doesn't to me, but nothing prevents the user
-> from doing that (other than a likely build failure).
+On Tue, Dec 13, 2011 at 12:36 PM, Joshua Lock <josh@linux.intel.com> wrote:
+>
+>> As for images, I might be able to reuse core-image-minimal - but it
+>> oddly contains "${POKY_EXTRA_INSTALL}" in the IMAGE_INSTALL. Since
+>> core-image-minimal.bb is defined in oe-core and POKY is a distro notion
+>> of meta-yocto, this contributes to my confusion over distro vs. image.
+>>
+>> I'd appreciate some discussion to help me clarify where these lines
+>> should be.
+>
+> That's just a stray variable that has yet to be properly renamed by the
+> looks of it.
 
-These all sounds like policy (and therefore distro) decisions to me. As
-with much of our system there's no hard and fast rule but this certainly
-sounds like a distro to me.
-
-I think it's perfectly reasonable to assume that you can't build every
-image you find in the wild for every distro configuration you create.
-
-> 
-> So what does the distro define and what does the image define?
-
-Distro defines the build configuration policy, image defines image contents.
-
-You shouldn't set anything in the image definition which affects how
-things are built as the packages can then be used in another image.
-
-> 
-> Digging around in conf/distro for meta and meta-yocto, I see things like
-> naming convention, additional dependencies, choice of toolchain and
-> libc, source mirrors, default virtual providers, etc.
-
-*nod*
-
-> 
-> The image seems to basically define the package list for the image as
-> well as the format of the rootfs and boot media.
-
-*nod* though arguably the latter 3 are likely poked elsewhere also.
-
-> If I understand this correctly, a new "tiny" distro definition would
-> change the preferred linux-yocto provider to a linux-yocto-tiny recipe
-> (which would in turn specify the default KMACHINE/KTYPE as well, the
-> TCLIBC, DISTRO_FEATURES_LIBC, and some naming rules.
-
-Yes!
-
-> I currently define a new task-core-tiny.bb to reset some
-> MACHINE_ESSENTIAL bits (qemu pulls in more than is necessary for tiny)
-> and redefine the REDEPENDS for the image. I believe I could do this
-> instead with assignments in the new distro definition and reuse
-> task-core-boot.bb.
-
-Seems like a good approach.
-
-> As for images, I might be able to reuse core-image-minimal - but it
-> oddly contains "${POKY_EXTRA_INSTALL}" in the IMAGE_INSTALL. Since
-> core-image-minimal.bb is defined in oe-core and POKY is a distro notion
-> of meta-yocto, this contributes to my confusion over distro vs. image.
-> 
-> I'd appreciate some discussion to help me clarify where these lines
-> should be.
-
-That's just a stray variable that has yet to be properly renamed by the
-looks of it.
-
-It sounds to me like your understanding is correct and this variable has
-just thrown you for a loop.
-
-Cheers,
-Joshua
--- 
-Joshua Lock
-        Yocto Project "Johannes factotum"
-        Intel Open Source Technology Centre
+yes there was a patch to rename that to IMAGE_EXTRA_INSTALL or
+COREIMAGE_EXTRA_INSTALL
 
