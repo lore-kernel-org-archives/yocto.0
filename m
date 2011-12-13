@@ -1,25 +1,33 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84A7AE00305
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 15:24:53 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBDNOpjl013415
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 13 Dec 2011 15:24:51 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.22.98) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Tue, 13 Dec 2011 15:24:51 -0800
-Message-ID: <4EE7DEC2.5050803@windriver.com>
-Date: Tue, 13 Dec 2011 18:24:50 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.24) Gecko/20111103 Thunderbird/3.1.16
-MIME-Version: 1.0
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96AE1E00305
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 15:27:01 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 13 Dec 2011 15:27:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="86950788"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga002.jf.intel.com with ESMTP; 13 Dec 2011 15:27:01 -0800
+Received: from orsmsx502.amr.corp.intel.com ([10.22.226.210]) by
+	orsmsx604.amr.corp.intel.com ([10.250.113.17]) with mapi;
+	Tue, 13 Dec 2011 15:27:00 -0800
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Tue, 13 Dec 2011 15:26:58 -0800
+Thread-Topic: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison
+	branch.
+Thread-Index: Acy57nBn+BAJ1h3bTz2ze3LPV8TFHwAABmGA
+Message-ID: <4BD43A85686FC34D819098DB1C3999D901900BC3A3@orsmsx502.amr.corp.intel.com>
 References: <4BD43A85686FC34D819098DB1C3999D901900BC33C@orsmsx502.amr.corp.intel.com>
 	<4EE7DA4D.4080500@windriver.com> <4EE7DC81.6030609@intel.com>
 	<4BD43A85686FC34D819098DB1C3999D901900BC38A@orsmsx502.amr.corp.intel.com>
-In-Reply-To: <4BD43A85686FC34D819098DB1C3999D901900BC38A@orsmsx502.amr.corp.intel.com>
+	<4EE7DEC2.5050803@windriver.com>
+In-Reply-To: <4EE7DEC2.5050803@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
 Cc: "Hart, Darren" <darren.hart@intel.com>,
 	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison branch.
@@ -34,12 +42,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2011 23:24:53 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 13 Dec 2011 23:27:01 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Yes.=20
+Its with poky Edison with poky-extras/meta-kernel-dev master branch I am us=
+ing for my build.
+
+Thanks
+Kishore.
+
+-----Original Message-----
+From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
+Sent: Tuesday, December 13, 2011 3:25 PM
+To: Bodke, Kishore K
+Cc: Hart, Darren; yocto@yoctoproject.org
+Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison =
+branch.
 
 On 11-12-13 6:17 PM, Bodke, Kishore K wrote:
-> Yeah.  I am using local bare clone for the linux-yocto-3.0 and using poky-extras/meta-kernel-dev in my bblayers.conf for my build.
+> Yeah.  I am using local bare clone for the linux-yocto-3.0 and using poky=
+-extras/meta-kernel-dev in my bblayers.conf for my build.
 > Sorry for not mentioning this before.
 
 Aha. This is completely different then. As Darren mentioned, the bbappend
@@ -63,13 +88,15 @@ Bruce
 > Sent: Tuesday, December 13, 2011 3:15 PM
 > To: Bruce Ashfield
 > Cc: Bodke, Kishore K; yocto@yoctoproject.org
-> Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison branch.
+> Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/ediso=
+n branch.
 >
 > On 12/13/2011 03:05 PM, Bruce Ashfield wrote:
 >> On 11-12-13 5:50 PM, Bodke, Kishore K wrote:
 >>> Hi,
 >>>
->>> I get failure for the linux-yoctort_3.0.bb file for the poky Edison branch.
+>>> I get failure for the linux-yoctort_3.0.bb file for the poky Edison bra=
+nch.
 >>>
 >>> Darren told that it was fixed and merged to master.
 >>
@@ -95,11 +122,17 @@ Bruce
 >>> I wanted to bring to the list about this error message.
 >>>
 >>> ERROR: Function 'do_kernel_configme' failed (see
->>> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configme.18502
+>>> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-pok=
+y-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_=
+1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configme.1=
+8502
 >>> for further information)
 >>>
 >>> ERROR: Logfile of failure stored in:
->>> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configme.18502
+>>> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-pok=
+y-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_=
+1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configme.1=
+8502
 >>>
 >>> Log data follows:
 >>>
@@ -111,23 +144,32 @@ Bruce
 >>> | [INFO] collecting configs in ./meta/meta-series
 >>>
 >>> | mv: cannot stat
->>> `/usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/linux-crystalforest-preempt-rt-build/.tmp.config*':
+>>> `/usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-po=
+ky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52=
+_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/linux-crystalforest-preempt-=
+rt-build/.tmp.config*':
 >>> No such file or directory
 >>>
 >>> | creation of pre-processed config data failed
 >>>
->>> | config of yocto/standard/preempt-rt/base (common-pc-preempt-rt.scc) failed
+>>> | config of yocto/standard/preempt-rt/base (common-pc-preempt-rt.scc) f=
+ailed
 >>>
 >>> | ERROR: Function 'do_kernel_configme' failed (see
->>> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configme.18502
+>>> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-pok=
+y-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_=
+1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configme.1=
+8502
 >>> for further information)
 >>>
 >>> NOTE: package
->>> linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1:
+>>> linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+09=
+36e13cc65d816f1759e2322c5e3fc82a5037f3-r1:
 >>> task do_kernel_configme: Failed
 >>>
 >>> ERROR: Task 716
->>> (/usr/local/src/yocto_1_1_release/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.0.bb,
+>>> (/usr/local/src/yocto_1_1_release/poky/meta/recipes-kernel/linux/linux-=
+yocto-rt_3.0.bb,
 >>> do_kernel_configme) failed with exit code '1'
 >>>
 >>> Waiting for 7 active tasks to finish:
@@ -215,7 +257,8 @@ Bruce
 >>> NOTE: package bison-native-2.5-r1: task do_configure: Succeeded
 >>>
 >>> ERROR:
->>> '/usr/local/src/yocto_1_1_release/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.0.bb'
+>>> '/usr/local/src/yocto_1_1_release/poky/meta/recipes-kernel/linux/linux-=
+yocto-rt_3.0.bb'
 >>> failed
 >>>
 >>> Thanks
