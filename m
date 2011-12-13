@@ -1,23 +1,29 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <dvhart@linux.intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA20BE006DF
-	for <yocto@yoctoproject.org>; Mon, 12 Dec 2011 15:35:33 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6A96E006DF
+	for <yocto@yoctoproject.org>; Mon, 12 Dec 2011 17:24:08 -0800 (PST)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 12 Dec 2011 15:35:32 -0800
+	by azsmga102.ch.intel.com with ESMTP; 12 Dec 2011 17:24:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="84971415"
-Received: from unknown (HELO [10.255.12.64]) ([10.255.12.64])
-	by azsmga001.ch.intel.com with ESMTP; 12 Dec 2011 15:35:32 -0800
-Message-ID: <4EE68FC3.9050708@linux.intel.com>
-Date: Mon, 12 Dec 2011 15:35:31 -0800
-From: Saul Wold <sgw@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="85000628"
+Received: from unknown (HELO envy.home) ([10.255.12.201])
+	by azsmga001.ch.intel.com with ESMTP; 12 Dec 2011 17:24:07 -0800
+Message-ID: <4EE6A924.9030005@linux.intel.com>
+Date: Mon, 12 Dec 2011 17:23:48 -0800
+From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-Subject: Agenda: Yocto Technical Team Meeting - Tuesday, December 13, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+To: Marc Ferland <marc.ferland@gmail.com>
+References: <CAMRMzCDCBX15T8k+sAojLKiCwn_xReuFc-xyFCCGnBVYwzj7iQ@mail.gmail.com>
+	<4EE11521.40100@linux.intel.com>
+	<CAMRMzCC=OyJqpOPuzwEXG0EBY57eQSWq5YwjrFdzKgoFcyU=HQ@mail.gmail.com>
+	<4EE125ED.7010201@linux.intel.com>
+	<CAMRMzCDpxFyxE=XDunz+VhTrjw0K=aOqpUw_-4GYAJJgbOPXWw@mail.gmail.com>
+In-Reply-To: <CAMRMzCDpxFyxE=XDunz+VhTrjw0K=aOqpUw_-4GYAJJgbOPXWw@mail.gmail.com>
+X-Enigmail-Version: 1.3.3
+Cc: yocto@yoctoproject.org, "Wold, Saul" <saul.wold@intel.com>
+Subject: Re: Adding features to a machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,94 +35,151 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Dec 2011 23:35:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Tue, 13 Dec 2011 01:24:09 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Agenda:
+On 12/12/2011 08:11 AM, Marc Ferland wrote:
+> 
+> 
+> On Thu, Dec 8, 2011 at 4:02 PM, Darren Hart <dvhart@linux.intel.com
+> <mailto:dvhart@linux.intel.com>> wrote:
+> 
+> 
+> 
+>     On 12/08/2011 12:36 PM, Marc Ferland wrote:
+>     > On Thu, Dec 8, 2011 at 2:50 PM, Darren Hart
+>     <dvhart@linux.intel.com <mailto:dvhart@linux.intel.com>
+>     > <mailto:dvhart@linux.intel.com <mailto:dvhart@linux.intel.com>>>
+>     wrote:
+>     >
+>     >     On 12/08/2011 11:13 AM, Marc Ferland wrote:
+>     >     > Hi,
+>     >     >
+>     >     > I have a crownbay based machine here and I would like to add the
+>     >     > bluetooth machine feature to it. Do I have to create a whole new
+>     >     BSP for
+>     >     > this? I haven't seen any examples showing how to _modify_ a
+>     machine
+>     >     > description.
+>     >
+>     >
+>     >     Have you tried modifying either MACHINE_FEATURES_crownbay or
+>     >     KERNEL_FEATURES_crownbay from local.conf? I haven't attempted this
+>     >     myself, but I believe it should work.
+>     >
+>     >
+>     > Tried both.
+>     >
+>     > With MACHINE_FEATURES_crownbay += "bluetooth" I get:
+>     > NOTE: Resolving any missing task queue dependencies
+>     > ERROR: Nothing RPROVIDES 'modutils-depmod' (but
+>     >
+>     /home/marc/dev/poky/poky-src/meta/recipes-kernel/update-modules/update-modules_1.0.bb
+>     <http://update-modules_1.0.bb>
+>     > <http://update-modules_1.0.bb> RDEPENDS on or otherwise requires it)
+>     > NOTE: Runtime target 'modutils-depmod' is unbuildable, removing...
+> 
+>     Hrm, yes, I don't see what provides modutils-depmod. I believe you may
+>     have found a bug. Mind filing one?
+> 
+>     > Missing or unbuildable dependency chain was: ['modutils-depmod']
+>     > NOTE: Runtime target 'perf' is unbuildable, removing...
+>     > Missing or unbuildable dependency chain was: ['perf',
+>     'update-modules',
+>     > 'modutils-depmod']
+>     > NOTE: Runtime target 'task-core-tools-profile' is unbuildable,
+>     removing...
+>     > Missing or unbuildable dependency chain was:
+>     ['task-core-tools-profile',
+>     > 'perf', 'update-modules', 'modutils-depmod']
+>     > ERROR: Required build target 'sonatest-test-image' has no buildable
+>     > providers.
+>     > Missing or unbuildable dependency chain was: ['sonatest-test-image',
+>     > 'task-core-tools-profile', 'perf', 'update-modules',
+>     'modutils-depmod']
+>     >
+>     > With KERNEL_FEATURES_crownbay += "bluetooth", I get the following when
+>     > recompiling the kernel:
+>     > Log data follows:
+>     > | Deleted branch meta-temp (was 620917d).
+>     > | WARNING: addon feature "bluetooth" was not found
+>     > | ERROR: required features were not found. aborting
+>     >
+>     > BTW, I did not find any precise kernel feature for bluetooth when
+>     > looking in
+>     >
+>     builddir/tmp/work/crownbay-poky-linux/linux-yocto/linux/meta/cfg/kernel-cache/
+> 
+>     Right, you would need to add something if you need a driver that isn't
+>     listed there or in the crownbay BSP.
+> 
+> Sorry to bring this up again, but since the documentation states that
+> "bluetooth" is a valid MACHINE_FEATURE option and no configuration
+> fragment is present to support this feature does that mean that it
+> cannot really work by simply adding the option? Could this be a
+> bug/missing feature?
+> 
+> BTW, I got bluetooth working but I add to create a config fragment like
+> you suggested which is kind of confusing since a MACHINE_FEATURE already
+> exists for this functionality.
 
-* Opens collection - 5 min (Saul)
-* Yocto 1.0.2 and 1.1.1 point release update - 10 min (Josh/Beth)
-* Yocto 1.2 M1 Status (features development) - 10 min (Saul/Beth)
-   https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status
-* M2 Planning
-* Opens - 10 min
-* Action item Review - 5 min
-   1. Mark will review unsorted features from Wind River team and try to 
-have them scheduled. (Status Check)
-* Weekly team sharing (20 min)
+The bug you filed needs to get fixed, when it does, the MACHINE_FEATURES
++= "bluetooth" combined with the stock linux-yocto kernel will combine
+with the definition of task-base-bluetooth to give you what you are
+looking for.
+
+See meta/recipes-core/tasks/task-base.bb:
+
+RDEPENDS_task-base-bluetooth = "\
+    bluez4 \
+    "
+
+RRECOMMENDS_task-base-bluetooth = "\
+    kernel-module-bluetooth \
+    kernel-module-l2cap \
+    kernel-module-rfcomm \
+    kernel-module-hci-vhci \
+    kernel-module-bnep \
+    kernel-module-hidp \
+    kernel-module-hci-uart \
+    kernel-module-sco \
+    ${@base_contains('COMBINED_FEATURES', 'usbhost',
+'kernel-module-hci-usb', '',d)} \
+    ${@base_contains('COMBINED_FEATURES', 'pcmcia',
+'kernel-module-bluetooth3c-cs', '',d)} \
+    ${@base_contains('COMBINED_FEATURES', 'pcmcia',
+'kernel-module-bluecard-cs', '',d)} \
+    ${@base_contains('COMBINED_FEATURES', 'pcmcia',
+'kernel-module-bluetoothuart-cs', '',d)} \
+    ${@base_contains('COMBINED_FEATURES', 'pcmcia',
+'kernel-module-dtl1-cs', '',d)} \
+
+What this does is include the required kernel module packages created by
+the linux-yocto recipe in the package feed for your image.
+
+Saul mentioned he would try and have a look at that bug, CC'ing him for
+reference. Looking at that bug though, I see Richard has commented:
+
+http://bugzilla.yoctoproject.org/show_bug.cgi?id=1814
+
+Can you try with his suggestion, using:
+
+MACHINE_FEATURES_append_crownbay = " bluetooth"
+
+I believe the assignment you were using before explains why you hit the
+original modutils-depmod failure. See:
+
+$ git grep modutils-depmod
+meta/recipes-kernel/update-modules/update-modules_1.0.bb:RDEPENDS_${PN}
+= "${@base_contains("MACHINE_FEATURES", "kernel26",
+
+Note that the recipe depends on kernel26 being part of MACHINE_FEATURES,
+since you set MACHINE_FEATURES to "bluetooth", it failed to build.
 
 
------Original Appointment-----
-
-
-Conference details Conference name: Yocto Technical Team
-Conference date/start time: Tue Jun 28, 2011 at 10:00 AM Central 
-Daylight Time Participants: 30
-Duration: 60 minutes Participant passcode: 49611427 Dial-in number: 
-1.972.995.7777 US Toll Free number: 1.877.561.6828 BlackBerry users, 
-click this link to join your conference as a chairperson:
-1.972.995.7777x67184230#
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x49611427#
-
-Depending on where you are dialing from, either your BlackBerry will 
-pause and enter the passcode automatically or you will be prompted to 
-click again to dial the passcode.
-
-Local and Global Access Numbers
-
-Country Dial-in number
-Australia: 1800 636 843
-Czech Republic: 242 430 350
-China (Beijing): >From office dial 8-9957777 or 8784277 Beijing Out of 
-Office dial 5878 4277
-China (Shanghai): >From office dial 8-9957777 or 3073322 Shanghai Out of 
-Office dial 2307 3322
-China (Shenzen): >From office dial 8-9957777 or 6007877 Shenzen Out of 
-Office dial 2600 7877
-China (Other Cities): >From IP phone dial 8-9957777 Other cities - Non 
-IP phone dial 021-23073322
-Denmark: 8060 1400
-Finland: 09 41333477
-France: 0497 275888
-Germany: 08161 803232
-Holland: 030 2417490
-India: BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel: 09 790 6715
-Italy: 039 69061234 (039 is local city code not country code)
-Japan: >From TI Campus use 8 995 7777 Outside TI use 03 4331 3777
-Malaysia: >From IP phone dial 2643799 >From Kuala Lumpur dial 4264 3799 
-Outside Kuala Lumpur dial (03)4264 3799
-Norway: 2 295 8744
-Philippines: >From Baguio City use 4471177 >From Metro Manila area use 
-8702477
-Singapore: >From IP phone dial 3894777 Outside TI use 6389 4777
-South Korea: >From IP phone dial 5606998 >From Seoul dial 5606998 
-Outside Seoul dial (02)5606998
-Sweden: 08 58755577
-Taiwan: >From IP phone dial 1363 >From Taipei dial 2241 1363 Outside 
-Taipei dial (02)2241 1363
-Turkey: Landline Only dial 0811 288 0001 then enter 877 633 1123 UK: 
-01604 663003
-US: 972 995 7777 or 1877 561 6828
-
-Recurring conferences First scheduled conference: Tue Jun 28, 2011
-Recurrence frequency: Weekly - Every 1 week(s) on Tuesday
-Recurrence ends: End on Fri Jun 22, 2012, 10:40 AM CDT
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
