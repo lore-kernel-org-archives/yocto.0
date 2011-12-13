@@ -1,33 +1,26 @@
-Return-Path: <davidsmoot@gmail.com>
-Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9E7DE00305
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 15:05:27 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by yhpp56 with SMTP id p56so987560yhp.35
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 15:05:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
-	bh=xZHSoK4jp5xgdza5ePyUBk5Ca2/WJQsKF6bAdILT4ZQ=;
-	b=iORFn2nJSEkVhQu5vibm+M4HX33qtRzWyVybzUPlgDIGCKupVgOH7enmGAt2eL8923
-	aJ2gGWg8CE9qdxKG4j/u/M04TbSS5LVLZWAVoYpiJw52/3M+vAH5UmG9rN24sxyOa+2B
-	6GL8OJ6G/r78qNauynRWKAd5wnXR1aTgUeKjU=
-Received: by 10.236.181.225 with SMTP id l61mr7087078yhm.131.1323817527022;
-	Tue, 13 Dec 2011 15:05:27 -0800 (PST)
-Received: from [192.168.1.97] (70-139-182-143.lightspeed.hstntx.sbcglobal.net.
-	[70.139.182.143])
-	by mx.google.com with ESMTPS id y17sm1491372anc.2.2011.12.13.15.05.25
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 13 Dec 2011 15:05:26 -0800 (PST)
-From: David Smoot <davidsmoot@gmail.com>
-Date: Tue, 13 Dec 2011 17:05:24 -0600
-Message-Id: <021F09F7-E9C9-4088-A8CB-881FAF0FBF85@gmail.com>
-To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Apple Message framework v1084)
-X-Mailer: Apple Mail (2.1084)
-Subject: Error in routerstation pro machine.conf?
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8F46E01370
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 15:05:51 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBDN5o3F011300
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 13 Dec 2011 15:05:50 -0800 (PST)
+Received: from bruce-ashfields-macbook.local (128.224.22.98) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Tue, 13 Dec 2011 15:05:50 -0800
+Message-ID: <4EE7DA4D.4080500@windriver.com>
+Date: Tue, 13 Dec 2011 18:05:49 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
+	rv:1.9.2.24) Gecko/20111103 Thunderbird/3.1.16
+MIME-Version: 1.0
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+References: <4BD43A85686FC34D819098DB1C3999D901900BC33C@orsmsx502.amr.corp.intel.com>
+In-Reply-To: <4BD43A85686FC34D819098DB1C3999D901900BC33C@orsmsx502.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
+	Darren" <darren.hart@intel.com>
+Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison branch.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,43 +32,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2011 23:05:28 -0000
-Content-Type: multipart/alternative; boundary=Apple-Mail-4--234542523
-
---Apple-Mail-4--234542523
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
-
-I'm still very new and very clueless but I humbly submit what looks like =
-a bug to me..
-
-"routerstationpro.conf" in meta-yocto/conf/machine/ lists machine =
-features the hardware does not have.
-
-http://www.ubnt.com/wiki/RouterStation_Pro lists the hardware specs and =
-it lacks a display adapter (hence no screen nor keyboard) and it also =
-lacks USB slave hardware (hence no point in usbgadget).
-
-File a bugzilla report or is there a reason for that configuration?
-
-
-David
-
-David Smoot
-davidsmoot@gmail.com
-
-
-
-
---Apple-Mail-4--234542523
+X-List-Received-Date: Tue, 13 Dec 2011 23:05:52 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Type: text/html;
-	charset=us-ascii
 
-<html><head></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; ">I'm still very new and very clueless but I humbly submit what looks like a bug to me..<div><br><div>"routerstationpro.conf" in meta-yocto/conf/machine/ lists machine features the hardware does not have.</div><div><br></div><div><a href="http://www.ubnt.com/wiki/RouterStation_Pro">http://www.ubnt.com/wiki/RouterStation_Pro</a>&nbsp;lists the hardware specs and it lacks a display adapter (hence no screen nor keyboard) and it also lacks USB slave hardware (hence no point in usbgadget).</div><div><br></div><div>File a bugzilla report or is there a reason for that configuration?</div><div><br></div><div><br></div><div>David</div><div><br></div><div><div>
-<div style="font-size: 12px; ">David Smoot</div><div style="font-size: 12px; "><a href="mailto:davidsmoot@gmail.com">davidsmoot@gmail.com</a></div><div style="font-size: 12px; "><br></div><br class="Apple-interchange-newline">
-</div>
-<br></div></div></body></html>
+On 11-12-13 5:50 PM, Bodke, Kishore K wrote:
+> Hi,
+>
+> I get failure for the linux-yoctort_3.0.bb file for the poky Edison branch.
+>
+> Darren told that it was fixed and merged to master.
 
---Apple-Mail-4--234542523--
+This shouldn't be happening on edison at all. The changes to the
+kernel recipes/tools to use the merge_config.sh should never have
+showed up in edison. That's yocto 1.2 development work.
+
+So the fix for this is to find out what leaked into edison and
+revert it. I'll have a look at that later tonight.
+
+Bruce
+
+>
+> I wanted to bring to the list about this error message.
+>
+> ERROR: Function 'do_kernel_configme' failed (see
+> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configme.18502
+> for further information)
+>
+> ERROR: Logfile of failure stored in:
+> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configme.18502
+>
+> Log data follows:
+>
+> | [INFO] doing kernel configme
+>
+> | [INFO] Branch yocto/standard/preempt-rt/base used by
+> common-pc-preempt-rt.scc
+>
+> | [INFO] collecting configs in ./meta/meta-series
+>
+> | mv: cannot stat
+> `/usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/linux-crystalforest-preempt-rt-build/.tmp.config*':
+> No such file or directory
+>
+> | creation of pre-processed config data failed
+>
+> | config of yocto/standard/preempt-rt/base (common-pc-preempt-rt.scc) failed
+>
+> | ERROR: Function 'do_kernel_configme' failed (see
+> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configme.18502
+> for further information)
+>
+> NOTE: package
+> linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1:
+> task do_kernel_configme: Failed
+>
+> ERROR: Task 716
+> (/usr/local/src/yocto_1_1_release/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.0.bb,
+> do_kernel_configme) failed with exit code '1'
+>
+> Waiting for 7 active tasks to finish:
+>
+> 0: acl-native-2.2.51-r2 do_configure (pid 12164)
+>
+> 1: elfutils-native-0.148-r3 do_install (pid 19851)
+>
+> 2: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
+>
+> 3: font-util-native-1.2.0-r2.1 do_configure (pid 14632)
+>
+> 4: bison-native-2.5-r1 do_configure (pid 20206)
+>
+> 5: dbus-native-1.4.12-r0 do_configure (pid 20209)
+>
+> 6: opensp-native-1.5-r2 do_configure (pid 20213)
+>
+> Waiting for 6 active tasks to finish:
+>
+> 0: acl-native-2.2.51-r2 do_configure (pid 12164)
+>
+> 1: elfutils-native-0.148-r3 do_install (pid 19851)
+>
+> 2: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
+>
+> 3: font-util-native-1.2.0-r2.1 do_configure (pid 14632)
+>
+> 4: bison-native-2.5-r1 do_configure (pid 20206)
+>
+> 5: dbus-native-1.4.12-r0 do_configure (pid 20209)
+>
+> NOTE: package opensp-native-1.5-r2: task do_configure: Succeeded
+>
+> Waiting for 5 active tasks to finish:
+>
+> 0: acl-native-2.2.51-r2 do_configure (pid 12164)
+>
+> 1: elfutils-native-0.148-r3 do_install (pid 19851)
+>
+> 2: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
+>
+> 3: bison-native-2.5-r1 do_configure (pid 20206)
+>
+> 4: dbus-native-1.4.12-r0 do_configure (pid 20209)
+>
+> NOTE: package font-util-native-1.2.0-r2.1: task do_configure: Succeeded
+>
+> Waiting for 4 active tasks to finish:
+>
+> 0: acl-native-2.2.51-r2 do_configure (pid 12164)
+>
+> 1: elfutils-native-0.148-r3 do_install (pid 19851)
+>
+> 2: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
+>
+> 3: bison-native-2.5-r1 do_configure (pid 20206)
+>
+> NOTE: package dbus-native-1.4.12-r0: task do_configure: Succeeded
+>
+> Waiting for 3 active tasks to finish:
+>
+> 0: elfutils-native-0.148-r3 do_install (pid 19851)
+>
+> 1: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
+>
+> 2: bison-native-2.5-r1 do_configure (pid 20206)
+>
+> NOTE: package acl-native-2.2.51-r2: task do_configure: Succeeded
+>
+> Waiting for 2 active tasks to finish:
+>
+> 0: elfutils-native-0.148-r3 do_install (pid 19851)
+>
+> 1: bison-native-2.5-r1 do_configure (pid 20206)
+>
+> NOTE: package kbproto-native-1_1.0.5-r0: task do_configure: Succeeded
+>
+> Waiting for 1 active tasks to finish:
+>
+> 0: bison-native-2.5-r1 do_configure (pid 20206)
+>
+> NOTE: package elfutils-native-0.148-r3: task do_install: Succeeded
+>
+> NOTE: package bison-native-2.5-r1: task do_configure: Succeeded
+>
+> ERROR:
+> '/usr/local/src/yocto_1_1_release/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.0.bb'
+> failed
+>
+> Thanks
+>
+> Kishore.
+>
+
+
