@@ -1,23 +1,30 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A63BE00742
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 09:56:31 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 13 Dec 2011 09:56:31 -0800
+Return-Path: <josh@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 725C9E00742
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 12:14:36 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 13 Dec 2011 12:14:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="85278049"
-Received: from unknown (HELO [10.255.12.219]) ([10.255.12.219])
-	by azsmga001.ch.intel.com with ESMTP; 13 Dec 2011 09:56:30 -0800
-Message-ID: <4EE791CE.1020309@linux.intel.com>
-Date: Tue, 13 Dec 2011 09:56:30 -0800
-From: Saul Wold <sgw@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="46847728"
+Received: from unknown (HELO [10.255.12.215]) ([10.255.12.215])
+	by AZSMGA002.ch.intel.com with ESMTP; 13 Dec 2011 12:14:35 -0800
+Message-ID: <4EE7B22B.80303@linux.intel.com>
+Date: Tue, 13 Dec 2011 12:14:35 -0800
+From: Joshua Lock <josh@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
+	rv:8.0) Gecko/20111115 Thunderbird/8.0
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-Subject: Minutes: Yocto Technical Team Meeting - Tuesday, December 13, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+To: Sathishkumar Duraisamy <bewithsathish@gmail.com>
+References: <CAJV8fDYuV2Hb3jdU25prLoW5-CxFFH0tWvmMUWGfwrqdNJx3+w@mail.gmail.com>
+	<4EE132C5.6040007@linux.intel.com>
+	<CANJvwR-GVN+=JaS29oxmGM6mr-D6ncv+vsyVT2OaT+vOEaU8qA@mail.gmail.com>
+	<4EE1957E.1060506@linux.intel.com>
+	<CANJvwR9dvuxk8Mz_67igs2cge5LY=mi4PnnaKocQSmPF3kL95Q@mail.gmail.com>
+	<4EE263A1.4080604@linux.intel.com>
+	<CANJvwR-T-6a4ofVw7GYF8x9DeJuW0VDyO+rQNCUgrRKio2xKHg@mail.gmail.com>
+In-Reply-To: <CANJvwR-T-6a4ofVw7GYF8x9DeJuW0VDyO+rQNCUgrRKio2xKHg@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: HOB usage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,105 +36,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2011 17:56:31 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Tue, 13 Dec 2011 20:14:36 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Attendees:
-Sean, Beth, Tom, Richard, Darren, Bruce, Dave, Joshua, Mark, ScottR, Saul
+On 11/12/11 21:20, Sathishkumar Duraisamy wrote:
+> Hi,
+> 
+> Today, I tried to reproduce the problem and magically, today, hob
+> works as expected.  So, I started once again with new config, and
+> again I tried to reproduce the problem. But the problem exists.
+> 
+> The reason for this, once we select our images in the
+> edit->preference, it writes our preference in the file hob-post.conf
+> file. But it doesn't parses it again unless we are restarting the hob
+> again.
 
-New Action Item List:
-* Action item Review - 5 min
-   1. Mark will review unsorted features from Wind River team and try to 
-have them scheduled (WIP)
+Hmm, your analysis seems sound enough. We do call the setVariable
+command on the cooker which I had expected to ensure the variable was
+set appropriately without a reparse.
 
-Focus of the current week:
-   M1 Stabilization, M2 Planning
+We can easily add a patch to trigger a reparse once IMAGE_FSTYPES is
+changed, as we do with several of the other preference values.
 
-Agenda:
+Something like:
 
-* Opens collection - 5 min (Saul)
-   RP: Autobuild & Bugs
+joshual@shamshir:~/Projects/Yocto/poky-stable [josh/edison *]
+$ git diff
+diff --git a/bitbake/lib/bb/ui/crumbs/hobprefs.py
+b/bitbake/lib/bb/ui/crumbs/hob
+index 5dfb0e6..3f6f128 100644
+--- a/bitbake/lib/bb/ui/crumbs/hobprefs.py
++++ b/bitbake/lib/bb/ui/crumbs/hobprefs.py
+@@ -39,6 +39,7 @@ class HobPrefs(gtk.Dialog):
+             self.selected_image_types =
+handler.remove_image_output_type(ot)
 
-* Opens - 10 min
-  - Folded into 1.2 Status
+         self.configurator.setConfVar('IMAGE_FSTYPES', "%s" % "
+".join(self.sele
++        self.reload_required = True
 
-* Yocto 1.0.2 and 1.1.1 point release update - 10 min (Josh/Beth)
-   - Build issue on OpenSuse 11.04 with Host Intrusion
-   - QA ran and found 7 problems, 1 will need to be fixed.
-     - DISTRO_VERSION needs to be updated
-   *  AR Josh: Email to CCB to review QA Result
-   - 1.1.1 Status
-     - CCB will review size of patch set in New Year
-     - 1.1.1rc1 will be built before Christmas
-     - QA will do a run between Christmas and New Years
+     def sdk_machine_combo_changed_cb(self, combo, handler):
+         sdk_mach = combo.get_active_text()
 
-* Yocto 1.2 M1 Status (features development) - 10 min (Song/Beth)
-   https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status
-   - We are coming up on M1 RC2 with a couple of issues related
-     QT, the Auto builder and sanity testing, Saul will pull and
-     get a test spin rolling
-
-   - Richard has been clearing the Patch Queue and fixing issues with
-     the build, we need to do a better job of testing patches
-   - M1 Review:
-     - All P1 Features made it into M1
-       - Hob2 work occured in Hob2 branch
-       - Self-Hosted Build Appliance can build almost all of world
-         under 6 recipes failures, with pending fixes
-     - Many P2 Features were also completed
-       - Autoconf/Automake
-       - Video Acceleration
-       - Meta-Intel Config Update
-       - Package History
-       - Autobuilder sstate option
-       - BuildStats Memory Measurements
-     - Other M1 P2 Items that are close and will be delivered soon
-       - GTK/Directfb (in Master now)
-       - Sanity Check for Userspace (Pending fixing errors discovered by
-         said sanity checks)
-       - Host Intrusion (M2 Planning)
-       - EFI (in Master now, bug fixes pending)
-       - Grub for Syslinux Change (pending)
-
-    - M2 Planning, please send Song Update as well as update Bug/Enhancment
-    - Reveiwed Bug WDD and Bug Count
-
-* Action item Review - 5 min
-   1. Mark will review unsorted features from Wind River team and try to 
-have them scheduled (WIP)
-   2. Saul to look at RC1 image for issues with dbus
-   3. Saul to pull Qt, Qemu and useradd patches into M1 Rc2 and get spin
-
-* Weekly team sharing (20 min)
-
-Scott R:
-  Shared State documentation, Virtual Machine Appliance (Fedora Hosted), 
-Webcast, Waiting for feedback from RP on Sstate
-Mark: Windriver stuff
-Joshua: Stable release, Planning M2 Tasks
-Dave: Managing
-Bruce: Working on M1 Late M2 Planning, Discussing with Tom/Darren Config 
-Options, Standalone Linux-Yocto tree build
-Darren: Meta-Tiny Update, Intel BSP Support Work, Bug Fixing
-Richard: Chasing Autobuilder failures, sstate, patch merge Queue, Bug 
-counte reduction
-Tom: Intel BSP  work, Updated EMGD, Kernel Usability
-Beth: License Stuff in Master, Milestone release, Stable 1.0.2 Release, 
-Autobuilder fixes
-Sean: Mentor
-Saul: Non-Gplv3 Self Hosted, Bug investigation, Patch queue
-
-
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+Cheers,
+Joshua
+-- 
+Joshua Lock
+        Yocto Project "Johannes factotum"
+        Intel Open Source Technology Centre
 
