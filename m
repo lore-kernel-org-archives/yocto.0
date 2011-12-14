@@ -1,40 +1,26 @@
-Return-Path: <prvs=9329ef3ea9=NAVANI.Srivastava@lnties.com>
-Received: from mailout2.ltindia.com (mailout2.ltindia.com [125.18.18.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2B7AE013A6
-	for <yocto@yoctoproject.org>; Wed, 14 Dec 2011 00:32:12 -0800 (PST)
-X-AuditID: c0a8466b-b7bb8ae000007821-c8-4ee85f0a9928
-Received: from POCITMSEXHUB01.LntUniverse.com ( [10.2.1.58])
-	by mailout2.ltindia.com (Symantec Mail Security) with SMTP id
-	4E.9A.30753.A0F58EE4; Wed, 14 Dec 2011 14:02:10 +0530 (IST)
-Received: from POCITMSEXMB03.LntUniverse.com ([fe80::f495:7e6e:4c34:a3a9]) by
-	POCITMSEXHUB01.LntUniverse.com ([::1]) with mapi id 14.01.0218.012;
-	Wed, 14 Dec 2011 14:02:09 +0530
-From: Navani Kamal Srivastava <NAVANI.Srivastava@lnties.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Package name in .bb file
-Thread-Index: Acy6OTqvsey9AXqYSf+JnDDig5Kx5w==
-Date: Wed, 14 Dec 2011 08:32:08 +0000
-Message-ID: <9BACABF0C6B14A4D8C33B42A795119BE096D7116@POCITMSEXMB03.LntUniverse.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.37.159]
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9D52E0072A
+	for <yocto@yoctoproject.org>; Wed, 14 Dec 2011 10:07:54 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 14 Dec 2011 10:07:38 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="96173797"
+Received: from unknown (HELO envy.home) ([10.255.12.211])
+	by fmsmga001.fm.intel.com with ESMTP; 14 Dec 2011 10:07:38 -0800
+Message-ID: <4EE8E5D8.7060800@linux.intel.com>
+Date: Wed, 14 Dec 2011 10:07:20 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrPIsWRmVeSWpSXmKPExsXCxcRopcsV/8LPoLufz2LSyzVsDowe7Sf6
-	2AIYo7htkhJLyoIz0/P07RK4M1qvn2EtaDWt+PT1IEsD4069LkZODgkBE4lr24+wQNhiEhfu
-	rWfrYuTiEBLYwSix9vcyRpCEkMBWRoktL9VAbDYBG4nH59eBNYgImEq8OPaFDcQWFlCUeHym
-	nQ0iriaxYd0BRghbT2LSrelgcRYBVYnuo5OZQGxegRCJa5/uM4PYjECLv59aAxZnFhCXuPVk
-	PhPEQQISS/acZ4awRSVePv7H2sXIAWQrSTxeyQlRni/RPPc1K8RIQYmTM5+wTGAUmoVk0iwk
-	ZbOQlEHEdSQW7P7EBmFrSyxb+JoZxj5z4DETsvgCRvZVjCK5iZk5+aUlRno5JZl5KZmJesn5
-	uZsYgRFxYIVb9g7Gj3tUDjEKcDAq8fBOannuJ8SaWFZcmXuIUZKDSUmUVzD2hZ8QX1J+SmVG
-	YnFGfFFpTmrxIUYJDmYlEd61q4HKeVMSK6tSi/JhUjIcHEoSvI5xQG2CRanpqRVpmTnAuIdJ
-	M3FwgggukBk8QDPKQQp5iwsSc4sz0yGKTjFKSonz+oAkBEASGaV5cANeMYoDXSrMawKS5QGm
-	KriuV0ADmYAGbg8DG1iSiJCSamAU9ZFY/nKNLeuPSUcPej3bJ5T3P8LninLFxbsCuw7XqL9p
-	XjXT/3j739V56cfPJsWxRbfLGM4/sX7uFq7TPV/DQn/8z9UWv7LhwZ98SZYtS1hqInl5xWWW
-	7bEtbTsy/ZDS7//H1nxxWn27Q/LWTZ/JPWtWXm42L3i/LCB24sTpl+MOPjPJq2j0UGIpzkg0
-	1GIuKk4EACCZsLISAwAA
-X-Mailman-Approved-At: Wed, 14 Dec 2011 09:32:01 -0800
-Subject: Package name in .bb file
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <4EE2911E.3090708@linux.intel.com> <4EE58DA5.9070301@windriver.com>
+	<4EE68B9A.8080602@linux.intel.com> <4EE8D5D9.5070201@windriver.com>
+In-Reply-To: <4EE8D5D9.5070201@windriver.com>
+X-Enigmail-Version: 1.3.3
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: linux-yocto: ktypes/tiny and some questions along the way
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,188 +32,457 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Dec 2011 08:32:16 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9BACABF0C6B14A4D8C33B42A795119BE096D7116POCITMSEXMB03Ln_"
-
---_000_9BACABF0C6B14A4D8C33B42A795119BE096D7116POCITMSEXMB03Ln_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-
-1-     I wish to know how we are supposed to include package name in rootfs=
- *.bb file?
-
-Like if I have to include Qt-4.6.3 , which parameter from qt4-embedded_4.6.=
-3.bb file I need to give in rootfs poky-image.bb file? I tried giving-
-
-IMAGE_INSTALL +=3D "qt4 busybox tcp-wrappers iproute2 canutils alsa-utils a=
-lsa-lib directfb hwapps tslib-conf tslib-tests tslib-calibrate"
-
-But got error Unable to find qt4 package..
-
-
-2-     I need to get libstdc++.so.6 library in rootfs. Which package I am s=
-upposed to install to get the same?
-
-Thanks & Regards,
-Navani Kamal Srivastava
-
-
-Larsen & Toubro Limited
-
-www.larsentoubro.com<http://www.larsentoubro.com/>
-
-This mail is classified as: ( ) L&T Proprietary ( ) L&T Confidential (X) L&=
-T Internal Use ( ) L&T General Business
-This email may contain confidential or privileged information for the inten=
-ded recipient(s). If you are not the intended recipient, please do not use =
-or disseminate the information, notify the sender and delete it from your s=
-ystem.
+X-List-Received-Date: Wed, 14 Dec 2011 18:07:55 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
 
+On 12/14/2011 08:59 AM, Bruce Ashfield wrote:
+> On 11-12-12 06:17 PM, Darren Hart wrote:
+>> On 12/11/2011 09:14 PM, Bruce Ashfield wrote:
+>>> On 11-12-09 5:52 PM, Darren Hart wrote:
+>>>> Bruce,
+>>>>
+>>>> I'm looking at introducing a new kernel type, ktypes/tiny.
+>>>>
+>>>> Tiny will define a core set of kernel policy options, such as proc, sys,
+>>>> devtmpfs, futex, epoll, elf bin format, etc. It will not enable any
+>>>> drivers, filesystems, debug options, or networking options by default.
+>>>> This would be the responsibility of the BSP to add a named feature
+>>>> implementing this.
+>>>>
+>>>> Taking a look at the ktypes we have now resulted in some questions:
+>>>>
+>>>> dvhart@envy:~/source/linux/linux-yocto-3.0/meta/cfg/kernel-cache/ktypes
+>>>> $ tree
+>>>> .
+>>>> ├── base
+>>>> │   ├── base.cfg
+>>>> │   ├── base.scc
+>>>> │   ├── hardware.cfg
+>>>> │   ├── hardware.kcf
+>>>> │   ├── non-hardware.cfg
+>>>> │   └── non-hardware.kcf
+>>>> ├── preempt-rt
+>>>> │   ├── preempt-rt.cfg
+>>>> │   └── preempt-rt.scc
+>>>> ├── standard
+>>>> │   ├── perf-force-include-of-stdbool.h.patch
+>>>> │   ├── perf-hard-code-NO_LIBPERL-NO_LIBPYTHON.patch
+>>>> │   ├── standard-patches.scc
+>>>> │   ├── standard.cfg
+>>>> │   ├── standard.scc
+>>>> │   └── x86-add-TIF_32BIT-compatibility-define.patch
+>>>>
+>>>> These form a hiearchy, each inheriting from the layer beneath like so:
+>>>>
+>>>> base/standard/preempt-rt
+>>>>
+>>>> As I dig into this I see that some policy is infact laid down by base,
+>>>> including things like:
+>>>>
+>>>> CONFIG_MODULES=y
+>>>> CONFIG_INET=y
+>>>> CONFIG_PREEMPT=y
+>>>> CONFIG_NFS_FS=y
+>>>> CONFIG_MSDOS_PARTITION=y
+>>>>
+>>>> These pull in the IP stack, the block layer, etc. Because of this, I
+>>>> can't really inherit from base for ktypes/tiny. I would like to inherit
+>>>> the hardware and non-hardware kcf files though, as well as any patches
+>>>> that might make their way into base. Which leads me to standard. I would
+>>>> like to see a much smaller set of config policy options set in base.
+>>>> Most likely these should be exactly what we agree on for tiny, and tiny
+>>>> wouldn't add any additional policy as it implements only what is
+>>>> required for a Yocto Project built kernel.
+>>>>
+>>>> NOTE: kernel version is 3.0+
+>>>> $ cat base/base.scc | head -n 1
+>>>> set_kernel_version 2.6.37
+>>>
+>>> FYI: nothing uses this at the moment. But I fixed that here.
+>>>
+>>>>
+>>>> There are three patches in standard, only two of which (the perf ones)
+>>>> are listed in the standard.scc. As I believe any kernel we build should
+>>>> have these, I would like to see any global patches applied to base,
+>>>> leaving standard to define policy, and include named features.
+>>>
+>>> standard only includes 3 patches because they were a bit hard to
+>>> classify elsewhere. In a more fully populated kernel, it does include
+>>> quite a bit more directly.
+> 
+> Sorry for the slow reply, I got bogged down trying to write some
+> python code yesterday.
+> 
+>>
+>> directly = git repository commits?
+> 
+> 
+> Sort of. Or what I meant by directly was the "patch <foo>" right
+> in standard.scc. As you well know, for the most part, standard pulls in
+> patches by including other features, and those are just as direct
+> as a patch/commit listed right in the standard kernel .scc file.
+> 
+> The yocto kernels have thus far had relatively few additional features,
+> but if that changes, the standard kernel will have more direct changes
+> being applied to the branches.
 
-Larsen & Toubro Limited
 
-www.larsentoubro.com
+I'm seeing a problem with the coupling of patches and configs. I
+understand why it made sense to do at the time, but if we want to base
+all branches off the same sources (and it's clear we do) then our
+infrastructure should allow us to prepare that source base separately
+from the config. Applying the config and then clearing it out is a
+rather ugly solution IMO.
 
-This Email may contain confidential or privileged information for the inten=
-ded recipient (s) If you are not the intended recipient, please do not use =
-or disseminate the information, notify the sender and delete it from your s=
-ystem.
 
---_000_9BACABF0C6B14A4D8C33B42A795119BE096D7116POCITMSEXMB03Ln_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+> 
+>>
+>>>>
+>>>> With these changes, I could add ktypes/tiny as follows:
+>>>> $ cat tiny/tiny.scc
+>>>> include ktypes/base
+>>>> branch tiny
+>>>> include features/xyz/xyz.scc
+>>>> include cfg/abc.scc
+>>>>
+>>>> Another point of interest is preempt-rt, as I can see people wanting to
+>>>> build tiny preempt-rt. I think the best approach here is to create
+>>>> ktypes/tiny/preempt-rt-tiny/preempt-rt-tiny.scc.
+>>>>
+>>>> Note: I believe this fails with .patch.patch
+>>>> $ cat features/rt/rt.scc | grep patch
+>>>> patch rt-apply-patch-3.0.10-rt27.patch.patch
+>>>
+>>> Love my "patch.patch". Script went wild on that one, luckily the content
+>>> in the branch is king :) I fixed that here when I was auditing 3.0.12+rt
+>>> so that looks more sane now.
+>>>
+>>>>
+>>>> I'm working on a patch series that implements the suggestions I've made
+>>>> above. Bruce, do you have any issues with this approach?
+>>>
+>>> Allow me to ramble a bit below ...
+>>>
+>>> No big issues. At some level(s) it is just a shell game. We can move
+>>> configs and patches around to the appropriate level to get the building
+>>> blocks that we need and get common functionality into a common location.
+>>>
+>>> base was (is) intended to document the branch point from the mainline
+>>> kernel, and contain largely configuration and very few patches. Any
+>>> important or larger size functional additions go into the standard
+>>> kernel.
+>>
+>> What is the value of having base and standard as separate branches?
+>> Isn't base easily derivable from the standard git history? Still if it
+>> isn't used anywhere, then the branch is a no-op and adds no complexity,
+>> so that's fine.
+> 
+> base can definitely be derived from git history, or via git merge-base,
+> but the branch is a very clear delineation of the jumping point
+> and contains things like the initial commits to .gitignore. It also
+> provides a common branch point for the meta branch and standard, so
+> really basic things can be shared. It has also been used in the past
+> for a simple branch to build the stock korg kernel from where we jump
+> into added content.
+> 
+> It also reduces complexity in the tools by having a defined/known
+> branch name that can be used to detect the type of a repo.
+> 
+> So nothing earth shattering, but a series of smaller reasons.
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style>
-<!--
-@font-face
-	{font-family:Calibri}
-@font-face
-	{font-family:Tahoma}
-@font-face
-	{font-family:"Poor Richard"}
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif"}
-a:link, span.MsoHyperlink
-	{color:blue;
-	text-decoration:underline}
-a:visited, span.MsoHyperlinkFollowed
-	{color:purple;
-	text-decoration:underline}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif"}
-span.EmailStyle17
-	{font-family:"Tahoma","sans-serif";
-	color:windowtext}
-.MsoChpDefault
-	{font-family:"Calibri","sans-serif"}
-@page WordSection1
-	{margin:1.0in 1.0in 1.0in 1.0in}
-div.WordSection1
-	{}
-ol
-	{margin-bottom:0in}
-ul
-	{margin-bottom:0in}
--->
-</style>
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">Hello,</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in"><span style=3D"f=
-ont-size:9.0pt; font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"><spa=
-n style=3D"">1-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp=
-;&nbsp;&nbsp;&nbsp;
-</span></span></span><span style=3D"font-size:9.0pt; font-family:&quot;Taho=
-ma&quot;,&quot;sans-serif&quot;">I wish to know how we are supposed to incl=
-ude package name in rootfs *.bb file?</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-size:=
-9.0pt; font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">Like if I hav=
-e to include Qt-4.6.3 , which parameter from qt4-embedded_4.6.3.bb file I n=
-eed to give in rootfs poky-image.bb file? I tried giving-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-size:=
-9.0pt; font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">IMAGE_INSTALL=
- &#43;=3D &quot;qt4 busybox tcp-wrappers iproute2 canutils alsa-utils alsa-=
-lib directfb hwapps tslib-conf tslib-tests tslib-calibrate&quot;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-size:=
-9.0pt; font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">But got error=
- Unable to find qt4 package..</span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-size:=
-9.0pt; font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">&nbsp;</span>=
-</p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in"><span style=3D"f=
-ont-size:9.0pt; font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"><spa=
-n style=3D"">2-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp=
-;&nbsp;&nbsp;&nbsp;
-</span></span></span><span style=3D"font-size:9.0pt; font-family:&quot;Taho=
-ma&quot;,&quot;sans-serif&quot;">I need to get libstdc&#43;&#43;.so.6 libra=
-ry in rootfs. Which package I am supposed to install to get the same?</span=
-></p>
-<p class=3D"MsoNormal">&nbsp;</p>
-<p class=3D"MsoNormal">Thanks &amp; Regards,</p>
-<p class=3D"MsoNormal">Navani Kamal Srivastava</p>
-<p class=3D"MsoNormal"><br>
-<br>
-<b>Larsen &amp; Toubro Limited <br>
-<br>
-<a href=3D"http://www.larsentoubro.com/"><span style=3D"color:blue">www.lar=
-sentoubro.com</span></a>
-<br>
-<br>
-</b><span style=3D"font-family:&quot;Poor Richard&quot;,&quot;serif&quot;; =
-color:black">This mail is classified as: ( ) L&amp;T Proprietary ( ) L&amp;=
-T Confidential (X) L&amp;T Internal Use ( ) L&amp;T General Business</span>=
-<span style=3D"font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-s=
-erif&quot;; color:black"><br>
-This email may contain confidential or privileged information for the inten=
-ded recipient(s). If you are not the intended recipient, please do not use =
-or disseminate the information, notify the sender and delete it from your s=
-ystem.
-<br>
-<br>
-</span></p>
-<p class=3D"MsoNormal">&nbsp;</p>
-</div>
-<br>
-<br>
-<b>Larsen &amp; Toubro Limited <br>
-<br>
-www.larsentoubro.com <br>
-<br>
-</b>This Email may contain confidential or privileged information for the i=
-ntended recipient (s) If you are not the intended recipient, please do not =
-use or disseminate the information, notify the sender and delete it from yo=
-ur system.
-</body>
-</html>
+OK... I can certainly work with it.
 
---_000_9BACABF0C6B14A4D8C33B42A795119BE096D7116POCITMSEXMB03Ln_--
+> 
+>>
+>>>
+>>> So branching from base for a new kernel type is something we can do, but
+>>> it will risk missing additions (say for example tracing fixes, or the
+>>> next super-duper debug via kprobes patch series), since they'll go into
+>>> the standard kernel.
+>>
+>> OK, that's no good. My moving patches down to base was intended to avoid
+>> just that problem. And given the above, leaving them in standard is
+>> preferred. OK, that poses some issues.... discussed below.
+>>
+>>> If I just slide all the patches down into base,
+>>> why not just call 'base' 'standard' or just make standard have the
+>>> configuration you are working on for tiny.
+>>>
+>>> The point I'm attempting to make, is that the base/common point can be
+>>> whatever we decide it needs to be, "standard" can be renamed, content
+>>> moved up and down, etc. i.e. standard could have it's config changed,
+>>> a new branch created off standard ( and options moved there), or
+>>> standard  could be streamlined and the boards include more common
+>>> config options manually vs inheriting them, etc.
+>>>
+>>> I need a bit more time to think about that myself.
+>>
+>> The above is fine. Or rather, any of the above can work. Let's discuss
+>> which one :-)
+> 
+> Indeed. It is just a matter of shifting things around to where
+> we want them.
+> 
+>>
+>>>
+>>> Another option is to let tiny inherit from standard, but force a
+>>> new baseline for configuration options. i.e. your allnoconfig
+>>> technique buried in the middle of inheritance tree. With the
+>>> optional/required designations I'm finishing up for 1.2 you won't get
+>>> hit with reams of redefined configuration warnings. With that set, you
+>>> can then go about adding kernel type specific options/features/patches
+>>> as we see fit .. and you'll pickup those features that I was talking
+>>> about above. If you bear with me by doing some of this manually for
+>>> now (setting the baseline), it is easy to add a construct to do that
+>>> reset automagically.
+>>
+>> I really want to avoid setting a base config, and then backtracking to
+>> reset it to something else in a derived branch. Chasing those overrides,
+>> etc can be a massive pain. Much better to get the main SOURCES and
+>> essential policy into a single branch, then let standard and tiny branch
+>> from there. Intuitively, Standard and Tiny should be siblings, not
+>> ancestors of eachother. Keeping this relationship apparent in the
+>> branching and source and config inheritance should help keep things
+>> clear and maintainable.
+> 
+> Agreed, and that's the trick, we have source changes and configuration
+> changes. We want to inherit (not cherry pick) both where possible, but
+> in the end, we sometimes have to chose.
+> 
+> BSPs are an example of this. We try and drive the patches for boards
+> down as far as possible until they are common. But sometimes, they are
+> so evil that they have to locked into a room by themselves. To share
+> those BSP changes between kernel types, they are essentially cherry
+> picks, as are their config values.
+> 
+>     yocto/standard/my-bsp
+>     yocto/standard/preempt-rt/my-bsp
+> 
+> Have the same patches (as can be checked by git patch-id), but they don't
+> have the same git hash.
+> 
+> The good news is of course that these changes are on the end of branches,
+> are largely orthogonal to the rest of the kernel (and hence don't
+> conflict, or need to be shared) and they are automatically done when
+> updating the kernel. Also to deal with this, the BSPs are split into
+> kernel type specific options and common options. That way we only
+> maintain one common set of configuration values for a board and share
+> it via scc includes.
+> 
+> So I see this as a similar situation/choice, do we go with:
+> 
+> a)
+>     yocto/standard/tiny
+> 
+> b)
+>     yocto/standard
+>     yocto/tiny
+> 
+> c)
+>     yocto/standard/standard-config-items/
+>     yocto/standard/tiny
+> 
+> In all options, we'd drive a decent/common configuration into the base
+> and both standard and tiny would inherit that, so consider that a
+> constant.
+> 
+> The rest of the issues/properties of the options are:
+> 
+> a) tiny would inherit standard, patches and config. We'd have to
+>     back off (or exclude (we can do that!)) standard's config values.
+>     But we get the patch inheritance that we want.
+
+Barf.
+
+> 
+> b) tiny and standard are peers, but tiny needs individual merges
+>     of all features and there aren't any common commits between the
+>     two outside of base (or korg). So this is the 'source complexity'
+>     issue.
+
+Double barf.
+
+> 
+> c) tiny inherits standard, but we move out standard's config values
+>     into another branch (they are cheap after all). That way
+>     tiny gets the patches and features, but not the config of standard.
+>     In this example, we might want to kill "base", since we are adding
+>     another layering of branches, although one that would be trivial/small.
+
+This seems the obvious choice to me. Bare with me for some context:
+
+I had a discussion with Richard yesterday regarding distros, images,
+policies, etc. The kernel-type selection really belongs to the DISTRO
+definition. The preempt-rt is selected currently by manually setting
+PREFERRED_PROVIDER in a local config file. This is lame. The right way
+to have done this would have been to define a poky-rt distribution which
+specified linux-yocto-rt as the PREFERRED_PROVIDER and added rt-tests
+(and taskset and chrt to RDEPENDS). Then people set their DISTRO in the
+local.conf (this actually makes sense!) and build one of the standard
+images like core-image-minimal or core-image-sato, and they get an RT
+enabled kernel and the tools commonly needed to work with and analyze
+this kernel. It's a much better mechanism.
+
+So what does that mean here? Well, I suggest we put all the sources in
+standard (minus evil BSP patches obviously) and then create a ktype per
+DISTRO definition:
+
+yocto/base
+yocto/standard/base
+yocto/standard/poky
+yocto/standard/poky-rt
+yocto/standard/poky-tiny
+
+Combinatorix become a bit of an issue, as we will likely have need for:
+
+yocto/standard/poky-tiny/base
+yocto/standard/poky-tiny/poky-tiny-rt
+
+or something like that.
+
+This clearly delineates the line between common sources (standard/base)
+and distro defined policy (poky, poky-rt, and poky-tiny) which includes
+the standard kernel config.
+
+
+> 
+> It may not be obvious, but we will need to have BSPs hanging off
+> the new tiny kernel type as well.
+> 
+>     yocto/standard/qemuppc
+>     yocto/tiny/qemppc
+
+yocto/standard/poky/qemuppc
+yocto/standard/poky-rt/qemuppc
+yocto/standard/poky-tiny/qemuppc
+
+Yes, understood. If we couple this with my earlier email about deleting
+unecessary branches, I think this is managable. I believe we should
+consider any BSP specific branch to be a problem in need of solving -
+e.g. an upstream solution is needed.
+
+> 
+> So it comes down to this:
+> 
+>    - Is tiny a full kernel type, and takes the "responsibilities" that
+>      this entails, or is it a refinement and streamlining of existing
+>      BSPs and kernel types ... i.e. is it a last minute overlay.
+
+ktype.
+
+> 
+> I've made both choices in the past and depending on the choice, we
+> arrange the tree differently.
+> 
+>>
+>>>
+>>> It's the features and patch balancing that's the hard part, not getting
+>>> the configs how we want them. I've lived the madness of the other!
+>>
+>> I agree the source-work should not be duplicated.
+>>
+>>
+>>> What we don't want to get into (I've been there, with an old "small"
+>>> kernel type) is having a different stack of patches and fixes on
+>>> multiple kernel types. The patches start failing, and you end up always
+>>> merging a fix in two different ways due to changes in the feature mix
+>>> on each kernel type.
+>>
+>> Agreed
+>>
+>>> (This comment more applies to the tiny and -rt
+>>> mix). Better mileage might be gained by doing.
+>>>
+>>>     yocto/standard/preempt-rt/tiny
+>>>
+>>> versus moving the big patch onto yocto/tiny/preempt-rt, but that implies
+>>> that tiny is providing a set of configuration values that clobber what
+>>> has been set by both standard and -rt .. something that trades patch
+>>> maintenance with config maintenance.
+>>
+>> I intend to keep Tiny as config options as much as possible (but I can
+>> see some new Kconfig options from linux-tiny (or tiny-linux, whatever it
+>> is) creeping their way in. Still, I prefer tiny/preempt-rt for the
+>> reasons stated above.
+> 
+> We may need to normalize the names to keep things straight.
+> There are currently two kernel types in yocto: "standard" and
+> "preempt-rt". (Other instances of the tooling have more kernel
+> types).
+> 
+> In this discussion we are talking about adding another kernel
+> type "tiny". So it would be a peer to preempt-rt, and thus
+> we wouldn't want to re-use the term "preempt-rt".
+> 
+> Internally in the kernel-cache directories preempt-rt is the "kernel
+> type" and "rt" is the feature.
+> 
+> So we'd want something more like:
+> 
+>     yocto/standard
+>     yocto/standard/tiny
+>     yocto/standard/tiny/rt
+>     yocto/standard/preempt-rt
+
+See above, but I think we are in agreement here.
+
+> 
+> (That's just a suggestion, and yes, I admit that can also be
+>   confusing to someone simply reading the branches).
+> 
+> No matter how you slice it, there will be some duplication between
+> tiny/rt and preempt-rt, since you'll want both the kernel configs
+> and the patches from the rt feature (which is most of the preempt-rt
+> kernel type). So they will have to be merged twice (automatically
+> during tree generation of course).
+> 
+> .. and BTW. The names (even "standard", are not hardcoded anywhere),
+> so if adding new options, kernels, etc, makes some name just seem
+> wrong, we can change it (in a new release). i.e. standard could become
+> the (over used) "core" branch .. if it makes things read better.
+> 
+> That begs the question. If a patch is good enough for tiny, and it
+> is properly #ifdef'd, it can be merged to the standard branch, and
+> once that is done, we'll have a much easier time maintaining tiny +
+> stacked features, since those features will already have adapted
+> to the tiny imported features/source changes.
+
+Agreed.
+
+> 
+>>
+>>>
+>>> Working through all that, what I'm saying is that I'd prefer to make
+>>> standard do what you want, and keep the base similar to what it is.
+>>> We can shuffle undesirable standard configuration items up versus
+>>> shuffling all patches and functionality down to yocto/base. But the
+>>> approach is fundamentally the same.
+>>>
+>>> i.e. I see no reason why the tiny config wouldn't be fine as
+>>> the standard config or as something that makes significant changes
+>>> to standard's configuration. But definitely something that wants the
+>>> patches and features in standard.
+>>
+>> Agreed.
+> 
+> This is the way forward. Some variant of the options that I've listed
+> above.
+> 
+> I've been through a lot of this in the past, so I can make suggestions
+> and having a discussion like this is very helpful if anyone peering
+> in wonders what's going on behind the covers, since this is largely
+> unseen effort.
+
+Let me know what you think of the distro:branch mapping I have defined
+above. I think this is the cleanest way forward. Going to wait to hear
+from you before I proceed. Let's make sure we have an agreed upon
+approach first.
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
+
