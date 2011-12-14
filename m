@@ -1,20 +1,22 @@
 Return-Path: <rahul.saxena@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D267FE00744
-	for <yocto@yoctoproject.org>; Wed, 14 Dec 2011 16:02:43 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 14 Dec 2011 16:02:41 -0800
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6F5FE013BB
+	for <yocto@yoctoproject.org>; Wed, 14 Dec 2011 16:02:44 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 14 Dec 2011 16:02:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="102330119"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="47340750"
 Received: from rsaxena-desktop.sc.intel.com (HELO localhost) ([143.183.188.84])
-	by fmsmga002.fm.intel.com with ESMTP; 14 Dec 2011 16:02:41 -0800
+	by AZSMGA002.ch.intel.com with ESMTP; 14 Dec 2011 16:02:44 -0800
 From: rahul.saxena@intel.com
 To: yocto@yoctoproject.org,
 	bruce.ashfield@windriver.com
-Date: Wed, 14 Dec 2011 09:02:59 -0800
-Message-Id: <cover.1323878947.git.rahul.saxena@intel.com>
+Date: Wed, 14 Dec 2011 09:03:13 -0800
+Message-Id: <a604eb4d9e72bffc4155eb19734342dee0472217.1323878947.git.rahul.saxena@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/1][KERNEL] meta: Add cedartrail
+In-Reply-To: <cover.1323878947.git.rahul.saxena@intel.com>
+References: <cover.1323878947.git.rahul.saxena@intel.com>
+Subject: [PATCH 1/1][KERNEL] meta: Add cedartrail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,40 +28,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Dec 2011 00:02:44 -0000
+X-List-Received-Date: Thu, 15 Dec 2011 00:02:45 -0000
 
 From: Rahul Saxena <rahul.saxena@intel.com>
 
-This is the initial version of a BSP for the Cedar Trail platform.
-The Cedar Trail platform consists of the Intel Cedarview Atom processor
-and Tiger Point Chipset.  I have succesfully booted Sato image on Cedar Trail
-CRB, desktop and mobile pre-production sample boards and tested features
-such as wired networking, VESA graphics, SATA, USB ports 
+ Add cedartrail.cfg, cedartrail.scc, cedartrail-standard.scc, cedartrail-preempt-rt.scc
 
-Please pull into linux-yocto-3.0/meta and linux-yocto-dev/meta
+ Signed-off-by: Rahul Saxena <rahul.saxena@.intel.com>
 
-Also, please create a new "yocto/standard/cedarview" machine branch in each
-of the above, based on yocto/standard/base.
-
-Thanks
-Rahul
-
-Signed=off-by: Rahul Saxena <rahul.saxena@intel.com>
 ---
-
-The following changes since commit caa74f86f42f6ecc22c3e9f380176b2695579e18:
-  Darren Hart (1):
-        Add EFI scc and cfg files
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib rsaxena/meta-cedartrail
-  http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=rsaxena/meta-cedartrail
-
-Rahul Saxena (1):
-  meta: Add cedartrail     Signed-off-by: Rahul Saxena
-    <rahul.saxena@.intel.com>
-
  .../bsp/cedartrail/cedartrail-preempt-rt.scc       |    7 +++
  .../bsp/cedartrail/cedartrail-standard.scc         |    7 +++
  .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   58 ++++++++++++++++++++
@@ -69,5 +46,121 @@ Rahul Saxena (1):
  create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-standard.scc
  create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
  create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.scc
+
+diff --git a/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-preempt-rt.scc
+new file mode 100755
+index 0000000..1ab3629
+--- /dev/null
++++ b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-preempt-rt.scc
+@@ -0,0 +1,7 @@
++define KMACHINE cedartrail
++define KTYPE preempt-rt
++define KARCH i386
++
++# no new branch required, re-use the ktypes/preempt-rt branch
++include ktypes/preempt-rt
++include cedartrail.scc
+diff --git a/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-standard.scc b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-standard.scc
+new file mode 100755
+index 0000000..28948f2
+--- /dev/null
++++ b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-standard.scc
+@@ -0,0 +1,7 @@
++define KMACHINE cedartrail
++define KTYPE standard
++define KARCH i386
++
++scc_leaf ktypes/standard cedartrail
++
++include cedartrail.scc
+diff --git a/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
+new file mode 100755
+index 0000000..1cc14b1
+--- /dev/null
++++ b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
+@@ -0,0 +1,58 @@
++CONFIG_X86_32=y
++CONFIG_MATOM=y
++CONFIG_PRINTK=y
++
++# RTC 
++CONFIG_RTC_CLASS=y
++CONFIG_RTC_DRV_CMOS=y
++
++# Basic hardware support for the box - network, USB, PCI, sound
++CONFIG_NETDEVICES=y
++CONFIG_ATA=y
++CONFIG_ATA_GENERIC=y
++CONFIG_ATA_SFF=y
++CONFIG_PCI=y
++CONFIG_MMC=y
++CONFIG_MMC_SDHCI=y
++CONFIG_USB_SUPPORT=y
++CONFIG_USB=y
++CONFIG_USB_ARCH_HAS_EHCI=y
++CONFIG_R8169=y
++CONFIG_PATA_SCH=y
++CONFIG_MMC_SDHCI_PCI=y
++CONFIG_USB_EHCI_HCD=y
++CONFIG_PCIEPORTBUS=y
++CONFIG_NET=y
++CONFIG_USB_UHCI_HCD=y
++CONFIG_USB_OHCI_HCD=y
++CONFIG_BLK_DEV_SD=y
++CONFIG_CHR_DEV_SG=y
++CONFIG_SOUND=y
++CONFIG_SND=y
++CONFIG_SND_HDA_INTEL=y
++CONFIG_SATA_AHCI=y
++CONFIG_AGP=y
++CONFIG_PM=y
++CONFIG_ACPI=y
++CONFIG_BACKLIGHT_LCD_SUPPORT=y
++CONFIG_BACKLIGHT_CLASS_DEVICE=y
++CONFIG_INPUT=y
++
++# Make sure these are on, otherwise the bootup won't be fun
++CONFIG_EXT3_FS=y
++CONFIG_UNIX=y
++CONFIG_INET=y
++CONFIG_MODULES=y
++CONFIG_SHMEM=y
++CONFIG_TMPFS=y
++CONFIG_PACKET=y
++
++# Needed for booting (and using) USB memory sticks
++CONFIG_BLK_DEV_LOOP=y
++CONFIG_NLS_CODEPAGE_437=y
++CONFIG_NLS_ISO8859_1=y
++
++CONFIG_RD_GZIP=y
++
++# Needed for booting (and using) CD images
++CONFIG_BLK_DEV_SR=y
+diff --git a/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.scc b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.scc
+new file mode 100755
+index 0000000..45aafed
+--- /dev/null
++++ b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.scc
+@@ -0,0 +1,17 @@
++kconf hardware cedartrail.cfg
++
++
++include features/hpet/hpet.scc
++include features/intel-e1xxxx/intel-e100.scc
++include features/intel-e1xxxx/intel-e1xxxx.scc
++include features/dmaengine/dmaengine.scc
++include features/serial/8250.scc
++include features/framebuffer/vesafb.scc
++include cfg/usb-mass-storage.scc
++include cfg/boot-live.scc
++
++include features/logbuf/size-normal.scc
++
++include features/latencytop/latencytop.scc
++include features/profiling/profiling.scc
++
+-- 
+1.7.0.4
 
 
