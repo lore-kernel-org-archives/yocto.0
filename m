@@ -1,20 +1,20 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 747E8E00744
-	for <yocto@yoctoproject.org>; Wed, 14 Dec 2011 15:37:43 -0800 (PST)
-Received: from mail-iy0-f180.google.com ([209.85.210.180])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 14 Dec 2011 15:37:43 -0800
-Received: by iazz13 with SMTP id z13so87234iaz.25
-	for <yocto@yoctoproject.org>; Wed, 14 Dec 2011 15:37:42 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.42.161.10 with SMTP id r10mr456040icx.22.1323905861537; Wed,
-	14 Dec 2011 15:37:41 -0800 (PST)
-Received: by 10.50.66.2 with HTTP; Wed, 14 Dec 2011 15:37:41 -0800 (PST)
-Date: Wed, 14 Dec 2011 15:37:41 -0800
-Message-ID: <CAPhnLPCcCr2zqV_QKWsh61EVqahSbgbt-hPZrafxypk_qv-PoA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-Subject: 1.2_M1.rc2 Images are now available.
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D267FE00744
+	for <yocto@yoctoproject.org>; Wed, 14 Dec 2011 16:02:43 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 14 Dec 2011 16:02:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="102330119"
+Received: from rsaxena-desktop.sc.intel.com (HELO localhost) ([143.183.188.84])
+	by fmsmga002.fm.intel.com with ESMTP; 14 Dec 2011 16:02:41 -0800
+From: rahul.saxena@intel.com
+To: yocto@yoctoproject.org,
+	bruce.ashfield@windriver.com
+Date: Wed, 14 Dec 2011 09:02:59 -0800
+Message-Id: <cover.1323878947.git.rahul.saxena@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/1][KERNEL] meta: Add cedartrail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,20 +26,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Dec 2011 23:37:43 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 15 Dec 2011 00:02:44 -0000
 
-1.2 Milestone 1 rc2 Nightly is ready for testing. This is the last
-milestone prior to 1.2_M1 release.
+From: Rahul Saxena <rahul.saxena@intel.com>
 
-poky: b806f726b1db2cb605869c1022ef727c1110255b
-meta-qt3: 0c3153242344e5113a50002939d36a2b739cc497
+This is the initial version of a BSP for the Cedar Trail platform.
+The Cedar Trail platform consists of the Intel Cedarview Atom processor
+and Tiger Point Chipset.  I have succesfully booted Sato image on Cedar Trail
+CRB, desktop and mobile pre-production sample boards and tested features
+such as wired networking, VESA graphics, SATA, USB ports 
 
-Test images for QA are available at:
-http://autobuilder.yoctoproject.org/pub/nightly/20111213-4
+Please pull into linux-yocto-3.0/meta and linux-yocto-dev/meta
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Also, please create a new "yocto/standard/cedarview" machine branch in each
+of the above, based on yocto/standard/base.
+
+Thanks
+Rahul
+
+Signed=off-by: Rahul Saxena <rahul.saxena@intel.com>
+---
+
+The following changes since commit caa74f86f42f6ecc22c3e9f380176b2695579e18:
+  Darren Hart (1):
+        Add EFI scc and cfg files
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib rsaxena/meta-cedartrail
+  http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=rsaxena/meta-cedartrail
+
+Rahul Saxena (1):
+  meta: Add cedartrail     Signed-off-by: Rahul Saxena
+    <rahul.saxena@.intel.com>
+
+ .../bsp/cedartrail/cedartrail-preempt-rt.scc       |    7 +++
+ .../bsp/cedartrail/cedartrail-standard.scc         |    7 +++
+ .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   58 ++++++++++++++++++++
+ .../cfg/kernel-cache/bsp/cedartrail/cedartrail.scc |   17 ++++++
+ 4 files changed, 89 insertions(+), 0 deletions(-)
+ create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-preempt-rt.scc
+ create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-standard.scc
+ create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
+ create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.scc
+
 
