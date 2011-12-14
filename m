@@ -1,26 +1,25 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E734E01370
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 21:22:59 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1326FE01398
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2011 21:27:32 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBE5MvRx020200
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBE5RVVj020521
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 13 Dec 2011 21:22:57 -0800 (PST)
+	Tue, 13 Dec 2011 21:27:31 -0800 (PST)
 Received: from bruce-ashfields-macbook.local (128.224.22.107) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Tue, 13 Dec 2011 21:22:57 -0800
-Message-ID: <4EE832B0.2010103@windriver.com>
-Date: Wed, 14 Dec 2011 00:22:56 -0500
+	14.1.255.0; Tue, 13 Dec 2011 21:27:31 -0800
+Message-ID: <4EE833C1.9010705@windriver.com>
+Date: Wed, 14 Dec 2011 00:27:29 -0500
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
 	rv:1.9.2.24) Gecko/20111103 Thunderbird/3.1.16
 MIME-Version: 1.0
 To: Darren Hart <dvhart@linux.intel.com>
-References: <4EE7E0B6.5020009@linux.intel.com> <4EE7E298.5030905@windriver.com>
-	<4EE7E31D.5040005@linux.intel.com>
-In-Reply-To: <4EE7E31D.5040005@linux.intel.com>
+References: <4EE7E3F3.8010003@linux.intel.com>
+In-Reply-To: <4EE7E3F3.8010003@linux.intel.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: linux-libc-headers 2.6.37
+Subject: Re: Using yocto/standard by default
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,51 +31,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Dec 2011 05:22:59 -0000
+X-List-Received-Date: Wed, 14 Dec 2011 05:27:33 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 11-12-13 6:43 PM, Darren Hart wrote:
+On 11-12-13 6:46 PM, Darren Hart wrote:
+> We hit another lock-step SRCREV bug earlier on the FRI2 BSP. This was
+> due mostly to my pushing the efi changes to meta-intel too early - but,
+> it highlights a maintenance step that I believe could be eliminated for
+> most boards.
 >
+> We have a yocto/standard/fri2 branch, but it doesn't contain any
+> additional changes over yocto/standard/base. If we were to make
+> yocto/standard/base the default for KBRANCH, shouldn't we be able to
+> eliminate all the BSP branches that are identical to
+> yocto/standard/base? This would significantly reduce the number of
+> SRCREV updates that are required and likely reduce the number of
+> Autobuilder failures we experience as a result. Seems like it would also
+> help make the git tree easier to deal with.
 >
-> On 12/13/2011 03:41 PM, Bruce Ashfield wrote:
->> On 11-12-13 6:33 PM, Darren Hart wrote:
->>> We currently build at least some MACHINES with 2.6.37 of
->>> linux-libc-headers. This can cause problems for newer packages (such as
->>> connman) that expect more recent headers (if_alg.h is missing prior to
->>> 2.6.39). While the proper fix is to ensure these packages can cope with
->>> older headers, for MACHINES shipping 3.0+ kernels, seems to me we should
->>> be using the linux-libc-headers matching the kernels. I know this has
->>> come up in the past, but I don't recall if we have clearly stated and
->>> justified what our policy is here.
->>
->> They should match were possible. I updated master to have 3.0 and 3.1
->> headers and no longer have .37 as the default.
->>
->> Where is the 2.6.37 trickling in ? i.e. which boards/branch ?
->
-> This was on fri2 yocto/standard/fri2.
+> Any opinions here?
 
-What does your: meta/conf/distro/include/tcmode-default.inc have
-as the default ? It should be LINUXLIBCVERSION ?= "3.1".
+It's a valid config, and something that works now. So there's no
+reason to not use it. New branches can be created IF a board really
+does need to merge conflicting patches. The emgd stuff was a problem
+and required branches, but if we have nothing like that, squashing the
+branches is a nice simplification.
 
-I'm talking about master for that default. In the release branches
-it was still back on 2.6.37.
-
-Is that being overridden somewhere in meta-intel that would trigger
-the 2.6.37 (the old default) ? I didn't find anything, but that doesn't
-mean I didn't miss it.
+Cheers,
 
 Bruce
 
->
->>
->> Bruce
->>
->>>
->>> Any thoughts on this?
->>>
->>
 >
 
 
