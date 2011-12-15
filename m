@@ -1,26 +1,33 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83234E00744
-	for <yocto@yoctoproject.org>; Wed, 14 Dec 2011 18:14:05 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBF2E3vt006312
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 14 Dec 2011 18:14:03 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.22.107) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Wed, 14 Dec 2011 18:14:03 -0800
-Message-ID: <4EE957EA.9000007@windriver.com>
-Date: Wed, 14 Dec 2011 21:14:02 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.24) Gecko/20111103 Thunderbird/3.1.16
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74BAEE013CE
+	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 05:22:55 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 15 Dec 2011 05:22:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="86029903"
+Received: from irsmsx602.ger.corp.intel.com ([163.33.3.242])
+	by azsmga001.ch.intel.com with ESMTP; 15 Dec 2011 05:22:53 -0800
+Received: from irsmsx103.ger.corp.intel.com (163.33.3.157) by
+	irsmsx602.ger.corp.intel.com (163.33.3.242) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 15 Dec 2011 13:22:40 +0000
+Received: from irsmsx101.ger.corp.intel.com ([169.254.1.206]) by
+	IRSMSX103.ger.corp.intel.com ([169.254.3.126]) with mapi id
+	14.01.0355.002; Thu, 15 Dec 2011 13:22:40 +0000
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: yocto <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Next steps on the Yocto Project's developer experience
+Thread-Index: AQHMuyyek5vv53EpUEaXQo0no/1Z9A==
+Date: Thu, 15 Dec 2011 13:22:40 +0000
+Message-ID: <CB0FA466.3E90%belen.barros.pena@intel.com>
+In-Reply-To: <B27EBC40D200ED48A3F4CC2EBEABAE0B2621C4E92A@orsmsx501.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.13.0.110805
+x-originating-ip: [10.252.29.105]
 MIME-Version: 1.0
-To: "Saxena, Rahul" <rahul.saxena@intel.com>
-References: <cover.1323878947.git.rahul.saxena@intel.com>
-	<A75BCAD09CE00A4280CDD4429D85F1F92621BD19C3@orsmsx501.amr.corp.intel.com>
-In-Reply-To: <A75BCAD09CE00A4280CDD4429D85F1F92621BD19C3@orsmsx501.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/1][KERNEL] meta: Add cedartrail: Corrected machine branch name
+Subject: Re: Next steps on the Yocto Project's developer experience
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,86 +39,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Dec 2011 02:14:06 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 15 Dec 2011 13:22:55 -0000
+Content-Language: en-US
+Content-ID: <370191E69A011C46B021B752D2DBA729@intel.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="windows-1252"
 
-On 11-12-14 7:54 PM, Saxena, Rahul wrote:
-> I made a mistake in specifying the machine branch name:
->
->
-> The new machine branch should be:
->
-> "yocto/standard/cedartrail"
->
-> instead of
->
->   "yocto/standard/cedartview"
->
-> Sorry about that.
+Hi all,
 
-No problem at all. I read the right thing even if you didn't
-type it :)
+We'll be posting all design-related documentation in the wiki. Our first it=
+eration of the Hob 1.2 design is available at:
 
-This looks fine to me, I'll queue it up ASAP.
+https://wiki.yoctoproject.org/wiki/Hob2_(Hob_v2)
 
-Bruce
+Scroll down to the very bottom of the page.
 
->
-> Thanks
-> Rahul
->
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of rahul.saxena@intel.com
-> Sent: Wednesday, December 14, 2011 9:28 AM
-> To: yocto@yoctoproject.org; bruce.ashfield@windriver.com
-> Subject: [yocto] [PATCH 0/1][KERNEL] meta: Add cedartrail
->
-> From: Rahul Saxena<rahul.saxena@intel.com>
->
-> This is the initial version of a BSP for the Cedar Trail platform.
-> The Cedar Trail platform consists of the Intel Cedarview Atom processor
-> and Tiger Point Chipset.  I have succesfully booted Sato image on Cedar Trail
-> CRB, desktop and mobile pre-production sample boards and tested features
-> such as wired networking, VESA graphics, SATA, USB ports
->
-> Please pull into linux-yocto-3.0/meta and linux-yocto-dev/meta
->
-> Also, please create a new "yocto/standard/cedarview" machine branch in each
-> of the above, based on yocto/standard/base.
->
-> Thanks
-> Rahul
->
-> Signed=off-by: Rahul Saxena<rahul.saxena@intel.com>
-> ---
->
-> The following changes since commit caa74f86f42f6ecc22c3e9f380176b2695579e18:
->    Darren Hart (1):
->          Add EFI scc and cfg files
->
-> are available in the git repository at:
->
->    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib rsaxena/meta-cedartrail
->    http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=rsaxena/meta-cedartrail
->
-> Rahul Saxena (1):
->    meta: Add cedartrail     Signed-off-by: Rahul Saxena
->      <rahul.saxena@.intel.com>
->
->   .../bsp/cedartrail/cedartrail-preempt-rt.scc       |    7 +++
->   .../bsp/cedartrail/cedartrail-standard.scc         |    7 +++
->   .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   58 ++++++++++++++++++++
->   .../cfg/kernel-cache/bsp/cedartrail/cedartrail.scc |   17 ++++++
->   4 files changed, 89 insertions(+), 0 deletions(-)
->   create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-preempt-rt.scc
->   create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-standard.scc
->   create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
->   create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.scc
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Very much looking forward to your feedback.
+
+Belen
+
+From: "Stewart, David C" <david.c.stewart@intel.com<mailto:david.c.stewart@=
+intel.com>>
+Date: Wed, 14 Dec 2011 11:03:42 -0800
+To: yocto <yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>>
+Subject: [yocto] Next steps on the Yocto Project's developer experience
+
+Hello all =96 those of you who read our blog posts know that we are trying =
+to continually improve our developer experience. I have some good news here.
+
+I would like to introduce Belen Barros Pena who has joined the Yocto Projec=
+t recently. She is a very experienced user interaction designer, based in L=
+ondon. Belen is starting to make major contributions to the project in the =
+area of the developer experience.  Initially, she will be focusing on two a=
+rea: one is to do research into embedded Linux developers and understand th=
+eir capabilities and expectations relative to a project such as Yocto. The =
+other is more short-term, to redesign the Hob so that it will be easier for=
+ developers to understand and use it.  Belen=92s work will all be done in t=
+he open, and I encourage everyone in the project with an interest in such t=
+hings to check out her work and provide feedback. Belen will introduce in f=
+ollow-up mail how to get access to her design proposals. Welcome Belen!
+
+Dave
+_______________________________________________ yocto mailing list yocto@yo=
+ctoproject.org<mailto:yocto@yoctoproject.org> https://lists.yoctoproject.or=
+g/listinfo/yocto
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
