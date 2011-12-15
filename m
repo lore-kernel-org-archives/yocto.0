@@ -1,33 +1,38 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74BAEE013CE
-	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 05:22:55 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 15 Dec 2011 05:22:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="86029903"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.3.242])
-	by azsmga001.ch.intel.com with ESMTP; 15 Dec 2011 05:22:53 -0800
-Received: from irsmsx103.ger.corp.intel.com (163.33.3.157) by
-	irsmsx602.ger.corp.intel.com (163.33.3.242) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 15 Dec 2011 13:22:40 +0000
-Received: from irsmsx101.ger.corp.intel.com ([169.254.1.206]) by
-	IRSMSX103.ger.corp.intel.com ([169.254.3.126]) with mapi id
-	14.01.0355.002; Thu, 15 Dec 2011 13:22:40 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: yocto <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Next steps on the Yocto Project's developer experience
-Thread-Index: AQHMuyyek5vv53EpUEaXQo0no/1Z9A==
-Date: Thu, 15 Dec 2011 13:22:40 +0000
-Message-ID: <CB0FA466.3E90%belen.barros.pena@intel.com>
-In-Reply-To: <B27EBC40D200ED48A3F4CC2EBEABAE0B2621C4E92A@orsmsx501.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.13.0.110805
-x-originating-ip: [10.252.29.105]
+Return-Path: <kergoth@gmail.com>
+Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02BC3E00748
+	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 09:54:48 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by qcsc2 with SMTP id c2so1637600qcs.35
+	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 09:54:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type
+	:content-transfer-encoding;
+	bh=4LijHAm1V0JIiltMIuk4fX7WejZhlry09ztwpl/eUvI=;
+	b=OdEKEXubCxGk6ETqSjnAaGs6eW683Ig6HmQqk6t/0oS9tvOhXOZDoczoWqtqPZnkzj
+	lDVW7luAhm663O7IGQDq84yrZMTcBnZJHbxNuzWXhszzRtkB2+eYLiEhmeBpIq7aaTUM
+	3SOd3Crwrr04dZPOJyACQMetAX4fm/lVQE1y8=
+Received: by 10.229.75.215 with SMTP id z23mr95783qcj.85.1323971688262; Thu,
+	15 Dec 2011 09:54:48 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: Next steps on the Yocto Project's developer experience
+Sender: kergoth@gmail.com
+Received: by 10.229.73.200 with HTTP; Thu, 15 Dec 2011 09:54:27 -0800 (PST)
+In-Reply-To: <641FF858-DBD2-479A-BC4A-C2F90C1A8D72@beagleboard.org>
+References: <4EE7B44D.7000301@linux.intel.com> <1323812170.25491.23.camel@ted>
+	<CABcZAN=3b5jgrdydYDrKCjm52PD53EFarNFMfFqQR5mwUMee5g@mail.gmail.com>
+	<641FF858-DBD2-479A-BC4A-C2F90C1A8D72@beagleboard.org>
+From: Chris Larson <clarson@kergoth.com>
+Date: Thu, 15 Dec 2011 10:54:27 -0700
+X-Google-Sender-Auth: kFWiekdsHXukouTjt1pQTU2w5nM
+Message-ID: <CABcZAN=khZc0qsd2BgMBSNop68uMJjhn8Mzi_yPagJnyFKeZ5Q@mail.gmail.com>
+To: Koen Kooi <koen@beagleboard.org>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: The role of "distro" and "image"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,59 +44,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Dec 2011 13:22:55 -0000
-Content-Language: en-US
-Content-ID: <370191E69A011C46B021B752D2DBA729@intel.com>
+X-List-Received-Date: Thu, 15 Dec 2011 17:54:49 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="windows-1252"
 
-Hi all,
+On Thu, Dec 15, 2011 at 10:29 AM, Koen Kooi <koen@beagleboard.org> wrote:
+> Op 13 dec. 2011, om 22:45 heeft Chris Larson het volgende geschreven:
+>
+>> On Tue, Dec 13, 2011 at 2:36 PM, Richard Purdie
+>> <richard.purdie@linuxfoundation.org> wrote:
+>>> Not all images can be built with a given distro, our base config is
+>>> rather ride ranging though for obvious reasons. You could "enforce" thi=
+s
+>>> by adding some anonymous python to the distro which does something like=
+:
+>>>
+>>> if inherits("image") and PN !=3D core-image-minimal:
+>>> =C2=A0 =C2=A0raise SkipPackage("Image PN not compatible with DISTRO=3DX=
+XX")
+>>
+>> This is a case where one is best 'controlling' this via policy, not
+>> mechanism, in my opinion. This sort of arbitrary technical limitation
+>> tends to be foolish and often bites someone somewhere down the line.
+>> I'm sure you just wanted to note how it could be done, not recommend
+>> that it should be done, but I thought it should be made clear. I
+>> wouldn't recommend that anyone do this unless there is an extremely
+>> good reason for it.
+>
+> We had a similar problem at work, people were sprinkling COMPATIBLE_MACHI=
+NE left and right just to mark "I tested recipe X on machine Y". You can gu=
+ess what happened when new machines needed to get added.
 
-We'll be posting all design-related documentation in the wiki. Our first it=
-eration of the Hob 1.2 design is available at:
-
-https://wiki.yoctoproject.org/wiki/Hob2_(Hob_v2)
-
-Scroll down to the very bottom of the page.
-
-Very much looking forward to your feedback.
-
-Belen
-
-From: "Stewart, David C" <david.c.stewart@intel.com<mailto:david.c.stewart@=
-intel.com>>
-Date: Wed, 14 Dec 2011 11:03:42 -0800
-To: yocto <yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>>
-Subject: [yocto] Next steps on the Yocto Project's developer experience
-
-Hello all =96 those of you who read our blog posts know that we are trying =
-to continually improve our developer experience. I have some good news here.
-
-I would like to introduce Belen Barros Pena who has joined the Yocto Projec=
-t recently. She is a very experienced user interaction designer, based in L=
-ondon. Belen is starting to make major contributions to the project in the =
-area of the developer experience.  Initially, she will be focusing on two a=
-rea: one is to do research into embedded Linux developers and understand th=
-eir capabilities and expectations relative to a project such as Yocto. The =
-other is more short-term, to redesign the Hob so that it will be easier for=
- developers to understand and use it.  Belen=92s work will all be done in t=
-he open, and I encourage everyone in the project with an interest in such t=
-hings to check out her work and provide feedback. Belen will introduce in f=
-ollow-up mail how to get access to her design proposals. Welcome Belen!
-
-Dave
-_______________________________________________ yocto mailing list yocto@yo=
-ctoproject.org<mailto:yocto@yoctoproject.org> https://lists.yoctoproject.or=
-g/listinfo/yocto
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
-
+Haha, ouch. It's also worth taking a moment to emphasize that the way
+distro/machine/image is structured is by design, not accidental.
+Having these pieces be orthogonal buys us a great deal of flexibility
+and capability, which is why we did it this way. Now, whether a given
+distro/machine/image combination is *useful* is a different question,
+and one I think is best addressed via policy / documentation.
+--=20
+Christopher Larson
 
