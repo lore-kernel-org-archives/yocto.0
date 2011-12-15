@@ -1,32 +1,26 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06851E00744
-	for <yocto@yoctoproject.org>; Wed, 14 Dec 2011 16:54:13 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 14 Dec 2011 16:54:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="47356141"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by AZSMGA002.ch.intel.com with ESMTP; 14 Dec 2011 16:54:13 -0800
-Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
-	orsmsx604.amr.corp.intel.com ([10.250.113.17]) with mapi;
-	Wed, 14 Dec 2011 16:54:12 -0800
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"bruce.ashfield@windriver.com" <bruce.ashfield@windriver.com>
-Date: Wed, 14 Dec 2011 16:54:12 -0800
-Thread-Topic: [yocto] [PATCH 0/1][KERNEL] meta: Add cedartrail: Corrected
-	machine branch name
-Thread-Index: Acy6wIuLM2HwryS4RUWSRgKUA8ziZAAAxH+w
-Message-ID: <A75BCAD09CE00A4280CDD4429D85F1F92621BD19C3@orsmsx501.amr.corp.intel.com>
-References: <cover.1323878947.git.rahul.saxena@intel.com>
-In-Reply-To: <cover.1323878947.git.rahul.saxena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <Zumeng.Chen@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78AA5E00744
+	for <yocto@yoctoproject.org>; Wed, 14 Dec 2011 17:01:30 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBF11Tkw027262
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 14 Dec 2011 17:01:29 -0800 (PST)
+Received: from [128.224.162.181] (128.224.162.181) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Wed, 14 Dec 2011 17:01:29 -0800
+Message-ID: <4EE94705.20807@windriver.com>
+Date: Thu, 15 Dec 2011 09:01:57 +0800
+From: Zumeng Chen <zumeng.chen@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.1.11) Gecko/20100713 Lightning/1.0b1 Thunderbird/3.0.6
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/1][KERNEL] meta: Add cedartrail: Corrected machine branch name
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <1323855077-16683-1-git-send-email-zumeng.chen@windriver.com>
+	<4EE8B0C1.5010202@windriver.com>
+In-Reply-To: <4EE8B0C1.5010202@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/1] remove usbgadget from routerstationpro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,85 +32,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Dec 2011 00:54:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 15 Dec 2011 01:01:30 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-I made a mistake in specifying the machine branch name:
+于 2011年12月14日 22:20, Bruce Ashfield 写道:
+> On 11-12-14 04:31 AM, Zumeng Chen wrote:
+>> 1. No mass storage needed to be accessed by usbgadget.
+>> 2. This is a router station& switch, so it should not
+>> be taken as a USB_NET device too.
+>
+> Zumeng,
+>
+> The comment from the bug reporter was also that the target
+> doesn't have USB slave hardware to support usbgadget. So mentioning
+> that in the header is probably a good idea as well.
+OK, will add it, generally speaking MTD can be used as the slave,
+but obviously it's meaningless here. Soon V2
 
+Regards,
+Zumeng
+>
+> And small comment indicating that as a result of these conditions,
+> we remove usbgadget from MACHINE_FEATURES, since it can't be used.
+> Would complete the header.
+>
+> Cheers,
+>
+> Bruce
+>
+>>
+>> Signed-off-by: Zumeng.chen@windriver.com>
+>> ---
+>> meta-yocto/conf/machine/routerstationpro.conf | 2 +-
+>> 1 files changed, 1 insertions(+), 1 deletions(-)
+>>
+>> diff --git a/meta-yocto/conf/machine/routerstationpro.conf 
+>> b/meta-yocto/conf/machine/routerstationpro.conf
+>> index 9338ca1..52124d9 100644
+>> --- a/meta-yocto/conf/machine/routerstationpro.conf
+>> +++ b/meta-yocto/conf/machine/routerstationpro.conf
+>> @@ -5,7 +5,7 @@
+>> require conf/machine/include/tune-mips32.inc
+>>
+>> MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 \
+>> - serial usbgadget"
+>> + serial"
+>>
+>> KERNEL_IMAGETYPE = "vmlinux"
+>> KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
+>
 
-The new machine branch should be:
-
-"yocto/standard/cedartrail" =20
-
-instead of
-
- "yocto/standard/cedartview"
-
-Sorry about that.
-
-Thanks
-Rahul
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of rahul.saxena@intel.com
-Sent: Wednesday, December 14, 2011 9:28 AM
-To: yocto@yoctoproject.org; bruce.ashfield@windriver.com
-Subject: [yocto] [PATCH 0/1][KERNEL] meta: Add cedartrail
-
-From: Rahul Saxena <rahul.saxena@intel.com>
-
-This is the initial version of a BSP for the Cedar Trail platform.
-The Cedar Trail platform consists of the Intel Cedarview Atom processor
-and Tiger Point Chipset.  I have succesfully booted Sato image on Cedar Tra=
-il
-CRB, desktop and mobile pre-production sample boards and tested features
-such as wired networking, VESA graphics, SATA, USB ports=20
-
-Please pull into linux-yocto-3.0/meta and linux-yocto-dev/meta
-
-Also, please create a new "yocto/standard/cedarview" machine branch in each
-of the above, based on yocto/standard/base.
-
-Thanks
-Rahul
-
-Signed=3Doff-by: Rahul Saxena <rahul.saxena@intel.com>
----
-
-The following changes since commit caa74f86f42f6ecc22c3e9f380176b2695579e18=
-:
-  Darren Hart (1):
-        Add EFI scc and cfg files
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib rsaxena/meta-cedart=
-rail
-  http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=3D=
-rsaxena/meta-cedartrail
-
-Rahul Saxena (1):
-  meta: Add cedartrail     Signed-off-by: Rahul Saxena
-    <rahul.saxena@.intel.com>
-
- .../bsp/cedartrail/cedartrail-preempt-rt.scc       |    7 +++
- .../bsp/cedartrail/cedartrail-standard.scc         |    7 +++
- .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   58 ++++++++++++++++=
-++++
- .../cfg/kernel-cache/bsp/cedartrail/cedartrail.scc |   17 ++++++
- 4 files changed, 89 insertions(+), 0 deletions(-)
- create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-preempt=
--rt.scc
- create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-standar=
-d.scc
- create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
- create mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.scc
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
