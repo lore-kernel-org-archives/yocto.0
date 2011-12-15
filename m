@@ -1,30 +1,40 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68CF8E0030D
-	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 14:23:31 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pBFMNMQH010314;
-	Thu, 15 Dec 2011 22:23:22 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 09879-06; Thu, 15 Dec 2011 22:23:18 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pBFMND2A010308
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Thu, 15 Dec 2011 22:23:14 GMT
-Message-ID: <1323987793.4568.72.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Chris Tapp <opensource@keylevel.com>
-Date: Thu, 15 Dec 2011 22:23:13 +0000
-In-Reply-To: <752F5B12-4CCB-4C62-A1DE-61EA5BD21CE9@keylevel.com>
-References: <752F5B12-4CCB-4C62-A1DE-61EA5BD21CE9@keylevel.com>
-X-Mailer: Evolution 3.2.1- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Raspberry Pi
+Return-Path: <kergoth@gmail.com>
+Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB32AE0030D
+	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 14:57:03 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by qcsc2 with SMTP id c2so1847932qcs.35
+	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 14:57:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type
+	:content-transfer-encoding;
+	bh=8aBo+ObrPSWVDyVLY3udvek0qhaw7Q3QZAo/LSNCS/M=;
+	b=hXNONlEmXGDsa/60IG+AyKHE2IQ+Tr+ATQ2hrhNIl8c8XJYdQleOoeJD+tM/MT4MtY
+	HcBmDkJphZwNVspdvVb8iU1TXOxkITVbJf8yvLc6gNkBfzXvG9qvuY1xlEpVPtzPA8Ky
+	vLWOoJ32Uu76vhKLzdibMPuyTnIYjC27ZEL7M=
+Received: by 10.224.98.8 with SMTP id o8mr8232758qan.79.1323989823255; Thu, 15
+	Dec 2011 14:57:03 -0800 (PST)
+MIME-Version: 1.0
+Sender: kergoth@gmail.com
+Received: by 10.229.73.200 with HTTP; Thu, 15 Dec 2011 14:56:42 -0800 (PST)
+In-Reply-To: <1323983925.4568.69.camel@ted>
+References: <4EE7B44D.7000301@linux.intel.com> <1323812170.25491.23.camel@ted>
+	<CABcZAN=3b5jgrdydYDrKCjm52PD53EFarNFMfFqQR5mwUMee5g@mail.gmail.com>
+	<641FF858-DBD2-479A-BC4A-C2F90C1A8D72@beagleboard.org>
+	<CABcZAN=khZc0qsd2BgMBSNop68uMJjhn8Mzi_yPagJnyFKeZ5Q@mail.gmail.com>
+	<1323983925.4568.69.camel@ted>
+From: Chris Larson <clarson@kergoth.com>
+Date: Thu, 15 Dec 2011 15:56:42 -0700
+X-Google-Sender-Auth: MitoZKXh3gIIsnL1j5tc87uqcBY
+Message-ID: <CABcZANncCiBp+V4-W-0NrvwMWc0W1Gk+cAe4GP5xhRKcN8k++A@mail.gmail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>, Koen Kooi <koen@beagleboard.org>
+Subject: Re: The role of "distro" and "image"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,33 +46,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Dec 2011 22:23:36 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 15 Dec 2011 22:57:04 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2011-12-15 at 21:47 +0000, Chris Tapp wrote:
-> Is anyone on this list considering (or working on) a BSP for the  
-> Raspberry Pi (http://www.raspberrypi.org/faqs) ?
-> 
-> For those that haven't seen it, it's a credit-card sized 'home pc'  
-> aimed primarily at educational users that includes a 700MHz ARM11  
-> core, HDMI, OpenGL ES 2.0, ethernet and audio for about $35. It will  
-> be supporting Debian, Fedora and ArchLinux at launch.
-> 
-> Looks like a good board for people that want to get in to Yocto /  
-> embedded linux. Also looks like it's a good platform for some of my  
-> stuff...
-> 
-> I would be interested in working on a BSP / distro if anyone is  
-> working on it or would like to work on it.
+On Thu, Dec 15, 2011 at 2:18 PM, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+> On Thu, 2011-12-15 at 10:54 -0700, Chris Larson wrote:
+>> On Thu, Dec 15, 2011 at 10:29 AM, Koen Kooi <koen@beagleboard.org> wrote=
+:
+>> > Op 13 dec. 2011, om 22:45 heeft Chris Larson het volgende geschreven:
+>> >
+>> >> On Tue, Dec 13, 2011 at 2:36 PM, Richard Purdie
+>> >> <richard.purdie@linuxfoundation.org> wrote:
+>> >>> Not all images can be built with a given distro, our base config is
+>> >>> rather ride ranging though for obvious reasons. You could "enforce" =
+this
+>> >>> by adding some anonymous python to the distro which does something l=
+ike:
+>> >>>
+>> >>> if inherits("image") and PN !=3D core-image-minimal:
+>> >>> =C2=A0 =C2=A0raise SkipPackage("Image PN not compatible with DISTRO=
+=3DXXX")
+>> >>
+>> >> This is a case where one is best 'controlling' this via policy, not
+>> >> mechanism, in my opinion. This sort of arbitrary technical limitation
+>> >> tends to be foolish and often bites someone somewhere down the line.
+>> >> I'm sure you just wanted to note how it could be done, not recommend
+>> >> that it should be done, but I thought it should be made clear. I
+>> >> wouldn't recommend that anyone do this unless there is an extremely
+>> >> good reason for it.
+>> >
+>> > We had a similar problem at work, people were sprinkling
+>> COMPATIBLE_MACHINE left and right just to mark "I tested recipe X on
+>> machine Y". You can guess what happened when new machines needed to
+>> get added.
+>>
+>> Haha, ouch. It's also worth taking a moment to emphasize that the way
+>> distro/machine/image is structured is by design, not accidental.
+>> Having these pieces be orthogonal buys us a great deal of flexibility
+>> and capability, which is why we did it this way. Now, whether a given
+>> distro/machine/image combination is *useful* is a different question,
+>> and one I think is best addressed via policy / documentation.
+>
+> I understand the flexibility but I also think we need to consider
+> usability a little. We have people using the system to whom it might not
+> be immediately obvious why building a sato image with the tiny distro is
+> a bad idea.
+>
+> If you know enough to be able to make that work, the warning is easily
+> bypassed and isn't going to bother you.
+>
+> So I think there is a case for warning the user if the combination
+> they're selecting is not one that is likely to work and we can easily
+> predict it. There are many combinations we can't predict which is fine.
 
-I'm not aware of anyone working on this but I like the idea of a BSP for
-it and it shouldn't be too hard to do. I'd be happy to ensure we have a
-repository somewhere on git.yoctoproject.org to support this (and any
-other similar BSP efforts) if that would help?
 
-Cheers,
-
-Richard
-
+There's a rather large difference between *warning* the user and
+raising SkipPackage, making it not possible to build without modifying
+the recipe.
+--=20
+Christopher Larson
 
