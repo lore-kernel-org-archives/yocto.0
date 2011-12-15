@@ -1,23 +1,23 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5045E0030D
-	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 12:39:40 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 15 Dec 2011 12:39:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="87034744"
-Received: from unknown (HELO [10.255.15.166]) ([10.255.15.166])
-	by orsmga001.jf.intel.com with ESMTP; 15 Dec 2011 12:39:39 -0800
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Jeffrey Moore <jeff@kokofitclub.com>
-In-Reply-To: <4C5013F8-82E9-4461-A96F-37B05E8F689F@kokofitclub.com>
-References: <4C5013F8-82E9-4461-A96F-37B05E8F689F@kokofitclub.com>
-Date: Thu, 15 Dec 2011 14:38:46 -0600
-Message-ID: <1323981526.2870.235.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: libva-glx missing when building crownbay
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC300E0030D
+	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 13:17:38 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBFLHbc4003214
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 13:17:37 -0800 (PST)
+Received: from Macintosh-5.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Thu, 15 Dec 2011 13:17:36 -0800
+Message-ID: <4EEA63F0.4000000@windriver.com>
+Date: Thu, 15 Dec 2011 15:17:36 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
+	rv:8.0) Gecko/20111105 Thunderbird/8.0
+MIME-Version: 1.0
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: prelink-cross project update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,45 +29,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Dec 2011 20:39:41 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 15 Dec 2011 21:17:39 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2011-12-15 at 12:29 -0800, Jeffrey Moore wrote:
-> I get an error at the end of my build (build -k core-image-sato) as follows:
-> 
-> error: Failed dependencies:
->  	libva-glx is needed by libva-1.0.12-r0.0.core2
-> NOTE: package core-image-sato-1.0-r0: task do_rootfs: Failed
-> 
-> It is the only error.
-> 
-> I am building crownbay with a snapshot of Poky that I cloned from master as of yesterday (DISTRO_VERSION    = "1.1+snapshot-20111215").  I also cloned meta-intel at the same time.  I then added into meta-intel/common/recipes-graphics/xorg-xserver/emg-driver-bin-1.8, all of the emgd (Meego 1.2) driver files and video plug in files as instructed in the latest README in meta-crownbay.  I added the two layers into bblayers.conf of meta-intel and meta-intel/crownbay.  I also added machine ?= "crownbay" into local.conf.  Finally, I deleted the file - emgd_drv_video.so (this was instructed in an older README).
-> 
-> Any help would be appreciated.
-> 
+A new version of the prelink-cross has been pushed to the repository.
 
-Hi, there seems to be some problem related to sstate that I'm looking
-into, but clean builds have been working ok both here and on the
-autobuilder.
+There are no upstream changes to the main prelink component, all changes are 
+specific to the cross functionality.  Below is the Changelog:
 
-Also, you shouldn't be deleting the emgd_drv_video.so as in the old
-README...
-
-Tom
-
-> Thanks
-> Jeff
-> 
-> 
-> 
-> 
-> 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+2011-12-08  Mark Hatle <mark.hatle@windriver.com>
+         * rtld/rtld.c: Fix an issue where missing objects would trigger
+           an assert in dl-version.c
+         * rtld/rtld.h: Add _dl_new_object prototype
+         * rtld/rtld.c: Add support for $ORIGIN, $PLATFORM and $LIB.
+           Note: $PLATFORM = ""
 
