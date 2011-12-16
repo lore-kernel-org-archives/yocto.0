@@ -1,40 +1,42 @@
-Return-Path: <prvs=3331ba38b9=NAVANI.Srivastava@lnties.com>
-Received: from mailout2.ltindia.com (mailout2.ltindia.com [125.18.18.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABE71E013DD
-	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 23:06:10 -0800 (PST)
-X-AuditID: c0a8466b-b7c80ae0000052e8-f5-4eeaeddf68d2
-Received: from POCITMSEXHUB03.LntUniverse.com ( [10.2.1.60])
-	by mailout2.ltindia.com (Symantec Mail Security) with SMTP id
-	75.DB.21224.FDDEAEE4; Fri, 16 Dec 2011 12:36:07 +0530 (IST)
-Received: from POCITMSEXMB03.LntUniverse.com ([fe80::f495:7e6e:4c34:a3a9]) by
-	POCITMSEXHUB03.LntUniverse.com ([::1]) with mapi id 14.01.0218.012;
-	Fri, 16 Dec 2011 12:36:07 +0530
-From: Navani Kamal Srivastava <NAVANI.Srivastava@lnties.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Qt image is flicking at every touch
-Thread-Index: Acy7wRKDyMXoLKnKTh6vse8iUYbTEw==
-Date: Fri, 16 Dec 2011 07:06:06 +0000
-Message-ID: <9BACABF0C6B14A4D8C33B42A795119BE096D77E5@POCITMSEXMB03.LntUniverse.com>
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C26BE00303
+	for <yocto@yoctoproject.org>; Fri, 16 Dec 2011 11:27:47 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 16 Dec 2011 11:27:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="86559897"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by azsmga001.ch.intel.com with ESMTP; 16 Dec 2011 11:27:46 -0800
+Received: from orsmsx606.amr.corp.intel.com (10.22.226.128) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 16 Dec 2011 11:27:46 -0800
+Received: from orsmsx502.amr.corp.intel.com ([10.22.226.210]) by
+	orsmsx606.amr.corp.intel.com ([10.22.226.128]) with mapi;
+	Fri, 16 Dec 2011 11:27:46 -0800
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>, "Hart, Darren"
+	<darren.hart@intel.com>
+Date: Fri, 16 Dec 2011 11:27:45 -0800
+Thread-Topic: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison
+	branch.
+Thread-Index: Acy6abQRP9bYxXbFRR+dtwY3vpSEgQBvr1vQ
+Message-ID: <4BD43A85686FC34D819098DB1C3999D9019260E255@orsmsx502.amr.corp.intel.com>
+References: <4BD43A85686FC34D819098DB1C3999D901900BC33C@orsmsx502.amr.corp.intel.com>
+	<4EE7DA4D.4080500@windriver.com> <4EE7DC81.6030609@intel.com>
+	<4BD43A85686FC34D819098DB1C3999D901900BC38A@orsmsx502.amr.corp.intel.com>
+	<4EE7DEC2.5050803@windriver.com>
+	<4BD43A85686FC34D819098DB1C3999D901900BC3A3@orsmsx502.amr.corp.intel.com>
+	<4EE83092.5000500@windriver.com> <4EE83861.4060607@intel.com>
+	<4EE8AD93.8040100@windriver.com>
+In-Reply-To: <4EE8AD93.8040100@windriver.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.37.159]
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrEKsWRmVeSWpSXmKPExsXCxcRoo3v/7Ss/g/9PtC0mvVzD5sDo0X6i
-	jy2AMYrbJimxpCw4Mz1P3y6BO+PJ0h7mghazihN/LzA2MG7Q72Lk5JAQMJF4tfIZE4QtJnHh
-	3nq2LkYuDiGBHYwSu7r/MUE4WxkljqzdxAhSxSZgI/H4/DoWEFtEwFTixbEvbCC2sICOxMF9
-	x6HihhL3l51lhLD1JJ7N2gtmswioSkzd28wKYvMKhEgcP7wYbDMj0Obvp9aA2cwC4hK3nsyH
-	ukhAYsme88wQtqjEy8f/gHo5gGwliccrOSHK8yUent4INVJQ4uTMJywTGIVmIZk0C0nZLCRl
-	EHEdiQW7P7FB2NoSyxa+Zoaxzxx4zIQsvoCRfRWjSG5iZk5+aYmRXk5JZl5KZqJecn7uJkZg
-	TBxY4Za9g/HjHpVDjAIcjEo8vBucX/kJsSaWFVfmHmKU5GBSEuVd+QYoxJeUn1KZkVicEV9U
-	mpNafIhRgoNZSYRX3B4ox5uSWFmVWpQPk5Lh4FCS4E0Dxq+QYFFqempFWmYOMPJh0kwcnCDt
-	XFIixal5KalFiaUlGfGgSI8vBsY6SIoHaLIzSDtvcUFiLlAUovUUoyrH8TW/zzAKseTl56VK
-	ifOaghQJgBRllObBrXjFKA70izCvG0iWB5jw4Ca8AhrOBDR8e9gLkOEliQgpqQbG1TPvznsh
-	fSNoUW3TjH2zDgo1l/fIn5A+5fd7r6v6CcErtxtnOYZvyFZgkFq10Xy+6FzOjJbdf48sfBVY
-	MvFpuab7tuMKZ0s2PHkb/K5+67XXlx5vXrtY7+nSJTb18/9JrHC23pw8pSlKNyT0ckiIjdyR
-	ZzP5nOru2W/+xnx8OlMnv8yBZU/vnVJiKc5INNRiLipOBACy9jamNQMAAA==
-X-Mailman-Approved-At: Fri, 16 Dec 2011 09:30:00 -0800
-Subject: Qt image is flicking at every touch
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison branch.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,180 +48,328 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Dec 2011 07:06:12 -0000
+X-List-Received-Date: Fri, 16 Dec 2011 19:27:48 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9BACABF0C6B14A4D8C33B42A795119BE096D77E5POCITMSEXMB03Ln_"
-
---_000_9BACABF0C6B14A4D8C33B42A795119BE096D77E5POCITMSEXMB03Ln_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
+Just wanted to know if this got fixed? =20
+Everytime I give the build I have to cerry-pick the patches.
+But even after applying the patches, the build went through, but the image =
+does not boot.
 
-I compiled my rootfs with given options-
+Thanks
+Kishore.
 
-IMAGE_INSTALL =3D "task-poky-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP}"
-IMAGE_INSTALL +=3D "qt4-embedded tslib-conf tslib-tests tslib-calibrate tsl=
-ib-dev tslib-locale busybox iproute2 canutils alsa-utils alsa-lib directfb =
-hwapps qt4-embedded"
-IMAGE_INSTALL +=3D "alsa-utils-alsamixer alsa-utils-midi alsa-utils-aplay a=
-lsa-utils-amixer alsa-utils-aconnect alsa-utils-iecset alsa-utils-speakerte=
-st alsa-utils-aseqnet alsa-utils-aseqdump alsa-utils-alsaconf alsa-utils-al=
-sactl"
-IMAGE_LINGUAS =3D " "
+-----Original Message-----
+From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
+Sent: Wednesday, December 14, 2011 6:07 AM
+To: Hart, Darren
+Cc: Bodke, Kishore K; yocto@yoctoproject.org
+Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison =
+branch.
 
-
-Now if we are running Qt binaries produced by yocto on our board, image is =
-flickering at every touch. Can you please help me to resolve the problem.
-I am pretty sure with the libraries because when I am copying all these lib=
-raries produced by yocto in rootfs to freescale provided rootfs and trying =
-to run the same binary produced by Qt (yocto ) , it is working fine.
-
-Thanks & Regards,
-Navani Kamal Srivastava
-
-
-Larsen & Toubro Limited
-
-www.larsentoubro.com<http://www.larsentoubro.com/>
-
-This mail is classified as: ( ) L&T Proprietary ( ) L&T Confidential (X) L&=
-T Internal Use ( ) L&T General Business
-This email may contain confidential or privileged information for the inten=
-ded recipient(s). If you are not the intended recipient, please do not use =
-or disseminate the information, notify the sender and delete it from your s=
-ystem.
-
-
-
-
-Larsen & Toubro Limited
-
-www.larsentoubro.com
-
-This Email may contain confidential or privileged information for the inten=
-ded recipient (s) If you are not the intended recipient, please do not use =
-or disseminate the information, notify the sender and delete it from your s=
-ystem.
-
---_000_9BACABF0C6B14A4D8C33B42A795119BE096D77E5POCITMSEXMB03Ln_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 11-12-14 12:47 AM, Darren Hart wrote:
+> On 12/13/2011 09:13 PM, Bruce Ashfield wrote:
+>> On 11-12-13 6:26 PM, Bodke, Kishore K wrote:
+>>> Yes.
+>>> Its with poky Edison with poky-extras/meta-kernel-dev master branch I a=
+m using for my build.
+>>
+>> This is likely the problem. I use and test meta-kernel-dev everyday,
+>> but that's always against master. I keep them in lockstep, since
+>> meta-kernel-dev never really 'releases'.
+>>
+>> That being said, we can figure out a combination that works. The
+>> best thing to do, would be to remove the kern-tools-native bbappend
+>> from your meta-kernel-dev layer (for now). You don't want the new
+>> tools.
 >
-<style>
-<!--
-@font-face
-	{font-family:Calibri}
-@font-face
-	{font-family:Tahoma}
-@font-face
-	{font-family:"Poor Richard"}
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif"}
-a:link, span.MsoHyperlink
-	{color:blue;
-	text-decoration:underline}
-a:visited, span.MsoHyperlinkFollowed
-	{color:purple;
-	text-decoration:underline}
-span.EmailStyle17
-	{font-family:"Tahoma","sans-serif";
-	color:windowtext}
-.MsoChpDefault
-	{font-family:"Calibri","sans-serif"}
-@page WordSection1
-	{margin:1.0in 1.0in 1.0in 1.0in}
-div.WordSection1
-	{}
--->
-</style>
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">Hi,</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">I compiled my rootfs with given options-=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">IMAGE_INSTALL =3D &quot;task-poky-boot $=
-{ROOTFS_PKGMANAGE_BOOTSTRAP}&quot;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">IMAGE_INSTALL &#43;=3D &quot;qt4-embedde=
-d tslib-conf tslib-tests tslib-calibrate tslib-dev tslib-locale busybox ipr=
-oute2 canutils alsa-utils alsa-lib directfb hwapps qt4-embedded&quot;</span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">IMAGE_INSTALL &#43;=3D &quot;alsa-utils-=
-alsamixer alsa-utils-midi alsa-utils-aplay alsa-utils-amixer alsa-utils-aco=
-nnect alsa-utils-iecset alsa-utils-speakertest alsa-utils-aseqnet alsa-util=
-s-aseqdump
- alsa-utils-alsaconf alsa-utils-alsactl&quot;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">IMAGE_LINGUAS =3D &quot; &quot;</span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">Now if we are running Qt binaries produc=
-ed by yocto on our board, image is flickering at every touch. Can you pleas=
-e help me to resolve the problem.</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">I am pretty sure with the libraries beca=
-use when I am copying all these libraries produced by yocto in rootfs to fr=
-eescale provided rootfs and trying to run the same binary
- produced by Qt (yocto ) , it is working fine.</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal">Thanks &amp; Regards,</p>
-<p class=3D"MsoNormal">Navani Kamal Srivastava</p>
-<p class=3D"MsoNormal"><br>
-<br>
-<b>Larsen &amp; Toubro Limited <br>
-<br>
-<a href=3D"http://www.larsentoubro.com/"><span style=3D"color:blue">www.lar=
-sentoubro.com</span></a>
-<br>
-<br>
-</b><span style=3D"font-family:&quot;Poor Richard&quot;,&quot;serif&quot;; =
-color:black">This mail is classified as: ( ) L&amp;T Proprietary ( ) L&amp;=
-T Confidential (X) L&amp;T Internal Use ( ) L&amp;T General Business</span>=
-<span style=3D"font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-s=
-erif&quot;; color:black"><br>
-This email may contain confidential or privileged information for the inten=
-ded recipient(s). If you are not the intended recipient, please do not use =
-or disseminate the information, notify the sender and delete it from your s=
-ystem.
-<br>
-<br>
-</span></p>
-<p class=3D"MsoNormal">&nbsp;</p>
-</div>
-<br>
-<br>
-<b>Larsen &amp; Toubro Limited <br>
-<br>
-www.larsentoubro.com <br>
-<br>
-</b>This Email may contain confidential or privileged information for the i=
-ntended recipient (s) If you are not the intended recipient, please do not =
-use or disseminate the information, notify the sender and delete it from yo=
-ur system.
-</body>
-</html>
+> That won't work.  He is using the latest kernel which has needs
+> merge_config.sh - as I ran into myself last week. I had Kishore
 
---_000_9BACABF0C6B14A4D8C33B42A795119BE096D77E5POCITMSEXMB03Ln_--
+There's still a way it will work, merge_config.sh is only ever
+called from the kern-tools. There shouldn't be any non kern-tools
+calls to merge_config.sh, the error:
+
+  mv: cannot stat
+  `/usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-=20
+poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f=
+52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/linux-crystalforest-preemp=
+t-rt-build/.tmp.config*':
+  No such file or directory
+
+Could only come from using the latest configme script from the
+kern-tools. So *something* newer than any SRCREV found on the
+edison branch is being used there.
+
+> cherry-pick the last two patches to kern-tools-native from master and
+> that got things going for him. So again, the question is: Why didn't the
+> kern-tools-native bbappend do that for him?
+
+Aha. I may know the answer to that. The meta variant of the recipe looks
+to assign the SRCREV in a way that the bbappend can't change. I did
+this change during the day, but completely forgot when sending the
+email. Can someone try this to see if it's the fix ?
+
+index fb66211..bc9a6b9 100644
+--- a/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb
++++ b/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb
+@@ -4,8 +4,8 @@ LIC_FILES_CHKSUM =3D=20
+"file://git/tools/kgit;beginline=3D5;endline=3D9;md5=3De2bf4415f3d8
+
+  DEPENDS =3D "git-native guilt-native"
+
+-SRCREV =3D "eb3ed64cea80d23ffb28dfeaeb02cdfe3fb29340"
+-PR =3D r12
++SRCREV ?=3D "eb3ed64cea80d23ffb28dfeaeb02cdfe3fb29340"
++PR =3D r13
+  PV =3D "0.1+git${SRCPV}"
+
+.. and Then I'll do a pull request.
+
+But as to why it's happening, I have no idea, autorev should pick it
+up. That's down in the guts of bitbake, and for some reason the old
+downloaded variant doesn't seem to be updating.
+
+Bruce
+
+>
+> --
+> Darren
+>
+>>
+>> If that doesn't fix the problem, look for merge_log.txt in your
+>> linux/meta/cfg/ directory structure and that will tell us exactly
+>> what is going wrong.
+>>
+>> Bruce
+>>
+>>>
+>>> Thanks
+>>> Kishore.
+>>>
+>>> -----Original Message-----
+>>> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+>>> Sent: Tuesday, December 13, 2011 3:25 PM
+>>> To: Bodke, Kishore K
+>>> Cc: Hart, Darren; yocto@yoctoproject.org
+>>> Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/edi=
+son branch.
+>>>
+>>> On 11-12-13 6:17 PM, Bodke, Kishore K wrote:
+>>>> Yeah.  I am using local bare clone for the linux-yocto-3.0 and using p=
+oky-extras/meta-kernel-dev in my bblayers.conf for my build.
+>>>> Sorry for not mentioning this before.
+>>>
+>>> Aha. This is completely different then. As Darren mentioned, the bbappe=
+nd
+>>> should be getting the latest tools, I can look into that.
+>>>
+>>> But to be clear, is this an edison branch + meta-kernel-dev ? That
+>>> will cause problems at some point (and I'm not sure if that is what
+>>> is happening here yet), since recipe updates to use the new tools
+>>> wouldn't be reflected in that branch while you are fed the new tools.
+>>>
+>>> Cheers,
+>>>
+>>> Bruce
+>>>
+>>>>
+>>>> Thanks
+>>>> Kishore.
+>>>>
+>>>> -----Original Message-----
+>>>> From: Hart, Darren
+>>>> Sent: Tuesday, December 13, 2011 3:15 PM
+>>>> To: Bruce Ashfield
+>>>> Cc: Bodke, Kishore K; yocto@yoctoproject.org
+>>>> Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/ed=
+ison branch.
+>>>>
+>>>> On 12/13/2011 03:05 PM, Bruce Ashfield wrote:
+>>>>> On 11-12-13 5:50 PM, Bodke, Kishore K wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> I get failure for the linux-yoctort_3.0.bb file for the poky Edison =
+branch.
+>>>>>>
+>>>>>> Darren told that it was fixed and merged to master.
+>>>>>
+>>>>> This shouldn't be happening on edison at all. The changes to the
+>>>>> kernel recipes/tools to use the merge_config.sh should never have
+>>>>> showed up in edison. That's yocto 1.2 development work.
+>>>>>
+>>>>> So the fix for this is to find out what leaked into edison and
+>>>>> revert it. I'll have a look at that later tonight.
+>>>>
+>>>> No no. Kishore is using meta-kernel-dev. As such he is getting the
+>>>> latest linux-yocto repository and SRC_REVs. The question, I think, is
+>>>> really why isn't the kern-tools-native bbappend from meta-kernel-dev
+>>>> doing this for him.
+>>>>
+>>>> --
+>>>> Darren
+>>>>
+>>>>>
+>>>>> Bruce
+>>>>>
+>>>>>>
+>>>>>> I wanted to bring to the list about this error message.
+>>>>>>
+>>>>>> ERROR: Function 'do_kernel_configme' failed (see
+>>>>>> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-=
+poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f=
+52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configm=
+e.18502
+>>>>>> for further information)
+>>>>>>
+>>>>>> ERROR: Logfile of failure stored in:
+>>>>>> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-=
+poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f=
+52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configm=
+e.18502
+>>>>>>
+>>>>>> Log data follows:
+>>>>>>
+>>>>>> | [INFO] doing kernel configme
+>>>>>>
+>>>>>> | [INFO] Branch yocto/standard/preempt-rt/base used by
+>>>>>> common-pc-preempt-rt.scc
+>>>>>>
+>>>>>> | [INFO] collecting configs in ./meta/meta-series
+>>>>>>
+>>>>>> | mv: cannot stat
+>>>>>> `/usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest=
+-poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74=
+f52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/linux-crystalforest-preem=
+pt-rt-build/.tmp.config*':
+>>>>>> No such file or directory
+>>>>>>
+>>>>>> | creation of pre-processed config data failed
+>>>>>>
+>>>>>> | config of yocto/standard/preempt-rt/base (common-pc-preempt-rt.scc=
+) failed
+>>>>>>
+>>>>>> | ERROR: Function 'do_kernel_configme' failed (see
+>>>>>> /usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-=
+poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f=
+52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/temp/log.do_kernel_configm=
+e.18502
+>>>>>> for further information)
+>>>>>>
+>>>>>> NOTE: package
+>>>>>> linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1=
++0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1:
+>>>>>> task do_kernel_configme: Failed
+>>>>>>
+>>>>>> ERROR: Task 716
+>>>>>> (/usr/local/src/yocto_1_1_release/poky/meta/recipes-kernel/linux/lin=
+ux-yocto-rt_3.0.bb,
+>>>>>> do_kernel_configme) failed with exit code '1'
+>>>>>>
+>>>>>> Waiting for 7 active tasks to finish:
+>>>>>>
+>>>>>> 0: acl-native-2.2.51-r2 do_configure (pid 12164)
+>>>>>>
+>>>>>> 1: elfutils-native-0.148-r3 do_install (pid 19851)
+>>>>>>
+>>>>>> 2: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
+>>>>>>
+>>>>>> 3: font-util-native-1.2.0-r2.1 do_configure (pid 14632)
+>>>>>>
+>>>>>> 4: bison-native-2.5-r1 do_configure (pid 20206)
+>>>>>>
+>>>>>> 5: dbus-native-1.4.12-r0 do_configure (pid 20209)
+>>>>>>
+>>>>>> 6: opensp-native-1.5-r2 do_configure (pid 20213)
+>>>>>>
+>>>>>> Waiting for 6 active tasks to finish:
+>>>>>>
+>>>>>> 0: acl-native-2.2.51-r2 do_configure (pid 12164)
+>>>>>>
+>>>>>> 1: elfutils-native-0.148-r3 do_install (pid 19851)
+>>>>>>
+>>>>>> 2: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
+>>>>>>
+>>>>>> 3: font-util-native-1.2.0-r2.1 do_configure (pid 14632)
+>>>>>>
+>>>>>> 4: bison-native-2.5-r1 do_configure (pid 20206)
+>>>>>>
+>>>>>> 5: dbus-native-1.4.12-r0 do_configure (pid 20209)
+>>>>>>
+>>>>>> NOTE: package opensp-native-1.5-r2: task do_configure: Succeeded
+>>>>>>
+>>>>>> Waiting for 5 active tasks to finish:
+>>>>>>
+>>>>>> 0: acl-native-2.2.51-r2 do_configure (pid 12164)
+>>>>>>
+>>>>>> 1: elfutils-native-0.148-r3 do_install (pid 19851)
+>>>>>>
+>>>>>> 2: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
+>>>>>>
+>>>>>> 3: bison-native-2.5-r1 do_configure (pid 20206)
+>>>>>>
+>>>>>> 4: dbus-native-1.4.12-r0 do_configure (pid 20209)
+>>>>>>
+>>>>>> NOTE: package font-util-native-1.2.0-r2.1: task do_configure: Succee=
+ded
+>>>>>>
+>>>>>> Waiting for 4 active tasks to finish:
+>>>>>>
+>>>>>> 0: acl-native-2.2.51-r2 do_configure (pid 12164)
+>>>>>>
+>>>>>> 1: elfutils-native-0.148-r3 do_install (pid 19851)
+>>>>>>
+>>>>>> 2: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
+>>>>>>
+>>>>>> 3: bison-native-2.5-r1 do_configure (pid 20206)
+>>>>>>
+>>>>>> NOTE: package dbus-native-1.4.12-r0: task do_configure: Succeeded
+>>>>>>
+>>>>>> Waiting for 3 active tasks to finish:
+>>>>>>
+>>>>>> 0: elfutils-native-0.148-r3 do_install (pid 19851)
+>>>>>>
+>>>>>> 1: kbproto-native-1_1.0.5-r0 do_configure (pid 20113)
+>>>>>>
+>>>>>> 2: bison-native-2.5-r1 do_configure (pid 20206)
+>>>>>>
+>>>>>> NOTE: package acl-native-2.2.51-r2: task do_configure: Succeeded
+>>>>>>
+>>>>>> Waiting for 2 active tasks to finish:
+>>>>>>
+>>>>>> 0: elfutils-native-0.148-r3 do_install (pid 19851)
+>>>>>>
+>>>>>> 1: bison-native-2.5-r1 do_configure (pid 20206)
+>>>>>>
+>>>>>> NOTE: package kbproto-native-1_1.0.5-r0: task do_configure: Succeede=
+d
+>>>>>>
+>>>>>> Waiting for 1 active tasks to finish:
+>>>>>>
+>>>>>> 0: bison-native-2.5-r1 do_configure (pid 20206)
+>>>>>>
+>>>>>> NOTE: package elfutils-native-0.148-r3: task do_install: Succeeded
+>>>>>>
+>>>>>> NOTE: package bison-native-2.5-r1: task do_configure: Succeeded
+>>>>>>
+>>>>>> ERROR:
+>>>>>> '/usr/local/src/yocto_1_1_release/poky/meta/recipes-kernel/linux/lin=
+ux-yocto-rt_3.0.bb'
+>>>>>> failed
+>>>>>>
+>>>>>> Thanks
+>>>>>>
+>>>>>> Kishore.
+>>>>>>
+>>>>>
+>>>>
+>>>>
+>>>
+>>
+>
+>
+
+
