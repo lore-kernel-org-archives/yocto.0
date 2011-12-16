@@ -1,25 +1,44 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 441CCE013DE
-	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 20:21:53 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 15 Dec 2011 20:21:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="86315796"
-Received: from unknown (HELO [10.255.15.166]) ([10.255.15.166])
-	by azsmga001.ch.intel.com with ESMTP; 15 Dec 2011 20:21:51 -0800
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: autif khan <autif.mlist@gmail.com>
-In-Reply-To: <CADzUK1L9a_VUPD=wvmCW-wiPjMJ0Sdvh2BOrpKU9V9Sovx7Zhg@mail.gmail.com>
-References: <CADzUK1Jr=9+-Q0Y+nQtdyELinjZdxz_27tTWDuCHTCF14x0Kcw@mail.gmail.com>
-	<1323793712.1631.1.camel@jim-ubuntu>
-	<CADzUK1L9a_VUPD=wvmCW-wiPjMJ0Sdvh2BOrpKU9V9Sovx7Zhg@mail.gmail.com>
-Date: Thu, 15 Dec 2011 22:20:52 -0600
-Message-ID: <1324009252.2870.286.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Where is the emgd.ko module?
+Return-Path: <B19537@freescale.com>
+Received: from VA3EHSOBE003.bigfish.com (va3ehsobe003.messaging.microsoft.com
+	[216.32.180.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6161DE013DE
+	for <yocto@yoctoproject.org>; Fri, 16 Dec 2011 00:24:32 -0800 (PST)
+Received: from mail93-va3-R.bigfish.com (10.7.14.246) by
+	VA3EHSOBE003.bigfish.com (10.7.40.23) with Microsoft SMTP Server id
+	14.1.225.23; Fri, 16 Dec 2011 08:24:30 +0000
+Received: from mail93-va3 (localhost [127.0.0.1])	by mail93-va3-R.bigfish.com
+	(Postfix) with ESMTP id 29B21200F1	for <yocto@yoctoproject.org>;
+	Fri, 16 Dec 2011 08:24:38 +0000 (UTC)
+X-SpamScore: 1
+X-BigFish: VS1(zzzz1202hzz8275bh8275dhz2dh2a8h668h839hb79i62h)
+X-Spam-TCS-SCL: 1:0
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-FB-SS: 0,
+Received: from mail93-va3 (localhost.localdomain [127.0.0.1]) by mail93-va3
+	(MessageSwitch) id 132402387825266_7847; Fri, 16 Dec 2011 08:24:38 +0000
+	(UTC)
+Received: from VA3EHSMHS025.bigfish.com (unknown [10.7.14.245])	by
+	mail93-va3.bigfish.com (Postfix) with ESMTP id F387320004A	for
+	<yocto@yoctoproject.org>; Fri, 16 Dec 2011 08:24:37 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS025.bigfish.com
+	(10.7.99.35) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Fri, 16 Dec 2011 08:24:29 +0000
+Received: from az33smr01.freescale.net (10.64.34.199) by
+	039-SN1MMR1-003.039d.mgd.msft.net (10.84.1.16) with Microsoft SMTP
+	Server id 14.1.355.3; Fri, 16 Dec 2011 02:24:28 -0600
+Received: from localhost.localdomain
+	(bjsimics-desktop-010192208197.ap.freescale.net [10.192.208.197])	by
+	az33smr01.freescale.net (8.13.1/8.13.0) with ESMTP id pBG8OQNe005295;
+	Fri, 16 Dec 2011 02:24:27 -0600 (CST)
+From: <b19537@freescale.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 16 Dec 2011 16:27:13 +0800
+Message-ID: <1324024033-28083-1-git-send-email-b19537@freescale.com>
+X-Mailer: git-send-email 1.7.0.4
+MIME-Version: 1.0
+X-OriginatorOrg: freescale.com
+Subject: valgrind: add powerpc support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,147 +50,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Dec 2011 04:21:53 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 16 Dec 2011 08:24:32 -0000
+Content-Type: text/plain
 
-Just a followup to this, in case anyone ever runs into the same
-problem...
+From: Zhenhua Luo <b19537@freescale.com>
 
-After some digging and bits of info from autif, the problem was indeed
-found to be a kernel problem - CONFIG_EGD wasn't turned on because it
-was found to be an invalid config option, in turn because the emgd
-driver wasn't in the kernel, in turn because the emgd branch didn't
-actually get merged during the kernel build, this due to an unconfigured
-git that therefore couldn't do merges i.e. that failed with the below
-error.  It wasn't obvious that that had happened - bug 1838 has been
-filed to fix that shortcoming...
+Signed-off-by: Zhenhua Luo <b19537@freescale.com>
+---
+ meta/recipes-devtools/valgrind/valgrind_3.6.1.bb |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-Tom
-
-yocto/egmd/tmp/work/crownbay-poky-linux/linux-yocto-3.0.4+git1
-+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1
-+2247da9131ea7e46ed4766a69bb1353dba22f873-r2/linux$
-git merge yocto/emgd
-
-*** Please tell me who you are.
-
-Run
-
-  git config --global user.email "you@example.com"
-  git config --global user.name "Your Name"
-
-to set your account's default identity.
-Omit --global to set the identity only in this repository.
-
-fatal: empty ident  <.(none)> not allowed
-
-On Tue, 2011-12-13 at 08:37 -0800, autif khan wrote:
-> I think that I did. Included is an excerpt that says that I need not
-> do anything except bitbake core image sato when MACHINE="crownbay".
-> 
-> As instructed, I followed the steps in section one (Building the
-> meta-crownbay BSP layer) and ignored everything in section two
-> (Special notes for building the meta-crownbay BSP layer) which
-> includes instructions to patch a "crownbay-noemgd" with the Intel
-> driver.
-> 
-> Included below is the excerpt from the README. Is there a section that
-> I am overlooking?
-> 
-> Thanks
-> 
-> Autif
-> 
-> The meta-crownbay layer makes use of the proprietary Intel EMGD
-> userspace drivers when building the "crownbay" machine (but not when
-> building the "crownbay-noemgd" machine).  If you got the BSP from the
-> 'BSP Downloads' section of the Yocto website, the EMGD binaries needed
-> to perform the build will already be present in the BSP, located in
-> the meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8
-> directory, and you can ignore the rest of this section.
-> 
-> 
-> On Tue, Dec 13, 2011 at 11:28 AM, Jim Abernathy <jfabernathy@gmail.com> wrote:
-> > On Tue, 2011-12-13 at 11:13 -0500, autif khan wrote:
-> >> I built the "crownbay" (not crownbay-noemgd) image as outlined in the
-> >> E660 development kit (link
-> >> http://www.yoctoproject.org/download/bsp/intel-atom-processor-e660-intel-platform-controller-hub-eg20t-development-kit-1)
-> >>
-> >> I used poky-edison-6.0.tar.bz2 and crownbay-edison-6.0.0.tar.bz2 and
-> >> followed the instructions (short version - extract, move, add
-> >> meta-intel/meta-crownbay to bblayers.conf, add MACHINE="crownbay" to
-> >> local.conf, bitbake core-image-sato)
-> >>
-> >> The result was the expected set of images in tmp/deploy/images
-> >>
-> >> I loop mounted the core-image-sato-crownbay.ext3 and tried to find
-> >> emgd.ko in the file system - I could not find it. (find output
-> >> attached - notice that there is no emgd.ko)
-> >>
-> >> Here is the kicker - crownbay-edison-6.0.0.tar.bz2 has a directory
-> >> called "binary" which contains core-image-sato-crownbay.hddimg, which
-> >> contains rootfs.img, which I also loop mounted and was able to find
-> >> the emgd.ko (however this image does not work with my hardware, I am
-> >> not sure why). Find output for this is also included below.
-> >>
-> >> I very much doubt that it is included as a part of the kernel, I
-> >> looked at the kernel's .config (in
-> >> tmp/work/crownbay-poky-linux/linux-yocto-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+2247da9131ea7e46ed4766a69bb1353dba22f873-r2/linux-crownbay-standard-build)
-> >> and could not find emgd there either.
-> >>
-> >> So, my questions is if I am doing something wrong? Do I need to do
-> >> something to get the emgd.ko to build? I am using the latest release
-> >> (6.0 "Edison" (released on October 17th, 2011)). Please advise.
-> >>
-> > Check out the README file in the meta-crownbay directory. There are
-> > instructions on integrating the EMGD driver files into the build.
-> >
-> > Jim A
-> >
-> >> Thanks
-> >>
-> >> Autif
-> >>
-> >> autif@xu:~/data/dev/yocto/emgd/tmp/deploy/images/1$ sudo find . | grep emgd
-> >> ./usr/lib/libemgdsrv_um.so.1.5.15.3226
-> >> ./usr/lib/libemgdsrv_um.so
-> >> ./usr/lib/libemgdglslcompiler.so.1.5.15.3226
-> >> ./usr/lib/libemgdPVR2D_DRIWSEGL.so
-> >> ./usr/lib/xorg/modules/drivers/emgd_drv.so
-> >> ./usr/lib/libemgdPVR2D_DRIWSEGL.so.1.5.15.3226
-> >> ./usr/lib/libemgdsrv_init.so
-> >> ./usr/lib/libemgdsrv_init.so.1.5.15.3226
-> >> ./usr/lib/libemgdglslcompiler.so
-> >> ./usr/lib/dri/emgd_dri.so
-> >> autif@xu:~/data/dev/yocto/emgd/tmp/deploy/images/1$
-> >>
-> >> autif@xu:~/data/dev/yocto/poky-edison-6.0/meta-intel/meta-crownbay/binary/2$
-> >> sudo find . | grep emgd
-> >> ./usr/lib/libemgdsrv_um.so
-> >> ./usr/lib/dri/emgd_dri.so
-> >> ./usr/lib/libemgdsrv_init.so.1.5.15.3226
-> >> ./usr/lib/libemgdsrv_init.so
-> >> ./usr/lib/xorg/modules/drivers/emgd_drv.so
-> >> ./usr/lib/libemgdPVR2D_DRIWSEGL.so.1.5.15.3226
-> >> ./usr/lib/libemgdglslcompiler.so.1.5.15.3226
-> >> ./usr/lib/libemgdsrv_um.so.1.5.15.3226
-> >> ./usr/lib/libemgdPVR2D_DRIWSEGL.so
-> >> ./usr/lib/libemgdglslcompiler.so
-> >> ./lib/modules/3.0.4-yocto-standard+/kernel/drivers/gpu/drm/emgd
-> >> ./lib/modules/3.0.4-yocto-standard+/kernel/drivers/gpu/drm/emgd/emgd.ko
-> >> ./etc/rpm-postinsts/kernel-module-emgd.sh.done
-> >> autif@xu:~/data/dev/yocto/poky-edison-6.0/meta-intel/meta-crownbay/binary/2$
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >
-> >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+diff --git a/meta/recipes-devtools/valgrind/valgrind_3.6.1.bb b/meta/recipes-devtools/valgrind/valgrind_3.6.1.bb
+index 021caa8..c09fc41 100644
+--- a/meta/recipes-devtools/valgrind/valgrind_3.6.1.bb
++++ b/meta/recipes-devtools/valgrind/valgrind_3.6.1.bb
+@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=c46082167a314d785d012a244748d803 \
+                     file://include/valgrind.h;beginline=1;endline=56;md5=13a71cedba99112334d8596162aec37e \
+                     file://COPYING.DOCS;md5=8fdeb5abdb235a08e76835f8f3260215"
+ DEPENDS = "virtual/libx11"
+-PR = "r1"
++PR = "r2"
+ 
+ SRC_URI = "http://www.valgrind.org/downloads/valgrind-${PV}.tar.bz2 \
+ 	   file://fix_issue_caused_by_ccache.patch \
+@@ -17,7 +17,7 @@ SRC_URI = "http://www.valgrind.org/downloads/valgrind-${PV}.tar.bz2 \
+ SRC_URI[md5sum] = "2c3aa122498baecc9d69194057ca88f5"
+ SRC_URI[sha256sum] = "49bdcc4fbcf060049b5f0dcfd8a187a6e90e0b0e57309f633b64e44430726a0e"
+ 
+-COMPATIBLE_HOST = '(i.86|x86_64).*-linux'
++COMPATIBLE_HOST = '(i.86|x86_64|powerpc|powerpc64|ppc|ppc64).*-linux'
+ 
+ inherit autotools
+ 
+-- 
+1.7.0.4
 
 
 
