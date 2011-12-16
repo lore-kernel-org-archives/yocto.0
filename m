@@ -1,19 +1,18 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 690FFE00303
-	for <yocto@yoctoproject.org>; Fri, 16 Dec 2011 11:29:50 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBGJTm2a014351
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 16 Dec 2011 11:29:48 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 16 Dec 2011 11:29:48 -0800
-Message-ID: <4EEB9C29.5030203@windriver.com>
-Date: Fri, 16 Dec 2011 14:29:45 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Return-Path: <darren.hart@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14B21E00303
+	for <yocto@yoctoproject.org>; Fri, 16 Dec 2011 11:32:57 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 16 Dec 2011 11:32:55 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="88248848"
+Received: from unknown (HELO envy.home) ([10.255.12.232])
+	by orsmga002.jf.intel.com with ESMTP; 16 Dec 2011 11:32:54 -0800
+Message-ID: <4EEB9CD5.7060004@intel.com>
+Date: Fri, 16 Dec 2011 11:32:37 -0800
+From: Darren Hart <darren.hart@intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
 To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
 References: <4BD43A85686FC34D819098DB1C3999D901900BC33C@orsmsx502.amr.corp.intel.com>
@@ -25,8 +24,7 @@ References: <4BD43A85686FC34D819098DB1C3999D901900BC33C@orsmsx502.amr.corp.intel
 	<4EE8AD93.8040100@windriver.com>
 	<4BD43A85686FC34D819098DB1C3999D9019260E255@orsmsx502.amr.corp.intel.com>
 In-Reply-To: <4BD43A85686FC34D819098DB1C3999D9019260E255@orsmsx502.amr.corp.intel.com>
-Cc: "Hart, Darren" <darren.hart@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison branch.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -39,36 +37,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Dec 2011 19:29:50 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Fri, 16 Dec 2011 19:32:59 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 11-12-16 02:27 PM, Bodke, Kishore K wrote:
+On 12/16/2011 11:27 AM, Bodke, Kishore K wrote:
 > Hi,
-> Just wanted to know if this got fixed?
+> Just wanted to know if this got fixed?  
+
+Bruce sent a patch to test, it's included in the history below. Did you
+try this without the cherry-picked patches to see if it works for you?
+If not, could you please do so and let Bruce know? If it works for you,
+we can push it into the meta-kernel-dev layer.
+
 > Everytime I give the build I have to cerry-pick the patches.
-
-I sent a patch that modified the SRCREV of the base kern-tools
-package to make the SRCREV modifiable by a layer. Did you try
-that ?
-
 > But even after applying the patches, the build went through, but the image does not boot.
 
-Darren might comment on that.
+Can you provide some more details here? Does the bootloader come up?
+Does the kernel output anything? What is the last thing displayed?
 
-Bruce
+--
+Darren
 
->
+> 
 > Thanks
 > Kishore.
->
+> 
 > -----Original Message-----
-> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com] 
 > Sent: Wednesday, December 14, 2011 6:07 AM
 > To: Hart, Darren
 > Cc: Bodke, Kishore K; yocto@yoctoproject.org
 > Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison branch.
->
+> 
 > On 11-12-14 12:47 AM, Darren Hart wrote:
 >> On 12/13/2011 09:13 PM, Bruce Ashfield wrote:
 >>> On 11-12-13 6:26 PM, Bodke, Kishore K wrote:
@@ -86,51 +87,51 @@ Bruce
 >>
 >> That won't work.  He is using the latest kernel which has needs
 >> merge_config.sh - as I ran into myself last week. I had Kishore
->
+> 
 > There's still a way it will work, merge_config.sh is only ever
 > called from the kern-tools. There shouldn't be any non kern-tools
 > calls to merge_config.sh, the error:
->
->    mv: cannot stat
->    `/usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest-
+> 
+>   mv: cannot stat
+>   `/usr/local/src/yocto_1_1_release/poky/build1/tmp/work/crystalforest- 
 > poky-linux/linux-yocto-rt-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+0936e13cc65d816f1759e2322c5e3fc82a5037f3-r1/linux-crystalforest-preempt-rt-build/.tmp.config*':
->    No such file or directory
->
+>   No such file or directory
+> 
 > Could only come from using the latest configme script from the
 > kern-tools. So *something* newer than any SRCREV found on the
 > edison branch is being used there.
->
+> 
 >> cherry-pick the last two patches to kern-tools-native from master and
 >> that got things going for him. So again, the question is: Why didn't the
 >> kern-tools-native bbappend do that for him?
->
+> 
 > Aha. I may know the answer to that. The meta variant of the recipe looks
 > to assign the SRCREV in a way that the bbappend can't change. I did
 > this change during the day, but completely forgot when sending the
 > email. Can someone try this to see if it's the fix ?
->
+> 
 > index fb66211..bc9a6b9 100644
 > --- a/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb
 > +++ b/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb
-> @@ -4,8 +4,8 @@ LIC_FILES_CHKSUM =
+> @@ -4,8 +4,8 @@ LIC_FILES_CHKSUM = 
 > "file://git/tools/kgit;beginline=5;endline=9;md5=e2bf4415f3d8
->
->    DEPENDS = "git-native guilt-native"
->
+> 
+>   DEPENDS = "git-native guilt-native"
+> 
 > -SRCREV = "eb3ed64cea80d23ffb28dfeaeb02cdfe3fb29340"
 > -PR = r12
 > +SRCREV ?= "eb3ed64cea80d23ffb28dfeaeb02cdfe3fb29340"
 > +PR = r13
->    PV = "0.1+git${SRCPV}"
->
+>   PV = "0.1+git${SRCPV}"
+> 
 > .. and Then I'll do a pull request.
->
+> 
 > But as to why it's happening, I have no idea, autorev should pick it
 > up. That's down in the guts of bitbake, and for some reason the old
 > downloaded variant doesn't seem to be updating.
->
+> 
 > Bruce
->
+> 
 >>
 >> --
 >> Darren
@@ -344,6 +345,10 @@ Bruce
 >>>
 >>
 >>
->
 
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
