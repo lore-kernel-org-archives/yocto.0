@@ -1,35 +1,25 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8178BE013DD
-	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 17:28:14 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iapp10 with SMTP id p10so5136495iap.35
-	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 17:28:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	bh=XE1vDLXLoP68G4PEbgupbkMyEtmFfPSAG6NxgIOEWfc=;
-	b=CwnYh0WvU1bogELBDzFcogrN1pA1oK6T1uuWNQSwyrYSvIdmsgtyqxWdlJbRdq6QGU
-	dEUiM1UrvQhighT+24UzIXgZFzbYtzaEjMIC3Nq7J5l1AKbe7/CewMTmY6gzyVuMQG8E
-	js7raAkILDm9wmh01CexC51P+tVpbbmuMIg28=
-MIME-Version: 1.0
-Received: by 10.50.188.129 with SMTP id ga1mr5057508igc.69.1323998894037; Thu,
-	15 Dec 2011 17:28:14 -0800 (PST)
-Sender: jefro.net@gmail.com
-Received: by 10.50.187.168 with HTTP; Thu, 15 Dec 2011 17:28:14 -0800 (PST)
-In-Reply-To: <4EEA9B91.9010905@windriver.com>
-References: <752F5B12-4CCB-4C62-A1DE-61EA5BD21CE9@keylevel.com>
-	<1323987793.4568.72.camel@ted> <4EEA9B91.9010905@windriver.com>
-Date: Thu, 15 Dec 2011 17:28:14 -0800
-X-Google-Sender-Auth: i3JTtNTAZEqv_uuYN0ZbayVAhwY
-Message-ID: <CA+YB3rYfcBC6oR0b8tyczMoMwJfv=ohKpdM+em-mYTQOgHfyew@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Raspberry Pi
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 441CCE013DE
+	for <yocto@yoctoproject.org>; Thu, 15 Dec 2011 20:21:53 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 15 Dec 2011 20:21:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="86315796"
+Received: from unknown (HELO [10.255.15.166]) ([10.255.15.166])
+	by azsmga001.ch.intel.com with ESMTP; 15 Dec 2011 20:21:51 -0800
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: autif khan <autif.mlist@gmail.com>
+In-Reply-To: <CADzUK1L9a_VUPD=wvmCW-wiPjMJ0Sdvh2BOrpKU9V9Sovx7Zhg@mail.gmail.com>
+References: <CADzUK1Jr=9+-Q0Y+nQtdyELinjZdxz_27tTWDuCHTCF14x0Kcw@mail.gmail.com>
+	<1323793712.1631.1.camel@jim-ubuntu>
+	<CADzUK1L9a_VUPD=wvmCW-wiPjMJ0Sdvh2BOrpKU9V9Sovx7Zhg@mail.gmail.com>
+Date: Thu, 15 Dec 2011 22:20:52 -0600
+Message-ID: <1324009252.2870.286.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Where is the emgd.ko module?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,172 +31,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Dec 2011 01:28:14 -0000
-Content-Type: multipart/alternative; boundary=14dae93407f7c31c4304b42b8364
+X-List-Received-Date: Fri, 16 Dec 2011 04:21:53 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---14dae93407f7c31c4304b42b8364
-Content-Type: text/plain; charset=ISO-8859-1
+Just a followup to this, in case anyone ever runs into the same
+problem...
 
-Looks like the Raspberry Pi is not quite available yet, sadly! Hopefully we
-can do one for 1.2.
+After some digging and bits of info from autif, the problem was indeed
+found to be a kernel problem - CONFIG_EGD wasn't turned on because it
+was found to be an invalid config option, in turn because the emgd
+driver wasn't in the kernel, in turn because the emgd branch didn't
+actually get merged during the kernel build, this due to an unconfigured
+git that therefore couldn't do merges i.e. that failed with the below
+error.  It wasn't obvious that that had happened - bug 1838 has been
+filed to fix that shortcoming...
 
-On Thu, Dec 15, 2011 at 5:14 PM, Bruce Ashfield <
-bruce.ashfield@windriver.com> wrote:
+Tom
 
-> On 11-12-15 5:23 PM, Richard Purdie wrote:
->
->> On Thu, 2011-12-15 at 21:47 +0000, Chris Tapp wrote:
->>
->>> Is anyone on this list considering (or working on) a BSP for the
->>> Raspberry Pi (http://www.raspberrypi.org/**faqs<http://www.raspberrypi.org/faqs>)
->>> ?
->>>
->>> For those that haven't seen it, it's a credit-card sized 'home pc'
->>> aimed primarily at educational users that includes a 700MHz ARM11
->>> core, HDMI, OpenGL ES 2.0, ethernet and audio for about $35. It will
->>> be supporting Debian, Fedora and ArchLinux at launch.
->>>
->>> Looks like a good board for people that want to get in to Yocto /
->>> embedded linux. Also looks like it's a good platform for some of my
->>> stuff...
->>>
->>> I would be interested in working on a BSP / distro if anyone is
->>> working on it or would like to work on it.
->>>
->>
->> I'm not aware of anyone working on this but I like the idea of a BSP for
->> it and it shouldn't be too hard to do. I'd be happy to ensure we have a
->> repository somewhere on git.yoctoproject.org to support this (and any
->> other similar BSP efforts) if that would help?
->>
->
-> We can also help here @ Wind River. This board is one that's on my short
-> list for the BSP refresh covered by:
->
-> http://bugzilla.pokylinux.org/**show_bug.cgi?id=1634<http://bugzilla.pokylinux.org/show_bug.cgi?id=1634>
->
-> So I'd like to see it right in the yocto kernel as a hardware reference
-> platform.
->
-> I'm about to finalize a suggested list of boards and after that, we can
-> see what resources/people want to collaborate on some BSPs.
->
-> Cheers,
->
-> Bruce
->
->
->
->> Cheers,
->>
->> Richard
->>
->> ______________________________**_________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->>
->
-> ______________________________**_________________
+yocto/egmd/tmp/work/crownbay-poky-linux/linux-yocto-3.0.4+git1
++d05450e4aef02c1b7137398ab3a9f8f96da74f52_1
++2247da9131ea7e46ed4766a69bb1353dba22f873-r2/linux$
+git merge yocto/emgd
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: empty ident  <.(none)> not allowed
+
+On Tue, 2011-12-13 at 08:37 -0800, autif khan wrote:
+> I think that I did. Included is an excerpt that says that I need not
+> do anything except bitbake core image sato when MACHINE="crownbay".
+> 
+> As instructed, I followed the steps in section one (Building the
+> meta-crownbay BSP layer) and ignored everything in section two
+> (Special notes for building the meta-crownbay BSP layer) which
+> includes instructions to patch a "crownbay-noemgd" with the Intel
+> driver.
+> 
+> Included below is the excerpt from the README. Is there a section that
+> I am overlooking?
+> 
+> Thanks
+> 
+> Autif
+> 
+> The meta-crownbay layer makes use of the proprietary Intel EMGD
+> userspace drivers when building the "crownbay" machine (but not when
+> building the "crownbay-noemgd" machine).  If you got the BSP from the
+> 'BSP Downloads' section of the Yocto website, the EMGD binaries needed
+> to perform the build will already be present in the BSP, located in
+> the meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8
+> directory, and you can ignore the rest of this section.
+> 
+> 
+> On Tue, Dec 13, 2011 at 11:28 AM, Jim Abernathy <jfabernathy@gmail.com> wrote:
+> > On Tue, 2011-12-13 at 11:13 -0500, autif khan wrote:
+> >> I built the "crownbay" (not crownbay-noemgd) image as outlined in the
+> >> E660 development kit (link
+> >> http://www.yoctoproject.org/download/bsp/intel-atom-processor-e660-intel-platform-controller-hub-eg20t-development-kit-1)
+> >>
+> >> I used poky-edison-6.0.tar.bz2 and crownbay-edison-6.0.0.tar.bz2 and
+> >> followed the instructions (short version - extract, move, add
+> >> meta-intel/meta-crownbay to bblayers.conf, add MACHINE="crownbay" to
+> >> local.conf, bitbake core-image-sato)
+> >>
+> >> The result was the expected set of images in tmp/deploy/images
+> >>
+> >> I loop mounted the core-image-sato-crownbay.ext3 and tried to find
+> >> emgd.ko in the file system - I could not find it. (find output
+> >> attached - notice that there is no emgd.ko)
+> >>
+> >> Here is the kicker - crownbay-edison-6.0.0.tar.bz2 has a directory
+> >> called "binary" which contains core-image-sato-crownbay.hddimg, which
+> >> contains rootfs.img, which I also loop mounted and was able to find
+> >> the emgd.ko (however this image does not work with my hardware, I am
+> >> not sure why). Find output for this is also included below.
+> >>
+> >> I very much doubt that it is included as a part of the kernel, I
+> >> looked at the kernel's .config (in
+> >> tmp/work/crownbay-poky-linux/linux-yocto-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+2247da9131ea7e46ed4766a69bb1353dba22f873-r2/linux-crownbay-standard-build)
+> >> and could not find emgd there either.
+> >>
+> >> So, my questions is if I am doing something wrong? Do I need to do
+> >> something to get the emgd.ko to build? I am using the latest release
+> >> (6.0 "Edison" (released on October 17th, 2011)). Please advise.
+> >>
+> > Check out the README file in the meta-crownbay directory. There are
+> > instructions on integrating the EMGD driver files into the build.
+> >
+> > Jim A
+> >
+> >> Thanks
+> >>
+> >> Autif
+> >>
+> >> autif@xu:~/data/dev/yocto/emgd/tmp/deploy/images/1$ sudo find . | grep emgd
+> >> ./usr/lib/libemgdsrv_um.so.1.5.15.3226
+> >> ./usr/lib/libemgdsrv_um.so
+> >> ./usr/lib/libemgdglslcompiler.so.1.5.15.3226
+> >> ./usr/lib/libemgdPVR2D_DRIWSEGL.so
+> >> ./usr/lib/xorg/modules/drivers/emgd_drv.so
+> >> ./usr/lib/libemgdPVR2D_DRIWSEGL.so.1.5.15.3226
+> >> ./usr/lib/libemgdsrv_init.so
+> >> ./usr/lib/libemgdsrv_init.so.1.5.15.3226
+> >> ./usr/lib/libemgdglslcompiler.so
+> >> ./usr/lib/dri/emgd_dri.so
+> >> autif@xu:~/data/dev/yocto/emgd/tmp/deploy/images/1$
+> >>
+> >> autif@xu:~/data/dev/yocto/poky-edison-6.0/meta-intel/meta-crownbay/binary/2$
+> >> sudo find . | grep emgd
+> >> ./usr/lib/libemgdsrv_um.so
+> >> ./usr/lib/dri/emgd_dri.so
+> >> ./usr/lib/libemgdsrv_init.so.1.5.15.3226
+> >> ./usr/lib/libemgdsrv_init.so
+> >> ./usr/lib/xorg/modules/drivers/emgd_drv.so
+> >> ./usr/lib/libemgdPVR2D_DRIWSEGL.so.1.5.15.3226
+> >> ./usr/lib/libemgdglslcompiler.so.1.5.15.3226
+> >> ./usr/lib/libemgdsrv_um.so.1.5.15.3226
+> >> ./usr/lib/libemgdPVR2D_DRIWSEGL.so
+> >> ./usr/lib/libemgdglslcompiler.so
+> >> ./lib/modules/3.0.4-yocto-standard+/kernel/drivers/gpu/drm/emgd
+> >> ./lib/modules/3.0.4-yocto-standard+/kernel/drivers/gpu/drm/emgd/emgd.ko
+> >> ./etc/rpm-postinsts/kernel-module-emgd.sh.done
+> >> autif@xu:~/data/dev/yocto/poky-edison-6.0/meta-intel/meta-crownbay/binary/2$
+> >> _______________________________________________
+> >> yocto mailing list
+> >> yocto@yoctoproject.org
+> >> https://lists.yoctoproject.org/listinfo/yocto
+> >
+> >
+> _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
-> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
 
--- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
-
---14dae93407f7c31c4304b42b8364
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Looks like the Raspberry Pi is not quite available yet, sadly! Hopefully we=
- can do one for 1.2.<br><br><div class=3D"gmail_quote">On Thu, Dec 15, 2011=
- at 5:14 PM, Bruce Ashfield <span dir=3D"ltr">&lt;<a href=3D"mailto:bruce.a=
-shfield@windriver.com">bruce.ashfield@windriver.com</a>&gt;</span> wrote:<b=
-r>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">On 11-12-15 5:23 PM, Richa=
-rd Purdie wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-On Thu, 2011-12-15 at 21:47 +0000, Chris Tapp wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-Is anyone on this list considering (or working on) a BSP for the<br>
-Raspberry Pi (<a href=3D"http://www.raspberrypi.org/faqs" target=3D"_blank"=
->http://www.raspberrypi.org/<u></u>faqs</a>) ?<br>
-<br>
-For those that haven&#39;t seen it, it&#39;s a credit-card sized &#39;home =
-pc&#39;<br>
-aimed primarily at educational users that includes a 700MHz ARM11<br>
-core, HDMI, OpenGL ES 2.0, ethernet and audio for about $35. It will<br>
-be supporting Debian, Fedora and ArchLinux at launch.<br>
-<br>
-Looks like a good board for people that want to get in to Yocto /<br>
-embedded linux. Also looks like it&#39;s a good platform for some of my<br>
-stuff...<br>
-<br>
-I would be interested in working on a BSP / distro if anyone is<br>
-working on it or would like to work on it.<br>
-</blockquote>
-<br>
-I&#39;m not aware of anyone working on this but I like the idea of a BSP fo=
-r<br>
-it and it shouldn&#39;t be too hard to do. I&#39;d be happy to ensure we ha=
-ve a<br>
-repository somewhere on <a href=3D"http://git.yoctoproject.org" target=3D"_=
-blank">git.yoctoproject.org</a> to support this (and any<br>
-other similar BSP efforts) if that would help?<br>
-</blockquote>
-<br></div>
-We can also help here @ Wind River. This board is one that&#39;s on my shor=
-t<br>
-list for the BSP refresh covered by:<br>
-<br>
-<a href=3D"http://bugzilla.pokylinux.org/show_bug.cgi?id=3D1634" target=3D"=
-_blank">http://bugzilla.pokylinux.org/<u></u>show_bug.cgi?id=3D1634</a><br>
-<br>
-So I&#39;d like to see it right in the yocto kernel as a hardware reference=
-<br>
-platform.<br>
-<br>
-I&#39;m about to finalize a suggested list of boards and after that, we can=
-<br>
-see what resources/people want to collaborate on some BSPs.<br>
-<br>
-Cheers,<br>
-<br>
-Bruce<div class=3D"HOEnZb"><div class=3D"h5"><br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-<br>
-Cheers,<br>
-<br>
-Richard<br>
-<br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</blockquote>
-<br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
-Jeff Osier-Mixon <a href=3D"http://jefro.net/blog" target=3D"_blank">http:/=
-/jefro.net/blog</a><div>Yocto Project Community Manager @Intel <a href=3D"h=
-ttp://yoctoproject.org" target=3D"_blank">http://yoctoproject.org</a></div>
-<br>
-
---14dae93407f7c31c4304b42b8364--
