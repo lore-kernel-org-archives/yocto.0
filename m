@@ -1,44 +1,31 @@
-Return-Path: <B19537@freescale.com>
-Received: from VA3EHSOBE003.bigfish.com (va3ehsobe003.messaging.microsoft.com
-	[216.32.180.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6161DE013DE
-	for <yocto@yoctoproject.org>; Fri, 16 Dec 2011 00:24:32 -0800 (PST)
-Received: from mail93-va3-R.bigfish.com (10.7.14.246) by
-	VA3EHSOBE003.bigfish.com (10.7.40.23) with Microsoft SMTP Server id
-	14.1.225.23; Fri, 16 Dec 2011 08:24:30 +0000
-Received: from mail93-va3 (localhost [127.0.0.1])	by mail93-va3-R.bigfish.com
-	(Postfix) with ESMTP id 29B21200F1	for <yocto@yoctoproject.org>;
-	Fri, 16 Dec 2011 08:24:38 +0000 (UTC)
-X-SpamScore: 1
-X-BigFish: VS1(zzzz1202hzz8275bh8275dhz2dh2a8h668h839hb79i62h)
-X-Spam-TCS-SCL: 1:0
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-FB-SS: 0,
-Received: from mail93-va3 (localhost.localdomain [127.0.0.1]) by mail93-va3
-	(MessageSwitch) id 132402387825266_7847; Fri, 16 Dec 2011 08:24:38 +0000
-	(UTC)
-Received: from VA3EHSMHS025.bigfish.com (unknown [10.7.14.245])	by
-	mail93-va3.bigfish.com (Postfix) with ESMTP id F387320004A	for
-	<yocto@yoctoproject.org>; Fri, 16 Dec 2011 08:24:37 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS025.bigfish.com
-	(10.7.99.35) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Fri, 16 Dec 2011 08:24:29 +0000
-Received: from az33smr01.freescale.net (10.64.34.199) by
-	039-SN1MMR1-003.039d.mgd.msft.net (10.84.1.16) with Microsoft SMTP
-	Server id 14.1.355.3; Fri, 16 Dec 2011 02:24:28 -0600
-Received: from localhost.localdomain
-	(bjsimics-desktop-010192208197.ap.freescale.net [10.192.208.197])	by
-	az33smr01.freescale.net (8.13.1/8.13.0) with ESMTP id pBG8OQNe005295;
-	Fri, 16 Dec 2011 02:24:27 -0600 (CST)
-From: <b19537@freescale.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 16 Dec 2011 16:27:13 +0800
-Message-ID: <1324024033-28083-1-git-send-email-b19537@freescale.com>
-X-Mailer: git-send-email 1.7.0.4
+Return-Path: <jefro.net@gmail.com>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1248E00303
+	for <yocto@yoctoproject.org>; Fri, 16 Dec 2011 08:26:26 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iapp10 with SMTP id p10so6446751iap.35
+	for <yocto@yoctoproject.org>; Fri, 16 Dec 2011 08:26:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
+	:from:to:content-type;
+	bh=wtiE8FHyO6lJfFASXp1yjW86mkFQFbz9BiZ16q/AVyU=;
+	b=pPk4Sbypo81pEv1q3+RxZOCTCJU26BFjLGgsWk5c+Hrg2jTOxK9UTfIGzis8Aj6X12
+	OLU+kxnJESEVgBoxxK+PBN4eoHXFBj4C1twrgOsLY0GEe2gVNl/9tZ+JwI2FCrDLVizk
+	XCa38Rr16Ptb6c0P6MqejMHVljhHvM5vPf2hQ=
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Subject: valgrind: add powerpc support
+Received: by 10.50.88.199 with SMTP id bi7mr9554228igb.45.1324052784539; Fri,
+	16 Dec 2011 08:26:24 -0800 (PST)
+Sender: jefro.net@gmail.com
+Received: by 10.50.187.168 with HTTP; Fri, 16 Dec 2011 08:26:24 -0800 (PST)
+Date: Fri, 16 Dec 2011 08:26:24 -0800
+X-Google-Sender-Auth: C1YDAWEdux4JtCA17IggyNqN468
+Message-ID: <CA+YB3rZe5E211qMpjCKV2Wyb17rGp2bXbbRXgcb56Fktiz5GQQ@mail.gmail.com>
+From: Jeff Osier-Mixon <jefro@jefro.net>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Yocto Project community survey - t-shirt winner Marc F.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,40 +37,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Dec 2011 08:24:32 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 16 Dec 2011 16:26:27 -0000
+Content-Type: multipart/alternative; boundary=e89a8f3ba0dbe2e79c04b4380f6d
 
-From: Zhenhua Luo <b19537@freescale.com>
+--e89a8f3ba0dbe2e79c04b4380f6d
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Zhenhua Luo <b19537@freescale.com>
----
- meta/recipes-devtools/valgrind/valgrind_3.6.1.bb |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+Thanks very much to all who participated in the Yocto Project community
+survey! We have a winner for the t-shirt: Marc F., you'll be receiving your
+shirt shortly.
 
-diff --git a/meta/recipes-devtools/valgrind/valgrind_3.6.1.bb b/meta/recipes-devtools/valgrind/valgrind_3.6.1.bb
-index 021caa8..c09fc41 100644
---- a/meta/recipes-devtools/valgrind/valgrind_3.6.1.bb
-+++ b/meta/recipes-devtools/valgrind/valgrind_3.6.1.bb
-@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=c46082167a314d785d012a244748d803 \
-                     file://include/valgrind.h;beginline=1;endline=56;md5=13a71cedba99112334d8596162aec37e \
-                     file://COPYING.DOCS;md5=8fdeb5abdb235a08e76835f8f3260215"
- DEPENDS = "virtual/libx11"
--PR = "r1"
-+PR = "r2"
- 
- SRC_URI = "http://www.valgrind.org/downloads/valgrind-${PV}.tar.bz2 \
- 	   file://fix_issue_caused_by_ccache.patch \
-@@ -17,7 +17,7 @@ SRC_URI = "http://www.valgrind.org/downloads/valgrind-${PV}.tar.bz2 \
- SRC_URI[md5sum] = "2c3aa122498baecc9d69194057ca88f5"
- SRC_URI[sha256sum] = "49bdcc4fbcf060049b5f0dcfd8a187a6e90e0b0e57309f633b64e44430726a0e"
- 
--COMPATIBLE_HOST = '(i.86|x86_64).*-linux'
-+COMPATIBLE_HOST = '(i.86|x86_64|powerpc|powerpc64|ppc|ppc64).*-linux'
- 
- inherit autotools
- 
+Thanks again to everyone, and have a happy holiday!
+
 -- 
-1.7.0.4
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
 
+--e89a8f3ba0dbe2e79c04b4380f6d
+Content-Type: text/html; charset=ISO-8859-1
 
+<div>Thanks very much to all who participated in the Yocto Project community survey! We have a winner for the t-shirt: Marc F., you&#39;ll be receiving your shirt shortly.</div><div><br></div><div>Thanks again to everyone, and have a happy holiday!</div>
+<div><br></div>-- <br>Jeff Osier-Mixon <a href="http://jefro.net/blog" target="_blank">http://jefro.net/blog</a><div>Yocto Project Community Manager @Intel <a href="http://yoctoproject.org" target="_blank">http://yoctoproject.org</a></div>
+<br>
 
+--e89a8f3ba0dbe2e79c04b4380f6d--
