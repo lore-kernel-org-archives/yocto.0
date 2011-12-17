@@ -1,23 +1,24 @@
 Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 092C8E00303
-	for <yocto@yoctoproject.org>; Fri, 16 Dec 2011 17:06:38 -0800 (PST)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21853E00303
+	for <yocto@yoctoproject.org>; Fri, 16 Dec 2011 17:22:52 -0800 (PST)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 16 Dec 2011 17:06:38 -0800
+	by fmsmga101.fm.intel.com with ESMTP; 16 Dec 2011 17:22:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="103200721"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga002.fm.intel.com with ESMTP; 16 Dec 2011 17:06:38 -0800
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
+	d="bb'?scan'208";a="103203504"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by fmsmga002.fm.intel.com with ESMTP; 16 Dec 2011 17:22:30 -0800
 Received: from orsmsx502.amr.corp.intel.com ([10.22.226.210]) by
-	orsmsx603.amr.corp.intel.com ([10.22.226.49]) with mapi;
-	Fri, 16 Dec 2011 17:06:38 -0800
+	orsmsx602.amr.corp.intel.com ([10.22.226.211]) with mapi;
+	Fri, 16 Dec 2011 17:22:30 -0800
 From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
 To: "Hart, Darren" <darren.hart@intel.com>
-Date: Fri, 16 Dec 2011 17:06:35 -0800
+Date: Fri, 16 Dec 2011 17:22:29 -0800
 Thread-Topic: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison
 	branch.
-Thread-Index: Acy8R4+YeOeyMy/5Q2SMTCFOaRMO5AADxUkg
-Message-ID: <4BD43A85686FC34D819098DB1C3999D9019260E54E@orsmsx502.amr.corp.intel.com>
+Thread-Index: Acy8R4+YeOeyMy/5Q2SMTCFOaRMO5AADxUkgAAC5asA=
+Message-ID: <4BD43A85686FC34D819098DB1C3999D9019260E569@orsmsx502.amr.corp.intel.com>
 References: <4BD43A85686FC34D819098DB1C3999D901900BC33C@orsmsx502.amr.corp.intel.com>
 	<4EE7DA4D.4080500@windriver.com> <4EE7DC81.6030609@intel.com>
 	<4BD43A85686FC34D819098DB1C3999D901900BC38A@orsmsx502.amr.corp.intel.com>
@@ -30,10 +31,9 @@ References: <4BD43A85686FC34D819098DB1C3999D901900BC33C@orsmsx502.amr.corp.intel
 	<4BD43A85686FC34D819098DB1C3999D9019260E281@orsmsx502.amr.corp.intel.com>
 	<4EEBA792.9030404@intel.com>
 	<4BD43A85686FC34D819098DB1C3999D9019260E3BE@orsmsx502.amr.corp.intel.com>
-	<4EEBCF40.1050208@intel.com>
-In-Reply-To: <4EEBCF40.1050208@intel.com>
+	<4EEBCF40.1050208@intel.com> 
 Accept-Language: en-US
-X-MS-Has-Attach: 
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
@@ -50,10 +50,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 17 Dec 2011 01:06:39 -0000
+X-List-Received-Date: Sat, 17 Dec 2011 01:22:52 -0000
+X-Groupsio-MsgNum: 3874
 Content-Language: en-US
+Content-Type: multipart/mixed;
+	boundary="_002_4BD43A85686FC34D819098DB1C3999D9019260E569orsmsx502amrc_"
+
+--_002_4BD43A85686FC34D819098DB1C3999D9019260E569orsmsx502amrc_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+
+With the attached Darren's kern-tools-native_git.bb file, build was success=
+.
+Thanks
+Kishore.
+
+-----Original Message-----
+From: Bodke, Kishore K
+Sent: Friday, December 16, 2011 5:07 PM
+To: Hart, Darren
+Cc: Bruce Ashfield; yocto@yoctoproject.org
+Subject: RE: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison =
+branch.
 
 Hi,
 I still get the same error below after changing the kern-tools-native_git.b=
@@ -514,3 +533,23 @@ Darren Hart
 Intel Open Source Technology Center
 Yocto Project - Linux Kernel
 
+--_002_4BD43A85686FC34D819098DB1C3999D9019260E569orsmsx502amrc_
+Content-Type: application/octet-stream; name="kern-tools-native_git.bb"
+Content-Description: kern-tools-native_git.bb
+Content-Disposition: attachment; filename="kern-tools-native_git.bb";
+	size=536; creation-date="Fri, 16 Dec 2011 17:07:36 GMT";
+	modification-date="Fri, 16 Dec 2011 17:07:36 GMT"
+Content-Transfer-Encoding: base64
+
+REVTQ1JJUFRJT04gPSAiU2NyaXB0cyBhbmQgdXRpbGl0aWVzIGZvciBtYW5hZ2luZyBZb2N0byBi
+cmFuY2hlZCBrZXJuZWxzLiINCkxJQ0VOU0UgPSAiR1BMIg0KTElDX0ZJTEVTX0NIS1NVTSA9ICJm
+aWxlOi8vZ2l0L3Rvb2xzL2tnaXQ7YmVnaW5saW5lPTU7ZW5kbGluZT05O21kNT1lMmJmNDQxNWYz
+ZDg0M2Y0M2QyZTIyYjBkOTFhNmZlZSINCg0KREVQRU5EUyA9ICJnaXQtbmF0aXZlIGd1aWx0LW5h
+dGl2ZSINCg0KU1JDUkVWID0gImViM2VkNjRjZWE4MGQyM2ZmYjI4ZGZlYWViMDJjZGZlM2ZiMjkz
+NDAiDQpQUiA9IHIxMg0KUFYgPSAiMC4xK2dpdCR7U1JDUFZ9Ig0KDQppbmhlcml0IG5hdGl2ZQ0K
+DQpTUkNfVVJJID0gImdpdDovL2dpdC55b2N0b3Byb2plY3Qub3JnL3lvY3RvLWtlcm5lbC10b29s
+cy5naXQ7cHJvdG9jb2w9Z2l0Ig0KUyA9ICIke1dPUktESVJ9Ig0KDQpkb19jb21waWxlKCkgeyAN
+Cgk6DQp9DQoNCmRvX2luc3RhbGwoKSB7DQoJY2QgJHtTfS9naXQNCgltYWtlIERFU1RESVI9JHtE
+fSR7YmluZGlyfSBpbnN0YWxsDQp9DQo=
+
+--_002_4BD43A85686FC34D819098DB1C3999D9019260E569orsmsx502amrc_--
