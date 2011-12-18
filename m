@@ -1,34 +1,31 @@
-Return-Path: <wd@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E866FE0030F
-	for <yocto@yoctoproject.org>; Sun, 18 Dec 2011 00:41:35 -0800 (PST)
-Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
-	[192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 787DF188A190;
-	Sun, 18 Dec 2011 09:41:32 +0100 (CET)
-X-Auth-Info: 2uqTqZSoCI2jrx4JFj4HLNJ8l9mQPqTHKh/CWxJXqjA=
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216])
-	by smtp-auth.mnet-online.de (Postfix) with ESMTPA id 50DEB1C00100;
-	Sun, 18 Dec 2011 09:41:32 +0100 (CET)
-Received: from gemini.denx.de (unknown [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id 2F55C1A2765;
-	Sun, 18 Dec 2011 09:41:32 +0100 (CET)
-Received: from gemini.denx.de (localhost.localdomain [127.0.0.1])
-	by gemini.denx.de (Postfix) with ESMTP id 16A6F138EEA1;
-	Sun, 18 Dec 2011 09:41:32 +0100 (CET)
-To: "Xu, Jiajun" <jiajun.xu@intel.com>
-From: Wolfgang Denk <wd@denx.de>
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 418C4E0030F
+	for <yocto@yoctoproject.org>; Sun, 18 Dec 2011 00:50:59 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 18 Dec 2011 00:50:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="48318199"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by AZSMGA002.ch.intel.com with ESMTP; 18 Dec 2011 00:50:56 -0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Sun, 18 Dec 2011 16:50:55 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Sun, 18 Dec 2011 16:50:54 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Sun, 18 Dec 2011 16:50:53 +0800
+Thread-Topic: Yocto weekly bug trend charts -- WW51
+Thread-Index: Acy9YiY/kDFtME2TQkewRB61Tb13Bw==
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12ED44B237@shsmsx501.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-In-reply-to: <D5AB6E638E5A3E4B8F4406B113A5A19A12ED44B22A@shsmsx501.ccr.corp.intel.com>
-References: <D5AB6E638E5A3E4B8F4406B113A5A19A12ED44B22A@shsmsx501.ccr.corp.intel.com>
-Comments: In-reply-to "Xu, Jiajun" <jiajun.xu@intel.com>
-	message dated "Sun, 18 Dec 2011 16:06:37 +0800."
-Date: Sun, 18 Dec 2011 09:41:32 +0100
-Message-Id: <20111218084132.16A6F138EEA1@gemini.denx.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"poky@pokylinux.org" <poky@pokylinux.org>
-Subject: Re: Weekly Test Report for Yocto 1.2 M1 RC2 Build
+Subject: Yocto weekly bug trend charts -- WW51
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,49 +37,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 18 Dec 2011 08:41:36 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Sun, 18 Dec 2011 08:50:59 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Dear Jiajun Hu,
+Hi all,
+	The overall open bug trend decreased last week. The new submitted bug vs. =
+fixed bug number is 22 vs. 31. Open bug and WDD number decreased to 134 and=
+ 658. Bug status of WW51 could be found on https://wiki.yoctoproject.org/wi=
+ki/Yocto_Bug_Trend.
 
-In message <D5AB6E638E5A3E4B8F4406B113A5A19A12ED44B22A@shsmsx501.ccr.corp.intel.com> you wrote:
->
->
-> This is the weekly test report for Yocto 1.2 M1 RC2 build. There
-> are 2 new bugs found for this build. HuronRiver board is broken, so
-
-Thi is not complete.  I reported another bug (build failure)
-yesterday.
-
-> Issue summary
-> --------------------------------------
-...
-> 
-> Bug Number
-...
-> Bug 310 - [eMenlow] i2c_transfer error on e-Menlow
-> Bug 1779 - gsettings-data-convert segfault on sdk image
-> Bug 1823 - [Bealgeboard C4] keyboard could not work with 20111207 build
-> Bug 1825: Application 'Dates' can not be launched with 20111207 build
-> New! Bug 1840 - glxgears fail to run on Blacksand
-> Bug 1826: [HuronRiver] only 3/4 screen is used when psplash loading
-> New! Bug 1842 - [Hob2] there should be a warning when meta-intel layer not added for BSP build
-
-Please add:
-
-Bug 1841 - 1.2_M1 build broken for meta-toolchain-sdk
+Best Regards,
+Jiajun
 
 
-Thanks!
-
-Best regards,
-
-Wolfgang Denk
-
--- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-Don't have a battle of wits with an unarmed opponent.
 
