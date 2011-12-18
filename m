@@ -1,39 +1,39 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36EB1E006DF
-	for <yocto@yoctoproject.org>; Sun, 18 Dec 2011 00:56:42 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 18 Dec 2011 00:56:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="48318811"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by AZSMGA002.ch.intel.com with ESMTP; 18 Dec 2011 00:56:40 -0800
-Received: from pgsmsx104.gar.corp.intel.com (10.221.44.91) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 18 Dec 2011 16:56:39 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX104.gar.corp.intel.com (10.221.44.91) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Sun, 18 Dec 2011 16:56:39 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Sun, 18 Dec 2011 16:56:38 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: Wolfgang Denk <wd@denx.de>
-Date: Sun, 18 Dec 2011 16:56:36 +0800
-Thread-Topic: [yocto] Weekly Test Report for Yocto 1.2 M1 RC2 Build
-Thread-Index: Acy9YNuRli39w1QZSiaDLDug4LL1RQAAe9pw
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12ED44B239@shsmsx501.ccr.corp.intel.com>
-References: <D5AB6E638E5A3E4B8F4406B113A5A19A12ED44B22A@shsmsx501.ccr.corp.intel.com>
-	<20111218084132.16A6F138EEA1@gemini.denx.de>
-In-Reply-To: <20111218084132.16A6F138EEA1@gemini.denx.de>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <SRS0=YEu808=66=mindchasers.com=yocto@eigbox.net>
+Received: from bosmailout17.eigbox.net (bosmailout17.eigbox.net [66.96.188.17])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F580E00306
+	for <yocto@yoctoproject.org>; Sun, 18 Dec 2011 11:56:53 -0800 (PST)
+Received: from bosmailscan20.eigbox.net ([10.20.15.20])
+	by bosmailout17.eigbox.net with esmtp (Exim) id 1RcMqq-0003yR-7a
+	for yocto@yoctoproject.org; Sun, 18 Dec 2011 14:56:52 -0500
+Received: from bosimpout02.eigbox.net ([10.20.55.2])
+	by bosmailscan20.eigbox.net with esmtp (Exim) id 1RcMqq-0005M7-0I
+	for yocto@yoctoproject.org; Sun, 18 Dec 2011 14:56:52 -0500
+Received: from bosauthsmtp12.eigbox.net ([10.20.18.12])
+	by bosimpout02.eigbox.net with NO UCE
+	id Ajws1i0030FdZ9W01jwsN2; Sun, 18 Dec 2011 14:56:52 -0500
+X-EN-OrigOutIP: 10.20.18.12
+X-EN-IMPSID: Ajws1i0030FdZ9W01jwsN2
+Received: from pool-108-11-46-58.atclnj.east.verizon.net ([108.11.46.58]
+	helo=[192.168.1.3]) by bosauthsmtp12.eigbox.net with esmtpa (Exim)
+	id 1RcMqp-0004r3-TZ
+	for yocto@yoctoproject.org; Sun, 18 Dec 2011 14:56:52 -0500
+Message-ID: <4EEE4581.7070700@mindchasers.com>
+Date: Sun, 18 Dec 2011 14:56:49 -0500
+From: Bob Cochran <yocto@mindchasers.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.23) Gecko/20110922 Thunderbird/3.1.15
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"poky@pokylinux.org" <poky@pokylinux.org>
-Subject: Re: Weekly Test Report for Yocto 1.2 M1 RC2 Build
+To: yocto@yoctoproject.org
+References: <4ECAF89E.1030505@mindchasers.com>
+	<4ECC2718.50008@linux.intel.com>	<4ECD4CF8.4020005@linux.intel.com>
+	<CAMKF1spQGcQM9NwTrHyntYMmZByS0ztkqUGUC6=3sZOztvqWBw@mail.gmail.com>
+In-Reply-To: <CAMKF1spQGcQM9NwTrHyntYMmZByS0ztkqUGUC6=3sZOztvqWBw@mail.gmail.com>
+X-EN-UserInfo: cb6d325fe03740ac93d537d78041f599:2186c883651a1065ea1e15c5a112545a
+X-EN-AuthUser: bcochran@mindchasers.com
+Sender: Bob Cochran <yocto@mindchasers.com>
+X-EN-OrigIP: 108.11.46.58
+X-EN-OrigHost: pool-108-11-46-58.atclnj.east.verizon.net
+Subject: Re: Atom netbook recommendation?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,31 +45,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 18 Dec 2011 08:56:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Sun, 18 Dec 2011 19:56:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-VGhhbmtzIGEgbG90IGZvciB0ZXN0aW5nIGFuZCByZXBvcnRpbmcsIFdvbGZnYW5nLg0KSSB3aWxs
-IGluY2x1ZGUgdGhpcyBpbnRvIGZpbmFsIHRlc3QgcmVwb3J0Lg0KDQo+IERlYXIgSmlhanVuIEh1
-LA0KPiANCj4gSW4gbWVzc2FnZQ0KPiA8RDVBQjZFNjM4RTVBM0U0QjhGNDQwNkIxMTNBNUExOUEx
-MkVENDRCMjJBQHNoc21zeDUwMS5jY3IuY29ycC5pDQo+IG50ZWwuY29tPiB5b3Ugd3JvdGU6DQo+
-PiANCj4+IA0KPj4gVGhpcyBpcyB0aGUgd2Vla2x5IHRlc3QgcmVwb3J0IGZvciBZb2N0byAxLjIg
-TTEgUkMyIGJ1aWxkLiBUaGVyZSBhcmUNCj4+IDIgbmV3IGJ1Z3MgZm91bmQgZm9yIHRoaXMgYnVp
-bGQuIEh1cm9uUml2ZXIgYm9hcmQgaXMgYnJva2VuLCBzbw0KPiANCj4gVGhpIGlzIG5vdCBjb21w
-bGV0ZS4gIEkgcmVwb3J0ZWQgYW5vdGhlciBidWcgKGJ1aWxkIGZhaWx1cmUpIHllc3RlcmRheS4N
-Cj4gDQo+PiBJc3N1ZSBzdW1tYXJ5IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tIC4uLg0KPj4gDQo+PiBCdWcgTnVtYmVyIC4uLiBCdWcgMzEwIC0gW2VNZW5sb3ddIGkyY190
-cmFuc2ZlciBlcnJvciBvbiBlLU1lbmxvdyBCdWcNCj4+IDE3NzkgLSBnc2V0dGluZ3MtZGF0YS1j
-b252ZXJ0IHNlZ2ZhdWx0IG9uIHNkayBpbWFnZSBCdWcgMTgyMyAtDQo+PiBbQmVhbGdlYm9hcmQg
-QzRdIGtleWJvYXJkIGNvdWxkIG5vdCB3b3JrIHdpdGggMjAxMTEyMDcgYnVpbGQgQnVnIDE4MjU6
-DQo+PiBBcHBsaWNhdGlvbiAnRGF0ZXMnIGNhbiBub3QgYmUgbGF1bmNoZWQgd2l0aCAyMDExMTIw
-NyBidWlsZCBOZXchIEJ1Zw0KPj4gMTg0MCAtIGdseGdlYXJzIGZhaWwgdG8gcnVuIG9uIEJsYWNr
-c2FuZCBCdWcgMTgyNjogW0h1cm9uUml2ZXJdIG9ubHkNCj4+IDMvNCBzY3JlZW4gaXMgdXNlZCB3
-aGVuIHBzcGxhc2ggbG9hZGluZyBOZXchIEJ1ZyAxODQyIC0gW0hvYjJdIHRoZXJlDQo+PiBzaG91
-bGQgYmUgYSB3YXJuaW5nIHdoZW4gbWV0YS1pbnRlbCBsYXllciBub3QgYWRkZWQgZm9yIEJTUCBi
-dWlsZA0KPiANCj4gUGxlYXNlIGFkZDoNCj4gDQo+IEJ1ZyAxODQxIC0gMS4yX00xIGJ1aWxkIGJy
-b2tlbiBmb3IgbWV0YS10b29sY2hhaW4tc2RrDQo+IA0KPiANCj4gVGhhbmtzIQ0KPiANCj4gQmVz
-dCByZWdhcmRzLA0KPiANCj4gV29sZmdhbmcgRGVuaw0KPg0KDQpCZXN0IFJlZ2FyZHMsDQpKaWFq
-dW4NCg0K
+On 11/23/2011 02:51 PM, Khem Raj wrote:
+> On Wed, Nov 23, 2011 at 11:43 AM, Darren Hart<dvhart@linux.intel.com>  wrote:
+>> We also have things working on the Toshiba NB305. The atom-pc machine
+>>
+>
+> FWIW I have asus eepc here and it works great with yocto/oe-core/meta-intel
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+Thanks for the feedback everyone.  I now have a dual core Atom N570 
+netbook (Acer Aspire One model).
+
+It didn't boot the hddimage off of a usb stick (SysLinux halted - I'll 
+figure out why later), but I have been having fun booting modified yocto 
+standard Linux images using grub.  I put a 2.5" 60 G OCZ SSD in it along 
+with loading Ubuntu.  It can build poky minimal from scratch in a few 
+hours and rebuilds the kernel fairly quick (should get downright good 
+once I upgrade the RAM from 1G).   At this point, I'm having fun playing 
+with the kernel and the initial ram disk with a custom init.
+
+And the nice thing with the SSD installed is that it boots Ubuntu in a 
+few seconds for when I want to make mods to my poky image.  It makes for 
+a very cool little development system!
+
+Bob
+
+
 
