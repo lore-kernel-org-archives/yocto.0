@@ -1,33 +1,38 @@
-Return-Path: <uriell@wicresoft.com>
-Received: from WS-EDGE-01.wicresoft.com (WS-EDGE-01.wicresoft.com
-	[210.13.114.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EC76E00305
-	for <yocto@yoctoproject.org>; Tue, 20 Dec 2011 00:46:42 -0800 (PST)
-Received: from WS-ZZHUB-02.wicresoft.com (210.13.114.234) by
-	WS-EDGE-01.wicresoft.com (210.13.114.162) with Microsoft SMTP Server
-	(TLS) id 8.3.106.1; Tue, 20 Dec 2011 16:46:39 +0800
-Received: from WS-ZZMBX-01.wicresoft.com ([fe80::3d7c:2b45:c495:22c7]) by
-	WS-ZZHUB-02.wicresoft.com ([2002:d20d:72ea::d20d:72ea]) with mapi;
-	Tue, 20 Dec 2011 16:46:38 +0800
-From: Uriel Liu <uriell@wicresoft.com>
-To: Samuel Stirtzel <s.stirtzel@googlemail.com>, "Wang, Shane"
-	<shane.wang@intel.com>
-Date: Tue, 20 Dec 2011 16:46:37 +0800
+Return-Path: <shane.wang@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 229B3E00305
+	for <yocto@yoctoproject.org>; Tue, 20 Dec 2011 08:08:52 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 20 Dec 2011 08:08:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="49009020"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by AZSMGA002.ch.intel.com with ESMTP; 20 Dec 2011 08:08:50 -0800
+Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 21 Dec 2011 00:08:47 +0800
+Received: from shsmsx602.ccr.corp.intel.com (10.239.4.104) by
+	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 21 Dec 2011 00:08:47 +0800
+Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
+	SHSMSX602.ccr.corp.intel.com ([10.239.4.104]) with mapi;
+	Wed, 21 Dec 2011 00:08:45 +0800
+From: "Wang, Shane" <shane.wang@intel.com>
+To: Samuel Stirtzel <s.stirtzel@googlemail.com>
+Date: Wed, 21 Dec 2011 00:08:44 +0800
 Thread-Topic: [yocto] RFC: Web UI design for bitbake
-Thread-Index: Acy+8V+fMs09K1uQR1qxzVWxc2PTEgAAig9w
-Message-ID: <6F32BFA7AECCFE49B820962FDF3FE1BDBC92C5C228@WS-ZZMBX-01.wicresoft.com>
+Thread-Index: Acy+8V1UcZ1zvQR0RPqNAX7vf1Lq/gAP6+0A
+Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12ED757D77@shsmsx501.ccr.corp.intel.com>
 References: <D5AB6E638E5A3E4B8F4406B113A5A19A12ED44B7A4@shsmsx501.ccr.corp.intel.com>
 	<CAGiJk9fSjJj+0M=xKX2=aeh=o3QadOf3VQz0=kG7HfBwk5qOkQ@mail.gmail.com>
 In-Reply-To: <CAGiJk9fSjJj+0M=xKX2=aeh=o3QadOf3VQz0=kG7HfBwk5qOkQ@mail.gmail.com>
-Accept-Language: zh-TW, en-US
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: zh-TW, en-US
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 20 Dec 2011 06:57:58 -0800
-Cc: "Lv, XiaotongX \(xiaotongx.lv@intel.com\)" <xiaotongx.lv@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Lv, ChunhuaX
-	<chunhuax.lv@intel.com> \(chunhuax.lv@intel.com\)" <chunhuax.lv@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Uriel Liu <uriell@wicresoft.com>
 Subject: Re: RFC: Web UI design for bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,41 +45,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Dec 2011 08:46:44 -0000
+X-List-Received-Date: Tue, 20 Dec 2011 16:08:52 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 
-SGkgU2FtdWVsLA0KDQpUaGFua3MgZm9yIHlvdXIgcHJlY2lvdXMgY29tbWVudCB3aGljaCBpcyBt
-dWNoIG1vcmUgdmFsdWFibGUgdGhhbiAwLjAyIGNlbnRzIChsb2wpIC4gSSdsbCB0YWtlIGEgbG9v
-ayBhdCBKZW5raW5zIGFuZCBIdWRzb24gdG8gc2VlIGhvdyBjb3VsZCB3ZSBzYXZlIG91ciBlZmZv
-cnQgd2l0aCB0aGVzZS4NCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0NClNpbmNlcmVseSB5b3VycywN
-ClVyaWVsIExpdQ0KDQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IFNhbXVl
-bCBTdGlydHplbCBbbWFpbHRvOnMuc3RpcnR6ZWxAZ29vZ2xlbWFpbC5jb21dIA0KU2VudDogMjAx
-MeW5tDEy5pyIMjDml6UgMTY6MjkNClRvOiBXYW5nLCBTaGFuZQ0KQ2M6IHlvY3RvQHlvY3RvcHJv
-amVjdC5vcmc7IFVyaWVsIExpdQ0KU3ViamVjdDogUmU6IFt5b2N0b10gUkZDOiBXZWIgVUkgZGVz
-aWduIGZvciBiaXRiYWtlDQoNCjIwMTEvMTIvMjAgV2FuZywgU2hhbmUgPHNoYW5lLndhbmdAaW50
-ZWwuY29tPjoNCj4gSGkgYWxsLA0KPg0KPiBXZWIgVUkgaW50ZXJmYWNlIGlzIHRoZSBuZXh0IHdo
-YXQgd2UgYXJlIGdvaW5nIHRvIGRvLiBVcmllbCBkcmFmdGVkIHRoZSBmaXJzdCBpdGVyYXRpb24g
-b2YgdGhlIGFyY2hpdGVjdHVyZSBkZXNpZ24gYW5kIEkgcG9zdGVkIGl0IG9udG8gaHR0cHM6Ly93
-aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9XZWJfVUkuDQo+DQo+IExvb2tpbmcgZm9yd2FyZCB0
-byB5b3VyIGZlZWRiYWNrcy4NCj4NCj4gLS0NCj4gU2hhbmUNCj4gX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4geW9jdG8gbWFpbGluZyBsaXN0DQo+IHlv
-Y3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xp
-c3RpbmZvL3lvY3RvDQoNCkl0IHNvdW5kcyBsaWtlIHlvdSB3YW50IHRvIGJ1aWxkIGl0IGFsbCBm
-cm9tIHNjcmF0Y2gsIHF1aXRlIGEgbG90IG9mIHdvcmsgdG8gYnVpbGQgYSBmdWxseSBmZWF0dXJl
-ZCB3ZWIgYnVpbGQgc3lzdGVtLCBpbiB0aGlzIGNhc2UgY29tcGF0aWJpbGl0eSB0byBvdGhlciBz
-eXN0ZW1zIHdvdWxkIGJlIG5pY2UuDQoNCg0KRm9yIHdlYiBidWlsZHMgd2l0aCBiaXRiYWtlLCBK
-ZW5raW5zLUNJIChhIGZvcmsgb2YgdGhlIGNvbnRpbnVvdXMgaW50ZWdyYXRpb24gc3lzdGVtIEh1
-ZHNvbikgWzFdIGNvdWxkIGJlIHdvcnRoIGEgbG9vaywgaXQgaXMgbW9yZSB0aGFuIGp1c3QgYSBi
-dWlsZCB0b29sLg0KDQpUaGVyZSBpcyBhbHNvIEF1dG9idWlsZGVyLCBidXQgSSBndWVzcyBmb3Ig
-ZW5kIHVzZXJzIGl0IGlzIHRvbyBtdWNoIGNvbmZpZ3VyYXRpb24gZWZmb3J0Pw0KSmVua2lucy1D
-SSB3YXMgdmVyeSBlYXN5IHRvIHNldHVwIGFuZCB3aXRoIGEgcGx1Zy1pbiBpdCBjb3VsZCBiZSBh
-cyBzaW1wbGUgYXMgcG9pbnRpbmcgdGhlIHdlYi1VSSB0byB0aGUgQml0YmFrZSBwYXRoLCBtYW5h
-Z2luZyBjbHVzdGVyL2Nsb3VkL3NsYXZlLXBjIGVudGl0aWVzIGlzIGVhc3kgdG9vLg0KDQpKdXN0
-IG15IDAuMDIgY2VudHMgaW4gdGhlIGNhc2UgdGhhdCB5b3UgZGlkbid0IGFscmVhZHkgY2FzdCBp
-dCBpbiBjb25jcmV0ZS4NCklNSE8gaXQgbG9va3MgbGlrZSBKZW5raW5zIGFuZCB0aGUgY29uY2Vw
-dC1wZGYgYXJlIHZlcnkgc2ltaWxhciwgb25seSBkaWZmZXJlbmNlIHNlZW1zIHRvIGJlOiB5b3Ug
-d2FudCB0byBpbnZlbnQgaXQgYWxsIGJ5IHlvdXJzZWxmPw0KDQoNClsxXSBKZW5raW5zLUNJIDog
-aHR0cDovL2plbmtpbnMtY2kub3JnLw0KDQotLQ0KUmVnYXJkcw0KU2FtdWVsDQo=
+U2FtdWVsIFN0aXJ0emVsIHdyb3RlIG9uwqAyMDExLTEyLTIwOg0KDQo+IDIwMTEvMTIvMjAgV2Fu
+ZywgU2hhbmUgPHNoYW5lLndhbmdAaW50ZWwuY29tPjoNCj4NCj4gSXQgc291bmRzIGxpa2UgeW91
+IHdhbnQgdG8gYnVpbGQgaXQgYWxsIGZyb20gc2NyYXRjaCwgcXVpdGUgYSBsb3Qgb2YNCj4gd29y
+ayB0byBidWlsZCBhIGZ1bGx5IGZlYXR1cmVkIHdlYiBidWlsZCBzeXN0ZW0sDQo+IGluIHRoaXMg
+Y2FzZSBjb21wYXRpYmlsaXR5IHRvIG90aGVyIHN5c3RlbXMgd291bGQgYmUgbmljZS4NCj4gDQo+
+IA0KPiBGb3Igd2ViIGJ1aWxkcyB3aXRoIGJpdGJha2UsIEplbmtpbnMtQ0kgKGEgZm9yayBvZiB0
+aGUgY29udGludW91cw0KPiBpbnRlZ3JhdGlvbiBzeXN0ZW0gSHVkc29uKSBbMV0gY291bGQgYmUg
+d29ydGggYSBsb29rLA0KPiBpdCBpcyBtb3JlIHRoYW4ganVzdCBhIGJ1aWxkIHRvb2wuDQo+IA0K
+PiBUaGVyZSBpcyBhbHNvIEF1dG9idWlsZGVyLCBidXQgSSBndWVzcyBmb3IgZW5kIHVzZXJzIGl0
+IGlzIHRvbyBtdWNoDQo+IGNvbmZpZ3VyYXRpb24gZWZmb3J0Pw0KPiBKZW5raW5zLUNJIHdhcyB2
+ZXJ5IGVhc3kgdG8gc2V0dXAgYW5kIHdpdGggYSBwbHVnLWluIGl0IGNvdWxkIGJlIGFzDQo+IHNp
+bXBsZSBhcyBwb2ludGluZyB0aGUgd2ViLVVJIHRvIHRoZSBCaXRiYWtlIHBhdGgsDQo+IG1hbmFn
+aW5nIGNsdXN0ZXIvY2xvdWQvc2xhdmUtcGMgZW50aXRpZXMgaXMgZWFzeSB0b28uDQo+IA0KPiBK
+dXN0IG15IDAuMDIgY2VudHMgaW4gdGhlIGNhc2UgdGhhdCB5b3UgZGlkbid0IGFscmVhZHkgY2Fz
+dCBpdCBpbiBjb25jcmV0ZS4NCj4gSU1ITyBpdCBsb29rcyBsaWtlIEplbmtpbnMgYW5kIHRoZSBj
+b25jZXB0LXBkZiBhcmUgdmVyeSBzaW1pbGFyLA0KPiBvbmx5IGRpZmZlcmVuY2Ugc2VlbXMgdG8g
+YmU6IHlvdSB3YW50IHRvIGludmVudCBpdCBhbGwgYnkgeW91cnNlbGY/DQo+IA0KPiANCj4gWzFd
+IEplbmtpbnMtQ0kgOiBodHRwOi8vamVua2lucy1jaS5vcmcvDQo+DQoNClRoYW5rcyBmb3IgdGhl
+IGZlZWRiYWNrcy4gV2UgY29uc2lkZXJlZCBhdXRvYnVpbGRlciBwcmV2aW91c2x5LiBCdXQgdGhl
+eSBhcmUgc2ltaWxhciBidXQgZGlmZmVyZW50Lg0KV2ViIEhPQiBpcyBnb2luZyB0byBwcm92aWRl
+IGEgdG9vbCB0byBkZWVwbHkgY3VzdG9taXplIGltYWdlcyBmcm9tIGJyb3dzZXJzLg0KQXQgdGhp
+cyBwb2ludCwgYXV0b2J1aWxkZXIgaXMgd2Vha2VyLg0KDQpXZSB3aWxsIGhhdmUgYSBsb29rIGF0
+IHlvdXIgc3VnZ2VzdGlvbnMgZmlyc3QuDQoNCi0tDQpTaGFuZQ0K
 
