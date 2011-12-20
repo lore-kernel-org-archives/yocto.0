@@ -1,38 +1,26 @@
-Return-Path: <shane.wang@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7189E00305
-	for <yocto@yoctoproject.org>; Tue, 20 Dec 2011 08:14:06 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 20 Dec 2011 08:14:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="49011310"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by AZSMGA002.ch.intel.com with ESMTP; 20 Dec 2011 08:14:04 -0800
-Received: from pgsmsx103.gar.corp.intel.com (10.221.44.82) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 21 Dec 2011 00:14:00 +0800
-Received: from shsmsx601.ccr.corp.intel.com (10.239.4.112) by
-	PGSMSX103.gar.corp.intel.com (10.221.44.82) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Wed, 21 Dec 2011 00:13:59 +0800
-Received: from shsmsx501.ccr.corp.intel.com ([10.239.4.141]) by
-	shsmsx601.ccr.corp.intel.com ([10.239.4.112]) with mapi;
-	Wed, 21 Dec 2011 00:13:58 +0800
-From: "Wang, Shane" <shane.wang@intel.com>
-To: Luo Zhenhua-B19537 <B19537@freescale.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, Uriel Liu <uriell@wicresoft.com>
-Date: Wed, 21 Dec 2011 00:13:56 +0800
-Thread-Topic: RFC: Web UI design for bitbake
-Thread-Index: Acy+xSc4B2cGLF5ZSQOPrgvrh595oQAAKuhwABsRqAA=
-Message-ID: <D5AB6E638E5A3E4B8F4406B113A5A19A12ED757D7B@shsmsx501.ccr.corp.intel.com>
-References: <D5AB6E638E5A3E4B8F4406B113A5A19A12ED44B7A4@shsmsx501.ccr.corp.intel.com>
-	<CA452391058F6D4E9715FB2C29D9312A010B96DC@039-SN2MPN1-023.039d.mgd.msft.net>
-In-Reply-To: <CA452391058F6D4E9715FB2C29D9312A010B96DC@039-SN2MPN1-023.039d.mgd.msft.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F73BE00305
+	for <yocto@yoctoproject.org>; Tue, 20 Dec 2011 08:48:13 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBKGmCpV028974
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 20 Dec 2011 08:48:12 -0800 (PST)
+Received: from Macintosh-5.local (172.25.36.232) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Tue, 20 Dec 2011 08:48:12 -0800
+Message-ID: <4EF0BC4B.9020009@windriver.com>
+Date: Tue, 20 Dec 2011 10:48:11 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
+	rv:8.0) Gecko/20111105 Thunderbird/8.0
 MIME-Version: 1.0
-Subject: Re: RFC: Web UI design for bitbake
+To: <yocto@yoctoproject.org>
+References: <B02DFE681008F243B33346CA5752CA2B096D3A83@POCITMSEXMB03.LntUniverse.com>
+	<9BACABF0C6B14A4D8C33B42A795119BE096D7E06@POCITMSEXMB03.LntUniverse.com>
+In-Reply-To: <9BACABF0C6B14A4D8C33B42A795119BE096D7E06@POCITMSEXMB03.LntUniverse.com>
+Subject: Re: Poky-Build error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,28 +32,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Dec 2011 16:14:07 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 20 Dec 2011 16:48:13 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Luo Zhenhua-B19537 wrote on=A02011-12-20:
+On 12/20/11 2:33 AM, Navani Kamal Srivastava wrote:
+> Hi,
+>
+> We are facing the problem when we are compiling poky-bernard5.0 –( bitbake –v –b
+> poky-image-eb.bb )
+>
 
-> Hello,
->=20
-> "hob" and website UI work in X env, is there a plan to support the
-> Kernel configure manner GUI within Yocto to support UI configuration in
-> console env?
->=20
->=20
-> Best Regards,
->=20
-> Zhenhua
->=20
+> Log data follows:
+>
+> |
+> /home/prashanth/yocto/poky-bernard-5.0/build/tmp/work/mx35pdk-poky-linux-gnueabi/poky-image-eb-1.0-r0/temp/run.do_rootfs.9800:
+> line 91: makedevs: command not found
+>
+> | ERROR: Function 'do_rootfs' failed (see
+> /home/prashanth/yocto/poky-bernard-5.0/build/tmp/work/mx35pdk-poky-linux-gnueabi/poky-image-eb-1.0-r0/temp/log.do_rootfs.9800
+> for further information)
 
-AFAIK, so far no plan to provide UI in console like kernel's "menu config"?
-But it is good because you raised that requirement ;-)
+Your "poky-image-eb.bb" is attempting to run the makedevs command, but 
+apparently it hasn't been built.  Check your logs for a makedevs-native.  If 
+that hasn't been built, then it appears something is wrong with your 
+configuration.  makedevs-native should be a dependency inherited by the 
+image.bbclass.
 
---
-Shane
+Note on mailing list etiquette, please stop putting the trailing lines in your 
+email.  This is a public mailing list, it is not for your companies "Internal 
+Use", not is it reasonable to consider email send to a public list confidential 
+in any way.
+
+> *This mail is classified as: ( ) L&T Proprietary ( ) L&T Confidential (X) L&T
+> Internal Use ( ) L&T General Business
+> This email may contain confidential or privileged information for the intended
+> recipient(s). If you are not the intended recipient, please do not use or
+> disseminate the information, notify the sender and delete it from your system.
+>
+>
+>
+> *Larsen & Toubro Limited
+>
+> www.larsentoubro.com
+>
+> *This Email may contain confidential or privileged information for the intended
+> recipient (s) If you are not the intended recipient, please do not use or
+> disseminate the information, notify the sender and delete it from your system.
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
