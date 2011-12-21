@@ -1,38 +1,37 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A706E0123C
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 08:13:35 -0800 (PST)
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qw0-f48.google.com (mail-qw0-f48.google.com
+	[209.85.216.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E8CFE0123C
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 08:24:41 -0800 (PST)
 Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
 	(1024-bit key; insecure key) header.i=@gmail.com;
 	x-dkim-adsp=none (insecure policy)
-Received: by eekd49 with SMTP id d49so8382692eek.35
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 08:13:34 -0800 (PST)
+Received: by qadc16 with SMTP id c16so5561585qad.14
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 08:24:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=e+hSMxdFPiXy1476/rXFU2FA3AYTVgMFBRYh/lTGpz8=;
-	b=xJzO208aD9IQ9ZRqG6VrCRBzjvTwFc+XvQEZ3hrzP2Zg3CA1Fn3psJEUg4SnwXtnR6
-	/LDqYFMR9PagQN9/Bv4ulpRO+wN0KAVo8btNoyd9Y9ZhzybqLa5FTDC7PNefkc57H/Yo
-	AFV6Hb15zvP+Spya/lI55plWVSE8BdosZpROc=
-Received: by 10.14.16.145 with SMTP id h17mr2792794eeh.62.1324484014046;
-	Wed, 21 Dec 2011 08:13:34 -0800 (PST)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id a60sm21926397eeb.4.2011.12.21.08.13.32
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 21 Dec 2011 08:13:32 -0800 (PST)
-Date: Wed, 21 Dec 2011 17:13:20 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Message-ID: <20111221161320.GF12791@jama.jama.net>
-References: <cover.1324456294.git.dvhart@linux.intel.com>
-	<2ad76233b10f9e4a61a6ecb5490f92fecdc1f1e1.1324456294.git.dvhart@linux.intel.com>
-	<20111221100909.GD12791@jama.jama.net>
-	<4EF202CC.6090708@linux.intel.com>
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:x-forwarded-message-id:content-type;
+	bh=bogxC5DZnqm754nHXa1dne+Ml+gO5+0xGyD+T5dXq8w=;
+	b=DVV5L6oZoiw3yH/90lQZKcLSzN3g10kiBlBAut0hVw7MEZ+qUUPBWKtXeyOUuqFlBf
+	UTXif3ifdj+WWhQ8akk4J36ooGU+yqB2GjK3twj2/mOkBLfr/0ovVc8ojXQOZMBPw7D/
+	cXZ7CNSQFtgHiCOESW3f9xKy/r5KDymKeoPY4=
+Received: by 10.224.205.134 with SMTP id fq6mr9096856qab.99.1324484680814;
+	Wed, 21 Dec 2011 08:24:40 -0800 (PST)
+Received: from [10.0.1.39] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
+	by mx.google.com with ESMTPS id
+	q14sm11494641qap.4.2011.12.21.08.24.39 (version=SSLv3 cipher=OTHER);
+	Wed, 21 Dec 2011 08:24:39 -0800 (PST)
+Message-ID: <4EF20847.1030106@gmail.com>
+Date: Wed, 21 Dec 2011 11:24:39 -0500
+From: Jim Abernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-In-Reply-To: <4EF202CC.6090708@linux.intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH 5/9] task-core-boot: Allow DISTRO to disable keymaps
+To: Yocto Project <yocto@yoctoproject.org>
+References: <CANSwnwggQwOgZk61xvppWXnz3+Wks9jSaNcp0+cBf9eS2xNNOg@mail.gmail.com>
+In-Reply-To: <CANSwnwggQwOgZk61xvppWXnz3+Wks9jSaNcp0+cBf9eS2xNNOg@mail.gmail.com>
+X-Forwarded-Message-Id: <CANSwnwggQwOgZk61xvppWXnz3+Wks9jSaNcp0+cBf9eS2xNNOg@mail.gmail.com>
+Subject: build error on meta-cedarview
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,121 +43,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2011 16:13:36 -0000
-X-Groupsio-MsgNum: 3941
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="KJY2Ze80yH5MUxol"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 21 Dec 2011 16:24:42 -0000
+Content-Type: multipart/alternative;
+	boundary="------------090001000504020804010604"
 
---KJY2Ze80yH5MUxol
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+--------------090001000504020804010604
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Dec 21, 2011 at 08:01:16AM -0800, Darren Hart wrote:
-> -----BEGIN PGP SIGNED MESSAGE-----
-> Hash: SHA1
->=20
->=20
->=20
-> On 12/21/2011 02:09 AM, Martin Jansa wrote:
-> > On Wed, Dec 21, 2011 at 01:02:51AM -0800, Darren Hart wrote:
-> >> NOTE: I'm looking for a better way to do this.
-> >>=20
-> >> keymaps pulls in gettext, which can't build without wide
-> >> character support.
-> >>=20
-> >> Rather than have to add a -tiny variant of every MACHINE to drop
-> >> "keyboard" from the MACHINE_FEATURES, just enable the DISTRO to
-> >> define what gets added to RDEPENDS_task-core-boot when
-> >> MACHINE_FEATURES includes keyboard. By default, keep "keymaps",
-> >> but use DISTRO_KEYMAPS if it is set (to "" for example).
-> >>=20
-> >> Signed-off-by: Darren Hart <dvhart@linux.intel.com> ---=20
-> >> meta/recipes-core/tasks/task-core-boot.bb |    7 ++++++- 1 files
-> >> changed, 6 insertions(+), 1 deletions(-)
-> >>=20
-> >> diff --git a/meta/recipes-core/tasks/task-core-boot.bb
-> >> b/meta/recipes-core/tasks/task-core-boot.bb index
-> >> 05c280d..e097836 100644 ---
-> >> a/meta/recipes-core/tasks/task-core-boot.bb +++
-> >> b/meta/recipes-core/tasks/task-core-boot.bb @@ -17,6 +17,11 @@ PR
-> >> =3D "r9" MACHINE_ESSENTIAL_EXTRA_RDEPENDS ?=3D ""=20
-> >> MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS ?=3D ""
-> >>=20
-> >> +# +# Set by the distro configuration to empty if not supported=20
-> >> +# +DISTRO_KEYMAPS ?=3D "keymaps"
-> >=20
-> > Why not VIRTUAL-RUNTIME_keymaps like everywhere else?
->=20
-> That's an option. The term VIRTUAL-RUNTIME didn't seem to apply as
-> well to keymaps for me. Also, I felt that this was really a hack in
+While running a build of the core-image-sato using the edison latest 
+commits and the meta-cedartrail bsp, I notices some errors fly by and 
+thought I'd see if anyone knows the reason.  The build is just to test 
+the bsp with no changes.  Basically, doing the Appendix A of the 
+Development manual substituting cedartrail for crownbay.
 
-See this thread
-http://lists.linuxtogo.org/pipermail/openembedded-core/2011-April/001498.ht=
-ml
+snippet of the console log below:
 
-Cheers,
+NOTE: package icon-naming-utils-native-0.8.7-r3: task do_unpack: Started
+ERROR: Function 'Unpack failure for URL: 
+'http://tango.freedesktop.org/releases/icon-naming-utils-0.8.7.tar.gz'. 
+Unpack command 
+PATH="/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin/perl-native:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin/core2-linux:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/sbin:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin:/home/jim/poky/build/tmp/sysroots/i686-linux/sbin:/home/jim/poky/build/tmp/sysroots/i686-linux//bin:/home/jim/poky/scripts/native-intercept:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/jim/poky/scripts" 
+tar xz --no-same-owner -f 
+/home/jim/poky/build/downloads/icon-naming-utils-0.8.7.tar.gz failed 
+with return value 2' failed
+ERROR: Logfile of failure stored in: 
+/home/jim/poky/build/tmp/work/i686-linux/icon-naming-utils-native-0.8.7-r3/temp/log.do_unpack.19392
+Log data follows:
+| NOTE: Unpacking 
+/home/jim/poky/build/downloads/icon-naming-utils-0.8.7.tar.gz to 
+/home/jim/poky/build/tmp/work/i686-linux/icon-naming-utils-native-0.8.7-r3/
+|
+| gzip: stdin: not in gzip format
+| tar: Child returned status 1
+| tar: Error is not recoverable: exiting now
+| ERROR: Function 'Unpack failure for URL: 
+'http://tango.freedesktop.org/releases/icon-naming-utils-0.8.7.tar.gz'. 
+Unpack command 
+PATH="/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin/perl-native:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin/core2-linux:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/sbin:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin:/home/jim/poky/build/tmp/sysroots/i686-linux/sbin:/home/jim/poky/build/tmp/sysroots/i686-linux//bin:/home/jim/poky/scripts/native-intercept:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/jim/poky/scripts" 
+tar xz --no-same-owner -f 
+/home/jim/poky/build/downloads/icon-naming-utils-0.8.7.tar.gz failed 
+with return value 2' failed
+NOTE: package icon-naming-utils-native-0.8.7-r3: task do_unpack: Failed
+ERROR: Task 2395 
+(/home/jim/poky/meta/recipes-devtools/icon-naming-utils/icon-naming-utils-native_0.8.7.bb 
+<http://icon-naming-utils-native_0.8.7.bb>, do_unpack) failed with exit 
+code '1'
 
-> the wrong place that need a solution involving MACHINE_FEATURES.
-> Unfortunately I can't use oe_core_filter_out in the distro config file
-> and I'd prefer not to have to create machine config variants for every
-> - -tiny supported machine.
->=20
-> It could be a new task-core-tiny is the right fix (this is what I did
-> in my prototype meta-tiny layer), but I'd rather not have to add
-> another task-core* if it can be avoided.
->=20
-> - --
-> Darren
->=20
-> >=20
-> > Cheers,
-> >=20
-> >> + # Distro can override dev_manager provider=20
-> >> VIRTUAL-RUNTIME_dev_manager ?=3D "udev" # Distro can override
-> >> login_manager provider @@ -37,7 +42,7 @@ RDEPENDS_task-core-boot
-> >> =3D "\ base-passwd \ busybox \ ${VIRTUAL-RUNTIME_initscripts} \ -
-> >> ${@base_contains("MACHINE_FEATURES", "keyboard", "keymaps", "",
-> >> d)} \ +    ${@base_contains("MACHINE_FEATURES", "keyboard",
-> >> "${DISTRO_KEYMAPS}", "", d)} \ modutils-initscripts \ netbase \=20
-> >> ${VIRTUAL-RUNTIME_login_manager} \ -- 1.7.6.4
-> >>=20
-> >> _______________________________________________ yocto mailing
-> >> list yocto@yoctoproject.org=20
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >=20
->=20
-> - --=20
-> Darren Hart
-> Intel Open Source Technology Center
-> Yocto Project - Linux Kernel
-> -----BEGIN PGP SIGNATURE-----
-> Version: GnuPG v1.4.11 (GNU/Linux)
-> Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
->=20
-> iQEcBAEBAgAGBQJO8gLMAAoJEKbMaAwKp3642YkIAJdCxx7ySWjzzpC2+wT3GHEq
-> 8CQ2j3C71gPVx/jYs6NxFNxVc/2b1V8WjgVB8y4RNtKwpY3Kn8aw7FGBqPW0fPsT
-> 8hB58lCq6ziQlwWqjTQumi0zubRBuWlCt/rs4I/iJwtWQuNdTBAiWy5DdsEdAtv9
-> ou2GhGYRyPOKaGeD/2Inw3NQQh/CvcAZDRylU++c29Uo+f8b7jNvdclgS4bdK7It
-> RKNpj9l24K892BVVCJNHSqV1NHlq9MZhZwA9Earp6gRmpwz0Ra+CqXuarLenqjrA
-> NPppibL4wodNHe0Tx6qCjm7zG7pPiAu7VmjC2OOUAn6ToM+nePP7sS/IHitnsmQ=3D
-> =3DfTlx
-> -----END PGP SIGNATURE-----
+Jim A
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
---KJY2Ze80yH5MUxol
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+--------------090001000504020804010604
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.18 (GNU/Linux)
+<html>
+  <head>
 
-iEYEARECAAYFAk7yBaAACgkQN1Ujt2V2gBxBiACfctPtRRBJ+RNOxw5bEoOLGZWP
-s8kAn3VxoSYGJf9Lev+WcCJP0a2qophl
-=WkyS
------END PGP SIGNATURE-----
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    While running a build of the core-image-sato using the edison latest
+    commits and the meta-cedartrail bsp, I notices some errors fly by
+    and thought I'd see if anyone knows the reason.&nbsp; The build is just
+    to test the bsp with no changes.&nbsp; Basically, doing the Appendix A of
+    the Development manual substituting cedartrail for crownbay.<br>
+    <br>
+    snippet of the console log below:<br>
+    <br>
+    NOTE: package icon-naming-utils-native-0.8.7-r3: task do_unpack:
+    Started<br>
+    ERROR: Function 'Unpack failure for URL: '<a moz-do-not-send="true"
+href="http://tango.freedesktop.org/releases/icon-naming-utils-0.8.7.tar.gz">http://tango.freedesktop.org/releases/icon-naming-utils-0.8.7.tar.gz</a>'.
+    Unpack command
+    PATH="/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin/perl-native:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin/core2-linux:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/sbin:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin:/home/jim/poky/build/tmp/sysroots/i686-linux/sbin:/home/jim/poky/build/tmp/sysroots/i686-linux//bin:/home/jim/poky/scripts/native-intercept:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/jim/poky/scripts"
+    tar xz --no-same-owner -f
+    /home/jim/poky/build/downloads/icon-naming-utils-0.8.7.tar.gz failed
+    with return value 2' failed<br>
+    ERROR: Logfile of failure stored in:
+/home/jim/poky/build/tmp/work/i686-linux/icon-naming-utils-native-0.8.7-r3/temp/log.do_unpack.19392<br>
+    Log data follows:<br>
+    | NOTE: Unpacking
+    /home/jim/poky/build/downloads/icon-naming-utils-0.8.7.tar.gz to
+/home/jim/poky/build/tmp/work/i686-linux/icon-naming-utils-native-0.8.7-r3/<br>
+    | <br>
+    | gzip: stdin: not in gzip format<br>
+    | tar: Child returned status 1<br>
+    | tar: Error is not recoverable: exiting now<br>
+    | ERROR: Function 'Unpack failure for URL: '<a
+      moz-do-not-send="true"
+href="http://tango.freedesktop.org/releases/icon-naming-utils-0.8.7.tar.gz">http://tango.freedesktop.org/releases/icon-naming-utils-0.8.7.tar.gz</a>'.
+    Unpack command
+    PATH="/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin/perl-native:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin/core2-linux:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/sbin:/home/jim/poky/build/tmp/sysroots/i686-linux/usr/bin:/home/jim/poky/build/tmp/sysroots/i686-linux/sbin:/home/jim/poky/build/tmp/sysroots/i686-linux//bin:/home/jim/poky/scripts/native-intercept:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/jim/poky/scripts"
+    tar xz --no-same-owner -f
+    /home/jim/poky/build/downloads/icon-naming-utils-0.8.7.tar.gz failed
+    with return value 2' failed<br>
+    NOTE: package icon-naming-utils-native-0.8.7-r3: task do_unpack:
+    Failed<br>
+    ERROR: Task 2395
+    (/home/jim/poky/meta/recipes-devtools/icon-naming-utils/<a
+      moz-do-not-send="true"
+      href="http://icon-naming-utils-native_0.8.7.bb">icon-naming-utils-native_0.8.7.bb</a>,
+    do_unpack) failed with exit code '1'<br>
+    <br>
+    Jim A<br>
+    <br>
+  </body>
+</html>
 
---KJY2Ze80yH5MUxol--
+--------------090001000504020804010604--
