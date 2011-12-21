@@ -1,34 +1,32 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-qw0-f41.google.com (mail-qw0-f41.google.com
-	[209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07A78E005A3
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 09:33:35 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by qabg40 with SMTP id g40so2624426qab.14
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 09:33:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=Uy1bWDzzUjNHheCdpAPjZysnLxbaXN3ViGAvh+kooPw=;
-	b=h01Xn/OtXYF9E3/w/TaAZg0mCrmAbyEftmhhuWtaitqAJI1SWDjPqRHlomGA+JtqJd
-	+L0dFhQz84VCdU/Eb2zQjEYVi+Ux6pNnOxcWtR83x//usUMEjHdJsX0pyG1dPv6A5Vcm
-	+Z8pgkcwp+kfC77A3FMIaBcu072CKKXKcP5Og=
-Received: by 10.224.212.10 with SMTP id gq10mr9425766qab.75.1324488815247;
-	Wed, 21 Dec 2011 09:33:35 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.229.187.141 with HTTP; Wed, 21 Dec 2011 09:33:13 -0800 (PST)
-In-Reply-To: <4EF204E8.8020009@linux.intel.com>
-References: <cover.1324456294.git.dvhart@linux.intel.com>
-	<CABcZANmbKdn+dzftgQwNRN1ExYEUkhO906LJG8Pw0Cu+U0cRYg@mail.gmail.com>
-	<4EF204E8.8020009@linux.intel.com>
-From: Chris Larson <kergoth@gmail.com>
-Date: Wed, 21 Dec 2011 10:33:13 -0700
-Message-ID: <CABcZANmBvROnETAu6Zvvmxpbxc9NowwiRiiprY+pxwaAjf+mOQ@mail.gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05277E005A3
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 09:35:31 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pBLHZQj9012062;
+	Wed, 21 Dec 2011 17:35:26 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 11633-07; Wed, 21 Dec 2011 17:35:22 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pBLHZHcP012056
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 21 Dec 2011 17:35:18 GMT
+Message-ID: <1324488919.19860.9.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
 To: Darren Hart <dvhart@linux.intel.com>
+Date: Wed, 21 Dec 2011 17:35:19 +0000
+In-Reply-To: <4EF211C5.9040200@linux.intel.com>
+References: <1324458570-20804-1-git-send-email-dvhart@linux.intel.com>
+	<3df5dff75aa30bfc19324795dc8496b8dbb0291a.1324458376.git.dvhart@linux.intel.com>
+	<1324486785.18348.10.camel@ted> <4EF211C5.9040200@linux.intel.com>
+X-Mailer: Evolution 3.2.1- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [RFC PATCH 0/9] New distribution definition for poky-tiny
+Subject: Re: [PATCH] fri2: Add linux-yocto-tiny bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,53 +38,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2011 17:33:36 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 21 Dec 2011 17:35:37 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Wed, Dec 21, 2011 at 9:10 AM, Darren Hart <dvhart@linux.intel.com> wrote:
-> On 12/21/2011 07:52 AM, Chris Larson wrote:
->> On Wed, Dec 21, 2011 at 2:02 AM, Darren Hart <dvhart@linux.intel.com> wrote:
->>> For example, I could not discover a way to use
->>> oe_filter_out inside poky-tiny.conf to remove "keyboard" for MACHINE_FEATURES.
->>
->> This might be best handled via inclusion of a .inc which defines an
->
-> I assume you mean to include the .inc in task-core-boot?
+On Wed, 2011-12-21 at 09:05 -0800, Darren Hart wrote:
+> 
+> On 12/21/2011 08:59 AM, Richard Purdie wrote:
+> > On Wed, 2011-12-21 at 01:09 -0800, Darren Hart wrote:
+> >> Provide a bbappend for linux-yocto-tiny with support EFI, SATA, and the EG20T.
+> >> This includes EFI framebuffer and USB HID support which normally would be
+> >> omitted from a tiny kernel, but it is our only functional console as the serial
+> >> port is still non-functional.
+> >>
+> >> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+> >> ---
+> >>  .../linux/linux-yocto-tiny/defconfig               |  613 ++++++++++++++++++++
+> >>  .../linux/linux-yocto-tiny/eg20t.cfg               |   40 ++
+> >>  .../linux/linux-yocto-tiny/inforce.cfg             |   21 +
+> >>  .../recipes-kernel/linux/linux-yocto-tiny/sata.cfg |    7 +
+> >>  .../linux/linux-yocto-tiny/usbhid.cfg              |    9 +
+> >>  .../linux/linux-yocto-tiny_3.0.bbappend            |   13 +
+> >>  6 files changed, 703 insertions(+), 0 deletions(-)
+> >>  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/defconfig
+> >>  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/eg20t.cfg
+> >>  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/inforce.cfg
+> >>  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/sata.cfg
+> >>  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/usbhid.cfg
+> >>  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny_3.0.bbappend
+> > 
+> > I'd just note that if merged, this would make meta-fri2 depend on
+> > meta-tiny since we'd throw parsing errors if the .bbappend is present
+> > without the file its appending to.
+> > 
+> > We might want to consider this as an example in the tiny layer itself
+> > for that reason.
+> 
+> Hrm, good point. My goal was to eliminate meta-tiny altogether. I have
+> never built meta-intel without meta-yocto. Do we feel that dependency a
+> problem?
 
-If that works, sure, but that wasn't my intent. You can
-include/require a .inc from a .conf.
+I suggesting meta-dri2/meta-intel depending on meta-tiny is a problem.
+Where does meta-yocto come into this?
 
->> event handler or anonymous python function that removes it. The
->
-> I'm not familiar with adding event handlers, can you point me at an
-> example? In general, my concern is that whatever this mechanism is, it
-> shouldn't have to be poky-tiny aware: meaning it needs to glean the
-> knowledge that keymaps should not be added from something else. I
-> suppose this could be some DISTRO_FEATURE, but that is effectively what
-> I've already done in 5/9 "task-core-boot: Allow DISTRO to disable keymaps".
+Cheers,
 
-That seems reasonable. Event handlers are used in a number of places
-in the metadata, including base.bbclass :)
+Richard
 
-python do_some_stuff_to_the_config_metadata () {
-    if not isinstance(e, bb.event.ConfigParsed):
-        return
-
-    # do stuff
-}
-addhandler do_some_stuff_to_the_config_metadata
-
-
->> problem with the := + oe_filter_out method is that it forces an
->> immediate variable expansion right there, which can cause problems in
->> some cases.
->
-> Right. That and using it in a .conf file results in parsing errors. :-)
-
-:= is *technically* perfectly valid in a .conf file, as is
-oe_filter_out, but it's so sensitive to location as to be of limited
-usefulness. All the variables used by the var you're expanding would
-have to have been defined already as of that point in the config.
--- 
-Christopher Larson
 
