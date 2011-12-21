@@ -1,28 +1,31 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B8AAE0123C
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 08:49:58 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 21 Dec 2011 08:49:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="90045821"
-Received: from unknown (HELO envy.home) ([10.255.12.115])
-	by orsmga002.jf.intel.com with ESMTP; 21 Dec 2011 08:49:58 -0800
-Message-ID: <4EF20E24.8090901@linux.intel.com>
-Date: Wed, 21 Dec 2011 08:49:40 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
-MIME-Version: 1.0
-To: Bob Cochran <yocto@mindchasers.com>
-References: <4ECAF89E.1030505@mindchasers.com>
-	<4ECC2718.50008@linux.intel.com>	<4ECD4CF8.4020005@linux.intel.com>
-	<CAMKF1spQGcQM9NwTrHyntYMmZByS0ztkqUGUC6=3sZOztvqWBw@mail.gmail.com>
-	<4EEE4581.7070700@mindchasers.com>
-In-Reply-To: <4EEE4581.7070700@mindchasers.com>
-X-Enigmail-Version: 1.3.3
-Cc: yocto@yoctoproject.org
-Subject: Re: Atom netbook recommendation?
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2901E0123C
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 09:00:02 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pBLGxpTv011458;
+	Wed, 21 Dec 2011 16:59:51 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 10835-08; Wed, 21 Dec 2011 16:59:47 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pBLGxhSQ011452
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 21 Dec 2011 16:59:44 GMT
+Message-ID: <1324486785.18348.10.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Darren Hart <dvhart@linux.intel.com>
+Date: Wed, 21 Dec 2011 16:59:45 +0000
+In-Reply-To: <3df5dff75aa30bfc19324795dc8496b8dbb0291a.1324458376.git.dvhart@linux.intel.com>
+References: <1324458570-20804-1-git-send-email-dvhart@linux.intel.com>
+	<3df5dff75aa30bfc19324795dc8496b8dbb0291a.1324458376.git.dvhart@linux.intel.com>
+X-Mailer: Evolution 3.2.1- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH] fri2: Add linux-yocto-tiny bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,56 +37,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2011 16:49:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 21 Dec 2011 17:00:08 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-
-
-On 12/18/2011 11:56 AM, Bob Cochran wrote:
-> On 11/23/2011 02:51 PM, Khem Raj wrote:
->> On Wed, Nov 23, 2011 at 11:43 AM, Darren Hart<dvhart@linux.intel.com>  wrote:
->>> We also have things working on the Toshiba NB305. The atom-pc machine
->>>
->>
->> FWIW I have asus eepc here and it works great with yocto/oe-core/meta-intel
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
+On Wed, 2011-12-21 at 01:09 -0800, Darren Hart wrote:
+> Provide a bbappend for linux-yocto-tiny with support EFI, SATA, and the EG20T.
+> This includes EFI framebuffer and USB HID support which normally would be
+> omitted from a tiny kernel, but it is our only functional console as the serial
+> port is still non-functional.
 > 
-> Thanks for the feedback everyone.  I now have a dual core Atom N570 
-> netbook (Acer Aspire One model).
-> 
-> It didn't boot the hddimage off of a usb stick (SysLinux halted - I'll 
+> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+> ---
+>  .../linux/linux-yocto-tiny/defconfig               |  613 ++++++++++++++++++++
+>  .../linux/linux-yocto-tiny/eg20t.cfg               |   40 ++
+>  .../linux/linux-yocto-tiny/inforce.cfg             |   21 +
+>  .../recipes-kernel/linux/linux-yocto-tiny/sata.cfg |    7 +
+>  .../linux/linux-yocto-tiny/usbhid.cfg              |    9 +
+>  .../linux/linux-yocto-tiny_3.0.bbappend            |   13 +
+>  6 files changed, 703 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/defconfig
+>  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/eg20t.cfg
+>  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/inforce.cfg
+>  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/sata.cfg
+>  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/usbhid.cfg
+>  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny_3.0.bbappend
 
-This is likely due to a buggy BIOS. See the README.hardware section
-about formatting the disk as USBZIP format.
+I'd just note that if merged, this would make meta-fri2 depend on
+meta-tiny since we'd throw parsing errors if the .bbappend is present
+without the file its appending to.
 
-We hope to address this with a more robust live hddimg type in the future.
+We might want to consider this as an example in the tiny layer itself
+for that reason.
 
-> figure out why later), but I have been having fun booting modified yocto 
-> standard Linux images using grub.  I put a 2.5" 60 G OCZ SSD in it along 
-> with loading Ubuntu.  It can build poky minimal from scratch in a few 
-> hours and rebuilds the kernel fairly quick (should get downright good 
-> once I upgrade the RAM from 1G).   At this point, I'm having fun playing 
-> with the kernel and the initial ram disk with a custom init.
-> 
-> And the nice thing with the SSD installed is that it boots Ubuntu in a 
-> few seconds for when I want to make mods to my poky image.  It makes for 
-> a very cool little development system!
-> 
-> Bob
-> 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Cheers,
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Richard
+
 
