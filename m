@@ -1,36 +1,21 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36549E006DD
-	for <yocto@yoctoproject.org>; Tue, 20 Dec 2011 23:56:29 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by eekd49 with SMTP id d49so7979556eek.35
-	for <yocto@yoctoproject.org>; Tue, 20 Dec 2011 23:56:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=gOnm+iTu3WU1b9M1/bMaOMwhh+Dxr60fBWPSZurYatE=;
-	b=x0OwNrDqagTw+faWmLTTUIQ4gijIanjAnPAdp75sY1dUGkRCPtLsDsRxs6zjwfQGv6
-	1tPoTgvMnqRfQ3FHDBNuqtQ3Mx9YqkHWO1FVirRW9KRiSns3YI9yOJAzHeoGzfFq+FFp
-	JUp7unyMSZFb6FBXM2zR0nuvNCFU1rA7VJkFg=
-Received: by 10.14.48.194 with SMTP id v42mr2268311eeb.81.1324454187963;
-	Tue, 20 Dec 2011 23:56:27 -0800 (PST)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id z54sm17621649eeh.5.2011.12.20.23.56.26
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 20 Dec 2011 23:56:26 -0800 (PST)
-Date: Wed, 21 Dec 2011 08:56:25 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: nitin.a.kamble@intel.com
-Message-ID: <20111221075624.GC12791@jama.jama.net>
-References: <cover.1324452915.git.nitin.a.kamble@intel.com>
-	<6bd4afcd3f351bb92e2573d487b135c965fce0aa.1324452915.git.nitin.a.kamble@intel.com>
-MIME-Version: 1.0
-In-Reply-To: <6bd4afcd3f351bb92e2573d487b135c965fce0aa.1324452915.git.nitin.a.kamble@intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: [bernard 1/1] binutils-2.21: fix building on suse 11.4
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A15D6E0072A
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 01:03:52 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 21 Dec 2011 01:03:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104561634"
+Received: from unknown (HELO localhost) ([10.255.12.104])
+	by fmsmga002.fm.intel.com with ESMTP; 21 Dec 2011 01:03:51 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+	Yocto Project <yocto@yoctoproject.org>, raj.khem@gmail.com,
+	koen@dominion.thruhere.net, kergoth@gmail.com, elizabeth.flanagan@intel.com
+Date: Wed, 21 Dec 2011 01:02:46 -0800
+Message-Id: <cover.1324456294.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.6.4
+Subject: [RFC PATCH 0/9] New distribution definition for poky-tiny
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,122 +27,155 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2011 07:56:29 -0000
-X-Groupsio-MsgNum: 3910
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="YD3LsXFS42OYHhNZ"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 21 Dec 2011 09:03:52 -0000
 
---YD3LsXFS42OYHhNZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Poky-tiny defines a new distro policy for building tiny Linux images.
+Rather than create new image tasks and recipes, it reuses existing ones,
+modifying them as necessary. I believe it defines policy appropriate for
+the distribution, but I'd welcome feedback regarding the distro/image split.
+Please see th poky-tiny commit log for details on the policy goals.
 
-On Tue, Dec 20, 2011 at 11:37:03PM -0800, nitin.a.kamble@intel.com wrote:
-> From: Nitin Kamble <nitin@yocto-hm1.jf.intel.com>
->=20
-> x86_64 opensuse 11.4 has bintuils version 2.21, and when this
-> binutils_2.21 recipe is built for x86_64 target then, the invocation
-> of distro gcc fails with errors like this:
->=20
-> | /usr/lib64/gcc/x86_64-suse-linux/4.5/../../../../x86_64-suse-linux/bin/=
-as: symbol lookup error: /usr/lib64/gcc/x86_64-suse-linux/4.5/../../../../x=
-86_64-suse-linux/bin/as: undefined symbol: concat
-> | make[2]: *** [sysinfo.o] Error 1
->=20
-> The issue rootcaused as incompatible LD_LIBRARY_PATH while running the di=
-stro gcc.
->=20
-> This commit fixes the issue by clearing the LD_LIBRARY_PATH for distro gc=
-c (CC_FOR_BUILD)
->=20
-> This Fixes bug: [YOCTO #1833]
+In its current form, poky-tiny builds a qemux86 core-image-minimal image
+and kernel in 2.6 MB (compressed):
 
-FWIW: I see the same issue with binutils-2.22 and oe-core master when
-building qemux86-64 on gentoo.
+1.2M bzImage-qemux86.bin
+1.4M core-image-minimal-qemux86.cpio.gz
 
-> Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
-> ---
->  .../binutils/binutils-cross-canadian_2.21.bb       |    2 +-
->  .../binutils/binutils-crosssdk_2.21.bb             |    2 +-
->  meta/recipes-devtools/binutils/binutils.inc        |    2 +-
->  meta/recipes-devtools/binutils/binutils_2.21.bb    |    2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
->=20
-> diff --git a/meta/recipes-devtools/binutils/binutils-cross-canadian_2.21.=
-bb b/meta/recipes-devtools/binutils/binutils-cross-canadian_2.21.bb
-> index 7dad2a6..e91e7dc 100644
-> --- a/meta/recipes-devtools/binutils/binutils-cross-canadian_2.21.bb
-> +++ b/meta/recipes-devtools/binutils/binutils-cross-canadian_2.21.bb
-> @@ -1,3 +1,3 @@
->  require binutils_${PV}.bb
->  require binutils-cross-canadian.inc
-> -PR =3D "r0"
-> +PR =3D "r1"
-> diff --git a/meta/recipes-devtools/binutils/binutils-crosssdk_2.21.bb b/m=
-eta/recipes-devtools/binutils/binutils-crosssdk_2.21.bb
-> index 0d6efff..21289cd 100644
-> --- a/meta/recipes-devtools/binutils/binutils-crosssdk_2.21.bb
-> +++ b/meta/recipes-devtools/binutils/binutils-crosssdk_2.21.bb
-> @@ -4,7 +4,7 @@ inherit crosssdk
-> =20
->  PROVIDES =3D "virtual/${TARGET_PREFIX}binutils-crosssdk"
-> =20
-> -PR =3D "r0"
-> +PR =3D "r1"
-> =20
->  do_configure_prepend () {
->  	sed -i 's#/usr/local/lib /lib /usr/lib#${SDKPATHNATIVE}/lib ${SDKPATHNA=
-TIVE}/usr/lib /usr/local/lib /lib /usr/lib#' ${S}/ld/configure.tgt
-> diff --git a/meta/recipes-devtools/binutils/binutils.inc b/meta/recipes-d=
-evtools/binutils/binutils.inc
-> index d9e859e..1178e0c 100644
-> --- a/meta/recipes-devtools/binutils/binutils.inc
-> +++ b/meta/recipes-devtools/binutils/binutils.inc
-> @@ -71,7 +71,7 @@ export RANLIB_FOR_TARGET =3D "${TARGET_PREFIX}ranlib"
->  export CC_FOR_HOST =3D "${CCACHE}${HOST_PREFIX}gcc ${HOST_CC_ARCH}"
->  export CXX_FOR_HOST =3D "${CCACHE}${HOST_PREFIX}gcc ${HOST_CC_ARCH}"
-> =20
-> -export CC_FOR_BUILD =3D "${BUILD_CC}"
-> +export CC_FOR_BUILD =3D "LD_LIBRARY_PATH=3D ${BUILD_CC}"
->  export CPP_FOR_BUILD =3D "${BUILD_CPP}"
->  export CFLAGS_FOR_BUILD =3D "${BUILD_CFLAGS}"
-> =20
-> diff --git a/meta/recipes-devtools/binutils/binutils_2.21.bb b/meta/recip=
-es-devtools/binutils/binutils_2.21.bb
-> index 270c720..f34b69d 100644
-> --- a/meta/recipes-devtools/binutils/binutils_2.21.bb
-> +++ b/meta/recipes-devtools/binutils/binutils_2.21.bb
-> @@ -1,6 +1,6 @@
->  require binutils.inc
-> =20
-> -PR =3D "r0"
-> +PR =3D "r1"
-> =20
->  LIC_FILES_CHKSUM=3D"\
->      file://src-release;endline=3D17;md5=3D4830a9ef968f3b18dd5e9f2c00db2d=
-35\
-> --=20
-> 1.7.6.4
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+After mounting the rootfs:
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+$ sudo du -hs .
+3.4M    .
 
---YD3LsXFS42OYHhNZ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+$ sudo ~/bin/dirsize.py 25000
+[sudo] password for dvhart: 
+   2927998 .
+   1754686 ./lib
+   1022080 ./lib/libc-2.13.so
+    157124 ./lib/libm-2.13.so
+    119036 ./lib/ld-2.13.so
+     96128 ./lib/libpthread-2.13.so
+     91960 ./lib/libnsl-2.13.so
+     83748 ./lib/libresolv-2.13.so
+     46656 ./lib/libnss_files-2.13.so
+     34588 ./lib/libnss_compat-2.13.so
+     30624 ./lib/librt-2.13.so
+     26056 ./lib/libcrypt-2.13.so
+    549600 ./bin
+    549600 ./bin/busybox
+    531908 ./sbin
+    531908 ./sbin/ldconfig
+     71860 ./etc
+     28006 ./etc/init.d
+Displayed 2789508/2927998 bytes (95.27%)
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.18 (GNU/Linux)
+This image can be tested in qemu with:
+qemu-system-i386 -kernel /build/poky/qemux86/tmp/deploy/images/bzImage-qemux86.bin -append "console=ttyS0,115200 root=0800" -nographic /build/poky/qemux86/tmp/deploy/images/core-image-minimal-qemux86.ext2
 
-iEYEARECAAYFAk7xkSgACgkQN1Ujt2V2gBx9TACbBNaeXbgXZJGwrDGUqb4RReLp
-DxQAmwY3pcRre9zKkth5tkrp488c5II0
-=1lxj
------END PGP SIGNATURE-----
+This results in booting to a busybox shell:
+/bin/sh: can't access tty; job control turned off
+/ # 
 
---YD3LsXFS42OYHhNZ--
+This series includes two patches from others that are still pending inclusion,
+but are necessary to build poky-tiny images:
+o native.bbclass: Fix variable remapping coverage
+o license: Fix manifest conditional
+
+The linux-yocto-tiny recipe is a placeholder until the linux-yocto_3.2 recipes
+are ready for master. At that time, linux-yocto-tiny will drop all config
+fragments in favor of the to-be-in-tree versions and make use of a new
+yocto/standard/tiny/base branch. For now, this recipe allows us to build
+poky-tiny with a reasonably small kernel.
+
+Several of these patches are known to be suboptimal, but are included to allow
+for building and testing the series as well as to illicit feedback.  Many of
+these "hacks" could be avoided by defining MACHINE-tiny variants and creating a
+core-image-tiny recipe and a task-core-tiny task. I'd prefer to avoid all of
+those things if possible by making the existing infrastructure flexible enough
+to be used with poky-tiny. For example, I could not discover a way to use
+oe_filter_out inside poky-tiny.conf to remove "keyboard" for MACHINE_FEATURES.
+
+Finally, I appreciate that this series is a mix of patches destined for oe-core
+and poky. I felt it would be preferable to keep it all together for the RFC, and
+to CC those that I knew would be interested. The final request will be sent
+piecemeal through the appropriate channels.
+
+Thanks,
+
+Darren
+
+The following changes since commit 4648aadfe161d2e0ec51408f35fdf8996727bd22:
+
+  ui/crumbs/hobprefs: trigger a reparse after changing IMAGE_FSTYPES (2011-12-20 13:15:54 +0000)
+
+are available in the git repository at:
+  git://git.pokylinux.org/poky-contrib dvhart/tiny
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=dvhart/tiny
+
+Beth Flanagan (1):
+  license: Fix manifest conditional
+
+Darren Hart (7):
+  ncurses: Allow override of ENABLE_WIDEC
+  eglibc: Only add eglibc-utils to PACKAGES if wchar is supported
+  linux-yocto-tiny: New kernel recipe for poky-tiny distro (INCOMPLETE)
+  task-core-boot: Allow DISTRO to disable keymaps
+  distro: Factor out poky-common.inc from poky.conf
+  distro: Add poky-tiny distro definition
+  image_types: Ensure /init exists for cpio rootfs archives
+
+Richard Purdie (1):
+  native.bbclass: Fix variable remapping coverage
+
+ meta-yocto/conf/distro/poky-common.inc             |   55 ++
+ meta-yocto/conf/distro/poky-tiny.conf              |  104 ++++
+ meta-yocto/conf/distro/poky.conf                   |   53 +--
+ meta/classes/image_types.bbclass                   |   10 +-
+ meta/classes/license.bbclass                       |    4 +-
+ meta/classes/native.bbclass                        |    2 +-
+ meta/recipes-core/eglibc/eglibc-package.inc        |    6 +-
+ meta/recipes-core/ncurses/ncurses.inc              |    2 +-
+ meta/recipes-core/tasks/task-core-boot.bb          |    7 +-
+ meta/recipes-devtools/autoconf/autoconf.inc        |    2 +
+ meta/recipes-devtools/autoconf/autoconf_2.68.bb    |    8 -
+ meta/recipes-devtools/automake/automake_1.11.1.bb  |    4 +-
+ .../recipes-devtools/python/python-native_2.7.2.bb |    2 +
+ meta/recipes-gnome/gnome/gconf_3.2.3.bb            |    1 +
+ meta/recipes-kernel/linux/linux-yocto-tiny/ata.cfg |    9 +
+ .../recipes-kernel/linux/linux-yocto-tiny/core.cfg |   19 +
+ .../linux/linux-yocto-tiny/debug.cfg               |    5 +
+ .../linux/linux-yocto-tiny/devtmpfs.cfg            |    6 +
+ .../linux/linux-yocto-tiny/e1000.cfg               |    7 +
+ .../recipes-kernel/linux/linux-yocto-tiny/ext2.cfg |    1 +
+ .../recipes-kernel/linux/linux-yocto-tiny/ext3.cfg |    2 +
+ .../recipes-kernel/linux/linux-yocto-tiny/lzma.cfg |    3 +
+ meta/recipes-kernel/linux/linux-yocto-tiny/net.cfg |   26 +
+ .../linux/linux-yocto-tiny/qemux86/defconfig       |  613 ++++++++++++++++++++
+ .../linux/linux-yocto-tiny/ramfs.cfg               |    6 +
+ .../linux/linux-yocto-tiny/rtc-pc.cfg              |   13 +
+ .../linux/linux-yocto-tiny/serial.cfg              |    7 +
+ meta/recipes-kernel/linux/linux-yocto-tiny/smp.cfg |    7 +
+ meta/recipes-kernel/linux/linux-yocto-tiny_3.0.bb  |   36 ++
+ meta/recipes-support/boost/boost.inc               |    1 +
+ 30 files changed, 952 insertions(+), 69 deletions(-)
+ create mode 100644 meta-yocto/conf/distro/poky-common.inc
+ create mode 100644 meta-yocto/conf/distro/poky-tiny.conf
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/ata.cfg
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/core.cfg
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/debug.cfg
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/devtmpfs.cfg
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/e1000.cfg
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/ext2.cfg
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/ext3.cfg
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/lzma.cfg
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/net.cfg
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/qemux86/defconfig
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/ramfs.cfg
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/rtc-pc.cfg
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/serial.cfg
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny/smp.cfg
+ create mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny_3.0.bb
+
+-- 
+1.7.6.4
+
+
