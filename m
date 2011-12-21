@@ -1,57 +1,28 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64305E006DC
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 09:53:45 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 21 Dec 2011 09:53:44 -0800
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1B0AE00305
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 10:58:46 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 21 Dec 2011 10:58:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208,217";a="49470337"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by AZSMGA002.ch.intel.com with ESMTP; 21 Dec 2011 09:53:44 -0800
-Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 21 Dec 2011 09:53:43 -0800
-Received: from orsmsx102.amr.corp.intel.com ([169.254.1.40]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.103]) with mapi id
-	14.01.0355.002; Wed, 21 Dec 2011 09:53:42 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: 'Anders Darander' <anders@chargestorm.se>, "Barros Pena, Belen"
-	<belen.barros.pena@intel.com>, "Bodke, Kishore K"
-	<kishore.k.bodke@intel.com>,
-	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
-	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
-	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
-	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
-	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
-	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
-	<jpuhlman@gmail.com>, "Kooi, Koen" <k-kooi@ti.com>, "Kridner, Jason"
-	<jdk@ti.com>, "Li, Susie" <susie.li@intel.com>, "'Lieu.Ta@windriver.com'"
-	<'Lieu.Ta@windriver.com'>, "Lock, Joshua" <joshua.lock@intel.com>,
-	"'McCombe, Kevin'" <kevin.mccombe@windriver.com>, "Moeller, Thorsten"
-	<thorsten.moeller@intel.com>, "'morvek@mvista.com'" <'morvek@mvista.com'>, 
-	"Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>,
-	"'paul.anderson@windriver.com'" <'paul.anderson@windriver.com'>, "'Polk,
-	Jeffrey'" <jeff.polk@windriver.com>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "'Ranslam, Rob'" <Rob.Ranslam@windriver.com>,
-	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "'Ruff, Nithya'"
-	<Nithya.Ruff@windriver.com>, "Saxena, Rahul" <rahul.saxena@intel.com>, 
-	"Stewart, David C" <david.c.stewart@intel.com>, "Wang, Shane"
-	<shane.wang@intel.com>, "Wold, Saul" <saul.wold@intel.com>, "Yu, Ke"
-	<ke.yu@intel.com>, "Zanussi, Tom" <tom.zanussi@intel.com>, "Zhang, Jessica"
-	<jessica.zhang@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto Project 1.2 M1 release readiness meeting
-Thread-Index: Acy/6KOV2WQSGBBoQamt0PbcoKxQlA==
-Date: Wed, 21 Dec 2011 17:53:42 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A2579361F@ORSMSX102.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 21 Dec 2011 09:59:43 -0800
-Subject: Yocto Project 1.2 M1 release readiness meeting
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="88211606"
+Received: from unknown (HELO localhost) ([10.255.12.115])
+	by azsmga001.ch.intel.com with ESMTP; 21 Dec 2011 10:58:45 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+	Yocto Project <yocto@yoctoproject.org>, raj.khem@gmail.com,
+	koen@dominion.thruhere.net, kergoth@gmail.com,
+	elizabeth.flanagan@intel.com, martin.jansa@gmail.com,
+	Bruce Ashfield <bruce.ashfield@windriver.com>,
+	Tom Zanussi <tom.zanussi@intel.com>
+Date: Wed, 21 Dec 2011 10:58:09 -0800
+Message-Id: <87d56d9907a3ecd03e46d4fbca3c682a893133b6.1324493490.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.6.4
+In-Reply-To: <cover.1324493490.git.dvhart@linux.intel.com>
+References: <cover.1324493490.git.dvhart@linux.intel.com>
+In-Reply-To: <cover.1324493490.git.dvhart@linux.intel.com>
+References: <cover.1324493490.git.dvhart@linux.intel.com>
+Subject: [PATCH 1/9] native.bbclass: Fix variable remapping coverage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,199 +34,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2011 17:53:45 -0000
-X-Groupsio-MsgNum: 3955
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A2579361FORSMSX102amrcor_"
+X-List-Received-Date: Wed, 21 Dec 2011 18:58:47 -0000
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A2579361FORSMSX102amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-When: Thursday, December 22, 2011 9:00 AM-10:00 AM (UTC-08:00) Pacific Time=
- (US & Canada).
-Where: Bridge Info Enclosed
+When looking for RDEPENDS to process, bitbake iterates through PACKAGES
+*and* PN. Since native.bbclass sets PACKAGES to be empty, its pointless
+remapping the list of PACKAGES since this does nothing. There is a problem
+since *_${PN} are used by bitbake but not remapped by the native.bbclass
+class extension code.
 
-Note: The GMT offset above does not reflect daylight saving time adjustment=
-s.
+This changes the code to remap _${PN} in both expanded and unexpanded
+forms. We use the unexpanded form since d.expandkeys() has not been called
+at the point this code executes. Remapping the expanded form is belt and braces
+to cover any case where the unexpanded key form may not be present.
 
-*~*~*~*~*~*~*~*~*~*
+As a result of this, various surprising dependencies are uncovered
+and the patch rectifies those. These are real bugs since they're injecting
+unneeded (unremapped) dependencies into the dependency chain. Workarounds
+for this kind of problem in autoconf are removed.
 
-Agenda:
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ meta/classes/native.bbclass                        |    2 +-
+ meta/recipes-devtools/autoconf/autoconf.inc        |    2 ++
+ meta/recipes-devtools/autoconf/autoconf_2.68.bb    |    8 --------
+ meta/recipes-devtools/automake/automake_1.11.1.bb  |    4 ++--
+ .../recipes-devtools/python/python-native_2.7.2.bb |    2 ++
+ meta/recipes-gnome/gnome/gconf_3.2.3.bb            |    1 +
+ meta/recipes-support/boost/boost.inc               |    1 +
+ 7 files changed, 9 insertions(+), 11 deletions(-)
 
-- Go over release criteria for M1 release, address known issues.
-- Vote for M1 release
+diff --git a/meta/classes/native.bbclass b/meta/classes/native.bbclass
+index 49823d6..00196ba 100644
+--- a/meta/classes/native.bbclass
++++ b/meta/classes/native.bbclass
+@@ -127,7 +127,7 @@ python native_virtclass_handler () {
+         d.setVar(varname, " ".join(newdeps))
+ 
+     map_dependencies("DEPENDS", e.data)
+-    for pkg in (e.data.getVar("PACKAGES", True).split() + [""]):
++    for pkg in [e.data.getVar("PN", True), "", "${PN}"]:
+         map_dependencies("RDEPENDS", e.data, pkg)
+         map_dependencies("RRECOMMENDS", e.data, pkg)
+         map_dependencies("RSUGGESTS", e.data, pkg)
+diff --git a/meta/recipes-devtools/autoconf/autoconf.inc b/meta/recipes-devtools/autoconf/autoconf.inc
+index 08a1b02..1d0cf90 100644
+--- a/meta/recipes-devtools/autoconf/autoconf.inc
++++ b/meta/recipes-devtools/autoconf/autoconf.inc
+@@ -6,6 +6,8 @@ LICENSE = "GPLv3"
+ HOMEPAGE = "http://www.gnu.org/software/autoconf/"
+ SECTION = "devel"
+ DEPENDS += "m4-native"
++DEPENDS_virtclass-native = "m4-native gnu-config-native"
++DEPENDS_virtclass-nativesdk = "m4-nativesdk gnu-config-nativesdk"
+ RDEPENDS_${PN} = "m4 gnu-config"
+ 
+ SRC_URI = "${GNU_MIRROR}/autoconf/autoconf-${PV}.tar.bz2 \
+diff --git a/meta/recipes-devtools/autoconf/autoconf_2.68.bb b/meta/recipes-devtools/autoconf/autoconf_2.68.bb
+index 9028e83..84eb182 100644
+--- a/meta/recipes-devtools/autoconf/autoconf_2.68.bb
++++ b/meta/recipes-devtools/autoconf/autoconf_2.68.bb
+@@ -4,8 +4,6 @@ PR = "r4"
+ 
+ PARALLEL_MAKE = ""
+ 
+-DEPENDS += "m4-native"
+-RDEPENDS_${PN} = "m4 gnu-config"
+ LICENSE = "GPLv2 & GPLv3"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe \
+ 		    file://COPYINGv3;md5=d32239bcb673463ab874e80d47fae504"
+@@ -22,12 +20,6 @@ SRC_URI += "file://autoreconf-include.patch \
+ SRC_URI[md5sum] = "864d785215aa60d627c91fcb21b05b07"
+ SRC_URI[sha256sum] = "c491fb273fd6d4ca925e26ceed3d177920233c76d542b150ff35e571454332c8"
+ 
+-DEPENDS_virtclass-native = "m4-native gnu-config-native"
+-RDEPENDS_${PN}_virtclass-native = "m4-native gnu-config-native"
+-
+-DEPENDS_virtclass-nativesdk = "m4-nativesdk gnu-config-nativesdk"
+-RDEPENDS_${PN}_virtclass-nativesdk = "m4-nativesdk gnu-config-nativesdk"
+-
+ SRC_URI_append_virtclass-native = " file://fix_path_xtra.patch"
+ 
+ EXTRA_OECONF += "ac_cv_path_M4=m4"
+diff --git a/meta/recipes-devtools/automake/automake_1.11.1.bb b/meta/recipes-devtools/automake/automake_1.11.1.bb
+index ff8353f..6bffecf 100644
+--- a/meta/recipes-devtools/automake/automake_1.11.1.bb
++++ b/meta/recipes-devtools/automake/automake_1.11.1.bb
+@@ -3,7 +3,7 @@ LICENSE="GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe" 
+ DEPENDS_virtclass-native = "autoconf-native"
+ 
+-RDEPENDS_automake += "\
++RDEPENDS_${PN} += "\
+     autoconf \
+     perl \
+     perl-module-bytes \
+@@ -27,7 +27,7 @@ RDEPENDS_automake += "\
+     perl-module-text-parsewords \
+     perl-module-vars "
+ 
+-RDEPENDS_automake-native = "autoconf-native perl-native-runtime"
++RDEPENDS_${PN}_virtclass-native = "autoconf-native perl-native-runtime"
+ 
+ PATHFIXPATCH = "file://path_prog_fixes.patch"
+ PATHFIXPATCH_virtclass-native = ""
+diff --git a/meta/recipes-devtools/python/python-native_2.7.2.bb b/meta/recipes-devtools/python/python-native_2.7.2.bb
+index d036eca..10bfa6c 100644
+--- a/meta/recipes-devtools/python/python-native_2.7.2.bb
++++ b/meta/recipes-devtools/python/python-native_2.7.2.bb
+@@ -16,6 +16,8 @@ S = "${WORKDIR}/Python-${PV}"
+ 
+ inherit native
+ 
++RPROVIDES += "python-distutils-native python-compression-native python-textutils-native"
++
+ EXTRA_OEMAKE = '\
+   BUILD_SYS="" \
+   HOST_SYS="" \
+diff --git a/meta/recipes-gnome/gnome/gconf_3.2.3.bb b/meta/recipes-gnome/gnome/gconf_3.2.3.bb
+index 9d327fc..f7d3594 100644
+--- a/meta/recipes-gnome/gnome/gconf_3.2.3.bb
++++ b/meta/recipes-gnome/gnome/gconf_3.2.3.bb
+@@ -39,6 +39,7 @@ do_install_append() {
+ 
+ # disable dbus-x11 when x11 isn't in DISTRO_FEATURES
+ RDEPENDS_${PN} += "${@base_contains('DISTRO_FEATURES', 'x11', 'dbus-x11', '', d)}"
++RDEPENDS_${PN}_virtclass-native = ""
+ 
+ FILES_${PN} += "${libdir}/GConf/* \
+ 	        ${libdir}/gio/*/*.so \
+diff --git a/meta/recipes-support/boost/boost.inc b/meta/recipes-support/boost/boost.inc
+index aa577b3..fc417c9 100644
+--- a/meta/recipes-support/boost/boost.inc
++++ b/meta/recipes-support/boost/boost.inc
+@@ -74,6 +74,7 @@ FILES_${PN}-dev = "${includedir} ${libdir}/libboost_*.so ${libdir}/libboost_*.a"
+ # "boost" is a metapackage which pulls in all boost librabries
+ PACKAGES += "${PN}"
+ RRECOMMENDS_${PN} += "${BOOST_PACKAGES}"
++RRECOMMENDS_${PN}_virtclass-native = ""
+ ALLOW_EMPTY_${PN} = "1"
+ 
+ # to avoid GNU_HASH QA errors added LDFLAGS to ARCH; a little bit dirty but at least it works
+-- 
+1.7.6.4
 
-Thursday, December 22, 2011, 09:00 AM US Pacific Time
-916-356-2663, 8-356-2663, Bridge: 94, Passcode: 1031810
-Speed dialer: inteldialer://94,1031810 | Learn more<http://it.intel.com/pro=
-ducts/handhelds/speeddial.htm>
 
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A2579361FORSMSX102amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
-<div>When: Thursday, December 22, 2011 9:00 AM-10:00 AM (UTC-08:00) Pacific=
- Time (US &amp; Canada).</div>
-<div>Where: Bridge Info Enclosed</div>
-<div>&nbsp;</div>
-<div>Note: The GMT offset above does not reflect daylight saving time adjus=
-tments.</div>
-<div>&nbsp;</div>
-<div>*~*~*~*~*~*~*~*~*~*</div>
-<div>&nbsp;</div>
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>- Go over release criteria for M1 release, address known issues.</div>
-<div>- Vote for M1 release </div>
-<div>&nbsp;</div>
-<div><font face=3D"Verdana" size=3D"2" color=3D"#444444"><span style=3D"fon=
-t-size:8.5pt;"><b>Thursday, December 22, 2011, 09:00 AM US Pacific Time
-<br>
-
-</b>916-356-2663, 8-356-2663, Bridge: 94, Passcode: 1031810<br>
-
-Speed dialer: inteldialer://94,1031810 | <a href=3D"http://it.intel.com/pro=
-ducts/handhelds/speeddial.htm"><font color=3D"blue"><u>Learn more</u></font=
-></a></span></font></div>
-<div>&nbsp;</div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A2579361FORSMSX102amrcor_
-Content-Type: text/calendar; charset="utf-8"; method=REQUEST
-Content-Transfer-Encoding: base64
-
-QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
-ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpQYWNpZmlj
-IFN0YW5kYXJkIFRpbWUNCkJFR0lOOlNUQU5EQVJEDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0K
-VFpPRkZTRVRGUk9NOi0wNzAwDQpUWk9GRlNFVFRPOi0wODAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJ
-TlRFUlZBTD0xO0JZREFZPTFTVTtCWU1PTlRIPTExDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJ
-R0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOi0wODAwDQpUWk9GRlNF
-VFRPOi0wNzAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPTJTVTtCWU1PTlRI
-PTMNCkVORDpEQVlMSUdIVA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpPUkdBTklaRVI7
-Q049IkxpdSwgU29uZyI6TUFJTFRPOnNvbmcubGl1QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
-RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0nQW5kZXJz
-IERhDQogcmFuZGVyJzpNQUlMVE86YW5kZXJzQGNoYXJnZXN0b3JtLnNlDQpBVFRFTkRFRTtST0xF
-PVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJCYXJy
-b3MgUGVuDQogYSwgQmVsZW4iOk1BSUxUTzpiZWxlbi5iYXJyb3MucGVuYUBpbnRlbC5jb20NCkFU
-VEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRS
-VUU7Q049IkJvZGtlLCBLaXMNCiBob3JlIEsiOk1BSUxUTzpraXNob3JlLmsuYm9ka2VAaW50ZWwu
-Y29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047
-UlNWUD1UUlVFO0NOPSdCcnVjZSBBc2gNCiBmaWVsZCc6TUFJTFRPOmJydWNlLmFzaGZpZWxkQHdp
-bmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURT
-LUFDVElPTjtSU1ZQPVRSVUU7Q049J0RhbmllbCBDYQ0KIHVjaHknOk1BSUxUTzpkY2F1Y2h5QG12
-aXN0YS5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
-VElPTjtSU1ZQPVRSVUU7Q049IidkZVZyaWVzLCANCiBBbGV4JyI6TUFJTFRPOkFsZXguZGVWcmll
-c0B3aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
-RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSInRGl4b24sIEJyDQogYWQnIjpNQUlMVE86QnJhZF9E
-aXhvbkBtZW50b3IuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
-RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJEbXl0cml5ZW5rDQogbywgRGVueXMiOk1BSUxUTzpk
-ZW55c0B0aS5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURT
-LUFDVElPTjtSU1ZQPVRSVUU7Q049IkVyd2F5LCBUcmENCiBjZXkgTSI6TUFJTFRPOnRyYWNleS5t
-LmVyd2F5QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9
-TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iRmxhbmFnYW4sIA0KIEVsaXphYmV0aCI6TUFJTFRP
-OmVsaXphYmV0aC5mbGFuYWdhbkBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQ
-QU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IkhhcnQsIERhcnINCiBlbiI6
-TUFJTFRPOmRhcnJlbi5oYXJ0QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
-TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iJ0hhdGxlLCBNYQ0KIHJrJyI6
-TUFJTFRPOm1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElD
-SVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0nSmVyZW15IFB1DQogaGxt
-YW4nOk1BSUxUTzpqcHVobG1hbkBnbWFpbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQ
-QU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049Iktvb2ksIEtvZW4iDQogOk1B
-SUxUTzprLWtvb2lAdGkuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RB
-VD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJLcmlkbmVyLCBKDQogYXNvbiI6TUFJTFRPOmpk
-a0B0aS5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
-VElPTjtSU1ZQPVRSVUU7Q049IkxpLCBTdXNpZSI6DQogTUFJTFRPOnN1c2llLmxpQGludGVsLmNv
-bQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JT
-VlA9VFJVRTtDTj0nTGlldS5UYUB3DQogaW5kcml2ZXIuY29tJzpNQUlMVE86J0xpZXUuVGFAd2lu
-ZHJpdmVyLmNvbScNCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURT
-LUFDVElPTjtSU1ZQPVRSVUU7Q049IkxvY2ssIEpvc2gNCiB1YSI6TUFJTFRPOmpvc2h1YS5sb2Nr
-QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMt
-QUNUSU9OO1JTVlA9VFJVRTtDTj0iJ01jQ29tYmUsIA0KIEtldmluJyI6TUFJTFRPOmtldmluLm1j
-Y29tYmVAd2luZHJpdmVyLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNU
-QVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iTW9lbGxlciwgVA0KIGhvcnN0ZW4iOk1BSUxU
-Tzp0aG9yc3Rlbi5tb2VsbGVyQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
-TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0nbW9ydmVrQG12DQogaXN0YS5j
-b20nOk1BSUxUTzonbW9ydmVrQG12aXN0YS5jb20nDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJ
-UEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJPc2llci1taXhvDQogbiwg
-SmVmZnJleSI6TUFJTFRPOmplZmZyZXkub3NpZXItbWl4b25AaW50ZWwuY29tDQpBVFRFTkRFRTtS
-T0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdw
-YXVsLmFuZGUNCiByc29uQHdpbmRyaXZlci5jb20nOk1BSUxUTzoncGF1bC5hbmRlcnNvbkB3aW5k
-cml2ZXIuY29tJw0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMt
-QUNUSU9OO1JTVlA9VFJVRTtDTj0iJ1BvbGssIEplZg0KIGZyZXknIjpNQUlMVE86amVmZi5wb2xr
-QHdpbmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5F
-RURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlB1cmRpZSwgUmkNCiBjaGFyZCI6TUFJTFRPOnJpY2hh
-cmQucHVyZGllQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNU
-QVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iJ1JhbnNsYW0sIA0KIFJvYiciOk1BSUxUTzpS
-b2IuUmFuc2xhbUB3aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQ
-QVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJSaWZlbmJhcmssDQogIFNjb3R0IE0i
-Ok1BSUxUTzpzY290dC5tLnJpZmVuYmFya0BpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBB
-UlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IidSdWZmLCBOaXQN
-CiBoeWEnIjpNQUlMVE86Tml0aHlhLlJ1ZmZAd2luZHJpdmVyLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
-RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iU2F4ZW5h
-LCBSYQ0KIGh1bCI6TUFJTFRPOnJhaHVsLnNheGVuYUBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9
-UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlN0ZXdh
-cnQsIEQNCiBhdmlkIEMiOk1BSUxUTzpkYXZpZC5jLnN0ZXdhcnRAaW50ZWwuY29tDQpBVFRFTkRF
-RTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NO
-PSJXYW5nLCBTaGFuDQogZSI6TUFJTFRPOnNoYW5lLndhbmdAaW50ZWwuY29tDQpBVFRFTkRFRTtS
-T0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJX
-b2xkLCBTYXVsIg0KIDpNQUlMVE86c2F1bC53b2xkQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
-RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iWXUsIEtl
-IjpNQUkNCiBMVE86a2UueXVAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFO
-VDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJaYW51c3NpLCBUDQogb20iOk1B
-SUxUTzp0b20uemFudXNzaUBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5U
-O1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlpoYW5nLCBKZXMNCiBzaWNhIjpN
-QUlMVE86amVzc2ljYS56aGFuZ0BpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQ
-QU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049eW9jdG9AeW9jdA0KIG9wcm9q
-ZWN0Lm9yZzpNQUlMVE86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KQVRURU5ERUU7Uk9MRT1PUFQt
-UEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iTXVlbGxlciwg
-Ug0KIG9iZXJ0IjpNQUlMVE86cm9iZXJ0Lm11ZWxsZXJAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xF
-PU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJBcmNl
-IE1vcmVuDQogbywgQWJyYWhhbSI6TUFJTFRPOmFicmFoYW0uYXJjZS5tb3Jlbm9AaW50ZWwuY29t
-DQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNW
-UD1UUlVFO0NOPSJIdWRzb24sIFNlDQogYW4iOk1BSUxUTzpTZWFuX0h1ZHNvbkBtZW50b3IuY29t
-DQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNW
-UD1UUlVFO0NOPSJGbGFuYWdhbiwgDQogRWxpemFiZXRoIjpNQUlMVE86ZWxpemFiZXRoLmZsYW5h
-Z2FuQGludGVsLmNvbQ0KREVTQ1JJUFRJT047TEFOR1VBR0U9ZW4tVVM6V2hlbjogVGh1cnNkYXlc
-LCBEZWNlbWJlciAyMlwsIDIwMTEgOTowMCBBTS0xMDowDQogMCBBTSAoVVRDLTA4OjAwKSBQYWNp
-ZmljIFRpbWUgKFVTICYgQ2FuYWRhKS5cbldoZXJlOiBCcmlkZ2UgSW5mbyBFbmNsb3NlZFwNCiBu
-XG5Ob3RlOiBUaGUgR01UIG9mZnNldCBhYm92ZSBkb2VzIG5vdCByZWZsZWN0IGRheWxpZ2h0IHNh
-dmluZyB0aW1lIGFkanVzdA0KIG1lbnRzLlxuXG4qfip+Kn4qfip+Kn4qfip+Kn4qXG5cbkFnZW5k
-YTpcblxuLSBHbyBvdmVyIHJlbGVhc2UgY3JpdGVyaWEgZm9yDQogIE0xIHJlbGVhc2VcLCBhZGRy
-ZXNzIGtub3duIGlzc3Vlcy5cbi0gVm90ZSBmb3IgTTEgcmVsZWFzZVxuXG5UaHVyc2RheVwsIEQN
-CiBlY2VtYmVyIDIyXCwgMjAxMVwsIDA5OjAwIEFNIFVTIFBhY2lmaWMgVGltZVxuOTE2LTM1Ni0y
-NjYzXCwgOC0zNTYtMjY2M1wsIA0KIEJyaWRnZTogOTRcLCBQYXNzY29kZTogMTAzMTgxMFxuU3Bl
-ZWQgZGlhbGVyOiBpbnRlbGRpYWxlcjovLzk0XCwxMDMxODEwIHwgDQogTGVhcm4gbW9yZTxodHRw
-Oi8vaXQuaW50ZWwuY29tL3Byb2R1Y3RzL2hhbmRoZWxkcy9zcGVlZGRpYWwuaHRtPlxuXG4NClNV
-TU1BUlk7TEFOR1VBR0U9ZW4tVVM6WW9jdG8gUHJvamVjdCAxLjIgTTEgcmVsZWFzZSByZWFkaW5l
-c3MgbWVldGluZw0KRFRTVEFSVDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDExMTIyMlQw
-OTAwMDANCkRURU5EO1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTExMjIyVDEwMDAwMA0K
-VUlEOjA0MDAwMDAwODIwMEUwMDA3NEM1QjcxMDFBODJFMDA4MDAwMDAwMDBFMEVBRDA3QkE1QkZD
-QzAxMDAwMDAwMDAwMDAwMDAwDQogMDEwMDAwMDAwQjgxOTc1N0ZGRjExRTQ0MEI1RTIzRDE2Q0Q4
-QUNBM0INCkNMQVNTOlBVQkxJQw0KUFJJT1JJVFk6NQ0KRFRTVEFNUDoyMDExMTIyMVQxNzUzNDFa
-DQpUUkFOU1A6T1BBUVVFDQpTVEFUVVM6Q09ORklSTUVEDQpTRVFVRU5DRToyDQpMT0NBVElPTjtM
-QU5HVUFHRT1lbi1VUzpCcmlkZ2UgSW5mbyBFbmNsb3NlZA0KWC1NSUNST1NPRlQtQ0RPLUFQUFQt
-U0VRVUVOQ0U6Mg0KWC1NSUNST1NPRlQtQ0RPLU9XTkVSQVBQVElEOjE0OTA0MDUzMzkNClgtTUlD
-Uk9TT0ZULUNETy1CVVNZU1RBVFVTOlRFTlRBVElWRQ0KWC1NSUNST1NPRlQtQ0RPLUlOVEVOREVE
-U1RBVFVTOkJVU1kNClgtTUlDUk9TT0ZULUNETy1BTExEQVlFVkVOVDpGQUxTRQ0KWC1NSUNST1NP
-RlQtQ0RPLUlNUE9SVEFOQ0U6MQ0KWC1NSUNST1NPRlQtQ0RPLUlOU1RUWVBFOjANClgtTUlDUk9T
-T0ZULURJU0FMTE9XLUNPVU5URVI6RkFMU0UNCkJFR0lOOlZBTEFSTQ0KQUNUSU9OOkRJU1BMQVkN
-CkRFU0NSSVBUSU9OOlJFTUlOREVSDQpUUklHR0VSO1JFTEFURUQ9U1RBUlQ6LVBUMTVNDQpFTkQ6
-VkFMQVJNDQpFTkQ6VkVWRU5UDQpFTkQ6VkNBTEVOREFSDQo=
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A2579361FORSMSX102amrcor_--
