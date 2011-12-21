@@ -1,27 +1,20 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E8EDE00305
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 11:52:58 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 21 Dec 2011 11:52:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="98934923"
-Received: from unknown (HELO envy.home) ([10.255.12.115])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Dec 2011 11:52:57 -0800
-Message-ID: <4EF23907.5020105@linux.intel.com>
-Date: Wed, 21 Dec 2011 11:52:39 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89299E0030D
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 14:40:46 -0800 (PST)
+Received: from mail-gx0-f180.google.com ([209.85.161.180])
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 21 Dec 2011 14:40:45 -0800
+Received: by ggnq1 with SMTP id q1so5692289ggn.25
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 14:40:44 -0800 (PST)
 MIME-Version: 1.0
-To: Chris Larson <kergoth@gmail.com>
-References: <cover.1324493490.git.dvhart@linux.intel.com>
-	<87d56d9907a3ecd03e46d4fbca3c682a893133b6.1324493490.git.dvhart@linux.intel.com>
-	<CABcZANkN1n28ZhSfeecx+voUmhe=8-Z_t3qQ_Xy5nMR=xMVbig@mail.gmail.com>
-In-Reply-To: <CABcZANkN1n28ZhSfeecx+voUmhe=8-Z_t3qQ_Xy5nMR=xMVbig@mail.gmail.com>
-X-Enigmail-Version: 1.3.3
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH 1/9] native.bbclass: Fix variable remapping coverage
+Received: by 10.50.88.170 with SMTP id bh10mr5869281igb.8.1324507244331; Wed,
+	21 Dec 2011 14:40:44 -0800 (PST)
+Received: by 10.231.15.11 with HTTP; Wed, 21 Dec 2011 14:40:44 -0800 (PST)
+Date: Wed, 21 Dec 2011 14:40:44 -0800
+Message-ID: <CAPhnLPDvuA64Ga640Np7gBsLT7WZM7id1QiUx82m6zs0z_Oirg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+Subject: Yocto Autobuilder Trivia Challenge for Dec 20th
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,38 +26,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2011 19:52:58 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 21 Dec 2011 22:40:46 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
+All,
 
+If you pay attention to the autobuilder failure email announcement
+list at yocto-builds@yoctoproject.org you'll notice the trivia
+question at the bottom of the email. This months winner is David
+Stewart who found 22 different countries. Richard Purdie got the same
+answer, but David got his answer in 24 hours prior. One T-Shirt from
+ThinkGeek is on it's way to David.  The next trivia challenge update
+will be sometime in the new year. Thanks for those who've
+participated. Subscribe to the build status email list (failures only)
+at https://lists.yoctoproject.org/listinfo/yocto-builds to
+participate.
 
-On 12/21/2011 11:26 AM, Chris Larson wrote:
-> On Wed, Dec 21, 2011 at 11:58 AM, Darren Hart <dvhart@linux.intel.com> wrote:
->> diff --git a/meta/recipes-devtools/autoconf/autoconf.inc b/meta/recipes-devtools/autoconf/autoconf.inc
->> index 08a1b02..1d0cf90 100644
->> --- a/meta/recipes-devtools/autoconf/autoconf.inc
->> +++ b/meta/recipes-devtools/autoconf/autoconf.inc
->> @@ -6,6 +6,8 @@ LICENSE = "GPLv3"
->>  HOMEPAGE = "http://www.gnu.org/software/autoconf/"
->>  SECTION = "devel"
->>  DEPENDS += "m4-native"
->> +DEPENDS_virtclass-native = "m4-native gnu-config-native"
->> +DEPENDS_virtclass-nativesdk = "m4-nativesdk gnu-config-nativesdk"
-> 
-> Is this bit needed? If so, I'm not seeing a description of this change
-> in the commit message, unless I'm missing something.
+--=20
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
-It appears to me that Richard just moved these from autoconf_2.68.bb to
-autoconf.inc unchanged. The [R]DEPENDS stuff in the recipe may have been
-added to work around the issue this patch addresses, and the DEPENDS was
-redundant. After removing that and the RDEPENDS* (which are now handled
-properly by native.bbclass) moving the remaining 2 DEPENDS_virtuclass*
-assignments into the .inc along with the only remaining DEPENDS makes
-sense to me.
+------------------
+FAQ:
+------------------
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+General:
+Q: What's the point?
+A: To get people interested in the state of the build. To make
+alerting people to build failure's a little more fun. It makes my life
+and the maintainers life easier if people help keep on top of build
+failures.
+
+Q: What OS/software does the autobuilder infrastructure run?
+A: openSuSE 11.4 with a slightly modified HEAD of yocto-autobuilder
+master. I'm looking at doing this all via VMs to help host testing of
+Yocto.
+
+Q: Who is sponsoring this?
+A: I am. It makes my life easier (not to mention the maintainers) if
+people are paying attention to the autobuilder. We're beginning to see
+the benefits of people paying attention. (Most of the past 20 builds
+were green as of when I wrote this).
+
+Q: I don't want to get spammed. What other ways can I participate?
+A: In trivia? Sorry, email only. But, if you're interested in
+autobuilder status (and you should be!), you can join
+#yoctobuildstatus on Freenode or view
+autobuilder.yoctoproject.org:8010
+
+Q: These failure messages are too informative/not informative
+enough/import critique.
+A:  I'm working on helping the autobuilder grab more informative
+failure messages. Stay tuned.
+
+Rules:
+Q: Who can play?
+A: Anyone who joins the list and responds to a question. With the
+exception of me. Because that just wouldn't be fair.
+
+Q: I want free stuff! When do you do this?
+A: I randomize it. Sometimes I'll do it for a week. Sometimes a month.
+Hard questions/challenges tend to have a longer run time. I never
+announce when I do it. It's whenever I get the urge/think of a
+particularly hard/easy/silly/dumb question.
+
+Q: I can Google the answers, right?
+A: Can you? I can't exactly stop you, right? Although some of the
+questions won't be googleable. I do code challenges from time to time.
+I've been known to ask for haikus.
+
+Q: Can I submit a quiz?
+A: Sure. But you can't answer your own.
+
+Q: Who judges the answers?
+A: I do. My judgement is final, but I'm pretty fair.
+
+Q: I want to appeal your judgement!
+A: Sure. Send an email to root@192.0.0.1 with the subject line
+"UNFAIR!" I'll get back to you if I decide to honor your appeal.
+
+Q: I live in Antarctica. Why is my prize taking so long to get to me?
+A: Penguins probably stole your package. They're notorious at doing
+that. Seriously, I'll always try to get something to the winners, but
+if you live in some weird inaccessible place, or someplace no one will
+deliver to, or someplace I can't send to because of some legal
+restrictions, well... you're out of luck unless I see you at a
+conference.
+
+Answers:
+Yocto Autobuilder Trivia/Challenge for Dec 5th-Dec 20th
+Quiz: The Americas have at have at least four monarchs represented
+as some form of head of state. Canada is one. Name the other countries
+the monarch. Note: Exclude pretenders and any not commonly recognized.
+
+Answer from David Stewart:
+-----------------
+Antigua and Barbuda
+Bahamas
+Barbados
+Belize
+Canada
+Jamaica
+Saint Kitts and Nevis
+Saint Lucia
+Saint Vincent and the Grenadines
+Bermuda =96 (UK)
+BVI =96 (UK)
+Cayman Islands =96 (UK)
+Montserrat =96 (UK)
+South Georgia and the South Sandwich Islands =96 (UK)
+Turks and Caicos  =96 (UK)
+Greenland =96 (Denmark)
+Aruba =96 (Netherlands)
+Bonaire =96 (Netherlands)
+Curacao =96 (Netherlands)
+Saba =96 (Netherlands)
+Sint Eustatius =96 (Netherlands)
+Sint Maarten =96 (Netherlands)
 
