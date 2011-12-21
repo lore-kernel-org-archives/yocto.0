@@ -1,13 +1,13 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B71C0E01359
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4C84E012F3
 	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 10:58:53 -0800 (PST)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 21 Dec 2011 10:58:51 -0800
+	by fmsmga101.fm.intel.com with ESMTP; 21 Dec 2011 10:58:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104752411"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104752419"
 Received: from unknown (HELO localhost) ([10.255.12.115])
-	by fmsmga002.fm.intel.com with ESMTP; 21 Dec 2011 10:58:51 -0800
+	by fmsmga002.fm.intel.com with ESMTP; 21 Dec 2011 10:58:52 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 To: Richard Purdie <richard.purdie@linuxfoundation.org>,
 	Yocto Project <yocto@yoctoproject.org>, raj.khem@gmail.com,
@@ -15,14 +15,14 @@ To: Richard Purdie <richard.purdie@linuxfoundation.org>,
 	elizabeth.flanagan@intel.com, martin.jansa@gmail.com,
 	Bruce Ashfield <bruce.ashfield@windriver.com>,
 	Tom Zanussi <tom.zanussi@intel.com>
-Date: Wed, 21 Dec 2011 10:58:16 -0800
-Message-Id: <f3021e644af4610a67b5a915c601d2779e3991cd.1324493490.git.dvhart@linux.intel.com>
+Date: Wed, 21 Dec 2011 10:58:17 -0800
+Message-Id: <6789064b96b0ee7c7dab67791c3a561b69fc6cda.1324493490.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.6.4
 In-Reply-To: <cover.1324493490.git.dvhart@linux.intel.com>
 References: <cover.1324493490.git.dvhart@linux.intel.com>
 In-Reply-To: <cover.1324493490.git.dvhart@linux.intel.com>
 References: <cover.1324493490.git.dvhart@linux.intel.com>
-Subject: [PATCH 8/9] license: Fix manifest conditional
+Subject: [PATCH 9/9] image_types: Ensure /init exists for cpio rootfs archives
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,34 +36,41 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Wed, 21 Dec 2011 18:58:53 -0000
 
-From: Beth Flanagan <elizabeth.flanagan@intel.com>
+NOTE: I'm looking for a more appropriate mechanism.
 
-The manifest conditionals COPY_LIC_MANIFEST and COPY_LIC_DIRS
-were returning true due to missing quotes in the bash test. This
-made images larger than expected.
+In order for the kernel to accept an initramfs as a rootfs,
+it must have /init - even if it is an empty file. Touch /init
+to ensure it exists for cpio and cpio.gz image types.
 
-Signed-off-by: Beth Flanagan <elizabeth.flanagan@intel.com>
+When used with initrd and rootfs=/dev/ram0, this allows the
+cpio and cpio.gz images to be used as the rootfs.
+
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- meta/classes/license.bbclass |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+ meta/classes/image_types.bbclass |   10 ++++++++--
+ 1 files changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/meta/classes/license.bbclass b/meta/classes/license.bbclass
-index 6e82bd9..d351b5a 100644
---- a/meta/classes/license.bbclass
-+++ b/meta/classes/license.bbclass
-@@ -110,10 +110,10 @@ license_create_manifest() {
-     # if you are concerned about license compliance 
-     # and delivery this should cover all your bases
+diff --git a/meta/classes/image_types.bbclass b/meta/classes/image_types.bbclass
+index 489fbe1..f83aaad 100644
+--- a/meta/classes/image_types.bbclass
++++ b/meta/classes/image_types.bbclass
+@@ -110,8 +110,14 @@ IMAGE_CMD_tar = "cd ${IMAGE_ROOTFS} && tar -cvf ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME
+ IMAGE_CMD_tar.gz = "cd ${IMAGE_ROOTFS} && tar -zcvf ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.tar.gz ."
+ IMAGE_CMD_tar.bz2 = "cd ${IMAGE_ROOTFS} && tar -jcvf ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.tar.bz2 ."
+ IMAGE_CMD_tar.xz = "cd ${IMAGE_ROOTFS} && tar --xz -cvf ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.tar.xz ."
+-IMAGE_CMD_cpio = "cd ${IMAGE_ROOTFS} && (find . | cpio -o -H newc >${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.cpio)"
+-IMAGE_CMD_cpio.gz = "cd ${IMAGE_ROOTFS} && (find . | cpio -o -H newc | gzip -c -9 >${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.cpio.gz)"
++IMAGE_CMD_cpio () {
++	touch ${IMAGE_ROOTFS}/init
++	cd ${IMAGE_ROOTFS} && (find . | cpio -o -H newc >${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.cpio)
++}
++IMAGE_CMD_cpio.gz () {
++	touch ${IMAGE_ROOTFS}/init
++	cd ${IMAGE_ROOTFS} && (find . | cpio -o -H newc | gzip -c -9 >${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.cpio.gz)
++}
+ IMAGE_CMD_cpio.xz = "type cpio >/dev/null; cd ${IMAGE_ROOTFS} && (find . | cpio -o -H newc | xz -c ${XZ_COMPRESSION_LEVEL} --check=${XZ_INTEGRITY_CHECK} > ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.cpio.xz) ${EXTRA_IMAGECMD}"
+ IMAGE_CMD_cpio.lzma = "type cpio >/dev/null; cd ${IMAGE_ROOTFS} && (find . | cpio -o -H newc | xz --format=lzma -c ${XZ_COMPRESSION_LEVEL} --check=${XZ_INTEGRITY_CHECK} >${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.cpio.lzma) ${EXTRA_IMAGECMD}"
  
--    if [ -n ${COPY_LIC_MANIFEST} ]; then
-+    if [ -n "${COPY_LIC_MANIFEST}" ]; then
-         mkdir -p ${IMAGE_ROOTFS}/usr/share/common-licenses/
-         cp ${LICENSE_DIRECTORY}/${IMAGE_NAME}/license.manifest ${IMAGE_ROOTFS}/usr/share/common-licenses/license.manifest
--        if [ -n ${COPY_LIC_DIRS} ]; then
-+        if [ -n "${COPY_LIC_DIRS}" ]; then
-             for pkg in ${INSTALLED_PKGS}; do
-                 mkdir -p ${IMAGE_ROOTFS}/usr/share/common-licenses/${pkg}
-                 for lic in `ls ${LICENSE_DIRECTORY}/${pkged_pn}`; do
 -- 
 1.7.6.4
 
