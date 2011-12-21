@@ -1,28 +1,29 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4C84E012F3
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 10:58:53 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 21 Dec 2011 10:58:52 -0800
+Return-Path: <darren.hart@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3251E00305
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 11:21:56 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 21 Dec 2011 11:21:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104752419"
-Received: from unknown (HELO localhost) ([10.255.12.115])
-	by fmsmga002.fm.intel.com with ESMTP; 21 Dec 2011 10:58:52 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
-	Yocto Project <yocto@yoctoproject.org>, raj.khem@gmail.com,
-	koen@dominion.thruhere.net, kergoth@gmail.com,
-	elizabeth.flanagan@intel.com, martin.jansa@gmail.com,
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="49501595"
+Received: from unknown (HELO envy.home) ([10.255.12.115])
+	by AZSMGA002.ch.intel.com with ESMTP; 21 Dec 2011 11:21:55 -0800
+Message-ID: <4EF231C1.7060209@intel.com>
+Date: Wed, 21 Dec 2011 11:21:37 -0800
+From: Darren Hart <darren.hart@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
+MIME-Version: 1.0
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, 
+	Yocto Project <yocto@yoctoproject.org>,
+	raj.khem@gmail.com, koen@dominion.thruhere.net, kergoth@gmail.com, 
+	elizabeth.flanagan@intel.com, martin.jansa@gmail.com, 
 	Bruce Ashfield <bruce.ashfield@windriver.com>,
 	Tom Zanussi <tom.zanussi@intel.com>
-Date: Wed, 21 Dec 2011 10:58:17 -0800
-Message-Id: <6789064b96b0ee7c7dab67791c3a561b69fc6cda.1324493490.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.6.4
-In-Reply-To: <cover.1324493490.git.dvhart@linux.intel.com>
 References: <cover.1324493490.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1324493490.git.dvhart@linux.intel.com>
-References: <cover.1324493490.git.dvhart@linux.intel.com>
-Subject: [PATCH 9/9] image_types: Ensure /init exists for cpio rootfs archives
+	<7efa92333bfb6fb2eb58f1403b9e61ebd7455522.1324493490.git.dvhart@linux.intel.com>
+In-Reply-To: <7efa92333bfb6fb2eb58f1403b9e61ebd7455522.1324493490.git.dvhart@linux.intel.com>
+Subject: Re: [PATCH 6/9] distro: Add POKY_DEFAULT_EXTRA_R* variables
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,44 +35,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2011 18:58:53 -0000
+X-List-Received-Date: Wed, 21 Dec 2011 19:21:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-NOTE: I'm looking for a more appropriate mechanism.
+On 12/21/2011 10:58 AM, Darren Hart wrote:
+> Allow the reuse of poky.conf by distro definitions wanting to remove
+> content by introducting POKY_DEFAULT_EXTRA_R*. These are appended
+> to the corresponding DISTRO_EXTRA_R* variables and can be overriden
+> by distro configs that "require poky.conf".
+> 
+> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+> ---
+>  meta-yocto/conf/distro/poky.conf |    8 ++++++--
+>  1 files changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
+> index 80d4e47..43945be 100644
+> --- a/meta-yocto/conf/distro/poky.conf
+> +++ b/meta-yocto/conf/distro/poky.conf
+> @@ -24,8 +24,12 @@ SDKPATH = "/opt/${DISTRO}/${SDK_VERSION}"
+>  
+>  EXTRAOPKGCONFIG = "poky-feed-config-opkg"
+>  
+> -DISTRO_EXTRA_RDEPENDS += "task-core-boot"
+> -DISTRO_EXTRA_RRECOMMENDS += "kernel-module-af-packet"
+> +# Override these in poky based distros to modify DISTRO_EXTRA_R*
+> +POKY_DEFAULT_EXTRA_RDEPENDS = "task-core-boot"
+> +POKY_DEFAULT_EXTRA_RRECOMMENDS = "kernel-module-af-packet"
+> +
+> +DISTRO_EXTRA_RDEPENDS += ${POKY_DEFAULT_EXTRA_RDEPENDS}
+> +DISTRO_EXTRA_RRECOMMENDS += ${POKY_DEFAULT_EXTRA_RRECOMMENDS}
 
-In order for the kernel to accept an initramfs as a rootfs,
-it must have /init - even if it is an empty file. Touch /init
-to ensure it exists for cpio and cpio.gz image types.
+Doh, -ENOQUOTING. Fixed in the dvhart/tiny-v2 contrib branch.
 
-When used with initrd and rootfs=/dev/ram0, this allows the
-cpio and cpio.gz images to be used as the rootfs.
+>  
+>  POKYQEMUDEPS = "${@base_contains("INCOMPATIBLE_LICENSE", "GPLv3", "", "qemu-config",d)}"
+>  DISTRO_EXTRA_RDEPENDS_append_qemuarm = " ${POKYQEMUDEPS}"
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
----
- meta/classes/image_types.bbclass |   10 ++++++++--
- 1 files changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/meta/classes/image_types.bbclass b/meta/classes/image_types.bbclass
-index 489fbe1..f83aaad 100644
---- a/meta/classes/image_types.bbclass
-+++ b/meta/classes/image_types.bbclass
-@@ -110,8 +110,14 @@ IMAGE_CMD_tar = "cd ${IMAGE_ROOTFS} && tar -cvf ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME
- IMAGE_CMD_tar.gz = "cd ${IMAGE_ROOTFS} && tar -zcvf ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.tar.gz ."
- IMAGE_CMD_tar.bz2 = "cd ${IMAGE_ROOTFS} && tar -jcvf ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.tar.bz2 ."
- IMAGE_CMD_tar.xz = "cd ${IMAGE_ROOTFS} && tar --xz -cvf ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.tar.xz ."
--IMAGE_CMD_cpio = "cd ${IMAGE_ROOTFS} && (find . | cpio -o -H newc >${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.cpio)"
--IMAGE_CMD_cpio.gz = "cd ${IMAGE_ROOTFS} && (find . | cpio -o -H newc | gzip -c -9 >${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.cpio.gz)"
-+IMAGE_CMD_cpio () {
-+	touch ${IMAGE_ROOTFS}/init
-+	cd ${IMAGE_ROOTFS} && (find . | cpio -o -H newc >${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.cpio)
-+}
-+IMAGE_CMD_cpio.gz () {
-+	touch ${IMAGE_ROOTFS}/init
-+	cd ${IMAGE_ROOTFS} && (find . | cpio -o -H newc | gzip -c -9 >${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.cpio.gz)
-+}
- IMAGE_CMD_cpio.xz = "type cpio >/dev/null; cd ${IMAGE_ROOTFS} && (find . | cpio -o -H newc | xz -c ${XZ_COMPRESSION_LEVEL} --check=${XZ_INTEGRITY_CHECK} > ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.cpio.xz) ${EXTRA_IMAGECMD}"
- IMAGE_CMD_cpio.lzma = "type cpio >/dev/null; cd ${IMAGE_ROOTFS} && (find . | cpio -o -H newc | xz --format=lzma -c ${XZ_COMPRESSION_LEVEL} --check=${XZ_INTEGRITY_CHECK} >${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.cpio.lzma) ${EXTRA_IMAGECMD}"
- 
 -- 
-1.7.6.4
-
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
