@@ -1,28 +1,57 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3B75E006DE
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 09:58:08 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 21 Dec 2011 09:57:58 -0800
+Return-Path: <song.liu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64305E006DC
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 09:53:45 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 21 Dec 2011 09:53:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="89013570"
-Received: from unknown (HELO envy.home) ([10.255.12.115])
-	by orsmga001.jf.intel.com with ESMTP; 21 Dec 2011 09:57:58 -0800
-Message-ID: <4EF21E14.2010302@linux.intel.com>
-Date: Wed, 21 Dec 2011 09:57:40 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208,217";a="49470337"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by AZSMGA002.ch.intel.com with ESMTP; 21 Dec 2011 09:53:44 -0800
+Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 21 Dec 2011 09:53:43 -0800
+Received: from orsmsx102.amr.corp.intel.com ([169.254.1.40]) by
+	ORSMSX105.amr.corp.intel.com ([169.254.4.103]) with mapi id
+	14.01.0355.002; Wed, 21 Dec 2011 09:53:42 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: 'Anders Darander' <anders@chargestorm.se>, "Barros Pena, Belen"
+	<belen.barros.pena@intel.com>, "Bodke, Kishore K"
+	<kishore.k.bodke@intel.com>,
+	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
+	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
+	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
+	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
+	<jpuhlman@gmail.com>, "Kooi, Koen" <k-kooi@ti.com>, "Kridner, Jason"
+	<jdk@ti.com>, "Li, Susie" <susie.li@intel.com>, "'Lieu.Ta@windriver.com'"
+	<'Lieu.Ta@windriver.com'>, "Lock, Joshua" <joshua.lock@intel.com>,
+	"'McCombe, Kevin'" <kevin.mccombe@windriver.com>, "Moeller, Thorsten"
+	<thorsten.moeller@intel.com>, "'morvek@mvista.com'" <'morvek@mvista.com'>, 
+	"Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>,
+	"'paul.anderson@windriver.com'" <'paul.anderson@windriver.com'>, "'Polk,
+	Jeffrey'" <jeff.polk@windriver.com>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "'Ranslam, Rob'" <Rob.Ranslam@windriver.com>,
+	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "'Ruff, Nithya'"
+	<Nithya.Ruff@windriver.com>, "Saxena, Rahul" <rahul.saxena@intel.com>, 
+	"Stewart, David C" <david.c.stewart@intel.com>, "Wang, Shane"
+	<shane.wang@intel.com>, "Wold, Saul" <saul.wold@intel.com>, "Yu, Ke"
+	<ke.yu@intel.com>, "Zanussi, Tom" <tom.zanussi@intel.com>, "Zhang, Jessica"
+	<jessica.zhang@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto Project 1.2 M1 release readiness meeting
+Thread-Index: Acy/6KOV2WQSGBBoQamt0PbcoKxQlA==
+Date: Wed, 21 Dec 2011 17:53:42 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A2579361F@ORSMSX102.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-References: <cover.1324456294.git.dvhart@linux.intel.com>
-	<64ce10cdc685f9f5c0288df4bd0ab276711148d6.1324456294.git.dvhart@linux.intel.com>
-	<1324484918.18348.7.camel@ted> <4EF20DBB.6040200@linux.intel.com>
-	<4EF21124.2050501@linux.intel.com> <1324488661.19860.8.camel@ted>
-In-Reply-To: <1324488661.19860.8.camel@ted>
-X-Enigmail-Version: 1.3.3
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH 6/9] distro: Factor out poky-common.inc from poky.conf
+X-Mailman-Approved-At: Wed, 21 Dec 2011 09:59:43 -0800
+Subject: Yocto Project 1.2 M1 release readiness meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,107 +63,199 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2011 17:58:09 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 21 Dec 2011 17:53:45 -0000
+X-Groupsio-MsgNum: 3955
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A2579361FORSMSX102amrcor_"
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A2579361FORSMSX102amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+When: Thursday, December 22, 2011 9:00 AM-10:00 AM (UTC-08:00) Pacific Time=
+ (US & Canada).
+Where: Bridge Info Enclosed
+
+Note: The GMT offset above does not reflect daylight saving time adjustment=
+s.
+
+*~*~*~*~*~*~*~*~*~*
+
+Agenda:
+
+- Go over release criteria for M1 release, address known issues.
+- Vote for M1 release
+
+Thursday, December 22, 2011, 09:00 AM US Pacific Time
+916-356-2663, 8-356-2663, Bridge: 94, Passcode: 1031810
+Speed dialer: inteldialer://94,1031810 | Learn more<http://it.intel.com/pro=
+ducts/handhelds/speeddial.htm>
 
 
+--_000_7E680CB2A76BB8438D08CF13C09FC53A2579361FORSMSX102amrcor_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/21/2011 09:31 AM, Richard Purdie wrote:
-> On Wed, 2011-12-21 at 09:02 -0800, Darren Hart wrote:
->>
->> On 12/21/2011 08:47 AM, Darren Hart wrote:
->>>
->>>
->>> On 12/21/2011 08:28 AM, Richard Purdie wrote:
->>>> On Wed, 2011-12-21 at 01:02 -0800, Darren Hart wrote:
->>>>> Prepare to add additional poky distro variants by factoring out
->>>>> assignments common to all poky* distros into poky-common.inc. Things
->>>>> like the naming schemes, mirrors, etc. are common, while dependencies
->>>>> and other things impacting image generation should be distro specific.
->>>>>
->>>>> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
->>>>
->>>> Why doesn't something like:
->>>>
->>>> """
->>>> $meta-yocto/conf/distro$ cat poky-lsb.conf 
->>>> require conf/distro/poky.conf
->>>>
->>>> DISTRO = "poky-lsb"
->>>> DISTROOVERRIDES = "poky:linuxstdbase"
->>>> """
->>>>
->>>> work?
->>>>
->>>> Effectively the above takes poky but then customises it...
->>>
->>> I seem to recall something about this being harder with tiny as it
->>> removes things rather than just extending. But I can't put recall
->>> exactly what the issue was (or if there was one). I shall try it this
->>> way if you prefer this approach. I felt the .inc approach provided a
->>> more explicit building block mechanism which seemed more intuitive and
->>> less prone to accidental inclusion. But, I don't feel strongly one way
->>> or the other.
->>
->> Aha, now I remember. Consider things like the following, defined in
->> poky.conf:
->>
->> DISTRO_FEATURES_append = " largefile opengl"
->>
->> This one, not so bad, I can easily override it.
-> 
-> Right, I'd expect you are totally overriding DISTRO_FEATURES anyway.
-> 
->> PREFERRED_VERSION_linux-yocto ?= "2.6.37+git%"
->> PREFERRED_VERSION_linux-yocto_qemux86 ?= "3.0%"
->> PREFERRED_VERSION_linux-yocto_qemux86-64 ?= "3.0%"
->> PREFERRED_VERSION_linux-yocto_qemuarm ?= "3.0%"
->> PREFERRED_VERSION_linux-yocto_qemumips ?= "3.0%"
->> PREFERRED_VERSION_linux-yocto_qemuppc ?= "3.0%"
->>
->>
->> All the above I could override.... but I'd rather be able to use the
->> default without having to override them. This pollutes my distro config
->> space unnecessarily in my opinion.
-> 
-> Right now you need to override these things, in future I suspect you're
-> going to want to share them when tiny becomes compatible with the
-> default kernel. This is why I feel the line you've drawn over what to
-> put into the .inc is a little arbitrary and why its a bad idea.
-> 
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
+<div>When: Thursday, December 22, 2011 9:00 AM-10:00 AM (UTC-08:00) Pacific=
+ Time (US &amp; Canada).</div>
+<div>Where: Bridge Info Enclosed</div>
+<div>&nbsp;</div>
+<div>Note: The GMT offset above does not reflect daylight saving time adjus=
+tments.</div>
+<div>&nbsp;</div>
+<div>*~*~*~*~*~*~*~*~*~*</div>
+<div>&nbsp;</div>
+<div>Agenda:</div>
+<div>&nbsp;</div>
+<div>- Go over release criteria for M1 release, address known issues.</div>
+<div>- Vote for M1 release </div>
+<div>&nbsp;</div>
+<div><font face=3D"Verdana" size=3D"2" color=3D"#444444"><span style=3D"fon=
+t-size:8.5pt;"><b>Thursday, December 22, 2011, 09:00 AM US Pacific Time
+<br>
 
-tiny won't become compatible with the default kernel. linux-yocto-tiny
-will continue to exist in order to specify the KMACHINE and KBRANCH and
-possibly some other things. Much in the same way the linux-yocto-rt
-recipe does. They all use the same repository, they just prepare the
-sources differently enough to warrant specific recipes. So poky-tiny
-will continue to specify the PREFERRED_PROVIDER_virtual/kernel. And now
-that I think about it, that means the above assignments don't affect it
-at all as they are referring to linux-yocto only.
+</b>916-356-2663, 8-356-2663, Bridge: 94, Passcode: 1031810<br>
 
->> DISTRO_EXTRA_RRECOMMENDS += "kernel-module-af-packet"
->>
->> Things like this are the kicker. I don't know of a way to remove just
->> what poky.conf appended to a variable, and not wipe out the rest of the
->> variable.
-> 
-> So can we just change poky.conf to do:
-> 
-> POKYDEFAULTRECOMMENDS = "kernel-module-af-packet
-> DISTRO_EXTRA_RRECOMMENDS += "${POKYDEFAULTRECOMMENDS}"
-> 
-> and then you can change POKYDEFAULTRECOMMENDS to ""?
+Speed dialer: inteldialer://94,1031810 | <a href=3D"http://it.intel.com/pro=
+ducts/handhelds/speeddial.htm"><font color=3D"blue"><u>Learn more</u></font=
+></a></span></font></div>
+<div>&nbsp;</div>
+</span></font>
+</body>
+</html>
 
-OK. I'll give it a shot. My only concern is that we get a lot of these
-sorts of things and then the .inc makes more sense in my mind. As to the
-line drawn, it wasn't really arbitrary, the idea was if it was likely to
-be the same for all poky distro definitions, it went in the inc. If
-things changes in the future, they can get shuffled around.
+--_000_7E680CB2A76BB8438D08CF13C09FC53A2579361FORSMSX102amrcor_
+Content-Type: text/calendar; charset="utf-8"; method=REQUEST
+Content-Transfer-Encoding: base64
 
+QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
+ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpQYWNpZmlj
+IFN0YW5kYXJkIFRpbWUNCkJFR0lOOlNUQU5EQVJEDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0K
+VFpPRkZTRVRGUk9NOi0wNzAwDQpUWk9GRlNFVFRPOi0wODAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJ
+TlRFUlZBTD0xO0JZREFZPTFTVTtCWU1PTlRIPTExDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJ
+R0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOi0wODAwDQpUWk9GRlNF
+VFRPOi0wNzAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPTJTVTtCWU1PTlRI
+PTMNCkVORDpEQVlMSUdIVA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpPUkdBTklaRVI7
+Q049IkxpdSwgU29uZyI6TUFJTFRPOnNvbmcubGl1QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
+RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0nQW5kZXJz
+IERhDQogcmFuZGVyJzpNQUlMVE86YW5kZXJzQGNoYXJnZXN0b3JtLnNlDQpBVFRFTkRFRTtST0xF
+PVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJCYXJy
+b3MgUGVuDQogYSwgQmVsZW4iOk1BSUxUTzpiZWxlbi5iYXJyb3MucGVuYUBpbnRlbC5jb20NCkFU
+VEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRS
+VUU7Q049IkJvZGtlLCBLaXMNCiBob3JlIEsiOk1BSUxUTzpraXNob3JlLmsuYm9ka2VAaW50ZWwu
+Y29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047
+UlNWUD1UUlVFO0NOPSdCcnVjZSBBc2gNCiBmaWVsZCc6TUFJTFRPOmJydWNlLmFzaGZpZWxkQHdp
+bmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURT
+LUFDVElPTjtSU1ZQPVRSVUU7Q049J0RhbmllbCBDYQ0KIHVjaHknOk1BSUxUTzpkY2F1Y2h5QG12
+aXN0YS5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
+VElPTjtSU1ZQPVRSVUU7Q049IidkZVZyaWVzLCANCiBBbGV4JyI6TUFJTFRPOkFsZXguZGVWcmll
+c0B3aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
+RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSInRGl4b24sIEJyDQogYWQnIjpNQUlMVE86QnJhZF9E
+aXhvbkBtZW50b3IuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
+RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJEbXl0cml5ZW5rDQogbywgRGVueXMiOk1BSUxUTzpk
+ZW55c0B0aS5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURT
+LUFDVElPTjtSU1ZQPVRSVUU7Q049IkVyd2F5LCBUcmENCiBjZXkgTSI6TUFJTFRPOnRyYWNleS5t
+LmVyd2F5QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9
+TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iRmxhbmFnYW4sIA0KIEVsaXphYmV0aCI6TUFJTFRP
+OmVsaXphYmV0aC5mbGFuYWdhbkBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQ
+QU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IkhhcnQsIERhcnINCiBlbiI6
+TUFJTFRPOmRhcnJlbi5oYXJ0QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
+TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iJ0hhdGxlLCBNYQ0KIHJrJyI6
+TUFJTFRPOm1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElD
+SVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0nSmVyZW15IFB1DQogaGxt
+YW4nOk1BSUxUTzpqcHVobG1hbkBnbWFpbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQ
+QU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049Iktvb2ksIEtvZW4iDQogOk1B
+SUxUTzprLWtvb2lAdGkuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RB
+VD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJLcmlkbmVyLCBKDQogYXNvbiI6TUFJTFRPOmpk
+a0B0aS5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
+VElPTjtSU1ZQPVRSVUU7Q049IkxpLCBTdXNpZSI6DQogTUFJTFRPOnN1c2llLmxpQGludGVsLmNv
+bQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JT
+VlA9VFJVRTtDTj0nTGlldS5UYUB3DQogaW5kcml2ZXIuY29tJzpNQUlMVE86J0xpZXUuVGFAd2lu
+ZHJpdmVyLmNvbScNCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURT
+LUFDVElPTjtSU1ZQPVRSVUU7Q049IkxvY2ssIEpvc2gNCiB1YSI6TUFJTFRPOmpvc2h1YS5sb2Nr
+QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMt
+QUNUSU9OO1JTVlA9VFJVRTtDTj0iJ01jQ29tYmUsIA0KIEtldmluJyI6TUFJTFRPOmtldmluLm1j
+Y29tYmVAd2luZHJpdmVyLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNU
+QVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iTW9lbGxlciwgVA0KIGhvcnN0ZW4iOk1BSUxU
+Tzp0aG9yc3Rlbi5tb2VsbGVyQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
+TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0nbW9ydmVrQG12DQogaXN0YS5j
+b20nOk1BSUxUTzonbW9ydmVrQG12aXN0YS5jb20nDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJ
+UEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJPc2llci1taXhvDQogbiwg
+SmVmZnJleSI6TUFJTFRPOmplZmZyZXkub3NpZXItbWl4b25AaW50ZWwuY29tDQpBVFRFTkRFRTtS
+T0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdw
+YXVsLmFuZGUNCiByc29uQHdpbmRyaXZlci5jb20nOk1BSUxUTzoncGF1bC5hbmRlcnNvbkB3aW5k
+cml2ZXIuY29tJw0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMt
+QUNUSU9OO1JTVlA9VFJVRTtDTj0iJ1BvbGssIEplZg0KIGZyZXknIjpNQUlMVE86amVmZi5wb2xr
+QHdpbmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5F
+RURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlB1cmRpZSwgUmkNCiBjaGFyZCI6TUFJTFRPOnJpY2hh
+cmQucHVyZGllQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNU
+QVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iJ1JhbnNsYW0sIA0KIFJvYiciOk1BSUxUTzpS
+b2IuUmFuc2xhbUB3aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQ
+QVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJSaWZlbmJhcmssDQogIFNjb3R0IE0i
+Ok1BSUxUTzpzY290dC5tLnJpZmVuYmFya0BpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBB
+UlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IidSdWZmLCBOaXQN
+CiBoeWEnIjpNQUlMVE86Tml0aHlhLlJ1ZmZAd2luZHJpdmVyLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
+RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iU2F4ZW5h
+LCBSYQ0KIGh1bCI6TUFJTFRPOnJhaHVsLnNheGVuYUBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9
+UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlN0ZXdh
+cnQsIEQNCiBhdmlkIEMiOk1BSUxUTzpkYXZpZC5jLnN0ZXdhcnRAaW50ZWwuY29tDQpBVFRFTkRF
+RTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NO
+PSJXYW5nLCBTaGFuDQogZSI6TUFJTFRPOnNoYW5lLndhbmdAaW50ZWwuY29tDQpBVFRFTkRFRTtS
+T0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJX
+b2xkLCBTYXVsIg0KIDpNQUlMVE86c2F1bC53b2xkQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
+RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iWXUsIEtl
+IjpNQUkNCiBMVE86a2UueXVAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFO
+VDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJaYW51c3NpLCBUDQogb20iOk1B
+SUxUTzp0b20uemFudXNzaUBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5U
+O1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlpoYW5nLCBKZXMNCiBzaWNhIjpN
+QUlMVE86amVzc2ljYS56aGFuZ0BpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQ
+QU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049eW9jdG9AeW9jdA0KIG9wcm9q
+ZWN0Lm9yZzpNQUlMVE86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KQVRURU5ERUU7Uk9MRT1PUFQt
+UEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iTXVlbGxlciwg
+Ug0KIG9iZXJ0IjpNQUlMVE86cm9iZXJ0Lm11ZWxsZXJAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xF
+PU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJBcmNl
+IE1vcmVuDQogbywgQWJyYWhhbSI6TUFJTFRPOmFicmFoYW0uYXJjZS5tb3Jlbm9AaW50ZWwuY29t
+DQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNW
+UD1UUlVFO0NOPSJIdWRzb24sIFNlDQogYW4iOk1BSUxUTzpTZWFuX0h1ZHNvbkBtZW50b3IuY29t
+DQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNW
+UD1UUlVFO0NOPSJGbGFuYWdhbiwgDQogRWxpemFiZXRoIjpNQUlMVE86ZWxpemFiZXRoLmZsYW5h
+Z2FuQGludGVsLmNvbQ0KREVTQ1JJUFRJT047TEFOR1VBR0U9ZW4tVVM6V2hlbjogVGh1cnNkYXlc
+LCBEZWNlbWJlciAyMlwsIDIwMTEgOTowMCBBTS0xMDowDQogMCBBTSAoVVRDLTA4OjAwKSBQYWNp
+ZmljIFRpbWUgKFVTICYgQ2FuYWRhKS5cbldoZXJlOiBCcmlkZ2UgSW5mbyBFbmNsb3NlZFwNCiBu
+XG5Ob3RlOiBUaGUgR01UIG9mZnNldCBhYm92ZSBkb2VzIG5vdCByZWZsZWN0IGRheWxpZ2h0IHNh
+dmluZyB0aW1lIGFkanVzdA0KIG1lbnRzLlxuXG4qfip+Kn4qfip+Kn4qfip+Kn4qXG5cbkFnZW5k
+YTpcblxuLSBHbyBvdmVyIHJlbGVhc2UgY3JpdGVyaWEgZm9yDQogIE0xIHJlbGVhc2VcLCBhZGRy
+ZXNzIGtub3duIGlzc3Vlcy5cbi0gVm90ZSBmb3IgTTEgcmVsZWFzZVxuXG5UaHVyc2RheVwsIEQN
+CiBlY2VtYmVyIDIyXCwgMjAxMVwsIDA5OjAwIEFNIFVTIFBhY2lmaWMgVGltZVxuOTE2LTM1Ni0y
+NjYzXCwgOC0zNTYtMjY2M1wsIA0KIEJyaWRnZTogOTRcLCBQYXNzY29kZTogMTAzMTgxMFxuU3Bl
+ZWQgZGlhbGVyOiBpbnRlbGRpYWxlcjovLzk0XCwxMDMxODEwIHwgDQogTGVhcm4gbW9yZTxodHRw
+Oi8vaXQuaW50ZWwuY29tL3Byb2R1Y3RzL2hhbmRoZWxkcy9zcGVlZGRpYWwuaHRtPlxuXG4NClNV
+TU1BUlk7TEFOR1VBR0U9ZW4tVVM6WW9jdG8gUHJvamVjdCAxLjIgTTEgcmVsZWFzZSByZWFkaW5l
+c3MgbWVldGluZw0KRFRTVEFSVDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDExMTIyMlQw
+OTAwMDANCkRURU5EO1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTExMjIyVDEwMDAwMA0K
+VUlEOjA0MDAwMDAwODIwMEUwMDA3NEM1QjcxMDFBODJFMDA4MDAwMDAwMDBFMEVBRDA3QkE1QkZD
+QzAxMDAwMDAwMDAwMDAwMDAwDQogMDEwMDAwMDAwQjgxOTc1N0ZGRjExRTQ0MEI1RTIzRDE2Q0Q4
+QUNBM0INCkNMQVNTOlBVQkxJQw0KUFJJT1JJVFk6NQ0KRFRTVEFNUDoyMDExMTIyMVQxNzUzNDFa
+DQpUUkFOU1A6T1BBUVVFDQpTVEFUVVM6Q09ORklSTUVEDQpTRVFVRU5DRToyDQpMT0NBVElPTjtM
+QU5HVUFHRT1lbi1VUzpCcmlkZ2UgSW5mbyBFbmNsb3NlZA0KWC1NSUNST1NPRlQtQ0RPLUFQUFQt
+U0VRVUVOQ0U6Mg0KWC1NSUNST1NPRlQtQ0RPLU9XTkVSQVBQVElEOjE0OTA0MDUzMzkNClgtTUlD
+Uk9TT0ZULUNETy1CVVNZU1RBVFVTOlRFTlRBVElWRQ0KWC1NSUNST1NPRlQtQ0RPLUlOVEVOREVE
+U1RBVFVTOkJVU1kNClgtTUlDUk9TT0ZULUNETy1BTExEQVlFVkVOVDpGQUxTRQ0KWC1NSUNST1NP
+RlQtQ0RPLUlNUE9SVEFOQ0U6MQ0KWC1NSUNST1NPRlQtQ0RPLUlOU1RUWVBFOjANClgtTUlDUk9T
+T0ZULURJU0FMTE9XLUNPVU5URVI6RkFMU0UNCkJFR0lOOlZBTEFSTQ0KQUNUSU9OOkRJU1BMQVkN
+CkRFU0NSSVBUSU9OOlJFTUlOREVSDQpUUklHR0VSO1JFTEFURUQ9U1RBUlQ6LVBUMTVNDQpFTkQ6
+VkFMQVJNDQpFTkQ6VkVWRU5UDQpFTkQ6VkNBTEVOREFSDQo=
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
-
+--_000_7E680CB2A76BB8438D08CF13C09FC53A2579361FORSMSX102amrcor_--
