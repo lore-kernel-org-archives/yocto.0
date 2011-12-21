@@ -1,31 +1,27 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2901E0123C
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 09:00:02 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pBLGxpTv011458;
-	Wed, 21 Dec 2011 16:59:51 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 10835-08; Wed, 21 Dec 2011 16:59:47 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id pBLGxhSQ011452
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 21 Dec 2011 16:59:44 GMT
-Message-ID: <1324486785.18348.10.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Darren Hart <dvhart@linux.intel.com>
-Date: Wed, 21 Dec 2011 16:59:45 +0000
-In-Reply-To: <3df5dff75aa30bfc19324795dc8496b8dbb0291a.1324458376.git.dvhart@linux.intel.com>
-References: <1324458570-20804-1-git-send-email-dvhart@linux.intel.com>
-	<3df5dff75aa30bfc19324795dc8496b8dbb0291a.1324458376.git.dvhart@linux.intel.com>
-X-Mailer: Evolution 3.2.1- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB1FEE0123C
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 09:04:14 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 21 Dec 2011 09:02:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="88172852"
+Received: from unknown (HELO envy.home) ([10.255.12.115])
+	by azsmga001.ch.intel.com with ESMTP; 21 Dec 2011 09:02:46 -0800
+Message-ID: <4EF21124.2050501@linux.intel.com>
+Date: Wed, 21 Dec 2011 09:02:28 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
+MIME-Version: 1.0
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+References: <cover.1324456294.git.dvhart@linux.intel.com>
+	<64ce10cdc685f9f5c0288df4bd0ab276711148d6.1324456294.git.dvhart@linux.intel.com>
+	<1324484918.18348.7.camel@ted> <4EF20DBB.6040200@linux.intel.com>
+In-Reply-To: <4EF20DBB.6040200@linux.intel.com>
+X-Enigmail-Version: 1.3.3
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH] fri2: Add linux-yocto-tiny bbappend
+Subject: Re: [PATCH 6/9] distro: Factor out poky-common.inc from poky.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,41 +33,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2011 17:00:08 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 21 Dec 2011 17:04:15 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2011-12-21 at 01:09 -0800, Darren Hart wrote:
-> Provide a bbappend for linux-yocto-tiny with support EFI, SATA, and the EG20T.
-> This includes EFI framebuffer and USB HID support which normally would be
-> omitted from a tiny kernel, but it is our only functional console as the serial
-> port is still non-functional.
+
+
+On 12/21/2011 08:47 AM, Darren Hart wrote:
 > 
-> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
-> ---
->  .../linux/linux-yocto-tiny/defconfig               |  613 ++++++++++++++++++++
->  .../linux/linux-yocto-tiny/eg20t.cfg               |   40 ++
->  .../linux/linux-yocto-tiny/inforce.cfg             |   21 +
->  .../recipes-kernel/linux/linux-yocto-tiny/sata.cfg |    7 +
->  .../linux/linux-yocto-tiny/usbhid.cfg              |    9 +
->  .../linux/linux-yocto-tiny_3.0.bbappend            |   13 +
->  6 files changed, 703 insertions(+), 0 deletions(-)
->  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/defconfig
->  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/eg20t.cfg
->  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/inforce.cfg
->  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/sata.cfg
->  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny/usbhid.cfg
->  create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-tiny_3.0.bbappend
+> 
+> On 12/21/2011 08:28 AM, Richard Purdie wrote:
+>> On Wed, 2011-12-21 at 01:02 -0800, Darren Hart wrote:
+>>> Prepare to add additional poky distro variants by factoring out
+>>> assignments common to all poky* distros into poky-common.inc. Things
+>>> like the naming schemes, mirrors, etc. are common, while dependencies
+>>> and other things impacting image generation should be distro specific.
+>>>
+>>> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+>>
+>> Why doesn't something like:
+>>
+>> """
+>> $meta-yocto/conf/distro$ cat poky-lsb.conf 
+>> require conf/distro/poky.conf
+>>
+>> DISTRO = "poky-lsb"
+>> DISTROOVERRIDES = "poky:linuxstdbase"
+>> """
+>>
+>> work?
+>>
+>> Effectively the above takes poky but then customises it...
+> 
+> I seem to recall something about this being harder with tiny as it
+> removes things rather than just extending. But I can't put recall
+> exactly what the issue was (or if there was one). I shall try it this
+> way if you prefer this approach. I felt the .inc approach provided a
+> more explicit building block mechanism which seemed more intuitive and
+> less prone to accidental inclusion. But, I don't feel strongly one way
+> or the other.
 
-I'd just note that if merged, this would make meta-fri2 depend on
-meta-tiny since we'd throw parsing errors if the .bbappend is present
-without the file its appending to.
+Aha, now I remember. Consider things like the following, defined in
+poky.conf:
 
-We might want to consider this as an example in the tiny layer itself
-for that reason.
+DISTRO_FEATURES_append = " largefile opengl"
 
-Cheers,
+This one, not so bad, I can easily override it.
 
-Richard
+PREFERRED_VERSION_linux-yocto ?= "2.6.37+git%"
+PREFERRED_VERSION_linux-yocto_qemux86 ?= "3.0%"
+PREFERRED_VERSION_linux-yocto_qemux86-64 ?= "3.0%"
+PREFERRED_VERSION_linux-yocto_qemuarm ?= "3.0%"
+PREFERRED_VERSION_linux-yocto_qemumips ?= "3.0%"
+PREFERRED_VERSION_linux-yocto_qemuppc ?= "3.0%"
 
+
+All the above I could override.... but I'd rather be able to use the
+default without having to override them. This pollutes my distro config
+space unnecessarily in my opinion.
+
+DISTRO_EXTRA_RRECOMMENDS += "kernel-module-af-packet"
+
+Things like this are the kicker. I don't know of a way to remove just
+what poky.conf appended to a variable, and not wipe out the rest of the
+variable.
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
