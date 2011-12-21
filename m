@@ -1,32 +1,31 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37937E0072A
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 05:19:14 -0800 (PST)
-Received: by wibhq4 with SMTP id hq4so2702419wib.35
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 05:19:13 -0800 (PST)
-Received: by 10.180.88.10 with SMTP id bc10mr14324859wib.13.1324473553579;
-	Wed, 21 Dec 2011 05:19:13 -0800 (PST)
-Received: from [172.20.1.19] (ip545070eb.adsl-surfen.hetnet.nl.
-	[84.80.112.235])
-	by mx.google.com with ESMTPS id 1sm13418571wiz.11.2011.12.21.05.19.11
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 21 Dec 2011 05:19:12 -0800 (PST)
-Mime-Version: 1.0 (Apple Message framework v1251.1)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <20111221100909.GD12791@jama.jama.net>
-Date: Wed, 21 Dec 2011 14:19:08 +0100
-Message-Id: <F499A5D5-2BC5-45CC-8DF0-ABD5146E1897@dominion.thruhere.net>
-References: <cover.1324456294.git.dvhart@linux.intel.com>
-	<2ad76233b10f9e4a61a6ecb5490f92fecdc1f1e1.1324456294.git.dvhart@linux.intel.com>
-	<20111221100909.GD12791@jama.jama.net>
-To: Martin Jansa <martin.jansa@gmail.com>
-X-Mailer: Apple Mail (2.1251.1)
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [PATCH 5/9] task-core-boot: Allow DISTRO to disable keymaps
+Return-Path: <song.liu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D1C6E0072A
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 05:59:11 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 21 Dec 2011 05:59:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208,217";a="88925070"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga001.jf.intel.com with ESMTP; 21 Dec 2011 05:59:10 -0800
+Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 21 Dec 2011 05:59:10 -0800
+Received: from orsmsx102.amr.corp.intel.com ([169.254.1.40]) by
+	ORSMSX105.amr.corp.intel.com ([169.254.4.103]) with mapi id
+	14.01.0355.002; Wed, 21 Dec 2011 05:59:09 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto Project 1.2 M1 release readiness meeting
+Thread-Index: Acy/6KOV2WQSGBBoQamt0PbcoKxQlA==
+Date: Wed, 21 Dec 2011 13:59:08 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A25792FE2@ORSMSX102.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Subject: Yocto Project 1.2 M1 release readiness meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,78 +37,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2011 13:19:16 -0000
-X-Groupsio-MsgNum: 3924
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_42064903-0414-4CB0-A829-73ECA91E422A";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Wed, 21 Dec 2011 13:59:11 -0000
+X-Groupsio-MsgNum: 3925
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A25792FE2ORSMSX102amrcor_"
 
---Apple-Mail=_42064903-0414-4CB0-A829-73ECA91E422A
+--_000_7E680CB2A76BB8438D08CF13C09FC53A25792FE2ORSMSX102amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+
+When: Thursday, December 22, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific Time =
+(US & Canada).
+Where: Bridge Info Enclosed
+
+Note: The GMT offset above does not reflect daylight saving time adjustment=
+s.
+
+*~*~*~*~*~*~*~*~*~*
+
+Agenda:
+
+- Go over release criteria for M1 release, address known issues.
+- Vote for M1 release
+
+Thursday, December 22, 2011, 08:00 AM US Pacific Time
+916-356-2663, 8-356-2663, Bridge: 94, Passcode: 1031810
+Speed dialer: inteldialer://94,1031810 | Learn more<http://it.intel.com/pro=
+ducts/handhelds/speeddial.htm>
 
 
-Op 21 dec. 2011, om 11:09 heeft Martin Jansa het volgende geschreven:
 
-> On Wed, Dec 21, 2011 at 01:02:51AM -0800, Darren Hart wrote:
->> NOTE: I'm looking for a better way to do this.
->>=20
->> keymaps pulls in gettext, which can't build without wide character =
-support.
->>=20
->> Rather than have to add a -tiny variant of every MACHINE to drop =
-"keyboard" from
->> the MACHINE_FEATURES, just enable the DISTRO to define what gets =
-added to
->> RDEPENDS_task-core-boot when MACHINE_FEATURES includes keyboard. By =
-default,
->> keep "keymaps", but use DISTRO_KEYMAPS if it is set (to "" for =
-example).
->>=20
->> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
->> ---
->> meta/recipes-core/tasks/task-core-boot.bb |    7 ++++++-
->> 1 files changed, 6 insertions(+), 1 deletions(-)
->>=20
->> diff --git a/meta/recipes-core/tasks/task-core-boot.bb =
-b/meta/recipes-core/tasks/task-core-boot.bb
->> index 05c280d..e097836 100644
->> --- a/meta/recipes-core/tasks/task-core-boot.bb
->> +++ b/meta/recipes-core/tasks/task-core-boot.bb
->> @@ -17,6 +17,11 @@ PR =3D "r9"
->> MACHINE_ESSENTIAL_EXTRA_RDEPENDS ?=3D ""
->> MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS ?=3D ""
->>=20
->> +#
->> +# Set by the distro configuration to empty if not supported
->> +#
->> +DISTRO_KEYMAPS ?=3D "keymaps"
->=20
-> Why not VIRTUAL-RUNTIME_keymaps like everywhere else?
+--_000_7E680CB2A76BB8438D08CF13C09FC53A25792FE2ORSMSX102amrcor_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Why not just create a proper task for -tiny instead of making the =
-already horrible task-core-boot even more horrible?
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
+<div>When: Thursday, December 22, 2011 8:00 AM-9:00 AM (UTC-08:00) Pacific =
+Time (US &amp; Canada).</div>
+<div>Where: Bridge Info Enclosed</div>
+<div>&nbsp;</div>
+<div>Note: The GMT offset above does not reflect daylight saving time adjus=
+tments.</div>
+<div>&nbsp;</div>
+<div>*~*~*~*~*~*~*~*~*~*</div>
+<div>&nbsp;</div>
+<div>Agenda:</div>
+<div>&nbsp;</div>
+<div>- Go over release criteria for M1 release, address known issues.</div>
+<div>- Vote for M1 release </div>
+<div>&nbsp;</div>
+<div><font face=3D"Verdana" size=3D"2" color=3D"#444444"><span style=3D"fon=
+t-size:8.5pt;"><b>Thursday, December 22, 2011, 08:00 AM US Pacific Time
+<br>
 
-Besided that: this patch needs to go to the oe-core list
+</b>916-356-2663, 8-356-2663, Bridge: 94, Passcode: 1031810<br>
 
-regards,
+Speed dialer: inteldialer://94,1031810 | <a href=3D"http://it.intel.com/pro=
+ducts/handhelds/speeddial.htm"><font color=3D"blue"><u>Learn more</u></font=
+></a></span></font></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+</span></font>
+</body>
+</html>
 
-Koen=
+--_000_7E680CB2A76BB8438D08CF13C09FC53A25792FE2ORSMSX102amrcor_
+Content-Type: text/calendar; charset="utf-8"; method=REQUEST
+Content-Transfer-Encoding: base64
 
---Apple-Mail=_42064903-0414-4CB0-A829-73ECA91E422A
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
+QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
+ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpQYWNpZmlj
+IFN0YW5kYXJkIFRpbWUNCkJFR0lOOlNUQU5EQVJEDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0K
+VFpPRkZTRVRGUk9NOi0wNzAwDQpUWk9GRlNFVFRPOi0wODAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJ
+TlRFUlZBTD0xO0JZREFZPTFTVTtCWU1PTlRIPTExDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJ
+R0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOi0wODAwDQpUWk9GRlNF
+VFRPOi0wNzAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPTJTVTtCWU1PTlRI
+PTMNCkVORDpEQVlMSUdIVA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpPUkdBTklaRVI7
+Q049IkxpdSwgU29uZyI6TUFJTFRPOnNvbmcubGl1QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
+RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj15b2N0b0B5
+b2N0DQogb3Byb2plY3Qub3JnOk1BSUxUTzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpERVNDUklQ
+VElPTjtMQU5HVUFHRT1lbi1VUzpXaGVuOiBUaHVyc2RheVwsIERlY2VtYmVyIDIyXCwgMjAxMSA4
+OjAwIEFNLTk6MDANCiAgQU0gKFVUQy0wODowMCkgUGFjaWZpYyBUaW1lIChVUyAmIENhbmFkYSku
+XG5XaGVyZTogQnJpZGdlIEluZm8gRW5jbG9zZWRcbg0KIFxuTm90ZTogVGhlIEdNVCBvZmZzZXQg
+YWJvdmUgZG9lcyBub3QgcmVmbGVjdCBkYXlsaWdodCBzYXZpbmcgdGltZSBhZGp1c3RtDQogZW50
+cy5cblxuKn4qfip+Kn4qfip+Kn4qfip+KlxuXG5BZ2VuZGE6XG5cbi0gR28gb3ZlciByZWxlYXNl
+IGNyaXRlcmlhIGZvciANCiBNMSByZWxlYXNlXCwgYWRkcmVzcyBrbm93biBpc3N1ZXMuXG4tIFZv
+dGUgZm9yIE0xIHJlbGVhc2VcblxuVGh1cnNkYXlcLCBEZQ0KIGNlbWJlciAyMlwsIDIwMTFcLCAw
+ODowMCBBTSBVUyBQYWNpZmljIFRpbWVcbjkxNi0zNTYtMjY2M1wsIDgtMzU2LTI2NjNcLCBCDQog
+cmlkZ2U6IDk0XCwgUGFzc2NvZGU6IDEwMzE4MTBcblNwZWVkIGRpYWxlcjogaW50ZWxkaWFsZXI6
+Ly85NFwsMTAzMTgxMCB8IEwNCiBlYXJuIG1vcmU8aHR0cDovL2l0LmludGVsLmNvbS9wcm9kdWN0
+cy9oYW5kaGVsZHMvc3BlZWRkaWFsLmh0bT5cblxuXG4NClNVTU1BUlk7TEFOR1VBR0U9ZW4tVVM6
+WW9jdG8gUHJvamVjdCAxLjIgTTEgcmVsZWFzZSByZWFkaW5lc3MgbWVldGluZw0KRFRTVEFSVDtU
+WklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDExMTIyMlQwODAwMDANCkRURU5EO1RaSUQ9UGFj
+aWZpYyBTdGFuZGFyZCBUaW1lOjIwMTExMjIyVDA5MDAwMA0KVUlEOjA0MDAwMDAwODIwMEUwMDA3
+NEM1QjcxMDFBODJFMDA4MDAwMDAwMDBFMEVBRDA3QkE1QkZDQzAxMDAwMDAwMDAwMDAwMDAwDQog
+MDEwMDAwMDAwQjgxOTc1N0ZGRjExRTQ0MEI1RTIzRDE2Q0Q4QUNBM0INCkNMQVNTOlBVQkxJQw0K
+UFJJT1JJVFk6NQ0KRFRTVEFNUDoyMDExMTIyMVQxMzU5MDhaDQpUUkFOU1A6T1BBUVVFDQpTVEFU
+VVM6Q09ORklSTUVEDQpTRVFVRU5DRToxDQpMT0NBVElPTjtMQU5HVUFHRT1lbi1VUzpCcmlkZ2Ug
+SW5mbyBFbmNsb3NlZA0KWC1NSUNST1NPRlQtQ0RPLUFQUFQtU0VRVUVOQ0U6MQ0KWC1NSUNST1NP
+RlQtQ0RPLU9XTkVSQVBQVElEOjE0OTA0MDUzMzkNClgtTUlDUk9TT0ZULUNETy1CVVNZU1RBVFVT
+OlRFTlRBVElWRQ0KWC1NSUNST1NPRlQtQ0RPLUlOVEVOREVEU1RBVFVTOkJVU1kNClgtTUlDUk9T
+T0ZULUNETy1BTExEQVlFVkVOVDpGQUxTRQ0KWC1NSUNST1NPRlQtQ0RPLUlNUE9SVEFOQ0U6MQ0K
+WC1NSUNST1NPRlQtQ0RPLUlOU1RUWVBFOjANClgtTUlDUk9TT0ZULURJU0FMTE9XLUNPVU5URVI6
+RkFMU0UNCkJFR0lOOlZBTEFSTQ0KQUNUSU9OOkRJU1BMQVkNCkRFU0NSSVBUSU9OOlJFTUlOREVS
+DQpUUklHR0VSO1JFTEFURUQ9U1RBUlQ6LVBUMTVNDQpFTkQ6VkFMQVJNDQpFTkQ6VkVWRU5UDQpF
+TkQ6VkNBTEVOREFSDQo=
 
------BEGIN PGP SIGNATURE-----
-
-iEYEARECAAYFAk7x3M4ACgkQMkyGM64RGpGFzwCfcFktO3ieJUryhkrJobmB96rS
-4b0Anjv2L3BIMg/F94/UbHh+G/4qKMKb
-=RYRi
------END PGP SIGNATURE-----
-
---Apple-Mail=_42064903-0414-4CB0-A829-73ECA91E422A--
+--_000_7E680CB2A76BB8438D08CF13C09FC53A25792FE2ORSMSX102amrcor_--
