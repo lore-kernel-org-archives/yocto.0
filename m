@@ -1,27 +1,28 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 643C3E0123C
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 08:48:15 -0800 (PST)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B8AAE0123C
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 08:49:58 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 21 Dec 2011 08:48:13 -0800
+	by orsmga101.jf.intel.com with ESMTP; 21 Dec 2011 08:49:58 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="90045413"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="90045821"
 Received: from unknown (HELO envy.home) ([10.255.12.115])
-	by orsmga002.jf.intel.com with ESMTP; 21 Dec 2011 08:48:13 -0800
-Message-ID: <4EF20DBB.6040200@linux.intel.com>
-Date: Wed, 21 Dec 2011 08:47:55 -0800
+	by orsmga002.jf.intel.com with ESMTP; 21 Dec 2011 08:49:58 -0800
+Message-ID: <4EF20E24.8090901@linux.intel.com>
+Date: Wed, 21 Dec 2011 08:49:40 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-References: <cover.1324456294.git.dvhart@linux.intel.com>
-	<64ce10cdc685f9f5c0288df4bd0ab276711148d6.1324456294.git.dvhart@linux.intel.com>
-	<1324484918.18348.7.camel@ted>
-In-Reply-To: <1324484918.18348.7.camel@ted>
+To: Bob Cochran <yocto@mindchasers.com>
+References: <4ECAF89E.1030505@mindchasers.com>
+	<4ECC2718.50008@linux.intel.com>	<4ECD4CF8.4020005@linux.intel.com>
+	<CAMKF1spQGcQM9NwTrHyntYMmZByS0ztkqUGUC6=3sZOztvqWBw@mail.gmail.com>
+	<4EEE4581.7070700@mindchasers.com>
+In-Reply-To: <4EEE4581.7070700@mindchasers.com>
 X-Enigmail-Version: 1.3.3
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH 6/9] distro: Factor out poky-common.inc from poky.conf
+Cc: yocto@yoctoproject.org
+Subject: Re: Atom netbook recommendation?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,42 +34,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2011 16:48:15 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 21 Dec 2011 16:49:58 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
 
 
-On 12/21/2011 08:28 AM, Richard Purdie wrote:
-> On Wed, 2011-12-21 at 01:02 -0800, Darren Hart wrote:
->> Prepare to add additional poky distro variants by factoring out
->> assignments common to all poky* distros into poky-common.inc. Things
->> like the naming schemes, mirrors, etc. are common, while dependencies
->> and other things impacting image generation should be distro specific.
+On 12/18/2011 11:56 AM, Bob Cochran wrote:
+> On 11/23/2011 02:51 PM, Khem Raj wrote:
+>> On Wed, Nov 23, 2011 at 11:43 AM, Darren Hart<dvhart@linux.intel.com>  wrote:
+>>> We also have things working on the Toshiba NB305. The atom-pc machine
+>>>
 >>
->> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+>> FWIW I have asus eepc here and it works great with yocto/oe-core/meta-intel
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
 > 
-> Why doesn't something like:
+> Thanks for the feedback everyone.  I now have a dual core Atom N570 
+> netbook (Acer Aspire One model).
 > 
-> """
-> $meta-yocto/conf/distro$ cat poky-lsb.conf 
-> require conf/distro/poky.conf
-> 
-> DISTRO = "poky-lsb"
-> DISTROOVERRIDES = "poky:linuxstdbase"
-> """
-> 
-> work?
-> 
-> Effectively the above takes poky but then customises it...
+> It didn't boot the hddimage off of a usb stick (SysLinux halted - I'll 
 
-I seem to recall something about this being harder with tiny as it
-removes things rather than just extending. But I can't put recall
-exactly what the issue was (or if there was one). I shall try it this
-way if you prefer this approach. I felt the .inc approach provided a
-more explicit building block mechanism which seemed more intuitive and
-less prone to accidental inclusion. But, I don't feel strongly one way
-or the other.
+This is likely due to a buggy BIOS. See the README.hardware section
+about formatting the disk as USBZIP format.
+
+We hope to address this with a more robust live hddimg type in the future.
+
+> figure out why later), but I have been having fun booting modified yocto 
+> standard Linux images using grub.  I put a 2.5" 60 G OCZ SSD in it along 
+> with loading Ubuntu.  It can build poky minimal from scratch in a few 
+> hours and rebuilds the kernel fairly quick (should get downright good 
+> once I upgrade the RAM from 1G).   At this point, I'm having fun playing 
+> with the kernel and the initial ram disk with a custom init.
+> 
+> And the nice thing with the SSD installed is that it boots Ubuntu in a 
+> few seconds for when I want to make mods to my poky image.  It makes for 
+> a very cool little development system!
+> 
+> Bob
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 -- 
 Darren Hart
