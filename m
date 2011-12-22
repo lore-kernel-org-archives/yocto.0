@@ -1,19 +1,21 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32850E005A3
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 19:51:07 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 21 Dec 2011 19:51:06 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3EB4E006B5
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 19:51:08 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 21 Dec 2011 19:51:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="90247293"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="89176267"
 Received: from unknown (HELO localhost) ([10.255.12.82])
-	by orsmga002.jf.intel.com with ESMTP; 21 Dec 2011 19:51:06 -0800
+	by orsmga001.jf.intel.com with ESMTP; 21 Dec 2011 19:51:08 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Wed, 21 Dec 2011 21:48:27 -0600
-Message-Id: <cover.1324525136.git.tom.zanussi@intel.com>
+Date: Wed, 21 Dec 2011 21:48:29 -0600
+Message-Id: <950dae279cb0925fe80ad1f10be7eb36bc45eea5.1324525137.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/2] meta-intel: libva fixes
+In-Reply-To: <cover.1324525136.git.tom.zanussi@intel.com>
+References: <cover.1324525136.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/2] meta-intel: add PROVIDES for extra packages provided by libva
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,34 +27,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Dec 2011 03:51:07 -0000
+X-List-Received-Date: Thu, 22 Dec 2011 03:51:08 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This patchset fixes some problems that that started showing up with some
-higher BBTHREADS values and ipk packaging.
+libva provides some extra packages such as libva-glx.  Add PROVIDES
+for them so the rest of the build system knows about it.
 
-I've done successful ipk and rpm builds with 16 threads and don't
-seen the problem any longer.
+We also need to add the dependency relationships between libva,
+libva-x11, and libva-glx.
 
-Thanks to Jeffrey Moore and Darren Hart for testing fixes and helping to
-narrow down the triggering conditions.
+Also remove the bogus RDEPENDS on the display components.
 
-The following changes since commit b6d5d9a3b06caf578103a04dc5fcf5e476343205:
-  Darren Hart (1):
-        fri2: Update SRCREV to include efi patches and meta-data
+Also libva-glx depends on mesa-dri - if it's not there, libva-glx
+won't be built.
 
-are available in the git repository at:
+Also, add missing -dev and -dbg packaging.
 
-  git://git.yoctoproject.org/meta-intel.git tzanussi/libva-glx-rootfs-fix-4
-  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/libva-glx-rootfs-fix-4
-
-Tom Zanussi (2):
-  meta-intel: add PROVIDES for extra packages provided by libva
-  meta-intel: change EMGD xserver libva dependency to libva-x11
-
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
  common/recipes-multimedia/libva/libva.inc |   42 +++++++++++++++++++++-------
- conf/machine/include/ia32-base.inc        |    2 +-
- 2 files changed, 32 insertions(+), 12 deletions(-)
+ 1 files changed, 31 insertions(+), 11 deletions(-)
+
+diff --git a/common/recipes-multimedia/libva/libva.inc b/common/recipes-multimedia/libva/libva.inc
+index 93b3cae..d897f36 100644
+--- a/common/recipes-multimedia/libva/libva.inc
++++ b/common/recipes-multimedia/libva/libva.inc
+@@ -17,25 +17,45 @@ SECTION = "x11"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=2e48940f94acb0af582e5ef03537800f"
+ 
+-INC_PR = "r0"
++INC_PR = "r1"
+ 
+-DEPENDS = "libxext libxfixes libdrm"
++DEPENDS = "libxext libxfixes libdrm mesa-dri"
+ 
+ inherit autotools pkgconfig
+ 
+ PACKAGES =+ "${PN}-x11 ${PN}-tpi ${PN}-glx ${PN}-egl"
++PROVIDES =+ "${PN}-x11 ${PN}-tpi ${PN}-glx ${PN}-egl"
+ PACKAGES =+ "${PN}-x11-dev ${PN}-tpi-dev ${PN}-glx-dev ${PN}-egl-dev"
++PACKAGES =+ "${PN}-x11-dbg ${PN}-tpi-dbg ${PN}-glx-dbg ${PN}-egl-dbg"
++RPROVIDES_${PN}-dev =+ "${PN}-x11-dev ${PN}-tpi-dev ${PN}-glx-dev ${PN}-egl-dev"
+ 
+-RDEPENDS_${PN} =+ "${PN}-x11 ${PN}-tpi ${PN}-glx ${PN}-egl"
++RDEPENDS_${PN}-tpi =+ "${PN}"
++RDEPENDS_${PN}-x11 =+ "${PN}"
++RDEPENDS_${PN}-glx =+ "${PN}-x11"
++RDEPENDS_${PN}-egl =+ "${PN}-x11"
+ 
+ FILES_${PN}-dbg += "${libdir}/dri/.debug"
+ FILES_${PN} += "${libdir}/dri"
+ 
+-FILES_${PN}-x11-dev =+ "${libdir}/libva-x11.so"
+-FILES_${PN}-tpi-dev =+ "${libdir}/libva-tpi.so"
+-FILES_${PN}-glx-dev =+ "${libdir}/libva-glx.so"
+-FILES_${PN}-egl-dev =+ "${libdir}/libva-egl.so"
+-FILES_${PN}-x11 =+ "${libdir}/libva-x11.*"
+-FILES_${PN}-tpi =+ "${libdir}/libva-tpi.*"
+-FILES_${PN}-glx =+ "${libdir}/libva-glx.*"
+-FILES_${PN}-egl =+ "${libdir}/libva-egl.*"
++FILES_${PN}-x11 =+ "${libdir}/libva-x11*${SOLIBS}"
++FILES_${PN}-tpi =+ "${libdir}/libva-tpi*${SOLIBS}"
++FILES_${PN}-glx =+ "${libdir}/libva-glx*${SOLIBS}"
++FILES_${PN}-egl =+ "${libdir}/libva-egl*${SOLIBS}"
++
++FILES_${PN}-x11-dev =+ "${libdir}/libva-x11*${SOLIBSDEV}"
++FILES_${PN}-tpi-dev =+ "${libdir}/libva-tpi*${SOLIBSDEV}"
++FILES_${PN}-glx-dev =+ "${libdir}/libva-glx*${SOLIBSDEV}"
++FILES_${PN}-egl-dev =+ "${libdir}/libva-egl*${SOLIBSDEV}"
++FILES_${PN}-x11-dev =+ "${libdir}/libva-x11*.la"
++FILES_${PN}-tpi-dev =+ "${libdir}/libva-tpi*.la"
++FILES_${PN}-glx-dev =+ "${libdir}/libva-glx*.la"
++FILES_${PN}-egl-dev =+ "${libdir}/libva-egl*.la"
++FILES_${PN}-x11-dev =+ "${libdir}/pkgconfig/libva-x11*.pc"
++FILES_${PN}-tpi-dev =+ "${libdir}/pkgconfig/libva-tpi*.pc"
++FILES_${PN}-glx-dev =+ "${libdir}/pkgconfig/libva-glx*.pc"
++FILES_${PN}-egl-dev =+ "${libdir}/pkgconfig/libva-egl*.pc"
++
++FILES_${PN}-x11-dbg =+ "${libdir}/.debug/libva-x11.*"
++FILES_${PN}-tpi-dbg =+ "${libdir}/.debug/libva-tpi.*"
++FILES_${PN}-glx-dbg =+ "${libdir}/.debug/libva-glx.*"
++FILES_${PN}-egl-dbg =+ "${libdir}/.debug/libva-egl.*"
+-- 
+1.7.0.4
 
 
