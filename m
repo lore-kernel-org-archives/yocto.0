@@ -1,20 +1,26 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89299E0030D
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 14:40:46 -0800 (PST)
-Received: from mail-gx0-f180.google.com ([209.85.161.180])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 21 Dec 2011 14:40:45 -0800
-Received: by ggnq1 with SMTP id q1so5692289ggn.25
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 14:40:44 -0800 (PST)
+Return-Path: <Zumeng.Chen@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 669DBE0030C
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 17:17:01 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBM1GxBZ011545
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2011 17:16:59 -0800 (PST)
+Received: from [128.224.162.181] (128.224.162.181) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Wed, 21 Dec 2011 17:16:59 -0800
+Message-ID: <4EF28516.8030402@windriver.com>
+Date: Thu, 22 Dec 2011 09:17:10 +0800
+From: Zumeng Chen <zumeng.chen@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.1.11) Gecko/20100713 Lightning/1.0b1 Thunderbird/3.0.6
 MIME-Version: 1.0
-Received: by 10.50.88.170 with SMTP id bh10mr5869281igb.8.1324507244331; Wed,
-	21 Dec 2011 14:40:44 -0800 (PST)
-Received: by 10.231.15.11 with HTTP; Wed, 21 Dec 2011 14:40:44 -0800 (PST)
-Date: Wed, 21 Dec 2011 14:40:44 -0800
-Message-ID: <CAPhnLPDvuA64Ga640Np7gBsLT7WZM7id1QiUx82m6zs0z_Oirg@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-Subject: Yocto Autobuilder Trivia Challenge for Dec 20th
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <1324480674-10022-1-git-send-email-zumeng.chen@windriver.com>
+	<4EF1FA3B.6000105@windriver.com> <4EF1FD6D.6020907@windriver.com>
+In-Reply-To: <4EF1FD6D.6020907@windriver.com>
+Cc: yocto@yoctoproject.org, "zumeng.chen" <zchen@windriver.com>
+Subject: Re: [PATCH 1/1] mm: msync: fix the behaviour msync on tmpfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,123 +32,196 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2011 22:40:46 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 22 Dec 2011 01:17:01 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-All,
+于 2011年12月21日 23:38, Bruce Ashfield 写道:
+> On 11-12-21 10:24 AM, zumeng.chen wrote:
+>> This patch has been validated by the following commands
+>> on both CPUs with or without cache alias, which is for
+>>
+>> http://bugzilla.pokylinux.org/show_bug.cgi?id=1429
+>
+> Glad to see this. I was composing an email that had just this
+> question. Which bug, and which kernel version is the issue.
+For all versions, including the latest mainline kernel
 
-If you pay attention to the autobuilder failure email announcement
-list at yocto-builds@yoctoproject.org you'll notice the trivia
-question at the bottom of the email. This months winner is David
-Stewart who found 22 different countries. Richard Purdie got the same
-answer, but David got his answer in 24 hours prior. One T-Shirt from
-ThinkGeek is on it's way to David.  The next trivia challenge update
-will be sometime in the new year. Thanks for those who've
-participated. Subscribe to the build status email list (failures only)
-at https://lists.yoctoproject.org/listinfo/yocto-builds to
-participate.
+>>
+>> root@routerstationpro:~# dmesg|grep alias
+>> Primary data cache 32kB, 4-way, VIPT, cache aliases, linesize 32 bytes
+>> root@routerstationpro:~# for i in `seq 1 1000`; do ./msync01 ;done
+>>
+>>
+>> root@localhost:/tmp> dmesg|grep alias
+>> Primary data cache 32kB, 4-way, PIPT, no aliases, linesize 32 bytes
+>> root@localhost:/tmp> zcat /proc/config.gz |grep WINPATH
+>> CONFIG_WINTEGRA_WINPATH=y
+>> CONFIG_WINTEGRA_WINPATH3=y
+>> CONFIG_SERIAL_8250_WINPATH=y
+>> root@localhost:/tmp> for i in `seq 1 1000`; do ./msync01 ;done
+>>
+>> Passed.
+>>
+>> On 2011年12月21日 23:17, Zumeng Chen wrote:
+>>> For tmpfs, no matter which flag(ASYNC or SYNC) gets from msync,
+>>> there is not so much thing to do for CPUs without cache alias,
+>>> But for some CPUs with cache alias, msync has to flush cache
+>>> explicitly, which makes sure the data coherency between memory
+>>> file and cache.
+>
+> Is it just coherency, or are there corruption concerns as well ?
+There are two issues:
+1 ) for TMPFS, nothing need to be done in sys_msync,
+      we just return for all arches.
 
---=20
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+2 ) But for MIPS CPUs with cache alias(dmesg|grep alias),
+      it maybe has the issue which reported by 1429 while
+      the memory of memset used by msycn01 has other
+      alias, then failure will be report.
+      So, in this situation, we need to flush the related vma
+      to make sure read correctly.
+>
+> In the commit message, it would be useful to put an example
+> interaction that can trigger this issue, since it isn't entirely
+> obvious from the message. More information is always better.
+>
+> Is this for the 3.0 and 2.6.37 kernels .. or just one, or the
+> other ?
+For both and the latest mainline.
+>
+>
+>>>
+>>> Signed-off-by: Zumeng Chen<zumeng.chen@windriver.com>
+>>> ---
+>>> include/linux/mm.h | 1 +
+>>> mm/msync.c | 20 +++++++++++++++++++-
+>>> mm/shmem.c | 5 +++++
+>>> 3 files changed, 25 insertions(+), 1 deletions(-)
+>>>
+>>> diff --git a/include/linux/mm.h b/include/linux/mm.h
+>>> index f59179b..858db90 100644
+>>> --- a/include/linux/mm.h
+>>> +++ b/include/linux/mm.h
+>>> @@ -868,6 +868,7 @@ extern void pagefault_out_of_memory(void);
+>>> extern void show_free_areas(unsigned int flags);
+>>> extern bool skip_free_areas_node(unsigned int flags, int nid);
+>>>
+>>> +int is_shmem_file(struct file *file);
+>
+> If there aren't any more users of this other than your
+> msync.c below, we shouldn't need this exposed in mm.h. I
+> realized that it is implemented in shmem.c, but isn't there
+> a less global place to add this export (consider mm/internal.h)?
+> Also shouldn't it be extern, like the other defines in the file ?
+Yes, I'll export it in include/linux/shmem_fs.h V2.
+>
+>>> int shmem_lock(struct file *file, int lock, struct user_struct *user);
+>>> struct file *shmem_file_setup(const char *name, loff_t size, unsigned
+>>> long flags);
+>>> void shmem_set_file(struct vm_area_struct *vma, struct file *file);
+>>> diff --git a/mm/msync.c b/mm/msync.c
+>>> index 632df45..2f0d8fa 100644
+>>> --- a/mm/msync.c
+>>> +++ b/mm/msync.c
+>>> @@ -13,6 +13,7 @@
+>>> #include<linux/file.h>
+>>> #include<linux/syscalls.h>
+>>> #include<linux/sched.h>
+>>> +#include<asm/cacheflush.h>
+>>>
+>>> /*
+>>> * MS_SYNC syncs the entire file - including mappings.
+>>> @@ -33,6 +34,7 @@ SYSCALL_DEFINE3(msync, unsigned long, start, size_t,
+>>> len, int, flags)
+>>> unsigned long end;
+>>> struct mm_struct *mm = current->mm;
+>>> struct vm_area_struct *vma;
+>>> + struct file *file;
+>>> int unmapped_error = 0;
+>>> int error = -EINVAL;
+>>>
+>>> @@ -56,8 +58,24 @@ SYSCALL_DEFINE3(msync, unsigned long, start,
+>>> size_t, len, int, flags)
+>>> */
+>>> down_read(&mm->mmap_sem);
+>>> vma = find_vma(mm, start);
+>>> +
+>>> +#ifdef CONFIG_TMPFS
+>>> + /*
+>>> + * For tmpfs, no matter which flag(ASYNC or SYNC) gets from msync,
+>>> + * there is not so much thing to do for CPUs without cache alias,
+>>> + * But for some CPUs with cache alias, msync has to flush cache
+>>> + * explicitly, which makes sure the data coherency between memory
+>>> + * file and cache.
+>>> + */
+>>> + file = vma->vm_file;
+>>> + if (is_shmem_file(file)) {
+>>> + flush_cache_range(vma, start, start+len);
+>>> + error = 0;
+>
+> Hasn't error already been set to 0 ? .. I see it in the
+> original function being set right before this chunk of code
+> will run.
+Yes, see above item1
+>
+>>> + goto out_unlock;
+>
+> Do we really want this for all architectures/all boards ? This
+> is common/global code, so we need to tread carefully.
+Yes, done on powerpc 8513, and PMC without cache alias.
+>
+> Is there a way that we could do this by arch hooks .. or is
+> flush_cache_range() sufficiently benign that it is little overhead
+> and safe everywhere ?
+Yeah, I have already taken this into accounts, and it
+seems should be OK since only msync trigger this.
+And only for TMPFS, for others, we'll go through and
+skip flush_cache_range.
+I'll add CPU_has_alias check in V2 too.
+>
+> In the end, I'm not a mm expert, so we can fix this up, think
+> about it, and then run it past the people that really know :)
+>
+>>> + }
+>>> +#endif
+>>> +
+>>> for (;;) {
+>>> - struct file *file;
+>
+> There's an assignment:
+>
+>   file = vma->vm_file;
+>
+> Later in this routine, you've already done that above, so can't
+> it be dropped ?
+No, we'll goto the end if TMPFS.
 
-------------------
-FAQ:
-------------------
+Regards,
+Zumeng
+>
+> Bruce
+>
+>>>
+>>> /* Still start< end. */
+>>> error = -ENOMEM;
+>>> diff --git a/mm/shmem.c b/mm/shmem.c
+>>> index 92e5c15..4fabfac 100644
+>>> --- a/mm/shmem.c
+>>> +++ b/mm/shmem.c
+>>> @@ -2793,6 +2793,11 @@ static struct file_system_type tmpfs_fs_type = {
+>>> .kill_sb = kill_litter_super,
+>>> };
+>>>
+>>> +int is_shmem_file(struct file *file)
+>>> +{
+>>> + return (file->f_op ==&shmem_file_operations)? 1 : 0;
+>>> +}
+>>> +
+>>> int __init init_tmpfs(void)
+>>> {
+>>> int error;
+>>
+>
 
-General:
-Q: What's the point?
-A: To get people interested in the state of the build. To make
-alerting people to build failure's a little more fun. It makes my life
-and the maintainers life easier if people help keep on top of build
-failures.
-
-Q: What OS/software does the autobuilder infrastructure run?
-A: openSuSE 11.4 with a slightly modified HEAD of yocto-autobuilder
-master. I'm looking at doing this all via VMs to help host testing of
-Yocto.
-
-Q: Who is sponsoring this?
-A: I am. It makes my life easier (not to mention the maintainers) if
-people are paying attention to the autobuilder. We're beginning to see
-the benefits of people paying attention. (Most of the past 20 builds
-were green as of when I wrote this).
-
-Q: I don't want to get spammed. What other ways can I participate?
-A: In trivia? Sorry, email only. But, if you're interested in
-autobuilder status (and you should be!), you can join
-#yoctobuildstatus on Freenode or view
-autobuilder.yoctoproject.org:8010
-
-Q: These failure messages are too informative/not informative
-enough/import critique.
-A:  I'm working on helping the autobuilder grab more informative
-failure messages. Stay tuned.
-
-Rules:
-Q: Who can play?
-A: Anyone who joins the list and responds to a question. With the
-exception of me. Because that just wouldn't be fair.
-
-Q: I want free stuff! When do you do this?
-A: I randomize it. Sometimes I'll do it for a week. Sometimes a month.
-Hard questions/challenges tend to have a longer run time. I never
-announce when I do it. It's whenever I get the urge/think of a
-particularly hard/easy/silly/dumb question.
-
-Q: I can Google the answers, right?
-A: Can you? I can't exactly stop you, right? Although some of the
-questions won't be googleable. I do code challenges from time to time.
-I've been known to ask for haikus.
-
-Q: Can I submit a quiz?
-A: Sure. But you can't answer your own.
-
-Q: Who judges the answers?
-A: I do. My judgement is final, but I'm pretty fair.
-
-Q: I want to appeal your judgement!
-A: Sure. Send an email to root@192.0.0.1 with the subject line
-"UNFAIR!" I'll get back to you if I decide to honor your appeal.
-
-Q: I live in Antarctica. Why is my prize taking so long to get to me?
-A: Penguins probably stole your package. They're notorious at doing
-that. Seriously, I'll always try to get something to the winners, but
-if you live in some weird inaccessible place, or someplace no one will
-deliver to, or someplace I can't send to because of some legal
-restrictions, well... you're out of luck unless I see you at a
-conference.
-
-Answers:
-Yocto Autobuilder Trivia/Challenge for Dec 5th-Dec 20th
-Quiz: The Americas have at have at least four monarchs represented
-as some form of head of state. Canada is one. Name the other countries
-the monarch. Note: Exclude pretenders and any not commonly recognized.
-
-Answer from David Stewart:
------------------
-Antigua and Barbuda
-Bahamas
-Barbados
-Belize
-Canada
-Jamaica
-Saint Kitts and Nevis
-Saint Lucia
-Saint Vincent and the Grenadines
-Bermuda =96 (UK)
-BVI =96 (UK)
-Cayman Islands =96 (UK)
-Montserrat =96 (UK)
-South Georgia and the South Sandwich Islands =96 (UK)
-Turks and Caicos  =96 (UK)
-Greenland =96 (Denmark)
-Aruba =96 (Netherlands)
-Bonaire =96 (Netherlands)
-Curacao =96 (Netherlands)
-Saba =96 (Netherlands)
-Sint Eustatius =96 (Netherlands)
-Sint Maarten =96 (Netherlands)
 
