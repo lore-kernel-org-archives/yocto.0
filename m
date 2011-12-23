@@ -1,20 +1,26 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 851A3E00720
-	for <yocto@yoctoproject.org>; Thu, 22 Dec 2011 15:00:44 -0800 (PST)
-Received: from mail-iy0-f180.google.com ([209.85.210.180])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 22 Dec 2011 15:00:43 -0800
-Received: by iazz13 with SMTP id z13so12172381iaz.25
-	for <yocto@yoctoproject.org>; Thu, 22 Dec 2011 15:00:42 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.50.222.233 with SMTP id qp9mr10884132igc.1.1324594842729; Thu,
-	22 Dec 2011 15:00:42 -0800 (PST)
-Received: by 10.50.208.98 with HTTP; Thu, 22 Dec 2011 15:00:42 -0800 (PST)
-Date: Thu, 22 Dec 2011 15:00:42 -0800
-Message-ID: <CAPhnLPB60Qje0wKiOLWmO=fcpz=VoM9N9+KDA=YAEiqYL9spKA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-Subject: [ANNOUNCEMENT] Yocto 1.2 Milestone 1 released
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04022E00305
+	for <yocto@yoctoproject.org>; Fri, 23 Dec 2011 00:28:37 -0800 (PST)
+Received: by wgbdt13 with SMTP id dt13so15687885wgb.11
+	for <yocto@yoctoproject.org>; Fri, 23 Dec 2011 00:28:36 -0800 (PST)
+Received: by 10.216.131.220 with SMTP id m70mr13220708wei.31.1324628916174;
+	Fri, 23 Dec 2011 00:28:36 -0800 (PST)
+Received: from [172.20.1.19] (ip545070eb.adsl-surfen.hetnet.nl.
+	[84.80.112.235])
+	by mx.google.com with ESMTPS id u5sm12682885wbm.2.2011.12.23.00.28.34
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 23 Dec 2011 00:28:34 -0800 (PST)
+Mime-Version: 1.0 (Apple Message framework v1251.1)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <4EF34776.9030002@gmail.com>
+Date: Fri, 23 Dec 2011 09:28:31 +0100
+Message-Id: <5B0E0226-A68D-4AB1-91E3-B6F396816C52@dominion.thruhere.net>
+References: <4EF34776.9030002@gmail.com>
+To: Jim Abernathy <jfabernathy@gmail.com>
+X-Mailer: Apple Mail (2.1251.1)
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: meta-ti?????
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,112 +32,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Dec 2011 23:00:44 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 23 Dec 2011 08:28:38 -0000
+X-Groupsio-MsgNum: 3988
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_34CF2DAC-8362-44BC-BF38-8DB610D94655";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+--Apple-Mail=_34CF2DAC-8362-44BC-BF38-8DB610D94655
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-All,
 
-We are pleased to announce the first milestone of the coming release
-of Yocto 1.2. This milestone release is available at:
+Op 22 dec. 2011, om 16:06 heeft Jim Abernathy het volgende geschreven:
 
-http://downloads.yoctoproject.org/releases/yocto/milestones/poky-edison-6.1.0-m1.tar.bz2
-or
-http://mirrors.kernel.org/yocto/yocto/milestones/poky-edison-6.1.0-m1.tar.bz2
+> I know the examples in the documentation of Yocto use meta-intel a lot =
+to get the board specific BSPs like meta-crownbay or meta-n450.
+>=20
+> Is there a meta-ti or similar that gets you the meta-beagleboard and =
+meta-pandaboard?  If not how do you clone and checkout the pandaboard =
+BPS?
 
-Additional tarballs for the meta-intel, meta-qt3 and eclipse plugin are
-available at:
+=
+http://git.angstrom-distribution.org/cgi-bin/cgit.cgi/meta-texasinstrument=
+s/
 
-http://downloads.yoctoproject.org/releases/yocto/milestones/meta-intel-edison-6.1.0-m1.tar.bz2
-http://downloads.yoctoproject.org/releases/yocto/milestones/meta-qt3-edison-6.1.0-m1.tar.bz2
-http://downloads.yoctoproject.org/releases/yocto/milestones/eclipse-poky-edison-6.1.0-m1.tar.bz2
+It has a README in there on how to set it up, read it and follow it =
+precisely.=
 
-with mirror locations at:
-
-http://mirrors.kernel.org/yocto/yocto/milestones/meta-intel-edison-6.1.0-m1.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/milestones/meta-qt3-edison-6.1.0-m1.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/milestones/eclipse-poky-edison-6.1.0-m1.tar.bz2
-
-For information on 1.2 M1 test results see:
-http://wiki.yoctoproject.org/wiki/Yocto_1.2_Milestone_Test_Report
-
-Thanks you everyone for all the hard work.
-
-- ------------------
-Elizabeth Flanagan
-Yocto Project
-Release Engineer
-
-- --------------------
-edison 6.1.0-m1 Errata
-- --------------------
-Release Name: eclipse-poky-edison-6.1.0-m1
-Branch:  1.2_M1
-Tag:  1.2_M1.final
-Hash:  0dc371803a6407afbb9eecadc23bad787f106d56
-md5:  309d1b759df05d6a7c2ab77f12b7c481
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/eclipse-poky-edison-6.1.0-m1.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/milestones/eclipse-poky-edison-6.1.0-m1.tar.bz2
-
-Release Name: meta-intel-edison-6.1.0-m1
-Branch:  1.2_M1
-Tag:  1.2_M1.final
-Hash:  b6d5d9a3b06caf578103a04dc5fcf5e476343205
-md5:  d242de81499d900c12b4a74fec2a35a7
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/meta-intel-edison-6.1.0-m1.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/milestones/meta-intel-edison-6.1.0-m1.tar.bz2
-
-Release Name: meta-qt3-edison-6.1.0-m1
-Branch:  1.2_M1
-Tag:  1.2_M1.final
-Hash:  0c3153242344e5113a50002939d36a2b739cc497
-md5:  3aea385aac3b92f69eeaa9c84e849d1d
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/meta-qt3-edison-6.1.0-m1.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/milestones/meta-qt3-edison-6.1.0-m1.tar.bz2
-
-Release Name: poky-edison-6.1.0-m1
-Branch:  1.2_M1
-Tag:  1.2_M1.final
-Hash:  b806f726b1db2cb605869c1022ef727c1110255b
-md5:  e3af1d43eeee369cc52d17932f133624
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/poky-edison-6.1.0-m1.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/milestones/poky-edison-6.1.0-m1.tar.bz2
-
-- --------------------
-Features
-- --------------------
-
-- - Build history tracking
-- - 50% of package upgrades complete
-- - Self hosted build appliance
-- - Beginnings of HOB2
-
-- --------------------
-Known Issues
-- --------------------
-
-The following HIGH bugs have been identified and are currently fixed
-within master:
-
-1841 1.2_M1 build broken for meta-toolchain-sdk with opkg
-1835 [multilib] no provider for lib32-shadow-sysroot
-
+--Apple-Mail=_34CF2DAC-8362-44BC-BF38-8DB610D94655
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
 
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
 
-iQEcBAEBAgAGBQJO87YHAAoJEEyK+E/MEkQPQKcIAIEVqAbjsT9nc8V1MwNyST/1
-GU1VLo9Kb31Cs2ipTZdH93qtTiFaMh8KYU7zBjSxALtKKvwEaJJvFh5hUkqgZd/7
-EDYELebi/mxOfhdFlL2ot5X864sjhV6HBs+BE133gqkPwOFXseJHT7v2j08cYo3v
-vE9k/RsNs23qqjpVrRXib2IaWDNDPVybBfDCVVgVyLsHW5elg8wnpUKsRbfEnr7l
-aZRdUFTnM+QhCQaJdPql4nzm1/FQsr5lOHqDutdEEf+0xBojkAt5Qto27kzuY94Y
-VUxjXh8qZOF5jEYJEuljrGrLBUH7KpiQvi5sdfUpE5ENTM7y6sOB91bdxdg3EMU=
-=0oKc
+iEYEARECAAYFAk70O7EACgkQMkyGM64RGpFAVgCfbHpdljRN2mcHX8y1ubG/HdW9
+l4QAoJxV9ZWTVYpMLpWk4DG4GxO7tdAh
+=hJIc
 -----END PGP SIGNATURE-----
 
+--Apple-Mail=_34CF2DAC-8362-44BC-BF38-8DB610D94655--
