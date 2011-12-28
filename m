@@ -1,20 +1,27 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0045EE006B5
-	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 15:02:33 -0800 (PST)
-Received: from mail-iy0-f180.google.com ([209.85.210.180])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 28 Dec 2011 15:02:33 -0800
-Received: by iazz13 with SMTP id z13so20442248iaz.25
-	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 15:02:32 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.42.117.193 with SMTP id u1mr34883329icq.24.1325113351832; Wed,
-	28 Dec 2011 15:02:31 -0800 (PST)
-Received: by 10.50.208.98 with HTTP; Wed, 28 Dec 2011 15:02:31 -0800 (PST)
-Date: Wed, 28 Dec 2011 15:02:31 -0800
-Message-ID: <CAPhnLPD7ivPE7xJSzMui7cRKoCWzEWMcOhjiZpwXrmjxTC6+CA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-Subject: [Announcement] Cedartrail BSP available.
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63916E006DC
+	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 15:46:05 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 28 Dec 2011 15:46:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="106815595"
+Received: from unknown (HELO localhost) ([10.255.13.53])
+	by fmsmga002.fm.intel.com with ESMTP; 28 Dec 2011 15:46:04 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>, raj.khem@gmail.com,
+	koen@dominion.thruhere.net, kergoth@gmail.com, martin.jansa@gmail.com,
+	Bruce Ashfield <bruce.ashfield@windriver.com>,
+	Tom Zanussi <tom.zanussi@intel.com>,
+	Richard Purdie <richard.purdie@linuxfoundation.org>
+Date: Wed, 28 Dec 2011 15:45:28 -0800
+Message-Id: <abb4be0d19bea70b8a21897c1f5ec7cd75d37364.1325115602.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.6.4
+In-Reply-To: <cover.1325115602.git.dvhart@linux.intel.com>
+References: <cover.1325115602.git.dvhart@linux.intel.com>
+In-Reply-To: <cover.1325115602.git.dvhart@linux.intel.com>
+References: <cover.1325115602.git.dvhart@linux.intel.com>
+Subject: [PATCH 1/3] distro: Add POKY_DEFAULT_EXTRA_R* variables
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,50 +33,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Dec 2011 23:02:34 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 28 Dec 2011 23:46:05 -0000
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+Allow the reuse of poky.conf by distro definitions wanting to remove
+content by introducting POKY_DEFAULT_EXTRA_R*. These are appended
+to the corresponding DISTRO_EXTRA_R* variables and can be overriden
+by distro configs that "require poky.conf".
 
-All,
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+---
+ meta-yocto/conf/distro/poky.conf |    8 ++++++--
+ 1 files changed, 6 insertions(+), 2 deletions(-)
 
-We are pleased to announce the release of Intel-based board support
-packages built from Yocto 1.1 "Edison" for the Intel=AE Atom=99 Processor
-N2000 and D2000 Series-based Platform (CEDAR TRAIL).
+diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
+index 80d4e47..86f9bf6 100644
+--- a/meta-yocto/conf/distro/poky.conf
++++ b/meta-yocto/conf/distro/poky.conf
+@@ -24,8 +24,12 @@ SDKPATH = "/opt/${DISTRO}/${SDK_VERSION}"
+ 
+ EXTRAOPKGCONFIG = "poky-feed-config-opkg"
+ 
+-DISTRO_EXTRA_RDEPENDS += "task-core-boot"
+-DISTRO_EXTRA_RRECOMMENDS += "kernel-module-af-packet"
++# Override these in poky based distros to modify DISTRO_EXTRA_R*
++POKY_DEFAULT_EXTRA_RDEPENDS = "task-core-boot"
++POKY_DEFAULT_EXTRA_RRECOMMENDS = "kernel-module-af-packet"
++
++DISTRO_EXTRA_RDEPENDS += " ${POKY_DEFAULT_EXTRA_RDEPENDS}"
++DISTRO_EXTRA_RRECOMMENDS += " ${POKY_DEFAULT_EXTRA_RRECOMMENDS}"
+ 
+ POKYQEMUDEPS = "${@base_contains("INCOMPATIBLE_LICENSE", "GPLv3", "", "qemu-config",d)}"
+ DISTRO_EXTRA_RDEPENDS_append_qemuarm = " ${POKYQEMUDEPS}"
+-- 
+1.7.6.4
 
-This BSP are available for download at:
-
-http://www.yoctoproject.org/download/bsp/intel%C2%AE-atom%E2%84%A2-processo=
-r-n2000-and-d2000-series-based-platform-cedar-trail
-
-Please note that the provided images were built using the meta-tlk
-layer (time limited kernel). Build instructions to build non-tlk
-images are provided in the meta-intel/meta-cedartrail/README for these
-machines.
-
-META-CEDARTRAIL 1.1 RELEASE
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Version: 1.1 "Edison"
-md5sum: 777150ce79d5d1cc916410f7d17741e1
-Location: http://www.yoctoproject.org/download/bsp/intel%C2%AE-atom%E2%84%A=
-2-processor-n2000-and-d2000-series-based-platform-cedar-trail
-
-- --
-Elizabeth Flanagan
-Yocto Project
-Build and Release
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
-
-iQEcBAEBAgAGBQJO+5kmAAoJEEyK+E/MEkQPpqkH/iqYOrfxPd1fEcTbw3LXY+re
-1H8zOglldc5yPhkhX2PmqkfI28OJwMOiUc3oooYRGeEpGg59SxQSqSImVwf3nmgn
-wK933o5FC37M+1fIZsySNNf6Maj5IAExKN1Wu1V56Onf/1wq77kJ/NkvPq62ig5n
-lZzKA2C1Red/4NuKKIuTEWj/3e5365XhBkbJHxaRECrIw3fD2bBIj49C3tVAkIUX
-+ijIO56UR/qgHfRulUowtarAfCP/xADOnLnOZ9yvv7JEsaekrMReYZlGqEeF/TL+
-M6v3b/27OwgF2ohCN3Ib7YnaFTR5g9fXwa//YMLuKm6quL+hafgzxJ2OCOxlo08=3D
-=3DeKdg
------END PGP SIGNATURE-----
 
