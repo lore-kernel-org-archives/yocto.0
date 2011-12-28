@@ -1,40 +1,33 @@
-Return-Path: <shane.wang@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DC42E0127E
-	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 06:55:57 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 28 Dec 2011 06:55:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="90972854"
-Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
-	by orsmga001.jf.intel.com with ESMTP; 28 Dec 2011 06:55:52 -0800
-Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
-	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 28 Dec 2011 22:53:35 +0800
-Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.199]) by
-	SHSMSX151.ccr.corp.intel.com ([169.254.3.223]) with mapi id
-	14.01.0355.002; Wed, 28 Dec 2011 22:53:33 +0800
-From: "Wang, Shane" <shane.wang@intel.com>
-To: "omxil-devel@lists.sourceforge.net" <omxil-devel@lists.sourceforge.net>
-Thread-Topic: [PATCH 0/2] Fix Makefiles
-Thread-Index: AczFb6HrogT6T36lSD+TYKUy5dp38Q==
-Date: Wed, 28 Dec 2011 14:53:32 +0000
-Message-ID: <3AB6CE7F274E534CAFD089D127A8A1FC01171F@SHSMSX102.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-cr-puzzleid: {6D26D28A-E6EE-4356-8B6C-9BED24BF12C1}
-x-cr-hashedpuzzle: AGax ALVX Byqq Di9r D9GI FsHj Ib0m MT2b M1rZ P1aB P4DU
-	P9wG RAA/ R14W SeDD S6uO; 2;
-	bwBtAHgAaQBsAC0AZABlAHYAZQBsAEAAbABpAHMAdABzAC4AcwBvAHUAcgBjAGUAZgBvAHIAZwBlAC4AbgBlAHQAOwB5AG8AYwB0AG8AQAB5AG8AYwB0AG8AcAByAG8AagBlAGMAdAAuAG8AcgBnAA==;
-	Sosha1_v1; 7; {6D26D28A-E6EE-4356-8B6C-9BED24BF12C1};
-	cwBoAGEAbgBlAC4AdwBhAG4AZwBAAGkAbgB0AGUAbAAuAGMAbwBtAA==; Wed,
-	28 Dec 2011 14:53:28 GMT;
-	WwBQAEEAVABDAEgAIAAwAC8AMgBdACAARgBpAHgAIABNAGEAawBlAGYAaQBsAGUAcwA=
-x-originating-ip: [10.239.127.40]
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66215E006B5
+	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 11:46:36 -0800 (PST)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id AD0581C0C0DC;
+	Wed, 28 Dec 2011 20:46:34 +0100 (CET)
+X-Auth-Info: MMB2Nk6MGOAMnfNSJE2zcPxHQR/SqnGiLUz4oDmbqBA=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216])
+	by smtp-auth.mnet-online.de (Postfix) with ESMTPA id 71EFD1C000BB;
+	Wed, 28 Dec 2011 20:46:34 +0100 (CET)
+Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 46FD71A3516;
+	Wed, 28 Dec 2011 20:46:34 +0100 (CET)
+Received: from gemini.denx.de (localhost.localdomain [127.0.0.1])
+	by gemini.denx.de (Postfix) with ESMTP id 32DC819082F8;
+	Wed, 28 Dec 2011 20:46:34 +0100 (CET)
+To: McClintock Matthew-B29882 <B29882@freescale.com>
+From: Wolfgang Denk <wd@denx.de>
 MIME-Version: 1.0
+In-reply-to: <CAEsOVNc9jV5rO3YiLgL19Q-VeYQ-H-E5sy-huvfYXU3pMAVZHA@mail.gmail.com>
+References: <1324545669-5023-1-git-send-email-wd@denx.de>
+	<CAEsOVNc9jV5rO3YiLgL19Q-VeYQ-H-E5sy-huvfYXU3pMAVZHA@mail.gmail.com>
+Comments: In-reply-to McClintock Matthew-B29882 <B29882@freescale.com>
+	message dated "Wed, 28 Dec 2011 00:40:17 +0000."
+Date: Wed, 28 Dec 2011 20:46:34 +0100
+Message-Id: <20111228194634.32DC819082F8@gemini.denx.de>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: [PATCH 0/2] Fix Makefiles
+Subject: Re: [PATCH] clutter-1.6: make build for armv4t
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,25 +39,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Dec 2011 14:55:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 28 Dec 2011 19:46:39 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-Hi,
+Dear Matthew,
 
-Here are two patches to send to omxil upstream in order to fix Makefiles in=
- libomxil 0.9.3 release.
+In message <CAEsOVNc9jV5rO3YiLgL19Q-VeYQ-H-E5sy-huvfYXU3pMAVZHA@mail.gmail.com> you wrote:
+> On Thu, Dec 22, 2011 at 3:21 AM, Wolfgang Denk <wd@denx.de> wrote:
+> > GCC will define __ARM_ARCH_4T__ when building with "-march=3Darmv4t" so
+> > we can check this to turn off the use of 'clz' instructions, which
+> > otherwise would cause compile errors like "selected processor does
+> > not support ARM mode `clz r3,r0'".
+...
+> This version was dropped recently... Is this possibly for the 1.1.1
+> edison release? If so, I would CC: Joshua Lock.
 
-- makefile-docdir-fix.patch: to fix the wrong directory for $docdir.
-- parallel-make.patch: to enable "make -jN" in parallel.
+yes, this patch was for the edison series (mainline has updated to
+clutter-1.8 in the meantime).
 
-Please review, thanks.
+Sorry for not being clear.
 
---
-Shane
+Best regards,
 
-http://www.yoctoproject.org/=20
-It's not an embedded Linux distribution -
-It creates a custom one for you.
+Wolfgang Denk
+
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+"'Tis true, 'tis pity, and pity 'tis 'tis true."
+    - Poloniouius, in Willie the Shake's _Hamlet, Prince of Darkness_
 
