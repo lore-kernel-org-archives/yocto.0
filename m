@@ -1,54 +1,43 @@
-Return-Path: <B29882@freescale.com>
-Received: from AM1EHSOBE004.bigfish.com (am1ehsobe004.messaging.microsoft.com
-	[213.199.154.207])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FD80E00744
-	for <yocto@yoctoproject.org>; Tue, 27 Dec 2011 16:50:54 -0800 (PST)
-Received: from mail88-am1-R.bigfish.com (10.3.201.247) by
-	AM1EHSOBE004.bigfish.com (10.3.204.24) with Microsoft SMTP Server id
-	14.1.225.23; Wed, 28 Dec 2011 00:50:33 +0000
-Received: from mail88-am1 (localhost [127.0.0.1])	by mail88-am1-R.bigfish.com
-	(Postfix) with ESMTP id E3A7870021A;
-	Wed, 28 Dec 2011 00:48:53 +0000 (UTC)
-X-SpamScore: -4
-X-BigFish: VS-4(zz9371I1432N98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3hbe9n)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail88-am1 (localhost.localdomain [127.0.0.1]) by mail88-am1
-	(MessageSwitch) id 1325033333851934_30940;
-	Wed, 28 Dec 2011 00:48:53 +0000 (UTC)
-Received: from AM1EHSMHS015.bigfish.com (unknown [10.3.201.242])	by
-	mail88-am1.bigfish.com (Postfix) with ESMTP id CC8916C0042;
-	Wed, 28 Dec 2011 00:48:53 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS015.bigfish.com
-	(10.3.207.153) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Wed, 28 Dec 2011 00:50:32 +0000
-Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.86]) by
-	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
-	14.01.0355.003; Tue, 27 Dec 2011 18:50:51 -0600
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Chris Larson <kergoth@gmail.com>
-Thread-Topic: [yocto] [RFC PATCH 0/9] New distribution definition for poky-tiny
-Thread-Index: AQHMxPq+c9PS7kenb0qgtXksHmVshw==
-Date: Wed, 28 Dec 2011 00:50:50 +0000
-Message-ID: <CAEsOVNeUwsNPrFc5Q-cQquc2mfJTqCL9Sa6KyjEms9HhwsUHaw@mail.gmail.com>
-References: <cover.1324456294.git.dvhart@linux.intel.com>
-	<CABcZANmbKdn+dzftgQwNRN1ExYEUkhO906LJG8Pw0Cu+U0cRYg@mail.gmail.com>
-	<4EF204E8.8020009@linux.intel.com>
-	<CABcZANmBvROnETAu6Zvvmxpbxc9NowwiRiiprY+pxwaAjf+mOQ@mail.gmail.com>
-In-Reply-To: <CABcZANmBvROnETAu6Zvvmxpbxc9NowwiRiiprY+pxwaAjf+mOQ@mail.gmail.com>
+Return-Path: <shane.wang@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F4C0E00744
+	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 06:47:42 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 28 Dec 2011 06:47:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="90243208"
+Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
+	by azsmga001.ch.intel.com with ESMTP; 28 Dec 2011 06:47:41 -0800
+Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
+	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 28 Dec 2011 22:47:40 +0800
+Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.199]) by
+	SHSMSX151.ccr.corp.intel.com ([169.254.3.223]) with mapi id
+	14.01.0355.002; Wed, 28 Dec 2011 22:47:38 +0800
+From: "Wang, Shane" <shane.wang@intel.com>
+To: "omxil-devel@lists.sourceforge.net" <omxil-devel@lists.sourceforge.net>
+Thread-Topic: [PATCH 0/2] Fix Makefiles
+Thread-Index: AczFb6HrogT6T36lSD+TYKUy5dp38Q==
+Date: Wed, 28 Dec 2011 14:47:37 +0000
+Message-ID: <3AB6CE7F274E534CAFD089D127A8A1FC0116F1@SHSMSX102.ccr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
+x-cr-puzzleid: {2EF0138F-F152-44AC-8D51-DF6A05EAF226}
+x-cr-hashedpuzzle: AgXo AhaA BNas CmR3 CnfQ DGii ETzg FMqO FWB1 FmxH LW7G
+	LsCq L7Tc N2G8 SdXt TDqW; 2;
+	bwBtAHgAaQBsAC0AZABlAHYAZQBsAEAAbABpAHMAdABzAC4AcwBvAHUAcgBjAGUAZgBvAHIAZwBlAC4AbgBlAHQAOwB5AG8AYwB0AG8AQAB5AG8AYwB0AG8AcAByAG8AagBlAGMAdAAuAG8AcgBnAA==;
+	Sosha1_v1; 7; {2EF0138F-F152-44AC-8D51-DF6A05EAF226};
+	cwBoAGEAbgBlAC4AdwBhAG4AZwBAAGkAbgB0AGUAbAAuAGMAbwBtAA==; Wed,
+	28 Dec 2011 14:47:33 GMT;
+	WwBQAEEAVABDAEgAIAAwAC8AMgBdACAARgBpAHgAIABNAGEAawBlAGYAaQBsAGUAcwA=
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>
-Subject: Re: [RFC PATCH 0/9] New distribution definition for poky-tiny
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [PATCH 0/2] Fix Makefiles
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -57,29 +46,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Dec 2011 00:50:54 -0000
+X-List-Received-Date: Wed, 28 Dec 2011 14:47:43 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <D3CE1AD9F0CB9E42BAEA57DCDC6596AA@freescale.net>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 21, 2011 at 11:33 AM, Chris Larson <kergoth@gmail.com> wrote:
->>> problem with the :=3D + oe_filter_out method is that it forces an
->>> immediate variable expansion right there, which can cause problems in
->>> some cases.
->>
->> Right. That and using it in a .conf file results in parsing errors. :-)
->
-> :=3D is *technically* perfectly valid in a .conf file, as is
-> oe_filter_out, but it's so sensitive to location as to be of limited
-> usefulness. All the variables used by the var you're expanding would
-> have to have been defined already as of that point in the config.
+Hi,
 
-Also using :=3D is bad for sstate-cache has it expands variables
-immediately and often these include references to paths/machines/etc
-that will change for each build. For me so far, using :=3D also means
-removing the variable in question from all dependencies....
+Here are two patches to send to omxil upstream in order to fix Makefiles in=
+ libomxil 0.9.3 release.
 
--M=
+- makefile-docdir-fix.patch: to fix the wrong directory for $docdir.
+- parallel-make.patch: to enable "make -jN" in parallel.
 
+Please review, thanks.
+
+--
+Shane
+
+http://www.yoctoproject.org/=20
+It's not an embedded Linux distribution -
+It creates a custom one for you.
 
