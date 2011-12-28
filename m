@@ -1,46 +1,50 @@
 Return-Path: <B29882@freescale.com>
-Received: from DB3EHSOBE002.bigfish.com (db3ehsobe002.messaging.microsoft.com
-	[213.199.154.140])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D07B3E00744
-	for <yocto@yoctoproject.org>; Tue, 27 Dec 2011 16:40:22 -0800 (PST)
-Received: from mail118-db3-R.bigfish.com (10.3.81.253) by
-	DB3EHSOBE002.bigfish.com (10.3.84.22) with Microsoft SMTP Server id
-	14.1.225.23; Wed, 28 Dec 2011 00:40:00 +0000
-Received: from mail118-db3 (localhost [127.0.0.1])	by
-	mail118-db3-R.bigfish.com (Postfix) with ESMTP id C425C4C00DB;
-	Wed, 28 Dec 2011 00:39:22 +0000 (UTC)
-X-SpamScore: -1
-X-BigFish: VS-1(zcb8kz9371I1432N98dKzz1202hzzz2dh2a8h668h839h8e2h8e3hbe9n)
+Received: from AM1EHSOBE004.bigfish.com (am1ehsobe004.messaging.microsoft.com
+	[213.199.154.207])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FD80E00744
+	for <yocto@yoctoproject.org>; Tue, 27 Dec 2011 16:50:54 -0800 (PST)
+Received: from mail88-am1-R.bigfish.com (10.3.201.247) by
+	AM1EHSOBE004.bigfish.com (10.3.204.24) with Microsoft SMTP Server id
+	14.1.225.23; Wed, 28 Dec 2011 00:50:33 +0000
+Received: from mail88-am1 (localhost [127.0.0.1])	by mail88-am1-R.bigfish.com
+	(Postfix) with ESMTP id E3A7870021A;
+	Wed, 28 Dec 2011 00:48:53 +0000 (UTC)
+X-SpamScore: -4
+X-BigFish: VS-4(zz9371I1432N98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3hbe9n)
 X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
 	H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail118-db3 (localhost.localdomain [127.0.0.1]) by mail118-db3
-	(MessageSwitch) id 1325032762442128_28973;
-	Wed, 28 Dec 2011 00:39:22 +0000 (UTC)
-Received: from DB3EHSMHS018.bigfish.com (unknown [10.3.81.251])	by
-	mail118-db3.bigfish.com (Postfix) with ESMTP id 5E8753A0044;
-	Wed, 28 Dec 2011 00:39:22 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by DB3EHSMHS018.bigfish.com
-	(10.3.87.118) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Wed, 28 Dec 2011 00:40:00 +0000
+Received: from mail88-am1 (localhost.localdomain [127.0.0.1]) by mail88-am1
+	(MessageSwitch) id 1325033333851934_30940;
+	Wed, 28 Dec 2011 00:48:53 +0000 (UTC)
+Received: from AM1EHSMHS015.bigfish.com (unknown [10.3.201.242])	by
+	mail88-am1.bigfish.com (Postfix) with ESMTP id CC8916C0042;
+	Wed, 28 Dec 2011 00:48:53 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS015.bigfish.com
+	(10.3.207.153) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Wed, 28 Dec 2011 00:50:32 +0000
 Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.86]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.01.0355.003; Tue, 27 Dec 2011 18:40:18 -0600
+	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
+	14.01.0355.003; Tue, 27 Dec 2011 18:50:51 -0600
 From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Wolfgang Denk <wd@denx.de>
-Thread-Topic: [yocto] [PATCH] clutter-1.6: make build for armv4t
-Thread-Index: AQHMxPlFX/+vmuzCLEizGXYN/ihUIg==
-Date: Wed, 28 Dec 2011 00:40:17 +0000
-Message-ID: <CAEsOVNc9jV5rO3YiLgL19Q-VeYQ-H-E5sy-huvfYXU3pMAVZHA@mail.gmail.com>
-References: <1324545669-5023-1-git-send-email-wd@denx.de>
-In-Reply-To: <1324545669-5023-1-git-send-email-wd@denx.de>
+To: Chris Larson <kergoth@gmail.com>
+Thread-Topic: [yocto] [RFC PATCH 0/9] New distribution definition for poky-tiny
+Thread-Index: AQHMxPq+c9PS7kenb0qgtXksHmVshw==
+Date: Wed, 28 Dec 2011 00:50:50 +0000
+Message-ID: <CAEsOVNeUwsNPrFc5Q-cQquc2mfJTqCL9Sa6KyjEms9HhwsUHaw@mail.gmail.com>
+References: <cover.1324456294.git.dvhart@linux.intel.com>
+	<CABcZANmbKdn+dzftgQwNRN1ExYEUkhO906LJG8Pw0Cu+U0cRYg@mail.gmail.com>
+	<4EF204E8.8020009@linux.intel.com>
+	<CABcZANmBvROnETAu6Zvvmxpbxc9NowwiRiiprY+pxwaAjf+mOQ@mail.gmail.com>
+In-Reply-To: <CABcZANmBvROnETAu6Zvvmxpbxc9NowwiRiiprY+pxwaAjf+mOQ@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [99.47.177.27]
 MIME-Version: 1.0
 X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] clutter-1.6: make build for armv4t
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: [RFC PATCH 0/9] New distribution definition for poky-tiny
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,24 +57,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Dec 2011 00:40:23 -0000
+X-List-Received-Date: Wed, 28 Dec 2011 00:50:54 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <42B14EED25986746B4E2655FE334F3D4@freescale.net>
+Content-ID: <D3CE1AD9F0CB9E42BAEA57DCDC6596AA@freescale.net>
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Dec 22, 2011 at 3:21 AM, Wolfgang Denk <wd@denx.de> wrote:
-> GCC will define __ARM_ARCH_4T__ when building with "-march=3Darmv4t" so
-> we can check this to turn off the use of 'clz' instructions, which
-> otherwise would cause compile errors like "selected processor does
-> not support ARM mode `clz r3,r0'".
+On Wed, Dec 21, 2011 at 11:33 AM, Chris Larson <kergoth@gmail.com> wrote:
+>>> problem with the :=3D + oe_filter_out method is that it forces an
+>>> immediate variable expansion right there, which can cause problems in
+>>> some cases.
+>>
+>> Right. That and using it in a .conf file results in parsing errors. :-)
 >
-> Signed-off-by: Wolfgang Denk <wd@denx.de>
-> ---
-> =A0.../recipes-graphics/clutter/clutter-1.6_1.6.14.bb | =A0 =A06 ++++--
+> :=3D is *technically* perfectly valid in a .conf file, as is
+> oe_filter_out, but it's so sensitive to location as to be of limited
+> usefulness. All the variables used by the var you're expanding would
+> have to have been defined already as of that point in the config.
 
-This version was dropped recently... Is this possibly for the 1.1.1
-edison release? If so, I would CC: Joshua Lock.
+Also using :=3D is bad for sstate-cache has it expands variables
+immediately and often these include references to paths/machines/etc
+that will change for each build. For me so far, using :=3D also means
+removing the variable in question from all dependencies....
 
 -M=
 
