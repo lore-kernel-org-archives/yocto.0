@@ -1,33 +1,28 @@
-Return-Path: <wd@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66215E006B5
-	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 11:46:36 -0800 (PST)
-Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id AD0581C0C0DC;
-	Wed, 28 Dec 2011 20:46:34 +0100 (CET)
-X-Auth-Info: MMB2Nk6MGOAMnfNSJE2zcPxHQR/SqnGiLUz4oDmbqBA=
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216])
-	by smtp-auth.mnet-online.de (Postfix) with ESMTPA id 71EFD1C000BB;
-	Wed, 28 Dec 2011 20:46:34 +0100 (CET)
-Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id 46FD71A3516;
-	Wed, 28 Dec 2011 20:46:34 +0100 (CET)
-Received: from gemini.denx.de (localhost.localdomain [127.0.0.1])
-	by gemini.denx.de (Postfix) with ESMTP id 32DC819082F8;
-	Wed, 28 Dec 2011 20:46:34 +0100 (CET)
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-From: Wolfgang Denk <wd@denx.de>
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2891E006DC
+	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 12:06:39 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by vcbfl13 with SMTP id fl13so14110015vcb.35
+	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 12:06:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=k13iU2Q6Gu3rewiY5ekoL8ROJrONcIPjvH4jmNPHK2I=;
+	b=I8cWV7pvppfWcpZg/ucItNMX3fp2ROh+bXwpJHFQ5hRwI3vHYjLVSnSEMAGz3HPNBV
+	Ehmwimub7vuPeVhBlaE6hUD7bu30zDndwVGPHJ05dHFJtzBL9Ze4Lt+tVVEqCs9oltOl
+	fvAJVrgE8vq1oH+sdOLSqicTOqkExyaSTOP+M=
 MIME-Version: 1.0
-In-reply-to: <CAEsOVNc9jV5rO3YiLgL19Q-VeYQ-H-E5sy-huvfYXU3pMAVZHA@mail.gmail.com>
-References: <1324545669-5023-1-git-send-email-wd@denx.de>
-	<CAEsOVNc9jV5rO3YiLgL19Q-VeYQ-H-E5sy-huvfYXU3pMAVZHA@mail.gmail.com>
-Comments: In-reply-to McClintock Matthew-B29882 <B29882@freescale.com>
-	message dated "Wed, 28 Dec 2011 00:40:17 +0000."
-Date: Wed, 28 Dec 2011 20:46:34 +0100
-Message-Id: <20111228194634.32DC819082F8@gemini.denx.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] clutter-1.6: make build for armv4t
+Received: by 10.220.155.147 with SMTP id s19mr19235565vcw.14.1325102799079;
+	Wed, 28 Dec 2011 12:06:39 -0800 (PST)
+Received: by 10.52.161.103 with HTTP; Wed, 28 Dec 2011 12:06:39 -0800 (PST)
+Date: Wed, 28 Dec 2011 15:06:39 -0500
+Message-ID: <CADzUK1KE=DHJp3WDGdqOv62QAvGbrc=pnVCUNpYQ4RU+KXpZJg@mail.gmail.com>
+From: autif khan <autif.mlist@gmail.com>
+To: yocto@yoctoproject.org
+Subject: How to require image recipe from another layer?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,35 +34,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Dec 2011 19:46:39 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Wed, 28 Dec 2011 20:06:40 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Dear Matthew,
+Hi,
 
-In message <CAEsOVNc9jV5rO3YiLgL19Q-VeYQ-H-E5sy-huvfYXU3pMAVZHA@mail.gmail.com> you wrote:
-> On Thu, Dec 22, 2011 at 3:21 AM, Wolfgang Denk <wd@denx.de> wrote:
-> > GCC will define __ARM_ARCH_4T__ when building with "-march=3Darmv4t" so
-> > we can check this to turn off the use of 'clz' instructions, which
-> > otherwise would cause compile errors like "selected processor does
-> > not support ARM mode `clz r3,r0'".
-...
-> This version was dropped recently... Is this possibly for the 1.1.1
-> edison release? If so, I would CC: Joshua Lock.
+I have the following problem and I am not sure how to resolve it.
 
-yes, this patch was for the edison series (mainline has updated to
-clutter-1.8 in the meantime).
+I have created my own layer (say) meta-autif
 
-Sorry for not being clear.
+In the layer - I have my recipes (say) helloworld, many more may be
 
-Best regards,
+Now I want to add these packages to the core-image-sato recipe for the
+image. This recipe resides in meta layer (under recipes-sato/images)
 
-Wolfgang Denk
+I have the following recipe (say) core-image-autif.bb
 
--- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-"'Tis true, 'tis pity, and pity 'tis 'tis true."
-    - Poloniouius, in Willie the Shake's _Hamlet, Prince of Darkness_
+require core-image-sato.bb
+IMAGE_FEATURES += "helloworld"
+
+When I execute "bitbake core-image-autif", I get the following error
+
+ERROR: Could not include required file core-image-sato.bb
+
+However, when I copy core-image-sato.bb from meta/recipes-sato/images
+to the same directory as core-image-autif.bb, I get the image (with my
+helloworld and other apps)
+
+My question is - if there is a way to include/require a recipe form a
+different directory? If yes, what is it? If not, is there a
+recommended solution - that scales (if the core-image-sato.bb changes,
+that should be reflected in core-image-autif).
+
+Thanks
+
+Autif
 
