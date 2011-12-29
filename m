@@ -1,29 +1,29 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DFF5E006B5
-	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 16:17:13 -0800 (PST)
+Return-Path: <sidebranch.openembedded@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A420E006B5
+	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 17:07:33 -0800 (PST)
 Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
 	(1024-bit key; insecure key) header.i=@gmail.com;
 	x-dkim-adsp=none (insecure policy)
-Received: by qcsc2 with SMTP id c2so9547751qcs.35
-	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 16:17:12 -0800 (PST)
+Received: by eaac13 with SMTP id c13so16725309eaa.35
+	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 17:07:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=prfQp6HcrPSoNT2jSEyCxcHD2FXSnOerDsgiIwYaCBE=;
-	b=QhPKyoSNXkw64dja4u9C0s+/CTProuaLpbzWHKPjpfX1k7G0Sn4JVI7zYgiRytJNHo
-	+NioO4/yHRpzoDz344K5UutQ0KzeNP0ukLFoNrUmMn1nDFLgtj6J8CarUtGDbLmP1l4u
-	osv3nnjxFEaIBWaVNSqYyBjChFLl6OELmzvZU=
-Received: by 10.229.77.69 with SMTP id f5mr12421807qck.107.1325117832262; Wed,
-	28 Dec 2011 16:17:12 -0800 (PST)
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=sgSsgqKPuOqoHQLDlCloP+/7bplE8BESHfHiULnDmFo=;
+	b=RiO61BRUM8bUTmim5qwYtSrywRSOXZwpJfEeoIacYXN7kz3EhffHAUd2iHryKMotJp
+	xYLQAoDmPC15+5LWLaK0InEjuTjlPg0bmddR0qH5YNlLG5gZaT0SHUsCH/V5lDr2EdWG
+	6plPYBCxR22RxIKpnY2hlkg+gy+ln1anU3qZ8=
 MIME-Version: 1.0
-Received: by 10.229.187.141 with HTTP; Wed, 28 Dec 2011 16:16:51 -0800 (PST)
+Received: by 10.204.133.213 with SMTP id g21mr8640772bkt.126.1325120851905;
+	Wed, 28 Dec 2011 17:07:31 -0800 (PST)
+Received: by 10.205.121.142 with HTTP; Wed, 28 Dec 2011 17:07:31 -0800 (PST)
 In-Reply-To: <cover.1325115602.git.dvhart@linux.intel.com>
 References: <cover.1325115602.git.dvhart@linux.intel.com>
-From: Chris Larson <kergoth@gmail.com>
-Date: Wed, 28 Dec 2011 17:16:51 -0700
-Message-ID: <CABcZANmKUO=fihCORY-itAPiEuUqCdRAE6yLZX-vStmcrFZr4A@mail.gmail.com>
+Date: Thu, 29 Dec 2011 02:07:31 +0100
+Message-ID: <CAMvUbCx59KWAN0qeS5Ga9mAb9cMPVvxeKxJS6f6OYC2+mbu0Xw@mail.gmail.com>
+From: Leon Woestenberg <sidebranch.openembedded@gmail.com>
 To: Darren Hart <dvhart@linux.intel.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: [PATCH V3 0/3] New distribution definition for poky-tiny
@@ -38,38 +38,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Dec 2011 00:17:13 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 29 Dec 2011 01:07:33 -0000
+Content-Type: multipart/alternative; boundary=0015175cbb0aa98cb504b530bd4b
 
-On Wed, Dec 28, 2011 at 4:45 PM, Darren Hart <dvhart@linux.intel.com> wrote=
-:
+--0015175cbb0aa98cb504b530bd4b
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hello Darren,
+
+
+On Thu, Dec 29, 2011 at 12:45 AM, Darren Hart <dvhart@linux.intel.com>wrote:
+
 > V3:
-> =C2=A0 =C2=A0o Rebase on master
-> =C2=A0 =C2=A0o Dependent on oe-core series "Fixes for tiny distros and li=
-nux-yocto-tiny"
+>    o Rebase on master
+>    o Dependent on oe-core series "Fixes for tiny distros and
+> linux-yocto-tiny"
 >
 > RFC V2:
-> =C2=A0 =C2=A0o Use VIRTUAL-RUNTIME_keymaps as suggested by Martin Jansa
-> =C2=A0 =C2=A0o Drop poky-common abstraction as suggested by Richard Purdi=
-e in
-> =C2=A0 =C2=A0 =C2=A0favor of POKY_DEFAULT_EXTRA_R* variables.
+>    o Use VIRTUAL-RUNTIME_keymaps as suggested by Martin Jansa
+>    o Drop poky-common abstraction as suggested by Richard Purdie in
+>      favor of POKY_DEFAULT_EXTRA_R* variables.
 >
-> Poky-tiny defines a new distro policy for building tiny Linux images. =C2=
-=A0Rather
-> than create new image tasks and recipes, it reuses existing ones, modifyi=
-ng them
-> as necessary. See the poky-tiny commit log for details on the policy goal=
-s.
+> Poky-tiny defines a new distro policy for building tiny Linux images.
+>  Rather
 >
-> In its current form, poky-tiny builds a qemux86 core-image-minimal image
-> and kernel in 2.6 MB (compressed):
+>
+Such images are useful for small Linux firmwares, both often also require a
+read-only fs img.
 
-I haven't had a chance to do much review of this work, though I'm sure
-others have done so and commented. I just wanted to say nice work on
-this, it's looking quite nice, and the various fixes should make some
-lives easier for folks who either do or want to base on the poky
-distro configuration.
---=20
-Christopher Larson
+Does this current image require write access at first boot?
 
+Regards,
+
+Leon.
+
+--0015175cbb0aa98cb504b530bd4b
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hello Darren,<br><br><br><div class=3D"gmail_quote">On Thu, Dec 29, 2011 at=
+ 12:45 AM, Darren Hart <span dir=3D"ltr">&lt;<a href=3D"mailto:dvhart@linux=
+.intel.com">dvhart@linux.intel.com</a>&gt;</span> wrote:<br><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex">
+V3:<br>
+ =A0 =A0o Rebase on master<br>
+ =A0 =A0o Dependent on oe-core series &quot;Fixes for tiny distros and linu=
+x-yocto-tiny&quot;<br>
+<br>
+RFC V2:<br>
+ =A0 =A0o Use VIRTUAL-RUNTIME_keymaps as suggested by Martin Jansa<br>
+ =A0 =A0o Drop poky-common abstraction as suggested by Richard Purdie in<br=
+>
+ =A0 =A0 =A0favor of POKY_DEFAULT_EXTRA_R* variables.<br>
+<br>
+Poky-tiny defines a new distro policy for building tiny Linux images. =A0Ra=
+ther<br><br></blockquote></div><br>Such images are useful for small Linux f=
+irmwares, both often also require a read-only fs img.<br><br>Does this curr=
+ent image require write access at first boot?<br>
+<br>Regards,<br><br>Leon.<br>
+
+--0015175cbb0aa98cb504b530bd4b--
