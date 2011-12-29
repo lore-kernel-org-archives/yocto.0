@@ -1,32 +1,26 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from lo.gmane.org (lo.gmane.org [80.91.229.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5EFFE006B5
-	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 21:35:11 -0800 (PST)
-Received: from list by lo.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Rg8dw-0005GB-8k
-	for yocto@yoctoproject.org; Thu, 29 Dec 2011 06:35:08 +0100
-Received: from c-98-216-48-64.hsd1.ma.comcast.net ([98.216.48.64])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 29 Dec 2011 06:35:08 +0100
-Received: from a_schweitzer by c-98-216-48-64.hsd1.ma.comcast.net with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 29 Dec 2011 06:35:08 +0100
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Andrew Schweitzer <a_schweitzer@yahoo.com>
-Date: Thu, 29 Dec 2011 05:26:32 +0000 (UTC)
-Message-ID: <loom.20111229T062302-471@post.gmane.org>
-References: <CANSwnwggQwOgZk61xvppWXnz3+Wks9jSaNcp0+cBf9eS2xNNOg@mail.gmail.com>
-	<4EF20847.1030106@gmail.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@dough.gmane.org
-X-Gmane-NNTP-Posting-Host: sea.gmane.org
-User-Agent: Loom/3.14 (http://gmane.org/)
-X-Loom-IP: 98.216.48.64 (Mozilla/5.0 (X11;
-	Linux x86_64) AppleWebKit/535.2 (KHTML, like Gecko) Ubuntu/11.10
-	Chromium/15.0.874.106 Chrome/15.0.874.106 Safari/535.2)
-Subject: Re: build error on meta-cedarview
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D326FE006B5
+	for <yocto@yoctoproject.org>; Wed, 28 Dec 2011 21:56:16 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 28 Dec 2011 21:56:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="92473624"
+Received: from unknown (HELO envy.home) ([10.255.13.53])
+	by orsmga002.jf.intel.com with ESMTP; 28 Dec 2011 21:56:14 -0800
+Message-ID: <4EFC00EE.8080105@linux.intel.com>
+Date: Wed, 28 Dec 2011 21:55:58 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
+MIME-Version: 1.0
+To: Leon Woestenberg <sidebranch.openembedded@gmail.com>
+References: <cover.1325115602.git.dvhart@linux.intel.com>
+	<CAMvUbCx59KWAN0qeS5Ga9mAb9cMPVvxeKxJS6f6OYC2+mbu0Xw@mail.gmail.com>
+In-Reply-To: <CAMvUbCx59KWAN0qeS5Ga9mAb9cMPVvxeKxJS6f6OYC2+mbu0Xw@mail.gmail.com>
+X-Enigmail-Version: 1.3.3
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH V3 0/3] New distribution definition for poky-tiny
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,30 +32,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Dec 2011 05:35:12 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 29 Dec 2011 05:56:17 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Jim Abernathy <jfabernathy@...> writes:
 
+
+On 12/28/2011 05:07 PM, Leon Woestenberg wrote:
+> Hello Darren,
 > 
 > 
->     While running a build of the core-image-sato using the edison latest
->     commits and the meta-cedartrail bsp, I notices some errors fly by
->     and thought I'd see if anyone knows the reason.  The build is just
->     to test the bsp with no changes.  Basically, doing the Appendix A of
->     the Development manual substituting cedartrail for crownbay.
->     snippet of the console log below:
->     NOTE: package icon-naming-utils-native-0.8.7-r3: task do_unpack:
->     Started
->     ERROR: Function 'Unpack failure for URL: 
-'http://tango.freedesktop.org/releases/icon-naming-utils-0.8.7.tar.gz'.
+> On Thu, Dec 29, 2011 at 12:45 AM, Darren Hart <dvhart@linux.intel.com
+> <mailto:dvhart@linux.intel.com>> wrote:
+> 
+>     V3:
+>        o Rebase on master
+>        o Dependent on oe-core series "Fixes for tiny distros and
+>     linux-yocto-tiny"
+> 
+>     RFC V2:
+>        o Use VIRTUAL-RUNTIME_keymaps as suggested by Martin Jansa
+>        o Drop poky-common abstraction as suggested by Richard Purdie in
+>          favor of POKY_DEFAULT_EXTRA_R* variables.
+> 
+>     Poky-tiny defines a new distro policy for building tiny Linux
+>     images.  Rather
+> 
+> 
+> Such images are useful for small Linux firmwares, both often also
+> require a read-only fs img.
+> 
+> Does this current image require write access at first boot?
 
-I don't know the reason, but I did get the same error when trying to build yocto 
-per the getting started page, changing local.conf to create qemuarm
+I have done a readonly first-boot successfully, and as Chris points out,
+it is one of the policy goals. That said, I have not yet looked to see
+if there are some post-inst scripts which should be run. There isn't any
+kind of init going on, and we'll need to decide how to best handle that
+for poky-tiny. Right now I boot using an initramfs with root=/dev/ram0,
+it reads an empty /init and falls back to /bin/sh - a more robust and
+functional init is probably needed even for poky-tiny.
 
-I would be interested in knowing the reason too. 
-
-Andy
-
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
