@@ -1,49 +1,39 @@
-Return-Path: <B19537@freescale.com>
-Received: from TX2EHSOBE007.bigfish.com (tx2ehsobe004.messaging.microsoft.com
-	[65.55.88.14])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EB5BE006B5
-	for <yocto@yoctoproject.org>; Thu, 29 Dec 2011 02:09:34 -0800 (PST)
-Received: from mail142-tx2-R.bigfish.com (10.9.14.251) by
-	TX2EHSOBE007.bigfish.com (10.9.40.27) with Microsoft SMTP Server id
-	14.1.225.23; Thu, 29 Dec 2011 10:09:10 +0000
-Received: from mail142-tx2 (localhost [127.0.0.1])	by
-	mail142-tx2-R.bigfish.com (Postfix) with ESMTP id CCAE65202CA;
-	Thu, 29 Dec 2011 10:09:18 +0000 (UTC)
-X-SpamScore: -9
-X-BigFish: VS-9(zz9371I542M1432Nzz1202hzzz2dh2a8h668h839h8e2h8e3h944hbe9k61h)
-X-Spam-TCS-SCL: 0:0
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail142-tx2 (localhost.localdomain [127.0.0.1]) by mail142-tx2
-	(MessageSwitch) id 1325153358669402_11126;
-	Thu, 29 Dec 2011 10:09:18 +0000 (UTC)
-Received: from TX2EHSMHS006.bigfish.com (unknown [10.9.14.246])	by
-	mail142-tx2.bigfish.com (Postfix) with ESMTP id 9C73680042;
-	Thu, 29 Dec 2011 10:09:18 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS006.bigfish.com
-	(10.9.99.106) with Microsoft SMTP Server (TLS) id 14.1.225.22;
-	Thu, 29 Dec 2011 10:09:10 +0000
-Received: from 039-SN2MPN1-023.039d.mgd.msft.net ([169.254.3.213]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.01.0355.003; Thu, 29 Dec 2011 04:09:32 -0600
-From: Luo Zhenhua-B19537 <B19537@freescale.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] Query about how Yocto handles the bbclass file when it
-	exists in multi-layers
-Thread-Index: AczGDW1PnQCcx81dSr+NTU+jS+Lh0QAMueCAAAyIzJA=
-Date: Thu, 29 Dec 2011 10:09:32 +0000
-Message-ID: <CA452391058F6D4E9715FB2C29D9312A010BDDDC@039-SN2MPN1-023.039d.mgd.msft.net>
-References: <CA452391058F6D4E9715FB2C29D9312A010BDDB3@039-SN2MPN1-023.039d.mgd.msft.net>
-	<2207858.zQEpL41i6n@helios>
-In-Reply-To: <2207858.zQEpL41i6n@helios>
+Return-Path: <prvs=33449b24ba=NAVANI.Srivastava@lnties.com>
+Received: from mailout2.ltindia.com (mailout2.ltindia.com [125.18.18.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1ABBFE0030B
+	for <yocto@yoctoproject.org>; Thu, 29 Dec 2011 06:40:18 -0800 (PST)
+X-AuditID: c0a8466b-b7c01ae000004083-9d-4efc7bceb1ab
+Received: from POCITMSEXHUB03.LntUniverse.com ( [10.2.1.60])
+	by mailout2.ltindia.com (Symantec Mail Security) with SMTP id
+	DE.C3.16515.ECB7CFE4; Thu, 29 Dec 2011 20:10:14 +0530 (IST)
+Received: from POCITMSEXMB03.LntUniverse.com ([fe80::f495:7e6e:4c34:a3a9]) by
+	POCITMSEXHUB03.LntUniverse.com ([::1]) with mapi id 14.01.0218.012;
+	Thu, 29 Dec 2011 20:10:14 +0530
+From: Navani Kamal Srivastava <NAVANI.Srivastava@lnties.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Manuaaly copying library to rootfs/lib
+Thread-Index: AczGN4Fzj95Q5oO+QRuQC8CJGIqsVw==
+Date: Thu, 29 Dec 2011 14:40:13 +0000
+Message-ID: <9BACABF0C6B14A4D8C33B42A795119BE096D8A70@POCITMSEXMB03.LntUniverse.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.192.208.114]
+x-originating-ip: [192.168.37.159]
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Query about how Yocto handles the bbclass file when it exists in multi-layers
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprLKsWRmVeSWpSXmKPExsXCxcRoo3uu+o+fwcu/lhaTXq5hc2D0aD/R
+	xxbAGMVtk5RYUhacmZ6nb5fAnfFgxRGmgn7lirYPF9gaGBfJdTFyckgImEgs/b6QDcIWk7hw
+	bz2QzcUhJLCDUeLgk/PsEM5WRonZbRMYQarYBGwkHp9fxwJiiwiYSrw49gWsW1hAX+LS4dXs
+	EHETiddbbrNB2HoS1ya8ZgWxWQRUJR4eusjUxcjBwSsQItH91BckzAi0+PupNUwgNrOAuMSt
+	J/OZIA4SkFiy5zwzhC0q8fLxP1aQVgkBJYnHKzkhyvMl9r77BFbCKyAocXLmE5YJjEKzkEya
+	haRsFpIyiLiOxILdn9ggbG2JZQtfM8PYZw48ZkIWX8DIvopRJDcxMye/tMRIL6ckMy8lM1Ev
+	OT93EyMwIg6scMvewfhxj8ohRgEORiUeXgHv335CrIllxZW5hxglOZiURHnPV/3xE+JLyk+p
+	zEgszogvKs1JLT7EKMHBrCTC++AhUDlvSmJlVWpRPkxKmoNFSZx3l8oXPyGB9MSS1OzU1ILU
+	IpisDAeHkgQvLzDyhQSLUtNTK9Iyc0oQ0kwcnCCCC2QDD9AGU5BC3uKCxNzizHSIolOMklLi
+	vCIgCQGQREZpHtyAV4ziQH8I8/4BOZoHmObgul4BDWQCGnju3C+QgSWJCCmpBsajVo9ZAjl7
+	BCauuvnn0dOUxw5+7YIpBi2zFMTuCbPxa07YU7tBtM9s+Xm9D7V6x1cdzZBYdVIwRWylR+Kh
+	ew3Ou04sES75/Vb7d/PHjds2XrDeUPc7/ln2w8gVVjcrLnldXVcz67fatajbwYudDqzOdm3r
+	CUqfPKvxm/fnpUWaZneV5Q/dmCmrxFKckWioxVxUnAgAac//IDADAAA=
+Subject: Manuaaly copying library to rootfs/lib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,34 +45,130 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Dec 2011 10:09:34 -0000
+X-List-Received-Date: Thu, 29 Dec 2011 14:40:22 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9BACABF0C6B14A4D8C33B42A795119BE096D8A70POCITMSEXMB03Ln_"
+
+--_000_9BACABF0C6B14A4D8C33B42A795119BE096D8A70POCITMSEXMB03Ln_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-> Sent: Thursday, December 29, 2011 5:41 PM
+Hi,
+
+I need to copy a library manually to rootfs. I want to put it in the manner=
+ that on doing bitbake of initscripts this library should get copied to the=
+ rootfs in the same manner as it used to copy contents under etc/ to rootfs=
+. I am successful in porting this library to tmp/work/armv6-poky-linux-gnue=
+abi/initscripts-1.0-r124/image/lib/libc-2.11.1.so, now I am unable to put i=
+t in rootfs. When I am compiling rootfs I am unable to see this library.
+
+I tried giving         cp -d           ${WORKDIR}/libc-2.11.1.so       ${D}=
+${sysconfdir}/
+in initscripts_1.0.bb then the same library got copied in rootfs/etc/ . Wha=
+t I am supposed to do to copy it to rootfs/lib ?
+
+Thanks & Regards,
+Navani Kamal Srivastava
+
+
+
+
+
+
+Larsen & Toubro Limited
+
+www.larsentoubro.com
+
+This Email may contain confidential or privileged information for the inten=
+ded recipient (s) If you are not the intended recipient, please do not use =
+or disseminate the information, notify the sender and delete it from your s=
+ystem.
+
+--_000_9BACABF0C6B14A4D8C33B42A795119BE096D8A70POCITMSEXMB03Ln_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> > If one bbclass exists in multi-layers, which one will Yocto pick up?
-> > It seems BBFILE_PRIORITY doesn't impact bbclass file.
->=20
-> I believe for bbclass files it's the order in which the layers are listed=
- in
-> your bblayers.conf.
->=20
-> We could fix this,=20
-[Luo Zhenhua-B19537] Thanks. the function is useful
+<style>
+<!--
+@font-face
+	{font-family:Calibri}
+@font-face
+	{font-family:Tahoma}
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif"}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline}
+span.EmailStyle17
+	{font-family:"Tahoma","sans-serif";
+	color:windowtext}
+.MsoChpDefault
+	{font-family:"Calibri","sans-serif"}
+@page WordSection1
+	{margin:1.0in 1.0in 1.0in 1.0in}
+div.WordSection1
+	{}
+-->
+</style>
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;">Hi,</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;">I need to copy a library manually to roo=
+tfs. I want to put it in the manner that on doing bitbake of initscripts th=
+is library should get copied to the rootfs in the same manner
+ as it used to copy contents under etc/ to rootfs. I am successful in porti=
+ng this library to tmp/work/armv6-poky-linux-gnueabi/initscripts-1.0-r124/i=
+mage/lib/libc-2.11.1.so, now I am unable to put it in rootfs. When I am com=
+piling rootfs I am unable to see
+ this library.</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;">I tried giving &nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;cp -d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; ${WORKDIR}/libc-2.11.1.so&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ ${D}${sysconfdir}/</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;">in initscripts_1.0.bb then the same libr=
+ary got copied in rootfs/etc/ . What I am supposed to do to copy it to root=
+fs/lib ?</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
+<p class=3D"MsoNormal">Thanks &amp; Regards,</p>
+<p class=3D"MsoNormal">Navani Kamal Srivastava</p>
+<p class=3D"MsoNormal"><b><br>
+<br>
+<br>
+</b></p>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+<br>
+<br>
+<b>Larsen &amp; Toubro Limited <br>
+<br>
+www.larsentoubro.com <br>
+<br>
+</b>This Email may contain confidential or privileged information for the i=
+ntended recipient (s) If you are not the intended recipient, please do not =
+use or disseminate the information, notify the sender and delete it from yo=
+ur system.
+</body>
+</html>
 
-> however I'm not sure we should be encouraging duplication of
-> class files - people should ideally be getting their functionality into t=
-he OE-
-> Core classes and not just overlaying their own version of the class.
-[Luo Zhenhua-B19537] Agree.=20
-
-
-Best Regards,
-
-Zhenhua
-
-
+--_000_9BACABF0C6B14A4D8C33B42A795119BE096D8A70POCITMSEXMB03Ln_--
