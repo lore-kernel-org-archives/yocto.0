@@ -1,39 +1,26 @@
-Return-Path: <prvs=33449b24ba=NAVANI.Srivastava@lnties.com>
-Received: from mailout2.ltindia.com (mailout2.ltindia.com [125.18.18.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1ABBFE0030B
-	for <yocto@yoctoproject.org>; Thu, 29 Dec 2011 06:40:18 -0800 (PST)
-X-AuditID: c0a8466b-b7c01ae000004083-9d-4efc7bceb1ab
-Received: from POCITMSEXHUB03.LntUniverse.com ( [10.2.1.60])
-	by mailout2.ltindia.com (Symantec Mail Security) with SMTP id
-	DE.C3.16515.ECB7CFE4; Thu, 29 Dec 2011 20:10:14 +0530 (IST)
-Received: from POCITMSEXMB03.LntUniverse.com ([fe80::f495:7e6e:4c34:a3a9]) by
-	POCITMSEXHUB03.LntUniverse.com ([::1]) with mapi id 14.01.0218.012;
-	Thu, 29 Dec 2011 20:10:14 +0530
-From: Navani Kamal Srivastava <NAVANI.Srivastava@lnties.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Manuaaly copying library to rootfs/lib
-Thread-Index: AczGN4Fzj95Q5oO+QRuQC8CJGIqsVw==
-Date: Thu, 29 Dec 2011 14:40:13 +0000
-Message-ID: <9BACABF0C6B14A4D8C33B42A795119BE096D8A70@POCITMSEXMB03.LntUniverse.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.37.159]
+Return-Path: <sgw@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60209E0030B
+	for <yocto@yoctoproject.org>; Thu, 29 Dec 2011 08:37:42 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 29 Dec 2011 08:37:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="91301654"
+Received: from unknown (HELO [10.255.13.80]) ([10.255.13.80])
+	by orsmga001.jf.intel.com with ESMTP; 29 Dec 2011 08:37:41 -0800
+Message-ID: <4EFC9755.60805@linux.intel.com>
+Date: Thu, 29 Dec 2011 08:37:41 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprLKsWRmVeSWpSXmKPExsXCxcRoo3uu+o+fwcu/lhaTXq5hc2D0aD/R
-	xxbAGMVtk5RYUhacmZ6nb5fAnfFgxRGmgn7lirYPF9gaGBfJdTFyckgImEgs/b6QDcIWk7hw
-	bz2QzcUhJLCDUeLgk/PsEM5WRonZbRMYQarYBGwkHp9fxwJiiwiYSrw49gWsW1hAX+LS4dXs
-	EHETiddbbrNB2HoS1ya8ZgWxWQRUJR4eusjUxcjBwSsQItH91BckzAi0+PupNUwgNrOAuMSt
-	J/OZIA4SkFiy5zwzhC0q8fLxP1aQVgkBJYnHKzkhyvMl9r77BFbCKyAocXLmE5YJjEKzkEya
-	haRsFpIyiLiOxILdn9ggbG2JZQtfM8PYZw48ZkIWX8DIvopRJDcxMye/tMRIL6ckMy8lM1Ev
-	OT93EyMwIg6scMvewfhxj8ohRgEORiUeXgHv335CrIllxZW5hxglOZiURHnPV/3xE+JLyk+p
-	zEgszogvKs1JLT7EKMHBrCTC++AhUDlvSmJlVWpRPkxKmoNFSZx3l8oXPyGB9MSS1OzU1ILU
-	IpisDAeHkgQvLzDyhQSLUtNTK9Iyc0oQ0kwcnCCCC2QDD9AGU5BC3uKCxNzizHSIolOMklLi
-	vCIgCQGQREZpHtyAV4ziQH8I8/4BOZoHmObgul4BDWQCGnju3C+QgSWJCCmpBsajVo9ZAjl7
-	BCauuvnn0dOUxw5+7YIpBi2zFMTuCbPxa07YU7tBtM9s+Xm9D7V6x1cdzZBYdVIwRWylR+Kh
-	ew3Ou04sES75/Vb7d/PHjds2XrDeUPc7/ln2w8gVVjcrLnldXVcz67fatajbwYudDqzOdm3r
-	CUqfPKvxm/fnpUWaZneV5Q/dmCmrxFKckWioxVxUnAgAac//IDADAAA=
-Subject: Manuaaly copying library to rootfs/lib
+To: Andrew Schweitzer <a_schweitzer@yahoo.com>
+References: <CANSwnwggQwOgZk61xvppWXnz3+Wks9jSaNcp0+cBf9eS2xNNOg@mail.gmail.com>
+	<4EF20847.1030106@gmail.com>
+	<loom.20111229T062302-471@post.gmane.org>
+In-Reply-To: <loom.20111229T062302-471@post.gmane.org>
+Cc: yocto@yoctoproject.org
+Subject: Re: build error on meta-cedarview
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,130 +32,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Dec 2011 14:40:22 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9BACABF0C6B14A4D8C33B42A795119BE096D8A70POCITMSEXMB03Ln_"
+X-List-Received-Date: Thu, 29 Dec 2011 16:37:42 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_9BACABF0C6B14A4D8C33B42A795119BE096D8A70POCITMSEXMB03Ln_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-I need to copy a library manually to rootfs. I want to put it in the manner=
- that on doing bitbake of initscripts this library should get copied to the=
- rootfs in the same manner as it used to copy contents under etc/ to rootfs=
-. I am successful in porting this library to tmp/work/armv6-poky-linux-gnue=
-abi/initscripts-1.0-r124/image/lib/libc-2.11.1.so, now I am unable to put i=
-t in rootfs. When I am compiling rootfs I am unable to see this library.
-
-I tried giving         cp -d           ${WORKDIR}/libc-2.11.1.so       ${D}=
-${sysconfdir}/
-in initscripts_1.0.bb then the same library got copied in rootfs/etc/ . Wha=
-t I am supposed to do to copy it to rootfs/lib ?
-
-Thanks & Regards,
-Navani Kamal Srivastava
-
-
-
-
-
-
-Larsen & Toubro Limited
-
-www.larsentoubro.com
-
-This Email may contain confidential or privileged information for the inten=
-ded recipient (s) If you are not the intended recipient, please do not use =
-or disseminate the information, notify the sender and delete it from your s=
-ystem.
-
---_000_9BACABF0C6B14A4D8C33B42A795119BE096D8A70POCITMSEXMB03Ln_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 12/28/2011 09:26 PM, Andrew Schweitzer wrote:
+> Jim Abernathy<jfabernathy@...>  writes:
 >
-<style>
-<!--
-@font-face
-	{font-family:Calibri}
-@font-face
-	{font-family:Tahoma}
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif"}
-a:link, span.MsoHyperlink
-	{color:blue;
-	text-decoration:underline}
-a:visited, span.MsoHyperlinkFollowed
-	{color:purple;
-	text-decoration:underline}
-span.EmailStyle17
-	{font-family:"Tahoma","sans-serif";
-	color:windowtext}
-.MsoChpDefault
-	{font-family:"Calibri","sans-serif"}
-@page WordSection1
-	{margin:1.0in 1.0in 1.0in 1.0in}
-div.WordSection1
-	{}
--->
-</style>
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">Hi,</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">I need to copy a library manually to roo=
-tfs. I want to put it in the manner that on doing bitbake of initscripts th=
-is library should get copied to the rootfs in the same manner
- as it used to copy contents under etc/ to rootfs. I am successful in porti=
-ng this library to tmp/work/armv6-poky-linux-gnueabi/initscripts-1.0-r124/i=
-mage/lib/libc-2.11.1.so, now I am unable to put it in rootfs. When I am com=
-piling rootfs I am unable to see
- this library.</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">I tried giving &nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;cp -d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; ${WORKDIR}/libc-2.11.1.so&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- ${D}${sysconfdir}/</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">in initscripts_1.0.bb then the same libr=
-ary got copied in rootfs/etc/ . What I am supposed to do to copy it to root=
-fs/lib ?</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt; font-family:&quot;Ta=
-homa&quot;,&quot;sans-serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal">Thanks &amp; Regards,</p>
-<p class=3D"MsoNormal">Navani Kamal Srivastava</p>
-<p class=3D"MsoNormal"><b><br>
-<br>
-<br>
-</b></p>
-<p class=3D"MsoNormal">&nbsp;</p>
-</div>
-<br>
-<br>
-<b>Larsen &amp; Toubro Limited <br>
-<br>
-www.larsentoubro.com <br>
-<br>
-</b>This Email may contain confidential or privileged information for the i=
-ntended recipient (s) If you are not the intended recipient, please do not =
-use or disseminate the information, notify the sender and delete it from yo=
-ur system.
-</body>
-</html>
+>>
+>>
+>>      While running a build of the core-image-sato using the edison latest
+>>      commits and the meta-cedartrail bsp, I notices some errors fly by
+>>      and thought I'd see if anyone knows the reason.  The build is just
+>>      to test the bsp with no changes.  Basically, doing the Appendix A of
+>>      the Development manual substituting cedartrail for crownbay.
+>>      snippet of the console log below:
+>>      NOTE: package icon-naming-utils-native-0.8.7-r3: task do_unpack:
+>>      Started
+>>      ERROR: Function 'Unpack failure for URL:
+> 'http://tango.freedesktop.org/releases/icon-naming-utils-0.8.7.tar.gz'.
+>
+> I don't know the reason, but I did get the same error when trying to build yocto
+> per the getting started page, changing local.conf to create qemuarm
+>
+> I would be interested in knowing the reason too.
+>
+There has been a bug filed against this issue, it seems that the 
+tarballs have moved or are unavailable from that location for some 
+reason.  You are getting a download page, and I believe that the failure 
+should occur earlier with a checksum mismatch, but is not.
 
---_000_9BACABF0C6B14A4D8C33B42A795119BE096D8A70POCITMSEXMB03Ln_--
+You can fetch this file from our mirror at:
+http://downloads.yoctoproject.org/mirror/sources/icon-naming-utils-0.8.7.tar.gz
+
+Sau!
+
+> Andy
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
