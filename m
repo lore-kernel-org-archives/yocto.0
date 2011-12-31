@@ -1,37 +1,21 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83453E00307
-	for <yocto@yoctoproject.org>; Fri, 30 Dec 2011 18:57:03 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 30 Dec 2011 18:57:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="91658626"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by orsmga001.jf.intel.com with ESMTP; 30 Dec 2011 18:57:02 -0800
-Received: from pgsmsx509.gar.corp.intel.com (172.30.13.17) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sat, 31 Dec 2011 10:56:46 +0800
-Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sat, 31 Dec 2011 10:56:46 +0800
-Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.38]) by
-	SHSMSX102.ccr.corp.intel.com ([169.254.2.199]) with mapi id
-	14.01.0355.002; Sat, 31 Dec 2011 10:56:45 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: Kang Kai <Kai.Kang@windriver.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: Do we need run LTP/POSIX tests on qemu?
-Thread-Index: AQHMx2OfhPCFir7EyEeCJLtUMzt535X1Prsw
-Date: Sat, 31 Dec 2011 02:56:44 +0000
-Message-ID: <90741FE9B50D654690EB940EDB456C8EF02E@SHSMSX101.ccr.corp.intel.com>
-References: <4EFE72E3.2060509@windriver.com>
-In-Reply-To: <4EFE72E3.2060509@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+Return-Path: <Zumeng.Chen@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA106E00307
+	for <yocto@yoctoproject.org>; Fri, 30 Dec 2011 23:48:07 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBV7m6Tv015314
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 30 Dec 2011 23:48:06 -0800 (PST)
+Received: from pek-yocto-build2.corp.ad.wrs.com (128.224.163.150) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Fri, 30 Dec 2011 23:48:06 -0800
+From: Zumeng Chen <zumeng.chen@windriver.com>
+To: <bruce.ashfield@windriver.com>, <yocto@yoctoproject.org>
+Date: Sat, 31 Dec 2011 15:47:52 +0800
+Message-ID: <1325317673-8642-1-git-send-email-zumeng.chen@windriver.com>
+X-Mailer: git-send-email 1.7.5.4
 MIME-Version: 1.0
-Subject: Re: Do we need run LTP/POSIX tests on qemu?
+Subject: V3 for [Bug 1429][LTP] msync01 case failed some times on routerstationpro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,28 +27,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 31 Dec 2011 02:57:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 31 Dec 2011 07:48:08 -0000
+Content-Type: text/plain
 
-I think we could skip these tests on QEMU. Some boards do not have enough m=
-emory or power CPU for LTP/POSIX testing. That's why we tested QEMU at the =
-beginning.
-Yi could help to clarify.
 
-> Hi All,
->=20
-> I am fixing failed test cases of POSIX tests, and I meet some cases
-> just fail on qemu platform just as qemuppc or qemumips. I don't know
-> why we test LTP/POSIX on the qemu platforms at the beginning, and I am
-> wondering does it worth for us to do that because few people will make
-> qemu platforms to get the POSIX or LTP identified.
->=20
-> Regards,
-> Kai
+Hi Bruce,
 
-Best Regards,
-Jiajun
+This is a V3 version for 1429, there is not so much change
+since it is still queued in holidays. Many thanks for your
+nice patience.
 
+Regards,
+Zumeng
 
