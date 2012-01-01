@@ -1,23 +1,36 @@
-Return-Path: <Zumeng.Chen@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 639C0E00307
-	for <yocto@yoctoproject.org>; Fri, 30 Dec 2011 23:48:08 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id pBV7m8vG015317
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Fri, 30 Dec 2011 23:48:08 -0800 (PST)
-Received: from pek-yocto-build2.corp.ad.wrs.com (128.224.163.150) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Fri, 30 Dec 2011 23:48:08 -0800
-From: Zumeng Chen <zumeng.chen@windriver.com>
-To: <bruce.ashfield@windriver.com>, <yocto@yoctoproject.org>
-Date: Sat, 31 Dec 2011 15:47:53 +0800
-Message-ID: <1325317673-8642-2-git-send-email-zumeng.chen@windriver.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <1325317673-8642-1-git-send-email-zumeng.chen@windriver.com>
-References: <1325317673-8642-1-git-send-email-zumeng.chen@windriver.com>
+Return-Path: <pedro@algarvio.me>
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A69C5E00531
+	for <yocto@yoctoproject.org>; Sat, 31 Dec 2011 18:43:28 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@algarvio.me;
+	x-dkim-adsp=none (insecure policy)
+Received: by werm10 with SMTP id m10so10543306wer.35
+	for <yocto@yoctoproject.org>; Sat, 31 Dec 2011 18:43:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=algarvio.me; s=mail;
+	h=message-id:disposition-notification-to:date:from:user-agent
+	:mime-version:to:subject:x-enigmail-version:openpgp:content-type
+	:content-transfer-encoding;
+	bh=8PVo6PG7sbicqy7yVSMIPGhBggCJhr9Fa+hhlihA5c8=;
+	b=QWf4wofC4q9FYDCRYwJ5u3o8Pecsv7iVO+0c2bn62Zcv0nDmuSZ+otLnU1Vnvub0ZP
+	FkdgQXAg2dpqNB1ujR/QKYiDTla3I28kYNa0bRNcq9GT3tk5SnyN480mguWclz+VBpcm
+	IR45GwGb+HPnCCvH/bo0yZwlOOjpVTAqufbj0=
+Received: by 10.216.136.90 with SMTP id v68mr24594703wei.47.1325385806365;
+	Sat, 31 Dec 2011 18:43:26 -0800 (PST)
+Received: from [188.140.110.92] ([188.140.110.92])
+	by mx.google.com with ESMTPS id dd4sm105577001wib.1.2011.12.31.18.43.25
+	(version=SSLv3 cipher=OTHER); Sat, 31 Dec 2011 18:43:25 -0800 (PST)
+Message-ID: <4EFFC84C.3090206@algarvio.me>
+Date: Sun, 01 Jan 2012 02:43:24 +0000
+From: Pedro Algarvio <pedro@algarvio.me>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-Subject: [V3 PATCH 1/1] mm: msync: fix issues of sys_msync on tmpfs
+To: yocto@yoctoproject.org
+X-Enigmail-Version: 1.3.4
+OpenPGP: id=9C558009
+Subject: Python Math Module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,146 +42,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 31 Dec 2011 07:48:08 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sun, 01 Jan 2012 02:43:29 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-There are two problems as follows shown:
-1 ) for TMPFS, nothing need to be done in sys_msync,
-    sys_msync just return 0 for all arches but MIPS.
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-2 ) For MIPS CPUs with cache alias(dmesg|grep alias),
-    it maybe has the issue, which reported by msync test
-    suites in ltp-full, when the memory of memset used by
-    msync01 runs into cache alias randomly.
+I've started to port the Mini2440 openembedded layer found at
+http://code.google.com/p/mini2440/ and also PySide from Angstrom or
+the old OpenEmbedded layers I think(can't remember now).
 
-    Consider the following scenario used by msync01 in ltp-full:
-	fildes = open(TEMPFILE, O_RDWR | O_CREAT, 0666)) < 0);
-	.../* initialization fildes by write(fildes); */
-	addr = mmap(0, page_sz, PROT_READ | PROT_WRITE, MAP_FILE | MAP_SHARED,
-		fildes, 0);
-	/* set buf with memset */
-        memset(addr + OFFSET_1, 1, BUF_SIZE);
+My layers can be found at http://dev.ufsoft.org/projects/yocto
 
-        /* msync the addr before using */
-	msync(addr, page_sz, MS_ASYNC)
+I found out while porting PySide's examples that python does not ship
+with it's math module, is there a specific reason why?
 
-	/* Then tries to read fildes */
-	lseek(fildes, (off_t) OFFSET_1, SEEK_SET) != (off_t) OFFSET_1) {
-	nread = read(fildes, read_buf, sizeof(read_buf));
+I need to add that I'm pretty new to all this, so I might be doin'
+things the wrong way...
 
-	/* Then tries to test the result */
-	if (read_buf[count] != 1) {
+Anyway, any pointers on how to add the python's math module to an
+image is more than welcome, I'd like to include it as a dependency for
+the pyside examples bb script.
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
 
-    The test result is random too for CPUs with cache alias. So
-    in this situation, we have to flush the related vma to make
-    sure the read is correct.
-
-Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
----
- include/linux/shmem_fs.h |   10 ++++++++++
- mm/msync.c               |   22 +++++++++++++++++++++-
- mm/shmem.c               |    4 ++--
- 3 files changed, 33 insertions(+), 3 deletions(-)
-
-diff --git a/include/linux/shmem_fs.h b/include/linux/shmem_fs.h
-index aa08fa8..349f8fe 100644
---- a/include/linux/shmem_fs.h
-+++ b/include/linux/shmem_fs.h
-@@ -12,6 +12,15 @@
- 
- #define SHMEM_SYMLINK_INLINE_LEN (SHMEM_NR_DIRECT * sizeof(swp_entry_t))
- 
-+/*
-+ * MIPS cache alias should be taken into accounts when msync.
-+ */
-+#ifndef cpu_has_dc_aliases
-+#define CPU_HAS_CACHE_ALIAS 0
-+#else
-+#define CPU_HAS_CACHE_ALIAS cpu_has_dc_aliases
-+#endif
-+
- struct shmem_inode_info {
- 	spinlock_t		lock;
- 	unsigned long		flags;
-@@ -49,6 +58,7 @@ static inline struct shmem_inode_info *SHMEM_I(struct inode *inode)
- /*
-  * Functions in mm/shmem.c called directly from elsewhere:
-  */
-+extern const struct file_operations shmem_file_operations;
- extern int init_tmpfs(void);
- extern int shmem_fill_super(struct super_block *sb, void *data, int silent);
- extern struct file *shmem_file_setup(const char *name,
-diff --git a/mm/msync.c b/mm/msync.c
-index 632df45..ced6215 100644
---- a/mm/msync.c
-+++ b/mm/msync.c
-@@ -13,6 +13,8 @@
- #include <linux/file.h>
- #include <linux/syscalls.h>
- #include <linux/sched.h>
-+#include <linux/shmem_fs.h>
-+#include <asm/cacheflush.h>
- 
- /*
-  * MS_SYNC syncs the entire file - including mappings.
-@@ -33,6 +35,7 @@ SYSCALL_DEFINE3(msync, unsigned long, start, size_t, len, int, flags)
- 	unsigned long end;
- 	struct mm_struct *mm = current->mm;
- 	struct vm_area_struct *vma;
-+	struct file *file;
- 	int unmapped_error = 0;
- 	int error = -EINVAL;
- 
-@@ -56,8 +59,25 @@ SYSCALL_DEFINE3(msync, unsigned long, start, size_t, len, int, flags)
- 	 */
- 	down_read(&mm->mmap_sem);
- 	vma = find_vma(mm, start);
-+
-+#ifdef CONFIG_TMPFS
-+	/*
-+	 * For tmpfs, no matter which flag(ASYNC or SYNC) gets from msync,
-+	 * there is not so much thing to do for CPUs without cache alias,
-+	 * But for some CPUs with cache alias, msync has to flush cache
-+	 * explicitly, which makes sure the data coherency between memory
-+	 * file and cache.
-+	 */
-+	file =  vma->vm_file;
-+	if (file && (file->f_op == &shmem_file_operations)) {
-+		if(CPU_HAS_CACHE_ALIAS)
-+			flush_cache_range(vma, start, start+len);
-+		error = 0;
-+		goto out_unlock;
-+	}
-+#endif
-+
- 	for (;;) {
--		struct file *file;
- 
- 		/* Still start < end. */
- 		error = -ENOMEM;
-diff --git a/mm/shmem.c b/mm/shmem.c
-index fcedf54..f848fd3 100644
---- a/mm/shmem.c
-+++ b/mm/shmem.c
-@@ -222,7 +222,7 @@ static inline void shmem_unacct_blocks(unsigned long flags, long pages)
- 
- static const struct super_operations shmem_ops;
- static const struct address_space_operations shmem_aops;
--static const struct file_operations shmem_file_operations;
-+const struct file_operations shmem_file_operations;
- static const struct inode_operations shmem_inode_operations;
- static const struct inode_operations shmem_dir_inode_operations;
- static const struct inode_operations shmem_special_inode_operations;
-@@ -2692,7 +2692,7 @@ static const struct address_space_operations shmem_aops = {
- 	.error_remove_page = generic_error_remove_page,
- };
- 
--static const struct file_operations shmem_file_operations = {
-+const struct file_operations shmem_file_operations = {
- 	.mmap		= shmem_mmap,
- #ifdef CONFIG_TMPFS
- 	.llseek		= generic_file_llseek,
--- 
-1.7.5.4
-
+iQEcBAEBAgAGBQJO/8hIAAoJEEmUWh2cVYAJ19EIAM/pGdSmMTTXCB8jDeHv5XgE
+pUjXojy7GwqiP5nj03cFu/Ts/ydd9UbgVk5oojzw3GcVauW9yBQwnlvShfIwTFUd
+xL6mDrzeRYnuZDL5QdMJD5gWqwE2ZFM2f0k6lF18Q0iQMEB9yPOT0VIGDRNSbQqg
+uZH+D/9btQgoYgsliToRCXXsU6rHvTqxIa0+te8Zl+n9R3tJYUnYOGllXKsRMPI8
++ibknG+FB9YT7F7C5IYH23P2xHG9RT6pelhK+QAmKGQ99QJBVG8T3pAXymsQ2pta
+gMj2QlMnUegy+NWCk0npWzW6DnSVnK3zsWJsTKm1Jn10b662KlMSVGk6jQIxeRw=
+=7z0t
+-----END PGP SIGNATURE-----
 
