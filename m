@@ -1,33 +1,35 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 493A0E0054C
-	for <yocto@yoctoproject.org>; Mon,  2 Jan 2012 10:42:54 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 02 Jan 2012 10:42:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="108005920"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by fmsmga002.fm.intel.com with ESMTP; 02 Jan 2012 10:42:53 -0800
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 2 Jan 2012 10:42:53 -0800
-Received: from orsmsx102.amr.corp.intel.com ([169.254.1.40]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.229]) with mapi id
-	14.01.0355.002; Mon, 2 Jan 2012 10:42:53 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Technical Team Meeting - Tuesday, January 03,
-	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHMyX5V+lxotz182EKTosXwhHySBA==
-Date: Mon, 2 Jan 2012 18:42:52 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A25797266@ORSMSX102.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <pedro@algarvio.me>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDD97E0054C
+	for <yocto@yoctoproject.org>; Mon,  2 Jan 2012 11:07:27 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@algarvio.me;
+	x-dkim-adsp=none (insecure policy)
+Received: by wibhq4 with SMTP id hq4so12254191wib.35
+	for <yocto@yoctoproject.org>; Mon, 02 Jan 2012 11:07:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=algarvio.me; s=mail;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:x-enigmail-version:openpgp:content-type:content-transfer-encoding;
+	bh=KHQ6WnqPELcF9jWPcH01yMLn6lxMVH97I4dUOcxLn/0=;
+	b=hzUc9O4DXb+npKzKV6HOLDhxas+pBF0lyVoEDbnWfw7iWaUXrRRhuaZ4DVNMC1pky2
+	hWRWgfTewCEtJ2Pc5EHChRV+M4w4o7NS18VQbm3++whLWL1JsHJAKXzK0kESpAeJEKST
+	VIbgd6LdVNm5B+q3N6idwXM13fZtdWoecwuPY=
+Received: by 10.180.19.138 with SMTP id f10mr136677594wie.3.1325531245498;
+	Mon, 02 Jan 2012 11:07:25 -0800 (PST)
+Received: from [10.1.0.33] (a89-154-151-86.cpe.netcabo.pt. [89.154.151.86])
+	by mx.google.com with ESMTPS id g26sm25399207wbo.16.2012.01.02.11.07.12
+	(version=SSLv3 cipher=OTHER); Mon, 02 Jan 2012 11:07:25 -0800 (PST)
+Message-ID: <4F02005F.4080705@algarvio.me>
+Date: Mon, 02 Jan 2012 19:07:11 +0000
+From: Pedro Algarvio <pedro@algarvio.me>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-Subject: Agenda: Yocto Technical Team Meeting - Tuesday, January 03, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+To: yocto@yoctoproject.org
+X-Enigmail-Version: 1.3.4
+OpenPGP: id=9C558009
+Subject: Python Math Module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,133 +41,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jan 2012 18:42:54 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 02 Jan 2012 19:07:29 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Agenda:
-* Opens collection - 5 min (Song)=A0
-* Yocto 1.1.1 point release update - 10 min (Josh)=A0
-* Yocto 1.2 M2 status and major kernel/toolchain version lock - 10 min (Son=
-g/Bruce/Team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status=20
-* Opens - 10 min=A0
-* Action item Review - 5 min
-- Mark will review unsorted features from Wind River team and try to have t=
-hem scheduled (WIP, finalizing it.)
-- Song and Saul to follow on Scott Garman's M2 schedule conflict.
-- Paul to work with Jeremy and others to move 1598 forward.
-* Team Sharing - 20 min
+I've started to port the Mini2440 openembedded layer found at
+http://code.google.com/p/mini2440/ and also PySide from Angstrom or
+the old OpenEmbedded layers I think(can't remember now).
 
+My layers can be found at http://dev.ufsoft.org/projects/yocto
 
------Original Appointment-----
+I found out while porting PySide's examples that python does not ship
+with it's math module, is there a specific reason why?
 
+I need to add that I'm pretty new to all this, so I might be doin'
+things the wrong way...
 
-Conference details=20
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
-Participants:=20
-30
-Duration:=20
-60 minutes=20
-Participant passcode:=20
-49611427=20
-Dial-in number:=20
-1.972.995.7777=20
-US Toll Free number:=20
-1.877.561.6828=20
-BlackBerry users, click this link to join your conference as a chairperson:
-1.972.995.7777x67184230#
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x49611427#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
-
-Local and Global Access Numbers=20
-
-
-Country=20
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277=20
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322=20
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877=20
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777=20
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777=20
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799=20
-From Kuala Lumpur dial 4264 3799=20
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177=20
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777=20
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998=20
-From Seoul dial 5606998=20
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363=20
-From Taipei dial 2241 1363=20
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001=20
-then enter 877 633 1123=20
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
-
-Recurring conferences=20
-First scheduled conference:=20
-Tue Jun 28, 2011
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 22, 2012, 10:40 AM CDT
-
+Anyway, any pointers on how to add the python's math module to an
+image is more than welcome, I'd like to include it as a dependency for
+the pyside examples bb script.
 
