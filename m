@@ -1,22 +1,19 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C2BFE0135B
-	for <yocto@yoctoproject.org>; Mon,  2 Jan 2012 11:31:54 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 02 Jan 2012 11:31:54 -0800
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2370E01366
+	for <yocto@yoctoproject.org>; Mon,  2 Jan 2012 11:32:37 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 02 Jan 2012 11:32:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="108020812"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="93686308"
 Received: from unknown (HELO localhost) ([10.255.13.35])
-	by fmsmga002.fm.intel.com with ESMTP; 02 Jan 2012 11:31:53 -0800
+	by orsmga002.jf.intel.com with ESMTP; 02 Jan 2012 11:32:36 -0800
 From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org,
-	bruce.ashfield@windriver.com
-Date: Mon,  2 Jan 2012 13:31:55 -0600
-Message-Id: <69ec2c0e0ebd1df160a4e40945fdcc66772fa3c7.1325522900.git.tom.zanussi@intel.com>
+To: yocto@yoctoproject.org
+Date: Mon,  2 Jan 2012 13:32:38 -0600
+Message-Id: <cover.1325525852.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1325522900.git.tom.zanussi@intel.com>
-References: <cover.1325522900.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/1][KERNEL] crownbay: use emgd-1.10
+Subject: [PATCH 0/3] emgd-1.10: new recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,30 +25,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jan 2012 19:31:54 -0000
+X-List-Received-Date: Mon, 02 Jan 2012 19:32:37 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Use the yocto/emgd-1.10 branch in place of yocto/emgd.
+This patchset adds support for emgd-1.10.  This version relies on a new
+licensing mechanism called LICENSE_FLAGS, which has been posted separately.
+The LICENSE_FLAGS implementation provides the mechanism needed for this new
+emgd recipe to be automatically downloaded from the emgd site and used by
+the recipe rather than using the manual-copy method required by the emgd-1.8
+and previous recipes.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+In order to allow emgd-1.10 to be built, however, the emgd license string,
+"License_emgd-driver-bin_1.10" must be added to the LICENSE_FLAGS_WHITELIST
+variable in local.conf e.g.:
 
-diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
-index fb761a0..60a3755 100644
---- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
-+++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
-@@ -1,6 +1,6 @@
- kconf hardware crownbay.cfg
- 
--git merge yocto/emgd
-+git merge yocto/emgd-1.10
- 
- include features/eg20t/eg20t.scc
- include features/intel-e1xxxx/intel-e100.scc
--- 
-1.7.0.4
+LICENSE_FLAGS_WHITELIST = "License_emgd-driver-bin_1.10"
+
+This patchset also removes the 1.8 recipe in the process.
+
+All the basic funcionality has been tested and works i.e. 2D graphics, mouse,
+keyboard, 3D graphics (glxgears), and video accelaration
+(big_buck_bunny_1080p_h264.mov).
+
+
+The following changes since commit 7c3db7010479970f3f92501349827c517de3c36a:
+  Tom Zanussi (1):
+        meta-intel: change EMGD xserver libva dependency to libva-x11
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-intel.git tzanussi/emgd-1.10.v0
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/emgd-1.10.v0
+
+Tom Zanussi (3):
+  meta-intel: new recipe for emgd 1.10 driver
+  meta-crownbay: pin to emgd-driver-bin_1.10
+  meta-intel: remove emgd-1.8
+
+ .../xorg-xserver/emgd-driver-bin_1.10.bb           |   97 ++++++++++++++++++++
+ .../xorg-xserver/emgd-driver-bin_1.8.bb            |   39 --------
+ meta-crownbay/conf/machine/crownbay.conf           |    2 +-
+ 3 files changed, 98 insertions(+), 40 deletions(-)
+ delete mode 100644 common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8/.gitignore
+ create mode 100644 common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.10.bb
+ delete mode 100644 common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
 
 
