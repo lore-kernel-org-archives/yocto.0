@@ -1,20 +1,22 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75263E0054C
-	for <yocto@yoctoproject.org>; Mon,  2 Jan 2012 11:31:32 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 02 Jan 2012 11:31:32 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 480AEE005B9
+	for <yocto@yoctoproject.org>; Mon,  2 Jan 2012 11:31:36 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 02 Jan 2012 11:31:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="93686003"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="52574180"
 Received: from unknown (HELO localhost) ([10.255.13.35])
-	by orsmga002.jf.intel.com with ESMTP; 02 Jan 2012 11:31:30 -0800
+	by AZSMGA002.ch.intel.com with ESMTP; 02 Jan 2012 11:31:34 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org,
 	bruce.ashfield@windriver.com
-Date: Mon,  2 Jan 2012 13:31:31 -0600
-Message-Id: <cover.1325522643.git.tom.zanussi@intel.com>
+Date: Mon,  2 Jan 2012 13:31:34 -0600
+Message-Id: <6067b0f9607b14b3c8414b5e58955acad1857379.1325522643.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/2][KERNEL] new yocto/emgd-1.10 feature branch
+In-Reply-To: <cover.1325522643.git.tom.zanussi@intel.com>
+References: <cover.1325522643.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/2][KERNEL] yocto/emgd: emgd 1.10 driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,38 +28,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jan 2012 19:31:32 -0000
+X-List-Received-Date: Mon, 02 Jan 2012 19:31:37 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This patchset adds a new yocto/emgd-1.10 feature branch to linux-yocto-3.0,
-alongside the existing yocto/emgd branch containing emgd-1.8.
+The starting-point code that subsequent patches will modify.  This is
+a straight copy of the code in the emgd 1.10 emgd driver, specifically
+IEMGD_HEAD_Linux/common/drm/emgd_drm.tgz from
+LIN_EMGD_1_10_RC_2209.tgz, the 'Linux Tar Ball' release downloaded
+from http://edc.intel.com/Software/Downloads/EMGD/.
 
-Bruce, please don't merge this yet though - it depends on the new emgd-1.10
-recipe, which in turn depends on some new LICENSE_FLAGS functionality being
-merged.  Will let you know when all that's taken care of and it's safe to
-pull this in.
-
-Thanks,
-
-Tom
-
-The following changes since commit 6b4bf6173b0bd2d1619a8218bac66ebc4681dd35:
-  Maurice Ma (1):
-        x86, efi: Convert efi_phys_get_time() args to physical addresses
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/linux-yocto-3.0-yocto/emgd-1.10.v0
-  http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/linux-yocto-3.0-yocto/emgd-1.10.v0
-
-Tom Zanussi (2):
-  yocto/emgd: emgd 1.10 driver
-  yocto/emgd: initial build fixups
-
- drivers/gpu/drm/Kconfig                            |    9 +
- drivers/gpu/drm/Makefile                           |    1 +
- drivers/gpu/drm/emgd/Makefile                      |  294 +
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ drivers/gpu/drm/emgd/Makefile                      |  326 +
  drivers/gpu/drm/emgd/emgd/cfg/config.h             |  113 +
  drivers/gpu/drm/emgd/emgd/cfg/config_default.h     |  198 +
  drivers/gpu/drm/emgd/emgd/cfg/config_helper.c      |  244 +
@@ -411,7 +394,7 @@ Tom Zanussi (2):
  .../intern/debug/dbgdriv/linux/kbuild/Makefile     |   33 +
  .../pvr/tools/intern/debug/dbgdriv/linux/main.c    |  294 +
  .../debug/dbgdriv/linux/makefile.linux.common      |   38 +
- 356 files changed, 185194 insertions(+), 0 deletions(-)
+ 354 files changed, 185216 insertions(+), 0 deletions(-)
  create mode 100755 drivers/gpu/drm/emgd/Makefile
  create mode 100644 drivers/gpu/drm/emgd/emgd/cfg/config.h
  create mode 100644 drivers/gpu/drm/emgd/emgd/cfg/config_default.h
@@ -767,4 +750,5 @@ Tom Zanussi (2):
  create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/dbgdriv/linux/main.c
  create mode 100644 drivers/gpu/drm/emgd/pvr/tools/intern/debug/dbgdriv/linux/makefile.linux.common
 
+[Patch too large to post - see branch URL for details]
 
