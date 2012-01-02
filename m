@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14C6BE0136C
-	for <yocto@yoctoproject.org>; Mon,  2 Jan 2012 11:32:43 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 02 Jan 2012 11:32:42 -0800
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0182CE0136D
+	for <yocto@yoctoproject.org>; Mon,  2 Jan 2012 11:32:45 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 02 Jan 2012 11:32:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="52574415"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="102426294"
 Received: from unknown (HELO localhost) ([10.255.13.35])
-	by AZSMGA002.ch.intel.com with ESMTP; 02 Jan 2012 11:32:42 -0800
+	by fmsmga001.fm.intel.com with ESMTP; 02 Jan 2012 11:32:45 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Mon,  2 Jan 2012 13:32:40 -0600
-Message-Id: <7b687189825007acb211a97f33e49fad3b1b754d.1325525852.git.tom.zanussi@intel.com>
+Date: Mon,  2 Jan 2012 13:32:41 -0600
+Message-Id: <5243a31998c9a5110d633960248704420c1e3d57.1325525852.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <7317bc9b1927ece936575c5faf1a97f79800872f.1325525852.git.tom.zanussi@intel.com>
 References: <7317bc9b1927ece936575c5faf1a97f79800872f.1325525852.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1325525852.git.tom.zanussi@intel.com>
 References: <cover.1325525852.git.tom.zanussi@intel.com>
-Subject: [PATCH 2/3] meta-crownbay: pin to emgd-driver-bin_1.10
+Subject: [PATCH 3/3] meta-intel: remove emgd-1.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,30 +29,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jan 2012 19:32:43 -0000
+X-List-Received-Date: Mon, 02 Jan 2012 19:32:46 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Make sure crownbay uses emgd-driver-bin 1.10.
+emgd-1.8 is now obsoleted by emgd-1.10, so remove support for it.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-crownbay/conf/machine/crownbay.conf |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ .../xorg-xserver/emgd-driver-bin_1.8.bb            |   39 --------------------
+ 1 files changed, 0 insertions(+), 39 deletions(-)
+ delete mode 100644 common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8/.gitignore
+ delete mode 100644 common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
 
-diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
-index 1bf3bdd..94815b0 100644
---- a/meta-crownbay/conf/machine/crownbay.conf
-+++ b/meta-crownbay/conf/machine/crownbay.conf
-@@ -14,7 +14,7 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
- 
- PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
- PREFERRED_VERSION_mesa-dri ?= "7.11"
--PREFERRED_VERSION_emgd-driver-bin ?= "1.8"
-+PREFERRED_VERSION_emgd-driver-bin ?= "1.10"
- 
- APPEND += "video=vesafb vga=0x318"
- 
+diff --git a/common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8/.gitignore b/common/recipes-graphics/xorg-xserver/emgd-driver-bin-1.8/.gitignore
+deleted file mode 100644
+index e69de29..0000000
+diff --git a/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb b/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
+deleted file mode 100644
+index bb98962..0000000
+--- a/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
++++ /dev/null
+@@ -1,39 +0,0 @@
+-SUMMARY = "EMGD 1.8 xserver binaries"
+-DESCRIPTION = "EMGD 1.8 includes some userspace binaries that use non-free \
+-licensing.  Intel Open Source Technology Center unfortunately has no power \
+-to change that, but tries to make their use as painless as possible.  Please \
+-see the README in meta-crownbay/ for instructions on the (simple) manual \
+-steps necessary to make the necessary binaries available to this recipe.  \
+-Please do that before building an image."
+-LICENSE = "Intel-binary-only"
+-PR = "r8"
+-
+-LIC_FILES_CHKSUM = "file://${WORKDIR}/License.txt;md5=b54f01caaf8483b3cb60c0c40f2bf22d"
+-
+-FILESPATH = "${FILE_DIRNAME}/emgd-driver-bin-1.8"
+-
+-SRC_URI = "file://lib \
+-           file://License.txt"
+-
+-FILES_${PN} += "${libdir}/dri ${libdir}/gstreamer-0.10 ${libdir}/xorg/modules/drivers"
+-FILES_${PN}-dev += "${libdir}/*.so"
+-FILES_${PN}-dbg += "${libdir}/xorg/modules/drivers/.debug ${libdir}/dri/.debug"
+-
+-S = "${WORKDIR}"
+-
+-do_install () {
+-    install -d -m 0755                              ${D}/${libdir}/dri
+-    install -d -m 0755                              ${D}/${libdir}/gstreamer-0.10
+-    install -d -m 0755                              ${D}/${libdir}/xorg/modules/drivers
+-    install -m 0755 ${S}/lib/*.so.*                 ${D}${libdir}/
+-    install -m 0755 ${S}/lib/dri/*                  ${D}${libdir}/dri/
+-    install -m 0755 ${S}/lib/gstreamer-0.10/*       ${D}${libdir}/gstreamer-0.10/
+-    install -m 0755 ${S}/lib/xorg/modules/drivers/* ${D}${libdir}/xorg/modules/drivers/
+-
+-    ln -sf libEGL.so.1                              ${D}${libdir}/libEGL.so
+-    ln -sf libGLES_CM.so.1                          ${D}${libdir}/libGLES_CM.so
+-    ln -sf libGLESv2.so.2                           ${D}${libdir}/libGLESv2.so
+-    ln -sf libEMGDScopeServices.so.1.5.15.3226      ${D}${libdir}/libPVRScopeServices.so
+-}
+-
+-LEAD_SONAME = "libEGL.so"
 -- 
 1.7.0.4
 
