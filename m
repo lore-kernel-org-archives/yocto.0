@@ -1,20 +1,22 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6F4EE0071B
-	for <yocto@yoctoproject.org>; Mon,  2 Jan 2012 11:31:51 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 02 Jan 2012 11:31:51 -0800
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C2BFE0135B
+	for <yocto@yoctoproject.org>; Mon,  2 Jan 2012 11:31:54 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 02 Jan 2012 11:31:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="91625308"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="108020812"
 Received: from unknown (HELO localhost) ([10.255.13.35])
-	by azsmga001.ch.intel.com with ESMTP; 02 Jan 2012 11:31:50 -0800
+	by fmsmga002.fm.intel.com with ESMTP; 02 Jan 2012 11:31:53 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org,
 	bruce.ashfield@windriver.com
-Date: Mon,  2 Jan 2012 13:31:51 -0600
-Message-Id: <cover.1325522900.git.tom.zanussi@intel.com>
+Date: Mon,  2 Jan 2012 13:31:55 -0600
+Message-Id: <69ec2c0e0ebd1df160a4e40945fdcc66772fa3c7.1325522900.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/1][KERNEL] meta/crownbay: use new yocto/emgd-1.10 feature branch
+In-Reply-To: <cover.1325522900.git.tom.zanussi@intel.com>
+References: <cover.1325522900.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/1][KERNEL] crownbay: use emgd-1.10
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,34 +28,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jan 2012 19:31:52 -0000
+X-List-Received-Date: Mon, 02 Jan 2012 19:31:54 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This patchset makes crownbay use the new yocto/emgd-1.10 feature branch.
+Use the yocto/emgd-1.10 branch in place of yocto/emgd.
 
-Bruce, please don't merge this yet though - it depends on the new emgd-1.10
-recipe, which in turn depends on some new LICENSE_FLAGS functionality being
-merged.  Will let you know when all that's taken care of and it's safe to
-pull this in.
-
-Thanks,
-
-Tom
-
-The following changes since commit c979f1365b1eb74e882b2cbbc8407ec536ab6eb8:
-  Bruce Ashfield (1):
-        meta/routstationpro: refresh for 3.0 + rt support
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/linux-yocto-3.0-meta/emgd-1.10.v0
-  http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/linux-yocto-3.0-meta/emgd-1.10.v0
-
-Tom Zanussi (1):
-  crownbay: use emgd-1.10
-
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
  meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc |    2 +-
  1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
+index fb761a0..60a3755 100644
+--- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
++++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
+@@ -1,6 +1,6 @@
+ kconf hardware crownbay.cfg
+ 
+-git merge yocto/emgd
++git merge yocto/emgd-1.10
+ 
+ include features/eg20t/eg20t.scc
+ include features/intel-e1xxxx/intel-e100.scc
+-- 
+1.7.0.4
 
 
