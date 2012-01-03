@@ -1,39 +1,33 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3740E0070D
-	for <yocto@yoctoproject.org>; Tue,  3 Jan 2012 09:26:26 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by vcbfl13 with SMTP id fl13so18120940vcb.35
-	for <yocto@yoctoproject.org>; Tue, 03 Jan 2012 09:26:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=vc17sf/pSugxh+mxEv5GQ9BuXMHdAtG4O0Wai2iC4gk=;
-	b=oPiJFKQunkYfUziA9rGe5skK2D0kUbMbxgTbwqpT81RO8Ry/LU9jPaiUnqNbH3eHJU
-	d1+bb95qZ/KZTRDkOBPUCTLW3FNwYnNqSwEY0ovMvqQE0QuFLix3oJB4vYYN/fTyVEOW
-	0f/+OTuroqxyJuWLeGXQSblGOfAQYK3uxbOEI=
-Received: by 10.220.230.131 with SMTP id jm3mr29637268vcb.51.1325611585952;
-	Tue, 03 Jan 2012 09:26:25 -0800 (PST)
-Received: from [10.0.1.39] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
-	by mx.google.com with ESMTPS id
-	jf1sm26683350vdb.21.2012.01.03.09.26.24 (version=SSLv3 cipher=OTHER);
-	Tue, 03 Jan 2012 09:26:24 -0800 (PST)
-Message-ID: <4F033A40.3070507@gmail.com>
-Date: Tue, 03 Jan 2012 12:26:24 -0500
-From: Jim Abernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+Return-Path: <song.liu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38580E0070D
+	for <yocto@yoctoproject.org>; Tue,  3 Jan 2012 11:32:45 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 03 Jan 2012 11:32:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="102796991"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga001.fm.intel.com with ESMTP; 03 Jan 2012 11:32:44 -0800
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 3 Jan 2012 11:32:44 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.57]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.129]) with mapi id
+	14.01.0355.002; Tue, 3 Jan 2012 11:32:44 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Technical Team Meeting - Tuesday, January 03,
+	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
+Thread-Index: AQHMyk52toDiF1lp8kqps/evhZSq6A==
+Date: Tue, 3 Jan 2012 19:32:43 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A257A3CCC@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A16EBA481@FMSMSX151.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CANSwnwggQwOgZk61xvppWXnz3+Wks9jSaNcp0+cBf9eS2xNNOg@mail.gmail.com>
-	<4EF20847.1030106@gmail.com>
-	<loom.20111229T062302-471@post.gmane.org>
-	<4EFC9755.60805@linux.intel.com>
-In-Reply-To: <4EFC9755.60805@linux.intel.com>
-Subject: Re: build error on meta-cedarview
+Subject: Minutes: Yocto Technical Team Meeting - Tuesday, January 03, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,62 +39,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jan 2012 17:26:27 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 03 Jan 2012 19:32:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/29/2011 11:37 AM, Saul Wold wrote:
-> On 12/28/2011 09:26 PM, Andrew Schweitzer wrote:
->> Jim Abernathy<jfabernathy@...>  writes:
->>
->>>
->>>
->>>      While running a build of the core-image-sato using the edison 
->>> latest
->>>      commits and the meta-cedartrail bsp, I notices some errors fly by
->>>      and thought I'd see if anyone knows the reason.  The build is just
->>>      to test the bsp with no changes.  Basically, doing the Appendix 
->>> A of
->>>      the Development manual substituting cedartrail for crownbay.
->>>      snippet of the console log below:
->>>      NOTE: package icon-naming-utils-native-0.8.7-r3: task do_unpack:
->>>      Started
->>>      ERROR: Function 'Unpack failure for URL:
->> 'http://tango.freedesktop.org/releases/icon-naming-utils-0.8.7.tar.gz'.
->>
->> I don't know the reason, but I did get the same error when trying to 
->> build yocto
->> per the getting started page, changing local.conf to create qemuarm
->>
->> I would be interested in knowing the reason too.
->>
-> There has been a bug filed against this issue, it seems that the 
-> tarballs have moved or are unavailable from that location for some 
-> reason.  You are getting a download page, and I believe that the 
-> failure should occur earlier with a checksum mismatch, but is not.
->
-> You can fetch this file from our mirror at:
-> http://downloads.yoctoproject.org/mirror/sources/icon-naming-utils-0.8.7.tar.gz 
->
->
-Saul,
+Attendees:
+Paul, Beth, Josh, Richard, Scott, Mark, Jessica, Saul, Bruce, Matthew, Song
+=A0
+New Action Item:
+- Mark will review unsorted features from Wind River team and try to have t=
+hem scheduled (WIP, Reviewed, but not scheduled yet.)
+- Song and Saul to follow on Scott Garman's M2 schedule conflict. (WIP, nee=
+d to talk with Dave)
+- Paul to work with Jeremy and others to move 1598 forward. (WIP)
+- Paul to split feature 1566.
+=A0
+Agenda:
+* Opens collection - 5 min (Song)
+* Yocto 1.1.1 point release update - 10 min (Josh)=A0
+  - Got the build out before Christmas, QA test passed. One outstanding iss=
+ue. Have a promising solution now. Pulling together some other minor fixes.=
+ Need to talk with Beth
+  - Scott: do we need to update manual?=20
+  - Beth will setup a meeting with Josh and Scott to determine the next bui=
+ld for QA and possible doc changes.
+=A0
+* Yocto 1.2 M2 status and major kernel/toolchain version lock - 10 min (Son=
+g/Bruce/Team)
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status=20
+ =20
+  - 4th week of M2, next week we will have RC1. more than half of the featu=
+res are in progress, some in patch review, some is lacking QA effort, about=
+ 40% still has no progress. Paul and ScottG's P1's are at risk.=20
+  - Paul will split P1 feature 1655 into deliverables for both M2 and M3.
+  - Master build is green by the new year's day. Integrating patches now.
+  - bugs are in control with about 15 new bugs opened and about the same am=
+ount fixed after Christmas.=A0
+  - Major kernel version lock: Kernel - 3.2.x with RT release. Tool Chain -=
+ set with the versions now, gcc 4.6, minor patches possible, but no more ma=
+jor version change.=A0
+  - M2 release criteria review (Reviewed and updated on the wiki page)
+=A0
+* Opens - 10 min=A0
+     -  RP: email status: had a disaster over holiday, lost all emails, rec=
+overed most of them. Reponses were delayed.
 
-Sorry for the dumb question, but how do I download the file and fool 
-bitbake into not trying to download it from the invalid site?  Or do I 
-need to change a file somewhere to specific our mirror URL instead??
-
-Jim A
-> Sau!
->
->> Andy
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+* Action item Review - 5 min
+- Mark will review unsorted features from Wind River team and try to have t=
+hem scheduled (WIP, Reviewed, but not scheduled yet.)
+- Song and Saul to follow on Scott Garman's M2 schedule conflict. (WIP, nee=
+d to talk with Dave)
+- Paul to work with Jeremy and others to move 1598 forward. (WIP)
+=A0
+* Team Sharing (shared some holiday stories, skip due to holidays)
 
