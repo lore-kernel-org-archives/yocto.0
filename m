@@ -1,34 +1,42 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 711D3E00748
-	for <yocto@yoctoproject.org>; Tue,  3 Jan 2012 21:17:36 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q045HY7k009699
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 3 Jan 2012 21:17:34 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.22.249) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Tue, 3 Jan 2012 21:17:34 -0800
-Message-ID: <4F03E0ED.60808@windriver.com>
-Date: Wed, 4 Jan 2012 00:17:33 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.25) Gecko/20111213 Thunderbird/3.1.17
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69654E00748
+	for <yocto@yoctoproject.org>; Tue,  3 Jan 2012 21:28:19 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iapp10 with SMTP id p10so42906380iap.35
+	for <yocto@yoctoproject.org>; Tue, 03 Jan 2012 21:28:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=date:from:to:cc:subject:message-id:mail-followup-to:references
+	:mime-version:content-type:content-disposition
+	:content-transfer-encoding:in-reply-to:user-agent;
+	bh=uX0b27s6ht8IwQuOrBy09VYgqT66FvzGP2K5ySftNJw=;
+	b=IetEukR1LFFMR4WrlLs9inv9ymOoMmlwKzrxzR2CGnbeFmjby0Hyd2IdwJo5N595Iz
+	G1ycNtFbzsuryKcbqBw0pCPOBeXM6QFqqzH6LiCvqxFtLv7qCcxhDyuu4X/QMH0wnXJF
+	zMZL6UJuNElE/U5Qsat79VN0D16SgVsfj+2gk=
+Received: by 10.43.45.137 with SMTP id uk9mr56675573icb.52.1325654898698;
+	Tue, 03 Jan 2012 21:28:18 -0800 (PST)
+Received: from sakrah.homelinux.org
+	(99-57-141-118.lightspeed.sntcca.sbcglobal.net. [99.57.141.118])
+	by mx.google.com with ESMTPS id lu10sm93433131igc.0.2012.01.03.21.28.16
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 03 Jan 2012 21:28:17 -0800 (PST)
+Date: Tue, 3 Jan 2012 21:28:39 -0800
+From: Khem Raj <raj.khem@gmail.com>
+To: "Wang, Shane" <shane.wang@intel.com>
+Message-ID: <20120104052839.GJ31275@sakrah.homelinux.org>
+Mail-Followup-To: "Wang, Shane" <shane.wang@intel.com>,
+	"omxil-devel@lists.sourceforge.net" <omxil-devel@lists.sourceforge.net>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <3AB6CE7F274E534CAFD089D127A8A1FC011724@SHSMSX102.ccr.corp.intel.com>
 MIME-Version: 1.0
-To: Koen Kooi <koen@dominion.thruhere.net>, Yocto Project
-	<yocto@yoctoproject.org>
-References: <4EF34776.9030002@gmail.com>
-	<5B0E0226-A68D-4AB1-91E3-B6F396816C52@dominion.thruhere.net>
-	<2143100.ORnxPSEQca@helios>
-	<9CC56138-C252-46A6-B318-9FA939CE2DAC@dominion.thruhere.net>
-	<B65605DA-ADD9-4EBB-956A-6C785B5F204E@gmail.com>
-	<4EF4B610.6050904@windriver.com> <4EF4BCA3.30209@balister.org>
-	<4EF4BE2D.1090707@windriver.com>
-	<EBB285D3-2B43-4182-B723-1193873648B3@dominion.thruhere.net>
-	<4EF4C188.7040701@windriver.com>
-	<20120104051519.GF31275@sakrah.homelinux.org>
-In-Reply-To: <20120104051519.GF31275@sakrah.homelinux.org>
-Subject: Re: meta-ti?????
+In-Reply-To: <3AB6CE7F274E534CAFD089D127A8A1FC011724@SHSMSX102.ccr.corp.intel.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "omxil-devel@lists.sourceforge.net" <omxil-devel@lists.sourceforge.net>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 1/2] Fix Makefiles
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,92 +48,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jan 2012 05:17:36 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 04 Jan 2012 05:28:19 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 12-01-04 12:15 AM, Khem Raj wrote:
-> On (23/12/11 12:59), Bruce Ashfield wrote:
->> On 11-12-23 12:52 PM, Koen Kooi wrote:
->>>
->>> Op 23 dec. 2011, om 18:45 heeft Bruce Ashfield het volgende geschreven:
->>>
->>>> On 11-12-23 12:38 PM, Philip Balister wrote:
->>>>> On 12/23/2011 12:10 PM, Bruce Ashfield wrote:
->>>>>> On 11-12-23 08:10 AM, James Abernathy wrote:
->>>>>>>
->>>>>>> On Dec 23, 2011, at 3:50 AM, Koen Kooi wrote:
->>>>>>>
->>>>>>>>
->>>>>>>> Op 23 dec. 2011, om 09:37 heeft Paul Eggleton het volgende geschreven:
->>>>>>>>
->>>>>>>>> On Friday 23 December 2011 09:28:31 Koen Kooi wrote:
->>>>>>>>>> Op 22 dec. 2011, om 16:06 heeft Jim Abernathy het volgende geschreven:
->>>>>>>>>>> I know the examples in the documentation of Yocto use meta-intel a
->>>>>>>>>>> lot
->>>>>>>>>>> to get the board specific BSPs like meta-crownbay or meta-n450.
->>>>>>>>>>>
->>>>>>>>>>> Is there a meta-ti or similar that gets you the meta-beagleboard and
->>>>>>>>>>> meta-pandaboard?  If not how do you clone and checkout the pandaboard
->>>>>>>>>>> BPS?
->>>>>>>>>> http://git.angstrom-distribution.org/cgi-bin/cgit.cgi/meta-texasinstruments/
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> It has a README in there on how to set it up, read it and follow it
->>>>>>>>>> precisely.
->>>>>>>>>
->>>>>>>>> Just out of interest, why does meta-texasinstruments depend on
->>>>>>>>> meta-angstrom?
->>>>>>>>
->>>>>>>> It needs extra things in overrides and reuses tasks from there.
->>>>>>>
->>>>>>> Sorry for the follow-up, but if I clone the meta-texasinstruments bsp
->>>>>>> repository and checkout the pandaboard-rework branch,
->>>>>>> how does that relate to the Yocto branch/bsp yocto/standard/pandaboard
->>>>>>> on the Yocto site?
->>>>>>
->>>>>> I'll jump into the middle of the thread, and answer a couple of specific
->>>>>> questions and leave the larger what depends on what, and where
->>>>>> things evolve and why .. for another day.
->>>>>>
->>>>>> The yocto/standard/pandaboard in the 3.0 kernel tree is the refresh/update
->>>>>> of a reference BSP for the 3.0 (and newer) kernel(s).
->>>>>
->>>>> Who is the intended audience of this BSP? The Angstrom/meta-to layer is
->>>>> obviously intended for people using TI hardware and all the associated
->>>>> peripherals. Without defining your audience better, this jsut adds to
->>>>> the confusion end users are experiencing with all the words and layers
->>>>> being used in emails. This is becoming a real problem as new users enter
->>>>> the project.
->>>>
->>>> Quite simply, the audience that needs a particular kernel version
->>>> and feature set, with the tooling to transition to a supported (i.e
->>>> not the yocto one) BSP.
->>>
->>> You do realize that by doing this without informing anyone involved with the official pandaboard BSP the net effect is negative? And by 'negative' I mean "severe annoyance" among other things.
->>
->> .. and why would you assume that precisely that hadn't been done ?
->> It has been, via management channels at multiple companies and
->> organizations and is exactly why I said "a layer you can't get"
->> and "work in progress".
->>
->> So please, no need to jump to anything resembling 'annoyance'.
->> There's plenty of that to go around, and it isn't constructive.
->
-> I think it would be nice if we had a wiki document which listed
-> various BSPs for a given platform that are available using the
-> given layers and some words differentiating them. That can help
-> end users in understanding and deciding which to use.
+On (28/12/11 14:54), Wang, Shane wrote:
+> This patch is to remove DESTDIR in docdir.
+> Otherwise, when users install by running `make install DESTDIR=3D/alterna=
+te/directory' specified in the file INSTALL, the doc will go into /alternat=
+e/directory/alternate/directory, which is not expected.
 
-AFAIK there are plans in this area for the 1.2 timeframe, perhaps
-via the BSP portal that TomZ was creating. Something linked from the
-wiki pages that list all the available layers would be the logical
-place to locate something like this as well.
+DESTDIR is supposed to relocate the install dir why is this wrong ?
 
-Richard may have more insight as to whether or not something is planned
-like this.
+>=20
+> Signed-off-by: Shane Wang <shane.wang@intel.com>
+>=20
+> diff -r 30b597e4e70d Makefile.am
+> --- a/Makefile.am	Wed Dec 28 15:38:35 2011 +0800
+> +++ b/Makefile.am	Wed Dec 28 15:39:25 2011 +0800
+> @@ -7,7 +7,7 @@
+>  pkgconfigdir =3D $(libdir)/pkgconfig
+>  pkgconfig_DATA =3D libomxil-bellagio.pc
+> =20
+> -docdir =3D $(DESTDIR)$(prefix)/share/doc/@PACKAGE@
+> +docdir =3D $(prefix)/share/doc/@PACKAGE@
+>  doc_DATA =3D README \
+>  	   ChangeLog \
+>  	   TODO
+>=20
+> --
+> Shane
+>=20
+> http://www.yoctoproject.org/=20
+> It's not an embedded Linux distribution -
+> It creates a custom one for you.
 
-Cheers,
+> =1B[0;0mThis patch is to remove DESTDIR in docdir.=1B[0;0m
+> =1B[0;0mOtherwise, when users install by running `make install DESTDIR=3D=
+/alternate/directory' specified in the file INSTALL, the doc will go into /=
+alternate/directory/alternate/directory, which is not expected.=1B[0;0m
+> =1B[0;0m=1B[0;0m
+> =1B[0;0mSigned-off-by: Shane Wang <shane.wang@intel.com>=1B[0;0m
+> =1B[0;0m=1B[0;0m
+> =1B[1;32mdiff -r 30b597e4e70d Makefile.am=1B[0;0m
+> =1B[1;31m--- a/Makefile.am	Wed Dec 28 15:38:35 2011 +0800=1B[0;0m
+> =1B[1;34m+++ b/Makefile.am	Wed Dec 28 15:39:25 2011 +0800=1B[0;0m
+> =1B[1;35m@@ -7,7 +7,7 @@=1B[0;0m
+> =1B[0;0m pkgconfigdir =3D $(libdir)/pkgconfig=1B[0;0m
+> =1B[0;0m pkgconfig_DATA =3D libomxil-bellagio.pc=1B[0;0m
+> =1B[0;0m =1B[0;0m
+> =1B[1;31m-docdir =3D $(DESTDIR)$(prefix)/share/doc/@PACKAGE@=1B[0;0m
+> =1B[1;34m+docdir =3D $(prefix)/share/doc/@PACKAGE@=1B[0;0m
+> =1B[0;0m doc_DATA =3D README \=1B[0;0m
+> =1B[0;0m 	   ChangeLog \=1B[0;0m
+> =1B[0;0m 	   TODO=1B[0;0m
 
-Bruce
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+--=20
+-Khem
 
