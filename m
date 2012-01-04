@@ -1,27 +1,41 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C054E00748
-	for <yocto@yoctoproject.org>; Tue,  3 Jan 2012 20:56:32 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q044uV9N007609
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 3 Jan 2012 20:56:31 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.22.249) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Tue, 3 Jan 2012 20:56:31 -0800
-Message-ID: <4F03DBFE.1070007@windriver.com>
-Date: Tue, 3 Jan 2012 23:56:30 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US;
-	rv:1.9.2.25) Gecko/20111213 Thunderbird/3.1.17
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98355E00748
+	for <yocto@yoctoproject.org>; Tue,  3 Jan 2012 20:59:07 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by iapp10 with SMTP id p10so42863466iap.35
+	for <yocto@yoctoproject.org>; Tue, 03 Jan 2012 20:59:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=date:from:to:cc:subject:message-id:mail-followup-to:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent; bh=UB7N14DonJy4oHCoeeSpS/dGmgThdSBS8fcDtmF1qpU=;
+	b=RjFjD4RQX4vCfZH9sWpiRRe1qGXor8ZTBMWtSBo2HYlUC48LDFkMoXJ7qlyLLhXym5
+	L57mKfVThyg+AM+Z+uN0ZbihRn3PC595gymQNBTzc9lGNDLeaVpStR8Yvu748GOf6nwX
+	RHurXpaTiZ6hVoa4kMaueDG6dTjjrd8n/w4J8=
+Received: by 10.50.202.105 with SMTP id kh9mr64327374igc.3.1325653146433;
+	Tue, 03 Jan 2012 20:59:06 -0800 (PST)
+Received: from sakrah.homelinux.org
+	(99-57-141-118.lightspeed.sntcca.sbcglobal.net. [99.57.141.118])
+	by mx.google.com with ESMTPS id t5sm103897093igb.4.2012.01.03.20.59.04
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 03 Jan 2012 20:59:05 -0800 (PST)
+Date: Tue, 3 Jan 2012 20:59:27 -0800
+From: Khem Raj <raj.khem@gmail.com>
+To: Jim Abernathy <jfabernathy@gmail.com>
+Message-ID: <20120104045927.GC31275@sakrah.homelinux.org>
+Mail-Followup-To: Jim Abernathy <jfabernathy@gmail.com>, yocto@yoctoproject.org
+References: <CANSwnwggQwOgZk61xvppWXnz3+Wks9jSaNcp0+cBf9eS2xNNOg@mail.gmail.com>
+	<4EF20847.1030106@gmail.com>
+	<loom.20111229T062302-471@post.gmane.org>
+	<4EFC9755.60805@linux.intel.com> <4F033A40.3070507@gmail.com>
 MIME-Version: 1.0
-To: Zumeng Chen <zumeng.chen@windriver.com>, <yocto@yoctoproject.org>
-References: <1324480674-10022-1-git-send-email-zumeng.chen@windriver.com>
-	<1324523261-23509-1-git-send-email-zumeng.chen@windriver.com>
-	<4EF33DB9.4000502@windriver.com>
-	<20120104045358.GB31275@sakrah.homelinux.org>
-In-Reply-To: <20120104045358.GB31275@sakrah.homelinux.org>
-Subject: Re: [V2 PATCH 1/1] mm: msync: fix issues of sys_msync on tmpfs
+In-Reply-To: <4F033A40.3070507@gmail.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: yocto@yoctoproject.org
+Subject: Re: build error on meta-cedarview
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,148 +47,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jan 2012 04:56:32 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 04 Jan 2012 04:59:07 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 12-01-03 11:53 PM, Khem Raj wrote:
-> On (22/12/11 09:24), Bruce Ashfield wrote:
->> On 11-12-21 10:07 PM, Zumeng Chen wrote:
->>> There are two problems as follows shown:
->>> 1 ) for TMPFS, nothing need to be done in sys_msync,
->>>      sys_msync just return 0 for all arches.
->>>
->>> 2 ) But for MIPS CPUs with cache alias(dmesg|grep alias),
->>>      it maybe has the issue, which reported by msync test
->>>      suites in ltp-full, when the memory of memset used by
->>>      msycn01 has cache alias.
->>>      So, in this situation, we have to flush the related
->>>      vma to make sure correct read.
->>
->> Looks good. I'll queue this for the next kernel update.
->>
->
->
-> has this been proposed to lkml ?
+On (03/01/12 12:26), Jim Abernathy wrote:
+> On 12/29/2011 11:37 AM, Saul Wold wrote:
+> >On 12/28/2011 09:26 PM, Andrew Schweitzer wrote:
+> >>Jim Abernathy<jfabernathy@...>  writes:
+> >>
+> >>>
+> >>>
+> >>>     While running a build of the core-image-sato using the
+> >>>edison latest
+> >>>     commits and the meta-cedartrail bsp, I notices some errors fly by
+> >>>     and thought I'd see if anyone knows the reason.  The build is just
+> >>>     to test the bsp with no changes.  Basically, doing the
+> >>>Appendix A of
+> >>>     the Development manual substituting cedartrail for crownbay.
+> >>>     snippet of the console log below:
+> >>>     NOTE: package icon-naming-utils-native-0.8.7-r3: task do_unpack:
+> >>>     Started
+> >>>     ERROR: Function 'Unpack failure for URL:
+> >>'http://tango.freedesktop.org/releases/icon-naming-utils-0.8.7.tar.gz'.
+> >>
+> >>I don't know the reason, but I did get the same error when
+> >>trying to build yocto
+> >>per the getting started page, changing local.conf to create qemuarm
+> >>
+> >>I would be interested in knowing the reason too.
+> >>
+> >There has been a bug filed against this issue, it seems that the
+> >tarballs have moved or are unavailable from that location for some
+> >reason.  You are getting a download page, and I believe that the
+> >failure should occur earlier with a checksum mismatch, but is not.
+> >
+> >You can fetch this file from our mirror at:
+> >http://downloads.yoctoproject.org/mirror/sources/icon-naming-utils-0.8.7.tar.gz
+> >
+> >
+> Saul,
+> 
+> Sorry for the dumb question, but how do I download the file and fool
+> bitbake into not trying to download it from the invalid site?  Or do
+> I need to change a file somewhere to specific our mirror URL
+> instead??
 
-Not yet. We are still reviewing it @ Wind River via our process, and
-since we picked it up on MIPS, we are running it past Ralf as well.
-Still time to get it in place for 3.3, if it is legit.
+cd into DL_DIR
+wget the <tar>
+then touch <tar>.done
 
-Cheers,
+You can add http://downloads.yoctoproject.org/mirror/sources/
+to MIRRORS
 
-Bruce
-
->
->> Cheers,
->>
->> Bruce
->>
->>>
->>> Signed-off-by: Zumeng Chen<zumeng.chen@windriver.com>
->>> ---
->>>   include/linux/shmem_fs.h |   10 ++++++++++
->>>   mm/msync.c               |   22 +++++++++++++++++++++-
->>>   mm/shmem.c               |    5 +++++
->>>   3 files changed, 36 insertions(+), 1 deletions(-)
->>>
->>> diff --git a/include/linux/shmem_fs.h b/include/linux/shmem_fs.h
->>> index aa08fa8..62a2d57 100644
->>> --- a/include/linux/shmem_fs.h
->>> +++ b/include/linux/shmem_fs.h
->>> @@ -12,6 +12,15 @@
->>>
->>>   #define SHMEM_SYMLINK_INLINE_LEN (SHMEM_NR_DIRECT * sizeof(swp_entry_t))
->>>
->>> +/*
->>> +
->>> +*/
->>> +#ifndef cpu_has_dc_aliases
->>> +#define CPU_HAS_CACHE_ALIAS 0
->>> +#else
->>> +#define CPU_HAS_CACHE_ALIAS cpu_has_dc_aliases
->>> +#endif
->>> +
->>>   struct shmem_inode_info {
->>>   	spinlock_t		lock;
->>>   	unsigned long		flags;
->>> @@ -49,6 +58,7 @@ static inline struct shmem_inode_info *SHMEM_I(struct inode *inode)
->>>   /*
->>>    * Functions in mm/shmem.c called directly from elsewhere:
->>>    */
->>> +extern int is_shmem_file(struct file *file);
->>>   extern int init_tmpfs(void);
->>>   extern int shmem_fill_super(struct super_block *sb, void *data, int silent);
->>>   extern struct file *shmem_file_setup(const char *name,
->>> diff --git a/mm/msync.c b/mm/msync.c
->>> index 632df45..84cb068 100644
->>> --- a/mm/msync.c
->>> +++ b/mm/msync.c
->>> @@ -13,6 +13,8 @@
->>>   #include<linux/file.h>
->>>   #include<linux/syscalls.h>
->>>   #include<linux/sched.h>
->>> +#include<linux/shmem_fs.h>
->>> +#include<asm/cacheflush.h>
->>>
->>>   /*
->>>    * MS_SYNC syncs the entire file - including mappings.
->>> @@ -33,6 +35,7 @@ SYSCALL_DEFINE3(msync, unsigned long, start, size_t, len, int, flags)
->>>   	unsigned long end;
->>>   	struct mm_struct *mm = current->mm;
->>>   	struct vm_area_struct *vma;
->>> +	struct file *file;
->>>   	int unmapped_error = 0;
->>>   	int error = -EINVAL;
->>>
->>> @@ -56,8 +59,25 @@ SYSCALL_DEFINE3(msync, unsigned long, start, size_t, len, int, flags)
->>>   	 */
->>>   	down_read(&mm->mmap_sem);
->>>   	vma = find_vma(mm, start);
->>> +
->>> +#ifdef CONFIG_TMPFS
->>> +	/*
->>> +	 * For tmpfs, no matter which flag(ASYNC or SYNC) gets from msync,
->>> +	 * there is not so much thing to do for CPUs without cache alias,
->>> +	 * But for some CPUs with cache alias, msync has to flush cache
->>> +	 * explicitly, which makes sure the data coherency between memory
->>> +	 * file and cache.
->>> +	 */
->>> +	file =  vma->vm_file;
->>> +	if (is_shmem_file(file)) {
->>> +		if(CPU_HAS_CACHE_ALIAS)
->>> +			flush_cache_range(vma, start, start+len);
->>> +		error = 0;
->>> +		goto out_unlock;
->>> +	}
->>> +#endif
->>> +
->>>   	for (;;) {
->>> -		struct file *file;
->>>
->>>   		/* Still start<   end. */
->>>   		error = -ENOMEM;
->>> diff --git a/mm/shmem.c b/mm/shmem.c
->>> index 92e5c15..4fabfac 100644
->>> --- a/mm/shmem.c
->>> +++ b/mm/shmem.c
->>> @@ -2793,6 +2793,11 @@ static struct file_system_type tmpfs_fs_type = {
->>>   	.kill_sb	= kill_litter_super,
->>>   };
->>>
->>> +int is_shmem_file(struct file *file)
->>> +{
->>> +	return (file->f_op ==&shmem_file_operations)? 1 : 0;
->>> +}
->>> +
->>>   int __init init_tmpfs(void)
->>>   {
->>>   	int error;
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-
+something like
+MIRRORS =+ "http://downloads.yoctoproject.org/mirror/sources/"
+to the concerned recipe.
 
