@@ -1,32 +1,27 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF411E01366
-	for <yocto@yoctoproject.org>; Wed,  4 Jan 2012 06:12:52 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q04ECalt019554;
-	Wed, 4 Jan 2012 14:12:36 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 18742-06; Wed,  4 Jan 2012 14:12:32 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q04ECRAa019548
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 4 Jan 2012 14:12:28 GMT
-Message-ID: <1325686346.20759.0.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Leon Woestenberg <sidebranch.openembedded@gmail.com>
-Date: Wed, 04 Jan 2012 14:12:26 +0000
-In-Reply-To: <CAMvUbCyeLEEThPBkYUjazinVBQq48GXQypU_4pft32L87p8Tjg@mail.gmail.com>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FA10E006DD
+	for <yocto@yoctoproject.org>; Wed,  4 Jan 2012 08:16:34 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 04 Jan 2012 08:16:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="108695783"
+Received: from vtippara-mobl.amr.corp.intel.com (HELO envy.home)
+	([10.19.147.145])
+	by fmsmga002.fm.intel.com with ESMTP; 04 Jan 2012 08:16:32 -0800
+Message-ID: <4F047B4F.7020809@linux.intel.com>
+Date: Wed, 04 Jan 2012 08:16:15 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
+MIME-Version: 1.0
+To: Khem Raj <raj.khem@gmail.com>
 References: <cover.1325115602.git.dvhart@linux.intel.com>
 	<ffa7a3dfe6a46305c98f2ae7fd05f21a3d220fa8.1325115602.git.dvhart@linux.intel.com>
-	<CAMvUbCyeLEEThPBkYUjazinVBQq48GXQypU_4pft32L87p8Tjg@mail.gmail.com>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>
+	<CAMKF1so814A+hqP=xqWjhQCeuwkg__V67Q5OMjYqzsh5k+-tKg@mail.gmail.com>
+In-Reply-To: <CAMKF1so814A+hqP=xqWjhQCeuwkg__V67Q5OMjYqzsh5k+-tKg@mail.gmail.com>
+X-Enigmail-Version: 1.3.3
+Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: [PATCH 2/3] distro: Add poky-tiny distro definition
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -39,46 +34,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jan 2012 14:12:58 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 04 Jan 2012 16:16:35 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2012-01-04 at 14:56 +0100, Leon Woestenberg wrote:
-> Darren,
+On 01/03/2012 04:19 PM, Khem Raj wrote:
+> On Wed, Dec 28, 2011 at 3:45 PM, Darren Hart <dvhart@linux.intel.com> wrote:
+>> Poky-tiny is intended for building very small OS images. The distro
+>> definition sets the providers for the kernel and the runtime services.
+>> It also reduces the eglibc component list and other DISTRO_FEATURE
+>> elements.
+>>
+>> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+>> ---
+>>  meta-yocto/conf/distro/poky-tiny.conf |  103 +++++++++++++++++++++++++++++++++
+>>  1 files changed, 103 insertions(+), 0 deletions(-)
+>>  create mode 100644 meta-yocto/conf/distro/poky-tiny.conf
+>>
+>> diff --git a/meta-yocto/conf/distro/poky-tiny.conf b/meta-yocto/conf/distro/poky-tiny.conf
+>> new file mode 100644
+>> index 0000000..49c4397
+>> --- /dev/null
+>> +++ b/meta-yocto/conf/distro/poky-tiny.conf
+>> @@ -0,0 +1,103 @@
+>> +# Distribution definition for: poky-tiny
+>> +#
+>> +# Copyright (c) 2011, Intel Corporation.
+>> +# All rights reserved.
+>> +#
 > 
-> On Thu, Dec 29, 2011 at 12:45 AM, Darren Hart <dvhart@linux.intel.com>
-> wrote:
->         Poky-tiny is intended for building very small OS images. The
->         distro
->         definition sets the providers for the kernel and the runtime
->         services.
->         It also reduces the eglibc component list and other
->         DISTRO_FEATURE
->         elements.
->         
->         Signed-off-by: Darren Hart <dvhart@linux.intel.com>
->         ---
->          meta-yocto/conf/distro/poky-tiny.conf |  103
->         +++++++++++++++++++++++++++++++++
-> 
-> On retrospect, does poky-tiny.conf below in openembedded-core (rather
-> than in a Yocto layer)?
-> I *do* welcome such a distro in -core, as my use case has always been
-> similar to this.
-> 
-> Also, this seems to be the first entry in meta-yocto/, but it cannot
-> be used as a layer:
-> openembedded-core.git/meta-yocto/conf/layer.conf: [Errno 2] No such
-> file or directory
-> 
-> What is the expected way to use this? Or is it that the layer file is
-> just missing?
+> should this be MIT licensed ?
+> or do u plan to keep it closed.
 
-I've slipped up when applying the patch, it was meant for meta-yocto,
-sorry. I'll fix that. It won't work standalone.
+Should be MIT - my understanding was that was the default if no license
+was specified in a particular file. Is that not correct?
 
-Cheers,
 
-Richard
-
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
