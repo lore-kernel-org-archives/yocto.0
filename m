@@ -1,24 +1,18 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 154F8E0030D
-	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 08:10:33 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 05 Jan 2012 08:10:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="92733178"
-Received: from unknown (HELO helios.localnet) ([10.252.122.73])
-	by azsmga001.ch.intel.com with ESMTP; 05 Jan 2012 08:10:31 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Jim Abernathy <jfabernathy@gmail.com>
-Date: Thu, 05 Jan 2012 16:10:29 +0000
-Message-ID: <4172817.IXZKKJPEWx@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.7.3 (Linux/3.0.0-14-generic-pae; KDE/4.7.4; i686; ; )
-In-Reply-To: <4F05C8C6.2010603@gmail.com>
-References: <4F05C8C6.2010603@gmail.com>
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6ABB0E0030B
+	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 08:19:26 -0800 (PST)
+Received: from [192.168.0.26] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id 127DE257A4
+	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 15:52:52 +0000 (GMT)
+Message-ID: <4F05CD5B.3060909@communistcode.co.uk>
+Date: Thu, 05 Jan 2012 16:18:35 +0000
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111224 Thunderbird/9.0.1
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: building Yocto on Fedora 14 vs. Ubuntu 11.10
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Yocto Eclipse Plugin - Python 'undefined symbol'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,32 +24,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jan 2012 16:10:33 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 05 Jan 2012 16:19:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thursday 05 January 2012 10:59:02 Jim Abernathy wrote:
-> I'm finding differences between the number of task for building
-> meta-cedartrail on ubuntu 11.10 vs. doing the same thing on Fedora 14
-> and wondered if this is a problem.
-> 
-> On a clean build of core-image-sato, the first section has 63 tasks on
-> Ubuntu 11.10, but 126 tasks on Fedora 14.  126 is the number I remember
-> seeing for the first section of the build on other Sato builds.
-> 
-> Is this an issue? is this caused by the different development O/S's?
+I encounter this error when trying to launch a debug session in Eclipse. 
+I am using the master branch of poky, and the master branch of 
+eclipse-plugin on an ArchLinux 64 host.
 
-This is almost certainly due to the version of tar in Fedora 14 being "too 
-old" such that it contains a bug in symlink handling - if it is then we just 
-build tar-replacement-native and use that instead.
+Any ideas, it seems as though the Python wasn't built with Unicode 
+support but I can't tell if it is using the bitbake built python or host 
+python...
 
-Nothing to worry about :)
+Error creating session
+/home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb: 
+symbol lookup error: 
+/home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb: 
+undefined symbol: PyUnicodeUCS4_FromEncodedObject
+/home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb: 
+symbol lookup error: 
+/home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb: 
+undefined symbol: PyUnicodeUCS4_FromEncodedObject
+/home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb: 
+symbol lookup error: 
+/home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb: 
+undefined symbol: PyUnicodeUCS4_FromEncodedObject
 
 Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Jack.
 
