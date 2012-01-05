@@ -1,25 +1,30 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 681ABE00303
-	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 14:17:29 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q05MHSZt017505
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 5 Jan 2012 14:17:28 -0800 (PST)
-Received: from Macintosh-5.local (172.25.36.228) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 5 Jan 2012 14:17:27 -0800
-Message-ID: <4F062177.3010706@windriver.com>
-Date: Thu, 5 Jan 2012 16:17:27 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:8.0) Gecko/20111105 Thunderbird/8.0
+Return-Path: <wmills@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10382E00303
+	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 14:19:10 -0800 (PST)
+Received: from dlep26.itg.ti.com ([157.170.170.121])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q05MJ84L014216;
+	Thu, 5 Jan 2012 16:19:08 -0600
+Received: from DFLE71.ent.ti.com (localhost [127.0.0.1])
+	by dlep26.itg.ti.com (8.13.8/8.13.8) with ESMTP id q05MJ8h0010457;
+	Thu, 5 Jan 2012 16:19:08 -0600 (CST)
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle71.ent.ti.com
+	(128.247.5.62) with Microsoft SMTP Server id 14.1.323.3; Thu, 5 Jan 2012
+	16:19:08 -0600
+Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
+	[158.218.100.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	q05MJ7nE027265;	Thu, 5 Jan 2012 16:19:07 -0600
+Message-ID: <4F0621DB.7030201@ti.com>
+Date: Thu, 5 Jan 2012 17:19:07 -0500
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CADzUK1KR-tyiabskATGp1pH_yUN_AgiBA+EUv9mtsjuXfnB5uw@mail.gmail.com>
-In-Reply-To: <CADzUK1KR-tyiabskATGp1pH_yUN_AgiBA+EUv9mtsjuXfnB5uw@mail.gmail.com>
-Subject: Re: Trying to compile mono on target for machine crownbay
+To: Jack Mitchell <ml@communistcode.co.uk>
+References: <4F058D02.2050707@communistcode.co.uk>
+In-Reply-To: <4F058D02.2050707@communistcode.co.uk>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Integrating 3rd Party BSP Layers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,46 +36,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jan 2012 22:17:29 -0000
+X-List-Received-Date: Thu, 05 Jan 2012 22:19:10 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 1/5/12 3:52 PM, autif khan wrote:
-> I bitbaked core-image-sato-sdk, copied it to the target disk and tried
-> to build mono natively on the target machine and I got the following
-> error:
+On 01/05/2012 06:44 AM, Jack Mitchell wrote:
+> Good morning everyone,
 >
-> libtool: link: cannot find the library `=/usr/lib/libglib-2.0.la' or
-> unhandled argument `=/usr/lib/libglib-2.0.la'
-
-The version of libtool you are currently using is damaged in some way.  I 
-suspect the program is falling back and trying to use either a local version or 
-the host-system version.
-
-The libtool located within the OE/Poky environment understands that when a "=" 
-is predicating a path, it means locate the item within the sysroot at the 
-following path.  Since the error indicates it doesn't understand that concept, 
-it appears that that version of libtool is broken.
-
-Normally the autotools class will deal with this situation for you.  Simply 
-inheriting autotools class usually does it.
-
---Mark
-
-> the filesystem does have a /usr/lib/libglib-2.0.la and it seems to be valid
+> I am currently trying to figure out the best way to integrate the
+> meta-texasinstruments layer with the Yocto provided layers. According to
+> the meta-texasinstruments readme, it requires the meta-oe, meta-angstrom
+> and meta-oe-core. Now Yocto provides the stable meta-oe-core (correct?),
+> so I would clone the meta-oe and meta-angstrom, add them and the
+> meta-texasinstruments layer to my bblayers.conf then build away, yes?
 >
-> I am not sure why there is a leading '=' in the path. Needless to say
-> - mono builds fine on ubuntu, so it is unlikely (not impossible) to be
-> a mono build issue.
+> However, what implications does adding these new layers bring when using
+> them in the Yocto environment?
 >
-> Has anyone seen anything like this with mono or some other piece of software?
+> Any thoughts would be greatly appreciated on the consequences and/or my
+> methodology!
 >
-> Thanks
->
-> Autif
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> The main aim of the game is trying to build an image for the beagleboard
+> using the meta-texasinstruments layer as to get the latest and greatest
+> support - with the possibility of using it later in the day when the
+> beaglebones start appearing but with the stability and additional
+> support that is acquired through the Yocto umbrella.
 
+Yes, all good goals and within the scope of the plans for meta-ti (aka 
+meta-texasinstruments).  However meta-ti is still a work in progress.
+
+By the yocto 1.2 release time frame we plan to support and show the 
+following layer combinations:
+
+core stack: oe-core + meta-ti
+yocto stack: poky layer set + meta-ti
+angstrom stack: oe-core + meta-oe + meta-ti + meta-angstrom
+arago stack: oe-core + meta-oe + meta-ti + meta-arago
+
+However at this time the only stack being built is the angstrom 
+configuration.
 
