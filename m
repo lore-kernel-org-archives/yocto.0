@@ -1,40 +1,34 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAAB2E00303
-	for <yocto@yoctoproject.org>; Wed,  4 Jan 2012 12:38:00 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by qcsc2 with SMTP id c2so13229460qcs.35
-	for <yocto@yoctoproject.org>; Wed, 04 Jan 2012 12:37:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=GbHvm0jdKNJC9FMjqCqSlD86l63X9FjwhI1/Q/COzL4=;
-	b=gADJ1FY7mI+oDUmYNHstjhd6F10cBTE3tPbHDVDImPmWRzDKjVefQQMUrfRJSbSr9k
-	NvYjSg/opfAaTRZVqVyhJKqp1BzW/Co1ExBfvxnKuJcZg4GH8zdt9xacINogicTS1tMG
-	cdbqLWez1XFQN++RfxBkb3EGTNrtwMP047Tgk=
-Received: by 10.229.78.213 with SMTP id m21mr7633893qck.22.1325709479865;
-	Wed, 04 Jan 2012 12:37:59 -0800 (PST)
-Received: from [10.0.1.39] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
-	by mx.google.com with ESMTPS id
-	h9sm109571326qac.13.2012.01.04.12.37.58 (version=SSLv3 cipher=OTHER);
-	Wed, 04 Jan 2012 12:37:58 -0800 (PST)
-Message-ID: <4F04B8A5.3000508@gmail.com>
-Date: Wed, 04 Jan 2012 15:37:57 -0500
-From: Jim Abernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24F75E00303
+	for <yocto@yoctoproject.org>; Wed,  4 Jan 2012 18:25:55 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 04 Jan 2012 18:25:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="94605425"
+Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
+	by orsmga002.jf.intel.com with ESMTP; 04 Jan 2012 18:25:53 -0800
+Received: from pgsmsx103.gar.corp.intel.com (10.221.44.82) by
+	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 5 Jan 2012 10:25:21 +0800
+Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
+	PGSMSX103.gar.corp.intel.com (10.221.44.82) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 5 Jan 2012 10:25:20 +0800
+Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.38]) by
+	SHSMSX102.ccr.corp.intel.com ([169.254.2.199]) with mapi id
+	14.01.0355.002; Thu, 5 Jan 2012 10:25:19 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto weekly bug trend charts -- WW53
+Thread-Index: AczLUURBcToJh3y3Qg6NtX2WDr8RUQ==
+Date: Thu, 5 Jan 2012 02:25:18 +0000
+Message-ID: <90741FE9B50D654690EB940EDB456C8E01314C@SHSMSX101.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CANSwnwggQwOgZk61xvppWXnz3+Wks9jSaNcp0+cBf9eS2xNNOg@mail.gmail.com>
-	<4EF20847.1030106@gmail.com>
-	<loom.20111229T062302-471@post.gmane.org>
-	<4EFC9755.60805@linux.intel.com> <4F033A40.3070507@gmail.com>
-	<20120104045927.GC31275@sakrah.homelinux.org>
-In-Reply-To: <20120104045927.GC31275@sakrah.homelinux.org>
-Subject: Re: build error on meta-cedarview
+Subject: Yocto weekly bug trend charts -- WW53
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,101 +40,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jan 2012 20:38:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 05 Jan 2012 02:25:55 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 01/03/2012 11:59 PM, Khem Raj wrote:
-> On (03/01/12 12:26), Jim Abernathy wrote:
->> On 12/29/2011 11:37 AM, Saul Wold wrote:
->>> On 12/28/2011 09:26 PM, Andrew Schweitzer wrote:
->>>> Jim Abernathy<jfabernathy@...>   writes:
->>>>
->>>>>
->>>>>      While running a build of the core-image-sato using the
->>>>> edison latest
->>>>>      commits and the meta-cedartrail bsp, I notices some errors fly by
->>>>>      and thought I'd see if anyone knows the reason.  The build is just
->>>>>      to test the bsp with no changes.  Basically, doing the
->>>>> Appendix A of
->>>>>      the Development manual substituting cedartrail for crownbay.
->>>>>      snippet of the console log below:
->>>>>      NOTE: package icon-naming-utils-native-0.8.7-r3: task do_unpack:
->>>>>      Started
->>>>>      ERROR: Function 'Unpack failure for URL:
->>>> 'http://tango.freedesktop.org/releases/icon-naming-utils-0.8.7.tar.gz'.
->>>>
->>>> I don't know the reason, but I did get the same error when
->>>> trying to build yocto
->>>> per the getting started page, changing local.conf to create qemuarm
->>>>
->>>> I would be interested in knowing the reason too.
->>>>
->>> There has been a bug filed against this issue, it seems that the
->>> tarballs have moved or are unavailable from that location for some
->>> reason.  You are getting a download page, and I believe that the
->>> failure should occur earlier with a checksum mismatch, but is not.
->>>
->>> You can fetch this file from our mirror at:
->>> http://downloads.yoctoproject.org/mirror/sources/icon-naming-utils-0.8.7.tar.gz
->>>
->>>
->> Saul,
->>
->> Sorry for the dumb question, but how do I download the file and fool
->> bitbake into not trying to download it from the invalid site?  Or do
->> I need to change a file somewhere to specific our mirror URL
->> instead??
-> cd into DL_DIR
-> wget the<tar>
-> then touch<tar>.done
->
-> You can add http://downloads.yoctoproject.org/mirror/sources/
-> to MIRRORS
->
-> something like
-> MIRRORS =+ "http://downloads.yoctoproject.org/mirror/sources/"
-> to the concerned recipe.
-I went back and had a number of issues so I just deleted the current 
-~/poky/build directory and restarted the process including editing the 
-conf/local.conf, etc.  The only change I made to the recipes was to put 
-in the reference to the Yocto mirror for icon-naming-utils.  I got a 
-fair way down into the build(2358 of 4426) before I got a new error.  
-The step is related to initramfs-live-boot_1.0.bb do_package_write_rpm 
-the log is below:
+Hi all,
+	The overall open bug trend keeps flat last week. The new submitted bug vs.=
+ fixed bug number is 7 vs. 5. WDD number keeps at 684. Bug status of WW53 c=
+ould be found on https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
 
-NOTE: Creating RPM package for initramfs-live-boot-dbg
-NOTE: Creating RPM package for initramfs-live-boot
-NOTE: Creating RPM package for initramfs-live-boot
-NOTE: Not creating empty RPM package for initramfs-live-boot-doc
-NOTE: Creating EMPTY RPM Package for initramfs-live-boot-dev
-NOTE: Not creating empty RPM package for initramfs-live-boot-staticdev
-NOTE: Not creating empty RPM package for initramfs-live-boot-locale
-Building target platforms: all-poky-linux
-Processing files: initramfs-live-boot-1.0-r6.all
-Finding  Provides: 
-/home/jim/poky/build/tmp/work/all-poky-linux/initramfs-live-boot-1.0-r6/initramfs-live-boot.provides
-Finding  Requires: 
-/home/jim/poky/build/tmp/work/all-poky-linux/initramfs-live-boot-1.0-r6/initramfs-live-boot.requires
-Requires: /bin/sh
-Requires: /bin/sh
-Processing files: initramfs-live-boot-dbg-1.0-r6.all
-Finding  Provides: 
-/home/jim/poky/build/tmp/work/all-poky-linux/initramfs-live-boot-1.0-r6/initramfs-live-boot.provides
-Finding  Requires: 
-/home/jim/poky/build/tmp/work/all-poky-linux/initramfs-live-boot-1.0-r6/initramfs-live-boot.requires
-Processing files: initramfs-live-boot-dev-1.0-r6.all
-Checking for unpackaged file(s): 
-/home/jim/poky/build/tmp/sysroots/i686-linux/usr/lib/rpm/check-files 
-/home/jim/poky/build/tmp/work/all-poky-linux/initramfs-live-boot-1.0-r6/package
-error: Unable to open temp file.
+Best Regards,
+Jiajun
 
 
-RPM build errors:
-     Unable to open temp file.
-ERROR: Function 'BUILDSPEC' failed (see 
-/home/jim/poky/build/tmp/work/all-poky-linux/initramfs-live-boot-1.0-r6/temp/log.do_package_write_rpm.27564 
-for further information)
-
-Jim A
 
