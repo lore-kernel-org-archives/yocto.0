@@ -1,20 +1,25 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAA9CE0030B
-	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 08:27:57 -0800 (PST)
-Received: from [192.168.0.26] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id ECEFD2579C
-	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 16:01:22 +0000 (GMT)
-Message-ID: <4F05CF5B.1020808@communistcode.co.uk>
-Date: Thu, 05 Jan 2012 16:27:07 +0000
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111224 Thunderbird/9.0.1
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC20DE0030B
+	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 08:35:40 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q05GZdrc028464
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 5 Jan 2012 08:35:39 -0800 (PST)
+Received: from Macintosh-5.local (172.25.36.228) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Thu, 5 Jan 2012 08:35:39 -0800
+Message-ID: <4F05D15A.30504@windriver.com>
+Date: Thu, 5 Jan 2012 10:35:38 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
+	rv:8.0) Gecko/20111105 Thunderbird/8.0
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <4F05CD5B.3060909@communistcode.co.uk>
-In-Reply-To: <4F05CD5B.3060909@communistcode.co.uk>
-Subject: Re: Yocto Eclipse Plugin - Python 'undefined symbol'
+To: <yocto@yoctoproject.org>
+References: <4F059C60.8020507@mlbassoc.com>
+In-Reply-To: <4F059C60.8020507@mlbassoc.com>
+Subject: Re: Can't build util-linux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,63 +31,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jan 2012 16:27:57 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 05 Jan 2012 16:35:41 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 05/01/12 16:18, Jack Mitchell wrote:
-> I encounter this error when trying to launch a debug session in 
-> Eclipse. I am using the master branch of poky, and the master branch 
-> of eclipse-plugin on an ArchLinux 64 host.
->
-> Any ideas, it seems as though the Python wasn't built with Unicode 
-> support but I can't tell if it is using the bitbake built python or 
-> host python...
->
-> Error creating session
-> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb: 
-> symbol lookup error: 
-> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb: 
-> undefined symbol: PyUnicodeUCS4_FromEncodedObject
-> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb: 
-> symbol lookup error: 
-> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb: 
-> undefined symbol: PyUnicodeUCS4_FromEncodedObject
-> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb: 
-> symbol lookup error: 
-> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb: 
-> undefined symbol: PyUnicodeUCS4_FromEncodedObject
->
-> Cheers,
-> Jack.
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+I'm getting the same error.  There is a workaround:
 
-A cheeky ldd of the binary file gives me:
+Add the following to your local.conf
 
-linux-vdso.so.1 =>  (0x00007fff68dff000)
-     libreadline.so.6 => 
-/home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/../../../usr/lib/libreadline.so.6 
-(0x00007fb5cf3af000)
-     libncursesw.so.5 => /lib/libncursesw.so.5 (0x00007fb5cf152000)
-     libz.so.1 => 
-/home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/../../../usr/lib/libz.so.1 
-(0x00007fb5cef3b000)
-     libm.so.6 => /lib/libm.so.6 (0x00007fb5cec47000)
-     libpthread.so.0 => /lib/libpthread.so.0 (0x00007fb5cea2a000)
-     libdl.so.2 => /lib/libdl.so.2 (0x00007fb5ce826000)
-     libutil.so.1 => /lib/libutil.so.1 (0x00007fb5ce623000)
-     libpython2.7.so.1.0 => 
-/home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/../../../usr/lib/libpython2.7.so.1.0 
-(0x00007fb5ce248000)
-     libexpat.so.1 => 
-/home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/../../../usr/lib/libexpat.so.1 
-(0x00007fb5ce01e000)
-     libc.so.6 => /lib/libc.so.6 (0x00007fb5cdc7b000)
-     /lib/ld-linux-x86-64.so.2 (0x00007fb5cf5f1000)
+WARN_QA = "ldflags useless-rpaths rpaths"
 
-Which seems to indicate that it is using the bitbake built python?
+A new QA check went in, and it appears to be missing part of the merge.
+
+(WARN_QA is normally defined as:
+WARN_QA ?= "ldflags useless-rpaths rpaths unsafe-references-in-binaries 
+unsafe-references-in-scripts")
+
+On 1/5/12 6:49 AM, Gary Thomas wrote:
+> Using a freshly updated master
+>
+> OE Build Configuration:
+> BB_VERSION        = "1.15.0"
+> TARGET_ARCH       = "arm"
+> TARGET_OS         = "linux-gnueabi"
+> MACHINE           = "beagleboard"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.1+snapshot-20120105"
+> TUNE_FEATURES     = "armv7a vfp neon cortexa8"
+> TARGET_FPU        = "vfp-neon"
+> meta
+> meta-yocto        = "master:5aabdbaff7b8be319a86c5e33cc2eb8c2e4aa2ef"
+>
+> | NOTE: DO PACKAGE QA
+> | NOTE: Checking Package: util-linux-agetty
+> | ERROR: Error executing a python function in /tmp/poky-multi/meta/recipes-core/util-linux/util-linux_2.20.1.bb:
+> | AttributeError: 'module' object has no attribute 'check_output'
+> |
+> | ERROR: The stack trace of python calls that resulted in this exception/failure was:
+> | ERROR:   File "do_package_qa", line 68, in<module>
+> | ERROR:
+> | ERROR:   File "do_package_qa", line 57, in do_package_qa
+> | ERROR:
+> | ERROR:   File "insane.bbclass", line 19, in package_qa_walk
+> | ERROR:
+> | ERROR:   File "insane.bbclass", line 17, in package_qa_check_unsafe_references_in_binaries
+> | ERROR:
+> | ERROR: The code that was being executed was:
+> | ERROR:      0064:        bb.fatal("QA run found fatal errors. Please consider fixing them.")
+> | ERROR:      0065:    bb.note("DONE with PACKAGE QA")
+> | ERROR:      0066:
+> | ERROR:      0067:
+> | ERROR:  *** 0068:do_package_qa(d)
+> | ERROR:      0069:
+> | ERROR: (file: 'do_package_qa', lineno: 68, function:<module>)
+> | ERROR:      0053:                errorchecks.append(g[testmatrix[e]])
+> | ERROR:      0054:
+> | ERROR:      0055:        bb.note("Checking Package: %s" % package)
+> | ERROR:      0056:        path = "%s/%s" % (pkgdest, package)
+> | ERROR:  *** 0057:        if not package_qa_walk(path, warnchecks, errorchecks, skip, package, d):
+> | ERROR:      0058:            walk_sane  = False
+> | ERROR:      0059:        if not package_qa_check_rdepends(package, pkgdest, skip, d):
+> | ERROR:      0060:            rdepends_sane = False
+> | ERROR:      0061:
+> | ERROR: (file: 'do_package_qa', lineno: 57, function: do_package_qa)
+> | ERROR: Function 'do_package_qa' failed
+> NOTE: package util-linux-2.20.1-r1: task do_package: Failed
+>
+> Ideas?
+>
 
 
