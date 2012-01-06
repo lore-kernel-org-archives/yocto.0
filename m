@@ -1,31 +1,34 @@
 Return-Path: <song.liu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AE3FE006B0
-	for <yocto@yoctoproject.org>; Fri,  6 Jan 2012 14:32:35 -0800 (PST)
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B61A2E00307
+	for <yocto@yoctoproject.org>; Fri,  6 Jan 2012 14:40:03 -0800 (PST)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 06 Jan 2012 14:32:35 -0800
+	by azsmga101.ch.intel.com with ESMTP; 06 Jan 2012 14:40:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208,217";a="93249280"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by azsmga001.ch.intel.com with ESMTP; 06 Jan 2012 14:32:34 -0800
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208,217";a="93251124"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by azsmga001.ch.intel.com with ESMTP; 06 Jan 2012 14:40:02 -0800
 Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 6 Jan 2012 14:32:34 -0800
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 6 Jan 2012 14:39:59 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.57]) by
 	ORSMSX102.amr.corp.intel.com ([169.254.1.40]) with mapi id
-	14.01.0355.002; Fri, 6 Jan 2012 14:32:34 -0800
+	14.01.0355.002; Fri, 6 Jan 2012 14:39:59 -0800
 From: "Liu, Song" <song.liu@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto Project Technical Team Meeting
-Thread-Index: AczMwm7U0YzFKIUSRfeoiOsA+6JBHA==
-Date: Fri, 6 Jan 2012 22:32:27 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A257BE41B@ORSMSX101.amr.corp.intel.com>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	January 10, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
+Thread-Index: AQHMzMQe+DL2LLn1d0yaJxkV4eZ8og==
+Date: Fri, 6 Jan 2012 22:39:58 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A257BF521@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Subject: FW: Yocto Project Technical Team Meeting
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, January 10, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,33 +40,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jan 2012 22:32:36 -0000
-X-Groupsio-MsgNum: 4113
+X-List-Received-Date: Fri, 06 Jan 2012 22:40:04 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A257BE41BORSMSX101amrcor_"
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A257BF521ORSMSX101amrcor_"
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A257BE41BORSMSX101amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
+--_000_7E680CB2A76BB8438D08CF13C09FC53A257BF521ORSMSX101amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-When: Occurs every Tuesday effective 1/10/2012 until 6/19/2012 from 8:00 AM=
- to 9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Where: Bridge Info Enclosed
-
-Note: The GMT offset above does not reflect daylight saving time adjustment=
-s.
-
-*~*~*~*~*~*~*~*~*~*
-
+Agenda:
+* Opens collection - 5 min (Song)
+* Yocto 1.1.1 point release update - 10 min (Josh)
+* Yocto 1.2 M2 status - 10 min (Song/Bruce/Team)
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status
+* Opens - 10 min
+* Action item Review - 5 min
+- Mark will review unsorted features from Wind River team and try to have t=
+hem scheduled (WIP, Reviewed, but not scheduled yet.)
+- Song and Saul to follow on Scott Garman's M2 schedule conflict. (WIP, nee=
+d to talk with Dave)
+- Paul to work with Jeremy and others to move 1598 forward. (WIP)
+ - Paul to split feature 1566.
+* Team Sharing
 
 
 -----Original Appointment-----
 From: Liu, Song
 Sent: Friday, January 06, 2012 2:28 PM
 Subject: Yocto Project Technical Team Meeting
-When: Occurs every Tuesday effective 1/10/2012 until 6/19/2012 from 8:00 AM=
- to 9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+When: Tuesday, January 10, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (U=
+S & Canada).
 Where: Bridge Info Enclosed
 
 
@@ -196,32 +203,47 @@ Recurrence ends:        End on Fri Jun 22, 2012, 10:40 AM CDT
 
 
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A257BE41BORSMSX101amrcor_
-Content-Type: text/html; charset="iso-8859-1"
+--_000_7E680CB2A76BB8438D08CF13C09FC53A257BF521ORSMSX101amrcor_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
 <meta name=3D"Generator" content=3D"Microsoft Exchange Server">
 <!-- converted from rtf -->
 <style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
  #800000 2px solid; } --></style>
 </head>
 <body>
-<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
-<div>When: Occurs every Tuesday effective 1/10/2012 until 6/19/2012 from 8:=
-00 AM to 9:00 AM (UTC-08:00) Pacific Time (US &amp; Canada).</div>
-<div>Where: Bridge Info Enclosed</div>
-<div>&nbsp;</div>
-<div>Note: The GMT offset above does not reflect daylight saving time adjus=
-tments.</div>
-<div>&nbsp;</div>
-<div>*~*~*~*~*~*~*~*~*~*</div>
-<div>&nbsp;</div>
-<div><font color=3D"#1F497D">&nbsp;</font></div>
-<div><font color=3D"#1F497D">&nbsp;</font></div>
+<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:10.5pt;">
+<div>Agenda:</div>
+<div>* Opens collection &#8211; 5 min (Song)</div>
+<div>* Yocto 1.1.1 point release update - 10 min (Josh)&nbsp;</div>
+<div>* Yocto 1.2 M2 status &#8211; 10 min (Song/Bruce/Team)</div>
+<div><font face=3D"Times New Roman" size=3D"3"><span style=3D"font-size:12p=
+t;"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status=
+"><font face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-siz=
+e:10.5pt;"><u>https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status<=
+/u></span></font></a><font face=3D"Consolas" size=3D"2"><span style=3D"font=
+-size:10.5pt;">
+</span></font></span></font></div>
+<div>* Opens - 10 min&nbsp;</div>
+<div>* Action item Review - 5 min</div>
+<div>- Mark will review unsorted features from Wind River team and try to h=
+ave them scheduled (WIP, Reviewed, but not scheduled yet.)</div>
+<div>- Song and Saul to follow on Scott Garman's M2 schedule conflict. (WIP=
+, need to talk with Dave)</div>
+<div>- Paul to work with Jeremy and others to move 1598 forward. (WIP)</div=
+>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;"> - P=
+aul to split feature 1566.</span></font></div>
+<div>* Team Sharing</div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#1F497D"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#1F497D"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
 <div><font face=3D"Tahoma" size=3D"2"><span style=3D"font-size:10pt;">-----=
 Original Appointment-----<br>
 
@@ -231,13 +253,16 @@ Original Appointment-----<br>
 
 <b>Subject:</b> Yocto Project Technical Team Meeting<br>
 
-<b>When:</b> Occurs every Tuesday effective 1/10/2012 until 6/19/2012 from =
-8:00 AM to 9:00 AM (UTC-08:00) Pacific Time (US &amp; Canada).<br>
+<b>When:</b> Tuesday, January 10, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific =
+Time (US &amp; Canada).<br>
 
 <b>Where:</b> Bridge Info Enclosed</span></font></div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
+p;</span></font></div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
+p;</span></font></div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
+p;</span></font></div>
 <table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
 <col width=3D"725" style=3D"width:435pt;">
 <tr>
@@ -319,7 +344,8 @@ to click again to dial the passcode.</span></font></td>
 <table width=3D"273" style=3D"width:164.25pt;margin-left:5.55pt;">
 <col width=3D"273" style=3D"width:164.25pt;">
 <tr>
-<td></td>
+<td><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;"></spa=
+n></font></td>
 </tr>
 <tr>
 <td style=3D"background-color:#428CC6;"><font face=3D"Verdana" size=3D"2" c=
@@ -327,12 +353,14 @@ olor=3D"#CFCFCF"><span style=3D"font-size:8.5pt;background-color:#428CC6;">=
 <b>Local and Global Access Numbers</b> </span></font></td>
 </tr>
 </table>
-<div><font color=3D"#666666">&nbsp;</font></div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#666666"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
 <table width=3D"576" style=3D"width:345.6pt;margin-left:5.55pt;">
 <col width=3D"172" style=3D"width:103.4pt;">
 <col width=3D"403" style=3D"width:242.2pt;">
 <tr>
-<td></td>
+<td><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;"></spa=
+n></font></td>
 </tr>
 <tr>
 <td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>C=
@@ -566,7 +594,8 @@ olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
 -size:8.5pt;">972 995 7777 or 1877 561 6828</span></font></td>
 </tr>
 </table>
-<div><font color=3D"#666666">&nbsp;</font></div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#666666"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
 </td>
 </tr>
 </table>
@@ -601,101 +630,14 @@ rences </b></span></font></td>
 d>
 </tr>
 </table>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
+p;</span></font></div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
+p;</span></font></div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
+p;</span></font></div>
 </span></font>
 </body>
 </html>
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A257BE41BORSMSX101amrcor_
-Content-Type: text/calendar; charset="utf-8"; method=REQUEST
-Content-Transfer-Encoding: base64
-
-QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
-ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpQYWNpZmlj
-IFN0YW5kYXJkIFRpbWUNCkJFR0lOOlNUQU5EQVJEDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0K
-VFpPRkZTRVRGUk9NOi0wNzAwDQpUWk9GRlNFVFRPOi0wODAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJ
-TlRFUlZBTD0xO0JZREFZPTFTVTtCWU1PTlRIPTExDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJ
-R0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOi0wODAwDQpUWk9GRlNF
-VFRPOi0wNzAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPTJTVTtCWU1PTlRI
-PTMNCkVORDpEQVlMSUdIVA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpPUkdBTklaRVI7
-Q049IkxpdSwgU29uZyI6TUFJTFRPOnNvbmcubGl1QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
-RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj15b2N0b0B5
-b2N0DQogb3Byb2plY3Qub3JnOk1BSUxUTzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpERVNDUklQ
-VElPTjtMQU5HVUFHRT1lbi1VUzpXaGVuOiBPY2N1cnMgZXZlcnkgVHVlc2RheSBlZmZlY3RpdmUg
-MS8xMC8yMDEyIHUNCiBudGlsIDYvMTkvMjAxMiBmcm9tIDg6MDAgQU0gdG8gOTowMCBBTSAoVVRD
-LTA4OjAwKSBQYWNpZmljIFRpbWUgKFVTICYgQ2FuYQ0KIGRhKS5cbldoZXJlOiBCcmlkZ2UgSW5m
-byBFbmNsb3NlZFxuXG5Ob3RlOiBUaGUgR01UIG9mZnNldCBhYm92ZSBkb2VzIG5vdCByDQogZWZs
-ZWN0IGRheWxpZ2h0IHNhdmluZyB0aW1lIGFkanVzdG1lbnRzLlxuXG4qfip+Kn4qfip+Kn4qfip+
-Kn4qXG5cblxuXG4tLS0NCiAtLU9yaWdpbmFsIEFwcG9pbnRtZW50LS0tLS1cbkZyb206IExpdVws
-IFNvbmdcblNlbnQ6IEZyaWRheVwsIEphbnVhcnkgMDZcLA0KICAyMDEyIDI6MjggUE1cblN1Ympl
-Y3Q6IFlvY3RvIFByb2plY3QgVGVjaG5pY2FsIFRlYW0gTWVldGluZ1xuV2hlbjogT2NjdXJzDQog
-IGV2ZXJ5IFR1ZXNkYXkgZWZmZWN0aXZlIDEvMTAvMjAxMiB1bnRpbCA2LzE5LzIwMTIgZnJvbSA4
-OjAwIEFNIHRvIDk6MDAgQU0NCiAgKFVUQy0wODowMCkgUGFjaWZpYyBUaW1lIChVUyAmIENhbmFk
-YSkuXG5XaGVyZTogQnJpZGdlIEluZm8gRW5jbG9zZWRcblxuXA0KIG5cbkNvbmZlcmVuY2UgZGV0
-YWlsc1xuQ29uZmVyZW5jZSBuYW1lOiAgICAgICAgWW9jdG8gVGVjaG5pY2FsIFRlYW1cbkNvbmZl
-DQogcmVuY2UgZGF0ZS9zdGFydCB0aW1lOiAgICAgVHVlIEp1biAyOFwsIDIwMTEgYXQgMTA6MDAg
-QU0gQ2VudHJhbCBEYXlsaWdodCANCiBUaW1lXG5QYXJ0aWNpcGFudHM6ICAgMzBcbkR1cmF0aW9u
-OiAgICAgICA2MCBtaW51dGVzXG5QYXJ0aWNpcGFudCBwYXNzY29kZQ0KIDogICA0OTYxMTQyN1xu
-RGlhbC1pbiBudW1iZXI6ICAgICAgICAgMS45NzIuOTk1Ljc3NzdcblVTIFRvbGwgRnJlZSBudW1i
-ZXI6DQogICAgIDEuODc3LjU2MS42ODI4XG5CbGFja0JlcnJ5IHVzZXJzXCwgY2xpY2sgdGhpcyBs
-aW5rIHRvIGpvaW4geW91ciBjb25mZXINCiBlbmNlIGFzIGEgY2hhaXJwZXJzb246ICAgICAxLjk3
-Mi45OTUuNzc3N3g2NzE4NDIzMCNcbkJsYWNrQmVycnkgdXNlcnNcLCBjbA0KIGljayB0aGlzIGxp
-bmsgdG8gam9pbiB5b3VyIGNvbmZlcmVuY2UgYXMgYSBwYXJ0aWNpcGFudDogICAgIDEuOTcyLjk5
-NS43Nzc3DQogeDQ5NjExNDI3I1xuICAgICAgICBEZXBlbmRpbmcgb24gd2hlcmUgeW91IGFyZSBk
-aWFsaW5nIGZyb21cLCBlaXRoZXIgeW91ciANCiBCbGFja0JlcnJ5IHdpbGwgcGF1c2UgYW5kIGVu
-dGVyIHRoZSBwYXNzY29kZSBhdXRvbWF0aWNhbGx5IG9yIHlvdSB3aWxsIGJlIA0KIHByb21wdGVk
-IHRvIGNsaWNrIGFnYWluIHRvIGRpYWwgdGhlIHBhc3Njb2RlLlxuXG5cbkxvY2FsIGFuZCBHbG9i
-YWwgQWNjZXNzDQogIE51bWJlcnNcblxuXG5cblxuQ291bnRyeVxuRGlhbC1pbiBudW1iZXJcblxu
-QXVzdHJhbGlhOlxuMTgwMCA2MzYgODQzXG5cbkMNCiB6ZWNoIFJlcHVibGljOlxuMjQyIDQzMCAz
-NTBcblxuQ2hpbmEgKEJlaWppbmcpOlxuRnJvbSBvZmZpY2UgZGlhbCA4LTk5NTc3Nw0KIDcgb3Ig
-ODc4NDI3N1xuQmVpamluZyBPdXQgb2YgT2ZmaWNlIGRpYWwgNTg3OCA0Mjc3XG5cbkNoaW5hIChT
-aGFuZ2hhaSk6XG5GDQogcm9tIG9mZmljZSBkaWFsIDgtOTk1Nzc3NyBvciAzMDczMzIyXG5TaGFu
-Z2hhaSBPdXQgb2YgT2ZmaWNlIGRpYWwgMjMwNyAzMzINCiAyXG5cbkNoaW5hIChTaGVuemVuKTpc
-bkZyb20gb2ZmaWNlIGRpYWwgOC05OTU3Nzc3IG9yIDYwMDc4NzdcblNoZW56ZW4gT3V0IA0KIG9m
-IE9mZmljZSBkaWFsIDI2MDAgNzg3N1xuXG5DaGluYSAoT3RoZXIgQ2l0aWVzKTpcbkZyb20gSVAg
-cGhvbmUgZGlhbCA4LTk5DQogNTc3Nzdcbk90aGVyIGNpdGllcyAtIE5vbiBJUCBwaG9uZSBkaWFs
-IDAyMS0yMzA3MzMyMlxuXG5EZW5tYXJrOlxuODA2MCAxNDANCiAwXG5cbkZpbmxhbmQ6XG4wOSA0
-MTMzMzQ3N1xuXG5GcmFuY2U6XG4wNDk3IDI3NTg4OFxuXG5HZXJtYW55OlxuMDgxNjEgODAzMg0K
-IDMyXG5cbkhvbGxhbmQ6XG4wMzAgMjQxNzQ5MFxuXG5JbmRpYTpcbkJTTkwgc3Vic2NyaWJlcnMg
-dXNlIDE4MDAgNDI1IDk5OTYgDQogKFRvbGwgRnJlZSlcbkFpcnRlbCBzdWJzY3JpYmVycyB1c2Ug
-MDAwOCAwMDkgODYxIDIxMiAoVG9sbCBGcmVlKVxuRnJvbSBUSSANCiBDYW1wdXMgdXNlIDg5OTU3
-Nzc3XG5PdGhlcnMgdXNlIDI1MDkgOTU1NSAoTGFuZGxpbmUgd2l0aGluIEJhbmdhbG9yZSkgb3Jc
-bg0KIDgwIDI1MDkgOTU1NSAoT3V0c2lkZSBCYW5nYWxvcmUpXG5cbklzcmFlbDpcbjA5IDc5MCA2
-NzE1XG5cbkl0YWx5OlxuMDM5IDY5DQogMDYxMjM0ICgwMzkgaXMgbG9jYWwgY2l0eSBjb2RlIG5v
-dCBjb3VudHJ5IGNvZGUpXG5cbkphcGFuOlxuRnJvbSBUSSBDYW1wdXMNCiAgdXNlIDggOTk1IDc3
-Nzdcbk91dHNpZGUgVEkgdXNlIDAzIDQzMzEgMzc3N1xuXG5NYWxheXNpYTpcbkZyb20gSVAgcGhv
-bmUgZA0KIGlhbCAyNjQzNzk5XG5Gcm9tIEt1YWxhIEx1bXB1ciBkaWFsIDQyNjQgMzc5OVxuT3V0
-c2lkZSBLdWFsYSBMdW1wdXIgZGlhbCAoDQogMDMpNDI2NCAzNzk5XG5cbk5vcndheTpcbjIgMjk1
-IDg3NDRcblxuUGhpbGlwcGluZXM6XG5Gcm9tIEJhZ3VpbyBDaXR5IHVzZSANCiA0NDcxMTc3XG5G
-cm9tIE1ldHJvIE1hbmlsYSBhcmVhIHVzZSA4NzAyNDc3XG5cblNpbmdhcG9yZTpcbkZyb20gSVAg
-cGhvbmUgZA0KIGlhbCAzODk0Nzc3XG5PdXRzaWRlIFRJIHVzZSA2Mzg5IDQ3NzdcblxuU291dGgg
-S29yZWE6XG5Gcm9tIElQIHBob25lIGRpYWwgDQogNTYwNjk5OFxuRnJvbSBTZW91bCBkaWFsIDU2
-MDY5OThcbk91dHNpZGUgU2VvdWwgZGlhbCAoMDIpNTYwNjk5OFxuXG5Td2VkZW4NCiA6XG4wOCA1
-ODc1NTU3N1xuXG5UYWl3YW46XG5Gcm9tIElQIHBob25lIGRpYWwgMTM2M1xuRnJvbSBUYWlwZWkg
-ZGlhbCAyMjQxIA0KIDEzNjNcbk91dHNpZGUgVGFpcGVpIGRpYWwgKDAyKTIyNDEgMTM2M1xuXG5U
-dXJrZXk6XG5MYW5kbGluZSBPbmx5IGRpYWwgMDgxDQogMSAyODggMDAwMVxudGhlbiBlbnRlciA4
-NzcgNjMzIDExMjNcblxuVUs6XG4wMTYwNCA2NjMwMDNcblxuVVM6XG45NzIgOTk1IDcNCiA3Nzcg
-b3IgMTg3NyA1NjEgNjgyOFxuXG5cblJlY3VycmluZyBjb25mZXJlbmNlc1xuRmlyc3Qgc2NoZWR1
-bGVkIGNvbmZlcmVuYw0KIGU6ICAgICBUdWUgSnVuIDI4XCwgMjAxMVxuUmVjdXJyZW5jZSBmcmVx
-dWVuY3k6ICAgV2Vla2x5IC0gRXZlcnkgMSB3ZWVrKHMpDQogIG9uIFR1ZXNkYXlcblJlY3VycmVu
-Y2UgZW5kczogICAgICAgIEVuZCBvbiBGcmkgSnVuIDIyXCwgMjAxMlwsIDEwOjQwIEFNIEMNCiBE
-VFxuXG5cblxuDQpSUlVMRTpGUkVRPVdFRUtMWTtDT1VOVD0yNDtJTlRFUlZBTD0xO0JZREFZPVRV
-O1dLU1Q9U1UNClNVTU1BUlk7TEFOR1VBR0U9ZW4tVVM6Rlc6IFlvY3RvIFByb2plY3QgVGVjaG5p
-Y2FsIFRlYW0gTWVldGluZw0KRFRTVEFSVDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDEy
-MDExMFQwODAwMDANCkRURU5EO1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTIwMTEwVDA5
-MDAwMA0KVUlEOjA0MDAwMDAwODIwMEUwMDA3NEM1QjcxMDFBODJFMDA4MDAwMDAwMDA3MEU4NTQ3
-MTdEQ0NDQzAxMDAwMDAwMDAwMDAwMDAwDQogMDEwMDAwMDAwNEU5OTAwOTM4OENDMUM0MEI2OUU1
-MjkwQzhCRkIyNDQNCkNMQVNTOlBVQkxJQw0KUFJJT1JJVFk6NQ0KRFRTVEFNUDoyMDEyMDEwNlQy
-MjI3NTRaDQpUUkFOU1A6T1BBUVVFDQpTVEFUVVM6Q09ORklSTUVEDQpTRVFVRU5DRTowDQpMT0NB
-VElPTjtMQU5HVUFHRT1lbi1VUzpCcmlkZ2UgSW5mbyBFbmNsb3NlZA0KWC1NSUNST1NPRlQtQ0RP
-LUFQUFQtU0VRVUVOQ0U6MA0KWC1NSUNST1NPRlQtQ0RPLU9XTkVSQVBQVElEOi02NjQzOTc4NjAN
-ClgtTUlDUk9TT0ZULUNETy1CVVNZU1RBVFVTOlRFTlRBVElWRQ0KWC1NSUNST1NPRlQtQ0RPLUlO
-VEVOREVEU1RBVFVTOkJVU1kNClgtTUlDUk9TT0ZULUNETy1BTExEQVlFVkVOVDpGQUxTRQ0KWC1N
-SUNST1NPRlQtQ0RPLUlNUE9SVEFOQ0U6MQ0KWC1NSUNST1NPRlQtQ0RPLUlOU1RUWVBFOjENClgt
-TUlDUk9TT0ZULURJU0FMTE9XLUNPVU5URVI6RkFMU0UNCkJFR0lOOlZBTEFSTQ0KQUNUSU9OOkRJ
-U1BMQVkNCkRFU0NSSVBUSU9OOlJFTUlOREVSDQpUUklHR0VSO1JFTEFURUQ9U1RBUlQ6LVBUNU0N
-CkVORDpWQUxBUk0NCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVINCg==
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A257BE41BORSMSX101amrcor_--
+--_000_7E680CB2A76BB8438D08CF13C09FC53A257BF521ORSMSX101amrcor_--
