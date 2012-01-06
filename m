@@ -1,23 +1,31 @@
-Return-Path: <Kai.Kang@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B13BE0030B
-	for <yocto@yoctoproject.org>; Fri,  6 Jan 2012 01:52:00 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q069pxwk002455
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Fri, 6 Jan 2012 01:51:59 -0800 (PST)
-Received: from [128.224.162.219] (128.224.162.219) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.1.255.0;
-	Fri, 6 Jan 2012 01:51:59 -0800
-Message-ID: <4F06C43D.3090102@windriver.com>
-Date: Fri, 6 Jan 2012 17:51:57 +0800
-From: Kang Kai <Kai.Kang@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
-MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-X-Originating-IP: [128.224.162.219]
-Subject: Design Document of "Yocto 1656 Recipe creation/import script"
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D2C7E0030B
+	for <yocto@yoctoproject.org>; Fri,  6 Jan 2012 03:35:12 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q06BZ3YG019796;
+	Fri, 6 Jan 2012 11:35:03 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 18578-09; Fri,  6 Jan 2012 11:34:59 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q06BYpef019780
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Fri, 6 Jan 2012 11:34:52 GMT
+Message-ID: <1325849692.20759.86.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Darren Hart <dvhart@linux.intel.com>
+Date: Fri, 06 Jan 2012 11:34:52 +0000
+In-Reply-To: <f973d6162bcdfe0835ec9a9f3aabda02ead79902.1325806059.git.dvhart@linux.intel.com>
+References: <cover.1325806059.git.dvhart@linux.intel.com>
+	<f973d6162bcdfe0835ec9a9f3aabda02ead79902.1325806059.git.dvhart@linux.intel.com>
+X-Mailer: Evolution 3.2.2- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: philb@gnu.org, Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 1/1] distro: Add poky-tiny distro definition
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,51 +37,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jan 2012 09:52:00 -0000
-X-Groupsio-MsgNum: 4106
-Content-Type: multipart/mixed; boundary="------------020508060804010208010808"
-
---------------020508060804010208010808
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Fri, 06 Jan 2012 11:35:18 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-Hi All,
+On Thu, 2012-01-05 at 15:37 -0800, Darren Hart wrote:
+> Poky-tiny is intended for building very small OS images. The distro
+> definition sets the providers for the kernel and the runtime services.
+> It also drops NLS support and reduces the eglibc component list and
+> other DISTRO_FEATURE elements.
+> 
+> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+> ---
+>  meta-yocto/conf/distro/poky-tiny.conf |  110 +++++++++++++++++++++++++++++++++
+>  1 files changed, 110 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-yocto/conf/distro/poky-tiny.conf
 
-This is the design document of "Yocto 1656 Recipe creation/import 
-script". Please help to review it.
-Any suggestion is appreciate.
+I'd already restored the file but I've merged the delta with an
+appropriate commit message to resolve this, thanks.
 
-Regards,
-Kai
+Richard
 
---------------020508060804010208010808
-Content-Type: text/plain; name="recipe_creation_bb.txt"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment; filename="recipe_creation_bb.txt"
 
-    Design documnet for Recipe creation/import script
-
-* Purpose
-
-The feature is from Yocto 1.2 Bug 1656. A script or similar system
-that would allow you to give is an upstream URL, tarball, patch set,
-package (SRPM, or debian style) and generate a recipe based on those
-instructions. 
-
-Name it with bitbake-createbb, and integrate into the build system
-to use the build system infrastructure that similiar with bitbake-runtask.
-
-* Usage:
-bitbake-createbb <SRC_URI> [PATCH_SRC_URI]
-
-* Steps
-1 download the source package frowm the SRC_RUI
-2 get package name and version from package or tarball name. 
-3 get summary and description from SRPM spec file or debian control file, or from configure files. 
-4 get license and license checksum. 
-5 get dependent packages
-  |-- just parse spec file or debian control file
-  |-- or get them by parse configure files
-6 remove downloaded files
-
---------------020508060804010208010808--
