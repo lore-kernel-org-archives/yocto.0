@@ -1,22 +1,24 @@
 Return-Path: <Zumeng.Chen@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C5FFE0030B
-	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 22:12:17 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2593CE0030D
+	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 22:12:19 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q066C9Nc009653
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q066CDN8009663
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 5 Jan 2012 22:12:09 -0800 (PST)
+	Thu, 5 Jan 2012 22:12:13 -0800 (PST)
 Received: from pek-yocto-build2.corp.ad.wrs.com (128.224.163.150) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Thu, 5 Jan 2012 22:12:08 -0800
+	14.1.255.0; Thu, 5 Jan 2012 22:12:12 -0800
 From: Zumeng Chen <zumeng.chen@windriver.com>
 To: <yocto@yoctoproject.org>, <richard.purdie@linuxfoundation.org>,
 	<bruce.ashfield@windriver.com>, <sgw@linux.intel.com>
-Date: Fri, 6 Jan 2012 14:11:50 +0800
-Message-ID: <cover.1325824274.git.zumeng.chen@windriver.com>
+Date: Fri, 6 Jan 2012 14:11:52 +0800
+Message-ID: <bc71f5e117ed7093e89b289b00126ad797428eb3.1325824274.git.zumeng.chen@windriver.com>
 X-Mailer: git-send-email 1.7.5.4
+In-Reply-To: <cover.1325824274.git.zumeng.chen@windriver.com>
+References: <cover.1325824274.git.zumeng.chen@windriver.com>
 MIME-Version: 1.0
-Subject: [PATCH 0/4]lttng-2.0 new recipe
+Subject: [PATCH 2/4] lttng-tools: Integrated from git repo.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,181 +30,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jan 2012 06:12:17 -0000
+X-List-Received-Date: Fri, 06 Jan 2012 06:12:19 -0000
 Content-Type: text/plain
 
-Hi All,
+lttng-tools 2.0 is currently in pre-release phase (-pre16).
 
-This patchset adds support for lttng-2.0, including the folloing
-four bb files:
-  babeltrace_0.8.bb
-  lttng-modules_v2.0.pre11.bb
-  lttng-tools_2.0-pre16.bb
-  lttng-ust_1.9.4.bb
-And two patches for smoothly compiling:
-  lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
-  lttng-tools-fix-compiling-error-for-powerpc-arm-and-mips.patch
-
-There is a clear description of the LTTng 2.0 architecture in the
-followiing site: 
-  http://lttng.org/sites/lttng.org/files/LTTng2_0Architecture_pa3.pdf
-
-Currently lttng-2.0 is still in pre-release phrase, so I add this
-into the patch header for reminder. And another goal of this RR 
-is intended to bring forward the following issues:
-
-  lttng-2.0 has been added into recipies-kernel, which coexisted
-  with lttng(the previous version), because there are some mainly
-  changes from lttng-control to lttng-tools, which both monitors
-  tracepoints and dynamic probes from kernel and userspace. But
-  I'm not sure if we should remove the previous version lttng.
-  My suggestion is to preserve for 2.6.37 kernel :-)
-
-lttng-2.0 supports lttng-modules extra builds, which don't need
-any patches on Linux kernel vs the previous version of lttng.
-As described in README of lttng-modules-2.0, so far, it has been
-tested in current 3.0 kernel on x86 32/64-bit, and powerpc 32-bit,
-, build tested on ARM. So the related tests on qemux86 and qemuppc
-has been validated and a build test on qemuarm passed too with
-this patcheset.
-
-Babeltrace provides as a trace converter, which used to convert
-LTTng 2.0 traces into human-readable log(see below example for
-qemuppc)
-
-lttng-ust_1.9.4 is Linux Trace Toolkit 2.0 Userspace Tracer.
-
-I'm still keep an eye on the development of lttng for updates.
-
-Regard,
-Zumeng
-
-root@qemuppc:/# lttng list  -k
-Kernel events:
--------------
-      sched_kthread_stop (type: tracepoint)
-      sched_kthread_stop_ret (type: tracepoint)
-      sched_wakeup (type: tracepoint)
-      sched_wakeup_new (type: tracepoint)
-      sched_switch (type: tracepoint)
-      sched_migrate_task (type: tracepoint)
-      sched_process_free (type: tracepoint)
-      sched_process_exit (type: tracepoint)
-      sched_wait_task (type: tracepoint)
-      sched_process_wait (type: tracepoint)
-      sched_process_fork (type: tracepoint)
-      sched_stat_wait (type: tracepoint)
-      sched_stat_sleep (type: tracepoint)
-      sched_stat_iowait (type: tracepoint)
-      sched_stat_runtime (type: tracepoint)
-      sched_pi_setprio (type: tracepoint)
-      irq_handler_entry (type: tracepoint)
-      irq_handler_exit (type: tracepoint)
-      softirq_entry (type: tracepoint)
-      softirq_exit (type: tracepoint)
-      softirq_raise (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-       (type: tracepoint) [disabled]
-
-root@qemuppc:/# lttng create mysession
-Session mysession created.
-Traces will be written in /home/root/lttng-traces/mysession-20111230-152610
-root@qemuppc:/#  lttng enable-event -a -k
-All kernel events are enabled in channel channel0
-root@qemuppc:/# lttng enable-event sched_switch,sched_wakeup -k
-kernel event sched_switch created in channel channel0
-kernel event sched_wakeup created in channel channel0
-root@qemuppc:/# lttng enable-event -a -k --tracepoint
-All kernel tracepoints are enabled in channel channel0
-root@qemuppc:/# lttng add-context -k -e sched_switch -t pid
-kernel context pid added to sched_switch event in all channels
-root@qemuppc:/# lttng start
-Tracing started for session mysession
-root@qemuppc:/#  lttng list -u
-UST events:
--------------
-None
-
-root@qemuppc:/# lttng stop
-Tracing stopped for session mysession
-root@qemuppc:/# lttng list -u
-UST events:
--------------
-None
-
-root@qemuppc:/# uname -a
-Linux qemuppc 3.0.12-yocto-standard+ #1 PREEMPT Thu Dec 29 22:23:52 CST 2011 ppc GNU/Linux
-root@qemuppc:/# 
-root@qemuppc:/# babeltrace /home/root/lttng-traces/mysession-20111230-152610 | less
-[2078772597067] softirq_raise: { 0 }, { vec = 1 }
-[2078773657367] softirq_raise: { 0 }, { vec = 9 }
-[2078773943557] sched_stat_runtime: { 0 }, { comm = "lttng-sessiond", tid = 404, runtime = 5104592, vruntime = 61173667721 }
-[2078774051587] softirq_entry: { 0 }, { vec = 1 }
-[2078774081797] softirq_exit: { 0 }, { vec = 1 }
-[2078774086557] softirq_entry: { 0 }, { vec = 9 }
-[2078774094247] softirq_exit: { 0 }, { vec = 9 }
-[2078774105437] sched_stat_runtime: { 0 }, { comm = "lttng-sessiond", tid = 404, runtime = 230192, vruntime = 61173897913 }
-[2078774185387] sched_stat_wait: { 0 }, { comm = "lttng-consumerd", tid = 418, delay = 5334784 }
-[2078774328677] sched_switch: { 0 }, 385, { prev_comm = "lttng-sessiond", prev_tid = 404, prev_prio = 20, prev_state = 0, next_comm = "lttng-consumerd", next_tid = 418, next_prio = 20 }
-[2078774802747] exit_syscall: { 0 }, { ret = 1 }
-[2078774968937] sys_unknown: { 0 }, { id = 102, args = [ [0] = 17, [1] = 1218120660, [2] = 0, [3] = 268526120, [4] = 32, [5] = 4294967232 ] }
-[2078775075597] exit_syscall: { 0 }, { ret = 4136 }
-[2078775109747] sys_unknown: { 0 }, { id = 167, args = [ [0] = 1218124968, [1] = 2, [2] = 4294967295, [3] = 268526120, [4] = 32, [5] = 4294967232 ] }
-[2078775130867] exit_syscall: { 0 }, { ret = 1 }
-[2078775339007] sys_unknown: { 0 }, { id = 102, args = [ [0] = 17, [1] = 1218120612, [2] = 0, [3] = 268526120, [4] = 32, [5] = 4294967232 ] }
-[2078776095757] exit_syscall: { 0 }, { ret = 1 }
-[2078776238357] softirq_raise: { 0 }, { vec = 1 }
-[2078776245827] softirq_raise: { 0 }, { vec = 9 }
-[2078776265487] sched_stat_runtime: { 0 }, { comm = "lttng-consumerd", tid = 418, runtime = 2149408, vruntime = 61169846169 }
-[2078776291187] softirq_entry: { 0 }, { vec = 1 }
-[2078776306217] softirq_exit: { 0 }, { vec = 1 }
-[2078776310607] softirq_entry: { 0 }, { vec = 9 }
-[2078776317337] softirq_exit: { 0 }, { vec = 9 }
-....snip..........................
-
-The following changes since commit 5797feac5f06f5cc363869cd440b82b3eaafd456:
-
-  image-mklibs/package_ipk: Remove bashisms (2012-01-05 22:26:25 +0000)
-
-are available in the git repository at:
-  git://git.pokylinux.org/poky-contrib zumeng/lttng-2.0
-  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zumeng/lttng-2.0
-
-Zumeng Chen (4):
-  lttng-ust: Integrate into yocto linux
-  lttng-tools: Integrated from git repo.
-  lttng-modules: from lttng-modules 2.0 git repo.
-  babeltrace: Integrated from version 0.8
-
- meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb    |   30 ++++++++++++++
- ...modules-replace-KERNELDIR-with-KERNEL_SRC.patch |   41 ++++++++++++++++++++
- .../lttng-2.0/lttng-modules_v2.0.pre11.bb          |   23 +++++++++++
- ...-compiling-error-for-powerpc-arm-and-mips.patch |   23 +++++++++++
- .../lttng-2.0/lttng-tools_2.0-pre16.bb             |   24 +++++++++++
- meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb   |   23 +++++++++++
- 6 files changed, 164 insertions(+), 0 deletions(-)
- create mode 100644 meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb
- create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
- create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb
+Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
+---
+ ...-compiling-error-for-powerpc-arm-and-mips.patch |   23 +++++++++++++++++++
+ .../lttng-2.0/lttng-tools_2.0-pre16.bb             |   24 ++++++++++++++++++++
+ 2 files changed, 47 insertions(+), 0 deletions(-)
  create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-tools-fix-compiling-error-for-powerpc-arm-and-mips.patch
  create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-tools_2.0-pre16.bb
- create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb
 
+diff --git a/meta/recipes-kernel/lttng-2.0/lttng-tools-fix-compiling-error-for-powerpc-arm-and-mips.patch b/meta/recipes-kernel/lttng-2.0/lttng-tools-fix-compiling-error-for-powerpc-arm-and-mips.patch
+new file mode 100644
+index 0000000..c971e78
+--- /dev/null
++++ b/meta/recipes-kernel/lttng-2.0/lttng-tools-fix-compiling-error-for-powerpc-arm-and-mips.patch
+@@ -0,0 +1,23 @@
++Upstream-Status: Pending
++
++lttng-tools: fix compiling error for powerpc, arm
++
++Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
++---
++ librunas/runas.c |    1 +
++ 1 files changed, 1 insertions(+), 0 deletions(-)
++
++diff --git a/librunas/runas.c b/librunas/runas.c
++--- a/librunas/runas.c
+++++ b/librunas/runas.c
++@@ -29,6 +29,7 @@
++ #include <fcntl.h>
++ #include <sched.h>
++ #include <sys/mman.h>
+++#include <asm/mman.h>
++ 
++ #include <lttngerr.h>
++ 
++-- 
++1.7.5.4
++
+diff --git a/meta/recipes-kernel/lttng-2.0/lttng-tools_2.0-pre16.bb b/meta/recipes-kernel/lttng-2.0/lttng-tools_2.0-pre16.bb
+new file mode 100644
+index 0000000..0b7a240
+--- /dev/null
++++ b/meta/recipes-kernel/lttng-2.0/lttng-tools_2.0-pre16.bb
+@@ -0,0 +1,24 @@
++SECTION = "devel"
++SUMMARY = "Linux Trace Toolkit Control"
++DESCRIPTION = "The Linux trace toolkit is a suite of tools designed to \
++extract program execution details from the Linux operating system and  \
++interpret them."
++LICENSE = "GPLv2.1"
++LIC_FILES_CHKSUM = "file://COPYING;md5=ab682a4729389c3f11913d758affe98e"
++
++DEPENDS = "liburcu popt lttng-ust"
++
++SRC_URI = "http://lttng.org/files/lttng-tools/lttng-tools-${PV}.tar.bz2 \
++	   file://fix-compiling-error-for-powerpc-arm-and-mips.patch"
++
++SRC_URI[md5sum] = "58ed0a15db80a00172d5b0413a55451c" 
++SRC_URI[sha256sum] = "188d262bda80043dd939c9aa7aec1795ca77aeec0cb3c0f23c28bfe754049491"
++
++S = "${WORKDIR}/lttng-tools-${PV}"
++
++
++inherit autotools
++
++export KERNELDIR="${STAGING_KERNEL_DIR}"
++
++COMPATIBLE_HOST = '(x86_64.*|i.86.*|arm.*|powerpc.*)-linux'
 -- 
 1.7.5.4
 
