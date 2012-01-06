@@ -1,40 +1,24 @@
-Return-Path: <shane.wang@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAD6BE0030C
-	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 21:28:19 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 05 Jan 2012 21:28:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="95069314"
-Received: from pgsmsx601.gar.corp.intel.com ([10.221.43.69])
-	by orsmga002.jf.intel.com with ESMTP; 05 Jan 2012 21:28:18 -0800
-Received: from pgsmsx102.gar.corp.intel.com (10.221.44.80) by
-	pgsmsx601.gar.corp.intel.com (10.221.43.69) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 6 Jan 2012 13:28:03 +0800
-Received: from shsmsx101.ccr.corp.intel.com (10.239.4.153) by
-	PGSMSX102.gar.corp.intel.com (10.221.44.80) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Fri, 6 Jan 2012 13:28:02 +0800
-Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.199]) by
-	SHSMSX101.ccr.corp.intel.com ([169.254.1.38]) with mapi id
-	14.01.0355.002; Fri, 6 Jan 2012 13:28:01 +0800
-From: "Wang, Shane" <shane.wang@intel.com>
-To: Trevor Woerner <twoerner@gmail.com>, "omxil-devel@lists.sourceforge.net"
-	<omxil-devel@lists.sourceforge.net>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH 1/2] Fix Makefiles
-Thread-Index: AQHMy810E+M/6lkYKU6nt0SX/RITcpX+z+rA
-Date: Fri, 6 Jan 2012 05:28:00 +0000
-Message-ID: <3AB6CE7F274E534CAFD089D127A8A1FC018428@SHSMSX102.ccr.corp.intel.com>
-References: <3AB6CE7F274E534CAFD089D127A8A1FC011724@SHSMSX102.ccr.corp.intel.com>
-	<20120104052839.GJ31275@sakrah.homelinux.org>
-	<CAHUNapS6kZg6oPftEsmtNcKzhhDqDotCh0JWVnvPMawuSD_msw@mail.gmail.com>
-In-Reply-To: <CAHUNapS6kZg6oPftEsmtNcKzhhDqDotCh0JWVnvPMawuSD_msw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+Return-Path: <Zumeng.Chen@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3916EE0030C
+	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 22:12:17 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q066CB2K009659
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 5 Jan 2012 22:12:11 -0800 (PST)
+Received: from pek-yocto-build2.corp.ad.wrs.com (128.224.163.150) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Thu, 5 Jan 2012 22:12:10 -0800
+From: Zumeng Chen <zumeng.chen@windriver.com>
+To: <yocto@yoctoproject.org>, <richard.purdie@linuxfoundation.org>,
+	<bruce.ashfield@windriver.com>, <sgw@linux.intel.com>
+Date: Fri, 6 Jan 2012 14:11:51 +0800
+Message-ID: <f2349ab1c0b1d39830a798bb0c001f6d41a3275a.1325824274.git.zumeng.chen@windriver.com>
+X-Mailer: git-send-email 1.7.5.4
+In-Reply-To: <cover.1325824274.git.zumeng.chen@windriver.com>
+References: <cover.1325824274.git.zumeng.chen@windriver.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] Fix Makefiles
+Subject: [PATCH 1/4] lttng-ust: Integrate into yocto linux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,32 +30,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jan 2012 05:28:20 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 06 Jan 2012 06:12:17 -0000
+Content-Type: text/plain
 
-But when I run " make install DESTDIR=3D/alternate/directory", only doc wil=
-l go into /alternate/directory/alternate/directory.
-I assume my command is not wrong per the INSTALL readme.
+Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
+---
+ meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb |   23 ++++++++++++++++++++++
+ 1 files changed, 23 insertions(+), 0 deletions(-)
+ create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb
 
---
-Shane
-
-Trevor Woerner wrote on=A02012-01-06:
-
-> On Wed, Jan 4, 2012 at 12:28 AM, Khem Raj <raj.khem@gmail.com> wrote:
->> On (28/12/11 14:54), Wang, Shane wrote:
->>> This patch is to remove DESTDIR in docdir.
->>> Otherwise, when users install by running `make install
-> DESTDIR=3D/alternate/directory' specified in the file INSTALL, the doc wi=
-ll go
-> into /alternate/directory/alternate/directory, which is not expected.
->>=20
->> DESTDIR is supposed to relocate the install dir why is this wrong ?
->=20
-> Agree. Additionally, "make distcheck" will generally fail if there is
-> no DESTDIR.
-
+diff --git a/meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb b/meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb
+new file mode 100644
+index 0000000..22d39df
+--- /dev/null
++++ b/meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb
+@@ -0,0 +1,23 @@
++SUMMARY = "Linux Trace Toolkit Userspace Tracer 2.0"
++DESCRIPTION = "The LTTng UST 2.0 package contains the userspace tracer library to trace userspace codes."
++HOMEPAGE = "http://lttng.org/lttng2.0"
++BUGTRACKER = "n/a"
++
++LICENSE = "LGPLv2.1+ & BSD"
++LIC_FILES_CHKSUM = "file://COPYING;md5=e647752e045a8c45b6f583771bd561ef"
++
++inherit autotools
++
++DEPENDS = "liburcu util-linux"
++
++SRC_URI = "http://lttng.org/files/lttng-ust/lttng-ust-${PV}.tar.gz"
++
++SRC_URI[md5sum] = "0f09bb954c99cb99ab6997cd492953c1"
++SRC_URI[sha256sum] = "e9ec3c55c2251b3f3b512bfa1015b0f67e35d55793850ccea5134f7b24ee3ba1"
++
++S = "${WORKDIR}/lttng-ust-${PV}"
++
++# Due to liburcu not building on MIPS currently this recipe needs to
++# be limited also.
++# So here let us first suppport x86/arm/powerpc platforms now.
++COMPATIBLE_HOST = '(x86_64.*|i.86.*|arm.*|powerpc.*)-linux'
+-- 
+1.7.5.4
 
 
