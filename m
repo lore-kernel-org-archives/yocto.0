@@ -1,24 +1,24 @@
 Return-Path: <Zumeng.Chen@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BF8BE006DD
-	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 22:12:21 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81EA2E0136D
+	for <yocto@yoctoproject.org>; Thu,  5 Jan 2012 22:12:23 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q066CFDp009668
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q066CHXt009675
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 5 Jan 2012 22:12:15 -0800 (PST)
+	Thu, 5 Jan 2012 22:12:17 -0800 (PST)
 Received: from pek-yocto-build2.corp.ad.wrs.com (128.224.163.150) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Thu, 5 Jan 2012 22:12:14 -0800
+	14.1.255.0; Thu, 5 Jan 2012 22:12:16 -0800
 From: Zumeng Chen <zumeng.chen@windriver.com>
 To: <yocto@yoctoproject.org>, <richard.purdie@linuxfoundation.org>,
 	<bruce.ashfield@windriver.com>, <sgw@linux.intel.com>
-Date: Fri, 6 Jan 2012 14:11:53 +0800
-Message-ID: <38a7991592a5851e09395cc9f07bc6d2880c7bda.1325824274.git.zumeng.chen@windriver.com>
+Date: Fri, 6 Jan 2012 14:11:54 +0800
+Message-ID: <6d11d61757dd2d5f41496f929f46653e25b2870e.1325824274.git.zumeng.chen@windriver.com>
 X-Mailer: git-send-email 1.7.5.4
 In-Reply-To: <cover.1325824274.git.zumeng.chen@windriver.com>
 References: <cover.1325824274.git.zumeng.chen@windriver.com>
 MIME-Version: 1.0
-Subject: [PATCH 3/4] lttng-modules: from lttng-modules 2.0 git repo.
+Subject: [PATCH 4/4] babeltrace: Integrated from version 0.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,94 +30,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jan 2012 06:12:21 -0000
+X-List-Received-Date: Fri, 06 Jan 2012 06:12:23 -0000
 Content-Type: text/plain
 
-LTTng-modules 2.0 is currently in pre-release phase (-pre11)
+It provides trace read and write libraries, as well as a trace converter.
 
 Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
 ---
- ...modules-replace-KERNELDIR-with-KERNEL_SRC.patch |   41 ++++++++++++++++++++
- .../lttng-2.0/lttng-modules_v2.0.pre11.bb          |   23 +++++++++++
- 2 files changed, 64 insertions(+), 0 deletions(-)
- create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
- create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb
+ meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb |   30 +++++++++++++++++++++++
+ 1 files changed, 30 insertions(+), 0 deletions(-)
+ create mode 100644 meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb
 
-diff --git a/meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch b/meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
+diff --git a/meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb b/meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb
 new file mode 100644
-index 0000000..b7b2fbb
+index 0000000..86a9d01
 --- /dev/null
-+++ b/meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
-@@ -0,0 +1,41 @@
-+Upstream-Status: Inappropriate [embedded specific]
++++ b/meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb
+@@ -0,0 +1,30 @@
++SUMMARY = "Babeltrace - Trace Format Babel Tower"
++DESCRIPTION = "Babeltrace provides trace read and write libraries in host side,\
++	       as well as a trace converter, which used to convert LTTng 2.0 \
++	       traces into human-readable log."
++HOMEPAGE = "http://www.efficios.com/babeltrace/"
++BUGTRACKER = "n/a"
 +
-+lttng-modules: replace KERNELDIR with KERNEL_SRC
++LICENSE = "MIT & GPLV2"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=8d1a03b3c17bdd158b3cbb34813b1423"
 +
-+Since lttng-modules uses the default way of module.bbclass to
-+build and install lttng-modules, so we do this replacement for
-+it as-is.
++inherit autotools
 +
-+Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
-+---
-+ Makefile |    7 +++----
-+ 1 files changed, 3 insertions(+), 4 deletions(-)
++DEPENDS = "gtk+ util-linux"
 +
-+diff --git a/Makefile b/Makefile
-+index 5ac13d7..25caad5 100644
-+--- a/Makefile
-++++ b/Makefile
-+@@ -38,17 +38,16 @@ obj-m += lib/
-+ endif
-+ 
-+ else
-+-	KERNELDIR ?= /lib/modules/$(shell uname -r)/build
-+ 	PWD := $(shell pwd)
-+ 	CFLAGS = $(EXTCFLAGS)
-+ 
-+ default:
-+-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
-++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules
-+ 
-+ modules_install:
-+-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules_install
-++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules_install
-+ 
-+ clean:
-+-	$(MAKE) -C $(KERNELDIR) M=$(PWD) clean
-++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) clean
-+ 
-+ endif
-+-- 
-+1.7.5.4
-+
-diff --git a/meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb b/meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb
-new file mode 100644
-index 0000000..34af847
---- /dev/null
-+++ b/meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb
-@@ -0,0 +1,23 @@
-+SECTION = "devel"
-+SUMMARY = "Linux Trace Toolkit KERNEL MODULE"
-+DESCRIPTION = "The lttng-modules 2.0 package contains the kernel tracer modules"
-+LICENSE = "LGPLv2.1 & GPLv2"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=1eb086682a7c65a45acd9bcdf6877b3e \
-+		   "file://gpl-2.0.txt;md5=751419260aa954499f7abaabaa882bbe \
-+		   "file://lgpl-2.1.txt;md5=243b725d71bb5df4a1e5920b344b86ad"
-+
-+DEPENDS = virtual/kernel 
-+
-+inherit module
-+
-+SRCREV = "4d3e89e379fc66480d729abe8daa5c86eb585400"
-+PV = "v2.0.pre11+git${SRCPV}"
++SRCREV = "31e670293588d7882a232bc14b93d5e956fa43f4"
++PV = "0.8+git${SRCPV}"
 +PR = "r0"
 +
-+SRC_URI += "git://git.lttng.org/lttng-modules.git;protocol=git \
-+		file://lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch"
-+
-+export INSTALL_MOD_DIR="kernel/lttng-modules"
++SRC_URI += "git://git.efficios.com/babeltrace.git;protocol=git"
 +
 +S = "${WORKDIR}/git"
++
++do_configure_prepend () {
++  ${S}/bootstrap
++}
++
++# Due to liburcu not building on MIPS currently this recipe needs to
++# be limited also.
++# So here let us first suppport x86/arm/powerpc platforms now.
 +COMPATIBLE_HOST = '(x86_64.*|i.86.*|arm.*|powerpc.*)-linux'
 -- 
 1.7.5.4
