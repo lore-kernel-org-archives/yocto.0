@@ -1,32 +1,26 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C187E006B5
-	for <yocto@yoctoproject.org>; Sat,  7 Jan 2012 07:16:15 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by vcbfl13 with SMTP id fl13so2493087vcb.35
-	for <yocto@yoctoproject.org>; Sat, 07 Jan 2012 07:16:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=Yco4vf+0i62XxRioAlR2v5rSs4Z7FpgrdgpUPAlHSSE=;
-	b=wBszLv9baEdWneP/YWJeJQjEWoL9ItjpfKjrnr0banvRWVBHjlWPCkm9Ak2HuUa/3d
-	4ZyrzJRrQ2pVZTnwU8Tn0YIBHmOfzzJzluZGCG4AWapcqpWPl6/+byUPJogoNU6KKVQ7
-	XEJxBBMCjjwWdzRK0+jfX/DRWtS5vtYRqj+bM=
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2AD0E006B5
+	for <yocto@yoctoproject.org>; Sat,  7 Jan 2012 07:54:24 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 07 Jan 2012 07:54:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104611379"
+Received: from unknown (HELO envy.home) ([10.255.13.211])
+	by fmsmga001.fm.intel.com with ESMTP; 07 Jan 2012 07:54:23 -0800
+Message-ID: <4F086A9E.3080306@linux.intel.com>
+Date: Sat, 07 Jan 2012 07:54:06 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
-Received: by 10.220.149.135 with SMTP id t7mr5859561vcv.34.1325949374602; Sat,
-	07 Jan 2012 07:16:14 -0800 (PST)
-Received: by 10.52.159.9 with HTTP; Sat, 7 Jan 2012 07:16:14 -0800 (PST)
-In-Reply-To: <CA+YB3raMN09N4wGm-yLa-Kh3p_68vUs4NUqWQt05YEQF0f+4nw@mail.gmail.com>
-References: <CA+YB3raMN09N4wGm-yLa-Kh3p_68vUs4NUqWQt05YEQF0f+4nw@mail.gmail.com>
-Date: Sat, 7 Jan 2012 10:16:14 -0500
-Message-ID: <CADzUK1LC=XDuiC_kf_ScaZrb8A9VPq88OqxA0w1aVoW89F6amw@mail.gmail.com>
-From: autif khan <autif.mlist@gmail.com>
-To: Jeff Osier-Mixon <jefro@jefro.net>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Does my build disk's filesystem make a difference?
+To: Zumeng Chen <zumeng.chen@windriver.com>
+References: <cover.1325824274.git.zumeng.chen@windriver.com>
+	<6d11d61757dd2d5f41496f929f46653e25b2870e.1325824274.git.zumeng.chen@windriver.com>
+In-Reply-To: <6d11d61757dd2d5f41496f929f46653e25b2870e.1325824274.git.zumeng.chen@windriver.com>
+X-Enigmail-Version: 1.3.3
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 4/4] babeltrace: Integrated from version 0.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,40 +32,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Jan 2012 15:16:15 -0000
+X-List-Received-Date: Sat, 07 Jan 2012 15:54:25 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-You are better off with one of the dual boot OSes in a virtual machine
-that a dual boot situation where you are trying to write to NTFS from
-linux or trying to work with ext2fs tools from windows.
 
-I do not even know if you can create equivalent of symlinks (used
-extensively in yocto) on an NTFS
 
-In theory, it might work, but NTFS was not built for linux, likewise,
-ext4 was not meant to be used for windows. It is a bad idea.
+On 01/05/2012 10:11 PM, Zumeng Chen wrote:
+> It provides trace read and write libraries, as well as a trace converter.
+> 
+> Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
+> ---
+>  meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb |   30 +++++++++++++++++++++++
+>  1 files changed, 30 insertions(+), 0 deletions(-)
+>  create mode 100644 meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb
+> 
+> diff --git a/meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb b/meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb
+> new file mode 100644
+> index 0000000..86a9d01
+> --- /dev/null
+> +++ b/meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb
+> @@ -0,0 +1,30 @@
+> +SUMMARY = "Babeltrace - Trace Format Babel Tower"
+> +DESCRIPTION = "Babeltrace provides trace read and write libraries in host side,\
+> +	       as well as a trace converter, which used to convert LTTng 2.0 \
+> +	       traces into human-readable log."
 
-You know - unless this happens to be your master's research thesis :-)
+In the previous patches you aligned the additional lines with column 0,
+here you indent with tabs and spaces. A quick survey of the existing
+sources suggest the DESCRIPTION field typically does not indent the
+subsequent lines.
 
-On Fri, Jan 6, 2012 at 6:53 PM, Jeff Osier-Mixon <jefro@jefro.net> wrote:
-> I am creating a Yocto Project build system. For various reasons, it is a
-> dual-boot system, win7 & linux (probably mint 12, haven't decided). I have a
-> primary boot disk with both operating systems and a large secondary disk to
-> use for build trees etc.
->
-> Does the filesystem on the big secondary disk matter? Ideally I would like
-> to be able to get to the large data disk from both operating systems. That
-> would necessitate NTFS, as win7 does not speak ext4 reliably, but I don't
-> want to slow my builds down.
->
-> --
-> Jeff Osier-Mixon http://jefro.net/blog
-> Yocto Project Community Manager @Intel http://yoctoproject.org
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+> +HOMEPAGE = "http://www.efficios.com/babeltrace/"
+> +BUGTRACKER = "n/a"
+> +
+> +LICENSE = "MIT & GPLV2"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=8d1a03b3c17bdd158b3cbb34813b1423"
+> +
+> +inherit autotools
+> +
+> +DEPENDS = "gtk+ util-linux"
+> +
+> +SRCREV = "31e670293588d7882a232bc14b93d5e956fa43f4"
+> +PV = "0.8+git${SRCPV}"
+> +PR = "r0"
+> +
+> +SRC_URI += "git://git.efficios.com/babeltrace.git;protocol=git"
+> +
+
+This should be a "=" assignment, not "+=".
+
+> +S = "${WORKDIR}/git"
+> +
+> +do_configure_prepend () {
+> +  ${S}/bootstrap
+
+Please use tabs for indentation here.
+
+> +}
+> +
+> +# Due to liburcu not building on MIPS currently this recipe needs to
+> +# be limited also.
+> +# So here let us first suppport x86/arm/powerpc platforms now.
+> +COMPATIBLE_HOST = '(x86_64.*|i.86.*|arm.*|powerpc.*)-linux'
+
+Again, I think you want to filter based on target arch.
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
