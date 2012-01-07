@@ -1,26 +1,26 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 910CCE005B4
-	for <yocto@yoctoproject.org>; Fri,  6 Jan 2012 18:02:05 -0800 (PST)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04C60E0030B
+	for <yocto@yoctoproject.org>; Fri,  6 Jan 2012 18:06:17 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 06 Jan 2012 18:02:05 -0800
+	by orsmga102.jf.intel.com with ESMTP; 06 Jan 2012 18:06:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="93848234"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="93849174"
 Received: from unknown (HELO envy.home) ([10.255.13.98])
-	by orsmga001.jf.intel.com with ESMTP; 06 Jan 2012 18:02:02 -0800
-Message-ID: <4F07A786.2010601@linux.intel.com>
-Date: Fri, 06 Jan 2012 18:01:42 -0800
+	by orsmga001.jf.intel.com with ESMTP; 06 Jan 2012 18:06:13 -0800
+Message-ID: <4F07A881.6070104@linux.intel.com>
+Date: Fri, 06 Jan 2012 18:05:53 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:7.0) Gecko/20110927 Thunderbird/7.0
 MIME-Version: 1.0
 To: Zumeng Chen <zumeng.chen@windriver.com>
 References: <cover.1325824274.git.zumeng.chen@windriver.com>
-	<f2349ab1c0b1d39830a798bb0c001f6d41a3275a.1325824274.git.zumeng.chen@windriver.com>
-In-Reply-To: <f2349ab1c0b1d39830a798bb0c001f6d41a3275a.1325824274.git.zumeng.chen@windriver.com>
+	<bc71f5e117ed7093e89b289b00126ad797428eb3.1325824274.git.zumeng.chen@windriver.com>
+In-Reply-To: <bc71f5e117ed7093e89b289b00126ad797428eb3.1325824274.git.zumeng.chen@windriver.com>
 X-Enigmail-Version: 1.3.3
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/4] lttng-ust: Integrate into yocto linux
+Subject: Re: [PATCH 2/4] lttng-tools: Integrated from git repo.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,41 +32,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Jan 2012 02:02:05 -0000
+X-List-Received-Date: Sat, 07 Jan 2012 02:06:18 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Hi Zumeng,
+This commit message doesn't tell me anything about what this patch is
+intended to do.
 
-Thanks for putting these together.
+> +++ b/meta/recipes-kernel/lttng-2.0/lttng-tools-fix-compiling-error-for-powerpc-arm-and-mips.patch
+> @@ -0,0 +1,23 @@
+> +Upstream-Status: Pending
+> +
+> +lttng-tools: fix compiling error for powerpc, arm
+> +
 
-Please provide a commit message. See:
-https://wiki.yoctoproject.org/wiki/Contribution_Guidelines#Patch_Headers_and_Commit_Messages
+Add some commentary here about what the compilation error is.
 
-> +LICENSE = "LGPLv2.1+ & BSD"
-> +LIC_FILES_CHKSUM = "file://COPYING;md5=e647752e045a8c45b6f583771bd561ef"
+> +Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
+> +---
+> + librunas/runas.c |    1 +
+> + 1 files changed, 1 insertions(+), 0 deletions(-)
+> +
+> +diff --git a/librunas/runas.c b/librunas/runas.c
+> +--- a/librunas/runas.c
+> ++++ b/librunas/runas.c
+> +@@ -29,6 +29,7 @@
+> + #include <fcntl.h>
+> + #include <sched.h>
+> + #include <sys/mman.h>
+> ++#include <asm/mman.h>
+> + 
+> + #include <lttngerr.h>
+> + 
+> +-- 
+> +1.7.5.4
+> +
+> diff --git a/meta/recipes-kernel/lttng-2.0/lttng-tools_2.0-pre16.bb b/meta/recipes-kernel/lttng-2.0/lttng-tools_2.0-pre16.bb
+> new file mode 100644
+> index 0000000..0b7a240
+> --- /dev/null
+> +++ b/meta/recipes-kernel/lttng-2.0/lttng-tools_2.0-pre16.bb
+> @@ -0,0 +1,24 @@
+> +SECTION = "devel"
+> +SUMMARY = "Linux Trace Toolkit Control"
+> +DESCRIPTION = "The Linux trace toolkit is a suite of tools designed to \
+> +extract program execution details from the Linux operating system and  \
+> +interpret them."
+> +LICENSE = "GPLv2.1"
+> +LIC_FILES_CHKSUM = "file://COPYING;md5=ab682a4729389c3f11913d758affe98e"
+> +
+> +DEPENDS = "liburcu popt lttng-ust"
+> +
+> +SRC_URI = "http://lttng.org/files/lttng-tools/lttng-tools-${PV}.tar.bz2 \
+> +	   file://fix-compiling-error-for-powerpc-arm-and-mips.patch"
 
-COPYING only covers the LGPL, please add another file to cover the BSD license.
+Whitespace error. Indent with spaces after the initial block indent
+(which doesn't exist here).
 
+> +
+> +SRC_URI[md5sum] = "58ed0a15db80a00172d5b0413a55451c" 
+> +SRC_URI[sha256sum] = "188d262bda80043dd939c9aa7aec1795ca77aeec0cb3c0f23c28bfe754049491"
+> +
+> +S = "${WORKDIR}/lttng-tools-${PV}"
+> +
 > +
 > +inherit autotools
 > +
-> +DEPENDS = "liburcu util-linux"
+> +export KERNELDIR="${STAGING_KERNEL_DIR}"
 > +
-> +SRC_URI = "http://lttng.org/files/lttng-ust/lttng-ust-${PV}.tar.gz"
-> +
-> +SRC_URI[md5sum] = "0f09bb954c99cb99ab6997cd492953c1"
-> +SRC_URI[sha256sum] = "e9ec3c55c2251b3f3b512bfa1015b0f67e35d55793850ccea5134f7b24ee3ba1"
-> +
-> +S = "${WORKDIR}/lttng-ust-${PV}"
-> +
-> +# Due to liburcu not building on MIPS currently this recipe needs to
-> +# be limited also.
-> +# So here let us first suppport x86/arm/powerpc platforms now.
 > +COMPATIBLE_HOST = '(x86_64.*|i.86.*|arm.*|powerpc.*)-linux'
 
-I don't think this is what you meant. You are restricting the type of build system,
-not the type of target you can build for.
+This requires a comment as in the previous patch. Again, I don't think
+this is what you are looking for. You want to limit which target
+architectures you build this for. Right?
 
 -- 
 Darren Hart
