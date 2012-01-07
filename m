@@ -1,25 +1,32 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D927EE00307
-	for <yocto@yoctoproject.org>; Fri,  6 Jan 2012 21:49:15 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Jan 2012 21:49:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104479599"
-Received: from unknown (HELO [10.255.13.127]) ([10.255.13.127])
-	by fmsmga001.fm.intel.com with ESMTP; 06 Jan 2012 21:49:15 -0800
-Message-ID: <4F07DCDA.20209@linux.intel.com>
-Date: Fri, 06 Jan 2012 21:49:14 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C187E006B5
+	for <yocto@yoctoproject.org>; Sat,  7 Jan 2012 07:16:15 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by vcbfl13 with SMTP id fl13so2493087vcb.35
+	for <yocto@yoctoproject.org>; Sat, 07 Jan 2012 07:16:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=Yco4vf+0i62XxRioAlR2v5rSs4Z7FpgrdgpUPAlHSSE=;
+	b=wBszLv9baEdWneP/YWJeJQjEWoL9ItjpfKjrnr0banvRWVBHjlWPCkm9Ak2HuUa/3d
+	4ZyrzJRrQ2pVZTnwU8Tn0YIBHmOfzzJzluZGCG4AWapcqpWPl6/+byUPJogoNU6KKVQ7
+	XEJxBBMCjjwWdzRK0+jfX/DRWtS5vtYRqj+bM=
 MIME-Version: 1.0
-To: tom.zanussi@intel.com
-References: <cover.1325913610.git.tom.zanussi@intel.com>
-	<ef75d749854732618ce999c79b3368aa46037ea8.1325913610.git.tom.zanussi@intel.com>
-In-Reply-To: <ef75d749854732618ce999c79b3368aa46037ea8.1325913610.git.tom.zanussi@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] local.conf.sample.extended: add LICENSE_FLAGS_WHITELIST section
+Received: by 10.220.149.135 with SMTP id t7mr5859561vcv.34.1325949374602; Sat,
+	07 Jan 2012 07:16:14 -0800 (PST)
+Received: by 10.52.159.9 with HTTP; Sat, 7 Jan 2012 07:16:14 -0800 (PST)
+In-Reply-To: <CA+YB3raMN09N4wGm-yLa-Kh3p_68vUs4NUqWQt05YEQF0f+4nw@mail.gmail.com>
+References: <CA+YB3raMN09N4wGm-yLa-Kh3p_68vUs4NUqWQt05YEQF0f+4nw@mail.gmail.com>
+Date: Sat, 7 Jan 2012 10:16:14 -0500
+Message-ID: <CADzUK1LC=XDuiC_kf_ScaZrb8A9VPq88OqxA0w1aVoW89F6amw@mail.gmail.com>
+From: autif khan <autif.mlist@gmail.com>
+To: Jeff Osier-Mixon <jefro@jefro.net>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Does my build disk's filesystem make a difference?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,45 +38,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Jan 2012 05:49:16 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 07 Jan 2012 15:16:15 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 01/06/2012 09:23 PM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi<tom.zanussi@intel.com>
+You are better off with one of the dual boot OSes in a virtual machine
+that a dual boot situation where you are trying to write to NTFS from
+linux or trying to work with ext2fs tools from windows.
+
+I do not even know if you can create equivalent of symlinks (used
+extensively in yocto) on an NTFS
+
+In theory, it might work, but NTFS was not built for linux, likewise,
+ext4 was not meant to be used for windows. It is a bad idea.
+
+You know - unless this happens to be your master's research thesis :-)
+
+On Fri, Jan 6, 2012 at 6:53 PM, Jeff Osier-Mixon <jefro@jefro.net> wrote:
+> I am creating a Yocto Project build system. For various reasons, it is a
+> dual-boot system, win7 & linux (probably mint 12, haven't decided). I have a
+> primary boot disk with both operating systems and a large secondary disk to
+> use for build trees etc.
 >
-> Add a new section for LICENSE_FLAGS_WHITELIST, containing a list of
-> the current packages with LICENSE_FLAGS.
+> Does the filesystem on the big secondary disk matter? Ideally I would like
+> to be able to get to the large data disk from both operating systems. That
+> would necessitate NTFS, as win7 does not speak ext4 reliably, but I don't
+> want to slow my builds down.
 >
-> Signed-off-by: Tom Zanussi<tom.zanussi@intel.com>
-
-Thanks!
-
-Acked-by: Saul Wold <sgw@linux.intel.com>
-
-> ---
->   meta-yocto/conf/local.conf.sample.extended |   13 +++++++++++++
->   1 files changed, 13 insertions(+), 0 deletions(-)
+> --
+> Jeff Osier-Mixon http://jefro.net/blog
+> Yocto Project Community Manager @Intel http://yoctoproject.org
 >
-> diff --git a/meta-yocto/conf/local.conf.sample.extended b/meta-yocto/conf/local.conf.sample.extended
-> index 7c26572..f44d7fa 100644
-> --- a/meta-yocto/conf/local.conf.sample.extended
-> +++ b/meta-yocto/conf/local.conf.sample.extended
-> @@ -123,3 +123,16 @@
->   # The following is a list of classes to import to use in the generation of images
->   # currently an example class is image_types_uboot
->   # IMAGE_CLASSES = " image_types_uboot"
-> +
-> +# This is a list of packages that require a commercial license to ship
-> +# product. If shipped as part of an image these packages may have
-> +# implications so they are disabled by default.  To enable them,
-> +# un-comment the below as appropriate.
-> +#LICENSE_FLAGS_WHITELIST = "commercial_gst-fluendo-mp3 \
-> +#                           commercial_gst-openmax \
-> +#                           commercial_gst-plugins-ugly \
-> +#                           commercial_lame \
-> +#                           commercial_libmad \
-> +#                           commercial_libomxil \
-> +#                           commercial_mpeg2dec \
-> +#                           commercial_qmmp"
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
