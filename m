@@ -1,27 +1,27 @@
 Return-Path: <Zumeng.Chen@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE417E0127D
-	for <yocto@yoctoproject.org>; Sun,  8 Jan 2012 20:31:52 -0800 (PST)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B482E0127D
+	for <yocto@yoctoproject.org>; Sun,  8 Jan 2012 20:34:17 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q094VovZ015743
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q094YEW6018565
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 8 Jan 2012 20:31:50 -0800 (PST)
+	Sun, 8 Jan 2012 20:34:14 -0800 (PST)
 Received: from [128.224.162.181] (128.224.162.181) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Sun, 8 Jan 2012 20:31:50 -0800
-Message-ID: <4F0A6D95.5090007@windriver.com>
-Date: Mon, 9 Jan 2012 12:31:17 +0800
+	Sun, 8 Jan 2012 20:34:14 -0800
+Message-ID: <4F0A6E25.2030502@windriver.com>
+Date: Mon, 9 Jan 2012 12:33:41 +0800
 From: Zumeng Chen <zumeng.chen@windriver.com>
 User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
 	rv:1.9.1.11) Gecko/20100713 Lightning/1.0b1 Thunderbird/3.0.6
 MIME-Version: 1.0
 To: Darren Hart <dvhart@linux.intel.com>
 References: <cover.1325824274.git.zumeng.chen@windriver.com>
-	<bc71f5e117ed7093e89b289b00126ad797428eb3.1325824274.git.zumeng.chen@windriver.com>
-	<4F07A881.6070104@linux.intel.com>
-In-Reply-To: <4F07A881.6070104@linux.intel.com>
+	<38a7991592a5851e09395cc9f07bc6d2880c7bda.1325824274.git.zumeng.chen@windriver.com>
+	<4F07A985.6070903@linux.intel.com>
+In-Reply-To: <4F07A985.6070903@linux.intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 2/4] lttng-tools: Integrated from git repo.
+Subject: Re: [PATCH 3/4] lttng-modules: from lttng-modules 2.0 git repo.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,88 +33,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jan 2012 04:31:52 -0000
+X-List-Received-Date: Mon, 09 Jan 2012 04:34:17 -0000
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 
-于 2012年01月07日 10:05, Darren Hart 写道:
-> This commit message doesn't tell me anything about what this patch is
-> intended to do.
+于 2012年01月07日 10:10, Darren Hart 写道:
 >
+> On 01/05/2012 10:11 PM, Zumeng Chen wrote:
 >    
->> +++ b/meta/recipes-kernel/lttng-2.0/lttng-tools-fix-compiling-error-for-powerpc-arm-and-mips.patch
->> @@ -0,0 +1,23 @@
->> +Upstream-Status: Pending
->> +
->> +lttng-tools: fix compiling error for powerpc, arm
->> +
+>> LTTng-modules 2.0 is currently in pre-release phase (-pre11)
 >>      
-> Add some commentary here about what the compilation error is.
+> If the commit message is identical, one could reasonably expect the
+> patch to be identical ;-) Please provide a complete commit message.
 >    
-OK. in V2.
+OK, in V2.
 >    
+>> Signed-off-by: Zumeng Chen<zumeng.chen@windriver.com>
+>> ---
+>>   ...modules-replace-KERNELDIR-with-KERNEL_SRC.patch |   41 ++++++++++++++++++++
+>>   .../lttng-2.0/lttng-modules_v2.0.pre11.bb          |   23 +++++++++++
+>>   2 files changed, 64 insertions(+), 0 deletions(-)
+>>   create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
+>>   create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb
+>>
+>> diff --git a/meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch b/meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
+>> new file mode 100644
+>> index 0000000..b7b2fbb
+>> --- /dev/null
+>> +++ b/meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
+>> @@ -0,0 +1,41 @@
+>> +Upstream-Status: Inappropriate [embedded specific]
+>> +
+>> +lttng-modules: replace KERNELDIR with KERNEL_SRC
+>> +
+>> +Since lttng-modules uses the default way of module.bbclass to
+>> +build and install lttng-modules, so we do this replacement for
+>> +it as-is.
+>>      
+> Since and so are redundant: s/so///
+>    
+fixed.
+>    
+>> +
 >> +Signed-off-by: Zumeng Chen<zumeng.chen@windriver.com>
 >> +---
->> + librunas/runas.c |    1 +
->> + 1 files changed, 1 insertions(+), 0 deletions(-)
+>> + Makefile |    7 +++----
+>> + 1 files changed, 3 insertions(+), 4 deletions(-)
 >> +
->> +diff --git a/librunas/runas.c b/librunas/runas.c
->> +--- a/librunas/runas.c
->> ++++ b/librunas/runas.c
->> +@@ -29,6 +29,7 @@
->> + #include<fcntl.h>
->> + #include<sched.h>
->> + #include<sys/mman.h>
->> ++#include<asm/mman.h>
+>> +diff --git a/Makefile b/Makefile
+>> +index 5ac13d7..25caad5 100644
+>> +--- a/Makefile
+>> ++++ b/Makefile
+>> +@@ -38,17 +38,16 @@ obj-m += lib/
+>> + endif
 >> +
->> + #include<lttngerr.h>
+>> + else
+>> +-	KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+>> + 	PWD := $(shell pwd)
+>> + 	CFLAGS = $(EXTCFLAGS)
 >> +
+>> + default:
+>> +-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+>> ++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules
+>> +
+>> + modules_install:
+>> +-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules_install
+>> ++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules_install
+>> +
+>> + clean:
+>> +-	$(MAKE) -C $(KERNELDIR) M=$(PWD) clean
+>> ++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) clean
+>> +
+>> + endif
 >> +--
 >> +1.7.5.4
 >> +
->> diff --git a/meta/recipes-kernel/lttng-2.0/lttng-tools_2.0-pre16.bb b/meta/recipes-kernel/lttng-2.0/lttng-tools_2.0-pre16.bb
+>> diff --git a/meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb b/meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb
 >> new file mode 100644
->> index 0000000..0b7a240
+>> index 0000000..34af847
 >> --- /dev/null
->> +++ b/meta/recipes-kernel/lttng-2.0/lttng-tools_2.0-pre16.bb
->> @@ -0,0 +1,24 @@
+>> +++ b/meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb
+>> @@ -0,0 +1,23 @@
 >> +SECTION = "devel"
->> +SUMMARY = "Linux Trace Toolkit Control"
->> +DESCRIPTION = "The Linux trace toolkit is a suite of tools designed to \
->> +extract program execution details from the Linux operating system and  \
->> +interpret them."
->> +LICENSE = "GPLv2.1"
->> +LIC_FILES_CHKSUM = "file://COPYING;md5=ab682a4729389c3f11913d758affe98e"
->> +
->> +DEPENDS = "liburcu popt lttng-ust"
->> +
->> +SRC_URI = "http://lttng.org/files/lttng-tools/lttng-tools-${PV}.tar.bz2 \
->> +	   file://fix-compiling-error-for-powerpc-arm-and-mips.patch"
+>> +SUMMARY = "Linux Trace Toolkit KERNEL MODULE"
+>> +DESCRIPTION = "The lttng-modules 2.0 package contains the kernel tracer modules"
+>> +LICENSE = "LGPLv2.1&  GPLv2"
+>> +LIC_FILES_CHKSUM = "file://LICENSE;md5=1eb086682a7c65a45acd9bcdf6877b3e \
+>> +		   "file://gpl-2.0.txt;md5=751419260aa954499f7abaabaa882bbe \
+>> +		   "file://lgpl-2.1.txt;md5=243b725d71bb5df4a1e5920b344b86ad"
 >>      
-> Whitespace error. Indent with spaces after the initial block indent
-> (which doesn't exist here).
+> Whitespace errors. Please use spaces here.
 >    
-fix.ed
+fixed.
 >    
 >> +
->> +SRC_URI[md5sum] = "58ed0a15db80a00172d5b0413a55451c"
->> +SRC_URI[sha256sum] = "188d262bda80043dd939c9aa7aec1795ca77aeec0cb3c0f23c28bfe754049491"
+>> +DEPENDS = virtual/kernel
 >> +
->> +S = "${WORKDIR}/lttng-tools-${PV}"
+>> +inherit module
 >> +
+>> +SRCREV = "4d3e89e379fc66480d729abe8daa5c86eb585400"
+>> +PV = "v2.0.pre11+git${SRCPV}"
+>> +PR = "r0"
 >> +
->> +inherit autotools
+>> +SRC_URI += "git://git.lttng.org/lttng-modules.git;protocol=git \
+>> +		file://lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch"
+>>      
+> Spaces please.
+>    
+fixed.
+>    
 >> +
->> +export KERNELDIR="${STAGING_KERNEL_DIR}"
+>> +export INSTALL_MOD_DIR="kernel/lttng-modules"
 >> +
+>> +S = "${WORKDIR}/git"
 >> +COMPATIBLE_HOST = '(x86_64.*|i.86.*|arm.*|powerpc.*)-linux'
 >>      
-> This requires a comment as in the previous patch. Again, I don't think
-> this is what you are looking for. You want to limit which target
-> architectures you build this for. Right?
+> I think you want a solution for TARGET.
 >    
-Right, but the same reason for another email.
-
+The same reason.
 Regards,
 Zumeng
+
 
