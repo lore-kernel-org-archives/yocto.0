@@ -1,31 +1,21 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC047E006E9
-	for <yocto@yoctoproject.org>; Mon,  9 Jan 2012 12:12:57 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by vbbfa15 with SMTP id fa15so4011397vbb.35
-	for <yocto@yoctoproject.org>; Mon, 09 Jan 2012 12:12:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=lCFatj4b9qc5trVu6w3dBjjjsCe4V/DM+3cxt/92aw4=;
-	b=G4TPhF6UXzdyiyM8N6604+5X9ss14jtbEzDtDpa6k+tgynvC/xbC2jEMgfNJah/EOT
-	tpRVcSaKgN6pA+exp9aDCTDzuGCocKWtxPANdM5gpa5mkIo11dU+leQlZJNEOw50Zt7S
-	2WMuLiiWIlKx76LNv8c+jYTaCBmUM1bwMk2Ls=
-MIME-Version: 1.0
-Received: by 10.52.17.76 with SMTP id m12mr8190823vdd.102.1326139976297; Mon,
-	09 Jan 2012 12:12:56 -0800 (PST)
-Received: by 10.52.167.105 with HTTP; Mon, 9 Jan 2012 12:12:56 -0800 (PST)
-In-Reply-To: <CADzUK1+7--hex-bNQ_EdQndY1SSpsmUS3OB-uGA2y6UC-N25xw@mail.gmail.com>
-References: <CADzUK1KR-tyiabskATGp1pH_yUN_AgiBA+EUv9mtsjuXfnB5uw@mail.gmail.com>
-	<CADzUK1+7--hex-bNQ_EdQndY1SSpsmUS3OB-uGA2y6UC-N25xw@mail.gmail.com>
-Date: Mon, 9 Jan 2012 15:12:56 -0500
-Message-ID: <CADzUK1K8R37a8spPswCer78kUhWSUi7u+DqoEtApc1g7UgBs_w@mail.gmail.com>
-From: autif khan <autif.mlist@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: Trying to compile mono on target for machine crownbay
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83015E006E9
+	for <yocto@yoctoproject.org>; Mon,  9 Jan 2012 12:34:52 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 09 Jan 2012 12:34:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="94530098"
+Received: from btwarden-mobl1.amr.corp.intel.com (HELO localhost)
+	([10.7.199.149])
+	by orsmga001.jf.intel.com with ESMTP; 09 Jan 2012 12:34:51 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Mon,  9 Jan 2012 12:34:26 -0800
+Message-Id: <a198c87b40eaac206b9e59e66a122ef7efa870b2.1326141205.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.6.4
+Cc: Darren Hart <dvhart@linux.intel.com>
+Subject: [PATCH][meta-intel] phub-util-mac: Add PCH EG20T (Topcliff) MAC address utility
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,70 +27,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jan 2012 20:12:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 09 Jan 2012 20:34:52 -0000
 
-Here is a recipe that I using to generate a custom SDK image which I
-can use to natively compile mono on the target.
+phub-util-mac builds topcliff_mac_util which can be used to
+read and write the MAC address for the Intel Platform Controller Hub
+EG20T (Topcliff) gigabit ethernet interface.
 
-require recipes-sato/images/core-image-sato-sdk.bb
-IMAGE_INSTALL += "bison libtool"
-PR="r0"
+This is particularly useful for boards without a MAC address pre-configured.
 
-bison is required and I added libtool because it was being generated
-by mono's autoconf (./configure) script and gave the following error:
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+CC: Tom Zanussi <tom.zanussi@intel.com>
+---
+ .../recipes-bsp/phub-util-mac/phub-util-mac_0.0.bb |   21 ++++++++++++++++++++
+ 1 files changed, 21 insertions(+), 0 deletions(-)
+ create mode 100644 common/recipes-bsp/phub-util-mac/phub-util-mac_0.0.bb
 
-libtool: link: cannot find the library `=/usr/lib/libglib-2.0.la' or
-unhandled argument `=/usr/lib/libglib-2.0.la'
+diff --git a/common/recipes-bsp/phub-util-mac/phub-util-mac_0.0.bb b/common/recipes-bsp/phub-util-mac/phub-util-mac_0.0.bb
+new file mode 100644
+index 0000000..85cd8a7
+--- /dev/null
++++ b/common/recipes-bsp/phub-util-mac/phub-util-mac_0.0.bb
+@@ -0,0 +1,21 @@
++DESCRIPTION = "Topcliff MAC address Utility."
++SECTION = "bsp"
++DEPENDS = ""
++HOMEPAGE = ""
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYING;md5=e2643b73e47fa4b29cdfad24ee42bed6"
++PR = "r0"
++
++SRC_URI = "${SOURCEFORGE_MIRROR}/project/generalembedded/Downloads/Utility/phub_util_mac.tar.bz2"
++SRC_URI[md5sum] = "f148f0a515ffa264ca5723df48cb7011"
++
++S = "${WORKDIR}/phub_util_mac/src/"
++
++do_configure () {
++	:
++} 
++
++do_install () {
++	install -d ${D}/${bindir}
++	install -m 0755 ${S}/topcliff_mac_util ${D}/${bindir}
++}
+-- 
+1.7.6.4
 
-If I understand correctly, yocto has a special libtool which
-understands how to handle '=/path/to/lib'
-
-The problem is that it looks like 'libtool' is not included in the
-image. I do have the libtool recipe in meta/recipes-devtools/libtool
-
-The libtool version generated by mono was 2.2.6b
-
-The libtoolize version in the image is 2.4 (automake 1.11.1, autoconf 2.68)
-
-Am I doing something wrong? If not, where is the 'libtool' in the image?
-
-Thanks
-
-Autif
-
-On Thu, Jan 5, 2012 at 4:59 PM, autif khan <autif.mlist@gmail.com> wrote:
-> I talked to a couple of mono developers (kangaroo and vargaz) - the
-> consensus is that "'auto' is hosed"
->
-> I am not an expert in auto tools, I just know how to configure, make,
-> make install.
->
-> I get by when I need to know my way around makefiles
->
-> I am a capable C/C++ developer - please advise or point me to right resources.
->
-> Thanks
->
-> Autif
->
-> On Thu, Jan 5, 2012 at 4:52 PM, autif khan <autif.mlist@gmail.com> wrote:
->> I bitbaked core-image-sato-sdk, copied it to the target disk and tried
->> to build mono natively on the target machine and I got the following
->> error:
->>
->> libtool: link: cannot find the library `=/usr/lib/libglib-2.0.la' or
->> unhandled argument `=/usr/lib/libglib-2.0.la'
->>
->> the filesystem does have a /usr/lib/libglib-2.0.la and it seems to be valid
->>
->> I am not sure why there is a leading '=' in the path. Needless to say
->> - mono builds fine on ubuntu, so it is unlikely (not impossible) to be
->> a mono build issue.
->>
->> Has anyone seen anything like this with mono or some other piece of software?
->>
->> Thanks
->>
->> Autif
 
