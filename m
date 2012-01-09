@@ -1,23 +1,23 @@
-Return-Path: <Zumeng.Chen@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93928E0137D
-	for <yocto@yoctoproject.org>; Mon,  9 Jan 2012 01:25:04 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q099OwPi010763
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 9 Jan 2012 01:24:58 -0800 (PST)
-Received: from pek-yocto-build2.corp.ad.wrs.com (128.224.163.150) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Mon, 9 Jan 2012 01:24:58 -0800
-From: Zumeng Chen <zumeng.chen@windriver.com>
-To: <yocto@yoctoproject.org>, <dvhart@linux.intel.com>
-Date: Mon, 9 Jan 2012 17:24:34 +0800
-Message-ID: <b2bf28b8df6dcfbd985d8927d5baed0d5a66ae8f.1326099771.git.zumeng.chen@windriver.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <cover.1326099771.git.zumeng.chen@windriver.com>
-References: <cover.1326099771.git.zumeng.chen@windriver.com>
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83AABE0137C
+	for <yocto@yoctoproject.org>; Mon,  9 Jan 2012 01:25:43 -0800 (PST)
+Received: from [192.168.0.21] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id A6AD725D84;
+	Mon,  9 Jan 2012 08:54:40 +0000 (GMT)
+Message-ID: <4F0AB266.2050004@communistcode.co.uk>
+Date: Mon, 09 Jan 2012 09:24:54 +0000
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111224 Thunderbird/9.0.1
 MIME-Version: 1.0
-Subject: [PATCH 3/4] lttng-modules: from lttng-modules 2.0 git repo.
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <4F05CD5B.3060909@communistcode.co.uk>
+	<4F05CF5B.1020808@communistcode.co.uk>
+	<C6510F6D410BB64A8C15398EDC6B847C240329F0@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C240329F0@ORSMSX101.amr.corp.intel.com>
+Subject: Re: Yocto Eclipse Plugin - Python 'undefined symbol'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,99 +29,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jan 2012 09:25:04 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 09 Jan 2012 09:25:43 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This patch intended to integrate the lttng-modules 2.0 package
-containing the kernel tracer modules.
-LTTng-modules 2.0 is currently in pre-release (-pre11), so we
-have to update it when official released.
+On 06/01/12 07:28, Zhang, Jessica wrote:
+> Jack,
+>
+> I just tried with latest poky master built out toolchain and remote debug with latest Eclipse plug-in has no problem.  My host is 32bit Ubuntu, but I don't think that makes any difference.  So how up to date is your poky meta data, mine is as of this afternoon  that contains 2 bug fixes that relevant to meta-toolchain build.  Also, seems you're using the build system derived toolchain?  If so, I can give that a try...
+>
+> Thanks,
+> Jessica
+>
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Jack Mitchell
+> Sent: Thursday, January 05, 2012 8:27 AM
+> To: yocto@yoctoproject.org
+> Subject: Re: [yocto] Yocto Eclipse Plugin - Python 'undefined symbol'
+>
+> On 05/01/12 16:18, Jack Mitchell wrote:
+>> I encounter this error when trying to launch a debug session in
+>> Eclipse. I am using the master branch of poky, and the master branch
+>> of eclipse-plugin on an ArchLinux 64 host.
+>>
+>> Any ideas, it seems as though the Python wasn't built with Unicode
+>> support but I can't tell if it is using the bitbake built python or
+>> host python...
+>>
+>> Error creating session
+>> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb:
+>> symbol lookup error:
+>> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb:
+>> undefined symbol: PyUnicodeUCS4_FromEncodedObject
+>> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb:
+>> symbol lookup error:
+>> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb:
+>> undefined symbol: PyUnicodeUCS4_FromEncodedObject
+>> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb:
+>> symbol lookup error:
+>> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb:
+>> undefined symbol: PyUnicodeUCS4_FromEncodedObject
+>>
+>> Cheers,
+>> Jack.
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> A cheeky ldd of the binary file gives me:
+>
+> linux-vdso.so.1 =>   (0x00007fff68dff000)
+>       libreadline.so.6 =>
+> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/../../../usr/lib/libreadline.so.6
+> (0x00007fb5cf3af000)
+>       libncursesw.so.5 =>  /lib/libncursesw.so.5 (0x00007fb5cf152000)
+>       libz.so.1 =>
+> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/../../../usr/lib/libz.so.1
+> (0x00007fb5cef3b000)
+>       libm.so.6 =>  /lib/libm.so.6 (0x00007fb5cec47000)
+>       libpthread.so.0 =>  /lib/libpthread.so.0 (0x00007fb5cea2a000)
+>       libdl.so.2 =>  /lib/libdl.so.2 (0x00007fb5ce826000)
+>       libutil.so.1 =>  /lib/libutil.so.1 (0x00007fb5ce623000)
+>       libpython2.7.so.1.0 =>
+> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/../../../usr/lib/libpython2.7.so.1.0
+> (0x00007fb5ce248000)
+>       libexpat.so.1 =>
+> /home/jack/yocto/poky-git/beagleInitial/tmp/sysroots/x86_64-linux/usr/bin/armv5te-poky-linux-gnueabi/../../../usr/lib/libexpat.so.1
+> (0x00007fb5ce01e000)
+>       libc.so.6 =>  /lib/libc.so.6 (0x00007fb5cdc7b000)
+>       /lib/ld-linux-x86-64.so.2 (0x00007fb5cf5f1000)
+>
+> Which seems to indicate that it is using the bitbake built python?
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
----
- ...modules-replace-KERNELDIR-with-KERNEL_SRC.patch |   41 ++++++++++++++++++++
- .../lttng-2.0/lttng-modules_v2.0.pre11.bb          |   23 +++++++++++
- 2 files changed, 64 insertions(+), 0 deletions(-)
- create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
- create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb
+Hi Jessica,
 
-diff --git a/meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch b/meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
-new file mode 100644
-index 0000000..aa24171
---- /dev/null
-+++ b/meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
-@@ -0,0 +1,41 @@
-+Upstream-Status: Inappropriate [embedded specific]
-+
-+lttng-modules: replace KERNELDIR with KERNEL_SRC
-+
-+Since lttng-modules uses the default way of module.bbclass to
-+build and install lttng-modules, we do this replacement for
-+it as-is.
-+
-+Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
-+---
-+ Makefile |    7 +++----
-+ 1 files changed, 3 insertions(+), 4 deletions(-)
-+
-+diff --git a/Makefile b/Makefile
-+index 5ac13d7..25caad5 100644
-+--- a/Makefile
-++++ b/Makefile
-+@@ -38,17 +38,16 @@ obj-m += lib/
-+ endif
-+
-+ else
-+-	KERNELDIR ?= /lib/modules/$(shell uname -r)/build
-+ 	PWD := $(shell pwd)
-+ 	CFLAGS = $(EXTCFLAGS)
-+
-+ default:
-+-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
-++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules
-+
-+ modules_install:
-+-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules_install
-++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules_install
-+
-+ clean:
-+-	$(MAKE) -C $(KERNELDIR) M=$(PWD) clean
-++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) clean
-+
-+ endif
-+-- 
-+1.7.5.4
-+
-diff --git a/meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb b/meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb
-new file mode 100644
-index 0000000..02d8324
---- /dev/null
-+++ b/meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb
-@@ -0,0 +1,23 @@
-+SECTION = "devel"
-+SUMMARY = "Linux Trace Toolkit KERNEL MODULE"
-+DESCRIPTION = "The lttng-modules 2.0 package contains the kernel tracer modules"
-+LICENSE = "LGPLv2.1 & GPLv2"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=1eb086682a7c65a45acd9bcdf6877b3e \
-+                    file://gpl-2.0.txt;md5=751419260aa954499f7abaabaa882bbe \
-+                    file://lgpl-2.1.txt;md5=243b725d71bb5df4a1e5920b344b86ad"
-+
-+DEPENDS = virtual/kernel
-+
-+inherit module
-+
-+SRCREV = "4d3e89e379fc66480d729abe8daa5c86eb585400"
-+PV = "v2.0.pre11+git${SRCPV}"
-+PR = "r0"
-+
-+SRC_URI = "git://git.lttng.org/lttng-modules.git;protocol=git \
-+           file://lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch"
-+
-+export INSTALL_MOD_DIR="kernel/lttng-modules"
-+
-+S = "${WORKDIR}/git"
-+COMPATIBLE_HOST = '(x86_64.*|i.86.*|arm.*|powerpc.*)-linux'
--- 
-1.7.5.4
+Thanks for your reply.
 
+I am using the build system derived toolchain. I am using the latest 
+poky.git as of 9:22am GMT 9th Jan. I am using the eclipse-plugin master 
+branch. I tried again this morning and encountered the same error.
+
+To run the eclipse plugin I am using the method of adding the source 
+code to the eclipse project and then right clicking and running as an 
+eclipse program. However I believe the issue is either with my Python, 
+or with some other incompatibility in the script.
+
+Best Regards,
+Jack.
 
