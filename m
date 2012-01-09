@@ -1,26 +1,34 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2AD0E006B5
-	for <yocto@yoctoproject.org>; Sat,  7 Jan 2012 07:54:24 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 07 Jan 2012 07:54:24 -0800
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98AD3E0121A
+	for <yocto@yoctoproject.org>; Sun,  8 Jan 2012 18:36:40 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 08 Jan 2012 18:36:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104611379"
-Received: from unknown (HELO envy.home) ([10.255.13.211])
-	by fmsmga001.fm.intel.com with ESMTP; 07 Jan 2012 07:54:23 -0800
-Message-ID: <4F086A9E.3080306@linux.intel.com>
-Date: Sat, 07 Jan 2012 07:54:06 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0) Gecko/20110927 Thunderbird/7.0
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="54525358"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by AZSMGA002.ch.intel.com with ESMTP; 08 Jan 2012 18:36:39 -0800
+Received: from pgsmsx104.gar.corp.intel.com (10.221.44.91) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 9 Jan 2012 10:36:25 +0800
+Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
+	PGSMSX104.gar.corp.intel.com (10.221.44.91) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 9 Jan 2012 10:35:52 +0800
+Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.38]) by
+	SHSMSX151.ccr.corp.intel.com ([169.254.3.223]) with mapi id
+	14.01.0355.002; Mon, 9 Jan 2012 10:35:47 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto weekly bug trend charts -- WW01
+Thread-Index: AczOd2O8fDoTiMLVR9i+tahFY7CUrQ==
+Date: Mon, 9 Jan 2012 02:35:46 +0000
+Message-ID: <90741FE9B50D654690EB940EDB456C8E017209@SHSMSX101.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-To: Zumeng Chen <zumeng.chen@windriver.com>
-References: <cover.1325824274.git.zumeng.chen@windriver.com>
-	<6d11d61757dd2d5f41496f929f46653e25b2870e.1325824274.git.zumeng.chen@windriver.com>
-In-Reply-To: <6d11d61757dd2d5f41496f929f46653e25b2870e.1325824274.git.zumeng.chen@windriver.com>
-X-Enigmail-Version: 1.3.3
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 4/4] babeltrace: Integrated from version 0.8
+Subject: Yocto weekly bug trend charts -- WW01
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,74 +40,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Jan 2012 15:54:25 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 09 Jan 2012 02:36:40 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+Hi all,
+	The overall open bug trend decreases a lot last week. The new submitted bu=
+g vs. fixed bug number is 3 vs. 22. WDD number is 641. Bug status of WW01 c=
+ould be found on https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
 
+Best Regards,
+Jiajun
 
-On 01/05/2012 10:11 PM, Zumeng Chen wrote:
-> It provides trace read and write libraries, as well as a trace converter.
-> 
-> Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
-> ---
->  meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb |   30 +++++++++++++++++++++++
->  1 files changed, 30 insertions(+), 0 deletions(-)
->  create mode 100644 meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb
-> 
-> diff --git a/meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb b/meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb
-> new file mode 100644
-> index 0000000..86a9d01
-> --- /dev/null
-> +++ b/meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb
-> @@ -0,0 +1,30 @@
-> +SUMMARY = "Babeltrace - Trace Format Babel Tower"
-> +DESCRIPTION = "Babeltrace provides trace read and write libraries in host side,\
-> +	       as well as a trace converter, which used to convert LTTng 2.0 \
-> +	       traces into human-readable log."
-
-In the previous patches you aligned the additional lines with column 0,
-here you indent with tabs and spaces. A quick survey of the existing
-sources suggest the DESCRIPTION field typically does not indent the
-subsequent lines.
-
-> +HOMEPAGE = "http://www.efficios.com/babeltrace/"
-> +BUGTRACKER = "n/a"
-> +
-> +LICENSE = "MIT & GPLV2"
-> +LIC_FILES_CHKSUM = "file://LICENSE;md5=8d1a03b3c17bdd158b3cbb34813b1423"
-> +
-> +inherit autotools
-> +
-> +DEPENDS = "gtk+ util-linux"
-> +
-> +SRCREV = "31e670293588d7882a232bc14b93d5e956fa43f4"
-> +PV = "0.8+git${SRCPV}"
-> +PR = "r0"
-> +
-> +SRC_URI += "git://git.efficios.com/babeltrace.git;protocol=git"
-> +
-
-This should be a "=" assignment, not "+=".
-
-> +S = "${WORKDIR}/git"
-> +
-> +do_configure_prepend () {
-> +  ${S}/bootstrap
-
-Please use tabs for indentation here.
-
-> +}
-> +
-> +# Due to liburcu not building on MIPS currently this recipe needs to
-> +# be limited also.
-> +# So here let us first suppport x86/arm/powerpc platforms now.
-> +COMPATIBLE_HOST = '(x86_64.*|i.86.*|arm.*|powerpc.*)-linux'
-
-Again, I think you want to filter based on target arch.
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
