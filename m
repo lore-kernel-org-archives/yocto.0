@@ -1,31 +1,26 @@
-Return-Path: <Sean_Hudson@mentor.com>
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7475E006E9
-	for <yocto@yoctoproject.org>; Mon,  9 Jan 2012 17:49:35 -0800 (PST)
-Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
-	by relay1.mentorg.com with esmtp 
-	id 1RkQqE-0000xE-94 from Sean_Hudson@mentor.com ;
-	Mon, 09 Jan 2012 17:49:34 -0800
-Received: from SVR-ORW-FEM-03.mgc.mentorg.com ([147.34.97.39]) by
-	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
-	SMTPSVC(6.0.3790.4675); Mon, 9 Jan 2012 17:49:16 -0800
-Received: from NA-MBX-02.mgc.mentorg.com ([169.254.2.234]) by
-	SVR-ORW-FEM-03.mgc.mentorg.com ([147.34.97.39]) with mapi id
-	14.01.0289.001; Mon, 9 Jan 2012 17:49:33 -0800
-From: "Hudson, Sean" <Sean_Hudson@mentor.com>
-Thread-Topic: RFC: Joint, monthly, and online forum for developer discussion
-Thread-Index: AczPD/muMXj6cRkkQUqmouq75fS35Q==
-Date: Tue, 10 Jan 2012 01:49:32 +0000
-Message-ID: <289CD940EE567444BB43E62E0C3028F328F52A19@NA-MBX-02.mgc.mentorg.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.34.91.1]
+Return-Path: <Zumeng.Chen@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F2C7E0074A
+	for <yocto@yoctoproject.org>; Mon,  9 Jan 2012 19:21:55 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q0A3Loux024641
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 9 Jan 2012 19:21:50 -0800 (PST)
+Received: from [128.224.162.181] (128.224.162.181) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Mon, 9 Jan 2012 19:21:50 -0800
+Message-ID: <4F0BAEBD.6010405@windriver.com>
+Date: Tue, 10 Jan 2012 11:21:33 +0800
+From: Zumeng Chen <zumeng.chen@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.1.11) Gecko/20100713 Lightning/1.0b1 Thunderbird/3.0.6
 MIME-Version: 1.0
-X-OriginalArrivalTime: 10 Jan 2012 01:49:16.0684 (UTC)
-	FILETIME=[0FC9D4C0:01CCCF3A]
-X-Mailman-Approved-At: Mon, 09 Jan 2012 18:28:15 -0800
-Subject: RFC: Joint, monthly, and online forum for developer discussion
+To: Darren Hart <dvhart@linux.intel.com>
+References: <1326101075-9386-1-git-send-email-zumeng.chen@windriver.com>
+	<4F0B2BC8.8080207@linux.intel.com>
+In-Reply-To: <4F0B2BC8.8080207@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [V2][PATCH 0/4]lttng-2.0 new recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,85 +32,214 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jan 2012 01:49:36 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_289CD940EE567444BB43E62E0C3028F328F52A19NAMBX02mgcmento_"
+X-List-Received-Date: Tue, 10 Jan 2012 03:21:56 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
---_000_289CD940EE567444BB43E62E0C3028F328F52A19NAMBX02mgcmento_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-I propose having a monthly, online developer forum that promotes discussion=
- on longer term technical issues that impact both Yocto and OpenEmbedded.  =
-This would supplement the already existing mailing list and irc communicati=
-on channels.  In order to facilitate this, I'd like to propose a telephone/=
-web conference, which my employer has agreed to host.
-
-This forum would help provide an additional way for the community to discus=
-s technical issues and share information about planned work and works in pr=
-ogress.
-
-Initial Topics for Discussion might include:
-1.      layering definitions - discussion on what exists today and how to m=
-ake it better
-2.      discussions on techniques to make working with oe/yocto better
-3.      oe/yocto disconnects (opportunities for better alignment)
-4.      common new user issues
-5.      documentation (standards, lacks, etc)
-6.      ?
+于 2012年01月10日 02:02, Darren Hart 写道:
+>
+> On 01/09/2012 01:24 AM, Zumeng Chen wrote:
+>    
+>> This patchset adds support for lttng-2.0, including the folloing
+>> four bb files:
+>>    babeltrace_0.8.bb
+>>    lttng-modules_v2.0.pre11.bb
+>>    lttng-tools_2.0-pre16.bb
+>>    lttng-ust_1.9.4.bb
+>> And two patches for smoothly compiling:
+>>    lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
+>>    lttng-tools-fix-compiling-error-for-powerpc-arm.patch
+>>
+>> V2 Changes vs V0:
+>>    1) fixed all comments from Darren;
+>>    2) A build test passed;
+>>      
+> Have you done any runtime testing using this series?
+>    
+No, since we don't change anything actual codes
+from that point.
+>    
+>>    3) Highlight for the relationship between lttng-2.0 vs lttng
+>>       It seems no objection from all.
+>>
+>> There is a clear description of the LTTng 2.0 architecture in the
+>> followiing site:
+>>    http://lttng.org/sites/lttng.org/files/LTTng2_0Architecture_pa3.pdf
+>>
+>> Currently lttng-2.0 is still in pre-release phrase, so I add this
+>> into the patch header for reminder. And another goal of this RR
+>> is intended to bring forward the following issues:
+>>
+>>    lttng-2.0 has been added into recipies-kernel, which coexisted
+>>    with lttng(the previous version), because there are some mainly
+>>    changes from lttng-control to lttng-tools, which both monitors
+>>    tracepoints and dynamic probes from kernel and userspace. But
+>>    I'm not sure if we should remove the previous version lttng.
+>>    My suggestion is to preserve for 2.6.37 kernel :-)
+>>
+>>      
+> Agreed, we need to keep lttng around for the time being.
+>    
+OK, thanks Darren for your confirmation.
+>    
+>> lttng-2.0 supports lttng-modules extra builds, which don't need
+>> any patches on Linux kernel vs the previous version of lttng.
+>> As described in README of lttng-modules-2.0, so far, it has been
+>> tested in current 3.0 kernel on x86 32/64-bit, and powerpc 32-bit,
+>> , build tested on ARM. So the related tests on qemux86 and qemuppc
+>> has been validated and a build test on qemuarm passed too with
+>> this patcheset.
+>>
+>> Babeltrace provides as a trace converter, which used to convert
+>> LTTng 2.0 traces into human-readable log(see below example for
+>> qemuppc)
+>>      
+> This sort of information would be useful in the patch commit messages.
+> This all gets lost once the patches are committed.
+>    
+OK, I'll take them into the lttng-modules patch header.
 
 Regards,
-     Sean
-
-Sean Hudson | Embedded Linux Architect for Mentor Embedded Linux
-Mentor Graphics - Embedded Software Division(tm)
-
-
-
---_000_289CD940EE567444BB43E62E0C3028F328F52A19NAMBX02mgcmento_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+Zumeng
+> --
+> Darren
 >
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Tahoma" size=3D"2"><span style=3D"font-size:10pt;">
-<div>I propose having a monthly, online developer forum that promotes discu=
-ssion on longer term technical issues that impact both Yocto and OpenEmbedd=
-ed.&nbsp; This would supplement the already existing mailing list and irc c=
-ommunication channels.&nbsp; In order to facilitate
-this, I&#8217;d like to propose a telephone/web conference, which my employ=
-er has agreed to host.</div>
-<div>&nbsp;</div>
-<div>This forum would help provide an additional way for the community to d=
-iscuss technical issues and share information about planned work and works =
-in progress.</div>
-<div>&nbsp;</div>
-<div>Initial Topics for Discussion might include:</div>
-<ol style=3D"margin:0;padding-left:36pt;">
-<li>layering definitions &#8211; discussion on what exists today and how to=
- make it better</li><li>discussions on techniques to make working with oe/y=
-octo better</li><li>oe/yocto disconnects (opportunities for better alignmen=
-t)</li><li>common new user issues</li><li>documentation (standards, lacks, =
-etc)</li><li>?</li></ol>
-<div>&nbsp;</div>
-<div>Regards,</div>
-<div>&nbsp;&nbsp;&nbsp;&nbsp; Sean</div>
-<div>&nbsp;</div>
-<div>Sean Hudson | Embedded Linux Architect for Mentor Embedded Linux</div>
-<div>Mentor Graphics &#8211; Embedded Software Division&#8482;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-</span></font>
-</body>
-</html>
+>    
+>> lttng-ust_1.9.4 is Linux Trace Toolkit 2.0 Userspace Tracer.
+>>
+>> I'm still keep an eye on the development of lttng for updates.
+>>
+>> Regard,
+>> Zumeng
+>>
+>> root@qemuppc:/# lttng list  -k
+>> Kernel events:
+>> -------------
+>>        sched_kthread_stop (type: tracepoint)
+>>        sched_kthread_stop_ret (type: tracepoint)
+>>        sched_wakeup (type: tracepoint)
+>>        sched_wakeup_new (type: tracepoint)
+>>        sched_switch (type: tracepoint)
+>>        sched_migrate_task (type: tracepoint)
+>>        sched_process_free (type: tracepoint)
+>>        sched_process_exit (type: tracepoint)
+>>        sched_wait_task (type: tracepoint)
+>>        sched_process_wait (type: tracepoint)
+>>        sched_process_fork (type: tracepoint)
+>>        sched_stat_wait (type: tracepoint)
+>>        sched_stat_sleep (type: tracepoint)
+>>        sched_stat_iowait (type: tracepoint)
+>>        sched_stat_runtime (type: tracepoint)
+>>        sched_pi_setprio (type: tracepoint)
+>>        irq_handler_entry (type: tracepoint)
+>>        irq_handler_exit (type: tracepoint)
+>>        softirq_entry (type: tracepoint)
+>>        softirq_exit (type: tracepoint)
+>>        softirq_raise (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>         (type: tracepoint) [disabled]
+>>
+>> root@qemuppc:/# lttng create mysession
+>> Session mysession created.
+>> Traces will be written in /home/root/lttng-traces/mysession-20111230-152610
+>> root@qemuppc:/#  lttng enable-event -a -k
+>> All kernel events are enabled in channel channel0
+>> root@qemuppc:/# lttng enable-event sched_switch,sched_wakeup -k
+>> kernel event sched_switch created in channel channel0
+>> kernel event sched_wakeup created in channel channel0
+>> root@qemuppc:/# lttng enable-event -a -k --tracepoint
+>> All kernel tracepoints are enabled in channel channel0
+>> root@qemuppc:/# lttng add-context -k -e sched_switch -t pid
+>> kernel context pid added to sched_switch event in all channels
+>> root@qemuppc:/# lttng start
+>> Tracing started for session mysession
+>> root@qemuppc:/#  lttng list -u
+>> UST events:
+>> -------------
+>> None
+>>
+>> root@qemuppc:/# lttng stop
+>> Tracing stopped for session mysession
+>> root@qemuppc:/# lttng list -u
+>> UST events:
+>> -------------
+>> None
+>>
+>> root@qemuppc:/# uname -a
+>> Linux qemuppc 3.0.12-yocto-standard+ #1 PREEMPT Thu Dec 29 22:23:52 CST 2011 ppc GNU/Linux
+>> root@qemuppc:/#
+>> root@qemuppc:/# babeltrace /home/root/lttng-traces/mysession-20111230-152610 | less
+>> [2078772597067] softirq_raise: { 0 }, { vec = 1 }
+>> [2078773657367] softirq_raise: { 0 }, { vec = 9 }
+>> [2078773943557] sched_stat_runtime: { 0 }, { comm = "lttng-sessiond", tid = 404, runtime = 5104592, vruntime = 61173667721 }
+>> [2078774051587] softirq_entry: { 0 }, { vec = 1 }
+>> [2078774081797] softirq_exit: { 0 }, { vec = 1 }
+>> [2078774086557] softirq_entry: { 0 }, { vec = 9 }
+>> [2078774094247] softirq_exit: { 0 }, { vec = 9 }
+>> [2078774105437] sched_stat_runtime: { 0 }, { comm = "lttng-sessiond", tid = 404, runtime = 230192, vruntime = 61173897913 }
+>> [2078774185387] sched_stat_wait: { 0 }, { comm = "lttng-consumerd", tid = 418, delay = 5334784 }
+>> [2078774328677] sched_switch: { 0 }, 385, { prev_comm = "lttng-sessiond", prev_tid = 404, prev_prio = 20, prev_state = 0, next_comm = "lttng-consumerd", next_tid = 418, next_prio = 20 }
+>> [2078774802747] exit_syscall: { 0 }, { ret = 1 }
+>> [2078774968937] sys_unknown: { 0 }, { id = 102, args = [ [0] = 17, [1] = 1218120660, [2] = 0, [3] = 268526120, [4] = 32, [5] = 4294967232 ] }
+>> [2078775075597] exit_syscall: { 0 }, { ret = 4136 }
+>> [2078775109747] sys_unknown: { 0 }, { id = 167, args = [ [0] = 1218124968, [1] = 2, [2] = 4294967295, [3] = 268526120, [4] = 32, [5] = 4294967232 ] }
+>> [2078775130867] exit_syscall: { 0 }, { ret = 1 }
+>> [2078775339007] sys_unknown: { 0 }, { id = 102, args = [ [0] = 17, [1] = 1218120612, [2] = 0, [3] = 268526120, [4] = 32, [5] = 4294967232 ] }
+>> [2078776095757] exit_syscall: { 0 }, { ret = 1 }
+>> [2078776238357] softirq_raise: { 0 }, { vec = 1 }
+>> [2078776245827] softirq_raise: { 0 }, { vec = 9 }
+>> [2078776265487] sched_stat_runtime: { 0 }, { comm = "lttng-consumerd", tid = 418, runtime = 2149408, vruntime = 61169846169 }
+>> [2078776291187] softirq_entry: { 0 }, { vec = 1 }
+>> [2078776306217] softirq_exit: { 0 }, { vec = 1 }
+>> [2078776310607] softirq_entry: { 0 }, { vec = 9 }
+>> [2078776317337] softirq_exit: { 0 }, { vec = 9 }
+>> ....snip..........................
+>>
+>> The following changes since commit 5797feac5f06f5cc363869cd440b82b3eaafd456:
+>>
+>>    image-mklibs/package_ipk: Remove bashisms (2012-01-05 22:26:25 +0000)
+>>
+>> are available in the git repository at:
+>>    git://git.pokylinux.org/poky-contrib zumeng/lttng-2.0
+>>    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zumeng/lttng-2.0
+>>
+>> Zumeng Chen (4):
+>>    lttng-ust: Integrate into yocto linux
+>>    lttng-tools: Integrated from git repo.
+>>    lttng-modules: from lttng-modules 2.0 git repo.
+>>    babeltrace: Integrated from version 0.8
+>>
+>>   meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb    |   30 ++++++++++++++
+>>   ...modules-replace-KERNELDIR-with-KERNEL_SRC.patch |   41 ++++++++++++++++++++
+>>   .../lttng-2.0/lttng-modules_v2.0.pre11.bb          |   23 +++++++++++
+>>   ...-compiling-error-for-powerpc-arm-and-mips.patch |   23 +++++++++++
+>>   .../lttng-2.0/lttng-tools_2.0-pre16.bb             |   24 +++++++++++
+>>   meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb   |   23 +++++++++++
+>>   6 files changed, 164 insertions(+), 0 deletions(-)
+>>   create mode 100644 meta/recipes-kernel/lttng-2.0/babeltrace_0.8.bb
+>>   create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
+>>   create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-modules_v2.0.pre11.bb
+>>   create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-tools-fix-compiling-error-for-powerpc-arm-and-mips.patch
+>>   create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-tools_2.0-pre16.bb
+>>   create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb
+>>
+>>
+>>      
+>    
 
---_000_289CD940EE567444BB43E62E0C3028F328F52A19NAMBX02mgcmento_--
+
