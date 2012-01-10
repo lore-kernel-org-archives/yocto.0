@@ -1,23 +1,23 @@
 Return-Path: <josh@linux.intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CB8AE006E9
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACC25E006E9
 	for <yocto@yoctoproject.org>; Tue, 10 Jan 2012 09:41:43 -0800 (PST)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 10 Jan 2012 09:39:29 -0800
+	by azsmga102.ch.intel.com with ESMTP; 10 Jan 2012 09:39:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="55146636"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="55146639"
 Received: from unknown (HELO shamshir.amr.corp.intel.com) ([10.255.14.3])
 	by AZSMGA002.ch.intel.com with ESMTP; 10 Jan 2012 09:39:29 -0800
 From: Joshua Lock <josh@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Tue, 10 Jan 2012 09:39:27 -0800
-Message-Id: <adda4ce5466209b0d534febff5298d0a56653113.1326216128.git.josh@linux.intel.com>
+Date: Tue, 10 Jan 2012 09:39:28 -0800
+Message-Id: <77fa2b8ddf2cd1bbb5fca8c79025e1e9be507b1f.1326216128.git.josh@linux.intel.com>
 X-Mailer: git-send-email 1.7.7.5
 In-Reply-To: <cover.1326216128.git.josh@linux.intel.com>
 References: <cover.1326216128.git.josh@linux.intel.com>
 In-Reply-To: <cover.1326216128.git.josh@linux.intel.com>
 References: <cover.1326216128.git.josh@linux.intel.com>
-Subject: [PATCH 2/3] alsa-state: add alsa state for n450
+Subject: [PATCH 3/3] n450-audio: drop this machine specific recipe in favour of alsa-state
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,480 +31,109 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Tue, 10 Jan 2012 17:41:43 -0000
 
-Add a custom asound.state for the n450 so that the alsa-state init
-script sets (and restores) sound configuration appropriately.
-
 Signed-off-by: Joshua Lock <josh@linux.intel.com>
 ---
- .../recipes-bsp/alsa-state/alsa-state.bbappend     |    1 +
- .../alsa-state/alsa-state/n450/asound.state        |  450 ++++++++++++++++++++
- 2 files changed, 451 insertions(+), 0 deletions(-)
- create mode 100644 meta-n450/recipes-bsp/alsa-state/alsa-state.bbappend
- create mode 100644 meta-n450/recipes-bsp/alsa-state/alsa-state/n450/asound.state
+ meta-n450/conf/machine/n450.conf                   |    2 -
+ meta-n450/recipes-bsp/n450-audio/n450-audio.bb     |   30 --------------
+ .../recipes-bsp/n450-audio/n450-audio/n450-audio   |   42 --------------------
+ 3 files changed, 0 insertions(+), 74 deletions(-)
+ delete mode 100644 meta-n450/recipes-bsp/n450-audio/n450-audio.bb
+ delete mode 100644 meta-n450/recipes-bsp/n450-audio/n450-audio/n450-audio
 
-diff --git a/meta-n450/recipes-bsp/alsa-state/alsa-state.bbappend b/meta-n450/recipes-bsp/alsa-state/alsa-state.bbappend
-new file mode 100644
-index 0000000..72d991c
---- /dev/null
-+++ b/meta-n450/recipes-bsp/alsa-state/alsa-state.bbappend
-@@ -0,0 +1 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-diff --git a/meta-n450/recipes-bsp/alsa-state/alsa-state/n450/asound.state b/meta-n450/recipes-bsp/alsa-state/alsa-state/n450/asound.state
-new file mode 100644
-index 0000000..03a0bee
---- /dev/null
-+++ b/meta-n450/recipes-bsp/alsa-state/alsa-state/n450/asound.state
-@@ -0,0 +1,450 @@
-+state.Intel {
-+	control.1 {
-+		iface MIXER
-+		name 'Front Playback Volume'
-+		value.0 36
-+		value.1 36
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 2
-+			range '0 - 39'
-+			dbmin -5850
-+			dbmax 0
-+			dbvalue.0 -450
-+			dbvalue.1 -450
-+		}
-+	}
-+	control.2 {
-+		iface MIXER
-+		name 'Front Playback Switch'
-+		value.0 true
-+		value.1 true
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 2
-+		}
-+	}
-+	control.3 {
-+		iface MIXER
-+		name 'Surround Playback Volume'
-+		value.0 36
-+		value.1 36
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 2
-+			range '0 - 39'
-+			dbmin -5850
-+			dbmax 0
-+			dbvalue.0 -450
-+			dbvalue.1 -450
-+		}
-+	}
-+	control.4 {
-+		iface MIXER
-+		name 'Surround Playback Switch'
-+		value.0 false
-+		value.1 false
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 2
-+		}
-+	}
-+	control.5 {
-+		iface MIXER
-+		name 'Center Playback Volume'
-+		value 36
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 1
-+			range '0 - 39'
-+			dbmin -5850
-+			dbmax 0
-+			dbvalue.0 -450
-+		}
-+	}
-+	control.6 {
-+		iface MIXER
-+		name 'LFE Playback Volume'
-+		value 36
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 1
-+			range '0 - 39'
-+			dbmin -5850
-+			dbmax 0
-+			dbvalue.0 -450
-+		}
-+	}
-+	control.7 {
-+		iface MIXER
-+		name 'Center Playback Switch'
-+		value false
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 1
-+		}
-+	}
-+	control.8 {
-+		iface MIXER
-+		name 'LFE Playback Switch'
-+		value false
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 1
-+		}
-+	}
-+	control.9 {
-+		iface MIXER
-+		name 'Side Playback Volume'
-+		value.0 36
-+		value.1 36
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 2
-+			range '0 - 39'
-+			dbmin -5850
-+			dbmax 0
-+			dbvalue.0 -450
-+			dbvalue.1 -450
-+		}
-+	}
-+	control.10 {
-+		iface MIXER
-+		name 'Side Playback Switch'
-+		value.0 false
-+		value.1 false
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 2
-+		}
-+	}
-+	control.11 {
-+		iface MIXER
-+		name 'Mic Playback Volume'
-+		value.0 28
-+		value.1 28
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 2
-+			range '0 - 31'
-+			dbmin -3450
-+			dbmax 1200
-+			dbvalue.0 750
-+			dbvalue.1 750
-+		}
-+	}
-+	control.12 {
-+		iface MIXER
-+		name 'Mic Playback Switch'
-+		value.0 false
-+		value.1 false
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 2
-+		}
-+	}
-+	control.13 {
-+		iface MIXER
-+		name 'Mic Boost Volume'
-+		value.0 2
-+		value.1 2
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 2
-+			range '0 - 3'
-+			dbmin 0
-+			dbmax 3000
-+			dbvalue.0 2000
-+			dbvalue.1 2000
-+		}
-+	}
-+	control.14 {
-+		iface MIXER
-+		name 'Analog Mix Playback Volume'
-+		value.0 28
-+		value.1 28
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 2
-+			range '0 - 31'
-+			dbmin -4650
-+			dbmax 0
-+			dbvalue.0 -450
-+			dbvalue.1 -450
-+		}
-+	}
-+	control.15 {
-+		iface MIXER
-+		name 'Analog Mix Playback Switch'
-+		value.0 true
-+		value.1 true
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 2
-+		}
-+	}
-+	control.16 {
-+		iface MIXER
-+		name 'Capture Volume'
-+		value.0 48
-+		value.1 48
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 2
-+			range '0 - 54'
-+			dbmin -5850
-+			dbmax 2250
-+			dbvalue.0 1350
-+			dbvalue.1 1350
-+		}
-+	}
-+	control.17 {
-+		iface MIXER
-+		name 'Capture Switch'
-+		value.0 false
-+		value.1 false
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 2
-+		}
-+	}
-+	control.18 {
-+		iface MIXER
-+		name 'Capture Volume'
-+		index 1
-+		value.0 48
-+		value.1 48
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 2
-+			range '0 - 54'
-+			dbmin -5850
-+			dbmax 2250
-+			dbvalue.0 1350
-+			dbvalue.1 1350
-+		}
-+	}
-+	control.19 {
-+		iface MIXER
-+		name 'Capture Switch'
-+		index 1
-+		value.0 false
-+		value.1 false
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 2
-+		}
-+	}
-+	control.20 {
-+		iface MIXER
-+		name 'Capture Volume'
-+		index 2
-+		value.0 48
-+		value.1 48
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 2
-+			range '0 - 54'
-+			dbmin -5850
-+			dbmax 2250
-+			dbvalue.0 1350
-+			dbvalue.1 1350
-+		}
-+	}
-+	control.21 {
-+		iface MIXER
-+		name 'Capture Switch'
-+		index 2
-+		value.0 false
-+		value.1 false
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 2
-+		}
-+	}
-+	control.22 {
-+		iface MIXER
-+		name 'Input Source'
-+		value Mic
-+		comment {
-+			access 'read write'
-+			type ENUMERATED
-+			count 1
-+			item.0 Mic
-+			item.1 Mix
-+		}
-+	}
-+	control.23 {
-+		iface MIXER
-+		name 'Input Source'
-+		index 1
-+		value Mic
-+		comment {
-+			access 'read write'
-+			type ENUMERATED
-+			count 1
-+			item.0 Mic
-+			item.1 Mix
-+		}
-+	}
-+	control.24 {
-+		iface MIXER
-+		name 'Input Source'
-+		index 2
-+		value Mic
-+		comment {
-+			access 'read write'
-+			type ENUMERATED
-+			count 1
-+			item.0 Mic
-+			item.1 Mix
-+		}
-+	}
-+	control.25 {
-+		iface MIXER
-+		name 'IEC958 Playback Volume'
-+		value.0 36
-+		value.1 36
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 2
-+			range '0 - 39'
-+			dbmin -5850
-+			dbmax 0
-+			dbvalue.0 -450
-+			dbvalue.1 -450
-+		}
-+	}
-+	control.26 {
-+		iface MIXER
-+		name 'HDMI Playback Volume'
-+		value.0 36
-+		value.1 36
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 2
-+			range '0 - 39'
-+			dbmin -5850
-+			dbmax 0
-+			dbvalue.0 -450
-+			dbvalue.1 -450
-+		}
-+	}
-+	control.27 {
-+		iface MIXER
-+		name 'IEC958 Playback Con Mask'
-+		value '0fff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
-+		comment {
-+			access read
-+			type IEC958
-+			count 1
-+		}
-+	}
-+	control.28 {
-+		iface MIXER
-+		name 'IEC958 Playback Pro Mask'
-+		value '0f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
-+		comment {
-+			access read
-+			type IEC958
-+			count 1
-+		}
-+	}
-+	control.29 {
-+		iface MIXER
-+		name 'IEC958 Playback Default'
-+		value '0400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
-+		comment {
-+			access 'read write'
-+			type IEC958
-+			count 1
-+		}
-+	}
-+	control.30 {
-+		iface MIXER
-+		name 'IEC958 Playback Switch'
-+		value false
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 1
-+		}
-+	}
-+	control.31 {
-+		iface MIXER
-+		name 'IEC958 Default PCM Playback Switch'
-+		value true
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 1
-+		}
-+	}
-+	control.32 {
-+		iface MIXER
-+		name 'IEC958 Capture Switch'
-+		value false
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 1
-+		}
-+	}
-+	control.33 {
-+		iface MIXER
-+		name 'IEC958 Capture Default'
-+		value '0400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
-+		comment {
-+			access read
-+			type IEC958
-+			count 1
-+		}
-+	}
-+	control.34 {
-+		iface MIXER
-+		name 'Master Playback Volume'
-+		value 36
-+		comment {
-+			access 'read write'
-+			type INTEGER
-+			count 1
-+			range '0 - 39'
-+			dbmin -5850
-+			dbmax 0
-+			dbvalue.0 -450
-+		}
-+	}
-+	control.35 {
-+		iface MIXER
-+		name 'Master Playback Switch'
-+		value true
-+		comment {
-+			access 'read write'
-+			type BOOLEAN
-+			count 1
-+		}
-+	}
-+}
+diff --git a/meta-n450/conf/machine/n450.conf b/meta-n450/conf/machine/n450.conf
+index 3e6a541..6ffdce9 100644
+--- a/meta-n450/conf/machine/n450.conf
++++ b/meta-n450/conf/machine/n450.conf
+@@ -14,5 +14,3 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
+ SYSLINUX_OPTS = "serial 0 115200"
+ SERIAL_CONSOLE = "115200 ttyS0" 
+ APPEND += "console=ttyS0,115200 console=tty0" 
+-
+-MACHINE_EXTRA_RRECOMMENDS += "n450-audio"
+diff --git a/meta-n450/recipes-bsp/n450-audio/n450-audio.bb b/meta-n450/recipes-bsp/n450-audio/n450-audio.bb
+deleted file mode 100644
+index 27904e3..0000000
+--- a/meta-n450/recipes-bsp/n450-audio/n450-audio.bb
++++ /dev/null
+@@ -1,30 +0,0 @@
+-SUMMARY = "Provide a basic init script to enable audio"
+-DESCRIPTION = "Set the volume and unmute the Front mixer setting during boot."
+-SECTION = "base"
+-LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
+-
+-PR = "r4"
+-
+-inherit update-rc.d
+-
+-RDEPENDS = "alsa-utils-amixer"
+-
+-SRC_URI = "file://n450-audio"
+-
+-INITSCRIPT_NAME = "n450-audio"
+-INITSCRIPT_PARAMS = "defaults 90"
+-
+-do_install() {
+-	install -d ${D}${sysconfdir} \
+-	           ${D}${sysconfdir}/init.d
+-	install -m 0755 ${WORKDIR}/n450-audio ${D}${sysconfdir}/init.d
+-        cat ${WORKDIR}/${INITSCRIPT_NAME} | \
+-            sed -e 's,/etc,${sysconfdir},g' \
+-                -e 's,/usr/sbin,${sbindir},g' \
+-                -e 's,/var,${localstatedir},g' \
+-                -e 's,/usr/bin,${bindir},g' \
+-                -e 's,/usr,${prefix},g' > ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
+-        chmod 755 ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
+-}
+-
+diff --git a/meta-n450/recipes-bsp/n450-audio/n450-audio/n450-audio b/meta-n450/recipes-bsp/n450-audio/n450-audio/n450-audio
+deleted file mode 100644
+index c5a0044..0000000
+--- a/meta-n450/recipes-bsp/n450-audio/n450-audio/n450-audio
++++ /dev/null
+@@ -1,42 +0,0 @@
+-#!/bin/sh
+-### BEGIN INIT INFO
+-# Provides:          n450 mixer setup
+-# Required-Start:    $syslog
+-# Required-Stop:     $syslog
+-# Default-Start:     2 3 4 5
+-# Default-Stop:      0 1 6
+-# Short-Description: Initialize the n450 audio mixer
+-# Description:       Unmute FRONT and set volume to ~70%.
+-### END INIT INFO
+-
+-# Author: Darren Hart <dvhart@linux.intel.com>
+-# Based on /etc/init.d/skeleton
+-
+-PATH=/sbin:/usr/sbin:/bin:/usr/bin
+-DESC="Audio mixer settings"
+-NAME=n450-audio
+-AMIXER=`which amixer`
+-SCRIPTNAME=/etc/init.d/$NAME
+-
+-# Exit if amixer is not installed
+-[ -x "$AMIXER" ] || exit 0
+-
+-do_start() {
+-	# Enable the "Front" simple controls (black phones jack)
+-	$AMIXER sset Front 30 on > /dev/null
+-}
+-
+-case "$1" in
+-start)
+-	echo "$NAME: setting default mixer settings."
+-	do_start
+-	;;
+-stop)
+-	;;
+-*)
+-	echo "Usage: $SCRIPTNAME {start|stop}" >&2
+-	exit 3
+-	;;
+-esac
+-
+-exit 0
 -- 
 1.7.7.5
 
