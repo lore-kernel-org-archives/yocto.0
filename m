@@ -1,21 +1,28 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8ADAE006E9
-	for <yocto@yoctoproject.org>; Tue, 10 Jan 2012 03:22:31 -0800 (PST)
-Received: from [192.168.0.69] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 8E2122684A
-	for <yocto@yoctoproject.org>; Tue, 10 Jan 2012 10:50:10 +0000 (GMT)
-Message-ID: <4F0C1F46.20003@communistcode.co.uk>
-Date: Tue, 10 Jan 2012 11:21:42 +0000
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111224 Thunderbird/9.0.1
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11648E006E9
+	for <yocto@yoctoproject.org>; Tue, 10 Jan 2012 04:03:12 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id DEB51F81237; Tue, 10 Jan 2012 05:03:10 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 57B08F81235;
+	Tue, 10 Jan 2012 05:03:09 -0700 (MST)
+Message-ID: <4F0C28FD.3010402@mlbassoc.com>
+Date: Tue, 10 Jan 2012 05:03:09 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <4F0C1C26.6030301@communistcode.co.uk>
-	<20120110111628.GC3445@jama.jama.net>
-In-Reply-To: <20120110111628.GC3445@jama.jama.net>
-Subject: Re: Trouble creating new package
+To: James Abernathy <jfabernathy@gmail.com>
+References: <8B3C6E23-C3B9-4CEF-A1E0-2B91F8D17EFE@gmail.com>
+In-Reply-To: <8B3C6E23-C3B9-4CEF-A1E0-2B91F8D17EFE@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: understanding what's in an image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,96 +34,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jan 2012 11:22:31 -0000
+X-List-Received-Date: Tue, 10 Jan 2012 12:03:13 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/01/12 11:16, Martin Jansa wrote:
-> On Tue, Jan 10, 2012 at 11:08:22AM +0000, Jack Mitchell wrote:
->> Good morning everyone,
->>
->> I am currently having issues creating a (very!) simple package. I have
->> looked at the latest reference manual and studied other .bb files to no
->> avail.
->>
->> I am trying to build a simple web server called Hiawatha. To install
->> (http://www.hiawatha-webserver.org/howto/compilation_and_installation)
->> it consists of a simple:
->>
->> ./configure
->>
->> make
->>
->> make install
->>
->> Now, for the life in me I cannot replicate this behaviour in a .bb file.
->> This is what I have so far:
->>
->> DESCRIPTION = "Lightweight secure web server"
->> HOMEPAGE = "http://www.hiawatha-webserver.org"
->>
->> LICENSE = "GPLv2"
->> LIC_FILES_CHKSUM = "file://COPYING;md5=a9b0a0eb7c54c87ec6ac05f5f603df6a"
->>
->> SECTION = "custom"
->>
->> PR = "r0"
->>
->> SRC_URI = "http://www.hiawatha-webserver.org/files/hiawatha-7.8.2.tar.gz"
->>
->> SRC_URI[md5sum] = "8aff3f8c759871ea1d1ff22e98030332"
->>
->> do_configure () {
->>
->>     ./configure --disable-ipv6 \
->>                --disable-ssl \
->>                --disable-toolkit \
->>                --disable-xslt \
->>                --disable-largefile \
->>
->>     oe_runmake
->>
->> }
->>
->> do_install () {
->>
->>     oe_runmake install DESTDIR=${D} SBINDIR=${sbindir} MANDIR=${mandir} \
->>       INCLUDEDIR=${includedir}
->>
->> }
->>
->> Could someone point me in the right direction, I feel this should be an
->> extremely easy piece of software to build - I think I'm just not
->> understanding the build system correctly....
->>
->> The error I receive when trying to build this package is:
->>
->> ERROR: Function 'do_install' failed (see
->> /home/jack/yocto/poky-git/beagleInitial/tmp/work/armv5te-poky-linux-gnueabi/hiawatha-7.8.2-r0/temp/log.do_install.6289
->> for further information)
->> | NOTE: make -j 9 -e MAKEFLAGS= -e install
->> DESTDIR=/home/jack/yocto/poky-git/beagleInitial/tmp/work/armv5te-poky-linux-gnueabi/hiawatha-7.8.2-r0/image
->> SBINDIR=/usr/sbin MANDIR=/usr/share/man INCLUDEDIR=/usr/include
->> | make: *** No rule to make target `install'.  Stop.
->> | ERROR: oe_runmake failed
-> try to start with
-> inherit autotools
+On 2012-01-09 17:51, James Abernathy wrote:
+> I'm trying to understand how bitbake parses the poky directory tree a little better.
 >
-> Cheers,,
+> The best I can figure all .bb files are NOT included. Just some of them are.  I'm guessing that the .bb in the meta/recipe-sato named core-image-sato.bb is the one that is used to start the parsing if bitbake core-image-sato is executed.
+> I originally thought all subdirectories of a path included in BBLAYER were parsed looking for .bb files, but now I know that is not true, but not sure why.
 >
->> Thanks in advance,
->> Jack.
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+> For example, it does not appear that webkit is included in the core-image-sato even though the recipe-sato directory includes the webkit subdirectory with it's recipe.  What would be the proper way of adding the webkit to core-image-sato??
 
-Hi Martin,
+The 'webkit' is just a library used to build tools such as a
+web browser.  You might want to start with an application that
+actually uses webkit, such as web-webkit.
 
-Inheriting autotools makes no difference, I also don't understand why 
-autotools should be inherited if it is only a make/configure combination 
-being used?
+To build an image which includes web-webkit, add this line to
+your local.conf file and rebuild the image:
+   IMAGE_INSTALL += "web-webkit"
 
-Best Regards
+You can also build packages which are not installed into your
+image by default and use a package manager (e.g. zypper) to
+install the package later onto a running system.
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
