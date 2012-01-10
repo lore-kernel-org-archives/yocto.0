@@ -1,36 +1,31 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D7DEE0074A
-	for <yocto@yoctoproject.org>; Mon,  9 Jan 2012 18:07:29 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by iadj38 with SMTP id j38so155817iad.35
-	for <yocto@yoctoproject.org>; Mon, 09 Jan 2012 18:07:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=date:from:to:cc:message-id:in-reply-to:references:subject:x-mailer
-	:mime-version:content-type;
-	bh=yFYEVXKGIgKX9VJr751oA+E8zLCRMnooan8q/rBbzvY=;
-	b=itbW0s+IMuEByCKha81Ziu3XXrMleUQWCD65LZmjS4ZvoqwsQQk1dlKrylRkTgqQnU
-	AocQflw3fuvl3Svlep7dZy7HgDlPW+SbWjJdR6iIZkml2NtuwA8T8+AThIGknUyLkuCJ
-	XtU7gXczf9OPIOfVW/1bMi/98RJk6dlvLPomI=
-Received: by 10.50.85.199 with SMTP id j7mr13636igz.25.1326161248578;
-	Mon, 09 Jan 2012 18:07:28 -0800 (PST)
-Received: from frey (ip24-251-167-38.ph.ph.cox.net. [24.251.167.38])
-	by mx.google.com with ESMTPS id r5sm112427797igl.3.2012.01.09.18.07.26
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 09 Jan 2012 18:07:27 -0800 (PST)
-Date: Mon, 9 Jan 2012 19:07:25 -0700
-From: Christopher Larson <kergoth@gmail.com>
-To: James Abernathy <jfabernathy@gmail.com>
-Message-ID: <2F4E813B930D429F95E9E2DCFB2C36A2@gmail.com>
-In-Reply-To: <8B3C6E23-C3B9-4CEF-A1E0-2B91F8D17EFE@gmail.com>
-References: <8B3C6E23-C3B9-4CEF-A1E0-2B91F8D17EFE@gmail.com>
-X-Mailer: sparrow 1.5 (build 1043.1)
+Return-Path: <Sean_Hudson@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7475E006E9
+	for <yocto@yoctoproject.org>; Mon,  9 Jan 2012 17:49:35 -0800 (PST)
+Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
+	by relay1.mentorg.com with esmtp 
+	id 1RkQqE-0000xE-94 from Sean_Hudson@mentor.com ;
+	Mon, 09 Jan 2012 17:49:34 -0800
+Received: from SVR-ORW-FEM-03.mgc.mentorg.com ([147.34.97.39]) by
+	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
+	SMTPSVC(6.0.3790.4675); Mon, 9 Jan 2012 17:49:16 -0800
+Received: from NA-MBX-02.mgc.mentorg.com ([169.254.2.234]) by
+	SVR-ORW-FEM-03.mgc.mentorg.com ([147.34.97.39]) with mapi id
+	14.01.0289.001; Mon, 9 Jan 2012 17:49:33 -0800
+From: "Hudson, Sean" <Sean_Hudson@mentor.com>
+Thread-Topic: RFC: Joint, monthly, and online forum for developer discussion
+Thread-Index: AczPD/muMXj6cRkkQUqmouq75fS35Q==
+Date: Tue, 10 Jan 2012 01:49:32 +0000
+Message-ID: <289CD940EE567444BB43E62E0C3028F328F52A19@NA-MBX-02.mgc.mentorg.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.34.91.1]
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: understanding what's in an image
+X-OriginalArrivalTime: 10 Jan 2012 01:49:16.0684 (UTC)
+	FILETIME=[0FC9D4C0:01CCCF3A]
+X-Mailman-Approved-At: Mon, 09 Jan 2012 18:28:15 -0800
+Subject: RFC: Joint, monthly, and online forum for developer discussion
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,81 +37,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jan 2012 02:07:29 -0000
-Content-Type: multipart/alternative; boundary="4f0b9d5d_2eb141f2_e9f3"
+X-List-Received-Date: Tue, 10 Jan 2012 01:49:36 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_289CD940EE567444BB43E62E0C3028F328F52A19NAMBX02mgcmento_"
 
---4f0b9d5d_2eb141f2_e9f3
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-Read layer.conf in each layer. See the BBFILES variable.
--- 
-Christopher Larson
-
-
-On Monday, January 9, 2012 at 5:51 PM, James Abernathy wrote:
-
-> I'm trying to understand how bitbake parses the poky directory tree a little better. 
-> 
-> The best I can figure all .bb files are NOT included. Just some of them are. I'm guessing that the .bb in the meta/recipe-sato named core-image-sato.bb is the one that is used to start the parsing if bitbake core-image-sato is executed.
-> I originally thought all subdirectories of a path included in BBLAYER were parsed looking for .bb files, but now I know that is not true, but not sure why.
-> 
-> For example, it does not appear that webkit is included in the core-image-sato even though the recipe-sato directory includes the webkit subdirectory with it's recipe. What would be the proper way of adding the webkit to core-image-sato??
-> 
-> Jim A
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org (mailto:yocto@yoctoproject.org)
-> https://lists.yoctoproject.org/listinfo/yocto
-> 
-> 
-
-
-
---4f0b9d5d_2eb141f2_e9f3
-Content-Type: text/html; charset="utf-8"
+--_000_289CD940EE567444BB43E62E0C3028F328F52A19NAMBX02mgcmento_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+
+I propose having a monthly, online developer forum that promotes discussion=
+ on longer term technical issues that impact both Yocto and OpenEmbedded.  =
+This would supplement the already existing mailing list and irc communicati=
+on channels.  In order to facilitate this, I'd like to propose a telephone/=
+web conference, which my employer has agreed to host.
+
+This forum would help provide an additional way for the community to discus=
+s technical issues and share information about planned work and works in pr=
+ogress.
+
+Initial Topics for Discussion might include:
+1.      layering definitions - discussion on what exists today and how to m=
+ake it better
+2.      discussions on techniques to make working with oe/yocto better
+3.      oe/yocto disconnects (opportunities for better alignment)
+4.      common new user issues
+5.      documentation (standards, lacks, etc)
+6.      ?
+
+Regards,
+     Sean
+
+Sean Hudson | Embedded Linux Architect for Mentor Embedded Linux
+Mentor Graphics - Embedded Software Division(tm)
 
 
-                <div>
-                    Read layer.conf in each layer. See the BB=46ILES vari=
-able.</div><div><div>--&nbsp;</div><div>Christopher Larson</div><div><br>=
-</div></div>
-                =20
-                <p style=3D=22color: =23A0A0A8;=22>On Monday, January 9, =
-2012 at 5:51 PM, James Abernathy wrote:</p>
-                <blockquote type=3D=22cite=22 style=3D=22border-left-styl=
-e:solid;border-width:1px;margin-left:0px;padding-left:10px;=22>
-                    <span><div><div><div>I'm trying to understand how bit=
-bake parses the poky directory tree a little better.  </div><div><br></di=
-v><div>The best I can figure all .bb files are NOT included. Just some of=
- them are.  I'm guessing that the .bb in the meta/recipe-sato named core-=
-image-sato.bb is the one that is used to start the parsing if bitbake cor=
-e-image-sato is executed.</div><div>I originally thought all subdirectori=
-es of a path included in BBLAYER were parsed looking for .bb files, but n=
-ow I know that is not true, but not sure why.</div><div><br></div><div>=46=
-or example, it does not appear that webkit is included in the core-image-=
-sato even though the recipe-sato directory includes the webkit subdirecto=
-ry with it's recipe.  What would be the proper way of adding the webkit t=
-o core-image-sato=3F=3F</div><div><br></div><div>Jim A</div><div><br></di=
-v><div>=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-</div><div>yocto mailing list</div><div><a href=3D=22mailto:yocto=40yocto=
-project.org=22>yocto=40yoctoproject.org</a></div><div><a href=3D=22https:=
-//lists.yoctoproject.org/listinfo/yocto=22>https://lists.yoctoproject.org=
-/listinfo/yocto</a></div></div></div></span>
-                =20
-                =20
-                =20
-                =20
-                </blockquote>
-                =20
-                <div>
-                    <br>
-                </div>
-            
 
---4f0b9d5d_2eb141f2_e9f3--
+--_000_289CD940EE567444BB43E62E0C3028F328F52A19NAMBX02mgcmento_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Tahoma" size=3D"2"><span style=3D"font-size:10pt;">
+<div>I propose having a monthly, online developer forum that promotes discu=
+ssion on longer term technical issues that impact both Yocto and OpenEmbedd=
+ed.&nbsp; This would supplement the already existing mailing list and irc c=
+ommunication channels.&nbsp; In order to facilitate
+this, I&#8217;d like to propose a telephone/web conference, which my employ=
+er has agreed to host.</div>
+<div>&nbsp;</div>
+<div>This forum would help provide an additional way for the community to d=
+iscuss technical issues and share information about planned work and works =
+in progress.</div>
+<div>&nbsp;</div>
+<div>Initial Topics for Discussion might include:</div>
+<ol style=3D"margin:0;padding-left:36pt;">
+<li>layering definitions &#8211; discussion on what exists today and how to=
+ make it better</li><li>discussions on techniques to make working with oe/y=
+octo better</li><li>oe/yocto disconnects (opportunities for better alignmen=
+t)</li><li>common new user issues</li><li>documentation (standards, lacks, =
+etc)</li><li>?</li></ol>
+<div>&nbsp;</div>
+<div>Regards,</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp; Sean</div>
+<div>&nbsp;</div>
+<div>Sean Hudson | Embedded Linux Architect for Mentor Embedded Linux</div>
+<div>Mentor Graphics &#8211; Embedded Software Division&#8482;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+</span></font>
+</body>
+</html>
+
+--_000_289CD940EE567444BB43E62E0C3028F328F52A19NAMBX02mgcmento_--
