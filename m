@@ -1,26 +1,38 @@
-Return-Path: <Zumeng.Chen@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB4C0E006E9
-	for <yocto@yoctoproject.org>; Tue, 10 Jan 2012 08:11:37 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q0AGBVc0028274
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 10 Jan 2012 08:11:31 -0800 (PST)
-Received: from pek-yocto-build2.corp.ad.wrs.com (128.224.163.150) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Tue, 10 Jan 2012 08:11:30 -0800
-From: Zumeng Chen <zumeng.chen@windriver.com>
-To: <yocto@yoctoproject.org>, <dvhart@linux.intel.com>,
-	<bruce.ashfield@windriver.com>, <sgw@linux.intel.com>,
-	<richard.purdie@linuxfoundation.org>
-Date: Wed, 11 Jan 2012 00:11:08 +0800
-Message-ID: <3065d36faca882d1d590b8a278890c6509a388fc.1326210673.git.zumeng.chen@windriver.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <cover.1326210673.git.zumeng.chen@windriver.com>
-References: <cover.1326210673.git.zumeng.chen@windriver.com>
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED95CE006E9
+	for <yocto@yoctoproject.org>; Tue, 10 Jan 2012 08:31:39 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by qcsg1 with SMTP id g1so660606qcs.35
+	for <yocto@yoctoproject.org>; Tue, 10 Jan 2012 08:31:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=wuOhRICEa4McvZGKiaaXZY2XMZnEu5OcVqf4KaXwgaI=;
+	b=ApB8PBqF3uSjP5+8VKANd2v5wrSWChLrgRfEDqOXl8our97SYxV/YPbXeLTTwj05PO
+	ZYA4QKyt0OwHA3Kj13JLhaL51Z+NcHsTcN0YtGajnxuyS07dpvMgCO7eC1llQ7GbSgJN
+	2UHZR/8AO6q4oddQYMrFCI9pJ4o0/a1uZyB3w=
+Received: by 10.229.75.216 with SMTP id z24mr7679010qcj.134.1326213099323;
+	Tue, 10 Jan 2012 08:31:39 -0800 (PST)
+Received: from [10.0.1.39] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
+	by mx.google.com with ESMTPS id
+	df3sm150266474qab.6.2012.01.10.08.31.38 (version=SSLv3 cipher=OTHER);
+	Tue, 10 Jan 2012 08:31:38 -0800 (PST)
+Message-ID: <4F0C67E9.7040307@gmail.com>
+Date: Tue, 10 Jan 2012 11:31:37 -0500
+From: Jim Abernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-Cc: openembedded-core@lists.openembedded.org
-Subject: [PATCH 3/4] lttng-modules: from lttng-modules 2.0 git repo.
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <CANFv2Emzgi2GqXGbLCJ4Ej+umyPHsNmJQ_eMj-6A0XAcVeFtyg@mail.gmail.com>
+	<4F0C5E5F.1050709@windriver.com>
+In-Reply-To: <4F0C5E5F.1050709@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: yocto on Acer Aspire One NAV50
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,111 +44,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jan 2012 16:11:38 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 10 Jan 2012 16:31:40 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This patch intended to integrate the lttng-modules 2.0 package
-containing the kernel tracer modules.
-LTTng-modules 2.0 is currently in pre-release (-pre11), so we
-have to update it when official released.
+On 01/10/2012 10:50 AM, Bruce Ashfield wrote:
+> On 12-01-10 10:47 AM, James Abernathy wrote:
+>> I created a core-image-sato using the meta-n450 BSP hoping I could work
+>> with it on the Acer Aspire One 532h-2588. However, that netbook uses the
+>> Atheros AR5B95 wireless NIC and the Atheros AR8132 wired NIC, which are
+>> not recognized. Is there anything already in Yocto that could be turned
+>> on to support these devices, or am I left with porting the drives?
+>> Since Ubuntu 11.10 with it's kernel 3.0.0 supports these devices and
+>> runs on the netbook, I'm guessing it's a matter of configuring the
+>> kernel to include these modules.
+>> Does this sound right??
+>
+> That should be all that is required. If the drivers you need are
+> indeed in 3.0 (I didn't go check explicitly), then you can create
+> a bbappend for the BSP in a layer, and add a configuration fragment
+> that enables the drivers you need (as modules or builtin, your
+> choice).
+>
+> Examples of config fragments are in the BSP/kernel guides found on
+> the yocto project pages.
+>
+If I'm only making changes to the .config parameters, do I still need to 
+create
+a local bare clone of the yocto kernel and also git the poky-extras 
+repository as mentioned
+in the Developers Manual appendix B?
 
-lttng-2.0 supports lttng-modules extra builds, which don't need
-any patches on Linux kernel vs the previous version of lttng.
-As described in README of lttng-modules-2.0, so far, it has been
-tested in the latest kernel on x86 32/64-bit, and powerpc 32-bit,
-, build tested on ARM. So does yocto kernel, the related tests
-on qemux86 and qemuppc has been validated and a build test on
-qemuarm passed too with this patcheset.
+Jim A
 
-Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
----
- ...modules-replace-KERNELDIR-with-KERNEL_SRC.patch |   41 ++++++++++++++++++++
- .../lttng-2.0/lttng-modules_2.0.pre11.bb           |   27 +++++++++++++
- 2 files changed, 68 insertions(+), 0 deletions(-)
- create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
- create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-modules_2.0.pre11.bb
 
-diff --git a/meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch b/meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
-new file mode 100644
-index 0000000..aa24171
---- /dev/null
-+++ b/meta/recipes-kernel/lttng-2.0/lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch
-@@ -0,0 +1,41 @@
-+Upstream-Status: Inappropriate [embedded specific]
-+
-+lttng-modules: replace KERNELDIR with KERNEL_SRC
-+
-+Since lttng-modules uses the default way of module.bbclass to
-+build and install lttng-modules, we do this replacement for
-+it as-is.
-+
-+Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
-+---
-+ Makefile |    7 +++----
-+ 1 files changed, 3 insertions(+), 4 deletions(-)
-+
-+diff --git a/Makefile b/Makefile
-+index 5ac13d7..25caad5 100644
-+--- a/Makefile
-++++ b/Makefile
-+@@ -38,17 +38,16 @@ obj-m += lib/
-+ endif
-+
-+ else
-+-	KERNELDIR ?= /lib/modules/$(shell uname -r)/build
-+ 	PWD := $(shell pwd)
-+ 	CFLAGS = $(EXTCFLAGS)
-+
-+ default:
-+-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
-++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules
-+
-+ modules_install:
-+-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules_install
-++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules_install
-+
-+ clean:
-+-	$(MAKE) -C $(KERNELDIR) M=$(PWD) clean
-++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) clean
-+
-+ endif
-+-- 
-+1.7.5.4
-+
-diff --git a/meta/recipes-kernel/lttng-2.0/lttng-modules_2.0.pre11.bb b/meta/recipes-kernel/lttng-2.0/lttng-modules_2.0.pre11.bb
-new file mode 100644
-index 0000000..4bf636e
---- /dev/null
-+++ b/meta/recipes-kernel/lttng-2.0/lttng-modules_2.0.pre11.bb
-@@ -0,0 +1,27 @@
-+SECTION = "devel"
-+SUMMARY = "Linux Trace Toolkit KERNEL MODULE"
-+DESCRIPTION = "The lttng-modules 2.0 package contains the kernel tracer modules"
-+LICENSE = "LGPLv2.1 & GPLv2"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=1eb086682a7c65a45acd9bcdf6877b3e \
-+                    file://gpl-2.0.txt;md5=751419260aa954499f7abaabaa882bbe \
-+                    file://lgpl-2.1.txt;md5=243b725d71bb5df4a1e5920b344b86ad"
-+
-+DEPENDS = virtual/kernel
-+
-+inherit module
-+
-+SRCREV = "4d3e89e379fc66480d729abe8daa5c86eb585400"
-+PV = "2.0.pre11+git${SRCREV}"
-+PR = "r0"
-+
-+SRC_URI = "git://git.lttng.org/lttng-modules.git;protocol=git \
-+           file://lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch"
-+
-+export INSTALL_MOD_DIR="kernel/lttng-modules"
-+
-+S = "${WORKDIR}/git"
-+
-+# Currenly lttng-tools doesn't supprt MIPS officially.
-+# So here let us keep as-is.
-+
-+COMPATIBLE_HOST = '(x86_64.*|i.86.*|arm.*|powerpc.*)-linux'
--- 
-1.7.5.4
+> Cheers,
+>
+> Bruce
+>
+>> Jim A
+>>
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
 
 
