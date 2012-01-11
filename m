@@ -1,36 +1,23 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 059E1E0071D
-	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 09:28:50 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 11 Jan 2012 09:28:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="97076061"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga002.jf.intel.com with ESMTP; 11 Jan 2012 09:28:03 -0800
-Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 11 Jan 2012 09:28:03 -0800
-Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
-	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi;
-	Wed, 11 Jan 2012 09:28:03 -0800
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: James Abernathy <jfabernathy@gmail.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>
-Date: Wed, 11 Jan 2012 09:28:01 -0800
-Thread-Topic: [yocto] [Announcement] Cedartrail BSP available.
-Thread-Index: AczQhaO7FlNIfpYUSlizCi06w9AG2gAAEI/A
-Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B26223025E9@orsmsx501.amr.corp.intel.com>
-References: <CAPhnLPD7ivPE7xJSzMui7cRKoCWzEWMcOhjiZpwXrmjxTC6+CA@mail.gmail.com>
-	<CANFv2E=2SkrV5MH4ytvL=x3CmU8qCn6ERPEF1LD7y=BK5f1mpw@mail.gmail.com>
-In-Reply-To: <CANFv2E=2SkrV5MH4ytvL=x3CmU8qCn6ERPEF1LD7y=BK5f1mpw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09908E0071D
+	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 11:12:11 -0800 (PST)
+Received: from mail-iy0-f180.google.com ([209.85.210.180])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 11 Jan 2012 11:12:11 -0800
+Received: by iadk27 with SMTP id k27so1626819iad.25
+	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 11:12:10 -0800 (PST)
 MIME-Version: 1.0
+Received: by 10.42.243.2 with SMTP id lk2mr489672icb.8.1326309125538; Wed, 11
+	Jan 2012 11:12:05 -0800 (PST)
+Received: by 10.50.237.98 with HTTP; Wed, 11 Jan 2012 11:12:05 -0800 (PST)
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A257C184A@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A257C184A@ORSMSX101.amr.corp.intel.com>
+Date: Wed, 11 Jan 2012 11:12:05 -0800
+Message-ID: <CAPhnLPBaTmDd=J_HCLq0dE2uQwEn3buqe-VmJnTG25M=fJZgsw@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "Liu, Song" <song.liu@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [Announcement] Cedartrail BSP available.
+Subject: Re: Yocto SWAT team kickoff
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,84 +29,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jan 2012 17:28:50 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 11 Jan 2012 19:12:12 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of James Abernathy
->Sent: Wednesday, January 11, 2012 9:22 AM
->
->What is the purpose of building the provided images with time limited kern=
-el?
+I've done some initial wikification of this:
 
-Intel at least have chosen to provide bootable images for their boards with=
- a time-limited kernel to encourage people to do a build of their own for a=
-n actual product, rather than just pass through the bootable image in the B=
-SP.
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team#Live_Debug=
+ging_Process
 
->Can I assume that a standard build of the unchanged meta-cedartrail BSP wi=
-ll
->use the non-tlk kernel?
+Michael Halstead, as the SA, should probably be included on this as
+access rights to the infrastructure should in most cases, go through
+him.
 
-That is supposed to be the way it works. I assume the Intel guys doing the =
-BSPs set things up that way.
+-b
 
->Jim A
->On Wed, Dec 28, 2011 at 6:02 PM, Flanagan, Elizabeth
-><elizabeth.flanagan@intel.com> wrote:
->-----BEGIN PGP SIGNED MESSAGE-----
->Hash: SHA1
->
->All,
->
->We are pleased to announce the release of Intel-based board support
->packages built from Yocto 1.1 "Edison" for the Intel(r) Atom(tm) Processor
->N2000 and D2000 Series-based Platform (CEDAR TRAIL).
->
->This BSP are available for download at:
->
->http://www.yoctoproject.org/download/bsp/intel%C2%AE-
->atom%E2%84%A2-processor-n2000-and-d2000-series-based-platform-cedar-
->trail
->
->Please note that the provided images were built using the meta-tlk
->layer (time limited kernel). Build instructions to build non-tlk
->images are provided in the meta-intel/meta-cedartrail/README for these
->machines.
->
->META-CEDARTRAIL 1.1 RELEASE
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Version: 1.1 "Edison"
->md5sum: 777150ce79d5d1cc916410f7d17741e1
->Location: http://www.yoctoproject.org/download/bsp/intel%C2%AE-
->atom%E2%84%A2-processor-n2000-and-d2000-series-based-platform-cedar-
->trail
->
->- --
->Elizabeth Flanagan
->Yocto Project
->Build and Release
->
->-----BEGIN PGP SIGNATURE-----
->Version: GnuPG v1.4.10 (GNU/Linux)
->
->iQEcBAEBAgAGBQJO+5kmAAoJEEyK+E/MEkQPpqkH/iqYOrfxPd1fEcTbw3LXY+
->re
->1H8zOglldc5yPhkhX2PmqkfI28OJwMOiUc3oooYRGeEpGg59SxQSqSImVwf3nm
->gn
->wK933o5FC37M+1fIZsySNNf6Maj5IAExKN1Wu1V56Onf/1wq77kJ/NkvPq62ig5
->n
->lZzKA2C1Red/4NuKKIuTEWj/3e5365XhBkbJHxaRECrIw3fD2bBIj49C3tVAkIUX
->+ijIO56UR/qgHfRulUowtarAfCP/xADOnLnOZ9yvv7JEsaekrMReYZlGqEeF/TL+
->M6v3b/27OwgF2ohCN3Ib7YnaFTR5g9fXwa//YMLuKm6quL+hafgzxJ2OCOxlo08
->=3D
->=3DeKdg
->-----END PGP SIGNATURE-----
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
 
+On Tue, Jan 10, 2012 at 7:24 AM, Liu, Song <song.liu@intel.com> wrote:
+> Hi all,
+>
+> We would like to kick off the Yocto SWAT team this week. Please see the f=
+ollowing for the purpose of the SWAT team and let me know if you have any q=
+uestions or concerns. We welcome any community participation on the SWAT te=
+am. At the same time, I will work with the team to make sure thing get star=
+ted.
+>
+> Thanks,
+> Song
+>
+> YOCTO SWAT TEAM
+>
+> GOAL
+>
+> The assembly of the Yocto Project SWAT team is mainly to tackle urgent te=
+chnical problems that break build on the master branch or major release bra=
+nches in a timely manner, thus to maintain the stability of the master and =
+release branch. The SWAT team includes volunteers or appointed members of t=
+he Yocto Project team. Community members can also volunteer to be part of t=
+he SWAT team.
+>
+> SCOPE OF RESPONSIBILITY
+>
+> Whenever a build (nightly build, weekly build, release build) fails, the =
+SWAT team is responsible for ensuring the necessary debugging occurs and or=
+ganizing resources to solve the issue and ensure successful builds. If reso=
+lving the issues requires schedule or resource adjustment, the SWAT team sh=
+ould work with program and development management to accommodate the change=
+ in the overall planning.
+>
+> MEMBERS:
+>
+> * Darren Hart (US)
+> * Elizabeth Flanagan (US)
+> * Paul Eggleton (UK)
+> * Jessica Zhang (US)
+> * Dexuan Cui (CN)
+> * Saul Wold (US)
+> * Richard Purdie (UK)
+>
+> ROTATING CHAIR:
+>
+> A chairperson role will be rotated among team members each week. The Chai=
+rperson should monitor the build status for the entire week. Whenever a bui=
+ld is broken, the Chairperson should do necessary debugging and organize re=
+sources to solve the problems in a timely manner to meet the overall projec=
+t and release schedule. The Chairperson serves as the focal point of the SW=
+AT team to external people such as program managers or development managers=
+.
+>
+> ROTATING PROCESS
+>
+> Each week on a specific day (propose Monday), a SWAT team meeting could b=
+e called at the chairperson's discretion to discuss current issues and stat=
+us. Either during the meeting or offline, the Chairperson of last week will=
+ identify and pass the role to another person in the team. The program mana=
+ger should be notified at the same time. Usually, this will take a simple r=
+ound robin order. In case the next person cannot take the role due to tight=
+ schedule, vacation or some other reasons, the role will be passed to the n=
+ext person.
+>
+> The current Chairperson's full name and email address will be published o=
+n the project status wiki page: https://wiki.yoctoproject.org/wiki/Yocto_Pr=
+oject_v1.2_Status under "Current SWAT team Chairperson" section.
+>
+> BKM (RICHARD PURDIE)
+>
+> When looking at a failure, the first question is what the baseline was an=
+d what changed. If there were recent known good builds it helps to narrow d=
+own the number of changes that were likely responsible for the failure. It'=
+s also useful to note if the build was from scratch or from existing sstate=
+ files. You can tell by seeing what "setscene" tasks run in the log.
+>
+> The primary responsibility is to ensure that any failures are categorized=
+ correctly and that the right people get to know about them.
+>
+> It's important *someone* is then tasked with fixing it. Image failures ar=
+e particular tricky since its likely some component of the image that faile=
+d and the question is then whether that component changed recently, whether=
+ it was some kind of core functionality at fault and so on.
+>
+> Ideally we want to get the failure reported to the person who knows somet=
+hing about the area and can come up with a fix without it distracting them =
+too much.
+> As a secondary responsibility, its often helpful for to triage the failur=
+e. This might mean documenting a way to reproduce the failure outside a ful=
+l build and/or documenting how the failure is happening and maybe even prop=
+ose a fix.
+>
+> Sometimes failures are difficult to understand and can require direct ssh=
+ access to the autobuilder so the issue can be debugged passively on the sy=
+stem to examine contents of files and so forth. If doing this ensure you do=
+n't change any of the file system for example adding files that couldn't th=
+en be deleted by the autobuilder when it rebuilds.
+>
+> Rarely, "live" debugging might be needed where you'd su to the pokybuild =
+user and run a build manually to see the failure in real time. If doing thi=
+s, ensure you only create files as the pokybuild user and you are careful n=
+ot to generate sstate packages which shouldn't be present or any other bad =
+state that might get reused. In general its recommended not to do "live" de=
+bugging. This can be escalated to RP/Saul/Beth if needed.
+>
+> To fulfill the primary responsibility, it's suggested that bugs are opene=
+d on the bugzilla for each type of failure. This way, appropriate people ca=
+n be brought into the discussion and a specific owner of the failure can be=
+ assigned. Replying to the build failure with the bug ID and also bringing =
+the bug to the attention of anyone you suspect was responsible for the prob=
+lem are also good practices.
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
+--=20
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
