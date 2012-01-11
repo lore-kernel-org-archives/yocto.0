@@ -1,51 +1,26 @@
-Return-Path: <B29882@freescale.com>
-Received: from TX2EHSOBE009.bigfish.com (tx2ehsobe004.messaging.microsoft.com
-	[65.55.88.14])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2A07E0123F
-	for <yocto@yoctoproject.org>; Tue, 10 Jan 2012 21:29:53 -0800 (PST)
-Received: from mail54-tx2-R.bigfish.com (10.9.14.243) by
-	TX2EHSOBE009.bigfish.com (10.9.40.29) with Microsoft SMTP Server id
-	14.1.225.23; Wed, 11 Jan 2012 05:29:52 +0000
-Received: from mail54-tx2 (localhost [127.0.0.1])	by mail54-tx2-R.bigfish.com
-	(Postfix) with ESMTP id 93C234601EB;
-	Wed, 11 Jan 2012 05:29:52 +0000 (UTC)
-X-SpamScore: -7
-X-BigFish: VS-7(zz9371I1432N98dKzz1202hzz8275bh8275dhz2dhc1ahc1bh2a8h668h839h8e2h8e3hbe9k61h)
-X-Spam-TCS-SCL: 0:0
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail54-tx2 (localhost.localdomain [127.0.0.1]) by mail54-tx2
-	(MessageSwitch) id 1326259792473776_18202;
-	Wed, 11 Jan 2012 05:29:52 +0000 (UTC)
-Received: from TX2EHSMHS036.bigfish.com (unknown [10.9.14.253])	by
-	mail54-tx2.bigfish.com (Postfix) with ESMTP id 6AE4A14004B;
-	Wed, 11 Jan 2012 05:29:52 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS036.bigfish.com
-	(10.9.99.136) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Wed, 11 Jan 2012 05:29:51 +0000
-Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.86]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.01.0355.003; Tue, 10 Jan 2012 23:29:51 -0600
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Jim Abernathy <jfabernathy@gmail.com>
-Thread-Topic: [yocto] hob usage
-Thread-Index: AQHM0CIKIjYrMukblEeRnA4toFEaRw==
-Date: Wed, 11 Jan 2012 05:29:50 +0000
-Message-ID: <CAEsOVNfhUCPf9Ee7Tqm5RtvGm1WVh-MhKTaxu_9uik6PPXkvEQ@mail.gmail.com>
-References: <4F0D087B.5050709@gmail.com>
-In-Reply-To: <4F0D087B.5050709@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
+Return-Path: <edwin.zhai@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B190AE0123F
+	for <yocto@yoctoproject.org>; Tue, 10 Jan 2012 23:03:37 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 10 Jan 2012 23:03:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="110984011"
+Received: from edwin-gen.sh.intel.com (HELO edwin-gen) ([10.239.36.111])
+	by fmsmga002.fm.intel.com with SMTP; 10 Jan 2012 23:03:35 -0800
+Received: by edwin-gen (sSMTP sendmail emulation);
+	Wed, 11 Jan 2012 15:01:57 +0800
+Date: Wed, 11 Jan 2012 15:01:57 +0800
+From: "Zhai, Edwin" <edwin.zhai@intel.com>
+To: bruce.ashfield@windriver.com
+Message-ID: <20120111070157.GC10415@edwin-gen>
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: hob usage
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: yocto@yoctoproject.org
+Subject: Request to enable SMP and virtio for qemux86/x86-64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,46 +29,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jan 2012 05:29:54 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <0BF1FAD6557BDB41BCC3137E14F76EC8@freescale.net>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 11 Jan 2012 07:03:37 -0000
+X-Groupsio-MsgNum: 4213
+Content-Type: multipart/mixed; boundary="mYCpIKhGyMATD0i+"
+Content-Disposition: inline
 
-On Tue, Jan 10, 2012 at 9:56 PM, Jim Abernathy <jfabernathy@gmail.com> wrot=
-e:
-> I have a question about hob usage. =A0I understand the basics of hob and =
-how
-> it adds packages. =A0I also understand how it will parse through my local=
-.conf
-> and include any extra packages that I may have included by using
-> IMAGE_INSTALL +=3D <package>.
->
-> I've found that if I start with a clean BSP and use hob to add a package,=
- it
-> will allow me to save that configuration anywhere. =A0I'm not sure where =
-I
-> should save it. =A0It contains the IMAGE_INSTALL for the packages I've
-> selected, but is also includes a 'require' statement, which seems to have=
- a
-> relative path, like:
->
-> require recipes-sato/images/core-image-sato.bb
->
-> Where is the location I should save the hob configuration file? I know th=
-at
-> if I save it outside my poky directory, the package will not be included,=
- so
-> it's important where it goes.
+--mYCpIKhGyMATD0i+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This is one of those quirks about hob I found weird. I filed a bug about th=
-is:
+Bruce,
+Can we enable SMP and virtio by default for qemux86/x86-64? This can achieve 
+huge perf boost for workload inside qemu. E.g. we enabled self-hosted image, 
+where we build yocto inside qemu.
 
-http://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1573
+Attached patch showes the kernel config option.
 
-In general you need to save it somewhere one of your layers looks for
-additional recipes to run it from the command line.
+Is it reasonable?
 
--M=
+Thanks,
+Edwin
 
+-- 
+best rgds,
+edwin
 
+--mYCpIKhGyMATD0i+
+Content-Type: text/x-diff; charset=us-ascii
+Content-Disposition: attachment; filename="enable-smp-virtio-for-qemu.patch"
+
+commit 8f2268237c5cb97052c2c9a6ea6c0f818d1a658d
+Author: gzhai <gzhai@gzhai-xps.(none)>
+Date:   Fri Dec 9 10:32:50 2011 +0800
+
+    linux-yocto: enable smp for qemux86
+    
+    Signed-off-by: None <None>
+
+diff --git a/meta/recipes-kernel/linux/linux-yocto/extra.cfg b/meta/recipes-kernel/linux/linux-yocto/extra.cfg
+new file mode 100644
+index 0000000..efe1d9b
+--- /dev/null
++++ b/meta/recipes-kernel/linux/linux-yocto/extra.cfg
+@@ -0,0 +1,7 @@
++CONFIG_SMP=y
++CONFIG_VIRTIO=y
++CONFIG_VIRTIO_PCI=y
++CONFIG_VIRTIO_BALLOON=y
++CONFIG_VIRTIO_RING=y
++CONFIG_VIRTIO_NET=y
++CONFIG_VIRTIO_BLK=y
+diff --git a/meta/recipes-kernel/linux/linux-yocto_3.0.bb b/meta/recipes-kernel/linux/linux-yocto_3.0.bb
+index 4032567..850310a 100644
+--- a/meta/recipes-kernel/linux/linux-yocto_3.0.bb
++++ b/meta/recipes-kernel/linux/linux-yocto_3.0.bb
+@@ -20,11 +20,13 @@ SRCREV_machine_qemux86-64 ?= "988fcbe64829f0a03ccfcc08d45cedb26cabe9ed"
+ SRCREV_machine ?= "ab1de8c21d2b1d084b8488496d75cc54fcd94f02"
+ SRCREV_meta ?= "67ce7623909cef63927fd145026aaf371cf4abf1"
+ 
+-PR = "r2"
++PR = "r3"
+ PV = "${LINUX_VERSION}+git${SRCPV}"
+ 
+ SRC_URI = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
+ 
++SRC_URI += "file://extra.cfg"
++
+ COMPATIBLE_MACHINE = "(qemuarm|qemux86|qemuppc|qemumips|qemux86-64)"
+ 
+ # Functionality flags
+
+--mYCpIKhGyMATD0i+--
