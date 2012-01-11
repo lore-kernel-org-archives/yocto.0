@@ -1,23 +1,31 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7847BE0071D
-	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 06:58:10 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q0BEw7dZ015179
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 11 Jan 2012 06:58:07 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 11 Jan 2012 06:58:07 -0800
-Message-ID: <4F0DA377.9090903@windriver.com>
-Date: Wed, 11 Jan 2012 09:57:59 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+Return-Path: <b.hutchman@gmail.com>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C1F0E0071D
+	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 07:20:10 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by bkvi18 with SMTP id i18so802244bkv.35
+	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 07:20:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=sKFkvjTw45fs5s9o5goELeaOz0MthrPZY6+PI9Mrwyg=;
+	b=gglhjknbLExoBFz9hIbjOxDOtpUuu8KAiJ3CMkLtG9rMl6dnU+FVjKCU3W9WWNtyzy
+	t+/d0ZuKGvvOl8szatKY9zdLh6wN/8t5Ov0yhcnc1mx/y9FakKTDcaeWsgXDWhTbCC8M
+	80/7NCgnXD/50eakdR2Sywo/2nWsVxDQp3r2o=
 MIME-Version: 1.0
-To: Brian Hutchinson <b.hutchman@gmail.com>
+Received: by 10.204.146.79 with SMTP id g15mr9786561bkv.121.1326295208943;
+	Wed, 11 Jan 2012 07:20:08 -0800 (PST)
+Received: by 10.205.141.203 with HTTP; Wed, 11 Jan 2012 07:20:08 -0800 (PST)
+In-Reply-To: <4F0DA377.9090903@windriver.com>
 References: <CAFZh4h-oJeiWFcM1mowKDwmF0gqT3Y0DBMFZ0WEcjJchUS+N4A@mail.gmail.com>
-In-Reply-To: <CAFZh4h-oJeiWFcM1mowKDwmF0gqT3Y0DBMFZ0WEcjJchUS+N4A@mail.gmail.com>
+	<4F0DA377.9090903@windriver.com>
+Date: Wed, 11 Jan 2012 10:20:08 -0500
+Message-ID: <CAFZh4h_0R_vt94Twh_Pm=7ED7XRpQ_ddo_+FN30TnDBC8wae_A@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: Does Edison work with Beagleboard & linux-yocto-3.0 kernel?
 X-BeenThere: yocto@yoctoproject.org
@@ -31,50 +39,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jan 2012 14:58:10 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 11 Jan 2012 15:20:10 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On 12-01-11 09:41 AM, Brian Hutchinson wrote:
-> Hi,
+On Wed, Jan 11, 2012 at 9:57 AM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> It will. I sent patches recently to make that the preferred version
+> in the master branch. Cherry picking that change would probably
+> be all you would need.
 >
-> I followed the example in the "Yocto Project Development Manual" for
-> setting up a local kernel repo and it didn't go so well.
 >
-> A month or two ago I checked out Edison and was able to build all the
-> images required for Beagleboard and it booted fine (using command line
-> ... not hob.  Tried hob but couldn't get it to work).
+>> 2. =A0Is the example for setting up for kernel modification in the
+>> development manual still valid for Edison?
 >
-> So then I checked out linux-yocto-3.0 kernel and setup a local kernel
-> git repo and went through the process of setting up poky-extras,
-> modifying bblayers.conf etc. to point to my local repo.
 >
-> Any time I try to build core-image-minimal it looks like it always
-> wants to use the 2.6.37 recipe instead of finding my 3.0 repo.  I've
-> tried everything I can think of and I must me missing something.
+> Should be.
 >
-> So, I guess my questions are:
->
-> 1.  Will linux-yocto-3.0 work with Beagleboard?
 
-It will. I sent patches recently to make that the preferred version
-in the master branch. Cherry picking that change would probably
-be all you would need.
+Would I get that change if I just did a git pull or do I have to do
+something else?  I did a git pull to update my Edison checkout last
+night realizing that I hadn't done one in a while and then ran a new
+clean build and still ran into the same problem.  After triple
+checking my work I figured it was time to post.
 
-> 2.  Is the example for setting up for kernel modification in the
-> development manual still valid for Edison?
+Regards,
 
-Should be.
-
-Bruce
-
->
-> Regards,
->
-> Brian
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+Brian
 
