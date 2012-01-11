@@ -1,21 +1,30 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6691E0123F
-	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 01:42:43 -0800 (PST)
-Received: from [192.168.0.69] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 81BCE26A32
-	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 09:09:15 +0000 (GMT)
-Message-ID: <4F0D5961.9080901@communistcode.co.uk>
-Date: Wed, 11 Jan 2012 09:41:53 +0000
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111224 Thunderbird/9.0.1
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A759EE0123F
+	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 03:36:30 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 83A3DF81258; Wed, 11 Jan 2012 04:36:29 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 7C333F81256;
+	Wed, 11 Jan 2012 04:36:28 -0700 (MST)
+Message-ID: <4F0D743C.5030700@mlbassoc.com>
+Date: Wed, 11 Jan 2012 04:36:28 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <289CD940EE567444BB43E62E0C3028F328F52A19@NA-MBX-02.mgc.mentorg.com>
-	<4F0CB8A0.9030107@linux.intel.com>
-In-Reply-To: <4F0CB8A0.9030107@linux.intel.com>
-Subject: Re: RFC: Joint, monthly, and online forum for developer discussion
+To: Navani Kamal Srivastava <NAVANI.Srivastava@lnties.com>
+References: <9BACABF0C6B14A4D8C33B42A795119BE096D9962@POCITMSEXMB03.LntUniverse.com>
+	<4F0C3A61.1090509@mlbassoc.com>
+	<9BACABF0C6B14A4D8C33B42A795119BE096D9B63@POCITMSEXMB03.LntUniverse.com>
+In-Reply-To: <9BACABF0C6B14A4D8C33B42A795119BE096D9B63@POCITMSEXMB03.LntUniverse.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Unable to set system clock
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,81 +36,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jan 2012 09:42:44 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 11 Jan 2012 11:36:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 10/01/12 22:16, Joshua Lock wrote:
-> Hi Sean,
+On 2012-01-10 22:14, Navani Kamal Srivastava wrote:
+> Hi Gary,
 >
-> On 09/01/12 17:49, Hudson, Sean wrote:
->> I propose having a monthly, online developer forum that promotes
->> discussion on longer term technical issues that impact both Yocto and
->> OpenEmbedded. This would supplement the already existing mailing list
->> and irc communication channels. In order to facilitate this, I’d like to
->> propose a telephone/web conference, which my employer has agreed to 
->> host.
->> This forum would help provide an additional way for the community to
->> discuss technical issues and share information about planned work and
->> works in progress.
+>> What's your hardware target?
+> We are using iMX35 processor.
 >
-> I really like the intent here, a lot of people don't like IRC/mailing 
-> lists and I'd like to enable as many people as possible to participate 
-> in the project.
-I agree, in general, the more community/group discussion that goes on 
-the better the resulting effort will be.
->
-> Two things worry me about a telephone/web conference:
-> 1) Our projects have participants spread across many time-zones and it 
-> will be difficult to accommodate more than one or two of those in any 
-> such real-time discussion.
-> 2) In my experience as the number of participants in a call increases 
-> the ability for individuals to comment decreases. Generally I find 
-> calls with more than half a dozen or so participants difficult to 
-> participate in. I suspect I'm not alone.
-If the call was streamed live, there could be people listening and 
-noting ideas which could then be brought up on the mailing list - with 
-which to iron out the creases and bring up at the next conference, 
-rather than immediately on a whim? Therefore with an agenda beforehand 
-only people who have very strong feelings or a lot to say on the subject 
-would join, everybody else could listen in and pipe up on IRC or the 
-mailing list if they feel the need to vent.
+>> There is a bug #1767 that can make the system always reset the clock to the saved timestamp on boot.
+> I am not pretty sure for this because I am able to set system clock using freescale provided rootfs. This problem I am getting only with poky rootfs. I guess I need to change some recipe. It would be a great help if you can help me in that.
 
-A chair-person or someone else could also be a representative of IRC and 
-if people have short, constructive input this could be relayed? Again, 
-bringing the number of people in the call down.
-> Additionally, with respect to 1), I worry about how we might enable 
-> folks unable to attend to, if not participate in the discussion, at 
-> least be aware of what was discussed.
-Would it be possible to record the conference and make it publicly 
-available, this could solve the technical minutes issue and also allow 
-people who cannot attend to hear first hand what has been said.
->
-> I'm not sure that minutes would be sufficient for more technical topics.
-^^
->
-> With that said I do think such conversations are important and would 
-> be happy to join in. I simply want to raise my concerns early and see 
-> if anyone has ideas which might help here.
->
->> Initial Topics for Discussion might include:
->>
->>  1. layering definitions – discussion on what exists today and how to
->>     make it better
->>  2. discussions on techniques to make working with oe/yocto better
->>  3. oe/yocto disconnects (opportunities for better alignment)
->>  4. common new user issues
->>  5. documentation (standards, lacks, etc)
->>  6. ?
->
-> I think this is a great set of topics, and very worthy of discussion. 
-> I'd certainly like to be involved in 2,3&4.
->
-> Cheers,
-> Joshua
+The problem is that even when you set the date, your Poky system
+does not use it when the system is rebooted because of this bug.
 
-Just my 2p.
+The simplest work-around (until the bug fix is finalized) is to
+add the 'coreutils' package to your image.
 
-Best Regards,
-Jack.
+>
+> Thanks&  Regards,
+> Navani Kamal Srivastava
+
+n.b. Please keep replies on the mailing list so that everyone
+can benefit.
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
