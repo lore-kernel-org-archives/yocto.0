@@ -1,23 +1,36 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09908E0071D
-	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 11:12:11 -0800 (PST)
-Received: from mail-iy0-f180.google.com ([209.85.210.180])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 11 Jan 2012 11:12:11 -0800
-Received: by iadk27 with SMTP id k27so1626819iad.25
-	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 11:12:10 -0800 (PST)
+Return-Path: <b.hutchman@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22BB5E0071D
+	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 12:35:53 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by eaab16 with SMTP id b16so457634eaa.35
+	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 12:35:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=KoOraBNEuZhGr1wYULtrV5E573tnSUbnQImHCWCQYm4=;
+	b=H1G9tOhzuCK5LWsYlu65OkK7JAXOQS+eDSHT46a7QSurF9n455Tm+MN6dDeWJx3qI9
+	vJaTwhHpOprRfrG3Rgy+l7Xt1b+DyJ+PCBGYLyTowcm0H2rH7Akcy2O3t3y7AN6j0a5J
+	M5PWgs+Wt6Czm9XGThqhfId0Yh4AVPr8v4Ux0=
 MIME-Version: 1.0
-Received: by 10.42.243.2 with SMTP id lk2mr489672icb.8.1326309125538; Wed, 11
-	Jan 2012 11:12:05 -0800 (PST)
-Received: by 10.50.237.98 with HTTP; Wed, 11 Jan 2012 11:12:05 -0800 (PST)
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A257C184A@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A257C184A@ORSMSX101.amr.corp.intel.com>
-Date: Wed, 11 Jan 2012 11:12:05 -0800
-Message-ID: <CAPhnLPBaTmDd=J_HCLq0dE2uQwEn3buqe-VmJnTG25M=fJZgsw@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "Liu, Song" <song.liu@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto SWAT team kickoff
+Received: by 10.204.10.80 with SMTP id o16mr206609bko.13.1326314152734; Wed,
+	11 Jan 2012 12:35:52 -0800 (PST)
+Received: by 10.205.141.203 with HTTP; Wed, 11 Jan 2012 12:35:52 -0800 (PST)
+In-Reply-To: <CAFZh4h_DC6Sk58Mw7_ixyTTz9p5iwMk5+6Ey1kD+oTnHG+KEFw@mail.gmail.com>
+References: <CAFZh4h-oJeiWFcM1mowKDwmF0gqT3Y0DBMFZ0WEcjJchUS+N4A@mail.gmail.com>
+	<4F0DA377.9090903@windriver.com>
+	<CAFZh4h_0R_vt94Twh_Pm=7ED7XRpQ_ddo_+FN30TnDBC8wae_A@mail.gmail.com>
+	<4F0DAACB.3010603@windriver.com>
+	<CAFZh4h_DC6Sk58Mw7_ixyTTz9p5iwMk5+6Ey1kD+oTnHG+KEFw@mail.gmail.com>
+Date: Wed, 11 Jan 2012 15:35:52 -0500
+Message-ID: <CAFZh4h9+OSjs8hmAR3=7oZ0Z+4wBVOgu=7KeFXB4Av6R0jqZBQ@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Does Edison work with Beagleboard & linux-yocto-3.0 kernel?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,142 +42,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jan 2012 19:12:12 -0000
+X-List-Received-Date: Wed, 11 Jan 2012 20:35:54 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-I've done some initial wikification of this:
+> <bruce.ashfield@windriver.com> wrote:
+>> Just so I'm clear. You are asking about the switch to 3.0 as the
+>> default ? If so, that was only done in master for the upcoming 1.2
+>> release and not on the edison branch, so you wouldn't pick it up
+>> by pulling.
+>
+> Thanks! =A0I did a git checkout -b master origin/master and will try agai=
+n.
 
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team#Live_Debug=
-ging_Process
+Thanks Bruce for pointing me in the right direction.  I just wanted to
+follow up.
 
-Michael Halstead, as the SA, should probably be included on this as
-access rights to the infrastructure should in most cases, go through
-him.
+I switched to master branch and did a clean build for Beagleboard.  I
+can confirm that it worked.  I blew my SD Card away and put freshly
+built yocto images of MLO, u-boot.bin & uImage and my Beagleboard xM
+boots fine (one last question after this output below):
 
--b
-
-
-On Tue, Jan 10, 2012 at 7:24 AM, Liu, Song <song.liu@intel.com> wrote:
-> Hi all,
->
-> We would like to kick off the Yocto SWAT team this week. Please see the f=
-ollowing for the purpose of the SWAT team and let me know if you have any q=
-uestions or concerns. We welcome any community participation on the SWAT te=
-am. At the same time, I will work with the team to make sure thing get star=
-ted.
->
-> Thanks,
-> Song
->
-> YOCTO SWAT TEAM
->
-> GOAL
->
-> The assembly of the Yocto Project SWAT team is mainly to tackle urgent te=
-chnical problems that break build on the master branch or major release bra=
-nches in a timely manner, thus to maintain the stability of the master and =
-release branch. The SWAT team includes volunteers or appointed members of t=
-he Yocto Project team. Community members can also volunteer to be part of t=
-he SWAT team.
->
-> SCOPE OF RESPONSIBILITY
->
-> Whenever a build (nightly build, weekly build, release build) fails, the =
-SWAT team is responsible for ensuring the necessary debugging occurs and or=
-ganizing resources to solve the issue and ensure successful builds. If reso=
-lving the issues requires schedule or resource adjustment, the SWAT team sh=
-ould work with program and development management to accommodate the change=
- in the overall planning.
->
-> MEMBERS:
->
-> * Darren Hart (US)
-> * Elizabeth Flanagan (US)
-> * Paul Eggleton (UK)
-> * Jessica Zhang (US)
-> * Dexuan Cui (CN)
-> * Saul Wold (US)
-> * Richard Purdie (UK)
->
-> ROTATING CHAIR:
->
-> A chairperson role will be rotated among team members each week. The Chai=
-rperson should monitor the build status for the entire week. Whenever a bui=
-ld is broken, the Chairperson should do necessary debugging and organize re=
-sources to solve the problems in a timely manner to meet the overall projec=
-t and release schedule. The Chairperson serves as the focal point of the SW=
-AT team to external people such as program managers or development managers=
-.
->
-> ROTATING PROCESS
->
-> Each week on a specific day (propose Monday), a SWAT team meeting could b=
-e called at the chairperson's discretion to discuss current issues and stat=
-us. Either during the meeting or offline, the Chairperson of last week will=
- identify and pass the role to another person in the team. The program mana=
-ger should be notified at the same time. Usually, this will take a simple r=
-ound robin order. In case the next person cannot take the role due to tight=
- schedule, vacation or some other reasons, the role will be passed to the n=
-ext person.
->
-> The current Chairperson's full name and email address will be published o=
-n the project status wiki page: https://wiki.yoctoproject.org/wiki/Yocto_Pr=
-oject_v1.2_Status under "Current SWAT team Chairperson" section.
->
-> BKM (RICHARD PURDIE)
->
-> When looking at a failure, the first question is what the baseline was an=
-d what changed. If there were recent known good builds it helps to narrow d=
-own the number of changes that were likely responsible for the failure. It'=
-s also useful to note if the build was from scratch or from existing sstate=
- files. You can tell by seeing what "setscene" tasks run in the log.
->
-> The primary responsibility is to ensure that any failures are categorized=
- correctly and that the right people get to know about them.
->
-> It's important *someone* is then tasked with fixing it. Image failures ar=
-e particular tricky since its likely some component of the image that faile=
-d and the question is then whether that component changed recently, whether=
- it was some kind of core functionality at fault and so on.
->
-> Ideally we want to get the failure reported to the person who knows somet=
-hing about the area and can come up with a fix without it distracting them =
-too much.
-> As a secondary responsibility, its often helpful for to triage the failur=
-e. This might mean documenting a way to reproduce the failure outside a ful=
-l build and/or documenting how the failure is happening and maybe even prop=
-ose a fix.
->
-> Sometimes failures are difficult to understand and can require direct ssh=
- access to the autobuilder so the issue can be debugged passively on the sy=
-stem to examine contents of files and so forth. If doing this ensure you do=
-n't change any of the file system for example adding files that couldn't th=
-en be deleted by the autobuilder when it rebuilds.
->
-> Rarely, "live" debugging might be needed where you'd su to the pokybuild =
-user and run a build manually to see the failure in real time. If doing thi=
-s, ensure you only create files as the pokybuild user and you are careful n=
-ot to generate sstate packages which shouldn't be present or any other bad =
-state that might get reused. In general its recommended not to do "live" de=
-bugging. This can be escalated to RP/Saul/Beth if needed.
->
-> To fulfill the primary responsibility, it's suggested that bugs are opene=
-d on the bugzilla for each type of failure. This way, appropriate people ca=
-n be brought into the discussion and a specific owner of the failure can be=
- assigned. Replying to the build failure with the bug ID and also bringing =
-the bug to the attention of anyone you suspect was responsible for the prob=
-lem are also good practices.
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Texas Instruments X-Loader 1.5.0 (Jan 11 2012 - 12:41:55)
+Beagle xM
+Reading boot sector
+Loading u-boot.bin from mmc
 
 
+U-Boot 2011.06 (Jan 11 2012 - 12:41:50)
 
---=20
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+OMAP3630/3730-GP ES1.0, CPU-OPP2, L3-165MHz, Max CPU Clock 1 Ghz
+OMAP3 Beagle board + LPDDR/NAND
+I2C:   ready
+DRAM:  512 MiB
+NAND:  256 MiB
+MMC:   OMAP SD/MMC: 0
+In:    serial
+Out:   serial
+Err:   serial
+Beagle xM Rev A
+No EEPROM on expansion board
+Die ID #335000001bf00000015739ea07035019
+Hit any key to stop autoboot:  0
+SD/MMC found on device 0
+reading uEnv.txt
+
+** Unable to read "uEnv.txt" from mmc 0:1 **
+reading uImage
+
+3106612 bytes read
+Booting from mmc ...
+## Booting kernel from Legacy Image at 82000000 ...
+   Image Name:   Linux-3.0.12-yocto-standard+
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    3106548 Bytes =3D 3 MiB
+   Load Address: 80008000
+   Entry Point:  80008000
+   Verifying Checksum ... OK
+   Loading Kernel Image ... OK
+OK
+
+Starting kernel ...
+
+Uncompressing Linux... done, booting the kernel.
+
+Yocto (Built by Poky 6.0) 1.1+snapshot-20120111 beagleboard ttyO2
+
+beagleboard login: root
+root@beagleboard:~# ls
+root@beagleboard:~# uptime
+ 19:06:08 up 0 min,  load average: 1.08, 0.30, 0.10
+root@beagleboard:~# uname -a
+Linux beagleboard 3.0.12-yocto-standard+ #1 PREEMPT Wed Jan 11
+13:53:06 EST 2012 armv7l GNU/Linux
+root@beagleboard:~#
+
+
+... so now I'm back to trying to get poky to use my local
+linux-yocto-3.0 git repo.
+
+One more question.  When I setup linux-yocto_3.0.bbappend in
+poky-extras/meta-kernel-dev/recipies-kernel/linux, do I use
+"yocto/standard/beagleboard" for KMACHINE?
+
+Thanks again,
+
+Brian
 
