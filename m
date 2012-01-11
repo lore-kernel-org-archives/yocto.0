@@ -1,25 +1,35 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA787E0071D
-	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 09:24:14 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q0BHOEfr026875
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 09:24:14 -0800 (PST)
-Received: from Macintosh-5.local (172.25.36.233) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 11 Jan 2012 09:24:13 -0800
-Message-ID: <4F0DC5BC.6040307@windriver.com>
-Date: Wed, 11 Jan 2012 11:24:12 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:8.0) Gecko/20111105 Thunderbird/8.0
-MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 059E1E0071D
+	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 09:28:50 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 11 Jan 2012 09:28:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="97076061"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga002.jf.intel.com with ESMTP; 11 Jan 2012 09:28:03 -0800
+Received: from orsmsx605.amr.corp.intel.com (10.22.226.10) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 11 Jan 2012 09:28:03 -0800
+Received: from orsmsx501.amr.corp.intel.com ([10.22.226.209]) by
+	orsmsx605.amr.corp.intel.com ([10.22.226.10]) with mapi;
+	Wed, 11 Jan 2012 09:28:03 -0800
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: James Abernathy <jfabernathy@gmail.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>
+Date: Wed, 11 Jan 2012 09:28:01 -0800
+Thread-Topic: [yocto] [Announcement] Cedartrail BSP available.
+Thread-Index: AczQhaO7FlNIfpYUSlizCi06w9AG2gAAEI/A
+Message-ID: <B27EBC40D200ED48A3F4CC2EBEABAE0B26223025E9@orsmsx501.amr.corp.intel.com>
 References: <CAPhnLPD7ivPE7xJSzMui7cRKoCWzEWMcOhjiZpwXrmjxTC6+CA@mail.gmail.com>
 	<CANFv2E=2SkrV5MH4ytvL=x3CmU8qCn6ERPEF1LD7y=BK5f1mpw@mail.gmail.com>
 In-Reply-To: <CANFv2E=2SkrV5MH4ytvL=x3CmU8qCn6ERPEF1LD7y=BK5f1mpw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [Announcement] Cedartrail BSP available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -32,78 +42,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jan 2012 17:24:14 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 11 Jan 2012 17:28:50 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 1/11/12 11:21 AM, James Abernathy wrote:
-> What is the purpose of building the provided images with time limited kernel?
-> Can I assume that a standard build of the unchanged meta-cedartrail BSP will use
-> the non-tlk kernel?
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of James Abernathy
+>Sent: Wednesday, January 11, 2012 9:22 AM
+>
+>What is the purpose of building the provided images with time limited kern=
+el?
 
-Simple reason, the creator of the BSP wants you to configure and build your own 
-kernel.  The time limited kernel is for evaluation purposes to see if this is 
-what you want, before you build it yourself.
+Intel at least have chosen to provide bootable images for their boards with=
+ a time-limited kernel to encourage people to do a build of their own for a=
+n actual product, rather than just pass through the bootable image in the B=
+SP.
 
---Mark
+>Can I assume that a standard build of the unchanged meta-cedartrail BSP wi=
+ll
+>use the non-tlk kernel?
 
-> Jim A
+That is supposed to be the way it works. I assume the Intel guys doing the =
+BSPs set things up that way.
+
+>Jim A
+>On Wed, Dec 28, 2011 at 6:02 PM, Flanagan, Elizabeth
+><elizabeth.flanagan@intel.com> wrote:
+>-----BEGIN PGP SIGNED MESSAGE-----
+>Hash: SHA1
 >
-> On Wed, Dec 28, 2011 at 6:02 PM, Flanagan, Elizabeth
-> <elizabeth.flanagan@intel.com <mailto:elizabeth.flanagan@intel.com>> wrote:
+>All,
 >
->     -----BEGIN PGP SIGNED MESSAGE-----
->     Hash: SHA1
+>We are pleased to announce the release of Intel-based board support
+>packages built from Yocto 1.1 "Edison" for the Intel(r) Atom(tm) Processor
+>N2000 and D2000 Series-based Platform (CEDAR TRAIL).
 >
->     All,
+>This BSP are available for download at:
 >
->     We are pleased to announce the release of Intel-based board support
->     packages built from Yocto 1.1 "Edison" for the Intel® Atom™ Processor
->     N2000 and D2000 Series-based Platform (CEDAR TRAIL).
+>http://www.yoctoproject.org/download/bsp/intel%C2%AE-
+>atom%E2%84%A2-processor-n2000-and-d2000-series-based-platform-cedar-
+>trail
 >
->     This BSP are available for download at:
+>Please note that the provided images were built using the meta-tlk
+>layer (time limited kernel). Build instructions to build non-tlk
+>images are provided in the meta-intel/meta-cedartrail/README for these
+>machines.
 >
->     http://www.yoctoproject.org/download/bsp/intel%C2%AE-atom%E2%84%A2-processor-n2000-and-d2000-series-based-platform-cedar-trail
+>META-CEDARTRAIL 1.1 RELEASE
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>Version: 1.1 "Edison"
+>md5sum: 777150ce79d5d1cc916410f7d17741e1
+>Location: http://www.yoctoproject.org/download/bsp/intel%C2%AE-
+>atom%E2%84%A2-processor-n2000-and-d2000-series-based-platform-cedar-
+>trail
 >
->     Please note that the provided images were built using the meta-tlk
->     layer (time limited kernel). Build instructions to build non-tlk
->     images are provided in the meta-intel/meta-cedartrail/README for these
->     machines.
+>- --
+>Elizabeth Flanagan
+>Yocto Project
+>Build and Release
 >
->     META-CEDARTRAIL 1.1 RELEASE
->     ====================
->     Version: 1.1 "Edison"
->     md5sum: 777150ce79d5d1cc916410f7d17741e1
->     Location:
->     http://www.yoctoproject.org/download/bsp/intel%C2%AE-atom%E2%84%A2-processor-n2000-and-d2000-series-based-platform-cedar-trail
+>-----BEGIN PGP SIGNATURE-----
+>Version: GnuPG v1.4.10 (GNU/Linux)
 >
->     - --
->     Elizabeth Flanagan
->     Yocto Project
->     Build and Release
->
->     -----BEGIN PGP SIGNATURE-----
->     Version: GnuPG v1.4.10 (GNU/Linux)
->
->     iQEcBAEBAgAGBQJO+5kmAAoJEEyK+E/MEkQPpqkH/iqYOrfxPd1fEcTbw3LXY+re
->     1H8zOglldc5yPhkhX2PmqkfI28OJwMOiUc3oooYRGeEpGg59SxQSqSImVwf3nmgn
->     wK933o5FC37M+1fIZsySNNf6Maj5IAExKN1Wu1V56Onf/1wq77kJ/NkvPq62ig5n
->     lZzKA2C1Red/4NuKKIuTEWj/3e5365XhBkbJHxaRECrIw3fD2bBIj49C3tVAkIUX
->     +ijIO56UR/qgHfRulUowtarAfCP/xADOnLnOZ9yvv7JEsaekrMReYZlGqEeF/TL+
->     M6v3b/27OwgF2ohCN3Ib7YnaFTR5g9fXwa//YMLuKm6quL+hafgzxJ2OCOxlo08=
->     =eKdg
->     -----END PGP SIGNATURE-----
->     _______________________________________________
->     yocto mailing list
->     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     https://lists.yoctoproject.org/listinfo/yocto
->
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>iQEcBAEBAgAGBQJO+5kmAAoJEEyK+E/MEkQPpqkH/iqYOrfxPd1fEcTbw3LXY+
+>re
+>1H8zOglldc5yPhkhX2PmqkfI28OJwMOiUc3oooYRGeEpGg59SxQSqSImVwf3nm
+>gn
+>wK933o5FC37M+1fIZsySNNf6Maj5IAExKN1Wu1V56Onf/1wq77kJ/NkvPq62ig5
+>n
+>lZzKA2C1Red/4NuKKIuTEWj/3e5365XhBkbJHxaRECrIw3fD2bBIj49C3tVAkIUX
+>+ijIO56UR/qgHfRulUowtarAfCP/xADOnLnOZ9yvv7JEsaekrMReYZlGqEeF/TL+
+>M6v3b/27OwgF2ohCN3Ib7YnaFTR5g9fXwa//YMLuKm6quL+hafgzxJ2OCOxlo08
+>=3D
+>=3DeKdg
+>-----END PGP SIGNATURE-----
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
 
