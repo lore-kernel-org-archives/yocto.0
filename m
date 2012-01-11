@@ -1,27 +1,33 @@
-Return-Path: <Zumeng.Chen@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD971E006E9
-	for <yocto@yoctoproject.org>; Tue, 10 Jan 2012 17:07:02 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q0B16qYK013837
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 10 Jan 2012 17:06:52 -0800 (PST)
-Received: from [128.224.162.181] (128.224.162.181) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 10 Jan 2012 17:06:52 -0800
-Message-ID: <4F0CE091.5050107@windriver.com>
-Date: Wed, 11 Jan 2012 09:06:25 +0800
-From: Zumeng Chen <zumeng.chen@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.1.11) Gecko/20100713 Lightning/1.0b1 Thunderbird/3.0.6
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qw0-f48.google.com (mail-qw0-f48.google.com
+	[209.85.216.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 032A0E0123F
+	for <yocto@yoctoproject.org>; Tue, 10 Jan 2012 19:56:46 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by qadc16 with SMTP id c16so257105qad.14
+	for <yocto@yoctoproject.org>; Tue, 10 Jan 2012 19:56:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=BaCa64FsYPR8atOABsPgUoi7QJvqwEc0QI+f8h/ojDM=;
+	b=Z61feqOCPE0EqmWb5db1Pt96qdL2GtCfcHEB65EmQPPmkZktDMXSNq8sld2VpANxjR
+	RKA6Ncl6r/6ZOndvR9igtLTjbk1V/u8GGXZAd1Xjsmzzm0FTfsjQ4bQKLWbnPOmVmaiC
+	rNwN31z0wz9K97TADEupA1ntCfK0w94ttzseU=
+Received: by 10.224.175.193 with SMTP id bb1mr28317839qab.41.1326254205375;
+	Tue, 10 Jan 2012 19:56:45 -0800 (PST)
+Received: from [10.0.1.39] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
+	by mx.google.com with ESMTPS id j18sm922925qag.17.2012.01.10.19.56.44
+	(version=SSLv3 cipher=OTHER); Tue, 10 Jan 2012 19:56:44 -0800 (PST)
+Message-ID: <4F0D087B.5050709@gmail.com>
+Date: Tue, 10 Jan 2012 22:56:43 -0500
+From: Jim Abernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <cover.1326210673.git.zumeng.chen@windriver.com>
-	<f42f850e2c27a23f9e7b46bbebe977a6a19a6c54.1326210673.git.zumeng.chen@windriver.com>
-	<4F0C6E4F.8040108@linux.intel.com>
-In-Reply-To: <4F0C6E4F.8040108@linux.intel.com>
-Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Subject: Re: [PATCH 1/4] lttng-ust: Integrate into yocto linux
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: hob usage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,79 +39,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jan 2012 01:07:03 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 11 Jan 2012 03:56:47 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-于 2012年01月11日 00:58, Darren Hart 写道:
->
-> On 01/10/2012 08:11 AM, Zumeng Chen wrote:
->    
->> This patch intended to integrate the LTTng UST 2.0 package, which
->> contains the userspace tracer library to trace userspace codes.
->>
->> Signed-off-by: Zumeng Chen<zumeng.chen@windriver.com>
->> ---
->>   meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb |   25 ++++++++++++++++++++++
->>   1 files changed, 25 insertions(+), 0 deletions(-)
->>   create mode 100644 meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb
->>
->> diff --git a/meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb b/meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb
->> new file mode 100644
->> index 0000000..846019e
->> --- /dev/null
->> +++ b/meta/recipes-kernel/lttng-2.0/lttng-ust_1.9.4.bb
->> @@ -0,0 +1,25 @@
->> +SUMMARY = "Linux Trace Toolkit Userspace Tracer 2.0"
->> +DESCRIPTION = "The LTTng UST 2.0 package contains the userspace tracer library to trace userspace codes."
->> +HOMEPAGE = "http://lttng.org/lttng2.0"
->> +BUGTRACKER = "n/a"
->> +
->> +LICENSE = "LGPLv2.1+&  BSD"
->> +LIC_FILES_CHKSUM = "file://COPYING;md5=e647752e045a8c45b6f583771bd561ef \
->> +                    file://snprintf/snprintf.c;endline=32;md5=d3d544959d8a3782b2e07451be0a903c \
->> +                    file://snprintf/various.h;endline=31;md5=89f2509b6b4682c4fc95255eec4abe44"
->> +
->> +inherit autotools
->> +
->> +DEPENDS = "liburcu util-linux"
->> +
->> +SRC_URI = "http://lttng.org/files/lttng-ust/lttng-ust-${PV}.tar.gz"
->> +
->> +SRC_URI[md5sum] = "0f09bb954c99cb99ab6997cd492953c1"
->> +SRC_URI[sha256sum] = "e9ec3c55c2251b3f3b512bfa1015b0f67e35d55793850ccea5134f7b24ee3ba1"
->> +
->> +S = "${WORKDIR}/lttng-ust-${PV}"
->> +
->> +# Due to liburcu not building on MIPS currently this recipe needs to
->> +# be limited also.
->> +# So here let us first suppport x86/arm/powerpc platforms now.
->> +COMPATIBLE_HOST = '(x86_64.*|i.86.*|arm.*|powerpc.*)-linux'
->>      
-> We had discussed using a different comment that more clearly stated why
-> this is necessary and use the same comment across all the patches
-> implementing this.
->
-> This applies to all 4 patches. The suggestion was in my response to
-> Patch 1/4 V1:
->    
-Oops, sorry Darren, all fixed and really soon for V4 on OE :-)
+I have a question about hob usage.  I understand the basics of hob and 
+how it adds packages.  I also understand how it will parse through my 
+local.conf and include any extra packages that I may have included by 
+using IMAGE_INSTALL += <package>.
 
-Regards,
-Zumeng
->    
->> Looking through documentation.conf and existing poky sources, I believe
->> this test is correct. HOST/TARGET are the same in this case. The comment
->> is a bit confusing however. I believe the comment should read:
->>
->> # liburcu doesn't build for MIPS
->> COMPATIBLE_HOST = '(x86_64.*|i.86.*|arm.*|powerpc.*)-linux'
->>
->> The key difference being "for" instead of "on". The rest of the comment
->> is redundant with the assignment itself. This applies to all 4 patches.
->>      
-> Otherwise, things look good.
->
->    
+I've found that if I start with a clean BSP and use hob to add a 
+package, it will allow me to save that configuration anywhere.  I'm not 
+sure where I should save it.  It contains the IMAGE_INSTALL for the 
+packages I've selected, but is also includes a 'require' statement, 
+which seems to have a relative path, like:
+
+require recipes-sato/images/core-image-sato.bb
+
+Where is the location I should save the hob configuration file? I know 
+that if I save it outside my poky directory, the package will not be 
+included, so it's important where it goes.
+
+Jim A
 
 
