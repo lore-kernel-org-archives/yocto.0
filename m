@@ -1,29 +1,22 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09232E0071D
-	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 12:46:31 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q0BKkToZ007145
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 11 Jan 2012 12:46:29 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 11 Jan 2012 12:46:29 -0800
-Message-ID: <4F0DF51C.6000700@windriver.com>
-Date: Wed, 11 Jan 2012 15:46:20 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Return-Path: <josh@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CA91E0123F
+	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 12:47:27 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 11 Jan 2012 12:47:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="106118026"
+Received: from unknown (HELO [10.255.14.12]) ([10.255.14.12])
+	by fmsmga001.fm.intel.com with ESMTP; 11 Jan 2012 12:47:27 -0800
+Message-ID: <4F0DF55E.4030605@linux.intel.com>
+Date: Wed, 11 Jan 2012 12:47:26 -0800
+From: Joshua Lock <josh@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-To: Brian Hutchinson <b.hutchman@gmail.com>
+To: yocto@yoctoproject.org
 References: <CAFZh4h-oJeiWFcM1mowKDwmF0gqT3Y0DBMFZ0WEcjJchUS+N4A@mail.gmail.com>
-	<4F0DA377.9090903@windriver.com>
-	<CAFZh4h_0R_vt94Twh_Pm=7ED7XRpQ_ddo_+FN30TnDBC8wae_A@mail.gmail.com>
-	<4F0DAACB.3010603@windriver.com>
-	<CAFZh4h_DC6Sk58Mw7_ixyTTz9p5iwMk5+6Ey1kD+oTnHG+KEFw@mail.gmail.com>
-	<CAFZh4h9+OSjs8hmAR3=7oZ0Z+4wBVOgu=7KeFXB4Av6R0jqZBQ@mail.gmail.com>
-In-Reply-To: <CAFZh4h9+OSjs8hmAR3=7oZ0Z+4wBVOgu=7KeFXB4Av6R0jqZBQ@mail.gmail.com>
-Cc: yocto@yoctoproject.org
+In-Reply-To: <CAFZh4h-oJeiWFcM1mowKDwmF0gqT3Y0DBMFZ0WEcjJchUS+N4A@mail.gmail.com>
 Subject: Re: Does Edison work with Beagleboard & linux-yocto-3.0 kernel?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -36,104 +29,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jan 2012 20:46:32 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Wed, 11 Jan 2012 20:47:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12-01-11 03:35 PM, Brian Hutchinson wrote:
->> <bruce.ashfield@windriver.com>  wrote:
->>> Just so I'm clear. You are asking about the switch to 3.0 as the
->>> default ? If so, that was only done in master for the upcoming 1.2
->>> release and not on the edison branch, so you wouldn't pick it up
->>> by pulling.
->>
->> Thanks!  I did a git checkout -b master origin/master and will try again.
->
-> Thanks Bruce for pointing me in the right direction.  I just wanted to
-> follow up.
->
-> I switched to master branch and did a clean build for Beagleboard.  I
-> can confirm that it worked.  I blew my SD Card away and put freshly
-> built yocto images of MLO, u-boot.bin&  uImage and my Beagleboard xM
-> boots fine (one last question after this output below):
->
-> Texas Instruments X-Loader 1.5.0 (Jan 11 2012 - 12:41:55)
-> Beagle xM
-> Reading boot sector
-> Loading u-boot.bin from mmc
->
->
-> U-Boot 2011.06 (Jan 11 2012 - 12:41:50)
->
-> OMAP3630/3730-GP ES1.0, CPU-OPP2, L3-165MHz, Max CPU Clock 1 Ghz
-> OMAP3 Beagle board + LPDDR/NAND
-> I2C:   ready
-> DRAM:  512 MiB
-> NAND:  256 MiB
-> MMC:   OMAP SD/MMC: 0
-> In:    serial
-> Out:   serial
-> Err:   serial
-> Beagle xM Rev A
-> No EEPROM on expansion board
-> Die ID #335000001bf00000015739ea07035019
-> Hit any key to stop autoboot:  0
-> SD/MMC found on device 0
-> reading uEnv.txt
->
-> ** Unable to read "uEnv.txt" from mmc 0:1 **
-> reading uImage
->
-> 3106612 bytes read
-> Booting from mmc ...
-> ## Booting kernel from Legacy Image at 82000000 ...
->     Image Name:   Linux-3.0.12-yocto-standard+
->     Image Type:   ARM Linux Kernel Image (uncompressed)
->     Data Size:    3106548 Bytes = 3 MiB
->     Load Address: 80008000
->     Entry Point:  80008000
->     Verifying Checksum ... OK
->     Loading Kernel Image ... OK
-> OK
->
-> Starting kernel ...
->
-> Uncompressing Linux... done, booting the kernel.
->
-> Yocto (Built by Poky 6.0) 1.1+snapshot-20120111 beagleboard ttyO2
->
-> beagleboard login: root
-> root@beagleboard:~# ls
-> root@beagleboard:~# uptime
->   19:06:08 up 0 min,  load average: 1.08, 0.30, 0.10
-> root@beagleboard:~# uname -a
-> Linux beagleboard 3.0.12-yocto-standard+ #1 PREEMPT Wed Jan 11
-> 13:53:06 EST 2012 armv7l GNU/Linux
-> root@beagleboard:~#
 
-Excellent!
 
+On 11/01/12 06:41, Brian Hutchinson wrote:
+> Hi,
 >
+> I followed the example in the "Yocto Project Development Manual" for
+> setting up a local kernel repo and it didn't go so well.
 >
-> ... so now I'm back to trying to get poky to use my local
-> linux-yocto-3.0 git repo.
+> A month or two ago I checked out Edison and was able to build all the
+> images required for Beagleboard and it booted fine (using command line
+> ... not hob.  Tried hob but couldn't get it to work).
 >
-> One more question.  When I setup linux-yocto_3.0.bbappend in
-> poky-extras/meta-kernel-dev/recipies-kernel/linux, do I use
-> "yocto/standard/beagleboard" for KMACHINE?
+> So then I checked out linux-yocto-3.0 kernel and setup a local kernel
+> git repo and went through the process of setting up poky-extras,
+> modifying bblayers.conf etc. to point to my local repo.
+>
+> Any time I try to build core-image-minimal it looks like it always
+> wants to use the 2.6.37 recipe instead of finding my 3.0 repo.  I've
+> tried everything I can think of and I must me missing something.
 
-If you still want the default (which you likely do here), you
-can leave KMACHINE untouched in your bbappend and the inherited
-value from the core layers will take care of everything. Get that
-working on your local clone, and then try tweaking things :)
+In meta-yocto/conf/distro/poky.conf there's a line which sets:
+
+PREFERRED_VERSION_linux-yocto ?= "2.6.37+git%"
+
+Which is then overridden for the qemu machines to:
+
+PREFERRED_VERSION_linux-yocto_qemuppc ?= "3.0%"
+
+If you add a similar line for beagleboard to a conf file, such as 
+local.conf, it would look for a 3.0 kernel version and use your tree.
+
+PREFERRED_VERSION_linux-yocto_beagleboard ?= "3.0%"
+
+I know you've switched to master but I wanted to help you understand the 
+system is doing what it is.
 
 Cheers,
-
-Bruce
-
->
-> Thanks again,
->
-> Brian
-
+Joshua
+-- 
+Joshua Lock
+         Yocto Project "Johannes factotum"
+         Intel Open Source Technology Centre
 
