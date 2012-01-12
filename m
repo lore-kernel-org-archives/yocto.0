@@ -1,37 +1,36 @@
-Return-Path: <jfabernathy@gmail.com>
+Return-Path: <marc.ferland@gmail.com>
 Received: from mail-qw0-f41.google.com (mail-qw0-f41.google.com
 	[209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66236E0030C
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 10:52:56 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB421E0030C
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 11:55:23 -0800 (PST)
 Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
 	(1024-bit key; insecure key) header.i=@gmail.com;
 	x-dkim-adsp=none (insecure policy)
-Received: by qats34 with SMTP id s34so344371qat.14
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 10:52:55 -0800 (PST)
+Received: by qats34 with SMTP id s34so382311qat.14
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 11:55:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=0op/SqVaZ681CIYuQhnzbV2UfuMRsFmCCLe57zOy+/o=;
-	b=CuOiYrumVemf7BZuhMm4uG1xPdSY87RLIksHu0xdlgxHKdlIMS7/WTKf2Xa1foL7cD
-	vL6WYtoXen/UhGS/Bte0h07spSpjmF0RM87i5CFaNEDLAd9FEEj71FV/QbhKRgAD26C0
-	7IbtXPTZn2caX/cWTYaEgQXFMeYfZ1gPJ8i84=
-Received: by 10.224.52.75 with SMTP id h11mr7463256qag.46.1326394375344;
-	Thu, 12 Jan 2012 10:52:55 -0800 (PST)
-Received: from [10.0.1.39] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
-	by mx.google.com with ESMTPS id
-	r10sm11564856qaz.7.2012.01.12.10.52.53 (version=SSLv3 cipher=OTHER);
-	Thu, 12 Jan 2012 10:52:54 -0800 (PST)
-Message-ID: <4F0F2C01.4020504@gmail.com>
-Date: Thu, 12 Jan 2012 13:52:49 -0500
-From: Jim Abernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+	h=sender:from:to:subject:date:message-id:user-agent:mime-version
+	:content-type; bh=7EDgp7SzQBN/KhdC1Q8Tn2n4joAW4ZhDEJ1AtZWCUos=;
+	b=HtHPb4nYWhb+Z1XENPbasWsO2o+62B41aVFNk6dtb2HjbHarzAksOxeSEJRosoObfn
+	KsZydMydl977iXHz1e2EFXChT1pUokUICJTcpWjnd3Or0JvpNuusvYGJh/bom/4J6Axr
+	l0v5vYbnzhbDhvuU4L1r+VVSjoPrf0YkVRYm0=
+Received: by 10.224.176.80 with SMTP id bd16mr7892525qab.39.1326398122998;
+	Thu, 12 Jan 2012 11:55:22 -0800 (PST)
+Received: from ferlandm@sonatest.com
+	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
+	by mx.google.com with ESMTPS id s19sm11849207qap.2.2012.01.12.11.55.20
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 12 Jan 2012 11:55:21 -0800 (PST)
+Sender: Marc Ferland <marc.ferland@gmail.com>
+Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
+	Thu, 12 Jan 2012 14:55:35 -0500
+From: Marc Ferland <ferlandm@sonatest.com>
+To: yocto@yoctoproject.org
+Date: Thu, 12 Jan 2012 14:55:35 -0500
+Message-ID: <877h0wn1ag.fsf@sonatest.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/23.3 (gnu/linux)
 MIME-Version: 1.0
-To: Gary Thomas <gary@mlbassoc.com>
-References: <4F0ED7D2.9050807@gmail.com> <4F0EDAC1.2070805@mlbassoc.com>
-In-Reply-To: <4F0EDAC1.2070805@mlbassoc.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: where to put IMAGE_INSTALL??
+Subject: QtCreator and Yocto SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,44 +42,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2012 18:52:56 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 12 Jan 2012 19:55:24 -0000
+Content-Type: text/plain; charset=us-ascii
 
-On 01/12/2012 08:06 AM, Gary Thomas wrote:
-> On 2012-01-12 05:53, Jim Abernathy wrote:
->> There seems to be some sensitivity to where I put the statement 
->> IMAGE_INSTALL += "web-webkit".
->>
->> At first I just modifed the 
->> meta/receipes-sato/image/core-image-sato.bb file to include it. That 
->> caused the webkit to be built.
->>
->> Since that is not an ideal location, I removed it and put it into the 
->> local.conf file. That also caused the webkit to be built, but I 
->> wanted it to be part of my BSP permanently.
->>
->> I thought about creating a core-image-sato.bbappend file with the 
->> IMAGE_INSTALL += "web-webkit" in it and put that into the BSP, but 
->> that didn't cause the webkit to be built. Under
->> the meta-intel/meta-n450 directory, I created a receipes-jfa 
->> directory and put the core-image-sato.bbappend file there.
->>
->> I must be missing a key rule about directory parsing and .bbappend 
->> files.
->
-> Look at the how the layers are parsed - this info is in 
-> <layer>/conf/layer.conf
->
-> Try putting your .bbappend file in
->    .../meta-intel/meta-n450/recipes-jfa/images/core-image-sato.bbappend
->
-I just tested your method of putting the .bbappend file in the directory 
-above and it work just fine.  I also found out that you should not put 
-the IMAGE_INSTALL in the local.conf.  It builds okay, but the resulting 
-image will not boot.  Tom pointing me the a statement in the Poky 
-reference manual about not doing this as well.
+Hi,
 
-JIm A
+I'm currently looking for instructions on how to integrate a Yocto SDK
+with QtCreator.
 
+I've successfully built my application by sourcing the environment file
+and simply calling qmake/make, but QtCreator refuses to build the
+project.
+
+Any ideas/tips?
+
+Marc
 
