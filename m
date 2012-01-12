@@ -1,20 +1,37 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1819FE0137C
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 10:33:51 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 12 Jan 2012 10:33:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="55894661"
-Received: from unknown (HELO [10.255.13.225]) ([10.255.13.225])
-	by AZSMGA002.ch.intel.com with ESMTP; 12 Jan 2012 10:33:49 -0800
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-Date: Thu, 12 Jan 2012 12:33:22 -0600
-Message-ID: <1326393202.2413.175.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Subject: [PATCH] meta-intel/common: fix ptr->int and Werror=address compile errors
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qw0-f41.google.com (mail-qw0-f41.google.com
+	[209.85.216.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66236E0030C
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 10:52:56 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by qats34 with SMTP id s34so344371qat.14
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 10:52:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=0op/SqVaZ681CIYuQhnzbV2UfuMRsFmCCLe57zOy+/o=;
+	b=CuOiYrumVemf7BZuhMm4uG1xPdSY87RLIksHu0xdlgxHKdlIMS7/WTKf2Xa1foL7cD
+	vL6WYtoXen/UhGS/Bte0h07spSpjmF0RM87i5CFaNEDLAd9FEEj71FV/QbhKRgAD26C0
+	7IbtXPTZn2caX/cWTYaEgQXFMeYfZ1gPJ8i84=
+Received: by 10.224.52.75 with SMTP id h11mr7463256qag.46.1326394375344;
+	Thu, 12 Jan 2012 10:52:55 -0800 (PST)
+Received: from [10.0.1.39] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
+	by mx.google.com with ESMTPS id
+	r10sm11564856qaz.7.2012.01.12.10.52.53 (version=SSLv3 cipher=OTHER);
+	Thu, 12 Jan 2012 10:52:54 -0800 (PST)
+Message-ID: <4F0F2C01.4020504@gmail.com>
+Date: Thu, 12 Jan 2012 13:52:49 -0500
+From: Jim Abernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
+MIME-Version: 1.0
+To: Gary Thomas <gary@mlbassoc.com>
+References: <4F0ED7D2.9050807@gmail.com> <4F0EDAC1.2070805@mlbassoc.com>
+In-Reply-To: <4F0EDAC1.2070805@mlbassoc.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: where to put IMAGE_INSTALL??
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,209 +43,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2012 18:34:20 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 12 Jan 2012 18:52:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-A couple of things that had previously been warnings are now errors,
-so they need to be fixed up.
+On 01/12/2012 08:06 AM, Gary Thomas wrote:
+> On 2012-01-12 05:53, Jim Abernathy wrote:
+>> There seems to be some sensitivity to where I put the statement 
+>> IMAGE_INSTALL += "web-webkit".
+>>
+>> At first I just modifed the 
+>> meta/receipes-sato/image/core-image-sato.bb file to include it. That 
+>> caused the webkit to be built.
+>>
+>> Since that is not an ideal location, I removed it and put it into the 
+>> local.conf file. That also caused the webkit to be built, but I 
+>> wanted it to be part of my BSP permanently.
+>>
+>> I thought about creating a core-image-sato.bbappend file with the 
+>> IMAGE_INSTALL += "web-webkit" in it and put that into the BSP, but 
+>> that didn't cause the webkit to be built. Under
+>> the meta-intel/meta-n450 directory, I created a receipes-jfa 
+>> directory and put the core-image-sato.bbappend file there.
+>>
+>> I must be missing a key rule about directory parsing and .bbappend 
+>> files.
+>
+> Look at the how the layers are parsed - this info is in 
+> <layer>/conf/layer.conf
+>
+> Try putting your .bbappend file in
+>    .../meta-intel/meta-n450/recipes-jfa/images/core-image-sato.bbappend
+>
+I just tested your method of putting the .bbappend file in the directory 
+above and it work just fine.  I also found out that you should not put 
+the IMAGE_INSTALL in the local.conf.  It builds okay, but the resulting 
+image will not boot.  Tom pointing me the a statement in the Poky 
+reference manual about not doing this as well.
 
-The first problem is a comparison between the address of a static
-struct and NULL, which can never be valid.  A different fix for this
-is upstream, which includes an API usage change; we don't need that to
-fix this problem.
-
-The second problem is a cast from pointer to integer in fbdevhw.c.
-This also is fixed upstream by removing the whole section of code
-which is bogus anyway, which is also done here.
-
-This also adds a missing PR to the xserver-xorg recipe.
-
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- .../xorg-xserver/xserver-xorg-1.9.3.inc            |    5 +
- .../xserver-xorg-1.9.3/ptr-to-int-cast-fix.patch   |   92 ++++++++++++++++++++
- .../xserver-xorg-1.9.3/werror-address-fix.patch    |   49 +++++++++++
- 3 files changed, 146 insertions(+), 0 deletions(-)
- create mode 100644 common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/ptr-to-int-cast-fix.patch
- create mode 100644 common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/werror-address-fix.patch
-
-diff --git a/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3.inc b/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3.inc
-index 888445d..8c7009f 100644
---- a/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3.inc
-+++ b/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3.inc
-@@ -4,6 +4,10 @@ SRC_URI += "file://nodolt.patch \
- # Misc build failure for master HEAD
- SRC_URI += "file://fix_open_max_preprocessor_error.patch"
- 
-+# What once were warnings now are errors, fix those up
-+SRC_URI += "file://werror-address-fix.patch \
-+            file://ptr-to-int-cast-fix.patch"
-+
- PROTO_DEPS += "xf86driproto dri2proto"
- DEPENDS += "font-util"
- EXTRA_OECONF += "--enable-dri --enable-dri2 --enable-dga"
-@@ -13,3 +17,4 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=3dd2bbe3563837f80ed8926b06c1c353"
- SRC_URI[md5sum] = "5bef6839a76d029204ab31aa2fcb5201"
- SRC_URI[sha256sum] = "864831f51e841ff37f2445d1c85b86b559c8860a435fb496aead4f256a2b141d"
- 
-+PR = "r1"
-diff --git a/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/ptr-to-int-cast-fix.patch b/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/ptr-to-int-cast-fix.patch
-new file mode 100644
-index 0000000..705cffc
---- /dev/null
-+++ b/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/ptr-to-int-cast-fix.patch
-@@ -0,0 +1,92 @@
-+Upstream-Status: Inappropriate [already upstream]
-+
-+It's broken for devices with BARs above 4G, and the sysfs method should         
-+work everywhere anyway.  As a pleasant side effect, this fixes some             
-+warnings:                                                                       
-+                                                                                
-+fbdevhw.c: In function 'fbdev_open_pci':                                        
-+fbdevhw.c:333:4: warning: cast from pointer to integer of different size        
-+fbdevhw.c:334:4: warning: cast from pointer to integer of different size        
-+fbdevhw.c:336:4: warning: cast from pointer to integer of different size        
-+fbdevhw.c:337:4: warning: cast from pointer to integer of different size        
-+                                                                                
-+Signed-off-by: Adam Jackson <ajax (a] redhat.com>                                   
-+Integrated-by: Tom Zanussi <tom.zanussi (a] intel.com>
-+
-+Index: xorg-server-1.9.3/hw/xfree86/fbdevhw/fbdevhw.c
-+===================================================================
-+--- xorg-server-1.9.3.orig/hw/xfree86/fbdevhw/fbdevhw.c	2012-01-12 10:32:07.097729262 -0600
-++++ xorg-server-1.9.3/hw/xfree86/fbdevhw/fbdevhw.c	2012-01-12 10:32:55.076732780 -0600
-+@@ -291,14 +291,7 @@
-+ {
-+     struct	fb_fix_screeninfo fix;
-+     char	filename[256];
-+-    int	fd,i,j;
-+-
-+-
-+-    /* There are two ways to that we can determine which fb device is
-+-     * associated with this PCI device.  The more modern way is to look in
-+-     * the sysfs directory for the PCI device for a file named
-+-     * "graphics/fb*"
-+-     */
-++    int	fd, i;
-+ 
-+     for (i = 0; i < 8; i++) {
-+ 	sprintf(filename, 
-+@@ -331,55 +324,10 @@
-+ 	}
-+     }
-+ 
-+-
-+-    /* The other way is to examine the resources associated with each fb
-+-     * device and see if there is a match with the PCI device.  This technique
-+-     * has some problems on certain mixed 64-bit / 32-bit architectures.
-+-     * There is a flaw in the fb_fix_screeninfo structure in that it only
-+-     * returns the low 32-bits of the address of the resources associated with
-+-     * a device.  However, on a mixed architecture the base addresses of PCI
-+-     * devices, even for 32-bit applications, may be higher than 0x0f0000000.
-+-     */
-+-
-+-    for (i = 0; i < 8; i++) {
-+-	sprintf(filename,"/dev/fb%d",i);
-+-	if (-1 == (fd = open(filename,O_RDWR,0))) {
-+-	    xf86DrvMsg(-1, X_WARNING,
-+-		       "open %s: %s\n", filename, strerror(errno));
-+-	    continue;
-+-	}
-+-	if (-1 == ioctl(fd,FBIOGET_FSCREENINFO,(void*)&fix)) {
-+-	    close(fd);
-+-	    continue;
-+-	}
-+-	for (j = 0; j < 6; j++) {
-+-	    const pciaddr_t res_start = pPci->regions[j].base_addr;
-+-	    const pciaddr_t res_end = res_start + pPci->regions[j].size;
-+-
-+-	    if ((0 != fix.smem_len &&
-+-		 (pciaddr_t) fix.smem_start >= res_start &&
-+-		 (pciaddr_t) fix.smem_start < res_end) ||
-+-		(0 != fix.mmio_len &&
-+-		 (pciaddr_t) fix.mmio_start >= res_start &&
-+-		 (pciaddr_t) fix.mmio_start < res_end))
-+-	      break;
-+-	}
-+-	if (j == 6) {
-+-	    close(fd);
-+-	    continue;
-+-	}
-+-	if (namep) {
-+-	    *namep = xnfalloc(16);
-+-	    strncpy(*namep,fix.id,16);
-+-	}
-+-	return fd;
-+-    }
-+-
-+     if (namep)
-+       *namep = NULL;
-+ 
-+-    xf86DrvMsg(-1, X_ERROR,
-+-	       "Unable to find a valid framebuffer device\n");
-++    xf86DrvMsg(-1, X_ERROR, "Unable to find a valid framebuffer device\n");
-+     return -1;
-+ }
-+ 
-diff --git a/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/werror-address-fix.patch b/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/werror-address-fix.patch
-new file mode 100644
-index 0000000..49d3f94
---- /dev/null
-+++ b/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/werror-address-fix.patch
-@@ -0,0 +1,49 @@
-+Upstream-Status: Inappropriate [yocto-specific]
-+
-+This is fixed upstream by actually making these tests meaningful.
-+As they stand, the warning is correct and they're no-ops, so remove
-+them.
-+
-+Signed-off-by: Tom Zanussi <tom.zanussi (a] intel.com>
-+
-+Index: xorg-server-1.9.3/Xext/xvmc.c
-+===================================================================
-+--- xorg-server-1.9.3.orig/Xext/xvmc.c	2012-01-12 09:57:36.306947860 -0600
-++++ xorg-server-1.9.3/Xext/xvmc.c	2012-01-12 10:24:59.286729946 -0600
-+@@ -467,7 +467,6 @@
-+     return Success;
-+ }
-+ 
-+-
-+ static int
-+ ProcXvMCListSubpictureTypes(ClientPtr client)
-+ {
-+@@ -487,9 +486,6 @@
-+ 
-+     pScreen = pPort->pAdaptor->pScreen;
-+ 
-+-    if(XvMCScreenKey == NULL) /* No XvMC adaptors */
-+-        return BadMatch;
-+-
-+     if(!(pScreenPriv = XVMC_GET_PRIVATE(pScreen)))
-+         return BadMatch;   /* None this screen */
-+ 
-+@@ -668,9 +664,6 @@
-+ {
-+    ExtensionEntry *extEntry;
-+ 
-+-   if(XvMCScreenKey == NULL) /* nobody supports it */
-+-	return; 
-+-
-+    if(!(XvMCRTContext = CreateNewResourceType(XvMCDestroyContextRes,
-+ 					      "XvMCRTContext")))
-+ 	return;
-+@@ -746,8 +739,6 @@
-+     XvMCAdaptorPtr adaptor = NULL;
-+     int i;
-+ 
-+-    if(XvMCScreenKey == NULL) return NULL;
-+-
-+     if(!(pScreenPriv = XVMC_GET_PRIVATE(pScreen))) 
-+         return NULL;
-+ 
--- 
-1.7.0.4
-
-
+JIm A
 
 
