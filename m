@@ -1,29 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7164FE0030C
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 08:24:39 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q0CGOaXk022000
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 12 Jan 2012 08:24:36 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 12 Jan 2012 08:24:36 -0800
-Message-ID: <4F0F093B.7000408@windriver.com>
-Date: Thu, 12 Jan 2012 11:24:27 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+Return-Path: <b.hutchman@gmail.com>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5395DE0030C
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 08:30:00 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by bkvi18 with SMTP id i18so2075860bkv.35
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 08:29:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=zVILimE0j3ocGoDXvDdoebPvOngg31KdTE2i5aB69sU=;
+	b=TYBs6js3PFks2P2tng2qHO+OJJtT7SABY6bGZYECDpGYaYcF3BIYeSkO05mHnumS8i
+	98gyTvFG5FMTbrs+psam/45QJpR+aNqrZ3KpQP4VhYYMpG0TS9zQLyZW+uuu4cgivx1f
+	nMEKNGf07BVFYsqChxcEh58Z14xRbBcIFo6Hg=
 MIME-Version: 1.0
-To: Brian Hutchinson <b.hutchman@gmail.com>
+Received: by 10.205.120.147 with SMTP id fy19mr1417791bkc.49.1326385799324;
+	Thu, 12 Jan 2012 08:29:59 -0800 (PST)
+Received: by 10.205.141.203 with HTTP; Thu, 12 Jan 2012 08:29:59 -0800 (PST)
+In-Reply-To: <4F0F02BA.4000008@communistcode.co.uk>
 References: <CAFZh4h-oJeiWFcM1mowKDwmF0gqT3Y0DBMFZ0WEcjJchUS+N4A@mail.gmail.com>
 	<4F0DF55E.4030605@linux.intel.com>
 	<CAFZh4h_JA8Oq3U=9HkrhXsyOB86dHV2u3XxY25UQDFgJpFg=Ug@mail.gmail.com>
 	<CAFZh4h8CtWD3q7_bWQoH9X1j=J=irW05Mhvbqvv5h_fp-oFn+A@mail.gmail.com>
-	<4F0F03AB.1010808@windriver.com>
-	<CAFZh4h8Z3GW8mrsgpHVQCQgHpg1CpmwmP=xMXcitA=h4A1L52A@mail.gmail.com>
-In-Reply-To: <CAFZh4h8Z3GW8mrsgpHVQCQgHpg1CpmwmP=xMXcitA=h4A1L52A@mail.gmail.com>
-Cc: yocto@yoctoproject.org
+	<4F0F02BA.4000008@communistcode.co.uk>
+Date: Thu, 12 Jan 2012 11:29:59 -0500
+Message-ID: <CAFZh4h-1mzBZpNdiS=vykndddqWFSzsgBKNtO=wRw8ZuDHEDmg@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: Jack Mitchell <ml@communistcode.co.uk>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Does Edison work with Beagleboard & linux-yocto-3.0 kernel?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -36,51 +42,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2012 16:24:39 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 12 Jan 2012 16:30:00 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 12-01-12 11:20 AM, Brian Hutchinson wrote:
-> On Thu, Jan 12, 2012 at 11:00 AM, Bruce Ashfield
-> <bruce.ashfield@windriver.com>  wrote:
->> The bitbake AUTOREV code should take care of updating the clone
->> of your local repo in downloads/git2. I take it that this isn't
->> happening ?
+On Thu, Jan 12, 2012 at 10:56 AM, Jack Mitchell <ml@communistcode.co.uk> wrote:
+> Brian,
 >
-> ... haven't tried ... was just sticking to the example in the
-> documentation which says to push changes and do a cleanall.  The spin
+> What image are you building, as I cannot get core-image-minimal to boot at
+> all on my xM. I am currently trying to fix a hosed sd card (who knows what
+> happened to it!) and then I will see if it has made any difference.
 
-Good point. I hadn't noticed that it was in there. Worth trying
-without it, and raising a bug if it isn't required. It's
-bitbake internals rather than kernel at play here, so I'm far
-from authoritative about what should or shouldn't work.
+Probably the same images as you.  I switched my branch to master and
+the default kernel built was 3.0.12.
 
-> time on my dev machine wasn't too bad but long enough to get old quick
-> if I had to do it often.
+You might have to smoke your SD card (re-partition it for boot & root)
+and copy MLO first, then u-boot.bin and uImage.  Copying MLO first is
+key.  I know this can be a pain.  Google for beagleboard SD Card
+script to find one of the scripts that automates setting up the SD
+Card.  They just create the partitions etc., you still have to copy
+the contents to the card in the right order.  MLO is the first you
+copy on the boot partition, the order the rest are copied don't matter
+AFAIK.
 
-Agreed!
+I also have a boot.scr with:
 
->
->> It should be (largely) as simple as that. We could create something
->> simple and throw it in with the meta-kernel-dev layer if there's any
->> interest in adding it.
->
-> Just wanting to know what the "best practice" is as I have lots of
-> platforms to support.
+setenv bootcmd 'mmc init; fatload mmc 0:1 0x80300000 uImage; bootm 0x80300000'
+setenv setenv bootargs 'console=ttyO2,115200n8 root=/dev/mmcblk0p2
+rootwait rootfstype=ext3 rw'
+boot
 
-I prefer to work this way, since managing patches in a source git
-repository is much easier for me. If you only have a few patches,
-then they can just be pushed on top and added to the SRC_URI, but
-you'd be doing more development under tmp/work/ in that case .. and
-I'm paranoid about losing things :)
+Hope that helps!
 
-Cheers,
+Regards,
 
-Bruce
-
->
-> Regards,
->
-> Brian
-
+Brian
 
