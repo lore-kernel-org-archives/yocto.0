@@ -1,40 +1,28 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B72CDE0030C
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 13:27:30 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q0CLR93e000880
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 12 Jan 2012 13:27:09 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 12 Jan 2012 13:27:09 -0800
-Message-ID: <4F0F5024.501@windriver.com>
-Date: Thu, 12 Jan 2012 16:27:00 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Return-Path: <darren.hart@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2D5DE0030C
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 13:39:31 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 12 Jan 2012 13:39:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="95874632"
+Received: from btwarden-mobl1.amr.corp.intel.com (HELO envy.home)
+	([10.7.199.156])
+	by orsmga001.jf.intel.com with ESMTP; 12 Jan 2012 13:39:31 -0800
+Message-ID: <4F0F52FF.3060601@intel.com>
+Date: Thu, 12 Jan 2012 13:39:11 -0800
+From: Darren Hart <darren.hart@intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+	rv:8.0) Gecko/20111115 Thunderbird/8.0
 MIME-Version: 1.0
-To: Darren Hart <darren.hart@intel.com>
-References: <4BD43A85686FC34D819098DB1C3999D901900BC33C@orsmsx502.amr.corp.intel.com>
-	<4EE7DA4D.4080500@windriver.com> <4EE7DC81.6030609@intel.com>
-	<4BD43A85686FC34D819098DB1C3999D901900BC38A@orsmsx502.amr.corp.intel.com>
-	<4EE7DEC2.5050803@windriver.com>
-	<4BD43A85686FC34D819098DB1C3999D901900BC3A3@orsmsx502.amr.corp.intel.com>
-	<4EE83092.5000500@windriver.com> <4EE83861.4060607@intel.com>
-	<4EE8AD93.8040100@windriver.com>
-	<4BD43A85686FC34D819098DB1C3999D9019260E255@orsmsx502.amr.corp.intel.com>
-	<4EEB9CD5.7060004@intel.com>
-	<4BD43A85686FC34D819098DB1C3999D9019260E281@orsmsx502.amr.corp.intel.com>
-	<4EEBA792.9030404@intel.com>
-	<4BD43A85686FC34D819098DB1C3999D9019260E3BE@orsmsx502.amr.corp.intel.com>
-	<4EEBCF40.1050208@intel.com>
-	<4BD43A85686FC34D819098DB1C3999D9019260E569@orsmsx502.amr.corp.intel.com>
-	<4EEBF18C.3050302@intel.com> <4EEC068C.6080906@windriver.com>
-	<1326400782.2413.192.camel@elmorro> <4F0F4801.10102@intel.com>
-In-Reply-To: <4F0F4801.10102@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison branch.
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+References: <CACJvPv3H8QaGffS3kdS1qLogcwn9L1ZsYpzqo6eei6LMK_7=WQ@mail.gmail.com>
+	<4F0F2627.3010004@linux.intel.com> <4F0F4E7C.9030506@intel.com>
+	<D956029D25CF204F948EA0FB515E1EE202325B@ORSMSX105.amr.corp.intel.com>
+In-Reply-To: <D956029D25CF204F948EA0FB515E1EE202325B@ORSMSX105.amr.corp.intel.com>
+Cc: "Ahmad, Josef" <josef.ahmad@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: qemu EFI build failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,63 +34,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2012 21:27:30 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-List-Received-Date: Thu, 12 Jan 2012 21:39:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 12-01-12 03:52 PM, Darren Hart wrote:
-> On 01/12/2012 12:39 PM, Tom Zanussi wrote:
->> On Fri, 2011-12-16 at 19:03 -0800, Bruce Ashfield wrote:
->>> On 11-12-16 8:34 PM, Darren Hart wrote:
->>>> On 12/16/2011 05:22 PM, Bodke, Kishore K wrote:
->>>>>
->>>>> With the attached Darren's kern-tools-native_git.bb file, build was success.
->>>>> Thanks
->>>>> Kishore.
->>>>
->>>> See the patch I just sent:kern-tools: Include do_install() in bbappend
->>>> for what I believe to be the solution.
->>>>
->>>> I suppose the proper solution would be to version the kern-tools-native
->>>> recipe when major things like that change, but given the nature of this
->>>> layer, I think the above patch is adequate.
->>>
->>> That's not the solution to either problem (well, yes, it's a solution
->>> and there's nothing inherently wrong with it, it's just covering up
->>> the underlying issue) which is a layer dependency issue. In this case,
->>> meta-kernel-dev tracks the master branch of poky, not any other branch
->>> or version. And that is implicit, not explicit, hence why it got into
->>> this tangle.
->>>
->>> We could simply branch meta-kernel-dev and have an edison branch for
->>> it, not modify the appends to contain something that will just break
->>> again in the future.
->>>
->>> But meta-kernel-dev isn't officially used by much at the moment, so
->>> I'm not convinced that branching it is worth the trouble (but I can
->>> be convinced otherwise). I'd rather either just remove the kern-tools
->>> bbappend (I'm probably the only one on the planet that really needs
->>> it), or just trust people to know what they are up to with the
->>> meta-kernel-dev layer.
+On 01/12/2012 01:28 PM, Bodke, Kishore K wrote:
+> I have only 
+> MACHINE_FEATURES += "efi"
+> KERNEL_FEATURES_append_cedartrail += "cfg/efi-ext.scc".
+> 
+> I am not having IMAGE_FSTYPES += "live".
+
+The "live" change is just to trigger the live image type which builds
+grub-efi-native for efi systems. qemux86 needs this added explicitly.
+
+--
+Darren
+
+> 
+> Thanks
+> Kishore.
+> -----Original Message-----
+> From: Hart, Darren 
+> Sent: Thursday, January 12, 2012 1:20 PM
+> To: Ahmad, Josef
+> Cc: yocto@yoctoproject.org; Bodke, Kishore K; Kamble, Nitin A
+> Subject: Re: [yocto] qemu EFI build failure
+> 
+> On 01/12/2012 10:27 AM, Darren Hart wrote:
+>>
+>>
+>> On 01/12/2012 08:19 AM, Josef Ahmad wrote:
+>>> I tried to build a qemux86 EFI image, by setting:
+>>> - in my local.conf: IMAGE_FSTYPES += "live"
+>>> - in poly/meta/conf/machine/qemux86.conf: MACHINE_FEATURES += "efi"
 >>>
 >>
->> Revisiting this - meta-kernel-dev is used in the documentation, and
->> Scott has now run up against this when testing and updating it.  Since
->> the documentation does use edison, and the walk-throughs have the user
->> check out edison branches of both poky and the BSP layers, it would be
->> consistent to have the user also do the same for meta-kernel-dev.
->> Probably just an edison branch with the kern-tools bbappend removed
->> would work fine...
+>> I haven't tried live images with QEMU. For one thing, they aren't really
+>> necessary as you can specify all the boot parameters on the qemu command
+>> line. Is there are reason you want to use the live image specifically?
 >>
->> Tom
->
-> Works for me.
+>> Also, in order to properly test EFI in QEMU, you will need to use an EFI
+>> BIOS - I believe you're aware of this already - but this isn't currently
+>> supported by the runqemu scripts that ship with yocto.
+>>
+>>> The build gave me the following error:
+>>
+>>
+>> I'll do some test builds - it isn't clear to me what is going on here.
+>>
+>> <snip>
+>>
+>>>
+>>>
+>>> Has anyone encountered the same error?  I'm not sure I set up the
+>>> correct configuration. Also, is there another way to append "efi" to
+>>> MACHINE_FEATURES rather than by modifying qemux86.conf?
+>>
+>> You should be able to do something like:
+>> MACHINE_FEATURES_append_qemux86 = "efi"
+>>
+>> Note that you will also need to enable the efi support in the kernel,
+>> which is done with the KERNEL_FEATURES variable, something like:
+>> KERNEL_FEATURES_append_qemux86 = "conf/efi-ext.scc"
+>>
+>> Either of these can be set in your local.conf.
+>>
+> 
+> More accurately:
+> 
+> MACHINE_FEATURES_append_qemux86=" efi pcbios"
+> KERNEL_FEATURES_append_qemux86=" cfg/efi-ext.scc"
+> IMAGE_FSTYPES += "live"
+> 
+> With these added to local.conf and building for qemux86 I see the same
+> configure failures reported by Kishore and Josef:
+> 
+> | ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
+> | acinclude.m4:363: grub_CHECK_STACK_ARG_PROBE is expanded from...
+> 
+> I've discussed in IRC with Nitin and he thinks this may be related to
+> the automake update and is looking into it.
+> 
 
-Seems ok. I can create a branch shortly, once I'm slightly out from
-under my 3.2 tree creation rush.
 
-Bruce
-
->
-
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
