@@ -1,34 +1,28 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qw0-f41.google.com (mail-qw0-f41.google.com
-	[209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23584E0072A
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 04:53:43 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by qats34 with SMTP id s34so73345qat.14
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 04:53:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=53xULJcVDAG6UVRCW2Igja+07SHULf9LX8oAipTcT5w=;
-	b=xUepQFTpjgHFK8Udk6J5LS/Zi5S0YWeRWQ5PFvC+BeH1PUgEp488a8q6oLtfLS2jY2
-	9M35ErepKBZBkmB13I68D5nZbojjsg677wXpNdn2btdMyoqsUmPs7nfcOPk/8y9FTKk3
-	mz35KYQPZvgdmYhIAhNPnxyvdf5B+qSd8Nbkk=
-Received: by 10.224.173.135 with SMTP id p7mr5047437qaz.83.1326372822273;
-	Thu, 12 Jan 2012 04:53:42 -0800 (PST)
-Received: from [10.0.1.39] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
-	by mx.google.com with ESMTPS id
-	hm10sm9922636qab.12.2012.01.12.04.53.41 (version=SSLv3 cipher=OTHER);
-	Thu, 12 Jan 2012 04:53:41 -0800 (PST)
-Message-ID: <4F0ED7D2.9050807@gmail.com>
-Date: Thu, 12 Jan 2012 07:53:38 -0500
-From: Jim Abernathy <jfabernathy@gmail.com>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDCA5E0072A
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 05:06:12 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 8564BF811E6; Thu, 12 Jan 2012 06:06:10 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 9DACFF811E5;
+	Thu, 12 Jan 2012 06:06:09 -0700 (MST)
+Message-ID: <4F0EDAC1.2070805@mlbassoc.com>
+Date: Thu, 12 Jan 2012 06:06:09 -0700
+From: Gary Thomas <gary@mlbassoc.com>
 User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: where to put IMAGE_INSTALL??
+To: Jim Abernathy <jfabernathy@gmail.com>
+References: <4F0ED7D2.9050807@gmail.com>
+In-Reply-To: <4F0ED7D2.9050807@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: where to put IMAGE_INSTALL??
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,27 +34,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2012 12:53:43 -0000
+X-List-Received-Date: Thu, 12 Jan 2012 13:06:13 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-There seems to be some sensitivity to where I put the statement 
-IMAGE_INSTALL += "web-webkit".
+On 2012-01-12 05:53, Jim Abernathy wrote:
+> There seems to be some sensitivity to where I put the statement IMAGE_INSTALL += "web-webkit".
+>
+> At first I just modifed the meta/receipes-sato/image/core-image-sato.bb file to include it. That caused the webkit to be built.
+>
+> Since that is not an ideal location, I removed it and put it into the local.conf file. That also caused the webkit to be built, but I wanted it to be part of my BSP permanently.
+>
+> I thought about creating a core-image-sato.bbappend file with the IMAGE_INSTALL += "web-webkit" in it and put that into the BSP, but that didn't cause the webkit to be built. Under
+> the meta-intel/meta-n450 directory, I created a receipes-jfa directory and put the core-image-sato.bbappend file there.
+>
+> I must be missing a key rule about directory parsing and .bbappend files.
 
-At first I just modifed the meta/receipes-sato/image/core-image-sato.bb 
-file to include it.  That caused the webkit to be built.
+Look at the how the layers are parsed - this info is in <layer>/conf/layer.conf
 
-Since that is not an ideal location, I removed it and put it into the 
-local.conf file.  That also caused the webkit to be built, but I wanted 
-it to be part of my BSP permanently.
+Try putting your .bbappend file in
+    .../meta-intel/meta-n450/recipes-jfa/images/core-image-sato.bbappend
 
-I thought about creating a core-image-sato.bbappend file with the 
-IMAGE_INSTALL += "web-webkit" in it and put that into the BSP, but that 
-didn't cause the webkit to be built. Under the meta-intel/meta-n450 
-directory, I created a receipes-jfa directory and put the 
-core-image-sato.bbappend file there.
-
-I must be missing a key rule about directory parsing and .bbappend files.
-
-Jim A
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
