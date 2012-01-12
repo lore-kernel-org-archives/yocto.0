@@ -1,30 +1,36 @@
-Return-Path: <josefahmad1@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E87AE0030C
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 08:19:46 -0800 (PST)
+Return-Path: <b.hutchman@gmail.com>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE166E01376
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 08:20:30 -0800 (PST)
 Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
 	(1024-bit key; insecure key) header.i=@gmail.com;
 	x-dkim-adsp=none (insecure policy)
-Received: by eekb15 with SMTP id b15so899477eek.35
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 08:19:45 -0800 (PST)
+Received: by bkvi18 with SMTP id i18so2065672bkv.35
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 08:20:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
-	:from:to:content-type;
-	bh=kFNWpEjPQVPVStu8TQO0LJ6Yp48/g2IlVporD4j5mNw=;
-	b=OZ5QF2so9yGiV68cl6QtolQ5zeHmIlVmgCV/2bkdcUFDyD2lVzfN8jCqglsJFcExGg
-	owr4GL2XpsTrT7y6ohR9Q65VrtqDjS56HzQtgxyPU4nXSZogZT44TopY3X1kWu5aBYj1
-	Aix0L74P+c+XElCL/0F0yHAAR2tql25Qn/Qts=
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=uLEBZOBkvKm2H/SyuNKmytMLAHYE5keH5sNF3bVceHg=;
+	b=bFeuJwp57B5/G72U2ev+iRFc26yM0S15LWY4tFUxAIOscZbGXtNFma7wZXTsgjp6xJ
+	gYbijp2WJo/vF2cpD0myNmM41fTR365pH/2G0HeqwWBhocfL3mP1Ut86uPDVcGbt6u5w
+	BN/A0KETcCwO/8IlXU51RNrUVrE1vUexvELmw=
 MIME-Version: 1.0
-Received: by 10.213.25.69 with SMTP id y5mr143705ebb.1.1326385185268; Thu, 12
-	Jan 2012 08:19:45 -0800 (PST)
-Sender: josefahmad1@gmail.com
-Received: by 10.213.108.139 with HTTP; Thu, 12 Jan 2012 08:19:45 -0800 (PST)
-Date: Thu, 12 Jan 2012 16:19:45 +0000
-X-Google-Sender-Auth: BTXso-SXxvcLyM16LutWm8P7KiQ
-Message-ID: <CACJvPv3H8QaGffS3kdS1qLogcwn9L1ZsYpzqo6eei6LMK_7=WQ@mail.gmail.com>
-From: Josef Ahmad <josef.ahmad@intel.com>
-To: yocto@yoctoproject.org
-Subject: qemu EFI build failure
+Received: by 10.204.136.215 with SMTP id s23mr1405835bkt.31.1326385229549;
+	Thu, 12 Jan 2012 08:20:29 -0800 (PST)
+Received: by 10.205.141.203 with HTTP; Thu, 12 Jan 2012 08:20:29 -0800 (PST)
+In-Reply-To: <4F0F03AB.1010808@windriver.com>
+References: <CAFZh4h-oJeiWFcM1mowKDwmF0gqT3Y0DBMFZ0WEcjJchUS+N4A@mail.gmail.com>
+	<4F0DF55E.4030605@linux.intel.com>
+	<CAFZh4h_JA8Oq3U=9HkrhXsyOB86dHV2u3XxY25UQDFgJpFg=Ug@mail.gmail.com>
+	<CAFZh4h8CtWD3q7_bWQoH9X1j=J=irW05Mhvbqvv5h_fp-oFn+A@mail.gmail.com>
+	<4F0F03AB.1010808@windriver.com>
+Date: Thu, 12 Jan 2012 11:20:29 -0500
+Message-ID: <CAFZh4h8Z3GW8mrsgpHVQCQgHpg1CpmwmP=xMXcitA=h4A1L52A@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Does Edison work with Beagleboard & linux-yocto-3.0 kernel?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,234 +42,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2012 16:19:47 -0000
+X-List-Received-Date: Thu, 12 Jan 2012 16:20:31 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-I tried to build a qemux86 EFI image, by setting:
-- in my local.conf: IMAGE_FSTYPES += "live"
-- in poly/meta/conf/machine/qemux86.conf: MACHINE_FEATURES += "efi"
+On Thu, Jan 12, 2012 at 11:00 AM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> The bitbake AUTOREV code should take care of updating the clone
+> of your local repo in downloads/git2. I take it that this isn't
+> happening ?
 
-The build gave me the following error:
+... haven't tried ... was just sticking to the example in the
+documentation which says to push changes and do a cleanall.  The spin
+time on my dev machine wasn't too bad but long enough to get old quick
+if I had to do it often.
 
+> It should be (largely) as simple as that. We could create something
+> simple and throw it in with the meta-kernel-dev layer if there's any
+> interest in adding it.
 
+Just wanting to know what the "best practice" is as I have lots of
+platforms to support.
 
-bash-3.00$ bitbake core-image-minimal
-Loading cache: 100%
-|###################################################################################################################################|
-ETA:  00:00:00
-Loaded 1083 entries from dependency cache.
+Regards,
 
-OE Build Configuration:
-BB_VERSION        = "1.15.0"
-TARGET_ARCH       = "i586"
-TARGET_OS         = "linux"
-MACHINE           = "qemux86"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.1+snapshot-20120111"
-TUNE_FEATURES     = "m32 i586"
-TARGET_FPU        = ""
-meta
-meta-yocto        = "(nobranch):468998cddbe1a803096c9b357e1b5daa3b7e8c2e"
-
-NOTE: Resolving any missing task queue dependencies
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-NOTE: Running task 1082 of 1701 (ID: 139,
-/tmp/localdisk/josef/yocto-stable/poky/meta/recipes-bsp/grub/grub-efi-native_1.99.bb,
-do_configure)
-NOTE: Running task 1682 of 1701 (ID: 97,
-/tmp/localdisk/josef/yocto-stable/poky/meta/recipes-core/images/core-image-minimal-initramfs.bb,
-do_rootfs)
-NOTE: package grub-efi-i586-native-1.99-r2: task do_configure: Started
-NOTE: package core-image-minimal-initramfs-1.0-r0: task do_rootfs: Started
-NOTE: package core-image-minimal-initramfs-1.0-r0: task do_rootfs: Succeeded
-ERROR: Function 'do_configure' failed (see
-/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/temp/log.do_configure.8536
-for further information)
-ERROR: Logfile of failure stored in:
-/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/temp/log.do_configure.8536
-Log data follows:
-| automake (GNU automake) 1.11.2
-| Copyright (C) 2011 Free Software Foundation, Inc.
-| License GPLv2+: GNU GPL version 2 or later
-<http://gnu.org/licenses/gpl-2.0.html>
-| This is free software: you are free to change and redistribute it.
-| There is NO WARRANTY, to the extent permitted by law.
-|
-| Written by Tom Tromey <tromey@redhat.com>
-|        and Alexandre Duret-Lutz <adl@gnu.org>.
-| AUTOV is 1.11
-| NOTE: Executing autoreconf --verbose --install --force
---exclude=autopoint -I
-/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/aclocal-copy/
--I /tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/m4/
--I/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/sysroots/x86_64-linux/usr/share/aclocal-1.11
--I /tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/aclocal-copy/
-| autoreconf: Entering directory `.'
-| autoreconf: configure.ac: not using Gettext
-| autoreconf: running: aclocal -I
-/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/aclocal-copy/
--I /tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/m4/
--I /tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/sysroots/x86_64-linux/usr/share/aclocal-1.11
--I /tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/aclocal-copy/
--I /tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/aclocal-copy/
--I /tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/m4/
--I /tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/sysroots/x86_64-linux/usr/share/aclocal-1.11
--I /tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/aclocal-copy/
---force --warnings=cross -I m4
-| aclocal: unknown warning category `cross'
-| configure.ac:515: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:317: grub_CHECK_ENABLE_EXECUTE_STACK is expanded from...
-| configure.ac:515: the top level
-| configure.ac:518: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:397: grub_CHECK_PIE is expanded from...
-| configure.ac:518: the top level
-| configure.ac:526: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:344: grub_CHECK_STACK_PROTECTOR is expanded from...
-| configure.ac:526: the top level
-| configure.ac:532: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:363: grub_CHECK_STACK_ARG_PROBE is expanded from...
-| configure.ac:532: the top level
-| autoreconf: configure.ac: tracing
-| configure.ac:515: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:317: grub_CHECK_ENABLE_EXECUTE_STACK is expanded from...
-| configure.ac:515: the top level
-| configure.ac:518: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:397: grub_CHECK_PIE is expanded from...
-| configure.ac:518: the top level
-| configure.ac:526: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:344: grub_CHECK_STACK_PROTECTOR is expanded from...
-| configure.ac:526: the top level
-| configure.ac:532: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:363: grub_CHECK_STACK_ARG_PROBE is expanded from...
-| configure.ac:532: the top level
-| autoreconf: configure.ac: AM_GNU_GETTEXT is used, but not
-AM_GNU_GETTEXT_VERSION
-| autoreconf: configure.ac: not using Libtool
-| autoreconf: running:
-/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/sysroots/x86_64-linux/usr/bin/autoconf
---include=/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/aclocal-copy/
---include=/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/m4/
---include=/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/sysroots/x86_64-linux/usr/share/aclocal-1.11
---include=/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/aclocal-copy/
---force --warnings=cross
-| configure.ac:515: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:317: grub_CHECK_ENABLE_EXECUTE_STACK is expanded from...
-| configure.ac:515: the top level
-| configure.ac:518: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:397: grub_CHECK_PIE is expanded from...
-| configure.ac:518: the top level
-| configure.ac:526: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:344: grub_CHECK_STACK_PROTECTOR is expanded from...
-| configure.ac:526: the top level
-| configure.ac:532: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:363: grub_CHECK_STACK_ARG_PROBE is expanded from...
-| configure.ac:532: the top level
-| autoreconf: running:
-/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/sysroots/x86_64-linux/usr/bin/autoheader
---include=/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/aclocal-copy/
---include=/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/m4/
---include=/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/sysroots/x86_64-linux/usr/share/aclocal-1.11
---include=/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/grub-1.99/aclocal-copy/
---force --warnings=cross
-| configure.ac:515: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:317: grub_CHECK_ENABLE_EXECUTE_STACK is expanded from...
-| configure.ac:515: the top level
-| configure.ac:518: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:397: grub_CHECK_PIE is expanded from...
-| configure.ac:518: the top level
-| configure.ac:526: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:344: grub_CHECK_STACK_PROTECTOR is expanded from...
-| configure.ac:526: the top level
-| configure.ac:532: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:363: grub_CHECK_STACK_ARG_PROBE is expanded from...
-| configure.ac:532: the top level
-| autoreconf: running: automake --foreign --add-missing --copy
---force-missing --warnings=cross
-| automake: unknown warning category `cross'
-| configure.ac:515: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:317: grub_CHECK_ENABLE_EXECUTE_STACK is expanded from...
-| configure.ac:515: the top level
-| configure.ac:518: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:397: grub_CHECK_PIE is expanded from...
-| configure.ac:518: the top level
-| configure.ac:526: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanERROR:
-Function 'do_configure' failed (see
-/tmp/localdisk/josef/yocto-stable/mytestbuild/tmp/work/x86_64-linux/grub-efi-i586-native-1.99-r2/temp/log.do_configure.8536
-for further information)
-| ded from...
-| acinclude.m4:344: grub_CHECK_STACK_PROTECTOR is expanded from...
-| configure.ac:526: the top level
-| configure.ac:532: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
-detected in body
-| ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded from...
-| acinclude.m4:363: grub_CHECK_STACK_ARG_PROBE is expanded from...
-| configure.ac:532: the top level
-| conf/Makefile.common:150: `pkglibdir' is not a legitimate directory
-for `SCRIPTS'
-| grub-core/Makefile.am:5:   `conf/Makefile.common' included from here
-| conf/Makefile.common:140: `pkglibdir' is not a legitimate directory for `DATA'
-| grub-core/Makefile.am:5:   `conf/Makefile.common' included from here
-| conf/Makefile.common:150: `pkglibdir' is not a legitimate directory
-for `SCRIPTS'
-| Makefile.am:6:   `conf/Makefile.common' included from here
-| conf/Makefile.common:140: `pkglibdir' is not a legitimate directory for `DATA'
-| Makefile.am:6:   `conf/Makefile.common' included from here
-| autoreconf: automake failed with exit status: 1
-| ERROR: autoreconf execution failed.
-NOTE: package grub-efi-i586-native-1.99-r2: task do_configure: Failed
-ERROR: Task 139
-(/tmp/localdisk/josef/yocto-stable/poky/meta/recipes-bsp/grub/grub-efi-native_1.99.bb,
-do_configure) failed with exit code '1'
-ERROR: '/tmp/localdisk/josef/yocto-stable/poky/meta/recipes-bsp/grub/grub-efi-native_1.99.bb'
-failed
-
-
-
-Has anyone encountered the same error?  I'm not sure I set up the
-correct configuration. Also, is there another way to append "efi" to
-MACHINE_FEATURES rather than by modifying qemux86.conf?
-
-Thanks in advance,
-
-- Josef
+Brian
 
