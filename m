@@ -1,35 +1,37 @@
 Return-Path: <b.hutchman@gmail.com>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5395DE0030C
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 08:30:00 -0800 (PST)
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1C2CE0030C
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 08:48:12 -0800 (PST)
 Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
 	(1024-bit key; insecure key) header.i=@gmail.com;
 	x-dkim-adsp=none (insecure policy)
-Received: by bkvi18 with SMTP id i18so2075860bkv.35
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 08:29:59 -0800 (PST)
+Received: by eaaa14 with SMTP id a14so339913eaa.35
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 08:48:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=zVILimE0j3ocGoDXvDdoebPvOngg31KdTE2i5aB69sU=;
-	b=TYBs6js3PFks2P2tng2qHO+OJJtT7SABY6bGZYECDpGYaYcF3BIYeSkO05mHnumS8i
-	98gyTvFG5FMTbrs+psam/45QJpR+aNqrZ3KpQP4VhYYMpG0TS9zQLyZW+uuu4cgivx1f
-	nMEKNGf07BVFYsqChxcEh58Z14xRbBcIFo6Hg=
+	bh=uXbJIBni8J1Fk2RdbtHDnjxO9iYFrbUBxZW7SoTWUOk=;
+	b=Xnjfw9vfXc+8ANVGTESsC4OUQhePxE1w17ZWnG4FkXUT8/7x2A3UQdxwniYVQ6illp
+	lHr69QHCNUbmg/fA7RViXDtx5x2xuJVN7AHvULIbA2DeZrZKKh9wmvHz3YkNbKG8CA/b
+	JzjmbaphhZLd93NTNo6+EeNMor6wTv4kg2w18=
 MIME-Version: 1.0
-Received: by 10.205.120.147 with SMTP id fy19mr1417791bkc.49.1326385799324;
-	Thu, 12 Jan 2012 08:29:59 -0800 (PST)
-Received: by 10.205.141.203 with HTTP; Thu, 12 Jan 2012 08:29:59 -0800 (PST)
-In-Reply-To: <4F0F02BA.4000008@communistcode.co.uk>
+Received: by 10.204.136.215 with SMTP id s23mr1473476bkt.31.1326386891444;
+	Thu, 12 Jan 2012 08:48:11 -0800 (PST)
+Received: by 10.205.141.203 with HTTP; Thu, 12 Jan 2012 08:48:11 -0800 (PST)
+In-Reply-To: <4F0F093B.7000408@windriver.com>
 References: <CAFZh4h-oJeiWFcM1mowKDwmF0gqT3Y0DBMFZ0WEcjJchUS+N4A@mail.gmail.com>
 	<4F0DF55E.4030605@linux.intel.com>
 	<CAFZh4h_JA8Oq3U=9HkrhXsyOB86dHV2u3XxY25UQDFgJpFg=Ug@mail.gmail.com>
 	<CAFZh4h8CtWD3q7_bWQoH9X1j=J=irW05Mhvbqvv5h_fp-oFn+A@mail.gmail.com>
-	<4F0F02BA.4000008@communistcode.co.uk>
-Date: Thu, 12 Jan 2012 11:29:59 -0500
-Message-ID: <CAFZh4h-1mzBZpNdiS=vykndddqWFSzsgBKNtO=wRw8ZuDHEDmg@mail.gmail.com>
+	<4F0F03AB.1010808@windriver.com>
+	<CAFZh4h8Z3GW8mrsgpHVQCQgHpg1CpmwmP=xMXcitA=h4A1L52A@mail.gmail.com>
+	<4F0F093B.7000408@windriver.com>
+Date: Thu, 12 Jan 2012 11:48:11 -0500
+Message-ID: <CAFZh4h-DRM-4zrBdiBwPH7T0bo+Ba5NGgPi5ppek33XmWtfJsw@mail.gmail.com>
 From: Brian Hutchinson <b.hutchman@gmail.com>
-To: Jack Mitchell <ml@communistcode.co.uk>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org
 Subject: Re: Does Edison work with Beagleboard & linux-yocto-3.0 kernel?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,36 +44,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2012 16:30:00 -0000
+X-List-Received-Date: Thu, 12 Jan 2012 16:48:13 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Thu, Jan 12, 2012 at 10:56 AM, Jack Mitchell <ml@communistcode.co.uk> wrote:
-> Brian,
->
-> What image are you building, as I cannot get core-image-minimal to boot at
-> all on my xM. I am currently trying to fix a hosed sd card (who knows what
-> happened to it!) and then I will see if it has made any difference.
+On Thu, Jan 12, 2012 at 11:24 AM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> I prefer to work this way, since managing patches in a source git
+> repository is much easier for me. If you only have a few patches,
+> then they can just be pushed on top and added to the SRC_URI, but
+> you'd be doing more development under tmp/work/ in that case .. and
+> I'm paranoid about losing things :)
 
-Probably the same images as you.  I switched my branch to master and
-the default kernel built was 3.0.12.
-
-You might have to smoke your SD card (re-partition it for boot & root)
-and copy MLO first, then u-boot.bin and uImage.  Copying MLO first is
-key.  I know this can be a pain.  Google for beagleboard SD Card
-script to find one of the scripts that automates setting up the SD
-Card.  They just create the partitions etc., you still have to copy
-the contents to the card in the right order.  MLO is the first you
-copy on the boot partition, the order the rest are copied don't matter
-AFAIK.
-
-I also have a boot.scr with:
-
-setenv bootcmd 'mmc init; fatload mmc 0:1 0x80300000 uImage; bootm 0x80300000'
-setenv setenv bootargs 'console=ttyO2,115200n8 root=/dev/mmcblk0p2
-rootwait rootfstype=ext3 rw'
-boot
-
-Hope that helps!
+I know it probably isn't the best way (did it mostly because I was in
+a hurry and never took the time to think about the "right" way to do
+it) but I've made changes to the kernel & u-boot before in the tmp
+directories (with Angstrom and Arago) and build images manually (make
+uImage etc.) and that was OK for quick/dirty things but I've gotten
+burned before by forgetting my changes and doing a bitbake build and
+wiping out my changes.   I like the method of pointing yocto to local
+git repos and think that is better for long term development as it
+will contain history and would be easy to determine what changed etc.
+I'd like to do something similar with u-boot and thought you guys had
+worked out a defacto standard way but in looking through all the docs
+it doesn't look that way.
 
 Regards,
 
