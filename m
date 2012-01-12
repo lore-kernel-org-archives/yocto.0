@@ -1,26 +1,40 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D632E0030C
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 13:24:36 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 12 Jan 2012 13:24:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="95870230"
-Received: from btwarden-mobl1.amr.corp.intel.com (HELO envy.home)
-	([10.7.199.156])
-	by orsmga001.jf.intel.com with ESMTP; 12 Jan 2012 13:24:36 -0800
-Message-ID: <4F0F4F80.1070403@linux.intel.com>
-Date: Thu, 12 Jan 2012 13:24:16 -0800
-From: Darren Hart <dvhart@linux.intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B72CDE0030C
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 13:27:30 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q0CLR93e000880
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 12 Jan 2012 13:27:09 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Thu, 12 Jan 2012 13:27:09 -0800
+Message-ID: <4F0F5024.501@windriver.com>
+Date: Thu, 12 Jan 2012 16:27:00 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-To: Tom Zanussi <tom.zanussi@intel.com>
-References: <1326393202.2413.175.camel@elmorro>
-In-Reply-To: <1326393202.2413.175.camel@elmorro>
-X-Enigmail-Version: 1.3.4
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: [PATCH] meta-intel/common: fix ptr->int and Werror=address compile errors
+To: Darren Hart <darren.hart@intel.com>
+References: <4BD43A85686FC34D819098DB1C3999D901900BC33C@orsmsx502.amr.corp.intel.com>
+	<4EE7DA4D.4080500@windriver.com> <4EE7DC81.6030609@intel.com>
+	<4BD43A85686FC34D819098DB1C3999D901900BC38A@orsmsx502.amr.corp.intel.com>
+	<4EE7DEC2.5050803@windriver.com>
+	<4BD43A85686FC34D819098DB1C3999D901900BC3A3@orsmsx502.amr.corp.intel.com>
+	<4EE83092.5000500@windriver.com> <4EE83861.4060607@intel.com>
+	<4EE8AD93.8040100@windriver.com>
+	<4BD43A85686FC34D819098DB1C3999D9019260E255@orsmsx502.amr.corp.intel.com>
+	<4EEB9CD5.7060004@intel.com>
+	<4BD43A85686FC34D819098DB1C3999D9019260E281@orsmsx502.amr.corp.intel.com>
+	<4EEBA792.9030404@intel.com>
+	<4BD43A85686FC34D819098DB1C3999D9019260E3BE@orsmsx502.amr.corp.intel.com>
+	<4EEBCF40.1050208@intel.com>
+	<4BD43A85686FC34D819098DB1C3999D9019260E569@orsmsx502.amr.corp.intel.com>
+	<4EEBF18C.3050302@intel.com> <4EEC068C.6080906@windriver.com>
+	<1326400782.2413.192.camel@elmorro> <4F0F4801.10102@intel.com>
+In-Reply-To: <4F0F4801.10102@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: kernel-tools failure for linux-yoctort_3.0.bb for poky/edison branch.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,220 +46,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2012 21:24:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 12 Jan 2012 21:27:30 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 
+On 12-01-12 03:52 PM, Darren Hart wrote:
+> On 01/12/2012 12:39 PM, Tom Zanussi wrote:
+>> On Fri, 2011-12-16 at 19:03 -0800, Bruce Ashfield wrote:
+>>> On 11-12-16 8:34 PM, Darren Hart wrote:
+>>>> On 12/16/2011 05:22 PM, Bodke, Kishore K wrote:
+>>>>>
+>>>>> With the attached Darren's kern-tools-native_git.bb file, build was success.
+>>>>> Thanks
+>>>>> Kishore.
+>>>>
+>>>> See the patch I just sent:kern-tools: Include do_install() in bbappend
+>>>> for what I believe to be the solution.
+>>>>
+>>>> I suppose the proper solution would be to version the kern-tools-native
+>>>> recipe when major things like that change, but given the nature of this
+>>>> layer, I think the above patch is adequate.
+>>>
+>>> That's not the solution to either problem (well, yes, it's a solution
+>>> and there's nothing inherently wrong with it, it's just covering up
+>>> the underlying issue) which is a layer dependency issue. In this case,
+>>> meta-kernel-dev tracks the master branch of poky, not any other branch
+>>> or version. And that is implicit, not explicit, hence why it got into
+>>> this tangle.
+>>>
+>>> We could simply branch meta-kernel-dev and have an edison branch for
+>>> it, not modify the appends to contain something that will just break
+>>> again in the future.
+>>>
+>>> But meta-kernel-dev isn't officially used by much at the moment, so
+>>> I'm not convinced that branching it is worth the trouble (but I can
+>>> be convinced otherwise). I'd rather either just remove the kern-tools
+>>> bbappend (I'm probably the only one on the planet that really needs
+>>> it), or just trust people to know what they are up to with the
+>>> meta-kernel-dev layer.
+>>>
+>>
+>> Revisiting this - meta-kernel-dev is used in the documentation, and
+>> Scott has now run up against this when testing and updating it.  Since
+>> the documentation does use edison, and the walk-throughs have the user
+>> check out edison branches of both poky and the BSP layers, it would be
+>> consistent to have the user also do the same for meta-kernel-dev.
+>> Probably just an edison branch with the kern-tools bbappend removed
+>> would work fine...
+>>
+>> Tom
+>
+> Works for me.
 
+Seems ok. I can create a branch shortly, once I'm slightly out from
+under my 3.2 tree creation rush.
 
-On 01/12/2012 10:33 AM, Tom Zanussi wrote:
-> A couple of things that had previously been warnings are now errors,
-> so they need to be fixed up.
-> 
-> The first problem is a comparison between the address of a static
-> struct and NULL, which can never be valid.  A different fix for this
-> is upstream, which includes an API usage change; we don't need that to
-> fix this problem.
-> 
-> The second problem is a cast from pointer to integer in fbdevhw.c.
-> This also is fixed upstream by removing the whole section of code
-> which is bogus anyway, which is also done here.
-> 
-> This also adds a missing PR to the xserver-xorg recipe.
-> 
-> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+Bruce
 
-I'm fine with the patch given your upstream API change comment above. I
-am curious about just dropping the struct == NULL test as opposed to
-testing for some value in the structure that would indicate the intended
-condition. If you're happy with it as is, then:
+>
 
-Acked-by: Darren Hart <dvhart@linux.intel.com>
-
-> ---
->  .../xorg-xserver/xserver-xorg-1.9.3.inc            |    5 +
->  .../xserver-xorg-1.9.3/ptr-to-int-cast-fix.patch   |   92 ++++++++++++++++++++
->  .../xserver-xorg-1.9.3/werror-address-fix.patch    |   49 +++++++++++
->  3 files changed, 146 insertions(+), 0 deletions(-)
->  create mode 100644 common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/ptr-to-int-cast-fix.patch
->  create mode 100644 common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/werror-address-fix.patch
-> 
-> diff --git a/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3.inc b/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3.inc
-> index 888445d..8c7009f 100644
-> --- a/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3.inc
-> +++ b/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3.inc
-> @@ -4,6 +4,10 @@ SRC_URI += "file://nodolt.patch \
->  # Misc build failure for master HEAD
->  SRC_URI += "file://fix_open_max_preprocessor_error.patch"
->  
-> +# What once were warnings now are errors, fix those up
-> +SRC_URI += "file://werror-address-fix.patch \
-> +            file://ptr-to-int-cast-fix.patch"
-> +
->  PROTO_DEPS += "xf86driproto dri2proto"
->  DEPENDS += "font-util"
->  EXTRA_OECONF += "--enable-dri --enable-dri2 --enable-dga"
-> @@ -13,3 +17,4 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=3dd2bbe3563837f80ed8926b06c1c353"
->  SRC_URI[md5sum] = "5bef6839a76d029204ab31aa2fcb5201"
->  SRC_URI[sha256sum] = "864831f51e841ff37f2445d1c85b86b559c8860a435fb496aead4f256a2b141d"
->  
-> +PR = "r1"
-> diff --git a/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/ptr-to-int-cast-fix.patch b/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/ptr-to-int-cast-fix.patch
-> new file mode 100644
-> index 0000000..705cffc
-> --- /dev/null
-> +++ b/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/ptr-to-int-cast-fix.patch
-> @@ -0,0 +1,92 @@
-> +Upstream-Status: Inappropriate [already upstream]
-> +
-> +It's broken for devices with BARs above 4G, and the sysfs method should         
-> +work everywhere anyway.  As a pleasant side effect, this fixes some             
-> +warnings:                                                                       
-> +                                                                                
-> +fbdevhw.c: In function 'fbdev_open_pci':                                        
-> +fbdevhw.c:333:4: warning: cast from pointer to integer of different size        
-> +fbdevhw.c:334:4: warning: cast from pointer to integer of different size        
-> +fbdevhw.c:336:4: warning: cast from pointer to integer of different size        
-> +fbdevhw.c:337:4: warning: cast from pointer to integer of different size        
-> +                                                                                
-> +Signed-off-by: Adam Jackson <ajax (a] redhat.com>                                   
-> +Integrated-by: Tom Zanussi <tom.zanussi (a] intel.com>
-> +
-> +Index: xorg-server-1.9.3/hw/xfree86/fbdevhw/fbdevhw.c
-> +===================================================================
-> +--- xorg-server-1.9.3.orig/hw/xfree86/fbdevhw/fbdevhw.c	2012-01-12 10:32:07.097729262 -0600
-> ++++ xorg-server-1.9.3/hw/xfree86/fbdevhw/fbdevhw.c	2012-01-12 10:32:55.076732780 -0600
-> +@@ -291,14 +291,7 @@
-> + {
-> +     struct	fb_fix_screeninfo fix;
-> +     char	filename[256];
-> +-    int	fd,i,j;
-> +-
-> +-
-> +-    /* There are two ways to that we can determine which fb device is
-> +-     * associated with this PCI device.  The more modern way is to look in
-> +-     * the sysfs directory for the PCI device for a file named
-> +-     * "graphics/fb*"
-> +-     */
-> ++    int	fd, i;
-> + 
-> +     for (i = 0; i < 8; i++) {
-> + 	sprintf(filename, 
-> +@@ -331,55 +324,10 @@
-> + 	}
-> +     }
-> + 
-> +-
-> +-    /* The other way is to examine the resources associated with each fb
-> +-     * device and see if there is a match with the PCI device.  This technique
-> +-     * has some problems on certain mixed 64-bit / 32-bit architectures.
-> +-     * There is a flaw in the fb_fix_screeninfo structure in that it only
-> +-     * returns the low 32-bits of the address of the resources associated with
-> +-     * a device.  However, on a mixed architecture the base addresses of PCI
-> +-     * devices, even for 32-bit applications, may be higher than 0x0f0000000.
-> +-     */
-> +-
-> +-    for (i = 0; i < 8; i++) {
-> +-	sprintf(filename,"/dev/fb%d",i);
-> +-	if (-1 == (fd = open(filename,O_RDWR,0))) {
-> +-	    xf86DrvMsg(-1, X_WARNING,
-> +-		       "open %s: %s\n", filename, strerror(errno));
-> +-	    continue;
-> +-	}
-> +-	if (-1 == ioctl(fd,FBIOGET_FSCREENINFO,(void*)&fix)) {
-> +-	    close(fd);
-> +-	    continue;
-> +-	}
-> +-	for (j = 0; j < 6; j++) {
-> +-	    const pciaddr_t res_start = pPci->regions[j].base_addr;
-> +-	    const pciaddr_t res_end = res_start + pPci->regions[j].size;
-> +-
-> +-	    if ((0 != fix.smem_len &&
-> +-		 (pciaddr_t) fix.smem_start >= res_start &&
-> +-		 (pciaddr_t) fix.smem_start < res_end) ||
-> +-		(0 != fix.mmio_len &&
-> +-		 (pciaddr_t) fix.mmio_start >= res_start &&
-> +-		 (pciaddr_t) fix.mmio_start < res_end))
-> +-	      break;
-> +-	}
-> +-	if (j == 6) {
-> +-	    close(fd);
-> +-	    continue;
-> +-	}
-> +-	if (namep) {
-> +-	    *namep = xnfalloc(16);
-> +-	    strncpy(*namep,fix.id,16);
-> +-	}
-> +-	return fd;
-> +-    }
-> +-
-> +     if (namep)
-> +       *namep = NULL;
-> + 
-> +-    xf86DrvMsg(-1, X_ERROR,
-> +-	       "Unable to find a valid framebuffer device\n");
-> ++    xf86DrvMsg(-1, X_ERROR, "Unable to find a valid framebuffer device\n");
-> +     return -1;
-> + }
-> + 
-> diff --git a/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/werror-address-fix.patch b/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/werror-address-fix.patch
-> new file mode 100644
-> index 0000000..49d3f94
-> --- /dev/null
-> +++ b/common/recipes-graphics/xorg-xserver/xserver-xorg-1.9.3/werror-address-fix.patch
-> @@ -0,0 +1,49 @@
-> +Upstream-Status: Inappropriate [yocto-specific]
-> +
-> +This is fixed upstream by actually making these tests meaningful.
-> +As they stand, the warning is correct and they're no-ops, so remove
-> +them.
-> +
-> +Signed-off-by: Tom Zanussi <tom.zanussi (a] intel.com>
-> +
-> +Index: xorg-server-1.9.3/Xext/xvmc.c
-> +===================================================================
-> +--- xorg-server-1.9.3.orig/Xext/xvmc.c	2012-01-12 09:57:36.306947860 -0600
-> ++++ xorg-server-1.9.3/Xext/xvmc.c	2012-01-12 10:24:59.286729946 -0600
-> +@@ -467,7 +467,6 @@
-> +     return Success;
-> + }
-> + 
-> +-
-> + static int
-> + ProcXvMCListSubpictureTypes(ClientPtr client)
-> + {
-> +@@ -487,9 +486,6 @@
-> + 
-> +     pScreen = pPort->pAdaptor->pScreen;
-> + 
-> +-    if(XvMCScreenKey == NULL) /* No XvMC adaptors */
-> +-        return BadMatch;
-> +-
-> +     if(!(pScreenPriv = XVMC_GET_PRIVATE(pScreen)))
-> +         return BadMatch;   /* None this screen */
-> + 
-> +@@ -668,9 +664,6 @@
-> + {
-> +    ExtensionEntry *extEntry;
-> + 
-> +-   if(XvMCScreenKey == NULL) /* nobody supports it */
-> +-	return; 
-> +-
-> +    if(!(XvMCRTContext = CreateNewResourceType(XvMCDestroyContextRes,
-> + 					      "XvMCRTContext")))
-> + 	return;
-> +@@ -746,8 +739,6 @@
-> +     XvMCAdaptorPtr adaptor = NULL;
-> +     int i;
-> + 
-> +-    if(XvMCScreenKey == NULL) return NULL;
-> +-
-> +     if(!(pScreenPriv = XVMC_GET_PRIVATE(pScreen))) 
-> +         return NULL;
-> + 
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
