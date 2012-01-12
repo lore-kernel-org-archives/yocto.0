@@ -1,21 +1,34 @@
-Return-Path: <lianhao.lu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 524D7E0072A
-	for <yocto@yoctoproject.org>; Wed, 11 Jan 2012 22:39:19 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 11 Jan 2012 22:39:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="111390562"
-Received: from llu-piketon.sh.intel.com (HELO localhost) ([10.239.36.146])
-	by fmsmga002.fm.intel.com with ESMTP; 11 Jan 2012 22:39:18 -0800
-From: Lianhao Lu <lianhao.lu@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 12 Jan 2012 14:37:22 +0800
-Message-Id: <99b6b2fffc64bb1b19a073b384c4e4b72837aac4.1326349703.git.lianhao.lu@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1326349703.git.lianhao.lu@intel.com>
-References: <cover.1326349703.git.lianhao.lu@intel.com>
-Subject: [PATCH 1/1] meta-yocto/conf: Change default signature handler.
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qw0-f41.google.com (mail-qw0-f41.google.com
+	[209.85.216.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23584E0072A
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 04:53:43 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by qats34 with SMTP id s34so73345qat.14
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 04:53:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=53xULJcVDAG6UVRCW2Igja+07SHULf9LX8oAipTcT5w=;
+	b=xUepQFTpjgHFK8Udk6J5LS/Zi5S0YWeRWQ5PFvC+BeH1PUgEp488a8q6oLtfLS2jY2
+	9M35ErepKBZBkmB13I68D5nZbojjsg677wXpNdn2btdMyoqsUmPs7nfcOPk/8y9FTKk3
+	mz35KYQPZvgdmYhIAhNPnxyvdf5B+qSd8Nbkk=
+Received: by 10.224.173.135 with SMTP id p7mr5047437qaz.83.1326372822273;
+	Thu, 12 Jan 2012 04:53:42 -0800 (PST)
+Received: from [10.0.1.39] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
+	by mx.google.com with ESMTPS id
+	hm10sm9922636qab.12.2012.01.12.04.53.41 (version=SSLv3 cipher=OTHER);
+	Thu, 12 Jan 2012 04:53:41 -0800 (PST)
+Message-ID: <4F0ED7D2.9050807@gmail.com>
+Date: Thu, 12 Jan 2012 07:53:38 -0500
+From: Jim Abernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
+MIME-Version: 1.0
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: where to put IMAGE_INSTALL??
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,47 +40,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2012 06:39:19 -0000
+X-List-Received-Date: Thu, 12 Jan 2012 12:53:43 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-[YOCTO #1555]
-1. Changed default signature handler to 'basichash' in poky.conf.
-2. Added comment about PRservice settings in local.conf.extened.
+There seems to be some sensitivity to where I put the statement 
+IMAGE_INSTALL += "web-webkit".
 
-Signed-off-by: Lianhao Lu <lianhao.lu@intel.com>
----
- meta-yocto/conf/distro/poky.conf           |    2 ++
- meta-yocto/conf/local.conf.sample.extended |    6 +++++-
- 2 files changed, 7 insertions(+), 1 deletions(-)
+At first I just modifed the meta/receipes-sato/image/core-image-sato.bb 
+file to include it.  That caused the webkit to be built.
 
-diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
-index 86f9bf6..7ecf639 100644
---- a/meta-yocto/conf/distro/poky.conf
-+++ b/meta-yocto/conf/distro/poky.conf
-@@ -65,3 +65,5 @@ CONNECTIVITY_CHECK_URIS ?= "git://git.yoctoproject.org/yocto-firewall-test;proto
-                           https://eula-downloads.yoctoproject.org/index.php \
-                           http://bugzilla.yoctoproject.org/report.cgi"
- 
-+# Default hash policy for distro
-+BB_SIGNATURE_HANDLER ?= 'basichash'
-diff --git a/meta-yocto/conf/local.conf.sample.extended b/meta-yocto/conf/local.conf.sample.extended
-index b901c5b..af86f42 100644
---- a/meta-yocto/conf/local.conf.sample.extended
-+++ b/meta-yocto/conf/local.conf.sample.extended
-@@ -115,8 +115,12 @@
- #DEFAULTTUNE_virtclass-multilib-lib32 = "x86"
- 
- # The network based PR service host and port
-+# Uncomment the following lines to enable PRservice.
-+# Set PRSERV_HOST to 'localhost' and PRSERV_PORT to '0' to automatically
-+# start local PRService.
-+# Set to other values to use remote PRService.
- #PRSERV_HOST = "localhost"
--#PRSERV_PORT = "8585"
-+#PRSERV_PORT = "0"
- 
- # Additional image generation features
- #
--- 
-1.7.0.4
+Since that is not an ideal location, I removed it and put it into the 
+local.conf file.  That also caused the webkit to be built, but I wanted 
+it to be part of my BSP permanently.
 
+I thought about creating a core-image-sato.bbappend file with the 
+IMAGE_INSTALL += "web-webkit" in it and put that into the BSP, but that 
+didn't cause the webkit to be built. Under the meta-intel/meta-n450 
+directory, I created a receipes-jfa directory and put the 
+core-image-sato.bbappend file there.
+
+I must be missing a key rule about directory parsing and .bbappend files.
+
+Jim A
 
