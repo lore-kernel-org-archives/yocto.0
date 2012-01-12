@@ -1,28 +1,25 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDCA5E0072A
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 05:06:12 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 8564BF811E6; Thu, 12 Jan 2012 06:06:10 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 9DACFF811E5;
-	Thu, 12 Jan 2012 06:06:09 -0700 (MST)
-Message-ID: <4F0EDAC1.2070805@mlbassoc.com>
-Date: Thu, 12 Jan 2012 06:06:09 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0
+Return-Path: <edwin.zhai@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92209E0072A
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 05:16:13 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 12 Jan 2012 05:14:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="95113378"
+Received: from gzhai-mobl3.ccr.corp.intel.com (HELO [10.255.29.136])
+	([10.255.29.136])
+	by azsmga001.ch.intel.com with ESMTP; 12 Jan 2012 05:14:08 -0800
+Message-ID: <4F0EDC9F.4050502@intel.com>
+Date: Thu, 12 Jan 2012 21:14:07 +0800
+From: "Zhai, Edwin" <edwin.zhai@intel.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:6.0.2) Gecko/20110902 Thunderbird/6.0.2
 MIME-Version: 1.0
-To: Jim Abernathy <jfabernathy@gmail.com>
-References: <4F0ED7D2.9050807@gmail.com>
-In-Reply-To: <4F0ED7D2.9050807@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: where to put IMAGE_INSTALL??
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <20120111070157.GC10415@edwin-gen> <4F0D83EB.3010008@windriver.com>
+In-Reply-To: <4F0D83EB.3010008@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Request to enable SMP and virtio for qemux86/x86-64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,30 +31,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2012 13:06:13 -0000
+X-List-Received-Date: Thu, 12 Jan 2012 13:16:14 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2012-01-12 05:53, Jim Abernathy wrote:
-> There seems to be some sensitivity to where I put the statement IMAGE_INSTALL += "web-webkit".
->
-> At first I just modifed the meta/receipes-sato/image/core-image-sato.bb file to include it. That caused the webkit to be built.
->
-> Since that is not an ideal location, I removed it and put it into the local.conf file. That also caused the webkit to be built, but I wanted it to be part of my BSP permanently.
->
-> I thought about creating a core-image-sato.bbappend file with the IMAGE_INSTALL += "web-webkit" in it and put that into the BSP, but that didn't cause the webkit to be built. Under
-> the meta-intel/meta-n450 directory, I created a receipes-jfa directory and put the core-image-sato.bbappend file there.
->
-> I must be missing a key rule about directory parsing and .bbappend files.
+Bruce,
+Thanks for your efforts!
 
-Look at the how the layers are parsed - this info is in <layer>/conf/layer.conf
+Edwin
 
-Try putting your .bbappend file in
-    .../meta-intel/meta-n450/recipes-jfa/images/core-image-sato.bbappend
+On 2012/1/11 20:43, Bruce Ashfield wrote:
+> On 12-01-11 02:01 AM, Zhai, Edwin wrote:
+>> Bruce,
+>> Can we enable SMP and virtio by default for qemux86/x86-64? This can
+>> achieve
+>> huge perf boost for workload inside qemu. E.g. we enabled self-hosted
+>> image,
+>> where we build yocto inside qemu.
+>>
+>> Attached patch showes the kernel config option.
+>>
+>> Is it reasonable?
+>
+> It should be. I just need to look at the fallback modes, and how this
+> impacts different host systems. That being said, I've run with similar
+> configs in the past (depending on the workload) with no issues.
+>
+> qemux8-64 is already SMP, so it would just need the addition of virtio
+> devices, which just means we'd look at this as any BSP/target config
+> update.
+>
+> But with graceful degradation (i.e maxcpus with SMP set) and agreement
+> that we'd like to simulate SMP by default, then we can make the change
+> and I'll merge it into the base config for the target and pull it into
+> the kernel tree.
+>
+> Cheers,
+>
+> Bruce
+>
+>
+>
+>
+>>
+>> Thanks,
+>> Edwin
+>>
+>
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
