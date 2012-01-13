@@ -1,33 +1,24 @@
-Return-Path: <b.hutchman@gmail.com>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1893E01374
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 20:03:32 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by bkvi18 with SMTP id i18so2842263bkv.35
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 20:03:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=cjNUYJ7++3eXlI1IVJUuRLCs+kqvCZ49rDk/wJhbXTU=;
-	b=YT+t05Dfr0jKE6wYnNosB++kENiQJ6acIMbzfF1iigd75nZ/h8cCMVD7Z7CjTXFogk
-	wNV3bjBLTInDpKleW8j6Db/9b5iyCVE2vQkJLPFfjgRQLknmhlk1XJ1497wjjm1alo2t
-	YckA8uVv6io2KI2+SlxrslS8P3ykgXBFosmM8=
+Return-Path: <Lauri.Hintsala@bluegiga.com>
+Received: from darkblue.bluegiga.com (bluegiga.fi [194.100.31.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 406EDE0030F
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 22:47:51 -0800 (PST)
+Received: from [10.1.1.28] ([10.1.1.28]) by darkblue.bluegiga.com with
+	Microsoft SMTPSVC(6.0.3790.4675); Fri, 13 Jan 2012 08:47:49 +0200
+Message-ID: <4F0FD395.6040908@bluegiga.com>
+Date: Fri, 13 Jan 2012 08:47:49 +0200
+From: Lauri Hintsala <lauri.hintsala@bluegiga.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.24) Gecko/20111108 Lightning/1.0b2 Thunderbird/3.1.16
 MIME-Version: 1.0
-Received: by 10.205.141.79 with SMTP id jd15mr74521bkc.139.1326427411664; Thu,
-	12 Jan 2012 20:03:31 -0800 (PST)
-Received: by 10.205.141.203 with HTTP; Thu, 12 Jan 2012 20:03:31 -0800 (PST)
-In-Reply-To: <4F0F9CE7.9010505@windriver.com>
-References: <CANFv2E=kWehG23TsZV76=W7o7GbhbZok2MtacVrOZUmsb+xA0g@mail.gmail.com>
-	<4F0F9CE7.9010505@windriver.com>
-Date: Thu, 12 Jan 2012 23:03:31 -0500
-Message-ID: <CAFZh4h8EnXY3Xsv6wfzXkJ13CzwfjQXd1cuHwz23NbvM=u_i4g@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Developer Manual Appendix B example
+To: Gary Thomas <gary@mlbassoc.com>
+References: <9BACABF0C6B14A4D8C33B42A795119BE096D9962@POCITMSEXMB03.LntUniverse.com>	<4F0C3A61.1090509@mlbassoc.com>	<9BACABF0C6B14A4D8C33B42A795119BE096D9B63@POCITMSEXMB03.LntUniverse.com>
+	<4F0D743C.5030700@mlbassoc.com>
+In-Reply-To: <4F0D743C.5030700@mlbassoc.com>
+X-OriginalArrivalTime: 13 Jan 2012 06:47:49.0391 (UTC)
+	FILETIME=[43D541F0:01CCD1BF]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Navani Kamal Srivastava <NAVANI.Srivastava@lnties.com>
+Subject: Re: Unable to set system clock
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,15 +30,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Jan 2012 04:03:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 13 Jan 2012 06:47:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 12, 2012 at 9:54 PM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
-> Funny how things tend to arrive in bunches. We just discussed this today
+Hello guys,
 
-Ha!  Thanks Jim for making me feel better .... at least I wasn't the
-only one that had trouble ;-)
+On 01/11/2012 01:36 PM, Gary Thomas wrote:
+>>> There is a bug #1767 that can make the system always reset the clock
+>>> to the saved timestamp on boot.
+>> I am not pretty sure for this because I am able to set system clock
+>> using freescale provided rootfs. This problem I am getting only with
+>> poky rootfs. I guess I need to change some recipe. It would be a great
+>> help if you can help me in that.
+>
+> The problem is that even when you set the date, your Poky system
+> does not use it when the system is rebooted because of this bug.
+>
+> The simplest work-around (until the bug fix is finalized) is to
+> add the 'coreutils' package to your image.
 
-Brian
+I found the same bug and I fixed it in December. I didn't know there was 
+open bug related to that. Anyway patch is available in master branch of 
+poky: 
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=91367de75575e79a94b2f90b6b7aa8740a039fc5
+
+Regards,
+Lauri Hintsala
 
