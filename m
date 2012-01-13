@@ -1,24 +1,37 @@
-Return-Path: <Lauri.Hintsala@bluegiga.com>
-Received: from darkblue.bluegiga.com (bluegiga.fi [194.100.31.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 406EDE0030F
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2012 22:47:51 -0800 (PST)
-Received: from [10.1.1.28] ([10.1.1.28]) by darkblue.bluegiga.com with
-	Microsoft SMTPSVC(6.0.3790.4675); Fri, 13 Jan 2012 08:47:49 +0200
-Message-ID: <4F0FD395.6040908@bluegiga.com>
-Date: Fri, 13 Jan 2012 08:47:49 +0200
-From: Lauri Hintsala <lauri.hintsala@bluegiga.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.24) Gecko/20111108 Lightning/1.0b2 Thunderbird/3.1.16
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15C1BE0030F
+	for <yocto@yoctoproject.org>; Fri, 13 Jan 2012 05:16:12 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 13 Jan 2012 05:16:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="96125621"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga001.jf.intel.com with ESMTP; 13 Jan 2012 05:16:11 -0800
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 13 Jan 2012 05:16:11 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.57]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.170]) with mapi id
+	14.01.0355.002; Fri, 13 Jan 2012 05:16:10 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Brian Hutchinson <b.hutchman@gmail.com>, Bruce Ashfield
+	<bruce.ashfield@windriver.com>
+Thread-Topic: [yocto] Developer Manual Appendix B example
+Thread-Index: AQHM0Z4qgSMlIWiWw0eTMTM8IUv3oJYKIDiAgAATR4CAABPgUA==
+Date: Fri, 13 Jan 2012 13:16:09 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB12379240276C5@ORSMSX101.amr.corp.intel.com>
+References: <CANFv2E=kWehG23TsZV76=W7o7GbhbZok2MtacVrOZUmsb+xA0g@mail.gmail.com>
+	<4F0F9CE7.9010505@windriver.com>
+	<CAFZh4h8EnXY3Xsv6wfzXkJ13CzwfjQXd1cuHwz23NbvM=u_i4g@mail.gmail.com>
+In-Reply-To: <CAFZh4h8EnXY3Xsv6wfzXkJ13CzwfjQXd1cuHwz23NbvM=u_i4g@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: Gary Thomas <gary@mlbassoc.com>
-References: <9BACABF0C6B14A4D8C33B42A795119BE096D9962@POCITMSEXMB03.LntUniverse.com>	<4F0C3A61.1090509@mlbassoc.com>	<9BACABF0C6B14A4D8C33B42A795119BE096D9B63@POCITMSEXMB03.LntUniverse.com>
-	<4F0D743C.5030700@mlbassoc.com>
-In-Reply-To: <4F0D743C.5030700@mlbassoc.com>
-X-OriginalArrivalTime: 13 Jan 2012 06:47:49.0391 (UTC)
-	FILETIME=[43D541F0:01CCD1BF]
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Navani Kamal Srivastava <NAVANI.Srivastava@lnties.com>
-Subject: Re: Unable to set system clock
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Developer Manual Appendix B example
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,31 +43,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Jan 2012 06:47:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 13 Jan 2012 13:16:12 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hello guys,
+Yes - this is the exact issue.  I ran into it myself yesterday while attemp=
+ting to verify the BSP example (as written) using the upcoming 1.1.1 releas=
+e (Edison 6.0.1). I had to consult Tom Zannusi and he had me dummy out that=
+ file.  Once I did that the build worked. =20
 
-On 01/11/2012 01:36 PM, Gary Thomas wrote:
->>> There is a bug #1767 that can make the system always reset the clock
->>> to the saved timestamp on boot.
->> I am not pretty sure for this because I am able to set system clock
->> using freescale provided rootfs. This problem I am getting only with
->> poky rootfs. I guess I need to change some recipe. It would be a great
->> help if you can help me in that.
->
-> The problem is that even when you set the date, your Poky system
-> does not use it when the system is rebooted because of this bug.
->
-> The simplest work-around (until the bug fix is finalized) is to
-> add the 'coreutils' package to your image.
+Scott
 
-I found the same bug and I fixed it in December. I didn't know there was 
-open bug related to that. Anyway patch is available in master branch of 
-poky: 
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=91367de75575e79a94b2f90b6b7aa8740a039fc5
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Brian Hutchinson
+Sent: Thursday, January 12, 2012 8:04 PM
+To: Bruce Ashfield
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Developer Manual Appendix B example
 
-Regards,
-Lauri Hintsala
+On Thu, Jan 12, 2012 at 9:54 PM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> Funny how things tend to arrive in bunches. We just discussed this today
+
+Ha!  Thanks Jim for making me feel better .... at least I wasn't the
+only one that had trouble ;-)
+
+Brian
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
