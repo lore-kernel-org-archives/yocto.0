@@ -1,34 +1,36 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qw0-f41.google.com (mail-qw0-f41.google.com
-	[209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11DE3E00306
-	for <yocto@yoctoproject.org>; Mon, 16 Jan 2012 15:13:53 -0800 (PST)
-Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
-	(1024-bit key; insecure key) header.i=@gmail.com;
-	x-dkim-adsp=none (insecure policy)
-Received: by qaea16 with SMTP id a16so1028998qae.14
-	for <yocto@yoctoproject.org>; Mon, 16 Jan 2012 15:13:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=O8r3aESLt3jAIsxH1SnWHk/2gucp97jo1I0TDgjwf14=;
-	b=mL0tWdeuSWRuQtaZNpZZyMs88b0eeFLWmqZc1KS6jRSN2+x8t7RlT5eiJv7ZtxjlV3
-	iQa8REeReCU8PMXEuq31HdfnHQtQ3NxZjYyyZf25dwbEcT5eERZrGTP3nGIoQbCX9/58
-	Z8yqgXy7fI6OOquALv4bbh/Ph/aeb2UZNLNRw=
-Received: by 10.224.205.134 with SMTP id fq6mr16954976qab.99.1326755633276;
-	Mon, 16 Jan 2012 15:13:53 -0800 (PST)
-Received: from [10.0.1.39] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
-	by mx.google.com with ESMTPS id
-	q14sm39746042qap.4.2012.01.16.15.13.52 (version=SSLv3 cipher=OTHER);
-	Mon, 16 Jan 2012 15:13:52 -0800 (PST)
-Message-ID: <4F14AF2F.9040003@gmail.com>
-Date: Mon, 16 Jan 2012 18:13:51 -0500
-From: Jim Abernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B9CEE006B0
+	for <yocto@yoctoproject.org>; Mon, 16 Jan 2012 15:35:10 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 16 Jan 2012 15:35:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="99288483"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by orsmga002.jf.intel.com with ESMTP; 16 Jan 2012 15:35:10 -0800
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 16 Jan 2012 15:35:10 -0800
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.248]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.207]) with mapi id
+	14.01.0355.002; Mon, 16 Jan 2012 15:35:09 -0800
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: "Hart, Darren" <darren.hart@intel.com>, Bruce Ashfield
+	<bruce.ashfield@windriver.com>
+Thread-Topic: Linux RT build fail
+Thread-Index: AczUfleoloDM1F4tQ++5IDV6JnACtQAQ5MkAAAEIpQAAB6tf0A==
+Date: Mon, 16 Jan 2012 23:35:09 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE2030AD1@ORSMSX105.amr.corp.intel.com>
+References: <D956029D25CF204F948EA0FB515E1EE2030A3D@ORSMSX105.amr.corp.intel.com>
+	<4F147006.1070401@windriver.com> <4F1476F6.9070308@intel.com>
+In-Reply-To: <4F1476F6.9070308@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Serial consoles
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Linux RT build fail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,37 +42,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jan 2012 23:13:54 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 16 Jan 2012 23:35:10 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I'm using a Marshalltown Cedarview board and it's serial ports are 
-standard PC com1 and com2 so I put the following in my 
-conf/machine/mycdv.conf file, where mycdv is the name of my machine/bsp, 
-i.e. meta-mycdv.
+I get the same build ERRORS without meta-kernel-dev as well.
 
-SERIAL_CONSOLE = "115200 ttyS0"
-SYSLINUX_OPTS = "serial 0 115200"
-APPEND = "console=ttyS0,115200 console=tty0"
+Thanks
+Kishore.
 
-When the system booted, I have the kernel console on com1 and I also got 
-a login prompt on com1.  However, the syslinux output was only displayed 
-on the VGA monitor.
+-----Original Message-----
+From: Hart, Darren=20
+Sent: Monday, January 16, 2012 11:14 AM
+To: Bruce Ashfield
+Cc: Bodke, Kishore K; yocto@yoctoproject.org
+Subject: Re: Linux RT build fail
 
-Anyone know why? Maybe SYSLINUX_OPTS goes somewhere else?
+On 01/16/2012 10:44 AM, Bruce Ashfield wrote:
+> On 12-01-16 01:40 PM, Bodke, Kishore K wrote:
+>> Hi,
+>>
+>> I get build failure for the rt.
+>>
+>> ERROR: Function 'do_patch' failed (see
+>> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-=
+yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f2=
+2d10952618a2ad146e6149d240cd2-r1/temp/log.do_patch.32459
+>> for further information)
+>>
+>> ERROR: Logfile of failure stored in:
+>> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-=
+yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f2=
+2d10952618a2ad146e6149d240cd2-r1/temp/log.do_patch.32459
+>>
+>> Log data follows:
+>>
+>> | ERROR: Function 'do_patch' failed (see
+>> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-=
+yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f2=
+2d10952618a2ad146e6149d240cd2-r1/temp/log.do_patch.32459
+>> for further information)
+>>
+>> | Deleted branch meta-temp (was 620917d).
+>>
+>> |
+>>
+>> | ERROR: patch
+>> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-=
+yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f2=
+2d10952618a2ad146e6149d240cd2-r1/linux/meta/cfg/kernel-cache/features/rt/rt=
+-apply-patch-3.0.10-rt27.patch.patch
+>> is not available
+>=20
+> This is the problem. But I could have sworn that I fixed this, and
+> send a merge request. When I just checked now, it still looks broken.
+>=20
+> That being said, we should have seen this before now. Are any -rt
+> kernels being build regularly on master ?
 
-I noticed in the n450 release notes that they accomplish this with the 
-following in the local.conf file:
+I just checked with Beth and we are not. I will open a bug against the
+autobuilder, we need to do this regularly.
 
-# Serial Port Setup for Intel Embedded Development Board 1-N40\
-SYSLINUX_OPTS_atom-pc = "serial 0 115200"
-SERIAL_CONSOLE_atom-pc = "115200 ttyS0"
-APPEND_atom-pc = "console=ttyS0,115200 console=tty0"
+--
+Darren
 
-This does work for the N450, but the cedartrail bsp is not under 
-standard/common-pc/atom-pc. It's under standard/cedartrail.  If I have 
-to put SYSLINUX_OPTS in local.conf, what is the suffix and why???
+>=20
+> It is partially due to meta-kernel-dev picking up new kernel tools that
+> do strict checking on patches by default (hence my question about
+> anyone else building this on master).
+>=20
+> I'm pushing a fix out now to the meta branch and will send it along
+> with my next consolidated pull request.
+>=20
+> Cheers,
+>=20
+> Bruce
+>=20
+>>
+>> |
+>>
+>> | ERROR. Could not find an excutable target for
+>> yocto/standard/preempt-rt/base
+>>
+>> | ERROR. Could not locate meta series for preempt-rt-standard
+>>
+>> | ERROR. Could not modify yocto/standard/preempt-rt/base
+>>
+>> NOTE: package
+>> linux-yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bc=
+f4107c7f22d10952618a2ad146e6149d240cd2-r1:
+>> task do_patch: Failed
+>>
+>> NOTE: package bzip2-1.0.6-r4: task do_compile: Succeeded
+>>
+>> ERROR: Task 3
+>> (/usr/local/src/jan13/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.0.=
+bb,
+>> do_patch) failed with exit code '1'
+>>
+>> Is this anything to do with meta-kernel-dev I am using or something else=
+?
+>>
+>> Thanks
+>>
+>> Kishore.
+>>
+>=20
 
-JIm A
 
+--=20
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
