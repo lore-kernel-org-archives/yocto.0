@@ -1,31 +1,34 @@
-Return-Path: <darren.hart@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 265D9E00306
-	for <yocto@yoctoproject.org>; Mon, 16 Jan 2012 15:03:51 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 16 Jan 2012 15:03:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="97157087"
-Received: from unknown (HELO envy.home) ([10.7.199.59])
-	by orsmga001.jf.intel.com with ESMTP; 16 Jan 2012 15:03:50 -0800
-Message-ID: <4F14ACC1.3070906@intel.com>
-Date: Mon, 16 Jan 2012 15:03:29 -0800
-From: Darren Hart <darren.hart@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qw0-f41.google.com (mail-qw0-f41.google.com
+	[209.85.216.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11DE3E00306
+	for <yocto@yoctoproject.org>; Mon, 16 Jan 2012 15:13:53 -0800 (PST)
+Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
+	(1024-bit key; insecure key) header.i=@gmail.com;
+	x-dkim-adsp=none (insecure policy)
+Received: by qaea16 with SMTP id a16so1028998qae.14
+	for <yocto@yoctoproject.org>; Mon, 16 Jan 2012 15:13:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=O8r3aESLt3jAIsxH1SnWHk/2gucp97jo1I0TDgjwf14=;
+	b=mL0tWdeuSWRuQtaZNpZZyMs88b0eeFLWmqZc1KS6jRSN2+x8t7RlT5eiJv7ZtxjlV3
+	iQa8REeReCU8PMXEuq31HdfnHQtQ3NxZjYyyZf25dwbEcT5eERZrGTP3nGIoQbCX9/58
+	Z8yqgXy7fI6OOquALv4bbh/Ph/aeb2UZNLNRw=
+Received: by 10.224.205.134 with SMTP id fq6mr16954976qab.99.1326755633276;
+	Mon, 16 Jan 2012 15:13:53 -0800 (PST)
+Received: from [10.0.1.39] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
+	by mx.google.com with ESMTPS id
+	q14sm39746042qap.4.2012.01.16.15.13.52 (version=SSLv3 cipher=OTHER);
+	Mon, 16 Jan 2012 15:13:52 -0800 (PST)
+Message-ID: <4F14AF2F.9040003@gmail.com>
+Date: Mon, 16 Jan 2012 18:13:51 -0500
+From: Jim Abernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-References: <CACJvPv3H8QaGffS3kdS1qLogcwn9L1ZsYpzqo6eei6LMK_7=WQ@mail.gmail.com>
-	<4F0F2627.3010004@linux.intel.com> <4F0F4E7C.9030506@intel.com>
-	<D956029D25CF204F948EA0FB515E1EE202325B@ORSMSX105.amr.corp.intel.com>
-	<4F0F52FF.3060601@intel.com>
-	<ADD6A3980E8C39419A432FF422031B4C024050@ORSMSX106.amr.corp.intel.com>
-	<ADD6A3980E8C39419A432FF422031B4C02406C@ORSMSX106.amr.corp.intel.com>
-	<ADD6A3980E8C39419A432FF422031B4C03F6A7@ORSMSX106.amr.corp.intel.com>
-In-Reply-To: <ADD6A3980E8C39419A432FF422031B4C03F6A7@ORSMSX106.amr.corp.intel.com>
-Cc: "Ahmad, Josef" <josef.ahmad@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: qemu EFI build failure
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Serial consoles
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,176 +40,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jan 2012 23:03:51 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 16 Jan 2012 23:13:54 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 01/16/2012 02:00 PM, Kamble, Nitin A wrote:
-> Darren,
->   I have reworked the commits to fix issues while building on other distros.
-> Can you check this branch http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/commit/?h=nitin/grub-efi
-> It is working for me on Fedora 14, for which the other grub-efi commit was failing for me.
+I'm using a Marshalltown Cedarview board and it's serial ports are 
+standard PC com1 and com2 so I put the following in my 
+conf/machine/mycdv.conf file, where mycdv is the name of my machine/bsp, 
+i.e. meta-mycdv.
 
-Thanks Nitin,
+SERIAL_CONSOLE = "115200 ttyS0"
+SYSLINUX_OPTS = "serial 0 115200"
+APPEND = "console=ttyS0,115200 console=tty0"
 
-Builds fine for me on Ubuntu 11.10 64 bit
+When the system booted, I have the kernel console on com1 and I also got 
+a login prompt on com1.  However, the syslinux output was only displayed 
+on the VGA monitor.
 
---
-Darren
+Anyone know why? Maybe SYSLINUX_OPTS goes somewhere else?
 
-> 
-> Thanks,
-> Nitin
-> 
-> 
->> -----Original Message-----
->> From: Kamble, Nitin A
->> Sent: Thursday, January 12, 2012 2:33 PM
->> To: Kamble, Nitin A; Hart, Darren; Bodke, Kishore K
->> Cc: Ahmad, Josef; yocto@yoctoproject.org
->> Subject: RE: [yocto] qemu EFI build failure
->>
->> Here is the commit: http://git.yoctoproject.org/cgit.cgi/poky-
->> contrib/log/?h=nitin/misc
->>
->> Nitin
->>
->>> -----Original Message-----
->>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->>> bounces@yoctoproject.org] On Behalf Of Kamble, Nitin A
->>> Sent: Thursday, January 12, 2012 2:32 PM
->>> To: Hart, Darren; Bodke, Kishore K
->>> Cc: Ahmad, Josef; yocto@yoctoproject.org
->>> Subject: Re: [yocto] qemu EFI build failure
->>>
->>>
->>> I just sent a patch to oecore mailing list to fix the grub issue with
->>> automake 1.11.2.
->>>
->>> Thanks,
->>> Nitin
->>>
->>>
->>>> -----Original Message-----
->>>> From: Hart, Darren
->>>> Sent: Thursday, January 12, 2012 1:39 PM
->>>> To: Bodke, Kishore K
->>>> Cc: Ahmad, Josef; yocto@yoctoproject.org; Kamble, Nitin A
->>>> Subject: Re: [yocto] qemu EFI build failure
->>>>
->>>> On 01/12/2012 01:28 PM, Bodke, Kishore K wrote:
->>>>> I have only
->>>>> MACHINE_FEATURES += "efi"
->>>>> KERNEL_FEATURES_append_cedartrail += "cfg/efi-ext.scc".
->>>>>
->>>>> I am not having IMAGE_FSTYPES += "live".
->>>>
->>>> The "live" change is just to trigger the live image type which
->> builds
->>>> grub-efi-native for efi systems. qemux86 needs this added
->> explicitly.
->>>>
->>>> --
->>>> Darren
->>>>
->>>>>
->>>>> Thanks
->>>>> Kishore.
->>>>> -----Original Message-----
->>>>> From: Hart, Darren
->>>>> Sent: Thursday, January 12, 2012 1:20 PM
->>>>> To: Ahmad, Josef
->>>>> Cc: yocto@yoctoproject.org; Bodke, Kishore K; Kamble, Nitin A
->>>>> Subject: Re: [yocto] qemu EFI build failure
->>>>>
->>>>> On 01/12/2012 10:27 AM, Darren Hart wrote:
->>>>>>
->>>>>>
->>>>>> On 01/12/2012 08:19 AM, Josef Ahmad wrote:
->>>>>>> I tried to build a qemux86 EFI image, by setting:
->>>>>>> - in my local.conf: IMAGE_FSTYPES += "live"
->>>>>>> - in poly/meta/conf/machine/qemux86.conf: MACHINE_FEATURES +=
->>> "efi"
->>>>>>>
->>>>>>
->>>>>> I haven't tried live images with QEMU. For one thing, they
->> aren't
->>>> really
->>>>>> necessary as you can specify all the boot parameters on the qemu
->>>> command
->>>>>> line. Is there are reason you want to use the live image
->>>> specifically?
->>>>>>
->>>>>> Also, in order to properly test EFI in QEMU, you will need to
->> use
->>> an
->>>> EFI
->>>>>> BIOS - I believe you're aware of this already - but this isn't
->>>> currently
->>>>>> supported by the runqemu scripts that ship with yocto.
->>>>>>
->>>>>>> The build gave me the following error:
->>>>>>
->>>>>>
->>>>>> I'll do some test builds - it isn't clear to me what is going on
->>>> here.
->>>>>>
->>>>>> <snip>
->>>>>>
->>>>>>>
->>>>>>>
->>>>>>> Has anyone encountered the same error?  I'm not sure I set up
->> the
->>>>>>> correct configuration. Also, is there another way to append
->> "efi"
->>>> to
->>>>>>> MACHINE_FEATURES rather than by modifying qemux86.conf?
->>>>>>
->>>>>> You should be able to do something like:
->>>>>> MACHINE_FEATURES_append_qemux86 = "efi"
->>>>>>
->>>>>> Note that you will also need to enable the efi support in the
->>>> kernel,
->>>>>> which is done with the KERNEL_FEATURES variable, something like:
->>>>>> KERNEL_FEATURES_append_qemux86 = "conf/efi-ext.scc"
->>>>>>
->>>>>> Either of these can be set in your local.conf.
->>>>>>
->>>>>
->>>>> More accurately:
->>>>>
->>>>> MACHINE_FEATURES_append_qemux86=" efi pcbios"
->>>>> KERNEL_FEATURES_append_qemux86=" cfg/efi-ext.scc"
->>>>> IMAGE_FSTYPES += "live"
->>>>>
->>>>> With these added to local.conf and building for qemux86 I see the
->>>> same
->>>>> configure failures reported by Kishore and Josef:
->>>>>
->>>>> | ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded
->>>> from...
->>>>> | acinclude.m4:363: grub_CHECK_STACK_ARG_PROBE is expanded
->> from...
->>>>>
->>>>> I've discussed in IRC with Nitin and he thinks this may be
->> related
->>> to
->>>>> the automake update and is looking into it.
->>>>>
->>>>
->>>>
->>>> --
->>>> Darren Hart
->>>> Intel Open Source Technology Center
->>>> Yocto Project - Linux Kernel
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
+I noticed in the n450 release notes that they accomplish this with the 
+following in the local.conf file:
 
+# Serial Port Setup for Intel Embedded Development Board 1-N40\
+SYSLINUX_OPTS_atom-pc = "serial 0 115200"
+SERIAL_CONSOLE_atom-pc = "115200 ttyS0"
+APPEND_atom-pc = "console=ttyS0,115200 console=tty0"
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+This does work for the N450, but the cedartrail bsp is not under 
+standard/common-pc/atom-pc. It's under standard/cedartrail.  If I have 
+to put SYSLINUX_OPTS in local.conf, what is the suffix and why???
+
+JIm A
+
 
