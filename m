@@ -1,25 +1,41 @@
-Return-Path: <darren.hart@intel.com>
+Return-Path: <nitin.a.kamble@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 129DFE01389
-	for <yocto@yoctoproject.org>; Mon, 16 Jan 2012 11:14:20 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 16 Jan 2012 11:14:19 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BD9DE00306
+	for <yocto@yoctoproject.org>; Mon, 16 Jan 2012 14:00:45 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 16 Jan 2012 14:00:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="99207000"
-Received: from unknown (HELO envy.home) ([10.7.199.59])
-	by orsmga002.jf.intel.com with ESMTP; 16 Jan 2012 11:14:19 -0800
-Message-ID: <4F1476F6.9070308@intel.com>
-Date: Mon, 16 Jan 2012 11:13:58 -0800
-From: Darren Hart <darren.hart@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="97136019"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga001.jf.intel.com with ESMTP; 16 Jan 2012 14:00:45 -0800
+Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 16 Jan 2012 14:00:44 -0800
+Received: from orsmsx106.amr.corp.intel.com ([169.254.5.35]) by
+	ORSMSX105.amr.corp.intel.com ([169.254.4.110]) with mapi id
+	14.01.0355.002; Mon, 16 Jan 2012 14:00:44 -0800
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>, "Hart, Darren"
+	<darren.hart@intel.com>, "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+Thread-Topic: [yocto] qemu EFI build failure
+Thread-Index: AQHM0UYitGGoaIU5+keV69yE/SSml5YJk1iAgAAwFQCAAAJJgIAAAxeA//+IbcCAAAB4wIAGP8yg
+Date: Mon, 16 Jan 2012 22:00:43 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C03F6A7@ORSMSX106.amr.corp.intel.com>
+References: <CACJvPv3H8QaGffS3kdS1qLogcwn9L1ZsYpzqo6eei6LMK_7=WQ@mail.gmail.com>
+	<4F0F2627.3010004@linux.intel.com> <4F0F4E7C.9030506@intel.com>
+	<D956029D25CF204F948EA0FB515E1EE202325B@ORSMSX105.amr.corp.intel.com>
+	<4F0F52FF.3060601@intel.com>
+	<ADD6A3980E8C39419A432FF422031B4C024050@ORSMSX106.amr.corp.intel.com>
+	<ADD6A3980E8C39419A432FF422031B4C02406C@ORSMSX106.amr.corp.intel.com>
+In-Reply-To: <ADD6A3980E8C39419A432FF422031B4C02406C@ORSMSX106.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <D956029D25CF204F948EA0FB515E1EE2030A3D@ORSMSX105.amr.corp.intel.com>
-	<4F147006.1070401@windriver.com>
-In-Reply-To: <4F147006.1070401@windriver.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Linux RT build fail
+Cc: "Ahmad, Josef" <josef.ahmad@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: qemu EFI build failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,92 +47,165 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jan 2012 19:14:20 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 16 Jan 2012 22:00:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 01/16/2012 10:44 AM, Bruce Ashfield wrote:
-> On 12-01-16 01:40 PM, Bodke, Kishore K wrote:
->> Hi,
->>
->> I get build failure for the rt.
->>
->> ERROR: Function 'do_patch' failed (see
->> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22d10952618a2ad146e6149d240cd2-r1/temp/log.do_patch.32459
->> for further information)
->>
->> ERROR: Logfile of failure stored in:
->> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22d10952618a2ad146e6149d240cd2-r1/temp/log.do_patch.32459
->>
->> Log data follows:
->>
->> | ERROR: Function 'do_patch' failed (see
->> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22d10952618a2ad146e6149d240cd2-r1/temp/log.do_patch.32459
->> for further information)
->>
->> | Deleted branch meta-temp (was 620917d).
->>
->> |
->>
->> | ERROR: patch
->> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22d10952618a2ad146e6149d240cd2-r1/linux/meta/cfg/kernel-cache/features/rt/rt-apply-patch-3.0.10-rt27.patch.patch
->> is not available
-> 
-> This is the problem. But I could have sworn that I fixed this, and
-> send a merge request. When I just checked now, it still looks broken.
-> 
-> That being said, we should have seen this before now. Are any -rt
-> kernels being build regularly on master ?
+Darren,
+  I have reworked the commits to fix issues while building on other distros=
+.
+Can you check this branch http://git.yoctoproject.org/cgit/cgit.cgi/poky-co=
+ntrib/commit/?h=3Dnitin/grub-efi
+It is working for me on Fedora 14, for which the other grub-efi commit was =
+failing for me.
 
-I just checked with Beth and we are not. I will open a bug against the
-autobuilder, we need to do this regularly.
-
---
-Darren
-
-> 
-> It is partially due to meta-kernel-dev picking up new kernel tools that
-> do strict checking on patches by default (hence my question about
-> anyone else building this on master).
-> 
-> I'm pushing a fix out now to the meta branch and will send it along
-> with my next consolidated pull request.
-> 
-> Cheers,
-> 
-> Bruce
-> 
->>
->> |
->>
->> | ERROR. Could not find an excutable target for
->> yocto/standard/preempt-rt/base
->>
->> | ERROR. Could not locate meta series for preempt-rt-standard
->>
->> | ERROR. Could not modify yocto/standard/preempt-rt/base
->>
->> NOTE: package
->> linux-yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22d10952618a2ad146e6149d240cd2-r1:
->> task do_patch: Failed
->>
->> NOTE: package bzip2-1.0.6-r4: task do_compile: Succeeded
->>
->> ERROR: Task 3
->> (/usr/local/src/jan13/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.0.bb,
->> do_patch) failed with exit code '1'
->>
->> Is this anything to do with meta-kernel-dev I am using or something else?
->>
->> Thanks
->>
->> Kishore.
->>
-> 
+Thanks,
+Nitin
 
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+> -----Original Message-----
+> From: Kamble, Nitin A
+> Sent: Thursday, January 12, 2012 2:33 PM
+> To: Kamble, Nitin A; Hart, Darren; Bodke, Kishore K
+> Cc: Ahmad, Josef; yocto@yoctoproject.org
+> Subject: RE: [yocto] qemu EFI build failure
+>=20
+> Here is the commit: http://git.yoctoproject.org/cgit.cgi/poky-
+> contrib/log/?h=3Dnitin/misc
+>=20
+> Nitin
+>=20
+> > -----Original Message-----
+> > From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> > bounces@yoctoproject.org] On Behalf Of Kamble, Nitin A
+> > Sent: Thursday, January 12, 2012 2:32 PM
+> > To: Hart, Darren; Bodke, Kishore K
+> > Cc: Ahmad, Josef; yocto@yoctoproject.org
+> > Subject: Re: [yocto] qemu EFI build failure
+> >
+> >
+> > I just sent a patch to oecore mailing list to fix the grub issue with
+> > automake 1.11.2.
+> >
+> > Thanks,
+> > Nitin
+> >
+> >
+> > > -----Original Message-----
+> > > From: Hart, Darren
+> > > Sent: Thursday, January 12, 2012 1:39 PM
+> > > To: Bodke, Kishore K
+> > > Cc: Ahmad, Josef; yocto@yoctoproject.org; Kamble, Nitin A
+> > > Subject: Re: [yocto] qemu EFI build failure
+> > >
+> > > On 01/12/2012 01:28 PM, Bodke, Kishore K wrote:
+> > > > I have only
+> > > > MACHINE_FEATURES +=3D "efi"
+> > > > KERNEL_FEATURES_append_cedartrail +=3D "cfg/efi-ext.scc".
+> > > >
+> > > > I am not having IMAGE_FSTYPES +=3D "live".
+> > >
+> > > The "live" change is just to trigger the live image type which
+> builds
+> > > grub-efi-native for efi systems. qemux86 needs this added
+> explicitly.
+> > >
+> > > --
+> > > Darren
+> > >
+> > > >
+> > > > Thanks
+> > > > Kishore.
+> > > > -----Original Message-----
+> > > > From: Hart, Darren
+> > > > Sent: Thursday, January 12, 2012 1:20 PM
+> > > > To: Ahmad, Josef
+> > > > Cc: yocto@yoctoproject.org; Bodke, Kishore K; Kamble, Nitin A
+> > > > Subject: Re: [yocto] qemu EFI build failure
+> > > >
+> > > > On 01/12/2012 10:27 AM, Darren Hart wrote:
+> > > >>
+> > > >>
+> > > >> On 01/12/2012 08:19 AM, Josef Ahmad wrote:
+> > > >>> I tried to build a qemux86 EFI image, by setting:
+> > > >>> - in my local.conf: IMAGE_FSTYPES +=3D "live"
+> > > >>> - in poly/meta/conf/machine/qemux86.conf: MACHINE_FEATURES +=3D
+> > "efi"
+> > > >>>
+> > > >>
+> > > >> I haven't tried live images with QEMU. For one thing, they
+> aren't
+> > > really
+> > > >> necessary as you can specify all the boot parameters on the qemu
+> > > command
+> > > >> line. Is there are reason you want to use the live image
+> > > specifically?
+> > > >>
+> > > >> Also, in order to properly test EFI in QEMU, you will need to
+> use
+> > an
+> > > EFI
+> > > >> BIOS - I believe you're aware of this already - but this isn't
+> > > currently
+> > > >> supported by the runqemu scripts that ship with yocto.
+> > > >>
+> > > >>> The build gave me the following error:
+> > > >>
+> > > >>
+> > > >> I'll do some test builds - it isn't clear to me what is going on
+> > > here.
+> > > >>
+> > > >> <snip>
+> > > >>
+> > > >>>
+> > > >>>
+> > > >>> Has anyone encountered the same error?  I'm not sure I set up
+> the
+> > > >>> correct configuration. Also, is there another way to append
+> "efi"
+> > > to
+> > > >>> MACHINE_FEATURES rather than by modifying qemux86.conf?
+> > > >>
+> > > >> You should be able to do something like:
+> > > >> MACHINE_FEATURES_append_qemux86 =3D "efi"
+> > > >>
+> > > >> Note that you will also need to enable the efi support in the
+> > > kernel,
+> > > >> which is done with the KERNEL_FEATURES variable, something like:
+> > > >> KERNEL_FEATURES_append_qemux86 =3D "conf/efi-ext.scc"
+> > > >>
+> > > >> Either of these can be set in your local.conf.
+> > > >>
+> > > >
+> > > > More accurately:
+> > > >
+> > > > MACHINE_FEATURES_append_qemux86=3D" efi pcbios"
+> > > > KERNEL_FEATURES_append_qemux86=3D" cfg/efi-ext.scc"
+> > > > IMAGE_FSTYPES +=3D "live"
+> > > >
+> > > > With these added to local.conf and building for qemux86 I see the
+> > > same
+> > > > configure failures reported by Kishore and Josef:
+> > > >
+> > > > | ../../lib/autoconf/lang.m4:194: AC_LANG_CONFTEST is expanded
+> > > from...
+> > > > | acinclude.m4:363: grub_CHECK_STACK_ARG_PROBE is expanded
+> from...
+> > > >
+> > > > I've discussed in IRC with Nitin and he thinks this may be
+> related
+> > to
+> > > > the automake update and is looking into it.
+> > > >
+> > >
+> > >
+> > > --
+> > > Darren Hart
+> > > Intel Open Source Technology Center
+> > > Yocto Project - Linux Kernel
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
 
