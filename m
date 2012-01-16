@@ -1,34 +1,20 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62755E0121A
-	for <yocto@yoctoproject.org>; Sun, 15 Jan 2012 20:03:16 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 15 Jan 2012 20:03:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="107436992"
-Received: from pgsmsx602.gar.corp.intel.com ([10.221.43.81])
-	by fmsmga001.fm.intel.com with ESMTP; 15 Jan 2012 20:03:15 -0800
-Received: from pgsmsx102.gar.corp.intel.com (10.221.44.80) by
-	pgsmsx602.gar.corp.intel.com (10.221.43.81) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 16 Jan 2012 12:01:57 +0800
-Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
-	PGSMSX102.gar.corp.intel.com (10.221.44.80) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 16 Jan 2012 12:01:55 +0800
-Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.60]) by
-	SHSMSX102.ccr.corp.intel.com ([169.254.2.88]) with mapi id
-	14.01.0355.002; Mon, 16 Jan 2012 12:01:49 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto weekly bug trend charts -- WW02
-Thread-Index: AczUA5IwuIqKPgHiQ3iLvZNqhxr5AQ==
-Date: Mon, 16 Jan 2012 04:01:49 +0000
-Message-ID: <90741FE9B50D654690EB940EDB456C8E02AE76@SHSMSX101.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B3C6E0121A
+	for <yocto@yoctoproject.org>; Mon, 16 Jan 2012 01:27:46 -0800 (PST)
+Received: from [192.168.0.48] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id 4624925563
+	for <yocto@yoctoproject.org>; Mon, 16 Jan 2012 08:48:17 +0000 (GMT)
+Message-ID: <4F13ED64.8020308@communistcode.co.uk>
+Date: Mon, 16 Jan 2012 09:27:00 +0000
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111224 Thunderbird/9.0.1
 MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW02
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <4F106990.7080208@gmail.com>
+In-Reply-To: <4F106990.7080208@gmail.com>
+Subject: Re: question on poky and git interaction
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,18 +26,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jan 2012 04:03:16 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 16 Jan 2012 09:27:47 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi all,
-	The overall open bug trend increased a little last week. The new submitted=
- bug vs. fixed bug number is 17 vs. 21. WDD number is 675. Bug status of WW=
-02 could be found on https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
+On 13/01/12 17:27, Jim Abernathy wrote:
+> under the poky directory you git checkout of the branch you want to 
+> work with, then you clone meta-intel and within that directory you 
+> checkout a branch.  if you needed to use git for you personal project, 
+> you can't put it at the same meta-intel level, right? Only one per 
+> directory??? I would guess that you'd need to create your personal git 
+> clone below meta-intel; something like meta-jima.
+>
+> Does this sound correct??
+>
+> Jim A
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+Hi Jim,
 
-Best Regards,
-Jiajun
+This is indeed how I manage my extra package files and anything else 
+poky needs. Any other interesting input would be good to hear though!
 
+Slightly off-topic, with meta-intel and then checking out branches to 
+get specific machines, do you do global work in master, machine specific 
+work in the branches, and then merge out from master to the branches to 
+keep them all in sync?
 
+Cheers,
+Jack.
 
