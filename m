@@ -1,20 +1,23 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66E6EE0134D
-	for <yocto@yoctoproject.org>; Tue, 17 Jan 2012 13:46:45 -0800 (PST)
-Received: from mail-iy0-f180.google.com ([209.85.210.180])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 17 Jan 2012 13:46:44 -0800
-Received: by iaby26 with SMTP id y26so4065800iab.25
-	for <yocto@yoctoproject.org>; Tue, 17 Jan 2012 13:46:43 -0800 (PST)
+Return-Path: <josh@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73518E0134D
+	for <yocto@yoctoproject.org>; Tue, 17 Jan 2012 13:57:10 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 17 Jan 2012 13:57:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="113350013"
+Received: from unknown (HELO [10.255.13.216]) ([10.255.13.216])
+	by fmsmga002.fm.intel.com with ESMTP; 17 Jan 2012 13:57:09 -0800
+Message-ID: <4F15EEB4.4020905@linux.intel.com>
+Date: Tue, 17 Jan 2012 13:57:08 -0800
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-Received: by 10.42.145.131 with SMTP id f3mr18665443icv.8.1326836803461; Tue,
-	17 Jan 2012 13:46:43 -0800 (PST)
-Received: by 10.50.237.98 with HTTP; Tue, 17 Jan 2012 13:46:43 -0800 (PST)
-Date: Tue, 17 Jan 2012 13:46:43 -0800
-Message-ID: <CAPhnLPB6hQc9ecd-WjGXDZ+b3R3H7nN_pnV8WQB9y0eCvjK+WQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 To: yocto@yoctoproject.org
-Subject: Autobuilder Downtime Friday, January 20th.
+References: <CAPhnLPB6hQc9ecd-WjGXDZ+b3R3H7nN_pnV8WQB9y0eCvjK+WQ@mail.gmail.com>
+In-Reply-To: <CAPhnLPB6hQc9ecd-WjGXDZ+b3R3H7nN_pnV8WQB9y0eCvjK+WQ@mail.gmail.com>
+Subject: Re: Autobuilder Downtime Friday, January 20th.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,21 +29,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jan 2012 21:46:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 17 Jan 2012 21:57:10 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-All,
 
-The autobuilder infrastructure will be unavailable for part of the
-day, Friday January 20th between 9am to 4pm. I will be adding some
-additional buildset targets. During this time, build failure emails
-will be disabled. This will not effect any of the other services
-hosted by the autobuilder infrastructure (source mirror, etc)
 
-Thanks.
+On 17/01/12 13:46, Flanagan, Elizabeth wrote:
+> All,
+>
+> The autobuilder infrastructure will be unavailable for part of the
+> day, Friday January 20th between 9am to 4pm. I will be adding some
 
+PST, I assume? i.e. UTC-8
+
+Joshua
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Joshua Lock
+         Yocto Project "Johannes factotum"
+         Intel Open Source Technology Centre
 
