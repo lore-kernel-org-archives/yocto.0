@@ -1,35 +1,33 @@
 Return-Path: <jfabernathy@gmail.com>
-Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D84CFE004D2
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2012 07:01:15 -0800 (PST)
+Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6ED8E004D2
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2012 07:04:05 -0800 (PST)
 Authentication-Results: yocto-www.yoctoproject.org; dkim=pass
 	(1024-bit key; insecure key) header.i=@gmail.com;
 	x-dkim-adsp=none (insecure policy)
-Received: by vbbfc21 with SMTP id fc21so1478951vbb.35
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2012 07:01:15 -0800 (PST)
+Received: by vcbfk13 with SMTP id fk13so3366412vcb.35
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2012 07:04:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=xrvd0GzEQ+SyH/Pr1dT0U6gdyR8663htR8GNrJs6b/Y=;
-	b=x+/6Z4Ayb+7BMF+A8UslNQUHISfXimJBPjqjChvFM8sGphUPEPCtiw2q5RYge7ZVxb
-	IbRcPAOFi7a0oq8hFWKxK6wVn1tqwfqK0hncq8NUEvioWhtDSMXHxsEOH8JEoayQZpCi
-	aXr4WW4w4htpkzIZqUb/tiKiat34axPSB6Ads=
+	:content-type; bh=Xhmfmg2sy9Ug+yXftZNziYnZIRPympkX4hGe08RSCX8=;
+	b=o/iRSsq73JytXA1LM5DqOF9BmPp5PZ+/eh4o7BSzLl8TnFNxmsn4L5uXkPawpO+VWJ
+	A+D0YcnnrgY2GbE0JOazKhswEPvj61det/PA/yz+VO7VKjQdCR+B4Tlqwr2rhqsO4iLp
+	O6BWx4A/Oi60RrmiMY+5VgbF/8gsmv2XO8V+Q=
 MIME-Version: 1.0
-Received: by 10.52.28.238 with SMTP id e14mr10500943vdh.96.1326898874936; Wed,
-	18 Jan 2012 07:01:14 -0800 (PST)
-Received: by 10.52.180.69 with HTTP; Wed, 18 Jan 2012 07:01:14 -0800 (PST)
-In-Reply-To: <4F16DC5D.9070903@mlbassoc.com>
+Received: by 10.221.13.196 with SMTP id pn4mr14072968vcb.74.1326899044058;
+	Wed, 18 Jan 2012 07:04:04 -0800 (PST)
+Received: by 10.52.180.69 with HTTP; Wed, 18 Jan 2012 07:04:03 -0800 (PST)
+In-Reply-To: <4F16DDCD.2020701@ti.com>
 References: <CANFv2EmGr9fZOPbi1G+sWbWp0t6B-mijZ6z8iLLw7ZGN9OZy9Q@mail.gmail.com>
 	<CANFv2E=WCVdtHMrf9VBC0JX+GjTRk+NZr+ZwA4F-x0SAnc3L1g@mail.gmail.com>
 	<CANFv2EnCdxjffKM1W42vBU-TTPCG8kL2GTXr5VUP47zDof8VwA@mail.gmail.com>
-	<4F16DC5D.9070903@mlbassoc.com>
-Date: Wed, 18 Jan 2012 10:01:14 -0500
-Message-ID: <CANFv2E=TfkMKujYLDyF=NWAr63criYqi++mAnf=h9oVu0kz6CA@mail.gmail.com>
+	<4F16DC5D.9070903@mlbassoc.com> <4F16DDCD.2020701@ti.com>
+Date: Wed, 18 Jan 2012 10:04:03 -0500
+Message-ID: <CANFv2E=R2NwFm0CdHqmQC0HskVYZFFYCwu49r2vs5wxkmHS=rg@mail.gmail.com>
 From: James Abernathy <jfabernathy@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: build failure on ubuntu 64bits development system
+To: yocto@yoctoproject.org
+Subject: build failure on ubuntu 64bits development system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,13 +39,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jan 2012 15:01:16 -0000
-Content-Type: multipart/alternative; boundary=20cf307ac30517eeb304b6ceb842
+X-List-Received-Date: Wed, 18 Jan 2012 15:04:06 -0000
+Content-Type: multipart/alternative; boundary=bcaec54fb9e02c844804b6cec258
 
---20cf307ac30517eeb304b6ceb842
+--bcaec54fb9e02c844804b6cec258
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, Jan 18, 2012 at 9:51 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+---------- Forwarded message ----------
+From: William Mills <wmills@ti.com>
+Date: Wed, Jan 18, 2012 at 9:57 AM
+Subject: Re: [yocto] build failure on ubuntu 64bits development system
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: yocto@yoctoproject.org
+
+
+
+
+On 01/18/2012 09:51 AM, Gary Thomas wrote:
 
 > On 2012-01-18 07:42, James Abernathy wrote:
 >
@@ -55,7 +63,6 @@ On Wed, Jan 18, 2012 at 9:51 AM, Gary Thomas <gary@mlbassoc.com> wrote:
 >>
 >> On Wed, Jan 18, 2012 at 9:30 AM, James Abernathy <jfabernathy@gmail.com<mailto:
 >> jfabernathy@gmail.com>**> wrote:
->>
 >>
 >>
 >>
@@ -139,115 +146,39 @@ On Wed, Jan 18, 2012 at 9:51 AM, Gary Thomas <gary@mlbassoc.com> wrote:
 > Can you show what the differences are between /proc/diskstats
 > on the two systems?  That's obviously what's causing the error.
 >
-> --
+>
+If your build dir is encyptfs or a fuse device or anything that is not a
+direct block device you will get this error.  This is to be fixed in 1.1.1
+but encyptfs will still have other problems.
 
-on the x64 system it's:
-jim@ubuntu:~/poky-edison-6.0/build$ cat /proc/diskstats
-   1       0 ram0 0 0 0 0 0 0 0 0 0 0 0
-   1       1 ram1 0 0 0 0 0 0 0 0 0 0 0
-   1       2 ram2 0 0 0 0 0 0 0 0 0 0 0
-   1       3 ram3 0 0 0 0 0 0 0 0 0 0 0
-   1       4 ram4 0 0 0 0 0 0 0 0 0 0 0
-   1       5 ram5 0 0 0 0 0 0 0 0 0 0 0
-   1       6 ram6 0 0 0 0 0 0 0 0 0 0 0
-   1       7 ram7 0 0 0 0 0 0 0 0 0 0 0
-   1       8 ram8 0 0 0 0 0 0 0 0 0 0 0
-   1       9 ram9 0 0 0 0 0 0 0 0 0 0 0
-   1      10 ram10 0 0 0 0 0 0 0 0 0 0 0
-   1      11 ram11 0 0 0 0 0 0 0 0 0 0 0
-   1      12 ram12 0 0 0 0 0 0 0 0 0 0 0
-   1      13 ram13 0 0 0 0 0 0 0 0 0 0 0
-   1      14 ram14 0 0 0 0 0 0 0 0 0 0 0
-   1      15 ram15 0 0 0 0 0 0 0 0 0 0 0
-   7       0 loop0 0 0 0 0 0 0 0 0 0 0 0
-   7       1 loop1 0 0 0 0 0 0 0 0 0 0 0
-   7       2 loop2 0 0 0 0 0 0 0 0 0 0 0
-   7       3 loop3 0 0 0 0 0 0 0 0 0 0 0
-   7       4 loop4 0 0 0 0 0 0 0 0 0 0 0
-   7       5 loop5 0 0 0 0 0 0 0 0 0 0 0
-   7       6 loop6 0 0 0 0 0 0 0 0 0 0 0
-   7       7 loop7 0 0 0 0 0 0 0 0 0 0 0
-   8       0 sda 33076 23382 1115462 1829656 31802 9209 2849176 624296 0
-190664 2454576
-   8       1 sda1 32289 23295 1108604 1827592 27505 9200 2848960 560828 0
-131548 2388540
-   8       2 sda2 429 24 3618 1224 18 9 216 64 0 1260 1288
-   8       3 sda3 2 0 20 108 0 0 0 0 0 108 108
-   8       5 sda5 191 63 1900 460 0 0 0 0 0 436 456
-   8      16 sdb 32063 23153 1112192 1760580 25981 8723 2780656 549424 0
-134176 2310272
-   8      17 sdb1 31842 23153 1110554 1759984 21702 8723 2780656 501512 0
-88724 2261696
-   8      18 sdb2 2 0 12 52 0 0 0 0 0 52 52
-   8      21 sdb5 47 0 250 228 0 0 0 0 0 228 228
-  11       0 sr0 0 0 0 0 0 0 0 0 0 0 0
-   9       0 md0 133691 0 2218832 0 67133 0 5629616 0 0 0 0
-   9       1 md1 235 0 1880 0 0 0 0 0 0 0 0
-
-On the x32 system it's:
-  im@ubuntu-workstation:~$ cat /proc/diskstats
-  1       0 ram0 0 0 0 0 0 0 0 0 0 0 0
-  1       1 ram1 0 0 0 0 0 0 0 0 0 0 0
-  1       2 ram2 0 0 0 0 0 0 0 0 0 0 0
-  1       3 ram3 0 0 0 0 0 0 0 0 0 0 0
-  1       4 ram4 0 0 0 0 0 0 0 0 0 0 0
-  1       5 ram5 0 0 0 0 0 0 0 0 0 0 0
-  1       6 ram6 0 0 0 0 0 0 0 0 0 0 0
-  1       7 ram7 0 0 0 0 0 0 0 0 0 0 0
-  1       8 ram8 0 0 0 0 0 0 0 0 0 0 0
-  1       9 ram9 0 0 0 0 0 0 0 0 0 0 0
-  1      10 ram10 0 0 0 0 0 0 0 0 0 0 0
-  1      11 ram11 0 0 0 0 0 0 0 0 0 0 0
-  1      12 ram12 0 0 0 0 0 0 0 0 0 0 0
-  1      13 ram13 0 0 0 0 0 0 0 0 0 0 0
-  1      14 ram14 0 0 0 0 0 0 0 0 0 0 0
-  1      15 ram15 0 0 0 0 0 0 0 0 0 0 0
-  7       0 loop0 0 0 0 0 0 0 0 0 0 0 0
-  7       1 loop1 0 0 0 0 0 0 0 0 0 0 0
-  7       2 loop2 0 0 0 0 0 0 0 0 0 0 0
-  7       3 loop3 0 0 0 0 0 0 0 0 0 0 0
-  7       4 loop4 0 0 0 0 0 0 0 0 0 0 0
-  7       5 loop5 0 0 0 0 0 0 0 0 0 0 0
-  7       6 loop6 0 0 0 0 0 0 0 0 0 0 0
-  7       7 loop7 0 0 0 0 0 0 0 0 0 0 0
-  8       0 sda 335 3 2704 284 0 0 0 0 0 284 284
-  8       1 sda1 167 0 1336 152 0 0 0 0 0 152 152
-  8      16 sdb 360 3 2904 480 0 0 0 0 0 376 480
-  8      17 sdb1 165 0 1320 120 0 0 0 0 0 120 120
-  8      18 sdb2 29 0 232 212 0 0 0 0 0 212 212
-  8      32 sdc 5605 15794 503606 680328 578 1698 19480 35292 0 20740 715608
-  8      33 sdc1 5274 15763 500722 678628 565 1698 19480 34748 0 20068
-713364
-  8      34 sdc2 2 0 4 0 0 0 0 0 0 0 0
-  8      37 sdc5 162 31 1544 892 0 0 0 0 0 884 892
- 11       0 sr0 0 0 0 0 0 0 0 0 0 0 0
-jim@ubuntu-workstation:~$
-
-The file system is BTRFS  on Software RAID 0 with 2 disks.
+I build the Ubuntu 11.10 x64 system with 2 drives setup as Soft RAID 0. I
+picked btrfs as the file system for no particular reason.  Should I go back
+to ext4 or is RAID 0 the problem?
 
 JIm A
 
+______________________________**_________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
 
-> ------------------------------**------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------**------------------------------
-> ______________________________**_________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->
-
---20cf307ac30517eeb304b6ceb842
+--bcaec54fb9e02c844804b6cec258
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<br><br><div class=3D"gmail_quote">On Wed, Jan 18, 2012 at 9:51 AM, Gary Th=
-omas <span dir=3D"ltr">&lt;<a href=3D"mailto:gary@mlbassoc.com" target=3D"_=
-blank">gary@mlbassoc.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
-:1ex">
-
+<br><br><div class=3D"gmail_quote">---------- Forwarded message ----------<=
+br>From: <b class=3D"gmail_sendername">William Mills</b> <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:wmills@ti.com">wmills@ti.com</a>&gt;</span><br>Date: =
+Wed, Jan 18, 2012 at 9:57 AM<br>
+Subject: Re: [yocto] build failure on ubuntu 64bits development system<br>T=
+o: Gary Thomas &lt;<a href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</=
+a>&gt;<br>Cc: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.=
+org</a><br>
+<br><br><div class=3D"HOEnZb"><div class=3D"h5"><br>
+<br>
+On 01/18/2012 09:51 AM, Gary Thomas wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
 On <a href=3D"tel:2012-01-18%2007" value=3D"+12012011807" target=3D"_blank"=
 >2012-01-18 07</a>:42, James Abernathy wrote:<br>
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
@@ -257,9 +188,8 @@ x #ccc solid;padding-left:1ex">
 On Wed, Jan 18, 2012 at 9:30 AM, James Abernathy &lt;<a href=3D"mailto:jfab=
 ernathy@gmail.com" target=3D"_blank">jfabernathy@gmail.com</a> &lt;mailto:<=
 a href=3D"mailto:jfabernathy@gmail.com" target=3D"_blank">jfabernathy@gmail=
-.com</a>&gt;<u></u>&gt; wrote:<div>
+.com</a>&gt;<u></u>&gt; wrote:<br>
 
-<div><br>
 <br>
 <br>
 <br>
@@ -267,7 +197,6 @@ a href=3D"mailto:jfabernathy@gmail.com" target=3D"_blank">jfabernathy@gmail=
 lto:jfabernathy@gmail.com" target=3D"_blank">jfabernathy@gmail.com</a> &lt;=
 mailto:<a href=3D"mailto:jfabernathy@gmail.com" target=3D"_blank">jfabernat=
 hy@gmail.com</a>&gt;<u></u>&gt; wrote:<br>
-
 
 <br>
  =A0 =A0 =A0 =A0I just built a new development pc and installed Ubuntu 11.1=
@@ -347,108 +276,29 @@ r, let&#39;s<br>
 ot;w&quot;)<br>
  =A0 =A0 file.write(rdev)<br>
  =A0 =A0 file.close()<br>
-</div></div></blockquote>
+</blockquote>
 <br>
 Can you show what the differences are between /proc/diskstats<br>
-on the two systems? =A0That&#39;s obviously what&#39;s causing the error.<s=
-pan><font color=3D"#888888"><br>
+on the two systems? =A0That&#39;s obviously what&#39;s causing the error.<b=
+r>
 <br>
---</font></span></blockquote><div>on the x64 system it&#39;s:<br>jim@ubuntu=
-:~/poky-edison-6.0/build$ cat /proc/diskstats<br>=A0=A0 1=A0=A0=A0=A0=A0=A0=
- 0 ram0 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 1=A0=A0=A0=A0=A0=A0 1 ram1 0 0 0 0 =
-0 0 0 0 0 0 0<br>=A0=A0 1=A0=A0=A0=A0=A0=A0 2 ram2 0 0 0 0 0 0 0 0 0 0 0<br=
->
-
-=A0=A0 1=A0=A0=A0=A0=A0=A0 3 ram3 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 1=A0=A0=
-=A0=A0=A0=A0 4 ram4 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 1=A0=A0=A0=A0=A0=A0 5 r=
-am5 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 1=A0=A0=A0=A0=A0=A0 6 ram6 0 0 0 0 0 0 =
-0 0 0 0 0<br>=A0=A0 1=A0=A0=A0=A0=A0=A0 7 ram7 0 0 0 0 0 0 0 0 0 0 0<br>=A0=
-=A0 1=A0=A0=A0=A0=A0=A0 8 ram8 0 0 0 0 0 0 0 0 0 0 0<br>
-
-=A0=A0 1=A0=A0=A0=A0=A0=A0 9 ram9 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 1=A0=A0=
-=A0=A0=A0 10 ram10 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 1=A0=A0=A0=A0=A0 11 ram1=
-1 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 1=A0=A0=A0=A0=A0 12 ram12 0 0 0 0 0 0 0 0=
- 0 0 0<br>=A0=A0 1=A0=A0=A0=A0=A0 13 ram13 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 =
-1=A0=A0=A0=A0=A0 14 ram14 0 0 0 0 0 0 0 0 0 0 0<br>
-
-=A0=A0 1=A0=A0=A0=A0=A0 15 ram15 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 7=A0=A0=A0=
-=A0=A0=A0 0 loop0 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 7=A0=A0=A0=A0=A0=A0 1 loo=
-p1 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 7=A0=A0=A0=A0=A0=A0 2 loop2 0 0 0 0 0 0 =
-0 0 0 0 0<br>=A0=A0 7=A0=A0=A0=A0=A0=A0 3 loop3 0 0 0 0 0 0 0 0 0 0 0<br>
-=A0=A0 7=A0=A0=A0=A0=A0=A0 4 loop4 0 0 0 0 0 0 0 0 0 0 0<br>
-=A0=A0 7=A0=A0=A0=A0=A0=A0 5 loop5 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 7=A0=A0=
-=A0=A0=A0=A0 6 loop6 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 7=A0=A0=A0=A0=A0=A0 7 =
-loop7 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 8=A0=A0=A0=A0=A0=A0 0 sda 33076 23382=
- 1115462 1829656 31802 9209 2849176 624296 0 190664 2454576<br>
-
-=A0=A0 8=A0=A0=A0=A0=A0=A0 1 sda1 32289 23295 1108604 1827592 27505 9200 28=
-48960 560828 0 131548 2388540<br>=A0=A0 8=A0=A0=A0=A0=A0=A0 2 sda2 429 24 3=
-618 1224 18 9 216 64 0 1260 1288<br>=A0=A0 8=A0=A0=A0=A0=A0=A0 3 sda3 2 0 2=
-0 108 0 0 0 0 0 108 108<br>=A0=A0 8=A0=A0=A0=A0=A0=A0 5 sda5 191 63 1900 46=
-0 0 0 0 0 0 436 456<br>
-
-=A0=A0 8=A0=A0=A0=A0=A0 16 sdb 32063 23153 1112192 1760580 25981 8723 27806=
-56 549424 0 134176 2310272<br>=A0=A0 8=A0=A0=A0=A0=A0 17 sdb1 31842 23153 1=
-110554 1759984 21702 8723 2780656 501512 0 88724 2261696<br>=A0=A0 8=A0=A0=
-=A0=A0=A0 18 sdb2 2 0 12 52 0 0 0 0 0 52 52<br>
-
-=A0=A0 8=A0=A0=A0=A0=A0 21 sdb5 47 0 250 228 0 0 0 0 0 228 228<br>=A0 11=A0=
-=A0=A0=A0=A0=A0 0 sr0 0 0 0 0 0 0 0 0 0 0 0<br>=A0=A0 9=A0=A0=A0=A0=A0=A0 0=
- md0 133691 0 2218832 0 67133 0 5629616 0 0 0 0<br>=A0=A0 9=A0=A0=A0=A0=A0=
-=A0 1 md1 235 0 1880 0 0 0 0 0 0 0 0<br><br>On the x32 system it&#39;s:<br>
-=A0
-im@ubuntu-workstation:~$ cat /proc/diskstats<br>
- =A0 1 =A0 =A0 =A0 0 ram0 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A0 1 ram1 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A0 2 ram2 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A0 3 ram3 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A0 4 ram4 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A0 5 ram5 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A0 6 ram6 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A0 7 ram7 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A0 8 ram8 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A0 9 ram9 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A010 ram10 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A011 ram11 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A012 ram12 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A013 ram13 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A014 ram14 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 1 =A0 =A0 =A015 ram15 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 7 =A0 =A0 =A0 0 loop0 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 7 =A0 =A0 =A0 1 loop1 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 7 =A0 =A0 =A0 2 loop2 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 7 =A0 =A0 =A0 3 loop3 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 7 =A0 =A0 =A0 4 loop4 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 7 =A0 =A0 =A0 5 loop5 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 7 =A0 =A0 =A0 6 loop6 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 7 =A0 =A0 =A0 7 loop7 0 0 0 0 0 0 0 0 0 0 0<br>
- =A0 8 =A0 =A0 =A0 0 sda 335 3 2704 284 0 0 0 0 0 284 284<br>
- =A0 8 =A0 =A0 =A0 1 sda1 167 0 1336 152 0 0 0 0 0 152 152<br>
- =A0 8 =A0 =A0 =A016 sdb 360 3 2904 480 0 0 0 0 0 376 480<br>
- =A0 8 =A0 =A0 =A017 sdb1 165 0 1320 120 0 0 0 0 0 120 120<br>
- =A0 8 =A0 =A0 =A018 sdb2 29 0 232 212 0 0 0 0 0 212 212<br>
- =A0 8 =A0 =A0 =A032 sdc 5605 15794 503606 680328 578 1698 19480 35292 0 20=
-740 715608<br>
- =A0 8 =A0 =A0 =A033 sdc1 5274 15763 500722 678628 565 1698 19480 34748 0 2=
-0068 713364<br>
- =A0 8 =A0 =A0 =A034 sdc2 2 0 4 0 0 0 0 0 0 0 0<br>
- =A0 8 =A0 =A0 =A037 sdc5 162 31 1544 892 0 0 0 0 0 884 892<br>
- =A011 =A0 =A0 =A0 0 sr0 0 0 0 0 0 0 0 0 0 0 0<br>
-jim@ubuntu-workstation:~$<br><br>The file system is BTRFS=A0 on Software RA=
-ID 0 with 2 disks.<br><br>JIm A<br><br></div><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0pt 0pt 0pt 0.8ex;border-left:1px solid rgb(204,204,204=
-);padding-left:1ex">
-<span><font color=3D"#888888"> <br>
-------------------------------<u></u>------------------------------<br>
-Gary Thomas =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =A0Consulting for the<br>
-MLB Associates =A0 =A0 =A0 =A0 =A0 =A0 =A0| =A0 =A0Embedded world<br>
-------------------------------<u></u>------------------------------<br>
+</blockquote>
+<br></div></div>
+If your build dir is encyptfs or a fuse device or anything that is not a di=
+rect block device you will get this error. =A0This is to be fixed in 1.1.1 =
+but encyptfs will still have other problems.<div class=3D"HOEnZb"><div clas=
+s=3D"h5">
+<br>
+I build the Ubuntu 11.10 x64 system with 2 drives setup as Soft RAID 0. I p=
+icked btrfs as the file system for no particular reason.=A0 Should I go bac=
+k to ext4 or is RAID 0 the problem?<br><br>JIm A<br>
+<br>
 ______________________________<u></u>_________________<br>
 yocto mailing list<br>
 <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
 ect.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
 >https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</font></span></blockquote></div><br>
+</div></div></div><br>
 
---20cf307ac30517eeb304b6ceb842--
+--bcaec54fb9e02c844804b6cec258--
