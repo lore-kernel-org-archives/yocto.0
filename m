@@ -1,29 +1,33 @@
-Return-Path: <saul.wold@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33BECE004D2
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2012 13:58:37 -0800 (PST)
-Received: from mail-iy0-f180.google.com ([209.85.210.180])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 18 Jan 2012 13:58:36 -0800
-Received: by iabz7 with SMTP id z7so602645iab.25
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2012 13:58:36 -0800 (PST)
-Received: by 10.50.168.4 with SMTP id zs4mr24206260igb.28.1326923916261;
-	Wed, 18 Jan 2012 13:58:36 -0800 (PST)
-Received: from [10.6.18.223] (c-71-193-189-117.hsd1.wa.comcast.net.
-	[71.193.189.117])
-	by mx.google.com with ESMTPS id q30sm93398808ibc.1.2012.01.18.13.58.34
-	(version=SSLv3 cipher=OTHER); Wed, 18 Jan 2012 13:58:35 -0800 (PST)
-Message-ID: <4F174089.7090403@intel.com>
-Date: Wed, 18 Jan 2012 13:58:33 -0800
-From: Saul Wold <saul.wold@intel.com>
-Organization: Intel
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
+Return-Path: <fei.yang@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69B3BE004D2
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2012 14:04:07 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 18 Jan 2012 14:04:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="57780636"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by AZSMGA002.ch.intel.com with ESMTP; 18 Jan 2012 14:04:06 -0800
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 18 Jan 2012 14:04:06 -0800
+Received: from orsmsx102.amr.corp.intel.com ([169.254.1.7]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.13]) with mapi id
+	14.01.0355.002; Wed, 18 Jan 2012 14:04:06 -0800
+From: "Yang, Fei" <fei.yang@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Making machine config a build dependency for core-image recipes
+Thread-Index: AczWLRfNTu9B3q16TaCsxNRcuwXo0g==
+Date: Wed, 18 Jan 2012 22:04:05 +0000
+Message-ID: <02E7334B1630744CBDC55DA8586225831FAEC2@ORSMSX102.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <4F1737E6.1020209@linux.intel.com>
-In-Reply-To: <4F1737E6.1020209@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Minutes: Kernel Team 1.2 M3/4 Planning (Jan 18)
+X-Mailman-Approved-At: Wed, 18 Jan 2012 14:11:51 -0800
+Subject: Making machine config a build dependency for core-image recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,64 +39,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jan 2012 21:58:37 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 18 Jan 2012 22:04:07 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 01/18/2012 01:21 PM, Darren Hart wrote:
-> Attendees:
-> Darren Hart
-> Tom Zanussi
-> Bruce Ashfield
->
-> Bug Query:
-> http://bugzilla.yoctoproject.org/buglist.cgi?query_format=advanced&emailtype2=regexp&bug_status=NEW&bug_status=ACCEPTED&bug_status=REOPENED&bug_status=NEEDINFO&bug_status=WaitForUpstream&email2=.*%28zanussi|dvhart|ashfield%29.*&emailassigned_to2=1&target_milestone=1.2&target_milestone=1.2%20M1&target_milestone=1.2%20M2&target_milestone=1.2%20M3&target_milestone=1.2%20M4
->
-> As a group, Tom, Bruce, and I reviewed all the bugs assigned to us for 1.2. With
-> all the non-bug work we are committed to over the next three months comprising
-> M3 and M4, we have moved a number of bugs to post 1.2. The post 1.2 kernel bugs
-> include:
->
-> ID 	Sev 	Pri 	Status 	Summary 	Whiteboard
-> 1883 	maj 	Med 	ACCE 	No space left on device
-I snagged this one and will get it into 1.2
+I encountered a build issue when trying to generate /etc/inittab.
+I have a meta-xxx/conf/machine/conf file which contains serial console info=
+rmation such as SERIAL_CONSOLE =3D "115200 ttyXYZ" or "115200 ttyS0" by def=
+ault.
+When I update that conf file and make an incremental build, the /etc/initta=
+b doesn't get updated, I finally have to remove all the binaries and force =
+a complete re-build to generate correct /etc/inittab with updated serial co=
+nsole settings, which take more than an hour to finish.
+How do I create a dependency so that when I update my machine/conf file, an=
+ incremental build would take care of the change and re-generate the files =
+in root FS accordingly? If that is impossible for now, can I just delete on=
+e or a few task binaries to trigger a rebuild on /etc/inittab? This would g=
+reatly reduce my build time.
 
-Sau!
-	
-> 1634 	enh 	Low 	ACCE 	BSP: research and update/refresh reference platforms
-> 1614 	enh 	Med 	ACCE 	Target module build
-> 927 	nor 	Low 	ACCE 	[POSIX] case pthread_cond_broadcast does not kill itself after finished
-> 1094 	nor 	Low 	ACCE 	module.bbclass is well out of sync with the version in openembedded 	
-> 1138 	nor 	Low 	ACCE 	[LTP] Some growfiles cases failed with Yocto 1.1 M1 build16)
-> 1635 	enh 	Low 	ACCE 	Drop Grub for Syslinux
-> 1648 	enh 	Low 	ACCE 	Real-time process-executed timers
-> 1795 	enh 	Low 	NEW 	Simplify core-image-minimal-initramfs and reduce dependencies 	
-> 1830 	enh 	Low 	NEW 	Add bluetooth config fragment and add to yocto/standard or appropriate BSPs
-> 418 	nor 	Med 	ACCE 	uvesafb is required to be a module on qemux86/qemux86-64 target
-> 1552 	enh 	Low 	ACCE 	Tracing: create separate recipe for perf
-> 1553 	enh 	Low 	ACCE 	Tracing: perf trace scripting support
->
-> We would like some assistance finding owners for the following bugs:
->
-> 1635 	enh 	Low 	ACCE 	Drop Grub for Syslinux
-> 1728 	nor 	Med 	ACCE 	Uses native lzma when lzma is selected for bzImage compression
-> 1919 	nor 	Med 	NEW 	Accommodate EFI via the live image "install" label
-> 1843 	nor 	Med 	NEED 	Error screen when I input "clear" in the terminal
-> 1886 	nor 	Med 	NEW 	Glxgears failed in qemux86.
-> 1669 	nor 	Med 	ACCE 	emenlow: glxgears running slowly on 3.0 kernel
-> 1840 	nor 	Med 	NEW 	glxgears fail to run on Blacksand
-I will see what I can do about any of these, but I have a feeling that 
-everyone is loaded up.
 
-Sau!
-
->
-> Possibly 1826 [HuronRiver] only 3/4 screen is used when psplash loading
-> Tom, what did we decide on this one?
->
-> If you have concerns about items dropped from the 1.2 plan, or (better still)
-> would like to volunteer to help with some of the bugs listed, please respond in
-> the bugzilla record directly.
->
-
+Thanks,
+Fei
 
