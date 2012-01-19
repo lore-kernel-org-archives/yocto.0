@@ -1,39 +1,22 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4762CE00599
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2012 12:11:49 -0800 (PST)
-Received: by qcsp19 with SMTP id p19so232106qcs.35
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2012 12:11:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=pMQjsuXTquLFmnG6yY9oasMWI8HSadh+/a5qgBcWf4g=;
-	b=F768KzucwCrUbFhl2LBnAha2d01i73HDWW/TANME1XcCfWZ4HSDecAMb9n4RMyfrRm
-	SlCKdIGIhUK3jVMewYqQ71GIHNByBbEska8BhCBv05M0U6uM7p7UFXH6348esPSx4q3F
-	hen+N47yOPid4+dgI2yqPeRSOpBvnbmHeO+ps=
-Received: by 10.224.45.6 with SMTP id c6mr29155479qaf.62.1327003908528;
-	Thu, 19 Jan 2012 12:11:48 -0800 (PST)
-Received: from [10.0.1.54] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
-	by mx.google.com with ESMTPS id
-	dh10sm1674159qab.19.2012.01.19.12.11.47 (version=SSLv3 cipher=OTHER);
-	Thu, 19 Jan 2012 12:11:47 -0800 (PST)
-Message-ID: <4F187903.1050901@gmail.com>
-Date: Thu, 19 Jan 2012 15:11:47 -0500
-From: Jim Abernathy <jfabernathy@gmail.com>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 678B8E00599
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2012 13:34:39 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 19 Jan 2012 13:34:38 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="100560085"
+Received: from unknown (HELO envy.home) ([10.7.199.147])
+	by orsmga002.jf.intel.com with ESMTP; 19 Jan 2012 13:34:38 -0800
+Message-ID: <4F188C59.5090109@linux.intel.com>
+Date: Thu, 19 Jan 2012 13:34:17 -0800
+From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+	rv:8.0) Gecko/20111115 Thunderbird/8.0
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <CANFv2EmGr9fZOPbi1G+sWbWp0t6B-mijZ6z8iLLw7ZGN9OZy9Q@mail.gmail.com>	<CANFv2E=WCVdtHMrf9VBC0JX+GjTRk+NZr+ZwA4F-x0SAnc3L1g@mail.gmail.com>	<CANFv2EnCdxjffKM1W42vBU-TTPCG8kL2GTXr5VUP47zDof8VwA@mail.gmail.com>	<4F16DC5D.9070903@mlbassoc.com>	<4F16DDCD.2020701@ti.com>	<CANFv2E=R2NwFm0CdHqmQC0HskVYZFFYCwu49r2vs5wxkmHS=rg@mail.gmail.com>	<4F16E20C.9010909@ti.com>
-	<CANFv2EnTYUmywJfVGw27QP4QHqgJnjF9-H9G0DEj-HrTAmpytg@mail.gmail.com>
-	<4F16EE0D.1080805@ti.com> <4F16F0A2.9070805@gmail.com>
-	<4F16F410.4050800@linux.intel.com> <4F16FBBF.6080406@gmail.com>
-	<4F173AD5.4040200@linux.intel.com> <4F1820DE.7060700@gmail.com>
-	<4F18568E.2050208@linux.intel.com>
-In-Reply-To: <4F18568E.2050208@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: build failure on ubuntu 64bits development system
+To: Yocto Project <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.3.4
+Subject: [PATCH][linux-yocto] pch_gbe: Do not abort probe on bad MAC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,55 +28,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jan 2012 20:11:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 19 Jan 2012 21:34:39 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 01/19/2012 12:44 PM, Darren Hart wrote:
->
-> On 01/19/2012 05:55 AM, Jim Abernathy wrote:
->> On 01/18/2012 04:34 PM, Darren Hart wrote:
->>> On 01/18/2012 09:05 AM, Jim Abernathy wrote:
->>>
->>>> FYI for those wanting to use Soft RAID, make sure you create one very
->>>> small primary partition for GRUB2 to put the second part of the
->>>> boot-loader in.  Can't use the old process.
->>> I strongly recommend using a separate DISK for your OS installation.
->>> Yocto builds are hard on disks, and RAID 0 increases your risk of
->>> failure in exchange for the added performance. I use a small SSD for my
->>> OS disk and a large RAID0 array of spinning disks for /build and another
->>> array for /virt (where my VM images live - easily recreated).
->>>
->> Learned a few things in this process. I appreciate all the help and advice.
->>
->>   1. So we know that at least with Edison, btrfs does not work with bitbake.
->>   2. When I rebuilt the system, this time I put the Linux root directory
->>      on an 80GB SSD.  That is where I also have my clone of Linux-Yocto
->>      repository, poky, and download directory , DL_DIR.
->>   3. I have create /build with EXT4 format on a Software RAID 0 (striped)
->>      partition, using 2 separate hard drives,  to use as the working
->>      build directory for bitbake. I have a striped swap file on the same
->>      two drives.  But with 8GB or RAM, I shouldn't be using that much.
->>
->> My build times for some of the basic meta-intel BSPs is around 103 minutes.
-> You may be able to improve upon that with the following in /etc/fstab:
->
-> /dev/md0  /build  ext4  noauto,noatime,nodiratime,commit=6000  0  2
->
-> This reduces the number of writes due to updated access time and
-> increases the commit interval so it doesn't stall while writing out
-> every 5 minutes per default.
->
-> NOTE: THIS INCREASES YOUR RISK OF DATA LOSS
->
-> If your machine goes down during a build, you should plan on formatting
-> that drive. If you only keep builds on it, they easily recreateable and
-> you may find the performance boost is worth the risk.
->
-I'll test this out and see.  I'm plan on keeping this system on a UPS 
-anyway.
+Bruce, please apply to linux-yocto-3.0/yocto/standard/base
 
-Jim S
+Upstream-Status: Accepted (Linux 3.3)
 
+If the MAC is invalid or not implemented, do not abort the probe. Issue
+a warning and prevent bringing the interface up until a MAC is set manually
+(via ifconfig $IFACE hw ether $MAC).
 
+Tested on two platforms, one with a valid MAC, the other without a MAC. The real
+MAC is used if present, the interface fails to come up until the MAC is set on
+the other. They successfully get an IP over DHCP and pass a simple ping and
+login over ssh test.
+
+This is meant to allow the Inforce SYS940X development board:
+http://www.inforcecomputing.com/SYS940X_ECX.html
+(and others suffering from a missing MAC) to work with the mainline kernel.
+Without this patch, the probe will fail and the interface will not be created,
+preventing the user from configuring the MAC manually.
+
+This does not make any attempt to address a missing or invalid MAC for the
+pch_phub driver.
+
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+CC: Arjan van de Ven <arjan@linux.intel.com>
+CC: Alan Cox <alan@linux.intel.com>
+CC: Tomoya MORINAGA <tomoya.rohm@gmail.com>
+CC: Jeff Kirsher <jeffrey.t.kirsher@intel.com>
+CC: "David S. Miller" <davem@davemloft.net>
+CC: Paul Gortmaker <paul.gortmaker@windriver.com>
+CC: Jon Mason <jdmason@kudzu.us>
+CC: netdev@vger.kernel.org
+CC: Mark Brown <broonie@opensource.wolfsonmicro.com>
+CC: David Laight <David.Laight@ACULAB.COM>
+CC: Joe Perches <joe@perches.com>
+---
+ drivers/net/pch_gbe/pch_gbe_main.c |   17 ++++++++++++++---
+ 1 files changed, 14 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/net/pch_gbe/pch_gbe_main.c b/drivers/net/pch_gbe/pch_gbe_main.c
+index eac3c5c..e7412f2 100644
+--- a/drivers/net/pch_gbe/pch_gbe_main.c
++++ b/drivers/net/pch_gbe/pch_gbe_main.c
+@@ -1701,6 +1701,12 @@ int pch_gbe_up(struct pch_gbe_adapter *adapter)
+ 	struct pch_gbe_rx_ring *rx_ring = adapter->rx_ring;
+ 	int err;
+ 
++	/* Ensure we have a valid MAC */
++	if (!is_valid_ether_addr(adapter->hw.mac.addr)) {
++		pr_err("Error: Invalid MAC address\n");
++		return -EINVAL;
++	}
++
+ 	/* hardware has been reset, we need to reload some things */
+ 	pch_gbe_set_multi(netdev);
+ 
+@@ -2392,9 +2398,14 @@ static int pch_gbe_probe(struct pci_dev *pdev,
+ 
+ 	memcpy(netdev->dev_addr, adapter->hw.mac.addr, netdev->addr_len);
+ 	if (!is_valid_ether_addr(netdev->dev_addr)) {
+-		dev_err(&pdev->dev, "Invalid MAC Address\n");
+-		ret = -EIO;
+-		goto err_free_adapter;
++		/*
++		 * If the MAC is invalid (or just missing), display a warning
++		 * but do not abort setting up the device. pch_gbe_up will
++		 * prevent the interface from being brought up until a valid MAC
++		 * is set.
++		 */
++		dev_err(&pdev->dev, "Invalid MAC address, "
++		                    "interface disabled.\n");
+ 	}
+ 	setup_timer(&adapter->watchdog_timer, pch_gbe_watchdog,
+ 		    (unsigned long)adapter);
+-- 
+1.7.6.5
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
