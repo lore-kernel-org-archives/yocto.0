@@ -1,29 +1,28 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96A30E00599
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2012 09:45:26 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 19 Jan 2012 09:45:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="97629610"
-Received: from envy.jf.intel.com (HELO envy.home) ([10.24.5.121])
-	by azsmga001.ch.intel.com with ESMTP; 19 Jan 2012 09:45:07 -0800
-Message-ID: <4F18568E.2050208@linux.intel.com>
-Date: Thu, 19 Jan 2012 09:44:46 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
+Return-Path: <jefro.net@gmail.com>
+Received: from mail-gx0-f176.google.com (mail-gx0-f176.google.com
+	[209.85.161.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DBA6E00599
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2012 11:41:33 -0800 (PST)
+Received: by ggnl4 with SMTP id l4so331983ggn.35
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2012 11:41:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
+	:from:to:content-type;
+	bh=khZRYPbBsdAU0RpErbkKcH6CdCjkpW29jMMhQw7SYz0=;
+	b=Y1PY3gkryWfHbkfmckHjYt7RZsJECsmCklBp8Z1CQgLPoo9vdTj5yMX1IMIZnBjWfX
+	QX70p2CWXj4qzMThIHcpSs/ahRpVD5o2FSlCNDcu2G+kLCLzBvAeNeNz4vK4BdtlHb0M
+	SLptYW1YdEplIvFpQkhOd0KaUQjj0lWMgOuhw=
 MIME-Version: 1.0
-To: Jim Abernathy <jfabernathy@gmail.com>
-References: <CANFv2EmGr9fZOPbi1G+sWbWp0t6B-mijZ6z8iLLw7ZGN9OZy9Q@mail.gmail.com>	<CANFv2E=WCVdtHMrf9VBC0JX+GjTRk+NZr+ZwA4F-x0SAnc3L1g@mail.gmail.com>	<CANFv2EnCdxjffKM1W42vBU-TTPCG8kL2GTXr5VUP47zDof8VwA@mail.gmail.com>	<4F16DC5D.9070903@mlbassoc.com>	<4F16DDCD.2020701@ti.com>	<CANFv2E=R2NwFm0CdHqmQC0HskVYZFFYCwu49r2vs5wxkmHS=rg@mail.gmail.com>	<4F16E20C.9010909@ti.com>
-	<CANFv2EnTYUmywJfVGw27QP4QHqgJnjF9-H9G0DEj-HrTAmpytg@mail.gmail.com>
-	<4F16EE0D.1080805@ti.com> <4F16F0A2.9070805@gmail.com>
-	<4F16F410.4050800@linux.intel.com> <4F16FBBF.6080406@gmail.com>
-	<4F173AD5.4040200@linux.intel.com> <4F1820DE.7060700@gmail.com>
-In-Reply-To: <4F1820DE.7060700@gmail.com>
-X-Enigmail-Version: 1.3.4
-Cc: yocto@yoctoproject.org
-Subject: Re: build failure on ubuntu 64bits development system
+Received: by 10.50.15.161 with SMTP id y1mr35178660igc.4.1327002092775; Thu,
+	19 Jan 2012 11:41:32 -0800 (PST)
+Sender: jefro.net@gmail.com
+Received: by 10.50.203.1 with HTTP; Thu, 19 Jan 2012 11:41:32 -0800 (PST)
+Date: Thu, 19 Jan 2012 11:41:32 -0800
+X-Google-Sender-Auth: 6UoundkTh-ZyFqi8yS1GIl5ZBOY
+Message-ID: <CA+YB3rZcE7oTRmjmW39g7E94+r1s9oUPZX7OaoaYKKYHK+5dmw@mail.gmail.com>
+From: Jeff Osier-Mixon <jefro@jefro.net>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Yocto Project Developer Day at ELC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,55 +34,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jan 2012 17:45:26 -0000
+X-List-Received-Date: Thu, 19 Jan 2012 19:41:33 -0000
+Content-Type: multipart/alternative; boundary=14dae9340c595b26bc04b6e6c02a
+
+--14dae9340c595b26bc04b6e6c02a
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
+Keep Tuesday, February 14, open. That is the day before the Embedded Linux
+Conference in Redwood Shores, CA, and it is also the day of the first Yocto
+Project Developer Day, a full-day opportunity to learn more about the Yocto
+Project. There will be a beginner-level track as well as an
+intermediate-level track, both with hands-on labs and access to Yocto
+Project developers. The best part - this day of training is free of charge.
 
+Registration is limited, so please sign up as soon as possible. More
+information at:
 
-On 01/19/2012 05:55 AM, Jim Abernathy wrote:
-> On 01/18/2012 04:34 PM, Darren Hart wrote:
->>
->> On 01/18/2012 09:05 AM, Jim Abernathy wrote:
->>
->>> FYI for those wanting to use Soft RAID, make sure you create one very 
->>> small primary partition for GRUB2 to put the second part of the 
->>> boot-loader in.  Can't use the old process.
->> I strongly recommend using a separate DISK for your OS installation.
->> Yocto builds are hard on disks, and RAID 0 increases your risk of
->> failure in exchange for the added performance. I use a small SSD for my
->> OS disk and a large RAID0 array of spinning disks for /build and another
->> array for /virt (where my VM images live - easily recreated).
->>
-> Learned a few things in this process. I appreciate all the help and advice.
-> 
->  1. So we know that at least with Edison, btrfs does not work with bitbake.
->  2. When I rebuilt the system, this time I put the Linux root directory
->     on an 80GB SSD.  That is where I also have my clone of Linux-Yocto
->     repository, poky, and download directory , DL_DIR.
->  3. I have create /build with EXT4 format on a Software RAID 0 (striped)
->     partition, using 2 separate hard drives,  to use as the working
->     build directory for bitbake. I have a striped swap file on the same
->     two drives.  But with 8GB or RAM, I shouldn't be using that much.
-> 
-> My build times for some of the basic meta-intel BSPs is around 103 minutes.
+https://events.linuxfoundation.org/events/embedded-linux-conference/yocto-project-developer-day
 
-You may be able to improve upon that with the following in /etc/fstab:
-
-/dev/md0  /build  ext4  noauto,noatime,nodiratime,commit=6000  0  2
-
-This reduces the number of writes due to updated access time and
-increases the commit interval so it doesn't stall while writing out
-every 5 minutes per default.
-
-NOTE: THIS INCREASES YOUR RISK OF DATA LOSS
-
-If your machine goes down during a build, you should plan on formatting
-that drive. If you only keep builds on it, they easily recreateable and
-you may find the performance boost is worth the risk.
+Please forward this message to anyone you know who would benefit from
+learning more about the Yocto Project.
 
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
 
+--14dae9340c595b26bc04b6e6c02a
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div>Keep Tuesday, February 14, open. That is the day before the Embedded L=
+inux Conference in Redwood Shores, CA, and it is also the day of the first =
+Yocto Project Developer Day, a full-day opportunity to learn more about the=
+ Yocto Project. There will be a beginner-level track as well as an intermed=
+iate-level track, both with hands-on labs and access to Yocto Project devel=
+opers. The best part - this day of training is free of charge.</div>
+<div><br></div><div>Registration is limited, so please sign up as soon as p=
+ossible. More information at:</div><div><br></div><a href=3D"https://events=
+.linuxfoundation.org/events/embedded-linux-conference/yocto-project-develop=
+er-day">https://events.linuxfoundation.org/events/embedded-linux-conference=
+/yocto-project-developer-day</a><div>
+<br></div><div>Please forward this message to anyone you know who would ben=
+efit from learning more about the Yocto Project.<br clear=3D"all"><div><br>=
+</div>-- <br>Jeff Osier-Mixon <a href=3D"http://jefro.net/blog" target=3D"_=
+blank">http://jefro.net/blog</a><div>
+Yocto Project Community Manager @Intel <a href=3D"http://yoctoproject.org" =
+target=3D"_blank">http://yoctoproject.org</a></div><br>
+</div>
+
+--14dae9340c595b26bc04b6e6c02a--
