@@ -1,26 +1,25 @@
-Return-Path: <philip@balister.org>
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAE48E00B0A
-	for <yocto@yoctoproject.org>; Fri, 20 Jan 2012 05:10:48 -0800 (PST)
-Received: (qmail 3463 invoked by uid 1003); 20 Jan 2012 13:10:46 -0000
-Received: from unknown (HELO ?192.168.1.104?)
-	(philip@opensdr.com@96.240.160.175)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	20 Jan 2012 13:10:46 -0000
-Message-ID: <4F1967D5.3020904@balister.org>
-Date: Fri, 20 Jan 2012 08:10:45 -0500
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.24) Gecko/20111108 Fedora/3.1.16-1.fc14 Thunderbird/3.1.16
+Return-Path: <gizero@gmail.com>
+Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57CE6E00B0A
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2012 06:07:35 -0800 (PST)
+Received: by vbbfn1 with SMTP id fn1so459962vbb.35
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2012 06:07:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=JrqGTGH1ksf4KAn9DdRe3NtGYNjh6ym/udsOuTvNRPo=;
+	b=FTSnFr7AZQaExBNQI19d3OoOQy5EOu88pMcSiegxgnzZk7Hb7x17ABixfzTHRwzUD2
+	ZiQqc5/mFRFp9NK6sPyV4REZDNzZuI2x75Z3rO2KBNtZIVw/cxRaoAfTQ+h/OB/GPnkz
+	RW3hN4StFoYAPi1zF1Id9lPFQK2DgfwwF8SdU=
 MIME-Version: 1.0
-To: Jack Mitchell <ml@communistcode.co.uk>
-References: <CA+YB3rZcE7oTRmjmW39g7E94+r1s9oUPZX7OaoaYKKYHK+5dmw@mail.gmail.com>
-	<4F193320.1000103@communistcode.co.uk>
-In-Reply-To: <4F193320.1000103@communistcode.co.uk>
-X-Enigmail-Version: 1.1.2
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Yocto Project Developer Day at ELC
+Received: by 10.52.99.231 with SMTP id et7mr14566719vdb.114.1327068454561;
+	Fri, 20 Jan 2012 06:07:34 -0800 (PST)
+Received: by 10.220.46.194 with HTTP; Fri, 20 Jan 2012 06:07:34 -0800 (PST)
+Date: Fri, 20 Jan 2012 15:07:34 +0100
+Message-ID: <CAC+thW1YcPzTJLLxXWcko3kwkZJFiT7tFrdX+iC5tZ-uBTEdtw@mail.gmail.com>
+From: Andrea Galbusera <gizero@gmail.com>
+To: yocto@yoctoproject.org
+Subject: i486sx machine porting from oe-classic
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,21 +31,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jan 2012 13:10:49 -0000
+X-List-Received-Date: Fri, 20 Jan 2012 14:07:35 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-On 01/20/2012 04:25 AM, Jack Mitchell wrote:
-> On 19/01/12 19:41, Jeff Osier-Mixon wrote:
-> Would there be any chance of having these talks recorded? They sound
-> fantastic but unfortunately I work for a small company based in the UK
-> and we do not have the funds to ship me all the way out to San Fran.
+Hi,
 
-If you make FOSDEM (www.fosdem.org), Paul Eggleton is talking in the
-Embedded room about Yocto and OpenEmbedded
-(http://www.fosdem.org/2012/schedule/event/openembedded_yocto_common_core).
+In oe-classic there used to be a machine configuration for an i486sx
+based machine called vortex86sx. In the past I was successful in
+building a running image for such a target. Since I'd like to make a
+new system based on vortex, my goal is to leverage the whole Yocto
+Project infrastructure and port that old configuration to a BSP layer.
+This will save me a lot of time in supporting developers with SDKs and
+so.
 
-OpenEmbedded will have a stand there.
+Since I could not find any BSP based on hardware older than i586 in
+recent Yocto trees, I'm concerned about this. Do you know of any
+obstacle in doing such a port? I'm mainly interested in building
+images with no graphics for that target: core-image-minimal is a
+reasonable reference for me.
 
-Philip
+My plan was to initially lay out a new BSP by following guidelines
+from Development Manual and BSP Guide. Then, what I suspect to be a
+little trickier for my expertise, is the porting of the original
+tune-i486sx.inc file to the current Yocto infrastructure. Is there any
+document I can leverage to map the variables defined in the
+oe-classic's syntax to the current ones for such a machine
+configuration file?
+
+The original i486 tune file was defining the following:
+
+TARGET_ARCH = "i486"
+TARGET_CC_ARCH = "-march=i486"
+PACKAGE_EXTRA_ARCHS = "486sx"
+BASE_PACKAGE_ARCH = "486sx"
+FEED_ARCH = "${BASE_PACKAGE_ARCH}"
+
+Are they still valid variables? Do I need any more?
+
+Thank you in advance. Regards,
+Andrea
 
