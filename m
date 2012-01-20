@@ -1,25 +1,29 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <autif.mlist@gmail.com>
 Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
 	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57CE6E00B0A
-	for <yocto@yoctoproject.org>; Fri, 20 Jan 2012 06:07:35 -0800 (PST)
-Received: by vbbfn1 with SMTP id fn1so459962vbb.35
-	for <yocto@yoctoproject.org>; Fri, 20 Jan 2012 06:07:34 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEFA6E00B0A
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2012 06:16:14 -0800 (PST)
+Received: by vbbfn1 with SMTP id fn1so469169vbb.35
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2012 06:16:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=JrqGTGH1ksf4KAn9DdRe3NtGYNjh6ym/udsOuTvNRPo=;
-	b=FTSnFr7AZQaExBNQI19d3OoOQy5EOu88pMcSiegxgnzZk7Hb7x17ABixfzTHRwzUD2
-	ZiQqc5/mFRFp9NK6sPyV4REZDNzZuI2x75Z3rO2KBNtZIVw/cxRaoAfTQ+h/OB/GPnkz
-	RW3hN4StFoYAPi1zF1Id9lPFQK2DgfwwF8SdU=
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=6rMP+/U6U3sXeoseBPFSHr6ruywriPA/Jw0yIdP6+DY=;
+	b=Sf7aqz3kn9PTCc8w3Wbzv+PKFpMUiQozg2sQHzowy0zC2yYKuxjMjCSqLO6T9iehaw
+	IkG9OcUEUXNP1fz1ef0T6wjHFwXvyzsP8bD9dHzzmL0mIitkoHsdjDYuAWFxlBxKYnz6
+	loW6Wvh5pi5osBXLr5m91HmBtQbVE8L37+huY=
 MIME-Version: 1.0
-Received: by 10.52.99.231 with SMTP id et7mr14566719vdb.114.1327068454561;
-	Fri, 20 Jan 2012 06:07:34 -0800 (PST)
-Received: by 10.220.46.194 with HTTP; Fri, 20 Jan 2012 06:07:34 -0800 (PST)
-Date: Fri, 20 Jan 2012 15:07:34 +0100
-Message-ID: <CAC+thW1YcPzTJLLxXWcko3kwkZJFiT7tFrdX+iC5tZ-uBTEdtw@mail.gmail.com>
-From: Andrea Galbusera <gizero@gmail.com>
-To: yocto@yoctoproject.org
-Subject: i486sx machine porting from oe-classic
+Received: by 10.52.22.46 with SMTP id a14mr13766109vdf.102.1327068974436; Fri,
+	20 Jan 2012 06:16:14 -0800 (PST)
+Received: by 10.52.108.37 with HTTP; Fri, 20 Jan 2012 06:16:14 -0800 (PST)
+In-Reply-To: <CANFv2En8WfmoBpzqRYU9hhOH9aCMGTBgML41Ee+uaXc1MJrNjg@mail.gmail.com>
+References: <CANFv2En8WfmoBpzqRYU9hhOH9aCMGTBgML41Ee+uaXc1MJrNjg@mail.gmail.com>
+Date: Fri, 20 Jan 2012 09:16:14 -0500
+Message-ID: <CADzUK1LK3+P7kiP-QDG6zB3H3sAtnBcUnGtfkju4vJXg=U+1fA@mail.gmail.com>
+From: autif khan <autif.mlist@gmail.com>
+To: James Abernathy <jfabernathy@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: core-image-sato-directdisk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,43 +35,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jan 2012 14:07:35 -0000
+X-List-Received-Date: Fri, 20 Jan 2012 14:16:15 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+I have been using core-image-sato and core-image-sato-sdk on the hard
+disk on Intel Atom (crownbay in my case).
 
-In oe-classic there used to be a machine configuration for an i486sx
-based machine called vortex86sx. In the past I was successful in
-building a running image for such a target. Since I'd like to make a
-new system based on vortex, my goal is to leverage the whole Yocto
-Project infrastructure and port that old configuration to a BSP layer.
-This will save me a lot of time in supporting developers with SDKs and
-so.
+I perform the following broad steps:
 
-Since I could not find any BSP based on hardware older than i586 in
-recent Yocto trees, I'm concerned about this. Do you know of any
-obstacle in doing such a port? I'm mainly interested in building
-images with no graphics for that target: core-image-minimal is a
-reasonable reference for me.
+1) have a suitable partition on the disk - say partition #3
+2) this partition will show up as sde3 on my host machine and sda3 on the a=
+tom
+3) mkfs.ext3 /dev/sde3
+4) mount /dev/sde3 /mnt/target
+5) mount -o loop tmp/deploy/images/core-image-sato-sdk.ext3 /mnt/target-tex=
+t3
+6) cp -a /mnt/target-ext3/* /mnt/target
+7) grub-install --recheck --root-directory=3D/mnt/target /dev/sde
 
-My plan was to initially lay out a new BSP by following guidelines
-from Development Manual and BSP Guide. Then, what I suspect to be a
-little trickier for my expertise, is the porting of the original
-tune-i486sx.inc file to the current Yocto infrastructure. Is there any
-document I can leverage to map the variables defined in the
-oe-classic's syntax to the current ones for such a machine
-configuration file?
+If grub install passed, I copy the following to /mnt/target/boot/grub/grub.=
+cfg
 
-The original i486 tune file was defining the following:
+set default=3D"0"
+set timeout=3D"30"
 
-TARGET_ARCH = "i486"
-TARGET_CC_ARCH = "-march=i486"
-PACKAGE_EXTRA_ARCHS = "486sx"
-BASE_PACKAGE_ARCH = "486sx"
-FEED_ARCH = "${BASE_PACKAGE_ARCH}"
+menuentry 'Yocto SDK' {
+	insmod part_msdos
+	insmod ext2
+	set root=3D'(hd0,msdos3)'
+	linux /boot/bzImage root=3D/dev/sda3
+}
 
-Are they still valid variables? Do I need any more?
 
-Thank you in advance. Regards,
-Andrea
+Thats it - this boots for me.
+
+Eventually, when I move to some other media, I will have to
+investigate other bootloaders - like syslinux.
+
+All the best, do tell if this works.
+
+
+On Thu, Jan 19, 2012 at 7:51 PM, James Abernathy <jfabernathy@gmail.com> wr=
+ote:
+> The README.hardware file in the poky directory talks about creating image=
+s
+> on 2 types of disk for the Atom based PCs like the n450. The one I've
+> successfully tested is the core-image-sato on a USB key.=A0 I have no luc=
+k
+> with the directdisk method because the image recipe doesn't exist for
+> core-image-minimal-directdisk or core-image-sato-directdisk.
+>
+> Is there a way to put Yocto on the hard drive on a Atom PC?
+>
+> Jim A
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
