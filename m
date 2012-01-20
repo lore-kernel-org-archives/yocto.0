@@ -1,25 +1,20 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A90CBE00599
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2012 16:51:16 -0800 (PST)
-Received: by vcbfk13 with SMTP id fk13so44548vcb.35
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2012 16:51:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=j9Wds/Tqp5tBZEiyBVyzkxILuPcszqAOzvy1CGLYiZc=;
-	b=FyJoJd0VzROoMknegaxTYSzf+3fgACgadDZlLzPUnkzW/e1zQmIkRchtZlc1wRJtmJ
-	y9ivN45y3PwgREQBoT6FzAst07+Z3NcDQkn7Dta9alI2dKwYix1TMAPxKojebCCL6Xug
-	cY7JCOqZ9KFxTYSetEbmpA1pa6TP0eVfwdf4Y=
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53E5EE00B0A
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2012 01:26:37 -0800 (PST)
+Received: from [192.168.0.60] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id DD68326E68
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2012 09:21:28 +0000 (GMT)
+Message-ID: <4F193320.1000103@communistcode.co.uk>
+Date: Fri, 20 Jan 2012 09:25:52 +0000
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111224 Thunderbird/9.0.1
 MIME-Version: 1.0
-Received: by 10.220.231.131 with SMTP id jq3mr16335176vcb.44.1327020675740;
-	Thu, 19 Jan 2012 16:51:15 -0800 (PST)
-Received: by 10.52.180.69 with HTTP; Thu, 19 Jan 2012 16:51:15 -0800 (PST)
-Date: Thu, 19 Jan 2012 19:51:15 -0500
-Message-ID: <CANFv2En8WfmoBpzqRYU9hhOH9aCMGTBgML41Ee+uaXc1MJrNjg@mail.gmail.com>
-From: James Abernathy <jfabernathy@gmail.com>
 To: yocto@yoctoproject.org
-Subject: core-image-sato-directdisk
+References: <CA+YB3rZcE7oTRmjmW39g7E94+r1s9oUPZX7OaoaYKKYHK+5dmw@mail.gmail.com>
+In-Reply-To: <CA+YB3rZcE7oTRmjmW39g7E94+r1s9oUPZX7OaoaYKKYHK+5dmw@mail.gmail.com>
+Subject: Re: Yocto Project Developer Day at ELC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,36 +26,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jan 2012 00:51:16 -0000
-Content-Type: multipart/alternative; boundary=14dae9cdc125fcb59b04b6eb1382
+X-List-Received-Date: Fri, 20 Jan 2012 09:26:37 -0000
+Content-Type: multipart/alternative;
+	boundary="------------070201050704040204050309"
 
---14dae9cdc125fcb59b04b6eb1382
-Content-Type: text/plain; charset=ISO-8859-1
+--------------070201050704040204050309
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The README.hardware file in the poky directory talks about creating images
-on 2 types of disk for the Atom based PCs like the n450. The one I've
-successfully tested is the core-image-sato on a USB key.  I have no luck
-with the directdisk method because the image recipe doesn't exist for
-core-image-minimal-directdisk or core-image-sato-directdisk.
+On 19/01/12 19:41, Jeff Osier-Mixon wrote:
+> Keep Tuesday, February 14, open. That is the day before the Embedded 
+> Linux Conference in Redwood Shores, CA, and it is also the day of the 
+> first Yocto Project Developer Day, a full-day opportunity to learn 
+> more about the Yocto Project. There will be a beginner-level track as 
+> well as an intermediate-level track, both with hands-on labs and 
+> access to Yocto Project developers. The best part - this day of 
+> training is free of charge.
+>
+> Registration is limited, so please sign up as soon as possible. More 
+> information at:
+>
+> https://events.linuxfoundation.org/events/embedded-linux-conference/yocto-project-developer-day 
+>
+>
+> Please forward this message to anyone you know who would benefit from 
+> learning more about the Yocto Project.
+>
+> -- 
+> Jeff Osier-Mixon http://jefro.net/blog
+> Yocto Project Community Manager @Intel http://yoctoproject.org
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Is there a way to put Yocto on the hard drive on a Atom PC?
+Hi Jeff,
 
-Jim A
+Would there be any chance of having these talks recorded? They sound 
+fantastic but unfortunately I work for a small company based in the UK 
+and we do not have the funds to ship me all the way out to San Fran.
 
---14dae9cdc125fcb59b04b6eb1382
+Best Regards,
+Jack.
+
+--------------070201050704040204050309
 Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-<div>The README.hardware file in the poky directory talks about creating im=
-ages on 2 types of disk for the Atom based PCs like the n450. The one I&#39=
-;ve successfully tested is the core-image-sato on a USB key.=A0 I have no l=
-uck with the directdisk method because the image recipe doesn&#39;t exist f=
-or core-image-minimal-directdisk or core-image-sato-directdisk.</div>
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    On 19/01/12 19:41, Jeff Osier-Mixon wrote:
+    <blockquote
+cite="mid:CA+YB3rZcE7oTRmjmW39g7E94+r1s9oUPZX7OaoaYKKYHK+5dmw@mail.gmail.com"
+      type="cite">
+      <div>Keep Tuesday, February 14, open. That is the day before the
+        Embedded Linux Conference in Redwood Shores, CA, and it is also
+        the day of the first Yocto Project Developer Day, a full-day
+        opportunity to learn more about the Yocto Project. There will be
+        a beginner-level track as well as an intermediate-level track,
+        both with hands-on labs and access to Yocto Project developers.
+        The best part - this day of training is free of charge.</div>
+      <div><br>
+      </div>
+      <div>Registration is limited, so please sign up as soon as
+        possible. More information at:</div>
+      <div><br>
+      </div>
+      <a moz-do-not-send="true"
+href="https://events.linuxfoundation.org/events/embedded-linux-conference/yocto-project-developer-day">https://events.linuxfoundation.org/events/embedded-linux-conference/yocto-project-developer-day</a>
+      <div>
+        <br>
+      </div>
+      <div>Please forward this message to anyone you know who would
+        benefit from learning more about the Yocto Project.<br
+          clear="all">
+        <div><br>
+        </div>
+        -- <br>
+        Jeff Osier-Mixon <a moz-do-not-send="true"
+          href="http://jefro.net/blog" target="_blank">http://jefro.net/blog</a>
+        <div>
+          Yocto Project Community Manager @Intel <a
+            moz-do-not-send="true" href="http://yoctoproject.org"
+            target="_blank">http://yoctoproject.org</a></div>
+        <br>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+</pre>
+    </blockquote>
+    <tt><br>
+      Hi Jeff,<br>
+      <br>
+      Would there be any chance of having these talks recorded? They
+      sound fantastic but unfortunately I work for a small company based
+      in the UK and we do not have the funds to ship me all the way out
+      to San Fran.<br>
+      <br>
+      Best Regards,<br>
+      Jack. <br>
+    </tt>
+  </body>
+</html>
 
-<div>=A0</div>
-<div>Is there a way to put Yocto on the hard drive on a Atom PC?</div>
-<div>=A0</div>
-<div>Jim A</div>
-<div>=A0</div>
-
---14dae9cdc125fcb59b04b6eb1382--
+--------------070201050704040204050309--
