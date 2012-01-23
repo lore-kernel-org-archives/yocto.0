@@ -1,25 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0CB9E01372
-	for <yocto@yoctoproject.org>; Sun, 22 Jan 2012 20:01:46 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q0N41iuN016726
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 22 Jan 2012 20:01:44 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.23.164) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Sun, 22 Jan 2012 20:01:43 -0800
-Message-ID: <4F1CDBA6.5080909@windriver.com>
-Date: Sun, 22 Jan 2012 23:01:42 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4662E01373
+	for <yocto@yoctoproject.org>; Mon, 23 Jan 2012 04:52:07 -0800 (PST)
+Received: by qcsg14 with SMTP id g14so748921qcs.35
+	for <yocto@yoctoproject.org>; Mon, 23 Jan 2012 04:52:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=BQqwhItHyoJQel905GOh8igzt3iY0/ABISL41ZfTKhM=;
+	b=NylPmS0DLzJLZHUPuUS/9NtiM/uu7+1fQgvaTGKYKHH5aOnWN7sBYhhN2IWbSlA8F9
+	QsPXuiDWmFh6h7Ckr3J9CjW20lGHdohMof9l5gJJZUWd2T4Dij/GLYcJeqryry4fWds0
+	6Fr2WzxKm25EJTbZeNWcSNexACz6jK4gMCe24=
+Received: by 10.224.195.133 with SMTP id ec5mr8725043qab.7.1327323126820;
+	Mon, 23 Jan 2012 04:52:06 -0800 (PST)
+Received: from [10.0.1.54] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
+	by mx.google.com with ESMTPS id
+	r17sm26764569qap.11.2012.01.23.04.52.03 (version=SSLv3 cipher=OTHER);
+	Mon, 23 Jan 2012 04:52:04 -0800 (PST)
+Message-ID: <4F1D57CE.2050807@gmail.com>
+Date: Mon, 23 Jan 2012 07:51:26 -0500
+From: jfabernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <4F188C59.5090109@linux.intel.com>
-In-Reply-To: <4F188C59.5090109@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH][linux-yocto] pch_gbe: Do not abort probe on bad MAC
+To: Gary Thomas <gary@mlbassoc.com>
+References: <56375FA8-BB1F-4D3B-91EC-C84665DF9905@gmail.com>
+	<4F1CB41A.301@mlbassoc.com>
+In-Reply-To: <4F1CB41A.301@mlbassoc.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: tar ball vs. git development questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,88 +41,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Jan 2012 04:01:46 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Mon, 23 Jan 2012 12:52:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12-01-19 4:34 PM, Darren Hart wrote:
-> Bruce, please apply to linux-yocto-3.0/yocto/standard/base
+On 01/22/2012 08:12 PM, Gary Thomas wrote:
+> On 2012-01-22 13:19, James Abernathy wrote:
+>> I have used both git and the tarball methods of bitbaking projects, 
+>> all of them derivatives of the examples in the Yocto documentation. I 
+>> was having issues using the local clone of
+>> the Yocto kernel git repository this weekend. I had successfully done 
+>> that before, but I was rebuilding the PC workstation, and getting 
+>> everything setup and tested some of the
+>> meta-intel BSPs to make sure I had everything right. Cloning the 
+>> linux-yocto-3.0 repository was successful, but the bakes against it 
+>> failed. I made sure I had poky-extras setup
+>> right, but I still had problems. To isolate the problem, I changed to 
+>> building with the tarballs and everything worked fine.
+>>
+>> So that got me thinking what are the differences between the 2 methods:
+>>
+>>   * I assume that if I use the tarball method, bitbake, using the 
+>> recipes, pulls down files from the online repositories and puts those 
+>> files into the centralized local download
+>>     directory ($DL_DIR), allowing reuse instead of re-downloading 
+>> each time. The content downloaded for linux-yocto-3.0 is exactly what 
+>> would be pulled from the local repository if
+>>     I used a local clone of the git repository for linux-yocto-3.0.
+>>   * If my assumption above is correct, if I'm not modifying the 
+>> source code of the kernel (only changing config parameters), then 
+>> once you've run at least one build with the
+>>     tarball method, the $DL_DIR directory contains all the files 
+>> you'll need to build any image with linux-yocto-3.0. So there is no 
+>> need to have a local clone of the kernel
+>>     repository for speeding up development. Am I right?
+>>   * If I have a successful creation of a bare clone of 
+>> linux-yocto-3.0.git, how could builds of Edison packages be failing? 
+>> That makes me concerned about using git and successfully
+>>     repeating builds of stable branches like Edison.
+>
+> If you set BB_GENERATE_MIRROR_TARBALLS = "1" (e.g. in local.conf)
+> then you'll get tarballs which hold the git repositories after
+> download.  You can then reuse these (by sharing the DL_DIR or
+> using a local mirror).  Does that help with the issue you're seeing?
+>
+I'm not sure it does.  I don't want poky to do more work.  I have my 
+download directory, $DL_DIR, outside my build directory so I can keep it 
+run to run, as mentioned in the comments in local.conf. I was trying to 
+understand 2 basic questions:
 
-Queued.
+1.  what could be causing build failures using a freshly created bare 
+clone yesterday vs. using the poky-edison-6.0 tarball.  It would be 
+scary if you could clone the linux-yocto-3.0 successfully one day and 
+have it be used in a build successfully, but clone it another day and it 
+not work.  I figured that bitbake/poky pulled the same information into 
+DL_DIR regardless of whether you pulled from the bare clone locally or 
+straight from the on-line repository.
+2. I was trying to look at items to speed up build runs.  I thought that 
+if the downloads in DL_DIR were reused if they existed, it would speed 
+up a run. It seems to.  So the question is, after the first build, the 
+files I need for linux-yocto-3.0 are in DL_DIR regardless of whether 
+they came from the online repository or the local bare clone. right?
 
-Bruce
-
->
-> Upstream-Status: Accepted (Linux 3.3)
->
-> If the MAC is invalid or not implemented, do not abort the probe. Issue
-> a warning and prevent bringing the interface up until a MAC is set manually
-> (via ifconfig $IFACE hw ether $MAC).
->
-> Tested on two platforms, one with a valid MAC, the other without a MAC. The real
-> MAC is used if present, the interface fails to come up until the MAC is set on
-> the other. They successfully get an IP over DHCP and pass a simple ping and
-> login over ssh test.
->
-> This is meant to allow the Inforce SYS940X development board:
-> http://www.inforcecomputing.com/SYS940X_ECX.html
-> (and others suffering from a missing MAC) to work with the mainline kernel.
-> Without this patch, the probe will fail and the interface will not be created,
-> preventing the user from configuring the MAC manually.
->
-> This does not make any attempt to address a missing or invalid MAC for the
-> pch_phub driver.
->
-> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
-> CC: Arjan van de Ven<arjan@linux.intel.com>
-> CC: Alan Cox<alan@linux.intel.com>
-> CC: Tomoya MORINAGA<tomoya.rohm@gmail.com>
-> CC: Jeff Kirsher<jeffrey.t.kirsher@intel.com>
-> CC: "David S. Miller"<davem@davemloft.net>
-> CC: Paul Gortmaker<paul.gortmaker@windriver.com>
-> CC: Jon Mason<jdmason@kudzu.us>
-> CC: netdev@vger.kernel.org
-> CC: Mark Brown<broonie@opensource.wolfsonmicro.com>
-> CC: David Laight<David.Laight@ACULAB.COM>
-> CC: Joe Perches<joe@perches.com>
-> ---
->   drivers/net/pch_gbe/pch_gbe_main.c |   17 ++++++++++++++---
->   1 files changed, 14 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/net/pch_gbe/pch_gbe_main.c b/drivers/net/pch_gbe/pch_gbe_main.c
-> index eac3c5c..e7412f2 100644
-> --- a/drivers/net/pch_gbe/pch_gbe_main.c
-> +++ b/drivers/net/pch_gbe/pch_gbe_main.c
-> @@ -1701,6 +1701,12 @@ int pch_gbe_up(struct pch_gbe_adapter *adapter)
->   	struct pch_gbe_rx_ring *rx_ring = adapter->rx_ring;
->   	int err;
->
-> +	/* Ensure we have a valid MAC */
-> +	if (!is_valid_ether_addr(adapter->hw.mac.addr)) {
-> +		pr_err("Error: Invalid MAC address\n");
-> +		return -EINVAL;
-> +	}
-> +
->   	/* hardware has been reset, we need to reload some things */
->   	pch_gbe_set_multi(netdev);
->
-> @@ -2392,9 +2398,14 @@ static int pch_gbe_probe(struct pci_dev *pdev,
->
->   	memcpy(netdev->dev_addr, adapter->hw.mac.addr, netdev->addr_len);
->   	if (!is_valid_ether_addr(netdev->dev_addr)) {
-> -		dev_err(&pdev->dev, "Invalid MAC Address\n");
-> -		ret = -EIO;
-> -		goto err_free_adapter;
-> +		/*
-> +		 * If the MAC is invalid (or just missing), display a warning
-> +		 * but do not abort setting up the device. pch_gbe_up will
-> +		 * prevent the interface from being brought up until a valid MAC
-> +		 * is set.
-> +		 */
-> +		dev_err(&pdev->dev, "Invalid MAC address, "
-> +		                    "interface disabled.\n");
->   	}
->   	setup_timer(&adapter->watchdog_timer, pch_gbe_watchdog,
->   		    (unsigned long)adapter);
+Jim A
 
 
