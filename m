@@ -1,27 +1,36 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11BD2E01373
-	for <yocto@yoctoproject.org>; Mon, 23 Jan 2012 06:01:30 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q0NE1QrJ000570
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 23 Jan 2012 06:01:26 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Mon, 23 Jan 2012 06:01:26 -0800
-Message-ID: <4F1D682B.5070905@windriver.com>
-Date: Mon, 23 Jan 2012 09:01:15 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01EF4E00306
+	for <yocto@yoctoproject.org>; Mon, 23 Jan 2012 09:51:24 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 23 Jan 2012 09:51:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="109955201"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga001.fm.intel.com with ESMTP; 23 Jan 2012 09:51:24 -0800
+Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 23 Jan 2012 09:51:24 -0800
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.3]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.96]) with mapi id
+	14.01.0355.002; Mon, 23 Jan 2012 09:51:23 -0800
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Thread-Topic: Linux RT build fail
+Thread-Index: AczUfleoloDM1F4tQ++5IDV6JnACtQAQ5MkAAU1c1KA=
+Date: Mon, 23 Jan 2012 17:51:23 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE2040AE0@ORSMSX105.amr.corp.intel.com>
+References: <D956029D25CF204F948EA0FB515E1EE2030A3D@ORSMSX105.amr.corp.intel.com>
+	<4F147006.1070401@windriver.com>
+In-Reply-To: <4F147006.1070401@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-To: Gary Thomas <gary@mlbassoc.com>
-References: <56375FA8-BB1F-4D3B-91EC-C84665DF9905@gmail.com>
-	<4F1CB41A.301@mlbassoc.com> <4F1D57CE.2050807@gmail.com>
-	<4F1D5C39.6070503@mlbassoc.com>
-In-Reply-To: <4F1D5C39.6070503@mlbassoc.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: tar ball vs. git development questions
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
+	Darren" <darren.hart@intel.com>
+Subject: Re: Linux RT build fail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,108 +42,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Jan 2012 14:01:31 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 23 Jan 2012 17:51:25 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 12-01-23 08:10 AM, Gary Thomas wrote:
-> On 2012-01-23 05:51, jfabernathy wrote:
->> On 01/22/2012 08:12 PM, Gary Thomas wrote:
->>> On 2012-01-22 13:19, James Abernathy wrote:
->>>> I have used both git and the tarball methods of bitbaking projects,
->>>> all of them derivatives of the examples in the Yocto documentation.
->>>> I was having issues using the local clone of
->>>> the Yocto kernel git repository this weekend. I had successfully
->>>> done that before, but I was rebuilding the PC workstation, and
->>>> getting everything setup and tested some of the
->>>> meta-intel BSPs to make sure I had everything right. Cloning the
->>>> linux-yocto-3.0 repository was successful, but the bakes against it
->>>> failed. I made sure I had poky-extras setup
->>>> right, but I still had problems. To isolate the problem, I changed
->>>> to building with the tarballs and everything worked fine.
->>>>
->>>> So that got me thinking what are the differences between the 2 methods:
->>>>
->>>> * I assume that if I use the tarball method, bitbake, using the
->>>> recipes, pulls down files from the online repositories and puts
->>>> those files into the centralized local download
->>>> directory ($DL_DIR), allowing reuse instead of re-downloading each
->>>> time. The content downloaded for linux-yocto-3.0 is exactly what
->>>> would be pulled from the local repository if
->>>> I used a local clone of the git repository for linux-yocto-3.0.
->>>> * If my assumption above is correct, if I'm not modifying the source
->>>> code of the kernel (only changing config parameters), then once
->>>> you've run at least one build with the
->>>> tarball method, the $DL_DIR directory contains all the files you'll
->>>> need to build any image with linux-yocto-3.0. So there is no need to
->>>> have a local clone of the kernel
->>>> repository for speeding up development. Am I right?
->>>> * If I have a successful creation of a bare clone of
->>>> linux-yocto-3.0.git, how could builds of Edison packages be failing?
->>>> That makes me concerned about using git and successfully
->>>> repeating builds of stable branches like Edison.
->>>
->>> If you set BB_GENERATE_MIRROR_TARBALLS = "1" (e.g. in local.conf)
->>> then you'll get tarballs which hold the git repositories after
->>> download. You can then reuse these (by sharing the DL_DIR or
->>> using a local mirror). Does that help with the issue you're seeing?
->>>
->> I'm not sure it does. I don't want poky to do more work. I have my
->> download directory, $DL_DIR, outside my build directory so I can keep
->> it run to run, as mentioned in the comments
->> in local.conf. I was trying to understand 2 basic questions:
->>
->> 1. what could be causing build failures using a freshly created bare
->> clone yesterday vs. using the poky-edison-6.0 tarball. It would be
->> scary if you could clone the linux-yocto-3.0
->> successfully one day and have it be used in a build successfully, but
->> clone it another day and it not work. I figured that bitbake/poky
->> pulled the same information into DL_DIR
->> regardless of whether you pulled from the bare clone locally or
->> straight from the on-line repository.
->
-> What kind of errors? Some details might help understand what the problem
-> is.
->
->> 2. I was trying to look at items to speed up build runs. I thought
->> that if the downloads in DL_DIR were reused if they existed, it would
->> speed up a run. It seems to. So the
->> question is, after the first build, the files I need for
->> linux-yocto-3.0 are in DL_DIR regardless of whether they came from the
->> online repository or the local bare clone. right?
->
-> I think so, but I'm not 100% sure.
+Hi Bruce,
 
- From my experience, this is true. Regardless of the SRCI_URI, the
-downloads directory contains everything that poky/bitbake need to
-do builds after the initial fetch has been performed. And that's
-where subsequent updates are pullled.
+Could you please let me know if the fix is available for this?
+
+Thanks
+Kishore.
+
+-----Original Message-----
+From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
+Sent: Monday, January 16, 2012 10:44 AM
+To: Bodke, Kishore K
+Cc: yocto@yoctoproject.org; Hart, Darren
+Subject: Re: Linux RT build fail
+
+On 12-01-16 01:40 PM, Bodke, Kishore K wrote:
+> Hi,
+>
+> I get build failure for the rt.
+>
+> ERROR: Function 'do_patch' failed (see
+> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-y=
+octo-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22=
+d10952618a2ad146e6149d240cd2-r1/temp/log.do_patch.32459
+> for further information)
+>
+> ERROR: Logfile of failure stored in:
+> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-y=
+octo-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22=
+d10952618a2ad146e6149d240cd2-r1/temp/log.do_patch.32459
+>
+> Log data follows:
+>
+> | ERROR: Function 'do_patch' failed (see
+> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-y=
+octo-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22=
+d10952618a2ad146e6149d240cd2-r1/temp/log.do_patch.32459
+> for further information)
+>
+> | Deleted branch meta-temp (was 620917d).
+>
+> |
+>
+> | ERROR: patch
+> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-y=
+octo-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22=
+d10952618a2ad146e6149d240cd2-r1/linux/meta/cfg/kernel-cache/features/rt/rt-=
+apply-patch-3.0.10-rt27.patch.patch
+> is not available
+
+This is the problem. But I could have sworn that I fixed this, and
+send a merge request. When I just checked now, it still looks broken.
+
+That being said, we should have seen this before now. Are any -rt
+kernels being build regularly on master ?
+
+It is partially due to meta-kernel-dev picking up new kernel tools that
+do strict checking on patches by default (hence my question about
+anyone else building this on master).
+
+I'm pushing a fix out now to the meta branch and will send it along
+with my next consolidated pull request.
 
 Cheers,
 
 Bruce
 
 >
-> The way I have my system set up, I never download anything more
-> than once :-) I have a shared source repository which I point to
-> using MIRRORS and then all my builds are relative to that. If there
-> is new code, it gets downloaded and saved (as a tarball) in my sources
-> repository to be used by subsequent builds. To do this, I just have
-> these lines in <distro>.conf
-> # Provide pre-staged sources
-> SOURCE_MIRROR_URL ?= "file://${COREBASE}/sources/"
-> INHERIT += "own-mirrors"
-> BB_GENERATE_MIRROR_TARBALLS = "1"
-> I don't define DL_DIR in local.conf so files only come from my mirror.
+> |
 >
-> This process is so successful that I almost always run with
-> BB_NO_NETWORK="1"
-> which causes the fetcher to die if it can't find the file locally. If I
-> find
-> that I do need to download something new, I disable this and let the
-> fetcher
-> download it. I'll then have a saved tarball (either downloaded directly or
-> synthesized) in <build_dir>/downloads that I can push to my mirror.
+> | ERROR. Could not find an excutable target for
+> yocto/standard/preempt-rt/base
+>
+> | ERROR. Could not locate meta series for preempt-rt-standard
+>
+> | ERROR. Could not modify yocto/standard/preempt-rt/base
+>
+> NOTE: package
+> linux-yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf=
+4107c7f22d10952618a2ad146e6149d240cd2-r1:
+> task do_patch: Failed
+>
+> NOTE: package bzip2-1.0.6-r4: task do_compile: Succeeded
+>
+> ERROR: Task 3
+> (/usr/local/src/jan13/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.0.b=
+b,
+> do_patch) failed with exit code '1'
+>
+> Is this anything to do with meta-kernel-dev I am using or something else?
+>
+> Thanks
+>
+> Kishore.
 >
 
 
