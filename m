@@ -1,25 +1,29 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CAA2E00592
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 07:18:11 -0800 (PST)
-Received: by vcbfl13 with SMTP id fl13so1564851vcb.35
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 07:18:11 -0800 (PST)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB723E00592
+	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 07:45:22 -0800 (PST)
+Received: by lagz14 with SMTP id z14so1563153lag.35
+	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 07:45:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=uVqoaGU19i4xfhV7Z4siy35vxqP9f4mSwOK8yZ1LFxI=;
-	b=Lwflk9AQQ6kV2Wzt7KDOqqrdWaxJVH/paWMHBtdsCGA9/OwQG7nz3r3+tWRCi3q4ob
-	pAV2FBH5Y6yayc/A2njQe70jkEf0JDcL9Sf5Fgk1nTbmbM7qXksge6yIYP5rZWcPWciU
-	taJtsC05RDAg+RPRpLotgk3Q/AGK/RsRtDxGk=
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=IN6RFeHRA/EdDH0bapmi9RRIlKctLu4cWGaNWqwhiBo=;
+	b=Fj4AmKrI+IEcw30JikrBG1jLoFrwgXJaujKbFATQhNVvz1EtTxgk0eKdMYIpKLm51I
+	gNzr+z6w3LsDSs1p+83ScruIP5SdZ7CA+FK62krTlY2WbxW8Xsu8RK2Qhhidh5UOKF5F
+	N1pmk/2J+EommNuxLfcMVHMQ36EY+bL5SgqUI=
+Received: by 10.112.26.6 with SMTP id h6mr3354097lbg.6.1327419921295; Tue, 24
+	Jan 2012 07:45:21 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.220.155.132 with SMTP id s4mr7310964vcw.38.1327418290348; Tue,
-	24 Jan 2012 07:18:10 -0800 (PST)
-Received: by 10.52.108.37 with HTTP; Tue, 24 Jan 2012 07:18:10 -0800 (PST)
-Date: Tue, 24 Jan 2012 10:18:10 -0500
-Message-ID: <CADzUK1J+pYY8hpKKY786ZWPM2O7SkZvMqjOH-5wt8323_kR=gw@mail.gmail.com>
-From: autif khan <autif.mlist@gmail.com>
-To: yocto@yoctoproject.org
-Subject: libtool version mismatch
+Received: by 10.152.5.201 with HTTP; Tue, 24 Jan 2012 07:44:50 -0800 (PST)
+In-Reply-To: <CADzUK1J+pYY8hpKKY786ZWPM2O7SkZvMqjOH-5wt8323_kR=gw@mail.gmail.com>
+References: <CADzUK1J+pYY8hpKKY786ZWPM2O7SkZvMqjOH-5wt8323_kR=gw@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 24 Jan 2012 07:44:50 -0800
+Message-ID: <CAMKF1somkqJp-DT=faDqNAFww98Q=rb5R5_ZbC2HhxSTkLG9Tg@mail.gmail.com>
+To: autif khan <autif.mlist@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: libtool version mismatch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,84 +35,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jan 2012 15:18:12 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 24 Jan 2012 15:45:23 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-I have been working on writing a recipe for mono. I have successfully
-written one for lbgdiplus and am making headway with mono.
+On Tue, Jan 24, 2012 at 7:18 AM, autif khan <autif.mlist@gmail.com> wrote:
+> Error:
+> | libtool: Version mismatch error. =C2=A0This is libtool 2.4, but the
+> | libtool: definition of this LT_INIT comes from libtool 2.2.6.
+> | libtool: You should recreate aclocal.m4 with macros from libtool 2.4
+> | libtool: and run autoconf again.
+> | make[3]: *** [allchblk.lo] Error 63
 
-Mono comes with libtool version 2.2.6, Yocto uses 2.4
-
-After do_configure(), when do_complie() is being executed, I am
-getting the following error for the following command:
-
-Command:
-/bin/sh ./libtool --mode=compile i586-poky-linux-gcc  -m32
--march=core2 -msse3 -mtune=generic -mfpmath=sse
---sysroot=/home/autif/data2/nosync/dev/yocto/kokosdk/tmp/sysroots/crownbay
--DPACKAGE_NAME=\"libgc-mono\" -DPACKAGE_TARNAME=\"libgc-mono\"
--DPACKAGE_VERSION=\"6.6\" -DPACKAGE_STRING=\"libgc-mono\ 6.6\"
--DPACKAGE_BUGREPORT=\"Hans_Boehm@hp.com\" -DPACKAGE_URL=\"\"
--DGC_LINUX_THREADS=1 -D_REENTRANT=1 -DPARALLEL_MARK=1
--DTHREAD_LOCAL_ALLOC=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1
--DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1
--DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1
--DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1
--DLT_OBJDIR=\".libs/\" -DSILENT=1 -DNO_SIGNALS=1
--DNO_EXECUTE_PERMISSION=1 -DJAVA_FINALIZATION=1 -DGC_GCJ_SUPPORT=1
--DATOMIC_UNCOLLECTABLE=1 -D_IN_LIBGC=1 -I./.. -I./.. -I./include
--DGC_LINUX_THREADS -D_GNU_SOURCE -D_REENTRANT -DUSE_MMAP -DUSE_MUNMAP
--O2 -pipe -g -feliminate-unused-debug-types -g
--mno-tls-direct-seg-refs   -MT allchblk.lo -MD -MP -MF
-.deps/allchblk.Tpo -c -o allchblk.lo allchblk.c
-
-Error:
-| libtool: Version mismatch error.  This is libtool 2.4, but the
-| libtool: definition of this LT_INIT comes from libtool 2.2.6.
-| libtool: You should recreate aclocal.m4 with macros from libtool 2.4
-| libtool: and run autoconf again.
-| make[3]: *** [allchblk.lo] Error 63
-
-Here is how LT_INIT is defined in aclocal.m4:
-# LT_INIT([OPTIONS])
-# ------------------
-AC_DEFUN([LT_INIT],
-[AC_PREREQ([2.58])dnl We use AC_INCLUDES_DEFAULT
-AC_BEFORE([$0], [LT_LANG])dnl
-AC_BEFORE([$0], [LT_OUTPUT])dnl
-AC_BEFORE([$0], [LTDL_INIT])dnl
-m4_require([_LT_CHECK_BUILDDIR])dnl
-
-dnl Autoconf doesn't catch unexpanded LT_ macros by default:
-m4_pattern_forbid([^_?LT_[A-Z_]+$])dnl
-m4_pattern_allow([^(_LT_EOF|LT_DLGLOBAL|LT_DLLAZY_OR_NOW|LT_MULTI_MODULE)$])dnl
-dnl aclocal doesn't pull ltoptions.m4, ltsugar.m4, or ltversion.m4
-dnl unless we require an AC_DEFUNed macro:
-AC_REQUIRE([LTOPTIONS_VERSION])dnl
-AC_REQUIRE([LTSUGAR_VERSION])dnl
-AC_REQUIRE([LTVERSION_VERSION])dnl
-AC_REQUIRE([LTOBSOLETE_VERSION])dnl
-m4_require([_LT_PROG_LTMAIN])dnl
-
-dnl Parse OPTIONS
-_LT_SET_OPTIONS([$0], [$1])
-
-# This can be used to rebuild libtool when needed
-LIBTOOL_DEPS="$ltmain"
-
-# Always use our own libtool.
-LIBTOOL='$(SHELL) $(top_builddir)/libtool'
-AC_SUBST(LIBTOOL)dnl
-
-_LT_SETUP
-
-# Only expand once:
-m4_define([LT_INIT])
-])# LT_INIT
-
-What changes should be made to the auto tools files to fix this?
-
-Thanks!
-
-Autif
+this says it all and we do that regeneration automatically for recipes
+which inherit autotools
+you need to post your recipes for someone to look at what you are doing
 
