@@ -1,35 +1,25 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 739CBE00306
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 06:32:51 -0800 (PST)
-Received: by iagz35 with SMTP id z35so2671848iag.35
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 06:32:51 -0800 (PST)
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CAA2E00592
+	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 07:18:11 -0800 (PST)
+Received: by vcbfl13 with SMTP id fl13so1564851vcb.35
+	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 07:18:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=date:from:to:cc:message-id:in-reply-to:references:subject:x-mailer
-	:mime-version:content-type;
-	bh=G8Pe7JMVzNs5OFCanCtNQN/0KFYd3gGQkUBrTMiPQSk=;
-	b=Ww7ToFrXuj52PM4J/Xn3i0+c6/DpIBvbNme4h2CtiUaxU8WVKubZcyL0OfRIabtj41
-	lYPFXad2OGtfKCrtiAHM/weKCpB/dhad9bNoIp/R7pNyKufMlAWbMb9f1CwG7sBbmBYA
-	yF1V94Y7kGuN/978hEc2i6nRJfo5AjdAymvkc=
-Received: by 10.50.15.231 with SMTP id a7mr14620571igd.8.1327415570998;
-	Tue, 24 Jan 2012 06:32:50 -0800 (PST)
-Received: from frey (ip24-251-167-38.ph.ph.cox.net. [24.251.167.38])
-	by mx.google.com with ESMTPS id bj3sm22861084igb.4.2012.01.24.06.32.49
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 24 Jan 2012 06:32:49 -0800 (PST)
-Date: Tue, 24 Jan 2012 07:32:47 -0700
-From: Christopher Larson <kergoth@gmail.com>
-To: Joshua Immanuel <josh@hipro.co.in>
-Message-ID: <2F85497E73304B2B8FBE56AEEDEEA234@gmail.com>
-In-Reply-To: <1327415044.17885.7.camel@babel.joshhome>
-References: <1327402068.2521.8.camel@babel.joshhome>
-	<48800CDABB26481EBC58C78EBD05294C@gmail.com>
-	<1327415044.17885.7.camel@babel.joshhome>
-X-Mailer: sparrow 1.5 (build 1043.1)
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=uVqoaGU19i4xfhV7Z4siy35vxqP9f4mSwOK8yZ1LFxI=;
+	b=Lwflk9AQQ6kV2Wzt7KDOqqrdWaxJVH/paWMHBtdsCGA9/OwQG7nz3r3+tWRCi3q4ob
+	pAV2FBH5Y6yayc/A2njQe70jkEf0JDcL9Sf5Fgk1nTbmbM7qXksge6yIYP5rZWcPWciU
+	taJtsC05RDAg+RPRpLotgk3Q/AGK/RsRtDxGk=
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: overriding a class in custom layer
+Received: by 10.220.155.132 with SMTP id s4mr7310964vcw.38.1327418290348; Tue,
+	24 Jan 2012 07:18:10 -0800 (PST)
+Received: by 10.52.108.37 with HTTP; Tue, 24 Jan 2012 07:18:10 -0800 (PST)
+Date: Tue, 24 Jan 2012 10:18:10 -0500
+Message-ID: <CADzUK1J+pYY8hpKKY786ZWPM2O7SkZvMqjOH-5wt8323_kR=gw@mail.gmail.com>
+From: autif khan <autif.mlist@gmail.com>
+To: yocto@yoctoproject.org
+Subject: libtool version mismatch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,61 +31,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jan 2012 14:32:51 -0000
-Content-Type: multipart/alternative; boundary="4f1ec10f_140e0f76_5f44"
+X-List-Received-Date: Tue, 24 Jan 2012 15:18:12 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---4f1ec10f_140e0f76_5f44
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+I have been working on writing a recipe for mono. I have successfully
+written one for lbgdiplus and am making headway with mono.
 
-On Tuesday, January 24, 2012 at 7:24 AM, Joshua Immanuel wrote:
-> Hello Christopher,
-> 
-> Thanks for the reply.
-> 
-> On Tue, 2012-01-24 at 07:07 -0700, Christopher Larson wrote:
-> > Ensure that your layer is before the other in BBLAYERS.
-> 
-> 
-> As you mentioned reordering BBLAYERS to have my custom layer before
-> 'meta' layer solved the issue. I was of the notion that setting
-> BBFILE_PRIORITY higher for my layer would be sufficient.
-> 
-> 
+Mono comes with libtool version 2.2.6, Yocto uses 2.4
 
+After do_configure(), when do_complie() is being executed, I am
+getting the following error for the following command:
 
-Unfortunately, BBFILE_PRIORITY only affects the choice of what *recipes* to use between the different layers, not config files or classes. The latter are found via BBPATH, which is incrementally appended to by each layer.conf. This separation is unfortunate, as it means part of the layer priority is in the user's hands (or the script generating bblayers.conf, if using one), and part is in the layers' hands (layer.conf), but that's the way it is for now.
+Command:
+/bin/sh ./libtool --mode=compile i586-poky-linux-gcc  -m32
+-march=core2 -msse3 -mtune=generic -mfpmath=sse
+--sysroot=/home/autif/data2/nosync/dev/yocto/kokosdk/tmp/sysroots/crownbay
+-DPACKAGE_NAME=\"libgc-mono\" -DPACKAGE_TARNAME=\"libgc-mono\"
+-DPACKAGE_VERSION=\"6.6\" -DPACKAGE_STRING=\"libgc-mono\ 6.6\"
+-DPACKAGE_BUGREPORT=\"Hans_Boehm@hp.com\" -DPACKAGE_URL=\"\"
+-DGC_LINUX_THREADS=1 -D_REENTRANT=1 -DPARALLEL_MARK=1
+-DTHREAD_LOCAL_ALLOC=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1
+-DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1
+-DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1
+-DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1
+-DLT_OBJDIR=\".libs/\" -DSILENT=1 -DNO_SIGNALS=1
+-DNO_EXECUTE_PERMISSION=1 -DJAVA_FINALIZATION=1 -DGC_GCJ_SUPPORT=1
+-DATOMIC_UNCOLLECTABLE=1 -D_IN_LIBGC=1 -I./.. -I./.. -I./include
+-DGC_LINUX_THREADS -D_GNU_SOURCE -D_REENTRANT -DUSE_MMAP -DUSE_MUNMAP
+-O2 -pipe -g -feliminate-unused-debug-types -g
+-mno-tls-direct-seg-refs   -MT allchblk.lo -MD -MP -MF
+.deps/allchblk.Tpo -c -o allchblk.lo allchblk.c
 
--- 
-Christopher Larson
+Error:
+| libtool: Version mismatch error.  This is libtool 2.4, but the
+| libtool: definition of this LT_INIT comes from libtool 2.2.6.
+| libtool: You should recreate aclocal.m4 with macros from libtool 2.4
+| libtool: and run autoconf again.
+| make[3]: *** [allchblk.lo] Error 63
 
---4f1ec10f_140e0f76_5f44
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+Here is how LT_INIT is defined in aclocal.m4:
+# LT_INIT([OPTIONS])
+# ------------------
+AC_DEFUN([LT_INIT],
+[AC_PREREQ([2.58])dnl We use AC_INCLUDES_DEFAULT
+AC_BEFORE([$0], [LT_LANG])dnl
+AC_BEFORE([$0], [LT_OUTPUT])dnl
+AC_BEFORE([$0], [LTDL_INIT])dnl
+m4_require([_LT_CHECK_BUILDDIR])dnl
 
+dnl Autoconf doesn't catch unexpanded LT_ macros by default:
+m4_pattern_forbid([^_?LT_[A-Z_]+$])dnl
+m4_pattern_allow([^(_LT_EOF|LT_DLGLOBAL|LT_DLLAZY_OR_NOW|LT_MULTI_MODULE)$])dnl
+dnl aclocal doesn't pull ltoptions.m4, ltsugar.m4, or ltversion.m4
+dnl unless we require an AC_DEFUNed macro:
+AC_REQUIRE([LTOPTIONS_VERSION])dnl
+AC_REQUIRE([LTSUGAR_VERSION])dnl
+AC_REQUIRE([LTVERSION_VERSION])dnl
+AC_REQUIRE([LTOBSOLETE_VERSION])dnl
+m4_require([_LT_PROG_LTMAIN])dnl
 
-                <div><span style=3D=22color: rgb(160, 160, 168); =22>On T=
-uesday, January 24, 2012 at 7:24 AM, Joshua Immanuel wrote:</span></div>
-                <blockquote type=3D=22cite=22 style=3D=22border-left-styl=
-e:solid;border-width:1px;margin-left:0px;padding-left:10px;=22>
-                    <span><div><div><div>Hello Christopher,</div><div><br=
-></div><div>Thanks for the reply.</div><div><br></div><div>On Tue, 2012-0=
-1-24 at 07:07 -0700, Christopher Larson wrote:</div><blockquote type=3D=22=
-cite=22><div>Ensure that your layer is before the other in BBLAYERS.</div=
-></blockquote><div><br></div><div>As you mentioned reordering BBLAYERS to=
- have my custom layer before</div><div>'meta' layer solved the issue. I w=
-as of the notion that setting</div><div>BB=46ILE=5FPRIORITY higher for my=
- layer would be sufficient.</div></div></div></span></blockquote><div><br=
-></div><div>Unfortunately, BB=46ILE=5FPRIORITY only affects the choice of=
- what *recipes* to use between the different layers, not config files or =
-classes. The latter are found via BBPATH, which is incrementally appended=
- to by each layer.conf. This separation is unfortunate, as it means part =
-of the layer priority is in the user's hands (or the script generating bb=
-layers.conf, if using one), and part is in the layers' hands (layer.conf)=
-, but that's the way it is for now.</div><div><br></div><div>--&nbsp;</di=
-v><div>Christopher Larson</div>
-            
+dnl Parse OPTIONS
+_LT_SET_OPTIONS([$0], [$1])
 
---4f1ec10f_140e0f76_5f44--
+# This can be used to rebuild libtool when needed
+LIBTOOL_DEPS="$ltmain"
+
+# Always use our own libtool.
+LIBTOOL='$(SHELL) $(top_builddir)/libtool'
+AC_SUBST(LIBTOOL)dnl
+
+_LT_SETUP
+
+# Only expand once:
+m4_define([LT_INIT])
+])# LT_INIT
+
+What changes should be made to the auto tools files to fix this?
+
+Thanks!
+
+Autif
+
