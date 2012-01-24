@@ -1,30 +1,26 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7C71E004D2
-	for <yocto@yoctoproject.org>; Mon, 23 Jan 2012 22:22:54 -0800 (PST)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1201FE004D2
+	for <yocto@yoctoproject.org>; Mon, 23 Jan 2012 22:28:53 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q0O6MrfU011234
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q0O6SqWn000190
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 23 Jan 2012 22:22:53 -0800 (PST)
+	Mon, 23 Jan 2012 22:28:52 -0800 (PST)
 Received: from bruce-ashfields-macbook.local (128.224.23.161) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Mon, 23 Jan 2012 22:22:52 -0800
-Message-ID: <4F1E4E3B.6060700@windriver.com>
-Date: Tue, 24 Jan 2012 01:22:51 -0500
+	14.1.255.0; Mon, 23 Jan 2012 22:28:52 -0800
+Message-ID: <4F1E4FA3.90602@windriver.com>
+Date: Tue, 24 Jan 2012 01:28:51 -0500
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
 	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
 MIME-Version: 1.0
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-References: <D956029D25CF204F948EA0FB515E1EE2030A3D@ORSMSX105.amr.corp.intel.com>
-	<4F147006.1070401@windriver.com>
-	<D956029D25CF204F948EA0FB515E1EE2040AE0@ORSMSX105.amr.corp.intel.com>
-	<4F1DA194.9030807@windriver.com>
-	<D956029D25CF204F948EA0FB515E1EE2040C48@ORSMSX105.amr.corp.intel.com>
-In-Reply-To: <D956029D25CF204F948EA0FB515E1EE2040C48@ORSMSX105.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
-	Darren" <darren.hart@intel.com>
-Subject: Re: Linux RT build fail
+To: Darren Hart <dvhart@linux.intel.com>
+References: <4F188C59.5090109@linux.intel.com> <4F1CDBA6.5080909@windriver.com>
+	<4F1DFAD0.2050001@linux.intel.com>
+In-Reply-To: <4F1DFAD0.2050001@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH][linux-yocto] pch_gbe: Do not abort probe on bad MAC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,154 +32,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jan 2012 06:22:55 -0000
+X-List-Received-Date: Tue, 24 Jan 2012 06:28:54 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12-01-23 8:17 PM, Bodke, Kishore K wrote:
-> I am building from master branch.
+On 12-01-23 7:26 PM, Darren Hart wrote:
 >
-> Below is the error I see.
 >
-> ERROR: Function failed: do_patch (see /usr/local/src/juan/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-yocto-rt-3.0.14+git1+73dafd44ea875df654129b32b2877f342d5573e4_1+f1cc220f4ddf434bf254707c83a45794a63f117f-r1/temp/log.do_patch.25589 for further information)
-> ERROR: Logfile of failure stored in: /usr/local/src/juan/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-yocto-rt-3.0.14+git1+73dafd44ea875df654129b32b2877f342d5573e4_1+f1cc220f4ddf434bf254707c83a45794a63f117f-r1/temp/log.do_patch.25589
-> Log data follows:
-> | ERROR: Function failed: do_patch (see /usr/local/src/juan/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-yocto-rt-3.0.14+git1+73dafd44ea875df654129b32b2877f342d5573e4_1+f1cc220f4ddf434bf254707c83a45794a63f117f-r1/temp/log.do_patch.25589 for further information)
-> | checkpoint is already restored, nothing to do
-> |
-> | ERROR: patch /usr/local/src/juan/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-yocto-rt-3.0.14+git1+73dafd44ea875df654129b32b2877f342d5573e4_1+f1cc220f4ddf434bf254707c83a45794a63f117f-r1/linux/meta/cfg/kernel-cache/features/rt/rt-apply-patch-3.0.10-rt27.patch.patch is not available
-> |
-> | ERROR. Could not find an excutable target for yocto/standard/preempt-rt/base
-> | ERROR. Could not locate meta series for preempt-rt-standard
-> | ERROR. Could not modify yocto/standard/
-> NOTE: package linux-yocto-rt-3.0.14+git1+73dafd44ea875df654129b32b2877f342d5573e4_1+f1cc220f4ddf434bf254707c83a45794a63f117f-r1: task do_patch: Failed
-> ERROR: Task 714 (/usr/local/src/juan/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.0.bb, do_patch) failed with exit code '1'
+> On 01/22/2012 08:01 PM, Bruce Ashfield wrote:
+>> On 12-01-19 4:34 PM, Darren Hart wrote:
+>>> Bruce, please apply to linux-yocto-3.0/yocto/standard/base
+>>
+>> Queued.
+>
+> I don't see this in the repository yet, is it still pending? I'm trying
+> to write a BSP that is dependent on it.'
 
-This is definitely fixed in the meta update I sent today, the "patch.patch"
-is completely removed. So you'll have to wait for my request to be
-merged, or cherry pick the change.
+It's queued with the rest of my 3.0 updates. I've been spending
+time on 3.2 and haven't pushed these out yet.
 
 Bruce
 
 >
-> Thanks
-> Kishore.
+> Thanks,
 >
-> -----Original Message-----
-> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
-> Sent: Monday, January 23, 2012 10:06 AM
-> To: Bodke, Kishore K
-> Cc: yocto@yoctoproject.org; Hart, Darren
-> Subject: Re: Linux RT build fail
+> Darren
 >
-> On 12-01-23 12:51 PM, Bodke, Kishore K wrote:
->> Hi Bruce,
->>
->> Could you please let me know if the fix is available for this?
->
-> The 3.0 pull request was held up behind 3.2 work. But I just pushed
-> out a meta branch update that contained:
->
-> commit f1ef128bff854ce2614e655283ecca92d22f0b88
-> Author: Bruce Ashfield<bruce.ashfield@windriver.com>
-> Date:   Mon Jan 16 13:45:11 2012 -0500
->
->       meta/rt: fix reference to non-existent patch
->
->       Signed-off-by: Bruce Ashfield<bruce.ashfield@windriver.com>
->
-> :100644 100644 8c4d748... 4b9e9ed... M
-> meta/cfg/kernel-cache/features/rt/rt.scc
->
-> Which is the error you are seeing. The change is destined
-> for master. If you are on another branch, it needs to be cherry
-> picked into your local meta branch.
->
-> Cheers,
->
-> Bruce
->
->>
->> Thanks
->> Kishore.
->>
->> -----Original Message-----
->> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
->> Sent: Monday, January 16, 2012 10:44 AM
->> To: Bodke, Kishore K
->> Cc: yocto@yoctoproject.org; Hart, Darren
->> Subject: Re: Linux RT build fail
->>
->> On 12-01-16 01:40 PM, Bodke, Kishore K wrote:
->>> Hi,
->>>
->>> I get build failure for the rt.
->>>
->>> ERROR: Function 'do_patch' failed (see
->>> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22d10952618a2ad146e6149d240cd2-r1/temp/log.do_patch.32459
->>> for further information)
->>>
->>> ERROR: Logfile of failure stored in:
->>> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22d10952618a2ad146e6149d240cd2-r1/temp/log.do_patch.32459
->>>
->>> Log data follows:
->>>
->>> | ERROR: Function 'do_patch' failed (see
->>> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22d10952618a2ad146e6149d240cd2-r1/temp/log.do_patch.32459
->>> for further information)
->>>
->>> | Deleted branch meta-temp (was 620917d).
->>>
->>> |
->>>
->>> | ERROR: patch
->>> /usr/local/src/jan13/poky/build-rt/tmp/work/cedartrail-poky-linux/linux-yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22d10952618a2ad146e6149d240cd2-r1/linux/meta/cfg/kernel-cache/features/rt/rt-apply-patch-3.0.10-rt27.patch.patch
->>> is not available
->>
->> This is the problem. But I could have sworn that I fixed this, and
->> send a merge request. When I just checked now, it still looks broken.
->>
->> That being said, we should have seen this before now. Are any -rt
->> kernels being build regularly on master ?
->>
->> It is partially due to meta-kernel-dev picking up new kernel tools that
->> do strict checking on patches by default (hence my question about
->> anyone else building this on master).
->>
->> I'm pushing a fix out now to the meta branch and will send it along
->> with my next consolidated pull request.
->>
->> Cheers,
 >>
 >> Bruce
 >>
 >>>
->>> |
+>>> Upstream-Status: Accepted (Linux 3.3)
 >>>
->>> | ERROR. Could not find an excutable target for
->>> yocto/standard/preempt-rt/base
+>>> If the MAC is invalid or not implemented, do not abort the probe. Issue
+>>> a warning and prevent bringing the interface up until a MAC is set manually
+>>> (via ifconfig $IFACE hw ether $MAC).
 >>>
->>> | ERROR. Could not locate meta series for preempt-rt-standard
+>>> Tested on two platforms, one with a valid MAC, the other without a MAC. The real
+>>> MAC is used if present, the interface fails to come up until the MAC is set on
+>>> the other. They successfully get an IP over DHCP and pass a simple ping and
+>>> login over ssh test.
 >>>
->>> | ERROR. Could not modify yocto/standard/preempt-rt/base
+>>> This is meant to allow the Inforce SYS940X development board:
+>>> http://www.inforcecomputing.com/SYS940X_ECX.html
+>>> (and others suffering from a missing MAC) to work with the mainline kernel.
+>>> Without this patch, the probe will fail and the interface will not be created,
+>>> preventing the user from configuring the MAC manually.
 >>>
->>> NOTE: package
->>> linux-yocto-rt-3.0.14+git1+6ae3d992cf546184010e87a0349810198f1d167c_1+bcf4107c7f22d10952618a2ad146e6149d240cd2-r1:
->>> task do_patch: Failed
+>>> This does not make any attempt to address a missing or invalid MAC for the
+>>> pch_phub driver.
 >>>
->>> NOTE: package bzip2-1.0.6-r4: task do_compile: Succeeded
+>>> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
+>>> CC: Arjan van de Ven<arjan@linux.intel.com>
+>>> CC: Alan Cox<alan@linux.intel.com>
+>>> CC: Tomoya MORINAGA<tomoya.rohm@gmail.com>
+>>> CC: Jeff Kirsher<jeffrey.t.kirsher@intel.com>
+>>> CC: "David S. Miller"<davem@davemloft.net>
+>>> CC: Paul Gortmaker<paul.gortmaker@windriver.com>
+>>> CC: Jon Mason<jdmason@kudzu.us>
+>>> CC: netdev@vger.kernel.org
+>>> CC: Mark Brown<broonie@opensource.wolfsonmicro.com>
+>>> CC: David Laight<David.Laight@ACULAB.COM>
+>>> CC: Joe Perches<joe@perches.com>
+>>> ---
+>>>    drivers/net/pch_gbe/pch_gbe_main.c |   17 ++++++++++++++---
+>>>    1 files changed, 14 insertions(+), 3 deletions(-)
 >>>
->>> ERROR: Task 3
->>> (/usr/local/src/jan13/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.0.bb,
->>> do_patch) failed with exit code '1'
+>>> diff --git a/drivers/net/pch_gbe/pch_gbe_main.c b/drivers/net/pch_gbe/pch_gbe_main.c
+>>> index eac3c5c..e7412f2 100644
+>>> --- a/drivers/net/pch_gbe/pch_gbe_main.c
+>>> +++ b/drivers/net/pch_gbe/pch_gbe_main.c
+>>> @@ -1701,6 +1701,12 @@ int pch_gbe_up(struct pch_gbe_adapter *adapter)
+>>>    	struct pch_gbe_rx_ring *rx_ring = adapter->rx_ring;
+>>>    	int err;
 >>>
->>> Is this anything to do with meta-kernel-dev I am using or something else?
+>>> +	/* Ensure we have a valid MAC */
+>>> +	if (!is_valid_ether_addr(adapter->hw.mac.addr)) {
+>>> +		pr_err("Error: Invalid MAC address\n");
+>>> +		return -EINVAL;
+>>> +	}
+>>> +
+>>>    	/* hardware has been reset, we need to reload some things */
+>>>    	pch_gbe_set_multi(netdev);
 >>>
->>> Thanks
+>>> @@ -2392,9 +2398,14 @@ static int pch_gbe_probe(struct pci_dev *pdev,
 >>>
->>> Kishore.
->>>
+>>>    	memcpy(netdev->dev_addr, adapter->hw.mac.addr, netdev->addr_len);
+>>>    	if (!is_valid_ether_addr(netdev->dev_addr)) {
+>>> -		dev_err(&pdev->dev, "Invalid MAC Address\n");
+>>> -		ret = -EIO;
+>>> -		goto err_free_adapter;
+>>> +		/*
+>>> +		 * If the MAC is invalid (or just missing), display a warning
+>>> +		 * but do not abort setting up the device. pch_gbe_up will
+>>> +		 * prevent the interface from being brought up until a valid MAC
+>>> +		 * is set.
+>>> +		 */
+>>> +		dev_err(&pdev->dev, "Invalid MAC address, "
+>>> +		                    "interface disabled.\n");
+>>>    	}
+>>>    	setup_timer(&adapter->watchdog_timer, pch_gbe_watchdog,
+>>>    		    (unsigned long)adapter);
 >>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 >
 
 
