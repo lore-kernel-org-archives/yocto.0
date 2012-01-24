@@ -1,33 +1,36 @@
-Return-Path: <kbaker@gmail.com>
-Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 413E6E00592
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 12:27:02 -0800 (PST)
-Received: by vbbfn1 with SMTP id fn1so4215738vbb.35
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 12:27:01 -0800 (PST)
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2774E00592
+	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 13:24:32 -0800 (PST)
+Received: by qcsg14 with SMTP id g14so1875596qcs.35
+	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 13:24:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=RVOKTJPwdVl8jqct7Q3oHUHsoNZh97GDgcsAHF0fXjs=;
-	b=ktiW7nOSMYW10NRt8F1tUnCAjCHXhxZct7D47K2VppitcQ1PuB9ySaLgwsEZQ3oPaU
-	I6cmthGpl+3BT0ntjaG7xQ1WyXAlJMUSpK5yBsiaJjvx+DPxPJH3uM7smACgbGouk6oZ
-	xmuRGejiJwxJ0HLQ+C0nylYEoQ883PSpZ9vHg=
-Received: by 10.52.94.148 with SMTP id dc20mr7052544vdb.109.1327436821228;
-	Tue, 24 Jan 2012 12:27:01 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.220.6.16 with HTTP; Tue, 24 Jan 2012 12:26:40 -0800 (PST)
-In-Reply-To: <CADzUK1J6yNz8UOUYCsWjw_w63aTkUni8eBKXOEjOj=LDucGzQg@mail.gmail.com>
-References: <CADzUK1J+pYY8hpKKY786ZWPM2O7SkZvMqjOH-5wt8323_kR=gw@mail.gmail.com>
-	<CAMKF1somkqJp-DT=faDqNAFww98Q=rb5R5_ZbC2HhxSTkLG9Tg@mail.gmail.com>
-	<CADzUK1+bGq=n_yRwuJDv_9rHD+cK-n7e89mg8nWcNHLX09+zCg@mail.gmail.com>
-	<CAMKF1sqNmWvR=m0wnjtjdDr70y1ex1JyXVObTvoq5vvvuWM2uw@mail.gmail.com>
-	<CADzUK1J6yNz8UOUYCsWjw_w63aTkUni8eBKXOEjOj=LDucGzQg@mail.gmail.com>
-From: Kevin Baker <kbaker@gmail.com>
-Date: Tue, 24 Jan 2012 14:26:40 -0600
-Message-ID: <CA+NaiT-HF_OTqzmDe0ZEz=ZXBZ+aUn_oo3mr3SACw7STDV0LSw@mail.gmail.com>
-To: autif khan <autif.mlist@gmail.com>
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=fWjp+wwzRVGR8lyNDIIcXYPXjsdLgJP+bnplYWM4Hp4=;
+	b=kscKdHnEYIFU0CkBcWedouHrPjmT0RbHlGJEjaDpy1lKobV2ZMgjr00re73MHBHXYC
+	oB/UCZmADl4TPRtSRGZMoknfPa3suL57AngTG+s5LgcbyWDPODMHzx9GCHUOm4FkqRc7
+	9+0KYBcawdmRWUX33QYG+j030Vb9r7C1scVSU=
+Received: by 10.229.106.195 with SMTP id y3mr5156897qco.149.1327440271876;
+	Tue, 24 Jan 2012 13:24:31 -0800 (PST)
+Received: from [10.0.1.26] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
+	by mx.google.com with ESMTPS id
+	s18sm12884891qaz.15.2012.01.24.13.24.30
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 24 Jan 2012 13:24:30 -0800 (PST)
+Mime-Version: 1.0 (Apple Message framework v1251.1)
+From: James Abernathy <jfabernathy@gmail.com>
+In-Reply-To: <4F1D682B.5070905@windriver.com>
+Date: Tue, 24 Jan 2012 16:24:29 -0500
+Message-Id: <9B7750E6-DAC3-4803-BD2A-4921C1F694D5@gmail.com>
+References: <56375FA8-BB1F-4D3B-91EC-C84665DF9905@gmail.com>
+	<4F1CB41A.301@mlbassoc.com> <4F1D57CE.2050807@gmail.com>
+	<4F1D5C39.6070503@mlbassoc.com> <4F1D682B.5070905@windriver.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+X-Mailer: Apple Mail (2.1251.1)
 Cc: yocto@yoctoproject.org
-Subject: Re: libtool version mismatch
+Subject: Re: tar ball vs. git development questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,57 +42,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jan 2012 20:27:02 -0000
-Content-Type: multipart/alternative; boundary=bcaec5015f2b30ee1f04b74bf86a
-
---bcaec5015f2b30ee1f04b74bf86a
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Tue, Jan 24, 2012 at 11:46 AM, autif khan <autif.mlist@gmail.com> wrote:
-
->
-> Can you point me to an existing recipe that already does something
-> similar? I am not sure what I am looking for.
->
-> Thanks for all the help!
->
->
-Cross-compiling mono is messy, at least judging from the existing recipe
-from OE-classic:
-
-http://cgit.openembedded.org/openembedded/tree/recipes/mono/README
-
-I remember using this recipe with OE-classic and getting a working version
-compiled for ARM, and the resulting binaries/libraries seemed to work fine
-for test programs. You may want to look there for some ideas.
-
-Kevin
-
---bcaec5015f2b30ee1f04b74bf86a
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Tue, 24 Jan 2012 21:24:33 -0000
+Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div class=3D"gmail_quote">On Tue, Jan 24, 2012 at 11:46 AM, autif khan <sp=
-an dir=3D"ltr">&lt;<a href=3D"mailto:autif.mlist@gmail.com">autif.mlist@gma=
-il.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
-margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
 
-<div class=3D"im"><br>
-</div>Can you point me to an existing recipe that already does something<br=
->
-similar? I am not sure what I am looking for.<br>
-<br>
-Thanks for all the help!<br>
-<span class=3D"HOEnZb"></span><br></blockquote><div><br>Cross-compiling mon=
-o is messy, at least judging from the existing recipe from OE-classic:<br><=
-br><a href=3D"http://cgit.openembedded.org/openembedded/tree/recipes/mono/R=
-EADME">http://cgit.openembedded.org/openembedded/tree/recipes/mono/README</=
-a><br>
+On Jan 23, 2012, at 9:01 AM, Bruce Ashfield wrote:
 
-<br>I remember using this recipe with OE-classic and getting a working vers=
-ion compiled for ARM, and the resulting binaries/libraries seemed to work f=
-ine for test programs. You may want to look there for some ideas.<br><br>
+> On 12-01-23 08:10 AM, Gary Thomas wrote:
+>> On 2012-01-23 05:51, jfabernathy wrote:
+>>> On 01/22/2012 08:12 PM, Gary Thomas wrote:
+>>>> On 2012-01-22 13:19, James Abernathy wrote:
+>>>>> I have used both git and the tarball methods of bitbaking =
+projects,
+>>>>> all of them derivatives of the examples in the Yocto =
+documentation.
+>>>>> I was having issues using the local clone of
+>>>>> the Yocto kernel git repository this weekend. I had successfully
+>>>>> done that before, but I was rebuilding the PC workstation, and
+>>>>> getting everything setup and tested some of the
+>>>>> meta-intel BSPs to make sure I had everything right. Cloning the
+>>>>> linux-yocto-3.0 repository was successful, but the bakes against =
+it
+>>>>> failed. I made sure I had poky-extras setup
+>>>>> right, but I still had problems. To isolate the problem, I changed
+>>>>> to building with the tarballs and everything worked fine.
+>>>>>=20
+>>>>> So that got me thinking what are the differences between the 2 =
+methods:
+>>>>>=20
+>>>>> * I assume that if I use the tarball method, bitbake, using the
+>>>>> recipes, pulls down files from the online repositories and puts
+>>>>> those files into the centralized local download
+>>>>> directory ($DL_DIR), allowing reuse instead of re-downloading each
+>>>>> time. The content downloaded for linux-yocto-3.0 is exactly what
+>>>>> would be pulled from the local repository if
+>>>>> I used a local clone of the git repository for linux-yocto-3.0.
+>>>>> * If my assumption above is correct, if I'm not modifying the =
+source
+>>>>> code of the kernel (only changing config parameters), then once
+>>>>> you've run at least one build with the
+>>>>> tarball method, the $DL_DIR directory contains all the files =
+you'll
+>>>>> need to build any image with linux-yocto-3.0. So there is no need =
+to
+>>>>> have a local clone of the kernel
+>>>>> repository for speeding up development. Am I right?
+>>>>> * If I have a successful creation of a bare clone of
+>>>>> linux-yocto-3.0.git, how could builds of Edison packages be =
+failing?
+>>>>> That makes me concerned about using git and successfully
+>>>>> repeating builds of stable branches like Edison.
+>>>>=20
+>>>> If you set BB_GENERATE_MIRROR_TARBALLS =3D "1" (e.g. in local.conf)
+>>>> then you'll get tarballs which hold the git repositories after
+>>>> download. You can then reuse these (by sharing the DL_DIR or
+>>>> using a local mirror). Does that help with the issue you're seeing?
+>>>>=20
+>>> I'm not sure it does. I don't want poky to do more work. I have my
+>>> download directory, $DL_DIR, outside my build directory so I can =
+keep
+>>> it run to run, as mentioned in the comments
+>>> in local.conf. I was trying to understand 2 basic questions:
+>>>=20
+>>> 1. what could be causing build failures using a freshly created bare
+>>> clone yesterday vs. using the poky-edison-6.0 tarball. It would be
+>>> scary if you could clone the linux-yocto-3.0
+>>> successfully one day and have it be used in a build successfully, =
+but
+>>> clone it another day and it not work. I figured that bitbake/poky
+>>> pulled the same information into DL_DIR
+>>> regardless of whether you pulled from the bare clone locally or
+>>> straight from the on-line repository.
+>>=20
+>> What kind of errors? Some details might help understand what the =
+problem
+>> is.
+>>=20
+>>> 2. I was trying to look at items to speed up build runs. I thought
+>>> that if the downloads in DL_DIR were reused if they existed, it =
+would
+>>> speed up a run. It seems to. So the
+>>> question is, after the first build, the files I need for
+>>> linux-yocto-3.0 are in DL_DIR regardless of whether they came from =
+the
+>>> online repository or the local bare clone. right?
+>>=20
+>> I think so, but I'm not 100% sure.
+>=20
+> =46rom my experience, this is true. Regardless of the SRCI_URI, the
+> downloads directory contains everything that poky/bitbake need to
+> do builds after the initial fetch has been performed. And that's
+> where subsequent updates are pullled.
+>=20
+> Cheers,
+>=20
+> Bruce
+>=20
+I'm going to retest all this and try some of these tricks when I have =
+some time. If I get any more errors with the local repository, I'll post =
+them.
 
-Kevin<br></div></div>
+Thanks,  Jim A
 
---bcaec5015f2b30ee1f04b74bf86a--
+>>=20
+>> The way I have my system set up, I never download anything more
+>> than once :-) I have a shared source repository which I point to
+>> using MIRRORS and then all my builds are relative to that. If there
+>> is new code, it gets downloaded and saved (as a tarball) in my =
+sources
+>> repository to be used by subsequent builds. To do this, I just have
+>> these lines in <distro>.conf
+>> # Provide pre-staged sources
+>> SOURCE_MIRROR_URL ?=3D "file://${COREBASE}/sources/"
+>> INHERIT +=3D "own-mirrors"
+>> BB_GENERATE_MIRROR_TARBALLS =3D "1"
+>> I don't define DL_DIR in local.conf so files only come from my =
+mirror.
+>>=20
+>> This process is so successful that I almost always run with
+>> BB_NO_NETWORK=3D"1"
+>> which causes the fetcher to die if it can't find the file locally. If =
+I
+>> find
+>> that I do need to download something new, I disable this and let the
+>> fetcher
+>> download it. I'll then have a saved tarball (either downloaded =
+directly or
+>> synthesized) in <build_dir>/downloads that I can push to my mirror.
+>>=20
+>=20
+
+
