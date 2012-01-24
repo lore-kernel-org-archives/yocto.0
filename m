@@ -1,36 +1,26 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23D40E00592
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 08:19:48 -0800 (PST)
-Received: by iagz35 with SMTP id z35so2844345iag.35
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 08:19:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=date:from:to:cc:message-id:in-reply-to:references:subject:x-mailer
-	:mime-version:content-type;
-	bh=q0WE9GnNdvu+ho0t0TKRo+B8vv5mYCvl/Dbk/H3KSD4=;
-	b=O0I6tMwHEYDZCmRQQrwhd3N+yGH+BLC/vFirDqT1gc/lMiJiHspniP3nS9T9r2x3om
-	/QE6LyZY3ZJh64iRYWIxRbIGRiQY6djjNlXgiirLkqdNHkmJbPbTTVAmUfR7a4rAFQdo
-	mG8ew3gP/py1bacnDyHaEN3nsI8qlJnsZwbYg=
-Received: by 10.50.36.230 with SMTP id t6mr15139842igj.5.1327421987448;
-	Tue, 24 Jan 2012 08:19:47 -0800 (PST)
-Received: from frey (ip24-251-167-38.ph.ph.cox.net. [24.251.167.38])
-	by mx.google.com with ESMTPS id f8sm60184556ibl.6.2012.01.24.08.19.44
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 24 Jan 2012 08:19:45 -0800 (PST)
-Date: Tue, 24 Jan 2012 09:19:43 -0700
-From: Christopher Larson <kergoth@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Message-ID: <0D23B576EBED4122A290B0A85498CFE1@gmail.com>
-In-Reply-To: <1782182.Md7PmFZxKk@helios>
-References: <1327402068.2521.8.camel@babel.joshhome>
-	<1327415044.17885.7.camel@babel.joshhome>
-	<2F85497E73304B2B8FBE56AEEDEEA234@gmail.com>
-	<1782182.Md7PmFZxKk@helios>
-X-Mailer: sparrow 1.5 (build 1043.1)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CEBCE00592
+	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 08:25:42 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q0OGPfGS009899
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 24 Jan 2012 08:25:41 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Tue, 24 Jan 2012 08:25:40 -0800
+Message-ID: <4F1EDB79.1030407@windriver.com>
+Date: Tue, 24 Jan 2012 11:25:29 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: overriding a class in custom layer
+To: Darren Hart <dvhart@linux.intel.com>
+References: <4F188C59.5090109@linux.intel.com> <4F1CDBA6.5080909@windriver.com>
+	<4F1DFAD0.2050001@linux.intel.com> <4F1E4FA3.90602@windriver.com>
+In-Reply-To: <4F1E4FA3.90602@windriver.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH][linux-yocto] pch_gbe: Do not abort probe on bad MAC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,79 +32,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jan 2012 16:19:48 -0000
-Content-Type: multipart/alternative; boundary="4f1eda1f_431bd7b7_5f44"
-
---4f1eda1f_431bd7b7_5f44
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Tue, 24 Jan 2012 16:25:42 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
-On Tuesday, January 24, 2012 at 9:17 AM, Paul Eggleton wrote:
-> On Tuesday 24 January 2012 07:32:47 Christopher Larson wrote:
-> 
-> 
-> 
-> 
-> I'd also say, what is in the classes is intended to work for everyone, so if
-> there's something in the core classes that is not working well for your
-> situation we'd really like to hear about it - hopefully we can incorporate
-> whatever changes you need and you can avoid having to overlay the entire
-> class.
+On 12-01-24 01:28 AM, Bruce Ashfield wrote:
+> On 12-01-23 7:26 PM, Darren Hart wrote:
+>>
+>>
+>> On 01/22/2012 08:01 PM, Bruce Ashfield wrote:
+>>> On 12-01-19 4:34 PM, Darren Hart wrote:
+>>>> Bruce, please apply to linux-yocto-3.0/yocto/standard/base
+>>>
+>>> Queued.
+>>
+>> I don't see this in the repository yet, is it still pending? I'm trying
+>> to write a BSP that is dependent on it.'
+>
+> It's queued with the rest of my 3.0 updates. I've been spending
+> time on 3.2 and haven't pushed these out yet.
 
-This is true, but still sounds like an excuse to me. Either we support class and config file overriding or we don't. If we do, we should support it properly and well. 
+FYI: You can see this in the 3.0 kernel repo now, I fetched davem's
+net repo and cherry-picked it in. The SRCREV update will follow once
+I've merged 3.0.18 (or .17 if .18 takes too long).
 
--- 
-Christopher Larson
+Cheers,
+
+Bruce
+
+>
+> Bruce
+>
+>>
+>> Thanks,
+>>
+>> Darren
+>>
+>>>
+>>> Bruce
+>>>
+>>>>
+>>>> Upstream-Status: Accepted (Linux 3.3)
+>>>>
+>>>> If the MAC is invalid or not implemented, do not abort the probe. Issue
+>>>> a warning and prevent bringing the interface up until a MAC is set
+>>>> manually
+>>>> (via ifconfig $IFACE hw ether $MAC).
+>>>>
+>>>> Tested on two platforms, one with a valid MAC, the other without a
+>>>> MAC. The real
+>>>> MAC is used if present, the interface fails to come up until the MAC
+>>>> is set on
+>>>> the other. They successfully get an IP over DHCP and pass a simple
+>>>> ping and
+>>>> login over ssh test.
+>>>>
+>>>> This is meant to allow the Inforce SYS940X development board:
+>>>> http://www.inforcecomputing.com/SYS940X_ECX.html
+>>>> (and others suffering from a missing MAC) to work with the mainline
+>>>> kernel.
+>>>> Without this patch, the probe will fail and the interface will not
+>>>> be created,
+>>>> preventing the user from configuring the MAC manually.
+>>>>
+>>>> This does not make any attempt to address a missing or invalid MAC
+>>>> for the
+>>>> pch_phub driver.
+>>>>
+>>>> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
+>>>> CC: Arjan van de Ven<arjan@linux.intel.com>
+>>>> CC: Alan Cox<alan@linux.intel.com>
+>>>> CC: Tomoya MORINAGA<tomoya.rohm@gmail.com>
+>>>> CC: Jeff Kirsher<jeffrey.t.kirsher@intel.com>
+>>>> CC: "David S. Miller"<davem@davemloft.net>
+>>>> CC: Paul Gortmaker<paul.gortmaker@windriver.com>
+>>>> CC: Jon Mason<jdmason@kudzu.us>
+>>>> CC: netdev@vger.kernel.org
+>>>> CC: Mark Brown<broonie@opensource.wolfsonmicro.com>
+>>>> CC: David Laight<David.Laight@ACULAB.COM>
+>>>> CC: Joe Perches<joe@perches.com>
+>>>> ---
+>>>> drivers/net/pch_gbe/pch_gbe_main.c | 17 ++++++++++++++---
+>>>> 1 files changed, 14 insertions(+), 3 deletions(-)
+>>>>
+>>>> diff --git a/drivers/net/pch_gbe/pch_gbe_main.c
+>>>> b/drivers/net/pch_gbe/pch_gbe_main.c
+>>>> index eac3c5c..e7412f2 100644
+>>>> --- a/drivers/net/pch_gbe/pch_gbe_main.c
+>>>> +++ b/drivers/net/pch_gbe/pch_gbe_main.c
+>>>> @@ -1701,6 +1701,12 @@ int pch_gbe_up(struct pch_gbe_adapter *adapter)
+>>>> struct pch_gbe_rx_ring *rx_ring = adapter->rx_ring;
+>>>> int err;
+>>>>
+>>>> + /* Ensure we have a valid MAC */
+>>>> + if (!is_valid_ether_addr(adapter->hw.mac.addr)) {
+>>>> + pr_err("Error: Invalid MAC address\n");
+>>>> + return -EINVAL;
+>>>> + }
+>>>> +
+>>>> /* hardware has been reset, we need to reload some things */
+>>>> pch_gbe_set_multi(netdev);
+>>>>
+>>>> @@ -2392,9 +2398,14 @@ static int pch_gbe_probe(struct pci_dev *pdev,
+>>>>
+>>>> memcpy(netdev->dev_addr, adapter->hw.mac.addr, netdev->addr_len);
+>>>> if (!is_valid_ether_addr(netdev->dev_addr)) {
+>>>> - dev_err(&pdev->dev, "Invalid MAC Address\n");
+>>>> - ret = -EIO;
+>>>> - goto err_free_adapter;
+>>>> + /*
+>>>> + * If the MAC is invalid (or just missing), display a warning
+>>>> + * but do not abort setting up the device. pch_gbe_up will
+>>>> + * prevent the interface from being brought up until a valid MAC
+>>>> + * is set.
+>>>> + */
+>>>> + dev_err(&pdev->dev, "Invalid MAC address, "
+>>>> + "interface disabled.\n");
+>>>> }
+>>>> setup_timer(&adapter->watchdog_timer, pch_gbe_watchdog,
+>>>> (unsigned long)adapter);
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
---4f1eda1f_431bd7b7_5f44
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
-
-
-                <div><span style=3D=22color: rgb(160, 160, 168); =22>On T=
-uesday, January 24, 2012 at 9:17 AM, Paul Eggleton wrote:</span></div>
-                <blockquote type=3D=22cite=22 style=3D=22border-left-styl=
-e:solid;border-width:1px;margin-left:0px;padding-left:10px;=22>
-                    <span><span style=3D=22border-collapse: separate; col=
-or: rgb(0, 0, 0); font-family: 'Lucida Grande'; font-style: normal; font-=
-variant: normal; font-weight: normal; letter-spacing: normal; line-height=
-: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-tr=
-ansform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit=
--border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -w=
-ebkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -=
-webkit-text-stroke-width: 0px; font-size: 13px; =22><span style=3D=22font=
--family: Helvetica; font-size: 13px; =22><div>On Tuesday 24 January 2012 =
-07:32:47 Christopher Larson wrote:</div><div><div onclick=3D=22toggleBloc=
-kQuoteVisibility(event, '1782182.Md7Pm=46ZxKk%40helios-1327421852.2', '17=
-82182.Md7Pm=46ZxKk%40helios-1327421852')=22 onmousedown=3D=22noevent(even=
-t)=22 class=3D=22-sparrow-quotedTextLabelHide=22 style=3D=22font-family: =
-Helvetica; font-size: 11px; color: rgb(0, 106, 227); white-space: nowrap;=
- overflow-x: hidden; overflow-y: hidden; text-overflow: ellipsis; display=
-: inline-block; cursor: default; -webkit-user-select: none; =22><div clas=
-s=3D=22-sparrow-quotedTextButton=22 style=3D=22margin-left: -3px; width: =
-28px; height: 16px; background-image: url(file:///Applications/Sparrow.ap=
-p/Contents/Resources/MessageShowquotedtext.png); background-repeat: no-re=
-peat no-repeat; =22></div></div></div><div><br></div><div>I'd also say, w=
-hat is in the classes is intended to work for everyone, so if</div><div>t=
-here's something in the core classes that is not working well for your</d=
-iv><div>situation we'd really like to hear about it - hopefully we can in=
-corporate</div><div>whatever changes you need and you can avoid having to=
- overlay the entire</div><div>class.</div></span></span></span>
-                =20
-                =20
-                =20
-                =20
-                </blockquote>
-                =20
-                <div>
-                    This is true, but still sounds like an excuse to me. =
-Either we support class and config file overriding or we don't. If we do,=
- we should support it properly and well.
-                </div><div><br></div><div><div>--&nbsp;</div><div>Christo=
-pher Larson</div></div>
-            
-
---4f1eda1f_431bd7b7_5f44--
