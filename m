@@ -1,27 +1,31 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AAB5E00592
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 08:29:09 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 24 Jan 2012 08:29:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="115625665"
-Received: from unknown (HELO envy.home) ([10.255.14.109])
-	by fmsmga002.fm.intel.com with ESMTP; 24 Jan 2012 08:29:09 -0800
-Message-ID: <4F1EDC3B.3000304@linux.intel.com>
-Date: Tue, 24 Jan 2012 08:28:43 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C90ADE00592
+	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 09:10:26 -0800 (PST)
+Received: by lagz14 with SMTP id z14so1658566lag.35
+	for <yocto@yoctoproject.org>; Tue, 24 Jan 2012 09:10:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=9Hw3nceMl+qdrUJelnppaxDI+4JAiJqU9L30mnOiOd4=;
+	b=vujB/WZbxvYZCE1E++eyUOAI8aouCV9dwJyLdhx6qR+IolLrK+dxj2HwsQkFu8M17h
+	k9JAkyNU0o03IIv0oh9nslo05CFh+oH6lYZvMniIcQ2F4XqH79bZDUwdaO3LNOMi5HDI
+	lPHE86zPflH5X8klRprl02oMUx0kP5m/p8+QA=
+Received: by 10.152.132.104 with SMTP id ot8mr2759100lab.17.1327425025263;
+	Tue, 24 Jan 2012 09:10:25 -0800 (PST)
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <4F188C59.5090109@linux.intel.com> <4F1CDBA6.5080909@windriver.com>
-	<4F1DFAD0.2050001@linux.intel.com>
-	<4F1E4FA3.90602@windriver.com> <4F1EDB79.1030407@windriver.com>
-In-Reply-To: <4F1EDB79.1030407@windriver.com>
-X-Enigmail-Version: 1.3.4
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH][linux-yocto] pch_gbe: Do not abort probe on bad MAC
+Received: by 10.152.5.201 with HTTP; Tue, 24 Jan 2012 09:09:54 -0800 (PST)
+In-Reply-To: <CADzUK1+bGq=n_yRwuJDv_9rHD+cK-n7e89mg8nWcNHLX09+zCg@mail.gmail.com>
+References: <CADzUK1J+pYY8hpKKY786ZWPM2O7SkZvMqjOH-5wt8323_kR=gw@mail.gmail.com>
+	<CAMKF1somkqJp-DT=faDqNAFww98Q=rb5R5_ZbC2HhxSTkLG9Tg@mail.gmail.com>
+	<CADzUK1+bGq=n_yRwuJDv_9rHD+cK-n7e89mg8nWcNHLX09+zCg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 24 Jan 2012 09:09:54 -0800
+Message-ID: <CAMKF1sqNmWvR=m0wnjtjdDr70y1ex1JyXVObTvoq5vvvuWM2uw@mail.gmail.com>
+To: autif khan <autif.mlist@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: libtool version mismatch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,40 +37,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jan 2012 16:29:09 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 24 Jan 2012 17:10:27 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Jan 24, 2012 at 8:13 AM, autif khan <autif.mlist@gmail.com> wrote:
+>
+> do_configure_prepend() {
+> =C2=A0 =C2=A0autoreconf -Wcross --verbose --install --force || bbnote "mo=
+no
+> failed to autoreconf"
+> }
+>
+> do_compile_prepend() {
+> =C2=A0 =C2=A0ln -s i586-poky-linux-libtool libtool
+> }
 
-
-On 01/24/2012 08:25 AM, Bruce Ashfield wrote:
-> On 12-01-24 01:28 AM, Bruce Ashfield wrote:
->> On 12-01-23 7:26 PM, Darren Hart wrote:
->>>
->>>
->>> On 01/22/2012 08:01 PM, Bruce Ashfield wrote:
->>>> On 12-01-19 4:34 PM, Darren Hart wrote:
->>>>> Bruce, please apply to linux-yocto-3.0/yocto/standard/base
->>>>
->>>> Queued.
->>>
->>> I don't see this in the repository yet, is it still pending? I'm trying
->>> to write a BSP that is dependent on it.'
->>
->> It's queued with the rest of my 3.0 updates. I've been spending
->> time on 3.2 and haven't pushed these out yet.
-> 
-> FYI: You can see this in the 3.0 kernel repo now, I fetched davem's
-> net repo and cherry-picked it in. The SRCREV update will follow once
-> I've merged 3.0.18 (or .17 if .18 takes too long).
-
-That's perfect, I can set SRCREV's in my meta-intel BSP in the interim,
-but when the patch isn't there, it's a messier process.
-
-Thanks Bruce
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+get rid of above these are not needed when recipes inherit autotools
+see if you need to copy over some of m4 macros that is what you
+need to do in do_configure_prepend if needed.
 
