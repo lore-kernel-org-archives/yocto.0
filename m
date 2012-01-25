@@ -1,26 +1,32 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19E89E01374
-	for <yocto@yoctoproject.org>; Wed, 25 Jan 2012 07:56:38 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 25 Jan 2012 07:56:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="100456624"
-Received: from unknown (HELO helios.localnet) ([10.252.122.164])
-	by orsmga001.jf.intel.com with ESMTP; 25 Jan 2012 07:56:37 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Joshua Immanuel <josh@hipro.co.in>
-Date: Wed, 25 Jan 2012 15:56:36 +0000
-Message-ID: <165969514.8Xnp3ebGHF@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8 rc2 (Linux/3.0.0-15-generic-pae; KDE/4.7.97; i686; ; )
-In-Reply-To: <1327469596.2543.15.camel@babel.joshhome>
-References: <1327402068.2521.8.camel@babel.joshhome>
-	<1782182.Md7PmFZxKk@helios>
-	<1327469596.2543.15.camel@babel.joshhome>
+Return-Path: <b.hutchman@gmail.com>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 858A3E01374
+	for <yocto@yoctoproject.org>; Wed, 25 Jan 2012 07:59:34 -0800 (PST)
+Received: by bkat8 with SMTP id t8so3156237bka.35
+	for <yocto@yoctoproject.org>; Wed, 25 Jan 2012 07:59:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=MJ1AS6fb3mnZKGGewxa8uAyYt86HNPW+KLk8sWvkTd4=;
+	b=AH1M9Wk4iJzcUSz6HYVxZsNQnFPtV921CpPgUyJDl7o/xkzEahkqddZWxlZy1zStiU
+	SuDDQujcHRU442tOwoXBUvOOlC+Y+vydkCjrpzOZBssjUMiqxDxPiHq0M8HIXxBMjmAi
+	LshwFcG9S0W5QN+UWVuzXm5bxVAFebf0cT31Y=
 MIME-Version: 1.0
+Received: by 10.205.133.133 with SMTP id hy5mr7425977bkc.94.1327507171514;
+	Wed, 25 Jan 2012 07:59:31 -0800 (PST)
+Received: by 10.205.141.203 with HTTP; Wed, 25 Jan 2012 07:59:31 -0800 (PST)
+In-Reply-To: <4F20239F.2010407@communistcode.co.uk>
+References: <CAFZh4h_X5Ub+et3R68K1z3wvYpcZxdAv2mf2tQV6HtiWp7xNqw@mail.gmail.com>
+	<4F201635.7090505@communistcode.co.uk>
+	<CAFZh4h8nrZMK7mQeMBZOv8Y2+VkqsbE1EV0fVM3_G_MTKVyojQ@mail.gmail.com>
+	<4F20239F.2010407@communistcode.co.uk>
+Date: Wed, 25 Jan 2012 10:59:31 -0500
+Message-ID: <CAFZh4h-M7hEcprauGTjTBHbxdL_PwBwUQk4U_Q3U0Ee=mfZyDQ@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: Jack Mitchell <ml@communistcode.co.uk>
 Cc: yocto@yoctoproject.org
-Subject: Re: overriding a class in custom layer
+Subject: Re: Is there a recipe for evtest package?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,39 +38,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Jan 2012 15:56:38 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 25 Jan 2012 15:59:34 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wednesday 25 January 2012 11:03:16 Joshua Immanuel wrote:
-> On Tue, 2012-01-24 at 16:17 +0000, Paul Eggleton wrote:
-> > I'd also say, what is in the classes is intended to work for everyone,
-> > so if there's something in the core classes that is not working well
-> > for your situation we'd really like to hear about it - hopefully we
-> > can incorporate whatever changes you need and you can avoid having to
-> > overlay the entire class.
-> 
-> At present when we build an image, everything gets under one partition.
-> For my use case I need two images (denoting different partitions)
->      1. rootfs image (mount point: '/', mounted as ro)
->      2. data partition image (mount point: say '/data' mounted as rw)
-> 
-> While generating the image, I construct the /etc/fstab file manually by
-> representing filesystems by their uuids (generated using uuidgen). So,
-> to set this uuid in generated image I try to override the
-> image_types.bbclass and using tune2fs I set the uuid for the generated
-> images.
+On Wed, Jan 25, 2012 at 10:45 AM, Jack Mitchell <ml@communistcode.co.uk> wrote:
+> The way I tend to tackle this is to copy the recipe from meta-oe into my own
+> custom layer. The recipes in meta-oe aren't explicitly compatible with the
+> recipes in Yocto so I tend to only transfer over the ones that I
+> specifically need to avoid complications.
 
-AFAIK we don't already have the ability to do this, but it sounds very useful. 
-If it can be something that can be enabled and configured relatively easily 
-then it would be great to have in OE-Core as I can imagine others making use 
-of it.
+Thanks!,  I'll look into that.
 
-Cheers,
-Paul
+I had an OE based checkout so I just bitbaked the linux-input recipe
+for speed.  I do want to figure out how to do this in Yocto though so
+thank for pointing me in the right direction.  I didn't want to
+reinvent the wheel if there was already some established way of doing
+it that I just wasn't seeing.
 
--- 
+Regards,
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Brian
 
