@@ -1,26 +1,29 @@
-Return-Path: <b.hutchman@gmail.com>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 910E0E00596
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:36:33 -0800 (PST)
-Received: by bkat8 with SMTP id t8so857167bka.35
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:36:31 -0800 (PST)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E6BCE00596
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:40:27 -0800 (PST)
+Received: by lagz14 with SMTP id z14so599578lag.35
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:40:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=RC8KNPTjgO4bvchr/lUtLpt9DoIpYRSrmsq3zKMIMcA=;
-	b=i0gJkO9qe0rnqRcsQ0gFG0Rre+c9sPXaxXubBGMBIsT0hTycJahlR0YRnCcX0NldF7
-	dijBRMH3gLhSLVcmXA/9O3G1aqu4Lh8TzzhBfvDERwfYKF/SccncAWfjAHVCaHPU72pX
-	NXfHuClH/JC56NMplu+IgKsZeYBjIKWrs8yOo=
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=4FR5iCNsOIarKuUXKm/wL3yO52zjtXBetGnHcf6XC0g=;
+	b=lXowAXmAUwA9ohor+oEsTPD5CieUEJBhJgGJ3mgMtFzSzl2i20aoQ5FBwT+C0j78cE
+	BfxtEL5VJ38e9ubHQjayFtjqvsm8w6W2jGZqeMOtpDP4ff43GtzGxjdzjbS1CGVwmhcS
+	nygytpkAr/VzREjHajKT9EqKT/+GxyAjFeF1g=
+Received: by 10.152.146.163 with SMTP id td3mr1569316lab.6.1327596026229; Thu,
+	26 Jan 2012 08:40:26 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.204.154.136 with SMTP id o8mr1377944bkw.112.1327595791892;
-	Thu, 26 Jan 2012 08:36:31 -0800 (PST)
-Received: by 10.205.141.203 with HTTP; Thu, 26 Jan 2012 08:36:31 -0800 (PST)
-In-Reply-To: <CAFZh4h9YHz9VhdT3qHrrXQwaWn_qK4wpQ-JzPihO0qyhRfdE5A@mail.gmail.com>
+Received: by 10.152.5.201 with HTTP; Thu, 26 Jan 2012 08:39:56 -0800 (PST)
+In-Reply-To: <CAFZh4h-5m535Uod4=7hYmZzhRaqM8LtpHw1bfE0CQdXPdpFz7A@mail.gmail.com>
 References: <CAFZh4h9YHz9VhdT3qHrrXQwaWn_qK4wpQ-JzPihO0qyhRfdE5A@mail.gmail.com>
-Date: Thu, 26 Jan 2012 11:36:31 -0500
-Message-ID: <CAFZh4h-5m535Uod4=7hYmZzhRaqM8LtpHw1bfE0CQdXPdpFz7A@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: yocto@yoctoproject.org
+	<CAFZh4h-5m535Uod4=7hYmZzhRaqM8LtpHw1bfE0CQdXPdpFz7A@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 26 Jan 2012 08:39:56 -0800
+Message-ID: <CAMKF1sr1FcZY+7y1+h6MMi+8LwO5YMd6a6TnCQuEp=79c2mwDA@mail.gmail.com>
+To: Brian Hutchinson <b.hutchman@gmail.com>
+Cc: yocto@yoctoproject.org
 Subject: Re: How to get opkg in rootfilesystem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -33,26 +36,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jan 2012 16:36:34 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 26 Jan 2012 16:40:27 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Update,
+On Thu, Jan 26, 2012 at 8:36 AM, Brian Hutchinson <b.hutchman@gmail.com> wr=
+ote:
+> Update,
+>
+> I'm still not doing something right. =C2=A0I did a clean rebuild of
+> core-image-base and a tar jtvf core-image-base-beagleboard.tar.bz2
+> reveals opkg stuff in /var/lib/opkg only. =C2=A0No opkg bin.
+>
+> I guess I'm still in shock over this. =C2=A0I mean why should I have to d=
+o
+> anything other than:
+> PACKAGE_CLASSES ?=3D "package_ipk"
 
-I'm still not doing something right.  I did a clean rebuild of
-core-image-base and a tar jtvf core-image-base-beagleboard.tar.bz2
-reveals opkg stuff in /var/lib/opkg only.  No opkg bin.
+this means thats what format you want for package to be spitted out.
+weather you want online (on device) package management is a different story
 
-I guess I'm still in shock over this.  I mean why should I have to do
-anything other than:
-PACKAGE_CLASSES ?= "package_ipk"
-
-I mean, if I specify I want package_ipk in the "Package Management
-configuration" section, doesn't logic follow that the image would be
-created with opkg and some sample opkg.conf files?  What use is it to
-generate all those .ipk's for the repository the build does without
-opkg being there?
-
-Regards,
-
-Brian
+>
+> I mean, if I specify I want package_ipk in the "Package Management
+> configuration" section, doesn't logic follow that the image would be
+> created with opkg and some sample opkg.conf files? =C2=A0What use is it t=
+o
+> generate all those .ipk's for the repository the build does without
+> opkg being there?
 
