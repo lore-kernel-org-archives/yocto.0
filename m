@@ -1,31 +1,26 @@
-Return-Path: <b.hutchman@gmail.com>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0815E00597
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 10:53:10 -0800 (PST)
-Received: by bkat8 with SMTP id t8so1055236bka.35
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 10:53:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=4xGBD8TLliVkiS6YFc/pEqgWMUVor0CwDuPDJ6eRNp0=;
-	b=q3WDptTEvpf9dnmtCQ1gal+0b6wcvv74pDBGuKd78c+jAQk1sCUiQeNvvP4TGW+UYg
-	EEiS4ZrJPOUN96R/MSJgmEir9xtiPkRrPNRh7noc087WkI6M0pYfmnw02EPmHJGH4bIp
-	SJxw73V0SXqGTIgC/h+eOVb5mc+keF1Y3wKWE=
+Return-Path: <scott.a.garman@intel.com>
+Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5784E00596
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 10:56:00 -0800 (PST)
+Received: from mail-pz0-f52.google.com ([209.85.210.52])
+	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 26 Jan 2012 10:55:59 -0800
+Received: by dadp14 with SMTP id p14so3249525dad.25
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 10:55:59 -0800 (PST)
+Received: by 10.68.135.1 with SMTP id po1mr7480742pbb.16.1327604159677;
+	Thu, 26 Jan 2012 10:55:59 -0800 (PST)
+Received: from [127.0.0.1] (masterfoo.zenlinux.com. [207.192.74.254])
+	by mx.google.com with ESMTPS id p9sm13329472pbb.9.2012.01.26.10.55.58
+	(version=SSLv3 cipher=OTHER); Thu, 26 Jan 2012 10:55:59 -0800 (PST)
+Message-ID: <4F21A1B4.60305@intel.com>
+Date: Thu, 26 Jan 2012 10:55:48 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111229 Thunderbird/9.0
 MIME-Version: 1.0
-Received: by 10.204.156.155 with SMTP id x27mr1607058bkw.4.1327603989583; Thu,
-	26 Jan 2012 10:53:09 -0800 (PST)
-Received: by 10.205.141.203 with HTTP; Thu, 26 Jan 2012 10:53:09 -0800 (PST)
-In-Reply-To: <4F2183B6.9070603@mlbassoc.com>
-References: <CAFZh4h9YHz9VhdT3qHrrXQwaWn_qK4wpQ-JzPihO0qyhRfdE5A@mail.gmail.com>
-	<CAFZh4h-5m535Uod4=7hYmZzhRaqM8LtpHw1bfE0CQdXPdpFz7A@mail.gmail.com>
-	<4F2183B6.9070603@mlbassoc.com>
-Date: Thu, 26 Jan 2012 13:53:09 -0500
-Message-ID: <CAFZh4h-0h0LOJAuMDdoOx7YHa9ofpbApGSb34AZaLq=MjtB54g@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: How to get opkg in rootfilesystem
+To: yocto@yoctoproject.org
+References: <4F2182E2.2030101@gmail.com>
+In-Reply-To: <4F2182E2.2030101@gmail.com>
+Subject: Re: understanding recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,47 +32,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jan 2012 18:53:11 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 26 Jan 2012 18:56:00 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 26, 2012 at 11:47 AM, Gary Thomas <gary@mlbassoc.com> wrote:
-> On 2012-01-26 09:36, Brian Hutchinson wrote:
-> Because you asked to build an absolutely minimal root file system.
-> In this case, it's expected that you don't want to have opkg available.
-> If you still want this very minimal system *and* opkg, just add the
-> package management as previously instructed.
-> =A0EXTRA_IMAGE_FEATURES +=3D "package_management"
+On 01/26/2012 08:44 AM, jfabernathy wrote:
+> I'm trying to understand the concept of creating a recipe and having it
+> included in the build I do.
+>
+> For example, suppose I want to create the meta-intel/meta-cedartrail BSP
+> with the core-image-minimal image, but I wanted to include hello world
+> as shown in 3.1.2 Autotooled Package section of the Poky reference Manual.
+>
+> Where do I put the recipe file? I'm guessing a recipe-jfa directory at
+> the same level as the meta-cedartrail recipe-core, recipe-kernel,
+> recipe-graphic, recipe-bsp?
 
-I'm not building minimal.  I built core-image-minimal and it truly was
-minimal.  Nothing in /usr/lib!
+Hi Jim,
 
-Next I build core-image-base.  Most of the Angstrom & Arago images
-I've build that were minimal-ish had opkg.
+The best way to do this is to create your own layer, and keep all of 
+your customizations there.
 
-I know I should probably be doing this with recipes/layers but I'm not
-quite there yet.
+You'd put this in a directory, say meta-jfa with something like the 
+following:
 
-Here is my typical use case.  I start with a base image (NFS mounted)
-and then install only the packages I need to a target for what I'm
-doing.  For development, I'll include a bunch of things that are not
-in the rootfs of something that is shipped in a product.  But for
-development, an engineer might be interested in trying something quick
-and it is nice to be able to do a opkg install and pull a package from
-a local repository quickly rather than me try to come up with a custom
-layer and wait hours for it to build.
+meta-jfa/
+meta-jfa/conf/layer.conf
+meta-jfa/recipes-jfa/helloworld/helloworld.bb
 
-I'm doing a build now and it looks like it is pulling in some opkg
-stuff this time.  I took the
-EXTRA_IMAGE_FEATURES_append_pn-<yourimage> =3D from Khem's email literal
-as I know enough about yocto to be dangerous at this point. ;)
+where your layer.conf file would look like:
 
-Ah, build just finish and a grep of the rootfs tar shows a
-/etc/opkg.conf and a opkg bin sym link so I'm good for the moment!
+# We have a conf and classes directory, add to BBPATH
+BBPATH := "${BBPATH}:${LAYERDIR}"
 
-Thank you all for showing me the way (again)!
+# We have a packages directory, add to BBFILES
+BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+             ${LAYERDIR}/recipes-*/*/*.bbappend"
 
-Regards,
+BBFILE_COLLECTIONS += "jfa"
+BBFILE_PATTERN_jfa := "^${LAYERDIR}/"
+BBFILE_PRIORITY_jfa = "5"
 
-Brian
+Then point your build's bblayers.conf file to include the path to your 
+meta-jfa/ directory.
+
+>
+> I'm also assuming that helloworld.bb file would contain:
+>
+> DESCRIPTION = "GNU Helloworld application"
+> SECTION = "examples"
+> LICENSE = "GPLv2+"
+> LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
+> PR = "r0"
+>
+> SRC_URI = "${GNU_MIRROR}/hello/hello-${PV}.tar.gz"
+>
+> inherit autotools gettext
+>
+>
+> So where do the values of ${GNU_MIRROR|, and ${PV} get set correctly?
+
+Those examples are defined in the bitbake classes you have in your base 
+layers.
+
+> And what does the following line do or require me to do:
+>
+> LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
+
+This was answered in another post.
+
+> Is this all that is needed to get helloworld put into /usr/bin so it can
+> be executed at the command line when the image is booted?
+
+You'd also need to add the helloworld package to your image file. The 
+simplest way to do this is to add EXTRA_IMAGE_FEATURES += "helloworld" 
+in your build's local.conf file.
+
+I think the above should be accurate enough w/o testing it myself.
+
+Scott
+
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
