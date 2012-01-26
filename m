@@ -1,28 +1,20 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39A3FE01308
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:47:53 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 78EC5F8121A; Thu, 26 Jan 2012 09:47:51 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id E38E8F8120E;
-	Thu, 26 Jan 2012 09:47:50 -0700 (MST)
-Message-ID: <4F2183B6.9070603@mlbassoc.com>
-Date: Thu, 26 Jan 2012 09:47:50 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACE08E00597
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:49:08 -0800 (PST)
+Received: from [192.168.0.16] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id 12B70272F5
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 16:34:53 +0000 (GMT)
+Message-ID: <4F2183DA.1050802@communistcode.co.uk>
+Date: Thu, 26 Jan 2012 16:48:26 +0000
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111224 Thunderbird/9.0.1
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-References: <CAFZh4h9YHz9VhdT3qHrrXQwaWn_qK4wpQ-JzPihO0qyhRfdE5A@mail.gmail.com>
-	<CAFZh4h-5m535Uod4=7hYmZzhRaqM8LtpHw1bfE0CQdXPdpFz7A@mail.gmail.com>
-In-Reply-To: <CAFZh4h-5m535Uod4=7hYmZzhRaqM8LtpHw1bfE0CQdXPdpFz7A@mail.gmail.com>
-Subject: Re: How to get opkg in rootfilesystem
+References: <4F2182E2.2030101@gmail.com>
+In-Reply-To: <4F2182E2.2030101@gmail.com>
+Subject: Re: understanding recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,36 +26,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jan 2012 16:47:53 -0000
+X-List-Received-Date: Thu, 26 Jan 2012 16:49:08 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2012-01-26 09:36, Brian Hutchinson wrote:
-> Update,
+On 26/01/12 16:44, jfabernathy wrote:
+> I'm trying to understand the concept of creating a recipe and having 
+> it included in the build I do.
 >
-> I'm still not doing something right.  I did a clean rebuild of
-> core-image-base and a tar jtvf core-image-base-beagleboard.tar.bz2
-> reveals opkg stuff in /var/lib/opkg only.  No opkg bin.
+> For example, suppose I want to create the meta-intel/meta-cedartrail 
+> BSP with the core-image-minimal image, but I wanted to include hello 
+> world as shown in 3.1.2 Autotooled Package section of the Poky 
+> reference Manual.
 >
-> I guess I'm still in shock over this.  I mean why should I have to do
-> anything other than:
-> PACKAGE_CLASSES ?= "package_ipk"
+> Where do I put the recipe file?  I'm guessing a recipe-jfa directory 
+> at the same level as the meta-cedartrail recipe-core, recipe-kernel, 
+> recipe-graphic, recipe-bsp?
 >
-> I mean, if I specify I want package_ipk in the "Package Management
-> configuration" section, doesn't logic follow that the image would be
-> created with opkg and some sample opkg.conf files?  What use is it to
-> generate all those .ipk's for the repository the build does without
-> opkg being there?
+> I'm also assuming that helloworld.bb file would contain:
+>
+>      DESCRIPTION = "GNU Helloworld application"
+>      SECTION = "examples"
+>      LICENSE = "GPLv2+"
+>      LIC_FILES_CHKSUM = 
+> "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
+>      PR = "r0"
+>
+>      SRC_URI = "${GNU_MIRROR}/hello/hello-${PV}.tar.gz"
+>
+>      inherit autotools gettext
+>
+>
+> So where do the values of ${GNU_MIRROR|, and ${PV} get set correctly?
+>
+> And what does the following line do or require me to do:
+>
+>  LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
 
-Because you asked to build an absolutely minimal root file system.
-In this case, it's expected that you don't want to have opkg available.
-If you still want this very minimal system *and* opkg, just add the
-package management as previously instructed.
-   EXTRA_IMAGE_FEATURES += "package_management"
+http://www.yoctoproject.org/docs/latest/poky-ref-manual/poky-ref-manual.html#usingpoky-configuring-LIC_FILES_CHKSUM
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+>
+> Is this all that is needed to get helloworld put into /usr/bin so it 
+> can be executed at the command line when the image is booted?
+>
+> Jim A
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
