@@ -1,20 +1,21 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACE08E00597
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:49:08 -0800 (PST)
-Received: from [192.168.0.16] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 12B70272F5
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 16:34:53 +0000 (GMT)
-Message-ID: <4F2183DA.1050802@communistcode.co.uk>
-Date: Thu, 26 Jan 2012 16:48:26 +0000
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111224 Thunderbird/9.0.1
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4F2182E2.2030101@gmail.com>
-In-Reply-To: <4F2182E2.2030101@gmail.com>
-Subject: Re: understanding recipes
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EB8EE00596
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 10:39:30 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 26 Jan 2012 10:39:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="100085962"
+Received: from kishore-desktop.sc.intel.com (HELO localhost)
+	([143.183.188.157])
+	by azsmga001.ch.intel.com with ESMTP; 26 Jan 2012 10:39:28 -0800
+From: kishore.k.bodke@intel.com
+To: yocto@yoctoproject.org,
+	tom.zanussi@intel.com
+Date: Thu, 26 Jan 2012 10:38:13 -0800
+Message-Id: <cover.1327602562.git.kishore.k.bodke@intel.com>
+X-Mailer: git-send-email 1.7.5.4
+Subject: [meta-intel] [PATCH 0/1] meta-cedartrail: Add smp feature for rt kernel build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,55 +27,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jan 2012 16:49:08 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 26 Jan 2012 18:39:30 -0000
 
-On 26/01/12 16:44, jfabernathy wrote:
-> I'm trying to understand the concept of creating a recipe and having 
-> it included in the build I do.
->
-> For example, suppose I want to create the meta-intel/meta-cedartrail 
-> BSP with the core-image-minimal image, but I wanted to include hello 
-> world as shown in 3.1.2 Autotooled Package section of the Poky 
-> reference Manual.
->
-> Where do I put the recipe file?  I'm guessing a recipe-jfa directory 
-> at the same level as the meta-cedartrail recipe-core, recipe-kernel, 
-> recipe-graphic, recipe-bsp?
->
-> I'm also assuming that helloworld.bb file would contain:
->
->      DESCRIPTION = "GNU Helloworld application"
->      SECTION = "examples"
->      LICENSE = "GPLv2+"
->      LIC_FILES_CHKSUM = 
-> "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
->      PR = "r0"
->
->      SRC_URI = "${GNU_MIRROR}/hello/hello-${PV}.tar.gz"
->
->      inherit autotools gettext
->
->
-> So where do the values of ${GNU_MIRROR|, and ${PV} get set correctly?
->
-> And what does the following line do or require me to do:
->
->  LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
+From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-http://www.yoctoproject.org/docs/latest/poky-ref-manual/poky-ref-manual.html#usingpoky-configuring-LIC_FILES_CHKSUM
 
->
-> Is this all that is needed to get helloworld put into /usr/bin so it 
-> can be executed at the command line when the image is booted?
->
-> Jim A
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Hi,
+
+The patch is for enabling the smp feature for the rt kernel build for the Cedartrail BSP.
+
+Please pull into master.
+
+Thanks
+Kishore.
+
+The following changes since commit 3f86785a9a510773ca9eb7b31903f90ac78a297e:
+
+  meta-cedartrail: update linux-yocto-3.0 SRCREVs (2012-01-24 23:04:15 -0600)
+
+are available in the git repository at:
+  git://git.pokylinux.org/meta-intel-contrib kishore/enable-smp-rt-fix
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=kishore/enable-smp-rt-fix
+
+Kishore Bodke (1):
+  meta-cedartrail: enable smp for linux-yocto-rt_3.0
+
+ .../linux/linux-yocto-rt_3.0.bbappend              |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+-- 
+1.7.5.4
 
 
