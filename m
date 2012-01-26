@@ -1,28 +1,22 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qw0-f41.google.com (mail-qw0-f41.google.com
-	[209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08F63E00592
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 14:36:16 -0800 (PST)
-Received: by qadz32 with SMTP id z32so370202qad.14
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 14:36:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=/zvqSw9PrAgKM3qZYafvTJov7CzeebFLV5i3+0b2Ukk=;
-	b=nxJpySH5QEw6IcU6Y4OsoUkTXDA9Yw3EG79aYACssD7KSKhg/uFhGwhw3kxQJm40To
-	+6ROO7t6wpt4SbeC4TZZurZaU9psMFbPK0QRaKllwTyjmaDorZd+4PX9DpF+cB54G2EJ
-	WmI8jf/sF2FfeEvd62NSo6mdSxHj9uMdl8GM4=
-Received: by 10.224.190.6 with SMTP id dg6mr5254668qab.25.1327617376298;
-	Thu, 26 Jan 2012 14:36:16 -0800 (PST)
-Received: from [10.0.1.54] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
-	by mx.google.com with ESMTPS id
-	fh6sm10897100qab.22.2012.01.26.14.36.15 (version=SSLv3 cipher=OTHER);
-	Thu, 26 Jan 2012 14:36:15 -0800 (PST)
-Message-ID: <4F21D55F.6090109@gmail.com>
-Date: Thu, 26 Jan 2012 17:36:15 -0500
-From: jfabernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EB68E00592
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 14:38:10 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id C3223F812AB; Thu, 26 Jan 2012 15:38:09 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 56522F812AA;
+	Thu, 26 Jan 2012 15:37:55 -0700 (MST)
+Message-ID: <4F21D5C3.5030904@mlbassoc.com>
+Date: Thu, 26 Jan 2012 15:37:55 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
 References: <4F2182E2.2030101@gmail.com> <4F21A1B4.60305@intel.com>
@@ -41,11 +35,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jan 2012 22:36:17 -0000
+X-List-Received-Date: Thu, 26 Jan 2012 22:38:10 -0000
+X-Groupsio-MsgNum: 4437
+Content-Type: multipart/mixed; boundary="------------050507010401020406000104"
+
+--------------050507010401020406000104
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 01/26/2012 05:11 PM, Scott Garman wrote:
+On 2012-01-26 15:11, Scott Garman wrote:
 > On 01/26/2012 02:04 PM, jfabernathy wrote:
 >> On 01/26/2012 04:38 PM, Scott Garman wrote:
 >>> On 01/26/2012 01:32 PM, jfabernathy wrote:
@@ -57,13 +55,11 @@ On 01/26/2012 05:11 PM, Scott Garman wrote:
 >>>>>>
 >>>>>> For example, suppose I want to create the
 >>>>>> meta-intel/meta-cedartrail BSP
->>>>>> with the core-image-minimal image, but I wanted to include hello 
->>>>>> world
+>>>>>> with the core-image-minimal image, but I wanted to include hello world
 >>>>>> as shown in 3.1.2 Autotooled Package section of the Poky reference
 >>>>>> Manual.
 >>>>>>
->>>>>> Where do I put the recipe file? I'm guessing a recipe-jfa 
->>>>>> directory at
+>>>>>> Where do I put the recipe file? I'm guessing a recipe-jfa directory at
 >>>>>> the same level as the meta-cedartrail recipe-core, recipe-kernel,
 >>>>>> recipe-graphic, recipe-bsp?
 >>>>>
@@ -92,8 +88,7 @@ On 01/26/2012 05:11 PM, Scott Garman wrote:
 >>>>> BBFILE_PATTERN_jfa := "^${LAYERDIR}/"
 >>>>> BBFILE_PRIORITY_jfa = "5"
 >>>>>
->>>>> Then point your build's bblayers.conf file to include the path to 
->>>>> your
+>>>>> Then point your build's bblayers.conf file to include the path to your
 >>>>> meta-jfa/ directory.
 >>>>>
 >>>>>>
@@ -111,8 +106,7 @@ On 01/26/2012 05:11 PM, Scott Garman wrote:
 >>>>>> inherit autotools gettext
 >>>>>>
 >>>>>>
->>>>>> So where do the values of ${GNU_MIRROR|, and ${PV} get set 
->>>>>> correctly?
+>>>>>> So where do the values of ${GNU_MIRROR|, and ${PV} get set correctly?
 >>>>>
 >>>>> Those examples are defined in the bitbake classes you have in your
 >>>>> base layers.
@@ -129,16 +123,13 @@ On 01/26/2012 05:11 PM, Scott Garman wrote:
 >>>>>> be executed at the command line when the image is booted?
 >>>>>
 >>>>> You'd also need to add the helloworld package to your image file. The
->>>>> simplest way to do this is to add EXTRA_IMAGE_FEATURES += 
->>>>> "helloworld"
+>>>>> simplest way to do this is to add EXTRA_IMAGE_FEATURES += "helloworld"
 >>>>> in your build's local.conf file.
 >>>>>
 >>>>> I think the above should be accurate enough w/o testing it myself.
 >>>>>
->>>> I got the layer created like you said, but the test had a fetch 
->>>> problem
->>>> and it just locked up there. Had to control-C out of it. Console 
->>>> below:
+>>>> I got the layer created like you said, but the test had a fetch problem
+>>>> and it just locked up there. Had to control-C out of it. Console below:
 >>>>
 >>>> jim@ubuntu-x64:/build/mycdv-minimal$ bitbake helloworld
 >>>> Loading cache: 100%
@@ -165,22 +156,19 @@ On 01/26/2012 05:11 PM, Scott Garman wrote:
 >>>> NOTE: Executing SetScene Tasks
 >>>> NOTE: Executing RunQueue Tasks
 >>>> NOTE: Running task 514 of 693 (ID: 4,
->>>> /home/jim/poky/meta-jfa/recipes-jfa/helloworld/helloworld.bb, 
->>>> do_fetch)
+>>>> /home/jim/poky/meta-jfa/recipes-jfa/helloworld/helloworld.bb, do_fetch)
 >>>> NOTE: package helloworld-1.0-r0: task do_fetch: Started
 >>>> WARNING: Fetcher failure for URL: 'None'. Fetch command export
 >>>> HOME="/home/jim"; export SSH_AGENT_PID="1413"; export
 >>>> SSH_AUTH_SOCK="/tmp/keyring-2QW6yC/ssh"; export
->>>> GIT_CONFIG="/build/mycdv-minimal/tmp/sysroots/x86_64-linux/usr/etc/gitconfig"; 
->>>>
+>>>> GIT_CONFIG="/build/mycdv-minimal/tmp/sysroots/x86_64-linux/usr/etc/gitconfig";
 >>>>
 >>>> export
->>>> PATH="/build/mycdv-minimal/tmp/sysroots/x86_64-linux/usr/bin/core2-poky-linux:/build/mycdv-minimal/tmp/sysroots/mycdv/usr/bin/crossscripts:/build/mycdv-minimal/tmp/sysroots/x86_64-linux/usr/sbin:/build/mycdv-minimal/tmp/sysroots/x86_64-linux/usr/bin:/build/mycdv-minimal/tmp/sysroots/x86_64-linux/sbin:/build/mycdv-minimal/tmp/sysroots/x86_64-linux//bin:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/jim/poky/scripts"; 
+>>>> PATH="/build/mycdv-minimal/tmp/sysroots/x86_64-linux/usr/bin/core2-poky-linux:/build/mycdv-minimal/tmp/sysroots/mycdv/usr/bin/crossscripts:/build/mycdv-minimal/tmp/sysroots/x86_64-linux/usr/sbin:/build/mycdv-minimal/tmp/sysroots/x86_64-linux/usr/bin:/build/mycdv-minimal/tmp/sysroots/x86_64-linux/sbin:/build/mycdv-minimal/tmp/sysroots/x86_64-linux//bin:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/jim/poky/scripts";
 >>>>
 >>>>
 >>>> /usr/bin/env wget -t 5 -q --passive-ftp --no-check-certificate -P
->>>> /home/jim/yocto-downloads 
->>>> 'ftp://ftp.gnu.org/gnu/hello/hello-1.0.tar.gz'
+>>>> /home/jim/yocto-downloads 'ftp://ftp.gnu.org/gnu/hello/hello-1.0.tar.gz'
 >>>> failed with signal 8, output:
 >>>>
 >>>> I don't see 1.0.tar on the ftp site. How do I control this?
@@ -202,38 +190,50 @@ On 01/26/2012 05:11 PM, Scott Garman wrote:
 >> Reference manual License section enough information for me to create
 >> that line in the .bb file. What is the process to figure this out?
 >
-> In this case, the LIC_FILES_CHKSUM is storing the md5sum of the 
-> COPYING file, which is stored in the top-level directory of the 
-> extracted sources.
+> In this case, the LIC_FILES_CHKSUM is storing the md5sum of the COPYING file, which is stored in the top-level directory of the extracted sources.
 >
-> So manually download the hello version you are trying to use, extract 
-> the tarball locally, and run md5sum against the COPYING file. Then 
-> update the LIC_FILES_CHKSUM field with that new md5 checksum.
+> So manually download the hello version you are trying to use, extract the tarball locally, and run md5sum against the COPYING file. Then update the LIC_FILES_CHKSUM field with that
+> new md5 checksum.
 >
-> This is a common process we have to go through when upgrading recipes, 
-> so you're getting a taste of what working with the distro/metadata 
-> team is like. :)
+> This is a common process we have to go through when upgrading recipes, so you're getting a taste of what working with the distro/metadata team is like. :)
 >
-> One more thing - when LIC_FILES_CHKSUM changes, you should always 
-> verify that the license for the sources haven't changed (in this case 
-> GPL v2 or later). If it did change, you'd also need to change the 
-> LICENSE field in the recipe to reflect the new license. 
-> LIC_FILES_CHKSUM is a step we added so we don't miss license changes.
->
+> One more thing - when LIC_FILES_CHKSUM changes, you should always verify that the license for the sources haven't changed (in this case GPL v2 or later). If it did change, you'd
+> also need to change the LICENSE field in the recipe to reflect the new license. LIC_FILES_CHKSUM is a step we added so we don't miss license changes.
 
-Thanks for a clear explanation.  This is an area I'm sure my customers 
-will struggle with.  I think another problem I was having was the recipe 
-was called helloworld, but the application seems to be just "hello".  By 
-making those changes, it helped the License file be found more directly 
-and it passed.
+I use the attached script to automate this - it puts the files
+in the correct format (modulo a little path massaging if necessary).
 
-I'm going to do a complete build now and see what happens.
+What I do when I run across these problems is this:
+   % bitbake <recipe>
+   ... fails with LIC_FILES_CHKSUM errors
+   % make_LIC_FILES_CHECKSUM tmp/work/<path-to-recipe-tree>/<LICENSE_FILES>
+   e.g.
+     (cd tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/helloworld-2.7-r0/helloworld-2.7/;make_LIC_FILES_CHECKSUM COPYING)
+Cut & paste the output into your recipe and rebuild.
 
-Thanks again,
+The script makes it much simpler to do this when multiple
+files are involved.
 
-Jim A
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-> Scott
->
+--------------050507010401020406000104
+Content-Type: text/plain;
+ name="make_LIC_FILES_CHKSUM"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="make_LIC_FILES_CHKSUM"
 
+#! /bin/bash
 
+echo 'LIC_FILES_CHKSUM = " \'
+for f in $*; do
+    md5=`md5sum $f | awk '{print $1}'`
+    echo "file://$f;md5=$md5 \\"
+done
+echo '"'
+
+--------------050507010401020406000104--
