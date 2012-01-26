@@ -1,29 +1,23 @@
-Return-Path: <b.hutchman@gmail.com>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33F16E00597
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:46:14 -0800 (PST)
-Received: by bkat8 with SMTP id t8so873855bka.35
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:46:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=djhsA3OWY+JSJVP9E0WUs1Q64jeXh4aA9BCjT6EZ3zA=;
-	b=wb1hshCFUvEIj1RgAweyALnAjtJmd0MDyXjek/cODPwr7NxxxFKjOgjZcUo7+4h7E/
-	3ZKmPEpxj5uWGFnuOeC10VWIucJiCGoTM5NJvdklZxfFAgkQXC+vWmmtNvsP23FTxUFH
-	atR3h2wOfdhb7ZhuCdSaeT5Gylgg7ddmfpy2s=
-MIME-Version: 1.0
-Received: by 10.204.152.219 with SMTP id h27mr1246177bkw.40.1327596372842;
-	Thu, 26 Jan 2012 08:46:12 -0800 (PST)
-Received: by 10.205.141.203 with HTTP; Thu, 26 Jan 2012 08:46:12 -0800 (PST)
-In-Reply-To: <CAMKF1sr1FcZY+7y1+h6MMi+8LwO5YMd6a6TnCQuEp=79c2mwDA@mail.gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E976E00597
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:47:41 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 26 Jan 2012 08:47:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="60265445"
+Received: from unknown (HELO helios.localnet) ([10.252.122.174])
+	by AZSMGA002.ch.intel.com with ESMTP; 26 Jan 2012 08:47:39 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Brian Hutchinson <b.hutchman@gmail.com>
+Date: Thu, 26 Jan 2012 16:47:37 +0000
+Message-ID: <1631142.4mMYpoiV90@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8 rc2 (Linux/3.0.0-15-generic-pae; KDE/4.7.97; i686; ; )
+In-Reply-To: <CAFZh4h-5m535Uod4=7hYmZzhRaqM8LtpHw1bfE0CQdXPdpFz7A@mail.gmail.com>
 References: <CAFZh4h9YHz9VhdT3qHrrXQwaWn_qK4wpQ-JzPihO0qyhRfdE5A@mail.gmail.com>
 	<CAFZh4h-5m535Uod4=7hYmZzhRaqM8LtpHw1bfE0CQdXPdpFz7A@mail.gmail.com>
-	<CAMKF1sr1FcZY+7y1+h6MMi+8LwO5YMd6a6TnCQuEp=79c2mwDA@mail.gmail.com>
-Date: Thu, 26 Jan 2012 11:46:12 -0500
-Message-ID: <CAFZh4h--_hBJW=3aPhrxOoK+6g7pOYocRi_oUKF+q0GMbkgeaA@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
+MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: How to get opkg in rootfilesystem
 X-BeenThere: yocto@yoctoproject.org
@@ -37,16 +31,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jan 2012 16:46:14 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 26 Jan 2012 16:47:41 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Thu, Jan 26, 2012 at 11:39 AM, Khem Raj <raj.khem@gmail.com> wrote:
+On Thursday 26 January 2012 11:36:31 Brian Hutchinson wrote:
+> Update,
+> 
+> I'm still not doing something right.  I did a clean rebuild of
+> core-image-base and a tar jtvf core-image-base-beagleboard.tar.bz2
+> reveals opkg stuff in /var/lib/opkg only.  No opkg bin.
+> 
+> I guess I'm still in shock over this.  I mean why should I have to do
+> anything other than:
+> PACKAGE_CLASSES ?= "package_ipk"
+> 
+> I mean, if I specify I want package_ipk in the "Package Management
+> configuration" section, doesn't logic follow that the image would be
+> created with opkg and some sample opkg.conf files?  What use is it to
+> generate all those .ipk's for the repository the build does without
+> opkg being there?
 
-> weather you want online (on device) package management is a different story
+Not necessarily. The way our rootfs construction works, it has to be done via 
+some package management backend, but many people don't want/need it in their 
+final image. FYI some image recipes default to adding the package-management 
+feature but core-image-base clearly does not.
 
-OK, I want to hear that story :)
+It's actually easier to enable this than Khem suggested, however. The default 
+Yocto local.conf contains a line that sets EXTRA_IMAGE_FEATURES - just add 
+package-management within this, and you'll get package management in your 
+image. (FYI the reason his example probably didn't work when you tried it is I 
+think you may have left out the initial space - the list is space-separated 
+and _append does not add a space beforehand.)
 
-Regards,
+Cheers,
+Paul
 
-Brian
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
