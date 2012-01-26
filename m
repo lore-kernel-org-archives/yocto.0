@@ -1,26 +1,32 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5784E00596
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 10:56:00 -0800 (PST)
-Received: from mail-pz0-f52.google.com ([209.85.210.52])
-	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 26 Jan 2012 10:55:59 -0800
-Received: by dadp14 with SMTP id p14so3249525dad.25
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 10:55:59 -0800 (PST)
-Received: by 10.68.135.1 with SMTP id po1mr7480742pbb.16.1327604159677;
-	Thu, 26 Jan 2012 10:55:59 -0800 (PST)
-Received: from [127.0.0.1] (masterfoo.zenlinux.com. [207.192.74.254])
-	by mx.google.com with ESMTPS id p9sm13329472pbb.9.2012.01.26.10.55.58
-	(version=SSLv3 cipher=OTHER); Thu, 26 Jan 2012 10:55:59 -0800 (PST)
-Message-ID: <4F21A1B4.60305@intel.com>
-Date: Thu, 26 Jan 2012 10:55:48 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE817E0030F
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 12:07:30 -0800 (PST)
+Received: by lagz14 with SMTP id z14so787786lag.35
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 12:07:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=YTtWefWE6js1SyPbK+aEShKs47g3da5VddcwHui02+k=;
+	b=gk3WY/MCkVpb3vVDqRTBQxpRKBTRSNRnnFBI6eAZD55CyD/B1vE2lygRrWRzt1LcVx
+	3ASUGlTY6FlMYSQWTaqUJfRurEQZxSumjrvTgsT76GcI5X4IJJNNawTpx1Aca+BrGznN
+	RhUKXWnOhNxVWfV3XR3r0EyhmCz18JK0y6Ao4=
+Received: by 10.152.114.169 with SMTP id jh9mr2023020lab.20.1327608449257;
+	Thu, 26 Jan 2012 12:07:29 -0800 (PST)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4F2182E2.2030101@gmail.com>
-In-Reply-To: <4F2182E2.2030101@gmail.com>
-Subject: Re: understanding recipes
+Received: by 10.152.5.201 with HTTP; Thu, 26 Jan 2012 12:06:59 -0800 (PST)
+In-Reply-To: <CAFZh4h-0h0LOJAuMDdoOx7YHa9ofpbApGSb34AZaLq=MjtB54g@mail.gmail.com>
+References: <CAFZh4h9YHz9VhdT3qHrrXQwaWn_qK4wpQ-JzPihO0qyhRfdE5A@mail.gmail.com>
+	<CAFZh4h-5m535Uod4=7hYmZzhRaqM8LtpHw1bfE0CQdXPdpFz7A@mail.gmail.com>
+	<4F2183B6.9070603@mlbassoc.com>
+	<CAFZh4h-0h0LOJAuMDdoOx7YHa9ofpbApGSb34AZaLq=MjtB54g@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 26 Jan 2012 12:06:59 -0800
+Message-ID: <CAMKF1srz-cBNdzh_oPHPOA9JR75ciy-pqyj+TK-URVB1s3rydQ@mail.gmail.com>
+To: Brian Hutchinson <b.hutchman@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: How to get opkg in rootfilesystem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,88 +38,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jan 2012 18:56:00 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 26 Jan 2012 20:07:31 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 01/26/2012 08:44 AM, jfabernathy wrote:
-> I'm trying to understand the concept of creating a recipe and having it
-> included in the build I do.
+On Thu, Jan 26, 2012 at 10:53 AM, Brian Hutchinson <b.hutchman@gmail.com> w=
+rote:
+> I'm not building minimal. =C2=A0I built core-image-minimal and it truly w=
+as
+> minimal. =C2=A0Nothing in /usr/lib!
 >
-> For example, suppose I want to create the meta-intel/meta-cedartrail BSP
-> with the core-image-minimal image, but I wanted to include hello world
-> as shown in 3.1.2 Autotooled Package section of the Poky reference Manual.
->
-> Where do I put the recipe file? I'm guessing a recipe-jfa directory at
-> the same level as the meta-cedartrail recipe-core, recipe-kernel,
-> recipe-graphic, recipe-bsp?
+> Next I build core-image-base. =C2=A0Most of the Angstrom & Arago images
+> I've build that were minimal-ish had opkg.
 
-Hi Jim,
-
-The best way to do this is to create your own layer, and keep all of 
-your customizations there.
-
-You'd put this in a directory, say meta-jfa with something like the 
-following:
-
-meta-jfa/
-meta-jfa/conf/layer.conf
-meta-jfa/recipes-jfa/helloworld/helloworld.bb
-
-where your layer.conf file would look like:
-
-# We have a conf and classes directory, add to BBPATH
-BBPATH := "${BBPATH}:${LAYERDIR}"
-
-# We have a packages directory, add to BBFILES
-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-             ${LAYERDIR}/recipes-*/*/*.bbappend"
-
-BBFILE_COLLECTIONS += "jfa"
-BBFILE_PATTERN_jfa := "^${LAYERDIR}/"
-BBFILE_PRIORITY_jfa = "5"
-
-Then point your build's bblayers.conf file to include the path to your 
-meta-jfa/ directory.
-
->
-> I'm also assuming that helloworld.bb file would contain:
->
-> DESCRIPTION = "GNU Helloworld application"
-> SECTION = "examples"
-> LICENSE = "GPLv2+"
-> LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
-> PR = "r0"
->
-> SRC_URI = "${GNU_MIRROR}/hello/hello-${PV}.tar.gz"
->
-> inherit autotools gettext
->
->
-> So where do the values of ${GNU_MIRROR|, and ${PV} get set correctly?
-
-Those examples are defined in the bitbake classes you have in your base 
-layers.
-
-> And what does the following line do or require me to do:
->
-> LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
-
-This was answered in another post.
-
-> Is this all that is needed to get helloworld put into /usr/bin so it can
-> be executed at the command line when the image is booted?
-
-You'd also need to add the helloworld package to your image file. The 
-simplest way to do this is to add EXTRA_IMAGE_FEATURES += "helloworld" 
-in your build's local.conf file.
-
-I think the above should be accurate enough w/o testing it myself.
-
-Scott
-
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+Every distro defines their own policies for images and there ought to
+be differences
+its normal.
 
