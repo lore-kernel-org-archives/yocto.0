@@ -1,30 +1,30 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E6BCE00596
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:40:27 -0800 (PST)
-Received: by lagz14 with SMTP id z14so599578lag.35
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:40:26 -0800 (PST)
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qw0-f48.google.com (mail-qw0-f48.google.com
+	[209.85.216.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53D00E00597
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:44:20 -0800 (PST)
+Received: by qadb15 with SMTP id b15so689757qad.14
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 08:44:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=4FR5iCNsOIarKuUXKm/wL3yO52zjtXBetGnHcf6XC0g=;
-	b=lXowAXmAUwA9ohor+oEsTPD5CieUEJBhJgGJ3mgMtFzSzl2i20aoQ5FBwT+C0j78cE
-	BfxtEL5VJ38e9ubHQjayFtjqvsm8w6W2jGZqeMOtpDP4ff43GtzGxjdzjbS1CGVwmhcS
-	nygytpkAr/VzREjHajKT9EqKT/+GxyAjFeF1g=
-Received: by 10.152.146.163 with SMTP id td3mr1569316lab.6.1327596026229; Thu,
-	26 Jan 2012 08:40:26 -0800 (PST)
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=3QHSTmVGZ0djKW6lYWcu8nlg7Nq0yqUa3TPUdbmKpqg=;
+	b=RG/ZGt3tsIw9FavFnpF2IAK9v6Zsccb7v7Bm2kFO7XyBKopRobTjagCQJbe+qJmam/
+	uCdmzifYE8jded9u+jPZhB/1uepbgGBCUGmeIUUrLQqoe7DJqqdkkIlNE31opCK2cZRy
+	ODusByQfPP4n1eMh9rgl3Po0w1U909XGzoN+8=
+Received: by 10.224.10.19 with SMTP id n19mr3568174qan.68.1327596259278;
+	Thu, 26 Jan 2012 08:44:19 -0800 (PST)
+Received: from [10.0.1.54] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
+	by mx.google.com with ESMTPS id el3sm9399620qab.8.2012.01.26.08.44.18
+	(version=SSLv3 cipher=OTHER); Thu, 26 Jan 2012 08:44:18 -0800 (PST)
+Message-ID: <4F2182E2.2030101@gmail.com>
+Date: Thu, 26 Jan 2012 11:44:18 -0500
+From: jfabernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111229 Thunderbird/9.0
 MIME-Version: 1.0
-Received: by 10.152.5.201 with HTTP; Thu, 26 Jan 2012 08:39:56 -0800 (PST)
-In-Reply-To: <CAFZh4h-5m535Uod4=7hYmZzhRaqM8LtpHw1bfE0CQdXPdpFz7A@mail.gmail.com>
-References: <CAFZh4h9YHz9VhdT3qHrrXQwaWn_qK4wpQ-JzPihO0qyhRfdE5A@mail.gmail.com>
-	<CAFZh4h-5m535Uod4=7hYmZzhRaqM8LtpHw1bfE0CQdXPdpFz7A@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 26 Jan 2012 08:39:56 -0800
-Message-ID: <CAMKF1sr1FcZY+7y1+h6MMi+8LwO5YMd6a6TnCQuEp=79c2mwDA@mail.gmail.com>
-To: Brian Hutchinson <b.hutchman@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: How to get opkg in rootfilesystem
+To: yocto@yoctoproject.org
+Subject: understanding recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,31 +36,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jan 2012 16:40:27 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 26 Jan 2012 16:44:20 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 26, 2012 at 8:36 AM, Brian Hutchinson <b.hutchman@gmail.com> wr=
-ote:
-> Update,
->
-> I'm still not doing something right. =C2=A0I did a clean rebuild of
-> core-image-base and a tar jtvf core-image-base-beagleboard.tar.bz2
-> reveals opkg stuff in /var/lib/opkg only. =C2=A0No opkg bin.
->
-> I guess I'm still in shock over this. =C2=A0I mean why should I have to d=
-o
-> anything other than:
-> PACKAGE_CLASSES ?=3D "package_ipk"
+I'm trying to understand the concept of creating a recipe and having it 
+included in the build I do.
 
-this means thats what format you want for package to be spitted out.
-weather you want online (on device) package management is a different story
+For example, suppose I want to create the meta-intel/meta-cedartrail BSP 
+with the core-image-minimal image, but I wanted to include hello world 
+as shown in 3.1.2 Autotooled Package section of the Poky reference Manual.
 
->
-> I mean, if I specify I want package_ipk in the "Package Management
-> configuration" section, doesn't logic follow that the image would be
-> created with opkg and some sample opkg.conf files? =C2=A0What use is it t=
-o
-> generate all those .ipk's for the repository the build does without
-> opkg being there?
+Where do I put the recipe file?  I'm guessing a recipe-jfa directory at 
+the same level as the meta-cedartrail recipe-core, recipe-kernel, 
+recipe-graphic, recipe-bsp?
+
+I'm also assuming that helloworld.bb file would contain:
+
+      DESCRIPTION = "GNU Helloworld application"
+      SECTION = "examples"
+      LICENSE = "GPLv2+"
+      LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
+      PR = "r0"
+
+      SRC_URI = "${GNU_MIRROR}/hello/hello-${PV}.tar.gz"
+
+      inherit autotools gettext
+
+
+So where do the values of ${GNU_MIRROR|, and ${PV} get set correctly?
+
+And what does the following line do or require me to do:
+
+  LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
+
+Is this all that is needed to get helloworld put into /usr/bin so it can 
+be executed at the command line when the image is booted?
+
+Jim A
+
+
 
