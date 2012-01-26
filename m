@@ -1,24 +1,25 @@
 Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB209E0030F
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 13:42:55 -0800 (PST)
-Received: by qcsg14 with SMTP id g14so689836qcs.35
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 13:42:54 -0800 (PST)
+Received: from mail-qw0-f48.google.com (mail-qw0-f48.google.com
+	[209.85.216.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98886E0030F
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 14:04:13 -0800 (PST)
+Received: by qadb15 with SMTP id b15so904055qad.14
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 14:04:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
 	h=message-id:date:from:user-agent:mime-version:to:subject:references
 	:in-reply-to:content-type:content-transfer-encoding;
-	bh=bOkR6Qn+Ht+f+az8xCRzNk8jB0+gcSa78hH+0tB29Mc=;
-	b=XrTWYiNAkJyJo0GidIwSikkennP6AlKtqWK+j5BH+GnC6Aa4jGKzyy0cte9uqi+psI
-	rWuL8ACDF9KDupoQ6O1JWpX4g2UEN/25PkEH+dFzwVhWsXGrraDUco8a0k8JtnHD7VVy
-	QjkD0GXnAs5Xphjp/lzaPEuEXhJ7OahsPhkpA=
-Received: by 10.224.203.10 with SMTP id fg10mr5007417qab.64.1327614174574;
-	Thu, 26 Jan 2012 13:42:54 -0800 (PST)
+	bh=PsdKzp/ZGZE+MBOHLWo4lVinFbkjIGcOgytrzvQswmE=;
+	b=V9YQoOzAY6jxXQ3yba0DBe6Jo0lcO3CbDu3zHDQ1xmqcJEg69EUyHdw0EJxolyetzy
+	LTkqd9EE7tz3O7YdaQbbnvvwUfTjtcPbKkGGODFS6wvhCIy9PaKTN7ZQtqKg45Vr4w6f
+	S8JYnx/47zJl/h7GkGIrtqm0CYsr/Tw14XNdo=
+Received: by 10.224.45.6 with SMTP id c6mr5031918qaf.62.1327615452595;
+	Thu, 26 Jan 2012 14:04:12 -0800 (PST)
 Received: from [10.0.1.54] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
-	by mx.google.com with ESMTPS id o8sm10734364qaj.0.2012.01.26.13.42.53
-	(version=SSLv3 cipher=OTHER); Thu, 26 Jan 2012 13:42:54 -0800 (PST)
-Message-ID: <4F21C8DD.2010503@gmail.com>
-Date: Thu, 26 Jan 2012 16:42:53 -0500
+	by mx.google.com with ESMTPS id
+	o7sm10783138qan.13.2012.01.26.14.04.11 (version=SSLv3 cipher=OTHER);
+	Thu, 26 Jan 2012 14:04:11 -0800 (PST)
+Message-ID: <4F21CDDB.1040106@gmail.com>
+Date: Thu, 26 Jan 2012 17:04:11 -0500
 From: jfabernathy <jfabernathy@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:9.0) Gecko/20111229 Thunderbird/9.0
@@ -39,7 +40,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jan 2012 21:42:56 -0000
+X-List-Received-Date: Thu, 26 Jan 2012 22:04:13 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -177,16 +178,16 @@ On 01/26/2012 04:38 PM, Scott Garman wrote:
 > you'll see which versions are available. Rename your recipe filename 
 > to reflect the version you wish to use, for example helloworld_2.7.bb
 >
-Duh!  Now that makes sense. Sorry for being so dense.  That's what 
-happens when your been programing since Fortran was at the 1.0 level. 
-Brain goes soft.
-
-Jim A
-
 > The part of the filename after the underscore is what will get 
 > interpolated into ${PV}.
 >
 > Scott
 >
+Now I have gotten by the fetching but the license file information in 
+the .bb file from the example is incorrect.  I can't see from the 
+Reference manual License section enough information for me to create 
+that line in the .bb file. What is the process to figure this out?
+
+JIm A
 
 
