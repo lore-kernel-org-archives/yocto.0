@@ -1,24 +1,32 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 067C8E00592
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2012 00:06:47 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 27 Jan 2012 00:06:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="111246638"
-Received: from unknown (HELO envy.home) ([10.255.14.108])
-	by fmsmga001.fm.intel.com with ESMTP; 27 Jan 2012 00:06:47 -0800
-Message-ID: <4F225AFC.9040306@linux.intel.com>
-Date: Fri, 27 Jan 2012 00:06:20 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0
-MIME-Version: 1.0
-To: Martin Jansa <martin.jansa@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2517E00592
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2012 00:08:53 -0800 (PST)
+Received: by eekd4 with SMTP id d4so485896eek.35
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2012 00:08:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=DRsaHbWfanaS+PvtD6Q+1DfayUuN1KV754cezdc67zo=;
+	b=SocSCqMczP+eaQiBO7h/aKgv2F7XUxYysT9XHvoyoY1PJtWuJxjAcqt+N57MyEgvQs
+	3DyKQFXpXHPvSHtKusdrbTauSVcf+fXUBaukzM7RaMX4CHPN74sSZmOAwu0avJoiFOJK
+	HSc/83kEsET/7pB5DW2E9zsC/qh1VsQELH/mA=
+Received: by 10.14.4.203 with SMTP id 51mr1853808eej.49.1327651732703;
+	Fri, 27 Jan 2012 00:08:52 -0800 (PST)
+Received: from localhost ([94.230.152.246])
+	by mx.google.com with ESMTPS id r2sm26166487eef.7.2012.01.27.00.08.50
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 27 Jan 2012 00:08:51 -0800 (PST)
+Date: Fri, 27 Jan 2012 09:08:49 +0100
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Message-ID: <20120127080849.GB3779@jama.jama.net>
 References: <4F21FDEF.2010500@linux.intel.com>
-	<20120127080245.GA3779@jama.jama.net>
-In-Reply-To: <20120127080245.GA3779@jama.jama.net>
-X-Enigmail-Version: 1.3.5
+	<4F220105.3080600@linux.intel.com>
+	<4F220477.8030600@linux.intel.com>
+MIME-Version: 1.0
+In-Reply-To: <4F220477.8030600@linux.intel.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: New recipes not installing in core-image-minimal
 X-BeenThere: yocto@yoctoproject.org
@@ -32,72 +40,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2012 08:06:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 27 Jan 2012 08:08:54 -0000
+X-Groupsio-MsgNum: 4449
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="s2ZSL+KKDSLx8OML"
+Content-Disposition: inline
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+--s2ZSL+KKDSLx8OML
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Jan 26, 2012 at 05:57:11PM -0800, Darren Hart wrote:
+>=20
+>=20
+> On 01/26/2012 05:42 PM, Saul Wold wrote:
+> > On 01/26/2012 05:29 PM, Darren Hart wrote:
+> >> In support of a new BSP I've written two new recipes and appended to
+> >> another to depend on them. The new recipes files are not appearing in
+> >> the resulting images. I'm sure I'm overlooking something trivial, but
+> >> I'm not sure what it would be. The layer is available here:
+> >>
+> >> http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=3Ddvhar=
+t/sys940x
+> >>
+> >> I've added ranpwd, genmac, and appended to netbase.
+> >>
+> >> netbase RDEPENDS on genmac and genmac RDEPENDS on ranpwd. Building
+> >> core-image-minimal triggers the build of genmac and ranpwd, and the
+> >> modified /etc/network/interfaces appears in the rootfs. genmac and
+> >> ranpwd place the appropriate files in their workdir/image directory, b=
+ut
+> >> those files don't make it into the rootfs.
+> >>
+> > RDEPENDS_${PN} would work much better !
+>=20
+> Perhaps, but it didn't fix this particular problem. Neither
+> /usr/bin/ranpwd nor /etc/init.d/genmac appear in the rootfs. However,
+> each still appears in their respective workdir/image:
 
+Are they in workdir/packages-split/genmac/etc/init.d/genmac
+workdir/packages-split/ranpwd/etc/init.d/ranpwd
 
-On 01/27/2012 12:02 AM, Martin Jansa wrote:
-> On Thu, Jan 26, 2012 at 05:29:19PM -0800, Darren Hart wrote:
->> In support of a new BSP I've written two new recipes and appended
->> to another to depend on them. The new recipes files are not
->> appearing in the resulting images. I'm sure I'm overlooking
->> something trivial, but I'm not sure what it would be. The layer
->> is available here:
->> 
->> http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=dvhart/sys940x
->>
->>
->> 
-I've added ranpwd, genmac, and appended to netbase.
->> 
->> netbase RDEPENDS on genmac and genmac RDEPENDS on ranpwd.
->> Building core-image-minimal triggers the build of genmac and
->> ranpwd, and the modified /etc/network/interfaces appears in the
->> rootfs. genmac and ranpwd place the appropriate files in their
->> workdir/image directory, but those files don't make it into the
->> rootfs.
->> 
->> Can anyone offer an explanation as to why that might be? The top
->> 4 commits of the repository linked to above will list the new
->> recipes and the bbappend for reference.
-> 
-> Have you tried correct version of RDEPENDS? RDEPENDS_${PN} ?
+Maybe log.do_package even reports them as unpackaged files..
 
-I have, yes, this is what Saul suggested in his response. Same end result.
+I don't think that update-rc.d adds /etc/init.d to FILES_${PN} for you.
 
-- --
-Darren
+Cheers,
 
-> 
-> Cheers,
->> 
->> Thanks,
->> 
->> -- Darren Hart Intel Open Source Technology Center Yocto Project
->> - Linux Kernel _______________________________________________ 
->> yocto mailing list yocto@yoctoproject.org 
->> https://lists.yoctoproject.org/listinfo/yocto
-> 
+>=20
+> $ find
+> tmp/work/sys940x_noemgd-poky-linux/core-image-minimal-1.0-r0/rootfs
+> -name "ranpwd"
+> <NULL>
+>=20
+> $ find
+> tmp/work/sys940x_noemgd-poky-linux/core-image-minimal-1.0-r0/rootfs
+> -name "genmac"
+> <NULL>
+>=20
+> $ ls tmp/work/core2-poky-linux/genmac-1.0-r0/image/etc/init.d/
+> genmac
+>=20
+> $ ls tmp/work/core2-poky-linux/ranpwd-git-r0/image/usr/bin/
+> ranpwd
+>=20
+> genmac doesn't have a log.do_install in the workdir/temp directory. Is
+> that significant?
+>=20
+> ranpwd does, but it isn't instructive:
+>=20
+> $ cat tmp/work/core2-poky-linux/ranpwd-git-r0/temp/log.do_install
+> DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common',
+> 'common-linux', 'common-glibc', 'i586-linux', 'common']
+>=20
+> Any other thoughts?
+>=20
+>=20
+> >=20
+> > Sau!
+> >=20
+> >> Can anyone offer an explanation as to why that might be? The top 4
+> >> commits of the repository linked to above will list the new recipes and
+> >> the bbappend for reference.
+> >>
+> >> Thanks,
+> >>
+>=20
+> --=20
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Linux Kernel
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-- -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--s2ZSL+KKDSLx8OML
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
-Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+Version: GnuPG v2.0.18 (GNU/Linux)
 
-iQEcBAEBAgAGBQJPIlrzAAoJEKbMaAwKp364JC4IAJWQOfoNUlbXUSMfe3OQda5V
-NOSBcFSEfkkk7c/cvxWHq9B298BRvqMDXzTY2kqZOOjx5a8zocg/+wRLdkvPjx7F
-x9ZpSVjp+UDoHeQDDh9Qx3My7r2w1h2RK6YTM1sc+y3Ubc1USxdvedOLAVCzoE7O
-Imr2aDKFWgyaK2C5dmxC4kTVwwIVStlciX1KaomcJv2kfvVpV1Cg2jDdEkwwPAu7
-m09JcasPnukS+T7yF6XBMelYrWLbkJnH4O19pvaHXbZIDBLBon72zpXC+dahpCmm
-41KNwrRKTIzW/iSk562ZF+KwD+tVLnpxGKYqxpmsJ7HyU0dOylSDfcsj8Yf9nsc=
-=JAHD
+iEYEARECAAYFAk8iW5EACgkQN1Ujt2V2gBw+4wCgj24IEFfebE5yGPNnD2k9p/Dp
+8H4AoIzqjw4Bs83ljQ1vlmorBFPOkIbH
+=TOYi
 -----END PGP SIGNATURE-----
 
+--s2ZSL+KKDSLx8OML--
