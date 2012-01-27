@@ -1,26 +1,31 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FC41E00592
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 17:57:44 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 26 Jan 2012 17:57:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="100989829"
-Received: from unknown (HELO envy.home) ([10.255.14.108])
-	by orsmga001.jf.intel.com with ESMTP; 26 Jan 2012 17:57:37 -0800
-Message-ID: <4F220477.8030600@linux.intel.com>
-Date: Thu, 26 Jan 2012 17:57:11 -0800
-From: Darren Hart <dvhart@linux.intel.com>
+Return-Path: <scott.a.garman@intel.com>
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 952D4E00593
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 19:14:08 -0800 (PST)
+Received: from mail-gy0-f180.google.com ([209.85.160.180])
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 26 Jan 2012 19:14:07 -0800
+Received: by ghrr18 with SMTP id r18so593482ghr.25
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 19:14:06 -0800 (PST)
+Received: by 10.236.184.167 with SMTP id s27mr7516688yhm.8.1327634046753;
+	Thu, 26 Jan 2012 19:14:06 -0800 (PST)
+Received: from [10.11.11.121] (75-94-47-26.war.clearwire-wmx.net.
+	[75.94.47.26])
+	by mx.google.com with ESMTPS id b4sm16422843and.18.2012.01.26.19.14.05
+	(version=SSLv3 cipher=OTHER); Thu, 26 Jan 2012 19:14:06 -0800 (PST)
+Message-ID: <4F22167C.6000701@intel.com>
+Date: Thu, 26 Jan 2012 19:14:04 -0800
+From: Scott Garman <scott.a.garman@intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0
+	rv:9.0) Gecko/20111229 Thunderbird/9.0
 MIME-Version: 1.0
-To: Saul Wold <sgw@linux.intel.com>
-References: <4F21FDEF.2010500@linux.intel.com>
-	<4F220105.3080600@linux.intel.com>
-In-Reply-To: <4F220105.3080600@linux.intel.com>
-X-Enigmail-Version: 1.3.5
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: New recipes not installing in core-image-minimal
+To: yocto@yoctoproject.org
+References: <4F2182E2.2030101@gmail.com> <4F21A1B4.60305@intel.com>
+	<4F21C66C.408@gmail.com> <4F21C7E4.3070102@intel.com>
+	<4F21CDDB.1040106@gmail.com> <4F21CF79.5060909@intel.com>
+	<4F21D5C3.5030904@mlbassoc.com> <4F21E547.9080708@gmail.com>
+	<4F21E752.4080000@mlbassoc.com>
+In-Reply-To: <4F21E752.4080000@mlbassoc.com>
+Subject: Re: understanding recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,75 +37,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2012 01:57:44 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 27 Jan 2012 03:14:08 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
+On 01/26/2012 03:52 PM, Gary Thomas wrote:
+>> Any ideas as to why EXTRA_IMAGE_FEATURES += "hello" didn't add the
+>> hello code to the final image?
+>
+> EXTRA_IMAGE_FEATURES enables target *features*, not packages.
+>
+> To get your package added, use this in local.conf
+> IMAGE_INSTALL += " hello "
 
+Good catch. Thanks, Gary.
 
-On 01/26/2012 05:42 PM, Saul Wold wrote:
-> On 01/26/2012 05:29 PM, Darren Hart wrote:
->> In support of a new BSP I've written two new recipes and appended to
->> another to depend on them. The new recipes files are not appearing in
->> the resulting images. I'm sure I'm overlooking something trivial, but
->> I'm not sure what it would be. The layer is available here:
->>
->> http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=dvhart/sys940x
->>
->> I've added ranpwd, genmac, and appended to netbase.
->>
->> netbase RDEPENDS on genmac and genmac RDEPENDS on ranpwd. Building
->> core-image-minimal triggers the build of genmac and ranpwd, and the
->> modified /etc/network/interfaces appears in the rootfs. genmac and
->> ranpwd place the appropriate files in their workdir/image directory, but
->> those files don't make it into the rootfs.
->>
-> RDEPENDS_${PN} would work much better !
-
-Perhaps, but it didn't fix this particular problem. Neither
-/usr/bin/ranpwd nor /etc/init.d/genmac appear in the rootfs. However,
-each still appears in their respective workdir/image:
-
-$ find
-tmp/work/sys940x_noemgd-poky-linux/core-image-minimal-1.0-r0/rootfs
--name "ranpwd"
-<NULL>
-
-$ find
-tmp/work/sys940x_noemgd-poky-linux/core-image-minimal-1.0-r0/rootfs
--name "genmac"
-<NULL>
-
-$ ls tmp/work/core2-poky-linux/genmac-1.0-r0/image/etc/init.d/
-genmac
-
-$ ls tmp/work/core2-poky-linux/ranpwd-git-r0/image/usr/bin/
-ranpwd
-
-genmac doesn't have a log.do_install in the workdir/temp directory. Is
-that significant?
-
-ranpwd does, but it isn't instructive:
-
-$ cat tmp/work/core2-poky-linux/ranpwd-git-r0/temp/log.do_install
-DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common',
-'common-linux', 'common-glibc', 'i586-linux', 'common']
-
-Any other thoughts?
-
-
-> 
-> Sau!
-> 
->> Can anyone offer an explanation as to why that might be? The top 4
->> commits of the repository linked to above will list the new recipes and
->> the bbappend for reference.
->>
->> Thanks,
->>
+Scott
 
 -- 
-Darren Hart
+Scott Garman
+Embedded Linux Engineer - Yocto Project
 Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
