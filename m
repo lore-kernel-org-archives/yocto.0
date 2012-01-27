@@ -1,34 +1,17 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A1F7E00599
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2012 06:44:23 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 27 Jan 2012 06:44:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="101140251"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by orsmga001.jf.intel.com with ESMTP; 27 Jan 2012 06:44:22 -0800
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 27 Jan 2012 06:44:22 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.54]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.31]) with mapi id
-	14.01.0355.002; Fri, 27 Jan 2012 06:44:22 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: jfabernathy <jfabernathy@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] new How Do I posted
-Thread-Index: AQHM3ODmQfXIXS9I/EqjYDjjP3ITgZYgSmLg
-Date: Fri, 27 Jan 2012 14:44:21 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123792C9957E4@ORSMSX101.amr.corp.intel.com>
-References: <4F228052.9060707@gmail.com>
-In-Reply-To: <4F228052.9060707@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
-MIME-Version: 1.0
-Subject: Re: new How Do I posted
+Return-Path: <paul.gortmaker@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CCE9E0136A
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2012 08:22:12 -0800 (PST)
+Received: from yow-pgortmak-d2.corp.ad.wrs.com
+	(yow-pgortmak-d2.ottawa.windriver.com [128.224.146.165])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q0RGMBZG020251
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2012 08:22:12 -0800 (PST)
+From: Paul Gortmaker <paul.gortmaker@windriver.com>
+To: yocto@yoctoproject.org
+Date: Fri, 27 Jan 2012 11:22:11 -0500
+Message-Id: <1327681331-11557-1-git-send-email-paul.gortmaker@windriver.com>
+X-Mailer: git-send-email 1.7.7
+Subject: [PATCH] mpc8315: build u-boot by default.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,30 +23,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2012 14:44:23 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 27 Jan 2012 16:22:12 -0000
 
-Thanks Jim... I will check this out.
+Valdiated on v2011.12 with hardware:
 
-Scott
+    U-Boot 2011.12 (Jan 26 2012 - 16:55:23)MPC83XX
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of jfabernathy
-Sent: Friday, January 27, 2012 4:46 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] new How Do I posted
+    Reset Status: Software Hard, External/Internal Soft, External/Internal Hard
 
-I created a "How DO I" for adding recipes, and added it to the wiki.
+    CPU:   e300c3, MPC8315E, Rev: 1.2 at 400 MHz, CSB: 133.333 MHz
+    Board: Freescale MPC8315ERDB Rev 1.0
+    I2C:   ready
+    DRAM:  128 MiB (DDR2, 32-bit, ECC off, 266.667 MHz)
+    Flash: 8 MiB
+    NAND:  32 MiB
+    PCIE0: No link
+    PCIE1: No link
+    In:    serial
+    Out:   serial
+    Err:   serial
+    Net:   eTSEC0, eTSEC1
+    Hit any key to stop autoboot:  0
+    => ver
 
-Please review for correctness if you like.
+    U-Boot 2011.12 (Jan 26 2012 - 16:55:23)MPC83XX
+    powerpc-poky-linux-gcc (GCC) 4.6.3 20111117 (prerelease)
+    GNU ld (GNU Binutils) 2.22
+    =>
 
-Jim A
+Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+diff --git a/meta-yocto/conf/machine/mpc8315e-rdb.conf b/meta-yocto/conf/machine/mpc8315e-rdb.conf
+index d3a5b1c..74ef611 100644
+--- a/meta-yocto/conf/machine/mpc8315e-rdb.conf
++++ b/meta-yocto/conf/machine/mpc8315e-rdb.conf
+@@ -7,6 +7,9 @@ require conf/machine/include/tune-ppc603e.inc
+ 
+ KERNEL_IMAGETYPE = "uImage"
+ 
++EXTRA_IMAGEDEPENDS += "u-boot"
++UBOOT_MACHINE_mpc8315e-rdb = "MPC8315ERDB_config"
++
+ SERIAL_CONSOLE = "115200 ttyS0"
+ 
+ MACHINE_FEATURES = "kernel26 keyboard pci ext2 ext3 serial"
+-- 
+1.7.7
+
 
