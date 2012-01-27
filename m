@@ -1,28 +1,22 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <dvhart@linux.intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5CAFE00592
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 17:20:57 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 26 Jan 2012 17:20:57 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDD9BE00592
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 17:29:46 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 26 Jan 2012 17:29:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="111185653"
-Received: from unknown (HELO [10.255.14.96]) ([10.255.14.96])
-	by fmsmga001.fm.intel.com with ESMTP; 26 Jan 2012 17:20:57 -0800
-Message-ID: <4F21FBF9.2010205@linux.intel.com>
-Date: Thu, 26 Jan 2012 17:20:57 -0800
-From: Saul Wold <sgw@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="116807438"
+Received: from unknown (HELO envy.home) ([10.255.14.108])
+	by fmsmga002.fm.intel.com with ESMTP; 26 Jan 2012 17:29:46 -0800
+Message-ID: <4F21FDEF.2010500@linux.intel.com>
+Date: Thu, 26 Jan 2012 17:29:19 -0800
+From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111115 Thunderbird/8.0
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-To: jfabernathy <jfabernathy@gmail.com>
-References: <4F2182E2.2030101@gmail.com> <4F21A1B4.60305@intel.com>
-	<4F21C66C.408@gmail.com> <4F21C7E4.3070102@intel.com>
-	<4F21CDDB.1040106@gmail.com> <4F21CF79.5060909@intel.com>
-	<4F21D5C3.5030904@mlbassoc.com> <4F21E547.9080708@gmail.com>
-	<4F21E752.4080000@mlbassoc.com> <4F21FA08.6080106@gmail.com>
-In-Reply-To: <4F21FA08.6080106@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: understanding recipes
+To: Yocto Project <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.3.5
+Subject: New recipes not installing in core-image-minimal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,257 +28,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2012 01:20:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Fri, 27 Jan 2012 01:29:47 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 01/26/2012 05:12 PM, jfabernathy wrote:
-> On 01/26/2012 06:52 PM, Gary Thomas wrote:
->> On 2012-01-26 16:44, jfabernathy wrote:
->>> On 01/26/2012 05:37 PM, Gary Thomas wrote:
->>>> On 2012-01-26 15:11, Scott Garman wrote:
->>>>> On 01/26/2012 02:04 PM, jfabernathy wrote:
->>>>>> On 01/26/2012 04:38 PM, Scott Garman wrote:
->>>>>>> On 01/26/2012 01:32 PM, jfabernathy wrote:
->>>>>>>> On 01/26/2012 01:55 PM, Scott Garman wrote:
->>>>>>>>> On 01/26/2012 08:44 AM, jfabernathy wrote:
->>>>>>>>>> I'm trying to understand the concept of creating a recipe and
->>>>>>>>>> having it
->>>>>>>>>> included in the build I do.
->>>>>>>>>>
->>>>>>>>>> For example, suppose I want to create the
->>>>>>>>>> meta-intel/meta-cedartrail BSP
->>>>>>>>>> with the core-image-minimal image, but I wanted to include
->>>>>>>>>> hello world
->>>>>>>>>> as shown in 3.1.2 Autotooled Package section of the Poky
->>>>>>>>>> reference
->>>>>>>>>> Manual.
->>>>>>>>>>
->>>>>>>>>> Where do I put the recipe file? I'm guessing a recipe-jfa
->>>>>>>>>> directory at
->>>>>>>>>> the same level as the meta-cedartrail recipe-core, recipe-kernel,
->>>>>>>>>> recipe-graphic, recipe-bsp?
->>>>>>>>>
->>>>>>>>> Hi Jim,
->>>>>>>>>
->>>>>>>>> The best way to do this is to create your own layer, and keep
->>>>>>>>> all of
->>>>>>>>> your customizations there.
->>>>>>>>>
->>>>>>>>> You'd put this in a directory, say meta-jfa with something like
->>>>>>>>> the
->>>>>>>>> following:
->>>>>>>>>
->>>>>>>>> meta-jfa/
->>>>>>>>> meta-jfa/conf/layer.conf
->>>>>>>>> meta-jfa/recipes-jfa/helloworld/helloworld.bb
->>>>>>>>>
->>>>>>>>> where your layer.conf file would look like:
->>>>>>>>>
->>>>>>>>> # We have a conf and classes directory, add to BBPATH
->>>>>>>>> BBPATH := "${BBPATH}:${LAYERDIR}"
->>>>>>>>>
->>>>>>>>> # We have a packages directory, add to BBFILES
->>>>>>>>> BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
->>>>>>>>> ${LAYERDIR}/recipes-*/*/*.bbappend"
->>>>>>>>>
->>>>>>>>> BBFILE_COLLECTIONS += "jfa"
->>>>>>>>> BBFILE_PATTERN_jfa := "^${LAYERDIR}/"
->>>>>>>>> BBFILE_PRIORITY_jfa = "5"
->>>>>>>>>
->>>>>>>>> Then point your build's bblayers.conf file to include the path
->>>>>>>>> to your
->>>>>>>>> meta-jfa/ directory.
->>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> I'm also assuming that helloworld.bb file would contain:
->>>>>>>>>>
->>>>>>>>>> DESCRIPTION = "GNU Helloworld application"
->>>>>>>>>> SECTION = "examples"
->>>>>>>>>> LICENSE = "GPLv2+"
->>>>>>>>>> LIC_FILES_CHKSUM =
->>>>>>>>>> "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
->>>>>>>>>> PR = "r0"
->>>>>>>>>>
->>>>>>>>>> SRC_URI = "${GNU_MIRROR}/hello/hello-${PV}.tar.gz"
->>>>>>>>>>
->>>>>>>>>> inherit autotools gettext
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> So where do the values of ${GNU_MIRROR|, and ${PV} get set
->>>>>>>>>> correctly?
->>>>>>>>>
->>>>>>>>> Those examples are defined in the bitbake classes you have in your
->>>>>>>>> base layers.
->>>>>>>>>
->>>>>>>>>> And what does the following line do or require me to do:
->>>>>>>>>>
->>>>>>>>>> LIC_FILES_CHKSUM =
->>>>>>>>>> "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
->>>>>>>>>
->>>>>>>>> This was answered in another post.
->>>>>>>>>
->>>>>>>>>> Is this all that is needed to get helloworld put into /usr/bin so
->>>>>>>>>> it can
->>>>>>>>>> be executed at the command line when the image is booted?
->>>>>>>>>
->>>>>>>>> You'd also need to add the helloworld package to your image
->>>>>>>>> file. The
->>>>>>>>> simplest way to do this is to add EXTRA_IMAGE_FEATURES +=
->>>>>>>>> "helloworld"
->>>>>>>>> in your build's local.conf file.
->>>>>>>>>
->>>>>>>>> I think the above should be accurate enough w/o testing it myself.
->>>>>>>>>
->>>>>>>> I got the layer created like you said, but the test had a fetch
->>>>>>>> problem
->>>>>>>> and it just locked up there. Had to control-C out of it. Console
->>>>>>>> below:
->>>>>>>>
->>>>>>>> jim@ubuntu-x64:/build/mycdv-minimal$ bitbake helloworld
->>>>>>>> Loading cache: 100%
->>>>>>>> |###########################################################| ETA:
->>>>>>>> 00:00:00
->>>>>>>> Loaded 1037 entries from dependency cache.
->>>>>>>>
->>>>>>>> OE Build Configuration:
->>>>>>>> BB_VERSION = "1.13.3"
->>>>>>>> TARGET_ARCH = "i586"
->>>>>>>> TARGET_OS = "linux"
->>>>>>>> MACHINE = "mycdv"
->>>>>>>> DISTRO = "poky"
->>>>>>>> DISTRO_VERSION = "1.1"
->>>>>>>> TUNE_FEATURES = "m32 core2"
->>>>>>>> TARGET_FPU = ""
->>>>>>>> meta
->>>>>>>> meta-yocto = "edison:adcf8bf7b52460b94998438e8c2bf854cdec0a80"
->>>>>>>> meta-mycdv = "edison:34478f24de65dd8de8a4c8b913a1458d82dac1fa"
->>>>>>>> meta-jfa = "edison:adcf8bf7b52460b94998438e8c2bf854cdec0a80"
->>>>>>>>
->>>>>>>> NOTE: Resolving any missing task queue dependencies
->>>>>>>> NOTE: Preparing runqueue
->>>>>>>> NOTE: Executing SetScene Tasks
->>>>>>>> NOTE: Executing RunQueue Tasks
->>>>>>>> NOTE: Running task 514 of 693 (ID: 4,
->>>>>>>> /home/jim/poky/meta-jfa/recipes-jfa/helloworld/helloworld.bb,
->>>>>>>> do_fetch)
->>>>>>>> NOTE: package helloworld-1.0-r0: task do_fetch: Started
->>>>>>>> WARNING: Fetcher failure for URL: 'None'. Fetch command export
->>>>>>>> HOME="/home/jim"; export SSH_AGENT_PID="1413"; export
->>>>>>>> SSH_AUTH_SOCK="/tmp/keyring-2QW6yC/ssh"; export
->>>>>>>> GIT_CONFIG="/build/mycdv-minimal/tmp/sysroots/x86_64-linux/usr/etc/gitconfig";
->>>>>>>>
->>>>>>>>
->>>>>>>> export
->>>>>>>> PATH="/build/mycdv-minimal/tmp/sysroots/x86_64-linux/usr/bin/core2-poky-linux:/build/mycdv-minimal/tmp/sysroots/mycdv/usr/bin/crossscripts:/build/mycdv-minimal/tmp/sysroots/x86_64-linux/usr/sbin:/build/mycdv-minimal/tmp/sysroots/x86_64-linux/usr/bin:/build/mycdv-minimal/tmp/sysroots/x86_64-linux/sbin:/build/mycdv-minimal/tmp/sysroots/x86_64-linux//bin:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/jim/poky/scripts";
->>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>> /usr/bin/env wget -t 5 -q --passive-ftp --no-check-certificate -P
->>>>>>>> /home/jim/yocto-downloads
->>>>>>>> 'ftp://ftp.gnu.org/gnu/hello/hello-1.0.tar.gz'
->>>>>>>> failed with signal 8, output:
->>>>>>>>
->>>>>>>> I don't see 1.0.tar on the ftp site. How do I control this?
->>>>>>>
->>>>>>> If you look in:
->>>>>>>
->>>>>>> ftp://ftp.gnu.org/gnu/hello/
->>>>>>>
->>>>>>> you'll see which versions are available. Rename your recipe filename
->>>>>>> to reflect the version you wish to use, for example
->>>>>>> helloworld_2.7.bb
->>>>>>>
->>>>>>> The part of the filename after the underscore is what will get
->>>>>>> interpolated into ${PV}.
->>>>>>>
->>>>>>> Scott
->>>>>>>
->>>>>> Now I have gotten by the fetching but the license file information in
->>>>>> the .bb file from the example is incorrect. I can't see from the
->>>>>> Reference manual License section enough information for me to create
->>>>>> that line in the .bb file. What is the process to figure this out?
->>>>>
->>>>> In this case, the LIC_FILES_CHKSUM is storing the md5sum of the
->>>>> COPYING file, which is stored in the top-level directory of the
->>>>> extracted sources.
->>>>>
->>>>> So manually download the hello version you are trying to use,
->>>>> extract the tarball locally, and run md5sum against the COPYING
->>>>> file. Then update the LIC_FILES_CHKSUM field with that
->>>>> new md5 checksum.
->>>>>
->>>>> This is a common process we have to go through when upgrading
->>>>> recipes, so you're getting a taste of what working with the
->>>>> distro/metadata team is like. :)
->>>>>
->>>>> One more thing - when LIC_FILES_CHKSUM changes, you should always
->>>>> verify that the license for the sources haven't changed (in this
->>>>> case GPL v2 or later). If it did change, you'd
->>>>> also need to change the LICENSE field in the recipe to reflect the
->>>>> new license. LIC_FILES_CHKSUM is a step we added so we don't miss
->>>>> license changes.
->>>>
->>>> I use the attached script to automate this - it puts the files
->>>> in the correct format (modulo a little path massaging if necessary).
->>>>
->>>> What I do when I run across these problems is this:
->>>> % bitbake <recipe>
->>>> ... fails with LIC_FILES_CHKSUM errors
->>>> % make_LIC_FILES_CHECKSUM
->>>> tmp/work/<path-to-recipe-tree>/<LICENSE_FILES>
->>>> e.g.
->>>> (cd
->>>> tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/helloworld-2.7-r0/helloworld-2.7/;make_LIC_FILES_CHECKSUM
->>>> COPYING)
->>>> Cut & paste the output into your recipe and rebuild.
->>>>
->>>> The script makes it much simpler to do this when multiple
->>>> files are involved.
->>>>
->>>>
->>>>
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>> okay, I got a clean build, but hello was not in the final image even
->>> though I had:
->>>
->>> EXTRA_IMAGE_FEATURES += "hello"
->>>
->>> in the local.conf. I ran hob against this and could see that hello
->>> was an option, but it was not selected. Trying to bake with hob from
->>> there didn't work, but that's not as important.
->>>
->>> Any ideas as to why EXTRA_IMAGE_FEATURES += "hello" didn't add the
->>> hello code to the final image?
->>
->> EXTRA_IMAGE_FEATURES enables target *features*, not packages.
->>
->> To get your package added, use this in local.conf
->> IMAGE_INSTALL += " hello "
->>
-> Based on what I've discovered about the use of IMAGE_INSTALL in
-> local.conf, I'll opt for POKY_EXTRA_INSTALL += "hello"
->
-> That option worked. So now I can better understand this. Thanks all.
->
-> Would the make a good example for the How Do I section on the wiki? I
-> can write it up if someone will review and post.
->
-Please write it up, you should have access to the wiki , by creating a 
-login.
+In support of a new BSP I've written two new recipes and appended to
+another to depend on them. The new recipes files are not appearing in
+the resulting images. I'm sure I'm overlooking something trivial, but
+I'm not sure what it would be. The layer is available here:
 
-Sau!
+http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=dvhart/sys940x
 
-> Jim A.
->
-> Jim A
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+I've added ranpwd, genmac, and appended to netbase.
+
+netbase RDEPENDS on genmac and genmac RDEPENDS on ranpwd. Building
+core-image-minimal triggers the build of genmac and ranpwd, and the
+modified /etc/network/interfaces appears in the rootfs. genmac and
+ranpwd place the appropriate files in their workdir/image directory, but
+those files don't make it into the rootfs.
+
+Can anyone offer an explanation as to why that might be? The top 4
+commits of the repository linked to above will list the new recipes and
+the bbappend for reference.
+
+Thanks,
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
