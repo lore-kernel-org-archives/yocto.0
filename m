@@ -1,31 +1,32 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 952D4E00593
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 19:14:08 -0800 (PST)
-Received: from mail-gy0-f180.google.com ([209.85.160.180])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 26 Jan 2012 19:14:07 -0800
-Received: by ghrr18 with SMTP id r18so593482ghr.25
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2012 19:14:06 -0800 (PST)
-Received: by 10.236.184.167 with SMTP id s27mr7516688yhm.8.1327634046753;
-	Thu, 26 Jan 2012 19:14:06 -0800 (PST)
-Received: from [10.11.11.121] (75-94-47-26.war.clearwire-wmx.net.
-	[75.94.47.26])
-	by mx.google.com with ESMTPS id b4sm16422843and.18.2012.01.26.19.14.05
-	(version=SSLv3 cipher=OTHER); Thu, 26 Jan 2012 19:14:06 -0800 (PST)
-Message-ID: <4F22167C.6000701@intel.com>
-Date: Thu, 26 Jan 2012 19:14:04 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33399E00592
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2012 00:02:52 -0800 (PST)
+Received: by eekd4 with SMTP id d4so484348eek.35
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2012 00:02:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=HCqu7rVJ3JD+jNhwsVstauTK5NvS7CsesUQomV0gmpk=;
+	b=cmKNC5fcCsnJWsQuG0qu2DvCQQEYqOPZTxJWcB2AGC1+1UvliPhbiMnDfdnRYhLu0z
+	vX90gU5/3qv8X4OmFEpVjaCtpG65Z4uQSPBLny/gGLSBfYUMDP/F6Kp2dJTdZvxVneFW
+	CnMK/2a8TiMpcLt1dreIkqj9GrYRp4u2UHJwE=
+Received: by 10.14.99.71 with SMTP id w47mr1789083eef.78.1327651369013;
+	Fri, 27 Jan 2012 00:02:49 -0800 (PST)
+Received: from localhost ([94.230.152.246])
+	by mx.google.com with ESMTPS id x4sm26143916eeb.4.2012.01.27.00.02.46
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 27 Jan 2012 00:02:47 -0800 (PST)
+Date: Fri, 27 Jan 2012 09:02:45 +0100
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Message-ID: <20120127080245.GA3779@jama.jama.net>
+References: <4F21FDEF.2010500@linux.intel.com>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4F2182E2.2030101@gmail.com> <4F21A1B4.60305@intel.com>
-	<4F21C66C.408@gmail.com> <4F21C7E4.3070102@intel.com>
-	<4F21CDDB.1040106@gmail.com> <4F21CF79.5060909@intel.com>
-	<4F21D5C3.5030904@mlbassoc.com> <4F21E547.9080708@gmail.com>
-	<4F21E752.4080000@mlbassoc.com>
-In-Reply-To: <4F21E752.4080000@mlbassoc.com>
-Subject: Re: understanding recipes
+In-Reply-To: <4F21FDEF.2010500@linux.intel.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: New recipes not installing in core-image-minimal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,25 +38,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2012 03:14:08 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 27 Jan 2012 08:02:52 -0000
+X-Groupsio-MsgNum: 4447
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="X1bOJ3K7DJ5YkBrT"
+Content-Disposition: inline
 
-On 01/26/2012 03:52 PM, Gary Thomas wrote:
->> Any ideas as to why EXTRA_IMAGE_FEATURES += "hello" didn't add the
->> hello code to the final image?
->
-> EXTRA_IMAGE_FEATURES enables target *features*, not packages.
->
-> To get your package added, use this in local.conf
-> IMAGE_INSTALL += " hello "
+--X1bOJ3K7DJ5YkBrT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Good catch. Thanks, Gary.
+On Thu, Jan 26, 2012 at 05:29:19PM -0800, Darren Hart wrote:
+> In support of a new BSP I've written two new recipes and appended to
+> another to depend on them. The new recipes files are not appearing in
+> the resulting images. I'm sure I'm overlooking something trivial, but
+> I'm not sure what it would be. The layer is available here:
+>=20
+> http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=3Ddvhart/s=
+ys940x
+>=20
+> I've added ranpwd, genmac, and appended to netbase.
+>=20
+> netbase RDEPENDS on genmac and genmac RDEPENDS on ranpwd. Building
+> core-image-minimal triggers the build of genmac and ranpwd, and the
+> modified /etc/network/interfaces appears in the rootfs. genmac and
+> ranpwd place the appropriate files in their workdir/image directory, but
+> those files don't make it into the rootfs.
+>=20
+> Can anyone offer an explanation as to why that might be? The top 4
+> commits of the repository linked to above will list the new recipes and
+> the bbappend for reference.
 
-Scott
+Have you tried correct version of RDEPENDS? RDEPENDS_${PN} ?
 
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+Cheers,
+>=20
+> Thanks,
+>=20
+> --=20
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Linux Kernel
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--X1bOJ3K7DJ5YkBrT
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.18 (GNU/Linux)
+
+iEYEARECAAYFAk8iWiUACgkQN1Ujt2V2gBwCAgCgiUU42j9s1TEjMRQH6PWXOBRC
+BgkAn3tjteDokKLlf8rx72K9jhCT5F+E
+=uoYE
+-----END PGP SIGNATURE-----
+
+--X1bOJ3K7DJ5YkBrT--
