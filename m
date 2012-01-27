@@ -1,27 +1,30 @@
-Return-Path: <Paul.Gortmaker@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16B7DE0123F
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2012 09:40:42 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q0RHef4v001153
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 27 Jan 2012 09:40:41 -0800 (PST)
-Received: from [128.224.146.65] (128.224.146.65) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 27 Jan 2012 09:40:41 -0800
-Message-ID: <4F22E198.5090502@windriver.com>
-Date: Fri, 27 Jan 2012 12:40:40 -0500
-From: Paul Gortmaker <paul.gortmaker@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.24) Gecko/20111109 Thunderbird/3.1.16
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33453E00599
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2012 09:45:06 -0800 (PST)
+Received: by qcsg14 with SMTP id g14so1275351qcs.35
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2012 09:45:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=oVDvs2n9rxzSWsxuTcT+SN3vqgYcHpjTk5ETGIb38Bg=;
+	b=UYzXH3NF/cJqlTKBH1US41cB7ed97fddnLUV4Y33IAYQVE9BRsxFIdxNI7ADf7Z+Le
+	aeNMk6S4qRgSmhycy5DUeiyx0WCskI+7gmhQH3K5/gLQDzsQAw0vnfm3+7BfmKWgqymq
+	hMLXoeXSEIWjw+AKfG4hQ6bprO00kFhI5En3s=
+Received: by 10.229.102.73 with SMTP id f9mr3002487qco.6.1327686305389;
+	Fri, 27 Jan 2012 09:45:05 -0800 (PST)
+Received: from [10.0.1.54] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
+	by mx.google.com with ESMTPS id g3sm16299932qap.2.2012.01.27.09.45.04
+	(version=SSLv3 cipher=OTHER); Fri, 27 Jan 2012 09:45:04 -0800 (PST)
+Message-ID: <4F22E29E.3040105@gmail.com>
+Date: Fri, 27 Jan 2012 12:45:02 -0500
+From: jfabernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111229 Thunderbird/9.0
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <1327681331-11557-1-git-send-email-paul.gortmaker@windriver.com>
-	<4F22DAD1.4080405@linux.intel.com>
-In-Reply-To: <4F22DAD1.4080405@linux.intel.com>
-X-Originating-IP: [128.224.146.65]
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] mpc8315: build u-boot by default.
+To: yocto@yoctoproject.org
+Subject: serial consoles
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,75 +36,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2012 17:40:42 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
+X-List-Received-Date: Fri, 27 Jan 2012 17:45:06 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12-01-27 12:11 PM, Darren Hart wrote:
-> 
-> 
-> On 01/27/2012 08:22 AM, Paul Gortmaker wrote:
->> Valdiated on v2011.12 with hardware:
->>
->>     U-Boot 2011.12 (Jan 26 2012 - 16:55:23)MPC83XX
->>
->>     Reset Status: Software Hard, External/Internal Soft, External/Internal Hard
->>
->>     CPU:   e300c3, MPC8315E, Rev: 1.2 at 400 MHz, CSB: 133.333 MHz
->>     Board: Freescale MPC8315ERDB Rev 1.0
->>     I2C:   ready
->>     DRAM:  128 MiB (DDR2, 32-bit, ECC off, 266.667 MHz)
->>     Flash: 8 MiB
->>     NAND:  32 MiB
->>     PCIE0: No link
->>     PCIE1: No link
->>     In:    serial
->>     Out:   serial
->>     Err:   serial
->>     Net:   eTSEC0, eTSEC1
->>     Hit any key to stop autoboot:  0
->>     => ver
->>
->>     U-Boot 2011.12 (Jan 26 2012 - 16:55:23)MPC83XX
->>     powerpc-poky-linux-gcc (GCC) 4.6.3 20111117 (prerelease)
->>     GNU ld (GNU Binutils) 2.22
->>     =>
->>
->> Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
-> 
-> Hi Paul,
-> 
-> Have you verified that the u-boot image this creates functions properly
-> when flashed to the mpc8315? Last time I tried I bricked the board - and
+I have the meta-cedartrail image running on hardware (Marshalltown 
+board).  To make the serial console work, I have in the 
+machine/cedartrail.conf file:
 
-Was there a specific functional test that you had in mind?
+SERIAL_CONSOLE = "115200 ttyS0"
 
-I ask that, since for a basic overall "does it work" type question,
-I think I covered that in the commit log above.
+this works fine, but only after Linux is up and the login prompts are 
+sent out. I'm trying to also get the Kernel boot console log out, and 
+possibly syslinux or grub console.
 
-Thanks,
-Paul.
+If I look at the release notes for the meta-n450, it has suggestions to 
+do this for that BSP as below:
 
+         # Serial Port Setup for Intel Embedded Development Board 1-N40
+         SYSLINUX_OPTS_atom-pc = "serial 0 115200"
+         SERIAL_CONSOLE_atom-pc = "115200 ttyS0"
+         APPEND_atom-pc = "console=ttyS0,115200 console=tty0"
 
-> still haven't got around to unbricking it.
-> 
-> --
-> Darren
-> 
->>
->> diff --git a/meta-yocto/conf/machine/mpc8315e-rdb.conf b/meta-yocto/conf/machine/mpc8315e-rdb.conf
->> index d3a5b1c..74ef611 100644
->> --- a/meta-yocto/conf/machine/mpc8315e-rdb.conf
->> +++ b/meta-yocto/conf/machine/mpc8315e-rdb.conf
->> @@ -7,6 +7,9 @@ require conf/machine/include/tune-ppc603e.inc
->>  
->>  KERNEL_IMAGETYPE = "uImage"
->>  
->> +EXTRA_IMAGEDEPENDS += "u-boot"
->> +UBOOT_MACHINE_mpc8315e-rdb = "MPC8315ERDB_config"
->> +
->>  SERIAL_CONSOLE = "115200 ttyS0"
->>  
->>  MACHINE_FEATURES = "kernel26 keyboard pci ext2 ext3 serial"
-> 
+However, those notes talk  about added these statements to the 
+local.conf file.
+
+I have not been able to translate what works on the n450 to cedartrail.
+
+Any ideas?
+
+Jim A
+
 
