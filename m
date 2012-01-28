@@ -1,52 +1,28 @@
-Return-Path: <B29882@freescale.com>
-Received: from DB3EHSOBE002.bigfish.com (db3ehsobe003.messaging.microsoft.com
-	[213.199.154.141])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8395E0030F
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2012 18:16:06 -0800 (PST)
-Received: from mail101-db3-R.bigfish.com (10.3.81.233) by
-	DB3EHSOBE002.bigfish.com (10.3.84.22) with Microsoft SMTP Server id
-	14.1.225.23; Sat, 28 Jan 2012 02:16:03 +0000
-Received: from mail101-db3 (localhost [127.0.0.1])	by
-	mail101-db3-R.bigfish.com (Postfix) with ESMTP id E57BB4A04D2;
-	Sat, 28 Jan 2012 02:16:04 +0000 (UTC)
-X-SpamScore: -7
-X-BigFish: VS-7(zz9371I1432N98dKzz1202hzz8275bh8275dhz2dhc1bhc31hc1ah2a8h668h839h8e2h8e3hbe9k)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail101-db3 (localhost.localdomain [127.0.0.1]) by mail101-db3
-	(MessageSwitch) id 1327716963993_15682;
-	Sat, 28 Jan 2012 02:16:02 +0000 (UTC)
-Received: from DB3EHSMHS011.bigfish.com (unknown [10.3.81.246])	by
-	mail101-db3.bigfish.com (Postfix) with ESMTP id F1F2B100048;
-	Sat, 28 Jan 2012 02:16:02 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by DB3EHSMHS011.bigfish.com
-	(10.3.87.111) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Sat, 28 Jan 2012 02:16:03 +0000
-Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.86]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.01.0355.003; Fri, 27 Jan 2012 20:16:01 -0600
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Brian Hutchinson <b.hutchman@gmail.com>
-Thread-Topic: [yocto] Is there a recipe for evtest package?
-Thread-Index: AQHM3WLHn6JuWXO/a0W3dvwv5fFdvA==
-Date: Sat, 28 Jan 2012 02:16:01 +0000
-Message-ID: <CAEsOVNfPSCTTyVDmmOfqF52FXoWajDZtY-n9MNq0mVn+kUw_wg@mail.gmail.com>
-References: <CAFZh4h_X5Ub+et3R68K1z3wvYpcZxdAv2mf2tQV6HtiWp7xNqw@mail.gmail.com>
-	<4F201635.7090505@communistcode.co.uk>
-	<CAFZh4h8nrZMK7mQeMBZOv8Y2+VkqsbE1EV0fVM3_G_MTKVyojQ@mail.gmail.com>
-In-Reply-To: <CAFZh4h8nrZMK7mQeMBZOv8Y2+VkqsbE1EV0fVM3_G_MTKVyojQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
+Return-Path: <bewithsathish@gmail.com>
+Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0061E0030F
+	for <yocto@yoctoproject.org>; Sat, 28 Jan 2012 01:10:05 -0800 (PST)
+Received: by pbcc11 with SMTP id c11so2915977pbc.35
+	for <yocto@yoctoproject.org>; Sat, 28 Jan 2012 01:10:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=AgyV82l2ucXJXCAWlQXAH6ubnNm1xAlJJgbv+PGZQrg=;
+	b=DLqCqwuJw6u54v7Zg/p8/Fd6tUTJxceouGsnzfOOgWcO84WxPQ9mgfwvoZzNsgxMe7
+	dyNytTKNBlLbAWcZPXBqVZHgnMtezwcOswdmrp4Wvv4XkIBGUTu0QPPo4OwXWpdVE1W1
+	Q4bpJf5y9h5ZDe5t+QZpcgE/Bw44grdLHpzZQ=
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Is there a recipe for evtest package?
+Received: by 10.68.73.100 with SMTP id k4mr22106700pbv.55.1327741805168; Sat,
+	28 Jan 2012 01:10:05 -0800 (PST)
+Received: by 10.68.232.5 with HTTP; Sat, 28 Jan 2012 01:10:05 -0800 (PST)
+Date: Sat, 28 Jan 2012 14:40:05 +0530
+Message-ID: <CANJvwR-J4C50rF-hS=ANkH=SUsVDqpj64feTONGsmy1xOk=dmw@mail.gmail.com>
+From: Sathishkumar Duraisamy <bewithsathish@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Writing recipe for changing /etc/profile
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -55,32 +31,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 28 Jan 2012 02:16:07 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <E13B7DB69E881744948C4CE03F0D7587@freescale.net>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 28 Jan 2012 09:10:06 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, Jan 25, 2012 at 7:36 AM, Brian Hutchinson <b.hutchman@gmail.com> wr=
-ote:
-> On Wed, Jan 25, 2012 at 9:48 AM, Jack Mitchell <ml@communistcode.co.uk> w=
-rote:
->> Hi Brian,
->>
->> Your best bet is to adapt the one from meta-oe here:
->>
->> http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-supp=
-ort/evtest
->
-> Hi Jack,
->
-> I'm still trying to get up-to-speed on how to work with Yocto ....
-> would adding this layer be just like adding say poky extras?
+Hi all,
 
-Yes, although other issues can present itself. If you start using
-meta-oe you need to make sure you pick one that is compatible with
-your oe-core layer.
+I have some doubts in launching my application while booting. That is,
+once  my device is powered on,  should land in my application. I found
+that by adding some scripts to /etc/profile and enabled auto login, it
+does.
 
--M=
+Is there a better way to do same? And if the current method is
+sufficient, then how do I add patch to change /etc/profile file, or
+which recipe gives this file so that I can the in my yocto layer.
 
+-- 
+Regards,
+Sathishkumar D
+http://flowersopenlab.weebly.com/
 
