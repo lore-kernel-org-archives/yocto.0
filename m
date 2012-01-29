@@ -1,21 +1,33 @@
-Return-Path: <lianhao.lu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFFABE0072A
-	for <yocto@yoctoproject.org>; Sat, 28 Jan 2012 20:31:18 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 28 Jan 2012 20:31:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="103792956"
-Received: from llu-piketon.sh.intel.com (HELO localhost) ([10.239.36.146])
-	by orsmga002.jf.intel.com with ESMTP; 28 Jan 2012 20:31:18 -0800
-From: Lianhao Lu <lianhao.lu@intel.com>
-To: yocto@yoctoproject.org
-Date: Sun, 29 Jan 2012 12:30:00 +0800
-Message-Id: <192859757f4130abe9bb26e9e1b9f67943da5e57.1327808192.git.lianhao.lu@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1327808192.git.lianhao.lu@intel.com>
-References: <cover.1327808192.git.lianhao.lu@intel.com>
-Subject: [PATCH V2 1/1] meta-yocto/conf: Change default signature handler.
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7FF1E00599
+	for <yocto@yoctoproject.org>; Sun, 29 Jan 2012 02:48:22 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q0TAmA1r008693;
+	Sun, 29 Jan 2012 10:48:10 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 07750-02; Sun, 29 Jan 2012 10:48:03 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q0TAlxuZ008687
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Sun, 29 Jan 2012 10:48:00 GMT
+Message-ID: <1327834082.7807.11.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Date: Sun, 29 Jan 2012 10:48:02 +0000
+In-Reply-To: <2431052.r2DnJ7okSu@helios>
+References: <ED3E0BCACD909541BA94A34C4A164D4C40237014@post.tritech.se>
+	<2431052.r2DnJ7okSu@helios>
+X-Mailer: Evolution 3.2.2- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org,
+	Mats =?ISO-8859-1?Q?K=E4rrman?= <Mats.Karrman@tritech.se>,
+	openembedded-devel@lists.openembedded.org
+Subject: Re: [oe] exmap-console access forbidden
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,47 +39,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 29 Jan 2012 04:31:18 -0000
+X-List-Received-Date: Sun, 29 Jan 2012 10:48:23 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-[YOCTO #1555]
-1. Changed default signature handler to 'OEBasicHash' in poky.conf.
-2. Added comment about PRservice settings in local.conf.extened.
+On Sat, 2012-01-28 at 14:58 +0000, Paul Eggleton wrote:
+> On Friday 27 January 2012 09:34:26 Mats Kärrman wrote:
+> > Does anyone know why the downloads server at yoctoproject.org has the source
+> > tars of exmap-console as "Access Forbidden"? Other tars from the same
+> > server is OK to download.
+> 
+> I seem to be able to download the tarballs from 
+> http://downloads.yoctoproject.org/releases/exmap-console/... are you still 
+> experiencing this problem?
 
-Signed-off-by: Lianhao Lu <lianhao.lu@intel.com>
----
- meta-yocto/conf/distro/poky.conf           |    2 ++
- meta-yocto/conf/local.conf.sample.extended |    6 +++++-
- 2 files changed, 7 insertions(+), 1 deletions(-)
+I did forward the email to Michael and Beth who looked into it and did
+find and resolve a permissions problem. I think they were trying to
+figure out the root cause before replying.
 
-diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
-index 86f9bf6..e1bceda 100644
---- a/meta-yocto/conf/distro/poky.conf
-+++ b/meta-yocto/conf/distro/poky.conf
-@@ -65,3 +65,5 @@ CONNECTIVITY_CHECK_URIS ?= "git://git.yoctoproject.org/yocto-firewall-test;proto
-                           https://eula-downloads.yoctoproject.org/index.php \
-                           http://bugzilla.yoctoproject.org/report.cgi"
- 
-+# Default hash policy for distro
-+BB_SIGNATURE_HANDLER ?= 'OEBasicHash'
-diff --git a/meta-yocto/conf/local.conf.sample.extended b/meta-yocto/conf/local.conf.sample.extended
-index b901c5b..af86f42 100644
---- a/meta-yocto/conf/local.conf.sample.extended
-+++ b/meta-yocto/conf/local.conf.sample.extended
-@@ -115,8 +115,12 @@
- #DEFAULTTUNE_virtclass-multilib-lib32 = "x86"
- 
- # The network based PR service host and port
-+# Uncomment the following lines to enable PRservice.
-+# Set PRSERV_HOST to 'localhost' and PRSERV_PORT to '0' to automatically
-+# start local PRService.
-+# Set to other values to use remote PRService.
- #PRSERV_HOST = "localhost"
--#PRSERV_PORT = "8585"
-+#PRSERV_PORT = "0"
- 
- # Additional image generation features
- #
--- 
-1.7.0.4
+Anyhow, it should be resolved now.
+
+Cheers,
+
+Richard
 
 
