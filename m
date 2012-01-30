@@ -1,32 +1,29 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C72CE00306
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 13:03:05 -0800 (PST)
-Received: from durham.keylevel.com ([109.224.134.115]:63998
-	helo=MacBook-Pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1RrxYU-0003go-AQ; Mon, 30 Jan 2012 20:10:22 +0000
-Message-Id: <B2B29916-0956-45B1-BCE2-BE38907AC90F@keylevel.com>
-From: Chris Tapp <opensource@keylevel.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-In-Reply-To: <CAPhnLPD+gYgUzsYaFvqjKWK2Sq=iXeKr6a5+HSakoPVHS1FCHw@mail.gmail.com>
-Mime-Version: 1.0 (Apple Message framework v936)
-Date: Mon, 30 Jan 2012 20:10:20 +0000
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EEDBE00306
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 13:36:44 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q0ULaafO032695;
+	Mon, 30 Jan 2012 21:36:36 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 31376-02; Mon, 30 Jan 2012 21:36:32 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q0ULaRPh032669
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 30 Jan 2012 21:36:28 GMT
+Message-ID: <1327959391.7807.95.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: paul_nathan@selinc.com
+Date: Mon, 30 Jan 2012 21:36:31 +0000
+In-Reply-To: <OF07B6379D.FDCBA64F-ON88257995.0059F0C8-88257995.005B0477@selinc.com>
 References: <OF07B6379D.FDCBA64F-ON88257995.0059F0C8-88257995.005B0477@selinc.com>
-	<CAPhnLPD+gYgUzsYaFvqjKWK2Sq=iXeKr6a5+HSakoPVHS1FCHw@mail.gmail.com>
-X-Mailer: Apple Mail (2.936)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto Project <yocto@yoctoproject.org>
+X-Mailer: Evolution 3.2.2- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org
 Subject: Re: Yocto & long-term reproducibility of rebuilds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -39,51 +36,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2012 21:03:06 -0000
-Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
+X-List-Received-Date: Mon, 30 Jan 2012 21:36:45 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 30 Jan 2012, at 18:34, Flanagan, Elizabeth wrote:
-
-> On Mon, Jan 30, 2012 at 8:34 AM,  <paul_nathan@selinc.com> wrote:
->> Hi,
->>
->> I am investigating Yocto for a build system here. Part of my  
->> requirements
->> for a build system is auditable/traceable builds that can be  
->> replicated long
->> into the future (our company has a 10 year warranty on our  
->> products, and we
->> build products for the multidecade term). Initial examination of  
->> Yocto shows
->> that it builds packages from a number of different domains online,  
->> which
->> will not meet our requirements - we'll have to store these packages  
->> to
->> ensure these packages exist in the correct version long into the  
->> future.  I
->> know we can manually edit the SRC_URI setting in .bb files, but the  
->> more
->> general problem of package archiving exists.
->>
+On Mon, 2012-01-30 at 08:34 -0800, paul_nathan@selinc.com wrote:
+> I am investigating Yocto for a build system here. Part of my
+> requirements for a build system is auditable/traceable builds that can
+> be replicated long into the future (our company has a 10 year warranty
+> on our products, and we build products for the multidecade term).
+> Initial examination of Yocto shows that it builds packages from a
+> number of different domains online, which will not meet our
+> requirements - we'll have to store these packages to ensure these
+> packages exist in the correct version long into the future.  I know we
+> can manually edit the SRC_URI setting in .bb files, but the more
+> general problem of package archiving exists. 
 >
-> I would avoid manually editing SRC_URI.
->
-> Set up PREMIRRORS and BB_FETCH_PREMIRRORONLY. That would ensure that
-> you avoided any upstream contamination.
->
-> I am interested in any information or recommendations other users of  
-> the
->> Yocto system have on how they have solved this sort of design  
->> constraint.
+> I am interested in any information or recommendations other users of
+> the Yocto system have on how they have solved this sort of design
+> constraint. 
 
-This sounds like a good a good article for the 'How Do I...' section  
-on the wiki. Or is there already something similar on there?
+This is something we've worked to ensure works since we understand the
+importance of long term reproducibility. 
 
-Chris Tapp
+Others have mentioned how a local source cache can be created and how
+MIRRORS and PREMIRRORS can be used to override or supplement to the
+SRC_URI. In addition I'd mention we have a variable BB_NO_NETWORK which
+disables all network access so you can ensure only local files are used
+in a given build.
 
-opensource@keylevel.com
-www.keylevel.com
+Cheers,
+
+Richard
 
 
 
