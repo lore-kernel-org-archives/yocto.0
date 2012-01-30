@@ -1,30 +1,27 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BC6DE0127D
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 03:02:32 -0800 (PST)
-Received: by pbcc11 with SMTP id c11so4544828pbc.35
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 03:02:32 -0800 (PST)
-Received: by 10.68.223.68 with SMTP id qs4mr40583814pbc.112.1327921352486;
-	Mon, 30 Jan 2012 03:02:32 -0800 (PST)
-Received: from [192.168.10.231] ([59.99.251.45])
-	by mx.google.com with ESMTPS id h9sm46304006pbq.14.2012.01.30.03.02.30
-	(version=SSLv3 cipher=OTHER); Mon, 30 Jan 2012 03:02:31 -0800 (PST)
-Message-ID: <1327921347.2519.8.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Mon, 30 Jan 2012 16:32:27 +0530
-In-Reply-To: <4F22DB53.8060400@linux.intel.com>
-References: <4F21FDEF.2010500@linux.intel.com>
-	<4F220105.3080600@linux.intel.com> <4F220477.8030600@linux.intel.com>
-	<20120127080849.GB3779@jama.jama.net>
-	<1327659778.2964.16.camel@babel.joshhome>
-	<20120127103001.GC3779@jama.jama.net>
-	<4F22DB53.8060400@linux.intel.com>
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1 
-Mime-Version: 1.0
-Subject: Re: New recipes not installing in core-image-minimal
+Return-Path: <sgw@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB7C3E00306;
+	Mon, 30 Jan 2012 08:04:27 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 30 Jan 2012 08:04:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="101158136"
+Received: from unknown (HELO [10.255.14.96]) ([10.255.14.96])
+	by azsmga001.ch.intel.com with ESMTP; 30 Jan 2012 08:04:22 -0800
+Message-ID: <4F26BF86.5060507@linux.intel.com>
+Date: Mon, 30 Jan 2012 08:04:22 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
+MIME-Version: 1.0
+To: Michael Halstead <michael@yoctoproject.org>
+References: <4F21DABC.3000007@linux.intel.com>
+	<CAMKF1soeiB-6BKY8radeAh4GMAq2-r90uPGAR_k_jyThFWNzcA@mail.gmail.com>
+	<4F243CD8.5090301@yoctoproject.org>
+In-Reply-To: <4F243CD8.5090301@yoctoproject.org>
+Cc: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] opkg-utils to move to git.yoctoproject.org
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,47 +33,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2012 11:02:33 -0000
-X-Groupsio-MsgNum: 4486
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-UAxmsJo4sxxan3HeHI9C"
-
---=-UAxmsJo4sxxan3HeHI9C
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello Darren, Martin,
-
-Thanks for the reply.
-
-On Fri, 2012-01-27 at 09:13 -0800, Darren Hart wrote:
-> > Why not .bbappend base-files and customize fstab there?
->=20
-> This is how I am modifying /etc/network/interfaces and this is working
-> fine for me. Joshua, I'd second Martin's suggestion.=20
-
-As you suggested I'll use this approach instead of creating a new
-package.
-
-Regards
-Joshua
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
-
---=-UAxmsJo4sxxan3HeHI9C
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+X-List-Received-Date: Mon, 30 Jan 2012 16:04:28 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+On 01/28/2012 10:22 AM, Michael Halstead wrote:
+> On 01/28/2012 10:13 AM, Khem Raj wrote:
+>> On Thu, Jan 26, 2012 at 2:59 PM, Saul Wold<sgw@linux.intel.com>  wrote:
+>>> We will make this change next week barring any major objections.
+>> its a good idea infact. will you do svn2git conversion as well. ?
+> I converted from svn to git when taking the copy. If we make this change
+> we will definitely provide the git converted copy.
+>
+Michael,
 
-iEYEABECAAYFAk8meMMACgkQWw85XwuSFMKaAQCePeDxvKzSwKNWqBITEQK4Qf4W
-vbwAnjqy2lHIaE7dP+ok7vYCT30xw14A
-=E2A2
------END PGP SIGNATURE-----
+Please go ahead and complete the conversion and make the GIT repo 
+available under the "Misc" heading on git.yoctoproject.org
 
---=-UAxmsJo4sxxan3HeHI9C--
+Thanks
+	Sau!
+
+> Michael Halstead
+> Sys Admin / Yocto Project
+>
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
