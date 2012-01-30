@@ -1,27 +1,28 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D52EE00306
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 09:50:07 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id ADE72F81224; Mon, 30 Jan 2012 10:50:05 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 77324F81214;
-	Mon, 30 Jan 2012 10:50:03 -0700 (MST)
-Message-ID: <4F26D84B.6080709@mlbassoc.com>
-Date: Mon, 30 Jan 2012 10:50:03 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0
+Return-Path: <fransmeulenbroeks@gmail.com>
+Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1091BE00306
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 10:10:04 -0800 (PST)
+Received: by vbbfn1 with SMTP id fn1so4117775vbb.35
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 10:10:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=+tbK5XdwoJUtaHNcJmq1WaR6FwffzE7VleDbDRNPMW0=;
+	b=cv6z8ufvPm27DVzLU4eoGrLFIuqgHluJUFE0spu9yBZWyMHP3j1knItsw5YgvjgWet
+	DFn92SqyRznVrRBg/BDsjlsIkRKAUqjtx2uB7TZUGn52lZfmZbLQoPMaZqkdj4vbukKC
+	vYw6da1iz1tXY1cetrmeS9JoMtZnmSwMF7BGg=
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
+Received: by 10.52.26.199 with SMTP id n7mr9617632vdg.17.1327947004208; Mon,
+	30 Jan 2012 10:10:04 -0800 (PST)
+Received: by 10.52.67.171 with HTTP; Mon, 30 Jan 2012 10:10:04 -0800 (PST)
+In-Reply-To: <OF07B6379D.FDCBA64F-ON88257995.0059F0C8-88257995.005B0477@selinc.com>
 References: <OF07B6379D.FDCBA64F-ON88257995.0059F0C8-88257995.005B0477@selinc.com>
-	<CAMKF1sodYnhvVBt852x4BD8XUP193m7d=DrbNrN3-GHJ6E8q_w@mail.gmail.com>
-In-Reply-To: <CAMKF1sodYnhvVBt852x4BD8XUP193m7d=DrbNrN3-GHJ6E8q_w@mail.gmail.com>
+Date: Mon, 30 Jan 2012 19:10:04 +0100
+Message-ID: <CACW_hTayquYQ5Am0N-LX4ENNiHrPPU8ZwrcysO_x6-vw2wJnDg@mail.gmail.com>
+From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+To: paul_nathan@selinc.com
+Cc: yocto@yoctoproject.org
 Subject: Re: Yocto & long-term reproducibility of rebuilds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -34,41 +35,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2012 17:50:07 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 30 Jan 2012 18:10:05 -0000
+Content-Type: multipart/alternative; boundary=20cf3079b68877656004b7c2c1a4
 
-On 2012-01-30 10:37, Khem Raj wrote:
-> On Mon, Jan 30, 2012 at 8:34 AM,<paul_nathan@selinc.com>  wrote:
->> Hi,
->>
->> I am investigating Yocto for a build system here. Part of my requirements
->> for a build system is auditable/traceable builds that can be replicated long
->> into the future (our company has a 10 year warranty on our products, and we
->> build products for the multidecade term). Initial examination of Yocto shows
->> that it builds packages from a number of different domains online, which
->> will not meet our requirements - we'll have to store these packages to
->> ensure these packages exist in the correct version long into the future.  I
->> know we can manually edit the SRC_URI setting in .bb files, but the more
->> general problem of package archiving exists.
->>
->> I am interested in any information or recommendations other users of the
->> Yocto system have on how they have solved this sort of design constraint.
+--20cf3079b68877656004b7c2c1a4
+Content-Type: text/plain; charset=ISO-8859-1
+
+2012/1/30 <paul_nathan@selinc.com>
+
+> Hi,
 >
-> Hi Paul
+> I am investigating Yocto for a build system here. Part of my requirements
+> for a build system is auditable/traceable builds that can be replicated
+> long into the future (our company has a 10 year warranty on our products,
+> and we build products for the multidecade term). Initial examination of
+> Yocto shows that it builds packages from a number of different domains
+> online, which will not meet our requirements - we'll have to store these
+> packages to ensure these packages exist in the correct version long into
+> the future.  I know we can manually edit the SRC_URI setting in .bb files,
+> but the more general problem of package archiving exists.
 >
-> You can cache all the source tars as you mentioned and then
-> store them internally and use PREMIRROR facility which should
-> check premirrors before it hits src_uri so provided you cache
-> all the sources it should always get it from your internal
-> mirror
+> I am interested in any information or recommendations other users of the
+> Yocto system have on how they have solved this sort of design constraint.
+>
+> - - -
+> Regards,
+> Paul Nathan
+>
+> Paul,
 
-Check the archives - there was an extensive discussion of this last week
-   '[yocto] tar ball vs. git development questions'
+My corrent project is still on oe-classic not on yocto, but we also aim for
+reproducible builds.
+Basically we perform the following steps.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+checkout the opembedded repo. We use a specific hash not head as we do not
+want unexpected updates
+create a tarball of the git tree
+build your product
+save all files in the downloads dir.
+put that on a local ftp mirror, add a premirror for that ftp mirror
+rebuild only using that mirror (e.g. disallow your build host to go to
+another external system than your ftp mirror.
+archive your git tarball and the saved downloads dir
 
+That's it.
+Actually you might then also want to put the stuff on your local ftp mirror
+as well as the oe tarball on a public ftp site in order to fulfill your GPL
+obligations
+
+Good luck!
+Frans
+
+--20cf3079b68877656004b7c2c1a4
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<br><br><div class=3D"gmail_quote">2012/1/30  <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:paul_nathan@selinc.com">paul_nathan@selinc.com</a>&gt;</span><br=
+><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
+px #ccc solid;padding-left:1ex">
+<font face=3D"sans-serif">Hi,</font>
+<br>
+<br><font face=3D"sans-serif">I am investigating Yocto for a build
+system here. Part of my requirements for a build system is auditable/tracea=
+ble
+builds that can be replicated long into the future (our company has a 10
+year warranty on our products, and we build products for the multidecade
+term). Initial examination of Yocto shows that it builds packages from
+a number of different domains online, which will not meet our requirements
+- we&#39;ll have to store these packages to ensure these packages exist in
+the correct version long into the future. =A0I know we can manually
+edit the SRC_URI setting in .bb files, but the more general problem of
+package archiving exists. </font>
+<br>
+<br><font face=3D"sans-serif">I am interested in any information or
+recommendations other users of the Yocto system have on how they have solve=
+d
+this sort of design constraint.</font>
+<br>
+<br><font face=3D"sans-serif">- - -<br>
+Regards,<br>
+Paul Nathan</font><br><br></blockquote><div>Paul,<br><br>My corrent project=
+ is still on oe-classic not on yocto, but we also aim for reproducible buil=
+ds. <br>Basically we perform the following steps.<br><br>checkout the opemb=
+edded repo. We use a specific hash not head as we do not want unexpected up=
+dates<br>
+create a tarball of the git tree<br>build your product<br>save all files in=
+ the downloads dir.<br>put that on a local ftp mirror, add a premirror for =
+that ftp mirror <br> rebuild only using that mirror (e.g. disallow your bui=
+ld host to go to another external system than your ftp mirror.<br>
+archive your git tarball and the saved downloads dir<br><br>That&#39;s it.<=
+br>Actually you might then also want to put the stuff on your local ftp mir=
+ror as well as the oe tarball on a public ftp site in order to fulfill your=
+ GPL obligations <br>
+<br>Good luck!<br>Frans<br></div></div><br>
+
+--20cf3079b68877656004b7c2c1a4--
