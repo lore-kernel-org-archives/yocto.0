@@ -1,29 +1,34 @@
-Return-Path: <fransmeulenbroeks@gmail.com>
+Return-Path: <halstead@happypunch.com>
 Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
 	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1091BE00306
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 10:10:04 -0800 (PST)
-Received: by vbbfn1 with SMTP id fn1so4117775vbb.35
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 10:10:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=+tbK5XdwoJUtaHNcJmq1WaR6FwffzE7VleDbDRNPMW0=;
-	b=cv6z8ufvPm27DVzLU4eoGrLFIuqgHluJUFE0spu9yBZWyMHP3j1knItsw5YgvjgWet
-	DFn92SqyRznVrRBg/BDsjlsIkRKAUqjtx2uB7TZUGn52lZfmZbLQoPMaZqkdj4vbukKC
-	vYw6da1iz1tXY1cetrmeS9JoMtZnmSwMF7BGg=
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D042AE00306
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 10:33:36 -0800 (PST)
+Received: by vbbfn1 with SMTP id fn1so4151292vbb.35
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 10:33:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=happypunch.com; s=google;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:x-enigmail-version:content-type;
+	bh=0prjMJtGpF9aPZfQPapE8h9Z8FvBh2G8ZUSghu89+JI=;
+	b=OPY/PYBeSqiw1lZSFP8EtNK5wwY8wz5l5YBszsr1MR8a3sNBXFvR5BlP65+sVF2zV2
+	vmNNLD6UlRe/H8DG5Qov85U+Mb0j7kb6YO2hqHB/tta5T3z45bi1L8bDSMfy1KBe7+Fk
+	lXdj/5lF5ixIklUik31e3YUze3CvZj/UBPFDY=
+Received: by 10.52.92.47 with SMTP id cj15mr9472531vdb.11.1327948415729;
+	Mon, 30 Jan 2012 10:33:35 -0800 (PST)
+Received: from [192.168.1.6] (static-50-43-40-121.bvtn.or.frontiernet.net.
+	[50.43.40.121])
+	by mx.google.com with ESMTPS id fj4sm16422768vdb.22.2012.01.30.10.33.33
+	(version=SSLv3 cipher=OTHER); Mon, 30 Jan 2012 10:33:34 -0800 (PST)
+Sender: Michael Halstead <halstead@happypunch.com>
+Message-ID: <4F26E27E.9030402@yoctoproject.org>
+Date: Mon, 30 Jan 2012 10:33:34 -0800
+From: Michael Halstead <michael@yoctoproject.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111229 Thunderbird/9.0
 MIME-Version: 1.0
-Received: by 10.52.26.199 with SMTP id n7mr9617632vdg.17.1327947004208; Mon,
-	30 Jan 2012 10:10:04 -0800 (PST)
-Received: by 10.52.67.171 with HTTP; Mon, 30 Jan 2012 10:10:04 -0800 (PST)
-In-Reply-To: <OF07B6379D.FDCBA64F-ON88257995.0059F0C8-88257995.005B0477@selinc.com>
-References: <OF07B6379D.FDCBA64F-ON88257995.0059F0C8-88257995.005B0477@selinc.com>
-Date: Mon, 30 Jan 2012 19:10:04 +0100
-Message-ID: <CACW_hTayquYQ5Am0N-LX4ENNiHrPPU8ZwrcysO_x6-vw2wJnDg@mail.gmail.com>
-From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-To: paul_nathan@selinc.com
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto & long-term reproducibility of rebuilds
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.3.4
+Subject: Call for Bugzilla testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,99 +40,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2012 18:10:05 -0000
-Content-Type: multipart/alternative; boundary=20cf3079b68877656004b7c2c1a4
+X-List-Received-Date: Mon, 30 Jan 2012 18:33:37 -0000
+X-Groupsio-MsgNum: 4492
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+	micalg=sha1; boundary="------------ms090709010009080605070906"
 
---20cf3079b68877656004b7c2c1a4
+--------------ms090709010009080605070906
 Content-Type: text/plain; charset=ISO-8859-1
-
-2012/1/30 <paul_nathan@selinc.com>
-
-> Hi,
->
-> I am investigating Yocto for a build system here. Part of my requirements
-> for a build system is auditable/traceable builds that can be replicated
-> long into the future (our company has a 10 year warranty on our products,
-> and we build products for the multidecade term). Initial examination of
-> Yocto shows that it builds packages from a number of different domains
-> online, which will not meet our requirements - we'll have to store these
-> packages to ensure these packages exist in the correct version long into
-> the future.  I know we can manually edit the SRC_URI setting in .bb files,
-> but the more general problem of package archiving exists.
->
-> I am interested in any information or recommendations other users of the
-> Yocto system have on how they have solved this sort of design constraint.
->
-> - - -
-> Regards,
-> Paul Nathan
->
-> Paul,
-
-My corrent project is still on oe-classic not on yocto, but we also aim for
-reproducible builds.
-Basically we perform the following steps.
-
-checkout the opembedded repo. We use a specific hash not head as we do not
-want unexpected updates
-create a tarball of the git tree
-build your product
-save all files in the downloads dir.
-put that on a local ftp mirror, add a premirror for that ftp mirror
-rebuild only using that mirror (e.g. disallow your build host to go to
-another external system than your ftp mirror.
-archive your git tarball and the saved downloads dir
-
-That's it.
-Actually you might then also want to put the stuff on your local ftp mirror
-as well as the oe tarball on a public ftp site in order to fulfill your GPL
-obligations
-
-Good luck!
-Frans
-
---20cf3079b68877656004b7c2c1a4
-Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<br><br><div class=3D"gmail_quote">2012/1/30  <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:paul_nathan@selinc.com">paul_nathan@selinc.com</a>&gt;</span><br=
-><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
-px #ccc solid;padding-left:1ex">
-<font face=3D"sans-serif">Hi,</font>
-<br>
-<br><font face=3D"sans-serif">I am investigating Yocto for a build
-system here. Part of my requirements for a build system is auditable/tracea=
-ble
-builds that can be replicated long into the future (our company has a 10
-year warranty on our products, and we build products for the multidecade
-term). Initial examination of Yocto shows that it builds packages from
-a number of different domains online, which will not meet our requirements
-- we&#39;ll have to store these packages to ensure these packages exist in
-the correct version long into the future. =A0I know we can manually
-edit the SRC_URI setting in .bb files, but the more general problem of
-package archiving exists. </font>
-<br>
-<br><font face=3D"sans-serif">I am interested in any information or
-recommendations other users of the Yocto system have on how they have solve=
-d
-this sort of design constraint.</font>
-<br>
-<br><font face=3D"sans-serif">- - -<br>
-Regards,<br>
-Paul Nathan</font><br><br></blockquote><div>Paul,<br><br>My corrent project=
- is still on oe-classic not on yocto, but we also aim for reproducible buil=
-ds. <br>Basically we perform the following steps.<br><br>checkout the opemb=
-edded repo. We use a specific hash not head as we do not want unexpected up=
-dates<br>
-create a tarball of the git tree<br>build your product<br>save all files in=
- the downloads dir.<br>put that on a local ftp mirror, add a premirror for =
-that ftp mirror <br> rebuild only using that mirror (e.g. disallow your bui=
-ld host to go to another external system than your ftp mirror.<br>
-archive your git tarball and the saved downloads dir<br><br>That&#39;s it.<=
-br>Actually you might then also want to put the stuff on your local ftp mir=
-ror as well as the oe tarball on a public ftp site in order to fulfill your=
- GPL obligations <br>
-<br>Good luck!<br>Frans<br></div></div><br>
+To all users of the Yocto Project bug tracker, we are about to upgrade
+our Bugzilla install to the newest version and we need your help.
 
---20cf3079b68877656004b7c2c1a4--
+At https://dev.yoctoproject.org/ you will find two copies of Bugzilla:
+  our attempt at upgrading to the newest version 4.0.3
+  and a copy of our current 3.6.1 version for comparison
+
+Please take a few minutes to test out the new version and report
+anything unexpected to me. To log into both versions simultaneously you
+will need to use two separate browsers due to cookie conflicts. Outgoing
+mail has been disabled so you can test without bothering your colleagues.=
+
+
+Thank you,
+Michael Halstead
+Sys Admin / Yocto Project
+
+
+--------------ms090709010009080605070906
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIINYjCCBjQw
+ggQcoAMCAQICAR4wDQYJKoZIhvcNAQEFBQAwfTELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0YXJ0
+Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcxKTAn
+BgNVBAMTIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTA3MTAyNDIxMDE1NVoX
+DTE3MTAyNDIxMDE1NVowgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSsw
+KQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFy
+dENvbSBDbGFzcyAxIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMcJg8zOLdgasSmkLhOrlr6KMoOMpohBllVHrdRvEg/q6r8jR+EK
+75xCGhR8ToREoqe7zM9/UnC6TS2y9UKTpT1v7RSMzR0t6ndl0TWBuUr/UXBhPk+Kmy7bI4yW4urC
++y7P3/1/X7U8ocb8VpH/Clt+4iq7nirMcNh6qJR+xjOhV+VHzQMALuGYn5KZmc1NbJQYclsGkDxD
+z2UbFqE2+6vIZoL+jb9x4Pa5gNf1TwSDkOkikZB1xtB4ZqtXThaABSONdfmv/Z1pua3FYxnCFmdr
+/+N2JLKutIxMYqQOJebr/f/h5t95m4JgrM3Y/w7YX9d7YAL9jvN4SydHsU6n65cCAwEAAaOCAa0w
+ggGpMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBRTcu2SnODaywFc
+fH6WNU7y1LhRgjAfBgNVHSMEGDAWgBROC+8apEBbpRdphzDKNGhD0EGu8jBmBggrBgEFBQcBAQRa
+MFgwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9jYTAtBggrBgEFBQcwAoYh
+aHR0cDovL3d3dy5zdGFydHNzbC5jb20vc2ZzY2EuY3J0MFsGA1UdHwRUMFIwJ6AloCOGIWh0dHA6
+Ly93d3cuc3RhcnRzc2wuY29tL3Nmc2NhLmNybDAnoCWgI4YhaHR0cDovL2NybC5zdGFydHNzbC5j
+b20vc2ZzY2EuY3JsMIGABgNVHSAEeTB3MHUGCysGAQQBgbU3AQIBMGYwLgYIKwYBBQUHAgEWImh0
+dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cu
+c3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwDQYJKoZIhvcNAQEFBQADggIBAAqDCH14qywG
+XLhjjF6uHLkjd02hcdh9hrw+VUsv+q1eeQWB21jWj3kJ96AUlPCoEGZ/ynJNScWy6QMVQjbbMXlt
+UfO4n4bGGdKo3awPWp61tjAFgraLJgDk+DsSvUD6EowjMTNx25GQgyYJ5RPIzKKR9tQW8gGK+2+R
+HxkUCTbYFnL6kl8Ch507rUdPPipJ9CgJFws3kDS3gOS5WFMxcjO5DwKfKSETEPrHh7p5shuuNktv
+sv6hxHTLhiMKX893gxdT3XLS9OKmCv87vkINQcNEcIIoFWbP9HORz9v3vQwR4e3ksLc2JZOAFK+s
+sS5XMEoznzpihEP0PLc4dCBYjbvSD7kxgDwZ+Aj8Q9PkbvE9sIPP7ON0fz095HdThKjiVJe6vofq
++n6b1NBc8XdrQvBmunwxD5nvtTW4vtN6VY7mUCmxsCieuoBJ9OlqmsVWQvifIYf40dJPZkk9YgGT
+zWLpXDSfLSplbY2LL9C9U0ptvjcDjefLTvqSFc7tw1sEhF0n/qpA2r0GpvkLRDmcSwVyPvmjFBGq
+Up/pNy8ZuPGQmHwFi2/14+xeSUDG2bwnsYJQG2EdJCB6luQ57GEnTA/yKZSTKI8dDQa8Sd3zfXb1
+9mOgSF0bBdXbuKhEpuP9wirslFe6fQ1t5j5R0xi72MZ8ikMu1RQZKCyDbMwazlHiMIIHJjCCBg6g
+AwIBAgIDA37RMA0GCSqGSIb3DQEBBQUAMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRD
+b20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYG
+A1UEAxMvU3RhcnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0EwHhcN
+MTIwMTA2MTMyOTE3WhcNMTMwMTA2MDcxMjUwWjBnMRkwFwYDVQQNExBlTGJQOTQ4c1JVN2dZQXYy
+MSEwHwYDVQQDDBhtaWNoYWVsQHlvY3RvcHJvamVjdC5vcmcxJzAlBgkqhkiG9w0BCQEWGG1pY2hh
+ZWxAeW9jdG9wcm9qZWN0Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANhLuIfm
+OceuHa0beGkrktR2YWPzNci0abL4tkli9NVHN7gPjrZHErqn81LXKr+lHSPe5K9H2ziM9Xy8dWpV
+jcNiTvkKj2RgoCZn48TVpCA93UR/abpbUcQixLrz0aKrwbL6cgHNBwaWwH4YnBtdDpGCoBsIN1ex
+hSgNX27KyhApSzrMdIgHvO5UchBiARXh2Ll+Wf7G6ph+TFq2BCGu7MI9pDn6FZwHri78KOKM7aP8
+g7oUmuwauWZ855YV1rE+nE+/yeBuCdgIG2l2v2YYN+nrhhFSymolp8NgPoSztKrx7sRbOEkuC4hq
+fWch+MEWos24nHnsnCw9cwMO4m+kN7sCAwEAAaOCA7MwggOvMAkGA1UdEwQCMAAwCwYDVR0PBAQD
+AgSwMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQUrNEl25qGFro/pXDh
+zeZZX1M1JGMwHwYDVR0jBBgwFoAUU3Ltkpzg2ssBXHx+ljVO8tS4UYIwIwYDVR0RBBwwGoEYbWlj
+aGFlbEB5b2N0b3Byb2plY3Qub3JnMIICIQYDVR0gBIICGDCCAhQwggIQBgsrBgEEAYG1NwECAjCC
+Af8wLgYIKwYBBQUHAgEWImh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYB
+BQUHAgEWKGh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwgfcGCCsGAQUF
+BwICMIHqMCcWIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MAMCAQEagb5UaGlzIGNl
+cnRpZmljYXRlIHdhcyBpc3N1ZWQgYWNjb3JkaW5nIHRvIHRoZSBDbGFzcyAxIFZhbGlkYXRpb24g
+cmVxdWlyZW1lbnRzIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3ksIHJlbGlhbmNlIG9ubHkgZm9y
+IHRoZSBpbnRlbmRlZCBwdXJwb3NlIGluIGNvbXBsaWFuY2Ugb2YgdGhlIHJlbHlpbmcgcGFydHkg
+b2JsaWdhdGlvbnMuMIGcBggrBgEFBQcCAjCBjzAnFiBTdGFydENvbSBDZXJ0aWZpY2F0aW9uIEF1
+dGhvcml0eTADAgECGmRMaWFiaWxpdHkgYW5kIHdhcnJhbnRpZXMgYXJlIGxpbWl0ZWQhIFNlZSBz
+ZWN0aW9uICJMZWdhbCBhbmQgTGltaXRhdGlvbnMiIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3ku
+MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL2NydHUxLWNybC5jcmww
+gY4GCCsGAQUFBwEBBIGBMH8wOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9z
+dWIvY2xhc3MxL2NsaWVudC9jYTBCBggrBgEFBQcwAoY2aHR0cDovL2FpYS5zdGFydHNzbC5jb20v
+Y2VydHMvc3ViLmNsYXNzMS5jbGllbnQuY2EuY3J0MCMGA1UdEgQcMBqGGGh0dHA6Ly93d3cuc3Rh
+cnRzc2wuY29tLzANBgkqhkiG9w0BAQUFAAOCAQEAUjNTeM730SEKLMbJ4THlGkx3KFkaYxIKf1C1
+PvZz9d6fq6VfFL1xbqSsz2og/hiCccC/GYFTKAK3W23LHjiETtNCK6pDzFTzeFxKdYOIoCcCjjxE
+IF0D16A1gXBp6G9tT6yUiy916wF8Ic/Etxti4ksydRWDet1LsXXNKt8gdolgPVImHm2VRX/8M9KG
+HU2/1oXXgjV2yC77sPVAaVoIBdiRdMOAS7gRt0pX+xNY+R8iItIfQO5Nf6mlRMgwXy/e+pYvSil+
+T1jdMQD6k07jZ1kpPAHujuCA5p6EWs+hpDXh7fq+lmfM9zZoTWtEDIJMrLvYy2IMD3NE0clxH+GY
+iTGCA9AwggPMAgEBMIGUMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjEr
+MCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3Rh
+cnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAwN+0TAJBgUrDgMC
+GgUAoIICEDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMjAxMzAx
+ODMzMzRaMCMGCSqGSIb3DQEJBDEWBBRDbyVSowLggaj4YO9lwXASrqa3PTBfBgkqhkiG9w0BCQ8x
+UjBQMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwIC
+AUAwBwYFKw4DAgcwDQYIKoZIhvcNAwICASgwgaUGCSsGAQQBgjcQBDGBlzCBlDCBjDELMAkGA1UE
+BhMCSUwxFjAUBgNVBAoTDVN0YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENl
+cnRpZmljYXRlIFNpZ25pbmcxODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDEgUHJpbWFyeSBJbnRl
+cm1lZGlhdGUgQ2xpZW50IENBAgMDftEwgacGCyqGSIb3DQEJEAILMYGXoIGUMIGMMQswCQYDVQQG
+EwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2Vy
+dGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVy
+bWVkaWF0ZSBDbGllbnQgQ0ECAwN+0TANBgkqhkiG9w0BAQEFAASCAQBdYflj91MQfxnQQbEdajqQ
+VxKxnXMpSsdeOTltw1+Qq1D/uXC0L8NtEsaKam1Yku/4rUkfpOGD2YunyFJXPMn/Qt3EN7KvWlzV
+/4bB3L22QN3ecV2giF+8084TrxoaLPtuPV5GuOo/MreZbRGs27DWmbaGInugoaH5AQ0GxdXJCKOL
+D8PaIB72DJfoV4NvOyaV4QuCfVLKgWlbkAjkHC+YvmtO7fOL9D7l2z7kOLGWc+B3SkXh8p5Fpd03
+Ujbj7CpFbrgx8DshiXIUvZnhR38yG4h3GS5A+kYvRQQGkPpSrqjYjwKvesyLQ6IiyGc84Z/81/JZ
+VkQRHZTq2iKGPi/mAAAAAAAA
+
+--------------ms090709010009080605070906--
