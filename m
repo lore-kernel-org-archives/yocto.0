@@ -1,28 +1,22 @@
 Return-Path: <josh@linux.intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCDCBE00306
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 14:56:00 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DDFBE00306
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 14:58:59 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 30 Jan 2012 14:56:00 -0800
+	by orsmga101.jf.intel.com with ESMTP; 30 Jan 2012 14:58:58 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="104325613"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="104326669"
 Received: from mkgumbel-mobl5.jf.intel.com (HELO [10.7.199.151])
 	([10.7.199.151])
-	by orsmga002.jf.intel.com with ESMTP; 30 Jan 2012 14:56:00 -0800
-Message-ID: <4F271FFE.3050701@linux.intel.com>
-Date: Mon, 30 Jan 2012 14:55:58 -0800
+	by orsmga002.jf.intel.com with ESMTP; 30 Jan 2012 14:58:58 -0800
+Message-ID: <4F2720B1.8070001@linux.intel.com>
+Date: Mon, 30 Jan 2012 14:58:57 -0800
 From: Joshua Lock <josh@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-References: <4F270FF5.6040909@gmail.com>
-	<CADkTA4O03RT7eSmeK+8QypxnyZzP=+izogzq6c2ywY=80oZd9Q@mail.gmail.com>
-	<4F27118F.2060302@gmail.com> <4F2715BC.2060509@linux.intel.com>
-	<4F271AD1.7040302@gmail.com> <4F271D1B.1090702@linux.intel.com>
-	<4F271E07.70306@gmail.com>
-In-Reply-To: <4F271E07.70306@gmail.com>
-Subject: Re: So what happened to Edison??
+Subject: Using stable releases from git
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,72 +28,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2012 22:56:00 -0000
+X-List-Received-Date: Mon, 30 Jan 2012 22:58:59 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 30/01/12 14:47, jfabernathy wrote:
-> On 01/30/2012 05:43 PM, Joshua Lock wrote:
->>
->>
->> On 30/01/12 14:33, jfabernathy wrote:
->>> On 01/30/2012 05:12 PM, Joshua Lock wrote:
->>>> On 30/01/12 13:54, jfabernathy wrote:
->>>>> On 01/30/2012 04:51 PM, Bruce Ashfield wrote:
->>>>>> On Mon, Jan 30, 2012 at 4:47 PM, jfabernathy<jfabernathy@gmail.com>
->>>>>> wrote:
->>>>>>> It seems that something happened today. I could not complete a
->>>>>>> build on
->>>>>>> edison branch for meta-cedartrail. I copied it to meta-mycdv, but
->>>>>>> other
->>>>>>> than that same, old same old. I tried the standard unchanged SRCREV
->>>>>>> and
->>>>>>> also tried the latest.
->>>>>> I changed the main yocto 1.2 3.0 kernel repository to 3.0, and pushed
->>>>>> some other kernel
->>>>>> changes. But if you are purely on edison, and aren't using
->>>>>> meta-kernel-dev there
->>>>>> shouldn't have been any fallout from those changes. (I built 3.0
->>>>>> several times today
->>>>>> myself).
->>>>>>
->>>>>> Perhaps Josh knows if anything was pushed to edison ?
->>>>>>
->>>>>> Cheers,
->>>>>>
->>>>>> Bruce
->>>>>
->>>>> I'm retesting on the tarballs again. If successful I'll try git
->>>>> version
->>>>> of edison. I started today with complete new clone of poky and
->>>>> meta-intel.
->>>>
->>>> The Edison branch has been updated today for the upcoming 1.1 release,
->>>> did you pull the updates?
->>>>
->>>> Other than meta-intel are you using any other layers? I will try and
->>>> reproduce here.
->>>>
->>>
->>> I tried some stuff this morning like switching branches, then doing git
->>> pulls, etc. I was getting such bad results, I figured I had screwed up.
->>> I re-cloned both poky and meta-intel earlier today. Maybe around 12 noon
->>> EST.
->>
->> This sounds like meta-intel and the Edison updates aren't getting
->> along. Just to clarify are you using the latest poky edison branch?
->> Which meta-intel branch/tag are you using?
->>
-> What I did after cloning Poky and Meta-intel, I cheched out edison in
-> both poky and meta-intel direction using the same command that they use
-> in Developer Manual Appendix A.
+It's beginning to sound like we've caught some folks off guard by 
+pushing changes to the edison branch of the poky repository in 
+preparation for an upcoming edison point release.
 
-Right. I think we'll need to change the manual, at least to make it 
-clear that the branches are not static.
+The named branches are development branches for the release, stable 
+release development will be done in the named branch and we can't 
+guarantee they will be issue free (though we intend them to be where 
+possible).
 
-As an aside to that I will see if I can figure out what's causing the 
-error you reported.
+If you're looking to use a git checkout which matches the release 
+tarballs you should checkout the tags for the releases. i.e. for Poky 
+Edison-6.0/Yocto 1.1:
 
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/tag/?id=edison-6.0
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tag/?id=edison-6.0
+
+Having suffered through a couple of stable cycles recently I anticipate 
+that in future the release branches will be updated more frequently. 
+This will make it even more important to use a tag, rather than a 
+branch, to track the releases using git.
+
+Cheers,
 Joshua
 -- 
 Joshua Lock
