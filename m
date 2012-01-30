@@ -1,23 +1,30 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D33BE0127D
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 01:33:18 -0800 (PST)
-Received: from [192.168.0.51] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 79FF327497
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 09:13:41 +0000 (GMT)
-Message-ID: <4F2663B6.1030801@communistcode.co.uk>
-Date: Mon, 30 Jan 2012 09:32:38 +0000
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111224 Thunderbird/9.0.1
-MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <CAFZh4h_X5Ub+et3R68K1z3wvYpcZxdAv2mf2tQV6HtiWp7xNqw@mail.gmail.com>
-	<4F201635.7090505@communistcode.co.uk>
-	<CAFZh4h8nrZMK7mQeMBZOv8Y2+VkqsbE1EV0fVM3_G_MTKVyojQ@mail.gmail.com>
-	<CAEsOVNfPSCTTyVDmmOfqF52FXoWajDZtY-n9MNq0mVn+kUw_wg@mail.gmail.com>
-In-Reply-To: <CAEsOVNfPSCTTyVDmmOfqF52FXoWajDZtY-n9MNq0mVn+kUw_wg@mail.gmail.com>
-Subject: Re: Is there a recipe for evtest package?
+Return-Path: <josh@hipro.co.in>
+Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BC6DE0127D
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 03:02:32 -0800 (PST)
+Received: by pbcc11 with SMTP id c11so4544828pbc.35
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 03:02:32 -0800 (PST)
+Received: by 10.68.223.68 with SMTP id qs4mr40583814pbc.112.1327921352486;
+	Mon, 30 Jan 2012 03:02:32 -0800 (PST)
+Received: from [192.168.10.231] ([59.99.251.45])
+	by mx.google.com with ESMTPS id h9sm46304006pbq.14.2012.01.30.03.02.30
+	(version=SSLv3 cipher=OTHER); Mon, 30 Jan 2012 03:02:31 -0800 (PST)
+Message-ID: <1327921347.2519.8.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Mon, 30 Jan 2012 16:32:27 +0530
+In-Reply-To: <4F22DB53.8060400@linux.intel.com>
+References: <4F21FDEF.2010500@linux.intel.com>
+	<4F220105.3080600@linux.intel.com> <4F220477.8030600@linux.intel.com>
+	<20120127080849.GB3779@jama.jama.net>
+	<1327659778.2964.16.camel@babel.joshhome>
+	<20120127103001.GC3779@jama.jama.net>
+	<4F22DB53.8060400@linux.intel.com>
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.2.2-1 
+Mime-Version: 1.0
+Subject: Re: New recipes not installing in core-image-minimal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,39 +36,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2012 09:33:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Mon, 30 Jan 2012 11:02:33 -0000
+X-Groupsio-MsgNum: 4486
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-UAxmsJo4sxxan3HeHI9C"
+
+--=-UAxmsJo4sxxan3HeHI9C
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Darren, Martin,
+
+Thanks for the reply.
+
+On Fri, 2012-01-27 at 09:13 -0800, Darren Hart wrote:
+> > Why not .bbappend base-files and customize fstab there?
+>=20
+> This is how I am modifying /etc/network/interfaces and this is working
+> fine for me. Joshua, I'd second Martin's suggestion.=20
+
+As you suggested I'll use this approach instead of creating a new
+package.
+
+Regards
+Joshua
+--=20
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
+
+--=-UAxmsJo4sxxan3HeHI9C
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 Content-Transfer-Encoding: 7bit
 
-On 28/01/12 02:16, McClintock Matthew-B29882 wrote:
-> On Wed, Jan 25, 2012 at 7:36 AM, Brian Hutchinson<b.hutchman@gmail.com>  wrote:
->> On Wed, Jan 25, 2012 at 9:48 AM, Jack Mitchell<ml@communistcode.co.uk>  wrote:
->>> Hi Brian,
->>>
->>> Your best bet is to adapt the one from meta-oe here:
->>>
->>> http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-support/evtest
->> Hi Jack,
->>
->> I'm still trying to get up-to-speed on how to work with Yocto ....
->> would adding this layer be just like adding say poky extras?
-> Yes, although other issues can present itself. If you start using
-> meta-oe you need to make sure you pick one that is compatible with
-> your oe-core layer.
->
-> -M
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
 
-Just to wrap this up, I was suggesting he take a single recipe from 
-meta-oe, bring it into his own layer and adapt it to fit the Yocto build 
-environment.
+iEYEABECAAYFAk8meMMACgkQWw85XwuSFMKaAQCePeDxvKzSwKNWqBITEQK4Qf4W
+vbwAnjqy2lHIaE7dP+ok7vYCT30xw14A
+=E2A2
+-----END PGP SIGNATURE-----
 
-I would be interested to know, how Yocto and OE are working together. Is 
-the aim of the game to merge features upstream to OE and then on the 
-back of that packages in meta-oe will be easier to transfer into a Yocto 
-layer? I try to keep on top of the OE mailing lists but as I'm sure you 
-know they're much higher volume than this list and are often solely 
-patch based rather than discussion.
-
-Cheers,
-Jack.
-
+--=-UAxmsJo4sxxan3HeHI9C--
