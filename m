@@ -1,27 +1,33 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB7C3E00306;
-	Mon, 30 Jan 2012 08:04:27 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 30 Jan 2012 08:04:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="101158136"
-Received: from unknown (HELO [10.255.14.96]) ([10.255.14.96])
-	by azsmga001.ch.intel.com with ESMTP; 30 Jan 2012 08:04:22 -0800
-Message-ID: <4F26BF86.5060507@linux.intel.com>
-Date: Mon, 30 Jan 2012 08:04:22 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0
+Return-Path: <paul_nathan@selinc.com>
+Received: from duster.selinc.com (duster.selinc.com [74.117.214.140])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9412E00306
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 08:34:06 -0800 (PST)
+Received: from edison.ad.selinc.com (edison.ad.selinc.com [10.100.0.15])
+	by duster.selinc.com (8.14.4/8.14.4) with ESMTP id q0UGY3sT010743
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 08:34:03 -0800
+To: yocto@yoctoproject.org
 MIME-Version: 1.0
-To: Michael Halstead <michael@yoctoproject.org>
-References: <4F21DABC.3000007@linux.intel.com>
-	<CAMKF1soeiB-6BKY8radeAh4GMAq2-r90uPGAR_k_jyThFWNzcA@mail.gmail.com>
-	<4F243CD8.5090301@yoctoproject.org>
-In-Reply-To: <4F243CD8.5090301@yoctoproject.org>
-Cc: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] opkg-utils to move to git.yoctoproject.org
+X-KeepSent: 07B6379D:FDCBA64F-88257995:0059F0C8;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.1 FP1 January 06, 2010
+Message-ID: <OF07B6379D.FDCBA64F-ON88257995.0059F0C8-88257995.005B0477@selinc.com>
+From: paul_nathan@selinc.com
+Date: Mon, 30 Jan 2012 08:34:02 -0800
+X-MIMETrack: S/MIME Sign by Notes Client on Paul Nathan/SEL(Release 8.5.1
+	FP1|January 06, 2010) at 01/30/2012 08:34:09 AM,
+	Serialize by Notes Client on Paul Nathan/SEL(Release 8.5.1 FP1|January
+	06, 2010) at 01/30/2012 08:34:09 AM,
+	Serialize complete at 01/30/2012 08:34:09 AM,
+	S/MIME Sign failed at 01/30/2012 08:34:09 AM: The cryptographic key was
+	not found,
+	Serialize by Router on Edison/SEL(Release 8.5.3|September 15,
+	2011) at 01/30/2012 08:34:06 AM,
+	Serialize complete at 01/30/2012 08:34:06 AM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.6.7361, 1.0.211,
+	0.0.0000
+	definitions=2012-01-30_04:2012-01-30, 2012-01-30,
+	1970-01-01 signatures=0
+Subject: Yocto & long-term reproducibility of rebuilds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,34 +39,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2012 16:04:28 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 30 Jan 2012 16:34:07 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 005B047188257995_="
 
-On 01/28/2012 10:22 AM, Michael Halstead wrote:
-> On 01/28/2012 10:13 AM, Khem Raj wrote:
->> On Thu, Jan 26, 2012 at 2:59 PM, Saul Wold<sgw@linux.intel.com>  wrote:
->>> We will make this change next week barring any major objections.
->> its a good idea infact. will you do svn2git conversion as well. ?
-> I converted from svn to git when taking the copy. If we make this change
-> we will definitely provide the git converted copy.
->
-Michael,
+--=_alternative 005B047188257995_=
+Content-Type: text/plain; charset="US-ASCII"
 
-Please go ahead and complete the conversion and make the GIT repo 
-available under the "Misc" heading on git.yoctoproject.org
+Hi,
 
-Thanks
-	Sau!
+I am investigating Yocto for a build system here. Part of my requirements 
+for a build system is auditable/traceable builds that can be replicated 
+long into the future (our company has a 10 year warranty on our products, 
+and we build products for the multidecade term). Initial examination of 
+Yocto shows that it builds packages from a number of different domains 
+online, which will not meet our requirements - we'll have to store these 
+packages to ensure these packages exist in the correct version long into 
+the future.  I know we can manually edit the SRC_URI setting in .bb files, 
+but the more general problem of package archiving exists. 
 
-> Michael Halstead
-> Sys Admin / Yocto Project
->
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+I am interested in any information or recommendations other users of the 
+Yocto system have on how they have solved this sort of design constraint.
 
+- - -
+Regards,
+Paul Nathan
+
+--=_alternative 005B047188257995_=
+Content-Type: text/html; charset="US-ASCII"
+
+<font size=2 face="sans-serif">Hi,</font>
+<br>
+<br><font size=2 face="sans-serif">I am investigating Yocto for a build
+system here. Part of my requirements for a build system is auditable/traceable
+builds that can be replicated long into the future (our company has a 10
+year warranty on our products, and we build products for the multidecade
+term). Initial examination of Yocto shows that it builds packages from
+a number of different domains online, which will not meet our requirements
+- we'll have to store these packages to ensure these packages exist in
+the correct version long into the future. &nbsp;I know we can manually
+edit the SRC_URI setting in .bb files, but the more general problem of
+package archiving exists. </font>
+<br>
+<br><font size=2 face="sans-serif">I am interested in any information or
+recommendations other users of the Yocto system have on how they have solved
+this sort of design constraint.</font>
+<br>
+<br><font size=2 face="sans-serif">- - -<br>
+Regards,<br>
+Paul Nathan</font>
+
+--=_alternative 005B047188257995_=--
