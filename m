@@ -1,23 +1,23 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C344FE0127D
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 00:29:36 -0800 (PST)
-Received: by pbcc11 with SMTP id c11so4438874pbc.35
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 00:29:36 -0800 (PST)
-Received: by 10.68.228.101 with SMTP id sh5mr40321865pbc.127.1327912175608;
-	Mon, 30 Jan 2012 00:29:35 -0800 (PST)
-Received: from [192.168.10.231] ([59.99.251.45])
-	by mx.google.com with ESMTPS id j5sm45495361pbe.1.2012.01.30.00.29.33
-	(version=SSLv3 cipher=OTHER); Mon, 30 Jan 2012 00:29:35 -0800 (PST)
-Message-ID: <1327912164.2519.5.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Mon, 30 Jan 2012 13:59:24 +0530
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1 
-Mime-Version: 1.0
-Subject: [PATCH] typo mistake in ix86-common file
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D33BE0127D
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 01:33:18 -0800 (PST)
+Received: from [192.168.0.51] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id 79FF327497
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 09:13:41 +0000 (GMT)
+Message-ID: <4F2663B6.1030801@communistcode.co.uk>
+Date: Mon, 30 Jan 2012 09:32:38 +0000
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111224 Thunderbird/9.0.1
+MIME-Version: 1.0
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <CAFZh4h_X5Ub+et3R68K1z3wvYpcZxdAv2mf2tQV6HtiWp7xNqw@mail.gmail.com>
+	<4F201635.7090505@communistcode.co.uk>
+	<CAFZh4h8nrZMK7mQeMBZOv8Y2+VkqsbE1EV0fVM3_G_MTKVyojQ@mail.gmail.com>
+	<CAEsOVNfPSCTTyVDmmOfqF52FXoWajDZtY-n9MNq0mVn+kUw_wg@mail.gmail.com>
+In-Reply-To: <CAEsOVNfPSCTTyVDmmOfqF52FXoWajDZtY-n9MNq0mVn+kUw_wg@mail.gmail.com>
+Subject: Re: Is there a recipe for evtest package?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,51 +29,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2012 08:29:36 -0000
-X-Groupsio-MsgNum: 4484
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-9kFudiUK55Oyixi9Rb4V"
-
---=-9kFudiUK55Oyixi9Rb4V
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-I found a minor typo mistake in ix86-common file which causes the
-guile-native package to fail for unsigned int size. So, I am including a
-patch for it. I am not sure about the patch sending guidelines. Anyways
-here is the patch for it.
-
-diff --git a/meta/site/ix86-common b/meta/site/ix86-common
-index 512c9a0..e2796eb 100644
---- a/meta/site/ix86-common
-+++ b/meta/site/ix86-common
-@@ -1,6 +1,6 @@
- # general
- ac_cv_sizeof_char=3D${ac_cv_sizeof_char=3D1}
--ac_cv_sizeof_unsigned_char=3D${ac_cv_sizeof_unsigned_int=3D1}
-+ac_cv_sizeof_unsigned_char=3D${ac_cv_sizeof_unsigned_char=3D1}
- ac_cv_sizeof_char_p=3D${ac_cv_sizeof_char_p=3D4}
- ac_cv_sizeof_unsigned_char_p=3D${ac_cv_sizeof_unsigned_char_p=3D4}
- ac_cv_sizeof_int=3D${ac_cv_sizeof_int=3D4}
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
-
---=-9kFudiUK55Oyixi9Rb4V
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+X-List-Received-Date: Mon, 30 Jan 2012 09:33:18 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+On 28/01/12 02:16, McClintock Matthew-B29882 wrote:
+> On Wed, Jan 25, 2012 at 7:36 AM, Brian Hutchinson<b.hutchman@gmail.com>  wrote:
+>> On Wed, Jan 25, 2012 at 9:48 AM, Jack Mitchell<ml@communistcode.co.uk>  wrote:
+>>> Hi Brian,
+>>>
+>>> Your best bet is to adapt the one from meta-oe here:
+>>>
+>>> http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-support/evtest
+>> Hi Jack,
+>>
+>> I'm still trying to get up-to-speed on how to work with Yocto ....
+>> would adding this layer be just like adding say poky extras?
+> Yes, although other issues can present itself. If you start using
+> meta-oe you need to make sure you pick one that is compatible with
+> your oe-core layer.
+>
+> -M
 
-iEYEABECAAYFAk8mVOQACgkQWw85XwuSFMJ6fwCgr0CbAuKDUUM8Qi9dk/Mux+Gv
-PvIAoJyyU0VvYlnSdjF9BYxMXsu7T8Pu
-=MLN8
------END PGP SIGNATURE-----
+Just to wrap this up, I was suggesting he take a single recipe from 
+meta-oe, bring it into his own layer and adapt it to fit the Yocto build 
+environment.
 
---=-9kFudiUK55Oyixi9Rb4V--
+I would be interested to know, how Yocto and OE are working together. Is 
+the aim of the game to merge features upstream to OE and then on the 
+back of that packages in meta-oe will be easier to transfer into a Yocto 
+layer? I try to keep on top of the OE mailing lists but as I'm sure you 
+know they're much higher volume than this list and are often solely 
+patch based rather than discussion.
+
+Cheers,
+Jack.
+
