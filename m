@@ -1,23 +1,35 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D214AE0030B
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 23:10:41 -0800 (PST)
-Received: by dakj40 with SMTP id j40so5239484dak.35
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2012 23:10:41 -0800 (PST)
-Received: by 10.68.231.10 with SMTP id tc10mr41980744pbc.91.1327993841077;
-	Mon, 30 Jan 2012 23:10:41 -0800 (PST)
-Received: from [192.168.10.231] ([59.99.251.45])
-	by mx.google.com with ESMTPS id e10sm23139478pbv.0.2012.01.30.23.10.39
-	(version=SSLv3 cipher=OTHER); Mon, 30 Jan 2012 23:10:40 -0800 (PST)
-Message-ID: <1327993829.2696.18.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Tue, 31 Jan 2012 12:40:29 +0530
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1 
-Mime-Version: 1.0
-Subject: forcing a task to run while building an image
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qw0-f41.google.com (mail-qw0-f41.google.com
+	[209.85.216.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95F37E00595
+	for <yocto@yoctoproject.org>; Tue, 31 Jan 2012 07:28:51 -0800 (PST)
+Received: by qadz32 with SMTP id z32so3100271qad.14
+	for <yocto@yoctoproject.org>; Tue, 31 Jan 2012 07:28:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=iBajkrBm8SEs+f6k4ju0b6AGGoYYLQgXxcy7NkK+FKA=;
+	b=ILpyHj3hnfqJFv2z3lEy/TJgcg9FhAIeCRcWWxlIR9VL7ESX9+wrvuNeR1+qU3Yk9Z
+	RJyZtysRy7URmtrX7lqtfK+xjfNmQZ6DVkSbYo/OSVr7+mD464RljOBF9YG6MUZSmlsw
+	XsBhU9dMEnQciKlI4YxhuOWdWTQSx5U/e8sEA=
+Received: by 10.224.217.10 with SMTP id hk10mr28135819qab.15.1328023730961;
+	Tue, 31 Jan 2012 07:28:50 -0800 (PST)
+Received: from [10.0.1.54] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
+	by mx.google.com with ESMTPS id
+	ft9sm41873422qab.20.2012.01.31.07.28.46 (version=SSLv3 cipher=OTHER);
+	Tue, 31 Jan 2012 07:28:47 -0800 (PST)
+Message-ID: <4F2808AE.3060306@gmail.com>
+Date: Tue, 31 Jan 2012 10:28:46 -0500
+From: jfabernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111229 Thunderbird/9.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <4F2720B1.8070001@linux.intel.com> <4F27222D.7010302@gmail.com>
+	<4F272474.80006@linux.intel.com> <4F2728A3.4070709@gmail.com>
+	<4F27704B.5020002@linux.intel.com>
+In-Reply-To: <4F27704B.5020002@linux.intel.com>
+Subject: Re: Using stable releases from git
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,52 +41,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Jan 2012 07:10:41 -0000
-X-Groupsio-MsgNum: 4515
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-ZSzL3xR2UHZxyKZkLk5y"
-
---=-ZSzL3xR2UHZxyKZkLk5y
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello all,
-	How do I force a particular task to run every time while building an
-image? At present in my custom image recipe I've added the following
-lines
-       =20
-        SOME_VARIABLE =3D "Blah"
-        do_bootimg[depends] +=3D "base-files:do_install"
-       =20
-But the contents of ${SOME_VARIABLE} is not available in the
-'base-files' recipe. Even
-
-        export SOME_VARIABLE =3D "Blah"
-       =20
-doesn't solve the problem. So, I would like to know whether the approach
-used here to force a task is correct. Moreover how can I make the
-variable defined here to be available in the forced task.
-
-Regards
-Joshua
-
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
-
---=-ZSzL3xR2UHZxyKZkLk5y
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+X-List-Received-Date: Tue, 31 Jan 2012 15:28:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+On 01/30/2012 11:38 PM, Joshua Lock wrote:
+> On 30/01/12 15:32, jfabernathy wrote:
+>> On 01/30/2012 06:15 PM, Joshua Lock wrote:
+>>> On 30/01/12 15:05, jfabernathy wrote:
+>>>> On 01/30/2012 05:58 PM, Joshua Lock wrote:
+>>>>> It's beginning to sound like we've caught some folks off guard by
+>>>>> pushing changes to the edison branch of the poky repository in
+>>>>> preparation for an upcoming edison point release.
+>>>>>
+>>>>> The named branches are development branches for the release, stable
+>>>>> release development will be done in the named branch and we can't
+>>>>> guarantee they will be issue free (though we intend them to be where
+>>>>> possible).
+>>>>>
+>>>>> If you're looking to use a git checkout which matches the release
+>>>>> tarballs you should checkout the tags for the releases. i.e. for Poky
+>>>>> Edison-6.0/Yocto 1.1:
+>>>>>
+>>>>> http://git.yoctoproject.org/cgit/cgit.cgi/poky/tag/?id=edison-6.0
+>>>>> http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tag/?id=edison-6.0 
+>>>>>
+>>>>>
+>>>> So instead of doing:
+>>>>
+>>>> git checkout -b edison origin/edison
+>>>>
+>>>> what should I do if I want to stay in sync with the tarball. This may
+>>>> just be a doc problem.
+>>>
+>>> I'd do:
+>>>
+>>> git fetch --tags
+>>> git checkout edison-6.0
+>>>
+>>> Then when a new tarball comes out, you'd repeat with the new tag name.
+>>>
+>>
+>> We I just tried that and it crashed a lot quicker. I'll just stick to
+>> the tarballs until this is all sorted out.
+>
+> Are you using an appropriate tag (or branch) of meta-intel? The master 
+> branch of meta-intel with the bernard tag of poky will fail to parse 
+> because some of the recipes being appended to in meta-intel have 
+> changed names.
+>
+Can you explain the branch vs. tag as Yocto uses it?  most of the help 
+on git checkout refers to branch, where we are talking using a tag 
+name.  In Yocto what is the difference?
+> Cheers,
+> Joshua
 
-iEYEABECAAYFAk8nk+UACgkQWw85XwuSFMLqEACeMR9LpAOHKpMfttpJe+hUbfZ7
-edoAn2NYBKpH1YRIRzn16Qz+k9Sd3GHN
-=YPkl
------END PGP SIGNATURE-----
 
---=-ZSzL3xR2UHZxyKZkLk5y--
