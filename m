@@ -1,32 +1,21 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A1DCE004D2
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 09:57:41 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 01 Feb 2012 09:57:40 -0800
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6E48E004D2
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 10:46:01 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 01 Feb 2012 10:46:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
-	d="scan'208,217";a="112916901"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga001.fm.intel.com with ESMTP; 01 Feb 2012 09:57:40 -0800
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 1 Feb 2012 09:57:39 -0800
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.175]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.146]) with mapi id
-	14.01.0355.002; Wed, 1 Feb 2012 09:57:33 -0800
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Gaku music player
-Thread-Index: AczhCvuf97F0gVucS4aRnf5UhWJQpQ==
-Date: Wed, 1 Feb 2012 17:57:38 +0000
-Message-ID: <63ECFF2A2302B44093D7CE9E9962C49002A109@ORSMSX103.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
-MIME-Version: 1.0
-Subject: Gaku music player
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="102067697"
+Received: from unknown (HELO localhost) ([10.255.14.201])
+	by azsmga001.ch.intel.com with ESMTP; 01 Feb 2012 10:46:00 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>,
+	Yocto Project <yocto@yoctoproject.org>
+Date: Wed,  1 Feb 2012 10:45:22 -0800
+Message-Id: <cover.1328121321.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.6.5
+Cc: Darren Hart <dvhart@linux.intel.com>
+Subject: [PATCH 0/2][linux-yocto-3.0] sys940x BSP and boot-live consolidation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,90 +27,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2012 17:57:41 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_63ECFF2A2302B44093D7CE9E9962C49002A109ORSMSX103amrcorpi_"
+X-List-Received-Date: Wed, 01 Feb 2012 18:46:02 -0000
 
---_000_63ECFF2A2302B44093D7CE9E9962C49002A109ORSMSX103amrcorpi_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+The following changes since commit 59314a3523e360796419d76d78c6f7d8c5ef2593:
 
-Hello,
+  meta/beagleboard: Using CONFIG_PANEL_GENERIC_DPI=y (2012-01-30 00:50:09 -0500)
 
-What type of music files is the Gaku music player on Sato desk top supposed=
- to play ?
-For me it did not work with mp3 files..however it is playing the soundtrack=
- from a .ogg video file
+are available in the git repository at:
+  git://git.infradead.org/users/dvhart/linux-yocto-3.0.git meta-sys940x
+  http://git.infradead.org/users/dvhart/linux-yocto-3.0.git/shortlog/refs/heads/meta-sys940x
+
+Darren Hart (2):
+  meta: sys940x BSP meta data
+  Remove boot-live cfg duplication from BSPs
+
+ .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   10 ----
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |   10 ----
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |   10 ----
+ meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg  |   10 ----
+ meta/cfg/kernel-cache/bsp/fri2/fri2.cfg            |   10 ----
+ .../bsp/sys940x/sys940x-preempt-rt.scc             |    7 +++
+ .../kernel-cache/bsp/sys940x/sys940x-standard.scc  |    6 +++
+ meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg      |   44 ++++++++++++++++++++
+ meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc      |   17 ++++++++
+ meta/cfg/kernel-cache/cfg/boot-live.cfg            |    3 +
+ 10 files changed, 77 insertions(+), 50 deletions(-)
+ create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc
+ create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc
+ create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
+ create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc
+
+-- 
+1.7.6.5
 
 
-Thanks
-Rahul
-
---_000_63ECFF2A2302B44093D7CE9E9962C49002A109ORSMSX103amrcorpi_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">What type of music files is the Gaku music player on=
- Sato desk top supposed to play ?
-<o:p></o:p></p>
-<p class=3D"MsoNormal">For me it did not work with mp3 files..however it is=
- playing the soundtrack from a .ogg video file<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks<o:p></o:p></p>
-<p class=3D"MsoNormal">Rahul<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_63ECFF2A2302B44093D7CE9E9962C49002A109ORSMSX103amrcorpi_--
