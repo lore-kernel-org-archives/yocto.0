@@ -1,22 +1,24 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82394E00594
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBDD9E00594
 	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 10:46:03 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 01 Feb 2012 10:46:03 -0800
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 01 Feb 2012 10:46:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="119234215"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="102067735"
 Received: from unknown (HELO localhost) ([10.255.14.201])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Feb 2012 10:46:02 -0800
+	by azsmga001.ch.intel.com with ESMTP; 01 Feb 2012 10:46:03 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 To: Bruce Ashfield <bruce.ashfield@windriver.com>,
 	Yocto Project <yocto@yoctoproject.org>
-Date: Wed,  1 Feb 2012 10:45:30 -0800
-Message-Id: <8b67c8fb5aadfcb82de8035972efed50c67c0382.1328121321.git.dvhart@linux.intel.com>
+Date: Wed,  1 Feb 2012 10:45:31 -0800
+Message-Id: <8ea769ff408f8228617b2f9b7a332f04eea72b67.1328121321.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.6.5
+In-Reply-To: <8b67c8fb5aadfcb82de8035972efed50c67c0382.1328121321.git.dvhart@linux.intel.com>
+References: <8b67c8fb5aadfcb82de8035972efed50c67c0382.1328121321.git.dvhart@linux.intel.com>
 In-Reply-To: <cover.1328121321.git.dvhart@linux.intel.com>
 References: <cover.1328121321.git.dvhart@linux.intel.com>
-Subject: [PATCH 1/2] meta: sys940x BSP meta data
+Subject: [PATCH 2/2] Remove boot-live cfg duplication from BSPs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,135 +30,140 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2012 18:46:03 -0000
+X-List-Received-Date: Wed, 01 Feb 2012 18:46:04 -0000
 
-The Inforce SYS940x-ECX Developer-Ready Reference Platform features:
-o Intel Atom E6xx (0.6-1.6 GHz)
-o Up to 1GB on-board DDR2
-o Intel Platform Controller Hub EG20T
-o VGA,LVDS
-o HD Audio
-o SD Card
-o Dual SATA
-o Mini-PCIe
-
-http://www.inforcecomputing.com/SYS940X_ECX.html
+Several BSPs duplicated the boot-live fragment in their BSP
+specific config. Remove the duplication and add CONFIG_RD_GZIP
+and CONFIG_BLK_DEV_SR to the boot-live fragment.
 
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+CC: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../bsp/sys940x/sys940x-preempt-rt.scc             |    7 +++
- .../kernel-cache/bsp/sys940x/sys940x-standard.scc  |    6 ++
- meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg      |   49 ++++++++++++++++++++
- meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc      |   17 +++++++
- 4 files changed, 79 insertions(+), 0 deletions(-)
- create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc
- create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc
- create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
- create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc
+ .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   10 ----------
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |   10 ----------
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |   10 ----------
+ meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg  |   10 ----------
+ meta/cfg/kernel-cache/bsp/fri2/fri2.cfg            |   10 ----------
+ meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg      |    5 -----
+ meta/cfg/kernel-cache/cfg/boot-live.cfg            |    3 +++
+ 7 files changed, 3 insertions(+), 55 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc
-new file mode 100644
-index 0000000..3b8f0aa
---- /dev/null
-+++ b/meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc
-@@ -0,0 +1,7 @@
-+define KMACHINE sys940x
-+define KTYPE preempt-rt
-+define KARCH i386
-+
-+# no new branch required, re-use the ktypes/preempt-rt branch
-+include ktypes/preempt-rt
-+include sys940x.scc
-diff --git a/meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc b/meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc
-new file mode 100644
-index 0000000..1f0edec
---- /dev/null
-+++ b/meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc
-@@ -0,0 +1,6 @@
-+define KMACHINE sys940x
-+define KTYPE standard
-+define KARCH i386
-+
-+include ktypes/standard
-+include sys940x.scc
+diff --git a/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
+index 1cc14b1..32cd9e5 100755
+--- a/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
++++ b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
+@@ -46,13 +46,3 @@ CONFIG_MODULES=y
+ CONFIG_SHMEM=y
+ CONFIG_TMPFS=y
+ CONFIG_PACKET=y
+-
+-# Needed for booting (and using) USB memory sticks
+-CONFIG_BLK_DEV_LOOP=y
+-CONFIG_NLS_CODEPAGE_437=y
+-CONFIG_NLS_ISO8859_1=y
+-
+-CONFIG_RD_GZIP=y
+-
+-# Needed for booting (and using) CD images
+-CONFIG_BLK_DEV_SR=y
+diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
+index e93c0b8..b101419 100644
+--- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
++++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
+@@ -42,13 +42,3 @@ CONFIG_MODULES=y
+ CONFIG_SHMEM=y
+ CONFIG_TMPFS=y
+ CONFIG_PACKET=y
+-
+-# Needed for booting (and using) USB memory sticks
+-CONFIG_BLK_DEV_LOOP=y
+-CONFIG_NLS_CODEPAGE_437=y
+-CONFIG_NLS_ISO8859_1=y
+-
+-CONFIG_RD_GZIP=y
+-
+-# Needed for booting (and using) CD images
+-CONFIG_BLK_DEV_SR=y
+diff --git a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
+index b9704c5..b1e72bd 100644
+--- a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
++++ b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
+@@ -40,13 +40,3 @@ CONFIG_MODULES=y
+ CONFIG_SHMEM=y
+ CONFIG_TMPFS=y
+ CONFIG_PACKET=y
+-
+-# Needed for booting (and using) USB memory sticks
+-CONFIG_BLK_DEV_LOOP=y
+-CONFIG_NLS_CODEPAGE_437=y
+-CONFIG_NLS_ISO8859_1=y
+-
+-CONFIG_RD_GZIP=y
+-
+-# Needed for booting (and using) CD images
+-CONFIG_BLK_DEV_SR=y
+diff --git a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg
+index e93c0b8..b101419 100644
+--- a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg
++++ b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg
+@@ -42,13 +42,3 @@ CONFIG_MODULES=y
+ CONFIG_SHMEM=y
+ CONFIG_TMPFS=y
+ CONFIG_PACKET=y
+-
+-# Needed for booting (and using) USB memory sticks
+-CONFIG_BLK_DEV_LOOP=y
+-CONFIG_NLS_CODEPAGE_437=y
+-CONFIG_NLS_ISO8859_1=y
+-
+-CONFIG_RD_GZIP=y
+-
+-# Needed for booting (and using) CD images
+-CONFIG_BLK_DEV_SR=y
+diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2.cfg b/meta/cfg/kernel-cache/bsp/fri2/fri2.cfg
+index e93c0b8..b101419 100644
+--- a/meta/cfg/kernel-cache/bsp/fri2/fri2.cfg
++++ b/meta/cfg/kernel-cache/bsp/fri2/fri2.cfg
+@@ -42,13 +42,3 @@ CONFIG_MODULES=y
+ CONFIG_SHMEM=y
+ CONFIG_TMPFS=y
+ CONFIG_PACKET=y
+-
+-# Needed for booting (and using) USB memory sticks
+-CONFIG_BLK_DEV_LOOP=y
+-CONFIG_NLS_CODEPAGE_437=y
+-CONFIG_NLS_ISO8859_1=y
+-
+-CONFIG_RD_GZIP=y
+-
+-# Needed for booting (and using) CD images
+-CONFIG_BLK_DEV_SR=y
 diff --git a/meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg b/meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
-new file mode 100644
-index 0000000..3d45fe8
---- /dev/null
+index 3d45fe8..b101419 100644
+--- a/meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
 +++ b/meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
-@@ -0,0 +1,49 @@
-+CONFIG_X86_32=y
-+CONFIG_MATOM=y
-+CONFIG_PRINTK=y
-+
-+# Basic hardware support for the box - network, USB, PCI, sound
-+CONFIG_NETDEVICES=y
-+CONFIG_ATA=y
-+CONFIG_ATA_GENERIC=y
-+CONFIG_ATA_SFF=y
-+CONFIG_PCI=y
-+CONFIG_MMC=y
-+CONFIG_MMC_SDHCI=y
-+CONFIG_USB_SUPPORT=y
-+CONFIG_USB=y
-+CONFIG_USB_ARCH_HAS_EHCI=y
-+CONFIG_R8169=y
-+CONFIG_PATA_SCH=y
-+CONFIG_MMC_SDHCI_PCI=y
-+CONFIG_USB_EHCI_HCD=y
-+CONFIG_PCIEPORTBUS=y
-+CONFIG_NET=y
-+CONFIG_USB_UHCI_HCD=y
-+CONFIG_USB_OHCI_HCD=y
-+CONFIG_BLK_DEV_SD=y
-+CONFIG_CHR_DEV_SG=y
-+CONFIG_SOUND=y
-+CONFIG_SND=y
-+CONFIG_SND_HDA_INTEL=y
-+CONFIG_SATA_AHCI=y
-+CONFIG_AGP=y
-+CONFIG_PM=y
-+CONFIG_ACPI=y
-+CONFIG_BACKLIGHT_LCD_SUPPORT=y
-+CONFIG_BACKLIGHT_CLASS_DEVICE=y
-+CONFIG_INPUT=y
-+
-+# Make sure these are on, otherwise the bootup won't be fun
-+CONFIG_EXT3_FS=y
-+CONFIG_UNIX=y
-+CONFIG_INET=y
-+CONFIG_MODULES=y
-+CONFIG_SHMEM=y
-+CONFIG_TMPFS=y
-+CONFIG_PACKET=y
-+
+@@ -42,8 +42,3 @@ CONFIG_MODULES=y
+ CONFIG_SHMEM=y
+ CONFIG_TMPFS=y
+ CONFIG_PACKET=y
+-
+-CONFIG_RD_GZIP=y
+-
+-# Needed for booting (and using) CD images
+-CONFIG_BLK_DEV_SR=y
+diff --git a/meta/cfg/kernel-cache/cfg/boot-live.cfg b/meta/cfg/kernel-cache/cfg/boot-live.cfg
+index 8ff7674..a102052 100644
+--- a/meta/cfg/kernel-cache/cfg/boot-live.cfg
++++ b/meta/cfg/kernel-cache/cfg/boot-live.cfg
+@@ -2,5 +2,8 @@ CONFIG_BLK_DEV_LOOP=y
+ CONFIG_NLS_CODEPAGE_437=y
+ CONFIG_NLS_ISO8859_1=y
+ CONFIG_VFAT_FS=y
 +CONFIG_RD_GZIP=y
-+
 +# Needed for booting (and using) CD images
+ CONFIG_BLK_DEV_IDECD=y
+ CONFIG_ISO9660_FS=y
 +CONFIG_BLK_DEV_SR=y
-diff --git a/meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc b/meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc
-new file mode 100644
-index 0000000..1eaebf2
---- /dev/null
-+++ b/meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc
-@@ -0,0 +1,17 @@
-+kconf hardware sys940x.cfg
-+
-+git merge yocto/emgd
-+
-+include features/eg20t/eg20t.scc
-+include features/drm-emgd/drm-emgd.scc
-+include features/dmaengine/dmaengine.scc
-+include features/serial/8250.scc
-+include features/framebuffer/vesafb.scc
-+include cfg/usb-mass-storage.scc
-+include cfg/boot-live.scc
-+include features/power/intel.scc
-+
-+include features/logbuf/size-normal.scc
-+
-+include features/latencytop/latencytop.scc
-+include features/profiling/profiling.scc
 -- 
 1.7.6.5
 
