@@ -1,35 +1,30 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97652E00594
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 08:14:45 -0800 (PST)
-Received: by pbcc11 with SMTP id c11so1518581pbc.35
-	for <yocto@yoctoproject.org>; Wed, 01 Feb 2012 08:14:45 -0800 (PST)
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86B93E00594
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 08:28:24 -0800 (PST)
+Received: by qcsd1 with SMTP id d1so934851qcs.35
+	for <yocto@yoctoproject.org>; Wed, 01 Feb 2012 08:28:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=date:from:to:cc:message-id:in-reply-to:references:subject:x-mailer
-	:mime-version:content-type;
-	bh=ILoCiDTIIekPIVRL4b+ku6cGtubfFIXbmVlM1KGYEq4=;
-	b=CcLQ5CdvP6Hqq6sV/s8yDUOpkkGO9kiOt+xaiQ/0IsBAoG9gT5O5Mdm3TUeaf0xemT
-	FmQpkCd1BQvPyKrUtwoFDAppyscDQFMOmaFO2uPG7+yzikBHDpj0RZAwPg+fTVFRTyf8
-	c1kBdd4Dxi0hwGLocRThGKbyLsi4Gjjo5/rJo=
-Received: by 10.68.231.10 with SMTP id tc10mr54795605pbc.91.1328112884982;
-	Wed, 01 Feb 2012 08:14:44 -0800 (PST)
-Received: from frey-2.local (ip24-251-167-38.ph.ph.cox.net. [24.251.167.38])
-	by mx.google.com with ESMTPS id x6sm35769878pbf.7.2012.02.01.08.14.42
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 01 Feb 2012 08:14:43 -0800 (PST)
-Date: Wed, 1 Feb 2012 09:14:40 -0700
-From: Christopher Larson <kergoth@gmail.com>
-To: Joshua Immanuel <josh@hipro.co.in>
-Message-ID: <066604D600794FD2A2BCE463476DF722@gmail.com>
-In-Reply-To: <1328111395.2628.32.camel@babel.joshhome>
-References: <1327993829.2696.18.camel@babel.joshhome>
-	<1328078233.2628.4.camel@babel.joshhome>
-	<1328111395.2628.32.camel@babel.joshhome>
-X-Mailer: sparrow 1.5 (build 1043.1)
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type; bh=1JIfrKIL0oVHhMWmmNpFWV3jw1UKXLwOm8I85bhd7ME=;
+	b=C/LptVnz4VqkqFf6TRGgy/SKPSth+YnzUn3UbO7Q7I0EzmEgIRaDpZR7JvTMKdUnjk
+	wC/nqc1DH00ZLWvTzLHCZ6poI294pfUE5Xo6+WVu7bPRINCoZD9On3dXfGgk4JBjlEda
+	6bNoH8ww6ELtfnzQC/VvmZ72M/bg7bDlde5K4=
+Received: by 10.229.115.21 with SMTP id g21mr10294924qcq.56.1328113702975;
+	Wed, 01 Feb 2012 08:28:22 -0800 (PST)
+Received: from [10.0.1.54] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
+	by mx.google.com with ESMTPS id
+	eb4sm48537456qab.4.2012.02.01.08.28.21 (version=SSLv3 cipher=OTHER);
+	Wed, 01 Feb 2012 08:28:22 -0800 (PST)
+Message-ID: <4F296826.4030909@gmail.com>
+Date: Wed, 01 Feb 2012 11:28:22 -0500
+From: jfabernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111229 Thunderbird/9.0
 MIME-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: creating global variables in a recipes
+To: yocto@yoctoproject.org
+Subject: 1.2_M2-Final build failures
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,129 +36,136 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2012 16:14:45 -0000
-Content-Type: multipart/alternative; boundary="4f2964f0_74b0dc51_a5a"
+X-List-Received-Date: Wed, 01 Feb 2012 16:28:24 -0000
+Content-Type: multipart/alternative;
+	boundary="------------000802050902040901000600"
 
---4f2964f0_74b0dc51_a5a
-Content-Type: text/plain; charset="utf-8"
+--------------000802050902040901000600
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
-Nope. Recipes cannot modify the metadata of other recipes or the configuration metadata, ever. In particular cases, we emit content to tmpdir and read it back in elsewhere, but in general you should just not do what you're trying to do, and find a better solution.
+Using the tarballs for Poky and meta-intel for 1.2_M2-Final, I was 
+getting a lot of build failures below is what worked and what didn't. 
+Not sure if this is a bug or if I'm missing something. I extracted the 
+meta-intel tarball for 1.2_M2-Final in the poky directory created by 
+extracting the poky tarball for 1.2_M2.Final.
 
--- 
-Christopher Larson
+ 1. building qemux86 core-image-minimal works
+ 2. building qemux86 core-image-sato works
+ 3. building n450 core-image-minimal fails with error: ERROR: Unable to
+    parse /home/jim/poky/meta/recipes-core/tasks/task-base.bb:00:20
+    Traceback (most recent call last):
+       File "/home/jim/poky/bitbake/lib/bb/parse/ast.py", line 379, in
+    multi_finalize(fn='/home/jim/poky/meta/recipes-core/tasks/task-base.bb
+    <http://task-base.bb>', d=<bb.data_smart.DataSmart object at
+    0x4a801d0>):
+              try:
+     >        finalize(fn, d)
+              except bb.parse.SkipPackage as e:
+       File "/home/jim/poky/bitbake/lib/bb/parse/ast.py", line 323, in
+    finalize(fn='/home/jim/poky/meta/recipes-core/tasks/task-base.bb
+    <http://task-base.bb>', d=<bb.data_smart.DataSmart object at
+    0x4a801d0>, variant=None):
+                  code.append("%s(d)" % funcname)
+     >    bb.utils.simple_exec("\n".join(code), {"d": d})
+              bb.data.update_data(d)
+       File "/home/jim/poky/bitbake/lib/bb/utils.py", line 387, in
+    simple_exec(code='__anon_119__home_jim_poky_meta_classes_staging_bbclass(d)\n__anon_485__home_jim_poky_meta_classes_base_bbclass(d)\n__anon_189__home_jim_poky_meta_classes_package_bbclass(d)\n__anon_1034__home_jim_poky_meta_classes_package_rpm_bbclass(d)\n__anon_20__home_jim_poky_meta_classes_debian_bbclass(d)\n__anon_55__home_jim_poky_meta_classes_sstate_bbclass(d)\n__anon_26__home_jim_poky_meta_classes_task_bbclass(d)\n__anon_140__home_jim_poky_meta_recipes_core_tasks_task_base_bb(d)',
+    context={'d': <bb.data_smart.DataSmart object at 0x4a801d0>}):
+          def simple_exec(code, context):
+     >    exec(code, _context, context)
 
+       File "<string>", line 8, in <module>
+       File
+    "__anon_140__home_jim_poky_meta_recipes_core_tasks_task_base_bb",
+    line 8, in
+    __anon_140__home_jim_poky_meta_recipes_core_tasks_task_base_bb(d=<bb.data_smart.DataSmart
+    object at 0x4a801d0>)
+    AttributeError: 'NoneType' object has no attribute 'split'
 
-On Wednesday, February 1, 2012 at 8:49 AM, Joshua Immanuel wrote:
+    ERROR: Command execution failed: Exited with 1
+    Summary: There were 1 WARNING messages shown.
 
-> Hello all,
-> 
-> On Wed, 2012-02-01 at 12:07 +0530, Joshua Immanuel wrote:
-> > > At present in my custom image recipe I've added the following
-> > > lines
-> > > 
-> > > SOME_VARIABLE = "Blah"
-> > > do_bootimg[depends] += "base-files:do_install"
-> > > 
-> > > But the contents of ${SOME_VARIABLE} is not available in the
-> > > 'base-files' recipe. Even
-> > > 
-> > > export SOME_VARIABLE = "Blah"
-> > > 
-> > > doesn't solve the problem. 
-> > > 
-> > 
-> > 
-> > $ bitbake custom-image -c devshell
-> > 
-> > In the above devshell I can find the contents of ${SOME_VARIABLE}
-> > available but the content of it is empty in 'base-files' recipe. 
-> > 
-> 
-> 
-> In other words, I need to define global variables in a package which can
-> be used across multiple packages. At present the only option I have is
-> to export the variable in build/conf/local.conf. IMHO, this doesn't feel
-> like a proper solution (as the variable is my layer specific). Moreover,
-> I can't change the value of it in one package to be used in other
-> package(s).
-> 
-> Is there any other way to do this? Please guide me.
-> 
-> Regards
-> Joshua
-> -- 
-> Joshua Immanuel
-> HiPro IT Solutions Private Limited
-> http://hipro.co.in
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org (mailto:yocto@yoctoproject.org)
-> https://lists.yoctoproject.org/listinfo/yocto
-> 
-> 
+    Summary: There were 1 ERROR messages shown, returning a non-zero
+    exit code.
+
+ 4. building cedartrail core-image-minimal fails with error: ERROR:
+    Unable to parse conf/bitbake.conf: Could not include required file
+    conf/machine/include/ia32-base.inc
+
+Jim A
 
 
+--------------000802050902040901000600
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
---4f2964f0_74b0dc51_a5a
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+<html>
+  <head>
 
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Using the tarballs for Poky and meta-intel for 1.2_M2-Final, I was
+    getting a lot of build failures below is what worked and what
+    didn't. Not sure if this is a bug or if I'm missing something. I
+    extracted the meta-intel tarball for 1.2_M2-Final in the poky
+    directory created by extracting the poky tarball for 1.2_M2.Final.<br>
+    <br>
+    <ol>
+      <li>building qemux86 core-image-minimal works</li>
+      <li>building qemux86 core-image-sato works<br>
+      </li>
+      <li>building n450 core-image-minimal fails with error: ERROR:
+        Unable to parse
+        /home/jim/poky/meta/recipes-core/tasks/task-base.bb:00:20<br>
+        Traceback (most recent call last):<br>
+        &nbsp; File "/home/jim/poky/bitbake/lib/bb/parse/ast.py", line 379,
+        in multi_finalize(fn='/home/jim/poky/meta/recipes-core/tasks/<a
+          href="http://task-base.bb">task-base.bb</a>',
+        d=&lt;bb.data_smart.DataSmart object at 0x4a801d0&gt;):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try:<br>
+        &nbsp;&nbsp;&nbsp; &gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; finalize(fn, d)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; except bb.parse.SkipPackage as e:<br>
+        &nbsp; File "/home/jim/poky/bitbake/lib/bb/parse/ast.py", line 323,
+        in finalize(fn='/home/jim/poky/meta/recipes-core/tasks/<a
+          href="http://task-base.bb">task-base.bb</a>',
+        d=&lt;bb.data_smart.DataSmart object at 0x4a801d0&gt;,
+        variant=None):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; code.append("%s(d)" % funcname)<br>
+        &nbsp;&nbsp;&nbsp; &gt;&nbsp;&nbsp;&nbsp; bb.utils.simple_exec("\n".join(code), {"d": d})<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bb.data.update_data(d)<br>
+        &nbsp; File "/home/jim/poky/bitbake/lib/bb/utils.py", line 387, in
+        simple_exec(code='__anon_119__home_jim_poky_meta_classes_staging_bbclass(d)\n__anon_485__home_jim_poky_meta_classes_base_bbclass(d)\n__anon_189__home_jim_poky_meta_classes_package_bbclass(d)\n__anon_1034__home_jim_poky_meta_classes_package_rpm_bbclass(d)\n__anon_20__home_jim_poky_meta_classes_debian_bbclass(d)\n__anon_55__home_jim_poky_meta_classes_sstate_bbclass(d)\n__anon_26__home_jim_poky_meta_classes_task_bbclass(d)\n__anon_140__home_jim_poky_meta_recipes_core_tasks_task_base_bb(d)',
 
-                <div style=3D=22font-family: Helvetica; font-size: 13px; =
-=22>Nope. Recipes cannot modify the metadata of other recipes or the conf=
-iguration metadata, ever. In particular cases, we emit content to tmpdir =
-and read it back in elsewhere, but in general you should just not do what=
- you're trying to do, and find a better solution.<br></div>
-                <div><div><br></div><div>--&nbsp;</div><div>Christopher L=
-arson</div><div><br></div></div>
-                =20
-                <p style=3D=22color: =23A0A0A8;=22>On Wednesday, =46ebrua=
-ry 1, 2012 at 8:49 AM, Joshua Immanuel wrote:</p>
-                <blockquote type=3D=22cite=22 style=3D=22border-left-styl=
-e:solid;border-width:1px;margin-left:0px;padding-left:10px;=22>
-                    <span><div><div><div>Hello all,</div><div><br></div><=
-div>On Wed, 2012-02-01 at 12:07 +0530, Joshua Immanuel wrote:</div><block=
-quote type=3D=22cite=22><div><blockquote type=3D=22cite=22><div><div>At p=
-resent in my custom image recipe I've added the following</div><div>lines=
-</div><div>        </div><div>        SOME=5FVARIABLE =3D =22Blah=22</div=
-><div>        do=5Fbootimg=5Bdepends=5D +=3D =22base-files:do=5Finstall=22=
-</div><div>        </div><div>But the contents of =24=7BSOME=5FVARIABLE=7D=
- is not available in the</div><div>'base-files' recipe. Even</div><div><b=
-r></div><div>        export SOME=5FVARIABLE =3D =22Blah=22</div><div>    =
-    </div><div>doesn't solve the problem. </div></div></blockquote><div><=
-br></div><div>        =24 bitbake custom-image -c devshell</div><div><br>=
-</div><div>In the above devshell I can find the contents of =24=7BSOME=5F=
-VARIABLE=7D</div><div>available but the content of it is empty in 'base-f=
-iles' recipe. </div></div></blockquote><div><br></div><div>In other words=
-, I need to define global variables in a package which can</div><div>be u=
-sed across multiple packages. At present the only option I have is</div><=
-div>to export the variable in build/conf/local.conf. IMHO, this doesn't f=
-eel</div><div>like a proper solution (as the variable is my layer specifi=
-c). Moreover,</div><div>I can't change the value of it in one package to =
-be used in other</div><div>package(s).</div><div><br></div><div>Is there =
-any other way to do this=3F Please guide me.</div><div><br></div><div>Reg=
-ards</div><div>Joshua</div><div>-- </div><div>Joshua Immanuel</div><div>H=
-iPro IT Solutions Private Limited</div><div><a href=3D=22http://hipro.co.=
-in=22>http://hipro.co.in</a></div></div><div><div>=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F</div><div>yocto mailing list</=
-div><div><a href=3D=22mailto:yocto=40yoctoproject.org=22>yocto=40yoctopro=
-ject.org</a></div><div><a href=3D=22https://lists.yoctoproject.org/listin=
-fo/yocto=22>https://lists.yoctoproject.org/listinfo/yocto</a></div></div>=
-</div></span>
-                =20
-                =20
-                =20
-                =20
-                </blockquote>
-                =20
-                <div>
-                    <br>
-                </div>
-            
+        context={'d': &lt;bb.data_smart.DataSmart object at
+        0x4a801d0&gt;}):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; def simple_exec(code, context):<br>
+        &nbsp;&nbsp;&nbsp; &gt;&nbsp;&nbsp;&nbsp; exec(code, _context, context)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; <br>
+        &nbsp; File "&lt;string&gt;", line 8, in &lt;module&gt;<br>
+        &nbsp; File
+        "__anon_140__home_jim_poky_meta_recipes_core_tasks_task_base_bb",
+        line 8, in
+        __anon_140__home_jim_poky_meta_recipes_core_tasks_task_base_bb(d=&lt;bb.data_smart.DataSmart
 
---4f2964f0_74b0dc51_a5a--
+        object at 0x4a801d0&gt;)<br>
+        AttributeError: 'NoneType' object has no attribute 'split'<br>
+        <br>
+        ERROR: Command execution failed: Exited with 1<br>
+        Summary: There were 1 WARNING messages shown.<br>
+        <br>
+        Summary: There were 1 ERROR messages shown, returning a non-zero
+        exit code.<br>
+        <br>
+      </li>
+      <li>building cedartrail core-image-minimal fails with error:
+        ERROR: Unable to parse conf/bitbake.conf: Could not include
+        required file conf/machine/include/ia32-base.inc</li>
+    </ol>
+    <p>Jim A<br>
+    </p>
+  </body>
+</html>
+
+--------------000802050902040901000600--
