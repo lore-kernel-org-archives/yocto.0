@@ -1,35 +1,25 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3606CE004D2
-	for <yocto@yoctoproject.org>; Tue, 31 Jan 2012 19:16:00 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 31 Jan 2012 19:15:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
-	d="scan'208,217";a="112660706"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga001.fm.intel.com with ESMTP; 31 Jan 2012 19:15:57 -0800
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 31 Jan 2012 19:15:56 -0800
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.31]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.146]) with mapi id
-	14.01.0355.002; Tue, 31 Jan 2012 19:15:51 -0800
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: "Wang, Shane" <shane.wang@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: Hob 1.2 design
-Thread-Index: AQHM1ghN2ta+vDnY0kiXcbK0irRQ85YS108ggAGuLCCAAHlrgIAGmYWAgAb8MNCAAqn0gIACGUhwgAAajqA=
-Date: Wed, 1 Feb 2012 03:15:55 +0000
-Message-ID: <CDED78A957032E45B3239CDDA7642D150841696F@ORSMSX106.amr.corp.intel.com>
-References: <3AB6CE7F274E534CAFD089D127A8A1FC0FCE9634@SHSMSX102.ccr.corp.intel.com>
-In-Reply-To: <3AB6CE7F274E534CAFD089D127A8A1FC0FCE9634@SHSMSX102.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <wjn740@gmail.com>
+Received: from mail-tul01m020-f176.google.com (mail-tul01m020-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5997DE00598
+	for <yocto@yoctoproject.org>; Tue, 31 Jan 2012 22:20:20 -0800 (PST)
+Received: by obbwd18 with SMTP id wd18so1404909obb.35
+	for <yocto@yoctoproject.org>; Tue, 31 Jan 2012 22:20:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Oyd+0Thdsqq3upfxMPko5c+IMCEWGPNkFXyLSRuhZHE=;
+	b=YTXVggsNWqquym7mo2kbQQqgtCuYfCtNMKER7peHsf/x0SfHpdpYN8MDsz33UwJnHy
+	LlIs/rS1iJpT2Aao5tgmw3KtNih7CJQXsC+xlfiBCYC2+ZAOamUBQz6aULg/je9vBsMV
+	1bt9M1YadfNd9hA/w3UlqCWDn2ehu3rBvFeqE=
 MIME-Version: 1.0
-Subject: Re: Hob 1.2 design
+Received: by 10.182.15.105 with SMTP id w9mr38173394obc.18.1328077219708; Tue,
+	31 Jan 2012 22:20:19 -0800 (PST)
+Received: by 10.182.47.105 with HTTP; Tue, 31 Jan 2012 22:20:19 -0800 (PST)
+Date: Wed, 1 Feb 2012 14:20:19 +0800
+Message-ID: <CA+FcS-zVQJq=r-Fgn1Y8NC0M3EAobMwYPoDK2V7Q0jD40b_n6Q@mail.gmail.com>
+From: "James W." <wjn740@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Build Error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,231 +31,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2012 03:16:00 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CDED78A957032E45B3239CDDA7642D150841696FORSMSX106amrcor_"
+X-List-Received-Date: Wed, 01 Feb 2012 06:20:20 -0000
+Content-Type: multipart/alternative; boundary=f46d0447f2d8ea3d7304b7e11236
 
---_000_CDED78A957032E45B3239CDDA7642D150841696FORSMSX106amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--f46d0447f2d8ea3d7304b7e11236
+Content-Type: text/plain; charset=UTF-8
+
+hi all:
+i am new comer.
+i meet  a error:
+
+NOTE: package pciutils-3.1.9-r0: task do_configure: Started
+ERROR: Function failed: do_configure (see
+/home/jwang5/poky-build/tmp/work/i586-poky-linux/pciutils-3.1.9-r0/temp/log.do_configure.9978
+for further information)
+ERROR: Logfile of failure stored in:
+/home/jwang5/poky-build/tmp/work/i586-poky-linux/pciutils-3.1.9-r0/temp/log.do_configure.9978
+Log data follows:
+| ERROR: Function failed: do_configure (see
+/home/jwang5/poky-build/tmp/work/i586-poky-linux/pciutils-3.1.9-r0/temp/log.do_configure.9978
+for further information)
+| Configuring libpci for your system..../configure: 1: Syntax error:
+Unterminated quoted string
+NOTE: package pciutils-3.1.9-r0: task do_configure: Failed
+ERROR: Task 1041 (/home/jwang5/poky/meta/recipes-bsp/pciutils/
+pciutils_3.1.9.bb, do_configure) failed with exit code '1'
+
+Waiting for 3 active tasks to finish:
+0:
+linux-yocto-3.0.14+git1+665fea1c249b4f335cb1c9a46a9f2c138d611f1a_1+9e73573b6b227ab2c62e66e63470866d136f8d76-r3
+do_compile (pid 7078)
+1: openssl-1.0.0f-r15.0 do_compile (pid 3215)
+2: db-5.1.19-r4 do_package (pid 7485)
+Waiting for 2 active tasks to finish:
+0:
+linux-yocto-3.0.14+git1+665fea1c249b4f335cb1c9a46a9f2c138d611f1a_1+9e73573b6b227ab2c62e66e63470866d136f8d76-r3
+do_compile (pid 7078)
+1: openssl-1.0.0f-r15.0 do_compile (pid 3215)
+NOTE: package db-5.1.19-r4: task do_package: Succeeded
+Waiting for 1 active tasks to finish:
+0:
+linux-yocto-3.0.14+git1+665fea1c249b4f335cb1c9a46a9f2c138d611f1a_1+9e73573b6b227ab2c62e66e63470866d136f8d76-r3
+do_compile (pid 7078)
+NOTE: package openssl-1.0.0f-r15.0: task do_compile: Succeeded
+NOTE: package
+linux-yocto-3.0.14+git1+665fea1c249b4f335cb1c9a46a9f2c138d611f1a_1+9e73573b6b227ab2c62e66e63470866d136f8d76-r3:
+task do_compile: Succeeded
+NOTE: Tasks Summary: Attempted 902 tasks of which 518 didn't need to be
+rerun and 1 failed.
+
+
+command line:
+*bitbake core-image-minimal*
+
+
+Who can help me?
+
+--f46d0447f2d8ea3d7304b7e11236
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Belen - nice work!  This just gets better all the time.  I really like the =
-enhancements to the work flow.
-
-Quick question - around 6:40 in the video, once you successfully build ther=
-e is a "Deploy Image" button. Then at 7:44 there is a "Write to Storage" bu=
-tton. Are these both doing the same thing?
-
-Thank you for making something so functional and so beautiful.
-
-Dave
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Wang, Shane
-Sent: Wednesday, February 01, 2012 9:39 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] RFC: Hob 1.2 design
-
-Hi, all,
-
-Belen has a new video for Hob2 workflow and design.
-
-https://wiki.yoctoproject.org/wiki/File:Hob1.2-screencast2.mov
-
-Please comment.
-
-Thanks.
---
-Shane
-
---_000_CDED78A957032E45B3239CDDA7642D150841696FORSMSX106amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+hi all:<div>i am new comer.</div><div>i meet =C2=A0a error:</div><div><div>=
+<br></div></div><div><div>NOTE: package pciutils-3.1.9-r0: task do_configur=
+e: Started</div><div>ERROR: Function failed: do_configure (see /home/jwang5=
+/poky-build/tmp/work/i586-poky-linux/pciutils-3.1.9-r0/temp/log.do_configur=
+e.9978 for further information)</div>
+<div>ERROR: Logfile of failure stored in: /home/jwang5/poky-build/tmp/work/=
+i586-poky-linux/pciutils-3.1.9-r0/temp/log.do_configure.9978</div><div>Log =
+data follows:</div><div>| ERROR: Function failed: do_configure (see /home/j=
+wang5/poky-build/tmp/work/i586-poky-linux/pciutils-3.1.9-r0/temp/log.do_con=
+figure.9978 for further information)</div>
+<div>| Configuring libpci for your system..../configure: 1: Syntax error: U=
+nterminated quoted string</div><div>NOTE: package pciutils-3.1.9-r0: task d=
+o_configure: Failed</div><div>ERROR: Task 1041 (/home/jwang5/poky/meta/reci=
+pes-bsp/pciutils/<a href=3D"http://pciutils_3.1.9.bb">pciutils_3.1.9.bb</a>=
+, do_configure) failed with exit code &#39;1&#39;</div>
+</div><div><br></div><div><div>Waiting for 3 active tasks to finish:</div><=
+div>0: linux-yocto-3.0.14+git1+665fea1c249b4f335cb1c9a46a9f2c138d611f1a_1+9=
+e73573b6b227ab2c62e66e63470866d136f8d76-r3 do_compile (pid 7078)</div><div>
+1: openssl-1.0.0f-r15.0 do_compile (pid 3215)</div><div>2: db-5.1.19-r4 do_=
+package (pid 7485)</div><div>Waiting for 2 active tasks to finish:</div><di=
+v>0: linux-yocto-3.0.14+git1+665fea1c249b4f335cb1c9a46a9f2c138d611f1a_1+9e7=
+3573b6b227ab2c62e66e63470866d136f8d76-r3 do_compile (pid 7078)</div>
+<div>1: openssl-1.0.0f-r15.0 do_compile (pid 3215)</div><div>NOTE: package =
+db-5.1.19-r4: task do_package: Succeeded</div><div>Waiting for 1 active tas=
+ks to finish:</div><div>0: linux-yocto-3.0.14+git1+665fea1c249b4f335cb1c9a4=
+6a9f2c138d611f1a_1+9e73573b6b227ab2c62e66e63470866d136f8d76-r3 do_compile (=
+pid 7078)</div>
+<div>NOTE: package openssl-1.0.0f-r15.0: task do_compile: Succeeded</div><d=
+iv>NOTE: package linux-yocto-3.0.14+git1+665fea1c249b4f335cb1c9a46a9f2c138d=
+611f1a_1+9e73573b6b227ab2c62e66e63470866d136f8d76-r3: task do_compile: Succ=
+eeded</div>
+<div>NOTE: Tasks Summary: Attempted 902 tasks of which 518 didn&#39;t need =
+to be rerun and 1 failed.</div></div><div><br></div><div><br></div><div><di=
+v><div>command line:</div><div><i>bitbake core-image-minimal</i></div></div=
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"\@SimSun";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Times New Roman","serif";}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin:0in;
-	margin-bottom:.0001pt;
-	text-indent:21.0pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:SimSun;}
-span.EmailStyle20
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle21
-	{mso-style-type:personal;
-	font-family:"Courier New";
-	color:blue;
-	font-weight:normal;
-	font-style:normal;
-	text-decoration:none none;}
-span.EmailStyle22
-	{mso-style-type:personal;
-	font-family:"Courier New";
-	color:blue;
-	font-weight:normal;
-	font-style:normal;
-	text-decoration:none none;}
-span.EmailStyle23
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle24
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Belen &#8211; nice work!&=
-nbsp; This just gets better all the time.&nbsp; I really like the enhanceme=
-nts to the work flow.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Quick question &#8211; ar=
-ound 6:40 in the video, once you successfully build there is a &#8220;Deplo=
-y Image&#8221; button. Then at 7:44 there is a &#8220;Write to Storage&#822=
-1; button.
- Are these both doing the same thing?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thank you for making some=
-thing so functional and so beautiful.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Dave<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
-unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Wang, Shane<br>
-<b>Sent:</b> Wednesday, February 01, 2012 9:39 AM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] RFC: Hob 1.2 design<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:ZH-CN=
-">Hi, all,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:ZH-CN=
-"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:ZH-CN=
-">Belen has a new video for Hob2 workflow and design.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Cal=
-ibri&quot;,&quot;sans-serif&quot;;color:black;mso-fareast-language:ZH-CN"><=
-o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Cal=
-ibri&quot;,&quot;sans-serif&quot;;color:black;mso-fareast-language:ZH-CN"><=
-a href=3D"https://wiki.yoctoproject.org/wiki/File:Hob1.2-screencast2.mov">h=
-ttps://wiki.yoctoproject.org/wiki/File:Hob1.2-screencast2.mov</a><o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:ZH-CN=
-"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:ZH-CN=
-">Please comment.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:ZH-CN=
-"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:ZH-CN=
-">Thanks.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:ZH-CN=
-">--<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:ZH-CN=
-">Shane<o:p></o:p></span></p>
-</div>
-</div>
-</body>
-</html>
+</div><div><br></div><div><br></div><div>Who can help me?</div>
 
---_000_CDED78A957032E45B3239CDDA7642D150841696FORSMSX106amrcor_--
+--f46d0447f2d8ea3d7304b7e11236--
