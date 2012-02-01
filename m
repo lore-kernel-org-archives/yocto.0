@@ -1,26 +1,32 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3961AE00594
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 09:29:00 -0800 (PST)
-Received: from mail-gy0-f180.google.com ([209.85.160.180])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 01 Feb 2012 09:28:57 -0800
-Received: by ghbz22 with SMTP id z22so677639ghb.25
-	for <yocto@yoctoproject.org>; Wed, 01 Feb 2012 09:28:57 -0800 (PST)
-Received: by 10.50.160.194 with SMTP id xm2mr28005399igb.18.1328117336515;
-	Wed, 01 Feb 2012 09:28:56 -0800 (PST)
-Received: from [127.0.0.1] (masterfoo.zenlinux.com. [207.192.74.254])
-	by mx.google.com with ESMTPS id he16sm27553055ibb.9.2012.02.01.09.28.53
-	(version=SSLv3 cipher=OTHER); Wed, 01 Feb 2012 09:28:55 -0800 (PST)
-Message-ID: <4F29764F.7000305@intel.com>
-Date: Wed, 01 Feb 2012 09:28:47 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A1DCE004D2
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 09:57:41 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 01 Feb 2012 09:57:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
+	d="scan'208,217";a="112916901"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga001.fm.intel.com with ESMTP; 01 Feb 2012 09:57:40 -0800
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 1 Feb 2012 09:57:39 -0800
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.175]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.146]) with mapi id
+	14.01.0355.002; Wed, 1 Feb 2012 09:57:33 -0800
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Gaku music player
+Thread-Index: AczhCvuf97F0gVucS4aRnf5UhWJQpQ==
+Date: Wed, 1 Feb 2012 17:57:38 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C49002A109@ORSMSX103.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <3AB6CE7F274E534CAFD089D127A8A1FC0FCE9634@SHSMSX102.ccr.corp.intel.com>
-In-Reply-To: <3AB6CE7F274E534CAFD089D127A8A1FC0FCE9634@SHSMSX102.ccr.corp.intel.com>
-Subject: Re: RFC: Hob 1.2 design
+Subject: Gaku music player
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,27 +38,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2012 17:29:00 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 01 Feb 2012 17:57:41 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_63ECFF2A2302B44093D7CE9E9962C49002A109ORSMSX103amrcorpi_"
 
-On 01/31/2012 05:39 PM, Wang, Shane wrote:
-> Hi, all,
+--_000_63ECFF2A2302B44093D7CE9E9962C49002A109ORSMSX103amrcorpi_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+What type of music files is the Gaku music player on Sato desk top supposed=
+ to play ?
+For me it did not work with mp3 files..however it is playing the soundtrack=
+ from a .ogg video file
+
+
+Thanks
+Rahul
+
+--_000_63ECFF2A2302B44093D7CE9E9962C49002A109ORSMSX103amrcorpi_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> Belen has a new video for Hob2 workflow and design.
->
-> https://wiki.yoctoproject.org/wiki/File:Hob1.2-screencast2.mov
->
-> Please comment.
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">What type of music files is the Gaku music player on=
+ Sato desk top supposed to play ?
+<o:p></o:p></p>
+<p class=3D"MsoNormal">For me it did not work with mp3 files..however it is=
+ playing the soundtrack from a .ogg video file<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks<o:p></o:p></p>
+<p class=3D"MsoNormal">Rahul<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-I'm pretty amazed with this. The workflow seems clear and each screen 
-provides just the right bits of information the user would be interested 
-in seeing. Outstanding!
-
-Scott
-
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
-
+--_000_63ECFF2A2302B44093D7CE9E9962C49002A109ORSMSX103amrcorpi_--
