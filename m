@@ -1,33 +1,31 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15E0CE00594
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 08:50:06 -0800 (PST)
-Received: by qcsd1 with SMTP id d1so953870qcs.35
-	for <yocto@yoctoproject.org>; Wed, 01 Feb 2012 08:50:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=Dce0i4hJxyePwa24V81/Xg0BOG3cEYPrBG/INK0fSLA=;
-	b=vYKkwZxTwbB2eRe+YmynTlL1IiTnH8CbsngzZReMc990pILylwXUXpDm3XQiKKyd8D
-	UOkgGnLNeoT5fCSclwe70xV92+NWg0ylge05XGp8WMpApl9WptkGeVRuwndnPjXfSs68
-	8JBDO63L26S2kK/Zs9AJumS20GXr/ttcR0Tdc=
-Received: by 10.224.178.207 with SMTP id bn15mr34477014qab.34.1328115006549;
-	Wed, 01 Feb 2012 08:50:06 -0800 (PST)
-Received: from [10.0.1.54] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
-	by mx.google.com with ESMTPS id o8sm48638653qaj.0.2012.02.01.08.50.05
-	(version=SSLv3 cipher=OTHER); Wed, 01 Feb 2012 08:50:05 -0800 (PST)
-Message-ID: <4F296D3E.5050302@gmail.com>
-Date: Wed, 01 Feb 2012 11:50:06 -0500
-From: jfabernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+Return-Path: <wmills@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB15CE0138C
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 08:50:52 -0800 (PST)
+Received: from dlep26.itg.ti.com ([157.170.170.121])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q11GoprM009350;
+	Wed, 1 Feb 2012 10:50:51 -0600
+Received: from DFLE70.ent.ti.com (localhost [127.0.0.1])
+	by dlep26.itg.ti.com (8.13.8/8.13.8) with ESMTP id q11GooYK023875;
+	Wed, 1 Feb 2012 10:50:51 -0600 (CST)
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle70.ent.ti.com
+	(128.247.5.40) with Microsoft SMTP Server id 14.1.323.3; Wed, 1 Feb 2012
+	10:50:17 -0600
+Received: from [172.24.16.66] (h16-66.vpn.ti.com [172.24.16.66])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id q11GoGJq005759;
+	Wed, 1 Feb 2012 10:50:16 -0600
+Message-ID: <4F296D48.4080807@ti.com>
+Date: Wed, 1 Feb 2012 11:50:16 -0500
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.13) Gecko/20101208 Lightning/1.0b2 Thunderbird/3.1.7
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <4F296826.4030909@gmail.com> <3971839.nMHIKpoOXs@helios>
-In-Reply-To: <3971839.nMHIKpoOXs@helios>
-Cc: yocto@yoctoproject.org
-Subject: Re: 1.2_M2-Final build failures
+To: Joshua Immanuel <josh@hipro.co.in>
+References: <1327993829.2696.18.camel@babel.joshhome>	<1328078233.2628.4.camel@babel.joshhome>
+	<1328111395.2628.32.camel@babel.joshhome>
+In-Reply-To: <1328111395.2628.32.camel@babel.joshhome>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: creating global variables in a recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,103 +37,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2012 16:50:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Wed, 01 Feb 2012 16:50:53 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 02/01/2012 11:41 AM, Paul Eggleton wrote:
-> On Wednesday 01 February 2012 11:28:22 jfabernathy wrote:
->> Using the tarballs for Poky and meta-intel for 1.2_M2-Final, I was
->> getting a lot of build failures below is what worked and what didn't.
->> Not sure if this is a bug or if I'm missing something. I extracted the
->> meta-intel tarball for 1.2_M2-Final in the poky directory created by
->> extracting the poky tarball for 1.2_M2.Final.
->> ...
->>   3. building n450 core-image-minimal fails with error: ERROR: Unable to
->>      parse /home/jim/poky/meta/recipes-core/tasks/task-base.bb:00:20
->>      Traceback (most recent call last):
->>         File "/home/jim/poky/bitbake/lib/bb/parse/ast.py", line 379, in
->>      multi_finalize(fn='/home/jim/poky/meta/recipes-core/tasks/task-base.bb
->>      <http://task-base.bb>', d=<bb.data_smart.DataSmart object at
->>      0x4a801d0>):
->>
->>                try:
->>       >         finalize(fn, d)
->>
->>                except bb.parse.SkipPackage as e:
->>         File "/home/jim/poky/bitbake/lib/bb/parse/ast.py", line 323, in
->>      finalize(fn='/home/jim/poky/meta/recipes-core/tasks/task-base.bb
->>      <http://task-base.bb>', d=<bb.data_smart.DataSmart object at
->>      0x4a801d0>, variant=None):
->>                    code.append("%s(d)" % funcname)
->>
->>       >     bb.utils.simple_exec("\n".join(code), {"d": d})
->>
->>                bb.data.update_data(d)
->>         File "/home/jim/poky/bitbake/lib/bb/utils.py", line 387, in
->>
->> simple_exec(code='__anon_119__home_jim_poky_meta_classes_staging_bbclass(d)
->> \n__anon_485__home_jim_poky_meta_classes_base_bbclass(d)\n__anon_189__home_j
->> im_poky_meta_classes_package_bbclass(d)\n__anon_1034__home_jim_poky_meta_cla
->> sses_package_rpm_bbclass(d)\n__anon_20__home_jim_poky_meta_classes_debian_bb
->> class(d)\n__anon_55__home_jim_poky_meta_classes_sstate_bbclass(d)\n__anon_26
->> __home_jim_poky_meta_classes_task_bbclass(d)\n__anon_140__home_jim_poky_meta
->> _recipes_core_tasks_task_base_bb(d)', context={'d':<bb.data_smart.DataSmart
->> object at 0x4a801d0>}):
->>            def simple_exec(code, context):
->>       >     exec(code, _context, context)
->>
->>         File "<string>", line 8, in<module>
->>         File
->>      "__anon_140__home_jim_poky_meta_recipes_core_tasks_task_base_bb",
->>      line 8, in
->>
->> __anon_140__home_jim_poky_meta_recipes_core_tasks_task_base_bb(d=<bb.data_s
->> mart.DataSmart object at 0x4a801d0>)
->>      AttributeError: 'NoneType' object has no attribute 'split'
->>
->>      ERROR: Command execution failed: Exited with 1
->>      Summary: There were 1 WARNING messages shown.
->>
->>      Summary: There were 1 ERROR messages shown, returning a non-zero
->>      exit code.
->>
->>   4. building cedartrail core-image-minimal fails with error: ERROR:
->>      Unable to parse conf/bitbake.conf: Could not include required file
->>      conf/machine/include/ia32-base.inc
-> I think I know what's going on here. In previous editions it was enough to
-> have just the meta-intel sub-layer in your bblayers.conf (e.g. meta-crownbay)
-> - now you also need to add meta-intel itself to get certain common files. If
-> you do this then your errors will go away.
+
+
+On 02/01/2012 10:49 AM, Joshua Immanuel wrote:
+> Hello all,
 >
-> I did notice this the other day and I think we can improve things such that
-> you get a sensible error message in this situation rather than the above. I
-> will try to send out some patches next week.
-okay that fixed it.  To be clear:
-
-BBFILES ?= ""
-BBLAYERS ?= " \
-   /home/jim/poky-edison-6.1-M2/meta \
-   /home/jim/poky-edison-6.1-M2/meta-yocto \
-   /home/jim/poky-edison-6.1-M2/meta-intel \
-   /home/jim/poky-edison-6.1-M2/meta-intel/meta-cedartrail \
-   "
-
-instead of
-
-BBFILES ?= ""
-BBLAYERS ?= " \
-   /home/jim/poky-edison-6.1-M2/meta \
-   /home/jim/poky-edison-6.1-M2/meta-yocto \
-   /home/jim/poky-edison-6.1-M2/meta-intel/meta-cedartrail \
-   "
-
-Now if this is the way it remains, we have some docs to cleanup.
-
-Jim A
-
-> Cheers,
-> Paul
+> On Wed, 2012-02-01 at 12:07 +0530, Joshua Immanuel wrote:
+>>> At present in my custom image recipe I've added the following
+>>> lines
+>>>
+>>>          SOME_VARIABLE = "Blah"
+>>>          do_bootimg[depends] += "base-files:do_install"
+>>>
+>>> But the contents of ${SOME_VARIABLE} is not available in the
+>>> 'base-files' recipe. Even
+>>>
+>>>          export SOME_VARIABLE = "Blah"
+>>>
+>>> doesn't solve the problem.
+>>
+>>          $ bitbake custom-image -c devshell
+>>
+>> In the above devshell I can find the contents of ${SOME_VARIABLE}
+>> available but the content of it is empty in 'base-files' recipe.
+>
+> In other words, I need to define global variables in a package which can
+> be used across multiple packages. At present the only option I have is
+> to export the variable in build/conf/local.conf. IMHO, this doesn't feel
+> like a proper solution (as the variable is my layer specific). Moreover,
+> I can't change the value of it in one package to be used in other
+> package(s).
+>
+> Is there any other way to do this? Please guide me.
 >
 
+I am not sure I can give you a better option that local.conf but I can 
+explain why what your doing does not work.
+
+It may feel from your usage that the image recipe is the ancestor of all 
+the recipes but this is really not true.  The settings in a image recipe 
+effect the assembly of that image and not the packages that they depend 
+on.  An image could be assembled from packages that were built long ago 
+or inherited via shared state.
+
+settings in local,conf on the other hand affect all recipes.  If you add 
+something there it will be seen by all recipes.  Unfortunately this 
+means that all recipes are dependent on the settings and everything will 
+need to be rebuilt in case the new setting effects them.  I believe this 
+also means you will not be able to used share state with someone with a 
+different setting of (or unset) SOME_VARIABLE.  (Well you can but you 
+will both be rebuild everything.)
+
+Alternatives to the whole approach are to make alternative packages for 
+the various cases (busybox-minimal vs busybox-full) or use an image task 
+to create an asset in the file system that then makes a difference at 
+run time.
+
+> Regards
+> Joshua
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
