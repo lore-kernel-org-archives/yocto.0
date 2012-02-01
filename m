@@ -1,27 +1,24 @@
-Return-Path: <bewithsathish@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1DC3E00303
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 02:14:58 -0800 (PST)
-Received: by dadp13 with SMTP id p13so940377dad.35
-	for <yocto@yoctoproject.org>; Wed, 01 Feb 2012 02:14:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:cc
-	:content-type:content-transfer-encoding;
-	bh=wdB/6y6PYVkeX/Ti2W+F9Diw2bt6iI+L6stbt7nPDrc=;
-	b=yEFcnoCoO74rf+peK/ChIXKhP0Cfvcen5OGvHm3G1nI3uPI1480poavcS01Tzzyh74
-	9eSvTJ5X9RUSmQU9fGKAbSH53gYbk+oCeS0W7sZNee7Tili5IV1pYkOdB4cIHPOKHqwE
-	jqvpuspOCJ88pJB9Zv4umaSZbasvzRLrq94cY=
-MIME-Version: 1.0
-Received: by 10.68.73.100 with SMTP id k4mr58962270pbv.55.1328091298509; Wed,
-	01 Feb 2012 02:14:58 -0800 (PST)
-Received: by 10.68.232.5 with HTTP; Wed, 1 Feb 2012 02:14:58 -0800 (PST)
-In-Reply-To: <4F28DBE3.4010107@linux.intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11C11E00306
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 02:19:58 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 01 Feb 2012 02:19:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="112763008"
+Received: from unknown (HELO helios.localnet) ([10.252.122.196])
+	by fmsmga001.fm.intel.com with ESMTP; 01 Feb 2012 02:19:56 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Sathishkumar Duraisamy <bewithsathish@gmail.com>
+Date: Wed, 01 Feb 2012 10:19:55 +0000
+Message-ID: <2072780.exfi7MVpVP@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-15-generic-pae; KDE/4.8.0; i686; ; )
+In-Reply-To: <CANJvwR-+LgCHHd+SywzD2yri6h_dg-a7rnQfdGN7UT=LxQy-yw@mail.gmail.com>
 References: <CA+FcS-zVQJq=r-Fgn1Y8NC0M3EAobMwYPoDK2V7Q0jD40b_n6Q@mail.gmail.com>
 	<4F28DBE3.4010107@linux.intel.com>
-Date: Wed, 1 Feb 2012 15:44:58 +0530
-Message-ID: <CANJvwR-+LgCHHd+SywzD2yri6h_dg-a7rnQfdGN7UT=LxQy-yw@mail.gmail.com>
-From: Sathishkumar Duraisamy <bewithsathish@gmail.com>
+	<CANJvwR-+LgCHHd+SywzD2yri6h_dg-a7rnQfdGN7UT=LxQy-yw@mail.gmail.com>
+MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: Build Error
 X-BeenThere: yocto@yoctoproject.org
@@ -35,56 +32,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2012 10:14:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 01 Feb 2012 10:19:58 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Wed, Feb 1, 2012 at 11:59 AM, Joshua Lock <josh@linux.intel.com> wrote:
-> Hi James,
->
->
-> On 31/01/12 22:20, James W. wrote:
->>
->> hi all:
->> i am new comer.
->> i meet =A0a error:
->>
->> NOTE: package pciutils-3.1.9-r0: task do_configure: Started
->> ERROR: Function failed: do_configure (see
->>
->> /home/jwang5/poky-build/tmp/work/i586-poky-linux/pciutils-3.1.9-r0/temp/=
-log.do_configure.9978
->> for further information)
->> ERROR: Logfile of failure stored in:
->>
->> /home/jwang5/poky-build/tmp/work/i586-poky-linux/pciutils-3.1.9-r0/temp/=
-log.do_configure.9978
->> Log data follows:
->> | ERROR: Function failed: do_configure (see
->>
->> /home/jwang5/poky-build/tmp/work/i586-poky-linux/pciutils-3.1.9-r0/temp/=
-log.do_configure.9978
->> for further information)
->> | Configuring libpci for your system..../configure: 1: Syntax error:
->> Unterminated quoted string
->
->
-> I cam across this error today also, I'd be willing to bet the OS you're
-> building on is using the dash shell (Ubuntu)?
+On Wednesday 01 February 2012 15:44:58 Sathishkumar Duraisamy wrote:
+> Well, if this error is because of dash, please use the following
+> comments to change to bash,
+> 
+> $sudo rm /usr/bin/sh
+> $sudo ln -s /usr/bin/bash /usr/bin/sh
+> 
+> There is also, other way to change to dash to bash through package
+> configure. 
 
-Well, if this error is because of dash, please use the following
-comments to change to bash,
+I guess you mean "sudo dpkg-reconfigure dash"
 
-$sudo rm /usr/bin/sh
-$sudo ln -s /usr/bin/bash /usr/bin/sh
+> But any way, above will done through automated scripts. So,
+> above is good. You can also make sure you are working on bash shell,
+> by simply, ls -al /usr/bin/sh, which shows whether the link is
+> pointing to bash or dash.
 
-There is also, other way to change to dash to bash through package
-configure. But any way, above will done through automated scripts. So,
-above is good. You can also make sure you are working on bash shell,
-by simply, ls -al /usr/bin/sh, which shows whether the link is
-pointing to bash or dash.
---=20
-Regards,
-Sathishkumar D
-http://flowersopenlab.weebly.com/
+The idea is we really want the build system not to care which shell you are 
+using, so users don't have to change from the default of dash to bash (and 
+slow down their boot in the process, since faster booting was the main reason 
+dash was introduced in Ubuntu.) FWIW in master this is pretty much taken care 
+of, although there may still be a few cases like this one and we do have to be 
+careful not to introduce any "bashisms" in future.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
