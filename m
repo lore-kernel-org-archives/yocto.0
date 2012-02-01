@@ -1,26 +1,29 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11C11E00306
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 02:19:58 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 01 Feb 2012 02:19:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="112763008"
-Received: from unknown (HELO helios.localnet) ([10.252.122.196])
-	by fmsmga001.fm.intel.com with ESMTP; 01 Feb 2012 02:19:56 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Sathishkumar Duraisamy <bewithsathish@gmail.com>
-Date: Wed, 01 Feb 2012 10:19:55 +0000
-Message-ID: <2072780.exfi7MVpVP@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.0 (Linux/3.0.0-15-generic-pae; KDE/4.8.0; i686; ; )
-In-Reply-To: <CANJvwR-+LgCHHd+SywzD2yri6h_dg-a7rnQfdGN7UT=LxQy-yw@mail.gmail.com>
-References: <CA+FcS-zVQJq=r-Fgn1Y8NC0M3EAobMwYPoDK2V7Q0jD40b_n6Q@mail.gmail.com>
-	<4F28DBE3.4010107@linux.intel.com>
-	<CANJvwR-+LgCHHd+SywzD2yri6h_dg-a7rnQfdGN7UT=LxQy-yw@mail.gmail.com>
+Return-Path: <bewithsathish@gmail.com>
+Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4886CE00303
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 03:04:54 -0800 (PST)
+Received: by pbcc11 with SMTP id c11so1244196pbc.35
+	for <yocto@yoctoproject.org>; Wed, 01 Feb 2012 03:04:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=rfHq+N6rCFzJbwEN2NjA3P/X+sePQiTJ++yQoFzGFAI=;
+	b=T6c2VGFy9b5qqRBInblJIwLMNcuJucmXEopac1XWhvCmmWsqrg3EBpErXCzpGo3HJn
+	R2QAB8M4M2ubdyfX5ZA87kmbDfLkymTG8wvGd5Sm9dtFpLQ6+qN9YES+feSlChYYMMIr
+	jd4HUnBNWxupRnrDu48uK1lcTI2HFZV3q7hLY=
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Build Error
+Received: by 10.68.195.73 with SMTP id ic9mr59272927pbc.72.1328094293653; Wed,
+	01 Feb 2012 03:04:53 -0800 (PST)
+Received: by 10.68.232.5 with HTTP; Wed, 1 Feb 2012 03:04:53 -0800 (PST)
+In-Reply-To: <1327993829.2696.18.camel@babel.joshhome>
+References: <1327993829.2696.18.camel@babel.joshhome>
+Date: Wed, 1 Feb 2012 16:34:53 +0530
+Message-ID: <CANJvwR_Zk8YwH6EyyoM8siMPxYgZFbyiFa04tVh4ubGXSETQnA@mail.gmail.com>
+From: Sathishkumar Duraisamy <bewithsathish@gmail.com>
+To: Joshua Immanuel <josh@hipro.co.in>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: forcing a task to run while building an image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,39 +35,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2012 10:19:58 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 01 Feb 2012 11:04:54 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On Wednesday 01 February 2012 15:44:58 Sathishkumar Duraisamy wrote:
-> Well, if this error is because of dash, please use the following
-> comments to change to bash,
-> 
-> $sudo rm /usr/bin/sh
-> $sudo ln -s /usr/bin/bash /usr/bin/sh
-> 
-> There is also, other way to change to dash to bash through package
-> configure. 
+On Tue, Jan 31, 2012 at 12:40 PM, Joshua Immanuel <josh@hipro.co.in> wrote:
+> Hello all,
+> =A0 =A0 =A0 =A0How do I force a particular task to run every time while b=
+uilding an
+> image?
 
-I guess you mean "sudo dpkg-reconfigure dash"
+You may have look at this
+http://docs.openembedded.org/usermanual/usermanual.html#usage_workwithsingl=
+erecipe.
 
-> But any way, above will done through automated scripts. So,
-> above is good. You can also make sure you are working on bash shell,
-> by simply, ls -al /usr/bin/sh, which shows whether the link is
-> pointing to bash or dash.
+I think, image are build from the packages that are build from the
+recipe. And there is no way for the bitbake to detect that source is
+changed like the makefile.
 
-The idea is we really want the build system not to care which shell you are 
-using, so users don't have to change from the default of dash to bash (and 
-slow down their boot in the process, since faster booting was the main reason 
-dash was introduced in Ubuntu.) FWIW in master this is pretty much taken care 
-of, although there may still be a few cases like this one and we do have to be 
-careful not to introduce any "bashisms" in future.
+But there is always another way to do things we need. Here is my tip,
+you can do to this.( need comments on this).
 
-Cheers,
-Paul
+add a task in your recipe, like,
 
--- 
+do_mytask() {
+    #add commands to clean and do your stuff.
+    #you can also pull from version control.
+    #ordinary shell commands , need not to master anythings.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+}
+
+addtask do_mytask before do_build
+
+add this to one of your recipe to build the image, now use bitbake -b
+<your recipe> -c <do_mytask()>
+
+
+
+--=20
+Regards,
+Sathishkumar D
+http://flowersopenlab.weebly.com/
 
