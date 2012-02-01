@@ -1,24 +1,22 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1730FE004D2
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 11:01:27 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q11J1QZ7002436
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 1 Feb 2012 11:01:27 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 1 Feb 2012 11:01:26 -0800
-Message-ID: <4F298BF9.5080807@windriver.com>
-Date: Wed, 1 Feb 2012 14:01:13 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
-MIME-Version: 1.0
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90F77E004D2
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 11:54:59 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 01 Feb 2012 11:54:59 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="119262552"
+Received: from unknown (HELO [10.255.14.106]) ([10.255.14.106])
+	by fmsmga002.fm.intel.com with ESMTP; 01 Feb 2012 11:54:58 -0800
+From: Tom Zanussi <tom.zanussi@intel.com>
 To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <8b67c8fb5aadfcb82de8035972efed50c67c0382.1328121321.git.dvhart@linux.intel.com>
 References: <cover.1328121321.git.dvhart@linux.intel.com>
 	<8b67c8fb5aadfcb82de8035972efed50c67c0382.1328121321.git.dvhart@linux.intel.com>
-In-Reply-To: <8b67c8fb5aadfcb82de8035972efed50c67c0382.1328121321.git.dvhart@linux.intel.com>
+Date: Wed, 01 Feb 2012 13:54:51 -0600
+Message-ID: <1328126091.2304.126.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: [PATCH 1/2] meta: sys940x BSP meta data
 X-BeenThere: yocto@yoctoproject.org
@@ -32,11 +30,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2012 19:01:28 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Wed, 01 Feb 2012 19:54:59 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 12-02-01 01:45 PM, Darren Hart wrote:
+On Wed, 2012-02-01 at 10:45 -0800, Darren Hart wrote:
 > The Inforce SYS940x-ECX Developer-Ready Reference Platform features:
 > o Intel Atom E6xx (0.6-1.6 GHz)
 > o Up to 1GB on-board DDR2
@@ -46,21 +44,29 @@ On 12-02-01 01:45 PM, Darren Hart wrote:
 > o SD Card
 > o Dual SATA
 > o Mini-PCIe
->
+> 
 > http://www.inforcecomputing.com/SYS940X_ECX.html
->
-> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
+> 
+> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+
+Looks good.  As Bruce pointed out, emgd-1.10 was recently merged (post
+1.2_M2), so the 'git merge yocto/emgd' should be 'git merge
+yocto/emgd-1.10' for master (i.e. if you're building off of 1.2_M2 for
+example, this is what you'd want.).
+
+Acked-by: Tom Zanussi <tzanussi@intel.com>
+
 > ---
->   .../bsp/sys940x/sys940x-preempt-rt.scc             |    7 +++
->   .../kernel-cache/bsp/sys940x/sys940x-standard.scc  |    6 ++
->   meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg      |   49 ++++++++++++++++++++
->   meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc      |   17 +++++++
->   4 files changed, 79 insertions(+), 0 deletions(-)
->   create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc
->   create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc
->   create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
->   create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc
->
+>  .../bsp/sys940x/sys940x-preempt-rt.scc             |    7 +++
+>  .../kernel-cache/bsp/sys940x/sys940x-standard.scc  |    6 ++
+>  meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg      |   49 ++++++++++++++++++++
+>  meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc      |   17 +++++++
+>  4 files changed, 79 insertions(+), 0 deletions(-)
+>  create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc
+> 
 > diff --git a/meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc
 > new file mode 100644
 > index 0000000..3b8f0aa
@@ -86,9 +92,6 @@ On 12-02-01 01:45 PM, Darren Hart wrote:
 > +
 > +include ktypes/standard
 > +include sys940x.scc
-
-Looks like the branch re-use issue worked itself out!
-
 > diff --git a/meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg b/meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
 > new file mode 100644
 > index 0000000..3d45fe8
@@ -153,17 +156,6 @@ Looks like the branch re-use issue worked itself out!
 > +kconf hardware sys940x.cfg
 > +
 > +git merge yocto/emgd
-
-
-Just want to confirm that emgd-1.10 is available, and this version
-was explicitly chosen ?
-
-No issues with the series though. Staging it once you confirm.
-
-Cheers,
-
-Bruce
-
 > +
 > +include features/eg20t/eg20t.scc
 > +include features/drm-emgd/drm-emgd.scc
@@ -178,5 +170,6 @@ Bruce
 > +
 > +include features/latencytop/latencytop.scc
 > +include features/profiling/profiling.scc
+
 
 
