@@ -1,24 +1,24 @@
 Return-Path: <josh@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C1FDE0059B
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 14:40:06 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 01 Feb 2012 14:40:05 -0800
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84B3DE004D2
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 14:42:30 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 01 Feb 2012 14:42:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="102158076"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="113014990"
 Received: from unknown (HELO [10.255.14.103]) ([10.255.14.103])
-	by azsmga001.ch.intel.com with ESMTP; 01 Feb 2012 14:40:05 -0800
-Message-ID: <4F29BF45.8060008@linux.intel.com>
-Date: Wed, 01 Feb 2012 14:40:05 -0800
+	by fmsmga001.fm.intel.com with ESMTP; 01 Feb 2012 14:42:29 -0800
+Message-ID: <4F29BFD5.7010002@linux.intel.com>
+Date: Wed, 01 Feb 2012 14:42:29 -0800
 From: Joshua Lock <josh@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
 References: <9c76056351fe4e2b9537729ffca3b4506b720513.1328135056.git.dvhart@linux.intel.com>
-	<6c598896584af47478c75ec08f3b4e8fd954b5fb.1328135056.git.dvhart@linux.intel.com>
-In-Reply-To: <6c598896584af47478c75ec08f3b4e8fd954b5fb.1328135056.git.dvhart@linux.intel.com>
-Subject: Re: [pull-sys940x 2/4] ranpwd: Add ranpwd recipe
+	<8c5010ca5786a486f2082d711fdf52b8617973af.1328135056.git.dvhart@linux.intel.com>
+In-Reply-To: <8c5010ca5786a486f2082d711fdf52b8617973af.1328135056.git.dvhart@linux.intel.com>
+Subject: Re: [pull-sys940x 3/4] genmac: Replace RANDOM_MAC in network/interfaces with a randomly generated MAC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,60 +30,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2012 22:40:06 -0000
+X-List-Received-Date: Wed, 01 Feb 2012 22:42:30 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
 On 01/02/12 14:26, Darren Hart wrote:
-> ranpwd is used to generate random strings of various types, including
-> passwords, UUIDs, and MAC addresses.
+> For machines that do not have a MAC in hardware and with drivers that don't
+> generate a random one in the kernel, this init script will replace the string
+> RANDOM_MAC in the network/interfaces file with one generated with "ranpwd -m".
+> Care is taken to ensure multiple interfaces can use RANDOM_MAC and receive
+> unique addresses. ranpwd generates MACs with the locally administered bit set
+> and the multicast bit disabled.
 >
 > Signed-off-by: Darren Hart<dvhart@linux.intel.com>
 > ---
->   meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb |   23 ++++++++++++++++++++
->   1 files changed, 23 insertions(+), 0 deletions(-)
->   create mode 100644 meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb
+>   meta-sys940x/recipes-bsp/genmac/files/genmac |   46 ++++++++++++++++++++++++++
+>   meta-sys940x/recipes-bsp/genmac/genmac.bb    |   30 +++++++++++++++++
+>   2 files changed, 76 insertions(+), 0 deletions(-)
+>   create mode 100644 meta-sys940x/recipes-bsp/genmac/files/genmac
+>   create mode 100644 meta-sys940x/recipes-bsp/genmac/genmac.bb
 >
-> diff --git a/meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb b/meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb
+> diff --git a/meta-sys940x/recipes-bsp/genmac/files/genmac b/meta-sys940x/recipes-bsp/genmac/files/genmac
 > new file mode 100644
-> index 0000000..66fcc26
+> index 0000000..6ca069c
 > --- /dev/null
-> +++ b/meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb
-> @@ -0,0 +1,23 @@
-> +DESCRIPTION = "Random password generator"
-> +#SECTION = "utilities"
-
-We may as well delete this line, no?
-
-> +LICENSE = "GPLv2+"
-> +LIC_FILES_CHKSUM = "file://ranpwd.c;beginline=1;endline=11;md5=0e8585e19117526efedfaeb50c345d7a"
-> +PR = "r0"
+> +++ b/meta-sys940x/recipes-bsp/genmac/files/genmac
+> @@ -0,0 +1,46 @@
+> +#!/bin/sh
+> +### BEGIN INIT INFO
+> +# Provides:          Random MAC address generator
+> +# Required-Start:    $syslog
+> +# Required-Stop:     $syslog
+> +# Default-Start:     2 3 4 5
+> +# Default-Stop:      0 1 6
+> +# Short-Description: Set a random MAC for tagged interfaces
+> +# Description:       Set a random MAC for interfaces with RANDOM_MAC
+> +### END INIT INFO
 > +
-> +inherit autotools
+> +# Author: Darren Hart<dvhart@linux.intel.com>
+> +# Based on /etc/init.d/skeleton
 > +
-> +SRC_URI = "git://git.zytor.com/utils/ranpwd.git"
-> +SRCREV = "b62aab579e288715b82d5575befaa2b8ff210c2b"
+> +PATH=/sbin:/usr/sbin:/bin:/usr/bin
+> +DESC="Set a random MAC for tagged interfaces"
+> +NAME=genmac
+> +RANPWD=`which ranpwd`
+> +SCRIPTNAME=/etc/init.d/$NAME
 > +
-> +S=${WORKDIR}/git
+> +# Exit if amixer is not installed
 
-Variable assignments are usually quoted.
+amixer?
 
-S = "${WORKDIR}/git"
-
+> +[ -x "$RANPWD" ] || exit 0
 > +
-> +do_configure_prepend () {
-> +	if [ ! -e acinclude.m4 -a -e aclocal.m4 ]; then
-> +		cp aclocal.m4 acinclude.m4
-> +	fi
-> +}
-> +
-> +do_install() {
-> +	install -d ${D}/${bindir}
-> +	install -m 0755 ${S}/ranpwd ${D}/${bindir}/ranpwd
-> +}
+> +do_start() {
+> +	# Replace every occurance of RANDOM_MAC with a unique locally
+occurrence?
+> +	# administered, unicast, randomly generated MAC address.
+> +	while grep -q RANDOM_MAC /etc/network/interfaces; do
+> +		sed -i "1,/RANDOM_MAC/s/RANDOM_MAC/$($RANPWD -m)/" /etc/network/interfaces
+> +	done
 
+Otherwise looks good, feel free to add my SOB.
+
+Cheers,
+Joshua
 -- 
 Joshua Lock
          Yocto Project "Johannes factotum"
