@@ -1,26 +1,27 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCB2AE004D2
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 13:47:17 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 01 Feb 2012 13:47:17 -0800
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDFCBE004D2
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 14:14:12 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 01 Feb 2012 14:14:06 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="119303678"
-Received: from unknown (HELO [10.255.14.106]) ([10.255.14.106])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Feb 2012 13:47:16 -0800
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-In-Reply-To: <4F29B248.4060202@linux.intel.com>
-References: <63ECFF2A2302B44093D7CE9E9962C49002A109@ORSMSX103.amr.corp.intel.com>
-	<4F298A58.5030700@linux.intel.com>
-	<63ECFF2A2302B44093D7CE9E9962C49002A3CC@ORSMSX103.amr.corp.intel.com>
-	<4F29B248.4060202@linux.intel.com>
-Date: Wed, 01 Feb 2012 15:47:07 -0600
-Message-ID: <1328132827.2304.149.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Gaku music player
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="113006697"
+Received: from unknown (HELO envy.home) ([10.255.14.201])
+	by fmsmga001.fm.intel.com with ESMTP; 01 Feb 2012 14:14:06 -0800
+Message-ID: <4F29B90F.20200@linux.intel.com>
+Date: Wed, 01 Feb 2012 14:13:35 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
+MIME-Version: 1.0
+To: Tom Zanussi <tom.zanussi@intel.com>
+References: <cover.1328121321.git.dvhart@linux.intel.com>
+	<8b67c8fb5aadfcb82de8035972efed50c67c0382.1328121321.git.dvhart@linux.intel.com>
+	<1328126091.2304.126.camel@elmorro>
+In-Reply-To: <1328126091.2304.126.camel@elmorro>
+X-Enigmail-Version: 1.3.5
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 1/2] meta: sys940x BSP meta data
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,80 +33,164 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2012 21:47:17 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 01 Feb 2012 22:14:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2012-02-01 at 13:44 -0800, Darren Hart wrote:
-> 
-> On 02/01/2012 01:36 PM, Saxena, Rahul wrote:
-> > Hi Darren,
-> > 
-> > Thanks for the clarification.
-> > 
-> > I am building on Edison.  I found that ogg music files play
-> > OK on my gaku player.  I think that should be good enough, but just for my information purposes
-> > can you help me understand how does one accept the commercial iirc license ?
-> 
-> This has changed relatively recently, and I'm not finding the details in
-> the current docs. For example, the gst-fluendo-mp3 recipe includes:
-> 
-> LICENSE_FLAGS = "commercial"
-> 
-> Taking a look at the git logs with "LICENSE_FLAGS" in them, in order to
-> allow for building of such recipes, you must include "commercial" in the
-> LICENSE_FLAGS_WHITELIST variable. I would attempt this with something
-> like the following in my local.conf:
-> 
-> LICENSE_FLAGS_WHITELIST += "commercial"
-> 
-> Tom, can you confirm I've got this right?
-> 
-
-Yeah, that's right.
-
-Tom
-
-> Scott, once Tom confirms, this is a mechanism we need to get documented
-> in the reference manual.
-> 
-> --
-> Darren
-> 
-> 
-> > 
-> > Thanks
-> > Rahul
-> > 
-> > -----Original Message-----
-> > From: Darren Hart [mailto:dvhart@linux.intel.com] 
-> > Sent: Wednesday, February 01, 2012 10:54 AM
-> > To: Saxena, Rahul
-> > Cc: yocto@yoctoproject.org
-> > Subject: Re: [yocto] Gaku music player
-> > 
-> > 
-> > 
-> > On 02/01/2012 09:57 AM, Saxena, Rahul wrote:
-> >> Hello,
-> >>
-> >>  
-> >>
-> >> What type of music files is the Gaku music player on Sato desk top
-> >> supposed to play ?
-> >>
-> >> For me it did not work with mp3 files..however it is playing the
-> >> soundtrack from a .ogg video file
-> > 
-> > It depends on which licenses you allow (the gstreamer mp3 plugin
-> > requires acceptance of the commercial license iirc). Are you building on
-> > edison or master?
-> > 
-> > --
-> > Darren Hart
-> > Intel Open Source Technology Center
-> > Yocto Project - Linux Kernel
-> 
 
 
+On 02/01/2012 11:54 AM, Tom Zanussi wrote:
+> On Wed, 2012-02-01 at 10:45 -0800, Darren Hart wrote:
+>> The Inforce SYS940x-ECX Developer-Ready Reference Platform features:
+>> o Intel Atom E6xx (0.6-1.6 GHz)
+>> o Up to 1GB on-board DDR2
+>> o Intel Platform Controller Hub EG20T
+>> o VGA,LVDS
+>> o HD Audio
+>> o SD Card
+>> o Dual SATA
+>> o Mini-PCIe
+>>
+>> http://www.inforcecomputing.com/SYS940X_ECX.html
+>>
+>> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+> 
+> Looks good.  As Bruce pointed out, emgd-1.10 was recently merged (post
+> 1.2_M2), so the 'git merge yocto/emgd' should be 'git merge
+> yocto/emgd-1.10' for master (i.e. if you're building off of 1.2_M2 for
+> example, this is what you'd want.).
+> 
+
+I've made the 1.10 change, built and tested emgd on the sys940x, and
+pushed to the infradead repository in the cover letter.
+
+Thanks!
+
+> Acked-by: Tom Zanussi <tzanussi@intel.com>
+> 
+>> ---
+>>  .../bsp/sys940x/sys940x-preempt-rt.scc             |    7 +++
+>>  .../kernel-cache/bsp/sys940x/sys940x-standard.scc  |    6 ++
+>>  meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg      |   49 ++++++++++++++++++++
+>>  meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc      |   17 +++++++
+>>  4 files changed, 79 insertions(+), 0 deletions(-)
+>>  create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc
+>>  create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc
+>>  create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
+>>  create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc
+>>
+>> diff --git a/meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc
+>> new file mode 100644
+>> index 0000000..3b8f0aa
+>> --- /dev/null
+>> +++ b/meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc
+>> @@ -0,0 +1,7 @@
+>> +define KMACHINE sys940x
+>> +define KTYPE preempt-rt
+>> +define KARCH i386
+>> +
+>> +# no new branch required, re-use the ktypes/preempt-rt branch
+>> +include ktypes/preempt-rt
+>> +include sys940x.scc
+>> diff --git a/meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc b/meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc
+>> new file mode 100644
+>> index 0000000..1f0edec
+>> --- /dev/null
+>> +++ b/meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc
+>> @@ -0,0 +1,6 @@
+>> +define KMACHINE sys940x
+>> +define KTYPE standard
+>> +define KARCH i386
+>> +
+>> +include ktypes/standard
+>> +include sys940x.scc
+>> diff --git a/meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg b/meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
+>> new file mode 100644
+>> index 0000000..3d45fe8
+>> --- /dev/null
+>> +++ b/meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
+>> @@ -0,0 +1,49 @@
+>> +CONFIG_X86_32=y
+>> +CONFIG_MATOM=y
+>> +CONFIG_PRINTK=y
+>> +
+>> +# Basic hardware support for the box - network, USB, PCI, sound
+>> +CONFIG_NETDEVICES=y
+>> +CONFIG_ATA=y
+>> +CONFIG_ATA_GENERIC=y
+>> +CONFIG_ATA_SFF=y
+>> +CONFIG_PCI=y
+>> +CONFIG_MMC=y
+>> +CONFIG_MMC_SDHCI=y
+>> +CONFIG_USB_SUPPORT=y
+>> +CONFIG_USB=y
+>> +CONFIG_USB_ARCH_HAS_EHCI=y
+>> +CONFIG_R8169=y
+>> +CONFIG_PATA_SCH=y
+>> +CONFIG_MMC_SDHCI_PCI=y
+>> +CONFIG_USB_EHCI_HCD=y
+>> +CONFIG_PCIEPORTBUS=y
+>> +CONFIG_NET=y
+>> +CONFIG_USB_UHCI_HCD=y
+>> +CONFIG_USB_OHCI_HCD=y
+>> +CONFIG_BLK_DEV_SD=y
+>> +CONFIG_CHR_DEV_SG=y
+>> +CONFIG_SOUND=y
+>> +CONFIG_SND=y
+>> +CONFIG_SND_HDA_INTEL=y
+>> +CONFIG_SATA_AHCI=y
+>> +CONFIG_AGP=y
+>> +CONFIG_PM=y
+>> +CONFIG_ACPI=y
+>> +CONFIG_BACKLIGHT_LCD_SUPPORT=y
+>> +CONFIG_BACKLIGHT_CLASS_DEVICE=y
+>> +CONFIG_INPUT=y
+>> +
+>> +# Make sure these are on, otherwise the bootup won't be fun
+>> +CONFIG_EXT3_FS=y
+>> +CONFIG_UNIX=y
+>> +CONFIG_INET=y
+>> +CONFIG_MODULES=y
+>> +CONFIG_SHMEM=y
+>> +CONFIG_TMPFS=y
+>> +CONFIG_PACKET=y
+>> +
+>> +CONFIG_RD_GZIP=y
+>> +
+>> +# Needed for booting (and using) CD images
+>> +CONFIG_BLK_DEV_SR=y
+>> diff --git a/meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc b/meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc
+>> new file mode 100644
+>> index 0000000..1eaebf2
+>> --- /dev/null
+>> +++ b/meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc
+>> @@ -0,0 +1,17 @@
+>> +kconf hardware sys940x.cfg
+>> +
+>> +git merge yocto/emgd
+>> +
+>> +include features/eg20t/eg20t.scc
+>> +include features/drm-emgd/drm-emgd.scc
+>> +include features/dmaengine/dmaengine.scc
+>> +include features/serial/8250.scc
+>> +include features/framebuffer/vesafb.scc
+>> +include cfg/usb-mass-storage.scc
+>> +include cfg/boot-live.scc
+>> +include features/power/intel.scc
+>> +
+>> +include features/logbuf/size-normal.scc
+>> +
+>> +include features/latencytop/latencytop.scc
+>> +include features/profiling/profiling.scc
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
