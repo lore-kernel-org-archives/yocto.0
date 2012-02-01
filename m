@@ -1,33 +1,25 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B453FE004D2
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 13:36:04 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 01 Feb 2012 13:36:04 -0800
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5EAEE004D2
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 13:45:11 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 01 Feb 2012 13:45:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="119299519"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Feb 2012 13:36:04 -0800
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 1 Feb 2012 13:36:02 -0800
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.175]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.161]) with mapi id
-	14.01.0355.002; Wed, 1 Feb 2012 13:36:02 -0800
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Thread-Topic: [yocto] Gaku music player
-Thread-Index: AczhCvuf97F0gVucS4aRnf5UhWJQpQASvfUAABC1kRA=
-Date: Wed, 1 Feb 2012 21:36:01 +0000
-Message-ID: <63ECFF2A2302B44093D7CE9E9962C49002A3CC@ORSMSX103.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="112996818"
+Received: from unknown (HELO envy.home) ([10.255.14.201])
+	by fmsmga001.fm.intel.com with ESMTP; 01 Feb 2012 13:45:10 -0800
+Message-ID: <4F29B248.4060202@linux.intel.com>
+Date: Wed, 01 Feb 2012 13:44:40 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
+MIME-Version: 1.0
+To: "Saxena, Rahul" <rahul.saxena@intel.com>
 References: <63ECFF2A2302B44093D7CE9E9962C49002A109@ORSMSX103.amr.corp.intel.com>
 	<4F298A58.5030700@linux.intel.com>
-In-Reply-To: <4F298A58.5030700@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
+	<63ECFF2A2302B44093D7CE9E9962C49002A3CC@ORSMSX103.amr.corp.intel.com>
+In-Reply-To: <63ECFF2A2302B44093D7CE9E9962C49002A3CC@ORSMSX103.amr.corp.intel.com>
+X-Enigmail-Version: 1.3.5
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Gaku music player
 X-BeenThere: yocto@yoctoproject.org
@@ -41,49 +33,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2012 21:36:04 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Darren,
-
-Thanks for the clarification.
-
-I am building on Edison.  I found that ogg music files play
-OK on my gaku player.  I think that should be good enough, but just for my =
-information purposes
-can you help me understand how does one accept the commercial iirc license =
-?
-
-Thanks
-Rahul
-
------Original Message-----
-From: Darren Hart [mailto:dvhart@linux.intel.com]=20
-Sent: Wednesday, February 01, 2012 10:54 AM
-To: Saxena, Rahul
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Gaku music player
+X-List-Received-Date: Wed, 01 Feb 2012 21:45:11 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
 
 
-On 02/01/2012 09:57 AM, Saxena, Rahul wrote:
-> Hello,
->=20
-> =20
->=20
-> What type of music files is the Gaku music player on Sato desk top
-> supposed to play ?
->=20
-> For me it did not work with mp3 files..however it is playing the
-> soundtrack from a .ogg video file
+On 02/01/2012 01:36 PM, Saxena, Rahul wrote:
+> Hi Darren,
+> 
+> Thanks for the clarification.
+> 
+> I am building on Edison.  I found that ogg music files play
+> OK on my gaku player.  I think that should be good enough, but just for my information purposes
+> can you help me understand how does one accept the commercial iirc license ?
 
-It depends on which licenses you allow (the gstreamer mp3 plugin
-requires acceptance of the commercial license iirc). Are you building on
-edison or master?
+This has changed relatively recently, and I'm not finding the details in
+the current docs. For example, the gst-fluendo-mp3 recipe includes:
+
+LICENSE_FLAGS = "commercial"
+
+Taking a look at the git logs with "LICENSE_FLAGS" in them, in order to
+allow for building of such recipes, you must include "commercial" in the
+LICENSE_FLAGS_WHITELIST variable. I would attempt this with something
+like the following in my local.conf:
+
+LICENSE_FLAGS_WHITELIST += "commercial"
+
+Tom, can you confirm I've got this right?
+
+Scott, once Tom confirms, this is a mechanism we need to get documented
+in the reference manual.
 
 --
+Darren
+
+
+> 
+> Thanks
+> Rahul
+> 
+> -----Original Message-----
+> From: Darren Hart [mailto:dvhart@linux.intel.com] 
+> Sent: Wednesday, February 01, 2012 10:54 AM
+> To: Saxena, Rahul
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Gaku music player
+> 
+> 
+> 
+> On 02/01/2012 09:57 AM, Saxena, Rahul wrote:
+>> Hello,
+>>
+>>  
+>>
+>> What type of music files is the Gaku music player on Sato desk top
+>> supposed to play ?
+>>
+>> For me it did not work with mp3 files..however it is playing the
+>> soundtrack from a .ogg video file
+> 
+> It depends on which licenses you allow (the gstreamer mp3 plugin
+> requires acceptance of the commercial license iirc). Are you building on
+> edison or master?
+> 
+> --
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Linux Kernel
+
+-- 
 Darren Hart
 Intel Open Source Technology Center
 Yocto Project - Linux Kernel
