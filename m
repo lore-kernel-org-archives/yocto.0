@@ -1,27 +1,26 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F12C3E0059A
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 21:17:55 -0800 (PST)
-Received: by iagz35 with SMTP id z35so3675026iag.35
-	for <yocto@yoctoproject.org>; Wed, 01 Feb 2012 21:17:55 -0800 (PST)
-Received: by 10.50.216.201 with SMTP id os9mr1585882igc.22.1328159875335;
-	Wed, 01 Feb 2012 21:17:55 -0800 (PST)
-Received: from [192.168.10.231] ([59.99.251.45])
-	by mx.google.com with ESMTPS id mr24sm2778530ibb.1.2012.02.01.21.17.53
-	(version=SSLv3 cipher=OTHER); Wed, 01 Feb 2012 21:17:54 -0800 (PST)
-Message-ID: <1328159864.2636.13.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Thu, 02 Feb 2012 10:47:44 +0530
-In-Reply-To: <4F296D48.4080807@ti.com>
-References: <1327993829.2696.18.camel@babel.joshhome>
-	<1328078233.2628.4.camel@babel.joshhome>
-	<1328111395.2628.32.camel@babel.joshhome> <4F296D48.4080807@ti.com>
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1 
-Mime-Version: 1.0
-Subject: Re: creating global variables in a recipes
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38E3BE00595
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 21:48:14 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q125m9EG010174
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 1 Feb 2012 21:48:09 -0800 (PST)
+Received: from bruce-ashfields-macbook.local (128.224.20.27) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Wed, 1 Feb 2012 21:48:08 -0800
+Message-ID: <4F2A2396.5060707@windriver.com>
+Date: Thu, 2 Feb 2012 00:48:06 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+MIME-Version: 1.0
+To: Darren Hart <dvhart@linux.intel.com>
+References: <cover.1328121321.git.dvhart@linux.intel.com>
+	<4F29F389.9010705@windriver.com> <4F2A0615.20508@linux.intel.com>
+In-Reply-To: <4F2A0615.20508@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/2][linux-yocto-3.0] sys940x BSP and boot-live consolidation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,72 +32,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 05:17:56 -0000
-X-Groupsio-MsgNum: 4582
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-bh5qI6ltky/aVAsNkeWx"
-
---=-bh5qI6ltky/aVAsNkeWx
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello William, Christopher,
-
-Thanks for the detailed explanation.
-
-On Wed, 2012-02-01 at 11:50 -0500, William Mills wrote:
-> I am not sure I can give you a better option that local.conf but I can
-> explain why what your doing does not work.
->=20
-> It may feel from your usage that the image recipe is the ancestor of
-> all the recipes but this is really not true.  The settings in a image
-> recipe effect the assembly of that image and not the packages that
-> they depend on.  An image could be assembled from packages that were
-> built long ago or inherited via shared state.
->=20
-> settings in local,conf on the other hand affect all recipes.  If you
-> add something there it will be seen by all recipes.  Unfortunately
-> this means that all recipes are dependent on the settings and
-> everything will need to be rebuilt in case the new setting effects
-> them.  I believe this also means you will not be able to used share
-> state with someone with a different setting of (or unset)
-> SOME_VARIABLE.  (Well you can but you will both be rebuild
-> everything.)
->=20
-> Alternatives to the whole approach are to make alternative packages
-> for the various cases (busybox-minimal vs busybox-full) or use an
-> image task to create an asset in the file system that then makes a
-> difference at run time.=20
-
-My use-case is that I am creating an /etc/fstab file via
-base-files.bbappend recipe. In that fstab, I use uuid (generated via
-uuidgen) to denote different partition filesystems. So, I have to use
-this uuid in the extended image_types.bbclass file to set them to the
-generated partition images appropriately (via tune2fs).
-
-One more approach I can think of is to echo the uuid to some file in the
-deploy images directory (while creating the fstab file) and read them
-back in image_types class. But this process looks messy.
-
-Regards
-Joshua
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
-
---=-bh5qI6ltky/aVAsNkeWx
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+X-List-Received-Date: Thu, 02 Feb 2012 05:48:14 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+On 12-02-01 10:42 PM, Darren Hart wrote:
+>
+>
+> On 02/01/2012 06:23 PM, Bruce Ashfield wrote:
+>> On 12-02-01 1:45 PM, Darren Hart wrote:
+>>> The following changes since commit 59314a3523e360796419d76d78c6f7d8c5ef2593:
+>>>
+>>>     meta/beagleboard: Using CONFIG_PANEL_GENERIC_DPI=y (2012-01-30 00:50:09 -0500)
+>>>
+>>> are available in the git repository at:
+>>>     git://git.infradead.org/users/dvhart/linux-yocto-3.0.git meta-sys940x
+>>>     http://git.infradead.org/users/dvhart/linux-yocto-3.0.git/shortlog/refs/heads/meta-sys940x
+>>
+>> Merged and pushed. Two questions:
+>
+> Thanks Bruce.
+>
+>>     - I also did a commit to the linux-yocto files, do you need them sent
+>>       out immediately, or is working with AUTOREV enough for now ? There are
+>>       some other updates I'll batch this with, if we can wait.
+>
+> AUTOREV or SRCREVs in meta-intel for this specific BSP which I'll push
+> tomorrow are fine. That bit can wait.
+>
+>>     - Is there any reason (outside of not being tested there, and potentially
+>>       missing items like emgd), that this shouldn't go to the 3.2 tree as
+>>       well ?
+>
+> No reason. I started with 3.0 as we wanted this for ELC and I wasn't
+> sure I wanted to deal with 3.2 quite yet.
+>
+> The other reason was I wanted to do a proper policy/hardware division in
+> the cfg for 3.2 stuff and this is mostly a copy of fri2 - it and the
+> other meta-intel still have a lot of policy in the machine specific
+> fragments. Still hoping to get to that bug number for M3.
 
-iEYEABECAAYFAk8qHHgACgkQWw85XwuSFMI+GwCeKqd5N/onfk4TN3d9KZ9ujB7z
-XgsAmwYK3atRV27nh2mDzV9xpEKYL0Rh
-=Nyit
------END PGP SIGNATURE-----
+All good. As long as we don't forget to merge this forward later :)
+We won't .. but I'm paranoid!
 
---=-bh5qI6ltky/aVAsNkeWx--
+Cheers,
+
+Bruce
+
+>
+> --
+> Darren
+>
+>>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>>
+>>> Darren Hart (2):
+>>>     meta: sys940x BSP meta data
+>>>     Remove boot-live cfg duplication from BSPs
+>>>
+>>>    .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   10 ----
+>>>    meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |   10 ----
+>>>    meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |   10 ----
+>>>    meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg  |   10 ----
+>>>    meta/cfg/kernel-cache/bsp/fri2/fri2.cfg            |   10 ----
+>>>    .../bsp/sys940x/sys940x-preempt-rt.scc             |    7 +++
+>>>    .../kernel-cache/bsp/sys940x/sys940x-standard.scc  |    6 +++
+>>>    meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg      |   44 ++++++++++++++++++++
+>>>    meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc      |   17 ++++++++
+>>>    meta/cfg/kernel-cache/cfg/boot-live.cfg            |    3 +
+>>>    10 files changed, 77 insertions(+), 50 deletions(-)
+>>>    create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc
+>>>    create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc
+>>>    create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
+>>>    create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc
+>>>
+>>
+>
+
+
