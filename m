@@ -1,16 +1,26 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D16FAE00307
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 15:42:44 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 02 Feb 2012 15:42:44 -0800
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B25FE00307
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 15:54:52 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 02 Feb 2012 15:54:51 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="102664068"
-Received: from unknown (HELO [10.255.14.106]) ([10.255.14.106])
-	by azsmga001.ch.intel.com with ESMTP; 02 Feb 2012 15:42:42 -0800
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: James Abernathy <jfabernathy@gmail.com>
-In-Reply-To: <CANFv2Emx6kbdEwnWkkORp7h-vZovGSExUnn45JORZ56MuNeEfQ@mail.gmail.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="119967364"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by fmsmga002.fm.intel.com with ESMTP; 02 Feb 2012 15:54:46 -0800
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 2 Feb 2012 15:54:45 -0800
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.175]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.31]) with mapi id
+	14.01.0355.002; Thu, 2 Feb 2012 15:54:43 -0800
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: "Zanussi, Tom" <tom.zanussi@intel.com>, James Abernathy
+	<jfabernathy@gmail.com>
+Thread-Topic: [yocto] Gaku music player
+Thread-Index: AQHM4gRS97F0gVucS4aRnf5UhWJQpZYqRllA
+Date: Thu, 2 Feb 2012 23:54:42 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C49002A8A2@ORSMSX103.amr.corp.intel.com>
 References: <63ECFF2A2302B44093D7CE9E9962C49002A109@ORSMSX103.amr.corp.intel.com>
 	<4F298A58.5030700@linux.intel.com>
 	<63ECFF2A2302B44093D7CE9E9962C49002A3CC@ORSMSX103.amr.corp.intel.com>
@@ -18,11 +28,14 @@ References: <63ECFF2A2302B44093D7CE9E9962C49002A109@ORSMSX103.amr.corp.intel.com
 	<4F29BF30.80808@gmail.com> <1328140929.2304.157.camel@elmorro>
 	<4F29DF85.9040605@gmail.com> <1328145634.2304.159.camel@elmorro>
 	<CANFv2Emx6kbdEwnWkkORp7h-vZovGSExUnn45JORZ56MuNeEfQ@mail.gmail.com>
-Date: Thu, 02 Feb 2012 17:42:28 -0600
-Message-ID: <1328226148.2304.188.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: yocto@yoctoproject.org
+	<1328226148.2304.188.camel@elmorro>
+In-Reply-To: <1328226148.2304.188.camel@elmorro>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Gaku music player
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -35,13 +48,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 23:42:45 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 02 Feb 2012 23:54:52 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+You can also use the graphical alsamixer=20
+Just Include  alsa in MACHINE_FEATURES in meta-cedartrail/conf/cedartrail.c=
+onf
+
+Rahul
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Tom Zanussi
+Sent: Thursday, February 02, 2012 3:42 PM
+To: James Abernathy
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Gaku music player
 
 On Thu, 2012-02-02 at 17:42 -0500, James Abernathy wrote:
-> 
-> 
+>=20
+>=20
 > On Wed, Feb 1, 2012 at 8:20 PM, Tom Zanussi <tom.zanussi@intel.com>
 > wrote:
 >         On Wed, 2012-02-01 at 19:57 -0500, jfabernathy wrote:
@@ -65,7 +93,7 @@ On Thu, 2012-02-02 at 17:42 -0500, James Abernathy wrote:
 >         > >>>> the current docs. For example, the gst-fluendo-mp3
 >         recipe includes:
 >         > >>>>
->         > >>>> LICENSE_FLAGS = "commercial"
+>         > >>>> LICENSE_FLAGS =3D "commercial"
 >         > >>>>
 >         > >>>> Taking a look at the git logs with "LICENSE_FLAGS" in
 >         them, in order to
@@ -75,7 +103,7 @@ On Thu, 2012-02-02 at 17:42 -0500, James Abernathy wrote:
 >         with something
 >         > >>>> like the following in my local.conf:
 >         > >>>>
->         > >>>> LICENSE_FLAGS_WHITELIST += "commercial"
+>         > >>>> LICENSE_FLAGS_WHITELIST +=3D "commercial"
 >         > >>>>
 >         > >>>> Tom, can you confirm I've got this right?
 >         > >>>>
@@ -125,27 +153,27 @@ On Thu, 2012-02-02 at 17:42 -0500, James Abernathy wrote:
 >         image, putting
 >         > the following statements in the local.conf:
 >         >
->         > LICENSE_FLAGS_WHITELIST += "commercial"
->         > POKY_EXTRA_INSTALL += "gst-fluendo-mp3"
+>         > LICENSE_FLAGS_WHITELIST +=3D "commercial"
+>         > POKY_EXTRA_INSTALL +=3D "gst-fluendo-mp3"
 >         >
 >         >
 >         > I would think that specifying the media player in the image
 >         would bring in the dependent CODECs if the licenses were
 >         right, but what do I know.
 >         >
->         
->         
+>        =20
+>        =20
 >         Yes, that LICENSE_FLAGS_WHITELIST line would allow
 >         gst-fluendo-mp3 in,
 >         and that in turn bring in its dependencies.
->         
+>        =20
 >         Tom
->  
+> =20
 > FYI, I got this working fine. I could create a playlist with .ogg,
-> mp3, m4a file types and all played.  I could not adjust the volume.  
-> 
+> mp3, m4a file types and all played.  I could not adjust the volume. =20
+>=20
 > Is there a mixer/volume app for Sato?
-> 
+>=20
 
 Something like:
 
@@ -156,10 +184,10 @@ has worked for me in the past...
 
 Tom
 
-> 
+>=20
 > Jim A
-> 
-> 
+>=20
+>=20
 >         > Jim A
 >         >
 >         >
@@ -219,14 +247,18 @@ Tom
 >         > >> https://lists.yoctoproject.org/listinfo/yocto
 >         > >
 >         >
->         
->         
->         
-> 
+>        =20
+>        =20
+>        =20
+>=20
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
 
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
