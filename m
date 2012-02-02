@@ -1,21 +1,21 @@
 Return-Path: <ml@communistcode.co.uk>
 Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B71DCE00594
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 01:33:51 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6824AE00594
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 02:13:25 -0800 (PST)
 Received: from [192.168.0.24] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 19A1326F16
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 09:09:54 +0000 (GMT)
-Message-ID: <4F2A5859.40509@communistcode.co.uk>
-Date: Thu, 02 Feb 2012 09:33:13 +0000
+	by tinyArch.localdomain (Postfix) with ESMTPSA id 44F3626F16
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 09:49:25 +0000 (GMT)
+Message-ID: <4F2A619F.8020101@communistcode.co.uk>
+Date: Thu, 02 Feb 2012 10:12:47 +0000
 From: Jack Mitchell <ml@communistcode.co.uk>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:9.0) Gecko/20111224 Thunderbird/9.0.1
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
-	<7E680CB2A76BB8438D08CF13C09FC53A34C6EF4D@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A34C6EF4D@ORSMSX101.amr.corp.intel.com>
-Subject: Re: Minutes: Yocto Project Technical Team Meeting - Tuesday, January 31, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+To: yocto@yoctoproject.org
+References: <3AB6CE7F274E534CAFD089D127A8A1FC0FCE9634@SHSMSX102.ccr.corp.intel.com>
+	<4F29764F.7000305@intel.com>
+In-Reply-To: <4F29764F.7000305@intel.com>
+Subject: Re: RFC: Hob 1.2 design
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,22 +27,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 09:33:51 -0000
+X-List-Received-Date: Thu, 02 Feb 2012 10:13:25 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 31/01/12 23:07, Liu, Song wrote:
+On 01/02/12 17:28, Scott Garman wrote:
+> On 01/31/2012 05:39 PM, Wang, Shane wrote:
+>> Hi, all,
+>>
+>> Belen has a new video for Hob2 workflow and design.
+>>
+>> https://wiki.yoctoproject.org/wiki/File:Hob1.2-screencast2.mov
+>>
+>> Please comment.
 >
->   - ScottR: would like to encourage people to get back to Scott in 24 hours for his emails clarifying some doc topics. Scott would like to encourage community people to run through the docs and give some feedback. Sean: suggest online review for docs. Scott: we can widen the scope of the review. RP: All docs are in public repos and can be pulled out for review. If people have contribution, please send patches.
+> I'm pretty amazed with this. The workflow seems clear and each screen 
+> provides just the right bits of information the user would be 
+> interested in seeing. Outstanding!
+>
+> Scott
+>
 
-If new documentation portions are released I would be happy to give them 
-a once over as I'm sure many on the list would if they were alerted to 
-the changes.
+I concur, it looks fantastic - well done!
 
-At the end of the day it's wholly in our interests to ensure that the 
-documentation is understandable by end-users and also to read as much as 
-we can to improve our own knowledge.
-
-Cheers,
-Jack.
+It covers a lot more bases than I thought it would. Even if you still 
+like to do the build via CLI it gives a fantastic overview of the system 
+you're building as a whole, and even better, a dependency tree for why 
+certain packages are being included in the build.
 
