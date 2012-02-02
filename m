@@ -1,33 +1,28 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91DC6E004D2
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 17:12:22 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 01 Feb 2012 17:12:21 -0800
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FCEAE004D2
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 17:20:43 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 01 Feb 2012 17:20:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="102213423"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by azsmga001.ch.intel.com with ESMTP; 01 Feb 2012 17:12:21 -0800
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 1 Feb 2012 17:12:20 -0800
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.175]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.146]) with mapi id
-	14.01.0355.002; Wed, 1 Feb 2012 17:12:13 -0800
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: jfabernathy <jfabernathy@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] serial consoles
-Thread-Index: AQHM3Rt/X4CRZDKigUOqmUng5fZy+ZYo0ymggAAByxA=
-Date: Thu, 2 Feb 2012 01:12:19 +0000
-Message-ID: <63ECFF2A2302B44093D7CE9E9962C49002A4DF@ORSMSX103.amr.corp.intel.com>
-References: <4F22E29E.3040105@gmail.com> 
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Subject: Re: serial consoles
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="113062463"
+Received: from unknown (HELO [10.255.14.106]) ([10.255.14.106])
+	by fmsmga001.fm.intel.com with ESMTP; 01 Feb 2012 17:20:42 -0800
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: jfabernathy <jfabernathy@gmail.com>
+In-Reply-To: <4F29DF85.9040605@gmail.com>
+References: <63ECFF2A2302B44093D7CE9E9962C49002A109@ORSMSX103.amr.corp.intel.com>
+	<4F298A58.5030700@linux.intel.com>
+	<63ECFF2A2302B44093D7CE9E9962C49002A3CC@ORSMSX103.amr.corp.intel.com>
+	<4F29B248.4060202@linux.intel.com> <1328132827.2304.149.camel@elmorro>
+	<4F29BF30.80808@gmail.com> <1328140929.2304.157.camel@elmorro>
+	<4F29DF85.9040605@gmail.com>
+Date: Wed, 01 Feb 2012 19:20:34 -0600
+Message-ID: <1328145634.2304.159.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: yocto@yoctoproject.org
+Subject: Re: Gaku music player
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,67 +34,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 01:12:22 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 02 Feb 2012 01:20:43 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Forgot to mention, I tried these statements on machine/cedartrail.conf
+On Wed, 2012-02-01 at 19:57 -0500, jfabernathy wrote:
+> On 02/01/2012 07:02 PM, Tom Zanussi wrote:
+> > On Wed, 2012-02-01 at 17:39 -0500, jfabernathy wrote:
+> >> On 02/01/2012 04:47 PM, Tom Zanussi wrote:
+> >>> On Wed, 2012-02-01 at 13:44 -0800, Darren Hart wrote:
+> >>>> On 02/01/2012 01:36 PM, Saxena, Rahul wrote:
+> >>>>> Hi Darren,
+> >>>>>
+> >>>>> Thanks for the clarification.
+> >>>>>
+> >>>>> I am building on Edison.  I found that ogg music files play
+> >>>>> OK on my gaku player.  I think that should be good enough, but just for my information purposes
+> >>>>> can you help me understand how does one accept the commercial iirc license ?
+> >>>> This has changed relatively recently, and I'm not finding the details in
+> >>>> the current docs. For example, the gst-fluendo-mp3 recipe includes:
+> >>>>
+> >>>> LICENSE_FLAGS = "commercial"
+> >>>>
+> >>>> Taking a look at the git logs with "LICENSE_FLAGS" in them, in order to
+> >>>> allow for building of such recipes, you must include "commercial" in the
+> >>>> LICENSE_FLAGS_WHITELIST variable. I would attempt this with something
+> >>>> like the following in my local.conf:
+> >>>>
+> >>>> LICENSE_FLAGS_WHITELIST += "commercial"
+> >>>>
+> >>>> Tom, can you confirm I've got this right?
+> >>>>
+> >>> Yeah, that's right.
+> >>>
+> >>> Tom
+> >> I'm interested in this subject also.  If I use hob to look at a nice
+> >> display of packages, I see that their are a lot of gst-fluendo-*
+> >> pckages with MPLv1.1 Licenses. However, I don't see gst-fluendo-mp3
+> >> specifically.
+> >>       1. Is that package not a part of Yocto and a recipe has to be
+> >>          written to get it from somewhere?
+> > It is a part of yocto, it probably doesn't show up in HOB because of the
+> > restricted license (nothing has changed there, I guess that also would
+> > have been the case before with COMMERCIAL_LICENSE).
+> >
+> > Basically, the documentation hasn't caught up with the change yet
+> > (actually it (COMMERCIAL_LICENSE) was never documented, we need to
+> > change that in any case).
+> >
+> > The current 'documentation' for this, which I'll work with Scott on
+> > adapting to the actual documentation, is in the text of this poky
+> > commit:
+> >
+> > b68ea543603c35f4e3519d358e0d1e1e24bd5851
+> >
+> > and the set of packages that were changed from COMMERCIAL_LICENSE to
+> > LICENSE_FLAGS is here:
+> >
+> > 7b81ef8d95d82c55e3650981d3010000cd493832
+> >
+> > Tom
+> Okay, I found gst-fluendo-mp3 in the meta-recipes-multimedia. So is 
+> including it the same as other packages you want in the image, putting 
+> the following statements in the local.conf:
+> 
+> LICENSE_FLAGS_WHITELIST += "commercial"
+> POKY_EXTRA_INSTALL += "gst-fluendo-mp3"
+> 
+> 
+> I would think that specifying the media player in the image would bring in the dependent CODECs if the licenses were right, but what do I know.
+> 
 
------Original Message-----
-From: Saxena, Rahul=20
-Sent: Wednesday, February 01, 2012 5:10 PM
-To: 'jfabernathy'; yocto@yoctoproject.org
-Subject: RE: [yocto] serial consoles
+Yes, that LICENSE_FLAGS_WHITELIST line would allow gst-fluendo-mp3 in,
+and that in turn bring in its dependencies.
 
-The following format worked for me Cedar Trail Canoe Creek boards:
+Tom
 
-         SYSLINUX_OPTS =3D "serial 3 115200"
-         SERIAL_CONSOLE =3D "115200 ttyS3"
-         APPEND +=3D "console=3DttyS3,115200 console=3Dtty3"
+> Jim A
+> 
+> 
+> 
+> >>       1. I know I can get the fluendo MP3 for Ubuntu with a
+> >>          click-through license for personal use.
+> >>>> Scott, once Tom confirms, this is a mechanism we need to get documented
+> >>>> in the reference manual.
+> >>>>
+> >>>> --
+> >>>> Darren
+> >>>>
+> >>>>
+> >>>>> Thanks
+> >>>>> Rahul
+> >>>>>
+> >>>>> -----Original Message-----
+> >>>>> From: Darren Hart [mailto:dvhart@linux.intel.com]
+> >>>>> Sent: Wednesday, February 01, 2012 10:54 AM
+> >>>>> To: Saxena, Rahul
+> >>>>> Cc: yocto@yoctoproject.org
+> >>>>> Subject: Re: [yocto] Gaku music player
+> >>>>>
+> >>>>>
+> >>>>>
+> >>>>> On 02/01/2012 09:57 AM, Saxena, Rahul wrote:
+> >>>>>> Hello,
+> >>>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>> What type of music files is the Gaku music player on Sato desk top
+> >>>>>> supposed to play ?
+> >>>>>>
+> >>>>>> For me it did not work with mp3 files..however it is playing the
+> >>>>>> soundtrack from a .ogg video file
+> >>>>> It depends on which licenses you allow (the gstreamer mp3 plugin
+> >>>>> requires acceptance of the commercial license iirc). Are you building on
+> >>>>> edison or master?
+> >>>>>
+> >>>>> --
+> >>>>> Darren Hart
+> >>>>> Intel Open Source Technology Center
+> >>>>> Yocto Project - Linux Kernel
+> >>> _______________________________________________
+> >>> yocto mailing list
+> >>> yocto@yoctoproject.org
+> >>> https://lists.yoctoproject.org/listinfo/yocto
+> >> _______________________________________________
+> >> yocto mailing list
+> >> yocto@yoctoproject.org
+> >> https://lists.yoctoproject.org/listinfo/yocto
+> >
+> 
 
-This format is based on Fish River 2 BSP: http://git.yoctoproject.org/cgit/=
-cgit.cgi/meta-intel/tree/meta-fri2/conf/machine/fri2.conf?h=3Dedison
 
-
-Rahul
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of jfabernathy
-Sent: Friday, January 27, 2012 9:45 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] serial consoles
-
-I have the meta-cedartrail image running on hardware (Marshalltown=20
-board).  To make the serial console work, I have in the=20
-machine/cedartrail.conf file:
-
-SERIAL_CONSOLE =3D "115200 ttyS0"
-
-this works fine, but only after Linux is up and the login prompts are=20
-sent out. I'm trying to also get the Kernel boot console log out, and=20
-possibly syslinux or grub console.
-
-If I look at the release notes for the meta-n450, it has suggestions to=20
-do this for that BSP as below:
-
-         # Serial Port Setup for Intel Embedded Development Board 1-N40
-         SYSLINUX_OPTS_atom-pc =3D "serial 0 115200"
-         SERIAL_CONSOLE_atom-pc =3D "115200 ttyS0"
-         APPEND_atom-pc =3D "console=3DttyS0,115200 console=3Dtty0"
-
-However, those notes talk  about added these statements to the=20
-local.conf file.
-
-I have not been able to translate what works on the n450 to cedartrail.
-
-Any ideas?
-
-Jim A
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
