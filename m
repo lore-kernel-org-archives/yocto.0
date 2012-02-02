@@ -1,23 +1,25 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC644E00307
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 10:48:22 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q12ImL0s012564
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 2 Feb 2012 10:48:21 -0800 (PST)
-Received: from Macintosh-5.local (172.25.36.235) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 2 Feb 2012 10:48:21 -0800
-Message-ID: <4F2ADA74.6090803@windriver.com>
-Date: Thu, 2 Feb 2012 12:48:20 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <josh@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A712FE00307
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 11:02:51 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 02 Feb 2012 11:02:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="103232856"
+Received: from unknown (HELO [10.7.199.78]) ([10.7.199.78])
+	by orsmga001.jf.intel.com with ESMTP; 02 Feb 2012 11:02:50 -0800
+Message-ID: <4F2ADDDA.1000506@linux.intel.com>
+Date: Thu, 02 Feb 2012 11:02:50 -0800
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: prelink-cross project update
+To: yocto@yoctoproject.org
+References: <9c76056351fe4e2b9537729ffca3b4506b720513.1328135056.git.dvhart@linux.intel.com>
+	<d40c099c9dced8365653e7cef02108e03ab4bfdf.1328135056.git.dvhart@linux.intel.com>
+	<4F29C23F.5070801@linux.intel.com> <4F29C4DF.50704@linux.intel.com>
+In-Reply-To: <4F29C4DF.50704@linux.intel.com>
+Subject: Re: [pull-sys940x 4/4] netbase: Add interfaces with RANDOM_MAC for sys940x* machines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,59 +31,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 18:48:23 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Thu, 02 Feb 2012 19:02:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-A new version of the prelink-cross has been pushed to the repository.
+On 01/02/12 15:03, Joshua Lock wrote:
+> On 01/02/12 14:52, Joshua Lock wrote:
+>>> +++ b/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
+>>> @@ -0,0 +1,3 @@
+>>> +FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+>>> +RDEPENDS_${PN} += "genmac"
+>>
+>> We can use a MACHINE specific override here, I think.
+>>
+>> RDEPENDS_${PN}_sys940x += "genmac"
+>>
+>> Ideally we don't want that interfaces file on non-sys940x machines,
+>> perhaps we could name the interfaces file differently and add a
+>> do_install_append_sys940x which installs the MACHINE specific interface
+>> file?
+>
+> In this instance, however, I don't know what would happen if we built
+> netbase with this layer enabled for a different core2 MACHINE and then
+> built for the sys940x....
+>
+> I suspect the existing core2 package would be used and think for this
+> approach to work we'd need to mark this recipe MACHINE specific.
 
-This version fixes a number of minor bugs found during development, it is also 
-believed to resolve bug #1808 relating to ARM prelinking, and adds support for 
-x86_64's x32 ABI.
+I was missing a detail here which Koen pointed out, if you use a MACHINE 
+OVERRIDE in SRC_URI BitBake should mark the package as MACHINE specific.
 
-Special thanks to Mentor Graphics for contributing the ARM TLS fix.
+I've submitted a patch to make netbase MACHINE specific by default but 
+should that patch not be accepted the use of an OVERRIDE on SRC_URI or 
+explicitly setting PACKAGE_ARCH = "${MACHINE_ARCH}" in the bbappend will 
+be an appropriate fix.
 
-There were no upstream changes to the main prelink component, all changes are
-specific to the cross functionality.  Below is the Changelog, since the last update:
-
-2011-12-21  Mark Hatle <mark.hatle@windriver.com>
-         * src/arch-x86_64.c: Add support for x32 ABI
-
-2012-02-02  Mark Hatle <mark.hatle@windriver.com>
-         Integrate dwarf2 signal frame patch:
-
-         2010-05-10  Paul Brook  <paul@codesourcery.com>
-
-         * src/dwarf2.c (adjust_dwarf2_frame): Skip 'S' augmentation.
-
-2012-02-01  Mark Hatle <mark.hatle@windriver.com>
-         * configure.in: Fix enabling and disabling of SE Linux support
-
-2012-01-26  Mark Hatle <mark.hatle@windriver.com>
-         * elf.h, rtld/dl-lookupX.h, rtld/rtld.c: Sync to eglibc 2.15
-
-         Integrate R_ARM_TLS_DESC relocation support patch:
-
-         2011-04-13  Maciej W. Rozycki  <macro@codesourcery.com>
-
-         * src/prelink.h (DT_TLSDESC_PLT, R_ARM_TLS_DESC): New macros.
-         (DSO): Add info_DT_TLSDESC_PLT member.
-         (DT_TLSDESC_PLT_BIT): New macro.
-         * src/arch-arm.c (arm_prelink_rel, arm_prelink_rela): Handle
-         R_ARM_TLS_DESC relocation.
-         (arm_prelink_conflict_rel, arm_prelink_conflict_rela): Likewise.
-         (arm_rel_to_rela): Likewise.
-         (arm_undo_prelink_rel): Likewise.
-         (arm_reloc_class): Likewise.
-         * src/dso.c (read_dynamic): Handle DT_TLSDESC_PLT dynamic tag.
-
-         * src/prelink.h: add missing prototypes for wrap_listxattr,
-         wrap_getxattr, wrap_setxattr
-
-2012-01-04  Mark Hatle <mark.hatle@windriver.com>
-         * exec.c: Check that a section is larger then 0 bytes when
-           determining the section to segment mapping.  This matches
-           the behavior of elfutils - readelf.  Otherwise an empty
-           PROGBITS section at the end of a segment will cause a
-           failure.
+Cheers,
+Joshua
+-- 
+Joshua Lock
+         Yocto Project "Johannes factotum"
+         Intel Open Source Technology Centre
 
