@@ -1,34 +1,28 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F08FE00592
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 09:44:33 -0800 (PST)
-Received: by qcsd1 with SMTP id d1so1858426qcs.35
-	for <yocto@yoctoproject.org>; Thu, 02 Feb 2012 09:44:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=SJNlgfknIaKylL+5gnLXn8nCFufy1uqXRatyHikim2o=;
-	b=D9FkfR4QHzXonTj79r4nSjJWy8Jwihmo8xyKlWpBysS9/N5FzrMI2uJxHvb03UMrcZ
-	eVWkwqzjWdwwAbUFna4hJljINXqFpJ8WHELyNByzp33NRBFf+dA6puZHcrQqNRrDAgFP
-	26XCZlIIedLYwT/PFJowM66eSA3fpP835ROAE=
-Received: by 10.229.114.210 with SMTP id f18mr1471161qcq.121.1328204672687;
-	Thu, 02 Feb 2012 09:44:32 -0800 (PST)
-Received: from [10.0.1.54] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
-	by mx.google.com with ESMTPS id
-	fh6sm6852453qab.22.2012.02.02.09.44.31 (version=SSLv3 cipher=OTHER);
-	Thu, 02 Feb 2012 09:44:32 -0800 (PST)
-Message-ID: <4F2ACB7F.4010509@gmail.com>
-Date: Thu, 02 Feb 2012 12:44:31 -0500
-From: jfabernathy <jfabernathy@gmail.com>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF177E00307
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 10:08:48 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 02 Feb 2012 10:08:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="103213558"
+Received: from unknown (HELO envy.home) ([10.7.199.59])
+	by orsmga001.jf.intel.com with ESMTP; 02 Feb 2012 10:08:29 -0800
+Message-ID: <4F2AD0FF.3090903@linux.intel.com>
+Date: Thu, 02 Feb 2012 10:07:59 -0800
+From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4F2A0A34.4020605@gmail.com> <4F2AB4FF.5070208@gmail.com>
-	<4F2AC2AB.6030204@windriver.com> <4F2AC9A5.5040706@gmail.com>
-In-Reply-To: <4F2AC9A5.5040706@gmail.com>
-Subject: Re: needed site is down???
+To: Joshua Lock <josh@linux.intel.com>
+References: <cover.1328135056.git.dvhart@linux.intel.com>
+	<9c76056351fe4e2b9537729ffca3b4506b720513.1328135056.git.dvhart@linux.intel.com>
+	<4F29BE90.1010707@linux.intel.com>
+	<4F29C51D.5080103@linux.intel.com>
+In-Reply-To: <4F29C51D.5080103@linux.intel.com>
+X-Enigmail-Version: 1.3.5
+Cc: yocto@yoctoproject.org
+Subject: Re: [pull-sys940x 1/4] meta-intel: Add Inforce SYS940x BSP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,63 +34,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 17:44:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 02 Feb 2012 18:08:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 02/02/2012 12:36 PM, jfabernathy wrote:
-> On 02/02/2012 12:06 PM, Mark Hatle wrote:
->> On 2/2/12 10:08 AM, jfabernathy wrote:
->>> On 02/01/2012 10:59 PM, jfabernathy wrote:
->>>> Am I the only one seeing this dead link?  I'm building from master and
->>>> can't get to this link that draws the error:
->>>>
->>>> http://cgit.freedesktop.org/libva/snapshot/libva-1.0.12.tar.bz2
->>>>
->>>> I'm building crownbay bsp with core-image-sato.
->>>>
->>>> Jim A
->>>>
->>> I can't seem to build anything that requires something from
->>> cgit.freedesktop.org.  The whole site seems to be down.  Is there a 
->>> mirror?
->>
->> Using the standard poky distribution configuration, you should be 
->> connecting to our mirrors.
->>
->> meta-yocto/conf/distro/poky.conf has the settings.  All of the 
->> upstream packages should be mirrored there.  If they are not, then 
->> please let us know and we'll work on resolving any missing files.
->>
->> --Mark
->>
-> In the poky.conf file you mentioned, I see the statement in the mirror 
-> section:
->
-> http://.*/.*     http://autobuilder.yoctoproject.org/sources/ \n \
->
-> I'm not sure if this statement will allow the yocto mirror site to 
-> pull the dead location:
->
-> http://cgit.freedesktop.org/libva/snapshot/libva-1.0.12.tar.bz2
->>> JIm A
+
+
+On 02/01/2012 03:05 PM, Joshua Lock wrote:
+> On 01/02/12 14:37, Joshua Lock wrote:
+>>> http://www.inforcecomputing.com/SYS940X_ECX.html
 >>>
->>> _
-Just noticed that what's on the Yocto mirror is 
-libva_0.31.0-1+sds9.1ubuntu1.tar.gz ), but the recipe is calling for a 
-newer version, libva-1.0.12.tar.bz2
-
-Jim A
-
->>> ______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
+>>> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
+>>> ---
+>>> meta-sys940x/COPYING.MIT | 17 +++
+>>> meta-sys940x/README | 140 ++++++++++++++++++++
+>>> meta-sys940x/README.sources | 18 +++
+>>> meta-sys940x/conf/layer.conf | 10 ++
+>>> meta-sys940x/conf/machine/sys940x-noemgd.conf | 19 +++
 >>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
+>> When I played around with an earlier version of this branch recently the
+>> kernel for the noemgd machine didn't build, is that now fixed?
+> 
+> Apologies, I got that the wrong way around. The kernel for the MACHINE 
+> *with* emgd didn't build. The noemgd version worked fine.
 
+Should be good now. Now that Bruce has pulled in the sys940x BSP patches
+to linux-yocto, I'll need to update the meta SRCREV, and will do that
+before a push.
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
