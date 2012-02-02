@@ -1,28 +1,27 @@
 Return-Path: <rahul.saxena@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB9D6E004D2
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 17:10:23 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 01 Feb 2012 17:10:23 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91DC6E004D2
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 17:12:22 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 01 Feb 2012 17:12:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="102908352"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
-	by orsmga001.jf.intel.com with ESMTP; 01 Feb 2012 17:10:23 -0800
-Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
-	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 1 Feb 2012 17:10:22 -0800
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="102213423"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by azsmga001.ch.intel.com with ESMTP; 01 Feb 2012 17:12:21 -0800
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 1 Feb 2012 17:12:20 -0800
 Received: from orsmsx103.amr.corp.intel.com ([169.254.2.175]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.96]) with mapi id
-	14.01.0355.002; Wed, 1 Feb 2012 17:10:21 -0800
+	ORSMSX102.amr.corp.intel.com ([169.254.1.146]) with mapi id
+	14.01.0355.002; Wed, 1 Feb 2012 17:12:13 -0800
 From: "Saxena, Rahul" <rahul.saxena@intel.com>
 To: jfabernathy <jfabernathy@gmail.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
 Thread-Topic: [yocto] serial consoles
-Thread-Index: AQHM3Rt/X4CRZDKigUOqmUng5fZy+ZYo0ymg
-Date: Thu, 2 Feb 2012 01:10:20 +0000
-Message-ID: <63ECFF2A2302B44093D7CE9E9962C49002A4CE@ORSMSX103.amr.corp.intel.com>
-References: <4F22E29E.3040105@gmail.com>
-In-Reply-To: <4F22E29E.3040105@gmail.com>
+Thread-Index: AQHM3Rt/X4CRZDKigUOqmUng5fZy+ZYo0ymggAAByxA=
+Date: Thu, 2 Feb 2012 01:12:19 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C49002A4DF@ORSMSX103.amr.corp.intel.com>
+References: <4F22E29E.3040105@gmail.com> 
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -40,10 +39,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 01:10:23 -0000
+X-List-Received-Date: Thu, 02 Feb 2012 01:12:22 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Forgot to mention, I tried these statements on machine/cedartrail.conf
+
+-----Original Message-----
+From: Saxena, Rahul=20
+Sent: Wednesday, February 01, 2012 5:10 PM
+To: 'jfabernathy'; yocto@yoctoproject.org
+Subject: RE: [yocto] serial consoles
 
 The following format worked for me Cedar Trail Canoe Creek boards:
 
