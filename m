@@ -1,15 +1,15 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2A3FE00307
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 11:33:26 -0800 (PST)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CEC4BE00307
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 11:34:49 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 02 Feb 2012 11:33:26 -0800
+	by orsmga101.jf.intel.com with ESMTP; 02 Feb 2012 11:34:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="105565538"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="105565927"
 Received: from unknown (HELO envy.home) ([10.7.199.59])
-	by orsmga002.jf.intel.com with ESMTP; 02 Feb 2012 11:33:26 -0800
-Message-ID: <4F2AE4E8.3080809@linux.intel.com>
-Date: Thu, 02 Feb 2012 11:32:56 -0800
+	by orsmga002.jf.intel.com with ESMTP; 02 Feb 2012 11:34:49 -0800
+Message-ID: <4F2AE53A.4090400@linux.intel.com>
+Date: Thu, 02 Feb 2012 11:34:18 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:9.0) Gecko/20111222 Thunderbird/9.0
@@ -18,9 +18,10 @@ To: Joshua Lock <josh@linux.intel.com>
 References: <9c76056351fe4e2b9537729ffca3b4506b720513.1328135056.git.dvhart@linux.intel.com>
 	<6c598896584af47478c75ec08f3b4e8fd954b5fb.1328135056.git.dvhart@linux.intel.com>
 	<4F29BF45.8060008@linux.intel.com>
-	<4F2AD4ED.3090409@linux.intel.com>
-	<4F2AE2F4.2010307@linux.intel.com>
-In-Reply-To: <4F2AE2F4.2010307@linux.intel.com>
+	<20120202072215.GA3697@jama.jama.net>
+	<4F2AD53A.8010904@linux.intel.com>
+	<4F2AE06E.7090706@linux.intel.com>
+In-Reply-To: <4F2AE06E.7090706@linux.intel.com>
 X-Enigmail-Version: 1.3.5
 Cc: yocto@yoctoproject.org
 Subject: Re: [pull-sys940x 2/4] ranpwd: Add ranpwd recipe
@@ -35,51 +36,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 19:33:26 -0000
+X-List-Received-Date: Thu, 02 Feb 2012 19:34:50 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
 
 
-On 02/02/2012 11:24 AM, Joshua Lock wrote:
-> 
-> 
-> On 02/02/12 10:24, Darren Hart wrote:
->>
->>
->> On 02/01/2012 02:40 PM, Joshua Lock wrote:
->>>
->>>
->>> On 01/02/12 14:26, Darren Hart wrote:
->>>> ranpwd is used to generate random strings of various types, including
->>>> passwords, UUIDs, and MAC addresses.
->>>>
->>>> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
->>>> ---
->>>>    meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb |   23 ++++++++++++++++++++
->>>>    1 files changed, 23 insertions(+), 0 deletions(-)
->>>>    create mode 100644 meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb
->>>>
->>>> diff --git a/meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb b/meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb
->>>> new file mode 100644
->>>> index 0000000..66fcc26
->>>> --- /dev/null
->>>> +++ b/meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb
->>>> @@ -0,0 +1,23 @@
->>>> +DESCRIPTION = "Random password generator"
->>>> +#SECTION = "utilities"
->>>
->>> We may as well delete this line, no?
->>
->> Oops. I didn't intend to leave it commented. I'm also no sure how to
->> decide which "SECTION" to put it in. Is there some definitive list from
->> which to select an appropriate SECTION? Uncommented in my local branch
->> for now.
-> 
-> I think there was an agreement to drop this field. It's not especially 
-> useful and there's not definitive list that I'm aware of.
+On 02/02/2012 11:13 AM, Joshua Lock wrote:
+> PV = "0.8+git${SRCPV}"
 
-Done.
+And done.
 
 -- 
 Darren Hart
