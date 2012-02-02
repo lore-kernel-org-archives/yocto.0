@@ -1,27 +1,27 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF85CE013A2
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 10:28:08 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 330A3E00307
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 10:32:15 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 02 Feb 2012 10:28:08 -0800
+	by orsmga101.jf.intel.com with ESMTP; 02 Feb 2012 10:32:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="103222564"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="103224112"
 Received: from unknown (HELO envy.home) ([10.7.199.59])
-	by orsmga001.jf.intel.com with ESMTP; 02 Feb 2012 10:28:08 -0800
-Message-ID: <4F2AD599.7010208@linux.intel.com>
-Date: Thu, 02 Feb 2012 10:27:37 -0800
+	by orsmga001.jf.intel.com with ESMTP; 02 Feb 2012 10:32:14 -0800
+Message-ID: <4F2AD690.5000900@linux.intel.com>
+Date: Thu, 02 Feb 2012 10:31:44 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
 To: Joshua Lock <josh@linux.intel.com>
 References: <9c76056351fe4e2b9537729ffca3b4506b720513.1328135056.git.dvhart@linux.intel.com>
-	<8c5010ca5786a486f2082d711fdf52b8617973af.1328135056.git.dvhart@linux.intel.com>
-	<4F29BFD5.7010002@linux.intel.com>
-In-Reply-To: <4F29BFD5.7010002@linux.intel.com>
+	<d40c099c9dced8365653e7cef02108e03ab4bfdf.1328135056.git.dvhart@linux.intel.com>
+	<4F29C23F.5070801@linux.intel.com> <4F29C4DF.50704@linux.intel.com>
+In-Reply-To: <4F29C4DF.50704@linux.intel.com>
 X-Enigmail-Version: 1.3.5
 Cc: yocto@yoctoproject.org
-Subject: Re: [pull-sys940x 3/4] genmac: Replace RANDOM_MAC in network/interfaces with a randomly generated MAC
+Subject: Re: [pull-sys940x 4/4] netbase: Add interfaces with RANDOM_MAC for sys940x* machines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,75 +33,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 18:28:09 -0000
+X-List-Received-Date: Thu, 02 Feb 2012 18:32:15 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
 
 
-On 02/01/2012 02:42 PM, Joshua Lock wrote:
+On 02/01/2012 03:03 PM, Joshua Lock wrote:
 > 
 > 
-> On 01/02/12 14:26, Darren Hart wrote:
->> For machines that do not have a MAC in hardware and with drivers that don't
->> generate a random one in the kernel, this init script will replace the string
->> RANDOM_MAC in the network/interfaces file with one generated with "ranpwd -m".
->> Care is taken to ensure multiple interfaces can use RANDOM_MAC and receive
->> unique addresses. ranpwd generates MACs with the locally administered bit set
->> and the multicast bit disabled.
+> On 01/02/12 14:52, Joshua Lock wrote:
+>>> +++ b/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
+>>> @@ -0,0 +1,3 @@
+>>> +FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+>>> +RDEPENDS_${PN} += "genmac"
 >>
->> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
->> ---
->>   meta-sys940x/recipes-bsp/genmac/files/genmac |   46 ++++++++++++++++++++++++++
->>   meta-sys940x/recipes-bsp/genmac/genmac.bb    |   30 +++++++++++++++++
->>   2 files changed, 76 insertions(+), 0 deletions(-)
->>   create mode 100644 meta-sys940x/recipes-bsp/genmac/files/genmac
->>   create mode 100644 meta-sys940x/recipes-bsp/genmac/genmac.bb
+>> We can use a MACHINE specific override here, I think.
 >>
->> diff --git a/meta-sys940x/recipes-bsp/genmac/files/genmac b/meta-sys940x/recipes-bsp/genmac/files/genmac
->> new file mode 100644
->> index 0000000..6ca069c
->> --- /dev/null
->> +++ b/meta-sys940x/recipes-bsp/genmac/files/genmac
->> @@ -0,0 +1,46 @@
->> +#!/bin/sh
->> +### BEGIN INIT INFO
->> +# Provides:          Random MAC address generator
->> +# Required-Start:    $syslog
->> +# Required-Stop:     $syslog
->> +# Default-Start:     2 3 4 5
->> +# Default-Stop:      0 1 6
->> +# Short-Description: Set a random MAC for tagged interfaces
->> +# Description:       Set a random MAC for interfaces with RANDOM_MAC
->> +### END INIT INFO
->> +
->> +# Author: Darren Hart<dvhart@linux.intel.com>
->> +# Based on /etc/init.d/skeleton
->> +
->> +PATH=/sbin:/usr/sbin:/bin:/usr/bin
->> +DESC="Set a random MAC for tagged interfaces"
->> +NAME=genmac
->> +RANPWD=`which ranpwd`
->> +SCRIPTNAME=/etc/init.d/$NAME
->> +
->> +# Exit if amixer is not installed
+>> RDEPENDS_${PN}_sys940x += "genmac"
+>>
+>> Ideally we don't want that interfaces file on non-sys940x machines,
+>> perhaps we could name the interfaces file differently and add a
+>> do_install_append_sys940x which installs the MACHINE specific interface
+>> file?
 > 
-> amixer?
+> In this instance, however, I don't know what would happen if we built 
+> netbase with this layer enabled for a different core2 MACHINE and then 
+> built for the sys940x....
 > 
->> +[ -x "$RANPWD" ] || exit 0
->> +
->> +do_start() {
->> +	# Replace every occurance of RANDOM_MAC with a unique locally
-> occurrence?
->> +	# administered, unicast, randomly generated MAC address.
->> +	while grep -q RANDOM_MAC /etc/network/interfaces; do
->> +		sed -i "1,/RANDOM_MAC/s/RANDOM_MAC/$($RANPWD -m)/" /etc/network/interfaces
->> +	done
+> I suspect the existing core2 package would be used and think for this 
+> approach to work we'd need to mark this recipe MACHINE specific.
 > 
-> Otherwise looks good, feel free to add my SOB.
-> 
+> Cheers,
+> Joshua
 
-Both fixed, SOB added. Thanks for the review!
+Thanks for catching this. As I understand it, Richard and Joshua have
+agreed that netbase should just be MACHINE specific. Joshua has agreed
+to prep a patch to this effect, rendering this recipe OK as is.
 
 -- 
 Darren Hart
