@@ -1,33 +1,32 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qw0-f48.google.com (mail-qw0-f48.google.com
-	[209.85.216.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E204E00592
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 08:08:36 -0800 (PST)
-Received: by qauh8 with SMTP id h8so1899514qau.14
-	for <yocto@yoctoproject.org>; Thu, 02 Feb 2012 08:08:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=Vxoor68pvmHJ9c4rPQcHhucuZcFmlZ/eGO72wp97WmI=;
-	b=s69AFrYSapx4M0vVZ1idTT3KQYAQLadv59ZxV7ppgeOIj7+6ZlDxFzF4wDb3kyod/r
-	YxJltqUWXMrGU2KiqItFs2xT/BAG2P0OyMB4BKyVQHaCPfEMi4dwu4Ba9V0pm6WPnGFn
-	qMY+6U6cpaxwVqAXda7hlR/IWdy97CxV6ewyA=
-Received: by 10.224.105.203 with SMTP id u11mr4765256qao.77.1328198913529;
-	Thu, 02 Feb 2012 08:08:33 -0800 (PST)
-Received: from [10.0.1.54] (nc-184-3-54-63.dhcp.embarqhsd.net. [184.3.54.63])
-	by mx.google.com with ESMTPS id
-	fh6sm6350174qab.22.2012.02.02.08.08.31 (version=SSLv3 cipher=OTHER);
-	Thu, 02 Feb 2012 08:08:32 -0800 (PST)
-Message-ID: <4F2AB4FF.5070208@gmail.com>
-Date: Thu, 02 Feb 2012 11:08:31 -0500
-From: jfabernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33D70E00592
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 08:58:57 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 02 Feb 2012 08:58:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="103184647"
+Received: from irsmsx602.ger.corp.intel.com ([163.33.3.242])
+	by orsmga001.jf.intel.com with ESMTP; 02 Feb 2012 08:58:55 -0800
+Received: from irsmsx104.ger.corp.intel.com (163.33.3.159) by
+	irsmsx602.ger.corp.intel.com (163.33.3.242) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 2 Feb 2012 16:58:51 +0000
+Received: from irsmsx101.ger.corp.intel.com ([169.254.1.99]) by
+	IRSMSX104.ger.corp.intel.com ([169.254.5.165]) with mapi id
+	14.01.0355.002; Thu, 2 Feb 2012 16:58:50 +0000
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Hob 1.2 design - Settings dialogue
+Thread-Index: AQHM4cvvu96UAoNq/Eet4MVVkKAT1A==
+Date: Thu, 2 Feb 2012 16:58:50 +0000
+Message-ID: <CB507144.6E40%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.14.0.111121
+x-originating-ip: [10.252.21.194]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4F2A0A34.4020605@gmail.com>
-In-Reply-To: <4F2A0A34.4020605@gmail.com>
-Subject: Re: needed site is down???
+Subject: Hob 1.2 design - Settings dialogue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,23 +38,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 16:08:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 02 Feb 2012 16:58:57 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <611578764E4EDE42B5B0F39F039F0B52@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-On 02/01/2012 10:59 PM, jfabernathy wrote:
-> Am I the only one seeing this dead link?  I'm building from master and 
-> can't get to this link that draws the error:
->
-> http://cgit.freedesktop.org/libva/snapshot/libva-1.0.12.tar.bz2
->
-> I'm building crownbay bsp with core-image-sato.
->
-> Jim A
->
-I can't seem to build anything that requires something from 
-cgit.freedesktop.org.  The whole site seems to be down.  Is there a mirror?
+I've uploaded a document detailing the design of the Settings dialogue for =
+Hob 1.2 at
 
-JIm A
+https://wiki.yoctoproject.org/wiki/File:Settings-dialogue-design-spec-v1.0.=
+pdf
+
+Sorry it's a boring document instead of a video: it seemed the only way to =
+provide the necessary level of detail
+
+Let me know if you have any questions or comments.
+
+Belen
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
