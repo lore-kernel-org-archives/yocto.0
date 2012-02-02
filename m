@@ -1,27 +1,19 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBDE1E004D2
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 16:02:17 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 01 Feb 2012 16:02:17 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 556EEE004D2
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 16:29:07 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 01 Feb 2012 16:29:06 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="105189744"
-Received: from unknown (HELO [10.255.14.106]) ([10.255.14.106])
-	by orsmga002.jf.intel.com with ESMTP; 01 Feb 2012 16:02:17 -0800
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: jfabernathy <jfabernathy@gmail.com>
-In-Reply-To: <4F29BF30.80808@gmail.com>
-References: <63ECFF2A2302B44093D7CE9E9962C49002A109@ORSMSX103.amr.corp.intel.com>
-	<4F298A58.5030700@linux.intel.com>
-	<63ECFF2A2302B44093D7CE9E9962C49002A3CC@ORSMSX103.amr.corp.intel.com>
-	<4F29B248.4060202@linux.intel.com> <1328132827.2304.149.camel@elmorro>
-	<4F29BF30.80808@gmail.com>
-Date: Wed, 01 Feb 2012 18:02:09 -0600
-Message-ID: <1328140929.2304.157.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: yocto@yoctoproject.org
-Subject: Re: Gaku music player
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="102198724"
+Received: from unknown (HELO localhost) ([10.255.14.106])
+	by azsmga001.ch.intel.com with ESMTP; 01 Feb 2012 16:29:06 -0800
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org
+Date: Wed,  1 Feb 2012 18:28:56 -0600
+Message-Id: <cover.1328142259.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/1] Add LICENSE_FLAGS_WHITELIST example
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,115 +25,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 00:02:18 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 02 Feb 2012 00:29:07 -0000
 
-On Wed, 2012-02-01 at 17:39 -0500, jfabernathy wrote:
-> On 02/01/2012 04:47 PM, Tom Zanussi wrote: 
-> > On Wed, 2012-02-01 at 13:44 -0800, Darren Hart wrote:
-> > > On 02/01/2012 01:36 PM, Saxena, Rahul wrote:
-> > > > Hi Darren,
-> > > > 
-> > > > Thanks for the clarification.
-> > > > 
-> > > > I am building on Edison.  I found that ogg music files play
-> > > > OK on my gaku player.  I think that should be good enough, but just for my information purposes
-> > > > can you help me understand how does one accept the commercial iirc license ?
-> > > This has changed relatively recently, and I'm not finding the details in
-> > > the current docs. For example, the gst-fluendo-mp3 recipe includes:
-> > > 
-> > > LICENSE_FLAGS = "commercial"
-> > > 
-> > > Taking a look at the git logs with "LICENSE_FLAGS" in them, in order to
-> > > allow for building of such recipes, you must include "commercial" in the
-> > > LICENSE_FLAGS_WHITELIST variable. I would attempt this with something
-> > > like the following in my local.conf:
-> > > 
-> > > LICENSE_FLAGS_WHITELIST += "commercial"
-> > > 
-> > > Tom, can you confirm I've got this right?
-> > > 
-> > Yeah, that's right.
-> > 
-> > Tom
-> I'm interested in this subject also.  If I use hob to look at a nice
-> display of packages, I see that their are a lot of gst-fluendo-*
-> pckages with MPLv1.1 Licenses. However, I don't see gst-fluendo-mp3
-> specifically.  
->      1. Is that package not a part of Yocto and a recipe has to be
->         written to get it from somewhere?
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-It is a part of yocto, it probably doesn't show up in HOB because of the
-restricted license (nothing has changed there, I guess that also would
-have been the case before with COMMERCIAL_LICENSE).
+Update meta-yocto/local.conf.sample.extended with an example using
+LICENSE_FLAGS_WHITELIST with the current set of commercial licenses.
 
-Basically, the documentation hasn't caught up with the change yet
-(actually it (COMMERCIAL_LICENSE) was never documented, we need to
-change that in any case).
+v2: same as before, but rebased to current
 
-The current 'documentation' for this, which I'll work with Scott on
-adapting to the actual documentation, is in the text of this poky
-commit:
+The following changes since commit 8d4d9a15c4947e55ed217c6035e76fcff724e544:
+  Koen Kooi (1):
+        package bbclass: allow per package PRIVATE_LIBS
 
-b68ea543603c35f4e3519d358e0d1e1e24bd5851
+are available in the git repository at:
 
-and the set of packages that were changed from COMMERCIAL_LICENSE to
-LICENSE_FLAGS is here:
+  git://git.yoctoproject.org/poky-contrib.git tzanussi/license-flags-whitelist-sample.v2
+  http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=tzanussi/license-flags-whitelist-sample.v2
 
-7b81ef8d95d82c55e3650981d3010000cd493832
+Tom Zanussi (1):
+  meta-yocto/local.conf.sample.extended: add LICENSE_FLAGS_WHITELIST
+    section
 
-Tom
-
->      1. I know I can get the fluendo MP3 for Ubuntu with a
->         click-through license for personal use.
-> > > Scott, once Tom confirms, this is a mechanism we need to get documented
-> > > in the reference manual.
-> > > 
-> > > --
-> > > Darren
-> > > 
-> > > 
-> > > > Thanks
-> > > > Rahul
-> > > > 
-> > > > -----Original Message-----
-> > > > From: Darren Hart [mailto:dvhart@linux.intel.com] 
-> > > > Sent: Wednesday, February 01, 2012 10:54 AM
-> > > > To: Saxena, Rahul
-> > > > Cc: yocto@yoctoproject.org
-> > > > Subject: Re: [yocto] Gaku music player
-> > > > 
-> > > > 
-> > > > 
-> > > > On 02/01/2012 09:57 AM, Saxena, Rahul wrote:
-> > > > > Hello,
-> > > > > 
-> > > > >  
-> > > > > 
-> > > > > What type of music files is the Gaku music player on Sato desk top
-> > > > > supposed to play ?
-> > > > > 
-> > > > > For me it did not work with mp3 files..however it is playing the
-> > > > > soundtrack from a .ogg video file
-> > > > It depends on which licenses you allow (the gstreamer mp3 plugin
-> > > > requires acceptance of the commercial license iirc). Are you building on
-> > > > edison or master?
-> > > > 
-> > > > --
-> > > > Darren Hart
-> > > > Intel Open Source Technology Center
-> > > > Yocto Project - Linux Kernel
-> > 
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+ meta-yocto/conf/local.conf.sample.extended |   13 +++++++++++++
+ 1 files changed, 13 insertions(+), 0 deletions(-)
 
 
