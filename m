@@ -1,29 +1,24 @@
 Return-Path: <josh@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E840E00307
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 13:11:21 -0800 (PST)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43B8BE00307
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 13:19:42 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 02 Feb 2012 13:11:20 -0800
+	by orsmga101.jf.intel.com with ESMTP; 02 Feb 2012 13:19:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="105602378"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="105604910"
 Received: from unknown (HELO [10.7.199.78]) ([10.7.199.78])
-	by orsmga002.jf.intel.com with ESMTP; 02 Feb 2012 13:11:20 -0800
-Message-ID: <4F2AFBF7.8010307@linux.intel.com>
-Date: Thu, 02 Feb 2012 13:11:19 -0800
+	by orsmga002.jf.intel.com with ESMTP; 02 Feb 2012 13:19:37 -0800
+Message-ID: <4F2AFDE9.6030505@linux.intel.com>
+Date: Thu, 02 Feb 2012 13:19:37 -0800
 From: Joshua Lock <josh@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <9c76056351fe4e2b9537729ffca3b4506b720513.1328135056.git.dvhart@linux.intel.com>
-	<6c598896584af47478c75ec08f3b4e8fd954b5fb.1328135056.git.dvhart@linux.intel.com>
-	<4F29BF45.8060008@linux.intel.com>
-	<4F2AD4ED.3090409@linux.intel.com>
-	<4F2AE2F4.2010307@linux.intel.com>
-	<4F2AE4E8.3080809@linux.intel.com>
-In-Reply-To: <4F2AE4E8.3080809@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [pull-sys940x 2/4] ranpwd: Add ranpwd recipe
+To: yocto@yoctoproject.org
+References: <CB5076AC.6E4B%belen.barros.pena@intel.com>
+In-Reply-To: <CB5076AC.6E4B%belen.barros.pena@intel.com>
+Cc: mikael.metthey@intel.com
+Subject: Re: Hob 1.2 design - visuals
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,56 +30,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 21:11:21 -0000
+X-List-Received-Date: Thu, 02 Feb 2012 21:19:42 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 02/02/12 11:32, Darren Hart wrote:
-> On 02/02/2012 11:24 AM, Joshua Lock wrote:
->>
->>
->> On 02/02/12 10:24, Darren Hart wrote:
->>>
->>>
->>> On 02/01/2012 02:40 PM, Joshua Lock wrote:
->>>>
->>>>
->>>> On 01/02/12 14:26, Darren Hart wrote:
->>>>> ranpwd is used to generate random strings of various types, including
->>>>> passwords, UUIDs, and MAC addresses.
->>>>>
->>>>> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
->>>>> ---
->>>>>     meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb |   23 ++++++++++++++++++++
->>>>>     1 files changed, 23 insertions(+), 0 deletions(-)
->>>>>     create mode 100644 meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb
->>>>>
->>>>> diff --git a/meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb b/meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb
->>>>> new file mode 100644
->>>>> index 0000000..66fcc26
->>>>> --- /dev/null
->>>>> +++ b/meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb
->>>>> @@ -0,0 +1,23 @@
->>>>> +DESCRIPTION = "Random password generator"
->>>>> +#SECTION = "utilities"
->>>>
->>>> We may as well delete this line, no?
->>>
->>> Oops. I didn't intend to leave it commented. I'm also no sure how to
->>> decide which "SECTION" to put it in. Is there some definitive list from
->>> which to select an appropriate SECTION? Uncommented in my local branch
->>> for now.
->>
->> I think there was an agreement to drop this field. It's not especially
->> useful and there's not definitive list that I'm aware of.
+I really like the look Mikael has created here.
 
-Apologies. I'm wrong here. It was PRIORITY which we agreed to drop.
+A couple of related questions, this could just be mis-calibrated 
+expectation from visual design on my part so please don't take them as 
+criticism - merely an attempt to clarify:
 
-By taking a brief glance over the metadata I'd probably suggest either 
-utils or console/utils - I'm not certain if one is preferred.
+1) where the visual design differentiates from the toolkit (Gtk+) is the 
+intention that we should use the toolkit provided widgets or create our 
+own to more closely match the visual design?
+(for example the tabs for notebook pages in the 'Building Packages' screen).
+
+2) When implementing Hob v1 I tried to follow the GNOME HIG[1] to ensure 
+the app would fit in with the common Linux desktop environments. Should 
+v2 continue that trend? Where the visual design might differ with the 
+HIG which should be preferred?
+(i.e. the button being flush with the bottom of the window in the Image 
+Configuration screen is what first struck me here).
+
+3) where the visual design uses various colours I assume the intention 
+is to use the colours from the operating systems theme? This is slightly 
+more difficult programatically than hard-coding colours but leads to (in 
+my opinion) a much more pleasing visual experience.
+(i.e. tooltip and button colours)
+
+Finally, I notice that the titlebar calls it HOB, instead of Hob - was 
+that intentional? Hob was always mean as a name, not an acronym.
+
+I'm probably confusing visual design for a spec but it's been a while 
+since I worked with the design team and my engineers mind is very literal.
+
+This is looking really good!
 
 Cheers,
 Joshua
+
+1. http://developer.gnome.org/hig-book/3.0/
+
+On 02/02/12 09:24, Barros Pena, Belen wrote:
+> Mikael, our visual designer, has been working full speed on Hob 1.2. His
+> work is now in the wiki too:
+>
+> https://wiki.yoctoproject.org/wiki/File:Hob_1.2_screens_inventory.pdf
+>
+>
+> Belen
+>
+> On 02/02/2012 16:58, "Barros Pena, Belen"<belen.barros.pena@intel.com>
+> wrote:
+>
+>> I've uploaded a document detailing the design of the Settings dialogue
+>> for Hob 1.2 at
+>>
+>> https://wiki.yoctoproject.org/wiki/File:Settings-dialogue-design-spec-v1.0
+>> .pdf
+>>
+>> Sorry it's a boring document instead of a video: it seemed the only way
+>> to provide the necessary level of detail
+>>
+>> Let me know if you have any questions or comments.
+>>
+>> Belen
+>> ---------------------------------------------------------------------
+>> Intel Corporation (UK) Limited
+>> Registered No. 1134945 (England)
+>> Registered Office: Pipers Way, Swindon SN3 1RJ
+>> VAT No: 860 2173 47
+>>
+>> This e-mail and any attachments may contain confidential material for
+>> the sole use of the intended recipient(s). Any review or distribution
+>> by others is strictly prohibited. If you are not the intended
+>> recipient, please contact the sender and delete all copies.
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+> ---------------------------------------------------------------------
+> Intel Corporation (UK) Limited
+> Registered No. 1134945 (England)
+> Registered Office: Pipers Way, Swindon SN3 1RJ
+> VAT No: 860 2173 47
+>
+> This e-mail and any attachments may contain confidential material for
+> the sole use of the intended recipient(s). Any review or distribution
+> by others is strictly prohibited. If you are not the intended
+> recipient, please contact the sender and delete all copies.
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 -- 
 Joshua Lock
          Yocto Project "Johannes factotum"
