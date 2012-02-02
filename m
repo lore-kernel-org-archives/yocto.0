@@ -1,28 +1,25 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FCEAE004D2
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 17:20:43 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 01 Feb 2012 17:20:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="113062463"
-Received: from unknown (HELO [10.255.14.106]) ([10.255.14.106])
-	by fmsmga001.fm.intel.com with ESMTP; 01 Feb 2012 17:20:42 -0800
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: jfabernathy <jfabernathy@gmail.com>
-In-Reply-To: <4F29DF85.9040605@gmail.com>
-References: <63ECFF2A2302B44093D7CE9E9962C49002A109@ORSMSX103.amr.corp.intel.com>
-	<4F298A58.5030700@linux.intel.com>
-	<63ECFF2A2302B44093D7CE9E9962C49002A3CC@ORSMSX103.amr.corp.intel.com>
-	<4F29B248.4060202@linux.intel.com> <1328132827.2304.149.camel@elmorro>
-	<4F29BF30.80808@gmail.com> <1328140929.2304.157.camel@elmorro>
-	<4F29DF85.9040605@gmail.com>
-Date: Wed, 01 Feb 2012 19:20:34 -0600
-Message-ID: <1328145634.2304.159.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: yocto@yoctoproject.org
-Subject: Re: Gaku music player
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C86C2E00594
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 18:23:09 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q122N62C007011
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 1 Feb 2012 18:23:07 -0800 (PST)
+Received: from bruce-ashfields-macbook.local (128.224.20.37) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Wed, 1 Feb 2012 18:23:06 -0800
+Message-ID: <4F29F389.9010705@windriver.com>
+Date: Wed, 1 Feb 2012 21:23:05 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+MIME-Version: 1.0
+To: Darren Hart <dvhart@linux.intel.com>
+References: <cover.1328121321.git.dvhart@linux.intel.com>
+In-Reply-To: <cover.1328121321.git.dvhart@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/2][linux-yocto-3.0] sys940x BSP and boot-live consolidation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,135 +31,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 01:20:43 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 02 Feb 2012 02:23:09 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2012-02-01 at 19:57 -0500, jfabernathy wrote:
-> On 02/01/2012 07:02 PM, Tom Zanussi wrote:
-> > On Wed, 2012-02-01 at 17:39 -0500, jfabernathy wrote:
-> >> On 02/01/2012 04:47 PM, Tom Zanussi wrote:
-> >>> On Wed, 2012-02-01 at 13:44 -0800, Darren Hart wrote:
-> >>>> On 02/01/2012 01:36 PM, Saxena, Rahul wrote:
-> >>>>> Hi Darren,
-> >>>>>
-> >>>>> Thanks for the clarification.
-> >>>>>
-> >>>>> I am building on Edison.  I found that ogg music files play
-> >>>>> OK on my gaku player.  I think that should be good enough, but just for my information purposes
-> >>>>> can you help me understand how does one accept the commercial iirc license ?
-> >>>> This has changed relatively recently, and I'm not finding the details in
-> >>>> the current docs. For example, the gst-fluendo-mp3 recipe includes:
-> >>>>
-> >>>> LICENSE_FLAGS = "commercial"
-> >>>>
-> >>>> Taking a look at the git logs with "LICENSE_FLAGS" in them, in order to
-> >>>> allow for building of such recipes, you must include "commercial" in the
-> >>>> LICENSE_FLAGS_WHITELIST variable. I would attempt this with something
-> >>>> like the following in my local.conf:
-> >>>>
-> >>>> LICENSE_FLAGS_WHITELIST += "commercial"
-> >>>>
-> >>>> Tom, can you confirm I've got this right?
-> >>>>
-> >>> Yeah, that's right.
-> >>>
-> >>> Tom
-> >> I'm interested in this subject also.  If I use hob to look at a nice
-> >> display of packages, I see that their are a lot of gst-fluendo-*
-> >> pckages with MPLv1.1 Licenses. However, I don't see gst-fluendo-mp3
-> >> specifically.
-> >>       1. Is that package not a part of Yocto and a recipe has to be
-> >>          written to get it from somewhere?
-> > It is a part of yocto, it probably doesn't show up in HOB because of the
-> > restricted license (nothing has changed there, I guess that also would
-> > have been the case before with COMMERCIAL_LICENSE).
-> >
-> > Basically, the documentation hasn't caught up with the change yet
-> > (actually it (COMMERCIAL_LICENSE) was never documented, we need to
-> > change that in any case).
-> >
-> > The current 'documentation' for this, which I'll work with Scott on
-> > adapting to the actual documentation, is in the text of this poky
-> > commit:
-> >
-> > b68ea543603c35f4e3519d358e0d1e1e24bd5851
-> >
-> > and the set of packages that were changed from COMMERCIAL_LICENSE to
-> > LICENSE_FLAGS is here:
-> >
-> > 7b81ef8d95d82c55e3650981d3010000cd493832
-> >
-> > Tom
-> Okay, I found gst-fluendo-mp3 in the meta-recipes-multimedia. So is 
-> including it the same as other packages you want in the image, putting 
-> the following statements in the local.conf:
-> 
-> LICENSE_FLAGS_WHITELIST += "commercial"
-> POKY_EXTRA_INSTALL += "gst-fluendo-mp3"
-> 
-> 
-> I would think that specifying the media player in the image would bring in the dependent CODECs if the licenses were right, but what do I know.
-> 
+On 12-02-01 1:45 PM, Darren Hart wrote:
+> The following changes since commit 59314a3523e360796419d76d78c6f7d8c5ef2593:
+>
+>    meta/beagleboard: Using CONFIG_PANEL_GENERIC_DPI=y (2012-01-30 00:50:09 -0500)
+>
+> are available in the git repository at:
+>    git://git.infradead.org/users/dvhart/linux-yocto-3.0.git meta-sys940x
+>    http://git.infradead.org/users/dvhart/linux-yocto-3.0.git/shortlog/refs/heads/meta-sys940x
 
-Yes, that LICENSE_FLAGS_WHITELIST line would allow gst-fluendo-mp3 in,
-and that in turn bring in its dependencies.
+Merged and pushed. Two questions:
 
-Tom
+   - I also did a commit to the linux-yocto files, do you need them sent
+     out immediately, or is working with AUTOREV enough for now ? There are
+     some other updates I'll batch this with, if we can wait.
 
-> Jim A
-> 
-> 
-> 
-> >>       1. I know I can get the fluendo MP3 for Ubuntu with a
-> >>          click-through license for personal use.
-> >>>> Scott, once Tom confirms, this is a mechanism we need to get documented
-> >>>> in the reference manual.
-> >>>>
-> >>>> --
-> >>>> Darren
-> >>>>
-> >>>>
-> >>>>> Thanks
-> >>>>> Rahul
-> >>>>>
-> >>>>> -----Original Message-----
-> >>>>> From: Darren Hart [mailto:dvhart@linux.intel.com]
-> >>>>> Sent: Wednesday, February 01, 2012 10:54 AM
-> >>>>> To: Saxena, Rahul
-> >>>>> Cc: yocto@yoctoproject.org
-> >>>>> Subject: Re: [yocto] Gaku music player
-> >>>>>
-> >>>>>
-> >>>>>
-> >>>>> On 02/01/2012 09:57 AM, Saxena, Rahul wrote:
-> >>>>>> Hello,
-> >>>>>>
-> >>>>>>
-> >>>>>>
-> >>>>>> What type of music files is the Gaku music player on Sato desk top
-> >>>>>> supposed to play ?
-> >>>>>>
-> >>>>>> For me it did not work with mp3 files..however it is playing the
-> >>>>>> soundtrack from a .ogg video file
-> >>>>> It depends on which licenses you allow (the gstreamer mp3 plugin
-> >>>>> requires acceptance of the commercial license iirc). Are you building on
-> >>>>> edison or master?
-> >>>>>
-> >>>>> --
-> >>>>> Darren Hart
-> >>>>> Intel Open Source Technology Center
-> >>>>> Yocto Project - Linux Kernel
-> >>> _______________________________________________
-> >>> yocto mailing list
-> >>> yocto@yoctoproject.org
-> >>> https://lists.yoctoproject.org/listinfo/yocto
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >
-> 
+   - Is there any reason (outside of not being tested there, and potentially
+     missing items like emgd), that this shouldn't go to the 3.2 tree as
+     well ?
 
+Cheers,
+
+Bruce
+
+>
+> Darren Hart (2):
+>    meta: sys940x BSP meta data
+>    Remove boot-live cfg duplication from BSPs
+>
+>   .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   10 ----
+>   meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |   10 ----
+>   meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |   10 ----
+>   meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg  |   10 ----
+>   meta/cfg/kernel-cache/bsp/fri2/fri2.cfg            |   10 ----
+>   .../bsp/sys940x/sys940x-preempt-rt.scc             |    7 +++
+>   .../kernel-cache/bsp/sys940x/sys940x-standard.scc  |    6 +++
+>   meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg      |   44 ++++++++++++++++++++
+>   meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc      |   17 ++++++++
+>   meta/cfg/kernel-cache/cfg/boot-live.cfg            |    3 +
+>   10 files changed, 77 insertions(+), 50 deletions(-)
+>   create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc
+>   create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc
+>   create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
+>   create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc
+>
 
 
