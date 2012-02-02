@@ -1,25 +1,25 @@
 Return-Path: <josh@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A712FE00307
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 11:02:51 -0800 (PST)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73BDBE00307
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 11:11:33 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 02 Feb 2012 11:02:51 -0800
+	by orsmga102.jf.intel.com with ESMTP; 02 Feb 2012 11:11:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="103232856"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="103237434"
 Received: from unknown (HELO [10.7.199.78]) ([10.7.199.78])
-	by orsmga001.jf.intel.com with ESMTP; 02 Feb 2012 11:02:50 -0800
-Message-ID: <4F2ADDDA.1000506@linux.intel.com>
-Date: Thu, 02 Feb 2012 11:02:50 -0800
+	by orsmga001.jf.intel.com with ESMTP; 02 Feb 2012 11:11:33 -0800
+Message-ID: <4F2ADFE4.3050702@linux.intel.com>
+Date: Thu, 02 Feb 2012 11:11:32 -0800
 From: Joshua Lock <josh@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-References: <9c76056351fe4e2b9537729ffca3b4506b720513.1328135056.git.dvhart@linux.intel.com>
-	<d40c099c9dced8365653e7cef02108e03ab4bfdf.1328135056.git.dvhart@linux.intel.com>
-	<4F29C23F.5070801@linux.intel.com> <4F29C4DF.50704@linux.intel.com>
-In-Reply-To: <4F29C4DF.50704@linux.intel.com>
-Subject: Re: [pull-sys940x 4/4] netbase: Add interfaces with RANDOM_MAC for sys940x* machines
+References: <4F2A0A34.4020605@gmail.com> <4F2AB4FF.5070208@gmail.com>
+	<4F2AC2AB.6030204@windriver.com> <4F2AC9A5.5040706@gmail.com>
+	<4F2ACB7F.4010509@gmail.com>
+In-Reply-To: <4F2ACB7F.4010509@gmail.com>
+Subject: Re: needed site is down???
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,40 +31,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 19:02:51 -0000
+X-List-Received-Date: Thu, 02 Feb 2012 19:11:33 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 01/02/12 15:03, Joshua Lock wrote:
-> On 01/02/12 14:52, Joshua Lock wrote:
->>> +++ b/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
->>> @@ -0,0 +1,3 @@
->>> +FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
->>> +RDEPENDS_${PN} += "genmac"
->>
->> We can use a MACHINE specific override here, I think.
->>
->> RDEPENDS_${PN}_sys940x += "genmac"
->>
->> Ideally we don't want that interfaces file on non-sys940x machines,
->> perhaps we could name the interfaces file differently and add a
->> do_install_append_sys940x which installs the MACHINE specific interface
->> file?
->
-> In this instance, however, I don't know what would happen if we built
-> netbase with this layer enabled for a different core2 MACHINE and then
-> built for the sys940x....
->
-> I suspect the existing core2 package would be used and think for this
-> approach to work we'd need to mark this recipe MACHINE specific.
 
-I was missing a detail here which Koen pointed out, if you use a MACHINE 
-OVERRIDE in SRC_URI BitBake should mark the package as MACHINE specific.
 
-I've submitted a patch to make netbase MACHINE specific by default but 
-should that patch not be accepted the use of an OVERRIDE on SRC_URI or 
-explicitly setting PACKAGE_ARCH = "${MACHINE_ARCH}" in the bbappend will 
-be an appropriate fix.
+On 02/02/12 09:44, jfabernathy wrote:
+> On 02/02/2012 12:36 PM, jfabernathy wrote:
+>> On 02/02/2012 12:06 PM, Mark Hatle wrote:
+>>> On 2/2/12 10:08 AM, jfabernathy wrote:
+>>>> On 02/01/2012 10:59 PM, jfabernathy wrote:
+>>>>> Am I the only one seeing this dead link? I'm building from master and
+>>>>> can't get to this link that draws the error:
+>>>>>
+>>>>> http://cgit.freedesktop.org/libva/snapshot/libva-1.0.12.tar.bz2
+
+This is supposed to be a transient error but so far as I can see the 
+fd.o cgit is still down.
+
+> Just noticed that what's on the Yocto mirror is
+> libva_0.31.0-1+sds9.1ubuntu1.tar.gz ), but the recipe is calling for a
+> newer version, libva-1.0.12.tar.bz2
+
+I don't see libva-1.0.12 anywhere in poky or meta-yocto, the mirror is 
+only updated once the autobuilder has seen the recipe and downloaded the 
+object to mirror.
+
+After a quick google I can't find a libva newer than 0.32.0+1sds2 - 
+where did you get your libva recipe from?
 
 Cheers,
 Joshua
