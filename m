@@ -1,25 +1,27 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6E1FE004D2
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 15:05:01 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 01 Feb 2012 15:05:01 -0800
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBDE1E004D2
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 16:02:17 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 01 Feb 2012 16:02:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="102871118"
-Received: from unknown (HELO [10.255.14.103]) ([10.255.14.103])
-	by orsmga001.jf.intel.com with ESMTP; 01 Feb 2012 15:05:01 -0800
-Message-ID: <4F29C51D.5080103@linux.intel.com>
-Date: Wed, 01 Feb 2012 15:05:01 -0800
-From: Joshua Lock <josh@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <cover.1328135056.git.dvhart@linux.intel.com>
-	<9c76056351fe4e2b9537729ffca3b4506b720513.1328135056.git.dvhart@linux.intel.com>
-	<4F29BE90.1010707@linux.intel.com>
-In-Reply-To: <4F29BE90.1010707@linux.intel.com>
-Subject: Re: [pull-sys940x 1/4] meta-intel: Add Inforce SYS940x BSP
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="105189744"
+Received: from unknown (HELO [10.255.14.106]) ([10.255.14.106])
+	by orsmga002.jf.intel.com with ESMTP; 01 Feb 2012 16:02:17 -0800
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: jfabernathy <jfabernathy@gmail.com>
+In-Reply-To: <4F29BF30.80808@gmail.com>
+References: <63ECFF2A2302B44093D7CE9E9962C49002A109@ORSMSX103.amr.corp.intel.com>
+	<4F298A58.5030700@linux.intel.com>
+	<63ECFF2A2302B44093D7CE9E9962C49002A3CC@ORSMSX103.amr.corp.intel.com>
+	<4F29B248.4060202@linux.intel.com> <1328132827.2304.149.camel@elmorro>
+	<4F29BF30.80808@gmail.com>
+Date: Wed, 01 Feb 2012 18:02:09 -0600
+Message-ID: <1328140929.2304.157.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: yocto@yoctoproject.org
+Subject: Re: Gaku music player
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,31 +33,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2012 23:05:02 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 02 Feb 2012 00:02:18 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 01/02/12 14:37, Joshua Lock wrote:
->> http://www.inforcecomputing.com/SYS940X_ECX.html
->>
->> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
->> ---
->> meta-sys940x/COPYING.MIT | 17 +++
->> meta-sys940x/README | 140 ++++++++++++++++++++
->> meta-sys940x/README.sources | 18 +++
->> meta-sys940x/conf/layer.conf | 10 ++
->> meta-sys940x/conf/machine/sys940x-noemgd.conf | 19 +++
->
-> When I played around with an earlier version of this branch recently the
-> kernel for the noemgd machine didn't build, is that now fixed?
+On Wed, 2012-02-01 at 17:39 -0500, jfabernathy wrote:
+> On 02/01/2012 04:47 PM, Tom Zanussi wrote: 
+> > On Wed, 2012-02-01 at 13:44 -0800, Darren Hart wrote:
+> > > On 02/01/2012 01:36 PM, Saxena, Rahul wrote:
+> > > > Hi Darren,
+> > > > 
+> > > > Thanks for the clarification.
+> > > > 
+> > > > I am building on Edison.  I found that ogg music files play
+> > > > OK on my gaku player.  I think that should be good enough, but just for my information purposes
+> > > > can you help me understand how does one accept the commercial iirc license ?
+> > > This has changed relatively recently, and I'm not finding the details in
+> > > the current docs. For example, the gst-fluendo-mp3 recipe includes:
+> > > 
+> > > LICENSE_FLAGS = "commercial"
+> > > 
+> > > Taking a look at the git logs with "LICENSE_FLAGS" in them, in order to
+> > > allow for building of such recipes, you must include "commercial" in the
+> > > LICENSE_FLAGS_WHITELIST variable. I would attempt this with something
+> > > like the following in my local.conf:
+> > > 
+> > > LICENSE_FLAGS_WHITELIST += "commercial"
+> > > 
+> > > Tom, can you confirm I've got this right?
+> > > 
+> > Yeah, that's right.
+> > 
+> > Tom
+> I'm interested in this subject also.  If I use hob to look at a nice
+> display of packages, I see that their are a lot of gst-fluendo-*
+> pckages with MPLv1.1 Licenses. However, I don't see gst-fluendo-mp3
+> specifically.  
+>      1. Is that package not a part of Yocto and a recipe has to be
+>         written to get it from somewhere?
 
-Apologies, I got that the wrong way around. The kernel for the MACHINE 
-*with* emgd didn't build. The noemgd version worked fine.
+It is a part of yocto, it probably doesn't show up in HOB because of the
+restricted license (nothing has changed there, I guess that also would
+have been the case before with COMMERCIAL_LICENSE).
 
-Cheers,
-Joshua
--- 
-Joshua Lock
-         Yocto Project "Johannes factotum"
-         Intel Open Source Technology Centre
+Basically, the documentation hasn't caught up with the change yet
+(actually it (COMMERCIAL_LICENSE) was never documented, we need to
+change that in any case).
+
+The current 'documentation' for this, which I'll work with Scott on
+adapting to the actual documentation, is in the text of this poky
+commit:
+
+b68ea543603c35f4e3519d358e0d1e1e24bd5851
+
+and the set of packages that were changed from COMMERCIAL_LICENSE to
+LICENSE_FLAGS is here:
+
+7b81ef8d95d82c55e3650981d3010000cd493832
+
+Tom
+
+>      1. I know I can get the fluendo MP3 for Ubuntu with a
+>         click-through license for personal use.
+> > > Scott, once Tom confirms, this is a mechanism we need to get documented
+> > > in the reference manual.
+> > > 
+> > > --
+> > > Darren
+> > > 
+> > > 
+> > > > Thanks
+> > > > Rahul
+> > > > 
+> > > > -----Original Message-----
+> > > > From: Darren Hart [mailto:dvhart@linux.intel.com] 
+> > > > Sent: Wednesday, February 01, 2012 10:54 AM
+> > > > To: Saxena, Rahul
+> > > > Cc: yocto@yoctoproject.org
+> > > > Subject: Re: [yocto] Gaku music player
+> > > > 
+> > > > 
+> > > > 
+> > > > On 02/01/2012 09:57 AM, Saxena, Rahul wrote:
+> > > > > Hello,
+> > > > > 
+> > > > >  
+> > > > > 
+> > > > > What type of music files is the Gaku music player on Sato desk top
+> > > > > supposed to play ?
+> > > > > 
+> > > > > For me it did not work with mp3 files..however it is playing the
+> > > > > soundtrack from a .ogg video file
+> > > > It depends on which licenses you allow (the gstreamer mp3 plugin
+> > > > requires acceptance of the commercial license iirc). Are you building on
+> > > > edison or master?
+> > > > 
+> > > > --
+> > > > Darren Hart
+> > > > Intel Open Source Technology Center
+> > > > Yocto Project - Linux Kernel
+> > 
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
 
