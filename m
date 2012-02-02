@@ -1,21 +1,33 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6824AE00594
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 02:13:25 -0800 (PST)
-Received: from [192.168.0.24] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 44F3626F16
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 09:49:25 +0000 (GMT)
-Message-ID: <4F2A619F.8020101@communistcode.co.uk>
-Date: Thu, 02 Feb 2012 10:12:47 +0000
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111224 Thunderbird/9.0.1
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5255BE00594
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 02:37:38 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 02 Feb 2012 02:37:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="102362816"
+Received: from irsmsx602.ger.corp.intel.com ([163.33.3.242])
+	by azsmga001.ch.intel.com with ESMTP; 02 Feb 2012 02:36:45 -0800
+Received: from irsmsx104.ger.corp.intel.com (163.33.3.159) by
+	irsmsx602.ger.corp.intel.com (163.33.3.242) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 2 Feb 2012 10:36:16 +0000
+Received: from irsmsx101.ger.corp.intel.com ([169.254.1.99]) by
+	IRSMSX104.ger.corp.intel.com ([169.254.5.165]) with mapi id
+	14.01.0355.002; Thu, 2 Feb 2012 10:36:15 +0000
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Hob 1.2 design
+Thread-Index: AQHM4ZZ8cmNZ+QhP2E2sZucRJX0/sA==
+Date: Thu, 2 Feb 2012 10:36:14 +0000
+Message-ID: <CB5016D4.6DDD%belen.barros.pena@intel.com>
+In-Reply-To: <CDED78A957032E45B3239CDDA7642D150841696F@ORSMSX106.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.14.0.111121
+x-originating-ip: [10.252.22.131]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <3AB6CE7F274E534CAFD089D127A8A1FC0FCE9634@SHSMSX102.ccr.corp.intel.com>
-	<4F29764F.7000305@intel.com>
-In-Reply-To: <4F29764F.7000305@intel.com>
-Subject: Re: RFC: Hob 1.2 design
+Subject: Re: Hob 1.2 design
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,31 +39,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 10:13:25 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 02 Feb 2012 10:37:38 -0000
+Content-Language: en-US
+Content-ID: <340A54AF6A9E69478DB1A3B180D50CC4@intel.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="windows-1252"
 
-On 01/02/12 17:28, Scott Garman wrote:
-> On 01/31/2012 05:39 PM, Wang, Shane wrote:
->> Hi, all,
->>
->> Belen has a new video for Hob2 workflow and design.
->>
->> https://wiki.yoctoproject.org/wiki/File:Hob1.2-screencast2.mov
->>
->> Please comment.
->
-> I'm pretty amazed with this. The workflow seems clear and each screen 
-> provides just the right bits of information the user would be 
-> interested in seeing. Outstanding!
->
-> Scott
->
+You are right, Dave. "Deploy image" and "Write to storage" are the same thi=
+ng. I meant to use "Write to storage" everywhere (it seemed a more accurate=
+ description), but a "Deploy" slipped through!
 
-I concur, it looks fantastic - well done!
+Thanks for the nice feedback.
 
-It covers a lot more bases than I thought it would. Even if you still 
-like to do the build via CLI it gives a fantastic overview of the system 
-you're building as a whole, and even better, a dependency tree for why 
-certain packages are being included in the build.
+Belen
+
+From: "Stewart, David C" <david.c.stewart@intel.com<mailto:david.c.stewart@=
+intel.com>>
+Date: Wed, 1 Feb 2012 03:15:55 +0000
+To: "Wang, Shane" <shane.wang@intel.com<mailto:shane.wang@intel.com>>, "yoc=
+to@yoctoproject.org<mailto:yocto@yoctoproject.org>" <yocto@yoctoproject.org=
+<mailto:yocto@yoctoproject.org>>
+Subject: Re: [yocto] Hob 1.2 design
+
+Belen =96 nice work!  This just gets better all the time.  I really like th=
+e enhancements to the work flow.
+
+Quick question =96 around 6:40 in the video, once you successfully build th=
+ere is a =93Deploy Image=94 button. Then at 7:44 there is a =93Write to Sto=
+rage=94 button. Are these both doing the same thing?
+
+Thank you for making something so functional and so beautiful.
+
+Dave
+
+From: yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org>=
+ [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Wang, Shane
+Sent: Wednesday, February 01, 2012 9:39 AM
+To: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+Subject: [yocto] RFC: Hob 1.2 design
+
+Hi, all,
+
+Belen has a new video for Hob2 workflow and design.
+
+https://wiki.yoctoproject.org/wiki/File:Hob1.2-screencast2.mov
+
+Please comment.
+
+Thanks.
+--
+Shane
+_______________________________________________ yocto mailing list yocto@yo=
+ctoproject.org<mailto:yocto@yoctoproject.org> https://lists.yoctoproject.or=
+g/listinfo/yocto
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
+
 
