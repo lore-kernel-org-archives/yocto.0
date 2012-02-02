@@ -1,26 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38E3BE00595
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 21:48:14 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q125m9EG010174
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 1 Feb 2012 21:48:09 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.20.27) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Wed, 1 Feb 2012 21:48:08 -0800
-Message-ID: <4F2A2396.5060707@windriver.com>
-Date: Thu, 2 Feb 2012 00:48:06 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DAA8E00595
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2012 23:22:20 -0800 (PST)
+Received: by eaai11 with SMTP id i11so962841eaa.35
+	for <yocto@yoctoproject.org>; Wed, 01 Feb 2012 23:22:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=PShS5q+U+pX/yRShRhs7gComS3+HVPxpvRHPTNQaJ3U=;
+	b=LwsVqVaT2FsXffV8HpMWNLyC/9l11x/k/XvAt12XordNEfuoEZo/dK3TEkr40o2aWf
+	dt0uZQMCc2X1JpuIL5sYO4Abh5ZlKjzg5RbfANTW/lcL/FpZaHXXORaEgS5/qczjYkcq
+	/dufoqsUlHedDrQ4Lk7GtlkQKENcgjL/m/o8c=
+Received: by 10.213.28.75 with SMTP id l11mr303525ebc.47.1328167338690;
+	Wed, 01 Feb 2012 23:22:18 -0800 (PST)
+Received: from localhost ([94.230.152.246])
+	by mx.google.com with ESMTPS id y12sm6040952eeb.11.2012.02.01.23.22.17
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 01 Feb 2012 23:22:17 -0800 (PST)
+Date: Thu, 2 Feb 2012 08:22:16 +0100
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Joshua Lock <josh@linux.intel.com>
+Message-ID: <20120202072215.GA3697@jama.jama.net>
+References: <9c76056351fe4e2b9537729ffca3b4506b720513.1328135056.git.dvhart@linux.intel.com>
+	<6c598896584af47478c75ec08f3b4e8fd954b5fb.1328135056.git.dvhart@linux.intel.com>
+	<4F29BF45.8060008@linux.intel.com>
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <cover.1328121321.git.dvhart@linux.intel.com>
-	<4F29F389.9010705@windriver.com> <4F2A0615.20508@linux.intel.com>
-In-Reply-To: <4F2A0615.20508@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/2][linux-yocto-3.0] sys940x BSP and boot-live consolidation
+In-Reply-To: <4F29BF45.8060008@linux.intel.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org
+Subject: Re: [pull-sys940x 2/4] ranpwd: Add ranpwd recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,84 +41,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 05:48:14 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 02 Feb 2012 07:22:20 -0000
+X-Groupsio-MsgNum: 4584
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="xHFwDpU9dbj6ez1V"
+Content-Disposition: inline
 
-On 12-02-01 10:42 PM, Darren Hart wrote:
->
->
-> On 02/01/2012 06:23 PM, Bruce Ashfield wrote:
->> On 12-02-01 1:45 PM, Darren Hart wrote:
->>> The following changes since commit 59314a3523e360796419d76d78c6f7d8c5ef2593:
->>>
->>>     meta/beagleboard: Using CONFIG_PANEL_GENERIC_DPI=y (2012-01-30 00:50:09 -0500)
->>>
->>> are available in the git repository at:
->>>     git://git.infradead.org/users/dvhart/linux-yocto-3.0.git meta-sys940x
->>>     http://git.infradead.org/users/dvhart/linux-yocto-3.0.git/shortlog/refs/heads/meta-sys940x
->>
->> Merged and pushed. Two questions:
->
-> Thanks Bruce.
->
->>     - I also did a commit to the linux-yocto files, do you need them sent
->>       out immediately, or is working with AUTOREV enough for now ? There are
->>       some other updates I'll batch this with, if we can wait.
->
-> AUTOREV or SRCREVs in meta-intel for this specific BSP which I'll push
-> tomorrow are fine. That bit can wait.
->
->>     - Is there any reason (outside of not being tested there, and potentially
->>       missing items like emgd), that this shouldn't go to the 3.2 tree as
->>       well ?
->
-> No reason. I started with 3.0 as we wanted this for ELC and I wasn't
-> sure I wanted to deal with 3.2 quite yet.
->
-> The other reason was I wanted to do a proper policy/hardware division in
-> the cfg for 3.2 stuff and this is mostly a copy of fri2 - it and the
-> other meta-intel still have a lot of policy in the machine specific
-> fragments. Still hoping to get to that bug number for M3.
+--xHFwDpU9dbj6ez1V
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-All good. As long as we don't forget to merge this forward later :)
-We won't .. but I'm paranoid!
+On Wed, Feb 01, 2012 at 02:40:05PM -0800, Joshua Lock wrote:
+>=20
+>=20
+> On 01/02/12 14:26, Darren Hart wrote:
+> > ranpwd is used to generate random strings of various types, including
+> > passwords, UUIDs, and MAC addresses.
+> >
+> > Signed-off-by: Darren Hart<dvhart@linux.intel.com>
+> > ---
+> >   meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb |   23 +++++++++++=
++++++++++
+> >   1 files changed, 23 insertions(+), 0 deletions(-)
+> >   create mode 100644 meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb
+> >
+> > diff --git a/meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb b/meta-=
+sys940x/recipes-extended/ranpwd/ranpwd_git.bb
+> > new file mode 100644
+> > index 0000000..66fcc26
+> > --- /dev/null
+> > +++ b/meta-sys940x/recipes-extended/ranpwd/ranpwd_git.bb
+> > @@ -0,0 +1,23 @@
+> > +DESCRIPTION =3D "Random password generator"
+> > +#SECTION =3D "utilities"
+>=20
+> We may as well delete this line, no?
+>=20
+> > +LICENSE =3D "GPLv2+"
+> > +LIC_FILES_CHKSUM =3D "file://ranpwd.c;beginline=3D1;endline=3D11;md5=
+=3D0e8585e19117526efedfaeb50c345d7a"
+> > +PR =3D "r0"
+> > +
+> > +inherit autotools
+> > +
+> > +SRC_URI =3D "git://git.zytor.com/utils/ranpwd.git"
+> > +SRCREV =3D "b62aab579e288715b82d5575befaa2b8ff210c2b"
 
-Cheers,
+What about PV? Do you really want just "git"?
 
-Bruce
+> > +
+> > +S=3D${WORKDIR}/git
+>=20
+> Variable assignments are usually quoted.
+>=20
+> S =3D "${WORKDIR}/git"
+>=20
+> > +
+> > +do_configure_prepend () {
+> > +	if [ ! -e acinclude.m4 -a -e aclocal.m4 ]; then
+> > +		cp aclocal.m4 acinclude.m4
+> > +	fi
+> > +}
+> > +
+> > +do_install() {
+> > +	install -d ${D}/${bindir}
+> > +	install -m 0755 ${S}/ranpwd ${D}/${bindir}/ranpwd
+> > +}
+>=20
+> --=20
+> Joshua Lock
+>          Yocto Project "Johannes factotum"
+>          Intel Open Source Technology Centre
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
->
-> --
-> Darren
->
->>
->> Cheers,
->>
->> Bruce
->>
->>>
->>> Darren Hart (2):
->>>     meta: sys940x BSP meta data
->>>     Remove boot-live cfg duplication from BSPs
->>>
->>>    .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   10 ----
->>>    meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |   10 ----
->>>    meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |   10 ----
->>>    meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg  |   10 ----
->>>    meta/cfg/kernel-cache/bsp/fri2/fri2.cfg            |   10 ----
->>>    .../bsp/sys940x/sys940x-preempt-rt.scc             |    7 +++
->>>    .../kernel-cache/bsp/sys940x/sys940x-standard.scc  |    6 +++
->>>    meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg      |   44 ++++++++++++++++++++
->>>    meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc      |   17 ++++++++
->>>    meta/cfg/kernel-cache/cfg/boot-live.cfg            |    3 +
->>>    10 files changed, 77 insertions(+), 50 deletions(-)
->>>    create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-preempt-rt.scc
->>>    create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x-standard.scc
->>>    create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
->>>    create mode 100644 meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc
->>>
->>
->
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
+--xHFwDpU9dbj6ez1V
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.18 (GNU/Linux)
+
+iEYEARECAAYFAk8qOacACgkQN1Ujt2V2gBy2jwCfTI0KmCGMfNcSM/VYXaGdEWA8
+fpUAoLmyrbHE6OWfbzKoJKhGde6sP06c
+=DTVL
+-----END PGP SIGNATURE-----
+
+--xHFwDpU9dbj6ez1V--
