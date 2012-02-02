@@ -1,32 +1,25 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33D70E00592
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 08:58:57 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 02 Feb 2012 08:58:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="103184647"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.3.242])
-	by orsmga001.jf.intel.com with ESMTP; 02 Feb 2012 08:58:55 -0800
-Received: from irsmsx104.ger.corp.intel.com (163.33.3.159) by
-	irsmsx602.ger.corp.intel.com (163.33.3.242) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 2 Feb 2012 16:58:51 +0000
-Received: from irsmsx101.ger.corp.intel.com ([169.254.1.99]) by
-	IRSMSX104.ger.corp.intel.com ([169.254.5.165]) with mapi id
-	14.01.0355.002; Thu, 2 Feb 2012 16:58:50 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Hob 1.2 design - Settings dialogue
-Thread-Index: AQHM4cvvu96UAoNq/Eet4MVVkKAT1A==
-Date: Thu, 2 Feb 2012 16:58:50 +0000
-Message-ID: <CB507144.6E40%belen.barros.pena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.14.0.111121
-x-originating-ip: [10.252.21.194]
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35B78E00592
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 09:02:50 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q12H2nAm017878
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 2 Feb 2012 09:02:49 -0800 (PST)
+Received: from Macintosh-5.local (172.25.36.235) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Thu, 2 Feb 2012 09:02:49 -0800
+Message-ID: <4F2AC1B8.4080303@windriver.com>
+Date: Thu, 2 Feb 2012 11:02:48 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
 MIME-Version: 1.0
-Subject: Hob 1.2 design - Settings dialogue
+To: <yocto@yoctoproject.org>
+References: <1328158051.1996.9.camel@localhost.localdomain>
+In-Reply-To: <1328158051.1996.9.camel@localhost.localdomain>
+Subject: Re: Do we have core-image-lsb-core/c++?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,33 +31,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 16:58:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <611578764E4EDE42B5B0F39F039F0B52@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 02 Feb 2012 17:02:50 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I've uploaded a document detailing the design of the Settings dialogue for =
-Hob 1.2 at
+On 2/1/12 10:47 PM, Ni Qingliang wrote:
+> Hi, ALL:
+> I'm trying to create a custom image, which is compatible with LSB-core/C
+> ++. The core-image-lsb seems like contain the GUI related packages.
+> The question is: Do we have core-image-lsb-core or core-image-lsb-c++?
+>
+>
 
-https://wiki.yoctoproject.org/wiki/File:Settings-dialogue-design-spec-v1.0.=
-pdf
+The C++ library should be specified in one of the task definitions in 
+tasks/task-core-lsb.bb
 
-Sorry it's a boring document instead of a video: it seemed the only way to =
-provide the necessary level of detail
+However, I'm not seeing it there... it's likely an oversight -- or one of the 
+existing frameworks is already adding it so it was necessary?
 
-Let me know if you have any questions or comments.
+(Note, I doubt the existing C++ library will pass the current LSB tests.. there 
+are a lot of little things that will likely fail the test harness.)
 
-Belen
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
+The image "core-image-lsb", is intended to have all of the LSB components in it, 
+including the C++ items.  There is now LSB recognized "subset" of images for 
+validation.. it's an all or nothing situation.
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
-
+--Mark
 
