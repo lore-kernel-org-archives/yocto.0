@@ -1,31 +1,25 @@
-Return-Path: <wmills@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59882E0059B
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 06:09:43 -0800 (PST)
-Received: from dlep26.itg.ti.com ([157.170.170.121])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q12E9fnl006174;
-	Thu, 2 Feb 2012 08:09:41 -0600
-Received: from DLEE74.ent.ti.com (localhost [127.0.0.1])
-	by dlep26.itg.ti.com (8.13.8/8.13.8) with ESMTP id q12E9fBR005080;
-	Thu, 2 Feb 2012 08:09:41 -0600 (CST)
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
-	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
-	Thu, 2 Feb 2012 08:09:40 -0600
-Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
-	[158.218.100.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	q12E9emd021681;	Thu, 2 Feb 2012 08:09:40 -0600
-Message-ID: <4F2A9924.3050001@ti.com>
-Date: Thu, 2 Feb 2012 09:09:40 -0500
-From: William Mills <wmills@ti.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11
+Return-Path: <rafayocto@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC72AE00592
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 06:30:04 -0800 (PST)
+Received: by lagw12 with SMTP id w12so1797043lag.35
+	for <yocto@yoctoproject.org>; Thu, 02 Feb 2012 06:30:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=dPLHChpJQaIMWDf6I6jsNP6ZXQpGbh5b3Bi5lLJNKV8=;
+	b=pA8LVgyRCIRbPkL102LNxw08b0bV7KLC+2Pi7e4ngQJwSWYEkP1jsC/b7S7t3nOP8f
+	b/qcsTFC3KxCpT0JowdU1MemcDoOM5ve8A4i1NUsJxMtvFnJCZpj2tTsmgwZr4cklyPN
+	6LuOGp7zEEts59CwBpuu0ppOLAJC571FRIEhg=
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <cover.1328135056.git.dvhart@linux.intel.com>
-	<8c5010ca5786a486f2082d711fdf52b8617973af.1328135056.git.dvhart@linux.intel.com>
-In-Reply-To: <8c5010ca5786a486f2082d711fdf52b8617973af.1328135056.git.dvhart@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [pull-sys940x 3/4] genmac: Replace RANDOM_MAC in	network/interfaces with a randomly generated MAC
+Received: by 10.152.145.101 with SMTP id st5mr1628016lab.1.1328193001788; Thu,
+	02 Feb 2012 06:30:01 -0800 (PST)
+Received: by 10.112.8.70 with HTTP; Thu, 2 Feb 2012 06:30:01 -0800 (PST)
+Date: Thu, 2 Feb 2012 16:30:01 +0200
+Message-ID: <CABpbgJyM+ZRhiWNyxV5EgEipMxbkUVdUEp6ok30SQmsax_X6_A@mail.gmail.com>
+From: rafayocto rafayocto <rafayocto@gmail.com>
+To: yocto@yoctoproject.org
+Subject: problem fetching data
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,74 +31,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2012 14:09:43 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 02 Feb 2012 14:30:05 -0000
+Content-Type: multipart/alternative; boundary=e89a8f2343991092f104b7fc089c
 
+--e89a8f2343991092f104b7fc089c
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 02/01/2012 05:26 PM, Darren Hart wrote:
-> For machines that do not have a MAC in hardware and with drivers that don't
-> generate a random one in the kernel, this init script will replace the string
-> RANDOM_MAC in the network/interfaces file with one generated with "ranpwd -m".
-> Care is taken to ensure multiple interfaces can use RANDOM_MAC and receive
-> unique addresses. ranpwd generates MACs with the locally administered bit set
-> and the multicast bit disabled.
->
-> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
-> ---
->   meta-sys940x/recipes-bsp/genmac/files/genmac |   46 ++++++++++++++++++++++++++
->   meta-sys940x/recipes-bsp/genmac/genmac.bb    |   30 +++++++++++++++++
->   2 files changed, 76 insertions(+), 0 deletions(-)
->   create mode 100644 meta-sys940x/recipes-bsp/genmac/files/genmac
->   create mode 100644 meta-sys940x/recipes-bsp/genmac/genmac.bb
->
-> diff --git a/meta-sys940x/recipes-bsp/genmac/files/genmac b/meta-sys940x/recipes-bsp/genmac/files/genmac
-> new file mode 100644
-> index 0000000..6ca069c
-> --- /dev/null
-> +++ b/meta-sys940x/recipes-bsp/genmac/files/genmac
-> @@ -0,0 +1,46 @@
-> +#!/bin/sh
-> +### BEGIN INIT INFO
-> +# Provides:          Random MAC address generator
-> +# Required-Start:    $syslog
-> +# Required-Stop:     $syslog
-> +# Default-Start:     2 3 4 5
-> +# Default-Stop:      0 1 6
-> +# Short-Description: Set a random MAC for tagged interfaces
-> +# Description:       Set a random MAC for interfaces with RANDOM_MAC
-> +### END INIT INFO
-> +
-> +# Author: Darren Hart<dvhart@linux.intel.com>
-> +# Based on /etc/init.d/skeleton
-> +
-> +PATH=/sbin:/usr/sbin:/bin:/usr/bin
-> +DESC="Set a random MAC for tagged interfaces"
-> +NAME=genmac
-> +RANPWD=`which ranpwd`
-> +SCRIPTNAME=/etc/init.d/$NAME
-> +
-> +# Exit if amixer is not installed
-> +[ -x "$RANPWD" ] || exit 0
-> +
-> +do_start() {
-> +	# Replace every occurance of RANDOM_MAC with a unique locally
-> +	# administered, unicast, randomly generated MAC address.
-> +	while grep -q RANDOM_MAC /etc/network/interfaces; do
-> +		sed -i "1,/RANDOM_MAC/s/RANDOM_MAC/$($RANPWD -m)/" /etc/network/interfaces
-> +	done
-> +}
+Hi,
+i just downloaded the edison 6.0 and trying to run hob.
+i extracted the tarball and sourced it.
+no i run hob and i am getting the following:
+*"*
+*ERROR:  Poky's config sanity checker detected a potential misconfiguration.
+*
+*    Either fix the cause of this error or at your own risk disable the
+checker (see sanity.conf).*
+*    Following is the list of potential problems / advisories:*
+*
+*
+*    Failed to fetch test data from the network. Please ensure your network
+is configured correctly.*
+*
+*
+*ERROR: Execution of event handler 'check_sanity_eventhandler' failed*
 
-So on a non-volatile r/w filesystem this will assign a new random mac to 
-each interface on the first boot and reuse that MAC on each subsquent boot.
+"
+when i remove the lines from poky.conf:
+"https://eula-downloads.yoctoproject.org/index.php \
+                          http://bugzilla.yoctoproject.org/report.cgi"
 
-On a volatile r/w filesystem this will use a new MAC addr for each 
-boot.  I guess thats better than nothing and not much to do on a 
-volatile system.
+my build is running...
+any idea?
 
-What does this do on a ro filesystem?  No network?  network with 
-0:0:0:0:0:0 MAC addr? (horror! but I suspect the kernel won't allow 
-that).  Certainly this script failing should not cause the rest of boot 
-to fail.
+--e89a8f2343991092f104b7fc089c
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi,<div>i just downloaded the edison 6.0 and trying to run=
+ hob.</div><div>i extracted the tarball and sourced it.</div><div>no i run =
+hob and i am getting the following:</div><div><i>&quot;</i></div><div><div>
+<i>ERROR: =A0Poky&#39;s config sanity checker detected a potential misconfi=
+guration.</i></div><div><i>=A0 =A0 Either fix the cause of this error or at=
+ your own risk disable the checker (see sanity.conf).</i></div><div><i>=A0 =
+=A0 Following is the list of potential problems / advisories:</i></div>
+<div><i><br></i></div><div><i>=A0 =A0 Failed to fetch test data from the ne=
+twork. Please ensure your network is configured correctly.</i></div><div><i=
+><br></i></div><div><i>ERROR: Execution of event handler &#39;check_sanity_=
+eventhandler&#39; failed</i></div>
+</div><div><br></div><div>&quot;</div><div>when i remove the lines from pok=
+y.conf:</div><div>&quot;<a href=3D"https://eula-downloads.yoctoproject.org/=
+index.php">https://eula-downloads.yoctoproject.org/index.php</a> \</div><di=
+v>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 <a href=3D"http://bugzi=
+lla.yoctoproject.org/report.cgi">http://bugzilla.yoctoproject.org/report.cg=
+i</a>&quot;</div><div><br></div><div>my build is running...</div><div>any i=
+dea?</div></div>
 
+--e89a8f2343991092f104b7fc089c--
