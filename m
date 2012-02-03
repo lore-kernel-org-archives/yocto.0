@@ -1,34 +1,38 @@
 Return-Path: <belen.barros.pena@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20CECE0030F
-	for <yocto@yoctoproject.org>; Fri,  3 Feb 2012 06:42:18 -0800 (PST)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BC0CE01389
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2012 07:01:41 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 03 Feb 2012 06:42:16 -0800
+	by orsmga101.jf.intel.com with ESMTP; 03 Feb 2012 07:01:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="103564079"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.3.242])
-	by orsmga001.jf.intel.com with ESMTP; 03 Feb 2012 06:42:16 -0800
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="103569156"
+Received: from irsmsx601.ger.corp.intel.com ([163.33.7.164])
+	by orsmga001.jf.intel.com with ESMTP; 03 Feb 2012 07:01:39 -0800
 Received: from irsmsx152.ger.corp.intel.com (163.33.192.66) by
-	irsmsx602.ger.corp.intel.com (163.33.3.242) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 3 Feb 2012 14:42:15 +0000
+	irsmsx601.ger.corp.intel.com (163.33.7.164) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 3 Feb 2012 15:01:38 +0000
 Received: from irsmsx101.ger.corp.intel.com ([169.254.1.99]) by
 	IRSMSX152.ger.corp.intel.com ([169.254.6.46]) with mapi id
-	14.01.0355.002; Fri, 3 Feb 2012 14:42:15 +0000
+	14.01.0355.002; Fri, 3 Feb 2012 15:01:37 +0000
 From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Joshua Lock <josh@linux.intel.com>
-Thread-Topic: [yocto] Hob 1.2 design - Settings dialogue
-Thread-Index: AQHM4oIE9BVEzUnPNkOolHsPnmQH1A==
-Date: Fri, 3 Feb 2012 14:42:14 +0000
-Message-ID: <CB5185EC.703D%belen.barros.pena@intel.com>
-In-Reply-To: <4F2B057D.6000905@linux.intel.com>
+To: "Wang, Shane" <shane.wang@intel.com>, "Xu, Dongxiao"
+	<dongxiao.xu@intel.com>, "Lu, Lianhao" <lianhao.lu@intel.com>
+Thread-Topic: RFC: Hob 1.2 design
+Thread-Index: AQHM4oS6yiYUtHb0d0KhmqVM+D5XmQ==
+Date: Fri, 3 Feb 2012 15:01:37 +0000
+Message-ID: <CB51A6E3.7140%belen.barros.pena@intel.com>
+In-Reply-To: <3AB6CE7F274E534CAFD089D127A8A1FC0FCEBEDF@SHSMSX102.ccr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 user-agent: Microsoft-MacOutlook/14.14.0.111121
 x-originating-ip: [10.254.53.57]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Hob 1.2 design - Settings dialogue
+Cc: "Purdie, Richard" <richard.purdie@intel.com>, "Lock,
+	Joshua" <joshua.lock@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Eggleton,
+	Paul" <paul.eggleton@intel.com>
+Subject: Re: RFC: Hob 1.2 design
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,139 +44,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2012 14:42:18 -0000
+X-List-Received-Date: Fri, 03 Feb 2012 15:01:41 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <58918F7FF6D8AF4480AEB10DAC422E47@intel.com>
+Content-ID: <9B1D9122D4C4DF4B8CF96432053E8CBD@intel.com>
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="windows-1252"
 
-Your verbose mode it's pretty helpful (as it happens with most verbose
-modes), so please don't turn it off.
+Hi Shane and team,
 
-Answers below.
+Thanks for the suggestions. Loads of interesting stuff there.
+
+I'll take some time to look at them in detail and come back to you next wee=
+k.
+
+Have a great weekend.
 
 Belen
 
-On 02/02/2012 21:51, "Joshua Lock" <josh@linux.intel.com> wrote:
+From: "Wang, Shane" <shane.wang@intel.com<mailto:shane.wang@intel.com>>
+Date: Fri, 3 Feb 2012 05:29:57 +0000
+To: "Xu, Dongxiao" <dongxiao.xu@intel.com<mailto:dongxiao.xu@intel.com>>, "=
+Belen Barros Pena (Intel)" <belen.barros.pena@intel.com<mailto:belen.barros=
+.pena@intel.com>>, "Lu, Lianhao" <lianhao.lu@intel.com<mailto:lianhao.lu@in=
+tel.com>>
+Cc: "Eggleton, Paul" <paul.eggleton@intel.com<mailto:paul.eggleton@intel.co=
+m>>, "Purdie, Richard" <richard.purdie@intel.com<mailto:richard.purdie@inte=
+l.com>>, "Zhang, Jessica" <jessica.zhang@intel.com<mailto:jessica.zhang@int=
+el.com>>, "Lock, Joshua" <joshua.lock@intel.com<mailto:joshua.lock@intel.co=
+m>>, "Liu, Song" <song.liu@intel.com<mailto:song.liu@intel.com>>, "Stewart,=
+ David C" <david.c.stewart@intel.com<mailto:david.c.stewart@intel.com>>, "y=
+octo@yoctoproject.org<mailto:yocto@yoctoproject.org>" <yocto@yoctoproject.o=
+rg<mailto:yocto@yoctoproject.org>>
+Subject: RE: RFC: Hob 1.2 design
 
->Hi Belen,
->
->Sorry this is so long, I don't know how to turn off my verbose switch.
->
->On page 4 you mention Shane's intention to have proxy settings in the UI
->- I just want to point out that this is usually an OS level
->configuration and we should be wary about how we implement it.
->I'd suggest we go so far as to just have a "Change system proxy
->settings" button which launches the OS's network configuration settings.
->
->Of course, this opens us up to potential issues around supporting the
->multitude of available network configuration tools on Linux but I'd
->suggest we start with a lowest common denominator approach and have the
->program behave intelligently.
->
->Explicitly we can detect whether the binary gnome-control-center and the
->so file /usr/lib64/control-center-1/panels/libnetwork.so exist (being
->clever about that path, too) and if so we can execute:
->
->"gnome-control-center display network"
->
->Which will display the network configuration (and therefore proxy)
->settings for stock Fedora and Ubuntu desktops.
+Dongxiao and I have a discussion on that again.
 
-You guys are the experts. You tell me how you want it to work and I'll
-design the UI for it! :)
+Belen, please ignore the issue for the deployment button below, and we have=
+ several suggestions.
 
->
->
->I understand why the Machines option might be more useful as a list
->widget (p5), rather than a combo box, but feel that this is devalued at
->least slightly by the fact that the list of available Machines isn't
->static and therefore it's not unlikely a user would have to scroll that
->list.
+1. To make the Packages Screen and the Packages dialog the same.
+The Packages Screen is shown after users click =93Build packages=94. That i=
+s one step of the process.
+However, the content shown in the Package dialog is all what we have built =
+out last time. It is very possible users start from there and don=92t want =
+to go back to the Image configuration screen and click =93Build Image=94.
 
-Yes, the list will scroll at some point. I am not too worried about it
-though, since I don't think that changing the image types will be
-something users will do very often. I might be wrong though.
+2. As mentioned in my last email, we want to add =93Clean=94 in the GUI. Th=
+e reason is the build will fail, say, do_fetch, then we have an option to a=
+llow users to clean what we built out and rebuild. Otherwise, the sstate co=
+uld be reused for the next build. Users can do it by running =93bitbake =96=
+c cleanall=94 in the command line. But we hope to provide this feature in t=
+he GUI.
+If you agree the above, then the action =93Clean=94 is for a recipe or mult=
+iple recipes, and clicking =93Clean=94 will go to the screen at 4:00, since=
+ cleaning includes some tasks.
+Then we could make the Recipes dialog to be a screen, do you agree?
+The other reason is users can view recipes and click =93Build Packages=94, =
+no need go back to the Image configuration screen.
+The use case is:
+1) View Recipes in the Image configuration -> the Recipes screen -> Select =
+recipes and Build packages -> Log -> the Packages screen =85
+2) View Recipes in the Image configuration -> the Recipes screen -> Select =
+recipes and Build packages -> Log -> Failure -> Go back to the Recipes scre=
+en -> Clean something -> Log -> the Recipes screen -> Build packages again =
+-> Log -> Success -> the Packages screen =85
+3) View Recipes in the Image configuration -> the Recipes screen -> Select =
+recipes -> Go back to the Image configuraion -> =93Build Image=94
+4) Nothing want to view in the Image configuration after choosing =93base i=
+mage=94 -> =93Build packages=94 -> Log -> the Packages screen =85
+5) Nothing want to view in the Image configuration after choosing =93base i=
+mage=94 -> =93Build packages=94 -> Log -> Failure -> Go back to the Image c=
+onfiguration -> View Recipes -> the Recipes screen -> Clean something -> Lo=
+g -> the Recipe screen -> =85
+6) Nothing want to view in the Image configuration after choosing =93base i=
+mage=94 -> =93Build Image=94 -> Log -> the Image details =85
+and so on=85
 
+3. When build is failed, there is a =93Back=94 button. But go back to where=
+ is determined by where you come from.
 
->One suggestion might be to favour machines with a higher layer priority
->by listing them higher in the list?
+4. After users open an image by =93My images=94, some time there should not=
+ be a =93Save Template=94 because we don=92t have build process.
+Let=92s show =93Save Template=94 when =93Congratulations! Your image is rea=
+dy!=94 is shown, OK?
 
-I don=B9t know how the layer priorities work. Who sets those priorities? Are
-they aligned with user's priorities? If they are, yes, we should use the
-layer priorities to determine the order of that list of machines.
+5. In the Image details screen, =93Settings=94 is obviously not good to be =
+shown there. Can we remove =93Load Template=94? Because it will initiate a =
+new build. Let=92s ask users to click =93Build new image=94 to be on the Im=
+age configuration and click =93Load Template=94.
+We just keep =93My Images=94 in the last screen (the Image details screen),=
+ is it OK?
+And remove =93Edit Packages=94 and =93Edit Configuration=94, if the build p=
+rocess is not executed this time. (ditto for =93Save Template=94 in 4.)
 
->
->Although the next page, 5, mentions that the machine list is a combo
->box. Is that the case?
+6. In Josh=92s email, FRI 2 image can also be run, though it is an image fo=
+r real machine. Can we keep two buttons =93Run=94 and =93Deploy=94 on the I=
+mage details screen and let uses decide what he/she wants? I admit an error=
+ possibly happens if the image doesn=92t match the action, but we just repo=
+rt the error.
 
-It is the case in the Image configuration screen, where users, before
-building an image, select their machine using a combo box. This screen is
-different from the Settings dialogue, where you set some BibBake output
-and system variables (the image output types between them). This document
-in the wiki=20
+Thoughts?
+Thanks.
+--
+Shane
 
-http://wiki.yoctoproject.org/wiki/File:Hob_1.2_screens_inventory.pdf
+From: Xu, Dongxiao
+Sent: Friday, February 03, 2012 8:57 AM
+To: Wang, Shane; Barros Pena, Belen; Lu, Lianhao
+Cc: Eggleton, Paul; Purdie, Richard; Zhang, Jessica; Lock, Joshua; Liu, Son=
+g; Stewart, David C; yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+Subject: RE: RFC: Hob 1.2 design
 
-might help making sense of the different screens.
+One more from me that, Hob may work as a deploy tool, and in the new movie,=
+ the approach is to select =93My images=94 and then click deploy button. I =
+think normal user may not have such knowledge. I am still wondering if addi=
+ng a =93deploy=94 button in the tool bar?
 
->
->Love the package format selection pieces!
->
->For the two parallel threads buttons we should recommend a default value
->and set a maximum based on the number of CPU cores - I think there's
->been a lot of discussion about this but I'm not certain what the
->recommendation which came out of it was.
+Thanks,
+Dongxiao
 
-That would be really useful. Is it easy to accurately determine how many
-cores are supported by the CPU of the machine running Hob?
+From: Wang, Shane
+Sent: Friday, February 03, 2012 8:26 AM
+To: Wang, Shane; Barros Pena, Belen; Xu, Dongxiao; Lu, Lianhao
+Cc: Eggleton, Paul; Purdie, Richard; Zhang, Jessica; Lock, Joshua; Liu, Son=
+g; Stewart, David C; yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+Subject: RE: RFC: Hob 1.2 design
 
->
->For the directories on page 13 would it make sense to have a reset
->button to more easily get back to the defaults?
+I get one more:
 
-Yes, this probably makes sense. I'll add that to the document next week.
+In the Image details screen, after opening an image file by clicking =93My =
+images=94, we don=92t allow to =93Edit Package=94, I think.
+Because with an image only, we can=92t generate the packages from it, you c=
+an=92t assume there is a build directory (tmp/), is my understanding correc=
+t?
 
->
->That's all folks,
->Joshua
->
->
->On 02/02/12 08:58, Barros Pena, Belen wrote:
->> I've uploaded a document detailing the design of the Settings dialogue
->>for Hob 1.2 at
->>
->>=20
->>https://wiki.yoctoproject.org/wiki/File:Settings-dialogue-design-spec-v1.
->>0.pdf
->>
->> Sorry it's a boring document instead of a video: it seemed the only way
->>to provide the necessary level of detail
->>
->> Let me know if you have any questions or comments.
->>
->> Belen
->> ---------------------------------------------------------------------
->> Intel Corporation (UK) Limited
->> Registered No. 1134945 (England)
->> Registered Office: Pipers Way, Swindon SN3 1RJ
->> VAT No: 860 2173 47
->>
->> This e-mail and any attachments may contain confidential material for
->> the sole use of the intended recipient(s). Any review or distribution
->> by others is strictly prohibited. If you are not the intended
->> recipient, please contact the sender and delete all copies.
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
->--=20
->Joshua Lock
->         Yocto Project "Johannes factotum"
->         Intel Open Source Technology Centre
-
+--
+Shane
 ---------------------------------------------------------------------
 Intel Corporation (UK) Limited
 Registered No. 1134945 (England)
