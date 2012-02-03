@@ -1,24 +1,25 @@
 Return-Path: <josh@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 021B1E0030F
-	for <yocto@yoctoproject.org>; Fri,  3 Feb 2012 10:23:29 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 03 Feb 2012 10:23:28 -0800
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79850E0030F
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2012 10:32:24 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 03 Feb 2012 10:32:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="105996543"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="113777151"
 Received: from unknown (HELO [10.255.14.217]) ([10.255.14.217])
-	by orsmga002.jf.intel.com with ESMTP; 03 Feb 2012 10:23:28 -0800
-Message-ID: <4F2C2620.7070906@linux.intel.com>
-Date: Fri, 03 Feb 2012 10:23:28 -0800
+	by fmsmga001.fm.intel.com with ESMTP; 03 Feb 2012 10:32:23 -0800
+Message-ID: <4F2C2837.8040606@linux.intel.com>
+Date: Fri, 03 Feb 2012 10:32:23 -0800
 From: Joshua Lock <josh@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
 To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-References: <CB5185EC.703D%belen.barros.pena@intel.com>
-In-Reply-To: <CB5185EC.703D%belen.barros.pena@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Hob 1.2 design - Settings dialogue
+References: <CB5167DE.6F4D%belen.barros.pena@intel.com>
+In-Reply-To: <CB5167DE.6F4D%belen.barros.pena@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Metthey,
+	Mikael" <mikael.metthey@intel.com>
+Subject: Re: Hob 1.2 design - visuals
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,122 +31,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2012 18:23:30 -0000
+X-List-Received-Date: Fri, 03 Feb 2012 18:32:24 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 03/02/12 06:42, Barros Pena, Belen wrote:
-> Your verbose mode it's pretty helpful (as it happens with most verbose
-> modes), so please don't turn it off.
+On 03/02/12 03:52, Barros Pena, Belen wrote:
+> Hi Joshua,
 >
-> Answers below.
+> Thanks for the feedback. I don't have definite answers to your questions:
+> I think they should come out of a discussion between design and dev teams.
+
+I agree.
+
+> My first stab to some answers below.
 >
-> Belen
+>> 1) where the visual design differentiates from the toolkit (Gtk+) is the
+>> intention that we should use the toolkit provided widgets or create our
+>> own to more closely match the visual design?
+>> (for example the tabs for notebook pages in the 'Building Packages'
+>> screen).
 >
-> On 02/02/2012 21:51, "Joshua Lock"<josh@linux.intel.com>  wrote:
+> I have no experience with GTK, but I would hope that standard widgets can
+> be themed. So the idea would be using toolkit widgets themed to match the
+> visual style. Is this assumption incorrect?
+
+The widgets can indeed be themed, but in the favour of visual 
+consistency across the system I usually try to avoid it unless there's a 
+compelling reason to do so.
+
+Perhaps we can address differences between visual design and toolkit on 
+a case-by-case basis? Implement with the toolkit provided widgets and OS 
+theme and review which things we might want to enhance later?
+
+> If no toolkit widget exist for a certain UI control, we have to either
+> replace it with a toolkit widget or create our own, but I really hope this
+> is the exception rather than the rule.
+
+Oh yes, I don't think that's the case for Hob. It was the exception for 
+some work I did on Moblin but certainly not the rule, in fact that 
+widget is part of the standard toolkit now.
+
+>> 2) When implementing Hob v1 I tried to follow the GNOME HIG[1] to ensure
+>> the app would fit in with the common Linux desktop environments. Should
+>> v2 continue that trend? Where the visual design might differ with the
+>> HIG which should be preferred?
+>> (i.e. the button being flush with the bottom of the window in the Image
+>> Configuration screen is what first struck me here).
 >
->> Hi Belen,
->>
->> Sorry this is so long, I don't know how to turn off my verbose switch.
->>
->> On page 4 you mention Shane's intention to have proxy settings in the UI
->> - I just want to point out that this is usually an OS level
->> configuration and we should be wary about how we implement it.
->> I'd suggest we go so far as to just have a "Change system proxy
->> settings" button which launches the OS's network configuration settings.
->>
->> Of course, this opens us up to potential issues around supporting the
->> multitude of available network configuration tools on Linux but I'd
->> suggest we start with a lowest common denominator approach and have the
->> program behave intelligently.
->>
->> Explicitly we can detect whether the binary gnome-control-center and the
->> so file /usr/lib64/control-center-1/panels/libnetwork.so exist (being
->> clever about that path, too) and if so we can execute:
->>
->> "gnome-control-center display network"
->>
->> Which will display the network configuration (and therefore proxy)
->> settings for stock Fedora and Ubuntu desktops.
+> Nothing in the design should blatantly contradict the GNOME HIG: in
+> general they are good design practice and we wouldn't ignore them without
+> a reason to do so. If there are any exceptions (like the primary action
+> button one) we could look at them on a case by case basis. I don't think
+> leaving 12 pixels between the bottom of the window edge and the button
+> will make or break the interface. What's important is that the location
+> and spacing of those 'primary action' buttons are consistent across the
+> whole Hob. If we feel we shouldn't break the 12px rule, I am sure Mikael
+> will agree that the button effect is not that important, and that we can
+> lift it up to fit the spacing GNOME rules.
+
+This is great to read. I was hoping to elicit such a response and just 
+wanted to make sure engineering and design are on the same page here. It 
+feels like we are?
+
+I understand that 12px won't make or break the interface but I'm 
+definitely pro consistent UI across the whole OS where possible. I 
+expect I'm preaching to the choir here, so I'll leave it at that.
+
+>> 3) where the visual design uses various colours I assume the intention
+>> is to use the colours from the operating systems theme? This is slightly
+>> more difficult programatically than hard-coding colours but leads to (in
+>> my opinion) a much more pleasing visual experience.
+>> (i.e. tooltip and button colours)
 >
-> You guys are the experts. You tell me how you want it to work and I'll
-> design the UI for it! :)
+> Yes, using the colours from the OS theme is probably the best thing to do.
 
-My concern here was not to duplicate OS GUI to change OS settings, feels 
-to me that this is generally a bad idea. However I see from an 
-alternative thread that the intention is to only set the proxy 
-configuration for Yocto, if this is achievable through the site.conf I'm 
-all for it!
+Awesome! I'd go so far as to say it's definitely the best thing to do. I 
+didn't manage it with Hob 1 and had some ugly screenshots sent my way 
+from poor users who dared to use a different theme than me.
 
->> I understand why the Machines option might be more useful as a list
->> widget (p5), rather than a combo box, but feel that this is devalued at
->> least slightly by the fact that the list of available Machines isn't
->> static and therefore it's not unlikely a user would have to scroll that
->> list.
+>> Finally, I notice that the titlebar calls it HOB, instead of Hob - was
+>> that intentional? Hob was always mean as a name, not an acronym.
 >
-> Yes, the list will scroll at some point. I am not too worried about it
-> though, since I don't think that changing the image types will be
-> something users will do very often. I might be wrong though.
+> It's a typo: sorry about that. It should say Hob of course.
 
-I've made similar assumptions too, and as we don't have any data I'm in 
-no rush to disagree with either of us :-)
+No need to apologise. Just wanted to make sure.
 
->> One suggestion might be to favour machines with a higher layer priority
->> by listing them higher in the list?
->
-> I don¹t know how the layer priorities work. Who sets those priorities? Are
-> they aligned with user's priorities? If they are, yes, we should use the
-> layer priorities to determine the order of that list of machines.
-
-Layer priority currently is set by the layers author, but is editable by 
-the layers user (it's "just" a text file).
-
-Maybe something to consider for future. There's been discussion about 
-making it easier to enable system users to alter the layer priority, 
-perhaps we'll make GUI changes if something like that happens? Or 
-perhaps we'll make the change for the sake of the GUI? More thought 
-required.
-
->> Although the next page, 5, mentions that the machine list is a combo
->> box. Is that the case?
->
-> It is the case in the Image configuration screen, where users, before
-> building an image, select their machine using a combo box. This screen is
-> different from the Settings dialogue, where you set some BibBake output
-> and system variables (the image output types between them). This document
-> in the wiki
->
-> http://wiki.yoctoproject.org/wiki/File:Hob_1.2_screens_inventory.pdf
->
-> might help making sense of the different screens.
-
-Gotcha!
-
->> Love the package format selection pieces!
->>
->> For the two parallel threads buttons we should recommend a default value
->> and set a maximum based on the number of CPU cores - I think there's
->> been a lot of discussion about this but I'm not certain what the
->> recommendation which came out of it was.
->
-> That would be really useful. Is it easy to accurately determine how many
-> cores are supported by the CPU of the machine running Hob?
-
-We can easily detect that, yes. The difficulty with enabling this kind 
-of feature in the past has been balancing between providing an accurate 
-recommendation and allowing the user to ignore it.
-
-I wonder if this would be better as a feature for later to allow us more 
-time to get it right?
-
-
->> For the directories on page 13 would it make sense to have a reset
->> button to more easily get back to the defaults?
->
-> Yes, this probably makes sense. I'll add that to the document next week.
-
-Great, thanks.
-
+Thanks for your response,
 Joshua
 -- 
 Joshua Lock
