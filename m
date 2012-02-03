@@ -1,29 +1,30 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-lpp01m020-f176.google.com (mail-lpp01m020-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 602F2E00307
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 23:02:31 -0800 (PST)
-Received: by lboi15 with SMTP id i15so714211lbo.35
-	for <yocto@yoctoproject.org>; Thu, 02 Feb 2012 23:02:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=IYFIq/AzYcTbPmFHrnCSi2ywk/EF1msvYC59SbqJ+5g=;
-	b=Zl3JNIPkEOc6/V4rYGaXxZ2naAPR8DuyaqJL52mrvhoDtqag9xH8z5Nc8dHW3nBWCN
-	b6GFEp/TnyPyUBm85DdW4nqHhyKhSFrc/NA2YSjaf1GrbkkuvWTw4ZgdO4f/iF/V2zD9
-	HyJL5Jq9gnTKrmUPdnNEoPHUPKwLq7Jo+pg5Q=
-Received: by 10.112.86.67 with SMTP id n3mr1557554lbz.29.1328252549837; Thu,
-	02 Feb 2012 23:02:29 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.152.5.201 with HTTP; Thu, 2 Feb 2012 23:01:59 -0800 (PST)
-In-Reply-To: <4F2ADA74.6090803@windriver.com>
-References: <4F2ADA74.6090803@windriver.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 2 Feb 2012 23:01:59 -0800
-Message-ID: <CAMKF1soh41VLuEySE9gAWjBRsu1SSMXPVAOs1TqWvk9g0psWPQ@mail.gmail.com>
-To: Mark Hatle <mark.hatle@windriver.com>
+Return-Path: <josh@hipro.co.in>
+Received: from mail-tul01m020-f176.google.com (mail-tul01m020-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EF0DE00307
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 23:14:01 -0800 (PST)
+Received: by obbwd18 with SMTP id wd18so5695673obb.35
+	for <yocto@yoctoproject.org>; Thu, 02 Feb 2012 23:14:00 -0800 (PST)
+Received: by 10.50.193.195 with SMTP id hq3mr6956469igc.18.1328253240460;
+	Thu, 02 Feb 2012 23:14:00 -0800 (PST)
+Received: from [192.168.10.231] ([59.99.251.45])
+	by mx.google.com with ESMTPS id ng9sm7804369igc.3.2012.02.02.23.13.58
+	(version=SSLv3 cipher=OTHER); Thu, 02 Feb 2012 23:13:59 -0800 (PST)
+Message-ID: <1328253229.2658.12.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: Chris Larson <clarson@kergoth.com>
+Date: Fri, 03 Feb 2012 12:43:49 +0530
+In-Reply-To: <CABcZAN=8FaJNHDpY=rpqpX9m9r0hmV-iBC8xySekfTqDge7OGw@mail.gmail.com>
+References: <1327993829.2696.18.camel@babel.joshhome>
+	<1328078233.2628.4.camel@babel.joshhome>
+	<1328111395.2628.32.camel@babel.joshhome> <4F296D48.4080807@ti.com>
+	<1328159864.2636.13.camel@babel.joshhome>
+	<CABcZAN=8FaJNHDpY=rpqpX9m9r0hmV-iBC8xySekfTqDge7OGw@mail.gmail.com>
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.2.2-1 
+Mime-Version: 1.0
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: prelink-cross project update
+Subject: Re: creating global variables in a recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,90 +36,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2012 07:02:31 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 03 Feb 2012 07:14:02 -0000
+X-Groupsio-MsgNum: 4636
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-Ue5n11pexWsIEfTsz4MG"
+
+--=-Ue5n11pexWsIEfTsz4MG
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Mark
+Hello Chris,
 
-Good work. Could you also forward this to oe-core ml ?
+Thanks for the reply.
 
-Thx
--K
+On Thu, 2012-02-02 at 08:17 -0700, Chris Larson wrote:
+> > My use-case is that I am creating an /etc/fstab file via
+> > base-files.bbappend recipe. In that fstab, I use uuid (generated via
+> > uuidgen) to denote different partition filesystems. So, I have to
+> > use this uuid in the extended image_types.bbclass file to set them
+> > to the generated partition images appropriately (via tune2fs).
+> >
+> > One more approach I can think of is to echo the uuid to some file in
+> > the deploy images directory (while creating the fstab file) and read
+> > them back in image_types class. But this process looks messy.
+>=20
+> I'd say generate them in the configuration metadata via inline python
+> or an anonymous python function, then use those variables both in the
+> base-files recipe and images.=20
 
-On Thu, Feb 2, 2012 at 10:48 AM, Mark Hatle <mark.hatle@windriver.com> wrot=
-e:
-> A new version of the prelink-cross has been pushed to the repository.
->
-> This version fixes a number of minor bugs found during development, it is
-> also believed to resolve bug #1808 relating to ARM prelinking, and adds
-> support for x86_64's x32 ABI.
->
-> Special thanks to Mentor Graphics for contributing the ARM TLS fix.
->
-> There were no upstream changes to the main prelink component, all changes
-> are
-> specific to the cross functionality. =C2=A0Below is the Changelog, since =
-the last
-> update:
->
-> 2011-12-21 =C2=A0Mark Hatle <mark.hatle@windriver.com>
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0* src/arch-x86_64.c: Add support for x32 ABI
->
-> 2012-02-02 =C2=A0Mark Hatle <mark.hatle@windriver.com>
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0Integrate dwarf2 signal frame patch:
->
-> =C2=A0 =C2=A0 =C2=A0 =C2=A02010-05-10 =C2=A0Paul Brook =C2=A0<paul@codeso=
-urcery.com>
->
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0* src/dwarf2.c (adjust_dwarf2_frame): Skip 'S'=
- augmentation.
->
-> 2012-02-01 =C2=A0Mark Hatle <mark.hatle@windriver.com>
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0* configure.in: Fix enabling and disabling of =
-SE Linux support
->
-> 2012-01-26 =C2=A0Mark Hatle <mark.hatle@windriver.com>
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0* elf.h, rtld/dl-lookupX.h, rtld/rtld.c: Sync =
-to eglibc 2.15
->
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0Integrate R_ARM_TLS_DESC relocation support pa=
-tch:
->
-> =C2=A0 =C2=A0 =C2=A0 =C2=A02011-04-13 =C2=A0Maciej W. Rozycki =C2=A0<macr=
-o@codesourcery.com>
->
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0* src/prelink.h (DT_TLSDESC_PLT, R_ARM_TLS_DES=
-C): New macros.
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0(DSO): Add info_DT_TLSDESC_PLT member.
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0(DT_TLSDESC_PLT_BIT): New macro.
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0* src/arch-arm.c (arm_prelink_rel, arm_prelink=
-_rela): Handle
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0R_ARM_TLS_DESC relocation.
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0(arm_prelink_conflict_rel, arm_prelink_conflic=
-t_rela): Likewise.
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0(arm_rel_to_rela): Likewise.
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0(arm_undo_prelink_rel): Likewise.
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0(arm_reloc_class): Likewise.
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0* src/dso.c (read_dynamic): Handle DT_TLSDESC_=
-PLT dynamic tag.
->
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0* src/prelink.h: add missing prototypes for wr=
-ap_listxattr,
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0wrap_getxattr, wrap_setxattr
->
-> 2012-01-04 =C2=A0Mark Hatle <mark.hatle@windriver.com>
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0* exec.c: Check that a section is larger then =
-0 bytes when
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0determining the section to segment mapp=
-ing. =C2=A0This matches
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0the behavior of elfutils - readelf. =C2=
-=A0Otherwise an empty
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0PROGBITS section at the end of a segmen=
-t will cause a
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0failure.
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Please bear with my ignorance. What do you mean by "generating them in
+configuration metadata"? In which file should I do that?
 
+At present as an ugly hack I exported the uuids in the
+build/conf/local.conf.=20
+
+Regards
+Joshua
+--=20
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
+
+--=-Ue5n11pexWsIEfTsz4MG
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iEYEABECAAYFAk8riS0ACgkQWw85XwuSFMIphQCeIpScR4xc7pNXlznIMM10vGVL
+p9YAn3GwrtVu+YVu2JzJ4oH3ZUlRkpe4
+=RYvH
+-----END PGP SIGNATURE-----
+
+--=-Ue5n11pexWsIEfTsz4MG--
