@@ -1,30 +1,27 @@
 Return-Path: <josh@hipro.co.in>
 Received: from mail-tul01m020-f176.google.com (mail-tul01m020-f176.google.com
 	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EF0DE00307
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2012 23:14:01 -0800 (PST)
-Received: by obbwd18 with SMTP id wd18so5695673obb.35
-	for <yocto@yoctoproject.org>; Thu, 02 Feb 2012 23:14:00 -0800 (PST)
-Received: by 10.50.193.195 with SMTP id hq3mr6956469igc.18.1328253240460;
-	Thu, 02 Feb 2012 23:14:00 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0841E00307
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2012 00:04:48 -0800 (PST)
+Received: by obbwd18 with SMTP id wd18so5748290obb.35
+	for <yocto@yoctoproject.org>; Fri, 03 Feb 2012 00:04:47 -0800 (PST)
+Received: by 10.50.236.34 with SMTP id ur2mr6196949igc.20.1328256287068;
+	Fri, 03 Feb 2012 00:04:47 -0800 (PST)
 Received: from [192.168.10.231] ([59.99.251.45])
-	by mx.google.com with ESMTPS id ng9sm7804369igc.3.2012.02.02.23.13.58
-	(version=SSLv3 cipher=OTHER); Thu, 02 Feb 2012 23:13:59 -0800 (PST)
-Message-ID: <1328253229.2658.12.camel@babel.joshhome>
+	by mx.google.com with ESMTPS id h9sm10070090ibh.11.2012.02.03.00.04.45
+	(version=SSLv3 cipher=OTHER); Fri, 03 Feb 2012 00:04:46 -0800 (PST)
+Message-ID: <1328256282.2658.23.camel@babel.joshhome>
 From: Joshua Immanuel <josh@hipro.co.in>
-To: Chris Larson <clarson@kergoth.com>
-Date: Fri, 03 Feb 2012 12:43:49 +0530
-In-Reply-To: <CABcZAN=8FaJNHDpY=rpqpX9m9r0hmV-iBC8xySekfTqDge7OGw@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Fri, 03 Feb 2012 13:34:42 +0530
+In-Reply-To: <1328096562.2628.16.camel@babel.joshhome>
 References: <1327993829.2696.18.camel@babel.joshhome>
-	<1328078233.2628.4.camel@babel.joshhome>
-	<1328111395.2628.32.camel@babel.joshhome> <4F296D48.4080807@ti.com>
-	<1328159864.2636.13.camel@babel.joshhome>
-	<CABcZAN=8FaJNHDpY=rpqpX9m9r0hmV-iBC8xySekfTqDge7OGw@mail.gmail.com>
+	<CANJvwR_Zk8YwH6EyyoM8siMPxYgZFbyiFa04tVh4ubGXSETQnA@mail.gmail.com>
+	<1328096562.2628.16.camel@babel.joshhome>
 Organization: HiPro IT Solutions Private Limited
 X-Mailer: Evolution 3.2.2-1 
 Mime-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: creating global variables in a recipes
+Subject: Re: forcing a task to run while building an image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,40 +33,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2012 07:14:02 -0000
-X-Groupsio-MsgNum: 4636
+X-List-Received-Date: Fri, 03 Feb 2012 08:04:48 -0000
+X-Groupsio-MsgNum: 4637
 Content-Type: multipart/signed; micalg="pgp-sha1";
 	protocol="application/pgp-signature"; 
-	boundary="=-Ue5n11pexWsIEfTsz4MG"
+	boundary="=-h1QQYKpQS+Tw6fdeUO+m"
 
---=-Ue5n11pexWsIEfTsz4MG
+--=-h1QQYKpQS+Tw6fdeUO+m
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Chris,
+Hello,
 
-Thanks for the reply.
+On Wed, 2012-02-01 at 17:12 +0530, Joshua Immanuel wrote:
+> My use-case is such that I need to run a particular task irrespective
+> of the changes in that recipe. By adding the task to
+> do_bootimg[depends] I was able to accomplish that. (I am not sure
+> whether it is the preferred way of doing it)=20
 
-On Thu, 2012-02-02 at 08:17 -0700, Chris Larson wrote:
-> > My use-case is that I am creating an /etc/fstab file via
-> > base-files.bbappend recipe. In that fstab, I use uuid (generated via
-> > uuidgen) to denote different partition filesystems. So, I have to
-> > use this uuid in the extended image_types.bbclass file to set them
-> > to the generated partition images appropriately (via tune2fs).
-> >
-> > One more approach I can think of is to echo the uuid to some file in
-> > the deploy images directory (while creating the fstab file) and read
-> > them back in image_types class. But this process looks messy.
->=20
-> I'd say generate them in the configuration metadata via inline python
-> or an anonymous python function, then use those variables both in the
-> base-files recipe and images.=20
+After removing the INHERIT +=3D "rm_work" from my build/conf/local.conf,
+the dependency added to following
 
-Please bear with my ignorance. What do you mean by "generating them in
-configuration metadata"? In which file should I do that?
+        do_bootimg[depends] +=3D "base-files:do_install"
+       =20
+failed to force rebuild. So, again I am stuck with local.conf file
+manipulation :(
 
-At present as an ugly hack I exported the uuids in the
-build/conf/local.conf.=20
+I guess there should be a cleaner approach to this than doing
+
+        $ bitbake -c clean base-files
+        $ bitbake custom-image
+       =20
+the above, every time I build my custom image.
 
 Regards
 Joshua
@@ -78,7 +73,7 @@ Joshua Immanuel
 HiPro IT Solutions Private Limited
 http://hipro.co.in
 
---=-Ue5n11pexWsIEfTsz4MG
+--=-h1QQYKpQS+Tw6fdeUO+m
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part
 Content-Transfer-Encoding: 7bit
@@ -86,9 +81,9 @@ Content-Transfer-Encoding: 7bit
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEABECAAYFAk8riS0ACgkQWw85XwuSFMIphQCeIpScR4xc7pNXlznIMM10vGVL
-p9YAn3GwrtVu+YVu2JzJ4oH3ZUlRkpe4
-=RYvH
+iEYEABECAAYFAk8rlRoACgkQWw85XwuSFMKntwCfXQ9mFxJWmpapE3FE4JNwkeel
+fF4An2VuvDDpCtJYr7GF8yRcWN+9/7mx
+=q+Ya
 -----END PGP SIGNATURE-----
 
---=-Ue5n11pexWsIEfTsz4MG--
+--=-h1QQYKpQS+Tw6fdeUO+m--
