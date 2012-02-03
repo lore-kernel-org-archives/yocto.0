@@ -1,26 +1,31 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-tul01m020-f176.google.com (mail-tul01m020-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0841E00307
-	for <yocto@yoctoproject.org>; Fri,  3 Feb 2012 00:04:48 -0800 (PST)
-Received: by obbwd18 with SMTP id wd18so5748290obb.35
-	for <yocto@yoctoproject.org>; Fri, 03 Feb 2012 00:04:47 -0800 (PST)
-Received: by 10.50.236.34 with SMTP id ur2mr6196949igc.20.1328256287068;
-	Fri, 03 Feb 2012 00:04:47 -0800 (PST)
-Received: from [192.168.10.231] ([59.99.251.45])
-	by mx.google.com with ESMTPS id h9sm10070090ibh.11.2012.02.03.00.04.45
-	(version=SSLv3 cipher=OTHER); Fri, 03 Feb 2012 00:04:46 -0800 (PST)
-Message-ID: <1328256282.2658.23.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Fri, 03 Feb 2012 13:34:42 +0530
-In-Reply-To: <1328096562.2628.16.camel@babel.joshhome>
+Return-Path: <bewithsathish@gmail.com>
+Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2A74E00307
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2012 00:51:24 -0800 (PST)
+Received: by pbcc11 with SMTP id c11so3505073pbc.35
+	for <yocto@yoctoproject.org>; Fri, 03 Feb 2012 00:51:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=iRg39SLbo4Bt2h9ALnLqxLpNaBG03eY9+FlEQu0FKVc=;
+	b=EQRs37ggjNlVgKs4gzIHsx2HtD0TVzksCKvXpy6BQetKQoQdhiWUxfb5Y8/x/F7d/a
+	X3thuJtFMCiZ7SPKH5+i8YB7Fm/QxSxudb0iVXiKLOVjRDLMmcpDPPQIMdp3YUFVTQeq
+	u/a2tqZc9IINHyFAr+POha2O0FIK7cmp+vZoM=
+MIME-Version: 1.0
+Received: by 10.68.74.4 with SMTP id p4mr15689432pbv.123.1328259083976; Fri,
+	03 Feb 2012 00:51:23 -0800 (PST)
+Received: by 10.68.232.5 with HTTP; Fri, 3 Feb 2012 00:51:23 -0800 (PST)
+In-Reply-To: <1328256282.2658.23.camel@babel.joshhome>
 References: <1327993829.2696.18.camel@babel.joshhome>
 	<CANJvwR_Zk8YwH6EyyoM8siMPxYgZFbyiFa04tVh4ubGXSETQnA@mail.gmail.com>
 	<1328096562.2628.16.camel@babel.joshhome>
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1 
-Mime-Version: 1.0
+	<1328256282.2658.23.camel@babel.joshhome>
+Date: Fri, 3 Feb 2012 14:21:23 +0530
+Message-ID: <CANJvwR99LRR99Ro_VtrZcyyOMQbbcyj2+h3SFA-oYyKw01gfRg@mail.gmail.com>
+From: Sathishkumar Duraisamy <bewithsathish@gmail.com>
+To: Joshua Immanuel <josh@hipro.co.in>
+Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: forcing a task to run while building an image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -33,57 +38,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2012 08:04:48 -0000
-X-Groupsio-MsgNum: 4637
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-h1QQYKpQS+Tw6fdeUO+m"
+X-List-Received-Date: Fri, 03 Feb 2012 08:51:25 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---=-h1QQYKpQS+Tw6fdeUO+m
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The following is the scenario, you are in. If I wrong, please correct me.
+" You have your development program/application in some place. You
+want to build and include it in your rootfs. And you don't want to
+edit the recipe/other things for each build of rootfs."
 
-Hello,
+The scenario is very common. What we actually do is, for development
+we usually test by downloading the specific application binary to rfs
+by compiling with the sdk (created from oe). And usually our
+application will be in some version control say hg or git. Once the
+apps is ready, modify the recipe to include the particular version of
+apps.
 
-On Wed, 2012-02-01 at 17:12 +0530, Joshua Immanuel wrote:
-> My use-case is such that I need to run a particular task irrespective
-> of the changes in that recipe. By adding the task to
-> do_bootimg[depends] I was able to accomplish that. (I am not sure
-> whether it is the preferred way of doing it)=20
 
-After removing the INHERIT +=3D "rm_work" from my build/conf/local.conf,
-the dependency added to following
+-- 
+Regards,
+Sathishkumar D
+http://flowersopenlab.weebly.com/
 
-        do_bootimg[depends] +=3D "base-files:do_install"
-       =20
-failed to force rebuild. So, again I am stuck with local.conf file
-manipulation :(
-
-I guess there should be a cleaner approach to this than doing
-
-        $ bitbake -c clean base-files
-        $ bitbake custom-image
-       =20
-the above, every time I build my custom image.
-
-Regards
-Joshua
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
-
---=-h1QQYKpQS+Tw6fdeUO+m
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
-
-iEYEABECAAYFAk8rlRoACgkQWw85XwuSFMKntwCfXQ9mFxJWmpapE3FE4JNwkeel
-fF4An2VuvDDpCtJYr7GF8yRcWN+9/7mx
-=q+Ya
------END PGP SIGNATURE-----
-
---=-h1QQYKpQS+Tw6fdeUO+m--
