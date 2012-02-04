@@ -1,25 +1,29 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85431E003E4
-	for <yocto@yoctoproject.org>; Fri,  3 Feb 2012 20:51:31 -0800 (PST)
-Received: from mail-iy0-f180.google.com ([209.85.210.180])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 03 Feb 2012 20:51:31 -0800
-Received: by iabz7 with SMTP id z7so6155943iab.25
-	for <yocto@yoctoproject.org>; Fri, 03 Feb 2012 20:51:30 -0800 (PST)
-Received: by 10.43.52.129 with SMTP id vm1mr9439251icb.15.1328331090438;
-	Fri, 03 Feb 2012 20:51:30 -0800 (PST)
-Received: from [192.168.1.12] (c-76-115-40-64.hsd1.or.comcast.net.
-	[76.115.40.64])
-	by mx.google.com with ESMTPS id x18sm15128477ibi.2.2012.02.03.20.51.29
-	(version=SSLv3 cipher=OTHER); Fri, 03 Feb 2012 20:51:29 -0800 (PST)
-Message-ID: <4F2CB95F.6040509@intel.com>
-Date: Fri, 03 Feb 2012 20:51:43 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0141E003E5
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2012 21:03:53 -0800 (PST)
+Received: by lagw12 with SMTP id w12so3034929lag.35
+	for <yocto@yoctoproject.org>; Fri, 03 Feb 2012 21:03:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=Lvz7eAXkyUeglpiA9ZeUXtmhh8TXvX0/TVPcflmXA5A=;
+	b=mgNzDvTNFYefW+Y++XWXFmTyyFwRb4N7e7O3vmFgMjkL5hn7ojLk4zqtBlz8wx5TGt
+	ykF228OEmujyxdbNd3Ac5i1qfNA0YJwSFcJ83w+OBgJAmSmpCCM1mUNNXEktE10MhqUl
+	EYivRb8nnKSIu1FskyvsJshrtPlW0+hRJ9VH8=
+Received: by 10.152.112.41 with SMTP id in9mr5073743lab.27.1328331832330; Fri,
+	03 Feb 2012 21:03:52 -0800 (PST)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: Trying to re-use sstate.
+Received: by 10.152.5.201 with HTTP; Fri, 3 Feb 2012 21:03:22 -0800 (PST)
+In-Reply-To: <CAEKp-abaibKR9XZN8Ddnu4Tt6nWbCiaeJZFkNWZVFWE9ReOwjQ@mail.gmail.com>
+References: <CAEKp-abaibKR9XZN8Ddnu4Tt6nWbCiaeJZFkNWZVFWE9ReOwjQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 3 Feb 2012 21:03:22 -0800
+Message-ID: <CAMKF1spEvk-hdJgSyFHNX87jxC8jnipXD--K+e4i1L1yTjf_kQ@mail.gmail.com>
+To: Rudolf Streif <rudolf.streif@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Task Build Issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,31 +35,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 Feb 2012 04:51:31 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 04 Feb 2012 05:03:54 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On Fri, Feb 3, 2012 at 7:27 PM, Rudolf Streif <rudolf.streif@gmail.com> wro=
+te:
+> I created this task for test purposes:
+>
+> DESCRIPTION =3D "My Custom Tasks"
+>
+> LICENSE =3D "MIT"
+> LIC_FILES_CHKSUM =3D
+> "file://${COREBASE}/LICENSE;md5=3D3f40d7994397109285ec7b81fdeb3b58 \
+>
+> file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b4de2042=
+0"
+>
+> PACKAGES =3D "\
+> =C2=A0 =C2=A0task-mytask-apps \
+> =C2=A0 =C2=A0task-mytask-apps-dbg \
+> =C2=A0 =C2=A0task-mytask-apps-dev \
+> =C2=A0 =C2=A0task-mytask-tools \
+> =C2=A0 =C2=A0task-mytask-tools-dbg \
+> =C2=A0 =C2=A0task-mytask-tools-dev \
+> =C2=A0 =C2=A0"
+>
+> RDEPENDS_task-mytask-apps =3D "\
+> =C2=A0 sqlite3 \
+> =C2=A0 python \
+> =C2=A0 python-sqlite3"
+>
+> RDEPENDS_task-mytask-tools =3D "\
+> =C2=A0 sudo \
+> =C2=A0 gzip \
+> =C2=A0 tar"
+>
+> I added created a bb containing IMAGE_INSTALL =3D "task-core-boot
+> task-base-extended task-mytask-apps"
+>
+> Bitbake builds the task without any error message. However, building
+> the rootfs fails with
+>
+> | Processing task-mytask-apps...
+> | Unable to find package task-mytask-apps (task-mytask-apps)!
+>
+> log.do_package_write_rpm: contains NOTE: Not creating empty RPM
+> package for task-mytask-apps.
+>
 
-I'm trying to re-use the sstate from one build directory and move it to 
-another. It's not working - bitbake is rebuilding *everything*.
+add ALLOW_EMPTY_ task-mytask-apps =3D "1" to your recipe
 
-My hunch is the reason for this is because bblayers.conf must differ 
-between the two build directories, because it uses full paths to the 
-layer directories.
-
-By default, when you source oe-init-build-env for the first time, it 
-generates a bblayers.conf file with full paths to the default layers, 
-meta and meta-yocto.
-
-I thought the point of sstate was that I could copy it between build 
-directories - or even different hosts - and save myself the effort of 
-rebuilding everything if the remaining metadata was the same?
-
-Scott
-
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+> Indeed deploy-rpms of the package is empty however, the deploy-rpms
+> dirs of the dependencies contain the necessary packages.
+>
+> Any help is appreciated.
+>
+> Thanks,
+> Rudi
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
