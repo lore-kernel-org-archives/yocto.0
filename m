@@ -1,24 +1,25 @@
-Return-Path: <rudolf.streif@gmail.com>
-Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C1FFE003E4
-	for <yocto@yoctoproject.org>; Fri,  3 Feb 2012 19:27:42 -0800 (PST)
-Received: by wgbdq12 with SMTP id dq12so4271618wgb.11
-	for <yocto@yoctoproject.org>; Fri, 03 Feb 2012 19:27:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=6V/ujVObWPBS2JLQlKvvZefqsmTZtlxStW9haR9XJJo=;
-	b=fe6gJiztE0srSKtuiinzeOUnXQMtSMO0899xO+zoPHPBg+D7PmHDgW3eN+418nnZ+i
-	BOUihFhRMjNBXxn2iOcOBdnjSxKPPq/AZppsH9ooB1cBihKZf7yRMppAQNH5ZkGlNsBr
-	Suc6qONuMTWZ4d1Ir4B/4UfDYmsjh+IUPgCLg=
+Return-Path: <scott.a.garman@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85431E003E4
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2012 20:51:31 -0800 (PST)
+Received: from mail-iy0-f180.google.com ([209.85.210.180])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 03 Feb 2012 20:51:31 -0800
+Received: by iabz7 with SMTP id z7so6155943iab.25
+	for <yocto@yoctoproject.org>; Fri, 03 Feb 2012 20:51:30 -0800 (PST)
+Received: by 10.43.52.129 with SMTP id vm1mr9439251icb.15.1328331090438;
+	Fri, 03 Feb 2012 20:51:30 -0800 (PST)
+Received: from [192.168.1.12] (c-76-115-40-64.hsd1.or.comcast.net.
+	[76.115.40.64])
+	by mx.google.com with ESMTPS id x18sm15128477ibi.2.2012.02.03.20.51.29
+	(version=SSLv3 cipher=OTHER); Fri, 03 Feb 2012 20:51:29 -0800 (PST)
+Message-ID: <4F2CB95F.6040509@intel.com>
+Date: Fri, 03 Feb 2012 20:51:43 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111229 Thunderbird/9.0
 MIME-Version: 1.0
-Received: by 10.180.101.161 with SMTP id fh1mr15336122wib.0.1328326061167;
-	Fri, 03 Feb 2012 19:27:41 -0800 (PST)
-Received: by 10.216.184.17 with HTTP; Fri, 3 Feb 2012 19:27:41 -0800 (PST)
-Date: Fri, 3 Feb 2012 19:27:41 -0800
-Message-ID: <CAEKp-abaibKR9XZN8Ddnu4Tt6nWbCiaeJZFkNWZVFWE9ReOwjQ@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@gmail.com>
 To: yocto@yoctoproject.org
-Subject: Task Build Issue
+Subject: Trying to re-use sstate.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,55 +31,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 Feb 2012 03:27:42 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 04 Feb 2012 04:51:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I created this task for test purposes:
+Hello,
 
-DESCRIPTION = "My Custom Tasks"
+I'm trying to re-use the sstate from one build directory and move it to 
+another. It's not working - bitbake is rebuilding *everything*.
 
-LICENSE = "MIT"
-LIC_FILES_CHKSUM =
-"file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
+My hunch is the reason for this is because bblayers.conf must differ 
+between the two build directories, because it uses full paths to the 
+layer directories.
 
-file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+By default, when you source oe-init-build-env for the first time, it 
+generates a bblayers.conf file with full paths to the default layers, 
+meta and meta-yocto.
 
-PACKAGES = "\
-    task-mytask-apps \
-    task-mytask-apps-dbg \
-    task-mytask-apps-dev \
-    task-mytask-tools \
-    task-mytask-tools-dbg \
-    task-mytask-tools-dev \
-    "
+I thought the point of sstate was that I could copy it between build 
+directories - or even different hosts - and save myself the effort of 
+rebuilding everything if the remaining metadata was the same?
 
-RDEPENDS_task-mytask-apps = "\
-   sqlite3 \
-   python \
-   python-sqlite3"
+Scott
 
-RDEPENDS_task-mytask-tools = "\
-   sudo \
-   gzip \
-   tar"
-
-I added created a bb containing IMAGE_INSTALL = "task-core-boot
-task-base-extended task-mytask-apps"
-
-Bitbake builds the task without any error message. However, building
-the rootfs fails with
-
-| Processing task-mytask-apps...
-| Unable to find package task-mytask-apps (task-mytask-apps)!
-
-log.do_package_write_rpm: contains NOTE: Not creating empty RPM
-package for task-mytask-apps.
-
-Indeed deploy-rpms of the package is empty however, the deploy-rpms
-dirs of the dependencies contain the necessary packages.
-
-Any help is appreciated.
-
-Thanks,
-Rudi
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
