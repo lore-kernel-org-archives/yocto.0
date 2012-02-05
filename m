@@ -1,25 +1,25 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B3E4E0044E
-	for <yocto@yoctoproject.org>; Sat,  4 Feb 2012 21:53:40 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q155rbCi017086
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sat, 4 Feb 2012 21:53:38 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.20.35) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Sat, 4 Feb 2012 21:53:37 -0800
-Message-ID: <4F2E1960.3060601@windriver.com>
-Date: Sun, 5 Feb 2012 00:53:36 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 931C2E01217
+	for <yocto@yoctoproject.org>; Sun,  5 Feb 2012 11:20:21 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 05 Feb 2012 11:20:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="106641429"
+Received: from unknown (HELO envy.home) ([10.255.14.217])
+	by orsmga002.jf.intel.com with ESMTP; 05 Feb 2012 11:20:20 -0800
+Message-ID: <4F2ED655.5020808@linux.intel.com>
+Date: Sun, 05 Feb 2012 11:19:49 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-To: <tom.zanussi@intel.com>
-References: <cover.1328307536.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1328307536.git.tom.zanussi@intel.com>
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
-Subject: Re: [PATCH 0/1] fri2: use emgd-1.10
+To: jfabernathy <jfabernathy@gmail.com>
+References: <4F2D4D12.3060500@gmail.com>
+In-Reply-To: <4F2D4D12.3060500@gmail.com>
+X-Enigmail-Version: 1.3.5
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: HOW DO I - new one added for EMGD and Crownbay
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,36 +31,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 05 Feb 2012 05:53:40 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Sun, 05 Feb 2012 19:20:21 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 12-02-03 5:21 PM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi<tom.zanussi@intel.com>
->
-> Please pull into linux-yocto-3.0.
->
-> The following changes since commit 70e86dc937a40c0dc7c84549de0e86bb09f12da3:
->    Bruce Ashfield (1):
->          meta/rt: update rt patch cache
+On 02/04/2012 07:21 AM, jfabernathy wrote:
+> I just added and EMGD example to the How Do I in the wiki.
 
-Merged.
+Jim, really appreciate your work here. For those of us not following
+quite as closely, please provide links to the pages you update so we
+don't have to go hunting for them.
 
-Bruce
+I'm interested to see what more was needed for EMGD and Crownbay than is
+already in the BSP README.
 
->
-> are available in the git repository at:
->
->    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/meta-fri2-emgd-1.10
->    http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/meta-fri2-emgd-1.10
->
-> Tom Zanussi (1):
->    fri2: use emgd-1.10
->
->   meta/cfg/kernel-cache/bsp/fri2/fri2.scc |    2 +-
->   1 files changed, 1 insertions(+), 1 deletions(-)
->
+> 
+> In my opinion, we need to think about breaking this one big edit up into 
+> individual How Do I's.  It would simplify editing and make getting to 
+> the individual How Do I's much easier and quicker.
+> 
+> I don't know how to do that, but I think it needs doing.
+> 
+> Jim A
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-
-
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
