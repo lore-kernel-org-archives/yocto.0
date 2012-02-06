@@ -1,24 +1,25 @@
 Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8152E0030B
-	for <yocto@yoctoproject.org>; Mon,  6 Feb 2012 08:10:46 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 06 Feb 2012 08:10:46 -0800
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 839AEE0030B
+	for <yocto@yoctoproject.org>; Mon,  6 Feb 2012 08:18:01 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 06 Feb 2012 08:18:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="106948202"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="121484925"
 Received: from unknown (HELO helios.localnet) ([10.252.122.246])
-	by orsmga002.jf.intel.com with ESMTP; 06 Feb 2012 08:10:45 -0800
+	by fmsmga002.fm.intel.com with ESMTP; 06 Feb 2012 08:18:00 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon, 06 Feb 2012 16:10:44 +0000
-Message-ID: <2720565.vdveVUSFVJ@helios>
+Date: Mon, 06 Feb 2012 16:17:59 +0000
+Message-ID: <1405123.nGGmjXUAYO@helios>
 Organization: Intel Corporation
 User-Agent: KMail/4.8.0 (Linux/3.0.0-15-generic-pae; KDE/4.8.0; i686; ; )
-In-Reply-To: <CAMKF1spEvk-hdJgSyFHNX87jxC8jnipXD--K+e4i1L1yTjf_kQ@mail.gmail.com>
-References: <CAEKp-abaibKR9XZN8Ddnu4Tt6nWbCiaeJZFkNWZVFWE9ReOwjQ@mail.gmail.com>
-	<CAMKF1spEvk-hdJgSyFHNX87jxC8jnipXD--K+e4i1L1yTjf_kQ@mail.gmail.com>
+In-Reply-To: <4F2AFBF7.8010307@linux.intel.com>
+References: <9c76056351fe4e2b9537729ffca3b4506b720513.1328135056.git.dvhart@linux.intel.com>
+	<4F2AE4E8.3080809@linux.intel.com>
+	<4F2AFBF7.8010307@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: Task Build Issue
+Subject: Re: [pull-sys940x 2/4] ranpwd: Add ranpwd recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,15 +31,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2012 16:10:47 -0000
+X-List-Received-Date: Mon, 06 Feb 2012 16:18:01 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-On Friday 03 February 2012 21:03:22 Khem Raj wrote:
-> add ALLOW_EMPTY_ task-mytask-apps = "1" to your recipe
+On Thursday 02 February 2012 13:11:19 Joshua Lock wrote:
+> Apologies. I'm wrong here. It was PRIORITY which we agreed to drop.
 
-Alternatively you could "inherit task" near the top of the recipe and 
-task.bbclass takes care of this and a couple of other things already.
+It's worth noting however, at the same time PRIORITY removal was discussed it 
+was acknowledged that SECTION was questionable. Logical grouping of 
+recipes/packages is a useful thing but coming up with groupings that are 
+meaningful in all contexts is hard :(
 
 Cheers,
 Paul
