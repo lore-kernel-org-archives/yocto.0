@@ -1,35 +1,29 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63784E0030B
-	for <yocto@yoctoproject.org>; Mon,  6 Feb 2012 09:31:14 -0800 (PST)
-Received: by pbcc11 with SMTP id c11so6523874pbc.35
-	for <yocto@yoctoproject.org>; Mon, 06 Feb 2012 09:31:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=x3DIeC8LhIHaXrm6Q+9ew+fL79X2yT2WVSf6Ig8jWUk=;
-	b=l+H0mDa0kySVzMbQsyttcBMoI0l2Yqzerm2iBLPFHJojkiyR2cW/xC/NA64wnUHViQ
-	4hQuyElAqYqATsU3dzEllTWJxpqo+Yo4PEd/nng2m3dlwkhYdomcqeIVI+o0yfdrAVOr
-	HkFsEhSy5AgA+DHDsmrazMwkJh+ZdXHSelpAU=
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABE06E004D2
+	for <yocto@yoctoproject.org>; Mon,  6 Feb 2012 09:32:39 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 06 Feb 2012 09:32:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="121517892"
+Received: from envy.jf.intel.com (HELO envy.home) ([10.24.1.98])
+	by fmsmga002.fm.intel.com with ESMTP; 06 Feb 2012 09:32:39 -0800
+Message-ID: <4F300E98.6000307@linux.intel.com>
+Date: Mon, 06 Feb 2012 09:32:08 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-Received: by 10.68.75.11 with SMTP id y11mr49045471pbv.51.1328549474168; Mon,
-	06 Feb 2012 09:31:14 -0800 (PST)
-Received: by 10.68.218.10 with HTTP; Mon, 6 Feb 2012 09:31:14 -0800 (PST)
-In-Reply-To: <001901cce4ee$8e71bdf0$ab5539d0$@sjjmicro.com>
-References: <000e01cce455$55a1c540$00e54fc0$@sjjmicro.com>
-	<CAMKF1srLO9pd57iUBRTRb5i54gPk-mRu04nAue9XYUnTRrGWYQ@mail.gmail.com>
-	<000701cce483$ffbda890$ff38f9b0$@sjjmicro.com>
-	<CAMKF1sqvj6tTPLaasNR9RphshHhM2FGS1gS83LekeJR=UVo7Cw@mail.gmail.com>
-	<000001cce49d$a4d2ab50$ee7801f0$@sjjmicro.com>
-	<000101cce49f$d8aa3c70$89feb550$@sjjmicro.com>
-	<001901cce4ee$8e71bdf0$ab5539d0$@sjjmicro.com>
-Date: Mon, 6 Feb 2012 12:31:14 -0500
-Message-ID: <CADzUK1LZS8VnT64odpnvmdpRz++U9QaO9qKivm06A2k6JD_xQQ@mail.gmail.com>
-From: autif khan <autif.mlist@gmail.com>
-To: Sean Liming <sean_liming@sjjmicro.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Build Error
+To: jfabernathy <jfabernathy@gmail.com>
+References: <4F2D4D12.3060500@gmail.com> <4F2ED655.5020808@linux.intel.com>
+	<2779C8B7-F034-4F86-8BCF-0CC6374AD803@gmail.com>
+	<4F2EE44C.7090809@linux.intel.com>
+	<F23113B0-A013-4723-A4D9-09FC4FB5FA38@gmail.com>
+	<4F2FF8F6.7060601@linux.intel.com> <4F300A55.2060305@gmail.com>
+In-Reply-To: <4F300A55.2060305@gmail.com>
+X-Enigmail-Version: 1.3.5
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: HOW DO I - new one added for EMGD and Crownbay
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,150 +35,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2012 17:31:14 -0000
+X-List-Received-Date: Mon, 06 Feb 2012 17:32:39 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Here is what I have - I started with a minimal ubuntu server and the
-following command seens to get all the dependencies - the last few
-(bison, flex and unzip) are not required - but are required for other
-stuff I am working on.
 
-I hope this helps with the documentation.
 
-sudo apt-get install -y gcc g++ patch diffstat texi2html texinfo cvs
-subversion gawk chrpath make libgl1-mesa-dev libglu1-mesa-dev
-libsdl1.2-dev git libxml-parser-perl bison gettext flex unzip
-
-On Mon, Feb 6, 2012 at 11:44 AM, Sean Liming <sean_liming@sjjmicro.com> wrote:
->
-> Found the problem - missing package - libxml-parser-perl. It is not part of
-> the setup. For any future reference, here is the fix:
->
-> $sudo apt-get install libxml-parser-perl
->
-> Ubuntu was a fresh install. I should have checked the docs in progress,
-> which calls it out at the end.
->
-> Regards,
->
-> Sean Liming
-> Owner
-> SJJ Embedded Micro Solutions, LLC.
-> Tel: 714-970-7523 / Cell: 858-774-3176
->
->
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-> On Behalf Of Sean Liming
-> Sent: Sunday, February 05, 2012 11:21 PM
-> To: 'Khem Raj'
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Build Error
->
->
-> Searching further there seems to be different patches for perl-native for
-> Ubuntu 10.04. Not sure what needs to be applied here.
->
-> Regards,
->
-> Sean
->
->
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-> On Behalf Of Sean Liming
-> Sent: Sunday, February 05, 2012 11:05 PM
-> To: 'Khem Raj'
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Build Error
->
->
-> How would I check if perl-native is staged? The intltool.inc has the updated
-> Rudolf.
->
-> Regards,
->
-> Sean
->
-> -----Original Message-----
-> From: Khem Raj [mailto:raj.khem@gmail.com]
-> Sent: Sunday, February 05, 2012 10:30 PM
-> To: Sean Liming
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Build Error
->
-> On Sun, Feb 5, 2012 at 8:01 PM, Sean Liming <sean_liming@sjjmicro.com>
-> wrote:
->> @ autif- thank you for the tar file. Placed it in the downloads folder
->> and
-> the error doesn't appear.
+On 02/06/2012 09:13 AM, jfabernathy wrote:
+> On 02/06/2012 10:59 AM, Darren Hart wrote:
 >>
->>
->> I added the two lines to the local.conf folder
->>
->> INHERIT += "own-mirrors"
->> SOURCE_MIRROR_URL = "http://autobuilder.yoctoproject.org/pub/sources/"
->>
->> I am not sure how to resolve the lib-xml-parser for intltool issue
->> based
-> on the post.
->>
->
-> checking for perl... /usr/bin/perl
-> checking for perl >= 5.8.1... 5.12.4
-> checking for XML::Parser... configure: error: XML::Parser perl module is
-> required for intltool
-> ERROR: oe_runconf failed
->
-> it should not be getting perl from your build but from the native sysroot.
-> is perl-native staged ?
->>
->> Regards,
->>
->> Sean Liming
->> Owner
->> SJJ Embedded Micro Solutions, LLC.
->> Tel: 714-970-7523 / Cell: 858-774-3176
->>
->>
->> -----Original Message-----
->> From: Khem Raj [mailto:raj.khem@gmail.com]
->> Sent: Sunday, February 05, 2012 4:00 PM
->> To: Sean Liming
->> Cc: yocto@yoctoproject.org
->> Subject: Re: [yocto] Build Error
->>
->> On Sun, Feb 5, 2012 at 2:27 PM, Sean Liming <sean_liming@sjjmicro.com>
-> wrote:
->>> Did I miss configure something? Wrong python version?
+>> On 02/06/2012 05:00 AM, James Abernathy wrote:
+>>> On Feb 5, 2012, at 3:19 PM, Darren Hart wrote:
 >>>
->>> There was a post about the dash vs. bash shell. I am not sure what
->>> shell is supposed to be using:
+>>>>
+>>>> On 02/05/2012 11:44 AM, James Abernathy wrote:
+>>>>> On Feb 5, 2012, at 2:19 PM, Darren Hart wrote:
+>>>>>
+>>>>>> On 02/04/2012 07:21 AM, jfabernathy wrote:
+>>>>>>> I just added and EMGD example to the How Do I in the wiki.
+>>>>>> Jim, really appreciate your work here. For those of us not
+>>>>>> following quite as closely, please provide links to the pages
+>>>>>> you update so we don't have to go hunting for them.
+>>>>>>
+>>>>> It's the How Do I link on the wiki page:
+>>>>>
+>>>>> https://wiki.yoctoproject.org/wiki/How_do_I
+>>>> I see. This Question heading seems a bit inconsistent with what you
+>>>> are actually doing. Step 1 of getting EMGD on Crownbay is adding
+>>>> alsa to MACHINE_FEATURES for a BSP called meta-mymachine?
+>>>>
+>>>> This appears to be just trying to get commercial codecs working
+>>>> with accelerated graphics.
+>>>>
+>>>> The reason I raise this, is that while it's good to have these
+>>>> sorts of "Tactical" guides, if we aren't careful they can dilute
+>>>> the documentation space and end up confusing users more than they
+>>>> help. The README for crownbay covers what is necessary to enable
+>>>> EMGD accelerated graphics. Please consider renaming the title to
+>>>> someting more consistent with what you're trying accomplish.
+>>>>
+>>> Look, I'm not a documentation expert or understand what the project
+>>> team is trying to accomplish with their documentation or wiki.  A
+>>> user on the mailing list asked me to summarize what I did to get all
+>>> the issues resolve related to media acceleration and decoder.  What I
+>>> put in  the How Do I was a summation of the questions and answers
+>>> that were in the email thread. I can just as easily email that user
+>>> the summary, if it's not appropriate for the wiki.
+>>>
+>> Please don't take the above as a criticism of the "How Do I" concept, as
+>> I said at first, I appreciate you doing it - I understand it takes some
+>> considerable additional time to publish it. The goal is clearly to make
+>> things easier for others when they attempt what you're doing. I saw
+>> something in there that might not fit the goal and raised it as a point
+>> of improvement, that's all.
 >>
->> you could add something like below to your local.conf
 >>
->> INHERIT += "own-mirrors"
->> SOURCE_MIRROR_URL = "http://autobuilder.yoctoproject.org/pub/sources/"
+>>> Please feel free to edit what I put there or remove it.
+>> I've CC'd Scott R. to review and see if he might care to adjust things a
+>> bit. I certainly don't want to remove it :)
 >>
->> that should help a bit
+>> --
+>> Darren
 >>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> What I feel is missing from the standard documentation for EMGD v1.10 
+> integration into the Crownbay BSP is all the "other" stuff you need.  
+> The README file in the meta-crownbay includes exactly what is needed to 
+> integrate the EMGD v 1.10 driver.  But generally, after that users will 
+> have the next level of questions about how do I get video and audio 
+> media files to play correctly, or test 3D . This is technically not a 
+> driver integration question, but can be anticipated because you wouldn't 
+> care about integrating the EMGD driver unless you had media and 3D needs 
+> in your application/.
+
+Fair enough. As those sorts of things are not BSP specific, I certainly
+think the How-Do-I pages you're creating are a good way to address that
+gap. At some point, this sort of tactical documentation might make sense
+to be rolled up into some more official type of docs. For now, the
+How-Do-I Question title could be improved were to read "How do I enable
+audio and commerial audio and video codecs?" or "How do I get the Sato
+media player to play mp3s?"
+
+--
+Darren
+
+> 
+> Just my thoughts.
+> 
+> Jim A
+> 
+>>> Jim A
+>>>
+>>>> -- Darren
+>>>>
+>>>>>> I'm interested to see what more was needed for EMGD and
+>>>>>> Crownbay than is already in the BSP README.
+>>>>>>
+>>>>>>> In my opinion, we need to think about breaking this one big
+>>>>>>> edit up into individual How Do I's.  It would simplify
+>>>>>>> editing and make getting to the individual How Do I's much
+>>>>>>> easier and quicker.
+>>>>>>>
+>>>>>>> I don't know how to do that, but I think it needs doing.
+>>>>>>>
+>>>>>>> Jim A
+>>>>>>>
+>>>>>>> _______________________________________________ yocto mailing
+>>>>>>> list yocto@yoctoproject.org
+>>>>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>>> -- Darren Hart Intel Open Source Technology Center Yocto
+>>>>>> Project - Linux Kernel
+>>>> -- Darren Hart Intel Open Source Technology Center Yocto Project -
+>>>> Linux Kernel
+> 
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
