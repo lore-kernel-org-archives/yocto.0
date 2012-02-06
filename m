@@ -1,31 +1,30 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5F0BE0030B
-	for <yocto@yoctoproject.org>; Mon,  6 Feb 2012 10:28:22 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 06 Feb 2012 10:28:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="107005720"
-Received: from unknown (HELO envy.home) ([10.7.199.167])
-	by orsmga002.jf.intel.com with ESMTP; 06 Feb 2012 10:28:22 -0800
-Message-ID: <4F301BA8.4020102@linux.intel.com>
-Date: Mon, 06 Feb 2012 10:27:52 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DB66E0030B
+	for <yocto@yoctoproject.org>; Mon,  6 Feb 2012 11:35:02 -0800 (PST)
+Received: by pbcc11 with SMTP id c11so6649552pbc.35
+	for <yocto@yoctoproject.org>; Mon, 06 Feb 2012 11:35:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=g/3sh5Fv7YeUzsbqbEordqG41qsp5b+OaVRYXbRoyLM=;
+	b=LkJdqfv4fqgRn2zet+OABdiXnPtzJquzn/if+niRJ5I4FmhPlJhtvuBPETeWcvLpfG
+	bRXai+r+gnnRamQRaTuUra99FC07208lXza7Wn+lAXcKx3X4SFLX8rqSH+8jMCmLuk24
+	H3VZ5++rnNd29jW0835jtOc0IMA5pGEneooj8=
 MIME-Version: 1.0
-To: James Abernathy <jfabernathy@gmail.com>
-References: <4F2D4D12.3060500@gmail.com> <4F2ED655.5020808@linux.intel.com>
-	<2779C8B7-F034-4F86-8BCF-0CC6374AD803@gmail.com>
-	<4F2EE44C.7090809@linux.intel.com>
-	<F23113B0-A013-4723-A4D9-09FC4FB5FA38@gmail.com>
-	<4F2FF8F6.7060601@linux.intel.com> <4F300A55.2060305@gmail.com>
-	<4F300E98.6000307@linux.intel.com>
-	<CANFv2Ekqtp2bWPRDFkF4bLGsv6O68R59evC09zjygOfKgTr+nQ@mail.gmail.com>
-In-Reply-To: <CANFv2Ekqtp2bWPRDFkF4bLGsv6O68R59evC09zjygOfKgTr+nQ@mail.gmail.com>
-X-Enigmail-Version: 1.3.5
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: HOW DO I - new one added for EMGD and Crownbay
+Received: by 10.68.125.233 with SMTP id mt9mr6684264pbb.119.1328556902001;
+	Mon, 06 Feb 2012 11:35:02 -0800 (PST)
+Received: by 10.68.218.10 with HTTP; Mon, 6 Feb 2012 11:35:01 -0800 (PST)
+In-Reply-To: <4F281CD1.70305@linux.intel.com>
+References: <CADzUK1+ATfTW6FAPGZ97WhstFm_hq-Msdbf9wQ6HG6gLtUjS8w@mail.gmail.com>
+	<4F281BFB.9010701@windriver.com> <4F281CD1.70305@linux.intel.com>
+Date: Mon, 6 Feb 2012 14:35:01 -0500
+Message-ID: <CADzUK1+sAGYAPY=Pm6xsEFnqpj4T+8R6kDmrSrySiSgS00v-EQ@mail.gmail.com>
+From: autif khan <autif.mlist@gmail.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: How do I patch the kernel before it is built?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,39 +36,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2012 18:28:22 -0000
+X-List-Received-Date: Mon, 06 Feb 2012 19:35:02 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-On 02/06/2012 10:19 AM, James Abernathy wrote:
+>>> I could not find a way to patch the kernel source before its is built.
+>>>
+>>> I promise to update the Yocto wiki's How do I section when I have a
+>>> working solution for the following :-)
+>>
+>> This should be covered in the existing documentation and also the
+>> more general bitbake/oe-core docs.
+>>
+>>>
+>>> Here is what I am trying to do:
+>>>
+>>> 1) Patch the kernel (add VID/PID to hid_ignore_list in
+>>> drivers/hid/hid-core.c and also to add the VID/PID to .h file)
+>>> 2) Build the kernel - no change here - standard kernel build
+>>> 3) Build a kernel module
+>>>
+>>> I have a meta layer where I am keeping my changes. I am guessing that I need to:
+>>>
+>>> a) write a bbappend file to accomplish #1
+>>> b) write a recipe to accomplish #3
+>>>
+>>> I have written recipes before, but just for libraries and autotools
+>>> based applications. Not for a kernel module. If there is a recipe out
+>>> there for some other module, I would be happy to steal from it.
+>>>
+>>> Please advise how I can go about patching the kernel and if there is a
+>>
+>> It's just like any other package. If your changes are simple, then
+>> generating patches and putting them on the SRC_URI via a bbappend in
+>> your layer is all you need. If you have complex changes, there are options
+>> to manage them via git or via feature descriptions.
 
-> 
->     If we could make the "How Do I" section of the wiki broken into
->     sub-categories so each "How Do I" is a separate item to be edited.
->     That would make it easier to find, create, and edit these items.
->     Also once an item found it's way into official documentation, it
->     could be removed or edited to point to the official doc.
+I tried this - attached at the end of this email are my bbappend file
+and my patches, when the recipe is bitbaked, it does not actually
+apply the patch.
 
-The wiki will do this automatically if you use headings for the
-questions instead of the bold ''' syntax.
+On a similar note - there seems to be a file in
+meta/recipes-kernel/linux/linux-yocto called
+tools-perf-no-scripting.patch
 
-You creating headings with the = characher
+However, it does not seem to be used anywhere - is this just crud or I
+am missing something? I was hoping to cheat off of the recipe that
+uses it.
 
-= Heading Level 1 =
-== Heading Level 2 ==
-=== Heading Level 3 ===
-etc.
+>>> recipe for a kernel module - please point me to it.
+>>
+>> Darren validated and updated the kernel module example, so he'd probably
+>> got this closer at hand than I do.
+>
+> See the hello-mod example under meta/recipes-kernel/hello-mod
 
-I suggest starting on Headling Level 2, leaving Level 1 for the title.
-This should also automatically present a Table of Contents at the top of
-the page which aids in navigation.
+Thank you for this recipe - it seems like this is exactly what I was
+looking for. I will cheat off of this as soon as I can patch my
+kernel.
 
-This is standard MediaWiki syntax, for reference:
-http://www.mediawiki.org/wiki/Help:Formatting#Level_2
-http://www.mediawiki.org/wiki/Table_of_Contents
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+R E C I P E
+
+autif@fpbm:~/data/yocto/poky-edison-6.0/meta-koko/recipes/linux$ cat
+linux-yocto_3.0.bbappend
+FILESEXTRAPATHS_prepend := "${THISDIR}:"
+SRC_URI += " file://linux/drivers/hid/hid-core.c.diff \
+             file://linux/drivers/hid/hid-ids.h.diff "
+PR = "r3"
+autif@fpbm:~/data/yocto/poky-edison-6.0/meta-koko/recipes/linux$
+
+P A T C H
+
+autif@fpbm:~/data/yocto/poky-edison-6.0/meta-koko/recipes/linux/linux/drivers/hid$
+cat hid-core.c.diff
+--- linux.orig/drivers/hid/hid-core.c	2012-01-31 16:44:44.152001877 -0500
++++ linux/drivers/hid/hid-core.c	2012-01-31 16:46:34.608001870 -0500
+@@ -1839,6 +1839,8 @@
+ 	{ HID_USB_DEVICE(USB_VENDOR_ID_WISEGROUP, USB_DEVICE_ID_1_PHIDGETSERVO_20) },
+ 	{ HID_USB_DEVICE(USB_VENDOR_ID_WISEGROUP, USB_DEVICE_ID_8_8_4_IF_KIT) },
+ 	{ HID_USB_DEVICE(USB_VENDOR_ID_YEALINK, USB_DEVICE_ID_YEALINK_P1K_P4K_B2K) },
++	{ HID_USB_DEVICE(USB_VENDOR_ID_PIXCIR, USB_DEVICE_ID_PIXCIR) },
+ 	{ }
+ };
+autif@fpbm:~/data/yocto/poky-edison-6.0/meta-koko/recipes/linux/linux/drivers/hid$
+autif@fpbm:~/data/yocto/poky-edison-6.0/meta-koko/recipes/linux/linux/drivers/hid$
+cat hid-ids.h.diff--- linux.orig/drivers/hid/hid-ids.h	2012-01-31
+16:44:55.432001877 -0500
++++ linux/drivers/hid/hid-ids.h	2012-01-31 16:47:36.624001858 -0500
+@@ -671,4 +671,7 @@
+ #define USB_VENDOR_ID_ZYDACRON	0x13EC
+ #define USB_DEVICE_ID_ZYDACRON_REMOTE_CONTROL	0x0006
+
++#define USB_VENDOR_ID_PIXCIR	0x040b
++#define USB_DEVICE_ID_PIXCIR	0x2000
++
+ #endif
+autif@fpbm:~/data/yocto/poky-edison-6.0/meta-koko/recipes/linux/linux/drivers/hid$
 
