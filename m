@@ -1,37 +1,31 @@
-Return-Path: <sean_liming@sjjmicro.com>
-Received: from mail30c40.carrierzone.com (mail30c40.carrierzone.com
-	[209.235.156.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FD57E0123F
-	for <yocto@yoctoproject.org>; Sun,  5 Feb 2012 20:13:45 -0800 (PST)
-X-Authenticated-User: sean_liming.sjjmicro.com
-Received: from Sean7 (cpe-75-82-59-168.socal.res.rr.com [75.82.59.168])
-	(authenticated bits=0)
-	by mail30c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
-	q164DhGN008037
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
-	for <yocto@yoctoproject.org>; Mon, 6 Feb 2012 04:13:44 +0000
-From: "Sean Liming" <sean_liming@sjjmicro.com>
-To: <yocto@yoctoproject.org>
-References: <90741FE9B50D654690EB940EDB456C8E057631@SHSMSX101.ccr.corp.intel.com>
-	<000601cce47f$50caf6c0$f260e440$@sjjmicro.com>
-In-Reply-To: <000601cce47f$50caf6c0$f260e440$@sjjmicro.com>
-Date: Sun, 5 Feb 2012 20:13:43 -0800
-Message-ID: <000801cce485$b7976f40$26c64dc0$@sjjmicro.com>
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-lpp01m020-f176.google.com (mail-lpp01m020-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D95B1E01217
+	for <yocto@yoctoproject.org>; Sun,  5 Feb 2012 22:30:04 -0800 (PST)
+Received: by lboi15 with SMTP id i15so1295887lbo.35
+	for <yocto@yoctoproject.org>; Sun, 05 Feb 2012 22:30:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=eMrmwJ4nUd5e8GPuk9UepRNxqnpf609NMarfjHwTjac=;
+	b=O3qDWMxjsxBWxBstTeUo5nds6FdgVu/VxNn6CB2MLK2seZeECJ/+ev+2WAL740T52D
+	fb3ityRchUR+ZGucHkvMACiymiaAZFXGvFPeTku3/XHMrNsWL9x/8UQgWuAXVdXXQxL9
+	ZlY/NOp7o68VJju8X19pbBwkm2ZuwkiweCRj8=
+Received: by 10.112.101.34 with SMTP id fd2mr4355834lbb.16.1328509803267; Sun,
+	05 Feb 2012 22:30:03 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AQJ5a7rMwKXUoCJR8hNZpX5Wgh40cAE1rzdPlMyF5sA=
-X-Antivirus: avast! (VPS 120205-3, 02/05/2012), Outbound message
-X-Antivirus-Status: Clean
-X-CSC: 0
-X-CHA: v=1.1 cv=4Pq4DKZTL3ljfxpuMk4z6QiCGMBGedZp4jx2BIXYRVg= c=1 sm=1
-	a=yD_LW18ichgA:10 a=aJh391NtreIA:10 a=kj9zAlcOel0A:10
-	a=z5g8Jwv4kxix1x/21EjHVg==:17 a=iGHA9ds3AAAA:8 a=6MITth62HpsR00K5ORAA:9
-	a=tZ027yb8dY1SiHel8NIA:7 a=CjuIK1q_8ugA:10 a=XDKM753qmDAA:10
-	a=AwWktVOnw6JDElWk:21 a=oM_dtYu6agYZ4Wxs:21
-	a=z5g8Jwv4kxix1x/21EjHVg==:117
-X-CTCH-Spam: Unknown
-X-CTCH-RefID: str=0001.0A020208.4F2F5378.00BD,ss=1,re=0.000,fgs=0
-Subject: Re: Yocto weekly bug trend charts -- WW05
+Received: by 10.152.5.201 with HTTP; Sun, 5 Feb 2012 22:29:33 -0800 (PST)
+In-Reply-To: <000701cce483$ffbda890$ff38f9b0$@sjjmicro.com>
+References: <000e01cce455$55a1c540$00e54fc0$@sjjmicro.com>
+	<CAMKF1srLO9pd57iUBRTRb5i54gPk-mRu04nAue9XYUnTRrGWYQ@mail.gmail.com>
+	<000701cce483$ffbda890$ff38f9b0$@sjjmicro.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 5 Feb 2012 22:29:33 -0800
+Message-ID: <CAMKF1sqvj6tTPLaasNR9RphshHhM2FGS1gS83LekeJR=UVo7Cw@mail.gmail.com>
+To: Sean Liming <sean_liming@sjjmicro.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Build Error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,64 +37,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2012 04:13:46 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-us
+X-List-Received-Date: Mon, 06 Feb 2012 06:30:05 -0000
+Content-Type: text/plain; charset=UTF-8
 
-The intltool.inc file has the detail called out in the file patch. I am
-still seeing the error:
+On Sun, Feb 5, 2012 at 8:01 PM, Sean Liming <sean_liming@sjjmicro.com> wrote:
+> @ autif- thank you for the tar file. Placed it in the downloads folder and the error doesn't appear.
+>
+>
+> I added the two lines to the local.conf folder
+>
+> INHERIT += "own-mirrors"
+> SOURCE_MIRROR_URL = "http://autobuilder.yoctoproject.org/pub/sources/"
+>
+> I am not sure how to resolve the lib-xml-parser for intltool issue based on the post.
+>
 
-checking for XML::Parser... configure: error: XML::Parser perl module is
-required for intltool
+checking for perl... /usr/bin/perl
+checking for perl >= 5.8.1... 5.12.4
+checking for XML::Parser... configure: error: XML::Parser perl module
+is required for intltool
 ERROR: oe_runconf failed
-ERROR: Function 'do_configure' failed (see
-/home/sean/edison-6.0-build/tmp/work/i586-poky-linux/xkeyboard-config-2.1-r1
-/temp/log.do_configure.24525 for further information)
 
-Regards,
-
-Sean 
-
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-On Behalf Of Sean Liming
-Sent: Sunday, February 05, 2012 7:28 PM
-To: yocto@yoctoproject.org
-Subject: Re: [yocto] Yocto weekly bug trend charts -- WW05
-
-
-Thank you all. Let me work on this and get back to you.
-
-Regards,
-
-Sean 
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-On Behalf Of Xu, Jiajun
-Sent: Sunday, February 05, 2012 6:19 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] Yocto weekly bug trend charts -- WW05
-
-Hi all,
-	The overall open bug trend did not change a lot in last 3 weeks. WDD
-number and Open Bug number are 702 and 141. Bug status of WW03 could be
-found on https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
-
-Best Regards,
-Jiajun
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+it should not be getting perl from your build but from the native
+sysroot. is perl-native staged ?
+>
+> Regards,
+>
+> Sean Liming
+> Owner
+> SJJ Embedded Micro Solutions, LLC.
+> Tel: 714-970-7523 / Cell: 858-774-3176
+>
+>
+> -----Original Message-----
+> From: Khem Raj [mailto:raj.khem@gmail.com]
+> Sent: Sunday, February 05, 2012 4:00 PM
+> To: Sean Liming
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Build Error
+>
+> On Sun, Feb 5, 2012 at 2:27 PM, Sean Liming <sean_liming@sjjmicro.com> wrote:
+>> Did I miss configure something? Wrong python version?
+>>
+>> There was a post about the dash vs. bash shell. I am not sure what
+>> shell is supposed to be using:
+>
+> you could add something like below to your local.conf
+>
+> INHERIT += "own-mirrors"
+> SOURCE_MIRROR_URL = "http://autobuilder.yoctoproject.org/pub/sources/"
+>
+> that should help a bit
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
