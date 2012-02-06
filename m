@@ -1,29 +1,34 @@
-Return-Path: <wjn740@gmail.com>
-Received: from mail-tul01m020-f176.google.com (mail-tul01m020-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBFC7E01217
-	for <yocto@yoctoproject.org>; Sun,  5 Feb 2012 17:30:17 -0800 (PST)
-Received: by obbwd18 with SMTP id wd18so9065532obb.35
-	for <yocto@yoctoproject.org>; Sun, 05 Feb 2012 17:30:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=MRmltbUg0lxbVPUonwSVZRX/atyGuzLXlY5cU1VqTHc=;
-	b=TP44opbtKBXqiKhwjfn9fBeNzF2KOwMNYndgX1ZsCu6110RAFO7c+ISoFf2QpZO+67
-	Hqy1kdfcpllTT4t+36Bat2oEp5sYAEJmFGWd7SYMOIqcFjRBaeC733TmMhUhpJKfpQZF
-	7ZnTIlrtdpZ1nx2zuv0KzF35EHpVlXsq1kOKk=
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F6CFE01217
+	for <yocto@yoctoproject.org>; Sun,  5 Feb 2012 18:20:36 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 05 Feb 2012 18:20:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="114421883"
+Received: from pgsmsx603.gar.corp.intel.com ([10.221.43.87])
+	by fmsmga001.fm.intel.com with ESMTP; 05 Feb 2012 18:20:25 -0800
+Received: from pgsmsx102.gar.corp.intel.com (10.221.44.80) by
+	pgsmsx603.gar.corp.intel.com (10.221.43.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 6 Feb 2012 10:19:03 +0800
+Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
+	PGSMSX102.gar.corp.intel.com (10.221.44.80) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 6 Feb 2012 10:19:02 +0800
+Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.142]) by
+	SHSMSX102.ccr.corp.intel.com ([169.254.2.36]) with mapi id
+	14.01.0355.002; Mon, 6 Feb 2012 10:19:00 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto weekly bug trend charts -- WW05
+Thread-Index: Aczkda+MsVogmpN/RmqaG3yEDMgFlQ==
+Date: Mon, 6 Feb 2012 02:19:00 +0000
+Message-ID: <90741FE9B50D654690EB940EDB456C8E057631@SHSMSX101.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-Received: by 10.182.182.69 with SMTP id ec5mr91117obc.48.1328491817139; Sun,
-	05 Feb 2012 17:30:17 -0800 (PST)
-Received: by 10.182.47.105 with HTTP; Sun, 5 Feb 2012 17:30:17 -0800 (PST)
-In-Reply-To: <000e01cce455$55a1c540$00e54fc0$@sjjmicro.com>
-References: <000e01cce455$55a1c540$00e54fc0$@sjjmicro.com>
-Date: Mon, 6 Feb 2012 09:30:17 +0800
-Message-ID: <CA+FcS-w-6z6ko2XUi9+Hfy2eUxomJ6HF+WySmH16M3Y4yo5BoQ@mail.gmail.com>
-From: "James W." <wjn740@gmail.com>
-To: Sean Liming <sean_liming@sjjmicro.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Build Error
+Subject: Yocto weekly bug trend charts -- WW05
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,109 +40,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2012 01:30:17 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 06 Feb 2012 02:20:36 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-i suppose try again ,again, and again.
+Hi all,
+	The overall open bug trend did not change a lot in last 3 weeks. WDD numbe=
+r and Open Bug number are 702 and 141. Bug status of WW03 could be found on=
+ https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
 
-On Mon, Feb 6, 2012 at 6:27 AM, Sean Liming <sean_liming@sjjmicro.com> wrote:
-> I am new developer to Yocto and embedded Linux in general
->
->
->
-> Host machine: i3 with 4GB RAM
->
-> OS: Ubuntu 11.10 64-bit
->
->
->
-> I am following the online quick start guide, and looks like the end of
-> bitbake runs into several errors:
->
->
->
-> ERROR: Task 1136
-> (/home/sean/poky-edison-6.0/meta/recipes-sato/pimlico/contacts_git.bb,
-> do_configure) failed with exit code '1'
->
-> ERROR:
-> '/home/sean/poky-edison-6.0/meta/recipes-devtools/icon-naming-utils/icon-naming-utils-native_0.8.7.bb'
-> failed
->
-> ERROR:
-> '/home/sean/poky-edison-6.0/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.1.bb'
-> failed
->
-> ERROR:
-> '/home/sean/poky-edison-6.0/meta/recipes-support/libfm/libfm_0.1.14.bb'
-> failed
->
-> ERROR:
-> '/home/sean/poky-edison-6.0/meta/recipes-gnome/gnome/gnome-vfs_2.24.4.bb'
-> failed
->
-> ERROR: '/home/sean/poky-edison-6.0/meta/recipes-support/vte/vte_0.24.3.bb'
-> failed
->
-> ERROR:
-> '/home/sean/poky-edison-6.0/meta/recipes-sato/puzzles/oh-puzzles_git.bb'
-> failed
->
-> ERROR:
-> '/home/sean/poky-edison-6.0/meta/recipes-connectivity/connman/connman-gnome_0.5.bb'
-> failed
->
-> ERROR: '/home/sean/poky-edison-6.0/meta/recipes-sato/pimlico/tasks_0.19.bb'
-> failed
->
-> ERROR: '/home/sean/poky-edison-6.0/meta/recipes-sato/pimlico/dates_git.bb'
-> failed
->
-> ERROR:
-> '/home/sean/poky-edison-6.0/meta/recipes-sato/pimlico/contacts_git.bb'
-> failed
->
->
->
-> Looking back at the build process, one error calls out a package that cannot
-> be downloaded:
-> http://tango.freedesktop.org/releases/icon-naming-utils-0.8.7.tar.gz
->
->
->
-> I have attached errors some of the log files. The common error appears to be
-> oe_runconf failed.
->
->
->
-> Did I miss configure something? Wrong python version?
->
-> There was a post about the dash vs. bash shell. I am not sure what shell is
-> supposed to be using:
->
->
->
-> The instructions say run sudo dpkg-reconfigure dash and say no. Nothing in
-> the message popup says what is the shell.
->
->
->
-> Thanks for any help.
->
->
->
-> Regards,
->
->
->
-> Sean
->
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+Best Regards,
+Jiajun
+
 
