@@ -1,33 +1,25 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA982E0030B
-	for <yocto@yoctoproject.org>; Mon,  6 Feb 2012 13:49:08 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 06 Feb 2012 13:49:08 -0800
+Return-Path: <josh@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDB14E004D2
+	for <yocto@yoctoproject.org>; Mon,  6 Feb 2012 13:56:55 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 06 Feb 2012 13:56:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="103911762"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.226.213])
-	by azsmga001.ch.intel.com with ESMTP; 06 Feb 2012 13:48:07 -0800
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx601.amr.corp.intel.com (10.22.226.213) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 6 Feb 2012 13:48:04 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.224]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.143]) with mapi id
-	14.01.0355.002; Mon, 6 Feb 2012 13:48:04 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
-	February 07, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
-Thread-Index: AQHM5RkAL+LIhadbgU2eaJXBpmtKJA==
-Date: Mon, 6 Feb 2012 21:48:03 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A38CAACEB@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="107074631"
+Received: from unknown (HELO [10.7.199.63]) ([10.7.199.63])
+	by orsmga002.jf.intel.com with ESMTP; 06 Feb 2012 13:56:54 -0800
+Message-ID: <4F304CA6.2010800@linux.intel.com>
+Date: Mon, 06 Feb 2012 13:56:54 -0800
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0) Gecko/20120131 Thunderbird/10.0
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, February 07, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+References: <CB558AF2.739A%belen.barros.pena@intel.com>
+In-Reply-To: <CB558AF2.739A%belen.barros.pena@intel.com>
+Cc: "Metthey, Mikael" <mikael.metthey@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Hob 1.2 design - visuals
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,130 +31,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2012 21:49:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 06 Feb 2012 21:56:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Agenda
-=A0
-* Opens collection - 5 min (Song)
-* Yocto 1.1.1 point release update - 10 min (Josh/Beth)
-* Yocto 1.2 M3 status - 10 min (Song/Team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status=20
-* Opens - 10 min=A0
-* Team Sharing - 20 min
-=A0
+On 06/02/12 05:54, Barros Pena, Belen wrote:
+>>> 3. Inherit colour scheme from applied OS theme in host computer
+>> Is it to say we use the default colors from OS, and don't specify any
+>> color?
+>> For example, Jessica wants progress bars to be green but in Ubuntu it
+>> should be orange.
+>> If so, Belen, I agree with you.
+>
+> Yes, I think that's what Joshua recommended, and I can see why it makes
+> sense. Joshua, could you confirm when you have a chance?
 
+Indeed, that's precisely what I'm recommending. Further, when we need to 
+colour a widget that isn't usually coloured in the theme (like the 
+red/green colouring of build items in the hobv1) we should try and use a 
+colour from the palette defined in the current theme to avoid issues 
+like #1701[1][2] and another example from the wild[3][4].
 
------Original Appointment-----
+I found a reasonable resource on the how and why[5].
 
+> If we decide to implement this way, people will need to understand that
+> this applies to all UI elements without exceptions. Any particular
+> requests (like Jessica's) could be looked at on a case by case basis.
 
-Conference details=20
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
-Participants:=20
-30
-Duration:=20
-60 minutes=20
-Participant passcode:=20
-49611427=20
-Dial-in number:=20
-1.972.995.7777=20
-US Toll Free number:=20
-1.877.561.6828=20
-BlackBerry users, click this link to join your conference as a chairperson:
-1.972.995.7777x67184230#
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x49611427#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
+But should be well justified, and generated from the host theme's palette.
 
-Local and Global Access Numbers=20
+Cheers,
+Joshua
 
-
-Country=20
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277=20
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322=20
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877=20
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777=20
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777=20
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799=20
-From Kuala Lumpur dial 4264 3799=20
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177=20
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777=20
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998=20
-From Seoul dial 5606998=20
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363=20
-From Taipei dial 2241 1363=20
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001=20
-then enter 877 633 1123=20
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
-
-Recurring conferences=20
-First scheduled conference:=20
-Tue Jun 28, 2011
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 22, 2012, 10:40 AM CDT
-
-
+1. http://bugzilla.pokylinux.org/attachment.cgi?id=276
+2. http://bugzilla.pokylinux.org/show_bug.cgi?id=1701
+3. http://itmages.ru/image/view/52705/9663bad0
+4. http://redmine.yorba.org/issues/2483
+5. http://ometer.com/gtk-colors.html
+-- 
+Joshua Lock
+         Yocto Project "Johannes factotum"
+         Intel Open Source Technology Centre
 
