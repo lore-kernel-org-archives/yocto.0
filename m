@@ -1,34 +1,36 @@
 Return-Path: <belen.barros.pena@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42A5CE01217
-	for <yocto@yoctoproject.org>; Mon,  6 Feb 2012 02:20:44 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Feb 2012 02:20:41 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5845FE01366
+	for <yocto@yoctoproject.org>; Mon,  6 Feb 2012 02:30:20 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 06 Feb 2012 02:30:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="121323072"
-Received: from irsmsx601.ger.corp.intel.com ([163.33.7.164])
-	by fmsmga002.fm.intel.com with ESMTP; 06 Feb 2012 02:20:41 -0800
-Received: from irsmsx102.ger.corp.intel.com (163.33.3.155) by
-	irsmsx601.ger.corp.intel.com (163.33.7.164) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 6 Feb 2012 10:20:03 +0000
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="106836309"
+Received: from irsmsx602.ger.corp.intel.com ([163.33.3.242])
+	by orsmga002.jf.intel.com with ESMTP; 06 Feb 2012 02:30:18 -0800
+Received: from irsmsx103.ger.corp.intel.com (163.33.3.157) by
+	irsmsx602.ger.corp.intel.com (163.33.3.242) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 6 Feb 2012 10:29:34 +0000
 Received: from irsmsx101.ger.corp.intel.com ([169.254.1.99]) by
-	IRSMSX102.ger.corp.intel.com ([169.254.2.194]) with mapi id
-	14.01.0355.002; Mon, 6 Feb 2012 10:20:03 +0000
+	IRSMSX103.ger.corp.intel.com ([169.254.3.221]) with mapi id
+	14.01.0355.002; Mon, 6 Feb 2012 10:29:33 +0000
 From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Joshua Lock <josh@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Hob 1.2 design - Settings dialogue
-Thread-Index: AQHM5Ljj9BVEzUnPNkOolHsPnmQH1A==
-Date: Mon, 6 Feb 2012 10:20:02 +0000
-Message-ID: <CB5558F7.7298%belen.barros.pena@intel.com>
-In-Reply-To: <4F2C2620.7070906@linux.intel.com>
+To: Joshua Lock <josh@linux.intel.com>, "Wang, Shane" <shane.wang@intel.com>, 
+	"Xu, Dongxiao" <dongxiao.xu@intel.com>
+Thread-Topic: [yocto] Hob 1.2 design - visuals
+Thread-Index: AQHM5Lo3WDLvCq+gp023M78WkbVScw==
+Date: Mon, 6 Feb 2012 10:29:34 +0000
+Message-ID: <CB555A2C.72A3%belen.barros.pena@intel.com>
+In-Reply-To: <4F2C2837.8040606@linux.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 user-agent: Microsoft-MacOutlook/14.14.0.111121
 x-originating-ip: [10.252.18.204]
 MIME-Version: 1.0
-Subject: Re: Hob 1.2 design - Settings dialogue
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Metthey,
+	Mikael" <mikael.metthey@intel.com>
+Subject: Re: Hob 1.2 design - visuals
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,112 +42,144 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2012 10:20:44 -0000
+X-List-Received-Date: Mon, 06 Feb 2012 10:30:20 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="euc-kr"
-Content-ID: <FFDCF12C2CC46B458BDE61D2476F75BA@intel.com>
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <97E1505DE640E34BA884037169C64D33@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-SGkgSm9zaHVhLA0KDQpJIGFtIGtlZXBpbmcgYSBsaXN0IG9mIGZlYXR1cmVzIHRvIGJlIGNvbnNp
-ZGVyZWQgZm9yIGZ1dHVyZSBIb2IgdmVyc2lvbnMuDQpJJ3ZlIGFkZGVkIHRvIGl0IGNoYW5naW5n
-IHRoZSBsYXllciBwcmlvcml0aWVzIHRocm91Z2ggdGhlIEdVSSBhbmQNCnJlY29tbWVuZGluZyBh
-cHByb3ByaWF0ZSB2YWx1ZXMgZm9yIHBhcmFsbGVsIHRocmVhZHMgYmFzZWQgb24gc3VwcG9ydGVk
-DQpjb3Jlcy4NCg0KQ2hlZXJzDQoNCkJlbGVuDQoNCk9uIDAzLzAyLzIwMTIgMTg6MjMsICJKb3No
-dWEgTG9jayIgPGpvc2hAbGludXguaW50ZWwuY29tPiB3cm90ZToNCg0KPk9uIDAzLzAyLzEyIDA2
-OjQyLCBCYXJyb3MgUGVuYSwgQmVsZW4gd3JvdGU6DQo+PiBZb3VyIHZlcmJvc2UgbW9kZSBpdCdz
-IHByZXR0eSBoZWxwZnVsIChhcyBpdCBoYXBwZW5zIHdpdGggbW9zdCB2ZXJib3NlDQo+PiBtb2Rl
-cyksIHNvIHBsZWFzZSBkb24ndCB0dXJuIGl0IG9mZi4NCj4+DQo+PiBBbnN3ZXJzIGJlbG93Lg0K
-Pj4NCj4+IEJlbGVuDQo+Pg0KPj4gT24gMDIvMDIvMjAxMiAyMTo1MSwgIkpvc2h1YSBMb2NrIjxq
-b3NoQGxpbnV4LmludGVsLmNvbT4gIHdyb3RlOg0KPj4NCj4+PiBIaSBCZWxlbiwNCj4+Pg0KPj4+
-IFNvcnJ5IHRoaXMgaXMgc28gbG9uZywgSSBkb24ndCBrbm93IGhvdyB0byB0dXJuIG9mZiBteSB2
-ZXJib3NlIHN3aXRjaC4NCj4+Pg0KPj4+IE9uIHBhZ2UgNCB5b3UgbWVudGlvbiBTaGFuZSdzIGlu
-dGVudGlvbiB0byBoYXZlIHByb3h5IHNldHRpbmdzIGluIHRoZQ0KPj4+VUkNCj4+PiAtIEkganVz
-dCB3YW50IHRvIHBvaW50IG91dCB0aGF0IHRoaXMgaXMgdXN1YWxseSBhbiBPUyBsZXZlbA0KPj4+
-IGNvbmZpZ3VyYXRpb24gYW5kIHdlIHNob3VsZCBiZSB3YXJ5IGFib3V0IGhvdyB3ZSBpbXBsZW1l
-bnQgaXQuDQo+Pj4gSSdkIHN1Z2dlc3Qgd2UgZ28gc28gZmFyIGFzIHRvIGp1c3QgaGF2ZSBhICJD
-aGFuZ2Ugc3lzdGVtIHByb3h5DQo+Pj4gc2V0dGluZ3MiIGJ1dHRvbiB3aGljaCBsYXVuY2hlcyB0
-aGUgT1MncyBuZXR3b3JrIGNvbmZpZ3VyYXRpb24NCj4+PnNldHRpbmdzLg0KPj4+DQo+Pj4gT2Yg
-Y291cnNlLCB0aGlzIG9wZW5zIHVzIHVwIHRvIHBvdGVudGlhbCBpc3N1ZXMgYXJvdW5kIHN1cHBv
-cnRpbmcgdGhlDQo+Pj4gbXVsdGl0dWRlIG9mIGF2YWlsYWJsZSBuZXR3b3JrIGNvbmZpZ3VyYXRp
-b24gdG9vbHMgb24gTGludXggYnV0IEknZA0KPj4+IHN1Z2dlc3Qgd2Ugc3RhcnQgd2l0aCBhIGxv
-d2VzdCBjb21tb24gZGVub21pbmF0b3IgYXBwcm9hY2ggYW5kIGhhdmUgdGhlDQo+Pj4gcHJvZ3Jh
-bSBiZWhhdmUgaW50ZWxsaWdlbnRseS4NCj4+Pg0KPj4+IEV4cGxpY2l0bHkgd2UgY2FuIGRldGVj
-dCB3aGV0aGVyIHRoZSBiaW5hcnkgZ25vbWUtY29udHJvbC1jZW50ZXIgYW5kDQo+Pj50aGUNCj4+
-PiBzbyBmaWxlIC91c3IvbGliNjQvY29udHJvbC1jZW50ZXItMS9wYW5lbHMvbGlibmV0d29yay5z
-byBleGlzdCAoYmVpbmcNCj4+PiBjbGV2ZXIgYWJvdXQgdGhhdCBwYXRoLCB0b28pIGFuZCBpZiBz
-byB3ZSBjYW4gZXhlY3V0ZToNCj4+Pg0KPj4+ICJnbm9tZS1jb250cm9sLWNlbnRlciBkaXNwbGF5
-IG5ldHdvcmsiDQo+Pj4NCj4+PiBXaGljaCB3aWxsIGRpc3BsYXkgdGhlIG5ldHdvcmsgY29uZmln
-dXJhdGlvbiAoYW5kIHRoZXJlZm9yZSBwcm94eSkNCj4+PiBzZXR0aW5ncyBmb3Igc3RvY2sgRmVk
-b3JhIGFuZCBVYnVudHUgZGVza3RvcHMuDQo+Pg0KPj4gWW91IGd1eXMgYXJlIHRoZSBleHBlcnRz
-LiBZb3UgdGVsbCBtZSBob3cgeW91IHdhbnQgaXQgdG8gd29yayBhbmQgSSdsbA0KPj4gZGVzaWdu
-IHRoZSBVSSBmb3IgaXQhIDopDQo+DQo+TXkgY29uY2VybiBoZXJlIHdhcyBub3QgdG8gZHVwbGlj
-YXRlIE9TIEdVSSB0byBjaGFuZ2UgT1Mgc2V0dGluZ3MsIGZlZWxzDQo+dG8gbWUgdGhhdCB0aGlz
-IGlzIGdlbmVyYWxseSBhIGJhZCBpZGVhLiBIb3dldmVyIEkgc2VlIGZyb20gYW4NCj5hbHRlcm5h
-dGl2ZSB0aHJlYWQgdGhhdCB0aGUgaW50ZW50aW9uIGlzIHRvIG9ubHkgc2V0IHRoZSBwcm94eQ0K
-PmNvbmZpZ3VyYXRpb24gZm9yIFlvY3RvLCBpZiB0aGlzIGlzIGFjaGlldmFibGUgdGhyb3VnaCB0
-aGUgc2l0ZS5jb25mIEknbQ0KPmFsbCBmb3IgaXQhDQo+DQo+Pj4gSSB1bmRlcnN0YW5kIHdoeSB0
-aGUgTWFjaGluZXMgb3B0aW9uIG1pZ2h0IGJlIG1vcmUgdXNlZnVsIGFzIGEgbGlzdA0KPj4+IHdp
-ZGdldCAocDUpLCByYXRoZXIgdGhhbiBhIGNvbWJvIGJveCwgYnV0IGZlZWwgdGhhdCB0aGlzIGlz
-IGRldmFsdWVkIGF0DQo+Pj4gbGVhc3Qgc2xpZ2h0bHkgYnkgdGhlIGZhY3QgdGhhdCB0aGUgbGlz
-dCBvZiBhdmFpbGFibGUgTWFjaGluZXMgaXNuJ3QNCj4+PiBzdGF0aWMgYW5kIHRoZXJlZm9yZSBp
-dCdzIG5vdCB1bmxpa2VseSBhIHVzZXIgd291bGQgaGF2ZSB0byBzY3JvbGwgdGhhdA0KPj4+IGxp
-c3QuDQo+Pg0KPj4gWWVzLCB0aGUgbGlzdCB3aWxsIHNjcm9sbCBhdCBzb21lIHBvaW50LiBJIGFt
-IG5vdCB0b28gd29ycmllZCBhYm91dCBpdA0KPj4gdGhvdWdoLCBzaW5jZSBJIGRvbid0IHRoaW5r
-IHRoYXQgY2hhbmdpbmcgdGhlIGltYWdlIHR5cGVzIHdpbGwgYmUNCj4+IHNvbWV0aGluZyB1c2Vy
-cyB3aWxsIGRvIHZlcnkgb2Z0ZW4uIEkgbWlnaHQgYmUgd3JvbmcgdGhvdWdoLg0KPg0KPkkndmUg
-bWFkZSBzaW1pbGFyIGFzc3VtcHRpb25zIHRvbywgYW5kIGFzIHdlIGRvbid0IGhhdmUgYW55IGRh
-dGEgSSdtIGluDQo+bm8gcnVzaCB0byBkaXNhZ3JlZSB3aXRoIGVpdGhlciBvZiB1cyA6LSkNCj4N
-Cj4+PiBPbmUgc3VnZ2VzdGlvbiBtaWdodCBiZSB0byBmYXZvdXIgbWFjaGluZXMgd2l0aCBhIGhp
-Z2hlciBsYXllciBwcmlvcml0eQ0KPj4+IGJ5IGxpc3RpbmcgdGhlbSBoaWdoZXIgaW4gdGhlIGxp
-c3Q/DQo+Pg0KPj4gSSBkb26p9nQga25vdyBob3cgdGhlIGxheWVyIHByaW9yaXRpZXMgd29yay4g
-V2hvIHNldHMgdGhvc2UgcHJpb3JpdGllcz8NCj4+QXJlDQo+PiB0aGV5IGFsaWduZWQgd2l0aCB1
-c2VyJ3MgcHJpb3JpdGllcz8gSWYgdGhleSBhcmUsIHllcywgd2Ugc2hvdWxkIHVzZSB0aGUNCj4+
-IGxheWVyIHByaW9yaXRpZXMgdG8gZGV0ZXJtaW5lIHRoZSBvcmRlciBvZiB0aGF0IGxpc3Qgb2Yg
-bWFjaGluZXMuDQo+DQo+TGF5ZXIgcHJpb3JpdHkgY3VycmVudGx5IGlzIHNldCBieSB0aGUgbGF5
-ZXJzIGF1dGhvciwgYnV0IGlzIGVkaXRhYmxlIGJ5DQo+dGhlIGxheWVycyB1c2VyIChpdCdzICJq
-dXN0IiBhIHRleHQgZmlsZSkuDQo+DQo+TWF5YmUgc29tZXRoaW5nIHRvIGNvbnNpZGVyIGZvciBm
-dXR1cmUuIFRoZXJlJ3MgYmVlbiBkaXNjdXNzaW9uIGFib3V0DQo+bWFraW5nIGl0IGVhc2llciB0
-byBlbmFibGUgc3lzdGVtIHVzZXJzIHRvIGFsdGVyIHRoZSBsYXllciBwcmlvcml0eSwNCj5wZXJo
-YXBzIHdlJ2xsIG1ha2UgR1VJIGNoYW5nZXMgaWYgc29tZXRoaW5nIGxpa2UgdGhhdCBoYXBwZW5z
-PyBPcg0KPnBlcmhhcHMgd2UnbGwgbWFrZSB0aGUgY2hhbmdlIGZvciB0aGUgc2FrZSBvZiB0aGUg
-R1VJPyBNb3JlIHRob3VnaHQNCj5yZXF1aXJlZC4NCj4NCj4+PiBBbHRob3VnaCB0aGUgbmV4dCBw
-YWdlLCA1LCBtZW50aW9ucyB0aGF0IHRoZSBtYWNoaW5lIGxpc3QgaXMgYSBjb21ibw0KPj4+IGJv
-eC4gSXMgdGhhdCB0aGUgY2FzZT8NCj4+DQo+PiBJdCBpcyB0aGUgY2FzZSBpbiB0aGUgSW1hZ2Ug
-Y29uZmlndXJhdGlvbiBzY3JlZW4sIHdoZXJlIHVzZXJzLCBiZWZvcmUNCj4+IGJ1aWxkaW5nIGFu
-IGltYWdlLCBzZWxlY3QgdGhlaXIgbWFjaGluZSB1c2luZyBhIGNvbWJvIGJveC4gVGhpcyBzY3Jl
-ZW4NCj4+aXMNCj4+IGRpZmZlcmVudCBmcm9tIHRoZSBTZXR0aW5ncyBkaWFsb2d1ZSwgd2hlcmUg
-eW91IHNldCBzb21lIEJpYkJha2Ugb3V0cHV0DQo+PiBhbmQgc3lzdGVtIHZhcmlhYmxlcyAodGhl
-IGltYWdlIG91dHB1dCB0eXBlcyBiZXR3ZWVuIHRoZW0pLiBUaGlzDQo+PmRvY3VtZW50DQo+PiBp
-biB0aGUgd2lraQ0KPj4NCj4+IGh0dHA6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9GaWxl
-OkhvYl8xLjJfc2NyZWVuc19pbnZlbnRvcnkucGRmDQo+Pg0KPj4gbWlnaHQgaGVscCBtYWtpbmcg
-c2Vuc2Ugb2YgdGhlIGRpZmZlcmVudCBzY3JlZW5zLg0KPg0KPkdvdGNoYSENCj4NCj4+PiBMb3Zl
-IHRoZSBwYWNrYWdlIGZvcm1hdCBzZWxlY3Rpb24gcGllY2VzIQ0KPj4+DQo+Pj4gRm9yIHRoZSB0
-d28gcGFyYWxsZWwgdGhyZWFkcyBidXR0b25zIHdlIHNob3VsZCByZWNvbW1lbmQgYSBkZWZhdWx0
-DQo+Pj52YWx1ZQ0KPj4+IGFuZCBzZXQgYSBtYXhpbXVtIGJhc2VkIG9uIHRoZSBudW1iZXIgb2Yg
-Q1BVIGNvcmVzIC0gSSB0aGluayB0aGVyZSdzDQo+Pj4gYmVlbiBhIGxvdCBvZiBkaXNjdXNzaW9u
-IGFib3V0IHRoaXMgYnV0IEknbSBub3QgY2VydGFpbiB3aGF0IHRoZQ0KPj4+IHJlY29tbWVuZGF0
-aW9uIHdoaWNoIGNhbWUgb3V0IG9mIGl0IHdhcy4NCj4+DQo+PiBUaGF0IHdvdWxkIGJlIHJlYWxs
-eSB1c2VmdWwuIElzIGl0IGVhc3kgdG8gYWNjdXJhdGVseSBkZXRlcm1pbmUgaG93IG1hbnkNCj4+
-IGNvcmVzIGFyZSBzdXBwb3J0ZWQgYnkgdGhlIENQVSBvZiB0aGUgbWFjaGluZSBydW5uaW5nIEhv
-Yj8NCj4NCj5XZSBjYW4gZWFzaWx5IGRldGVjdCB0aGF0LCB5ZXMuIFRoZSBkaWZmaWN1bHR5IHdp
-dGggZW5hYmxpbmcgdGhpcyBraW5kDQo+b2YgZmVhdHVyZSBpbiB0aGUgcGFzdCBoYXMgYmVlbiBi
-YWxhbmNpbmcgYmV0d2VlbiBwcm92aWRpbmcgYW4gYWNjdXJhdGUNCj5yZWNvbW1lbmRhdGlvbiBh
-bmQgYWxsb3dpbmcgdGhlIHVzZXIgdG8gaWdub3JlIGl0Lg0KPg0KPkkgd29uZGVyIGlmIHRoaXMg
-d291bGQgYmUgYmV0dGVyIGFzIGEgZmVhdHVyZSBmb3IgbGF0ZXIgdG8gYWxsb3cgdXMgbW9yZQ0K
-PnRpbWUgdG8gZ2V0IGl0IHJpZ2h0Pw0KPg0KPg0KPj4+IEZvciB0aGUgZGlyZWN0b3JpZXMgb24g
-cGFnZSAxMyB3b3VsZCBpdCBtYWtlIHNlbnNlIHRvIGhhdmUgYSByZXNldA0KPj4+IGJ1dHRvbiB0
-byBtb3JlIGVhc2lseSBnZXQgYmFjayB0byB0aGUgZGVmYXVsdHM/DQo+Pg0KPj4gWWVzLCB0aGlz
-IHByb2JhYmx5IG1ha2VzIHNlbnNlLiBJJ2xsIGFkZCB0aGF0IHRvIHRoZSBkb2N1bWVudCBuZXh0
-IHdlZWsuDQo+DQo+R3JlYXQsIHRoYW5rcy4NCj4NCj5Kb3NodWENCj4tLSANCj5Kb3NodWEgTG9j
-aw0KPiAgICAgICAgIFlvY3RvIFByb2plY3QgIkpvaGFubmVzIGZhY3RvdHVtIg0KPiAgICAgICAg
-IEludGVsIE9wZW4gU291cmNlIFRlY2hub2xvZ3kgQ2VudHJlDQoNCi0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpJbnRl
-bCBDb3Jwb3JhdGlvbiAoVUspIExpbWl0ZWQKUmVnaXN0ZXJlZCBOby4gMTEzNDk0NSAoRW5nbGFu
-ZCkKUmVnaXN0ZXJlZCBPZmZpY2U6IFBpcGVycyBXYXksIFN3aW5kb24gU04zIDFSSgpWQVQgTm86
-IDg2MCAyMTczIDQ3CgpUaGlzIGUtbWFpbCBhbmQgYW55IGF0dGFjaG1lbnRzIG1heSBjb250YWlu
-IGNvbmZpZGVudGlhbCBtYXRlcmlhbCBmb3IKdGhlIHNvbGUgdXNlIG9mIHRoZSBpbnRlbmRlZCBy
-ZWNpcGllbnQocykuIEFueSByZXZpZXcgb3IgZGlzdHJpYnV0aW9uCmJ5IG90aGVycyBpcyBzdHJp
-Y3RseSBwcm9oaWJpdGVkLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQKcmVjaXBpZW50LCBw
-bGVhc2UgY29udGFjdCB0aGUgc2VuZGVyIGFuZCBkZWxldGUgYWxsIGNvcGllcy4K
+Hi all,
+
+It looks like there are some design implementation principles laid out on
+the email below. Just to summarise:
+
+1. Implement the Hob design with the toolkit provided widgets and OS theme
+and review which things we might want to enhance later. I understand this
+excludes icons: we will use the ones provided by the visual design.
+
+2. Make sure that all action buttons in windows and dialogues follow up
+the spacing GNOME rules set by the Human Interface Guidelines at
+http://developer.gnome.org/hig-book/3.0/index.html.en
+
+3. Inherit colour scheme from applied OS theme in host computer
+
+Shane, Dongxiao: if you have any comments about the above, please let us
+know.
+
+Cheers
+
+Belen
+
+On 03/02/2012 18:32, "Joshua Lock" <josh@linux.intel.com> wrote:
+
+>On 03/02/12 03:52, Barros Pena, Belen wrote:
+>> Hi Joshua,
+>>
+>> Thanks for the feedback. I don't have definite answers to your
+>>questions:
+>> I think they should come out of a discussion between design and dev
+>>teams.
+>
+>I agree.
+>
+>> My first stab to some answers below.
+>>
+>>> 1) where the visual design differentiates from the toolkit (Gtk+) is
+>>>the
+>>> intention that we should use the toolkit provided widgets or create our
+>>> own to more closely match the visual design?
+>>> (for example the tabs for notebook pages in the 'Building Packages'
+>>> screen).
+>>
+>> I have no experience with GTK, but I would hope that standard widgets
+>>can
+>> be themed. So the idea would be using toolkit widgets themed to match
+>>the
+>> visual style. Is this assumption incorrect?
+>
+>The widgets can indeed be themed, but in the favour of visual
+>consistency across the system I usually try to avoid it unless there's a
+>compelling reason to do so.
+>
+>Perhaps we can address differences between visual design and toolkit on
+>a case-by-case basis? Implement with the toolkit provided widgets and OS
+>theme and review which things we might want to enhance later?
+>
+>> If no toolkit widget exist for a certain UI control, we have to either
+>> replace it with a toolkit widget or create our own, but I really hope
+>>this
+>> is the exception rather than the rule.
+>
+>Oh yes, I don't think that's the case for Hob. It was the exception for
+>some work I did on Moblin but certainly not the rule, in fact that
+>widget is part of the standard toolkit now.
+>
+>>> 2) When implementing Hob v1 I tried to follow the GNOME HIG[1] to
+>>>ensure
+>>> the app would fit in with the common Linux desktop environments. Should
+>>> v2 continue that trend? Where the visual design might differ with the
+>>> HIG which should be preferred?
+>>> (i.e. the button being flush with the bottom of the window in the Image
+>>> Configuration screen is what first struck me here).
+>>
+>> Nothing in the design should blatantly contradict the GNOME HIG: in
+>> general they are good design practice and we wouldn't ignore them
+>>without
+>> a reason to do so. If there are any exceptions (like the primary action
+>> button one) we could look at them on a case by case basis. I don't think
+>> leaving 12 pixels between the bottom of the window edge and the button
+>> will make or break the interface. What's important is that the location
+>> and spacing of those 'primary action' buttons are consistent across the
+>> whole Hob. If we feel we shouldn't break the 12px rule, I am sure Mikael
+>> will agree that the button effect is not that important, and that we can
+>> lift it up to fit the spacing GNOME rules.
+>
+>This is great to read. I was hoping to elicit such a response and just
+>wanted to make sure engineering and design are on the same page here. It
+>feels like we are?
+>
+>I understand that 12px won't make or break the interface but I'm
+>definitely pro consistent UI across the whole OS where possible. I
+>expect I'm preaching to the choir here, so I'll leave it at that.
+>
+>>> 3) where the visual design uses various colours I assume the intention
+>>> is to use the colours from the operating systems theme? This is
+>>>slightly
+>>> more difficult programatically than hard-coding colours but leads to
+>>>(in
+>>> my opinion) a much more pleasing visual experience.
+>>> (i.e. tooltip and button colours)
+>>
+>> Yes, using the colours from the OS theme is probably the best thing to
+>>do.
+>
+>Awesome! I'd go so far as to say it's definitely the best thing to do. I
+>didn't manage it with Hob 1 and had some ugly screenshots sent my way
+>from poor users who dared to use a different theme than me.
+>
+>>> Finally, I notice that the titlebar calls it HOB, instead of Hob - was
+>>> that intentional? Hob was always mean as a name, not an acronym.
+>>
+>> It's a typo: sorry about that. It should say Hob of course.
+>
+>No need to apologise. Just wanted to make sure.
+>
+>Thanks for your response,
+>Joshua
+>--=20
+>Joshua Lock
+>         Yocto Project "Johannes factotum"
+>         Intel Open Source Technology Centre
+
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
