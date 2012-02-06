@@ -1,27 +1,27 @@
 Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D66BE0044D
-	for <yocto@yoctoproject.org>; Mon,  6 Feb 2012 11:39:24 -0800 (PST)
-Received: by pbcc11 with SMTP id c11so6654015pbc.35
-	for <yocto@yoctoproject.org>; Mon, 06 Feb 2012 11:39:24 -0800 (PST)
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C891E0044D
+	for <yocto@yoctoproject.org>; Mon,  6 Feb 2012 11:46:23 -0800 (PST)
+Received: by dadp13 with SMTP id p13so6252924dad.35
+	for <yocto@yoctoproject.org>; Mon, 06 Feb 2012 11:46:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type:content-transfer-encoding;
-	bh=nNErVwo/5P02E9uUMWJiIKntHQMxSDsaEC2X1XvTE6g=;
-	b=vojMjtAZmssT7oek1bAEN47ffTNBVzognqPX6dlbMuGOorWeRtNtuqHL0Ubxffnh7M
-	bPdJ9RkyQb1MnllAw9V5au9ThFWBgE5LMwyDflLQNNp+x7IG15kkEbnD5rb1XTxGctNO
-	pgQWqZDd58mBPYagU5jMDtT7BzaqOOgRy5dk8=
+	bh=pkA7FaQilNhwl1XiDs1cqr8qZOQLtQ9tXlWSeBxbg5g=;
+	b=sLGAoBTelCK6Ml9CMYI519KdE3Fq0BsMpQgKvdkEfMnaQWhD2y2dwVM3KjvNsILMub
+	ul0SNL/qcXUpEbWnJDAaAOY4iSzWgMf8G6pZzWSVsD4d9qSHkI2xxg1GKHVu/2LQHj8Z
+	TvhvSJDXfH4ELw2VNe1CUD6TeRth1RwLk30jk=
 MIME-Version: 1.0
-Received: by 10.68.73.234 with SMTP id o10mr50600939pbv.90.1328557164108; Mon,
-	06 Feb 2012 11:39:24 -0800 (PST)
-Received: by 10.142.139.16 with HTTP; Mon, 6 Feb 2012 11:39:23 -0800 (PST)
+Received: by 10.68.116.234 with SMTP id jz10mr49918215pbb.84.1328557582945;
+	Mon, 06 Feb 2012 11:46:22 -0800 (PST)
+Received: by 10.142.139.16 with HTTP; Mon, 6 Feb 2012 11:46:22 -0800 (PST)
 In-Reply-To: <CADzUK1+sAGYAPY=Pm6xsEFnqpj4T+8R6kDmrSrySiSgS00v-EQ@mail.gmail.com>
 References: <CADzUK1+ATfTW6FAPGZ97WhstFm_hq-Msdbf9wQ6HG6gLtUjS8w@mail.gmail.com>
 	<4F281BFB.9010701@windriver.com> <4F281CD1.70305@linux.intel.com>
 	<CADzUK1+sAGYAPY=Pm6xsEFnqpj4T+8R6kDmrSrySiSgS00v-EQ@mail.gmail.com>
-Date: Mon, 6 Feb 2012 14:39:23 -0500
-Message-ID: <CADkTA4OYwvuyoU_07B7havm85tvpU7KxSnkNzzkW+23=aUyhiA@mail.gmail.com>
+Date: Mon, 6 Feb 2012 14:46:22 -0500
+Message-ID: <CADkTA4NuLPg3+vA-6QkxkVqkthc_bXcN1Cye5Yzhz65tOmUzHw@mail.gmail.com>
 From: Bruce Ashfield <bruce.ashfield@gmail.com>
 To: autif khan <autif.mlist@gmail.com>
 Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
@@ -37,7 +37,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2012 19:39:24 -0000
+X-List-Received-Date: Mon, 06 Feb 2012 19:46:23 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
@@ -87,21 +87,6 @@ ons
 > However, it does not seem to be used anywhere - is this just crud or I
 > am missing something? I was hoping to cheat off of the recipe that
 > uses it.
-
-cruft.
-
-But again, there's no cheating that should be required. This is done
-all day every day and it typically just works. What branch are you using ?
-
-I can run a test with your patch, but can you resent it non-inlined, since =
-I
-have to cut and past it from the inline'd email, which means I need to
-reformat it, and chances are it won't apply.
-
-Cheers,
-
-Bruce
-
 >
 >>>> recipe for a kernel module - please point me to it.
 >>>
@@ -130,6 +115,26 @@ y
 >
 > autif@fpbm:~/data/yocto/poky-edison-6.0/meta-koko/recipes/linux/linux/dri=
 vers/hid$
+
+Taking a look at this (while I was cutting and pasting), this should
+be in in the
+a 'linux-yocto' subdirectory if you want bitbake to pickup the patch and ma=
+ke it
+available to the linux-yocto recipe.
+
+i.e. ~/data/yocto/poky-edison-6.0/meta-koko/recipes/linux/linux-yocto/drive=
+rs/hid
+
+And don't use 'linux-yocto' in your file:// reference on the SRC_URI,
+that part is
+automatic.
+
+(and yes, I see 'edison' was the branch now)
+
+Cheers,
+
+Bruce
+
 > cat hid-core.c.diff
 > --- linux.orig/drivers/hid/hid-core.c =A0 2012-01-31 16:44:44.152001877 -=
 0500
