@@ -1,22 +1,34 @@
-Return-Path: <David.Nystrom@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 14FF1E0123F
-	for <yocto@yoctoproject.org>; Sun,  5 Feb 2012 23:53:23 -0800 (PST)
-Received: from [172.16.140.120] (172.16.140.120) by SESTOEX03.enea.se
-	(172.21.1.38) with Microsoft SMTP Server (TLS) id 14.2.247.3;
-	Mon, 6 Feb 2012 08:53:21 +0100
-Message-ID: <4F2F86F0.7020905@enea.com>
-Date: Mon, 6 Feb 2012 08:53:20 +0100
-From: =?ISO-8859-1?Q?David_Nystr=F6m?= <david.nystrom@enea.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42A5CE01217
+	for <yocto@yoctoproject.org>; Mon,  6 Feb 2012 02:20:44 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 06 Feb 2012 02:20:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="121323072"
+Received: from irsmsx601.ger.corp.intel.com ([163.33.7.164])
+	by fmsmga002.fm.intel.com with ESMTP; 06 Feb 2012 02:20:41 -0800
+Received: from irsmsx102.ger.corp.intel.com (163.33.3.155) by
+	irsmsx601.ger.corp.intel.com (163.33.7.164) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 6 Feb 2012 10:20:03 +0000
+Received: from irsmsx101.ger.corp.intel.com ([169.254.1.99]) by
+	IRSMSX102.ger.corp.intel.com ([169.254.2.194]) with mapi id
+	14.01.0355.002; Mon, 6 Feb 2012 10:20:03 +0000
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: Joshua Lock <josh@linux.intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Hob 1.2 design - Settings dialogue
+Thread-Index: AQHM5Ljj9BVEzUnPNkOolHsPnmQH1A==
+Date: Mon, 6 Feb 2012 10:20:02 +0000
+Message-ID: <CB5558F7.7298%belen.barros.pena@intel.com>
+In-Reply-To: <4F2C2620.7070906@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.14.0.111121
+x-originating-ip: [10.252.18.204]
 MIME-Version: 1.0
-To: Scott Garman <scott.a.garman@intel.com>
-References: <4F2CB95F.6040509@intel.com>
-In-Reply-To: <4F2CB95F.6040509@intel.com>
-X-Originating-IP: [172.16.140.120]
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Trying to re-use sstate.
+Subject: Re: Hob 1.2 design - Settings dialogue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,42 +40,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2012 07:53:24 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 06 Feb 2012 10:20:44 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="euc-kr"
+Content-ID: <FFDCF12C2CC46B458BDE61D2476F75BA@intel.com>
+Content-Transfer-Encoding: base64
 
-On 02/04/2012 05:51 AM, Scott Garman wrote:
-> Hello,
->
-> I'm trying to re-use the sstate from one build directory and move it to
-> another. It's not working - bitbake is rebuilding *everything*.
->
-> My hunch is the reason for this is because bblayers.conf must differ
-> between the two build directories, because it uses full paths to the
-> layer directories.
->
-> By default, when you source oe-init-build-env for the first time, it
-> generates a bblayers.conf file with full paths to the default layers,
-> meta and meta-yocto.
->
-> I thought the point of sstate was that I could copy it between build
-> directories - or even different hosts - and save myself the effort of
-> rebuilding everything if the remaining metadata was the same?
->
-> Scott
->
-We have the same issue,
+SGkgSm9zaHVhLA0KDQpJIGFtIGtlZXBpbmcgYSBsaXN0IG9mIGZlYXR1cmVzIHRvIGJlIGNvbnNp
+ZGVyZWQgZm9yIGZ1dHVyZSBIb2IgdmVyc2lvbnMuDQpJJ3ZlIGFkZGVkIHRvIGl0IGNoYW5naW5n
+IHRoZSBsYXllciBwcmlvcml0aWVzIHRocm91Z2ggdGhlIEdVSSBhbmQNCnJlY29tbWVuZGluZyBh
+cHByb3ByaWF0ZSB2YWx1ZXMgZm9yIHBhcmFsbGVsIHRocmVhZHMgYmFzZWQgb24gc3VwcG9ydGVk
+DQpjb3Jlcy4NCg0KQ2hlZXJzDQoNCkJlbGVuDQoNCk9uIDAzLzAyLzIwMTIgMTg6MjMsICJKb3No
+dWEgTG9jayIgPGpvc2hAbGludXguaW50ZWwuY29tPiB3cm90ZToNCg0KPk9uIDAzLzAyLzEyIDA2
+OjQyLCBCYXJyb3MgUGVuYSwgQmVsZW4gd3JvdGU6DQo+PiBZb3VyIHZlcmJvc2UgbW9kZSBpdCdz
+IHByZXR0eSBoZWxwZnVsIChhcyBpdCBoYXBwZW5zIHdpdGggbW9zdCB2ZXJib3NlDQo+PiBtb2Rl
+cyksIHNvIHBsZWFzZSBkb24ndCB0dXJuIGl0IG9mZi4NCj4+DQo+PiBBbnN3ZXJzIGJlbG93Lg0K
+Pj4NCj4+IEJlbGVuDQo+Pg0KPj4gT24gMDIvMDIvMjAxMiAyMTo1MSwgIkpvc2h1YSBMb2NrIjxq
+b3NoQGxpbnV4LmludGVsLmNvbT4gIHdyb3RlOg0KPj4NCj4+PiBIaSBCZWxlbiwNCj4+Pg0KPj4+
+IFNvcnJ5IHRoaXMgaXMgc28gbG9uZywgSSBkb24ndCBrbm93IGhvdyB0byB0dXJuIG9mZiBteSB2
+ZXJib3NlIHN3aXRjaC4NCj4+Pg0KPj4+IE9uIHBhZ2UgNCB5b3UgbWVudGlvbiBTaGFuZSdzIGlu
+dGVudGlvbiB0byBoYXZlIHByb3h5IHNldHRpbmdzIGluIHRoZQ0KPj4+VUkNCj4+PiAtIEkganVz
+dCB3YW50IHRvIHBvaW50IG91dCB0aGF0IHRoaXMgaXMgdXN1YWxseSBhbiBPUyBsZXZlbA0KPj4+
+IGNvbmZpZ3VyYXRpb24gYW5kIHdlIHNob3VsZCBiZSB3YXJ5IGFib3V0IGhvdyB3ZSBpbXBsZW1l
+bnQgaXQuDQo+Pj4gSSdkIHN1Z2dlc3Qgd2UgZ28gc28gZmFyIGFzIHRvIGp1c3QgaGF2ZSBhICJD
+aGFuZ2Ugc3lzdGVtIHByb3h5DQo+Pj4gc2V0dGluZ3MiIGJ1dHRvbiB3aGljaCBsYXVuY2hlcyB0
+aGUgT1MncyBuZXR3b3JrIGNvbmZpZ3VyYXRpb24NCj4+PnNldHRpbmdzLg0KPj4+DQo+Pj4gT2Yg
+Y291cnNlLCB0aGlzIG9wZW5zIHVzIHVwIHRvIHBvdGVudGlhbCBpc3N1ZXMgYXJvdW5kIHN1cHBv
+cnRpbmcgdGhlDQo+Pj4gbXVsdGl0dWRlIG9mIGF2YWlsYWJsZSBuZXR3b3JrIGNvbmZpZ3VyYXRp
+b24gdG9vbHMgb24gTGludXggYnV0IEknZA0KPj4+IHN1Z2dlc3Qgd2Ugc3RhcnQgd2l0aCBhIGxv
+d2VzdCBjb21tb24gZGVub21pbmF0b3IgYXBwcm9hY2ggYW5kIGhhdmUgdGhlDQo+Pj4gcHJvZ3Jh
+bSBiZWhhdmUgaW50ZWxsaWdlbnRseS4NCj4+Pg0KPj4+IEV4cGxpY2l0bHkgd2UgY2FuIGRldGVj
+dCB3aGV0aGVyIHRoZSBiaW5hcnkgZ25vbWUtY29udHJvbC1jZW50ZXIgYW5kDQo+Pj50aGUNCj4+
+PiBzbyBmaWxlIC91c3IvbGliNjQvY29udHJvbC1jZW50ZXItMS9wYW5lbHMvbGlibmV0d29yay5z
+byBleGlzdCAoYmVpbmcNCj4+PiBjbGV2ZXIgYWJvdXQgdGhhdCBwYXRoLCB0b28pIGFuZCBpZiBz
+byB3ZSBjYW4gZXhlY3V0ZToNCj4+Pg0KPj4+ICJnbm9tZS1jb250cm9sLWNlbnRlciBkaXNwbGF5
+IG5ldHdvcmsiDQo+Pj4NCj4+PiBXaGljaCB3aWxsIGRpc3BsYXkgdGhlIG5ldHdvcmsgY29uZmln
+dXJhdGlvbiAoYW5kIHRoZXJlZm9yZSBwcm94eSkNCj4+PiBzZXR0aW5ncyBmb3Igc3RvY2sgRmVk
+b3JhIGFuZCBVYnVudHUgZGVza3RvcHMuDQo+Pg0KPj4gWW91IGd1eXMgYXJlIHRoZSBleHBlcnRz
+LiBZb3UgdGVsbCBtZSBob3cgeW91IHdhbnQgaXQgdG8gd29yayBhbmQgSSdsbA0KPj4gZGVzaWdu
+IHRoZSBVSSBmb3IgaXQhIDopDQo+DQo+TXkgY29uY2VybiBoZXJlIHdhcyBub3QgdG8gZHVwbGlj
+YXRlIE9TIEdVSSB0byBjaGFuZ2UgT1Mgc2V0dGluZ3MsIGZlZWxzDQo+dG8gbWUgdGhhdCB0aGlz
+IGlzIGdlbmVyYWxseSBhIGJhZCBpZGVhLiBIb3dldmVyIEkgc2VlIGZyb20gYW4NCj5hbHRlcm5h
+dGl2ZSB0aHJlYWQgdGhhdCB0aGUgaW50ZW50aW9uIGlzIHRvIG9ubHkgc2V0IHRoZSBwcm94eQ0K
+PmNvbmZpZ3VyYXRpb24gZm9yIFlvY3RvLCBpZiB0aGlzIGlzIGFjaGlldmFibGUgdGhyb3VnaCB0
+aGUgc2l0ZS5jb25mIEknbQ0KPmFsbCBmb3IgaXQhDQo+DQo+Pj4gSSB1bmRlcnN0YW5kIHdoeSB0
+aGUgTWFjaGluZXMgb3B0aW9uIG1pZ2h0IGJlIG1vcmUgdXNlZnVsIGFzIGEgbGlzdA0KPj4+IHdp
+ZGdldCAocDUpLCByYXRoZXIgdGhhbiBhIGNvbWJvIGJveCwgYnV0IGZlZWwgdGhhdCB0aGlzIGlz
+IGRldmFsdWVkIGF0DQo+Pj4gbGVhc3Qgc2xpZ2h0bHkgYnkgdGhlIGZhY3QgdGhhdCB0aGUgbGlz
+dCBvZiBhdmFpbGFibGUgTWFjaGluZXMgaXNuJ3QNCj4+PiBzdGF0aWMgYW5kIHRoZXJlZm9yZSBp
+dCdzIG5vdCB1bmxpa2VseSBhIHVzZXIgd291bGQgaGF2ZSB0byBzY3JvbGwgdGhhdA0KPj4+IGxp
+c3QuDQo+Pg0KPj4gWWVzLCB0aGUgbGlzdCB3aWxsIHNjcm9sbCBhdCBzb21lIHBvaW50LiBJIGFt
+IG5vdCB0b28gd29ycmllZCBhYm91dCBpdA0KPj4gdGhvdWdoLCBzaW5jZSBJIGRvbid0IHRoaW5r
+IHRoYXQgY2hhbmdpbmcgdGhlIGltYWdlIHR5cGVzIHdpbGwgYmUNCj4+IHNvbWV0aGluZyB1c2Vy
+cyB3aWxsIGRvIHZlcnkgb2Z0ZW4uIEkgbWlnaHQgYmUgd3JvbmcgdGhvdWdoLg0KPg0KPkkndmUg
+bWFkZSBzaW1pbGFyIGFzc3VtcHRpb25zIHRvbywgYW5kIGFzIHdlIGRvbid0IGhhdmUgYW55IGRh
+dGEgSSdtIGluDQo+bm8gcnVzaCB0byBkaXNhZ3JlZSB3aXRoIGVpdGhlciBvZiB1cyA6LSkNCj4N
+Cj4+PiBPbmUgc3VnZ2VzdGlvbiBtaWdodCBiZSB0byBmYXZvdXIgbWFjaGluZXMgd2l0aCBhIGhp
+Z2hlciBsYXllciBwcmlvcml0eQ0KPj4+IGJ5IGxpc3RpbmcgdGhlbSBoaWdoZXIgaW4gdGhlIGxp
+c3Q/DQo+Pg0KPj4gSSBkb26p9nQga25vdyBob3cgdGhlIGxheWVyIHByaW9yaXRpZXMgd29yay4g
+V2hvIHNldHMgdGhvc2UgcHJpb3JpdGllcz8NCj4+QXJlDQo+PiB0aGV5IGFsaWduZWQgd2l0aCB1
+c2VyJ3MgcHJpb3JpdGllcz8gSWYgdGhleSBhcmUsIHllcywgd2Ugc2hvdWxkIHVzZSB0aGUNCj4+
+IGxheWVyIHByaW9yaXRpZXMgdG8gZGV0ZXJtaW5lIHRoZSBvcmRlciBvZiB0aGF0IGxpc3Qgb2Yg
+bWFjaGluZXMuDQo+DQo+TGF5ZXIgcHJpb3JpdHkgY3VycmVudGx5IGlzIHNldCBieSB0aGUgbGF5
+ZXJzIGF1dGhvciwgYnV0IGlzIGVkaXRhYmxlIGJ5DQo+dGhlIGxheWVycyB1c2VyIChpdCdzICJq
+dXN0IiBhIHRleHQgZmlsZSkuDQo+DQo+TWF5YmUgc29tZXRoaW5nIHRvIGNvbnNpZGVyIGZvciBm
+dXR1cmUuIFRoZXJlJ3MgYmVlbiBkaXNjdXNzaW9uIGFib3V0DQo+bWFraW5nIGl0IGVhc2llciB0
+byBlbmFibGUgc3lzdGVtIHVzZXJzIHRvIGFsdGVyIHRoZSBsYXllciBwcmlvcml0eSwNCj5wZXJo
+YXBzIHdlJ2xsIG1ha2UgR1VJIGNoYW5nZXMgaWYgc29tZXRoaW5nIGxpa2UgdGhhdCBoYXBwZW5z
+PyBPcg0KPnBlcmhhcHMgd2UnbGwgbWFrZSB0aGUgY2hhbmdlIGZvciB0aGUgc2FrZSBvZiB0aGUg
+R1VJPyBNb3JlIHRob3VnaHQNCj5yZXF1aXJlZC4NCj4NCj4+PiBBbHRob3VnaCB0aGUgbmV4dCBw
+YWdlLCA1LCBtZW50aW9ucyB0aGF0IHRoZSBtYWNoaW5lIGxpc3QgaXMgYSBjb21ibw0KPj4+IGJv
+eC4gSXMgdGhhdCB0aGUgY2FzZT8NCj4+DQo+PiBJdCBpcyB0aGUgY2FzZSBpbiB0aGUgSW1hZ2Ug
+Y29uZmlndXJhdGlvbiBzY3JlZW4sIHdoZXJlIHVzZXJzLCBiZWZvcmUNCj4+IGJ1aWxkaW5nIGFu
+IGltYWdlLCBzZWxlY3QgdGhlaXIgbWFjaGluZSB1c2luZyBhIGNvbWJvIGJveC4gVGhpcyBzY3Jl
+ZW4NCj4+aXMNCj4+IGRpZmZlcmVudCBmcm9tIHRoZSBTZXR0aW5ncyBkaWFsb2d1ZSwgd2hlcmUg
+eW91IHNldCBzb21lIEJpYkJha2Ugb3V0cHV0DQo+PiBhbmQgc3lzdGVtIHZhcmlhYmxlcyAodGhl
+IGltYWdlIG91dHB1dCB0eXBlcyBiZXR3ZWVuIHRoZW0pLiBUaGlzDQo+PmRvY3VtZW50DQo+PiBp
+biB0aGUgd2lraQ0KPj4NCj4+IGh0dHA6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9GaWxl
+OkhvYl8xLjJfc2NyZWVuc19pbnZlbnRvcnkucGRmDQo+Pg0KPj4gbWlnaHQgaGVscCBtYWtpbmcg
+c2Vuc2Ugb2YgdGhlIGRpZmZlcmVudCBzY3JlZW5zLg0KPg0KPkdvdGNoYSENCj4NCj4+PiBMb3Zl
+IHRoZSBwYWNrYWdlIGZvcm1hdCBzZWxlY3Rpb24gcGllY2VzIQ0KPj4+DQo+Pj4gRm9yIHRoZSB0
+d28gcGFyYWxsZWwgdGhyZWFkcyBidXR0b25zIHdlIHNob3VsZCByZWNvbW1lbmQgYSBkZWZhdWx0
+DQo+Pj52YWx1ZQ0KPj4+IGFuZCBzZXQgYSBtYXhpbXVtIGJhc2VkIG9uIHRoZSBudW1iZXIgb2Yg
+Q1BVIGNvcmVzIC0gSSB0aGluayB0aGVyZSdzDQo+Pj4gYmVlbiBhIGxvdCBvZiBkaXNjdXNzaW9u
+IGFib3V0IHRoaXMgYnV0IEknbSBub3QgY2VydGFpbiB3aGF0IHRoZQ0KPj4+IHJlY29tbWVuZGF0
+aW9uIHdoaWNoIGNhbWUgb3V0IG9mIGl0IHdhcy4NCj4+DQo+PiBUaGF0IHdvdWxkIGJlIHJlYWxs
+eSB1c2VmdWwuIElzIGl0IGVhc3kgdG8gYWNjdXJhdGVseSBkZXRlcm1pbmUgaG93IG1hbnkNCj4+
+IGNvcmVzIGFyZSBzdXBwb3J0ZWQgYnkgdGhlIENQVSBvZiB0aGUgbWFjaGluZSBydW5uaW5nIEhv
+Yj8NCj4NCj5XZSBjYW4gZWFzaWx5IGRldGVjdCB0aGF0LCB5ZXMuIFRoZSBkaWZmaWN1bHR5IHdp
+dGggZW5hYmxpbmcgdGhpcyBraW5kDQo+b2YgZmVhdHVyZSBpbiB0aGUgcGFzdCBoYXMgYmVlbiBi
+YWxhbmNpbmcgYmV0d2VlbiBwcm92aWRpbmcgYW4gYWNjdXJhdGUNCj5yZWNvbW1lbmRhdGlvbiBh
+bmQgYWxsb3dpbmcgdGhlIHVzZXIgdG8gaWdub3JlIGl0Lg0KPg0KPkkgd29uZGVyIGlmIHRoaXMg
+d291bGQgYmUgYmV0dGVyIGFzIGEgZmVhdHVyZSBmb3IgbGF0ZXIgdG8gYWxsb3cgdXMgbW9yZQ0K
+PnRpbWUgdG8gZ2V0IGl0IHJpZ2h0Pw0KPg0KPg0KPj4+IEZvciB0aGUgZGlyZWN0b3JpZXMgb24g
+cGFnZSAxMyB3b3VsZCBpdCBtYWtlIHNlbnNlIHRvIGhhdmUgYSByZXNldA0KPj4+IGJ1dHRvbiB0
+byBtb3JlIGVhc2lseSBnZXQgYmFjayB0byB0aGUgZGVmYXVsdHM/DQo+Pg0KPj4gWWVzLCB0aGlz
+IHByb2JhYmx5IG1ha2VzIHNlbnNlLiBJJ2xsIGFkZCB0aGF0IHRvIHRoZSBkb2N1bWVudCBuZXh0
+IHdlZWsuDQo+DQo+R3JlYXQsIHRoYW5rcy4NCj4NCj5Kb3NodWENCj4tLSANCj5Kb3NodWEgTG9j
+aw0KPiAgICAgICAgIFlvY3RvIFByb2plY3QgIkpvaGFubmVzIGZhY3RvdHVtIg0KPiAgICAgICAg
+IEludGVsIE9wZW4gU291cmNlIFRlY2hub2xvZ3kgQ2VudHJlDQoNCi0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpJbnRl
+bCBDb3Jwb3JhdGlvbiAoVUspIExpbWl0ZWQKUmVnaXN0ZXJlZCBOby4gMTEzNDk0NSAoRW5nbGFu
+ZCkKUmVnaXN0ZXJlZCBPZmZpY2U6IFBpcGVycyBXYXksIFN3aW5kb24gU04zIDFSSgpWQVQgTm86
+IDg2MCAyMTczIDQ3CgpUaGlzIGUtbWFpbCBhbmQgYW55IGF0dGFjaG1lbnRzIG1heSBjb250YWlu
+IGNvbmZpZGVudGlhbCBtYXRlcmlhbCBmb3IKdGhlIHNvbGUgdXNlIG9mIHRoZSBpbnRlbmRlZCBy
+ZWNpcGllbnQocykuIEFueSByZXZpZXcgb3IgZGlzdHJpYnV0aW9uCmJ5IG90aGVycyBpcyBzdHJp
+Y3RseSBwcm9oaWJpdGVkLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQKcmVjaXBpZW50LCBw
+bGVhc2UgY29udGFjdCB0aGUgc2VuZGVyIGFuZCBkZWxldGUgYWxsIGNvcGllcy4K
 
-I tried to setup a buildbot to warm up sstate caches over night,
-and let developers use this common sstate to speed up build times.
-Epic fail, since paths usually are not consistent.
-And it seems you can't even fake  an "identical path" with symlinks
-either, bitbake detects the symlink and rebuilds everything.
-
-The sstate cache needs improvement.
-Would this issue be considered a bug or a feature request ?,
-Are there any requests on how this should be solved ?
-
-Br,
-David
 
