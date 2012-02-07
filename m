@@ -1,25 +1,23 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEDF2E01353
-	for <yocto@yoctoproject.org>; Tue,  7 Feb 2012 07:57:48 -0800 (PST)
-Received: by vcbfl13 with SMTP id fl13so6913278vcb.35
-	for <yocto@yoctoproject.org>; Tue, 07 Feb 2012 07:57:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=9PE14Vy6gYbPGm1nygmE2huoctseTfcEclyTUn35pmM=;
-	b=ZHQpy4w0dyz55tRjBvap6YSz53kvHv/C9+AVMPzrABK45PkG30Uic9FK+eTCUx37ml
-	w6au4sjNbv4bBM8cXZZBfTi8iVhrqrr8s1UHx2z5FYVbL0E/7uJwi5q6VFg+fOhEqYSb
-	OFkVkOktYN3zT3xPtV0UJmD57OyGDjQU/NyDg=
-MIME-Version: 1.0
-Received: by 10.220.141.142 with SMTP id m14mr6257170vcu.41.1328630267607;
-	Tue, 07 Feb 2012 07:57:47 -0800 (PST)
-Received: by 10.52.24.203 with HTTP; Tue, 7 Feb 2012 07:57:47 -0800 (PST)
-Date: Tue, 7 Feb 2012 10:57:47 -0500
-Message-ID: <CANFv2EmFLxf8zkCgFYamCyBmh_j5sQJO2QpexQLSUg=+NMi5vg@mail.gmail.com>
-From: James Abernathy <jfabernathy@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Building your own UI
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBB78E0136A
+	for <yocto@yoctoproject.org>; Tue,  7 Feb 2012 07:58:56 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 07 Feb 2012 07:49:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104150625"
+Received: from unknown (HELO [10.255.15.2]) ([10.255.15.2])
+	by azsmga001.ch.intel.com with ESMTP; 07 Feb 2012 07:49:39 -0800
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: autif khan <autif.mlist@gmail.com>
+In-Reply-To: <CADzUK1L76iErCF25c3jqSaz_040gzRHcXEb7fKBhr5HMtCYkAg@mail.gmail.com>
+References: <CADzUK1L76iErCF25c3jqSaz_040gzRHcXEb7fKBhr5HMtCYkAg@mail.gmail.com>
+Date: Tue, 07 Feb 2012 09:49:38 -0600
+Message-ID: <1328629778.2670.7.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: yocto@yoctoproject.org
+Subject: Re: Unable to fetch file://lib for package emgd in yoctyo 1.2 (aka M2)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,56 +29,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Feb 2012 15:57:49 -0000
-Content-Type: multipart/alternative; boundary=f46d0432b45423789504b861d70f
+X-List-Received-Date: Tue, 07 Feb 2012 15:58:57 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---f46d0432b45423789504b861d70f
-Content-Type: text/plain; charset=ISO-8859-1
+On Tue, 2012-02-07 at 10:12 -0500, autif khan wrote:
+> I am bitbaking core image sato for machine corwnbay (with the emgd
+> driver) and the emgd-driver-bin recipe seems to fail.
+> 
+> Here is the error. I searched the archives, but could not find anything.
+> 
+> Please advise.
 
-This may be a dumb question, but I'll ask anyway.
+It looks like the problem may be forgetting to carry out the steps in
+section 'II. Special notes for building the meta-crownbay BSP layer' in
+the README.
 
-Suppose you have a project where you need a very custom user interface. Not
-just a series of applications that appear on a desktop like you see in
-sato, or Gnome, or KDE.  Basically your application becomes the UI.
+Note that this is no longer necessary if you use master - the
+emgd-driver-bin recipe has been upgraded to do the steps there
+automatically, which is now possible because it uses the LICENSE_FLAGS,
+but which does mean you need to set the LICENSE_FLAGS_WHITELIST as
+mentioned in the new README for crownbay in master.
 
-I can see 2 approaches to this:
+Tom
 
-   1. Start with core-image-minimal and add the packages you need to
-   support GFX, X11, and your application plus dependencies.
-   2. Take core-image-sato and change the applications to be your subtasks
-   , and the look-and-feel of the desktop.
+> 
+> Here is the output for bitbake -b
+> /data/autif/yocto/poky/meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb
+> 
+> NOTE: Running task 1 of 12 (ID: 4,
+> /data/autif/yocto/poky/meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb,
+> do_fetch)
+> NOTE: package emgd-driver-bin-1.8-r8: task do_fetch: Started
+> ERROR: Function 'Fetcher failure for URL: 'file://lib'. Unable to
+> fetch URL file://lib from any source.' failed
+> ERROR: Logfile of failure stored in:
+> /ssd/autif/M2/crb/tmp/work/core2-poky-linux/emgd-driver-bin-1.8-r8/temp/log.do_fetch.31621
+> Log data follows:
+> | DEBUG: Trying PREMIRRORS
+> | DEBUG: For url ['file', '', 'lib', '', '', {}] comparing ['bzr',
+> '.*', '/.*', '', '', {}] to ['http', 'autobuilder.yoctoproject.org',
+> '/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 'lib', '', '', {}] comparing ['cvs',
+> '.*', '/.*', '', '', {}] to ['http', 'autobuilder.yoctoproject.org',
+> '/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 'lib', '', '', {}] comparing ['git',
+> '.*', '/.*', '', '', {}] to ['http', 'autobuilder.yoctoproject.org',
+> '/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 'lib', '', '', {}] comparing ['hg',
+> '.*', '/.*', '', '', {}] to ['http', 'autobuilder.yoctoproject.org',
+> '/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 'lib', '', '', {}] comparing ['osc',
+> '.*', '/.*', '', '', {}] to ['http', 'autobuilder.yoctoproject.org',
+> '/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 'lib', '', '', {}] comparing ['p4',
+> '.*', '/.*', '', '', {}] to ['http', 'autobuilder.yoctoproject.org',
+> '/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 'lib', '', '', {}] comparing ['svk',
+> '.*', '/.*', '', '', {}] to ['http', 'autobuilder.yoctoproject.org',
+> '/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 'lib', '', '', {}] comparing ['svn',
+> '.*', '/.*', '', '', {}] to ['http', 'autobuilder.yoctoproject.org',
+> '/sources/', '', '', {}]
+> | DEBUG: Trying Upstream
+> | ERROR: Function 'Fetcher failure for URL: 'file://lib'. Unable to
+> fetch URL file://lib from any source.' failed
+> NOTE: package emgd-driver-bin-1.8-r8: task do_fetch: Failed
+> ERROR: Task 4 (/data/autif/yocto/poky/meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb,
+> do_fetch) failed with exit code '1'
+> ERROR: '/data/autif/yocto/poky/meta-intel/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.8.bb'
+> failed
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-What are the considerations of both approaches?
-Is one better, or easier than the other?
-How would you do this in Yocto?
-Where do you look for information you need to accomplish this?
 
-JIm A
 
---f46d0432b45423789504b861d70f
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div>This may be a dumb question, but I&#39;ll ask anyway.</div>
-<div>=A0</div>
-<div>Suppose you have a project where you need a very custom user interface=
-. Not just a series of applications that appear on a desktop like you see i=
-n sato, or Gnome, or KDE.=A0 Basically your application becomes the UI.</di=
-v>
-
-<div>=A0</div>
-<div>I can see 2 approaches=A0to this:</div>
-<ol>
-<li>Start with core-image-minimal and add the packages you need to support =
-GFX, X11, and your application plus dependencies.</li>
-<li>Take core-image-sato and change the applications to be your subtasks , =
-and the look-and-feel of the desktop.</li></ol>
-<div>What are the considerations of both approaches? </div>
-<div>Is one better, or easier=A0than the other?</div>
-<div>How would you do this in Yocto?</div>
-<div>Where do you look for information you need to accomplish this?</div>
-<div>=A0</div>
-<div>JIm A</div>
-<div>=A0</div>
-
---f46d0432b45423789504b861d70f--
