@@ -1,38 +1,23 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3B1CE01353
-	for <yocto@yoctoproject.org>; Tue,  7 Feb 2012 11:01:45 -0800 (PST)
-Received: by pbcc11 with SMTP id c11so7780429pbc.35
-	for <yocto@yoctoproject.org>; Tue, 07 Feb 2012 11:01:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=hAM2N06aY2RBw1+S7ovzt0Nbk8XK824VqDRwldOKwXI=;
-	b=JXK3MiFLVp0ozlA8IQcUT/+fqZMY55jcgKdXEr9fLiN/xvujl1IEqRbK98rJByVbvm
-	I+L04Hz21sLy7KjVxC5INGYK6G1tL+IWD8xCkFd8takS+lQzvC3xqAX0fRUelwU1z+UP
-	cTbaMOS1ZUTh5Rzx27ljKZzapXXCShoq8bPcU=
+Return-Path: <josh@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5ACAAE01353
+	for <yocto@yoctoproject.org>; Tue,  7 Feb 2012 11:36:08 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 07 Feb 2012 10:55:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="64143226"
+Received: from unknown (HELO [10.255.15.17]) ([10.255.15.17])
+	by AZSMGA002.ch.intel.com with ESMTP; 07 Feb 2012 10:54:42 -0800
+Message-ID: <4F317372.6040501@linux.intel.com>
+Date: Tue, 07 Feb 2012 10:54:42 -0800
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0) Gecko/20120131 Thunderbird/10.0
 MIME-Version: 1.0
-Received: by 10.68.239.41 with SMTP id vp9mr61461753pbc.17.1328641305542; Tue,
-	07 Feb 2012 11:01:45 -0800 (PST)
-Received: by 10.68.218.10 with HTTP; Tue, 7 Feb 2012 11:01:45 -0800 (PST)
-In-Reply-To: <4F307E25.2050206@windriver.com>
-References: <CADzUK1+ATfTW6FAPGZ97WhstFm_hq-Msdbf9wQ6HG6gLtUjS8w@mail.gmail.com>
-	<4F281BFB.9010701@windriver.com> <4F281CD1.70305@linux.intel.com>
-	<CADzUK1+sAGYAPY=Pm6xsEFnqpj4T+8R6kDmrSrySiSgS00v-EQ@mail.gmail.com>
-	<CADkTA4NuLPg3+vA-6QkxkVqkthc_bXcN1Cye5Yzhz65tOmUzHw@mail.gmail.com>
-	<CADzUK1LO0gUd36X-N1hXQ49Bx7Lu+xW5u8VQT-waAtn1jM=6CQ@mail.gmail.com>
-	<4F303708.1080501@windriver.com>
-	<CADzUK1JdxZKK9XW86Lq_4K3p8ya+_jf07NK7VwDp2uMWh_6=hg@mail.gmail.com>
-	<4F304D1C.6090802@windriver.com>
-	<CADzUK1Lv4Ke9GN=R5Tjm0SVQcxpiHg3-ZwKDpNXYtFEcdH5mPQ@mail.gmail.com>
-	<4F307C55.7090406@windriver.com> <4F307E25.2050206@windriver.com>
-Date: Tue, 7 Feb 2012 14:01:45 -0500
-Message-ID: <CADzUK1K9gPTgTsqsBkOTtcAu0pjoqAdYG=zRrAajE=6D5deicg@mail.gmail.com>
-From: autif khan <autif.mlist@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
-Subject: Re: How do I patch the kernel before it is built?
+To: yocto@yoctoproject.org
+References: <CANFv2EmFLxf8zkCgFYamCyBmh_j5sQJO2QpexQLSUg=+NMi5vg@mail.gmail.com>
+In-Reply-To: <CANFv2EmFLxf8zkCgFYamCyBmh_j5sQJO2QpexQLSUg=+NMi5vg@mail.gmail.com>
+Subject: Re: Building your own UI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,25 +29,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Feb 2012 19:01:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 07 Feb 2012 19:36:08 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
->>>>>>>>> R E C I P E
->>>>>>>>>
->>>>>>>>> autif@fpbm:~/data/yocto/poky-edison-6.0/meta-koko/recipes/linux$
->>>>>>>>> cat
->>>>>>>>> linux-yocto_3.0.bbappend
->>>>>>>>> FILESEXTRAPATHS_prepend := "${THISDIR}:"
->>>>>>>>> SRC_URI += " file://linux/drivers/hid/hid-core.c.diff \
->>>>>>>>> file://linux/drivers/hid/hid-ids.h.diff "
->>>>>>>>> PR = "r3"
->>>>>>>>> autif@fpbm:~/data/yocto/poky-edison-6.0/meta-koko/recipes/linux$
+On 07/02/12 07:57, James Abernathy wrote:
+> This may be a dumb question, but I'll ask anyway.
+> Suppose you have a project where you need a very custom user interface.
+> Not just a series of applications that appear on a desktop like you see
+> in sato, or Gnome, or KDE.  Basically your application becomes the UI.
+> I can see 2 approaches to this:
+>
+>  1. Start with core-image-minimal and add the packages you need to
+>     support GFX, X11, and your application plus dependencies.
+>  2. Take core-image-sato and change the applications to be your subtasks
+>     , and the look-and-feel of the desktop.
+>
+> What are the considerations of both approaches?
 
-Fond the bug - it was a problem in the recipe
+A key selling point of the Yocto approach is to provide a highly 
+customised OS for your target application, rather than taking an 
+existing solution and stripping it back.
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+2. is the antithesis of the Yocto approach if you don't want/need the 
+Sato UI.
 
-I was missing the ${PN} at the end.
+The intention is that the core metadata should provide sufficient 
+granularity through the defined images and tasks to get people started.
 
-Bruce - Thank you for all the help :-)
+I'd recommend something like 1. only taking core-image-core (horrible 
+name I know) if you want an X based OS.
+
+We no doubt need more documentation in this area, and Hob is designed to 
+help here.
+
+
+> Is one better, or easier than the other?
+
+Creating your own image is better in that you only build and ship what 
+you need. Arguably building atop a custom image is easier, but you lose 
+control.
+
+> How would you do this in Yocto?
+
+You might consider creating a custom image by starting with 
+core-image-minimal and adding IMAGE_FEATURES and IMAGE_INSTALL entries 
+to provide the core functionality you desire.
+
+$ less foo.bb
+# a noddy example image, base of a NAS OS
+
+# start with core-image-minimal
+require recipes-core/images/core-image-minimal.bb
+
+IMAGE_FEATURES += "package-management nfs-server ssh-server-dropbear"
+IMAGE_INSTALL += "my-custom-nas-app"
+
+> Where do you look for information you need to accomplish this?
+
+Mostly by following examples in the existing metadata at the moment, see 
+the comment above about hob and documentation.
+
+Cheers,
+Joshua
+-- 
+Joshua Lock
+         Yocto Project "Johannes factotum"
+         Intel Open Source Technology Centre
 
