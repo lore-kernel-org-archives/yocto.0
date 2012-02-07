@@ -1,31 +1,24 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E2F3E0136A
-	for <yocto@yoctoproject.org>; Tue,  7 Feb 2012 08:16:58 -0800 (PST)
-Received: by dadp13 with SMTP id p13so7203516dad.35
-	for <yocto@yoctoproject.org>; Tue, 07 Feb 2012 08:16:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=dTXlcMC0aYyPWmbdj8cNeJcFZhYz3I3L59BiaVayjOw=;
-	b=N6VTxddYutM6hvAwIYbthZ1UA4bBzu8KQZ6DFxFLA8W2QCljU5YZUGcooqfcGHfrOQ
-	RrJuMWmNNl6gqHALMLZ/FieFjMIfXcv12kRZU7VtR6AoZstiRFDryPEtMW0cl/GWCMyX
-	+Lr/pSZw4C5CvZPLCrfFi+hh+em1086TE8Xrk=
+Return-Path: <josh@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86EB2E0136A
+	for <yocto@yoctoproject.org>; Tue,  7 Feb 2012 08:17:04 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 07 Feb 2012 08:17:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="122023955"
+Received: from unknown (HELO [10.255.15.17]) ([10.255.15.17])
+	by fmsmga002.fm.intel.com with ESMTP; 07 Feb 2012 08:17:03 -0800
+Message-ID: <4F314E7F.7060108@linux.intel.com>
+Date: Tue, 07 Feb 2012 08:17:03 -0800
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0) Gecko/20120131 Thunderbird/10.0
 MIME-Version: 1.0
-Received: by 10.68.125.233 with SMTP id mt9mr15732972pbb.119.1328631417032;
-	Tue, 07 Feb 2012 08:16:57 -0800 (PST)
-Received: by 10.68.218.10 with HTTP; Tue, 7 Feb 2012 08:16:57 -0800 (PST)
-In-Reply-To: <CANFv2EmHChy+MB-Bnd01QTotUk86s-17XZy=7wOfXRY_cWg-KA@mail.gmail.com>
-References: <CADzUK1L76iErCF25c3jqSaz_040gzRHcXEb7fKBhr5HMtCYkAg@mail.gmail.com>
-	<1328629778.2670.7.camel@elmorro>
-	<CANFv2EmHChy+MB-Bnd01QTotUk86s-17XZy=7wOfXRY_cWg-KA@mail.gmail.com>
-Date: Tue, 7 Feb 2012 11:16:57 -0500
-Message-ID: <CADzUK1JaDgncJsitTb=6zHsxef2ZAC3cOrzyJVqOVVsRzMjpcw@mail.gmail.com>
-From: autif khan <autif.mlist@gmail.com>
-To: James Abernathy <jfabernathy@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Unable to fetch file://lib for package emgd in yoctyo 1.2 (aka M2)
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+References: <CB56B9C2.7503%belen.barros.pena@intel.com>
+In-Reply-To: <CB56B9C2.7503%belen.barros.pena@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: RFC: Hob 1.2 design
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,32 +30,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Feb 2012 16:16:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 07 Feb 2012 16:17:04 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
->> > I am bitbaking core image sato for machine corwnbay (with the emgd
->> > driver) and the emgd-driver-bin recipe seems to fail.
->> >
->> > Here is the error. I searched the archives, but could not find anything.
->> >
->> > Please advise.
->>
->> It looks like the problem may be forgetting to carry out the steps in
->> section 'II. Special notes for building the meta-crownbay BSP layer' in
->> the README.
->>
->> Note that this is no longer necessary if you use master - the
->> emgd-driver-bin recipe has been upgraded to do the steps there
->> automatically, which is now possible because it uses the LICENSE_FLAGS,
->> but which does mean you need to set the LICENSE_FLAGS_WHITELIST as
->> mentioned in the new README for crownbay in master.
+Hi Belen,
+
+Thanks for clarifying.
+
+Shane - I noticed at least one bug has been closed because the second 
+video didn't show the features (#1804) - seems like this isn't what was 
+intended by features 'disappearing' in the latest video.
+
+http://bugzilla.pokylinux.org/show_bug.cgi?id=1804
+
+Cheers,
+Joshua
+
+On 07/02/12 03:23, Barros Pena, Belen wrote:
+> Hi Joshua,
 >
-> I can confirm that using the master branch is the way to go to make this
-> easy.
-> I documented my test of it at :
-> https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_setup_Intel.C2.AE_Atom.E2.84.A2_Processor_E6xx_based_system_for_media_playback.3F
+> Additional package details appear on clicking the package name using an
+> information bubble. The bubble is also dismissed on click using a 'close'
+> button. This functionality is shown on the first video (not on the second
+> one: I skipped it to keep it short).
+>
+> Cheers
+>
+> Belen
+>
+> On 06/02/2012 21:32, "Joshua Lock"<josh@linux.intel.com>  wrote:
+>
+>> On 31/01/12 17:39, Wang, Shane wrote:
+>>> Hi, all,
+>>>
+>>> Belen has a new video for Hob2 workflow and design.
+>>>
+>>> https://wiki.yoctoproject.org/wiki/File:Hob1.2-screencast2.mov
+>>
+>> It just came to my attention through another channel that the
+>> description column of the packages table is no longer present.
+>>
+>> There had been some discussion about how to show relevant description
+>> information in that column, so I'm surprised to see it go.
+>>
+>> Belen, I assume from a design perspective this field was removed as it
+>> didn't show anything particularly useful? If we have useful data to
+>> include in that field is there a more appropriate way to integrate it
+>> into the UI? Perhaps a tooltip? Or an information overlay as has been
+>> used in other areas of the design?
+>>
+>> I'm concerned that if we give the user a list of packages without any
+>> more information we aren't making it easy for them to build an OS image
+>> without already understanding exactly all of the components they need -
+>> thoughts?
+>>
+>> Cheers,
+>> Joshua
+>> --
+>> Joshua Lock
+>>          Yocto Project "Johannes factotum"
+>>          Intel Open Source Technology Centre
 >
 
-Confirmed - after following all the steps in section II of the README
-in meta-intel/meta-crownbay - the build worked.
+-- 
+Joshua Lock
+         Yocto Project "Johannes factotum"
+         Intel Open Source Technology Centre
 
