@@ -1,24 +1,29 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86EB2E0136A
-	for <yocto@yoctoproject.org>; Tue,  7 Feb 2012 08:17:04 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 07 Feb 2012 08:17:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="122023955"
-Received: from unknown (HELO [10.255.15.17]) ([10.255.15.17])
-	by fmsmga002.fm.intel.com with ESMTP; 07 Feb 2012 08:17:03 -0800
-Message-ID: <4F314E7F.7060108@linux.intel.com>
-Date: Tue, 07 Feb 2012 08:17:03 -0800
-From: Joshua Lock <josh@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0) Gecko/20120131 Thunderbird/10.0
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3501E01353
+	for <yocto@yoctoproject.org>; Tue,  7 Feb 2012 08:20:56 -0800 (PST)
+Received: by pbcc11 with SMTP id c11so7619409pbc.35
+	for <yocto@yoctoproject.org>; Tue, 07 Feb 2012 08:20:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=oaESPpXpjEai2cUOAMu5UHzy0b/QrEcgnFT53lv+FNY=;
+	b=d1rI6iOJGkn5S2xjMpc2ipzIufUQPl4T7w17jIghjoSsJ1X5dKR9hB6CD/j1UwgulD
+	eXahBRRspV5i8QlaUaIfQw/A7PbCSpXCVqrCxs/LI8jE59fVlEMJNtNCRo8LzMOUY/jD
+	pzoqw231BFXxzP5wbeF90oc9q5OdbKieKjWn8=
 MIME-Version: 1.0
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-References: <CB56B9C2.7503%belen.barros.pena@intel.com>
-In-Reply-To: <CB56B9C2.7503%belen.barros.pena@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RFC: Hob 1.2 design
+Received: by 10.68.239.41 with SMTP id vp9mr60289046pbc.17.1328631656664; Tue,
+	07 Feb 2012 08:20:56 -0800 (PST)
+Received: by 10.68.218.10 with HTTP; Tue, 7 Feb 2012 08:20:56 -0800 (PST)
+In-Reply-To: <CANFv2EmFLxf8zkCgFYamCyBmh_j5sQJO2QpexQLSUg=+NMi5vg@mail.gmail.com>
+References: <CANFv2EmFLxf8zkCgFYamCyBmh_j5sQJO2QpexQLSUg=+NMi5vg@mail.gmail.com>
+Date: Tue, 7 Feb 2012 11:20:56 -0500
+Message-ID: <CADzUK1+Mi4E3RD7JcFOgNevUmcW6MT98JWoVdde8X5m2xjuEHg@mail.gmail.com>
+From: autif khan <autif.mlist@gmail.com>
+To: James Abernathy <jfabernathy@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Building your own UI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,71 +35,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Feb 2012 16:17:04 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 07 Feb 2012 16:20:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Hi Belen,
-
-Thanks for clarifying.
-
-Shane - I noticed at least one bug has been closed because the second 
-video didn't show the features (#1804) - seems like this isn't what was 
-intended by features 'disappearing' in the latest video.
-
-http://bugzilla.pokylinux.org/show_bug.cgi?id=1804
-
-Cheers,
-Joshua
-
-On 07/02/12 03:23, Barros Pena, Belen wrote:
-> Hi Joshua,
+> This may be a dumb question, but I'll ask anyway.
 >
-> Additional package details appear on clicking the package name using an
-> information bubble. The bubble is also dismissed on click using a 'close'
-> button. This functionality is shown on the first video (not on the second
-> one: I skipped it to keep it short).
+> Suppose you have a project where you need a very custom user interface. N=
+ot
+> just a series of applications that appear on a desktop like you see in sa=
+to,
+> or Gnome, or KDE.=A0 Basically your application becomes the UI.
 >
-> Cheers
+> I can see 2 approaches=A0to this:
 >
-> Belen
+> Start with core-image-minimal and add the packages you need to support GF=
+X,
+> X11, and your application plus dependencies.
+> Take core-image-sato and change the applications to be your subtasks , an=
+d
+> the look-and-feel of the desktop.
 >
-> On 06/02/2012 21:32, "Joshua Lock"<josh@linux.intel.com>  wrote:
->
->> On 31/01/12 17:39, Wang, Shane wrote:
->>> Hi, all,
->>>
->>> Belen has a new video for Hob2 workflow and design.
->>>
->>> https://wiki.yoctoproject.org/wiki/File:Hob1.2-screencast2.mov
->>
->> It just came to my attention through another channel that the
->> description column of the packages table is no longer present.
->>
->> There had been some discussion about how to show relevant description
->> information in that column, so I'm surprised to see it go.
->>
->> Belen, I assume from a design perspective this field was removed as it
->> didn't show anything particularly useful? If we have useful data to
->> include in that field is there a more appropriate way to integrate it
->> into the UI? Perhaps a tooltip? Or an information overlay as has been
->> used in other areas of the design?
->>
->> I'm concerned that if we give the user a list of packages without any
->> more information we aren't making it easy for them to build an OS image
->> without already understanding exactly all of the components they need -
->> thoughts?
->>
->> Cheers,
->> Joshua
->> --
->> Joshua Lock
->>          Yocto Project "Johannes factotum"
->>          Intel Open Source Technology Centre
->
+> What are the considerations of both approaches?
+> Is one better, or easier=A0than the other?
+> How would you do this in Yocto?
+> Where do you look for information you need to accomplish this?
 
--- 
-Joshua Lock
-         Yocto Project "Johannes factotum"
-         Intel Open Source Technology Centre
+We are still in the very early stages of architecture design and developmen=
+t
+
+For now we are leaning towards keeping everything that comes with
+core-image-sato and writing a full screen app on top of it. Likely to
+be written in .NET (mono). A prototype (proof of concept) has been
+successfully developed :-)
+
+As I said - still in very early stages of arch/design and dev. So
+things may still change.
 
