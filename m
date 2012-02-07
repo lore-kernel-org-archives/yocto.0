@@ -1,34 +1,34 @@
 Return-Path: <belen.barros.pena@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 787BFE0030B
-	for <yocto@yoctoproject.org>; Tue,  7 Feb 2012 03:23:36 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 07 Feb 2012 03:23:35 -0800
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50D5BE01353
+	for <yocto@yoctoproject.org>; Tue,  7 Feb 2012 06:28:33 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 07 Feb 2012 06:28:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="107277088"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="115053059"
 Received: from irsmsx601.ger.corp.intel.com ([163.33.7.164])
-	by orsmga002.jf.intel.com with ESMTP; 07 Feb 2012 03:23:34 -0800
-Received: from irsmsx104.ger.corp.intel.com (163.33.3.159) by
+	by fmsmga001.fm.intel.com with ESMTP; 07 Feb 2012 06:28:30 -0800
+Received: from irsmsx152.ger.corp.intel.com (163.33.192.66) by
 	irsmsx601.ger.corp.intel.com (163.33.7.164) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 7 Feb 2012 11:23:28 +0000
+	(TLS) id 8.2.255.0; Tue, 7 Feb 2012 14:27:49 +0000
 Received: from irsmsx101.ger.corp.intel.com ([169.254.1.99]) by
-	IRSMSX104.ger.corp.intel.com ([169.254.5.165]) with mapi id
-	14.01.0355.002; Tue, 7 Feb 2012 11:23:28 +0000
+	IRSMSX152.ger.corp.intel.com ([169.254.6.46]) with mapi id
+	14.01.0355.002; Tue, 7 Feb 2012 14:27:49 +0000
 From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Joshua Lock <josh@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "Wang, Shane" <shane.wang@intel.com>
-Thread-Topic: [yocto] RFC: Hob 1.2 design
-Thread-Index: AQHM5Yrp5BarafXGYUmHwyFKKMBbiA==
-Date: Tue, 7 Feb 2012 11:23:28 +0000
-Message-ID: <CB56B9C2.7503%belen.barros.pena@intel.com>
-In-Reply-To: <4F3046F3.80102@linux.intel.com>
+To: Joshua Lock <josh@linux.intel.com>
+Thread-Topic: [yocto] Hob 1.2 design - Settings dialogue
+Thread-Index: AQHM5aSqsoS3g47DekOWUf0EHRxPlA==
+Date: Tue, 7 Feb 2012 14:27:48 +0000
+Message-ID: <CB56E4DC.7525%belen.barros.pena@intel.com>
+In-Reply-To: <4F2C2620.7070906@linux.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 user-agent: Microsoft-MacOutlook/14.14.0.111121
 x-originating-ip: [10.254.196.68]
 MIME-Version: 1.0
-Subject: Re: RFC: Hob 1.2 design
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Hob 1.2 design - Settings dialogue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,65 +40,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Feb 2012 11:23:36 -0000
+X-List-Received-Date: Tue, 07 Feb 2012 14:28:33 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <2024714E3C950640AECABED7B38F6B82@intel.com>
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="euc-kr"
+Content-ID: <6645E48BD6CF72449A358B46B016A9D1@intel.com>
+Content-Transfer-Encoding: base64
 
-Hi Joshua,
-
-Additional package details appear on clicking the package name using an
-information bubble. The bubble is also dismissed on click using a 'close'
-button. This functionality is shown on the first video (not on the second
-one: I skipped it to keep it short).
-
-Cheers
-
-Belen
-
-On 06/02/2012 21:32, "Joshua Lock" <josh@linux.intel.com> wrote:
-
->On 31/01/12 17:39, Wang, Shane wrote:
->> Hi, all,
->>
->> Belen has a new video for Hob2 workflow and design.
->>
->> https://wiki.yoctoproject.org/wiki/File:Hob1.2-screencast2.mov
->
->It just came to my attention through another channel that the
->description column of the packages table is no longer present.
->
->There had been some discussion about how to show relevant description
->information in that column, so I'm surprised to see it go.
->
->Belen, I assume from a design perspective this field was removed as it
->didn't show anything particularly useful? If we have useful data to
->include in that field is there a more appropriate way to integrate it
->into the UI? Perhaps a tooltip? Or an information overlay as has been
->used in other areas of the design?
->
->I'm concerned that if we give the user a list of packages without any
->more information we aren't making it easy for them to build an OS image
->without already understanding exactly all of the components they need -
->thoughts?
->
->Cheers,
->Joshua
->--=20
->Joshua Lock
->         Yocto Project "Johannes factotum"
->         Intel Open Source Technology Centre
-
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+SSd2ZSBhZGRlZCB0aGUgcmVzZXQgb3B0aW9uIChyZXN0b3JlcyB0aGUgZGlyZWN0b3JpZXMnIGRl
+ZmF1bHQgdmFsdWVzKSB0bw0KdGhlIFNldHRpbmdzIGRlc2lnbiBkb2N1bWVudC4gVGhlIG5ldyB2
+ZXJzaW9uIGlzIGF0Og0KDQpodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL0ZpbGU6
+U2V0dGluZ3MtZGlhbG9ndWUtZGVzaWduLXNwZWMtdjEuMS4NCnBkZg0KDQoNCkJlbGVuDQoNCg0K
+T24gMDMvMDIvMjAxMiAxODoyMywgIkpvc2h1YSBMb2NrIiA8am9zaEBsaW51eC5pbnRlbC5jb20+
+IHdyb3RlOg0KDQo+T24gMDMvMDIvMTIgMDY6NDIsIEJhcnJvcyBQZW5hLCBCZWxlbiB3cm90ZToN
+Cj4+IFlvdXIgdmVyYm9zZSBtb2RlIGl0J3MgcHJldHR5IGhlbHBmdWwgKGFzIGl0IGhhcHBlbnMg
+d2l0aCBtb3N0IHZlcmJvc2UNCj4+IG1vZGVzKSwgc28gcGxlYXNlIGRvbid0IHR1cm4gaXQgb2Zm
+Lg0KPj4NCj4+IEFuc3dlcnMgYmVsb3cuDQo+Pg0KPj4gQmVsZW4NCj4+DQo+PiBPbiAwMi8wMi8y
+MDEyIDIxOjUxLCAiSm9zaHVhIExvY2siPGpvc2hAbGludXguaW50ZWwuY29tPiAgd3JvdGU6DQo+
+Pg0KPj4+IEhpIEJlbGVuLA0KPj4+DQo+Pj4gU29ycnkgdGhpcyBpcyBzbyBsb25nLCBJIGRvbid0
+IGtub3cgaG93IHRvIHR1cm4gb2ZmIG15IHZlcmJvc2Ugc3dpdGNoLg0KPj4+DQo+Pj4gT24gcGFn
+ZSA0IHlvdSBtZW50aW9uIFNoYW5lJ3MgaW50ZW50aW9uIHRvIGhhdmUgcHJveHkgc2V0dGluZ3Mg
+aW4gdGhlDQo+Pj5VSQ0KPj4+IC0gSSBqdXN0IHdhbnQgdG8gcG9pbnQgb3V0IHRoYXQgdGhpcyBp
+cyB1c3VhbGx5IGFuIE9TIGxldmVsDQo+Pj4gY29uZmlndXJhdGlvbiBhbmQgd2Ugc2hvdWxkIGJl
+IHdhcnkgYWJvdXQgaG93IHdlIGltcGxlbWVudCBpdC4NCj4+PiBJJ2Qgc3VnZ2VzdCB3ZSBnbyBz
+byBmYXIgYXMgdG8ganVzdCBoYXZlIGEgIkNoYW5nZSBzeXN0ZW0gcHJveHkNCj4+PiBzZXR0aW5n
+cyIgYnV0dG9uIHdoaWNoIGxhdW5jaGVzIHRoZSBPUydzIG5ldHdvcmsgY29uZmlndXJhdGlvbg0K
+Pj4+c2V0dGluZ3MuDQo+Pj4NCj4+PiBPZiBjb3Vyc2UsIHRoaXMgb3BlbnMgdXMgdXAgdG8gcG90
+ZW50aWFsIGlzc3VlcyBhcm91bmQgc3VwcG9ydGluZyB0aGUNCj4+PiBtdWx0aXR1ZGUgb2YgYXZh
+aWxhYmxlIG5ldHdvcmsgY29uZmlndXJhdGlvbiB0b29scyBvbiBMaW51eCBidXQgSSdkDQo+Pj4g
+c3VnZ2VzdCB3ZSBzdGFydCB3aXRoIGEgbG93ZXN0IGNvbW1vbiBkZW5vbWluYXRvciBhcHByb2Fj
+aCBhbmQgaGF2ZSB0aGUNCj4+PiBwcm9ncmFtIGJlaGF2ZSBpbnRlbGxpZ2VudGx5Lg0KPj4+DQo+
+Pj4gRXhwbGljaXRseSB3ZSBjYW4gZGV0ZWN0IHdoZXRoZXIgdGhlIGJpbmFyeSBnbm9tZS1jb250
+cm9sLWNlbnRlciBhbmQNCj4+PnRoZQ0KPj4+IHNvIGZpbGUgL3Vzci9saWI2NC9jb250cm9sLWNl
+bnRlci0xL3BhbmVscy9saWJuZXR3b3JrLnNvIGV4aXN0IChiZWluZw0KPj4+IGNsZXZlciBhYm91
+dCB0aGF0IHBhdGgsIHRvbykgYW5kIGlmIHNvIHdlIGNhbiBleGVjdXRlOg0KPj4+DQo+Pj4gImdu
+b21lLWNvbnRyb2wtY2VudGVyIGRpc3BsYXkgbmV0d29yayINCj4+Pg0KPj4+IFdoaWNoIHdpbGwg
+ZGlzcGxheSB0aGUgbmV0d29yayBjb25maWd1cmF0aW9uIChhbmQgdGhlcmVmb3JlIHByb3h5KQ0K
+Pj4+IHNldHRpbmdzIGZvciBzdG9jayBGZWRvcmEgYW5kIFVidW50dSBkZXNrdG9wcy4NCj4+DQo+
+PiBZb3UgZ3V5cyBhcmUgdGhlIGV4cGVydHMuIFlvdSB0ZWxsIG1lIGhvdyB5b3Ugd2FudCBpdCB0
+byB3b3JrIGFuZCBJJ2xsDQo+PiBkZXNpZ24gdGhlIFVJIGZvciBpdCEgOikNCj4NCj5NeSBjb25j
+ZXJuIGhlcmUgd2FzIG5vdCB0byBkdXBsaWNhdGUgT1MgR1VJIHRvIGNoYW5nZSBPUyBzZXR0aW5n
+cywgZmVlbHMNCj50byBtZSB0aGF0IHRoaXMgaXMgZ2VuZXJhbGx5IGEgYmFkIGlkZWEuIEhvd2V2
+ZXIgSSBzZWUgZnJvbSBhbg0KPmFsdGVybmF0aXZlIHRocmVhZCB0aGF0IHRoZSBpbnRlbnRpb24g
+aXMgdG8gb25seSBzZXQgdGhlIHByb3h5DQo+Y29uZmlndXJhdGlvbiBmb3IgWW9jdG8sIGlmIHRo
+aXMgaXMgYWNoaWV2YWJsZSB0aHJvdWdoIHRoZSBzaXRlLmNvbmYgSSdtDQo+YWxsIGZvciBpdCEN
+Cj4NCj4+PiBJIHVuZGVyc3RhbmQgd2h5IHRoZSBNYWNoaW5lcyBvcHRpb24gbWlnaHQgYmUgbW9y
+ZSB1c2VmdWwgYXMgYSBsaXN0DQo+Pj4gd2lkZ2V0IChwNSksIHJhdGhlciB0aGFuIGEgY29tYm8g
+Ym94LCBidXQgZmVlbCB0aGF0IHRoaXMgaXMgZGV2YWx1ZWQgYXQNCj4+PiBsZWFzdCBzbGlnaHRs
+eSBieSB0aGUgZmFjdCB0aGF0IHRoZSBsaXN0IG9mIGF2YWlsYWJsZSBNYWNoaW5lcyBpc24ndA0K
+Pj4+IHN0YXRpYyBhbmQgdGhlcmVmb3JlIGl0J3Mgbm90IHVubGlrZWx5IGEgdXNlciB3b3VsZCBo
+YXZlIHRvIHNjcm9sbCB0aGF0DQo+Pj4gbGlzdC4NCj4+DQo+PiBZZXMsIHRoZSBsaXN0IHdpbGwg
+c2Nyb2xsIGF0IHNvbWUgcG9pbnQuIEkgYW0gbm90IHRvbyB3b3JyaWVkIGFib3V0IGl0DQo+PiB0
+aG91Z2gsIHNpbmNlIEkgZG9uJ3QgdGhpbmsgdGhhdCBjaGFuZ2luZyB0aGUgaW1hZ2UgdHlwZXMg
+d2lsbCBiZQ0KPj4gc29tZXRoaW5nIHVzZXJzIHdpbGwgZG8gdmVyeSBvZnRlbi4gSSBtaWdodCBi
+ZSB3cm9uZyB0aG91Z2guDQo+DQo+SSd2ZSBtYWRlIHNpbWlsYXIgYXNzdW1wdGlvbnMgdG9vLCBh
+bmQgYXMgd2UgZG9uJ3QgaGF2ZSBhbnkgZGF0YSBJJ20gaW4NCj5ubyBydXNoIHRvIGRpc2FncmVl
+IHdpdGggZWl0aGVyIG9mIHVzIDotKQ0KPg0KPj4+IE9uZSBzdWdnZXN0aW9uIG1pZ2h0IGJlIHRv
+IGZhdm91ciBtYWNoaW5lcyB3aXRoIGEgaGlnaGVyIGxheWVyIHByaW9yaXR5DQo+Pj4gYnkgbGlz
+dGluZyB0aGVtIGhpZ2hlciBpbiB0aGUgbGlzdD8NCj4+DQo+PiBJIGRvbqn2dCBrbm93IGhvdyB0
+aGUgbGF5ZXIgcHJpb3JpdGllcyB3b3JrLiBXaG8gc2V0cyB0aG9zZSBwcmlvcml0aWVzPw0KPj5B
+cmUNCj4+IHRoZXkgYWxpZ25lZCB3aXRoIHVzZXIncyBwcmlvcml0aWVzPyBJZiB0aGV5IGFyZSwg
+eWVzLCB3ZSBzaG91bGQgdXNlIHRoZQ0KPj4gbGF5ZXIgcHJpb3JpdGllcyB0byBkZXRlcm1pbmUg
+dGhlIG9yZGVyIG9mIHRoYXQgbGlzdCBvZiBtYWNoaW5lcy4NCj4NCj5MYXllciBwcmlvcml0eSBj
+dXJyZW50bHkgaXMgc2V0IGJ5IHRoZSBsYXllcnMgYXV0aG9yLCBidXQgaXMgZWRpdGFibGUgYnkN
+Cj50aGUgbGF5ZXJzIHVzZXIgKGl0J3MgImp1c3QiIGEgdGV4dCBmaWxlKS4NCj4NCj5NYXliZSBz
+b21ldGhpbmcgdG8gY29uc2lkZXIgZm9yIGZ1dHVyZS4gVGhlcmUncyBiZWVuIGRpc2N1c3Npb24g
+YWJvdXQNCj5tYWtpbmcgaXQgZWFzaWVyIHRvIGVuYWJsZSBzeXN0ZW0gdXNlcnMgdG8gYWx0ZXIg
+dGhlIGxheWVyIHByaW9yaXR5LA0KPnBlcmhhcHMgd2UnbGwgbWFrZSBHVUkgY2hhbmdlcyBpZiBz
+b21ldGhpbmcgbGlrZSB0aGF0IGhhcHBlbnM/IE9yDQo+cGVyaGFwcyB3ZSdsbCBtYWtlIHRoZSBj
+aGFuZ2UgZm9yIHRoZSBzYWtlIG9mIHRoZSBHVUk/IE1vcmUgdGhvdWdodA0KPnJlcXVpcmVkLg0K
+Pg0KPj4+IEFsdGhvdWdoIHRoZSBuZXh0IHBhZ2UsIDUsIG1lbnRpb25zIHRoYXQgdGhlIG1hY2hp
+bmUgbGlzdCBpcyBhIGNvbWJvDQo+Pj4gYm94LiBJcyB0aGF0IHRoZSBjYXNlPw0KPj4NCj4+IEl0
+IGlzIHRoZSBjYXNlIGluIHRoZSBJbWFnZSBjb25maWd1cmF0aW9uIHNjcmVlbiwgd2hlcmUgdXNl
+cnMsIGJlZm9yZQ0KPj4gYnVpbGRpbmcgYW4gaW1hZ2UsIHNlbGVjdCB0aGVpciBtYWNoaW5lIHVz
+aW5nIGEgY29tYm8gYm94LiBUaGlzIHNjcmVlbg0KPj5pcw0KPj4gZGlmZmVyZW50IGZyb20gdGhl
+IFNldHRpbmdzIGRpYWxvZ3VlLCB3aGVyZSB5b3Ugc2V0IHNvbWUgQmliQmFrZSBvdXRwdXQNCj4+
+IGFuZCBzeXN0ZW0gdmFyaWFibGVzICh0aGUgaW1hZ2Ugb3V0cHV0IHR5cGVzIGJldHdlZW4gdGhl
+bSkuIFRoaXMNCj4+ZG9jdW1lbnQNCj4+IGluIHRoZSB3aWtpDQo+Pg0KPj4gaHR0cDovL3dpa2ku
+eW9jdG9wcm9qZWN0Lm9yZy93aWtpL0ZpbGU6SG9iXzEuMl9zY3JlZW5zX2ludmVudG9yeS5wZGYN
+Cj4+DQo+PiBtaWdodCBoZWxwIG1ha2luZyBzZW5zZSBvZiB0aGUgZGlmZmVyZW50IHNjcmVlbnMu
+DQo+DQo+R290Y2hhIQ0KPg0KPj4+IExvdmUgdGhlIHBhY2thZ2UgZm9ybWF0IHNlbGVjdGlvbiBw
+aWVjZXMhDQo+Pj4NCj4+PiBGb3IgdGhlIHR3byBwYXJhbGxlbCB0aHJlYWRzIGJ1dHRvbnMgd2Ug
+c2hvdWxkIHJlY29tbWVuZCBhIGRlZmF1bHQNCj4+PnZhbHVlDQo+Pj4gYW5kIHNldCBhIG1heGlt
+dW0gYmFzZWQgb24gdGhlIG51bWJlciBvZiBDUFUgY29yZXMgLSBJIHRoaW5rIHRoZXJlJ3MNCj4+
+PiBiZWVuIGEgbG90IG9mIGRpc2N1c3Npb24gYWJvdXQgdGhpcyBidXQgSSdtIG5vdCBjZXJ0YWlu
+IHdoYXQgdGhlDQo+Pj4gcmVjb21tZW5kYXRpb24gd2hpY2ggY2FtZSBvdXQgb2YgaXQgd2FzLg0K
+Pj4NCj4+IFRoYXQgd291bGQgYmUgcmVhbGx5IHVzZWZ1bC4gSXMgaXQgZWFzeSB0byBhY2N1cmF0
+ZWx5IGRldGVybWluZSBob3cgbWFueQ0KPj4gY29yZXMgYXJlIHN1cHBvcnRlZCBieSB0aGUgQ1BV
+IG9mIHRoZSBtYWNoaW5lIHJ1bm5pbmcgSG9iPw0KPg0KPldlIGNhbiBlYXNpbHkgZGV0ZWN0IHRo
+YXQsIHllcy4gVGhlIGRpZmZpY3VsdHkgd2l0aCBlbmFibGluZyB0aGlzIGtpbmQNCj5vZiBmZWF0
+dXJlIGluIHRoZSBwYXN0IGhhcyBiZWVuIGJhbGFuY2luZyBiZXR3ZWVuIHByb3ZpZGluZyBhbiBh
+Y2N1cmF0ZQ0KPnJlY29tbWVuZGF0aW9uIGFuZCBhbGxvd2luZyB0aGUgdXNlciB0byBpZ25vcmUg
+aXQuDQo+DQo+SSB3b25kZXIgaWYgdGhpcyB3b3VsZCBiZSBiZXR0ZXIgYXMgYSBmZWF0dXJlIGZv
+ciBsYXRlciB0byBhbGxvdyB1cyBtb3JlDQo+dGltZSB0byBnZXQgaXQgcmlnaHQ/DQo+DQo+DQo+
+Pj4gRm9yIHRoZSBkaXJlY3RvcmllcyBvbiBwYWdlIDEzIHdvdWxkIGl0IG1ha2Ugc2Vuc2UgdG8g
+aGF2ZSBhIHJlc2V0DQo+Pj4gYnV0dG9uIHRvIG1vcmUgZWFzaWx5IGdldCBiYWNrIHRvIHRoZSBk
+ZWZhdWx0cz8NCj4+DQo+PiBZZXMsIHRoaXMgcHJvYmFibHkgbWFrZXMgc2Vuc2UuIEknbGwgYWRk
+IHRoYXQgdG8gdGhlIGRvY3VtZW50IG5leHQgd2Vlay4NCj4NCj5HcmVhdCwgdGhhbmtzLg0KPg0K
+Pkpvc2h1YQ0KPi0tIA0KPkpvc2h1YSBMb2NrDQo+ICAgICAgICAgWW9jdG8gUHJvamVjdCAiSm9o
+YW5uZXMgZmFjdG90dW0iDQo+ICAgICAgICAgSW50ZWwgT3BlbiBTb3VyY2UgVGVjaG5vbG9neSBD
+ZW50cmUNCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tCkludGVsIENvcnBvcmF0aW9uIChVSykgTGltaXRlZApSZWdp
+c3RlcmVkIE5vLiAxMTM0OTQ1IChFbmdsYW5kKQpSZWdpc3RlcmVkIE9mZmljZTogUGlwZXJzIFdh
+eSwgU3dpbmRvbiBTTjMgMVJKClZBVCBObzogODYwIDIxNzMgNDcKClRoaXMgZS1tYWlsIGFuZCBh
+bnkgYXR0YWNobWVudHMgbWF5IGNvbnRhaW4gY29uZmlkZW50aWFsIG1hdGVyaWFsIGZvcgp0aGUg
+c29sZSB1c2Ugb2YgdGhlIGludGVuZGVkIHJlY2lwaWVudChzKS4gQW55IHJldmlldyBvciBkaXN0
+cmlidXRpb24KYnkgb3RoZXJzIGlzIHN0cmljdGx5IHByb2hpYml0ZWQuIElmIHlvdSBhcmUgbm90
+IHRoZSBpbnRlbmRlZApyZWNpcGllbnQsIHBsZWFzZSBjb250YWN0IHRoZSBzZW5kZXIgYW5kIGRl
+bGV0ZSBhbGwgY29waWVzLgo=
 
 
