@@ -1,29 +1,26 @@
-Return-Path: <paulepanter@users.sourceforge.net>
-Received: from mail.gw90.de (mail.gw90.de [188.40.100.199])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC4F8E004D2
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 13:44:34 -0800 (PST)
-Received: from f053043073.adsl.alicedsl.de ([78.53.43.73]
-	helo=[192.168.178.43])
-	by mail.gw90.de with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.69) (envelope-from <paulepanter@users.sourceforge.net>)
-	id 1RvFJd-0001P7-1X; Wed, 08 Feb 2012 21:44:37 +0000
-Message-ID: <1328737469.18522.9.camel@mattotaupa>
-From: Paul Menzel <paulepanter@users.sourceforge.net>
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Date: Wed, 08 Feb 2012 22:44:29 +0100
-In-Reply-To: <4F32C2B3.7020200@intel.com>
-References: <4F323C52.8030304@intel.com>
-	<CDED78A957032E45B3239CDDA7642D1508437968@ORSMSX105.amr.corp.intel.com>
-	<CALZ2gZX3LMTcJ11qg5T7RAJRGpcR3fE0YB2cWMbmXPzo3Vpqqg@mail.gmail.com>
-	<CAMKF1spwxYzxRM2NbYfaU_GLXqjBtuXi5kO_Up6t2MS1zREi4g@mail.gmail.com>
-	<CALZ2gZWmpnhxg=aa3qLbrpQLJqfgOn2W5WH0369rdHqyKqaD-A@mail.gmail.com>
-	<4F32C2B3.7020200@intel.com>
-X-Mailer: Evolution 3.2.2-1 
-Mime-Version: 1.0
-X-Mailman-Approved-At: Wed, 08 Feb 2012 14:06:11 -0800
+Return-Path: <sgw@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F078E004D2
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 15:18:44 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 08 Feb 2012 15:18:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104691560"
+Received: from unknown (HELO [10.255.14.241]) ([10.255.14.241])
+	by azsmga001.ch.intel.com with ESMTP; 08 Feb 2012 15:18:43 -0800
+Message-ID: <4F3302D3.7070507@linux.intel.com>
+Date: Wed, 08 Feb 2012 15:18:43 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
+MIME-Version: 1.0
+To: Daniel Stenberg <daniel@haxx.se>
+References: <4F323C52.8030304@intel.com> <20120208100718.GB8335@giant>
+	<4F32C595.4040508@linux.intel.com>
+	<alpine.DEB.2.00.1202082215320.8688@tvnag.unkk.fr>
+In-Reply-To: <alpine.DEB.2.00.1202082215320.8688@tvnag.unkk.fr>
 Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: [OE-core] Upstream-Status finally @ 100%
+Subject: Re: Upstream-Status finally @ 100%
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,61 +32,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Feb 2012 21:44:35 -0000
-X-Groupsio-MsgNum: 4769
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-Lgnmqb0x5coeFufMMfyP"
+X-List-Received-Date: Wed, 08 Feb 2012 23:18:44 -0000
+Content-Type: text/plain; charset=ISO-8859-15; format=flowed
+Content-Transfer-Encoding: 8bit
 
---=-Lgnmqb0x5coeFufMMfyP
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On 02/08/2012 01:26 PM, Daniel Stenberg wrote:
+> On Wed, 8 Feb 2012, Saul Wold wrote:
+>
+>> If the author of curl would like to review and/or implement
+>> modification for OE that would be awesome, feel free to share the
+>> patches with them.
+>
+> I am the maintainer of curl.
+>
+> The curl patches Björn mentioned are clearly not written in way intended
+> to be "upstreamable" so they cannot be accepted by the curl project and
+> nobody has tried to.
+>
+I am sure there are many patches like that in OE, they are written, 
+tested and then forgotten about, our goal here is to not let them get 
+forgotten.
 
-Am Mittwoch, den 08.02.2012, 10:45 -0800 schrieb Saul Wold:
-> On 02/08/2012 10:04 AM, Osier-mixon, Jeffrey wrote:
-> > Ah, documentation :)  excellent
+> This said, at least one of the patches fixes a problem that still exists
+> upstream but the yocto patch [*] is made in such a hard-coded way it'd
+> have to be seriously edited to get accepted. The flaw has not even been
+> discussed with or mentioned to the curl project AFAICR...
+>
+> So, room for improvements!
+>
+> [*] =
+> http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-support/curl/curl/noldlibpath.patch
+>
+>
 
-Saul, thank you for the update and enforcing that requirement from the
-commit and patch message guidelines.
+Daniel,
 
-> Jefro:
->=20
-> You can get more info about this from Mark's OE page:
-> http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
->=20
-> The Key thing to note on my numbers is that we have 461 patches that=20
-> could potentially be up-streamed to other communities, depending the=20
-> status of those communities, from active communities accepting patches=
-=20
-> to upstream source that is just download-able with no activity or=20
-> maintainers.
+I think Khem has already said that we are taking incremental steps here, 
+as I mentioned in my prior email, we have over 1200 patches lurking 
+around in OE currently, initially we have about 460 as marked as pending.
 
-Emphasis should be laid on *could*. Sending these patches upstream still
-has to be done most of the time and most developers do not spend time
-with that. I hope that will improve in the future somehow.
+If you can fix those issues, since we can't address all of them 
+initially or be experts in all upstreams, we would be very grateful to 
+remove 1 or 2 more patches.
 
-> We have 1243 patches overall, which include OE Specific configuration=20
-> patches and Embedded specific tweaks to various upstreams that may not=
-=20
-> be appropriate or acceptable to the upstream community.
+Thanks for your understanding.
 
+Sau!
 
-
-Thanks,
-
-Paul
-
---=-Lgnmqb0x5coeFufMMfyP
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
-
-iEYEABECAAYFAk8y7L0ACgkQPX1aK2wOHVgmcgCeJczuz/uWi+oJ/QLBv5YpdobS
-/DsAnikT7yaIt9D9pfiyAkiIZMTmcSXv
-=lAzC
------END PGP SIGNATURE-----
-
---=-Lgnmqb0x5coeFufMMfyP--
