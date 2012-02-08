@@ -1,23 +1,29 @@
-Return-Path: <cnxsoft@cnx-software.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D281EE0136A
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 00:14:19 -0800 (PST)
-Received: by iagz35 with SMTP id z35so676678iag.35
-	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 00:14:19 -0800 (PST)
-Received: by 10.42.74.195 with SMTP id x3mr14872758icj.41.1328688859212;
-	Wed, 08 Feb 2012 00:14:19 -0800 (PST)
-Received: from [192.168.0.103] (118.172.62.153.adsl.dynamic.totbb.net.
-	[118.172.62.153])
-	by mx.google.com with ESMTPS id ak10sm1229325igc.6.2012.02.08.00.14.17
-	(version=SSLv3 cipher=OTHER); Wed, 08 Feb 2012 00:14:18 -0800 (PST)
-Message-ID: <4F322ECE.5060004@cnx-software.com>
-Date: Wed, 08 Feb 2012 15:14:06 +0700
-From: cnxsoft <cnxsoft@cnx-software.com>
-User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:7.0) Gecko/20110922 Thunderbird/7.0
+Return-Path: <saul.wold@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47BC7E01370
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 01:11:51 -0800 (PST)
+Received: from mail-iy0-f180.google.com ([209.85.210.180])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 08 Feb 2012 01:11:50 -0800
+Received: by iabz7 with SMTP id z7so669351iab.25
+	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 01:11:50 -0800 (PST)
+Received: by 10.50.179.6 with SMTP id dc6mr26206770igc.15.1328692310165;
+	Wed, 08 Feb 2012 01:11:50 -0800 (PST)
+Received: from [10.6.18.245] (c-71-193-189-117.hsd1.wa.comcast.net.
+	[71.193.189.117])
+	by mx.google.com with ESMTPS id ub10sm25742992igb.7.2012.02.08.01.11.47
+	(version=SSLv3 cipher=OTHER); Wed, 08 Feb 2012 01:11:49 -0800 (PST)
+Message-ID: <4F323C52.8030304@intel.com>
+Date: Wed, 08 Feb 2012 01:11:46 -0800
+From: Saul Wold <saul.wold@intel.com>
+Organization: Intel
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: Yocto in Virtualbox
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, 
+	Yocto Project Discussion <yocto@yoctoproject.org>,
+	'Patches and discussions about the oe-core layer'
+	<openembedded-core@lists.openembedded.org>
+Subject: Upstream-Status finally @ 100%
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,44 +35,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Feb 2012 08:14:20 -0000
+X-List-Received-Date: Wed, 08 Feb 2012 09:11:51 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
 
-I have build x86 qemu image using "bitbake -k core-image-sato" following 
-the instructions given at 
-http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-project-qs.html
-I'm running Ubuntu 11.10 in VirtualBox 4.1.6.
+We finally did it!
 
-When I run qemu, qemu starts apparently fine, but the qemu window stays 
-black. So I'm suspecting that either it does not work in Virtualbox or I 
-may have tochange some settings in qemu (e.g. -vga vmware).
+After getting some final patches yesterday, we made it to 100% with 
+patch Upsteam-Status.
 
-Here's the output:
+Total Patches Files: 1243
+All Upstream-Status: 1243
+Fix Upstream-Status: 0
+Need Upstream-Status: 0
+Pending Upstream-Status: 461
 
-runqemu qemux86
+This means we have 461 patches to now work their way into the Upstream
+communities.
 
-Continuing with the following parameters:
-KERNEL: 
-[/home/jaufranc/edev/edison-6.0-build/tmp/deploy/images/bzImage-qemux86.bin]
-ROOTFS: 
-[/home/jaufranc/edev/edison-6.0-build/tmp/deploy/images/core-image-minimal-qemux86.ext3]
-FSTYPE: [ext3]
-Setting up tap interface under sudo
-Acquiring lockfile for tap0...
-Starting distccd...
-Running qemu...
-/home/jaufranc/edev/edison-6.0-build/tmp/sysroots/i686-linux/usr/bin/qemu -kernel 
-/home/jaufranc/edev/edison-6.0-build/tmp/deploy/images/bzImage-qemux86.bin 
--net nic,vlan=0 -net tap,vlan=0,ifname=tap0,script=no,downscript=no -hda 
-/home/jaufranc/edev/edison-6.0-build/tmp/deploy/images/core-image-minimal-qemux86.ext3 
--show-cursor -usb -usbdevice wacom-tablet -vga vmware -enable-gl 
--no-reboot -m 128 --append "vga=0 root=/dev/hda rw mem=128M 
-ip=192.168.7.2::192.168.7.1:255.255.255.0 oprofile.timer=1 "
-Enabling opengl
+Let's work to maintain this, I will be watching incoming patches and 
+using a check script to verify that patches have Upstream-Status.
 
+Thanks to all those people who worked to get Upstream-Status into their 
+patches.
 
-Thanks.
+Sau!
+
 
