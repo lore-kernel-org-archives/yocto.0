@@ -1,31 +1,29 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A929CE004D2
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 13:34:45 -0800 (PST)
-Received: by lagw12 with SMTP id w12so1272235lag.35
-	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 13:34:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=IpcqBSLmeW/164p68xIPFukIC2YnNaNgl6QoovvIy2M=;
-	b=BO7UZEMHdq2RgZp++HtGtqsbUjO3XNzvk2G86dRq9A3oSL2p6i8yDZfQS7fkRf5pmK
-	/r4+CiJ0fWLSxIAdGxmE1wL/8bW88AkK872kyu7yWrBO5c1GV2Ea4YsFPh3sWXQLJWeX
-	iZBBk+bB32ts0/5X9wJIU5GHTvOPTKMpaw+rY=
-Received: by 10.152.114.169 with SMTP id jh9mr16614166lab.20.1328736884307;
-	Wed, 08 Feb 2012 13:34:44 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.152.5.201 with HTTP; Wed, 8 Feb 2012 13:34:14 -0800 (PST)
-In-Reply-To: <alpine.DEB.2.00.1202082215320.8688@tvnag.unkk.fr>
-References: <4F323C52.8030304@intel.com> <20120208100718.GB8335@giant>
-	<4F32C595.4040508@linux.intel.com>
-	<alpine.DEB.2.00.1202082215320.8688@tvnag.unkk.fr>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 8 Feb 2012 13:34:14 -0800
-Message-ID: <CAMKF1spqTfZmBpdJNo-eBQ+P8RRDXf6SAx_6mNZp=gqTj+ZLxg@mail.gmail.com>
-To: Daniel Stenberg <daniel@haxx.se>
+Return-Path: <paulepanter@users.sourceforge.net>
+Received: from mail.gw90.de (mail.gw90.de [188.40.100.199])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC4F8E004D2
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 13:44:34 -0800 (PST)
+Received: from f053043073.adsl.alicedsl.de ([78.53.43.73]
+	helo=[192.168.178.43])
+	by mail.gw90.de with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.69) (envelope-from <paulepanter@users.sourceforge.net>)
+	id 1RvFJd-0001P7-1X; Wed, 08 Feb 2012 21:44:37 +0000
+Message-ID: <1328737469.18522.9.camel@mattotaupa>
+From: Paul Menzel <paulepanter@users.sourceforge.net>
+To: Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Date: Wed, 08 Feb 2012 22:44:29 +0100
+In-Reply-To: <4F32C2B3.7020200@intel.com>
+References: <4F323C52.8030304@intel.com>
+	<CDED78A957032E45B3239CDDA7642D1508437968@ORSMSX105.amr.corp.intel.com>
+	<CALZ2gZX3LMTcJ11qg5T7RAJRGpcR3fE0YB2cWMbmXPzo3Vpqqg@mail.gmail.com>
+	<CAMKF1spwxYzxRM2NbYfaU_GLXqjBtuXi5kO_Up6t2MS1zREi4g@mail.gmail.com>
+	<CALZ2gZWmpnhxg=aa3qLbrpQLJqfgOn2W5WH0369rdHqyKqaD-A@mail.gmail.com>
+	<4F32C2B3.7020200@intel.com>
+X-Mailer: Evolution 3.2.2-1 
+Mime-Version: 1.0
+X-Mailman-Approved-At: Wed, 08 Feb 2012 14:06:11 -0800
 Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: Upstream-Status finally @ 100%
+Subject: Re: [OE-core] Upstream-Status finally @ 100%
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,43 +35,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Feb 2012 21:34:46 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 08 Feb 2012 21:44:35 -0000
+X-Groupsio-MsgNum: 4769
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-Lgnmqb0x5coeFufMMfyP"
+
+--=-Lgnmqb0x5coeFufMMfyP
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 8, 2012 at 1:26 PM, Daniel Stenberg <daniel@haxx.se> wrote:
-> On Wed, 8 Feb 2012, Saul Wold wrote:
->
->> If the author of curl would like to review and/or implement modification
->> for OE that would be awesome, feel free to share the patches with them.
->
->
-> I am the maintainer of curl.
->
-> The curl patches Bj=C3=B6rn mentioned are clearly not written in way inte=
-nded to
-> be "upstreamable" so they cannot be accepted by the curl project and nobo=
-dy
-> has tried to.
->
-> This said, at least one of the patches fixes a problem that still exists
-> upstream but the yocto patch [*] is made in such a hard-coded way it'd ha=
-ve
-> to be seriously edited to get accepted. The flaw has not even been discus=
-sed
-> with or mentioned to the curl project AFAICR...
->
-> So, room for improvements!
+Am Mittwoch, den 08.02.2012, 10:45 -0800 schrieb Saul Wold:
+> On 02/08/2012 10:04 AM, Osier-mixon, Jeffrey wrote:
+> > Ah, documentation :)  excellent
 
-We understand the lack of upstreaming hence the process of documenting
-the patches with Upstream-Status
-was put in place. So step by step we are getting there where we will
-be able to interact with upstream projects
-on the patches we carry. The first step it to account for them which
-we did. Next step
-would be to interact with respective upstream projects and propose the
-patches or describe
-the problems if they are to be fixed differently.
+Saul, thank you for the update and enforcing that requirement from the
+commit and patch message guidelines.
 
--Khem
+> Jefro:
+>=20
+> You can get more info about this from Mark's OE page:
+> http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
+>=20
+> The Key thing to note on my numbers is that we have 461 patches that=20
+> could potentially be up-streamed to other communities, depending the=20
+> status of those communities, from active communities accepting patches=
+=20
+> to upstream source that is just download-able with no activity or=20
+> maintainers.
 
+Emphasis should be laid on *could*. Sending these patches upstream still
+has to be done most of the time and most developers do not spend time
+with that. I hope that will improve in the future somehow.
+
+> We have 1243 patches overall, which include OE Specific configuration=20
+> patches and Embedded specific tweaks to various upstreams that may not=
+=20
+> be appropriate or acceptable to the upstream community.
+
+
+
+Thanks,
+
+Paul
+
+--=-Lgnmqb0x5coeFufMMfyP
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iEYEABECAAYFAk8y7L0ACgkQPX1aK2wOHVgmcgCeJczuz/uWi+oJ/QLBv5YpdobS
+/DsAnikT7yaIt9D9pfiyAkiIZMTmcSXv
+=lAzC
+-----END PGP SIGNATURE-----
+
+--=-Lgnmqb0x5coeFufMMfyP--
