@@ -1,34 +1,23 @@
-Return-Path: <saul.wold@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21528E0059B
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 10:45:13 -0800 (PST)
-Received: from mail-gx0-f180.google.com ([209.85.161.180])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 08 Feb 2012 10:45:13 -0800
-Received: by ggnr1 with SMTP id r1so454450ggn.25
-	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 10:45:12 -0800 (PST)
-Received: by 10.50.203.66 with SMTP id ko2mr34044735igc.7.1328726712183;
-	Wed, 08 Feb 2012 10:45:12 -0800 (PST)
-Received: from [10.6.18.245] (c-71-193-189-117.hsd1.wa.comcast.net.
-	[71.193.189.117])
-	by mx.google.com with ESMTPS id r18sm40701ibh.4.2012.02.08.10.45.09
-	(version=SSLv3 cipher=OTHER); Wed, 08 Feb 2012 10:45:10 -0800 (PST)
-Message-ID: <4F32C2B3.7020200@intel.com>
-Date: Wed, 08 Feb 2012 10:45:07 -0800
-From: Saul Wold <saul.wold@intel.com>
-Organization: Intel
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0
-MIME-Version: 1.0
-To: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
+Return-Path: <bjst@giant.haxx.se>
+Received: from giant.haxx.se (giant.haxx.se [80.67.6.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87FFDE01370
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 02:07:22 -0800 (PST)
+Received: from giant.haxx.se (localhost.localdomain [127.0.0.1])
+	by giant.haxx.se (8.14.4/8.14.4/Debian-2) with ESMTP id q18A7JRq016770
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT)
+	for <yocto@yoctoproject.org>; Wed, 8 Feb 2012 11:07:19 +0100
+Received: (from bjst@localhost)
+	by giant.haxx.se (8.14.4/8.14.4/Submit) id q18A7IEr016769
+	for yocto@yoctoproject.org; Wed, 8 Feb 2012 11:07:18 +0100
+Date: Wed, 8 Feb 2012 11:07:18 +0100
+From: =?iso-8859-1?Q?Bj=F6rn?= Stenberg <bjst@enea.com>
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Message-ID: <20120208100718.GB8335@giant>
 References: <4F323C52.8030304@intel.com>
-	<CDED78A957032E45B3239CDDA7642D1508437968@ORSMSX105.amr.corp.intel.com>
-	<CALZ2gZX3LMTcJ11qg5T7RAJRGpcR3fE0YB2cWMbmXPzo3Vpqqg@mail.gmail.com>
-	<CAMKF1spwxYzxRM2NbYfaU_GLXqjBtuXi5kO_Up6t2MS1zREi4g@mail.gmail.com>
-	<CALZ2gZWmpnhxg=aa3qLbrpQLJqfgOn2W5WH0369rdHqyKqaD-A@mail.gmail.com>
-In-Reply-To: <CALZ2gZWmpnhxg=aa3qLbrpQLJqfgOn2W5WH0369rdHqyKqaD-A@mail.gmail.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
+MIME-Version: 1.0
+In-Reply-To: <4F323C52.8030304@intel.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Mailman-Approved-At: Wed, 08 Feb 2012 10:45:43 -0800
 Subject: Re: Upstream-Status finally @ 100%
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,56 +30,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Feb 2012 18:45:14 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 08 Feb 2012 10:07:23 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On 02/08/2012 10:04 AM, Osier-mixon, Jeffrey wrote:
-> Ah, documentation :)  excellent
->
+Saul Wold wrote:
+> After getting some final patches yesterday, we made it to 100% with
+> patch Upsteam-Status.
 
-Jefro:
+Who sets the Upstream-Status? Are there guidelines how to do it?
 
-You can get more info about this from Mark's OE page:
-http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
+I spoke to the author of curl and mentioned the two patches in Yocto against it, both of which are marked as "Upstream-Status: Inappropriate". He said those patches were never submitted to him.
 
-The Key thing to note on my numbers is that we have 461 patches that 
-could potentially be up-streamed to other communities, depending the 
-status of those communities, from active communities accepting patches 
-to upstream source that is just download-able with no activity or 
-maintainers.
+Are we dismissing patches without even giving upstream a chance to comment?
 
-We have 1243 patches overall, which include OE Specific configuration 
-patches and Embedded specific tweaks to various upstreams that may not 
-be appropriate or acceptable to the upstream community.
-
-Sau!
-
-
-
-
-> On Wed, Feb 8, 2012 at 9:45 AM, Khem Raj <raj.khem@gmail.com
-> <mailto:raj.khem@gmail.com>> wrote:
->
->     On Wed, Feb 8, 2012 at 9:34 AM, Osier-mixon, Jeffrey
->     <jeffrey.osier-mixon@intel.com
->     <mailto:jeffrey.osier-mixon@intel.com>> wrote:
->      > This sounds fantastic, and I'd love to create a page on the website
->      > reflecting this. Just so I am clear, what exactly is this 100%
->     of? Do we
->      > have no local patches to upstream projects at all?
->
->     it means that all patches have a field 'Upstream-Status'
->     and for most of them it reflects the status of patch w.r.t. upstream
->     of given package
->
->
->
->
-> --
-> Jeff Osier-Mixon http://jefro.net/blog
-> Yocto Project Community Manager @Intel http://yoctoproject.org
-> <http://yoctoproject.org/>
->
-
+-- 
+Björn
 
