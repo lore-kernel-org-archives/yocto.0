@@ -1,34 +1,23 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 083B7E01372
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 02:24:32 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 08 Feb 2012 02:24:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="115388755"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.3.242])
-	by fmsmga001.fm.intel.com with ESMTP; 08 Feb 2012 02:24:31 -0800
-Received: from irsmsx102.ger.corp.intel.com (163.33.3.155) by
-	irsmsx602.ger.corp.intel.com (163.33.3.242) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 8 Feb 2012 10:23:07 +0000
-Received: from irsmsx101.ger.corp.intel.com ([169.254.1.99]) by
-	IRSMSX102.ger.corp.intel.com ([169.254.2.194]) with mapi id
-	14.01.0355.002; Wed, 8 Feb 2012 10:23:06 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Joshua Lock <josh@linux.intel.com>
-Thread-Topic: [yocto] RFC: Hob 1.2 design
-Thread-Index: AQHM5kulEORhW2hRwEWGTPgji6fKMA==
-Date: Wed, 8 Feb 2012 10:23:06 +0000
-Message-ID: <CB57FD70.768C%belen.barros.pena@intel.com>
-In-Reply-To: <4F314E7F.7060108@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.14.0.111121
-x-originating-ip: [10.254.196.27]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RFC: Hob 1.2 design
+Return-Path: <josh@hipro.co.in>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F760E01372
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 04:49:57 -0800 (PST)
+Received: by iagz35 with SMTP id z35so1052937iag.35
+	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 04:49:57 -0800 (PST)
+Received: by 10.50.184.168 with SMTP id ev8mr32927321igc.29.1328705397282;
+	Wed, 08 Feb 2012 04:49:57 -0800 (PST)
+Received: from [192.168.10.231] ([59.99.251.45])
+	by mx.google.com with ESMTPS id l28sm2754036ibc.3.2012.02.08.04.49.55
+	(version=SSLv3 cipher=OTHER); Wed, 08 Feb 2012 04:49:56 -0800 (PST)
+Message-ID: <1328705392.2662.28.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Wed, 08 Feb 2012 18:19:52 +0530
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.2.2-1 
+Mime-Version: 1.0
+Subject: sysroot and boost.m4 library search path problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,107 +29,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Feb 2012 10:24:33 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <F3795F23114E7A4D81E8BD654B1408E4@intel.com>
+X-List-Received-Date: Wed, 08 Feb 2012 12:49:58 -0000
+X-Groupsio-MsgNum: 4746
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-Wnm8l9+NxCrh2vhYRixs"
+
+--=-Wnm8l9+NxCrh2vhYRixs
+Content-Type: multipart/mixed; boundary="=-qMtCs2ETxAqKw+VCGCXI"
+
+--=-qMtCs2ETxAqKw+VCGCXI
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Just to clarify: videos show relevant functionality to a specific design
-piece. The fact that a video does not show something it doesn't mean the
-functionality has gone away. If I showed everything on each video they
-would be very very long (and very very boring) videos.  I hope this
-explains.=20
+Hello all,
+	While trying to build my user space application in yocto, the boost.m4
+was looking packages in the host (i.e host contamination, thereby
+resulting in configure error). This appears to be a problem in boost.m4
+which ignores the sysroot option while searching for libraries. In the
+libtool recipe of yocto I find that --with-sysroot option has been
+renamed to --with-libtool-sysroot.=20
 
-Given the time constraints we have, the little design documentation I am
-producing is incomplete. Therefore, it is very important that if you have
-any questions, doubts, thoughts, feedback, general comments etc about the
-Hob UI, you get in touch with me. Even if the question sounds very small
-or trivial: that's what I am here for.
+To address this problem, I've written a patch for boost.m4 specifically
+for yocto. I believe this will be helpful to others who are using boost
+libraries. I guess, I have to send a separate patch to boost.m4
+maintainer using '$with-sysroot' variable.
 
-Cheers
+Regards
+Joshua
+--=20
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
 
-Belen
+--=-qMtCs2ETxAqKw+VCGCXI
+Content-Disposition: attachment; filename="boost.m4.patch"
+Content-Type: text/x-patch; name="boost.m4.patch"; charset="UTF-8"
+Content-Transfer-Encoding: base64
 
+ZGlmZiAtLWdpdCBhL2Jvb3N0Lm00IGIvYm9vc3QubTQNCmluZGV4IGIxY2IxYjEuLjRmMWEwZDEg
+MTAwNjQ0DQotLS0gYS9ib29zdC5tNA0KKysrIGIvYm9vc3QubTQNCkBAIC0zNzQsMTMgKzM3NCwy
+NyBAQCBmb3IgYm9vc3RfcnRvcHRfIGluICRib29zdF9ydG9wdCAnJyAtZDsgZG8NCiAgICAgY2Fz
+ZSAkYm9vc3RfZmFpbGVkX2xpYnMgaW4gIygNCiAgICAgICAqQCRib29zdF9saWJAKikgY29udGlu
+dWU7Ow0KICAgICBlc2FjDQotICAgICMgSWYgd2l0aF9ib29zdCBpcyBlbXB0eSwgd2UnbGwgc2Vh
+cmNoIGluIC9saWIgZmlyc3QsIHdoaWNoIGlzIG5vdCBxdWl0ZQ0KLSAgICAjIHJpZ2h0IHNvIGlu
+c3RlYWQgd2UnbGwgdHJ5IHRvIGEgbG9jYXRpb24gYmFzZWQgb24gd2hlcmUgdGhlIGhlYWRlcnMg
+YXJlLg0KLSAgICBib29zdF90bXBfbGliPSR3aXRoX2Jvb3N0DQotICAgIHRlc3QgeCIkd2l0aF9i
+b29zdCIgPSB4ICYmIGJvb3N0X3RtcF9saWI9JHtib29zdF9jdl9pbmNfcGF0aCUvaW5jbHVkZX0N
+Ci0gICAgZm9yIGJvb3N0X2xkcGF0aCBpbiAiJGJvb3N0X3RtcF9saWIvbGliIiAnJyBcDQotICAg
+ICAgICAgICAgIC9vcHQvbG9jYWwvbGliKiAvdXNyL2xvY2FsL2xpYiogL29wdC9saWIqIC91c3Iv
+bGliKiBcDQotICAgICAgICAgICAgICIkd2l0aF9ib29zdCIgQzovQm9vc3QvbGliIC9saWIqDQor
+ICAgICMgSWYgd2l0aF9ib29zdCBpcyBlbXB0eSwgd2UnbGwgc2VhcmNoIGluIC9saWIgZmlyc3Qs
+IHdoaWNoIGlzIG5vdA0KKyAgICAjIHF1aXRlIHJpZ2h0IHNvIGluc3RlYWQgd2UnbGwgdHJ5IHRv
+IGEgbG9jYXRpb24gYmFzZWQgb24gd2hlcmUNCisgICAgIyB0aGUgaGVhZGVycyBhcmUuICBJZiB3
+aXRoX3N5c3Jvb3QgaXMgc3BlY2lmaWVkIHRoZW4gd2UgcHJlcGVuZA0KKyAgICAjIHdpdGhfc3lz
+cm9vdCBwYXRoIHRvIHRoZSBib29zdF90bXBfbGliIHZhcmlhYmxlDQorICAgIGlmIFtbIC16ICR7
+d2l0aF9saWJ0b29sX3N5c3Jvb3QreHh4fSBdXTsgdGhlbg0KKyAgICAgICAjIHdpdGhfc3lzcm9v
+dCB2YXJpYWJsZSBub3Qgc2V0IGF0IGFsbA0KKyAgICAgIGJvb3N0X3RtcF9saWI9JHt3aXRoX2Jv
+b3N0fS9saWINCisgICAgICB0ZXN0IHgiJHdpdGhfYm9vc3QiID0geCAmJiBib29zdF90bXBfbGli
+PSIke2Jvb3N0X2N2X2luY19wYXRoJS9pbmNsdWRlfSBcDQorICAgICAgICAgICAvb3B0L2xvY2Fs
+L2xpYiogL3Vzci9sb2NhbC9saWIqIC9vcHQvbGliKiAvdXNyL2xpYiogXA0KKyAgICAgICAgICAg
+JHt3aXRoX2Jvb3N0fSBDOi9Cb29zdC9saWIgL2xpYioiDQorICAgIGVsc2UNCisgICAgICBib29z
+dF90bXBfbGliPSIke3dpdGhfbGlidG9vbF9zeXNyb290fS8ke2Jvb3N0X2N2X2luY19wYXRoJS9p
+bmNsdWRlfSBcDQorICAgICAgICAgICAgICAgICAgJHt3aXRoX2xpYnRvb2xfc3lzcm9vdH0vb3B0
+L2xvY2FsL2xpYiogXA0KKyAgICAgICAgICAgICAgICAgICR7d2l0aF9saWJ0b29sX3N5c3Jvb3R9
+L3Vzci9sb2NhbC9saWIqIFwNCisgICAgICAgICAgICAgICAgICAke3dpdGhfbGlidG9vbF9zeXNy
+b290fS9saWIqIFwNCisgICAgICAgICAgICAgICAgICAke3dpdGhfbGlidG9vbF9zeXNyb290fS91
+c3IvbGliKiBcDQorICAgICAgICAgICAgICAgICAgJHt3aXRoX2xpYnRvb2xfc3lzcm9vdH0vb3B0
+L2xpYiogXA0KKyAgICAgICAgICAgICAgICAgICR7d2l0aF9saWJ0b29sX3N5c3Jvb3R9L0Jvb3N0
+L2xpYiAke3dpdGhfYm9vc3R9Ig0KKyAgICBmaQ0KKw0KKyAgICBmb3IgYm9vc3RfbGRwYXRoIGlu
+ICRib29zdF90bXBfbGliDQogICAgIGRvDQogICAgICAgdGVzdCAtZSAiJGJvb3N0X2xkcGF0aCIg
+fHwgY29udGludWUNCiAgICAgICBib29zdF9zYXZlX0xERkxBR1M9JExERkxBR1MNCkBAIC0xMTA3
+LDExICsxMTIxLDExIEBAIGJvb3N0X3VzZV9zb3VyY2U9Og0KIHRlc3QgLWYgY29uZnRlc3QuJGFj
+X29iamV4dCAmJiBhY19leHQ9JGFjX29iamV4dCAmJiBib29zdF91c2Vfc291cmNlPWZhbHNlICYm
+DQogICBfQVNfRUNIT19MT0coW3JlLXVzaW5nIHRoZSBleGlzdGluZyBjb25mdGVzdC4kYWNfb2Jq
+ZXh0XSkNCiBBU19JRihbX0FDX0RPX1NUREVSUigkYWNfbGluaykgJiYgew0KLQkgdGVzdCAteiAi
+JGFjX1tdX0FDX0xBTkdfQUJCUkVWW11fd2Vycm9yX2ZsYWciIHx8DQotCSB0ZXN0ICEgLXMgY29u
+ZnRlc3QuZXJyDQorICAgICAgICB0ZXN0IC16ICIkYWNfW11fQUNfTEFOR19BQkJSRVZbXV93ZXJy
+b3JfZmxhZyIgfHwNCisgICAgICAgIHRlc3QgISAtcyBjb25mdGVzdC5lcnINCiAgICAgICAgfSAm
+JiB0ZXN0IC1zIGNvbmZ0ZXN0JGFjX2V4ZWV4dCAmJiB7DQotCSB0ZXN0ICIkY3Jvc3NfY29tcGls
+aW5nIiA9IHllcyB8fA0KLQkgJGFzX2V4ZWN1dGFibGVfcCBjb25mdGVzdCRhY19leGVleHQNCisg
+ICAgICAgIHRlc3QgIiRjcm9zc19jb21waWxpbmciID0geWVzIHx8DQorICAgICAgICAkYXNfZXhl
+Y3V0YWJsZV9wIGNvbmZ0ZXN0JGFjX2V4ZWV4dA0KIGRubCBGSVhNRTogdXNlIEFTX1RFU1RfWCBp
+bnN0ZWFkIHdoZW4gMi42MSBpcyB3aWRlc3ByZWFkIGVub3VnaC4NCiAgICAgICAgfV0sDQogICAg
+ICAgWyQyXSwNCg==
 
+--=-qMtCs2ETxAqKw+VCGCXI--
 
-On 07/02/2012 16:17, "Joshua Lock" <josh@linux.intel.com> wrote:
+--=-Wnm8l9+NxCrh2vhYRixs
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
->Hi Belen,
->
->Thanks for clarifying.
->
->Shane - I noticed at least one bug has been closed because the second
->video didn't show the features (#1804) - seems like this isn't what was
->intended by features 'disappearing' in the latest video.
->
->http://bugzilla.pokylinux.org/show_bug.cgi?id=3D1804
->
->Cheers,
->Joshua
->
->On 07/02/12 03:23, Barros Pena, Belen wrote:
->> Hi Joshua,
->>
->> Additional package details appear on clicking the package name using an
->> information bubble. The bubble is also dismissed on click using a
->>'close'
->> button. This functionality is shown on the first video (not on the
->>second
->> one: I skipped it to keep it short).
->>
->> Cheers
->>
->> Belen
->>
->> On 06/02/2012 21:32, "Joshua Lock"<josh@linux.intel.com>  wrote:
->>
->>> On 31/01/12 17:39, Wang, Shane wrote:
->>>> Hi, all,
->>>>
->>>> Belen has a new video for Hob2 workflow and design.
->>>>
->>>> https://wiki.yoctoproject.org/wiki/File:Hob1.2-screencast2.mov
->>>
->>> It just came to my attention through another channel that the
->>> description column of the packages table is no longer present.
->>>
->>> There had been some discussion about how to show relevant description
->>> information in that column, so I'm surprised to see it go.
->>>
->>> Belen, I assume from a design perspective this field was removed as it
->>> didn't show anything particularly useful? If we have useful data to
->>> include in that field is there a more appropriate way to integrate it
->>> into the UI? Perhaps a tooltip? Or an information overlay as has been
->>> used in other areas of the design?
->>>
->>> I'm concerned that if we give the user a list of packages without any
->>> more information we aren't making it easy for them to build an OS image
->>> without already understanding exactly all of the components they need -
->>> thoughts?
->>>
->>> Cheers,
->>> Joshua
->>> --
->>> Joshua Lock
->>>          Yocto Project "Johannes factotum"
->>>          Intel Open Source Technology Centre
->>
->
->--=20
->Joshua Lock
->         Yocto Project "Johannes factotum"
->         Intel Open Source Technology Centre
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
 
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
+iEYEABECAAYFAk8yb3AACgkQWw85XwuSFMJWoQCfQ15h1WYpFnZyXunYHi+eiVLa
+h1wAnjWzEKpIjM/OuSHcPWNpJcRCoTwi
+=VMoO
+-----END PGP SIGNATURE-----
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
-
-
+--=-Wnm8l9+NxCrh2vhYRixs--
