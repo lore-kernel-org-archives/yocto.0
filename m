@@ -1,27 +1,26 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71E64E01372
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 06:06:58 -0800 (PST)
-Received: by dadp13 with SMTP id p13so602241dad.35
-	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 06:06:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=nwLuySWjoPcV1lrNQ86jN4fgiACHdMwns0qZwu5kZ7g=;
-	b=wxey7Hy52l0+tWw4xgu6ALEQLEy6ouac6hG+9DDuO6TYwlpl9j0rwR1RJsioILjp+n
-	m5IqKcsoAsZhoeedZ5p5plph7mH1NPzqMBGYh61SJEHrib6JlyUZS3cXygYDjlseEYI9
-	t8jtjWvRxl/1QUcbVCyqQ1b7CbljbKhsk/29g=
+Return-Path: <cnxsoft@cnx-software.com>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 580AAE01384
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 06:18:53 -0800 (PST)
+Received: by iagz35 with SMTP id z35so1184724iag.35
+	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 06:18:53 -0800 (PST)
+Received: by 10.50.194.170 with SMTP id hx10mr23347438igc.6.1328710732916;
+	Wed, 08 Feb 2012 06:18:52 -0800 (PST)
+Received: from [192.168.0.103] (118.172.58.119.adsl.dynamic.totbb.net.
+	[118.172.58.119])
+	by mx.google.com with ESMTPS id wn7sm147752igc.0.2012.02.08.06.18.51
+	(version=SSLv3 cipher=OTHER); Wed, 08 Feb 2012 06:18:52 -0800 (PST)
+Message-ID: <4F32843F.70500@cnx-software.com>
+Date: Wed, 08 Feb 2012 21:18:39 +0700
+From: cnxsoft <cnxsoft@cnx-software.com>
+User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:7.0) Gecko/20110922 Thunderbird/7.0
 MIME-Version: 1.0
-Received: by 10.68.224.9 with SMTP id qy9mr69413657pbc.102.1328710002977; Wed,
-	08 Feb 2012 06:06:42 -0800 (PST)
-Received: by 10.68.218.10 with HTTP; Wed, 8 Feb 2012 06:06:42 -0800 (PST)
-In-Reply-To: <4F322ECE.5060004@cnx-software.com>
+To: autif khan <autif.mlist@gmail.com>
 References: <4F322ECE.5060004@cnx-software.com>
-Date: Wed, 8 Feb 2012 09:06:42 -0500
-Message-ID: <CADzUK1LbB_yr6pfO4nWsSWz4MTEyZDsMBwtn_G4qzdghPCsrhg@mail.gmail.com>
-From: autif khan <autif.mlist@gmail.com>
-To: cnxsoft <cnxsoft@cnx-software.com>
+	<CADzUK1LbB_yr6pfO4nWsSWz4MTEyZDsMBwtn_G4qzdghPCsrhg@mail.gmail.com>
+In-Reply-To: <CADzUK1LbB_yr6pfO4nWsSWz4MTEyZDsMBwtn_G4qzdghPCsrhg@mail.gmail.com>
+X-Gm-Message-State: ALoCoQl4zOZJ2Syrvno9gh1yEz9O49h55Vr/N1GdhXvHc4zmakTNNZTPDVSZYtW+CqTvh2oUszmt
 Cc: yocto@yoctoproject.org
 Subject: Re: Yocto in Virtualbox
 X-BeenThere: yocto@yoctoproject.org
@@ -35,45 +34,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Feb 2012 14:06:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 08 Feb 2012 14:18:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Feb 8, 2012 at 3:14 AM, cnxsoft <cnxsoft@cnx-software.com> wrote:
-> Hi,
->
-> I have build x86 qemu image using "bitbake -k core-image-sato" following the
-> instructions given at
-> http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-project-qs.html
-> I'm running Ubuntu 11.10 in VirtualBox 4.1.6.
->
-> When I run qemu, qemu starts apparently fine, but the qemu window stays
-> black. So I'm suspecting that either it does not work in Virtualbox or I may
-> have tochange some settings in qemu (e.g. -vga vmware).
->
-> Here's the output:
->
-> runqemu qemux86
->
-> Continuing with the following parameters:
-> KERNEL:
-> [/home/jaufranc/edev/edison-6.0-build/tmp/deploy/images/bzImage-qemux86.bin]
-> ROOTFS:
-> [/home/jaufranc/edev/edison-6.0-build/tmp/deploy/images/core-image-minimal-qemux86.ext3]
-> FSTYPE: [ext3]
-> Setting up tap interface under sudo
-> Acquiring lockfile for tap0...
-> Starting distccd...
-> Running qemu...
-> /home/jaufranc/edev/edison-6.0-build/tmp/sysroots/i686-linux/usr/bin/qemu
-> -kernel
-> /home/jaufranc/edev/edison-6.0-build/tmp/deploy/images/bzImage-qemux86.bin
-> -net nic,vlan=0 -net tap,vlan=0,ifname=tap0,script=no,downscript=no -hda
-> /home/jaufranc/edev/edison-6.0-build/tmp/deploy/images/core-image-minimal-qemux86.ext3
-> -show-cursor -usb -usbdevice wacom-tablet -vga vmware -enable-gl -no-reboot
-> -m 128 --append "vga=0 root=/dev/hda rw mem=128M
-> ip=192.168.7.2::192.168.7.1:255.255.255.0 oprofile.timer=1 "
-> Enabling opengl
->
+On 08/02/2012 21:06, autif khan wrote:
+> On Wed, Feb 8, 2012 at 3:14 AM, cnxsoft<cnxsoft@cnx-software.com>  wrote:
+>> Hi,
+>>
+>> I have build x86 qemu image using "bitbake -k core-image-sato" following the
+>> instructions given at
+>> http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-project-qs.html
+>> I'm running Ubuntu 11.10 in VirtualBox 4.1.6.
+>>
+>> When I run qemu, qemu starts apparently fine, but the qemu window stays
+>> black. So I'm suspecting that either it does not work in Virtualbox or I may
+>> have tochange some settings in qemu (e.g. -vga vmware).
+>>
+>> Here's the output:
+>>
+>> runqemu qemux86
+>>
+>> Continuing with the following parameters:
+>> KERNEL:
+>> [/home/jaufranc/edev/edison-6.0-build/tmp/deploy/images/bzImage-qemux86.bin]
+>> ROOTFS:
+>> [/home/jaufranc/edev/edison-6.0-build/tmp/deploy/images/core-image-minimal-qemux86.ext3]
+>> FSTYPE: [ext3]
+>> Setting up tap interface under sudo
+>> Acquiring lockfile for tap0...
+>> Starting distccd...
+>> Running qemu...
+>> /home/jaufranc/edev/edison-6.0-build/tmp/sysroots/i686-linux/usr/bin/qemu
+>> -kernel
+>> /home/jaufranc/edev/edison-6.0-build/tmp/deploy/images/bzImage-qemux86.bin
+>> -net nic,vlan=0 -net tap,vlan=0,ifname=tap0,script=no,downscript=no -hda
+>> /home/jaufranc/edev/edison-6.0-build/tmp/deploy/images/core-image-minimal-qemux86.ext3
+>> -show-cursor -usb -usbdevice wacom-tablet -vga vmware -enable-gl -no-reboot
+>> -m 128 --append "vga=0 root=/dev/hda rw mem=128M
+>> ip=192.168.7.2::192.168.7.1:255.255.255.0 oprofile.timer=1 "
+>> Enabling opengl
+>>
+> So, what is the problem?
 
-So, what is the problem?
+Qemu starts apparently fine, but the qemu window stays black.
+
 
