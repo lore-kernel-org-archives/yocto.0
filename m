@@ -1,27 +1,36 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9642BE0059B
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 09:00:04 -0800 (PST)
-Received: from mail-iy0-f180.google.com ([209.85.210.180])
-	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 08 Feb 2012 09:00:04 -0800
-Received: by iabz7 with SMTP id z7so1420680iab.25
-	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 09:00:03 -0800 (PST)
-Received: by 10.42.157.133 with SMTP id d5mr27960596icx.46.1328720403595;
-	Wed, 08 Feb 2012 09:00:03 -0800 (PST)
-Received: from [192.168.1.12] (c-76-105-137-48.hsd1.or.comcast.net.
-	[76.105.137.48])
-	by mx.google.com with ESMTPS id ng9sm3002029igc.3.2012.02.08.09.00.01
-	(version=SSLv3 cipher=OTHER); Wed, 08 Feb 2012 09:00:02 -0800 (PST)
-Message-ID: <4F32AA18.2030609@intel.com>
-Date: Wed, 08 Feb 2012 09:00:08 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71620E0059B
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 09:08:49 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 08 Feb 2012 09:07:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="115514697"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.226.211])
+	by fmsmga001.fm.intel.com with ESMTP; 08 Feb 2012 09:07:23 -0800
+Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
+	orsmsx602.amr.corp.intel.com (10.22.226.211) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 8 Feb 2012 09:07:19 -0800
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.3]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.48]) with mapi id
+	14.01.0355.002; Wed, 8 Feb 2012 09:07:19 -0800
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "Wold, Saul" <saul.wold@intel.com>, Richard Purdie
+	<richard.purdie@linuxfoundation.org>, Yocto Project Discussion
+	<yocto@yoctoproject.org>, 'Patches and discussions about the oe-core layer'
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: Upstream-Status finally @ 100%
+Thread-Index: AQHM5kGw16v1X9fu30KM2KcCXO0vvJYzPJAw
+Date: Wed, 8 Feb 2012 17:07:18 +0000
+Message-ID: <CDED78A957032E45B3239CDDA7642D1508437968@ORSMSX105.amr.corp.intel.com>
+References: <4F323C52.8030304@intel.com>
+In-Reply-To: <4F323C52.8030304@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4F322ECE.5060004@cnx-software.com>
-In-Reply-To: <4F322ECE.5060004@cnx-software.com>
-Subject: Re: Yocto in Virtualbox
+Subject: Re: Upstream-Status finally @ 100%
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,32 +42,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Feb 2012 17:00:04 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 08 Feb 2012 17:08:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 02/08/2012 12:14 AM, cnxsoft wrote:
-> Hi,
->
-> I have build x86 qemu image using "bitbake -k core-image-sato" following
-> the instructions given at
-> http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-project-qs.html
-> I'm running Ubuntu 11.10 in VirtualBox 4.1.6.
->
-> When I run qemu, qemu starts apparently fine, but the qemu window stays
-> black. So I'm suspecting that either it does not work in Virtualbox or I
-> may have tochange some settings in qemu (e.g. -vga vmware).
+> From: Saul Wold [mailto:saul.wold@intel.com]
+> Sent: Wednesday, February 08, 2012 1:12 AM
+>=20
+> We finally did it!
+>=20
+> After getting some final patches yesterday, we made it to 100% with patch
+> Upsteam-Status.
+>=20
+> Total Patches Files: 1243
+> All Upstream-Status: 1243
+> Fix Upstream-Status: 0
+> Need Upstream-Status: 0
+> Pending Upstream-Status: 461
+>=20
+> This means we have 461 patches to now work their way into the Upstream
+> communities.
+>=20
+> Let's work to maintain this, I will be watching incoming patches and usin=
+g a
+> check script to verify that patches have Upstream-Status.
+>=20
+> Thanks to all those people who worked to get Upstream-Status into their
+> patches.
 
-Have you installed the Virtualbox guest additions within your VM?
-
-Fwiw I've not run into any issues doing this with a Fedora 14 and Fedora 
-16 VM (other than the builds themselves being dog slow). I make sure to 
-install the guest additions in all my VMs.
-
-Scott
-
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+Nicely done, all!  I'm hoping we have can a reputation as a strong supporte=
+r of upstream projects, giving back wherever we can.
 
