@@ -1,54 +1,34 @@
-Return-Path: <B29882@freescale.com>
-Received: from ch1outboundpool.messaging.microsoft.com
-	(ch1ehsobe003.messaging.microsoft.com [216.32.181.183])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB04DE00307
-	for <yocto@yoctoproject.org>; Thu,  9 Feb 2012 08:37:28 -0800 (PST)
-Received: from mail31-ch1-R.bigfish.com (10.43.68.231) by
-	CH1EHSOBE018.bigfish.com (10.43.70.68) with Microsoft SMTP Server id
-	14.1.225.23; Thu, 9 Feb 2012 16:37:28 +0000
-Received: from mail31-ch1 (localhost [127.0.0.1])	by mail31-ch1-R.bigfish.com
-	(Postfix) with ESMTP id 624463800BB;
-	Thu,  9 Feb 2012 16:37:28 +0000 (UTC)
-X-SpamScore: -12
-X-BigFish: VS-12(zz9371I936eK168aJ1432N98dKzz1202hzzz2dh2a8h668h839h8e2h8e3hbe9k)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail31-ch1 (localhost.localdomain [127.0.0.1]) by mail31-ch1
-	(MessageSwitch) id 1328805446861752_28331;
-	Thu,  9 Feb 2012 16:37:26 +0000 (UTC)
-Received: from CH1EHSMHS005.bigfish.com (snatpool1.int.messaging.microsoft.com
-	[10.43.68.242])	by mail31-ch1.bigfish.com (Postfix) with ESMTP id
-	CD0C624004C;	Thu,  9 Feb 2012 16:37:26 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS005.bigfish.com
-	(10.43.70.5) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Thu, 9 Feb 2012 16:37:24 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.244]) by
-	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
-	14.01.0355.003; Thu, 9 Feb 2012 10:37:23 -0600
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Joshua Immanuel <josh@hipro.co.in>
-Thread-Topic: [yocto] sysroot and boost.m4 library search path problem
-Thread-Index: AQHM5niN1r384q3zK0Kyp7cAp9TctJY0i4GAgACeOYA=
-Date: Thu, 9 Feb 2012 16:37:23 +0000
-Message-ID: <CAEsOVNcMxCUjm6trU8pX-+H-c_p_e=OG=sjMZFaBG9oeKGbvLg@mail.gmail.com>
-References: <1328705392.2662.28.camel@babel.joshhome>
-	<1328706791.2662.32.camel@babel.joshhome>
-	<CAEsOVNd5Fi1wtDDgWZFCoOtmbs75WA=nu03+0+P2o3D0ifO6PQ@mail.gmail.com>
-	<1328771441.2692.14.camel@babel.joshhome>
-In-Reply-To: <1328771441.2692.14.camel@babel.joshhome>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
+Return-Path: <scott.a.garman@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D81FE00307
+	for <yocto@yoctoproject.org>; Thu,  9 Feb 2012 08:45:06 -0800 (PST)
+Received: from mail-gy0-f180.google.com ([209.85.160.180])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 09 Feb 2012 08:45:06 -0800
+Received: by ghbz22 with SMTP id z22so1022881ghb.25
+	for <yocto@yoctoproject.org>; Thu, 09 Feb 2012 08:45:05 -0800 (PST)
+Received: by 10.50.89.137 with SMTP id bo9mr4570738igb.7.1328805905533;
+	Thu, 09 Feb 2012 08:45:05 -0800 (PST)
+Received: from [127.0.0.1] (masterfoo.zenlinux.com. [207.192.74.254])
+	by mx.google.com with ESMTPS id ub10sm5885651igb.7.2012.02.09.08.45.03
+	(version=SSLv3 cipher=OTHER); Thu, 09 Feb 2012 08:45:04 -0800 (PST)
+Message-ID: <4F33F808.7060202@intel.com>
+Date: Thu, 09 Feb 2012 08:44:56 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111229 Thunderbird/9.0
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	Yocto Project <yocto@yoctoproject.org>
-Subject: Re: sysroot and boost.m4 library search path problem
+To: yocto@yoctoproject.org
+References: <4F322ECE.5060004@cnx-software.com>
+	<CADzUK1LbB_yr6pfO4nWsSWz4MTEyZDsMBwtn_G4qzdghPCsrhg@mail.gmail.com>
+	<4F32843F.70500@cnx-software.com>
+	<E4396C3C-30C9-4878-A116-DFA1EDC638D7@gmail.com>
+	<4F333A3A.8090500@intel.com> <4F3388E6.4060401@cnx-software.com>
+In-Reply-To: <4F3388E6.4060401@cnx-software.com>
+X-Gm-Message-State: ALoCoQlZUo+lwq6XSRMxRgm1zmD+Os8BfPKZsRMMcAr8bJ+xq4Q0lrSMhHzpVDW1MAIT93tJXolg
+Subject: Re: Yocto in Virtualbox (Ubuntu 11.10)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -57,29 +37,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2012 16:37:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <CE32E68AE4C9D0458E0D5F3BAF99CFF7@freescale.net>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 09 Feb 2012 16:45:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 9, 2012 at 1:10 AM, Joshua Immanuel <josh@hipro.co.in> wrote:
-> Hello McClintock,
+On 02/09/2012 12:50 AM, cnxsoft wrote:
+> FYI. have done some further tests with the prebuilt binaries and
+> toolchain (yocto-eglibc-i686-i586-toolchain-gmae-1.0.tar.bz2,
+> bzImage-2.6.37-qemux86-1.0.bin and
+> yocto-image-minimal-dev-qemux86-1.0.rootfs.ext3).
 >
-> On Wed, 2012-02-08 at 15:44 +0000, McClintock Matthew-B29882 wrote:
->> Did you consider taking this patch and adding it to the proper recipe?
+> With Ubuntu 11.10 (Virtual Box), it fails with the same black screen.
+> With Debian Squeeze 6.0.3 (inside Virtual Box), it works fine.
 >
-> The patch is basically for boost.m4. We have the boost package in 'meta'
-> layer. But, boost.m4 is not a part of boost library, it is maintained
-> separately. As the boost doesn't support pkgconfig, boost.m4 comes to
-> the rescue for finding installed boost libraries.
->
-> So, this doesn't fit into any existing recipe. Whichever (autotools
-> build system based) application uses boost library will obviously use
-> boost.m4 and this patch is for them.
+> PS: For Ubuntu, poky-qemu script to pass libGL detection.
 
-Do we need to add a recipe for boost.m4 and then apply your patch on top?
+Thank you for reporting this, I have filed the following bug to track 
+this issue:
 
--M=
+http://bugzilla.pokylinux.org/show_bug.cgi?id=1971
 
+Are you using the default user interface (Unity) in your Ubuntu setup?
+
+Scott
+
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
