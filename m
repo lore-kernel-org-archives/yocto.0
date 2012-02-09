@@ -1,28 +1,31 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B995E00307
-	for <yocto@yoctoproject.org>; Thu,  9 Feb 2012 15:14:43 -0800 (PST)
-Received: from mail-iy0-f180.google.com ([209.85.210.180])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 09 Feb 2012 15:14:43 -0800
-Received: by iabz7 with SMTP id z7so4301270iab.25
-	for <yocto@yoctoproject.org>; Thu, 09 Feb 2012 15:14:42 -0800 (PST)
-Received: by 10.42.19.65 with SMTP id a1mr5453540icb.48.1328829282604;
-	Thu, 09 Feb 2012 15:14:42 -0800 (PST)
-Received: from [127.0.0.1] (masterfoo.zenlinux.com. [207.192.74.254])
-	by mx.google.com with ESMTPS id al9sm6219744igc.5.2012.02.09.15.14.40
-	(version=SSLv3 cipher=OTHER); Thu, 09 Feb 2012 15:14:41 -0800 (PST)
-Message-ID: <4F345358.8060103@intel.com>
-Date: Thu, 09 Feb 2012 15:14:32 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+Return-Path: <John_Cherry@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9A5DE00307
+	for <yocto@yoctoproject.org>; Thu,  9 Feb 2012 15:21:33 -0800 (PST)
+Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
+	by relay1.mentorg.com with esmtp 
+	id 1RvdIz-0004Rp-DM from John_Cherry@mentor.com 
+	for yocto@yoctoproject.org; Thu, 09 Feb 2012 15:21:33 -0800
+Received: from SVR-ORW-FEM-04.mgc.mentorg.com ([147.34.97.41]) by
+	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
+	SMTPSVC(6.0.3790.4675); Thu, 9 Feb 2012 15:21:24 -0800
+Received: from NA-MBX-03.mgc.mentorg.com ([fe80::9a:1569:df57:45b8]) by
+	SVR-ORW-FEM-04.mgc.mentorg.com ([147.34.97.41]) with mapi id
+	14.01.0289.001; Thu, 9 Feb 2012 15:21:33 -0800
+From: "Cherry, John" <John_Cherry@mentor.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Thread-Topic: MEL Kit for Beagle/Panda
+Thread-Index: AczngY7Is59GIYViSiGh2WlZG6xxjw==
+Date: Thu, 9 Feb 2012 23:21:31 +0000
+Message-ID: <43AE86686954984BA6E949465D98484089E431EB@NA-MBX-03.mgc.mentorg.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.34.91.1]
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <4F2CB95F.6040509@intel.com> <4F2F86F0.7020905@enea.com>
-	<CABcZAN=kZCy5=puLzDofDAf5SHuGJBZt_+H+pAUp-HbnoG+VOQ@mail.gmail.com>
-In-Reply-To: <CABcZAN=kZCy5=puLzDofDAf5SHuGJBZt_+H+pAUp-HbnoG+VOQ@mail.gmail.com>
-X-Gm-Message-State: ALoCoQnGWi7nzi6hF8WVQ49D5KOnimC9ysTLDRWvQ4P2YiNbJambfjdiHTYl/WO+3qnAG84RKlfC
-Subject: Re: Trying to re-use sstate.
+X-OriginalArrivalTime: 09 Feb 2012 23:21:24.0781 (UTC)
+	FILETIME=[8A871DD0:01CCE781]
+Subject: MEL Kit for Beagle/Panda
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,62 +37,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2012 23:14:43 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 09 Feb 2012 23:21:34 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_43AE86686954984BA6E949465D98484089E431EBNAMBX03mgcmento_"
 
-On 02/06/2012 07:08 AM, Chris Larson wrote:
-> On Mon, Feb 6, 2012 at 12:53 AM, David Nyström<david.nystrom@enea.com>  wrote:
->> On 02/04/2012 05:51 AM, Scott Garman wrote:
->>>
->>> Hello,
->>>
->>> I'm trying to re-use the sstate from one build directory and move it to
->>> another. It's not working - bitbake is rebuilding *everything*.
->>>
->>> My hunch is the reason for this is because bblayers.conf must differ
->>> between the two build directories, because it uses full paths to the
->>> layer directories.
->>>
->>> By default, when you source oe-init-build-env for the first time, it
->>> generates a bblayers.conf file with full paths to the default layers,
->>> meta and meta-yocto.
->>>
->>> I thought the point of sstate was that I could copy it between build
->>> directories - or even different hosts - and save myself the effort of
->>> rebuilding everything if the remaining metadata was the same?
->>>
->>> Scott
->>>
->> We have the same issue,
->>
->> I tried to setup a buildbot to warm up sstate caches over night,
->> and let developers use this common sstate to speed up build times.
->> Epic fail, since paths usually are not consistent.
->> And it seems you can't even fake  an "identical path" with symlinks
->> either, bitbake detects the symlink and rebuilds everything.
+--_000_43AE86686954984BA6E949465D98484089E431EBNAMBX03mgcmento_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Yocto developers,
+
+Mentor Embedded (part of Mentor Graphics) recently announced the availabili=
+ty of its new Embedded Linux Kit.  This download is absolutely free and ava=
+ilable to anyone that would like to tinker with a prebuilt, Yocto-based ima=
+ge set for both the BeagleBoard and the PandaBoard.  Each kit also contains=
+ a Sourcery CodeBench Lite (integrated cross toolchain), a set of libraries=
+/headers for applications development, and a quick start guide that should =
+get you started right out of the box.
+
+This is not a commercial!  :)  (how can it be...it is free)
+
+BTW, Sean Hudson will be demo'ing the MEL Kit at ELC on both BeagleBoard an=
+d PandaBoard.  This will all happen somewhere at the ELC Technical Showcase=
+.  Stop by and say hi if you are at ELC.
+
+Check it out at: http://www.mentor.com/embedded-software/downloads/linux-ki=
+ts/?cmpid=3D6929
+
+Cheers,
+John
+
+
+--_000_43AE86686954984BA6E949465D98484089E431EBNAMBX03mgcmento_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
->
-> Afaik your BBLAYERS should not be in your signatures at all, unless
-> something in the metadata is accessing it. For what it's worth, I
-> reuse sstate every day, but don't use the poky/oe-core scripts
-> (oe-init-build-env).
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello Yocto developers,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Mentor Embedded (part of Mentor Graphics) recently a=
+nnounced the availability of its new Embedded Linux Kit.&nbsp; This downloa=
+d is absolutely free and available to anyone that would like to tinker with=
+ a prebuilt, Yocto-based image set for
+ both the BeagleBoard and the PandaBoard.&nbsp; Each kit also contains a So=
+urcery CodeBench Lite (integrated cross toolchain), a set of libraries/head=
+ers for applications development, and a quick start guide that should get y=
+ou started right out of the box.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">This is not a commercial!&nbsp; <span style=3D"font-=
+family:Wingdings">
+J</span>&nbsp; (how can it be&#8230;it is free)<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">BTW, Sean Hudson will be demo&#8217;ing the MEL Kit =
+at ELC on both BeagleBoard and PandaBoard.&nbsp; This will all happen somew=
+here at the ELC Technical Showcase.&nbsp; Stop by and say hi if you are at =
+ELC.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Check it out at: <span style=3D"color:#1F497D"><a hr=
+ef=3D"http://www.mentor.com/embedded-software/downloads/linux-kits/?cmpid=
+=3D6929">http://www.mentor.com/embedded-software/downloads/linux-kits/?cmpi=
+d=3D6929</a>&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Cheers,<o:p></o:p></p>
+<p class=3D"MsoNormal">John<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-As a follow-up to this thread, I spent a bit of time today trying to 
-reproduce/isolate the issue, and I could not do so. Changing the paths 
-to layers correctly rebuilt from sstate, and adding an empty layer also 
-didn't trigger a rebuild. So I'm not sure what I saw previously, but 
-unfortunately my original example of this is no longer available for me 
-to work with.
-
-I apologize for causing any confusion, but it's still quite possible we 
-have some issues - I'll definitely use bitbake-diffsig to dig deeper the 
-next time I see it.
-
-Scott
-
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
-
+--_000_43AE86686954984BA6E949465D98484089E431EBNAMBX03mgcmento_--
