@@ -1,29 +1,29 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74621E0123C
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 19:56:09 -0800 (PST)
-Received: by dadp13 with SMTP id p13so1340610dad.35
-	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 19:56:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=418usD6ErBzxwEJ3XyjKGfz2nUSD3z9Q6QaEZYTR1tE=;
-	b=d6rRPwy1azx+Sjp0Bl4W38JBs0g+UCpchoQ4nR83Tz1EAhC96P7WsFEk4mgV1kU4N4
-	BvoiyLQo9EgHjJqY2bfgaIW+v7evWviWo5qASADRCrCZnsVTf55OqtuBQsdSkEJbLZNX
-	sl4oIvbJuZWiA3DKTdqBA7vxkuHIeZ/6iWtg8=
-MIME-Version: 1.0
-Received: by 10.68.74.69 with SMTP id r5mr1252742pbv.118.1328759769309; Wed,
-	08 Feb 2012 19:56:09 -0800 (PST)
-Received: by 10.142.139.16 with HTTP; Wed, 8 Feb 2012 19:56:09 -0800 (PST)
-In-Reply-To: <FC61EC5F-CAF2-4024-9E88-BE7F1F8EDA81@gmail.com>
-References: <FC61EC5F-CAF2-4024-9E88-BE7F1F8EDA81@gmail.com>
-Date: Wed, 8 Feb 2012 22:56:09 -0500
-Message-ID: <CADkTA4OWU+1S9-F5S8o_4Lrdz3t2bamFmH7SZPj_YR4OX-Fw5w@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: David Smoot <davidsmoot@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: applying a custom kernel configuration to the "built in" routerstation pro bsp?
+Return-Path: <josh@hipro.co.in>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 656C2E0059B
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 23:11:06 -0800 (PST)
+Received: by iagz35 with SMTP id z35so2721900iag.35
+	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 23:11:05 -0800 (PST)
+Received: by 10.50.57.163 with SMTP id j3mr749449igq.3.1328771465701;
+	Wed, 08 Feb 2012 23:11:05 -0800 (PST)
+Received: from [192.168.10.231] ([59.99.251.45])
+	by mx.google.com with ESMTPS id wn7sm4092844igc.0.2012.02.08.23.11.03
+	(version=SSLv3 cipher=OTHER); Wed, 08 Feb 2012 23:11:04 -0800 (PST)
+Message-ID: <1328771441.2692.14.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: McClintock Matthew-B29882 <B29882@freescale.com>
+Date: Thu, 09 Feb 2012 12:40:41 +0530
+In-Reply-To: <CAEsOVNd5Fi1wtDDgWZFCoOtmbs75WA=nu03+0+P2o3D0ifO6PQ@mail.gmail.com>
+References: <1328705392.2662.28.camel@babel.joshhome>
+	<1328706791.2662.32.camel@babel.joshhome>
+	<CAEsOVNd5Fi1wtDDgWZFCoOtmbs75WA=nu03+0+P2o3D0ifO6PQ@mail.gmail.com>
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.2.2-1
+Mime-Version: 1.0
+X-Gm-Message-State: ALoCoQlukGVaRPfHf2SrGLp58LqnK6Z1+nA2hwWc1/dOUc4pI3eRItDuWXlR87XlAXxIhrUmwEbE
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: sysroot and boost.m4 library search path problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,62 +35,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2012 03:56:09 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 09 Feb 2012 07:11:06 -0000
+X-Groupsio-MsgNum: 4779
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-0cw0Rvdr9GoMtdm45jEI"
+
+--=-0cw0Rvdr9GoMtdm45jEI
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 8, 2012 at 10:08 PM, David Smoot <davidsmoot@gmail.com> wrote:
-> I want to change some of the kernel configuration options for my
-> routerstation pro. =A0I have a .config from a 2.6.37 kernel running on my
-> routerstation pro that was not built in Yocto that has the options I want=
- to
-> build in Yocto. =A0I am attempting to follow the instructions
-> at=A0http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-ma=
-nual.html#bsp-filelayout-kernel.
-> But I am confused.
->
-> Since I am using the routerstation pro, I do not have a separate BSP, it =
-is
-> "built in". =A0So I know I need to modify a .bbappend file to point to my
-> config file, but I am not sure which bbappend where.
+Hello McClintock,
 
-Built in or not .. it's all the same. Put the config items you want into a =
-.cfg
-file of the name of your choice.
+On Wed, 2012-02-08 at 15:44 +0000, McClintock Matthew-B29882 wrote:
+> Did you consider taking this patch and adding it to the proper recipe?
 
-In the layer of your choice, create a linux-yocto_2.6.37.bbappend file,
-and list the .cfg file on the SRC_URI (just like you would any patch or oth=
-er
-source file). Those config items will be added to the board after the built=
- in
-options and will override anything that was previously set.
+The patch is basically for boost.m4. We have the boost package in 'meta'
+layer. But, boost.m4 is not a part of boost library, it is maintained
+separately. As the boost doesn't support pkgconfig, boost.m4 comes to
+the rescue for finding installed boost libraries.
 
-If you were working with a local git repository, you could commit the chang=
-e
-directly to the tree .. but it doesn't sound like you are working in that m=
-odel.
+So, this doesn't fit into any existing recipe. Whichever (autotools
+build system based) application uses boost library will obviously use
+boost.m4 and this patch is for them.
 
-Cheers,
-
-Bruce
-
->
-> Thanks for your time.
-> David Smoot
-> davidsmoot@gmail.com
->
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
-
-
+Regards
+Joshua
 --=20
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
 
+--=-0cw0Rvdr9GoMtdm45jEI
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iEYEABECAAYFAk8zcXEACgkQWw85XwuSFMIRdgCeN1I2afTfxiqnITuaDaE72v6s
+WwUAoL8desJYAosCkSzUILq3nB83yMQt
+=XRPc
+-----END PGP SIGNATURE-----
+
+--=-0cw0Rvdr9GoMtdm45jEI--
