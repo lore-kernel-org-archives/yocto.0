@@ -1,33 +1,54 @@
-Return-Path: <learningpro.dong@gmail.com>
-Received: from mail-tul01m020-f176.google.com (mail-tul01m020-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A84CE004D2
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 23:09:59 -0800 (PST)
-Received: by obbwd18 with SMTP id wd18so2802973obb.35
-	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 23:09:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=message-id:date:from:to:subject:x-mailer:x-priority:mime-version
-	:content-type; bh=4mAXqxlrBfwU0PtEEff/4o7j9wi/WFYrMJ03+lTQJ60=;
-	b=EH00hVOJjNu+WLtKIO+jZNviLKF4miALDOf79C2bdkAFzR2aM89OLSKuzCdpm1Bo2m
-	AeoANMHOMgcWyHhlw7xGOcec39sOhhHfaeRuwW5Yuo3FRMa3QedaQ7bJ46shjvACxtyK
-	ot4Uil2CkmWD7SOge1azbGOAIOks6yhRYdGeY=
-Received: by 10.50.34.202 with SMTP id b10mr655473igj.30.1328771398909;
-	Wed, 08 Feb 2012 23:09:58 -0800 (PST)
-Received: from DJC-PC ([202.120.36.241])
-	by mx.google.com with ESMTPS id e17sm3768529ibe.0.2012.02.08.23.09.55
-	(version=SSLv3 cipher=OTHER); Wed, 08 Feb 2012 23:09:57 -0800 (PST)
-Message-ID: <4f337145.d107e70a.35f1.ffffbf90@mx.google.com>
-Date: Thu, 09 Feb 2012 15:09:59 +0800
-From: "learningpro.dong" <learningpro.dong@gmail.com>
-To: "yocto" <yocto@yoctoproject.org>
-X-Mailer: NetEase Flash Mail 2.0.3.13
-X-Priority: 3 (Normal)
+Return-Path: <B29882@freescale.com>
+Received: from ch1outboundpool.messaging.microsoft.com
+	(ch1ehsobe003.messaging.microsoft.com [216.32.181.183])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB04DE00307
+	for <yocto@yoctoproject.org>; Thu,  9 Feb 2012 08:37:28 -0800 (PST)
+Received: from mail31-ch1-R.bigfish.com (10.43.68.231) by
+	CH1EHSOBE018.bigfish.com (10.43.70.68) with Microsoft SMTP Server id
+	14.1.225.23; Thu, 9 Feb 2012 16:37:28 +0000
+Received: from mail31-ch1 (localhost [127.0.0.1])	by mail31-ch1-R.bigfish.com
+	(Postfix) with ESMTP id 624463800BB;
+	Thu,  9 Feb 2012 16:37:28 +0000 (UTC)
+X-SpamScore: -12
+X-BigFish: VS-12(zz9371I936eK168aJ1432N98dKzz1202hzzz2dh2a8h668h839h8e2h8e3hbe9k)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+Received: from mail31-ch1 (localhost.localdomain [127.0.0.1]) by mail31-ch1
+	(MessageSwitch) id 1328805446861752_28331;
+	Thu,  9 Feb 2012 16:37:26 +0000 (UTC)
+Received: from CH1EHSMHS005.bigfish.com (snatpool1.int.messaging.microsoft.com
+	[10.43.68.242])	by mail31-ch1.bigfish.com (Postfix) with ESMTP id
+	CD0C624004C;	Thu,  9 Feb 2012 16:37:26 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS005.bigfish.com
+	(10.43.70.5) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Thu, 9 Feb 2012 16:37:24 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.244]) by
+	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
+	14.01.0355.003; Thu, 9 Feb 2012 10:37:23 -0600
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Joshua Immanuel <josh@hipro.co.in>
+Thread-Topic: [yocto] sysroot and boost.m4 library search path problem
+Thread-Index: AQHM5niN1r384q3zK0Kyp7cAp9TctJY0i4GAgACeOYA=
+Date: Thu, 9 Feb 2012 16:37:23 +0000
+Message-ID: <CAEsOVNcMxCUjm6trU8pX-+H-c_p_e=OG=sjMZFaBG9oeKGbvLg@mail.gmail.com>
+References: <1328705392.2662.28.camel@babel.joshhome>
+	<1328706791.2662.32.camel@babel.joshhome>
+	<CAEsOVNd5Fi1wtDDgWZFCoOtmbs75WA=nu03+0+P2o3D0ifO6PQ@mail.gmail.com>
+	<1328771441.2692.14.camel@babel.joshhome>
+In-Reply-To: <1328771441.2692.14.camel@babel.joshhome>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [99.47.177.27]
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 09 Feb 2012 08:24:13 -0800
-Subject: yocto hardware support
+X-OriginatorOrg: freescale.com
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	Yocto Project <yocto@yoctoproject.org>
+Subject: Re: sysroot and boost.m4 library search path problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -36,62 +57,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2012 07:09:59 -0000
-Content-Type: multipart/alternative;
-	boundary="====003__MESSAGE__ID__54yg6f6h6y456345===="
+X-List-Received-Date: Thu, 09 Feb 2012 16:37:29 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <CE32E68AE4C9D0458E0D5F3BAF99CFF7@freescale.net>
+Content-Transfer-Encoding: quoted-printable
 
---====003__MESSAGE__ID__54yg6f6h6y456345====
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Thu, Feb 9, 2012 at 1:10 AM, Joshua Immanuel <josh@hipro.co.in> wrote:
+> Hello McClintock,
+>
+> On Wed, 2012-02-08 at 15:44 +0000, McClintock Matthew-B29882 wrote:
+>> Did you consider taking this patch and adding it to the proper recipe?
+>
+> The patch is basically for boost.m4. We have the boost package in 'meta'
+> layer. But, boost.m4 is not a part of boost library, it is maintained
+> separately. As the boost doesn't support pkgconfig, boost.m4 comes to
+> the rescue for finding installed boost libraries.
+>
+> So, this doesn't fit into any existing recipe. Whichever (autotools
+> build system based) application uses boost library will obviously use
+> boost.m4 and this patch is for them.
 
-RGVhciBzaXIvbWFkYW0NCkknbSBhIHN0dWRlbnQgZnJvbSBTaGFuZ2hhaSBKaWFvVG9uZyBVbml2
-ZXJzaXR5LENoaW5hLg0KQWZ0ZXIgcmVhZGluZyB0aGUgd2Vic2l0ZSBvZiB5b2N0byBwcm9qZWN0
-LA0KSSBmb3VuZGh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2N1bWVudGF0aW9uL2hhcmR3
-YXJlLXN1cHBvcnQsYW5kIEknbSByZWFsbHkgaW50ZXJlc3RlZCBpbiB0aGlzIHByb2plY3QuSGF2
-aW5nIHdvcmtlZCBvbiBVYnVudHUgMTEuMTAsSSB3YW50IHRvIGRvd25sb2FkIHRoZSBQb2t5IHRv
-IG15IGVtYmVkZGVkIGJvYXJkIGJhc2VkIG9uIEF0b20gQ1BVLGJ1dCBJJ3ZlIG5vIGlkZWFzIGhv
-dyB0byBkbyB0aGlzLkNhbiB5b3UgZ2l2ZSBtZSBzb21lIGFkdmljZXM/DQpNYW55IHRoYW5rcy4N
-Cg0KWW91cnMgc2luY2VseQ0KRG9uZw0KDQoyMDEyLTAyLTA5DQoNCg0KDQpsZWFybmluZ3Byby5k
-b25n
+Do we need to add a recipe for boost.m4 and then apply your patch on top?
 
---====003__MESSAGE__ID__54yg6f6h6y456345====
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+-M=
 
-PCFET0NUWVBFIEhUTUwgUFVCTElDICItLy9XM0MvL0RURCBIVE1MIDQuMCBUcmFuc2l0aW9uYWwv
-L0VOIj4NCjxIVE1MPjxIRUFEPg0KPFNUWUxFIHR5cGU9dGV4dC9jc3M+IDwhLS1AaW1wb3J0IHVy
-bChzY3JvbGxiYXIuY3NzKTsgLS0+PC9TVFlMRT4NCg0KPE1FVEEgY29udGVudD0idGV4dC9odG1s
-OyBjaGFyc2V0PXV0Zi04IiBodHRwLWVxdWl2PUNvbnRlbnQtVHlwZT4NCjxTVFlMRT5CTE9DS1FV
-T1RFe21hcmdpbi1Ub3A6IDBweDsgbWFyZ2luLUJvdHRvbTogMHB4OyBtYXJnaW4tTGVmdDogMmVt
-fQkJCQlPTCwgVUx7bWFyZ2luLVRvcDogMHB4OyBtYXJnaW4tQm90dG9tOiAwcHh9CQkJCXB7bWFy
-Z2luLVRvcDowZW07IG1hcmdpbi1Cb3R0b206MHB4OyBwYWRkaW5nOjBweDt9CQkJCWJvZHl7Rk9O
-VC1TSVpFOjEyLjFwdDsgQ09MT1I6IzAwMTsgRk9OVC1GQU1JTFk65a6L5L2TLHNlcmlmO30JCTwv
-U1RZTEU+DQoNCjxNRVRBIG5hbWU9R0VORVJBVE9SIGNvbnRlbnQ9Ik1TSFRNTCA4LjAwLjc2MDEu
-MTc2OTkiPjxCQVNFIA0KdGFyZ2V0PV9ibGFuaz48L0hFQUQ+DQo8Qk9EWSANCnN0eWxlPSJMSU5F
-LUhFSUdIVDogMS4zOyBCT1JERVItUklHSFQtV0lEVEg6IDBweDsgTUFSR0lOOiAxMnB4OyBCT1JE
-RVItVE9QLVdJRFRIOiAwcHg7IEJPUkRFUi1CT1RUT00tV0lEVEg6IDBweDsgQk9SREVSLUxFRlQt
-V0lEVEg6IDBweCIgDQptYXJnaW5oZWlnaHQ9IjAiIG1hcmdpbndpZHRoPSIwIj48U1RBVElPTkVS
-WT4NCjxESVY+PEZPTlQgY29sb3I9IzAwMDAwMCBzaXplPTMgZmFjZT3lrovkvZM+RGVhciANCnNp
-ci9tYWRhbTwvRk9OVD48L0RJVj4NCjxESVY+PEZPTlQgY29sb3I9IzAwMDAwMCBzaXplPTM+SSdt
-IGEgc3R1ZGVudCBmcm9tIFNoYW5naGFpIEppYW9Ub25nIA0KVW5pdmVyc2l0eSxDaGluYS48L0ZP
-TlQ+PC9ESVY+DQo8RElWPjxGT05UIGNvbG9yPSMwMDAwMDAgc2l6ZT0zPkFmdGVyIHJlYWRpbmcg
-dGhlIHdlYnNpdGUgb2YgeW9jdG8gDQpwcm9qZWN0LDwvRk9OVD48L0RJVj4NCjxESVY+PEZPTlQg
-Y29sb3I9IzAwMDAwMCBzaXplPTM+SSBmb3VuZDxBIA0KaHJlZj0iaHR0cDovL3d3dy55b2N0b3By
-b2plY3Qub3JnL2RvY3VtZW50YXRpb24vaGFyZHdhcmUtc3VwcG9ydCI+aHR0cDovL3d3dy55b2N0
-b3Byb2plY3Qub3JnL2RvY3VtZW50YXRpb24vaGFyZHdhcmUtc3VwcG9ydDwvQT4sYW5kIA0KSSdt
-IHJlYWxseSBpbnRlcmVzdGVkIGluIHRoaXMgcHJvamVjdC5IYXZpbmcgd29ya2VkIG9uIFVidW50
-dSAxMS4xMCxJIHdhbnQgdG8gDQpkb3dubG9hZCB0aGUgUG9reSB0byBteSBlbWJlZGRlZCBib2Fy
-ZCBiYXNlZCBvbiBBdG9tIENQVSxidXQgSSd2ZSBubyBpZGVhcyBob3cgDQp0byBkbyB0aGlzLkNh
-biB5b3UgZ2l2ZSBtZSBzb21lIGFkdmljZXM/PC9GT05UPjwvRElWPg0KPERJVj48Rk9OVCBjb2xv
-cj0jMDAwMDAwIHNpemU9Mz5NYW55IHRoYW5rcy48L0ZPTlQ+PC9ESVY+DQo8RElWPjxGT05UIGNv
-bG9yPSMwMDAwMDAgc2l6ZT0zPjwvRk9OVD4mbmJzcDs8L0RJVj4NCjxESVY+PEZPTlQgY29sb3I9
-IzAwMDAwMCBzaXplPTM+WW91cnMgc2luY2VseTwvRk9OVD48L0RJVj4NCjxESVY+PEZPTlQgY29s
-b3I9IzAwMDAwMCBzaXplPTM+RG9uZzwvRk9OVD48L0RJVj4NCjxESVY+Jm5ic3A7PC9ESVY+DQo8
-RElWIGFsaWduPWxlZnQ+PEZPTlQgY29sb3I9I2MwYzBjMCBzaXplPTIgDQpmYWNlPVZlcmRhbmE+
-MjAxMi0wMi0wOTwvRk9OVD48L0RJVj48Rk9OVCBzaXplPTIgZmFjZT1WZXJkYW5hPg0KPEhSIHN0
-eWxlPSJXSURUSDogMTIycHg7IEhFSUdIVDogMnB4IiBpZD1TaWduTmFtZUhSIGFsaWduPWxlZnQg
-U0laRT0yPg0KPC9GT05UPg0KPERJVj48Rk9OVCBjb2xvcj0jYzBjMGMwIHNpemU9MiBmYWNlPVZl
-cmRhbmE+PFNQQU4gDQppZD1fRmxhc2hTaWduTmFtZT5sZWFybmluZ3Byby5kb25nPC9TUEFOPjwv
-Rk9OVD48L0RJVj48L1NUQVRJT05FUlk+PC9CT0RZPjwvSFRNTD4=
 
---====003__MESSAGE__ID__54yg6f6h6y456345====--
