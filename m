@@ -1,29 +1,31 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 656C2E0059B
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 23:11:06 -0800 (PST)
-Received: by iagz35 with SMTP id z35so2721900iag.35
-	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 23:11:05 -0800 (PST)
-Received: by 10.50.57.163 with SMTP id j3mr749449igq.3.1328771465701;
-	Wed, 08 Feb 2012 23:11:05 -0800 (PST)
-Received: from [192.168.10.231] ([59.99.251.45])
-	by mx.google.com with ESMTPS id wn7sm4092844igc.0.2012.02.08.23.11.03
-	(version=SSLv3 cipher=OTHER); Wed, 08 Feb 2012 23:11:04 -0800 (PST)
-Message-ID: <1328771441.2692.14.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Date: Thu, 09 Feb 2012 12:40:41 +0530
-In-Reply-To: <CAEsOVNd5Fi1wtDDgWZFCoOtmbs75WA=nu03+0+P2o3D0ifO6PQ@mail.gmail.com>
-References: <1328705392.2662.28.camel@babel.joshhome>
-	<1328706791.2662.32.camel@babel.joshhome>
-	<CAEsOVNd5Fi1wtDDgWZFCoOtmbs75WA=nu03+0+P2o3D0ifO6PQ@mail.gmail.com>
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1
-Mime-Version: 1.0
-X-Gm-Message-State: ALoCoQlukGVaRPfHf2SrGLp58LqnK6Z1+nA2hwWc1/dOUc4pI3eRItDuWXlR87XlAXxIhrUmwEbE
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: sysroot and boost.m4 library search path problem
+Return-Path: <cnxsoft@cnx-software.com>
+Received: from mail-tul01m020-f176.google.com (mail-tul01m020-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 549D7E0059B
+	for <yocto@yoctoproject.org>; Thu,  9 Feb 2012 00:50:51 -0800 (PST)
+Received: by obbwd18 with SMTP id wd18so2930385obb.35
+	for <yocto@yoctoproject.org>; Thu, 09 Feb 2012 00:50:50 -0800 (PST)
+Received: by 10.50.77.227 with SMTP id v3mr1201231igw.2.1328777450548;
+	Thu, 09 Feb 2012 00:50:50 -0800 (PST)
+Received: from [192.168.0.103] (118.172.58.119.adsl.dynamic.totbb.net.
+	[118.172.58.119])
+	by mx.google.com with ESMTPS id gw1sm4519262igb.0.2012.02.09.00.50.48
+	(version=SSLv3 cipher=OTHER); Thu, 09 Feb 2012 00:50:49 -0800 (PST)
+Message-ID: <4F3388E6.4060401@cnx-software.com>
+Date: Thu, 09 Feb 2012 15:50:46 +0700
+From: cnxsoft <cnxsoft@cnx-software.com>
+User-Agent: Mozilla/5.0 (Windows NT 5.1;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <4F322ECE.5060004@cnx-software.com>
+	<CADzUK1LbB_yr6pfO4nWsSWz4MTEyZDsMBwtn_G4qzdghPCsrhg@mail.gmail.com>
+	<4F32843F.70500@cnx-software.com>
+	<E4396C3C-30C9-4878-A116-DFA1EDC638D7@gmail.com>
+	<4F333A3A.8090500@intel.com>
+In-Reply-To: <4F333A3A.8090500@intel.com>
+X-Gm-Message-State: ALoCoQknsZyb+XFfbcf0agHV5N1qQNJhbBx8TIvRsvBgxnRRadP6e0YY4CICTmo5IfqzuJuugCkN
+Subject: Re: Yocto in Virtualbox (Ubuntu 11.10)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,48 +37,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2012 07:11:06 -0000
-X-Groupsio-MsgNum: 4779
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-0cw0Rvdr9GoMtdm45jEI"
-
---=-0cw0Rvdr9GoMtdm45jEI
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello McClintock,
-
-On Wed, 2012-02-08 at 15:44 +0000, McClintock Matthew-B29882 wrote:
-> Did you consider taking this patch and adding it to the proper recipe?
-
-The patch is basically for boost.m4. We have the boost package in 'meta'
-layer. But, boost.m4 is not a part of boost library, it is maintained
-separately. As the boost doesn't support pkgconfig, boost.m4 comes to
-the rescue for finding installed boost libraries.
-
-So, this doesn't fit into any existing recipe. Whichever (autotools
-build system based) application uses boost library will obviously use
-boost.m4 and this patch is for them.
-
-Regards
-Joshua
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
-
---=-0cw0Rvdr9GoMtdm45jEI
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+X-List-Received-Date: Thu, 09 Feb 2012 08:50:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+On 09/02/2012 10:15, Scott Garman wrote:
+> On 02/08/2012 07:11 PM, David Smoot wrote:
+>>
+>> On Feb 8, 2012, at 8:18 AM, cnxsoft wrote:
+>>
+>> On 08/02/2012 21:06, autif khan wrote:
+>>> On Wed, Feb 8, 2012 at 3:14 AM, cnxsoft<cnxsoft@cnx-software.com>   
+>>> wrote:
+>>>> Hi,
+>>>>
+>>>> .255.0 oprofile.timer=1 "
+>>>> Enabling opengl
+>>>>
+>>> So, what is the problem?
+>>
+>>> Qemu starts apparently fine, but the qemu window stays black.
+>>
+>> I would try one of the pre-built images to isolate the problem 
+>> between running inside virtualbox and your build.
+>
+> This would be much quicker to test than my "export to VMWare Player" 
+> suggestion. I'd definitely try this first.
+>
+> Scott
+>
+FYI.  have done some further tests with the prebuilt binaries and 
+toolchain (yocto-eglibc-i686-i586-toolchain-gmae-1.0.tar.bz2, 
+bzImage-2.6.37-qemux86-1.0.bin and 
+yocto-image-minimal-dev-qemux86-1.0.rootfs.ext3).
 
-iEYEABECAAYFAk8zcXEACgkQWw85XwuSFMIRdgCeN1I2afTfxiqnITuaDaE72v6s
-WwUAoL8desJYAosCkSzUILq3nB83yMQt
-=XRPc
------END PGP SIGNATURE-----
+With Ubuntu 11.10 (Virtual Box), it fails with the same black screen.
+With Debian Squeeze 6.0.3 (inside Virtual Box), it works fine.
 
---=-0cw0Rvdr9GoMtdm45jEI--
+PS: For Ubuntu, poky-qemu script to pass libGL detection.
+
+
+
