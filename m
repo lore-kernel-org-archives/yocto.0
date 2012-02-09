@@ -1,31 +1,26 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D81FE00307
-	for <yocto@yoctoproject.org>; Thu,  9 Feb 2012 08:45:06 -0800 (PST)
-Received: from mail-gy0-f180.google.com ([209.85.160.180])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 09 Feb 2012 08:45:06 -0800
-Received: by ghbz22 with SMTP id z22so1022881ghb.25
-	for <yocto@yoctoproject.org>; Thu, 09 Feb 2012 08:45:05 -0800 (PST)
-Received: by 10.50.89.137 with SMTP id bo9mr4570738igb.7.1328805905533;
-	Thu, 09 Feb 2012 08:45:05 -0800 (PST)
-Received: from [127.0.0.1] (masterfoo.zenlinux.com. [207.192.74.254])
-	by mx.google.com with ESMTPS id ub10sm5885651igb.7.2012.02.09.08.45.03
-	(version=SSLv3 cipher=OTHER); Thu, 09 Feb 2012 08:45:04 -0800 (PST)
-Message-ID: <4F33F808.7060202@intel.com>
-Date: Thu, 09 Feb 2012 08:44:56 -0800
-From: Scott Garman <scott.a.garman@intel.com>
+Return-Path: <sgw@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDD28E00307
+	for <yocto@yoctoproject.org>; Thu,  9 Feb 2012 09:39:16 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 09 Feb 2012 09:39:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="64908876"
+Received: from unknown (HELO [10.255.14.208]) ([10.255.14.208])
+	by AZSMGA002.ch.intel.com with ESMTP; 09 Feb 2012 09:39:16 -0800
+Message-ID: <4F3404C3.4060203@linux.intel.com>
+Date: Thu, 09 Feb 2012 09:39:15 -0800
+From: Saul Wold <sgw@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4F322ECE.5060004@cnx-software.com>
-	<CADzUK1LbB_yr6pfO4nWsSWz4MTEyZDsMBwtn_G4qzdghPCsrhg@mail.gmail.com>
-	<4F32843F.70500@cnx-software.com>
-	<E4396C3C-30C9-4878-A116-DFA1EDC638D7@gmail.com>
-	<4F333A3A.8090500@intel.com> <4F3388E6.4060401@cnx-software.com>
-In-Reply-To: <4F3388E6.4060401@cnx-software.com>
-X-Gm-Message-State: ALoCoQlZUo+lwq6XSRMxRgm1zmD+Os8BfPKZsRMMcAr8bJ+xq4Q0lrSMhHzpVDW1MAIT93tJXolg
-Subject: Re: Yocto in Virtualbox (Ubuntu 11.10)
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <4F323C52.8030304@intel.com> <1636213.TrTs1YKXOm@helios>
+	<3FF9BD4A-F07C-4958-8758-9D4DC02171A0@beagleboard.org>
+	<2515705.YAd3HxSNCM@helios>
+In-Reply-To: <2515705.YAd3HxSNCM@helios>
+Cc: yocto@yoctoproject.org, Koen Kooi <koen@beagleboard.org>
+Subject: Re: Upstream-Status finally @ 100%
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,32 +32,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2012 16:45:07 -0000
+X-List-Received-Date: Thu, 09 Feb 2012 17:39:17 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 02/09/2012 12:50 AM, cnxsoft wrote:
-> FYI. have done some further tests with the prebuilt binaries and
-> toolchain (yocto-eglibc-i686-i586-toolchain-gmae-1.0.tar.bz2,
-> bzImage-2.6.37-qemux86-1.0.bin and
-> yocto-image-minimal-dev-qemux86-1.0.rootfs.ext3).
+On 02/09/2012 07:31 AM, Paul Eggleton wrote:
+> On Thursday 09 February 2012 15:51:11 Koen Kooi wrote:
+>>> The status ought to be correct with regard to the patch author's
+>>> assessment of whether or not the patch can go upstream.
+>>
+>> That's where I disagree, it's called 'Upstream-status', not
+>> 'Perceived-upstream-status'. The field should reflect the status from an
+>> upstream perspective, not from the OE perspective. So both 'Pending' and
+>> 'Inappropriate' boil down to 'Not submitted' currently. Maybe I'm
+>> overthinking all this :)
 >
-> With Ubuntu 11.10 (Virtual Box), it fails with the same black screen.
-> With Debian Squeeze 6.0.3 (inside Virtual Box), it works fine.
+> Well unless I'm mistaken, the purpose of the field for which it was originally
+> introduced is as I stated it, to track where we (layer maintainers) are in
+> sending things upstream since the expectation is that we will be the ones
+> doing the work required to do that. Whether or not the label(s) that get used
+> accurately communicate that is another matter.
 >
-> PS: For Ubuntu, poky-qemu script to pass libGL detection.
+Paul is correct here, a number of people made various proposals for what 
+to put into this field from the perspective of the maintainers. This was 
+then documented by Mark Hatle and reviewed in the TSC at somepoint.  It 
+is posted at:
 
-Thank you for reporting this, I have filed the following bug to track 
-this issue:
+http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
 
-http://bugzilla.pokylinux.org/show_bug.cgi?id=1971
+There is never a good set of words because everyone can translate then 
+differently. I think everyone is doing there best.  For the existing set 
+of Pending, we are working to get those upstream, they would then be 
+marked Submitted, after that we can get more accurate response from the 
+upstream and mark the patch as such.  I think that the Submitted step is 
+getting missed and we go from Pending -> updated upstream status.
 
-Are you using the default user interface (Unity) in your Ubuntu setup?
+Once we get through the "Pending" batch we can revisit the remaining 800 
+or so patches.
 
-Scott
+We are working on it, every little step makes things better.
 
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+Sau!
+
+> Cheers,
+> Paul
+>
 
