@@ -1,28 +1,30 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D95EE004D2
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 18:56:35 -0800 (PST)
-Received: from mail-iy0-f180.google.com ([209.85.210.180])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 08 Feb 2012 18:56:35 -0800
-Received: by iabz7 with SMTP id z7so2283141iab.25
-	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 18:56:34 -0800 (PST)
-Received: by 10.42.161.73 with SMTP id s9mr30204244icx.16.1328756193178;
-	Wed, 08 Feb 2012 18:56:33 -0800 (PST)
-Received: from [192.168.1.12] (c-76-105-137-48.hsd1.or.comcast.net.
-	[76.105.137.48])
-	by mx.google.com with ESMTPS id vr4sm3104423igb.1.2012.02.08.18.56.31
-	(version=SSLv3 cipher=OTHER); Wed, 08 Feb 2012 18:56:32 -0800 (PST)
-Message-ID: <4F3335E7.3050500@intel.com>
-Date: Wed, 08 Feb 2012 18:56:39 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
-MIME-Version: 1.0
+Return-Path: <davidsmoot@gmail.com>
+Received: from mail-tul01m020-f176.google.com (mail-tul01m020-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DFC5E0123C
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2012 19:08:06 -0800 (PST)
+Received: by obbwd18 with SMTP id wd18so2480857obb.35
+	for <yocto@yoctoproject.org>; Wed, 08 Feb 2012 19:08:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
+	bh=eozD31e0YJsmXXyb2SyZnY7/42/HBKFJ0qPdQKmyw/0=;
+	b=C+cawXyxEqHsSkRXYQvMFWK+zXoIeNLWn6/ZO2bnRcynVX66veTiTWLde4weo2ciGI
+	Rq7Pdpug0kPiKEk34gyGe/CCkjLVdZck8uCVhiennjn2HNBaS/Yfwe8eBV0TDwYMoKDO
+	jw0CkxQO/HDhZbLWsMu373g03qs9v+Lkb6tQA=
+Received: by 10.182.231.100 with SMTP id tf4mr28510838obc.56.1328756885776;
+	Wed, 08 Feb 2012 19:08:05 -0800 (PST)
+Received: from [192.168.1.97] (70-139-182-143.lightspeed.hstntx.sbcglobal.net.
+	[70.139.182.143])
+	by mx.google.com with ESMTPS id s6sm1314048obq.0.2012.02.08.19.08.04
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 08 Feb 2012 19:08:04 -0800 (PST)
+From: David Smoot <davidsmoot@gmail.com>
+Date: Wed, 8 Feb 2012 21:08:03 -0600
+Message-Id: <FC61EC5F-CAF2-4024-9E88-BE7F1F8EDA81@gmail.com>
 To: yocto@yoctoproject.org
-References: <4F322ECE.5060004@cnx-software.com> <4F32AA18.2030609@intel.com>
-	<4F3328E4.4030208@cnx-software.com>
-In-Reply-To: <4F3328E4.4030208@cnx-software.com>
-Subject: Re: Yocto in Virtualbox
+Mime-Version: 1.0 (Apple Message framework v1084)
+X-Mailer: Apple Mail (2.1084)
+Subject: applying a custom kernel configuration to the "built in" routerstation pro bsp?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,49 +36,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2012 02:56:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 09 Feb 2012 03:08:06 -0000
+Content-Type: multipart/alternative; boundary=Apple-Mail-1-409848664
+
+--Apple-Mail-1-409848664
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
+
+I want to change some of the kernel configuration options for my =
+routerstation pro.  I have a .config from a 2.6.37 kernel running on my =
+routerstation pro that was not built in Yocto that has the options I =
+want to build in Yocto.  I am attempting to follow the instructions at =
+http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.h=
+tml#bsp-filelayout-kernel. But I am confused. =20
+
+Since I am using the routerstation pro, I do not have a separate BSP, it =
+is "built in".  So I know I need to modify a .bbappend file to point to =
+my config file, but I am not sure which bbappend where.
+
+Thanks for your time.
+David Smoot
+davidsmoot@gmail.com
+
+
+
+
+--Apple-Mail-1-409848664
 Content-Transfer-Encoding: 7bit
+Content-Type: text/html;
+	charset=us-ascii
 
-On 02/08/2012 06:01 PM, cnxsoft wrote:
-> On 09/02/2012 00:00, Scott Garman wrote:
->> On 02/08/2012 12:14 AM, cnxsoft wrote:
->>> Hi,
->>>
->>> I have build x86 qemu image using "bitbake -k core-image-sato" following
->>> the instructions given at
->>> http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-project-qs.html
->>>
->>> I'm running Ubuntu 11.10 in VirtualBox 4.1.6.
->>>
->>> When I run qemu, qemu starts apparently fine, but the qemu window stays
->>> black. So I'm suspecting that either it does not work in Virtualbox or I
->>> may have tochange some settings in qemu (e.g. -vga vmware).
->>
->> Have you installed the Virtualbox guest additions within your VM?
->>
->> Fwiw I've not run into any issues doing this with a Fedora 14 and
->> Fedora 16 VM (other than the builds themselves being dog slow). I make
->> sure to install the guest additions in all my VMs.
->>
->> Scott
->>
-> Thanks Scott. Yes, I have Virtual Box guest additions installed. My host
-> is running Windows XP btw. And yes it was slow...the build for
-> core-image-minimal took around 36 hours...
-> I found a link with a Virtual Box issue
-> (https://wiki.yoctoproject.org/wiki/Build_Appliance_Design), but it seem
-> related to the build itself rather than an issue while running qemu.
+<html><head></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; ">I want to change some of the kernel configuration options for my routerstation pro. &nbsp;I have a .config from a 2.6.37 kernel running on my routerstation pro that was not built in Yocto that has the options I want to build in Yocto. &nbsp;I am attempting to follow the instructions at&nbsp;<a href="http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.html#bsp-filelayout-kernel">http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.html#bsp-filelayout-kernel</a>. But I am confused. &nbsp;<div><br></div><div>Since I am using the routerstation pro, I do not have a separate BSP, it is "built in". &nbsp;So I know I need to modify a .bbappend file to point to my config file, but I am not sure which bbappend where.</div><div><br></div><div>Thanks for your time.<br><div>
+<div style="font-size: 12px; ">David Smoot</div><div style="font-size: 12px; "><a href="mailto:davidsmoot@gmail.com">davidsmoot@gmail.com</a></div><div style="font-size: 12px; "><br></div><br class="Apple-interchange-newline">
+</div>
+<br></div></body></html>
 
-Hmmm...I'm not sure what to tell you. Really grasping for straws here - 
-one thing you could try is to export the image and load it into VMWare 
-Player and see if there is any difference. If not, that would implicate 
-the guest distro (Ubuntu 11.10).
-
-Scott
-
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
-
+--Apple-Mail-1-409848664--
