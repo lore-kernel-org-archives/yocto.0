@@ -1,32 +1,29 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-lpp01m020-f176.google.com (mail-lpp01m020-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8301EE00307
-	for <yocto@yoctoproject.org>; Thu,  9 Feb 2012 06:47:24 -0800 (PST)
-Received: by lboi15 with SMTP id i15so1154054lbo.35
-	for <yocto@yoctoproject.org>; Thu, 09 Feb 2012 06:47:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=CSV3CuwoqwTveR3nWm/ipYuN88rIU6EM1A6ppMV5Gus=;
-	b=Mb3Tz9UiWBjgefu9mtb9vX9MsWnz8zJrW200gZkSIBgr3sdczbHMSsQ1V6Rf9dPoWA
-	5H2pRe+ZBKK9LpfX4S6zr5coGO1F1+BKawklk7HyZ37fapz57CIzdBkk4ie0xQbCb5rM
-	uS89yOz3kPgELt14xJla4YObvXrJKESlPH6ME=
-Received: by 10.152.125.20 with SMTP id mm20mr1389464lab.6.1328798843272; Thu,
-	09 Feb 2012 06:47:23 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.152.5.201 with HTTP; Thu, 9 Feb 2012 06:46:53 -0800 (PST)
-In-Reply-To: <F3D9189D-F27C-4C90-AD58-5071F83FA2AF@beagleboard.org>
-References: <4F323C52.8030304@intel.com> <20120208100718.GB8335@giant>
-	<4F32C595.4040508@linux.intel.com>
-	<alpine.DEB.2.00.1202082215320.8688@tvnag.unkk.fr>
-	<4F3302D3.7070507@linux.intel.com>
+Return-Path: <koen@beagleboard.org>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 784ECE00593
+	for <yocto@yoctoproject.org>; Thu,  9 Feb 2012 06:51:19 -0800 (PST)
+Received: by wibhq12 with SMTP id hq12so1642974wib.35
+	for <yocto@yoctoproject.org>; Thu, 09 Feb 2012 06:51:18 -0800 (PST)
+Received: by 10.181.11.227 with SMTP id el3mr3275970wid.18.1328799078273;
+	Thu, 09 Feb 2012 06:51:18 -0800 (PST)
+Received: from [172.20.1.36] (ip545070eb.adsl-surfen.hetnet.nl.
+	[84.80.112.235])
+	by mx.google.com with ESMTPS id eq5sm8488677wib.2.2012.02.09.06.51.16
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 09 Feb 2012 06:51:17 -0800 (PST)
+Mime-Version: 1.0 (Apple Message framework v1251.1)
+From: Koen Kooi <koen@beagleboard.org>
+In-Reply-To: <1636213.TrTs1YKXOm@helios>
+Date: Thu, 9 Feb 2012 15:51:11 +0100
+Message-Id: <3FF9BD4A-F07C-4958-8758-9D4DC02171A0@beagleboard.org>
+References: <4F323C52.8030304@intel.com> <4F3302D3.7070507@linux.intel.com>
 	<F3D9189D-F27C-4C90-AD58-5071F83FA2AF@beagleboard.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 9 Feb 2012 06:46:53 -0800
-Message-ID: <CAMKF1soFaYTyYteKMJ7LuiHgpZPzfL-zqz=0f5upXOxKGLVibg@mail.gmail.com>
-To: Koen Kooi <koen@beagleboard.org>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+	<1636213.TrTs1YKXOm@helios>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+X-Mailer: Apple Mail (2.1251.1)
+X-Gm-Message-State: ALoCoQnrgsF1FyXs1qVYEfqBYqlyktRpgWrKhDiuhCggu3siMoGhvym3GRq9WHs/Blc0BjyCbC37
+Cc: yocto@yoctoproject.org
 Subject: Re: Upstream-Status finally @ 100%
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -39,29 +36,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2012 14:47:25 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 09 Feb 2012 14:51:19 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 9, 2012 at 4:22 AM, Koen Kooi <koen@beagleboard.org> wrote:
->
-> I find the 'pending' confusing, is it 'pending submission' or 'pending ap=
-proval'? I'm marking patches in meta-oe with 'Upstream-status: Unknown' as =
-default instead of 'Pending' to make it a bit clearer. And patches marked '=
-inappropriate' won't go in, it's 'rejected', 'unknown' or 'needs work' in t=
-hose cases. I'm not going to guess what upstream might think of it, since I=
- can't speak for them.
->
 
-there I have seen 'Pending' and 'Submitted' and 'Accepted' which may
-be not best wording but explains the status of where the patch is.
-Here I think Pending means Pending submission. Umknown would be too
-vague.
+Op 9 feb. 2012, om 13:30 heeft Paul Eggleton het volgende geschreven:
 
-> All patches in OE-core now have an Upstream-status, but how many have an =
-*incorrect* Upstream-status? I suspect only a small percentage, but I think=
- it's worth rethinking the lingo used to be clearer to non-native speakers =
-like me.
+> On Thursday 09 February 2012 13:22:10 Koen Kooi wrote:
+>> I find the 'pending' confusing, is it 'pending submission' or =
+'pending
+>> approval'? I'm marking patches in meta-oe with 'Upstream-status: =
+Unknown'
+>> as default instead of 'Pending' to make it a bit clearer. And patches
+>> marked 'inappropriate' won't go in, it's 'rejected', 'unknown' or =
+'needs
+>> work' in those cases. I'm not going to guess what upstream might =
+think of
+>> it, since I can't speak for them.
+>=20
+> I think the distinction between Pending and Unknown is important. The =
+status=20
+> is not completely unknown - the person who set it made an assessment =
+that the=20
+> patch should be appropriate for sending upstream, even if it would =
+need=20
+> further cleanup beforehand. Maybe "Pending" isn't the best word, I'm =
+not sure,=20
+> but "Unknown" is not right either.
+>=20
+>> All patches in OE-core now have an Upstream-status, but how many have =
+an
+>> *incorrect* Upstream-status?
+>=20
+> The status ought to be correct with regard to the patch author's =
+assessment of=20
+> whether or not the patch can go upstream.
 
-Yes.
+That's where I disagree, it's called 'Upstream-status', not =
+'Perceived-upstream-status'. The field should reflect the status from an =
+upstream perspective, not from the OE perspective. So both 'Pending' and =
+'Inappropriate' boil down to 'Not submitted' currently. Maybe I'm =
+overthinking all this :)
+
+regards,
+
+Koen=
 
