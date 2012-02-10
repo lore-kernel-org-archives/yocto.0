@@ -1,31 +1,35 @@
-Return-Path: <cnxsoft@cnx-software.com>
-Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65918E003E1
-	for <yocto@yoctoproject.org>; Fri, 10 Feb 2012 00:52:15 -0800 (PST)
-Received: by qcsd1 with SMTP id d1so1784120qcs.35
-	for <yocto@yoctoproject.org>; Fri, 10 Feb 2012 00:52:14 -0800 (PST)
-Received: by 10.229.136.199 with SMTP id s7mr3640544qct.145.1328863934469;
-	Fri, 10 Feb 2012 00:52:14 -0800 (PST)
-Received: from [192.168.0.103] ([101.109.8.148])
-	by mx.google.com with ESMTPS id l28sm10804114ibc.3.2012.02.10.00.52.10
-	(version=SSLv3 cipher=OTHER); Fri, 10 Feb 2012 00:52:12 -0800 (PST)
-Message-ID: <4F34DAB2.3010506@cnx-software.com>
-Date: Fri, 10 Feb 2012 15:52:02 +0700
-From: cnxsoft <cnxsoft@cnx-software.com>
-User-Agent: Mozilla/5.0 (Windows NT 5.1;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <John_Cherry@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26E38E003E1
+	for <yocto@yoctoproject.org>; Fri, 10 Feb 2012 05:52:18 -0800 (PST)
+Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
+	by relay1.mentorg.com with esmtp 
+	id 1Rvqte-00075F-77 from John_Cherry@mentor.com ;
+	Fri, 10 Feb 2012 05:52:18 -0800
+Received: from SVR-ORW-FEM-05.mgc.mentorg.com ([147.34.97.43]) by
+	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
+	SMTPSVC(6.0.3790.4675); Fri, 10 Feb 2012 05:52:06 -0800
+Received: from NA-MBX-03.mgc.mentorg.com ([fe80::9a:1569:df57:45b8]) by
+	SVR-ORW-FEM-05.mgc.mentorg.com ([147.34.97.43]) with mapi id
+	14.01.0289.001; Fri, 10 Feb 2012 05:52:17 -0800
+From: "Cherry, John" <John_Cherry@mentor.com>
+To: Bob Cochran <yocto@mindchasers.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] MEL Kit for Beagle/Panda
+Thread-Index: AczngY7Is59GIYViSiGh2WlZG6xxjwAdGnGAAAElyoA=
+Date: Fri, 10 Feb 2012 13:52:17 +0000
+Message-ID: <43AE86686954984BA6E949465D98484089E44507@NA-MBX-03.mgc.mentorg.com>
+References: <43AE86686954984BA6E949465D98484089E431EB@NA-MBX-03.mgc.mentorg.com>
+	<4F34A7CB.9010201@mindchasers.com>
+In-Reply-To: <4F34A7CB.9010201@mindchasers.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.34.91.1]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4F322ECE.5060004@cnx-software.com>
-	<CADzUK1LbB_yr6pfO4nWsSWz4MTEyZDsMBwtn_G4qzdghPCsrhg@mail.gmail.com>
-	<4F32843F.70500@cnx-software.com>
-	<E4396C3C-30C9-4878-A116-DFA1EDC638D7@gmail.com>
-	<4F333A3A.8090500@intel.com> <4F3388E6.4060401@cnx-software.com>
-	<4F33F808.7060202@intel.com>
-In-Reply-To: <4F33F808.7060202@intel.com>
-X-Gm-Message-State: ALoCoQlOfaxobZD+eI20fhODkcubAYalvEn32lglKT2IHzeUcj2CbHhAoOPzJDz3hEjy1HMo6k0T
-Subject: Re: Yocto in Virtualbox (Ubuntu 11.10)
+X-OriginalArrivalTime: 10 Feb 2012 13:52:06.0484 (UTC)
+	FILETIME=[2D026140:01CCE7FB]
+Subject: Re: MEL Kit for Beagle/Panda
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,34 +41,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Feb 2012 08:52:15 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 10 Feb 2012 13:52:19 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 09/02/2012 23:44, Scott Garman wrote:
-> On 02/09/2012 12:50 AM, cnxsoft wrote:
->> FYI. have done some further tests with the prebuilt binaries and
->> toolchain (yocto-eglibc-i686-i586-toolchain-gmae-1.0.tar.bz2,
->> bzImage-2.6.37-qemux86-1.0.bin and
->> yocto-image-minimal-dev-qemux86-1.0.rootfs.ext3).
->>
->> With Ubuntu 11.10 (Virtual Box), it fails with the same black screen.
->> With Debian Squeeze 6.0.3 (inside Virtual Box), it works fine.
->>
->> PS: For Ubuntu, poky-qemu script to pass libGL detection.
->
-> Thank you for reporting this, I have filed the following bug to track 
-> this issue:
->
-> http://bugzilla.pokylinux.org/show_bug.cgi?id=1971
->
-> Are you using the default user interface (Unity) in your Ubuntu setup?
->
-> Scott
->
-Yes, I'm using the Unity user interface.
 
-Just one detail. By mistake, yesterday I used Yocto 1.0 toolchain and 
-pre-built binaries. I've tried again with with Yocto 1.1 and I did not 
-need to change any script, but the black screen issue still occurs.
+
+> -----Original Message-----
+> From: Bob Cochran [mailto:yocto@mindchasers.com]
+> Sent: Thursday, February 09, 2012 9:15 PM
+> To: yocto@yoctoproject.org; Cherry, John
+> Subject: Re: [yocto] MEL Kit for Beagle/Panda
+>=20
+> On 02/09/2012 06:21 PM, Cherry, John wrote:
+> > Hello Yocto developers,
+> >
+> > Mentor Embedded (part of Mentor Graphics) recently announced the
+> > availability of its new Embedded Linux Kit. This download is
+> absolutely
+> > free and available to anyone that would like to tinker with a
+> prebuilt,
+>=20
+> >
+> > Check it out at:
+> > http://www.mentor.com/embedded-software/downloads/linux-
+> kits/?cmpid=3D6929
+> >
+> > Cheers,
+> >
+> > John
+> >
+>=20
+> Hi John,
+>=20
+> I thought Mentor Embedded Linux was built around Mentor System Builder.
+>   Is System Builder going away and Yocto taking its place inside
+> Mentor?
+
+System Builder is just Mentor's view of bitbake/metadata.  These MEL Kits a=
+re built with the same bitbake that Yocto uses and is based on all the same=
+ metadata (oe-core, meta-yocto, etc.)
+
+The Mentor-specific metadata (sb-core) is being merged into the core layers=
+, so you could say that System Builder is looking more and more like Yocto.
+
+>=20
+> I'll try to give the download a whirl over the weekend on my
+> beagleboard.
+
+Enjoy.
+
+John
+
+>=20
+> Thanks,
+>=20
+> Bob
+>=20
+
 
