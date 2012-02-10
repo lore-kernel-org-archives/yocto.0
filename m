@@ -1,36 +1,31 @@
-Return-Path: <SRS0=/GwQoQ=AU=mindchasers.com=yocto@eigbox.net>
-Received: from bosmailout10.eigbox.net (bosmailout10.eigbox.net [66.96.188.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 779E6E00307
-	for <yocto@yoctoproject.org>; Thu,  9 Feb 2012 21:14:57 -0800 (PST)
-Received: from bosmailscan17.eigbox.net ([10.20.15.17])
-	by bosmailout10.eigbox.net with esmtp (Exim) id 1Rvioy-0007Zx-7p
-	for yocto@yoctoproject.org; Fri, 10 Feb 2012 00:14:56 -0500
-Received: from bosimpout01.eigbox.net ([10.20.55.1])
-	by bosmailscan17.eigbox.net with esmtp (Exim)
-	id 1Rviox-00059C-GA; Fri, 10 Feb 2012 00:14:55 -0500
-Received: from bosauthsmtp03.eigbox.net ([10.20.18.3])
-	by bosimpout01.eigbox.net with NO UCE
-	id Y5Ev1i00C03yW76015Ev9x; Fri, 10 Feb 2012 00:14:55 -0500
-X-EN-OrigOutIP: 10.20.18.3
-X-EN-IMPSID: Y5Ev1i00C03yW76015Ev9x
-Received: from [108.25.174.63] (helo=[192.168.1.3])
-	by bosauthsmtp03.eigbox.net with esmtpa (Exim)
-	id 1Rviox-0006Ka-HN; Fri, 10 Feb 2012 00:14:55 -0500
-Message-ID: <4F34A7CB.9010201@mindchasers.com>
-Date: Fri, 10 Feb 2012 00:14:51 -0500
-From: Bob Cochran <yocto@mindchasers.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+Return-Path: <cnxsoft@cnx-software.com>
+Received: from mail-qy0-f176.google.com (mail-qy0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65918E003E1
+	for <yocto@yoctoproject.org>; Fri, 10 Feb 2012 00:52:15 -0800 (PST)
+Received: by qcsd1 with SMTP id d1so1784120qcs.35
+	for <yocto@yoctoproject.org>; Fri, 10 Feb 2012 00:52:14 -0800 (PST)
+Received: by 10.229.136.199 with SMTP id s7mr3640544qct.145.1328863934469;
+	Fri, 10 Feb 2012 00:52:14 -0800 (PST)
+Received: from [192.168.0.103] ([101.109.8.148])
+	by mx.google.com with ESMTPS id l28sm10804114ibc.3.2012.02.10.00.52.10
+	(version=SSLv3 cipher=OTHER); Fri, 10 Feb 2012 00:52:12 -0800 (PST)
+Message-ID: <4F34DAB2.3010506@cnx-software.com>
+Date: Fri, 10 Feb 2012 15:52:02 +0700
+From: cnxsoft <cnxsoft@cnx-software.com>
+User-Agent: Mozilla/5.0 (Windows NT 5.1;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
 MIME-Version: 1.0
-To: yocto@yoctoproject.org, "Cherry, John" <John_Cherry@mentor.com>
-References: <43AE86686954984BA6E949465D98484089E431EB@NA-MBX-03.mgc.mentorg.com>
-In-Reply-To: <43AE86686954984BA6E949465D98484089E431EB@NA-MBX-03.mgc.mentorg.com>
-X-EN-UserInfo: cb6d325fe03740ac93d537d78041f599:2186c883651a1065ea1e15c5a112545a
-X-EN-AuthUser: bcochran@mindchasers.com
-Sender: Bob Cochran <yocto@mindchasers.com>
-X-EN-OrigIP: 108.25.174.63
-X-EN-OrigHost: unknown
-Subject: Re: MEL Kit for Beagle/Panda
+To: yocto@yoctoproject.org
+References: <4F322ECE.5060004@cnx-software.com>
+	<CADzUK1LbB_yr6pfO4nWsSWz4MTEyZDsMBwtn_G4qzdghPCsrhg@mail.gmail.com>
+	<4F32843F.70500@cnx-software.com>
+	<E4396C3C-30C9-4878-A116-DFA1EDC638D7@gmail.com>
+	<4F333A3A.8090500@intel.com> <4F3388E6.4060401@cnx-software.com>
+	<4F33F808.7060202@intel.com>
+In-Reply-To: <4F33F808.7060202@intel.com>
+X-Gm-Message-State: ALoCoQlOfaxobZD+eI20fhODkcubAYalvEn32lglKT2IHzeUcj2CbHhAoOPzJDz3hEjy1HMo6k0T
+Subject: Re: Yocto in Virtualbox (Ubuntu 11.10)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,36 +37,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Feb 2012 05:14:57 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Fri, 10 Feb 2012 08:52:15 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 02/09/2012 06:21 PM, Cherry, John wrote:
-> Hello Yocto developers,
+On 09/02/2012 23:44, Scott Garman wrote:
+> On 02/09/2012 12:50 AM, cnxsoft wrote:
+>> FYI. have done some further tests with the prebuilt binaries and
+>> toolchain (yocto-eglibc-i686-i586-toolchain-gmae-1.0.tar.bz2,
+>> bzImage-2.6.37-qemux86-1.0.bin and
+>> yocto-image-minimal-dev-qemux86-1.0.rootfs.ext3).
+>>
+>> With Ubuntu 11.10 (Virtual Box), it fails with the same black screen.
+>> With Debian Squeeze 6.0.3 (inside Virtual Box), it works fine.
+>>
+>> PS: For Ubuntu, poky-qemu script to pass libGL detection.
 >
-> Mentor Embedded (part of Mentor Graphics) recently announced the
-> availability of its new Embedded Linux Kit. This download is absolutely
-> free and available to anyone that would like to tinker with a prebuilt,
-
+> Thank you for reporting this, I have filed the following bug to track 
+> this issue:
 >
-> Check it out at:
-> http://www.mentor.com/embedded-software/downloads/linux-kits/?cmpid=6929
+> http://bugzilla.pokylinux.org/show_bug.cgi?id=1971
 >
-> Cheers,
+> Are you using the default user interface (Unity) in your Ubuntu setup?
 >
-> John
+> Scott
 >
+Yes, I'm using the Unity user interface.
 
-Hi John,
-
-I thought Mentor Embedded Linux was built around Mentor System Builder. 
-  Is System Builder going away and Yocto taking its place inside Mentor?
-
-I'll try to give the download a whirl over the weekend on my beagleboard.
-
-Thanks,
-
-Bob
-
-
+Just one detail. By mistake, yesterday I used Yocto 1.0 toolchain and 
+pre-built binaries. I've tried again with with Yocto 1.1 and I did not 
+need to change any script, but the black screen issue still occurs.
 
