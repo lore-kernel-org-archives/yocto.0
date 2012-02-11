@@ -1,29 +1,20 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2578E003E3
-	for <yocto@yoctoproject.org>; Fri, 10 Feb 2012 16:14:49 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 10 Feb 2012 16:14:49 -0800
+Return-Path: <josh@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E66DE003E3
+	for <yocto@yoctoproject.org>; Fri, 10 Feb 2012 16:32:49 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 10 Feb 2012 16:32:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="116485301"
-Received: from unknown (HELO envy.home) ([10.255.14.215])
-	by fmsmga001.fm.intel.com with ESMTP; 10 Feb 2012 16:14:48 -0800
-Message-ID: <4F35B2D5.30601@linux.intel.com>
-Date: Fri, 10 Feb 2012 16:14:13 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0
-MIME-Version: 1.0
-To: Martin Jansa <martin.jansa@gmail.com>
-References: <9c76056351fe4e2b9537729ffca3b4506b720513.1328135056.git.dvhart@linux.intel.com>
-	<4F2AE4E8.3080809@linux.intel.com>
-	<4F2AFBF7.8010307@linux.intel.com> <1405123.nGGmjXUAYO@helios>
-	<4F306968.9000902@linux.intel.com>
-	<20120207070631.GA3893@jama.jama.net>
-In-Reply-To: <20120207070631.GA3893@jama.jama.net>
-X-Enigmail-Version: 1.3.5
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: [pull-sys940x 2/4] ranpwd: Add ranpwd recipe
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="108867569"
+Received: from unknown (HELO shamshir.amr.corp.intel.com) ([10.255.14.248])
+	by orsmga002.jf.intel.com with ESMTP; 10 Feb 2012 16:32:48 -0800
+From: josh@linux.intel.com
+To: yocto@yoctoproject.org
+Date: Fri, 10 Feb 2012 16:32:39 -0800
+Message-Id: <1328920359-18646-1-git-send-email-josh@linux.intel.com>
+X-Mailer: git-send-email 1.7.7.6
+Cc: Darren Hart <dvhart@linux.intel.com>
+Subject: [PATCH] netbase: put sys940x specific interfaces file in MACHINE directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,72 +26,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Feb 2012 00:14:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 11 Feb 2012 00:32:49 -0000
 
+From: Joshua Lock <josh@linux.intel.com>
 
+Move the interfaces file to a MACHINE appropriate subdirectory of
+files so that:
+a) base.bbclass appropriately marks the resultant package MACHINE
+specific.
+b) builds for alternative MACHINES whilst this layer is enabled
+don't get the sys940x interfaces file
 
-On 02/06/2012 11:06 PM, Martin Jansa wrote:
-> On Mon, Feb 06, 2012 at 03:59:36PM -0800, Joshua Lock wrote:
->> On 06/02/12 08:17, Paul Eggleton wrote:
->>> On Thursday 02 February 2012 13:11:19 Joshua Lock wrote:
->>>> Apologies. I'm wrong here. It was PRIORITY which we agreed to drop.
->>>
->>> It's worth noting however, at the same time PRIORITY removal was discussed it
->>> was acknowledged that SECTION was questionable. Logical grouping of
->>> recipes/packages is a useful thing but coming up with groupings that are
->>> meaningful in all contexts is hard :(
->>
->> Glad to know my recollection isn't wildly off the mark.
->>
->> I noticed that there are similar, yet different, SECTION values being 
->> used. If we opt to keep SECTION I wonder if we should try and 
->> standardise/sanitise it?
-> 
-> If there is standardised SECTION variable why not use
-> recipes-${SECTION}/foo_1.0.bb as we already have couple of recipe-*
-> directories and it's sometimes hard to decide to which directory
-> something belongs.
-> 
-> Or other way around, standartise recipes-* directories and let bitbake
-> decide SECTION from it (like it does for PV and PN).
+Signed-off-by: Joshua Lock <josh@linux.intel.com>
+CC: Darren Hart <dvhart@linux.intel.com>
+---
+ meta-sys940x/recipes-core/netbase/files/interfaces |   10 ----------
+ .../netbase/files/sys940x-noemgd/interfaces        |   10 ++++++++++
+ .../recipes-core/netbase/files/sys940x/interfaces  |   10 ++++++++++
+ .../recipes-core/netbase/netbase_4.47.bbappend     |    2 +-
+ 4 files changed, 21 insertions(+), 11 deletions(-)
+ delete mode 100644 meta-sys940x/recipes-core/netbase/files/interfaces
+ create mode 100644 meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces
+ create mode 100644 meta-sys940x/recipes-core/netbase/files/sys940x/interfaces
 
-Brilliant.
-
---
-Darren
-
-> 
-> Cheers,
-> 
->>
->> Debian's sections seem like reasonable inspiration? 
->> http://packages.debian.org/stable/
->>
->> I think SECTION is useful for tools like Hob and Narcissus, so I'm in 
->> favour of keeping them.
->>
->> Cheers,
->> Joshua
->> -- 
->> Joshua Lock
->>          Yocto Project "Johannes factotum"
->>          Intel Open Source Technology Centre
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> 
-> 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+diff --git a/meta-sys940x/recipes-core/netbase/files/interfaces b/meta-sys940x/recipes-core/netbase/files/interfaces
+deleted file mode 100644
+index 4218f5d..0000000
+--- a/meta-sys940x/recipes-core/netbase/files/interfaces
++++ /dev/null
+@@ -1,10 +0,0 @@
+-# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
+- 
+-# The loopback interface
+-auto lo
+-iface lo inet loopback
+-
+-# Wired or wireless interfaces
+-auto eth0
+-iface eth0 inet dhcp
+-    hwaddress ether RANDOM_MAC
+diff --git a/meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces b/meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces
+new file mode 100644
+index 0000000..4218f5d
+--- /dev/null
++++ b/meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces
+@@ -0,0 +1,10 @@
++# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
++ 
++# The loopback interface
++auto lo
++iface lo inet loopback
++
++# Wired or wireless interfaces
++auto eth0
++iface eth0 inet dhcp
++    hwaddress ether RANDOM_MAC
+diff --git a/meta-sys940x/recipes-core/netbase/files/sys940x/interfaces b/meta-sys940x/recipes-core/netbase/files/sys940x/interfaces
+new file mode 100644
+index 0000000..4218f5d
+--- /dev/null
++++ b/meta-sys940x/recipes-core/netbase/files/sys940x/interfaces
+@@ -0,0 +1,10 @@
++# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
++ 
++# The loopback interface
++auto lo
++iface lo inet loopback
++
++# Wired or wireless interfaces
++auto eth0
++iface eth0 inet dhcp
++    hwaddress ether RANDOM_MAC
+diff --git a/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend b/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
+index 6d3f694..e01e0b6 100644
+--- a/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
++++ b/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
+@@ -1,3 +1,3 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+ RDEPENDS_${PN} += "genmac"
+-PRINC := "${@int(PRINC) + 1}"
++PRINC := "${@int(PRINC) + 2}"
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+1.7.5.4
+
 
