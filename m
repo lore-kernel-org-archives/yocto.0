@@ -1,33 +1,32 @@
-Return-Path: <sean_liming@sjjmicro.com>
-Received: from mail16c40.carrierzone.com (mail16c40.carrierzone.com
-	[209.235.156.156])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8148AE0131E
-	for <yocto@yoctoproject.org>; Sat, 11 Feb 2012 13:13:43 -0800 (PST)
-X-Authenticated-User: sean_liming.sjjmicro.com
-Received: from Sean7 (cpe-75-82-59-168.socal.res.rr.com [75.82.59.168])
-	(authenticated bits=0)
-	by mail16c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
-	q1BLDftC012178
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
-	for <yocto@yoctoproject.org>; Sat, 11 Feb 2012 21:13:42 +0000
-From: "Sean Liming" <sean_liming@sjjmicro.com>
-To: <yocto@yoctoproject.org>
-Date: Sat, 11 Feb 2012 13:13:33 -0800
-Message-ID: <000301cce902$03b60a50$0b221ef0$@sjjmicro.com>
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qw0-f41.google.com (mail-qw0-f41.google.com
+	[209.85.216.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB1ECE0131E
+	for <yocto@yoctoproject.org>; Sat, 11 Feb 2012 13:23:05 -0800 (PST)
+Received: by qadz32 with SMTP id z32so1066082qad.14
+	for <yocto@yoctoproject.org>; Sat, 11 Feb 2012 13:23:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=references:user-agent:in-reply-to:mime-version:content-type:subject
+	:from:date:to:message-id;
+	bh=am1nhdzj0Cr9LvXmS6X4dxFYAfdxctiGwY151mfeLNg=;
+	b=TF39nCMPICXdEgXbMfi2OcUMWtRw/VmhtwK5lBTl9M0Vy4itJ4QSiJX6MD69YbnAE+
+	C7YnlX3NjV6YypGXiMe5wCVIDz7J/7KLBuYvPja8mA7TSU5VzH31VXC7Qs/WCh+6Yl47
+	c5NmjaBrjFcJO/K00u1AuvnWZlYwQ0jte4GCU=
+Received: by 10.229.136.193 with SMTP id s1mr6080437qct.18.1328995384827;
+	Sat, 11 Feb 2012 13:23:04 -0800 (PST)
+Received: from [10.0.1.25] (nc-184-3-50-47.dhcp.embarqhsd.net. [184.3.50.47])
+	by mx.google.com with ESMTPS id
+	hk9sm22287657qab.20.2012.02.11.13.23.03 (version=SSLv3 cipher=OTHER);
+	Sat, 11 Feb 2012 13:23:03 -0800 (PST)
+References: <000301cce902$03b60a50$0b221ef0$@sjjmicro.com>
+User-Agent: Email for Android
+In-Reply-To: <000301cce902$03b60a50$0b221ef0$@sjjmicro.com>
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AczpAKGnqG0sdxwpS66bFK0kNNRWDw==
-X-Antivirus: avast! (VPS 120211-0, 02/11/2012), Outbound message
-X-Antivirus-Status: Clean
-X-CSC: 0
-X-CHA: v=1.1 cv=EvEsscukRmgjQswahipJwS9n8HJRqjMP/c15HL5NnPc= c=1 sm=1
-	a=aJh391NtreIA:10 a=z5g8Jwv4kxix1x/21EjHVg==:17 a=nCtTIssAyK_4xKfgBM8A:9
-	a=YjHWkSyBRdmgRU-hCW8A:7 a=CjuIK1q_8ugA:10 a=yMhMjlubAAAA:8
-	a=SSmOFEACAAAA:8 a=xsI5Wc5UMfOiwIVHyaoA:9 a=n90n76Bhe_u_XT5ZfVoA:7
-	a=gKO2Hq4RSVkA:10 a=hTZeC7Yk6K0A:10 a=z5g8Jwv4kxix1x/21EjHVg==:117
-X-CTCH-Spam: Unknown
-X-CTCH-RefID: str=0001.0A02020B.4F36DA07.000A,ss=1,re=0.000,fgs=0
-Subject: Deploy to a hard drive
+From: Jim Abernathy <jfabernathy@gmail.com>
+Date: Sat, 11 Feb 2012 16:23:01 -0500
+To: Sean Liming <sean_liming@sjjmicro.com>,yocto@yoctoproject.org
+Message-ID: <7fe09045-0102-427d-aac4-4e0e86f693ac@email.android.com>
+Subject: Re: Deploy to a hard drive
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,15 +38,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Feb 2012 21:13:44 -0000
+X-List-Received-Date: Sat, 11 Feb 2012 21:23:06 -0000
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0004_01CCE8BE.F5938DA0"
-Content-Language: en-us
+	boundary="----SWAI1KELR912RXY541QG9OJCOWD561"
 
-------=_NextPart_000_0004_01CCE8BE.F5938DA0
+------SWAI1KELR912RXY541QG9OJCOWD561
 Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Need mkdir /mnt/target and mnt/target-ext before step 4
+
+Sent from my Kindle Fire
+
+_____________________________________________
+From: Sean Liming <sean_liming@sjjmicro.com>
+Sent: Sat Feb 11 16:13:33 EST 2012
+To: yocto@yoctoproject.org
+Subject: [yocto] Deploy to a hard drive
+
 
  
 
@@ -59,15 +68,13 @@ Follow the Wiki instructions:
 
 1) have a suitable partition on the disk - say partition #3
 
-2) this partition will show up as sde3 on my host machine and sda3 on the
-atom
+2) this partition will show up as sde3 on my host machine and sda3 on the atom
 
 3) mkfs.ext3 /dev/sde3
 
 4) mount /dev/sde3 /mnt/target
 
-5) mount -o loop tmp/deploy/images/core-image-sato-sdk.ext3
-/mnt/target-text3
+5) mount -o loop tmp/deploy/images/core-image-sato-sdk.ext3 /mnt/target-text3
 
 6) cp -a /mnt/target-ext3/* /mnt/target
 
@@ -77,7 +84,7 @@ atom
 
  
 
-When I do step 4, I get "mount: mount point /mnt/target does not exist"
+When I do step 4, I get “mount: mount point /mnt/target does not exist”
 
  
 
@@ -98,19 +105,12 @@ Sean
  
 
 
-------=_NextPart_000_0004_01CCE8BE.F5938DA0
+------SWAI1KELR912RXY541QG9OJCOWD561
 Content-Type: text/html;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
-(filtered medium)"><style><!--
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv=Content-Type content="text/html; charset=us-ascii"><meta name=Generator content="Microsoft Word 14 (filtered medium)"><style><!--
 /* Font Definitions */
 @font-face
 	{font-family:Calibri;
@@ -141,36 +141,22 @@ span.EmailStyle17
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+<o:shapedefaults v:ext="edit" spidmax="1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Follow the =
-Wiki instructions:<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>1) have a =
-suitable partition on the disk - say partition #3<o:p></o:p></p><p =
-class=3DMsoNormal>2) this partition will show up as sde3 on my host =
-machine and sda3 on the atom<o:p></o:p></p><p class=3DMsoNormal>3) =
-mkfs.ext3 /dev/sde3<o:p></o:p></p><p class=3DMsoNormal>4) mount =
-/dev/sde3 /mnt/target<o:p></o:p></p><p class=3DMsoNormal>5) mount -o =
-loop tmp/deploy/images/core-image-sato-sdk.ext3 =
-/mnt/target-text3<o:p></o:p></p><p class=3DMsoNormal>6) cp -a =
-/mnt/target-ext3/* /mnt/target<o:p></o:p></p><p class=3DMsoNormal>7) =
-grub-install --recheck --root-directory=3D/mnt/target =
-/dev/sde<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>When I do =
-step 4, I get &#8220;mount: mount point /mnt/target does not =
-exist&#8221;<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>What am I missing?<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I am using =
-Ubuntu 10.4 LTS 32-bit.<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>Regards,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Sean =
-<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]--></head><body lang=EN-US link=blue vlink=purple><p>Need mkdir /mnt/target and mnt/target-ext before step 4<br>
+</p>
 
-------=_NextPart_000_0004_01CCE8BE.F5938DA0--
+Sent from my Kindle Fire<br><br><div style='font-size:10.0pt;font-family:"Tahoma","sans-serif";padding:3.0pt 0in 0in 0in'>
+<hr style='border:none;border-top:solid #B5C4DF 1.0pt'>
+<b>From:</b> Sean Liming &lt;sean_liming@sjjmicro.com&gt;<br>
+<b>Sent:</b> Sat Feb 11 16:13:33 EST 2012<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] Deploy to a hard drive<br>
+</div>
+<br>
+<div class=WordSection1><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>Follow the Wiki instructions:<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>1) have a suitable partition on the disk - say partition #3<o:p></o:p></p><p class=MsoNormal>2) this partition will show up as sde3 on my host machine and sda3 on the atom<o:p></o:p></p><p class=MsoNormal>3) mkfs.ext3 /dev/sde3<o:p></o:p></p><p class=MsoNormal>4) mount /dev/sde3 /mnt/target<o:p></o:p></p><p class=MsoNormal>5) mount -o loop tmp/deploy/images/core-image-sato-sdk.ext3 /mnt/target-text3<o:p></o:p></p><p class=MsoNormal>6) cp -a /mnt/target-ext3/* /mnt/target<o:p></o:p></p><p class=MsoNormal>7) grub-install --recheck --root-directory=/mnt/target /dev/sde<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>When I do step 4, I get &#8220;mount: mount point /mnt/target does not
+exist&#8221;<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>What am I missing?<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>I am using Ubuntu 10.4 LTS 32-bit.<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>Regards,<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>Sean <o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------SWAI1KELR912RXY541QG9OJCOWD561--
