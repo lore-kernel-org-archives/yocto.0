@@ -1,31 +1,38 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qw0-f41.google.com (mail-qw0-f41.google.com
-	[209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB1ECE0131E
-	for <yocto@yoctoproject.org>; Sat, 11 Feb 2012 13:23:05 -0800 (PST)
-Received: by qadz32 with SMTP id z32so1066082qad.14
-	for <yocto@yoctoproject.org>; Sat, 11 Feb 2012 13:23:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=references:user-agent:in-reply-to:mime-version:content-type:subject
-	:from:date:to:message-id;
-	bh=am1nhdzj0Cr9LvXmS6X4dxFYAfdxctiGwY151mfeLNg=;
-	b=TF39nCMPICXdEgXbMfi2OcUMWtRw/VmhtwK5lBTl9M0Vy4itJ4QSiJX6MD69YbnAE+
-	C7YnlX3NjV6YypGXiMe5wCVIDz7J/7KLBuYvPja8mA7TSU5VzH31VXC7Qs/WCh+6Yl47
-	c5NmjaBrjFcJO/K00u1AuvnWZlYwQ0jte4GCU=
-Received: by 10.229.136.193 with SMTP id s1mr6080437qct.18.1328995384827;
-	Sat, 11 Feb 2012 13:23:04 -0800 (PST)
-Received: from [10.0.1.25] (nc-184-3-50-47.dhcp.embarqhsd.net. [184.3.50.47])
-	by mx.google.com with ESMTPS id
-	hk9sm22287657qab.20.2012.02.11.13.23.03 (version=SSLv3 cipher=OTHER);
-	Sat, 11 Feb 2012 13:23:03 -0800 (PST)
+Return-Path: <sean_liming@sjjmicro.com>
+Received: from mail30c40.carrierzone.com (mail30c40.carrierzone.com
+	[209.235.156.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45205E0131E
+	for <yocto@yoctoproject.org>; Sat, 11 Feb 2012 14:13:36 -0800 (PST)
+X-Authenticated-User: sean_liming.sjjmicro.com
+Received: from Sean7 (cpe-75-82-59-168.socal.res.rr.com [75.82.59.168])
+	(authenticated bits=0)
+	by mail30c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	q1BMDWiU015555
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Sat, 11 Feb 2012 22:13:33 +0000
+From: "Sean Liming" <sean_liming@sjjmicro.com>
+To: "'Jim Abernathy'" <jfabernathy@gmail.com>, <yocto@yoctoproject.org>
 References: <000301cce902$03b60a50$0b221ef0$@sjjmicro.com>
-User-Agent: Email for Android
-In-Reply-To: <000301cce902$03b60a50$0b221ef0$@sjjmicro.com>
+	<7fe09045-0102-427d-aac4-4e0e86f693ac@email.android.com>
+In-Reply-To: <7fe09045-0102-427d-aac4-4e0e86f693ac@email.android.com>
+Date: Sat, 11 Feb 2012 14:13:24 -0800
+Message-ID: <001101cce90a$60227f00$20677d00$@sjjmicro.com>
 MIME-Version: 1.0
-From: Jim Abernathy <jfabernathy@gmail.com>
-Date: Sat, 11 Feb 2012 16:23:01 -0500
-To: Sean Liming <sean_liming@sjjmicro.com>,yocto@yoctoproject.org
-Message-ID: <7fe09045-0102-427d-aac4-4e0e86f693ac@email.android.com>
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQIk+Jv3+3OWPXxebl5wU2R37DXCQwKFpRbUlXPvpkA=
+X-Antivirus: avast! (VPS 120211-1, 02/11/2012), Outbound message
+X-Antivirus-Status: Clean
+X-CSC: 0
+X-CHA: v=1.1 cv=4Pq4DKZTL3ljfxpuMk4z6QiCGMBGedZp4jx2BIXYRVg= c=1 sm=1
+	a=LqHjNPIte60A:10 a=aJh391NtreIA:10 a=z5g8Jwv4kxix1x/21EjHVg==:17
+	a=pGLkceISAAAA:8 a=iGHA9ds3AAAA:8 a=muS382yeAAAA:8
+	a=PjZaKXRxqJkhIiFmvjAA:9
+	a=Rkex8DzYieaiEp_wVpIA:7 a=QEXdDO2ut3YA:10 a=MSl-tDqOz04A:10
+	a=XDKM753qmDAA:10 a=aONyWnEeb94A:10 a=yMhMjlubAAAA:8 a=SSmOFEACAAAA:8
+	a=JB2CZao6hiw7zjhSiPQA:9 a=O0cbxFv_pgKGrUiz4KwA:7 a=gKO2Hq4RSVkA:10
+	a=hTZeC7Yk6K0A:10 a=z5g8Jwv4kxix1x/21EjHVg==:117
+X-CTCH-Spam: Unknown
+X-CTCH-RefID: str=0001.0A020205.4F36E80E.0032,ss=1,re=0.000,fgs=0
 Subject: Re: Deploy to a hard drive
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -38,83 +45,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Feb 2012 21:23:06 -0000
+X-List-Received-Date: Sat, 11 Feb 2012 22:13:36 -0000
 Content-Type: multipart/alternative;
-	boundary="----SWAI1KELR912RXY541QG9OJCOWD561"
+	boundary="----=_NextPart_000_0012_01CCE8C7.5200ECB0"
+Content-Language: en-us
 
-------SWAI1KELR912RXY541QG9OJCOWD561
+------=_NextPart_000_0012_01CCE8C7.5200ECB0
 Content-Type: text/plain;
- charset=UTF-8
-Content-Transfer-Encoding: 8bit
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Created those directories. I just got past this error as it looks like / =
+before mnt is not needed.
+
+=20
+
+Step 7 required that I use the =E2=80=93force switch.
+
+=20
+
+1.       There is no bzImage in the /boot folder =E2=80=93 was there an =
+extra step
+
+2.       Cannot add the grub.cfg since it appears locked.
+
+=20
+
+=20
+
+Regards,
+
+=20
+
+Sean=20
+
+=20
+
+=20
+
+From: Jim Abernathy [mailto:jfabernathy@gmail.com]=20
+Sent: Saturday, February 11, 2012 1:23 PM
+To: Sean Liming; yocto@yoctoproject.org
+Subject: Re: [yocto] Deploy to a hard drive
+
+=20
 
 Need mkdir /mnt/target and mnt/target-ext before step 4
 
 Sent from my Kindle Fire
 
-_____________________________________________
+  _____ =20
+
 From: Sean Liming <sean_liming@sjjmicro.com>
 Sent: Sat Feb 11 16:13:33 EST 2012
 To: yocto@yoctoproject.org
 Subject: [yocto] Deploy to a hard drive
 
+=20
 
- 
+=20
 
 Follow the Wiki instructions:
 
- 
+=20
 
- 
+=20
 
 1) have a suitable partition on the disk - say partition #3
 
-2) this partition will show up as sde3 on my host machine and sda3 on the atom
+2) this partition will show up as sde3 on my host machine and sda3 on =
+the atom
 
 3) mkfs.ext3 /dev/sde3
 
 4) mount /dev/sde3 /mnt/target
 
-5) mount -o loop tmp/deploy/images/core-image-sato-sdk.ext3 /mnt/target-text3
+5) mount -o loop tmp/deploy/images/core-image-sato-sdk.ext3 =
+/mnt/target-text3
 
 6) cp -a /mnt/target-ext3/* /mnt/target
 
-7) grub-install --recheck --root-directory=/mnt/target /dev/sde
+7) grub-install --recheck --root-directory=3D/mnt/target /dev/sde
 
- 
+=20
 
- 
+=20
 
-When I do step 4, I get “mount: mount point /mnt/target does not exist”
+When I do step 4, I get =E2=80=9Cmount: mount point /mnt/target does not =
+exist=E2=80=9D
 
- 
+=20
 
 What am I missing?
 
- 
+=20
 
 I am using Ubuntu 10.4 LTS 32-bit.
 
- 
+=20
 
 Regards,
 
- 
+=20
 
-Sean 
+Sean=20
 
- 
+=20
+
+=20
+
+=20
+
+=20
+
+=20
 
 
-------SWAI1KELR912RXY541QG9OJCOWD561
+------=_NextPart_000_0012_01CCE8C7.5200ECB0
 Content-Type: text/html;
- charset=utf-8
-Content-Transfer-Encoding: 8bit
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv=Content-Type content="text/html; charset=us-ascii"><meta name=Generator content="Microsoft Word 14 (filtered medium)"><style><!--
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 14 (filtered medium)"><!--[if =
+!mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
 /* Font Definitions */
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
@@ -129,34 +199,202 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:purple;
 	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
 span.EmailStyle17
-	{mso-style-type:personal-compose;
+	{mso-style-type:personal;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
 .MsoChpDefault
-	{mso-style-type:export-only;}
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
 div.WordSection1
 	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1800689014;
+	mso-list-type:hybrid;
+	mso-list-template-ids:539017358 67698703 67698713 67698715 67698703 =
+67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
 --></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]--></head><body lang=EN-US link=blue vlink=purple><p>Need mkdir /mnt/target and mnt/target-ext before step 4<br>
-</p>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Created those directories. I just got past this =
+error as it looks like / before mnt is not =
+needed.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Step 7 required that I =
+use the =E2=80=93force switch.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoListParagraph style=3D'text-indent:-.25in;mso-list:l0 level1 =
+lfo1'><![if !supportLists]><span style=3D'color:#1F497D'><span =
+style=3D'mso-list:Ignore'>1.<span style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+</span></span></span><![endif]><span style=3D'color:#1F497D'>There is no =
+bzImage in the /boot folder =E2=80=93 was there an extra =
+step<o:p></o:p></span></p><p class=3DMsoListParagraph =
+style=3D'text-indent:-.25in;mso-list:l0 level1 lfo1'><![if =
+!supportLists]><span style=3D'color:#1F497D'><span =
+style=3D'mso-list:Ignore'>2.<span style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+</span></span></span><![endif]><span style=3D'color:#1F497D'>Cannot add =
+the grub.cfg since it appears locked.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Regards,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Sean =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in'><p class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
+Jim Abernathy [mailto:jfabernathy@gmail.com] <br><b>Sent:</b> Saturday, =
+February 11, 2012 1:23 PM<br><b>To:</b> Sean Liming; =
+yocto@yoctoproject.org<br><b>Subject:</b> Re: [yocto] Deploy to a hard =
+drive<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p>Need mkdir /mnt/target and =
+mnt/target-ext before step 4<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'margin-bottom:12.0pt'><span =
+style=3D'font-size:12.0pt;font-family:"Times New Roman","serif"'>Sent =
+from my Kindle Fire<o:p></o:p></span></p><div><div class=3DMsoNormal =
+align=3Dcenter style=3D'text-align:center'><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'><hr =
+size=3D2 width=3D"100%" align=3Dcenter></span></div><p =
+class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
+Sean Liming &lt;<a =
+href=3D"mailto:sean_liming@sjjmicro.com">sean_liming@sjjmicro.com</a>&gt;=
+<br><b>Sent:</b> Sat Feb 11 16:13:33 EST 2012<br><b>To:</b> <a =
+href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><b>S=
+ubject:</b> [yocto] Deploy to a hard drive<o:p></o:p></span></p></div><p =
+class=3DMsoNormal><span style=3D'font-size:12.0pt;font-family:"Times New =
+Roman","serif"'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Follow the =
+Wiki instructions:<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>1) have a =
+suitable partition on the disk - say partition #3<o:p></o:p></p><p =
+class=3DMsoNormal>2) this partition will show up as sde3 on my host =
+machine and sda3 on the atom<o:p></o:p></p><p class=3DMsoNormal>3) =
+mkfs.ext3 /dev/sde3<o:p></o:p></p><p class=3DMsoNormal>4) mount =
+/dev/sde3 /mnt/target<o:p></o:p></p><p class=3DMsoNormal>5) mount -o =
+loop tmp/deploy/images/core-image-sato-sdk.ext3 =
+/mnt/target-text3<o:p></o:p></p><p class=3DMsoNormal>6) cp -a =
+/mnt/target-ext3/* /mnt/target<o:p></o:p></p><p class=3DMsoNormal>7) =
+grub-install --recheck --root-directory=3D/mnt/target =
+/dev/sde<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>When I do =
+step 4, I get =E2=80=9Cmount: mount point /mnt/target does not =
+exist=E2=80=9D<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>What am I =
+missing?<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>I am using Ubuntu 10.4 LTS 32-bit.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Regards,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Sean =
+<o:p></o:p></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p></div></body></html>
 
-Sent from my Kindle Fire<br><br><div style='font-size:10.0pt;font-family:"Tahoma","sans-serif";padding:3.0pt 0in 0in 0in'>
-<hr style='border:none;border-top:solid #B5C4DF 1.0pt'>
-<b>From:</b> Sean Liming &lt;sean_liming@sjjmicro.com&gt;<br>
-<b>Sent:</b> Sat Feb 11 16:13:33 EST 2012<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] Deploy to a hard drive<br>
-</div>
-<br>
-<div class=WordSection1><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>Follow the Wiki instructions:<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>1) have a suitable partition on the disk - say partition #3<o:p></o:p></p><p class=MsoNormal>2) this partition will show up as sde3 on my host machine and sda3 on the atom<o:p></o:p></p><p class=MsoNormal>3) mkfs.ext3 /dev/sde3<o:p></o:p></p><p class=MsoNormal>4) mount /dev/sde3 /mnt/target<o:p></o:p></p><p class=MsoNormal>5) mount -o loop tmp/deploy/images/core-image-sato-sdk.ext3 /mnt/target-text3<o:p></o:p></p><p class=MsoNormal>6) cp -a /mnt/target-ext3/* /mnt/target<o:p></o:p></p><p class=MsoNormal>7) grub-install --recheck --root-directory=/mnt/target /dev/sde<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>When I do step 4, I get &#8220;mount: mount point /mnt/target does not
-exist&#8221;<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>What am I missing?<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>I am using Ubuntu 10.4 LTS 32-bit.<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>Regards,<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>Sean <o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-
-------SWAI1KELR912RXY541QG9OJCOWD561--
+------=_NextPart_000_0012_01CCE8C7.5200ECB0--
