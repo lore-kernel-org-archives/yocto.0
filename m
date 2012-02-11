@@ -1,20 +1,24 @@
 Return-Path: <josh@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E66DE003E3
-	for <yocto@yoctoproject.org>; Fri, 10 Feb 2012 16:32:49 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 10 Feb 2012 16:32:48 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DF32E003E3
+	for <yocto@yoctoproject.org>; Fri, 10 Feb 2012 16:40:30 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 10 Feb 2012 16:40:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="108867569"
-Received: from unknown (HELO shamshir.amr.corp.intel.com) ([10.255.14.248])
-	by orsmga002.jf.intel.com with ESMTP; 10 Feb 2012 16:32:48 -0800
-From: josh@linux.intel.com
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="65509055"
+Received: from unknown (HELO [10.255.14.248]) ([10.255.14.248])
+	by AZSMGA002.ch.intel.com with ESMTP; 10 Feb 2012 16:40:20 -0800
+Message-ID: <4F35B8F4.1080301@linux.intel.com>
+Date: Fri, 10 Feb 2012 16:40:20 -0800
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0) Gecko/20120131 Thunderbird/10.0
+MIME-Version: 1.0
 To: yocto@yoctoproject.org
-Date: Fri, 10 Feb 2012 16:32:39 -0800
-Message-Id: <1328920359-18646-1-git-send-email-josh@linux.intel.com>
-X-Mailer: git-send-email 1.7.7.6
+References: <1328920359-18646-1-git-send-email-josh@linux.intel.com>
+In-Reply-To: <1328920359-18646-1-git-send-email-josh@linux.intel.com>
 Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [PATCH] netbase: put sys940x specific interfaces file in MACHINE directory
+Subject: Re: [PATCH] netbase: put sys940x specific interfaces file in MACHINE directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,87 +30,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Feb 2012 00:32:49 -0000
+X-List-Received-Date: Sat, 11 Feb 2012 00:40:30 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Joshua Lock <josh@linux.intel.com>
 
-Move the interfaces file to a MACHINE appropriate subdirectory of
-files so that:
-a) base.bbclass appropriately marks the resultant package MACHINE
-specific.
-b) builds for alternative MACHINES whilst this layer is enabled
-don't get the sys940x interfaces file
+On 10/02/12 16:32, josh@linux.intel.com wrote:
+> From: Joshua Lock<josh@linux.intel.com>
+>
+> Move the interfaces file to a MACHINE appropriate subdirectory of
+> files so that:
+> a) base.bbclass appropriately marks the resultant package MACHINE
+> specific.
 
-Signed-off-by: Joshua Lock <josh@linux.intel.com>
-CC: Darren Hart <dvhart@linux.intel.com>
----
- meta-sys940x/recipes-core/netbase/files/interfaces |   10 ----------
- .../netbase/files/sys940x-noemgd/interfaces        |   10 ++++++++++
- .../recipes-core/netbase/files/sys940x/interfaces  |   10 ++++++++++
- .../recipes-core/netbase/netbase_4.47.bbappend     |    2 +-
- 4 files changed, 21 insertions(+), 11 deletions(-)
- delete mode 100644 meta-sys940x/recipes-core/netbase/files/interfaces
- create mode 100644 meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces
- create mode 100644 meta-sys940x/recipes-core/netbase/files/sys940x/interfaces
+Note: after writing this patch, but before submitting it, I discovered 
+that this doesn't currently work for layers.
+However I've just proposed a fix to the OE-Core list which once merged, 
+or once something like it is merged, this will behave as claimed.
 
-diff --git a/meta-sys940x/recipes-core/netbase/files/interfaces b/meta-sys940x/recipes-core/netbase/files/interfaces
-deleted file mode 100644
-index 4218f5d..0000000
---- a/meta-sys940x/recipes-core/netbase/files/interfaces
-+++ /dev/null
-@@ -1,10 +0,0 @@
--# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
-- 
--# The loopback interface
--auto lo
--iface lo inet loopback
--
--# Wired or wireless interfaces
--auto eth0
--iface eth0 inet dhcp
--    hwaddress ether RANDOM_MAC
-diff --git a/meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces b/meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces
-new file mode 100644
-index 0000000..4218f5d
---- /dev/null
-+++ b/meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces
-@@ -0,0 +1,10 @@
-+# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
-+ 
-+# The loopback interface
-+auto lo
-+iface lo inet loopback
-+
-+# Wired or wireless interfaces
-+auto eth0
-+iface eth0 inet dhcp
-+    hwaddress ether RANDOM_MAC
-diff --git a/meta-sys940x/recipes-core/netbase/files/sys940x/interfaces b/meta-sys940x/recipes-core/netbase/files/sys940x/interfaces
-new file mode 100644
-index 0000000..4218f5d
---- /dev/null
-+++ b/meta-sys940x/recipes-core/netbase/files/sys940x/interfaces
-@@ -0,0 +1,10 @@
-+# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
-+ 
-+# The loopback interface
-+auto lo
-+iface lo inet loopback
-+
-+# Wired or wireless interfaces
-+auto eth0
-+iface eth0 inet dhcp
-+    hwaddress ether RANDOM_MAC
-diff --git a/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend b/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
-index 6d3f694..e01e0b6 100644
---- a/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
-+++ b/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
-@@ -1,3 +1,3 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
- RDEPENDS_${PN} += "genmac"
--PRINC := "${@int(PRINC) + 1}"
-+PRINC := "${@int(PRINC) + 2}"
+You can follow the thread relating to this fix here:
+http://lists.linuxtogo.org/pipermail/openembedded-core/2012-February/017682.html
+
+Cheers,
+Joshua
 -- 
-1.7.5.4
-
+Joshua Lock
+         Yocto Project "Johannes factotum"
+         Intel Open Source Technology Centre
 
