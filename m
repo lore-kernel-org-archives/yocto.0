@@ -1,25 +1,27 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21475E003E4
-	for <yocto@yoctoproject.org>; Fri, 10 Feb 2012 20:42:49 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 10 Feb 2012 20:42:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="106336949"
-Received: from unknown (HELO envy.home) ([10.255.14.253])
-	by orsmga001.jf.intel.com with ESMTP; 10 Feb 2012 20:42:48 -0800
-Message-ID: <4F35C3A3.1060003@linux.intel.com>
-Date: Fri, 10 Feb 2012 17:25:55 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0
+Return-Path: <aalonso00@gmail.com>
+Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7151AE0059A
+	for <yocto@yoctoproject.org>; Sat, 11 Feb 2012 11:19:50 -0800 (PST)
+Received: by pbcuo1 with SMTP id uo1so3846602pbc.35
+	for <yocto@yoctoproject.org>; Sat, 11 Feb 2012 11:19:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Dg/vfReGNUyYmigHZ2Y7n6kefbtYSWWwzfm7a2zYecc=;
+	b=gooqbVgjI+YmLsXeHp6Sl/WEGQl16uXtJ387Uq6Cp5QiFW08RsKkUiyFfQp/rZ+A/d
+	pFr2QAknQ6eifW1wyIjhacuF1aAYHIz2mLhDLvZvQGto7UC28ZaUJIRFb3j26NdDJx2C
+	SAnM/+PEPIOkcdlwApRsVv6GtAZVufTjif9is=
 MIME-Version: 1.0
-To: josh@linux.intel.com
-References: <1328920359-18646-1-git-send-email-josh@linux.intel.com>
-In-Reply-To: <1328920359-18646-1-git-send-email-josh@linux.intel.com>
-X-Enigmail-Version: 1.3.5
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] netbase: put sys940x specific interfaces file in MACHINE directory
+Received: by 10.68.73.100 with SMTP id k4mr29929367pbv.55.1328987990202; Sat,
+	11 Feb 2012 11:19:50 -0800 (PST)
+Received: by 10.68.203.134 with HTTP; Sat, 11 Feb 2012 11:19:50 -0800 (PST)
+Date: Sat, 11 Feb 2012 13:19:50 -0600
+Message-ID: <CAAB-1yw=Hhk7V_suVM9fShLRsQXicsKNZV0KzXAMewZVqnPhWA@mail.gmail.com>
+From: Adrian Alonso <aalonso00@gmail.com>
+To: openembedded-devel@lists.openembedded.org, 
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>, yocto <yocto@yoctoproject.org>
+Subject: OpenEmbedded/Yocto Freescale ARM BSP Layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,98 +33,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Feb 2012 04:42:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 11 Feb 2012 19:19:50 -0000
+Content-Type: multipart/alternative; boundary=f46d041705ad11180904b8b52156
 
-On 02/10/2012 04:32 PM, josh@linux.intel.com wrote:
-> From: Joshua Lock <josh@linux.intel.com>
-> 
-> Move the interfaces file to a MACHINE appropriate subdirectory of
-> files so that:
-> a) base.bbclass appropriately marks the resultant package MACHINE
-> specific.
-> b) builds for alternative MACHINES whilst this layer is enabled
-> don't get the sys940x interfaces file
-> 
-> Signed-off-by: Joshua Lock <josh@linux.intel.com>
-> CC: Darren Hart <dvhart@linux.intel.com>
+--f46d041705ad11180904b8b52156
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-Thanks Josh, applied. Will push next time I'm connected.
+*We are proud to announce the creation of a mailing list to easy the
+communication of people using Freescale=92s ARM*
+*processors and micro-controllers with OpenEmbedded and/or Yocto. For now,
+we will be using Google Groups for*
+*this task. You can join the group at
+http://groups.google.com/group/meta-fsl-arm
 
---
-Darren
+This mailing list will be used to share work and review the patches before
+those are merge onto the BSP layer.*
+*The layer itself has also been moved to a new repository, still at GitHub.
+The new repository http://github.com/Freescale/meta-fsl-arm;*
+*people already using previous meta-freescale GitHub trees you will need to
+change their GIT configuration to this new location.
 
-> ---
->  meta-sys940x/recipes-core/netbase/files/interfaces |   10 ----------
->  .../netbase/files/sys940x-noemgd/interfaces        |   10 ++++++++++
->  .../recipes-core/netbase/files/sys940x/interfaces  |   10 ++++++++++
->  .../recipes-core/netbase/netbase_4.47.bbappend     |    2 +-
->  4 files changed, 21 insertions(+), 11 deletions(-)
->  delete mode 100644 meta-sys940x/recipes-core/netbase/files/interfaces
->  create mode 100644 meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces
->  create mode 100644 meta-sys940x/recipes-core/netbase/files/sys940x/interfaces
-> 
-> diff --git a/meta-sys940x/recipes-core/netbase/files/interfaces b/meta-sys940x/recipes-core/netbase/files/interfaces
-> deleted file mode 100644
-> index 4218f5d..0000000
-> --- a/meta-sys940x/recipes-core/netbase/files/interfaces
-> +++ /dev/null
-> @@ -1,10 +0,0 @@
-> -# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
-> - 
-> -# The loopback interface
-> -auto lo
-> -iface lo inet loopback
-> -
-> -# Wired or wireless interfaces
-> -auto eth0
-> -iface eth0 inet dhcp
-> -    hwaddress ether RANDOM_MAC
-> diff --git a/meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces b/meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces
-> new file mode 100644
-> index 0000000..4218f5d
-> --- /dev/null
-> +++ b/meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces
-> @@ -0,0 +1,10 @@
-> +# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
-> + 
-> +# The loopback interface
-> +auto lo
-> +iface lo inet loopback
-> +
-> +# Wired or wireless interfaces
-> +auto eth0
-> +iface eth0 inet dhcp
-> +    hwaddress ether RANDOM_MAC
-> diff --git a/meta-sys940x/recipes-core/netbase/files/sys940x/interfaces b/meta-sys940x/recipes-core/netbase/files/sys940x/interfaces
-> new file mode 100644
-> index 0000000..4218f5d
-> --- /dev/null
-> +++ b/meta-sys940x/recipes-core/netbase/files/sys940x/interfaces
-> @@ -0,0 +1,10 @@
-> +# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
-> + 
-> +# The loopback interface
-> +auto lo
-> +iface lo inet loopback
-> +
-> +# Wired or wireless interfaces
-> +auto eth0
-> +iface eth0 inet dhcp
-> +    hwaddress ether RANDOM_MAC
-> diff --git a/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend b/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
-> index 6d3f694..e01e0b6 100644
-> --- a/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
-> +++ b/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
-> @@ -1,3 +1,3 @@
->  FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
->  RDEPENDS_${PN} += "genmac"
-> -PRINC := "${@int(PRINC) + 1}"
-> +PRINC := "${@int(PRINC) + 2}"
+Please join us at the mainling list and start to watch and to fork the
+repository at GitHub.*
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Regards
+Adrian Alonso
 
+--f46d041705ad11180904b8b52156
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+<b id=3D"internal-source-marker_0.8964913580566645" style=3D"font-family:&#=
+39;Times New Roman&#39;;font-size:medium"><span style=3D"font-size:15px;fon=
+t-family:Arial;font-weight:normal;vertical-align:baseline;white-space:pre-w=
+rap">We are proud to announce the creation of a mailing list to easy the co=
+mmunication of people using Freescale=92s ARM</span></b><div>
+<b style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium"><span s=
+tyle=3D"font-size:15px;font-family:Arial;font-weight:normal;vertical-align:=
+baseline;white-space:pre-wrap">processors and micro-controllers with OpenEm=
+bedded and/or Yocto. For now, we will be using Google Groups for</span></b>=
+</div>
+<div><b style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium"><s=
+pan style=3D"font-size:15px;font-family:Arial;font-weight:normal;vertical-a=
+lign:baseline;white-space:pre-wrap">this task. You can join the group at </=
+span><a href=3D"http://groups.google.com/group/meta-fsl-arm"><span style=3D=
+"font-size:15px;font-family:Arial;color:rgb(17,85,204);font-weight:normal;v=
+ertical-align:baseline;white-space:pre-wrap">http://groups.google.com/group=
+/meta-fsl-arm</span></a><span style=3D"font-size:15px;font-family:Arial;fon=
+t-weight:normal;vertical-align:baseline;white-space:pre-wrap"></span><br>
+<span style=3D"font-size:15px;font-family:Arial;font-weight:normal;vertical=
+-align:baseline;white-space:pre-wrap"></span><br><span style=3D"font-size:1=
+5px;font-family:Arial;font-weight:normal;vertical-align:baseline;white-spac=
+e:pre-wrap">This mailing list will be used to share work and review the pat=
+ches before those are merge onto the BSP layer.</span></b></div>
+<div><b style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium"><s=
+pan style=3D"font-size:15px;font-family:Arial;font-weight:normal;vertical-a=
+lign:baseline;white-space:pre-wrap">The layer itself has also been moved to=
+ a new repository, still at GitHub. The new repository </span><a href=3D"ht=
+tp://github.com/Freescale/meta-fsl-arm"><span style=3D"font-size:15px;font-=
+family:Arial;color:rgb(17,85,204);font-weight:normal;vertical-align:baselin=
+e;white-space:pre-wrap">http://github.com/Freescale/meta-fsl-arm</span></a>=
+<span style=3D"font-size:15px;font-family:Arial;font-weight:normal;vertical=
+-align:baseline;white-space:pre-wrap">;</span></b></div>
+<div><b style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium"><s=
+pan style=3D"font-size:15px;font-family:Arial;font-weight:normal;vertical-a=
+lign:baseline;white-space:pre-wrap">people already using previous meta-free=
+scale GitHub trees you will need to change their GIT configuration to this =
+new location.</span><br>
+<span style=3D"font-size:15px;font-family:Arial;font-weight:normal;vertical=
+-align:baseline;white-space:pre-wrap"></span><br><span style=3D"font-size:1=
+5px;font-family:Arial;font-weight:normal;vertical-align:baseline;white-spac=
+e:pre-wrap">Please join us at the mainling list and start to watch and to f=
+ork the repository at GitHub.</span></b></div>
+<div><font face=3D"Arial"><span style=3D"font-size:15px;white-space:pre-wra=
+p"><br></span></font></div><div><font face=3D"Arial"><span style=3D"font-si=
+ze:15px;white-space:pre-wrap">Regards</span></font></div><div><font face=3D=
+"Arial"><span style=3D"font-size:15px;white-space:pre-wrap">Adrian Alonso<b=
+r clear=3D"all">
+</span></font><div><br></div><br>
+</div>
+
+--f46d041705ad11180904b8b52156--
