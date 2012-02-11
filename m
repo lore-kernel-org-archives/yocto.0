@@ -1,43 +1,25 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 178C0E003E3
-	for <yocto@yoctoproject.org>; Fri, 10 Feb 2012 17:45:51 -0800 (PST)
-Received: by pbcuo1 with SMTP id uo1so3276357pbc.35
-	for <yocto@yoctoproject.org>; Fri, 10 Feb 2012 17:45:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=date:from:to:cc:subject:message-id:mail-followup-to:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent; bh=xKJ3Vq4eXqLtHt5ueUhTDTdItdazsz3LAKwyczczIVM=;
-	b=UO6/mLACqmNEMxHd1e4RWmpsiqhWq3EVuqJWb3bG1tKtQ5fT84QcHS1cvyYY+a9kAt
-	tCCB6tch2yKQ6MprTUtAeVawRcFwl3iVaADcUUMpz0fI9BOME/rKzKez3eUk4QpXdE78
-	FE1hbMkmVl5i/Noy+KCko/8JCTVfEI5j42d2Y=
-Received: by 10.68.220.227 with SMTP id pz3mr21591060pbc.86.1328924750304;
-	Fri, 10 Feb 2012 17:45:50 -0800 (PST)
-Received: from sakrah.homelinux.org
-	(99-57-140-209.lightspeed.sntcca.sbcglobal.net. [99.57.140.209])
-	by mx.google.com with ESMTPS id w4sm17859733pbf.4.2012.02.10.17.45.47
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 10 Feb 2012 17:45:48 -0800 (PST)
-Date: Fri, 10 Feb 2012 17:45:39 -0800
-From: Khem Raj <raj.khem@gmail.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Message-ID: <20120211014526.GA2095@sakrah.homelinux.org>
-Mail-Followup-To: Darren Hart <dvhart@linux.intel.com>,
-	Martin Jansa <martin.jansa@gmail.com>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>,
-	yocto@yoctoproject.org
-References: <9c76056351fe4e2b9537729ffca3b4506b720513.1328135056.git.dvhart@linux.intel.com>
-	<4F2AE4E8.3080809@linux.intel.com>
-	<4F2AFBF7.8010307@linux.intel.com> <1405123.nGGmjXUAYO@helios>
-	<4F306968.9000902@linux.intel.com>
-	<20120207070631.GA3893@jama.jama.net>
-	<4F35B2D5.30601@linux.intel.com>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21475E003E4
+	for <yocto@yoctoproject.org>; Fri, 10 Feb 2012 20:42:49 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 10 Feb 2012 20:42:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="106336949"
+Received: from unknown (HELO envy.home) ([10.255.14.253])
+	by orsmga001.jf.intel.com with ESMTP; 10 Feb 2012 20:42:48 -0800
+Message-ID: <4F35C3A3.1060003@linux.intel.com>
+Date: Fri, 10 Feb 2012 17:25:55 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-In-Reply-To: <4F35B2D5.30601@linux.intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: [pull-sys940x 2/4] ranpwd: Add ranpwd recipe
+To: josh@linux.intel.com
+References: <1328920359-18646-1-git-send-email-josh@linux.intel.com>
+In-Reply-To: <1328920359-18646-1-git-send-email-josh@linux.intel.com>
+X-Enigmail-Version: 1.3.5
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] netbase: put sys940x specific interfaces file in MACHINE directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,37 +31,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Feb 2012 01:45:51 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Sat, 11 Feb 2012 04:42:49 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On (10/02/12 16:14), Darren Hart wrote:
+On 02/10/2012 04:32 PM, josh@linux.intel.com wrote:
+> From: Joshua Lock <josh@linux.intel.com>
 > 
+> Move the interfaces file to a MACHINE appropriate subdirectory of
+> files so that:
+> a) base.bbclass appropriately marks the resultant package MACHINE
+> specific.
+> b) builds for alternative MACHINES whilst this layer is enabled
+> don't get the sys940x interfaces file
 > 
-> On 02/06/2012 11:06 PM, Martin Jansa wrote:
-> > On Mon, Feb 06, 2012 at 03:59:36PM -0800, Joshua Lock wrote:
-> >> On 06/02/12 08:17, Paul Eggleton wrote:
-> >>> On Thursday 02 February 2012 13:11:19 Joshua Lock wrote:
-> >>>> Apologies. I'm wrong here. It was PRIORITY which we agreed to drop.
-> >>>
-> >>> It's worth noting however, at the same time PRIORITY removal was discussed it
-> >>> was acknowledged that SECTION was questionable. Logical grouping of
-> >>> recipes/packages is a useful thing but coming up with groupings that are
-> >>> meaningful in all contexts is hard :(
-> >>
-> >> Glad to know my recollection isn't wildly off the mark.
-> >>
-> >> I noticed that there are similar, yet different, SECTION values being 
-> >> used. If we opt to keep SECTION I wonder if we should try and 
-> >> standardise/sanitise it?
-> > 
-> > If there is standardised SECTION variable why not use
-> > recipes-${SECTION}/foo_1.0.bb as we already have couple of recipe-*
-> > directories and it's sometimes hard to decide to which directory
-> > something belongs.
-> > 
-> > Or other way around, standartise recipes-* directories and let bitbake
-> > decide SECTION from it (like it does for PV and PN).
+> Signed-off-by: Joshua Lock <josh@linux.intel.com>
+> CC: Darren Hart <dvhart@linux.intel.com>
 
-thats a good idea
+Thanks Josh, applied. Will push next time I'm connected.
+
+--
+Darren
+
+> ---
+>  meta-sys940x/recipes-core/netbase/files/interfaces |   10 ----------
+>  .../netbase/files/sys940x-noemgd/interfaces        |   10 ++++++++++
+>  .../recipes-core/netbase/files/sys940x/interfaces  |   10 ++++++++++
+>  .../recipes-core/netbase/netbase_4.47.bbappend     |    2 +-
+>  4 files changed, 21 insertions(+), 11 deletions(-)
+>  delete mode 100644 meta-sys940x/recipes-core/netbase/files/interfaces
+>  create mode 100644 meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces
+>  create mode 100644 meta-sys940x/recipes-core/netbase/files/sys940x/interfaces
+> 
+> diff --git a/meta-sys940x/recipes-core/netbase/files/interfaces b/meta-sys940x/recipes-core/netbase/files/interfaces
+> deleted file mode 100644
+> index 4218f5d..0000000
+> --- a/meta-sys940x/recipes-core/netbase/files/interfaces
+> +++ /dev/null
+> @@ -1,10 +0,0 @@
+> -# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
+> - 
+> -# The loopback interface
+> -auto lo
+> -iface lo inet loopback
+> -
+> -# Wired or wireless interfaces
+> -auto eth0
+> -iface eth0 inet dhcp
+> -    hwaddress ether RANDOM_MAC
+> diff --git a/meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces b/meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces
+> new file mode 100644
+> index 0000000..4218f5d
+> --- /dev/null
+> +++ b/meta-sys940x/recipes-core/netbase/files/sys940x-noemgd/interfaces
+> @@ -0,0 +1,10 @@
+> +# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
+> + 
+> +# The loopback interface
+> +auto lo
+> +iface lo inet loopback
+> +
+> +# Wired or wireless interfaces
+> +auto eth0
+> +iface eth0 inet dhcp
+> +    hwaddress ether RANDOM_MAC
+> diff --git a/meta-sys940x/recipes-core/netbase/files/sys940x/interfaces b/meta-sys940x/recipes-core/netbase/files/sys940x/interfaces
+> new file mode 100644
+> index 0000000..4218f5d
+> --- /dev/null
+> +++ b/meta-sys940x/recipes-core/netbase/files/sys940x/interfaces
+> @@ -0,0 +1,10 @@
+> +# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
+> + 
+> +# The loopback interface
+> +auto lo
+> +iface lo inet loopback
+> +
+> +# Wired or wireless interfaces
+> +auto eth0
+> +iface eth0 inet dhcp
+> +    hwaddress ether RANDOM_MAC
+> diff --git a/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend b/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
+> index 6d3f694..e01e0b6 100644
+> --- a/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
+> +++ b/meta-sys940x/recipes-core/netbase/netbase_4.47.bbappend
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+>  RDEPENDS_${PN} += "genmac"
+> -PRINC := "${@int(PRINC) + 1}"
+> +PRINC := "${@int(PRINC) + 2}"
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
