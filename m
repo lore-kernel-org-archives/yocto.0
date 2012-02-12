@@ -1,24 +1,39 @@
-Return-Path: <dsmoot@sparxeng.com>
-Received: from mail.sparxeng.com (unknown [173.11.255.233])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E08E3E01206
-	for <yocto@yoctoproject.org>; Sat, 11 Feb 2012 12:27:13 -0800 (PST)
-Received: from SPXServer01.corp.sparx.net ([fe80::6170:7e9f:11cc:b07b]) by
-	SPXServer01.corp.sparx.net ([fe80::6170:7e9f:11cc:b07b%10]) with mapi;
-	Sat, 11 Feb 2012 14:27:28 -0600
-From: David Smoot <dsmoot@sparxeng.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Routerstation returning to root file system on internal flash
-Thread-Index: AQHM6Pa2xhPpOhInqke6jfxI09kS3JY4ibcA
-Date: Sat, 11 Feb 2012 20:27:10 +0000
-Message-ID: <7A496883-172F-4029-B0C9-EAD3070849C6@sparxeng.com>
-References: <CF54C32B-A1BB-4E1D-9A8D-0C02A2F17551@sparxeng.com>
-In-Reply-To: <CF54C32B-A1BB-4E1D-9A8D-0C02A2F17551@sparxeng.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+Return-Path: <sean_liming@sjjmicro.com>
+Received: from mail16c40.carrierzone.com (mail16c40.carrierzone.com
+	[209.235.156.156])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE254E0044A
+	for <yocto@yoctoproject.org>; Sun, 12 Feb 2012 14:31:13 -0800 (PST)
+X-Authenticated-User: sean_liming.sjjmicro.com
+Received: from Sean7 (cpe-75-82-59-168.socal.res.rr.com [75.82.59.168])
+	(authenticated bits=0)
+	by mail16c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	q1CMVAtf019475
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <yocto@yoctoproject.org>; Sun, 12 Feb 2012 22:31:12 +0000
+From: "Sean Liming" <sean_liming@sjjmicro.com>
+To: <yocto@yoctoproject.org>
+References: <000301cce902$03b60a50$0b221ef0$@sjjmicro.com>	<7fe09045-0102-427d-aac4-4e0e86f693ac@email.android.com>
+	<001101cce90a$60227f00$20677d00$@sjjmicro.com>
+In-Reply-To: <001101cce90a$60227f00$20677d00$@sjjmicro.com>
+Date: Sun, 12 Feb 2012 14:31:10 -0800
+Message-ID: <001401cce9d6$0651d080$12f57180$@sjjmicro.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Sun, 12 Feb 2012 14:07:49 -0800
-Subject: Re: Routerstation returning to root file system on internal flash
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQIk+Jv3+3OWPXxebl5wU2R37DXCQwKFpRbUAg+x3wOVZQ/5MA==
+X-Antivirus: avast! (VPS 120212-1, 02/12/2012), Outbound message
+X-Antivirus-Status: Clean
+X-CSC: 0
+X-CHA: v=1.1 cv=EvEsscukRmgjQswahipJwS9n8HJRqjMP/c15HL5NnPc= c=1 sm=1
+	a=LqHjNPIte60A:10 a=aJh391NtreIA:10 a=z5g8Jwv4kxix1x/21EjHVg==:17
+	a=iGHA9ds3AAAA:8 a=pGLkceISAAAA:8 a=muS382yeAAAA:8
+	a=ntDyQzTkts-563AJPv4A:9
+	a=B4sG8kyMPNpe0BPRXQIA:7 a=QEXdDO2ut3YA:10 a=FCaQVidmf_IA:10
+	a=nHK3ipOpxeAA:10 a=XDKM753qmDAA:10 a=MSl-tDqOz04A:10 a=aONyWnEeb94A:10
+	a=yMhMjlubAAAA:8 a=SSmOFEACAAAA:8 a=y0q5G5CaBkMYhtmxRJgA:7
+	a=gKO2Hq4RSVkA:10 a=hTZeC7Yk6K0A:10 a=z5g8Jwv4kxix1x/21EjHVg==:117
+X-CTCH-Spam: Unknown
+X-CTCH-RefID: str=0001.0A02020B.4F383DB0.009E,ss=1,re=0.000,fgs=0
+Subject: Re: Deploy to a hard drive
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,103 +45,418 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Feb 2012 20:27:14 -0000
-Content-Language: en-US
+X-List-Received-Date: Sun, 12 Feb 2012 22:31:14 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_7A496883172F4029B0C9EAD3070849C6sparxengcom_"
+	boundary="----=_NextPart_000_0015_01CCE992.F8310180"
+Content-Language: en-us
 
---_000_7A496883172F4029B0C9EAD3070849C6sparxengcom_
-Content-Type: text/plain; charset="us-ascii"
+------=_NextPart_000_0015_01CCE992.F8310180
+Content-Type: text/plain;
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Never mind, I figured my error out another way.  Thanks for reading if you =
-see this.
+=20
 
-David
+I figured out the last problem, and the system boots to the drive.
 
-On Feb 11, 2012, at 1:52 PM,  wrote:
+=20
 
-I want to experiment with putting my root file system on my routerstation p=
-ro on the internal flash.
+Regards,
 
-I followed the directions from http://www.yoctoproject.org/download/bsp/ubi=
-quiti-networks-routerstation-pro-routerstationpro-0 to load the kernel into=
- flash and to modify the bootloader to mount the root file system on extern=
-al storage:
+=20
 
->> exec -c "console=3DttyS0,115200 root=3D/dev/sda1 rw rootdelay=3D2 board=
-=3DUBNT-RSPRO"
+Sean Liming
 
-Now I want to put the root file system back into internal flash but I don't=
- seem to know what the internal device node is:
+Owner
 
->>VFS: Cannot open root device "rom" or unknown-block(2,0)
->>Please append a correct "root=3D" boot option; here are the available par=
-titions:
->>0800         7822456 sda  driver: sd
->> 0801         7821432 sda1 00000000-0000-0000-0000-000000000000
+SJJ Embedded Micro Solutions, LLC.
 
-Any suggestions?
+Tel: 714-970-7523 / Cell: 858-774-3176
 
-David
+=20
+
+From: yocto-bounces@yoctoproject.org =
+[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Sean Liming
+Sent: Saturday, February 11, 2012 2:13 PM
+To: 'Jim Abernathy'; yocto@yoctoproject.org
+Subject: Re: [yocto] Deploy to a hard drive
+
+=20
+
+Created those directories. I just got past this error as it looks like / =
+before mnt is not needed.
+
+=20
+
+Step 7 required that I use the =E2=80=93force switch.
+
+=20
+
+1.       There is no bzImage in the /boot folder =E2=80=93 was there an =
+extra step
+
+2.       Cannot add the grub.cfg since it appears locked.
+
+=20
+
+=20
+
+Regards,
+
+=20
+
+Sean=20
+
+=20
+
+=20
+
+From: Jim Abernathy [mailto:jfabernathy@gmail.com]=20
+Sent: Saturday, February 11, 2012 1:23 PM
+To: Sean Liming; yocto@yoctoproject.org
+Subject: Re: [yocto] Deploy to a hard drive
+
+=20
+
+Need mkdir /mnt/target and mnt/target-ext before step 4
+
+Sent from my Kindle Fire
+
+  _____ =20
+
+From: Sean Liming <sean_liming@sjjmicro.com>
+Sent: Sat Feb 11 16:13:33 EST 2012
+To: yocto@yoctoproject.org
+Subject: [yocto] Deploy to a hard drive
+
+=20
+
+=20
+
+Follow the Wiki instructions:
+
+=20
+
+=20
+
+1) have a suitable partition on the disk - say partition #3
+
+2) this partition will show up as sde3 on my host machine and sda3 on =
+the atom
+
+3) mkfs.ext3 /dev/sde3
+
+4) mount /dev/sde3 /mnt/target
+
+5) mount -o loop tmp/deploy/images/core-image-sato-sdk.ext3 =
+/mnt/target-text3
+
+6) cp -a /mnt/target-ext3/* /mnt/target
+
+7) grub-install --recheck --root-directory=3D/mnt/target /dev/sde
+
+=20
+
+=20
+
+When I do step 4, I get =E2=80=9Cmount: mount point /mnt/target does not =
+exist=E2=80=9D
+
+=20
+
+What am I missing?
+
+=20
+
+I am using Ubuntu 10.4 LTS 32-bit.
+
+=20
+
+Regards,
+
+=20
+
+Sean=20
+
+=20
+
+=20
+
+=20
+
+=20
+
+=20
 
 
-
-
---_000_7A496883172F4029B0C9EAD3070849C6sparxengcom_
-Content-Type: text/html; charset="us-ascii"
-Content-ID: <2b18cbb6-c3d5-4c55-a057-fe9bc134a779>
+------=_NextPart_000_0015_01CCE992.F8310180
+Content-Type: text/html;
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
-></head><body style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; -we=
-bkit-line-break: after-white-space; ">Never mind, I figured my error out an=
-other way. &nbsp;Thanks for reading if you see this.<div><br></div><div>Dav=
-id</div><div><br><div><div>On Feb 11, 2012, at 1:52 PM, &nbsp;wrote:</div><=
-br class=3D"Apple-interchange-newline">
-<div style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line=
--break: after-white-space; ">I want to experiment with putting my root file=
- system on my routerstation pro on the internal flash.<div><br></div><div>I=
- followed the directions from&nbsp;<a href=3D"http://www.yoctoproject.org/d=
-ownload/bsp/ubiquiti-networks-routerstation-pro-routerstationpro-0">http://=
-www.yoctoproject.org/download/bsp/ubiquiti-networks-routerstation-pro-route=
-rstationpro-0</a>&nbsp;to load the kernel into flash and to modify the boot=
-loader to mount the root file system on external storage:</div><div><br></d=
-iv><div><span class=3D"Apple-tab-span" style=3D"white-space:pre">	</span></=
-div><div><span style=3D"color: rgb(76, 67, 63); font-family: Arial, Helveti=
-ca, Tahoma, Verdana, 'Bitstream Vera Sans', sans-serif; font-size: 14px; fo=
-nt-style: normal; font-variant: normal; font-weight: normal; letter-spacing=
-: normal; line-height: 18px; orphans: 2; text-align: -webkit-auto; text-ind=
-ent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacin=
-g: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; bac=
-kground-color: rgb(255, 255, 255); display: inline !important; float: none;=
- ">&gt;&gt; exec -c &quot;console=3DttyS0,115200 root=3D/dev/sda1 rw rootde=
-lay=3D2 board=3DUBNT-RSPRO&quot;</span></div><div><span style=3D"color: rgb=
-(76, 67, 63); font-family: Arial, Helvetica, Tahoma, Verdana, 'Bitstream Ve=
-ra Sans', sans-serif; font-size: 14px; font-style: normal; font-variant: no=
-rmal; font-weight: normal; letter-spacing: normal; line-height: 18px; orpha=
-ns: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; wh=
-ite-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: =
-auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);=
- display: inline !important; float: none; "><br></span></div><div><font cla=
-ss=3D"Apple-style-span" color=3D"#4c433f" face=3D"Arial, Helvetica, Tahoma,=
- Verdana, 'Bitstream Vera Sans', sans-serif"><span class=3D"Apple-style-spa=
-n" style=3D"font-size: 14px; line-height: 18px;">Now I want to put the root=
- file system back into internal flash but I don't seem to know what the int=
-ernal device node is:</span></font></div><div><font class=3D"Apple-style-sp=
-an" color=3D"#4c433f" face=3D"Arial, Helvetica, Tahoma, Verdana, 'Bitstream=
- Vera Sans', sans-serif"><span class=3D"Apple-style-span" style=3D"font-siz=
-e: 14px; line-height: 18px;"><br></span></font></div><div><font class=3D"Ap=
-ple-style-span" color=3D"#4c433f" face=3D"Arial, Helvetica, Tahoma, Verdana=
-, 'Bitstream Vera Sans', sans-serif"><span class=3D"Apple-style-span" style=
-=3D"font-size: 14px; line-height: 18px;"><div>&gt;&gt;VFS: Cannot open root=
- device &quot;rom&quot; or unknown-block(2,0)</div><div>&gt;&gt;Please appe=
-nd a correct &quot;root=3D&quot; boot option; here are the available partit=
-ions:</div><div>&gt;&gt;0800 &nbsp; &nbsp; &nbsp; &nbsp; 7822456 sda &nbsp;=
-driver: sd</div><div>&gt;&gt; 0801 &nbsp; &nbsp; &nbsp; &nbsp; 7821432 sda1=
- 00000000-0000-0000-0000-000000000000</div><div><br></div><div>Any suggesti=
-ons?</div><div><br></div><div>David</div><div><br></div><div><br></div></sp=
-an></font></div></div></div><br></div></body></html>=
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 14 (filtered medium)"><!--[if =
+!mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle21
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle22
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle23
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1800689014;
+	mso-list-type:hybrid;
+	mso-list-template-ids:539017358 67698703 67698713 67698715 67698703 =
+67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>I figured out the last =
+problem, and the system boots to the drive.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><div><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Regards,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Sean =
+Liming<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Owner<o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>SJJ Embedded Micro =
+Solutions, LLC.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Tel: 714-970-7523 / Cell: =
+858-774-3176<o:p></o:p></span></p></div><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in'><p class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
+yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] =
+<b>On Behalf Of </b>Sean Liming<br><b>Sent:</b> Saturday, February 11, =
+2012 2:13 PM<br><b>To:</b> 'Jim Abernathy'; =
+yocto@yoctoproject.org<br><b>Subject:</b> Re: [yocto] Deploy to a hard =
+drive<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Created those directories. I just got past this =
+error as it looks like / before mnt is not =
+needed.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Step 7 required that I =
+use the =E2=80=93force switch.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoListParagraph style=3D'text-indent:-.25in;mso-list:l0 level1 =
+lfo2'><![if !supportLists]><span style=3D'color:#1F497D'><span =
+style=3D'mso-list:Ignore'>1.<span style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+</span></span></span><![endif]><span style=3D'color:#1F497D'>There is no =
+bzImage in the /boot folder =E2=80=93 was there an extra =
+step<o:p></o:p></span></p><p class=3DMsoListParagraph =
+style=3D'text-indent:-.25in;mso-list:l0 level1 lfo2'><![if =
+!supportLists]><span style=3D'color:#1F497D'><span =
+style=3D'mso-list:Ignore'>2.<span style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+</span></span></span><![endif]><span style=3D'color:#1F497D'>Cannot add =
+the grub.cfg since it appears locked.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Regards,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Sean =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in'><p class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
+Jim Abernathy <a =
+href=3D"mailto:[mailto:jfabernathy@gmail.com]">[mailto:jfabernathy@gmail.=
+com]</a> <br><b>Sent:</b> Saturday, February 11, 2012 1:23 =
+PM<br><b>To:</b> Sean Liming; <a =
+href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><b>S=
+ubject:</b> Re: [yocto] Deploy to a hard =
+drive<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p>Need mkdir /mnt/target and =
+mnt/target-ext before step 4<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'margin-bottom:12.0pt'><span =
+style=3D'font-size:12.0pt;font-family:"Times New Roman","serif"'>Sent =
+from my Kindle Fire<o:p></o:p></span></p><div><div class=3DMsoNormal =
+align=3Dcenter style=3D'text-align:center'><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'><hr =
+size=3D2 width=3D"100%" align=3Dcenter></span></div><p =
+class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
+Sean Liming &lt;<a =
+href=3D"mailto:sean_liming@sjjmicro.com">sean_liming@sjjmicro.com</a>&gt;=
+<br><b>Sent:</b> Sat Feb 11 16:13:33 EST 2012<br><b>To:</b> <a =
+href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><b>S=
+ubject:</b> [yocto] Deploy to a hard drive<o:p></o:p></span></p></div><p =
+class=3DMsoNormal><span style=3D'font-size:12.0pt;font-family:"Times New =
+Roman","serif"'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Follow the =
+Wiki instructions:<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>1) have a =
+suitable partition on the disk - say partition #3<o:p></o:p></p><p =
+class=3DMsoNormal>2) this partition will show up as sde3 on my host =
+machine and sda3 on the atom<o:p></o:p></p><p class=3DMsoNormal>3) =
+mkfs.ext3 /dev/sde3<o:p></o:p></p><p class=3DMsoNormal>4) mount =
+/dev/sde3 /mnt/target<o:p></o:p></p><p class=3DMsoNormal>5) mount -o =
+loop tmp/deploy/images/core-image-sato-sdk.ext3 =
+/mnt/target-text3<o:p></o:p></p><p class=3DMsoNormal>6) cp -a =
+/mnt/target-ext3/* /mnt/target<o:p></o:p></p><p class=3DMsoNormal>7) =
+grub-install --recheck --root-directory=3D/mnt/target =
+/dev/sde<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>When I do =
+step 4, I get =E2=80=9Cmount: mount point /mnt/target does not =
+exist=E2=80=9D<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>What am I =
+missing?<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>I am using Ubuntu 10.4 LTS 32-bit.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Regards,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Sean =
+<o:p></o:p></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p></div></body></html>
 
---_000_7A496883172F4029B0C9EAD3070849C6sparxengcom_--
+------=_NextPart_000_0015_01CCE992.F8310180--
