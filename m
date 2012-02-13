@@ -1,34 +1,32 @@
-Return-Path: <SRS0=A5O+Y9=AY=mindchasers.com=yocto@eigbox.net>
-Received: from bosmailout20.eigbox.net (bosmailout20.eigbox.net [66.96.186.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD6AEE0044C
-	for <yocto@yoctoproject.org>; Tue, 14 Feb 2012 06:53:02 -0800 (PST)
-Received: from bosmailscan03.eigbox.net ([10.20.15.3])
-	by bosmailout20.eigbox.net with esmtp (Exim) id 1RxJkb-0002lE-Ol
-	for yocto@yoctoproject.org; Tue, 14 Feb 2012 09:53:01 -0500
-Received: from bosimpout02.eigbox.net ([10.20.55.2])
-	by bosmailscan03.eigbox.net with esmtp (Exim) id 1RxJkb-0007Qi-Hy
-	for yocto@yoctoproject.org; Tue, 14 Feb 2012 09:53:01 -0500
-Received: from bosauthsmtp05.eigbox.net ([10.20.18.5])
-	by bosimpout02.eigbox.net with NO UCE
-	id Zqt11i00Q06Zqne01qt1fM; Tue, 14 Feb 2012 09:53:01 -0500
-X-EN-OrigOutIP: 10.20.18.5
-X-EN-IMPSID: Zqt11i00Q06Zqne01qt1fM
-Received: from [108.25.174.63] (helo=[192.168.1.3])
-	by bosauthsmtp05.eigbox.net with esmtpa (Exim) id 1RxJkb-0002Er-7r
-	for yocto@yoctoproject.org; Tue, 14 Feb 2012 09:53:01 -0500
-Message-ID: <4F3A754B.5020909@mindchasers.com>
-Date: Tue, 14 Feb 2012 09:52:59 -0500
-From: Bob Cochran <yocto@mindchasers.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
+Return-Path: <kg4ysn@gmail.com>
+Received: from mail-tul01m020-f176.google.com (mail-tul01m020-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4574BE0044B
+	for <yocto@yoctoproject.org>; Sun, 12 Feb 2012 17:10:11 -0800 (PST)
+Received: by obbwd18 with SMTP id wd18so8540479obb.35
+	for <yocto@yoctoproject.org>; Sun, 12 Feb 2012 17:10:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=1u6lflRizPolVCb7ujBKU5QV8IKiZiHHlUC3R8JWX6Q=;
+	b=HtWbgNRnoN1oW2f6C5xY034UY3NRydWxXMwNNk15ziC8chjmyCPwr6/MId4ItTbNOw
+	EdG+jbUHtbKFgYdU4R7ziSi9rLC2ERYIRlxNctvoXOuwg4tyF2EhR15vE07JDzF/Pizm
+	aeHtfu7Z0JC2gFrgsllxR6WnQLjJC1Ir1wgfA=
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-X-EN-UserInfo: cb6d325fe03740ac93d537d78041f599:2186c883651a1065ea1e15c5a112545a
-X-EN-AuthUser: bcochran@mindchasers.com
-Sender: Bob Cochran <yocto@mindchasers.com>
-X-EN-OrigIP: 108.25.174.63
-X-EN-OrigHost: unknown
-Subject: meta-oracle-java
+Received: by 10.182.109.106 with SMTP id hr10mr10339048obb.27.1329095410718;
+	Sun, 12 Feb 2012 17:10:10 -0800 (PST)
+Received: by 10.182.182.41 with HTTP; Sun, 12 Feb 2012 17:10:10 -0800 (PST)
+In-Reply-To: <CAAB-1yw=Hhk7V_suVM9fShLRsQXicsKNZV0KzXAMewZVqnPhWA@mail.gmail.com>
+References: <CAAB-1yw=Hhk7V_suVM9fShLRsQXicsKNZV0KzXAMewZVqnPhWA@mail.gmail.com>
+Date: Sun, 12 Feb 2012 17:10:10 -0800
+Message-ID: <CAG4_upR3cPJaRKtvsb_MC8tTDZx7f7+v2zHeYD5wLB6vL8YXbw@mail.gmail.com>
+From: Chris Verges <kg4ysn@gmail.com>
+To: openembedded-devel@lists.openembedded.org
+X-Mailman-Approved-At: Tue, 14 Feb 2012 08:02:58 -0800
+Cc: yocto <yocto@yoctoproject.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [oe] OpenEmbedded/Yocto Freescale ARM BSP Layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,35 +38,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Feb 2012 14:53:03 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 13 Feb 2012 01:10:11 -0000
+Content-Type: multipart/alternative; boundary=f46d0444ee55d4169a04b8ce23a2
 
-Hello All,
+--f46d0444ee55d4169a04b8ce23a2
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-I see that a meta-oracle-java layer showed up recently in the yocto 
-repositories.  That's great.
+On Sat, Feb 11, 2012 at 11:19 AM, Adrian Alonso <aalonso00@gmail.com> wrote=
+:
 
-Was there an announcement about this new layer sent on a mailing list or 
-posted in a blog?  I had thought I was on all the yocto-related mail 
-lists (https://lists.yoctoproject.org/), but I wasn't aware of this 
-layer until I just read through the repository list 
-(http://git.yoctoproject.org/cgit/cgit.cgi/).
-
-I did find  a mention about some jdk work in the technical team meeting 
-notes on 1/24, but it was sort of cryptic.  By any chance, is there an 
-openjdk layer coming soon?
-
-If only I had gone to ELC this week....
-
-Thanks,
-
-Bob
+> *We are proud to announce the creation of a mailing list to easy the
+> communication of people using Freescale=92s ARM*
 
 
+Hi Adrian,
 
+As one of these users, thank you for helping to create a support structure
+around OpenEmbedded and the Freescale portfolio!  I noticed that the i.MX51
+is all that is in there right now.  Would this be an appropriate place for
+the i.MX23 as well?  I wasn't sure if the scope was being limited or if
+this was an artifact of the newness of the repository.
 
+Again, many thanks!
 
+Chris
 
+--f46d0444ee55d4169a04b8ce23a2
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
+<div class=3D"gmail_quote">On Sat, Feb 11, 2012 at 11:19 AM, Adrian Alonso =
+<span dir=3D"ltr">&lt;<a href=3D"mailto:aalonso00@gmail.com">aalonso00@gmai=
+l.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+*We are proud to announce the creation of a mailing list to easy the<br>
+communication of people using Freescale=92s ARM*</blockquote><div><br></div=
+><div>Hi Adrian,</div><div><br></div><div>As one of these users, thank you =
+for helping to create a support structure around OpenEmbedded and the Frees=
+cale portfolio! =A0I noticed that the i.MX51 is all that is in there right =
+now. =A0Would this be an appropriate place for the i.MX23 as well? =A0I was=
+n&#39;t sure if the scope was being limited or if this was an artifact of t=
+he newness of the repository.</div>
+<div><br></div><div>Again, many thanks!</div><div><br></div><div>Chris</div=
+></div>
 
+--f46d0444ee55d4169a04b8ce23a2--
