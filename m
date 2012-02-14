@@ -1,23 +1,34 @@
-Return-Path: <poldi871@web.de>
-Received: from fmmailgate04.web.de (fmmailgate04.web.de [217.72.192.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3F52E0059B
-	for <yocto@yoctoproject.org>; Tue, 14 Feb 2012 06:33:48 -0800 (PST)
-Received: from 3capp-webde-bs20.dlan.cinetic.de  ( [172.19.170.20])
-	by fmmailgate04.web.de (Postfix) with ESMTP id 8C6A9719BF3C
-	for <yocto@yoctoproject.org>; Tue, 14 Feb 2012 15:33:47 +0100 (CET)
-Received: from [172.20.15.10]  by  3capp-webde-bs20  with HTTP;
-	Tue Feb 14 15:33:47 CET 2012
-Date: Tue, 14 Feb 2012 15:33:47 +0100 (CET)
-From: poldi871@web.de
-To: yocto@yoctoproject.org
-Message-ID: <trinity-3d03409e-29b2-46d3-ae0c-ce5e967728b7-1329230027499@3capp-webde-bs20.dlan.cinetic.de>
+Return-Path: <SRS0=A5O+Y9=AY=mindchasers.com=yocto@eigbox.net>
+Received: from bosmailout20.eigbox.net (bosmailout20.eigbox.net [66.96.186.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD6AEE0044C
+	for <yocto@yoctoproject.org>; Tue, 14 Feb 2012 06:53:02 -0800 (PST)
+Received: from bosmailscan03.eigbox.net ([10.20.15.3])
+	by bosmailout20.eigbox.net with esmtp (Exim) id 1RxJkb-0002lE-Ol
+	for yocto@yoctoproject.org; Tue, 14 Feb 2012 09:53:01 -0500
+Received: from bosimpout02.eigbox.net ([10.20.55.2])
+	by bosmailscan03.eigbox.net with esmtp (Exim) id 1RxJkb-0007Qi-Hy
+	for yocto@yoctoproject.org; Tue, 14 Feb 2012 09:53:01 -0500
+Received: from bosauthsmtp05.eigbox.net ([10.20.18.5])
+	by bosimpout02.eigbox.net with NO UCE
+	id Zqt11i00Q06Zqne01qt1fM; Tue, 14 Feb 2012 09:53:01 -0500
+X-EN-OrigOutIP: 10.20.18.5
+X-EN-IMPSID: Zqt11i00Q06Zqne01qt1fM
+Received: from [108.25.174.63] (helo=[192.168.1.3])
+	by bosauthsmtp05.eigbox.net with esmtpa (Exim) id 1RxJkb-0002Er-7r
+	for yocto@yoctoproject.org; Tue, 14 Feb 2012 09:53:01 -0500
+Message-ID: <4F3A754B.5020909@mindchasers.com>
+Date: Tue, 14 Feb 2012 09:52:59 -0500
+From: Bob Cochran <yocto@mindchasers.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111229 Thunderbird/9.0
 MIME-Version: 1.0
-X-Priority: 3
-Importance: normal
-Sensitivity: Normal
-X-Provags-ID: V01U2FsdGVkX18aO6r8g6BeEEEgqKcbvoSzoGWw6pTgrXJU3s0faflb8DG7+hEWOj8a
-	w+i8lmgBRM9/neeYW+HSuy4F3L1w8Ujr
-Subject: Segmentation fault with "hob"-command
+To: yocto@yoctoproject.org
+X-EN-UserInfo: cb6d325fe03740ac93d537d78041f599:2186c883651a1065ea1e15c5a112545a
+X-EN-AuthUser: bcochran@mindchasers.com
+Sender: Bob Cochran <yocto@mindchasers.com>
+X-EN-OrigIP: 108.25.174.63
+X-EN-OrigHost: unknown
+Subject: meta-oracle-java
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,60 +40,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Feb 2012 14:33:49 -0000
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 14 Feb 2012 14:53:03 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-<html><head></head><body><div style=3D"font-family: Verdana;font-size: 12.0=
-px;"><div>Hello,<br/>I am evaluating Yocto, therefore sorry, if it is a beg=
-inner fault; I have a problem starting &quot;hob&quot;.<br/>After the comma=
-nd &quot;hob&quot; the system tells that some tools have to be built. The b=
-uild ends<br/>with the following lines:<br/><br/>------------- snip -------=
---------------------------------<br/>...<br/>NOTE: package pseudo-native-1.=
-1.1-r2: task do_populate_sysroot: Started<br/>NOTE: package pseudo-native-1=
-.1.1-r2: task do_populate_sysroot: Succeeded<br/>NOTE: Tasks Summary: Attem=
-pted 126 tasks of which 0 didn't need to be rerun and 0 failed.<br/>/Yocto/=
-poky-edison-6.0/scripts/bitbake: Zeile 86: 14880 Speicherzugriffsfehler&nbs=
-p;&nbsp; PSEUDO_BINDIR=3D$PSEUDOBINDIR PSEUDO_LIBDIR=3D$PSEUDOBINDIR/../lib=
-/pseudo/lib PSEUDO_PREFIX=3D$PSEUDOBINDIR/../../ PSEUDO_DISABLED=3D1 $PSEUD=
-OBINDIR/pseudo $BITBAKE $@<br/><br/>------------- snap --------------------=
--------------------<br/>German output: &quot;Speicherzugriffsfehler&quot; =
-=3D &quot;segmentation fault&quot;<br/><br/>System-infos:<br/>Build-System:=
- OpenSuSE 11.3, 32bit<br/>Yocto version: &quot;poky-edison-6.0-tar-bz2&quot=
-; from the Yokto download server<br/><br/>The absolute same problem also ap=
-pears with the following constellation:<br/>Build system: OpenSuSE 11.3 64b=
-it<br/>Yocto version: &quot;poky-edison-6.0-tar-bz2 'from yocto download se=
-rver<br/><br/>On the 64-bit system, I have the &quot;nightly build&quot; (&=
-quot;http://autobuilder.yoctoproject.org/nightly/20120213-1/yocto.tar.bz2&q=
-uot;)<br/>reinstalled.<br/>Here I get the following output:<br/>-----------=
--- snip ---------------------------------------<br/>...<br/>NOTE: package t=
-ar-replacement-native-1.26-r0: task do_populate_sysroot: Started<br/>NOTE: =
-package tar-replacement-native-1.26-r0: task do_populate_sysroot: Succeeded=
-<br/>NOTE: Tasks Summary: Attempted 126 tasks of which 0 didn't need to be =
-rerun and 0 failed.<br/>/Yocto/yocto/scripts/bitbake: Zeile 95: 29888 Speic=
-herzugriffsfehler&nbsp; PSEUDO_BINDIR=3D$PSEUDOBINDIR PSEUDO_LIBDIR=3D$PSEU=
-DOBINDIR/../lib/pseudo/lib PSEUDO_PREFIX=3D$PSEUDOBINDIR/../../ PSEUDO_DISA=
-BLED=3D1 $PSEUDOBINDIR/pseudo $BITBAKE $@<br/><br/>------------- snap -----=
-----------------------------------<br/><br/>From a gdb session (evaluation =
-of the core dump) of the nightly build I get the following output:<br/>----=
---------- snip ---------------------------------------<br/>...<br/>Core was=
- generated by `python /Yocto/yocto/bitbake/bin/bitbake -r conf/hob-pre.conf=
- -R conf/hob-post.c'.<br/>Program terminated with signal 11, Segmentation f=
-ault.<br/>#0&nbsp; 0x00007f0254626c9e in gdk_window_enable_synchronized_con=
-figure ()<br/>&nbsp;&nbsp; from /usr/lib64/libgdk-x11-2.0.so.0<br/>(gdb)<br=
-/>------------- snap ---------------------------------------<br/><br/>The e=
-rror occurred in each case at the first attempt after a new installation.<b=
-r/>Commands:<br/>------------- snip ---------------------------------------=
-<br/>source oe-init-build-env<br/>hob<br/>------------- snap --------------=
--------------------------<br/><br/>Changes in &quot;local.conf&quot;:<br/><=
-br/>------------- snip ---------------------------------------<br/>MACHINE =
-?=3D &quot;atom-pc&quot;<br/>------------- snap ---------------------------=
-------------<br/><br/>Is it a bug, or a beginner's mistake?<br/><br/>Thanks=
- in advance,<br/><br/>Siegfried<br/></div></div>&nbsp;&nbsp;<br><br><table =
-cellpadding=3D"0" cellspacing=3D"0" border=3D"0"><tr><td style=3D"font-fami=
-ly:verdana; font-size:12px; line-height:17px;border-top:1px solid #000000">=
-SMS schreiben mit WEB.DE FreeMail - einfach, schnell und&nbsp;&nbsp;&nbsp;<=
-br>kostenguenstig. Jetzt gleich testen! <a href=3D"http://f.web.de/?mc=3D02=
-1192"><b>http://f.web.de/?mc=3D021192</b></a></td></tr></table>
-</body></html>
+Hello All,
+
+I see that a meta-oracle-java layer showed up recently in the yocto 
+repositories.  That's great.
+
+Was there an announcement about this new layer sent on a mailing list or 
+posted in a blog?  I had thought I was on all the yocto-related mail 
+lists (https://lists.yoctoproject.org/), but I wasn't aware of this 
+layer until I just read through the repository list 
+(http://git.yoctoproject.org/cgit/cgit.cgi/).
+
+I did find  a mention about some jdk work in the technical team meeting 
+notes on 1/24, but it was sort of cryptic.  By any chance, is there an 
+openjdk layer coming soon?
+
+If only I had gone to ELC this week....
+
+Thanks,
+
+Bob
+
+
+
+
+
+
+
 
