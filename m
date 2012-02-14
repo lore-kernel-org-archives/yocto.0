@@ -1,28 +1,24 @@
-Return-Path: <poldi871.lists@progserv.de>
-Received: from 1824-1.1st-housing.de (1824-1.1st-housing.de [62.112.154.189])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A436E0030B
-	for <yocto@yoctoproject.org>; Tue, 14 Feb 2012 08:24:48 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by 1824-1.1st-housing.de (Postfix) with ESMTP id C465820C2FF
-	for <yocto@yoctoproject.org>; Tue, 14 Feb 2012 17:24:47 +0100 (CET)
-X-Virus-Scanned: amavisd-new at 1st-housing.de
-Received: from 1824-1.1st-housing.de ([127.0.0.1])
-	by localhost (1015-123.1st-housing.de [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id Qqm+sIUi5Rwl for <yocto@yoctoproject.org>;
-	Tue, 14 Feb 2012 17:24:47 +0100 (CET)
-Received: from rzn99 (pd9569fe3.dip0.t-ipconnect.de [217.86.159.227])
-	by 1824-1.1st-housing.de (Postfix) with ESMTP id 2B4F920C2D9
-	for <yocto@yoctoproject.org>; Tue, 14 Feb 2012 17:24:47 +0100 (CET)
-From: "poldi871.lists@progserv.de" <svogl@vodata.de>
-Sender: "Siegfried" <poldi871.lists@progserv.de>
-To: <yocto@yoctoproject.org>
-Date: Tue, 14 Feb 2012 17:24:46 +0100
-Message-ID: <001a01cceb35$2ae88fa0$6305010a@rzn99>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32565E0030B
+	for <yocto@yoctoproject.org>; Tue, 14 Feb 2012 08:49:29 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 14 Feb 2012 08:49:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="66492207"
+Received: from unknown (HELO helios.localnet) ([10.252.122.250])
+	by AZSMGA002.ch.intel.com with ESMTP; 14 Feb 2012 08:49:27 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 14 Feb 2012 16:49:25 +0000
+Message-ID: <2420679.N1KdCWUpt3@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.0; i686; ; )
+In-Reply-To: <CB6038BC.7B1E%belen.barros.pena@intel.com>
+References: <CB6038BC.7B1E%belen.barros.pena@intel.com>
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: AczrNFR5Z690VRPQSaO5xKDGt4bR5w==
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.2180
-Subject: Segmentation fault with "hob"-command (now no html)
+Cc: "An, LimingX L" <limingx.l.an@intel.com>
+Subject: Re: Design: build fails scenario
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,97 +30,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Feb 2012 16:24:49 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 14 Feb 2012 16:49:29 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Sorry for the last post in HTML-Format.
-I didn't recognize that my provider has changed the format and doesn't send
-text-messages any more.
-Perhaps the admin may delete my wrong post.
+On Tuesday 14 February 2012 16:13:46 Barros Pena, Belen wrote:
+> I've finally managed to put something together on how to handle build
+> failure in Hob 1.2.
+> 
+> The document is here:
+> 
+> https://wiki.yoctoproject.org/wiki/File:Build-fail-flow-v1.0.pdf
 
+Looking through this document and talking to Belen there are a couple of 
+things worth noting:
 
-Hello,
-I am evaluating Yocto, therefore sorry, if it is a beginner fault; I have a
-problem starting "hob".
-After the command "hob" the system tells that some tools have to be built.
-The build ends
-with the following lines:
+* There will be build failures resulting from user configuration errors (e.g. 
+network connection is unavailable -> fetch fails, or perhaps the sanity 
+checker catches this earlier); however I suspect for the majority of people 
+using Hob an error indicates a bug or some host system incompatibility (which 
+is probably a bug). In this case all we can do for the user if they aren't 
+capable of fixing the problem themselves is to provide them with an easy way to 
+report the issue.
 
-------------- snip ---------------------------------------
-...
-NOTE: package pseudo-native-1.1.1-r2: task do_populate_sysroot: Started
-NOTE: package pseudo-native-1.1.1-r2: task do_populate_sysroot: Succeeded
-NOTE: Tasks Summary: Attempted 126 tasks of which 0 didn't need to be rerun
-and 0 failed.
-/Yocto/poky-edison-6.0/scripts/bitbake: Zeile 86: 14880
-Speicherzugriffsfehler   PSEUDO_BINDIR=$PSEUDOBINDIR
-PSEUDO_LIBDIR=$PSEUDOBINDIR/../lib/pseudo/lib
-PSEUDO_PREFIX=$PSEUDOBINDIR/../../ PSEUDO_DISABLED=1 $PSEUDOBINDIR/pseudo
-$BITBAKE $@
+* We plan to investigate implementing a "kerneloops" style build failure 
+reporting system for 1.3 (see bug #1562). Part of this is about having the 
+backend infrastructure to manage submitted issues, but the other is to have an 
+interface to submit them and that will involve extensions to Hob. However as 
+this won't be done for 1.2, in the mean time it might be possible to provide 
+some other way of submitting build errors; but the question is where should 
+they go? I'm not sure we want to default to filing a bug report or sending an 
+email to the mailing list, for example.
 
-------------- snap ---------------------------------------
-German output: "Speicherzugriffsfehler" = "segmentation fault"
+* We will probably need to embark on an exercise of enumerating the errors 
+that can be produced by the build system (BitBake and metadata), after which 
+we can analyse if certain errors can be handled in a better way, if specific 
+handling can be added to a frontend such as Hob for some errors, and even if 
+we can extend the documentation to cover how to troubleshoot certain classes 
+of errors. This is of course not a small undertaking as a "git grep" of 
+"bb\.*error" and "bb\.*fatal" and even scarier "raise " demonstrates.
 
-System-infos:
-Build-System: OpenSuSE 11.3, 32bit
-Yocto version: "poky-edison-6.0-tar-bz2" from the Yokto download server
+Cheers,
+Paul
 
-The absolute same problem also appears with the following constellation:
-Build system: OpenSuSE 11.3 64bit
-Yocto version: "poky-edison-6.0-tar-bz2 'from yocto download server
+-- 
 
-On the 64-bit system, I have the "nightly build"
-("http://autobuilder.yoctoproject.org/nightly/20120213-1/yocto.tar.bz2")
-reinstalled.
-Here I get the following output:
-------------- snip ---------------------------------------
-...
-NOTE: package tar-replacement-native-1.26-r0: task do_populate_sysroot:
-Started
-NOTE: package tar-replacement-native-1.26-r0: task do_populate_sysroot:
-Succeeded
-NOTE: Tasks Summary: Attempted 126 tasks of which 0 didn't need to be rerun
-and 0 failed.
-/Yocto/yocto/scripts/bitbake: Zeile 95: 29888 Speicherzugriffsfehler
-PSEUDO_BINDIR=$PSEUDOBINDIR PSEUDO_LIBDIR=$PSEUDOBINDIR/../lib/pseudo/lib
-PSEUDO_PREFIX=$PSEUDOBINDIR/../../ PSEUDO_DISABLED=1 $PSEUDOBINDIR/pseudo
-$BITBAKE $@
-
-------------- snap ---------------------------------------
-
-From a gdb session (evaluation of the core dump) of the nightly build I get
-the following output:
-------------- snip ---------------------------------------
-...
-Core was generated by `python /Yocto/yocto/bitbake/bin/bitbake -r
-conf/hob-pre.conf -R conf/hob-post.c'.
-Program terminated with signal 11, Segmentation fault.
-#0  0x00007f0254626c9e in gdk_window_enable_synchronized_configure ()
-   from /usr/lib64/libgdk-x11-2.0.so.0
-(gdb)
-------------- snap ---------------------------------------
-
-The error occurred in each case at the first attempt after a new
-installation.
-Commands:
-------------- snip ---------------------------------------
-source oe-init-build-env
-hob
-------------- snap ---------------------------------------
-
-Changes in "local.conf":
-
-------------- snip ---------------------------------------
-MACHINE ?= "atom-pc"
-------------- snap ---------------------------------------
-
-Is it a bug, or a beginner's mistake?
-
-Thanks in advance,
-
-Siegfried
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
