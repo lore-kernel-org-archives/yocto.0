@@ -1,34 +1,28 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA896E0030B
-	for <yocto@yoctoproject.org>; Tue, 14 Feb 2012 08:14:36 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 14 Feb 2012 08:14:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="117462673"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.3.242])
-	by fmsmga001.fm.intel.com with ESMTP; 14 Feb 2012 08:14:35 -0800
-Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
-	irsmsx602.ger.corp.intel.com (163.33.3.242) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 14 Feb 2012 16:13:47 +0000
-Received: from irsmsx101.ger.corp.intel.com ([169.254.1.99]) by
-	IRSMSX151.ger.corp.intel.com ([169.254.4.32]) with mapi id
-	14.01.0355.002; Tue, 14 Feb 2012 16:13:47 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wang, Shane"
-	<shane.wang@intel.com>, "Xu, Dongxiao" <dongxiao.xu@intel.com>, "An,
-	LimingX L" <limingx.l.an@intel.com>
-Thread-Topic: Design: build fails scenario
-Thread-Index: AQHM6zOhjdOxmyteXUiFX+wPt5yTVg==
-Date: Tue, 14 Feb 2012 16:13:46 +0000
-Message-ID: <CB6038BC.7B1E%belen.barros.pena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.14.0.111121
-x-originating-ip: [10.254.236.149]
+Return-Path: <poldi871.lists@progserv.de>
+Received: from 1824-1.1st-housing.de (1824-1.1st-housing.de [62.112.154.189])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A436E0030B
+	for <yocto@yoctoproject.org>; Tue, 14 Feb 2012 08:24:48 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by 1824-1.1st-housing.de (Postfix) with ESMTP id C465820C2FF
+	for <yocto@yoctoproject.org>; Tue, 14 Feb 2012 17:24:47 +0100 (CET)
+X-Virus-Scanned: amavisd-new at 1st-housing.de
+Received: from 1824-1.1st-housing.de ([127.0.0.1])
+	by localhost (1015-123.1st-housing.de [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id Qqm+sIUi5Rwl for <yocto@yoctoproject.org>;
+	Tue, 14 Feb 2012 17:24:47 +0100 (CET)
+Received: from rzn99 (pd9569fe3.dip0.t-ipconnect.de [217.86.159.227])
+	by 1824-1.1st-housing.de (Postfix) with ESMTP id 2B4F920C2D9
+	for <yocto@yoctoproject.org>; Tue, 14 Feb 2012 17:24:47 +0100 (CET)
+From: "poldi871.lists@progserv.de" <svogl@vodata.de>
+Sender: "Siegfried" <poldi871.lists@progserv.de>
+To: <yocto@yoctoproject.org>
+Date: Tue, 14 Feb 2012 17:24:46 +0100
+Message-ID: <001a01cceb35$2ae88fa0$6305010a@rzn99>
 MIME-Version: 1.0
-Subject: Design: build fails scenario
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: AczrNFR5Z690VRPQSaO5xKDGt4bR5w==
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.2180
+Subject: Segmentation fault with "hob"-command (now no html)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,33 +34,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Feb 2012 16:14:36 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <D8DAFDC2F50DF94FB96208DA272239EC@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 14 Feb 2012 16:24:49 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-I've finally managed to put something together on how to handle build failu=
-re in Hob 1.2.
+Sorry for the last post in HTML-Format.
+I didn't recognize that my provider has changed the format and doesn't send
+text-messages any more.
+Perhaps the admin may delete my wrong post.
 
-The document is here:
 
-https://wiki.yoctoproject.org/wiki/File:Build-fail-flow-v1.0.pdf
+Hello,
+I am evaluating Yocto, therefore sorry, if it is a beginner fault; I have a
+problem starting "hob".
+After the command "hob" the system tells that some tools have to be built.
+The build ends
+with the following lines:
 
-Let me know if anything doesn't make sense or you have any suggestions.
+------------- snip ---------------------------------------
+...
+NOTE: package pseudo-native-1.1.1-r2: task do_populate_sysroot: Started
+NOTE: package pseudo-native-1.1.1-r2: task do_populate_sysroot: Succeeded
+NOTE: Tasks Summary: Attempted 126 tasks of which 0 didn't need to be rerun
+and 0 failed.
+/Yocto/poky-edison-6.0/scripts/bitbake: Zeile 86: 14880
+Speicherzugriffsfehler   PSEUDO_BINDIR=$PSEUDOBINDIR
+PSEUDO_LIBDIR=$PSEUDOBINDIR/../lib/pseudo/lib
+PSEUDO_PREFIX=$PSEUDOBINDIR/../../ PSEUDO_DISABLED=1 $PSEUDOBINDIR/pseudo
+$BITBAKE $@
 
-Thanks!
+------------- snap ---------------------------------------
+German output: "Speicherzugriffsfehler" = "segmentation fault"
 
-Belen
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
+System-infos:
+Build-System: OpenSuSE 11.3, 32bit
+Yocto version: "poky-edison-6.0-tar-bz2" from the Yokto download server
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+The absolute same problem also appears with the following constellation:
+Build system: OpenSuSE 11.3 64bit
+Yocto version: "poky-edison-6.0-tar-bz2 'from yocto download server
+
+On the 64-bit system, I have the "nightly build"
+("http://autobuilder.yoctoproject.org/nightly/20120213-1/yocto.tar.bz2")
+reinstalled.
+Here I get the following output:
+------------- snip ---------------------------------------
+...
+NOTE: package tar-replacement-native-1.26-r0: task do_populate_sysroot:
+Started
+NOTE: package tar-replacement-native-1.26-r0: task do_populate_sysroot:
+Succeeded
+NOTE: Tasks Summary: Attempted 126 tasks of which 0 didn't need to be rerun
+and 0 failed.
+/Yocto/yocto/scripts/bitbake: Zeile 95: 29888 Speicherzugriffsfehler
+PSEUDO_BINDIR=$PSEUDOBINDIR PSEUDO_LIBDIR=$PSEUDOBINDIR/../lib/pseudo/lib
+PSEUDO_PREFIX=$PSEUDOBINDIR/../../ PSEUDO_DISABLED=1 $PSEUDOBINDIR/pseudo
+$BITBAKE $@
+
+------------- snap ---------------------------------------
+
+From a gdb session (evaluation of the core dump) of the nightly build I get
+the following output:
+------------- snip ---------------------------------------
+...
+Core was generated by `python /Yocto/yocto/bitbake/bin/bitbake -r
+conf/hob-pre.conf -R conf/hob-post.c'.
+Program terminated with signal 11, Segmentation fault.
+#0  0x00007f0254626c9e in gdk_window_enable_synchronized_configure ()
+   from /usr/lib64/libgdk-x11-2.0.so.0
+(gdb)
+------------- snap ---------------------------------------
+
+The error occurred in each case at the first attempt after a new
+installation.
+Commands:
+------------- snip ---------------------------------------
+source oe-init-build-env
+hob
+------------- snap ---------------------------------------
+
+Changes in "local.conf":
+
+------------- snip ---------------------------------------
+MACHINE ?= "atom-pc"
+------------- snap ---------------------------------------
+
+Is it a bug, or a beginner's mistake?
+
+Thanks in advance,
+
+Siegfried
+
 
 
