@@ -1,53 +1,34 @@
-Return-Path: <B29882@freescale.com>
-Received: from VA3EHSOBE010.bigfish.com (va3ehsobe001.messaging.microsoft.com
-	[216.32.180.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A08B5E0030B
-	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 15:23:29 -0800 (PST)
-Received: from mail112-va3-R.bigfish.com (10.7.14.247) by
-	VA3EHSOBE010.bigfish.com (10.7.40.12) with Microsoft SMTP Server id
-	14.1.225.22; Wed, 15 Feb 2012 23:23:29 +0000
-Received: from mail112-va3 (localhost [127.0.0.1])	by
-	mail112-va3-R.bigfish.com (Postfix) with ESMTP id D0EEF3A0095;
-	Wed, 15 Feb 2012 23:23:28 +0000 (UTC)
-X-SpamScore: -12
-X-BigFish: VS-12(zz9371I1432N1418M98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3hbe9k)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail112-va3 (localhost.localdomain [127.0.0.1]) by mail112-va3
-	(MessageSwitch) id 1329348206661865_17228;
-	Wed, 15 Feb 2012 23:23:26 +0000 (UTC)
-Received: from VA3EHSMHS036.bigfish.com (unknown [10.7.14.235])	by
-	mail112-va3.bigfish.com (Postfix) with ESMTP id 9D3FD4C0047;
-	Wed, 15 Feb 2012 23:23:26 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS036.bigfish.com
-	(10.7.99.46) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Wed, 15 Feb 2012 23:23:26 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.244]) by
-	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
-	14.01.0355.003; Wed, 15 Feb 2012 17:23:25 -0600
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Hollis Blanchard <hollis_blanchard@mentor.com>
-Thread-Topic: [yocto] missing USB gadget support on beagleboard?
-Thread-Index: AQHM66psYnRZX81Ukkqfkx+DDII/7ZY+/hgAgAAAr4A=
-Date: Wed, 15 Feb 2012 23:23:25 +0000
-Message-ID: <CAEsOVNcw19R-GbVcpS=vXRnzgaC+PEcsx0NhcdeU6QDggzaTxg@mail.gmail.com>
-References: <4F3AF87F.8010806@mentor.com>
-	<CAEsOVNcatm3EzHaLLWyGA2Bf=i65j9WTLLDrF0jq2Dg5xZ6E-A@mail.gmail.com>
-	<4F3C3DC4.8060400@mentor.com>
-In-Reply-To: <4F3C3DC4.8060400@mentor.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDB48E0044C
+	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 15:23:42 -0800 (PST)
+Received: by dadp13 with SMTP id p13so1669169dad.35
+	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 15:23:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=T+pebl8iD+ls0SnDDlQhwIpEhk1iyffKyeLV1ioJWuM=;
+	b=CSh2Kfa/Z2uLEYbQ0e5+PCgwTQc+w8sH/OG5Z57a30aE3V1sb8xrzQbF5NEZaRjg5P
+	SnzZXXc9tUGecZKHn+TWAio+5gMI8vFH67tMlCyyzfeSGvQ8d1gTfnB3kGv1m11hM5UF
+	ayI6fG2ucOfonAZAqs5MQ5Wn62kG3LWJGoyYU=
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: missing USB gadget support on beagleboard?
+Received: by 10.68.189.39 with SMTP id gf7mr2198276pbc.142.1329348222608; Wed,
+	15 Feb 2012 15:23:42 -0800 (PST)
+Received: by 10.68.33.170 with HTTP; Wed, 15 Feb 2012 15:23:42 -0800 (PST)
+In-Reply-To: <1329321197.30001.6.camel@babel.joshhome>
+References: <1329290581.3039.18.camel@babel.joshhome>
+	<CAMKF1soCVQ9bKYdhMAHfkM-xcrqYrwMS-kUMR3g1-1fJro-__Q@mail.gmail.com>
+	<1329321197.30001.6.camel@babel.joshhome>
+Date: Wed, 15 Feb 2012 18:23:42 -0500
+Message-ID: <CADzUK1+rXrSNS91NURP9=T_SoKm1a3xg4tmijoU134wUmQhnOg@mail.gmail.com>
+From: Autif Khan <autif.mlist@gmail.com>
+To: Joshua Immanuel <josh@hipro.co.in>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: RDEPENDS fails to find an existing package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -56,39 +37,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Feb 2012 23:23:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <AC1B0A755B65174D954C397CD8CC9AD5@freescale.net>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 15 Feb 2012 23:23:42 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, Feb 15, 2012 at 11:20 PM, Hollis Blanchard
-<hollis_blanchard@mentor.com> wrote:
-> Right, it looks like CONFIG_USB_ETH is disabled in
-> linux-beagleboard-standard-build/.config , and I think that's the key
-> missing option. I'm so lost in Yocto's kernel configuration "architecture=
-"
-> that I have no idea if that's being explicitly disabled, or just omitted
-> from the base config, or what.
+> Hello Khem Raj,
 >
-> It seems to me that option should be enabled if DISTRO_FEATURES contains
-> usbgadget. More simply, it seems like a good idea to enable CONFIG_USB_ET=
-H
-> in the beagleboard default configuration, since many beagleboards don't h=
-ave
-> any other network interface.
+> On Wed, 2012-02-15 at 07:28 -0800, Khem Raj wrote:
+>> the .a files are going into -static package and I guess
+>> there is .so and not .so.X which means .so goes into
+>> -dev package and hence your libharu package is empty
+>> so you have to redirect the files into correct package
+>> with the help of FILES_${PN} = "libharu.so ...." etc.
 >
-> Is there an owner of Yocto's beagleboard BSP stuff?
+> You were right. Thanks for the tip.
+>
+> Adding FILES_${PN} = "${libdir}/lib*.so" made bitbake to create an
+> non-empty libharu package thereby fixing the problem.
 
-As a stop gap, you can run menuconfig:
+Heads up - if you are using 1.2 M2 - you may have to add the following
+line in your recipe:
 
-bitbake -c menuconfig virtual/kernel
-bitbake -c compile virtual/kernel -f
-
-And add the kernel modules you need. The final ideal solution would be
-to include a kernel config fragment for this kernel config option by
-default for this and possibly other machines.
-
--M=
-
+INSANE_SKIP_{PN} = "dev-so"
 
