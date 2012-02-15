@@ -1,27 +1,32 @@
-Return-Path: <Ivan.Kuten@promwad.com>
-Received: from mx2.promwad.com (mx2.promwad.com [195.222.87.218])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10263E0044A
-	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 06:29:05 -0800 (PST)
-Received: from [192.168.10.179] (192.168.10.179) by sv-exmb01-lo1.promwad.corp
-	(192.168.10.44) with Microsoft SMTP Server (TLS) id 14.1.218.12;
-	Wed, 15 Feb 2012 17:29:00 +0300
-Message-ID: <4F3BC12D.5030002@promwad.com>
-Date: Wed, 15 Feb 2012 17:29:01 +0300
-From: Ivan Kuten <ivan.kuten@promwad.com>
-Organization: Promwad
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.21) Gecko/20110831 Lightning/1.0b2 Thunderbird/3.1.13
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2150DE0030B
+	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 07:28:44 -0800 (PST)
+Received: by lagw12 with SMTP id w12so1561280lag.35
+	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 07:28:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=Balyue1p9Toetafhtyt5qmL6PxXTCXsHPwA4e1RXoQE=;
+	b=oR65NNUGXgwwe7MmRTUPiFFIJ0YE5LT3qWje3HrbDdfJ5V2X+c1nsGBJzlwvMcu8HK
+	VCbiTDTSGvBioZXyJmnpKByXWbB5211a2zADBEi2rmvlMVxnlEklhpa4bVQ6d+m1x4BE
+	OQuVAZm0ADdyL5Z06/RivJ5yjENBgf7HLxQD8=
+Received: by 10.112.85.70 with SMTP id f6mr8946928lbz.16.1329319723638; Wed,
+	15 Feb 2012 07:28:43 -0800 (PST)
 MIME-Version: 1.0
-To: Bob Cochran <yocto@mindchasers.com>
-References: <4F3A754B.5020909@mindchasers.com>
-In-Reply-To: <4F3A754B.5020909@mindchasers.com>
-X-Enigmail-Version: 1.1.1
-Cc: yocto@yoctoproject.org
-Subject: Re: meta-oracle-java
+Received: by 10.152.111.225 with HTTP; Wed, 15 Feb 2012 07:28:13 -0800 (PST)
+In-Reply-To: <1329290581.3039.18.camel@babel.joshhome>
+References: <1329290581.3039.18.camel@babel.joshhome>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 15 Feb 2012 07:28:13 -0800
+Message-ID: <CAMKF1soCVQ9bKYdhMAHfkM-xcrqYrwMS-kUMR3g1-1fJro-__Q@mail.gmail.com>
+To: Joshua Immanuel <josh@hipro.co.in>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: RDEPENDS fails to find an existing package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: ivan.kuten@promwad.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -30,32 +35,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Feb 2012 14:29:05 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 15 Feb 2012 15:28:45 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-
-On 02/14/2012 05:52 PM, Bob Cochran wrote:
-> Hello All,
+On Tue, Feb 14, 2012 at 11:23 PM, Joshua Immanuel <josh@hipro.co.in> wrote:
+> its latest version libharu_2.2.1.bb. The generated .so, .la and .a files
+> for this are in the name 'libhpdf'. (I guess this will not cause any
+> problem.) These files are found in ${WORKDIR}/image/usr/lib
 >
-> I see that a meta-oracle-java layer showed up recently in the yocto 
-> repositories.  That's great.
+> My custom-image RDEPENDS for libharu. While building the custom-image
+> bitbake complains
 >
-> Was there an announcement about this new layer sent on a mailing list or 
-> posted in a blog?  I had thought I was on all the yocto-related mail 
-> lists (https://lists.yoctoproject.org/), but I wasn't aware of this 
-> layer until I just read through the repository list 
-> (http://git.yoctoproject.org/cgit/cgit.cgi/).
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0| error: Failed dependencies:
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0| =C2=A0 =C2=A0 =C2=A0 libharu is needed by ta=
+sk-custom-hdb-1.0-r3.ekino
 >
-> I did find  a mention about some jdk work in the technical team meeting 
-> notes on 1/24, but it was sort of cryptic.  By any chance, is there an 
-> openjdk layer coming soon?
->
+> How do I fix this issue?
 
-There was a discussion about java in oe-devel mailing list about 2 weeks ago.
-
-Regards,
-Ivan
-
-
+the .a files are going into -static package and I guess
+there is .so and not .so.X which means .so goes into
+-dev package and hence your libharu package is empty
+so you have to redirect the files into correct package
+with the help of FILES_${PN} =3D "libharu.so ...." etc.
 
