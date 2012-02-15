@@ -1,35 +1,28 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D50CCE0030B
-	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 07:34:41 -0800 (PST)
-Received: by eekd4 with SMTP id d4so420665eek.35
-	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 07:34:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=jk8VHX88AthbZnJVoxCk7HD4VCJw8IAzZ8nhV/oVbZA=;
-	b=h/O9PDQcFEKCF4YOwqROKKkQDIpb10T19ItYl10BBXVg+LX1Dsz68H7QgHOZKgNC2/
-	Nn6P9fIZwr8CGbdwBmBJt3zO0zMTG6wusy82Lx9C2BGAXtpuU7QTN16+YLMb214djBdP
-	fR11pFIJgS+14u7PIa2QWcY4Ho5jQ2NO5bxbo=
-Received: by 10.14.194.134 with SMTP id m6mr8676810een.4.1329320080561;
-	Wed, 15 Feb 2012 07:34:40 -0800 (PST)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id n58sm12160525een.10.2012.02.15.07.34.38
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 15 Feb 2012 07:34:39 -0800 (PST)
-Date: Wed, 15 Feb 2012 16:34:36 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Message-ID: <20120215153436.GA32230@jama.jama.net>
-References: <CAEsOVNe2iXiaG+=je65zNAY10Bf4PqrbJfLuJtMhzwcGttUQXA@mail.gmail.com>
-	<20120214175804.GB23843@jama.jama.net>
-MIME-Version: 1.0
-In-Reply-To: <20120214175804.GB23843@jama.jama.net>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	openembedded-core@lists.openembedded.org,
-	Scott Garman <scott.a.garman@intel.com>
-Subject: Re: Trying to re-use sstate.
+Return-Path: <josh@hipro.co.in>
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01E89E0030B
+	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 07:53:37 -0800 (PST)
+Received: by yhjj52 with SMTP id j52so888319yhj.35
+	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 07:53:37 -0800 (PST)
+Received: by 10.50.181.134 with SMTP id dw6mr12461038igc.11.1329321217256;
+	Wed, 15 Feb 2012 07:53:37 -0800 (PST)
+Received: from [192.168.10.231] ([59.99.251.45])
+	by mx.google.com with ESMTPS id al9sm5163022igc.5.2012.02.15.07.53.34
+	(version=SSLv3 cipher=OTHER); Wed, 15 Feb 2012 07:53:36 -0800 (PST)
+Message-ID: <1329321197.30001.6.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 15 Feb 2012 21:23:17 +0530
+In-Reply-To: <CAMKF1soCVQ9bKYdhMAHfkM-xcrqYrwMS-kUMR3g1-1fJro-__Q@mail.gmail.com>
+References: <1329290581.3039.18.camel@babel.joshhome>
+	<CAMKF1soCVQ9bKYdhMAHfkM-xcrqYrwMS-kUMR3g1-1fJro-__Q@mail.gmail.com>
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.2.2-1
+Mime-Version: 1.0
+X-Gm-Message-State: ALoCoQn1q4gxW4iIJ4n2YBvFIeJ4qzPFhRVQVeH039N8gDKXo2Z/Elw+4iudwjPMHxW6fFGvWExD
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: RDEPENDS fails to find an existing package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,117 +34,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Feb 2012 15:34:42 -0000
-X-Groupsio-MsgNum: 4839
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="jRHKVT23PllUwdXP"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 15 Feb 2012 15:53:38 -0000
+X-Groupsio-MsgNum: 4840
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-sRCIXozt9Z8aiQh/53C0"
 
---jRHKVT23PllUwdXP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--=-sRCIXozt9Z8aiQh/53C0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 14, 2012 at 06:58:05PM +0100, Martin Jansa wrote:
-> On Tue, Feb 07, 2012 at 02:59:54PM +0000, McClintock Matthew-B29882 wrote:
-> > The paths issue your are speculating on was fixed by myself and Richard=
- last November.
-> >=20
-> > I would suggest running bitbake-diffsig to determine the actual sstate =
-differences.
-> >=20
->=20
-> Usually I'm complaining that sstate cache is not used enough, but today
-> I got pretty decent percentage of reuse while building from scratch 2
-> similar machines (nokia900 and om-gta04) but also few wrong sysroot
-> references which slipped in (I thought those were fixed).
->=20
-> First I've built my image for nokia900, then for om-gta04 (with rm_work
-> disabled to reuse sstate).
->=20
-> OE @ ~/shr-core/tmp-eglibc/sysroots/om-gta04 $ grep -R nokia900 . 2>/dev/=
-null >nokia900.log
->=20
-> $ wc -l nokia900.log
-> 1673 nokia900.log
->=20
-> now lot's of binaries have some reference to nokia900 sysroot, grep
-> shows e.g. "Binary file ./lib/ld-2.15.so matches"
-> $ grep "^Binary file " nokia900.log | wc -l
-> 1637
->=20
-> which is maybe fine..
->=20
-> An then there is few crossscripts and headers some are already in=20
-> SSTATE_SCAN_FILES some are missing I guess:
->=20
-> $ grep -v "^Binary file " nokia900.log | wc -l
-> 36
-> $ grep -v "^Binary file " nokia900.log | sed 's/:.*//g' | sort -u
-> ./usr/bin/crossscripts/arm-oe-linux-gnueabi-libtool
-> ./usr/bin/crossscripts/curl-config
-> ./usr/bin/crossscripts/libgcrypt-config
-> ./usr/bin/crossscripts/libtoolize
-> ./usr/include/gmp.h
-> ./usr/lib/gcc/arm-oe-linux-gnueabi/4.6.3/plugin/include/configargs.h
-> ./usr/lib/python2.7/config/Makefile
+Hello Khem Raj,
 
-and there is more
+On Wed, 2012-02-15 at 07:28 -0800, Khem Raj wrote:
+> the .a files are going into -static package and I guess
+> there is .so and not .so.X which means .so goes into
+> -dev package and hence your libharu package is empty
+> so you have to redirect the files into correct package
+> with the help of FILES_${PN} =3D "libharu.so ...." etc.=20
 
-=2E/usr/bin/crossscripts/apu-1-config:INCLUDES=3D"-I/OE/shr-core/tmp-eglibc=
-/sysroots/nokia900/usr/include"
-=2E/usr/bin/crossscripts/apu-1-config:LDFLAGS=3D"-L/OE/shr-core/tmp-eglibc/=
-sysroots/nokia900/usr/lib"
+You were right. Thanks for the tip.
 
-=2E/usr/bin/crossscripts/gdlib-config:    echo  -L/OE/shr-core/tmp-eglibc/s=
-ysroots/nokia900/usr/lib  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -L=
-/OE/shr-core/tmp-eglibc/sysroots/nokia900/usr/lib/../lib
-=2E/usr/bin/crossscripts/gdlib-config:    echo "ldflags:     -L/OE/shr-core=
-/tmp-eglibc/sysroots/nokia900/usr/lib  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,-=
--as-needed -L/OE/shr-core/tmp-eglibc/sysroots/nokia900/usr/lib/../lib"
+Adding FILES_${PN} =3D "${libdir}/lib*.so" made bitbake to create an
+non-empty libharu package thereby fixing the problem.
 
-=2E/usr/bin/crossscripts/apr-1-config:CC=3D"arm-oe-linux-gnueabi-gcc  -marc=
-h=3Darmv7-a -fno-tree-vectorize      -mthumb-interwork -mfloat-abi=3Dsoftfp=
- -mfpu=3Dneon -mtune=3Dcortex-a8 --sysroot=3D/OE/shr-core/tmp-eglibc/sysroo=
-ts/nokia900"
-=2E/usr/bin/crossscripts/apr-1-config:CPP=3D"arm-oe-linux-gnueabi-gcc -E --=
-sysroot=3D/OE/shr-core/tmp-eglibc/sysroots/nokia900  -march=3Darmv7-a -fno-=
-tree-vectorize      -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon -mt=
-une=3Dcortex-a8"
+Regards
+Joshua
+--=20
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
 
-=2E/usr/lib/postgresql/pgxs/src/Makefile.global:CPP =3D arm-oe-linux-gnueab=
-i-gcc -E --sysroot=3D/OE/shr-core/tmp-eglibc/sysroots/nokia900  -march=3Dar=
-mv7-a -fno-tree-vectorize      -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=
-=3Dneon -mtune=3Dcortex-a8
-=2E/usr/lib/postgresql/pgxs/src/Makefile.global:CC =3D arm-oe-linux-gnueabi=
--gcc  -march=3Darmv7-a -fno-tree-vectorize      -mthumb-interwork -mfloat-a=
-bi=3Dsoftfp -mfpu=3Dneon -mtune=3Dcortex-a8 --sysroot=3D/OE/shr-core/tmp-eg=
-libc/sysroots/nokia900
-=2E/usr/lib/postgresql/pgxs/src/Makefile.global:LD =3D arm-oe-linux-gnueabi=
--ld --sysroot=3D/OE/shr-core/tmp-eglibc/sysroots/nokia900
-
-=2E/usr/share/apr/apr_rules.mk:CC=3Darm-oe-linux-gnueabi-gcc  -march=3Darmv=
-7-a -fno-tree-vectorize      -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=
-=3Dneon -mtune=3Dcortex-a8 --sysroot=3D/OE/shr-core/tmp-eglibc/sysroots/nok=
-ia900
-
-=2E/usr/share/build-1/apr_rules.mk:CC=3Darm-oe-linux-gnueabi-gcc  -march=3D=
-armv7-a -fno-tree-vectorize      -mthumb-interwork -mfloat-abi=3Dsoftfp -mf=
-pu=3Dneon -mtune=3Dcortex-a8 --sysroot=3D/OE/shr-core/tmp-eglibc/sysroots/n=
-okia900
-
-Cheers,
-
---jRHKVT23PllUwdXP
+--=-sRCIXozt9Z8aiQh/53C0
 Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.18 (GNU/Linux)
+Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk870IwACgkQN1Ujt2V2gBwfIACgkvk6mEgva3FiRgvVDGv9YNCW
-mi4AoKtCVJQgd/PlkUuiAXzjYnVMzjl3
-=lRx2
+iEYEABECAAYFAk871O0ACgkQWw85XwuSFMIMrwCeJBmWBnto/4AUVp/jrCxYPW9o
+WsYAnjQ2q6jePnPH+yLeDkzgBU7sUD3b
+=4kRP
 -----END PGP SIGNATURE-----
 
---jRHKVT23PllUwdXP--
+--=-sRCIXozt9Z8aiQh/53C0--
