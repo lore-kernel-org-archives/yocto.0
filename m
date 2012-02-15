@@ -1,29 +1,26 @@
-Return-Path: <poldi871.lists@progserv.de>
-Received: from 1824-1.1st-housing.de (1824-1.1st-housing.de [62.112.154.189])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 948D0E0044A
-	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 01:03:48 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by 1824-1.1st-housing.de (Postfix) with ESMTP id 6DF3B20C300;
-	Wed, 15 Feb 2012 10:03:47 +0100 (CET)
-X-Virus-Scanned: amavisd-new at 1st-housing.de
-Received: from 1824-1.1st-housing.de ([127.0.0.1])
-	by localhost (1015-123.1st-housing.de [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id x2+FTnYfo3xB; Wed, 15 Feb 2012 10:03:45 +0100 (CET)
-Received: from rzn99 (pd9569fe3.dip0.t-ipconnect.de [217.86.159.227])
-	by 1824-1.1st-housing.de (Postfix) with ESMTP id E07E520C223;
-	Wed, 15 Feb 2012 10:03:41 +0100 (CET)
-From: "Siegfried" <poldi871.lists@progserv.de>
-To: "'Cui, Dexuan'" <dexuan.cui@intel.com>,
-	<yocto@yoctoproject.org>
-Date: Wed, 15 Feb 2012 10:03:41 +0100
-Message-ID: <003701ccebc0$b6df2fb0$6305010a@rzn99>
-MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: AczrNFR5Z690VRPQSaO5xKDGt4bR5wAVdDlgAA2g0bA=
-In-Reply-To: <A25F549E4D43CD42B4C02DF47A1913230FCC7FD6@SHSMSX102.ccr.corp.intel.com>
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.2180
-Subject: Re: Segmentation fault with "hob"-command (now no html)
+Return-Path: <josh@hipro.co.in>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49EDBE0044A
+	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 02:11:45 -0800 (PST)
+Received: by iagz35 with SMTP id z35so1692090iag.35
+	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 02:11:44 -0800 (PST)
+Received: by 10.42.174.71 with SMTP id u7mr31269993icz.44.1329300704403;
+	Wed, 15 Feb 2012 02:11:44 -0800 (PST)
+Received: from [192.168.10.231] ([59.99.251.45])
+	by mx.google.com with ESMTPS id d15sm5002121ibf.7.2012.02.15.02.11.42
+	(version=SSLv3 cipher=OTHER); Wed, 15 Feb 2012 02:11:43 -0800 (PST)
+Message-ID: <1329300699.3039.31.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Wed, 15 Feb 2012 15:41:39 +0530
+In-Reply-To: <1329290581.3039.18.camel@babel.joshhome>
+References: <1329290581.3039.18.camel@babel.joshhome>
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.2.2-1
+Mime-Version: 1.0
+X-Gm-Message-State: ALoCoQmHQpeLHXO4Apdn3xB+tD/5NBY7DnRdj8xF1Q9LdOMuuUp6YrCIFXcrxRK23nIaGmap34+r
+Subject: Re: RDEPENDS fails to find an existing package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,120 +32,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Feb 2012 09:03:49 -0000
-Content-Type: text/plain;
-	charset="iso-8859-1"
+X-List-Received-Date: Wed, 15 Feb 2012 10:11:45 -0000
+X-Groupsio-MsgNum: 4836
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-Pv78egkGqZHlQrnzTrpo"
+
+--=-Pv78egkGqZHlQrnzTrpo
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Dexuan,
+Hello all,
 
-thank you fort hat hint.
-The problem was that I was working as "root" and did a "su - <user>".
-Doing that the environment seems to be different to a normal login.
-I've played around with the "DISPLAY" environment variable and "xhost".
-Now it works. Trying to start "hob" as normal user works without any
-intervention.
-
-Thanks again,
-
-Siegfried
-
-> -----Urspr=FCngliche Nachricht-----
-> Von: Cui, Dexuan [mailto:dexuan.cui@intel.com]
-> Gesendet: Mittwoch, 15. Februar 2012 03:42
-> An: poldi871.lists@progserv.de; yocto@yoctoproject.org
-> Cc: Joshua Lock
-> Betreff: RE: [yocto] Segmentation fault with "hob"-command (now no =
-html)
+On Wed, 2012-02-15 at 12:53 +0530, Joshua Immanuel wrote:
+> While building the custom-image bitbake complains=20
 >=20
-> poldi871.lists@progserv.de wrote on 2012-02-15:
-> > Sorry for the last post in HTML-Format.
-> > I didn't recognize that my provider has changed the format and =
-doesn't
-> > send text-messages any more.
-> > Perhaps the admin may delete my wrong post.
-> >
-> >
-> > Hello, I am evaluating Yocto, therefore sorry, if it is a beginner
-> > fault; I have a problem starting "hob". After the command "hob" the
-> > system tells that some tools have to be built. The build ends with =
-the
-> > following lines:
-> >
-> > ------------- snip --------------------------------------- ... NOTE:
-> > package pseudo-native-1.1.1-r2: task do_populate_sysroot: Started =
-NOTE:
-> > package pseudo-native-1.1.1-r2: task do_populate_sysroot: Succeeded
-> > NOTE: Tasks Summary: Attempted 126 tasks of which 0 didn't need to =
-be
-> > rerun and 0 failed. /Yocto/poky-edison-6.0/scripts/bitbake: Zeile =
-86:
-> > 14880 Speicherzugriffsfehler   PSEUDO_BINDIR=3D$PSEUDOBINDIR
-> > PSEUDO_LIBDIR=3D$PSEUDOBINDIR/../lib/pseudo/lib
-> > PSEUDO_PREFIX=3D$PSEUDOBINDIR/../../ PSEUDO_DISABLED=3D1
-> > $PSEUDOBINDIR/pseudo $BITBAKE $@
-> >
-> > ------------- snap ---------------------------------------
-> > German output: "Speicherzugriffsfehler" =3D "segmentation fault"
-> >
-> > System-infos: Build-System: OpenSuSE 11.3, 32bit Yocto version:
-> > "poky-edison-6.0-tar-bz2" from the Yokto download server
-> >
-> > The absolute same problem also appears with the following =
-constellation:
-> > Build system: OpenSuSE 11.3 64bit
-> > Yocto version: "poky-edison-6.0-tar-bz2 'from yocto download server
-> >
-> > On the 64-bit system, I have the "nightly build"
-> > =
-("http://autobuilder.yoctoproject.org/nightly/20120213-1/yocto.tar.bz2
-> > ") reinstalled. Here I get the following output: ------------- snip
-> > --------------------------------------- ... NOTE: package
-> > tar-replacement-native-1.26-r0: task do_populate_sysroot: Started =
-NOTE:
-> > package tar-replacement-native-1.26-r0: task do_populate_sysroot:
-> > Succeeded NOTE: Tasks Summary: Attempted 126 tasks of which 0 didn't
-> > need to be rerun and 0 failed. /Yocto/yocto/scripts/bitbake: Zeile =
-95:
-> > 29888 Speicherzugriffsfehler PSEUDO_BINDIR=3D$PSEUDOBINDIR
-> > PSEUDO_LIBDIR=3D$PSEUDOBINDIR/../lib/pseudo/lib
-> > PSEUDO_PREFIX=3D$PSEUDOBINDIR/../../ PSEUDO_DISABLED=3D1
-> > $PSEUDOBINDIR/pseudo $BITBAKE $@
-> >
-> > ------------- snap ---------------------------------------
-> >
-> > From a gdb session (evaluation of the core dump) of the nightly =
-build
-> > I get the following output:
-> > ------------- snip ---------------------------------------
-> > ...
-> > Core was generated by `python /Yocto/yocto/bitbake/bin/bitbake -r
-> > conf/hob-pre.conf -R conf/hob-post.c'.
-> > Program terminated with signal 11, Segmentation fault.
-> > #0  0x00007f0254626c9e in gdk_window_enable_synchronized_configure
-> > ()
-> >    from /usr/lib64/libgdk-x11-2.0.so.0
-> > (gdb)
-> > ------------- snap ---------------------------------------
-> >
-> > The error occurred in each case at the first attempt after a new
-> > installation. Commands: ------------- snip
-> > --------------------------------------- source oe-init-build-env hob
-> > ------------- snap ---------------------------------------
-> >
-> > Changes in "local.conf":
-> >
-> > ------------- snip ---------------------------------------
-> > MACHINE ?=3D "atom-pc"
-> > ------------- snap ---------------------------------------
-> >
-> > Is it a bug, or a beginner's mistake?
-> This seems a pygtk bug of bitbake that only appears on some Linux
-> distribution?
-> In my Ubuntu 11.04, I don't get the SegFault.
->=20
-> Thanks,
-> -- Dexuan
+>         | error: Failed dependencies:
+>         |       libharu is needed by task-custom-hdb-1.0-r3.ekino
+>        =20
+> How do I fix this issue?=20
 
+On further digging (log.do_package_write_rpm) I found that libharu,
+libharu-doc and libharu-locale rpms were not created
 
+        NOTE: Creating RPM package for libharu-dbg
+        NOTE: Not creating empty RPM package for libharu
+        NOTE: Not creating empty RPM package for libharu-doc
+        NOTE: Creating RPM package for libharu-dev
+        NOTE: Creating RPM package for libharu-staticdev
+        NOTE: Not creating empty RPM package for libharu-locale
+       =20
+To fix this I added ALLOW_EMPTY =3D "1" in the recipe which ended up
+creating empty rpms
 
+        NOTE: Creating RPM package for libharu-dbg
+        NOTE: Creating RPM package for libharu
+        NOTE: Creating EMPTY RPM Package for libharu
+        NOTE: Creating EMPTY RPM Package for libharu-doc
+        NOTE: Creating RPM package for libharu-dev
+        NOTE: Creating RPM package for libharu-staticdev
+        NOTE: Creating EMPTY RPM Package for libharu-locale
+       =20
+This suppressed the dependency error and was able to generate final
+rootfs image but the libharu libraries were not available in that image.
+So, how do I end up creating non-empty libharu rpm. (I guess that will
+solve the issue)
+
+Please guide me.
+
+Regards
+Joshua
+--=20
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
+
+--=-Pv78egkGqZHlQrnzTrpo
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iEYEABECAAYFAk87hNsACgkQWw85XwuSFMJK3QCfUHIcsbY+Dk97YClINXQZuJfV
+uycAoLP/AwOKYhySb5OPwXB10XBl3BJI
+=tFVC
+-----END PGP SIGNATURE-----
+
+--=-Pv78egkGqZHlQrnzTrpo--
