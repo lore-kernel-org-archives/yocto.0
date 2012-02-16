@@ -1,25 +1,31 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2B79E003E1
-	for <yocto@yoctoproject.org>; Thu, 16 Feb 2012 15:25:21 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q1GNPIGB000445
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 16 Feb 2012 15:25:18 -0800 (PST)
-Received: from [147.11.116.40] (147.11.116.40) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 16 Feb 2012 15:25:18 -0800
-Message-ID: <4F3D905D.9030903@windriver.com>
-Date: Thu, 16 Feb 2012 18:25:17 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.26) Gecko/20120131 Thunderbird/3.1.18
+Return-Path: <Hollis_Blanchard@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38ABDE003E1
+	for <yocto@yoctoproject.org>; Thu, 16 Feb 2012 15:52:28 -0800 (PST)
+Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
+	by relay1.mentorg.com with esmtp 
+	id 1RyB7k-0005G9-Ga from Hollis_Blanchard@mentor.com ;
+	Thu, 16 Feb 2012 15:52:28 -0800
+Received: from SVR-ORW-FEM-02.mgc.mentorg.com ([147.34.96.206]) by
+	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
+	SMTPSVC(6.0.3790.4675); Thu, 16 Feb 2012 15:51:44 -0800
+Received: from [172.30.11.144] (147.34.91.1) by svr-orw-fem-02.mgc.mentorg.com
+	(147.34.96.168) with Microsoft SMTP Server id 14.1.289.1;
+	Thu, 16 Feb 2012 15:52:27 -0800
+Message-ID: <4F3D96BB.40503@mentor.com>
+Date: Thu, 16 Feb 2012 15:52:27 -0800
+From: Hollis Blanchard <hollis_blanchard@mentor.com>
+Organization: Mentor Graphics, Embedded Systems Division
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-To: Hollis Blanchard <hollis_blanchard@mentor.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
 References: <4F3D6431.70505@mentor.com> <4F3D7F0D.3050904@windriver.com>
 	<4F3D883C.8070709@mentor.com> <4F3D8AFD.6080307@windriver.com>
-	<4F3D8EAD.2010602@mentor.com>
-In-Reply-To: <4F3D8EAD.2010602@mentor.com>
+	<4F3D8EAD.2010602@mentor.com> <4F3D905D.9030903@windriver.com>
+In-Reply-To: <4F3D905D.9030903@windriver.com>
+X-OriginalArrivalTime: 16 Feb 2012 23:51:44.0046 (UTC)
+	FILETIME=[EFC92CE0:01CCED05]
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: trouble using a local kernel repo
 X-BeenThere: yocto@yoctoproject.org
@@ -33,73 +39,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Feb 2012 23:25:22 -0000
+X-List-Received-Date: Thu, 16 Feb 2012 23:52:29 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12-02-16 06:18 PM, Hollis Blanchard wrote:
-> On 02/16/2012 03:02 PM, Bruce Ashfield wrote:
->> That's the problem. I have a patch that detects this and abort is a non
->> bare upstream is used. I just need to send them .. which I'll do when
->> I get back to my desk next week.
->>
->> There are two reason for this bare clone requirement:
->>
->> - technical: this scales to several hundred branches. cloning, and
->> iterating
->> remote branches to create local tracking branches is noisy and
->> time consuming. So there's a trick that has been in use for years
->> that you can clone a bare upstream, and mass convert the branches
->> to local in a single operation.
->>
->> - social: you want to do your development in a different tree from the
->> one that is being cloned and used. That way the tree is clean, and you
->> are building what you expect.
+On 02/16/2012 03:25 PM, Bruce Ashfield wrote:
+> The point is that the tree is local to your machine, but it doesn't
+> have to be. You may only have push, not direct commit access. It's
+> really not asking for anything that isn't already common practice.
+
+Hmm, I'm not at all a git expert, but I thought common practice was to 
+clone the upstream git tree, then create local branches that track the 
+upstream ones. I've never seen any directions say "first create a bare 
+clone, then clone that again, then create local branches."
+
+>> I'm just trying to test a small kernel/meta patch, and the poorly
+>> documented list of setup requirements is growing longer and longer. All
+>> this stuff may be good practice for a more complicated scenario, but so
+>> far it seems like enormous overkill for my use case...
 >
-> Do I want to do my development in a different tree? Are you sure? ;)
+> So why are you trying to use the technique ? Maybe the answer is that the
+> docs made it sound like this was the best/right way .. and that's a
+> problem in itself.
 
-The point is that the tree is local to your machine, but it doesn't
-have to be. You may only have push, not direct commit access. It's
-really not asking for anything that isn't already common practice.
+The docs don't cover "how do I add a kernel patch?" at all, AFAICS.
 
->
-> I don't need to scale to hundreds of branches -- I just have one small
-> patch I wanted to test. I already have it in a "clean" tree -- it's a
-> committed changeset, with a commit message and everything, even though I
-> haven't even been able to *test* it yet!
+... oh wow, now I see 
+http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html. 
+This actually does talk about bare clones. 
+http://www.yoctoproject.org/docs/current/kernel-manual/kernel-manual.html, 
+which is what I had been reading, does not.
 
-Right. I didn't imply that .. just to explain why it is like it is.
+> If you do have a single patch, toss it on the end of the SRC_URI and
+> everything just works like any other package.
 
->
-> I'm just trying to test a small kernel/meta patch, and the poorly
-> documented list of setup requirements is growing longer and longer. All
-> this stuff may be good practice for a more complicated scenario, but so
-> far it seems like enormous overkill for my use case...
+The reason I'm even bothering is to try to be a good person. I could 
+have stuck this in a private collection 2 days ago... but I figured this 
+is going to bite plenty of other people, so I should try to submit a 
+patch that would fix it for everybody. I could tell the kernel 
+configuration system is complicated, but I really didn't expect this 
+many barriers.
 
-So why are you trying to use the technique ? Maybe the answer is that the
-docs made it sound like this was the best/right way .. and that's a
-problem in itself.
-
-If you do have a single patch, toss it on the end of the SRC_URI and
-everything just works like any other package.
-
-The local repo instructions are largely for BSP developers or teams that
-are working with the kernel on a more intensive basis. So there are some
-setup requirements.
-
-If you want to explore the git flow, and maintain out of tree branches,
-repositories based on linux-yocto, etc. Then that's the time to kick
-away on the git workflow and steps, but as the first plunge, it may not
-be the right choice.
-
-Cheers,
-
-Bruce
-
-
->
-> Hollis Blanchard
-> Mentor Graphics, Embedded Systems Division
->
+Hollis Blanchard
+Mentor Graphics, Embedded Systems Division
 
 
