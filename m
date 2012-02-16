@@ -1,35 +1,28 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0EBAE003E1
-	for <yocto@yoctoproject.org>; Thu, 16 Feb 2012 10:41:26 -0800 (PST)
-Received: by lagw12 with SMTP id w12so3829482lag.35
-	for <yocto@yoctoproject.org>; Thu, 16 Feb 2012 10:41:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=Tjm4Si1o1bBMjJQvi5mQgVWD5tN5SvK4TZHb4qj+CtM=;
-	b=TUGlJZwArNb9TFWWe4bquhO4eSOw9kmYYZudMOFJxE49s84wGiUKGqkFB4dlFh+ovr
-	GT6RWXotHBDPQlFSdgaMTtiuw+aN1f+v3LBR0ldRRy8DDsF1HIZiAp3TISZhBClCygag
-	bhUdKK+BHLGEYuvjDIwOENKvcR6FRPIiHKAVY=
+Return-Path: <Hollis_Blanchard@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBC7FE003E1
+	for <yocto@yoctoproject.org>; Thu, 16 Feb 2012 12:16:50 -0800 (PST)
+Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
+	by relay1.mentorg.com with esmtp 
+	id 1Ry7l4-0007JW-3f from Hollis_Blanchard@mentor.com 
+	for yocto@yoctoproject.org; Thu, 16 Feb 2012 12:16:50 -0800
+Received: from SVR-ORW-FEM-04.mgc.mentorg.com ([147.34.97.41]) by
+	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
+	SMTPSVC(6.0.3790.4675); Thu, 16 Feb 2012 12:16:06 -0800
+Received: from [172.30.11.144] (147.34.91.1) by svr-orw-fem-04.mgc.mentorg.com
+	(147.34.97.41) with Microsoft SMTP Server id 14.1.289.1;
+	Thu, 16 Feb 2012 12:16:49 -0800
+Message-ID: <4F3D6431.70505@mentor.com>
+Date: Thu, 16 Feb 2012 12:16:49 -0800
+From: Hollis Blanchard <hollis_blanchard@mentor.com>
+Organization: Mentor Graphics, Embedded Systems Division
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-Received: by 10.152.125.20 with SMTP id mm20mr2970498lab.6.1329417685140; Thu,
-	16 Feb 2012 10:41:25 -0800 (PST)
-Received: by 10.152.111.225 with HTTP; Thu, 16 Feb 2012 10:41:25 -0800 (PST)
-In-Reply-To: <CADzUK1+MjieJUsHcafSqGetUXiKVKs+4GdrqE4eRA8SJXjhJhg@mail.gmail.com>
-References: <1329290581.3039.18.camel@babel.joshhome>
-	<CAMKF1soCVQ9bKYdhMAHfkM-xcrqYrwMS-kUMR3g1-1fJro-__Q@mail.gmail.com>
-	<1329321197.30001.6.camel@babel.joshhome>
-	<CADzUK1+rXrSNS91NURP9=T_SoKm1a3xg4tmijoU134wUmQhnOg@mail.gmail.com>
-	<1329368164.2747.9.camel@babel.joshhome>
-	<1329378772.2747.24.camel@babel.joshhome>
-	<CADzUK1+MjieJUsHcafSqGetUXiKVKs+4GdrqE4eRA8SJXjhJhg@mail.gmail.com>
-Date: Thu, 16 Feb 2012 10:41:25 -0800
-Message-ID: <CAMKF1sopsgTRZ013nek7pJoc6hAPKCrQrOe_2j2baoO2+MCWcQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-To: Autif Khan <autif.mlist@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: RDEPENDS fails to find an existing package
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-OriginalArrivalTime: 16 Feb 2012 20:16:06.0406 (UTC)
+	FILETIME=[D059FA60:01CCECE7]
+Subject: trouble using a local kernel repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,94 +34,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Feb 2012 18:41:27 -0000
-Content-Type: multipart/alternative; boundary=f46d04374589e183bc04b9192c35
+X-List-Received-Date: Thu, 16 Feb 2012 20:16:50 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---f46d04374589e183bc04b9192c35
-Content-Type: text/plain; charset=UTF-8
+I'm trying to figure out how to use a cloned/modified copy of the 
+linux-yocto-3.0 git repository. Here's what I did:
 
-On Thursday, February 16, 2012, Autif Khan <autif.mlist@gmail.com> wrote:
->> Hello,
->>
->> On Thu, 2012-02-16 at 10:26 +0530, Joshua Immanuel wrote:
->>> Can you please explain little bit more on what INSANE_SKIP_${PN} =
->>> "dev-so" does. I don't find any documentation on it.
->>
->> I guess, it suppresses the warnings stating that an non-dev package
->> contains symlink. This is the warning I got, when I packaged protobuf
->> for yocto
->
-> In the e-mail I mentioned that if you are using M2 1.2 (means the
-> milestone 2 of version 1.2). 1,2 final will be released sometime in
-> the next few weeks/months.
->
-> Sometime between 1.1 and 1.2 M2 - the behavior has been changed where
-> the warning you described below has been changed to an error - thereby
-> - the said .so files are not actually included.
->
-> This does not apply if you are using 1.0 or 1.1 (not sure about 1.1
-> myself - I jumped from 1.0 to 1.2 M2)
->
-> Eventually - if/when you will be using a newer release of yocto - your
-> recipe will fail to work as expected - unless you have that insane
-> skip.
->
+* cloned linux-yocto-3.0.git and committed to the meta branch
+* specified my new repo:
+
+--- a/meta/recipes-kernel/linux/linux-yocto_3.0.bb
++++ b/meta/recipes-kernel/linux/linux-yocto_3.0.bb
+@@ -18,12 +18,12 @@ SRCREV_machine_qemuppc ?= "15fd748017f0849138ff4b47d73f6866fa26cfe8"
+  SRCREV_machine_qemux86 ?= "8f74a4339b3dc029fafff0ba7d88d6dc950d4b31"
+  SRCREV_machine_qemux86-64 ?= "610c5a62daeda033755b0b7bfcb3e2cad5c76f3f"
+  SRCREV_machine ?= "5df0b4c2538399aed543133b3855f809adf08ab8"
+-SRCREV_meta ?= "b78a519841bd8b477cad599af8d38df6760445c1"
++SRCREV_meta ?= "7af8d6f8769335b79c1b76c8bded256b8f909c74"
+
+  PR = "r3"
+  PV = "${LINUX_VERSION}+git${SRCPV}"
+
+-SRC_URI = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta
++SRC_URI = "git:///mnt/linux-yocto-3.0.git;protocol=file;nocheckout=1;branch=${KBRANCH},meta;name=machi
+
+  COMPATIBLE_MACHINE = "(qemuarm|qemux86|qemuppc|qemumips|qemux86-64)"
+
+* bitbake -c clean virtual/kernel&&  bitbake virtual/kernel
 
 
-Did you even try to understand what his original problem was ?
-If not go back to first post and reread it
+What I get is this:
+ERROR: Function failed: do_validate_branches (see 
+/mnt/poky.git/build/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto-3.0.18+git2+7af8d6f8769335b79c1b76c8bded256b8f909c74_1+368e38c673ffac8b37fc2a2d4c1e4a1e6f8abf19-r3/temp/log.do_validate_branches.5342 
+for further information)
+
+There is no more information in that file. It contains only the exact 
+message I already got on the console ("ERROR: Function failed ...").
+
+What am I missing? 
+http://www.yoctoproject.org/docs/current/kernel-manual/kernel-manual.html was 
+not helpful.
+
+Thanks!
+
+-- 
+Hollis Blanchard
+Mentor Graphics, Embedded Systems Division
 
 
->
->>
->>> WARNING: QA Issue: non -dev/-dbg/-nativesdk package contains symlink
-.so:
->>> protobuf path
-'/work/core2-poky-linux/protobuf-2.4.1-r1/packages-split/protobuf/usr/lib/libprotobuf.so'
->>> WARNING: QA Issue: protobuf:
-/work/core2-poky-linux/protobuf-2.4.1-r1/packages-split/protobuf/usr/lib/libprotobuf.so
->>> contains probably-redundant RPATH /usr/lib
->>
->> Adding the line INSANE_SKIP_${PN} = "dev-so" suppressed the above
->> warnings.
->
-> This is correct.
->
-
---f46d04374589e183bc04b9192c35
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<br><br>On Thursday, February 16, 2012, Autif Khan &lt;<a href=3D"mailto:au=
-tif.mlist@gmail.com">autif.mlist@gmail.com</a>&gt; wrote:<br>&gt;&gt; Hello=
-,<br>&gt;&gt;<br>&gt;&gt; On Thu, 2012-02-16 at 10:26 +0530, Joshua Immanue=
-l wrote:<br>
-&gt;&gt;&gt; Can you please explain little bit more on what INSANE_SKIP_${P=
-N} =3D<br>&gt;&gt;&gt; &quot;dev-so&quot; does. I don&#39;t find any docume=
-ntation on it.<br>&gt;&gt;<br>&gt;&gt; I guess, it suppresses the warnings =
-stating that an non-dev package<br>
-&gt;&gt; contains symlink. This is the warning I got, when I packaged proto=
-buf<br>&gt;&gt; for yocto<br>&gt;<br>&gt; In the e-mail I mentioned that if=
- you are using M2 1.2 (means the<br>&gt; milestone 2 of version 1.2). 1,2 f=
-inal will be released sometime in<br>
-&gt; the next few weeks/months.<br>&gt;<br>&gt; Sometime between 1.1 and 1.=
-2 M2 - the behavior has been changed where<br>&gt; the warning you describe=
-d below has been changed to an error - thereby<br>&gt; - the said .so files=
- are not actually included.<br>
-&gt;<br>&gt; This does not apply if you are using 1.0 or 1.1 (not sure abou=
-t 1.1<br>&gt; myself - I jumped from 1.0 to 1.2 M2)<br>&gt;<br>&gt; Eventua=
-lly - if/when you will be using a newer release of yocto - your<br>&gt; rec=
-ipe will fail to work as expected - unless you have that insane<br>
-&gt; skip.<br>&gt;<br><br><br>Did you even try to understand what his origi=
-nal problem was ?<br>If not go back to first post and reread it<br><br><br>=
-&gt;<br>&gt;&gt;<br>&gt;&gt;&gt; WARNING: QA Issue: non -dev/-dbg/-nativesd=
-k package contains symlink .so:<br>
-&gt;&gt;&gt; protobuf path &#39;/work/core2-poky-linux/protobuf-2.4.1-r1/pa=
-ckages-split/protobuf/usr/lib/libprotobuf.so&#39;<br>&gt;&gt;&gt; WARNING: =
-QA Issue: protobuf: /work/core2-poky-linux/protobuf-2.4.1-r1/packages-split=
-/protobuf/usr/lib/libprotobuf.so<br>
-&gt;&gt;&gt; contains probably-redundant RPATH /usr/lib<br>&gt;&gt;<br>&gt;=
-&gt; Adding the line INSANE_SKIP_${PN} =3D &quot;dev-so&quot; suppressed th=
-e above<br>&gt;&gt; warnings.<br>&gt;<br>&gt; This is correct.<br>&gt;
-
---f46d04374589e183bc04b9192c35--
