@@ -1,28 +1,29 @@
 Return-Path: <josh@hipro.co.in>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84743E0044C
-	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 20:56:22 -0800 (PST)
-Received: by dadp13 with SMTP id p13so1975779dad.35
-	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 20:56:22 -0800 (PST)
-Received: by 10.68.227.195 with SMTP id sc3mr9801498pbc.47.1329368180086;
-	Wed, 15 Feb 2012 20:56:20 -0800 (PST)
+Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBA37E0044C
+	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 23:52:57 -0800 (PST)
+Received: by pbcxa12 with SMTP id xa12so591833pbc.35
+	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 23:52:57 -0800 (PST)
+Received: by 10.68.189.106 with SMTP id gh10mr10741918pbc.127.1329378777716;
+	Wed, 15 Feb 2012 23:52:57 -0800 (PST)
 Received: from [192.168.10.231] ([59.99.251.45])
-	by mx.google.com with ESMTPS id f3sm1313787pbr.61.2012.02.15.20.56.16
-	(version=SSLv3 cipher=OTHER); Wed, 15 Feb 2012 20:56:19 -0800 (PST)
-Message-ID: <1329368164.2747.9.camel@babel.joshhome>
+	by mx.google.com with ESMTPS id q8sm13277250pbi.1.2012.02.15.23.52.55
+	(version=SSLv3 cipher=OTHER); Wed, 15 Feb 2012 23:52:56 -0800 (PST)
+Message-ID: <1329378772.2747.24.camel@babel.joshhome>
 From: Joshua Immanuel <josh@hipro.co.in>
 To: Autif Khan <autif.mlist@gmail.com>
-Date: Thu, 16 Feb 2012 10:26:04 +0530
-In-Reply-To: <CADzUK1+rXrSNS91NURP9=T_SoKm1a3xg4tmijoU134wUmQhnOg@mail.gmail.com>
+Date: Thu, 16 Feb 2012 13:22:52 +0530
+In-Reply-To: <1329368164.2747.9.camel@babel.joshhome>
 References: <1329290581.3039.18.camel@babel.joshhome>
 	<CAMKF1soCVQ9bKYdhMAHfkM-xcrqYrwMS-kUMR3g1-1fJro-__Q@mail.gmail.com>
 	<1329321197.30001.6.camel@babel.joshhome>
 	<CADzUK1+rXrSNS91NURP9=T_SoKm1a3xg4tmijoU134wUmQhnOg@mail.gmail.com>
+	<1329368164.2747.9.camel@babel.joshhome>
 Organization: HiPro IT Solutions Private Limited
 X-Mailer: Evolution 3.2.2-1
 Mime-Version: 1.0
-X-Gm-Message-State: ALoCoQn5pF1Y/+6jGEh65Q4mDfjqxFCl7DaMKk7PajzfSB0Ij4Yhj+cY+B6oU0nJ1c5p5RMEKvFW
+X-Gm-Message-State: ALoCoQnubhVabxDLG8gl/Tp1bOaDNwAsa+pf1jiczt+CcacPSs7NUxKWdGyjRtuhGvau5oXQRl4n
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: RDEPENDS fails to find an existing package
 X-BeenThere: yocto@yoctoproject.org
@@ -36,41 +37,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Feb 2012 04:56:22 -0000
-X-Groupsio-MsgNum: 4846
+X-List-Received-Date: Thu, 16 Feb 2012 07:52:58 -0000
+X-Groupsio-MsgNum: 4847
 Content-Type: multipart/signed; micalg="pgp-sha1";
 	protocol="application/pgp-signature"; 
-	boundary="=-xhEO1vF/CT67iEqcPqCA"
+	boundary="=-OPBG1Aaskde4tAQ9iR93"
 
---=-xhEO1vF/CT67iEqcPqCA
+--=-OPBG1Aaskde4tAQ9iR93
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Autif,
+Hello,
 
-On Wed, 2012-02-15 at 18:23 -0500, Autif Khan wrote:
-> > Adding FILES_${PN} =3D "${libdir}/lib*.so" made bitbake to create an
-> > non-empty libharu package thereby fixing the problem.
->=20
-> Heads up - if you are using 1.2 M2 - you may have to add the following
-> line in your recipe:
->=20
-> INSANE_SKIP_{PN} =3D "dev-so"
+On Thu, 2012-02-16 at 10:26 +0530, Joshua Immanuel wrote:
+> Can you please explain little bit more on what INSANE_SKIP_${PN} =3D
+> "dev-so" does. I don't find any documentation on it.=20
 
-Can you please explain little bit more on what INSANE_SKIP_${PN} =3D
-"dev-so" does. I don't find any documentation on it. The only piece of
-information available by greping the code spoke something about skipping
-QA tests (in insane.bbclass).
+I guess, it suppresses the warnings stating that an non-dev package
+contains symlink. This is the warning I got, when I packaged protobuf
+for yocto=20
 
-> for package in packages.split():
->     skip =3D (bb.data.getVar('INSANE_SKIP_' + package, d, True) or "").sp=
-lit()
->     if skip:
->         bb.note("Package %s skipping QA tests: %s" % (package, str(skip))=
-)
->     ...
+> WARNING: QA Issue: non -dev/-dbg/-nativesdk package contains symlink .so:=
+=20
+> protobuf path '/work/core2-poky-linux/protobuf-2.4.1-r1/packages-split/pr=
+otobuf/usr/lib/libprotobuf.so'
+> WARNING: QA Issue: protobuf: /work/core2-poky-linux/protobuf-2.4.1-r1/pac=
+kages-split/protobuf/usr/lib/libprotobuf.so=20
+> contains probably-redundant RPATH /usr/lib
 
-It would be really helpful if you would enlighten me on this.
+Adding the line INSANE_SKIP_${PN} =3D "dev-so" suppressed the above
+warnings.
 
 Regards
 Joshua
@@ -79,7 +75,7 @@ Joshua Immanuel
 HiPro IT Solutions Private Limited
 http://hipro.co.in
 
---=-xhEO1vF/CT67iEqcPqCA
+--=-OPBG1Aaskde4tAQ9iR93
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part
 Content-Transfer-Encoding: 7bit
@@ -87,9 +83,9 @@ Content-Transfer-Encoding: 7bit
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEABECAAYFAk88jGQACgkQWw85XwuSFMI+owCgny6RNrI7FRaJ+Fqhw3+oehoY
-jo0AoMYPK4y4dyMXqWunY+iGGIi0y7oM
-=b6yU
+iEYEABECAAYFAk88tdQACgkQWw85XwuSFMJGcgCgvy3qbasR+kdn1Vjz5Z0LAR0X
+r8UAn2dPsVSkHqO4gzv9MmWBl+B47b7e
+=Buke
 -----END PGP SIGNATURE-----
 
---=-xhEO1vF/CT67iEqcPqCA--
+--=-OPBG1Aaskde4tAQ9iR93--
