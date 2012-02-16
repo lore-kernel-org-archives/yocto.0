@@ -1,35 +1,53 @@
-Return-Path: <Hollis_Blanchard@mentor.com>
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 514C8E003E1
-	for <yocto@yoctoproject.org>; Thu, 16 Feb 2012 13:33:07 -0800 (PST)
-Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
-	by relay1.mentorg.com with esmtp 
-	id 1Ry8ws-000547-GG from Hollis_Blanchard@mentor.com ;
-	Thu, 16 Feb 2012 13:33:06 -0800
-Received: from SVR-ORW-FEM-04.mgc.mentorg.com ([147.34.97.41]) by
-	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
-	SMTPSVC(6.0.3790.4675); Thu, 16 Feb 2012 13:32:20 -0800
-Received: from [172.30.11.144] (147.34.91.1) by svr-orw-fem-04.mgc.mentorg.com
-	(147.34.97.41) with Microsoft SMTP Server id 14.1.289.1;
-	Thu, 16 Feb 2012 13:33:03 -0800
-Message-ID: <4F3D760F.6020105@mentor.com>
-Date: Thu, 16 Feb 2012 13:33:03 -0800
-From: Hollis Blanchard <hollis_blanchard@mentor.com>
-Organization: Mentor Graphics, Embedded Systems Division
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0
-MIME-Version: 1.0
-To: McClintock Matthew-B29882 <B29882@freescale.com>
+Return-Path: <B29882@freescale.com>
+Received: from VA3EHSOBE010.bigfish.com (va3ehsobe004.messaging.microsoft.com
+	[216.32.180.14])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 524ABE003E1
+	for <yocto@yoctoproject.org>; Thu, 16 Feb 2012 13:43:35 -0800 (PST)
+Received: from mail131-va3-R.bigfish.com (10.7.14.240) by
+	VA3EHSOBE010.bigfish.com (10.7.40.12) with Microsoft SMTP Server id
+	14.1.225.22; Thu, 16 Feb 2012 21:43:34 +0000
+Received: from mail131-va3 (localhost [127.0.0.1])	by
+	mail131-va3-R.bigfish.com (Postfix) with ESMTP id 563224C019B;
+	Thu, 16 Feb 2012 21:43:34 +0000 (UTC)
+X-SpamScore: -1
+X-BigFish: VS-1(zz9371I98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3hbe9k)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+Received: from mail131-va3 (localhost.localdomain [127.0.0.1]) by mail131-va3
+	(MessageSwitch) id 1329428612956079_13736;
+	Thu, 16 Feb 2012 21:43:32 +0000 (UTC)
+Received: from VA3EHSMHS005.bigfish.com (unknown [10.7.14.238])	by
+	mail131-va3.bigfish.com (Postfix) with ESMTP id DA45918004D;
+	Thu, 16 Feb 2012 21:43:32 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS005.bigfish.com
+	(10.7.99.15) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Thu, 16 Feb 2012 21:43:32 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.244]) by
+	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
+	14.01.0355.003; Thu, 16 Feb 2012 15:43:31 -0600
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Hollis Blanchard <hollis_blanchard@mentor.com>
+Thread-Topic: [yocto] trouble using a local kernel repo
+Thread-Index: AQHM7PEi1zPgH4JkF0iwZMq/EertI5ZAb9OAgAAC0oA=
+Date: Thu, 16 Feb 2012 21:43:30 +0000
+Message-ID: <CAEsOVNeLEv_C7JY_a7aOW783wVv+JRH=eGikqvpRp4SfcOpg5A@mail.gmail.com>
 References: <4F3D6431.70505@mentor.com>
 	<CAEsOVNfdiouZJ=qvN_GLBoLtJojHvdnXzVUoL674KN1LnNudYQ@mail.gmail.com>
-In-Reply-To: <CAEsOVNfdiouZJ=qvN_GLBoLtJojHvdnXzVUoL674KN1LnNudYQ@mail.gmail.com>
-X-OriginalArrivalTime: 16 Feb 2012 21:32:20.0812 (UTC)
-	FILETIME=[76E8F0C0:01CCECF2]
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<4F3D760F.6020105@mentor.com>
+In-Reply-To: <4F3D760F.6020105@mentor.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [99.47.177.27]
+MIME-Version: 1.0
+X-OriginatorOrg: freescale.com
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: trouble using a local kernel repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -38,63 +56,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Feb 2012 21:33:07 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 16 Feb 2012 21:43:35 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <7F4933FB4EAE1E4ABCE996AC2993C574@freescale.net>
+Content-Transfer-Encoding: quoted-printable
 
-On 02/16/2012 01:22 PM, McClintock Matthew-B29882 wrote:
-> On Thu, Feb 16, 2012 at 8:16 PM, Hollis Blanchard
-> <hollis_blanchard@mentor.com>  wrote:
->> I'm trying to figure out how to use a cloned/modified copy of the
->> linux-yocto-3.0 git repository. Here's what I did:
->>
->> * cloned linux-yocto-3.0.git and committed to the meta branch
->> * specified my new repo:
->>
->> --- a/meta/recipes-kernel/linux/linux-yocto_3.0.bb
->> +++ b/meta/recipes-kernel/linux/linux-yocto_3.0.bb
->> @@ -18,12 +18,12 @@ SRCREV_machine_qemuppc ?=
->> "15fd748017f0849138ff4b47d73f6866fa26cfe8"
->>   SRCREV_machine_qemux86 ?= "8f74a4339b3dc029fafff0ba7d88d6dc950d4b31"
->>   SRCREV_machine_qemux86-64 ?= "610c5a62daeda033755b0b7bfcb3e2cad5c76f3f"
->>   SRCREV_machine ?= "5df0b4c2538399aed543133b3855f809adf08ab8"
->> -SRCREV_meta ?= "b78a519841bd8b477cad599af8d38df6760445c1"
->> +SRCREV_meta ?= "7af8d6f8769335b79c1b76c8bded256b8f909c74"
->>
->>   PR = "r3"
->>   PV = "${LINUX_VERSION}+git${SRCPV}"
->>
->> -SRC_URI =
->> "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta
->> +SRC_URI =
->> "git:///mnt/linux-yocto-3.0.git;protocol=file;nocheckout=1;branch=${KBRANCH},meta;name=machi
->>
->>   COMPATIBLE_MACHINE = "(qemuarm|qemux86|qemuppc|qemumips|qemux86-64)"
->>
->> * bitbake -c clean virtual/kernel&&    bitbake virtual/kernel
->>
->>
->> What I get is this:
->> ERROR: Function failed: do_validate_branches (see
->> /mnt/poky.git/build/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto-3.0.18+git2+7af8d6f8769335b79c1b76c8bded256b8f909c74_1+368e38c673ffac8b37fc2a2d4c1e4a1e6f8abf19-r3/temp/log.do_validate_branches.5342
->> for further information)
->>
->> There is no more information in that file. It contains only the exact
->> message I already got on the console ("ERROR: Function failed ...").
->>
->> What am I missing?
->> http://www.yoctoproject.org/docs/current/kernel-manual/kernel-manual.html
->> was not helpful.
-> Not much help but you can look in:
->
-> meta/classes/kernel-yocto.bbclass:do_validate_branches() {
->
-> And try to figure out which step could return an error code to the shell.
-Yeah, I've looked through there, but where should stdout (i.e. those 
-echo commands) be appearing?
+On Thu, Feb 16, 2012 at 9:33 PM, Hollis Blanchard
+<hollis_blanchard@mentor.com> wrote:
+> Yeah, I've looked through there, but where should stdout (i.e. those echo
+> commands) be appearing?
 
-Hollis Blanchard
-Mentor Graphics, Embedded Systems Division
+I'd guess it's failing before that... you can add your own echo's.
+Also, this should be in that log file:
+tmp/work/${ARCH}/linux-yocto-vZ-rX/temp/log.do_validate.${PID}
 
+-M=
 
 
