@@ -1,31 +1,27 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDB48E0044C
-	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 15:23:42 -0800 (PST)
-Received: by dadp13 with SMTP id p13so1669169dad.35
-	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 15:23:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=T+pebl8iD+ls0SnDDlQhwIpEhk1iyffKyeLV1ioJWuM=;
-	b=CSh2Kfa/Z2uLEYbQ0e5+PCgwTQc+w8sH/OG5Z57a30aE3V1sb8xrzQbF5NEZaRjg5P
-	SnzZXXc9tUGecZKHn+TWAio+5gMI8vFH67tMlCyyzfeSGvQ8d1gTfnB3kGv1m11hM5UF
-	ayI6fG2ucOfonAZAqs5MQ5Wn62kG3LWJGoyYU=
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0746E0030B
+	for <yocto@yoctoproject.org>; Wed, 15 Feb 2012 16:35:10 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q1G0Z4t3028837
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 15 Feb 2012 16:35:04 -0800 (PST)
+Received: from [147.11.116.149] (147.11.116.149) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Wed, 15 Feb 2012 16:35:04 -0800
+Message-ID: <4F3C4F37.6000601@windriver.com>
+Date: Wed, 15 Feb 2012 19:35:03 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.26) Gecko/20120131 Thunderbird/3.1.18
 MIME-Version: 1.0
-Received: by 10.68.189.39 with SMTP id gf7mr2198276pbc.142.1329348222608; Wed,
-	15 Feb 2012 15:23:42 -0800 (PST)
-Received: by 10.68.33.170 with HTTP; Wed, 15 Feb 2012 15:23:42 -0800 (PST)
-In-Reply-To: <1329321197.30001.6.camel@babel.joshhome>
-References: <1329290581.3039.18.camel@babel.joshhome>
-	<CAMKF1soCVQ9bKYdhMAHfkM-xcrqYrwMS-kUMR3g1-1fJro-__Q@mail.gmail.com>
-	<1329321197.30001.6.camel@babel.joshhome>
-Date: Wed, 15 Feb 2012 18:23:42 -0500
-Message-ID: <CADzUK1+rXrSNS91NURP9=T_SoKm1a3xg4tmijoU134wUmQhnOg@mail.gmail.com>
-From: Autif Khan <autif.mlist@gmail.com>
-To: Joshua Immanuel <josh@hipro.co.in>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: RDEPENDS fails to find an existing package
+To: Hollis Blanchard <hollis_blanchard@mentor.com>
+References: <4F3AF87F.8010806@mentor.com>	<CAEsOVNcatm3EzHaLLWyGA2Bf=i65j9WTLLDrF0jq2Dg5xZ6E-A@mail.gmail.com>
+	<4F3C3DC4.8060400@mentor.com>
+In-Reply-To: <4F3C3DC4.8060400@mentor.com>
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: missing USB gadget support on beagleboard?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,25 +33,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Feb 2012 23:23:42 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 16 Feb 2012 00:35:11 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> Hello Khem Raj,
+On 12-02-15 06:20 PM, Hollis Blanchard wrote:
+> On 02/14/2012 10:24 PM, McClintock Matthew-B29882 wrote:
+>> On Tue, Feb 14, 2012 at 4:12 PM, Hollis Blanchard
+>> <hollis_blanchard@mentor.com> wrote:
+>>> Hi, I'm sure I'm missing something simple, but I just built Poky from
+>>> git
+>>> for beagleboard, and can't figure out USB networking. I expected to find
+>>> g_cdc and g_ether modules in
+>>> /lib/modules/3.0.18-yocto-standard+/kernel/drivers/usb, but that
+>>> directory
+>>> doesn't actually exist (I guess the drivers are built-in to this
+>>> kernel).
+>>>
+>>> I have MACHINE ??= beagleboard in local.conf, and "bitbake
+>>> core-image-minimal" did produce a working kernel, uboot, etc. I see
+>>> some USB
+>>> messages at boot (see below), but although cdc_ether is mentioned,
+>>> ifconfig
+>>> -a lists only loopback.
+>>>
+>>> Any suggestions? Thanks!
+>> You can look at the default defconfig to see which kernel modules are
+>> selected and also make sure the kernel modules are actually included
+>> on core-image-minimal.
 >
-> On Wed, 2012-02-15 at 07:28 -0800, Khem Raj wrote:
->> the .a files are going into -static package and I guess
->> there is .so and not .so.X which means .so goes into
->> -dev package and hence your libharu package is empty
->> so you have to redirect the files into correct package
->> with the help of FILES_${PN} = "libharu.so ...." etc.
->
-> You were right. Thanks for the tip.
->
-> Adding FILES_${PN} = "${libdir}/lib*.so" made bitbake to create an
-> non-empty libharu package thereby fixing the problem.
+> Right, it looks like CONFIG_USB_ETH is disabled in
+> linux-beagleboard-standard-build/.config , and I think that's the key
+> missing option. I'm so lost in Yocto's kernel configuration
+> "architecture" that I have no idea if that's being explicitly disabled,
+> or just omitted from the base config, or what.
 
-Heads up - if you are using 1.2 M2 - you may have to add the following
-line in your recipe:
+Is this the 3.0 variant ? That particular option wasn't enabled (most
+likely because no one had the right device to test it). But that's not
+the point, we can absolutely and easily enable it .. in particular
+if someone confirms that it works :)
 
-INSANE_SKIP_{PN} = "dev-so"
+>
+> It seems to me that option should be enabled if DISTRO_FEATURES contains
+> usbgadget. More simply, it seems like a good idea to enable
+> CONFIG_USB_ETH in the beagleboard default configuration, since many
+> beagleboards don't have any other network interface.
+
+The ethernet issue(s) are a painful memory of last year's ELC demos and
+plenty of swearing about USB ethernet that didn't detect due to particular
+USB hubs.
+
+We can trigger the inclusion of a particular config option or fragment
+directly from a distro feature as well.
+
+>
+> Is there an owner of Yocto's beagleboard BSP stuff?
+
+I can help. Sorry that I missed your first email, traveling to ELC
+filled up my inbox with a backlog.
+
+Bruce
+
+>
+> Hollis Blanchard
+> Mentor Graphics, Embedded Systems Division
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
