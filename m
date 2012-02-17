@@ -1,28 +1,32 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52188E003E1
-	for <yocto@yoctoproject.org>; Fri, 17 Feb 2012 08:17:37 -0800 (PST)
-Received: by pbcxa12 with SMTP id xa12so2552189pbc.35
-	for <yocto@yoctoproject.org>; Fri, 17 Feb 2012 08:17:37 -0800 (PST)
-Received: by 10.68.73.196 with SMTP id n4mr26019404pbv.33.1329495456922;
-	Fri, 17 Feb 2012 08:17:36 -0800 (PST)
-Received: from [192.168.0.6] ([59.92.38.198])
-	by mx.google.com with ESMTPS id e6sm5507563pbr.74.2012.02.17.08.17.33
-	(version=SSLv3 cipher=OTHER); Fri, 17 Feb 2012 08:17:36 -0800 (PST)
-Message-ID: <1329495441.2829.5.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Martin Jansa <martin.jansa@gmail.com>
-Date: Fri, 17 Feb 2012 21:47:21 +0530
-In-Reply-To: <20120217144548.GH5822@jama.jama.net>
-References: <1329489648.2709.14.camel@babel.joshhome>
-	<20120217144548.GH5822@jama.jama.net>
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1
-Mime-Version: 1.0
-X-Gm-Message-State: ALoCoQmGofJ8CKbb98uBxbuKfq3K8iHDo/mq75WG3sozbws557CclR5qrqIrSWDczH1GMSJwntvW
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: unable to add a new file to base-files recipe via bbappend
+Return-Path: <Hollis_Blanchard@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B1EEE003E1
+	for <yocto@yoctoproject.org>; Fri, 17 Feb 2012 08:45:26 -0800 (PST)
+Received: from svr-orw-fem-01.mgc.mentorg.com ([147.34.98.93])
+	by relay1.mentorg.com with esmtp 
+	id 1RyQw1-0002uO-R9 from Hollis_Blanchard@mentor.com ;
+	Fri, 17 Feb 2012 08:45:25 -0800
+Received: from SVR-ORW-FEM-03.mgc.mentorg.com ([147.34.97.39]) by
+	svr-orw-fem-01.mgc.mentorg.com over TLS secured channel with
+	Microsoft SMTPSVC(6.0.3790.4675); Fri, 17 Feb 2012 08:45:25 -0800
+Received: from [172.30.11.144] (147.34.91.1) by svr-orw-fem-03.mgc.mentorg.com
+	(147.34.97.39) with Microsoft SMTP Server id 14.1.289.1;
+	Fri, 17 Feb 2012 08:45:25 -0800
+Message-ID: <4F3E8424.5070306@mentor.com>
+Date: Fri, 17 Feb 2012 08:45:24 -0800
+From: Hollis Blanchard <hollis_blanchard@mentor.com>
+Organization: Mentor Graphics, Embedded Systems Division
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
+MIME-Version: 1.0
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <4F3D6431.70505@mentor.com> <4F3D7F0D.3050904@windriver.com>
+	<4F3D883C.8070709@mentor.com> <4F3D8AFD.6080307@windriver.com>
+In-Reply-To: <4F3D8AFD.6080307@windriver.com>
+X-OriginalArrivalTime: 17 Feb 2012 16:45:25.0833 (UTC)
+	FILETIME=[8C655B90:01CCED93]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: trouble using a local kernel repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,49 +38,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Feb 2012 16:17:37 -0000
-X-Groupsio-MsgNum: 4875
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-+JtMOTiErGksxJUUT2T7"
-
---=-+JtMOTiErGksxJUUT2T7
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello Martin,
-
-On Fri, 2012-02-17 at 15:45 +0100, Martin Jansa wrote:
-> You need to set something like
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> for fetcher to look in ${PN} subdirectory of directory where=20
-> you have .bbappend
-
-Thanks for the info.
-
-> And you're bbappending wrong recipe, xorg.conf belongs to
-> meta/recipes-graphics/xorg-xserver/xserver-xf86-config/=20
-
-Oops. Will bbappend to the above mentioned recipe.
-
-Regards
-Joshua
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
-
---=-+JtMOTiErGksxJUUT2T7
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+X-List-Received-Date: Fri, 17 Feb 2012 16:45:26 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+On 02/16/2012 03:02 PM, Bruce Ashfield wrote:
+>
+> That's the problem. I have a patch that detects this and abort is a non
+> bare upstream is used. I just need to send them .. which I'll do when
+> I get back to my desk next week.
+>
+> There are two reason for this bare clone requirement:
+>
+>   - technical: this scales to several hundred branches. cloning, and 
+> iterating
+>     remote branches to create local tracking branches is noisy and
+>     time consuming. So there's a trick that has been in use for years
+>     that you can clone a bare upstream, and mass convert the branches
+>     to local in a single operation.
+>
+>   - social: you want to do your development in a different tree from the
+>     one that is being cloned and used. That way the tree is clean, and you 
+>
+>     are building what you expect. 
 
-iEYEABECAAYFAk8+fZEACgkQWw85XwuSFMJ2qwCfe5nk9JBM+QKgPkcMWufMwhbz
-3LQAnA8gkD/OOhAdycrNeF1FEdB3GzxV
-=9y3H
------END PGP SIGNATURE-----
+One more workflow question: so to test my patch, I need to commit it to 
+my real git repo, then push to the bare git repo, then rebuild Poky. 
+When I find the inevitable problem, do I need to manually delete (git 
+reset --hard) the changeset from both repositories? Is there a better way?
 
---=-+JtMOTiErGksxJUUT2T7--
+Hollis Blanchard
+Mentor Graphics, Embedded Systems Division
+
+
+
