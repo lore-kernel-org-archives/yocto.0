@@ -1,26 +1,27 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C700DE003E3
-	for <yocto@yoctoproject.org>; Fri, 17 Feb 2012 10:50:36 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F016BE003E3
+	for <yocto@yoctoproject.org>; Fri, 17 Feb 2012 11:56:55 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q1HIoZgm010361
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Fri, 17 Feb 2012 10:50:36 -0800 (PST)
-Received: from Macintosh-5.local (147.11.117.59) by ALA-HCA.corp.ad.wrs.com
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q1HJupCf019045
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 17 Feb 2012 11:56:51 -0800 (PST)
+Received: from [147.11.117.71] (147.11.117.71) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 17 Feb 2012 10:50:35 -0800
-Message-ID: <4F3EA17B.7010906@windriver.com>
-Date: Fri, 17 Feb 2012 10:50:35 -0800
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+	Fri, 17 Feb 2012 11:56:51 -0800
+Message-ID: <4F3EB0FD.4020806@windriver.com>
+Date: Fri, 17 Feb 2012 14:56:45 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.26) Gecko/20120131 Thunderbird/3.1.18
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <2046170.9fCjTlmZqN@helios>
-In-Reply-To: <2046170.9fCjTlmZqN@helios>
-Cc: Peter Seebach <peter.seebach@windriver.com>
-Subject: Re: pseudo interaction issue
+To: Hollis Blanchard <hollis_blanchard@mentor.com>
+References: <4F3D6431.70505@mentor.com> <4F3D7F0D.3050904@windriver.com>
+	<4F3D883C.8070709@mentor.com> <4F3D8AFD.6080307@windriver.com>
+	<4F3E8424.5070306@mentor.com>
+In-Reply-To: <4F3E8424.5070306@mentor.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: trouble using a local kernel repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,42 +33,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Feb 2012 18:50:36 -0000
+X-List-Received-Date: Fri, 17 Feb 2012 19:56:56 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-We're looking into this issue.  You should never get the "pseudo: You must set 
-the PSEUDO_PREFIX environment variable to run pseudo." message.  This means 
-something appears to have avoided the wrappers.
+On 12-02-17 11:45 AM, Hollis Blanchard wrote:
+> On 02/16/2012 03:02 PM, Bruce Ashfield wrote:
+>>
+>> That's the problem. I have a patch that detects this and abort is a non
+>> bare upstream is used. I just need to send them .. which I'll do when
+>> I get back to my desk next week.
+>>
+>> There are two reason for this bare clone requirement:
+>>
+>> - technical: this scales to several hundred branches. cloning, and
+>> iterating
+>> remote branches to create local tracking branches is noisy and
+>> time consuming. So there's a trick that has been in use for years
+>> that you can clone a bare upstream, and mass convert the branches
+>> to local in a single operation.
+>>
+>> - social: you want to do your development in a different tree from the
+>> one that is being cloned and used. That way the tree is clean, and you
+>> are building what you expect.
+>
+> One more workflow question: so to test my patch, I need to commit it to
+> my real git repo, then push to the bare git repo, then rebuild Poky.
+> When I find the inevitable problem, do I need to manually delete (git
+> reset --hard) the changeset from both repositories? Is there a better way?
 
-I'll let you know once we figure out something.
+As with anything git based ... there's more than one way to do it, and
+everyone has their favourite way.
 
---Mark
+Me, I'd just revert it and push it. Or hard reset it in the working
+repo and push -f to the bare one.
 
-On 2/17/12 9:35 AM, Paul Eggleton wrote:
-> Hi all,
+But generally speaking, you've got the right way. Same as you'd have to
+pull it off a SRC_URI or remove a bbappend if it was tacked on the end
+via that method.
+
+Cheers,
+
+Bruce
+
 >
-> I'm trying to extend buildhistory to write out the metadata revisions just
-> before it does the commit to the buildhistory repository, and I'm having some
-> pseudo-related trouble. The structure is a little unusual, in that the
-> execution flow is an event handler that calls a shell function (via
-> bb.build.exec_func()) and during parsing this function an ${@...} reference to
-> a python function is evaluated, which then calls os.popen(), at which point I
-> get the error "pseudo: You must set the PSEUDO_PREFIX environment variable to
-> run pseudo."
+> Hollis Blanchard
+> Mentor Graphics, Embedded Systems Division
 >
-> I don't need pseudo at this stage. I've tried setting PSEUDO_DISABLED=1 and
-> even PSEUDO_UNLOAD=1 just prior to the os.popen() call (or within it) and
-> despite evidence that pseudo is taking notice of these being set in other
-> contexts (when the function is called from elsewhere) even when doing this I
-> still get the error above. I could rearrange the structure to avoid this
-> execution flow however that would bar me from reusing existing code that we
-> have for getting the metadata revision.
->
-> Any suggestions?
->
-> Cheers,
-> Paul
 >
 
 
