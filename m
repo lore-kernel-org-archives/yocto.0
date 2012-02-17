@@ -1,32 +1,21 @@
-Return-Path: <Hollis_Blanchard@mentor.com>
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B1EEE003E1
-	for <yocto@yoctoproject.org>; Fri, 17 Feb 2012 08:45:26 -0800 (PST)
-Received: from svr-orw-fem-01.mgc.mentorg.com ([147.34.98.93])
-	by relay1.mentorg.com with esmtp 
-	id 1RyQw1-0002uO-R9 from Hollis_Blanchard@mentor.com ;
-	Fri, 17 Feb 2012 08:45:25 -0800
-Received: from SVR-ORW-FEM-03.mgc.mentorg.com ([147.34.97.39]) by
-	svr-orw-fem-01.mgc.mentorg.com over TLS secured channel with
-	Microsoft SMTPSVC(6.0.3790.4675); Fri, 17 Feb 2012 08:45:25 -0800
-Received: from [172.30.11.144] (147.34.91.1) by svr-orw-fem-03.mgc.mentorg.com
-	(147.34.97.39) with Microsoft SMTP Server id 14.1.289.1;
-	Fri, 17 Feb 2012 08:45:25 -0800
-Message-ID: <4F3E8424.5070306@mentor.com>
-Date: Fri, 17 Feb 2012 08:45:24 -0800
-From: Hollis Blanchard <hollis_blanchard@mentor.com>
-Organization: Mentor Graphics, Embedded Systems Division
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68E8DE003E3
+	for <yocto@yoctoproject.org>; Fri, 17 Feb 2012 09:35:54 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 17 Feb 2012 09:35:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="109370977"
+Received: from unknown (HELO helios.localnet) ([10.252.123.6])
+	by orsmga001.jf.intel.com with ESMTP; 17 Feb 2012 09:35:53 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 17 Feb 2012 17:35:52 +0000
+Message-ID: <2046170.9fCjTlmZqN@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.0; i686; ; )
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <4F3D6431.70505@mentor.com> <4F3D7F0D.3050904@windriver.com>
-	<4F3D883C.8070709@mentor.com> <4F3D8AFD.6080307@windriver.com>
-In-Reply-To: <4F3D8AFD.6080307@windriver.com>
-X-OriginalArrivalTime: 17 Feb 2012 16:45:25.0833 (UTC)
-	FILETIME=[8C655B90:01CCED93]
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: trouble using a local kernel repo
+Subject: pseudo interaction issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,37 +27,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Feb 2012 16:45:26 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 17 Feb 2012 17:35:54 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 02/16/2012 03:02 PM, Bruce Ashfield wrote:
->
-> That's the problem. I have a patch that detects this and abort is a non
-> bare upstream is used. I just need to send them .. which I'll do when
-> I get back to my desk next week.
->
-> There are two reason for this bare clone requirement:
->
->   - technical: this scales to several hundred branches. cloning, and 
-> iterating
->     remote branches to create local tracking branches is noisy and
->     time consuming. So there's a trick that has been in use for years
->     that you can clone a bare upstream, and mass convert the branches
->     to local in a single operation.
->
->   - social: you want to do your development in a different tree from the
->     one that is being cloned and used. That way the tree is clean, and you 
->
->     are building what you expect. 
+Hi all,
 
-One more workflow question: so to test my patch, I need to commit it to 
-my real git repo, then push to the bare git repo, then rebuild Poky. 
-When I find the inevitable problem, do I need to manually delete (git 
-reset --hard) the changeset from both repositories? Is there a better way?
+I'm trying to extend buildhistory to write out the metadata revisions just 
+before it does the commit to the buildhistory repository, and I'm having some 
+pseudo-related trouble. The structure is a little unusual, in that the 
+execution flow is an event handler that calls a shell function (via 
+bb.build.exec_func()) and during parsing this function an ${@...} reference to 
+a python function is evaluated, which then calls os.popen(), at which point I 
+get the error "pseudo: You must set the PSEUDO_PREFIX environment variable to 
+run pseudo."
 
-Hollis Blanchard
-Mentor Graphics, Embedded Systems Division
+I don't need pseudo at this stage. I've tried setting PSEUDO_DISABLED=1 and 
+even PSEUDO_UNLOAD=1 just prior to the os.popen() call (or within it) and 
+despite evidence that pseudo is taking notice of these being set in other 
+contexts (when the function is called from elsewhere) even when doing this I 
+still get the error above. I could rearrange the structure to avoid this 
+execution flow however that would bar me from reusing existing code that we 
+have for getting the metadata revision.
 
+Any suggestions?
 
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
