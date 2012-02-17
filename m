@@ -1,27 +1,36 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F016BE003E3
-	for <yocto@yoctoproject.org>; Fri, 17 Feb 2012 11:56:55 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q1HJupCf019045
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 17 Feb 2012 11:56:51 -0800 (PST)
-Received: from [147.11.117.71] (147.11.117.71) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 17 Feb 2012 11:56:51 -0800
-Message-ID: <4F3EB0FD.4020806@windriver.com>
-Date: Fri, 17 Feb 2012 14:56:45 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.26) Gecko/20120131 Thunderbird/3.1.18
+Return-Path: <scott.a.garman@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1D46E003E3
+	for <yocto@yoctoproject.org>; Fri, 17 Feb 2012 13:28:18 -0800 (PST)
+Received: from mail-pw0-f52.google.com ([209.85.160.52])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 17 Feb 2012 13:28:18 -0800
+Received: by pbbjt11 with SMTP id jt11so16867400pbb.25
+	for <yocto@yoctoproject.org>; Fri, 17 Feb 2012 13:28:17 -0800 (PST)
+Received-SPF: pass (google.com: domain of scott.a.garman@intel.com designates
+	10.68.220.4 as permitted sender) client-ip=10.68.220.4; 
+Authentication-Results: mr.google.com; spf=pass (google.com: domain of
+	scott.a.garman@intel.com designates 10.68.220.4 as permitted
+	sender) smtp.mail=scott.a.garman@intel.com
+Received: from mr.google.com ([10.68.220.4])
+	by 10.68.220.4 with SMTP id ps4mr35296837pbc.32.1329514097973 (num_hops
+	= 1); Fri, 17 Feb 2012 13:28:17 -0800 (PST)
+Received: by 10.68.220.4 with SMTP id ps4mr28625986pbc.32.1329514097911;
+	Fri, 17 Feb 2012 13:28:17 -0800 (PST)
+Received: from [10.10.5.116] ([108.60.121.129])
+	by mx.google.com with ESMTPS id a6sm6085244pbs.68.2012.02.17.13.28.15
+	(version=SSLv3 cipher=OTHER); Fri, 17 Feb 2012 13:28:15 -0800 (PST)
+Message-ID: <4F3EC66D.6060105@intel.com>
+Date: Fri, 17 Feb 2012 13:28:13 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
 MIME-Version: 1.0
-To: Hollis Blanchard <hollis_blanchard@mentor.com>
-References: <4F3D6431.70505@mentor.com> <4F3D7F0D.3050904@windriver.com>
-	<4F3D883C.8070709@mentor.com> <4F3D8AFD.6080307@windriver.com>
-	<4F3E8424.5070306@mentor.com>
-In-Reply-To: <4F3E8424.5070306@mentor.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: trouble using a local kernel repo
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <4F1DBA25.9090700@intel.com>
+In-Reply-To: <4F1DBA25.9090700@intel.com>
+X-Forwarded-Message-Id: <4F1DBA25.9090700@intel.com>
+X-Gm-Message-State: ALoCoQl8sooMYOkq7Jsa7KJcdgofnCieUKYhNOGtfS9/v8IREE8f6x1HwXOMkCLMso+JIopdL4Ev
+Subject: Screencast Video: Getting Started with the Yocto Project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,53 +42,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Feb 2012 19:56:56 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Fri, 17 Feb 2012 21:28:18 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12-02-17 11:45 AM, Hollis Blanchard wrote:
-> On 02/16/2012 03:02 PM, Bruce Ashfield wrote:
->>
->> That's the problem. I have a patch that detects this and abort is a non
->> bare upstream is used. I just need to send them .. which I'll do when
->> I get back to my desk next week.
->>
->> There are two reason for this bare clone requirement:
->>
->> - technical: this scales to several hundred branches. cloning, and
->> iterating
->> remote branches to create local tracking branches is noisy and
->> time consuming. So there's a trick that has been in use for years
->> that you can clone a bare upstream, and mass convert the branches
->> to local in a single operation.
->>
->> - social: you want to do your development in a different tree from the
->> one that is being cloned and used. That way the tree is clean, and you
->> are building what you expect.
->
-> One more workflow question: so to test my patch, I need to commit it to
-> my real git repo, then push to the bare git repo, then rebuild Poky.
-> When I find the inevitable problem, do I need to manually delete (git
-> reset --hard) the changeset from both repositories? Is there a better way?
+Hi everyone,
 
-As with anything git based ... there's more than one way to do it, and
-everyone has their favourite way.
+I am excited to announce a video training resource for new
+users of the Yocto Project. It is the "Getting Started with the
+Yocto Project" screencast:
 
-Me, I'd just revert it and push it. Or hard reset it in the working
-repo and push -f to the bare one.
+On Vimeo:
+http://vimeo.com/36450321
 
-But generally speaking, you've got the right way. Same as you'd have to
-pull it off a SRC_URI or remove a bbappend if it was tacked on the end
-via that method.
+On YouTube:
+http://www.youtube.com/watch?v=zNLYanJAQ3s
 
-Cheers,
+Direct download, Windows Media (300 MB) and Ogg (500 MB) formats:
+http://www.yoctoproject.org/bulk/Getting_Started_with_the_Yocto_Project.wmv
 
-Bruce
+http://www.yoctoproject.org/bulk/Getting_Started_with_the_Yocto_Project.ogv
 
->
-> Hollis Blanchard
-> Mentor Graphics, Embedded Systems Division
->
->
+This half-hour screencast introduces you to the Yocto Project and
+explains its benefits. It also includes live demos which explain the
+following:
 
+* An overview of the Poky build system
+* How the Poky sources are organized (types of metadata and where to
+find it)
+* How to build your first Linux image and run it under emulation
+* An introduction to recipes and an explanation of the most common types
+of metadata, using actual recipe examples
+* An introduction to layers
+* Where to obtain Yocto BSPs from
+* How simple it is to download and enable a Yocto BSP
+* Where to find further project resources (documentation, mailing list,
+git repository, bugzilla)
+
+By the end of this screencast, a new user will understand fundamental
+concepts about the build system, and be able to start their exploration
+of the Yocto Project with a solid foundation of knowledge.
+
+I hope this screencast becomes a useful training resource to help get
+new users up to speed as quickly as possible with the Yocto Project.
+
+Enjoy,
+
+Scott
+
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
