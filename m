@@ -1,26 +1,21 @@
 Return-Path: <niqingliang@insigma.com.cn>
 Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 966BEE003E2
-	for <yocto@yoctoproject.org>; Thu, 16 Feb 2012 20:21:13 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E775BE003E1
+	for <yocto@yoctoproject.org>; Thu, 16 Feb 2012 23:28:38 -0800 (PST)
 Received: from WX-EXCHMB2.insigma.com.cn (10.0.1.203) by
 	WX-Edge.insigma.com.cn (10.0.1.205) with Microsoft SMTP Server (TLS) id
-	8.1.436.0; Fri, 17 Feb 2012 12:20:59 +0800
+	8.1.436.0; Fri, 17 Feb 2012 15:28:22 +0800
 Received: from [192.168.0.98] (122.224.76.38) by Wx-ExchMB2.insigma.com.cn
 	(10.0.1.203) with Microsoft SMTP Server id 8.1.436.0; Fri, 17 Feb 2012
-	12:20:55 +0800
-Message-ID: <1329452349.1067.164.camel@localhost.localdomain>
+	15:28:18 +0800
+Message-ID: <1329463593.1067.174.camel@localhost.localdomain>
 From: Ni Qingliang <niqingliang@insigma.com.cn>
-To: "Lu, Lianhao" <lianhao.lu@intel.com>
-Date: Fri, 17 Feb 2012 12:19:09 +0800
-In-Reply-To: <857BE142E5399E46B20FD45B9DB8A7BC0FCE8A57@SHSMSX102.ccr.corp.intel.com>
-References: <1329446527.1067.157.camel@localhost.localdomain>
-	<1329451392.1067.161.camel@localhost.localdomain>
-	<857BE142E5399E46B20FD45B9DB8A7BC0FCE8A57@SHSMSX102.ccr.corp.intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Fri, 17 Feb 2012 15:26:33 +0800
 Organization: Insigma
 X-Mailer: Evolution 3.2.3 
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [eclipse-plugin]: ADT version too old
+Subject: The sysroot location in eclipse plugin?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,22 +28,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Feb 2012 04:21:14 -0000
+X-List-Received-Date: Fri, 17 Feb 2012 07:28:39 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-thanks, I found the problem, I have setup one new meta layer, and use a
-new distro (new name and new version), but the eclipse-plugin is only
-for native poky distro, and will check if the version is same as poky
-distro's version.
+the environment-setup file in build tree had defined CFLAGS and CXXFLAGS
+which include the sysroot argument(<build_tree>/tmp/sysroots/<machine>).
 
-On Fri, 2012-02-17 at 12:10 +0800, Lu, Lianhao wrote:
-> 
-> Looks like you're using the 1.1 eclipse plugin against the 1.1
-> +snapshot poky. You may manually change the OECORE_SDK_VERSION in the
-> environment file as a workaround.
-> 
-> 
+Do we must specify the sysroot location in the eclipse plugin?
+
+after specify it, I found the CFLAGS CXXFLAGS in project property follow
+it, and dropped the sysroot defined in environment-setup file.
+
+and I have another sysroot running on target (qemu) unzipped from the
+image.
+
+If I specify the target sysroot in eclipse-plugin, I can't compile my
+code, because there is no any header file in /usr/include.
+If I specify the <build_tree>/tmp/sysroots/<machine>, I can't running
+the qemu machine in eclipse, because there is no 'init'.
+
+what is the problem?
+
+THANKS!
+
+
 -- 
 Yi Qingliang
 niqingliang@insigma.com.cn
