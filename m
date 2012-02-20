@@ -1,36 +1,45 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1D46E003E3
-	for <yocto@yoctoproject.org>; Fri, 17 Feb 2012 13:28:18 -0800 (PST)
-Received: from mail-pw0-f52.google.com ([209.85.160.52])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 17 Feb 2012 13:28:18 -0800
-Received: by pbbjt11 with SMTP id jt11so16867400pbb.25
-	for <yocto@yoctoproject.org>; Fri, 17 Feb 2012 13:28:17 -0800 (PST)
-Received-SPF: pass (google.com: domain of scott.a.garman@intel.com designates
-	10.68.220.4 as permitted sender) client-ip=10.68.220.4; 
-Authentication-Results: mr.google.com; spf=pass (google.com: domain of
-	scott.a.garman@intel.com designates 10.68.220.4 as permitted
-	sender) smtp.mail=scott.a.garman@intel.com
-Received: from mr.google.com ([10.68.220.4])
-	by 10.68.220.4 with SMTP id ps4mr35296837pbc.32.1329514097973 (num_hops
-	= 1); Fri, 17 Feb 2012 13:28:17 -0800 (PST)
-Received: by 10.68.220.4 with SMTP id ps4mr28625986pbc.32.1329514097911;
-	Fri, 17 Feb 2012 13:28:17 -0800 (PST)
-Received: from [10.10.5.116] ([108.60.121.129])
-	by mx.google.com with ESMTPS id a6sm6085244pbs.68.2012.02.17.13.28.15
-	(version=SSLv3 cipher=OTHER); Fri, 17 Feb 2012 13:28:15 -0800 (PST)
-Message-ID: <4F3EC66D.6060105@intel.com>
-Date: Fri, 17 Feb 2012 13:28:13 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
+Return-Path: <gizero@gmail.com>
+Received: from mail-tul01m020-f176.google.com (mail-tul01m020-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F6C2E0139E
+	for <yocto@yoctoproject.org>; Sun, 19 Feb 2012 22:39:59 -0800 (PST)
+Received: by obbwd18 with SMTP id wd18so9443814obb.35
+	for <yocto@yoctoproject.org>; Sun, 19 Feb 2012 22:39:59 -0800 (PST)
+Received-SPF: pass (google.com: domain of gizero@gmail.com designates
+	10.60.26.133 as permitted sender) client-ip=10.60.26.133; 
+Authentication-Results: mr.google.com;
+	spf=pass (google.com: domain of gizero@gmail.com
+	designates 10.60.26.133 as permitted sender)
+	smtp.mail=gizero@gmail.com; dkim=pass header.i=gizero@gmail.com
+Received: from mr.google.com ([10.60.26.133])
+	by 10.60.26.133 with SMTP id l5mr8969491oeg.22.1329719999026 (num_hops
+	= 1); Sun, 19 Feb 2012 22:39:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=fmBYZxVXf3chl+tdAG6O35nynO1f91sRavRwYBqsWic=;
+	b=KJsQrGXonDGsJB2YBpHssSg3eYbb2QfhPw3id5SSxlzE4gM5xFRUFtV5ryI4MPMyoU
+	9kGnluoREvvCsn+au9DmHgHFdbMms4zqLpwfnnKFB2BTQeOx+PHbtz4BX1xNMzur9mHi
+	hf8iRO1dqn90+KrcO5Abae4i3o56IsAzcTqBU=
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <4F1DBA25.9090700@intel.com>
-In-Reply-To: <4F1DBA25.9090700@intel.com>
-X-Forwarded-Message-Id: <4F1DBA25.9090700@intel.com>
-X-Gm-Message-State: ALoCoQl8sooMYOkq7Jsa7KJcdgofnCieUKYhNOGtfS9/v8IREE8f6x1HwXOMkCLMso+JIopdL4Ev
-Subject: Screencast Video: Getting Started with the Yocto Project
+Received: by 10.60.26.133 with SMTP id l5mr7684188oeg.22.1329719998980; Sun,
+	19 Feb 2012 22:39:58 -0800 (PST)
+Received: by 10.182.154.4 with HTTP; Sun, 19 Feb 2012 22:39:58 -0800 (PST)
+In-Reply-To: <CAFZh4h8EjS6NSVgcUDnF0+AbUYk4Fga0Ek6hnMXWcHjLMozAqg@mail.gmail.com>
+References: <4F2133BB.8090408@communistcode.co.uk>
+	<43D8289B-2551-43ED-AC5F-5C571A22990E@beagleboard.org>
+	<4F21409C.9080807@communistcode.co.uk>
+	<4F21487D.3030406@mlbassoc.com> <4F2154AA.5040103@mlbassoc.com>
+	<4F215A28.4030409@communistcode.co.uk>
+	<4F215DF0.4020503@mlbassoc.com> <4F216C3F.6040901@mlbassoc.com>
+	<4F217046.2090306@mlbassoc.com> <4F217135.209@communistcode.co.uk>
+	<CAFZh4h8EjS6NSVgcUDnF0+AbUYk4Fga0Ek6hnMXWcHjLMozAqg@mail.gmail.com>
+Date: Mon, 20 Feb 2012 07:39:58 +0100
+Message-ID: <CAC+thW2MvyiELxcy5PUh9r2NrjEkvPyLZW5qDbUbt7Tu7F2Rbg@mail.gmail.com>
+From: Andrea Galbusera <gizero@gmail.com>
+To: Brian Hutchinson <b.hutchman@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: BeagleBone with meta-ti layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,56 +51,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Feb 2012 21:28:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 20 Feb 2012 06:39:59 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Hi everyone,
+Hi,
 
-I am excited to announce a video training resource for new
-users of the Yocto Project. It is the "Getting Started with the
-Yocto Project" screencast:
+On Thu, Jan 26, 2012 at 4:38 PM, Brian Hutchinson <b.hutchman@gmail.com> wr=
+ote:
+> I grabbed a bag of chips and a beverage ... watching this thread! =A0I'm
+> right behind you guys so thanks for blazing the trail. =A0I have other
+> TI parts to work with but starting with first BeagleBoard (&
+> BeagleBone) since that is the reference.
 
-On Vimeo:
-http://vimeo.com/36450321
+Was this an happy ending story? Where you guys successful in building
+meta-ti layer under Yocto umbrella?
 
-On YouTube:
-http://www.youtube.com/watch?v=zNLYanJAQ3s
-
-Direct download, Windows Media (300 MB) and Ogg (500 MB) formats:
-http://www.yoctoproject.org/bulk/Getting_Started_with_the_Yocto_Project.wmv
-
-http://www.yoctoproject.org/bulk/Getting_Started_with_the_Yocto_Project.ogv
-
-This half-hour screencast introduces you to the Yocto Project and
-explains its benefits. It also includes live demos which explain the
-following:
-
-* An overview of the Poky build system
-* How the Poky sources are organized (types of metadata and where to
-find it)
-* How to build your first Linux image and run it under emulation
-* An introduction to recipes and an explanation of the most common types
-of metadata, using actual recipe examples
-* An introduction to layers
-* Where to obtain Yocto BSPs from
-* How simple it is to download and enable a Yocto BSP
-* Where to find further project resources (documentation, mailing list,
-git repository, bugzilla)
-
-By the end of this screencast, a new user will understand fundamental
-concepts about the build system, and be able to start their exploration
-of the Yocto Project with a solid foundation of knowledge.
-
-I hope this screencast becomes a useful training resource to help get
-new users up to speed as quickly as possible with the Yocto Project.
-
-Enjoy,
-
-Scott
-
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+Regards,
+Andrea
 
