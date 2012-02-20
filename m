@@ -1,29 +1,31 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95440E0139E
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2012 01:29:31 -0800 (PST)
-Received: from [192.168.0.58] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 071F62844D;
-	Mon, 20 Feb 2012 08:39:30 +0000 (GMT)
-Message-ID: <4F42127E.6090106@communistcode.co.uk>
-Date: Mon, 20 Feb 2012 09:29:34 +0000
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.2) Gecko/20120217 Thunderbird/10.0.2
+Return-Path: <dexuan.cui@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31A94E0139E
+	for <yocto@yoctoproject.org>; Mon, 20 Feb 2012 02:21:21 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 20 Feb 2012 02:21:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="108583956"
+Received: from pgsmsx102.gar.corp.intel.com ([10.221.44.80])
+	by azsmga001.ch.intel.com with ESMTP; 20 Feb 2012 02:21:20 -0800
+Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
+	PGSMSX102.gar.corp.intel.com (10.221.44.80) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 20 Feb 2012 18:20:12 +0800
+Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.36]) by
+	SHSMSX151.ccr.corp.intel.com ([169.254.3.91]) with mapi id
+	14.01.0355.002; Mon, 20 Feb 2012 18:20:11 +0800
+From: "Cui, Dexuan" <dexuan.cui@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Any existing window manager that supports dual screens?
+Thread-Index: AczvuTkytO1Zv+KQTpKWB5EmW3TdYQ==
+Date: Mon, 20 Feb 2012 10:20:11 +0000
+Message-ID: <A25F549E4D43CD42B4C02DF47A1913230FCCB564@SHSMSX102.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-To: Andrea Galbusera <gizero@gmail.com>
-References: <4F2133BB.8090408@communistcode.co.uk>
-	<43D8289B-2551-43ED-AC5F-5C571A22990E@beagleboard.org>
-	<4F21409C.9080807@communistcode.co.uk>
-	<4F21487D.3030406@mlbassoc.com> <4F2154AA.5040103@mlbassoc.com>
-	<4F215A28.4030409@communistcode.co.uk>
-	<4F215DF0.4020503@mlbassoc.com> <4F216C3F.6040901@mlbassoc.com>
-	<4F217046.2090306@mlbassoc.com> <4F217135.209@communistcode.co.uk>
-	<CAFZh4h8EjS6NSVgcUDnF0+AbUYk4Fga0Ek6hnMXWcHjLMozAqg@mail.gmail.com>
-	<CAC+thW2MvyiELxcy5PUh9r2NrjEkvPyLZW5qDbUbt7Tu7F2Rbg@mail.gmail.com>
-In-Reply-To: <CAC+thW2MvyiELxcy5PUh9r2NrjEkvPyLZW5qDbUbt7Tu7F2Rbg@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: BeagleBone with meta-ti layer
+Subject: Any existing window manager that supports dual screens?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,33 +37,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Feb 2012 09:29:31 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 20 Feb 2012 10:21:21 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 20/02/12 06:39, Andrea Galbusera wrote:
-> Hi,
->
-> On Thu, Jan 26, 2012 at 4:38 PM, Brian Hutchinson<b.hutchman@gmail.com>  wrote:
->> I grabbed a bag of chips and a beverage ... watching this thread!  I'm
->> right behind you guys so thanks for blazing the trail.  I have other
->> TI parts to work with but starting with first BeagleBoard (&
->> BeagleBone) since that is the reference.
->
-> Was this an happy ending story? Where you guys successful in building
-> meta-ti layer under Yocto umbrella?
->
-> Regards,
-> Andrea
+Hi all,
+I'm booting Yocto Linux with some board that has 2 physical screens: one is=
+ traditional VGA output and the other is the on-board LCD screen.
+I've managed to modify xorg.conf to make both screens work: i.e., I can mov=
+e the mouse cursor on both two screens.
 
-It's still in the air at the moment. Texas Instruments are going through 
-a process to abstract meta-ti layer into a pure BSP and cut out all the 
-distro specific features. When this is complete then it will be good to 
-go in Yocto.
+However, a screen shows the SATO desktop while the other shows nothing but =
+a black screen -- surely when I move the mouse cursor on the screen, I can =
+see the cursor.
+I suppose this is because the default window manager (i.e., matchbox-wm) ca=
+n't support dual screen?=20
 
-If you look at the archives of the meta-ti mailing list there has been 
-extensive discussions on it recently.
+Could anybody point out if we have a more powerful window manager that has =
+the support?
+Does matchbox-wm-2 have the support?
 
-Cheers,
-Jack.
+BTW, I see there is a recipe gnome-session_2.30.2.bb in oe's side.
+I think gnome-session should have the support? Maybe we can port it to poky=
+?
+
+Thanks!
+
+-- Dexuan
+
 
