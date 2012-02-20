@@ -1,31 +1,33 @@
-Return-Path: <dexuan.cui@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31A94E0139E
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2012 02:21:21 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 20 Feb 2012 02:21:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="108583956"
-Received: from pgsmsx102.gar.corp.intel.com ([10.221.44.80])
-	by azsmga001.ch.intel.com with ESMTP; 20 Feb 2012 02:21:20 -0800
-Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
-	PGSMSX102.gar.corp.intel.com (10.221.44.80) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 20 Feb 2012 18:20:12 +0800
-Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.36]) by
-	SHSMSX151.ccr.corp.intel.com ([169.254.3.91]) with mapi id
-	14.01.0355.002; Mon, 20 Feb 2012 18:20:11 +0800
-From: "Cui, Dexuan" <dexuan.cui@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Any existing window manager that supports dual screens?
-Thread-Index: AczvuTkytO1Zv+KQTpKWB5EmW3TdYQ==
-Date: Mon, 20 Feb 2012 10:20:11 +0000
-Message-ID: <A25F549E4D43CD42B4C02DF47A1913230FCCB564@SHSMSX102.ccr.corp.intel.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
-MIME-Version: 1.0
-Subject: Any existing window manager that supports dual screens?
+Return-Path: <josh@hipro.co.in>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A92EE0139E
+	for <yocto@yoctoproject.org>; Mon, 20 Feb 2012 06:03:59 -0800 (PST)
+Received: by dadp13 with SMTP id p13so6944364dad.35
+	for <yocto@yoctoproject.org>; Mon, 20 Feb 2012 06:03:58 -0800 (PST)
+Received-SPF: pass (google.com: domain of josh@hipro.co.in designates
+	10.68.241.170 as permitted sender) client-ip=10.68.241.170; 
+Authentication-Results: mr.google.com;
+	spf=pass (google.com: domain of josh@hipro.co.in
+	designates 10.68.241.170 as permitted sender)
+	smtp.mail=josh@hipro.co.in
+Received: from mr.google.com ([10.68.241.170])
+	by 10.68.241.170 with SMTP id wj10mr63629189pbc.42.1329746638978
+	(num_hops = 1); Mon, 20 Feb 2012 06:03:58 -0800 (PST)
+Received: by 10.68.241.170 with SMTP id wj10mr52615963pbc.42.1329746638920;
+	Mon, 20 Feb 2012 06:03:58 -0800 (PST)
+Received: from [192.168.10.231] ([59.99.251.45])
+	by mx.google.com with ESMTPS id q1sm13279792pbv.49.2012.02.20.06.03.56
+	(version=SSLv3 cipher=OTHER); Mon, 20 Feb 2012 06:03:58 -0800 (PST)
+Message-ID: <1329746626.2728.10.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Mon, 20 Feb 2012 19:33:46 +0530
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.2.2-1
+Mime-Version: 1.0
+X-Gm-Message-State: ALoCoQnUzfwMQm+XccomoX8u0o/J+DIU7Q9O4+WWl6B+oji8CDM6aRLleeOdV3qhVmUxwUaB07/0
+Subject: how do I contribute to yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,33 +39,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Feb 2012 10:21:21 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 20 Feb 2012 14:03:59 -0000
+X-Groupsio-MsgNum: 4884
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-zfvsV/hs5xk1AUAV5tvp"
+
+--=-zfvsV/hs5xk1AUAV5tvp
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
-I'm booting Yocto Linux with some board that has 2 physical screens: one is=
- traditional VGA output and the other is the on-board LCD screen.
-I've managed to modify xorg.conf to make both screens work: i.e., I can mov=
-e the mouse cursor on both two screens.
+Hello all,
+	In the process of creating my custom image, I ended up writing new
+recipes for packages which does not exist in yocto. I think it will be
+useful for others. I use the edison branch for my work, and I add the
+new recipes to my custom layer without disturbing the edison branch. So,
+how do I contribute these new recipes?=20
 
-However, a screen shows the SATO desktop while the other shows nothing but =
-a black screen -- surely when I move the mouse cursor on the screen, I can =
-see the cursor.
-I suppose this is because the default window manager (i.e., matchbox-wm) ca=
-n't support dual screen?=20
+Read the wiki https://wiki.yoctoproject.org/wiki/Contribution_Guidelines
+it doesn't mention about the branch to use etc.
 
-Could anybody point out if we have a more powerful window manager that has =
-the support?
-Does matchbox-wm-2 have the support?
+Can someone guide me.
 
-BTW, I see there is a recipe gnome-session_2.30.2.bb in oe's side.
-I think gnome-session should have the support? Maybe we can port it to poky=
-?
+Regards
+Joshua
+--=20
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
 
-Thanks!
+--=-zfvsV/hs5xk1AUAV5tvp
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
--- Dexuan
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
 
+iEYEABECAAYFAk9CUsIACgkQWw85XwuSFMK1WgCfeOFRGsbKAnFQMFrAjmYAneCG
+IAkAoKwT9iRcNesKNrWY/BMUFuGngo3v
+=2O09
+-----END PGP SIGNATURE-----
 
+--=-zfvsV/hs5xk1AUAV5tvp--
