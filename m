@@ -1,31 +1,37 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 877A4E00596
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2012 19:35:11 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 20 Feb 2012 19:35:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="110235043"
-Received: from pgsmsx509.gar.corp.intel.com ([172.30.13.17])
-	by orsmga001.jf.intel.com with ESMTP; 20 Feb 2012 19:35:10 -0800
-Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
-	PGSMSX509.gar.corp.intel.com (172.30.13.17) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 21 Feb 2012 11:34:22 +0800
-Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.142]) by
-	SHSMSX102.ccr.corp.intel.com ([169.254.2.36]) with mapi id
-	14.01.0355.002; Tue, 21 Feb 2012 11:34:21 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto weekly bug trend charts -- WW07
-Thread-Index: AczwSbJR+ZcOzEgKRcK//A2pYluPfA==
-Date: Tue, 21 Feb 2012 03:34:20 +0000
-Message-ID: <90741FE9B50D654690EB940EDB456C8E06A10A@SHSMSX101.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
-MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW07
+Return-Path: <josh@hipro.co.in>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB218E004D2
+	for <yocto@yoctoproject.org>; Mon, 20 Feb 2012 21:40:47 -0800 (PST)
+Received: by dadp13 with SMTP id p13so7791324dad.35
+	for <yocto@yoctoproject.org>; Mon, 20 Feb 2012 21:40:47 -0800 (PST)
+Received-SPF: pass (google.com: domain of josh@hipro.co.in designates
+	10.68.228.198 as permitted sender) client-ip=10.68.228.198; 
+Authentication-Results: mr.google.com;
+	spf=pass (google.com: domain of josh@hipro.co.in
+	designates 10.68.228.198 as permitted sender)
+	smtp.mail=josh@hipro.co.in
+Received: from mr.google.com ([10.68.228.198])
+	by 10.68.228.198 with SMTP id sk6mr34013291pbc.53.1329802847591
+	(num_hops = 1); Mon, 20 Feb 2012 21:40:47 -0800 (PST)
+Received: by 10.68.228.198 with SMTP id sk6mr28603169pbc.53.1329802847545;
+	Mon, 20 Feb 2012 21:40:47 -0800 (PST)
+Received: from [192.168.10.231] ([59.99.251.45])
+	by mx.google.com with ESMTPS id h6sm26707070pbg.5.2012.02.20.21.40.45
+	(version=SSLv3 cipher=OTHER); Mon, 20 Feb 2012 21:40:46 -0800 (PST)
+Message-ID: <1329802836.2743.7.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: Scott Garman <scott.a.garman@intel.com>
+Date: Tue, 21 Feb 2012 11:10:36 +0530
+In-Reply-To: <4F428FC8.5080806@intel.com>
+References: <1329746626.2728.10.camel@babel.joshhome>
+	<4F428FC8.5080806@intel.com>
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.2.2-1
+Mime-Version: 1.0
+X-Gm-Message-State: ALoCoQn4wq90wnv8WTArdxpDGWwtLkDPGmycArpnV1wf2mCDwYOyMOyt5vOznAhoVDRviMuUOH/R
+Cc: yocto@yoctoproject.org
+Subject: Re: how do I contribute to yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,17 +43,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Feb 2012 03:35:11 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 21 Feb 2012 05:40:48 -0000
+X-Groupsio-MsgNum: 4888
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-fQOdOOvB2Qyeqv5RRRPv"
+
+--=-fQOdOOvB2Qyeqv5RRRPv
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
-	The overall open bug trend increased a little last week. WDD number and Op=
-en Bug number are 745 and 150. Bug status of WW07 could be found on https:/=
-/wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
+Hello Scott,
 
-Best Regards,
-Jiajun
+On Mon, 2012-02-20 at 10:24 -0800, Scott Garman wrote:
+> I'd put your layer up on a git repo somewhere (GitHub?) and make sure=20
+> you have a note in your layer's README file that mentions that the
+> layer is intended for use with the edison release.
 
+But my entire layer won't be useful to everyone, as it contains recipes
+for my user space applications too. But, there are certain recipes for
+some useful packages which are not available in edison and master
+branch. So, how to go about it?
 
+Regards
+Joshua
+--=20
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
+
+--=-fQOdOOvB2Qyeqv5RRRPv
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iEYEABECAAYFAk9DLlQACgkQWw85XwuSFMLeGQCgjSHsTpYUubfwmgIU4AObJsaH
+31QAoMBU79uchIor/t0WW95Z3peYm8/g
+=ccdO
+-----END PGP SIGNATURE-----
+
+--=-fQOdOOvB2Qyeqv5RRRPv--
