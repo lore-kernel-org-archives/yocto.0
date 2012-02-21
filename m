@@ -1,33 +1,23 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F797E004D2
-	for <yocto@yoctoproject.org>; Tue, 21 Feb 2012 01:41:03 -0800 (PST)
-Received: by pbcxa12 with SMTP id xa12so6439628pbc.35
-	for <yocto@yoctoproject.org>; Tue, 21 Feb 2012 01:41:03 -0800 (PST)
-Received-SPF: pass (google.com: domain of josh@hipro.co.in designates
-	10.68.189.39 as permitted sender) client-ip=10.68.189.39; 
-Authentication-Results: mr.google.com;
-	spf=pass (google.com: domain of josh@hipro.co.in
-	designates 10.68.189.39 as permitted sender)
-	smtp.mail=josh@hipro.co.in
-Received: from mr.google.com ([10.68.189.39])
-	by 10.68.189.39 with SMTP id gf7mr65976682pbc.142.1329817263313
-	(num_hops = 1); Tue, 21 Feb 2012 01:41:03 -0800 (PST)
-Received: by 10.68.189.39 with SMTP id gf7mr54823775pbc.142.1329817263069;
-	Tue, 21 Feb 2012 01:41:03 -0800 (PST)
-Received: from [192.168.10.231] ([59.99.251.45])
-	by mx.google.com with ESMTPS id q8sm15632279pbn.20.2012.02.21.01.41.00
-	(version=SSLv3 cipher=OTHER); Tue, 21 Feb 2012 01:41:02 -0800 (PST)
-Message-ID: <1329817258.2743.23.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Tue, 21 Feb 2012 15:10:58 +0530
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1
-Mime-Version: 1.0
-X-Gm-Message-State: ALoCoQkuNtuWnBJN5ahGEqtz6B/itRHwHw9Q2AP/kGR/FTq2DznbZRXtcaIU5asPgjEOBtyYPTmj
-Subject: missing kernel in rootfs image
+Return-Path: <john.toomey@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD4ECE0059B
+	for <yocto@yoctoproject.org>; Tue, 21 Feb 2012 03:31:57 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 21 Feb 2012 03:31:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; 
+	d="scan'208,217";a="112754493"
+Received: from jtoomey-mobl9.ger.corp.intel.com (HELO [163.33.228.159])
+	([163.33.228.159])
+	by orsmga002.jf.intel.com with ESMTP; 21 Feb 2012 03:31:56 -0800
+Message-ID: <4F4380AA.2010401@linux.intel.com>
+Date: Tue, 21 Feb 2012 11:31:54 +0000
+From: John Toomey <john.toomey@linux.intel.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:10.0.1) Gecko/20120208 Thunderbird/10.0.1
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+Subject: Issue building meta-toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,48 +29,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Feb 2012 09:41:03 -0000
-X-Groupsio-MsgNum: 4891
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-5YcZ1S21r1pOT+UGnm3M"
+X-List-Received-Date: Tue, 21 Feb 2012 11:31:57 -0000
+Content-Type: multipart/alternative;
+	boundary="------------040007040804090409090805"
 
---=-5YcZ1S21r1pOT+UGnm3M
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello all,
-	While trying to generate my custom rootfs image, I added the
-linux_yocto_3.0.bbappend file to my custom layer and specified the
-KMACHINE, SRCREV and COMPATIBLE_MACHINE variables. I find the generated
-kernel image (bzImage-ekino.bin) in the tmp/deploy/images directory.
-
-But, the rootfs image does not contain the kernel (in /boot directory).
-My machine configuration file has the following kernel specific lines
-
-        PREFERRED_PROVIDER_virtual/kernel ?=3D "linux-yocto"
-        PREFERRED_VERSION_linux-yocto ?=3D "3.0%"
-       =20
-Am I missing something?
-
-Regards
-Joshua
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
-
---=-5YcZ1S21r1pOT+UGnm3M
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+--------------040007040804090409090805
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+Hello all,
 
-iEYEABECAAYFAk9DZqoACgkQWw85XwuSFMK00QCgt0wdePXGKCu5tRdmkwGDkzdD
-6dgAnAs/WZBkpooG0oRj4tpkAEAXm/AK
-=RYM/
------END PGP SIGNATURE-----
+I am getting the following error when trying to build meta-toolchain:
 
---=-5YcZ1S21r1pOT+UGnm3M--
+    NOTE: Resolving any missing task queue dependencies
+    ERROR: Nothing PROVIDES 'libx11-nativesdk' (but
+    virtual:nativesdk:[path]/jtoomey/poky/meta/recipes-graphics/libsdl/libsdl_1.2.14.bb
+    DEPENDS on or otherwise requires it)
+    ERROR: libx11-nativesdk was skipped: X11 not enabled for this DISTRO
+    NOTE: Runtime target 'qemu-nativesdk' is unbuildable, removing...
+    Missing or unbuildable dependency chain was: ['qemu-nativesdk',
+    'libsdl-nativesdk', 'libx11-nativesdk']
+    NOTE: Runtime target 'task-sdk-host-nativesdk' is unbuildable,
+    removing...
+    Missing or unbuildable dependency chain was:
+    ['task-sdk-host-nativesdk', 'qemu-nativesdk', 'libsdl-nativesdk',
+    'libx11-nativesdk']
+    ERROR: Required build target 'meta-toolchain' has no buildable
+    providers.
+    Missing or unbuildable dependency chain was: ['meta-toolchain',
+    'task-sdk-host-nativesdk', 'qemu-nativesdk', 'libsdl-nativesdk',
+    'libx11-nativesdk']
+
+I dont really need or want X11 but the toolchain seems to depend on 
+parts of it.
+
+Can anyone help point me in the right direction?
+
+Regards,
+John
+
+--------------040007040804090409090805
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Hello all,<br>
+    <br>
+    I am getting the following error when trying to build meta-toolchain:<br>
+    <br>
+    <blockquote>NOTE: Resolving any missing task queue dependencies<br>
+      ERROR: Nothing PROVIDES 'libx11-nativesdk' (but
+      virtual:nativesdk:[path]/jtoomey/poky/meta/recipes-graphics/libsdl/libsdl_1.2.14.bb
+      DEPENDS on or otherwise requires it)<br>
+      ERROR: libx11-nativesdk was skipped: X11 not enabled for this
+      DISTRO<br>
+      NOTE: Runtime target 'qemu-nativesdk' is unbuildable, removing...<br>
+      Missing or unbuildable dependency chain was: ['qemu-nativesdk',
+      'libsdl-nativesdk', 'libx11-nativesdk']<br>
+      NOTE: Runtime target 'task-sdk-host-nativesdk' is unbuildable,
+      removing...<br>
+      Missing or unbuildable dependency chain was:
+      ['task-sdk-host-nativesdk', 'qemu-nativesdk', 'libsdl-nativesdk',
+      'libx11-nativesdk']<br>
+      ERROR: Required build target 'meta-toolchain' has no buildable
+      providers.<br>
+      Missing or unbuildable dependency chain was: ['meta-toolchain',
+      'task-sdk-host-nativesdk', 'qemu-nativesdk', 'libsdl-nativesdk',
+      'libx11-nativesdk']<br>
+    </blockquote>
+    I dont really need or want X11 but the toolchain seems to depend on
+    parts of it. <br>
+    <br>
+    Can anyone help point me in the right direction?<br>
+    <br>
+    Regards,<br>
+    John<br>
+  </body>
+</html>
+
+--------------040007040804090409090805--
