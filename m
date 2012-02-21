@@ -1,23 +1,52 @@
-Return-Path: <john.toomey@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD4ECE0059B
-	for <yocto@yoctoproject.org>; Tue, 21 Feb 2012 03:31:57 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 21 Feb 2012 03:31:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; 
-	d="scan'208,217";a="112754493"
-Received: from jtoomey-mobl9.ger.corp.intel.com (HELO [163.33.228.159])
-	([163.33.228.159])
-	by orsmga002.jf.intel.com with ESMTP; 21 Feb 2012 03:31:56 -0800
-Message-ID: <4F4380AA.2010401@linux.intel.com>
-Date: Tue, 21 Feb 2012 11:31:54 +0000
-From: John Toomey <john.toomey@linux.intel.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:10.0.1) Gecko/20120208 Thunderbird/10.0.1
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: Issue building meta-toolchain
+Return-Path: <gizero@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27A82E0044B
+	for <yocto@yoctoproject.org>; Tue, 21 Feb 2012 08:28:22 -0800 (PST)
+Received: by eaai11 with SMTP id i11so2733205eaa.35
+	for <yocto@yoctoproject.org>; Tue, 21 Feb 2012 08:28:21 -0800 (PST)
+Received-SPF: pass (google.com: domain of gizero@gmail.com designates
+	10.213.17.6 as permitted sender) client-ip=10.213.17.6; 
+Authentication-Results: mr.google.com;
+	spf=pass (google.com: domain of gizero@gmail.com
+	designates 10.213.17.6 as permitted sender)
+	smtp.mail=gizero@gmail.com; dkim=pass header.i=gizero@gmail.com
+Received: from mr.google.com ([10.213.17.6])
+	by 10.213.17.6 with SMTP id q6mr3816409eba.40.1329841701845 (num_hops =
+	1); Tue, 21 Feb 2012 08:28:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=references:in-reply-to:mime-version:content-transfer-encoding
+	:content-type:message-id:cc:x-mailer:from:subject:date:to;
+	bh=+DG0tHg5nX37o1oyd4ICMyyTBnr4VKDaP18ZnTfxo2c=;
+	b=R5eDs2ZKVP5tKO2dAEWqIaDRki3tjlrTriSYAeVap09/yCzW2B+AqTBrMXSqqDtKU+
+	slpoTqM0UtJ0jLmByrJV9xU2UMlMY7fJws5D902wy7XOImzacX4XH8luKTKJa3udxYeX
+	TKdttS5x2xnCbYzcvAbelPU6LYQKKIUFMo0gU=
+Received: by 10.213.17.6 with SMTP id q6mr3037750eba.40.1329841701759;
+	Tue, 21 Feb 2012 08:28:21 -0800 (PST)
+Received: from [151.37.199.39] (adsl-39-199.37-151.net24.it. [151.37.199.39])
+	by mx.google.com with ESMTPS id
+	a58sm91688679eeb.8.2012.02.21.08.28.19
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 21 Feb 2012 08:28:20 -0800 (PST)
+References: <4F2133BB.8090408@communistcode.co.uk>
+	<43D8289B-2551-43ED-AC5F-5C571A22990E@beagleboard.org>
+	<4F21409C.9080807@communistcode.co.uk>
+	<4F21487D.3030406@mlbassoc.com> <4F2154AA.5040103@mlbassoc.com>
+	<4F215A28.4030409@communistcode.co.uk>
+	<4F215DF0.4020503@mlbassoc.com> <4F216C3F.6040901@mlbassoc.com>
+	<4F217046.2090306@mlbassoc.com> <4F217135.209@communistcode.co.uk>
+	<CAFZh4h8EjS6NSVgcUDnF0+AbUYk4Fga0Ek6hnMXWcHjLMozAqg@mail.gmail.com>
+	<CAC+thW2MvyiELxcy5PUh9r2NrjEkvPyLZW5qDbUbt7Tu7F2Rbg@mail.gmail.com>
+	<4F42127E.6090106@communistcode.co.uk>
+In-Reply-To: <4F42127E.6090106@communistcode.co.uk>
+Mime-Version: 1.0 (1.0)
+Message-Id: <F26041C8-FDEF-44AD-A752-6B6472499455@gmail.com>
+X-Mailer: iPhone Mail (9A405)
+From: Andrea Galbusera <gizero@gmail.com>
+Date: Tue, 21 Feb 2012 17:28:14 +0100
+To: Jack Mitchell <ml@communistcode.co.uk>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: BeagleBone with meta-ti layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,87 +58,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Feb 2012 11:31:57 -0000
-Content-Type: multipart/alternative;
-	boundary="------------040007040804090409090805"
+X-List-Received-Date: Tue, 21 Feb 2012 16:28:23 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
---------------040007040804090409090805
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+Hi Jack,
 
-Hello all,
+Il giorno 20/feb/2012, alle ore 10:29, Jack Mitchell <ml@communistcode.co.uk=
+> ha scritto:
 
-I am getting the following error when trying to build meta-toolchain:
+> On 20/02/12 06:39, Andrea Galbusera wrote:
+>> Hi,
+>>=20
+>> On Thu, Jan 26, 2012 at 4:38 PM, Brian Hutchinson<b.hutchman@gmail.com>  w=
+rote:
+>>> I grabbed a bag of chips and a beverage ... watching this thread!  I'm
+>>> right behind you guys so thanks for blazing the trail.  I have other
+>>> TI parts to work with but starting with first BeagleBoard (&
+>>> BeagleBone) since that is the reference.
+>>=20
+>> Was this an happy ending story? Where you guys successful in building
+>> meta-ti layer under Yocto umbrella?
+>>=20
+>> Regards,
+>> Andrea
+>=20
+> It's still in the air at the moment. Texas Instruments are going through a=
+ process to abstract meta-ti layer into a pure BSP and cut out all the distr=
+o specific features. When this is complete then it will be good to go in Yoc=
+to.
+>=20
+> If you look at the archives of the meta-ti mailing list there has been ext=
+ensive discussions on it recently.
 
-    NOTE: Resolving any missing task queue dependencies
-    ERROR: Nothing PROVIDES 'libx11-nativesdk' (but
-    virtual:nativesdk:[path]/jtoomey/poky/meta/recipes-graphics/libsdl/libsdl_1.2.14.bb
-    DEPENDS on or otherwise requires it)
-    ERROR: libx11-nativesdk was skipped: X11 not enabled for this DISTRO
-    NOTE: Runtime target 'qemu-nativesdk' is unbuildable, removing...
-    Missing or unbuildable dependency chain was: ['qemu-nativesdk',
-    'libsdl-nativesdk', 'libx11-nativesdk']
-    NOTE: Runtime target 'task-sdk-host-nativesdk' is unbuildable,
-    removing...
-    Missing or unbuildable dependency chain was:
-    ['task-sdk-host-nativesdk', 'qemu-nativesdk', 'libsdl-nativesdk',
-    'libx11-nativesdk']
-    ERROR: Required build target 'meta-toolchain' has no buildable
-    providers.
-    Missing or unbuildable dependency chain was: ['meta-toolchain',
-    'task-sdk-host-nativesdk', 'qemu-nativesdk', 'libsdl-nativesdk',
-    'libx11-nativesdk']
+Thanks for pointing me to the relevant discussion. I joined meta-ti list too=
+ now.
 
-I dont really need or want X11 but the toolchain seems to depend on 
-parts of it.
+Cheers,
+Andrea=
 
-Can anyone help point me in the right direction?
-
-Regards,
-John
-
---------------040007040804090409090805
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    Hello all,<br>
-    <br>
-    I am getting the following error when trying to build meta-toolchain:<br>
-    <br>
-    <blockquote>NOTE: Resolving any missing task queue dependencies<br>
-      ERROR: Nothing PROVIDES 'libx11-nativesdk' (but
-      virtual:nativesdk:[path]/jtoomey/poky/meta/recipes-graphics/libsdl/libsdl_1.2.14.bb
-      DEPENDS on or otherwise requires it)<br>
-      ERROR: libx11-nativesdk was skipped: X11 not enabled for this
-      DISTRO<br>
-      NOTE: Runtime target 'qemu-nativesdk' is unbuildable, removing...<br>
-      Missing or unbuildable dependency chain was: ['qemu-nativesdk',
-      'libsdl-nativesdk', 'libx11-nativesdk']<br>
-      NOTE: Runtime target 'task-sdk-host-nativesdk' is unbuildable,
-      removing...<br>
-      Missing or unbuildable dependency chain was:
-      ['task-sdk-host-nativesdk', 'qemu-nativesdk', 'libsdl-nativesdk',
-      'libx11-nativesdk']<br>
-      ERROR: Required build target 'meta-toolchain' has no buildable
-      providers.<br>
-      Missing or unbuildable dependency chain was: ['meta-toolchain',
-      'task-sdk-host-nativesdk', 'qemu-nativesdk', 'libsdl-nativesdk',
-      'libx11-nativesdk']<br>
-    </blockquote>
-    I dont really need or want X11 but the toolchain seems to depend on
-    parts of it. <br>
-    <br>
-    Can anyone help point me in the right direction?<br>
-    <br>
-    Regards,<br>
-    John<br>
-  </body>
-</html>
-
---------------040007040804090409090805--
