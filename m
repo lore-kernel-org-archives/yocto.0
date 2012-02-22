@@ -1,31 +1,36 @@
-Return-Path: <lianhao.lu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28A0FE0123C
-	for <yocto@yoctoproject.org>; Wed, 22 Feb 2012 02:14:52 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 22 Feb 2012 02:14:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="128103282"
-Received: from pgsmsx101.gar.corp.intel.com ([10.221.44.78])
-	by fmsmga002.fm.intel.com with ESMTP; 22 Feb 2012 02:14:51 -0800
-Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
-	PGSMSX101.gar.corp.intel.com (10.221.44.78) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Wed, 22 Feb 2012 18:14:50 +0800
-Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.36]) by
-	SHSMSX151.ccr.corp.intel.com ([169.254.3.91]) with mapi id
-	14.01.0355.002; Wed, 22 Feb 2012 18:14:48 +0800
-From: "Lu, Lianhao" <lianhao.lu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: host libGL incompatible with eglibc-nativesdk in meta-toolchain
-Thread-Index: AczxSstb8jKAj7/PTo6FW2pjqvajjQ==
-Date: Wed, 22 Feb 2012 10:14:48 +0000
-Message-ID: <857BE142E5399E46B20FD45B9DB8A7BC0FCEAA1D@SHSMSX102.ccr.corp.intel.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
-MIME-Version: 1.0
-Subject: host libGL incompatible with eglibc-nativesdk in meta-toolchain
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE711E0123C
+	for <yocto@yoctoproject.org>; Wed, 22 Feb 2012 05:57:10 -0800 (PST)
+Received: by wgbdq12 with SMTP id dq12so47018wgb.11
+	for <yocto@yoctoproject.org>; Wed, 22 Feb 2012 05:57:09 -0800 (PST)
+Received-SPF: pass (google.com: domain of koen@dominion.thruhere.net
+	designates 10.180.104.4 as permitted sender)
+	client-ip=10.180.104.4; 
+Authentication-Results: mr.google.com; spf=pass (google.com: domain of
+	koen@dominion.thruhere.net designates 10.180.104.4 as permitted
+	sender) smtp.mail=koen@dominion.thruhere.net
+Received: from mr.google.com ([10.180.104.4])
+	by 10.180.104.4 with SMTP id ga4mr36751465wib.17.1329919029628
+	(num_hops = 1); Wed, 22 Feb 2012 05:57:09 -0800 (PST)
+Received: by 10.180.104.4 with SMTP id ga4mr30558763wib.17.1329919029554;
+	Wed, 22 Feb 2012 05:57:09 -0800 (PST)
+Received: from [172.20.1.36] (ip545070eb.adsl-surfen.hetnet.nl.
+	[84.80.112.235])
+	by mx.google.com with ESMTPS id dr5sm71595440wib.0.2012.02.22.05.57.08
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 22 Feb 2012 05:57:08 -0800 (PST)
+Mime-Version: 1.0 (Apple Message framework v1257)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <4F3A754B.5020909@mindchasers.com>
+Date: Wed, 22 Feb 2012 14:57:12 +0100
+Message-Id: <F801F7C5-8CD2-4408-88AF-C7C55A546CE4@dominion.thruhere.net>
+References: <4F3A754B.5020909@mindchasers.com>
+To: Bob Cochran <yocto@mindchasers.com>
+X-Mailer: Apple Mail (2.1257)
+X-Gm-Message-State: ALoCoQkfCDJqY8JG9etIdhiZ95phBZ2O76913H+WNGDihIkpN1dy94qYotY0x8JWgu8US40EKruy
+Cc: yocto@yoctoproject.org
+Subject: Re: meta-oracle-java
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,33 +42,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Feb 2012 10:14:52 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 22 Feb 2012 13:57:11 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Hi guys,
 
-During the root causing of bug #1968(http://bugzilla.pokylinux.org/show_bug=
-.cgi?id=3D1968), we find that on certain distributions, i.e. FC16 x86-64 an=
-d FC15 x86-64, the host libGL is asking for glibc 2.14. But the eglibc we p=
-rovided in meta-toolchain is 2.13. This would prevent the user to launch th=
-e "qemu-nativesdk" from meta-toolchains.
+Op 14 feb. 2012, om 15:52 heeft Bob Cochran het volgende geschreven:
 
-The "qemu-native" can be launched successfully on those platform thanks to =
-that we don't have eglibc-native, so the host libGL will finally find the h=
-ost libc which is compatible.
+> Hello All,
+>=20
+> I see that a meta-oracle-java layer showed up recently in the yocto =
+repositories.  That's great.
+>=20
+> Was there an announcement about this new layer sent on a mailing list =
+or posted in a blog?  I had thought I was on all the yocto-related mail =
+lists (https://lists.yoctoproject.org/), but I wasn't aware of this =
+layer until I just read through the repository list =
+(http://git.yoctoproject.org/cgit/cgit.cgi/).
+>=20
+> I did find  a mention about some jdk work in the technical team =
+meeting notes on 1/24, but it was sort of cryptic.  By any chance, is =
+there an openjdk layer coming soon?
 
-I tried launching the "qemu-nativesdk" by LD_PRELOAD host libc, but it seem=
-s that the host libc is NOT compatible with our ld-linux-x86-64.so.2 either=
-.
+It has existed for a while now: https://github.com/woglinde/meta-java
 
-I also tried launching the "qemu-nativesdk" by using the host dynamic linke=
-r with --inhibit-rpath options to keep the preconfigured RPATH from being u=
-sed, but it seems that this option didn't have any effect.
-
-Any thoughts of how to work-around this?
-
-Best Regards,
--Lianhao
+See http://www.openembedded.org/wiki/LayerIndex for more layers=
 
