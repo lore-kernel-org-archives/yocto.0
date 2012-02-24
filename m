@@ -1,42 +1,32 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 250B3E003E3
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 14:19:20 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 24 Feb 2012 14:19:19 -0800
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63A14E003E3
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 14:33:25 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 24 Feb 2012 14:33:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="70087869"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
+	d="scan'208,217";a="121085731"
 Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by AZSMGA002.ch.intel.com with ESMTP; 24 Feb 2012 14:19:19 -0800
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	by fmsmga001.fm.intel.com with ESMTP; 24 Feb 2012 14:33:24 -0800
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
 	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 24 Feb 2012 14:19:19 -0800
-Received: from orsmsx102.amr.corp.intel.com ([169.254.1.234]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.145]) with mapi id
-	14.01.0355.002; Fri, 24 Feb 2012 14:19:18 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: William Mills <wmills@ti.com>
-Thread-Topic: [yocto] Yocto Project Quick Start Feedback
-Thread-Index: AQHM8o0KICcH6ZR82Eyhss1XDlDHDpZMJfNwgACzsgD//3wBMIAAmkyA//+vUiA=
-Date: Fri, 24 Feb 2012 22:19:18 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB12379374D038A@ORSMSX102.amr.corp.intel.com>
-References: <4F46DC94.2000309@linux.intel.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB12379374D01F2@ORSMSX102.amr.corp.intel.com>
-	<4F47CD18.7000103@ti.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB12379374D02D4@ORSMSX102.amr.corp.intel.com>
-	<4F47DFCD.90103@ti.com>
-In-Reply-To: <4F47DFCD.90103@ti.com>
+	(TLS) id 8.2.255.0; Fri, 24 Feb 2012 14:33:24 -0800
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.90]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.234]) with mapi id
+	14.01.0355.002; Fri, 24 Feb 2012 14:33:24 -0800
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: package requires different glib version 
+Thread-Index: AczzRFErfmvr8gjlRW6qQJQ3ytdvuQ==
+Date: Fri, 24 Feb 2012 22:33:23 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C4900A9308@ORSMSX103.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Cc: "Abbas, Mohamed" <mohamed.abbas@intel.com>,
-	Yocto Project <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>, "Perez-Gonzalez,
-	Inaky" <inaky.perez-gonzalez@intel.com>, "Purdie,
-	Richard" <richard.purdie@intel.com>
-Subject: Re: Yocto Project Quick Start Feedback
+Subject: package requires different glib version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,45 +38,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Feb 2012 22:19:20 -0000
+X-List-Received-Date: Fri, 24 Feb 2012 22:33:25 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_63ECFF2A2302B44093D7CE9E9962C4900A9308ORSMSX103amrcorpi_"
+
+--_000_63ECFF2A2302B44093D7CE9E9962C4900A9308ORSMSX103amrcorpi_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Bill,=20
 
-You are reading me wrong.  I actually like the idea.  It fits a Quick Start=
-.  I was going to divert the expert reader anyway.  The reason I tried to p=
-aint the picture here was to see what others thought of the idea.=20
+Had a question on Glib. The configuration script of one of the packages I a=
+m trying to build requires glib >=3D 2.31.10 ,
+but the Edision branch has 2.28 version.  What does one generally do in the=
+se type of cases ?
 
-Scott
 
------Original Message-----
-From: William Mills [mailto:wmills@ti.com]=20
-Sent: Friday, February 24, 2012 1:07 PM
-To: Rifenbark, Scott M
-Cc: Darren Hart; Yocto Project; Abbas, Mohamed; Purdie, Richard; Perez-Gonz=
-alez, Inaky
-Subject: Re: [yocto] Yocto Project Quick Start Feedback
+Thanks
+Rahul
 
-On 02/24/2012 01:05 PM, Rifenbark, Scott M wrote:
-> The "movie" angle is interesting.  Picture this... the opening 1/2 page s=
-ets up the packages for Ubuntu, downloads files, builds core-image-sata, an=
-d runs qemu.  All this done without even telling anyone what YP is.  Follow=
- that by "what just happened... we just built and ran an image using the Yo=
-cto Project.  Then the QS launches into the "Welcome" stuff and flows on as=
- normal.  That would be a unique beginning for a technical manual.
+--_000_63ECFF2A2302B44093D7CE9E9962C4900A9308ORSMSX103amrcorpi_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I sense some derision in your word "unique"?  Thats fine, your doing=20
-most of the work and you have to be happy with it.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Had a question on Glib. The configuration script of =
+one of the packages I am trying to build requires glib &gt;=3D 2.31.10 ,<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">but the Edision branch has 2.28 version. &nbsp;What =
+does one generally do in these type of cases ?
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks<o:p></o:p></p>
+<p class=3D"MsoNormal">Rahul<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-However I don't think it is unique.  Yes it would be a bad approuch to=20
-use in a reference manual but I have found a number of  intros/tutorials=20
-start this way and I always enjoy the approuch.  Perhaps the QS at only=20
-9 printed pages is too short to be structured this way.  The QS guide=20
-itself is just this "taste of the bigger picture" for the full doc set.
-
-As I said, just some thoughts.
-
-Bill
-
+--_000_63ECFF2A2302B44093D7CE9E9962C4900A9308ORSMSX103amrcorpi_--
