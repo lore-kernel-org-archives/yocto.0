@@ -1,37 +1,41 @@
-Return-Path: <wmills@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10A0BE003E3
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 11:07:11 -0800 (PST)
-Received: from dlep26.itg.ti.com ([157.170.170.121])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q1OJ6sOi001199;
-	Fri, 24 Feb 2012 13:06:54 -0600
-Received: from DFLE70.ent.ti.com (localhost [127.0.0.1])
-	by dlep26.itg.ti.com (8.13.8/8.13.8) with ESMTP id q1OJ6sUe026309;
-	Fri, 24 Feb 2012 13:06:54 -0600 (CST)
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle70.ent.ti.com
-	(128.247.5.40) with Microsoft SMTP Server id 14.1.323.3;
-	Fri, 24 Feb 2012 13:06:54 -0600
-Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
-	[158.218.100.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	q1OJ6skE020398;	Fri, 24 Feb 2012 13:06:54 -0600
-Message-ID: <4F47DFCD.90103@ti.com>
-Date: Fri, 24 Feb 2012 14:06:53 -0500
-From: William Mills <wmills@ti.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11
+Return-Path: <b.hutchman@gmail.com>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2651E003E3
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 13:21:29 -0800 (PST)
+Received: by bkcjm1 with SMTP id jm1so3564341bkc.35
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 13:21:28 -0800 (PST)
+Received-SPF: pass (google.com: domain of b.hutchman@gmail.com designates
+	10.205.120.10 as permitted sender) client-ip=10.205.120.10; 
+Authentication-Results: mr.google.com;
+	spf=pass (google.com: domain of b.hutchman@gmail.com
+	designates 10.205.120.10 as permitted sender)
+	smtp.mail=b.hutchman@gmail.com;
+	dkim=pass header.i=b.hutchman@gmail.com
+Received: from mr.google.com ([10.205.120.10])
+	by 10.205.120.10 with SMTP id fw10mr1981116bkc.94.1330118488661
+	(num_hops = 1); Fri, 24 Feb 2012 13:21:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=Lb/XIXzCCVIR9Kj4z+ViapQrULK/LV8aYlW7lB85Bk0=;
+	b=CbrHpUmzlGWjeNSXEc7W38/DRzyglKW+WgSEYKG1GR6mvRHMKAOHwz0padzICxQjRX
+	9JEwTraVY7D4r/V/sYx1O/ex2PieYIdzFLKGWQCcoUJJ5kk5UoizAp+gfdGBQtoQOMgI
+	HJ6jM6nKGKK9Xpa92tLLW4DPRQ7O+TiGAAbxc=
 MIME-Version: 1.0
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-References: <4F46DC94.2000309@linux.intel.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB12379374D01F2@ORSMSX102.amr.corp.intel.com>
-	<4F47CD18.7000103@ti.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB12379374D02D4@ORSMSX102.amr.corp.intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB12379374D02D4@ORSMSX102.amr.corp.intel.com>
-Cc: "Abbas, Mohamed" <mohamed.abbas@intel.com>,
-	Yocto Project <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>, "Perez-Gonzalez,
-	Inaky" <inaky.perez-gonzalez@intel.com>, "Purdie,
-	Richard" <richard.purdie@intel.com>
-Subject: Re: Yocto Project Quick Start Feedback
+Received: by 10.205.120.10 with SMTP id fw10mr1638530bkc.94.1330118488514;
+	Fri, 24 Feb 2012 13:21:28 -0800 (PST)
+Received: by 10.204.229.198 with HTTP; Fri, 24 Feb 2012 13:21:28 -0800 (PST)
+In-Reply-To: <E95BAB41-4F4A-4A90-A975-FFD882EB41F3@ti.com>
+References: <CAFZh4h909x+Ckk2Fed-YtEyZ_YhKJQV82=RHV++AE1mdp3DFGw@mail.gmail.com>
+	<CAFZh4h_DZVM0-P6VjiZd4Czqiq5UGppS1qRhg2G7sKR5W2n5aw@mail.gmail.com>
+	<E95BAB41-4F4A-4A90-A975-FFD882EB41F3@ti.com>
+Date: Fri, 24 Feb 2012 16:21:28 -0500
+Message-ID: <CAFZh4h_NjvLfqjJfY6eMhESrNOubE5LWRqYwgnWxRndD=6w_qQ@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: "Monk, Roger" <r-monk@ti.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-ti] bitbake ti-syslink fails for MACHINE=c6a816x
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,23 +47,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Feb 2012 19:07:12 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 24 Feb 2012 21:21:30 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On 02/24/2012 01:05 PM, Rifenbark, Scott M wrote:
-> The "movie" angle is interesting.  Picture this... the opening 1/2 page sets up the packages for Ubuntu, downloads files, builds core-image-sata, and runs qemu.  All this done without even telling anyone what YP is.  Follow that by "what just happened... we just built and ran an image using the Yocto Project.  Then the QS launches into the "Welcome" stuff and flows on as normal.  That would be a unique beginning for a technical manual.
+On Fri, Feb 24, 2012 at 4:07 PM, Monk, Roger <r-monk@ti.com> wrote:
+> I don't think it is worth spending too much time debugging this, since th=
+is version of syslink is pretty old now and there will likely be further is=
+sues in this environment even if we can can get th build to complete, since=
+ there are other related dependencies. =A0Best would be to look at adding t=
+he version >=3D those versions that are used in DVSDK 5.03. =A0This is plan=
+ned, but we don't have a schedule at the moment. =A0If you have some time t=
+o help integrate these newer components it would be a big help.
+>
+> Thanks,
+> ~roger
 
-I sense some derision in your word "unique"?  Thats fine, your doing 
-most of the work and you have to be happy with it.
+I just need to get syslink and sysbios going on C6A816x & L138.  We
+bitbake our rootfs image from Angstrom at the moment.  Can you advise
+the best way to get syslink/sysbios going on these two targets?  Our
+build machines a Linux based.  Should I be using the versions that are
+packaged inside the ezsdk .bin file?
 
-However I don't think it is unique.  Yes it would be a bad approuch to 
-use in a reference manual but I have found a number of  intros/tutorials 
-start this way and I always enjoy the approuch.  Perhaps the QS at only 
-9 printed pages is too short to be structured this way.  The QS guide 
-itself is just this "taste of the bigger picture" for the full doc set.
+I can also help integrating but I might need some direction to get started.
 
-As I said, just some thoughts.
+Regards,
 
-Bill
+Brian
 
