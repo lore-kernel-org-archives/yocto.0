@@ -1,23 +1,23 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26D23E011D1
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C59AE0059A
 	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 01:39:52 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
 	by orsmga102.jf.intel.com with ESMTP; 24 Feb 2012 01:39:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="114413589"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="114413580"
 Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.123.5])
-	by orsmga002.jf.intel.com with ESMTP; 24 Feb 2012 01:38:32 -0800
+	by orsmga002.jf.intel.com with ESMTP; 24 Feb 2012 01:38:30 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Fri, 24 Feb 2012 09:38:27 +0000
-Message-Id: <dc82738b4b31e953f5a0fdd2f1a80b23245dfa2c.1330076070.git.paul.eggleton@linux.intel.com>
+Date: Fri, 24 Feb 2012 09:38:26 +0000
+Message-Id: <31254c911f308e8ea4c6c33fbfe0d85bd3b28666.1330076070.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 1.7.5.4
 In-Reply-To: <cover.1330076070.git.paul.eggleton@linux.intel.com>
 References: <cover.1330076070.git.paul.eggleton@linux.intel.com>
 In-Reply-To: <cover.1330076070.git.paul.eggleton@linux.intel.com>
 References: <cover.1330076070.git.paul.eggleton@linux.intel.com>
-Subject: [PATCH 2/2] meta-intel: add LAYERDEPENDS for layers needing the meta-intel common layer
+Subject: [PATCH 1/2] meta-intel: replace "include" with "require"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,124 +31,184 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Fri, 24 Feb 2012 09:39:52 -0000
 
-These layers all contain machine configuration that depends on having
-the meta-intel common layer enabled as well, so use LAYERDEPENDS in the
-layer configuration for each one to make this explicit.
+We want a failure to occur if the files specified in these statements
+can't be found (e.g. when there is a misconfiguration), so use require
+instead of include.
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- meta-cedartrail/conf/layer.conf   |    2 ++
- meta-crownbay/conf/layer.conf     |    2 ++
- meta-emenlow/conf/layer.conf      |    2 ++
- meta-fishriver/conf/layer.conf    |    2 ++
- meta-fri2/conf/layer.conf         |    2 ++
- meta-jasperforest/conf/layer.conf |    2 ++
- meta-n450/conf/layer.conf         |    2 ++
- meta-romley/conf/layer.conf       |    2 ++
- meta-sugarbay/conf/layer.conf     |    2 ++
- meta-sys940x/conf/layer.conf      |    2 ++
- 10 files changed, 20 insertions(+), 0 deletions(-)
+ meta-cedartrail/conf/machine/cedartrail.conf    |    2 +-
+ meta-crownbay/conf/machine/crownbay-noemgd.conf |    4 ++--
+ meta-crownbay/conf/machine/crownbay.conf        |    4 ++--
+ meta-emenlow/conf/machine/emenlow.conf          |    4 ++--
+ meta-fishriver/conf/machine/fishriver.conf      |    2 +-
+ meta-fri2/conf/machine/fri2-noemgd.conf         |    4 ++--
+ meta-fri2/conf/machine/fri2.conf                |    4 ++--
+ meta-n450/conf/machine/n450.conf                |    4 ++--
+ meta-romley/conf/machine/romley.conf            |    2 +-
+ meta-sys940x/conf/machine/sys940x-noemgd.conf   |    4 ++--
+ meta-sys940x/conf/machine/sys940x.conf          |    4 ++--
+ 11 files changed, 19 insertions(+), 19 deletions(-)
 
-diff --git a/meta-cedartrail/conf/layer.conf b/meta-cedartrail/conf/layer.conf
-index cb4142d..c19c4c1 100644
---- a/meta-cedartrail/conf/layer.conf
-+++ b/meta-cedartrail/conf/layer.conf
-@@ -8,3 +8,5 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "cedartrail"
- BBFILE_PATTERN_cedartrail := "^${LAYERDIR}/"
- BBFILE_PRIORITY_cedartrail = "6"
-+
-+LAYERDEPENDS_cedartrail = "intel"
-diff --git a/meta-crownbay/conf/layer.conf b/meta-crownbay/conf/layer.conf
-index 52581e1..cb17298 100644
---- a/meta-crownbay/conf/layer.conf
-+++ b/meta-crownbay/conf/layer.conf
-@@ -8,3 +8,5 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "crownbay"
- BBFILE_PATTERN_crownbay := "^${LAYERDIR}/"
- BBFILE_PRIORITY_crownbay = "6"
-+
-+LAYERDEPENDS_crownbay = "intel"
-diff --git a/meta-emenlow/conf/layer.conf b/meta-emenlow/conf/layer.conf
-index 563b9c8..dda80c0 100644
---- a/meta-emenlow/conf/layer.conf
-+++ b/meta-emenlow/conf/layer.conf
-@@ -8,3 +8,5 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "emenlow"
- BBFILE_PATTERN_emenlow := "^${LAYERDIR}/"
- BBFILE_PRIORITY_emenlow = "6"
-+
-+LAYERDEPENDS_emenlow = "intel"
-diff --git a/meta-fishriver/conf/layer.conf b/meta-fishriver/conf/layer.conf
-index 9162b5e..61e292b 100644
---- a/meta-fishriver/conf/layer.conf
-+++ b/meta-fishriver/conf/layer.conf
-@@ -8,3 +8,5 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "fishriver"
- BBFILE_PATTERN_fishriver := "^${LAYERDIR}/"
- BBFILE_PRIORITY_fishriver = "6"
-+
-+LAYERDEPENDS_fishriver = "intel"
-diff --git a/meta-fri2/conf/layer.conf b/meta-fri2/conf/layer.conf
-index b30e776..4d140f9 100644
---- a/meta-fri2/conf/layer.conf
-+++ b/meta-fri2/conf/layer.conf
-@@ -8,3 +8,5 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "fri2"
- BBFILE_PATTERN_fri2 := "^${LAYERDIR}/"
- BBFILE_PRIORITY_fri2 = "6"
-+
-+LAYERDEPENDS_fri2 = "intel"
-diff --git a/meta-jasperforest/conf/layer.conf b/meta-jasperforest/conf/layer.conf
-index bfd7fc3..09f1647 100644
---- a/meta-jasperforest/conf/layer.conf
-+++ b/meta-jasperforest/conf/layer.conf
-@@ -8,3 +8,5 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "jasperforest"
- BBFILE_PATTERN_jasperforest := "^${LAYERDIR}/"
- BBFILE_PRIORITY_jasperforest = "6"
-+
-+LAYERDEPENDS_jasperforest = "intel"
-diff --git a/meta-n450/conf/layer.conf b/meta-n450/conf/layer.conf
-index f9cc7fe..2c905c2 100644
---- a/meta-n450/conf/layer.conf
-+++ b/meta-n450/conf/layer.conf
-@@ -8,3 +8,5 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "n450"
- BBFILE_PATTERN_n450 = "^${LAYERDIR}/"
- BBFILE_PRIORITY_n450 = "6"
-+
-+LAYERDEPENDS_n450 = "intel"
-diff --git a/meta-romley/conf/layer.conf b/meta-romley/conf/layer.conf
-index c5eeaab..8ce1a4d 100644
---- a/meta-romley/conf/layer.conf
-+++ b/meta-romley/conf/layer.conf
-@@ -8,3 +8,5 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "romley"
- BBFILE_PATTERN_romley := "^${LAYERDIR}/"
- BBFILE_PRIORITY_romley = "6"
-+
-+LAYERDEPENDS_romley = "intel"
-diff --git a/meta-sugarbay/conf/layer.conf b/meta-sugarbay/conf/layer.conf
-index 05ef1cd..eb8ec45 100644
---- a/meta-sugarbay/conf/layer.conf
-+++ b/meta-sugarbay/conf/layer.conf
-@@ -8,3 +8,5 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "sugarbay"
- BBFILE_PATTERN_sugarbay := "^${LAYERDIR}/"
- BBFILE_PRIORITY_sugarbay = "6"
-+
-+LAYERDEPENDS_sugarbay = "intel"
-diff --git a/meta-sys940x/conf/layer.conf b/meta-sys940x/conf/layer.conf
-index 459c710..5d588ad 100644
---- a/meta-sys940x/conf/layer.conf
-+++ b/meta-sys940x/conf/layer.conf
-@@ -8,3 +8,5 @@ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "sys940x"
- BBFILE_PATTERN_sys940x := "^${LAYERDIR}/"
- BBFILE_PRIORITY_sys940x = "6"
-+
-+LAYERDEPENDS_sys940x = "intel"
+diff --git a/meta-cedartrail/conf/machine/cedartrail.conf b/meta-cedartrail/conf/machine/cedartrail.conf
+index ec84347..3bd5cf8 100644
+--- a/meta-cedartrail/conf/machine/cedartrail.conf
++++ b/meta-cedartrail/conf/machine/cedartrail.conf
+@@ -4,7 +4,7 @@
+ #@DESCRIPTION: Machine configuration for Cedartrail systems
+ # i.e. Cedarview processor + Tiger Point Chipset
+ 
+-include conf/machine/include/tune-atom.inc
++require conf/machine/include/tune-atom.inc
+ require conf/machine/include/ia32-base.inc
+ 
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+diff --git a/meta-crownbay/conf/machine/crownbay-noemgd.conf b/meta-crownbay/conf/machine/crownbay-noemgd.conf
+index 80fc2a6..2c80bd8 100644
+--- a/meta-crownbay/conf/machine/crownbay-noemgd.conf
++++ b/meta-crownbay/conf/machine/crownbay-noemgd.conf
+@@ -4,8 +4,8 @@
+ #@DESCRIPTION: Machine configuration for Crown Bay systems, without Intel-proprietary graphics bits
+ # i.e. E660 + EG20T
+ 
+-include conf/machine/include/tune-atom.inc
+-include conf/machine/include/ia32-base.inc
++require conf/machine/include/tune-atom.inc
++require conf/machine/include/ia32-base.inc
+ 
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+            ${XSERVER_IA32_EXT} \
+diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
+index 15bfd52..2c1ef3d 100644
+--- a/meta-crownbay/conf/machine/crownbay.conf
++++ b/meta-crownbay/conf/machine/crownbay.conf
+@@ -4,8 +4,8 @@
+ #@DESCRIPTION: Machine configuration for Crown Bay systems
+ # i.e. E660 + EG20T
+ 
+-include conf/machine/include/tune-atom.inc
+-include conf/machine/include/ia32-base.inc
++require conf/machine/include/tune-atom.inc
++require conf/machine/include/ia32-base.inc
+ 
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+            ${XSERVER_IA32_EXT} \
+diff --git a/meta-emenlow/conf/machine/emenlow.conf b/meta-emenlow/conf/machine/emenlow.conf
+index cf43d4f..78020ba 100644
+--- a/meta-emenlow/conf/machine/emenlow.conf
++++ b/meta-emenlow/conf/machine/emenlow.conf
+@@ -4,8 +4,8 @@
+ #@DESCRIPTION: Machine configuration for eMenlow based systems, like the
+ # Webs-2120 box.
+ 
+-include conf/machine/include/tune-atom.inc
+-include conf/machine/include/ia32-base.inc
++require conf/machine/include/tune-atom.inc
++require conf/machine/include/ia32-base.inc
+ 
+ PREFERRED_PROVIDER_libdrm = "libdrm-poulsbo"
+ PREFERRED_PROVIDER_drm = "libdrm-poulsbo"
+diff --git a/meta-fishriver/conf/machine/fishriver.conf b/meta-fishriver/conf/machine/fishriver.conf
+index b43282e..aa066db 100644
+--- a/meta-fishriver/conf/machine/fishriver.conf
++++ b/meta-fishriver/conf/machine/fishriver.conf
+@@ -4,7 +4,7 @@
+ #@DESCRIPTION: Machine configuration for Fish River Island systems
+ # i.e. Z530/E660 + EG20T
+ 
+-include conf/machine/include/tune-atom.inc
++require conf/machine/include/tune-atom.inc
+ require conf/machine/include/ia32-base.inc
+ 
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+diff --git a/meta-fri2/conf/machine/fri2-noemgd.conf b/meta-fri2/conf/machine/fri2-noemgd.conf
+index 911a449..a0eb8a0 100644
+--- a/meta-fri2/conf/machine/fri2-noemgd.conf
++++ b/meta-fri2/conf/machine/fri2-noemgd.conf
+@@ -4,8 +4,8 @@
+ #@DESCRIPTION: Machine configuration for Fish River Island II systems
+ # i.e. E660 + EG20T
+ 
+-include conf/machine/include/tune-atom.inc
+-include conf/machine/include/ia32-base.inc
++require conf/machine/include/tune-atom.inc
++require conf/machine/include/ia32-base.inc
+ 
+ MACHINE_FEATURES += "wifi 3g pcbios efi"
+ MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-iwlwifi-6000g2a-5"
+diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
+index c69aa40..3947736 100644
+--- a/meta-fri2/conf/machine/fri2.conf
++++ b/meta-fri2/conf/machine/fri2.conf
+@@ -4,8 +4,8 @@
+ #@DESCRIPTION: Machine configuration for Fish River Island II systems
+ # i.e. E660 + EG20T
+ 
+-include conf/machine/include/tune-atom.inc
+-include conf/machine/include/ia32-base.inc
++require conf/machine/include/tune-atom.inc
++require conf/machine/include/ia32-base.inc
+ 
+ MACHINE_FEATURES += "wifi 3g pcbios efi"
+ MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-iwlwifi-6000g2a-5"
+diff --git a/meta-n450/conf/machine/n450.conf b/meta-n450/conf/machine/n450.conf
+index 6ffdce9..dac63ed 100644
+--- a/meta-n450/conf/machine/n450.conf
++++ b/meta-n450/conf/machine/n450.conf
+@@ -3,8 +3,8 @@
+ 
+ #@DESCRIPTION: Machine configuration for Intel 1-N450 based systems
+ 
+-include conf/machine/include/tune-atom.inc
+-include conf/machine/include/ia32-base.inc
++require conf/machine/include/tune-atom.inc
++require conf/machine/include/ia32-base.inc
+ 
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+            ${XSERVER_IA32_EXT} \
+diff --git a/meta-romley/conf/machine/romley.conf b/meta-romley/conf/machine/romley.conf
+index 7b6014c..aa334c0 100644
+--- a/meta-romley/conf/machine/romley.conf
++++ b/meta-romley/conf/machine/romley.conf
+@@ -5,7 +5,7 @@
+ # i.e. Sandy Bridge + Patsburg Chipset
+ 
+ require conf/machine/include/tune-x86_64.inc
+-include conf/machine/include/ia32-base.inc
++require conf/machine/include/ia32-base.inc
+ 
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+            ${XSERVER_IA32_EXT} \
+diff --git a/meta-sys940x/conf/machine/sys940x-noemgd.conf b/meta-sys940x/conf/machine/sys940x-noemgd.conf
+index 8a1c20f..537e419 100644
+--- a/meta-sys940x/conf/machine/sys940x-noemgd.conf
++++ b/meta-sys940x/conf/machine/sys940x-noemgd.conf
+@@ -4,8 +4,8 @@
+ #@DESCRIPTION: Machine configuration for Inforce SYS940X systems
+ # i.e. E660 + EG20T
+ 
+-include conf/machine/include/tune-atom.inc
+-include conf/machine/include/ia32-base.inc
++require conf/machine/include/tune-atom.inc
++require conf/machine/include/ia32-base.inc
+ 
+ # Add "pcbios" if you have a non-efi version of the firmware
+ MACHINE_FEATURES += "efi pcbios"
+diff --git a/meta-sys940x/conf/machine/sys940x.conf b/meta-sys940x/conf/machine/sys940x.conf
+index ceb6e0f..2315564 100644
+--- a/meta-sys940x/conf/machine/sys940x.conf
++++ b/meta-sys940x/conf/machine/sys940x.conf
+@@ -4,8 +4,8 @@
+ #@DESCRIPTION: Machine configuration for Inforce SYS940x systems
+ # i.e. E660 + EG20T
+ 
+-include conf/machine/include/tune-atom.inc
+-include conf/machine/include/ia32-base.inc
++require conf/machine/include/tune-atom.inc
++require conf/machine/include/ia32-base.inc
+ 
+ # Add "pcbios" if you have a non-efi version of the firmware
+ MACHINE_FEATURES += "efi pcbios"
 -- 
 1.7.5.4
 
