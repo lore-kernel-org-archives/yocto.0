@@ -1,35 +1,34 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48D53E0059A
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 01:44:46 -0800 (PST)
-Received: by dadp13 with SMTP id p13so2766233dad.35
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 01:44:46 -0800 (PST)
-Received-SPF: pass (google.com: domain of josh@hipro.co.in designates
-	10.68.136.33 as permitted sender) client-ip=10.68.136.33; 
+Return-Path: <gizero@gmail.com>
+Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5984E0059A
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 05:40:03 -0800 (PST)
+Received: by vcbfl13 with SMTP id fl13so2392666vcb.35
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 05:40:02 -0800 (PST)
+Received-SPF: pass (google.com: domain of gizero@gmail.com designates
+	10.52.99.231 as permitted sender) client-ip=10.52.99.231; 
 Authentication-Results: mr.google.com;
-	spf=pass (google.com: domain of josh@hipro.co.in
-	designates 10.68.136.33 as permitted sender)
-	smtp.mail=josh@hipro.co.in
-Received: from mr.google.com ([10.68.136.33])
-	by 10.68.136.33 with SMTP id px1mr5437688pbb.38.1330076686203 (num_hops
-	= 1); Fri, 24 Feb 2012 01:44:46 -0800 (PST)
-Received: by 10.68.136.33 with SMTP id px1mr4507243pbb.38.1330076686158;
-	Fri, 24 Feb 2012 01:44:46 -0800 (PST)
-Received: from [192.168.10.207] ([59.99.251.45])
-	by mx.google.com with ESMTPS id y9sm3950600pbi.3.2012.02.24.01.44.43
-	(version=SSLv3 cipher=OTHER); Fri, 24 Feb 2012 01:44:45 -0800 (PST)
-Message-ID: <1330076669.3803.46.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Fri, 24 Feb 2012 15:14:29 +0530
-In-Reply-To: <1330075610.3803.39.camel@babel.joshhome>
-References: <1330075610.3803.39.camel@babel.joshhome>
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1
-Mime-Version: 1.0
-X-Gm-Message-State: ALoCoQmoGC+svlFPssS9g63aBFPGsMX0r8Fvq/6ciL88yzMaKrp81xbuSK1jf5KfLdG3TKwwVq+j
-Subject: Re: how do I find the filename of the kernel
+	spf=pass (google.com: domain of gizero@gmail.com
+	designates 10.52.99.231 as permitted sender)
+	smtp.mail=gizero@gmail.com; dkim=pass header.i=gizero@gmail.com
+Received: from mr.google.com ([10.52.99.231])
+	by 10.52.99.231 with SMTP id et7mr1125323vdb.114.1330090802975
+	(num_hops = 1); Fri, 24 Feb 2012 05:40:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=lnng7OYYbb1pW6uayOHuZcTThBeWZnVo4zxft2Jhk5g=;
+	b=h17SNDyIw+4kPSUGFNzAzxnG7mmrj+08OdFm3eaASKWdwGnxAHkUwoitrxDTzsGH4E
+	rERa/mfLvurzf3BP83O77vlbC+4+mXOIeGsxkcXso2JqtIF0yMaFtMjnbb+hRxwsOXQ1
+	GFdnAOjcSJEd4+EDRV7p7cLlFkzrqk7lm9/jQ=
+MIME-Version: 1.0
+Received: by 10.52.99.231 with SMTP id et7mr889639vdb.114.1330090801730; Fri,
+	24 Feb 2012 05:40:01 -0800 (PST)
+Received: by 10.220.106.143 with HTTP; Fri, 24 Feb 2012 05:40:01 -0800 (PST)
+Date: Fri, 24 Feb 2012 14:40:01 +0100
+Message-ID: <CAC+thW1xz0eWYh3wHdFDZWRTUgqjKPe5XKEsbzwKLrwMFKZfUA@mail.gmail.com>
+From: Andrea Galbusera <gizero@gmail.com>
+To: yocto@yoctoproject.org
+Subject: adt-installer: cannot install package autoconf-nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,50 +40,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Feb 2012 09:44:46 -0000
-X-Groupsio-MsgNum: 4916
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-11D5OD3LHOHeKc3DjTnR"
+X-List-Received-Date: Fri, 24 Feb 2012 13:40:03 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---=-11D5OD3LHOHeKc3DjTnR
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi,
+I'm having the following error while trying the adt-installer for the
+first time. I'm using current edison git branch and following the ADT
+user's guide. The adt_installer tarball was generated inside my Yocto
+build tree. The adt_installer.conf I use is basically the default one
+(just changed YOCTOADT_TARGET_SYSROOT_LOC_arm to my needs). Here is
+the log relevant snip:
 
-Hello all,
+Start installing selected native ADT for archs: arm x86...
+#######################################################################
+Please note from this point on installation requires sudo password ...
+#######################################################################
 
-On Fri, 2012-02-24 at 14:56 +0530, Joshua Immanuel wrote:
->         I find in kernel.bbclass that the kernel file name is
-> constructed from "${KERNEL_IMAGETYPE}-${KERNEL_VERSION}". And the
-> KERNEL_VERSION is filled from the 'get_kernelversion' method in
-> linux-kernel-base.bbclass, which needs the location of kernel's build
-> directory (${B}). Obviously, this build directory location will not be
-> available in other recipes.=20
+Dangling opkg cache folder ///var/lib/opkg detected. Continue
+installation will remove the folder!
+[ADT_INST] Do you want to continue installation? Please enter Y/N:
+Updating opkg...
+Downloading http://adtrepo.yoctoproject.org/1.1/adt-ipk/i686-nativesdk/Packages.
+Updated list of available packages in ///var/lib/opkg/lists/yp-i686-nativesdk.
+opkg update process ended...
+Installing pseudo nativesdk ...
 
-Aww. Missed this. In kernel_do_install method of kernel.bbclass I found
-that KERNEL_VERSION is echoed into a file
-(${D}/kernel/kernel-abiversion). And this file is added to
-sysroot_stage_dir. I guess, that I have to read that file in order to
-get construct the kernel filename. Am I right?
+Installing pseudo-nativesdk (1.1.1-r2) to root...
+Downloading http://adtrepo.yoctoproject.org/1.1/adt-ipk/i686-nativesdk/pseudo-nativesdk_1.1.1-r2_i686-nativesdk.ipk.
+Installing eglibc-nativesdk (2.13-r15+svnr14157) to root...
+Downloading http://adtrepo.yoctoproject.org/1.1/adt-ipk/i686-nativesdk/eglibc-nativesdk_2.13-r15+svnr14157_i686-nativesdk.ipk.
+Configuring eglibc-nativesdk.
+Configuring pseudo-nativesdk.
+Installing opkg nativesdk ...
 
-Regards
-Joshua
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
+Installing opkg-nativesdk (1:0.1.8+svnr625-r2) to root...
+Downloading http://adtrepo.yoctoproject.org/1.1/adt-ipk/i686-nativesdk/opkg-nativesdk_0.1.8+svnr625-r2_i686-nativesdk.ipk.
+Configuring opkg-nativesdk.
+Installing pkgconfig nativesdk ...
 
---=-11D5OD3LHOHeKc3DjTnR
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+Installing pkgconfig-nativesdk (0.25-r0) to root...
+Downloading http://adtrepo.yoctoproject.org/1.1/adt-ipk/i686-nativesdk/pkgconfig-nativesdk_0.25-r0_i686-nativesdk.ipk.
+Configuring pkgconfig-nativesdk.
+Installing libtool nativesdk ...
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+Installing libtool-nativesdk (2.4-r2) to root...
+Downloading http://adtrepo.yoctoproject.org/1.1/adt-ipk/i686-nativesdk/libtool-nativesdk_2.4-r2_i686-nativesdk.ipk.
+Configuring libtool-nativesdk.
+Installing autoconf nativesdk ...
 
-iEYEABECAAYFAk9HW/0ACgkQWw85XwuSFML1UwCgsUbXLSoM1GCbkTpIVGgMrI0J
-P+AAniDT2prlCDOf8LLmIWkeW99aJTb/
-=9vby
------END PGP SIGNATURE-----
+Unknown package 'autoconf-nativesdk'.
+Collected errors:
+ * opkg_install_cmd: Cannot install package autoconf-nativesdk.
 
---=-11D5OD3LHOHeKc3DjTnR--
+#############################################################################
+# Meet error(s) when installing Yocto ADT! Please check log file for details.
+#############################################################################
+
+
+The installer was built against the latest version of its recipe as
+per commit c6ec5a0d9e31a1694aba25e2ff76f1c933e556d5,
+adt-installer-0.1.8+svnr596-r6. I guess a change was made with commit
+de68393270d5455b4861d38cef3f081b9667d25f which requires installing
+autoconf/automake-nativesdk but relevant ipks are missing from
+http://adtrepo.yoctoproject.org/1.1/adt-ipk/, which is still default
+in latest adt_installer.conf.
+
+Am I guessing right? First time digging into the adt_installer so I
+might be completely out of track! Is this a known limit if building
+adt_installer with latest edison branch? Should I file a bug for this?
+If so, what's the best solution right now? Maybe using the edison
+original adt_installer from the yocto downloads...
+
+Thanks in advance
+Regards,
+Andrea
+
