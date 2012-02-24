@@ -1,43 +1,24 @@
-Return-Path: <SRS0=/XVwCk=BB=mindchasers.com=yocto@eigbox.net>
-Received: from bosmailout11.eigbox.net (bosmailout11.eigbox.net [66.96.186.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4A9AE01373
-	for <yocto@yoctoproject.org>; Thu, 23 Feb 2012 11:36:26 -0800 (PST)
-Received: from bosmailscan05.eigbox.net ([10.20.15.5])
-	by bosmailout11.eigbox.net with esmtp (Exim) id 1S0eSm-0000To-O8
-	for yocto@yoctoproject.org; Thu, 23 Feb 2012 14:36:24 -0500
-Received: from bosimpout02.eigbox.net ([10.20.55.2])
-	by bosmailscan05.eigbox.net with esmtp (Exim)
-	id 1S0eSk-0002Sa-Tv; Thu, 23 Feb 2012 14:36:22 -0500
-Received: from bosauthsmtp11.eigbox.net ([10.20.18.11])
-	by bosimpout02.eigbox.net with NO UCE
-	id dXcP1i00D0EKspE01XcPuB; Thu, 23 Feb 2012 14:36:23 -0500
-X-Authority-Analysis: v=2.0 cv=Cu4IhAED c=1 sm=1
-	a=ZOzi+v0zS1kG2QjqRQcJlw==:17 a=y6CmfMN_vBIA:10 a=Lk7aQFya1KUA:10
-	a=8nJEP1OIZ-IA:10 a=iGHA9ds3AAAA:8 a=NEAV23lmAAAA:8 a=Q4-j1AaZAAAA:8
-	a=quZTNCl__wuDfNsPFksA:9 a=_I3wfEfG0CRM17AexAYA:7 a=wPNLvfGTeEIA:10
-	a=anyYG9rjTBM1sAjEBQ8Cew==:117
-X-EN-OrigOutIP: 10.20.18.11
-X-EN-IMPSID: dXcP1i00D0EKspE01XcPuB
-Received: from [108.25.174.63] (helo=[192.168.1.3])
-	by bosauthsmtp11.eigbox.net with esmtpa (Exim)
-	id 1S0eSl-0001DX-8F; Thu, 23 Feb 2012 14:36:23 -0500
-Message-ID: <4F469532.4070007@mindchasers.com>
-Date: Thu, 23 Feb 2012 14:36:18 -0500
-From: Bob Cochran <yocto@mindchasers.com>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69913E0059A
+	for <yocto@yoctoproject.org>; Thu, 23 Feb 2012 16:41:25 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 23 Feb 2012 16:41:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="111379769"
+Received: from unknown (HELO envy.home) ([10.7.199.80])
+	by orsmga001.jf.intel.com with ESMTP; 23 Feb 2012 16:41:25 -0800
+Message-ID: <4F46DC94.2000309@linux.intel.com>
+Date: Thu, 23 Feb 2012 16:40:52 -0800
+From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
+	rv:10.0) Gecko/20120131 Thunderbird/10.0
 MIME-Version: 1.0
-To: Koen Kooi <koen@dominion.thruhere.net>
-References: <4F3A754B.5020909@mindchasers.com>
-	<F801F7C5-8CD2-4408-88AF-C7C55A546CE4@dominion.thruhere.net>
-In-Reply-To: <F801F7C5-8CD2-4408-88AF-C7C55A546CE4@dominion.thruhere.net>
-X-EN-UserInfo: cb6d325fe03740ac93d537d78041f599:2186c883651a1065ea1e15c5a112545a
-X-EN-AuthUser: bcochran@mindchasers.com
-Sender: Bob Cochran <yocto@mindchasers.com>
-X-EN-OrigIP: 108.25.174.63
-X-EN-OrigHost: unknown
-Cc: yocto@yoctoproject.org
-Subject: Re: meta-oracle-java
+To: Yocto Project <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.3.5
+Cc: "Abbas, Mohamed" <mohamed.abbas@intel.com>, "Perez-Gonzalez,
+	Inaky" <inaky.perez-gonzalez@intel.com>
+Subject: Yocto Project Quick Start Feedback
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,58 +30,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Feb 2012 19:36:27 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Fri, 24 Feb 2012 00:41:25 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 02/22/2012 08:57 AM, Koen Kooi wrote:
->
-> Op 14 feb. 2012, om 15:52 heeft Bob Cochran het volgende geschreven:
->
->> Hello All,
->>
->> I see that a meta-oracle-java layer showed up recently in the yocto repositories.  That's great.
->>
->> Was there an announcement about this new layer sent on a mailing list or posted in a blog?  I had thought I was on all the yocto-related mail lists (https://lists.yoctoproject.org/), but I wasn't aware of this layer until I just read through the repository list (http://git.yoctoproject.org/cgit/cgit.cgi/).
->>
->> I did find  a mention about some jdk work in the technical team meeting notes on 1/24, but it was sort of cryptic.  By any chance, is there an openjdk layer coming soon?
->
-> It has existed for a while now: https://github.com/woglinde/meta-java
->
-> See http://www.openembedded.org/wiki/LayerIndex for more layers
+Scott,
 
+I received from first-time-user feedback regarding the quick start page.
+I thought it was good stuff that you should here and consider
+incorporating into the document.
 
-Thanks Koen and Ivan.  I now have both the jvm and compiler working on 
-my embedded powerpc (started with OE meta-java last night)!
+1) There is too much introduction, education, and Note blocks before
+   we get the user going. The quick start is really about getting them
+   going as quickly as possible:
 
-I'm still somewhat puzzled about the dynamics between Yocto and 
-Openembedded, and I have come to conclusion that I need to watch both 
-projects & mailing lists carefully & start asking some questions to get 
-me out of the dark....
+   o Package install
+   o Download
+   o Build
 
-I think my initial question about an openjdk layer for yocto is still 
-valid.  Although meta-java exists in OE and it makes use of the common 
-meta folders in oe-core, the meta-java layer also makes use of some 
-recipes in other OE layers (e.g, mercurial in meta-oe & fastjar, which I 
-pulled from classic). These additional layers didn't seem to play nicely 
-in the yocto poky tree, so I pulled the recipes and put them in my own 
-layer.
+   There are four "pages" of detail before we get to installing
+   packages. 6 before we run any Yocto specific commands.
 
-This next question probably shows some of my ignorance with OE (& 
-yocto), but what's the plan inside yocto for use of something like OE's 
-meta-java?  Are yocto users just on their own, should there be a README 
-for use of the OE layer in yocto, or maybe there should be a translation 
-layer in yocto for use of popular or common OE layers?
+2) It can be confusing about what to download, since we mention the
+   Yocto Project Download page (which has a ton of stuff on it) before
+   we tell them to download edison with wget.
 
-Also, I was working from within master branches in both yocto poky & 
-meta-java.  I found that I needed to fudge some recipes to get 
-everything in meta-java to build.  I'll probably go back and rebuild 
-from scratch again and see if there are some patches that I should send out.
+3) The Note blocks are huge and distracting for the content. Notes
+   should probably be light gray on white in a smaller font, rather
+   than white on dark gray. They distract from the primary content.
 
-Thanks again for the heads up on meta-java!
+4) There probably is no need to separate "The Linux Distribution" from
+   "The Packages". These convey similar information, and consume a lot
+   of space doing so.
 
-Bob
+5) All the information is good, but it would be good to rearrange things
+   such that a new user can actually get a "Quick Start". The Notes
+   could be real footnotes, and things like the Development Environment
+   section should be "Further Reading" rather than "Required Reading"
+   for the "Quick Start".
 
+6) As "Further Reading" we should include something like a "Bitbake
+   Flashcard" that outlines the common commands:
+   -c listtasks
+   -c compile -f
+   -c cleansstate (so people don't just start off with
+                   "rm -rf tmp sstate-cache")
+   -e
+   -g depexp -u
 
+I think a good goal would be that a user can run the qemu command
+without having to scroll passed the initial screen on the Quick Start guide!
 
+Consider:
+
+Yocto Project Quick Start
+=========================
+Ubuntu Dependencies
+-------------------
+$ sudo dpkg-reconfigure dash
+  Select "No"
+$ sudo apt-get install sed wget cvs subversion git-core coreutils \
+  unzip texi2html texinfo libsdl1.2-dev docbook-utils gawk \
+  python-pysqlite2 diffstat help2man make gcc build-essential \
+  g++ desktop-file-utils chrpath libgl1-mesa-dev libglu1-mesa-dev \
+  mercurial autoconf automake groff libtool xterm
+
+Fedora Dependencies
+-------------------
+     $ sudo yum groupinstall "development tools"
+     $ sudo yum install python m4 make wget curl ftp hg tar bzip2 gzip \
+     unzip python-psyco perl texinfo texi2html diffstat openjade \
+     docbook-style-dsssl sed docbook-style-xsl docbook-dtds \
+     docbook-utils sed bc eglibc-devel ccache pcre pcre-devel quilt \
+     groff linuxdoc-tools patch linuxdoc-tools cmake help2man \
+     perl-ExtUtils-MakeMaker tcl-devel gettext chrpath ncurses apr \
+     SDL-devel mesa-libGL-devel mesa-libGLU-devel gnome-doc-utils \
+     autoconf automake libtool xterm
+
+openSUSE Dependencies
+---------------------
+     $ sudo zypper install python gcc gcc-c++ libtool \
+     subversion git chrpath automake make wget help2man \
+     diffstat texinfo mercurial freeglut-devel libSDL-devel
+
+Download and Build
+------------------
+$ wget
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/poky-edison-6.0.tar.bz2
+$ tar xjf poky-edison-6.0.tar.bz2
+$ source poky-edison-6.0/oe-init-build-env edison-6.0-build
+$ bitbake -k core-image-sato
+$ runqemu qemux86
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
