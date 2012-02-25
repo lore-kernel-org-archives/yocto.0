@@ -1,15 +1,15 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D66E7E003E3
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 22:12:57 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 24 Feb 2012 22:12:57 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A0E3E003E3
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 22:28:08 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 24 Feb 2012 22:28:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="111737128"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="114782140"
 Received: from unknown (HELO envy.home) ([10.255.15.122])
-	by orsmga001.jf.intel.com with ESMTP; 24 Feb 2012 22:12:57 -0800
-Message-ID: <4F487BC7.40108@linux.intel.com>
-Date: Fri, 24 Feb 2012 22:12:23 -0800
+	by orsmga002.jf.intel.com with ESMTP; 24 Feb 2012 22:27:07 -0800
+Message-ID: <4F487F19.2000309@linux.intel.com>
+Date: Fri, 24 Feb 2012 22:26:33 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:10.0) Gecko/20120131 Thunderbird/10.0
@@ -30,7 +30,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Feb 2012 06:12:57 -0000
+X-List-Received-Date: Sat, 25 Feb 2012 06:28:08 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
@@ -56,9 +56,17 @@ On 02/24/2012 09:55 PM, Darren Hart wrote:
 > 
 > Has pkgconfig been added recently? Seems silly to ask, but that is where
 > things are pointing...
+> 
 
-At some point opkg gained an RDEPENDS on pkgconfig. Trying to track down
-where...
+
+commit 76640582e8ba114d4e80a494f6680fd0ce57ca58
+Date:   Tue Jan 31 15:52:27 2012 +0000
+
+    pkgconfig: Ensure pkgconfig RDEPENDS are tracked
+
+RP, is this meant to force the building of pkgconfig? It changes the
+requirement from pkgconfig-native to both pkgconfig and
+pkgconfig-native.
 
 
 -- 
