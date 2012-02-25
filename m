@@ -1,25 +1,24 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DC29E003E3;
-	Fri, 24 Feb 2012 22:12:38 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D66E7E003E3
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 22:12:57 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 24 Feb 2012 22:12:38 -0800
+	by orsmga102.jf.intel.com with ESMTP; 24 Feb 2012 22:12:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="111736995"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="111737128"
 Received: from unknown (HELO envy.home) ([10.255.15.122])
-	by orsmga001.jf.intel.com with ESMTP; 24 Feb 2012 22:11:38 -0800
-Message-ID: <4F487B78.9020301@linux.intel.com>
-Date: Fri, 24 Feb 2012 22:11:04 -0800
+	by orsmga001.jf.intel.com with ESMTP; 24 Feb 2012 22:12:57 -0800
+Message-ID: <4F487BC7.40108@linux.intel.com>
+Date: Fri, 24 Feb 2012 22:12:23 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:10.0) Gecko/20120131 Thunderbird/10.0
 MIME-Version: 1.0
-To: Michael Halstead <michael@yoctoproject.org>
-References: <4F4829B7.1090902@yoctoproject.org>
-In-Reply-To: <4F4829B7.1090902@yoctoproject.org>
+To: Yocto Project <yocto@yoctoproject.org>
+References: <4F4877BF.7070903@linux.intel.com>
+In-Reply-To: <4F4877BF.7070903@linux.intel.com>
 X-Enigmail-Version: 1.3.5
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: Bugzilla 4.0.3 online
+Subject: Re: DEPEND creep breaking poky-tiny
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,31 +30,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Feb 2012 06:12:38 -0000
+X-List-Received-Date: Sat, 25 Feb 2012 06:12:57 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-So far so good. 3 bugs opened, 1 fixed. :-)
 
-On 02/24/2012 04:22 PM, Michael Halstead wrote:
-> Bugzilla is updated and live on the new server at
-> https://bugzilla.yoctoproject.org/. SSL is now required to connect and
-> all page loads will use the yoctoproject.org domain. Old bookmarks
-> should be redirected properly.
+
+On 02/24/2012 09:55 PM, Darren Hart wrote:
+> I'm working through some issues with a poky-tiny build of
+> core-image-minimal failing. The first error is attributable to"
 > 
-> If you find issues with the new version please e-mail me at
-> michael@yoctoproject.org or open a bug at
-> https://bugzilla.yoctoproject.org/enter_bug.cgi?product=Bugzilla
+> commit f3677d679e5c74f9877f36cdb170bbfea9b7b9bb
+> glib-2.0: Add missing DEPENDS on dbus
 > 
-> Michael Halstead
-> Sys Admin / Yocto Project
+> dbus eventually pulls in shadow, which fails configure with the minimal
+> libc configuration in poky-tiny. Removing this dependency allows us to
+> make progress. (I understand a proper fix is needed, as the dependency
+> was added for a reason).
 > 
+> Next up is popt failing due to missing native language or widechar
+> support. pkgconfig is what brings in popt, and also what brought in glib
+> above. Nothing in popt suggests it changed recently, which leads me to
+> believe that the pkgconfig bit is new as I'm pretty sure I didn't need
+> glib in poky-tiny originally at all.
 > 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Has pkgconfig been added recently? Seems silly to ask, but that is where
+> things are pointing...
+
+At some point opkg gained an RDEPENDS on pkgconfig. Trying to track down
+where...
+
 
 -- 
 Darren Hart
