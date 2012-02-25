@@ -1,23 +1,20 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BD14E00AFC
-	for <yocto@yoctoproject.org>; Sat, 25 Feb 2012 08:28:25 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 25 Feb 2012 08:28:25 -0800
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 809C2E00B0A
+	for <yocto@yoctoproject.org>; Sat, 25 Feb 2012 08:31:11 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 25 Feb 2012 08:31:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="121304237"
-Received: from unknown (HELO [10.255.13.246]) ([10.255.13.246])
-	by fmsmga001.fm.intel.com with ESMTP; 25 Feb 2012 08:28:24 -0800
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-In-Reply-To: <cover.1330076070.git.paul.eggleton@linux.intel.com>
-References: <cover.1330076070.git.paul.eggleton@linux.intel.com>
-Date: Sat, 25 Feb 2012 10:28:36 -0600
-Message-ID: <1330187316.2485.242.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/2] meta-intel: improve interactions with common layer
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="111811043"
+Received: from unknown (HELO localhost) ([10.255.15.123])
+	by orsmga001.jf.intel.com with ESMTP; 25 Feb 2012 08:30:10 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Sat, 25 Feb 2012 08:29:30 -0800
+Message-Id: <a371d1ec41d49cc346eaca4b28ee854a145c1a73.1330187370.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.6.5
+Cc: Darren Hart <dvhart@linux.intel.com>
+Subject: [PATCH] poky-tiny: Assume pkgconfig is provided
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,60 +26,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Feb 2012 16:28:25 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 25 Feb 2012 16:31:11 -0000
 
-On Fri, 2012-02-24 at 09:38 +0000, Paul Eggleton wrote:
-> At the moment it is possible to enable one of the sub-layers of
-> meta-intel (e.g. meta-n450) without also enabling the meta-intel common
-> layer, which can lead to some nasty parsing errors. Here are two patches
-> to handle this situation in a nicer way.
-> 
-> (Note that BitBake currently does not actually terminate when
-> LAYERDEPENDS are not satisfied - I've got a patch queued to fix this.)
-> 
-> The following changes since commit 1ca68394faf33416f2aabee27323da7510ad6609:
-> 
->   netbase: put sys940x specific interfaces file in MACHINE directory (2012-02-10 17:27:27 -0800)
-> 
-> are available in the git repository at:
->   git://git.yoctoproject.org/meta-intel-contrib paule/layerdepends
->   http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=paule/layerdepends
-> 
+-dev packages require pkgconfig, but it pulls in glib->dbus->shadow
+which breaks with tiny's minimal libc.
 
-Pulled into meta-intel/master.  Thanks, Paul!
+-dev packages are not currently supported on poky-tiny.
 
-Tom
+Proposed-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+---
+ meta-yocto/conf/distro/poky-tiny.conf |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
 
-> Paul Eggleton (2):
->   meta-intel: replace "include" with "require"
->   meta-intel: add LAYERDEPENDS for layers needing the meta-intel common
->     layer
-> 
->  meta-cedartrail/conf/layer.conf                 |    2 ++
->  meta-cedartrail/conf/machine/cedartrail.conf    |    2 +-
->  meta-crownbay/conf/layer.conf                   |    2 ++
->  meta-crownbay/conf/machine/crownbay-noemgd.conf |    4 ++--
->  meta-crownbay/conf/machine/crownbay.conf        |    4 ++--
->  meta-emenlow/conf/layer.conf                    |    2 ++
->  meta-emenlow/conf/machine/emenlow.conf          |    4 ++--
->  meta-fishriver/conf/layer.conf                  |    2 ++
->  meta-fishriver/conf/machine/fishriver.conf      |    2 +-
->  meta-fri2/conf/layer.conf                       |    2 ++
->  meta-fri2/conf/machine/fri2-noemgd.conf         |    4 ++--
->  meta-fri2/conf/machine/fri2.conf                |    4 ++--
->  meta-jasperforest/conf/layer.conf               |    2 ++
->  meta-n450/conf/layer.conf                       |    2 ++
->  meta-n450/conf/machine/n450.conf                |    4 ++--
->  meta-romley/conf/layer.conf                     |    2 ++
->  meta-romley/conf/machine/romley.conf            |    2 +-
->  meta-sugarbay/conf/layer.conf                   |    2 ++
->  meta-sys940x/conf/layer.conf                    |    2 ++
->  meta-sys940x/conf/machine/sys940x-noemgd.conf   |    4 ++--
->  meta-sys940x/conf/machine/sys940x.conf          |    4 ++--
->  21 files changed, 39 insertions(+), 19 deletions(-)
-> 
-
+diff --git a/meta-yocto/conf/distro/poky-tiny.conf b/meta-yocto/conf/distro/poky-tiny.conf
+index 411347a..6fa4c90 100644
+--- a/meta-yocto/conf/distro/poky-tiny.conf
++++ b/meta-yocto/conf/distro/poky-tiny.conf
+@@ -55,6 +55,11 @@ ENABLE_WIDEC="false"
+ # eglibc->bash->gettext->libc-posix-clang-wchar dependency.
+ USE_NLS="no"
+ 
++# -dev packages require pkgconfig, but it pulls in glib->dbus->shadow
++# which breaks with tiny's minimal libc.
++# -dev packages are not currently supported on poky-tiny.
++ASSUME_PROVIDED += "pkgconfig$"
++
+ # Reconfigure eglibc for a smaller installation
+ # Comment out any of the lines below to disable them in the build
+ DISTRO_FEATURES_LIBC_TINY = "libc-libm libc-crypt"
+-- 
+1.7.6.5
 
 
