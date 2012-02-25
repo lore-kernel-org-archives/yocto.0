@@ -1,24 +1,35 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A0E3E003E3
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 22:28:08 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 24 Feb 2012 22:28:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="114782140"
-Received: from unknown (HELO envy.home) ([10.255.15.122])
-	by orsmga002.jf.intel.com with ESMTP; 24 Feb 2012 22:27:07 -0800
-Message-ID: <4F487F19.2000309@linux.intel.com>
-Date: Fri, 24 Feb 2012 22:26:33 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0) Gecko/20120131 Thunderbird/10.0
+Return-Path: <jingzhe.yu@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6EE5E003E3
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 22:46:18 -0800 (PST)
+Received: by lagw12 with SMTP id w12so4012845lag.35
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 22:46:17 -0800 (PST)
+Received-SPF: pass (google.com: domain of jingzhe.yu@gmail.com designates
+	10.152.114.133 as permitted sender) client-ip=10.152.114.133; 
+Authentication-Results: mr.google.com;
+	spf=pass (google.com: domain of jingzhe.yu@gmail.com
+	designates 10.152.114.133 as permitted sender)
+	smtp.mail=jingzhe.yu@gmail.com;
+	dkim=pass header.i=jingzhe.yu@gmail.com
+Received: from mr.google.com ([10.152.114.133])
+	by 10.152.114.133 with SMTP id jg5mr4479589lab.37.1330152377678
+	(num_hops = 1); Fri, 24 Feb 2012 22:46:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=fsp6nj5chf+kGsnVtBNW6Y1GlLVYf7CWQ3Ds8j+E+/A=;
+	b=bxDIE1S3g9v0J8+OdS45+l6iAaDPQUirmcWS7fQjNMplKxWK0HqggaNHyw6Ee4sqnI
+	8pePDcc1mlXugUHikyAXO6sg7XoptY4fz6OBdKyjyeTs1pNNnPEpdZcd0ynW24O9BGB+
+	zof8GPF+1BI7DGXc8FKdyBIyelJyfMQQUhGug=
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-References: <4F4877BF.7070903@linux.intel.com>
-In-Reply-To: <4F4877BF.7070903@linux.intel.com>
-X-Enigmail-Version: 1.3.5
-Subject: Re: DEPEND creep breaking poky-tiny
+Received: by 10.152.114.133 with SMTP id jg5mr3673063lab.37.1330152377592;
+	Fri, 24 Feb 2012 22:46:17 -0800 (PST)
+Received: by 10.112.58.52 with HTTP; Fri, 24 Feb 2012 22:46:17 -0800 (PST)
+Date: Sat, 25 Feb 2012 08:46:17 +0200
+Message-ID: <CA+mikA8JgrtBFKJ0uTaAtpEWbdru59z_FbXDV=YvTk=+ahtacQ@mail.gmail.com>
+From: JINGZHE YU <jingzhe.yu@gmail.com>
+To: yocto@yoctoproject.org
+Subject: apt-native_0.7.14.bb failed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,47 +41,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Feb 2012 06:28:08 -0000
+X-List-Received-Date: Sat, 25 Feb 2012 06:46:19 -0000
+Content-Type: multipart/alternative; boundary=f46d040839b3f6aa0d04b9c43b1b
+
+--f46d040839b3f6aa0d04b9c43b1b
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
+Hi,
 
+I tried to build image with: bitbake -k core-image-sato, with
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/poky-edison-6.0.tar.bz2
 
-On 02/24/2012 09:55 PM, Darren Hart wrote:
-> I'm working through some issues with a poky-tiny build of
-> core-image-minimal failing. The first error is attributable to"
-> 
-> commit f3677d679e5c74f9877f36cdb170bbfea9b7b9bb
-> glib-2.0: Add missing DEPENDS on dbus
-> 
-> dbus eventually pulls in shadow, which fails configure with the minimal
-> libc configuration in poky-tiny. Removing this dependency allows us to
-> make progress. (I understand a proper fix is needed, as the dependency
-> was added for a reason).
-> 
-> Next up is popt failing due to missing native language or widechar
-> support. pkgconfig is what brings in popt, and also what brought in glib
-> above. Nothing in popt suggests it changed recently, which leads me to
-> believe that the pkgconfig bit is new as I'm pretty sure I didn't need
-> glib in poky-tiny originally at all.
-> 
-> Has pkgconfig been added recently? Seems silly to ask, but that is where
-> things are pointing...
-> 
+but it failed, here is error message:
 
+-------------------------------------------------------------------------------------------
+NOTE: Running task 5229 of 5288 (ID: 82,
+/home/jingzhe/yocto/poky-edison-6.0/meta/recipes-devtools/apt/
+apt-native_0.7.14.bb, do_install)
+NOTE: package apt-native-0.7.14-r5: task do_install: Started
+ERROR: Function 'do_install_base' failed (see
+/home/jingzhe/yocto/edison-6.0-build/tmp/work/i686-linux/apt-native-0.7.14-r5/temp/log.do_install.28773
+for further information)
+ERROR: Logfile of failure stored in:
+/home/jingzhe/yocto/edison-6.0-build/tmp/work/i686-linux/apt-native-0.7.14-r5/temp/log.do_install.28773
+Log data follows:
+| oe_libinstall: cd bin
+| oe_libinstall: install -d
+/home/jingzhe/yocto/edison-6.0-build/tmp/work/i686-linux/apt-native-0.7.14-r5/image/home/jingzhe/yocto/edison-6.0-build/tmp/sysroots/i686-linux/usr/lib//
+| ERROR: oe_libinstall: unable to locate shared library
+| ERROR: Function 'do_install_base' failed (see
+/home/jingzhe/yocto/edison-6.0-build/tmp/work/i686-linux/apt-native-0.7.14-r5/temp/log.do_install.28773
+for further information)
+NOTE: package apt-native-0.7.14-r5: task do_install: Failed
+ERROR: Task 82
+(/home/jingzhe/yocto/poky-edison-6.0/meta/recipes-devtools/apt/
+apt-native_0.7.14.bb, do_install) failed with exit code '1'
+ERROR: '/home/jingzhe/yocto/poky-edison-6.0/meta/recipes-devtools/apt/
+apt-native_0.7.14.bb' failed
+--------------------------------------------------------------------------------------------------------------------------
 
-commit 76640582e8ba114d4e80a494f6680fd0ce57ca58
-Date:   Tue Jan 31 15:52:27 2012 +0000
+does anybody know how to solve it?
 
-    pkgconfig: Ensure pkgconfig RDEPENDS are tracked
+br,
 
-RP, is this meant to force the building of pkgconfig? It changes the
-requirement from pkgconfig-native to both pkgconfig and
-pkgconfig-native.
+Jingzhe
 
+--f46d040839b3f6aa0d04b9c43b1b
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Hi,<div><br></div><div>I tried to build image with:=A0<span style=3D"backgr=
+ound-color:rgb(255,255,255);color:rgb(51,51,51)">bitbake -k core-image-sato=
+, with=A0</span><span style=3D"background-color:rgb(255,255,255);color:rgb(=
+51,51,51)"><a href=3D"http://downloads.yoctoproject.org/releases/yocto/yoct=
+o-1.1/poky-edison-6.0.tar.bz2">http://downloads.yoctoproject.org/releases/y=
+octo/yocto-1.1/poky-edison-6.0.tar.bz2</a></span></div>
+<div><span style=3D"background-color:rgb(255,255,255);color:rgb(51,51,51)">=
+<br></span></div><div><span style=3D"background-color:rgb(255,255,255);colo=
+r:rgb(51,51,51)">but it failed, here is error message:</span></div><div><sp=
+an style=3D"background-color:rgb(255,255,255);color:rgb(51,51,51)"><br>
+</span></div><div><span style=3D"background-color:rgb(255,255,255);color:rg=
+b(51,51,51)">--------------------------------------------------------------=
+-----------------------------</span></div><div><span style=3D"background-co=
+lor:rgb(255,255,255);color:rgb(51,51,51)"><div>
+NOTE: Running task 5229 of 5288 (ID: 82, /home/jingzhe/yocto/poky-edison-6.=
+0/meta/recipes-devtools/apt/<a href=3D"http://apt-native_0.7.14.bb">apt-nat=
+ive_0.7.14.bb</a>, do_install)</div><div>NOTE: package apt-native-0.7.14-r5=
+: task do_install: Started</div>
+<div>ERROR: Function &#39;do_install_base&#39; failed (see /home/jingzhe/yo=
+cto/edison-6.0-build/tmp/work/i686-linux/apt-native-0.7.14-r5/temp/log.do_i=
+nstall.28773 for further information)</div><div>ERROR: Logfile of failure s=
+tored in: /home/jingzhe/yocto/edison-6.0-build/tmp/work/i686-linux/apt-nati=
+ve-0.7.14-r5/temp/log.do_install.28773</div>
+<div>Log data follows:</div><div>| oe_libinstall: cd bin</div><div>| oe_lib=
+install: install -d /home/jingzhe/yocto/edison-6.0-build/tmp/work/i686-linu=
+x/apt-native-0.7.14-r5/image/home/jingzhe/yocto/edison-6.0-build/tmp/sysroo=
+ts/i686-linux/usr/lib//</div>
+<div>| ERROR: oe_libinstall: unable to locate shared library</div><div>| ER=
+ROR: Function &#39;do_install_base&#39; failed (see /home/jingzhe/yocto/edi=
+son-6.0-build/tmp/work/i686-linux/apt-native-0.7.14-r5/temp/log.do_install.=
+28773 for further information)</div>
+<div>NOTE: package apt-native-0.7.14-r5: task do_install: Failed</div><div>=
+ERROR: Task 82 (/home/jingzhe/yocto/poky-edison-6.0/meta/recipes-devtools/a=
+pt/<a href=3D"http://apt-native_0.7.14.bb">apt-native_0.7.14.bb</a>, do_ins=
+tall) failed with exit code &#39;1&#39;</div>
+<div>ERROR: &#39;/home/jingzhe/yocto/poky-edison-6.0/meta/recipes-devtools/=
+apt/<a href=3D"http://apt-native_0.7.14.bb">apt-native_0.7.14.bb</a>&#39; f=
+ailed</div><div>-----------------------------------------------------------=
+---------------------------------------------------------------</div>
+<div><br></div><div>does anybody know how to solve it?</div><div><br></div>=
+<div>br,</div><div><br></div><div>Jingzhe</div></span></div>
 
+--f46d040839b3f6aa0d04b9c43b1b--
