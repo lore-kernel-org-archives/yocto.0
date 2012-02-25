@@ -1,22 +1,23 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB925E003E4
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 16:36:20 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 24 Feb 2012 16:36:20 -0800
+Return-Path: <josh@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF189E003E3
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 18:08:44 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 24 Feb 2012 18:08:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="121116891"
-Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.74])
-	by fmsmga001.fm.intel.com with ESMTP; 24 Feb 2012 16:36:20 -0800
-From: kishore.k.bodke@intel.com
-To: yocto@yoctoproject.org,
-	bruce.ashfield@windriver.com
-Date: Fri, 24 Feb 2012 16:35:08 -0800
-Message-Id: <bbd959c5589809e18dbad951a38ec66afbb47e14.1330129499.git.kishore.k.bodke@intel.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <cover.1330129499.git.kishore.k.bodke@intel.com>
-References: <cover.1330129499.git.kishore.k.bodke@intel.com>
-Subject: [KERNEL][PATCH 1/1] enable pvr features.
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="110612903"
+Received: from unknown (HELO [10.255.15.27]) ([10.255.15.27])
+	by azsmga001.ch.intel.com with ESMTP; 24 Feb 2012 18:08:44 -0800
+Message-ID: <4F4842AB.1070006@linux.intel.com>
+Date: Fri, 24 Feb 2012 18:08:43 -0800
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <CAC+thW1xz0eWYh3wHdFDZWRTUgqjKPe5XKEsbzwKLrwMFKZfUA@mail.gmail.com>
+In-Reply-To: <CAC+thW1xz0eWYh3wHdFDZWRTUgqjKPe5XKEsbzwKLrwMFKZfUA@mail.gmail.com>
+Subject: Re: adt-installer: cannot install package autoconf-nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,44 +29,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Feb 2012 00:36:21 -0000
+X-List-Received-Date: Sat, 25 Feb 2012 02:08:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+Hi Andrea,
 
-Cedartrail has pvr kernel features and patches.
+On 24/02/12 05:40, Andrea Galbusera wrote:
+> The installer was built against the latest version of its recipe as
+> per commit c6ec5a0d9e31a1694aba25e2ff76f1c933e556d5,
+> adt-installer-0.1.8+svnr596-r6. I guess a change was made with commit
+> de68393270d5455b4861d38cef3f081b9667d25f which requires installing
+> autoconf/automake-nativesdk but relevant ipks are missing from
+> http://adtrepo.yoctoproject.org/1.1/adt-ipk/, which is still default
+> in latest adt_installer.conf.
+>
+> Am I guessing right? First time digging into the adt_installer so I
+> might be completely out of track! Is this a known limit if building
+> adt_installer with latest edison branch? Should I file a bug for this?
+> If so, what's the best solution right now? Maybe using the edison
+> original adt_installer from the yocto downloads...
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
----
- meta/cfg/kernel-cache/cfg/drm-cdvpvr.cfg |    9 +++++++++
- meta/cfg/kernel-cache/cfg/drm-cdvpvr.scc |    2 ++
- 2 files changed, 11 insertions(+), 0 deletions(-)
- create mode 100644 meta/cfg/kernel-cache/cfg/drm-cdvpvr.cfg
- create mode 100644 meta/cfg/kernel-cache/cfg/drm-cdvpvr.scc
+This sounds like you've correctly deduced the issue - it looks like 
+there may be required changes which need backporting to the edison 
+repository - I'm currently running some builds to verify this.
 
-diff --git a/meta/cfg/kernel-cache/cfg/drm-cdvpvr.cfg b/meta/cfg/kernel-cache/cfg/drm-cdvpvr.cfg
-new file mode 100644
-index 0000000..0ab4488
---- /dev/null
-+++ b/meta/cfg/kernel-cache/cfg/drm-cdvpvr.cfg
-@@ -0,0 +1,9 @@
-+CONFIG_HIGHMEM4G=y
-+CONFIG_STAGING=y
-+CONFIG_DRM=y
-+CONFIG_SND_HDA_CODEC_HDMI=y
-+CONFIG_DRM_INTEL_CDV=y
-+CONFIG_DRM_CDV_RELEASE=y
-+
-+# CONFIG_DRM_CDV_DEBUG is not set
-+# CONFIG_DRM_PVR_PDUMP is not se
-diff --git a/meta/cfg/kernel-cache/cfg/drm-cdvpvr.scc b/meta/cfg/kernel-cache/cfg/drm-cdvpvr.scc
-new file mode 100644
-index 0000000..fbb8316
---- /dev/null
-+++ b/meta/cfg/kernel-cache/cfg/drm-cdvpvr.scc
-@@ -0,0 +1,2 @@
-+kconf hardware drm-cdvpvr.cfg
-+git merge yocto/pvr
+Please do report this information on bugzilla so that we can track it. 
+It's my first time digging into the ADT installer too so it may take a 
+couple of days to pull together all of the required fixes.
+
+Cheers,
+Joshua
 -- 
-1.7.5.4
-
+Joshua Lock
+         Yocto Project "Johannes factotum"
+         Intel Open Source Technology Centre
 
