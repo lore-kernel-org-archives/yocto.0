@@ -1,35 +1,39 @@
-Return-Path: <jingzhe.yu@gmail.com>
-Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6EE5E003E3
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 22:46:18 -0800 (PST)
-Received: by lagw12 with SMTP id w12so4012845lag.35
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 22:46:17 -0800 (PST)
-Received-SPF: pass (google.com: domain of jingzhe.yu@gmail.com designates
-	10.152.114.133 as permitted sender) client-ip=10.152.114.133; 
+Return-Path: <gizero@gmail.com>
+Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 716FEE003E3
+	for <yocto@yoctoproject.org>; Sat, 25 Feb 2012 01:41:50 -0800 (PST)
+Received: by vbjk13 with SMTP id k13so3207853vbj.35
+	for <yocto@yoctoproject.org>; Sat, 25 Feb 2012 01:41:49 -0800 (PST)
+Received-SPF: pass (google.com: domain of gizero@gmail.com designates
+	10.52.172.196 as permitted sender) client-ip=10.52.172.196; 
 Authentication-Results: mr.google.com;
-	spf=pass (google.com: domain of jingzhe.yu@gmail.com
-	designates 10.152.114.133 as permitted sender)
-	smtp.mail=jingzhe.yu@gmail.com;
-	dkim=pass header.i=jingzhe.yu@gmail.com
-Received: from mr.google.com ([10.152.114.133])
-	by 10.152.114.133 with SMTP id jg5mr4479589lab.37.1330152377678
-	(num_hops = 1); Fri, 24 Feb 2012 22:46:17 -0800 (PST)
+	spf=pass (google.com: domain of gizero@gmail.com
+	designates 10.52.172.196 as permitted sender)
+	smtp.mail=gizero@gmail.com; dkim=pass header.i=gizero@gmail.com
+Received: from mr.google.com ([10.52.172.196])
+	by 10.52.172.196 with SMTP id be4mr3020767vdc.80.1330162909783
+	(num_hops = 1); Sat, 25 Feb 2012 01:41:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=fsp6nj5chf+kGsnVtBNW6Y1GlLVYf7CWQ3Ds8j+E+/A=;
-	b=bxDIE1S3g9v0J8+OdS45+l6iAaDPQUirmcWS7fQjNMplKxWK0HqggaNHyw6Ee4sqnI
-	8pePDcc1mlXugUHikyAXO6sg7XoptY4fz6OBdKyjyeTs1pNNnPEpdZcd0ynW24O9BGB+
-	zof8GPF+1BI7DGXc8FKdyBIyelJyfMQQUhGug=
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=l1RIeJ6fnEQo1rNwaJSBiSYpWRIRx0FSTXVuQYb5N18=;
+	b=ADtX3NyvFqU0btWXQwD+iwH+Pt/wzwRrsdhI6gsFMb4MoLYtTIsrEpvPEJckdJM/fz
+	2xW59Q5s8kQgWs1XPANnhrCQIgcP6ITg+D7aCxwj784co4XDbiCR3S6sUd/uHpk88jFx
+	NkyMlZjwkMeSqPsic7704XoPrbJekEILX2kYA=
 MIME-Version: 1.0
-Received: by 10.152.114.133 with SMTP id jg5mr3673063lab.37.1330152377592;
-	Fri, 24 Feb 2012 22:46:17 -0800 (PST)
-Received: by 10.112.58.52 with HTTP; Fri, 24 Feb 2012 22:46:17 -0800 (PST)
-Date: Sat, 25 Feb 2012 08:46:17 +0200
-Message-ID: <CA+mikA8JgrtBFKJ0uTaAtpEWbdru59z_FbXDV=YvTk=+ahtacQ@mail.gmail.com>
-From: JINGZHE YU <jingzhe.yu@gmail.com>
-To: yocto@yoctoproject.org
-Subject: apt-native_0.7.14.bb failed
+Received: by 10.52.172.196 with SMTP id be4mr2399823vdc.80.1330162909609; Sat,
+	25 Feb 2012 01:41:49 -0800 (PST)
+Received: by 10.220.76.19 with HTTP; Sat, 25 Feb 2012 01:41:49 -0800 (PST)
+In-Reply-To: <4F4842AB.1070006@linux.intel.com>
+References: <CAC+thW1xz0eWYh3wHdFDZWRTUgqjKPe5XKEsbzwKLrwMFKZfUA@mail.gmail.com>
+	<4F4842AB.1070006@linux.intel.com>
+Date: Sat, 25 Feb 2012 10:41:49 +0100
+Message-ID: <CAC+thW1KYtoHs6cjBOHycYWxGyaJkuOEk5AGMNxW+ZUJpGXcLA@mail.gmail.com>
+From: Andrea Galbusera <gizero@gmail.com>
+To: Joshua Lock <josh@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: adt-installer: cannot install package autoconf-nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,95 +45,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Feb 2012 06:46:19 -0000
-Content-Type: multipart/alternative; boundary=f46d040839b3f6aa0d04b9c43b1b
-
---f46d040839b3f6aa0d04b9c43b1b
+X-List-Received-Date: Sat, 25 Feb 2012 09:41:50 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+Hi Joshua,
 
-I tried to build image with: bitbake -k core-image-sato, with
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/poky-edison-6.0.tar.bz2
+On Sat, Feb 25, 2012 at 3:08 AM, Joshua Lock <josh@linux.intel.com> wrote:
+> Hi Andrea,
+>
+>
+> On 24/02/12 05:40, Andrea Galbusera wrote:
+>>
+>> The installer was built against the latest version of its recipe as
+>> per commit c6ec5a0d9e31a1694aba25e2ff76f1c933e556d5,
+>> adt-installer-0.1.8+svnr596-r6. I guess a change was made with commit
+>> de68393270d5455b4861d38cef3f081b9667d25f which requires installing
+>> autoconf/automake-nativesdk but relevant ipks are missing from
+>> http://adtrepo.yoctoproject.org/1.1/adt-ipk/, which is still default
+>> in latest adt_installer.conf.
+>>
+>> Am I guessing right? First time digging into the adt_installer so I
+>> might be completely out of track! Is this a known limit if building
+>> adt_installer with latest edison branch? Should I file a bug for this?
+>> If so, what's the best solution right now? Maybe using the edison
+>> original adt_installer from the yocto downloads...
+>
+>
+> This sounds like you've correctly deduced the issue - it looks like there
+> may be required changes which need backporting to the edison repository -
+> I'm currently running some builds to verify this.
+>
+> Please do report this information on bugzilla so that we can track it. It's
+> my first time digging into the ADT installer too so it may take a couple of
+> days to pull together all of the required fixes.
 
-but it failed, here is error message:
+Submitted to shiny new bugzilla with #2031. I left the ADT version
+unspecified, since I believe we are somewhere between 1.1 and 1.1.1
+with current edison.
 
--------------------------------------------------------------------------------------------
-NOTE: Running task 5229 of 5288 (ID: 82,
-/home/jingzhe/yocto/poky-edison-6.0/meta/recipes-devtools/apt/
-apt-native_0.7.14.bb, do_install)
-NOTE: package apt-native-0.7.14-r5: task do_install: Started
-ERROR: Function 'do_install_base' failed (see
-/home/jingzhe/yocto/edison-6.0-build/tmp/work/i686-linux/apt-native-0.7.14-r5/temp/log.do_install.28773
-for further information)
-ERROR: Logfile of failure stored in:
-/home/jingzhe/yocto/edison-6.0-build/tmp/work/i686-linux/apt-native-0.7.14-r5/temp/log.do_install.28773
-Log data follows:
-| oe_libinstall: cd bin
-| oe_libinstall: install -d
-/home/jingzhe/yocto/edison-6.0-build/tmp/work/i686-linux/apt-native-0.7.14-r5/image/home/jingzhe/yocto/edison-6.0-build/tmp/sysroots/i686-linux/usr/lib//
-| ERROR: oe_libinstall: unable to locate shared library
-| ERROR: Function 'do_install_base' failed (see
-/home/jingzhe/yocto/edison-6.0-build/tmp/work/i686-linux/apt-native-0.7.14-r5/temp/log.do_install.28773
-for further information)
-NOTE: package apt-native-0.7.14-r5: task do_install: Failed
-ERROR: Task 82
-(/home/jingzhe/yocto/poky-edison-6.0/meta/recipes-devtools/apt/
-apt-native_0.7.14.bb, do_install) failed with exit code '1'
-ERROR: '/home/jingzhe/yocto/poky-edison-6.0/meta/recipes-devtools/apt/
-apt-native_0.7.14.bb' failed
---------------------------------------------------------------------------------------------------------------------------
+After looking a little closer at the adt_installer.conf generated from
+my build tree I noticed the following diffs wrt 1.1. First line looks
+pretty strange to me. Hope this helps
 
-does anybody know how to solve it?
+@@ -1,4 +1,4 @@
+-YOCTOADT_VERSION=1.1
++1.1=1.1
+ # Yocto ADT Installer Configuration File
+ #
+ # Copyright 2010-2011 by Intel Corp.
+@@ -24,7 +24,7 @@
 
-br,
+ # Your yocto distro repository, this should include IPKG based
+packages and root filesystem files where the installation is based on
 
-Jingzhe
+-YOCTOADT_REPO="http://adtrepo.yoctoproject.org/$YOCTOADT_VERSION"
++YOCTOADT_REPO="http://adtrepo.yoctoproject.org/1.1"
 
---f46d040839b3f6aa0d04b9c43b1b
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+ # The following are for system wide setup
+ # Target architectures that you want to setup host cross dev environment for
 
-Hi,<div><br></div><div>I tried to build image with:=A0<span style=3D"backgr=
-ound-color:rgb(255,255,255);color:rgb(51,51,51)">bitbake -k core-image-sato=
-, with=A0</span><span style=3D"background-color:rgb(255,255,255);color:rgb(=
-51,51,51)"><a href=3D"http://downloads.yoctoproject.org/releases/yocto/yoct=
-o-1.1/poky-edison-6.0.tar.bz2">http://downloads.yoctoproject.org/releases/y=
-octo/yocto-1.1/poky-edison-6.0.tar.bz2</a></span></div>
-<div><span style=3D"background-color:rgb(255,255,255);color:rgb(51,51,51)">=
-<br></span></div><div><span style=3D"background-color:rgb(255,255,255);colo=
-r:rgb(51,51,51)">but it failed, here is error message:</span></div><div><sp=
-an style=3D"background-color:rgb(255,255,255);color:rgb(51,51,51)"><br>
-</span></div><div><span style=3D"background-color:rgb(255,255,255);color:rg=
-b(51,51,51)">--------------------------------------------------------------=
------------------------------</span></div><div><span style=3D"background-co=
-lor:rgb(255,255,255);color:rgb(51,51,51)"><div>
-NOTE: Running task 5229 of 5288 (ID: 82, /home/jingzhe/yocto/poky-edison-6.=
-0/meta/recipes-devtools/apt/<a href=3D"http://apt-native_0.7.14.bb">apt-nat=
-ive_0.7.14.bb</a>, do_install)</div><div>NOTE: package apt-native-0.7.14-r5=
-: task do_install: Started</div>
-<div>ERROR: Function &#39;do_install_base&#39; failed (see /home/jingzhe/yo=
-cto/edison-6.0-build/tmp/work/i686-linux/apt-native-0.7.14-r5/temp/log.do_i=
-nstall.28773 for further information)</div><div>ERROR: Logfile of failure s=
-tored in: /home/jingzhe/yocto/edison-6.0-build/tmp/work/i686-linux/apt-nati=
-ve-0.7.14-r5/temp/log.do_install.28773</div>
-<div>Log data follows:</div><div>| oe_libinstall: cd bin</div><div>| oe_lib=
-install: install -d /home/jingzhe/yocto/edison-6.0-build/tmp/work/i686-linu=
-x/apt-native-0.7.14-r5/image/home/jingzhe/yocto/edison-6.0-build/tmp/sysroo=
-ts/i686-linux/usr/lib//</div>
-<div>| ERROR: oe_libinstall: unable to locate shared library</div><div>| ER=
-ROR: Function &#39;do_install_base&#39; failed (see /home/jingzhe/yocto/edi=
-son-6.0-build/tmp/work/i686-linux/apt-native-0.7.14-r5/temp/log.do_install.=
-28773 for further information)</div>
-<div>NOTE: package apt-native-0.7.14-r5: task do_install: Failed</div><div>=
-ERROR: Task 82 (/home/jingzhe/yocto/poky-edison-6.0/meta/recipes-devtools/a=
-pt/<a href=3D"http://apt-native_0.7.14.bb">apt-native_0.7.14.bb</a>, do_ins=
-tall) failed with exit code &#39;1&#39;</div>
-<div>ERROR: &#39;/home/jingzhe/yocto/poky-edison-6.0/meta/recipes-devtools/=
-apt/<a href=3D"http://apt-native_0.7.14.bb">apt-native_0.7.14.bb</a>&#39; f=
-ailed</div><div>-----------------------------------------------------------=
----------------------------------------------------------------</div>
-<div><br></div><div>does anybody know how to solve it?</div><div><br></div>=
-<div>br,</div><div><br></div><div>Jingzhe</div></span></div>
+Cheers,
+Andrea
 
---f46d040839b3f6aa0d04b9c43b1b--
