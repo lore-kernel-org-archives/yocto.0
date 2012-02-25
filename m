@@ -1,44 +1,44 @@
 Return-Path: <halstead@happypunch.com>
 Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
 	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B6B1E003E3
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 14:35:35 -0800 (PST)
-Received: by pbbrp8 with SMTP id rp8so2038420pbb.35
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 14:35:35 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9F35E003E3
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 16:22:13 -0800 (PST)
+Received: by pbbrp8 with SMTP id rp8so2126649pbb.35
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2012 16:22:13 -0800 (PST)
 Received-SPF: pass (google.com: domain of halstead@happypunch.com designates
-	10.68.225.73 as permitted sender) client-ip=10.68.225.73; 
+	10.68.132.229 as permitted sender) client-ip=10.68.132.229; 
 Authentication-Results: mr.google.com; spf=pass (google.com: domain of
-	halstead@happypunch.com designates 10.68.225.73 as permitted
+	halstead@happypunch.com designates 10.68.132.229 as permitted
 	sender) smtp.mail=halstead@happypunch.com;
 	dkim=pass header.i=halstead@happypunch.com
-Received: from mr.google.com ([10.68.225.73])
-	by 10.68.225.73 with SMTP id ri9mr12842679pbc.70.1330122935144
-	(num_hops = 1); Fri, 24 Feb 2012 14:35:35 -0800 (PST)
+Received: from mr.google.com ([10.68.132.229])
+	by 10.68.132.229 with SMTP id ox5mr13690997pbb.65.1330129333823
+	(num_hops = 1); Fri, 24 Feb 2012 16:22:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=happypunch.com; s=google;
 	h=sender:message-id:date:from:user-agent:mime-version:to:subject
 	:x-enigmail-version:content-type;
-	bh=lMfpnrNL5nLUuTM7xdV8rx8NMAfoaqwiWMyMPfBMz+I=;
-	b=dlWnDZZWER+sKgFFtEJuomZvZbh6ma6AqBVtpsHlY/ZPloB0uGBCiwaSS+xqIZEAPg
-	vPV9cYTDEYGThj8CJmhAi3nGBOB079YJ5KUqFoxGKLB47O5blN6TJS5T3snS6lru6CzI
-	clfSo9j2KG43Mv3t/gFNtNMOaKPXezOsWAIKg=
-Received: by 10.68.225.73 with SMTP id ri9mr10610766pbc.70.1330122935077;
-	Fri, 24 Feb 2012 14:35:35 -0800 (PST)
+	bh=gYc16PHlXTYAERBTcn6Kg4koBWuDD9lH0NdzNZVu710=;
+	b=H2Qairo94RI0bK8xI56On/TFLKgNTuFGgq/fZM+1DMZrQ/Ru8W1UPvaGGoYK0y5JWE
+	+jg1KRnUPKRC1cQPiZSIGIhtwfeTD0DQgOj81FYhhj4Is50KcQfV4nFmXUnBbfVKXMVI
+	vRAYDQRtnSMNshsABnlvSGeGxpCoeibUySdyQ=
+Received: by 10.68.132.229 with SMTP id ox5mr11205326pbb.65.1330129333703;
+	Fri, 24 Feb 2012 16:22:13 -0800 (PST)
 Received: from [192.168.1.5] (static-50-43-40-121.bvtn.or.frontiernet.net.
 	[50.43.40.121])
-	by mx.google.com with ESMTPS id vy2sm5440549pbb.48.2012.02.24.14.35.32
-	(version=SSLv3 cipher=OTHER); Fri, 24 Feb 2012 14:35:33 -0800 (PST)
+	by mx.google.com with ESMTPS id h3sm5639198pbr.75.2012.02.24.16.22.11
+	(version=SSLv3 cipher=OTHER); Fri, 24 Feb 2012 16:22:12 -0800 (PST)
 Sender: Michael Halstead <halstead@happypunch.com>
-Message-ID: <4F4810B9.7090007@yoctoproject.org>
-Date: Fri, 24 Feb 2012 14:35:37 -0800
+Message-ID: <4F4829B7.1090902@yoctoproject.org>
+Date: Fri, 24 Feb 2012 16:22:15 -0800
 From: Michael Halstead <michael@yoctoproject.org>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
 MIME-Version: 1.0
 To: Yocto Project Discussion <yocto@yoctoproject.org>
 X-Enigmail-Version: 1.3.5
-X-Gm-Message-State: ALoCoQlTbJatk/jGnYTxj69IC/xW6akX7KJeYZkT5BXiXTnK1+JGGwM4eqcgwNTLJhV6DJUZ7YR5
-Subject: Bugzilla downtime begins in 30 minutes
+X-Gm-Message-State: ALoCoQn0VWtcvSDibG5SbfsbSnWHFF4+TdE6gm52DrxjRBmY5uL36GZxCwkpYGnG8Y8wXgCujFVE
+Subject: Bugzilla 4.0.3 online
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,26 +50,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Feb 2012 22:35:35 -0000
-X-Groupsio-MsgNum: 4930
+X-List-Received-Date: Sat, 25 Feb 2012 00:22:14 -0000
+X-Groupsio-MsgNum: 4931
 Content-Type: multipart/signed; protocol="application/pkcs7-signature";
-	micalg=sha1; boundary="------------ms090902060201080303020101"
+	micalg=sha1; boundary="------------ms030206050202010703050305"
 
---------------ms090902060201080303020101
+--------------ms030206050202010703050305
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-We are starting the bug tracker upgrade in 30 minutes. There will be
-some downtime during the transition because we are both upgrading and
-moving to new servers.
+Bugzilla is updated and live on the new server at
+https://bugzilla.yoctoproject.org/. SSL is now required to connect and
+all page loads will use the yoctoproject.org domain. Old bookmarks
+should be redirected properly.
 
-I will send another list mail went the process is complete.
+If you find issues with the new version please e-mail me at
+michael@yoctoproject.org or open a bug at
+https://bugzilla.yoctoproject.org/enter_bug.cgi?product=3DBugzilla
 
 Michael Halstead
 Sys Admin / Yocto Project
 
 
---------------ms090902060201080303020101
+--------------ms030206050202010703050305
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -139,8 +142,8 @@ T1jdMQD6k07jZ1kpPAHujuCA5p6EWs+hpDXh7fq+lmfM9zZoTWtEDIJMrLvYy2IMD3NE0clxH+GY
 iTGCA9AwggPMAgEBMIGUMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjEr
 MCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3Rh
 cnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAwN+0TAJBgUrDgMC
-GgUAoIICEDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMjAyMjQy
-MjM1MzdaMCMGCSqGSIb3DQEJBDEWBBRt0iz2u6PEk5I9J0Zy16PNlZOLDTBfBgkqhkiG9w0BCQ8x
+GgUAoIICEDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMjAyMjUw
+MDIyMTVaMCMGCSqGSIb3DQEJBDEWBBRh5RTIoKV7nlzYScYknUmLyYxYyzBfBgkqhkiG9w0BCQ8x
 UjBQMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwIC
 AUAwBwYFKw4DAgcwDQYIKoZIhvcNAwICASgwgaUGCSsGAQQBgjcQBDGBlzCBlDCBjDELMAkGA1UE
 BhMCSUwxFjAUBgNVBAoTDVN0YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENl
@@ -148,11 +151,11 @@ cnRpZmljYXRlIFNpZ25pbmcxODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDEgUHJpbWFyeSBJbnRl
 cm1lZGlhdGUgQ2xpZW50IENBAgMDftEwgacGCyqGSIb3DQEJEAILMYGXoIGUMIGMMQswCQYDVQQG
 EwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2Vy
 dGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVy
-bWVkaWF0ZSBDbGllbnQgQ0ECAwN+0TANBgkqhkiG9w0BAQEFAASCAQCMxo0/QtTGipurUVnEfcSq
-kzJH6kVkc4C7OMZPBuCPlAGDOkAJdZqRQ7E2F8y3k9FYvtea0sktwN8k35S2+C8ipJK/rAf1gYU6
-ukkV8QbS2aiHUwMj+XnV5IOO0n7wqHI5HvOQJU5kErcnmm+jFLfLD60XQtWmV8MsYsL6xXXCm9nR
-XOjWPy2P28hp46njV4nYS+5Guj/BKeLIdckX/9wc2+u/RjA+IuloShYS7H1mS8MH0vC8rt5zfcVu
-C9Iv0ngiwVEo+YeTEGZPsLst4ijne45f8RWvv7COwxHSHguUoa5apwJqCL17/NeRpxwCraxfjRlU
-JHSh4ryMuy2nSPgtAAAAAAAA
+bWVkaWF0ZSBDbGllbnQgQ0ECAwN+0TANBgkqhkiG9w0BAQEFAASCAQCtKn3Zc1LvfCaOA2XDkHPp
+NHslCG8xTpt8fghOB/L/NiR1I1cALpPYpsJDAXpeprNYDgK55t6oPIA4HNs8W/sC3g15Q2RPREcH
+xsmCugHV9nFYuKmT+HB5EO1ZBwAS39ObFSELPiU8h+mVvZqwXWD/1JgVOEMxBvQOI0pC+sk2uXts
+7LWM8AUDxON+yPF+LOz15/UPwOG9MPe6kwjlQDr4NwfKHBYGapDrflVANEAeOWPx5I98KUV4UTaY
+qeLEd63OBAksaZDZIEttkvRy4Q5D9NZ31zBRNTGqmgLRcXZyEdaiIEpDXrDWep+ZO43VQ8aN8P/S
+2kOvf6f3RJ888ndtAAAAAAAA
 
---------------ms090902060201080303020101--
+--------------ms030206050202010703050305--
