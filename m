@@ -1,24 +1,25 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07A14E0074A
-	for <yocto@yoctoproject.org>; Sun, 26 Feb 2012 21:05:45 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 26 Feb 2012 21:05:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="112127446"
-Received: from unknown (HELO localhost) ([10.255.15.44])
-	by orsmga001.jf.intel.com with ESMTP; 26 Feb 2012 21:04:44 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>,
-	Bruce Ashfield <bruce.ashfield@windriver.com>,
-	Tom Zanussi <tom.zanussi@intel.com>
-Date: Sun, 26 Feb 2012 21:04:04 -0800
-Message-Id: <cover.1330319008.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.6.5
-Subject: [PATCH 0/1] linux-yocto-tiny: Bump SRCREV and PV to 3.0.18
+Return-Path: <niqingliang@insigma.com.cn>
+Received: from WX-Edge.insigma.com.cn (mx.insigma.com.cn [115.236.48.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1387AE0074A
+	for <yocto@yoctoproject.org>; Sun, 26 Feb 2012 21:08:52 -0800 (PST)
+Received: from WX-EXCHMB2.insigma.com.cn (10.0.1.203) by
+	WX-Edge.insigma.com.cn (10.0.1.205) with Microsoft SMTP Server (TLS) id
+	8.1.436.0; Mon, 27 Feb 2012 13:08:49 +0800
+Received: from [192.168.0.98] (122.224.76.38) by Wx-ExchMB2.insigma.com.cn
+	(10.0.1.203) with Microsoft SMTP Server id 8.1.436.0; Mon, 27 Feb 2012
+	13:08:47 +0800
+Message-ID: <1330319194.1086.120.camel@localhost.localdomain>
+From: Ni Qingliang <niqingliang@insigma.com.cn>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 27 Feb 2012 13:06:34 +0800
+Organization: Insigma
+X-Mailer: Evolution 3.2.3 
+MIME-Version: 1.0
+Subject: [glib]glib-2.0 install fail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: niqingliang@insigma.com.cn
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -27,23 +28,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Feb 2012 05:05:45 -0000
+X-List-Received-Date: Mon, 27 Feb 2012 05:08:52 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-The following changes since commit 6cf61b30aaaee43dd8ea8037d583db413250beb0:
+Hi, All:
 
-  arch-armv7.inc: fix quoting (2012-02-26 23:01:42 +0000)
+after latest update, the glib-2.0 install fail with err info:
 
-are available in the git repository at:
-  git://git.pokylinux.org/poky-contrib dvhart/tiny
-  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=dvhart/tiny
+rmdir: failed to remove
+`.../tmp/work/x86_64-linux/glib-2.0-native-1_2.30.2-r6/image/.../tmp/sysroots/x86_64-linux/usr/lib/gio/modules/': Directory not empty
 
-Darren Hart (1):
-  linux-yocto-tiny: Bump SRCREV and PV to 3.0.18
+I have checked that directory, there are two files:
+libgiofam.la libgiofam.so.
 
- meta/recipes-kernel/linux/linux-yocto-tiny_3.0.bb |    6 +++---
- 1 files changed, 3 insertions(+), 3 deletions(-)
+what's the problem? And there are not these two files on pc.
+
+thanks.
+
 
 -- 
-1.7.6.5
+Yi Qingliang
+niqingliang@insigma.com.cn
+https://niqingliang2003.wordpress.com
 
 
