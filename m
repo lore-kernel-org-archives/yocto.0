@@ -1,32 +1,33 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60984E0059B
-	for <yocto@yoctoproject.org>; Mon, 27 Feb 2012 07:22:53 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 27 Feb 2012 07:22:52 -0800
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0584E00749
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2012 07:27:43 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 27 Feb 2012 07:27:43 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="112260279"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.3.242])
-	by orsmga001.jf.intel.com with ESMTP; 27 Feb 2012 07:22:51 -0800
-Received: from irsmsx104.ger.corp.intel.com (163.33.3.159) by
-	irsmsx602.ger.corp.intel.com (163.33.3.242) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 27 Feb 2012 15:22:51 +0000
-Received: from irsmsx101.ger.corp.intel.com ([169.254.1.99]) by
-	IRSMSX104.ger.corp.intel.com ([169.254.5.165]) with mapi id
-	14.01.0355.002; Mon, 27 Feb 2012 15:22:50 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, William Mills
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="70728694"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.226.10])
+	by AZSMGA002.ch.intel.com with ESMTP; 27 Feb 2012 07:27:41 -0800
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx605.amr.corp.intel.com (10.22.226.10) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 27 Feb 2012 07:27:41 -0800
+Received: from orsmsx102.amr.corp.intel.com ([169.254.1.234]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.120]) with mapi id
+	14.01.0355.002; Mon, 27 Feb 2012 07:27:41 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>, William Mills
 	<wmills@ti.com>
 Thread-Topic: [yocto] Yocto Project Quick Start Feedback
-Thread-Index: AQHM9WOqnap2w9MCnEajVpbTBab/kw==
-Date: Mon, 27 Feb 2012 15:22:50 +0000
-Message-ID: <CB714F54.8638%belen.barros.pena@intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB12379374D0844@ORSMSX102.amr.corp.intel.com>
+Thread-Index: AQHM8o0KICcH6ZR82Eyhss1XDlDHDpZMJfNwgACzsgD//3wBMIAAmkyA//+vUiCABJDrgP//q93gABGJbgAAEJxnAA==
+Date: Mon, 27 Feb 2012 15:27:40 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB12379374D0881@ORSMSX102.amr.corp.intel.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB12379374D0844@ORSMSX102.amr.corp.intel.com>
+	<CB714F54.8638%belen.barros.pena@intel.com>
+In-Reply-To: <CB714F54.8638%belen.barros.pena@intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.14.0.111121
-x-originating-ip: [10.254.193.227]
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
 Cc: "Abbas, Mohamed" <mohamed.abbas@intel.com>,
 	Yocto Project <yocto@yoctoproject.org>,
@@ -45,11 +46,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Feb 2012 15:22:53 -0000
+X-List-Received-Date: Mon, 27 Feb 2012 15:27:44 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <594AAA442C6814489D829FDE477613FA@intel.com>
 Content-Transfer-Encoding: quoted-printable
+
+I notified the person here that should know how to do that stuff. =20
+
+Thanks,
+Scott
+
+-----Original Message-----
+From: Barros Pena, Belen=20
+Sent: Monday, February 27, 2012 9:23 AM
+To: Rifenbark, Scott M; William Mills
+Cc: Abbas, Mohamed; Yocto Project; Darren Hart; Perez-Gonzalez, Inaky; Purd=
+ie, Richard
+Subject: Re: [yocto] Yocto Project Quick Start Feedback
 
 Thanks, Scott. Do you know who manages the CMS? I guess that's the person
 who could add the GA script to the page.
@@ -139,16 +152,5 @@ wrote:
 >>yocto@yoctoproject.org
 >>https://lists.yoctoproject.org/listinfo/yocto
 >
-
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
 
 
