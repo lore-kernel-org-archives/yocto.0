@@ -1,27 +1,26 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B06ABE0074A
-	for <yocto@yoctoproject.org>; Sun, 26 Feb 2012 21:18:59 -0800 (PST)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26D70E0074A
+	for <yocto@yoctoproject.org>; Sun, 26 Feb 2012 21:25:47 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q1R5Icuk018771
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q1R5PkwN017655
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 26 Feb 2012 21:18:39 -0800 (PST)
+	Sun, 26 Feb 2012 21:25:46 -0800 (PST)
 Received: from bruce-ashfields-macbook.local (128.224.20.219) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Sun, 26 Feb 2012 21:18:38 -0800
-Message-ID: <4F4B122C.60406@windriver.com>
-Date: Mon, 27 Feb 2012 00:18:36 -0500
+	14.1.255.0; Sun, 26 Feb 2012 21:25:45 -0800
+Message-ID: <4F4B13D8.9050601@windriver.com>
+Date: Mon, 27 Feb 2012 00:25:44 -0500
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
 	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <cover.1330319008.git.dvhart@linux.intel.com>
-	<e43a5b93817dc1a4ed2c526e3e9ea825347bf212.1330319008.git.dvhart@linux.intel.com>
-	<4F4B0FC8.7030807@windriver.com> <4F4B1101.5080907@linux.intel.com>
-In-Reply-To: <4F4B1101.5080907@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH 1/1] linux-yocto-tiny: Bump SRCREV and PV to 3.0.18
+To: <kishore.k.bodke@intel.com>
+References: <cover.1330129499.git.kishore.k.bodke@intel.com>
+	<bbd959c5589809e18dbad951a38ec66afbb47e14.1330129499.git.kishore.k.bodke@intel.com>
+In-Reply-To: <bbd959c5589809e18dbad951a38ec66afbb47e14.1330129499.git.kishore.k.bodke@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [KERNEL][PATCH 1/1] enable pvr features.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,65 +32,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Feb 2012 05:18:59 -0000
+X-List-Received-Date: Mon, 27 Feb 2012 05:25:47 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12-02-27 12:13 AM, Darren Hart wrote:
+On 12-02-24 7:35 PM, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke<kishore.k.bodke@intel.com>
 >
+> Cedartrail has pvr kernel features and patches.
 >
-> On 02/26/2012 09:08 PM, Bruce Ashfield wrote:
->> On 12-02-27 12:04 AM, Darren Hart wrote:
->>> Bring linux-yocto-tiny inline with the other 3.0 linux-yocto-* recipes.
->>> Built and booted for qemux86.
->>
->> I'm just about to pull the trigger (i.e. a matter of hours) on 3.0.22. If
->> you want to wait for that, or let this stand, either is fine with me, but
->> I thought I'd warn :)
->>
+> Signed-off-by: Kishore Bodke<kishore.k.bodke@intel.com>
+> ---
+>   meta/cfg/kernel-cache/cfg/drm-cdvpvr.cfg |    9 +++++++++
+>   meta/cfg/kernel-cache/cfg/drm-cdvpvr.scc |    2 ++
+>   2 files changed, 11 insertions(+), 0 deletions(-)
+>   create mode 100644 meta/cfg/kernel-cache/cfg/drm-cdvpvr.cfg
+>   create mode 100644 meta/cfg/kernel-cache/cfg/drm-cdvpvr.scc
 >
-> If you do 3.0.22, would you just bump this recipe too along with the
-> other linux-yocto*3.0 recipes?
+> diff --git a/meta/cfg/kernel-cache/cfg/drm-cdvpvr.cfg b/meta/cfg/kernel-cache/cfg/drm-cdvpvr.cfg
+> new file mode 100644
+> index 0000000..0ab4488
+> --- /dev/null
+> +++ b/meta/cfg/kernel-cache/cfg/drm-cdvpvr.cfg
+> @@ -0,0 +1,9 @@
+> +CONFIG_HIGHMEM4G=y
+> +CONFIG_STAGING=y
+> +CONFIG_DRM=y
+> +CONFIG_SND_HDA_CODEC_HDMI=y
+> +CONFIG_DRM_INTEL_CDV=y
+> +CONFIG_DRM_CDV_RELEASE=y
+> +
+> +# CONFIG_DRM_CDV_DEBUG is not set
+> +# CONFIG_DRM_PVR_PDUMP is not se
+> diff --git a/meta/cfg/kernel-cache/cfg/drm-cdvpvr.scc b/meta/cfg/kernel-cache/cfg/drm-cdvpvr.scc
+> new file mode 100644
+> index 0000000..fbb8316
+> --- /dev/null
+> +++ b/meta/cfg/kernel-cache/cfg/drm-cdvpvr.scc
+> @@ -0,0 +1,2 @@
+> +kconf hardware drm-cdvpvr.cfg
+> +git merge yocto/pvr
 
-Yep. I meant to offer that. I'll do some quick build tests so I can
-push that out with everything else.
+I was just completing the merge on this, and I realized that we
+should put the branch merge in the BSP/machine, not in the generic
+feature. The configs are good, but we want the cedartrail to do that
+merge, not the config.
+
+How does that sound to you ? If it is ok, spin me a patch with that
+merge line removed and I'll push it out right away.
+
+Cheers,
 
 Bruce
-
->
-> Thanks,
->
-> Darren
->
->> Cheers,
->>
->> Bruce
->>
->>>
->>> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
->>> ---
->>>    meta/recipes-kernel/linux/linux-yocto-tiny_3.0.bb |    6 +++---
->>>    1 files changed, 3 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/meta/recipes-kernel/linux/linux-yocto-tiny_3.0.bb b/meta/recipes-kernel/linux/linux-yocto-tiny_3.0.bb
->>> index 061476c..fe4033b 100644
->>> --- a/meta/recipes-kernel/linux/linux-yocto-tiny_3.0.bb
->>> +++ b/meta/recipes-kernel/linux/linux-yocto-tiny_3.0.bb
->>> @@ -5,10 +5,10 @@ require recipes-kernel/linux/linux-yocto.inc
->>>    KMACHINE = "yocto/standard/base"
->>>    KBRANCH = "${KMACHINE}"
->>>
->>> -LINUX_VERSION ?= "3.0.12"
->>> +LINUX_VERSION ?= "3.0.18"
->>>
->>> -SRCREV_machine ?= "f389d310965a56091f688b28ea8be6d9cbb7fbbe"
->>> -SRCREV_meta ?= "04a52a32cbdf0972033b97b83eaa83eb275dfdc9"
->>> +SRCREV_machine ?= "5df0b4c2538399aed543133b3855f809adf08ab8"
->>> +SRCREV_meta ?= "b78a519841bd8b477cad599af8d38df6760445c1"
->>>
->>>    PR = "r1"
->>>    PV = "${LINUX_VERSION}+git${SRCPV}"
->>
->
 
 
