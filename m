@@ -1,25 +1,31 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 483E1E0123C
-	for <yocto@yoctoproject.org>; Tue, 28 Feb 2012 08:44:01 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 28 Feb 2012 08:44:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="112689616"
-Received: from unknown (HELO [10.255.15.37]) ([10.255.15.37])
-	by orsmga001.jf.intel.com with ESMTP; 28 Feb 2012 08:42:59 -0800
-Message-ID: <4F4D0413.8050709@linux.intel.com>
-Date: Tue, 28 Feb 2012 08:42:59 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA682E0123C
+	for <yocto@yoctoproject.org>; Tue, 28 Feb 2012 10:51:35 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1S2S98-0001rz-Cs
+	for yocto@yoctoproject.org; Tue, 28 Feb 2012 13:51:34 -0500
+Date: Tue, 28 Feb 2012 13:51:26 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1202281349020.2440@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: "Liu, Song" <song.liu@intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
-	<7E680CB2A76BB8438D08CF13C09FC53A38CEE8D8@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A38CEE8D8@ORSMSX101.amr.corp.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, February 28, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: proper recipe for building for beagle xM? meta-ti?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,59 +37,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Feb 2012 16:44:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 28 Feb 2012 18:51:35 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-Attendees:
-Scott R, Jeremy, Michael H, Matthew, Tom, Jeff, Darren, Sean, Beth, 
-Richard, Jessica,
-Paul, Belen, Dave, Josh, Bruce.
+  i asked this on the beagle list, and koen pointed out that it was
+probably more appropriate elsewhere (probably here).  what's the
+proper algorithm for building the leading-edge images for a beagle xM
+(rev C)?
 
-Message to the team:
-   - Please take a look at the task board, move features in development 
-stage ASAP and send Song, Richard email if there's something you cannot 
-make it for M3.
+  i realize there's canonical support in a yocto tree for the
+beagleboard xM, but koen suggested i really want to use the meta-ti
+layer for that instead.  (i'm guessing i'd want the same thing for my
+pandaboard ES as well.)
 
-Agenda
+  so is that the best bet?  a pointer to any page where someone
+documents this would be just fine, thanks.
 
-* Opens collection - 5 min (Song)
-* Yocto 1.1.1 point release update - 10 min (Josh/Beth)
-    - ADT Bug has been addressed, will require a full rebuild
-    - Beth will do rebuild after M3 is out, after Thursday
+rday
 
-* Yocto 1.2 M3 status - 10 min (Song/Team)
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status
-    - M3 is moving forward, patches are being merged by Richard
-    - There are some missing bits with gcc multi-lib and Build-App
+-- 
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
-* SWAT team rotation: Darren -> Beth
-    - Darren suggested per-emptived "Known Issue" email for AB Failures
-
-* Opens - 10 min
-    - Michael: Bugzilla
-
-* Team Sharing - 20 min
-Bruce - Working on kernel updates and usability work-flow items,
-         jumping dev kernel to to 3.3
-Josh - 1.1.1 Fixing, Reviewing new Hob2
-Belen - Hob2 build, working with another team member
-Paul - Fixing various bugs, bitbake issues, continue bug fixing
-Richard - M3 pull request, Image types compression refactor, Quoting
-           issue, shared state issues, looking forward to completing M3
-Beth - License Stuff, M3 and 1.1.1
-Tom - 3.2 Kernel and BSP related items.
-Matthew - Getting builder going, tunefile clean for PPC, testing
-           multilib and internal BSPs
-Michael - meta-mono, gitolite, review of reviewboard - no email
-           gateway, bugzilla upgrade, VPN for Shoeleather
-Scott - Working on BSP manual and Quickstart updates, External Source 
-tree notes
-Saul - Pulls and Image Creation for VMDK
-Sean - Shoeleather, BSP Summit setup, please let Sean know about other
-        potential invitees, agenda review Feb 29.
-
-
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
