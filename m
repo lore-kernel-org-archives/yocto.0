@@ -1,32 +1,37 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2450EE0123C
-	for <yocto@yoctoproject.org>; Tue, 28 Feb 2012 13:55:46 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S2V1M-0005G4-GE; Tue, 28 Feb 2012 16:55:44 -0500
-Date: Tue, 28 Feb 2012 16:55:38 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-In-Reply-To: <4F4D457F.7000306@windriver.com>
-Message-ID: <alpine.DEB.2.02.1202281651040.8024@oneiric>
+Return-Path: <koen@beagleboard.org>
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30B09E00596
+	for <yocto@yoctoproject.org>; Tue, 28 Feb 2012 14:09:21 -0800 (PST)
+Received: by werc1 with SMTP id c1so3038198wer.35
+	for <yocto@yoctoproject.org>; Tue, 28 Feb 2012 14:09:20 -0800 (PST)
+Received-SPF: pass (google.com: domain of koen@beagleboard.org designates
+	10.180.95.34 as permitted sender) client-ip=10.180.95.34; 
+Authentication-Results: mr.google.com;
+	spf=pass (google.com: domain of koen@beagleboard.org
+	designates 10.180.95.34 as permitted sender)
+	smtp.mail=koen@beagleboard.org
+Received: from mr.google.com ([10.180.95.34])
+	by 10.180.95.34 with SMTP id dh2mr26060681wib.15.1330466960177
+	(num_hops = 1); Tue, 28 Feb 2012 14:09:20 -0800 (PST)
+Received: by 10.180.95.34 with SMTP id dh2mr20637451wib.15.1330466960125;
+	Tue, 28 Feb 2012 14:09:20 -0800 (PST)
+Received: from [172.20.1.36] (ip545070eb.adsl-surfen.hetnet.nl.
+	[84.80.112.235])
+	by mx.google.com with ESMTPS id 9sm53811116wid.2.2012.02.28.14.09.18
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 28 Feb 2012 14:09:19 -0800 (PST)
+Mime-Version: 1.0 (Apple Message framework v1257)
+From: Koen Kooi <koen@beagleboard.org>
+In-Reply-To: <alpine.DEB.2.02.1202281651040.8024@oneiric>
+Date: Tue, 28 Feb 2012 23:09:18 +0100
+Message-Id: <D8B2FCF1-09C3-4DEF-BFFB-3E0A421C61AE@beagleboard.org>
 References: <alpine.DEB.2.02.1202281349020.2440@oneiric>
 	<4F4D457F.7000306@windriver.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+	<alpine.DEB.2.02.1202281651040.8024@oneiric>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-Mailer: Apple Mail (2.1257)
+X-Gm-Message-State: ALoCoQmJG6KQvmXbrDzQDYLF8mt9bqldnBFlEryi+CFK5WGwSM+5x0+IE9AjJ8wYdarHH5mosBXi
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: proper recipe for building for beagle xM? meta-ti?
 X-BeenThere: yocto@yoctoproject.org
@@ -40,41 +45,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Feb 2012 21:55:46 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 28 Feb 2012 22:09:21 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 28 Feb 2012, Bruce Ashfield wrote:
 
-> It is true that the beagleboard is a hardware reference board in the
-> yocto consolidated kernel tree and meta-yocto layers. That means
-> that it gets the yocto standard QA builds and boot testing.
->
-> That being said, if you are looking for the latest + specific
-> features then you've been pointed in a good direction .. meta-ti
-> will meet your needs.
->
-> As for disentangling and reducing questions in this area .. rest
-> assured, we are working on it.
+Op 28 feb. 2012, om 22:55 heeft Robert P. J. Day het volgende =
+geschreven:
 
-  ok, that's perfectly reasonable -- meta-yocto provides a generic,
-well-tested product, while the meta-ti layer provides more
-leading-edge content, correct?  which is a perfectly respectable
-answer.
+> On Tue, 28 Feb 2012, Bruce Ashfield wrote:
+>=20
+>> It is true that the beagleboard is a hardware reference board in the
+>> yocto consolidated kernel tree and meta-yocto layers. That means
+>> that it gets the yocto standard QA builds and boot testing.
+>>=20
+>> That being said, if you are looking for the latest + specific
+>> features then you've been pointed in a good direction .. meta-ti
+>> will meet your needs.
+>>=20
+>> As for disentangling and reducing questions in this area .. rest
+>> assured, we are working on it.
+>=20
+>  ok, that's perfectly reasonable -- meta-yocto provides a generic,
+> well-tested product, while the meta-ti layer provides more
+> leading-edge content, correct?=20
 
-  but the impression i got from koen is that this wasn't even the
-right forum to ask such a question.  so i'm a bit confused -- can i
-just use the combination of yocto + meta-ti to build a fairly
-up-to-date image for my beagle xM or not?
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+No, the amount of testing is not the difference, the amount of support =
+for the board is. Meta-ti supports the camera interfaces, 3d engine, =
+dsp, crypto engines, expansion boards, etc. Meta-yocto lacks all that =
+for beagleboard.=
 
