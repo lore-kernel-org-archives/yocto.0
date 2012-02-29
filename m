@@ -1,25 +1,31 @@
-Return-Path: <john.toomey@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B404E0030B
-	for <yocto@yoctoproject.org>; Wed, 29 Feb 2012 08:45:34 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 29 Feb 2012 08:45:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="113113436"
-Received: from jtoomey-mobl9.ger.corp.intel.com (HELO [163.33.228.204])
-	([163.33.228.204])
-	by orsmga001.jf.intel.com with ESMTP; 29 Feb 2012 08:44:21 -0800
-Message-ID: <4F4E55E4.3050205@linux.intel.com>
-Date: Wed, 29 Feb 2012 16:44:20 +0000
-From: John Toomey <john.toomey@linux.intel.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:10.0.1) Gecko/20120208 Thunderbird/10.0.1
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C43CFE0030B
+	for <yocto@yoctoproject.org>; Wed, 29 Feb 2012 08:49:25 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1S2miT-0006ZS-2s
+	for yocto@yoctoproject.org; Wed, 29 Feb 2012 11:49:25 -0500
+Date: Wed, 29 Feb 2012 11:49:19 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1202291147340.2150@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <4F4E4512.7000505@linux.intel.com> <4241171.S03hq4heSm@helios>
-In-Reply-To: <4241171.S03hq4heSm@helios>
-Cc: yocto@yoctoproject.org
-Subject: Re: RPROVIDES issue
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: my idea of a quick start guide
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,49 +37,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Feb 2012 16:45:34 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 29 Feb 2012 16:49:25 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On 29/02/2012 16:18, Paul Eggleton wrote:
-> On Wednesday 29 February 2012 15:32:34 John Toomey wrote:
->> I am getting an error when I try to include some packages such as
->> logrotate, valgrind and minicom in my configuration using "IMAGE_INSTALL
->> += ... "
->>
->>      ERROR: Nothing RPROVIDES '"minicom"' (but
->>      [path]/core-image-[blah].bb RDEPENDS on or otherwise requires it)
->>      NOTE: Runtime target '"minicom"' is unbuildable, removing...
->>      Missing or unbuildable dependency chain was: ['"minicom"']
->>      ERROR: Required build target 'core-image-small' has no buildable
->>      providers.
->>      Missing or unbuildable dependency chain was: ['core-image-[blah]',
->>      '"minicom"']
->>
->>
->> I am able to build the packages individually without issue, for example
->> "bitbake minicom" works fine.
->>
->> Can anyone help point me in the right direction?
-> I noticed something here which I saw earlier - there is somehow an extra set
-> of quotes in there i.e. it's reporting '"minicom"' instead of 'minicom'.
-> Having just confirmed here with the 1.1 release that when you specify something
-> that doesn't exist you only get one set of single quotes in the error, I
-> suspect that's the root of the problem in your case. How you would have got a
-> set of double quotes in there I don't know, though. When I do IMAGE_INSTALL +=
-> "something" I don't get them here.
->
-> Cheers,
-> Paul
->
-Hi Paul
 
-You got me on the right track to fix it - apparently having a comment on 
-the same line as the IMAGE_INSTALL += "..." causes it to break. I had 
-all of the packates on seperate lines so I could easily comment in or 
-out the ones I need and I had comments after a few of them so i could 
-keep track of which ones were working and broken...
+  since it's easier to just write something than suggest numerous
+fixes, i took less than an hour and wrote this:
 
-Thanks for your help!
-John
+http://www.crashcourse.ca/wiki/index.php/Yocto_Project_Quick_Start
+
+it's the sort of thing that would have been perfect for me when i
+first jumped into yocto.
+
+  i'm going to add a couple more short sections but, technically, it
+contains everything i would have needed to know to build my first
+image.
+
+  thoughts?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
