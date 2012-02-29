@@ -1,23 +1,24 @@
 Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 781C6E0030B
-	for <yocto@yoctoproject.org>; Wed, 29 Feb 2012 08:03:41 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 29 Feb 2012 08:03:41 -0800
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC76CE0030B
+	for <yocto@yoctoproject.org>; Wed, 29 Feb 2012 08:18:31 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 29 Feb 2012 08:18:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="112816311"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="123258629"
 Received: from unknown (HELO helios.localnet) ([10.252.123.96])
-	by azsmga001.ch.intel.com with ESMTP; 29 Feb 2012 08:03:40 -0800
+	by fmsmga001.fm.intel.com with ESMTP; 29 Feb 2012 08:18:30 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 29 Feb 2012 16:03:38 +0000
-Message-ID: <5062861.2KUtZu5UgK@helios>
+To: John Toomey <john.toomey@linux.intel.com>
+Date: Wed, 29 Feb 2012 16:18:29 +0000
+Message-ID: <4241171.S03hq4heSm@helios>
 Organization: Intel Corporation
 User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.0; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1202291046100.31971@oneiric>
-References: <alpine.DEB.2.02.1202291046100.31971@oneiric>
+In-Reply-To: <4F4E4512.7000505@linux.intel.com>
+References: <4F4E4512.7000505@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: worth adding PREMIRRORS_prepend note to QS guide?
+Cc: yocto@yoctoproject.org
+Subject: Re: RPROVIDES issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,49 +30,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Feb 2012 16:03:41 -0000
+X-List-Received-Date: Wed, 29 Feb 2012 16:18:32 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-On Wednesday 29 February 2012 10:50:30 Robert P. J. Day wrote:
->   just starting to go thru the thread regarding the QS guide and i
-> have to agree that there's probably too much lead-in when the people
-> reading the QS guide are probably competent enough to just want the
-> recipe, so it should be shorter.
-
-Yes, I hadn't yet responded to that thread but I also agree.
-
->   having said that, i think there is a note that should be *added*,
-> and that's telling users how to add something like this to their
-> local.conf:
+On Wednesday 29 February 2012 15:32:34 John Toomey wrote:
+> I am getting an error when I try to include some packages such as
+> logrotate, valgrind and minicom in my configuration using "IMAGE_INSTALL
+> += ... "
 > 
-> PREMIRRORS_prepend = "\
-> git://.*/.* file:///home/rpjday/dl/ \n \
-> svn://.*/.* file:///home/rpjday/dl/ \n \
-> cvs://.*/.* file:///home/rpjday/dl/ \n \
-> ftp://.*/.* file:///home/rpjday/dl/ \n \
-> http://.*/.* file:///home/rpjday/dl/ \n \
-> https://.*/.* file:///home/rpjday/dl/ \n"
->
->   if people are showing up at yocto having worked with build systems
-> like OE and angstrom, they probably already have a sizable directory
-> of tarballs they can take advantage of, but the QS guide gives them no
-> advice on how to do that.
-
-Why wouldn't you just point your DL_DIR there? I just have one downloads 
-directory I share between Poky (multiple build dirs) and OE/Angstrom.
- 
->   i think a note on how to do that would be useful.  experienced users
-> would immediately realize its value and take advantage of it, while
-> users without that kind of background would realize it doesn't apply
-> to them, skip it and carry on.
+>     ERROR: Nothing RPROVIDES '"minicom"' (but
+>     [path]/core-image-[blah].bb RDEPENDS on or otherwise requires it)
+>     NOTE: Runtime target '"minicom"' is unbuildable, removing...
+>     Missing or unbuildable dependency chain was: ['"minicom"']
+>     ERROR: Required build target 'core-image-small' has no buildable
+>     providers.
+>     Missing or unbuildable dependency chain was: ['core-image-[blah]',
+>     '"minicom"']
 > 
->   thoughts?  anyway, i'm about to do another pass thru the QS guide so
-> prepare for pedantry.
+> 
+> I am able to build the packages individually without issue, for example
+> "bitbake minicom" works fine.
+> 
+> Can anyone help point me in the right direction?
 
-I think this is beyond the scope of a quickstart. You could easily have a FAQ 
-entry "can I share/re-use my downloads directory?" that would cover that for 
-those who already have such a directory.
+I noticed something here which I saw earlier - there is somehow an extra set 
+of quotes in there i.e. it's reporting '"minicom"' instead of 'minicom'. 
+Having just confirmed here with the 1.1 release that when you specify something 
+that doesn't exist you only get one set of single quotes in the error, I 
+suspect that's the root of the problem in your case. How you would have got a 
+set of double quotes in there I don't know, though. When I do IMAGE_INSTALL += 
+"something" I don't get them here.
 
 Cheers,
 Paul
