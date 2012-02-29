@@ -1,31 +1,25 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C43CFE0030B
-	for <yocto@yoctoproject.org>; Wed, 29 Feb 2012 08:49:25 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S2miT-0006ZS-2s
-	for yocto@yoctoproject.org; Wed, 29 Feb 2012 11:49:25 -0500
-Date: Wed, 29 Feb 2012 11:49:19 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1202291147340.2150@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B7DEE0030B
+	for <yocto@yoctoproject.org>; Wed, 29 Feb 2012 08:55:59 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 29 Feb 2012 08:55:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="112840511"
+Received: from unknown (HELO helios.localnet) ([10.252.123.96])
+	by azsmga001.ch.intel.com with ESMTP; 29 Feb 2012 08:55:55 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: John Toomey <john.toomey@linux.intel.com>
+Date: Wed, 29 Feb 2012 16:55:54 +0000
+Message-ID: <25108232.4I5JuH5juE@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.0; i686; ; )
+In-Reply-To: <4F4E55E4.3050205@linux.intel.com>
+References: <4F4E4512.7000505@linux.intel.com> <4241171.S03hq4heSm@helios>
+	<4F4E55E4.3050205@linux.intel.com>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: my idea of a quick start guide
+Cc: yocto@yoctoproject.org
+Subject: Re: RPROVIDES issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,33 +31,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Feb 2012 16:49:25 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 29 Feb 2012 16:55:59 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+On Wednesday 29 February 2012 16:44:20 John Toomey wrote:
+> You got me on the right track to fix it - apparently having a comment on
+> the same line as the IMAGE_INSTALL += "..." causes it to break. I had
+> all of the packates on seperate lines so I could easily comment in or
+> out the ones I need and I had comments after a few of them so i could
+> keep track of which ones were working and broken...
 
-  since it's easier to just write something than suggest numerous
-fixes, i took less than an hour and wrote this:
+Ah, that explains it :) You may be happy to know this is now explicitly caught 
+as a syntax error in master, so future versions will not suffer from this 
+issue.
 
-http://www.crashcourse.ca/wiki/index.php/Yocto_Project_Quick_Start
-
-it's the sort of thing that would have been perfect for me when i
-first jumped into yocto.
-
-  i'm going to add a couple more short sections but, technically, it
-contains everything i would have needed to know to build my first
-image.
-
-  thoughts?
-
-rday
+Cheers,
+Paul
 
 -- 
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Paul Eggleton
+Intel Open Source Technology Centre
 
