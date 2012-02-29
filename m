@@ -1,39 +1,39 @@
-Return-Path: <andrew.nicholson@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2047E00749
-	for <yocto@yoctoproject.org>; Tue, 28 Feb 2012 19:02:41 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 28 Feb 2012 19:02:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="115910394"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga002.jf.intel.com with ESMTP; 28 Feb 2012 19:02:36 -0800
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 28 Feb 2012 19:02:36 -0800
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.90]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.102]) with mapi id
-	14.01.0355.002; Tue, 28 Feb 2012 19:02:36 -0800
-From: "Nicholson, Andrew" <andrew.nicholson@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: current Quick Start manual bug?
-Thread-Index: Acz2jpSmaXwajOhSTQGWq87S26mnJA==
-Date: Wed, 29 Feb 2012 03:02:35 +0000
-Message-ID: <3E01B2A353A25049A1184C4143C66DD107CC00@ORSMSX103.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-cr-hashedpuzzle: AToD BDJF D0S2 D/9k EosR FLJf FLYB FV3O Fhnc F0Mk GKtC
-	G2i4 IGDh Iukd KCP2
-	KNJy; 1; eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
-	Sosha1_v1; 7; {60FEC579-C8C4-42A9-B22D-DDE840C37F44};
-	YQBuAGQAcgBlAHcALgBuAGkAYwBoAG8AbABzAG8AbgBAAGkAbgB0AGUAbAAuAGMAbwBtAA==;
-	Wed, 29 Feb 2012 03:02:32 GMT;
-	YwB1AHIAcgBlAG4AdAAgAFEAdQBpAGMAawAgAFMAdABhAHIAdAAgAG0AYQBuAHUAYQBsACAAYgB1AGcAPwA=
-x-cr-puzzleid: {60FEC579-C8C4-42A9-B22D-DDE840C37F44}
-x-originating-ip: [10.22.254.138]
+Return-Path: <sean_liming@sjjmicro.com>
+Received: from mail50c40.carrierzone.com (mail50c40.carrierzone.com
+	[209.235.156.190])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 674CCE00596
+	for <yocto@yoctoproject.org>; Tue, 28 Feb 2012 21:58:45 -0800 (PST)
+Received: from mail50c40.carrierzone.com (localhost [127.0.0.1])
+	by mail50c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	q1T5wgdN013146
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 29 Feb 2012 05:58:42 +0000
+Received: (from webmail@localhost)
+	by mail50c40.carrierzone.com (8.13.6/8.12.2/Submit) id q1T5weHZ013143; 
+	Wed, 29 Feb 2012 00:58:40 -0500
+Received: from mf72036d0.tmodns.net (mf72036d0.tmodns.net [208.54.32.247])
+	by webmail.sjjmicro.com (Webmail 5.0 V.V.I.) with HTTP for
+	<sean_liming.sjjmicro.com@webmail.sjjmicro.com>;
+	Wed, 29 Feb 2012 00:58:40 -0500
+Message-ID: <20120229005840.83wd2v3tgkowk8so@webmail.sjjmicro.com>
+From: sean_liming@sjjmicro.com
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"Nicholson, Andrew" <andrew.nicholson@intel.com>
+Date: Wed, 29 Feb 2012 00:58:40 -0500
+X-Priority: 3
 MIME-Version: 1.0
-Subject: current Quick Start manual bug?
+User-Agent: Webmail 6.0
+X-CSC: 0
+X-CHA: v=1.1 cv=IF4hdgwHcOjhRsj73MvZ+W7eXYz6WfE8GTmoqD1TrHI= c=1 sm=1
+	a=Q5QLeeme7KwA:10 a=-n0Y_pgTh64A:10 a=aJh391NtreIA:10 a=IkcTkHD0fZMA:10
+	a=/wtbZUUi7wfo2hfrdyZICQ==:17 a=QyXUC8HyAAAA:8 a=iGHA9ds3AAAA:8
+	a=EeJBCsLM2Z4e3nxi3ZkA:9 a=KvhckoRHYzcshGWTxEoA:7 a=QEXdDO2ut3YA:10
+	a=9oVqRC8nGTsA:10 a=FGejK56k1jwA:10 a=dGJ0OcVc7YAA:10 a=XDKM753qmDAA:10
+	a=WkljmVdYkabdwxfqvArNOQ==:117
+X-CTCH-Spam: Unknown
+X-CTCH-RefID: str=0001.0A020204.4F4DBE92.0064, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+Subject: Re: current Quick Start manual bug?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,36 +45,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Feb 2012 03:02:41 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 29 Feb 2012 05:58:45 -0000
+Content-Type: text/plain;
+	charset=UTF-8;
+	format="flowed"
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-I'm working through the experience for someone new to embedded Linux develo=
-pment to use the Yocto Project, and I believe I found a problem with the cu=
-rrent quick start manual.
 
-I followed the instructions in the manual for "Building an Image" and the b=
-itbake build failed.  I dug into the build logs and found that it appeared =
-all the errors were due to the lack of a perl module.  I noticed that the c=
-urrent manual doesn't list getting the "libxml-parser-perl" package, and th=
-e "latest" manual does (thank you google).  I added that package and now ev=
-erything works.
 
-So I presume that the current manual is in error or there is a syncing prob=
-lem?
+On Wed, 29 Feb 2012 03:02:35 +0000, "Nicholson, Andrew" 
+<andrew.nicholson@intel.com> wrote:
+I'm working through the experience for someone new to embedded Linux 
+development to use the Yocto Project, and I believe I found a problem 
+with the current quick start manual. 
+>
+> I followed the instructions in the manual for "Building an Image" and 
+> the bitbake build failed. I dug into the build logs and found that it 
+> appeared all the errors were due to the lack of a perl module. I 
+> noticed that the current manual doesn't list getting the 
+> "libxml-parser-perl" package, and the "latest" manual does (thank you 
+> google). I added that package and now everything works. 
+>
+> So I presume that the current manual is in error or there is a 
+> syncing problem?
+>
+> I'm running ubuntu 11.10 32 bit and the poky-edison-6.0.tar.bz2 
+> tarball as in the commands in the quick start manual. 
+>
+> Thanks!
+>
+> p.s. yes I am keeping a lot of notes as I go through this process. :-)
+>
+> Andrew Nicholson
+> SoC SW Product Planner
+> Intel Corporation
+> ofc: 425-881-4843 mobile: 206-914-0127
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-I'm running ubuntu 11.10 32 bit and the poky-edison-6.0.tar.bz2 tarball as =
-in the commands in the quick start manual.
+  I ran into the same problem a few weeks ago on Ubuntu. If you check 
+the documents under development, the package was added to the list fo 
+Ubuntu. 
+  =C2=A0
+  -Sean Liming
 
-Thanks!
-
-p.s. yes I am keeping a lot of notes as I go through this process.  :-)
-
-Andrew Nicholson
-SoC SW Product Planner
-Intel Corporation
-ofc: 425-881-4843  mobile: 206-914-0127
+  =C2=A0
 
 
 
