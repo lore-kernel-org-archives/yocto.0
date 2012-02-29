@@ -1,26 +1,39 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD09EE0123C
-	for <yocto@yoctoproject.org>; Tue, 28 Feb 2012 14:32:46 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 28 Feb 2012 14:32:46 -0800
+Return-Path: <andrew.nicholson@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2047E00749
+	for <yocto@yoctoproject.org>; Tue, 28 Feb 2012 19:02:41 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 28 Feb 2012 19:02:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="112445956"
-Received: from unknown (HELO envy.home) ([10.255.15.113])
-	by azsmga001.ch.intel.com with ESMTP; 28 Feb 2012 14:32:46 -0800
-Message-ID: <4F4D55EB.2050101@linux.intel.com>
-Date: Tue, 28 Feb 2012 14:32:11 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0) Gecko/20120131 Thunderbird/10.0
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="115910394"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga002.jf.intel.com with ESMTP; 28 Feb 2012 19:02:36 -0800
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 28 Feb 2012 19:02:36 -0800
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.90]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.102]) with mapi id
+	14.01.0355.002; Tue, 28 Feb 2012 19:02:36 -0800
+From: "Nicholson, Andrew" <andrew.nicholson@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: current Quick Start manual bug?
+Thread-Index: Acz2jpSmaXwajOhSTQGWq87S26mnJA==
+Date: Wed, 29 Feb 2012 03:02:35 +0000
+Message-ID: <3E01B2A353A25049A1184C4143C66DD107CC00@ORSMSX103.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-cr-hashedpuzzle: AToD BDJF D0S2 D/9k EosR FLJf FLYB FV3O Fhnc F0Mk GKtC
+	G2i4 IGDh Iukd KCP2
+	KNJy; 1; eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
+	Sosha1_v1; 7; {60FEC579-C8C4-42A9-B22D-DDE840C37F44};
+	YQBuAGQAcgBlAHcALgBuAGkAYwBoAG8AbABzAG8AbgBAAGkAbgB0AGUAbAAuAGMAbwBtAA==;
+	Wed, 29 Feb 2012 03:02:32 GMT;
+	YwB1AHIAcgBlAG4AdAAgAFEAdQBpAGMAawAgAFMAdABhAHIAdAAgAG0AYQBuAHUAYQBsACAAYgB1AGcAPwA=
+x-cr-puzzleid: {60FEC579-C8C4-42A9-B22D-DDE840C37F44}
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <a85166ef33afd6f4c520e2cbffe74837240bdc84.1330467937.git.dvhart@linux.intel.com>
-	<4F4D5545.8070108@windriver.com>
-In-Reply-To: <4F4D5545.8070108@windriver.com>
-X-Enigmail-Version: 1.3.5
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH] meta-kernel-dev: Fix quoting
+Subject: current Quick Start manual bug?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,24 +45,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Feb 2012 22:32:46 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 29 Feb 2012 03:02:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 02/28/2012 02:29 PM, Bruce Ashfield wrote:
-> On 12-02-28 5:25 PM, Darren Hart wrote:
->> Several unquoted variables assignments are now resulting parse errors.
->> Correct them throughout meta-kernel-dev.
-> 
-> Looks good. I have the same fix that I didn't get around to pushing
-> today.
-> 
-> I assume you'll push this into the layer ?
+I'm working through the experience for someone new to embedded Linux develo=
+pment to use the Yocto Project, and I believe I found a problem with the cu=
+rrent quick start manual.
 
-Done.
+I followed the instructions in the manual for "Building an Image" and the b=
+itbake build failed.  I dug into the build logs and found that it appeared =
+all the errors were due to the lack of a perl module.  I noticed that the c=
+urrent manual doesn't list getting the "libxml-parser-perl" package, and th=
+e "latest" manual does (thank you google).  I added that package and now ev=
+erything works.
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+So I presume that the current manual is in error or there is a syncing prob=
+lem?
+
+I'm running ubuntu 11.10 32 bit and the poky-edison-6.0.tar.bz2 tarball as =
+in the commands in the quick start manual.
+
+Thanks!
+
+p.s. yes I am keeping a lot of notes as I go through this process.  :-)
+
+Andrew Nicholson
+SoC SW Product Planner
+Intel Corporation
+ofc: 425-881-4843  mobile: 206-914-0127
+
+
 
