@@ -1,34 +1,23 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8AEDE0030B
-	for <yocto@yoctoproject.org>; Wed, 29 Feb 2012 08:00:59 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 29 Feb 2012 08:00:03 -0800
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 781C6E0030B
+	for <yocto@yoctoproject.org>; Wed, 29 Feb 2012 08:03:41 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 29 Feb 2012 08:03:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="113097489"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by orsmga001.jf.intel.com with ESMTP; 29 Feb 2012 07:59:03 -0800
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 29 Feb 2012 07:59:03 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.188]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.102]) with mapi id
-	14.01.0355.002; Wed, 29 Feb 2012 07:59:03 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] can someone add a README to the documentation/ directory?
-Thread-Index: AQHM9vbcchlqnfR08UiwIuJrA7WQg5ZUCAcg
-Date: Wed, 29 Feb 2012 15:59:03 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123793B74191E@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1202291026180.31319@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1202291026180.31319@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="112816311"
+Received: from unknown (HELO helios.localnet) ([10.252.123.96])
+	by azsmga001.ch.intel.com with ESMTP; 29 Feb 2012 08:03:40 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 29 Feb 2012 16:03:38 +0000
+Message-ID: <5062861.2KUtZu5UgK@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.0; i686; ; )
+In-Reply-To: <alpine.DEB.2.02.1202291046100.31971@oneiric>
+References: <alpine.DEB.2.02.1202291046100.31971@oneiric>
 MIME-Version: 1.0
-Subject: Re: can someone add a README to the documentation/ directory?
+Subject: Re: worth adding PREMIRRORS_prepend note to QS guide?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,49 +29,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Feb 2012 16:01:00 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 29 Feb 2012 16:03:41 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-This is a good idea Robert.
+On Wednesday 29 February 2012 10:50:30 Robert P. J. Day wrote:
+>   just starting to go thru the thread regarding the QS guide and i
+> have to agree that there's probably too much lead-in when the people
+> reading the QS guide are probably competent enough to just want the
+> recipe, so it should be shorter.
 
-Scott
+Yes, I hadn't yet responded to that thread but I also agree.
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Robert P. J. Day
-Sent: Wednesday, February 29, 2012 9:28 AM
-To: Yocto discussion list
-Subject: [yocto] can someone add a README to the documentation/ directory?
+>   having said that, i think there is a note that should be *added*,
+> and that's telling users how to add something like this to their
+> local.conf:
+> 
+> PREMIRRORS_prepend = "\
+> git://.*/.* file:///home/rpjday/dl/ \n \
+> svn://.*/.* file:///home/rpjday/dl/ \n \
+> cvs://.*/.* file:///home/rpjday/dl/ \n \
+> ftp://.*/.* file:///home/rpjday/dl/ \n \
+> http://.*/.* file:///home/rpjday/dl/ \n \
+> https://.*/.* file:///home/rpjday/dl/ \n"
+>
+>   if people are showing up at yocto having worked with build systems
+> like OE and angstrom, they probably already have a sizable directory
+> of tarballs they can take advantage of, but the QS guide gives them no
+> advice on how to do that.
 
+Why wouldn't you just point your DL_DIR there? I just have one downloads 
+directory I share between Poky (multiple build dirs) and OE/Angstrom.
+ 
+>   i think a note on how to do that would be useful.  experienced users
+> would immediately realize its value and take advantage of it, while
+> users without that kind of background would realize it doesn't apply
+> to them, skip it and carry on.
+> 
+>   thoughts?  anyway, i'm about to do another pass thru the QS guide so
+> prepare for pedantry.
 
-  as it is, if someone new to yocto checks out the git tree and sees
-the documentation/ directory, they'll immediately hop in there, see
-the possible manuals and perhaps run "make" to try to build them, with
-no results.
+I think this is beyond the scope of a quickstart. You could easily have a FAQ 
+entry "can I share/re-use my downloads directory?" that would cover that for 
+those who already have such a directory.
 
-  yes, the Makefile has internal documentation but, at the very least,
-a README file should point the reader to the Makefile, then.  don't
-make people guess.
+Cheers,
+Paul
 
-rday
+-- 
 
---=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Paul Eggleton
+Intel Open Source Technology Centre
 
