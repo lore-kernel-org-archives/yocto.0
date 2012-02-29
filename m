@@ -1,39 +1,22 @@
-Return-Path: <sean_liming@sjjmicro.com>
-Received: from mail50c40.carrierzone.com (mail50c40.carrierzone.com
-	[209.235.156.190])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 674CCE00596
-	for <yocto@yoctoproject.org>; Tue, 28 Feb 2012 21:58:45 -0800 (PST)
-Received: from mail50c40.carrierzone.com (localhost [127.0.0.1])
-	by mail50c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
-	q1T5wgdN013146
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 29 Feb 2012 05:58:42 +0000
-Received: (from webmail@localhost)
-	by mail50c40.carrierzone.com (8.13.6/8.12.2/Submit) id q1T5weHZ013143; 
-	Wed, 29 Feb 2012 00:58:40 -0500
-Received: from mf72036d0.tmodns.net (mf72036d0.tmodns.net [208.54.32.247])
-	by webmail.sjjmicro.com (Webmail 5.0 V.V.I.) with HTTP for
-	<sean_liming.sjjmicro.com@webmail.sjjmicro.com>;
-	Wed, 29 Feb 2012 00:58:40 -0500
-Message-ID: <20120229005840.83wd2v3tgkowk8so@webmail.sjjmicro.com>
-From: sean_liming@sjjmicro.com
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"Nicholson, Andrew" <andrew.nicholson@intel.com>
-Date: Wed, 29 Feb 2012 00:58:40 -0500
-X-Priority: 3
-MIME-Version: 1.0
-User-Agent: Webmail 6.0
-X-CSC: 0
-X-CHA: v=1.1 cv=IF4hdgwHcOjhRsj73MvZ+W7eXYz6WfE8GTmoqD1TrHI= c=1 sm=1
-	a=Q5QLeeme7KwA:10 a=-n0Y_pgTh64A:10 a=aJh391NtreIA:10 a=IkcTkHD0fZMA:10
-	a=/wtbZUUi7wfo2hfrdyZICQ==:17 a=QyXUC8HyAAAA:8 a=iGHA9ds3AAAA:8
-	a=EeJBCsLM2Z4e3nxi3ZkA:9 a=KvhckoRHYzcshGWTxEoA:7 a=QEXdDO2ut3YA:10
-	a=9oVqRC8nGTsA:10 a=FGejK56k1jwA:10 a=dGJ0OcVc7YAA:10 a=XDKM753qmDAA:10
-	a=WkljmVdYkabdwxfqvArNOQ==:117
-X-CTCH-Spam: Unknown
-X-CTCH-RefID: str=0001.0A020204.4F4DBE92.0064, ss=1, re=0.000, recu=0.000,
-	reip=0.000, cl=1, cld=1, fgs=0
-Subject: Re: current Quick Start manual bug?
+Return-Path: <dongxiao.xu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85240E013CC
+	for <yocto@yoctoproject.org>; Tue, 28 Feb 2012 22:48:18 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 28 Feb 2012 22:48:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="130803068"
+Received: from dongxiao-osel.sh.intel.com (HELO [10.239.36.11])
+	([10.239.36.11])
+	by fmsmga002.fm.intel.com with ESMTP; 28 Feb 2012 22:48:17 -0800
+From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+To: tom.zanussi@intel.com
+Date: Wed, 29 Feb 2012 14:46:50 +0800
+Message-ID: <1330498010.1785.48.camel@dongxiao-osel>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 
+Cc: yocto <yocto@yoctoproject.org>
+Subject: COMPATIBLE_HOST in initramfs-live-install_1.0.bb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,58 +28,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Feb 2012 05:58:45 -0000
-Content-Type: text/plain;
-	charset=UTF-8;
-	format="flowed"
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 29 Feb 2012 06:48:18 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
+Hi Tom,
 
+I saw in initramfs-live-install_1.0.bb recipe, there is a line to set
+the COMPATIBLE_HOST:
 
-On Wed, 29 Feb 2012 03:02:35 +0000, "Nicholson, Andrew" 
-<andrew.nicholson@intel.com> wrote:
-I'm working through the experience for someone new to embedded Linux 
-development to use the Yocto Project, and I believe I found a problem 
-with the current quick start manual. 
->
-> I followed the instructions in the manual for "Building an Image" and 
-> the bitbake build failed. I dug into the build logs and found that it 
-> appeared all the errors were due to the lack of a perl module. I 
-> noticed that the current manual doesn't list getting the 
-> "libxml-parser-perl" package, and the "latest" manual does (thank you 
-> google). I added that package and now everything works. 
->
-> So I presume that the current manual is in error or there is a 
-> syncing problem?
->
-> I'm running ubuntu 11.10 32 bit and the poky-edison-6.0.tar.bz2 
-> tarball as in the commands in the quick start manual. 
->
-> Thanks!
->
-> p.s. yes I am keeping a lot of notes as I go through this process. :-)
->
-> Andrew Nicholson
-> SoC SW Product Planner
-> Intel Corporation
-> ofc: 425-881-4843 mobile: 206-914-0127
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+COMPATIBLE_HOST = "(i.86|x86_64).*-linux"
 
-  I ran into the same problem a few weeks ago on Ubuntu. If you check 
-the documents under development, the package was added to the list fo 
-Ubuntu. 
-  =C2=A0
-  -Sean Liming
+But actually initramfs-live-install is set as dependency in
+core-image-minimal-initramfs.bb. Therefore if we set machine to be
+"qemuarm" or something else that is not x86 architecture, and then
+execute:
+# bitbake core-image-minimal-initramfs
+or
+# bitbake universe
 
-  =C2=A0
+System will report an error of:
 
+ERROR: Nothing RPROVIDES
+'initramfs-live-install' (but /home/yocto-build5/poky-contrib/meta/recipes-core/images/core-image-minimal-initramfs.bb RDEPENDS on or otherwise requires it)
+ERROR: initramfs-live-install was skipped: incompatible with host
+arm-poky-linux-gnueabi (not in COMPATIBLE_HOST)
+NOTE: Runtime target 'initramfs-live-install' is unbuildable,
+removing...
+Missing or unbuildable dependency chain was: ['initramfs-live-install']
+ERROR: Required build target 'core-image-minimal-initramfs' has no
+buildable providers.
+Missing or unbuildable dependency chain was:
+['core-image-minimal-initramfs', 'initramfs-live-install']
+
+Summary: There was 1 WARNING message shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit
+code.
+
+Could you help to explain the background to set compatible host for the
+initramfs-live-install recipe?
+
+Thanks,
+Dongxiao
 
 
