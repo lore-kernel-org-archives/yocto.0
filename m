@@ -1,25 +1,21 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 222D8E0030B
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65A3BE0030B
 	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 16:00:31 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
 	by orsmga102.jf.intel.com with ESMTP; 01 Mar 2012 16:00:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="113646831"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="113646996"
 Received: from unknown (HELO localhost) ([10.7.199.61])
-	by orsmga001.jf.intel.com with ESMTP; 01 Mar 2012 15:59:43 -0800
+	by orsmga001.jf.intel.com with ESMTP; 01 Mar 2012 16:00:07 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 To: Yocto Project <yocto@yoctoproject.org>,
 	Bruce Ashfield <bruce.ashfield@windriver.com>,
 	Tom Zanussi <tom.zanussi@intel.com>
-Date: Thu,  1 Mar 2012 15:58:50 -0800
-Message-Id: <538a1b6f052149d3de2e55df39ac84b1a0569be4.1330643860.git.dvhart@linux.intel.com>
+Date: Thu,  1 Mar 2012 15:59:14 -0800
+Message-Id: <cover.1330643786.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.6.5
-In-Reply-To: <cover.1330643860.git.dvhart@linux.intel.com>
-References: <cover.1330643860.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1330643860.git.dvhart@linux.intel.com>
-References: <cover.1330643860.git.dvhart@linux.intel.com>
-Subject: [PATCH 09/11] pch_uart: Add Fish River Island II uart clock quirks
+Subject: [PATCH 0/3][linux-yocto-3.0] Meta updates for fri2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,123 +29,28 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Fri, 02 Mar 2012 00:00:31 -0000
 
-Add support for the Fish River Island II (FRI2) UART clock following the CM-iTC
-quirk handling mechanism. Depending on the firmware installed on the device, the
-FRI2 uses a 48MHz or a 64MHz UART clock. This is detected with DMI strings.
+Update the meta data for FRI2 to support the new serial console support and
+add the SMP and EFI features to the scc directly.
 
-Add similar UART clock quirk handling to the pch_console_setup() function to
-enable kernel messages on boards with non-standard UART clocks.
+The following changes since commit d7b46785d6781e2c23d754f35f09bebd3b74b5bb:
 
-Per Alan's suggestion, abstract out UART clock selection into
-pch_uart_get_uartclk() to avoid code duplication.
+  meta: create pvr feature description (2012-02-27 15:54:24 -0500)
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
-CC: Tomoya MORINAGA <tomoya.rohm@gmail.com>
-CC: Feng Tang <feng.tang@intel.com>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC: Alan Cox <alan@linux.intel.com>
-CC: linux-serial@vger.kernel.org
----
- drivers/tty/serial/pch_uart.c |   42 +++++++++++++++++++++++++++-------------
- 1 files changed, 28 insertions(+), 14 deletions(-)
+are available in the git repository at:
+  git://git.infradead.org/users/dvhart/linux-yocto-3.0.git dvhart/meta/fri2
+  http://git.infradead.org/users/dvhart/linux-yocto-3.0.git/shortlog/refs/heads/dvhart/meta/fri2
 
-diff --git a/drivers/tty/serial/pch_uart.c b/drivers/tty/serial/pch_uart.c
-index fd5d6df..1706169 100644
---- a/drivers/tty/serial/pch_uart.c
-+++ b/drivers/tty/serial/pch_uart.c
-@@ -203,7 +203,10 @@ enum {
- 
- #define BOTH_EMPTY (UART_LSR_TEMT | UART_LSR_THRE)
- 
--#define DEFAULT_UARTCLK 1843200 /* 1.8432MHz */
-+#define DEFAULT_UARTCLK   1843200 /*   1.8432 MHz */
-+#define CMITC_UARTCLK   192000000 /* 192.0000 MHz */
-+#define FRI2_64_UARTCLK  64000000 /*  64.0000 MHz */
-+#define FRI2_48_UARTCLK  48000000 /*  48.0000 MHz */
- 
- struct pch_uart_buffer {
- 	unsigned char *buf;
-@@ -292,6 +295,26 @@ static const int trigger_level_64[4] = { 1, 16, 32, 56 };
- static const int trigger_level_16[4] = { 1, 4, 8, 14 };
- static const int trigger_level_1[4] = { 1, 1, 1, 1 };
- 
-+/* Return UART clock, checking for board specific clocks. */
-+static int pch_uart_get_uartclk(void)
-+{
-+	const char *cmp;
-+
-+	cmp = dmi_get_system_info(DMI_BOARD_NAME);
-+	if (cmp && strstr(cmp, "CM-iTC"))
-+		return CMITC_UARTCLK;
-+
-+	cmp = dmi_get_system_info(DMI_BIOS_VERSION);
-+	if (cmp && strnstr(cmp, "FRI2", 4))
-+		return FRI2_64_UARTCLK;
-+
-+	cmp = dmi_get_system_info(DMI_PRODUCT_NAME);
-+	if (cmp && strstr(cmp, "Fish River Island II"))
-+		return FRI2_48_UARTCLK;
-+
-+	return DEFAULT_UARTCLK;
-+}
-+
- static void pch_uart_hal_request(struct pci_dev *pdev, int fifosize,
- 				 int uartclk)
- {
-@@ -1506,8 +1529,7 @@ static int __init pch_console_setup(struct console *co, char *options)
- 	if (!port || (!port->iobase && !port->membase))
- 		return -ENODEV;
- 
--	/* setup uartclock */
--	port->uartclk = DEFAULT_UARTCLK;
-+	port->uartclk = pch_uart_get_uartclk();
- 
- 	if (options)
- 		uart_parse_options(options, &baud, &parity, &bits, &flow);
-@@ -1550,10 +1572,9 @@ static struct eg20t_port *pch_uart_init_port(struct pci_dev *pdev,
- 	unsigned int iobase;
- 	unsigned int mapbase;
- 	unsigned char *rxbuf;
--	int fifosize, uartclk;
-+	int fifosize;
- 	int port_type;
- 	struct pch_uart_driver_data *board;
--	const char *board_name;
- 
- 	board = &drv_dat[id->driver_data];
- 	port_type = board->port_type;
-@@ -1566,13 +1587,6 @@ static struct eg20t_port *pch_uart_init_port(struct pci_dev *pdev,
- 	if (!rxbuf)
- 		goto init_port_free_txbuf;
- 
--	uartclk = DEFAULT_UARTCLK;
--
--	/* quirk for CM-iTC board */
--	board_name = dmi_get_system_info(DMI_BOARD_NAME);
--	if (board_name && strstr(board_name, "CM-iTC"))
--		uartclk = 192000000; /* 192.0MHz */
--
- 	switch (port_type) {
- 	case PORT_UNKNOWN:
- 		fifosize = 256; /* EG20T/ML7213: UART0 */
-@@ -1597,7 +1611,7 @@ static struct eg20t_port *pch_uart_init_port(struct pci_dev *pdev,
- 	priv->rxbuf.size = PAGE_SIZE;
- 
- 	priv->fifo_size = fifosize;
--	priv->uartclk = uartclk;
-+	priv->uartclk = pch_uart_get_uartclk();
- 	priv->port_type = PORT_MAX_8250 + port_type + 1;
- 	priv->port.dev = &pdev->dev;
- 	priv->port.iobase = iobase;
-@@ -1614,7 +1628,7 @@ static struct eg20t_port *pch_uart_init_port(struct pci_dev *pdev,
- 	spin_lock_init(&priv->port.lock);
- 
- 	pci_set_drvdata(pdev, priv);
--	pch_uart_hal_request(pdev, fifosize, uartclk);
-+	pch_uart_hal_request(pdev, fifosize, priv->uartclk);
- 
- #ifdef CONFIG_SERIAL_PCH_UART_CONSOLE
- 	pch_uart_ports[board->line_no] = priv;
+Darren Hart (3):
+  fri2: Drop 8250 from the fri2 scc
+  eg20t: Enable serial console for the pch_uart
+  fri2: Add SMP and EFI support
+
+ meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc |    1 +
+ meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc   |    1 +
+ meta/cfg/kernel-cache/bsp/fri2/fri2.scc            |    3 ++-
+ meta/cfg/kernel-cache/features/eg20t/eg20t.cfg     |    1 +
+ 4 files changed, 5 insertions(+), 1 deletions(-)
+
 -- 
 1.7.6.5
 
