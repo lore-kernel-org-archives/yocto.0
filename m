@@ -1,21 +1,26 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65A3BE0030B
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82C11E0059A
 	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 16:00:31 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
 	by orsmga102.jf.intel.com with ESMTP; 01 Mar 2012 16:00:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="113646996"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="113646819"
 Received: from unknown (HELO localhost) ([10.7.199.61])
-	by orsmga001.jf.intel.com with ESMTP; 01 Mar 2012 16:00:07 -0800
+	by orsmga001.jf.intel.com with ESMTP; 01 Mar 2012 15:59:43 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 To: Yocto Project <yocto@yoctoproject.org>,
 	Bruce Ashfield <bruce.ashfield@windriver.com>,
 	Tom Zanussi <tom.zanussi@intel.com>
-Date: Thu,  1 Mar 2012 15:59:14 -0800
-Message-Id: <cover.1330643786.git.dvhart@linux.intel.com>
+Date: Thu,  1 Mar 2012 15:58:44 -0800
+Message-Id: <5964b05cf1191bab61852881ba1df564469a966d.1330643860.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.6.5
-Subject: [PATCH 0/3][linux-yocto-3.0] Meta updates for fri2
+In-Reply-To: <cover.1330643860.git.dvhart@linux.intel.com>
+References: <cover.1330643860.git.dvhart@linux.intel.com>
+In-Reply-To: <cover.1330643860.git.dvhart@linux.intel.com>
+References: <cover.1330643860.git.dvhart@linux.intel.com>
+MIME-Version: 1.0
+Subject: [PATCH 03/11] TTY: serial, fix includes in some drivers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,29 +33,330 @@ List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Fri, 02 Mar 2012 00:00:31 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Update the meta data for FRI2 to support the new serial console support and
-add the SMP and EFI features to the scc directly.
+From: Jiri Slaby <jslaby@suse.cz>
 
-The following changes since commit d7b46785d6781e2c23d754f35f09bebd3b74b5bb:
+commit ee160a38eee357ed2572cf41437d5814ce53c839 upstream.
 
-  meta: create pvr feature description (2012-02-27 15:54:24 -0500)
+linux/tty_flip.h is included in linux/serial_core.h. But this may (and
+will) change in the future. Then we would get build errors such as:
+.../tty/serial/max3107.c: In function ‘put_data_to_circ_buf’:
+.../tty/serial/max3107.c:149:2: error: implicit declaration of function ‘tty_insert_flip_string’
 
-are available in the git repository at:
-  git://git.infradead.org/users/dvhart/linux-yocto-3.0.git dvhart/meta/fri2
-  http://git.infradead.org/users/dvhart/linux-yocto-3.0.git/shortlog/refs/heads/dvhart/meta/fri2
+So fix all the drviers which call tty flip buffer helpers to really
+include linux/tty_flip.h. And also make sure that those include
+linux/tty.h when operating with struct tty_struct.
 
-Darren Hart (3):
-  fri2: Drop 8250 from the fri2 scc
-  eg20t: Enable serial console for the pch_uart
-  fri2: Add SMP and EFI support
+Signed-off-by: Jiri Slaby <jslaby@suse.cz>
+Cc: Alan Cox <alan@linux.intel.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@suse.de>
+---
+ drivers/tty/serial/apbuart.c                |    1 +
+ drivers/tty/serial/cpm_uart/cpm_uart_core.c |    1 +
+ drivers/tty/serial/dz.c                     |    1 +
+ drivers/tty/serial/ioc3_serial.c            |    1 +
+ drivers/tty/serial/ioc4_serial.c            |    1 +
+ drivers/tty/serial/m32r_sio.c               |    1 +
+ drivers/tty/serial/max3100.c                |    2 ++
+ drivers/tty/serial/max3107.c                |    2 ++
+ drivers/tty/serial/mpc52xx_uart.c           |    1 +
+ drivers/tty/serial/msm_serial_hs.c          |    2 ++
+ drivers/tty/serial/mux.c                    |    2 ++
+ drivers/tty/serial/nwpserial.c              |    1 +
+ drivers/tty/serial/pch_uart.c               |    2 ++
+ drivers/tty/serial/sb1250-duart.c           |    1 +
+ drivers/tty/serial/serial_ks8695.c          |    1 +
+ drivers/tty/serial/serial_txx9.c            |    2 ++
+ drivers/tty/serial/sn_console.c             |    1 +
+ drivers/tty/serial/timbuart.c               |    2 ++
+ drivers/tty/serial/uartlite.c               |    1 +
+ drivers/tty/serial/ucc_uart.c               |    4 +++-
+ drivers/tty/serial/xilinx_uartps.c          |    4 +++-
+ drivers/tty/serial/zs.c                     |    1 +
+ 22 files changed, 33 insertions(+), 2 deletions(-)
 
- meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc |    1 +
- meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc   |    1 +
- meta/cfg/kernel-cache/bsp/fri2/fri2.scc            |    3 ++-
- meta/cfg/kernel-cache/features/eg20t/eg20t.cfg     |    1 +
- 4 files changed, 5 insertions(+), 1 deletions(-)
-
+diff --git a/drivers/tty/serial/apbuart.c b/drivers/tty/serial/apbuart.c
+index 19a9436..77554fd 100644
+--- a/drivers/tty/serial/apbuart.c
++++ b/drivers/tty/serial/apbuart.c
+@@ -16,6 +16,7 @@
+ 
+ #include <linux/module.h>
+ #include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/ioport.h>
+ #include <linux/init.h>
+ #include <linux/serial.h>
+diff --git a/drivers/tty/serial/cpm_uart/cpm_uart_core.c b/drivers/tty/serial/cpm_uart/cpm_uart_core.c
+index 9488da7..b418947 100644
+--- a/drivers/tty/serial/cpm_uart/cpm_uart_core.c
++++ b/drivers/tty/serial/cpm_uart/cpm_uart_core.c
+@@ -31,6 +31,7 @@
+ 
+ #include <linux/module.h>
+ #include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/ioport.h>
+ #include <linux/init.h>
+ #include <linux/serial.h>
+diff --git a/drivers/tty/serial/dz.c b/drivers/tty/serial/dz.c
+index 57421d7..0345025 100644
+--- a/drivers/tty/serial/dz.c
++++ b/drivers/tty/serial/dz.c
+@@ -47,6 +47,7 @@
+ #include <linux/serial_core.h>
+ #include <linux/sysrq.h>
+ #include <linux/tty.h>
++#include <linux/tty_flip.h>
+ 
+ #include <asm/atomic.h>
+ #include <asm/bootinfo.h>
+diff --git a/drivers/tty/serial/ioc3_serial.c b/drivers/tty/serial/ioc3_serial.c
+index ee43efc..758ff310 100644
+--- a/drivers/tty/serial/ioc3_serial.c
++++ b/drivers/tty/serial/ioc3_serial.c
+@@ -13,6 +13,7 @@
+  */
+ #include <linux/errno.h>
+ #include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/serial.h>
+ #include <linux/circ_buf.h>
+ #include <linux/serial_reg.h>
+diff --git a/drivers/tty/serial/ioc4_serial.c b/drivers/tty/serial/ioc4_serial.c
+index fcfe826..6b36c15 100644
+--- a/drivers/tty/serial/ioc4_serial.c
++++ b/drivers/tty/serial/ioc4_serial.c
+@@ -14,6 +14,7 @@
+  */
+ #include <linux/errno.h>
+ #include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/serial.h>
+ #include <linux/serialP.h>
+ #include <linux/circ_buf.h>
+diff --git a/drivers/tty/serial/m32r_sio.c b/drivers/tty/serial/m32r_sio.c
+index 84db732..7a574c1 100644
+--- a/drivers/tty/serial/m32r_sio.c
++++ b/drivers/tty/serial/m32r_sio.c
+@@ -32,6 +32,7 @@
+ 
+ #include <linux/module.h>
+ #include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/ioport.h>
+ #include <linux/init.h>
+ #include <linux/console.h>
+diff --git a/drivers/tty/serial/max3100.c b/drivers/tty/serial/max3100.c
+index 7b951ad..2af5aa5 100644
+--- a/drivers/tty/serial/max3100.c
++++ b/drivers/tty/serial/max3100.c
+@@ -47,6 +47,8 @@
+ #include <linux/serial.h>
+ #include <linux/spi/spi.h>
+ #include <linux/freezer.h>
++#include <linux/tty.h>
++#include <linux/tty_flip.h>
+ 
+ #include <linux/serial_max3100.h>
+ 
+diff --git a/drivers/tty/serial/max3107.c b/drivers/tty/serial/max3107.c
+index a816460..db00b59 100644
+--- a/drivers/tty/serial/max3107.c
++++ b/drivers/tty/serial/max3107.c
+@@ -31,6 +31,8 @@
+ #include <linux/device.h>
+ #include <linux/serial_core.h>
+ #include <linux/serial.h>
++#include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/gpio.h>
+ #include <linux/spi/spi.h>
+ #include <linux/freezer.h>
+diff --git a/drivers/tty/serial/mpc52xx_uart.c b/drivers/tty/serial/mpc52xx_uart.c
+index a0bcd8a..c395520 100644
+--- a/drivers/tty/serial/mpc52xx_uart.c
++++ b/drivers/tty/serial/mpc52xx_uart.c
+@@ -34,6 +34,7 @@
+ #include <linux/device.h>
+ #include <linux/module.h>
+ #include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/serial.h>
+ #include <linux/sysrq.h>
+ #include <linux/console.h>
+diff --git a/drivers/tty/serial/msm_serial_hs.c b/drivers/tty/serial/msm_serial_hs.c
+index 624701f..60c6eb8 100644
+--- a/drivers/tty/serial/msm_serial_hs.c
++++ b/drivers/tty/serial/msm_serial_hs.c
+@@ -30,6 +30,8 @@
+ 
+ #include <linux/serial.h>
+ #include <linux/serial_core.h>
++#include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/slab.h>
+ #include <linux/init.h>
+ #include <linux/interrupt.h>
+diff --git a/drivers/tty/serial/mux.c b/drivers/tty/serial/mux.c
+index 9711e06..06f6aef 100644
+--- a/drivers/tty/serial/mux.c
++++ b/drivers/tty/serial/mux.c
+@@ -21,6 +21,8 @@
+ #include <linux/ioport.h>
+ #include <linux/init.h>
+ #include <linux/serial.h>
++#include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/console.h>
+ #include <linux/delay.h> /* for udelay */
+ #include <linux/device.h>
+diff --git a/drivers/tty/serial/nwpserial.c b/drivers/tty/serial/nwpserial.c
+index de17367..9beaff1 100644
+--- a/drivers/tty/serial/nwpserial.c
++++ b/drivers/tty/serial/nwpserial.c
+@@ -15,6 +15,7 @@
+ #include <linux/serial_reg.h>
+ #include <linux/serial_core.h>
+ #include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/irqreturn.h>
+ #include <linux/mutex.h>
+ #include <linux/of_platform.h>
+diff --git a/drivers/tty/serial/pch_uart.c b/drivers/tty/serial/pch_uart.c
+index eb676a0..41f4195 100644
+--- a/drivers/tty/serial/pch_uart.c
++++ b/drivers/tty/serial/pch_uart.c
+@@ -19,6 +19,8 @@
+ #include <linux/module.h>
+ #include <linux/pci.h>
+ #include <linux/serial_core.h>
++#include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/interrupt.h>
+ #include <linux/io.h>
+ #include <linux/dmi.h>
+diff --git a/drivers/tty/serial/sb1250-duart.c b/drivers/tty/serial/sb1250-duart.c
+index ea2340b..6718837 100644
+--- a/drivers/tty/serial/sb1250-duart.c
++++ b/drivers/tty/serial/sb1250-duart.c
+@@ -37,6 +37,7 @@
+ #include <linux/spinlock.h>
+ #include <linux/sysrq.h>
+ #include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/types.h>
+ 
+ #include <asm/atomic.h>
+diff --git a/drivers/tty/serial/serial_ks8695.c b/drivers/tty/serial/serial_ks8695.c
+index 2430319..5551f7a 100644
+--- a/drivers/tty/serial/serial_ks8695.c
++++ b/drivers/tty/serial/serial_ks8695.c
+@@ -13,6 +13,7 @@
+  */
+ #include <linux/module.h>
+ #include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/ioport.h>
+ #include <linux/init.h>
+ #include <linux/serial.h>
+diff --git a/drivers/tty/serial/serial_txx9.c b/drivers/tty/serial/serial_txx9.c
+index 8e3fc19..34bd345 100644
+--- a/drivers/tty/serial/serial_txx9.c
++++ b/drivers/tty/serial/serial_txx9.c
+@@ -28,6 +28,8 @@
+ #include <linux/pci.h>
+ #include <linux/serial_core.h>
+ #include <linux/serial.h>
++#include <linux/tty.h>
++#include <linux/tty_flip.h>
+ 
+ #include <asm/io.h>
+ 
+diff --git a/drivers/tty/serial/sn_console.c b/drivers/tty/serial/sn_console.c
+index 377ae74..7320507 100644
+--- a/drivers/tty/serial/sn_console.c
++++ b/drivers/tty/serial/sn_console.c
+@@ -39,6 +39,7 @@
+ 
+ #include <linux/interrupt.h>
+ #include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/serial.h>
+ #include <linux/console.h>
+ #include <linux/module.h>
+diff --git a/drivers/tty/serial/timbuart.c b/drivers/tty/serial/timbuart.c
+index 1f36b7e..a4b63bf 100644
+--- a/drivers/tty/serial/timbuart.c
++++ b/drivers/tty/serial/timbuart.c
+@@ -23,6 +23,8 @@
+ #include <linux/pci.h>
+ #include <linux/interrupt.h>
+ #include <linux/serial_core.h>
++#include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/kernel.h>
+ #include <linux/platform_device.h>
+ #include <linux/ioport.h>
+diff --git a/drivers/tty/serial/uartlite.c b/drivers/tty/serial/uartlite.c
+index 8af1ed8..b908615 100644
+--- a/drivers/tty/serial/uartlite.c
++++ b/drivers/tty/serial/uartlite.c
+@@ -15,6 +15,7 @@
+ #include <linux/serial.h>
+ #include <linux/serial_core.h>
+ #include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/delay.h>
+ #include <linux/interrupt.h>
+ #include <linux/init.h>
+diff --git a/drivers/tty/serial/ucc_uart.c b/drivers/tty/serial/ucc_uart.c
+index c327218..97b6724 100644
+--- a/drivers/tty/serial/ucc_uart.c
++++ b/drivers/tty/serial/ucc_uart.c
+@@ -20,8 +20,10 @@
+ 
+ #include <linux/module.h>
+ #include <linux/serial.h>
+-#include <linux/slab.h>
+ #include <linux/serial_core.h>
++#include <linux/slab.h>
++#include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/io.h>
+ #include <linux/of_platform.h>
+ #include <linux/dma-mapping.h>
+diff --git a/drivers/tty/serial/xilinx_uartps.c b/drivers/tty/serial/xilinx_uartps.c
+index 19cc1e8..8c03b12 100644
+--- a/drivers/tty/serial/xilinx_uartps.c
++++ b/drivers/tty/serial/xilinx_uartps.c
+@@ -12,9 +12,11 @@
+  */
+ 
+ #include <linux/platform_device.h>
++#include <linux/serial.h>
+ #include <linux/serial_core.h>
++#include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/console.h>
+-#include <linux/serial.h>
+ #include <linux/irq.h>
+ #include <linux/io.h>
+ #include <linux/of.h>
+diff --git a/drivers/tty/serial/zs.c b/drivers/tty/serial/zs.c
+index 1a7fd3e..d417201 100644
+--- a/drivers/tty/serial/zs.c
++++ b/drivers/tty/serial/zs.c
+@@ -63,6 +63,7 @@
+ #include <linux/spinlock.h>
+ #include <linux/sysrq.h>
+ #include <linux/tty.h>
++#include <linux/tty_flip.h>
+ #include <linux/types.h>
+ 
+ #include <asm/atomic.h>
 -- 
 1.7.6.5
 
