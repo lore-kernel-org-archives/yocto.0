@@ -1,24 +1,34 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76955E0030B
-	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 13:00:40 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q21L0cci016662
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 1 Mar 2012 13:00:38 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 1 Mar 2012 13:00:38 -0800
-Message-ID: <4F4FE362.8040706@windriver.com>
-Date: Thu, 1 Mar 2012 16:00:18 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
-MIME-Version: 1.0
-To: <kishore.k.bodke@intel.com>
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3C44E0030B
+	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 13:36:43 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 01 Mar 2012 13:36:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="131917870"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by fmsmga002.fm.intel.com with ESMTP; 01 Mar 2012 13:36:43 -0800
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 1 Mar 2012 13:36:43 -0800
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.233]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.137]) with mapi id
+	14.01.0355.002; Thu, 1 Mar 2012 13:36:42 -0800
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Thread-Topic: [PATCH 0/1] [KERNEL] enable Cedarview config parameters
+Thread-Index: AQHM9z/5hKeXvpgcFEytrRzlZtkQ/pZWdDkA//+DHpA=
+Date: Thu, 1 Mar 2012 21:36:42 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE2035D5D4D@ORSMSX105.amr.corp.intel.com>
 References: <cover.1330560414.git.kishore.k.bodke@intel.com>
-In-Reply-To: <cover.1330560414.git.kishore.k.bodke@intel.com>
-Cc: yocto@yoctoproject.org
+	<4F4FE362.8040706@windriver.com>
+In-Reply-To: <4F4FE362.8040706@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [PATCH 0/1] [KERNEL] enable Cedarview config parameters
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -31,16 +41,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Mar 2012 21:00:40 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 01 Mar 2012 21:36:44 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Bruce,
+
+We got the patches from Cedartrail Meego team and applied to Yocto/pvr bran=
+ch.  Below is the link where we have taken the patches from.
+
+http://build.meego.com/package/files?package=3Dkernel-adaptation-pc&project=
+=3DMeeGo%3A1.2.0%3ACedarTrail%3Aoss&rev=3D10
+
+We have tested it on 3.0, but not yet tried on 3.2.
+
+Thanks
+Kishore.
+
+
+-----Original Message-----
+From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
+Sent: Thursday, March 01, 2012 1:00 PM
+To: Bodke, Kishore K
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/1] [KERNEL] enable Cedarview config parameters
 
 On 12-02-29 07:13 PM, kishore.k.bodke@intel.com wrote:
 > From: Kishore Bodke<kishore.k.bodke@intel.com>
 >
 > Hi,
 >
-> This patch is to enable Cedarview config parameters and add the kernel patches to the yocto/pvr branch in linux-yocto-3.0 and linux-yocto-3.2 tree.
+> This patch is to enable Cedarview config parameters and add the kernel pa=
+tches to the yocto/pvr branch in linux-yocto-3.0 and linux-yocto-3.2 tree.
 
 The patch itself looks ok. When merging features like this, we
 typically want the upstream reference. That makes carrying them
@@ -65,14 +98,16 @@ Bruce
 > Kishore.
 >
 >
-> The following changes since commit 07e83cbd3e62a0bf91f558337aa7e37bc09f100b:
+> The following changes since commit 07e83cbd3e62a0bf91f558337aa7e37bc09f10=
+0b:
 >
 >    Merge commit 'v3.0.22' into yocto/base (2012-02-26 00:02:48 -0500)
 >
 > are available in the git repository at:
 >
 >    git://git.pokylinux.org/linux-yocto-2.6.37-contrib kishore/pvr-patch
->    http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=kishore/pvr-patch
+>    http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=3D=
+kishore/pvr-patch
 >
 > Kishore Bodke (1):
 >    enable Cedarview config parameters.
@@ -180,11 +215,13 @@ Bruce
 >   .../cdv/pvr/services4/include/sgx_mkif_km.h        |  347 ++
 >   .../staging/cdv/pvr/services4/include/sgxinfo.h    |  470 ++
 >   .../cdv/pvr/services4/srvkm/bridged/.gitignore     |    5 +
->   .../services4/srvkm/bridged/bridged_pvr_bridge.c   | 4782 ++++++++++++++++++++
+>   .../services4/srvkm/bridged/bridged_pvr_bridge.c   | 4782 +++++++++++++=
++++++++
 >   .../services4/srvkm/bridged/bridged_pvr_bridge.h   |  252 +
 >   .../pvr/services4/srvkm/bridged/bridged_support.c  |   89 +
 >   .../pvr/services4/srvkm/bridged/bridged_support.h  |   47 +
->   .../srvkm/bridged/sgx/bridged_sgx_bridge.c         | 3744 +++++++++++++++
+>   .../srvkm/bridged/sgx/bridged_sgx_bridge.c         | 3744 +++++++++++++=
+++
 >   .../srvkm/bridged/sgx/bridged_sgx_bridge.h         |   42 +
 >   .../cdv/pvr/services4/srvkm/common/.gitignore      |    5 +
 >   .../pvr/services4/srvkm/common/buffer_manager.c    | 2531 +++++++++++
@@ -206,7 +243,8 @@ Bruce
 >   .../staging/cdv/pvr/services4/srvkm/common/ra.c    | 1725 +++++++
 >   .../cdv/pvr/services4/srvkm/common/resman.c        |  751 +++
 >   .../cdv/pvr/services4/srvkm/devices/sgx/.gitignore |    5 +
->   .../cdv/pvr/services4/srvkm/devices/sgx/mmu.c      | 3696 +++++++++++++++
+>   .../cdv/pvr/services4/srvkm/devices/sgx/mmu.c      | 3696 +++++++++++++=
+++
 >   .../cdv/pvr/services4/srvkm/devices/sgx/mmu.h      |  154 +
 >   .../cdv/pvr/services4/srvkm/devices/sgx/pb.c       |  466 ++
 >   .../services4/srvkm/devices/sgx/sgx_bridge_km.h    |  160 +
@@ -307,8 +345,10 @@ Bruce
 >   create mode 100644 drivers/staging/cdv/Makefile
 >   create mode 100644 drivers/staging/cdv/bc_video/bufferclass_video.c
 >   create mode 100644 drivers/staging/cdv/bc_video/bufferclass_video.h
->   create mode 100644 drivers/staging/cdv/bc_video/bufferclass_video_linux.c
->   create mode 100644 drivers/staging/cdv/bc_video/bufferclass_video_linux.h
+>   create mode 100644 drivers/staging/cdv/bc_video/bufferclass_video_linux=
+.c
+>   create mode 100644 drivers/staging/cdv/bc_video/bufferclass_video_linux=
+.h
 >   create mode 100644 drivers/staging/cdv/drv/psb_bl.c
 >   create mode 100644 drivers/staging/cdv/drv/psb_dpst.c
 >   create mode 100644 drivers/staging/cdv/drv/psb_dpst.h
@@ -385,147 +425,282 @@ Bruce
 >   create mode 100644 drivers/staging/cdv/pvr/include4/sgx_options.h
 >   create mode 100644 drivers/staging/cdv/pvr/include4/sgxapi_km.h
 >   create mode 100644 drivers/staging/cdv/pvr/include4/sgxscript.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_framebuffer_mrst/.gitignore
->   create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_framebuffer_mrst/makefile.linux.common
->   create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_framebuffer_mrst/mrstlfb.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_framebuffer_mrst/mrstlfb_displayclass.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_framebuffer_mrst/mrstlfb_linux.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/include/env/linux-intel/pvr_drm_shared.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/include/env/linux/pvr_drm_shared.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/include/kernelbuffer.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/include/kerneldisplay.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_fra=
+mebuffer_mrst/.gitignore
+>   create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_fra=
+mebuffer_mrst/makefile.linux.common
+>   create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_fra=
+mebuffer_mrst/mrstlfb.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_fra=
+mebuffer_mrst/mrstlfb_displayclass.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_fra=
+mebuffer_mrst/mrstlfb_linux.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/include/env/linux-=
+intel/pvr_drm_shared.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/include/env/linux/=
+pvr_drm_shared.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/include/kernelbuff=
+er.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/include/kerneldisp=
+lay.h
 >   create mode 100644 drivers/staging/cdv/pvr/services4/include/pdump.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/include/pvr_bridge.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/include/pvr_bridge_km.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/include/pvr_bridge=
+.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/include/pvr_bridge=
+_km.h
 >   create mode 100644 drivers/staging/cdv/pvr/services4/include/pvrmmap.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/include/pvrsrv_errors.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/include/servicesint.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/include/sgx_bridge.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/include/sgx_mkif_km.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/include/pvrsrv_err=
+ors.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/include/servicesin=
+t.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/include/sgx_bridge=
+.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/include/sgx_mkif_k=
+m.h
 >   create mode 100644 drivers/staging/cdv/pvr/services4/include/sgxinfo.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/.gitignore
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/bridged_pvr_bridge.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/bridged_pvr_bridge.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/bridged_support.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/bridged_support.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/sgx/bridged_sgx_bridge.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/sgx/bridged_sgx_bridge.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/.gitignore
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/buffer_manager.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/deviceclass.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/deviceid.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/devicemem.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/handle.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/hash.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/lists.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/.git=
+ignore
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/brid=
+ged_pvr_bridge.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/brid=
+ged_pvr_bridge.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/brid=
+ged_support.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/brid=
+ged_support.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/sgx/=
+bridged_sgx_bridge.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/sgx/=
+bridged_sgx_bridge.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/.giti=
+gnore
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/buffe=
+r_manager.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/devic=
+eclass.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/devic=
+eid.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/devic=
+emem.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/handl=
+e.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/hash.=
+c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/lists=
+.c
 >   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/mem.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/mem_debug.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/metrics.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/osfunc_common.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/pdump_common.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/perproc.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/power.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/pvrsrv.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/queue.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/mem_d=
+ebug.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/metri=
+cs.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/osfun=
+c_common.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/pdump=
+_common.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/perpr=
+oc.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/power=
+.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/pvrsr=
+v.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/queue=
+.c
 >   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/ra.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/resman.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/.gitignore
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/mmu.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/mmu.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/pb.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgx_bridge_km.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgx_ukernel_status_codes.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxconfig.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxinfokm.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxinit.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxkick.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxpower.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxreset.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxtransfer.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxutils.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxutils.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/.gitignore
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/env_data.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/env_perproc.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/event.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/event.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/linkage.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/lock.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mm.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mm.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mmap.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mmap.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/module.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mutex.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mutils.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mutils.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/osfunc.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/osperproc.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pdump.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/private_data.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/proc.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/proc.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pvr_bridge_k.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pvr_debug.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pvr_drm.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pvr_drm.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/mnemedefs.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx535defs.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx540defs.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx543_v1.164defs.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx544defs.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx545defs.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxdefs.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxerrata.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxfeaturedefs.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxmmu.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxmpdefs.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/buffer_manager.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/device.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/handle.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/hash.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/lists.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/metrics.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/osfunc.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/osperproc.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/pdump_int.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/pdump_km.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/pdump_osfunc.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/perproc.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/power.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/queue.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/resma=
+n.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+.gitignore
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+mmu.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+mmu.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+pb.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+sgx_bridge_km.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+sgx_ukernel_status_codes.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+sgxconfig.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+sgxinfokm.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+sgxinit.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+sgxkick.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+sgxpower.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+sgxreset.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+sgxtransfer.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+sgxutils.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/=
+sgxutils.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/.g=
+itignore
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/en=
+v_data.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/en=
+v_perproc.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/ev=
+ent.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/ev=
+ent.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/li=
+nkage.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/lo=
+ck.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mm=
+.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mm=
+.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mm=
+ap.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mm=
+ap.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mo=
+dule.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mu=
+tex.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mu=
+tils.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mu=
+tils.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/os=
+func.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/os=
+perproc.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pd=
+ump.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pr=
+ivate_data.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pr=
+oc.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pr=
+oc.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pv=
+r_bridge_k.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pv=
+r_debug.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pv=
+r_drm.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pv=
+r_drm.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/mneme=
+defs.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx53=
+5defs.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx54=
+0defs.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx54=
+3_v1.164defs.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx54=
+4defs.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx54=
+5defs.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxde=
+fs.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxer=
+rata.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxfe=
+aturedefs.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxmm=
+u.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxmp=
+defs.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/buff=
+er_manager.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/devi=
+ce.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/hand=
+le.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/hash=
+.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/list=
+s.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/metr=
+ics.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/osfu=
+nc.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/ospe=
+rproc.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/pdum=
+p_int.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/pdum=
+p_km.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/pdum=
+p_osfunc.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/perp=
+roc.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/powe=
+r.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/queu=
+e.h
 >   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/ra.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/resman.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/services_headers.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/srvkm.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/ttrace.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/ttrace_common.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/ttrace_tokens.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/system/include/syscommon.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/extsyscache.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/oemfuncs.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys_pvr_drm_export.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys_pvr_drm_export.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys_pvr_drm_import.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sysconfig.c
->   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sysconfig.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sysinfo.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sysirq.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/syslocal.h
->   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sysutils.c
->   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/client/linuxsrv.h
->   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/dbgdriv.c
->   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/dbgdriv.h
->   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/dbgdriv_ioctl.h
->   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/handle.c
->   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/hostfunc.h
->   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/hotkey.c
->   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/hotkey.h
->   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/ioctl.c
->   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/linux/hostfunc.c
->   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/linux/kbuild/Makefile
->   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/linux/main.c
->   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/linux/makefile.linux.common
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/resm=
+an.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/serv=
+ices_headers.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/srvk=
+m.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/ttra=
+ce.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/ttra=
+ce_common.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/ttra=
+ce_tokens.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/system/include/sys=
+common.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/ext=
+syscache.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/oem=
+funcs.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys=
+_pvr_drm_export.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys=
+_pvr_drm_export.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys=
+_pvr_drm_import.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys=
+config.c
+>   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys=
+config.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys=
+info.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys=
+irq.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys=
+local.h
+>   create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys=
+utils.c
+>   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/client/li=
+nuxsrv.h
+>   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/c=
+ommon/dbgdriv.c
+>   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/c=
+ommon/dbgdriv.h
+>   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/c=
+ommon/dbgdriv_ioctl.h
+>   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/c=
+ommon/handle.c
+>   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/c=
+ommon/hostfunc.h
+>   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/c=
+ommon/hotkey.c
+>   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/c=
+ommon/hotkey.h
+>   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/c=
+ommon/ioctl.c
+>   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/l=
+inux/hostfunc.c
+>   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/l=
+inux/kbuild/Makefile
+>   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/l=
+inux/main.c
+>   create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/l=
+inux/makefile.linux.common
 >
 
 
