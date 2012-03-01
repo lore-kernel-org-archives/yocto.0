@@ -1,26 +1,26 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7ACF7E0030B
-	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 15:02:00 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69193E003E1
+	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 15:04:28 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 01 Mar 2012 15:02:00 -0800
+	by orsmga102.jf.intel.com with ESMTP; 01 Mar 2012 15:04:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="113631152"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="113631544"
 Received: from unknown (HELO envy.home) ([10.7.199.61])
-	by orsmga001.jf.intel.com with ESMTP; 01 Mar 2012 15:02:00 -0800
-Message-ID: <4F4FFFBC.20006@linux.intel.com>
-Date: Thu, 01 Mar 2012 15:01:16 -0800
+	by orsmga001.jf.intel.com with ESMTP; 01 Mar 2012 15:03:27 -0800
+Message-ID: <4F500013.1080000@linux.intel.com>
+Date: Thu, 01 Mar 2012 15:02:43 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:10.0) Gecko/20120131 Thunderbird/10.0
 MIME-Version: 1.0
-To: jfabernathy <jfabernathy@gmail.com>
-References: <4F4E8B62.6010209@gmail.com> <4F4E8C2E.5030602@mlbassoc.com>
-	<4F4E9D03.8040305@gmail.com>
-In-Reply-To: <4F4E9D03.8040305@gmail.com>
+To: Hollis Blanchard <hollis_blanchard@mentor.com>
+References: <4F4FF77D.9060607@mentor.com> <4F4FFBF7.3020208@linux.intel.com>
+	<4F4FFFDE.4090407@mentor.com>
+In-Reply-To: <4F4FFFDE.4090407@mentor.com>
 X-Enigmail-Version: 1.3.5
-Cc: yocto@yoctoproject.org
-Subject: Re: building with 1.2_M3
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH] include usbinit package with usbgadget feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,51 +32,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Mar 2012 23:02:00 -0000
+X-List-Received-Date: Thu, 01 Mar 2012 23:04:28 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
 
 
-On 02/29/2012 01:47 PM, jfabernathy wrote:
-> On 02/29/2012 03:35 PM, Gary Thomas wrote:
->> On 2012-02-29 13:32, jfabernathy wrote:
->>> Just for fun, I thought I'd build meta-cedartrail today since I saw 
->>> 1.2_M3 branch show up when I did a git pull today. The only thing I 
->>> did above the basic BSP was to include my
->>> meta-jfa layer which is nothing more than my hello world application 
->>> and web-webkit, which is already in the meta layer.
+On 03/01/2012 03:01 PM, Hollis Blanchard wrote:
+> On 03/01/2012 02:45 PM, Darren Hart wrote:
+>> On 03/01/2012 02:26 PM, Hollis Blanchard wrote:
+>>> The g_ether kernel module, in the kernel-module-g-ether package, allows
+>>> targets to use a USB connection as a network interface. However, that's
+>>> not useful until the module is loaded.
 >>>
->>> I added to local.conf the following lines, like I alway do:
->>>
->>> POKY_EXTRA_INSTALL += "web-webkit"
->>>
->>> POKY_EXTRA_INSTALL += "hello"
->>>
->>> I also added the meta-intel, meta-intel/meta-cedartrail, and meta-jfa 
->>> to my bblayers.conf.
->>>
->>> However, unlike the last time I ran this against master branch, I 
->>> didn't get "hello" or "web-webkit" in my image, as I usually do.
->>>
->>> Is this just a quirk with 1.2_M3 or did something break?
+>>> The usbinit package provides the /etc/init.d/usb-gether script to load
+>>> the g_ether module at boot, so it should be included along with
+>>> kernel-module-g-ether.
+>> So if the g-ether kernel module is built-in to the kernel, the
+>> kernel-module-g-ether will not be installed (as it's RRECOMMENDS). The
+>> usbinit package still will be (unless for some reason it can't be built
+>> for the target).
 >>
->> Looks like this variable was renamed to be CORE_IMAGE_EXTRA_INSTALL
->>
-> Another thought.  I hope the glossary in Poky Reference Manual will get 
-> changed to reflect this?? It isn't right now, but 1.2_M3 may not be done 
-> yet.
+>> I assume this doesn't pose a problem?
+> 
+> Well, hmm, I don't know. The usb-gether script is not very intelligent, 
+> so I suppose that would result in yet another boot time error message. 
+> Perhaps testing the result of 'modinfo g_ether' in the script would be a 
+> good follow-up patch?
+> 
 
-The Reference Manual linked off the Documentation page is for the last
-stable release, Edison in this case.
-
-The development version of the manual is also available online:
-
-http://www.yoctoproject.org/docs/latest/poky-ref-manual/poky-ref-manual.html
-
-This still lists POKY_EXTRA_INSTALL.
-
-Scott, can you change this to CORE_IMAGE_EXTRA_INSTALL please?
+Sounds reasonable to me.
 
 -- 
 Darren Hart
