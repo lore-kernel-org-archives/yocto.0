@@ -1,25 +1,25 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0323E013AF
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D031DE00596
 	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 16:00:37 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
 	by orsmga102.jf.intel.com with ESMTP; 01 Mar 2012 16:00:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="116733512"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="113647206"
 Received: from unknown (HELO localhost) ([10.7.199.61])
-	by orsmga002.jf.intel.com with ESMTP; 01 Mar 2012 15:59:43 -0800
-From: Darren Hart <dvhart@linux.intel.com>
+	by orsmga001.jf.intel.com with ESMTP; 01 Mar 2012 16:00:33 -0800
+From: Darren Hart <darren@dvhart.com>
 To: Yocto Project <yocto@yoctoproject.org>,
 	Bruce Ashfield <bruce.ashfield@windriver.com>,
 	Tom Zanussi <tom.zanussi@intel.com>
-Date: Thu,  1 Mar 2012 15:58:51 -0800
-Message-Id: <43dda36906d543c0f880c57d1400a1b61a5ddc74.1330643860.git.dvhart@linux.intel.com>
+Date: Thu,  1 Mar 2012 15:59:39 -0800
+Message-Id: <10a2db8ee10a1a36dee44a67aa8976dd2447ba5b.1330644211.git.darren@dvhart.com>
 X-Mailer: git-send-email 1.7.6.5
-In-Reply-To: <cover.1330643860.git.dvhart@linux.intel.com>
-References: <cover.1330643860.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1330643860.git.dvhart@linux.intel.com>
-References: <cover.1330643860.git.dvhart@linux.intel.com>
-Subject: [PATCH 10/11] pch_uart: Add user_uartclk parameter
+In-Reply-To: <cover.1330644211.git.darren@dvhart.com>
+References: <cover.1330644211.git.darren@dvhart.com>
+In-Reply-To: <cover.1330644211.git.darren@dvhart.com>
+References: <cover.1330644211.git.darren@dvhart.com>
+Subject: [PATCH 4/5] pch_uart: Add user_uartclk parameter
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,6 +32,8 @@ List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Fri, 02 Mar 2012 00:00:37 -0000
+
+From: Darren Hart <dvhart@linux.intel.com>
 
 For cases where boards with non-default clocks are not yet added to the kernel
 or when the clock varies across hardware revisions, it is useful to be
