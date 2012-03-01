@@ -1,25 +1,25 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22155E01415
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32482E013AF
 	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 16:00:46 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
 	by orsmga102.jf.intel.com with ESMTP; 01 Mar 2012 16:00:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="116734476"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="113647318"
 Received: from unknown (HELO localhost) ([10.7.199.61])
-	by orsmga002.jf.intel.com with ESMTP; 01 Mar 2012 16:00:45 -0800
+	by orsmga001.jf.intel.com with ESMTP; 01 Mar 2012 16:00:45 -0800
 From: Darren Hart <darren@dvhart.com>
 To: Yocto Project <yocto@yoctoproject.org>,
 	Bruce Ashfield <bruce.ashfield@windriver.com>,
 	Tom Zanussi <tom.zanussi@intel.com>
-Date: Thu,  1 Mar 2012 15:59:52 -0800
-Message-Id: <607c67a37d0c27ba5c2c412696c023a9f3182514.1330644090.git.darren@dvhart.com>
+Date: Thu,  1 Mar 2012 15:59:53 -0800
+Message-Id: <9e7d52880d843dc06d2462c192fa4a55eb797b35.1330644090.git.darren@dvhart.com>
 X-Mailer: git-send-email 1.7.6.5
 In-Reply-To: <cover.1330644090.git.darren@dvhart.com>
 References: <cover.1330644090.git.darren@dvhart.com>
 In-Reply-To: <cover.1330644090.git.darren@dvhart.com>
 References: <cover.1330644090.git.darren@dvhart.com>
-Subject: [PATCH 2/6] Remove boot-live cfg duplication from BSPs
+Subject: [PATCH 3/6] fri2: Drop 8250 from the fri2 scc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,138 +35,31 @@ X-List-Received-Date: Fri, 02 Mar 2012 00:00:46 -0000
 
 From: Darren Hart <dvhart@linux.intel.com>
 
-Several BSPs duplicated the boot-live fragment in their BSP
-specific config. Remove the duplication and add CONFIG_RD_GZIP
-and CONFIG_BLK_DEV_SR to the boot-live fragment.
+The FRI2 has a pch_uart. Depending on the firmware, the kernel may
+decide to use the 8250 or the pch_uart driver. As the firmware
+configures the pch_uart with a non-standard UART clock, it is
+necessary to ensure the pch_uart is used. To do this, drop the 8250
+support from the kernel.
 
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
-Acked-by: Tom Zanussi <tzanussi@intel.com>
 ---
- .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   10 ----------
- meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |   10 ----------
- meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |   10 ----------
- meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg  |   10 ----------
- meta/cfg/kernel-cache/bsp/fri2/fri2.cfg            |   10 ----------
- meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg      |    5 -----
- meta/cfg/kernel-cache/cfg/boot-live.cfg            |    3 +++
- 7 files changed, 3 insertions(+), 55 deletions(-)
+ meta/cfg/kernel-cache/bsp/fri2/fri2.scc |    3 +--
+ 1 files changed, 1 insertions(+), 2 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
-index 1cc14b1..32cd9e5 100755
---- a/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
-+++ b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
-@@ -46,13 +46,3 @@ CONFIG_MODULES=y
- CONFIG_SHMEM=y
- CONFIG_TMPFS=y
- CONFIG_PACKET=y
--
--# Needed for booting (and using) USB memory sticks
--CONFIG_BLK_DEV_LOOP=y
--CONFIG_NLS_CODEPAGE_437=y
--CONFIG_NLS_ISO8859_1=y
--
--CONFIG_RD_GZIP=y
--
--# Needed for booting (and using) CD images
--CONFIG_BLK_DEV_SR=y
-diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
-index e93c0b8..b101419 100644
---- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
-+++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
-@@ -42,13 +42,3 @@ CONFIG_MODULES=y
- CONFIG_SHMEM=y
- CONFIG_TMPFS=y
- CONFIG_PACKET=y
--
--# Needed for booting (and using) USB memory sticks
--CONFIG_BLK_DEV_LOOP=y
--CONFIG_NLS_CODEPAGE_437=y
--CONFIG_NLS_ISO8859_1=y
--
--CONFIG_RD_GZIP=y
--
--# Needed for booting (and using) CD images
--CONFIG_BLK_DEV_SR=y
-diff --git a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
-index b9704c5..b1e72bd 100644
---- a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
-+++ b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg
-@@ -40,13 +40,3 @@ CONFIG_MODULES=y
- CONFIG_SHMEM=y
- CONFIG_TMPFS=y
- CONFIG_PACKET=y
--
--# Needed for booting (and using) USB memory sticks
--CONFIG_BLK_DEV_LOOP=y
--CONFIG_NLS_CODEPAGE_437=y
--CONFIG_NLS_ISO8859_1=y
--
--CONFIG_RD_GZIP=y
--
--# Needed for booting (and using) CD images
--CONFIG_BLK_DEV_SR=y
-diff --git a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg
-index e93c0b8..b101419 100644
---- a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg
-+++ b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg
-@@ -42,13 +42,3 @@ CONFIG_MODULES=y
- CONFIG_SHMEM=y
- CONFIG_TMPFS=y
- CONFIG_PACKET=y
--
--# Needed for booting (and using) USB memory sticks
--CONFIG_BLK_DEV_LOOP=y
--CONFIG_NLS_CODEPAGE_437=y
--CONFIG_NLS_ISO8859_1=y
--
--CONFIG_RD_GZIP=y
--
--# Needed for booting (and using) CD images
--CONFIG_BLK_DEV_SR=y
-diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2.cfg b/meta/cfg/kernel-cache/bsp/fri2/fri2.cfg
-index e93c0b8..b101419 100644
---- a/meta/cfg/kernel-cache/bsp/fri2/fri2.cfg
-+++ b/meta/cfg/kernel-cache/bsp/fri2/fri2.cfg
-@@ -42,13 +42,3 @@ CONFIG_MODULES=y
- CONFIG_SHMEM=y
- CONFIG_TMPFS=y
- CONFIG_PACKET=y
--
--# Needed for booting (and using) USB memory sticks
--CONFIG_BLK_DEV_LOOP=y
--CONFIG_NLS_CODEPAGE_437=y
--CONFIG_NLS_ISO8859_1=y
--
--CONFIG_RD_GZIP=y
--
--# Needed for booting (and using) CD images
--CONFIG_BLK_DEV_SR=y
-diff --git a/meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg b/meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
-index 3d45fe8..b101419 100644
---- a/meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
-+++ b/meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg
-@@ -42,8 +42,3 @@ CONFIG_MODULES=y
- CONFIG_SHMEM=y
- CONFIG_TMPFS=y
- CONFIG_PACKET=y
--
--CONFIG_RD_GZIP=y
--
--# Needed for booting (and using) CD images
--CONFIG_BLK_DEV_SR=y
-diff --git a/meta/cfg/kernel-cache/cfg/boot-live.cfg b/meta/cfg/kernel-cache/cfg/boot-live.cfg
-index 8ff7674..a102052 100644
---- a/meta/cfg/kernel-cache/cfg/boot-live.cfg
-+++ b/meta/cfg/kernel-cache/cfg/boot-live.cfg
-@@ -2,5 +2,8 @@ CONFIG_BLK_DEV_LOOP=y
- CONFIG_NLS_CODEPAGE_437=y
- CONFIG_NLS_ISO8859_1=y
- CONFIG_VFAT_FS=y
-+CONFIG_RD_GZIP=y
-+# Needed for booting (and using) CD images
- CONFIG_BLK_DEV_IDECD=y
- CONFIG_ISO9660_FS=y
-+CONFIG_BLK_DEV_SR=y
+diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+index 419bb8d..2dd3170 100644
+--- a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
++++ b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+@@ -4,8 +4,7 @@ include features/eg20t/eg20t.scc
+ include features/intel-e1xxxx/intel-e100.scc
+ include features/intel-e1xxxx/intel-e1xxxx.scc
+ include features/drm-emgd/drm-emgd.scc
+-include cfg/dmaengine.scc
+-include features/serial/8250.scc
++include cfg/dmaengine/dmaengine.scc
+ include features/ericsson-3g/f5521gw.scc
+ include features/iwlagn/iwlagn.scc
+ include cfg/vesafb.scc
 -- 
 1.7.6.5
 
