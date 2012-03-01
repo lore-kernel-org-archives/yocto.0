@@ -1,31 +1,22 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9B6AE0030B
-	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 15:26:44 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S3FOV-0008BE-MT
-	for yocto@yoctoproject.org; Thu, 01 Mar 2012 18:26:43 -0500
-Date: Thu, 1 Mar 2012 18:26:36 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1203011802350.2518@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60131E0030B
+	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 16:00:30 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 01 Mar 2012 16:00:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="113646813"
+Received: from unknown (HELO localhost) ([10.7.199.61])
+	by orsmga001.jf.intel.com with ESMTP; 01 Mar 2012 15:59:43 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>,
+	Bruce Ashfield <bruce.ashfield@windriver.com>,
+	Tom Zanussi <tom.zanussi@intel.com>
+Date: Thu,  1 Mar 2012 15:58:41 -0800
+Message-Id: <cover.1330643860.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.6.5
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: first in probably a number of questions about yocto and qemu
+Subject: [PATCH 00/11][linux-yocto-3.0] Backport fixes and add FRI2 support to pch_uart
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,37 +28,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Mar 2012 23:26:45 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 02 Mar 2012 00:00:30 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Backport 7 patches bringing pch_uart up to date with required fixes and new
+features to support the 4 new patches (from me) enabling the FRI2 serial port.
 
-  i'm writing up a tutorial on using qemu with yocto, so i'll start
-with what is undoubtedly a simple question.
+My patches have been sent to LKML and have received the approval one of the
+driver maintainers. They are currently pending review and a pull from Greg KH.
 
-  i notice in local.conf the line:
+Please apply to yocto/standard/base.
 
-#IMAGETEST = "qemu"
+The following changes since commit c578f3a1f357142a6e02a1df4ae9aa16f45094d6:
 
-which would appear to be available no matter what machine you select.
-i thought i'd read that yocto had limited support for qemu images in
-the sense of supporting only a small set of machines.  so under what
-circumstances is one allowed to use that feature?
+  Merge branch 'yocto/base' into yocto/standard/base (2012-02-26 00:04:15 -0500)
 
-  also, i just started a beagleboard build of core-image-minimal for
-some experimentation, and i didn't select that feature.  once the
-build is done, can i tweak local.conf to activate that feature, then
-redo the build to have the qemu test session start?  or is there a
-better way to do that?  thanks.
+are available in the git repository at:
 
-rday
+  git://git.infradead.org/users/dvhart/linux-yocto-3.0.git dvhart/yocto/standard/pch_uart
+  http://git.infradead.org/users/dvhart/linux-yocto-3.0.git/shortlog/refs/heads/dvhart/yocto/standard/pch_uart
+
+Alexander Stein (3):
+  pch_uart: add missing comment about OKI ML7223
+  pch_uart: Add MSI support
+  drivers/tty/serial/pch_uart.c: add console support
+
+Darren Hart (4):
+  pch_uart: Use uartclk instead of base_baud
+  pch_uart: Add Fish River Island II uart clock quirks
+  pch_uart: Add user_uartclk parameter
+  pch_uart: Use existing default_baud in setup_console
+
+Jiri Slaby (1):
+  TTY: serial, fix includes in some drivers
+
+Tomoya MORINAGA (2):
+  pch_uart: Set PCIe bus number using probe parameter
+  pch_uart: Change company name OKI SEMICONDUCTOR to LAPIS
+    Semiconductor
+
+Uwe Kleine-König (1):
+  serial/pch: use global div helper instead of creating a private one
+
+ drivers/tty/serial/Kconfig                  |    9 +
+ drivers/tty/serial/apbuart.c                |    1 +
+ drivers/tty/serial/cpm_uart/cpm_uart_core.c |    1 +
+ drivers/tty/serial/dz.c                     |    1 +
+ drivers/tty/serial/ioc3_serial.c            |    1 +
+ drivers/tty/serial/ioc4_serial.c            |    1 +
+ drivers/tty/serial/m32r_sio.c               |    1 +
+ drivers/tty/serial/max3100.c                |    2 +
+ drivers/tty/serial/max3107.c                |    2 +
+ drivers/tty/serial/mpc52xx_uart.c           |    1 +
+ drivers/tty/serial/msm_serial_hs.c          |    2 +
+ drivers/tty/serial/mux.c                    |    2 +
+ drivers/tty/serial/nwpserial.c              |    1 +
+ drivers/tty/serial/pch_uart.c               |  227 ++++++++++++++++++++++++---
+ drivers/tty/serial/sb1250-duart.c           |    1 +
+ drivers/tty/serial/serial_ks8695.c          |    1 +
+ drivers/tty/serial/serial_txx9.c            |    2 +
+ drivers/tty/serial/sn_console.c             |    1 +
+ drivers/tty/serial/timbuart.c               |    2 +
+ drivers/tty/serial/uartlite.c               |    1 +
+ drivers/tty/serial/ucc_uart.c               |    4 +-
+ drivers/tty/serial/xilinx_uartps.c          |    4 +-
+ drivers/tty/serial/zs.c                     |    1 +
+ 23 files changed, 246 insertions(+), 23 deletions(-)
 
 -- 
+1.7.6.5
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
