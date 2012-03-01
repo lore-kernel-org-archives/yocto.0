@@ -1,27 +1,43 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F141EE013E8
-	for <yocto@yoctoproject.org>; Wed, 29 Feb 2012 16:40:27 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 29 Feb 2012 16:40:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="113052316"
-Received: from unknown (HELO envy.home) ([10.255.15.91])
-	by azsmga001.ch.intel.com with ESMTP; 29 Feb 2012 16:40:27 -0800
-Message-ID: <4F4EC558.3040401@linux.intel.com>
-Date: Wed, 29 Feb 2012 16:39:52 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0) Gecko/20120131 Thunderbird/10.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DD51E013E8
+	for <yocto@yoctoproject.org>; Wed, 29 Feb 2012 21:30:55 -0800 (PST)
+Received: by pbcup7 with SMTP id up7so528184pbc.35
+	for <yocto@yoctoproject.org>; Wed, 29 Feb 2012 21:30:55 -0800 (PST)
+Received-SPF: pass (google.com: domain of raj.khem@gmail.com designates
+	10.68.232.68 as permitted sender) client-ip=10.68.232.68; 
+Authentication-Results: mr.google.com;
+	spf=pass (google.com: domain of raj.khem@gmail.com
+	designates 10.68.232.68 as permitted sender)
+	smtp.mail=raj.khem@gmail.com;
+	dkim=pass header.i=raj.khem@gmail.com
+Received: from mr.google.com ([10.68.232.68])
+	by 10.68.232.68 with SMTP id tm4mr7101915pbc.118.1330579855136
+	(num_hops = 1); Wed, 29 Feb 2012 21:30:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=gamma;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=nLvKVZTAPmuNV0EfJdnkd9I9J5WgAVFoI+RvHelfuyU=;
+	b=IjDZ3VVW5Kpo1c89UkBY7sCQarDVHVTqhwofnwL1rLdXZjeNja0mzgw1pTPVKwQ5uP
+	Hv07fEYubUgQ69t7piLtTDaJved/FX0wr9I+ulvQzwd14wswDOsOhnfqhOWhh6O2BoPe
+	jIS1aujdIFd/PbFXk5HhiwIpb1IQb7PikQA0U=
+Received: by 10.68.232.68 with SMTP id tm4mr5757004pbc.118.1330579855031;
+	Wed, 29 Feb 2012 21:30:55 -0800 (PST)
+Received: from [192.168.1.78] (99-57-140-209.lightspeed.sntcca.sbcglobal.net.
+	[99.57.140.209])
+	by mx.google.com with ESMTPS id x8sm1123636pbr.11.2012.02.29.21.30.52
+	(version=SSLv3 cipher=OTHER); Wed, 29 Feb 2012 21:30:53 -0800 (PST)
+Message-ID: <4F4F098B.3050506@gmail.com>
+Date: Wed, 29 Feb 2012 21:30:51 -0800
+From: Khem Raj <raj.khem@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:11.0) Gecko/20120224 Thunderbird/11.0
 MIME-Version: 1.0
-To: Chris Larson <clarson@kergoth.com>
-References: <4F4EBEC8.7060705@linux.intel.com>
-	<CABcZAN=xxYE+fxC_VhhsH+53eOMR4EPX4apWOG6Ut7zmOnSqyg@mail.gmail.com>
-In-Reply-To: <CABcZAN=xxYE+fxC_VhhsH+53eOMR4EPX4apWOG6Ut7zmOnSqyg@mail.gmail.com>
-X-Enigmail-Version: 1.3.5
-Cc: Yocto Project <yocto@yoctoproject.org>, "Perez-Gonzalez,
-	Inaky" <inaky.perez-gonzalez@intel.com>
-Subject: Re: Documentation: Default FILESDIR
+To: yocto@yoctoproject.org
+References: <CADzUK1J1+mLEg8n0X7HucQx9dMzO3NK5qZjrCEDYG2Rb=BrvVg@mail.gmail.com>
+In-Reply-To: <CADzUK1J1+mLEg8n0X7HucQx9dMzO3NK5qZjrCEDYG2Rb=BrvVg@mail.gmail.com>
+Subject: Re: USB touchscreen integration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,42 +49,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Mar 2012 00:40:28 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 01 Mar 2012 05:30:55 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-
-
-On 02/29/2012 04:27 PM, Chris Larson wrote:
-> On Wed, Feb 29, 2012 at 5:11 PM, Darren Hart <dvhart@linux.intel.com> wrote:
->> When a new user goes to write a recipe and add a patch or other file,
->> they need to understand FILESDIR and where to put these additional
->> files. I scanned the reference manual and the dev manual and came up
->> mostly empty handed. The one glipse of it is in section 5.1.4 of the
->> Reference Manual:
->>
->> "
->> It is useful when making changes directly to the work directory files to
->> do so using the Quilt tool as detailed in the Modifying Package Source
->> Code with Quilt section. Using Quilt, you can copy patches into the
->> recipe directory and use the patches directly through use of the SRC_URI
->> variable.
->> "
->>
->> Unfortunately, this doesn't say where the recipe directory is and what
->> it should be named.
->>
->> Is this documented somewhere that I missed? If not, Scott can you add
->> this task to your list of doc gaps?
+On 02/24/2012 10:04 AM, Autif Khan wrote:
+> I have a touchscreen made by AUO. It came with a driver which I have
+> written a recipe for and it seems to be compiling and when the
+> touchscreen is detected, the driver seems to be loading and
+> controlling the touchscreen. (Its not under the control of hid_core
+> driver).
 > 
-> FILESDIR hasn't actually been used (or, shouldn't have been) for
-> years. FILESPATH replaced it.
+> It shows up in /proc/bus/input/devices
+> 
+> I: Bus=0003 Vendor=03eb Product=201c Version=1503
+> N: Name="pixcir_hid_mt_v2.0"
+> P: Phys=
+> S: Sysfs=/devices/pci0000:00/0000:00:17.0/0000:01:00.0/0000:02:02.0/usb3/3-1/3-1:1.0/input/input4
+> U: Uniq=
+> H: Handlers=mouse0
+> B: PROP=0
+> B: EV=b
+> B: KEY=400 0 0 0 0 0 0 0 0 0 0
+> B: ABS=650000 3
+> 
+> It shows up as /dev/input/mouse0
 
-Sorry, I should have said FILESPATH - that's what I get for not looking
-it up. The situation is unchanged though.
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+tslib handles /dev/input/touchscreen0 can you modify the driver ?
 
