@@ -1,25 +1,25 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 941A1E0030B
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB0DFE0030B
 	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 16:00:30 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
 	by orsmga102.jf.intel.com with ESMTP; 01 Mar 2012 16:00:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="113646816"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="113646822"
 Received: from unknown (HELO localhost) ([10.7.199.61])
 	by orsmga001.jf.intel.com with ESMTP; 01 Mar 2012 15:59:43 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 To: Yocto Project <yocto@yoctoproject.org>,
 	Bruce Ashfield <bruce.ashfield@windriver.com>,
 	Tom Zanussi <tom.zanussi@intel.com>
-Date: Thu,  1 Mar 2012 15:58:43 -0800
-Message-Id: <433fa0248e57f6acf8c09383b04449d01159c9dc.1330643860.git.dvhart@linux.intel.com>
+Date: Thu,  1 Mar 2012 15:58:46 -0800
+Message-Id: <19ae9a80769b6b678aa79166e055eb6bc74cf139.1330643860.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.6.5
 In-Reply-To: <cover.1330643860.git.dvhart@linux.intel.com>
 References: <cover.1330643860.git.dvhart@linux.intel.com>
 In-Reply-To: <cover.1330643860.git.dvhart@linux.intel.com>
 References: <cover.1330643860.git.dvhart@linux.intel.com>
-Subject: [PATCH 02/11] pch_uart: Set PCIe bus number using probe parameter
+Subject: [PATCH 05/11] pch_uart: Add MSI support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,36 +31,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2012 00:00:30 -0000
+X-List-Received-Date: Fri, 02 Mar 2012 00:00:31 -0000
 
-From: Tomoya MORINAGA <tomoya-linux@dsn.okisemi.com>
+From: Alexander Stein <alexander.stein@systec-electronic.com>
 
-commit 6c4b47d243112e98811ce0da7bbb32cc3857dd1a upstream.
+commit e463595fd9c752fa4bf06b47df93ef9ade3c7cf0 upstream.
 
-Currently, PCIe bus number is set as fixed value "2".
-However, PCIe bus number is not always "2".
-This patch sets bus number using probe() parameter.
-
-Signed-off-by: Tomoya MORINAGA <tomoya-linux@dsn.okisemi.com>
+Signed-off-by: Alexander Stein <alexander.stein@systec-electronic.com>
 Signed-off-by: Greg Kroah-Hartman <gregkh@suse.de>
 ---
- drivers/tty/serial/pch_uart.c |    3 ++-
- 1 files changed, 2 insertions(+), 1 deletions(-)
+ drivers/tty/serial/pch_uart.c |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
 
 diff --git a/drivers/tty/serial/pch_uart.c b/drivers/tty/serial/pch_uart.c
-index 394d35a..eb676a0 100644
+index 81d262e..c124011 100644
 --- a/drivers/tty/serial/pch_uart.c
 +++ b/drivers/tty/serial/pch_uart.c
-@@ -603,7 +603,8 @@ static void pch_request_dma(struct uart_port *port)
- 	dma_cap_zero(mask);
- 	dma_cap_set(DMA_SLAVE, mask);
+@@ -1438,6 +1438,8 @@ static struct eg20t_port *pch_uart_init_port(struct pci_dev *pdev,
+ 		goto init_port_hal_free;
+ 	}
  
--	dma_dev = pci_get_bus_and_slot(2, PCI_DEVFN(0xa, 0)); /* Get DMA's dev
-+	dma_dev = pci_get_bus_and_slot(priv->pdev->bus->number,
-+				       PCI_DEVFN(0xa, 0)); /* Get DMA's dev
- 								information */
- 	/* Set Tx DMA */
- 	param = &priv->param_tx;
++	pci_enable_msi(pdev);
++
+ 	iobase = pci_resource_start(pdev, 0);
+ 	mapbase = pci_resource_start(pdev, 1);
+ 	priv->mapbase = mapbase;
+@@ -1494,6 +1496,8 @@ static void pch_uart_pci_remove(struct pci_dev *pdev)
+ 	struct eg20t_port *priv;
+ 
+ 	priv = (struct eg20t_port *)pci_get_drvdata(pdev);
++
++	pci_disable_msi(pdev);
+ 	pch_uart_exit_port(priv);
+ 	pci_disable_device(pdev);
+ 	kfree(priv);
+@@ -1581,6 +1585,7 @@ static int __devinit pch_uart_pci_probe(struct pci_dev *pdev,
+ 	return ret;
+ 
+ probe_disable_device:
++	pci_disable_msi(pdev);
+ 	pci_disable_device(pdev);
+ probe_error:
+ 	return ret;
 -- 
 1.7.6.5
 
