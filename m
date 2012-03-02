@@ -1,27 +1,27 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73372E003E1
-	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 13:24:56 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q22LOuUU027543
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 2 Mar 2012 13:24:56 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 2 Mar 2012 13:24:55 -0800
-Message-ID: <4F513A93.6030601@windriver.com>
-Date: Fri, 2 Mar 2012 16:24:35 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB575E003E1
+	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 13:40:52 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 02 Mar 2012 13:40:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="72960831"
+Received: from unknown (HELO envy.home) ([10.255.15.86])
+	by AZSMGA002.ch.intel.com with ESMTP; 02 Mar 2012 13:40:52 -0800
+Message-ID: <4F513E38.2050102@linux.intel.com>
+Date: Fri, 02 Mar 2012 13:40:08 -0800
+From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+	rv:10.0) Gecko/20120131 Thunderbird/10.0
 MIME-Version: 1.0
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-References: <cover.1330560414.git.kishore.k.bodke@intel.com>
-	<4F4FE362.8040706@windriver.com>
-	<D956029D25CF204F948EA0FB515E1EE2035D5D4D@ORSMSX105.amr.corp.intel.com>
-In-Reply-To: <D956029D25CF204F948EA0FB515E1EE2035D5D4D@ORSMSX105.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/1] [KERNEL] enable Cedarview config parameters
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <cover.1330644090.git.darren@dvhart.com>
+	<52339f4d415098f5903b6bce50206d404b12bb8d.1330644090.git.darren@dvhart.com>
+	<4F513892.6020106@windriver.com>
+In-Reply-To: <4F513892.6020106@windriver.com>
+X-Enigmail-Version: 1.3.5
+Cc: Darren Hart <darren@dvhart.com>, Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 4/6] eg20t: Enable serial console for the pch_uart
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,531 +33,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2012 21:24:56 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Fri, 02 Mar 2012 21:40:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 12-03-01 04:36 PM, Bodke, Kishore K wrote:
-> Hi Bruce,
->
-> We got the patches from Cedartrail Meego team and applied to Yocto/pvr branch.  Below is the link where we have taken the patches from.
->
-> http://build.meego.com/package/files?package=kernel-adaptation-pc&project=MeeGo%3A1.2.0%3ACedarTrail%3Aoss&rev=10
 
-I'll update the header during the merge to have this reference.
 
->
-> We have tested it on 3.0, but not yet tried on 3.2.
-
-In this case, I'll merge to 3.0, and we can do a forward propagation
-when we know 3.2 works.
-
-Bruce
-
->
-> Thanks
-> Kishore.
->
->
-> -----Original Message-----
-> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
-> Sent: Thursday, March 01, 2012 1:00 PM
-> To: Bodke, Kishore K
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [PATCH 0/1] [KERNEL] enable Cedarview config parameters
->
-> On 12-02-29 07:13 PM, kishore.k.bodke@intel.com wrote:
->> From: Kishore Bodke<kishore.k.bodke@intel.com>
+On 03/02/2012 01:16 PM, Bruce Ashfield wrote:
+> On 12-03-01 06:59 PM, Darren Hart wrote:
+>> From: Darren Hart<dvhart@linux.intel.com>
 >>
->> Hi,
->>
->> This patch is to enable Cedarview config parameters and add the kernel patches to the yocto/pvr branch in linux-yocto-3.0 and linux-yocto-3.2 tree.
->
-> The patch itself looks ok. When merging features like this, we
-> typically want the upstream reference. That makes carrying them
-> much easier as we march forward.
->
-> Where did these come from ? If we can get that in the header, that
-> would be great.
->
-> Often these patches can be broken up into subsystem chunks, but looking
-> through this, the breaks would largely be artificial (unless there's
-> an upstream repo we can leverage), so we can take a pass on breaking
-> these into smaller parts.
->
-> And you've tested the same content on 3.0 and 3.2 ?
->
-> Cheers,
->
+>> The FRI2 uses the pch_uart driver for the serial console. Enable the console
+>> driver.
+> 
+> It this safe for all eg20t users ? I see the crownbay also
+> uses this.
+
+It is safe. The new code that this enables is machine specific. The
+console code would only kick in if the console is set to ttyPCH1, which
+it obviously isn't as that didn't work before. Shouldn't be a problem.
+
+--
+Darren
+
+
 > Bruce
->
+> 
 >>
->> Thanks
->> Kishore.
+>> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
+>> ---
+>>   meta/cfg/kernel-cache/features/eg20t/eg20t.cfg |    1 +
+>>   1 files changed, 1 insertions(+), 0 deletions(-)
 >>
+>> diff --git a/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg b/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
+>> index ff2f6fd..3d4969c 100644
+>> --- a/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
+>> +++ b/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
+>> @@ -3,6 +3,7 @@
+>>   CONFIG_PCH_DMA=y
 >>
->> The following changes since commit 07e83cbd3e62a0bf91f558337aa7e37bc09f100b:
+>>   CONFIG_SERIAL_PCH_UART=y
+>> +CONFIG_SERIAL_PCH_UART_CONSOLE=y
+>>   CONFIG_SERIAL_CORE=y
 >>
->>     Merge commit 'v3.0.22' into yocto/base (2012-02-26 00:02:48 -0500)
->>
->> are available in the git repository at:
->>
->>     git://git.pokylinux.org/linux-yocto-2.6.37-contrib kishore/pvr-patch
->>     http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=kishore/pvr-patch
->>
->> Kishore Bodke (1):
->>     enable Cedarview config parameters.
->>
->>    drivers/staging/Kconfig                            |    2 +
->>    drivers/staging/Makefile                           |    1 +
->>    drivers/staging/cdv/Kconfig                        |   50 +
->>    drivers/staging/cdv/Makefile                       |  198 +
->>    drivers/staging/cdv/bc_video/bufferclass_video.c   |  327 ++
->>    drivers/staging/cdv/bc_video/bufferclass_video.h   |  171 +
->>    .../staging/cdv/bc_video/bufferclass_video_linux.c |  838 ++++
->>    .../staging/cdv/bc_video/bufferclass_video_linux.h |   67 +
->>    drivers/staging/cdv/drv/psb_bl.c                   |  135 +
->>    drivers/staging/cdv/drv/psb_dpst.c                 |  283 ++
->>    drivers/staging/cdv/drv/psb_dpst.h                 |   98 +
->>    drivers/staging/cdv/drv/psb_drm.h                  |  562 +++
->>    drivers/staging/cdv/drv/psb_drv.c                  | 1881 ++++++++
->>    drivers/staging/cdv/drv/psb_drv.h                  | 1203 +++++
->>    drivers/staging/cdv/drv/psb_fb.c                   |  812 ++++
->>    drivers/staging/cdv/drv/psb_fb.h                   |   59 +
->>    drivers/staging/cdv/drv/psb_gtt.c                  | 1045 +++++
->>    drivers/staging/cdv/drv/psb_gtt.h                  |  112 +
->>    drivers/staging/cdv/drv/psb_hotplug.c              |  439 ++
->>    drivers/staging/cdv/drv/psb_hotplug.h              |   90 +
->>    drivers/staging/cdv/drv/psb_intel_bios.c           |  289 ++
->>    drivers/staging/cdv/drv/psb_intel_bios.h           |  470 ++
->>    drivers/staging/cdv/drv/psb_intel_crt.c            |  353 ++
->>    drivers/staging/cdv/drv/psb_intel_display.c        | 1675 +++++++
->>    drivers/staging/cdv/drv/psb_intel_display.h        |   25 +
->>    drivers/staging/cdv/drv/psb_intel_dpll_cdv.c       |  262 ++
->>    drivers/staging/cdv/drv/psb_intel_drv.h            |  252 +
->>    drivers/staging/cdv/drv/psb_intel_hdmi.c           |  684 +++
->>    drivers/staging/cdv/drv/psb_intel_hdmi.h           |  935 ++++
->>    drivers/staging/cdv/drv/psb_intel_hdmi_edid.h      | 1057 +++++
->>    drivers/staging/cdv/drv/psb_intel_hdmi_reg.h       |  130 +
->>    drivers/staging/cdv/drv/psb_intel_i2c.c            |  171 +
->>    drivers/staging/cdv/drv/psb_intel_lvds.c           |  701 +++
->>    drivers/staging/cdv/drv/psb_intel_modes.c          |   77 +
->>    drivers/staging/cdv/drv/psb_intel_opregion.c       |  340 ++
->>    drivers/staging/cdv/drv/psb_intel_reg.h            | 1461 ++++++
->>    drivers/staging/cdv/drv/psb_irq.c                  |  681 +++
->>    drivers/staging/cdv/drv/psb_irq.h                  |   49 +
->>    drivers/staging/cdv/drv/psb_powermgmt.c            |  875 ++++
->>    drivers/staging/cdv/drv/psb_powermgmt.h            |   98 +
->>    drivers/staging/cdv/drv/psb_pvr_glue.c             |   74 +
->>    drivers/staging/cdv/drv/psb_pvr_glue.h             |   26 +
->>    drivers/staging/cdv/drv/psb_reg.h                  |  596 +++
->>    drivers/staging/cdv/drv/psb_reset.c                |  144 +
->>    drivers/staging/cdv/drv/psb_schedule.c             |   51 +
->>    drivers/staging/cdv/drv/psb_schedule.h             |   79 +
->>    drivers/staging/cdv/drv/psb_sgx.c                  |  943 ++++
->>    drivers/staging/cdv/drv/psb_sgx.h                  |   32 +
->>    drivers/staging/cdv/drv/psb_socket.c               |  374 ++
->>    drivers/staging/cdv/drv/psb_umevents.c             |  491 ++
->>    drivers/staging/cdv/drv/psb_umevents.h             |  161 +
->>    drivers/staging/cdv/imgv/msvdx_power.c             |  166 +
->>    drivers/staging/cdv/imgv/msvdx_power.h             |   48 +
->>    drivers/staging/cdv/imgv/psb_buffer.c              |  442 ++
->>    drivers/staging/cdv/imgv/psb_fence.c               |  167 +
->>    drivers/staging/cdv/imgv/psb_mmu.c                 | 1041 +++++
->>    drivers/staging/cdv/imgv/psb_msvdx.c               | 1451 ++++++
->>    drivers/staging/cdv/imgv/psb_msvdx.h               | 1388 ++++++
->>    drivers/staging/cdv/imgv/psb_msvdxinit.c           | 1164 +++++
->>    drivers/staging/cdv/imgv/psb_ttm_fence.c           |  603 +++
->>    drivers/staging/cdv/imgv/psb_ttm_fence_api.h       |  272 ++
->>    drivers/staging/cdv/imgv/psb_ttm_fence_driver.h    |  302 ++
->>    drivers/staging/cdv/imgv/psb_ttm_fence_user.c      |  237 +
->>    drivers/staging/cdv/imgv/psb_ttm_fence_user.h      |  140 +
->>    drivers/staging/cdv/imgv/psb_ttm_glue.c            |  376 ++
->>    drivers/staging/cdv/imgv/psb_ttm_placement_user.c  |  631 +++
->>    drivers/staging/cdv/imgv/psb_ttm_placement_user.h  |  252 +
->>    drivers/staging/cdv/imgv/psb_ttm_userobj_api.h     |   85 +
->>    drivers/staging/cdv/pvr/COPYING                    |  351 ++
->>    drivers/staging/cdv/pvr/INSTALL                    |   76 +
->>    drivers/staging/cdv/pvr/README                     |   48 +
->>    drivers/staging/cdv/pvr/eurasiacon/.gitignore      |    6 +
->>    drivers/staging/cdv/pvr/include4/dbgdrvif.h        |  328 ++
->>    drivers/staging/cdv/pvr/include4/img_defs.h        |  121 +
->>    drivers/staging/cdv/pvr/include4/img_types.h       |  151 +
->>    drivers/staging/cdv/pvr/include4/pdumpdefs.h       |  108 +
->>    drivers/staging/cdv/pvr/include4/pvr_debug.h       |  148 +
->>    drivers/staging/cdv/pvr/include4/pvrmodule.h       |   31 +
->>    drivers/staging/cdv/pvr/include4/pvrversion.h      |   61 +
->>    drivers/staging/cdv/pvr/include4/services.h        | 1235 +++++
->>    drivers/staging/cdv/pvr/include4/servicesext.h     |  846 ++++
->>    drivers/staging/cdv/pvr/include4/sgx_options.h     |  237 +
->>    drivers/staging/cdv/pvr/include4/sgxapi_km.h       |  423 ++
->>    drivers/staging/cdv/pvr/include4/sgxscript.h       |   81 +
->>    .../3rdparty/linux_framebuffer_mrst/.gitignore     |    6 +
->>    .../linux_framebuffer_mrst/makefile.linux.common   |   37 +
->>    .../3rdparty/linux_framebuffer_mrst/mrstlfb.h      |  303 ++
->>    .../linux_framebuffer_mrst/mrstlfb_displayclass.c  | 1652 +++++++
->>    .../linux_framebuffer_mrst/mrstlfb_linux.c         |  192 +
->>    .../include/env/linux-intel/pvr_drm_shared.h       |   50 +
->>    .../services4/include/env/linux/pvr_drm_shared.h   |   50 +
->>    .../cdv/pvr/services4/include/kernelbuffer.h       |   72 +
->>    .../cdv/pvr/services4/include/kerneldisplay.h      |  165 +
->>    drivers/staging/cdv/pvr/services4/include/pdump.h  |   37 +
->>    .../staging/cdv/pvr/services4/include/pvr_bridge.h | 1784 ++++++++
->>    .../cdv/pvr/services4/include/pvr_bridge_km.h      |  305 ++
->>    .../staging/cdv/pvr/services4/include/pvrmmap.h    |   44 +
->>    .../cdv/pvr/services4/include/pvrsrv_errors.h      |  266 ++
->>    .../cdv/pvr/services4/include/servicesint.h        |  391 ++
->>    .../staging/cdv/pvr/services4/include/sgx_bridge.h |  644 +++
->>    .../cdv/pvr/services4/include/sgx_mkif_km.h        |  347 ++
->>    .../staging/cdv/pvr/services4/include/sgxinfo.h    |  470 ++
->>    .../cdv/pvr/services4/srvkm/bridged/.gitignore     |    5 +
->>    .../services4/srvkm/bridged/bridged_pvr_bridge.c   | 4782 ++++++++++++++++++++
->>    .../services4/srvkm/bridged/bridged_pvr_bridge.h   |  252 +
->>    .../pvr/services4/srvkm/bridged/bridged_support.c  |   89 +
->>    .../pvr/services4/srvkm/bridged/bridged_support.h  |   47 +
->>    .../srvkm/bridged/sgx/bridged_sgx_bridge.c         | 3744 +++++++++++++++
->>    .../srvkm/bridged/sgx/bridged_sgx_bridge.h         |   42 +
->>    .../cdv/pvr/services4/srvkm/common/.gitignore      |    5 +
->>    .../pvr/services4/srvkm/common/buffer_manager.c    | 2531 +++++++++++
->>    .../cdv/pvr/services4/srvkm/common/deviceclass.c   | 2013 ++++++++
->>    .../cdv/pvr/services4/srvkm/common/deviceid.h      |   36 +
->>    .../cdv/pvr/services4/srvkm/common/devicemem.c     | 1797 ++++++++
->>    .../cdv/pvr/services4/srvkm/common/handle.c        | 1873 ++++++++
->>    .../staging/cdv/pvr/services4/srvkm/common/hash.c  |  506 +++
->>    .../staging/cdv/pvr/services4/srvkm/common/lists.c |   99 +
->>    .../staging/cdv/pvr/services4/srvkm/common/mem.c   |  153 +
->>    .../cdv/pvr/services4/srvkm/common/mem_debug.c     |  250 +
->>    .../cdv/pvr/services4/srvkm/common/metrics.c       |  160 +
->>    .../cdv/pvr/services4/srvkm/common/osfunc_common.c |   31 +
->>    .../cdv/pvr/services4/srvkm/common/pdump_common.c  | 2371 ++++++++++
->>    .../cdv/pvr/services4/srvkm/common/perproc.c       |  305 ++
->>    .../staging/cdv/pvr/services4/srvkm/common/power.c |  719 +++
->>    .../cdv/pvr/services4/srvkm/common/pvrsrv.c        | 1338 ++++++
->>    .../staging/cdv/pvr/services4/srvkm/common/queue.c | 1079 +++++
->>    .../staging/cdv/pvr/services4/srvkm/common/ra.c    | 1725 +++++++
->>    .../cdv/pvr/services4/srvkm/common/resman.c        |  751 +++
->>    .../cdv/pvr/services4/srvkm/devices/sgx/.gitignore |    5 +
->>    .../cdv/pvr/services4/srvkm/devices/sgx/mmu.c      | 3696 +++++++++++++++
->>    .../cdv/pvr/services4/srvkm/devices/sgx/mmu.h      |  154 +
->>    .../cdv/pvr/services4/srvkm/devices/sgx/pb.c       |  466 ++
->>    .../services4/srvkm/devices/sgx/sgx_bridge_km.h    |  160 +
->>    .../srvkm/devices/sgx/sgx_ukernel_status_codes.h   | 1024 +++++
->>    .../pvr/services4/srvkm/devices/sgx/sgxconfig.h    |  361 ++
->>    .../pvr/services4/srvkm/devices/sgx/sgxinfokm.h    |  574 +++
->>    .../cdv/pvr/services4/srvkm/devices/sgx/sgxinit.c  | 2824 ++++++++++++
->>    .../cdv/pvr/services4/srvkm/devices/sgx/sgxkick.c  |  784 ++++
->>    .../cdv/pvr/services4/srvkm/devices/sgx/sgxpower.c |  481 ++
->>    .../cdv/pvr/services4/srvkm/devices/sgx/sgxreset.c |  667 +++
->>    .../pvr/services4/srvkm/devices/sgx/sgxtransfer.c  |  750 +++
->>    .../cdv/pvr/services4/srvkm/devices/sgx/sgxutils.c | 1168 +++++
->>    .../cdv/pvr/services4/srvkm/devices/sgx/sgxutils.h |  114 +
->>    .../cdv/pvr/services4/srvkm/env/linux/.gitignore   |    5 +
->>    .../cdv/pvr/services4/srvkm/env/linux/env_data.h   |   66 +
->>    .../pvr/services4/srvkm/env/linux/env_perproc.h    |   56 +
->>    .../cdv/pvr/services4/srvkm/env/linux/event.c      |  293 ++
->>    .../cdv/pvr/services4/srvkm/env/linux/event.h      |   32 +
->>    .../cdv/pvr/services4/srvkm/env/linux/linkage.h    |   52 +
->>    .../cdv/pvr/services4/srvkm/env/linux/lock.h       |   32 +
->>    .../staging/cdv/pvr/services4/srvkm/env/linux/mm.c | 2027 +++++++++
->>    .../staging/cdv/pvr/services4/srvkm/env/linux/mm.h |  336 ++
->>    .../cdv/pvr/services4/srvkm/env/linux/mmap.c       | 1151 +++++
->>    .../cdv/pvr/services4/srvkm/env/linux/mmap.h       |  122 +
->>    .../cdv/pvr/services4/srvkm/env/linux/module.c     |  771 ++++
->>    .../cdv/pvr/services4/srvkm/env/linux/mutex.h      |   85 +
->>    .../cdv/pvr/services4/srvkm/env/linux/mutils.c     |  136 +
->>    .../cdv/pvr/services4/srvkm/env/linux/mutils.h     |  103 +
->>    .../cdv/pvr/services4/srvkm/env/linux/osfunc.c     | 3115 +++++++++++++
->>    .../cdv/pvr/services4/srvkm/env/linux/osperproc.c  |  113 +
->>    .../cdv/pvr/services4/srvkm/env/linux/pdump.c      |  628 +++
->>    .../pvr/services4/srvkm/env/linux/private_data.h   |   69 +
->>    .../cdv/pvr/services4/srvkm/env/linux/proc.c       |  835 ++++
->>    .../cdv/pvr/services4/srvkm/env/linux/proc.h       |  108 +
->>    .../pvr/services4/srvkm/env/linux/pvr_bridge_k.c   |  432 ++
->>    .../cdv/pvr/services4/srvkm/env/linux/pvr_debug.c  |  424 ++
->>    .../cdv/pvr/services4/srvkm/env/linux/pvr_drm.c    |  479 ++
->>    .../cdv/pvr/services4/srvkm/env/linux/pvr_drm.h    |  107 +
->>    .../cdv/pvr/services4/srvkm/hwdefs/mnemedefs.h     |   94 +
->>    .../cdv/pvr/services4/srvkm/hwdefs/sgx535defs.h    |  650 +++
->>    .../cdv/pvr/services4/srvkm/hwdefs/sgx540defs.h    |  547 +++
->>    .../pvr/services4/srvkm/hwdefs/sgx543_v1.164defs.h | 1284 ++++++
->>    .../cdv/pvr/services4/srvkm/hwdefs/sgx544defs.h    | 1367 ++++++
->>    .../cdv/pvr/services4/srvkm/hwdefs/sgx545defs.h    | 1180 +++++
->>    .../cdv/pvr/services4/srvkm/hwdefs/sgxdefs.h       |   90 +
->>    .../cdv/pvr/services4/srvkm/hwdefs/sgxerrata.h     |  693 +++
->>    .../pvr/services4/srvkm/hwdefs/sgxfeaturedefs.h    |  240 +
->>    .../cdv/pvr/services4/srvkm/hwdefs/sgxmmu.h        |   72 +
->>    .../cdv/pvr/services4/srvkm/hwdefs/sgxmpdefs.h     |  332 ++
->>    .../pvr/services4/srvkm/include/buffer_manager.h   |  219 +
->>    .../cdv/pvr/services4/srvkm/include/device.h       |  323 ++
->>    .../cdv/pvr/services4/srvkm/include/handle.h       |  404 ++
->>    .../staging/cdv/pvr/services4/srvkm/include/hash.h |   80 +
->>    .../cdv/pvr/services4/srvkm/include/lists.h        |  244 +
->>    .../cdv/pvr/services4/srvkm/include/metrics.h      |  130 +
->>    .../cdv/pvr/services4/srvkm/include/osfunc.h       |  606 +++
->>    .../cdv/pvr/services4/srvkm/include/osperproc.h    |   76 +
->>    .../cdv/pvr/services4/srvkm/include/pdump_int.h    |   67 +
->>    .../cdv/pvr/services4/srvkm/include/pdump_km.h     |  412 ++
->>    .../cdv/pvr/services4/srvkm/include/pdump_osfunc.h |  142 +
->>    .../cdv/pvr/services4/srvkm/include/perproc.h      |  126 +
->>    .../cdv/pvr/services4/srvkm/include/power.h        |  120 +
->>    .../cdv/pvr/services4/srvkm/include/queue.h        |  110 +
->>    .../staging/cdv/pvr/services4/srvkm/include/ra.h   |  159 +
->>    .../cdv/pvr/services4/srvkm/include/resman.h       |  118 +
->>    .../pvr/services4/srvkm/include/services_headers.h |   49 +
->>    .../cdv/pvr/services4/srvkm/include/srvkm.h        |   78 +
->>    .../cdv/pvr/services4/srvkm/include/ttrace.h       |  184 +
->>    .../pvr/services4/srvkm/include/ttrace_common.h    |   81 +
->>    .../pvr/services4/srvkm/include/ttrace_tokens.h    |   84 +
->>    .../cdv/pvr/services4/system/include/syscommon.h   |  262 ++
->>    .../cdv/pvr/services4/system/unified/extsyscache.h |   44 +
->>    .../cdv/pvr/services4/system/unified/oemfuncs.h    |   72 +
->>    .../services4/system/unified/sys_pvr_drm_export.c  |  202 +
->>    .../services4/system/unified/sys_pvr_drm_export.h  |   97 +
->>    .../services4/system/unified/sys_pvr_drm_import.h  |   46 +
->>    .../cdv/pvr/services4/system/unified/sysconfig.c   | 1022 +++++
->>    .../cdv/pvr/services4/system/unified/sysconfig.h   |  161 +
->>    .../cdv/pvr/services4/system/unified/sysinfo.h     |   43 +
->>    .../cdv/pvr/services4/system/unified/sysirq.h      |   49 +
->>    .../cdv/pvr/services4/system/unified/syslocal.h    |   75 +
->>    .../cdv/pvr/services4/system/unified/sysutils.c    |   30 +
->>    .../cdv/pvr/tools/intern/debug/client/linuxsrv.h   |   48 +
->>    .../tools/intern/debug/dbgdriv/common/dbgdriv.c    | 2357 ++++++++++
->>    .../tools/intern/debug/dbgdriv/common/dbgdriv.h    |  122 +
->>    .../intern/debug/dbgdriv/common/dbgdriv_ioctl.h    |   35 +
->>    .../pvr/tools/intern/debug/dbgdriv/common/handle.c |  121 +
->>    .../tools/intern/debug/dbgdriv/common/hostfunc.h   |   58 +
->>    .../pvr/tools/intern/debug/dbgdriv/common/hotkey.c |  135 +
->>    .../pvr/tools/intern/debug/dbgdriv/common/hotkey.h |   60 +
->>    .../pvr/tools/intern/debug/dbgdriv/common/ioctl.c  |  586 +++
->>    .../tools/intern/debug/dbgdriv/linux/hostfunc.c    |  324 ++
->>    .../intern/debug/dbgdriv/linux/kbuild/Makefile     |   35 +
->>    .../pvr/tools/intern/debug/dbgdriv/linux/main.c    |  315 ++
->>    .../debug/dbgdriv/linux/makefile.linux.common      |   39 +
->>    225 files changed, 109967 insertions(+), 0 deletions(-)
->>    create mode 100644 drivers/staging/cdv/Kconfig
->>    create mode 100644 drivers/staging/cdv/Makefile
->>    create mode 100644 drivers/staging/cdv/bc_video/bufferclass_video.c
->>    create mode 100644 drivers/staging/cdv/bc_video/bufferclass_video.h
->>    create mode 100644 drivers/staging/cdv/bc_video/bufferclass_video_linux.c
->>    create mode 100644 drivers/staging/cdv/bc_video/bufferclass_video_linux.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_bl.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_dpst.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_dpst.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_drm.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_drv.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_drv.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_fb.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_fb.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_gtt.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_gtt.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_hotplug.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_hotplug.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_bios.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_bios.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_crt.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_display.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_display.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_dpll_cdv.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_drv.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_hdmi.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_hdmi.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_hdmi_edid.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_hdmi_reg.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_i2c.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_lvds.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_modes.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_opregion.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_intel_reg.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_irq.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_irq.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_powermgmt.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_powermgmt.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_pvr_glue.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_pvr_glue.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_reg.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_reset.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_schedule.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_schedule.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_sgx.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_sgx.h
->>    create mode 100644 drivers/staging/cdv/drv/psb_socket.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_umevents.c
->>    create mode 100644 drivers/staging/cdv/drv/psb_umevents.h
->>    create mode 100644 drivers/staging/cdv/imgv/msvdx_power.c
->>    create mode 100644 drivers/staging/cdv/imgv/msvdx_power.h
->>    create mode 100644 drivers/staging/cdv/imgv/psb_buffer.c
->>    create mode 100644 drivers/staging/cdv/imgv/psb_fence.c
->>    create mode 100644 drivers/staging/cdv/imgv/psb_mmu.c
->>    create mode 100644 drivers/staging/cdv/imgv/psb_msvdx.c
->>    create mode 100644 drivers/staging/cdv/imgv/psb_msvdx.h
->>    create mode 100644 drivers/staging/cdv/imgv/psb_msvdxinit.c
->>    create mode 100644 drivers/staging/cdv/imgv/psb_ttm_fence.c
->>    create mode 100644 drivers/staging/cdv/imgv/psb_ttm_fence_api.h
->>    create mode 100644 drivers/staging/cdv/imgv/psb_ttm_fence_driver.h
->>    create mode 100644 drivers/staging/cdv/imgv/psb_ttm_fence_user.c
->>    create mode 100644 drivers/staging/cdv/imgv/psb_ttm_fence_user.h
->>    create mode 100644 drivers/staging/cdv/imgv/psb_ttm_glue.c
->>    create mode 100644 drivers/staging/cdv/imgv/psb_ttm_placement_user.c
->>    create mode 100644 drivers/staging/cdv/imgv/psb_ttm_placement_user.h
->>    create mode 100644 drivers/staging/cdv/imgv/psb_ttm_userobj_api.h
->>    create mode 100644 drivers/staging/cdv/pvr/COPYING
->>    create mode 100644 drivers/staging/cdv/pvr/INSTALL
->>    create mode 100644 drivers/staging/cdv/pvr/README
->>    create mode 100644 drivers/staging/cdv/pvr/eurasiacon/.gitignore
->>    create mode 100644 drivers/staging/cdv/pvr/include4/dbgdrvif.h
->>    create mode 100644 drivers/staging/cdv/pvr/include4/img_defs.h
->>    create mode 100644 drivers/staging/cdv/pvr/include4/img_types.h
->>    create mode 100644 drivers/staging/cdv/pvr/include4/pdumpdefs.h
->>    create mode 100644 drivers/staging/cdv/pvr/include4/pvr_debug.h
->>    create mode 100644 drivers/staging/cdv/pvr/include4/pvrmodule.h
->>    create mode 100644 drivers/staging/cdv/pvr/include4/pvrversion.h
->>    create mode 100644 drivers/staging/cdv/pvr/include4/services.h
->>    create mode 100644 drivers/staging/cdv/pvr/include4/servicesext.h
->>    create mode 100644 drivers/staging/cdv/pvr/include4/sgx_options.h
->>    create mode 100644 drivers/staging/cdv/pvr/include4/sgxapi_km.h
->>    create mode 100644 drivers/staging/cdv/pvr/include4/sgxscript.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_framebuffer_mrst/.gitignore
->>    create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_framebuffer_mrst/makefile.linux.common
->>    create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_framebuffer_mrst/mrstlfb.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_framebuffer_mrst/mrstlfb_displayclass.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/3rdparty/linux_framebuffer_mrst/mrstlfb_linux.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/include/env/linux-intel/pvr_drm_shared.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/include/env/linux/pvr_drm_shared.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/include/kernelbuffer.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/include/kerneldisplay.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/include/pdump.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/include/pvr_bridge.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/include/pvr_bridge_km.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/include/pvrmmap.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/include/pvrsrv_errors.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/include/servicesint.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/include/sgx_bridge.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/include/sgx_mkif_km.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/include/sgxinfo.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/.gitignore
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/bridged_pvr_bridge.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/bridged_pvr_bridge.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/bridged_support.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/bridged_support.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/sgx/bridged_sgx_bridge.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/bridged/sgx/bridged_sgx_bridge.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/.gitignore
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/buffer_manager.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/deviceclass.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/deviceid.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/devicemem.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/handle.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/hash.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/lists.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/mem.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/mem_debug.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/metrics.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/osfunc_common.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/pdump_common.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/perproc.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/power.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/pvrsrv.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/queue.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/ra.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/common/resman.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/.gitignore
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/mmu.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/mmu.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/pb.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgx_bridge_km.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgx_ukernel_status_codes.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxconfig.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxinfokm.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxinit.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxkick.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxpower.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxreset.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxtransfer.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxutils.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/devices/sgx/sgxutils.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/.gitignore
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/env_data.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/env_perproc.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/event.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/event.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/linkage.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/lock.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mm.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mm.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mmap.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mmap.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/module.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mutex.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mutils.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/mutils.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/osfunc.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/osperproc.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pdump.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/private_data.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/proc.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/proc.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pvr_bridge_k.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pvr_debug.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pvr_drm.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/env/linux/pvr_drm.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/mnemedefs.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx535defs.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx540defs.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx543_v1.164defs.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx544defs.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgx545defs.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxdefs.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxerrata.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxfeaturedefs.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxmmu.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/hwdefs/sgxmpdefs.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/buffer_manager.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/device.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/handle.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/hash.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/lists.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/metrics.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/osfunc.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/osperproc.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/pdump_int.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/pdump_km.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/pdump_osfunc.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/perproc.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/power.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/queue.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/ra.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/resman.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/services_headers.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/srvkm.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/ttrace.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/ttrace_common.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/srvkm/include/ttrace_tokens.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/system/include/syscommon.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/extsyscache.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/oemfuncs.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys_pvr_drm_export.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys_pvr_drm_export.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sys_pvr_drm_import.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sysconfig.c
->>    create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sysconfig.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sysinfo.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sysirq.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/syslocal.h
->>    create mode 100644 drivers/staging/cdv/pvr/services4/system/unified/sysutils.c
->>    create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/client/linuxsrv.h
->>    create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/dbgdriv.c
->>    create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/dbgdriv.h
->>    create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/dbgdriv_ioctl.h
->>    create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/handle.c
->>    create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/hostfunc.h
->>    create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/hotkey.c
->>    create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/hotkey.h
->>    create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/common/ioctl.c
->>    create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/linux/hostfunc.c
->>    create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/linux/kbuild/Makefile
->>    create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/linux/main.c
->>    create mode 100644 drivers/staging/cdv/pvr/tools/intern/debug/dbgdriv/linux/makefile.linux.common
->>
->
+>>   CONFIG_SPI=y
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
