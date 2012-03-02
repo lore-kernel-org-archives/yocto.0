@@ -1,27 +1,32 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB575E003E1
-	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 13:40:52 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 02 Mar 2012 13:40:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="72960831"
-Received: from unknown (HELO envy.home) ([10.255.15.86])
-	by AZSMGA002.ch.intel.com with ESMTP; 02 Mar 2012 13:40:52 -0800
-Message-ID: <4F513E38.2050102@linux.intel.com>
-Date: Fri, 02 Mar 2012 13:40:08 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0) Gecko/20120131 Thunderbird/10.0
+Return-Path: <wmills@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 660D7E003E1
+	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 14:22:35 -0800 (PST)
+Received: from dlep26.itg.ti.com ([157.170.170.121])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q22MMVcv009652;
+	Fri, 2 Mar 2012 16:22:31 -0600
+Received: from DFLE71.ent.ti.com (localhost [127.0.0.1])
+	by dlep26.itg.ti.com (8.13.8/8.13.8) with ESMTP id q22MMVjW022417;
+	Fri, 2 Mar 2012 16:22:31 -0600 (CST)
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle71.ent.ti.com
+	(128.247.5.62) with Microsoft SMTP Server id 14.1.323.3; Fri, 2 Mar 2012
+	16:22:31 -0600
+Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
+	[158.218.100.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	q22MMUw8018070;	Fri, 2 Mar 2012 16:22:30 -0600
+Message-ID: <4F514826.5050402@ti.com>
+Date: Fri, 2 Mar 2012 17:22:30 -0500
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <cover.1330644090.git.darren@dvhart.com>
-	<52339f4d415098f5903b6bce50206d404b12bb8d.1330644090.git.darren@dvhart.com>
-	<4F513892.6020106@windriver.com>
-In-Reply-To: <4F513892.6020106@windriver.com>
-X-Enigmail-Version: 1.3.5
-Cc: Darren Hart <darren@dvhart.com>, Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH 4/6] eg20t: Enable serial console for the pch_uart
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+References: <alpine.DEB.2.02.1202281349020.2440@oneiric>	<4F4D457F.7000306@windriver.com>	<alpine.DEB.2.02.1202281651040.8024@oneiric>	<D8B2FCF1-09C3-4DEF-BFFB-3E0A421C61AE@beagleboard.org>
+	<alpine.DEB.2.02.1202281723110.9200@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1202281723110.9200@oneiric>
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	Koen Kooi <koen@beagleboard.org>
+Subject: Re: proper recipe for building for beagle xM? meta-ti?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,58 +38,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2012 21:40:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 02 Mar 2012 22:22:35 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 03/02/2012 01:16 PM, Bruce Ashfield wrote:
-> On 12-03-01 06:59 PM, Darren Hart wrote:
->> From: Darren Hart<dvhart@linux.intel.com>
+On 02/28/2012 05:28 PM, Robert P. J. Day wrote:
+> On Tue, 28 Feb 2012, Koen Kooi wrote:
+>
+>> Op 28 feb. 2012, om 22:55 heeft Robert P. J. Day het volgende geschreven:
 >>
->> The FRI2 uses the pch_uart driver for the serial console. Enable the console
->> driver.
-> 
-> It this safe for all eg20t users ? I see the crownbay also
-> uses this.
+>>> On Tue, 28 Feb 2012, Bruce Ashfield wrote:
+>>>
+>>>> It is true that the beagleboard is a hardware reference board in the
+>>>> yocto consolidated kernel tree and meta-yocto layers. That means
+>>>> that it gets the yocto standard QA builds and boot testing.
+>>>>
+>>>> That being said, if you are looking for the latest + specific
+>>>> features then you've been pointed in a good direction .. meta-ti
+>>>> will meet your needs.
+>>>>
+>>>> As for disentangling and reducing questions in this area .. rest
+>>>> assured, we are working on it.
+>>>   ok, that's perfectly reasonable -- meta-yocto provides a generic,
+>>> well-tested product, while the meta-ti layer provides more
+>>> leading-edge content, correct?
+>> No, the amount of testing is not the difference, the amount of
+>> support for the board is. Meta-ti supports the camera interfaces, 3d
+>> engine, dsp, crypto engines, expansion boards, etc. Meta-yocto lacks
+>> all that for beagleboard.
+>    i understand that reasonably well, and i'll make one more
+> observation, then i'll shut up.
+>
+>    i cloned the meta-ti layer into my yocto clone, and here's the
+> majority of the meta-ti README:
+>
+> ===== start
+>
+> This layer depends on:
+>
+> URI: git://git.openembedded.org/openembedded-core
+> branch: master
+> revision: HEAD
+>
+> URI: git://git.openembedded.org/meta-openembedded
+> branch: master
+> revision: HEAD
+>
+> URI: git://git.angstrom-distribution.org/meta-angstrom
+> branch: master
+> revision: HEAD
+>
+> Currently meta-ti only works with the Angstrom distribution and hence
+> requires the meta-angstrom layer. There are known issues when using
+> gcc-4.6 based toolchain from OpenEmbedded-Core, thus gcc-4.5
+> toolchain, provided by meta-openembedded, is needed. It is planned to
+> fix these shortcomings in the near future and allow building the base
+> BSP part of meta-ti with different distributions and layer stacks,
+> such as: distro-less (only with OE-Core), with Yocto/Poky, with
+> Angstrom or Arago.
+>
+> Due to the above, it is now recommended to follow the instructions at
+> http://www.angstrom-distribution.org/building-angstrom
+>
+> This will set it up for the OpenEmbedded-core layout instead of the
+> old "Classic" OpenEmbedded-dev layout. You can optionally tweak
+> sources/layers.txt and conf/bblayers.conf to (de)select BSP layers.
+>
+> ===== end
+>
+>    by the time i'm done reading that, i'm not sure whether i've been
+> told i can use yocto as long as i do the necessary prep first, or that
+> i should give up on yocto and just use angstrom directly.  i'm fine
+> with either approach, but the README seems to just waffle *totally* on
+> which strategy to use.
+>
+>    quite simply, that README seems to provide nothing but more
+> confusion than anything else.
 
-It is safe. The new code that this enables is machine specific. The
-console code would only kick in if the console is set to ttyPCH1, which
-it obviously isn't as that didn't work before. Shouldn't be a problem.
+Congratulations you are the first beta tester for the new README.txt 
+language :) (patched two days ago).
 
---
-Darren
+Denys: I suggest
+
+change:
+
+"Due to the above, it is now recommended to follow the instructions at
+http://www.angstrom-distribution.org/building-angstrom"
+
+to:
+
+"When the other layer combinations are supported instructions will be supplied here.
+Until that time please see the Angstrom setup instructions below.
+
+*** Angstrom w/ meta-ti Layer Stack setup: ***
+Please follow the instructions at
+http://www.angstrom-distribution.org/building-angstrom"
+
+etc.
 
 
-> Bruce
-> 
->>
->> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
->> ---
->>   meta/cfg/kernel-cache/features/eg20t/eg20t.cfg |    1 +
->>   1 files changed, 1 insertions(+), 0 deletions(-)
->>
->> diff --git a/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg b/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
->> index ff2f6fd..3d4969c 100644
->> --- a/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
->> +++ b/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
->> @@ -3,6 +3,7 @@
->>   CONFIG_PCH_DMA=y
->>
->>   CONFIG_SERIAL_PCH_UART=y
->> +CONFIG_SERIAL_PCH_UART_CONSOLE=y
->>   CONFIG_SERIAL_CORE=y
->>
->>   CONFIG_SPI=y
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
