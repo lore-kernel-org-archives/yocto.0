@@ -1,36 +1,34 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CB7DE003E4
-	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 14:33:54 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S3b2t-0003Un-U9; Fri, 02 Mar 2012 17:33:52 -0500
-Date: Fri, 2 Mar 2012 17:33:44 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: William Mills <wmills@ti.com>
-In-Reply-To: <4F514826.5050402@ti.com>
-Message-ID: <alpine.DEB.2.02.1203021729040.31351@oneiric>
+Return-Path: <wmills@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79D75E003E1
+	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 14:50:53 -0800 (PST)
+Received: from dlep26.itg.ti.com ([157.170.170.121])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q22Mon1c006724;
+	Fri, 2 Mar 2012 16:50:49 -0600
+Received: from DFLE71.ent.ti.com (localhost [127.0.0.1])
+	by dlep26.itg.ti.com (8.13.8/8.13.8) with ESMTP id q22MonJI010355;
+	Fri, 2 Mar 2012 16:50:49 -0600 (CST)
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle71.ent.ti.com
+	(128.247.5.62) with Microsoft SMTP Server id 14.1.323.3; Fri, 2 Mar 2012
+	16:50:48 -0600
+Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
+	[158.218.100.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	q22Mom52028962;	Fri, 2 Mar 2012 16:50:48 -0600
+Message-ID: <4F514EC8.8000606@ti.com>
+Date: Fri, 2 Mar 2012 17:50:48 -0500
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.18) Gecko/20110617 Thunderbird/3.1.11
+MIME-Version: 1.0
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
 References: <alpine.DEB.2.02.1202281349020.2440@oneiric>
 	<4F4D457F.7000306@windriver.com>
 	<alpine.DEB.2.02.1202281651040.8024@oneiric>
 	<D8B2FCF1-09C3-4DEF-BFFB-3E0A421C61AE@beagleboard.org>
 	<alpine.DEB.2.02.1202281723110.9200@oneiric>
 	<4F514826.5050402@ti.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+	<alpine.DEB.2.02.1203021729040.31351@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1203021729040.31351@oneiric>
 Cc: Yocto discussion list <yocto@yoctoproject.org>,
 	Koen Kooi <koen@beagleboard.org>
 Subject: Re: proper recipe for building for beagle xM? meta-ti?
@@ -45,57 +43,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2012 22:33:54 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 02 Mar 2012 22:50:54 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, 2 Mar 2012, William Mills wrote:
 
-... snip ...
 
-> Congratulations you are the first beta tester for the new README.txt
-> language :) (patched two days ago).
+On 03/02/2012 05:33 PM, Robert P. J. Day wrote:
+> On Fri, 2 Mar 2012, William Mills wrote:
 >
-> Denys: I suggest
+> ... snip ...
 >
-> change:
+>> Congratulations you are the first beta tester for the new README.txt
+>> language :) (patched two days ago).
+>>
+>> Denys: I suggest
+>>
+>> change:
+>>
+>> "Due to the above, it is now recommended to follow the instructions
+>> at http://www.angstrom-distribution.org/building-angstrom"
+>>
+>> to:
+>>
+>> "When the other layer combinations are supported instructions will
+>> be supplied here. Until that time please see the Angstrom setup
+>> instructions below.
+>>
+>> *** Angstrom w/ meta-ti Layer Stack setup: ***
+>> Please follow the instructions at
+>> http://www.angstrom-distribution.org/building-angstrom"
 >
-> "Due to the above, it is now recommended to follow the instructions
-> at http://www.angstrom-distribution.org/building-angstrom"
+>    i might try something a bit different.  given that angstrom is the
+> tested way to go, by all means, point that out and *strongly*
+> recommend that approach.
 >
-> to:
+>    on the other hand, what is the current issue with the yocto/meta-ti
+> combo?  is it *known* to be broken?  or is it simply not sufficiently
+> tested?  in cases like that, i see no problem in cautioning people
+> about it, but telling them that if they're feeling adventurous,
+> they're welcome to give it a shot but if it breaks, as they say, they
+> get to keep all the pieces.
 >
-> "When the other layer combinations are supported instructions will
-> be supplied here. Until that time please see the Angstrom setup
-> instructions below.
->
-> *** Angstrom w/ meta-ti Layer Stack setup: ***
-> Please follow the instructions at
-> http://www.angstrom-distribution.org/building-angstrom"
+>    don't discourage people from trying it, but make sure you give
+> proper instructions for how to use it, that's all.  unless, as i said,
+> it's really and truly unusable.
 
-  i might try something a bit different.  given that angstrom is the
-tested way to go, by all means, point that out and *strongly*
-recommend that approach.
+We will update the README when it is merely in need of testing.
+Today, we know there is code that does not work with GCC 4.6.
+Today, we know there are features in the recipes that do not work w/o 
+Angstrom.
 
-  on the other hand, what is the current issue with the yocto/meta-ti
-combo?  is it *known* to be broken?  or is it simply not sufficiently
-tested?  in cases like that, i see no problem in cautioning people
-about it, but telling them that if they're feeling adventurous,
-they're welcome to give it a shot but if it breaks, as they say, they
-get to keep all the pieces.
+As soon as we remove the above for even one platform we will update the 
+README to reflect an Alpha state for oc-core &| poky layer stack for 
+that platform(s).
 
-  don't discourage people from trying it, but make sure you give
-proper instructions for how to use it, that's all.  unless, as i said,
-it's really and truly unusable.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
