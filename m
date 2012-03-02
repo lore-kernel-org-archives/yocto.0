@@ -1,22 +1,32 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EDCFE00749
-	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 04:06:19 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 02 Mar 2012 04:06:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="72752402"
-Received: from unknown (HELO helios.localnet) ([10.252.123.96])
-	by AZSMGA002.ch.intel.com with ESMTP; 02 Mar 2012 04:06:17 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Date: Fri, 02 Mar 2012 12:06:16 +0000
-Message-ID: <1620680.bZkznn7mE0@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.0; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1203020530280.8202@oneiric>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66EDFE003E1
+	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 04:16:16 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1S3RPD-0003zy-Nm; Fri, 02 Mar 2012 07:16:15 -0500
+Date: Fri, 2 Mar 2012 07:16:08 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <1620680.bZkznn7mE0@helios>
+Message-ID: <alpine.DEB.2.02.1203020713480.12193@oneiric>
 References: <alpine.DEB.2.02.1203020530280.8202@oneiric>
+	<1620680.bZkznn7mE0@helios>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Cc: yocto@yoctoproject.org
 Subject: Re: simplest recipe for running yocto qemu images?
 X-BeenThere: yocto@yoctoproject.org
@@ -30,30 +40,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2012 12:06:19 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 02 Mar 2012 12:16:16 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Friday 02 March 2012 06:57:57 Robert P. J. Day wrote:
->   ok, it *has* to be easier than this.  quite simply, if one wants to
-> do nothing more than *run* one of those qemu images, there should be
-> no need to do any building or bitbaking, should there?  am i missing
-> something hideously obvious?
+On Fri, 2 Mar 2012, Paul Eggleton wrote:
 
-Only that we assume you *have* built the image in order to be able to use the 
-runqemu script. If you haven't, well, you won't necessarily have some of the 
-utilities the script looks for (e.g. tunctl). When the script looks for TMPDIR 
-it is not looking for a temporary directory, it's looking for the TMPDIR that 
-would have been set in your local.conf. 
+> On Friday 02 March 2012 06:57:57 Robert P. J. Day wrote:
+> >   ok, it *has* to be easier than this.  quite simply, if one wants
+> > to do nothing more than *run* one of those qemu images, there
+> > should be no need to do any building or bitbaking, should there?
+> > am i missing something hideously obvious?
+>
+> Only that we assume you *have* built the image in order to be able
+> to use the runqemu script. If you haven't, well, you won't
+> necessarily have some of the utilities the script looks for (e.g.
+> tunctl). When the script looks for TMPDIR it is not looking for a
+> temporary directory, it's looking for the TMPDIR that would have
+> been set in your local.conf.
+>
+> The runqemu script just isn't designed to be used in the way that
+> you're trying to use it.
 
-The runqemu script just isn't designed to be used in the way that you're 
-trying to use it.
+  i gathered that.  but is it unreasonable to suggest that this is
+something that *should* be easy to do?  if new users simply want to
+see what a yocto-generated image looks like under qemu, shouldn't
+there be a way to let them do that without going through an entire
+build?
 
-Cheers,
-Paul
+rday
 
 -- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
