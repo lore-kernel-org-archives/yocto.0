@@ -1,34 +1,37 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74A4DE003E1
-	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 15:18:43 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id D3D96F811DB; Fri,  2 Mar 2012 16:18:42 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 653EAF811DA;
-	Fri,  2 Mar 2012 16:18:41 -0700 (MST)
-Message-ID: <4F515551.50708@mlbassoc.com>
-Date: Fri, 02 Mar 2012 16:18:41 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:10.0) Gecko/20120131 Thunderbird/10.0
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E759E003E1
+	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 15:34:36 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 02 Mar 2012 15:34:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="132646271"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga002.fm.intel.com with ESMTP; 02 Mar 2012 15:34:35 -0800
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 2 Mar 2012 15:34:34 -0800
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.90]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.137]) with mapi id
+	14.01.0355.002; Fri, 2 Mar 2012 15:34:34 -0800
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: Joshua Immanuel <josh@hipro.co.in>
+Thread-Topic: [yocto] do_qa_cofigure error message: host include and/or
+	library paths while determining system capabilities
+Thread-Index: AQHM+M0Fx6dxD0CJ/k+aAhXWBJGNcg==
+Date: Fri, 2 Mar 2012 23:34:33 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C4900ACE30@ORSMSX103.amr.corp.intel.com>
+References: <63ECFF2A2302B44093D7CE9E9962C4900AC948@ORSMSX103.amr.corp.intel.com>
+	<1330660346.2804.5.camel@babel.joshhome>
+In-Reply-To: <1330660346.2804.5.camel@babel.joshhome>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <alpine.DEB.2.02.1202281349020.2440@oneiric>
-	<4F4D457F.7000306@windriver.com>
-	<alpine.DEB.2.02.1202281651040.8024@oneiric>
-	<D8B2FCF1-09C3-4DEF-BFFB-3E0A421C61AE@beagleboard.org>
-	<alpine.DEB.2.02.1202281723110.9200@oneiric>
-	<4F514826.5050402@ti.com>
-	<alpine.DEB.2.02.1203021729040.31351@oneiric>
-	<4F514EC8.8000606@ti.com>
-In-Reply-To: <4F514EC8.8000606@ti.com>
-Subject: Re: proper recipe for building for beagle xM? meta-ti?
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
+	Darren" <darren.hart@intel.com>
+Subject: Re: do_qa_cofigure error message: host include and/or library paths while determining system capabilities
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,87 +43,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2012 23:18:43 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 02 Mar 2012 23:34:36 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 2012-03-02 15:50, William Mills wrote:
->
->
-> On 03/02/2012 05:33 PM, Robert P. J. Day wrote:
->> On Fri, 2 Mar 2012, William Mills wrote:
->>
->> ... snip ...
->>
->>> Congratulations you are the first beta tester for the new README.txt
->>> language :) (patched two days ago).
->>>
->>> Denys: I suggest
->>>
->>> change:
->>>
->>> "Due to the above, it is now recommended to follow the instructions
->>> at http://www.angstrom-distribution.org/building-angstrom"
->>>
->>> to:
->>>
->>> "When the other layer combinations are supported instructions will
->>> be supplied here. Until that time please see the Angstrom setup
->>> instructions below.
->>>
->>> *** Angstrom w/ meta-ti Layer Stack setup: ***
->>> Please follow the instructions at
->>> http://www.angstrom-distribution.org/building-angstrom"
->>
->> i might try something a bit different. given that angstrom is the
->> tested way to go, by all means, point that out and *strongly*
->> recommend that approach.
->>
->> on the other hand, what is the current issue with the yocto/meta-ti
->> combo? is it *known* to be broken? or is it simply not sufficiently
->> tested? in cases like that, i see no problem in cautioning people
->> about it, but telling them that if they're feeling adventurous,
->> they're welcome to give it a shot but if it breaks, as they say, they
->> get to keep all the pieces.
->>
->> don't discourage people from trying it, but make sure you give
->> proper instructions for how to use it, that's all. unless, as i said,
->> it's really and truly unusable.
->
-> We will update the README when it is merely in need of testing.
-> Today, we know there is code that does not work with GCC 4.6.
-> Today, we know there are features in the recipes that do not work w/o Angstrom.
-
-Can you elaborate on the above?  I have been [I think] successfully using poky+meta-ti
-to support internal platform based on DM8148 and DM3730 - meta-ti is the best choice
-for a kernel "jumping off point" for these platforms.  So far, I've only
-had to make a scant few tweaks to get this combo to work, in particular:
-
-* In conf/local.conf, I use this to avoid parsing problems with some meta-ti
-   recipes (none of which I need at the moment)
-     # Ignore troublesome TI recipes
-     BBMASK = ".*/meta-ti/recipes-misc/"
-
-* In distro.conf (I do have my own distro, but it's very close to poky), I needed
-     # Allow hardware overrides, e.g. armv7a
-     OVERRIDES .= ":${SOC_FAMILY}"
-
-With these minor additions, I've been able to use the meta-ti layer for [some]
-kernel work, u-boot, DSP support, etc - all the stuff one expects the layer
-to provide.
-
-I know my setup is a bit outside pure poky+meta-ti, but it does show that
-you don't actually have to have Angstrom to use meta-ti.
-
-It would be nice to understand what your concerns are, certainly the details
-of your two "Today,..." statements above, if they fall outside what I've outlined
-here.
-
-> As soon as we remove the above for even one platform we will update the README to reflect an Alpha state for oc-core &| poky layer stack for that platform(s).
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+SGkgSm9zaHVhLA0KDQpUaGUgZXJyb3IgbWVzc2FnZSBob3dldmVyIGRvZXMgbm90IHNlZW0gdG8g
+cHJpbnQgdGhlIGNvcnJlY3QgcHJvYmxlbWF0aWMgcGF0aC4uDQpidXQgSSB3YXMgYWJsZSB0byBm
+aW5kIHRoZSBwcm9ibGVtIHVzaW5nIHlvdXIgdGlwcy4NCg0KVGhhbmtzICENCg0KUmFodWwNCg0K
+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEpvc2h1YSBJbW1hbnVlbCBbbWFpbHRv
+Ompvc2hAaGlwcm8uY28uaW5dIA0KU2VudDogVGh1cnNkYXksIE1hcmNoIDAxLCAyMDEyIDc6NTIg
+UE0NClRvOiBTYXhlbmEsIFJhaHVsDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzsgSGFydCwg
+RGFycmVuDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBkb19xYV9jb2ZpZ3VyZSBlcnJvciBtZXNzYWdl
+OiBob3N0IGluY2x1ZGUgYW5kL29yIGxpYnJhcnkgcGF0aHMgd2hpbGUgZGV0ZXJtaW5pbmcgc3lz
+dGVtIGNhcGFiaWxpdGllcw0KDQpIZWxsbyBSYWh1bCwNCg0KT24gRnJpLCAyMDEyLTAzLTAyIGF0
+IDAyOjAwICswMDAwLCBTYXhlbmEsIFJhaHVsIHdyb3RlOg0KPiBDYW4gc29tZW9uZSBleHBsYWlu
+IHRoZSBtZWFuaW5nIG9mIHRoZSBmb2xsb3dpbmcgZXJyb3I6IA0KPiANCj4gfCBFUlJPUjogVGhp
+cyBhdXRvY29uZiBsb2cgaW5kaWNhdGVzIGVycm9ycywgaXQgbG9va2VkIGF0IGhvc3QgaW5jbHVk
+ZQ0KPiBhbmQvb3IgbGlicmFyeSBwYXRocyB3aGlsZSBkZXRlcm1pbmluZyBzeXN0ZW0gY2FwYWJp
+bGl0aWVzLg0KDQpUaGUgaW5zYW5lLmJiY2xhc3MgZ3JlcHMgdGhlIGNvbmZpZy5sb2cgZmlsZSBm
+b3IgdGhlIHN0cmluZ3MgbGlrZSAnQ1JPU1MgQ09NUElMRSBCYWRuZXNzOicsICdpcyB1bnNhZmUg
+Zm9yIGNyb3NzLWNvbXBpbGF0aW9uJyB0byBjaGVjayBmb3IgaG9zdCBjb250YW1pbmF0aW9uLiBJ
+ZiBpdCBmaW5kcyBhbnksIGl0IHRocm93cyBhbiBlcnJvci4gU28sIHlvdSBjYW4gY2hlY2sgZm9y
+IHlvdXJzZWxmIHRoZSBjb25maWcubG9nIGZpbGUgYW5kIGZpbmQgdGhlIGN1bHByaXQgOikNCg0K
+UmVnYXJkcw0KSm9zaHVhDQotLQ0KSm9zaHVhIEltbWFudWVsDQpIaVBybyBJVCBTb2x1dGlvbnMg
+UHJpdmF0ZSBMaW1pdGVkDQpodHRwOi8vaGlwcm8uY28uaW4NCg==
 
