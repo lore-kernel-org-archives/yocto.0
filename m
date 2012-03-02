@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54474E0044A
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD4E1E0044A
 	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 23:01:59 -0800 (PST)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 01 Mar 2012 23:01:40 -0800
+	by fmsmga102.fm.intel.com with ESMTP; 01 Mar 2012 23:01:43 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="132159805"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="132159810"
 Received: from unknown (HELO localhost) ([10.255.15.122])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Mar 2012 23:01:40 -0800
+	by fmsmga002.fm.intel.com with ESMTP; 01 Mar 2012 23:01:43 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Fri,  2 Mar 2012 01:01:07 -0600
-Message-Id: <4a6834300e57ea9189d418d8fd77da9b71095c7a.1330663414.git.tom.zanussi@intel.com>
+Date: Fri,  2 Mar 2012 01:01:09 -0600
+Message-Id: <b9641d8ff44af52cf495034647d432d9f2915367.1330663414.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <873e25e86273c9263e32c02c296d96d06230e70e.1330663414.git.tom.zanussi@intel.com>
 References: <873e25e86273c9263e32c02c296d96d06230e70e.1330663414.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1330663414.git.tom.zanussi@intel.com>
 References: <cover.1330663414.git.tom.zanussi@intel.com>
-Subject: [PATCH 5/8] yocto-bsp-tools: add help/usage
+Subject: [PATCH 7/8] yocto-bsp: new script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,21 +33,22 @@ X-List-Received-Date: Fri, 02 Mar 2012 07:01:59 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This is essentially 'the documentation' for the Yocto BSP tools, along
-with a few related functions.
+Implementation of the 'yocto-bsp' command-line tool, for creating BSPs
+and listing BSP properties.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- scripts/lib/bsp/help.py |  588 +++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 588 insertions(+), 0 deletions(-)
- create mode 100644 scripts/lib/bsp/help.py
+ scripts/yocto-bsp |  131 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 131 insertions(+), 0 deletions(-)
+ create mode 100755 scripts/yocto-bsp
 
-diff --git a/scripts/lib/bsp/help.py b/scripts/lib/bsp/help.py
-new file mode 100644
-index 0000000..c7c6e6a
+diff --git a/scripts/yocto-bsp b/scripts/yocto-bsp
+new file mode 100755
+index 0000000..20fa89d
 --- /dev/null
-+++ b/scripts/lib/bsp/help.py
-@@ -0,0 +1,588 @@
++++ b/scripts/yocto-bsp
+@@ -0,0 +1,131 @@
++#!/usr/bin/env python
 +# ex:ts=4:sw=4:sts=4:et
 +# -*- tab-width: 4; c-basic-offset: 4; indent-tabs-mode: nil -*-
 +#
@@ -67,574 +68,116 @@ index 0000000..c7c6e6a
 +# with this program; if not, write to the Free Software Foundation, Inc.,
 +# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 +
-+import subprocess
++__version__ = "0.1.0"
++
++import os
++import sys
++import optparse
 +import logging
 +
++scripts_path = os.path.abspath(os.path.dirname(os.path.abspath(sys.argv[0])))
++lib_path = scripts_path + '/lib'
++sys.path = sys.path + [lib_path]
 +
-+def subcommand_error(args):
-+    logging.info("invalid subcommand %s" % args[0])
-+
-+
-+def display_help(subcommand, subcommands):
-+    if subcommand not in subcommands:
-+        return False
-+
-+    help = subcommands.get(subcommand, subcommand_error)[2]
-+    pager = subprocess.Popen('less', stdin=subprocess.PIPE)
-+    pager.communicate(help)
-+
-+    return True
++from bsp.help import *
++from bsp.engine import *
 +
 +
-+def yocto_help(args, usage_str, subcommands):
++def yocto_bsp_create_subcommand(args, usage_str):
 +    """
-+    subcommand help dispatcher
++    Command-line handling for BSP creation.  The real work is done by
++    bsp.engine.yocto_bsp_create()
 +    """
-+    if len(args) == 1 or not display_help(args[1], subcommands):
-+        print(usage_str)
++    parser = optparse.OptionParser(usage = usage_str)
 +
++    parser.add_option("-o", "--outdir", dest = "outdir", action = "store",
++                      help = "name of BSP dir to create")
++    parser.add_option("-i", "--infile", dest = "properties_file", action = "store",
++                      help = "name of file containing the values for BSP properties as a JSON file")
++    parser.add_option("-c", "--codedump", dest = "codedump", action = "store_true",
++                      default = False, help = "dump the generated code to bspgen.out")
++    (options, args) = parser.parse_args(args)
 +
-+def invoke_subcommand(args, parser, main_command_usage, subcommands):
-+    """
-+    Dispatch to subcommand handler
-+    borrowed from combo-layer
-+    Should use argparse, but has to work in 2.6
-+    """
-+    if not args:
-+        logging.error("No subcommand specified, exiting")
++    if len(args) != 2:
++        logging.error("Wrong number of arguments, exiting\n")
 +        parser.print_help()
-+    elif args[0] == "help":
-+        yocto_help(args, main_command_usage, subcommands)
-+    elif args[0] not in subcommands:
-+        logging.error("Unsupported subcommand %s, exiting\n" % (args[0]))
-+        parser.print_help()
++        exit(1)
++
++    machine = args[0]
++    karch = args[1]
++
++    if options.outdir:
++        bsp_output_dir = options.outdir
 +    else:
-+        usage = subcommands.get(args[0], subcommand_error)[1]
-+        subcommands.get(args[0], subcommand_error)[0](args[1:], usage)
++        bsp_output_dir = "meta-" + machine
 +
++    yocto_bsp_create(machine, karch, scripts_path, bsp_output_dir, options.codedump, options.properties_file)
 +
-+##
-+# yocto-bsp help and usage strings
-+##
 +
-+yocto_bsp_usage = """
++def yocto_bsp_list_subcommand(args, usage_str):
++    """
++    Command-line handling for listing available BSP properties and
++    values.  The real work is done by bsp.engine.yocto_bsp_list()
++    """
++    parser = optparse.OptionParser(usage = usage_str)
 +
-+ Create a customized Yocto BSP layer.
++    parser.add_option("-o", "--outfile", action = "store", dest = "properties_file",
++                      help = "dump the possible values for BSP properties to a JSON file")
 +
-+ usage: yocto-bsp [--version] [--help] COMMAND [ARGS]
++    (options, args) = parser.parse_args(args)
 +
-+ The most commonly used 'yocto-bsp' commands are:
-+    create            Create a new Yocto BSP
-+    list              List available values for options and BSP properties
++    if not yocto_bsp_list(args, scripts_path, options.properties_file):
++        logging.error("Bad list arguments, exiting\n")
++        parser.print_help()
++        exit(1)
 +
-+ See 'yocto-bsp help COMMAND' for more information on a specific command.
-+"""
 +
-+yocto_bsp_help_usage = """
-+
-+ usage: yocto-bsp help <subcommand>
-+
-+ This command displays detailed help for the specified subcommand.
-+"""
-+
-+yocto_bsp_create_usage = """
-+
-+ Create a new Yocto BSP
-+
-+ usage: yocto-bsp create <bsp-name> <karch> [-o <DIRNAME> | --outdir <DIRNAME>]
-+            [-i <JSON PROPERTY FILE> | --infile <JSON PROPERTY_FILE>]
-+
-+ This command creates a Yocto BSP based on the specified parameters.
-+ The new BSP will be a new Yocto BSP layer contained by default within
-+ the top-level directory specified as 'meta-bsp-name'.  The -o option
-+ can be used to place the BSP layer in a directory with a different
-+ name and location.
-+
-+ The value of the 'karch' parameter determines the set of files that
-+ will be generated for the BSP, along with the specific set of
-+ 'properties' that will be used to fill out the BSP-specific portions
-+ of the BSP.
-+
-+ The BSP-specific properties that define the values that will be used
-+ to generate a particular BSP can be specified on the command-line
-+ using the -i option and supplying a JSON object consisting of the set
-+ of name:value pairs needed by the BSP.  If the -i option is not used,
-+ the user will be interactively prompted for each of the required
-+ property values, which will then be used as values for BSP
-+ generation.  The set of properties available for a given architecture
-+ can be listed using the 'yocto-bsp list' command.
-+
-+ Specifying -c causes the Python code generated and executed to create
-+ the BSP to be dumped to the 'bspgen.out' file in the current
-+ directory, and is useful for debugging.
-+
-+ NOTE: Once created, you should add your new layer to your
-+ bblayers.conf file in order for it to be subsquently seen and
-+ modified by the yocto-kernel tool.
-+
-+ NOTE for x86- and x86_64-based BSPs: The generated BSP assumes the
-+ presence of the of the meta-intel layer, so you should also have a
-+ meta-intel layer present and added to your bblayers.conf as well.
-+"""
-+
-+yocto_bsp_create_help = """
-+
-+NAME
-+    yocto-bsp create - Create a new Yocto BSP
-+
-+SYNOPSIS
-+    yocto-bsp create <bsp-name> <karch> [-o <DIRNAME> | --outdir <DIRNAME>]
-+        [-i <JSON PROPERTY FILE> | --infile <JSON PROPERTY_FILE>]
-+
-+DESCRIPTION
-+    This command creates a Yocto BSP based on the specified
-+    parameters.  The new BSP will be a new Yocto BSP layer contained
-+    by default within the top-level directory specified as
-+    'meta-bsp-name'.  The -o option can be used to place the BSP layer
-+    in a directory with a different name and location.
-+
-+    The value of the 'karch' parameter determines the set of files
-+    that will be generated for the BSP, along with the specific set of
-+    'properties' that will be used to fill out the BSP-specific
-+    portions of the BSP.
-+
-+    The BSP-specific properties that define the values that will be
-+    used to generate a particular BSP can be specified on the
-+    command-line using the -i option and supplying a JSON object
-+    consisting of the set of name:value pairs needed by the BSP.
-+
-+    If the -i option is not used, the user will be interactively
-+    prompted for each of the required property values, which will then
-+    be used as values for BSP generation.
-+
-+    The set of properties available for a given architecture can be
-+    listed using the 'yocto-bsp list' command.
-+
-+    Specifying -c causes the Python code generated and executed to
-+    create the BSP to be dumped to the 'bspgen.out' file in the
-+    current directory, and is useful for debugging.
-+
-+
-+    NOTE: Once created, you should add your new layer to your
-+    bblayers.conf file in order for it to be subsquently seen and
-+    modified by the yocto-kernel tool.
-+
-+    NOTE for x86- and x86_64-based BSPs: The generated BSP assumes the
-+    presence of the of the meta-intel layer, so you should also have a
-+    meta-intel layer present and added to your bblayers.conf as well.
-+"""
-+
-+yocto_bsp_list_usage = """
-+
-+ usage: yocto-bsp list karch
-+        yocto-bsp list <karch> properties
-+                [-o <JSON PROPERTY FILE> | --outfile <JSON PROPERTY_FILE>]
-+        yocto-bsp list <karch> property <xxx>
-+                [-o <JSON PROPERTY FILE> | --outfile <JSON PROPERTY_FILE>]
-+
-+ This command enumerates the complete set of possible values for a
-+ specified option or property needed by the BSP creation process.
-+
-+ The first form enumerates all the possible values that exist and can
-+ be specified for the 'karch' parameter to the 'yocto bsp create'
-+ command.
-+
-+ The second form enumerates all the possible properties that exist and
-+ must have values specified for them in the 'yocto bsp create' command
-+ for the given 'karch'.  If the -o option is specified, the list of
-+ properties, in addition to being displayed, will be written to the
-+ specified file as a JSON object.  In this case, the object will
-+ consist of the set of name:value pairs corresponding to the (possibly
-+ nested) dictionary of properties defined by the input statements
-+ used by the BSP.
-+
-+ The third form enumerates all the possible values that exist and can
-+ be specified for any of the enumerable properties of the given
-+ 'karch' in the 'yocto bsp create' command.  If the -o option is
-+ specified, the list of values for the given property, in addition to
-+ being displayed, will be written to the specified file as a JSON
-+ object.  In this case, the object will consist of the set of
-+ name:value pairs corresponding to the array of property values
-+ associated with the property.
-+"""
-+
-+yocto_bsp_list_help = """
-+
-+NAME
-+    yocto-bsp list - List available values for options and BSP properties
-+
-+SYNOPSIS
-+    yocto-bsp list karch
-+    yocto-bsp list <karch> properties
-+            [--o <JSON PROPERTY FILE> | -outfile <JSON PROPERTY_FILE>]
-+    yocto-bsp list <karch> property <xxx>
-+            [--o <JSON PROPERTY FILE> | -outfile <JSON PROPERTY_FILE>]
-+
-+DESCRIPTION
-+    This command enumerates the complete set of possible values for a
-+    specified option or property needed by the BSP creation process.
-+
-+    The first form enumerates all the possible values that exist and
-+    can be specified for the 'karch' parameter to the 'yocto bsp
-+    create' command.  Example output for the 'list karch' command:
-+
-+    $ yocto-bsp list karch
-+    Architectures available:
-+        arm
-+        powerpc
-+        i386
-+        mips
-+        x86_64
-+        qemu
-+
-+    The second form enumerates all the possible properties that exist
-+    and must have values specified for them in the 'yocto bsp create'
-+    command for the given 'karch'.  This command is mainly meant to
-+    allow the development user interface alternatives to the default
-+    text-based prompting interface.  If the -o option is specified,
-+    the list of properties, in addition to being displayed, will be
-+    written to the specified file as a JSON object.  In this case, the
-+    object will consist of the set of name:value pairs corresponding
-+    to the (possibly nested) dictionary of properties defined by the
-+    input statements used by the BSP.  Some example output for the
-+    'list properties' command:
-+
-+    $ yocto-bsp list arm properties
-+    "touchscreen" : {
-+        "msg" : Does your BSP have a touchscreen? (y/N)
-+        "default" : n
-+        "type" : boolean
-+    }
-+    "uboot_loadaddress" : {
-+        "msg" : Please specify a value for UBOOT_LOADADDRESS.
-+        "default" : 0x80008000
-+        "type" : edit
-+        "prio" : 40
-+    }
-+    "kernel_choice" : {
-+        "prio" : 10
-+        "default" : linux-yocto_3.2
-+        "depends-on" : use_default_kernel
-+        "depends-on-val" : n
-+        "msg" : Please choose the kernel to use in this BSP =>
-+        "type" : choicelist
-+        "gen" : bsp.kernel.kernels
-+    }
-+    "if kernel_choice == "linux-yocto_3.0":" : {
-+        "base_kbranch_linux_yocto_3_0" : {
-+            "prio" : 20
-+            "default" : yocto/standard
-+            "depends-on" : new_kbranch_linux_yocto_3_0
-+            "depends-on-val" : y
-+            "msg" : Please choose a machine branch to base this BSP on =>
-+            "type" : choicelist
-+            "gen" : bsp.kernel.all_branches
-+    }
-+    .
-+    .
-+    .
-+
-+    Each entry in the output consists of the name of the input element
-+    e.g. "touchscreen", followed by the properties defined for that
-+    element enclosed in braces.  This information should provide
-+    sufficient information to create a complete user interface with.
-+    Two features of the scheme provide for conditional input.  First,
-+    if a Python "if" statement appears in place of an input element
-+    name, the set of enclosed input elements apply and should be
-+    presented to the user only if the 'if' statement evaluates to
-+    true.  The test in the if statement will always reference another
-+    input element in the list, which means that the element being
-+    tested should be presented to the user before the elements
-+    enclosed by the if block.  Secondly, in a similar way, some
-+    elements contain "depends-on" and depends-on-val" tags, which mean
-+    that the affected input element should only be presented to the
-+    user if the element it depends on has already been presented to
-+    the user and the user has selected the specified value for that
-+    element.
-+
-+    The third form enumerates all the possible values that exist and
-+    can be specified for any of the enumerable properties of the given
-+    'karch' in the 'yocto bsp create' command.  If the -o option is
-+    specified, the list of values for the given property, in addition
-+    to being displayed, will be written to the specified file as a
-+    JSON object.  In this case, the object will consist of the set of
-+    name:value pairs corresponding to the array of property values
-+    associated with the property.
-+
-+    $ yocto-bsp list i386 property xserver_choice
-+        ["xserver_vesa", "VESA xserver support"]
-+        ["xserver_emgd", "EMGD xserver support (proprietary)"]
-+        ["xserver_i915", "i915 xserver support"]
-+
-+    $ yocto-bsp list arm property base_kbranch_linux_yocto_3_0
-+        Getting branches from remote repo git://git.yoctoproject.org/linux-yocto-3.0...
-+        ["yocto/base", "yocto/base"]
-+        ["yocto/eg20t", "yocto/eg20t"]
-+        ["yocto/emgd", "yocto/emgd"]
-+        ["yocto/emgd-1.10", "yocto/emgd-1.10"]
-+        ["yocto/gma500", "yocto/gma500"]
-+        ["yocto/pvr", "yocto/pvr"]
-+        ["yocto/standard/arm-versatile-926ejs", "yocto/standard/arm-versatile-926ejs"]
-+        ["yocto/standard/base", "yocto/standard/base"]
-+        ["yocto/standard/beagleboard", "yocto/standard/beagleboard"]
-+        ["yocto/standard/cedartrail", "yocto/standard/cedartrail"]
-+        .
-+        .
-+        .
-+        ["yocto/standard/qemu-ppc32", "yocto/standard/qemu-ppc32"]
-+        ["yocto/standard/routerstationpro", "yocto/standard/routerstationpro"]
-+
-+    The third form as well is meant mainly for developers of
-+    alternative interfaces - it allows the developer to fetch the
-+    possible values for a given input element on-demand.  This
-+    on-demand capability is especially valuable for elements that
-+    require relatively expensive remote operations to fulfill, such as
-+    the example that returns the set of branches available in a remote
-+    git tree above.
-+
-+"""
-+
-+##
-+# yocto-kernel help and usage strings
-+##
-+
-+yocto_kernel_usage = """
-+
-+ Modify and list Yocto BSP kernel config items and patches.
-+
-+ usage: yocto-kernel [--version] [--help] COMMAND [ARGS]
-+
-+ The most commonly used 'yocto-kernel' commands are:
-+   config list       List the modifiable set of bare kernel config options for a BSP
-+   config add        Add or modify bare kernel config options for a BSP
-+   config rm         Remove bare kernel config options from a BSP
-+   patch list        List the patches associated with a BSP
-+   patch add         Patch the Yocto kernel for a BSP
-+   patch rm          Remove patches from a BSP
-+
-+ See 'yocto-kernel help COMMAND' for more information on a specific command.
-+
-+"""
-+
-+
-+yocto_kernel_help_usage = """
-+
-+ usage: yocto-kernel help <subcommand>
-+
-+ This command displays detailed help for the specified subcommand.
-+"""
-+
-+yocto_kernel_config_list_usage = """
-+
-+ List the modifiable set of bare kernel config options for a BSP
-+
-+ usage: yocto-kernel config list <bsp-name>
-+
-+ This command lists the 'modifiable' config items for a BSP i.e. the
-+ items which are eligible for modification or removal by other
-+ yocto-kernel commands.
-+
-+ 'modifiable' config items are the config items contained a BSP's
-+ user-config.cfg base config.
-+"""
-+
-+
-+yocto_kernel_config_list_help = """
-+
-+NAME
-+    yocto-kernel config list - List the modifiable set of bare kernel
-+    config options for a BSP
-+
-+SYNOPSIS
-+    yocto-kernel config list <bsp-name>
-+
-+DESCRIPTION
-+    This command lists the 'modifiable' config items for a BSP
-+    i.e. the items which are eligible for modification or removal by
-+    other yocto-kernel commands.
-+"""
-+
-+
-+yocto_kernel_config_add_usage = """
-+
-+ Add or modify bare kernel config options for a BSP
-+
-+ usage: yocto-kernel config add <bsp-name> [<CONFIG_XXX=x> ...]
-+
-+ This command adds one or more CONFIG_XXX=x items to a BSP's user-config.cfg
-+ base config.
-+"""
-+
-+
-+yocto_kernel_config_add_help = """
-+
-+NAME
-+    yocto-kernel config add - Add or modify bare kernel config options
-+    for a BSP
-+
-+SYNOPSIS
-+    yocto-kernel config add <bsp-name> [<CONFIG_XXX=x> ...]
-+
-+DESCRIPTION
-+    This command adds one or more CONFIG_XXX=x items to a BSP's
-+    foo.cfg base config.
-+
-+    NOTE: It's up to the user to determine whether or not the config
-+    options being added make sense or not - this command does no
-+    sanity checking or verification of any kind to ensure that a
-+    config option really makes sense and will actually be set in in
-+    the final config.  For example, if a config option depends on
-+    other config options, it will be turned off by kconfig if the
-+    other options aren't set correctly.
-+"""
-+
-+
-+yocto_kernel_config_rm_usage = """
-+
-+ Remove bare kernel config options from a BSP
-+
-+ usage: yocto-kernel config rm <bsp-name>
-+
-+ This command removes (turns off) one or more CONFIG_XXX items from a
-+ BSP's user-config.cfg base config.
-+
-+ The set of config items available to be removed by this command for a
-+ BSP is listed and the user prompted for the specific items to remove.
-+"""
-+
-+
-+yocto_kernel_config_rm_help = """
-+
-+NAME
-+    yocto-kernel config rm - Remove bare kernel config options from a
-+    BSP
-+
-+SYNOPSIS
-+    yocto-kernel config rm <bsp-name>
-+
-+DESCRIPTION
-+    This command removes (turns off) one or more CONFIG_XXX items from a
-+    BSP's user-config.cfg base config.
-+
-+    The set of config items available to be removed by this command
-+    for a BSP is listed and the user prompted for the specific items
-+    to remove.
-+"""
-+
-+
-+yocto_kernel_patch_list_usage = """
-+
-+ List the patches associated with the kernel for a BSP
-+
-+ usage: yocto-kernel patch list <bsp-name>
-+
-+ This command lists the patches associated with a BSP.
-+
-+ NOTE: this only applies to patches listed in the kernel recipe's
-+ user-patches.scc file (and currently repeated in its SRC_URI).
-+"""
-+
-+
-+yocto_kernel_patch_list_help = """
-+
-+NAME
-+    yocto-kernel patch list - List the patches associated with the kernel
-+    for a BSP
-+
-+SYNOPSIS
-+    yocto-kernel patch list <bsp-name>
-+
-+DESCRIPTION
-+    This command lists the patches associated with a BSP.
-+
-+    NOTE: this only applies to patches listed in the kernel recipe's
-+    user-patches.scc file (and currently repeated in its SRC_URI).
-+"""
-+
-+
-+yocto_kernel_patch_add_usage = """
-+
-+ Patch the Yocto kernel for a specific BSP
-+
-+ usage: yocto-kernel patch add <bsp-name> [<PATCH> ...]
-+
-+ This command adds one or more patches to a BSP's machine branch.  The
-+ patch will be added to the BSP's linux-yocto kernel user-patches.scc
-+ file (and currently repeated in its SRC_URI) and will be guaranteed
-+ to be applied in the order specified.
-+"""
-+
-+
-+yocto_kernel_patch_add_help = """
-+
-+NAME
-+    yocto-kernel patch add - Patch the Yocto kernel for a specific BSP
-+
-+SYNOPSIS
-+    yocto-kernel patch add <bsp-name> [<PATCH> ...]
-+
-+DESCRIPTION
-+    This command adds one or more patches to a BSP's machine branch.
-+    The patch will be added to the BSP's linux-yocto kernel
-+    user-patches.scc file (and currently repeated in its SRC_URI) and
-+    will be guaranteed to be applied in the order specified.
-+
-+    NOTE: It's up to the user to determine whether or not the patches
-+    being added makes sense or not - this command does no sanity
-+    checking or verification of any kind to ensure that a patch can
-+    actually be applied to the BSP's kernel branch; it's assumed that
-+    the user has already done that.
-+"""
-+
-+
-+yocto_kernel_patch_rm_usage = """
-+
-+ Remove a patch from the Yocto kernel for a specific BSP
-+
-+ usage: yocto-kernel patch rm <bsp-name>
-+
-+ This command removes one or more patches from a BSP's machine branch.
-+ The patch will be removed from the BSP's linux-yocto kernel
-+ user-patches.scc file (and currently repeated in its SRC_URI) and
-+ kernel SRC_URI dir.
-+
-+ The set of patches available to be removed by this command for a BSP
-+ is listed and the user prompted for the specific patches to remove.
-+"""
-+
-+
-+yocto_kernel_patch_rm_help = """
-+
-+NAME
-+    yocto-kernel patch rm - Remove a patch from the Yocto kernel for a specific BSP
-+
-+SYNOPSIS
-+    yocto-kernel patch rm <bsp-name>
-+
-+DESCRIPTION
-+    This command removes one or more patches from a BSP's machine
-+    branch.  The patch will be removed from the BSP's linux-yocto
-+    kernel user-patches.scc file (and currently repeated in its
-+    SRC_URI).
-+
-+    The set of patches available to be removed by this command for a
-+    BSP is listed and the user prompted for the specific patches to
-+    remove.
-+"""
-+
-+##
-+# test code
-+##
-+
-+test_bsp_properties = {
-+    'smp': 'yes',
-+    'touchscreen': 'yes',
-+    'keyboard': 'no',
-+    'xserver': 'yes',
-+    'xserver_choice': 'xserver-i915',
-+    'features': ['goodfeature', 'greatfeature'],
-+    'tunefile': 'tune-quark',
++subcommands = {
++    "create": [yocto_bsp_create_subcommand,
++               yocto_bsp_create_usage,
++               yocto_bsp_create_help],
++    "list":   [yocto_bsp_list_subcommand,
++               yocto_bsp_list_usage,
++               yocto_bsp_list_help],
 +}
++
++
++def start_logging(loglevel):
++    logging.basicConfig(filname = 'yocto-bsp.log', filemode = 'w', level=loglevel)
++
++
++def main():
++    parser = optparse.OptionParser(version = "yocto-bsp version %s" % __version__,
++                                   usage = yocto_bsp_usage)
++
++    parser.disable_interspersed_args()
++    parser.add_option("-D", "--debug", dest = "debug", action = "store_true",
++                      default = False, help = "output debug information")
++
++    (options, args) = parser.parse_args()
++
++    loglevel = logging.INFO
++    if options.debug:
++        loglevel = logging.DEBUG
++    start_logging(loglevel)
++
++    if len(args):
++        if args[0] == "help":
++            if len(args) == 1:
++                parser.print_help()
++                exit(1)
++
++    invoke_subcommand(args, parser, yocto_bsp_help_usage, subcommands)
++
++
++if __name__ == "__main__":
++    try:
++        ret = main()
++    except Exception:
++        ret = 1
++        import traceback
++        traceback.print_exc(5)
++    sys.exit(ret)
 +
 -- 
 1.7.0.4
