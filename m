@@ -1,26 +1,26 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A51EEE003E1
-	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 13:16:24 -0800 (PST)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12C7DE003E1
+	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 13:17:14 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q22LGMCD027435
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q22LGooU005917
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 2 Mar 2012 13:16:22 -0800 (PST)
+	Fri, 2 Mar 2012 13:16:50 -0800 (PST)
 Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 2 Mar 2012 13:16:22 -0800
-Message-ID: <4F513892.6020106@windriver.com>
-Date: Fri, 2 Mar 2012 16:16:02 -0500
+	Fri, 2 Mar 2012 13:16:50 -0800
+Message-ID: <4F5138AE.3030602@windriver.com>
+Date: Fri, 2 Mar 2012 16:16:30 -0500
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
 To: Darren Hart <darren@dvhart.com>
 References: <cover.1330644090.git.darren@dvhart.com>
-	<52339f4d415098f5903b6bce50206d404b12bb8d.1330644090.git.darren@dvhart.com>
-In-Reply-To: <52339f4d415098f5903b6bce50206d404b12bb8d.1330644090.git.darren@dvhart.com>
+	<9242bfa391c0591f520d2e906fe3440db045ba99.1330644090.git.darren@dvhart.com>
+In-Reply-To: <9242bfa391c0591f520d2e906fe3440db045ba99.1330644090.git.darren@dvhart.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH 4/6] eg20t: Enable serial console for the pch_uart
+Subject: Re: [PATCH 5/6] fri2: Add SMP and EFI support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,38 +32,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2012 21:16:24 -0000
+X-List-Received-Date: Fri, 02 Mar 2012 21:17:14 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 12-03-01 06:59 PM, Darren Hart wrote:
 > From: Darren Hart<dvhart@linux.intel.com>
 >
-> The FRI2 uses the pch_uart driver for the serial console. Enable the console
-> driver.
+> Rather than add these as features in the linux-yocto recipe,
+> include them in the BSP meta-data directly. Include only the core
+> EFI bits in the fri2.scc, and add the extended EFI support to the
+> fri2-standard.scc so that other ktypes don't pull in more than
+> what's absolutely required from fri2.scc.
 
-It this safe for all eg20t users ? I see the crownbay also
-uses this.
+Ack'd. Looks good.
 
 Bruce
 
 >
 > Signed-off-by: Darren Hart<dvhart@linux.intel.com>
 > ---
->   meta/cfg/kernel-cache/features/eg20t/eg20t.cfg |    1 +
->   1 files changed, 1 insertions(+), 0 deletions(-)
+>   meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc |    1 +
+>   meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc   |    1 +
+>   meta/cfg/kernel-cache/bsp/fri2/fri2.scc            |    2 ++
+>   3 files changed, 4 insertions(+), 0 deletions(-)
 >
-> diff --git a/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg b/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
-> index ff2f6fd..3d4969c 100644
-> --- a/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
-> +++ b/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
-> @@ -3,6 +3,7 @@
->   CONFIG_PCH_DMA=y
+> diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc
+> index 142d71a..9e9a84c 100644
+> --- a/meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc
+> +++ b/meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc
+> @@ -5,3 +5,4 @@ define KARCH i386
+>   # no new branch required, re-use the ktypes/preempt-rt branch
+>   include ktypes/preempt-rt
+>   include fri2.scc
+> +include cfg/efi-ext.scc
+> diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc b/meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc
+> index bbb0ebc..b17eca5 100644
+> --- a/meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc
+> +++ b/meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc
+> @@ -9,3 +9,4 @@ include features/emgd/emgd.scc
+>   git merge emgd
 >
->   CONFIG_SERIAL_PCH_UART=y
-> +CONFIG_SERIAL_PCH_UART_CONSOLE=y
->   CONFIG_SERIAL_CORE=y
+>   include fri2.scc
+> +include cfg/efi-ext.scc
+> diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+> index 2dd3170..a89a6e2 100644
+> --- a/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+> +++ b/meta/cfg/kernel-cache/bsp/fri2/fri2.scc
+> @@ -11,6 +11,8 @@ include cfg/vesafb.scc
+>   include cfg/usb-mass-storage.scc
+>   include cfg/boot-live.scc
+>   include features/power/intel.scc
+> +include cfg/smp.scc
+> +include cfg/efi.scc
 >
->   CONFIG_SPI=y
+>   include features/logbuf/size-normal.scc
+>
 
 
