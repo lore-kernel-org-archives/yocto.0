@@ -1,19 +1,21 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3B19E0030B
-	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 23:01:30 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 01 Mar 2012 23:01:30 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11185E0044A
+	for <yocto@yoctoproject.org>; Thu,  1 Mar 2012 23:01:34 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 01 Mar 2012 23:01:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="132159769"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="72669876"
 Received: from unknown (HELO localhost) ([10.255.15.122])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Mar 2012 23:01:29 -0800
+	by AZSMGA002.ch.intel.com with ESMTP; 01 Mar 2012 23:01:31 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Fri,  2 Mar 2012 01:01:06 -0600
-Message-Id: <cover.1330663414.git.tom.zanussi@intel.com>
+Date: Fri,  2 Mar 2012 01:01:03 -0600
+Message-Id: <873e25e86273c9263e32c02c296d96d06230e70e.1330663414.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/8] Yocto BSP tools
+In-Reply-To: <cover.1330663414.git.tom.zanussi@intel.com>
+References: <cover.1330663414.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/8] yocto-bsp: add BSP template files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,555 +27,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2012 07:01:31 -0000
+X-List-Received-Date: Fri, 02 Mar 2012 07:01:34 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This patchset implements the 'yocto-bsp' and 'yocto-kernel' BSP tools
-previously described in some detail in this RFC posting:
-
-https://lists.yoctoproject.org/pipermail/yocto/2011-December/006111.html
-
-With the functionality implemented by this patchset, you can:
-
-- create a new Yocto BSP for any architecture supported Yocto, as well
-  as qemu versions of the same.  The default mode of operation when
-  invoked from the command-line is to prompt the user for information
-  needed to generate the BSP.  For the current set of BSPs, the user
-  is prompted for various important parameters such as which kernel to
-  use, which branch of that kernel to use (or re-use), whether or not
-  to use X, and if so, which drivers to use, whether to turn on SMP,
-  whether the BSP has a keyboard, touchscreen, etc.
-
-  There's also an option (-i) that allows all the necessary
-  information to be supplied directly as a JSON object instead, which
-  allows the built-in prompting to be bypassed.  This is mainly for
-  use by developers of alternate UIs, such as the ADT integration that
-  should now be possible with what's provided here.
-
-  (available via the 'yocto-bsp create' command)
-
-- list the architectures available for BSP generation (using the
-  'yocto-bsp list karch' command).  You can also list the properties
-  and possible values for those properties for all the input items
-  needed for a given architecture in order to create a bsp.  The
-  latter is mainly useful for developers of alternate UIs.  See the
-  documention in the built-in help system for details of the extensive
-  data displayed by this command.
-
-  (available via the 'yocto-bsp list' command)
-
-- add and remove kernel patches to/from the BSP, as well as list the
-  kernel patches attached to the active kernel recipe for the BSP.
-
-  (available via the 'yocto-kernel patch add/rm/list' commands)
-
-- add and remove kernel config items to/from the BSP, as well as list
-  the user-defined config items attached to the active kernel recipe
-  for the BSP.
-
-  (available via the 'yocto-kernel config add/rm/list' commands)
-
-The built-in help system that makes it easy to drill down at any time
-and remind oneself of the syntax required for any specific command:
-
-Simply entering the name of the command, or the command along with
-'help' will display a list of the available sub-commands. For example:
-
-$ yocto-bsp
-$ yocto-bsp help
-
-Usage:
-
- Create a customized Yocto BSP layer.
-
- usage: yocto-bsp [--version] [--help] COMMAND [ARGS]
-
- The most commonly used 'yocto-bsp' commands are:
-    create	      Create a new Yocto BSP
-    list	      List available values for options and BSP properties
-
- See 'yocto-bsp help COMMAND' for more information on a specific command.
-
-
-Options:
-  --version    show program's version number and exit
-  -h, --help   show this help message and exit
-  -D, --debug  output debug information
-
-
-Similarly, entering just the name of the subcommand will show the
-detailed usage for that command:
-
-$ yocto-bsp create
-
-Usage:
-
- Create a new Yocto BSP
-
- usage: yocto-bsp create <bsp-name> <karch> [-o <DIRNAME> | --outdir <DIRNAME>]
-	    [-i <JSON PROPERTY FILE> | --infile <JSON PROPERTY_FILE>]
-
- This command creates a Yocto BSP based on the specified parameters.
- The new BSP will be a new Yocto BSP layer contained by default within
- the top-level directory specified as 'meta-bsp-name'.	The -o option
- can be used to place the BSP layer in a directory with a different
- name and location.
-
- ...
-
-
-For any subcommand, you can also use the word 'help' just before the
-subcommand to get more extensive documentation on the subcommand:
-
-$ yocto-bsp help create
-
-NAME
-    yocto-bsp create - Create a new Yocto BSP
-
-SYNOPSIS
-    yocto-bsp create <bsp-name> <karch> [-o <DIRNAME> | --outdir <DIRNAME>]
-	[-i <JSON PROPERTY FILE> | --infile <JSON PROPERTY_FILE>]
-
-DESCRIPTION
-    This command creates a Yocto BSP based on the specified
-    parameters.  The new BSP will be a new Yocto BSP layer contained
-    by default within the top-level directory specified as
-    'meta-bsp-name'.  The -o option can be used to place the BSP layer
-    in a directory with a different name and location.
-
-    The value of the 'karch' parameter determines the set of files
-    that will be generated for the BSP, along with the specific set of
-    'properties' that will be used to fill out the BSP-specific
-    portions of the BSP.
-
-    ...
-
-    NOTE: Once created, you should add your new layer to your
-    bblayers.conf file in order for it to be subsquently seen and
-    modified by the yocto-kernel tool.
-
-    NOTE for x86- and x86_64-based BSPs: The generated BSP assumes the
-    presence of the of the meta-intel layer, so you should also have a
-    meta-intel layer present and added to your bblayers.conf as well.
-
-
-So, armed simply with the knowledge that there are two Yocto BSP
-commands, 'yocto-bsp' and 'yocto-kernel', with the help of the help
-system and what's implemented by those commands, you should be able to
-create a BSP from scratch and do basic configuration and maintenance
-of the kernel without ever seeing a Yocto metadata file.
-
-What's not implemented, or what still needs work:
-
-- No support yet for kernel features.
-- The 'publish' mechanism isn't yet implemented; currently this is all
-  done in 'recipe-space'.
-- The template data (the BSP-specific files in the bsp/substrate dir) for
-  some specific architectures is untested and probably woefully
-  incomplete or too specific (I didn't test what I don't have hardware
-  for)
-- I need to document the template 'language' in order to make that
-  easier.  Conceptually, it should be relatively easy to understand by
-  looking at the other template files - basically they're just
-  straight Yocto metadata files marked up with variable replacement
-  tags {{=xxx}} and inline Python in any other tag.
-
-I have tested all the commands for the entire workflow - BSP creation,
-kernel patch and configuration commands - for the following
-architectures, and have successfully built and booted the generated
-and modified BSPs for each:
-
-- qemuarm
-- qemux86
-- x86
-- x86_64
-
-Aside from any other bugs, some work probably still needs to be done
-for some of the other non-qemu architectures in order to get them to a
-point where BSPs generated for them would stand a reasonable chance of
-booting as do the machines tested above.
-
-My plans are to implement the missing functionality as follow-on
-patches shortly.  In the meantime, I think the tools should be
-functional enough to allow people to accomplish the basic tasks
-related to BSP creation and kernel configuration for a Yocto BSP.
-
-To provide a starting point for using the tools and as a quick
-illustration of their basic capabilities, I've captured the output of
-a couple different sessions below.
-
-The first thing you need to do is source the build environment just as
-you would when building an image.  Because the tools are contained in
-the /scripts directory, doing so makes them directly available:
-
-$ source oe-init-build-env
-
-Once you've done that, you can invoke the 'yocto-bsp create' command
-to create the BSP.  The example below uses 'myarm' as the machine
-name, and tells it to use the 'qemu' architecture (the specific qemu
-machine architecture to use will be prompte for).  You can use the
-'yocto-bsp list karch' command to list the aviailable architectures
-for BSP creation:
-
-$ yocto-bsp list karch
-Architectures available:
-    arm
-    powerpc
-    i386
-    mips
-    x86_64
-    qemu
-
-The 'yocto-bsp create' command for the qemu architecture will display
-the following prompts along the way to gather the input required for
-BSP generation.  Each prompt asks for input, but has a default value
-[in brackets].  If you press 'enter' (or any invalid value), the
-default value will automatically be used.
-
-In the case of the qemu architecture, the first prompt asks which
-emulated architecture to use.  It then asks if the default (3.2) is
-ok, and we press enter, essentially telling it 'yes'.  Once we've
-selected the kernel, the prompt asks whether we need to have a new
-branch in the Yocto kernel git repository created for this BSP, which
-is where any patches we add can later be pushed (once we have publish
-functionality).  For now, the patches and configuration live only in
-recipe-space, but we generate different code for later use in that
-regard depending on the answer.  We're then given the opportunity to
-select a particular machine branch to use (or re-use if we elected not
-to create a new branch).  Because we're generating an arm BSP, we
-choose #3 at that prompt to select the arm-versatile branch.  The rest
-of the prompts are routine, and once all the questions have been
-completed, the BSP is generated along with a message telling you so.
-
-$ yocto-bsp create myarm qemu
-Which qemu architecture would you like to use? [default: x86]
-	1) common 32-bit x86
-	2) common 64-bit x86
-	3) common 32-bit ARM
-	4) common 32-bit PowerPC
-	5) common 32-bit MIPS
-3
-Would you like to use the default (3.2) kernel? (Y/n)
-Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]
-Getting branches from remote repo git://git.yoctoproject.org/linux-yocto-3.2...
-Please choose a machine branch to base this BSP on => [default: standard/default/common-pc]
-	1) base
-	2) standard/base
-	3) standard/default/arm-versatile-926ejs
-	4) standard/default/base
-	5) standard/default/beagleboard
-	6) standard/default/cedartrail
-	7) standard/default/common-pc-64/base
-	8) standard/default/common-pc-64/jasperforest
-	9) standard/default/common-pc-64/romley
-	10) standard/default/common-pc-64/sugarbay
-	11) standard/default/common-pc/atom-pc
-	12) standard/default/common-pc/base
-	13) standard/default/crownbay
-	14) standard/default/emenlow
-	15) standard/default/fishriver
-	16) standard/default/fri2
-	17) standard/default/fsl-mpc8315e-rdb
-	18) standard/default/mti-malta32-be
-	19) standard/default/mti-malta32-le
-	20) standard/default/preempt-rt
-	21) standard/default/qemu-ppc32
-	22) standard/default/routerstationpro
-	23) standard/preempt-rt/base
-	24) standard/preempt-rt/qemu-ppc32
-	25) standard/preempt-rt/routerstationpro
-	26) standard/tiny
-3
-Do you need SMP support? (Y/n)
-Does your BSP have a touchscreen? (y/N)
-Does your BSP have a keyboard? (Y/n)
-New qemu BSP created in meta-myarm
-
-Now that we have our BSP created, we need to add it to our
-bblayers.conf.  This of course is required in order to build the BSP,
-but it's also required in order for the 'yocto-kernel' tool to be able
-to find the layer and other metadata it needs to operate on.
-
-$ emacs -nw conf/bblayers.conf
-Add the BSP layer to e.g. BBLAYERS
-/home/trz/bsptest/build/meta-myarm \
-
-We can now use the 'yocto-kernel' command to add patches and config
-items to the BSP's kernel.
-
-First, let's see what's available via in 'yocto-kernel' command:
-
-$ yocto-kernel
-Usage:
-
- Modify and list Yocto BSP kernel config items and patches.
-
- usage: yocto-kernel [--version] [--help] COMMAND [ARGS]
-
- The most commonly used 'yocto-kernel' commands are:
-   config list	     List the modifiable set of bare kernel config options for a BSP
-   config add	     Add or modify bare kernel config options for a BSP
-   config rm	     Remove bare kernel config options from a BSP
-   patch list	     List the patches associated with a BSP
-   patch add	     Patch the Yocto kernel for a BSP
-   patch rm	     Remove patches from a BSP
-
- See 'yocto-kernel help COMMAND' for more information on a specific command.
-
-
-Let's add a couple patches:
-
-$ yocto-kernel patch add myarm//home/trz/junk.patch
-Added patches:
-	junk.patch
-
-$ yocto-kernel patch add myarm /home/trz/yocto-testmod.patch
-Added patches:
-	yocto-testmod.patch
-
-
-We can list the patches associated with the kernel and verify what we
-added:
-
-$ yocto-kernel patch list myarm
-The current set of machine-specific patches for myarm is:
-	1) junk.patch
-	2) yocto-testmod.patch
-
-
-Let's remove one of the patches, junk.patch:
-
-$ yocto-kernel patch rm myarm
-Specify the patches to remove:
-	1) junk.patch
-	2) yocto-testmod.patch
-1
-Removed patches:
-	junk.patch
-
-
-Listing again shows that it's been removed:
-
-$ yocto-kernel patch list myarm
-The current set of machine-specific patches for myarm is:
-	1) yocto-testmod.patch
-
-
-Similarly, we can add kernel config items by using the 'yocto-kernel
-config add' command:
-
-$ yocto-kernel config add myarm CONFIG_MISC_DEVICES=y
-Added items:
-	CONFIG_MISC_DEVICES=y
-
-$ yocto-kernel config add myarm KCONFIG_YOCTO_TESTMOD=y
-Added items:
-	CONFIG_YOCTO_TESTMOD=y
-
-
-Finally, we can list the config items now associated with the BSP and
-see the config items we added along with some others.
-
-$ yocto-kernel config list myarm
-The current set of machine-specific kernel config items for myarm is:
-	1) CONFIG_FTRACE_SYSCALLS=y
-	2) CONFIG_SCHED_TRACER=y
-	3) CONFIG_IRQSOFF_TRACER=y
-	4) CONFIG_PREEMPT_TRACER=y
-	5) CONFIG_MISC_DEVICES=y
-	6) CONFIG_YOCTO_TESTMOD=y
-
-
-Finally, as an example of a BSP for some actual hardware, below we
-generate an i386 BSP for an Atom board.  We specify the 3.0 kernel
-instead of the default 3.2 kernel and in this case specify that we'll
-re-use an existing branch and take the default kernel branch
-suggested.  We also specify that we want to use the Atom tuning and
-that we also want support for X and in this case we'll start by using
-the vesa driver.  Again, the remaining items are straightforward, and
-finally, building this BSP might stand a good chance of actually
-booting and running on the actual Atom hardware, or it may not (most
-likely).  If it's the kernel that needs tweaking, then of course, the
-'yocto-kernel' command can be used to make those modifications.
-
-
-$ yocto-bsp create myatom i386
-Would you like to use the default (3.2) kernel? (Y/n) n
-Please choose the kernel to use in this BSP => [default: linux-yocto_3.2]
-	1) linux-yocto-rt_3.2
-	2) linux-yocto_3.2
-	3) linux-yocto_3.0
-	4) linux-yocto-rt_3.0
-3
-Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n] n
-Getting branches from remote repo git://git.yoctoproject.org/linux-yocto-3.0...
-Please choose a machine branch to base this BSP on => [default: yocto/standard/base]
-	1) yocto/base
-	2) yocto/eg20t
-	3) yocto/emgd
-	4) yocto/emgd-1.10
-	5) yocto/gma500
-	6) yocto/pvr
-	7) yocto/standard/arm-versatile-926ejs
-	8) yocto/standard/base
-	9) yocto/standard/beagleboard
-	10) yocto/standard/cedartrail
-	11) yocto/standard/common-pc-64/base
-	12) yocto/standard/common-pc-64/jasperforest
-	13) yocto/standard/common-pc-64/romley
-	14) yocto/standard/common-pc-64/sugarbay
-	15) yocto/standard/common-pc/atom-pc
-	16) yocto/standard/common-pc/base
-	17) yocto/standard/crownbay
-	18) yocto/standard/emenlow
-	19) yocto/standard/fishriver
-	20) yocto/standard/fri2
-	21) yocto/standard/fsl-mpc8315e-rdb
-	22) yocto/standard/mti-malta32-be
-	23) yocto/standard/mti-malta32-le
-	24) yocto/standard/pandaboard
-	25) yocto/standard/preempt-rt/base
-	26) yocto/standard/preempt-rt/qemu-ppc32
-	27) yocto/standard/preempt-rt/routerstationpro
-	28) yocto/standard/qemu-ppc32
-	29) yocto/standard/routerstationpro
-
-Do you need SMP support? (Y/n)
-Which machine tuning would you like to use? [default: tune_core2]
-	1) Atom tuning optimizations
-	2) Core2 tuning optimizations
-1
-Do you need support for X? (Y/n)
-Please select an xserver for this machine [default: xserver_i915]
-	1) VESA xserver support
-	2) EMGD xserver support (proprietary)
-	3) i915 xserver support
-1
-Does your BSP have a touchscreen? (y/N)
-Does your BSP have a keyboard? (Y/n)
-New i386 BSP created in meta-myatom
-
-
-Hopefully the above examples along with the documentation contained in
-the built-in help system are enough to start becoming productive with
-these tools; please let me know of anything lacking, bugs, etc.  Any
-and all input appreciated,
-
-Tom
-
-
-The following changes since commit 6b6aa170d5c618cfcd016dd1de926db647f7f932:
-  Gary Thomas (1):
-        busybox: Restore 'date' compatability
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/poky-contrib.git tzanussi/yocto-bsp-tools
-  http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/commit/?h=tzanussi/yocto-bsp-tools
-
-Tom Zanussi (8):
-  yocto-bsp: add BSP template files
-  yocto-bsp-tools: add bsp library
-  yocto-bsp: add templating engine
-  yocto-bsp: add kernel interface
-  yocto-bsp-tools: add help/usage
-  yocto-bsp: add some useful constants
-  yocto-bsp: new script
-  yocto-kernel: new script
-
- scripts/lib/bsp/__init__.py                        |   17 +
- scripts/lib/bsp/engine.py                          | 1336 ++++++++++++++++++++
- scripts/lib/bsp/help.py                            |  588 +++++++++
- scripts/lib/bsp/kernel.py                          |  679 ++++++++++
- .../target/arch/arm/conf/machine/{{=machine}}.conf |   87 ++
- .../{{ if xserver == \"y\": }} xorg.conf"          |   34 +
+BSP template files for all supported Yocto architectures, plus qemu
+versions of the same.
+
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ .../target/arch/arm/conf/machine/{{=machine}}.conf |   87 +++++
+ .../{{ if xserver == \"y\": }} xorg.conf"          |   34 ++
  ... == \"y\": }} xserver-xf86-config_0.1.bbappend" |    3 +
- .../linux/files/{{=machine}}-non_hardware.cfg      |   30 +
+ .../linux/files/{{=machine}}-non_hardware.cfg      |   30 ++
  .../linux/files/{{=machine}}-preempt-rt.scc        |    8 +
  .../linux/files/{{=machine}}-standard.scc          |    8 +
- .../recipes-kernel/linux/files/{{=machine}}.cfg    |  336 +++++
+ .../recipes-kernel/linux/files/{{=machine}}.cfg    |  336 ++++++++++++++++++++
  .../recipes-kernel/linux/files/{{=machine}}.scc    |    7 +
  .../arm/recipes-kernel/linux/kernel-list.noinstall |    3 +
- ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   34 +
- ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   34 +
- ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   36 +
- ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   34 +
+ ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   34 ++
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   34 ++
+ ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   36 ++
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   34 ++
  .../bsp/substrate/target/arch/common/COPYING.MIT   |   17 +
- .../lib/bsp/substrate/target/arch/common/README    |  118 ++
+ .../lib/bsp/substrate/target/arch/common/README    |  118 +++++++
  .../substrate/target/arch/common/README.sources    |   17 +
  .../substrate/target/arch/common/conf/layer.conf   |   10 +
  .../formfactor/formfactor/{{=machine}}/machconfig  |    5 +
  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    3 +
  .../tasks/task-core-tools-profile.bbappend         |    2 +
- .../arch/i386/conf/machine/{{=machine}}.conf       |   44 +
- ...erver_choice == \"xserver_emgd\": }} xorg.conf" |   48 +
- ...erver_choice == \"xserver_i915\": }} xorg.conf" |   26 +
- ...erver_choice == \"xserver_vesa\": }} xorg.conf" |   26 +
+ .../arch/i386/conf/machine/{{=machine}}.conf       |   44 +++
+ ...erver_choice == \"xserver_emgd\": }} xorg.conf" |   48 +++
+ ...erver_choice == \"xserver_i915\": }} xorg.conf" |   26 ++
+ ...erver_choice == \"xserver_vesa\": }} xorg.conf" |   26 ++
  ... == \"y\": }} xserver-xf86-config_0.1.bbappend" |    3 +
  .../linux/files/{{=machine}}-preempt-rt.scc        |    8 +
  .../linux/files/{{=machine}}-standard.scc          |    8 +
- .../recipes-kernel/linux/files/{{=machine}}.cfg    |   54 +
- .../recipes-kernel/linux/files/{{=machine}}.scc    |   30 +
+ .../recipes-kernel/linux/files/{{=machine}}.cfg    |   54 ++++
+ .../recipes-kernel/linux/files/{{=machine}}.scc    |   30 ++
  .../recipes-kernel/linux/kernel-list.noinstall     |    3 +
- ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   34 +
- ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   34 +
- ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   36 +
- ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   34 +
- .../arch/mips/conf/machine/{{=machine}}.conf       |   28 +
+ ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   34 ++
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   34 ++
+ ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   36 ++
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   34 ++
+ .../arch/mips/conf/machine/{{=machine}}.conf       |   28 ++
  .../linux/files/{{=machine}}-preempt-rt.scc        |    8 +
  .../linux/files/{{=machine}}-standard.scc          |    8 +
  .../recipes-kernel/linux/files/{{=machine}}.cfg    |    1 +
  .../recipes-kernel/linux/files/{{=machine}}.scc    |    8 +
  .../recipes-kernel/linux/kernel-list.noinstall     |    3 +
- ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   34 +
- ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   34 +
- ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   36 +
- ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   34 +
- .../arch/powerpc/conf/machine/{{=machine}}.conf    |   53 +
+ ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   34 ++
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   34 ++
+ ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   36 ++
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   34 ++
+ .../arch/powerpc/conf/machine/{{=machine}}.conf    |   53 +++
  .../recipes-kernel/linux/files/user-config.cfg     |    4 +
  .../linux/files/{{=machine}}-preempt-rt.scc        |    8 +
  .../linux/files/{{=machine}}-standard.scc          |    8 +
- .../recipes-kernel/linux/files/{{=machine}}.cfg    |  163 +++
+ .../recipes-kernel/linux/files/{{=machine}}.cfg    |  163 ++++++++++
  .../recipes-kernel/linux/files/{{=machine}}.scc    |   11 +
  .../recipes-kernel/linux/kernel-list.noinstall     |    3 +
- ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   34 +
- ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   34 +
- ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   36 +
- ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   34 +
- .../arch/qemu/conf/machine/{{=machine}}.conf       |   59 +
- .../xserver-xf86-config/{{=machine}}/xorg.conf     |   69 +
+ ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   34 ++
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   34 ++
+ ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   36 ++
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   34 ++
+ .../arch/qemu/conf/machine/{{=machine}}.conf       |   59 ++++
+ .../xserver-xf86-config/{{=machine}}/xorg.conf     |   69 ++++
  ..."x86_64\": }} xserver-xf86-config_0.1.bbappend" |    2 +
  .../recipes-kernel/linux/files/user-config.cfg     |    4 +
- .../linux/files/{{=machine}}-preempt-rt.scc        |   30 +
- .../linux/files/{{=machine}}-standard.scc          |   30 +
+ .../linux/files/{{=machine}}-preempt-rt.scc        |   30 ++
+ .../linux/files/{{=machine}}-standard.scc          |   30 ++
  .../recipes-kernel/linux/files/{{=machine}}.scc    |    6 +
  .../recipes-kernel/linux/kernel-list.noinstall     |    3 +
- ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   32 +
- ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   32 +
- ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   34 +
- ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   34 +
- .../arch/x86_64/conf/machine/{{=machine}}.conf     |   29 +
- ...erver_choice == \"xserver_i915\": }} xorg.conf" |   26 +
- ...erver_choice == \"xserver_vesa\": }} xorg.conf" |   26 +
+ ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   32 ++
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   32 ++
+ ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   34 ++
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   34 ++
+ .../arch/x86_64/conf/machine/{{=machine}}.conf     |   29 ++
+ ...erver_choice == \"xserver_i915\": }} xorg.conf" |   26 ++
+ ...erver_choice == \"xserver_vesa\": }} xorg.conf" |   26 ++
  ... == \"y\": }} xserver-xf86-config_0.1.bbappend" |    3 +
  .../linux/files/{{=machine}}-preempt-rt.scc        |    8 +
  .../linux/files/{{=machine}}-standard.scc          |    8 +
- .../recipes-kernel/linux/files/{{=machine}}.cfg    |   47 +
+ .../recipes-kernel/linux/files/{{=machine}}.cfg    |   47 +++
  .../recipes-kernel/linux/files/{{=machine}}.scc    |   17 +
  .../recipes-kernel/linux/kernel-list.noinstall     |    3 +
- ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   34 +
- ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   34 +
- ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   36 +
- ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   34 +
- scripts/lib/bsp/tags.py                            |   39 +
- scripts/yocto-bsp                                  |  131 ++
- scripts/yocto-kernel                               |  219 ++++
- 87 files changed, 5445 insertions(+), 0 deletions(-)
- create mode 100644 scripts/lib/bsp/__init__.py
- create mode 100644 scripts/lib/bsp/engine.py
- create mode 100644 scripts/lib/bsp/help.py
- create mode 100644 scripts/lib/bsp/kernel.py
+ ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   34 ++
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   34 ++
+ ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   36 ++
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   34 ++
+ 80 files changed, 2436 insertions(+), 0 deletions(-)
  create mode 100644 scripts/lib/bsp/substrate/target/arch/arm/.gitignore
  create mode 100644 scripts/lib/bsp/substrate/target/arch/arm/conf/machine/{{=machine}}.conf
  create mode 100644 "scripts/lib/bsp/substrate/target/arch/arm/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver == \"y\": }} xorg.conf"
@@ -670,8 +213,2972 @@ Tom Zanussi (8):
  create mode 100644 "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend"
  create mode 100644 "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"
  create mode 100644 "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend"
- create mode 100644 scripts/lib/bsp/tags.py
- create mode 100755 scripts/yocto-bsp
- create mode 100755 scripts/yocto-kernel
+
+diff --git a/scripts/lib/bsp/substrate/target/arch/arm/.gitignore b/scripts/lib/bsp/substrate/target/arch/arm/.gitignore
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/arm/conf/machine/{{=machine}}.conf b/scripts/lib/bsp/substrate/target/arch/arm/conf/machine/{{=machine}}.conf
+new file mode 100644
+index 0000000..e1b5e1c
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/arm/conf/machine/{{=machine}}.conf
+@@ -0,0 +1,87 @@
++#@TYPE: Machine
++#@NAME: {{=machine}}
++
++#@DESCRIPTION: Machine configuration for {{=machine}} systems
++
++{{ input type:"boolean" name:"xserver" prio:"50" msg:"Do you need support for X? (Y/n)" default:"y" }}
++{{ if xserver == "y": }}
++PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg-lite"
++XSERVER = "xserver-xorg-lite \
++           xf86-input-evdev \
++           xf86-input-mouse \
++           xf86-video-omapfb \
++           xf86-input-keyboard"
++
++# Ship all kernel modules by default
++MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
++
++# Allow for MMC booting (required by the NAND-less Beagleboard XM)
++EXTRA_IMAGEDEPENDS += "u-boot x-load"
++
++# Uncomment the following line to enable the hard floating point abi. Note that
++# this breaks some binary libraries and 3D (neither of which ship with
++# meta-yocto). For maximum compatibility, leave this disabled.
++#DEFAULTTUNE ?= "cortexa8hf-neon"
++{{ input type:"choicelist" name:"tunefile" prio:"40" msg:"Which machine tuning would you like to use?" default:"tune_cortexa8" }}
++{{ input type:"choice" val:"tune_arm1136jf_s" msg:"arm1136jf-s tuning optimizations" }}
++{{ input type:"choice" val:"tune_arm920t" msg:"arm920t tuning optimizations" }}
++{{ input type:"choice" val:"tune_arm926ejs" msg:"arm926ejs tuning optimizations" }}
++{{ input type:"choice" val:"tune_arm9tdmi" msg:"arm9tdmi tuning optimizations" }}
++{{ input type:"choice" val:"tune_cortexa8" msg:"cortexa8 tuning optimizations" }}
++{{ input type:"choice" val:"tune_cortexa9" msg:"cortexa9 tuning optimizations" }}
++{{ input type:"choice" val:"tune_cortexm1" msg:"cortexm1 tuning optimizations" }}
++{{ input type:"choice" val:"tune_cortexm3" msg:"cortexm3 tuning optimizations" }}
++{{ input type:"choice" val:"tune_cortexr4" msg:"cortexr4 tuning optimizations" }}
++{{ input type:"choice" val:"tune_ep9312" msg:"ep9312 tuning optimizations" }}
++{{ input type:"choice" val:"tune_iwmmxt" msg:"iwmmxt tuning optimizations" }}
++{{ input type:"choice" val:"tune_strongarm1100" msg:"strongarm1100 tuning optimizations" }}
++{{ input type:"choice" val:"tune_xscale" msg:"xscale tuning optimizations" }}
++{{ if tunefile == "tune_arm1136jf_s": }}
++include conf/machine/include/tune-arm1136jf-s.inc
++{{ if tunefile == "tune_arm920t": }}
++include conf/machine/include/tune-arm920t.inc
++{{ if tunefile == "tune_arm926ejs": }}
++include conf/machine/include/tune-arm926ejs.inc
++{{ if tunefile == "tune_arm9tdmi": }}
++include conf/machine/include/tune-arm9tdmi.inc
++{{ if tunefile == "tune_cortexa8": }}
++include conf/machine/include/tune-cortexa8.inc
++{{ if tunefile == "tune_cortexa9": }}
++include conf/machine/include/tune-cortexa9.inc
++{{ if tunefile == "tune_cortexm1": }}
++include conf/machine/include/tune-cortexm1.inc
++{{ if tunefile == "tune_cortexm3": }}
++include conf/machine/include/tune-cortexm3.inc
++{{ if tunefile == "tune_cortexr4": }}
++include conf/machine/include/tune-cortexr4.inc
++{{ if tunefile == "tune_ep9312": }}
++include conf/machine/include/tune-ep9312.inc
++{{ if tunefile == "tune_iwmmxt": }}
++include conf/machine/include/tune-iwmmxt.inc
++{{ if tunefile == "tune_strongarm1100": }}
++include conf/machine/include/tune-strongarm1100.inc
++{{ if tunefile == "tune_xscale": }}
++include conf/machine/include/tune-xscale.inc
++
++IMAGE_FSTYPES += "tar.bz2 jffs2"
++EXTRA_IMAGECMD_jffs2 = "-lnp "
++
++# 2.6.37 and later kernels use OMAP_SERIAL, ttyO2
++# earlier kernels use ttyS2
++SERIAL_CONSOLE = "115200 ttyO2"
++
++{{ preferred_kernel = kernel_choice.split('_')[0] }}
++{{ preferred_kernel_version = kernel_choice.split('_')[1] }}
++PREFERRED_PROVIDER_virtual/kernel ?= "{{=preferred_kernel}}"
++PREFERRED_VERSION_{{=preferred_kernel}} ?= "{{=preferred_kernel_version}}%"
++
++KERNEL_IMAGETYPE = "uImage"
++
++{{ input type:"edit" name:"uboot_machine" prio:"40" msg:"Please specify a value for UBOOT_MACHINE." default:"omap3_beagle_config" }}
++UBOOT_MACHINE = "{{=uboot_machine}}"
++{{ input type:"edit" name:"uboot_entrypoint" prio:"40" msg:"Please specify a value for UBOOT_ENTRYPOINT." default:"0x80008000" }}
++UBOOT_ENTRYPOINT = "{{=uboot_entrypoint}}"
++{{ input type:"edit" name:"uboot_loadaddress" prio:"40" msg:"Please specify a value for UBOOT_LOADADDRESS." default:"0x80008000" }}
++UBOOT_LOADADDRESS = "{{=uboot_loadaddress}}"
++
++MACHINE_FEATURES = "kernel26 apm usbgadget usbhost vfat alsa"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/arm/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver == \"y\": }} xorg.conf" "b/scripts/lib/bsp/substrate/target/arch/arm/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver == \"y\": }} xorg.conf"
+new file mode 100644
+index 0000000..0335e6a
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/arm/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver == \"y\": }} xorg.conf"	
+@@ -0,0 +1,34 @@
++Section "Module"
++	Load	"extmod"
++	Load	"dbe"
++	Load	"glx"
++	Load	"freetype"
++	Load	"type1"
++	Load	"record"
++	Load	"dri"
++EndSection
++
++Section "Monitor"
++	Identifier	"Builtin Default Monitor"
++EndSection
++
++Section "Device"
++	Identifier	"Builtin Default fbdev Device 0"
++	Driver		"omapfb"
++EndSection
++
++Section "Screen"
++	Identifier	"Builtin Default fbdev Screen 0"
++	Device		"Builtin Default fbdev Device 0"
++	Monitor		"Builtin Default Monitor"
++EndSection
++
++Section "ServerLayout"
++	Identifier	"Builtin Default Layout"
++	Screen		"Builtin Default fbdev Screen 0"
++EndSection
++
++Section "ServerFlags"
++	Option		"DontZap"  "0"
++        Option		"AutoAddDevices" "False"
++EndSection
+diff --git "a/scripts/lib/bsp/substrate/target/arch/arm/recipes-graphics/xorg-xserver/{{ if xserver == \"y\": }} xserver-xf86-config_0.1.bbappend" "b/scripts/lib/bsp/substrate/target/arch/arm/recipes-graphics/xorg-xserver/{{ if xserver == \"y\": }} xserver-xf86-config_0.1.bbappend"
+new file mode 100644
+index 0000000..4b8d0e6
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/arm/recipes-graphics/xorg-xserver/{{ if xserver == \"y\": }} xserver-xf86-config_0.1.bbappend"	
+@@ -0,0 +1,3 @@
++THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
++FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
++
+diff --git a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/user-config.cfg b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/user-config.cfg
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/user-patches.scc b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/user-patches.scc
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-non_hardware.cfg b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-non_hardware.cfg
+new file mode 100644
+index 0000000..361343b
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-non_hardware.cfg
+@@ -0,0 +1,30 @@
++#
++# Miscellaneous filesystems
++#
++CONFIG_NFS_DEF_FILE_IO_SIZE=1024
++
++#
++# Multiple Device Support
++#
++# CONFIG_MD is not set
++
++# Kernel Features
++#
++CONFIG_NO_HZ=y
++
++#
++# CPUIdle
++#
++CONFIG_CPU_IDLE=y
++CONFIG_CPU_IDLE_GOV_LADDER=y
++CONFIG_CPU_IDLE_GOV_MENU=y
++
++#
++# Kernel hacking
++#
++CONFIG_DEBUG_FS=y
++
++#
++# Power management options
++#
++CONFIG_PM_DEBUG=y
+diff --git a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+new file mode 100644
+index 0000000..22ff307
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+@@ -0,0 +1,8 @@
++define KMACHINE {{=machine}}
++define KTYPE preempt-rt
++define KARCH arm
++
++# no new branch required, re-use the ktypes/preempt-rt branch
++include ktypes/preempt-rt
++
++include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc
+new file mode 100644
+index 0000000..cd8fa9c
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc
+@@ -0,0 +1,8 @@
++define KMACHINE {{=machine}}
++define KTYPE standard
++define KARCH arm
++
++include ktypes/standard
++branch {{=machine}}
++
++include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}.cfg b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}.cfg
+new file mode 100644
+index 0000000..994e034
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}.cfg
+@@ -0,0 +1,336 @@
++#
++# System Type
++#
++CONFIG_ARCH_OMAP=y
++CONFIG_HAVE_PWM=y
++CONFIG_ARM_L1_CACHE_SHIFT_6=y
++
++#
++# TI OMAP Implementations
++#
++# CONFIG_ARCH_OMAP2 is not set
++CONFIG_ARCH_OMAP3=y
++
++#
++# TI OMAP Common Features
++#
++CONFIG_ARCH_OMAP2PLUS=y
++
++#
++# OMAP Feature Selections
++#
++CONFIG_OMAP_32K_TIMER=y
++CONFIG_OMAP_32K_TIMER_HZ=128
++CONFIG_OMAP_DM_TIMER=y
++CONFIG_OMAP_RESET_CLOCKS=y
++CONFIG_OMAP_SMARTREFLEX=y
++CONFIG_OMAP_SMARTREFLEX_CLASS3=y
++CONFIG_OMAP_MBOX_FWK=m
++CONFIG_OMAP_MBOX_KFIFO_SIZE=256
++CONFIG_OMAP_IOMMU=m
++CONFIG_OMAP_IOMMU_DEBUG=m
++
++#
++# OMAP Board Type
++#
++CONFIG_MACH_OMAP3_BEAGLE=y
++
++#
++# Processor Features
++#
++CONFIG_ARM_THUMBEE=y
++CONFIG_ARM_L1_CACHE_SHIFT=6
++CONFIG_ARM_ERRATA_430973=y
++
++#
++# Kernel Features
++#
++CONFIG_LEDS=y
++
++
++#
++# Serial drivers
++#
++CONFIG_SERIAL_8250=y
++CONFIG_SERIAL_8250_CONSOLE=y
++CONFIG_SERIAL_8250_EXTENDED=y
++CONFIG_SERIAL_8250_RSA=y
++CONFIG_SERIAL_8250_MANY_PORTS=y
++CONFIG_SERIAL_8250_SHARE_IRQ=y
++CONFIG_SERIAL_8250_DETECT_IRQ=y
++CONFIG_SERIAL_8250_RUNTIME_UARTS=4
++
++#
++# At least one emulation must be selected
++#
++CONFIG_VFP=y
++CONFIG_NEON=y
++
++#
++# Power management options
++#
++CONFIG_PM=y
++CONFIG_PM_RUNTIME=y
++
++#
++# Generic Driver Options
++#
++CONFIG_MTD=y
++CONFIG_MTD_CONCAT=y
++CONFIG_MTD_PARTITIONS=y
++CONFIG_MTD_CMDLINE_PARTS=y
++#
++# User Modules And Translation Layers
++#
++CONFIG_MTD_CHAR=y
++CONFIG_MTD_BLKDEVS=y
++CONFIG_MTD_BLOCK=y
++
++#
++# RAM/ROM/Flash chip drivers
++#
++CONFIG_MTD_CFI=y
++CONFIG_MTD_CFI_INTELEXT=y
++
++#
++# Disk-On-Chip Device Drivers
++#
++CONFIG_MTD_NAND=y
++
++CONFIG_MTD_NAND_OMAP2=y
++# CONFIG_MTD_NAND_OMAP_PREFETCH is not set
++
++CONFIG_MTD_UBI=y
++
++#
++# SCSI device support
++#
++CONFIG_SCSI=y
++
++#
++# SCSI support type (disk, tape, CD-ROM)
++#
++CONFIG_BLK_DEV_SD=y
++
++#
++# Ethernet (10 or 100Mbit)
++#
++CONFIG_SMSC911X=y
++
++#
++# Userland interfaces
++#
++CONFIG_INPUT_EVDEV=y
++
++#
++# Input Device Drivers
++#
++CONFIG_KEYBOARD_TWL4030=y
++CONFIG_INPUT_TOUCHSCREEN=y
++CONFIG_TOUCHSCREEN_ADS7846=y
++
++#
++# Miscellaneous I2C Chip support
++#
++CONFIG_I2C=y
++CONFIG_I2C_OMAP=y
++CONFIG_SPI=y
++CONFIG_SPI_MASTER=y
++CONFIG_SPI_OMAP24XX=y
++
++#
++# I2C GPIO expanders:
++#
++CONFIG_GPIO_TWL4030=y
++
++#
++# SPI GPIO expanders:
++#
++CONFIG_OMAP_WATCHDOG=y
++CONFIG_WATCHDOG_NOWAYOUT=y
++
++#
++# Multifunction device drivers
++#
++CONFIG_TWL4030_CORE=y
++CONFIG_REGULATOR=y
++CONFIG_REGULATOR_DUMMY=y
++CONFIG_REGULATOR_TWL4030=y
++
++#
++# Graphics support
++#
++CONFIG_FB=y
++CONFIG_DRM=m
++# CONFIG_VGASTATE is not set
++# CONFIG_VIDEO_OUTPUT_CONTROL is not set
++# CONFIG_FIRMWARE_EDID is not set
++# CONFIG_FB_DDC is not set
++# CONFIG_FB_BOOT_VESA_SUPPORT is not set
++CONFIG_FB_CFB_FILLRECT=y
++CONFIG_FB_CFB_COPYAREA=y
++CONFIG_FB_CFB_IMAGEBLIT=y
++# CONFIG_FB_CFB_REV_PIXELS_IN_BYTE is not set
++CONFIG_FB_SYS_FILLRECT=m
++CONFIG_FB_SYS_COPYAREA=m
++CONFIG_FB_SYS_IMAGEBLIT=m
++# CONFIG_FB_FOREIGN_ENDIAN is not set
++CONFIG_FB_SYS_FOPS=m
++CONFIG_FB_DEFERRED_IO=y
++# CONFIG_FB_SVGALIB is not set
++# CONFIG_FB_MACMODES is not set
++# CONFIG_FB_BACKLIGHT is not set
++CONFIG_FB_MODE_HELPERS=y
++# CONFIG_FB_TILEBLITTING is not set
++
++#
++# Frame buffer hardware drivers
++#
++CONFIG_FB_OMAP=y
++CONFIG_FB_OMAP_CONSISTENT_DMA_SIZE=2
++# CONFIG_FB_S1D13XXX is not set
++# CONFIG_FB_TMIO is not set
++# CONFIG_FB_VIRTUAL is not set
++# CONFIG_FB_METRONOME is not set
++# CONFIG_FB_MB862XX is not set
++# CONFIG_FB_BROADSHEET is not set
++# CONFIG_FB_OMAP_BOOTLOADER_INIT is not set
++CONFIG_OMAP2_VRAM=y
++CONFIG_OMAP2_VRFB=y
++CONFIG_OMAP2_DSS=y
++CONFIG_OMAP2_VRAM_SIZE=14
++CONFIG_OMAP2_DSS_DEBUG_SUPPORT=y
++# CONFIG_OMAP2_DSS_COLLECT_IRQ_STATS is not set
++CONFIG_OMAP2_DSS_DPI=y
++# CONFIG_OMAP2_DSS_RFBI is not set
++CONFIG_OMAP2_DSS_VENC=y
++# CONFIG_OMAP2_DSS_SDI is not set
++CONFIG_OMAP2_DSS_DSI=y
++CONFIG_OMAP2_DSS_USE_DSI_PLL=y
++# CONFIG_OMAP2_DSS_FAKE_VSYNC is not set
++CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK=0
++CONFIG_FB_OMAP2=y
++CONFIG_FB_OMAP2_DEBUG_SUPPORT=y
++CONFIG_FB_OMAP2_NUM_FBS=2
++
++#
++# OMAP2/3 Display Device Drivers
++#
++CONFIG_PANEL_GENERIC=y
++CONFIG_PANEL_SHARP_LS037V7DW01=y
++# CONFIG_PANEL_LGPHILIPS_LB035Q02 is not set
++# CONFIG_PANEL_SAMSUNG_LTE430WQ_F0C is not set
++# CONFIG_PANEL_SHARP_LQ043T1DG01 is not set
++# CONFIG_PANEL_TAAL is not set
++CONFIG_PANEL_TOPPOLY_TDO35S=m
++CONFIG_PANEL_TPO_TD043MTEA1=m
++# CONFIG_BACKLIGHT_LCD_SUPPORT is not set
++CONFIG_BACKLIGHT_CLASS_DEVICE=y
++
++#
++# Display device support
++#
++CONFIG_DISPLAY_SUPPORT=y
++CONFIG_DUMMY_CONSOLE=y
++# CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY is not set
++CONFIG_FRAMEBUFFER_CONSOLE_ROTATION=y
++# CONFIG_FONTS is not set
++CONFIG_FONT_8x8=y
++CONFIG_FONT_8x16=y
++# CONFIG_LOGO_LINUX_MONO is not set
++# CONFIG_LOGO_LINUX_VGA16 is not set
++
++#
++# Console display driver support
++#
++CONFIG_FRAMEBUFFER_CONSOLE=y
++CONFIG_LOGO=y
++# CONFIG_VGA_CONSOLE is not set
++
++CONFIG_SOUND=y
++CONFIG_SND=y
++CONFIG_SND_SOC=y
++CONFIG_SND_OMAP_SOC=y
++CONFIG_SND_OMAP_SOC_OMAP3_BEAGLE=y
++
++#
++# USB Input Devices
++#
++CONFIG_USB=y
++CONFIG_USB_SUPPORT=y
++
++#
++# Miscellaneous USB options
++#
++CONFIG_USB_DEVICEFS=y
++CONFIG_USB_OTG=y
++# CONFIG_USB_OTG_WHITELIST is not set
++
++#
++# USB Host Controller Drivers
++#
++CONFIG_USB_EHCI_HCD=y
++CONFIG_USB_EHCI_TT_NEWSCHED=y
++CONFIG_USB_EHCI_ROOT_HUB_TT=y
++CONFIG_USB_MUSB_HDRC=y
++CONFIG_USB_MUSB_OMAP2PLUS=y
++CONFIG_USB_MUSB_SOC=y
++
++#
++# OMAP 343x high speed USB support
++#
++CONFIG_USB_MUSB_OTG=y
++CONFIG_USB_GADGET_MUSB_HDRC=y
++CONFIG_USB_MUSB_HDRC_HCD=y
++CONFIG_USB_INVENTRA_DMA=y
++
++
++#
++# NOTE: USB_STORAGE enables SCSI, and 'SCSI disk support'
++#
++
++#
++# may also be needed; see USB_STORAGE Help for more information
++#
++CONFIG_USB_STORAGE=y
++
++#
++# USB Miscellaneous drivers
++#
++CONFIG_USB_GADGET=y
++CONFIG_USB_GADGET_DUALSPEED=y
++CONFIG_USB_OTG_UTILS=y
++CONFIG_TWL4030_USB=y
++
++CONFIG_MMC=y
++
++#
++# MMC/SD Host Controller Drivers
++#
++CONFIG_MMC_OMAP_HS=y
++
++#
++# Real Time Clock
++#
++CONFIG_RTC_LIB=y
++CONFIG_RTC_CLASS=y
++CONFIG_RTC_DRV_TWL4030=y
++
++#
++# DOS/FAT/NT Filesystems
++#
++CONFIG_VFAT_FS=y
++
++#
++# Multimedia core support
++#
++
++CONFIG_VIDEO_OMAP3_ISP=y
++# CONFIG_VIDEO_OMAP34XX_ISP_PREVIEWER is not set
++CONFIG_VIDEO_OMAP34XX_ISP_RESIZER=y
++# CONFIG_VIDEO_HELPER_CHIPS_AUTO is not set
++
++#
++# Advanced Power Management Emulation support
++#
++CONFIG_APM_EMULATION=y
+diff --git a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}.scc b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}.scc
+new file mode 100644
+index 0000000..39f87f5
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}.scc
+@@ -0,0 +1,7 @@
++kconf hardware {{=machine}}.cfg
++kconf non-hardware {{machine}}-non_hardware.cfg
++
++include features/usb-net/usb-net.scc
++
++kconf hardware user-config.cfg
++include user-patches.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/kernel-list.noinstall b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/kernel-list.noinstall
+new file mode 100644
+index 0000000..32454a0
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/kernel-list.noinstall
+@@ -0,0 +1,3 @@
++{{ input type:"boolean" name:"use_default_kernel" prio:"10" msg:"Would you like to use the default (3.2) kernel? (Y/n)" default:"y"}}
++{{ input type:"choicelist" name:"kernel_choice" gen:"bsp.kernel.kernels" prio:"10" msg:"Please choose the kernel to use in this BSP =>" depends-on:"use_default_kernel" depends-on-val:"n" default:"linux-yocto_3.2"}}
++
+diff --git "a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" "b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"
+new file mode 100644
+index 0000000..fa0b60e
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_rt_3_0" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_rt_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_0" depends-on-val:"y" default:"yocto/standard/preempt-rt" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_rt_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_0" depends-on-val:"n" default:"yocto/standard/preempt-rt/base" }}
++
++{{ if new_kbranch_linux_yocto_rt_3_0 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_rt_3_0 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_rt_3_0}}"
++
++{{ if new_kbranch_linux_yocto_rt_3_0 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_0}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_rt_3_0" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_rt_3_0 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-preempt-rt.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto-rt_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto-rt_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" "b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend"
+new file mode 100644
+index 0000000..df9fe6f
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_rt_3_2" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_rt_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_2" depends-on-val:"y" default:"standard/preempt-rt" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_rt_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_2" depends-on-val:"n" default:"standard/preempt-rt/base" }}
++
++{{ if new_kbranch_linux_yocto_rt_3_2 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_2}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_rt_3_2 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_rt_3_2}}"
++
++{{ if new_kbranch_linux_yocto_rt_3_2 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_2}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_rt_3_2" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_rt_3_2 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-preempt-rt.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto-rt_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto-rt_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" "b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"
+new file mode 100644
+index 0000000..482d521
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"	
+@@ -0,0 +1,36 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_3_0" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_0" depends-on-val:"y" default:"yocto/standard" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_0" depends-on-val:"n" default:"yocto/standard" }}
++
++{{ if new_kbranch_linux_yocto_3_0 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_0 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_0}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_3_0" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_3_0 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++{{ if new_kbranch_linux_yocto_3_0 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_0 == "n": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_0}}"
++
++SRC_URI += "file://{{=machine}}-standard.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" "b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend"
+new file mode 100644
+index 0000000..2f6db36
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_3_2" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_2" depends-on-val:"y" default:"standard/default" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_2" depends-on-val:"n" default:"standard/default" }}
++
++{{ if new_kbranch_linux_yocto_3_2 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_2}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_2 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_2}}"
++
++{{ if new_kbranch_linux_yocto_3_2 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_2}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_3_2" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_3_2 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-standard.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git a/scripts/lib/bsp/substrate/target/arch/common/COPYING.MIT b/scripts/lib/bsp/substrate/target/arch/common/COPYING.MIT
+new file mode 100644
+index 0000000..fb950dc
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/common/COPYING.MIT
+@@ -0,0 +1,17 @@
++Permission is hereby granted, free of charge, to any person obtaining a copy 
++of this software and associated documentation files (the "Software"), to deal 
++in the Software without restriction, including without limitation the rights 
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
++copies of the Software, and to permit persons to whom the Software is 
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in 
++all copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
++THE SOFTWARE.
+diff --git a/scripts/lib/bsp/substrate/target/arch/common/README b/scripts/lib/bsp/substrate/target/arch/common/README
+new file mode 100644
+index 0000000..928659f
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/common/README
+@@ -0,0 +1,118 @@
++This README file contains information on building the meta-{{=machine}}
++BSP layer, and booting the images contained in the /binary directory.
++Please see the corresponding sections below for details.
++
++
++Dependencies
++============
++
++This layer depends on:
++
++  URI: git://git.openembedded.org/bitbake
++  branch: master
++
++  URI: git://git.openembedded.org/openembedded-core
++  layers: meta
++  branch: master
++
++  URI: git://git.yoctoproject.org/xxxx
++  layers: xxxx
++  branch: master
++
++
++Patches
++=======
++
++Please submit any patches against this BSP to the Yocto mailing list
++(yocto@yoctoproject.org) and cc: the maintainer:
++
++Maintainer: XXX YYYYYY <xxx.yyyyyy@zzzzz.com>
++
++Please see the meta-xxxx/MAINTAINERS file for more details.
++
++
++Table of Contents
++=================
++
++  I. Building the meta-{{=machine}} BSP layer
++ II. Booting the images in /binary
++
++
++I. Building the meta-{{=machine}} BSP layer
++========================================
++
++--- replace with specific instructions for your layer ---
++
++In order to build an image with BSP support for a given release, you
++need to download the corresponding BSP tarball from the 'Board Support
++Package (BSP) Downloads' page of the Yocto Project website.
++
++Having done that, and assuming you extracted the BSP tarball contents
++at the top-level of your yocto build tree, you can build a
++{{=machine}} image by adding the location of the meta-{{=machine}}
++layer to bblayers.conf, along with any other layers needed (to access
++common metadata shared between BSPs) e.g.:
++
++  yocto/meta-xxxx \
++  yocto/meta-xxxx/meta-{{=machine}} \
++
++To enable the {{=machine}} layer, add the {{=machine}} MACHINE to local.conf:
++
++  MACHINE ?= "{{=machine}}"
++
++You should then be able to build a {{=machine}} image as such:
++
++  $ source oe-init-build-env
++  $ bitbake core-image-sato
++
++At the end of a successful build, you should have a live image that
++you can boot from a USB flash drive (see instructions on how to do
++that below, in the section 'Booting the images from /binary').
++
++As an alternative to downloading the BSP tarball, you can also work
++directly from the meta-xxxx git repository.  For each BSP in the
++'meta-xxxx' repository, there are multiple branches, one corresponding
++to each major release starting with 'laverne' (0.90), in addition to
++the latest code which tracks the current master (note that not all
++BSPs are present in every release).  Instead of extracting a BSP
++tarball at the top level of your yocto build tree, you can
++equivalently check out the appropriate branch from the meta-xxxx
++repository at the same location.
++
++
++II. Booting the images in /binary
++=================================
++
++--- replace with specific instructions for your platform ---
++
++This BSP contains bootable live images, which can be used to directly
++boot Yocto off of a USB flash drive.
++
++Under Linux, insert a USB flash drive.  Assuming the USB flash drive
++takes device /dev/sdf, use dd to copy the live image to it.  For
++example:
++
++# dd if=core-image-sato-{{=machine}}-20101207053738.hddimg of=/dev/sdf
++# sync
++# eject /dev/sdf
++
++This should give you a bootable USB flash device.  Insert the device
++into a bootable USB socket on the target, and power on.  This should
++result in a system booted to the Sato graphical desktop.
++
++If you want a terminal, use the arrows at the top of the UI to move to
++different pages of available applications, one of which is named
++'Terminal'.  Clicking that should give you a root terminal.
++
++If you want to ssh into the system, you can use the root terminal to
++ifconfig the IP address and use that to ssh in.  The root password is
++empty, so to log in type 'root' for the user name and hit 'Enter' at
++the Password prompt: and you should be in.
++
++----
++
++If you find you're getting corrupt images on the USB (it doesn't show
++the syslinux boot: prompt, or the boot: prompt contains strange
++characters), try doing this first:
++
++# dd if=/dev/zero of=/dev/sdf bs=1M count=512
+diff --git a/scripts/lib/bsp/substrate/target/arch/common/README.sources b/scripts/lib/bsp/substrate/target/arch/common/README.sources
+new file mode 100644
+index 0000000..3c4cb7b
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/common/README.sources
+@@ -0,0 +1,17 @@
++The sources for the packages comprising the images shipped with this
++BSP can be found at the following location:
++
++http://downloads.yoctoproject.org/mirror/sources/
++
++The metadata used to generate the images shipped with this BSP, in
++addition to the code contained in this BSP, can be found at the
++following location:
++
++http://www.yoctoproject.org/downloads/yocto-1.1/poky-edison-6.0.tar.bz2
++
++The metadata used to generate the images shipped with this BSP, in
++addition to the code contained in this BSP, can also be found at the
++following locations:
++
++git://git.yoctoproject.org/poky.git
++git://git.yoctoproject.org/meta-xxxx
+diff --git a/scripts/lib/bsp/substrate/target/arch/common/binary/.gitignore b/scripts/lib/bsp/substrate/target/arch/common/binary/.gitignore
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/common/conf/layer.conf b/scripts/lib/bsp/substrate/target/arch/common/conf/layer.conf
+new file mode 100644
+index 0000000..921d976
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/common/conf/layer.conf
+@@ -0,0 +1,10 @@
++# We have a conf and classes directory, add to BBPATH
++BBPATH := "${BBPATH}:${LAYERDIR}"
++
++# We have a recipes directory, add to BBFILES
++BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++	${LAYERDIR}/recipes-*/*/*.bbappend"
++
++BBFILE_COLLECTIONS += "{{=machine}}"
++BBFILE_PATTERN_{{=machine}} := "^${LAYERDIR}/"
++BBFILE_PRIORITY_{{=machine}} = "6"
+diff --git a/scripts/lib/bsp/substrate/target/arch/common/recipes-bsp/formfactor/formfactor/{{=machine}}/machconfig b/scripts/lib/bsp/substrate/target/arch/common/recipes-bsp/formfactor/formfactor/{{=machine}}/machconfig
+new file mode 100644
+index 0000000..77b8685
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/common/recipes-bsp/formfactor/formfactor/{{=machine}}/machconfig
+@@ -0,0 +1,5 @@
++# Assume a USB mouse and keyboard are connected
++{{ input type:"boolean" name:"touchscreen" msg:"Does your BSP have a touchscreen? (y/N)" default:"n" }}
++HAVE_TOUCHSCREEN={{=touchscreen}}
++{{ input type:"boolean" name:"keyboard" msg:"Does your BSP have a keyboard? (Y/n)" default:"y" }}
++HAVE_KEYBOARD={{=keyboard}}
+diff --git a/scripts/lib/bsp/substrate/target/arch/common/recipes-bsp/formfactor/formfactor_0.0.bbappend b/scripts/lib/bsp/substrate/target/arch/common/recipes-bsp/formfactor/formfactor_0.0.bbappend
+new file mode 100644
+index 0000000..54da0ff
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/common/recipes-bsp/formfactor/formfactor_0.0.bbappend
+@@ -0,0 +1,3 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++ 
++PRINC = "1"
+diff --git a/scripts/lib/bsp/substrate/target/arch/common/recipes-core/tasks/task-core-tools-profile.bbappend b/scripts/lib/bsp/substrate/target/arch/common/recipes-core/tasks/task-core-tools-profile.bbappend
+new file mode 100644
+index 0000000..9e8e5c8
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/common/recipes-core/tasks/task-core-tools-profile.bbappend
+@@ -0,0 +1,2 @@
++RRECOMMENDS_task-core-tools-profile_append_{{=machine}} = " systemtap"
++
+diff --git a/scripts/lib/bsp/substrate/target/arch/i386/conf/machine/{{=machine}}.conf b/scripts/lib/bsp/substrate/target/arch/i386/conf/machine/{{=machine}}.conf
+new file mode 100644
+index 0000000..e800dfd
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/i386/conf/machine/{{=machine}}.conf
+@@ -0,0 +1,44 @@
++#@TYPE: Machine
++#@NAME: {{=machine}}
++
++#@DESCRIPTION: Machine configuration for {{=machine}} systems
++
++{{ preferred_kernel = kernel_choice.split('_')[0] }}
++{{ preferred_kernel_version = kernel_choice.split('_')[1] }}
++PREFERRED_PROVIDER_virtual/kernel ?= "{{=preferred_kernel}}"
++PREFERRED_VERSION_{{=preferred_kernel}} ?= "{{=preferred_kernel_version}}%"
++
++{{ input type:"choicelist" name:"tunefile" prio:"40" msg:"Which machine tuning would you like to use?" default:"tune_core2" }}
++{{ input type:"choice" val:"tune_atom" msg:"Atom tuning optimizations" }}
++{{ input type:"choice" val:"tune_core2" msg:"Core2 tuning optimizations" }}
++{{ if tunefile == "tune_atom": }}
++include conf/machine/include/tune-atom.inc
++{{ if tunefile == "tune_core2": }}
++include conf/machine/include/tune-core2.inc
++
++require conf/machine/include/ia32-base.inc
++
++{{ input type:"boolean" name:"xserver" prio:"50" msg:"Do you need support for X? (Y/n)" default:"y" }}
++{{ input type:"choicelist" name:"xserver_choice" prio:"50" msg:"Please select an xserver for this machine" depends-on:"xserver" depends-on-val:"y" default:"xserver_i915" }}
++{{ input type:"choice" val:"xserver_vesa" msg:"VESA xserver support" }}
++{{ input type:"choice" val:"xserver_emgd" msg:"EMGD xserver support (proprietary)" }}
++{{ input type:"choice" val:"xserver_i915" msg:"i915 xserver support" }}
++{{ if xserver == "y": }}
++XSERVER ?= "${XSERVER_IA32_BASE} \
++           ${XSERVER_IA32_EXT} \
++{{ if xserver_choice == "xserver_vesa": }}
++           ${XSERVER_IA32_VESA} \
++{{ if xserver_choice == "xserver_emgd": }}
++           ${XSERVER_IA32_EMGD} \
++{{ if xserver_choice == "xserver_i915": }}
++           ${XSERVER_IA32_I915} \
++{{ if xserver == "y": }}
++           "
++
++{{ if xserver_choice == "xserver_emgd": }}
++PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
++PREFERRED_VERSION_mesa-dri ?= "7.11"
++PREFERRED_VERSION_emgd-driver-bin ?= "1.8"
++
++{{ if xserver_choice == "xserver_vesa" or xserver_choice == "xserver_emgd": }}
++APPEND += "video=vesafb vga=0x318"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/i386/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_emgd\": }} xorg.conf" "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_emgd\": }} xorg.conf"
+new file mode 100644
+index 0000000..662f60f
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_emgd\": }} xorg.conf"	
+@@ -0,0 +1,48 @@
++##
++## X Config options generated from CED
++## x11 conf skeleton
++## DriverVer=
++##
++
++Section "Screen"
++    Identifier    "Screen0"
++    Device        "IntelEMGD-0"
++    Monitor       "Monitor0"
++    SubSection    "Display"
++    EndSubSection
++EndSection
++
++# Primary (First/only) display
++Section "Device"
++    Identifier "IntelEMGD-0"
++    Driver     "emgd"
++    VendorName "Intel(R) DEG"
++    BoardName  "Embedded Graphics"
++    BusID      "0:2:0"
++    Screen      0
++    Option     "PcfVersion"            "1792"
++    Option     "ConfigId"              "1"
++    Option     "ALL/1/name"                   "e6xx"
++    Option     "ALL/1/General/PortOrder"      "24000"
++    Option     "ALL/1/General/DisplayConfig"  "1"
++    Option     "ALL/1/General/DisplayDetect"  "1"
++    Option     "ALL/1/General/TuningWA" "1"
++    Option     "ALL/1/Port/4/General/name"           "lvds"
++    Option     "ALL/1/Port/4/General/EdidAvail"      "3"
++    Option     "ALL/1/Port/4/General/EdidNotAvail"   "1"
++    Option     "ALL/1/Port/4/General/Rotation"       "0"
++    Option     "ALL/1/Port/4/General/Edid"           "0"
++EndSection
++
++Section "ServerLayout"
++    Identifier     "Default Layout"
++    Screen 0       "Screen0" 0 0
++   # InputDevice    "Mouse0" "CorePointer"
++   # InputDevice    "Keyboard0" "CoreKeyboard"
++   # InputDevice    "DevInputMice" "SendCoreEvents"
++EndSection
++
++Section "ServerFlags"
++    Option        "DontZap"  "0"
++    Option        "AutoAddDevices"  "False"
++EndSection
+diff --git "a/scripts/lib/bsp/substrate/target/arch/i386/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_i915\": }} xorg.conf" "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_i915\": }} xorg.conf"
+new file mode 100644
+index 0000000..96b94b4
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_i915\": }} xorg.conf"	
+@@ -0,0 +1,26 @@
++Section "Device"
++    Identifier	"Intel Graphics Driver"
++    Driver	"intel"
++EndSection
++
++Section "Monitor"
++    Identifier    "Generic Monitor"
++    Option        "DPMS"
++EndSection
++
++Section "Screen"
++    Identifier    "Default Screen"
++    Device	  "Intel Graphics Driver"
++    Monitor       "Generic Monitor"
++    DefaultDepth  24
++EndSection
++
++Section "ServerLayout"
++    Identifier     "Default Layout"
++    Screen         "Default Screen"
++EndSection
++
++Section "ServerFlags"
++    Option        "DontZap"  "0"
++    Option        "AutoAddDevices"  "False"
++EndSection
+diff --git "a/scripts/lib/bsp/substrate/target/arch/i386/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_vesa\": }} xorg.conf" "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_vesa\": }} xorg.conf"
+new file mode 100644
+index 0000000..da4fc3c
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_vesa\": }} xorg.conf"	
+@@ -0,0 +1,26 @@
++Section "Device"
++    Identifier	"Generic VESA"
++    Driver	"vesa"
++EndSection
++
++Section "Monitor"
++    Identifier    "Generic Monitor"
++    Option        "DPMS"
++EndSection
++
++Section "Screen"
++    Identifier    "Default Screen"
++    Device	  "Generic VESA"
++    Monitor       "Generic Monitor"
++    DefaultDepth  24
++EndSection
++
++Section "ServerLayout"
++    Identifier     "Default Layout"
++    Screen         "Default Screen"
++EndSection
++
++Section "ServerFlags"
++    Option        "DontZap"  "0"
++    Option        "AutoAddDevices"  "False"
++EndSection
+diff --git "a/scripts/lib/bsp/substrate/target/arch/i386/recipes-graphics/xorg-xserver/{{ if xserver == \"y\": }} xserver-xf86-config_0.1.bbappend" "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-graphics/xorg-xserver/{{ if xserver == \"y\": }} xserver-xf86-config_0.1.bbappend"
+new file mode 100644
+index 0000000..4b8d0e6
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-graphics/xorg-xserver/{{ if xserver == \"y\": }} xserver-xf86-config_0.1.bbappend"	
+@@ -0,0 +1,3 @@
++THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
++FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
++
+diff --git a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/user-config.cfg b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/user-config.cfg
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/user-patches.scc b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/user-patches.scc
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+new file mode 100644
+index 0000000..9fb8002
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+@@ -0,0 +1,8 @@
++define KMACHINE {{=machine}}
++define KTYPE preempt-rt
++define KARCH i386
++
++# no new branch required, re-use the ktypes/preempt-rt branch
++include ktypes/preempt-rt
++
++include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
+new file mode 100644
+index 0000000..28c353b
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
+@@ -0,0 +1,8 @@
++define KMACHINE {{=machine}}
++define KTYPE standard
++define KARCH i386
++
++include ktypes/standard
++branch {{=machine}}
++
++include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}.cfg b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}.cfg
+new file mode 100644
+index 0000000..e93c0b8
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}.cfg
+@@ -0,0 +1,54 @@
++CONFIG_X86_32=y
++CONFIG_MATOM=y
++CONFIG_PRINTK=y
++
++# Basic hardware support for the box - network, USB, PCI, sound
++CONFIG_NETDEVICES=y
++CONFIG_ATA=y
++CONFIG_ATA_GENERIC=y
++CONFIG_ATA_SFF=y
++CONFIG_PCI=y
++CONFIG_MMC=y
++CONFIG_MMC_SDHCI=y
++CONFIG_USB_SUPPORT=y
++CONFIG_USB=y
++CONFIG_USB_ARCH_HAS_EHCI=y
++CONFIG_R8169=y
++CONFIG_PATA_SCH=y
++CONFIG_MMC_SDHCI_PCI=y
++CONFIG_USB_EHCI_HCD=y
++CONFIG_PCIEPORTBUS=y
++CONFIG_NET=y
++CONFIG_USB_UHCI_HCD=y
++CONFIG_USB_OHCI_HCD=y
++CONFIG_BLK_DEV_SD=y
++CONFIG_CHR_DEV_SG=y
++CONFIG_SOUND=y
++CONFIG_SND=y
++CONFIG_SND_HDA_INTEL=y
++CONFIG_SATA_AHCI=y
++CONFIG_AGP=y
++CONFIG_PM=y
++CONFIG_ACPI=y
++CONFIG_BACKLIGHT_LCD_SUPPORT=y
++CONFIG_BACKLIGHT_CLASS_DEVICE=y
++CONFIG_INPUT=y
++
++# Make sure these are on, otherwise the bootup won't be fun
++CONFIG_EXT3_FS=y
++CONFIG_UNIX=y
++CONFIG_INET=y
++CONFIG_MODULES=y
++CONFIG_SHMEM=y
++CONFIG_TMPFS=y
++CONFIG_PACKET=y
++
++# Needed for booting (and using) USB memory sticks
++CONFIG_BLK_DEV_LOOP=y
++CONFIG_NLS_CODEPAGE_437=y
++CONFIG_NLS_ISO8859_1=y
++
++CONFIG_RD_GZIP=y
++
++# Needed for booting (and using) CD images
++CONFIG_BLK_DEV_SR=y
+diff --git a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}.scc b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}.scc
+new file mode 100644
+index 0000000..325f8c8
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}.scc
+@@ -0,0 +1,30 @@
++kconf hardware {{=machine}}.cfg
++
++include features/intel-e1xxxx/intel-e100.scc
++include features/intel-e1xxxx/intel-e1xxxx.scc
++
++{{ if xserver_choice == "xserver_emgd": }}
++include features/drm-emgd/drm-emgd.scc
++
++{{ if xserver_choice == "xserver_i915": }}
++include features/i915/i915.scc
++
++include features/dmaengine/dmaengine.scc
++include features/serial/8250.scc
++include features/hpet/hpet.scc
++include features/ericsson-3g/f5521gw.scc
++
++{{ if xserver_choice == "xserver_vesa" or xserver_choice == "xserver_emgd": }}
++include features/framebuffer/vesafb.scc
++
++include cfg/usb-mass-storage.scc
++include cfg/boot-live.scc
++include features/power/intel.scc
++
++include features/logbuf/size-normal.scc
++
++include features/latencytop/latencytop.scc
++include features/profiling/profiling.scc
++
++kconf hardware user-config.cfg
++include user-patches.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/kernel-list.noinstall b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/kernel-list.noinstall
+new file mode 100644
+index 0000000..32454a0
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/kernel-list.noinstall
+@@ -0,0 +1,3 @@
++{{ input type:"boolean" name:"use_default_kernel" prio:"10" msg:"Would you like to use the default (3.2) kernel? (Y/n)" default:"y"}}
++{{ input type:"choicelist" name:"kernel_choice" gen:"bsp.kernel.kernels" prio:"10" msg:"Please choose the kernel to use in this BSP =>" depends-on:"use_default_kernel" depends-on-val:"n" default:"linux-yocto_3.2"}}
++
+diff --git "a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"
+new file mode 100644
+index 0000000..fa0b60e
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_rt_3_0" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_rt_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_0" depends-on-val:"y" default:"yocto/standard/preempt-rt" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_rt_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_0" depends-on-val:"n" default:"yocto/standard/preempt-rt/base" }}
++
++{{ if new_kbranch_linux_yocto_rt_3_0 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_rt_3_0 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_rt_3_0}}"
++
++{{ if new_kbranch_linux_yocto_rt_3_0 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_0}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_rt_3_0" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_rt_3_0 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-preempt-rt.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto-rt_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto-rt_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend"
+new file mode 100644
+index 0000000..df9fe6f
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_rt_3_2" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_rt_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_2" depends-on-val:"y" default:"standard/preempt-rt" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_rt_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_2" depends-on-val:"n" default:"standard/preempt-rt/base" }}
++
++{{ if new_kbranch_linux_yocto_rt_3_2 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_2}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_rt_3_2 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_rt_3_2}}"
++
++{{ if new_kbranch_linux_yocto_rt_3_2 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_2}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_rt_3_2" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_rt_3_2 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-preempt-rt.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto-rt_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto-rt_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"
+new file mode 100644
+index 0000000..ce980a6
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"	
+@@ -0,0 +1,36 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_3_0" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_0" depends-on-val:"y" default:"yocto/standard" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_0" depends-on-val:"n" default:"yocto/standard/base" }}
++
++{{ if new_kbranch_linux_yocto_3_0 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_0 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_0}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_3_0" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_3_0 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++{{ if new_kbranch_linux_yocto_3_0 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_0 == "n": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_0}}"
++
++SRC_URI += "file://{{=machine}}-standard.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend"
+new file mode 100644
+index 0000000..14af437
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_3_2" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_2" depends-on-val:"y" default:"standard/default" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_2" depends-on-val:"n" default:"standard/default/base" }}
++
++{{ if new_kbranch_linux_yocto_3_2 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_2}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_2 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_2}}"
++
++{{ if new_kbranch_linux_yocto_3_2 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_2}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_3_2" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_3_2 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-standard.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git a/scripts/lib/bsp/substrate/target/arch/mips/.gitignore b/scripts/lib/bsp/substrate/target/arch/mips/.gitignore
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/mips/conf/machine/{{=machine}}.conf b/scripts/lib/bsp/substrate/target/arch/mips/conf/machine/{{=machine}}.conf
+new file mode 100644
+index 0000000..4acfa41
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/mips/conf/machine/{{=machine}}.conf
+@@ -0,0 +1,28 @@
++#@TYPE: Machine
++#@NAME: {{=machine}}
++
++#@DESCRIPTION: Machine configuration for {{=machine}} systems
++
++require conf/machine/include/tune-mips32.inc
++
++MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 \
++                    serial"
++
++KERNEL_IMAGETYPE = "vmlinux"
++KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
++
++{{ preferred_kernel = kernel_choice.split('_')[0] }}
++{{ preferred_kernel_version = kernel_choice.split('_')[1] }}
++PREFERRED_PROVIDER_virtual/kernel ?= "{{=preferred_kernel}}"
++PREFERRED_VERSION_{{=preferred_kernel}} ?= "{{=preferred_kernel_version}}%"
++
++{{ input type:"boolean" name:"xserver" prio:"50" msg:"Do you need support for X? (Y/n)" default:"y" }}
++{{ if xserver == "y": }}
++PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
++XSERVER = "xserver-kdrive-fbdev"
++
++SERIAL_CONSOLE = "115200 ttyS0"
++
++MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
++
++IMAGE_FSTYPES ?= "jffs2 tar.bz2"
+diff --git a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/user-config.cfg b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/user-config.cfg
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/user-patches.scc b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/user-patches.scc
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+new file mode 100644
+index 0000000..792c4d5
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+@@ -0,0 +1,8 @@
++define KMACHINE {{=machine}}
++define KTYPE preempt-rt
++define KARCH mips
++
++# no new branch required, re-use the ktypes/preempt-rt branch
++include ktypes/preempt-rt
++
++include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc
+new file mode 100644
+index 0000000..c6139f0
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc
+@@ -0,0 +1,8 @@
++define KMACHINE {{=machine}}
++define KTYPE standard
++define KARCH mips
++
++include ktypes/standard
++branch {{=machine}}
++
++include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}.cfg b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}.cfg
+new file mode 100644
+index 0000000..a1b333c
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}.cfg
+@@ -0,0 +1 @@
++CONFIG_MIPS=y
+diff --git a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}.scc b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}.scc
+new file mode 100644
+index 0000000..7d29541
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}.scc
+@@ -0,0 +1,8 @@
++kconf hardware {{=machine}}.cfg
++
++include cfg/usb-mass-storage.scc
++include cfg/vfat.scc
++
++kconf hardware user-config.cfg
++include user-patches.scc
++
+diff --git a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/kernel-list.noinstall b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/kernel-list.noinstall
+new file mode 100644
+index 0000000..32454a0
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/kernel-list.noinstall
+@@ -0,0 +1,3 @@
++{{ input type:"boolean" name:"use_default_kernel" prio:"10" msg:"Would you like to use the default (3.2) kernel? (Y/n)" default:"y"}}
++{{ input type:"choicelist" name:"kernel_choice" gen:"bsp.kernel.kernels" prio:"10" msg:"Please choose the kernel to use in this BSP =>" depends-on:"use_default_kernel" depends-on-val:"n" default:"linux-yocto_3.2"}}
++
+diff --git "a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" "b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"
+new file mode 100644
+index 0000000..fa0b60e
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_rt_3_0" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_rt_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_0" depends-on-val:"y" default:"yocto/standard/preempt-rt" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_rt_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_0" depends-on-val:"n" default:"yocto/standard/preempt-rt/base" }}
++
++{{ if new_kbranch_linux_yocto_rt_3_0 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_rt_3_0 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_rt_3_0}}"
++
++{{ if new_kbranch_linux_yocto_rt_3_0 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_0}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_rt_3_0" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_rt_3_0 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-preempt-rt.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto-rt_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto-rt_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" "b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend"
+new file mode 100644
+index 0000000..df9fe6f
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_rt_3_2" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_rt_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_2" depends-on-val:"y" default:"standard/preempt-rt" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_rt_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_2" depends-on-val:"n" default:"standard/preempt-rt/base" }}
++
++{{ if new_kbranch_linux_yocto_rt_3_2 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_2}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_rt_3_2 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_rt_3_2}}"
++
++{{ if new_kbranch_linux_yocto_rt_3_2 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_2}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_rt_3_2" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_rt_3_2 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-preempt-rt.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto-rt_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto-rt_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" "b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"
+new file mode 100644
+index 0000000..482d521
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"	
+@@ -0,0 +1,36 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_3_0" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_0" depends-on-val:"y" default:"yocto/standard" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_0" depends-on-val:"n" default:"yocto/standard" }}
++
++{{ if new_kbranch_linux_yocto_3_0 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_0 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_0}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_3_0" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_3_0 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++{{ if new_kbranch_linux_yocto_3_0 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_0 == "n": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_0}}"
++
++SRC_URI += "file://{{=machine}}-standard.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" "b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend"
+new file mode 100644
+index 0000000..2f6db36
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_3_2" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_2" depends-on-val:"y" default:"standard/default" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_2" depends-on-val:"n" default:"standard/default" }}
++
++{{ if new_kbranch_linux_yocto_3_2 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_2}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_2 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_2}}"
++
++{{ if new_kbranch_linux_yocto_3_2 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_2}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_3_2" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_3_2 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-standard.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git a/scripts/lib/bsp/substrate/target/arch/powerpc/.gitignore b/scripts/lib/bsp/substrate/target/arch/powerpc/.gitignore
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/powerpc/conf/machine/{{=machine}}.conf b/scripts/lib/bsp/substrate/target/arch/powerpc/conf/machine/{{=machine}}.conf
+new file mode 100644
+index 0000000..84d0cda
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/powerpc/conf/machine/{{=machine}}.conf
+@@ -0,0 +1,53 @@
++#@TYPE: Machine
++#@NAME: {{=machine}}
++
++#@DESCRIPTION: Machine configuration for {{=machine}} systems
++
++TARGET_FPU = ""
++
++{{ input type:"choicelist" name:"tunefile" prio:"40" msg:"Which machine tuning would you like to use?" default:"tune_ppc603e" }}
++{{ input type:"choice" val:"tune_ppc603e" msg:"ppc603e tuning optimizations" }}
++{{ input type:"choice" val:"tune_ppce300c2" msg:"ppce300c2 tuning optimizations" }}
++{{ input type:"choice" val:"tune_ppce500" msg:"ppce500 tuning optimizations" }}
++{{ input type:"choice" val:"tune_ppce500mc" msg:"ppce500mc tuning optimizations" }}
++{{ input type:"choice" val:"tune_ppce500v2" msg:"ppce500v2 tuning optimizations" }}
++{{ input type:"choice" val:"tune_ppce5500_32b" msg:"ppce5500-32b tuning optimizations" }}
++{{ input type:"choice" val:"tune_ppce5500_64b" msg:"ppce5500-64b tuning optimizations" }}
++{{ if tunefile == "tune_ppc603e": }}
++include conf/machine/include/tune-ppc603e.inc
++{{ if tunefile == "tune_ppce300c2": }}
++include conf/machine/include/tune-ppce300c2.inc
++{{ if tunefile == "tune_ppce500": }}
++include conf/machine/include/tune-ppce500.inc
++{{ if tunefile == "tune_ppce500mc": }}
++include conf/machine/include/tune-ppce500mc.inc
++{{ if tunefile == "tune_ppce500v2": }}
++include conf/machine/include/tune-ppce500v2.inc
++{{ if tunefile == "tune_ppce5500_32b": }}
++include conf/machine/include/tune-ppce5500-32b.inc
++{{ if tunefile == "tune_ppce5500_64b": }}
++include conf/machine/include/tune-ppce5500-64b.inc
++
++KERNEL_IMAGETYPE = "uImage"
++
++SERIAL_CONSOLE = "115200 ttyS0"
++
++MACHINE_FEATURES = "kernel26 keyboard pci ext2 ext3 serial"
++
++{{ preferred_kernel = kernel_choice.split('_')[0] }}
++{{ preferred_kernel_version = kernel_choice.split('_')[1] }}
++PREFERRED_PROVIDER_virtual/kernel ?= "{{=preferred_kernel}}"
++PREFERRED_VERSION_{{=preferred_kernel}} ?= "{{=preferred_kernel_version}}%"
++
++{{ input type:"boolean" name:"xserver" prio:"50" msg:"Do you need support for X? (Y/n)" default:"y" }}
++{{ if xserver == "y": }}
++PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
++XSERVER = "xserver-kdrive-fbdev"
++
++{{ input type:"edit" name:"uboot_entrypoint" prio:"40" msg:"Please specify a value for UBOOT_ENTRYPOINT." default:"0x00000000" }}
++UBOOT_ENTRYPOINT = "{{=uboot_entrypoint}}"
++
++{{ input type:"edit" name:"kernel_devicetree" prio:"40" msg:"Please specify a [arch/powerpc/boot/dts/xxx] value for KERNEL_DEVICETREE." default:"mpc8315erdb.dts" }}
++KERNEL_DEVICETREE = "${S}/arch/powerpc/boot/dts/{{=kernel_devicetree}}"
++
++MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
+diff --git a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/user-config.cfg b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/user-config.cfg
+new file mode 100644
+index 0000000..2ee921b
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/user-config.cfg
+@@ -0,0 +1,4 @@
++CONFIG_FTRACE_SYSCALLS=y
++CONFIG_SCHED_TRACER=y
++CONFIG_IRQSOFF_TRACER=y
++CONFIG_PREEMPT_TRACER=y
+diff --git a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/user-patches.scc b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/user-patches.scc
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+new file mode 100644
+index 0000000..4a182a3
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+@@ -0,0 +1,8 @@
++define KMACHINE {{=machine}}
++define KTYPE preempt-rt
++define KARCH powerpc
++
++# no new branch required, re-use the ktypes/preempt-rt branch
++include ktypes/preempt-rt
++
++include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc
+new file mode 100644
+index 0000000..1213e61
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc
+@@ -0,0 +1,8 @@
++define KMACHINE {{=machine}}
++define KTYPE standard
++define KARCH powerpc
++
++include ktypes/standard
++branch {{=machine}}
++
++include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}.cfg b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}.cfg
+new file mode 100644
+index 0000000..9f37d07
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}.cfg
+@@ -0,0 +1,163 @@
++..........................................................................
++.                                WARNING
++.
++. This file is a kernel configuration fragment, and not a full kernel
++. configuration file.  The final kernel configuration is made up of
++. an assembly of processed fragments, each of which is designed to
++. capture a specific part of the final configuration (e.g. platform
++. configuration, feature configuration, and board specific hardware
++. configuration).  For more information on kernel configuration, please
++. consult the product documentation.
++.
++..........................................................................
++CONFIG_PPC32=y
++CONFIG_PPC_OF=y
++CONFIG_PPC_UDBG_16550=y
++
++#
++# Processor support
++#
++CONFIG_PPC_83xx=y
++
++#
++# Platform support
++#
++CONFIG_MPC831x_RDB=y
++# CONFIG_PPC_CHRP is not set
++# CONFIG_PPC_PMAC is not set
++
++#
++# Bus options
++#
++CONFIG_PCI=y
++
++#
++# Memory Technology Devices (MTD)
++#
++CONFIG_MTD=y
++CONFIG_MTD_PARTITIONS=y
++CONFIG_MTD_CMDLINE_PARTS=y
++CONFIG_MTD_OF_PARTS=y
++
++#
++# User Modules And Translation Layers
++#
++CONFIG_MTD_CHAR=y
++CONFIG_MTD_BLOCK=y
++
++#
++# RAM/ROM/Flash chip drivers
++#
++CONFIG_MTD_CFI=y
++CONFIG_MTD_CFI_AMDSTD=y
++
++#
++# Mapping drivers for chip access
++#
++CONFIG_MTD_PHYSMAP_OF=y
++
++#
++# NAND Flash Device Drivers
++#
++CONFIG_MTD_NAND=y
++
++#
++# Ethernet (1000 Mbit)
++#
++CONFIG_GIANFAR=y
++
++#
++# Serial drivers
++#
++CONFIG_SERIAL_8250=y
++CONFIG_SERIAL_8250_CONSOLE=y
++CONFIG_SERIAL_8250_NR_UARTS=2
++
++#
++# Watchdog Device Drivers
++#
++CONFIG_8xxx_WDT=y
++
++#
++# I2C support
++#
++CONFIG_I2C=y
++CONFIG_I2C_CHARDEV=y
++
++#
++# I2C Hardware Bus support
++#
++CONFIG_I2C_MPC=y
++
++CONFIG_SENSORS_LM75=y
++
++CONFIG_MISC_DEVICES=y
++
++#
++# Miscellaneous I2C Chip support
++#
++CONFIG_EEPROM_AT24=y
++
++#
++# SPI support
++#
++CONFIG_SPI=y
++# CONFIG_SPI_DEBUG is not set
++CONFIG_SPI_MASTER=y
++
++#
++# SPI Master Controller Drivers
++#
++CONFIG_SPI_MPC8xxx=y
++
++#
++# SPI Protocol Masters
++#
++CONFIG_HWMON=y
++
++#
++# SCSI device support
++#
++CONFIG_SCSI=y
++CONFIG_BLK_DEV_SD=y
++CONFIG_CHR_DEV_SG=y
++CONFIG_SCSI_LOGGING=y
++
++CONFIG_ATA=y
++CONFIG_ATA_VERBOSE_ERROR=y
++CONFIG_SATA_FSL=y
++CONFIG_ATA_SFF=y
++
++#
++# USB support
++#
++CONFIG_USB=m
++CONFIG_USB_DEVICEFS=y
++
++#
++# USB Host Controller Drivers
++#
++CONFIG_USB_EHCI_HCD=m
++CONFIG_USB_EHCI_FSL=y
++CONFIG_USB_STORAGE=m
++
++#
++# Real Time Clock
++#
++CONFIG_RTC_CLASS=y
++
++#
++# I2C RTC drivers
++#
++CONFIG_RTC_DRV_DS1307=y
++
++CONFIG_KGDB_8250=m
++
++CONFIG_CRYPTO_DEV_TALITOS=m
++
++CONFIG_FSL_DMA=y
++
++CONFIG_MMC=y
++CONFIG_MMC_SPI=m
++
++CONFIG_USB_FSL_MPH_DR_OF=y
+diff --git a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}.scc b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}.scc
+new file mode 100644
+index 0000000..17d5033
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}.scc
+@@ -0,0 +1,11 @@
++kconf hardware {{=machine}}.cfg
++
++include cfg/usb-mass-storage.scc
++include cfg/vfat.scc
++{{ if kernel_choice == "linux-yocto_3.0" or kernel_choice == "linux-yocto-rt_3.0": }}
++include features/dmaengine/dmaengine.scc
++{{ if kernel_choice == "linux-yocto_3.2" or kernel_choice == "linux-yocto-rt_3.2": }}
++include cfg/dmaengine/dmaengine.scc
++
++kconf hardware user-config.cfg
++include user-patches.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/kernel-list.noinstall b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/kernel-list.noinstall
+new file mode 100644
+index 0000000..32454a0
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/kernel-list.noinstall
+@@ -0,0 +1,3 @@
++{{ input type:"boolean" name:"use_default_kernel" prio:"10" msg:"Would you like to use the default (3.2) kernel? (Y/n)" default:"y"}}
++{{ input type:"choicelist" name:"kernel_choice" gen:"bsp.kernel.kernels" prio:"10" msg:"Please choose the kernel to use in this BSP =>" depends-on:"use_default_kernel" depends-on-val:"n" default:"linux-yocto_3.2"}}
++
+diff --git "a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" "b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"
+new file mode 100644
+index 0000000..fa0b60e
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_rt_3_0" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_rt_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_0" depends-on-val:"y" default:"yocto/standard/preempt-rt" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_rt_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_0" depends-on-val:"n" default:"yocto/standard/preempt-rt/base" }}
++
++{{ if new_kbranch_linux_yocto_rt_3_0 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_rt_3_0 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_rt_3_0}}"
++
++{{ if new_kbranch_linux_yocto_rt_3_0 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_0}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_rt_3_0" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_rt_3_0 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-preempt-rt.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto-rt_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto-rt_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" "b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend"
+new file mode 100644
+index 0000000..df9fe6f
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_rt_3_2" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_rt_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_2" depends-on-val:"y" default:"standard/preempt-rt" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_rt_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_2" depends-on-val:"n" default:"standard/preempt-rt/base" }}
++
++{{ if new_kbranch_linux_yocto_rt_3_2 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_2}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_rt_3_2 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_rt_3_2}}"
++
++{{ if new_kbranch_linux_yocto_rt_3_2 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_2}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_rt_3_2" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_rt_3_2 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-preempt-rt.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto-rt_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto-rt_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" "b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"
+new file mode 100644
+index 0000000..482d521
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"	
+@@ -0,0 +1,36 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_3_0" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_0" depends-on-val:"y" default:"yocto/standard" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_0" depends-on-val:"n" default:"yocto/standard" }}
++
++{{ if new_kbranch_linux_yocto_3_0 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_0 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_0}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_3_0" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_3_0 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++{{ if new_kbranch_linux_yocto_3_0 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_0 == "n": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_0}}"
++
++SRC_URI += "file://{{=machine}}-standard.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" "b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend"
+new file mode 100644
+index 0000000..2f6db36
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_3_2" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_2" depends-on-val:"y" default:"standard/default" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_2" depends-on-val:"n" default:"standard/default" }}
++
++{{ if new_kbranch_linux_yocto_3_2 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_2}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_2 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_2}}"
++
++{{ if new_kbranch_linux_yocto_3_2 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_2}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_3_2" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_3_2 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-standard.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/conf/machine/{{=machine}}.conf b/scripts/lib/bsp/substrate/target/arch/qemu/conf/machine/{{=machine}}.conf
+new file mode 100644
+index 0000000..b8d00db
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/conf/machine/{{=machine}}.conf
+@@ -0,0 +1,59 @@
++#@TYPE: Machine
++#@NAME: {{=machine}}
++
++#@DESCRIPTION: Machine configuration for {{=machine}} systems
++
++{{ preferred_kernel = kernel_choice.split('_')[0] }}
++{{ preferred_kernel_version = kernel_choice.split('_')[1] }}
++PREFERRED_PROVIDER_virtual/kernel ?= "{{=preferred_kernel}}"
++PREFERRED_VERSION_{{=preferred_kernel}} ?= "{{=preferred_kernel_version}}%"
++
++PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
++
++{{ input type:"choicelist" name:"qemuarch" prio:"5" msg:"Which qemu architecture would you like to use?" default:"x86" }}
++{{ input type:"choice" val:"x86" msg:"common 32-bit x86" }}
++{{ input type:"choice" val:"x86_64" msg:"common 64-bit x86" }}
++{{ input type:"choice" val:"arm" msg:"common 32-bit ARM" }}
++{{ input type:"choice" val:"powerpc" msg:"common 32-bit PowerPC" }}
++{{ input type:"choice" val:"mips" msg:"common 32-bit MIPS" }}
++{{ if qemuarch == "x86": }}
++require conf/machine/include/tune-i586.inc
++{{ if qemuarch == "x86_64": }}
++require conf/machine/include/tune-i586.inc
++{{ if qemuarch == "arm": }}
++require conf/machine/include/tune-arm926ejs.inc
++{{ if qemuarch == "powerpc": }}
++require conf/machine/include/tune-ppc603e.inc
++{{ if qemuarch == "mips": }}
++require conf/machine/include/tune-mips32.inc
++
++require conf/machine/include/qemu.inc
++
++{{ if qemuarch == "x86" or qemuarch == "x86_64": }}
++MACHINE_FEATURES += "x86"
++KERNEL_IMAGETYPE = "bzImage"
++SERIAL_CONSOLE = "115200 ttyS0"
++# We bypass swrast but we need it to be present for X to load correctly
++XSERVER ?= "xserver-xorg \
++           mesa-dri-driver-swrast \
++           xf86-input-vmmouse \
++           xf86-input-keyboard \
++           xf86-input-evdev \
++           xf86-video-vmware \
++           qemugl"
++GLIBC_ADDONS = "nptl"
++GLIBC_EXTRA_OECONF = "--with-tls"
++
++{{ if qemuarch == "arm": }}
++KERNEL_IMAGETYPE = "zImage"
++SERIAL_CONSOLE = "115200 ttyAMA0"
++
++{{ if qemuarch == "powerpc": }}
++KERNEL_IMAGETYPE = "vmlinux"
++SERIAL_CONSOLE = "115200 ttyS0"
++
++{{ if qemuarch == "mips": }}
++KERNEL_IMAGETYPE = "vmlinux"
++KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
++SERIAL_CONSOLE = "115200 ttyS0"
++MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/xorg.conf b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/xorg.conf
+new file mode 100644
+index 0000000..10a6d9a
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/xorg.conf
+@@ -0,0 +1,69 @@
++
++Section "Files"
++EndSection
++
++Section "InputDevice"
++    Identifier    "Generic Keyboard"
++    Driver        "evdev"
++    Option        "CoreKeyboard"
++    Option        "Device"      "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
++    Option        "XkbRules"    "xorg"
++    Option        "XkbModel"    "evdev"
++    Option        "XkbLayout"    "us"
++EndSection
++
++Section "InputDevice"
++    Identifier    "Configured Mouse"
++    Driver        "vmmouse"
++    Option        "CorePointer"
++    Option        "Device"        "/dev/input/mice"
++    Option        "Protocol"        "ImPS/2"
++    Option        "ZAxisMapping"        "4 5"
++    Option        "Emulate3Buttons"    "true"
++EndSection
++
++Section "InputDevice"
++    Identifier    "Qemu Tablet"
++    Driver        "evdev"
++    Option        "CorePointer"
++    Option        "Device"        "/dev/input/touchscreen0"
++    Option        "USB"           "on"
++EndSection
++
++Section "Device"
++    Identifier    "Graphics Controller"
++    Driver        "vmware"
++EndSection
++
++Section "Monitor"
++    Identifier    "Generic Monitor"
++    Option        "DPMS"
++    # 1024x600 59.85 Hz (CVT) hsync: 37.35 kHz; pclk: 49.00 MHz
++    Modeline "1024x600_60.00"   49.00  1024 1072 1168 1312  600 603 613 624 -hsync +vsync
++    # 640x480 @ 60Hz (Industry standard) hsync: 31.5kHz
++    ModeLine "640x480"    25.2  640  656  752  800    480  490  492  525 -hsync -vsync
++    # 640x480 @ 72Hz (VESA) hsync: 37.9kHz
++    ModeLine "640x480"    31.5  640  664  704  832    480  489  491  520 -hsync -vsync
++    # 640x480 @ 75Hz (VESA) hsync: 37.5kHz
++    ModeLine "640x480"    31.5  640  656  720  840    480  481  484  500 -hsync -vsync
++    # 640x480 @ 85Hz (VESA) hsync: 43.3kHz
++    ModeLine "640x480"    36.0  640  696  752  832    480  481  484  509 -hsync -vsync
++EndSection
++
++Section "Screen"
++    Identifier    "Default Screen"
++    Device        "Graphics Controller"
++    Monitor        "Generic Monitor"
++    SubSection "Display"
++        Modes     "640x480"
++    EndSubSection
++EndSection
++
++Section "ServerLayout"
++    Identifier    "Default Layout"
++    Screen        "Default Screen"
++    InputDevice    "Generic Keyboard"
++    # InputDevice    "Configured Mouse"
++    InputDevice    "QEMU Tablet"
++    Option         "AllowEmptyInput" "no"
++EndSection
+diff --git "a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-graphics/xorg-xserver/{{ if qemuarch == \"x86\" or qemuarch == \"x86_64\": }} xserver-xf86-config_0.1.bbappend" "b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-graphics/xorg-xserver/{{ if qemuarch == \"x86\" or qemuarch == \"x86_64\": }} xserver-xf86-config_0.1.bbappend"
+new file mode 100644
+index 0000000..d3420e0
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-graphics/xorg-xserver/{{ if qemuarch == \"x86\" or qemuarch == \"x86_64\": }} xserver-xf86-config_0.1.bbappend"	
+@@ -0,0 +1,2 @@
++THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
++FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/user-config.cfg b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/user-config.cfg
+new file mode 100644
+index 0000000..2ee921b
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/user-config.cfg
+@@ -0,0 +1,4 @@
++CONFIG_FTRACE_SYSCALLS=y
++CONFIG_SCHED_TRACER=y
++CONFIG_IRQSOFF_TRACER=y
++CONFIG_PREEMPT_TRACER=y
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/user-patches.scc b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/user-patches.scc
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+new file mode 100644
+index 0000000..3794d1b
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+@@ -0,0 +1,30 @@
++define KMACHINE {{=machine}}
++define KTYPE preempt-rt
++{{ if qemuarch == "x86": }}
++define KARCH i386
++{{ if qemuarch == "x86_64": }}
++define KARCH x86_64
++{{ if qemuarch == "arm": }}
++define KARCH arm
++{{ if qemuarch == "powerpc": }}
++define KARCH powerpc
++{{ if qemuarch == "mips": }}
++define KARCH mips
++
++{{ if qemuarch == "x86": }}
++include bsp/common-pc/common-pc-preempt-rt
++branch {{=machine}}
++{{ if qemuarch == "x86_64": }}
++include bsp/common-pc-64/common-pc-64-preempt-rt
++branch {{=machine}}
++{{ if qemuarch == "arm": }}
++include bsp/arm-versatile-926ejs/arm-versatile-926ejs-preempt-rt
++branch {{=machine}}
++{{ if qemuarch == "powerpc": }}
++include bsp/qemu-ppc32/qemu-ppc32-rt
++branch {{=machine}}
++{{ if qemuarch == "mips": }}
++include bsp/mti-malta32/mti-malta32-be-preempt-rt
++branch {{=machine}}
++
++include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc
+new file mode 100644
+index 0000000..31d1166
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc
+@@ -0,0 +1,30 @@
++define KMACHINE {{=machine}}
++define KTYPE standard
++{{ if qemuarch == "x86": }}
++define KARCH i386
++{{ if qemuarch == "x86_64": }}
++define KARCH x86_64
++{{ if qemuarch == "arm": }}
++define KARCH arm
++{{ if qemuarch == "powerpc": }}
++define KARCH powerpc
++{{ if qemuarch == "mips": }}
++define KARCH mips
++
++{{ if qemuarch == "x86": }}
++include bsp/common-pc/common-pc-standard
++branch {{=machine}}
++{{ if qemuarch == "x86_64": }}
++include bsp/common-pc-64/common-pc-64-standard
++branch {{=machine}}
++{{ if qemuarch == "arm": }}
++include bsp/arm-versatile-926ejs/arm-versatile-926ejs-standard
++branch {{=machine}}
++{{ if qemuarch == "powerpc": }}
++include bsp/qemu-ppc32/qemu-ppc32-standard
++branch {{=machine}}
++{{ if qemuarch == "mips": }}
++include bsp/mti-malta32/mti-malta32-be-standard
++branch {{=machine}}
++
++include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}.cfg b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}.cfg
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}.scc b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}.scc
+new file mode 100644
+index 0000000..e301b22
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}.scc
+@@ -0,0 +1,6 @@
++kconf hardware {{=machine}}.cfg
++
++include features/logbuf/size-normal.scc
++
++kconf hardware user-config.cfg
++include user-patches.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/kernel-list.noinstall b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/kernel-list.noinstall
+new file mode 100644
+index 0000000..32454a0
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/kernel-list.noinstall
+@@ -0,0 +1,3 @@
++{{ input type:"boolean" name:"use_default_kernel" prio:"10" msg:"Would you like to use the default (3.2) kernel? (Y/n)" default:"y"}}
++{{ input type:"choicelist" name:"kernel_choice" gen:"bsp.kernel.kernels" prio:"10" msg:"Please choose the kernel to use in this BSP =>" depends-on:"use_default_kernel" depends-on-val:"n" default:"linux-yocto_3.2"}}
++
+diff --git "a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" "b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"
+new file mode 100644
+index 0000000..670ff05
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"	
+@@ -0,0 +1,32 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_rt_3_0" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_rt_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_0" depends-on-val:"y" default:"yocto/standard/preempt-rt" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_rt_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_0" depends-on-val:"n" default:"yocto/standard/preempt-rt/base" }}
++
++{{ if new_kbranch_linux_yocto_rt_3_0 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_rt_3_0 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_rt_3_0}}"
++
++{{ if new_kbranch_linux_yocto_rt_3_0 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_0}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_rt_3_0" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_rt_3_0 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-preempt-rt.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto-rt_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto-rt_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" "b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend"
+new file mode 100644
+index 0000000..8bf4e69
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend"	
+@@ -0,0 +1,32 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_rt_3_2" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_rt_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_2" depends-on-val:"y" default:"standard/preempt-rt" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_rt_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_2" depends-on-val:"n" default:"standard/preempt-rt/base" }}
++
++{{ if new_kbranch_linux_yocto_rt_3_2 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_2}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_rt_3_2 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_rt_3_2}}"
++
++{{ if new_kbranch_linux_yocto_rt_3_2 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_2}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_rt_3_2" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_rt_3_2 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-preempt-rt.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto-rt_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto-rt_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" "b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"
+new file mode 100644
+index 0000000..ad2a003
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_3_0" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base your new BSP branch on =>" depends-on:"new_kbranch_linux_yocto_3_0" depends-on-val:"y" default:"yocto/standard/common-pc" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose an existing machine branch to use for this BSP =>" depends-on:"new_kbranch_linux_yocto_3_0" depends-on-val:"n" default:"yocto/standard/common-pc/base" }}
++
++{{ if new_kbranch_linux_yocto_3_0 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_0 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_0}}"
++
++{{ if new_kbranch_linux_yocto_3_0 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_0}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_3_0" prio:"30" msg:"Would you like SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_3_0 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-standard.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" "b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend"
+new file mode 100644
+index 0000000..3266c97
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_3_2" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_2" depends-on-val:"y" default:"standard/default/common-pc" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_2" depends-on-val:"n" default:"standard/default/common-pc/base" }}
++
++{{ if new_kbranch_linux_yocto_3_2 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_2}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_2 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_2}}"
++
++{{ if new_kbranch_linux_yocto_3_2 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_2}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_3_2" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_3_2 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-standard.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git a/scripts/lib/bsp/substrate/target/arch/x86_64/.gitignore b/scripts/lib/bsp/substrate/target/arch/x86_64/.gitignore
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/x86_64/conf/machine/{{=machine}}.conf b/scripts/lib/bsp/substrate/target/arch/x86_64/conf/machine/{{=machine}}.conf
+new file mode 100644
+index 0000000..480e3a7
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/x86_64/conf/machine/{{=machine}}.conf
+@@ -0,0 +1,29 @@
++#@TYPE: Machine
++#@NAME: {{=machine}}
++
++#@DESCRIPTION: Machine configuration for {{=machine}} systems
++
++{{ preferred_kernel = kernel_choice.split('_')[0] }}
++{{ preferred_kernel_version = kernel_choice.split('_')[1] }}
++PREFERRED_PROVIDER_virtual/kernel ?= "{{=preferred_kernel}}"
++PREFERRED_VERSION_{{=preferred_kernel}} ?= "{{=preferred_kernel_version}}%"
++
++require conf/machine/include/tune-x86_64.inc
++require conf/machine/include/ia32-base.inc
++
++{{ input type:"boolean" name:"xserver" prio:"50" msg:"Do you need support for X? (Y/n)" default:"y" }}
++{{ input type:"choicelist" name:"xserver_choice" prio:"50" msg:"Please select an xserver for this machine" depends-on:"xserver" depends-on-val:"y" default:"xserver_i915" }}
++{{ input type:"choice" val:"xserver_vesa" msg:"VESA xserver support" }}
++{{ input type:"choice" val:"xserver_i915" msg:"i915 xserver support" }}
++{{ if xserver == "y": }}
++XSERVER ?= "${XSERVER_IA32_BASE} \
++           ${XSERVER_IA32_EXT} \
++{{ if xserver_choice == "xserver_vesa": }}
++           ${XSERVER_IA32_VESA} \
++{{ if xserver_choice == "xserver_i915": }}
++           ${XSERVER_IA32_I915} \
++{{ if xserver == "y": }}
++           "
++
++{{ if xserver_choice == "xserver_vesa": }}
++APPEND += "video=vesafb vga=0x318"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_i915\": }} xorg.conf" "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_i915\": }} xorg.conf"
+new file mode 100644
+index 0000000..96b94b4
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_i915\": }} xorg.conf"	
+@@ -0,0 +1,26 @@
++Section "Device"
++    Identifier	"Intel Graphics Driver"
++    Driver	"intel"
++EndSection
++
++Section "Monitor"
++    Identifier    "Generic Monitor"
++    Option        "DPMS"
++EndSection
++
++Section "Screen"
++    Identifier    "Default Screen"
++    Device	  "Intel Graphics Driver"
++    Monitor       "Generic Monitor"
++    DefaultDepth  24
++EndSection
++
++Section "ServerLayout"
++    Identifier     "Default Layout"
++    Screen         "Default Screen"
++EndSection
++
++Section "ServerFlags"
++    Option        "DontZap"  "0"
++    Option        "AutoAddDevices"  "False"
++EndSection
+diff --git "a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_vesa\": }} xorg.conf" "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_vesa\": }} xorg.conf"
+new file mode 100644
+index 0000000..da4fc3c
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-graphics/xorg-xserver/xserver-xf86-config/{{=machine}}/{{ if xserver_choice == \"xserver_vesa\": }} xorg.conf"	
+@@ -0,0 +1,26 @@
++Section "Device"
++    Identifier	"Generic VESA"
++    Driver	"vesa"
++EndSection
++
++Section "Monitor"
++    Identifier    "Generic Monitor"
++    Option        "DPMS"
++EndSection
++
++Section "Screen"
++    Identifier    "Default Screen"
++    Device	  "Generic VESA"
++    Monitor       "Generic Monitor"
++    DefaultDepth  24
++EndSection
++
++Section "ServerLayout"
++    Identifier     "Default Layout"
++    Screen         "Default Screen"
++EndSection
++
++Section "ServerFlags"
++    Option        "DontZap"  "0"
++    Option        "AutoAddDevices"  "False"
++EndSection
+diff --git "a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-graphics/xorg-xserver/{{ if xserver == \"y\": }} xserver-xf86-config_0.1.bbappend" "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-graphics/xorg-xserver/{{ if xserver == \"y\": }} xserver-xf86-config_0.1.bbappend"
+new file mode 100644
+index 0000000..4b8d0e6
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-graphics/xorg-xserver/{{ if xserver == \"y\": }} xserver-xf86-config_0.1.bbappend"	
+@@ -0,0 +1,3 @@
++THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
++FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
++
+diff --git a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/user-config.cfg b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/user-config.cfg
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/user-patches.scc b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/user-patches.scc
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+new file mode 100644
+index 0000000..ecb0f01
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+@@ -0,0 +1,8 @@
++define KMACHINE {{=machine}}
++define KTYPE preempt-rt
++define KARCH x86_64
++
++# no new branch required, re-use the ktypes/preempt-rt branch
++include ktypes/preempt-rt
++
++include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc
+new file mode 100644
+index 0000000..2a32fea
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc
+@@ -0,0 +1,8 @@
++define KMACHINE {{=machine}}
++define KTYPE standard
++define KARCH x86_64
++
++include bsp/common-pc-64/common-pc-64-standard
++branch {{=machine}}
++
++include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}.cfg b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}.cfg
+new file mode 100644
+index 0000000..b4b82d7
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}.cfg
+@@ -0,0 +1,47 @@
++CONFIG_PRINTK=y
++
++# Basic hardware support for the box - network, USB, PCI, sound                     
++CONFIG_NETDEVICES=y
++CONFIG_ATA=y
++CONFIG_ATA_GENERIC=y
++CONFIG_ATA_SFF=y
++CONFIG_PCI=y
++CONFIG_MMC=y
++CONFIG_MMC_SDHCI=y
++CONFIG_USB_SUPPORT=y
++CONFIG_USB=y
++CONFIG_USB_ARCH_HAS_EHCI=y
++CONFIG_R8169=y
++CONFIG_PATA_SCH=y
++CONFIG_MMC_SDHCI_PCI=y
++CONFIG_USB_EHCI_HCD=y
++CONFIG_PCIEPORTBUS=y
++CONFIG_NET=y
++CONFIG_USB_UHCI_HCD=y
++CONFIG_BLK_DEV_SD=y
++CONFIG_CHR_DEV_SG=y
++CONFIG_SOUND=y
++CONFIG_SND=y
++CONFIG_SND_HDA_INTEL=y
++
++# Make sure these are on, otherwise the bootup won't be fun                         
++CONFIG_EXT3_FS=y
++CONFIG_UNIX=y
++CONFIG_INET=y
++CONFIG_MODULES=y
++CONFIG_SHMEM=y
++CONFIG_TMPFS=y
++CONFIG_PACKET=y
++
++CONFIG_I2C=y                                                                        
++CONFIG_AGP=y                                                                        
++CONFIG_PM=y                                                                         
++CONFIG_ACPI=y                                                                       
++CONFIG_INPUT=y                                                                      
++                                                                                    
++# Needed for booting (and using) USB memory sticks                                  
++CONFIG_BLK_DEV_LOOP=y                                                               
++CONFIG_NLS_CODEPAGE_437=y                                                           
++CONFIG_NLS_ISO8859_1=y                                                              
++                                                                                    
++CONFIG_RD_GZIP=y
+diff --git a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}.scc b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}.scc
+new file mode 100644
+index 0000000..35541f5
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}.scc
+@@ -0,0 +1,17 @@
++kconf hardware {{=machine}}.cfg
++
++include features/serial/8250.scc
++{{ if xserver_choice == "xserver_vesa": }}
++include cfg/vesafb.scc
++{{ if xserver_choice == "xserver_i915": }}
++include features/i915/i915.scc
++include cfg/usb-mass-storage.scc
++include features/power/intel.scc
++
++include features/logbuf/size-normal.scc
++
++include features/latencytop/latencytop.scc
++include features/profiling/profiling.scc
++
++kconf hardware user-config.cfg
++include user-patches.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/kernel-list.noinstall b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/kernel-list.noinstall
+new file mode 100644
+index 0000000..32454a0
+--- /dev/null
++++ b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/kernel-list.noinstall
+@@ -0,0 +1,3 @@
++{{ input type:"boolean" name:"use_default_kernel" prio:"10" msg:"Would you like to use the default (3.2) kernel? (Y/n)" default:"y"}}
++{{ input type:"choicelist" name:"kernel_choice" gen:"bsp.kernel.kernels" prio:"10" msg:"Please choose the kernel to use in this BSP =>" depends-on:"use_default_kernel" depends-on-val:"n" default:"linux-yocto_3.2"}}
++
+diff --git "a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"
+new file mode 100644
+index 0000000..fa0b60e
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_rt_3_0" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_rt_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_0" depends-on-val:"y" default:"yocto/standard/preempt-rt" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_rt_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_0" depends-on-val:"n" default:"yocto/standard/preempt-rt/base" }}
++
++{{ if new_kbranch_linux_yocto_rt_3_0 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_rt_3_0 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_rt_3_0}}"
++
++{{ if new_kbranch_linux_yocto_rt_3_0 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_0}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_rt_3_0" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_rt_3_0 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-preempt-rt.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto-rt_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto-rt_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend"
+new file mode 100644
+index 0000000..df9fe6f
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_rt_3_2" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_rt_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_2" depends-on-val:"y" default:"standard/preempt-rt" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_rt_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_rt_3_2" depends-on-val:"n" default:"standard/preempt-rt/base" }}
++
++{{ if new_kbranch_linux_yocto_rt_3_2 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_2}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_rt_3_2 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_rt_3_2}}"
++
++{{ if new_kbranch_linux_yocto_rt_3_2 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_rt_3_2}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_rt_3_2" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_rt_3_2 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-preempt-rt.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto-rt_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto-rt_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"
+new file mode 100644
+index 0000000..9932a6a
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"	
+@@ -0,0 +1,36 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_3_0" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_0" depends-on-val:"y" default:"yocto/standard/common-pc-64" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_3_0" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_0" depends-on-val:"n" default:"yocto/standard/common-pc-64/base" }}
++
++{{ if new_kbranch_linux_yocto_3_0 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_0 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_0}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_3_0" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_3_0 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++{{ if new_kbranch_linux_yocto_3_0 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_0}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_0 == "n": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_0}}"
++
++SRC_URI += "file://{{=machine}}-standard.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+diff --git "a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend"
+new file mode 100644
+index 0000000..3a1997e
+--- /dev/null
++++ "b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.2\": }} linux-yocto_3.2.bbappend"	
+@@ -0,0 +1,34 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++PR := "${PR}.1"
++
++COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
++{{ input type:"boolean" name:"new_kbranch_linux_yocto_3_2" prio:"20" msg:"Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [Y/n]" default:"y" }}
++{{ input type:"choicelist" name:"base_kbranch_linux_yocto_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_2" depends-on-val:"y" default:"standard/default/common-pc-64" }}
++{{ input type:"choicelist" name:"existing_kbranch_linux_yocto_3_2" gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine branch to base this BSP on =>" depends-on:"new_kbranch_linux_yocto_3_2" depends-on-val:"n" default:"standard/default/common-pc-64/base" }}
++
++{{ if new_kbranch_linux_yocto_3_2 == "y": }}
++KBRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_2}}/{{=machine}}"
++{{ if new_kbranch_linux_yocto_3_2 == "n": }}
++KBRANCH_{{=machine}}  = "{{=existing_kbranch_linux_yocto_3_2}}"
++
++{{ if new_kbranch_linux_yocto_3_2 == "y": }}
++YOCTO_KERNEL_EXTERNAL_BRANCH_{{=machine}}  = "{{=base_kbranch_linux_yocto_3_2}}/{{=machine}}"
++
++KMACHINE_{{=machine}}  = "{{=machine}}"
++
++{{ input type:"boolean" name:"smp_linux_yocto_3_2" prio:"30" msg:"Do you need SMP support? (Y/n)" default:"y"}}
++{{ if smp_linux_yocto_3_2 == "y": }}
++KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
++
++SRC_URI += "file://{{=machine}}-standard.scc \
++            file://{{=machine}}.scc \
++            file://{{=machine}}.cfg \
++            file://user-config.cfg \
++            file://user-patches.scc \
++           "
++
++# uncomment and replace these SRCREVs with the real commit ids once you've had
++# the appropriate changes committed to the upstream linux-yocto repo
++#SRCREV_machine_pn-linux-yocto_{{=machine}} ?= "417fc778a86e81303bab5883b919ee422ec51c04"
++#SRCREV_meta_pn-linux-yocto_{{=machine}} ?= "138bf5b502607fe40315c0d76822318d77d97e01"
+-- 
+1.7.0.4
 
 
