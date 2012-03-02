@@ -1,48 +1,25 @@
-Return-Path: <jpuhlman@gmail.com>
-Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A3A0E003E1
-	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 10:09:49 -0800 (PST)
-Received: by pbcup7 with SMTP id up7so2867512pbc.35
-	for <yocto@yoctoproject.org>; Fri, 02 Mar 2012 10:09:49 -0800 (PST)
-Received-SPF: pass (google.com: domain of jpuhlman@gmail.com designates
-	10.68.201.135 as permitted sender) client-ip=10.68.201.135; 
-Authentication-Results: mr.google.com;
-	spf=pass (google.com: domain of jpuhlman@gmail.com
-	designates 10.68.201.135 as permitted sender)
-	smtp.mail=jpuhlman@gmail.com;
-	dkim=pass header.i=jpuhlman@gmail.com
-Received: from mr.google.com ([10.68.201.135])
-	by 10.68.201.135 with SMTP id ka7mr18977627pbc.145.1330711789342
-	(num_hops = 1); Fri, 02 Mar 2012 10:09:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=lwLAHgptx0nkRtOwMGWrOp7d2OCyW+8JkLAXXvs4qbE=;
-	b=jNaRFe20Ec3bNowt6Y3i0iFNen++pawx75zHCebOhtJOxfS8KLMHojrJ+lyrWy0rhm
-	W3P1T5oZYUi1wVLvJ8aNFlqPNKoN9yATftIxUtjTgs1n+S14CDisjsVKFGz4RxGOumUf
-	AMsZR3Id0rtpiEnCLfQqmBrCLQgNQ9cy6wyxaw5vBhrWWkoaAJadIzZXHMJ1uGbLeeP4
-	hU5w6Rm6uT/JHD5RbWVGVbjdhr5DMuDxn1O1ao5uvqCHCHoElXDSGWVL4J8Ms5Jwb41I
-	CW/SOoP2VLLEcxTrmiVmbRz1P+P7FC5Pgx1mlaqNSK3C6WMwscAhkuFZGmqWw5G00dED
-	inJg==
-Received: by 10.68.201.135 with SMTP id ka7mr15798500pbc.145.1330711789312;
-	Fri, 02 Mar 2012 10:09:49 -0800 (PST)
-Received: from [192.168.1.4] (c-76-20-107-156.hsd1.ca.comcast.net.
-	[76.20.107.156])
-	by mx.google.com with ESMTPS id m5sm5554106pbo.69.2012.03.02.10.09.47
-	(version=SSLv3 cipher=OTHER); Fri, 02 Mar 2012 10:09:48 -0800 (PST)
-Message-ID: <4F510CDF.1000509@gmail.com>
-Date: Fri, 02 Mar 2012 10:09:35 -0800
-From: Jeremy Puhlman <jpuhlman@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6054DE003E1
+	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 13:03:51 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q22L3T7o004230
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 2 Mar 2012 13:03:29 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 2 Mar 2012 13:03:29 -0800
+Message-ID: <4F51358D.6060008@windriver.com>
+Date: Fri, 2 Mar 2012 16:03:09 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
 To: Darren Hart <dvhart@linux.intel.com>
-References: <CA452391058F6D4E9715FB2C29D9312A0113E694@039-SN2MPN1-021.039d.mgd.msft.net>
-	<4F50EFFA.7080809@linux.intel.com>
-In-Reply-To: <4F50EFFA.7080809@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: initramfs support in Yocto
+References: <cover.1330643860.git.dvhart@linux.intel.com>
+In-Reply-To: <cover.1330643860.git.dvhart@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 00/11][linux-yocto-3.0] Backport fixes and add FRI2 support to pch_uart
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,21 +31,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2012 18:09:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 02 Mar 2012 21:03:51 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-> Can you be more specific about what you are looking for? When you build
-> an image with the cpio.gz image type, you can boot that as an initramfs
-> with the following kernel command line:
+On 12-03-01 06:58 PM, Darren Hart wrote:
+> Backport 7 patches bringing pch_uart up to date with required fixes and new
+> features to support the 4 new patches (from me) enabling the FRI2 serial port.
 >
-> initrd=core-image-minimal-fri2.cpio.gz root=/dev/ram0
+> My patches have been sent to LKML and have received the approval one of the
+> driver maintainers. They are currently pending review and a pull from Greg KH.
+
+Grabbed and merged these. Will push them out later today, along with
+my 3.0.23 + rt updates.
+
+Bruce
+
 >
-> If you are looking for something beyond that, please elaborate.
+> Please apply to yocto/standard/base.
+>
+> The following changes since commit c578f3a1f357142a6e02a1df4ae9aa16f45094d6:
+>
+>    Merge branch 'yocto/base' into yocto/standard/base (2012-02-26 00:04:15 -0500)
+>
+> are available in the git repository at:
+>
+>    git://git.infradead.org/users/dvhart/linux-yocto-3.0.git dvhart/yocto/standard/pch_uart
+>    http://git.infradead.org/users/dvhart/linux-yocto-3.0.git/shortlog/refs/heads/dvhart/yocto/standard/pch_uart
+>
+> Alexander Stein (3):
+>    pch_uart: add missing comment about OKI ML7223
+>    pch_uart: Add MSI support
+>    drivers/tty/serial/pch_uart.c: add console support
+>
+> Darren Hart (4):
+>    pch_uart: Use uartclk instead of base_baud
+>    pch_uart: Add Fish River Island II uart clock quirks
+>    pch_uart: Add user_uartclk parameter
+>    pch_uart: Use existing default_baud in setup_console
+>
+> Jiri Slaby (1):
+>    TTY: serial, fix includes in some drivers
+>
+> Tomoya MORINAGA (2):
+>    pch_uart: Set PCIe bus number using probe parameter
+>    pch_uart: Change company name OKI SEMICONDUCTOR to LAPIS
+>      Semiconductor
+>
+> Uwe Kleine-König (1):
+>    serial/pch: use global div helper instead of creating a private one
+>
+>   drivers/tty/serial/Kconfig                  |    9 +
+>   drivers/tty/serial/apbuart.c                |    1 +
+>   drivers/tty/serial/cpm_uart/cpm_uart_core.c |    1 +
+>   drivers/tty/serial/dz.c                     |    1 +
+>   drivers/tty/serial/ioc3_serial.c            |    1 +
+>   drivers/tty/serial/ioc4_serial.c            |    1 +
+>   drivers/tty/serial/m32r_sio.c               |    1 +
+>   drivers/tty/serial/max3100.c                |    2 +
+>   drivers/tty/serial/max3107.c                |    2 +
+>   drivers/tty/serial/mpc52xx_uart.c           |    1 +
+>   drivers/tty/serial/msm_serial_hs.c          |    2 +
+>   drivers/tty/serial/mux.c                    |    2 +
+>   drivers/tty/serial/nwpserial.c              |    1 +
+>   drivers/tty/serial/pch_uart.c               |  227 ++++++++++++++++++++++++---
+>   drivers/tty/serial/sb1250-duart.c           |    1 +
+>   drivers/tty/serial/serial_ks8695.c          |    1 +
+>   drivers/tty/serial/serial_txx9.c            |    2 +
+>   drivers/tty/serial/sn_console.c             |    1 +
+>   drivers/tty/serial/timbuart.c               |    2 +
+>   drivers/tty/serial/uartlite.c               |    1 +
+>   drivers/tty/serial/ucc_uart.c               |    4 +-
+>   drivers/tty/serial/xilinx_uartps.c          |    4 +-
+>   drivers/tty/serial/zs.c                     |    1 +
+>   23 files changed, 246 insertions(+), 23 deletions(-)
 >
 
-When most people refer to initramfs support it is compiling a built
-image in to the kernel binary(e.g.  CONFIG_INITRAMFS_SOURCE).
-INITRAMFS_IMAGE
-is part of the kernel class that should enable that in the build.
 
