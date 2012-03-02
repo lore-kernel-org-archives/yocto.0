@@ -1,19 +1,19 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 603F0E003E1
-	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 04:32:49 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3DA6E00596
+	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 04:41:53 -0800 (PST)
 Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
 	([99.241.91.63] helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
 	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S3RfE-0005cU-LF; Fri, 02 Mar 2012 07:32:48 -0500
-Date: Fri, 2 Mar 2012 07:32:40 -0500 (EST)
+	id 1S3Ro1-00064u-3C; Fri, 02 Mar 2012 07:41:53 -0500
+Date: Fri, 2 Mar 2012 07:41:46 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: Paul Eggleton <paul.eggleton@linux.intel.com>
 In-Reply-To: <2719498.jaIID8MHL8@helios>
-Message-ID: <alpine.DEB.2.02.1203020730120.12679@oneiric>
+Message-ID: <alpine.DEB.2.02.1203020736400.13195@oneiric>
 References: <alpine.DEB.2.02.1203020530280.8202@oneiric>
 	<1620680.bZkznn7mE0@helios>
 	<alpine.DEB.2.02.1203020713480.12193@oneiric>
@@ -30,7 +30,7 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 Cc: yocto@yoctoproject.org
-Subject: Re: simplest recipe for running yocto qemu images?
+Subject: Re: simplest recipe for running yocto qemu images? [SOLVED]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,7 +42,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2012 12:32:49 -0000
+X-List-Received-Date: Fri, 02 Mar 2012 12:41:53 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 On Fri, 2 Mar 2012, Paul Eggleton wrote:
@@ -62,13 +62,20 @@ On Fri, 2 Mar 2012, Paul Eggleton wrote:
 > harder because certain things that normally work in the current
 > setup will not work when the host tools are being used instead.
 
-  i briefly saw your point until i noticed that the yocto toolchain i
-installed comes with qemu-system-* executables, which would take
-precedence over the normal host ones, so i'm still skeptical.
+  just for fun, i addressed the only thing that was stopping me, and
+that was that runqemu was looking for a slightly different sysroots
+directory name than the toolchain provided, so:
 
-  i'm going to mess with this a bit longer since i can't believe it
-should be hard to tweak this to get it to work.  no matter what
-happens, i'm sure i'll come out of it smarter.
+/opt/poky/1.1/sysroots$ sudo ln -s x86_64-pokysdk-linux/ x86_64-linux
+
+and then ran:
+
+$ TMPDIR=/opt/poky/1.1 runqemu qemuarm zImage-2.6.37-qemuarm-1.0.bin
+core-image-minimal-qemuarm.ext3
+
+and it worked.  yes, i'm sure i'm abusing all sorts of things but, in
+the end, once i dug through it, it seemed fairly easy to get it to
+work.
 
 rday
 
