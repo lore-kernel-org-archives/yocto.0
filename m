@@ -1,26 +1,55 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3568E003E1
-	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 09:12:10 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 02 Mar 2012 09:12:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="72853396"
-Received: from unknown (HELO envy.home) ([10.255.15.86])
-	by AZSMGA002.ch.intel.com with ESMTP; 02 Mar 2012 09:12:09 -0800
-Message-ID: <4F50FF3D.7080802@linux.intel.com>
-Date: Fri, 02 Mar 2012 09:11:25 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0) Gecko/20120131 Thunderbird/10.0
-MIME-Version: 1.0
-To: tom.zanussi@intel.com
-References: <873e25e86273c9263e32c02c296d96d06230e70e.1330663414.git.tom.zanussi@intel.com>
-	<a0c47b85cdeb6d65e1ab924db684cf1d80fb0dda.1330663414.git.tom.zanussi@intel.com>
-In-Reply-To: <a0c47b85cdeb6d65e1ab924db684cf1d80fb0dda.1330663414.git.tom.zanussi@intel.com>
-X-Enigmail-Version: 1.3.5
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 4/8] yocto-bsp: add kernel interface
+Return-Path: <koen@beagleboard.org>
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1AF22E003E4
+	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 09:15:31 -0800 (PST)
+Received: by werc1 with SMTP id c1so1629206wer.35
+	for <yocto@yoctoproject.org>; Fri, 02 Mar 2012 09:15:31 -0800 (PST)
+Received-SPF: pass (google.com: domain of koen@beagleboard.org designates
+	10.216.133.130 as permitted sender) client-ip=10.216.133.130; 
+Authentication-Results: mr.google.com;
+	spf=pass (google.com: domain of koen@beagleboard.org
+	designates 10.216.133.130 as permitted sender)
+	smtp.mail=koen@beagleboard.org
+Received: from mr.google.com ([10.216.133.130])
+	by 10.216.133.130 with SMTP id q2mr2211930wei.24.1330708531145
+	(num_hops = 1); Fri, 02 Mar 2012 09:15:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer
+	:x-gm-message-state;
+	bh=m0Z8lkWBBgZbsP0kvdUtjFduoQsYsVXSVm0EzYX+q/E=;
+	b=RhPFJ9IoSw+F4UJC0p4d1I0To0WBhnP7d8kLv1FS61LyK2DGJ/diS9aaXBYhBdmuF6
+	EW5eZgOgWM5Z3Esnb60x0RJHVFlAm8TCYWhMDc80CDaS9VOlRtciBh86NgNzf942j6it
+	+XLdDHUqWEQuTNp5wtnNDwC82z9wS34IkXfTI/hMwULr1n3OScduO2sRgiY1pmIOEpFX
+	q5SztvJqQ8mS90lvHtcqVYAkeyJdiXChdibgX/cpZaM2xE98Bjk11UFusfO+mvTk3xrx
+	ZUaMEI/kCayJIOmnQKmbxUCYJhTBKFV+owifXbylIM2XxISPh5S1xQuxkfd2HihHGB4Q
+	n6iQ==
+Received: by 10.216.133.130 with SMTP id q2mr1796184wei.24.1330708531073;
+	Fri, 02 Mar 2012 09:15:31 -0800 (PST)
+Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl.
+	[84.80.112.235])
+	by mx.google.com with ESMTPS id dr5sm12971605wib.0.2012.03.02.09.15.29
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 02 Mar 2012 09:15:30 -0800 (PST)
+Mime-Version: 1.0 (Apple Message framework v1257)
+From: Koen Kooi <koen@beagleboard.org>
+In-Reply-To: <CDED78A957032E45B3239CDDA7642D150846E4BF@ORSMSX105.amr.corp.intel.com>
+Date: Fri, 2 Mar 2012 18:15:29 +0100
+Message-Id: <F2ED0186-908B-4413-A6B1-1FDDC34B1AC3@beagleboard.org>
+References: <alpine.DEB.2.02.1202281349020.2440@oneiric>
+	<4F4D457F.7000306@windriver.com>
+	<alpine.DEB.2.02.1202281651040.8024@oneiric>
+	<D8B2FCF1-09C3-4DEF-BFFB-3E0A421C61AE@beagleboard.org>
+	<alpine.DEB.2.02.1202281723110.9200@oneiric>
+	<0ED6D044-756A-4D76-AFE5-525A5D0DDCE2@beagleboard.org>
+	<CDED78A957032E45B3239CDDA7642D150846E4BF@ORSMSX105.amr.corp.intel.com>
+To: "Stewart, David C" <david.c.stewart@intel.com>
+X-Mailer: Apple Mail (2.1257)
+X-Gm-Message-State: ALoCoQmP46SRPzAzuFP48Ry4TEyCQumtTK/9/2DvmzDs7IrC3n9lYIvQg0s3i7pfQeVEPSuwK4ZV
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: proper recipe for building for beagle xM? meta-ti?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,160 +61,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2012 17:12:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 02 Mar 2012 17:15:32 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
 
+Op 2 mrt. 2012, om 17:45 heeft Stewart, David C het volgende geschreven:
 
-On 03/01/2012 11:01 PM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi <tom.zanussi@intel.com>
-> 
-> Yocto BSP kernel-related functions, for interacting with the kernel
-> tools and implementing the machinery behind the 'yocto-kernel'
-> command.
-> 
-> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
-> ---
->  scripts/lib/bsp/kernel.py |  679 +++++++++++++++++++++++++++++++++++++++++++++
->  1 files changed, 679 insertions(+), 0 deletions(-)
->  create mode 100644 scripts/lib/bsp/kernel.py
-> 
-> diff --git a/scripts/lib/bsp/kernel.py b/scripts/lib/bsp/kernel.py
-> new file mode 100644
-> index 0000000..1b88b2f
-> --- /dev/null
-> +++ b/scripts/lib/bsp/kernel.py
-> @@ -0,0 +1,679 @@
-> +# ex:ts=4:sw=4:sts=4:et
-> +# -*- tab-width: 4; c-basic-offset: 4; indent-tabs-mode: nil -*-
-> +#
-> +# Copyright 2012 Intel Corporation
-> +# Authored-by:  Tom Zanussi <tom.zanussi@intel.com>
-> +#
-> +# This program is free software; you can redistribute it and/or modify
-> +# it under the terms of the GNU General Public License version 2 as
-> +# published by the Free Software Foundation.
-> +#
-> +# This program is distributed in the hope that it will be useful,
-> +# but WITHOUT ANY WARRANTY; without even the implied warranty of
-> +# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> +# GNU General Public License for more details.
-> +#
-> +# You should have received a copy of the GNU General Public License along
-> +# with this program; if not, write to the Free Software Foundation, Inc.,
-> +# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-> +
-> +import sys
-> +import os
-> +import shutil
-> +from tags import *
-> +import glob
-> +
-> +
-> +def find_bblayers(scripts_path):
-> +    """
-> +    Find and return a sanitized list of the layers found in BBLAYERS.
-> +    """
-> +    bblayers_conf = os.path.join(scripts_path, "../build/conf/bblayers.conf")
-> +
-> +    layers = []
-> +
-> +    f = open(bblayers_conf, "r")
-> +    lines = f.readlines()
-> +    for line in lines:
-> +        line = line.strip()
-> +        in_bblayers = False
-> +        if line.startswith("BBLAYERS"):
-> +            in_bblayers = True
-> +        if line.startswith("/"):
-> +            if line.endswith("\\"):
-> +                line = line[:-1].strip()
-> +            layers.append(line)
+>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>> bounces@yoctoproject.org] On Behalf Of Koen Kooi
+>> Sent: Friday, March 02, 2012 2:07 AM
+>>=20
+>> Well, if you use the angstrom setupscript you get 'yocto'. Your =
+phrasing seems
+>> to suggest you are confusing 'yocto' with 'poky', which is a common =
+mistake.
+>=20
+> Hey all - from the project perspective, the Yocto Project includes =
+Poky, so I think it's very appropriate for Robert to think that using YP =
+implies using Poky. This is in all of the project's official QA and =
+communications, so I think it's reasonable.
 
+This begs the questions where other distributions (and OSVs) fit into =
+yocto.=20
 
-This does not appear to handle something like:
+regards,
 
-BBLAYERS = " \
-    /path/to/layer1 \
-    /path/to/layer2"
-
-Need to strip the " from the end of the last line.
-
-Also doesn't handle:
-
-BBLAYERS += "/path/to/layer3"
-
-As it looks for lines starting with / and doesn't handle the " as
-mentioned above.
-
-> +    f.close()
-> +
-> +    return layers
-> +
-> +
-> +def find_meta_layer(scripts_path):
-> +    """
-> +    Find and return the meta layer in BBLAYERS.
-> +    """
-> +    layers = find_bblayers(scripts_path)
-> +
-> +    for layer in layers:
-> +        if layer.endswith("meta"):
-> +            return layer
-> +
-> +    return None
-
-I wonder if you could just use the bitbake-layers show-layers command?
-
-$ bitbake-layers show-layers
-Parsing recipes..WARNING: No recipes available for:
-
-/home/dvhart/source/poky/layers/poky-extras/meta-kernel-dev/recipes-kernel/linux/linux-yocto_2.6.34.bbappend
-
-/home/dvhart/source/poky/layers/meta-intel/meta-fri2/recipes-kernel/linux/linux-yocto-tiny_3.2.bbappend
-
-/home/dvhart/source/poky/layers/poky-extras/meta-kernel-dev/recipes-kernel/linux/linux-yocto-rt_2.6.34.bbappend
-done.
-
-layer                 path                                      priority
-==========================================================================
-meta                  /home/dvhart/source/poky/meta             5
-meta-yocto            /home/dvhart/source/poky/meta-yocto       5
-meta-intel            /home/dvhart/source/poky/layers/meta-intel  5
-meta-fri2
-/home/dvhart/source/poky/layers/meta-intel/meta-fri2  5
-meta-kernel-dev
-/home/dvhart/source/poky/layers/poky-extras/meta-kernel-dev  0
-
-
-It's slow as snot in January in Toronto, but it avoids having to
-re-implement all the bblayers parsing and the various corner cases that
-bitbake already handles...
-
-
-> +
-> +def find_bsp_layer(scripts_path, machine):
-> +    """
-> +    Find and return a machine's BSP layer in BBLAYERS.
-> +    """
-> +    layers = find_bblayers(scripts_path)
-> +
-> +    for layer in layers:
-> +        if machine in layer:
-> +            return layer
-> +
-> +    print "Unable to find the BSP layer for machine %s." % machine
-> +    print "Please make sure it is listed in bblayers.conf"
-> +    sys.exit(1)
-
-You would probably need to cache the result of the bitbake-layers as it
-is way to slow to use repeatedly like you need to here...
-
-The rest looks good to me.
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Koen=
 
