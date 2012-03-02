@@ -1,26 +1,39 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3159E003E1
-	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 08:41:47 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 02 Mar 2012 08:41:47 -0800
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F51BE003E4
+	for <yocto@yoctoproject.org>; Fri,  2 Mar 2012 08:45:58 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 02 Mar 2012 08:45:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="132422437"
-Received: from unknown (HELO envy.home) ([10.255.15.86])
-	by fmsmga002.fm.intel.com with ESMTP; 02 Mar 2012 08:41:47 -0800
-Message-ID: <4F50F81F.6000703@linux.intel.com>
-Date: Fri, 02 Mar 2012 08:41:03 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0) Gecko/20120131 Thunderbird/10.0
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="72841376"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by AZSMGA002.ch.intel.com with ESMTP; 02 Mar 2012 08:45:57 -0800
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 2 Mar 2012 08:45:57 -0800
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.233]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.120]) with mapi id
+	14.01.0355.002; Fri, 2 Mar 2012 08:45:56 -0800
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: Koen Kooi <koen@beagleboard.org>, Robert P.J.Day <rpjday@crashcourse.ca>
+Thread-Topic: [yocto] proper recipe for building for beagle xM?  meta-ti?
+Thread-Index: AQHM9koT6VjAlfsg7kW4ISOEfovDp5ZTV5SAgAAJXQCAAAPRAIAABU6AgAPnwQD//+i9AA==
+Date: Fri, 2 Mar 2012 16:45:56 +0000
+Message-ID: <CDED78A957032E45B3239CDDA7642D150846E4BF@ORSMSX105.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1202281349020.2440@oneiric>
+	<4F4D457F.7000306@windriver.com>
+	<alpine.DEB.2.02.1202281651040.8024@oneiric>
+	<D8B2FCF1-09C3-4DEF-BFFB-3E0A421C61AE@beagleboard.org>
+	<alpine.DEB.2.02.1202281723110.9200@oneiric>
+	<0ED6D044-756A-4D76-AFE5-525A5D0DDCE2@beagleboard.org>
+In-Reply-To: <0ED6D044-756A-4D76-AFE5-525A5D0DDCE2@beagleboard.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: tom.zanussi@intel.com
-References: <873e25e86273c9263e32c02c296d96d06230e70e.1330663414.git.tom.zanussi@intel.com>
-	<ebb9cbcd2cdf5a45fd35d59e6b4b2490dd94542b.1330663414.git.tom.zanussi@intel.com>
-In-Reply-To: <ebb9cbcd2cdf5a45fd35d59e6b4b2490dd94542b.1330663414.git.tom.zanussi@intel.com>
-X-Enigmail-Version: 1.3.5
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 2/8] yocto-bsp-tools: add bsp library
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: proper recipe for building for beagle xM? meta-ti?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,49 +45,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2012 16:41:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 02 Mar 2012 16:45:58 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Responded privately to Tom on this one...
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Koen Kooi
+>Sent: Friday, March 02, 2012 2:07 AM
+>
+>Well, if you use the angstrom setupscript you get 'yocto'. Your phrasing s=
+eems
+>to suggest you are confusing 'yocto' with 'poky', which is a common mistak=
+e.
 
-On 03/01/2012 11:01 PM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi <tom.zanussi@intel.com>
-> 
-> Create a home for the yocto bsp tools.
-> 
-> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
-> ---
->  scripts/lib/bsp/__init__.py |   17 +++++++++++++++++
->  1 files changed, 17 insertions(+), 0 deletions(-)
->  create mode 100644 scripts/lib/bsp/__init__.py
-> 
-> diff --git a/scripts/lib/bsp/__init__.py b/scripts/lib/bsp/__init__.py
-> new file mode 100644
-> index 0000000..978c2e4
-> --- /dev/null
-> +++ b/scripts/lib/bsp/__init__.py
-> @@ -0,0 +1,17 @@
-> +#
-> +# Yocto BSP tools library
-> +#
-> +# Copyright (C) 2012 Tom Zanussi
-> +#
-> +# This program is free software; you can redistribute it and/or modify
-> +# it under the terms of the GNU General Public License version 2 as
-> +# published by the Free Software Foundation.
-> +#
-> +# This program is distributed in the hope that it will be useful,
-> +# but WITHOUT ANY WARRANTY; without even the implied warranty of
-> +# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> +# GNU General Public License for more details.
-> +#
-> +# You should have received a copy of the GNU General Public License along
-> +# with this program; if not, write to the Free Software Foundation, Inc.,
-> +# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+Hey all - from the project perspective, the Yocto Project includes Poky, so=
+ I think it's very appropriate for Robert to think that using YP implies us=
+ing Poky. This is in all of the project's official QA and communications, s=
+o I think it's reasonable.
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Dave
 
