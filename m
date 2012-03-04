@@ -1,31 +1,23 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7AF2E0044C
-	for <yocto@yoctoproject.org>; Sun,  4 Mar 2012 08:16:46 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S4E73-000140-Io
-	for yocto@yoctoproject.org; Sun, 04 Mar 2012 11:16:45 -0500
-Date: Sun, 4 Mar 2012 11:16:36 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1203041109200.9209@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: in ref manual, images list (and other lists) appear incomplete
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBC1EE0044C
+	for <yocto@yoctoproject.org>; Sun,  4 Mar 2012 08:38:46 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 04 Mar 2012 08:38:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="117533273"
+Received: from unknown (HELO [10.255.15.167]) ([10.255.15.167])
+	by orsmga002.jf.intel.com with ESMTP; 04 Mar 2012 08:38:46 -0800
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+In-Reply-To: <alpine.DEB.2.02.1203040759260.2396@oneiric>
+References: <alpine.DEB.2.02.1203040759260.2396@oneiric>
+Date: Sun, 04 Mar 2012 10:37:53 -0600
+Message-ID: <1330879073.2319.122.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: some observations about yocto wiki page, "from git checkout to meta-intel BSP"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,63 +29,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 04 Mar 2012 16:16:46 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Sun, 04 Mar 2012 16:38:46 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+On Sun, 2012-03-04 at 08:09 -0500, Robert P. J. Day wrote:
+> yes, i know it's an editable wiki but i'd rather someone else make
+> the changes just in case i'm misreading something.  it's early, and
+> there's only decaf in the place.  this is bad.
+> 
+>   anyway, using this page as grist for discussion:
+> 
+> https://wiki.yoctoproject.org/wiki/Transcript:_from_git_checkout_to_meta-intel_BSP
+> 
+> "To build and run a meta-intel BSP, you need to check out a local copy
+> of the poky repo ..."
+> 
+>   i think that sentence demonstrates the yocto vs poky confusion koen
+> was talking about -- a regular waffling between "yocto" sources and
+> "poky" repos.
+> 
+
+Yeah, just because poky appears in the URL doesn't mean we need to
+reference it beyond that.
+
+>   below that, there are references to
+> git://git.pokylinux.org/poky.git -- should those references be updated
+> to refer to the git.yoctoproject.org repos?
+> 
+>   there's a reference to "poky-qemu qemux86" -- change to "runqemu
+> qemux86"?  or is that the correct name in the last released version?
+> (i rarely look at released versions.)
+> 
+>   and i'm pretty sure that there's a missing reference to the
+> meta-yocto layer here:
+> 
+> BBLAYERS = " \
+>   /usr/local/src/Yocto/meta \
+>   /usr/local/src/Yocto/meta-intel/meta-fishriver \
+>   "
+> 
+> unless that's also correct for the last released version.
+> 
+>   further down,
+> 
+>   $ bitbake poky-image-sato-live
+> 
+> there's no such bitbake target these days.
+> 
+>   anyway, that was about 60 seconds worth of perusing.  if some
+> meta-intel person wants to mess with that page, it's all yours.
+> 
+
+Yeah, definitely, I need to update these pages for for edison, which
+I'll do now that I know somebody's actually making use of them.
+
+Thanks for your comments...
+
+Tom
+
+> rday
+> 
 
 
-  just wandering through the yocto/poky reference manual, and it seems
-that some of the lists there are missing a few entries.
-
-  first, in the images section,
-
-file:///home/rpjday/yocto/git/documentation/poky-ref-manual/poky-ref-manual.html#ref-images
-
-if you run the given command:
-
-  $ ls meta*/recipes*/images/*.bb
-
-you'll get at least a couple more recipes directory (recipes-rt,
-recipes-qt) than is mentioned there, and more image recipe files:
-
-$ ls -1 meta*/recipes*/images/*.bb
-meta-hob/recipes-core/images/hob-image.bb        <-- not listed
-meta/recipes-core/images/core-image-base.bb
-meta/recipes-core/images/core-image-core.bb
-meta/recipes-core/images/core-image-minimal.bb
-meta/recipes-core/images/core-image-minimal-dev.bb
-meta/recipes-core/images/core-image-minimal-initramfs.bb
-meta/recipes-core/images/core-image-minimal-mtdutils.bb
-meta/recipes-core/images/self-hosted-image.bb    <-- not listed
-meta/recipes-extended/images/core-image-basic.bb
-meta/recipes-extended/images/core-image-lsb.bb
-meta/recipes-extended/images/core-image-lsb-dev.bb
-meta/recipes-extended/images/core-image-lsb-sdk.bb
-meta/recipes-graphics/images/core-image-clutter.bb
-meta/recipes-graphics/images/core-image-gtk-directfb.bb
-meta/recipes-qt/images/qt4e-demo-image.bb       <-- not listed
-meta/recipes-rt/images/core-image-rt.bb         <-- not listed
-meta/recipes-rt/images/core-image-rt-sdk.bb     <-- not listed
-meta/recipes-sato/images/core-image-sato.bb
-meta/recipes-sato/images/core-image-sato-dev.bb
-meta/recipes-sato/images/core-image-sato-sdk.bb
-$
-
-  also, in Appendix E, the various lists there look incomplete as
-well.  for example, it would appear that the valid options for
-DISTRO_FEATURES should include things like x11, opengl, pulseaudio and
-more.
-
-  just making observations.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
