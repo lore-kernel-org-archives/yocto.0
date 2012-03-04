@@ -1,31 +1,35 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28822E00746
-	for <yocto@yoctoproject.org>; Sun,  4 Mar 2012 05:27:27 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S4BTC-0002Wz-Ek
-	for yocto@yoctoproject.org; Sun, 04 Mar 2012 08:27:26 -0500
-Date: Sun, 4 Mar 2012 08:27:16 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1203040825580.3771@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A65DE0044C
+	for <yocto@yoctoproject.org>; Sun,  4 Mar 2012 08:14:03 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 04 Mar 2012 08:14:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="114496622"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by azsmga001.ch.intel.com with ESMTP; 04 Mar 2012 08:14:02 -0800
+Received: from orsmsx101.amr.corp.intel.com (10.22.225.128) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Sun, 4 Mar 2012 08:14:01 -0800
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.233]) by
+	ORSMSX101.amr.corp.intel.com ([169.254.8.188]) with mapi id
+	14.01.0355.002; Sun, 4 Mar 2012 08:14:01 -0800
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] some observations about yocto wiki page, "from git
+	checkout to meta-intel BSP"
+Thread-Index: AQHM+ggJF++y2+Sic0yNScoaIIGlDZZaT0Kg
+Date: Sun, 4 Mar 2012 16:14:00 +0000
+Message-ID: <CDED78A957032E45B3239CDDA7642D150846F91D@ORSMSX105.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1203040759260.2396@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1203040759260.2396@oneiric>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH] Documentation: Suggest Git for people who want to keep up with development.
+Subject: Re: some observations about yocto wiki page, "from git checkout to meta-intel BSP"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,36 +41,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 04 Mar 2012 13:27:27 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Sun, 04 Mar 2012 16:14:03 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+Yeah, the example is pretty old, dating back to the 1.0 (bernard) release.=
+=20
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+Tom - it might be time to retire it, you think?
 
----
-
-diff --git a/documentation/dev-manual/dev-manual-start.xml b/documentation/dev-manual/dev-manual-start.xml
-index 2a93ec6..5627c82 100644
---- a/documentation/dev-manual/dev-manual-start.xml
-+++ b/documentation/dev-manual/dev-manual-start.xml
-@@ -86,7 +86,8 @@
-                         Yocto Project files that are based on the particular release in the
-                         tarball.</para></listitem>
-                     <listitem><para><emphasis>Git Repository Method:</emphasis>  If you are going to be contributing
--                        back into the Yocto Project, you should use Git commands to set up a local
-+                        back into the Yocto Project (or even if you aren't but simply want to keep up
-+                        with the latest developments), you should use Git commands to set up a local
-                         Git repository of the Yocto Project files.
-                         Doing so creates a Git repository with a complete history of changes and allows
-                         you to easily submit your changes upstream to the project.</para>
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+>Sent: Sunday, March 04, 2012 5:09 AM
+>To: Yocto discussion list
+>Subject: [yocto] some observations about yocto wiki page, "from git checko=
+ut
+>to meta-intel BSP"
+>
+>
+>  yes, i know it's an editable wiki but i'd rather someone else make
+>the changes just in case i'm misreading something.  it's early, and
+>there's only decaf in the place.  this is bad.
+>
+>  anyway, using this page as grist for discussion:
+>
+>https://wiki.yoctoproject.org/wiki/Transcript:_from_git_checkout_to_meta-
+>intel_BSP
+>
+>"To build and run a meta-intel BSP, you need to check out a local copy
+>of the poky repo ..."
+>
+>  i think that sentence demonstrates the yocto vs poky confusion koen
+>was talking about -- a regular waffling between "yocto" sources and
+>"poky" repos.
+>
+>  below that, there are references to
+>git://git.pokylinux.org/poky.git -- should those references be updated
+>to refer to the git.yoctoproject.org repos?
+>
+>  there's a reference to "poky-qemu qemux86" -- change to "runqemu
+>qemux86"?  or is that the correct name in the last released version?
+>(i rarely look at released versions.)
+>
+>  and i'm pretty sure that there's a missing reference to the
+>meta-yocto layer here:
+>
+>BBLAYERS =3D " \
+>  /usr/local/src/Yocto/meta \
+>  /usr/local/src/Yocto/meta-intel/meta-fishriver \
+>  "
+>
+>unless that's also correct for the last released version.
+>
+>  further down,
+>
+>  $ bitbake poky-image-sato-live
+>
+>there's no such bitbake target these days.
+>
+>  anyway, that was about 60 seconds worth of perusing.  if some
+>meta-intel person wants to mess with that page, it's all yours.
+>
+>rday
+>
+>--
+>
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                        http://crashcourse.ca
+>
+>Twitter:                                       http://twitter.com/rpjday
+>LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
