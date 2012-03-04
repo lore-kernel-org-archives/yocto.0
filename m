@@ -1,49 +1,29 @@
-Return-Path: <b.hutchman@gmail.com>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDC93E0044C
-	for <yocto@yoctoproject.org>; Sun,  4 Mar 2012 12:01:24 -0800 (PST)
-Received: by bkcji17 with SMTP id ji17so3845353bkc.35
-	for <yocto@yoctoproject.org>; Sun, 04 Mar 2012 12:01:23 -0800 (PST)
-Received-SPF: pass (google.com: domain of b.hutchman@gmail.com designates
-	10.204.154.139 as permitted sender) client-ip=10.204.154.139; 
-Authentication-Results: mr.google.com;
-	spf=pass (google.com: domain of b.hutchman@gmail.com
-	designates 10.204.154.139 as permitted sender)
-	smtp.mail=b.hutchman@gmail.com;
-	dkim=pass header.i=b.hutchman@gmail.com
-Received: from mr.google.com ([10.204.154.139])
-	by 10.204.154.139 with SMTP id o11mr9158183bkw.4.1330891283844
-	(num_hops = 1); Sun, 04 Mar 2012 12:01:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=XPYcriRVN/mhX43l3icdoEP0OtR0OOHpSrPLYWlKPIw=;
-	b=lWX+DQgwKvlL1rJe9HmXvFwg5EHblEoRBxGJ1Nd80IsDnu+QcBfzvXlnefGx+n16FN
-	BobWA1NbM+4hEWdwYTxGG0noDiOFPxnN0gL2uneaj2zhj159kTN08TvbP7dHuATDLQnz
-	c16uAuOY4jX4+r2pVzJRSgsD3vQbzzzs44DKgGAAVvEmFoxIacOsg4rqlG0povanTzdK
-	12w5bKTE9h5piSH2N9HZ0bfTr7daiWR9H4xTffhvw2lZyCBCUoJo9+yTM9zVztlwQIbw
-	+1tQSRQMpOGrKeEF7FmZoFRSpxVWPECzVzbyi6Rj4bsrYjTuav0rtyLxuxWRO7sbeh3b
-	r2RA==
-MIME-Version: 1.0
-Received: by 10.204.154.139 with SMTP id o11mr7255293bkw.4.1330891283746; Sun,
-	04 Mar 2012 12:01:23 -0800 (PST)
-Received: by 10.204.229.198 with HTTP; Sun, 4 Mar 2012 12:01:23 -0800 (PST)
-In-Reply-To: <4F53C63D.1000305@mlbassoc.com>
-References: <D8B2FCF1-09C3-4DEF-BFFB-3E0A421C61AE@beagleboard.org>
-	<alpine.DEB.2.02.1202281723110.9200@oneiric>
-	<4F514826.5050402@ti.com>
-	<alpine.DEB.2.02.1203021729040.31351@oneiric>
-	<4F514EC8.8000606@ti.com> <4F515551.50708@mlbassoc.com>
-	<20120304061843.GN24667@denix.org>
+Return-Path: <denis@denix.org>
+Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
+	[206.46.173.15])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1087BE0044C
+	for <yocto@yoctoproject.org>; Sun,  4 Mar 2012 13:04:14 -0800 (PST)
+Received: from gandalf.denix.org ([unknown] [71.178.225.66])
+	by vms173015.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0M0D001J6METK8J0@vms173015.mailsrvcs.net> for
+	yocto@yoctoproject.org; Sun, 04 Mar 2012 14:05:18 -0600 (CST)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 9710A20168; Sun,
+	04 Mar 2012 15:04:05 -0500 (EST)
+Date: Sun, 04 Mar 2012 15:04:05 -0500
+From: Denys Dmytriyenko <denis@denix.org>
+To: Gary Thomas <gary@mlbassoc.com>
+Message-id: <20120304200405.GP24667@denix.org>
+References: <4F514826.5050402@ti.com>
+	<alpine.DEB.2.02.1203021729040.31351@oneiric> <4F514EC8.8000606@ti.com>
+	<4F515551.50708@mlbassoc.com> <20120304061843.GN24667@denix.org>
 	<alpine.DEB.2.02.1203040716190.496@oneiric>
 	<4F5361B6.8040908@mlbassoc.com>
 	<alpine.DEB.2.02.1203041310220.20388@oneiric>
 	<20120304192728.GO24667@denix.org> <4F53C63D.1000305@mlbassoc.com>
-Date: Sun, 4 Mar 2012 15:01:23 -0500
-Message-ID: <CAFZh4h8OatGutHjq7LjwV4x6g9Hc+WLMqxkdSdHMVxZ5O5t8sA@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
+MIME-version: 1.0
+In-reply-to: <4F53C63D.1000305@mlbassoc.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: yocto@yoctoproject.org
 Subject: Re: proper recipe for building for beagle xM? meta-ti?
 X-BeenThere: yocto@yoctoproject.org
@@ -57,24 +37,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 04 Mar 2012 20:01:25 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sun, 04 Mar 2012 21:04:15 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-On Sun, Mar 4, 2012 at 2:45 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+On Sun, Mar 04, 2012 at 12:45:01PM -0700, Gary Thomas wrote:
+> On 2012-03-04 12:27, Denys Dmytriyenko wrote:
+> >On Sun, Mar 04, 2012 at 01:14:17PM -0500, Robert P. J. Day wrote:
+> >>On Sun, 4 Mar 2012, Gary Thomas wrote:
+> >>
+> >>>On 2012-03-04 05:19, Robert P. J. Day wrote:
+> >>>>
+> >>>>    not sure if you're suggesting i should now be able to build
+> >>>>for, say, beagleboard with the meta-ti layer, but i cloned meta-ti
+> >>>>into my yocto tree, added that layer to bblayers.conf, and tried
+> >>>>to
+> >>>>
+> >>>>$ bitbake core-image-minimal
+> >>>>
+> >>>>and got what i believe gary was referring to above:
+> >>>>
+> >>>>$ bitbake core-image-minimal
+> >>>>Pseudo is not present but is required, building this first before the main
+> >>>>build
+> >>>>ERROR: ParseError at
+> >>>>/home/rpjday/yocto/git/meta-ti/recipes-misc/payload/bonescript.bb:5:
+> >>>>Could not inherit file classes/systemd.bbclass
+> >>>>ERROR: Command execution failed: Exited with 1
+> >>>>
+> >>>>    or am i misreading what you wrote?
+> >>>
+> >>>Oops, that's one more workaround I forgot to mention.  This file
+> >>>is in OE-core, but not in poky.  I made a local copy in my distro
+> >>>layer, but there must be a better way to handle it.
+> >>
+> >>   um ... AFAICT, that .bbclass file is in meta-oe, not oe-core.  and
+> >>since i have meta-openembedded checked out, i simply copied the whole
+> >>thing into my yocto tree, then tweaked my bblayers.conf file to look
+> >>like:
+> >>
+> >>BBLAYERS ?= " \
+> >>   /home/rpjday/yocto/git/meta \
+> >>   /home/rpjday/yocto/git/meta-yocto \
+> >>   /home/rpjday/yocto/git/meta-ti \
+> >>   /home/rpjday/yocto/git/meta-openembedded/meta-oe \
+> >>   "
+> >
+> >Either way, meta-oe is still required for meta-ti due to toolchain issues...
+> 
 > Can you explain what the toolchain problems are and why the versions in
 > oe-core don't work for meta-ti?
 
-I'd like to know this myself because I need to build 64bit & 32bit
-toolchains (meta-toolchain) and currently I can only get both to build
-OK under Poky (yocto trunk) but it is 4.6.x and I need to work with
-meta-ti.  I can only build the 64bit toolchain under Angstrom ... for
-some reason I can't get the 32bit toolchain built.
+One of the issues:
 
-Since the Poky build did what I wanted ... I'd like to use it but I
-don't know what specifically the 4.6.x toolchain won't work with when
-using meta-ti.
+https://lists.yoctoproject.org/pipermail/meta-ti/2012-February/000491.html
 
-Regards,
+I haven't tried if either 3.0 or a pending 3.1 update for Panda (from 
+omapzoom/ti-ubuntu), resolve this gcc-4.6 build issue. But either way I 
+believe there was something else with one of our components not building with 
+gcc-4.6 - SGX or multimedia, don't remember exactly.
 
-Brain
+-- 
+Denys
 
