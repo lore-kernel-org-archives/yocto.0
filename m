@@ -1,24 +1,58 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D63DE0044D
-	for <yocto@yoctoproject.org>; Sun,  4 Mar 2012 08:42:44 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 04 Mar 2012 08:42:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="114396115"
-Received: from unknown (HELO [10.255.15.167]) ([10.255.15.167])
-	by orsmga001.jf.intel.com with ESMTP; 04 Mar 2012 08:41:43 -0800
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Stewart, David C" <david.c.stewart@intel.com>
-In-Reply-To: <CDED78A957032E45B3239CDDA7642D150846F91D@ORSMSX105.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1203040759260.2396@oneiric>
-	<CDED78A957032E45B3239CDDA7642D150846F91D@ORSMSX105.amr.corp.intel.com>
-Date: Sun, 04 Mar 2012 10:40:51 -0600
-Message-ID: <1330879251.2319.125.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: some observations about yocto wiki page, "from git checkout to meta-intel BSP"
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-ww0-f54.google.com (mail-ww0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 158CBE0044C
+	for <yocto@yoctoproject.org>; Sun,  4 Mar 2012 09:01:05 -0800 (PST)
+Received: by wgbdq13 with SMTP id dq13so2705865wgb.11
+	for <yocto@yoctoproject.org>; Sun, 04 Mar 2012 09:01:04 -0800 (PST)
+Received-SPF: pass (google.com: domain of koen@dominion.thruhere.net
+	designates 10.216.135.234 as permitted sender)
+	client-ip=10.216.135.234; 
+Authentication-Results: mr.google.com; spf=pass (google.com: domain of
+	koen@dominion.thruhere.net designates 10.216.135.234 as
+	permitted sender) smtp.mail=koen@dominion.thruhere.net
+Received: from mr.google.com ([10.216.135.234])
+	by 10.216.135.234 with SMTP id u84mr2612407wei.108.1330880464762
+	(num_hops = 1); Sun, 04 Mar 2012 09:01:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date
+	:content-transfer-encoding:message-id:references:to:x-mailer
+	:x-gm-message-state;
+	bh=1Zw3NbXDYiC4QwWE82+zcAsO97Vj802EyO1zppBy9zE=;
+	b=ht2ZJRQPPFopVbQh3qMqMxJaV0GCEf4otf/qrhMVN9l7PZXp287BgGLypooUYSsvQU
+	lOmf8uL0VQ8h836Jj9s77TOD8478c3+X99jraTgx+XWOTl/6BO8ewpwNrVedQxJ4XyvN
+	A3vQV4/e4o4ZJnGDBYG35pwB04nzy+WJ5ww4P3sJc3MdCM188HjU7iF3yaY0O2UZHZBX
+	3IEjdqglnx1svl1FDKxmS7yXZ8aOTQdL4+9dePgZ54amSh2WNqMHDmA/wUKvfwvavHmB
+	CNlZNatlJcG0ns5ICVx9EULnxic3rv/r6xfKQisdXyP99ENCRxVYbYG8mZqhXmLMHCBh
+	5/zw==
+Received: by 10.216.135.234 with SMTP id u84mr2149170wei.108.1330880464613;
+	Sun, 04 Mar 2012 09:01:04 -0800 (PST)
+Received: from [172.20.1.36] (ip545070eb.adsl-surfen.hetnet.nl.
+	[84.80.112.235])
+	by mx.google.com with ESMTPS id gf3sm15761106wib.6.2012.03.04.09.01.02
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sun, 04 Mar 2012 09:01:03 -0800 (PST)
+Mime-Version: 1.0 (Apple Message framework v1257)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <alpine.DEB.2.02.1203040750180.1918@oneiric>
+Date: Sun, 4 Mar 2012 18:01:01 +0100
+Message-Id: <0BA75FF7-EB2E-4CE4-8EFE-F1029C98814D@dominion.thruhere.net>
+References: <alpine.DEB.2.02.1202281349020.2440@oneiric>
+	<4F4D457F.7000306@windriver.com>
+	<alpine.DEB.2.02.1202281651040.8024@oneiric>
+	<D8B2FCF1-09C3-4DEF-BFFB-3E0A421C61AE@beagleboard.org>
+	<alpine.DEB.2.02.1202281723110.9200@oneiric>
+	<4F514826.5050402@ti.com>
+	<alpine.DEB.2.02.1203021729040.31351@oneiric>
+	<4F514EC8.8000606@ti.com> <4F515551.50708@mlbassoc.com>
+	<20120304061843.GN24667@denix.org>
+	<alpine.DEB.2.02.1203040716190.496@oneiric>
+	<4F5361B6.8040908@mlbassoc.com>
+	<alpine.DEB.2.02.1203040750180.1918@oneiric>
+To: Yocto discussion list <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.1257)
+X-Gm-Message-State: ALoCoQk8RT4/invB11defbbvGXMVTID4VG3s7ZOXsmP0oVniguCN2GPcg9B4yGl8L9Q2ApY50YYa
+Subject: Re: proper recipe for building for beagle xM? meta-ti?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,97 +64,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 04 Mar 2012 16:42:44 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-On Sun, 2012-03-04 at 16:14 +0000, Stewart, David C wrote:
-> Yeah, the example is pretty old, dating back to the 1.0 (bernard) release. 
-> 
-> Tom - it might be time to retire it, you think?
-> 
-
-Apparently, they're still useful to people, so I think updating rather
-than retiring them makes more sense at this point (or they or something
-similar get merged into the Developer's guide?  For now, it's a
-relatively small effort to update them, and we can decide whether to
-move them later, I'm thinking).
-
-Tom
-
-> >-----Original Message-----
-> >From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> >bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
-> >Sent: Sunday, March 04, 2012 5:09 AM
-> >To: Yocto discussion list
-> >Subject: [yocto] some observations about yocto wiki page, "from git checkout
-> >to meta-intel BSP"
-> >
-> >
-> >  yes, i know it's an editable wiki but i'd rather someone else make
-> >the changes just in case i'm misreading something.  it's early, and
-> >there's only decaf in the place.  this is bad.
-> >
-> >  anyway, using this page as grist for discussion:
-> >
-> >https://wiki.yoctoproject.org/wiki/Transcript:_from_git_checkout_to_meta-
-> >intel_BSP
-> >
-> >"To build and run a meta-intel BSP, you need to check out a local copy
-> >of the poky repo ..."
-> >
-> >  i think that sentence demonstrates the yocto vs poky confusion koen
-> >was talking about -- a regular waffling between "yocto" sources and
-> >"poky" repos.
-> >
-> >  below that, there are references to
-> >git://git.pokylinux.org/poky.git -- should those references be updated
-> >to refer to the git.yoctoproject.org repos?
-> >
-> >  there's a reference to "poky-qemu qemux86" -- change to "runqemu
-> >qemux86"?  or is that the correct name in the last released version?
-> >(i rarely look at released versions.)
-> >
-> >  and i'm pretty sure that there's a missing reference to the
-> >meta-yocto layer here:
-> >
-> >BBLAYERS = " \
-> >  /usr/local/src/Yocto/meta \
-> >  /usr/local/src/Yocto/meta-intel/meta-fishriver \
-> >  "
-> >
-> >unless that's also correct for the last released version.
-> >
-> >  further down,
-> >
-> >  $ bitbake poky-image-sato-live
-> >
-> >there's no such bitbake target these days.
-> >
-> >  anyway, that was about 60 seconds worth of perusing.  if some
-> >meta-intel person wants to mess with that page, it's all yours.
-> >
-> >rday
-> >
-> >--
-> >
-> >===========================================================
-> >=============
-> >Robert P. J. Day                                 Ottawa, Ontario, CANADA
-> >                        http://crashcourse.ca
-> >
-> >Twitter:                                       http://twitter.com/rpjday
-> >LinkedIn:                               http://ca.linkedin.com/in/rpjday
-> >===========================================================
-> >=============
-> >_______________________________________________
-> >yocto mailing list
-> >yocto@yoctoproject.org
-> >https://lists.yoctoproject.org/listinfo/yocto
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+X-List-Received-Date: Sun, 04 Mar 2012 17:01:06 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
 
+Op 4 mrt. 2012, om 13:54 heeft Robert P. J. Day het volgende geschreven:
+
+>=20
+> ... much snipping below to get to the gist of it ...
+>=20
+> On Sun, 4 Mar 2012, Gary Thomas wrote:
+>=20
+>> On 2012-03-04 05:19, Robert P. J. Day wrote:
+>>>=20
+>>>   not sure if you're suggesting i should now be able to build
+>>> for, say, beagleboard with the meta-ti layer, but i cloned meta-ti
+>>> into my yocto tree, added that layer to bblayers.conf, and tried
+>>> to
+>>>=20
+>>> $ bitbake core-image-minimal
+>>>=20
+>>> and got what i believe gary was referring to above:
+>>>=20
+>>> $ bitbake core-image-minimal
+>>> Pseudo is not present but is required, building this first before =
+the main
+>>> build
+>>> ERROR: ParseError at
+>>> /home/rpjday/yocto/git/meta-ti/recipes-misc/payload/bonescript.bb:5:
+>>> Could not inherit file classes/systemd.bbclass
+>>> ERROR: Command execution failed: Exited with 1
+>>>=20
+>>>   or am i misreading what you wrote?
+>>=20
+>> Oops, that's one more workaround I forgot to mention.  This file
+>> is in OE-core, but not in poky.  I made a local copy in my distro
+>> layer, but there must be a better way to handle it.
+>=20
+>  regardless of the fix, i would think that the proper name for that
+> recipe file would be something like "beaglescript.bb" and not
+> "bonescript.bb", since it opens with:
+>=20
+> DESCRIPTION =3D "Scripting tools for the BeagleBoard and BeagleBone"
+>=20
+> that is, if it's relevant to both boards, it's inappropriate to give
+> it a name of bonescript.bb, don't you think?
+
+First:
+
+-EWRONGLIST
+
+Second:
+
+Upstream calls it bonescript https://github.com/jadonk/bonescript=
 
