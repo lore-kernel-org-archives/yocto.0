@@ -1,31 +1,27 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5ABDE01363
-	for <yocto@yoctoproject.org>; Sat,  3 Mar 2012 05:39:16 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S3pB6-0007LW-Bs
-	for yocto@yoctoproject.org; Sat, 03 Mar 2012 08:39:16 -0500
-Date: Sat, 3 Mar 2012 08:39:07 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1203030837440.31186@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBCF4E00746
+	for <yocto@yoctoproject.org>; Sat,  3 Mar 2012 20:01:07 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q2440skl012358
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sat, 3 Mar 2012 20:00:54 -0800 (PST)
+Received: from bruce-ashfields-macbook.local (128.224.21.27) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Sat, 3 Mar 2012 20:00:54 -0800
+Message-ID: <4F52E8F4.80903@windriver.com>
+Date: Sat, 3 Mar 2012 23:00:52 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: "yocto" vs "poky" terminology
+To: Darren Hart <dvhart@linux.intel.com>
+References: <cover.1330644090.git.darren@dvhart.com>
+	<52339f4d415098f5903b6bce50206d404b12bb8d.1330644090.git.darren@dvhart.com>
+	<4F513892.6020106@windriver.com> <4F513E38.2050102@linux.intel.com>
+In-Reply-To: <4F513E38.2050102@linux.intel.com>
+Cc: Darren Hart <darren@dvhart.com>, Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 4/6] eg20t: Enable serial console for the pch_uart
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,26 +33,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 03 Mar 2012 13:39:17 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Sun, 04 Mar 2012 04:01:08 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 12-03-02 4:40 PM, Darren Hart wrote:
+>
+>
+> On 03/02/2012 01:16 PM, Bruce Ashfield wrote:
+>> On 12-03-01 06:59 PM, Darren Hart wrote:
+>>> From: Darren Hart<dvhart@linux.intel.com>
+>>>
+>>> The FRI2 uses the pch_uart driver for the serial console. Enable the console
+>>> driver.
+>>
+>> It this safe for all eg20t users ? I see the crownbay also
+>> uses this.
+>
+> It is safe. The new code that this enables is machine specific. The
+> console code would only kick in if the console is set to ttyPCH1, which
+> it obviously isn't as that didn't work before. Shouldn't be a problem.
 
-  thought i'd point out that, if people are confusing yocto and poky,
-it doesn't help that the yocto reference manual is found here:
+Perfect. Thanks for the confirmation.
 
-http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.html
+Bruce
 
-where the URL clearly refers to "poky".  just an observation.
+>
+> --
+> Darren
+>
+>
+>> Bruce
+>>
+>>>
+>>> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
+>>> ---
+>>>    meta/cfg/kernel-cache/features/eg20t/eg20t.cfg |    1 +
+>>>    1 files changed, 1 insertions(+), 0 deletions(-)
+>>>
+>>> diff --git a/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg b/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
+>>> index ff2f6fd..3d4969c 100644
+>>> --- a/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
+>>> +++ b/meta/cfg/kernel-cache/features/eg20t/eg20t.cfg
+>>> @@ -3,6 +3,7 @@
+>>>    CONFIG_PCH_DMA=y
+>>>
+>>>    CONFIG_SERIAL_PCH_UART=y
+>>> +CONFIG_SERIAL_PCH_UART_CONSOLE=y
+>>>    CONFIG_SERIAL_CORE=y
+>>>
+>>>    CONFIG_SPI=y
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
