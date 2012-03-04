@@ -1,29 +1,19 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47B23E00746
-	for <yocto@yoctoproject.org>; Sun,  4 Mar 2012 04:54:46 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F779E00746
+	for <yocto@yoctoproject.org>; Sun,  4 Mar 2012 05:09:26 -0800 (PST)
 Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
 	([99.241.91.63] helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
 	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S4AxY-0001Fq-RA; Sun, 04 Mar 2012 07:54:44 -0500
-Date: Sun, 4 Mar 2012 07:54:36 -0500 (EST)
+	id 1S4BBl-0001qU-ID
+	for yocto@yoctoproject.org; Sun, 04 Mar 2012 08:09:25 -0500
+Date: Sun, 4 Mar 2012 08:09:17 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
-To: Gary Thomas <gary@mlbassoc.com>
-In-Reply-To: <4F5361B6.8040908@mlbassoc.com>
-Message-ID: <alpine.DEB.2.02.1203040750180.1918@oneiric>
-References: <alpine.DEB.2.02.1202281349020.2440@oneiric>
-	<4F4D457F.7000306@windriver.com>
-	<alpine.DEB.2.02.1202281651040.8024@oneiric>
-	<D8B2FCF1-09C3-4DEF-BFFB-3E0A421C61AE@beagleboard.org>
-	<alpine.DEB.2.02.1202281723110.9200@oneiric>
-	<4F514826.5050402@ti.com>
-	<alpine.DEB.2.02.1203021729040.31351@oneiric> <4F514EC8.8000606@ti.com>
-	<4F515551.50708@mlbassoc.com> <20120304061843.GN24667@denix.org>
-	<alpine.DEB.2.02.1203040716190.496@oneiric>
-	<4F5361B6.8040908@mlbassoc.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1203040759260.2396@oneiric>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -35,8 +25,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: proper recipe for building for beagle xM? meta-ti?
+Subject: some observations about yocto wiki page, "from git checkout to meta-intel BSP"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,53 +37,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 04 Mar 2012 12:54:46 -0000
+X-List-Received-Date: Sun, 04 Mar 2012 13:09:26 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-... much snipping below to get to the gist of it ...
+  yes, i know it's an editable wiki but i'd rather someone else make
+the changes just in case i'm misreading something.  it's early, and
+there's only decaf in the place.  this is bad.
 
-On Sun, 4 Mar 2012, Gary Thomas wrote:
+  anyway, using this page as grist for discussion:
 
-> On 2012-03-04 05:19, Robert P. J. Day wrote:
-> >
-> >    not sure if you're suggesting i should now be able to build
-> > for, say, beagleboard with the meta-ti layer, but i cloned meta-ti
-> > into my yocto tree, added that layer to bblayers.conf, and tried
-> > to
-> >
-> > $ bitbake core-image-minimal
-> >
-> > and got what i believe gary was referring to above:
-> >
-> > $ bitbake core-image-minimal
-> > Pseudo is not present but is required, building this first before the main
-> > build
-> > ERROR: ParseError at
-> > /home/rpjday/yocto/git/meta-ti/recipes-misc/payload/bonescript.bb:5:
-> > Could not inherit file classes/systemd.bbclass
-> > ERROR: Command execution failed: Exited with 1
-> >
-> >    or am i misreading what you wrote?
->
-> Oops, that's one more workaround I forgot to mention.  This file
-> is in OE-core, but not in poky.  I made a local copy in my distro
-> layer, but there must be a better way to handle it.
+https://wiki.yoctoproject.org/wiki/Transcript:_from_git_checkout_to_meta-intel_BSP
 
-  regardless of the fix, i would think that the proper name for that
-recipe file would be something like "beaglescript.bb" and not
-"bonescript.bb", since it opens with:
+"To build and run a meta-intel BSP, you need to check out a local copy
+of the poky repo ..."
 
-DESCRIPTION = "Scripting tools for the BeagleBoard and BeagleBone"
+  i think that sentence demonstrates the yocto vs poky confusion koen
+was talking about -- a regular waffling between "yocto" sources and
+"poky" repos.
 
-that is, if it's relevant to both boards, it's inappropriate to give
-it a name of bonescript.bb, don't you think?
+  below that, there are references to
+git://git.pokylinux.org/poky.git -- should those references be updated
+to refer to the git.yoctoproject.org repos?
+
+  there's a reference to "poky-qemu qemux86" -- change to "runqemu
+qemux86"?  or is that the correct name in the last released version?
+(i rarely look at released versions.)
+
+  and i'm pretty sure that there's a missing reference to the
+meta-yocto layer here:
+
+BBLAYERS = " \
+  /usr/local/src/Yocto/meta \
+  /usr/local/src/Yocto/meta-intel/meta-fishriver \
+  "
+
+unless that's also correct for the last released version.
+
+  further down,
+
+  $ bitbake poky-image-sato-live
+
+there's no such bitbake target these days.
+
+  anyway, that was about 60 seconds worth of perusing.  if some
+meta-intel person wants to mess with that page, it's all yours.
 
 rday
-
-p.s.  i plan on spending all day messing with yocto, and i have lots
-of spare cycles on my quad-core ASUS, so if anyone wants me to build
-stuff or test stuff, let me know.
 
 -- 
 
