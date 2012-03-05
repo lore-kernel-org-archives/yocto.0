@@ -1,30 +1,41 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 540C2E0044D
-	for <yocto@yoctoproject.org>; Mon,  5 Mar 2012 01:51:51 -0800 (PST)
-Received: from [192.168.0.49] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 263DB2949D
-	for <yocto@yoctoproject.org>; Mon,  5 Mar 2012 09:43:31 +0000 (GMT)
-Message-ID: <4F548CC0.4050802@communistcode.co.uk>
-Date: Mon, 05 Mar 2012 09:52:00 +0000
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.2) Gecko/20120217 Thunderbird/10.0.2
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <D8B2FCF1-09C3-4DEF-BFFB-3E0A421C61AE@beagleboard.org>
-	<alpine.DEB.2.02.1202281723110.9200@oneiric>
-	<4F514826.5050402@ti.com>
-	<alpine.DEB.2.02.1203021729040.31351@oneiric>
-	<4F514EC8.8000606@ti.com> <4F515551.50708@mlbassoc.com>
-	<20120304061843.GN24667@denix.org>
-	<alpine.DEB.2.02.1203040716190.496@oneiric>
-	<4F5361B6.8040908@mlbassoc.com>
-	<alpine.DEB.2.02.1203041310220.20388@oneiric>
-	<20120304192728.GO24667@denix.org> <4F53C63D.1000305@mlbassoc.com>
-	<alpine.DEB.2.02.1203041629001.18196@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1203041629001.18196@oneiric>
-Subject: Re: proper recipe for building for beagle xM? meta-ti?
+Return-Path: <josh@hipro.co.in>
+Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
+	[209.85.210.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D455E0044D
+	for <yocto@yoctoproject.org>; Mon,  5 Mar 2012 03:19:41 -0800 (PST)
+Received: by dadv6 with SMTP id v6so4796927dad.28
+	for <yocto@yoctoproject.org>; Mon, 05 Mar 2012 03:19:41 -0800 (PST)
+Received-SPF: pass (google.com: domain of josh@hipro.co.in designates
+	10.68.236.35 as permitted sender) client-ip=10.68.236.35; 
+Authentication-Results: mr.google.com;
+	spf=pass (google.com: domain of josh@hipro.co.in
+	designates 10.68.236.35 as permitted sender)
+	smtp.mail=josh@hipro.co.in
+Received: from mr.google.com ([10.68.236.35])
+	by 10.68.236.35 with SMTP id ur3mr1481046pbc.84.1330946381045 (num_hops
+	= 1); Mon, 05 Mar 2012 03:19:41 -0800 (PST)
+Received: by 10.68.236.35 with SMTP id ur3mr1276869pbc.84.1330946380751;
+	Mon, 05 Mar 2012 03:19:40 -0800 (PST)
+Received: from [192.168.10.207] ([59.99.251.45])
+	by mx.google.com with ESMTPS id b7sm13115459pba.2.2012.03.05.03.19.37
+	(version=SSLv3 cipher=OTHER); Mon, 05 Mar 2012 03:19:39 -0800 (PST)
+Message-ID: <1330946371.2746.47.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: Darren Hart <dvhart@linux.intel.com>
+Date: Mon, 05 Mar 2012 16:49:31 +0530
+In-Reply-To: <4F4FCB48.4070200@linux.intel.com>
+References: <4F4EBEC8.7060705@linux.intel.com>
+	<CABcZAN=xxYE+fxC_VhhsH+53eOMR4EPX4apWOG6Ut7zmOnSqyg@mail.gmail.com>
+	<4F4EC558.3040401@linux.intel.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123793B741DAC@ORSMSX101.amr.corp.intel.com>
+	<4F4FCB48.4070200@linux.intel.com>
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.2.2-1
+Mime-Version: 1.0
+X-Gm-Message-State: ALoCoQnK0Jj4QRZot6adlZhjuhq/KQWl6YLRaTDSikuHU822PRocyVpC7i9zGuNdiqW6tuWoezjf
+Cc: Yocto Project <yocto@yoctoproject.org>, Chris Larson <clarson@kergoth.com>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>
+Subject: Re: Documentation: Default FILESDIR
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,39 +47,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Mar 2012 09:51:51 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Mon, 05 Mar 2012 11:19:41 -0000
+X-Groupsio-MsgNum: 5145
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-AqWhW0ktEWMiswfpmD0i"
+
+--=-AqWhW0ktEWMiswfpmD0i
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Darren,
+
+On Thu, 2012-03-01 at 11:17 -0800, Darren Hart wrote:
+> FILESPATH: The ":" delimited set of paths that bitbake will search for
+> files referenced in the SRC_URI. Defaults to ".:files:${PN}".
+>=20
+> FILESEXTRAPATHS: Appends a ":" delimited set of paths to FILESPATH.
+> This
+> is intended for use in .bbappend files to include any additional files
+> provided in that layer. This is typically done as:
+> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> As an aside, it might be nice to make this 'FILESEXTRAPATHS_prepend :=3D
+> "${THISDIR}/${PN}:"' the default for bbappend files. Although I
+> imagine
+> there are good reasons for why it is the way it is.
+
+Thanks for the documentation. In this regard I would like to clarify a
+small doubt. When I bbappend the xserver-xf86-config_0.1 recipe in order
+to override the default xorg.conf, FILESEXTRAPATHS_prepend doesn't seem
+to have an effect. As I am not adding an extra file but trying to
+replace the default file of the recipe, should I manipulate the
+FILESPATH variable?
+
+I am asking this because Paul mentioned that we should not modify the
+FILESPATH directly.
+
+Please guide me.
+
+Regards
+Joshua
+--=20
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
+
+--=-AqWhW0ktEWMiswfpmD0i
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 Content-Transfer-Encoding: 7bit
 
-On 04/03/12 21:38, Robert P. J. Day wrote:
-> On Sun, 4 Mar 2012, Gary Thomas wrote:
->
->> Can you explain what the toolchain problems are and why the versions
->> in oe-core don't work for meta-ti?
->
->    i just finished doing a "bitbake core-image-minimal" for a
-> beagleboard using the meta-ti layer, and having only to set a
-> preferred version for udev.
->
->    the build finished (albeit with a few warnings), and i have all of
-> the images i would expect for a beagle xM.  should i consider this a
-> form of success -- the simple fact that the build appeared to succeed?
->
-> rday
->
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
 
-Does it boot? I would expect this to be the next test? If you don't have 
-a beagleboard to test if you host it somewhere I can give it quick go 
-later today if I get time.
+iEYEABECAAYFAk9UoUMACgkQWw85XwuSFMLZxgCggoD/YVjcoXzAmlTpbEYhcYPY
+iG8AoMPKlKHS+9H78hetkczZfQ+1CiOO
+=most
+-----END PGP SIGNATURE-----
 
-Regards,
-
--- 
-
-   Jack Mitchell (jack@embed.me.uk)
-   Embedded Systems Engineer
-   http://www.embed.me.uk
-
---
-
-
+--=-AqWhW0ktEWMiswfpmD0i--
