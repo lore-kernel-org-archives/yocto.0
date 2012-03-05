@@ -1,34 +1,35 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50571E01374
-	for <yocto@yoctoproject.org>; Mon,  5 Mar 2012 09:26:24 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 05 Mar 2012 09:26:12 -0800
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9C83E01374
+	for <yocto@yoctoproject.org>; Mon,  5 Mar 2012 11:37:36 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 05 Mar 2012 11:37:36 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; 
-	d="scan'208,217";a="117864855"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by orsmga002.jf.intel.com with ESMTP; 05 Mar 2012 09:25:12 -0800
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 5 Mar 2012 09:25:12 -0800
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="114957490"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by azsmga001.ch.intel.com with ESMTP; 05 Mar 2012 11:37:36 -0800
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 5 Mar 2012 11:37:22 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.188]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.102]) with mapi id
-	14.01.0355.002; Mon, 5 Mar 2012 09:25:12 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto Project Technical Team Meeting - cancelled
-Thread-Index: AczMwm7UEGC9kp1RRiyOOFy5AajLPAuMma+QAAABs9A=
-Importance: high
-X-Priority: 1
-Date: Mon, 5 Mar 2012 17:25:11 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A3D099612@ORSMSX101.amr.corp.intel.com>
+	ORSMSX102.amr.corp.intel.com ([169.254.1.234]) with mapi id
+	14.01.0355.002; Mon, 5 Mar 2012 11:37:22 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] in ref manual,	images list (and other lists) appear
+	incomplete
+Thread-Index: AQHM+iI4VzRXoNZCRUygTU33JOGjkZZcGOnw
+Date: Mon, 5 Mar 2012 19:37:21 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123793B743CEC@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1203041109200.9209@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1203041109200.9209@oneiric>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Subject: FW: Yocto Project Technical Team Meeting - cancelled
+Subject: Re: in ref manual, images list (and other lists) appear incomplete
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,144 +41,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Mar 2012 17:26:24 -0000
-X-Groupsio-MsgNum: 5149
+X-List-Received-Date: Mon, 05 Mar 2012 19:37:36 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A3D099612ORSMSX101amrcor_"
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A3D099612ORSMSX101amrcor_
-Content-Type: text/plain; charset="Windows-1252"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-When: Tuesday, March 06, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US =
-& Canada).
-Where: Bridge Info Enclosed
+I am looking at http://www.yoctoproject.org/docs/latest/poky-ref-manual/pok=
+y-ref-manual.html#ref-images and agree that we are missing some images.  Ea=
+ch image you noted below (except the core-image-rt and core-image-rt-sdk) i=
+s missing.  The latest version of the YP Reference Manual lists these real-=
+time images in the image appendix.=20
 
-Note: The GMT offset above does not reflect daylight saving time adjustment=
-s.
+So what I need to know is a couple things:
 
-*~*~*~*~*~*~*~*~*~*
+1. Do we want to include these three images as part of this list (hob-image=
+, self-hosted-image, and the qt4e-demo-image)
+2. If so, can someone provide me with short descriptions for each image's p=
+urpose?
 
+Thanks for noting these Robert.
 
+Scott
 
------Original Appointment-----
-From: Liu, Song
-Sent: Monday, March 05, 2012 9:25 AM
-Subject: Canceled: Yocto Project Technical Team Meeting - cancelled
-When: Tuesday, March 06, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US =
-& Canada).
-Where: Bridge Info Enclosed
-Importance: High
-
-
-Cancelling this week=92s meeting due to conference conflict for most of the=
- team members. Please let me know if there is any issues you would like to =
-discuss or address.
-
-Thanks,
-Song
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Robert P. J. Day
+Sent: Sunday, March 04, 2012 10:17 AM
+To: Yocto discussion list
+Subject: [yocto] in ref manual, images list (and other lists) appear incomp=
+lete
 
 
+  just wandering through the yocto/poky reference manual, and it seems
+that some of the lists there are missing a few entries.
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A3D099612ORSMSX101amrcor_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+  first, in the images section,
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
-<div>When: Tuesday, March 06, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time=
- (US &amp; Canada).</div>
-<div>Where: Bridge Info Enclosed</div>
-<div>&nbsp;</div>
-<div>Note: The GMT offset above does not reflect daylight saving time adjus=
-tments.</div>
-<div>&nbsp;</div>
-<div>*~*~*~*~*~*~*~*~*~*</div>
-<div>&nbsp;</div>
-<div><font color=3D"#1F497D">&nbsp;</font></div>
-<div><font color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Tahoma" size=3D"2"><span style=3D"font-size:10pt;">-----=
-Original Appointment-----<br>
+file:///home/rpjday/yocto/git/documentation/poky-ref-manual/poky-ref-manual=
+.html#ref-images
 
-<b>From:</b> Liu, Song <br>
+if you run the given command:
 
-<b>Sent:</b> Monday, March 05, 2012 9:25 AM<br>
+  $ ls meta*/recipes*/images/*.bb
 
-<b>Subject:</b> Canceled: Yocto Project Technical Team Meeting - cancelled<=
-br>
+you'll get at least a couple more recipes directory (recipes-rt,
+recipes-qt) than is mentioned there, and more image recipe files:
 
-<b>When:</b> Tuesday, March 06, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Ti=
-me (US &amp; Canada).<br>
+$ ls -1 meta*/recipes*/images/*.bb
+meta-hob/recipes-core/images/hob-image.bb        <-- not listed
+meta/recipes-core/images/core-image-base.bb
+meta/recipes-core/images/core-image-core.bb
+meta/recipes-core/images/core-image-minimal.bb
+meta/recipes-core/images/core-image-minimal-dev.bb
+meta/recipes-core/images/core-image-minimal-initramfs.bb
+meta/recipes-core/images/core-image-minimal-mtdutils.bb
+meta/recipes-core/images/self-hosted-image.bb    <-- not listed
+meta/recipes-extended/images/core-image-basic.bb
+meta/recipes-extended/images/core-image-lsb.bb
+meta/recipes-extended/images/core-image-lsb-dev.bb
+meta/recipes-extended/images/core-image-lsb-sdk.bb
+meta/recipes-graphics/images/core-image-clutter.bb
+meta/recipes-graphics/images/core-image-gtk-directfb.bb
+meta/recipes-qt/images/qt4e-demo-image.bb       <-- not listed
+meta/recipes-rt/images/core-image-rt.bb         <-- not listed
+meta/recipes-rt/images/core-image-rt-sdk.bb     <-- not listed
+meta/recipes-sato/images/core-image-sato.bb
+meta/recipes-sato/images/core-image-sato-dev.bb
+meta/recipes-sato/images/core-image-sato-sdk.bb
+$
 
-<b>Where:</b> Bridge Info Enclosed<br>
+  also, in Appendix E, the various lists there look incomplete as
+well.  for example, it would appear that the valid options for
+DISTRO_FEATURES should include things like x11, opengl, pulseaudio and
+more.
 
-<b>Importance:</b> High</span></font></div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>Cancelling this week=92s meeting due to conference conflict for most o=
-f the team members. Please let me know if there is any issues you would lik=
-e to discuss or address.</div>
-<div>&nbsp;</div>
-<div>Thanks,</div>
-<div>Song</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-</span></font>
-</body>
-</html>
+  just making observations.
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A3D099612ORSMSX101amrcor_
-Content-Type: text/calendar; charset="utf-8"; method=CANCEL
-Content-Transfer-Encoding: base64
+rday
 
-QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6Q0FOQ0VMDQpQUk9ESUQ6TWljcm9zb2Z0IEV4Y2hhbmdl
-IFNlcnZlciAyMDEwDQpWRVJTSU9OOjIuMA0KQkVHSU46VlRJTUVaT05FDQpUWklEOlBhY2lmaWMg
-U3RhbmRhcmQgVGltZQ0KQkVHSU46U1RBTkRBUkQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpU
-Wk9GRlNFVEZST006LTA3MDANClRaT0ZGU0VUVE86LTA4MDANClJSVUxFOkZSRVE9WUVBUkxZO0lO
-VEVSVkFMPTE7QllEQVk9MVNVO0JZTU9OVEg9MTENCkVORDpTVEFOREFSRA0KQkVHSU46REFZTElH
-SFQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpUWk9GRlNFVEZST006LTA4MDANClRaT0ZGU0VU
-VE86LTA3MDANClJSVUxFOkZSRVE9WUVBUkxZO0lOVEVSVkFMPTE7QllEQVk9MlNVO0JZTU9OVEg9
-Mw0KRU5EOkRBWUxJR0hUDQpFTkQ6VlRJTUVaT05FDQpCRUdJTjpWRVZFTlQNCk9SR0FOSVpFUjtD
-Tj0iTGl1LCBTb25nIjpNQUlMVE86c29uZy5saXVAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJF
-US1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPXlvY3RvQHlv
-Y3QNCiBvcHJvamVjdC5vcmc6TUFJTFRPOnlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCkRFU0NSSVBU
-SU9OO0xBTkdVQUdFPWVuLVVTOldoZW46IFR1ZXNkYXlcLCBNYXJjaCAwNlwsIDIwMTIgODowMCBB
-TS05OjAwIEFNIA0KIChVVEMtMDg6MDApIFBhY2lmaWMgVGltZSAoVVMgJiBDYW5hZGEpLlxuV2hl
-cmU6IEJyaWRnZSBJbmZvIEVuY2xvc2VkXG5cbk5vDQogdGU6IFRoZSBHTVQgb2Zmc2V0IGFib3Zl
-IGRvZXMgbm90IHJlZmxlY3QgZGF5bGlnaHQgc2F2aW5nIHRpbWUgYWRqdXN0bWVudHMNCiAuXG5c
-bip+Kn4qfip+Kn4qfip+Kn4qfipcblxuXG5cbi0tLS0tT3JpZ2luYWwgQXBwb2ludG1lbnQtLS0t
-LVxuRnJvbTogTGl1XA0KICwgU29uZ1xuU2VudDogTW9uZGF5XCwgTWFyY2ggMDVcLCAyMDEyIDk6
-MjUgQU1cblN1YmplY3Q6IENhbmNlbGVkOiBZb2N0byBQDQogcm9qZWN0IFRlY2huaWNhbCBUZWFt
-IE1lZXRpbmcgLSBjYW5jZWxsZWRcbldoZW46IFR1ZXNkYXlcLCBNYXJjaCAwNlwsIDIwMTINCiAg
-ODowMCBBTS05OjAwIEFNIChVVEMtMDg6MDApIFBhY2lmaWMgVGltZSAoVVMgJiBDYW5hZGEpLlxu
-V2hlcmU6IEJyaWRnZSBJbg0KIGZvIEVuY2xvc2VkXG5JbXBvcnRhbmNlOiBIaWdoXG5cblxuQ2Fu
-Y2VsbGluZyB0aGlzIHdlZWvigJlzIG1lZXRpbmcgZHVlIHRvDQogIGNvbmZlcmVuY2UgY29uZmxp
-Y3QgZm9yIG1vc3Qgb2YgdGhlIHRlYW0gbWVtYmVycy4gUGxlYXNlIGxldCBtZSBrbm93IGlmIHQN
-CiBoZXJlIGlzIGFueSBpc3N1ZXMgeW91IHdvdWxkIGxpa2UgdG8gZGlzY3VzcyBvciBhZGRyZXNz
-LlxuXG5UaGFua3NcLFxuU29uZw0KIFxuXG5cbg0KU1VNTUFSWTtMQU5HVUFHRT1lbi1VUzpGVzog
-WW9jdG8gUHJvamVjdCBUZWNobmljYWwgVGVhbSBNZWV0aW5nIC0gY2FuY2VsbGVkDQpEVFNUQVJU
-O1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTIwMzA2VDA4MDAwMA0KRFRFTkQ7VFpJRD1Q
-YWNpZmljIFN0YW5kYXJkIFRpbWU6MjAxMjAzMDZUMDkwMDAwDQpVSUQ6MDQwMDAwMDA4MjAwRTAw
-MDc0QzVCNzEwMUE4MkUwMDgwMDAwMDAwMDcwRTg1NDcxN0RDQ0NDMDEwMDAwMDAwMDAwMDAwMDAN
-CiAwMTAwMDAwMDA0RTk5MDA5Mzg4Q0MxQzQwQjY5RTUyOTBDOEJGQjI0NA0KUkVDVVJSRU5DRS1J
-RDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDEyMDMwNlQwODAwMDANCkNMQVNTOlBVQkxJ
-Qw0KUFJJT1JJVFk6MQ0KRFRTVEFNUDoyMDEyMDMwNVQxNzI0MzVaDQpUUkFOU1A6T1BBUVVFDQpT
-VEFUVVM6Q0FOQ0VMTEVEDQpTRVFVRU5DRToyDQpMT0NBVElPTjtMQU5HVUFHRT1lbi1VUzpCcmlk
-Z2UgSW5mbyBFbmNsb3NlZA0KWC1NSUNST1NPRlQtQ0RPLUFQUFQtU0VRVUVOQ0U6Mg0KWC1NSUNS
-T1NPRlQtQ0RPLU9XTkVSQVBQVElEOi02NjQzOTc4NjANClgtTUlDUk9TT0ZULUNETy1CVVNZU1RB
-VFVTOlRFTlRBVElWRQ0KWC1NSUNST1NPRlQtQ0RPLUlOVEVOREVEU1RBVFVTOkZSRUUNClgtTUlD
-Uk9TT0ZULUNETy1BTExEQVlFVkVOVDpGQUxTRQ0KWC1NSUNST1NPRlQtQ0RPLUlNUE9SVEFOQ0U6
-Mg0KWC1NSUNST1NPRlQtQ0RPLUlOU1RUWVBFOjMNClgtTUlDUk9TT0ZULURJU0FMTE9XLUNPVU5U
-RVI6RkFMU0UNCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVINCg==
+--=20
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A3D099612ORSMSX101amrcor_--
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
