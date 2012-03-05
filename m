@@ -1,42 +1,34 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C857AE0044C
-	for <yocto@yoctoproject.org>; Sun,  4 Mar 2012 13:38:46 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S4J8f-0008KX-54; Sun, 04 Mar 2012 16:38:45 -0500
-Date: Sun, 4 Mar 2012 16:38:36 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Gary Thomas <gary@mlbassoc.com>
-In-Reply-To: <4F53C63D.1000305@mlbassoc.com>
-Message-ID: <alpine.DEB.2.02.1203041629001.18196@oneiric>
-References: <D8B2FCF1-09C3-4DEF-BFFB-3E0A421C61AE@beagleboard.org>
-	<alpine.DEB.2.02.1202281723110.9200@oneiric>
-	<4F514826.5050402@ti.com>
-	<alpine.DEB.2.02.1203021729040.31351@oneiric>
-	<4F514EC8.8000606@ti.com> <4F515551.50708@mlbassoc.com>
-	<20120304061843.GN24667@denix.org>
-	<alpine.DEB.2.02.1203040716190.496@oneiric>
-	<4F5361B6.8040908@mlbassoc.com>
-	<alpine.DEB.2.02.1203041310220.20388@oneiric>
-	<20120304192728.GO24667@denix.org> <4F53C63D.1000305@mlbassoc.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8557E013BA
+	for <yocto@yoctoproject.org>; Sun,  4 Mar 2012 19:27:45 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 04 Mar 2012 19:27:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="124972232"
+Received: from pgsmsx101.gar.corp.intel.com ([10.221.44.78])
+	by fmsmga001.fm.intel.com with ESMTP; 04 Mar 2012 19:27:44 -0800
+Received: from pgsmsx104.gar.corp.intel.com (10.221.44.91) by
+	PGSMSX101.gar.corp.intel.com (10.221.44.78) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 5 Mar 2012 11:26:41 +0800
+Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
+	PGSMSX104.gar.corp.intel.com (10.221.44.91) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 5 Mar 2012 11:26:41 +0800
+Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.142]) by
+	SHSMSX102.ccr.corp.intel.com ([169.254.2.36]) with mapi id
+	14.01.0355.002; Mon, 5 Mar 2012 11:26:40 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto weekly bug trend charts -- WW09
+Thread-Index: Acz6f8Z/uZnH9E2ESzWIbPqj4aEsWA==
+Date: Mon, 5 Mar 2012 03:26:39 +0000
+Message-ID: <90741FE9B50D654690EB940EDB456C8E07BCC1@SHSMSX101.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: proper recipe for building for beagle xM? meta-ti?
+Subject: Yocto weekly bug trend charts -- WW09
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,31 +40,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 04 Mar 2012 21:38:46 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 05 Mar 2012 03:27:46 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, 4 Mar 2012, Gary Thomas wrote:
+Hi all,
+	The overall open bug trend increased a lot during last 2 weeks. WDD number=
+ and Open Bug number are 819 and 164. QA began 1.2 M3 RC1 testing last week=
+. Bug status of WW09 could be found on https://wiki.yoctoproject.org/wiki/Y=
+octo_Bug_Trend.
 
-> Can you explain what the toolchain problems are and why the versions
-> in oe-core don't work for meta-ti?
+Best Regards,
+Jiajun
 
-  i just finished doing a "bitbake core-image-minimal" for a
-beagleboard using the meta-ti layer, and having only to set a
-preferred version for udev.
 
-  the build finished (albeit with a few warnings), and i have all of
-the images i would expect for a beagle xM.  should i consider this a
-form of success -- the simple fact that the build appeared to succeed?
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
