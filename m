@@ -1,30 +1,40 @@
-Return-Path: <Liezhi.Yang@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C4B2E0070C
-	for <yocto@yoctoproject.org>; Tue,  6 Mar 2012 03:41:25 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q26BfMWt009268
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 6 Mar 2012 03:41:23 -0800 (PST)
-Received: from [128.224.162.196] (128.224.162.196) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 6 Mar 2012 03:41:22 -0800
-Message-ID: <4F55F7E0.8040602@windriver.com>
-Date: Tue, 6 Mar 2012 19:41:20 +0800
-From: Robert Yang <liezhi.yang@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:9.0) Gecko/20111229 Thunderbird/9.0
-MIME-Version: 1.0
-To: "Cui, Dexuan" <dexuan.cui@intel.com>
+Return-Path: <koen@beagleboard.org>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 409C0E0070C
+	for <yocto@yoctoproject.org>; Tue,  6 Mar 2012 04:14:49 -0800 (PST)
+Received: by wibhq7 with SMTP id hq7so2884145wib.35
+	for <yocto@yoctoproject.org>; Tue, 06 Mar 2012 04:14:48 -0800 (PST)
+Received-SPF: pass (google.com: domain of koen@beagleboard.org designates
+	10.180.101.72 as permitted sender) client-ip=10.180.101.72; 
+Authentication-Results: mr.google.com;
+	spf=pass (google.com: domain of koen@beagleboard.org
+	designates 10.180.101.72 as permitted sender)
+	smtp.mail=koen@beagleboard.org
+Received: from mr.google.com ([10.180.101.72])
+	by 10.180.101.72 with SMTP id fe8mr22980411wib.4.1331036088291
+	(num_hops = 1); Tue, 06 Mar 2012 04:14:48 -0800 (PST)
+Received: by 10.180.101.72 with SMTP id fe8mr18209627wib.4.1331036088240;
+	Tue, 06 Mar 2012 04:14:48 -0800 (PST)
+Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl.
+	[84.80.112.235])
+	by mx.google.com with ESMTPS id p10sm28553066wic.0.2012.03.06.04.14.46
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 06 Mar 2012 04:14:47 -0800 (PST)
+Mime-Version: 1.0 (Apple Message framework v1257)
+From: Koen Kooi <koen@beagleboard.org>
+In-Reply-To: <1331016505.2107.37.camel@elnicho>
+Date: Tue, 6 Mar 2012 13:14:46 +0100
+Message-Id: <65EC9795-B3B6-4823-BB94-AEBD23A82B93@beagleboard.org>
 References: <CADzUK1K0WwAZ=j0u_osRnmtwf0jBosh-jkaGQnUofbgHkecp+A@mail.gmail.com>
 	<CADzUK1LCU0zyddgUBbdb-Sg6iTKJoSZ390SQ3XHuRtiQ6z1UHA@mail.gmail.com>
 	<CADzUK1JCDWysYpL=7JZARZ=Lmgh+4izk5k-3nwX-nnODTHmQqA@mail.gmail.com>
 	<1331010578.2107.2.camel@elnicho>
 	<A25F549E4D43CD42B4C02DF47A1913230FCD71B1@SHSMSX102.ccr.corp.intel.com>
 	<4F55A7D7.8020100@windriver.com> <1331016505.2107.37.camel@elnicho>
-	<4F55D32F.6050705@windriver.com>
-	<A25F549E4D43CD42B4C02DF47A1913230FCD73D8@SHSMSX102.ccr.corp.intel.com>
-In-Reply-To: <A25F549E4D43CD42B4C02DF47A1913230FCD73D8@SHSMSX102.ccr.corp.intel.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+X-Mailer: Apple Mail (2.1257)
+X-Gm-Message-State: ALoCoQmjv04WvoQzlWQz4A+1gNYKL5qhmTtjF6ptdF+FGwpZTaZdWclKMppyt2B18jsphOwW50AI
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: iptables not building on master
 X-BeenThere: yocto@yoctoproject.org
@@ -38,76 +48,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Mar 2012 11:41:25 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-List-Received-Date: Tue, 06 Mar 2012 12:14:49 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 
 
-Hi Dexuan,
+Op 6 mrt. 2012, om 07:48 heeft Tom Zanussi het volgende geschreven:
 
-After more investigation, I found that the:
+> In the meantime, if you remove the line:
+> 
+> PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
 
--I/path/to/sysroot/usr/include
+Why is a BSP layer poking at DISTRO settings?!?!?![1]
 
-has been treated as the  standard system include directory,
+koen
 
-and from gcc's manual:
-
-  -I dir
-            Add the directory dir to the list of directories to be searched for 
-header files.  Directories named by -I are searched
-            before the standard system include directories.  If the directory 
-dir is a standard system include directory, the option is
-            ignored to ensure that the default search order for system 
-directories and the special treatment of system headers are not
-            defeated .
-
-
-so whether we put the kinclude_CPPFLAGS at the front or end doesn't
-change the search order, gcc will always search iptables-1.4.12.2/include/
-firstly, if we want to use the those header files consistently from the
-sysroot, we should remove the iptables-1.4.12.2/include/linux directly
-since all the files in this directory are from kernel headers, but after
-I remove the directory, the build failed at:
-
-| In file included from libip4tc.c:118:0:
-| libiptc.c:70:8: error: redefinition of 'struct xt_error_target'
-| 
-/buildarea/lyang1/war_8/tmp/sysroots/crownbay/usr/include/linux/netfilter/x_tables.h:69:8: 
-note: originally defined here
-
-It seems that iptables keep and use their own kernel header files.
-
-I will send a pull request with the fix method:
-
-#define __aligned_u64 __u64 __attribute__((aligned(8)))
-
-// Robert
-
-On 03/06/2012 05:47 PM, Cui, Dexuan wrote:
-> Robert Yang wrote on 2012-03-06:
->> Hi Tom,
->> Thanks for the update, the root cause is that iptables offers a kernel
->> header file include/linux/types.h, but it mis-matches the kernel in
->> the sysroot, we can add this:
->> #define __aligned_u64 __u64 __attribute__((aligned(8)))
->> to:
->> iptables-1.4.12.2/include/linux/types.h
->> to fix this problem.
->>
->> Another solution is that as Dexuan suggested we change the order of
->> the include header files, but I'm afraid that may cause other
->> problems, since I think that the pkg's own header file should have a
->> higher priority than the system's, so I think that the current order is correct.
-> My understanding is:
-> Recently the preferred linux-libc-headers was upgraded to linux-libc-headers-yocto-3.2, that introduced a new struct tpacket_hdr_v1 in linux/if_packet.h and the new struct uses __aligned_u64 but __aligned_u64 is not defined in iptables's own linux/types.h
-> Currently in iptables's makefile, its own linux/types.h comes first than that one in our sysroot in the header file search order, and I noticed iptables doesn't have a file linux/if_packet.h. So, with our sysroot's linux/if_package.h and iptables's own linux/types, we get the failure.
->
-> If we define __aligned_u64 _ in iptables's own linux/types.h, we're still using our sysroot's linux/if_packet.h with iptables's linux/types.h -- I think this is not correct even if the build can pass?  I think we should use header files consistently.
->
->
-> Thanks,
-> -- Dexuan
->
->
+[1] Yes RP, that really needed that many exclamation marks :)
 
