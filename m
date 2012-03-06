@@ -1,16 +1,16 @@
 Return-Path: <Liezhi.Yang@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4014DE0070C
-	for <yocto@yoctoproject.org>; Tue,  6 Mar 2012 02:05:22 -0800 (PST)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C4B2E0070C
+	for <yocto@yoctoproject.org>; Tue,  6 Mar 2012 03:41:25 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q26A5JhX002599
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q26BfMWt009268
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 6 Mar 2012 02:05:19 -0800 (PST)
+	Tue, 6 Mar 2012 03:41:23 -0800 (PST)
 Received: from [128.224.162.196] (128.224.162.196) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 6 Mar 2012 02:05:19 -0800
-Message-ID: <4F55E15D.9070709@windriver.com>
-Date: Tue, 6 Mar 2012 18:05:17 +0800
+	Tue, 6 Mar 2012 03:41:22 -0800
+Message-ID: <4F55F7E0.8040602@windriver.com>
+Date: Tue, 6 Mar 2012 19:41:20 +0800
 From: Robert Yang <liezhi.yang@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux i686;
 	rv:9.0) Gecko/20111229 Thunderbird/9.0
@@ -38,11 +38,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Mar 2012 10:05:22 -0000
+X-List-Received-Date: Tue, 06 Mar 2012 11:41:25 -0000
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
+Hi Dexuan,
+
+After more investigation, I found that the:
+
+-I/path/to/sysroot/usr/include
+
+has been treated as the  standard system include directory,
+
+and from gcc's manual:
+
+  -I dir
+            Add the directory dir to the list of directories to be searched for 
+header files.  Directories named by -I are searched
+            before the standard system include directories.  If the directory 
+dir is a standard system include directory, the option is
+            ignored to ensure that the default search order for system 
+directories and the special treatment of system headers are not
+            defeated .
+
+
+so whether we put the kinclude_CPPFLAGS at the front or end doesn't
+change the search order, gcc will always search iptables-1.4.12.2/include/
+firstly, if we want to use the those header files consistently from the
+sysroot, we should remove the iptables-1.4.12.2/include/linux directly
+since all the files in this directory are from kernel headers, but after
+I remove the directory, the build failed at:
+
+| In file included from libip4tc.c:118:0:
+| libiptc.c:70:8: error: redefinition of 'struct xt_error_target'
+| 
+/buildarea/lyang1/war_8/tmp/sysroots/crownbay/usr/include/linux/netfilter/x_tables.h:69:8: 
+note: originally defined here
+
+It seems that iptables keep and use their own kernel header files.
+
+I will send a pull request with the fix method:
+
+#define __aligned_u64 __u64 __attribute__((aligned(8)))
+
+// Robert
 
 On 03/06/2012 05:47 PM, Cui, Dexuan wrote:
 > Robert Yang wrote on 2012-03-06:
@@ -63,23 +103,8 @@ On 03/06/2012 05:47 PM, Cui, Dexuan wrote:
 > Recently the preferred linux-libc-headers was upgraded to linux-libc-headers-yocto-3.2, that introduced a new struct tpacket_hdr_v1 in linux/if_packet.h and the new struct uses __aligned_u64 but __aligned_u64 is not defined in iptables's own linux/types.h
 > Currently in iptables's makefile, its own linux/types.h comes first than that one in our sysroot in the header file search order, and I noticed iptables doesn't have a file linux/if_packet.h. So, with our sysroot's linux/if_package.h and iptables's own linux/types, we get the failure.
 >
-
-Yes, you are right:-)
-
 > If we define __aligned_u64 _ in iptables's own linux/types.h, we're still using our sysroot's linux/if_packet.h with iptables's linux/types.h -- I think this is not correct even if the build can pass?  I think we should use header files consistently.
 >
-
-Yes, I agree with you ,I was going to change the older of the header files
-at first, but after thought for a while, I don't know why iptables carries
-part of the kernel header files, I don't know whether change the order of
-the headers would cause other problems. I checked the linux/if_packet.h when
-MACHINE=qemux86, it is different from the crownbay's, it doesn't have the
-__aligned_u64, so I choose the simple and impact less way to fix it:-)
-
-Anyway, if you insist on changing the order, I will try to do it.
-
-// Robert
-
 >
 > Thanks,
 > -- Dexuan
