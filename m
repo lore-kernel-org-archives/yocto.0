@@ -1,34 +1,30 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEB2AE0044A
-	for <yocto@yoctoproject.org>; Tue,  6 Mar 2012 09:32:32 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q26HWSe5015234
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 6 Mar 2012 09:32:28 -0800 (PST)
-Received: from [147.11.117.147] (147.11.117.147) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 6 Mar 2012 09:32:27 -0800
-Message-ID: <4F564A2A.7080202@windriver.com>
-Date: Tue, 6 Mar 2012 12:32:26 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.26) Gecko/20120131 Thunderbird/3.1.18
+Return-Path: <Hollis_Blanchard@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70096E0044A
+	for <yocto@yoctoproject.org>; Tue,  6 Mar 2012 13:36:08 -0800 (PST)
+Received: from svr-orw-fem-01.mgc.mentorg.com ([147.34.98.93])
+	by relay1.mentorg.com with esmtp 
+	id 1S523D-0005cD-4p from Hollis_Blanchard@mentor.com 
+	for yocto@yoctoproject.org; Tue, 06 Mar 2012 13:36:07 -0800
+Received: from SVR-ORW-FEM-05.mgc.mentorg.com ([147.34.97.43]) by
+	svr-orw-fem-01.mgc.mentorg.com over TLS secured channel with
+	Microsoft SMTPSVC(6.0.3790.4675); Tue, 6 Mar 2012 13:36:06 -0800
+Received: from [172.30.12.214] (147.34.91.1) by svr-orw-fem-05.mgc.mentorg.com
+	(147.34.97.43) with Microsoft SMTP Server id 14.1.289.1;
+	Tue, 6 Mar 2012 13:36:06 -0800
+Message-ID: <4F568346.2010901@mentor.com>
+Date: Tue, 6 Mar 2012 13:36:06 -0800
+From: Hollis Blanchard <hollis_blanchard@mentor.com>
+Organization: Mentor Graphics, Embedded Systems Division
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <CADzUK1K0WwAZ=j0u_osRnmtwf0jBosh-jkaGQnUofbgHkecp+A@mail.gmail.com>
-	<CADzUK1LCU0zyddgUBbdb-Sg6iTKJoSZ390SQ3XHuRtiQ6z1UHA@mail.gmail.com>
-	<CADzUK1JCDWysYpL=7JZARZ=Lmgh+4izk5k-3nwX-nnODTHmQqA@mail.gmail.com>
-	<1331010578.2107.2.camel@elnicho>
-	<A25F549E4D43CD42B4C02DF47A1913230FCD71B1@SHSMSX102.ccr.corp.intel.com>
-	<4F55A7D7.8020100@windriver.com> <1331016505.2107.37.camel@elnicho>
-	<4F55D32F.6050705@windriver.com> <4F562A34.2020304@gmail.com>
-	<4F562B7C.4020105@windriver.com> <4F562C2E.5010604@gmail.com>
-	<4F562CE7.4010606@windriver.com>
-	<CAMKF1sp0_-zGHu8uWajpj5V=j=C3ynmCuTxTpCQErfxgsaKT9w@mail.gmail.com>
-In-Reply-To: <CAMKF1sp0_-zGHu8uWajpj5V=j=C3ynmCuTxTpCQErfxgsaKT9w@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: iptables not building on master
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <4F4FF77D.9060607@mentor.com>
+In-Reply-To: <4F4FF77D.9060607@mentor.com>
+X-OriginalArrivalTime: 06 Mar 2012 21:36:06.0714 (UTC)
+	FILETIME=[236819A0:01CCFBE1]
+Subject: Re: [PATCH] include usbinit package with usbgadget feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,41 +36,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Mar 2012 17:32:33 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-List-Received-Date: Tue, 06 Mar 2012 21:36:08 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12-03-06 12:28 PM, Khem Raj wrote:
-> On Tue, Mar 6, 2012 at 7:27 AM, Bruce Ashfield
-> <bruce.ashfield@windriver.com>  wrote:
->> Nominally it is to protect them from kernel headers changes and to not
->> require headers or a full tree to be present (or at least this is what
->> I've learned over the years, I may be forgetting other elements).
->>
+On 03/01/2012 02:26 PM, Hollis Blanchard wrote:
+> The g_ether kernel module, in the kernel-module-g-ether package, 
+> allows targets to use a USB connection as a network interface. 
+> However, that's not useful until the module is loaded.
 >
-> but thats what linux-kernel-headers are now a days isnt it ?
-
-It definitely is, this probably falls into "if it works .. " so
-it stays as-is.
-
+> The usbinit package provides the /etc/init.d/usb-gether script to load 
+> the g_ether module at boot, so it should be included along with 
+> kernel-module-g-ether.
 >
->> In the past, I've also removed this duplication of kernel header files
->> as well, and it does work, but it does create a tighter binding to
->> toolchain or kernel sources.
+> Tested with core-image-base on beagleboard.
 >
-> from OE's POV we can assume that we will always have kernel-headers
-> so we could prefer them instead ? We are not interested in building it
-> standalone but rather with some distro
+> Signed-off-by: Hollis Blanchard <hollis_blanchard@mentor.com>
+> ---
 >
+> diff --git a/meta/recipes-core/tasks/task-base.bb 
+> b/meta/recipes-core/tasks/task-base.bb
+> index 2032432..fda0384 100644
+> --- a/meta/recipes-core/tasks/task-base.bb
+> +++ b/meta/recipes-core/tasks/task-base.bb
+> @@ -2,7 +2,7 @@ DESCRIPTION = "Merge machine and distro options to 
+> create a basic machine task/p
+>  LICENSE = "MIT"
+>  LIC_FILES_CHKSUM = 
+> "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
+>                      
+> file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> -PR = "r73"
+> +PR = "r74"
+>
+>  inherit task
+>
+> @@ -248,7 +248,8 @@ RRECOMMENDS_task-base-usbgadget = "\
+>      kernel-module-gadgetfs \
+>      kernel-module-g-file-storage \
+>      kernel-module-g-serial \
+> -    kernel-module-g-ether"
+> +    kernel-module-g-ether \
+> +    usbinit"
+>
+>  RDEPENDS_task-base-usbhost = "\
+>      usbutils "
 
-Agreed.
+Any additional comments?
 
-Bruce
+Hollis Blanchard
+Mentor Graphics, Embedded Systems Division
 
-
->>
->> It is something that can be changed in the package, but as they say
->> "you end up with the pieces, if it breaks" :)
->>
 
 
