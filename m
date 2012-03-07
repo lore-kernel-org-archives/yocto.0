@@ -1,34 +1,35 @@
 Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4479E0044C
-	for <yocto@yoctoproject.org>; Wed,  7 Mar 2012 05:54:41 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 07 Mar 2012 05:54:41 -0800
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B81A9E0044C
+	for <yocto@yoctoproject.org>; Wed,  7 Mar 2012 06:05:02 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 07 Mar 2012 06:05:02 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="118642237"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="74689686"
 Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by orsmga002.jf.intel.com with ESMTP; 07 Mar 2012 05:53:41 -0800
-Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
+	by AZSMGA002.ch.intel.com with ESMTP; 07 Mar 2012 06:05:02 -0800
+Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
 	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 7 Mar 2012 05:53:41 -0800
+	(TLS) id 8.2.255.0; Wed, 7 Mar 2012 06:05:01 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.188]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.233]) with mapi id
-	14.01.0355.002; Wed, 7 Mar 2012 05:53:41 -0800
+	ORSMSX104.amr.corp.intel.com ([169.254.3.48]) with mapi id
+	14.01.0355.002; Wed, 7 Mar 2012 06:04:54 -0800
 From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
 To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
 	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] dev manual: and why is meta-intel so important?
-Thread-Index: AQHM/Et307Q03WTxHU+6t2kzhX7cVZZe2cgg
-Date: Wed, 7 Mar 2012 13:53:39 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123793B7443D4@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1203070513120.28440@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1203070513120.28440@oneiric>
+Thread-Topic: [yocto] dev manual could use clarification on possible mailing
+	lists
+Thread-Index: AQHM/FUTUb75CG2vZE2+QQOdaeSw9JZe3QPA
+Date: Wed, 7 Mar 2012 14:05:00 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123793B7443F9@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1203070622590.30444@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1203070622590.30444@oneiric>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Subject: Re: dev manual: and why is meta-intel so important?
+Subject: Re: dev manual could use clarification on possible mailing lists
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,40 +41,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Mar 2012 13:54:41 -0000
+X-List-Received-Date: Wed, 07 Mar 2012 14:05:02 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-This probably should say If you have set up a Yocto Project Files Git repos=
-itory and you are also going to be using BSP Layers from meta-intel, you sh=
-ould set up a Git repository for meta-intel.  The main point I was getting =
-at originally was that if you use a Git repo for the YP files then you shou=
-ld also use one for meta-intel if you are indeed going to be usinig it.
+I need further guidance on this comment.  To see the latest section see htt=
+p://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#how-to-subm=
+it-a-change
+
+Someone else from the team needs to read the paragraphs tied to the two mai=
+ling lists (poky and yocto) and provide feedback on whether they are still =
+valid or not.=20
 
 Scott
 
 -----Original Message-----
 From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
 ] On Behalf Of Robert P. J. Day
-Sent: Wednesday, March 07, 2012 4:17 AM
+Sent: Wednesday, March 07, 2012 5:25 AM
 To: Yocto discussion list
-Subject: [yocto] dev manual: and why is meta-intel so important?
+Subject: [yocto] dev manual could use clarification on possible mailing lis=
+ts
 
 
-  [proof]reading yocto dev manual and in section 2.2, "Setting Up",
-one reads:
+  again, dev manual, section 3.8, "How to Submit a Change":
 
-"Git Repository Method: If you are working with a Yocto Project files
-Git repository, you should also set up a meta-intel Git repository. "
+"For defects against the Yocto Project build system Poky, send your
+patch to the http://lists.yoctoproject.org/listinfo/poky mailing list.
+This mailing list corresponds to issues that are not specific to the
+Yocto Project but are part of the OE-core. For example, a defect
+against anything in the meta layer or the BitBake Manual could be sent
+to this mailing list."
 
-  um ... why?  there's no hint of what that layer is for, it simply
-suggests the reader go get it.  i would think there should be more of
-an explanation, or perhaps any reference to meta-intel should simply
-be dropped at that point until layers are more properly introduced and
-explained later.
+  i'm *guessing* that paragraph is out of date since poky has its own
+mailing list separate from oe-core, which is further separate from the
+bitbake-devel mailing list.
 
-  thoughts?
+  i'll let someone else decide if that section needs to be reworded.
 
 rday
 
