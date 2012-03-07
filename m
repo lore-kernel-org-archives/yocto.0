@@ -1,34 +1,33 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 167F6E013A6
-	for <yocto@yoctoproject.org>; Wed,  7 Mar 2012 07:03:22 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 07 Mar 2012 07:03:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="115891080"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.226.10])
-	by azsmga001.ch.intel.com with ESMTP; 07 Mar 2012 07:03:21 -0800
-Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
-	orsmsx605.amr.corp.intel.com (10.22.226.10) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 7 Mar 2012 05:58:55 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.188]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.207]) with mapi id
-	14.01.0355.002; Wed, 7 Mar 2012 05:58:54 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] dev manual has broken "git workflows" link, what
-	should replace it?
-Thread-Index: AQHM/FFqdOhfvHvRhki7/bb1MT4S+ZZe298A
-Date: Wed, 7 Mar 2012 13:58:54 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123793B7443EA@ORSMSX101.amr.corp.intel.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6266E013A2
+	for <yocto@yoctoproject.org>; Wed,  7 Mar 2012 07:41:26 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1S5IzV-0000JC-MC; Wed, 07 Mar 2012 10:41:25 -0500
+Date: Wed, 7 Mar 2012 10:41:19 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123793B7443EA@ORSMSX101.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1203071039080.8310@oneiric>
 References: <alpine.DEB.2.02.1203070557520.29783@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1203070557520.29783@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+	<41DEA4B02DBDEF40A0F3B6D0DDB123793B7443EA@ORSMSX101.amr.corp.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: dev manual has broken "git workflows" link, what should replace it?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,55 +40,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Mar 2012 15:03:22 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 07 Mar 2012 15:41:26 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-This area in the document has been re-worked and the bad link does not exis=
-t in the http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html=
- version (master) of the document.
+On Wed, 7 Mar 2012, Rifenbark, Scott M wrote:
 
-Scott
+> This area in the document has been re-worked and the bad link does
+> not exist in the
+> http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html
+> version (master) of the document.
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Robert P. J. Day
-Sent: Wednesday, March 07, 2012 4:59 AM
-To: Yocto discussion list
-Subject: [yocto] dev manual has broken "git workflows" link, what should re=
-place it?
+  i'm sure you've answered this before, but how far behind is the docs
+repo from the general yocto dev repo?  i simply use the yocto
+development checkout for my work, so that's what i'm picking up for
+docs.  and give that it's development, it would seem that commits
+shouldn't languish very long in the docs repo before being pushed.
 
-
-  in dev manual, section 3.6:
-
-"For more detailed information about these strategies see Git
-Workflows."
-
-  there is a link to
-
-http://www.kernel.org/pub/software/scm/git/docs/gitworkflows.html
-
-which isn't valid anymore.  i can replace the URL if someone wants to
-recommend an alternatively good presentation on workflows.
+  what's the general time lag?
 
 rday
 
---=20
+-- 
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+========================================================================
 Robert P. J. Day                                 Ottawa, Ontario, CANADA
                         http://crashcourse.ca
 
 Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+========================================================================
 
