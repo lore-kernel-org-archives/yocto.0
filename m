@@ -1,33 +1,32 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85520E0030B
-	for <yocto@yoctoproject.org>; Thu,  8 Mar 2012 07:34:06 -0800 (PST)
-Received: by vcbfl17 with SMTP id fl17so621317vcb.35
-	for <yocto@yoctoproject.org>; Thu, 08 Mar 2012 07:34:05 -0800 (PST)
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-pw0-f48.google.com (mail-pw0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DF62E0030B
+	for <yocto@yoctoproject.org>; Thu,  8 Mar 2012 08:57:27 -0800 (PST)
+Received: by pbbjt11 with SMTP id jt11so2035204pbb.35
+	for <yocto@yoctoproject.org>; Thu, 08 Mar 2012 08:57:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=yhwEWtRrTCMtXJQUhmkFh2li4Uj7Rq20A3TNmAMIoz4=;
-	b=QHhz5XeYwvZumRnOrMGg0uR25JIU8T227tRVjAgFMvhG1EQwutdb66/TChqiqicbQe
-	lNmeSkGMRbQw6MosMpqgd5kiUQ9ymLCabWLYQvkdXQdXcwLjmBKLxf1qAkZbofytWy64
-	PswSbHu/5E0g0Hw/6FtANaRv3dLLW1WTvt8xlXrMb9NV7/6jPq2+9Nf3qwPWkxM//eoB
-	f79sKhMpiAmyDq2XS8aHirwYtI2rw18oRRpP23eTbQLiHV3UtDo3ggaeF9zuCoBh+toZ
-	86U+KwTN+JD49AfUEkdIYVFh7Ijk/qvsrqRNfTJsB0kfWs5qmc6dUFoNLLU0lsMQ62vP
-	R40A==
-Received: by 10.52.64.234 with SMTP id r10mr10752468vds.39.1331220845849;
-	Thu, 08 Mar 2012 07:34:05 -0800 (PST)
-Received: from [10.0.1.54] (nc-184-4-33-105.dhcp.embarqhsd.net. [184.4.33.105])
-	by mx.google.com with ESMTPS id he3sm4284023vdb.2.2012.03.08.07.34.04
-	(version=SSLv3 cipher=OTHER); Thu, 08 Mar 2012 07:34:04 -0800 (PST)
-Message-ID: <4F58D16C.8030309@gmail.com>
-Date: Thu, 08 Mar 2012 10:34:04 -0500
-From: jfabernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=HkncKxwJ1u9LUGJj2Qktw1eESlDEyEkcCOMmXMCiR6Q=;
+	b=efCCV4SWXrs64esgaYRzEhEDzpygX6/yw8YuYA/OGr3muF22yLrDie/GnTh5v2eWHw
+	RuDiFuevHwe20a7XA/pj54zI+nyENX6xzo68x8B4HxbOdSDUJjuZ8rJdPHqz0tBVr9Zc
+	V56khkzp83t6eNfwN1julZzdlueOn667S+GvlRm10ylRdInHIT00XmWLSkB0sHStI/mg
+	Id0aX71eEAxzzwSXqoIK/a6bT8318Fy+6HB37xk3M3t+TOFmmqtjyUOdBOpVynRwwSKk
+	bnBbXtCUZ8ecR9I6+n7tMv5cQLaxyXYhtFK6jqy8teFNQYQigSoQypqyMJND8XtgDuwm
+	wHcQ==
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Adding test files to an image
+Received: by 10.68.130.233 with SMTP id oh9mr10796265pbb.92.1331225846978;
+	Thu, 08 Mar 2012 08:57:26 -0800 (PST)
+Received: by 10.68.20.134 with HTTP; Thu, 8 Mar 2012 08:57:26 -0800 (PST)
+In-Reply-To: <4F58D16C.8030309@gmail.com>
+References: <4F58D16C.8030309@gmail.com>
+Date: Thu, 8 Mar 2012 11:57:26 -0500
+Message-ID: <CADzUK1K0BTWTm8kfto2SZGpv7Q6sSGcCKggCHXeaconFKR9xcg@mail.gmail.com>
+From: Autif Khan <autif.mlist@gmail.com>
+To: jfabernathy <jfabernathy@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Adding test files to an image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,22 +38,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Mar 2012 15:34:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 08 Mar 2012 16:57:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Suppose I want to build the meta-intel/meta-sugarbay image and also 
-include some video and audio files into the /home/root directory to 
-facilitate testing of the video and audio players.
+> Suppose I want to build the meta-intel/meta-sugarbay image and also include
+> some video and audio files into the /home/root directory to facilitate
+> testing of the video and audio players.
+>
+> Can I include these files in a recipe somewhere?
 
-Can I include these files in a recipe somewhere?
+I use the recipe at the end of this message to include whatever I
+want. This recipe has to be added to the image - I have a custom
+image, so it goes in there. I am sure a recipe can be added to
+something in local.conf - I just do not know that variable. My guess
+it is IMAGE_IMSTALL += "mypics".
 
-Also, I know that I can increase the spare image size so these files can 
-be copied in later with the IMAGE_OVERHEAD_FACTOR and 
-IMAGE_ROOTFS_EXTRA_SPACE. But where do these statements go?
+Regardless ...
 
-conf/local.conf???
+mypics-1.0.tar.gz contains a file called COPYING and its mds5um on the
+2nd line. It can be replaced with a license from common licenses
+directory - but at the time when I wrote this recipe, I did not know
+how to do that. Anything that goes in there ends up in
+/home/root/mypics.
 
-Jim A
+It can probably be tweaked to look better - I am sure SRC_URI line is
+not perfect. But it seems to work between Edison to master
 
+For larger files - like video worth 200MB or so, I just store them on
+a hard disk and mount manually on /media/hdd or where-ever. Not that
+it wont work in this recipe, just that it would take longer to build
+the image etc.
+
+All the best. Hopefully, this will get you started in the right direction.
+
+LICENSE = "MyLic"
+LIC_FILES_CHKSUM = "file://COPYING;md5=697172b05e4bff0a2421579697ba5653"
+
+MY_DESTINATION = "/home/root/mypics"
+
+SRC_URI = "file://mypics-1.0/mypics-1.0.tar.gz"
+
+do_install_append() {
+        install -d ${D}${MY_DESTINATION}
+        install -m 0644  ${S}/* ${D}${MY_DESTINATION}
+}
+
+PR = "r0"
+
+FILES_${PN} += "${MY_DESTINATION}/*"
 
