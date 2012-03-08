@@ -1,24 +1,37 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F753E013AB
-	for <yocto@yoctoproject.org>; Thu,  8 Mar 2012 04:46:51 -0800 (PST)
-Received: by dadp13 with SMTP id p13so460726dad.35
-	for <yocto@yoctoproject.org>; Thu, 08 Mar 2012 04:46:51 -0800 (PST)
-Received: by 10.68.224.233 with SMTP id rf9mr9304871pbc.162.1331210810949;
-	Thu, 08 Mar 2012 04:46:50 -0800 (PST)
-Received: from [192.168.10.207] ([59.99.251.45])
-	by mx.google.com with ESMTPS id a2sm2589029pbc.16.2012.03.08.04.46.47
-	(version=SSLv3 cipher=OTHER); Thu, 08 Mar 2012 04:46:49 -0800 (PST)
-Message-ID: <1331210795.2773.15.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Thu, 08 Mar 2012 18:16:35 +0530
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1
-Mime-Version: 1.0
-X-Gm-Message-State: ALoCoQm5EaH8I6Jf/c+IC5hW+Xwr4ckOnO1EI14tsILu3bqZjm+Lf6FFXMOYCVdpjh1GY5M87e5E
-Subject: missing mouse cursor in X11
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6171E013AB
+	for <yocto@yoctoproject.org>; Thu,  8 Mar 2012 05:59:41 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 08 Mar 2012 05:59:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="75140642"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by AZSMGA002.ch.intel.com with ESMTP; 08 Mar 2012 05:59:40 -0800
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 8 Mar 2012 05:59:40 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.188]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.137]) with mapi id
+	14.01.0355.002; Thu, 8 Mar 2012 05:59:40 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Thread-Topic: [yocto] dev manual could use clarification on possible mailing
+	lists
+Thread-Index: AQHM/FUTUb75CG2vZE2+QQOdaeSw9JZe3QPAgAD1QwCAAJxCYA==
+Date: Thu, 8 Mar 2012 13:59:39 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123793B744749@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1203070622590.30444@oneiric>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123793B7443F9@ORSMSX101.amr.corp.intel.com>
+	<alpine.DEB.2.02.1203071537150.17858@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1203071537150.17858@oneiric>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: dev manual could use clarification on possible mailing lists
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,62 +43,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Mar 2012 12:46:52 -0000
-X-Groupsio-MsgNum: 5197
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-zfI3HcFVq6An5fDuWtS2"
-
---=-zfI3HcFVq6An5fDuWtS2
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 08 Mar 2012 13:59:42 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello all,
-	I installed the following X11 related packages in my custom-image
+I realize this is the same information.  I am trying to solicit feedback fr=
+om the rest of the community on the content.  When I get that feedback I ca=
+n upgrade the topic. =20
 
-     1. xserver-xf86-dri-lite
-     2. x11-common
-     3. xserver-xf86-config
-     4. xf86-input-mouse
-     5. xf86-input-keyboard
-     6. xf86-input-evdev
-     7. xf86-input-synaptics
-     8. xf86-video-intel
-     9. mesa-dri-driver-i915
-    10. xauth, xhost, xset, xrandr
+Thanks,
+Scott
 
-The mouse is functional but the cursor is not visible in the X11. I did
-add the following lines to the xorg.conf for the intel "Device" section
+-----Original Message-----
+From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]=20
+Sent: Wednesday, March 07, 2012 2:40 PM
+To: Rifenbark, Scott M
+Cc: Yocto discussion list
+Subject: RE: [yocto] dev manual could use clarification on possible mailing=
+ lists
 
-        Option "HWCursor" "Off"
-        Option "SWCursor" "On"
-       =20
-But, greping the the Xorg log file for cursor gave me this output
+On Wed, 7 Mar 2012, Rifenbark, Scott M wrote:
 
-> [3997367.193] (II) intel(0): Initializing HW Cursor
-> [3997367.322] (WW) intel(0): Option "HWCursor" is not used
-> [3997367.322] (WW) intel(0): Option "SWCursor" is not used
+> I need further guidance on this comment.  To see the latest section
+> see
+> http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#how-to=
+-submit-a-change
 
-Should I do/install anything else in order to get a visible mouse cursor?
+  this still has the same out-of-context weirdness as the original
+but, at the risk of sounding snippy, i'm just not going to look at it
+more until all that docs stuff gets pulled into yocto mainline.
 
-Regards
-Joshua
+  i have enough git repos hanging around that i'm not going to clone
+another solely for the sake of the docs.  that's just silly.
+
+rday
+
 --=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
 
---=-zfI3HcFVq6An5fDuWtS2
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
-iEYEABECAAYFAk9YqisACgkQWw85XwuSFMLfmACggsaaevCg5Avelnnl3+WjOMzG
-AGgAn3SN7g4vkyfWQXBB2FQftARehrkB
-=c19t
------END PGP SIGNATURE-----
-
---=-zfI3HcFVq6An5fDuWtS2--
