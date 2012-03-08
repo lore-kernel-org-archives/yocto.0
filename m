@@ -1,37 +1,33 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6171E013AB
-	for <yocto@yoctoproject.org>; Thu,  8 Mar 2012 05:59:41 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 08 Mar 2012 05:59:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="75140642"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by AZSMGA002.ch.intel.com with ESMTP; 08 Mar 2012 05:59:40 -0800
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 8 Mar 2012 05:59:40 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.188]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.137]) with mapi id
-	14.01.0355.002; Thu, 8 Mar 2012 05:59:40 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Thread-Topic: [yocto] dev manual could use clarification on possible mailing
-	lists
-Thread-Index: AQHM/FUTUb75CG2vZE2+QQOdaeSw9JZe3QPAgAD1QwCAAJxCYA==
-Date: Thu, 8 Mar 2012 13:59:39 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123793B744749@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1203070622590.30444@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB123793B7443F9@ORSMSX101.amr.corp.intel.com>
-	<alpine.DEB.2.02.1203071537150.17858@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1203071537150.17858@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85520E0030B
+	for <yocto@yoctoproject.org>; Thu,  8 Mar 2012 07:34:06 -0800 (PST)
+Received: by vcbfl17 with SMTP id fl17so621317vcb.35
+	for <yocto@yoctoproject.org>; Thu, 08 Mar 2012 07:34:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=yhwEWtRrTCMtXJQUhmkFh2li4Uj7Rq20A3TNmAMIoz4=;
+	b=QHhz5XeYwvZumRnOrMGg0uR25JIU8T227tRVjAgFMvhG1EQwutdb66/TChqiqicbQe
+	lNmeSkGMRbQw6MosMpqgd5kiUQ9ymLCabWLYQvkdXQdXcwLjmBKLxf1qAkZbofytWy64
+	PswSbHu/5E0g0Hw/6FtANaRv3dLLW1WTvt8xlXrMb9NV7/6jPq2+9Nf3qwPWkxM//eoB
+	f79sKhMpiAmyDq2XS8aHirwYtI2rw18oRRpP23eTbQLiHV3UtDo3ggaeF9zuCoBh+toZ
+	86U+KwTN+JD49AfUEkdIYVFh7Ijk/qvsrqRNfTJsB0kfWs5qmc6dUFoNLLU0lsMQ62vP
+	R40A==
+Received: by 10.52.64.234 with SMTP id r10mr10752468vds.39.1331220845849;
+	Thu, 08 Mar 2012 07:34:05 -0800 (PST)
+Received: from [10.0.1.54] (nc-184-4-33-105.dhcp.embarqhsd.net. [184.4.33.105])
+	by mx.google.com with ESMTPS id he3sm4284023vdb.2.2012.03.08.07.34.04
+	(version=SSLv3 cipher=OTHER); Thu, 08 Mar 2012 07:34:04 -0800 (PST)
+Message-ID: <4F58D16C.8030309@gmail.com>
+Date: Thu, 08 Mar 2012 10:34:04 -0500
+From: jfabernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: dev manual could use clarification on possible mailing lists
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Adding test files to an image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,53 +39,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Mar 2012 13:59:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 08 Mar 2012 15:34:06 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I realize this is the same information.  I am trying to solicit feedback fr=
-om the rest of the community on the content.  When I get that feedback I ca=
-n upgrade the topic. =20
+Suppose I want to build the meta-intel/meta-sugarbay image and also 
+include some video and audio files into the /home/root directory to 
+facilitate testing of the video and audio players.
 
-Thanks,
-Scott
+Can I include these files in a recipe somewhere?
 
------Original Message-----
-From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]=20
-Sent: Wednesday, March 07, 2012 2:40 PM
-To: Rifenbark, Scott M
-Cc: Yocto discussion list
-Subject: RE: [yocto] dev manual could use clarification on possible mailing=
- lists
+Also, I know that I can increase the spare image size so these files can 
+be copied in later with the IMAGE_OVERHEAD_FACTOR and 
+IMAGE_ROOTFS_EXTRA_SPACE. But where do these statements go?
 
-On Wed, 7 Mar 2012, Rifenbark, Scott M wrote:
+conf/local.conf???
 
-> I need further guidance on this comment.  To see the latest section
-> see
-> http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#how-to=
--submit-a-change
+Jim A
 
-  this still has the same out-of-context weirdness as the original
-but, at the risk of sounding snippy, i'm just not going to look at it
-more until all that docs stuff gets pulled into yocto mainline.
-
-  i have enough git repos hanging around that i'm not going to clone
-another solely for the sake of the docs.  that's just silly.
-
-rday
-
---=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
