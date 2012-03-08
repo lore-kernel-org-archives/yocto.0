@@ -1,32 +1,32 @@
 Return-Path: <jfabernathy@gmail.com>
 Received: from mail-vw0-f48.google.com (mail-vw0-f48.google.com
 	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EB45E00596
-	for <yocto@yoctoproject.org>; Thu,  8 Mar 2012 14:35:38 -0800 (PST)
-Received: by vbjk17 with SMTP id k17so1233645vbj.35
-	for <yocto@yoctoproject.org>; Thu, 08 Mar 2012 14:35:38 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A7CDE00596
+	for <yocto@yoctoproject.org>; Thu,  8 Mar 2012 14:38:42 -0800 (PST)
+Received: by vbjk17 with SMTP id k17so1236808vbj.35
+	for <yocto@yoctoproject.org>; Thu, 08 Mar 2012 14:38:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=rce4jUIqp36IcBbmZfo0pmi+yPWPKvq7EfSv/9bbYLE=;
-	b=ZQGABJKptCjmmBG0DpmpAhtXK5mdFGF0PbwM4+nnJZn1Cb3i/a4YzyFc7dlpV7hq5T
-	wosTqUz9+gE3cATo9pB9BKcPpACH/GqBoUzAdkFMKdhjey3Kkad0+ddNCbEFYz9pU/CX
-	5oDxmUBZ1EPOXa86zO5M9Ch6ceezYRz+U84Twg/4ZuET01ed7HE5i8eUS2ABYi7zKG/f
-	l6PgMkXraxviDgveBtuj1EOCnnQKZKhbqcL96t8+lUYSOx6F2NIuVreGxaG/FYb37oS3
-	x27BSUDTYU35m6sK6nfeDWTlgDHbCCl8HH0DUr+zfacCJj4yDgiQ9R5GLzIB5SJveLC/
-	rJHg==
-Received: by 10.52.96.70 with SMTP id dq6mr13074042vdb.124.1331246137820;
-	Thu, 08 Mar 2012 14:35:37 -0800 (PST)
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=i2Y7GD9wcXOgaugQPXyfnFEl/zzGMSf2/7aH4iyHrJg=;
+	b=f6Aos/OzgDm+vrad1caikUQCNY9w+olbKjYdQ1X3ph2ZTaTIwMM/mHj07e64xb7TUe
+	p+5GUlTEagIw+gTPbU6pWESAC/yC5RCmuuGERXgDdlwMni2vXX/0Yo3HYboaMHyTPpVQ
+	aq7GfoE4RBMtniXWBcn1xA5UvTzikCuk61R4YD5KS3Ks4RuGXFrXuERDP+YUSO7zz55c
+	EpaknZ1/yoA0bWmmN26oGF+A34q8wVBFxWhoAaKWzsQ/T+5C0TpcUJNJAoioT5MVG6lQ
+	1BMzPZmCg1k6DR4OLwuMZrN7DDp4n89Wm4Unuh6VSRTNEcyoRrK7eY4fzt5C/SluatIc
+	RYRw==
+Received: by 10.52.94.148 with SMTP id dc20mr12940628vdb.100.1331246321507;
+	Thu, 08 Mar 2012 14:38:41 -0800 (PST)
 Received: from [10.0.1.54] (nc-184-4-33-105.dhcp.embarqhsd.net. [184.4.33.105])
-	by mx.google.com with ESMTPS id fg5sm6403026vdc.13.2012.03.08.14.35.37
-	(version=SSLv3 cipher=OTHER); Thu, 08 Mar 2012 14:35:37 -0800 (PST)
-Message-ID: <4F593439.7050805@gmail.com>
-Date: Thu, 08 Mar 2012 17:35:37 -0500
+	by mx.google.com with ESMTPS id o18sm6440293vdi.5.2012.03.08.14.38.40
+	(version=SSLv3 cipher=OTHER); Thu, 08 Mar 2012 14:38:40 -0800 (PST)
+Message-ID: <4F5934F0.6090600@gmail.com>
+Date: Thu, 08 Mar 2012 17:38:40 -0500
 From: jfabernathy <jfabernathy@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
 MIME-Version: 1.0
-To: Gary Thomas <gary@mlbassoc.com>
+To: yocto@yoctoproject.org
 References: <4F58D16C.8030309@gmail.com>
 	<CADzUK1K0BTWTm8kfto2SZGpv7Q6sSGcCKggCHXeaconFKR9xcg@mail.gmail.com>
 	<4F591A23.3050908@gmail.com>
@@ -35,7 +35,6 @@ References: <4F58D16C.8030309@gmail.com>
 	<CADzUK1J+EdCkjRsFRdTYZY3HiLwmWxnEd1s3tNDVFDaHKuSnmQ@mail.gmail.com>
 	<4F593209.6040309@gmail.com> <4F593365.4060904@mlbassoc.com>
 In-Reply-To: <4F593365.4060904@mlbassoc.com>
-Cc: yocto@yoctoproject.org
 Subject: Re: Adding test files to an image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -48,7 +47,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Mar 2012 22:35:38 -0000
+X-List-Received-Date: Thu, 08 Mar 2012 22:38:42 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -121,11 +120,25 @@ On 03/08/2012 05:32 PM, Gary Thomas wrote:
 >   S = "${WORKDIR}/jfabernathy-${PV}"
 > or whatever it is you need
 >
-Thanks,  I know I can change S, but I need to change where do_unpack 
-puts the files.  with them in WORKDIR, I can't just say WORKDIR/* 
-because there are a lot of other files and directories at that level.
+So what I can get to work is the following recipe, but what I want is 
+not o have to specify the file extension:
 
-I need do_unpack to put the files from tar.gz into S for example.
+DESCRIPTION = "my video test files"
+SECTION = "examples"
+LICENSE = "CLOSED"
 
-Jim A
+MY_DESTINATION = "/home/root/myvideos"
+
+SRC_URI = "file://myvideos-1.0/myvideos-1.0.tar.gz"
+
+do_install_append() {
+         install -d ${D}${MY_DESTINATION}
+#        install -m 0644 ${S}/* ${D}${MY_DESTINATION}
+         install -m 0644 ${WORKDIR}/*.mp4 ${D}${MY_DESTINATION}
+}
+
+PR = "r0"
+
+FILES_${PN} += "${MY_DESTINATION}/*"
+
 
