@@ -1,37 +1,32 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-gx0-f176.google.com (mail-gx0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCD6AE0030B
-	for <yocto@yoctoproject.org>; Thu,  8 Mar 2012 12:44:21 -0800 (PST)
-Received: by ggcs6 with SMTP id s6so658523ggc.35
-	for <yocto@yoctoproject.org>; Thu, 08 Mar 2012 12:44:21 -0800 (PST)
+Return-Path: <kergoth@gmail.com>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C662AE0030B
+	for <yocto@yoctoproject.org>; Thu,  8 Mar 2012 13:21:18 -0800 (PST)
+Received: by iagw33 with SMTP id w33so1589572iag.35
+	for <yocto@yoctoproject.org>; Thu, 08 Mar 2012 13:21:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=+nBq79U2UNtUAaXbsFmPBgEpJLuG7wWxCTDGHzl5Vxw=;
-	b=HCPwo3bnEsChD2kqZyN/ozsWUdi+HChrSqF0WQWl2KoTZ2STeqdD9uIOCXklrJE2Zb
-	SB0hpjLHgXySntgjadb5asbYYVRKCbCKTJ1vQpU8IBvtZcmtGUJ+YPmFk4EJcUBO1AN3
-	hrOUWEJqtgrullJLnV7JJhIR0wqtbJmdJddu9VWxx1ysELziJd28AXkK9DzTHETtvwHF
-	RA3CsjydJk7sE0nZBhaayK4m+1PyyIzMUasEC81Z2mnhG5b2ZFkJpmubsaL0vQCB8xTu
-	S5Hr6ceCT+jh6HHqFy2nGDTZ/KolcQl0Gr1B9o/+iqFCG7zbu79TtOrwvgmumKZF5e/u
-	74XQ==
-Received: by 10.236.80.4 with SMTP id j4mr12453430yhe.120.1331239461137;
-	Thu, 08 Mar 2012 12:44:21 -0800 (PST)
-Received: from [10.0.1.54] (nc-184-4-33-105.dhcp.embarqhsd.net. [184.4.33.105])
-	by mx.google.com with ESMTPS id r7sm7667548yhm.9.2012.03.08.12.44.19
-	(version=SSLv3 cipher=OTHER); Thu, 08 Mar 2012 12:44:20 -0800 (PST)
-Message-ID: <4F591A23.3050908@gmail.com>
-Date: Thu, 08 Mar 2012 15:44:19 -0500
-From: jfabernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
+	h=date:from:to:cc:message-id:subject:x-mailer:mime-version
+	:content-type; bh=ginmqVB1z8yBgEzChG5g9D0tv0KKyoMSeaO4zFP2ocM=;
+	b=p0xuoYm1e0fCEH9TRjo4of3sHvYYbJs3uwDIpNtiNmi90/Lw74w7NuhbKCGXr89X9m
+	8oCIjOeiyENIKynyzoyBFv3TuJlIkx6HYNa0Kpdw4IXXIiuzF7GSNJvZJ4KZ6+JCog3p
+	kf8NRVTSnppwzh8S+pKcWYR8es7beE0r+gSYI0Be/cFoyfZvZAusRworLUJmLfsG+8al
+	OJGBSR3sY1XTWlm5V2sdxy1OEU37laAhd8Yme0zRLEPhCmAETHMbh+g65EtCcrW0+pvQ
+	AWljL8gkX+AMEV8owMeeNo1/h0sCX5Hgxa6uP7nll6yMtjUn3VSsbkYUVg8cI+89PYe8
+	2b1A==
+Received: by 10.42.152.134 with SMTP id i6mr7111637icw.27.1331241678334;
+	Thu, 08 Mar 2012 13:21:18 -0800 (PST)
+Received: from frey.local (ip68-110-79-242.ph.ph.cox.net. [68.110.79.242])
+	by mx.google.com with ESMTPS id k3sm15322138igq.1.2012.03.08.13.21.16
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 08 Mar 2012 13:21:17 -0800 (PST)
+Date: Thu, 8 Mar 2012 14:21:13 -0700
+From: Christopher Larson <kergoth@gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Message-ID: <675553289D4E4CA0AD44CCED1455F0C4@gmail.com>
+X-Mailer: sparrow 1.5 (build 1043.1)
 MIME-Version: 1.0
-To: Autif Khan <autif.mlist@gmail.com>
-References: <4F58D16C.8030309@gmail.com>
-	<CADzUK1K0BTWTm8kfto2SZGpv7Q6sSGcCKggCHXeaconFKR9xcg@mail.gmail.com>
-In-Reply-To: <CADzUK1K0BTWTm8kfto2SZGpv7Q6sSGcCKggCHXeaconFKR9xcg@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Adding test files to an image
+Subject: Mentor's Application Development Environment (ADE)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,131 +38,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Mar 2012 20:44:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 08 Mar 2012 21:21:18 -0000
+Content-Type: multipart/alternative; boundary="4f5922c9_579478fe_626"
+
+--4f5922c9_579478fe_626
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-On 03/08/2012 11:57 AM, Autif Khan wrote:
->> Suppose I want to build the meta-intel/meta-sugarbay image and also include
->> some video and audio files into the /home/root directory to facilitate
->> testing of the video and audio players.
->>
->> Can I include these files in a recipe somewhere?
-> I use the recipe at the end of this message to include whatever I
-> want. This recipe has to be added to the image - I have a custom
-> image, so it goes in there. I am sure a recipe can be added to
-> something in local.conf - I just do not know that variable. My guess
-> it is IMAGE_IMSTALL += "mypics".
->
-> Regardless ...
->
-> mypics-1.0.tar.gz contains a file called COPYING and its mds5um on the
-> 2nd line. It can be replaced with a license from common licenses
-> directory - but at the time when I wrote this recipe, I did not know
-> how to do that. Anything that goes in there ends up in
-> /home/root/mypics.
->
-> It can probably be tweaked to look better - I am sure SRC_URI line is
-> not perfect. But it seems to work between Edison to master
->
-> For larger files - like video worth 200MB or so, I just store them on
-> a hard disk and mount manually on /media/hdd or where-ever. Not that
-> it wont work in this recipe, just that it would take longer to build
-> the image etc.
->
-> All the best. Hopefully, this will get you started in the right direction.
->
-> LICENSE = "MyLic"
-> LIC_FILES_CHKSUM = "file://COPYING;md5=697172b05e4bff0a2421579697ba5653"
->
-> MY_DESTINATION = "/home/root/mypics"
->
-> SRC_URI = "file://mypics-1.0/mypics-1.0.tar.gz"
->
-> do_install_append() {
->          install -d ${D}${MY_DESTINATION}
->          install -m 0644  ${S}/* ${D}${MY_DESTINATION}
-> }
->
-> PR = "r0"
->
-> FILES_${PN} += "${MY_DESTINATION}/*"
-I have some issues that seem to be related to where everything gets 
-unpacked and where it thinks it needs to install from.
+Greetings folks,
 
-Below is my recipe file name "myvideos_1.0.bb"
+I'm emailing to ascertain the potential interest in a piece of functionality Mentor has been including in our MEL product, and see if it'd be something either we could push up under the Yocto umbrella, or potentially reimplemented in concert with upstream folk to better meet folks needs.
 
-DESCRIPTION = "my video test files"
-SECTION = "examples"
-LICENSE = "CLOSED"
+This feature is a means of distribution of sysroot content (libraries, headers, potentially host scripts and binaries) from the person doing the bitbake builds to a potential application developer using eclipse. This is a different approach than that taken by the ADT, as this doesn't require a poky development environment, so is potentially more useful for application developers.
 
-MY_DESTINATION = "/home/root/myvideos"
+In concept it's quite simple. We construct an eclipse P2 IU (installable unit) and binary artifact for every binary package we emit, and build a P2 repository with those. This repository can be added to eclipse, and you can pick and choose any of the packages we emitted, including -dev, -dbg content and it installs it into a sysroot relative to the eclipse install directory, where you could then point your application project. It's really not unlike adding a new package management format, as that's what P2 really is, a package management / content distribution system. I think it provides a fair bit of value, but I'd like to get the opinions of others on this.
 
-SRC_URI = "file://myvideos_1.0/myvideos-1.0.tar.gz"
+The current implementation has a python script which converts an ipk package repository into a p2 repository. I intend to move toward a package_p2.bbclass type approach, emitting xml snippets for each along with the artifact as we go, and then have the feed construction reassemble the component metadata into the appropriate artifact and IU xml files, which would more closely mirror the way our other package management formats behave.
 
-do_install_append() {
-         install -d ${D}${MY_DESTINATION}
-         install -m 0644  ${S}/* ${D}${MY_DESTINATION}
-}
-
-PR = "r0"
-
-FILES_${PN} += "${MY_DESTINATION}/*"
+Thoughts?
+-- 
+Christopher Larson
 
 
-I have the myvideo-1.0.tar.gz file in the myvideos_1.0 directory, same 
-level as the recipe in a directory call myvideos.
-
-The error I'm getting is :
-Log data follows:
-| ERROR: Function failed: do_install (see 
-/build/sugarbay-master/tmp/work/x86_64-poky-linux/myvideos-1.0-r0/temp/log.do_install.9051 
-for further information)
-| install: cannot stat 
-`/build/sugarbay-master/tmp/work/x86_64-poky-linux/myvideos-1.0-r0/myvideos-1.0/*': 
-No such file or directory
-NOTE: package myvideos-1.0-r0: task do_install: Failed
-ERROR: Task 2 
-(/home/jim/poky/meta-jfa/recipes-jfa/myvideos/myvideos_1.0.bb, 
-do_install) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 651 tasks of which 644 didn't need to be 
-rerun and 1 failed.
+--4f5922c9_579478fe_626
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
 
-The tar.gz is getting unpacked in the 
-..tmp/work/x86_64-poky-linux/myvideos-1.0-r0 directory per the unpack 
-log file below:
+                <div>Greetings folks,</div><div><br></div><div>I'm emaili=
+ng to ascertain the potential interest in a piece of functionality Mentor=
+ has been including in our MEL product, and see if it'd be something eith=
+er we could push up under the Yocto umbrella, or potentially reimplemente=
+d in concert with upstream folk to better meet folks needs.</div><div><br=
+></div><div>This feature is a means of distribution of sysroot content (l=
+ibraries, headers, potentially host scripts and binaries) from the person=
+ doing the bitbake builds to a potential application developer using ecli=
+pse. This is a different approach than that taken by the ADT, as this doe=
+sn't require a poky development environment, so is potentially more usefu=
+l for application developers.</div><div><br></div><div>In concept it's qu=
+ite simple. We construct an eclipse P2 IU (installable unit) and binary a=
+rtifact for every binary package we emit, and build a P2 repository with =
+those. This repository can be added to eclipse, and you can pick and choo=
+se any of the packages we emitted, including -dev, -dbg content and it in=
+stalls it into a sysroot relative to the eclipse install directory, where=
+ you could then point your application project. It's really not unlike ad=
+ding a new package management format, as that's what P2 really is, a pack=
+age management / content distribution system. I think it provides a fair =
+bit of value, but I'd like to get the opinions of others on this.</div><d=
+iv><br></div><div>The current implementation has a python script which co=
+nverts an ipk package repository into a p2 repository. I intend to move t=
+oward a package=5Fp2.bbclass type approach, emitting xml snippets for eac=
+h along with the artifact as we go, and then have the feed construction r=
+eassemble the component metadata into the appropriate artifact and IU xml=
+ files, which would more closely mirror the way our other package managem=
+ent formats behave.</div><div><br></div><div>Thoughts=3F</div><div><div>-=
+-&nbsp;</div><div>Christopher Larson</div></div>
+            
 
-NOTE: Unpacking 
-/home/jim/poky/meta-jfa/recipes-jfa/myvideos/myvideos_1.0/myvideos-1.0.tar.gz 
-to /build/sugarbay-master/tmp/work/x86_64-poky-linux/myvideos-1.0-r0/
-
-The critical parts of the run.do_install is below:
-
-do_install() {
-     base_do_install
-         install -d 
-/build/sugarbay-master/tmp/work/x86_64-poky-linux/myvideos-1.0-r0/image/home/root/myvideos
-         install -m 0644  
-/build/sugarbay-master/tmp/work/x86_64-poky-linux/myvideos-1.0-r0/myvideos-1.0/* 
-/build/sugarbay-master/tmp/work/x86_64-poky-linux/myvideos-1.0-r0/image/home/root/myvideos
-
-}
-
-base_do_install() {
-     :
-
-}
-
-cd 
-/build/sugarbay-master/tmp/work/x86_64-poky-linux/myvideos-1.0-r0/myvideos-1.0
-do_install
-
--------------------------
-So it looks like it unpacks it one place, but is looking to install from 
-somewhere else. I'm just not sure how all the S and D variables are set 
-and what they do.
-
-Jim A
-
-
+--4f5922c9_579478fe_626--
