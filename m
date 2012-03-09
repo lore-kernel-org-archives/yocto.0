@@ -1,34 +1,34 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B43C7E013A7
-	for <yocto@yoctoproject.org>; Fri,  9 Mar 2012 08:45:47 -0800 (PST)
-Received: by lagu2 with SMTP id u2so2590033lag.35
-	for <yocto@yoctoproject.org>; Fri, 09 Mar 2012 08:45:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=8kNZqK5/8uiGIc6Kdx62QVCvsVZziK8LpUFjYSESvWQ=;
-	b=A/0hSXSUOlK2CaifEG/Nm/9kA6ac+6B5wMh1pqLtuzXGH2c17u/fXhLU4p+6HH8nKJ
-	jgzOSEaCOUDcGrvcWiew3tgR16tQ6UTIAjPEYeqA7qWRVtiEURTE/tuKQGTcNjArgmzB
-	i99qtTfRTAXH9AMgwijOFCezkz5JBcybItautKKQw8GdzLDh396CAVlfUVqDBkUUhnkz
-	kh+l3nlgzVH8GxvCCttGVw81kJCkNumMvTRclt15O9YtT6UQtvDMKwaNP6nxrDzAk/wq
-	/YmlyvYPrMag8pIZuC/4yvPbgkz8x3RjVOYBjhRot8b+dssOG3WoabzsenefHIH1EVDg
-	hfBA==
-Received: by 10.112.29.200 with SMTP id m8mr1080269lbh.44.1331311546544; Fri,
-	09 Mar 2012 08:45:46 -0800 (PST)
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBB83E013A7
+	for <yocto@yoctoproject.org>; Fri,  9 Mar 2012 08:56:58 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1S637h-0005rq-Uw; Fri, 09 Mar 2012 11:56:58 -0500
+Date: Fri, 9 Mar 2012 11:56:52 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Rudolf Streif <rstreif@linuxfoundation.org>
+In-Reply-To: <CA+gsK-rP0ZFZuaoF5AgcmXuijAzjTjDRS4A-DZ_e2xMd-tVgWA@mail.gmail.com>
+Message-ID: <alpine.DEB.2.02.1203091156090.28222@oneiric>
+References: <alpine.DEB.2.02.1203090547080.16743@oneiric>
+	<CA+gsK-rP0ZFZuaoF5AgcmXuijAzjTjDRS4A-DZ_e2xMd-tVgWA@mail.gmail.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.152.27.109 with HTTP; Fri, 9 Mar 2012 08:45:16 -0800 (PST)
-In-Reply-To: <4F5A257D.3000508@linux.intel.com>
-References: <4F5A1F48.4040601@linux.intel.com>
-	<CAMKF1sp+rEg4CRbRjyRTOtHaFLnxEKpqk++F5pE1xei-Tejnaw@mail.gmail.com>
-	<4F5A257D.3000508@linux.intel.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 9 Mar 2012 08:45:16 -0800
-Message-ID: <CAMKF1sqcWquNrzz-1Q5bdYx7G9M7y-GqQZgpuA1-0RygSyWSRw@mail.gmail.com>
-To: John Toomey <john.toomey@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: issue building iputils with uclibc
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: contradictory explanations of IMAGE_INSTALL in yocto manuals
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,14 +40,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Mar 2012 16:45:48 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 09 Mar 2012 16:56:59 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Fri, Mar 9, 2012 at 7:45 AM, John Toomey <john.toomey@linux.intel.com> wrote:
->
-> Anything else I can try?
->
+On Fri, 9 Mar 2012, Rudolf Streif wrote:
 
-Do you have UCLIBC_HAS_RESOLVER_SUPPORT=y
-in uclibc .config ?
+> I tried the versions _append and += as well as _prepend and =+ with
+> the IMAGE_INSTALL and other variables. So far I have not run into
+> any issues where one would behave differently from the other. The
+> only thing you have to remember with the _append and _prepend
+> versions is that you have to include a space at the beginning for
+> _append and at the end for _prepend. Although I have found that not
+> always to be consistent either. However, an additional space does
+> not hurt.
+
+  well, as i mentioned, the manual suggests quite strongly that there
+is a fundamental difference.  i'd just like to understand clearly what
+that is.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
