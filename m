@@ -1,31 +1,20 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 831EFE0030B
-	for <yocto@yoctoproject.org>; Fri,  9 Mar 2012 02:51:39 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S5xQA-00078f-Pt
-	for yocto@yoctoproject.org; Fri, 09 Mar 2012 05:51:38 -0500
-Date: Fri, 9 Mar 2012 05:51:32 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1203090547080.16743@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <David.Nystrom@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 9936DE00596
+	for <yocto@yoctoproject.org>; Fri,  9 Mar 2012 04:19:48 -0800 (PST)
+Received: from [172.16.140.132] (172.16.140.132) by smtp.enea.com
+	(172.21.1.209) with Microsoft SMTP Server id 14.2.247.3; Fri, 9 Mar 2012
+	13:19:46 +0100
+Message-ID: <4F59F59F.4040807@enea.com>
+Date: Fri, 9 Mar 2012 13:20:47 +0100
+From: =?UTF-8?B?RGF2aWQgTnlzdHLDtm0=?= <david.nystrom@enea.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:9.0) Gecko/20111229 Thunderbird/9.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: contradictory explanations of IMAGE_INSTALL in yocto manuals
+To: "yocto >> \"yocto@yoctoproject.org\"" <yocto@yoctoproject.org>,
+	"Stenberg, Daniel" <Daniel.Stenberg@enea.com>
+X-Originating-IP: [172.16.140.132]
+Subject: yocto and LTSI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,43 +26,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Mar 2012 10:51:39 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 09 Mar 2012 12:19:49 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+Hi All,
+
+Whats yoctos take on LTSI ?
+
+http://git.linuxfoundation.org/?p=3Dltsi-kernel.git;a=3Dsummary
+http://lwn.net/Articles/484337/
+
+I've noticed that LTT-ng and other kernel patches are independently=20
+ported and maintained by the yocto project.
+Are there any plans for yocto to have ltsi-kernel patches as upstream ?
+
+Best Regards,
+David Nystr=C3=B6m
 
 
-  (i posted something regarding this on the oe-core list, but i wanted
-to post here as well with specific examples from the yocto manuals.)
 
-  from the yocto dev manual, section 4.3.1:
-
-"The other method for creating a custom image is to modify an existing
-image. For example, if a developer wants to add strace into the
-core-image-sato image, they can use the following recipe:
-
-     require core-image-sato.bb
-
-     IMAGE_INSTALL += "strace"
-
-  however, here's the discussion of IMAGE_INSTALL in the poky ref
-manual in the variables glossary:
-
-"Using IMAGE_INSTALL with the += operator from the /conf/local.conf
-file or from within an image recipe is not recommended as it can cause
-ordering issues."
-
-... and that explanation goes on to recommend using
-IMAGE_INSTALL_append instead.  that inconsistency should be cleared
-up.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
