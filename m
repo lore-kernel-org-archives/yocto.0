@@ -1,22 +1,25 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 498BEE013C9
-	for <yocto@yoctoproject.org>; Fri,  9 Mar 2012 11:05:10 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 09 Mar 2012 11:05:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="119498374"
-Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.67])
-	by orsmga002.jf.intel.com with ESMTP; 09 Mar 2012 11:05:08 -0800
-From: kishore.k.bodke@intel.com
-To: yocto@yoctoproject.org,
-	bruce.ashfield@windriver.com
-Date: Fri,  9 Mar 2012 11:03:56 -0800
-Message-Id: <bb2796f28ceaa4b143213b92606a5bab4313add4.1331319522.git.kishore.k.bodke@intel.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <cover.1331319522.git.kishore.k.bodke@intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDCACE013C3
+	for <yocto@yoctoproject.org>; Fri,  9 Mar 2012 11:12:00 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q29JBxFp007229
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 9 Mar 2012 11:12:00 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 9 Mar 2012 11:11:59 -0800
+Message-ID: <4F5A55FD.1010604@windriver.com>
+Date: Fri, 9 Mar 2012 14:11:57 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
+MIME-Version: 1.0
+To: <kishore.k.bodke@intel.com>
 References: <cover.1331319522.git.kishore.k.bodke@intel.com>
-Subject: [KERNEL] [PATCH 1/1] Add new pvr patches.
+In-Reply-To: <cover.1331319522.git.kishore.k.bodke@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [KERNEL] [PATCH 0/1] Additional pvr patches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,59 +31,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Mar 2012 19:05:10 -0000
+X-List-Received-Date: Fri, 09 Mar 2012 19:12:00 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+On 12-03-09 02:03 PM, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke<kishore.k.bodke@intel.com>
+>
+>
+> Hi,
+>
+> These addtional patches enable Cedarview hdmi and acpi.
+> Please pull thme to the yocto/pvr branch in linux-yocto-3.0 tree.
 
-Additional pvr patches related to hdmi and acpi.
+Looks fine. will Merge it shortly and send a confirmation.
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
----
- drivers/acpi/video.c       |    2 --
- sound/pci/hda/patch_hdmi.c |    2 ++
- 2 files changed, 2 insertions(+), 2 deletions(-)
+Bruce
 
-diff --git a/drivers/acpi/video.c b/drivers/acpi/video.c
-index db39e9e..47a98ff 100644
---- a/drivers/acpi/video.c
-+++ b/drivers/acpi/video.c
-@@ -1732,7 +1732,6 @@ static int acpi_video_bus_remove(struct acpi_device *device, int type)
- 
- static int __init intel_opregion_present(void)
- {
--#if defined(CONFIG_DRM_I915) || defined(CONFIG_DRM_I915_MODULE)
- 	struct pci_dev *dev = NULL;
- 	u32 address;
- 
-@@ -1746,7 +1745,6 @@ static int __init intel_opregion_present(void)
- 			continue;
- 		return 1;
- 	}
--#endif
- 	return 0;
- }
- 
-diff --git a/sound/pci/hda/patch_hdmi.c b/sound/pci/hda/patch_hdmi.c
-index bd0ae69..1b05ed1 100644
---- a/sound/pci/hda/patch_hdmi.c
-+++ b/sound/pci/hda/patch_hdmi.c
-@@ -1671,6 +1671,7 @@ static const struct hda_codec_preset snd_hda_preset_hdmi[] = {
- { .id = 0x80862805, .name = "CougarPoint HDMI",	.patch = patch_generic_hdmi },
- { .id = 0x80862806, .name = "PantherPoint HDMI", .patch = patch_generic_hdmi },
- { .id = 0x808629fb, .name = "Crestline HDMI",	.patch = patch_generic_hdmi },
-+{ .id = 0x80862880, .name = "CedarTrail HDMI", .patch = patch_generic_hdmi },
- {} /* terminator */
- };
- 
-@@ -1717,6 +1718,7 @@ MODULE_ALIAS("snd-hda-codec-id:80862804");
- MODULE_ALIAS("snd-hda-codec-id:80862805");
- MODULE_ALIAS("snd-hda-codec-id:80862806");
- MODULE_ALIAS("snd-hda-codec-id:808629fb");
-+MODULE_ALIAS("snd-hda-codec-id:80862880");
- 
- MODULE_LICENSE("GPL");
- MODULE_DESCRIPTION("HDMI HD-audio codec");
--- 
-1.7.5.4
+>
+> Thanks
+> Kishore.
+>
+>
+> The following changes since commit 3604d007243d3db5fea8704f78a3608862e592f9:
+>
+>    yocto/pvr: integrate pvr support (2012-03-02 16:34:43 -0500)
+>
+> are available in the git repository at:
+>    git://git.pokylinux.org/linux-yocto-2.6.37-contrib bodke/new-pvr-patch
+>    http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=bodke/new-pvr-patch
+>
+> Kishore Bodke (1):
+>    Add new pvr patches.     Additional pvr patches related to hdmi and
+>      acpi.
+>
+>   drivers/acpi/video.c       |    2 --
+>   sound/pci/hda/patch_hdmi.c |    2 ++
+>   2 files changed, 2 insertions(+), 2 deletions(-)
+>
 
 
