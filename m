@@ -1,19 +1,19 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19BADE0030B
-	for <yocto@yoctoproject.org>; Fri,  9 Mar 2012 02:01:01 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 831EFE0030B
+	for <yocto@yoctoproject.org>; Fri,  9 Mar 2012 02:51:39 -0800 (PST)
 Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
 	([99.241.91.63] helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
 	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S5wd9-0004xb-TU
-	for yocto@yoctoproject.org; Fri, 09 Mar 2012 05:01:00 -0500
-Date: Fri, 9 Mar 2012 05:00:54 -0500 (EST)
+	id 1S5xQA-00078f-Pt
+	for yocto@yoctoproject.org; Fri, 09 Mar 2012 05:51:38 -0500
+Date: Fri, 9 Mar 2012 05:51:32 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1203090456560.15158@oneiric>
+Message-ID: <alpine.DEB.2.02.1203090547080.16743@oneiric>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -25,7 +25,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: current poky ref manual doesn't document some top level yocto entries
+Subject: contradictory explanations of IMAGE_INSTALL in yocto manuals
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,19 +37,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Mar 2012 10:01:01 -0000
+X-List-Received-Date: Fri, 09 Mar 2012 10:51:39 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-  currently, the yocto/poky ref manual, Appendix A.1, "Top level core
-components", doesn't mention the entries meta-yocto or meta-hob.  it
-also lists the meta-rt layer, which has been moved to oe-core.
+  (i posted something regarding this on the oe-core list, but i wanted
+to post here as well with specific examples from the yocto manuals.)
 
-  i also don't think it should list "build", as that's a generated
-artifact and is documented adequately elsewhere.
+  from the yocto dev manual, section 4.3.1:
 
-  in any event, the ref manual should be updated to reflect the
-current yocto structure.
+"The other method for creating a custom image is to modify an existing
+image. For example, if a developer wants to add strace into the
+core-image-sato image, they can use the following recipe:
+
+     require core-image-sato.bb
+
+     IMAGE_INSTALL += "strace"
+
+  however, here's the discussion of IMAGE_INSTALL in the poky ref
+manual in the variables glossary:
+
+"Using IMAGE_INSTALL with the += operator from the /conf/local.conf
+file or from within an image recipe is not recommended as it can cause
+ordering issues."
+
+... and that explanation goes on to recommend using
+IMAGE_INSTALL_append instead.  that inconsistency should be cleared
+up.
 
 rday
 
