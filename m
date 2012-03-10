@@ -1,34 +1,31 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D9D6E013C9
-	for <yocto@yoctoproject.org>; Fri,  9 Mar 2012 15:33:35 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 09 Mar 2012 15:33:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="75767535"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by AZSMGA002.ch.intel.com with ESMTP; 09 Mar 2012 15:33:25 -0800
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 9 Mar 2012 15:33:13 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.188]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.234]) with mapi id
-	14.01.0355.002; Fri, 9 Mar 2012 15:33:13 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Request for Yocto Project 1.2 release Beta Program Users &
-	Yocto T-Shirt
-Thread-Index: AQHM/kz+dRUggZC9TkSleuQ8WF9n2A==
-Date: Fri, 9 Mar 2012 23:33:13 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A3D09DBA0@ORSMSX101.amr.corp.intel.com>
-References: <90741FE9B50D654690EB940EDB456C8E06A146@SHSMSX101.ccr.corp.intel.com>
-In-Reply-To: <90741FE9B50D654690EB940EDB456C8E06A146@SHSMSX101.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 082FEE013C9
+	for <yocto@yoctoproject.org>; Sat, 10 Mar 2012 01:40:23 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1S6Imk-0004Si-Iy
+	for yocto@yoctoproject.org; Sat, 10 Mar 2012 04:40:22 -0500
+Date: Sat, 10 Mar 2012 04:40:15 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1203100438340.24798@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Subject: Request for Yocto Project 1.2 release Beta Program Users & Yocto T-Shirt
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: is yocto based on oe-core *as-is*?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,31 +37,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Mar 2012 23:33:35 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 10 Mar 2012 09:40:24 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Hi all,=20
 
-It's that time again. We are starting the Beta program for Yocto Project 1.=
-2 release. This release focuses on usability of the Yocto Project. HOB2 is =
-the second version of our Human Oriented Builder (GUI based), which will he=
-lp developers build customized Linux image in a much more intuitive and smo=
-other way. Build appliance will help users on Windows to get started with Y=
-octo Project quickly. There are also many other features such as multi-lib =
-improvement, error handling improvement, BSP tools, etc.=20
+  while i'm working my thru the docs, i want to verify that yocto is
+built on top of oe-core straight from the oe-core repo, is that
+correct?  as in, yocto doesn't make any yocto-specific mods to the
+fundamental, lower-level OE core layers, does it?  it simply adds
+layers on top, right?
 
-Please volunteer or send me the names who you think should be a good candid=
-ate for our Beta release users. Anyone who is interested in Yocto Project a=
-nd/or has some technical background in embedded Linux area should be just f=
-ine. And this time, we will send our Beta users some Yocto T-Shirts and I'm=
- sure you will look more attractive in them :)
+rday
 
-If you do want to volunteer or have someone in mind, please send me the nam=
-es sometime next week. Thank you for your support and we really appreciate =
-it!
+-- 
 
-Thanks,
-Song
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
