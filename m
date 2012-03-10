@@ -1,31 +1,27 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4846E013C9
-	for <yocto@yoctoproject.org>; Sat, 10 Mar 2012 02:35:49 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S6JeO-0006ho-P5
-	for yocto@yoctoproject.org; Sat, 10 Mar 2012 05:35:48 -0500
-Date: Sat, 10 Mar 2012 05:35:43 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1203100523020.26289@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C10EAE013C9
+	for <yocto@yoctoproject.org>; Sat, 10 Mar 2012 02:52:37 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 1B943F812D0; Sat, 10 Mar 2012 03:52:36 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id A7901F81257;
+	Sat, 10 Mar 2012 03:52:34 -0700 (MST)
+Message-ID: <4F5B3272.2010607@mlbassoc.com>
+Date: Sat, 10 Mar 2012 03:52:34 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: how to set up PREMIRRORS_prepend to avoid constant git clones?
+To: yocto@yoctoproject.org
+References: <alpine.DEB.2.02.1203100523020.26289@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1203100523020.26289@oneiric>
+Subject: Re: how to set up PREMIRRORS_prepend to avoid constant git clones?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,64 +33,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 10 Mar 2012 10:35:50 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Sat, 10 Mar 2012 10:52:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 2012-03-10 03:35, Robert P. J. Day wrote:
+>
+>    over the years, i've built up a sizable collection of source
+> tarballs for use in various projects -- top-level directory called
+> "~/dl", about 5G in size with lots and lots of .tgz and .bz2 files and
+> so on, and i'd like to confirm the best way to take advantage of all
+> that source whenever i configure and build a yocto project.
+>
+>    based on my reading, whenever i create a new project, i immediately
+> add the following to the bottom of its local.conf file:
+>
+> PREMIRRORS_prepend = "\
+> git://.*/.* file:///home/rpjday/dl/ \n \
+> svn://.*/.* file:///home/rpjday/dl/ \n \
+> cvs://.*/.* file:///home/rpjday/dl/ \n \
+> ftp://.*/.* file:///home/rpjday/dl/ \n \
+> http://.*/.* file:///home/rpjday/dl/ \n \
+> https://.*/.* file:///home/rpjday/dl/ \n"
+>
+> and that certainly makes a massive difference -- whenever the fetching
+> starts, matching tarballs will be located in my "dl" directory, and
+> the project's downloads directory will be populated with symlinks to
+> the actual tarballs, as in:
+>
+>    vala-0.14.2.tar.xz ->  /home/rpjday/dl/vala-0.14.2.tar.xz
+>
+> and after the download, i sneak a peek at whatever newer tarballs
+> needed to be downloaded, and quietly copy them over to "dl" to avoid
+> ever downloading them again, and that's worked well so far.  so, the
+> questions:
+>
+> 1) does this sound reasonable?  i know about using DL_DIR and perhaps
+> sharing that across projects, but i rather like the idea of an
+> application-agnostic repository of straight tarballs and zip files
+> that any build system is allowed to pilfer from (especially since i
+> can make it read-only).
+>
+> 2) am i missing any fetch protocols from that list?
+>
+> 3) how do i set it up to avoid repeated git clones?
+>
+>    it seems that, while i can avoid fetching simple tarballs, i still
+> end up doing the same "git clone" operations over and over.  am i just
+> missing something obvious?
 
-  over the years, i've built up a sizable collection of source
-tarballs for use in various projects -- top-level directory called
-"~/dl", about 5G in size with lots and lots of .tgz and .bz2 files and
-so on, and i'd like to confirm the best way to take advantage of all
-that source whenever i configure and build a yocto project.
+All you really need are these lines:
+   SOURCE_MIRROR_URL ?= "file://${COREBASE}/sources/"
+   INHERIT += "own-mirrors"
+Adjust the SOURCE_MIRROR_URL to wherever you want the files.  I also always add
+   BB_GENERATE_MIRROR_TARBALLS = "1"
+This will let the fetcher make a git2_XXX tarball, once the repo has been cloned.
 
-  based on my reading, whenever i create a new project, i immediately
-add the following to the bottom of its local.conf file:
+My understanding is that the git (and other SCM) fetcher works like this:
+   * If there is a git2_XXX tar file in the DL_DIR (or mirror), unpack it
+     into ${BUILD}/downloads/git2
+   * Check to see if the desired ${SRCREV} is present.  If not, do a 'git pull'
+     to update the local clone and then rebuild the git2_XXX tarball.
+This way, you only have to clone once - just copy any generated tarballs back
+to your source mirror.
 
-PREMIRRORS_prepend = "\
-git://.*/.* file:///home/rpjday/dl/ \n \
-svn://.*/.* file:///home/rpjday/dl/ \n \
-cvs://.*/.* file:///home/rpjday/dl/ \n \
-ftp://.*/.* file:///home/rpjday/dl/ \n \
-http://.*/.* file:///home/rpjday/dl/ \n \
-https://.*/.* file:///home/rpjday/dl/ \n"
-
-and that certainly makes a massive difference -- whenever the fetching
-starts, matching tarballs will be located in my "dl" directory, and
-the project's downloads directory will be populated with symlinks to
-the actual tarballs, as in:
-
-  vala-0.14.2.tar.xz -> /home/rpjday/dl/vala-0.14.2.tar.xz
-
-and after the download, i sneak a peek at whatever newer tarballs
-needed to be downloaded, and quietly copy them over to "dl" to avoid
-ever downloading them again, and that's worked well so far.  so, the
-questions:
-
-1) does this sound reasonable?  i know about using DL_DIR and perhaps
-sharing that across projects, but i rather like the idea of an
-application-agnostic repository of straight tarballs and zip files
-that any build system is allowed to pilfer from (especially since i
-can make it read-only).
-
-2) am i missing any fetch protocols from that list?
-
-3) how do i set it up to avoid repeated git clones?
-
-  it seems that, while i can avoid fetching simple tarballs, i still
-end up doing the same "git clone" operations over and over.  am i just
-missing something obvious?
-
-rday
+Finally, if you set
+   BB_NO_NETWORK = "1"
+the build will fail if bitbake *ever* has to go to the network, i.e. not find
+the desired files in the source mirror or DL_DIR.  This is a great way to insure
+that you've got what you need locally.  I use this all the time to make sure I
+have a fully populated local cache of sources.
 
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
