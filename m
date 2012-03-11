@@ -1,35 +1,25 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59840E013A3
-	for <yocto@yoctoproject.org>; Fri,  9 Mar 2012 08:39:17 -0800 (PST)
-Received: by dadp13 with SMTP id p13so1919122dad.35
-	for <yocto@yoctoproject.org>; Fri, 09 Mar 2012 08:39:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:x-gm-message-state;
-	bh=kucB889Z3jAxRpPpBm4cLkQ+ZwCiRrl+xP4GlDAGtz4=;
-	b=NAecJK3NGGqgLbuZ6J74g0YwN959UJzkRsbXBX5RILAfZGWNE8NBuF15RtG30YC+nN
-	VGsfZ4jCUQC8wpnh862hVtxCEJWj7iCRNMy9KsABF1bwlEUJwv+gqNjZmtTqNXkPJshB
-	WXFZI/yq64chbfV0+pomxUBJRhKa/JOKXUimBk3opqJ2HRfTzmGB2wGys6fXbjxIH8VK
-	i4ft9bC3ZjPekejJh7oDRWx3RmmGxKNyeL2HNNucHun9TUZVHoXPcwg4fj9vyVQQmG//
-	ghOdA4aozghJcipswBF9pIFIMDIr4qOK5mlpi9xzfPFyYCDYrSa77C51I74xDVMmCvV3
-	Vesw==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAC11E0030B
+	for <yocto@yoctoproject.org>; Sun, 11 Mar 2012 15:38:24 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 11 Mar 2012 15:38:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="137098437"
+Received: from unknown (HELO helios.localnet) ([10.252.123.150])
+	by fmsmga002.fm.intel.com with ESMTP; 11 Mar 2012 15:38:23 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Sun, 11 Mar 2012 22:38:13 +0000
+Message-ID: <1503814.Y6Q9bri6nF@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.1; i686; ; )
+In-Reply-To: <4F5C9E99.5010509@mlbassoc.com>
+References: <alpine.DEB.2.02.1203100438340.24798@oneiric>
+	<2830925.MktUsbZfsZ@helios> <4F5C9E99.5010509@mlbassoc.com>
 MIME-Version: 1.0
-Received: by 10.68.216.138 with SMTP id oq10mr4376676pbc.85.1331311157095;
-	Fri, 09 Mar 2012 08:39:17 -0800 (PST)
-Received: by 10.143.12.11 with HTTP; Fri, 9 Mar 2012 08:39:17 -0800 (PST)
-In-Reply-To: <alpine.DEB.2.02.1203090547080.16743@oneiric>
-References: <alpine.DEB.2.02.1203090547080.16743@oneiric>
-Date: Fri, 9 Mar 2012 08:39:17 -0800
-Message-ID: <CA+gsK-rP0ZFZuaoF5AgcmXuijAzjTjDRS4A-DZ_e2xMd-tVgWA@mail.gmail.com>
-From: Rudolf Streif <rstreif@linuxfoundation.org>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-Gm-Message-State: ALoCoQlSbG7ETQIR6Wr2+zJgQbyXWO0lLszn2Dq24QztkJu5WItczYldcpAfCGJ+jDH4v1Fbnpla
-X-Mailman-Approved-At: Sun, 11 Mar 2012 12:40:09 -0700
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: contradictory explanations of IMAGE_INSTALL in yocto manuals
+Cc: yocto@yoctoproject.org
+Subject: Re: is yocto based on oe-core *as-is*?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,33 +31,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Mar 2012 16:39:17 -0000
-Content-Type: multipart/alternative; boundary=047d7b2e090d9aab8504bad20890
+X-List-Received-Date: Sun, 11 Mar 2012 22:38:25 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---047d7b2e090d9aab8504bad20890
-Content-Type: text/plain; charset=ISO-8859-1
+On Sunday 11 March 2012 06:46:17 Gary Thomas wrote:
+> On 2012-03-11 06:33, Paul Eggleton wrote:
+> > This is correct, and you can verify it by doing a diff of the OE-Core
+> > meta/
+> > subdirectory against Poky's meta/ - the only difference is that Poky does
+> > not include the sample configs (it provides its own in meta-yocto).
+> 
+> Have you actually done such a comparison? 
 
-I tried the versions _append and += as well as _prepend and =+ with the
-IMAGE_INSTALL and other variables. So far I have not run into any issues
-where one would behave differently from the other. The only thing you have
-to remember with the _append and _prepend versions is that you have to
-include a space at the beginning for _append and at the end for _prepend.
-Although I have found that not always to be consistent either. However, an
-additional space does not hurt.
+Yes, I did so before sending the above message.
 
-RUdi
+> I just compared them like this:
+>    poky/yocto:
+>       commit 320558f494c618f53e0c773db3ea0109476e8359
+>       Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+>       Date:   Wed Feb 29 12:59:14 2012 +0000
+> 
+>    openembedded-core:
+>       commit 50dc8bfbac42b9a9b52a2f7d0568740c41790c13
+>       Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+>       Date:   Fri Mar 9 14:14:04 2012 +0800
+> 
+> These are the up-to-date master branches, as of 2012-03-11 12:40 GMT
 
---047d7b2e090d9aab8504bad20890
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+I don't think you'll find they are. Your poky branch is behind OE-Core by quite 
+a number of commits - in fact 320558f494c618f53e0c773db3ea0109476e8359 is 
+where the 1.2_M3 branch HEAD is currently, are you sure you aren't on that 
+branch instead of master?
 
-I tried the versions _append and +=3D as well as _prepend and =3D+ with the=
- IMAGE_INSTALL and other variables. So far I have not run into any issues w=
-here one would behave differently from the other. The only thing you have t=
-o remember with the _append and _prepend versions is that you have to inclu=
-de a space at the beginning for _append and at the end for _prepend. Althou=
-gh I have found that not always to be consistent either. However, an additi=
-onal space does not hurt.
-<div><br></div><div>RUdi</div>
+Cheers,
+Paul
 
---047d7b2e090d9aab8504bad20890--
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
