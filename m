@@ -1,34 +1,23 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CE20E00723
-	for <yocto@yoctoproject.org>; Sat, 10 Mar 2012 07:51:21 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id E80B3F8125D; Sat, 10 Mar 2012 08:51:20 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id C4550F811F3;
-	Sat, 10 Mar 2012 08:51:19 -0700 (MST)
-Message-ID: <4F5B7877.40202@mlbassoc.com>
-Date: Sat, 10 Mar 2012 08:51:19 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16DE0E00749
+	for <yocto@yoctoproject.org>; Sun, 11 Mar 2012 05:33:13 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 11 Mar 2012 05:33:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="136975799"
+Received: from unknown (HELO helios.localnet) ([10.252.123.147])
+	by fmsmga002.fm.intel.com with ESMTP; 11 Mar 2012 05:33:11 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, yocto@yoctoproject.org
+Date: Sun, 11 Mar 2012 12:33:09 +0000
+Message-ID: <2830925.MktUsbZfsZ@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.1; i686; ; )
+In-Reply-To: <alpine.DEB.2.02.1203100438340.24798@oneiric>
+References: <alpine.DEB.2.02.1203100438340.24798@oneiric>
 MIME-Version: 1.0
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-References: <alpine.DEB.2.02.1203100523020.26289@oneiric>
-	<4F5B3272.2010607@mlbassoc.com>
-	<alpine.DEB.2.02.1203100654540.29307@oneiric>
-	<4F5B6B44.7020409@mlbassoc.com>
-	<alpine.DEB.2.02.1203101025220.24607@oneiric>
-	<4F5B7492.8040908@mlbassoc.com>
-	<alpine.DEB.2.02.1203101045440.24548@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1203101045440.24548@oneiric>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: how to set up PREMIRRORS_prepend to avoid constant git clones?
+Subject: Re: is yocto based on oe-core *as-is*?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,87 +29,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 10 Mar 2012 15:51:21 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 11 Mar 2012 12:33:13 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 2012-03-10 08:46, Robert P. J. Day wrote:
-> On Sat, 10 Mar 2012, Gary Thomas wrote:
->
->> On 2012-03-10 08:29, Robert P. J. Day wrote:
->>> On Sat, 10 Mar 2012, Gary Thomas wrote:
->>>
->>>> On 2012-03-10 06:39, Robert P. J. Day wrote:
->>>
->>> ... snip ...
->>>
->>>>>      $ bitbake -c fetchall core-image-minimal
->>>>>
->>>>> and got something unexpected:
->>>>>
->>>>> NOTE: package bash-4.2-r1: task do_fetch: Started
->>>>> ERROR: Function failed: Network access disabled through BB_NO_NETWORK
->>>>> but access rquested with command /usr/bin/env wget -t 5 -nv
->>>>> --passive-ftp --no-check-certificate -P
->>>>> /home/rpjday/yocto/builds/beag2/downloads
->>>>> 'ftp://ftp.gnu.org/gnu/bash/bash-4.2-patches/bash42-001' (for url
->>>>> None)
->>>>> ERROR: Logfile of failure stored in:
->>>>> /home/rpjday/yocto/builds/beag2/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/bash-4.2-r1/temp/log.do_fetch.32479
->>>>> Log data follows:
->>>>> | DEBUG: Trying PREMIRRORS
->>>>> ... snip ...
->>>>>
->>>>>      i can clearly see the problem -- while i have the bash tarball
->>>>> itself in my own mirror, i don't have the patches to go with it, as
->>>>> defined in the recipes file:
->>>>>
->>>>> SRC_URI = "${GNU_MIRROR}/bash/${BPN}-${PV}.tar.gz;name=tarball \
->>>>>
->>>>> ${GNU_MIRROR}/bash/bash-4.2-patches/bash42-001;apply=yes;striplevel=0;name=patch001
->>>>> \
->>>>> ${GNU_MIRROR}/bash/bash-4.2-patches/bash42-002;apply=yes;striplevel=0;name=patch002
->>>>> \
->>>>> ${GNU_MIRROR}/bash/bash-4.2-patches/bash42-003;apply=yes;striplevel=0;name=patch003
->>>>> \
->>>>> ... etc etc ...
->>>>>
->>>>>      when i went looking for actual downloads in step 1, i just searched
->>>>> for sizable tarballs or zip files, it never occurred to me to check
->>>>> for patch files.  so i guess i just have to be more observant and
->>>>> check for patch files as well (or anything else a recipe might want to
->>>>> download).
->>>>>
->>>>>      so far, so good?
->>>>
->>>> I didn't check but this is often the recipe's fault.  It must specify
->>>> an exact git SRCREV, not a tag, for the NO_NETWORK to be successful.
->>>
->>>     i'm not sure what you're saying here.  the patches are simple files,
->>> nothing to do with git.  the bash source itself is properly being
->>> fetched from my mirror -- it's the numerous patch files i was unaware
->>> of that still require network access; that is, until i manually copied
->>> them over to my mirror directory, and that solved the problem.
->>>
->>>     i just had to notice that the bash recipe downloaded a number of
->>> patch files, then add them to my local mirror.
->>
->> Sorry, I misread.  Yes, you do need those patch files in your local mirror.
->> In fact, if you look at ${BUILD}/downloads, every _file_ (not symlink) that's
->> at the top level needs to be copied.  I manage this by running a script
->> like this:
->>    (cd downloads;find . -type f -maxdepth 1 | tar -cT - | tar -x -C ${DL_DIR})
->
->    but doesn't that pick up all the ".done" files as well?  doesn't
-> hurt, but certainly unnecessary.
+On Saturday 10 March 2012 04:40:15 Robert P. J. Day wrote:
+>   while i'm working my thru the docs, i want to verify that yocto is
+> built on top of oe-core straight from the oe-core repo, is that
+> correct?  as in, yocto doesn't make any yocto-specific mods to the
+> fundamental, lower-level OE core layers, does it?  it simply adds
+> layers on top, right?
 
-I said "something like" - add in "| grep -v .done" if you want to skip those.
-I actually use a more complex script as there are some things I simply never
-want to copy...
+This is correct, and you can verify it by doing a diff of the OE-Core meta/ 
+subdirectory against Poky's meta/ - the only difference is that Poky does not 
+include the sample configs (it provides its own in meta-yocto).
+
+It's also worth noting that Poky uses its own distro (policy) configuration via 
+meta-yocto, although this builds upon the default policy in OE-Core.
+
+Cheers,
+Paul
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
