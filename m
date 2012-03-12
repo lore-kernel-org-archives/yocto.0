@@ -1,22 +1,30 @@
-Return-Path: <dongxiao.xu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DDD5E0030B
-	for <yocto@yoctoproject.org>; Mon, 12 Mar 2012 01:46:27 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 12 Mar 2012 01:46:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="117657016"
-Received: from dongxiao-osel.sh.intel.com (HELO [10.239.36.11])
-	([10.239.36.11])
-	by azsmga001.ch.intel.com with ESMTP; 12 Mar 2012 01:46:26 -0700
-From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-Date: Mon, 12 Mar 2012 16:44:36 +0800
-Message-ID: <1331541876.25861.5.camel@dongxiao-osel>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Web Hob GUI design
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55E4FE0030B
+	for <yocto@yoctoproject.org>; Mon, 12 Mar 2012 03:25:31 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id B86D1F8126C; Mon, 12 Mar 2012 04:25:30 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 93B92F8123A;
+	Mon, 12 Mar 2012 04:25:29 -0600 (MDT)
+Message-ID: <4F5DCF19.5000200@mlbassoc.com>
+Date: Mon, 12 Mar 2012 04:25:29 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
+MIME-Version: 1.0
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <alpine.DEB.2.02.1203100438340.24798@oneiric>
+	<2830925.MktUsbZfsZ@helios> <4F5C9E99.5010509@mlbassoc.com>
+	<1503814.Y6Q9bri6nF@helios>
+In-Reply-To: <1503814.Y6Q9bri6nF@helios>
+Cc: yocto@yoctoproject.org
+Subject: Re: is yocto based on oe-core *as-is*?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,17 +36,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Mar 2012 08:46:27 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 12 Mar 2012 10:25:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi Belen,
+On 2012-03-11 16:38, Paul Eggleton wrote:
+> On Sunday 11 March 2012 06:46:17 Gary Thomas wrote:
+>> On 2012-03-11 06:33, Paul Eggleton wrote:
+>>> This is correct, and you can verify it by doing a diff of the OE-Core
+>>> meta/
+>>> subdirectory against Poky's meta/ - the only difference is that Poky does
+>>> not include the sample configs (it provides its own in meta-yocto).
+>>
+>> Have you actually done such a comparison?
+>
+> Yes, I did so before sending the above message.
+>
+>> I just compared them like this:
+>>     poky/yocto:
+>>        commit 320558f494c618f53e0c773db3ea0109476e8359
+>>        Author: Paul Eggleton<paul.eggleton@linux.intel.com>
+>>        Date:   Wed Feb 29 12:59:14 2012 +0000
+>>
+>>     openembedded-core:
+>>        commit 50dc8bfbac42b9a9b52a2f7d0568740c41790c13
+>>        Author: Richard Purdie<richard.purdie@linuxfoundation.org>
+>>        Date:   Fri Mar 9 14:14:04 2012 +0800
+>>
+>> These are the up-to-date master branches, as of 2012-03-11 12:40 GMT
+>
+> I don't think you'll find they are. Your poky branch is behind OE-Core by quite
+> a number of commits - in fact 320558f494c618f53e0c773db3ea0109476e8359 is
+> where the 1.2_M3 branch HEAD is currently, are you sure you aren't on that
+> branch instead of master?
 
-In the meantime of GTK Hob development, we are also moving forward on
-web hob development. One question is that, will the web hob GUI follow
-with GTK hob design? Or do we need a new design for web style?
+You're right, but I sure don't know how that happened!  I never have
+anything but master checked out, but somehow this time I did.  Sorry
+for the noise.
 
-Thanks,
-Dongxiao
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
