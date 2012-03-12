@@ -1,24 +1,28 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35BDBE01363
-	for <yocto@yoctoproject.org>; Mon, 12 Mar 2012 08:09:44 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 12 Mar 2012 08:09:44 -0700
+Return-Path: <john.toomey@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF475E01363
+	for <yocto@yoctoproject.org>; Mon, 12 Mar 2012 08:20:42 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 12 Mar 2012 08:20:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="137441551"
-Received: from unknown (HELO localhost) ([10.255.15.160])
-	by fmsmga002.fm.intel.com with ESMTP; 12 Mar 2012 08:09:43 -0700
-From: tom.zanussi@intel.com
-To: bruce.ashfield@windriver.com, dvhart@linux.intel.com,
-	yocto@yoctoproject.org
-Date: Mon, 12 Mar 2012 10:09:34 -0500
-Message-Id: <9a5790cb5203f0d0d7f5312aa7a247e7c6cd6739.1331564330.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <9665e930606d2c81579f74bb202aead2c2c19170.1331564330.git.tom.zanussi@intel.com>
-References: <9665e930606d2c81579f74bb202aead2c2c19170.1331564330.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1331564330.git.tom.zanussi@intel.com>
-References: <cover.1331564330.git.tom.zanussi@intel.com>
-Subject: [PATCH 3/3][KERNEL] yocto/emgd: linux 3.2-related build fixups
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="120186312"
+Received: from jtoomey-mobl9.ger.corp.intel.com (HELO [163.33.228.212])
+	([163.33.228.212])
+	by orsmga002.jf.intel.com with ESMTP; 12 Mar 2012 08:19:41 -0700
+Message-ID: <4F5E140C.40400@linux.intel.com>
+Date: Mon, 12 Mar 2012 15:19:40 +0000
+From: John Toomey <john.toomey@linux.intel.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:10.0.1) Gecko/20120208 Thunderbird/10.0.1
+MIME-Version: 1.0
+To: Khem Raj <raj.khem@gmail.com>
+References: <4F5A1F48.4040601@linux.intel.com>
+	<CAMKF1sp+rEg4CRbRjyRTOtHaFLnxEKpqk++F5pE1xei-Tejnaw@mail.gmail.com>
+	<4F5A257D.3000508@linux.intel.com>
+	<CAMKF1sqcWquNrzz-1Q5bdYx7G9M7y-GqQZgpuA1-0RygSyWSRw@mail.gmail.com>
+In-Reply-To: <CAMKF1sqcWquNrzz-1Q5bdYx7G9M7y-GqQZgpuA1-0RygSyWSRw@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: issue building iputils with uclibc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,57 +34,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Mar 2012 15:09:44 -0000
+X-List-Received-Date: Mon, 12 Mar 2012 15:20:42 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On 09/03/2012 16:45, Khem Raj wrote:
+> On Fri, Mar 9, 2012 at 7:45 AM, John Toomey<john.toomey@linux.intel.com>  wrote:
+>> Anything else I can try?
+>>
+> Do you have UCLIBC_HAS_RESOLVER_SUPPORT=y
+> in uclibc .config ?
+>
 
-Fix build errors caused by changes to kernel interfaces introduced by
-linux 3.2 such as:
+I dont think so, is there an easy way to check?
 
-error: 'THIS_MODULE' undeclared here (not in a function)
-
-due to a missing THIS_MODULE definition which can be found in linux/export.h.
-
-It also fixes a ream of errors like:
-
-error: expected ')' before string constant
-
-due to missing MODULE_PARM_DESC definition which can be found in
-linux/moduleparam.h, included by linux/module.h, needed also for
-MODULE_AUTHOR, etc.
-
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c   |    2 ++
- drivers/gpu/drm/emgd/emgd/drm/emgd_fbcon.c |    1 +
- 2 files changed, 3 insertions(+), 0 deletions(-)
-
-diff --git a/drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c b/drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c
-index 5a8f2e6..9ed2363 100644
---- a/drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c
-+++ b/drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c
-@@ -38,6 +38,8 @@
- #include <drm/drm_crtc_helper.h>
- #include <linux/version.h>
- #include <linux/device.h>
-+#include <linux/export.h>
-+#include <linux/module.h>
- #include <drm/drm_pciids.h>
- #include <intelpci.h>
- #include "drm_emgd_private.h"
-diff --git a/drivers/gpu/drm/emgd/emgd/drm/emgd_fbcon.c b/drivers/gpu/drm/emgd/emgd/drm/emgd_fbcon.c
-index 547caaa..edfe2c7 100644
---- a/drivers/gpu/drm/emgd/emgd/drm/emgd_fbcon.c
-+++ b/drivers/gpu/drm/emgd/emgd/drm/emgd_fbcon.c
-@@ -36,6 +36,7 @@
- #include <drmP.h>
- #include <drm_crtc_helper.h>
- #include <linux/vga_switcheroo.h>
-+#include <linux/export.h>
- 
- 
- #include "user_config.h"
--- 
-1.7.0.4
-
+How would I set it to try this?
 
