@@ -1,24 +1,31 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37224E011D1
-	for <yocto@yoctoproject.org>; Mon, 12 Mar 2012 10:56:59 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 12 Mar 2012 10:56:24 -0700
+Return-Path: <song.liu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2F54E01363
+	for <yocto@yoctoproject.org>; Mon, 12 Mar 2012 10:58:41 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 12 Mar 2012 10:58:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="116967982"
-Received: from unknown (HELO helios.localnet) ([10.252.123.166])
-	by orsmga001.jf.intel.com with ESMTP; 12 Mar 2012 10:55:23 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: =?ISO-8859-1?Q?Jo=E3o?= Henrique Freitas <joaohf@gmail.com>
-Date: Mon, 12 Mar 2012 17:55:22 +0000
-Message-ID: <3351192.6a7q7nAkMU@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.1; i686; ; )
-In-Reply-To: <CANFVK78iYKEwh=ypSX3cmo0AkY=aOrLGB=T3DttPugWsv-Ws0Q@mail.gmail.com>
-References: <CANFVK78iYKEwh=ypSX3cmo0AkY=aOrLGB=T3DttPugWsv-Ws0Q@mail.gmail.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="127923906"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by fmsmga001.fm.intel.com with ESMTP; 12 Mar 2012 10:58:41 -0700
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 12 Mar 2012 10:58:41 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.188]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.102]) with mapi id
+	14.01.0355.002; Mon, 12 Mar 2012 10:58:41 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project 1.2 M3 & 1.1.1 release readiness
+Thread-Index: Acz+RijAOl+cQtLBQta1LIWnwNaXngCM25KAAAAHouA=
+Date: Mon, 12 Mar 2012 17:58:40 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A3D09F895@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: custom image recipes
+Subject: Minutes: Yocto Project 1.2 M3 & 1.1.1 release readiness
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,96 +37,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Mar 2012 17:56:59 -0000
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 12 Mar 2012 17:58:42 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Sunday 11 March 2012 13:14:12 Jo=E3o Henrique Freitas wrote:
-> One of my custom recipes (via-image-st.bb) is to make a custom image
-> (adding some files). Example:
->=20
-> SRC_URI =3D " \
->         file://interfaces \
->         file://snmpd.conf \
->         file://snmp.conf \
->         file://syslog.conf \
->         file://ntpd \
->         file://syslog.lr \
->     "
->=20
-> inherit core-image
->=20
-> ROOTFS_POSTPROCESS_COMMAND_append =3D "remove_packaging_data_files ; =
-"
-> ROOTFS_POSTPROCESS_COMMAND_append =3D "setup_target_image ; "
->=20
-> setup_target_image() {
->     mkdir -p ${IMAGE_ROOTFS}/opt/sistema/conf
->     install -m 0644 ${WORKDIR}/interfaces
-> ${IMAGE_ROOTFS}/etc/network/interfaces
->=20
->     ...
->=20
-> }
->=20
-> When I run: bitbake via-image-st:
->=20
-> install: cannot stat
-> `/mnt/yocto/build/mst_1.2/tmp/work/qemux86-tp-linux/via-image-st-1.0-=
-r1/inte
-> rfaces': No such file or directory
-> NOTE: package via-image-st-1.0-r1: task do_rootfs: Failed
-> ERROR: Task 8
-> (/home/joaohf/jhf/tropico/projetos/yocto-1.1tropico/meta-tropico/meta=
--viast/
-> images/ via-image-st.bb, do_rootfs) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 3192 tasks of which 3190 didn't need t=
-o be
-> rerun and 1 failed.
->=20
-> Summary: 1 task failed:
->=20
-> /home/joaohf/jhf/tropico/projetos/yocto-1.1tropico/meta-tropico/meta-=
-viast/i
-> mages/ via-image-st.bb, do_rootfs
->=20
->=20
-> I think this commit
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/meta/classes/im=
-age.bbc
-> lass?id=3D6706c7bdd2de6e0e447d90062e74a718a8d31778the others task doe=
-sn't
-> perform.
+Attendees:
+Dave. Nitin, Beth, Jessica, Mark, Darren, Terrance, Richard, Saul, ScottR, =
+Denys, Josh, Matthew
+=A0
+M3 readiness - release criteria review (https://wiki.yoctoproject.org/wiki/=
+Yocto_Project_v1.2_Status#Milestone_3 ):
+=A0
+1. Functional completion: All P1s but 1145 and 1890 are completed. 1145 and=
+ 1890 have been pushed to M4 due to resource conflict with conferences and =
+their preparation. 1145 is about improve bitbake output messaging. 1890 is =
+about the web interface for build history analysis. They are both pushed to=
+ early M4. There are no features depending on them. The team agrees that th=
+ey can be left for M4. a significant part of P2/P3's are completed in M3 or=
+ close to complete. We also moved some of the P2/P3's to post 1.2. We are s=
+till reviewing the list, there will be more to be moved to post 1.2.
+2. No high bugs against M3. All high bugs are analyzed and they are not blo=
+ckers for M3 release. 2066 is a high bug without any fix now. But it does n=
+ot affect P1 features of M3 release. We have a plan and Saul will follow up=
+ to root cause it and have the fix in master.=20
+3. The full pass QA report looks good. We have some issues with the core bu=
+ild system but most of them have patches in master already.
+=A0
+2048: patches soon, marked for M4
+2050: Bruce/Nitin has a patch already, needs to be in master. Marked for M4
+2054: Patch in master
+1229: Patch in master
+2051: Patch in master
+2052: Patch in master
+=A0
+4. Distro tested with latest version and they all passed.
+5. There is no significant performance degradation.=20
+=A0
+2048: patches soon, marked for M4
+2050: Bruce/Nitin has a patch already, needs to be in master. Marked for M4
+2054: Patch in master
+1229: Patch in master
+2051: Patch in master
+2052: Patch in master
+=A0
+Decision: the team unanimously agreed to release M3 RC1 for M3. Beth will p=
+ack up the release and release note, it should be released sometime today.
+=A0
+1.1.1 point release:
+=A0
+We had a build and QA has given a full pass testing for it. Some issues are=
+ found, we have fixed significant ones and pulled the patches into the buil=
+d. QA has tested and verified those fixes. We still have some issues left b=
+ut the team agrees that they should not block the point release.
+=A0
+Decision: the team agrees to release the current build for the 1.1.1 point =
+release.
+=A0
+Next step:
+1. Beth will pack up the release.
+2. Josh will gather the known issues list and send to Beth.
+3. Scott Rifenbark will work with Beth to point the 1.1.1 web link to the r=
+ight place.
+4. Beth will then push and announce the release in the public mailing list.
 
-Indeed, this seems to no longer be supported. I think this is probably =
-a good
-idea because then there is less confusion as to where files come from.
 
-> The main question is: How I can create a recipe to customize some fil=
-es
-> inside of the image?
->=20
-> I need to have a recipe like base-files? (recipes-core/base-files/
-> base-files_3.0.14.bb)
+-----Original Appointment-----
+From: Liu, Song=20
+Sent: Friday, March 09, 2012 2:44 PM
+To: yocto@yoctoproject.org
+Cc: Mueller, Robert; 'Ravi Vompolu'; 'Anders Darander'; Barros Pena, Belen;=
+ Bodke, Kishore K; 'Bruce Ashfield'; 'Daniel Cauchy'; 'deVries, Alex'; 'Dix=
+on, Brad'; Dmytriyenko, Denys; Erway, Tracey M; Flanagan, Elizabeth; Hart, =
+Darren; 'Hatle, Mark'; 'Jeremy Puhlman'; Kooi, Koen; Kridner, Jason; Li, Su=
+sie; 'Lieu.Ta@windriver.com'; Lock, Joshua; 'McCombe, Kevin'; Moeller, Thor=
+sten; 'morvek@mvista.com'; Osier-mixon, Jeffrey; 'paul.anderson@windriver.c=
+om'; 'Polk, Jeffrey'; Purdie, Richard; 'Ranslam, Rob'; Rifenbark, Scott M; =
+Saxena, Rahul; Stewart, David C; Wang, Shane; Wold, Saul; Yu, Ke; Zanussi, =
+Tom; Zhang, Jessica; 'Hudson, Sean'; Arce Moreno, Abraham; morvek@mvista.co=
+m; Elizabeth Flanagan; Moses, Fred
+Subject: Yocto Project 1.2 M3 & 1.1.1 release readiness
+When: Monday, March 12, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US &=
+ Canada).
+Where: Bridge Info Enclosed
 
-Yes, the preferred method to achieve this is to use bbappends for the r=
-ecipes
-where these files appear if they are already provided by a recipe, e.g.=
- netbase
-for /etc/network/interfaces - see here for a machine-specific example:
 
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-yocto/recipes-=
-core/netbase
+Monday, March 12, 2012, 08:00 AM US Pacific Time=20
+916-356-2663, 8-356-2663, Bridge: 4, Passcode: 1137217
+Speed dialer: inteldialer://4,1137217 | Learn more
 
-For new files you can either include them via the same bbappend mechani=
-sm if
-that makes sense for the particular files, or a separate recipe.
 
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
