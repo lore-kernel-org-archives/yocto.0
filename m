@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91A0AE01363
-	for <yocto@yoctoproject.org>; Mon, 12 Mar 2012 08:09:43 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 12 Mar 2012 08:09:42 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35BDBE01363
+	for <yocto@yoctoproject.org>; Mon, 12 Mar 2012 08:09:44 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 12 Mar 2012 08:09:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="76463551"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="137441551"
 Received: from unknown (HELO localhost) ([10.255.15.160])
-	by AZSMGA002.ch.intel.com with ESMTP; 12 Mar 2012 08:09:41 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 12 Mar 2012 08:09:43 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com, dvhart@linux.intel.com,
 	yocto@yoctoproject.org
-Date: Mon, 12 Mar 2012 10:09:33 -0500
-Message-Id: <32ffac72c6345af93d48923e2d8366b99ef37261.1331564330.git.tom.zanussi@intel.com>
+Date: Mon, 12 Mar 2012 10:09:34 -0500
+Message-Id: <9a5790cb5203f0d0d7f5312aa7a247e7c6cd6739.1331564330.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <9665e930606d2c81579f74bb202aead2c2c19170.1331564330.git.tom.zanussi@intel.com>
 References: <9665e930606d2c81579f74bb202aead2c2c19170.1331564330.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1331564330.git.tom.zanussi@intel.com>
 References: <cover.1331564330.git.tom.zanussi@intel.com>
-Subject: [PATCH 2/3][KERNEL] yocto/emgd: initial build fixups
+Subject: [PATCH 3/3][KERNEL] yocto/emgd: linux 3.2-related build fixups
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,126 +30,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Mar 2012 15:09:43 -0000
+X-List-Received-Date: Mon, 12 Mar 2012 15:09:44 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Add emgd config option (DRM_EGD) and modify Makefiles for in-tree
-builds.
+Fix build errors caused by changes to kernel interfaces introduced by
+linux 3.2 such as:
+
+error: 'THIS_MODULE' undeclared here (not in a function)
+
+due to a missing THIS_MODULE definition which can be found in linux/export.h.
+
+It also fixes a ream of errors like:
+
+error: expected ')' before string constant
+
+due to missing MODULE_PARM_DESC definition which can be found in
+linux/moduleparam.h, included by linux/module.h, needed also for
+MODULE_AUTHOR, etc.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- drivers/gpu/drm/Kconfig       |    9 +++++++++
- drivers/gpu/drm/Makefile      |    1 +
- drivers/gpu/drm/emgd/Makefile |   40 ++++------------------------------------
- 3 files changed, 14 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c   |    2 ++
+ drivers/gpu/drm/emgd/emgd/drm/emgd_fbcon.c |    1 +
+ 2 files changed, 3 insertions(+), 0 deletions(-)
 
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 1368826..2207d03 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -159,6 +159,15 @@ config DRM_SAVAGE
- 	  Choose this option if you have a Savage3D/4/SuperSavage/Pro/Twister
- 	  chipset. If M is selected the module will be called savage.
+diff --git a/drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c b/drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c
+index 5a8f2e6..9ed2363 100644
+--- a/drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c
++++ b/drivers/gpu/drm/emgd/emgd/drm/emgd_drv.c
+@@ -38,6 +38,8 @@
+ #include <drm/drm_crtc_helper.h>
+ #include <linux/version.h>
+ #include <linux/device.h>
++#include <linux/export.h>
++#include <linux/module.h>
+ #include <drm/drm_pciids.h>
+ #include <intelpci.h>
+ #include "drm_emgd_private.h"
+diff --git a/drivers/gpu/drm/emgd/emgd/drm/emgd_fbcon.c b/drivers/gpu/drm/emgd/emgd/drm/emgd_fbcon.c
+index 547caaa..edfe2c7 100644
+--- a/drivers/gpu/drm/emgd/emgd/drm/emgd_fbcon.c
++++ b/drivers/gpu/drm/emgd/emgd/drm/emgd_fbcon.c
+@@ -36,6 +36,7 @@
+ #include <drmP.h>
+ #include <drm_crtc_helper.h>
+ #include <linux/vga_switcheroo.h>
++#include <linux/export.h>
  
-+config DRM_EGD
-+       tristate "Intel EMGD"
-+       depends on DRM
-+       select DRM_KMS_HELPER
-+       help
-+         Choose this option if you have an EMGD-supported chipset
-+         (Intel E6xx or System Controller Hub US15W/US15WP/WPT).
-+         If M is selected the module will be called emgd.
-+
- source "drivers/gpu/drm/exynos/Kconfig"
  
- source "drivers/gpu/drm/vmwgfx/Kconfig"
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index c0496f6..ca90165 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -36,4 +36,5 @@ obj-$(CONFIG_DRM_VMWGFX)+= vmwgfx/
- obj-$(CONFIG_DRM_VIA)	+=via/
- obj-$(CONFIG_DRM_NOUVEAU) +=nouveau/
- obj-$(CONFIG_DRM_EXYNOS) +=exynos/
-+obj-$(CONFIG_DRM_EGD)   +=emgd/
- obj-y			+= i2c/
-diff --git a/drivers/gpu/drm/emgd/Makefile b/drivers/gpu/drm/emgd/Makefile
-index 13705f4..3971c7f 100644
---- a/drivers/gpu/drm/emgd/Makefile
-+++ b/drivers/gpu/drm/emgd/Makefile
-@@ -24,10 +24,6 @@
- #----------------------------------------------------------------------------
- export EGD_TOPLEVEL = DRM Driver
- 
--KERNELVER ?= $(shell uname -r)
--KERNELDIR ?= /lib/modules/$(KERNELVER)/build
--INSTALLDIR ?= /lib/modules/$(KERNELVER)/kernel/drivers/gpu/drm/emgd
--
- BLUE = \033[34m
- OFF = \033[0m
- BUILD ?= release
-@@ -35,7 +31,7 @@ CONFIG_PVR_RELEASE ?= $(BUILD)
- CONFIG_DRM_EGD ?= m
- 
- # Get the include paths pointed to the right place. 
--export  EMGD_MOD_DIR ?= $(CURDIR)
-+export  EMGD_MOD_DIR ?= $(obj)
- 
- BUILDDATE ?= $(shell date +%Y%m%d)
- 
-@@ -51,6 +47,7 @@ PROJECT_INCLUDES = \
- 	   -I$(EMGD_MOD_DIR)/emgd/pal/ch7036 \
- 	   -I$(EMGD_MOD_DIR)/emgd/drm \
- 	   -I$(KERNELDIR)/include/drm \
-+	   -Iinclude/drm \
- 	   -I/usr/src/linux-headers-2.6.32-5-common/include/drm \
- 	   -I$(EMGD_MOD_DIR)/pvr/include4 \
- 	   -I$(EMGD_MOD_DIR)/pvr/services4/include \
-@@ -120,6 +117,8 @@ ifeq ($(PDUMP),1)
- 	EXTRA_CFLAGS += -DPDUMP=1
- endif
- 
-+ccflags-y += $(EXTRA_CFLAGS)
-+
- EMGD_OBJS := \
- 	emgd/drm/emgd_fb.o \
- 	emgd/drm/emgd_fbcon.o \
-@@ -293,34 +292,3 @@ ifeq ($(PDUMP),1)
- endif
- 
- obj-$(CONFIG_DRM_EGD) += emgd.o
--
--all:: clean modules
--
--modules::
--	@echo $(CURDIR) -- $(CONFIG_PVR_RELEASE)
--	@echo "$(MAKE) -C $(KERNELDIR) M=$(CURDIR) modules"
--	@$(MAKE) -C $(KERNELDIR) M=$(CURDIR) modules
--
--clean::
--	@rm -f $(emgd-y)
--	@rm -f emgd.o emgd.mod.* emgd.ko Module.* modules.order
--	@find . -name "*.cmd" -exec rm '{}' \;
--
--install::
--	install -o root -g root -m 755 -d $(INSTALLDIR)
--	install -o root -g root -m 744 emgd.ko $(INSTALLDIR)
--	/sbin/depmod -a
--
--uninstall::
--	rmmod $(INSTALLDIR)/emgd.ko
--	rm -rf $(INSTALLDIR)/emgd.ko
--	/sbin/depmod -a
--
--debug::
--	export CONFIG_PVR_RELEASE=debug; $(MAKE) modules
--
--package:: clean
--	@echo -e "$(BLUE)Packaging $(EGD_TOPLEVEL)$(OFF)";
--	mkdir -p $(EGD_PKG)
--	tar -C $(EMGD_MOD_DIR) --exclude "CVS" -czf $(EGD_PKG)/emgd_drm.tgz *
--
+ #include "user_config.h"
 -- 
 1.7.0.4
 
