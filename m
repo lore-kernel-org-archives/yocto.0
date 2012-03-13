@@ -1,20 +1,22 @@
 Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9244CE0044D
-	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 11:13:22 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 13 Mar 2012 11:13:22 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CC47E013BA
+	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 11:13:24 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 13 Mar 2012 11:13:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="117341679"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="138192060"
 Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.80])
-	by orsmga001.jf.intel.com with ESMTP; 13 Mar 2012 11:13:22 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 13 Mar 2012 11:13:23 -0700
 From: kishore.k.bodke@intel.com
 To: yocto@yoctoproject.org,
 	bruce.ashfield@windriver.com
-Date: Tue, 13 Mar 2012 11:12:06 -0700
-Message-Id: <cover.1331661801.git.kishore.k.bodke@intel.com>
+Date: Tue, 13 Mar 2012 11:12:08 -0700
+Message-Id: <8083fa2d885388cba7ff241aeaebfdb03983459d.1331661801.git.kishore.k.bodke@intel.com>
 X-Mailer: git-send-email 1.7.5.4
-Subject: [KERNEL][PATCH 0/1] meta: Create scc file for pvr merge
+In-Reply-To: <cover.1331661801.git.kishore.k.bodke@intel.com>
+References: <cover.1331661801.git.kishore.k.bodke@intel.com>
+Subject: [PATCH 1/1] meta: Create scc file for pvr merge
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,36 +28,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Mar 2012 18:13:22 -0000
+X-List-Received-Date: Tue, 13 Mar 2012 18:13:24 -0000
 
 From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-Hi,
+This file is to merge the yocto/pvr branch to build with pvr for the targets
+with appropriate hardware support.
 
-This patch is to create a new scc file for merging the yocto/pvr branch for the targets 
-with the appropriate hardware support.
-
-Adding it into the existing cedartrail.scc, the non-pvr build was not booting. So we had to separate it out.
-
-Thanks
-Kishore.
-
-
-The following changes since commit e559129b4a6f39f68b75141096b2d516cf7a7f35:
-
-  fri2: Add SMP and EFI support (2012-03-02 16:02:35 -0500)
-
-are available in the git repository at:
-  git://git.pokylinux.org/linux-yocto-2.6.37-contrib kishore/meta-cedartrail/pvr-merge
-  http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=kishore/meta-cedartrail/pvr-merge
-
-Kishore Bodke (1):
-  meta: Create scc file for pvr merge
-
+Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+---
  .../bsp/cedartrail/cedartrail-pvr-merge.scc        |    1 +
  1 files changed, 1 insertions(+), 0 deletions(-)
  create mode 100644 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-merge.scc
 
+diff --git a/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-merge.scc b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-merge.scc
+new file mode 100644
+index 0000000..f83c02b
+--- /dev/null
++++ b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-merge.scc
+@@ -0,0 +1 @@
++git merge yocto/pvr
 -- 
 1.7.5.4
 
