@@ -1,21 +1,26 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5F97E0044D
-	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 12:17:08 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 13 Mar 2012 12:17:00 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1835EE0044D
+	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 12:31:06 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 13 Mar 2012 12:31:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="120667475"
-Received: from unknown (HELO localhost) ([10.255.15.152])
-	by orsmga002.jf.intel.com with ESMTP; 13 Mar 2012 12:16:59 -0700
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="77086201"
+Received: from unknown (HELO envy.home) ([10.255.15.152])
+	by AZSMGA002.ch.intel.com with ESMTP; 13 Mar 2012 12:31:05 -0700
+Message-ID: <4F5FA04C.7080901@linux.intel.com>
+Date: Tue, 13 Mar 2012 12:30:20 -0700
 From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Tue, 13 Mar 2012 12:16:12 -0700
-Message-Id: <a7914fb82371af784c544d3efefefaa2c63afd4d.1331666101.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.6.5
-In-Reply-To: <cover.1331666101.git.dvhart@linux.intel.com>
-References: <cover.1331666101.git.dvhart@linux.intel.com>
-Subject: [PATCH 1/1] ddimage: Add script for writing images to boot media
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
+MIME-Version: 1.0
+To: tom.zanussi@intel.com
+References: <cover.1331610171.git.tom.zanussi@intel.com>
+	<86eeec9f1963b57809b988e148ddf43562e2f0bc.1331610171.git.tom.zanussi@intel.com>
+In-Reply-To: <86eeec9f1963b57809b988e148ddf43562e2f0bc.1331610171.git.tom.zanussi@intel.com>
+X-Enigmail-Version: 1.3.5
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/2] meta-crownbay: switch to linux-yocto-3.2 kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,149 +32,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Mar 2012 19:17:08 -0000
+X-List-Received-Date: Tue, 13 Mar 2012 19:31:06 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Fixes [YOCTO #1806]
+Hi Tom,
 
-Standard practice is to use the Linux "dd" command to write images to boot
-media. This can be error prone and the results of sloppy usage can be
-disastrous. Locating the device you want to use is a clumsy process, especially
-on a headless build system.
+Some thoughts on this with respect to cleaning up and simplifying the
+recipes per our earlier discussions.
 
-The ddimage script does the following:
+On 03/12/2012 09:37 PM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi <tom.zanussi@intel.com>
+> 
+> Switch crownbay and crownbay-noemgd to the 3.2 kernel.
+> 
+> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+> ---
+>  meta-crownbay/conf/machine/crownbay-noemgd.conf    |    2 ++
+>  meta-crownbay/conf/machine/crownbay.conf           |    2 ++
+>  .../linux/linux-yocto-rt_3.2.bbappend              |   20 ++++++++++++++++++++
+>  .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |   17 +++++++++++++++++
+>  4 files changed, 41 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+>  create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> 
+> diff --git a/meta-crownbay/conf/machine/crownbay-noemgd.conf b/meta-crownbay/conf/machine/crownbay-noemgd.conf
+> index 2c80bd8..af85b00 100644
+> --- a/meta-crownbay/conf/machine/crownbay-noemgd.conf
+> +++ b/meta-crownbay/conf/machine/crownbay-noemgd.conf
+> @@ -4,6 +4,8 @@
+>  #@DESCRIPTION: Machine configuration for Crown Bay systems, without Intel-proprietary graphics bits
+>  # i.e. E660 + EG20T
+>  
+> +PREFERRED_VERSION_linux-yocto ?= "3.2%"
+> +
+>  require conf/machine/include/tune-atom.inc
+>  require conf/machine/include/ia32-base.inc
+>  
+> diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
+> index 2c1ef3d..1458bff 100644
+> --- a/meta-crownbay/conf/machine/crownbay.conf
+> +++ b/meta-crownbay/conf/machine/crownbay.conf
+> @@ -4,6 +4,8 @@
+>  #@DESCRIPTION: Machine configuration for Crown Bay systems
+>  # i.e. E660 + EG20T
+>  
+> +PREFERRED_VERSION_linux-yocto ?= "3.2%"
+> +
+>  require conf/machine/include/tune-atom.inc
+>  require conf/machine/include/ia32-base.inc
+>  
+> diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+> new file mode 100644
+> index 0000000..dee9bce
+> --- /dev/null
+> +++ b/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+> @@ -0,0 +1,20 @@
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> +
+> +COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
+> +KMACHINE_crownbay-noemgd = "crownbay"
+> +
+> +KERNEL_FEATURES_append_crownbay-noemgd += " cfg/smp.scc"
 
-o Check the image and device exist
-o Check the device is writable
-o Compare the device to a blacklist and abort if it's listed
-  Blacklist defaults to "/dev/sda"
-o Display useful identifying information about the image and device
-o Prompt the user before commencing the write
+I think we start putting cfg/smp.scc in the BSP scc file directly rather
+than in the recipe itself. This can be a follow-on patch, or just with
+the next kernel release even. But I wanted to point it out.
 
-The output looks something like this:
+> +
+> +COMPATIBLE_MACHINE_crownbay = "crownbay"
+> +KMACHINE_crownbay = "crownbay"
+> +
+> +KERNEL_FEATURES_append_crownbay += " cfg/smp.scc"
+> +
+> +# Update the following to use a different BSP branch or meta SRCREV
+> +#KBRANCH_crownbay-noemgd = "yocto/standard/preempt-rt/base"
+> +#SRCREV_machine_pn-linux-yocto-rt_crownbay-noemgd ?= XXXX
+> +#SRCREV_meta_pn-linux-yocto-rt_crownbay-noemgd ?= XXXX
+> +
+> +#KBRANCH_crownbay = "yocto/standard/preempt-rt/base"
+> +#SRCREV_machine_pn-linux-yocto-rt_crownbay ?= XXXX
+> +#SRCREV_meta_pn-linux-yocto-rt_crownbay ?= XXXX
+> diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> new file mode 100644
+> index 0000000..3b02076
+> --- /dev/null
+> +++ b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> @@ -0,0 +1,17 @@
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> +
+> +COMPATIBLE_MACHINE_crownbay = "crownbay"
+> +KMACHINE_crownbay  = "crownbay"
+> +KBRANCH_crownbay  = "standard/default/crownbay"
 
-$ sudo ~/bin/ddimage tmp/deploy/images/core-image-sato-fri2-noemgd.hddimg /dev/sdk
-Image details
-=============
-    image: `tmp/deploy/images/core-image-sato-fri2-noemgd.hddimg' -> `core-image-sato-fri2-noemgd-20111202214038.hddimg'
-     size: 318568448 bytes
- modified: 2011-12-02 13:45:05.298897861 -0800
-     type: x86 boot sector, code offset 0x58, OEM-ID "SYSLINUX", sectors/cluster 16, root entries 512, Media descriptor 0xf8, sectors/FAT 152, heads 64, hidden sectors 32, sectors 622204 (volumes > 32 MB) , serial number 0x4ed946e0, label: "boot       ", FAT (16 bit)
+I believe crownbay no longer requires special patches right? Can we just
+use the standard/default/base branch here and squash the crownbay branch?
 
-Device details
-==============
-  device: /dev/sdk
-  vendor: Kingston
-   model: DT 101 G2
+> +KERNEL_FEATURES_append_crownbay += " cfg/smp.scc"
+> +
+> +COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
+> +KMACHINE_crownbay-noemgd  = "crownbay"
+> +KBRANCH_crownbay-noemgd  = "standard/default/crownbay"
+> +KERNEL_FEATURES_append_crownbay-noemgd += " cfg/smp.scc"
+> +
+> +SRCREV_machine_pn-linux-yocto_crownbay ?= "4471c11c7755727219b673cb887d8a13b8715aba"
+> +SRCREV_meta_pn-linux-yocto_crownbay ?= "64840f55ee144e9814278eaa8e3f33dd60da892c"
+> +
+> +SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?= "4471c11c7755727219b673cb887d8a13b8715aba"
+> +SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?= "64840f55ee144e9814278eaa8e3f33dd60da892c"
 
-Write tmp/deploy/images/core-image-sato-fri2-noemgd.hddimg to /dev/sdk [y/N]? y
-Writing image...
-303+1 records in
-303+1 records out
-318568448 bytes (319 MB) copied, 53.6766 s, 5.9 MB/s
+The meta SRCREV shouldn't be unique from the base linux-yocto_3.2.bb
+recipe, so this can be dropped and save the effort of updating it later.
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
-CC: Dexuan Cui <dexuan.cui@intel.com>
-CC: Joshua Lock <josh@linux.intel.com>
-CC: Kishore K Bodke <kishore.k.bodke@intel.com>
----
- scripts/contrib/ddimage |   87 +++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 87 insertions(+), 0 deletions(-)
- create mode 100755 scripts/contrib/ddimage
+If we use the standard/default/base branch, the machine SRCREV can also
+be dropped.
 
-diff --git a/scripts/contrib/ddimage b/scripts/contrib/ddimage
-new file mode 100755
-index 0000000..2cba9b2
---- /dev/null
-+++ b/scripts/contrib/ddimage
-@@ -0,0 +1,87 @@
-+#!/bin/sh
-+
-+#BLACKLIST_DEVICES="/dev/sda /dev/sdb /dev/sdc /dev/sdd /dev/sde"
-+BLACKLIST_DEVICES="/dev/sda"
-+
-+# 1MB blocksize
-+BLOCKSIZE=1048576
-+
-+function usage() {
-+	echo "Usage: $(basename $0) IMAGE DEVICE"
-+}
-+
-+function image_details() {
-+	IMG=$1
-+	echo "Image details"
-+	echo "============="
-+	echo "    image: $(stat --printf '%N\n' $IMG)"
-+	echo "     size: $(stat -L --printf '%s bytes\n' $IMG)"
-+	echo " modified: $(stat -L --printf '%y\n' $IMG)"
-+	echo "     type: $(file -L -b $IMG)"
-+	echo ""
-+}
-+
-+function device_details() {
-+	DEV=$1
-+	BLOCK_SIZE=512
-+
-+	echo "Device details"
-+	echo "=============="
-+	echo "  device: $DEVICE"
-+	if [ -f "/sys/class/block/$DEV/device/vendor" ]; then
-+		echo "  vendor: $(cat /sys/class/block/$DEV/device/vendor)"
-+	else
-+		echo "  vendor: UNKOWN"
-+	fi
-+	if [ -f "/sys/class/block/$DEV/device/model" ]; then
-+		echo "   model: $(cat /sys/class/block/$DEV/device/model)"
-+	else
-+		echo "   model: UNKNOWN"
-+	fi
-+	if [ -f "/sys/class/block/$DEV/size" ]; then
-+		echo "    size: $[$(cat /sys/class/block/$DEV/size)*BLOCK_SIZE] bytes"
-+	else
-+		echo "    size: UNKNOWN"
-+	fi
-+	echo ""
-+}
-+
-+if [ $# -ne 2 ]; then
-+	usage
-+	exit 1
-+fi
-+
-+IMAGE=$1
-+DEVICE=$2
-+
-+if [ ! -e "$IMAGE" ]; then
-+	echo "ERROR: Image $IMAGE does not exist"
-+	usage
-+	exit 1
-+fi
-+
-+
-+if [ "${BLACKLIST_DEVICES/${DEVICE}/ERROR}" != "$BLACKLIST_DEVICES" ]; then
-+	echo "ERROR: Device $DEVICE is blacklisted"
-+	exit 1
-+fi
-+
-+if [ ! -w "$DEVICE" ]; then
-+	echo "ERROR: Device $DEVICE does not exist or is not writable"
-+	usage
-+	exit 1
-+fi
-+
-+image_details $IMAGE
-+device_details $(basename $DEVICE)
-+
-+echo -n "Write $IMAGE to $DEVICE [y/N]? "
-+read RESPONSE
-+if [ "$RESPONSE" != "y" ]; then
-+	echo "Write aborted"
-+	exit 0
-+fi
-+
-+echo "Writing image..."
-+dd if="$IMAGE" of="$DEVICE" bs="$BLOCKSIZE"
-+sync
+
 -- 
-1.7.6.5
-
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
