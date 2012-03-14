@@ -1,36 +1,19 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65C8FE0044D
-	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 21:15:03 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 13 Mar 2012 21:15:03 -0700
+Return-Path: <lianhao.lu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82513E0044D
+	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 01:27:31 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 14 Mar 2012 01:27:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="128734026"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga001.fm.intel.com with ESMTP; 13 Mar 2012 21:15:03 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 13 Mar 2012 21:15:02 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.207]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.160]) with mapi id
-	14.01.0355.002; Tue, 13 Mar 2012 21:15:02 -0700
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, "Bodke, Kishore K"
-	<kishore.k.bodke@intel.com>
-Thread-Topic: [yocto] [KERNEL][PATCH 0/1] meta: Create scc file for pvr merge
-Thread-Index: AQHNAUUSN5GjKMvWYUGNZ0JfW1/dV5ZpockA//+NEyA=
-Date: Wed, 14 Mar 2012 04:15:01 +0000
-Message-ID: <63ECFF2A2302B44093D7CE9E9962C4900BA357@ORSMSX103.amr.corp.intel.com>
-References: <cover.1331661801.git.kishore.k.bodke@intel.com>
-	<4F6018B2.3070307@windriver.com>
-In-Reply-To: <4F6018B2.3070307@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [KERNEL][PATCH 0/1] meta: Create scc file for pvr merge
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="77313180"
+Received: from llu-piketon.sh.intel.com (HELO localhost) ([10.239.36.62])
+	by AZSMGA002.ch.intel.com with ESMTP; 14 Mar 2012 01:27:30 -0700
+From: Lianhao Lu <lianhao.lu@intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 14 Mar 2012 16:27:12 +0800
+Message-Id: <cover.1331713200.git.lianhao.lu@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/1] perfer older version of lttng-ust in poky distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,77 +25,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2012 04:15:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 14 Mar 2012 08:27:31 -0000
 
-Hi Bruce,
+Set the PREFERRED_VERSION of lttng-ust to use lttng-ust instead of 
+lttng2-ust in poky distro. This fixed yocto bug #2062. 
 
-I plan to submit patches next week to update the meta-cedartrail BSP to use=
- this yocto/pvr branch.
+The lttng2 is very different in terms of architecture and usage model, compared 
+to lttng. The eclipse upstream lttng plugin won't be able to support lttng2 until 
+the eclipse Juno release(Jun 27th, 2012).
 
+The following changes since commit 8e9f6fc77ac4763f4ed1f6e7b720420c220ba6e2:
+  Richard Purdie (1):
+        dates: Fix unpackaged files warning
 
-Thanks
-Rahul=20
+are available in the git repository at:
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Bruce Ashfield
-Sent: Tuesday, March 13, 2012 9:04 PM
-To: Bodke, Kishore K
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] [KERNEL][PATCH 0/1] meta: Create scc file for pvr merg=
-e
+  git://git.pokylinux.org/poky-contrib llu/bug2062
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=llu/bug2062
 
-On 12-03-13 2:12 PM, kishore.k.bodke@intel.com wrote:
-> From: Kishore Bodke<kishore.k.bodke@intel.com>
->
-> Hi,
->
-> This patch is to create a new scc file for merging the yocto/pvr branch f=
-or the targets
-> with the appropriate hardware support.
+Lianhao Lu (1):
+  poky.conf: Prefer lttng-ust instead of lttng2-ust.
 
-Just so I'm clear, there are no current users of this in the tree, but
-we want to stage this for future work, or work that isn't ready yet ?
+ meta-yocto/conf/distro/poky.conf |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
 
-I'll merge this into the 3.0 kernel and await your confirmation.
-
-Cheers,
-
-Bruce
-
->
-> Adding it into the existing cedartrail.scc, the non-pvr build was not boo=
-ting. So we had to separate it out.
->
-> Thanks
-> Kishore.
->
->
-> The following changes since commit e559129b4a6f39f68b75141096b2d516cf7a7f=
-35:
->
->    fri2: Add SMP and EFI support (2012-03-02 16:02:35 -0500)
->
-> are available in the git repository at:
->    git://git.pokylinux.org/linux-yocto-2.6.37-contrib kishore/meta-cedart=
-rail/pvr-merge
->    http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=3D=
-kishore/meta-cedartrail/pvr-merge
->
-> Kishore Bodke (1):
->    meta: Create scc file for pvr merge
->
->   .../bsp/cedartrail/cedartrail-pvr-merge.scc        |    1 +
->   1 files changed, 1 insertions(+), 0 deletions(-)
->   create mode 100644 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-=
-merge.scc
->
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
