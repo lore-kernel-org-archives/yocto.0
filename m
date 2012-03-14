@@ -1,33 +1,32 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37CBEE011D1
-	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 13:55:07 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q2EKss0R022329
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 14 Mar 2012 13:54:54 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.21.154) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Wed, 14 Mar 2012 13:54:54 -0700
-Message-ID: <4F61059C.7000002@windriver.com>
-Date: Wed, 14 Mar 2012 16:54:52 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B64C2E011D1
+	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 15:05:07 -0700 (PDT)
+Received: from mail-lb0-f180.google.com ([209.85.217.180])
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 14 Mar 2012 15:05:06 -0700
+Received: by lbon10 with SMTP id n10so1024195lbo.25
+	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 15:05:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=ygnuoSuYKZ3D866Br7inAb2v2vnd1eVOGNzgo3RbymA=;
+	b=opem7ZG0+9+tOZCYDOXWPC1nSwW5/sXeR+h6w6k1yIbL0WXs8+p1gRQ3zSmaOPDqwb
+	MFZphNba2LFdidC+CWp+XYxSXK7cJOKBmH09WFfyosZJz8kl44Xq0e1YBz5lLvacYcdw
+	YefNZ7wiDV8cLKHjo244+1MqpkRuuVeUFIcOWePBAxyuu4eP0jK/oUph6PecslEtAk7m
+	s8t/hzNRg4RT9F9qm7yab0NDTGEpZA7wbxZsHQ8A0yH2vnegRI4lQrF4viqhk3yFa0Fg
+	MtdPbUX1aZC1hNX5J3wPE0MRZPZEjI5fmtvD8TEdbNTTB71FVuz9DchypwbfvD2tinhg
+	j2wg==
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <cover.1331610171.git.tom.zanussi@intel.com>
-	<86eeec9f1963b57809b988e148ddf43562e2f0bc.1331610171.git.tom.zanussi@intel.com>
-	<4F5FA04C.7080901@linux.intel.com>
-	<1331667871.21321.12.camel@elmorro>
-	<CADkTA4N=oU9qB83gfGhDFghp8wLD69_x9Edyz1w_hFke9wAs=Q@mail.gmail.com>
-	<1331694223.21321.21.camel@elmorro>
-	<4F600BAC.5030107@windriver.com> <4F6018F5.5060302@linux.intel.com>
-	<4F601A96.5060507@windriver.com> <4F60AF1A.2020503@linux.intel.com>
-	<4F60FECF.4070104@windriver.com> <4F610252.4010003@linux.intel.com>
-In-Reply-To: <4F610252.4010003@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/2] meta-crownbay: switch to linux-yocto-3.2 kernel
+Received: by 10.152.115.69 with SMTP id jm5mr3163071lab.25.1331762704160; Wed,
+	14 Mar 2012 15:05:04 -0700 (PDT)
+Received: by 10.112.98.133 with HTTP; Wed, 14 Mar 2012 15:05:04 -0700 (PDT)
+Date: Wed, 14 Mar 2012 15:05:04 -0700
+Message-ID: <CAPhnLPBAvAMwmuC1wNDS7E9mA5Y4VM_5SvA=4qo+UokPtiABQQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQloM4cT4tWD65Pya18C3LyijFePXuv+ljejiuigApsTK/RsZIPN3hZ17kuqJjeg6Mg2QmXm
+Subject: [Announcement] 1.2 Milestone 3 Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,170 +38,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2012 20:55:08 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 14 Mar 2012 22:05:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 12-03-14 4:40 PM, Darren Hart wrote:
->
->
-> On 03/14/2012 01:25 PM, Bruce Ashfield wrote:
->> On 12-03-14 10:45 AM, Darren Hart wrote:
->>> On 03/13/2012 09:12 PM, Bruce Ashfield wrote:
->>>> On 12-03-14 12:05 AM, Darren Hart wrote:
->>>>>
->>>>>
->>>>> On 03/13/2012 08:08 PM, Bruce Ashfield wrote:
->>>>>> On 12-03-13 11:03 PM, Tom Zanussi wrote:
->>>>>>> On Tue, 2012-03-13 at 22:40 -0400, Bruce Ashfield wrote:
->>>>>>>> On Tue, Mar 13, 2012 at 3:44 PM, Tom Zanussi<tom.zanussi@intel.com>     wrote:
->>>>>>>>> On Tue, 2012-03-13 at 12:30 -0700, Darren Hart wrote:
->>>
->>> ...
->>>
->>>>>>>>>> I believe crownbay no longer requires special patches right? Can we just
->>>>>>>>>> use the standard/default/base branch here and squash the crownbay branch?
->>>>>>>>>>
->>>>>>>>>
->>>>>>>>> At the moment it doesn't, and I'll probably submit a patch to do that
->>>>>>>>> for everything that it make sense for again after things are functional
->>>>>>>>> with the simple changes first.
->>>>>>>>
->>>>>>>> There's one catch with this. We currently have the graphics drivers staged as
->>>>>>>> topic branches so they can be in tree, and be kept pristine. The BSPs merge
->>>>>>>> the graphics topic branch they want, and we can leverage common commits
->>>>>>>> across all the users.
->>>>>>>>
->>>>>>>> If you drop the BSP branch, then the graphics changes need to be universally
->>>>>>>> safe for all similar BSPs, since that merge will now be to a shared branch.
->>>>>>>> That's normally fine, but for the case where we have multiple emgd versions,
->>>>>>>> it can break things.
->>>>>>>>
->>>>>>>> We have complete flexibility to how we stage the branches, and how we
->>>>>>>> generate the content that is built, so this can change .. but that's
->>>>>>>> how we currently
->>>>>>>> have it setup. Those graphics merges are board specific changes and require
->>>>>>>> a branch.
->>>>>>>>
->>>>>>>
->>>>>>> That's fine, I'm perfectly happy to have per-BSP machine branches.
->>>>>>> They're cheap, and I don't really see the reason to be so parsimonious
->>>>>>> with them.  Also, they're always there, so if we do need to have a place
->>>>>>> to put the odd machine-specific patch now and then we don't have to add
->>>>>>> a new branch when we need to add those patches, or remove them once
->>>>>>> they're gone.  I guess the system was kind of designed for that (machine
->>>>>>> branches, even if empty)?
->>>>>>
->>>>>> Exactly. We can collapse them where it makes sense, and keep there where
->>>>>> we need them. A machine branch is just that, a topic branch for development
->>>>>> and implicit documentation of a supported board. If a board may be extended
->>>>>> in the future .. a branch is nice to have.
->>>>>>
->>>>>> I'm in favour of keeping the count in control, but see no need to collapse
->>>>>> them down completely. That and I spent an hour trying to figure out
->>>>>> how to do some fancy merge logic and while it could be done, it just
->>>>>> makes things more complex. I'd prefer branches to overly complex
->>>>>> branch management logic.
->>>>>>
->>>>>
->>>>> Agreed on the concept. What I'm not understanding is how is having to
->>>>> get yocto/emgd-1.10 to merge with standard/base any different than
->>>>> having to get it to merge with:
->>>>>
->>>>> standard/default/crownbay
->>>>> standard/default/common-pc-64/sugarbay
->>>>> standard/default/fri2
->>>>>
->>>>> etc.
->>>>>
->>>>> emgd isn't premerged into these machine branches if I understand the scc
->>>>> files correctly, so how is this any different? (I'm sure it is, I trust
->>>>> you here, I would just like to understand what I'm missing).
->>>>
->>>> When a tree is built from scratch (from the meta data + patch repo), or
->>>> when BSP validation runs across a tree. All BSPs are constructed in a
->>>> single tree. If you have merges into common branches, the third, fourth
->>>> or fifth one is going to eventually explode.
->>>
->>> It seems like the obvious answer here is to always create a machine
->>> branch during tree construction if one does not already exist. This
->>
->> That can be done .. and I've done it in the past, dynamic branches
->> are supported within the tools. But there are always issues:
->>
->>     - anything dynamic is never as smart as someone specifying a feature
->>       description and deciding whether or not they want a branch. I've
->>       nearly always regretted dynamically creating branches in the past.
->>
->>     - It's not just machine descriptions that trigger merges, any feature
->>       can have one if it has a topic branch that is being maintained in
->>       that manner. So I tread carefully here to not introduce special
->>       cases. We are talking about a known optional, board specific merge.
->>       A human can make that call pretty easily and specify that they
->>       want a branch.
->>
->>     - Some people just like to build the branch that they want to build.
->>       Since, for example, they might be pushing changes onto a non
->>       machine specific branch and expecting it to build .. and sometimes
->>       that branch isn't even the parent branch (i.e. some temp build). It
->>       also means that working in the build tree patches don't have a 1:1
->>       home in a source repository. But there are other things that make
->>       this a non-ideal workflow, so I don't really mind making it harder :)
->>
->>       That was the whole intent of KBRANCH. You specify explicitly what
->>       you want to build, and the system lets you build that branch. This
->>       means that you'll build the same content .. but maybe not that
->>       branch.
->>
->>     - Tree generation would have to dynamically create them, and then
->>       remove the non-static branches when it completed. Completely doable,
->>       but with a complexity cost. Complete tree generation and per-machine
->>       building would now differ (although minor).
->>
->>> would address the concerns of automated bulk validation while still
->>> keeping the branching in the git tree to a minimum. Very few users will
->>> be manipulating the git tree in the WORKDIR, and those that do are
->>> expected to be advanced git users that can run:
->>>
->>> $ git cherry standard/base
->>>
->>> So why do I care about keeping the branch count down?
->>>
->>> o It helps make it explicit where we have deviated from mainline.
->>>     - Clear visibility into this is one thing that users have
->>>       complained about.
->>>     - It maintains the 1:1 mapping between branches and actual source
->>>       changes we've discussed.
->>
->> There are far worse examples of non-obvious branches out there, but
->> I don't disagree with the principle.
->>
->>>
->>> o It encourages people creating new BSPs to use an existing branch
->>>     if at all possible.
->>>     - We can encourage people to do this, but unless it is clear we
->>>       are following this advice ourselves, others will not follow.
->>
->> I don't really have big problem with people working on machine branches :)
->> It's just a topic branch that holds work, it's like anything you do in
->> a git repo .. do it on your own branch .. and then merge it back.
->>
->> Anyway, I'm making changes to quite a few things right now in the tools,
->> and we don't want to do this for 1.2, so let me think about this for a
->> day and see if any other use cases break.
->>
->
-> Yes, let's revisit after 1.2 is out. Not need to muddy the waters with
-> it now.
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-+1 .. and I forgot to type in my last email, that all of the points I
-mention are minor, so really, with the right tweak .. I think this is
-a fine idea.
+Hello,
 
-Cheers,
+We are pleased to announce the third milestone of the coming release
+of Yocto 1.2. This milestone release is available at:
 
-Bruce
+   http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.2-m3/poky-edison-6.1.0-m3.tar.bz2
+   or
+   http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.2-m3/poky-edison-6.1.0-m3.tar.bz2
 
->
+Additional tarballs for meta-qt3 and the eclipse plugin are available at:
 
+   http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.2-m3/meta-qt3-edison-6.1.0-m3.tar.bz2
+   http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.2-m3/eclipse-poky-edison-6.1.0-m3.tar.bz2
+
+with mirror locations at:
+
+   http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.2-m3/meta-qt3-edison-6.1.0-m3.tar.bz2
+   http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.2-m3/eclipse-poky-edison-6.1.0-m3.tar.bz2
+
+For information on 1.2 M3 test results see:
+
+   http://wiki.yoctoproject.org/wiki/Yocto_1.2_Milestone_Test_Report
+
+Thank you everyone for all the hard work.
+
+- ------------------
+Elizabeth Flanagan
+Yocto Project
+Release Engineer
+
+- --------------------
+edison-6.1.0-m3 Errata
+- --------------------
+Release Name: poky-edison-6.1.0-m3
+Branch:  1.2_M3
+Tag:  1.2_M3.final
+Hash:  320558f494c618f53e0c773db3ea0109476e8359
+md5:  24a90ec80d90c7f6757d9be50c2efe47  poky-edison-6.1.0-m3.tar.bz2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.2-m3/poky-edison-6.1.0-m3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.2-m3/poky-edison-6.1.0-m3.tar.bz2
+
+Release Name: eclipse-poky-edison-6.1.0-m3
+Branch:  1.2_M3
+Tag:  1.2_M3.final
+Hash:  06652a1b3f7a82481b4a7f1fee279ce1c616013b
+md5:  eaa2d0e9a5554463b1d44b8b5f9d29e0  eclipse-poky-edison-6.1.0-m3.tar.bz2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.2-m3/eclipse-poky-edison-6.1.0-m3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.2-m3/eclipse-poky-edison-6.1.0-m3.tar.bz2
+
+Release Name: meta-qt3-edison-6.1.0-m3
+Branch:  1.2_M3
+Tag:  1.2_M3.final
+Hash:  7e283e296d589256bef1a5652b72f264aba72e1a
+md5:  89d04eaf3aead8322c3b601190391f2d  meta-qt3-edison-6.1.0-m3.tar.bz2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.2-m3/meta-qt3-edison-6.1.0-m3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.2-m3/meta-qt3-edison-6.1.0-m3.tar.bz2
+
+- --------------------
+Features
+- --------------------
+- - HOB2 with redesigned UI and workflow implementation
+- - Build appliance features and stability.
+- - Error handling improvement such as display a summary of warning
+and error messages at the end of Bitbake command.
+- - Oracle/Sun Hotspot JDK/JRE support.
+- - POSIX support
+- - Enhancement to the Eclipse plug-in for Bitbake commander
+
+- --------------------
+Known Issues
+- --------------------
+- - Bug 2066 - Glxgears failed in qemuarm/qemuppc/qemumips.
+- - Bug 1898-[beagleboard C4] X server cannot startup with 3.0 kernel.
+- - Bug 1906 -[QEMU] loses focus in qemux86-64 terminal When I press
+key [CTRL+L]
+- - Bug 1912-[beagleboard C4] Segmentation fault when reboot the
+system with 3.0 kernel
+- - Bug 1917-[non-GPLv3] image fails to boot up with no root filesystem found
+- - Bug 1918-[x32] insane.bbclass reports error for x32 kernel
+- - Bug 1899-[multilib] do_rootfs failed for lib-connman-gnome with ipk
+- - Bug 1903-[HOB] do_rootfs failed with dummy-image against a clean working dir
+- - Bug 1910-[HOB] git recipes not shown in package view due to
+inconsistent package name
+- - Bug 1911-[HOB] non-GPLv3 build not work
+
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.16 (GNU/Linux)
+
+iQEcBAEBAgAGBQJPYRW0AAoJEEyK+E/MEkQPd8MIALCvjFoOhM8yU7osB/YYqBWC
+6NfnzRmPLnySGoeN3oobKomLG9ZoGmrwwuSfYfAlf3w6TDTAOunSi6x/94L1P6pa
+5cOiSCkZGYP4OLBDfGynciCRLTjmqREq7I6uEHscvvG9n8f5uN99hVG8zc99JAzi
+Cu2z4iyr/qV/WLzJj7Fg9QPAWLUp3xtrgiqaa+0W26qdea6go6hbdbhZ0tYhf/HE
+duXPgjgwhGHUKNFli3UDchJRdGoIvm/TLkKfzqgFEDdE/5lbKPvWg6Q21Ec04ZM9
+N8OqoAJJMOUtVztl3CIJ7bA2/zTNazIzLBVFiodtzpKJr9FMJsJKp+GpJybuCKg=
+=n5IG
+-----END PGP SIGNATURE-----
 
