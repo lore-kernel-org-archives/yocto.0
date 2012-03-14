@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 062D6E013BF
-	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 20:58:23 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 13 Mar 2012 20:58:21 -0700
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30329E013DB
+	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 20:58:24 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 13 Mar 2012 20:58:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="118599960"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="77240943"
 Received: from unknown (HELO localhost) ([10.255.15.131])
-	by azsmga001.ch.intel.com with ESMTP; 13 Mar 2012 20:58:21 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 13 Mar 2012 20:58:23 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com,
 	yocto@yoctoproject.org
-Date: Tue, 13 Mar 2012 22:57:35 -0500
-Message-Id: <144260e24b8960a474a9afb265e2267ad3c813b4.1331696906.git.tom.zanussi@intel.com>
+Date: Tue, 13 Mar 2012 22:57:36 -0500
+Message-Id: <fc6a94edd3de1cc64aa5acd77dde50e1c2c8f7d8.1331696906.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <3d43be48b23af7034669a2df7dd339c48350b1d0.1331696906.git.tom.zanussi@intel.com>
 References: <3d43be48b23af7034669a2df7dd339c48350b1d0.1331696906.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1331696906.git.tom.zanussi@intel.com>
 References: <cover.1331696906.git.tom.zanussi@intel.com>
-Subject: [PATCH 09/17][KERNEL] drm-psb: remove call to agp_flush_chipset
+Subject: [PATCH 10/17][KERNEL] drm-psb: remove includes of nonexistent i2c-id.h
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,28 +34,51 @@ X-List-Received-Date: Wed, 14 Mar 2012 03:58:24 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-agp_flush_chipset was removed because intel drm calls the chipset
-functions directly, and psb doesn't implement a chipset_flush()
-function anyway.  Leave drm_agp_flush_chipset exported for modules
-that might be expecting it to be there though.
+i2c-id.h is gone, don't include it.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- drivers/gpu/drm-psb/drm_agpsupport.c |    1 -
- 1 files changed, 0 insertions(+), 1 deletions(-)
+ drivers/gpu/drm-psb/intel_drv.h |    1 -
+ drivers/gpu/drm-psb/intel_i2c.c |    1 -
+ drivers/gpu/drm-psb/psb_i2c.c   |    1 -
+ 3 files changed, 0 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm-psb/drm_agpsupport.c b/drivers/gpu/drm-psb/drm_agpsupport.c
-index 8b739d2..c0dbab7 100644
---- a/drivers/gpu/drm-psb/drm_agpsupport.c
-+++ b/drivers/gpu/drm-psb/drm_agpsupport.c
-@@ -644,7 +644,6 @@ EXPORT_SYMBOL(drm_agp_init_ttm);
- #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,25)
- void drm_agp_flush_chipset(struct drm_device *dev)
- {
--	agp_flush_chipset(dev->agp->bridge);
- }
- EXPORT_SYMBOL(drm_agp_flush_chipset);
- #endif
+diff --git a/drivers/gpu/drm-psb/intel_drv.h b/drivers/gpu/drm-psb/intel_drv.h
+index d3b7cb7..d05d533 100644
+--- a/drivers/gpu/drm-psb/intel_drv.h
++++ b/drivers/gpu/drm-psb/intel_drv.h
+@@ -7,7 +7,6 @@
+ #define __INTEL_DRV_H__
+ 
+ #include <linux/i2c.h>
+-#include <linux/i2c-id.h>
+ #include <linux/i2c-algo-bit.h>
+ #include "drm_crtc.h"
+ 
+diff --git a/drivers/gpu/drm-psb/intel_i2c.c b/drivers/gpu/drm-psb/intel_i2c.c
+index efcbf65..4104c95 100644
+--- a/drivers/gpu/drm-psb/intel_i2c.c
++++ b/drivers/gpu/drm-psb/intel_i2c.c
+@@ -29,7 +29,6 @@
+  */
+ 
+ #include <linux/i2c.h>
+-#include <linux/i2c-id.h>
+ #include <linux/i2c-algo-bit.h>
+ #include "drmP.h"
+ #include "drm.h"
+diff --git a/drivers/gpu/drm-psb/psb_i2c.c b/drivers/gpu/drm-psb/psb_i2c.c
+index 5a80243..69def5b 100644
+--- a/drivers/gpu/drm-psb/psb_i2c.c
++++ b/drivers/gpu/drm-psb/psb_i2c.c
+@@ -29,7 +29,6 @@
+  */
+ 
+ #include <linux/i2c.h>
+-#include <linux/i2c-id.h>
+ #include <linux/i2c-algo-bit.h>
+ #include "drmP.h"
+ #include "drm.h"
 -- 
 1.7.0.4
 
