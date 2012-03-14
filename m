@@ -1,24 +1,21 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F172AE0044D
-	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 20:59:05 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1123EE004D2
+	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 20:59:06 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
 	by orsmga102.jf.intel.com with ESMTP; 13 Mar 2012 20:59:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="120791001"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="120791139"
 Received: from unknown (HELO localhost) ([10.255.15.131])
-	by orsmga002.jf.intel.com with ESMTP; 13 Mar 2012 20:58:35 -0700
+	by orsmga002.jf.intel.com with ESMTP; 13 Mar 2012 20:59:05 -0700
 From: tom.zanussi@intel.com
-To: bruce.ashfield@windriver.com,
-	yocto@yoctoproject.org
-Date: Tue, 13 Mar 2012 22:57:43 -0500
-Message-Id: <28d950c362eb323a2f217e14063bdcbe880c0f04.1331696906.git.tom.zanussi@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 13 Mar 2012 22:58:41 -0500
+Message-Id: <f0a4bbaf1854858431efb529fe39d50c49898b80.1331696117.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <3d43be48b23af7034669a2df7dd339c48350b1d0.1331696906.git.tom.zanussi@intel.com>
-References: <3d43be48b23af7034669a2df7dd339c48350b1d0.1331696906.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1331696906.git.tom.zanussi@intel.com>
-References: <cover.1331696906.git.tom.zanussi@intel.com>
-Subject: [PATCH 17/17][KERNEL] drm-psb: change udelay to mdelay in intel_wait_for_vblank()
+In-Reply-To: <cover.1331696117.git.tom.zanussi@intel.com>
+References: <cover.1331696117.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/1] meta-emenlow: switch to linux-yocto-3.2 kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,36 +31,59 @@ X-List-Received-Date: Wed, 14 Mar 2012 03:59:06 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This fixes the compile error>
-
-ERROR: "__bad_udelay" [drivers/gpu/drm-psb/psb.ko] undefined!
-
-This is the same fix as in gma500:
-
-  commit 243dd2809a5edd2e0e3e62781083aa44049af37d
-  Author: Stephen Rothwell <sfr@canb.auug.org.au>
-  Date:   Mon Jul 25 15:18:44 2011 +1000
-
-    gma500: udelay(20000) it too long again
+Switch emenlow to the 3.2 kernel.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- drivers/gpu/drm-psb/intel_display.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ meta-emenlow/conf/machine/emenlow.conf             |    2 ++
+ .../linux/linux-yocto-rt_3.2.bbappend              |    8 ++++++++
+ .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    9 +++++++++
+ 3 files changed, 19 insertions(+), 0 deletions(-)
+ create mode 100644 meta-emenlow/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+ create mode 100644 meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend
 
-diff --git a/drivers/gpu/drm-psb/intel_display.c b/drivers/gpu/drm-psb/intel_display.c
-index f81cde3..d28051d 100644
---- a/drivers/gpu/drm-psb/intel_display.c
-+++ b/drivers/gpu/drm-psb/intel_display.c
-@@ -354,7 +354,7 @@ void
- intel_wait_for_vblank(struct drm_device *dev)
- {
- 	/* Wait for 20ms, i.e. one cycle at 50hz. */
--	udelay(20000);
-+	mdelay(20);
- }
+diff --git a/meta-emenlow/conf/machine/emenlow.conf b/meta-emenlow/conf/machine/emenlow.conf
+index 78020ba..aecf2cb 100644
+--- a/meta-emenlow/conf/machine/emenlow.conf
++++ b/meta-emenlow/conf/machine/emenlow.conf
+@@ -4,6 +4,8 @@
+ #@DESCRIPTION: Machine configuration for eMenlow based systems, like the
+ # Webs-2120 box.
  
- void
++PREFERRED_VERSION_linux-yocto ?= "3.2%"
++
+ require conf/machine/include/tune-atom.inc
+ require conf/machine/include/ia32-base.inc
+ 
+diff --git a/meta-emenlow/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend b/meta-emenlow/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+new file mode 100644
+index 0000000..15fc847
+--- /dev/null
++++ b/meta-emenlow/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+@@ -0,0 +1,8 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++COMPATIBLE_MACHINE_emenlow = "emenlow"
++KMACHINE_emenlow  = "emenlow"
++
++# Update the following to use a different BSP branch or meta SRCREV
++#KBRANCH_emenlow  = "standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_emenlow ?= XXXX
++#SRCREV_meta_pn-linux-yocto-rt_emenlow ?= XXXX
+diff --git a/meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend
+new file mode 100644
+index 0000000..57cafae
+--- /dev/null
++++ b/meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend
+@@ -0,0 +1,9 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++COMPATIBLE_MACHINE_emenlow = "emenlow"
++KMACHINE_emenlow  = "emenlow"
++KBRANCH_emenlow  = "standard/default/emenlow"
++KERNEL_FEATURES_append_emenlow += " cfg/smp.scc"
++
++SRCREV_machine_pn-linux-yocto_emenlow ?= "f7a3b2bb8d71cf6d556d3f42041ad947d5fe684d"
++SRCREV_meta_pn-linux-yocto_emenlow ?= "64840f55ee144e9814278eaa8e3f33dd60da892c"
 -- 
 1.7.0.4
 
