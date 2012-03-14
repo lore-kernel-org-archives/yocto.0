@@ -1,31 +1,36 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07AD2E0044D
-	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 21:12:11 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2E4C7Pl025534
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 13 Mar 2012 21:12:07 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.21.131) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Tue, 13 Mar 2012 21:12:07 -0700
-Message-ID: <4F601A96.5060507@windriver.com>
-Date: Wed, 14 Mar 2012 00:12:06 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65C8FE0044D
+	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 21:15:03 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 13 Mar 2012 21:15:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="128734026"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga001.fm.intel.com with ESMTP; 13 Mar 2012 21:15:03 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 13 Mar 2012 21:15:02 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.207]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.160]) with mapi id
+	14.01.0355.002; Tue, 13 Mar 2012 21:15:02 -0700
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>, "Bodke, Kishore K"
+	<kishore.k.bodke@intel.com>
+Thread-Topic: [yocto] [KERNEL][PATCH 0/1] meta: Create scc file for pvr merge
+Thread-Index: AQHNAUUSN5GjKMvWYUGNZ0JfW1/dV5ZpockA//+NEyA=
+Date: Wed, 14 Mar 2012 04:15:01 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C4900BA357@ORSMSX103.amr.corp.intel.com>
+References: <cover.1331661801.git.kishore.k.bodke@intel.com>
+	<4F6018B2.3070307@windriver.com>
+In-Reply-To: <4F6018B2.3070307@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <cover.1331610171.git.tom.zanussi@intel.com>
-	<86eeec9f1963b57809b988e148ddf43562e2f0bc.1331610171.git.tom.zanussi@intel.com>
-	<4F5FA04C.7080901@linux.intel.com>
-	<1331667871.21321.12.camel@elmorro>
-	<CADkTA4N=oU9qB83gfGhDFghp8wLD69_x9Edyz1w_hFke9wAs=Q@mail.gmail.com>
-	<1331694223.21321.21.camel@elmorro>
-	<4F600BAC.5030107@windriver.com> <4F6018F5.5060302@linux.intel.com>
-In-Reply-To: <4F6018F5.5060302@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/2] meta-crownbay: switch to linux-yocto-3.2 kernel
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [KERNEL][PATCH 0/1] meta: Create scc file for pvr merge
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,264 +42,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2012 04:12:12 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 14 Mar 2012 04:15:03 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 12-03-14 12:05 AM, Darren Hart wrote:
->
->
-> On 03/13/2012 08:08 PM, Bruce Ashfield wrote:
->> On 12-03-13 11:03 PM, Tom Zanussi wrote:
->>> On Tue, 2012-03-13 at 22:40 -0400, Bruce Ashfield wrote:
->>>> On Tue, Mar 13, 2012 at 3:44 PM, Tom Zanussi<tom.zanussi@intel.com>   wrote:
->>>>> On Tue, 2012-03-13 at 12:30 -0700, Darren Hart wrote:
->>>>>> Hi Tom,
->>>>>>
->>>>>> Some thoughts on this with respect to cleaning up and simplifying the
->>>>>> recipes per our earlier discussions.
->>>>>>
->>>>>> On 03/12/2012 09:37 PM, tom.zanussi@intel.com wrote:
->>>>>>> From: Tom Zanussi<tom.zanussi@intel.com>
->>>>>>>
->>>>>>> Switch crownbay and crownbay-noemgd to the 3.2 kernel.
->>>>>>>
->>>>>>> Signed-off-by: Tom Zanussi<tom.zanussi@intel.com>
->>>>>>> ---
->>>>>>>    meta-crownbay/conf/machine/crownbay-noemgd.conf    |    2 ++
->>>>>>>    meta-crownbay/conf/machine/crownbay.conf           |    2 ++
->>>>>>>    .../linux/linux-yocto-rt_3.2.bbappend              |   20 ++++++++++++++++++++
->>>>>>>    .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |   17 +++++++++++++++++
->>>>>>>    4 files changed, 41 insertions(+), 0 deletions(-)
->>>>>>>    create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
->>>>>>>    create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
->>>>>>>
->>>>>>> diff --git a/meta-crownbay/conf/machine/crownbay-noemgd.conf b/meta-crownbay/conf/machine/crownbay-noemgd.conf
->>>>>>> index 2c80bd8..af85b00 100644
->>>>>>> --- a/meta-crownbay/conf/machine/crownbay-noemgd.conf
->>>>>>> +++ b/meta-crownbay/conf/machine/crownbay-noemgd.conf
->>>>>>> @@ -4,6 +4,8 @@
->>>>>>>    #@DESCRIPTION: Machine configuration for Crown Bay systems, without Intel-proprietary graphics bits
->>>>>>>    # i.e. E660 + EG20T
->>>>>>>
->>>>>>> +PREFERRED_VERSION_linux-yocto ?= "3.2%"
->>>>>>> +
->>>>>>>    require conf/machine/include/tune-atom.inc
->>>>>>>    require conf/machine/include/ia32-base.inc
->>>>>>>
->>>>>>> diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
->>>>>>> index 2c1ef3d..1458bff 100644
->>>>>>> --- a/meta-crownbay/conf/machine/crownbay.conf
->>>>>>> +++ b/meta-crownbay/conf/machine/crownbay.conf
->>>>>>> @@ -4,6 +4,8 @@
->>>>>>>    #@DESCRIPTION: Machine configuration for Crown Bay systems
->>>>>>>    # i.e. E660 + EG20T
->>>>>>>
->>>>>>> +PREFERRED_VERSION_linux-yocto ?= "3.2%"
->>>>>>> +
->>>>>>>    require conf/machine/include/tune-atom.inc
->>>>>>>    require conf/machine/include/ia32-base.inc
->>>>>>>
->>>>>>> diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
->>>>>>> new file mode 100644
->>>>>>> index 0000000..dee9bce
->>>>>>> --- /dev/null
->>>>>>> +++ b/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
->>>>>>> @@ -0,0 +1,20 @@
->>>>>>> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>>>>>> +
->>>>>>> +COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
->>>>>>> +KMACHINE_crownbay-noemgd = "crownbay"
->>>>>>> +
->>>>>>> +KERNEL_FEATURES_append_crownbay-noemgd += " cfg/smp.scc"
->>>>>>
->>>>>> I think we start putting cfg/smp.scc in the BSP scc file directly rather
->>>>>> than in the recipe itself. This can be a follow-on patch, or just with
->>>>>> the next kernel release even. But I wanted to point it out.
->>>>>>
->>>>>
->>>>> Yeah, I saw that and agree - I just don't want to spend the time to do
->>>>> all that now.  I basically have this week to get them all moved over
->>>>> into a basically functional state and will submit patches to do this and
->>>>> the below as follow-ons once the basics are out of the way.
->>>>>
->>>>>>> +
->>>>>>> +COMPATIBLE_MACHINE_crownbay = "crownbay"
->>>>>>> +KMACHINE_crownbay = "crownbay"
->>>>>>> +
->>>>>>> +KERNEL_FEATURES_append_crownbay += " cfg/smp.scc"
->>>>>>> +
->>>>>>> +# Update the following to use a different BSP branch or meta SRCREV
->>>>>>> +#KBRANCH_crownbay-noemgd = "yocto/standard/preempt-rt/base"
->>>>>>> +#SRCREV_machine_pn-linux-yocto-rt_crownbay-noemgd ?= XXXX
->>>>>>> +#SRCREV_meta_pn-linux-yocto-rt_crownbay-noemgd ?= XXXX
->>>>>>> +
->>>>>>> +#KBRANCH_crownbay = "yocto/standard/preempt-rt/base"
->>>>>>> +#SRCREV_machine_pn-linux-yocto-rt_crownbay ?= XXXX
->>>>>>> +#SRCREV_meta_pn-linux-yocto-rt_crownbay ?= XXXX
->>>>>>> diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
->>>>>>> new file mode 100644
->>>>>>> index 0000000..3b02076
->>>>>>> --- /dev/null
->>>>>>> +++ b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
->>>>>>> @@ -0,0 +1,17 @@
->>>>>>> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>>>>>> +
->>>>>>> +COMPATIBLE_MACHINE_crownbay = "crownbay"
->>>>>>> +KMACHINE_crownbay  = "crownbay"
->>>>>>> +KBRANCH_crownbay  = "standard/default/crownbay"
->>>>>>
->>>>>> I believe crownbay no longer requires special patches right? Can we just
->>>>>> use the standard/default/base branch here and squash the crownbay branch?
->>>>>>
->>>>>
->>>>> At the moment it doesn't, and I'll probably submit a patch to do that
->>>>> for everything that it make sense for again after things are functional
->>>>> with the simple changes first.
->>>>
->>>> There's one catch with this. We currently have the graphics drivers staged as
->>>> topic branches so they can be in tree, and be kept pristine. The BSPs merge
->>>> the graphics topic branch they want, and we can leverage common commits
->>>> across all the users.
->>>>
->>>> If you drop the BSP branch, then the graphics changes need to be universally
->>>> safe for all similar BSPs, since that merge will now be to a shared branch.
->>>> That's normally fine, but for the case where we have multiple emgd versions,
->>>> it can break things.
->>>>
->>>> We have complete flexibility to how we stage the branches, and how we
->>>> generate the content that is built, so this can change .. but that's
->>>> how we currently
->>>> have it setup. Those graphics merges are board specific changes and require
->>>> a branch.
->>>>
->>>
->>> That's fine, I'm perfectly happy to have per-BSP machine branches.
->>> They're cheap, and I don't really see the reason to be so parsimonious
->>> with them.  Also, they're always there, so if we do need to have a place
->>> to put the odd machine-specific patch now and then we don't have to add
->>> a new branch when we need to add those patches, or remove them once
->>> they're gone.  I guess the system was kind of designed for that (machine
->>> branches, even if empty)?
->>
->> Exactly. We can collapse them where it makes sense, and keep there where
->> we need them. A machine branch is just that, a topic branch for development
->> and implicit documentation of a supported board. If a board may be extended
->> in the future .. a branch is nice to have.
->>
->> I'm in favour of keeping the count in control, but see no need to collapse
->> them down completely. That and I spent an hour trying to figure out
->> how to do some fancy merge logic and while it could be done, it just
->> makes things more complex. I'd prefer branches to overly complex
->> branch management logic.
->>
->
-> Agreed on the concept. What I'm not understanding is how is having to
-> get yocto/emgd-1.10 to merge with standard/base any different than
-> having to get it to merge with:
->
-> standard/default/crownbay
-> standard/default/common-pc-64/sugarbay
-> standard/default/fri2
->
-> etc.
->
-> emgd isn't premerged into these machine branches if I understand the scc
-> files correctly, so how is this any different? (I'm sure it is, I trust
-> you here, I would just like to understand what I'm missing).
+Hi Bruce,
 
-When a tree is built from scratch (from the meta data + patch repo), or
-when BSP validation runs across a tree. All BSPs are constructed in a
-single tree. If you have merges into common branches, the third, fourth
-or fifth one is going to eventually explode.
+I plan to submit patches next week to update the meta-cedartrail BSP to use=
+ this yocto/pvr branch.
 
-That being said, I *can* inhibit the merges during tree construction and
-only do it when individual boards are built. But in that scenario, we miss
-an opportunity for automated/bulk validation that the merges are safe
-and valid.
 
-So your observation is correct, and it's just a use case of the descriptions
+Thanks
+Rahul=20
 
-That's why I mentioned that we can collapse them, but there is an increase
-in complexity. Something to keep in our back pocket, since it's there
-to use when we need it.
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Bruce Ashfield
+Sent: Tuesday, March 13, 2012 9:04 PM
+To: Bodke, Kishore K
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] [KERNEL][PATCH 0/1] meta: Create scc file for pvr merg=
+e
+
+On 12-03-13 2:12 PM, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke<kishore.k.bodke@intel.com>
+>
+> Hi,
+>
+> This patch is to create a new scc file for merging the yocto/pvr branch f=
+or the targets
+> with the appropriate hardware support.
+
+Just so I'm clear, there are no current users of this in the tree, but
+we want to stage this for future work, or work that isn't ready yet ?
+
+I'll merge this into the 3.0 kernel and await your confirmation.
 
 Cheers,
 
 Bruce
 
 >
-> --
-> Darren
+> Adding it into the existing cedartrail.scc, the non-pvr build was not boo=
+ting. So we had to separate it out.
 >
->> Cheers,
->>
->> Bruce
->>
->>>
->>>>
->>>>>
->>>>>>> +KERNEL_FEATURES_append_crownbay += " cfg/smp.scc"
->>>>>>> +
->>>>>>> +COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
->>>>>>> +KMACHINE_crownbay-noemgd  = "crownbay"
->>>>>>> +KBRANCH_crownbay-noemgd  = "standard/default/crownbay"
->>>>>>> +KERNEL_FEATURES_append_crownbay-noemgd += " cfg/smp.scc"
->>>>>>> +
->>>>>>> +SRCREV_machine_pn-linux-yocto_crownbay ?= "4471c11c7755727219b673cb887d8a13b8715aba"
->>>>>>> +SRCREV_meta_pn-linux-yocto_crownbay ?= "64840f55ee144e9814278eaa8e3f33dd60da892c"
->>>>>>> +
->>>>>>> +SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?= "4471c11c7755727219b673cb887d8a13b8715aba"
->>>>>>> +SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?= "64840f55ee144e9814278eaa8e3f33dd60da892c"
->>>>>>
->>>>>> The meta SRCREV shouldn't be unique from the base linux-yocto_3.2.bb
->>>>>> recipe, so this can be dropped and save the effort of updating it later.
->>>>>>
->>>>>
->>>>> I don't really want to let the meta SRCREV float - I've run into a
->>>>> couple nasty problems in the past letting that happen. i.e. nobody does
->>>>> runtime testing of the BSPs when they change the meta SRCREV in the base
->>>>> recipe.
->>>>
->>>> runtime testing is the hard part. I can build them .. but can't boot them all!
->>>>
->>>
->>> Exactly, which is why I'm happy to push the SRCREVs for a BSP once I've
->>> tested it...
->>>
->>> Tom
->>>
->>>> Cheers,
->>>>
->>>> Bruce
->>>>
->>>>>
->>>>>> If we use the standard/default/base branch, the machine SRCREV can also
->>>>>> be dropped.
->>>>>>
->>>>>
->>>>> Agreed, if the machine branch changes to standard/default/base, I'll
->>>>> change that too.
->>>>>
->>>>> Tom
->>>>>
->>>>>>
->>>>>
->>>>>
->>>>> _______________________________________________
->>>>> yocto mailing list
->>>>> yocto@yoctoproject.org
->>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>
->>>>
->>>>
->>>
->>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
+> Thanks
+> Kishore.
+>
+>
+> The following changes since commit e559129b4a6f39f68b75141096b2d516cf7a7f=
+35:
+>
+>    fri2: Add SMP and EFI support (2012-03-02 16:02:35 -0500)
+>
+> are available in the git repository at:
+>    git://git.pokylinux.org/linux-yocto-2.6.37-contrib kishore/meta-cedart=
+rail/pvr-merge
+>    http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=3D=
+kishore/meta-cedartrail/pvr-merge
+>
+> Kishore Bodke (1):
+>    meta: Create scc file for pvr merge
+>
+>   .../bsp/cedartrail/cedartrail-pvr-merge.scc        |    1 +
+>   1 files changed, 1 insertions(+), 0 deletions(-)
+>   create mode 100644 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-=
+merge.scc
 >
 
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
