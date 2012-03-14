@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42DAFE013DC
-	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 20:58:29 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 13 Mar 2012 20:58:28 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C663AE0044D
+	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 20:58:30 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 13 Mar 2012 20:58:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="77240956"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="120790993"
 Received: from unknown (HELO localhost) ([10.255.15.131])
-	by AZSMGA002.ch.intel.com with ESMTP; 13 Mar 2012 20:58:28 -0700
+	by orsmga002.jf.intel.com with ESMTP; 13 Mar 2012 20:58:30 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com,
 	yocto@yoctoproject.org
-Date: Tue, 13 Mar 2012 22:57:39 -0500
-Message-Id: <521d410851b5d6ef564c6d36d275dc44167dd74f.1331696906.git.tom.zanussi@intel.com>
+Date: Tue, 13 Mar 2012 22:57:40 -0500
+Message-Id: <fdb2d50fb4eab6b6520ec30b1da68a14577be525.1331696906.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <3d43be48b23af7034669a2df7dd339c48350b1d0.1331696906.git.tom.zanussi@intel.com>
 References: <3d43be48b23af7034669a2df7dd339c48350b1d0.1331696906.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1331696906.git.tom.zanussi@intel.com>
 References: <cover.1331696906.git.tom.zanussi@intel.com>
-Subject: [PATCH 13/17][KERNEL] drm-psb: add DRM_UNLOCKED flag
+Subject: [PATCH 14/17][KERNEL] drm-psb: mark unlocked ioctls
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,52 +30,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2012 03:58:29 -0000
+X-List-Received-Date: Wed, 14 Mar 2012 03:58:30 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Add DRM_UNLOCKED to allow us to call handlers that do their own
-locking without the global lock.
+Mark the ioctls that already do their own locking DRM_UNLOCKED.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- drivers/gpu/drm-psb/drmP.h    |    1 +
- drivers/gpu/drm-psb/drm_drv.c |   10 +++++++---
- 2 files changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm-psb/drm_drv.c |   24 ++++++++++++------------
+ drivers/gpu/drm-psb/psb_drv.c |   10 +++++-----
+ 2 files changed, 17 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm-psb/drmP.h b/drivers/gpu/drm-psb/drmP.h
-index 3cca5fe..9d5bb5c 100644
---- a/drivers/gpu/drm-psb/drmP.h
-+++ b/drivers/gpu/drm-psb/drmP.h
-@@ -309,6 +309,7 @@ typedef int drm_ioctl_compat_t(struct file *filp, unsigned int cmd,
- #define DRM_AUTH        0x1
- #define DRM_MASTER      0x2
- #define DRM_ROOT_ONLY   0x4
-+#define DRM_UNLOCKED    0x8
- 
- struct drm_ioctl_desc {
- 	unsigned int cmd;
 diff --git a/drivers/gpu/drm-psb/drm_drv.c b/drivers/gpu/drm-psb/drm_drv.c
-index 472859b..396dcda 100644
+index 396dcda..30af3fa 100644
 --- a/drivers/gpu/drm-psb/drm_drv.c
 +++ b/drivers/gpu/drm-psb/drm_drv.c
-@@ -663,9 +663,13 @@ long drm_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
- 		   ((ioctl->flags & DRM_MASTER) && !file_priv->master)) {
- 		retcode = -EACCES;
- 	} else {
--		mutex_lock(&drm_global_mutex);
--		retcode = func(dev, kdata, file_priv);
--		mutex_unlock(&drm_global_mutex);
-+		if (ioctl->flags & DRM_UNLOCKED)
-+			retcode = func(dev, kdata, file_priv);
-+		else {
-+			mutex_lock(&drm_global_mutex);
-+			retcode = func(dev, kdata, file_priv);
-+			mutex_unlock(&drm_global_mutex);
-+		}
- 	}
+@@ -117,18 +117,18 @@ static struct drm_ioctl_desc drm_ioctls[] = {
+ 	DRM_IOCTL_DEF(DRM_IOCTL_SG_FREE, drm_sg_free, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	DRM_IOCTL_DEF(DRM_IOCTL_WAIT_VBLANK, drm_wait_vblank, 0),
+ 	DRM_IOCTL_DEF(DRM_IOCTL_UPDATE_DRAW, drm_update_drawable_info, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETRESOURCES, drm_mode_getresources, DRM_MASTER|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETCRTC, drm_mode_getcrtc, DRM_MASTER|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETOUTPUT, drm_mode_getoutput, DRM_MASTER|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_IOCTL_MODE_SETCRTC, drm_mode_setcrtc, DRM_MASTER|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_IOCTL_MODE_ADDFB, drm_mode_addfb, DRM_MASTER|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_IOCTL_MODE_RMFB, drm_mode_rmfb, DRM_MASTER|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETFB, drm_mode_getfb, DRM_MASTER|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_IOCTL_MODE_ADDMODE, drm_mode_addmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_IOCTL_MODE_RMMODE, drm_mode_rmmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_IOCTL_MODE_ATTACHMODE, drm_mode_attachmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_IOCTL_MODE_DETACHMODE, drm_mode_detachmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETPROPERTY, drm_mode_getproperty_ioctl, DRM_MASTER | DRM_ROOT_ONLY),
++	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETRESOURCES, drm_mode_getresources, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
++	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETCRTC, drm_mode_getcrtc, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
++	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETOUTPUT, drm_mode_getoutput, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
++	DRM_IOCTL_DEF(DRM_IOCTL_MODE_SETCRTC, drm_mode_setcrtc, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
++	DRM_IOCTL_DEF(DRM_IOCTL_MODE_ADDFB, drm_mode_addfb, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
++	DRM_IOCTL_DEF(DRM_IOCTL_MODE_RMFB, drm_mode_rmfb, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
++	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETFB, drm_mode_getfb, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
++	DRM_IOCTL_DEF(DRM_IOCTL_MODE_ADDMODE, drm_mode_addmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
++	DRM_IOCTL_DEF(DRM_IOCTL_MODE_RMMODE, drm_mode_rmmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
++	DRM_IOCTL_DEF(DRM_IOCTL_MODE_ATTACHMODE, drm_mode_attachmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
++	DRM_IOCTL_DEF(DRM_IOCTL_MODE_DETACHMODE, drm_mode_detachmode_ioctl, DRM_MASTER|DRM_ROOT_ONLY|DRM_UNLOCKED),
++	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETPROPERTY, drm_mode_getproperty_ioctl, DRM_MASTER | DRM_ROOT_ONLY|DRM_UNLOCKED),
  
- 	if ((retcode == 0) && (cmd & IOC_OUT)) {
+ 	DRM_IOCTL_DEF(DRM_IOCTL_MM_INIT, drm_mm_init_ioctl,
+ 		      DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+diff --git a/drivers/gpu/drm-psb/psb_drv.c b/drivers/gpu/drm-psb/psb_drv.c
+index 471481e..3873c7e 100644
+--- a/drivers/gpu/drm-psb/psb_drv.c
++++ b/drivers/gpu/drm-psb/psb_drv.c
+@@ -100,15 +100,15 @@ static struct pci_device_id pciidlist[] = {
+ #define DRM_PSB_KMS_ON_IOCTL	DRM_IO(DRM_PSB_KMS_ON)
+ 
+ static struct drm_ioctl_desc psb_ioctls[] = {
+-	DRM_IOCTL_DEF(DRM_PSB_CMDBUF_IOCTL, psb_cmdbuf_ioctl, DRM_AUTH),
++	DRM_IOCTL_DEF(DRM_PSB_CMDBUF_IOCTL, psb_cmdbuf_ioctl, DRM_AUTH|DRM_UNLOCKED),
+ 	DRM_IOCTL_DEF(DRM_PSB_XHW_INIT_IOCTL, psb_xhw_init_ioctl,
+ 		      DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_PSB_XHW_IOCTL, psb_xhw_ioctl, DRM_AUTH),
++	DRM_IOCTL_DEF(DRM_PSB_XHW_IOCTL, psb_xhw_ioctl, DRM_AUTH|DRM_UNLOCKED|DRM_UNLOCKED),
+ 	DRM_IOCTL_DEF(DRM_PSB_SCENE_UNREF_IOCTL, drm_psb_scene_unref_ioctl,
+-		      DRM_AUTH),
++		      DRM_AUTH|DRM_UNLOCKED),
+ 	DRM_IOCTL_DEF(DRM_PSB_KMS_OFF_IOCTL, psbfb_kms_off_ioctl,
+-		      DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF(DRM_PSB_KMS_ON_IOCTL, psbfb_kms_on_ioctl, DRM_ROOT_ONLY),
++		      DRM_ROOT_ONLY|DRM_UNLOCKED),
++	DRM_IOCTL_DEF(DRM_PSB_KMS_ON_IOCTL, psbfb_kms_on_ioctl, DRM_ROOT_ONLY|DRM_UNLOCKED),
+ 	DRM_IOCTL_DEF(DRM_PSB_HW_INFO_IOCTL, psb_hw_info_ioctl, DRM_AUTH),
+ };
+ static int psb_max_ioctl = DRM_ARRAY_SIZE(psb_ioctls);
 -- 
 1.7.0.4
 
