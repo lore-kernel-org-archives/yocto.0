@@ -1,19 +1,25 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42249E013E6
-	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 20:59:09 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 13 Mar 2012 20:59:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="77241074"
-Received: from unknown (HELO localhost) ([10.255.15.131])
-	by AZSMGA002.ch.intel.com with ESMTP; 13 Mar 2012 20:59:03 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Tue, 13 Mar 2012 22:58:37 -0500
-Message-Id: <cover.1331696117.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/1] meta-intel: emenlow 3.2 update
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D2A5E0044D
+	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 21:04:05 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2E443ok024645
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 13 Mar 2012 21:04:03 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.21.131) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Tue, 13 Mar 2012 21:04:03 -0700
+Message-ID: <4F6018B2.3070307@windriver.com>
+Date: Wed, 14 Mar 2012 00:04:02 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+MIME-Version: 1.0
+To: <kishore.k.bodke@intel.com>
+References: <cover.1331661801.git.kishore.k.bodke@intel.com>
+In-Reply-To: <cover.1331661801.git.kishore.k.bodke@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [KERNEL][PATCH 0/1] meta: Create scc file for pvr merge
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,29 +31,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2012 03:59:09 -0000
+X-List-Received-Date: Wed, 14 Mar 2012 04:04:05 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On 12-03-13 2:12 PM, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke<kishore.k.bodke@intel.com>
+>
+> Hi,
+>
+> This patch is to create a new scc file for merging the yocto/pvr branch for the targets
+> with the appropriate hardware support.
 
-This updates emenlow to the 3.2 kernel.
+Just so I'm clear, there are no current users of this in the tree, but
+we want to stage this for future work, or work that isn't ready yet ?
 
-The following changes since commit d9132cc66316be45f44beeea6eba734bb3ab337d:
-  Tom Zanussi (1):
-        ia32-base: remove libc-headers PREFERRED_PROVIDER
+I'll merge this into the 3.0 kernel and await your confirmation.
 
-are available in the git repository at:
+Cheers,
 
-  git://git.yoctoproject.org/meta-intel.git tzanussi/emenlow-kernel-3.2-update
-  http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/emenlow-kernel-3.2-update
+Bruce
 
-Tom Zanussi (1):
-  meta-emenlow: switch to linux-yocto-3.2 kernel
-
- meta-emenlow/conf/machine/emenlow.conf             |    2 ++
- .../linux/linux-yocto-rt_3.2.bbappend              |    8 ++++++++
- .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    9 +++++++++
- 3 files changed, 19 insertions(+), 0 deletions(-)
- create mode 100644 meta-emenlow/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
- create mode 100644 meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend
+>
+> Adding it into the existing cedartrail.scc, the non-pvr build was not booting. So we had to separate it out.
+>
+> Thanks
+> Kishore.
+>
+>
+> The following changes since commit e559129b4a6f39f68b75141096b2d516cf7a7f35:
+>
+>    fri2: Add SMP and EFI support (2012-03-02 16:02:35 -0500)
+>
+> are available in the git repository at:
+>    git://git.pokylinux.org/linux-yocto-2.6.37-contrib kishore/meta-cedartrail/pvr-merge
+>    http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=kishore/meta-cedartrail/pvr-merge
+>
+> Kishore Bodke (1):
+>    meta: Create scc file for pvr merge
+>
+>   .../bsp/cedartrail/cedartrail-pvr-merge.scc        |    1 +
+>   1 files changed, 1 insertions(+), 0 deletions(-)
+>   create mode 100644 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-merge.scc
+>
 
 
