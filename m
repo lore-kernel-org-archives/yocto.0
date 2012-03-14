@@ -1,21 +1,20 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFA63E0044C
-	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 13:26:17 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2EKPrvZ004014
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 14 Mar 2012 13:25:53 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.21.154) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Wed, 14 Mar 2012 13:25:53 -0700
-Message-ID: <4F60FECF.4070104@windriver.com>
-Date: Wed, 14 Mar 2012 16:25:51 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71717E0044C
+	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 13:41:36 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 14 Mar 2012 13:41:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="118979484"
+Received: from unknown (HELO envy.home) ([10.255.15.199])
+	by azsmga001.ch.intel.com with ESMTP; 14 Mar 2012 13:41:34 -0700
+Message-ID: <4F610252.4010003@linux.intel.com>
+Date: Wed, 14 Mar 2012 13:40:50 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
 References: <cover.1331610171.git.tom.zanussi@intel.com>
 	<86eeec9f1963b57809b988e148ddf43562e2f0bc.1331610171.git.tom.zanussi@intel.com>
 	<4F5FA04C.7080901@linux.intel.com>
@@ -24,7 +23,9 @@ References: <cover.1331610171.git.tom.zanussi@intel.com>
 	<1331694223.21321.21.camel@elmorro>
 	<4F600BAC.5030107@windriver.com> <4F6018F5.5060302@linux.intel.com>
 	<4F601A96.5060507@windriver.com> <4F60AF1A.2020503@linux.intel.com>
-In-Reply-To: <4F60AF1A.2020503@linux.intel.com>
+	<4F60FECF.4070104@windriver.com>
+In-Reply-To: <4F60FECF.4070104@windriver.com>
+X-Enigmail-Version: 1.3.5
 Cc: yocto@yoctoproject.org
 Subject: Re: [PATCH 1/2] meta-crownbay: switch to linux-yocto-3.2 kernel
 X-BeenThere: yocto@yoctoproject.org
@@ -38,180 +39,163 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2012 20:26:17 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Wed, 14 Mar 2012 20:41:36 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 12-03-14 10:45 AM, Darren Hart wrote:
-> On 03/13/2012 09:12 PM, Bruce Ashfield wrote:
->> On 12-03-14 12:05 AM, Darren Hart wrote:
->>>
->>>
->>> On 03/13/2012 08:08 PM, Bruce Ashfield wrote:
->>>> On 12-03-13 11:03 PM, Tom Zanussi wrote:
->>>>> On Tue, 2012-03-13 at 22:40 -0400, Bruce Ashfield wrote:
->>>>>> On Tue, Mar 13, 2012 at 3:44 PM, Tom Zanussi<tom.zanussi@intel.com>    wrote:
->>>>>>> On Tue, 2012-03-13 at 12:30 -0700, Darren Hart wrote:
->
-> ...
->
->>>>>>>> I believe crownbay no longer requires special patches right? Can we just
->>>>>>>> use the standard/default/base branch here and squash the crownbay branch?
+
+
+On 03/14/2012 01:25 PM, Bruce Ashfield wrote:
+> On 12-03-14 10:45 AM, Darren Hart wrote:
+>> On 03/13/2012 09:12 PM, Bruce Ashfield wrote:
+>>> On 12-03-14 12:05 AM, Darren Hart wrote:
+>>>>
+>>>>
+>>>> On 03/13/2012 08:08 PM, Bruce Ashfield wrote:
+>>>>> On 12-03-13 11:03 PM, Tom Zanussi wrote:
+>>>>>> On Tue, 2012-03-13 at 22:40 -0400, Bruce Ashfield wrote:
+>>>>>>> On Tue, Mar 13, 2012 at 3:44 PM, Tom Zanussi<tom.zanussi@intel.com>    wrote:
+>>>>>>>> On Tue, 2012-03-13 at 12:30 -0700, Darren Hart wrote:
+>>
+>> ...
+>>
+>>>>>>>>> I believe crownbay no longer requires special patches right? Can we just
+>>>>>>>>> use the standard/default/base branch here and squash the crownbay branch?
+>>>>>>>>>
 >>>>>>>>
+>>>>>>>> At the moment it doesn't, and I'll probably submit a patch to do that
+>>>>>>>> for everything that it make sense for again after things are functional
+>>>>>>>> with the simple changes first.
 >>>>>>>
->>>>>>> At the moment it doesn't, and I'll probably submit a patch to do that
->>>>>>> for everything that it make sense for again after things are functional
->>>>>>> with the simple changes first.
+>>>>>>> There's one catch with this. We currently have the graphics drivers staged as
+>>>>>>> topic branches so they can be in tree, and be kept pristine. The BSPs merge
+>>>>>>> the graphics topic branch they want, and we can leverage common commits
+>>>>>>> across all the users.
+>>>>>>>
+>>>>>>> If you drop the BSP branch, then the graphics changes need to be universally
+>>>>>>> safe for all similar BSPs, since that merge will now be to a shared branch.
+>>>>>>> That's normally fine, but for the case where we have multiple emgd versions,
+>>>>>>> it can break things.
+>>>>>>>
+>>>>>>> We have complete flexibility to how we stage the branches, and how we
+>>>>>>> generate the content that is built, so this can change .. but that's
+>>>>>>> how we currently
+>>>>>>> have it setup. Those graphics merges are board specific changes and require
+>>>>>>> a branch.
+>>>>>>>
 >>>>>>
->>>>>> There's one catch with this. We currently have the graphics drivers staged as
->>>>>> topic branches so they can be in tree, and be kept pristine. The BSPs merge
->>>>>> the graphics topic branch they want, and we can leverage common commits
->>>>>> across all the users.
->>>>>>
->>>>>> If you drop the BSP branch, then the graphics changes need to be universally
->>>>>> safe for all similar BSPs, since that merge will now be to a shared branch.
->>>>>> That's normally fine, but for the case where we have multiple emgd versions,
->>>>>> it can break things.
->>>>>>
->>>>>> We have complete flexibility to how we stage the branches, and how we
->>>>>> generate the content that is built, so this can change .. but that's
->>>>>> how we currently
->>>>>> have it setup. Those graphics merges are board specific changes and require
->>>>>> a branch.
->>>>>>
+>>>>>> That's fine, I'm perfectly happy to have per-BSP machine branches.
+>>>>>> They're cheap, and I don't really see the reason to be so parsimonious
+>>>>>> with them.  Also, they're always there, so if we do need to have a place
+>>>>>> to put the odd machine-specific patch now and then we don't have to add
+>>>>>> a new branch when we need to add those patches, or remove them once
+>>>>>> they're gone.  I guess the system was kind of designed for that (machine
+>>>>>> branches, even if empty)?
 >>>>>
->>>>> That's fine, I'm perfectly happy to have per-BSP machine branches.
->>>>> They're cheap, and I don't really see the reason to be so parsimonious
->>>>> with them.  Also, they're always there, so if we do need to have a place
->>>>> to put the odd machine-specific patch now and then we don't have to add
->>>>> a new branch when we need to add those patches, or remove them once
->>>>> they're gone.  I guess the system was kind of designed for that (machine
->>>>> branches, even if empty)?
+>>>>> Exactly. We can collapse them where it makes sense, and keep there where
+>>>>> we need them. A machine branch is just that, a topic branch for development
+>>>>> and implicit documentation of a supported board. If a board may be extended
+>>>>> in the future .. a branch is nice to have.
+>>>>>
+>>>>> I'm in favour of keeping the count in control, but see no need to collapse
+>>>>> them down completely. That and I spent an hour trying to figure out
+>>>>> how to do some fancy merge logic and while it could be done, it just
+>>>>> makes things more complex. I'd prefer branches to overly complex
+>>>>> branch management logic.
+>>>>>
 >>>>
->>>> Exactly. We can collapse them where it makes sense, and keep there where
->>>> we need them. A machine branch is just that, a topic branch for development
->>>> and implicit documentation of a supported board. If a board may be extended
->>>> in the future .. a branch is nice to have.
+>>>> Agreed on the concept. What I'm not understanding is how is having to
+>>>> get yocto/emgd-1.10 to merge with standard/base any different than
+>>>> having to get it to merge with:
 >>>>
->>>> I'm in favour of keeping the count in control, but see no need to collapse
->>>> them down completely. That and I spent an hour trying to figure out
->>>> how to do some fancy merge logic and while it could be done, it just
->>>> makes things more complex. I'd prefer branches to overly complex
->>>> branch management logic.
+>>>> standard/default/crownbay
+>>>> standard/default/common-pc-64/sugarbay
+>>>> standard/default/fri2
 >>>>
+>>>> etc.
+>>>>
+>>>> emgd isn't premerged into these machine branches if I understand the scc
+>>>> files correctly, so how is this any different? (I'm sure it is, I trust
+>>>> you here, I would just like to understand what I'm missing).
 >>>
->>> Agreed on the concept. What I'm not understanding is how is having to
->>> get yocto/emgd-1.10 to merge with standard/base any different than
->>> having to get it to merge with:
->>>
->>> standard/default/crownbay
->>> standard/default/common-pc-64/sugarbay
->>> standard/default/fri2
->>>
->>> etc.
->>>
->>> emgd isn't premerged into these machine branches if I understand the scc
->>> files correctly, so how is this any different? (I'm sure it is, I trust
->>> you here, I would just like to understand what I'm missing).
+>>> When a tree is built from scratch (from the meta data + patch repo), or
+>>> when BSP validation runs across a tree. All BSPs are constructed in a
+>>> single tree. If you have merges into common branches, the third, fourth
+>>> or fifth one is going to eventually explode.
 >>
->> When a tree is built from scratch (from the meta data + patch repo), or
->> when BSP validation runs across a tree. All BSPs are constructed in a
->> single tree. If you have merges into common branches, the third, fourth
->> or fifth one is going to eventually explode.
->
-> It seems like the obvious answer here is to always create a machine
-> branch during tree construction if one does not already exist. This
-
-That can be done .. and I've done it in the past, dynamic branches
-are supported within the tools. But there are always issues:
-
-   - anything dynamic is never as smart as someone specifying a feature
-     description and deciding whether or not they want a branch. I've
-     nearly always regretted dynamically creating branches in the past.
-
-   - It's not just machine descriptions that trigger merges, any feature
-     can have one if it has a topic branch that is being maintained in
-     that manner. So I tread carefully here to not introduce special
-     cases. We are talking about a known optional, board specific merge.
-     A human can make that call pretty easily and specify that they
-     want a branch.
-
-   - Some people just like to build the branch that they want to build.
-     Since, for example, they might be pushing changes onto a non
-     machine specific branch and expecting it to build .. and sometimes
-     that branch isn't even the parent branch (i.e. some temp build). It
-     also means that working in the build tree patches don't have a 1:1
-     home in a source repository. But there are other things that make
-     this a non-ideal workflow, so I don't really mind making it harder :)
-
-     That was the whole intent of KBRANCH. You specify explicitly what
-     you want to build, and the system lets you build that branch. This
-     means that you'll build the same content .. but maybe not that
-     branch.
-
-   - Tree generation would have to dynamically create them, and then
-     remove the non-static branches when it completed. Completely doable,
-     but with a complexity cost. Complete tree generation and per-machine
-     building would now differ (although minor).
-
-> would address the concerns of automated bulk validation while still
-> keeping the branching in the git tree to a minimum. Very few users will
-> be manipulating the git tree in the WORKDIR, and those that do are
-> expected to be advanced git users that can run:
->
-> $ git cherry standard/base
->
-> So why do I care about keeping the branch count down?
->
-> o It helps make it explicit where we have deviated from mainline.
->    - Clear visibility into this is one thing that users have
->      complained about.
->    - It maintains the 1:1 mapping between branches and actual source
->      changes we've discussed.
-
-There are far worse examples of non-obvious branches out there, but
-I don't disagree with the principle.
-
->
-> o It encourages people creating new BSPs to use an existing branch
->    if at all possible.
->    - We can encourage people to do this, but unless it is clear we
->      are following this advice ourselves, others will not follow.
-
-I don't really have big problem with people working on machine branches :)
-It's just a topic branch that holds work, it's like anything you do in
-a git repo .. do it on your own branch .. and then merge it back.
-
-Anyway, I'm making changes to quite a few things right now in the tools,
-and we don't want to do this for 1.2, so let me think about this for a
-day and see if any other use cases break.
-
-Cheers,
-
-Bruce
-
->
-> Taking a hard line on this is also part of boiling down our language and
-> firming up policy and tool definition. Doing so makes things more clear,
-> easier to learn, understand, contribute to, as well as maintain and debug.
->
-> --
-> Darren
->
->
+>> It seems like the obvious answer here is to always create a machine
+>> branch during tree construction if one does not already exist. This
+> 
+> That can be done .. and I've done it in the past, dynamic branches
+> are supported within the tools. But there are always issues:
+> 
+>    - anything dynamic is never as smart as someone specifying a feature
+>      description and deciding whether or not they want a branch. I've
+>      nearly always regretted dynamically creating branches in the past.
+> 
+>    - It's not just machine descriptions that trigger merges, any feature
+>      can have one if it has a topic branch that is being maintained in
+>      that manner. So I tread carefully here to not introduce special
+>      cases. We are talking about a known optional, board specific merge.
+>      A human can make that call pretty easily and specify that they
+>      want a branch.
+> 
+>    - Some people just like to build the branch that they want to build.
+>      Since, for example, they might be pushing changes onto a non
+>      machine specific branch and expecting it to build .. and sometimes
+>      that branch isn't even the parent branch (i.e. some temp build). It
+>      also means that working in the build tree patches don't have a 1:1
+>      home in a source repository. But there are other things that make
+>      this a non-ideal workflow, so I don't really mind making it harder :)
+> 
+>      That was the whole intent of KBRANCH. You specify explicitly what
+>      you want to build, and the system lets you build that branch. This
+>      means that you'll build the same content .. but maybe not that
+>      branch.
+> 
+>    - Tree generation would have to dynamically create them, and then
+>      remove the non-static branches when it completed. Completely doable,
+>      but with a complexity cost. Complete tree generation and per-machine
+>      building would now differ (although minor).
+> 
+>> would address the concerns of automated bulk validation while still
+>> keeping the branching in the git tree to a minimum. Very few users will
+>> be manipulating the git tree in the WORKDIR, and those that do are
+>> expected to be advanced git users that can run:
 >>
->> That being said, I *can* inhibit the merges during tree construction and
->> only do it when individual boards are built. But in that scenario, we miss
->> an opportunity for automated/bulk validation that the merges are safe
->> and valid.
+>> $ git cherry standard/base
 >>
->> So your observation is correct, and it's just a use case of the descriptions
+>> So why do I care about keeping the branch count down?
 >>
->> That's why I mentioned that we can collapse them, but there is an increase
->> in complexity. Something to keep in our back pocket, since it's there
->> to use when we need it.
+>> o It helps make it explicit where we have deviated from mainline.
+>>    - Clear visibility into this is one thing that users have
+>>      complained about.
+>>    - It maintains the 1:1 mapping between branches and actual source
+>>      changes we've discussed.
+> 
+> There are far worse examples of non-obvious branches out there, but
+> I don't disagree with the principle.
+> 
 >>
->
->
+>> o It encourages people creating new BSPs to use an existing branch
+>>    if at all possible.
+>>    - We can encourage people to do this, but unless it is clear we
+>>      are following this advice ourselves, others will not follow.
+> 
+> I don't really have big problem with people working on machine branches :)
+> It's just a topic branch that holds work, it's like anything you do in
+> a git repo .. do it on your own branch .. and then merge it back.
+> 
+> Anyway, I'm making changes to quite a few things right now in the tools,
+> and we don't want to do this for 1.2, so let me think about this for a
+> day and see if any other use cases break.
+> 
 
+Yes, let's revisit after 1.2 is out. Not need to muddy the waters with
+it now.
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
