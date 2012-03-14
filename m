@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47DDAE013C0
-	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 20:58:12 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 13 Mar 2012 20:58:12 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89D86E013CB
+	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 20:58:13 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 13 Mar 2012 20:58:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="120790953"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="128723537"
 Received: from unknown (HELO localhost) ([10.255.15.131])
-	by orsmga002.jf.intel.com with ESMTP; 13 Mar 2012 20:58:11 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 13 Mar 2012 20:58:12 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com,
 	yocto@yoctoproject.org
-Date: Tue, 13 Mar 2012 22:57:29 -0500
-Message-Id: <7328fe569f9d125c619cd81bc8332f30d8fe4e02.1331696906.git.tom.zanussi@intel.com>
+Date: Tue, 13 Mar 2012 22:57:30 -0500
+Message-Id: <753ae4aad9cf1401cfcf6f75c7878b208f3b49c3.1331696906.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <3d43be48b23af7034669a2df7dd339c48350b1d0.1331696906.git.tom.zanussi@intel.com>
 References: <3d43be48b23af7034669a2df7dd339c48350b1d0.1331696906.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1331696906.git.tom.zanussi@intel.com>
 References: <cover.1331696906.git.tom.zanussi@intel.com>
-Subject: [PATCH 03/17][KERNEL] drm: apply psb-kernel-source package's build.patch
+Subject: [PATCH 04/17][KERNEL] drm: intel_ldvs.c: add missing arg to backlight_device_register() call
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,166 +30,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2012 03:58:12 -0000
+X-List-Received-Date: Wed, 14 Mar 2012 03:58:13 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Build mods required for compilation.
+backlight_device_register() added a backlight_props param - give it
+another arg to keep it happy.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- drivers/gpu/drm-psb/drm_agpsupport.c |    2 +-
- drivers/gpu/drm-psb/drm_edid.c       |    3 ++-
- drivers/gpu/drm-psb/drm_memory.c     |    4 ++--
- drivers/gpu/drm-psb/drm_os_linux.h   |    6 ------
- drivers/gpu/drm-psb/drm_ttm.c        |    2 ++
- drivers/gpu/drm-psb/drm_vm.c         |    4 ++--
- drivers/gpu/drm-psb/intel_lvds.c     |    1 +
- drivers/gpu/drm-psb/psb_drv.c        |    4 +++-
- drivers/gpu/drm-psb/psb_drv.h        |    2 +-
- 9 files changed, 14 insertions(+), 14 deletions(-)
+ drivers/gpu/drm-psb/intel_lvds.c |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
 
-diff --git a/drivers/gpu/drm-psb/drm_agpsupport.c b/drivers/gpu/drm-psb/drm_agpsupport.c
-index a1af119..8b739d2 100644
---- a/drivers/gpu/drm-psb/drm_agpsupport.c
-+++ b/drivers/gpu/drm-psb/drm_agpsupport.c
-@@ -524,7 +524,7 @@ static int drm_agp_populate(struct drm_ttm_backend *backend,
- 	DRM_DEBUG("Current page count is %ld\n", (long) mem->page_count);
- 	mem->page_count = 0;
- 	for (cur_page = pages; cur_page < last_page; ++cur_page)
--		mem->pages[mem->page_count++] = phys_to_gart(page_to_phys(*cur_page));
-+		mem->pages[mem->page_count++] = page_to_phys(*cur_page);
- 	agp_be->mem = mem;
- 	return 0;
- }
-diff --git a/drivers/gpu/drm-psb/drm_edid.c b/drivers/gpu/drm-psb/drm_edid.c
-index 6307cdc..54d27c6 100644
---- a/drivers/gpu/drm-psb/drm_edid.c
-+++ b/drivers/gpu/drm-psb/drm_edid.c
-@@ -11,6 +11,7 @@
- #include "drm_edid.h"
- 
- #include <acpi/acpi_drivers.h>
-+#include <linux/i2c.h>
- 
- /* Valid EDID header has these bytes */
- static u8 edid_header[] = { 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00 };
-@@ -39,7 +40,7 @@ int drm_get_acpi_edid(char *method, char *edid, ssize_t length)
- 	if (obj && obj->type == ACPI_TYPE_BUFFER)
- 		memcpy(edid, obj->buffer.pointer, obj->buffer.length);
- 	else {
--		printk(KERN_ERR PREFIX "Invalid _DDC data\n");
-+		printk(KERN_ERR "Invalid _DDC data\n");
- 		status = -EFAULT;
- 		kfree(obj);
- 	}
-diff --git a/drivers/gpu/drm-psb/drm_memory.c b/drivers/gpu/drm-psb/drm_memory.c
-index becca1e..c890499 100644
---- a/drivers/gpu/drm-psb/drm_memory.c
-+++ b/drivers/gpu/drm-psb/drm_memory.c
-@@ -264,9 +264,9 @@ static void *agp_remap(unsigned long offset, unsigned long size,
- 		return NULL;
- 
- 	phys_addr_map =
--	    agpmem->memory->memory + (offset - agpmem->bound) / PAGE_SIZE;
-+	    agpmem->memory->pages + (offset - agpmem->bound) / PAGE_SIZE;
- 	for (i = 0; i < num_pages; ++i)
--		page_map[i] = pfn_to_page(phys_addr_map[i] >> PAGE_SHIFT);
-+                page_map[i] = phys_addr_map[i];
- 	addr = vmap(page_map, num_pages, VM_IOREMAP, PAGE_AGP);
- 	vfree(page_map);
- 
-diff --git a/drivers/gpu/drm-psb/drm_os_linux.h b/drivers/gpu/drm-psb/drm_os_linux.h
-index f52f0eb..ac5051b 100644
---- a/drivers/gpu/drm-psb/drm_os_linux.h
-+++ b/drivers/gpu/drm-psb/drm_os_linux.h
-@@ -50,12 +50,6 @@
- 
- /** IRQ handler arguments and return type and values */
- #define DRM_IRQ_ARGS		int irq, void *arg
--/** backwards compatibility with old irq return values */
--#ifndef IRQ_HANDLED
--typedef void irqreturn_t;
--#define IRQ_HANDLED		/* nothing */
--#define IRQ_NONE		/* nothing */
--#endif
- 
- /** AGP types */
- #if __OS_HAS_AGP
-diff --git a/drivers/gpu/drm-psb/drm_ttm.c b/drivers/gpu/drm-psb/drm_ttm.c
-index e0afb04..8aa3947 100644
---- a/drivers/gpu/drm-psb/drm_ttm.c
-+++ b/drivers/gpu/drm-psb/drm_ttm.c
-@@ -28,6 +28,8 @@
-  * Authors: Thomas Hellström <thomas-at-tungstengraphics-dot-com>
-  */
- 
-+#include "linux/spinlock.h"
-+#include "asm/agp.h"
- #include "drmP.h"
- 
- static void drm_ttm_ipi_handler(void *null)
-diff --git a/drivers/gpu/drm-psb/drm_vm.c b/drivers/gpu/drm-psb/drm_vm.c
-index 5baefee..7adbf7b 100644
---- a/drivers/gpu/drm-psb/drm_vm.c
-+++ b/drivers/gpu/drm-psb/drm_vm.c
-@@ -145,13 +145,13 @@ static int drm_do_vm_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
- 		 * Get the page, inc the use count, and return it
- 		 */
- 		offset = (baddr - agpmem->bound) >> PAGE_SHIFT;
--		page = virt_to_page(__va(agpmem->memory->memory[offset]));
-+		page = agpmem->memory->pages[offset];
- 		get_page(page);
- 		vmf->page = page;
- 
- 		DRM_DEBUG
- 		    ("baddr = 0x%lx page = 0x%p, offset = 0x%lx, count=%d\n",
--		     baddr, __va(agpmem->memory->memory[offset]), offset,
-+		     baddr, agpmem->memory->pages[offset], offset,
- 		     page_count(page));
- 		return 0;
- 	}
 diff --git a/drivers/gpu/drm-psb/intel_lvds.c b/drivers/gpu/drm-psb/intel_lvds.c
-index 208f3ad..16fbd79 100644
+index 16fbd79..a778436 100644
 --- a/drivers/gpu/drm-psb/intel_lvds.c
 +++ b/drivers/gpu/drm-psb/intel_lvds.c
-@@ -29,6 +29,7 @@
+@@ -801,8 +801,10 @@ void intel_lvds_init(struct drm_device *dev)
+ 	}
  
- #include <linux/i2c.h>
- #include <linux/backlight.h>
-+#include <linux/i2c.h>
- #include "drm_crtc.h"
- #include "drm_edid.h"
- #include "intel_lvds.h"
-diff --git a/drivers/gpu/drm-psb/psb_drv.c b/drivers/gpu/drm-psb/psb_drv.c
-index 2a2e8d4..794c180 100644
---- a/drivers/gpu/drm-psb/psb_drv.c
-+++ b/drivers/gpu/drm-psb/psb_drv.c
-@@ -34,8 +34,10 @@
- #include <linux/cpu.h>
- #include <linux/notifier.h>
- #include <linux/fb.h>
-+#include "linux/spinlock.h"
-+#include "asm/agp.h"
- 
--int drm_psb_debug = 0;
-+int drm_psb_debug = 255;
- EXPORT_SYMBOL(drm_psb_debug);
- static int drm_psb_trap_pagefaults = 0;
- static int drm_psb_clock_gating = 0;
-diff --git a/drivers/gpu/drm-psb/psb_drv.h b/drivers/gpu/drm-psb/psb_drv.h
-index f2c2657..ad0c36c 100644
---- a/drivers/gpu/drm-psb/psb_drv.h
-+++ b/drivers/gpu/drm-psb/psb_drv.h
-@@ -808,7 +808,7 @@ extern int drm_psb_detear;
- #define PSB_DEBUG(_flag, _fmt, _arg...)					\
- 	do {								\
- 	  if (unlikely((_flag) & drm_psb_debug))			\
--			printk(KERN_DEBUG				\
-+			printk(KERN_ERR				\
- 			       "[psb:0x%02x:%s] " _fmt , _flag,	\
- 			       __FUNCTION__ , ##_arg);			\
- 	} while (0)
+ 	if ((blc_type == BLC_I2C_TYPE) || (blc_type == BLC_PWM_TYPE)){	
++		struct backlight_properties props;
++		memset(&props, 0, sizeof(struct backlight_properties));
+ 		/* add /sys/class/backlight interface as standard */
+-		psbbl_device = backlight_device_register("psblvds", &dev->pdev->dev, dev, &psbbl_ops);
++		psbbl_device = backlight_device_register("psblvds", &dev->pdev->dev, dev, &psbbl_ops, &props);
+ 		if (psbbl_device){
+ #if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,20)
+ 			down(&psbbl_device->sem);
 -- 
 1.7.0.4
 
