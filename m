@@ -1,35 +1,19 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10A11E0137C
-	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 10:00:58 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 14 Mar 2012 10:00:57 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A295DE0137C
+	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 10:02:13 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 14 Mar 2012 10:02:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="120993235"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by orsmga002.jf.intel.com with ESMTP; 14 Mar 2012 09:59:57 -0700
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 14 Mar 2012 09:59:56 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.199]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.128]) with mapi id
-	14.01.0355.002; Wed, 14 Mar 2012 09:59:57 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Thread-Topic: [KERNEL][PATCH 0/1] meta: Create scc file for pvr merge
-Thread-Index: AQHNAUTUUWk40wHrq0es55c2chQ8nZZpockAgABiPtA=
-Date: Wed, 14 Mar 2012 16:59:56 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE2035FD422@ORSMSX105.amr.corp.intel.com>
-References: <cover.1331661801.git.kishore.k.bodke@intel.com>
-	<4F6018B2.3070307@windriver.com>
-In-Reply-To: <4F6018B2.3070307@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [KERNEL][PATCH 0/1] meta: Create scc file for pvr merge
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="118884404"
+Received: from unknown (HELO localhost) ([10.255.15.131])
+	by azsmga001.ch.intel.com with ESMTP; 14 Mar 2012 10:02:11 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org
+Date: Wed, 14 Mar 2012 12:01:38 -0500
+Message-Id: <cover.1331744339.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/1] meta-intel: fishriver 3.2 update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,69 +25,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2012 17:00:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 14 Mar 2012 17:02:13 -0000
 
-Yes, Please go ahead and merge this to 3.0 kernel. =20
-We will be releasing the Cedartrail BSP both for Edison and master branch i=
-n another couple of weeks.
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Thanks
-Kishore.
+This updates fishriver to the 3.2 kernel.
 
------Original Message-----
-From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
-Sent: Tuesday, March 13, 2012 9:04 PM
-To: Bodke, Kishore K
-Cc: yocto@yoctoproject.org
-Subject: Re: [KERNEL][PATCH 0/1] meta: Create scc file for pvr merge
+The following changes since commit d9132cc66316be45f44beeea6eba734bb3ab337d:
+  Tom Zanussi (1):
+        ia32-base: remove libc-headers PREFERRED_PROVIDER
 
-On 12-03-13 2:12 PM, kishore.k.bodke@intel.com wrote:
-> From: Kishore Bodke<kishore.k.bodke@intel.com>
->
-> Hi,
->
-> This patch is to create a new scc file for merging the yocto/pvr branch f=
-or the targets
-> with the appropriate hardware support.
+are available in the git repository at:
 
-Just so I'm clear, there are no current users of this in the tree, but
-we want to stage this for future work, or work that isn't ready yet ?
+  git://git.yoctoproject.org/meta-intel.git tzanussi/fishriver-kernel-3.2-update
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/fishriver-kernel-3.2-update
 
-I'll merge this into the 3.0 kernel and await your confirmation.
+Tom Zanussi (1):
+  meta-fishriver: switch to linux-yocto-3.2 kernel
 
-Cheers,
-
-Bruce
-
->
-> Adding it into the existing cedartrail.scc, the non-pvr build was not boo=
-ting. So we had to separate it out.
->
-> Thanks
-> Kishore.
->
->
-> The following changes since commit e559129b4a6f39f68b75141096b2d516cf7a7f=
-35:
->
->    fri2: Add SMP and EFI support (2012-03-02 16:02:35 -0500)
->
-> are available in the git repository at:
->    git://git.pokylinux.org/linux-yocto-2.6.37-contrib kishore/meta-cedart=
-rail/pvr-merge
->    http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=3D=
-kishore/meta-cedartrail/pvr-merge
->
-> Kishore Bodke (1):
->    meta: Create scc file for pvr merge
->
->   .../bsp/cedartrail/cedartrail-pvr-merge.scc        |    1 +
->   1 files changed, 1 insertions(+), 0 deletions(-)
->   create mode 100644 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-=
-merge.scc
->
+ meta-fishriver/conf/machine/fishriver.conf         |    2 ++
+ .../linux/linux-yocto-rt_3.2.bbappend              |    8 ++++++++
+ .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    9 +++++++++
+ 3 files changed, 19 insertions(+), 0 deletions(-)
+ create mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+ create mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
 
 
