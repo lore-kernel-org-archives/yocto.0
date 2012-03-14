@@ -1,24 +1,31 @@
-Return-Path: <dongxiao.xu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C42BE013BA
-	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 02:04:00 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 14 Mar 2012 02:04:00 -0700
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2E4BE0137C
+	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 07:09:25 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 14 Mar 2012 07:09:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="138562801"
-Received: from dongxiao-osel.sh.intel.com (HELO [10.239.36.11])
-	([10.239.36.11])
-	by fmsmga002.fm.intel.com with ESMTP; 14 Mar 2012 02:03:57 -0700
-From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-In-Reply-To: <4F3EA17B.7010906@windriver.com>
-References: <2046170.9fCjTlmZqN@helios>  <4F3EA17B.7010906@windriver.com>
-Date: Wed, 14 Mar 2012 17:02:04 +0800
-Message-ID: <1331715724.25861.16.camel@dongxiao-osel>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-Cc: yocto@yoctoproject.org, Peter Seebach <peter.seebach@windriver.com>
-Subject: Re: pseudo interaction issue
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="77428289"
+Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
+	by AZSMGA002.ch.intel.com with ESMTP; 14 Mar 2012 07:09:25 -0700
+Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
+	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 14 Mar 2012 07:09:24 -0700
+Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.142]) by
+	SHSMSX102.ccr.corp.intel.com ([169.254.2.36]) with mapi id
+	14.01.0355.002; Wed, 14 Mar 2012 22:09:23 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto weekly bug trend charts -- WW10
+Thread-Index: Ac0B7A3PJCPTD+7mRh+TJ+y8glcqOg==
+Date: Wed, 14 Mar 2012 14:09:22 +0000
+Message-ID: <90741FE9B50D654690EB940EDB456C8E08954E@SHSMSX101.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
+MIME-Version: 1.0
+Subject: Yocto weekly bug trend charts -- WW10
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,71 +37,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2012 09:04:01 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 14 Mar 2012 14:09:26 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Mark,
+Hi all,
+	The overall open bug trend increased a lot in last week. WDD number and Op=
+en Bug number are 886 and 173. Due to the bugzilla upgrade, some functions =
+do not work, which make QA bug statistic a little late. Bug status of WW10 =
+could be found on https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
 
-When using the new Hob to build targets, I also observed the pseudo
-output:
-
-"pseudo: You must set the PSEUDO_PREFIX environment variable to run
-pseudo."
-
-Here is the step to reproduce it:
-
-1) source oe-init-build-env
-2) hob
-3) select machine and base image. Here I use qemux86 and
-core-image-minimal.
-4) click "Just bake". For this first time build, pseudo works OK.
-5) after the build finishes, return to image configuration page and
-click "Just bake" button again. Then after the build starts, pseudo will
-print out the above logs.
-
-Thanks,
-Dongxiao
-
-On Fri, 2012-02-17 at 10:50 -0800, Mark Hatle wrote:
-> We're looking into this issue.  You should never get the "pseudo: You must set 
-> the PSEUDO_PREFIX environment variable to run pseudo." message.  This means 
-> something appears to have avoided the wrappers.
-> 
-> I'll let you know once we figure out something.
-> 
-> --Mark
-> 
-> On 2/17/12 9:35 AM, Paul Eggleton wrote:
-> > Hi all,
-> >
-> > I'm trying to extend buildhistory to write out the metadata revisions just
-> > before it does the commit to the buildhistory repository, and I'm having some
-> > pseudo-related trouble. The structure is a little unusual, in that the
-> > execution flow is an event handler that calls a shell function (via
-> > bb.build.exec_func()) and during parsing this function an ${@...} reference to
-> > a python function is evaluated, which then calls os.popen(), at which point I
-> > get the error "pseudo: You must set the PSEUDO_PREFIX environment variable to
-> > run pseudo."
-> >
-> > I don't need pseudo at this stage. I've tried setting PSEUDO_DISABLED=1 and
-> > even PSEUDO_UNLOAD=1 just prior to the os.popen() call (or within it) and
-> > despite evidence that pseudo is taking notice of these being set in other
-> > contexts (when the function is called from elsewhere) even when doing this I
-> > still get the error above. I could rearrange the structure to avoid this
-> > execution flow however that would bar me from reusing existing code that we
-> > have for getting the metadata revision.
-> >
-> > Any suggestions?
-> >
-> > Cheers,
-> > Paul
-> >
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Best Regards,
+Jiajun
 
 
 
