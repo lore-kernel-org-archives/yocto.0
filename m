@@ -1,20 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AF76E004D2
-	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 20:58:06 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 13 Mar 2012 20:58:05 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47DDAE013C0
+	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 20:58:12 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 13 Mar 2012 20:58:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="118599907"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="120790953"
 Received: from unknown (HELO localhost) ([10.255.15.131])
-	by azsmga001.ch.intel.com with ESMTP; 13 Mar 2012 20:58:03 -0700
+	by orsmga002.jf.intel.com with ESMTP; 13 Mar 2012 20:58:11 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com,
 	yocto@yoctoproject.org
-Date: Tue, 13 Mar 2012 22:57:38 -0500
-Message-Id: <cover.1331696906.git.tom.zanussi@intel.com>
+Date: Tue, 13 Mar 2012 22:57:29 -0500
+Message-Id: <7328fe569f9d125c619cd81bc8332f30d8fe4e02.1331696906.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 00/17][KERNEL] emenlow updates for linux-yocto 3.2
+In-Reply-To: <3d43be48b23af7034669a2df7dd339c48350b1d0.1331696906.git.tom.zanussi@intel.com>
+References: <3d43be48b23af7034669a2df7dd339c48350b1d0.1331696906.git.tom.zanussi@intel.com>
+In-Reply-To: <cover.1331696906.git.tom.zanussi@intel.com>
+References: <cover.1331696906.git.tom.zanussi@intel.com>
+Subject: [PATCH 03/17][KERNEL] drm: apply psb-kernel-source package's build.patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,47 +30,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2012 03:58:06 -0000
+X-List-Received-Date: Wed, 14 Mar 2012 03:58:12 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Hi Bruce,
+Build mods required for compilation.
 
-Please pull this patchset into linux-yocto-3.2,
-standard/default/emenlow.
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ drivers/gpu/drm-psb/drm_agpsupport.c |    2 +-
+ drivers/gpu/drm-psb/drm_edid.c       |    3 ++-
+ drivers/gpu/drm-psb/drm_memory.c     |    4 ++--
+ drivers/gpu/drm-psb/drm_os_linux.h   |    6 ------
+ drivers/gpu/drm-psb/drm_ttm.c        |    2 ++
+ drivers/gpu/drm-psb/drm_vm.c         |    4 ++--
+ drivers/gpu/drm-psb/intel_lvds.c     |    1 +
+ drivers/gpu/drm-psb/psb_drv.c        |    4 +++-
+ drivers/gpu/drm-psb/psb_drv.h        |    2 +-
+ 9 files changed, 14 insertions(+), 14 deletions(-)
 
-Thanks,
-
-Tom
-
-The following changes since commit 764090858adaa214395b3667fe1929892c2083f7:
-  Darren Hart (1):
-        pch_uart: Use existing default_baud in setup_console
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/standard/default/emenlow-3.2
-  http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/standard/default/emenlow-3.2
-
-Tom Zanussi (17):
-  drm: add the base source of the Poulsbo (psb) 2D X11 driver
-  drm-psb: remove the package Makefile and replace it with the kernel
-    Makefile
-  drm: apply psb-kernel-source package's build.patch
-  drm: intel_ldvs.c: add missing arg to backlight_device_register()
-    call
-  emenlow: switch to psb
-  drm: Fix psb ioctl assignment
-  drm-psb: remove BKL remnants
-  drm-psb: update spinlock initializers
-  drm-psb: remove call to agp_flush_chipset
-  drm-psb: remove includes of nonexistent i2c-id.h
-  drm-psb: remove assigment to deprecated i2c_adapter.id
-  drm-psb: use console_lock/unlock()
-  drm-psb: add DRM_UNLOCKED flag
-  drm-psb: mark unlocked ioctls
-  drm-psb: initialize backlight type
-  drm-psb: fix ioremap calls
-  drm-psb: change udelay to mdelay in intel_wait_for_vblank()
+diff --git a/drivers/gpu/drm-psb/drm_agpsupport.c b/drivers/gpu/drm-psb/drm_agpsupport.c
+index a1af119..8b739d2 100644
+--- a/drivers/gpu/drm-psb/drm_agpsupport.c
++++ b/drivers/gpu/drm-psb/drm_agpsupport.c
+@@ -524,7 +524,7 @@ static int drm_agp_populate(struct drm_ttm_backend *backend,
+ 	DRM_DEBUG("Current page count is %ld\n", (long) mem->page_count);
+ 	mem->page_count = 0;
+ 	for (cur_page = pages; cur_page < last_page; ++cur_page)
+-		mem->pages[mem->page_count++] = phys_to_gart(page_to_phys(*cur_page));
++		mem->pages[mem->page_count++] = page_to_phys(*cur_page);
+ 	agp_be->mem = mem;
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm-psb/drm_edid.c b/drivers/gpu/drm-psb/drm_edid.c
+index 6307cdc..54d27c6 100644
+--- a/drivers/gpu/drm-psb/drm_edid.c
++++ b/drivers/gpu/drm-psb/drm_edid.c
+@@ -11,6 +11,7 @@
+ #include "drm_edid.h"
+ 
+ #include <acpi/acpi_drivers.h>
++#include <linux/i2c.h>
+ 
+ /* Valid EDID header has these bytes */
+ static u8 edid_header[] = { 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00 };
+@@ -39,7 +40,7 @@ int drm_get_acpi_edid(char *method, char *edid, ssize_t length)
+ 	if (obj && obj->type == ACPI_TYPE_BUFFER)
+ 		memcpy(edid, obj->buffer.pointer, obj->buffer.length);
+ 	else {
+-		printk(KERN_ERR PREFIX "Invalid _DDC data\n");
++		printk(KERN_ERR "Invalid _DDC data\n");
+ 		status = -EFAULT;
+ 		kfree(obj);
+ 	}
+diff --git a/drivers/gpu/drm-psb/drm_memory.c b/drivers/gpu/drm-psb/drm_memory.c
+index becca1e..c890499 100644
+--- a/drivers/gpu/drm-psb/drm_memory.c
++++ b/drivers/gpu/drm-psb/drm_memory.c
+@@ -264,9 +264,9 @@ static void *agp_remap(unsigned long offset, unsigned long size,
+ 		return NULL;
+ 
+ 	phys_addr_map =
+-	    agpmem->memory->memory + (offset - agpmem->bound) / PAGE_SIZE;
++	    agpmem->memory->pages + (offset - agpmem->bound) / PAGE_SIZE;
+ 	for (i = 0; i < num_pages; ++i)
+-		page_map[i] = pfn_to_page(phys_addr_map[i] >> PAGE_SHIFT);
++                page_map[i] = phys_addr_map[i];
+ 	addr = vmap(page_map, num_pages, VM_IOREMAP, PAGE_AGP);
+ 	vfree(page_map);
+ 
+diff --git a/drivers/gpu/drm-psb/drm_os_linux.h b/drivers/gpu/drm-psb/drm_os_linux.h
+index f52f0eb..ac5051b 100644
+--- a/drivers/gpu/drm-psb/drm_os_linux.h
++++ b/drivers/gpu/drm-psb/drm_os_linux.h
+@@ -50,12 +50,6 @@
+ 
+ /** IRQ handler arguments and return type and values */
+ #define DRM_IRQ_ARGS		int irq, void *arg
+-/** backwards compatibility with old irq return values */
+-#ifndef IRQ_HANDLED
+-typedef void irqreturn_t;
+-#define IRQ_HANDLED		/* nothing */
+-#define IRQ_NONE		/* nothing */
+-#endif
+ 
+ /** AGP types */
+ #if __OS_HAS_AGP
+diff --git a/drivers/gpu/drm-psb/drm_ttm.c b/drivers/gpu/drm-psb/drm_ttm.c
+index e0afb04..8aa3947 100644
+--- a/drivers/gpu/drm-psb/drm_ttm.c
++++ b/drivers/gpu/drm-psb/drm_ttm.c
+@@ -28,6 +28,8 @@
+  * Authors: Thomas Hellström <thomas-at-tungstengraphics-dot-com>
+  */
+ 
++#include "linux/spinlock.h"
++#include "asm/agp.h"
+ #include "drmP.h"
+ 
+ static void drm_ttm_ipi_handler(void *null)
+diff --git a/drivers/gpu/drm-psb/drm_vm.c b/drivers/gpu/drm-psb/drm_vm.c
+index 5baefee..7adbf7b 100644
+--- a/drivers/gpu/drm-psb/drm_vm.c
++++ b/drivers/gpu/drm-psb/drm_vm.c
+@@ -145,13 +145,13 @@ static int drm_do_vm_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
+ 		 * Get the page, inc the use count, and return it
+ 		 */
+ 		offset = (baddr - agpmem->bound) >> PAGE_SHIFT;
+-		page = virt_to_page(__va(agpmem->memory->memory[offset]));
++		page = agpmem->memory->pages[offset];
+ 		get_page(page);
+ 		vmf->page = page;
+ 
+ 		DRM_DEBUG
+ 		    ("baddr = 0x%lx page = 0x%p, offset = 0x%lx, count=%d\n",
+-		     baddr, __va(agpmem->memory->memory[offset]), offset,
++		     baddr, agpmem->memory->pages[offset], offset,
+ 		     page_count(page));
+ 		return 0;
+ 	}
+diff --git a/drivers/gpu/drm-psb/intel_lvds.c b/drivers/gpu/drm-psb/intel_lvds.c
+index 208f3ad..16fbd79 100644
+--- a/drivers/gpu/drm-psb/intel_lvds.c
++++ b/drivers/gpu/drm-psb/intel_lvds.c
+@@ -29,6 +29,7 @@
+ 
+ #include <linux/i2c.h>
+ #include <linux/backlight.h>
++#include <linux/i2c.h>
+ #include "drm_crtc.h"
+ #include "drm_edid.h"
+ #include "intel_lvds.h"
+diff --git a/drivers/gpu/drm-psb/psb_drv.c b/drivers/gpu/drm-psb/psb_drv.c
+index 2a2e8d4..794c180 100644
+--- a/drivers/gpu/drm-psb/psb_drv.c
++++ b/drivers/gpu/drm-psb/psb_drv.c
+@@ -34,8 +34,10 @@
+ #include <linux/cpu.h>
+ #include <linux/notifier.h>
+ #include <linux/fb.h>
++#include "linux/spinlock.h"
++#include "asm/agp.h"
+ 
+-int drm_psb_debug = 0;
++int drm_psb_debug = 255;
+ EXPORT_SYMBOL(drm_psb_debug);
+ static int drm_psb_trap_pagefaults = 0;
+ static int drm_psb_clock_gating = 0;
+diff --git a/drivers/gpu/drm-psb/psb_drv.h b/drivers/gpu/drm-psb/psb_drv.h
+index f2c2657..ad0c36c 100644
+--- a/drivers/gpu/drm-psb/psb_drv.h
++++ b/drivers/gpu/drm-psb/psb_drv.h
+@@ -808,7 +808,7 @@ extern int drm_psb_detear;
+ #define PSB_DEBUG(_flag, _fmt, _arg...)					\
+ 	do {								\
+ 	  if (unlikely((_flag) & drm_psb_debug))			\
+-			printk(KERN_DEBUG				\
++			printk(KERN_ERR				\
+ 			       "[psb:0x%02x:%s] " _fmt , _flag,	\
+ 			       __FUNCTION__ , ##_arg);			\
+ 	} while (0)
+-- 
+1.7.0.4
 
 
