@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30329E013DB
-	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 20:58:24 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 13 Mar 2012 20:58:23 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C101E013BF
+	for <yocto@yoctoproject.org>; Tue, 13 Mar 2012 20:58:27 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 13 Mar 2012 20:58:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="77240943"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="118599970"
 Received: from unknown (HELO localhost) ([10.255.15.131])
-	by AZSMGA002.ch.intel.com with ESMTP; 13 Mar 2012 20:58:23 -0700
+	by azsmga001.ch.intel.com with ESMTP; 13 Mar 2012 20:58:26 -0700
 From: tom.zanussi@intel.com
 To: bruce.ashfield@windriver.com,
 	yocto@yoctoproject.org
-Date: Tue, 13 Mar 2012 22:57:36 -0500
-Message-Id: <fc6a94edd3de1cc64aa5acd77dde50e1c2c8f7d8.1331696906.git.tom.zanussi@intel.com>
+Date: Tue, 13 Mar 2012 22:57:38 -0500
+Message-Id: <5b5b70d11f84eff473b68b85a4da04eb780dac8d.1331696906.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <3d43be48b23af7034669a2df7dd339c48350b1d0.1331696906.git.tom.zanussi@intel.com>
 References: <3d43be48b23af7034669a2df7dd339c48350b1d0.1331696906.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1331696906.git.tom.zanussi@intel.com>
 References: <cover.1331696906.git.tom.zanussi@intel.com>
-Subject: [PATCH 10/17][KERNEL] drm-psb: remove includes of nonexistent i2c-id.h
+Subject: [PATCH 12/17][KERNEL] drm-psb: use console_lock/unlock()
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,55 +30,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2012 03:58:24 -0000
+X-List-Received-Date: Wed, 14 Mar 2012 03:58:27 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-i2c-id.h is gone, don't include it.
+The acquire/release_console_sem() functions were renamed to
+console_lock/unlock(), so change the calls.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- drivers/gpu/drm-psb/intel_drv.h |    1 -
- drivers/gpu/drm-psb/intel_i2c.c |    1 -
- drivers/gpu/drm-psb/psb_i2c.c   |    1 -
- 3 files changed, 0 insertions(+), 3 deletions(-)
+ drivers/gpu/drm-psb/psb_fb.c |   16 ++++++++--------
+ 1 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm-psb/intel_drv.h b/drivers/gpu/drm-psb/intel_drv.h
-index d3b7cb7..d05d533 100644
---- a/drivers/gpu/drm-psb/intel_drv.h
-+++ b/drivers/gpu/drm-psb/intel_drv.h
-@@ -7,7 +7,6 @@
- #define __INTEL_DRV_H__
+diff --git a/drivers/gpu/drm-psb/psb_fb.c b/drivers/gpu/drm-psb/psb_fb.c
+index 72d1d14..5b612b8 100644
+--- a/drivers/gpu/drm-psb/psb_fb.c
++++ b/drivers/gpu/drm-psb/psb_fb.c
+@@ -874,9 +874,9 @@ int psbfb_kms_off_ioctl(struct drm_device *dev, void *data,
+ {
+ 	int ret;
  
- #include <linux/i2c.h>
--#include <linux/i2c-id.h>
- #include <linux/i2c-algo-bit.h>
- #include "drm_crtc.h"
+-	acquire_console_sem();
++	console_lock();
+ 	ret = psbfb_kms_off(dev, 0);
+-	release_console_sem();
++	console_unlock();
  
-diff --git a/drivers/gpu/drm-psb/intel_i2c.c b/drivers/gpu/drm-psb/intel_i2c.c
-index efcbf65..4104c95 100644
---- a/drivers/gpu/drm-psb/intel_i2c.c
-+++ b/drivers/gpu/drm-psb/intel_i2c.c
-@@ -29,7 +29,6 @@
-  */
+ 	return ret;
+ }
+@@ -953,9 +953,9 @@ int psbfb_kms_on_ioctl(struct drm_device *dev, void *data,
+ {
+ 	int ret;
  
- #include <linux/i2c.h>
--#include <linux/i2c-id.h>
- #include <linux/i2c-algo-bit.h>
- #include "drmP.h"
- #include "drm.h"
-diff --git a/drivers/gpu/drm-psb/psb_i2c.c b/drivers/gpu/drm-psb/psb_i2c.c
-index 5a80243..69def5b 100644
---- a/drivers/gpu/drm-psb/psb_i2c.c
-+++ b/drivers/gpu/drm-psb/psb_i2c.c
-@@ -29,7 +29,6 @@
-  */
+-	acquire_console_sem();
++	console_lock();
+ 	ret = psbfb_kms_on(dev, 0);
+-	release_console_sem();
++	console_unlock();
+ #ifdef SII_1392_WA
+ 	if((SII_1392 != 1) || (drm_psb_no_fb==0))
+ 		drm_disable_unused_functions(dev);
+@@ -967,16 +967,16 @@ int psbfb_kms_on_ioctl(struct drm_device *dev, void *data,
  
- #include <linux/i2c.h>
--#include <linux/i2c-id.h>
- #include <linux/i2c-algo-bit.h>
- #include "drmP.h"
- #include "drm.h"
+ void psbfb_suspend(struct drm_device *dev)
+ {
+-	acquire_console_sem();
++	console_lock();
+ 	psbfb_kms_off(dev, 1);
+-	release_console_sem();
++	console_unlock();
+ }
+ 
+ void psbfb_resume(struct drm_device *dev)
+ {
+-	acquire_console_sem();
++	console_lock();
+ 	psbfb_kms_on(dev, 1);
+-	release_console_sem();
++	console_unlock();
+ #ifdef SII_1392_WA
+ 	if((SII_1392 != 1) || (drm_psb_no_fb==0))
+ 		drm_disable_unused_functions(dev);
 -- 
 1.7.0.4
 
