@@ -1,41 +1,41 @@
 Return-Path: <darren@apps.dvhart.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15865E013BF
-	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 13:05:05 -0700 (PDT)
-Received: by mail-ey0-f176.google.com with SMTP id i1so1557484eaa.35
-	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 13:05:05 -0700 (PDT)
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56FB5E013BF
+	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 13:05:08 -0700 (PDT)
+Received: by mail-iy0-f176.google.com with SMTP id w33so3687124iag.35
+	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 13:05:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=sender:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
 	:references:in-reply-to:references:x-gm-message-state;
-	bh=JYga0zk41eTnOvdDedFgx6W5rUnbK5TBU7hNr+0bhF4=;
-	b=mCsuhrDGMwQAbLAyXyqQYPCWHK9ALa9Es35DVEaikSd0MEYX+sgbcqQkVeqPEgNHOg
-	eNxOusswEpg/5v1mw1XBaB+/kVrDzH7TOdeagRhL7N3c2+unl54YC+453og+yPWvr97D
-	KpH9p2OULs+2aVcWAvSpAE5a4s/e6ySjmFmnrNyBXMANQx98sXkl/tAp1vFcQdBfqbx7
-	iNj1CX5tg2DIWSSYprh8C3PHCmz9UwLqyiR5DOmS/eDMnN3fDU3f4teE3UATg8dKb7wS
-	BGrUkPDQiaUR4Sgacmv3XK1Lc9lTDAuP0JEKaYjMGcG9wX4avGccPYICiO33XVQS09//
-	XzPw==
-Received: by 10.50.217.137 with SMTP id oy9mr6878121igc.31.1331755504760;
-	Wed, 14 Mar 2012 13:05:04 -0700 (PDT)
+	bh=ePvlCzQgaoqy+ZOWOTE9vr9QnPIhnwK6prfDrVs8caQ=;
+	b=ctCd+IHxUyoqk0H4u2JXXXdcMGyqjYOxb7zfB0AsqEVgbQZ5F7504qokFa6cY3b3fd
+	DkAV0KkQG969DEgvInJDYXHwQZ+mOnajbehW3EWG8NNL5lkQI1aqQ2xHzWoGqbfa1jAz
+	8vfgQXHHvlsO1Q0txOji0+RdVXrlQlgd33yLdWqV9JyqFRBI6XorehHEGAvlLvjuuZhG
+	q6fsLDFbnPkkKhzO4WdgzftTCS4kObU+YSjrrxtZqCRqp3Q7YHugGwnDw0ixQpEPNWC/
+	hBTiMJqJRhFNruPPINNtwBTUFxbTc282xvxg5wKwYEQeeWBTVTXh1s43eleoEhUOmylJ
+	zW0w==
+Received: by 10.50.168.67 with SMTP id zu3mr6936664igb.28.1331755508216;
+	Wed, 14 Mar 2012 13:05:08 -0700 (PDT)
 Received: from localhost (static-50-53-102-193.bvtn.or.frontiernet.net.
 	[50.53.102.193])
-	by mx.google.com with ESMTPS id hq3sm1017543igc.0.2012.03.14.13.05.03
+	by mx.google.com with ESMTPS id s3sm4700021igw.17.2012.03.14.13.05.06
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 14 Mar 2012 13:05:03 -0700 (PDT)
+	Wed, 14 Mar 2012 13:05:07 -0700 (PDT)
 Sender: Darren Hart <darren@apps.dvhart.com>
 From: Darren Hart <dvhart@linux.intel.com>
 To: Yocto Project <yocto@yoctoproject.org>
-Date: Wed, 14 Mar 2012 13:04:49 -0700
-Message-Id: <d79c62bd6ecacd7953d5e509834b9c32f054fbec.1331755469.git.dvhart@linux.intel.com>
+Date: Wed, 14 Mar 2012 13:04:50 -0700
+Message-Id: <13f99a67cbb15d47d6b0dfb7261baeaad21a5761.1331755469.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.5.4
 In-Reply-To: <1331755490-2148-1-git-send-email-dvhart@linux.intel.com>
 References: <1331755490-2148-1-git-send-email-dvhart@linux.intel.com>
 In-Reply-To: <20c253b945137412fbf82f09cb60958d2e544510.1331755469.git.dvhart@linux.intel.com>
 References: <20c253b945137412fbf82f09cb60958d2e544510.1331755469.git.dvhart@linux.intel.com>
-X-Gm-Message-State: ALoCoQn37XKPLLirBVB7ntHSBaH3DmURf/FkINUCnu49hIfDuemcyV1aiAkeOeaYnDxdOZ98KW5T
+X-Gm-Message-State: ALoCoQmm8GnVNdoQszkH6EZcyMgk6AeKAtHU00B1+GTf60QokaqZTav2ooWpLs4ohYXFu7eFDqkU
 Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [PATCH 3/4] fri2: Autoload module iwlwifi
+Subject: [PATCH 4/4] fri2: Add 3.2 kernel recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,37 +47,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2012 20:05:06 -0000
+X-List-Received-Date: Wed, 14 Mar 2012 20:05:08 -0000
 
-iwlwifi uses a firmware blob that must exist on the FS at the time
-the driver is loaded. If the driver is built-in, the blob must exist
-in the initrd. We avoid this by building as a module, but we still
-want this to load at boot - so add it to autoload.
+Add linux-yocto_3.2 and linux-yocto-rt_3.2 kernel recipes, following the
+pattern of the 3.0 recipes.
 
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- .../linux/linux-yocto-rt_3.0.bbappend              |    2 ++
- .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    2 ++
- 2 files changed, 4 insertions(+), 0 deletions(-)
+ .../linux/linux-yocto-rt_3.2.bbappend              |   11 +++++++++++
+ .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |   11 +++++++++++
+ 2 files changed, 22 insertions(+), 0 deletions(-)
+ create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+ create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend
 
-diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-index 4563101..d3b4f81 100644
---- a/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-+++ b/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-@@ -7,3 +7,5 @@ KBRANCH_fri2 = "yocto/standard/preempt-rt/base"
- COMPATIBLE_MACHINE_fri2-noemgd = "fri2-noemgd"
- KMACHINE_fri2-noemgd = "fri2"
- KBRANCH_fri2-noemgd = "yocto/standard/preempt-rt/base"
+diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend b/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+new file mode 100644
+index 0000000..c43975f
+--- /dev/null
++++ b/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+@@ -0,0 +1,11 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++COMPATIBLE_MACHINE_fri2 = "fri2"
++KMACHINE_fri2 = "fri2"
++KBRANCH_fri2 = "standard/preempt-rt/base"
++
++COMPATIBLE_MACHINE_fri2-noemgd = "fri2-noemgd"
++KMACHINE_fri2-noemgd = "fri2"
++KBRANCH_fri2-noemgd = "standard/preempt-rt/base"
 +
 +module_autoload_iwlwifi = "iwlwifi"
-diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend
-index bacd6a5..e53991a 100644
---- a/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend
-+++ b/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend
-@@ -7,3 +7,5 @@ KBRANCH_fri2 = "yocto/standard/fri2"
- COMPATIBLE_MACHINE_fri2-noemgd = "fri2-noemgd"
- KMACHINE_fri2-noemgd = "fri2"
- KBRANCH_fri2-noemgd = "yocto/standard/fri2"
+diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend
+new file mode 100644
+index 0000000..c125e9a
+--- /dev/null
++++ b/meta-fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend
+@@ -0,0 +1,11 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++COMPATIBLE_MACHINE_fri2 = "fri2"
++KMACHINE_fri2  = "fri2"
++KBRANCH_fri2 = "standard/default/fri2"
++
++COMPATIBLE_MACHINE_fri2-noemgd = "fri2-noemgd"
++KMACHINE_fri2-noemgd  = "fri2"
++KBRANCH_fri2-noemgd = "standard/default/fri2"
 +
 +module_autoload_iwlwifi = "iwlwifi"
 -- 
