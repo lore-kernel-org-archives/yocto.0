@@ -1,32 +1,35 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B64C2E011D1
-	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 15:05:07 -0700 (PDT)
-Received: from mail-lb0-f180.google.com ([209.85.217.180])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 14 Mar 2012 15:05:06 -0700
-Received: by lbon10 with SMTP id n10so1024195lbo.25
-	for <yocto@yoctoproject.org>; Wed, 14 Mar 2012 15:05:04 -0700 (PDT)
+Return-Path: <josh@hipro.co.in>
+Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
+	[209.85.210.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C5C8E01363
+	for <yocto@yoctoproject.org>; Thu, 15 Mar 2012 06:07:28 -0700 (PDT)
+Received: by dadv6 with SMTP id v6so4404954dad.28
+	for <yocto@yoctoproject.org>; Thu, 15 Mar 2012 06:07:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=ygnuoSuYKZ3D866Br7inAb2v2vnd1eVOGNzgo3RbymA=;
-	b=opem7ZG0+9+tOZCYDOXWPC1nSwW5/sXeR+h6w6k1yIbL0WXs8+p1gRQ3zSmaOPDqwb
-	MFZphNba2LFdidC+CWp+XYxSXK7cJOKBmH09WFfyosZJz8kl44Xq0e1YBz5lLvacYcdw
-	YefNZ7wiDV8cLKHjo244+1MqpkRuuVeUFIcOWePBAxyuu4eP0jK/oUph6PecslEtAk7m
-	s8t/hzNRg4RT9F9qm7yab0NDTGEpZA7wbxZsHQ8A0yH2vnegRI4lQrF4viqhk3yFa0Fg
-	MtdPbUX1aZC1hNX5J3wPE0MRZPZEjI5fmtvD8TEdbNTTB71FVuz9DchypwbfvD2tinhg
-	j2wg==
-MIME-Version: 1.0
-Received: by 10.152.115.69 with SMTP id jm5mr3163071lab.25.1331762704160; Wed,
-	14 Mar 2012 15:05:04 -0700 (PDT)
-Received: by 10.112.98.133 with HTTP; Wed, 14 Mar 2012 15:05:04 -0700 (PDT)
-Date: Wed, 14 Mar 2012 15:05:04 -0700
-Message-ID: <CAPhnLPBAvAMwmuC1wNDS7E9mA5Y4VM_5SvA=4qo+UokPtiABQQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQloM4cT4tWD65Pya18C3LyijFePXuv+ljejiuigApsTK/RsZIPN3hZ17kuqJjeg6Mg2QmXm
-Subject: [Announcement] 1.2 Milestone 3 Released
+	h=message-id:subject:from:to:date:organization:content-type:x-mailer
+	:mime-version:x-gm-message-state;
+	bh=y/RzfWYhjlmpsYsV2FtB4g0xWaNGRsFoZ3E3Ur8peM0=;
+	b=AQyPnJ3g0P535o0wBs8MBShl40JYYHme4V8ifJKCQc2430IUzorqLTv1QEgc3bdDav
+	6zvx+MsQjSYcqxnT3VwDlOR23Bl/1VvPpXOvZN7Aj2CG8esqd9W7RsGZ4jZKue7jCuNM
+	BFUJf8JEwcU9jVVAv8kRRBxn8FrCXUeDJtPb943IOotWnf1ICBVhasDG8waF0ljCpg04
+	/X4uRfKwVatDRt2kHhWfB5FZOgVLG6ZOCHSqmmHiBTcPF8HRctSdGmpCOFB/Gxc7LW8Y
+	3iRZsbcdoiq9BEReaiS5f/5XU9bW3X5/Azah64urOZnfhkIoJ10htX1eyGeb0n2lpjYI
+	Vvvg==
+Received: by 10.68.136.99 with SMTP id pz3mr4958010pbb.114.1331816848547;
+	Thu, 15 Mar 2012 06:07:28 -0700 (PDT)
+Received: from [192.168.1.101] ([122.165.226.252])
+	by mx.google.com with ESMTPS id f5sm1880643pbe.26.2012.03.15.06.07.23
+	(version=SSLv3 cipher=OTHER); Thu, 15 Mar 2012 06:07:27 -0700 (PDT)
+Message-ID: <1331816822.19369.7.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Thu, 15 Mar 2012 18:37:02 +0530
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.2.2-1
+Mime-Version: 1.0
+X-Gm-Message-State: ALoCoQksZvoUNC9U0rUZDCnO9SkJgtBfvhb/htoGpoLMEQHhqYd/7Gp0B673tLo0ubsteziysU10
+Subject: syslinux filesystem size limitation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,110 +41,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2012 22:05:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 15 Mar 2012 13:07:29 -0000
+X-Groupsio-MsgNum: 5345
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-m1g2D/vz1oR1pg1L4T02"
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+--=-m1g2D/vz1oR1pg1L4T02
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 Hello,
+	In yocto I find that the live image (hddimg) is generated using
+syslinux (in bootimg.bbclass). But, I find there has been no check
+enforced to find whether the filesystem size exceeds 1 GB. The image
+will not boot if the hddimg size exceeds 1GB. This is due to the
+limitation in syslinux.
 
-We are pleased to announce the third milestone of the coming release
-of Yocto 1.2. This milestone release is available at:
+How to address this issue? Is there any other alternate solution for
+this? Should I file a bug report for this?
 
-   http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.2-m3/poky-edison-6.1.0-m3.tar.bz2
-   or
-   http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.2-m3/poky-edison-6.1.0-m3.tar.bz2
+Regards
+--=20
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
 
-Additional tarballs for meta-qt3 and the eclipse plugin are available at:
-
-   http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.2-m3/meta-qt3-edison-6.1.0-m3.tar.bz2
-   http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.2-m3/eclipse-poky-edison-6.1.0-m3.tar.bz2
-
-with mirror locations at:
-
-   http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.2-m3/meta-qt3-edison-6.1.0-m3.tar.bz2
-   http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.2-m3/eclipse-poky-edison-6.1.0-m3.tar.bz2
-
-For information on 1.2 M3 test results see:
-
-   http://wiki.yoctoproject.org/wiki/Yocto_1.2_Milestone_Test_Report
-
-Thank you everyone for all the hard work.
-
-- ------------------
-Elizabeth Flanagan
-Yocto Project
-Release Engineer
-
-- --------------------
-edison-6.1.0-m3 Errata
-- --------------------
-Release Name: poky-edison-6.1.0-m3
-Branch:  1.2_M3
-Tag:  1.2_M3.final
-Hash:  320558f494c618f53e0c773db3ea0109476e8359
-md5:  24a90ec80d90c7f6757d9be50c2efe47  poky-edison-6.1.0-m3.tar.bz2
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.2-m3/poky-edison-6.1.0-m3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.2-m3/poky-edison-6.1.0-m3.tar.bz2
-
-Release Name: eclipse-poky-edison-6.1.0-m3
-Branch:  1.2_M3
-Tag:  1.2_M3.final
-Hash:  06652a1b3f7a82481b4a7f1fee279ce1c616013b
-md5:  eaa2d0e9a5554463b1d44b8b5f9d29e0  eclipse-poky-edison-6.1.0-m3.tar.bz2
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.2-m3/eclipse-poky-edison-6.1.0-m3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.2-m3/eclipse-poky-edison-6.1.0-m3.tar.bz2
-
-Release Name: meta-qt3-edison-6.1.0-m3
-Branch:  1.2_M3
-Tag:  1.2_M3.final
-Hash:  7e283e296d589256bef1a5652b72f264aba72e1a
-md5:  89d04eaf3aead8322c3b601190391f2d  meta-qt3-edison-6.1.0-m3.tar.bz2
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.2-m3/meta-qt3-edison-6.1.0-m3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.2-m3/meta-qt3-edison-6.1.0-m3.tar.bz2
-
-- --------------------
-Features
-- --------------------
-- - HOB2 with redesigned UI and workflow implementation
-- - Build appliance features and stability.
-- - Error handling improvement such as display a summary of warning
-and error messages at the end of Bitbake command.
-- - Oracle/Sun Hotspot JDK/JRE support.
-- - POSIX support
-- - Enhancement to the Eclipse plug-in for Bitbake commander
-
-- --------------------
-Known Issues
-- --------------------
-- - Bug 2066 - Glxgears failed in qemuarm/qemuppc/qemumips.
-- - Bug 1898-[beagleboard C4] X server cannot startup with 3.0 kernel.
-- - Bug 1906 -[QEMU] loses focus in qemux86-64 terminal When I press
-key [CTRL+L]
-- - Bug 1912-[beagleboard C4] Segmentation fault when reboot the
-system with 3.0 kernel
-- - Bug 1917-[non-GPLv3] image fails to boot up with no root filesystem found
-- - Bug 1918-[x32] insane.bbclass reports error for x32 kernel
-- - Bug 1899-[multilib] do_rootfs failed for lib-connman-gnome with ipk
-- - Bug 1903-[HOB] do_rootfs failed with dummy-image against a clean working dir
-- - Bug 1910-[HOB] git recipes not shown in package view due to
-inconsistent package name
-- - Bug 1911-[HOB] non-GPLv3 build not work
-
+--=-m1g2D/vz1oR1pg1L4T02
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.16 (GNU/Linux)
+Version: GnuPG v1.4.11 (GNU/Linux)
 
-iQEcBAEBAgAGBQJPYRW0AAoJEEyK+E/MEkQPd8MIALCvjFoOhM8yU7osB/YYqBWC
-6NfnzRmPLnySGoeN3oobKomLG9ZoGmrwwuSfYfAlf3w6TDTAOunSi6x/94L1P6pa
-5cOiSCkZGYP4OLBDfGynciCRLTjmqREq7I6uEHscvvG9n8f5uN99hVG8zc99JAzi
-Cu2z4iyr/qV/WLzJj7Fg9QPAWLUp3xtrgiqaa+0W26qdea6go6hbdbhZ0tYhf/HE
-duXPgjgwhGHUKNFli3UDchJRdGoIvm/TLkKfzqgFEDdE/5lbKPvWg6Q21Ec04ZM9
-N8OqoAJJMOUtVztl3CIJ7bA2/zTNazIzLBVFiodtzpKJr9FMJsJKp+GpJybuCKg=
-=n5IG
+iEYEABECAAYFAk9h6XYACgkQWw85XwuSFML8UgCeOuOimhUSX/nxpSCdQ4Q++Oos
+MNUAoLfnOINZ2//5ijR9OYYEl1AFMhX5
+=0OLa
 -----END PGP SIGNATURE-----
 
+--=-m1g2D/vz1oR1pg1L4T02--
