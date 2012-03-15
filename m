@@ -1,25 +1,25 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
 Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 998EFE00596
-	for <yocto@yoctoproject.org>; Thu, 15 Mar 2012 12:12:12 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89DA9E011D1
+	for <yocto@yoctoproject.org>; Thu, 15 Mar 2012 12:13:06 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q2FJCBkI022292
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q2FJCtcC022304
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 15 Mar 2012 12:12:11 -0700 (PDT)
+	Thu, 15 Mar 2012 12:12:55 -0700 (PDT)
 Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 15 Mar 2012 12:12:11 -0700
-Message-ID: <4F623F08.8080203@windriver.com>
-Date: Thu, 15 Mar 2012 15:12:08 -0400
+	Thu, 15 Mar 2012 12:12:55 -0700
+Message-ID: <4F623F34.6020405@windriver.com>
+Date: Thu, 15 Mar 2012 15:12:52 -0400
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-To: <tom.zanussi@intel.com>
-References: <cover.1331696906.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1331696906.git.tom.zanussi@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 00/17][KERNEL] emenlow updates for linux-yocto 3.2
+To: Darren Hart <dvhart@linux.intel.com>
+References: <cover.1331751319.git.dvhart@linux.intel.com>
+In-Reply-To: <cover.1331751319.git.dvhart@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/1][linux-yocto-3.2/meta] fri2 update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,57 +31,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Mar 2012 19:12:12 -0000
+X-List-Received-Date: Thu, 15 Mar 2012 19:13:06 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12-03-13 11:57 PM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi<tom.zanussi@intel.com>
+On 12-03-14 02:56 PM, Darren Hart wrote:
+> The following changes since commit 64840f55ee144e9814278eaa8e3f33dd60da892c:
 >
-> Hi Bruce,
->
-> Please pull this patchset into linux-yocto-3.2,
-> standard/default/emenlow.
+>    meta/emgd: emgd 1.10 updates (2012-03-12 11:48:22 -0400)
 
-merged. I'm building this along with my other updates, will push
-when they complete.
+Queued with my other 3.2 changes. Should be pushed out tomorrow.
 
 Bruce
 
 >
-> Thanks,
->
-> Tom
->
-> The following changes since commit 764090858adaa214395b3667fe1929892c2083f7:
->    Darren Hart (1):
->          pch_uart: Use existing default_baud in setup_console
->
 > are available in the git repository at:
+>    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib dvhart/meta/fri2
+>    http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=dvhart/meta/fri2
 >
->    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/standard/default/emenlow-3.2
->    http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/standard/default/emenlow-3.2
+> Darren Hart (1):
+>    fri2: Update fri2.cfg for hardware specific support
 >
-> Tom Zanussi (17):
->    drm: add the base source of the Poulsbo (psb) 2D X11 driver
->    drm-psb: remove the package Makefile and replace it with the kernel
->      Makefile
->    drm: apply psb-kernel-source package's build.patch
->    drm: intel_ldvs.c: add missing arg to backlight_device_register()
->      call
->    emenlow: switch to psb
->    drm: Fix psb ioctl assignment
->    drm-psb: remove BKL remnants
->    drm-psb: update spinlock initializers
->    drm-psb: remove call to agp_flush_chipset
->    drm-psb: remove includes of nonexistent i2c-id.h
->    drm-psb: remove assigment to deprecated i2c_adapter.id
->    drm-psb: use console_lock/unlock()
->    drm-psb: add DRM_UNLOCKED flag
->    drm-psb: mark unlocked ioctls
->    drm-psb: initialize backlight type
->    drm-psb: fix ioremap calls
->    drm-psb: change udelay to mdelay in intel_wait_for_vblank()
+>   meta/cfg/kernel-cache/bsp/fri2/fri2.cfg |   16 ++++++++++++----
+>   1 files changed, 12 insertions(+), 4 deletions(-)
 >
 
 
