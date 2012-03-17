@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F591E013CA
-	for <yocto@yoctoproject.org>; Fri, 16 Mar 2012 22:32:20 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 16 Mar 2012 22:32:20 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E2BFE013DA
+	for <yocto@yoctoproject.org>; Fri, 16 Mar 2012 22:32:22 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 16 Mar 2012 22:32:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="140325070"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="121890168"
 Received: from unknown (HELO localhost) ([10.255.15.231])
-	by fmsmga002.fm.intel.com with ESMTP; 16 Mar 2012 22:32:19 -0700
+	by orsmga002.jf.intel.com with ESMTP; 16 Mar 2012 22:32:21 -0700
 From: tom.zanussi@intel.com
 To: dvhart@linux.intel.com,
 	yocto@yoctoproject.org
-Date: Sat, 17 Mar 2012 00:30:55 -0500
-Message-Id: <5e782b5d5f6b0f64ad85d142426a337531b25ba4.1331961098.git.tom.zanussi@intel.com>
+Date: Sat, 17 Mar 2012 00:30:56 -0500
+Message-Id: <3d3b6ebbab652a80239c6f98a685919bb345cee1.1331961098.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <5ca45595832a36794b748e7f93d6b56036d840e6.1331961098.git.tom.zanussi@intel.com>
 References: <5ca45595832a36794b748e7f93d6b56036d840e6.1331961098.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1331961098.git.tom.zanussi@intel.com>
 References: <cover.1331961098.git.tom.zanussi@intel.com>
-Subject: [PATCH 4/8] yocto-bsp: add kernel interface
+Subject: [PATCH 5/8] yocto-bsp-tools: add help/usage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,26 +30,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 17 Mar 2012 05:32:20 -0000
+X-List-Received-Date: Sat, 17 Mar 2012 05:32:22 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Yocto BSP kernel-related functions, for interacting with the kernel
-tools and implementing the machinery behind the 'yocto-kernel'
-command.
+This is essentially 'the documentation' for the Yocto BSP tools, along
+with a few related functions.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- scripts/lib/bsp/kernel.py |  723 +++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 723 insertions(+), 0 deletions(-)
- create mode 100644 scripts/lib/bsp/kernel.py
+ scripts/lib/bsp/help.py |  570 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 570 insertions(+), 0 deletions(-)
+ create mode 100644 scripts/lib/bsp/help.py
 
-diff --git a/scripts/lib/bsp/kernel.py b/scripts/lib/bsp/kernel.py
+diff --git a/scripts/lib/bsp/help.py b/scripts/lib/bsp/help.py
 new file mode 100644
-index 0000000..b4e7fbf
+index 0000000..200a4f8
 --- /dev/null
-+++ b/scripts/lib/bsp/kernel.py
-@@ -0,0 +1,723 @@
++++ b/scripts/lib/bsp/help.py
+@@ -0,0 +1,570 @@
 +# ex:ts=4:sw=4:sts=4:et
 +# -*- tab-width: 4; c-basic-offset: 4; indent-tabs-mode: nil -*-
 +#
@@ -70,709 +69,556 @@ index 0000000..b4e7fbf
 +# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 +#
 +# DESCRIPTION
-+# This module implements the kernel-related functions used by
-+# 'yocto-kernel' to manage kernel config items and patches for Yocto
-+# BSPs.
++# This module implements some basic help invocation functions along
++# with the bulk of the help topic text for the Yocto BSP Tools.
 +#
 +# AUTHORS
 +# Tom Zanussi <tom.zanussi (at] intel.com>
 +#
 +
-+import sys
-+import os
-+import shutil
-+from tags import *
-+import glob
++import subprocess
++import logging
 +
 +
-+def find_bblayers(scripts_path):
++def subcommand_error(args):
++    logging.info("invalid subcommand %s" % args[0])
++
++
++def display_help(subcommand, subcommands):
 +    """
-+    Find and return a sanitized list of the layers found in BBLAYERS.
++    Display help for subcommand.
 +    """
-+    bblayers_conf = os.path.join(scripts_path, "../build/conf/bblayers.conf")
++    if subcommand not in subcommands:
++        return False
 +
-+    layers = []
++    help = subcommands.get(subcommand, subcommand_error)[2]
++    pager = subprocess.Popen('less', stdin=subprocess.PIPE)
++    pager.communicate(help)
 +
-+    f = open(bblayers_conf, "r")
-+    lines = f.readlines()
-+    bblayers_lines = []
-+    in_bblayers = False
-+    for line in lines:
-+        line = line.strip()
-+        if line.strip().startswith("BBLAYERS"):
-+            bblayers_lines.append(line)
-+            in_bblayers = True
-+            quotes = line.strip().count('"')
-+            if quotes > 1:
-+                break
-+            continue
-+        if in_bblayers:
-+            bblayers_lines.append(line)
-+            if line.strip().endswith("\""):
-+                break
-+            else:
-+                continue
-+
-+    for i, line in enumerate(bblayers_lines):
-+        if line.strip().endswith("\\"):
-+            bblayers_lines[i] = line.strip().replace('\\', '')
-+
-+    bblayers_line = " ".join(bblayers_lines)
-+
-+    start_quote = bblayers_line.find("\"")
-+    if start_quote == -1:
-+        print "Invalid BBLAYERS found in %s, exiting" % bblayers_conf
-+        sys.exit(1)
-+
-+    start_quote += 1
-+    end_quote = bblayers_line.find("\"", start_quote)
-+    if end_quote == -1:
-+        print "Invalid BBLAYERS found in %s, exiting" % bblayers_conf
-+        sys.exit(1)
-+
-+    bblayers_line = bblayers_line[start_quote:end_quote]
-+    layers = bblayers_line.split()
-+
-+    f.close()
-+
-+    return layers
++    return True
 +
 +
-+def find_meta_layer(scripts_path):
++def yocto_help(args, usage_str, subcommands):
 +    """
-+    Find and return the meta layer in BBLAYERS.
++    Subcommand help dispatcher.
 +    """
-+    layers = find_bblayers(scripts_path)
-+
-+    for layer in layers:
-+        if layer.endswith("meta"):
-+            return layer
-+
-+    return None
++    if len(args) == 1 or not display_help(args[1], subcommands):
++        print(usage_str)
 +
 +
-+def find_bsp_layer(scripts_path, machine):
++def invoke_subcommand(args, parser, main_command_usage, subcommands):
 +    """
-+    Find and return a machine's BSP layer in BBLAYERS.
++    Dispatch to subcommand handler borrowed from combo-layer.
++    Should use argparse, but has to work in 2.6.
 +    """
-+    layers = find_bblayers(scripts_path)
++    if not args:
++        logging.error("No subcommand specified, exiting")
++        parser.print_help()
++    elif args[0] == "help":
++        yocto_help(args, main_command_usage, subcommands)
++    elif args[0] not in subcommands:
++        logging.error("Unsupported subcommand %s, exiting\n" % (args[0]))
++        parser.print_help()
++    else:
++        usage = subcommands.get(args[0], subcommand_error)[1]
++        subcommands.get(args[0], subcommand_error)[0](args[1:], usage)
 +
-+    for layer in layers:
-+        if machine in layer:
-+            return layer
-+
-+    print "Unable to find the BSP layer for machine %s." % machine
-+    print "Please make sure it is listed in bblayers.conf"
-+    sys.exit(1)
-+
-+
-+def gen_choices_str(choices):
-+    """
-+    Generate a numbered list of choices from a list of choices for
-+    display to the user.
-+    """
-+    choices_str = ""
 +
-+    for i, choice in enumerate(choices):
-+        choices_str += "\t" + str(i + 1) + ") " + choice + "\n"
++##
++# yocto-bsp help and usage strings
++##
 +
-+    return choices_str
-+
-+
-+def read_config_items(scripts_path, machine):
-+    """
-+    Find and return a list of config items (CONFIG_XXX) in a machine's
-+    user-defined config fragment [user-config.cfg].
-+    """
-+    config_items = []
-+
-+    layer = find_bsp_layer(scripts_path, machine)
-+    cfg = os.path.join(layer, "recipes-kernel/linux/files/user-config.cfg")
-+
-+    f = open(cfg, "r")
-+    lines = f.readlines()
-+    for line in lines:
-+        s = line.strip()
-+        if s:
-+            config_items.append(s)
-+    f.close()
++yocto_bsp_usage = """
 +
-+    return config_items
++ Create a customized Yocto BSP layer.
 +
++ usage: yocto-bsp [--version] [--help] COMMAND [ARGS]
 +
-+def write_config_items(scripts_path, machine, config_items):
-+    """
-+    Write (replace) the list of config items (CONFIG_XXX) in a
-+    machine's user-defined config fragment [user-config.cfg].
-+    """
-+    layer = find_bsp_layer(scripts_path, machine)
-+    cfg = os.path.join(layer, "recipes-kernel/linux/files/user-config.cfg")
++ The most commonly used 'yocto-bsp' commands are:
++    create            Create a new Yocto BSP
++    list              List available values for options and BSP properties
 +
-+    f = open(cfg, "w")
-+    for item in config_items:
-+        f.write(item + "\n")
-+    f.close()
-+
-+    kernel_contents_changed(scripts_path, machine)
-+
-+
-+def yocto_kernel_config_list(scripts_path, machine):
-+    """
-+    Display the list of config items (CONFIG_XXX) in a machine's
-+    user-defined config fragment [user-config.cfg].
-+    """
-+    config_items = read_config_items(scripts_path, machine)
-+
-+    print "The current set of machine-specific kernel config items for %s is:" % machine
-+    print gen_choices_str(config_items)
-+
-+
-+def map_choice(choice_str, array):
-+    """
-+    Match the text of a choice with a list of choices, returning the
-+    index of the match, or -1 if not found.
-+    """
-+    for i, item in enumerate(array):
-+        if choice_str == array[i]:
-+            return i
-+
-+    return -1
-+
-+
-+def yocto_kernel_config_rm(scripts_path, machine):
-+    """
-+    Display the list of config items (CONFIG_XXX) in a machine's
-+    user-defined config fragment [user-config.cfg], prompt the user
-+    for one or more to remove, and remove them.
-+    """
-+    config_items = read_config_items(scripts_path, machine)
-+
-+    print "Specify the kernel config items to remove:"
-+    input = raw_input(gen_choices_str(config_items))
-+    rm_choices = input.split()
-+    rm_choices.sort()
-+
-+    removed = []
-+
-+    for choice in reversed(rm_choices):
-+        try:
-+            idx = int(choice) - 1
-+        except ValueError:
-+            print "Invalid choice (%s), exiting" % choice
-+            sys.exit(1)
-+        if idx < 0 or idx >= len(config_items):
-+            print "Invalid choice (%d), exiting" % (idx + 1)
-+            sys.exit(1)
-+        removed.append(config_items.pop(idx))
-+
-+    write_config_items(scripts_path, machine, config_items)
-+
-+    print "Removed items:"
-+    for r in removed:
-+        print "\t%s" % r
-+
-+
-+def yocto_kernel_config_add(scripts_path, machine, config_items):
-+    """
-+    Add one or more config items (CONFIG_XXX) to a machine's
-+    user-defined config fragment [user-config.cfg].
-+    """
-+    new_items = []
-+
-+    for item in config_items:
-+        if not item.startswith("CONFIG") or (not "=y" in item and not "=m" in item):
-+            print "Invalid config item (%s), exiting" % item
-+            sys.exit(1)
-+        new_items.append(item)
-+
-+    cur_items = read_config_items(scripts_path, machine)
-+    cur_items.extend(new_items)
-+
-+    write_config_items(scripts_path, machine, cur_items)
-+
-+    print "Added items:"
-+    for n in new_items:
-+        print "\t%s" % n
-+
-+
-+def find_current_kernel(bsp_layer, machine):
-+    """
-+    Determine the kernel and version currently being used in the BSP.
-+    """
-+    machine_conf = os.path.join(bsp_layer, "conf/machine/" + machine + ".conf")
-+
-+    preferred_kernel = preferred_kernel_version = preferred_version_varname = None
-+
-+    f = open(machine_conf, "r")
-+    lines = f.readlines()
-+    for line in lines:
-+        if line.strip().startswith("PREFERRED_PROVIDER_virtual/kernel"):
-+            preferred_kernel = line.split()[-1]
-+            preferred_kernel = preferred_kernel.replace('\"','')
-+            preferred_version_varname = "PREFERRED_VERSION_" + preferred_kernel
-+        if preferred_version_varname and line.strip().startswith(preferred_version_varname):
-+            preferred_kernel_version = line.split()[-1]
-+            preferred_kernel_version = preferred_kernel_version.replace('\"','')
-+            preferred_kernel_version = preferred_kernel_version.replace('%','')
-+
-+    if preferred_kernel and preferred_kernel_version:
-+        return preferred_kernel + "_" + preferred_kernel_version
-+
-+
-+def find_bsp_kernel_src_uri(scripts_path, machine, start_end_only = False):
-+    """
-+    Parse the SRC_URI append in the kernel .bbappend, returing a list
-+    of individual components, and the start/end positions of the
-+    SRC_URI statement, so it can be regenerated in the same position.
-+    If start_end_only is True, don't return the list of elements, only
-+    the start and end positions.
-+
-+    Returns (SRC_URI start line, SRC_URI end_line, list of split
-+    SRC_URI items).
-+
-+    If no SRC_URI, start line = -1.
-+
-+    NOTE: this and all the src_uri functions are temporary and
-+    deprecated and will be removed, but are needed until the
-+    equivalent .scc mechanism works.  i.e. for now we unfortunately
-+    can't get around putting patches in the SRC_URI.
-+    """
-+    layer = find_bsp_layer(scripts_path, machine)
-+
-+    kernel = find_current_kernel(layer, machine)
-+    if not kernel:
-+        print "Couldn't determine the kernel for this BSP, exiting."
-+        sys.exit(1)
-+
-+    kernel_bbappend = os.path.join(layer, "recipes-kernel/linux/" + kernel + ".bbappend")
-+
-+    f = open(kernel_bbappend, "r")
-+    src_uri_line = ""
-+    in_src_uri = False
-+    lines = f.readlines()
-+    first_line = last_line = -1
-+    quote_start = quote_end = -1
-+    for n, line in enumerate(lines):
-+        line = line.strip()
-+        if line.startswith("SRC_URI"):
-+            first_line = n
-+            in_src_uri = True
-+        if in_src_uri:
-+            src_uri_line += line
-+            if quote_start == -1:
-+                idx = line.find("\"")
-+                if idx != -1:
-+                    quote_start = idx + 1
-+            idx = line.find("\"", quote_start)
-+            quote_start = 0 # set to 0 for all but first line
-+            if idx != -1:
-+                quote_end = idx
-+                last_line = n
-+                break
-+
-+    if first_line == -1: # no SRC_URI, which is fine too
-+        return (-1, -1, None)
-+    if quote_start == -1:
-+        print "Bad kernel SRC_URI (missing opening quote), exiting."
-+        sys.exit(1)
-+    if quote_end == -1:
-+        print "Bad SRC_URI (missing closing quote), exiting."
-+        sys.exit(1)
-+    if start_end_only:
-+        return (first_line, last_line, None)
-+
-+    idx = src_uri_line.find("\"")
-+    src_uri_line = src_uri_line[idx + 1:]
-+    idx = src_uri_line.find("\"")
-+    src_uri_line = src_uri_line[:idx]
-+
-+    src_uri = src_uri_line.split()
-+    for i, item in enumerate(src_uri):
-+        idx = item.find("\\")
-+        if idx != -1:
-+            src_uri[i] = item[idx + 1:]
-+
-+    if not src_uri[len(src_uri) - 1]:
-+        src_uri.pop()
-+
-+    for i, item in enumerate(src_uri):
-+        idx = item.find(SRC_URI_FILE)
-+        if idx == -1:
-+            print "Bad SRC_URI (invalid item, %s), exiting." % item
-+            sys.exit(1)
-+        src_uri[i] = item[idx + len(SRC_URI_FILE):]
-+
-+    return (first_line, last_line, src_uri)     
-+
-+
-+def find_patches(src_uri):
-+    """
-+    Filter out the top-level patches from the SRC_URI.
-+    """
-+    patches = []
-+    for item in src_uri:
-+        if item.endswith(".patch") and "/" not in item:
-+            patches.append(item)
-+    return patches
-+
-+
-+def read_patch_items(scripts_path, machine):
-+    """
-+    Find and return a list of patch items in a machine's user-defined
-+    patch list [user-patches.scc].
-+    """
-+    patch_items = []
-+
-+    layer = find_bsp_layer(scripts_path, machine)
-+    patches = os.path.join(layer, "recipes-kernel/linux/files/user-patches.scc")
-+
-+    f = open(patches, "r")
-+    lines = f.readlines()
-+    for line in lines:
-+        s = line.strip()
-+        if s:
-+            fields = s.split()
-+            if not fields[0] == "patch":
-+                continue
-+            patch_items.append(fields[1])
-+    f.close()
-+
-+    return patch_items
-+
-+
-+def write_patch_items(scripts_path, machine, patch_items):
-+    """
-+    Write (replace) the list of patches in a machine's user-defined
-+    patch list [user-patches.scc].
-+    """
-+    layer = find_bsp_layer(scripts_path, machine)
-+
-+    patches = os.path.join(layer, "recipes-kernel/linux/files/user-patches.scc")
-+
-+    f = open(patches, "w")
-+    for item in patch_items:
-+        pass
-+        # this currently breaks do_patch, but is really what we want
-+        # once this works, we can remove all the src_uri stuff
-+        # f.write("patch " + item + "\n")
-+    f.close()
-+
-+    kernel_contents_changed(scripts_path, machine)
-+
-+
-+def yocto_kernel_patch_list(scripts_path, machine):
-+    """
-+    Display the list of patches in a machine's user-defined patch list
-+    [user-patches.scc].
-+    """
-+    (start_line, end_line, src_uri) = find_bsp_kernel_src_uri(scripts_path, machine)
-+    patches = find_patches(src_uri)
-+
-+    print "The current set of machine-specific patches for %s is:" % machine
-+    print gen_choices_str(patches)
-+
-+
-+def yocto_kernel_patch_rm(scripts_path, machine):
-+    """
-+    Remove one or more patches from a machine's user-defined patch
-+    list [user-patches.scc].
-+    """
-+    (start_line, end_line, src_uri) = find_bsp_kernel_src_uri(scripts_path, machine)
-+    patches = find_patches(src_uri)
-+
-+    print "Specify the patches to remove:"
-+    input = raw_input(gen_choices_str(patches))
-+    rm_choices = input.split()
-+    rm_choices.sort()
-+
-+    removed = []
-+
-+    layer = find_bsp_layer(scripts_path, machine)
-+    src_uri_dir = os.path.join(layer, "recipes-kernel/linux/files")
-+
-+    for choice in reversed(rm_choices):
-+        try:
-+            idx = int(choice) - 1
-+        except ValueError:
-+            print "Invalid choice (%s), exiting" % choice
-+            sys.exit(1)
-+        if idx < 0 or idx >= len(patches):
-+            print "Invalid choice (%d), exiting" % (idx + 1)
-+            sys.exit(1)
-+        src_uri_patch = os.path.join(src_uri_dir, patches[idx])
-+        if os.path.isfile(src_uri_patch):
-+            os.remove(src_uri_patch)
-+        idx = map_choice(patches[idx], src_uri)
-+        removed.append(src_uri.pop(idx))
-+
-+    write_patch_items(scripts_path, machine, patches)
-+    write_kernel_src_uri(scripts_path, machine, src_uri)
-+
-+    print "Removed patches:"
-+    for r in removed:
-+        print "\t%s" % r
-+
-+
-+def yocto_kernel_patch_add(scripts_path, machine, patches):
-+    """
-+    Add one or more patches to a machine's user-defined patch list
-+    [user-patches.scc].
-+    """
-+    (start_line, end_line, src_uri) = find_bsp_kernel_src_uri(scripts_path, machine)
-+    src_uri_patches = find_patches(src_uri)
-+
-+    for patch in patches:
-+        if os.path.basename(patch) in src_uri_patches:
-+            print "Couldn't add patch (%s) since it's already been added" % os.path.basename(patch)
-+            sys.exit(1)
-+
-+    layer = find_bsp_layer(scripts_path, machine)
-+    src_uri_dir = os.path.join(layer, "recipes-kernel/linux/files")
-+
-+    new_patches = []
-+
-+    for patch in patches:
-+        if not os.path.isfile(patch):
-+            print "Couldn't find patch (%s), exiting" % patch
-+            sys.exit(1)
-+        basename = os.path.basename(patch)
-+        src_uri_patch = os.path.join(src_uri_dir, basename)
-+        shutil.copyfile(patch, src_uri_patch)
-+        new_patches.append(basename)
-+
-+    cur_items = read_patch_items(scripts_path, machine)
-+    cur_items.extend(new_patches)
-+    write_patch_items(scripts_path, machine, cur_items)
-+
-+    (unused, unused, src_uri) = find_bsp_kernel_src_uri(scripts_path, machine)
-+    src_uri.extend(new_patches)
-+    write_kernel_src_uri(scripts_path, machine, src_uri)
-+
-+    print "Added patches:"
-+    for n in new_patches:
-+        print "\t%s" % n
-+
-+
-+def write_uri_lines(ofile, src_uri):
-+    """
-+    Write URI elements to output file ofile.
-+    """
-+    ofile.write("SRC_URI += \" \\\n")
-+    for item in src_uri:
-+        ofile.write("\t%s%s \\\n" % (SRC_URI_FILE, item))
-+    ofile.write("\t\"\n")
-+
-+
-+def inc_pr(line):
-+    """
-+    Add 1 to the PR value in the given bbappend PR line.  For the PR
-+    lines in kernel .bbappends after modifications.
-+    """
-+    idx = line.find("\"")
-+
-+    pr_str = line[idx:]
-+    pr_str = pr_str.replace('\"','')
-+    fields = pr_str.split('.')
-+    fields[1] = str(int(fields[1]) + 1)
-+    pr_str = "\"" + '.'.join(fields) + "\"\n"
-+
-+    idx2 = line.find("\"", idx + 1)
-+    line = line[:idx] + pr_str
-+    
-+    return line
-+
-+
-+def kernel_contents_changed(scripts_path, machine):
-+    """
-+    Do what we need to do to notify the system that the kernel
-+    recipe's contents have changed.
-+    """
-+    layer = find_bsp_layer(scripts_path, machine)
-+
-+    kernel = find_current_kernel(layer, machine)
-+    if not kernel:
-+        print "Couldn't determine the kernel for this BSP, exiting."
-+        sys.exit(1)
-+
-+    kernel_bbappend = os.path.join(layer, "recipes-kernel/linux/" + kernel + ".bbappend")
-+    kernel_bbappend_prev = kernel_bbappend + ".prev"
-+    shutil.copyfile(kernel_bbappend, kernel_bbappend_prev)
-+
-+    ifile = open(kernel_bbappend_prev, "r")
-+    ofile = open(kernel_bbappend, "w")
-+    ifile_lines = ifile.readlines()
-+    for ifile_line in ifile_lines:
-+        if ifile_line.strip().startswith("PR"):
-+            ifile_line = inc_pr(ifile_line)
-+        ofile.write(ifile_line)
-+    ofile.close()
-+    ifile.close()
-+
-+
-+def write_kernel_src_uri(scripts_path, machine, src_uri):
-+    """
-+    Write (replace) the SRC_URI append for a machine from a list
-+    SRC_URI elements.
-+    """
-+    layer = find_bsp_layer(scripts_path, machine)
-+
-+    kernel = find_current_kernel(layer, machine)
-+    if not kernel:
-+        print "Couldn't determine the kernel for this BSP, exiting."
-+        sys.exit(1)
-+
-+    kernel_bbappend = os.path.join(layer, "recipes-kernel/linux/" + kernel + ".bbappend")
-+
-+    (uri_start_line, uri_end_line, unused) = find_bsp_kernel_src_uri(scripts_path, machine, True)
-+
-+    kernel_bbappend_prev = kernel_bbappend + ".prev"
-+    shutil.copyfile(kernel_bbappend, kernel_bbappend_prev)
-+    ifile = open(kernel_bbappend_prev, "r")
-+    ofile = open(kernel_bbappend, "w")
-+
-+    ifile_lines = ifile.readlines()
-+    if uri_start_line == -1:
-+        uri_end_line = len(ifile_lines) # make sure we add at end
-+    wrote_src_uri = False
-+    for i, ifile_line in enumerate(ifile_lines):
-+        if ifile_line.strip().startswith("PR"):
-+            ifile_line = inc_pr(ifile_line)
-+        if i < uri_start_line:
-+            ofile.write(ifile_line)
-+        elif i > uri_end_line:
-+            ofile.write(ifile_line)
-+        else:
-+            if not wrote_src_uri:
-+                write_uri_lines(ofile, src_uri)
-+                wrote_src_uri = True
-+    if uri_start_line == -1:
-+        write_uri_lines(ofile, src_uri)
-+
-+
-+def kernels(context):
-+    """
-+    Return the list of available kernels in the BSP i.e. corresponding
-+    to the kernel .bbappends found in the layer.
-+    """
-+    archdir = os.path.join(context["scripts_path"], "lib/bsp/substrate/target/arch/" + context["arch"])
-+    kerndir = os.path.join(archdir, "recipes-kernel/linux")
-+    bbglob = os.path.join(kerndir, "*.bbappend")
-+
-+    bbappends = glob.glob(bbglob)
-+
-+    kernels = []
-+
-+    for kernel in bbappends:
-+        filename = os.path.splitext(os.path.basename(kernel))[0]
-+        idx = filename.find(CLOSE_TAG)
-+        if idx != -1:
-+            filename = filename[idx + len(CLOSE_TAG):].strip()
-+        kernels.append(filename)
-+
-+    return kernels
-+
-+
-+def extract_giturl(file):
-+    """
-+    Extract the git url of the kernel repo from the kernel recipe's
-+    SRC_URI.
-+    """
-+    f = open(file, "r")
-+    lines = f.readlines()
-+    for line in lines:
-+        line = line.strip()
-+        if line.startswith("SRC_URI"):
-+            line = line[len("SRC_URI"):].strip()
-+            if line.startswith("="):
-+                line = line[1:].strip()
-+                if line.startswith("\""):
-+                    line = line[1:].strip()
-+                    fields = line.split(";")
-+                    if fields:
-+                        return fields[0]
-+    return None
-+
-+
-+def find_giturl(context):
-+    """
-+    Find the git url of the kernel repo from the kernel recipe's
-+    SRC_URI.
-+    """
-+    name = context["name"]
-+    filebase = context["filename"]
-+    scripts_path = context["scripts_path"]
-+
-+    meta_layer = find_meta_layer(scripts_path)
-+
-+    kerndir = os.path.join(meta_layer, "recipes-kernel/linux")
-+    bbglob = os.path.join(kerndir, "*.bb")
-+    bbs = glob.glob(bbglob)
-+    for kernel in bbs:
-+        filename = os.path.splitext(os.path.basename(kernel))[0]
-+        if filename == filebase:
-+            giturl = extract_giturl(kernel)
-+            return giturl
-+    
-+    return None
-+
-+    
-+def base_branches(context):
-+    """
-+    Return a list of the base branches found in the kernel git repo.
-+    """
-+    giturl = find_giturl(context)
-+
-+    print "Getting branches from remote repo %s..." % giturl
-+
-+    gitcmd = "git ls-remote %s *heads* 2>&1" % (giturl)
-+    tmp = os.popen(gitcmd).read()
-+
-+    branches = []
-+
-+    if tmp:
-+        tmpline = tmp.split("\n")
-+        for line in tmpline:
-+            if len(line)==0:
-+                break;
-+            if not line.endswith("base"):
-+                continue;
-+            idx = line.find("refs/heads/")
-+            kbranch = line[idx + len("refs/heads/"):]
-+            if kbranch.find("/") == -1 and kbranch.find("base") == -1:
-+                continue
-+            idx = kbranch.find("base")
-+            branches.append(kbranch[:idx - 1])
-+
-+    return branches
-+
-+
-+def all_branches(context):
-+    """
-+    Return a list of all the branches found in the kernel git repo.
-+    """
-+    giturl = find_giturl(context)
-+
-+    print "Getting branches from remote repo %s..." % giturl
-+
-+    gitcmd = "git ls-remote %s *heads* 2>&1" % (giturl)
-+    tmp = os.popen(gitcmd).read()
-+
-+    branches = []
-+
-+    if tmp:
-+        tmpline = tmp.split("\n")
-+        for line in tmpline:
-+            if len(line)==0:
-+                break;
-+            idx = line.find("refs/heads/")
-+            kbranch = line[idx + len("refs/heads/"):]
-+            if (kbranch.find("/") != -1 and
-+                (kbranch.find("standard") != -1 or kbranch.find("base") != -1) or
-+                kbranch == "base"):
-+                branches.append(kbranch)
-+                continue
-+
-+    return branches
++ See 'yocto-bsp help COMMAND' for more information on a specific command.
++"""
++
++yocto_bsp_help_usage = """
++
++ usage: yocto-bsp help <subcommand>
++
++ This command displays detailed help for the specified subcommand.
++"""
++
++yocto_bsp_create_usage = """
++
++ Create a new Yocto BSP
++
++ usage: yocto-bsp create <bsp-name> <karch> [-o <DIRNAME> | --outdir <DIRNAME>]
++            [-i <JSON PROPERTY FILE> | --infile <JSON PROPERTY_FILE>]
++
++ This command creates a Yocto BSP based on the specified parameters.
++ The new BSP will be a new Yocto BSP layer contained by default within
++ the top-level directory specified as 'meta-bsp-name'.  The -o option
++ can be used to place the BSP layer in a directory with a different
++ name and location.
++
++ The value of the 'karch' parameter determines the set of files that
++ will be generated for the BSP, along with the specific set of
++ 'properties' that will be used to fill out the BSP-specific portions
++ of the BSP.  The possible values for the 'karch' paramter can be
++ listed via 'yocto-bsp list karch'.
++"""
++
++yocto_bsp_create_help = """
++
++NAME
++    yocto-bsp create - Create a new Yocto BSP
++
++SYNOPSIS
++    yocto-bsp create <bsp-name> <karch> [-o <DIRNAME> | --outdir <DIRNAME>]
++        [-i <JSON PROPERTY FILE> | --infile <JSON PROPERTY_FILE>]
++
++DESCRIPTION
++    This command creates a Yocto BSP based on the specified
++    parameters.  The new BSP will be a new Yocto BSP layer contained
++    by default within the top-level directory specified as
++    'meta-bsp-name'.  The -o option can be used to place the BSP layer
++    in a directory with a different name and location.
++
++    The value of the 'karch' parameter determines the set of files
++    that will be generated for the BSP, along with the specific set of
++    'properties' that will be used to fill out the BSP-specific
++    portions of the BSP.  The possible values for the 'karch' paramter
++    can be listed via 'yocto-bsp list karch'.
++
++    The BSP-specific properties that define the values that will be
++    used to generate a particular BSP can be specified on the
++    command-line using the -i option and supplying a JSON object
++    consisting of the set of name:value pairs needed by the BSP.
++
++    If the -i option is not used, the user will be interactively
++    prompted for each of the required property values, which will then
++    be used as values for BSP generation.
++
++    The set of properties available for a given architecture can be
++    listed using the 'yocto-bsp list' command.
++
++    Specifying -c causes the Python code generated and executed to
++    create the BSP to be dumped to the 'bspgen.out' file in the
++    current directory, and is useful for debugging.
++
++    NOTE: Once created, you should add your new layer to your
++    bblayers.conf file in order for it to be subsquently seen and
++    modified by the yocto-kernel tool.
++
++    NOTE for x86- and x86_64-based BSPs: The generated BSP assumes the
++    presence of the of the meta-intel layer, so you should also have a
++    meta-intel layer present and added to your bblayers.conf as well.
++"""
++
++yocto_bsp_list_usage = """
++
++ usage: yocto-bsp list karch
++        yocto-bsp list <karch> properties
++                [-o <JSON PROPERTY FILE> | --outfile <JSON PROPERTY_FILE>]
++        yocto-bsp list <karch> property <xxx>
++                [-o <JSON PROPERTY FILE> | --outfile <JSON PROPERTY_FILE>]
++
++ This command enumerates the complete set of possible values for a
++ specified option or property needed by the BSP creation process.
++
++ The first form enumerates all the possible values that exist and can
++ be specified for the 'karch' parameter to the 'yocto bsp create'
++ command.
++
++ The second form enumerates all the possible properties that exist and
++ must have values specified for them in the 'yocto bsp create' command
++ for the given 'karch'.
++
++ The third form enumerates all the possible values that exist and can
++ be specified for any of the enumerable properties of the given
++ 'karch' in the 'yocto bsp create' command.
++
++ See 'yocto-bsp help list' for more details.
++"""
++
++yocto_bsp_list_help = """
++
++NAME
++    yocto-bsp list - List available values for options and BSP properties
++
++SYNOPSIS
++    yocto-bsp list karch
++    yocto-bsp list <karch> properties
++            [--o <JSON PROPERTY FILE> | -outfile <JSON PROPERTY_FILE>]
++    yocto-bsp list <karch> property <xxx>
++            [--o <JSON PROPERTY FILE> | -outfile <JSON PROPERTY_FILE>]
++
++DESCRIPTION
++    This command enumerates the complete set of possible values for a
++    specified option or property needed by the BSP creation process.
++
++    The first form enumerates all the possible values that exist and
++    can be specified for the 'karch' parameter to the 'yocto bsp
++    create' command.  Example output for the 'list karch' command:
++
++    $ yocto-bsp list karch
++    Architectures available:
++        arm
++        powerpc
++        i386
++        mips
++        x86_64
++        qemu
++
++    The second form enumerates all the possible properties that exist
++    and must have values specified for them in the 'yocto bsp create'
++    command for the given 'karch'.  This command is mainly meant to
++    allow the development user interface alternatives to the default
++    text-based prompting interface.  If the -o option is specified,
++    the list of properties, in addition to being displayed, will be
++    written to the specified file as a JSON object.  In this case, the
++    object will consist of the set of name:value pairs corresponding
++    to the (possibly nested) dictionary of properties defined by the
++    input statements used by the BSP.  Some example output for the
++    'list properties' command:
++
++    $ yocto-bsp list arm properties
++    "touchscreen" : {
++        "msg" : Does your BSP have a touchscreen? (y/N)
++        "default" : n
++        "type" : boolean
++    }
++    "uboot_loadaddress" : {
++        "msg" : Please specify a value for UBOOT_LOADADDRESS.
++        "default" : 0x80008000
++        "type" : edit
++        "prio" : 40
++    }
++    "kernel_choice" : {
++        "prio" : 10
++        "default" : linux-yocto_3.2
++        "depends-on" : use_default_kernel
++        "depends-on-val" : n
++        "msg" : Please choose the kernel to use in this BSP =>
++        "type" : choicelist
++        "gen" : bsp.kernel.kernels
++    }
++    "if kernel_choice == "linux-yocto_3.0":" : {
++        "base_kbranch_linux_yocto_3_0" : {
++            "prio" : 20
++            "default" : yocto/standard
++            "depends-on" : new_kbranch_linux_yocto_3_0
++            "depends-on-val" : y
++            "msg" : Please choose a machine branch to base this BSP on =>
++            "type" : choicelist
++            "gen" : bsp.kernel.all_branches
++    }
++    .
++    .
++    .
++
++    Each entry in the output consists of the name of the input element
++    e.g. "touchscreen", followed by the properties defined for that
++    element enclosed in braces.  This information should provide
++    sufficient information to create a complete user interface with.
++    Two features of the scheme provide for conditional input.  First,
++    if a Python "if" statement appears in place of an input element
++    name, the set of enclosed input elements apply and should be
++    presented to the user only if the 'if' statement evaluates to
++    true.  The test in the if statement will always reference another
++    input element in the list, which means that the element being
++    tested should be presented to the user before the elements
++    enclosed by the if block.  Secondly, in a similar way, some
++    elements contain "depends-on" and depends-on-val" tags, which mean
++    that the affected input element should only be presented to the
++    user if the element it depends on has already been presented to
++    the user and the user has selected the specified value for that
++    element.
++
++    The third form enumerates all the possible values that exist and
++    can be specified for any of the enumerable properties of the given
++    'karch' in the 'yocto bsp create' command.  If the -o option is
++    specified, the list of values for the given property, in addition
++    to being displayed, will be written to the specified file as a
++    JSON object.  In this case, the object will consist of the set of
++    name:value pairs corresponding to the array of property values
++    associated with the property.
++
++    $ yocto-bsp list i386 property xserver_choice
++        ["xserver_vesa", "VESA xserver support"]
++        ["xserver_emgd", "EMGD xserver support (proprietary)"]
++        ["xserver_i915", "i915 xserver support"]
++
++    $ yocto-bsp list arm property base_kbranch_linux_yocto_3_0
++        Getting branches from remote repo git://git.yoctoproject.org/linux-yocto-3.0...
++        ["yocto/base", "yocto/base"]
++        ["yocto/eg20t", "yocto/eg20t"]
++        ["yocto/emgd", "yocto/emgd"]
++        ["yocto/emgd-1.10", "yocto/emgd-1.10"]
++        ["yocto/gma500", "yocto/gma500"]
++        ["yocto/pvr", "yocto/pvr"]
++        ["yocto/standard/arm-versatile-926ejs", "yocto/standard/arm-versatile-926ejs"]
++        ["yocto/standard/base", "yocto/standard/base"]
++        ["yocto/standard/beagleboard", "yocto/standard/beagleboard"]
++        ["yocto/standard/cedartrail", "yocto/standard/cedartrail"]
++        .
++        .
++        .
++        ["yocto/standard/qemu-ppc32", "yocto/standard/qemu-ppc32"]
++        ["yocto/standard/routerstationpro", "yocto/standard/routerstationpro"]
++
++    The third form as well is meant mainly for developers of
++    alternative interfaces - it allows the developer to fetch the
++    possible values for a given input element on-demand.  This
++    on-demand capability is especially valuable for elements that
++    require relatively expensive remote operations to fulfill, such as
++    the example that returns the set of branches available in a remote
++    git tree above.
++
++"""
++
++##
++# yocto-kernel help and usage strings
++##
++
++yocto_kernel_usage = """
++
++ Modify and list Yocto BSP kernel config items and patches.
++
++ usage: yocto-kernel [--version] [--help] COMMAND [ARGS]
++
++ The most commonly used 'yocto-kernel' commands are:
++   config list       List the modifiable set of bare kernel config options for a BSP
++   config add        Add or modify bare kernel config options for a BSP
++   config rm         Remove bare kernel config options from a BSP
++   patch list        List the patches associated with a BSP
++   patch add         Patch the Yocto kernel for a BSP
++   patch rm          Remove patches from a BSP
++
++ See 'yocto-kernel help COMMAND' for more information on a specific command.
++
++"""
++
++
++yocto_kernel_help_usage = """
++
++ usage: yocto-kernel help <subcommand>
++
++ This command displays detailed help for the specified subcommand.
++"""
++
++yocto_kernel_config_list_usage = """
++
++ List the modifiable set of bare kernel config options for a BSP
++
++ usage: yocto-kernel config list <bsp-name>
++
++ This command lists the 'modifiable' config items for a BSP i.e. the
++ items which are eligible for modification or removal by other
++ yocto-kernel commands.
++
++ 'modifiable' config items are the config items contained a BSP's
++ user-config.cfg base config.
++"""
++
++
++yocto_kernel_config_list_help = """
++
++NAME
++    yocto-kernel config list - List the modifiable set of bare kernel
++    config options for a BSP
++
++SYNOPSIS
++    yocto-kernel config list <bsp-name>
++
++DESCRIPTION
++    This command lists the 'modifiable' config items for a BSP
++    i.e. the items which are eligible for modification or removal by
++    other yocto-kernel commands.
++"""
++
++
++yocto_kernel_config_add_usage = """
++
++ Add or modify bare kernel config options for a BSP
++
++ usage: yocto-kernel config add <bsp-name> [<CONFIG_XXX=x> ...]
++
++ This command adds one or more CONFIG_XXX=x items to a BSP's user-config.cfg
++ base config.
++"""
++
++
++yocto_kernel_config_add_help = """
++
++NAME
++    yocto-kernel config add - Add or modify bare kernel config options
++    for a BSP
++
++SYNOPSIS
++    yocto-kernel config add <bsp-name> [<CONFIG_XXX=x> ...]
++
++DESCRIPTION
++    This command adds one or more CONFIG_XXX=x items to a BSP's
++    foo.cfg base config.
++
++    NOTE: It's up to the user to determine whether or not the config
++    options being added make sense or not - this command does no
++    sanity checking or verification of any kind to ensure that a
++    config option really makes sense and will actually be set in in
++    the final config.  For example, if a config option depends on
++    other config options, it will be turned off by kconfig if the
++    other options aren't set correctly.
++"""
++
++
++yocto_kernel_config_rm_usage = """
++
++ Remove bare kernel config options from a BSP
++
++ usage: yocto-kernel config rm <bsp-name>
++
++ This command removes (turns off) one or more CONFIG_XXX items from a
++ BSP's user-config.cfg base config.
++
++ The set of config items available to be removed by this command for a
++ BSP is listed and the user prompted for the specific items to remove.
++"""
++
++
++yocto_kernel_config_rm_help = """
++
++NAME
++    yocto-kernel config rm - Remove bare kernel config options from a
++    BSP
++
++SYNOPSIS
++    yocto-kernel config rm <bsp-name>
++
++DESCRIPTION
++    This command removes (turns off) one or more CONFIG_XXX items from a
++    BSP's user-config.cfg base config.
++
++    The set of config items available to be removed by this command
++    for a BSP is listed and the user prompted for the specific items
++    to remove.
++"""
++
++
++yocto_kernel_patch_list_usage = """
++
++ List the patches associated with the kernel for a BSP
++
++ usage: yocto-kernel patch list <bsp-name>
++
++ This command lists the patches associated with a BSP.
++
++ NOTE: this only applies to patches listed in the kernel recipe's
++ user-patches.scc file (and currently repeated in its SRC_URI).
++"""
++
++
++yocto_kernel_patch_list_help = """
++
++NAME
++    yocto-kernel patch list - List the patches associated with the kernel
++    for a BSP
++
++SYNOPSIS
++    yocto-kernel patch list <bsp-name>
++
++DESCRIPTION
++    This command lists the patches associated with a BSP.
++
++    NOTE: this only applies to patches listed in the kernel recipe's
++    user-patches.scc file (and currently repeated in its SRC_URI).
++"""
++
++
++yocto_kernel_patch_add_usage = """
++
++ Patch the Yocto kernel for a specific BSP
++
++ usage: yocto-kernel patch add <bsp-name> [<PATCH> ...]
++
++ This command adds one or more patches to a BSP's machine branch.  The
++ patch will be added to the BSP's linux-yocto kernel user-patches.scc
++ file (and currently repeated in its SRC_URI) and will be guaranteed
++ to be applied in the order specified.
++"""
++
++
++yocto_kernel_patch_add_help = """
++
++NAME
++    yocto-kernel patch add - Patch the Yocto kernel for a specific BSP
++
++SYNOPSIS
++    yocto-kernel patch add <bsp-name> [<PATCH> ...]
++
++DESCRIPTION
++    This command adds one or more patches to a BSP's machine branch.
++    The patch will be added to the BSP's linux-yocto kernel
++    user-patches.scc file (and currently repeated in its SRC_URI) and
++    will be guaranteed to be applied in the order specified.
++
++    NOTE: It's up to the user to determine whether or not the patches
++    being added makes sense or not - this command does no sanity
++    checking or verification of any kind to ensure that a patch can
++    actually be applied to the BSP's kernel branch; it's assumed that
++    the user has already done that.
++"""
++
++
++yocto_kernel_patch_rm_usage = """
++
++ Remove a patch from the Yocto kernel for a specific BSP
++
++ usage: yocto-kernel patch rm <bsp-name>
++
++ This command removes one or more patches from a BSP's machine branch.
++ The patch will be removed from the BSP's linux-yocto kernel
++ user-patches.scc file (and currently repeated in its SRC_URI) and
++ kernel SRC_URI dir.
++
++ The set of patches available to be removed by this command for a BSP
++ is listed and the user prompted for the specific patches to remove.
++"""
++
++
++yocto_kernel_patch_rm_help = """
++
++NAME
++    yocto-kernel patch rm - Remove a patch from the Yocto kernel for a specific BSP
++
++SYNOPSIS
++    yocto-kernel patch rm <bsp-name>
++
++DESCRIPTION
++    This command removes one or more patches from a BSP's machine
++    branch.  The patch will be removed from the BSP's linux-yocto
++    kernel user-patches.scc file (and currently repeated in its
++    SRC_URI).
++
++    The set of patches available to be removed by this command for a
++    BSP is listed and the user prompted for the specific patches to
++    remove.
++"""
++
++##
++# test code
++##
++
++test_bsp_properties = {
++    'smp': 'yes',
++    'touchscreen': 'yes',
++    'keyboard': 'no',
++    'xserver': 'yes',
++    'xserver_choice': 'xserver-i915',
++    'features': ['goodfeature', 'greatfeature'],
++    'tunefile': 'tune-quark',
++}
++
 -- 
 1.7.0.4
 
