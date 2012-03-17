@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F0F1E013CA
-	for <yocto@yoctoproject.org>; Fri, 16 Mar 2012 22:32:19 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 16 Mar 2012 22:32:18 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F591E013CA
+	for <yocto@yoctoproject.org>; Fri, 16 Mar 2012 22:32:20 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 16 Mar 2012 22:32:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="78596339"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="140325070"
 Received: from unknown (HELO localhost) ([10.255.15.231])
-	by AZSMGA002.ch.intel.com with ESMTP; 16 Mar 2012 22:32:17 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 16 Mar 2012 22:32:19 -0700
 From: tom.zanussi@intel.com
 To: dvhart@linux.intel.com,
 	yocto@yoctoproject.org
-Date: Sat, 17 Mar 2012 00:30:54 -0500
-Message-Id: <5256ee12553f17577b390b564c9b415263f09693.1331961098.git.tom.zanussi@intel.com>
+Date: Sat, 17 Mar 2012 00:30:55 -0500
+Message-Id: <5e782b5d5f6b0f64ad85d142426a337531b25ba4.1331961098.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <5ca45595832a36794b748e7f93d6b56036d840e6.1331961098.git.tom.zanussi@intel.com>
 References: <5ca45595832a36794b748e7f93d6b56036d840e6.1331961098.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1331961098.git.tom.zanussi@intel.com>
 References: <cover.1331961098.git.tom.zanussi@intel.com>
-Subject: [PATCH 3/8] yocto-bsp: add templating engine
+Subject: [PATCH 4/8] yocto-bsp: add kernel interface
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,26 +30,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 17 Mar 2012 05:32:19 -0000
+X-List-Received-Date: Sat, 17 Mar 2012 05:32:20 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-The main implementation of the Yocto BSP templating engine,
-essentially containing the internal implementation of the 'yocto-bsp
-create' and yocto-bsp list' commands.
+Yocto BSP kernel-related functions, for interacting with the kernel
+tools and implementing the machinery behind the 'yocto-kernel'
+command.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- scripts/lib/bsp/engine.py | 1436 +++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 1436 insertions(+), 0 deletions(-)
- create mode 100644 scripts/lib/bsp/engine.py
+ scripts/lib/bsp/kernel.py |  723 +++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 723 insertions(+), 0 deletions(-)
+ create mode 100644 scripts/lib/bsp/kernel.py
 
-diff --git a/scripts/lib/bsp/engine.py b/scripts/lib/bsp/engine.py
+diff --git a/scripts/lib/bsp/kernel.py b/scripts/lib/bsp/kernel.py
 new file mode 100644
-index 0000000..d2f0735
+index 0000000..b4e7fbf
 --- /dev/null
-+++ b/scripts/lib/bsp/engine.py
-@@ -0,0 +1,1436 @@
++++ b/scripts/lib/bsp/kernel.py
+@@ -0,0 +1,723 @@
 +# ex:ts=4:sw=4:sts=4:et
 +# -*- tab-width: 4; c-basic-offset: 4; indent-tabs-mode: nil -*-
 +#
@@ -70,1422 +70,709 @@ index 0000000..d2f0735
 +# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 +#
 +# DESCRIPTION
-+# This module implements the templating engine used by 'yocto-bsp' to
-+# create BSPs.  The BSP templates are simply the set of files expected
-+# to appear in a generated BSP, marked up with a small set of tags
-+# used to customize the output.  The engine parses through the
-+# templates and generates a Python program containing all the logic
-+# and input elements needed to display and retrieve BSP-specific
-+# information from the user.  The resulting program uses those results
-+# to generate the final BSP files.
++# This module implements the kernel-related functions used by
++# 'yocto-kernel' to manage kernel config items and patches for Yocto
++# BSPs.
 +#
 +# AUTHORS
 +# Tom Zanussi <tom.zanussi (at] intel.com>
 +#
 +
-+import os
 +import sys
-+from abc import ABCMeta, abstractmethod
++import os
++import shutil
 +from tags import *
-+import shlex
-+import json
++import glob
 +
-+class Line():
++
++def find_bblayers(scripts_path):
 +    """
-+    Generic (abstract) container representing a line that will appear
-+    in the BSP-generating program.
++    Find and return a sanitized list of the layers found in BBLAYERS.
 +    """
-+    __metaclass__ = ABCMeta
-+
-+    def __init__(self, line):
-+        self.line = line
-+        self.generated_line = ""
-+        self.prio = sys.maxint
-+        self.discard = False
-+
-+    @abstractmethod
-+    def gen(self, context = None):
-+        """
-+        Generate the final executable line that will appear in the
-+        BSP-generation program.
-+        """
-+        pass
-+
-+    def escape(self, line):
-+        """
-+        Escape single and double quotes and backslashes until I find
-+        something better (re.escape() escapes way too much).
-+        """
-+        return line.replace("\\", "\\\\").replace("\"", "\\\"").replace("'", "\\'")
-+
-+    def parse_error(self, msg, lineno, line):
-+         raise SyntaxError("%s: %s" % (msg, line))
-+
-+
-+class NormalLine(Line):
-+    """
-+    Container for normal (non-tag) lines.
-+    """
-+    def __init__(self, line):
-+        Line.__init__(self, line)
-+        self.is_filename = False
-+        self.is_dirname = False
-+        self.out_filebase = None
-+
-+    def gen(self, context = None):
-+        if self.is_filename:
-+            line = "of = open(\"" + os.path.join(self.out_filebase, self.escape(self.line)) + "\", \"w\")"
-+        elif self.is_dirname:
-+            dirname = os.path.join(self.out_filebase, self.escape(self.line))
-+            line = "if not os.path.exists(\"" + dirname + "\"): os.mkdir(\"" + dirname + "\")"
-+        else:
-+            line = "of.write(\"" + self.escape(self.line) + "\\n\")"
-+        return line
-+
-+
-+class CodeLine(Line):
-+    """
-+    Container for Python code tag lines.
-+    """
-+    def __init__(self, line):
-+        Line.__init__(self, line)
-+
-+    def gen(self, context = None):
-+        return self.line
-+
-+
-+class Assignment:
-+    """
-+    Representation of everything we know about {{=name }} tags.
-+    Instances of these are used by Assignment lines.
-+    """
-+    def __init__(self, start, end, name):
-+        self.start = start
-+        self.end = end
-+        self.name = name
-+
-+
-+class AssignmentLine(NormalLine):
-+    """
-+    Container for normal lines containing assignment tags.  Assignment
-+    tags must be in ascending order of 'start' value.
-+    """
-+    def __init__(self, line):
-+        NormalLine.__init__(self, line)
-+        self.assignments = []
-+
-+    def add_assignment(self, start, end, name):
-+        self.assignments.append(Assignment(start, end, name))
-+
-+    def gen(self, context = None):
-+        line = self.escape(self.line)
-+
-+        for assignment in self.assignments:
-+            replacement = "\" + " + assignment.name + " + \""
-+            idx = line.find(ASSIGN_TAG)
-+            line = line[:idx] + replacement + line[idx + assignment.end - assignment.start:]
-+        if self.is_filename:
-+            return "of = open(\"" + os.path.join(self.out_filebase, line) + "\", \"w\")"
-+        elif self.is_dirname:
-+            dirname = os.path.join(self.out_filebase, line)
-+            return "if not os.path.exists(\"" + dirname + "\"): os.mkdir(\"" + dirname + "\")"
-+        else:
-+            return "of.write(\"" + line + "\\n\")"
-+
-+
-+class InputLine(Line):
-+    """
-+    Base class for Input lines.
-+    """
-+    def __init__(self, props, tag, lineno):
-+        Line.__init__(self, tag)
-+        self.props = props
-+        self.lineno = lineno
-+
-+        try:
-+            self.prio = int(props["prio"])
-+        except KeyError:
-+            self.prio = sys.maxint
-+
-+    def gen(self, context = None):
-+        try:
-+            depends_on = self.props["depends-on"]
-+            try:
-+                depends_on_val = self.props["depends-on-val"]
-+            except KeyError:
-+                self.parse_error("No 'depends-on-val' for 'depends-on' property",
-+                                 self.lineno, self.line)
-+        except KeyError:
-+            pass
-+
-+
-+class EditBoxInputLine(InputLine):
-+    """
-+    Base class for 'editbox' Input lines.
-+
-+    props:
-+        name: example - "Load address"
-+        msg: example - "Please enter the load address"
-+    result:
-+        Sets the value of the variable specified by 'name' to
-+        whatever the user typed.
-+    """
-+    def __init__(self, props, tag, lineno):
-+        InputLine.__init__(self, props, tag, lineno)
-+
-+    def gen(self, context = None):
-+        InputLine.gen(self, context)
-+        name = self.props["name"]
-+        if not name:
-+            self.parse_error("No input 'name' property found",
-+                             self.lineno, self.line)
-+        msg = self.props["msg"]
-+        if not msg:
-+            self.parse_error("No input 'msg' property found",
-+                             self.lineno, self.line)
-+
-+        try:
-+            default_choice = self.props["default"]
-+        except KeyError:
-+            default_choice = ""
-+
-+        msg += " [default: " + default_choice + "]"
-+
-+        line = name + " = default(raw_input(\"" + msg + " \"), " + name + ")"
-+
-+        return line
-+
-+
-+class BooleanInputLine(InputLine):
-+    """
-+    Base class for boolean Input lines.
-+    props:
-+        name: example - "keyboard"
-+        msg:  example - "Got keyboard?"
-+    result:
-+        Sets the value of the variable specified by 'name' to "yes" or "no"
-+        example - keyboard = "yes"
-+    """
-+    def __init__(self, props, tag, lineno):
-+        InputLine.__init__(self, props, tag, lineno)
-+
-+    def gen(self, context = None):
-+        InputLine.gen(self, context)
-+        name = self.props["name"]
-+        if not name:
-+            self.parse_error("No input 'name' property found",
-+                             self.lineno, self.line)
-+        msg = self.props["msg"]
-+        if not msg:
-+            self.parse_error("No input 'msg' property found",
-+                             self.lineno, self.line)
-+
-+        try:
-+            default_choice = self.props["default"]
-+        except KeyError:
-+            default_choice = ""
-+
-+        msg += " [default: " + default_choice + "]"
-+
-+        line = name + " = boolean(raw_input(\"" + msg + " \"), " + name + ")"
-+
-+        return line
-+
-+
-+class ListInputLine(InputLine):
-+    """
-+    Base class for List-based Input lines. e.g. Choicelist, Checklist.
-+    """
-+    __metaclass__ = ABCMeta
-+
-+    def __init__(self, props, tag, lineno):
-+        InputLine.__init__(self, props, tag, lineno)
-+        self.choices = []
-+
-+    def gen_choicepair_list(self):
-+        """Generate a list of 2-item val:desc lists from self.choices."""
-+        if not self.choices:
-+            return None
-+
-+        choicepair_list = list()
-+
-+        for choice in self.choices:
-+            choicepair = []
-+            choicepair.append(choice.val)
-+            choicepair.append(choice.desc)
-+            choicepair_list.append(choicepair)
-+
-+        return choicepair_list
-+
-+    def gen_degenerate_choicepair_list(self, choices):
-+        """Generate a list of 2-item val:desc with val=desc from passed-in choices."""
-+        choicepair_list = list()
-+
-+        for choice in choices:
-+            choicepair = []
-+            choicepair.append(choice)
-+            choicepair.append(choice)
-+            choicepair_list.append(choicepair)
-+
-+        return choicepair_list
-+
-+    def exec_listgen_fn(self, context = None):
-+        """
-+        Execute the list-generating function contained as a string in
-+        the "gen" property.
-+        """
-+        retval = None
-+        try:
-+            fname = self.props["gen"]
-+            modsplit = fname.split('.')
-+            mod_fn = modsplit.pop()
-+            mod = '.'.join(modsplit)
-+
-+            __import__(mod)
-+            # python 2.7 has a better way to do this using importlib.import_module
-+            m = sys.modules[mod]
-+
-+            fn = getattr(m, mod_fn)
-+            if not fn:
-+                self.parse_error("couldn't load function specified for 'gen' property ",
-+                                 self.lineno, self.line)
-+            retval = fn(context)
-+            if not retval:
-+                self.parse_error("function specified for 'gen' property returned nothing ",
-+                                 self.lineno, self.line)
-+        except KeyError:
-+            pass
-+
-+        return retval
-+
-+    def gen_choices_str(self, choicepairs):
-+        """
-+        Generate a numbered list of choices from a list of choicepairs
-+        for display to the user.
-+        """
-+        choices_str = ""
-+
-+        for i, choicepair in enumerate(choicepairs):
-+            choices_str += "\t" + str(i + 1) + ") " + choicepair[1] + "\n"
-+
-+        return choices_str
-+
-+    def gen_choices_val_str(self, choicepairs):
-+        """
-+        Generate an array of choice values corresponding to the
-+        numbered list generated by gen_choices_str().
-+        """
-+        choices_val_list = "["
-+
-+        for i, choicepair in enumerate(choicepairs):
-+            choices_val_list += "\"" + choicepair[0] + "\","
-+        choices_val_list += "]"
-+
-+        return choices_val_list
-+
-+    def gen_choices_val_list(self, choicepairs):
-+        """
-+        Generate an array of choice values corresponding to the
-+        numbered list generated by gen_choices_str().
-+        """
-+        choices_val_list = []
-+
-+        for i, choicepair in enumerate(choicepairs):
-+            choices_val_list.append(choicepair[0])
-+
-+        return choices_val_list
-+
-+    def gen_choices_list(self, context = None, checklist = False):
-+        """
-+        Generate an array of choice values corresponding to the
-+        numbered list generated by gen_choices_str().
-+        """
-+        choices = self.exec_listgen_fn(context)
-+        if choices:
-+            if len(choices) == 0:
-+                self.parse_error("No entries available for input list",
-+                                 self.lineno, self.line)
-+            choicepairs = self.gen_degenerate_choicepair_list(choices)
-+        else:
-+            if len(self.choices) == 0:
-+                self.parse_error("No entries available for input list",
-+                                 self.lineno, self.line)
-+            choicepairs = self.gen_choicepair_list()
-+            
-+        return choicepairs
-+
-+    def gen_choices(self, context = None, checklist = False):
-+        """
-+        Generate an array of choice values corresponding to the
-+        numbered list generated by gen_choices_str(), display it to
-+        the user, and process the result.
-+        """
-+        msg = self.props["msg"]
-+        if not msg:
-+            self.parse_error("No input 'msg' property found",
-+                             self.lineno, self.line)
-+
-+        try:
-+            default_choice = self.props["default"]
-+        except KeyError:
-+            default_choice = ""
-+
-+        msg += " [default: " + default_choice + "]"
-+
-+        choicepairs = self.gen_choices_list(context, checklist)
-+
-+        choices_str = self.gen_choices_str(choicepairs)
-+        choices_val_list = self.gen_choices_val_list(choicepairs)
-+        if checklist:
-+            choiceval = default(find_choicevals(raw_input(msg + "\n" + choices_str), choices_val_list), default_choice)
-+        else:
-+            choiceval = default(find_choiceval(raw_input(msg + "\n" + choices_str), choices_val_list), default_choice)
-+
-+        return choiceval
-+
-+
-+def find_choiceval(choice_str, choice_list):
-+    """
-+    Take number as string and return val string from choice_list,
-+    empty string if oob.  choice_list is a simple python list.
-+    """
-+    choice_val = ""
-+
-+    try:
-+        choice_idx = int(choice_str)
-+        if choice_idx <= len(choice_list):
-+            choice_idx -= 1
-+            choice_val = choice_list[choice_idx]
-+    except ValueError:
-+        pass
-+
-+    return choice_val
-+
-+
-+def find_choicevals(choice_str, choice_list):
-+    """
-+    Take numbers as space-separated string and return vals list from
-+    choice_list, empty list if oob.  choice_list is a simple python
-+    list.
-+    """
-+    choice_vals = []
-+
-+    choices = choice_str.split()
-+    for choice in choices:
-+        choice_vals.append(find_choiceval(choice, choice_list))
-+
-+    return choice_vals
-+
-+
-+def default(input_str, name):
-+    """
-+    Return default if no input_str, otherwise stripped input_str.
-+    """
-+    if not input_str:
-+        return name
-+
-+    return input_str.strip()
-+
-+
-+def boolean(input_str, name):
-+    """
-+    Return lowercase version of first char in string, or value in name.
-+    """
-+    if not input_str:
-+        return name
-+
-+    str = input_str.lower().strip()
-+    if str and str[0] == "y" or str[0] == "n":
-+        return str[0]
-+    else:
-+        return name
-+
-+
-+deferred_choices = {}
-+
-+def gen_choices_defer(input_line, context, checklist = False):
-+    """
-+    Save the context hashed the name of the input item, which will be
-+    passed to the gen function later.
-+    """
-+    name = input_line.props["name"]
-+
-+    try:
-+        nameappend = input_line.props["nameappend"]
-+    except KeyError:
-+        nameappend = ""
-+
-+    filename = input_line.props["filename"]
-+
-+    closetag_start = filename.find(CLOSE_TAG)
-+
-+    if closetag_start != -1:
-+        filename = filename[closetag_start + len(CLOSE_TAG):]
-+
-+    filename = filename.strip()
-+    filename = os.path.splitext(filename)[0]
-+
-+    captured_context = capture_context(context)
-+    context["filename"] = filename
-+    captured_context["filename"] = filename
-+    context["nameappend"] = nameappend
-+    captured_context["nameappend"] = nameappend
-+
-+    deferred_choice = (input_line, captured_context, checklist)
-+    key = name + "_" + filename + "_" + nameappend
-+    deferred_choices[key] = deferred_choice
-+
-+
-+def invoke_deferred_choices(name):
-+    """
-+    Invoke the choice generation function using the context hashed by
-+    'name'.
-+    """
-+    deferred_choice = deferred_choices[name]
-+    input_line = deferred_choice[0]
-+    context = deferred_choice[1]
-+    checklist = deferred_choice[2]
-+
-+    context["name"] = name
-+
-+    choices = input_line.gen_choices(context, checklist)
-+
-+    return choices
-+
-+
-+class ChoicelistInputLine(ListInputLine):
-+    """
-+    Base class for choicelist Input lines.
-+    props:
-+        name: example - "xserver_choice"
-+        msg:  example - "Please select an xserver for this machine"
-+    result:
-+        Sets the value of the variable specified by 'name' to whichever Choice was chosen
-+        example - xserver_choice = "xserver_vesa"
-+    """
-+    def __init__(self, props, tag, lineno):
-+        ListInputLine.__init__(self, props, tag, lineno)
-+
-+    def gen(self, context = None):
-+        InputLine.gen(self, context)
-+
-+        gen_choices_defer(self, context)
-+        name = self.props["name"]
-+        nameappend = context["nameappend"]
-+        filename = context["filename"]
-+
-+        try:
-+            default_choice = self.props["default"]
-+        except KeyError:
-+            default_choice = ""
-+
-+        line = name + " = default(invoke_deferred_choices(\"" + name + "_" + filename + "_" + nameappend + "\"), \"" + default_choice + "\")"
-+
-+        return line
-+
-+
-+class ListValInputLine(InputLine):
-+    """
-+    Abstract base class for choice and checkbox Input lines.
-+    """
-+    def __init__(self, props, tag, lineno):
-+        InputLine.__init__(self, props, tag, lineno)
-+
-+        try:
-+            self.val = self.props["val"]
-+        except KeyError:
-+            self.parse_error("No input 'val' property found", self.lineno, self.line)
-+
-+        try:
-+            self.desc = self.props["msg"]
-+        except KeyError:
-+            self.parse_error("No input 'msg' property found", self.lineno, self.line)
-+
-+
-+class ChoiceInputLine(ListValInputLine):
-+    """
-+    Base class for choicelist item Input lines.
-+    """
-+    def __init__(self, props, tag, lineno):
-+        ListValInputLine.__init__(self, props, tag, lineno)
-+
-+    def gen(self, context = None):
-+        return None
-+
-+
-+class ChecklistInputLine(ListInputLine):
-+    """
-+    Base class for checklist Input lines.
-+    """
-+    def __init__(self, props, tag, lineno):
-+        ListInputLine.__init__(self, props, tag, lineno)
-+
-+    def gen(self, context = None):
-+        InputLine.gen(self, context)
-+
-+        gen_choices_defer(self, context, True)
-+        name = self.props["name"]
-+        nameappend = context["nameappend"]
-+        filename = context["filename"]
-+
-+        try:
-+            default_choice = self.props["default"]
-+        except KeyError:
-+            default_choice = ""
-+
-+        line = name + " = default(invoke_deferred_choices(\"" + name + "_" + filename + "_" + nameappend + "\"), \"" + default_choice + "\")"
-+
-+        return line
-+
-+
-+class CheckInputLine(ListValInputLine):
-+    """
-+    Base class for checklist item Input lines.
-+    """
-+    def __init__(self, props, tag, lineno):
-+        ListValInputLine.__init__(self, props, tag, lineno)
-+
-+    def gen(self, context = None):
-+        return None
-+
-+
-+class SubstrateBase(object):
-+    """
-+    Base class for both expanded and unexpanded file and dir container
-+    objects.
-+    """
-+    def __init__(self, filename, filebase, out_filebase):
-+        self.filename = filename
-+        self.filebase = filebase
-+        self.out_filebase = out_filebase
-+        self.raw_lines = []
-+        self.expanded_lines = []
-+        self.prev_choicelist = None
-+
-+    def parse_error(self, msg, lineno, line):
-+         raise SyntaxError("%s: [%s: %d]: %s" % (msg, self.filename, lineno, line))
-+
-+    def expand_input_tag(self, tag, lineno):
-+        """
-+        Input tags consist of the word 'input' at the beginning,
-+        followed by name:value property pairs which are converted into
-+        a dictionary.
-+        """
-+        propstr = tag[len(INPUT_TAG):]
-+
-+        props = dict(prop.split(":", 1) for prop in shlex.split(propstr))
-+        props["filename"] = self.filename
-+
-+        input_type = props[INPUT_TYPE_PROPERTY]
-+        if not props[INPUT_TYPE_PROPERTY]:
-+            self.parse_error("No input 'type' property found", lineno, tag)
-+
-+        if input_type == "boolean":
-+            return BooleanInputLine(props, tag, lineno)
-+        if input_type == "edit":
-+            return EditBoxInputLine(props, tag, lineno)
-+        elif input_type == "choicelist":
-+            self.prev_choicelist = ChoicelistInputLine(props, tag, lineno)
-+            return self.prev_choicelist
-+        elif input_type == "choice":
-+            if not self.prev_choicelist:
-+                self.parse_error("Found 'choice' input tag but no previous choicelist",
-+                                 lineno, tag)
-+            choice = ChoiceInputLine(props, tag, lineno)
-+            self.prev_choicelist.choices.append(choice)
-+            return choice
-+        elif input_type == "checklist":
-+            return ChecklistInputLine(props, tag, lineno)
-+        elif input_type == "check":
-+            return CheckInputLine(props, tag, lineno)
-+
-+    def expand_assignment_tag(self, start, line, lineno):
-+        """
-+        Expand all tags in a line.
-+        """
-+        expanded_line = AssignmentLine(line.strip())
-+
-+        while start != -1:
-+            end = line.find(CLOSE_TAG, start)
-+            if end == -1:
-+                self.parse_error("No close tag found for assignment tag", lineno, line)
-+            else:
-+                name = line[start + len(ASSIGN_TAG):end].strip()
-+                expanded_line.add_assignment(start, end + len(CLOSE_TAG), name)
-+                start = line.find(ASSIGN_TAG, end)
-+
-+        return expanded_line
-+
-+    def expand_tag(self, line, lineno):
-+        """
-+        Returns a processed tag line, or None if there was no tag
-+
-+        The rules for tags are very simple:
-+            - No nested tags
-+            - Tags start with {{ and end with }}
-+            - An assign tag, {{=, can appear anywhere and will
-+              be replaced with what the assignment evaluates to
-+            - Any other tag occupies the whole line it is on
-+                - if there's anything else on the tag line, it's an error
-+                - if it starts with 'input', it's an input tag and
-+                  will only be used for prompting and setting variables
-+                - anything else is straight Python
-+                - tags are in effect only until the next blank line or tag or 'pass' tag
-+                - we don't have indentation in tags, but we need some way to end a block
-+                  forcefully without blank lines or other tags - that's the 'pass' tag
-+                - todo: implement pass tag
-+                - directories and filenames can have tags as well, but only assignment
-+                  and 'if' code lines
-+                - directories and filenames are the only case where normal tags can
-+                  coexist with normal text on the same 'line'
-+        """
-+        start = line.find(ASSIGN_TAG)
-+        if start != -1:
-+            return self.expand_assignment_tag(start, line, lineno)
-+
-+        start = line.find(OPEN_TAG)
-+        if start == -1:
-+            return None
-+
-+        end = line.find(CLOSE_TAG, 0)
-+        if end == -1:
-+             self.parse_error("No close tag found for open tag", lineno, line)
-+
-+        tag = line[start + len(OPEN_TAG):end].strip()
-+
-+        if not tag.lstrip().startswith(INPUT_TAG):
-+            return CodeLine(tag)
-+
-+        return self.expand_input_tag(tag, lineno)
-+
-+    def expand_file_or_dir_name(self):
-+        """
-+        Expand file or dir names into codeline.  Dirnames and
-+        filenames can only have assignments or if statements.  First
-+        translate if statements into CodeLine + (dirname or filename
-+        creation).
-+        """
-+        lineno = 0
-+
-+        line = self.filename[len(self.filebase):]
-+        if line.startswith("/"):
-+            line = line[1:]
-+        opentag_start = -1
-+
-+        start = line.find(OPEN_TAG)
-+        while start != -1:
-+            if not line[start:].startswith(ASSIGN_TAG):
-+                opentag_start = start
++    bblayers_conf = os.path.join(scripts_path, "../build/conf/bblayers.conf")
++
++    layers = []
++
++    f = open(bblayers_conf, "r")
++    lines = f.readlines()
++    bblayers_lines = []
++    in_bblayers = False
++    for line in lines:
++        line = line.strip()
++        if line.strip().startswith("BBLAYERS"):
++            bblayers_lines.append(line)
++            in_bblayers = True
++            quotes = line.strip().count('"')
++            if quotes > 1:
 +                break
-+            start += len(ASSIGN_TAG)
-+            start = line.find(OPEN_TAG, start)
-+
-+        if opentag_start != -1:
-+            end = line.find(CLOSE_TAG, opentag_start)
-+            if end == -1:
-+                self.parse_error("No close tag found for open tag", lineno, line)
-+            # we have a {{ tag i.e. code
-+            tag = line[opentag_start + len(OPEN_TAG):end].strip()
-+
-+            if not tag.lstrip().startswith(IF_TAG):
-+                self.parse_error("Only 'if' tags are allowed in file or directory names",
-+                                 lineno, line)
-+            self.expanded_lines.append(CodeLine(tag))
-+
-+            # everything after }} is the actual filename (possibly with assignments)
-+            # everything before is the pathname
-+            line = line[:opentag_start] + line[end + len(CLOSE_TAG):].strip()
-+
-+        assign_start = line.find(ASSIGN_TAG)
-+        if assign_start != -1:
-+            assignment_tag = self.expand_assignment_tag(assign_start, line, lineno)
-+            if isinstance(self, SubstrateFile):
-+                assignment_tag.is_filename = True
-+                assignment_tag.out_filebase = self.out_filebase
-+            elif isinstance(self, SubstrateDir):
-+                assignment_tag.is_dirname = True
-+                assignment_tag.out_filebase = self.out_filebase
-+            self.expanded_lines.append(assignment_tag)
-+            return
-+
-+        normal_line = NormalLine(line)
-+        if isinstance(self, SubstrateFile):
-+            normal_line.is_filename = True
-+            normal_line.out_filebase = self.out_filebase
-+        elif isinstance(self, SubstrateDir):
-+            normal_line.is_dirname = True
-+            normal_line.out_filebase = self.out_filebase
-+        self.expanded_lines.append(normal_line)
-+
-+    def expand(self):
-+        """
-+        Expand the file or dir name first, eventually this ends up
-+        creating the file or dir.
-+        """
-+        self.expand_file_or_dir_name()
-+
-+
-+class SubstrateFile(SubstrateBase):
-+    """
-+    Container for both expanded and unexpanded substrate files.
-+    """
-+    def __init__(self, filename, filebase, out_filebase):
-+        SubstrateBase.__init__(self, filename, filebase, out_filebase)
-+
-+    def read(self):
-+        if self.raw_lines:
-+            return
-+        f = open(self.filename)
-+        self.raw_lines = f.readlines()
-+
-+    def expand(self):
-+        """Expand the contents of all template tags in the file."""
-+        SubstrateBase.expand(self)
-+        self.read()
-+
-+        for lineno, line in enumerate(self.raw_lines):
-+            expanded_line = self.expand_tag(line, lineno + 1) # humans not 0-based
-+            if not expanded_line:
-+                expanded_line = NormalLine(line.rstrip())
-+            self.expanded_lines.append(expanded_line)
-+
-+    def gen(self, context = None):
-+        """Generate the code that generates the BSP."""
-+        base_indent = 0
-+
-+        indent = new_indent = base_indent
-+
-+        for line in self.expanded_lines:
-+            genline = line.gen(context)
-+            if not genline:
-+                continue
-+            if isinstance(line, InputLine):
-+                line.generated_line = genline
-+                continue
-+            if genline.startswith(OPEN_START):
-+                if indent == 1:
-+                    base_indent = 1
-+            if indent:
-+                if genline == BLANKLINE_STR or (not genline.startswith(NORMAL_START)
-+                                                and not genline.startswith(OPEN_START)):
-+                    indent = new_indent = base_indent
-+            if genline.endswith(":"):
-+                new_indent = base_indent + 1
-+            line.generated_line = (indent * INDENT_STR) + genline
-+            indent = new_indent
-+
-+
-+class SubstrateDir(SubstrateBase):
-+    """
-+    Container for both expanded and unexpanded substrate dirs.
-+    """
-+    def __init__(self, filename, filebase, out_filebase):
-+        SubstrateBase.__init__(self, filename, filebase, out_filebase)
-+
-+    def expand(self):
-+        SubstrateBase.expand(self)
-+
-+    def gen(self, context = None):
-+        """Generate the code that generates the BSP."""
-+        indent = new_indent = 0
-+        for line in self.expanded_lines:
-+            genline = line.gen(context)
-+            if not genline:
-+                continue
-+            if genline.endswith(":"):
-+                new_indent = 1
-+            else:
-+                new_indent = 0
-+            line.generated_line = (indent * INDENT_STR) + genline
-+            indent = new_indent
-+
-+
-+def expand_target(target, all_files, out_filebase):
-+    """
-+    Expand the contents of all template tags in the target.  This
-+    means removing tags and categorizing or creating lines so that
-+    future passes can process and present input lines and generate the
-+    corresponding lines of the Python program that will be exec'ed to
-+    actually produce the final BSP.  'all_files' includes directories.
-+    """
-+    for root, dirs, files in os.walk(target):
-+        for file in files:
-+            if file.endswith("~") or file.endswith("#"):
-+                continue
-+            f = os.path.join(root, file)
-+            sfile = SubstrateFile(f, target, out_filebase)
-+            sfile.expand()
-+            all_files.append(sfile)
-+
-+        for dir in dirs:
-+            d = os.path.join(root, dir)
-+            sdir = SubstrateDir(d, target, out_filebase)
-+            sdir.expand()
-+            all_files.append(sdir)
-+
-+
-+def gen_program_machine_lines(machine, program_lines):
-+    """
-+    Use the input values we got from the command line.
-+    """
-+    line = "machine = \"" + machine + "\""
-+
-+    program_lines.append(line)
-+
-+
-+def sort_inputlines(input_lines):
-+    """Sort input lines according to priority (position)."""
-+    input_lines.sort(key = lambda l: l.prio)
-+
-+
-+def find_parent_dependency(lines, depends_on):
-+    for i, line in lines:
-+        if isinstance(line, CodeLine):
 +            continue
-+        if line.props["name"] == depends_on:
++        if in_bblayers:
++            bblayers_lines.append(line)
++            if line.strip().endswith("\""):
++                break
++            else:
++                continue
++
++    for i, line in enumerate(bblayers_lines):
++        if line.strip().endswith("\\"):
++            bblayers_lines[i] = line.strip().replace('\\', '')
++
++    bblayers_line = " ".join(bblayers_lines)
++
++    start_quote = bblayers_line.find("\"")
++    if start_quote == -1:
++        print "Invalid BBLAYERS found in %s, exiting" % bblayers_conf
++        sys.exit(1)
++
++    start_quote += 1
++    end_quote = bblayers_line.find("\"", start_quote)
++    if end_quote == -1:
++        print "Invalid BBLAYERS found in %s, exiting" % bblayers_conf
++        sys.exit(1)
++
++    bblayers_line = bblayers_line[start_quote:end_quote]
++    layers = bblayers_line.split()
++
++    f.close()
++
++    return layers
++
++
++def find_meta_layer(scripts_path):
++    """
++    Find and return the meta layer in BBLAYERS.
++    """
++    layers = find_bblayers(scripts_path)
++
++    for layer in layers:
++        if layer.endswith("meta"):
++            return layer
++
++    return None
++
++
++def find_bsp_layer(scripts_path, machine):
++    """
++    Find and return a machine's BSP layer in BBLAYERS.
++    """
++    layers = find_bblayers(scripts_path)
++
++    for layer in layers:
++        if machine in layer:
++            return layer
++
++    print "Unable to find the BSP layer for machine %s." % machine
++    print "Please make sure it is listed in bblayers.conf"
++    sys.exit(1)
++
++
++def gen_choices_str(choices):
++    """
++    Generate a numbered list of choices from a list of choices for
++    display to the user.
++    """
++    choices_str = ""
++
++    for i, choice in enumerate(choices):
++        choices_str += "\t" + str(i + 1) + ") " + choice + "\n"
++
++    return choices_str
++
++
++def read_config_items(scripts_path, machine):
++    """
++    Find and return a list of config items (CONFIG_XXX) in a machine's
++    user-defined config fragment [user-config.cfg].
++    """
++    config_items = []
++
++    layer = find_bsp_layer(scripts_path, machine)
++    cfg = os.path.join(layer, "recipes-kernel/linux/files/user-config.cfg")
++
++    f = open(cfg, "r")
++    lines = f.readlines()
++    for line in lines:
++        s = line.strip()
++        if s:
++            config_items.append(s)
++    f.close()
++
++    return config_items
++
++
++def write_config_items(scripts_path, machine, config_items):
++    """
++    Write (replace) the list of config items (CONFIG_XXX) in a
++    machine's user-defined config fragment [user-config.cfg].
++    """
++    layer = find_bsp_layer(scripts_path, machine)
++    cfg = os.path.join(layer, "recipes-kernel/linux/files/user-config.cfg")
++
++    f = open(cfg, "w")
++    for item in config_items:
++        f.write(item + "\n")
++    f.close()
++
++    kernel_contents_changed(scripts_path, machine)
++
++
++def yocto_kernel_config_list(scripts_path, machine):
++    """
++    Display the list of config items (CONFIG_XXX) in a machine's
++    user-defined config fragment [user-config.cfg].
++    """
++    config_items = read_config_items(scripts_path, machine)
++
++    print "The current set of machine-specific kernel config items for %s is:" % machine
++    print gen_choices_str(config_items)
++
++
++def map_choice(choice_str, array):
++    """
++    Match the text of a choice with a list of choices, returning the
++    index of the match, or -1 if not found.
++    """
++    for i, item in enumerate(array):
++        if choice_str == array[i]:
 +            return i
 +
 +    return -1
 +
 +
-+def process_inputline_dependencies(input_lines, all_inputlines):
-+    """If any input lines depend on others, put the others first."""
-+    for line in input_lines:
-+        if isinstance(line, InputLineGroup):
-+            group_inputlines = []
-+            process_inputline_dependencies(line.group, group_inputlines)
-+            line.group = group_inputlines
-+            all_inputlines.append(line)
-+            continue
++def yocto_kernel_config_rm(scripts_path, machine):
++    """
++    Display the list of config items (CONFIG_XXX) in a machine's
++    user-defined config fragment [user-config.cfg], prompt the user
++    for one or more to remove, and remove them.
++    """
++    config_items = read_config_items(scripts_path, machine)
 +
-+        if isinstance(line, CodeLine) or isinstance(line, NormalLine):
-+            all_inputlines.append(line)
-+            continue
++    print "Specify the kernel config items to remove:"
++    input = raw_input(gen_choices_str(config_items))
++    rm_choices = input.split()
++    rm_choices.sort()
 +
++    removed = []
++
++    for choice in reversed(rm_choices):
 +        try:
-+            depends_on = line.props["depends-on"]
-+            depends_codeline = "if " + line.props["depends-on"] + " == \"" + line.props["depends-on-val"] + "\":"
-+            all_inputlines.append(CodeLine(depends_codeline))
-+            all_inputlines.append(line)
-+        except KeyError:
-+            all_inputlines.append(line)
++            idx = int(choice) - 1
++        except ValueError:
++            print "Invalid choice (%s), exiting" % choice
++            sys.exit(1)
++        if idx < 0 or idx >= len(config_items):
++            print "Invalid choice (%d), exiting" % (idx + 1)
++            sys.exit(1)
++        removed.append(config_items.pop(idx))
++
++    write_config_items(scripts_path, machine, config_items)
++
++    print "Removed items:"
++    for r in removed:
++        print "\t%s" % r
 +
 +
-+def conditional_filename(filename):
++def yocto_kernel_config_add(scripts_path, machine, config_items):
 +    """
-+    Check if the filename itself contains a conditional statement.  If
-+    so, return a codeline for it.
++    Add one or more config items (CONFIG_XXX) to a machine's
++    user-defined config fragment [user-config.cfg].
 +    """
-+    opentag_start = filename.find(OPEN_TAG)
++    new_items = []
 +
-+    if opentag_start != -1:
-+        if filename[opentag_start:].startswith(ASSIGN_TAG):
-+            return None
-+        end = filename.find(CLOSE_TAG, opentag_start)
-+        if end == -1:
-+            print "No close tag found for open tag in filename %s" % filename
++    for item in config_items:
++        if not item.startswith("CONFIG") or (not "=y" in item and not "=m" in item):
++            print "Invalid config item (%s), exiting" % item
++            sys.exit(1)
++        new_items.append(item)
++
++    cur_items = read_config_items(scripts_path, machine)
++    cur_items.extend(new_items)
++
++    write_config_items(scripts_path, machine, cur_items)
++
++    print "Added items:"
++    for n in new_items:
++        print "\t%s" % n
++
++
++def find_current_kernel(bsp_layer, machine):
++    """
++    Determine the kernel and version currently being used in the BSP.
++    """
++    machine_conf = os.path.join(bsp_layer, "conf/machine/" + machine + ".conf")
++
++    preferred_kernel = preferred_kernel_version = preferred_version_varname = None
++
++    f = open(machine_conf, "r")
++    lines = f.readlines()
++    for line in lines:
++        if line.strip().startswith("PREFERRED_PROVIDER_virtual/kernel"):
++            preferred_kernel = line.split()[-1]
++            preferred_kernel = preferred_kernel.replace('\"','')
++            preferred_version_varname = "PREFERRED_VERSION_" + preferred_kernel
++        if preferred_version_varname and line.strip().startswith(preferred_version_varname):
++            preferred_kernel_version = line.split()[-1]
++            preferred_kernel_version = preferred_kernel_version.replace('\"','')
++            preferred_kernel_version = preferred_kernel_version.replace('%','')
++
++    if preferred_kernel and preferred_kernel_version:
++        return preferred_kernel + "_" + preferred_kernel_version
++
++
++def find_bsp_kernel_src_uri(scripts_path, machine, start_end_only = False):
++    """
++    Parse the SRC_URI append in the kernel .bbappend, returing a list
++    of individual components, and the start/end positions of the
++    SRC_URI statement, so it can be regenerated in the same position.
++    If start_end_only is True, don't return the list of elements, only
++    the start and end positions.
++
++    Returns (SRC_URI start line, SRC_URI end_line, list of split
++    SRC_URI items).
++
++    If no SRC_URI, start line = -1.
++
++    NOTE: this and all the src_uri functions are temporary and
++    deprecated and will be removed, but are needed until the
++    equivalent .scc mechanism works.  i.e. for now we unfortunately
++    can't get around putting patches in the SRC_URI.
++    """
++    layer = find_bsp_layer(scripts_path, machine)
++
++    kernel = find_current_kernel(layer, machine)
++    if not kernel:
++        print "Couldn't determine the kernel for this BSP, exiting."
++        sys.exit(1)
++
++    kernel_bbappend = os.path.join(layer, "recipes-kernel/linux/" + kernel + ".bbappend")
++
++    f = open(kernel_bbappend, "r")
++    src_uri_line = ""
++    in_src_uri = False
++    lines = f.readlines()
++    first_line = last_line = -1
++    quote_start = quote_end = -1
++    for n, line in enumerate(lines):
++        line = line.strip()
++        if line.startswith("SRC_URI"):
++            first_line = n
++            in_src_uri = True
++        if in_src_uri:
++            src_uri_line += line
++            if quote_start == -1:
++                idx = line.find("\"")
++                if idx != -1:
++                    quote_start = idx + 1
++            idx = line.find("\"", quote_start)
++            quote_start = 0 # set to 0 for all but first line
++            if idx != -1:
++                quote_end = idx
++                last_line = n
++                break
++
++    if first_line == -1: # no SRC_URI, which is fine too
++        return (-1, -1, None)
++    if quote_start == -1:
++        print "Bad kernel SRC_URI (missing opening quote), exiting."
++        sys.exit(1)
++    if quote_end == -1:
++        print "Bad SRC_URI (missing closing quote), exiting."
++        sys.exit(1)
++    if start_end_only:
++        return (first_line, last_line, None)
++
++    idx = src_uri_line.find("\"")
++    src_uri_line = src_uri_line[idx + 1:]
++    idx = src_uri_line.find("\"")
++    src_uri_line = src_uri_line[:idx]
++
++    src_uri = src_uri_line.split()
++    for i, item in enumerate(src_uri):
++        idx = item.find("\\")
++        if idx != -1:
++            src_uri[i] = item[idx + 1:]
++
++    if not src_uri[len(src_uri) - 1]:
++        src_uri.pop()
++
++    for i, item in enumerate(src_uri):
++        idx = item.find(SRC_URI_FILE)
++        if idx == -1:
++            print "Bad SRC_URI (invalid item, %s), exiting." % item
++            sys.exit(1)
++        src_uri[i] = item[idx + len(SRC_URI_FILE):]
++
++    return (first_line, last_line, src_uri)     
++
++
++def find_patches(src_uri):
++    """
++    Filter out the top-level patches from the SRC_URI.
++    """
++    patches = []
++    for item in src_uri:
++        if item.endswith(".patch") and "/" not in item:
++            patches.append(item)
++    return patches
++
++
++def read_patch_items(scripts_path, machine):
++    """
++    Find and return a list of patch items in a machine's user-defined
++    patch list [user-patches.scc].
++    """
++    patch_items = []
++
++    layer = find_bsp_layer(scripts_path, machine)
++    patches = os.path.join(layer, "recipes-kernel/linux/files/user-patches.scc")
++
++    f = open(patches, "r")
++    lines = f.readlines()
++    for line in lines:
++        s = line.strip()
++        if s:
++            fields = s.split()
++            if not fields[0] == "patch":
++                continue
++            patch_items.append(fields[1])
++    f.close()
++
++    return patch_items
++
++
++def write_patch_items(scripts_path, machine, patch_items):
++    """
++    Write (replace) the list of patches in a machine's user-defined
++    patch list [user-patches.scc].
++    """
++    layer = find_bsp_layer(scripts_path, machine)
++
++    patches = os.path.join(layer, "recipes-kernel/linux/files/user-patches.scc")
++
++    f = open(patches, "w")
++    for item in patch_items:
++        pass
++        # this currently breaks do_patch, but is really what we want
++        # once this works, we can remove all the src_uri stuff
++        # f.write("patch " + item + "\n")
++    f.close()
++
++    kernel_contents_changed(scripts_path, machine)
++
++
++def yocto_kernel_patch_list(scripts_path, machine):
++    """
++    Display the list of patches in a machine's user-defined patch list
++    [user-patches.scc].
++    """
++    (start_line, end_line, src_uri) = find_bsp_kernel_src_uri(scripts_path, machine)
++    patches = find_patches(src_uri)
++
++    print "The current set of machine-specific patches for %s is:" % machine
++    print gen_choices_str(patches)
++
++
++def yocto_kernel_patch_rm(scripts_path, machine):
++    """
++    Remove one or more patches from a machine's user-defined patch
++    list [user-patches.scc].
++    """
++    (start_line, end_line, src_uri) = find_bsp_kernel_src_uri(scripts_path, machine)
++    patches = find_patches(src_uri)
++
++    print "Specify the patches to remove:"
++    input = raw_input(gen_choices_str(patches))
++    rm_choices = input.split()
++    rm_choices.sort()
++
++    removed = []
++
++    layer = find_bsp_layer(scripts_path, machine)
++    src_uri_dir = os.path.join(layer, "recipes-kernel/linux/files")
++
++    for choice in reversed(rm_choices):
++        try:
++            idx = int(choice) - 1
++        except ValueError:
++            print "Invalid choice (%s), exiting" % choice
++            sys.exit(1)
++        if idx < 0 or idx >= len(patches):
++            print "Invalid choice (%d), exiting" % (idx + 1)
++            sys.exit(1)
++        src_uri_patch = os.path.join(src_uri_dir, patches[idx])
++        if os.path.isfile(src_uri_patch):
++            os.remove(src_uri_patch)
++        idx = map_choice(patches[idx], src_uri)
++        removed.append(src_uri.pop(idx))
++
++    write_patch_items(scripts_path, machine, patches)
++    write_kernel_src_uri(scripts_path, machine, src_uri)
++
++    print "Removed patches:"
++    for r in removed:
++        print "\t%s" % r
++
++
++def yocto_kernel_patch_add(scripts_path, machine, patches):
++    """
++    Add one or more patches to a machine's user-defined patch list
++    [user-patches.scc].
++    """
++    (start_line, end_line, src_uri) = find_bsp_kernel_src_uri(scripts_path, machine)
++    src_uri_patches = find_patches(src_uri)
++
++    for patch in patches:
++        if os.path.basename(patch) in src_uri_patches:
++            print "Couldn't add patch (%s) since it's already been added" % os.path.basename(patch)
 +            sys.exit(1)
 +
-+        # we have a {{ tag i.e. code
-+        tag = filename[opentag_start + len(OPEN_TAG):end].strip()
-+        if not tag.lstrip().startswith(IF_TAG):
-+            print "Only 'if' tags are allowed in file or directory names, filename: %s" % filename
++    layer = find_bsp_layer(scripts_path, machine)
++    src_uri_dir = os.path.join(layer, "recipes-kernel/linux/files")
++
++    new_patches = []
++
++    for patch in patches:
++        if not os.path.isfile(patch):
++            print "Couldn't find patch (%s), exiting" % patch
 +            sys.exit(1)
++        basename = os.path.basename(patch)
++        src_uri_patch = os.path.join(src_uri_dir, basename)
++        shutil.copyfile(patch, src_uri_patch)
++        new_patches.append(basename)
 +
-+        return CodeLine(tag)
++    cur_items = read_patch_items(scripts_path, machine)
++    cur_items.extend(new_patches)
++    write_patch_items(scripts_path, machine, cur_items)
 +
++    (unused, unused, src_uri) = find_bsp_kernel_src_uri(scripts_path, machine)
++    src_uri.extend(new_patches)
++    write_kernel_src_uri(scripts_path, machine, src_uri)
++
++    print "Added patches:"
++    for n in new_patches:
++        print "\t%s" % n
++
++
++def write_uri_lines(ofile, src_uri):
++    """
++    Write URI elements to output file ofile.
++    """
++    ofile.write("SRC_URI += \" \\\n")
++    for item in src_uri:
++        ofile.write("\t%s%s \\\n" % (SRC_URI_FILE, item))
++    ofile.write("\t\"\n")
++
++
++def inc_pr(line):
++    """
++    Add 1 to the PR value in the given bbappend PR line.  For the PR
++    lines in kernel .bbappends after modifications.
++    """
++    idx = line.find("\"")
++
++    pr_str = line[idx:]
++    pr_str = pr_str.replace('\"','')
++    fields = pr_str.split('.')
++    fields[1] = str(int(fields[1]) + 1)
++    pr_str = "\"" + '.'.join(fields) + "\"\n"
++
++    idx2 = line.find("\"", idx + 1)
++    line = line[:idx] + pr_str
++    
++    return line
++
++
++def kernel_contents_changed(scripts_path, machine):
++    """
++    Do what we need to do to notify the system that the kernel
++    recipe's contents have changed.
++    """
++    layer = find_bsp_layer(scripts_path, machine)
++
++    kernel = find_current_kernel(layer, machine)
++    if not kernel:
++        print "Couldn't determine the kernel for this BSP, exiting."
++        sys.exit(1)
++
++    kernel_bbappend = os.path.join(layer, "recipes-kernel/linux/" + kernel + ".bbappend")
++    kernel_bbappend_prev = kernel_bbappend + ".prev"
++    shutil.copyfile(kernel_bbappend, kernel_bbappend_prev)
++
++    ifile = open(kernel_bbappend_prev, "r")
++    ofile = open(kernel_bbappend, "w")
++    ifile_lines = ifile.readlines()
++    for ifile_line in ifile_lines:
++        if ifile_line.strip().startswith("PR"):
++            ifile_line = inc_pr(ifile_line)
++        ofile.write(ifile_line)
++    ofile.close()
++    ifile.close()
++
++
++def write_kernel_src_uri(scripts_path, machine, src_uri):
++    """
++    Write (replace) the SRC_URI append for a machine from a list
++    SRC_URI elements.
++    """
++    layer = find_bsp_layer(scripts_path, machine)
++
++    kernel = find_current_kernel(layer, machine)
++    if not kernel:
++        print "Couldn't determine the kernel for this BSP, exiting."
++        sys.exit(1)
++
++    kernel_bbappend = os.path.join(layer, "recipes-kernel/linux/" + kernel + ".bbappend")
++
++    (uri_start_line, uri_end_line, unused) = find_bsp_kernel_src_uri(scripts_path, machine, True)
++
++    kernel_bbappend_prev = kernel_bbappend + ".prev"
++    shutil.copyfile(kernel_bbappend, kernel_bbappend_prev)
++    ifile = open(kernel_bbappend_prev, "r")
++    ofile = open(kernel_bbappend, "w")
++
++    ifile_lines = ifile.readlines()
++    if uri_start_line == -1:
++        uri_end_line = len(ifile_lines) # make sure we add at end
++    wrote_src_uri = False
++    for i, ifile_line in enumerate(ifile_lines):
++        if ifile_line.strip().startswith("PR"):
++            ifile_line = inc_pr(ifile_line)
++        if i < uri_start_line:
++            ofile.write(ifile_line)
++        elif i > uri_end_line:
++            ofile.write(ifile_line)
++        else:
++            if not wrote_src_uri:
++                write_uri_lines(ofile, src_uri)
++                wrote_src_uri = True
++    if uri_start_line == -1:
++        write_uri_lines(ofile, src_uri)
++
++
++def kernels(context):
++    """
++    Return the list of available kernels in the BSP i.e. corresponding
++    to the kernel .bbappends found in the layer.
++    """
++    archdir = os.path.join(context["scripts_path"], "lib/bsp/substrate/target/arch/" + context["arch"])
++    kerndir = os.path.join(archdir, "recipes-kernel/linux")
++    bbglob = os.path.join(kerndir, "*.bbappend")
++
++    bbappends = glob.glob(bbglob)
++
++    kernels = []
++
++    for kernel in bbappends:
++        filename = os.path.splitext(os.path.basename(kernel))[0]
++        idx = filename.find(CLOSE_TAG)
++        if idx != -1:
++            filename = filename[idx + len(CLOSE_TAG):].strip()
++        kernels.append(filename)
++
++    return kernels
++
++
++def extract_giturl(file):
++    """
++    Extract the git url of the kernel repo from the kernel recipe's
++    SRC_URI.
++    """
++    f = open(file, "r")
++    lines = f.readlines()
++    for line in lines:
++        line = line.strip()
++        if line.startswith("SRC_URI"):
++            line = line[len("SRC_URI"):].strip()
++            if line.startswith("="):
++                line = line[1:].strip()
++                if line.startswith("\""):
++                    line = line[1:].strip()
++                    fields = line.split(";")
++                    if fields:
++                        return fields[0]
 +    return None
 +
 +
-+class InputLineGroup(InputLine):
++def find_giturl(context):
 +    """
-+    InputLine that does nothing but group other input lines
-+    corresponding to all the input lines in a SubstrateFile so they
-+    can be generated as a group.  prio is the only property used.
++    Find the git url of the kernel repo from the kernel recipe's
++    SRC_URI.
 +    """
-+    def __init__(self, codeline):
-+        InputLine.__init__(self, {}, "", 0)
-+        self.group = []
-+        self.prio = sys.maxint
-+        self.group.append(codeline)
-+
-+    def append(self, line):
-+        self.group.append(line)
-+        if line.prio < self.prio:
-+            self.prio = line.prio
-+
-+    def len(self):
-+        return len(self.group)
-+
-+
-+def gather_inputlines(files):
-+    """
-+    Gather all the InputLines - we want to generate them first.
-+    """
-+    all_inputlines = []
-+    input_lines = []
-+
-+    for file in files:
-+        if isinstance(file, SubstrateFile):
-+            group = None
-+            basename = os.path.basename(file.filename)
-+
-+            codeline = conditional_filename(basename)
-+            if codeline:
-+                group = InputLineGroup(codeline)
-+
-+            have_condition = False
-+            condition_to_write = None
-+            for line in file.expanded_lines:
-+                if isinstance(line, CodeLine):
-+                    have_condition = True
-+                    condition_to_write = line
-+                    continue
-+                if isinstance(line, InputLine):
-+                    if group:
-+                        if condition_to_write:
-+                            condition_to_write.prio = line.prio
-+                            condition_to_write.discard = True
-+                            group.append(condition_to_write)
-+                            condition_to_write = None
-+                        group.append(line)
-+                    else:
-+                        if condition_to_write:
-+                            condition_to_write.prio = line.prio
-+                            condition_to_write.discard = True
-+                            input_lines.append(condition_to_write)
-+                            condition_to_write = None
-+                        input_lines.append(line)
-+                else:
-+                    if condition_to_write:
-+                        condition_to_write = None
-+                    if have_condition:
-+                        if not line.line.strip():
-+                            line.discard = True
-+                            input_lines.append(line)
-+                    have_condition = False
-+
-+            if group and group.len() > 1:
-+                input_lines.append(group)
-+
-+    sort_inputlines(input_lines)
-+    process_inputline_dependencies(input_lines, all_inputlines)
-+
-+    return all_inputlines
-+
-+
-+def run_program_lines(linelist, codedump):
-+    """
-+    For a single file, print all the python code into a buf and execute it.
-+    """
-+    buf = "\n".join(linelist)
-+
-+    if codedump:
-+        of = open("bspgen.out", "w")
-+        of.write(buf)
-+        of.close()
-+    exec buf
-+
-+
-+def gen_target(files, context = None):
-+    """
-+    Generate the python code for each file.
-+    """
-+    for file in files:
-+        file.gen(context)
-+
-+
-+def gen_program_header_lines(program_lines):
-+    """
-+    Generate any imports we need.
-+    """
-+    pass
-+
-+
-+def gen_supplied_property_vals(properties, program_lines):
-+    """
-+    Generate user-specified entries for input values instead of
-+    generating input prompts.
-+    """
-+    for name, val in properties.iteritems():
-+        program_line = name + " = \"" + val + "\""
-+        program_lines.append(program_line)
-+
-+
-+def gen_initial_property_vals(input_lines, program_lines):
-+    """
-+    Generate null or default entries for input values, so we don't
-+    have undefined variables.
-+    """
-+    for line in input_lines:
-+        if isinstance(line, InputLineGroup):
-+            gen_initial_property_vals(line.group, program_lines)
-+            continue
-+
-+        if isinstance(line, InputLine):
-+            try:
-+                name = line.props["name"]
-+                try:
-+                    default_val = "\"" + line.props["default"] + "\""
-+                except:
-+                    default_val = "\"\""
-+                program_line = name + " = " + default_val
-+                program_lines.append(program_line)
-+            except KeyError:
-+                pass
-+
-+
-+def gen_program_input_lines(input_lines, program_lines, context, in_group = False):
-+    """
-+    Generate only the input lines used for prompting the user.  For
-+    that, we only have input lines and CodeLines that affect the next
-+    input line.
-+    """
-+    indent = new_indent = 0
-+
-+    for line in input_lines:
-+        if isinstance(line, InputLineGroup):
-+            gen_program_input_lines(line.group, program_lines, context, True)
-+            continue
-+        if not line.line.strip():
-+            continue
-+
-+        genline = line.gen(context)
-+        if not genline:
-+            continue
-+        if genline.endswith(":"):
-+            new_indent += 1
-+        else:
-+            if indent > 1 or (not in_group and indent):
-+                new_indent -= 1
-+
-+        line.generated_line = (indent * INDENT_STR) + genline
-+        program_lines.append(line.generated_line)
-+
-+        indent = new_indent
-+
-+
-+def gen_program_lines(target_files, program_lines):
-+    """
-+    Generate the program lines that make up the BSP generation
-+    program.  This appends the generated lines of all target_files to
-+    program_lines, and skips input lines, which are dealt with
-+    separately, or omitted.
-+    """
-+    for file in target_files:
-+        if file.filename.endswith("noinstall"):
-+            continue
-+
-+        for line in file.expanded_lines:
-+            if isinstance(line, InputLine):
-+                continue
-+            if line.discard:
-+                continue
-+
-+            program_lines.append(line.generated_line)
-+
-+
-+def create_context(machine, arch, scripts_path):
-+    """
-+    Create a context object for use in deferred function invocation.
-+    """
-+    context = {}
-+
-+    context["machine"] = machine
-+    context["arch"] = arch
-+    context["scripts_path"] = scripts_path
-+
-+    return context
-+
-+
-+def capture_context(context):
-+    """
-+    Create a context object for use in deferred function invocation.
-+    """
-+    captured_context = {}
-+
-+    captured_context["machine"] = context["machine"]
-+    captured_context["arch"] = context["arch"]
-+    captured_context["scripts_path"] = context["scripts_path"]
-+
-+    return captured_context
-+
-+
-+def expand_targets(context, bsp_output_dir):
-+    """
-+    Expand all the tags in both the common and machine-specific
-+    'targets'.
-+    """
-+    target_files = []
-+
-+    machine = context["machine"]
-+    arch = context["arch"]
++    name = context["name"]
++    filebase = context["filename"]
 +    scripts_path = context["scripts_path"]
 +
-+    lib_path = scripts_path + '/lib'
-+    bsp_path = lib_path + '/bsp'
-+    arch_path = bsp_path + '/substrate/target/arch'
++    meta_layer = find_meta_layer(scripts_path)
 +
-+    common = os.path.join(arch_path, "common")
-+    expand_target(common, target_files, bsp_output_dir)
-+
-+    arches = os.listdir(arch_path)
-+    if arch not in arches or arch == "common":
-+        print "Invalid karch, exiting\n"
-+        sys.exit(1)
-+
-+    target = os.path.join(arch_path, arch)
-+    expand_target(target, target_files, bsp_output_dir)
-+
-+    gen_target(target_files, context)
-+
-+    return target_files
-+
-+
-+def yocto_bsp_create(machine, arch, scripts_path, bsp_output_dir, codedump, properties_file):
-+    """
-+    Create bsp
-+
-+    machine - user-defined machine name
-+    arch - the arch the bsp will be based on, must be one in
-+           scripts/lib/bsp/substrate/target/arch
-+    scripts_path - absolute path to yocto /scripts dir
-+    bsp_output_dir - dirname to create for BSP
-+    codedump - dump generated code to bspgen.out
-+    properties_file - use values from here if nonempty i.e no prompting
-+    """
-+    if os.path.exists(bsp_output_dir):
-+        print "\nBSP output dir already exists, exiting. (%s)" % bsp_output_dir
-+        sys.exit(1)
-+
-+    properties = None
-+
-+    if properties_file:
-+        try:
-+            infile = open(properties_file, "r")
-+        except IOError:
-+            print "Couldn't open properties file %s for reading, exiting" % properties_file
-+            sys.exit(1)
-+
-+        properties = json.load(infile)
-+
-+    os.mkdir(bsp_output_dir)
-+
-+    context = create_context(machine, arch, scripts_path)
-+    target_files = expand_targets(context, bsp_output_dir)
-+
-+    if not properties:
-+        input_lines = gather_inputlines(target_files)
-+
-+    program_lines = []
-+
-+    gen_program_header_lines(program_lines)
-+
-+    if properties:
-+        gen_supplied_property_vals(properties, program_lines)
-+    else:
-+        gen_initial_property_vals(input_lines, program_lines)
-+
-+    gen_program_machine_lines(machine, program_lines)
-+
-+    if not properties:
-+        gen_program_input_lines(input_lines, program_lines, context)
-+
-+    gen_program_lines(target_files, program_lines)
-+
-+    run_program_lines(program_lines, codedump)
-+
-+    print "New %s BSP created in %s" % (arch, bsp_output_dir)
-+
-+
-+def print_dict(items, indent = 0):
-+    """
-+    Print the values in a possibly nested dictionary.
-+    """
-+    for key, val in items.iteritems():
-+        print "    "*indent + "\"%s\" :" % key,
-+        if type(val) == dict:
-+            print "{"
-+            print_dict(val, indent + 1)
-+            print "    "*indent + "}"
-+        else:
-+            print "%s" % val
-+
-+
-+def get_properties(input_lines):
-+    """
-+    Get the complete set of properties for all the input items in the
-+    BSP, as a possibly nested dictionary.
-+    """
-+    properties = {}
-+
-+    for line in input_lines:
-+        if isinstance(line, InputLineGroup):
-+            statement = line.group[0].line
-+            group_properties = get_properties(line.group)
-+            properties[statement] = group_properties
-+            continue
-+
-+        if not isinstance(line, InputLine):
-+            continue
-+
-+        if isinstance(line, ChoiceInputLine):
-+            continue
-+
-+        props = line.props
-+        item = {}
-+        name = props["name"]
-+        for key, val in props.items():
-+            if not key == "name":
-+                item[key] = val
-+        properties[name] = item
-+
-+    return properties
-+
-+
-+def yocto_bsp_list_properties(arch, scripts_path, properties_file):
-+    """
-+    List the complete set of properties for all the input items in the
-+    BSP.  If properties_file is non-null, write the complete set of
-+    properties as a nested JSON object corresponding to a possibly
-+    nested dictionary.
-+    """
-+    context = create_context("unused", arch, scripts_path)
-+    target_files = expand_targets(context, "unused")
-+
-+    input_lines = gather_inputlines(target_files)
-+
-+    properties = get_properties(input_lines)
-+    if properties_file:
-+        try:
-+            of = open(properties_file, "w")
-+        except IOError:
-+            print "Couldn't open properties file %s for writing, exiting" % properties_file
-+            sys.exit(1)
-+
-+        json.dump(properties, of)
-+
-+    print_dict(properties)
-+
-+
-+def find_input_line(name, input_lines):
-+    """
-+    Find the input line with the specified name.
-+    """
-+    for line in input_lines:
-+        if isinstance(line, InputLineGroup):
-+            l = find_input_line(name, line.group)
-+            if l:
-+                return l
-+
-+        if isinstance(line, InputLine):
-+            try:
-+                if line.props["name"] == name:
-+                    return line
-+            except KeyError:
-+                pass
-+
++    kerndir = os.path.join(meta_layer, "recipes-kernel/linux")
++    bbglob = os.path.join(kerndir, "*.bb")
++    bbs = glob.glob(bbglob)
++    for kernel in bbs:
++        filename = os.path.splitext(os.path.basename(kernel))[0]
++        if filename == filebase:
++            giturl = extract_giturl(kernel)
++            return giturl
++    
 +    return None
 +
-+
-+def print_values(type, values_list):
-+    """
-+    Print the values in the given list of values.
-+    """
-+    if type == "choicelist":
-+        for value in values_list:
-+            print "[\"%s\", \"%s\"]" % (value[0], value[1])
-+    elif type == "boolean":
-+        for value in values_list:
-+            print "[\"%s\", \"%s\"]" % (value[0], value[1])
-+
-+
-+def yocto_bsp_list_property_values(arch, property, scripts_path, properties_file):
-+    """
-+    List the possible values for a given input property.  If
-+    properties_file is non-null, write the complete set of properties
-+    as a JSON object corresponding to an array of possible values.
-+    """
-+    context = create_context("unused", arch, scripts_path)
-+    context["name"] = property
-+
-+    target_files = expand_targets(context, "unused")
-+
-+    input_lines = gather_inputlines(target_files)
-+
-+    properties = get_properties(input_lines)
-+
-+    input_line = find_input_line(property, input_lines)
-+    if not input_line:
-+        print "Couldn't find values for property %s" % property
-+        return
-+
-+    values_list = []
-+
-+    type = input_line.props["type"]
-+    if type == "boolean":
-+        values_list.append(["y", "n"])
-+    elif type == "choicelist" or type == "checklist":
-+        try:
-+            gen_fn = input_line.props["gen"]
-+            values_list = input_line.gen_choices_list(context, False)
-+        except KeyError:
-+            for choice in input_line.choices:
-+                choicepair = []
-+                choicepair.append(choice.val)
-+                choicepair.append(choice.desc)
-+                values_list.append(choicepair)
-+
-+    if properties_file:
-+        try:
-+            of = open(properties_file, "w")
-+        except IOError:
-+            print "Couldn't open properties file %s for writing, exiting" % properties_file
-+            sys.exit(1)
-+
-+        json.dump(values_list, of)
 +    
-+    print_values(type, values_list)
-+
-+
-+def yocto_bsp_list(args, scripts_path, properties_file):
++def base_branches(context):
 +    """
-+    Print available architectures, or the complete list of properties
-+    defined by the BSP, or the possible values for a particular BSP
-+    property.
++    Return a list of the base branches found in the kernel git repo.
 +    """
-+    if len(args) < 1:
-+        return False
++    giturl = find_giturl(context)
 +
-+    if args[0] == "karch":
-+        lib_path = scripts_path + '/lib'
-+        bsp_path = lib_path + '/bsp'
-+        arch_path = bsp_path + '/substrate/target/arch'
-+        print "Architectures available:"
-+        for arch in os.listdir(arch_path):
-+            if arch == "common":
++    print "Getting branches from remote repo %s..." % giturl
++
++    gitcmd = "git ls-remote %s *heads* 2>&1" % (giturl)
++    tmp = os.popen(gitcmd).read()
++
++    branches = []
++
++    if tmp:
++        tmpline = tmp.split("\n")
++        for line in tmpline:
++            if len(line)==0:
++                break;
++            if not line.endswith("base"):
++                continue;
++            idx = line.find("refs/heads/")
++            kbranch = line[idx + len("refs/heads/"):]
++            if kbranch.find("/") == -1 and kbranch.find("base") == -1:
 +                continue
-+            print "    %s" % arch
-+        return True
-+    else:
-+        arch = args[0]
++            idx = kbranch.find("base")
++            branches.append(kbranch[:idx - 1])
 +
-+    if len(args) < 2 or len(args) > 3:
-+        return False
++    return branches
 +
-+    if len(args) == 2:
-+        if args[1] == "properties":
-+            yocto_bsp_list_properties(arch, scripts_path, properties_file)
-+        else:
-+            return False
 +
-+    if len(args) == 3:
-+        if args[1] == "property":
-+            yocto_bsp_list_property_values(arch, args[2], scripts_path, properties_file)
-+        else:
-+            return False
++def all_branches(context):
++    """
++    Return a list of all the branches found in the kernel git repo.
++    """
++    giturl = find_giturl(context)
 +
-+    return True
++    print "Getting branches from remote repo %s..." % giturl
++
++    gitcmd = "git ls-remote %s *heads* 2>&1" % (giturl)
++    tmp = os.popen(gitcmd).read()
++
++    branches = []
++
++    if tmp:
++        tmpline = tmp.split("\n")
++        for line in tmpline:
++            if len(line)==0:
++                break;
++            idx = line.find("refs/heads/")
++            kbranch = line[idx + len("refs/heads/"):]
++            if (kbranch.find("/") != -1 and
++                (kbranch.find("standard") != -1 or kbranch.find("base") != -1) or
++                kbranch == "base"):
++                branches.append(kbranch)
++                continue
++
++    return branches
 -- 
 1.7.0.4
 
