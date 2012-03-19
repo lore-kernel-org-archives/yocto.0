@@ -1,28 +1,43 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C32ADE013A3
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 11:03:25 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 19 Mar 2012 11:03:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="119201712"
-Received: from unknown (HELO envy.home) ([10.7.199.162])
-	by orsmga001.jf.intel.com with ESMTP; 19 Mar 2012 11:03:23 -0700
-Message-ID: <4F6774C1.3080704@linux.intel.com>
-Date: Mon, 19 Mar 2012 11:02:41 -0700
-From: Darren Hart <dvhart@linux.intel.com>
+Return-Path: <saul.wold@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A4A2E013A3
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 11:26:28 -0700 (PDT)
+Received: from mail-ee0-f52.google.com ([74.125.83.52])
+	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 19 Mar 2012 11:26:27 -0700
+Received: by eekd4 with SMTP id d4so2729692eek.25
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 11:26:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:date:from:organization:user-agent:mime-version:to:cc
+	:subject:references:in-reply-to:content-type
+	:content-transfer-encoding:x-gm-message-state;
+	bh=H36aB/eqHCvPDBk10kgfV+abapwGzYAfLifaqC9RsRU=;
+	b=WASWD6rPHoiAqtz7kOgFZhJ6gJAPo4laLFkOxWq2ufDYuw9YOh5bekTUaQ3mgaPr5D
+	Zn59FCkBu61Au0kfy5qa1odNCBC3sJAKfYjf/q3Z/kIKFvHDERCoaSXhM9djukML0kuE
+	fsKrrvXXVGMsgbvfY/g7VLHEfE4DAHx0eyjLv4vK8KltFM2nxg651v8DNjqFMkVBbMJw
+	Xn2/bNggw55naRScerxQWbFVfv14dOPXp2R+RFCcjFm1rT3sC9J52yC+PEIOCDcpAa4Y
+	7vmi9B46xLnfdiE5ug/NHx8/+2mo3hVxgNa0+WdBBmCizuEyI1VeCy7ELN/4/CLsRRUL
+	XVMA==
+Received: by 10.213.13.214 with SMTP id d22mr800026eba.34.1332181585872;
+	Mon, 19 Mar 2012 11:26:25 -0700 (PDT)
+Received: from [10.6.18.71] (c-71-193-189-117.hsd1.wa.comcast.net.
+	[71.193.189.117])
+	by mx.google.com with ESMTPS id r44sm52153350eef.2.2012.03.19.11.26.24
+	(version=SSLv3 cipher=OTHER); Mon, 19 Mar 2012 11:26:25 -0700 (PDT)
+Message-ID: <4F677A4E.6030802@intel.com>
+Date: Mon, 19 Mar 2012 11:26:22 -0700
+From: Saul Wold <saul.wold@intel.com>
+Organization: Intel
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
+	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
 MIME-Version: 1.0
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-References: <alpine.DEB.2.02.1202291147340.2150@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237945173476@ORSMSX101.amr.corp.intel.com>
-	<4F6767CE.5080802@linux.intel.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237945173A2A@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237945173A2A@ORSMSX101.amr.corp.intel.com>
-X-Enigmail-Version: 1.4
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: my idea of a quick start guide
+To: "Lu, Lianhao" <lianhao.lu@intel.com>
+References: <cover.1331713200.git.lianhao.lu@intel.com>
+	<857BE142E5399E46B20FD45B9DB8A7BC0FD00FEF@SHSMSX102.ccr.corp.intel.com>
+In-Reply-To: <857BE142E5399E46B20FD45B9DB8A7BC0FD00FEF@SHSMSX102.ccr.corp.intel.com>
+X-Gm-Message-State: ALoCoQlvgAEKftFwvwA5ahnUmpvvMvD/SK6pRQPb9HEJIj2lBJ1/1eVU/a4lantx47dCH6FmGnC1
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/1] perfer older version of lttng-ust in poky distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,90 +49,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2012 18:03:25 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 19 Mar 2012 18:26:28 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 03/19/2012 10:17 AM, Rifenbark, Scott M wrote:
-> I could replace the Beagleboard xM machine with qemux86.  The
-> introductory bit up front provides minimal inconvenience to the
+On 03/18/2012 06:18 PM, Lu, Lianhao wrote:
+> Hi Saul,
+>
+> How about this patch's merging status?
+>
+Missed it becase it went to the wrong list!  should go to the 
+poky@yoctoproject.org list in the future.
 
-"Minimal inconvenience" is a subjective assessment of course. I find it
-very annoying to slog through that much material when all I want are the
-3 shell commands to get it going, from which I can typically infer a lot.
+Sau!
 
-Other have reported similar views.
-
-> reader to quickly hop down to the section via the link.
-
-I missed this on my first scan, despite checking for it. My fault? Sure.
-But I'm not likely to be the only one.
-
---
-Darren
-
-> 
-> Scott
-> 
-> -----Original Message----- From: Darren Hart
-> [mailto:dvhart@linux.intel.com] Sent: Monday, March 19, 2012 11:07
-> AM To: Rifenbark, Scott M Cc: Robert P. J. Day; Yocto discussion
-> list Subject: Re: [yocto] my idea of a quick start guide
-> 
-> 
-> 
-> On 03/16/2012 04:27 PM, Rifenbark, Scott M wrote:
->> Several people have indicated a quick start section like Robert's
->> wiki page would be good in the YP QS.  I agree that the idea of
->> diverting the super user to a shortened, more concise section that
->> let's you kick the tires of Yocto is a good idea.  I have created a
->> section based on Robert's example from his wiki page.  You can see
->> it at this link:
->> 
->> http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.html#super-user
+> Best Regards,
+> Lianhao
+>
+> Lu, Lianhao wrote on 2012-03-14:
+>> Set the PREFERRED_VERSION of lttng-ust to use lttng-ust instead of
+>> lttng2-ust in poky distro. This fixed yocto bug #2062.
 >>
+>> The lttng2 is very different in terms of architecture and usage model, compared
+>> to lttng. The eclipse upstream lttng plugin won't be able to support lttng2 until
+>> the eclipse Juno release(Jun 27th, 2012).
 >>
->> 
-Feedback and comments welcome.
-> 
-> It's not a bad section to have, but it doesn't feel integrated into
-> the quickstart, especially the bit about building for Beagleboard xM.
-> Users looking for a truly quick start will still have to troll
-> through pages of introductory overview and concepts before they get
-> to this. I still argue that a new user should be able to build and
-> boot qemux86 sato using the QS guide without having to scroll down.
-> 
-> -- Darren
-> 
->> 
->> Scott
->> 
->> -----Original Message----- From: yocto-bounces@yoctoproject.org
->> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Robert P. J.
->> Day Sent: Wednesday, February 29, 2012 10:49 AM To: Yocto
->> discussion list Subject: [yocto] my idea of a quick start guide
->> 
->> 
->> since it's easier to just write something than suggest numerous 
->> fixes, i took less than an hour and wrote this:
->> 
->> http://www.crashcourse.ca/wiki/index.php/Yocto_Project_Quick_Start
->> 
->> it's the sort of thing that would have been perfect for me when i 
->> first jumped into yocto.
->> 
->> i'm going to add a couple more short sections but, technically, it 
->> contains everything i would have needed to know to build my first 
->> image.
->> 
->> thoughts?
->> 
->> rday
->> 
-> 
+>> The following changes since commit 8e9f6fc77ac4763f4ed1f6e7b720420c220ba6e2:
+>>    Richard Purdie (1):
+>>          dates: Fix unpackaged files warning
+>> are available in the git repository at:
+>>
+>>    git://git.pokylinux.org/poky-contrib llu/bug2062
+>>    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=llu/bug2062
+>> Lianhao Lu (1):
+>>    poky.conf: Prefer lttng-ust instead of lttng2-ust.
+>>   meta-yocto/conf/distro/poky.conf |    3 +++
+>>   1 files changed, 3 insertions(+), 0 deletions(-)
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
