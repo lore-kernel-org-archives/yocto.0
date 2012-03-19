@@ -1,32 +1,36 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28054E013A5;
-	Mon, 19 Mar 2012 10:17:11 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2JHH9Ce032152;
-	Mon, 19 Mar 2012 17:17:09 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 31030-10; Mon, 19 Mar 2012 17:17:05 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2JHGxWK032146
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Mon, 19 Mar 2012 17:17:00 GMT
-Message-ID: <1332177420.9740.51.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Xu, Jiajun" <jiajun.xu@intel.com>
-Date: Mon, 19 Mar 2012 17:17:00 +0000
-In-Reply-To: <90741FE9B50D654690EB940EDB456C8E091117@SHSMSX101.ccr.corp.intel.com>
-References: <90741FE9B50D654690EB940EDB456C8E0908E7@SHSMSX101.ccr.corp.intel.com>
-	<1332152778.9740.3.camel@ted>
-	<90741FE9B50D654690EB940EDB456C8E091117@SHSMSX101.ccr.corp.intel.com>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto weekly bug trend charts -- WW11
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5E4CE013A5
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 10:17:28 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 19 Mar 2012 10:17:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="141317587"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.226.10])
+	by fmsmga002.fm.intel.com with ESMTP; 19 Mar 2012 10:17:28 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx605.amr.corp.intel.com (10.22.226.10) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 19 Mar 2012 10:17:28 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.154]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.160]) with mapi id
+	14.01.0355.002; Mon, 19 Mar 2012 10:17:27 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Thread-Topic: [yocto] my idea of a quick start guide
+Thread-Index: AQHM9wIhawuYzRKybECCnXXJm+VyC5ZtqYfQgATDUQD//4zWAA==
+Date: Mon, 19 Mar 2012 17:17:26 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237945173A2A@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1202291147340.2150@oneiric>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237945173476@ORSMSX101.amr.corp.intel.com>
+	<4F6767CE.5080802@linux.intel.com>
+In-Reply-To: <4F6767CE.5080802@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: my idea of a quick start guide
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,94 +42,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2012 17:17:12 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 19 Mar 2012 17:17:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2012-03-19 at 15:32 +0000, Xu, Jiajun wrote:
-> > Hi Jiajun,
-> > 
-> > On Mon, 2012-03-19 at 08:49 +0000, Xu, Jiajun wrote:
-> >> 	The overall open bug trend increased a lot in last week. The new
-> >> submitted vs. fixed bug number is 64 vs. 52. Some fixed bugs are
-> >> enhancement bug, which are not calculated into WDD data. WDD number
-> >> and Open Bug number are 938 and 188. Bug status of WW11 could be
-> >> found on https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
-> > 
-> > I agree that there were 64 vs 52 bugs last week which is a change of 12 bugs.
-> > The top two charts show increases of 50 and 30 bugs though so the
-> > numbers don't seem to add up for me :/. I appreciate the bugzilla
-> > update upset the accounting but it looks like some of the historical
-> > data is inaccurate somewhere :(
-> 
-> Good catch. :)
-> For the first picture, it is the trend of open bugs by
-> importance(High/Medium/Low/Undecided) with all bugs included. For the
-> second picture, it is the trend of open bugs by
-> severity(minor/normal/major/critical) without enhancement bugs. The
-> first picture is to give us a whole picture of all open bugs. The
-> second one is to give us a true picture of the real bugs - without
-> bugs created for feature enabling.
+I could replace the Beagleboard xM machine with qemux86.  The introductory =
+bit up front provides minimal inconvenience to the reader to quickly hop do=
+wn to the section via the link. =20
 
-Right, I like the trend charts and the information they generate is
-extremely useful but I do worry that if the information is inaccurate,
-we can make bad decisions based upon it. What really worries me now is
-I'm in a position where I don't trust the data and it doesn't make
-sense?
+Scott
 
-Do we have any way to correct the data? If I understand how you
-currently generate these, I suspect it might be hard since you rely on
-output from bugzilla whine emails?
+-----Original Message-----
+From: Darren Hart [mailto:dvhart@linux.intel.com]=20
+Sent: Monday, March 19, 2012 11:07 AM
+To: Rifenbark, Scott M
+Cc: Robert P. J. Day; Yocto discussion list
+Subject: Re: [yocto] my idea of a quick start guide
 
-Would it be possible to query the bugzilla data differently to be able
-to completely build the chart profiles directly from absolute data
-rather than indirectly though incremental data?
 
-I'm wondering about the options of:
 
-a) Any other API bugzilla exposes for queries?
-b) Run scripts against bugzilla web API to obtain the necessary data?
-c) Query the bugzilla database directly
+On 03/16/2012 04:27 PM, Rifenbark, Scott M wrote:
+> Several people have indicated a quick start section like Robert's wiki pa=
+ge would be good in the YP QS.  I agree that the idea of diverting the supe=
+r user to a shortened, more concise section that let's you kick the tires o=
+f Yocto is a good idea.  I have created a section based on Robert's example=
+ from his wiki page.  You can see it at this link:
+>=20
+> http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs=
+.html#super-user
+>=20
+> Feedback and comments welcome.
 
-I've cc'd Michael since he might be able to help us get access to the
-data. Just for Michael's reference, what we need is to be able to figure
-out:
+It's not a bad section to have, but it doesn't feel integrated into the
+quickstart, especially the bit about building for Beagleboard xM. Users
+looking for a truly quick start will still have to troll through pages
+of introductory overview and concepts before they get to this. I still
+argue that a new user should be able to build and boot qemux86 sato
+using the QS guide without having to scroll down.
 
-a) What was the open bug count at time X of undecided, low, medium and
-high bugs?
-b) What was the open bug count at time X of minor, normal, major and
-critical bugs?
-c) Between times W and X, what number of bugs were submitted of type
-undecided, low, medium and high?
-d) Between times W and X, what number of bugs were resolved of type
-undecided, low, medium and high?
+--
+Darren
 
-Where W-X is 7 days and X is in general the end of a week so we can
-generate the charts shown on:
+>=20
+> Scott
+>=20
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
+rg] On Behalf Of Robert P. J. Day
+> Sent: Wednesday, February 29, 2012 10:49 AM
+> To: Yocto discussion list
+> Subject: [yocto] my idea of a quick start guide
+>=20
+>=20
+>   since it's easier to just write something than suggest numerous
+> fixes, i took less than an hour and wrote this:
+>=20
+> http://www.crashcourse.ca/wiki/index.php/Yocto_Project_Quick_Start
+>=20
+> it's the sort of thing that would have been perfect for me when i
+> first jumped into yocto.
+>=20
+>   i'm going to add a couple more short sections but, technically, it
+> contains everything i would have needed to know to build my first
+> image.
+>=20
+>   thoughts?
+>=20
+> rday
+>=20
 
-https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend
-
-I can think of ways I could script this although it might look like a
-DoS attack against the server :) I'm open to ideas on how we could fix
-this. Bonus marks for automatically generating the charts (which
-thinking about it, I have done before and wasn't that hard)!
-
-> BTW, when I check the open bug data, I find that a new variable is
-> introduced with new bugzilla for field "severity" - janitors. We do
-> not include the bugs marked as janitors in "Yocto Weekly Open bug
-> Trend(Severity)". My thinking is that janitors is similar with
-> enhancement. We could treat it as enhancement(with weight value "0"),
-> or if we think it should be included into WDD, we could set a weight
-> value for it. How do you think of it?
-> Fortunately, we only have 4 bugs marked as janitors, and they are all
-> new reported last week. We could simply update the bug trend once we
-> make the decision.
-
-The janitor changes happened very recently and I think Dave has
-commented on this piece.
-
-Cheers,
-
-Richard
-
+--=20
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
