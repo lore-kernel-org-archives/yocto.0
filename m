@@ -1,31 +1,37 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94B54E00747
-	for <yocto@yoctoproject.org>; Sun, 18 Mar 2012 09:39:49 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1S9J93-0001H2-2o
-	for yocto@yoctoproject.org; Sun, 18 Mar 2012 12:39:49 -0400
-Date: Sun, 18 Mar 2012 12:39:40 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1203181238200.18602@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <lianhao.lu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7A39E00747
+	for <yocto@yoctoproject.org>; Sun, 18 Mar 2012 18:18:49 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 18 Mar 2012 18:18:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="78965445"
+Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
+	by AZSMGA002.ch.intel.com with ESMTP; 18 Mar 2012 18:18:49 -0700
+Received: from azsmsx602.amr.corp.intel.com (10.2.121.201) by
+	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Sun, 18 Mar 2012 18:18:48 -0700
+Received: from shsmsx101.ccr.corp.intel.com (10.239.4.153) by
+	azsmsx602.amr.corp.intel.com (10.2.121.201) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Sun, 18 Mar 2012 18:18:48 -0700
+Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.36]) by
+	SHSMSX101.ccr.corp.intel.com ([169.254.1.142]) with mapi id
+	14.01.0355.002; Mon, 19 Mar 2012 09:18:46 +0800
+From: "Lu, Lianhao" <lianhao.lu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold, Saul"
+	<saul.wold@intel.com>
+Thread-Topic: [PATCH 0/1] perfer older version of lttng-ust in poky distro
+Thread-Index: AQHNAbxTu69kEhBJekqt+bLSlYfirZZw2KtQ
+Date: Mon, 19 Mar 2012 01:18:46 +0000
+Message-ID: <857BE142E5399E46B20FD45B9DB8A7BC0FD00FEF@SHSMSX102.ccr.corp.intel.com>
+References: <cover.1331713200.git.lianhao.lu@intel.com>
+In-Reply-To: <cover.1331713200.git.lianhao.lu@intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH] Documentation: Fix a couple simple errors in QS XML.
+Subject: Re: [PATCH 0/1] perfer older version of lttng-ust in poky distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,50 +43,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 18 Mar 2012 16:39:49 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 19 Mar 2012 01:18:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Saul,
+
+How about this patch's merging status?=20
+
+Best Regards,
+Lianhao
+
+Lu, Lianhao wrote on 2012-03-14:
+> Set the PREFERRED_VERSION of lttng-ust to use lttng-ust instead of
+> lttng2-ust in poky distro. This fixed yocto bug #2062.
+>=20
+> The lttng2 is very different in terms of architecture and usage model, co=
+mpared
+> to lttng. The eclipse upstream lttng plugin won't be able to support lttn=
+g2 until
+> the eclipse Juno release(Jun 27th, 2012).
+>=20
+> The following changes since commit 8e9f6fc77ac4763f4ed1f6e7b720420c220ba6=
+e2:
+>   Richard Purdie (1):
+>         dates: Fix unpackaged files warning
+> are available in the git repository at:
+>=20
+>   git://git.pokylinux.org/poky-contrib llu/bug2062
+>   http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=3Dllu/bug2062
+> Lianhao Lu (1):
+>   poky.conf: Prefer lttng-ust instead of lttng2-ust.
+>  meta-yocto/conf/distro/poky.conf |    3 +++
+>  1 files changed, 3 insertions(+), 0 deletions(-)
 
 
-* One obvious typo.
-* The clone directory will be named "poky", not "git".
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
-
----
-
-diff --git a/documentation/yocto-project-qs/yocto-project-qs.xml b/documentation/yocto-project-qs/yocto-project-qs.xml
-index 785707f..f2ba859 100644
---- a/documentation/yocto-project-qs/yocto-project-qs.xml
-+++ b/documentation/yocto-project-qs/yocto-project-qs.xml
-@@ -716,7 +716,7 @@
-                 <listitem><para><emphasis>Git Repository:</emphasis>
-                     Use if you want to work with cutting edge development content:
-                     <literallayout class='monospaced'>
--     $ git clone &YOCTO_GIT_URL;.poky.git
-+     $ git clone &YOCTO_GIT_URL;/poky.git
-                     </literallayout></para></listitem>
-             </itemizedlist>
-             The remainder of the section assumes the Git repository method.
-@@ -742,7 +742,7 @@
-             <ulink url='&YOCTO_DOCS_DEV_URL;#yocto-project-build-directory'>Yocto Project Build Directory</ulink>
-             name:
-             <literallayout class='monospaced'>
--     $ source git/oe-init-build-env mybuilds
-+     $ source poky/oe-init-build-env mybuilds
-             </literallayout>
-             At this point, the <filename>mybuilds</filename> directory has been created for you
-             and it is now your current working directory.
-
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
