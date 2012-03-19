@@ -1,33 +1,34 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2005E013A3
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 12:38:10 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 19 Mar 2012 12:38:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="79282550"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by AZSMGA002.ch.intel.com with ESMTP; 19 Mar 2012 12:38:10 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 19 Mar 2012 12:38:09 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.154]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.120]) with mapi id
-	14.01.0355.002; Mon, 19 Mar 2012 12:38:09 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, March
-	20, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHNBgfQN5/lGCijgUKe72vGMA32mQ==
-Date: Mon, 19 Mar 2012 19:38:09 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A46AE1F09@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, March 20, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B990CE013A3
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 13:18:21 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2JKIIRw000905;
+	Mon, 19 Mar 2012 20:18:18 GMT
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 00819-01; Mon, 19 Mar 2012 20:18:14 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2JKIAqw000897
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 19 Mar 2012 20:18:12 GMT
+Message-ID: <1332188291.9740.71.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Darren Hart <darren.hart@intel.com>
+Date: Mon, 19 Mar 2012 20:18:11 +0000
+In-Reply-To: <4F676946.6000609@intel.com>
+References: <90741FE9B50D654690EB940EDB456C8E0908E7@SHSMSX101.ccr.corp.intel.com>
+	<1332152778.9740.3.camel@ted>
+	<90741FE9B50D654690EB940EDB456C8E091117@SHSMSX101.ccr.corp.intel.com>
+	<CDED78A957032E45B3239CDDA7642D15084A4D84@ORSMSX105.amr.corp.intel.com>
+	<4F676946.6000609@intel.com>
+X-Mailer: Evolution 3.2.2- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto weekly bug trend charts -- WW11
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,130 +40,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2012 19:38:10 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 19 Mar 2012 20:18:22 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Agenda
-* Opens collection - 5 min (Song)
-* Yocto 1.2 M4 status and release criteria review - 20 min (Song/Team)
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status=20
-* SWAT team rotation: Paul->Jessica
-* Opens - 10 min=A0 =20
-* Team Sharing - 20 min
+On Mon, 2012-03-19 at 10:13 -0700, Darren Hart wrote:
+> On 03/19/2012 09:18 AM, Stewart, David C wrote:
+> >> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> >> bounces@yoctoproject.org] On Behalf Of Xu, Jiajun
+> >> Sent: Monday, March 19, 2012 8:33 AM
+> 
+> >> BTW, when I check the open bug data, I find that a new variable is introduced
+> >> with new bugzilla for field "severity" - janitors. We do not include the bugs
+> >> marked as janitors in "Yocto Weekly Open bug Trend(Severity)". My thinking
+> >> is that janitors is similar with enhancement. We could treat it as
+> >> enhancement(with weight value "0"), or if we think it should be included into
+> >> WDD, we could set a weight value for it. How do you think of it?
+> >> Fortunately, we only have 4 bugs marked as janitors, and they are all new
+> >> reported last week. We could simply update the bug trend once we make the
+> >> decision.
+> > 
+> > I suggest we make the janitor severity the same as low in the WDD calculation.
+> > 
+> 
+> I don't know what "low" would map to. The key says:
+> 
+> "The weight we use for each severity: Critical:10, Major:7, Normal:5,
+> Minor:3, Enhancement:0 "
+> 
+> In my view, Janitors should be marked the same as Enhancement, 0. If a
+> bug is important enough to track and impact release, it shouldn't be a
+> janitors bug, which by definition are intended to sit in a pool for
+> new-comers and irregular contributors to pick up.
+
+I did talk briefly with Dave earlier and it was hard to decide whether
+these were minor or enhancement in nature. Enhancements are about adding
+new functionality, bugs of whatever severity are about issues in
+existing features. Janitor class issues could be in either category so
+you can argue this both ways from that perspective.
+
+Did we end up deciding to have a janitor user to assign these too in the
+end or are they going to remain with various people until assigned? If
+the latter, I'd hate to see the WDD being skewed against people due to
+high numbers of janitor bugs so that might sway my argument.
+
+Cheers,
+
+Richard
 
 
------Original Appointment-----
 
 
-
-
-Conference details=20
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
-Participants:=20
-30
-Duration:=20
-60 minutes=20
-Participant passcode:=20
-49611427=20
-Dial-in number:=20
-1.972.995.7777=20
-US Toll Free number:=20
-1.877.561.6828=20
-BlackBerry users, click this link to join your conference as a chairperson:
-1.972.995.7777x67184230#
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x49611427#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
-
-Local and Global Access Numbers=20
-
-
-Country=20
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277=20
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322=20
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877=20
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777=20
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777=20
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799=20
-From Kuala Lumpur dial 4264 3799=20
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177=20
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777=20
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998=20
-From Seoul dial 5606998=20
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363=20
-From Taipei dial 2241 1363=20
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001=20
-then enter 877 633 1123=20
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
-
-Recurring conferences=20
-First scheduled conference:=20
-Tue Jun 28, 2011
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 22, 2012, 10:40 AM CDT
 
 
 
