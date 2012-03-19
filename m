@@ -1,39 +1,38 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-gy0-f176.google.com (mail-gy0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 802FAE013A3
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 07:50:10 -0700 (PDT)
-Received: by ghbz10 with SMTP id z10so7023055ghb.35
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 07:50:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:organization:content-type:x-mailer:mime-version:x-gm-message-state;
-	bh=oFLLVPGwrU/9NuN6gf47SrqzZnvoRLbTGxaHdY3FZsI=;
-	b=gwKm9w3vUXS3EnmGnVIZv0z/3DUHxvgmKkcucCzAOZjer9naxSeX3SziG+JVxhSiEl
-	1EHI2AvyzUqVVt0F5linbzv4Ud0D+KkYNVmxszHgnGUAQlMgSXDwYmucpbp0sru9plE4
-	f1VECGfC9aB0je/d3BlQ5lISbM6Asmx+N3F31AcZPscQOeN5wgb2rxv6Nd+nqH7YLdmX
-	pGFyZ1woiiH7LnroKeeYXLMACB9c/rSQ9bxWdIbwUZvI2BtzFNhP3gHje45oznr96zXU
-	LeMxCFPgR9nWz31KsNPs+joUZ4qHizX/CJcQoAHc8450IJX86fwRDvLxrxB/WOq7O2S+
-	QtEA==
-Received: by 10.68.125.168 with SMTP id mr8mr23307514pbb.21.1332168608460;
-	Mon, 19 Mar 2012 07:50:08 -0700 (PDT)
-Received: from [192.168.10.207] ([59.99.251.45])
-	by mx.google.com with ESMTPS id f3sm11494577pbr.61.2012.03.19.07.50.04
-	(version=SSLv3 cipher=OTHER); Mon, 19 Mar 2012 07:50:07 -0700 (PDT)
-Message-ID: <1332168601.17273.15.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Scott Garman <scott.a.garman@intel.com>
-Date: Mon, 19 Mar 2012 20:20:01 +0530
-In-Reply-To: <4F620A03.4000902@intel.com>
-References: <1331816822.19369.7.camel@babel.joshhome>
-	<4F620A03.4000902@intel.com>
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1
-Mime-Version: 1.0
-X-Gm-Message-State: ALoCoQlyRToRkAXCwZmSQHHUkqfLA/cE7Iq9A6xZTr4lwWJs2mPfdffq9E6YxaHKdTdVWyVZTkjK
-Cc: yocto@yoctoproject.org
-Subject: Re: syslinux filesystem size limitation
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20912E013A3
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 08:32:35 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 19 Mar 2012 08:32:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="79183144"
+Received: from azsmsx603.amr.corp.intel.com ([10.2.161.23])
+	by AZSMGA002.ch.intel.com with ESMTP; 19 Mar 2012 08:32:34 -0700
+Received: from chspprodmsx101.amr.corp.intel.com (10.2.67.97) by
+	azsmsx603.amr.corp.intel.com (10.2.161.23) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 19 Mar 2012 08:32:33 -0700
+Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
+	CHSPPRODMSX101.amr.corp.intel.com (10.2.67.97) with Microsoft SMTP
+	Server (TLS) id 14.1.355.2; Mon, 19 Mar 2012 08:32:33 -0700
+Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.142]) by
+	SHSMSX102.ccr.corp.intel.com ([169.254.2.36]) with mapi id
+	14.01.0355.002; Mon, 19 Mar 2012 23:32:32 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Thread-Topic: [yocto] Yocto weekly bug trend charts -- WW11
+Thread-Index: Ac0FrSdwi3C427/DQG2J8RLYgro5T///lQUA//8pi2A=
+Date: Mon, 19 Mar 2012 15:32:31 +0000
+Message-ID: <90741FE9B50D654690EB940EDB456C8E091117@SHSMSX101.ccr.corp.intel.com>
+References: <90741FE9B50D654690EB940EDB456C8E0908E7@SHSMSX101.ccr.corp.intel.com>
+	<1332152778.9740.3.camel@ted>
+In-Reply-To: <1332152778.9740.3.camel@ted>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto weekly bug trend charts -- WW11
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,44 +44,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2012 14:50:10 -0000
-X-Groupsio-MsgNum: 5384
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-KmNDWWXKFLMWXk8TsjEP"
+X-List-Received-Date: Mon, 19 Mar 2012 15:32:35 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---=-KmNDWWXKFLMWXk8TsjEP
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+PiBIaSBKaWFqdW4sDQo+IA0KPiBPbiBNb24sIDIwMTItMDMtMTkgYXQgMDg6NDkgKzAwMDAsIFh1
+LCBKaWFqdW4gd3JvdGU6DQo+PiAJVGhlIG92ZXJhbGwgb3BlbiBidWcgdHJlbmQgaW5jcmVhc2Vk
+IGEgbG90IGluIGxhc3Qgd2Vlay4gVGhlIG5ldw0KPj4gc3VibWl0dGVkIHZzLiBmaXhlZCBidWcg
+bnVtYmVyIGlzIDY0IHZzLiA1Mi4gU29tZSBmaXhlZCBidWdzIGFyZQ0KPj4gZW5oYW5jZW1lbnQg
+YnVnLCB3aGljaCBhcmUgbm90IGNhbGN1bGF0ZWQgaW50byBXREQgZGF0YS4gV0REIG51bWJlcg0K
+Pj4gYW5kIE9wZW4gQnVnIG51bWJlciBhcmUgOTM4IGFuZCAxODguIEJ1ZyBzdGF0dXMgb2YgV1cx
+MSBjb3VsZCBiZQ0KPj4gZm91bmQgb24gaHR0cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lr
+aS9Zb2N0b19CdWdfVHJlbmQuDQo+IA0KPiBJIGFncmVlIHRoYXQgdGhlcmUgd2VyZSA2NCB2cyA1
+MiBidWdzIGxhc3Qgd2VlayB3aGljaCBpcyBhIGNoYW5nZSBvZiAxMiBidWdzLg0KPiBUaGUgdG9w
+IHR3byBjaGFydHMgc2hvdyBpbmNyZWFzZXMgb2YgNTAgYW5kIDMwIGJ1Z3MgdGhvdWdoIHNvIHRo
+ZQ0KPiBudW1iZXJzIGRvbid0IHNlZW0gdG8gYWRkIHVwIGZvciBtZSA6Ly4gSSBhcHByZWNpYXRl
+IHRoZSBidWd6aWxsYQ0KPiB1cGRhdGUgdXBzZXQgdGhlIGFjY291bnRpbmcgYnV0IGl0IGxvb2tz
+IGxpa2Ugc29tZSBvZiB0aGUgaGlzdG9yaWNhbA0KPiBkYXRhIGlzIGluYWNjdXJhdGUgc29tZXdo
+ZXJlIDooDQoNCkdvb2QgY2F0Y2guIDopDQpGb3IgdGhlIGZpcnN0IHBpY3R1cmUsIGl0IGlzIHRo
+ZSB0cmVuZCBvZiBvcGVuIGJ1Z3MgYnkgaW1wb3J0YW5jZShIaWdoL01lZGl1bS9Mb3cvVW5kZWNp
+ZGVkKSB3aXRoIGFsbCBidWdzIGluY2x1ZGVkLiBGb3IgdGhlIHNlY29uZCBwaWN0dXJlLCBpdCBp
+cyB0aGUgdHJlbmQgb2Ygb3BlbiBidWdzIGJ5IHNldmVyaXR5KG1pbm9yL25vcm1hbC9tYWpvci9j
+cml0aWNhbCkgd2l0aG91dCBlbmhhbmNlbWVudCBidWdzLiBUaGUgZmlyc3QgcGljdHVyZSBpcyB0
+byBnaXZlIHVzIGEgd2hvbGUgcGljdHVyZSBvZiBhbGwgb3BlbiBidWdzLiBUaGUgc2Vjb25kIG9u
+ZSBpcyB0byBnaXZlIHVzIGEgdHJ1ZSBwaWN0dXJlIG9mIHRoZSByZWFsIGJ1Z3MgLSB3aXRob3V0
+IGJ1Z3MgY3JlYXRlZCBmb3IgZmVhdHVyZSBlbmFibGluZy4NCkJUVywgd2hlbiBJIGNoZWNrIHRo
+ZSBvcGVuIGJ1ZyBkYXRhLCBJIGZpbmQgdGhhdCBhIG5ldyB2YXJpYWJsZSBpcyBpbnRyb2R1Y2Vk
+IHdpdGggbmV3IGJ1Z3ppbGxhIGZvciBmaWVsZCAic2V2ZXJpdHkiIC0gamFuaXRvcnMuIFdlIGRv
+IG5vdCBpbmNsdWRlIHRoZSBidWdzIG1hcmtlZCBhcyBqYW5pdG9ycyBpbiAiWW9jdG8gV2Vla2x5
+IE9wZW4gYnVnIFRyZW5kKFNldmVyaXR5KSIuIE15IHRoaW5raW5nIGlzIHRoYXQgamFuaXRvcnMg
+aXMgc2ltaWxhciB3aXRoIGVuaGFuY2VtZW50LiBXZSBjb3VsZCB0cmVhdCBpdCBhcyBlbmhhbmNl
+bWVudCh3aXRoIHdlaWdodCB2YWx1ZSAiMCIpLCBvciBpZiB3ZSB0aGluayBpdCBzaG91bGQgYmUg
+aW5jbHVkZWQgaW50byBXREQsIHdlIGNvdWxkIHNldCBhIHdlaWdodCB2YWx1ZSBmb3IgaXQuIEhv
+dyBkbyB5b3UgdGhpbmsgb2YgaXQ/DQpGb3J0dW5hdGVseSwgd2Ugb25seSBoYXZlIDQgYnVncyBt
+YXJrZWQgYXMgamFuaXRvcnMsIGFuZCB0aGV5IGFyZSBhbGwgbmV3IHJlcG9ydGVkIGxhc3Qgd2Vl
+ay4gV2UgY291bGQgc2ltcGx5IHVwZGF0ZSB0aGUgYnVnIHRyZW5kIG9uY2Ugd2UgbWFrZSB0aGUg
+ZGVjaXNpb24uDQoNCj4gDQo+IENoZWVycywNCj4gDQo+IFJpY2hhcmQNCg0KQmVzdCBSZWdhcmRz
+LA0KSmlhanVuDQoNCg0K
 
-Hello Scott,
-
-On Thu, 2012-03-15 at 08:25 -0700, Scott Garman wrote:
-> Yes, this sounds worthy of filing a bug. Bonus points for patch=20
-> submissions to fix it. ;)
-
-I've filed the bug report for it.
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D2138
-
-Will try to add patch if possible.=20
-
-Regards
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
-
---=-KmNDWWXKFLMWXk8TsjEP
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iEYEABECAAYFAk9nR5kACgkQWw85XwuSFMJSrwCgnCXxsU57ZJ24zKWCatPgfiPx
-9xcAoNA77/3Q5D1w77quIAK5q2OKOZKZ
-=I+hH
------END PGP SIGNATURE-----
-
---=-KmNDWWXKFLMWXk8TsjEP--
