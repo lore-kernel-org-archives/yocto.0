@@ -1,28 +1,36 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D95F8E013A5
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 12:13:09 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 80DB7F811EB; Mon, 19 Mar 2012 13:13:09 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id D5089F811EB;
-	Mon, 19 Mar 2012 13:13:08 -0600 (MDT)
-Message-ID: <4F678544.9010606@mlbassoc.com>
-Date: Mon, 19 Mar 2012 13:13:08 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7288FE013A3
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 12:25:35 -0700 (PDT)
+Received: by yhfq46 with SMTP id q46so7276077yhf.35
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 12:25:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=tUZVuy5DS9HBF6kBdGF4hiWGocFcgRtaMfunBC2Bk90=;
+	b=K/eCGz/3WD7+4ILkztzRQBfjvWqmkYmxWpiLAAGAFFI2LE4HH+Z/ndv5TGue6Ceyh9
+	uBDDxMQAT6MAAyUKbE23Kd0eZfAbvikph4vORp4yXJWkhpSNP8ZdN6tDNtTQbUdkAR1R
+	KHWQLa8nKf9bKILvPyiZOEoE7vZ1JFhbCEhz8/R2/WoKsuF28iIx4HkoFoNRPuOaNliM
+	31Eu0HUpX7KSwjCF8kDFHWra3Qece2A6n8H+2RMOw8a7zuOpNxf6N6ZBs440T4F3i2Fh
+	yzdQemCNqJ8u98C9px6qqUdzaHJ83vUeRqH3L3jhizhVVhfmpttUKtrGO3AtkCb39M5r
+	7rUw==
+Received: by 10.224.205.1 with SMTP id fo1mr16370348qab.99.1332185134974;
+	Mon, 19 Mar 2012 12:25:34 -0700 (PDT)
+Received: from [10.0.1.54] (nc-184-4-33-105.dhcp.embarqhsd.net. [184.4.33.105])
+	by mx.google.com with ESMTPS id hb3sm18953417qab.6.2012.03.19.12.25.34
+	(version=SSLv3 cipher=OTHER); Mon, 19 Mar 2012 12:25:34 -0700 (PDT)
+Message-ID: <4F67882D.6030903@gmail.com>
+Date: Mon, 19 Mar 2012 15:25:33 -0400
+From: jfabernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
 References: <4F675879.3050304@gmail.com> <4F678139.7020704@mlbassoc.com>
 	<4F67822D.6030700@gmail.com> <4F6782E5.6090900@mlbassoc.com>
-	<4F67834C.5090802@gmail.com>
-In-Reply-To: <4F67834C.5090802@gmail.com>
+	<4F67834C.5090802@gmail.com> <4F678544.9010606@mlbassoc.com>
+In-Reply-To: <4F678544.9010606@mlbassoc.com>
 Subject: Re: build error after recent pull
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -35,70 +43,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2012 19:13:10 -0000
+X-List-Received-Date: Mon, 19 Mar 2012 19:25:35 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2012-03-19 13:04, jfabernathy wrote:
-> On 03/19/2012 03:03 PM, Gary Thomas wrote:
->> On 2012-03-19 12:59, jfabernathy wrote:
->>> On 03/19/2012 02:55 PM, Gary Thomas wrote:
->>>> On 2012-03-19 10:02, jfabernathy wrote:
->>>>> Just did a git pull today on poky and meta-intel. I tried to rebuild meta-sugarbay again and got a build error. Not sure why yet. Not critical, just a spot check of things.
->>>>> ------------------
+On 03/19/2012 03:13 PM, Gary Thomas wrote:
+> On 2012-03-19 13:04, jfabernathy wrote:
+>> On 03/19/2012 03:03 PM, Gary Thomas wrote:
+>>> On 2012-03-19 12:59, jfabernathy wrote:
+>>>> On 03/19/2012 02:55 PM, Gary Thomas wrote:
+>>>>> On 2012-03-19 10:02, jfabernathy wrote:
+>>>>>> Just did a git pull today on poky and meta-intel. I tried to 
+>>>>>> rebuild meta-sugarbay again and got a build error. Not sure why 
+>>>>>> yet. Not critical, just a spot check of things.
+>>>>>> ------------------
+>>>>>>
+>>>>>>
+>>>>>> NOTE: package mesa-dri-2_7.11-r13.1: task do_configure: Succeeded
+>>>>>> NOTE: Running task 1723 of 5148 (ID: 1928, 
+>>>>>> /home/jim/poky/meta/recipes-graphics/mesa/mesa-dri_7.11.bb, 
+>>>>>> do_compile)
+>>>>>> NOTE: package mesa-dri-2_7.11-r13.1: task do_compile: Started
+>>>>>> ERROR: Function failed: do_compile (see 
+>>>>>> /build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/temp/log.do_compile.25687 
+>>>>>> for further information)
+>>>>>> ERROR: Logfile of failure stored in: 
+>>>>>> /build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/temp/log.do_compile.25687
+>>>>>> Log data follows:
+>>>>>> | DEBUG: SITE files ['endian-little', 'common-linux', 
+>>>>>> 'common-glibc', 'bit-64', 'x86_64-linux', 'common']
+>>>>>> | ERROR: Function failed: do_compile (see 
+>>>>>> /build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/temp/log.do_compile.25687 
+>>>>>> for further information)
+>>>>>> | NOTE: make -j 8
+>>>>>> | make[1]: Entering directory 
+>>>>>> `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src'
+>>>>>> | Making sources for autoconf
+>>>>>> | make[2]: Entering directory 
+>>>>>> `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src/mapi/glapi'
+>>>>>> | make[2]: *** No rule to make target 
+>>>>>> `/build/sugarbay-master/tmp/sysroots/x86_64-linux/usr/lib/x86_64-poky-linux/gcc/x86_64-poky-linux/4.6.3/include/stddef.h', 
+>>>>>> needed by
+>>>>>> `glapi_dispatch.o'. Stop.
+>>>>>> | make[2]: Leaving directory 
+>>>>>> `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src/mapi/glapi'
+>>>>>> | make[1]: *** [subdirs] Error 1
+>>>>>> | make[1]: Leaving directory 
+>>>>>> `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src'
+>>>>>> | make: *** [default] Error 1
+>>>>>> | ERROR: oe_runmake failed
+>>>>>> NOTE: package mesa-dri-2_7.11-r13.1: task do_compile: Failed
+>>>>>> ERROR: Task 1928 
+>>>>>> (/home/jim/poky/meta/recipes-graphics/mesa/mesa-dri_7.11.bb, 
+>>>>>> do_compile) failed with exit code '1'
 >>>>>
+>>>>> What's your build host?
 >>>>>
->>>>> NOTE: package mesa-dri-2_7.11-r13.1: task do_configure: Succeeded
->>>>> NOTE: Running task 1723 of 5148 (ID: 1928, /home/jim/poky/meta/recipes-graphics/mesa/mesa-dri_7.11.bb, do_compile)
->>>>> NOTE: package mesa-dri-2_7.11-r13.1: task do_compile: Started
->>>>> ERROR: Function failed: do_compile (see /build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/temp/log.do_compile.25687 for further information)
->>>>> ERROR: Logfile of failure stored in: /build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/temp/log.do_compile.25687
->>>>> Log data follows:
->>>>> | DEBUG: SITE files ['endian-little', 'common-linux', 'common-glibc', 'bit-64', 'x86_64-linux', 'common']
->>>>> | ERROR: Function failed: do_compile (see /build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/temp/log.do_compile.25687 for further information)
->>>>> | NOTE: make -j 8
->>>>> | make[1]: Entering directory `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src'
->>>>> | Making sources for autoconf
->>>>> | make[2]: Entering directory `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src/mapi/glapi'
->>>>> | make[2]: *** No rule to make target `/build/sugarbay-master/tmp/sysroots/x86_64-linux/usr/lib/x86_64-poky-linux/gcc/x86_64-poky-linux/4.6.3/include/stddef.h', needed by
->>>>> `glapi_dispatch.o'. Stop.
->>>>> | make[2]: Leaving directory `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src/mapi/glapi'
->>>>> | make[1]: *** [subdirs] Error 1
->>>>> | make[1]: Leaving directory `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src'
->>>>> | make: *** [default] Error 1
->>>>> | ERROR: oe_runmake failed
->>>>> NOTE: package mesa-dri-2_7.11-r13.1: task do_compile: Failed
->>>>> ERROR: Task 1928 (/home/jim/poky/meta/recipes-graphics/mesa/mesa-dri_7.11.bb, do_compile) failed with exit code '1'
+>>>>> Was this build from scratch? There was a discussion of much the
+>>>>> same error on the meta-ti list last week where the host GCC was
+>>>>> updated between two subsequent builds that gave this error.
+>>>>>
+>>>> Building on latest release Ubuntu 11.10 (Linux ubuntu-x64 
+>>>> 3.0.0-16-generic #29-Ubuntu SMP)
 >>>>
->>>> What's your build host?
+>>>> gcc is 4.6.1
 >>>>
->>>> Was this build from scratch? There was a discussion of much the
->>>> same error on the meta-ti list last week where the host GCC was
->>>> updated between two subsequent builds that gave this error.
->>>>
->>> Building on latest release Ubuntu 11.10 (Linux ubuntu-x64 3.0.0-16-generic #29-Ubuntu SMP)
 >>>
->>> gcc is 4.6.1
+>>> Was your build from scratch? Do you use [extant] sstate cache?
 >>>
->>
->> Was your build from scratch? Do you use [extant] sstate cache?
->>
-> I had a preview successful build and just reran that after bitbake -c cleanall core-image-sato
+>> I had a preview successful build and just reran that after bitbake -c 
+>> cleanall core-image-sato
+>
+> Do you have rm_work in your local.conf?
 
-Do you have rm_work in your local.conf?
+No to question on rm_work in local.conf
+>
+> Try this:
+>   % bitbake -c cleansstate mesa-dri
+>   % bitbake mesa-dri
 
-Try this:
-   % bitbake -c cleansstate mesa-dri
-   % bitbake mesa-dri
+This work without errors. I'm now doing bitbake core-image-sato to see 
+if it completes.
 
-BTW, 'bitbake -c cleanall core-image-sato' doesn't really do much - images don't have much (any?)
-stuff that needs to get cleaned.  You can run 'bitbake core-image-sato' as many times as you like
-and it will completely rebuild the image every time.
+>
+> BTW, 'bitbake -c cleanall core-image-sato' doesn't really do much - 
+> images don't have much (any?)
+> stuff that needs to get cleaned.  You can run 'bitbake 
+> core-image-sato' as many times as you like
+> and it will completely rebuild the image every time.
+>
+>
+So  if I do a git pull and want to retest with new stuff, just bitbake 
+core-image-sato or should I do something with cleansstate??
+
+JIm A
 
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
