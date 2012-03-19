@@ -1,15 +1,15 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0A34E013A3
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 10:08:08 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91145E013A5
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 10:09:19 -0700 (PDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 19 Mar 2012 10:08:08 -0700
+	by orsmga102.jf.intel.com with ESMTP; 19 Mar 2012 10:09:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="119182603"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="119183320"
 Received: from unknown (HELO envy.home) ([10.7.199.162])
-	by orsmga001.jf.intel.com with ESMTP; 19 Mar 2012 10:08:08 -0700
-Message-ID: <4F6767CE.5080802@linux.intel.com>
-Date: Mon, 19 Mar 2012 10:07:26 -0700
+	by orsmga001.jf.intel.com with ESMTP; 19 Mar 2012 10:09:19 -0700
+Message-ID: <4F676815.3020601@linux.intel.com>
+Date: Mon, 19 Mar 2012 10:08:37 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
@@ -32,11 +32,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2012 17:08:08 -0000
+X-List-Received-Date: Mon, 19 Mar 2012 17:09:19 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
+Also, the Note and Tip blocks formatting has improved, but I still find
+it distracting that the title font for these is still larger than any of
+the heading fonts in the rest of the document.
 
+--
+Darren
 
 On 03/16/2012 04:27 PM, Rifenbark, Scott M wrote:
 > Several people have indicated a quick start section like Robert's wiki page would be good in the YP QS.  I agree that the idea of diverting the super user to a shortened, more concise section that let's you kick the tires of Yocto is a good idea.  I have created a section based on Robert's example from his wiki page.  You can see it at this link:
@@ -44,17 +49,6 @@ On 03/16/2012 04:27 PM, Rifenbark, Scott M wrote:
 > http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.html#super-user
 > 
 > Feedback and comments welcome.
-
-It's not a bad section to have, but it doesn't feel integrated into the
-quickstart, especially the bit about building for Beagleboard xM. Users
-looking for a truly quick start will still have to troll through pages
-of introductory overview and concepts before they get to this. I still
-argue that a new user should be able to build and boot qemux86 sato
-using the QS guide without having to scroll down.
-
---
-Darren
-
 > 
 > Scott
 > 
