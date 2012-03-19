@@ -1,37 +1,26 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8553E013A3
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 09:19:05 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 19 Mar 2012 09:18:30 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0A34E013A3
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 10:08:08 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 19 Mar 2012 10:08:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="79204157"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by AZSMGA002.ch.intel.com with ESMTP; 19 Mar 2012 09:18:29 -0700
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 19 Mar 2012 09:18:28 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.199]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.128]) with mapi id
-	14.01.0355.002; Mon, 19 Mar 2012 09:18:29 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: "Xu, Jiajun" <jiajun.xu@intel.com>, Richard Purdie
-	<richard.purdie@linuxfoundation.org>
-Thread-Topic: [yocto] Yocto weekly bug trend charts -- WW11
-Thread-Index: Ac0FrSdwi3C427/DQG2J8RLYgro5TwASD1cAAAqxyoAADSBYQA==
-Date: Mon, 19 Mar 2012 16:18:28 +0000
-Message-ID: <CDED78A957032E45B3239CDDA7642D15084A4D84@ORSMSX105.amr.corp.intel.com>
-References: <90741FE9B50D654690EB940EDB456C8E0908E7@SHSMSX101.ccr.corp.intel.com>
-	<1332152778.9740.3.camel@ted>
-	<90741FE9B50D654690EB940EDB456C8E091117@SHSMSX101.ccr.corp.intel.com>
-In-Reply-To: <90741FE9B50D654690EB940EDB456C8E091117@SHSMSX101.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="119182603"
+Received: from unknown (HELO envy.home) ([10.7.199.162])
+	by orsmga001.jf.intel.com with ESMTP; 19 Mar 2012 10:08:08 -0700
+Message-ID: <4F6767CE.5080802@linux.intel.com>
+Date: Mon, 19 Mar 2012 10:07:26 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto weekly bug trend charts -- WW11
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+References: <alpine.DEB.2.02.1202291147340.2150@oneiric>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237945173476@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237945173476@ORSMSX101.amr.corp.intel.com>
+X-Enigmail-Version: 1.4
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: my idea of a quick start guide
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,71 +32,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2012 16:19:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 19 Mar 2012 17:08:08 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Xu, Jiajun
->Sent: Monday, March 19, 2012 8:33 AM
->
->> Hi Jiajun,
->>
->> On Mon, 2012-03-19 at 08:49 +0000, Xu, Jiajun wrote:
->>> 	The overall open bug trend increased a lot in last week. The new
->>> submitted vs. fixed bug number is 64 vs. 52. Some fixed bugs are
->>> enhancement bug, which are not calculated into WDD data. WDD number
->>> and Open Bug number are 938 and 188. Bug status of WW11 could be
->>> found on https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
->>
->> I agree that there were 64 vs 52 bugs last week which is a change of 12 =
-bugs.
->> The top two charts show increases of 50 and 30 bugs though so the
->> numbers don't seem to add up for me :/. I appreciate the bugzilla
->> update upset the accounting but it looks like some of the historical
->> data is inaccurate somewhere :(
->
->Good catch. :)
->For the first picture, it is the trend of open bugs by
->importance(High/Medium/Low/Undecided) with all bugs included. For the
->second picture, it is the trend of open bugs by
->severity(minor/normal/major/critical) without enhancement bugs. The first
->picture is to give us a whole picture of all open bugs. The second one is =
-to give
->us a true picture of the real bugs - without bugs created for feature enab=
-ling.
 
-We need to get this data really clean because we make a lot of decisions ba=
-sed on it. Please work with RP to address this
 
->BTW, when I check the open bug data, I find that a new variable is introdu=
-ced
->with new bugzilla for field "severity" - janitors. We do not include the b=
-ugs
->marked as janitors in "Yocto Weekly Open bug Trend(Severity)". My thinking
->is that janitors is similar with enhancement. We could treat it as
->enhancement(with weight value "0"), or if we think it should be included i=
-nto
->WDD, we could set a weight value for it. How do you think of it?
->Fortunately, we only have 4 bugs marked as janitors, and they are all new
->reported last week. We could simply update the bug trend once we make the
->decision.
+On 03/16/2012 04:27 PM, Rifenbark, Scott M wrote:
+> Several people have indicated a quick start section like Robert's wiki page would be good in the YP QS.  I agree that the idea of diverting the super user to a shortened, more concise section that let's you kick the tires of Yocto is a good idea.  I have created a section based on Robert's example from his wiki page.  You can see it at this link:
+> 
+> http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.html#super-user
+> 
+> Feedback and comments welcome.
 
-I suggest we make the janitor severity the same as low in the WDD calculati=
-on.
+It's not a bad section to have, but it doesn't feel integrated into the
+quickstart, especially the bit about building for Beagleboard xM. Users
+looking for a truly quick start will still have to troll through pages
+of introductory overview and concepts before they get to this. I still
+argue that a new user should be able to build and boot qemux86 sato
+using the QS guide without having to scroll down.
 
->>
->> Cheers,
->>
->> Richard
->
->Best Regards,
->Jiajun
->
->
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+--
+Darren
+
+> 
+> Scott
+> 
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+> Sent: Wednesday, February 29, 2012 10:49 AM
+> To: Yocto discussion list
+> Subject: [yocto] my idea of a quick start guide
+> 
+> 
+>   since it's easier to just write something than suggest numerous
+> fixes, i took less than an hour and wrote this:
+> 
+> http://www.crashcourse.ca/wiki/index.php/Yocto_Project_Quick_Start
+> 
+> it's the sort of thing that would have been perfect for me when i
+> first jumped into yocto.
+> 
+>   i'm going to add a couple more short sections but, technically, it
+> contains everything i would have needed to know to build my first
+> image.
+> 
+>   thoughts?
+> 
+> rday
+> 
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
