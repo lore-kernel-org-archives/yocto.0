@@ -1,29 +1,31 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B085CE013A3
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 14:05:55 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 19 Mar 2012 14:05:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="122643004"
-Received: from unknown (HELO [10.255.15.160]) ([10.255.15.160])
-	by orsmga002.jf.intel.com with ESMTP; 19 Mar 2012 14:05:55 -0700
-Message-ID: <4F679FB2.4000303@linux.intel.com>
-Date: Mon, 19 Mar 2012 14:05:54 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC3BCE013A3
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 14:27:19 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 2CC7FF811F8; Mon, 19 Mar 2012 15:27:19 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id E6BA5F811E8;
+	Mon, 19 Mar 2012 15:27:17 -0600 (MDT)
+Message-ID: <4F67A4B5.2020302@mlbassoc.com>
+Date: Mon, 19 Mar 2012 15:27:17 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
 	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
 MIME-Version: 1.0
-To: Darren Hart <darren.hart@intel.com>
-References: <90741FE9B50D654690EB940EDB456C8E0908E7@SHSMSX101.ccr.corp.intel.com>
-	<1332152778.9740.3.camel@ted>
-	<90741FE9B50D654690EB940EDB456C8E091117@SHSMSX101.ccr.corp.intel.com>
-	<CDED78A957032E45B3239CDDA7642D15084A4D84@ORSMSX105.amr.corp.intel.com>
-	<4F676946.6000609@intel.com> <1332188291.9740.71.camel@ted>
-	<4F67956E.4090905@intel.com>
-In-Reply-To: <4F67956E.4090905@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto weekly bug trend charts -- WW11
+To: yocto@yoctoproject.org
+References: <4F675879.3050304@gmail.com> <4F678139.7020704@mlbassoc.com>
+	<4F67822D.6030700@gmail.com> <4F6782E5.6090900@mlbassoc.com>
+	<4F67834C.5090802@gmail.com> <4F678544.9010606@mlbassoc.com>
+	<4F67882D.6030903@gmail.com> <4F679649.9070105@mlbassoc.com>
+	<4F679BE2.2040802@gmail.com>
+In-Reply-To: <4F679BE2.2040802@gmail.com>
+Subject: Re: build error after recent pull
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,58 +37,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2012 21:05:55 -0000
+X-List-Received-Date: Mon, 19 Mar 2012 21:27:20 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 03/19/2012 01:22 PM, Darren Hart wrote:
-> On 03/19/2012 01:18 PM, Richard Purdie wrote:
->> On Mon, 2012-03-19 at 10:13 -0700, Darren Hart wrote:
->>> On 03/19/2012 09:18 AM, Stewart, David C wrote:
->>>>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->>>>> bounces@yoctoproject.org] On Behalf Of Xu, Jiajun
->>>>> Sent: Monday, March 19, 2012 8:33 AM
->>>
->>>>> BTW, when I check the open bug data, I find that a new variable is introduced
->>>>> with new bugzilla for field "severity" - janitors. We do not include the bugs
->>>>> marked as janitors in "Yocto Weekly Open bug Trend(Severity)". My thinking
->>>>> is that janitors is similar with enhancement. We could treat it as
->>>>> enhancement(with weight value "0"), or if we think it should be included into
->>>>> WDD, we could set a weight value for it. How do you think of it?
->>>>> Fortunately, we only have 4 bugs marked as janitors, and they are all new
->>>>> reported last week. We could simply update the bug trend once we make the
->>>>> decision.
+On 2012-03-19 14:49, jfabernathy wrote:
+> On 03/19/2012 04:25 PM, Gary Thomas wrote:
+>> On 2012-03-19 13:25, jfabernathy wrote:
+>>> On 03/19/2012 03:13 PM, Gary Thomas wrote:
+>>>> On 2012-03-19 13:04, jfabernathy wrote:
+>>>>> On 03/19/2012 03:03 PM, Gary Thomas wrote:
+>>>>>> On 2012-03-19 12:59, jfabernathy wrote:
+>>>>>>> On 03/19/2012 02:55 PM, Gary Thomas wrote:
+>>>>>>>> On 2012-03-19 10:02, jfabernathy wrote:
+>>>>>>>>> Just did a git pull today on poky and meta-intel. I tried to rebuild meta-sugarbay again and got a build error. Not sure why yet. Not critical, just a spot check of things.
+>>>>>>>>> ------------------
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> NOTE: package mesa-dri-2_7.11-r13.1: task do_configure: Succeeded
+>>>>>>>>> NOTE: Running task 1723 of 5148 (ID: 1928, /home/jim/poky/meta/recipes-graphics/mesa/mesa-dri_7.11.bb, do_compile)
+>>>>>>>>> NOTE: package mesa-dri-2_7.11-r13.1: task do_compile: Started
+>>>>>>>>> ERROR: Function failed: do_compile (see /build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/temp/log.do_compile.25687 for further information)
+>>>>>>>>> ERROR: Logfile of failure stored in: /build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/temp/log.do_compile.25687
+>>>>>>>>> Log data follows:
+>>>>>>>>> | DEBUG: SITE files ['endian-little', 'common-linux', 'common-glibc', 'bit-64', 'x86_64-linux', 'common']
+>>>>>>>>> | ERROR: Function failed: do_compile (see /build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/temp/log.do_compile.25687 for further information)
+>>>>>>>>> | NOTE: make -j 8
+>>>>>>>>> | make[1]: Entering directory `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src'
+>>>>>>>>> | Making sources for autoconf
+>>>>>>>>> | make[2]: Entering directory `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src/mapi/glapi'
+>>>>>>>>> | make[2]: *** No rule to make target `/build/sugarbay-master/tmp/sysroots/x86_64-linux/usr/lib/x86_64-poky-linux/gcc/x86_64-poky-linux/4.6.3/include/stddef.h', needed by
+>>>>>>>>> `glapi_dispatch.o'. Stop.
+>>>>>>>>> | make[2]: Leaving directory `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src/mapi/glapi'
+>>>>>>>>> | make[1]: *** [subdirs] Error 1
+>>>>>>>>> | make[1]: Leaving directory `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src'
+>>>>>>>>> | make: *** [default] Error 1
+>>>>>>>>> | ERROR: oe_runmake failed
+>>>>>>>>> NOTE: package mesa-dri-2_7.11-r13.1: task do_compile: Failed
+>>>>>>>>> ERROR: Task 1928 (/home/jim/poky/meta/recipes-graphics/mesa/mesa-dri_7.11.bb, do_compile) failed with exit code '1'
+>>>>>>>>
+>>>>>>>> What's your build host?
+>>>>>>>>
+>>>>>>>> Was this build from scratch? There was a discussion of much the
+>>>>>>>> same error on the meta-ti list last week where the host GCC was
+>>>>>>>> updated between two subsequent builds that gave this error.
+>>>>>>>>
+>>>>>>> Building on latest release Ubuntu 11.10 (Linux ubuntu-x64 3.0.0-16-generic #29-Ubuntu SMP)
+>>>>>>>
+>>>>>>> gcc is 4.6.1
+>>>>>>>
+>>>>>>
+>>>>>> Was your build from scratch? Do you use [extant] sstate cache?
+>>>>>>
+>>>>> I had a preview successful build and just reran that after bitbake -c cleanall core-image-sato
 >>>>
->>>> I suggest we make the janitor severity the same as low in the WDD calculation.
+>>>> Do you have rm_work in your local.conf?
+>>>
+>>> No to question on rm_work in local.conf
 >>>>
+>>>> Try this:
+>>>> % bitbake -c cleansstate mesa-dri
+>>>> % bitbake mesa-dri
 >>>
->>> I don't know what "low" would map to. The key says:
+>>> This work without errors. I'm now doing bitbake core-image-sato to see if it completes.
 >>>
->>> "The weight we use for each severity: Critical:10, Major:7, Normal:5,
->>> Minor:3, Enhancement:0 "
->>>
->>> In my view, Janitors should be marked the same as Enhancement, 0. If a
->>> bug is important enough to track and impact release, it shouldn't be a
->>> janitors bug, which by definition are intended to sit in a pool for
->>> new-comers and irregular contributors to pick up.
+>>>>
+>>>> BTW, 'bitbake -c cleanall core-image-sato' doesn't really do much - images don't have much (any?)
+>>>> stuff that needs to get cleaned. You can run 'bitbake core-image-sato' as many times as you like
+>>>> and it will completely rebuild the image every time.
+>>>>
+>>>>
+>>> So if I do a git pull and want to retest with new stuff, just bitbake core-image-sato or should I do something with cleansstate??
 >>
->> I did talk briefly with Dave earlier and it was hard to decide whether
->> these were minor or enhancement in nature. Enhancements are about adding
->> new functionality, bugs of whatever severity are about issues in
->> existing features. Janitor class issues could be in either category so
->> you can argue this both ways from that perspective.
+>> If you run just 'bitbake core-image-sato', any packages (recipes)
+>> which have been changed that are used by the image will be rebuilt.
+>> You should not have to clean anything for this to work properly.
 >>
->> Did we end up deciding to have a janitor user to assign these too in the
->> end or are they going to remain with various people until assigned? If
->> the latter, I'd hate to see the WDD being skewed against people due to
->> high numbers of janitor bugs so that might sway my argument.
 >
-> Last I spoke with Michael (added to CC), the plan was to assign these to
-> a default "Yocto Janitor" id. Unfortunately, we don't have a way to set
-> this up for automatic assignment like we do for "component owner", as
-> Janitor bugs are currently identified by severity.
->
-We can just take care of this during bug creation or triage manually.
+> After I fixed mesa-dri and started bitbake core-image-sato, it ran for a long time and had a build failure similar to the first one on kexec-tools. I did the bitbake -c cleansstate
+> kexec-tools trick again and restarted bitbake core-image-sato. Not sure why this is, but it seems to work.
 
-Sau!
+These errors should not happen - you should be able to update the
+yocto meta-data and rebuild an image any time and not suffer such
+problems.
+
+Did you change anything else, especially with your host tools,
+between the time your previous build completed and you did this
+pull and rebuild?  For example, running the Ubuntu package updater?
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
