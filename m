@@ -1,29 +1,29 @@
 Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5E4CE013A5
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 10:17:28 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Mar 2012 10:17:28 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 172F4E013A5
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 10:18:36 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 19 Mar 2012 10:18:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="141317587"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.226.10])
-	by fmsmga002.fm.intel.com with ESMTP; 19 Mar 2012 10:17:28 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx605.amr.corp.intel.com (10.22.226.10) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 19 Mar 2012 10:17:28 -0700
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="79232794"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by AZSMGA002.ch.intel.com with ESMTP; 19 Mar 2012 10:18:35 -0700
+Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 19 Mar 2012 10:18:35 -0700
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.154]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.160]) with mapi id
-	14.01.0355.002; Mon, 19 Mar 2012 10:17:27 -0700
+	ORSMSX105.amr.corp.intel.com ([169.254.4.199]) with mapi id
+	14.01.0355.002; Mon, 19 Mar 2012 10:18:34 -0700
 From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
 To: Darren Hart <dvhart@linux.intel.com>
 Thread-Topic: [yocto] my idea of a quick start guide
-Thread-Index: AQHM9wIhawuYzRKybECCnXXJm+VyC5ZtqYfQgATDUQD//4zWAA==
-Date: Mon, 19 Mar 2012 17:17:26 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237945173A2A@ORSMSX101.amr.corp.intel.com>
+Thread-Index: AQHM9wIhawuYzRKybECCnXXJm+VyC5ZtqYfQgATDpoD//40z8A==
+Date: Mon, 19 Mar 2012 17:18:34 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237945173A3D@ORSMSX101.amr.corp.intel.com>
 References: <alpine.DEB.2.02.1202291147340.2150@oneiric>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237945173476@ORSMSX101.amr.corp.intel.com>
-	<4F6767CE.5080802@linux.intel.com>
-In-Reply-To: <4F6767CE.5080802@linux.intel.com>
+	<4F676815.3020601@linux.intel.com>
+In-Reply-To: <4F676815.3020601@linux.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -42,25 +42,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2012 17:17:28 -0000
+X-List-Received-Date: Mon, 19 Mar 2012 17:18:36 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I could replace the Beagleboard xM machine with qemux86.  The introductory =
-bit up front provides minimal inconvenience to the reader to quickly hop do=
-wn to the section via the link. =20
+I find that irritating as well and will try and look into changing that.
 
 Scott
 
 -----Original Message-----
 From: Darren Hart [mailto:dvhart@linux.intel.com]=20
-Sent: Monday, March 19, 2012 11:07 AM
+Sent: Monday, March 19, 2012 11:09 AM
 To: Rifenbark, Scott M
 Cc: Robert P. J. Day; Yocto discussion list
 Subject: Re: [yocto] my idea of a quick start guide
 
+Also, the Note and Tip blocks formatting has improved, but I still find
+it distracting that the title font for these is still larger than any of
+the heading fonts in the rest of the document.
 
+--
+Darren
 
 On 03/16/2012 04:27 PM, Rifenbark, Scott M wrote:
 > Several people have indicated a quick start section like Robert's wiki pa=
@@ -73,17 +76,6 @@ f Yocto is a good idea.  I have created a section based on Robert's example=
 .html#super-user
 >=20
 > Feedback and comments welcome.
-
-It's not a bad section to have, but it doesn't feel integrated into the
-quickstart, especially the bit about building for Beagleboard xM. Users
-looking for a truly quick start will still have to troll through pages
-of introductory overview and concepts before they get to this. I still
-argue that a new user should be able to build and boot qemux86 sato
-using the QS guide without having to scroll down.
-
---
-Darren
-
 >=20
 > Scott
 >=20
