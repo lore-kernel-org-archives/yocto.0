@@ -1,39 +1,30 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
-	[209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C7F7E013A6
-	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 02:08:11 -0700 (PDT)
-Received: by qafl39 with SMTP id l39so1224836qaf.14
-	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 02:08:10 -0700 (PDT)
+Return-Path: <navani.srivastava@gmail.com>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9AEAE013A5
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 23:37:58 -0700 (PDT)
+Received: by bkcji17 with SMTP id ji17so7346043bkc.35
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 23:37:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=PrRAXdGD0nLjmetV/P44HD2Ds+PGyaMvcsUpKAnHzJs=;
-	b=jA5WUiW8dXpyn4QnX0oEPpJ9BbvNJ9SjMTi60xR5dSbfOpl8I52gBZh4dF6PbjCHLi
-	FuEMEHLXBavPG6HEnRvCkTfAubtAh6NtieP0+X6xiKlf4vf7ookyflipM/h4Ok9otlt3
-	8W5XSA7Hyn3Rw2E33B3Lmf+YUkCRA1tDvE21Dgpu5xQBPxRrRNF1zrGsvWqKQye0pOkR
-	fRG3GA9RR73HJ6p8IO+KlK6kZpWo5ypwP2DEpjhDgJSU63VSJ9cU12F7Phx75l8TIZVm
-	38F5JxSyoVIb9k2xBFd4zsFN0YpitxH6wQMEr0Ejy4dWLNJ6bvDimZf6HeoPxFZMfrbU
-	zt8Q==
-Received: by 10.224.189.12 with SMTP id dc12mr18914364qab.22.1332234490322;
-	Tue, 20 Mar 2012 02:08:10 -0700 (PDT)
-Received: from [10.0.1.54] (nc-184-4-33-105.dhcp.embarqhsd.net. [184.4.33.105])
-	by mx.google.com with ESMTPS id dm8sm1691378qab.18.2012.03.20.02.08.08
-	(version=SSLv3 cipher=OTHER); Tue, 20 Mar 2012 02:08:09 -0700 (PDT)
-Message-ID: <4F6848F9.90703@gmail.com>
-Date: Tue, 20 Mar 2012 05:08:09 -0400
-From: jfabernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
+	h=mime-version:from:date:message-id:subject:to:cc:content-type;
+	bh=7KddtfCwkppbUd6iUBWAPNw9xUWTv0nIM9VP8CUbK18=;
+	b=ySn8ofOs4QD+hRtgIYfZU6Y2XRNsce6MGtGcLJeIA9LIUK/AquJlm8xsjuTXyLBhcE
+	8HlhpQDoGlSnxxYEj19/VrF8K58ihvnOfiExDQpjP1/mfD5GZ4vWfz/2rSGP5WUSHISB
+	kDEfJK5c/OZBvJ2NjALXMaWJAJkMYFkMNmLaJLQUabZSz2f/UIIhRpxs794zz+fIne8D
+	ZFKU55IPwiLrYO3VWU8ZapCeILSsOrYfnCIlIm+Hcivihyc0TiG/xTvX/Yjr9ooZd5eN
+	DErUoVSq/0+bZir5D3VJrPDsyD2sqNpLRoAu1TOUaWu1ppEBTNQX0YyUMDlNQXfflZ8U
+	WS0w==
+Received: by 10.204.129.71 with SMTP id n7mr5513096bks.91.1332225477520; Mon,
+	19 Mar 2012 23:37:57 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 10.204.153.193 with HTTP; Mon, 19 Mar 2012 23:37:37 -0700 (PDT)
+From: Navani Srivastava <navani.srivastava@gmail.com>
+Date: Tue, 20 Mar 2012 12:07:37 +0530
+Message-ID: <CA+Z6RkU9b9zAobZWXwMs6mRKMtcJEmq65eUxpZVWsABC9ywwQw@mail.gmail.com>
 To: yocto@yoctoproject.org
-References: <4F675879.3050304@gmail.com> <4F678139.7020704@mlbassoc.com>
-	<4F67822D.6030700@gmail.com> <4F6782E5.6090900@mlbassoc.com>
-	<4F67834C.5090802@gmail.com> <4F678544.9010606@mlbassoc.com>
-	<4F67882D.6030903@gmail.com> <4F679649.9070105@mlbassoc.com>
-	<4F679BE2.2040802@gmail.com> <4F67A4B5.2020302@mlbassoc.com>
-In-Reply-To: <4F67A4B5.2020302@mlbassoc.com>
-Subject: Re: build error after recent pull
+X-Mailman-Approved-At: Tue, 20 Mar 2012 08:03:24 -0700
+Cc: Praveen Vk <Praveen.VK@lnties.com>
+Subject: Problem in Compiling Qt-4.6.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,134 +36,298 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Mar 2012 09:08:11 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 20 Mar 2012 06:37:59 -0000
+Content-Type: multipart/alternative; boundary=0015174783d8592bc604bba6ead2
 
-On 03/19/2012 05:27 PM, Gary Thomas wrote:
-> On 2012-03-19 14:49, jfabernathy wrote:
->> On 03/19/2012 04:25 PM, Gary Thomas wrote:
->>> On 2012-03-19 13:25, jfabernathy wrote:
->>>> On 03/19/2012 03:13 PM, Gary Thomas wrote:
->>>>> On 2012-03-19 13:04, jfabernathy wrote:
->>>>>> On 03/19/2012 03:03 PM, Gary Thomas wrote:
->>>>>>> On 2012-03-19 12:59, jfabernathy wrote:
->>>>>>>> On 03/19/2012 02:55 PM, Gary Thomas wrote:
->>>>>>>>> On 2012-03-19 10:02, jfabernathy wrote:
->>>>>>>>>> Just did a git pull today on poky and meta-intel. I tried to 
->>>>>>>>>> rebuild meta-sugarbay again and got a build error. Not sure 
->>>>>>>>>> why yet. Not critical, just a spot check of things.
->>>>>>>>>> ------------------
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> NOTE: package mesa-dri-2_7.11-r13.1: task do_configure: 
->>>>>>>>>> Succeeded
->>>>>>>>>> NOTE: Running task 1723 of 5148 (ID: 1928, 
->>>>>>>>>> /home/jim/poky/meta/recipes-graphics/mesa/mesa-dri_7.11.bb, 
->>>>>>>>>> do_compile)
->>>>>>>>>> NOTE: package mesa-dri-2_7.11-r13.1: task do_compile: Started
->>>>>>>>>> ERROR: Function failed: do_compile (see 
->>>>>>>>>> /build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/temp/log.do_compile.25687 
->>>>>>>>>> for further information)
->>>>>>>>>> ERROR: Logfile of failure stored in: 
->>>>>>>>>> /build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/temp/log.do_compile.25687
->>>>>>>>>> Log data follows:
->>>>>>>>>> | DEBUG: SITE files ['endian-little', 'common-linux', 
->>>>>>>>>> 'common-glibc', 'bit-64', 'x86_64-linux', 'common']
->>>>>>>>>> | ERROR: Function failed: do_compile (see 
->>>>>>>>>> /build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/temp/log.do_compile.25687 
->>>>>>>>>> for further information)
->>>>>>>>>> | NOTE: make -j 8
->>>>>>>>>> | make[1]: Entering directory 
->>>>>>>>>> `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src'
->>>>>>>>>> | Making sources for autoconf
->>>>>>>>>> | make[2]: Entering directory 
->>>>>>>>>> `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src/mapi/glapi'
->>>>>>>>>> | make[2]: *** No rule to make target 
->>>>>>>>>> `/build/sugarbay-master/tmp/sysroots/x86_64-linux/usr/lib/x86_64-poky-linux/gcc/x86_64-poky-linux/4.6.3/include/stddef.h', 
->>>>>>>>>> needed by
->>>>>>>>>> `glapi_dispatch.o'. Stop.
->>>>>>>>>> | make[2]: Leaving directory 
->>>>>>>>>> `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src/mapi/glapi'
->>>>>>>>>> | make[1]: *** [subdirs] Error 1
->>>>>>>>>> | make[1]: Leaving directory 
->>>>>>>>>> `/build/sugarbay-master/tmp/work/x86_64-poky-linux/mesa-dri-2_7.11-r13.1/Mesa-7.11/src'
->>>>>>>>>> | make: *** [default] Error 1
->>>>>>>>>> | ERROR: oe_runmake failed
->>>>>>>>>> NOTE: package mesa-dri-2_7.11-r13.1: task do_compile: Failed
->>>>>>>>>> ERROR: Task 1928 
->>>>>>>>>> (/home/jim/poky/meta/recipes-graphics/mesa/mesa-dri_7.11.bb, 
->>>>>>>>>> do_compile) failed with exit code '1'
->>>>>>>>>
->>>>>>>>> What's your build host?
->>>>>>>>>
->>>>>>>>> Was this build from scratch? There was a discussion of much the
->>>>>>>>> same error on the meta-ti list last week where the host GCC was
->>>>>>>>> updated between two subsequent builds that gave this error.
->>>>>>>>>
->>>>>>>> Building on latest release Ubuntu 11.10 (Linux ubuntu-x64 
->>>>>>>> 3.0.0-16-generic #29-Ubuntu SMP)
->>>>>>>>
->>>>>>>> gcc is 4.6.1
->>>>>>>>
->>>>>>>
->>>>>>> Was your build from scratch? Do you use [extant] sstate cache?
->>>>>>>
->>>>>> I had a preview successful build and just reran that after 
->>>>>> bitbake -c cleanall core-image-sato
->>>>>
->>>>> Do you have rm_work in your local.conf?
->>>>
->>>> No to question on rm_work in local.conf
->>>>>
->>>>> Try this:
->>>>> % bitbake -c cleansstate mesa-dri
->>>>> % bitbake mesa-dri
->>>>
->>>> This work without errors. I'm now doing bitbake core-image-sato to 
->>>> see if it completes.
->>>>
->>>>>
->>>>> BTW, 'bitbake -c cleanall core-image-sato' doesn't really do much 
->>>>> - images don't have much (any?)
->>>>> stuff that needs to get cleaned. You can run 'bitbake 
->>>>> core-image-sato' as many times as you like
->>>>> and it will completely rebuild the image every time.
->>>>>
->>>>>
->>>> So if I do a git pull and want to retest with new stuff, just 
->>>> bitbake core-image-sato or should I do something with cleansstate??
->>>
->>> If you run just 'bitbake core-image-sato', any packages (recipes)
->>> which have been changed that are used by the image will be rebuilt.
->>> You should not have to clean anything for this to work properly.
->>>
->>
->> After I fixed mesa-dri and started bitbake core-image-sato, it ran 
->> for a long time and had a build failure similar to the first one on 
->> kexec-tools. I did the bitbake -c cleansstate
->> kexec-tools trick again and restarted bitbake core-image-sato. Not 
->> sure why this is, but it seems to work.
+--0015174783d8592bc604bba6ead2
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi,
+
+I am facing difficulty in compiling qt4-embedded_4.6.3.bb. I am compiling
+qt for arm1136 arch. I have changed configuration parameters of qt in
+qt4.inc as -
+
+" -opensource -embedded arm -confirm-license -release -shared -xmlpatterns
+-make libs -nomake docs -nomake demos -nomake tools -qt-gfx-linuxfb
+-qt-gfx-directfb -qt-gfx-vnc -qt-gfx-qvfb -qt-gfx-transformed
+-qt-gfx-multiscreen -qt-kbd-tty -qt-kbd-linuxinput -qt-kbd-qvfb
+-qt-mouse-pc -qt-mouse-linuxinput -no-mouse-linuxtp -qt-mouse-tslib
+-qt-mouse-qvfb -depths all -no-sql-sqlite -no-sql-ibase -no-sql-mysql
+-no-sql-odbc -no-sql-psql -no-sql-sqlite2 -accessibility -no-qt3support
+-no-mmx -no-3dnow -no-sse -no-sse2 -no-neon -no-glib -no-openssl -no-opengl
+-no-multimedia -no-audio-backend -no-phonon -no-phonon-backend -no-webkit
+-no-cups -no-nis -no-dbus -no-libmng -no-libtiff -no-gif -no-libjpeg
+-no-scripttools -exceptions -iconv -largefile "
+
+On issuing " bitbake -v meta-toolchain-qte" command I am getting following
+error-
+
+
+floatmath auto-detection... ()
+| compiling floatmath.cpp
+| floatmath.cpp:44:5: warning: unused parameter 'argc'
+| floatmath.cpp:44:5: warning: unused parameter 'argv'
+| linking floatmath
+| floatmath enabled.
+| zlib auto-detection... ()
+| compiling zlib.cpp
+| linking zlib
+| zlib enabled.
+| libpng auto-detection... ()
+| compiling libpng.cpp
+| linking libpng
+| libpng enabled.
+| DB2 auto-detection... ()
+| compiling db2.cpp
+| db2.cpp:42:20: fatal error: sqlcli.h: No such file or directory
+| compilation terminated.
+| make: *** [db2.o] Error 1
+| DB2 disabled.
+| OCI auto-detection... ()
+| compiling oci.cpp
+| oci.cpp:42:17: fatal error: oci.h: No such file or directory
+| compilation terminated.
+| make: *** [oci.o] Error 1
+| OCI disabled.
+| unknown SQL driver: sqlite_symbian
+| TDS auto-detection... ()
+| compiling tds.cpp
+| tds.cpp:42:22: fatal error: sybfront.h: No such file or directory
+| compilation terminated.
+| make: *** [tds.o] Error 1
+| TDS disabled.
+| EGL (EGL/egl.h) auto-detection... ()
+| compiling egl.cpp
+| egl.cpp:42:21: fatal error: EGL/egl.h: No such file or directory
+| compilation terminated.
+| make: *** [egl.o] Error 1
+| EGL (EGL/egl.h) disabled.
+| EGL (GLES/egl.h) auto-detection... ()
+| compiling egl4gles1.cpp
+| egl4gles1.cpp:42:22: fatal error: GLES/egl.h: No such file or directory
+| compilation terminated.
+| make: *** [egl4gles1.o] Error 1
+| EGL (GLES/egl.h) disabled.
+| DirectFB auto-detection... ()
+| compiling directfb.cpp
+
+ Stdint enabled.
+| ./configure: line 6403: $(OE_QMAKE_CXX): command not found
+| Testing size of pointers ...
+(/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/mkspecs/linux-gnueabi-oe-g++
+yes
+/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3
+/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3)
+| rm -f ptrsizetest.o
+| rm -f *~ core *.core
+| arm-poky-linux-gnueabi-g++ -march=armv6j -mtune=arm1136jf-s
+-mfloat-abi=softfp
+-mfpu=vfp -mthumb-interwork -mno-thumb
+--sysroot=/home/navani/Poky/poky-bernard-5.0/build/tmp/sysroots/EBboard -c
+-pipe
+-fexpensive-optimizations -fomit-frame-pointer -frename-registers -O2 -ggdb
+-feliminate-unused-debug-types -fexpensive-optimizations
+-fomit-frame-pointer
+-frename-registers -O2 -ggdb -feliminate-unused-debug-types -fpermissive
+-fvisibility-inlines-hidden -Wall -W  -I../../../mkspecs/linux-g++ -I. -o
+ptrsizetest.o ptrsizetest.cpp
+| ptrsizetest.cpp: In function 'int main(int, char**)':
+| ptrsizetest.cpp:59:12: error: 'PointerSize' is not a member of
+'QPointerSizeTest<4>'
+| make: *** [ptrsizetest.o] Error 1
+| Pointer size: 4
+
+|
+/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/bin/qmake
+-spec
+/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/mkspecs/linux-gnueabi-oe-g++
+-o
+/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/./src/phonon
+/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/src/phonon/
+phonon.pro
+|
+| Qt is now configured for building. Just run 'make'.
+| Once everything is built, you must run 'make install'.
+| Qt will be installed into /usr/
+|
+| To reconfigure, run 'make confclean' and 'configure'.
+|
+| sed: can't read
+/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/translations/Makefile:
+No such file or directory
+| ERROR: Function 'do_configure' failed (see
+/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/qt4-embedded-4.6.3-r26.1/temp/log.do_configure.27870
+for further information)
+NOTE: package qt4-embedded-4.6.3-r26.1: task do_configure: Failed
+ERROR: Task 546
+(/home/navani/Poky/poky-bernard-5.0/meta-EB/recipes-qt/qt4/
+qt4-embedded_4.6.3.bb, do_configure)
+failed with exit code '1'
+
+
+My question lies here-
+>> "db2.cpp:42:20: fatal error: sqlcli.h: No such file or directory"
+>> "oci.cpp:42:17: fatal error: oci.h: No such file or directory"
+
+Am I configuring Qt in wrong manner?
+
+>> Stdint enabled.
+| ./configure: line 6403: $(OE_QMAKE_CXX): command not found
+
+Not able to understand what error is this.
+
+>> | sed: can't read
+/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/translations/Makefile:
+No such file or directory
+| ERROR: Function 'do_configure' failed (see
+/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/qt4-embedded-4.6.3-r26.1/temp/log.do_configure.27870
+for further information)
+
+On removing
+"sed -e '/QMAKE_TARGET /d' -e '/TARGET /d' -i ${S}/translations/Makefile"
+from qt-4.6.3.inc and this error got resolved. But I don't think this is
+the correct way.
+
+Can you please come up with the correct way to resolve these errors?
+Thank You..
+
+--0015174783d8592bc604bba6ead2
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<br><br>I am facing difficulty in compiling <a href=3D"http://qt4-embedd=
+ed_4.6.3.bb">qt4-embedded_4.6.3.bb</a>. I am compiling qt for arm1136 arch.=
+ I have changed configuration parameters of qt in qt4.inc as -<br><br>&quot=
+; -opensource -embedded arm -confirm-license -release -shared -xmlpatterns =
+-make libs -nomake docs -nomake demos -nomake tools -qt-gfx-linuxfb -qt-gfx=
+-directfb -qt-gfx-vnc -qt-gfx-qvfb -qt-gfx-transformed -qt-gfx-multiscreen =
+-qt-kbd-tty -qt-kbd-linuxinput -qt-kbd-qvfb -qt-mouse-pc -qt-mouse-linuxinp=
+ut -no-mouse-linuxtp -qt-mouse-tslib -qt-mouse-qvfb -depths all -no-sql-sql=
+ite -no-sql-ibase -no-sql-mysql -no-sql-odbc -no-sql-psql -no-sql-sqlite2 -=
+accessibility -no-qt3support=A0 -no-mmx -no-3dnow -no-sse -no-sse2 -no-neon=
+ -no-glib -no-openssl -no-opengl -no-multimedia -no-audio-backend -no-phono=
+n -no-phonon-backend -no-webkit -no-cups -no-nis -no-dbus -no-libmng -no-li=
+btiff -no-gif -no-libjpeg -no-scripttools -exceptions -iconv -largefile &qu=
+ot;<br>
+
+<br>On issuing &quot; bitbake -v meta-toolchain-qte&quot; command I am gett=
+ing following error-<br><br><br>floatmath auto-detection... ()<br>| compili=
+ng floatmath.cpp<br>| floatmath.cpp:44:5: warning: unused parameter &#39;ar=
+gc&#39;<br>
+
+| floatmath.cpp:44:5: warning: unused parameter &#39;argv&#39;<br>| linking=
+ floatmath<br>| floatmath enabled.<br>| zlib auto-detection... ()<br>| comp=
+iling zlib.cpp<br>| linking zlib<br>| zlib enabled.<br>| libpng auto-detect=
+ion... ()<br>
+
+| compiling libpng.cpp<br>| linking libpng<br>| libpng enabled.<br>| DB2 au=
+to-detection... ()<br>| compiling db2.cpp<br>| db2.cpp:42:20: fatal error: =
+sqlcli.h: No such file or directory<br>| compilation terminated.<br>| make:=
+ *** [db2.o] Error 1<br>
+
+| DB2 disabled.<br>| OCI auto-detection... ()<br>| compiling oci.cpp<br>| o=
+ci.cpp:42:17: fatal error: oci.h: No such file or directory<br>| compilatio=
+n terminated.<br>| make: *** [oci.o] Error 1<br>| OCI disabled.<br>| unknow=
+n SQL driver: sqlite_symbian<br>
+
+| TDS auto-detection... ()<br>| compiling tds.cpp<br>| tds.cpp:42:22: fatal=
+ error: sybfront.h: No such file or directory<br>| compilation terminated.<=
+br>| make: *** [tds.o] Error 1<br>| TDS disabled.<br>| EGL (EGL/egl.h) auto=
+-detection... ()<br>
+
+| compiling egl.cpp<br>| egl.cpp:42:21: fatal error: EGL/egl.h: No such fil=
+e or directory<br>| compilation terminated.<br>| make: *** [egl.o] Error 1<=
+br>| EGL (EGL/egl.h) disabled.<br>| EGL (GLES/egl.h) auto-detection... ()<b=
+r>
+
+| compiling egl4gles1.cpp<br>| egl4gles1.cpp:42:22: fatal error: GLES/egl.h=
+: No such file or directory<br>| compilation terminated.<br>| make: *** [eg=
+l4gles1.o] Error 1<br>| EGL (GLES/egl.h) disabled.<br>| DirectFB auto-detec=
+tion... ()<br>
+
+| compiling directfb.cpp<br><br>=A0Stdint enabled.<br>| ./configure: line 6=
+403: $(OE_QMAKE_CXX): command not found<br>| Testing size of pointers ...<b=
+r>(/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnuea=
+bi/qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/mkspecs/linu=
+x-gnueabi-oe-g++<br>
+
+yes<br>/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-g=
+nueabi/qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3<br>/home=
+/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/qt4-e=
+mbedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3)<br>
+
+| rm -f ptrsizetest.o<br>| rm -f *~ core *.core<br>| arm-poky-linux-gnueabi=
+-g++ -march=3Darmv6j -mtune=3Darm1136jf-s -mfloat-abi=3Dsoftfp<br>-mfpu=3Dv=
+fp -mthumb-interwork -mno-thumb<br>--sysroot=3D/home/navani/Poky/poky-berna=
+rd-5.0/build/tmp/sysroots/EBboard -c -pipe<br>
+
+-fexpensive-optimizations -fomit-frame-pointer -frename-registers -O2 -ggdb=
+<br>-feliminate-unused-debug-types -fexpensive-optimizations -fomit-frame-p=
+ointer<br>-frename-registers -O2 -ggdb -feliminate-unused-debug-types -fper=
+missive<br>
+
+-fvisibility-inlines-hidden -Wall -W=A0 -I../../../mkspecs/linux-g++ -I. -o=
+<br>ptrsizetest.o ptrsizetest.cpp<br>| ptrsizetest.cpp: In function &#39;in=
+t main(int, char**)&#39;:<br>| ptrsizetest.cpp:59:12: error: &#39;PointerSi=
+ze&#39; is not a member of<br>
+
+&#39;QPointerSizeTest&lt;4&gt;&#39;<br>| make: *** [ptrsizetest.o] Error 1<=
+br>| Pointer size: 4<br><br>|<br>/home/navani/Poky/poky-bernard-5.0/build/t=
+mp/work/armv6-poky-linux-gnueabi/qt4-embedded-4.6.3-r26.1/qt-everywhere-ope=
+nsource-src-4.6.3/bin/qmake<br>
+
+-spec<br>/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux=
+-gnueabi/qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/mkspec=
+s/linux-gnueabi-oe-g++<br>-o<br>/home/navani/Poky/poky-bernard-5.0/build/tm=
+p/work/armv6-poky-linux-gnueabi/qt4-embedded-4.6.3-r26.1/qt-everywhere-open=
+source-src-4.6.3/./src/phonon<br>
+
+/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/=
+qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/src/phonon/<a h=
+ref=3D"http://phonon.pro">phonon.pro</a><br>|<br>| Qt is now configured for=
+ building. Just run &#39;make&#39;.<br>
+
+| Once everything is built, you must run &#39;make install&#39;.<br>| Qt wi=
+ll be installed into /usr/<br>|<br>| To reconfigure, run &#39;make confclea=
+n&#39; and &#39;configure&#39;.<br>|<br>| sed: can&#39;t read<br>/home/nava=
+ni/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/qt4-embedd=
+ed-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/translations/Makefile:<br=
 >
-> These errors should not happen - you should be able to update the
-> yocto meta-data and rebuild an image any time and not suffer such
-> problems.
+
+No such file or directory<br>| ERROR: Function &#39;do_configure&#39; faile=
+d (see<br>/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linu=
+x-gnueabi/qt4-embedded-4.6.3-r26.1/temp/log.do_configure.27870<br>for furth=
+er information)<br>
+
+NOTE: package qt4-embedded-4.6.3-r26.1: task do_configure: Failed<br>ERROR:=
+ Task 546<br>(/home/navani/Poky/poky-bernard-5.0/meta-EB/recipes-qt/qt4/<a =
+href=3D"http://qt4-embedded_4.6.3.bb">qt4-embedded_4.6.3.bb</a>, do_configu=
+re)<br>
+
+failed with exit code &#39;1&#39;<br><br><br>My question lies here-<br>&gt;=
+&gt; &quot;db2.cpp:42:20: fatal error: sqlcli.h: No such file or directory&=
+quot; <br>&gt;&gt; &quot;oci.cpp:42:17: fatal error: oci.h: No such file or=
+ directory&quot;<br>
+
+<br>Am I configuring Qt in wrong manner?<br><br>&gt;&gt; Stdint enabled.<br=
+>| ./configure: line 6403: $(OE_QMAKE_CXX): command not found<br><br>Not ab=
+le to understand what error is this.<br><br>&gt;&gt; | sed: can&#39;t read<=
+br>
+
+/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/=
+qt4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/translations/Ma=
+kefile:<br>No such file or directory<br>| ERROR: Function &#39;do_configure=
+&#39; failed (see<br>
+
+/home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/=
+qt4-embedded-4.6.3-r26.1/temp/log.do_configure.27870<br>for further informa=
+tion)<br><br>On removing <br>&quot;sed -e &#39;/QMAKE_TARGET /d&#39; -e &#3=
+9;/TARGET /d&#39; -i ${S}/translations/Makefile&quot; from qt-4.6.3.inc and=
+ this error got resolved. But I don&#39;t think this is the correct way.<br=
 >
-> Did you change anything else, especially with your host tools,
-> between the time your previous build completed and you did this
-> pull and rebuild?  For example, running the Ubuntu package updater?
->
-I never got a complete good build after I updated some unknown items in 
-Ubuntu 11.10 dev system and did a recent git pull until I did a 
-completely new bitbake core-image-sato to a new build directory.  That 
-completed correctly.
 
-So it seems we may need some Rules for users to follow when rebuilding 
-with the latest versions of Yocto. It seems there are some dependency on 
-certain key packages on the dev system not changing. Completely 
-rebuilding seems to be the safest method and given the time wasted when 
-things fail, might be the fastest.
+<br>Can you please come up with the correct way to resolve these errors?<br=
+>Thank You..<br>
 
-Jim A
-
-
+--0015174783d8592bc604bba6ead2--
