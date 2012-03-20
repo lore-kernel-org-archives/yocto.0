@@ -1,27 +1,27 @@
 Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9609BE013A3
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 14:38:11 -0700 (PDT)
-Received: by qcsd1 with SMTP id d1so1715414qcs.35
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2012 14:38:11 -0700 (PDT)
+Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
+	[209.85.216.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C7F7E013A6
+	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 02:08:11 -0700 (PDT)
+Received: by qafl39 with SMTP id l39so1224836qaf.14
+	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 02:08:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=message-id:date:from:user-agent:mime-version:to:subject:references
 	:in-reply-to:content-type:content-transfer-encoding;
-	bh=jElZKi062Ss9GKsCH0evNIViSsv5uTKw6T8gpby0h3s=;
-	b=oblt0DekFzOVO9Dag8eUyBeaZadeZvd0nYXfwcaP4CnvXVKZLVU7dR4V1OtMVCGaho
-	Av5xm6LstZfEr/En8DJeMjIfJ3UNhU4MgNB6f4YkX9nB3O9c5GZWKFWXvvYs3FzEOW+R
-	WpeEr3BDASl/Z+0EK1+HyoX0wg50w4D8xQH4ZLLfAy5xpcU0f5b/iEu02/+gRZzeLpjX
-	JZHv+bdmj4V7ngcHvkpSq8icZJBvwt7BX9V8+VsFjHzLpn8Ru00+rnmRJr+h3EuvM7CK
-	zt9XHxozb0qVcLjMignEYYsVUBhHWCsSwzVgLycT6Z/RtCKtWYzK75RQW6RIgttJ+eoH
-	4dSA==
-Received: by 10.224.214.68 with SMTP id gz4mr16822981qab.68.1332193090990;
-	Mon, 19 Mar 2012 14:38:10 -0700 (PDT)
+	bh=PrRAXdGD0nLjmetV/P44HD2Ds+PGyaMvcsUpKAnHzJs=;
+	b=jA5WUiW8dXpyn4QnX0oEPpJ9BbvNJ9SjMTi60xR5dSbfOpl8I52gBZh4dF6PbjCHLi
+	FuEMEHLXBavPG6HEnRvCkTfAubtAh6NtieP0+X6xiKlf4vf7ookyflipM/h4Ok9otlt3
+	8W5XSA7Hyn3Rw2E33B3Lmf+YUkCRA1tDvE21Dgpu5xQBPxRrRNF1zrGsvWqKQye0pOkR
+	fRG3GA9RR73HJ6p8IO+KlK6kZpWo5ypwP2DEpjhDgJSU63VSJ9cU12F7Phx75l8TIZVm
+	38F5JxSyoVIb9k2xBFd4zsFN0YpitxH6wQMEr0Ejy4dWLNJ6bvDimZf6HeoPxFZMfrbU
+	zt8Q==
+Received: by 10.224.189.12 with SMTP id dc12mr18914364qab.22.1332234490322;
+	Tue, 20 Mar 2012 02:08:10 -0700 (PDT)
 Received: from [10.0.1.54] (nc-184-4-33-105.dhcp.embarqhsd.net. [184.4.33.105])
-	by mx.google.com with ESMTPS id v8sm24224679qaa.11.2012.03.19.14.38.10
-	(version=SSLv3 cipher=OTHER); Mon, 19 Mar 2012 14:38:10 -0700 (PDT)
-Message-ID: <4F67A742.4010000@gmail.com>
-Date: Mon, 19 Mar 2012 17:38:10 -0400
+	by mx.google.com with ESMTPS id dm8sm1691378qab.18.2012.03.20.02.08.08
+	(version=SSLv3 cipher=OTHER); Tue, 20 Mar 2012 02:08:09 -0700 (PDT)
+Message-ID: <4F6848F9.90703@gmail.com>
+Date: Tue, 20 Mar 2012 05:08:09 -0400
 From: jfabernathy <jfabernathy@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
@@ -45,7 +45,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2012 21:38:11 -0000
+X-List-Received-Date: Tue, 20 Mar 2012 09:08:11 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -162,14 +162,17 @@ On 03/19/2012 05:27 PM, Gary Thomas wrote:
 > between the time your previous build completed and you did this
 > pull and rebuild?  For example, running the Ubuntu package updater?
 >
-I regularly do Ubuntu update, I guess I should make sure that is really 
-necessary.  I know a few updates came in last week before the latest 
-pull. Not sure what they updated.  Live and learn :-)
+I never got a complete good build after I updated some unknown items in 
+Ubuntu 11.10 dev system and did a recent git pull until I did a 
+completely new bitbake core-image-sato to a new build directory.  That 
+completed correctly.
 
-It seems to be completing now. I'm at 5140 of 5148.  Thanks for the help 
-on this.
+So it seems we may need some Rules for users to follow when rebuilding 
+with the latest versions of Yocto. It seems there are some dependency on 
+certain key packages on the dev system not changing. Completely 
+rebuilding seems to be the safest method and given the time wasted when 
+things fail, might be the fastest.
 
 Jim A
-
 
 
