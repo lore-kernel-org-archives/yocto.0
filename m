@@ -1,24 +1,24 @@
 Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D734E0044D
-	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 09:23:42 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 20 Mar 2012 09:23:18 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1398E0044D
+	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 09:42:14 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 20 Mar 2012 09:42:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="119612013"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="141979233"
 Received: from unknown (HELO helios.localnet) ([10.252.123.195])
-	by orsmga001.jf.intel.com with ESMTP; 20 Mar 2012 09:23:17 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 20 Mar 2012 09:42:13 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: John Toomey <john.toomey@linux.intel.com>
-Date: Tue, 20 Mar 2012 16:23:16 +0000
-Message-ID: <1369360.rBu7e7v26n@helios>
+To: Navani Srivastava <navani.srivastava@gmail.com>
+Date: Tue, 20 Mar 2012 16:42:12 +0000
+Message-ID: <1864039.T6V9d7o7RK@helios>
 Organization: Intel Corporation
 User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.1; i686; ; )
-In-Reply-To: <4F68A6F6.8080900@linux.intel.com>
-References: <4F68A6F6.8080900@linux.intel.com>
+In-Reply-To: <CA+Z6RkU9b9zAobZWXwMs6mRKMtcJEmq65eUxpZVWsABC9ywwQw@mail.gmail.com>
+References: <CA+Z6RkU9b9zAobZWXwMs6mRKMtcJEmq65eUxpZVWsABC9ywwQw@mail.gmail.com>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: issue building iputils with uclibc.
+Cc: yocto@yoctoproject.org, Praveen Vk <Praveen.VK@lnties.com>
+Subject: Re: Problem in Compiling Qt-4.6.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,41 +30,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Mar 2012 16:23:42 -0000
+X-List-Received-Date: Tue, 20 Mar 2012 16:42:14 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-On Tuesday 20 March 2012 15:49:10 John Toomey wrote:
-> I'm having problems compiling iputils with uclibc -
-> 
-> | ping6.o: In function `niquery_option_subject_name_handler':
-> /tmp/work/i586-poky-linux-uclibc/iputils-s20101006-r2/iputils-s20101006/ping
-> 6.c:428: undefined reference to `dn_comp'
-> 
-> | collect2: ld returned 1 exit status
-> | make: *** [ping6] Error 1
-> | make: *** Waiting for unfinished jobs....
-> | make[1]: Leaving directory
-> 
-> `/tmp/work/i586-poky-linux-uclibc/iputils-s20101006-r2/iputils-s20101006/doc
-> '
-> | ERROR: oe_runmake failed
-> 
-> NOTE: package iputils-s20101006-r2: task do_compile: Failed
-> ERROR: Task 4 (/poky/meta/recipes-extended/iputils/iputils_s20101006.bb,
-> do_compile) failed with exit code '1'
-> 
-> It works fine with eglibc. I posted this question before but didnt
-> really get a good answer - can anyone help point me in the right direction?
+On Tuesday 20 March 2012 12:07:37 Navani Srivastava wrote:
+> >> "db2.cpp:42:20: fatal error: sqlcli.h: No such file or directory"
+> >> "oci.cpp:42:17: fatal error: oci.h: No such file or directory"
 
-IIRC the thread ended with Khem asking if UCLIBC_HAS_RESOLVER_SUPPORT='y' was 
-in the uclibc configuration, the implication being that dn_comp is unavailable 
-unless that is true. I'm not too familiar with how uclibc is configured and 
-with only a brief glance at the recipe I can see the config seems to be 
-automatically generated but I can't see exactly how additional options (beyond 
-what gets added from DISTRO_FEATURES) would be added.
+The above errors are just passed through from the configure tests and despite 
+saying "fatal" they actually aren't.
 
-Khem, could you help out here?
+The real problem appears to be this error:
+
+> | sed: can't read
+> 
+> /home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/q
+> t4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/translations/Make
+> file: No such file or directory
+
+> On removing
+> "sed -e '/QMAKE_TARGET /d' -e '/TARGET /d' -i ${S}/translations/Makefile"
+> from qt-4.6.3.inc and this error got resolved. But I don't think this is
+> the correct way.
+
+It's not obvious, but looking through Qt 4.6.3's configure script, it seems 
+that if you specify a "-make xxx" option you won't get the default items 
+("libs tools examples demos docs translations") unless you state them 
+explicitly, although "-nomake xxx" will not trigger this. Thus by having "-
+make libs" in your configure command line it has disabled all of the other 
+defaults including translations.
+
+So I think you have two options to fix this:
+
+a) Remove the "-make libs" option and add "-nomake xxx" for anything you don't 
+want in the default items listed above, or
+
+b) Add "-make translations" and possibly "-make xxx" for anything other than 
+libs from the above list that you do want.
 
 Cheers,
 Paul
