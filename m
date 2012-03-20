@@ -1,24 +1,32 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1398E0044D
-	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 09:42:14 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 20 Mar 2012 09:42:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="141979233"
-Received: from unknown (HELO helios.localnet) ([10.252.123.195])
-	by fmsmga002.fm.intel.com with ESMTP; 20 Mar 2012 09:42:13 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Navani Srivastava <navani.srivastava@gmail.com>
-Date: Tue, 20 Mar 2012 16:42:12 +0000
-Message-ID: <1864039.T6V9d7o7RK@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.1; i686; ; )
-In-Reply-To: <CA+Z6RkU9b9zAobZWXwMs6mRKMtcJEmq65eUxpZVWsABC9ywwQw@mail.gmail.com>
-References: <CA+Z6RkU9b9zAobZWXwMs6mRKMtcJEmq65eUxpZVWsABC9ywwQw@mail.gmail.com>
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B28EDE0044D
+	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 09:57:14 -0700 (PDT)
+Received: by lbom11 with SMTP id m11so295333lbo.35
+	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 09:57:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=WHBIK37j5p9uxePWVKeGxxMBX17evy4moA6FMLAPFm0=;
+	b=e0Ufao59/gDXfI7/qxGD3i0p8a3w7kqA/hriH1Iw7INfxjWPjmLw6BYnFYu6dYdAOs
+	PhCs3d9hisXrC+RDpz37RinV02ODZfzl6+eT/JFeu/CgB2c7WJr+kPts+nq+7NRjuues
+	87Eu7cYrlVkEBf3ArqHSgTS1+SQGAioVjVn1BNw/76rEsauE8u+qevldYiU/v6CV+kgD
+	07j7pGeJVGHtcgk7mCHDLg9Ft914czy6HSd7nBsX3iWQw8a/SFfjMY/gYoL+q+x4FZZA
+	8WobGDmVDv+3/C3Q5DtS52KUZmwqc9SqI1uFjP9C8FVp+CMVV16NEXbWkJfolofLHe3b
+	tsuw==
+Received: by 10.152.102.228 with SMTP id fr4mr439354lab.23.1332262633372; Tue,
+	20 Mar 2012 09:57:13 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, Praveen Vk <Praveen.VK@lnties.com>
-Subject: Re: Problem in Compiling Qt-4.6.3
+Received: by 10.152.2.71 with HTTP; Tue, 20 Mar 2012 09:56:42 -0700 (PDT)
+In-Reply-To: <1369360.rBu7e7v26n@helios>
+References: <4F68A6F6.8080900@linux.intel.com> <1369360.rBu7e7v26n@helios>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 20 Mar 2012 09:56:42 -0700
+Message-ID: <CAMKF1spVh7VR12eaUdbLQ5rCzT0ifziTWtFBgsLW7Or2+92XTw@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: issue building iputils with uclibc.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,50 +38,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Mar 2012 16:42:14 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 20 Mar 2012 16:57:15 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Tuesday 20 March 2012 12:07:37 Navani Srivastava wrote:
-> >> "db2.cpp:42:20: fatal error: sqlcli.h: No such file or directory"
-> >> "oci.cpp:42:17: fatal error: oci.h: No such file or directory"
+On Tue, Mar 20, 2012 at 9:23 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+>
+> IIRC the thread ended with Khem asking if UCLIBC_HAS_RESOLVER_SUPPORT='y' was
+> in the uclibc configuration, the implication being that dn_comp is unavailable
+> unless that is true. I'm not too familiar with how uclibc is configured and
+> with only a brief glance at the recipe I can see the config seems to be
+> automatically generated but I can't see exactly how additional options (beyond
+> what gets added from DISTRO_FEATURES) would be added.
+>
+> Khem, could you help out here?
 
-The above errors are just passed through from the configure tests and despite 
-saying "fatal" they actually aren't.
-
-The real problem appears to be this error:
-
-> | sed: can't read
-> 
-> /home/navani/Poky/poky-bernard-5.0/build/tmp/work/armv6-poky-linux-gnueabi/q
-> t4-embedded-4.6.3-r26.1/qt-everywhere-opensource-src-4.6.3/translations/Make
-> file: No such file or directory
-
-> On removing
-> "sed -e '/QMAKE_TARGET /d' -e '/TARGET /d' -i ${S}/translations/Makefile"
-> from qt-4.6.3.inc and this error got resolved. But I don't think this is
-> the correct way.
-
-It's not obvious, but looking through Qt 4.6.3's configure script, it seems 
-that if you specify a "-make xxx" option you won't get the default items 
-("libs tools examples demos docs translations") unless you state them 
-explicitly, although "-nomake xxx" will not trigger this. Thus by having "-
-make libs" in your configure command line it has disabled all of the other 
-defaults including translations.
-
-So I think you have two options to fix this:
-
-a) Remove the "-make libs" option and add "-nomake xxx" for anything you don't 
-want in the default items listed above, or
-
-b) Add "-make translations" and possibly "-make xxx" for anything other than 
-libs from the above list that you do want.
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+go into the uclibc build tree and like kernel or busybox it will have
+a .config and grok that. If this is disabled then enable it in
+uClibc.distro file under uclibc recipes dir and rebuild uclibc.
+ideally these are distro knobs but for tests you can try it
+file ( uclibc uses kconfig )
 
