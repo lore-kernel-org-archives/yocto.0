@@ -1,31 +1,26 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4A9BE0070C
-	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 06:33:17 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SALfA-00061I-NZ
-	for yocto@yoctoproject.org; Wed, 21 Mar 2012 09:33:16 -0400
-Date: Wed, 21 Mar 2012 09:33:10 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1203210926200.7835@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB34FE00747
+	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 07:24:23 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 21 Mar 2012 07:24:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="123409791"
+Received: from unknown (HELO helios.localnet) ([10.252.123.204])
+	by orsmga002.jf.intel.com with ESMTP; 21 Mar 2012 07:24:22 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Wed, 21 Mar 2012 14:24:21 +0000
+Message-ID: <5626092.n39Mf9gN6O@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.1; i686; ; )
+In-Reply-To: <4F69BA1B.8030500@mlbassoc.com>
+References: <alpine.DEB.2.02.1203210703200.7447@oneiric>
+	<alpine.DEB.2.02.1203210710090.2402@oneiric>
+	<4F69BA1B.8030500@mlbassoc.com>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: is it possible to centralize defns of KERNEL_IMAGETYPE and KERNEL_ALT_IMAGETYPE?
+Cc: yocto@yoctoproject.org
+Subject: Re: setting of BBPATH differs between ref manual and actual layer.conf file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,45 +32,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Mar 2012 13:33:18 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 21 Mar 2012 14:24:24 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+On Wednesday 21 March 2012 05:23:07 Gary Thomas wrote:
+> Indeed it does matter, as does the order that these statements are processed
+> (which I think is the order the layers are listed in bblayers.conf?) 
 
-  poking around the conf files and i noticed the following two files
-(one from oe-core, obviously) had the following definitions:
+Correct - each layer's layer.conf will be read in the order the layers are 
+listed in bblayers.conf. Since variables such as BBPATH are usually appended 
+or prepended within layer.conf, you will get different final values depending on 
+the order they are listed.
 
-$ grep -r KERNEL.*IMAGETYPE.*vmlinux *
-meta/conf/machine/qemumips.conf:KERNEL_IMAGETYPE = "vmlinux"
-meta/conf/machine/qemumips.conf:KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
-... snip ppc line ...
-meta-yocto/conf/machine/routerstationpro.conf:KERNEL_IMAGETYPE = "vmlinux"
-meta-yocto/conf/machine/routerstationpro.conf:KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
-$
+> It can matter if two layers contain the same .conf file [at least].  I
+> experienced this when I had two layers with abi_version.conf - actually
+> three: meta, meta-yocto and meta-MINE - and I got very confused when I
+> removed meta-yocto from the mix :-(  
 
-  obviously, the above represents the MIPS architecture in both cases
-and, unsurprisingly, assign the same values to those variables.
+I have to say, IMHO it is best practice to not expect to be able to change 
+your layer configuration and keep the same previously-built TMPDIR contents. 
+Now that we've enabled OEBasicHash (in Poky) that will protect you against 
+most changes that could result from playing around with your layer config by 
+forcing a rebuild of the affected recipes, but if you don't have that enabled 
+it's entirely possible the contents of your TMPDIR (sysroots, output packages, 
+etc.) will no longer match up with the metadata.
 
-  since both of those files contain the line:
+> The ordering of BBPATH isn't as important with recipes as they use the layer
+> priority mechanism, but if you had two layers with identical priorities and
+> recipes, it might matter as well.
 
-require conf/machine/include/tune-mips32.inc
+BBPATH only influences how class, configuration and include files are found. It 
+has no effect on searching for recipes themselves.
 
-under what circumstances could you move those common lines down into
-the corresponding tune-<arch>.inc file?  i know next to nothing about
-MIPS cross-compiling so i have no idea whether that's feasible, or
-whether it's reasonable to set default values and let the BSP override
-them.
-
-  does this question make any sense?
-
-rday
+Cheers,
+Paul
 
 -- 
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Paul Eggleton
+Intel Open Source Technology Centre
 
