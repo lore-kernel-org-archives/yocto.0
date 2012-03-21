@@ -1,24 +1,41 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E15FE013A3
-	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 20:41:51 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 20 Mar 2012 20:41:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="131316517"
-Received: from unknown (HELO localhost) ([10.255.15.208])
-	by fmsmga001.fm.intel.com with ESMTP; 20 Mar 2012 20:41:50 -0700
-From: tom.zanussi@intel.com
-To: scott.m.rifenbark@intel.com,
-	yocto@yoctoproject.org
-Date: Tue, 20 Mar 2012 22:41:50 -0500
-Message-Id: <fdcde6b23f8e55899048764958836e22f44748b4.1332300688.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <a38524cb14199352568900b0995c2ced9f539b6e.1332300688.git.tom.zanussi@intel.com>
-References: <a38524cb14199352568900b0995c2ced9f539b6e.1332300688.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1332300688.git.tom.zanussi@intel.com>
-References: <cover.1332300688.git.tom.zanussi@intel.com>
-Subject: [PATCH 2/2] documentation/bsp-guide/bsp.xml: update 'BSP Licensing' section
+Return-Path: <ashishpandey@huawei.com>
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [119.145.14.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE0C6E0070C
+	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 22:01:15 -0700 (PDT)
+Received: from huawei.com (szxga05-in [172.24.2.49])
+	by szxga05-in.huawei.com (iPlanet Messaging Server 5.2 HotFix 2.14
+	(built Aug
+	8 2006)) with ESMTP id <0M1700298XY2UK@szxga05-in.huawei.com> for
+	yocto@yoctoproject.org; Wed, 21 Mar 2012 13:01:14 +0800 (CST)
+Received: from szxrg02-dlp.huawei.com ([172.24.2.119])
+	by szxga05-in.huawei.com (iPlanet Messaging Server 5.2 HotFix 2.14
+	(built Aug
+	8 2006)) with ESMTP id <0M1700AH5XXBID@szxga05-in.huawei.com> for
+	yocto@yoctoproject.org; Wed, 21 Mar 2012 13:01:14 +0800 (CST)
+Received: from szxeml212-edg.china.huawei.com ([172.24.2.119])
+	by szxrg02-dlp.huawei.com (MOS 4.1.9-GA)	with ESMTP id AHZ98144; Wed,
+	21 Mar 2012 13:01:13 +0800
+Received: from SZXEML412-HUB.china.huawei.com (10.82.67.91)
+	by szxeml212-edg.china.huawei.com (172.24.2.181) with Microsoft SMTP
+	Server (TLS) id 14.1.323.3; Wed, 21 Mar 2012 13:01:07 +0800
+Received: from SZXEML532-MBX.china.huawei.com ([fe80::79c7:7b0b:cec1:322c])
+	by szxeml412-hub.china.huawei.com ([10.82.67.91]) with mapi id
+	14.01.0323.003; Wed, 21 Mar 2012 13:01:07 +0800
+Date: Wed, 21 Mar 2012 05:01:06 +0000
+From: Ashish Pandey <ashishpandey@huawei.com>
+In-reply-to: <OFEA4B568B.582F38D7-ON652579C8.001AA88F-652579C8.001B875F@notesmail.huawei.com.cn>
+X-Originating-IP: [10.18.96.98]
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-id: <F3906846C0EDD246B5CF75E8EDA3C47E138A620D@szxeml532-mbx.china.huawei.com>
+MIME-version: 1.0
+Accept-Language: en-IN, zh-CN, en-US
+Thread-topic: Build failure because of do_fectch in Yocto-1.1
+Thread-index: AQHNBx9RdTEx3W5vdk2uffuV+HR2JZZ0MHHx
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+X-CFilter-Loop: Reflected
+References: <OFEA4B568B.582F38D7-ON652579C8.001AA88F-652579C8.001B875F@notesmail.huawei.com.cn>
+Subject: Build failure because of do_fectch in Yocto-1.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,253 +47,192 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Mar 2012 03:41:51 -0000
+X-List-Received-Date: Wed, 21 Mar 2012 05:01:16 -0000
+Content-type: multipart/alternative;
+	boundary="Boundary_(ID_hcuGCI2HtrOWxi1yl9PYwQ)"
+Content-language: en-IN
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+--Boundary_(ID_hcuGCI2HtrOWxi1yl9PYwQ)
+Content-type: text/plain; charset=iso-8859-1
+Content-transfer-encoding: 7BIT
 
-The LICENSE_FLAGS mechanism can now be used to meet the special
-license requirements needed by some BSPs.  Update the documentation to
-reflect the current BSP licensing mechanisms.
+Hi All ,
 
-Also add a new blurb about the time-limited kernel.
+  I am new to Yocto and I am trying to build linux image using Yocto-1.1 . I am not able to build completely , It is giving following error.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- documentation/bsp-guide/bsp.xml |  192 ++++++++++++++++++--------------------
- 1 files changed, 91 insertions(+), 101 deletions(-)
-
-diff --git a/documentation/bsp-guide/bsp.xml b/documentation/bsp-guide/bsp.xml
-index a8d571c..40d994a 100644
---- a/documentation/bsp-guide/bsp.xml
-+++ b/documentation/bsp-guide/bsp.xml
-@@ -656,135 +656,125 @@
-             </section>
-         </section>
- 
--        <section id='bsp-click-through-licensing'>
--            <title>BSP 'Click-Through' Licensing Procedure</title>
--
--            <note> This section describes how
--		click-through licensing is expected to work.
--                Currently, this functionality is not yet implemented.
--            </note>
--
-+        <section id='bsp-licensing'>
-+            <title>BSP Licensing Considerations</title>
-             <para>
- 	      In some cases, a BSP contains separately licensed IP
--	      (Intellectual Property) for a component that imposes
--	      upon the user a requirement to accept the terms of a
--	      'click-through' license.  
--              Once the license is accepted the
--	      Yocto Project build system can then build and include the
--	      corresponding component in the final BSP image.  
--              Some affected components might be essential to the normal
--	      functioning of the system and have no 'free' replacement
--	      (i.e. the resulting system would be non-functional
--	      without them).
--              On the other hand, other components might be simply
--	      'good-to-have' or purely elective, or if essential
--	      nonetheless have a 'free' (possibly less-capable)
--	      version that could be used as a in the BSP recipe.
-+	      (Intellectual Property) for a component or components
-+	      that impose upon the user a requirement to accept the
-+	      terms of a commercial or other type of license that
-+	      requires some kind of explicit EULA (End User License
-+	      Agreement).  Once the license is accepted the Yocto
-+	      Project build system can then build and include the
-+	      corresponding component in the final BSP image, or if
-+	      the BSP is available in the form of an already built
-+	      image, the user will be able to download the image after
-+	      agreeing to the license or EULA.
-+            </para>
-+            <para>
-+	      Some affected components might be essential to the
-+	      normal functioning of the system and have no 'free'
-+	      replacement (i.e. the resulting system would be
-+	      non-functional without them).  On the other hand, other
-+	      components might be simply 'good-to-have' or purely
-+	      elective, or if essential nonetheless have a 'free'
-+	      (possibly less-capable) version that could be used as a
-+	      in the BSP recipe.
-             </para>
- 
-             <para>
--	      For cases where you can substitute something and still maintain functionality, 
--              the Yocto Project website's  
--              <ulink url='&YOCTO_HOME_URL;/download/all?keys=&amp;download_type=1&amp;download_version='>BSP Download Page</ulink> 
--              makes available 'de-featured' BSPs that are completely free of any IP encumbrances.
--              For these cases you can use the substitution directly and without any further licensing
--              requirements.  
--              If present, these fully 'de-featured' BSPs are named appropriately different 
--              as compared to the names of the respective encumbered BSPs.
--              If available, these substitutions are the simplest and most preferred options.
--              This, of course, assumes the resulting functionality meets requirements.
-+	      For cases where you can substitute something and still
-+              maintain functionality, the Yocto Project website's
-+              <ulink url='&YOCTO_HOME_URL;/download/all?keys=&amp;download_type=1&amp;download_version='>BSP
-+              Download Page</ulink> makes available 'de-featured' BSPs
-+              that are completely free of any IP encumbrances.  For
-+              these cases you can use the substitution directly and
-+              without any further licensing requirements.  If present,
-+              these fully 'de-featured' BSPs are named appropriately
-+              different as compared to the names of the respective
-+              encumbered BSPs.  If available, these substitutions are
-+              the simplest and most preferred options.  This, of
-+              course, assumes the resulting functionality meets
-+              requirements.
-             </para>
- 
-             <para>
--	      If however, a non-encumbered version is unavailable or the 'free' version 
--              would provide unsuitable functionality or quality, you can use 
--              an encumbered version.  
-+	      If however, a non-encumbered version is unavailable or
-+              the 'free' version would provide unsuitable
-+              functionality or quality, you can use an encumbered
-+              version.
-             </para>
- 
--            <para>  
--              Several methods exist within the Yocto Project build system to satisfy the licensing
--	      requirements for an encumbered BSP.
--              The following list describes them in preferential order:
-+            <para> A couple different methods exist within the Yocto
-+              Project build system to satisfy the licensing
-+              requirements for an encumbered BSP.  The following list
-+              describes them in order of preference:
-             </para>
- 
- 	    <orderedlist>
-             <listitem>
--
- 		<para>
--		  Get a license key (or keys) for the encumbered BSP by visiting 
--                  a website and providing the name of the BSP and your email address
--                  through a web form.
-+		  Yocto recipes that have commercial or other types of
-+                  specially-licensed packages define a variable named
-+                  LICENSE_FLAGS.  For each of those recipes, a user
-+                  can specify a matching license string in a
-+                  local.conf variable named LICENSE_FLAGS_WHITELIST.
-+                  This signifies that the user agrees to the license,
-+                  and the corresponding recipe can then be built and
-+                  included in the image.  See Section 3.3.2. in The
-+                  Yocto Project Reference Manual for details on these
-+                  variables and how to make use of them.
-                 </para>
-- 
--		<para>
--		  After agreeing to any applicable license terms, the
--		  BSP key(s) will be immediately sent to the address
--		  you gave and you can use them by specifying BSPKEY_&lt;keydomain&gt;
--		  environment variables when building the image:
--		</para>
--
--		<literallayout class='monospaced'>
--     $ BSPKEY_&lt;keydomain&gt;=&lt;key&gt; bitbake core-image-sato
--		</literallayout>
- 
- 		<para>
--		  These steps allow the encumbered image to be built
--		  with no change at all to the normal build process.
-+		  If you build as you normally would, without
-+                  specifying any recipes in the
-+                  LICENSE_FLAGS_WHITELIST, the build will stop and
-+                  provide you with the list of recipes that you've
-+                  tried to include in the image which need entries in
-+                  the LICENSE_FLAGS_WHITELIST.  Once the appropriate
-+                  license flags have been entered into the whitelist,
-+                  restart the build to continue where it left off.
-+                  During the build the prompt will not appear again
-+                  since you have satisfied the requirement.
- 		</para>
--
--		<para>
--		  Equivalently and probably more conveniently, a line
--		  for each key can instead be put into the user's
--		  <filename>local.conf</filename> file found in the Yocto Project file's
--                  build directory.
--		</para>
--
-+ 
- 		<para>
--		  The &lt;keydomain&gt; component of the
--		  BSPKEY_&lt;keydomain&gt; is required because there
--		  might be multiple licenses in effect for a given BSP.
--                  In such cases, a given &lt;keydomain&gt; corresponds to
--		  a particular license.  In order for an encumbered
--		  BSP that encompasses multiple key domains to be built
--		  successfully, a &lt;keydomain&gt; entry for each
--		  applicable license must be present in <filename>local.conf</filename> or
--		  supplied on the command-line.
-+		  Once the appropriate license flags are whitelisted
-+		  in the LICENSE_FLAGS_WHITELIST variable, the
-+		  encumbered image can be built with no change at all
-+		  to the normal build process.
- 		</para>
-               </listitem> 
-               <listitem>
- 		<para>
--		  Do nothing - build as you normally would.
--                  When a license is needed the build will stop and prompt you with instructions.
--                  Follow the license prompts that originate from the
--		  encumbered BSP.  
--                  These prompts usually take the form of instructions
--		  needed to manually fetch the encumbered package(s)
--		  and md5 sums into the required directory 
--                  (e.g. the <filename>yocto/build/downloads</filename>).
--                  Once the manual package fetch has been
--		  completed, restart the build to continue where
--		  it left off.
--                  During the build the prompt will not appear again since you have satisfied the 
--                  requirement.
--		</para>
--              </listitem>
--              <listitem>
--		<para>
--		  Get a full-featured BSP recipe rather than a key.
--                  You can do this by visiting the Yocto Project website's
--                  <ulink url='&YOCTO_HOME_URL;/download'>Download</ulink> page and 
--                  clicking on "BSP Downloads".
--		  BSP tarballs that have proprietary information can be downloaded after agreeing 
--                  to licensing requirements as part of the download process. 
--                  Obtaining the code this way allows you to build an encumbered image with 
--                  no changes at all as compared to the normal build. 
-+		  Get a pre-built version of the BSP.  You can do this
-+                  by visiting the Yocto Project website's
-+                  <ulink url='&YOCTO_HOME_URL;/download'>Download</ulink>
-+                  page and clicking on "BSP Downloads".  BSP tarballs
-+                  that contain proprietary components can be
-+                  downloaded after agreeing to the licensing
-+                  requirements of each of the individually encumbered
-+                  packages as part of the download process.  Obtaining
-+                  the BSP this way allows you to access an encumbered
-+                  image immediately after agreeing to the
-+                  click-through license agreements presented by the
-+                  website.  Note that if you want to build the image
-+                  yourself using the recipes contained within the BSP
-+                  tarball, you will still need to create an
-+                  appropriate LICENSE_FLAGS_WHITELIST to match the
-+                  encumbered recipes in the BSP.
-                 </para>
-               </listitem>
- 	    </orderedlist>
- 	    <para>
--	      Note that the third method is also the only option available
--	      when downloading pre-compiled images generated from non-free BSPs.  
--              Those images are likewise available at from the Yocto Project website.
-+	      Note also that the pre-compiled images are bundled with
-+	      a time-limited kernel which will run for only a
-+	      predetermined amount of time (10 days) before it forces
-+	      the system to reboot.  This is meant as a discouragement
-+	      to directly redistributing the image as-is, and means
-+	      that you'll have to eventually rebuild the image if you
-+	      want to remove that restriction.
-             </para> 
-         </section>
- 
--- 
-1.7.0.4
+NOTE: package core-image-minimal-1.0-r0: task do_populate_sysroot: Started
+NOTE: package core-image-minimal-1.0-r0: task do_populate_sysroot: Succeeded
+ERROR: '/home/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb' failed
 
 
+I think it is not able to fetch linux-yocto_3.0 from git://git.yoctoproject.org/linux-yocto-3.0.
+
+I do not have internet setup in my build machine, I have downloaded all the packages from a different machine and i have copied it to the build machine.
+
+Following are the Build Machine ,Yocto setup and Error details:
+
+1) Build machine:
+Yocto@linux-todd:/home/yocto/poky-edison-6.0> uname -a
+Linux linux-todd 3.1.0-1.2-desktop #1 SMP PREEMPT Thu Nov 3 14:45:45 UTC 2011 (187dde0) i686 i686 i386 GNU/Linux
+
+It is Open Suse 12.1.
+
+2) Yocto Setup :
+Yocto@linux-todd:/home/yocto/poky-edison-6.0/build> bitbake -k core-image-minimal
+Loading cache: 100% |#######################################################################################################################################| ETA:  00:00:00
+Loaded 1036 entries from dependency cache.
+
+OE Build Configuration:
+BB_VERSION        = "1.13.3"
+TARGET_ARCH       = "i586"
+TARGET_OS         = "linux"
+MACHINE           = "qemux86"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.1"
+TUNE_FEATURES     = "m32 i586"
+TARGET_FPU        = ""
+meta
+meta-yocto        = "<unknown>:<unknown>"
+
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+
+3) Error :
+
+NOTE: package linux-yocto-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+72671808fdbe69a9fe03fd8f094e7c59da04a28c-r2: task do_fetch: Failed
+ERROR: Task 495 (/home/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb, do_fetch) failed with exit code '1'
+ERROR: '/home/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb' failed
+
+Is there anyway to build yocto on a machine which does not have internet and git ?
+Please help me to fix this issue.
+
+
+
+
+
+
+
+
+Regards,
+
+Ashish
+
+Huawei Technology
+
+
+
+This e-mail and its attachments contain confidential information from HUAWEI, which is intended only for the person or entity whose address is listed above. Any use of the information contained herein in any way (including, but not limited to, total or partial disclosure, reproduction, or dissemination) by persons other than the intended recipient(s) is prohibited. If you receive this e-mail in error, please notify the sender by phone or email immediately and delete it!
+
+
+
+
+--Boundary_(ID_hcuGCI2HtrOWxi1yl9PYwQ)
+Content-type: text/html; charset=iso-8859-1
+Content-transfer-encoding: 7BIT
+
+<html dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style id="owaParaStyle">P {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+</style>
+</head>
+<body fPStyle="1" ocsi="0">
+<div style="direction: ltr;font-family: Tahoma;color: #000000;font-size: 10pt;">
+<div><font size="2" face="sans-serif">Hi All , </font><br>
+<br>
+<font size="2" face="sans-serif">&nbsp; I am new to Yocto and I am trying to build linux image using Yocto-1.1 . I am not able to build completely , It is giving following error.</font>
+<br>
+<br>
+<font size="2" face="sans-serif">NOTE: package core-image-minimal-1.0-r0: task do_populate_sysroot: Started</font>
+<br>
+<font size="2" face="sans-serif">NOTE: package core-image-minimal-1.0-r0: task do_populate_sysroot: Succeeded</font>
+<br>
+<font size="2" face="sans-serif">ERROR: '/home/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb' failed</font>
+<br>
+<br>
+<br>
+<font size="2" face="sans-serif">I think it is not able to fetch linux-yocto_3.0 from git://git.yoctoproject.org/linux-yocto-3.0.</font>
+<br>
+<br>
+<font size="2" face="sans-serif">I do not have internet setup in my build machine, I have downloaded all the packages from a different machine and i have copied it to the build machine.</font>
+<br>
+<br>
+<font size="2" face="sans-serif">Following are the Build Machine ,Yocto setup and Error details:</font></div>
+<div>&nbsp;<br>
+<font size="2" face="sans-serif"><b>1) Build machine:</b></font> <br>
+<font color="blue" size="2" face="sans-serif">Yocto@linux-todd:/home/yocto/poky-edison-6.0&gt; uname -a</font>
+<br>
+<font color="blue" size="2" face="sans-serif">Linux linux-todd 3.1.0-1.2-desktop #1 SMP PREEMPT Thu Nov 3 14:45:45 UTC 2011 (187dde0) i686 i686 i386 GNU/Linux</font>
+<br>
+<br>
+<font color="blue" size="2" face="sans-serif">It is Open Suse 12.1.</font> <br>
+<br>
+<font size="2" face="sans-serif"><b>2) Yocto Setup :</b></font> <br>
+<font color="blue" size="2" face="sans-serif">Yocto@linux-todd:/home/yocto/poky-edison-6.0/build&gt; bitbake -k core-image-minimal</font>
+<br>
+<font color="blue" size="2" face="sans-serif">Loading cache: 100% |#######################################################################################################################################| ETA: &nbsp;00:00:00</font>
+<br>
+<font color="blue" size="2" face="sans-serif">Loaded 1036 entries from dependency cache.</font>
+<br>
+<br>
+<font color="blue" size="2" face="sans-serif">OE Build Configuration:</font> <br>
+<font color="blue" size="2" face="sans-serif">BB_VERSION &nbsp; &nbsp; &nbsp; &nbsp;= &quot;1.13.3&quot;</font>
+<br>
+<font color="blue" size="2" face="sans-serif">TARGET_ARCH &nbsp; &nbsp; &nbsp; = &quot;i586&quot;</font> <br>
+<font color="blue" size="2" face="sans-serif">TARGET_OS &nbsp; &nbsp; &nbsp; &nbsp; = &quot;linux&quot;</font> <br>
+<font color="blue" size="2" face="sans-serif">MACHINE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; = &quot;qemux86&quot;</font>
+<br>
+<font color="blue" size="2" face="sans-serif">DISTRO &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;= &quot;poky&quot;</font> <br>
+<font color="blue" size="2" face="sans-serif">DISTRO_VERSION &nbsp; &nbsp;= &quot;1.1&quot;</font> <br>
+<font color="blue" size="2" face="sans-serif">TUNE_FEATURES &nbsp; &nbsp; = &quot;m32 i586&quot;</font>
+<br>
+<font color="blue" size="2" face="sans-serif">TARGET_FPU &nbsp; &nbsp; &nbsp; &nbsp;= &quot;&quot;</font> <br>
+<font color="blue" size="2" face="sans-serif">meta</font> <br>
+<font color="blue" size="2" face="sans-serif">meta-yocto &nbsp; &nbsp; &nbsp; &nbsp;= &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;</font>
+<br>
+<br>
+<font color="blue" size="2" face="sans-serif">NOTE: Resolving any missing task queue dependencies</font>
+<br>
+<font color="blue" size="2" face="sans-serif">NOTE: Preparing runqueue</font> <br>
+<br>
+<font size="2" face="sans-serif"><b>3) Error :</b></font> <br>
+<br>
+<font color="blue" size="2" face="sans-serif">NOTE: package linux-yocto-3.0.4&#43;git1&#43;d05450e4aef02c1b7137398ab3a9f8f96da74f52_1&#43;72671808fdbe69a9fe03fd8f094e7c59da04a28c-r2: task do_fetch: Failed</font>
+<br>
+<font color="blue" size="2" face="sans-serif">ERROR: Task 495 (/home/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb, do_fetch) failed with exit code '1'</font>
+<br>
+<font color="blue" size="2" face="sans-serif">ERROR: '/home/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb' failed</font>
+<br>
+<br>
+<font size="2" face="sans-serif">Is there anyway to build yocto on a machine which does not have internet and git ?</font>
+<br>
+<font size="2" face="sans-serif">Please help me to fix this issue.</font> <br>
+<br>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div>
+<p>&nbsp;</p>
+<div style="FONT-FAMILY: Tahoma; FONT-SIZE: 13px">
+<p><font color="#000080">Regards,</font></p>
+<p><font color="#000080">Ashish</font></p>
+<p><font color="#000080">Huawei Technology</font></p>
+<p><font color="#000080"></font>&nbsp;</p>
+<p><font color="#666699"><font size="2"><font face="Calibri">This e-mail and its attachments contain confidential information from HUAWEI, which is intended only for the person or entity whose address is listed above. Any use of the information contained herein
+ in any way (including, but not limited to, total or partial disclosure, reproduction, or dissemination) by persons other than the intended recipient(s) is prohibited. If you receive this e-mail in error, please notify the sender by phone or email immediately
+ and delete it! </font></font><br>
+</font></p>
+</div>
+</div>
+<div style="FONT-FAMILY: Times New Roman; COLOR: #000000; FONT-SIZE: 16px">
+<div style="DIRECTION: ltr" id="divRpF799243">&nbsp;</div>
+<div></div>
+<div>&nbsp;</div>
+</div>
+</div>
+</body>
+</html>
+
+--Boundary_(ID_hcuGCI2HtrOWxi1yl9PYwQ)--
