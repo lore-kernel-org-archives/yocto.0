@@ -1,27 +1,21 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3353DE0044D
-	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 14:59:47 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 21 Mar 2012 14:59:46 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C232E0044D
+	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 15:41:26 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 21 Mar 2012 15:41:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="131699805"
-Received: from unknown (HELO [10.255.15.208]) ([10.255.15.208])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Mar 2012 14:59:46 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Autif Khan <autif.mlist@gmail.com>
-In-Reply-To: <CADzUK1JtSDOp=3U3R14o_roY4scPc+EqV9P54aTiD695u8Faww@mail.gmail.com>
-References: <CADzUK1L1JEveHaVgdXRUGh5a=GtfDnu6hFtcUt1vSmGkAyOVjg@mail.gmail.com>
-	<1332361435.2322.209.camel@elmorro>
-	<CADzUK1LbmYVNKsBGMBCaJs4GqPMh+8D-51D8tEvHV29rsEiWJg@mail.gmail.com>
-	<1332362567.2322.222.camel@elmorro>
-	<CADzUK1JtSDOp=3U3R14o_roY4scPc+EqV9P54aTiD695u8Faww@mail.gmail.com>
-Date: Wed, 21 Mar 2012 16:59:54 -0500
-Message-ID: <1332367194.2322.231.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: yocto@yoctoproject.org
-Subject: Re: Graphics Acceleration on crownbay - 1.2M3 + meta-intel tip
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="80135350"
+Received: from unknown (HELO localhost) ([10.255.15.248])
+	by AZSMGA002.ch.intel.com with ESMTP; 21 Mar 2012 15:41:26 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Wed, 21 Mar 2012 15:40:38 -0700
+Message-Id: <92ed1cba3baa9b659f2c5009de6110b42ea70791.1332369608.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.6.5
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: [PATCH][meta-intel/common] efilinux: Add efilinux 1.0 and gnu-efi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,86 +27,171 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Mar 2012 21:59:47 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 21 Mar 2012 22:41:27 -0000
 
-On Wed, 2012-03-21 at 17:28 -0400, Autif Khan wrote:
-> >> >> Minor correction to the subject - I am using 1.2M3, not 1.2M2
-> >> >>
-> >> >> On Wed, Mar 21, 2012 at 4:14 PM, Autif Khan <autif.mlist@gmail.com> wrote:
-> >> >> > I am trying to get hardware accelerated graphics (video in particular)
-> >> >> > to work on my crownbay based hardware. I have EMGD 1.10 driver
-> >> >> > integrated and working. The evidence for this is that when I use
-> >> >> > glxgears (form mesa-demos) I get 115 fps instead of 4-5 fps.
-> >> >> >
-> >> >> > This is good, however, when I go over to the web2 browser (enabled by
-> >> >> > defining WEB = "web-webkit" for recipe task-core-apps-x11-pimlico) - I
-> >> >> > do not get graphics acceleration for javascript graphics. I also do
-> >> >> > not get graphics acceleration when I watch an MP4 movie. I get 2-3 fps
-> >> >> > instead of the standard 25 or 29 fps.
-> >> >> >
-> >> >> > This was not the case when Yocto used EMGD 1.8 driver - video worked
-> >> >> > fine - I am not sure about accelerated javascript based graphics in
-> >> >> > browser as I was not as far ahead in the project.
-> >> >> >
-> >> >> > Is this a known issue?
-> >> >> >
-> >> >
-> >> > When I tested video using gst-launch, I saw the same thing, which was
-> >> > due to a missing libva-tpi.  The latest commit in meta-intel added that
-> >> > and fixed the problem for me.
-> >> >
-> >> > commit 162f3d1d3c538d7582a5e81205a9cdab74125b2b
-> >> > Author: Tom Zanussi <tom.zanussi@intel.com>
-> >> > Date:   Mon Mar 12 19:57:29 2012 -0500
-> >> >
-> >> >    ia32-base: add libva display dependencies to emgd xserver
-> >> >
-> >>
-> >> I did a build today with tip - I have confirmed that I have this in the source.
-> >>
-> >> What files should have been added to the root filesystem image as a
-> >> reult of adding libva-tpi, libva-glx and libva-egl?
-> >>
-> >
-> > You should see those shared libraries in /usr/lib
-> 
-> I think that I do:
-> 
-> root@crownbay:/usr/lib# ls -l *libva*
-> lrwxrwxrwx    1 root     root            19 Mar 21 17:38
-> libva-egl.so.1 -> libva-egl.so.1.0.12
-> -rwxr-xr-x    1 root     root          3040 Mar 21 17:07 libva-egl.so.1.0.12
-> lrwxrwxrwx    1 root     root            19 Mar 21 17:38
-> libva-glx.so.1 -> libva-glx.so.1.0.12
-> -rwxr-xr-x    1 root     root         14868 Mar 21 17:07 libva-glx.so.1.0.12
-> lrwxrwxrwx    1 root     root            19 Mar 21 17:38
-> libva-tpi.so.1 -> libva-tpi.so.1.0.12
-> -rwxr-xr-x    1 root     root          3856 Mar 21 17:07 libva-tpi.so.1.0.12
-> lrwxrwxrwx    1 root     root            19 Mar 21 17:38
-> libva-x11.so.1 -> libva-x11.so.1.0.12
-> -rwxr-xr-x    1 root     root         28476 Mar 21 17:07 libva-x11.so.1.0.12
-> lrwxrwxrwx    1 root     root            15 Mar 21 17:38 libva.so.1 ->
-> libva.so.1.0.12
-> -rwxr-xr-x    1 root     root         68816 Mar 21 17:07 libva.so.1.0.12
-> 
-> The older image did not have egl, glx and tpi
-> 
-> However, when I execute gst-launch -v playbin2 uri=file:///media/hdd/BBB.ogv
-> 
-> I get a lot of "There may be a timestamping problem, or this computer
-> is too slow." warnings.
-> 
-> Attached are the logs created by the above command.
-> 
-> Is there something else that needs to be done?
+efilinux is a UEFI OS loader. It was created as a reference implementation with
+the aim of being well documented and containing well written source code.
 
-Hmm, looks like the acceleration isn't kicking in.  Is that a supported
-format for emgd accelaration? - I've been testing with 1080p .h264
-videos, http://www.bigbuckbunny.org/index.php/download/, maybe if you
-could try that so we know we're on the same page.
+efilinux is lightweight and convenient as a tool to debug misbehaving UEFI
+systems.
 
-Tom
+Thanks to Paul Eggleton for is initial set of recipes from which these were
+based.
+
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+CC: Paul Eggleton <paul.eggleton@linux.intel.com>
+CC: Tom Zanussi <tom.zanussi@intel.com>
+CC: Kishore K Bodke <kishore.k.bodke@intel.com>
+---
+ common/recipes-bsp/efilinux/efilinux_1.0.bb        |   28 +++++++++++++++++
+ .../gnu-efi/gnu-efi/cross-compile-support.patch    |   31 ++++++++++++++++++
+ .../gnu-efi/gnu-efi/parallel-make.patch            |   22 +++++++++++++
+ common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb         |   33 ++++++++++++++++++++
+ 4 files changed, 114 insertions(+), 0 deletions(-)
+ create mode 100644 common/recipes-bsp/efilinux/efilinux_1.0.bb
+ create mode 100644 common/recipes-bsp/gnu-efi/gnu-efi/cross-compile-support.patch
+ create mode 100644 common/recipes-bsp/gnu-efi/gnu-efi/parallel-make.patch
+ create mode 100644 common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb
+
+diff --git a/common/recipes-bsp/efilinux/efilinux_1.0.bb b/common/recipes-bsp/efilinux/efilinux_1.0.bb
+new file mode 100644
+index 0000000..2a7bf6b
+--- /dev/null
++++ b/common/recipes-bsp/efilinux/efilinux_1.0.bb
+@@ -0,0 +1,28 @@
++DESCRIPTION = "A UEFI OS loader"
++LICENSE = "efilinux"
++LIC_FILES_CHKSUM = "file://efilinux.h;beginline=5;endline=31;md5=2316abda893ef24e6cd55cef33aa0edd"
++
++DEPENDS = "gnu-efi"
++
++inherit deploy
++
++SRCREV = "75b62111f83dab433e901c1a7b0f05e058aa29de"
++PV = "1.0+git${SRCPV}"
++PR = "r0"
++
++SRC_URI = "git://git.kernel.org/pub/scm/boot/efilinux/efilinux.git"
++
++S = "${WORKDIR}/git"
++
++COMPATIBLE_HOST = '(x86_64|i.86).*-(linux|freebsd.*)'
++
++EXTRA_OEMAKE = "INCDIR=${STAGING_INCDIR} LIBDIR=${STAGING_LIBDIR}"
++
++# syslinux uses $LD for linking, strip `-Wl,' so it can work
++export LDFLAGS = "`echo $LDFLAGS | sed 's/-Wl,//g'`"
++
++do_deploy () {
++        install ${S}/efilinux.efi ${DEPLOYDIR}/efilinux.efi
++}
++addtask deploy before do_build after do_compile
++
+diff --git a/common/recipes-bsp/gnu-efi/gnu-efi/cross-compile-support.patch b/common/recipes-bsp/gnu-efi/gnu-efi/cross-compile-support.patch
+new file mode 100644
+index 0000000..221f80e
+--- /dev/null
++++ b/common/recipes-bsp/gnu-efi/gnu-efi/cross-compile-support.patch
+@@ -0,0 +1,31 @@
++Add cross compile support
++
++Upstream-Status: Submitted [Maintainer directly]
++
++All the user to specify the build variables in the environment.
++
++Signed-off-by: Darren Hart <dvhart@Linux.intel.com>
++
++Index: gnu-efi-3.0/Make.defaults
++===================================================================
++--- gnu-efi-3.0.orig/Make.defaults
+++++ gnu-efi-3.0/Make.defaults
++@@ -54,12 +55,12 @@ LDFLAGS	   = -nostdlib
++ INSTALL	   = install
++ prefix     = /usr/bin/
++ 
++-CC            = $(prefix)gcc
++-AS            = $(prefix)as
++-LD            = $(prefix)ld
++-AR            = $(prefix)ar
++-RANLIB        = $(prefix)ranlib
++-OBJCOPY       = $(prefix)objcopy
+++CC            := $(prefix)gcc
+++AS            := $(prefix)as
+++LD            := $(prefix)ld
+++AR            := $(prefix)ar
+++RANLIB        := $(prefix)ranlib
+++OBJCOPY       := $(prefix)objcopy
++ 
++ ifeq ($(ARCH),ia64)
++   CFLAGS += -mfixed-range=f32-f127
+diff --git a/common/recipes-bsp/gnu-efi/gnu-efi/parallel-make.patch b/common/recipes-bsp/gnu-efi/gnu-efi/parallel-make.patch
+new file mode 100644
+index 0000000..27c94e8
+--- /dev/null
++++ b/common/recipes-bsp/gnu-efi/gnu-efi/parallel-make.patch
+@@ -0,0 +1,22 @@
++Fix parallel make failure
++
++Upstream-Status: Submitted [Maintainer directly]
++
++Add a missing dependency which resulted in a race leading to failure
++on larger values of -j.
++
++Signed-off-by: Darren Hart <dvhart@linux.intel.com>
++
++Index: gnu-efi-3.0/Makefile
++===================================================================
++--- gnu-efi-3.0.orig/Makefile
+++++ gnu-efi-3.0/Makefile
++@@ -42,6 +42,8 @@ include $(SRCDIR)/Make.defaults
++ 
++ SUBDIRS = lib gnuefi inc apps
++ 
+++gnuefi: lib
+++
++ all:	check_gcc $(SUBDIRS)
++ 
++ $(SUBDIRS):
+diff --git a/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb b/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb
+new file mode 100644
+index 0000000..045756f
+--- /dev/null
++++ b/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb
+@@ -0,0 +1,33 @@
++SUMMARY = "Libraries for producing EFI binaries"
++HOMEPAGE = "http://sourceforge.net/projects/gnu-efi/"
++SECTION = "devel"
++LICENSE = "GPLv2+"
++LIC_FILES_CHKSUM = "file://debian/copyright;md5=5fb358a180f484b285b0d99acdc29666"
++
++PR = "r2"
++
++SRCREV = "74"
++
++SRC_URI = "http://downloads.sourceforge.net/gnu-efi/gnu-efi_3.0m.orig.tar.gz \
++           file://cross-compile-support.patch \
++	   file://parallel-make.patch \
++          "
++
++S = "${WORKDIR}/gnu-efi-3.0"
++
++def gnu_efi_arch(d):
++	import re
++	tarch = d.getVar("TARGET_ARCH", True)
++	if re.match("i[3456789]86", tarch):
++		return "ia32"
++	return tarch
++
++EXTRA_OEMAKE = "'ARCH=${@gnu_efi_arch(d)}' 'CC=${CC}' 'AS=${AS}' 'LD=${LD}' 'AR=${AR}' \
++                'RANLIB=${RANLIB}' 'OBJCOPY=${OBJCOPY}' \
++                "
++
++do_install() {
++    oe_runmake install INSTALLROOT="${D}${prefix}"
++}
++
++FILES_${PN} += "${libdir}/*.lds"
+-- 
+1.7.6.5
 
 
