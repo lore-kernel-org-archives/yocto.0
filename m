@@ -1,25 +1,37 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE79DE0044D
-	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 16:07:25 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 21 Mar 2012 16:06:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="80144686"
-Received: from unknown (HELO envy.home) ([10.255.15.248])
-	by AZSMGA002.ch.intel.com with ESMTP; 21 Mar 2012 16:06:58 -0700
-Message-ID: <4F6A5EE6.8070303@linux.intel.com>
-Date: Wed, 21 Mar 2012 16:06:14 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84DE5E0044D
+	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 16:07:32 -0700 (PDT)
+Received: by pbbjt11 with SMTP id jt11so1414040pbb.35
+	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 16:07:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=dVgcd1nudC/0bXNIRY5FckD1LOilXUMFrvUC0Qb5h8Q=;
+	b=fYaB3jz1+pt1B58pWg3Cb7IogUH/ky++m+mHFw0vgZ0QO/P+AfHOJfrM88fHQKfFl0
+	tO0b0+r+iNw6C1q7H6P/aJPCPBMMrOJwfmRyRiqcXP9bM/DgSsTjUzRyNt4ctcGnV0l4
+	XJ6J9uanVz9Fd4M5YH/PSv22xHtqDqr9ePN/3SMt2bvkBCwHC78rxRa2bsOoCf9OEr7Q
+	0eMdO9/va0CMbGHISxp/seRoQwCH2/4HXuzdPvl47I8e60BtY/89hcnpqxLrzC/hkycy
+	892wSCG12VV2bgn+litpGo5UcqdIv96M4rePGuD6lyz94aLbZuBNbwY3wpIvn33QWH6M
+	QjUg==
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>, "Wold, Saul" <saul.wold@intel.com>
-References: <cover.1331666101.git.dvhart@linux.intel.com>
-	<a7914fb82371af784c544d3efefefaa2c63afd4d.1331666101.git.dvhart@linux.intel.com>
-In-Reply-To: <a7914fb82371af784c544d3efefefaa2c63afd4d.1331666101.git.dvhart@linux.intel.com>
-X-Enigmail-Version: 1.4
-Subject: Re: [PATCH 1/1] ddimage: Add script for writing images to boot media
+Received: by 10.68.125.135 with SMTP id mq7mr15029697pbb.155.1332371252396;
+	Wed, 21 Mar 2012 16:07:32 -0700 (PDT)
+Received: by 10.68.20.134 with HTTP; Wed, 21 Mar 2012 16:07:32 -0700 (PDT)
+In-Reply-To: <1332367194.2322.231.camel@elmorro>
+References: <CADzUK1L1JEveHaVgdXRUGh5a=GtfDnu6hFtcUt1vSmGkAyOVjg@mail.gmail.com>
+	<1332361435.2322.209.camel@elmorro>
+	<CADzUK1LbmYVNKsBGMBCaJs4GqPMh+8D-51D8tEvHV29rsEiWJg@mail.gmail.com>
+	<1332362567.2322.222.camel@elmorro>
+	<CADzUK1JtSDOp=3U3R14o_roY4scPc+EqV9P54aTiD695u8Faww@mail.gmail.com>
+	<1332367194.2322.231.camel@elmorro>
+Date: Wed, 21 Mar 2012 19:07:32 -0400
+Message-ID: <CADzUK1KZgTiMVOz4zOm2-w6n+rNtMaoib9VKi3SSB1ZekasPCA@mail.gmail.com>
+From: Autif Khan <autif.mlist@gmail.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Graphics Acceleration on crownbay - 1.2M3 + meta-intel tip
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,156 +43,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Mar 2012 23:07:25 -0000
+X-List-Received-Date: Wed, 21 Mar 2012 23:07:32 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-Any objections to this going in?
+>> >> >> Minor correction to the subject - I am using 1.2M3, not 1.2M2
+>> >> >>
+>> >> >> On Wed, Mar 21, 2012 at 4:14 PM, Autif Khan <autif.mlist@gmail.com=
+> wrote:
+>> >> >> > I am trying to get hardware accelerated graphics (video in parti=
+cular)
+>> >> >> > to work on my crownbay based hardware. I have EMGD 1.10 driver
+>> >> >> > integrated and working. The evidence for this is that when I use
+>> >> >> > glxgears (form mesa-demos) I get 115 fps instead of 4-5 fps.
+>> >> >> >
+>> >> >> > This is good, however, when I go over to the web2 browser (enabl=
+ed by
+>> >> >> > defining WEB =3D "web-webkit" for recipe task-core-apps-x11-piml=
+ico) - I
+>> >> >> > do not get graphics acceleration for javascript graphics. I also=
+ do
+>> >> >> > not get graphics acceleration when I watch an MP4 movie. I get 2=
+-3 fps
+>> >> >> > instead of the standard 25 or 29 fps.
+>> >> >> >
+>> >> >> > This was not the case when Yocto used EMGD 1.8 driver - video wo=
+rked
+>> >> >> > fine - I am not sure about accelerated javascript based graphics=
+ in
+>> >> >> > browser as I was not as far ahead in the project.
+>> >> >> >
+>> >> >> > Is this a known issue?
+>> >> >> >
+>> >> >
+>> >> > When I tested video using gst-launch, I saw the same thing, which w=
+as
+>> >> > due to a missing libva-tpi. =A0The latest commit in meta-intel adde=
+d that
+>> >> > and fixed the problem for me.
+>> >> >
+>> >> > commit 162f3d1d3c538d7582a5e81205a9cdab74125b2b
+>> >> > Author: Tom Zanussi <tom.zanussi@intel.com>
+>> >> > Date: =A0 Mon Mar 12 19:57:29 2012 -0500
+>> >> >
+>> >> > =A0 =A0ia32-base: add libva display dependencies to emgd xserver
+>> >> >
+>> >>
+>> >> I did a build today with tip - I have confirmed that I have this in t=
+he source.
+>> >>
+>> >> What files should have been added to the root filesystem image as a
+>> >> reult of adding libva-tpi, libva-glx and libva-egl?
+>> >>
+>> >
+>> > You should see those shared libraries in /usr/lib
+>>
+>> I think that I do:
+>>
+>> root@crownbay:/usr/lib# ls -l *libva*
+>> lrwxrwxrwx =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A0 =A019 Mar 21 1=
+7:38
+>> libva-egl.so.1 -> libva-egl.so.1.0.12
+>> -rwxr-xr-x =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A03040 Mar 21 17:=
+07 libva-egl.so.1.0.12
+>> lrwxrwxrwx =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A0 =A019 Mar 21 1=
+7:38
+>> libva-glx.so.1 -> libva-glx.so.1.0.12
+>> -rwxr-xr-x =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 14868 Mar 21 17:07=
+ libva-glx.so.1.0.12
+>> lrwxrwxrwx =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A0 =A019 Mar 21 1=
+7:38
+>> libva-tpi.so.1 -> libva-tpi.so.1.0.12
+>> -rwxr-xr-x =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A03856 Mar 21 17:=
+07 libva-tpi.so.1.0.12
+>> lrwxrwxrwx =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A0 =A019 Mar 21 1=
+7:38
+>> libva-x11.so.1 -> libva-x11.so.1.0.12
+>> -rwxr-xr-x =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 28476 Mar 21 17:07=
+ libva-x11.so.1.0.12
+>> lrwxrwxrwx =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A0 =A015 Mar 21 1=
+7:38 libva.so.1 ->
+>> libva.so.1.0.12
+>> -rwxr-xr-x =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 68816 Mar 21 17:07=
+ libva.so.1.0.12
+>>
+>> The older image did not have egl, glx and tpi
+>>
+>> However, when I execute gst-launch -v playbin2 uri=3Dfile:///media/hdd/B=
+BB.ogv
+>>
+>> I get a lot of "There may be a timestamping problem, or this computer
+>> is too slow." warnings.
+>>
+>> Attached are the logs created by the above command.
+>>
+>> Is there something else that needs to be done?
+>
+> Hmm, looks like the acceleration isn't kicking in. =A0Is that a supported
+> format for emgd accelaration? - I've been testing with 1080p .h264
+> videos, http://www.bigbuckbunny.org/index.php/download/, maybe if you
+> could try that so we know we're on the same page.
+>
 
-On 03/13/2012 12:16 PM, Darren Hart wrote:
-> Fixes [YOCTO #1806]
-> 
-> Standard practice is to use the Linux "dd" command to write images to boot
-> media. This can be error prone and the results of sloppy usage can be
-> disastrous. Locating the device you want to use is a clumsy process, especially
-> on a headless build system.
-> 
-> The ddimage script does the following:
-> 
-> o Check the image and device exist
-> o Check the device is writable
-> o Compare the device to a blacklist and abort if it's listed
->   Blacklist defaults to "/dev/sda"
-> o Display useful identifying information about the image and device
-> o Prompt the user before commencing the write
-> 
-> The output looks something like this:
-> 
-> $ sudo ~/bin/ddimage tmp/deploy/images/core-image-sato-fri2-noemgd.hddimg /dev/sdk
-> Image details
-> =============
->     image: `tmp/deploy/images/core-image-sato-fri2-noemgd.hddimg' -> `core-image-sato-fri2-noemgd-20111202214038.hddimg'
->      size: 318568448 bytes
->  modified: 2011-12-02 13:45:05.298897861 -0800
->      type: x86 boot sector, code offset 0x58, OEM-ID "SYSLINUX", sectors/cluster 16, root entries 512, Media descriptor 0xf8, sectors/FAT 152, heads 64, hidden sectors 32, sectors 622204 (volumes > 32 MB) , serial number 0x4ed946e0, label: "boot       ", FAT (16 bit)
-> 
-> Device details
-> ==============
->   device: /dev/sdk
->   vendor: Kingston
->    model: DT 101 G2
-> 
-> Write tmp/deploy/images/core-image-sato-fri2-noemgd.hddimg to /dev/sdk [y/N]? y
-> Writing image...
-> 303+1 records in
-> 303+1 records out
-> 318568448 bytes (319 MB) copied, 53.6766 s, 5.9 MB/s
-> 
-> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
-> CC: Dexuan Cui <dexuan.cui@intel.com>
-> CC: Joshua Lock <josh@linux.intel.com>
-> CC: Kishore K Bodke <kishore.k.bodke@intel.com>
-> ---
->  scripts/contrib/ddimage |   87 +++++++++++++++++++++++++++++++++++++++++++++++
->  1 files changed, 87 insertions(+), 0 deletions(-)
->  create mode 100755 scripts/contrib/ddimage
-> 
-> diff --git a/scripts/contrib/ddimage b/scripts/contrib/ddimage
-> new file mode 100755
-> index 0000000..2cba9b2
-> --- /dev/null
-> +++ b/scripts/contrib/ddimage
-> @@ -0,0 +1,87 @@
-> +#!/bin/sh
-> +
-> +#BLACKLIST_DEVICES="/dev/sda /dev/sdb /dev/sdc /dev/sdd /dev/sde"
-> +BLACKLIST_DEVICES="/dev/sda"
-> +
-> +# 1MB blocksize
-> +BLOCKSIZE=1048576
-> +
-> +function usage() {
-> +	echo "Usage: $(basename $0) IMAGE DEVICE"
-> +}
-> +
-> +function image_details() {
-> +	IMG=$1
-> +	echo "Image details"
-> +	echo "============="
-> +	echo "    image: $(stat --printf '%N\n' $IMG)"
-> +	echo "     size: $(stat -L --printf '%s bytes\n' $IMG)"
-> +	echo " modified: $(stat -L --printf '%y\n' $IMG)"
-> +	echo "     type: $(file -L -b $IMG)"
-> +	echo ""
-> +}
-> +
-> +function device_details() {
-> +	DEV=$1
-> +	BLOCK_SIZE=512
-> +
-> +	echo "Device details"
-> +	echo "=============="
-> +	echo "  device: $DEVICE"
-> +	if [ -f "/sys/class/block/$DEV/device/vendor" ]; then
-> +		echo "  vendor: $(cat /sys/class/block/$DEV/device/vendor)"
-> +	else
-> +		echo "  vendor: UNKOWN"
-> +	fi
-> +	if [ -f "/sys/class/block/$DEV/device/model" ]; then
-> +		echo "   model: $(cat /sys/class/block/$DEV/device/model)"
-> +	else
-> +		echo "   model: UNKNOWN"
-> +	fi
-> +	if [ -f "/sys/class/block/$DEV/size" ]; then
-> +		echo "    size: $[$(cat /sys/class/block/$DEV/size)*BLOCK_SIZE] bytes"
-> +	else
-> +		echo "    size: UNKNOWN"
-> +	fi
-> +	echo ""
-> +}
-> +
-> +if [ $# -ne 2 ]; then
-> +	usage
-> +	exit 1
-> +fi
-> +
-> +IMAGE=$1
-> +DEVICE=$2
-> +
-> +if [ ! -e "$IMAGE" ]; then
-> +	echo "ERROR: Image $IMAGE does not exist"
-> +	usage
-> +	exit 1
-> +fi
-> +
-> +
-> +if [ "${BLACKLIST_DEVICES/${DEVICE}/ERROR}" != "$BLACKLIST_DEVICES" ]; then
-> +	echo "ERROR: Device $DEVICE is blacklisted"
-> +	exit 1
-> +fi
-> +
-> +if [ ! -w "$DEVICE" ]; then
-> +	echo "ERROR: Device $DEVICE does not exist or is not writable"
-> +	usage
-> +	exit 1
-> +fi
-> +
-> +image_details $IMAGE
-> +device_details $(basename $DEVICE)
-> +
-> +echo -n "Write $IMAGE to $DEVICE [y/N]? "
-> +read RESPONSE
-> +if [ "$RESPONSE" != "y" ]; then
-> +	echo "Write aborted"
-> +	exit 0
-> +fi
-> +
-> +echo "Writing image..."
-> +dd if="$IMAGE" of="$DEVICE" bs="$BLOCKSIZE"
-> +sync
+I was hoping that Ogg Video is supported.
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+I tried the H.264 (BBB stands for bigbuck bunny, I got these movies
+from an earlier email from you). But I am getting another error -
+ERROR: pipeline doesn't want to preroll.
+
+Do I need some other codec or some library? Are there licensing
+implications of using H.264?
 
