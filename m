@@ -1,39 +1,21 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 471CDE0070C
-	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 01:21:20 -0700 (PDT)
-Received: by pbbjt11 with SMTP id jt11so802071pbb.35
-	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 01:21:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:organization:content-type:x-mailer:mime-version:x-gm-message-state;
-	bh=EeUOdYZTd+DHEWCOSUJ6pRKxlrIZmWiVlxhkEjTTYmo=;
-	b=R6OW+TLRQoQugfczN7YdkN54KMw4VMsva95xV6i4s7KCb5M8jGiqGAjRqNZ4h+t2hp
-	MI+t91GyKCocVsUTD0hb0qjl9DXcPdxmsLLwxlEq+wVA9igW0DbqBKebbtkyBLdcplo2
-	sTgyOL1HsPT0z4mEreSmGSyhdXozzZO8/zannlYEv1dQ4y592jYX4/ot3KdQge7pl6K1
-	XDzN52K0wd5FgnV1+zshym3sxVqIL4wcyzbfhfPhfc7d1PYNHYLxQhZ+38iiAebpOo9y
-	XpFZACwVG3ML1egGz5zYYrHK1j3PW/P6F0dhamwrbx9kk4ijpp8K+ipTAttYBXXoNyj/
-	LHxw==
-Received: by 10.68.223.193 with SMTP id qw1mr8844240pbc.61.1332318079546;
-	Wed, 21 Mar 2012 01:21:19 -0700 (PDT)
-Received: from [192.168.10.207] ([59.99.251.45])
-	by mx.google.com with ESMTPS id s10sm888161pbq.13.2012.03.21.01.21.16
-	(version=SSLv3 cipher=OTHER); Wed, 21 Mar 2012 01:21:18 -0700 (PDT)
-Message-ID: <1332318063.5719.3.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Darren Hart <dvhart@linux.intel.com>
-Date: Wed, 21 Mar 2012 13:51:03 +0530
-In-Reply-To: <4F638960.80401@linux.intel.com>
-References: <1331816822.19369.7.camel@babel.joshhome>
-	<4F638960.80401@linux.intel.com>
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1
-Mime-Version: 1.0
-X-Gm-Message-State: ALoCoQmxKXmzZOHj6NW2CsYEejiUJ+kPFWDy4OL4Ypra/hMgcWQO4QZ/arl7nEmXyD+fxlY7ohXI
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: syslinux filesystem size limitation
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A7EFE0070C
+	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 02:02:18 -0700 (PDT)
+Received: from [192.168.0.57] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id F048E2AEF5
+	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 08:19:58 +0000 (GMT)
+Message-ID: <4F699923.5040901@communistcode.co.uk>
+Date: Wed, 21 Mar 2012 09:02:27 +0000
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120314 Thunderbird/11.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <OFEA4B568B.582F38D7-ON652579C8.001AA88F-652579C8.001B875F@notesmail.huawei.com.cn>
+	<F3906846C0EDD246B5CF75E8EDA3C47E138A620D@szxeml532-mbx.china.huawei.com>
+In-Reply-To: <F3906846C0EDD246B5CF75E8EDA3C47E138A620D@szxeml532-mbx.china.huawei.com>
+Subject: Re: Build failure because of do_fectch in Yocto-1.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,54 +27,319 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Mar 2012 08:21:20 -0000
-X-Groupsio-MsgNum: 5427
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-GIOxLtOMGJtVgIMR6OM6"
+X-List-Received-Date: Wed, 21 Mar 2012 09:02:18 -0000
+Content-Type: multipart/alternative;
+	boundary="------------050002000001010402080402"
 
---=-GIOxLtOMGJtVgIMR6OM6
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello Darren,
-
-On Fri, 2012-03-16 at 11:41 -0700, Darren Hart wrote:
-> Where are you getting this information?
->=20
-> From what I can gather, syslinux 2.xx didn't support FAT32, which
-> limited the maximum filesystem size purely due to limitations of
-> FAT16.
-> Syslinux 3.xx supports FAT32. We are building syslinux 4.xx in Yocto.
->=20
-> I'm fairly certain I've built syslinux images larger than 1GB without
-> an
-> issue.
->=20
-> Can you provide a failure case?=20
-
-In order to answer this, I have added my comments on the bug listing
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D2138
-
-I guess it would be more appropriate there.
-
-Regards
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
-
---=-GIOxLtOMGJtVgIMR6OM6
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+--------------050002000001010402080402
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
+On 21/03/12 05:01, Ashish Pandey wrote:
+> Hi All ,
+>
+>   I am new to Yocto and I am trying to build linux image using 
+> Yocto-1.1 . I am not able to build completely , It is giving following 
+> error.
+>
+> NOTE: package core-image-minimal-1.0-r0: task do_populate_sysroot: 
+> Started
+> NOTE: package core-image-minimal-1.0-r0: task do_populate_sysroot: 
+> Succeeded
+> ERROR: 
+> '/home/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb' 
+> failed
+>
+>
+> I think it is not able to fetch linux-yocto_3.0 from 
+> git://git.yoctoproject.org/linux-yocto-3.0.
+>
+> I do not have internet setup in my build machine, I have downloaded 
+> all the packages from a different machine and i have copied it to the 
+> build machine.
+>
+> Following are the Build Machine ,Yocto setup and Error details:
+>
+> *1) Build machine:*
+> Yocto@linux-todd:/home/yocto/poky-edison-6.0> uname -a
+> Linux linux-todd 3.1.0-1.2-desktop #1 SMP PREEMPT Thu Nov 3 14:45:45 
+> UTC 2011 (187dde0) i686 i686 i386 GNU/Linux
+>
+> It is Open Suse 12.1.
+>
+> *2) Yocto Setup :*
+> Yocto@linux-todd:/home/yocto/poky-edison-6.0/build> bitbake -k 
+> core-image-minimal
+> Loading cache: 100% 
+> |#######################################################################################################################################| 
+> ETA:  00:00:00
+> Loaded 1036 entries from dependency cache.
+>
+> OE Build Configuration:
+> BB_VERSION        = "1.13.3"
+> TARGET_ARCH       = "i586"
+> TARGET_OS         = "linux"
+> MACHINE           = "qemux86"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.1"
+> TUNE_FEATURES     = "m32 i586"
+> TARGET_FPU        = ""
+> meta
+> meta-yocto        = "<unknown>:<unknown>"
+>
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: Preparing runqueue
+>
+> *3) Error :*
+>
+> NOTE: package 
+> linux-yocto-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+72671808fdbe69a9fe03fd8f094e7c59da04a28c-r2: 
+> task do_fetch: Failed
+> ERROR: Task 495 
+> (/home/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb, 
+> do_fetch) failed with exit code '1'
+> ERROR: 
+> '/home/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb' 
+> failed
+>
+> Is there anyway to build yocto on a machine which does not have 
+> internet and git ?
+> Please help me to fix this issue.
+>
+> Regards,
+>
+> Ashish
+>
+> Huawei Technology
+>
+> This e-mail and its attachments contain confidential information from 
+> HUAWEI, which is intended only for the person or entity whose address 
+> is listed above. Any use of the information contained herein in any 
+> way (including, but not limited to, total or partial disclosure, 
+> reproduction, or dissemination) by persons other than the intended 
+> recipient(s) is prohibited. If you receive this e-mail in error, 
+> please notify the sender by phone or email immediately and delete it!
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-iEYEABECAAYFAk9pj28ACgkQWw85XwuSFMKY3QCfbDjrilNqyVLsG4zI1oj4+q9g
-DjMAniuFZVYqj7CQQNyemEWvXZbmXMol
-=zOU9
------END PGP SIGNATURE-----
+HI Ashish,
 
---=-GIOxLtOMGJtVgIMR6OM6--
+There is a short paragraph on the wiki[1] which gives a brief 
+explanation on how to go about creating your own mirror of the 
+downloaded files.
+
+[1] https://wiki.yoctoproject.org/wiki/How_do_I
+
+Regards,
+
+-- 
+
+   Jack Mitchell (jack@embed.me.uk)
+   Embedded Systems Engineer
+   http://www.embed.me.uk
+
+--
+
+
+--------------050002000001010402080402
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    On 21/03/12 05:01, Ashish Pandey wrote:
+    <blockquote
+cite="mid:F3906846C0EDD246B5CF75E8EDA3C47E138A620D@szxeml532-mbx.china.huawei.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=ISO-8859-1">
+      <style id="owaParaStyle">P {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+</style>
+      <div style="direction: ltr;font-family: Tahoma;color:
+        #000000;font-size: 10pt;">
+        <div><font size="2" face="sans-serif">Hi All , </font><br>
+          <br>
+          <font size="2" face="sans-serif">&nbsp; I am new to Yocto and I am
+            trying to build linux image using Yocto-1.1 . I am not able
+            to build completely , It is giving following error.</font>
+          <br>
+          <br>
+          <font size="2" face="sans-serif">NOTE: package
+            core-image-minimal-1.0-r0: task do_populate_sysroot: Started</font>
+          <br>
+          <font size="2" face="sans-serif">NOTE: package
+            core-image-minimal-1.0-r0: task do_populate_sysroot:
+            Succeeded</font>
+          <br>
+          <font size="2" face="sans-serif">ERROR:
+            '/home/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb'
+            failed</font>
+          <br>
+          <br>
+          <br>
+          <font size="2" face="sans-serif">I think it is not able to
+            fetch linux-yocto_3.0 from
+            git://git.yoctoproject.org/linux-yocto-3.0.</font>
+          <br>
+          <br>
+          <font size="2" face="sans-serif">I do not have internet setup
+            in my build machine, I have downloaded all the packages from
+            a different machine and i have copied it to the build
+            machine.</font>
+          <br>
+          <br>
+          <font size="2" face="sans-serif">Following are the Build
+            Machine ,Yocto setup and Error details:</font></div>
+        <div>&nbsp;<br>
+          <font size="2" face="sans-serif"><b>1) Build machine:</b></font>
+          <br>
+          <font size="2" color="blue" face="sans-serif"><a class="moz-txt-link-abbreviated" href="mailto:Yocto@linux-todd:/home/yocto/poky-edison-6.0">Yocto@linux-todd:/home/yocto/poky-edison-6.0</a>&gt;
+            uname -a</font>
+          <br>
+          <font size="2" color="blue" face="sans-serif">Linux linux-todd
+            3.1.0-1.2-desktop #1 SMP PREEMPT Thu Nov 3 14:45:45 UTC 2011
+            (187dde0) i686 i686 i386 GNU/Linux</font>
+          <br>
+          <br>
+          <font size="2" color="blue" face="sans-serif">It is Open Suse
+            12.1.</font> <br>
+          <br>
+          <font size="2" face="sans-serif"><b>2) Yocto Setup :</b></font>
+          <br>
+          <font size="2" color="blue" face="sans-serif"><a class="moz-txt-link-abbreviated" href="mailto:Yocto@linux-todd:/home/yocto/poky-edison-6.0/build">Yocto@linux-todd:/home/yocto/poky-edison-6.0/build</a>&gt;
+            bitbake -k core-image-minimal</font>
+          <br>
+          <font size="2" color="blue" face="sans-serif">Loading cache:
+            100%
+            |#######################################################################################################################################|
+            ETA: &nbsp;00:00:00</font>
+          <br>
+          <font size="2" color="blue" face="sans-serif">Loaded 1036
+            entries from dependency cache.</font>
+          <br>
+          <br>
+          <font size="2" color="blue" face="sans-serif">OE Build
+            Configuration:</font> <br>
+          <font size="2" color="blue" face="sans-serif">BB_VERSION &nbsp; &nbsp; &nbsp;
+            &nbsp;= "1.13.3"</font>
+          <br>
+          <font size="2" color="blue" face="sans-serif">TARGET_ARCH &nbsp; &nbsp;
+            &nbsp; = "i586"</font> <br>
+          <font size="2" color="blue" face="sans-serif">TARGET_OS &nbsp; &nbsp; &nbsp;
+            &nbsp; = "linux"</font> <br>
+          <font size="2" color="blue" face="sans-serif">MACHINE &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; = "qemux86"</font>
+          <br>
+          <font size="2" color="blue" face="sans-serif">DISTRO &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp;= "poky"</font> <br>
+          <font size="2" color="blue" face="sans-serif">DISTRO_VERSION &nbsp;
+            &nbsp;= "1.1"</font> <br>
+          <font size="2" color="blue" face="sans-serif">TUNE_FEATURES &nbsp;
+            &nbsp; = "m32 i586"</font>
+          <br>
+          <font size="2" color="blue" face="sans-serif">TARGET_FPU &nbsp; &nbsp; &nbsp;
+            &nbsp;= ""</font> <br>
+          <font size="2" color="blue" face="sans-serif">meta</font> <br>
+          <font size="2" color="blue" face="sans-serif">meta-yocto &nbsp; &nbsp; &nbsp;
+            &nbsp;= "&lt;unknown&gt;:&lt;unknown&gt;"</font>
+          <br>
+          <br>
+          <font size="2" color="blue" face="sans-serif">NOTE: Resolving
+            any missing task queue dependencies</font>
+          <br>
+          <font size="2" color="blue" face="sans-serif">NOTE: Preparing
+            runqueue</font> <br>
+          <br>
+          <font size="2" face="sans-serif"><b>3) Error :</b></font> <br>
+          <br>
+          <font size="2" color="blue" face="sans-serif">NOTE: package
+            linux-yocto-3.0.4+git1+d05450e4aef02c1b7137398ab3a9f8f96da74f52_1+72671808fdbe69a9fe03fd8f094e7c59da04a28c-r2:
+            task do_fetch: Failed</font>
+          <br>
+          <font size="2" color="blue" face="sans-serif">ERROR: Task 495
+            (/home/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb,
+            do_fetch) failed with exit code '1'</font>
+          <br>
+          <font size="2" color="blue" face="sans-serif">ERROR:
+            '/home/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb'
+            failed</font>
+          <br>
+          <br>
+          <font size="2" face="sans-serif">Is there anyway to build
+            yocto on a machine which does not have internet and git ?</font>
+          <br>
+          <font size="2" face="sans-serif">Please help me to fix this
+            issue.</font> <br>
+          <br>
+        </div>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <div>
+          <p>&nbsp;</p>
+          <div style="FONT-FAMILY: Tahoma; FONT-SIZE: 13px">
+            <p><font color="#000080">Regards,</font></p>
+            <p><font color="#000080">Ashish</font></p>
+            <p><font color="#000080">Huawei Technology</font></p>
+            <p>&nbsp;</p>
+            <p><font color="#666699"><font size="2"><font face="Calibri">This
+                    e-mail and its attachments contain confidential
+                    information from HUAWEI, which is intended only for
+                    the person or entity whose address is listed above.
+                    Any use of the information contained herein in any
+                    way (including, but not limited to, total or partial
+                    disclosure, reproduction, or dissemination) by
+                    persons other than the intended recipient(s) is
+                    prohibited. If you receive this e-mail in error,
+                    please notify the sender by phone or email
+                    immediately and delete it! </font></font><br>
+              </font></p>
+          </div>
+        </div>
+        <div style="FONT-FAMILY: Times New Roman; COLOR: #000000;
+          FONT-SIZE: 16px">
+          <div style="DIRECTION: ltr" id="divRpF799243">&nbsp;</div>
+          <div>&nbsp;</div>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+</pre>
+    </blockquote>
+    <tt><br>
+      HI Ashish,<br>
+      <br>
+      There is a short paragraph on the wiki[1] which gives a brief
+      explanation on how to go about creating your own mirror of the
+      downloaded files.<br>
+    </tt><tt><br>
+      [1] <a class="moz-txt-link-freetext" href="https://wiki.yoctoproject.org/wiki/How_do_I">https://wiki.yoctoproject.org/wiki/How_do_I</a><br>
+      <br>
+      Regards,</tt><br>
+    <pre class="moz-signature" cols="72">-- 
+
+  Jack Mitchell (<a class="moz-txt-link-abbreviated" href="mailto:jack@embed.me.uk">jack@embed.me.uk</a>)             
+  Embedded Systems Engineer
+  <a class="moz-txt-link-freetext" href="http://www.embed.me.uk">http://www.embed.me.uk</a>
+
+--
+</pre>
+  </body>
+</html>
+
+--------------050002000001010402080402--
