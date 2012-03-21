@@ -1,34 +1,24 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2638BE0059A
-	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 16:33:50 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 20 Mar 2012 16:33:49 -0700
+Return-Path: <sgw@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E80B7E0059A
+	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 18:00:09 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 20 Mar 2012 18:00:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
-	d="scan'208,217";a="142187024"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.226.10])
-	by fmsmga002.fm.intel.com with ESMTP; 20 Mar 2012 16:33:49 -0700
-Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
-	orsmsx605.amr.corp.intel.com (10.22.226.10) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 20 Mar 2012 16:33:49 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.154]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.199]) with mapi id
-	14.01.0355.002; Tue, 20 Mar 2012 16:33:49 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, March
-	20, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
-Thread-Index: AQHNBvHmRgY+Fi8ICESeKRQmK6aDBA==
-Date: Tue, 20 Mar 2012 23:33:48 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A46AE335D@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="121313804"
+Received: from unknown (HELO [10.255.15.160]) ([10.255.15.160])
+	by azsmga001.ch.intel.com with ESMTP; 20 Mar 2012 17:59:08 -0700
+Message-ID: <4F6927DC.6030800@linux.intel.com>
+Date: Tue, 20 Mar 2012 17:59:08 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, March 20, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada)
+To: Lianhao Lu <lianhao.lu@intel.com>
+References: <cover.1331713200.git.lianhao.lu@intel.com>
+In-Reply-To: <cover.1331713200.git.lianhao.lu@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/1] perfer older version of lttng-ust in poky distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,173 +30,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Mar 2012 23:33:50 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A46AE335DORSMSX101amrcor_"
+X-List-Received-Date: Wed, 21 Mar 2012 01:00:10 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A46AE335DORSMSX101amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Current (M4) Priorities: HOB2, build appliance, bug fixing, warning message=
-s
-
-Attendee:
-Saul, Joshua, Paul, Richard, Tom, Bruce, Jessica, Bjorn, Darren, Jeremy, De=
-nys, Dave, Song
-
-Agenda
-* Opens collection - 5 min (Song)
-* 1.1.1 status: published schedule.
-  - Hold off on 1.1.1 while verify BSP compatibility. QA has mostly complet=
-ed, no new issues found.
-  - QA has done, follow up with Beth. Song will publish point release sched=
-ule.
-* Yocto 1.2 M4 status and release criteria review - 20 min (Song/Team)
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status
-  - Plan for the consolidated branch: don't want to put things in master ri=
-ght away. Building a consolidated branch with all submitted patches and the=
-n merge them to master by this Wednesday.
-  - RP: We are now into stabilization: will be strict about merging bug fix=
-ing, make sure we do what we can to fix bugs.
-  - number of open bugs are high.
-  - Priorities: HOB2, build appliance, bug fixing, warning messages
-  - WDD, ideally we should bring it down to 700.
-  - N+1 distro testing, starting from RC1.
-  - Documentation: update to the release.
-  - We will try to keep build performance at the same level
-  - Package update: Done. Updated over 70 packages. No more package update.
-  - Warning messages in release criteria. Moving forward, change some warni=
-ng to error. For 1.3. For 1.2.
-
-
-  - M4: Song will update the wiki page.
-    - Complete most of the P1 features, achieve the release goal of improvi=
-ng usability and user experience. Most of the P2/P3 features.
-    -
-    -
-* SWAT team rotation: Paul->Jessica
-* Opens - 10 min
-  - stabilization
-
-* Team Sharing - 20 min
- Denys: Getting ready for the BSP summit. Busy with Meta-ti and other layer=
-s.
- Darren: A couple of updates on bugs, mostly on internal things.
- Jessica: Resume Eclipse plugin for BSP tool.
- Bruce: Finishing up 1.2 items, waiting for 3.4 merge window. 3.2.11 is 1.2=
- kernel version.
- Tom: spent time on BSP tools, addressing all inputs from M3. updated wiki =
-for how to use it. Updating all meta-intel BSPs, working on internal BSPs.
- Richard: been doing patch review and merging. Warning fixes. More of the s=
-ame this week,
- Paul: Been doing bug fixes and warning fixes, helping ScottR with doc chan=
-ges. Build history data analysis. Will continue this week.
- Joshua: Help on HOB2, code view, integration issues.
- Saul: Patch review, validation, fixing warnings, build appliance patches. =
-Will be out next week.
-
-
-
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A46AE335DORSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 03/14/2012 01:27 AM, Lianhao Lu wrote:
+> Set the PREFERRED_VERSION of lttng-ust to use lttng-ust instead of
+> lttng2-ust in poky distro. This fixed yocto bug #2062.
 >
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:10.5pt;">
-<div>Current (M4) Priorities: <font face=3D"Calibri" size=3D"2"><span style=
-=3D"font-size:11pt;">HOB2, build appliance, bug fixing, warning messages</s=
-pan></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">Atte=
-ndee:</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">Saul=
-, Joshua, Paul, Richard, Tom, Bruce, Jessica, Bjorn, Darren, Jeremy, Denys,=
- Dave, Song</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div>Agenda</div>
-<div>* Opens collection &#8211; 5 min (Song)</div>
-<div>* 1.1.1 status: published schedule.</div>
-<div>&nbsp; - Hold off on 1.1.1 while verify BSP compatibility. QA has most=
-ly completed, no new issues found. </div>
-<div>&nbsp; - QA has done, follow up with Beth. Song will publish point rel=
-ease schedule.</div>
-<div>* Yocto 1.2 M4 status and release criteria review &#8211; 20 min (Song=
-/Team)</div>
-<div><font face=3D"Times New Roman" size=3D"3"><span style=3D"font-size:12p=
-t;"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status=
-"><font face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-siz=
-e:10.5pt;"><u>https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.2_Status<=
-/u></span></font></a><font face=3D"Consolas" size=3D"2"><span style=3D"font=
--size:10.5pt;">
-</span></font></span></font></div>
-<div>&nbsp; - Plan for the consolidated branch: don't want to put things in=
- master right away. Building a consolidated branch with all submitted patch=
-es and then merge them to master by this Wednesday.</div>
-<div>&nbsp; - RP: We are now into stabilization: will be strict about mergi=
-ng bug fixing, make sure we do what we can to fix bugs. </div>
-<div>&nbsp; - number of open bugs are high.</div>
-<div>&nbsp; - Priorities: <font face=3D"Calibri" size=3D"2"><span style=3D"=
-font-size:11pt;">HOB2, build appliance, bug fixing, warning messages</span>=
-</font></div>
-<div>&nbsp; - WDD, ideally we should bring it down to 700.</div>
-<div>&nbsp; - N&#43;1 distro testing, starting from RC1.</div>
-<div>&nbsp; - Documentation: update to the release.</div>
-<div>&nbsp; - We will try to keep build performance at the same level </div=
+> The lttng2 is very different in terms of architecture and usage model, compared
+> to lttng. The eclipse upstream lttng plugin won't be able to support lttng2 until
+> the eclipse Juno release(Jun 27th, 2012).
 >
-<div>&nbsp; - Package update: Done. Updated over 70 packages. No more packa=
-ge update.</div>
-<div>&nbsp; - Warning messages in release criteria. Moving forward, change =
-some warning to error. For 1.3. For 1.2.</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>&nbsp; - M4: Song will update the wiki page.</div>
-<div>&nbsp;&nbsp;&nbsp; - Complete most of the P1 features, achieve the rel=
-ease goal of improving usability and user experience. Most of the P2/P3 fea=
-tures.</div>
-<div>&nbsp;&nbsp;&nbsp; - </div>
-<div>&nbsp;&nbsp;&nbsp; - </div>
-<div>* SWAT team rotation: Paul-&gt;Jessica</div>
-<div>* Opens - 10 min</div>
-<div>&nbsp; - stabilization</div>
-<div>&nbsp;</div>
-<div>* Team Sharing - 20 min</div>
-<div> Denys: Getting ready for the BSP summit. Busy with Meta-ti and other =
-layers.</div>
-<div> Darren: A couple of updates on bugs, mostly on internal things.</div>
-<div> Jessica: Resume Eclipse plugin for BSP tool.</div>
-<div> Bruce: Finishing up 1.2 items, waiting for 3.4 merge window. 3.2.11 i=
-s 1.2 kernel version.</div>
-<div> Tom: spent time on BSP tools, addressing all inputs from M3. updated =
-wiki for how to use it. Updating all meta-intel BSPs, working on internal B=
-SPs.</div>
-<div> Richard: been doing patch review and merging. Warning fixes. More of =
-the same this week,</div>
-<div> Paul: Been doing bug fixes and warning fixes, helping ScottR with doc=
- changes. Build history data analysis. Will continue this week.</div>
-<div> Joshua: Help on HOB2, code view, integration issues.</div>
-<div> Saul: Patch review, validation, fixing warnings, build appliance patc=
-hes. Will be out next week.</div>
-<div>&nbsp;</div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-</span></font>
-</body>
-</html>
+This patch seems to break the lttng-2.0/lttng-tools build.  Please 
+verify that we can build lttng-2.0 bits or somehow handle both.
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A46AE335DORSMSX101amrcor_--
+I am not sure the kernel will support the older lttng, in which case 
+using lttng-ust from the older release will not work, so we can not use 
+the eclipse with it anyways.
+
+Sau!
+
+> The following changes since commit 8e9f6fc77ac4763f4ed1f6e7b720420c220ba6e2:
+>    Richard Purdie (1):
+>          dates: Fix unpackaged files warning
+>
+> are available in the git repository at:
+>
+>    git://git.pokylinux.org/poky-contrib llu/bug2062
+>    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=llu/bug2062
+>
+> Lianhao Lu (1):
+>    poky.conf: Prefer lttng-ust instead of lttng2-ust.
+>
+>   meta-yocto/conf/distro/poky.conf |    3 +++
+>   1 files changed, 3 insertions(+), 0 deletions(-)
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
