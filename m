@@ -1,26 +1,20 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5693E0059A
-	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 18:27:48 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q2L1RmPn028433
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 20 Mar 2012 18:27:48 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.21.207) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Tue, 20 Mar 2012 18:27:48 -0700
-Message-ID: <4F692E92.3040507@windriver.com>
-Date: Tue, 20 Mar 2012 21:27:46 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
-MIME-Version: 1.0
-To: Saul Wold <sgw@linux.intel.com>
-References: <cover.1331713200.git.lianhao.lu@intel.com>
-	<4F6927DC.6030800@linux.intel.com>
-In-Reply-To: <4F6927DC.6030800@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/1] perfer older version of lttng-ust in poky distro
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 166C5E00747
+	for <yocto@yoctoproject.org>; Tue, 20 Mar 2012 20:41:48 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 20 Mar 2012 20:41:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="123227599"
+Received: from unknown (HELO localhost) ([10.255.15.208])
+	by orsmga002.jf.intel.com with ESMTP; 20 Mar 2012 20:41:47 -0700
+From: tom.zanussi@intel.com
+To: scott.m.rifenbark@intel.com,
+	yocto@yoctoproject.org
+Date: Tue, 20 Mar 2012 22:41:47 -0500
+Message-Id: <cover.1332300688.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/2] yocto-docs updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,66 +26,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Mar 2012 01:27:49 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 21 Mar 2012 03:41:48 -0000
 
-On 12-03-20 8:59 PM, Saul Wold wrote:
-> On 03/14/2012 01:27 AM, Lianhao Lu wrote:
->> Set the PREFERRED_VERSION of lttng-ust to use lttng-ust instead of
->> lttng2-ust in poky distro. This fixed yocto bug #2062.
->>
->> The lttng2 is very different in terms of architecture and usage model,
->> compared
->> to lttng. The eclipse upstream lttng plugin won't be able to support
->> lttng2 until
->> the eclipse Juno release(Jun 27th, 2012).
->>
-> This patch seems to break the lttng-2.0/lttng-tools build. Please verify
-> that we can build lttng-2.0 bits or somehow handle both.
->
-> I am not sure the kernel will support the older lttng, in which case
-> using lttng-ust from the older release will not work, so we can not use
-> the eclipse with it anyways.
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-It won't. Since lttng 1.x wasn't ported past 2.6.38 (and released), since
-lttng was moving to 2.x and the new CTF, there wasn't any sense in
-porting it ourselves.
+This patchset updates the Yocto Reference Manual and BSP Developer's Guide
+with some recent changes related to licensing.
 
-That being said, it IS possible for both 1.x and 2.x to co-exist, but
-we don't have the weeks (or the value) in making the port.
+I had some trouble getting the section numbers in the Yocto Reference Manual
+right, Scott - I'm hoping you can quickly fix that or tell me what I need to
+do with the markup.  What's there now is:
 
-Cheers,
+3.3.2. Enabling Commercially Licensed Recipes
 
-Bruce
+Followed by two subsections:
 
->
-> Sau!
->
->> The following changes since commit
->> 8e9f6fc77ac4763f4ed1f6e7b720420c220ba6e2:
->> Richard Purdie (1):
->> dates: Fix unpackaged files warning
->>
->> are available in the git repository at:
->>
->> git://git.pokylinux.org/poky-contrib llu/bug2062
->> http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=llu/bug2062
->>
->> Lianhao Lu (1):
->> poky.conf: Prefer lttng-ust instead of lttng2-ust.
->>
->> meta-yocto/conf/distro/poky.conf | 3 +++
->> 1 files changed, 3 insertions(+), 0 deletions(-)
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+1. Explanation of how LICENSE_FLAGS matching works
+1. Other Variables Related to Commercial Licenses
+
+Which should remain the same textually, but should be numbered as:
+
+3.3.2.1. Explanation of how LICENSE_FLAGS matching works                                                   3.3.2.2. Other Variables Related to Commercial Licenses                                                    
+
+Thanks,
+
+Tom       
+
+The following changes since commit 3bc8b3a4fc0adcfcda3026e7c209e4f57e750737:
+  Scott Rifenbark (1):
+        documentation/dev-manual/dev-manual-common-tasks.xml: Spell check.
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/poky-contrib.git tzanussi/yocto-docs-updates
+  http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/yocto-docs-updates
+
+Tom Zanussi (2):
+  documentation/poky-ref-manual/technical-details.xml: update 'Enabling
+    Commercially Licensed Recipes' section
+  documentation/bsp-guide/bsp.xml: update 'BSP Licensing' section
+
+ documentation/bsp-guide/bsp.xml                    |  192 +++++++++----------
+ .../poky-ref-manual/technical-details.xml          |  189 ++++++++++++++++----
+ 2 files changed, 246 insertions(+), 135 deletions(-)
 
 
