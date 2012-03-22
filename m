@@ -1,24 +1,24 @@
 Return-Path: <rahul.saxena@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39822E013DA
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 582C5E013DB
 	for <yocto@yoctoproject.org>; Thu, 22 Mar 2012 17:41:30 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 22 Mar 2012 17:41:30 -0700
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 22 Mar 2012 17:41:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="122229719"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="124096724"
 Received: from rsaxena-desktop.sc.intel.com (HELO localhost) ([143.183.188.84])
-	by azsmga001.ch.intel.com with ESMTP; 22 Mar 2012 17:41:29 -0700
+	by orsmga002.jf.intel.com with ESMTP; 22 Mar 2012 17:41:30 -0700
 From: rahul.saxena@intel.com
 To: yocto@yoctoproject.org,
 	tom.zanussi@intel.com
-Date: Thu, 22 Mar 2012 10:32:19 -0700
-Message-Id: <21e39753a511362655d19373ea2d9b9713f97036.1332459306.git.rahul.saxena@intel.com>
+Date: Thu, 22 Mar 2012 10:32:20 -0700
+Message-Id: <12c72c7b153bd4af2776473d9cf904c435a1f4f2.1332459306.git.rahul.saxena@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332459306.git.rahul.saxena@intel.com>
 References: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332459306.git.rahul.saxena@intel.com>
 In-Reply-To: <cover.1332459306.git.rahul.saxena@intel.com>
 References: <cover.1332459306.git.rahul.saxena@intel.com>
-Subject: [PATCH 06/13] meta-cedartrail: add Cedar Trail PVR driver
+Subject: [PATCH 07/13] meta-cedartrail: update Kernel recipes to add support for pvr driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,114 +34,68 @@ X-List-Received-Date: Fri, 23 Mar 2012 00:41:30 -0000
 
 From: Rahul Saxena <rahul.saxena@intel.com>
 
-The Cedar Trail PVR driver consists of user-space  binaries that enable
-the Video and Graphics acceleration capabilites of the Power VR SGX545
-Integrated Graphics Controller in the Cedarview processor.
-The driver binaries are provided under "Intel Free Distribution Binary License"
-The instructions to enable the build of this driver are provided in the
-meta-cedartrail/README file
+Modify kernel recipes to enable pvr kernel patches and to include
+additional Kernel config files for pvr driver
 
 Signed-off-by: Rahul Saxena <rahul.saxena@.intel.com>
 ---
- .../xorg-driver/cdv-graphics-drivers_1.0.bb        |   89 ++++++++++++++++++++
- 1 files changed, 89 insertions(+), 0 deletions(-)
- create mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-graphics-drivers_1.0.bb
+ .../linux/linux-yocto-rt_3.0.bbappend              |   13 ++++++++++++-
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |   15 +++++++++++----
+ 2 files changed, 23 insertions(+), 5 deletions(-)
 
-diff --git a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-graphics-drivers_1.0.bb b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-graphics-drivers_1.0.bb
-new file mode 100644
-index 0000000..249246b
---- /dev/null
-+++ b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-graphics-drivers_1.0.bb
-@@ -0,0 +1,89 @@
-+SUMMARY = "Cedartrail PowerVR Graphics Driver version [Gold] 1.0 binaries"
-+DESCRIPTION = "2D, 3D and Media user space driver for Cedartrail platform \
-+The binaries are covered by the Intel Free Distribution Binary License. \ 
-+The user must make himself/herself aware of the Licensing terms \
-+before enabling build of the Cedartrail PowerVR Graphics Driver via \
-+this recipe.  Please see the README in meta-cedartrail for instructions \
-+for enabling the build of the driver "
+diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+index 3978951..828e6fd 100755
+--- a/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
++++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+@@ -2,10 +2,21 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_cedartrail = "cedartrail"
+ KMACHINE_cedartrail  = "cedartrail"
+ 
+-# The Cedarview processors have hyperthreading and includes dual-core versions
++COMPATIBLE_MACHINE_cedartrail-nopvr = "cedartrail"
++KMACHINE_cedartrail-nopvr  = "cedartrail"
++KERNEL_FEATURES_append_cedartrail-nopvr += " cfg/smp.scc"
 +
-+ 
-+PR = r0
++COMPATIBLE_MACHINE_cedartrail = "cedartrail"
++KMACHINE_cedartrail  = "cedartrail"
+ KERNEL_FEATURES_append_cedartrail += " cfg/smp.scc"
++KERNEL_FEATURES_append_cedartrail += " cfg/drm-cdvpvr.scc"
++KERNEL_FEATURES_append_cedartrail += " bsp/cedartrail/cedartrail-pvr-merge.scc"
+ 
+ # Update the following to use a different BSP branch or meta SRCREV
++#KBRANCH_cedartrail-nopvr = "yocto/standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_cedartrail-nopvr ?= XXXX
++#SRCREV_meta_pn-linux-yocto-rt_cedartrail-nopvr ?= XXXX
 +
-+S  = ${WORKDIR}/cdv-graphics-drivers_${PV}
+ #KBRANCH_cedartrail  = "yocto/standard/preempt-rt/base"
+ #SRCREV_machine_pn-linux-yocto-rt_cedartrail ?= XXXX
+ #SRCREV_meta_pn-linux-yocto-rt_cedartrail ?= XXXX
+diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
+index 858db15..14c0b9d 100755
+--- a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
++++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
+@@ -1,10 +1,17 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
++COMPATIBLE_MACHINE_cedartrail-nopvr = "cedartrail"
++KMACHINE_cedartrail-nopvr  = "yocto/standard/cedartrail"
++KERNEL_FEATURES_append_cedartrail-nopvr += " cfg/smp.scc"
 +
-+LICENSE = "Intel Free Distribution Binary License"
-+LIC_FILES_CHKSUM = " \
-+    file://${S}/usr/share/doc/psb-video-cdv-0.12/license.txt;md5=b14d99f8d4ed664e9ce95057f0bb5b65  \
-+    file://${S}/usr/share/doc/pvr-bin-cdv-1.7.788837_05/license.txt;md5=b14d99f8d4ed664e9ce95057f0bb5b65"
+ COMPATIBLE_MACHINE_cedartrail = "cedartrail"
+ KMACHINE_cedartrail  = "yocto/standard/cedartrail"
+-
+-# The Cedarview processors have hyperthreading and includes dual-core versions
+ KERNEL_FEATURES_append_cedartrail += " cfg/smp.scc"
++KERNEL_FEATURES_append_cedartrail += " cfg/drm-cdvpvr.scc"
++KERNEL_FEATURES_append_cedartrail += " bsp/cedartrail/cedartrail-pvr-merge.scc"
 +
-+DEPENDS = "libva"
-+
-+CDR_TRAIL = "download.meego.com/live/MeeGo:/1.2.0:/CedarTrail:"
-+
-+SRC_URI = " \
-+  http://${CDR_TRAIL}/non-oss/MeeGo_1.2.0_CedarTrail/i586/psb-video-cdv-0.12-1.1.i586.rpm;name=psb  \
-+  http://${CDR_TRAIL}/non-oss/MeeGo_1.2.0_CedarTrail/i586/pvr-bin-cdv-1.7.788837_05-1.1.i586.rpm;name=pvr \
-+  http://${CDR_TRAIL}/oss/standard/i586/libwsbm-cdv-1.1.0-3.1.i586.rpm;name=libwsbm \
-+            "
-+SRC_URI[psb.md5sum] = "d4b6b383722264f3b781aeb240c88037"
-+SRC_URI[psb.sha256sum] = "e88f95fc73a79adf76ee33d3d9874cec23bb1afe8149d7dc5842d67e58da72f5"
-+SRC_URI[pvr.md5sum] = "951fa9edcbc2a3ddb30450079869362e"
-+SRC_URI[pvr.sha256sum] = "537dd8a98ac2e3a101063abc62682c3be8c37ac29782a876eafce113ffa5b421"
-+SRC_URI[libwsbm.md5sum] = "8d90436b151ddf72f620771f2552b597"
-+SRC_URI[libwsbm.sha256sum] = "82f78f47c151f0e7d567574ee372504e5b395fb13796caa765f9c30754b5bf63"
-+
-+do_configure () {
-+
-+# Extract  license files from rpms
-+rpm2cpio ${WORKDIR}/psb-video-cdv-0.12-1.1.i586.rpm |cpio -ivd ./usr/share/doc/psb-video-cdv-0.12/license.txt
-+rpm2cpio ${WORKDIR}/pvr-bin-cdv-1.7.788837_05-1.1.i586.rpm |cpio -ivd ./usr/share/doc/pvr-bin-cdv-1.7.788837_05/license.txt
-+
-+}
-+
-+do_install() {
-+
-+install -m 0644 ${WORKDIR}/psb-video-cdv-0.12-1.1.i586.rpm ${D}
-+install -m 0644 ${WORKDIR}/pvr-bin-cdv-1.7.788837_05-1.1.i586.rpm ${D}
-+install -m 0644 ${WORKDIR}/libwsbm-cdv-1.1.0-3.1.i586.rpm ${D}
-+
-+cd ${D}
-+
-+rpm2cpio psb-video-cdv-0.12-1.1.i586.rpm | cpio -idmv
-+rpm2cpio pvr-bin-cdv-1.7.788837_05-1.1.i586.rpm | cpio -idmv
-+rpm2cpio libwsbm-cdv-1.1.0-3.1.i586.rpm | cpio -idmv
-+
-+install -m 0755 ${D}/${libdir}/libpvr2d.so.1.7.788837  ${D}/${libdir}/libpvr2d.so
-+install -m 0755 ${D}/${libdir}/libsrv_um.so.1.7.788837 ${D}/${libdir}/libsrv_um.so
-+install -m 0755 ${D}/${libdir}/libegl4ogl.so.1.7.788837 ${D}/${libdir}/libegl4ogl.so
-+install -m 0755 ${D}/${libdir}/libPVROGL_MESA.so.1.7.788837 ${D}/${libdir}/libPVROGL_MESA.so
-+install -m 0755 ${D}/${libdir}/libIMGegl.so.1.7.788837 ${D}/${libdir}/libIMGegl.so
-+install -m 0755 ${D}/${libdir}/libusc.so.1.7.788837 ${D}/${libdir}/libusc.so
-+install -m 0755 ${D}/${libdir}/libOpenVG.so.1.7.788837 ${D}/${libdir}/libOpenVG.so
-+
-+install -m 0644 ${S}/usr/share/doc/psb-video-cdv-0.12/license.txt ${WORKDIR}/license-destdir/cdv-graphics-drivers/license.txt  
-+
-+rm -f *.rpm
-+}
-+
-+FILES_${PN} += "${libdir}/pvr/cdv/lib*.so.*"
-+FILES_${PN} += "${base_libdir}/firmware"
-+FILES_${PN} += "${libdir}/debug/usr/bin"
-+FILES_${PN} += "${libdir}/debug/usr/lib"
-+FILES_${PN} += "${libdir}/lib*.so"
-+
-+FILES_${PN} += "${libdir}/dri/*.so"
-+FILES_${PN} += "${libdir}/pvr/cdv/dri/*.so"
-+FILES_${PN} += "${libdir}/xorg/modules/drivers/*.so"
-+FILES_${PN} += "${libdir}/pvr/cdv/xorg/modules/drivers/*.so"
-+
-+FILES_${PN}-dbg += "${libdir}/dri/.debug/*"
-+
-+addtask check_pvr_license before do_fetch
-+
-+python do_check_pvr_license() {
-+    pn = bb.data.getVar('PN', d, 1)
-+    pvr_license = bb.data.getVar('PVR_LICENSE', d, 1)
-+    if not pvr_license or not pvr_license.lower() == "yes":
-+        bb.debug(1, "Skipping %s because it may have a non-free license" % pn)
-+        raise bb.parse.SkipPackage("because it requires PVR_LICENSE = \"yes\" in local.conf to ship")
-+}
++SRCREV_machine_pn-linux-yocto_cedartrail ?= "5746120ee0afefd1e28400bea4b74f285bd5e59a"
++SRCREV_meta_pn-linux-yocto_cedartrail ?= "a4ac64fe873f08ef718e2849b88914725dc99c1c"
+ 
+-SRCREV_machine_pn-linux-yocto_cedartrail ?= "f389d310965a56091f688b28ea8be6d9cbb7fbbe"
+-SRCREV_meta_pn-linux-yocto_cedartrail ?= "04a52a32cbdf0972033b97b83eaa83eb275dfdc9"
++SRCREV_machine_pn-linux-yocto_cedartrail-nopvr ?= "5746120ee0afefd1e28400bea4b74f285bd5e59a"
++SRCREV_meta_pn-linux-yocto_cedartrail-nopvr ?= "d588bdafc0d9b4d2386144b7d76a1d379e2d16c0"
 -- 
 1.7.4.1
 
