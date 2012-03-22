@@ -1,37 +1,32 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84DE5E0044D
-	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 16:07:32 -0700 (PDT)
-Received: by pbbjt11 with SMTP id jt11so1414040pbb.35
-	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 16:07:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=dVgcd1nudC/0bXNIRY5FckD1LOilXUMFrvUC0Qb5h8Q=;
-	b=fYaB3jz1+pt1B58pWg3Cb7IogUH/ky++m+mHFw0vgZ0QO/P+AfHOJfrM88fHQKfFl0
-	tO0b0+r+iNw6C1q7H6P/aJPCPBMMrOJwfmRyRiqcXP9bM/DgSsTjUzRyNt4ctcGnV0l4
-	XJ6J9uanVz9Fd4M5YH/PSv22xHtqDqr9ePN/3SMt2bvkBCwHC78rxRa2bsOoCf9OEr7Q
-	0eMdO9/va0CMbGHISxp/seRoQwCH2/4HXuzdPvl47I8e60BtY/89hcnpqxLrzC/hkycy
-	892wSCG12VV2bgn+litpGo5UcqdIv96M4rePGuD6lyz94aLbZuBNbwY3wpIvn33QWH6M
-	QjUg==
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34C86E00747
+	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 17:05:56 -0700 (PDT)
+Received: from mail-lpp01m010-f52.google.com ([209.85.215.52])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 21 Mar 2012 17:05:55 -0700
+Received: by lahi5 with SMTP id i5so1133429lah.25
+	for <yocto@yoctoproject.org>; Wed, 21 Mar 2012 17:05:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=GkIrSHRy8xqspqGlpIWnGgl4lMYRxESg01lFdSziT1E=;
+	b=AXMdDCOPX/INM2arkMncFJ4EOwClDJfoXagAST257ec/Xui3LUB+2NWZk+iLNmNxsG
+	rey+GHOBU9AV7tRLg6qtK4WWPeyKcVD6xxDd5jbJvY1bKVRr7mHopcdoapkxHGlrEvdj
+	6LGFoqr8+X/Q+JohUbKAdqnTiOL/Cs1uAdvJixudgZULKxp1dtC3fbkDtOChQMt8Bakx
+	avMiThhSIPzh35vagI6QaTMTibVoWCSow9gu41tGcqM/0LuD74eE1YnikHkhAZxXsKPE
+	5hgJ4gQxzQfzlQ85rih9EgPe+8+0OToCsri53NjKt+0ub4xdFVi4jeEBL4RN5pIGzPKg
+	gEdg==
 MIME-Version: 1.0
-Received: by 10.68.125.135 with SMTP id mq7mr15029697pbb.155.1332371252396;
-	Wed, 21 Mar 2012 16:07:32 -0700 (PDT)
-Received: by 10.68.20.134 with HTTP; Wed, 21 Mar 2012 16:07:32 -0700 (PDT)
-In-Reply-To: <1332367194.2322.231.camel@elmorro>
-References: <CADzUK1L1JEveHaVgdXRUGh5a=GtfDnu6hFtcUt1vSmGkAyOVjg@mail.gmail.com>
-	<1332361435.2322.209.camel@elmorro>
-	<CADzUK1LbmYVNKsBGMBCaJs4GqPMh+8D-51D8tEvHV29rsEiWJg@mail.gmail.com>
-	<1332362567.2322.222.camel@elmorro>
-	<CADzUK1JtSDOp=3U3R14o_roY4scPc+EqV9P54aTiD695u8Faww@mail.gmail.com>
-	<1332367194.2322.231.camel@elmorro>
-Date: Wed, 21 Mar 2012 19:07:32 -0400
-Message-ID: <CADzUK1KZgTiMVOz4zOm2-w6n+rNtMaoib9VKi3SSB1ZekasPCA@mail.gmail.com>
-From: Autif Khan <autif.mlist@gmail.com>
-To: Tom Zanussi <tom.zanussi@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Graphics Acceleration on crownbay - 1.2M3 + meta-intel tip
+Received: by 10.112.47.161 with SMTP id e1mr2444837lbn.42.1332374753336; Wed,
+	21 Mar 2012 17:05:53 -0700 (PDT)
+Received: by 10.112.98.133 with HTTP; Wed, 21 Mar 2012 17:05:53 -0700 (PDT)
+Date: Wed, 21 Mar 2012 17:05:53 -0700
+Message-ID: <CAPhnLPDdD_+TPX32B184jUXOCt+ei87Kk+FNWpZLxii5FFhRzA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org, yocto-announce@yoctoproject.org
+X-Gm-Message-State: ALoCoQkf4WkSxGDgzx1ImquWMU6xERbTbohNE+Os3O2pbw3Eu2OFqbAgkVXTEfGnwdJOb70vx3Lv
+Subject: [ANNOUNCEMENT] Yocto 1.1.1 released.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,114 +38,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Mar 2012 23:07:32 -0000
+X-List-Received-Date: Thu, 22 Mar 2012 00:05:56 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
->> >> >> Minor correction to the subject - I am using 1.2M3, not 1.2M2
->> >> >>
->> >> >> On Wed, Mar 21, 2012 at 4:14 PM, Autif Khan <autif.mlist@gmail.com=
-> wrote:
->> >> >> > I am trying to get hardware accelerated graphics (video in parti=
-cular)
->> >> >> > to work on my crownbay based hardware. I have EMGD 1.10 driver
->> >> >> > integrated and working. The evidence for this is that when I use
->> >> >> > glxgears (form mesa-demos) I get 115 fps instead of 4-5 fps.
->> >> >> >
->> >> >> > This is good, however, when I go over to the web2 browser (enabl=
-ed by
->> >> >> > defining WEB =3D "web-webkit" for recipe task-core-apps-x11-piml=
-ico) - I
->> >> >> > do not get graphics acceleration for javascript graphics. I also=
- do
->> >> >> > not get graphics acceleration when I watch an MP4 movie. I get 2=
--3 fps
->> >> >> > instead of the standard 25 or 29 fps.
->> >> >> >
->> >> >> > This was not the case when Yocto used EMGD 1.8 driver - video wo=
-rked
->> >> >> > fine - I am not sure about accelerated javascript based graphics=
- in
->> >> >> > browser as I was not as far ahead in the project.
->> >> >> >
->> >> >> > Is this a known issue?
->> >> >> >
->> >> >
->> >> > When I tested video using gst-launch, I saw the same thing, which w=
-as
->> >> > due to a missing libva-tpi. =A0The latest commit in meta-intel adde=
-d that
->> >> > and fixed the problem for me.
->> >> >
->> >> > commit 162f3d1d3c538d7582a5e81205a9cdab74125b2b
->> >> > Author: Tom Zanussi <tom.zanussi@intel.com>
->> >> > Date: =A0 Mon Mar 12 19:57:29 2012 -0500
->> >> >
->> >> > =A0 =A0ia32-base: add libva display dependencies to emgd xserver
->> >> >
->> >>
->> >> I did a build today with tip - I have confirmed that I have this in t=
-he source.
->> >>
->> >> What files should have been added to the root filesystem image as a
->> >> reult of adding libva-tpi, libva-glx and libva-egl?
->> >>
->> >
->> > You should see those shared libraries in /usr/lib
->>
->> I think that I do:
->>
->> root@crownbay:/usr/lib# ls -l *libva*
->> lrwxrwxrwx =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A0 =A019 Mar 21 1=
-7:38
->> libva-egl.so.1 -> libva-egl.so.1.0.12
->> -rwxr-xr-x =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A03040 Mar 21 17:=
-07 libva-egl.so.1.0.12
->> lrwxrwxrwx =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A0 =A019 Mar 21 1=
-7:38
->> libva-glx.so.1 -> libva-glx.so.1.0.12
->> -rwxr-xr-x =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 14868 Mar 21 17:07=
- libva-glx.so.1.0.12
->> lrwxrwxrwx =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A0 =A019 Mar 21 1=
-7:38
->> libva-tpi.so.1 -> libva-tpi.so.1.0.12
->> -rwxr-xr-x =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A03856 Mar 21 17:=
-07 libva-tpi.so.1.0.12
->> lrwxrwxrwx =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A0 =A019 Mar 21 1=
-7:38
->> libva-x11.so.1 -> libva-x11.so.1.0.12
->> -rwxr-xr-x =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 28476 Mar 21 17:07=
- libva-x11.so.1.0.12
->> lrwxrwxrwx =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 =A0 =A015 Mar 21 1=
-7:38 libva.so.1 ->
->> libva.so.1.0.12
->> -rwxr-xr-x =A0 =A01 root =A0 =A0 root =A0 =A0 =A0 =A0 68816 Mar 21 17:07=
- libva.so.1.0.12
->>
->> The older image did not have egl, glx and tpi
->>
->> However, when I execute gst-launch -v playbin2 uri=3Dfile:///media/hdd/B=
-BB.ogv
->>
->> I get a lot of "There may be a timestamping problem, or this computer
->> is too slow." warnings.
->>
->> Attached are the logs created by the above command.
->>
->> Is there something else that needs to be done?
->
-> Hmm, looks like the acceleration isn't kicking in. =A0Is that a supported
-> format for emgd accelaration? - I've been testing with 1080p .h264
-> videos, http://www.bigbuckbunny.org/index.php/download/, maybe if you
-> could try that so we know we're on the same page.
->
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-I was hoping that Ogg Video is supported.
+Hello,
 
-I tried the H.264 (BBB stands for bigbuck bunny, I got these movies
-from an earlier email from you). But I am getting another error -
-ERROR: pipeline doesn't want to preroll.
+Our point release of yocto-1.1.1 edison has been tagged, generated and
+is now available for download. This release is available at:
 
-Do I need some other codec or some library? Are there licensing
-implications of using H.264?
+ http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.1/poky-edison-6.0.1.tar.bz2
+ or
+ http://mirrors.kernel.org/yocto/yocto/yocto-1.1.1/poky-edison-6.0.1.tar.bz2
+
+Additional tarballs for meta-qt3 and eclipse plugin are available at:
+
+    http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.1/meta-qt3-edison-6.0.1.tar.bz2
+    http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.1/eclipse-poky-edison-6.0.1.tar.bz2
+
+    with mirror locations at:
+
+    http://mirrors.kernel.org/yocto/yocto/yocto-1.1.1/meta-qt3-edison-6.0.1.tar.bz2
+    http://mirrors.kernel.org/yocto/yocto/yocto-1.1.1/eclipse-poky-edison-6.0.1.tar.bz2
+
+Git tags gpg key information is available at:
+
+    http://pgp.mit.edu:11371/pks/lookup?op=vindex&search=0x4C8AF84FCC12440F
+
+If you notice, this release contains quite a number of upgrades. A
+short list of these upgrades is at the end of this email. For a
+complete patchset, please review the git log.
+
+Elizabeth Flanagan
+
+- --------------------
+edison-6.0.1 Errata
+- --------------------
+
+Release Name: poky-edison-6.0.1
+Branch:  edison
+Tag:  edison-6.0.1.release
+Git rev:  0fbd6a161576b2cafa8583adde0ffb15347c884a
+md5:  2f1695b6a11279a092bd22a38bc3a82e  poky-edison-6.0.1.tar.bz2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.1/poky-edison-6.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.1.1/poky-edison-6.0.1.tar.bz2
+
+Release Name: eclipse-poky-edison-6.0.1
+Branch:  edison
+Tag:  edison-6.0.1.release
+Git Rev:  e33b9b6e8054bc7b778514b85a5d7505f91885ee
+md5:  dc3454c9109f1977b7a760164dfeb14c  eclipse-poky-edison-6.0.1.tar.bz2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.1/eclipse-poky-edison-6.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.1.1/eclipse-poky-edison-6.0.1.tar.bz2
+
+Release Name: meta-qt3-edison-6.0.1
+Branch:  edison
+Tag:  edison-6.0.1.release
+Git rev:  0c3153242344e5113a50002939d36a2b739cc497
+md5:  10e6a640c8abaf546208128d4ff81fbe  meta-qt3-edison-6.0.1.tar.bz2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.1/meta-qt3-edison-6.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.1.1/meta-qt3-edison-6.0.1.tar.bz2
+
+- --------------------
+Features
+- --------------------
+- - PPC related fixes (kernel, udev, eglibc, etc)
+- - Fixes for the useradd class and various related changes to ensure smooth use
+- - Fixes for sstate generation and various related changes to enhance
+sstate support including metadata changes to:
+ - increase the amount of reused sstate cache
+ - ensure the ADT installer regenerates in the deploy directory
+ - fix an uncommon bug to ensure that when the sstate cache for a
+recipe is not  reusable the recipe is correctly rebuilt.
+- - Fetcher fixes including enhancing the git fetcher to cope with
+rebased branches
+
+- --------------------
+Known Issues
+- --------------------
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=1983
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=2015
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=1721
+
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.16 (GNU/Linux)
+
+iQEcBAEBAgAGBQJPah1+AAoJEEyK+E/MEkQPeugH/0qL/avSEA9YLDBTExwg2c9w
+cDBPZBxfwOIXbrU+qvQx7eI/xbRs29GETQk2g0xsGb9ZELV1RTg8Vhtf1pPqHhHR
+I1+DSZa6FjF1e+1MfpbTg5t7DmI40sGs4V8TbUsuytF3g2HGVGxD81eBPP5K10Ua
+YWYrGJf5CAOL3vONEyTm3CBoUgxIVORB661eIbCSk/ljRdsW5yR/7napQ1wHxK7G
+1uYr3XAuvyKU84G1OxkBek9xawTNLUz4T9Sc/bnGYSeyQK1oh7OPxd5HuS0RfOUW
+n/Q04vggJ7abg0nkdYFsvwheJEbcSOW8AN7oI2r3K7fGAwExo1wwq3Ovi2hXHVU=
+=pSr7
+-----END PGP SIGNATURE-----
 
