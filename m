@@ -1,26 +1,25 @@
-Return-Path: <Peter.Seebach@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C191E013A3
-	for <yocto@yoctoproject.org>; Thu, 22 Mar 2012 09:18:12 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2MGIA3G005659
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 22 Mar 2012 09:18:10 -0700 (PDT)
-Received: from wrlaptop (172.25.40.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 22 Mar 2012 09:18:10 -0700
-Date: Thu, 22 Mar 2012 11:18:05 -0500
-From: Peter Seebach <peter.seebach@windriver.com>
-To: "Xu, Dongxiao" <dongxiao.xu@intel.com>
-Message-ID: <20120322111805.6da9cd91@wrlaptop>
-In-Reply-To: <1332380981.1849.18.camel@dongxiao-osel>
-References: <2046170.9fCjTlmZqN@helios> <4F3EA17B.7010906@windriver.com>
-	<1331715724.25861.16.camel@dongxiao-osel>
-	<1332380981.1849.18.camel@dongxiao-osel>
-X-Mailer: Claws Mail 3.7.8 (GTK+ 2.24.4; x86_64-pc-linux-gnu)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6996DE013A3
+	for <yocto@yoctoproject.org>; Thu, 22 Mar 2012 10:45:36 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 22 Mar 2012 10:45:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="122071362"
+Received: from unknown (HELO helios.localnet) ([10.252.123.227])
+	by azsmga001.ch.intel.com with ESMTP; 22 Mar 2012 10:45:26 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 22 Mar 2012 17:45:25 +0000
+Message-ID: <26661316.CjVfTJnL8v@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.1; i686; ; )
+In-Reply-To: <4F6B4B98.6050106@linux.intel.com>
+References: <cover.1331666101.git.dvhart@linux.intel.com>
+	<11107389.LZ9REiQeM5@helios> <4F6B4B98.6050106@linux.intel.com>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: pseudo interaction issue
+Cc: Darren Hart <dvhart@linux.intel.com>, "Wold, Saul" <saul.wold@intel.com>
+Subject: Re: [PATCH 1/1] ddimage: Add script for writing images to boot media
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,28 +31,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Mar 2012 16:18:12 -0000
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 22 Mar 2012 17:45:36 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Thu, 22 Mar 2012 09:49:41 +0800
-"Xu, Dongxiao" <dongxiao.xu@intel.com> wrote:
+On Thursday 22 March 2012 08:56:08 Darren Hart wrote:
+> On 03/21/2012 05:26 PM, Paul Eggleton wrote:
+> > On Wednesday 21 March 2012 16:06:14 Darren Hart wrote:
+> >> Any objections to this going in?
+> > 
+> > No objections, looks like a really useful tool; a couple of suggestions
+> > though (sorry for not looking at it earlier):
+> > 
+> > * Is it worth checking if the target device is mounted and erroring out if
+> > so?
+> That's a good suggestion. Alright with you if that is a follow-on patch?
 
-> Hi Mark,
+Sure, sounds fine to me.
+ 
+> > * Not sure but it may be worth waiting a few seconds after the sync before
+> > exiting; I've seen some hardware that returns control to userspace before
+> > the hardware has actually finished writing.
 > 
-> Any update on this one? I think we may need to track it in bugzilla.
+> That may be, but anything we assume will be wrong for some hardware. The
+> sticks I have flash an LED for a few seconds afterwards, indicating writing.
 
-I have been looking into this.  I've convinced myself that popen() is
-broken under pseudo, but that's not enough to explain this:
+Many do, yes. I guess it was just a simple idea to avoid potential issues 
+particularly for those that don't have an LED.
 
-* I have a fixed pseudo where popen works.  It still fails sometimes
-  under hob.
-* When it fails, the popen() wrapper isn't even getting called.
-* Still looking into this.
+Cheers,
+Paul
 
-Interestingly, I can't get this failure to occur at all outside of hob.
-
--s
 -- 
-Listen, get this.  Nobody with a good compiler needs to be justified.
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
