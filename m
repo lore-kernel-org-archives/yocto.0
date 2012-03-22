@@ -1,23 +1,24 @@
 Return-Path: <rahul.saxena@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC11BE013DA
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE007E013DB
 	for <yocto@yoctoproject.org>; Thu, 22 Mar 2012 17:41:29 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 22 Mar 2012 17:41:29 -0700
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 22 Mar 2012 17:41:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="122229709"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="120707180"
 Received: from rsaxena-desktop.sc.intel.com (HELO localhost) ([143.183.188.84])
-	by azsmga001.ch.intel.com with ESMTP; 22 Mar 2012 17:41:29 -0700
+	by orsmga001.jf.intel.com with ESMTP; 22 Mar 2012 17:41:29 -0700
 From: rahul.saxena@intel.com
 To: yocto@yoctoproject.org,
 	tom.zanussi@intel.com
-Date: Thu, 22 Mar 2012 10:32:14 -0700
-Message-Id: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332459306.git.rahul.saxena@intel.com>
+Date: Thu, 22 Mar 2012 10:32:18 -0700
+Message-Id: <d3913f7a27354f30569bbb99cc77b99314c6ef20.1332459306.git.rahul.saxena@intel.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332459306.git.rahul.saxena@intel.com>
+References: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332459306.git.rahul.saxena@intel.com>
 In-Reply-To: <cover.1332459306.git.rahul.saxena@intel.com>
 References: <cover.1332459306.git.rahul.saxena@intel.com>
-MIME-Version: 1.0
-Subject: [PATCH 01/13] meta-cedartrail: Separate conf files for the Cedar Trail BSP boot cases of with and without pvr driver
+Subject: [PATCH 05/13] meta-cedartrail: seperate xorg.conf files for pvr and no-pvr cases
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,116 +30,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2012 00:41:29 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 23 Mar 2012 00:41:30 -0000
 
 From: Rahul Saxena <rahul.saxena@intel.com>
 
-Seperate Cedar Trail machine configuration files, one file each for build
-with pvr graphics driver and without pvr driver (with VESA driver)
-The Cedar Trail platform is based on the Cedarview processor (Intel® Atom™
-N2600, N2800 and D2700 processor)and Tiger Point Chipset (Intel® NM10 Express).
+Seperate xserver configuration files, one file each for  the case of with pvr graphics
+driver and for "no pvr" (i.e. with VESA driver)
 
 Signed-off-by: Rahul Saxena <rahul.saxena@.intel.com>
 ---
- meta-cedartrail/conf/machine/cedartrail-nopvr.conf |   41 ++++++++++++++++++++
- meta-cedartrail/conf/machine/cedartrail.conf       |   15 +++++--
- 2 files changed, 52 insertions(+), 4 deletions(-)
- create mode 100644 meta-cedartrail/conf/machine/cedartrail-nopvr.conf
+ .../xserver-xf86-config/cedartrail-nopvr/xorg.conf |   26 ++++++++++++++++++++
+ .../xserver-xf86-config/cedartrail/xorg.conf       |   24 ++++++------------
+ 2 files changed, 34 insertions(+), 16 deletions(-)
+ create mode 100644 meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail-nopvr/xorg.conf
+ mode change 100755 => 100644 meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf
 
-diff --git a/meta-cedartrail/conf/machine/cedartrail-nopvr.conf b/meta-cedartrail/conf/machine/cedartrail-nopvr.conf
+diff --git a/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail-nopvr/xorg.conf b/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail-nopvr/xorg.conf
 new file mode 100644
-index 0000000..b664272
+index 0000000..da4fc3c
 --- /dev/null
-+++ b/meta-cedartrail/conf/machine/cedartrail-nopvr.conf
-@@ -0,0 +1,41 @@
-+#@TYPE: Machine
-+#@NAME: Cedartrail-nopvr 
++++ b/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail-nopvr/xorg.conf
+@@ -0,0 +1,26 @@
++Section "Device"
++    Identifier	"Generic VESA"
++    Driver	"vesa"
++EndSection
 +
-+#@DESCRIPTION: Machine configuration for Cedartrail systems
-+# i.e. Cedarview (N2600, N2800 and D2700) processor +
-+# Tiger Point (Intel® NM10 Express) Chipset
++Section "Monitor"
++    Identifier    "Generic Monitor"
++    Option        "DPMS"
++EndSection
 +
-+include conf/machine/include/tune-atom.inc
++Section "Screen"
++    Identifier    "Default Screen"
++    Device	  "Generic VESA"
++    Monitor       "Generic Monitor"
++    DefaultDepth  24
++EndSection
 +
-+MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
-+                    acpi serial usbgadget alsa"
++Section "ServerLayout"
++    Identifier     "Default Layout"
++    Screen         "Default Screen"
++EndSection
 +
-+KERNEL_IMAGETYPE = "bzImage"
-+
-+PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
-+PREFERRED_VERSION_linux-yocto ?= "3.0%"
-+
-+PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
-+PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
-+PREFERRED_PROVIDER_virtual/libgl  ?= "mesa-dri"
-+PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xf86-dri-lite"
-+PREFERRED_PROVIDER_virtual/xserver-xf86 ?= "xserver-xf86-dri-lite"
-+XSERVER ?= "xserver-xf86-dri-lite \
-+           xf86-input-mouse \
-+           xf86-input-keyboard \
-+           xf86-input-evdev \
-+           xf86-input-synaptics \
-+           xf86-video-vesa"
-+
-+SYSLINUX_OPTS = "serial 3 115200"
-+SERIAL_CONSOLE = "115200 ttyS3"
-+APPEND += "console=ttyS3,115200 console=tty3"
-+
-+MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts cedartrail-audio"
-+
-+IMAGE_FSTYPES ?= "ext3 cpio.gz live"
-+
-+GLIBC_ADDONS = "nptl"
-+GLIBC_EXTRA_OECONF = "--with-tls"
-+
-+MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
-diff --git a/meta-cedartrail/conf/machine/cedartrail.conf b/meta-cedartrail/conf/machine/cedartrail.conf
-index 23ee0a7..21adb46 100755
---- a/meta-cedartrail/conf/machine/cedartrail.conf
-+++ b/meta-cedartrail/conf/machine/cedartrail.conf
-@@ -2,17 +2,19 @@
- #@NAME: Cedartrail 
++Section "ServerFlags"
++    Option        "DontZap"  "0"
++    Option        "AutoAddDevices"  "False"
++EndSection
+diff --git a/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf b/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf
+old mode 100755
+new mode 100644
+index da4fc3c..1d085a4
+--- a/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf
++++ b/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf
+@@ -1,23 +1,15 @@
+ Section "Device"
+-    Identifier	"Generic VESA"
+-    Driver	"vesa"
+-EndSection
+-
+-Section "Monitor"
+-    Identifier    "Generic Monitor"
+-    Option        "DPMS"
+-EndSection
+-
+-Section "Screen"
+-    Identifier    "Default Screen"
+-    Device	  "Generic VESA"
+-    Monitor       "Generic Monitor"
+-    DefaultDepth  24
++        Option     "DRIDisableVSync"    "False"
++        Identifier  "Card0"
++        Driver      "pvr"
++        BusID       "PCI:0:2:0"
++        Option      "SoftEXA"           "Off"
++        Option      "FlipChain"         "On"
+ EndSection
  
- #@DESCRIPTION: Machine configuration for Cedartrail systems
--# i.e. Cedarview processor + Tiger Point Chipset 
-+# i.e. Cedarview (N2600, N2800 and D2700) processor +
-+# Tiger Point (Intel® NM10 Express) Chipset
+ Section "ServerLayout"
+-    Identifier     "Default Layout"
+-    Screen         "Default Screen"
++        Identifier "default screen"
++        Option  "AIGLX" "on"
+ EndSection
  
- include conf/machine/include/tune-atom.inc
- 
- MACHINE_FEATURES = "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
--                    acpi serial usbgadget"
-+                   acpi serial usbgadget alsa"
- 
- KERNEL_IMAGETYPE = "bzImage"
- 
- PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
- PREFERRED_VERSION_linux-yocto ?= "3.0%"
-+PREFERRED_VERSION_mesa-dri ?= "7.10.2"
- 
- PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-yocto"
- PREFERRED_PROVIDER_virtual/libx11 ?= "libx11-trim"
-@@ -24,11 +26,16 @@ XSERVER ?= "xserver-xf86-dri-lite \
-            xf86-input-keyboard \
-            xf86-input-evdev \
-            xf86-input-synaptics \
--           xf86-video-vesa"
-+           mesa-dri \
-+           cdv-graphics-drivers " 
- 
-+PREFERRED_VERSION_xserver-xf86-dri-lite ?= "1.9.3"
-+
-+SYSLINUX_OPTS = "serial 3 115200"
- SERIAL_CONSOLE = "115200 ttyS3"
-+APPEND += "console=ttyS3,115200 console=tty3"
- 
--MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
-+MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts cedartrail-audio"
- 
- IMAGE_FSTYPES ?= "ext3 cpio.gz live"
- 
+ Section "ServerFlags"
 -- 
 1.7.4.1
 
