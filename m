@@ -1,24 +1,24 @@
 Return-Path: <rahul.saxena@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B5A7E013D9
-	for <yocto@yoctoproject.org>; Thu, 22 Mar 2012 17:41:55 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 491D4E013D9
+	for <yocto@yoctoproject.org>; Thu, 22 Mar 2012 17:41:56 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 22 Mar 2012 17:41:29 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 22 Mar 2012 17:41:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="143576932"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="143576938"
 Received: from rsaxena-desktop.sc.intel.com (HELO localhost) ([143.183.188.84])
-	by fmsmga002.fm.intel.com with ESMTP; 22 Mar 2012 17:41:29 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 22 Mar 2012 17:41:30 -0700
 From: rahul.saxena@intel.com
 To: yocto@yoctoproject.org,
 	tom.zanussi@intel.com
-Date: Thu, 22 Mar 2012 10:32:17 -0700
-Message-Id: <891c44fb9ad6d47536864f63032fae583fc5ba1c.1332459306.git.rahul.saxena@intel.com>
+Date: Thu, 22 Mar 2012 10:32:22 -0700
+Message-Id: <0862c27278dd92ce622e8fdf420ff01b346453eb.1332459306.git.rahul.saxena@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332459306.git.rahul.saxena@intel.com>
 References: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332459306.git.rahul.saxena@intel.com>
 In-Reply-To: <cover.1332459306.git.rahul.saxena@intel.com>
 References: <cover.1332459306.git.rahul.saxena@intel.com>
-Subject: [PATCH 04/13] meta-cedatrail: add recipe for setting audio mixer settings during boot
+Subject: [PATCH 09/13] meta-cedartrail: add recipes to instal audio and video samples
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,105 +30,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2012 00:41:55 -0000
+X-List-Received-Date: Fri, 23 Mar 2012 00:41:56 -0000
 
 From: Rahul Saxena <rahul.saxena@intel.com>
 
-Recipe is copied from n450-audio.bb with a few parameters changed
-to adjust volume settings for Front mixer during boot.
+Install Ogg format audio and video sample files
 
 Signed-off-by: Rahul Saxena <rahul.saxena@.intel.com>
 ---
- .../cedartrail-audio/cedartrail-audio.bb           |   30 ++++++++++++++
- .../cedartrail-audio/cedartrail-audio              |   42 ++++++++++++++++++++
- 2 files changed, 72 insertions(+), 0 deletions(-)
- create mode 100644 meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio.bb
- create mode 100644 meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio/cedartrail-audio
+ .../ogg-CC-BY-3.0-music-samples_0.1.bb             |   20 ++++++++++++++++++++
+ .../video-samples/bigbuckbunny-ogg.bb              |   20 ++++++++++++++++++++
+ 2 files changed, 40 insertions(+), 0 deletions(-)
+ create mode 100644 meta-cedartrail/recipes-mediasamples/music-samples/ogg-CC-BY-3.0-music-samples_0.1.bb
+ create mode 100644 meta-cedartrail/recipes-mediasamples/video-samples/bigbuckbunny-ogg.bb
 
-diff --git a/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio.bb b/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio.bb
+diff --git a/meta-cedartrail/recipes-mediasamples/music-samples/ogg-CC-BY-3.0-music-samples_0.1.bb b/meta-cedartrail/recipes-mediasamples/music-samples/ogg-CC-BY-3.0-music-samples_0.1.bb
 new file mode 100644
-index 0000000..9a43f02
+index 0000000..5da3e10
 --- /dev/null
-+++ b/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio.bb
-@@ -0,0 +1,30 @@
-+SUMMARY = "Provide a basic init script to enable audio"
-+DESCRIPTION = "Set the volume and unmute the Front mixer setting during boot."
-+SECTION = "base"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
++++ b/meta-cedartrail/recipes-mediasamples/music-samples/ogg-CC-BY-3.0-music-samples_0.1.bb
+@@ -0,0 +1,20 @@
++SUMMARY = "ogg file format music samples"
++DESCRIPTION = "Installs ogg file format music samples in /home/Music dir"
 +
-+PR = "r0"
++LICENSE = "CC-BY-3.0"
++LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/CC-BY-3.0;md5=dfa02b5755629022e267f10b9c0a2ab7"
 +
-+inherit update-rc.d
++DEPENDS += " " 
 +
-+RDEPENDS = "alsa-utils-amixer"
 +
-+SRC_URI = "file://cedartrail-audio"
-+
-+INITSCRIPT_NAME = "cedartrail-audio"
-+INITSCRIPT_PARAMS = "defaults 90"
++PR = r0
++SRC_URI = "http://downloads.yoctoproject.org/releases/media/music/ogg-CC-BY-3.0-music-samples-${PV}.tar.bz2 \
++            "
 +
 +do_install() {
-+	install -d ${D}${sysconfdir} \
-+	           ${D}${sysconfdir}/init.d
-+	install -m 0755 ${WORKDIR}/cedartrail-audio ${D}${sysconfdir}/init.d
-+        cat ${WORKDIR}/${INITSCRIPT_NAME} | \
-+            sed -e 's,/etc,${sysconfdir},g' \
-+                -e 's,/usr/sbin,${sbindir},g' \
-+                -e 's,/var,${localstatedir},g' \
-+                -e 's,/usr/bin,${bindir},g' \
-+                -e 's,/usr,${prefix},g' > ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
-+        chmod 755 ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
++
++install -d ${D}${base_prefix}/home/music
++install -m 0644  ${WORKDIR}/ogg-CC-BY-3.0-music-samples-${PV}/*/*.ogg ${D}${base_prefix}/home/music
 +}
 +
-diff --git a/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio/cedartrail-audio b/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio/cedartrail-audio
++FILES_${PN} += "${base_prefix}/home/music/*.ogg"
+diff --git a/meta-cedartrail/recipes-mediasamples/video-samples/bigbuckbunny-ogg.bb b/meta-cedartrail/recipes-mediasamples/video-samples/bigbuckbunny-ogg.bb
 new file mode 100644
-index 0000000..efd08d3
+index 0000000..2225af4
 --- /dev/null
-+++ b/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio/cedartrail-audio
-@@ -0,0 +1,42 @@
-+#!/bin/sh
-+### BEGIN INIT INFO
-+# Provides:          cedartrail mixer setup
-+# Required-Start:    $syslog
-+# Required-Stop:     $syslog
-+# Default-Start:     2 3 4 5
-+# Default-Stop:      0 1 6
-+# Short-Description: Initialize the cedartrail audio mixer
-+# Description:       Unmute FRONT and set volume 
-+### END INIT INFO
++++ b/meta-cedartrail/recipes-mediasamples/video-samples/bigbuckbunny-ogg.bb
+@@ -0,0 +1,20 @@
++SUMMARY = "Big Buck Bunny video OGG sample "
++DESCRIPTION = "Installs Big Buck Bunny Video OGG file samples in /home/video dir "
 +
-+# Author: Darren Hart <dvhart@linux.intel.com>
-+# Based on /etc/init.d/skeleton
++LICENSE = "CC-BY-3.0"
++LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/CC-BY-3.0;md5=dfa02b5755629022e267f10b9c0a2ab7"
 +
-+PATH=/sbin:/usr/sbin:/bin:/usr/bin
-+DESC="Audio mixer settings"
-+NAME=cedartrail-audio
-+AMIXER=`which amixer`
-+SCRIPTNAME=/etc/init.d/$NAME
++DEPENDS += " " 
 +
-+# Exit if amixer is not installed
-+[ -x "$AMIXER" ] || exit 0
 +
-+do_start() {
-+	# Enable the "Front" simple controls (black phones jack)
-+	$AMIXER sset Front 90 on > /dev/null
++PR = r0
++SRC_URI = "http://blender-mirror.kino3d.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_stereo.ogg \
++            "
++
++do_install() {
++
++install -d ${D}${base_prefix}/home/Videos
++install -m 0644  ${WORKDIR}/*.ogg ${D}${base_prefix}/home/Videos
 +}
 +
-+case "$1" in
-+start)
-+	echo "$NAME: setting default mixer settings."
-+	do_start
-+	;;
-+stop)
-+	;;
-+*)
-+	echo "Usage: $SCRIPTNAME {start|stop}" >&2
-+	exit 3
-+	;;
-+esac
-+
-+exit 0
++FILES_${PN} += "${base_prefix}/home/Videos/*.ogg"
 -- 
 1.7.4.1
 
