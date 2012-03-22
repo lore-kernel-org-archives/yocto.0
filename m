@@ -1,24 +1,24 @@
 Return-Path: <rahul.saxena@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B3E1E013EB
-	for <yocto@yoctoproject.org>; Thu, 22 Mar 2012 17:41:31 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 22 Mar 2012 17:41:30 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B5A7E013D9
+	for <yocto@yoctoproject.org>; Thu, 22 Mar 2012 17:41:55 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 22 Mar 2012 17:41:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="132233175"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="143576932"
 Received: from rsaxena-desktop.sc.intel.com (HELO localhost) ([143.183.188.84])
-	by fmsmga001.fm.intel.com with ESMTP; 22 Mar 2012 17:41:30 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 22 Mar 2012 17:41:29 -0700
 From: rahul.saxena@intel.com
 To: yocto@yoctoproject.org,
 	tom.zanussi@intel.com
-Date: Thu, 22 Mar 2012 10:32:25 -0700
-Message-Id: <ce9cab52c2f66b4659672348a554d4ede18fc049.1332459306.git.rahul.saxena@intel.com>
+Date: Thu, 22 Mar 2012 10:32:17 -0700
+Message-Id: <891c44fb9ad6d47536864f63032fae583fc5ba1c.1332459306.git.rahul.saxena@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332459306.git.rahul.saxena@intel.com>
 References: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332459306.git.rahul.saxena@intel.com>
 In-Reply-To: <cover.1332459306.git.rahul.saxena@intel.com>
 References: <cover.1332459306.git.rahul.saxena@intel.com>
-Subject: [PATCH 12/13] meta-cedartrail: Update SRC_URI in kernel recipe append files to point to linux-yocto_3.0
+Subject: [PATCH 04/13] meta-cedatrail: add recipe for setting audio mixer settings during boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,43 +30,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2012 00:41:31 -0000
+X-List-Received-Date: Fri, 23 Mar 2012 00:41:55 -0000
 
 From: Rahul Saxena <rahul.saxena@intel.com>
 
-Current poky/edison points to linux-yocto-3.0-1.1.x.git repo. However this repo does not have
-cedartrail branch. Hence  point to linux-yocto_3.0 via kernel recipe append files
+Recipe is copied from n450-audio.bb with a few parameters changed
+to adjust volume settings for Front mixer during boot.
 
 Signed-off-by: Rahul Saxena <rahul.saxena@.intel.com>
 ---
- .../linux/linux-yocto-rt_3.0.bbappend              |    3 +++
- .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    2 ++
- 2 files changed, 5 insertions(+), 0 deletions(-)
+ .../cedartrail-audio/cedartrail-audio.bb           |   30 ++++++++++++++
+ .../cedartrail-audio/cedartrail-audio              |   42 ++++++++++++++++++++
+ 2 files changed, 72 insertions(+), 0 deletions(-)
+ create mode 100644 meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio.bb
+ create mode 100644 meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio/cedartrail-audio
 
-diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-index 828e6fd..759c3b7 100755
---- a/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-+++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-@@ -1,4 +1,7 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio.bb b/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio.bb
+new file mode 100644
+index 0000000..9a43f02
+--- /dev/null
++++ b/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio.bb
+@@ -0,0 +1,30 @@
++SUMMARY = "Provide a basic init script to enable audio"
++DESCRIPTION = "Set the volume and unmute the Front mixer setting during boot."
++SECTION = "base"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
 +
-+SRC_URI = "git://git.yoctoproject.org/linux-yocto-3.0.git;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
++PR = "r0"
 +
- COMPATIBLE_MACHINE_cedartrail = "cedartrail"
- KMACHINE_cedartrail  = "cedartrail"
- 
-diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
-index 14c0b9d..0a05d8b 100755
---- a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
-+++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
-@@ -1,5 +1,7 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
-+SRC_URI = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
++inherit update-rc.d
 +
- COMPATIBLE_MACHINE_cedartrail-nopvr = "cedartrail"
- KMACHINE_cedartrail-nopvr  = "yocto/standard/cedartrail"
- KERNEL_FEATURES_append_cedartrail-nopvr += " cfg/smp.scc"
++RDEPENDS = "alsa-utils-amixer"
++
++SRC_URI = "file://cedartrail-audio"
++
++INITSCRIPT_NAME = "cedartrail-audio"
++INITSCRIPT_PARAMS = "defaults 90"
++
++do_install() {
++	install -d ${D}${sysconfdir} \
++	           ${D}${sysconfdir}/init.d
++	install -m 0755 ${WORKDIR}/cedartrail-audio ${D}${sysconfdir}/init.d
++        cat ${WORKDIR}/${INITSCRIPT_NAME} | \
++            sed -e 's,/etc,${sysconfdir},g' \
++                -e 's,/usr/sbin,${sbindir},g' \
++                -e 's,/var,${localstatedir},g' \
++                -e 's,/usr/bin,${bindir},g' \
++                -e 's,/usr,${prefix},g' > ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
++        chmod 755 ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
++}
++
+diff --git a/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio/cedartrail-audio b/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio/cedartrail-audio
+new file mode 100644
+index 0000000..efd08d3
+--- /dev/null
++++ b/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio/cedartrail-audio
+@@ -0,0 +1,42 @@
++#!/bin/sh
++### BEGIN INIT INFO
++# Provides:          cedartrail mixer setup
++# Required-Start:    $syslog
++# Required-Stop:     $syslog
++# Default-Start:     2 3 4 5
++# Default-Stop:      0 1 6
++# Short-Description: Initialize the cedartrail audio mixer
++# Description:       Unmute FRONT and set volume 
++### END INIT INFO
++
++# Author: Darren Hart <dvhart@linux.intel.com>
++# Based on /etc/init.d/skeleton
++
++PATH=/sbin:/usr/sbin:/bin:/usr/bin
++DESC="Audio mixer settings"
++NAME=cedartrail-audio
++AMIXER=`which amixer`
++SCRIPTNAME=/etc/init.d/$NAME
++
++# Exit if amixer is not installed
++[ -x "$AMIXER" ] || exit 0
++
++do_start() {
++	# Enable the "Front" simple controls (black phones jack)
++	$AMIXER sset Front 90 on > /dev/null
++}
++
++case "$1" in
++start)
++	echo "$NAME: setting default mixer settings."
++	do_start
++	;;
++stop)
++	;;
++*)
++	echo "Usage: $SCRIPTNAME {start|stop}" >&2
++	exit 3
++	;;
++esac
++
++exit 0
 -- 
 1.7.4.1
 
