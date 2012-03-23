@@ -1,42 +1,25 @@
-Return-Path: <darren@apps.dvhart.com>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49674E00596
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 14:53:09 -0700 (PDT)
-Received: by yenq4 with SMTP id q4so4062113yen.35
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 14:53:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=sender:from:to:subject:date:message-id:x-mailer:in-reply-to
-	:references:in-reply-to:references:x-gm-message-state;
-	bh=xG6W8YUyzBu8pb1Y2vkVu3LCrpzNVvEW7xQj//wOWv8=;
-	b=H8/bAD8yNQ6C02VW9+pQu63cpwyGSCsimtECQK/PHkRw+u5tpxwgAXUERwVxBtfFhU
-	xnLLX19P8k4vFF6YZ4doB21GZPHpOaeLrbHdfPx9+1mV1Nw5vPpPP9KlQ7u5+iHtQ4Nu
-	5gM+cAk7Ao+7PMVlsNvTyIGy1flb04UkaPcQmRc9AgeTZHHyL0O+MliUm/HuVGdbyeAk
-	gxbks2hvN4oejE1pLzd3R8RjMqclYF9ICeVtCteI29xBE2LHH62lEKqfVSmAImzjQdl0
-	2t/sDYrakp9mEbUvxDCIsA1CRxv+Xrq0iKvJAuMepnxx0ylaVJi0BjIsvSEOqajKNNN1
-	k5Ow==
-Received: by 10.68.201.6 with SMTP id jw6mr32938723pbc.92.1332539588306;
-	Fri, 23 Mar 2012 14:53:08 -0700 (PDT)
-Received: from localhost (static-50-53-99-101.bvtn.or.frontiernet.net.
-	[50.53.99.101])
-	by mx.google.com with ESMTPS id l8sm6598475pbd.62.2012.03.23.14.53.05
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 23 Mar 2012 14:53:07 -0700 (PDT)
-Sender: Darren Hart <darren@apps.dvhart.com>
-From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>,
-	Bruce Ashfield <bruce.ashfield@windriver.com>,
-	Saul Wold <sgw@linux.intel.com>
-Date: Fri, 23 Mar 2012 14:52:51 -0700
-Message-Id: <fb420fe82acc35ca8effb201b0f919deb5371cbc.1332539317.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <cover.1332539317.git.dvhart@linux.intel.com>
-References: <cover.1332539317.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1332539317.git.dvhart@linux.intel.com>
-References: <cover.1332539317.git.dvhart@linux.intel.com>
-X-Gm-Message-State: ALoCoQlEUSr09RmKNiNOh3AmujhwxV8hW8G3l6kovAne6fVJkpGWXGE+R5xaWtOGtHNgJlAHrUVk
-Subject: [PATCH 1/1] [meta] common-pc: Add PCNET32 to the config
+Return-Path: <Peter.Seebach@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBACBE0044D
+	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 15:45:08 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2NMj7LS017248
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 23 Mar 2012 15:45:07 -0700 (PDT)
+Received: from wrlaptop (172.25.40.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 23 Mar 2012 15:45:08 -0700
+Date: Fri, 23 Mar 2012 17:45:06 -0500
+From: Peter Seebach <peter.seebach@windriver.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Message-ID: <20120323174506.5634af61@wrlaptop>
+In-Reply-To: <1537192.Q99X1xdoal@helios>
+References: <2046170.9fCjTlmZqN@helios> <1332472886.1765.1.camel@dongxiao-osel>
+	<20120323021635.5b4fc048@wrlaptop> <1537192.Q99X1xdoal@helios>
+X-Mailer: Claws Mail 3.7.8 (GTK+ 2.24.4; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: pseudo interaction issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,41 +31,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2012 21:53:09 -0000
+X-List-Received-Date: Fri, 23 Mar 2012 22:45:09 -0000
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
 
-Qemu and VM Ware both support PCNET32 and the latter requires it for
-32 bit images.
+On Fri, 23 Mar 2012 12:20:08 +0000
+Paul Eggleton <paul.eggleton@linux.intel.com> wrote:
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
----
- meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg |    3 +++
- meta/cfg/kernel-cache/bsp/common-pc/hardware.cfg  |    1 +
- 2 files changed, 4 insertions(+), 0 deletions(-)
+> On Friday 23 March 2012 02:16:35 Peter Seebach wrote:
+> > Still really weird to me that I can't reproduce this outside of hob.
+> > I am pretty sure there exists a series of forks and execs and
+> > environment changes such that this will end up happening.
+> 
+> I now have a fairly simple test case outside of hob. Put the attached
+> file in meta/classes/ and then add the following to your local.conf:
+> 
+> INHERIT += "breakit"
 
-diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg
-index 6d576ee..c0c899e 100644
---- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg
-+++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg
-@@ -45,6 +45,9 @@ CONFIG_MAC80211=y
- CONFIG_WLAN=y
- CONFIG_ATH_COMMON=y
- CONFIG_ATH5K=y
-+
-+CONFIG_PCNET32=y
-+
- CONFIG_INPUT=y
- CONFIG_INPUT_MOUSEDEV=y
- CONFIG_INPUT_EVDEV=y
-diff --git a/meta/cfg/kernel-cache/bsp/common-pc/hardware.cfg b/meta/cfg/kernel-cache/bsp/common-pc/hardware.cfg
-index 34c6200..869cf62 100644
---- a/meta/cfg/kernel-cache/bsp/common-pc/hardware.cfg
-+++ b/meta/cfg/kernel-cache/bsp/common-pc/hardware.cfg
-@@ -6,3 +6,4 @@ CONFIG_MAC80211
- CONFIG_SND_HDA_INTEL
- CONFIG_SERIAL_8250
- CONFIG_SERIAL_8250_CONSOLE
-+CONFIG_PCNET32
+Okay, some notes.
+
+The magic seems to come from the interpolated Python output that itself
+calls os.popen from inside the shell script.
+
+A bit of poking about turns up the following:
+
+1.  The environment setup and teardown in runqueue.py don't seem to be
+atomic at all, such that if I annotate the stashing in envbackup with a
+bb.note for each variable stashed, I sometimes see a fork() call in
+pseudo BETWEEN two variables.  Which is to say, we can be forking WHILE
+changing the environment.
+2.  The func_exec_shell calls seem to be able to call the git_branch
+stuff (which uses os.popen()) in a way that does not hit the runqueue
+code AT ALL.  Meaning it operates with Whatever Environment Seems Handy.
+3.  I am inclined to suggest that a first pass would be to distinguish
+between "we need to set this, but we never need to unset
+it" (PSEUDO_PREFIX) and "we need to set this and then revert
+it" (PSEUDO_UNLOAD).
+4.  We should have a handler for popen() anyway, but it will not in and
+of itself fix the problem.
+
+I am still getting the hang of finding my way around bitbake and
+figuring out who's calling what.  I'd guess that just making sure
+PSEUDO_PREFIX never gets unset would effectively mitigate the problem,
+but I suspect that we'll still be vulnerable to Weird Race Conditions.
+
+-s
 -- 
-1.7.5.4
-
+Listen, get this.  Nobody with a good compiler needs to be justified.
 
