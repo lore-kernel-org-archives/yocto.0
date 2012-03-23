@@ -1,35 +1,27 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 885DFE013CB
-	for <yocto@yoctoproject.org>; Thu, 22 Mar 2012 18:01:56 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 22 Mar 2012 18:01:56 -0700
+Return-Path: <dongxiao.xu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 909B1E013CC
+	for <yocto@yoctoproject.org>; Thu, 22 Mar 2012 18:03:25 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 22 Mar 2012 18:03:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="122236522"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by azsmga001.ch.intel.com with ESMTP; 22 Mar 2012 18:01:55 -0700
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 22 Mar 2012 18:01:55 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.207]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.128]) with mapi id
-	14.01.0355.002; Thu, 22 Mar 2012 18:01:55 -0700
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Zanussi, Tom"
-	<tom.zanussi@intel.com>
-Thread-Topic: [yocto] [PATCH 00/13][meta-intel] Cover letter for updating
-	meta-cedartrail BSP with PVR Graphics driver -- Testing information
-Thread-Index: AQHNCJCKvA4sqIo73kmNcf/yA4d1aw==
-Date: Fri, 23 Mar 2012 01:01:55 +0000
-Message-ID: <63ECFF2A2302B44093D7CE9E9962C4900BCF24@ORSMSX103.amr.corp.intel.com>
-References: <cover.1332459306.git.rahul.saxena@intel.com>
-In-Reply-To: <cover.1332459306.git.rahul.saxena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
-MIME-Version: 1.0
-Subject: Re: [PATCH 00/13][meta-intel] Cover letter for updating	meta-cedartrail BSP with PVR Graphics driver -- Testing information
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="132238991"
+Received: from dongxiao-osel.sh.intel.com (HELO [10.239.36.11])
+	([10.239.36.11])
+	by fmsmga001.fm.intel.com with ESMTP; 22 Mar 2012 18:03:24 -0700
+From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+To: Peter Seebach <peter.seebach@windriver.com>
+In-Reply-To: <20120322111805.6da9cd91@wrlaptop>
+References: <2046170.9fCjTlmZqN@helios> <4F3EA17B.7010906@windriver.com>
+	<1331715724.25861.16.camel@dongxiao-osel>
+	<1332380981.1849.18.camel@dongxiao-osel>
+	<20120322111805.6da9cd91@wrlaptop>
+Date: Fri, 23 Mar 2012 09:01:16 +0800
+Message-ID: <1332464476.1849.23.camel@dongxiao-osel>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 
+Cc: yocto@yoctoproject.org
+Subject: Re: pseudo interaction issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,118 +33,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2012 01:01:56 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 23 Mar 2012 01:03:25 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-SSBkaWQgbm90IGluY2x1ZGUgdGhlIEJTUCB0ZXN0aW5nIGluZm9ybWF0aW9uIGluIHRoZSBjb3Zl
-ci1sZXR0ZXIuDQpUaGUgdGVzdHMgb24gIHRoZSBCU1AgYnVpbHQgd2l0aCB0aGVzZSBwYXRjaGVz
-IGluY2x1ZGVkIHRoZSBmb2xsb3dpbmc6DQoNCiAtLSBQb3J0cyB0ZXN0ZWQ6IFNBVEEsIFVTQiwg
-VkdBLCBIRE1JLCBMVkRTDQogLS0gQmFzaWMgbmV0d29ya2luZyB2aWEgRXRoZXJuZXQgcG9ydA0K
-IC0tIFNodXRkb3duLCBSZWJvb3QNCiAtLSBTd2l0Y2ggYmV0d2VlbiBtdWx0aXBsZSBhcHBsaWNh
-dGlvbnMNCiAtLSAgU2F0byBBdWRpbyBhbmQgVmlkZW8gcGxheWVyDQogLS0gIHdlYi13ZWIga2l0
-DQogLS0gUlRDIGRhdGUgYW5kIHRpbWUgc2V0DQogLS0gY29tbWFuZCBzdWNoIGFzIGxzcGNpLCBz
-c2gsIGxzcGNpDQogLS0gZ2x4Z2VhcnMgIChDaGVjayBncmFwaGljcyBhY2NlbGVyYXRpb24pIA0K
-IC0tIE1wbGF5ZXIgICAoQ2hlY2sgVmlkZW8gYWNjZWxlcmF0aW9uLCBub3RlIG1wbGF5ZXIgcmVj
-aXBlIGlzIG5vdCBpbmNsdWRlZCBpbiB0aGlzICBCU1ApDQogLS0gQ2hlY2sgYWxsIENQVSBjb3Jl
-cyBhcmUgYWN0aXZlDQoNCkFsbCB0aGUgYWJvdmUgdGVzdGluZyB3YXMgZG9uZSBvbiB0aGUgQ2Vk
-YXIgVHJhaWwgZGVza3RvcCBlbmdpbmVlcmluZyBzYW1wbGUgYm9hcmQuIEEgc3Vic2V0IG9mDQpU
-aGUgYWJvdmUgdGVzdGluZyB3YXMgZG9uZSBvbiB0aGUgQ1JCIGFuZCBtb2JpbGUgZW5naW5lZXJp
-bmcgc2FtcGxlIGJvYXJkLiBUaGUgYmVoYXZpb3Igd2FzIGZvdW5kDQp0byBiZSBPSyAoaS5lLiBh
-bGwgdGVzdHMgcGFzc2VkKSBmb3IgYWxsIHRoZSBhYm92ZSB0ZXN0cy4NCg0KSW4gdGhlIHBhc3Qg
-dGVzdCBiZWhhdmlvciB3YXMgZm91bmQgdG8gYmUgYWx3YXlzIGNvbnNpc3RlbnQgYWNyb3NzIHRo
-ZSB0aHJlZSBib2FyZHMuDQoNCg0KUmFodWwNCiANCg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2Ut
-LS0tLQ0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8t
-Ym91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgcmFodWwuc2F4ZW5hQGludGVs
-LmNvbQ0KU2VudDogVGh1cnNkYXksIE1hcmNoIDIyLCAyMDEyIDEwOjMyIEFNDQpUbzogeW9jdG9A
-eW9jdG9wcm9qZWN0Lm9yZzsgWmFudXNzaSwgVG9tDQpTdWJqZWN0OiBbeW9jdG9dIFtQQVRDSCAw
-MC8xM11bbWV0YS1pbnRlbF0gQ292ZXIgbGV0dGVyIGZvciB1cGRhdGluZyBtZXRhLWNlZGFydHJh
-aWwgQlNQIHdpdGggUFZSIEdyYXBoaWNzIGRyaXZlcg0KDQpGcm9tOiBSYWh1bCBTYXhlbmEgPHJh
-aHVsLnNheGVuYUBpbnRlbC5jb20+DQoNCkNvdmVyIGxldHRlciBmb3IgdXBkYXRpbmcgdGhlIENl
-ZGFyIFRyYWlsIEJTUCAobWV0YS1jZWRhcnRyYWlsKSB3aXRoIA0KUFZSIEdyYXBoaWNzIGRyaXZl
-ci4gIFRoaXMgcGF0Y2ggc2V0IHVwZGF0ZXMgbWV0YS1jZWRhcnRyYWlsIChlZGlzb24gYnJhbmNo
-KQ0KdG8gaW5jbHVkZSBQb3dlciBWUiBkcml2ZXIgZm9yIEdyYXBoaWNzIGFuZCBWaWRlbyBoYXJk
-d2FyZSBhY2NlbGVyYXRpb24uDQpUaGUgcGF0Y2hlcyBlbmFibGUgQlNQIGJ1aWxkIHdpdGggUFZS
-IGRyaXZlciBvciBWRVNBIGRyaXZlciBkZXBlbmRpbmcNCnVwb24gTUFDSElORSBzZXR0aW5nIGlu
-IGxvY2FsLmNvbmYuDQoNCkluIGFkZGl0aW9uIHRoZSBwYXRjaGVzIGFkZCB3ZWItd2Via2l0LCBh
-dWRpbyBhbmQgdmlkZW8gc2FtcGxlcyB0byBzYXRvIGltYWdlLg0KDQpUaGUgQ2VkYXIgVHJhaWwg
-cGxhdGZvcm0gaXMgYmFzZWQgb24gdGhlIENlZGFydmlldyBwcm9jZXNzb3IgKEludGVswq4gQXRv
-beKEog0KTjI2MDAsIE4yODAwIGFuZCBEMjcwMCBwcm9jZXNzb3IpYW5kIFRpZ2VyIFBvaW50IENo
-aXBzZXQgKEludGVswq4gTk0xMCBFeHByZXNzKQ0KICAgIA0KICAgIFNpZ25lZC1vZmYtYnk6IFJh
-aHVsIFNheGVuYSA8cmFodWwuc2F4ZW5hQC5pbnRlbC5jb20+DQoNCi0tDQoNClRoZSBmb2xsb3dp
-bmcgY2hhbmdlcyBzaW5jZSBjb21taXQgMzFlYWVlOGUyNGQ1NzAyMDczMzhhZGE2NGYyZGYzNmNk
-YmQ1MzUzZDoNCg0KICBtZXRhLWludGVsOiB1cGRhdGUgU1JDUkVWcyAoMjAxMi0wMi0yMiAxMTo1
-ODozOCAtMDYwMCkNCg0KYXJlIGF2YWlsYWJsZSBpbiB0aGUgZ2l0IHJlcG9zaXRvcnkgYXQ6DQog
-IGdpdDovL2dpdC5wb2t5bGludXgub3JnL21ldGEtaW50ZWwtY29udHJpYiByc2F4ZW5hLWNlZGFy
-dHJhaWxwdnJyZWxlYXNlMjJNYXJjaA0KICBodHRwOi8vZ2l0LnBva3lsaW51eC5vcmcvY2dpdC5j
-Z2kvbWV0YS1pbnRlbC1jb250cmliL2xvZy8/aD1yc2F4ZW5hLWNlZGFydHJhaWxwdnJyZWxlYXNl
-MjJNYXJjaA0KDQpSYWh1bCBTYXhlbmEgKDEzKToNCiAgbWV0YS1jZWRhcnRyYWlsOiBTZXBhcmF0
-ZSBjb25mIGZpbGVzIGZvciB0aGUgQ2VkYXIgVHJhaWwgQlNQIGJvb3QNCiAgICBjYXNlcyBvZiB3
-aXRoIGFuZCB3aXRob3V0IHB2ciBkcml2ZXINCiAgbWV0YS1jZWRhcnRyYWlsOiB1cGRhdGUgQkJG
-SUxFUyB0byBpbmNsdWRlIG1ldGEtaW50ZWwvY29tbW9uIHBhdGgNCiAgbWV0YS1jZWRhcnRyYWls
-OiB1cGRhdGUgUkVBRE1FIHdpdGggaW5zdHJ1Y3Rpb25zIGZvciBQVlIgR3JhcGhpY3MNCiAgICBk
-cml2ZXIgYnVpbGQNCiAgbWV0YS1jZWRhdHJhaWw6IGFkZCByZWNpcGUgZm9yIHNldHRpbmcgYXVk
-aW8gbWl4ZXIgc2V0dGluZ3MgZHVyaW5nDQogICAgYm9vdA0KICBtZXRhLWNlZGFydHJhaWw6IHNl
-cGVyYXRlIHhvcmcuY29uZiBmaWxlcyBmb3IgcHZyIGFuZCBuby1wdnIgY2FzZXMNCiAgbWV0YS1j
-ZWRhcnRyYWlsOiBhZGQgQ2VkYXIgVHJhaWwgUFZSIGRyaXZlcg0KICBtZXRhLWNlZGFydHJhaWw6
-IHVwZGF0ZSBLZXJuZWwgcmVjaXBlcyB0byBhZGQgc3VwcG9ydCBmb3IgcHZyIGRyaXZlcg0KICBt
-ZXRhLWNlZGFydHJhaWw6IGFkZCBDZWRhciBUcmFpbCBzcGVjaWZpYyBsaWJ2YQ0KICBtZXRhLWNl
-ZGFydHJhaWw6IGFkZCByZWNpcGVzIHRvIGluc3RhbCBhdWRpbyBhbmQgdmlkZW8gc2FtcGxlcw0K
-ICBtZXRhLWNlZGFydHJhaWw6IHVwZGF0ZSBmb3JtZmFjdG9yIHJlY2lwZSBmb3IgcHZyIGFuZCBu
-by1wdnIgY2FzZQ0KICBtZXRhLWNlZGFydHJhaWw6IEFkZCB3ZWItd2Via2l0LCBhdWRpbyBhbmQg
-dmlkZW8gc2FtcGxlcyB0byBzYXRvDQogICAgaW1hZ2UNCiAgbWV0YS1jZWRhcnRyYWlsOiBVcGRh
-dGUgU1JDX1VSSSBpbiBrZXJuZWwgcmVjaXBlIGFwcGVuZCBmaWxlcyB0bw0KICAgIHBvaW50IHRv
-IGxpbnV4LXlvY3RvXzMuMA0KICBtZXRhLWNlZGFydHJhaWw6IHVwZGF0ZSBTUkNfUkVWX21ldGEg
-Zm9yIG5vLXB2ciBjYXNlDQoNCiBtZXRhLWNlZGFydHJhaWwvUkVBRE1FICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICB8ICAgNTAgKysrKysrKysrKystDQogbWV0YS1jZWRhcnRyYWlsL2NvbmYv
-bGF5ZXIuY29uZiAgICAgICAgICAgICAgICAgICAgfCAgICA0ICstDQogbWV0YS1jZWRhcnRyYWls
-L2NvbmYvbWFjaGluZS9jZWRhcnRyYWlsLW5vcHZyLmNvbmYgfCAgIDQxICsrKysrKysrKw0KIG1l
-dGEtY2VkYXJ0cmFpbC9jb25mL21hY2hpbmUvY2VkYXJ0cmFpbC5jb25mICAgICAgIHwgICAxNSAr
-KystDQogLi4uL2NlZGFydHJhaWwtYXVkaW8vY2VkYXJ0cmFpbC1hdWRpby5iYiAgICAgICAgICAg
-fCAgIDMwICsrKysrKysNCiAuLi4vY2VkYXJ0cmFpbC1hdWRpby9jZWRhcnRyYWlsLWF1ZGlvICAg
-ICAgICAgICAgICB8ICAgNDIgKysrKysrKysrDQogLi4uL2Zvcm1mYWN0b3IvY2VkYXJ0cmFpbC1u
-b3B2ci9tYWNoY29uZmlnICAgICAgICAgfCAgICAzICsNCiAuLi4veG9yZy1kcml2ZXIvY2R2LWdy
-YXBoaWNzLWRyaXZlcnNfMS4wLmJiICAgICAgICB8ICAgODkgKysrKysrKysrKysrKysrKysrKysN
-CiAuLi4veHNlcnZlci14Zjg2LWNvbmZpZy9jZWRhcnRyYWlsLW5vcHZyL3hvcmcuY29uZiB8ICAg
-MjYgKysrKysrDQogLi4uL3hzZXJ2ZXIteGY4Ni1jb25maWcvY2VkYXJ0cmFpbC94b3JnLmNvbmYg
-ICAgICAgfCAgIDI0ICsrLS0tLQ0KIC4uLi9saW51eC9saW51eC15b2N0by1ydF8zLjAuYmJhcHBl
-bmQgICAgICAgICAgICAgIHwgICAxNiArKysrLQ0KIC4uLi9yZWNpcGVzLWtlcm5lbC9saW51eC9s
-aW51eC15b2N0b18zLjAuYmJhcHBlbmQgIHwgICAxNyArKystDQogLi4uL29nZy1DQy1CWS0zLjAt
-bXVzaWMtc2FtcGxlc18wLjEuYmIgICAgICAgICAgICAgfCAgIDIwICsrKysrDQogLi4uL3ZpZGVv
-LXNhbXBsZXMvYmlnYnVja2J1bm55LW9nZy5iYiAgICAgICAgICAgICAgfCAgIDIwICsrKysrDQog
-bWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMtbXVsdGltZWRpYS9saWJ2YS9saWJ2YS5pbmMgfCAgIDU5
-ICsrKysrKysrKysrKysNCiAuLi4vcmVjaXBlcy1tdWx0aW1lZGlhL2xpYnZhL2xpYnZhXzEuMC4x
-NS5iYiAgICAgICB8ICAgMzEgKysrKysrKw0KIC4uLi9pbWFnZXMvY29yZS1pbWFnZS1zYXRvLWRl
-di5iYmFwcGVuZCAgICAgICAgICAgIHwgICAgMyArDQogLi4uL2ltYWdlcy9jb3JlLWltYWdlLXNh
-dG8tc2RrLmJiYXBwZW5kICAgICAgICAgICAgfCAgICAzICsNCiAuLi4vcmVjaXBlcy1zYXRvL2lt
-YWdlcy9jb3JlLWltYWdlLXNhdG8uYmJhcHBlbmQgICB8ICAgIDMgKw0KIDE5IGZpbGVzIGNoYW5n
-ZWQsIDQ2OCBpbnNlcnRpb25zKCspLCAyOCBkZWxldGlvbnMoLSkNCiBjcmVhdGUgbW9kZSAxMDA2
-NDQgbWV0YS1jZWRhcnRyYWlsL2NvbmYvbWFjaGluZS9jZWRhcnRyYWlsLW5vcHZyLmNvbmYNCiBj
-cmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMtYnNwL2NlZGFydHJhaWwt
-YXVkaW8vY2VkYXJ0cmFpbC1hdWRpby5iYg0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBtZXRhLWNlZGFy
-dHJhaWwvcmVjaXBlcy1ic3AvY2VkYXJ0cmFpbC1hdWRpby9jZWRhcnRyYWlsLWF1ZGlvL2NlZGFy
-dHJhaWwtYXVkaW8NCiBjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMt
-YnNwL2Zvcm1mYWN0b3IvZm9ybWZhY3Rvci9jZWRhcnRyYWlsLW5vcHZyL21hY2hjb25maWcNCiBt
-b2RlIGNoYW5nZSAxMDA3NTUgPT4gMTAwNjQ0IG1ldGEtY2VkYXJ0cmFpbC9yZWNpcGVzLWJzcC9m
-b3JtZmFjdG9yL2Zvcm1mYWN0b3IvY2VkYXJ0cmFpbC9tYWNoY29uZmlnDQogY3JlYXRlIG1vZGUg
-MTAwNjQ0IG1ldGEtY2VkYXJ0cmFpbC9yZWNpcGVzLWdyYXBoaWNzL3hvcmctZHJpdmVyL2Nkdi1n
-cmFwaGljcy1kcml2ZXJzXzEuMC5iYg0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBtZXRhLWNlZGFydHJh
-aWwvcmVjaXBlcy1ncmFwaGljcy94b3JnLXhzZXJ2ZXIveHNlcnZlci14Zjg2LWNvbmZpZy9jZWRh
-cnRyYWlsLW5vcHZyL3hvcmcuY29uZg0KIG1vZGUgY2hhbmdlIDEwMDc1NSA9PiAxMDA2NDQgbWV0
-YS1jZWRhcnRyYWlsL3JlY2lwZXMtZ3JhcGhpY3MveG9yZy14c2VydmVyL3hzZXJ2ZXIteGY4Ni1j
-b25maWcvY2VkYXJ0cmFpbC94b3JnLmNvbmYNCiBjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1jZWRh
-cnRyYWlsL3JlY2lwZXMtbWVkaWFzYW1wbGVzL211c2ljLXNhbXBsZXMvb2dnLUNDLUJZLTMuMC1t
-dXNpYy1zYW1wbGVzXzAuMS5iYg0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBtZXRhLWNlZGFydHJhaWwv
-cmVjaXBlcy1tZWRpYXNhbXBsZXMvdmlkZW8tc2FtcGxlcy9iaWdidWNrYnVubnktb2dnLmJiDQog
-Y3JlYXRlIG1vZGUgMTAwNjQ0IG1ldGEtY2VkYXJ0cmFpbC9yZWNpcGVzLW11bHRpbWVkaWEvbGli
-dmEvbGlidmEuaW5jDQogY3JlYXRlIG1vZGUgMTAwNjQ0IG1ldGEtY2VkYXJ0cmFpbC9yZWNpcGVz
-LW11bHRpbWVkaWEvbGlidmEvbGlidmFfMS4wLjE1LmJiDQogY3JlYXRlIG1vZGUgMTAwNjQ0IG1l
-dGEtY2VkYXJ0cmFpbC9yZWNpcGVzLXNhdG8vaW1hZ2VzL2NvcmUtaW1hZ2Utc2F0by1kZXYuYmJh
-cHBlbmQNCiBjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMtc2F0by9p
-bWFnZXMvY29yZS1pbWFnZS1zYXRvLXNkay5iYmFwcGVuZA0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBt
-ZXRhLWNlZGFydHJhaWwvcmVjaXBlcy1zYXRvL2ltYWdlcy9jb3JlLWltYWdlLXNhdG8uYmJhcHBl
-bmQNCg0KLS0gDQoxLjcuNC4xDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlvY3RvQHlvY3RvcHJvamVjdC5vcmcN
-Cmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0K
+On Thu, 2012-03-22 at 11:18 -0500, Peter Seebach wrote:
+> On Thu, 22 Mar 2012 09:49:41 +0800
+> "Xu, Dongxiao" <dongxiao.xu@intel.com> wrote:
+> 
+> > Hi Mark,
+> > 
+> > Any update on this one? I think we may need to track it in bugzilla.
+> 
+> I have been looking into this.  I've convinced myself that popen() is
+> broken under pseudo, but that's not enough to explain this:
+> 
+> * I have a fixed pseudo where popen works.  It still fails sometimes
+>   under hob.
+> * When it fails, the popen() wrapper isn't even getting called.
+> * Still looking into this.
+> 
+> Interestingly, I can't get this failure to occur at all outside of hob.
+
+I think the difference between Hob and other UI (e.x., knotty) is that,
+when building image is finished in knotty, the UI, bitbake server, and
+pseudo all quit. But in Hob, everything still alive after a build. I
+noticed that the pseudo error happens only when Hob is trying to issue a
+second build.
+
+Thanks,
+Dongxiao
+
+> 
+> -s
+
+
 
