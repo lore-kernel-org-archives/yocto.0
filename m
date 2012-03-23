@@ -1,25 +1,31 @@
-Return-Path: <Peter.Seebach@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47BDBE0044D
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 13:06:25 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2NK6O6I001999
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 23 Mar 2012 13:06:24 -0700 (PDT)
-Received: from wrlaptop (172.25.40.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 23 Mar 2012 13:06:25 -0700
-Date: Fri, 23 Mar 2012 15:06:23 -0500
-From: Peter Seebach <peter.seebach@windriver.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Message-ID: <20120323150623.521a6d21@wrlaptop>
-In-Reply-To: <1537192.Q99X1xdoal@helios>
-References: <2046170.9fCjTlmZqN@helios> <1332472886.1765.1.camel@dongxiao-osel>
-	<20120323021635.5b4fc048@wrlaptop> <1537192.Q99X1xdoal@helios>
-X-Mailer: Claws Mail 3.7.8 (GTK+ 2.24.4; x86_64-pc-linux-gnu)
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39169E0044D
+	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 13:21:00 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1SBAyo-0006H9-V9
+	for yocto@yoctoproject.org; Fri, 23 Mar 2012 16:20:59 -0400
+Date: Fri, 23 Mar 2012 16:20:52 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1203231615110.20276@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: pseudo interaction issue
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: first pass at cleaning up ref manual: dead(?) variables in glossary
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,27 +37,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2012 20:06:25 -0000
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 23 Mar 2012 20:21:00 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Fri, 23 Mar 2012 12:20:08 +0000
-Paul Eggleton <paul.eggleton@linux.intel.com> wrote:
 
-> On Friday 23 March 2012 02:16:35 Peter Seebach wrote:
-> > Still really weird to me that I can't reproduce this outside of hob.
-> > I am pretty sure there exists a series of forks and execs and
-> > environment changes such that this will end up happening.
-> 
-> I now have a fairly simple test case outside of hob. Put the attached
-> file in meta/classes/ and then add the following to your local.conf:
-> 
-> INHERIT += "breakit"
+  as part of a concerted effort to tidy up more of the docs, i'm
+currently perusing the variable glossary in the yocto/poky ref manual:
 
-Confirmed, this produces the problem for me, reducing the reproduction
-window from something over an hour to about 7 seconds.  THANK YOU!
+file:///home/rpjday/yocto/yocto-docs/documentation/poky-ref-manual/poky-ref-manual.html#ref-variables-glos
 
--s
+and cross-checking entries against their actual usage, and one simple
+observation is that some of those entries appear to be obsolete and
+can be removed entirely.
+
+  some examples of dead content appear to be PACKAGE_SUMMARY,
+PACKAGE_DESCRIPTION and perhaps anything starting with the string
+"POKY" (POKY_EXTRA_INSTALL, POKYMODE, POKYLIBC).
+
+  rather than remove this chaff one or two entries at a time, can
+people suggest any other deadwood that can be tossed from that
+glossary, and i can put together a patch that does it all in one shot?
+
+rday
+
 -- 
-Listen, get this.  Nobody with a good compiler needs to be justified.
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
