@@ -1,34 +1,25 @@
-Return-Path: <tom.rini@gmail.com>
-Received: from mail-gy0-f176.google.com (mail-gy0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9A92E0044D
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 10:34:57 -0700 (PDT)
-Received: by ghbz10 with SMTP id z10so3818453ghb.35
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 10:34:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id:x-mailer;
-	bh=ZdUkepFiZsvpLRvS1noiTyYMmPL03UQwTf/5TAiMp7c=;
-	b=wSCR5aQqb8mLABcq3qKrP58PEHNY1JxH3q1ByYANj2QMWwAfR1tOwgNBzM15gPe+oO
-	VG1UWX+onsdIDQUV8VC5+bbq6eQLf5m+ToNEEfsi7GWESOW4I88rKoysYJP9ZrrTnqaP
-	kCD7d/b7IFQ7t7+Jq+EIwkCkMWgXHo/2V8Z2xyc8nTZuAj2a6zADduMJrOIRC2wFH2TD
-	okcnBV28xHuZDl4ocO+wAuGxYg2B2i0r3pCxGX4lD3+Zo5F2JJ4KZzCJOzz8Un24L9qT
-	JyM9oM9uO47RhwNdQtlX5zzBdWpbBLiwzSel4jBaOsWW1W5Izjx4V/miv5IqBeMAfZoM
-	doqQ==
-Received: by 10.60.8.103 with SMTP id q7mr15033740oea.61.1332524096521;
-	Fri, 23 Mar 2012 10:34:56 -0700 (PDT)
-Received: from localhost.localdomain (ip68-230-54-74.ph.ph.cox.net.
-	[68.230.54.74])
-	by mx.google.com with ESMTPS id r7sm8307063obc.15.2012.03.23.10.34.55
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 23 Mar 2012 10:34:55 -0700 (PDT)
-Sender: Tom Rini <tom.rini@gmail.com>
-From: Tom Rini <trini@ti.com>
-To: yocto@yoctoproject.org
-Date: Fri, 23 Mar 2012 10:34:55 -0700
-Message-Id: <1332524095-8135-1-git-send-email-trini@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [PATCH] ia32-base.inc: Use '=' for IMAGE_FSTYPES
+Return-Path: <Peter.Seebach@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47BDBE0044D
+	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 13:06:25 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2NK6O6I001999
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 23 Mar 2012 13:06:24 -0700 (PDT)
+Received: from wrlaptop (172.25.40.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 23 Mar 2012 13:06:25 -0700
+Date: Fri, 23 Mar 2012 15:06:23 -0500
+From: Peter Seebach <peter.seebach@windriver.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Message-ID: <20120323150623.521a6d21@wrlaptop>
+In-Reply-To: <1537192.Q99X1xdoal@helios>
+References: <2046170.9fCjTlmZqN@helios> <1332472886.1765.1.camel@dongxiao-osel>
+	<20120323021635.5b4fc048@wrlaptop> <1537192.Q99X1xdoal@helios>
+X-Mailer: Claws Mail 3.7.8 (GTK+ 2.24.4; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: pseudo interaction issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,34 +31,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2012 17:34:57 -0000
+X-List-Received-Date: Fri, 23 Mar 2012 20:06:25 -0000
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
 
-As per
-http://lists.linuxtogo.org/pipermail/openembedded-core/2012-March/019772.html
-a machine conf file should use '=' to set IMAGE_FSTYPES.
+On Fri, 23 Mar 2012 12:20:08 +0000
+Paul Eggleton <paul.eggleton@linux.intel.com> wrote:
 
-Cc: Kishore Bodke <kishore.k.bodke@intel.com>
-Cc: Tom Zanussi <tom.zanussi@intel.com>
-Cc: Darren Hart <dvhart@linux.intel.com>
-Signed-off-by: Tom Rini <trini@ti.com>
----
- conf/machine/include/ia32-base.inc |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+> On Friday 23 March 2012 02:16:35 Peter Seebach wrote:
+> > Still really weird to me that I can't reproduce this outside of hob.
+> > I am pretty sure there exists a series of forks and execs and
+> > environment changes such that this will end up happening.
+> 
+> I now have a fairly simple test case outside of hob. Put the attached
+> file in meta/classes/ and then add the following to your local.conf:
+> 
+> INHERIT += "breakit"
 
-diff --git a/conf/machine/include/ia32-base.inc b/conf/machine/include/ia32-base.inc
-index 9b2ef5a..74ab5a5 100644
---- a/conf/machine/include/ia32-base.inc
-+++ b/conf/machine/include/ia32-base.inc
-@@ -11,7 +11,7 @@ MACHINE_FEATURES += "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
- MACHINE_EXTRA_RRECOMMENDS += "kernel-modules eee-acpi-scripts"
- MACHINE_ESSENTIAL_EXTRA_RDEPENDS += "grub"
- 
--IMAGE_FSTYPES += "ext3 cpio.gz live"
-+IMAGE_FSTYPES = "ext3 cpio.gz live"
- 
- KERNEL_IMAGETYPE ?= "bzImage"
- 
+Confirmed, this produces the problem for me, reducing the reproduction
+window from something over an hour to about 7 seconds.  THANK YOU!
+
+-s
 -- 
-1.7.0.4
-
+Listen, get this.  Nobody with a good compiler needs to be justified.
 
