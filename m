@@ -1,27 +1,28 @@
-Return-Path: <dongxiao.xu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7823E013D9
-	for <yocto@yoctoproject.org>; Thu, 22 Mar 2012 20:23:55 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 22 Mar 2012 20:23:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="80693885"
-Received: from dongxiao-osel.sh.intel.com (HELO [10.239.36.11])
-	([10.239.36.11])
-	by AZSMGA002.ch.intel.com with ESMTP; 22 Mar 2012 20:23:36 -0700
-From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
-To: Peter Seebach <peter.seebach@windriver.com>
-In-Reply-To: <20120322212937.71b9bf28@wrlaptop>
+Return-Path: <Peter.Seebach@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA4DAE013D6
+	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 00:16:43 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2N7GfgM017958
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 23 Mar 2012 00:16:41 -0700 (PDT)
+Received: from wrlaptop (172.25.40.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 23 Mar 2012 00:16:41 -0700
+Date: Fri, 23 Mar 2012 02:16:35 -0500
+From: Peter Seebach <peter.seebach@windriver.com>
+To: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+Message-ID: <20120323021635.5b4fc048@wrlaptop>
+In-Reply-To: <1332472886.1765.1.camel@dongxiao-osel>
 References: <2046170.9fCjTlmZqN@helios> <4F3EA17B.7010906@windriver.com>
 	<1331715724.25861.16.camel@dongxiao-osel>
 	<1332380981.1849.18.camel@dongxiao-osel>
 	<20120322111805.6da9cd91@wrlaptop>
 	<1332464476.1849.23.camel@dongxiao-osel>
 	<20120322212937.71b9bf28@wrlaptop>
-Date: Fri, 23 Mar 2012 11:21:26 +0800
-Message-ID: <1332472886.1765.1.camel@dongxiao-osel>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
+	<1332472886.1765.1.camel@dongxiao-osel>
+X-Mailer: Claws Mail 3.7.8 (GTK+ 2.24.4; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: pseudo interaction issue
 X-BeenThere: yocto@yoctoproject.org
@@ -35,56 +36,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2012 03:23:56 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 23 Mar 2012 07:16:44 -0000
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2012-03-22 at 21:29 -0500, Peter Seebach wrote:
-> On Fri, 23 Mar 2012 09:01:16 +0800
-> "Xu, Dongxiao" <dongxiao.xu@intel.com> wrote:
-> 
-> > I think the difference between Hob and other UI (e.x., knotty) is
-> > that, when building image is finished in knotty, the UI, bitbake
-> > server, and pseudo all quit. But in Hob, everything still alive after
-> > a build. I noticed that the pseudo error happens only when Hob is
-> > trying to issue a second build.
-> 
-> I get it on the first build.
+On Fri, 23 Mar 2012 11:21:26 +0800
+"Xu, Dongxiao" <dongxiao.xu@intel.com> wrote:
 
-What do you mean by first build? Did you click "Just bake" button?
+> What do you mean by first build? Did you click "Just bake" button?
 
-Actually "Just bake" button is divided into two steps:
+Yes.  The original reproducer I saw said that it worked the first time,
+but failed the second time.
 
-1) build_target(packages)
-2) build_target(image)
+> 1) build_target(packages)
+> 2) build_target(image)
+ 
+> I noticed the pseudo error will happen when calling
+> build_target(image). Therefore I also treated it as second build.
 
-I noticed the pseudo error will happen when calling build_target(image).
-Therefore I also treated it as second build.
+Interesting.
 
-Thanks,
-Dongxiao
+I am, currently, sort of stumped on this.  The failures are coming from
+the git log/git branch commands using os.popen(), and those calls
+appear to be happening in a process:
+1.  Which did not have the pseudo library loaded, at all.
+2.  Which has LD_PRELOAD set to include pseudo.
+3.  Which has most of the PSEUDO_BINDIR, etc., values set.
+4.  Which does not have PSEUDO_PREFIX set.
 
-> 
-> ... You see the issue.
-> 
-> Pseudo shouldn't be having a problem, it's designed to restart as
-> needed.
-> 
-> Right now, what I know is:
-> 1.  I didn't catch popen(), and this can actually be an issue with
-> stuff like PSEUDO_UNLOAD or PSEUDO_DISABLED in play.
-> 2.  If I wrap popen, and have the wrapper unconditionally emit a
-> diagnostic, that works for simple os.popen() test cases.
-> 3.  But not for the case that's triggering this.
-> 
-> So it looks like, when this runs, we have a Python session which has
-> had pseudo unloaded, not just disabled, which then sets LD_PRELOAD but
-> doesn't set PSEUDO_PREFIX.  Or something.
-> 
-> I'm still trying to get better data on this, like figure out how the
-> sub-process is even getting invoked.
-> 
-> -s
+I can't figure out how to get there.  I can't reproduce this outside of
+hob, yet.  And obviously, if the pseudo library isn't loaded, I can't
+add more debugging or logging to pseudo to fix it.  (I infer that it's
+not loaded because os.popen() isn't hitting diagnostic messages in
+pseudo's new popen() wrapper, even if they're completely unconditional.)
 
+I added an abort(), and got a core file.  The core file shows a
+backtrace in /bin/sh:
 
+#0  0x00007f1232cd8a75 in raise () from /lib/libc.so.6
+#1  0x00007f1232cdc5c0 in abort () from /lib/libc.so.6
+#2  0x00007f1233497489 in pseudo_get_prefix (pathname=0x7f123349ac9d
+"<null>")
+    at pseudo_util.c:1060
+#3  0x00007f1233498244 in pseudo_setupenv () at pseudo_util.c:717
+#4  0x00007f12334955dd in wrap_fork () at ports/common/guts/fork.c:14
+#5  0x00007f1233495675 in fork () at ports/common/pseudo_wrappers.c:322
+#6  0x000000000044339c in make_child ()
+#7  0x0000000000436f04 in ?? ()
+#8  0x0000000000433fa4 in execute_command_internal ()
+#9  0x000000000043475e in execute_command_internal ()
+#10 0x000000000047262a in parse_and_execute ()
+#11 0x000000000041fd04 in ?? ()
+#12 0x0000000000420e01 in main ()
+
+I haven't found an obvious way to look at the arguments to main, but
+I'm pretty sure it's one of the "cd REPO; git log..." commands.  So...
+
+Basically, I can't see how we can get here.
+
+Currently leaning towards a theory that the issue may be that we only
+set PSEUDO_PREFIX when we think we want pseudo, and it looks like in
+the PSEUDO_DISABLED=1 case, it may be that we can end up with a task
+being run in an environment where LD_PRELOAD had been set, but we've
+cleaned up our environment, and the disabled path is skipping part of
+the environment setup.
+
+Still really weird to me that I can't reproduce this outside of hob.
+I am pretty sure there exists a series of forks and execs and
+environment changes such that this will end up happening.
+
+-s
+-- 
+Listen, get this.  Nobody with a good compiler needs to be justified.
 
