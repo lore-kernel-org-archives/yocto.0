@@ -1,29 +1,24 @@
-Return-Path: <Peter.Seebach@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA4DAE013D6
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 00:16:43 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2N7GfgM017958
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 23 Mar 2012 00:16:41 -0700 (PDT)
-Received: from wrlaptop (172.25.40.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 23 Mar 2012 00:16:41 -0700
-Date: Fri, 23 Mar 2012 02:16:35 -0500
-From: Peter Seebach <peter.seebach@windriver.com>
-To: "Xu, Dongxiao" <dongxiao.xu@intel.com>
-Message-ID: <20120323021635.5b4fc048@wrlaptop>
-In-Reply-To: <1332472886.1765.1.camel@dongxiao-osel>
-References: <2046170.9fCjTlmZqN@helios> <4F3EA17B.7010906@windriver.com>
-	<1331715724.25861.16.camel@dongxiao-osel>
-	<1332380981.1849.18.camel@dongxiao-osel>
-	<20120322111805.6da9cd91@wrlaptop>
-	<1332464476.1849.23.camel@dongxiao-osel>
-	<20120322212937.71b9bf28@wrlaptop>
-	<1332472886.1765.1.camel@dongxiao-osel>
-X-Mailer: Claws Mail 3.7.8 (GTK+ 2.24.4; x86_64-pc-linux-gnu)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53A3EE013CC
+	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 05:20:12 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 23 Mar 2012 05:20:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="122411710"
+Received: from unknown (HELO helios.localnet) ([10.252.123.207])
+	by azsmga001.ch.intel.com with ESMTP; 23 Mar 2012 05:20:10 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 23 Mar 2012 12:20:08 +0000
+Message-ID: <1537192.Q99X1xdoal@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.1; i686; ; )
+In-Reply-To: <20120323021635.5b4fc048@wrlaptop>
+References: <2046170.9fCjTlmZqN@helios> <1332472886.1765.1.camel@dongxiao-osel>
+	<20120323021635.5b4fc048@wrlaptop>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
+Cc: Peter Seebach <peter.seebach@windriver.com>
 Subject: Re: pseudo interaction issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -36,76 +31,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2012 07:16:44 -0000
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 23 Mar 2012 12:20:12 -0000
+X-Groupsio-MsgNum: 5481
+Content-Type: multipart/mixed; boundary="nextPart15498061.6hbr8jRWpR"
+Content-Transfer-Encoding: 7Bit
 
-On Fri, 23 Mar 2012 11:21:26 +0800
-"Xu, Dongxiao" <dongxiao.xu@intel.com> wrote:
+--nextPart15498061.6hbr8jRWpR
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-> What do you mean by first build? Did you click "Just bake" button?
+On Friday 23 March 2012 02:16:35 Peter Seebach wrote:
+> Still really weird to me that I can't reproduce this outside of hob.
+> I am pretty sure there exists a series of forks and execs and
+> environment changes such that this will end up happening.
 
-Yes.  The original reproducer I saw said that it worked the first time,
-but failed the second time.
+I now have a fairly simple test case outside of hob. Put the attached file in 
+meta/classes/ and then add the following to your local.conf:
 
-> 1) build_target(packages)
-> 2) build_target(image)
- 
-> I noticed the pseudo error will happen when calling
-> build_target(image). Therefore I also treated it as second build.
+INHERIT += "breakit"
 
-Interesting.
+Then, just run something that will actually execute a real task. If bzip2 has 
+already been built you can trigger it just with this, which doesn't take very 
+long:
 
-I am, currently, sort of stumped on this.  The failures are coming from
-the git log/git branch commands using os.popen(), and those calls
-appear to be happening in a process:
-1.  Which did not have the pseudo library loaded, at all.
-2.  Which has LD_PRELOAD set to include pseudo.
-3.  Which has most of the PSEUDO_BINDIR, etc., values set.
-4.  Which does not have PSEUDO_PREFIX set.
+bitbake -c package -f bzip2
 
-I can't figure out how to get there.  I can't reproduce this outside of
-hob, yet.  And obviously, if the pseudo library isn't loaded, I can't
-add more debugging or logging to pseudo to fix it.  (I infer that it's
-not loaded because os.popen() isn't hitting diagnostic messages in
-pseudo's new popen() wrapper, even if they're completely unconditional.)
+This should give you a stream of "pseudo: You must set the PSEUDO_PREFIX 
+environment variable to run pseudo." after the task summary.
 
-I added an abort(), and got a core file.  The core file shows a
-backtrace in /bin/sh:
+Cheers,
+Paul
 
-#0  0x00007f1232cd8a75 in raise () from /lib/libc.so.6
-#1  0x00007f1232cdc5c0 in abort () from /lib/libc.so.6
-#2  0x00007f1233497489 in pseudo_get_prefix (pathname=0x7f123349ac9d
-"<null>")
-    at pseudo_util.c:1060
-#3  0x00007f1233498244 in pseudo_setupenv () at pseudo_util.c:717
-#4  0x00007f12334955dd in wrap_fork () at ports/common/guts/fork.c:14
-#5  0x00007f1233495675 in fork () at ports/common/pseudo_wrappers.c:322
-#6  0x000000000044339c in make_child ()
-#7  0x0000000000436f04 in ?? ()
-#8  0x0000000000433fa4 in execute_command_internal ()
-#9  0x000000000043475e in execute_command_internal ()
-#10 0x000000000047262a in parse_and_execute ()
-#11 0x000000000041fd04 in ?? ()
-#12 0x0000000000420e01 in main ()
-
-I haven't found an obvious way to look at the arguments to main, but
-I'm pretty sure it's one of the "cd REPO; git log..." commands.  So...
-
-Basically, I can't see how we can get here.
-
-Currently leaning towards a theory that the issue may be that we only
-set PSEUDO_PREFIX when we think we want pseudo, and it looks like in
-the PSEUDO_DISABLED=1 case, it may be that we can end up with a task
-being run in an environment where LD_PRELOAD had been set, but we've
-cleaned up our environment, and the disabled path is skipping part of
-the environment setup.
-
-Still really weird to me that I can't reproduce this outside of hob.
-I am pretty sure there exists a series of forks and execs and
-environment changes such that this will end up happening.
-
--s
 -- 
-Listen, get this.  Nobody with a good compiler needs to be justified.
 
+Paul Eggleton
+Intel Open Source Technology Centre
+
+--nextPart15498061.6hbr8jRWpR
+Content-Disposition: attachment; filename="breakit.bbclass"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="UTF-8"; name="breakit.bbclass"
+
+breakit_break() {
+        cat > ${TMPDIR}/test123 <<END
+${@breakit_output(d)}
+END
+}
+
+def breakit_output(d):
+    return '\n'.join(get_layers_branch_rev(d))
+
+python breakit_eventhandler() {
+	import bb.event
+	import bb.build
+
+	if isinstance(e, bb.event.BuildCompleted):
+		bb.note("possible breakage coming up...")
+		bb.build.exec_func("breakit_break", e.data)
+}
+
+addhandler breakit_eventhandler
+
+--nextPart15498061.6hbr8jRWpR--
