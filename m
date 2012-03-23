@@ -1,22 +1,37 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 655F1E0059A
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 14:50:35 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 23 Mar 2012 14:50:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="144284668"
-Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.76])
-	by fmsmga002.fm.intel.com with ESMTP; 23 Mar 2012 14:50:34 -0700
-From: kishore.k.bodke@intel.com
-To: yocto@yoctoproject.org,
-	tom.zanussi@intel.com
-Date: Fri, 23 Mar 2012 14:49:26 -0700
-Message-Id: <39de6f63fdb74dfa8ebf10628f82b16c6c80778d.1332538690.git.kishore.k.bodke@intel.com>
+Return-Path: <darren@apps.dvhart.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 910EAE00596
+	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 14:53:05 -0700 (PDT)
+Received: by pbbjt11 with SMTP id jt11so3613185pbb.35
+	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 14:53:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=sender:from:to:subject:date:message-id:x-mailer:x-gm-message-state;
+	bh=t+UBpMJFxRSB2K6qwLpyACTRAtCcJGMV4ZMx2YUr7p0=;
+	b=ARWpJ2arM4wpWwCElh15kqyEf84CGaWKrDRcZiQnNwdWY7nyxwppdANeYmicf3GsN7
+	sEpkc5HJm3zTFXy6X/4zS2c0mKgdCTW8VhwlUdel6IRIqNdoDaeukPROJPdGZT/LRfmx
+	0tI8Nry5GEA6ybXzRWaNxfnpDY8FfRmzCKGcphHgtsxsEVAouBqLHorjosiNFKjS935a
+	B6UBXBfeUbrIlS6abEY+AwIoq0hCxG2M3dvnYFs/Gf0l+rroeUfV7CCW+T3hpno0ibzU
+	hL4EfQ+iFoFtgU0/spOaFuTMVk2EeJZIbF7QEcl6i7C1dnO30tdqY3CyQHPUkxITj8X1
+	tboA==
+Received: by 10.68.225.194 with SMTP id rm2mr32415644pbc.95.1332539585216;
+	Fri, 23 Mar 2012 14:53:05 -0700 (PDT)
+Received: from localhost (static-50-53-99-101.bvtn.or.frontiernet.net.
+	[50.53.99.101])
+	by mx.google.com with ESMTPS id f6sm6622752pbt.4.2012.03.23.14.53.03
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 23 Mar 2012 14:53:03 -0700 (PDT)
+Sender: Darren Hart <darren@apps.dvhart.com>
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>,
+	Bruce Ashfield <bruce.ashfield@windriver.com>,
+	Saul Wold <sgw@linux.intel.com>
+Date: Fri, 23 Mar 2012 14:52:50 -0700
+Message-Id: <cover.1332539317.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <cover.1332538690.git.kishore.k.bodke@intel.com>
-References: <cover.1332538690.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 1/1] [meta-intel] meta-romley: switch to linux-yocto-3.2 kernel
+X-Gm-Message-State: ALoCoQlwQdxOg1yA0pWTAu0FDTDdqWncS43g2jHutM0RS3cBqyh2vtBZTa2I6mdG+OuNk+qks/fS
+Subject: [PATCH 0/1] [linux-yocto-3.2][meta] common-pc: Add PCNET32 to the config
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,68 +43,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2012 21:50:35 -0000
+X-List-Received-Date: Fri, 23 Mar 2012 21:53:05 -0000
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+In support of the self-hosted-image, add CONFIG_PCNET32 to the common-pc BSP
+default cfg. This enables the qemux86 image to be run on both qemux86 machines
+as well as the vmware 32b machine. Since the qemux86 machine optionally supports
+pcnet, this seems a reasonable compromise to managing a dedicated BSP for a
+self-hosted-image machine which would be superset of the qemux86 machine.
 
-Switch romley to the 3.2 kernel and update kernel SRCREVs.
+As this is a single CONFIG_ option, add it to the common-pc.cfg directly, rather
+than defining a new feature.
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
----
- meta-romley/conf/machine/romley.conf               |    3 +++
- .../linux/linux-yocto-rt_3.2.bbappend              |    8 ++++++++
- .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |   10 ++++++++++
- 3 files changed, 21 insertions(+), 0 deletions(-)
- create mode 100644 meta-romley/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
- create mode 100644 meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
+The following changes since commit 514847185c78c07f52e02750fbe0a03ca3a31d8f:
 
-diff --git a/meta-romley/conf/machine/romley.conf b/meta-romley/conf/machine/romley.conf
-index aa334c0..9c93874 100644
---- a/meta-romley/conf/machine/romley.conf
-+++ b/meta-romley/conf/machine/romley.conf
-@@ -4,9 +4,12 @@
- #@DESCRIPTION: Machine configuration for Romley systems
- # i.e. Sandy Bridge + Patsburg Chipset
- 
-+PREFERRED_VERSION_linux-yocto ?= "3.2%"
-+
- require conf/machine/include/tune-x86_64.inc
- require conf/machine/include/ia32-base.inc
- 
-+
- XSERVER ?= "${XSERVER_IA32_BASE} \
-            ${XSERVER_IA32_EXT} \
-            xserver-xorg-module-xaa \
-diff --git a/meta-romley/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend b/meta-romley/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
-new file mode 100644
-index 0000000..1551ccf
---- /dev/null
-+++ b/meta-romley/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
-@@ -0,0 +1,8 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+COMPATIBLE_MACHINE_romley = "romley"
-+KMACHINE_romley  = "romley"
-+
-+# Update the following to use a different BSP branch or meta SRCREV
-+#KBRANCH_romley  = "yocto/standard/preempt-rt/base"
-+#SRCREV_machine_pn-linux-yocto-rt_romley ?= XXXX
-+#SRCREV_meta_pn-linux-yocto-rt_romley ?= XXXX
-diff --git a/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
-new file mode 100644
-index 0000000..7c8c024
---- /dev/null
-+++ b/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
-@@ -0,0 +1,10 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+COMPATIBLE_MACHINE_romley = "romley"
-+KMACHINE_romley  = "yocto/standard/common-pc-64/romley"
-+
-+KERNEL_FEATURES_append_romley += " cfg/smp.scc"
-+
-+SRCREV_machine_pn-linux-yocto_romley ?= "4716ac6af37c0c0dcc78690a4a0ba3b857f8bda2"
-+SRCREV_meta_pn-linux-yocto_romley ?= "42fff722188e0de7246a3a6900eeeeaf69f87047"
-+
+  meta: update kver to v3.2.11 (2012-03-16 10:42:41 -0400)
+
+are available in the git repository at:
+  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib dvhart/meta/pcnet
+  http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=dvhart/meta/pcnet
+
+Darren Hart (1):
+  [meta] common-pc: Add PCNET32 to the config
+
+ meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg |    3 +++
+ meta/cfg/kernel-cache/bsp/common-pc/hardware.cfg  |    1 +
+ 2 files changed, 4 insertions(+), 0 deletions(-)
+
 -- 
 1.7.5.4
 
