@@ -1,35 +1,34 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CDA7E0044D
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2012 17:05:03 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 23 Mar 2012 17:05:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="124483950"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.226.10])
-	by orsmga002.jf.intel.com with ESMTP; 23 Mar 2012 17:05:03 -0700
-Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
-	orsmsx605.amr.corp.intel.com (10.22.226.10) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 23 Mar 2012 17:05:03 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.154]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.199]) with mapi id
-	14.01.0355.002; Fri, 23 Mar 2012 17:05:02 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] yocto docs: confusion between shell env vars and
-	bitbake	env vars
-Thread-Index: AQHNCECM4+24E91OZk+pKLcuJilpfpZ4kpEg
-Date: Sat, 24 Mar 2012 00:05:02 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237945175C29@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1203221123080.6483@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1203221123080.6483@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8F35E0044D
+	for <yocto@yoctoproject.org>; Sat, 24 Mar 2012 00:42:53 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1SBLci-000541-AK; Sat, 24 Mar 2012 03:42:52 -0400
+Date: Sat, 24 Mar 2012 03:42:44 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237945175C01@ORSMSX101.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1203240340500.17126@oneiric>
+References: <alpine.DEB.2.02.1203221134480.7169@oneiric>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237945175C01@ORSMSX101.amr.corp.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Subject: Re: yocto docs: confusion between shell env vars and bitbake	env vars
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: poky ref manual still confuses BB_ENV_WHITELIST and BB_ENV_EXTRAWHITE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,65 +40,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Mar 2012 00:05:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 24 Mar 2012 07:42:53 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-I clarified about 5 instances of this problem in the reference manual.  As =
-usual, see http://www.yoctoprojects.org/docs/latest/poky-ref-manual/poky-re=
-f-manual.html for the latest.
+On Fri, 23 Mar 2012, Rifenbark, Scott M wrote:
 
-Scott
+> Okay - I dug into this a bit with the help of Scott Garman.  He
+> uncovered a bit in the BitBake changelog.  It states the following:
+>
+> "By default it will now only pass certain whitelisted variables into
+> the data store. If BB_PRESERVE_ENV is set bitbake will use all
+> variable from the environment. If BB_ENV_WHITELIST is set, that
+> whitelist will be used instead of the internal bitbake one.
+> Alternatively, BB_ENV_EXTRAWHITE can be used to extend the internal
+> whitelist"
 
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Robert P. J. Day
-Sent: Thursday, March 22, 2012 9:29 AM
-To: Yocto discussion list
-Subject: [yocto] yocto docs: confusion between shell env vars and bitbake e=
-nv vars
-
-
-  since i'm reading this out of the yocto/poky reference manual, i
-might as well point it out here.
-
-  there is occasional confusion when the docs refer to "environment
-variables", since it's not clear when that means *shell* env vars or
-*bitbake* env vars.  for instance, in the ref manual, section B.1,
-"Parsing", you read:
-
-"The first thing BitBake does is look for the bitbake.conf file. The
-Yocto Project keeps this file in the Yocto Project file's meta/conf/
-directory. BitBake finds it by examining the BBPATH environment
-variable and looking for the meta/conf/ directory."
-
-  but there is no BBPATH shell environment variable.  in fact,
-oe-init-build-env explicitly *unsets* that shell variable at the very
-end.
-
-  however, you can check the *bitbake* environment with "bitbake -e"
-and there it is, and i think that not being clear about the difference
-has the potential to massively confuse readers.
+  it's also worth noting that none of those variables are listed in
+the variable glossary in the reference manual.  should they be?  i've
+already started a list of variables missing from the glossary.
 
 rday
 
---=20
+-- 
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+========================================================================
 Robert P. J. Day                                 Ottawa, Ontario, CANADA
                         http://crashcourse.ca
 
 Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+========================================================================
 
