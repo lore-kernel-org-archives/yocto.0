@@ -1,33 +1,31 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22BB8E00596
-	for <yocto@yoctoproject.org>; Sat, 24 Mar 2012 10:41:54 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2OHfovT009252;
-	Sat, 24 Mar 2012 17:41:50 GMT
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 05689-07; Sat, 24 Mar 2012 17:41:46 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2OHfewR009245
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Sat, 24 Mar 2012 17:41:41 GMT
-Message-ID: <1332610903.28414.24.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Peter Seebach <peter.seebach@windriver.com>
-Date: Sat, 24 Mar 2012 17:41:43 +0000
-In-Reply-To: <1332609315.28414.19.camel@ted>
-References: <2046170.9fCjTlmZqN@helios> <1332472886.1765.1.camel@dongxiao-osel>
-	<20120323021635.5b4fc048@wrlaptop>
-	<1537192.Q99X1xdoal@helios> <20120323174506.5634af61@wrlaptop>
-	<1332609315.28414.19.camel@ted>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: pseudo interaction issue
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42C7EE01386
+	for <yocto@yoctoproject.org>; Sun, 25 Mar 2012 03:16:56 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1SBkVK-0003uE-IF
+	for yocto@yoctoproject.org; Sun, 25 Mar 2012 06:16:54 -0400
+Date: Sun, 25 Mar 2012 06:16:43 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1203250602350.25098@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: how to add a single package to an image, and the yocto FAQ
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,33 +37,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Mar 2012 17:41:55 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 25 Mar 2012 10:16:56 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Sat, 2012-03-24 at 17:15 +0000, Richard Purdie wrote:
-> What puzzles me is we get this value from  envbackup[key] =
-> os.environ.get("PSEUDO_PREFIX") so its already not in the environment.
-> 
-> So basically if we read "PSEUDO_PREFIX" from the environment we get
-> nothing. If we unset the value back to being "nothing", things break.
-> 
-> This would imply we have some other issue going on here somewhere...
 
-I've discovered that if I add:
+  kind of a two-part nitpick but i was looking for where it was
+documented how to simply add an existing package to an existing image
+definition and that bit of info is frustratingly hard to find.  i
+assumed that would be a blatantly obvious question for the ref manual
+FAQ but, no, actually, it isn't there.  not really.
 
-        os.environ["PSEUDO_PREFIX"]  = "/media/build1/poky/build/tmp/sysroots/x86_64-linux/usr"
-        os.environ["PSEUDO_LOCALSTATEDIR"]  = "/media/build1/poky/build/tmp/work/i586-poky-linux/bzip2-1.0.6-r5/pseudo/"
-        del os.environ["PSEUDO_PREFIX"]
-        del os.environ["PSEUDO_LOCALSTATEDIR"]
+  if you check the FAQ:
 
-to the top of fork_off_task(), then "bitbake bzip2 -c compile -f" will
-start to fail with the pseudo error like the install/package case.
+file:///home/rpjday/yocto/yocto-docs/documentation/poky-ref-manual/poky-ref-manual.html#faq
 
-One or the other of the above on their own doesn't do this. Funky.
+what you get is exactly what is described in the foreword for the
+subversion book:
 
-Cheers,
+http://www.visualsvn.com/support/svnbook/foreword/
 
-Richard
+hoping no one takes it personally but the current yocto ref manual FAQ
+strikes me as *exactly* the kind of FAQ that was put together by
+people who knew the answers to particular questions, and simply
+defined those questions to be "frequently asked" because they knew
+their answers.
 
+  if i'm a beginner, one of the first questions i'd ask is something
+like, "how can i bitbake a core-image-minimal, but tweak my local.conf
+to add in an extra package that's not part of that image definition?"
+and that's simply not there.  if i follow the FAQ, i end up here:
+
+file:///home/rpjday/yocto/yocto-docs/documentation/poky-ref-manual/poky-ref-manual.html#idp1843008
+
+then here:
+
+http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#usingpoky-extend-addpkg
+
+and if i keep reading, is this what i'm looking for?
+
+http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#usingpoky-extend-customimage-localconf
+
+  how is it that a question that obvious is simply not part of the
+FAQ?   i can think of numerous questions that *should* be in that FAQ
+and aren't.  is anyone keeping track of what questions people are
+actually asking?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
