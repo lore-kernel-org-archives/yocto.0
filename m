@@ -1,19 +1,19 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25002E013A8
-	for <yocto@yoctoproject.org>; Sun, 25 Mar 2012 09:17:00 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04945E013A8
+	for <yocto@yoctoproject.org>; Sun, 25 Mar 2012 09:34:18 -0700 (PDT)
 Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
 	([99.241.91.63] helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
 	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SBq7n-0006aW-6j
-	for yocto@yoctoproject.org; Sun, 25 Mar 2012 12:16:59 -0400
-Date: Sun, 25 Mar 2012 12:16:50 -0400 (EDT)
+	id 1SBqOX-0007Yk-Cz
+	for yocto@yoctoproject.org; Sun, 25 Mar 2012 12:34:17 -0400
+Date: Sun, 25 Mar 2012 12:34:09 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1203251213170.6445@oneiric>
+Message-ID: <alpine.DEB.2.02.1203251231080.7311@oneiric>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -25,7 +25,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: meta-x32: disagreement between ref manual and README.TXT
+Subject: how does one find the (OE) layer index from the yocto home page?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,31 +37,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 25 Mar 2012 16:17:00 -0000
+X-List-Received-Date: Sun, 25 Mar 2012 16:34:18 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-  poky ref manual reads:
+  it doesn't seem to be obvious how, from the yocto home page, you'd
+find the OE layer index http://www.openembedded.org/wiki/LayerIndex.
+in fact, if you search for the phrase "layer index" at yoctoproject,
+this is what you get:
 
-"As usual, use BitBake to build an image that supports the x32 psABI.
-Here is an example:
+  http://www.yoctoproject.org/search/node/layer%20index
 
-     $ bitake core-image-sato
-
-As usual, run your image using QUEM [sic]:
-
-     $ runqemu qemux86-64 core-image-sato"
-
-while the README.TXT file that comes with the experimental/meta-x32
-layer reads:
-
-"build
-	bitbake core-image-minimal-x32
-
-4. boot the image
-	runqemu qemux86-64 core-image-minimal-x32"
-
-  thoughts?
+should it not be more obvious how to find the layers? and how should
+that page sync up with the layers section at
+http://git.yoctoproject.org/?
 
 rday
 
@@ -74,5 +63,4 @@ Robert P. J. Day                                 Ottawa, Ontario, CANADA
 Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
 ========================================================================
-
 
