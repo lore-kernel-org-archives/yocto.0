@@ -1,33 +1,35 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 879D0E013DA
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 02:24:17 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2Q9O7pm023795;
-	Mon, 26 Mar 2012 10:24:07 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 20450-03; Mon, 26 Mar 2012 10:24:03 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2Q9Nw1L023789
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Mon, 26 Mar 2012 10:23:59 +0100
-Message-ID: <1332753838.28414.98.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Peter Seebach <peter.seebach@windriver.com>
-Date: Mon, 26 Mar 2012 10:23:58 +0100
-In-Reply-To: <20120326024325.2dfd0f59@wrlaptop>
-References: <2046170.9fCjTlmZqN@helios> <1332472886.1765.1.camel@dongxiao-osel>
-	<20120323021635.5b4fc048@wrlaptop>
-	<1537192.Q99X1xdoal@helios> <20120323174506.5634af61@wrlaptop>
-	<1332609315.28414.19.camel@ted> <20120326024325.2dfd0f59@wrlaptop>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: pseudo interaction issue
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAA66E013DC
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 04:03:15 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 26 Mar 2012 04:03:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="121686375"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by orsmga001.jf.intel.com with ESMTP; 26 Mar 2012 04:03:12 -0700
+Received: from irsmsx104.ger.corp.intel.com (163.33.3.159) by
+	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 26 Mar 2012 12:01:58 +0100
+Received: from irsmsx101.ger.corp.intel.com ([169.254.1.70]) by
+	IRSMSX104.ger.corp.intel.com ([169.254.5.241]) with mapi id
+	14.01.0355.002; Mon, 26 Mar 2012 12:01:58 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: "Liu, Song" <song.liu@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Request for Yocto Project 1.2 release Beta Program
+	Users & Yocto T-Shirt
+Thread-Index: AQHNCz/cbKOGdDV/Rka1LPVLIeooVQ==
+Date: Mon, 26 Mar 2012 11:01:57 +0000
+Message-ID: <CB960ADB.B1C8%belen.barros.pena@intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A3D09DBA0@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.14.0.111121
+x-originating-ip: [10.254.234.133]
+MIME-Version: 1.0
+Subject: Re: Request for Yocto Project 1.2 release Beta Program Users & Yocto T-Shirt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,39 +41,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2012 09:24:18 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 26 Mar 2012 11:03:15 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <A22BD180295D0148974FA5BD368A303B@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2012-03-26 at 02:43 -0500, Peter Seebach wrote:
-> On Sat, 24 Mar 2012 17:15:15 +0000
-> Richard Purdie <richard.purdie@linuxfoundation.org> wrote:
-> 
-> > This implies that once we enable pseudo for a child, there is some
-> > change in the parent which persists.
-> 
-> Hmm.
-> 
-> Is the parent running with pseudo loaded?  If it were, then I would
-> expect this -- pseudo does some environment magic that can affect the
-> parent, and also cause it to stash values for later restoration.
+Hi Song,
 
-BitBake always runs with pseudo loaded but disabled. When we fork a
-child, we decide whether to enable it or not and setup the environment
-to either bring pseudo to life, or unload it from memory entirely.
+Just wondering how many volunteers for the Beta release you have. Do you
+think it would be possible to add some usability testing of Hob to the
+Beta programme? This would involve us contacting a few of the volunteers
+and asking them to do a couple of simple things with Hob while we watch
+(sitting with them or remotely by sharing the screen over Skype or
+similar).
 
-It sounds to me like our enable/disable code confuses the heck out of
-pseudo in the parent environment, likely overwriting a stashed value
-which it needs to be able to find itself again (prefix/localstate).
+Thanks!
 
-Obviously we can change the way we manipulate the environment although
-that isn't entirely straightforward as we need to ensure the pseudo
-paths don't leak into sstate package checksums for example.
-
-Cheers,
-
-Richard
+Belen
 
 
+
+On 09/03/2012 23:33, "Liu, Song" <song.liu@intel.com> wrote:
+
+>Hi all,=20
+>
+>It's that time again. We are starting the Beta program for Yocto Project
+>1.2 release. This release focuses on usability of the Yocto Project. HOB2
+>is the second version of our Human Oriented Builder (GUI based), which
+>will help developers build customized Linux image in a much more
+>intuitive and smoother way. Build appliance will help users on Windows to
+>get started with Yocto Project quickly. There are also many other
+>features such as multi-lib improvement, error handling improvement, BSP
+>tools, etc.=20
+>
+>Please volunteer or send me the names who you think should be a good
+>candidate for our Beta release users. Anyone who is interested in Yocto
+>Project and/or has some technical background in embedded Linux area
+>should be just fine. And this time, we will send our Beta users some
+>Yocto T-Shirts and I'm sure you will look more attractive in them :)
+>
+>If you do want to volunteer or have someone in mind, please send me the
+>names sometime next week. Thank you for your support and we really
+>appreciate it!
+>
+>Thanks,
+>Song
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
+
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
