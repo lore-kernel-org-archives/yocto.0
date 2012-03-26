@@ -1,31 +1,26 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA77FE013AA
-	for <yocto@yoctoproject.org>; Sun, 25 Mar 2012 19:05:58 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 25 Mar 2012 19:05:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="123144490"
-Received: from azsmsx603.amr.corp.intel.com ([10.2.161.23])
-	by azsmga001.ch.intel.com with ESMTP; 25 Mar 2012 19:05:58 -0700
-Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
-	azsmsx603.amr.corp.intel.com (10.2.161.23) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 25 Mar 2012 19:05:57 -0700
-Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.142]) by
-	SHSMSX102.ccr.corp.intel.com ([169.254.2.36]) with mapi id
-	14.01.0355.002; Mon, 26 Mar 2012 10:05:55 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto weekly bug trend charts -- WW12
-Thread-Index: Ac0K9Po35ACr8FPvSaa3b0B5ab2QbQ==
-Date: Mon, 26 Mar 2012 02:05:55 +0000
-Message-ID: <90741FE9B50D654690EB940EDB456C8E099ED9@SHSMSX101.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+Return-Path: <Peter.Seebach@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9534E013A8
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 00:43:40 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2Q7hRBx022548
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 26 Mar 2012 00:43:27 -0700 (PDT)
+Received: from wrlaptop (172.25.40.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Mon, 26 Mar 2012 00:43:28 -0700
+Date: Mon, 26 Mar 2012 02:43:25 -0500
+From: Peter Seebach <peter.seebach@windriver.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Message-ID: <20120326024325.2dfd0f59@wrlaptop>
+In-Reply-To: <1332609315.28414.19.camel@ted>
+References: <2046170.9fCjTlmZqN@helios> <1332472886.1765.1.camel@dongxiao-osel>
+	<20120323021635.5b4fc048@wrlaptop> <1537192.Q99X1xdoal@helios>
+	<20120323174506.5634af61@wrlaptop> <1332609315.28414.19.camel@ted>
+X-Mailer: Claws Mail 3.7.8 (GTK+ 2.24.4; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW12
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: pseudo interaction issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,22 +32,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2012 02:05:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 26 Mar 2012 07:43:41 -0000
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
 
-Hi all,
-	This is the weekly bug trend for WW12. The new submitted vs. fixed bug num=
-ber is 34 vs. 42. 9 of fixed bugs are enhancement. By comparing with WW11, =
-there are 5 more major bugs in WW12, which causes WDD number increase with =
-decreased open bug number. Janitors bugs are included in "Yocto Weekly Open=
- bug Trend(Importance)" and "Yocto Weekly Submitted/Fixed bug Trend". But i=
-t is not included in WDD since we treat its WDD number as "0". WDD number a=
-nd Open Bug number are 945 and 187. Bug status of WW12 could be found on ht=
-tps://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
+On Sat, 24 Mar 2012 17:15:15 +0000
+Richard Purdie <richard.purdie@linuxfoundation.org> wrote:
 
-Best Regards,
-Jiajun
+> This implies that once we enable pseudo for a child, there is some
+> change in the parent which persists.
 
+Hmm.
+
+Is the parent running with pseudo loaded?  If it were, then I would
+expect this -- pseudo does some environment magic that can affect the
+parent, and also cause it to stash values for later restoration.
+
+Otherwise, I'm less sure, because the parent process should be able to
+mess with its environment all it wants.  Pseudo has some hackery for
+restoring missing values, to let things like "env -i ..." work.
+
+-s
+-- 
+Listen, get this.  Nobody with a good compiler needs to be justified.
 
