@@ -1,24 +1,24 @@
 Return-Path: <rahul.saxena@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27D36E013A8
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8673BE013A8
 	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 14:58:58 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 26 Mar 2012 14:58:57 -0700
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 26 Mar 2012 14:58:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="121924779"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="123514371"
 Received: from rsaxena-desktop.sc.intel.com (HELO localhost) ([143.183.188.84])
-	by orsmga001.jf.intel.com with ESMTP; 26 Mar 2012 14:58:57 -0700
+	by azsmga001.ch.intel.com with ESMTP; 26 Mar 2012 14:58:57 -0700
 From: rahul.saxena@intel.com
 To: yocto@yoctoproject.org,
 	tom.zanussi@intel.com
-Date: Mon, 26 Mar 2012 07:49:22 -0700
-Message-Id: <891c44fb9ad6d47536864f63032fae583fc5ba1c.1332797429.git.rahul.saxena@intel.com>
+Date: Mon, 26 Mar 2012 07:49:23 -0700
+Message-Id: <d3913f7a27354f30569bbb99cc77b99314c6ef20.1332797429.git.rahul.saxena@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332797429.git.rahul.saxena@intel.com>
 References: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332797429.git.rahul.saxena@intel.com>
 In-Reply-To: <cover.1332797429.git.rahul.saxena@intel.com>
 References: <cover.1332797429.git.rahul.saxena@intel.com>
-Subject: [PATCH 04/14] meta-cedatrail: add recipe for setting audio mixer settings during boot
+Subject: [PATCH 05/14] meta-cedartrail: seperate xorg.conf files for pvr and no-pvr cases
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,101 +34,87 @@ X-List-Received-Date: Mon, 26 Mar 2012 21:58:58 -0000
 
 From: Rahul Saxena <rahul.saxena@intel.com>
 
-Recipe is copied from n450-audio.bb with a few parameters changed
-to adjust volume settings for Front mixer during boot.
+Seperate xserver configuration files, one file each for  the case of with pvr graphics
+driver and for "no pvr" (i.e. with VESA driver)
 
 Signed-off-by: Rahul Saxena <rahul.saxena@.intel.com>
 ---
- .../cedartrail-audio/cedartrail-audio.bb           |   30 ++++++++++++++
- .../cedartrail-audio/cedartrail-audio              |   42 ++++++++++++++++++++
- 2 files changed, 72 insertions(+), 0 deletions(-)
- create mode 100644 meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio.bb
- create mode 100644 meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio/cedartrail-audio
+ .../xserver-xf86-config/cedartrail-nopvr/xorg.conf |   26 ++++++++++++++++++++
+ .../xserver-xf86-config/cedartrail/xorg.conf       |   24 ++++++------------
+ 2 files changed, 34 insertions(+), 16 deletions(-)
+ create mode 100644 meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail-nopvr/xorg.conf
+ mode change 100755 => 100644 meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf
 
-diff --git a/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio.bb b/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio.bb
+diff --git a/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail-nopvr/xorg.conf b/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail-nopvr/xorg.conf
 new file mode 100644
-index 0000000..9a43f02
+index 0000000..da4fc3c
 --- /dev/null
-+++ b/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio.bb
-@@ -0,0 +1,30 @@
-+SUMMARY = "Provide a basic init script to enable audio"
-+DESCRIPTION = "Set the volume and unmute the Front mixer setting during boot."
-+SECTION = "base"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
++++ b/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail-nopvr/xorg.conf
+@@ -0,0 +1,26 @@
++Section "Device"
++    Identifier	"Generic VESA"
++    Driver	"vesa"
++EndSection
 +
-+PR = "r0"
++Section "Monitor"
++    Identifier    "Generic Monitor"
++    Option        "DPMS"
++EndSection
 +
-+inherit update-rc.d
++Section "Screen"
++    Identifier    "Default Screen"
++    Device	  "Generic VESA"
++    Monitor       "Generic Monitor"
++    DefaultDepth  24
++EndSection
 +
-+RDEPENDS = "alsa-utils-amixer"
++Section "ServerLayout"
++    Identifier     "Default Layout"
++    Screen         "Default Screen"
++EndSection
 +
-+SRC_URI = "file://cedartrail-audio"
-+
-+INITSCRIPT_NAME = "cedartrail-audio"
-+INITSCRIPT_PARAMS = "defaults 90"
-+
-+do_install() {
-+	install -d ${D}${sysconfdir} \
-+	           ${D}${sysconfdir}/init.d
-+	install -m 0755 ${WORKDIR}/cedartrail-audio ${D}${sysconfdir}/init.d
-+        cat ${WORKDIR}/${INITSCRIPT_NAME} | \
-+            sed -e 's,/etc,${sysconfdir},g' \
-+                -e 's,/usr/sbin,${sbindir},g' \
-+                -e 's,/var,${localstatedir},g' \
-+                -e 's,/usr/bin,${bindir},g' \
-+                -e 's,/usr,${prefix},g' > ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
-+        chmod 755 ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
-+}
-+
-diff --git a/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio/cedartrail-audio b/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio/cedartrail-audio
-new file mode 100644
-index 0000000..efd08d3
---- /dev/null
-+++ b/meta-cedartrail/recipes-bsp/cedartrail-audio/cedartrail-audio/cedartrail-audio
-@@ -0,0 +1,42 @@
-+#!/bin/sh
-+### BEGIN INIT INFO
-+# Provides:          cedartrail mixer setup
-+# Required-Start:    $syslog
-+# Required-Stop:     $syslog
-+# Default-Start:     2 3 4 5
-+# Default-Stop:      0 1 6
-+# Short-Description: Initialize the cedartrail audio mixer
-+# Description:       Unmute FRONT and set volume 
-+### END INIT INFO
-+
-+# Author: Darren Hart <dvhart@linux.intel.com>
-+# Based on /etc/init.d/skeleton
-+
-+PATH=/sbin:/usr/sbin:/bin:/usr/bin
-+DESC="Audio mixer settings"
-+NAME=cedartrail-audio
-+AMIXER=`which amixer`
-+SCRIPTNAME=/etc/init.d/$NAME
-+
-+# Exit if amixer is not installed
-+[ -x "$AMIXER" ] || exit 0
-+
-+do_start() {
-+	# Enable the "Front" simple controls (black phones jack)
-+	$AMIXER sset Front 90 on > /dev/null
-+}
-+
-+case "$1" in
-+start)
-+	echo "$NAME: setting default mixer settings."
-+	do_start
-+	;;
-+stop)
-+	;;
-+*)
-+	echo "Usage: $SCRIPTNAME {start|stop}" >&2
-+	exit 3
-+	;;
-+esac
-+
-+exit 0
++Section "ServerFlags"
++    Option        "DontZap"  "0"
++    Option        "AutoAddDevices"  "False"
++EndSection
+diff --git a/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf b/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf
+old mode 100755
+new mode 100644
+index da4fc3c..1d085a4
+--- a/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf
++++ b/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf
+@@ -1,23 +1,15 @@
+ Section "Device"
+-    Identifier	"Generic VESA"
+-    Driver	"vesa"
+-EndSection
+-
+-Section "Monitor"
+-    Identifier    "Generic Monitor"
+-    Option        "DPMS"
+-EndSection
+-
+-Section "Screen"
+-    Identifier    "Default Screen"
+-    Device	  "Generic VESA"
+-    Monitor       "Generic Monitor"
+-    DefaultDepth  24
++        Option     "DRIDisableVSync"    "False"
++        Identifier  "Card0"
++        Driver      "pvr"
++        BusID       "PCI:0:2:0"
++        Option      "SoftEXA"           "Off"
++        Option      "FlipChain"         "On"
+ EndSection
+ 
+ Section "ServerLayout"
+-    Identifier     "Default Layout"
+-    Screen         "Default Screen"
++        Identifier "default screen"
++        Option  "AIGLX" "on"
+ EndSection
+ 
+ Section "ServerFlags"
 -- 
 1.7.4.1
 
