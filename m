@@ -1,25 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F925E01374
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 06:53:50 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2QDrfvo009730
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 26 Mar 2012 06:53:41 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Mon, 26 Mar 2012 06:53:42 -0700
-Message-ID: <4F7074DF.9010102@windriver.com>
-Date: Mon, 26 Mar 2012 09:53:35 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36883E01374
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 07:26:26 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 26 Mar 2012 07:26:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="125207630"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by orsmga002.jf.intel.com with ESMTP; 26 Mar 2012 07:26:25 -0700
+Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 26 Mar 2012 07:26:25 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.154]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.46]) with mapi id
+	14.01.0355.002; Mon, 26 Mar 2012 07:26:25 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] can all of the licensing discussion be centralized in
+	an	appendix?
+Thread-Index: AQHNC0cZ0CHwFTh8H0+lcwl28jfNMJZ8oZfg
+Date: Mon, 26 Mar 2012 14:26:24 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB12379451764E7@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1203260747350.4275@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1203260747350.4275@oneiric>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <cover.1332539317.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1332539317.git.dvhart@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/1] [linux-yocto-3.2][meta] common-pc: Add PCNET32 to the config
+Subject: Re: can all of the licensing discussion be centralized in an	appendix?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,42 +41,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2012 13:53:50 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 26 Mar 2012 14:26:26 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 12-03-23 05:52 PM, Darren Hart wrote:
-> In support of the self-hosted-image, add CONFIG_PCNET32 to the common-pc BSP
-> default cfg. This enables the qemux86 image to be run on both qemux86 machines
-> as well as the vmware 32b machine. Since the qemux86 machine optionally supports
-> pcnet, this seems a reasonable compromise to managing a dedicated BSP for a
-> self-hosted-image machine which would be superset of the qemux86 machine.
->
-> As this is a single CONFIG_ option, add it to the common-pc.cfg directly, rather
-> than defining a new feature.
+Is BSP licensing different than non-BSP licensing?  If not, then licensing =
+could be combined into a single section.  Can someone answer this for me?
 
-merged. I don't have any other pending commits, so I'll push
-this out later today as a standalone update.
+Also, good point on the BSP guide appearing as a chapter in the reference m=
+anual.  I have not liked this.  Is there any rational reason to have it thi=
+s way?
 
-Cheers,
+Scott
 
-Bruce
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Robert P. J. Day
+Sent: Monday, March 26, 2012 5:53 AM
+To: Yocto discussion list
+Subject: [yocto] can all of the licensing discussion be centralized in an a=
+ppendix?
 
->
-> The following changes since commit 514847185c78c07f52e02750fbe0a03ca3a31d8f:
->
->    meta: update kver to v3.2.11 (2012-03-16 10:42:41 -0400)
->
-> are available in the git repository at:
->    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib dvhart/meta/pcnet
->    http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=dvhart/meta/pcnet
->
-> Darren Hart (1):
->    [meta] common-pc: Add PCNET32 to the config
->
->   meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg |    3 +++
->   meta/cfg/kernel-cache/bsp/common-pc/hardware.cfg  |    1 +
->   2 files changed, 4 insertions(+), 0 deletions(-)
->
 
+  still clawing my way through the ref manual and it seems that
+there's *way* too much coverage of licensing sprinkled throughout.
+most people are not going to care about licensing until the time comes
+to maybe start distributing their BSP.
+
+  as it stands, in the *development* version of the ref manual,
+section 3.4 is all about licensing, then ch 4 is essentially the BSP
+guide where section 4.2.1 is "License Files" and all of section 4.3 is
+"BSP Licensing Considerations."
+
+  that just seems like too much licensing info that breaks up the flow
+of the reference manual.  can all of that be moved to one location and
+referenced from there?
+
+rday
+
+p.s.  i'm also not keen on an entire chapter of the ref manual being
+nothing more than an include of the BSP guide.  if you've got a
+perfectly respectable BSP guide, there's no point having it magically
+appear as part of another manual.  but that's just my $0.02.
+
+--=20
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
