@@ -1,24 +1,24 @@
 Return-Path: <rahul.saxena@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FFE2E013E8
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82F1AE013E9
 	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 14:58:59 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 26 Mar 2012 14:58:59 -0700
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 26 Mar 2012 14:58:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="123514377"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="125359650"
 Received: from rsaxena-desktop.sc.intel.com (HELO localhost) ([143.183.188.84])
-	by azsmga001.ch.intel.com with ESMTP; 26 Mar 2012 14:58:58 -0700
+	by orsmga002.jf.intel.com with ESMTP; 26 Mar 2012 14:58:59 -0700
 From: rahul.saxena@intel.com
 To: yocto@yoctoproject.org,
 	tom.zanussi@intel.com
-Date: Mon, 26 Mar 2012 07:49:29 -0700
-Message-Id: <11d3c48443a3a1d6af068863f656bde832eccb9c.1332797429.git.rahul.saxena@intel.com>
+Date: Mon, 26 Mar 2012 07:49:30 -0700
+Message-Id: <424b88776be3cb21dc097f6d7f52973d34c8e6f0.1332797429.git.rahul.saxena@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332797429.git.rahul.saxena@intel.com>
 References: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332797429.git.rahul.saxena@intel.com>
 In-Reply-To: <cover.1332797429.git.rahul.saxena@intel.com>
 References: <cover.1332797429.git.rahul.saxena@intel.com>
-Subject: [PATCH 11/14] meta-cedartrail: Add web-webkit, audio and video samples to sato image
+Subject: [PATCH 12/14] meta-cedartrail: Update SRC_URI in kernel recipe append files to point to linux-yocto_3.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,45 +34,39 @@ X-List-Received-Date: Mon, 26 Mar 2012 21:58:59 -0000
 
 From: Rahul Saxena <rahul.saxena@intel.com>
 
-Update sato images to include web-webkit and audio & video samples
+Current poky/edison points to linux-yocto-3.0-1.1.x.git repo. However this repo does not have
+cedartrail branch. Hence  point to linux-yocto_3.0 via kernel recipe append files
 
 Signed-off-by: Rahul Saxena <rahul.saxena@.intel.com>
 ---
- .../images/core-image-sato-dev.bbappend            |    3 +++
- .../images/core-image-sato-sdk.bbappend            |    3 +++
- .../recipes-sato/images/core-image-sato.bbappend   |    3 +++
- 3 files changed, 9 insertions(+), 0 deletions(-)
- create mode 100644 meta-cedartrail/recipes-sato/images/core-image-sato-dev.bbappend
- create mode 100644 meta-cedartrail/recipes-sato/images/core-image-sato-sdk.bbappend
- create mode 100644 meta-cedartrail/recipes-sato/images/core-image-sato.bbappend
+ .../linux/linux-yocto-rt_3.0.bbappend              |    3 +++
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    2 ++
+ 2 files changed, 5 insertions(+), 0 deletions(-)
 
-diff --git a/meta-cedartrail/recipes-sato/images/core-image-sato-dev.bbappend b/meta-cedartrail/recipes-sato/images/core-image-sato-dev.bbappend
-new file mode 100644
-index 0000000..4022c58
---- /dev/null
-+++ b/meta-cedartrail/recipes-sato/images/core-image-sato-dev.bbappend
-@@ -0,0 +1,3 @@
-+IMAGE_INSTALL += "web-webkit"
-+IMAGE_INSTALL += "bigbuckbunny-ogg"
-+IMAGE_INSTALL += "ogg-CC-BY-3.0-music-samples"
-diff --git a/meta-cedartrail/recipes-sato/images/core-image-sato-sdk.bbappend b/meta-cedartrail/recipes-sato/images/core-image-sato-sdk.bbappend
-new file mode 100644
-index 0000000..4022c58
---- /dev/null
-+++ b/meta-cedartrail/recipes-sato/images/core-image-sato-sdk.bbappend
-@@ -0,0 +1,3 @@
-+IMAGE_INSTALL += "web-webkit"
-+IMAGE_INSTALL += "bigbuckbunny-ogg"
-+IMAGE_INSTALL += "ogg-CC-BY-3.0-music-samples"
-diff --git a/meta-cedartrail/recipes-sato/images/core-image-sato.bbappend b/meta-cedartrail/recipes-sato/images/core-image-sato.bbappend
-new file mode 100644
-index 0000000..4022c58
---- /dev/null
-+++ b/meta-cedartrail/recipes-sato/images/core-image-sato.bbappend
-@@ -0,0 +1,3 @@
-+IMAGE_INSTALL += "web-webkit"
-+IMAGE_INSTALL += "bigbuckbunny-ogg"
-+IMAGE_INSTALL += "ogg-CC-BY-3.0-music-samples"
+diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+index 828e6fd..759c3b7 100755
+--- a/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
++++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+@@ -1,4 +1,7 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++SRC_URI = "git://git.yoctoproject.org/linux-yocto-3.0.git;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
++
+ COMPATIBLE_MACHINE_cedartrail = "cedartrail"
+ KMACHINE_cedartrail  = "cedartrail"
+ 
+diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
+index 14c0b9d..0a05d8b 100755
+--- a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
++++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
+@@ -1,5 +1,7 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
++SRC_URI = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
++
+ COMPATIBLE_MACHINE_cedartrail-nopvr = "cedartrail"
+ KMACHINE_cedartrail-nopvr  = "yocto/standard/cedartrail"
+ KERNEL_FEATURES_append_cedartrail-nopvr += " cfg/smp.scc"
 -- 
 1.7.4.1
 
