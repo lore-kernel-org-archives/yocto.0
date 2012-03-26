@@ -1,35 +1,34 @@
 Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36883E01374
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 07:26:26 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 26 Mar 2012 07:26:25 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B05CDE01374
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 07:43:29 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 26 Mar 2012 07:43:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="125207630"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="133231042"
 Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by orsmga002.jf.intel.com with ESMTP; 26 Mar 2012 07:26:25 -0700
-Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
+	by fmsmga001.fm.intel.com with ESMTP; 26 Mar 2012 07:43:29 -0700
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
 	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 26 Mar 2012 07:26:25 -0700
+	(TLS) id 8.2.255.0; Mon, 26 Mar 2012 07:43:28 -0700
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.154]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.46]) with mapi id
-	14.01.0355.002; Mon, 26 Mar 2012 07:26:25 -0700
+	ORSMSX106.amr.corp.intel.com ([169.254.5.128]) with mapi id
+	14.01.0355.002; Mon, 26 Mar 2012 07:43:28 -0700
 From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
 To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
 	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] can all of the licensing discussion be centralized in
-	an	appendix?
-Thread-Index: AQHNC0cZ0CHwFTh8H0+lcwl28jfNMJZ8oZfg
-Date: Mon, 26 Mar 2012 14:26:24 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB12379451764E7@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1203260747350.4275@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1203260747350.4275@oneiric>
+Thread-Topic: [yocto] meta-x32: disagreement between ref manual and README.TXT
+Thread-Index: AQHNCqLBlsuhmfUps06gOsc/ZbOTkZZ8qChQ
+Date: Mon, 26 Mar 2012 14:43:28 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123794517658B@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1203251213170.6445@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1203251213170.6445@oneiric>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: Re: can all of the licensing discussion be centralized in an	appendix?
+Subject: Re: meta-x32: disagreement between ref manual and README.TXT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,49 +40,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2012 14:26:26 -0000
+X-List-Received-Date: Mon, 26 Mar 2012 14:43:29 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Is BSP licensing different than non-BSP licensing?  If not, then licensing =
-could be combined into a single section.  Can someone answer this for me?
-
-Also, good point on the BSP guide appearing as a chapter in the reference m=
-anual.  I have not liked this.  Is there any rational reason to have it thi=
-s way?
+Typo fixed.  Nitin needs to respond on the apparent core inconsistency.
 
 Scott
 
 -----Original Message-----
 From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
 ] On Behalf Of Robert P. J. Day
-Sent: Monday, March 26, 2012 5:53 AM
+Sent: Sunday, March 25, 2012 10:17 AM
 To: Yocto discussion list
-Subject: [yocto] can all of the licensing discussion be centralized in an a=
-ppendix?
+Subject: [yocto] meta-x32: disagreement between ref manual and README.TXT
 
 
-  still clawing my way through the ref manual and it seems that
-there's *way* too much coverage of licensing sprinkled throughout.
-most people are not going to care about licensing until the time comes
-to maybe start distributing their BSP.
+  poky ref manual reads:
 
-  as it stands, in the *development* version of the ref manual,
-section 3.4 is all about licensing, then ch 4 is essentially the BSP
-guide where section 4.2.1 is "License Files" and all of section 4.3 is
-"BSP Licensing Considerations."
+"As usual, use BitBake to build an image that supports the x32 psABI.
+Here is an example:
 
-  that just seems like too much licensing info that breaks up the flow
-of the reference manual.  can all of that be moved to one location and
-referenced from there?
+     $ bitake core-image-sato
+
+As usual, run your image using QUEM [sic]:
+
+     $ runqemu qemux86-64 core-image-sato"
+
+while the README.TXT file that comes with the experimental/meta-x32
+layer reads:
+
+"build
+	bitbake core-image-minimal-x32
+
+4. boot the image
+	runqemu qemux86-64 core-image-minimal-x32"
+
+  thoughts?
 
 rday
-
-p.s.  i'm also not keen on an entire chapter of the ref manual being
-nothing more than an include of the BSP guide.  if you've got a
-perfectly respectable BSP guide, there's no point having it magically
-appear as part of another manual.  but that's just my $0.02.
 
 --=20
 
@@ -98,6 +94,7 @@ LinkedIn:                               http://ca.linkedin.com/in/rpjday
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
 _______________________________________________
 yocto mailing list
 yocto@yoctoproject.org
