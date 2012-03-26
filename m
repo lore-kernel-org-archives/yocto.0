@@ -1,22 +1,35 @@
-Return-Path: <Yang.Shi@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09A26E0132F
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 14:20:26 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2QLKKTB016664
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 26 Mar 2012 14:20:20 -0700 (PDT)
-Received: from localhost.localdomain (147.11.152.86) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Mon, 26 Mar 2012 14:20:21 -0700
-From: Yang Shi <yang.shi@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 26 Mar 2012 14:19:16 -0700
-Message-ID: <1332796758-9702-1-git-send-email-yang.shi@windriver.com>
-X-Mailer: git-send-email 1.7.5.4
-MIME-Version: 1.0
-Cc: dvhart@linux.intel.com
-Subject: [PATCH 0/2] Fix init-live.sh to use unionfs for live CD and remove questioned ISO image
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14036E011D1
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 14:45:31 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2QLjN29001219;
+	Mon, 26 Mar 2012 22:45:23 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 32762-07; Mon, 26 Mar 2012 22:45:19 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2QLjGCs001212
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 26 Mar 2012 22:45:17 +0100
+Message-ID: <1332798316.28414.138.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Peter Seebach <peter.seebach@windriver.com>
+Date: Mon, 26 Mar 2012 22:45:16 +0100
+In-Reply-To: <20120326121816.343a5f01@wrlaptop>
+References: <2046170.9fCjTlmZqN@helios> <1332472886.1765.1.camel@dongxiao-osel>
+	<20120323021635.5b4fc048@wrlaptop>
+	<1537192.Q99X1xdoal@helios> <20120323174506.5634af61@wrlaptop>
+	<1332609315.28414.19.camel@ted> <1332610903.28414.24.camel@ted>
+	<20120326114405.59b3eacc@wrlaptop> <1332780449.28414.122.camel@ted>
+	<20120326121816.343a5f01@wrlaptop>
+X-Mailer: Evolution 3.2.2- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: pseudo interaction issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,89 +41,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2012 21:20:26 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 26 Mar 2012 21:45:32 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
+On Mon, 2012-03-26 at 12:18 -0500, Peter Seebach wrote:
+> On Mon, 26 Mar 2012 17:47:29 +0100
+> Richard Purdie <richard.purdie@linuxfoundation.org> wrote:
+> 
+> > This is pretty much what we do at the moment, it gets unset after we
+> > load. Pseudo is of course disabled at this point.
+> > 
+> > I guess we just got lucky to this point and avoided "Bad Things"?
+> 
+> I suspect so.  What's weird to me is that PSEUDO_PREFIX wasn't in the
+> environment before, either.  So I still don't quite get this.  I am
+> still missing something which will make this all make sense.
+> 
+> ... at this point, I am leaning towards viewing this as a bug where it
+> is not enough to simply correct the behavior, I will not feel confident
+> in it until I have understood how it could have happened, but worked in
+> many other cases.
 
-Use unionfs to mount rootfs and make root file system can be writen when using liveCD to boot up.
-Set UNION_FS variable depending on kenrel config, so that it can work with kernel which doesn't
-have unionfs feature.
+This is why I'm not saying lets just set PSEUDO_PREFIX. Its bothering me
+too.
 
-Without UNION FS enabled in kernel, minimal liveCD image can be bootup to ignore the failure of mouting
-read-only filesystem. For the sato liveCD image, interactive bootup is needed, but psplash prevents from
-booting interactively. In such case ISO image is not usable, so remove ISO image and the corresponding
-link and throw error info to warn outside to enable unionfs in kenrel.
+> > What puzzles me is we get this value from  envbackup[key] =
+> > os.environ.get("PSEUDO_PREFIX") so its already not in the 
+> > environment.
+> > 
+> > So basically if we read "PSEUDO_PREFIX" from the environment we get
+> > nothing. If we unset the value back to being "nothing", things 
+> > break.
+>
+> Yes.  This is, of course, obviously impossible.
+> 
+Obviously :). Except the code does this and I've watched it happen. I'm
+not claiming to understand it...
 
-We tried a lot of different ways to achieve this:
+> Hmm.  Well, hmm.  When we start up, we should pick up PSEUDO_PREFIX
+> from our environment, and during some of the initial client setup, we
+> should be stashing that value in our stashed values table.  At this
+> point, so far as I can tell, nothing should ever unset that stashed
+> value.
+>
+> On fork(), we don't change anything until we're in the client side of
+> the fork, but that setup should happen in the same address space, with
+> the values still stashed.
 
-1. Check if ISO image is built in initramfs-live-boot.bb or not, then prevent from generating ISO image.
-But, we can't distinguish minimal image or sato image.
+When we poke new values into the environment, will it corrupt the
+internal stash?
+> 
+> Oh, nevermind, I just realized:  We use antimagic as the
+> implementation
+> goo for PSEUDO_DISABLED.
+>
+> So a call to os.popen() from a program which has PSEUDO_DISABLED set
+> is going to think it's in antimagic mode.
+>
+> And suddenly, the trick is revealed:
+>
+> os.popen() is bypassing all the runqueue stuff which is trying to
+> ensure that the environment is in a valid state.  So if bitbake code
+> calls os.popen(), it may behave weirdly, for the same reason that any
+> other direct invocation of fork() or system() or whatnot would behave
+> weirdly -- because bitbake is running with pseudo in a strange state.
 
-2. Check if x11 feature is included in initramfs-live-boot.bb or not, then prevent from generating ISO image.
-But, x11 feature is contained in minimal image as well even though the package is not built.
+I'd be very surprised if we don't make some other system() call
+somewhere in bitbake's parent context.
 
-3. Tried to append some check code in build_iso() in core-image-sato.bb, but poky can't support append code
-in build_xxx functions like what we do for do_xxx funcitons.
+If this were a trigger, it could go a long way to explaining some errors
+people have reported though.
+> 
+> So I think the thing is:
+>
+> Because bitbake is running with PSEUDO_DISABLED, any child process
+> that
+> is not explicitly set to either enable or unload pseudo is going to be
+> running under pseudo, with PSEUDO_DISABLED.  And that means we need to
+> ensure that PSEUDO_PREFIX stays set, because we need that even when
+> pseudo is disabled.  (It's used during some of the initial setup
+> sanity checks.)
 
-So, we came up with current solution. Any new suggestion is appreciated.
+This is the answer I was expecting we'd come to. 
 
-One more thing is that if IMAGE_FSTYPE += "live" is not set in conf/local.conf with this fix, we will get below
-error when building sato image:
+I'm still a little surprised we don't make any system() calls though. I
+just tried putting a os.system("true") call into the "breakit" class and
+it doesn't trigger the warnings. Could that be down to the lack of a
+popen wrapper?
 
-ERROR: Running idle function
-Traceback (most recent call last):
-  File "/home/yshi/yocto/poky/bitbake/lib/bb/server/process.py", line
-122, in ProcessServer.idle_commands(delay=0.1):
-                 try:
-    >                retval = function(self, data, False)
-                     if retval is False:
-  File "/home/yshi/yocto/poky/bitbake/lib/bb/cooker.py", line 1130, in
-buildTargetsIdle(server=<ProcessServer(ProcessServer-1, started)>,
-rq=<bb.runqueue.RunQueue instance at 0x74e4638>, abort=False):
-                 try:
-    >                retval = rq.execute_runqueue()
-                 except runqueue.TaskFailure as exc:
-  File "/home/yshi/yocto/poky/bitbake/lib/bb/runqueue.py", line 947,
-in RunQueue.execute_runqueue():
-                 self.rqexe = RunQueueExecuteDummy(self)
-    >            if self.rqdata.prepare() == 0:
-                     self.state = runQueueComplete
-  File "/home/yshi/yocto/poky/bitbake/lib/bb/runqueue.py", line 719,
-in RunQueueData.prepare():
+Cheers,
 
-procdep.append(self.taskData.fn_index[self.runq_fnid[dep]] + "." +
-self.runq_task[dep])
-    >                    self.runq_hash[task] =
-bb.parse.siggen.get_taskhash(self.taskData.fn_index[self.runq_fnid[task]],
-self.runq_task[task], procdep, self.dataCache)
+Richard
 
-  File "/home/yshi/yocto/poky/bitbake/lib/bb/siggen.py", line 153, in
-SignatureGeneratorOEBasicHash.get_taskhash(fn='/home/yshi/yocto/poky/meta/recipes-sato/images/core-image-sato.bb',
-task='do_bootimg', deps=[], dataCache=<bb.cache.CacheData object at
-0x2148490>):
-             k = fn + "." + task
-    >        data = dataCache.basetaskhash[k]
-             self.runtaskdeps[k] = []
-KeyError: '/home/yshi/yocto/poky/meta/recipes-sato/images/core-image-sato.bb.do_bootimg'
-
-NOTE: Preparing runqueue
-
-Bruce pointed out there was a large discussion about this on hte list last week, so this should be a known issue in poky.
-
-The following changes since commit f81b0593e74a31cb2d992df0583948ff57e3ed98:
-
-  gdbm: Activate -enable-libgdbm-compat and add symlinks to headers in include/gdbm (2012-03-23 17:56:29 +0200)
-
-are available in the git repository at:
-  git://git.yoctoproject.org/poky-contrib yshi/1487
-  http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=yshi/1487
-
-Yang Shi (2):
-      initrdscripts: fix init-live.sh and use unionfs
-      sato: Remove questioned ISO image
-
- meta/recipes-core/initrdscripts/files/init-live.sh |   21 +++++++++++++++++--
- .../initrdscripts/initramfs-live-boot_1.0.bb       |    9 +++++++-
- meta/recipes-sato/images/core-image-sato.bb        |   16 +++++++++++++++
- 3 files changed, 42 insertions(+), 4 deletions(-)
 
