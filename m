@@ -1,26 +1,36 @@
-Return-Path: <Peter.Seebach@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0185E011D1
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 13:41:41 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2QKfc2x011933
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 26 Mar 2012 13:41:39 -0700 (PDT)
-Received: from wrlaptop (172.25.40.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Mon, 26 Mar 2012 13:41:39 -0700
-Date: Mon, 26 Mar 2012 15:41:37 -0500
-From: Peter Seebach <peter.seebach@windriver.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Message-ID: <20120326154137.4e613c70@wrlaptop>
-In-Reply-To: <1332609315.28414.19.camel@ted>
-References: <2046170.9fCjTlmZqN@helios> <1332472886.1765.1.camel@dongxiao-osel>
-	<20120323021635.5b4fc048@wrlaptop> <1537192.Q99X1xdoal@helios>
-	<20120323174506.5634af61@wrlaptop> <1332609315.28414.19.camel@ted>
-X-Mailer: Claws Mail 3.7.8 (GTK+ 2.24.4; x86_64-pc-linux-gnu)
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-gx0-f176.google.com (mail-gx0-f176.google.com
+	[209.85.161.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C95DCE01374
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 13:51:51 -0700 (PDT)
+Received: by ggcs6 with SMTP id s6so5373380ggc.35
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 13:51:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=8TaIWsh7g+pvo78ZfSddZJDdJSYhM4TZvyB2UrAGDJI=;
+	b=Fd8OILjDbomXLuhQI5YNfeJjnhSVs8Pi9akdiyDrvPfogP3vxRVIjA9mV7YPORx36n
+	IM8J3VYJuNyN/2V+4H7n68qzNX0pFgFn3x0Df6lRf+kzsjP1/vZilgyfU+LyLrv4PrCr
+	wr6Pl/jLbCRuo3h1zOsKZ/gPs2wcK8DmjuvIoQ2P5wc6ycWL+AxBnRL/87dK2+wlAv2I
+	jSw0d2xK186+x112GqFJwHGGGXpLKdpFuCKlXZv59jXc0f3caH0CSMj5x7seea+jUbvX
+	N4NfQKKHgv77+ZEn6YAnjxSww5rQCCIJBcBUTmH/RGqyvKHHfOKbTjZr3D0CVORJzMKr
+	L0Qw==
 MIME-Version: 1.0
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: pseudo interaction issue
+Received: by 10.68.203.65 with SMTP id ko1mr56558880pbc.3.1332795109945; Mon,
+	26 Mar 2012 13:51:49 -0700 (PDT)
+Sender: rstreif@linuxfoundation.org
+Received: by 10.143.29.18 with HTTP; Mon, 26 Mar 2012 13:51:49 -0700 (PDT)
+In-Reply-To: <alpine.DEB.2.02.1203260747350.4275@oneiric>
+References: <alpine.DEB.2.02.1203260747350.4275@oneiric>
+Date: Mon, 26 Mar 2012 13:51:49 -0700
+X-Google-Sender-Auth: rFmhnefwt0UgKDRHv_IzY3hNfA8
+Message-ID: <CA+gsK-qBgcKDtQCQJVhUBKijKok7tQeXM4O5ZJUTea0iMKwvfQ@mail.gmail.com>
+From: Rudolf Streif <rudolf.streif@linux.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQnuerjXINvuS/63uamXuz8nC4xoIWuxrHDWcp8Y5a1LhX7M44XmusAAhI9WUPAKS9Jnnvsy
+Subject: Re: can all of the licensing discussion be centralized in an appendix?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,34 +42,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2012 20:41:42 -0000
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 26 Mar 2012 20:51:52 -0000
+Content-Type: multipart/alternative; boundary=047d7b10cb1116307004bc2b8b19
 
-Oh, nevermind, I just realized:  We use antimagic as the implementation
-goo for PSEUDO_DISABLED.
+--047d7b10cb1116307004bc2b8b19
+Content-Type: text/plain; charset=ISO-8859-1
 
-So a call to os.popen() from a program which has PSEUDO_DISABLED set is
-going to think it's in antimagic mode.
+>
+> >> there's *way* too much coverage of licensing sprinkled throughout.
+> >> most people are not going to care about licensing until the time comes
+> >> to maybe start distributing their BSP.
+>
+> The ability of collecting licensing information, tracking license changes
+and providing the license information automatically with the images and
+packages for deployment is in my opinion a major feature of Yocto albeit
+underestimated. Most people will only appreciate it once they have to
+deliver that information with a product for the end user. However, it
+starts much earlier, with the recipe.
 
-And suddenly, the trick is revealed:
+How to include licensing tracking information with your recipe needs to be
+part of the section explaining how to write recipes of the reference
+manual. In both, the current 1.1 and the upcoming 1.1.1, versions of the
+manual the license tracking section is a little disjoint from the sections
+explaining how to add packages/recipes in my opinion. The examples include
+the license tracking info, of course because otherwise the sanity checker
+will not allow building the recipe, but they don't explain that you
+actually need it (unless you use LICENSE = "CLOSED").
 
-os.popen() is bypassing all the runqueue stuff which is trying to
-ensure that the environment is in a valid state.  So if bitbake code
-calls os.popen(), it may behave weirdly, for the same reason that any
-other direct invocation of fork() or system() or whatnot would behave
-weirdly -- because bitbake is running with pseudo in a strange state.
+Since the license tracking and deployment feature follows the rule "garbage
+in, garbage out" the manual cannot stress enough providing the correct info
+in particular when writing recipes for upstream projects.
 
-So I think the thing is:
+Side note: And nice features for a future release are SPDX info (already
+worked on as far as I know) and providing the license info in
+${TMPDIR}/deploy/licenses according to the images in ${TMPDIR}/images so
+that one knows what licenses are in use for what image. That would be very
+convenient when building multiple images with different package content.
 
-Because bitbake is running with PSEUDO_DISABLED, any child process that
-is not explicitly set to either enable or unload pseudo is going to be
-running under pseudo, with PSEUDO_DISABLED.  And that means we need to
-ensure that PSEUDO_PREFIX stays set, because we need that even when
-pseudo is disabled.  (It's used during some of the initial setup
-sanity checks.)
+Rudi
 
--s
--- 
-Listen, get this.  Nobody with a good compiler needs to be justified.
+--047d7b10cb1116307004bc2b8b19
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">&gt;&gt; there&#3=
+9;s *way* too much coverage of licensing sprinkled throughout.<br>&gt;&gt; =
+most people are not going to care about licensing until the time comes<br>
+&gt;&gt; to maybe start distributing their BSP.<br><br></blockquote><div>Th=
+e ability of collecting licensing information, tracking license changes and=
+ providing the license information automatically with the images and packag=
+es for deployment is in my opinion a major feature of Yocto albeit underest=
+imated. Most people will only appreciate it once they have to deliver that =
+information with a product for the end user. However, it starts much earlie=
+r, with the recipe.</div>
+<div><br></div><div>How to include licensing tracking information with your=
+ recipe needs to be part of the section explaining how to write recipes of =
+the reference manual. In both, the current 1.1 and the upcoming 1.1.1, vers=
+ions of the manual the license tracking section is a little disjoint from t=
+he sections explaining how to add packages/recipes in my opinion. The examp=
+les include the license tracking info, of course because otherwise the sani=
+ty checker will not allow building the recipe, but they don&#39;t explain t=
+hat you actually need it (unless you use LICENSE =3D &quot;CLOSED&quot;).</=
+div>
+<div><br></div><div>Since the license tracking and deployment feature follo=
+ws the rule &quot;garbage in, garbage out&quot; the manual cannot stress en=
+ough providing the correct info in particular when writing recipes for upst=
+ream projects.</div>
+<div><br></div><div>Side note: And nice features for a future release are S=
+PDX info (already worked on as far as I know) and providing the license inf=
+o in ${TMPDIR}/deploy/licenses according to the images in ${TMPDIR}/images =
+so that one knows what licenses are in use for what image. That would be ve=
+ry convenient when building multiple images with different package content.=
+</div>
+<div><br></div><div>Rudi</div></div>
+
+--047d7b10cb1116307004bc2b8b19--
