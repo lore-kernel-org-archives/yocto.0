@@ -1,34 +1,27 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F303E01374
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 08:53:55 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 26 Mar 2012 08:53:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="123378714"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by azsmga001.ch.intel.com with ESMTP; 26 Mar 2012 08:53:50 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 26 Mar 2012 08:53:43 -0700
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.128]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.160]) with mapi id
-	14.01.0355.002; Mon, 26 Mar 2012 08:53:43 -0700
-From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] meta-x32: disagreement between ref manual and README.TXT
-Thread-Index: AQHNCqLB/IqlIBEfkUyhaBcVNezHQ5Z8u7dw
-Date: Mon, 26 Mar 2012 15:53:42 +0000
-Message-ID: <ADD6A3980E8C39419A432FF422031B4C0137D7B9@ORSMSX106.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1203251213170.6445@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1203251213170.6445@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <Peter.Seebach@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C287E01374
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 09:44:14 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q2QGi9aR013712
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 26 Mar 2012 09:44:09 -0700 (PDT)
+Received: from wrlaptop (172.25.40.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Mon, 26 Mar 2012 09:44:09 -0700
+Date: Mon, 26 Mar 2012 11:44:05 -0500
+From: Peter Seebach <peter.seebach@windriver.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Message-ID: <20120326114405.59b3eacc@wrlaptop>
+In-Reply-To: <1332610903.28414.24.camel@ted>
+References: <2046170.9fCjTlmZqN@helios> <1332472886.1765.1.camel@dongxiao-osel>
+	<20120323021635.5b4fc048@wrlaptop> <1537192.Q99X1xdoal@helios>
+	<20120323174506.5634af61@wrlaptop> <1332609315.28414.19.camel@ted>
+	<1332610903.28414.24.camel@ted>
+X-Mailer: Claws Mail 3.7.8 (GTK+ 2.24.4; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Subject: Re: meta-x32: disagreement between ref manual and README.TXT
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: pseudo interaction issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,52 +33,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2012 15:53:55 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 26 Mar 2012 16:44:14 -0000
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
 
+On Sat, 24 Mar 2012 17:41:43 +0000
+Richard Purdie <richard.purdie@linuxfoundation.org> wrote:
 
+> One or the other of the above on their own doesn't do this. Funky.
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
-> Sent: Sunday, March 25, 2012 9:17 AM
-> To: Yocto discussion list
-> Subject: [yocto] meta-x32: disagreement between ref manual and
-> README.TXT
->=20
->=20
->   poky ref manual reads:
->=20
-> "As usual, use BitBake to build an image that supports the x32 psABI.
-> Here is an example:
->=20
->      $ bitake core-image-sato
->=20
-> As usual, run your image using QUEM [sic]:
->=20
->      $ runqemu qemux86-64 core-image-sato"
->=20
-> while the README.TXT file that comes with the experimental/meta-x32
-> layer reads:
->=20
-> "build
-> 	bitbake core-image-minimal-x32
->=20
-> 4. boot the image
-> 	runqemu qemux86-64 core-image-minimal-x32"
->=20
->   thoughts?
->=20
-> rday
+That's very strange.  I wouldn't have expected LOCALSTATEDIR to have
+any effect either way; it might change how pseudo runs, but it shouldn't
+affect whether it's being enabled.
 
-Hi Robert,
-  It is not a significant difference. Images with -x32 in their names conta=
-in an additional utility named file. Which can let one check the file types=
- of elf binaries. And the absence of this file utility does not affect func=
-tionality of x32 images.
-Thanks,
-Nitin
+If we are starting with pseudo loaded, I'm pretty sure it's unsafe to
+unset PSEUDO_PREFIX ever.  After a fork(), pseudo will still be in
+memory, and if PSEUDO_PREFIX is unset, Bad Things Happen.
 
+-s
+-- 
+Listen, get this.  Nobody with a good compiler needs to be justified.
 
