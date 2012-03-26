@@ -1,31 +1,39 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00F49E011D1
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 15:58:19 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2QMwFuj001924;
-	Mon, 26 Mar 2012 23:58:15 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 00541-08; Mon, 26 Mar 2012 23:58:11 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2QMw5xL001917
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Mon, 26 Mar 2012 23:58:06 +0100
-Message-ID: <1332802684.28414.146.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Rudolf Streif <rudolf.streif@linux.com>
-Date: Mon, 26 Mar 2012 23:58:04 +0100
-In-Reply-To: <CA+gsK-raRiKQ7GHLSy4tAJHJmDardhr8by0A9FGJ7diCYo00Uw@mail.gmail.com>
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B858E01374
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 16:50:44 -0700 (PDT)
+Received: by iagw33 with SMTP id w33so12160579iag.35
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 16:50:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
+	:x-gm-message-state;
+	bh=b/dLxOoK+iGW0SVr/BNz3g1qs9V+Yz2V3tTK7pp2qks=;
+	b=OmP+bnhwcgpJAuhNdIiPPNPxAH1WliNUg78sLaTyUj61v6n8K7Pj+MEp1lJ84ynbtl
+	rle0RIUSBt6BDF/2d01TzDEGu/moQ7iqwZbVCt18SG3FT9PIUlbNY+u26RuTA6D+Wffe
+	3AFAoF2gxMBOnISc/ZTx9fljdbp/seI3n+XhZIM8bgft8GIFS990Kh8QHYOkZFnBJnTl
+	We3Oz/f4HtNwLmmUH/prYYigmVD/c4a4Yt16mgvHjbXWAv4Xl029mE/vHVqi8yGJWQEG
+	ZAUzCnm9CAoOhBmm5UkkMNhQXC4y6F2iBcKk4AdO71U8cw8fGO01n7uChNA/0jJ+cnPu
+	fTmg==
+MIME-Version: 1.0
+Received: by 10.68.221.40 with SMTP id qb8mr57058548pbc.154.1332805843747;
+	Mon, 26 Mar 2012 16:50:43 -0700 (PDT)
+Sender: rstreif@linuxfoundation.org
+Received: by 10.143.29.18 with HTTP; Mon, 26 Mar 2012 16:50:43 -0700 (PDT)
+In-Reply-To: <1332802684.28414.146.camel@ted>
 References: <alpine.DEB.2.02.1203240525230.22364@oneiric>
 	<1332589972.27577.1.camel@ted>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237945175E22@ORSMSX101.amr.corp.intel.com>
 	<CA+gsK-raRiKQ7GHLSy4tAJHJmDardhr8by0A9FGJ7diCYo00Uw@mail.gmail.com>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
+	<1332802684.28414.146.camel@ted>
+Date: Mon, 26 Mar 2012 16:50:43 -0700
+X-Google-Sender-Auth: lWuyAj2BKz35uUyft6gys44vkkw
+Message-ID: <CA+gsK-o4KeAqZLW8gSQkoEBy6jyJvi8EJeZuChfsYgwAF2xCyQ@mail.gmail.com>
+From: Rudolf Streif <rudolf.streif@linux.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+X-Gm-Message-State: ALoCoQkfo+Aw8/9tz08riNiK8zCGSRuIJx4cl/OyCSF3CeWqHAapCiYmIuragnl3qkixTCsQ68Rr
 Cc: yocto@yoctoproject.org
 Subject: Re: tentative list of vars to be dropped from variable glossary
 X-BeenThere: yocto@yoctoproject.org
@@ -39,39 +47,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2012 22:58:20 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 26 Mar 2012 23:50:44 -0000
+Content-Type: multipart/alternative; boundary=e89a8ff256a2df01f304bc2e0ad6
 
-On Mon, 2012-03-26 at 12:42 -0700, Rudolf Streif wrote:
-> Another variable that seems to be dropped from the latest 1.1.1
-> revision of the Reference Manual is BBMASK. In previous versions of
-> the manual it was explained that this variable can be used to remove
-> packages from images. However, that did not work for me and it did not
-> surprise me either. 
+--e89a8ff256a2df01f304bc2e0ad6
+Content-Type: text/plain; charset=ISO-8859-1
 
-BBMASK removes recipes from being parsed. It does not remove them from
-images although that would I guess be an indirect result since you could
-no longer build them.
+Thanks, Richard. Clearer now but not entirely.
 
-> To include a package with an image you will have to make it a
-> dependency of that image. If you then hide the recipe of the package
-> using BBMASK then you are breaking the dependency and the Bitbake will
-> complain with "Nothing provides <package>" because the dependency is
-> still there.
+
+> >> BBMASK removes recipes from being parsed. It does not remove them from
+> >> images although that would I guess be an indirect result since you could
+> >>no longer build them.
 >
-> I could not think of any other use case for BBMASK in the way it is
-> implemented. Are there any?
-
-Its designed so that if you for example didn't care out any *gpe*
-recipe, you could exclude them entirely and not even have the parse
-overhead.
-
-Its less useful now things are split into layers but nonetheless still
-valid syntax.
-
-Cheers,
-
-Richard
+> Yes, it removes it from being parsed. I used, for test although not
+sensible, BBMASK = "base-passwd". If I then tried building
+core-image-minimal it fails with "Nothing provides base-passwd". If one
+could use BBMASK to customize images as suggested in
+http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#usingpoky-extend-customimage-localconf
+then
+one would expect the package to be removed indirectly from the image.
+However, that does not happen, the build just fails.
 
 
+>
+> >> Its designed so that if you for example didn't care out any *gpe*
+> >> recipe, you could exclude them entirely and not even have the parse
+> >> overhead.
+>
+
+That use case makes sense. If I know that I don't include certain packages
+like *gpe* in the images I am building then I can speed up the
+build/parsing process by masking the recipes and therefore the regular
+expression syntax makes perfectly sense.
+
+Thanks,
+Rudi
+
+--e89a8ff256a2df01f304bc2e0ad6
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Thanks, Richard. Clearer now but not entirely.<br><br><div class=3D"gmail_q=
+uote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
+eft:1px #ccc solid;padding-left:1ex"><div class=3D"im"><br>
+</div>&gt;&gt; BBMASK removes recipes from being parsed. It does not remove=
+ them from<br>&gt;&gt; images although that would I guess be an indirect re=
+sult since you could<br>&gt;&gt;no longer build them.<br>
+<div class=3D"im"><br></div></blockquote><div>Yes, it removes it from being=
+ parsed. I used, for test although not sensible, BBMASK =3D &quot;base-pass=
+wd&quot;. If I then tried building core-image-minimal it fails with &quot;N=
+othing provides base-passwd&quot;. If one could use BBMASK to customize ima=
+ges as suggested in=A0<a href=3D"http://www.yoctoproject.org/docs/latest/de=
+v-manual/dev-manual.html#usingpoky-extend-customimage-localconf">http://www=
+.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#usingpoky-extend-c=
+ustomimage-localconf</a>=A0then one would expect the package to be removed =
+indirectly from the image. However, that does not happen, the build just fa=
+ils.</div>
+<div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
+border-left:1px #ccc solid;padding-left:1ex"><div class=3D"im">
+<br>
+</div>&gt;&gt; Its designed so that if you for example didn&#39;t care out =
+any *gpe*<br>&gt;&gt; recipe, you could exclude them entirely and not even =
+have the parse<br>&gt;&gt; overhead.<br></blockquote><div><br></div><div>
+That use case makes sense. If I know that I don&#39;t include certain packa=
+ges like *gpe* in the images I am building then I can speed up the build/pa=
+rsing process by masking the recipes and therefore the regular expression s=
+yntax makes perfectly sense.</div>
+<div><br></div><div>Thanks,</div><div>Rudi</div></div>
+
+--e89a8ff256a2df01f304bc2e0ad6--
