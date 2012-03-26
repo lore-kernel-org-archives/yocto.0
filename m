@@ -1,24 +1,24 @@
 Return-Path: <rahul.saxena@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06A15E013AD
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 14:58:58 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 26 Mar 2012 14:58:58 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17CD8E013C2
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 14:58:59 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 26 Mar 2012 14:58:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="145847592"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="121924786"
 Received: from rsaxena-desktop.sc.intel.com (HELO localhost) ([143.183.188.84])
-	by fmsmga002.fm.intel.com with ESMTP; 26 Mar 2012 14:58:58 -0700
+	by orsmga001.jf.intel.com with ESMTP; 26 Mar 2012 14:58:58 -0700
 From: rahul.saxena@intel.com
 To: yocto@yoctoproject.org,
 	tom.zanussi@intel.com
-Date: Mon, 26 Mar 2012 07:49:27 -0700
-Message-Id: <1c24783223ea2e836acdbfccad94c4beac564af8.1332797429.git.rahul.saxena@intel.com>
+Date: Mon, 26 Mar 2012 07:49:28 -0700
+Message-Id: <193a0136f6975b87e1b6a778b29498a869f961b7.1332797429.git.rahul.saxena@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332797429.git.rahul.saxena@intel.com>
 References: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332797429.git.rahul.saxena@intel.com>
 In-Reply-To: <cover.1332797429.git.rahul.saxena@intel.com>
 References: <cover.1332797429.git.rahul.saxena@intel.com>
-Subject: [PATCH 09/14] meta-cedartrail: add recipes to instal audio and video samples
+Subject: [PATCH 10/14] meta-cedartrail: update formfactor recipe for pvr and no-pvr case
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,68 +34,27 @@ X-List-Received-Date: Mon, 26 Mar 2012 21:58:59 -0000
 
 From: Rahul Saxena <rahul.saxena@intel.com>
 
-Install Ogg format audio and video sample files
+Seperate machconfig files for pvr and no-pvr case
 
 Signed-off-by: Rahul Saxena <rahul.saxena@.intel.com>
 ---
- .../ogg-CC-BY-3.0-music-samples_0.1.bb             |   20 ++++++++++++++++++++
- .../video-samples/bigbuckbunny-ogg.bb              |   20 ++++++++++++++++++++
- 2 files changed, 40 insertions(+), 0 deletions(-)
- create mode 100644 meta-cedartrail/recipes-mediasamples/music-samples/ogg-CC-BY-3.0-music-samples_0.1.bb
- create mode 100644 meta-cedartrail/recipes-mediasamples/video-samples/bigbuckbunny-ogg.bb
+ .../formfactor/cedartrail-nopvr/machconfig         |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+ create mode 100644 meta-cedartrail/recipes-bsp/formfactor/formfactor/cedartrail-nopvr/machconfig
+ mode change 100755 => 100644 meta-cedartrail/recipes-bsp/formfactor/formfactor/cedartrail/machconfig
 
-diff --git a/meta-cedartrail/recipes-mediasamples/music-samples/ogg-CC-BY-3.0-music-samples_0.1.bb b/meta-cedartrail/recipes-mediasamples/music-samples/ogg-CC-BY-3.0-music-samples_0.1.bb
+diff --git a/meta-cedartrail/recipes-bsp/formfactor/formfactor/cedartrail-nopvr/machconfig b/meta-cedartrail/recipes-bsp/formfactor/formfactor/cedartrail-nopvr/machconfig
 new file mode 100644
-index 0000000..5da3e10
+index 0000000..ffce012
 --- /dev/null
-+++ b/meta-cedartrail/recipes-mediasamples/music-samples/ogg-CC-BY-3.0-music-samples_0.1.bb
-@@ -0,0 +1,20 @@
-+SUMMARY = "ogg file format music samples"
-+DESCRIPTION = "Installs ogg file format music samples in /home/Music dir"
-+
-+LICENSE = "CC-BY-3.0"
-+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/CC-BY-3.0;md5=dfa02b5755629022e267f10b9c0a2ab7"
-+
-+DEPENDS += " " 
-+
-+
-+PR = r0
-+SRC_URI = "http://downloads.yoctoproject.org/releases/media/music/ogg-CC-BY-3.0-music-samples-${PV}.tar.bz2 \
-+            "
-+
-+do_install() {
-+
-+install -d ${D}${base_prefix}/home/music
-+install -m 0644  ${WORKDIR}/ogg-CC-BY-3.0-music-samples-${PV}/*/*.ogg ${D}${base_prefix}/home/music
-+}
-+
-+FILES_${PN} += "${base_prefix}/home/music/*.ogg"
-diff --git a/meta-cedartrail/recipes-mediasamples/video-samples/bigbuckbunny-ogg.bb b/meta-cedartrail/recipes-mediasamples/video-samples/bigbuckbunny-ogg.bb
-new file mode 100644
-index 0000000..2225af4
---- /dev/null
-+++ b/meta-cedartrail/recipes-mediasamples/video-samples/bigbuckbunny-ogg.bb
-@@ -0,0 +1,20 @@
-+SUMMARY = "Big Buck Bunny video OGG sample "
-+DESCRIPTION = "Installs Big Buck Bunny Video OGG file samples in /home/video dir "
-+
-+LICENSE = "CC-BY-3.0"
-+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/CC-BY-3.0;md5=dfa02b5755629022e267f10b9c0a2ab7"
-+
-+DEPENDS += " " 
-+
-+
-+PR = r0
-+SRC_URI = "http://blender-mirror.kino3d.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_stereo.ogg \
-+            "
-+
-+do_install() {
-+
-+install -d ${D}${base_prefix}/home/Videos
-+install -m 0644  ${WORKDIR}/*.ogg ${D}${base_prefix}/home/Videos
-+}
-+
-+FILES_${PN} += "${base_prefix}/home/Videos/*.ogg"
++++ b/meta-cedartrail/recipes-bsp/formfactor/formfactor/cedartrail-nopvr/machconfig
+@@ -0,0 +1,3 @@
++# Assume a USB mouse and keyboard are connected
++HAVE_TOUCHSCREEN=0
++HAVE_KEYBOARD=1
+diff --git a/meta-cedartrail/recipes-bsp/formfactor/formfactor/cedartrail/machconfig b/meta-cedartrail/recipes-bsp/formfactor/formfactor/cedartrail/machconfig
+old mode 100755
+new mode 100644
 -- 
 1.7.4.1
 
