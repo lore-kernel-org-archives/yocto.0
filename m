@@ -1,24 +1,24 @@
 Return-Path: <rahul.saxena@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8673BE013A8
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6CCFE013A8
 	for <yocto@yoctoproject.org>; Mon, 26 Mar 2012 14:58:58 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 26 Mar 2012 14:58:58 -0700
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 26 Mar 2012 14:58:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="123514371"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="125359643"
 Received: from rsaxena-desktop.sc.intel.com (HELO localhost) ([143.183.188.84])
-	by azsmga001.ch.intel.com with ESMTP; 26 Mar 2012 14:58:57 -0700
+	by orsmga002.jf.intel.com with ESMTP; 26 Mar 2012 14:58:58 -0700
 From: rahul.saxena@intel.com
 To: yocto@yoctoproject.org,
 	tom.zanussi@intel.com
-Date: Mon, 26 Mar 2012 07:49:23 -0700
-Message-Id: <d3913f7a27354f30569bbb99cc77b99314c6ef20.1332797429.git.rahul.saxena@intel.com>
+Date: Mon, 26 Mar 2012 07:49:25 -0700
+Message-Id: <12c72c7b153bd4af2776473d9cf904c435a1f4f2.1332797429.git.rahul.saxena@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332797429.git.rahul.saxena@intel.com>
 References: <3ac33244283b53996a2fda9f7c19ab7f2e4c7380.1332797429.git.rahul.saxena@intel.com>
 In-Reply-To: <cover.1332797429.git.rahul.saxena@intel.com>
 References: <cover.1332797429.git.rahul.saxena@intel.com>
-Subject: [PATCH 05/14] meta-cedartrail: seperate xorg.conf files for pvr and no-pvr cases
+Subject: [PATCH 07/14] meta-cedartrail: update Kernel recipes to add support for pvr driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,87 +34,68 @@ X-List-Received-Date: Mon, 26 Mar 2012 21:58:58 -0000
 
 From: Rahul Saxena <rahul.saxena@intel.com>
 
-Seperate xserver configuration files, one file each for  the case of with pvr graphics
-driver and for "no pvr" (i.e. with VESA driver)
+Modify kernel recipes to enable pvr kernel patches and to include
+additional Kernel config files for pvr driver
 
 Signed-off-by: Rahul Saxena <rahul.saxena@.intel.com>
 ---
- .../xserver-xf86-config/cedartrail-nopvr/xorg.conf |   26 ++++++++++++++++++++
- .../xserver-xf86-config/cedartrail/xorg.conf       |   24 ++++++------------
- 2 files changed, 34 insertions(+), 16 deletions(-)
- create mode 100644 meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail-nopvr/xorg.conf
- mode change 100755 => 100644 meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf
+ .../linux/linux-yocto-rt_3.0.bbappend              |   13 ++++++++++++-
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |   15 +++++++++++----
+ 2 files changed, 23 insertions(+), 5 deletions(-)
 
-diff --git a/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail-nopvr/xorg.conf b/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail-nopvr/xorg.conf
-new file mode 100644
-index 0000000..da4fc3c
---- /dev/null
-+++ b/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail-nopvr/xorg.conf
-@@ -0,0 +1,26 @@
-+Section "Device"
-+    Identifier	"Generic VESA"
-+    Driver	"vesa"
-+EndSection
-+
-+Section "Monitor"
-+    Identifier    "Generic Monitor"
-+    Option        "DPMS"
-+EndSection
-+
-+Section "Screen"
-+    Identifier    "Default Screen"
-+    Device	  "Generic VESA"
-+    Monitor       "Generic Monitor"
-+    DefaultDepth  24
-+EndSection
-+
-+Section "ServerLayout"
-+    Identifier     "Default Layout"
-+    Screen         "Default Screen"
-+EndSection
-+
-+Section "ServerFlags"
-+    Option        "DontZap"  "0"
-+    Option        "AutoAddDevices"  "False"
-+EndSection
-diff --git a/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf b/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf
-old mode 100755
-new mode 100644
-index da4fc3c..1d085a4
---- a/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf
-+++ b/meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf
-@@ -1,23 +1,15 @@
- Section "Device"
--    Identifier	"Generic VESA"
--    Driver	"vesa"
--EndSection
--
--Section "Monitor"
--    Identifier    "Generic Monitor"
--    Option        "DPMS"
--EndSection
--
--Section "Screen"
--    Identifier    "Default Screen"
--    Device	  "Generic VESA"
--    Monitor       "Generic Monitor"
--    DefaultDepth  24
-+        Option     "DRIDisableVSync"    "False"
-+        Identifier  "Card0"
-+        Driver      "pvr"
-+        BusID       "PCI:0:2:0"
-+        Option      "SoftEXA"           "Off"
-+        Option      "FlipChain"         "On"
- EndSection
+diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+index 3978951..828e6fd 100755
+--- a/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
++++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+@@ -2,10 +2,21 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_cedartrail = "cedartrail"
+ KMACHINE_cedartrail  = "cedartrail"
  
- Section "ServerLayout"
--    Identifier     "Default Layout"
--    Screen         "Default Screen"
-+        Identifier "default screen"
-+        Option  "AIGLX" "on"
- EndSection
+-# The Cedarview processors have hyperthreading and includes dual-core versions
++COMPATIBLE_MACHINE_cedartrail-nopvr = "cedartrail"
++KMACHINE_cedartrail-nopvr  = "cedartrail"
++KERNEL_FEATURES_append_cedartrail-nopvr += " cfg/smp.scc"
++
++COMPATIBLE_MACHINE_cedartrail = "cedartrail"
++KMACHINE_cedartrail  = "cedartrail"
+ KERNEL_FEATURES_append_cedartrail += " cfg/smp.scc"
++KERNEL_FEATURES_append_cedartrail += " cfg/drm-cdvpvr.scc"
++KERNEL_FEATURES_append_cedartrail += " bsp/cedartrail/cedartrail-pvr-merge.scc"
  
- Section "ServerFlags"
+ # Update the following to use a different BSP branch or meta SRCREV
++#KBRANCH_cedartrail-nopvr = "yocto/standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_cedartrail-nopvr ?= XXXX
++#SRCREV_meta_pn-linux-yocto-rt_cedartrail-nopvr ?= XXXX
++
+ #KBRANCH_cedartrail  = "yocto/standard/preempt-rt/base"
+ #SRCREV_machine_pn-linux-yocto-rt_cedartrail ?= XXXX
+ #SRCREV_meta_pn-linux-yocto-rt_cedartrail ?= XXXX
+diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
+index 858db15..14c0b9d 100755
+--- a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
++++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
+@@ -1,10 +1,17 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
++COMPATIBLE_MACHINE_cedartrail-nopvr = "cedartrail"
++KMACHINE_cedartrail-nopvr  = "yocto/standard/cedartrail"
++KERNEL_FEATURES_append_cedartrail-nopvr += " cfg/smp.scc"
++
+ COMPATIBLE_MACHINE_cedartrail = "cedartrail"
+ KMACHINE_cedartrail  = "yocto/standard/cedartrail"
+-
+-# The Cedarview processors have hyperthreading and includes dual-core versions
+ KERNEL_FEATURES_append_cedartrail += " cfg/smp.scc"
++KERNEL_FEATURES_append_cedartrail += " cfg/drm-cdvpvr.scc"
++KERNEL_FEATURES_append_cedartrail += " bsp/cedartrail/cedartrail-pvr-merge.scc"
++
++SRCREV_machine_pn-linux-yocto_cedartrail ?= "5746120ee0afefd1e28400bea4b74f285bd5e59a"
++SRCREV_meta_pn-linux-yocto_cedartrail ?= "a4ac64fe873f08ef718e2849b88914725dc99c1c"
+ 
+-SRCREV_machine_pn-linux-yocto_cedartrail ?= "f389d310965a56091f688b28ea8be6d9cbb7fbbe"
+-SRCREV_meta_pn-linux-yocto_cedartrail ?= "04a52a32cbdf0972033b97b83eaa83eb275dfdc9"
++SRCREV_machine_pn-linux-yocto_cedartrail-nopvr ?= "5746120ee0afefd1e28400bea4b74f285bd5e59a"
++SRCREV_meta_pn-linux-yocto_cedartrail-nopvr ?= "d588bdafc0d9b4d2386144b7d76a1d379e2d16c0"
 -- 
 1.7.4.1
 
