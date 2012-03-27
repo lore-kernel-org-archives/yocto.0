@@ -1,29 +1,24 @@
-Return-Path: <Peter.Seebach@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13EAFE0070C
-	for <yocto@yoctoproject.org>; Tue, 27 Mar 2012 07:26:48 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q2REQkBl028596
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 27 Mar 2012 07:26:46 -0700 (PDT)
-Received: from wrlaptop (172.25.40.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 27 Mar 2012 07:26:47 -0700
-Date: Tue, 27 Mar 2012 09:26:43 -0500
-From: Peter Seebach <peter.seebach@windriver.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Message-ID: <20120327092643.78517bc5@wrlaptop>
-In-Reply-To: <1332798316.28414.138.camel@ted>
-References: <2046170.9fCjTlmZqN@helios> <1332472886.1765.1.camel@dongxiao-osel>
-	<20120323021635.5b4fc048@wrlaptop> <1537192.Q99X1xdoal@helios>
-	<20120323174506.5634af61@wrlaptop> <1332609315.28414.19.camel@ted>
-	<1332610903.28414.24.camel@ted> <20120326114405.59b3eacc@wrlaptop>
-	<1332780449.28414.122.camel@ted> <20120326121816.343a5f01@wrlaptop>
-	<1332798316.28414.138.camel@ted>
-X-Mailer: Claws Mail 3.7.8 (GTK+ 2.24.4; x86_64-pc-linux-gnu)
+Return-Path: <josh@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D700EE0070C
+	for <yocto@yoctoproject.org>; Tue, 27 Mar 2012 09:56:02 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 27 Mar 2012 09:56:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="122284419"
+Received: from unknown (HELO [10.255.12.96]) ([10.255.12.96])
+	by orsmga001.jf.intel.com with ESMTP; 27 Mar 2012 09:56:02 -0700
+Message-ID: <4F71F122.5070802@linux.intel.com>
+Date: Tue, 27 Mar 2012 09:56:02 -0700
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120316 Thunderbird/11.0
 MIME-Version: 1.0
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: pseudo interaction issue
+To: yocto@yoctoproject.org
+References: <1332830930.4380.14.camel@dongxiao-osel>
+	<857BE142E5399E46B20FD45B9DB8A7BC0FD0B432@SHSMSX102.ccr.corp.intel.com>
+In-Reply-To: <857BE142E5399E46B20FD45B9DB8A7BC0FD0B432@SHSMSX102.ccr.corp.intel.com>
+Subject: Re: Deleting layers in Hob
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,32 +30,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Mar 2012 14:26:49 -0000
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 27 Mar 2012 16:56:02 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, 26 Mar 2012 22:45:16 +0100
-Richard Purdie <richard.purdie@linuxfoundation.org> wrote:
+On 27/03/12 00:19, Lu, Lianhao wrote:
+>
+>> -----Original Message-----
+>> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Xu, Dongxiao
+>> Sent: Tuesday, March 27, 2012 2:49 PM
+>> To: yocto
+>> Subject: [yocto] Deleting layers in Hob
+>>
+>> When using Hob in Yocto Project, I found a issue when deleting layers. I
+>> think I ever raised this problem before.
+>>
+>> Let me briefly introduce how layer removal works in Hob. When user
+>> changes a layer, it will following the below steps
+>> 1) init the cooker.
+>> 2) set new layers to cooker.
+>> 3) parse configuration files.
+>> 4) get available machines, distros, SDKs, etc.
+>>
+>> As we know, if we source oe-init-build-env in Yocto project environment,
+>> we will have DISTRO="poky" set in local.conf by default, where the
+>> "poky" DISTRO comes from the meta-yocto layer. If user deletes
+>> meta-yocto in Hob, and then error will happen when bitbake parsing the
+>> local.conf, since it could not find where the "poky" DISTRO is defined.
+>>
+>> Even if we are able to successfully removed the meta-yocto layer by
+>> removing the DISTRO definition in local.conf, system will report another
+>> issue that:
+>>
+>> Your configuration is using stamp files including the sstate hash but
+>> your build directory was built with stamp files that do not include
+>> this.
+>> To continue, either rebuild or switch back to the OEBasic signature
+>> handler with BB_SIGNATURE_HANDLER = 'OEBasic'.
+>>
+>> This is because BB_SIGNATURE_HANDLER = "OEBasic" is also defined in
+>> meta-yocto layer (poky.conf).
+>
+> Meta-yocto is using OEBasicHash as default signature handler(ABI_VERSION=8, see ${TMPDIR}/abi_version), while oe-core is still using the OEBasic(ABI_VERSION=7). This means the oe-core can not reuse the stamp files generated by meta-yocto.
 
-> I'm still a little surprised we don't make any system() calls though.
-> I just tried putting a os.system("true") call into the "breakit"
-> class and it doesn't trigger the warnings. Could that be down to the
-> lack of a popen wrapper?
+Could we workaround the incompatibility by setting BB_SIGNATURE_HANDLER 
+= "OEBasic" somewhere in meta-hob?
 
-Conclusion:  Yes, it could.  Once I understood why the popen wrapper
-wasn't working, it got better; using the popen wrapper fixes things for
-the breakit class, and probably for hob also.
-
-However, the popen() wrapper is not really restoring the environment
-after it runs.  (In fact, I just looked at system(), and it does a
-setupenv() but not a dropenv(), so it will, I think, be running
-anything it runs with pseudo loaded but disabled, I think.)
-
-I still think it might be wiser for us to move PSEUDO_PREFIX into the
-list of things that are always set.  I'm not sure; if we don't, we have
-a good chance of finding weird problems faster, I guess!
-
--s
+Cheers,
+Joshua
 -- 
-Listen, get this.  Nobody with a good compiler needs to be justified.
+Joshua '贾詡' Lock
+         Yocto Project "Johannes factotum"
+         Intel Open Source Technology Centre
 
