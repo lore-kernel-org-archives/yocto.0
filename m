@@ -1,32 +1,24 @@
-Return-Path: <s.stirtzel@googlemail.com>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D194E0137D
-	for <yocto@yoctoproject.org>; Tue, 27 Mar 2012 02:07:56 -0700 (PDT)
-Received: by wibhm17 with SMTP id hm17so4848794wib.11
-	for <yocto@yoctoproject.org>; Tue, 27 Mar 2012 02:07:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=Df1O57TSDTv0x0Ty2Cj7CY+qu2ingET8YPMZqFl4auw=;
-	b=P0EvFR6CE5pHSWS0uuNLhlSvl0pOxT6djaT+OdlZQCcqNWLYXUz6c+Au0fOXZleTts
-	kFK2zil4voYM7dTPYA0E8uujhXkt0H2USxDsUDn/Wx1y+bNnbp4PKpyb9kRyXo+YhuOF
-	2R2SDmjEE0uhO77ho9b+jYJTaIUwQ1vlW+ruJyyxFoop6CN4phx8IrtKmeFeqjhRyWnM
-	PO7L/dB+VL2twJ0cef6Lv1oO8PhopsvU24Xk969kop0LsioHFptcmo4A01Os3lLRDxPD
-	B6juZARDSK7+bzZ1JEKYIlRiZLE2HJsz1soFkxPiZgDWtugOi7UBoI5/VkWJipzDKKb2
-	/dLA==
-MIME-Version: 1.0
-Received: by 10.180.80.9 with SMTP id n9mr25746112wix.4.1332839276041; Tue, 27
-	Mar 2012 02:07:56 -0700 (PDT)
-Received: by 10.223.97.77 with HTTP; Tue, 27 Mar 2012 02:07:55 -0700 (PDT)
-In-Reply-To: <9948106.Jx6FOq70hB@helios>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A231E0137D
+	for <yocto@yoctoproject.org>; Tue, 27 Mar 2012 03:04:49 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 27 Mar 2012 03:04:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="82036316"
+Received: from unknown (HELO helios.localnet) ([10.252.123.228])
+	by AZSMGA002.ch.intel.com with ESMTP; 27 Mar 2012 03:04:47 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Samuel Stirtzel <s.stirtzel@googlemail.com>
+Date: Tue, 27 Mar 2012 11:04:44 +0100
+Message-ID: <4957795.ksloQYTPSH@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-16-generic-pae; KDE/4.8.1; i686; ; )
+In-Reply-To: <CAGiJk9drrBpokvymehivFzx=q_VSUudzeq-oxLBr4FiwrqCTjA@mail.gmail.com>
 References: <CAGiJk9fZ1-KCiDuT3n9n_WHqNN9Gyj_UyPJ0Ktx2N=4F7Rv1cw@mail.gmail.com>
 	<9948106.Jx6FOq70hB@helios>
-Date: Tue, 27 Mar 2012 11:07:55 +0200
-Message-ID: <CAGiJk9drrBpokvymehivFzx=q_VSUudzeq-oxLBr4FiwrqCTjA@mail.gmail.com>
-From: Samuel Stirtzel <s.stirtzel@googlemail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
+	<CAGiJk9drrBpokvymehivFzx=q_VSUudzeq-oxLBr4FiwrqCTjA@mail.gmail.com>
+MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: Support of meta-kde for Poky
 X-BeenThere: yocto@yoctoproject.org
@@ -40,90 +32,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Mar 2012 09:07:57 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 27 Mar 2012 10:04:49 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-2012/3/26 Paul Eggleton <paul.eggleton@linux.intel.com>:
-> On Monday 26 March 2012 14:55:40 Samuel Stirtzel wrote:
->> the development of meta-kde has come to a point where kde-applications
->> can be tested (and maybe used).
->>
->> Status of meta-kde:
->> Most common applications work, for example:
->> Calligra (not all of the toolkit), Kate, KCalc, Konqueror, Kwin &
->> Kwin_gles (KDE window manager), Okular and the applications from
->> KDE-baseapps.
->>
->> Plasma Active (and Desktop) do not work correctly, but I'm working on it.
->> Plasma Netbook seems to work, but it needs more testing.
->>
->>
->> Involving the community:
->> As the development of meta-kde advanced to a point where developers
->> can use the layer to port KDE applications.
->> I'd like to invite others to test the layer, port their favorite KDE
->> applications and express their opinions about the current status.
->> Feel free to ask questions and suggest applications to be ported.
->
-> Great work! I will give it a try over the next few days and let you know how I
-> get on. (Sorry I know I promised to do this some weeks ago.)
->
->> meta-kde has no mailing list, so I'm looking for a list to host the
->> discussion, any suggestions?
->
-> Probably just the oe-devel list - if the volume of commits gets too high then
-> we can look at splitting off a separate one.
+On Tuesday 27 March 2012 11:07:55 Samuel Stirtzel wrote:
+> 2012/3/26 Paul Eggleton <paul.eggleton@linux.intel.com>:
+> > On Monday 26 March 2012 14:55:40 Samuel Stirtzel wrote:
+> >> meta-kde has no mailing list, so I'm looking for a list to host the
+> >> discussion, any suggestions?
+> > 
+> > Probably just the oe-devel list - if the volume of commits gets too high
+> > then we can look at splitting off a separate one.
+> 
+> Do I need an official statement, and from whom can I get it in case?
 
-Do I need an official statement, and from whom can I get it in case?
+I don't think any is needed (at least I don't think anyone asked for any of 
+the other layers).
 
+> My assumption is that the initial request, that started this
+> discussion, was made with the idea in mind not to include any
+> "overhead" from meta-oe.
 >
->> Current issues with Poky:
->> The giflib recipe is not contained in Poky.
->> Is this based on a design decision, or just because no one needs it?
->
-> It's based upon nothing in OE-Core needing it. (The poky repository is just
-> OE-Core + bitbake + meta-yocto + yocto-docs).
->
->> As a meta-kde developer I don't want to limit the testing of meta-kde.
->
-> It should be OK to use meta-oe with Poky, and therefore meta-kde can depend
-> upon it. However we are aware that meta-oe overlays a bunch of recipes that
-> ideally it should not. We're working (albeit slowly) to address these.
->
-> An alternative in the meantime would be to add giflib to meta-kde, this will do
-> no significant harm if it is already available in another layer (and giflib
-> doesn't look like it has really changed since 2008, so I don't think it will
-> be much of a maintenance burden).
+> Too bad it isn't possible to include only a subset of recipes from a layer..
+> But it just looks like layers don't work like that.
 
-My assumption is that the initial request, that started this
-discussion, was made with the idea in mind not to include any
-"overhead" from meta-oe.
-But TBH I don't know exactly.
-Too bad it isn't possible to include only a subset of recipes from a layer..
-But it just looks like layers don't work like that.
+That's right, the layer is supposed to be used as a unit; which means those 
+units are supposed to be kept reasonably small and focused where possible. 
+meta-oe is the exception here, but we should continue to try to improve it.
 
->
-> As an aside it would be interesting to know why KDE requires additional gif
-> support from giflib when gif loading is already built into Qt (and we do enable
-> it in our Qt recipes).
+> > As an aside it would be interesting to know why KDE requires additional
+> > gif support from giflib when gif loading is already built into Qt (and we
+> > do enable it in our Qt recipes).
+> 
+> The KDE gifloader code is from 2004.
+> It looks like this was a possible solution and it worked, so they kept it.
 
-The KDE gifloader code is from 2004.
-It looks like this was a possible solution and it worked, so they kept it.
-But since it is KHTML depending on giflib, KDE could replace it with
-Webkit in the "future" (this is really old news).
+Fair enough.
 
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
+> But since it is KHTML depending on giflib, KDE could replace it with
+> Webkit in the "future" (this is really old news).
 
+Right, I won't be holding my breath on that one ;)
 
+Cheers,
+Paul
 
 -- 
-Regards
-Samuel
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
