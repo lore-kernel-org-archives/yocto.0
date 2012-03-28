@@ -1,33 +1,20 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE1C3E0070C
-	for <yocto@yoctoproject.org>; Tue, 27 Mar 2012 17:53:19 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 27 Mar 2012 17:53:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
-	d="scan'208,217";a="146599646"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 27 Mar 2012 17:53:19 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 27 Mar 2012 17:53:19 -0700
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.128]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.106]) with mapi id
-	14.01.0355.002; Tue, 27 Mar 2012 17:53:19 -0700
-From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: "chris@yassl.com" <chris@yassl.com>
-Thread-Topic: yassl recipe in the yocto project
-Thread-Index: Ac0MfSnPH/XzMfGwTtifc4o8Lypywg==
-Date: Wed, 28 Mar 2012 00:53:18 +0000
-Message-ID: <ADD6A3980E8C39419A432FF422031B4C0137E190@ORSMSX106.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51E0DE0070C
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2012 01:54:25 -0700 (PDT)
+Received: from [192.168.0.39] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id B80D92B9F1
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2012 08:57:13 +0100 (BST)
+Message-ID: <4F72D1D6.3060405@communistcode.co.uk>
+Date: Wed, 28 Mar 2012 09:54:46 +0100
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120314 Thunderbird/11.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: yassl recipe in the yocto project
+To: yocto@yoctoproject.org
+References: <ADD6A3980E8C39419A432FF422031B4C0137E190@ORSMSX106.amr.corp.intel.com>
+In-Reply-To: <ADD6A3980E8C39419A432FF422031B4C0137E190@ORSMSX106.amr.corp.intel.com>
+Subject: Re: yassl recipe in the yocto project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,47 +26,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Mar 2012 00:53:20 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 28 Mar 2012 08:54:26 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_ADD6A3980E8C39419A432FF422031B4C0137E190ORSMSX106amrcor_"
+	boundary="------------080707050502090207020407"
 
---_000_ADD6A3980E8C39419A432FF422031B4C0137E190ORSMSX106amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--------------080707050502090207020407
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Chris,
-  Here is the recipe we have in yocto-project for openssl projects to be in=
-corporated into embedded Linux distributions.
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-connectivi=
-ty/openssl
-Please visit www.yoctoproject.org<http://www.yoctoproject.org> for more inf=
-ormation on the Yocto Project.
-
-It would be nice to get yassl recipe also in there as an alternative to ope=
-nssl.
-
-Context for others: I came across Chris at ESC, He works for yassl .com whi=
-ch provides GPLv2  ssl solution like openssl which is smaller compared to o=
-penssl and targeted for embedded solutions.
-
-Thanks,
-Nitin
-
-
---_000_ADD6A3980E8C39419A432FF422031B4C0137E190ORSMSX106amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 28/03/12 01:53, Kamble, Nitin A wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
+> Hi Chris,
+>
+>   Here is the recipe we have in yocto-project for openssl projects to 
+> be incorporated into embedded Linux distributions.
+>
+> http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-connectivity/openssl
+>
+> Please visit www.yoctoproject.org <http://www.yoctoproject.org> for 
+> more information on the Yocto Project.
+>
+> It would be nice to get yassl recipe also in there as an alternative 
+> to openssl.
+>
+> Context for others: I came across Chris at ESC, He works for yassl 
+> .com which provides GPLv2  ssl solution like openssl which is smaller 
+> compared to openssl and targeted for embedded solutions.
+>
+> Thanks,
+>
+> Nitin
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+Just a heads up but I've also heard good things about PolarSSL, 
+http://polarssl.org/ - choice is everything right ;)
+
+-- 
+
+   Jack Mitchell (jack@embed.me.uk)
+   Embedded Systems Engineer
+   http://www.embed.me.uk
+
+--
+
+
+--------------080707050502090207020407
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    On 28/03/12 01:53, Kamble, Nitin A wrote:
+    <blockquote
+cite="mid:ADD6A3980E8C39419A432FF422031B4C0137E190@ORSMSX106.amr.corp.intel.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=ISO-8859-1">
+      <meta name="Generator" content="Microsoft Word 12 (filtered
+        medium)">
+      <style><!--
 /* Font Definitions */
 @font-face
 	{font-family:"Cambria Math";
@@ -113,39 +128,57 @@ span.EmailStyle17
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+<o:shapedefaults v:ext="edit" spidmax="1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi Chris,<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Here is the recipe we have in yocto-project f=
-or openssl projects to be incorporated into embedded Linux distributions.&n=
-bsp;
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi=
-/poky/tree/meta/recipes-connectivity/openssl">http://git.yoctoproject.org/c=
-git/cgit.cgi/poky/tree/meta/recipes-connectivity/openssl</a><o:p></o:p></p>
-<p class=3D"MsoNormal">Please visit <a href=3D"http://www.yoctoproject.org"=
->www.yoctoproject.org</a> for more information on the Yocto Project.<o:p></=
-o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">It would be nice to get yassl recipe also in there a=
-s an alternative to openssl.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Context for others: I came across Chris at ESC, He w=
-orks for yassl .com which provides GPLv2 &nbsp;ssl solution like openssl wh=
-ich is smaller compared to openssl and targeted for embedded solutions.<o:p=
-></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Nitin<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
+      <div class="WordSection1">
+        <p class="MsoNormal">Hi Chris,<o:p></o:p></p>
+        <p class="MsoNormal">&nbsp; Here is the recipe we have in
+          yocto-project for openssl projects to be incorporated into
+          embedded Linux distributions.&nbsp;
+          <o:p></o:p></p>
+        <p class="MsoNormal"><a moz-do-not-send="true"
+href="http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-connectivity/openssl">http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-connectivity/openssl</a><o:p></o:p></p>
+        <p class="MsoNormal">Please visit <a moz-do-not-send="true"
+            href="http://www.yoctoproject.org">www.yoctoproject.org</a>
+          for more information on the Yocto Project.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">It would be nice to get yassl recipe also
+          in there as an alternative to openssl.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">Context for others: I came across Chris at
+          ESC, He works for yassl .com which provides GPLv2 &nbsp;ssl
+          solution like openssl which is smaller compared to openssl and
+          targeted for embedded solutions.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">Thanks,<o:p></o:p></p>
+        <p class="MsoNormal">Nitin<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+</pre>
+    </blockquote>
+    <tt><br>
+      Just a heads up but I've also heard good things about PolarSSL,
+      <a class="moz-txt-link-freetext" href="http://polarssl.org/">http://polarssl.org/</a> - choice is everything right ;)<br>
+    </tt><br>
+    <pre class="moz-signature" cols="72">-- 
+
+  Jack Mitchell (<a class="moz-txt-link-abbreviated" href="mailto:jack@embed.me.uk">jack@embed.me.uk</a>)             
+  Embedded Systems Engineer
+  <a class="moz-txt-link-freetext" href="http://www.embed.me.uk">http://www.embed.me.uk</a>
+
+--
+</pre>
+  </body>
 </html>
 
---_000_ADD6A3980E8C39419A432FF422031B4C0137E190ORSMSX106amrcor_--
+--------------080707050502090207020407--
