@@ -1,36 +1,32 @@
-Return-Path: <tom.rini@gmail.com>
-Received: from mail-gx0-f176.google.com (mail-gx0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95E82E00747
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2012 11:16:45 -0700 (PDT)
-Received: by ggcs6 with SMTP id s6so1239297ggc.35
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2012 11:16:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=Kvvo+cuuOQKOuKbT8te+9ygk7h6GJojjsHEu40O4+dI=;
-	b=Pe+Y3eFumH0+ryFHAOcY98XzF/XDmmN6ffZmQQhmDqmt1Po9yN8AXA/tvwdU2icWf+
-	t8cv10m1xg2EXqYvNhqy7nqHnhdP4Y9X1LcYHy2eqXY+KmtPeayvjRV7Itr3QRAKitVs
-	vOdAccktv4RF08JwKqUmv1MmsLgwTDNzMdgkSu09qUS4yw/3WKyCOX6t1JoDNtwAleOQ
-	BWRvFGkTDDFzWhxZ35fbxnEu0/oF6rDcmqDODG2NJ6d/6xOehWZJM3ZxylLeABTVxycE
-	jIkPSthlsBzh9R3t0MjuprkW2ysIt+NN+OtY6OUd81p0dnIApqKuPzrNWa/BBuI/5J5j
-	P+GA==
-Received: by 10.60.9.102 with SMTP id y6mr40558153oea.46.1332958604968;
-	Wed, 28 Mar 2012 11:16:44 -0700 (PDT)
-Received: from localhost.localdomain (ip68-230-54-74.ph.ph.cox.net.
-	[68.230.54.74])
-	by mx.google.com with ESMTPS id 8sm3700014obv.19.2012.03.28.11.16.42
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 28 Mar 2012 11:16:42 -0700 (PDT)
-Sender: Tom Rini <tom.rini@gmail.com>
-From: Tom Rini <trini@ti.com>
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 336DFE00747
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2012 12:10:16 -0700 (PDT)
+Received: from mail-bk0-f52.google.com ([209.85.214.52])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 28 Mar 2012 12:10:15 -0700
+Received: by bkcjm19 with SMTP id jm19so1279304bkc.25
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2012 12:10:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=DTRgA9pt7dtOrHdcYapwNeRFqJ02b/FV70CxfIH9dmo=;
+	b=EwXo8ak+rnm5VohSNJ3ZmCih0c099u1EdETVBQK/AFog8zxaQOtokgo8f1MmlkQfpW
+	eHN/R40Or4x2ahN4WU8JlT7bIHJIlTYBMxvwmvueE/qCAF31kV9WNf6KuyGSHuAgu0kp
+	QAMk98liQhx/pCH8B1QgQSrw2F8Kvt1aNOHnMBBqyujFgaozduYSbd6LgsZfjltX2Ojn
+	o5dTh5sQbhsPD7+gGHVwZiCzOqqMwfsjf965OEkqoBwUd8QeuDJctqpH2jOrZAGI19cZ
+	yBZZE9uHpmABXCUlaBOilKYdHeKW37yZzQpzJiumvaeQitiWTwOUCpgw2eDrJrqPWWNL
+	MPSw==
+MIME-Version: 1.0
+Received: by 10.152.110.170 with SMTP id ib10mr26763411lab.7.1332961813373;
+	Wed, 28 Mar 2012 12:10:13 -0700 (PDT)
+Received: by 10.112.18.166 with HTTP; Wed, 28 Mar 2012 12:10:13 -0700 (PDT)
+Date: Wed, 28 Mar 2012 12:10:13 -0700
+Message-ID: <CAPhnLPDC=TLDLqid=TXyZ2Y_zBzbwr=a1_8erHpxXbk9Uj-A8Q@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 28 Mar 2012 11:16:41 -0700
-Message-Id: <1332958601-24500-1-git-send-email-trini@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1332524095-8135-1-git-send-email-trini@ti.com>
-References: <1332524095-8135-1-git-send-email-trini@ti.com>
-Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [meta-intel][PATCH v2] ia32-base.inc: Use '=+' for IMAGE_FSTYPES
+X-Gm-Message-State: ALoCoQlkBNDEXUFchxaINvX7aa1JSzORVutLuuXkN4sRDkcL6g50EA3AX2wM9Dyy9q3jljy4Akw7
+Subject: 1.2_M4 branched.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,34 +38,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Mar 2012 18:16:45 -0000
+X-List-Received-Date: Wed, 28 Mar 2012 19:10:16 -0000
+Content-Type: multipart/alternative; boundary=f46d0408d6b562a26d04bc525b97
 
-As per
-http://lists.linuxtogo.org/pipermail/openembedded-core/2012-March/020053.html
-a machine conf file should use '=+' to set IMAGE_FSTYPES.
+--f46d0408d6b562a26d04bc525b97
+Content-Type: text/plain; charset=ISO-8859-1
 
-Cc: Kishore Bodke <kishore.k.bodke@intel.com>
-Cc: Tom Zanussi <tom.zanussi@intel.com>
-Cc: Darren Hart <dvhart@linux.intel.com>
-Signed-off-by: Tom Rini <trini@ti.com>
----
- conf/machine/include/ia32-base.inc |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+All,
 
-diff --git a/conf/machine/include/ia32-base.inc b/conf/machine/include/ia32-base.inc
-index 9b2ef5a..817ee2d 100644
---- a/conf/machine/include/ia32-base.inc
-+++ b/conf/machine/include/ia32-base.inc
-@@ -11,7 +11,7 @@ MACHINE_FEATURES += "kernel26 screen keyboard pci usbhost ext2 ext3 x86 \
- MACHINE_EXTRA_RRECOMMENDS += "kernel-modules eee-acpi-scripts"
- MACHINE_ESSENTIAL_EXTRA_RDEPENDS += "grub"
- 
--IMAGE_FSTYPES += "ext3 cpio.gz live"
-+IMAGE_FSTYPES =+ "ext3 cpio.gz live"
- 
- KERNEL_IMAGETYPE ?= "bzImage"
- 
+The branch for 1.2_M4 has been created and tags for 1.2_M4.rc1 have been
+generated. There was a minor issue during the tag generation process and a
+tag named 1.2_M4.rc4 was generated, applied and pushed. This tag is NOT
+valid and was generated in error.
+
+RC1 is currently being generated and will be available later today at:
+
+http://autobuilder.yoctoproject.org/pub/nightly/20120328-1
+
+Please make sure that any fixes needed for 1.2 in the meta-qt3,
+eclipse-poky and poky repositories are also pushed to this branch.
+
+thanks,
+
+-b
+
 -- 
-1.7.0.4
+Elizabeth Flanagan
+Yocto Project
+Build and Release
+
+--f46d0408d6b562a26d04bc525b97
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+All,<br><br>The branch for 1.2_M4 has been created and tags for 1.2_M4.rc1 =
+have been generated. There was a minor issue during the tag generation proc=
+ess and a tag named 1.2_M4.rc4 was generated, applied and pushed. This tag =
+is NOT valid and was generated in error.<br>
+<br>RC1 is currently being generated and will be available later today at:<=
+br><br><a href=3D"http://autobuilder.yoctoproject.org/pub/nightly/20120328-=
+1">http://autobuilder.yoctoproject.org/pub/nightly/20120328-1</a><br clear=
+=3D"all">
+<br>Please make sure that any fixes needed for 1.2 in the meta-qt3, eclipse=
+-poky and poky repositories are also pushed to this branch.<br><br>thanks,<=
+br><br>-b<br><br>-- <br>Elizabeth Flanagan<br>Yocto Project<br>Build and Re=
+lease<br>
 
 
+--f46d0408d6b562a26d04bc525b97--
