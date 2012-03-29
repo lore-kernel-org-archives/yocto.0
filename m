@@ -1,36 +1,36 @@
 Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
-	[209.85.212.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A2C2E013D9
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 15:23:09 -0700 (PDT)
-Received: by wibhr17 with SMTP id hr17so229141wib.5
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 15:23:09 -0700 (PDT)
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08C0DE013D9
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 15:23:16 -0700 (PDT)
+Received: by werc1 with SMTP id c1so18688wer.35
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 15:23:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:subject:date:message-id:x-mailer:in-reply-to:references
 	:in-reply-to:references;
-	bh=5WgwN3SM5k4ynjzC+087ZbLYYhFIq+g0TcIZ60/akfE=;
-	b=BIj9LQh+3De8H0Yf3hec2BuONZR7vIeWX87KIkLJvbcIqouox3KNUXcfebmEkDT3dh
-	DCr6LgWIHZ3TaZKg1sSjwt9DgYDhOj+m+oojixpcBxNsl7Qv5MtWVcSlr0Uj9S3zyU1b
-	k7QqPFXfoC/ZF89cHmfIg5cQT2UQ/Aoq3/rbYNy2yNBxGRQuH0LB+ZmN5uQDREiTtX8n
-	uN9ku/6d8BEv/wKD+Y79eRdt5ekzT1ObW2cY/2MToVGPtPspf0UQUvDiZv4h3UrJA1Zh
-	WiwaZgT0G0VQkHIifOKbUGr8w1HOkCBxaEt3zARhINligm9hVqihRoEpRj53rwGe6l1Y
-	6NHA==
-Received: by 10.180.101.230 with SMTP id fj6mr9935215wib.13.1333059789029;
-	Thu, 29 Mar 2012 15:23:09 -0700 (PDT)
+	bh=BYMjRmZbGHFpfHyiK72ROx8koaou+LjCQXKsJcf4/JU=;
+	b=Rikk8PenW2sXO6esPsTQrygcV6YQCDR49/+E0EpZWFvp6zoNdwlnSLqn9FbufBwVxz
+	Q/XV+0oyVQ6PvZqm//lPXuQmjOZIlcZ6i3qCQLpHxk6xdpkaQYMdxdZ5djDhZ5jJ6vgJ
+	/+r59eg1qsXV/bwreWILj6+6q0yWNIUrwijqr1E1QFM1q3sdovRYziBGtDdkHI35G3Ac
+	BEtlFI/d8q34HnA3jEpjnoDy8PhE1LwfouTh7pM2iWEy48/0yTQD9fLiK0+VUqGjafUB
+	qXCD4Qqf+FC6WsdQVI7VnICHjEBpXzjlIIsk3m9aZdnMPI9K8fd6CsY/u0sv1LDRJkYg
+	8L6g==
+Received: by 10.180.88.67 with SMTP id be3mr25994wib.20.1333059796042;
+	Thu, 29 Mar 2012 15:23:16 -0700 (PDT)
 Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id w10sm1187534wiy.3.2012.03.29.15.23.06
+	by mx.google.com with ESMTPS id b3sm759413wib.4.2012.03.29.15.23.14
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 29 Mar 2012 15:23:07 -0700 (PDT)
+	Thu, 29 Mar 2012 15:23:15 -0700 (PDT)
 From: Martin Jansa <martin.jansa@gmail.com>
 To: yocto@yoctoproject.org
-Date: Fri, 30 Mar 2012 00:22:36 +0200
-Message-Id: <c205fabf136e80c3f187a5f610b9388528b1280c.1333058256.git.Martin.Jansa@gmail.com>
+Date: Fri, 30 Mar 2012 00:22:37 +0200
+Message-Id: <1ee2cbc69e3c8b65e0df71fc5ad40823dfd10c61.1333058256.git.Martin.Jansa@gmail.com>
 X-Mailer: git-send-email 1.7.8.5
 In-Reply-To: <9ef7416d6b2d16f5a244316e0df098654a3af9de.1333058256.git.Martin.Jansa@gmail.com>
 References: <9ef7416d6b2d16f5a244316e0df098654a3af9de.1333058256.git.Martin.Jansa@gmail.com>
 In-Reply-To: <cover.1333058256.git.Martin.Jansa@gmail.com>
 References: <cover.1333058256.git.Martin.Jansa@gmail.com>
-Subject: [opkg-utils][PATCH 02/22] opkg-make-index: convert mtime to int before comparing it
+Subject: [opkg-utils][PATCH 03/22] opkg.py: Add knowledge about License field in ipk headers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,39 +42,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Mar 2012 22:23:10 -0000
+X-List-Received-Date: Thu, 29 Mar 2012 22:23:17 -0000
 
-From: Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
+From: Khem Raj <raj.khem@gmail.com>
 
-* The st_mtime attribute (which is a float) is compared against a value
-  from the timestamp database, which was stored as an integer there.
-
-* When working on a filesystem with precise timestamps the comparision
-  will fail nearly everytime hence.
-
-* Although it might be possible to enhance the database to store the
-  fractional part too, this will complicate things more than we would
-  gain by this change.
-
-Signed-off-by: Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
 Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
 ---
- opkg-make-index |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ opkg.py |    8 ++++++++
+ 1 files changed, 8 insertions(+), 0 deletions(-)
 
-diff --git a/opkg-make-index b/opkg-make-index
-index 2f1ae17..dc98c63 100755
---- a/opkg-make-index
-+++ b/opkg-make-index
-@@ -101,7 +101,7 @@ for filename in files:
-      pkg = None
-      fnameStat = os.stat(filename)
-      if old_pkg_hash.has_key(basename):
--          if pkgsStamps.has_key(basename) and fnameStat.st_mtime == pkgsStamps[basename]:
-+          if pkgsStamps.has_key(basename) and int(fnameStat.st_mtime) == pkgsStamps[basename]:
-             if (verbose):
-                sys.stderr.write("Found %s in Packages\n" % (filename,))
-             pkg = old_pkg_hash[basename]
+diff --git a/opkg.py b/opkg.py
+index 3fda9b5..8ddc8b8 100644
+--- a/opkg.py
++++ b/opkg.py
+@@ -145,6 +145,7 @@ class Package:
+         self.priority = None
+         self.tags = None
+         self.fn = fn
++        self.license = None
+ 
+         if fn:
+             # see if it is deb format
+@@ -319,6 +320,12 @@ class Package:
+     def get_section(self, section):
+         return self.section
+ 
++    def set_license(self, license):
++        self.license = license
++
++    def get_license(self, license):
++        return self.license
++
+     def get_file_list(self):
+         if not self.fn:
+             return []
+@@ -425,6 +432,7 @@ class Package:
+         if self.description: out = out + "Description: %s\n" % (self.description)
+         if self.oe: out = out + "OE: %s\n" % (self.oe)
+         if self.homepage: out = out + "HomePage: %s\n" % (self.homepage)
++        if self.license: out = out + "License: %s\n" % (self.license)
+         if self.priority: out = out + "Priority: %s\n" % (self.priority)
+         if self.tags: out = out + "Tags: %s\n" % (self.tags)
+         out = out + "\n"
 -- 
 1.7.8.5
 
