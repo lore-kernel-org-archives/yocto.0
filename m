@@ -1,36 +1,26 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF681E0059A
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 05:47:53 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2TCllFd031362;
-	Thu, 29 Mar 2012 13:47:47 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 31242-01; Thu, 29 Mar 2012 13:47:43 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2TClarm031356
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Thu, 29 Mar 2012 13:47:38 +0100
-Message-ID: <1333025256.14983.29.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Rudolf Streif <rudolf.streif@linux.com>, "Rifenbark, Scott M"
-	<scott.m.rifenbark@intel.com>
-Date: Thu, 29 Mar 2012 13:47:36 +0100
-In-Reply-To: <CA+gsK-o4KeAqZLW8gSQkoEBy6jyJvi8EJeZuChfsYgwAF2xCyQ@mail.gmail.com>
-References: <alpine.DEB.2.02.1203240525230.22364@oneiric>
-	<1332589972.27577.1.camel@ted>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237945175E22@ORSMSX101.amr.corp.intel.com>
-	<CA+gsK-raRiKQ7GHLSy4tAJHJmDardhr8by0A9FGJ7diCYo00Uw@mail.gmail.com>
-	<1332802684.28414.146.camel@ted>
-	<CA+gsK-o4KeAqZLW8gSQkoEBy6jyJvi8EJeZuChfsYgwAF2xCyQ@mail.gmail.com>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org
-Subject: Re: tentative list of vars to be dropped from variable glossary
+Return-Path: <john.toomey@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 976FCE0059A
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 06:20:46 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 29 Mar 2012 06:20:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="123091157"
+Received: from jtoomey-mobl9.ger.corp.intel.com (HELO [163.33.228.128])
+	([163.33.228.128])
+	by orsmga001.jf.intel.com with ESMTP; 29 Mar 2012 06:20:45 -0700
+Message-ID: <4F7461AC.7050202@linux.intel.com>
+Date: Thu, 29 Mar 2012 14:20:44 +0100
+From: John Toomey <john.toomey@linux.intel.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:10.0.1) Gecko/20120208 Thunderbird/10.0.1
+MIME-Version: 1.0
+To: Khem Raj <raj.khem@gmail.com>
+References: <4F68A6F6.8080900@linux.intel.com> <1369360.rBu7e7v26n@helios>
+	<CAMKF1spVh7VR12eaUdbLQ5rCzT0ifziTWtFBgsLW7Or2+92XTw@mail.gmail.com>
+In-Reply-To: <CAMKF1spVh7VR12eaUdbLQ5rCzT0ifziTWtFBgsLW7Or2+92XTw@mail.gmail.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: issue building iputils with uclibc.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,55 +32,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Mar 2012 12:47:54 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 29 Mar 2012 13:20:46 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Mon, 2012-03-26 at 16:50 -0700, Rudolf Streif wrote:
-> Thanks, Richard. Clearer now but not entirely.
-> 
->         
->         
->         >> BBMASK removes recipes from being parsed. It does not
->         remove them from
->         >> images although that would I guess be an indirect result
->         since you could
->         >>no longer build them.
->         
->         
-> Yes, it removes it from being parsed. I used, for test although not
-> sensible, BBMASK = "base-passwd". If I then tried building
-> core-image-minimal it fails with "Nothing provides base-passwd". If
-> one could use BBMASK to customize images as suggested
-> in http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#usingpoky-extend-customimage-localconf then one would expect the package to be removed indirectly from the image. However, that does not happen, the build just fails.
+On 20/03/2012 16:56, Khem Raj wrote:
+> On Tue, Mar 20, 2012 at 9:23 AM, Paul Eggleton
+> <paul.eggleton@linux.intel.com>  wrote:
+>> IIRC the thread ended with Khem asking if UCLIBC_HAS_RESOLVER_SUPPORT='y' was
+>> in the uclibc configuration, the implication being that dn_comp is unavailable
+>> unless that is true. I'm not too familiar with how uclibc is configured and
+>> with only a brief glance at the recipe I can see the config seems to be
+>> automatically generated but I can't see exactly how additional options (beyond
+>> what gets added from DISTRO_FEATURES) would be added.
+>>
+>> Khem, could you help out here?
+> go into the uclibc build tree and like kernel or busybox it will have
+> a .config and grok that. If this is disabled then enable it in
+> uClibc.distro file under uclibc recipes dir and rebuild uclibc.
+> ideally these are distro knobs but for tests you can try it
+> file ( uclibc uses kconfig )
+>
+Hi Folks
 
-I hadn't realised Scott had added this to the customising images section
-of the manual. This is not what its designed for and we need to move
-this to somewhere less confusing.
+I am unable to find a .config file in the uclibc build tree, can you be 
+more specific about the path i might find it at?
 
-Scott: This is going to need to move somewhere else in the manual as
-this is confusing. I'm going to suggest a 4.12 section "Other tips and
-tricks" which says:
+UCLIBC_HAS_RESOLVER_SUPPORT=y doesnt seem to be present in the 
+uClibc.distro file, i added it and tried running the build again with no 
+success. Is there anything else I can try?
 
-"""
-Sometimes there are groups of recipes you might wish to filter out. If
-there were recipes you know you're never going to want/use, removing
-them from parsing would speed up parts of the build for example.
-
-It is possible to filter or mask out both .bb and .bbappend files. You
-can do this by providing an expression with the BBMASK variable. Here is
-an example:
-
-     BBMASK = ".*/meta-mymachine/recipes-maybe/"
-
-Here, all .bb and .bbappend files in the directory that matches the
-expression are ignored during the build process. 
-"""
-
-Cheers,
-
-Richard
-
+Thanks,
+John
 
 
 
