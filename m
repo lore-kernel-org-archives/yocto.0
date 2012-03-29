@@ -1,36 +1,36 @@
 Return-Path: <martin.jansa@gmail.com>
 Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
 	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 492ECE013D9
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 15:24:28 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C205E013D9
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 15:24:35 -0700 (PDT)
 Received: by mail-we0-f176.google.com with SMTP id c1so18688wer.35
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 15:24:28 -0700 (PDT)
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 15:24:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:subject:date:message-id:x-mailer:in-reply-to:references
 	:in-reply-to:references;
-	bh=HjNEyT+/hMQn0qpE4bG8rJFqQ5Ymt1ySAYjLRn8hJsI=;
-	b=bkS+lzP32y6KQtvyUXujq/JhseR6Q1pNPebcfCktoIYBJt4Yic51xDDENyB2AwQsUZ
-	nnI1psH04j6JuOkue25rZHvyaTI2LuHhYYc5HIJMgCGSa1XCqHhiiD3Pd8ZT1kULQ23Z
-	NEnfPxiFKCiFWibzvHgS0t4X+Ulxuh5rBRmOyucBqTTYSrHh1dBZEtFSjU+Bsf+2r1YL
-	OvKpYGegbolowyFDTkulL2RYwsSLQAMbwD+SRs++SIzJLmQhotnk8TcDffrFUNW2t9IR
-	NHfgB5JqDXeBUsHJ2wQ/RGFxOe+Cg1w69q4rLnsLfapr127tA/au03BCzpFaUXm7xp6Z
-	WQKQ==
-Received: by 10.180.80.40 with SMTP id o8mr111907wix.10.1333059867956;
-	Thu, 29 Mar 2012 15:24:27 -0700 (PDT)
+	bh=WOASiQOFD/8O+XVnWnUDPtGNqkhhaZWbBe20QCAAFCo=;
+	b=xciICagIgfzQoaOjC8iwKPYx92Z1xXXBKd+8KwgzcR1rbeC9yKnTwFGfv79V9RgesS
+	j5P7ULHezntvcGkGKyp7spodokbR88llKrRuPQKu3i2Jk/XklZ7B5rHhu6OECsVQ4Lsg
+	Km/HW4/MJjSJmVH8ljT/aC7FhKbdvz2Pb8kxxaWcyha58faSnlnZoDWFcaBvFZjLernA
+	aufg7+eI0ELfYxzErGAWs3lSUlu7D+7sFvkukrrmb70IOSo4NfWCfpW05/CWoafXFE7I
+	2YlQUQJY09/TVFcrD7nsxj6hpYulsqD1u8Q7FOWFXmYk+Wj/tOOtxun5aLj+YOu0Kni6
+	D7SA==
+Received: by 10.180.105.69 with SMTP id gk5mr11843427wib.3.1333059875028;
+	Thu, 29 Mar 2012 15:24:35 -0700 (PDT)
 Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id o2sm1070390wiv.11.2012.03.29.15.24.26
+	by mx.google.com with ESMTPS id fz9sm778572wib.3.2012.03.29.15.24.33
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 29 Mar 2012 15:24:27 -0700 (PDT)
+	Thu, 29 Mar 2012 15:24:34 -0700 (PDT)
 From: Martin Jansa <martin.jansa@gmail.com>
 To: yocto@yoctoproject.org
-Date: Fri, 30 Mar 2012 00:22:47 +0200
-Message-Id: <2849b98a940f5501b9e9512684a06e664c8d4239.1333058256.git.Martin.Jansa@gmail.com>
+Date: Fri, 30 Mar 2012 00:22:48 +0200
+Message-Id: <dff8a591ee59b5b5787c5a82e730ba83d8db8b2e.1333058256.git.Martin.Jansa@gmail.com>
 X-Mailer: git-send-email 1.7.8.5
 In-Reply-To: <9ef7416d6b2d16f5a244316e0df098654a3af9de.1333058256.git.Martin.Jansa@gmail.com>
 References: <9ef7416d6b2d16f5a244316e0df098654a3af9de.1333058256.git.Martin.Jansa@gmail.com>
 In-Reply-To: <cover.1333058256.git.Martin.Jansa@gmail.com>
 References: <cover.1333058256.git.Martin.Jansa@gmail.com>
-Subject: [opkg-utils][PATCH 13/22] opkg-make-index: show OSError/IOError
+Subject: [opkg-utils][PATCH 14/22] opkg.py: use string funtcions directly on string variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,62 +42,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Mar 2012 22:24:28 -0000
+X-List-Received-Date: Thu, 29 Mar 2012 22:24:35 -0000
 
 Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
 ---
- opkg-make-index |   20 ++++++++++----------
- 1 files changed, 10 insertions(+), 10 deletions(-)
+ opkg-make-index |    3 +--
+ opkg-show-deps  |   11 +++++------
+ opkg.py         |    5 ++---
+ 3 files changed, 8 insertions(+), 11 deletions(-)
 
 diff --git a/opkg-make-index b/opkg-make-index
-index 997f286..e0844a7 100755
+index e0844a7..898a2f6 100755
 --- a/opkg-make-index
 +++ b/opkg-make-index
-@@ -131,11 +131,11 @@ for filename in files:
-                to_morgue(basename)
-           if opt_s:
-                print(filename)
--  except OSError:
--      sys.stderr.write("Package %s disappeared on us!\n" % (filename))
-+  except OSError as e:
-+      sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (filename, e))
-       continue
--  except IOError:
--      sys.stderr.write("Package %s disappeared on us!\n" % (filename))
-+  except IOError as e:
-+      sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (filename, e))
-       continue
+@@ -5,7 +5,6 @@ from glob import glob
+ import subprocess
+ import opkg
+ import getopt
+-import string
+ import re
  
- pkgsStampsFile = open(stamplist_filename, "w")
-@@ -173,11 +173,11 @@ for name in names:
-      if (verbose):
-           sys.stderr.write("Writing info for package %s\n" % (pkg.package,))
-      print(pkg)
--  except OSError:
--      sys.stderr.write("Package %s disappeared on us!\n" % (name))
-+  except OSError as e:
-+      sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (name, e))
-       continue
--  except IOError:
--      sys.stderr.write("Package %s disappeared on us!\n" % (name))
-+  except IOError as e:
-+      sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (name, e))
-       continue
+ verbose = 0
+@@ -158,7 +157,7 @@ for name in names:
+   try:
+      pkg = packages.packages[name]
+      if locales_dir and pkg.depends:
+-         depends = string.split(pkg.depends, ',')
++         depends = pkg.depends.split(',')
+          locale = None
+          for d in depends:
+               m = re.match('.*virtual-locale-([a-zA-Z]+).*', d)
+diff --git a/opkg-show-deps b/opkg-show-deps
+index 3f5899d..d188aad 100755
+--- a/opkg-show-deps
++++ b/opkg-show-deps
+@@ -4,7 +4,6 @@ import sys, os, posixpath
+ from glob import glob
+ import opkg
+ import getopt
+-import string
+ import re
  
- if packages_filename:
-@@ -199,10 +199,10 @@ for name in names:
-      try:
-           fnlist = packages[name].get_file_list()
-      except OSError as e:
--          sys.stderr.write("Package %s disappeared on us!\n" % (name))
-+          sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (name, e))
-           continue
-      except IOError as e:
--          sys.stderr.write("Package %s disappeared on us!\n" % (name))
-+          sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (name, e))
-           continue
-      for fn in fnlist:
-           (h,t) = os.path.split(fn)
+ verbose = 0
+@@ -32,11 +31,11 @@ provider_hash = {}
+ 
+ def split_list(str):
+      r = []
+-     l = string.split(str, ",")
++     l = str.split(",")
+      for i in l:
+-          ll = string.split(i, "|")
++          ll = i.split("|")
+           for ii in ll:
+-               ii = string.strip(ii)
++               ii = ii.strip()
+                r.append(ii)
+      return r
+ 
+@@ -46,9 +45,9 @@ for i in list(packages.packages.keys()):
+           provider_hash[p.package] = []
+      provider_hash[p.package].append(p)
+      if p.provides:
+-          provides = string.split(p.provides, ",")
++          provides = p.provides.split(",")
+           for prov in provides:
+-               prov = string.strip(prov)
++               prov = prov.strip()
+                if prov not in provider_hash:
+                     provider_hash[prov] = []
+                provider_hash[prov].append(p)
+diff --git a/opkg.py b/opkg.py
+index ae31794..856e057 100644
+--- a/opkg.py
++++ b/opkg.py
+@@ -38,7 +38,6 @@ import sys
+ import glob
+ import hashlib
+ import re
+-import string
+ import subprocess
+ from stat import ST_SIZE
+ import arfile
+@@ -203,10 +202,10 @@ class Package:
+         line = control.readline()
+         while 1:
+             if not line: break
+-            line = string.rstrip(line)
++            line = line.rstrip()
+             lineparts = re.match(r'([\w-]*?):\s*(.*)', line)
+             if lineparts:
+-                name = string.lower(lineparts.group(1))
++                name = lineparts.group(1).lower()
+                 value = lineparts.group(2)
+                 while 1:
+                     line = control.readline()
 -- 
 1.7.8.5
 
