@@ -1,31 +1,25 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3963E013C2
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 14:47:55 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SDNCF-0004Pr-2V
-	for yocto@yoctoproject.org; Thu, 29 Mar 2012 17:47:55 -0400
-Date: Thu, 29 Mar 2012 17:47:43 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1203291746350.19207@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDA87E013C2
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 14:55:23 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2TLtNDn001653
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 14:55:23 -0700 (PDT)
+Received: from msp-dhcp10.wrs.com (172.25.34.10) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Thu, 29 Mar 2012 14:55:23 -0700
+Message-ID: <4F74DA4A.2010404@windriver.com>
+Date: Thu, 29 Mar 2012 16:55:22 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
+	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: which yocto doc explains bitbake assignment variations?
+To: <yocto@yoctoproject.org>
+References: <alpine.DEB.2.02.1203291746350.19207@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1203291746350.19207@oneiric>
+Subject: Re: which yocto doc explains bitbake assignment variations?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,24 +31,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Mar 2012 21:47:56 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 29 Mar 2012 21:55:23 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 3/29/12 4:47 PM, Robert P. J. Day wrote:
+>
+>    somewhere, i'm assuming there's a decent explanation of the
+> different bitbake assignment variations (=, ?=, ??=), but i don't
+> immediately see it, and i think it's pretty important that that's
+> explained properly.  pointer?
+>
+> rday
+>
 
-  somewhere, i'm assuming there's a decent explanation of the
-different bitbake assignment variations (=, ?=, ??=), but i don't
-immediately see it, and i think it's pretty important that that's
-explained properly.  pointer?
+The bitbake manual has this information in it.  I don't know of a current 
+version that is posted online, but you should be able to generate it from within 
+bitbake itself.
 
-rday
+(and older version: http://docs.openembedded.org/bitbake/html/)
 
--- 
+But for the record the variations:
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+Immediate, overwrite existing values:
+   variable = "value"
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Conditional, only if not previously set:
+   variable ?= "value"
+
+Conditional, late evaluation -- i.e. at the end, only if set:
+   variable ??= "value"
+
+Immediate, expand variables immediately:
+   variable := "${value}"
+
+Append with spaces:
+   variable += "value"
+
+Prepend with spaces:
+   variable =+ "value"
+
+Append without spaces:
+   variable .= "value"
+
+Prepend without spaces:
+   variable =. "value"
+
+Append "late" evaluation:
+   variable_append = "value"
+
+--Mark
 
