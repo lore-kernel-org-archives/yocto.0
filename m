@@ -1,36 +1,36 @@
 Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30A5DE013D9
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 15:24:21 -0700 (PDT)
-Received: by mail-wi0-f176.google.com with SMTP id hm17so41874wib.11
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 15:24:20 -0700 (PDT)
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 492ECE013D9
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 15:24:28 -0700 (PDT)
+Received: by mail-we0-f176.google.com with SMTP id c1so18688wer.35
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 15:24:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:subject:date:message-id:x-mailer:in-reply-to:references
 	:in-reply-to:references;
-	bh=crNh004kQreaobMLPbaCsR4frxycuXRXRAlB/kx5Z2E=;
-	b=A1gQ0yFwXA/1H6juYyAvOn6Pmd49f50WG4J7MpTG+PkjUPYKACX9nXEK1GI1xizYg3
-	aEYUfMHJL8/n4KQaow2lpmzlWIMsmH2+DXT9II2P6ijdpk9dT/W0lLywDFKpug9Gp5BO
-	Sy5mZ6KLquOCOKYrOgaiT21fDE+BGi9UYtrhuPYJzZLCvkOSn6cdM2tLO4dhn+n5lmw3
-	Qg4tGZckuSxrEtsxz/Ze5+ZZJQMYZCVX2c/gvTwo3kG1/y7uOFtWOeDU97fhutaIG9va
-	AHkO/tdo7vS+qVk0cCUTUA0ATKBngzKxf85XBtOATQL6thM2eVFvZTAAgr0+I615sZ5w
-	vnNA==
-Received: by 10.180.92.130 with SMTP id cm2mr159289wib.4.1333059860908;
-	Thu, 29 Mar 2012 15:24:20 -0700 (PDT)
+	bh=HjNEyT+/hMQn0qpE4bG8rJFqQ5Ymt1ySAYjLRn8hJsI=;
+	b=bkS+lzP32y6KQtvyUXujq/JhseR6Q1pNPebcfCktoIYBJt4Yic51xDDENyB2AwQsUZ
+	nnI1psH04j6JuOkue25rZHvyaTI2LuHhYYc5HIJMgCGSa1XCqHhiiD3Pd8ZT1kULQ23Z
+	NEnfPxiFKCiFWibzvHgS0t4X+Ulxuh5rBRmOyucBqTTYSrHh1dBZEtFSjU+Bsf+2r1YL
+	OvKpYGegbolowyFDTkulL2RYwsSLQAMbwD+SRs++SIzJLmQhotnk8TcDffrFUNW2t9IR
+	NHfgB5JqDXeBUsHJ2wQ/RGFxOe+Cg1w69q4rLnsLfapr127tA/au03BCzpFaUXm7xp6Z
+	WQKQ==
+Received: by 10.180.80.40 with SMTP id o8mr111907wix.10.1333059867956;
+	Thu, 29 Mar 2012 15:24:27 -0700 (PDT)
 Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id ex2sm1120116wib.8.2012.03.29.15.24.19
+	by mx.google.com with ESMTPS id o2sm1070390wiv.11.2012.03.29.15.24.26
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 29 Mar 2012 15:24:20 -0700 (PDT)
+	Thu, 29 Mar 2012 15:24:27 -0700 (PDT)
 From: Martin Jansa <martin.jansa@gmail.com>
 To: yocto@yoctoproject.org
-Date: Fri, 30 Mar 2012 00:22:46 +0200
-Message-Id: <a7152408ba72c97f7ecda66d9b73f8e69b527bd5.1333058256.git.Martin.Jansa@gmail.com>
+Date: Fri, 30 Mar 2012 00:22:47 +0200
+Message-Id: <2849b98a940f5501b9e9512684a06e664c8d4239.1333058256.git.Martin.Jansa@gmail.com>
 X-Mailer: git-send-email 1.7.8.5
 In-Reply-To: <9ef7416d6b2d16f5a244316e0df098654a3af9de.1333058256.git.Martin.Jansa@gmail.com>
 References: <9ef7416d6b2d16f5a244316e0df098654a3af9de.1333058256.git.Martin.Jansa@gmail.com>
 In-Reply-To: <cover.1333058256.git.Martin.Jansa@gmail.com>
 References: <cover.1333058256.git.Martin.Jansa@gmail.com>
-Subject: [opkg-utils][PATCH 12/22] 2to3: exception handling fixes
+Subject: [opkg-utils][PATCH 13/22] opkg-make-index: show OSError/IOError
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,63 +42,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Mar 2012 22:24:21 -0000
+X-List-Received-Date: Thu, 29 Mar 2012 22:24:28 -0000
 
 Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
 ---
- arfile.py       |    4 ++--
- opkg-make-index |    4 ++--
- opkg.py         |    2 +-
- 3 files changed, 5 insertions(+), 5 deletions(-)
+ opkg-make-index |   20 ++++++++++----------
+ 1 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/arfile.py b/arfile.py
-index 9149387..3f797a8 100644
---- a/arfile.py
-+++ b/arfile.py
-@@ -54,11 +54,11 @@ class ArFile:
-             return FileSection(self.f, self.directory[fname][-1], int(self.directory[fname][5]))
- 
-         if self.directoryRead:
--            raise IOError, (2, "AR member not found: " + fname)
-+            raise IOError("AR member not found: " + fname)
- 
-         f = self._scan(fname)
-         if f == None:
--            raise IOError, (2, "AR member not found: " + fname)
-+            raise IOError("AR member not found: " + fname)
-         return f
- 
- 
 diff --git a/opkg-make-index b/opkg-make-index
-index 2fc8a69..997f286 100755
+index 997f286..e0844a7 100755
 --- a/opkg-make-index
 +++ b/opkg-make-index
-@@ -198,10 +198,10 @@ names.sort()
- for name in names:
+@@ -131,11 +131,11 @@ for filename in files:
+                to_morgue(basename)
+           if opt_s:
+                print(filename)
+-  except OSError:
+-      sys.stderr.write("Package %s disappeared on us!\n" % (filename))
++  except OSError as e:
++      sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (filename, e))
+       continue
+-  except IOError:
+-      sys.stderr.write("Package %s disappeared on us!\n" % (filename))
++  except IOError as e:
++      sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (filename, e))
+       continue
+ 
+ pkgsStampsFile = open(stamplist_filename, "w")
+@@ -173,11 +173,11 @@ for name in names:
+      if (verbose):
+           sys.stderr.write("Writing info for package %s\n" % (pkg.package,))
+      print(pkg)
+-  except OSError:
+-      sys.stderr.write("Package %s disappeared on us!\n" % (name))
++  except OSError as e:
++      sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (name, e))
+       continue
+-  except IOError:
+-      sys.stderr.write("Package %s disappeared on us!\n" % (name))
++  except IOError as e:
++      sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (name, e))
+       continue
+ 
+ if packages_filename:
+@@ -199,10 +199,10 @@ for name in names:
       try:
            fnlist = packages[name].get_file_list()
--     except OSError, e:
-+     except OSError as e:
-           sys.stderr.write("Package %s disappeared on us!\n" % (name))
+      except OSError as e:
+-          sys.stderr.write("Package %s disappeared on us!\n" % (name))
++          sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (name, e))
            continue
--     except IOError, e:
-+     except IOError as e:
-           sys.stderr.write("Package %s disappeared on us!\n" % (name))
+      except IOError as e:
+-          sys.stderr.write("Package %s disappeared on us!\n" % (name))
++          sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (name, e))
            continue
       for fn in fnlist:
-diff --git a/opkg.py b/opkg.py
-index 75ad3d3..ae31794 100644
---- a/opkg.py
-+++ b/opkg.py
-@@ -176,7 +176,7 @@ class Package:
-         elif name == 'size':
-             return self._get_file_size()
-         else:
--            raise AttributeError, name
-+            raise AttributeError(name)
- 
-     def _computeFileMD5(self):
-         # compute the MD5.
+           (h,t) = os.path.split(fn)
 -- 
 1.7.8.5
 
