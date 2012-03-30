@@ -1,24 +1,32 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9873E00723
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 05:19:17 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 30 Mar 2012 05:19:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="123588647"
-Received: from unknown (HELO helios.localnet) ([10.252.123.235])
-	by orsmga001.jf.intel.com with ESMTP; 30 Mar 2012 05:19:16 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 30 Mar 2012 13:19:15 +0100
-Message-ID: <2875706.c2lxvPnLMP@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.0 (Linux/3.0.0-17-generic-pae; KDE/4.8.1; i686; ; )
-In-Reply-To: <CB9B56AE.BE8E%belen.barros.pena@intel.com>
-References: <CB9B56AE.BE8E%belen.barros.pena@intel.com>
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D8FAE00723
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 06:18:47 -0700 (PDT)
+Received: by pbbjt11 with SMTP id jt11so2093341pbb.35
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 06:18:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=HB3yadqFiSmcJMBbYuSu9X4ASLl1m6YC2icwWCV8DHU=;
+	b=HNaixbm50pQ5GSnjY4qqvPfK97BNQXmDBDGDNBhNAsqTodiM9OiEfH91JAFImPmvP7
+	RlBUMi5EnEyzattIcCYBWHsD83hzZ6LeoR+Pb9ETYJ19TFPIoutB9E8JGpxh7MOA7K0C
+	xJIeaO45tHGG/zhLl+Oz/1+MIHpUNi7vDacB24yxDP9eBST2ieAht58EBT6QdvUKOoP4
+	TKtQCJagOzHiXg3EwRrBJVdjtnpMGObTkEb0scU8D5ih0j0+Fw4LdTneax5VjQWzXN+U
+	7JD8CGTfN+9928shJOoLz1GRdLhwxHl/i7CXgYnKNg4fPHvhASNREaJ4V76KknDo1R0Z
+	j/rg==
 MIME-Version: 1.0
-Cc: Giulia Piu <giulia@closertag.com>
-Subject: Re: Deleting layers in Hob
+Received: by 10.68.201.6 with SMTP id jw6mr9360987pbc.92.1333113527348; Fri,
+	30 Mar 2012 06:18:47 -0700 (PDT)
+Received: by 10.68.20.134 with HTTP; Fri, 30 Mar 2012 06:18:47 -0700 (PDT)
+In-Reply-To: <1333090420.10988.4.camel@localhost.localdomain>
+References: <1333090420.10988.4.camel@localhost.localdomain>
+Date: Fri, 30 Mar 2012 09:18:47 -0400
+Message-ID: <CADzUK1K28hYC=7f7MxiHYeoEhD4_FKPFZBeiu6jhZnsngrzcJg@mail.gmail.com>
+From: Autif Khan <autif.mlist@gmail.com>
+To: niqingliang@insigma.com.cn
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: how to install kernel module(s)?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,39 +38,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 12:19:18 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 30 Mar 2012 13:18:47 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Friday 30 March 2012 11:26:15 Barros Pena, Belen wrote:
-> On 30/03/2012 07:32, "Khem Raj" <raj.khem@gmail.com> wrote:
-> >On Thu, Mar 29, 2012 at 4:05 AM, Barros Pena, Belen
-> ><belen.barros.pena@intel.com> wrote:
-> >> Do we have enough information to make a decision about the meta-yocto
-> >> layer? I don't understand all the technical details, but I am inclined
-> >> to make it non-deletable in Hob (i.e. it is not possible to delete this
-> >> layer in Hob).
-> >> 
-> >> What do you think?
-> >
-> >bad idea. Unless you intend to shackle hob to yocto. Is that the
-> >intention ?
+> Hi,
+> I have made a custom kernel bb file, and get some modules in
+> tmp/deploy/images/modules-3.3.0-r1-pangu-test.tgz,
 >
-> Well: I don't know. Does anybody have an answer?
+> but how to install the modules into the image?
 
-We don't want to tie hob to meta-yocto, no. The solution to this problem is to 
-have Hob understand when removing a layer is removing the DISTRO selection 
-that a user currently has made and warning them about it; if they respond in 
-affirmative then DISTRO can be set to empty (or we can allow them to select an 
-alternative, perhaps - something for the designers to consider). Fortunately 
-since DISTRO points directly to a file in conf/distro/ the detection part is 
-pretty easy to implement.
+There is a chance that I completely misunderstand your scenario.
 
-Cheers,
-Paul
+Presumably, you have a recipe for your kernel modules - something akin
+to meta/recipes-kernel/hello-mod/hello-mod_0.1.bb
 
--- 
+In that case, to include the module, you need to add hello-mod to the
+IMAGE_INSTALL variable (either in local.conf or in your one
+meta-layer's images recipes)
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Now, if you are modifying the kernel's recipe to get the modules - I
+am not sure.
+
+Does this help? Can you please clarify, how the modules are built?
 
