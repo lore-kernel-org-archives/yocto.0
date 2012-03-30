@@ -1,37 +1,39 @@
-Return-Path: <reinette.chatre@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15F6FE0044D
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 11:02:29 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 30 Mar 2012 11:02:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="83606667"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.226.10])
-	by AZSMGA002.ch.intel.com with ESMTP; 30 Mar 2012 11:02:28 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx605.amr.corp.intel.com (10.22.226.10) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 30 Mar 2012 11:02:28 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.154]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.106]) with mapi id
-	14.01.0355.002; Fri, 30 Mar 2012 11:02:27 -0700
-From: "Chatre, Reinette" <reinette.chatre@intel.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] care when using remove_packaging_data_files
-Thread-Index: AQHNDc9R7ZpwM3ZgUkOu1hPq3POH55aC1nqAgACrXYCAAAyuAIAACa0A
-Date: Fri, 30 Mar 2012 18:02:26 +0000
-Message-ID: <1333130534.8318.97.camel@rchatre.jf.intel.com>
-References: <1333041222.8318.46.camel@rchatre.jf.intel.com>
-	<CAMKF1sqCu--JUWwj4ehApYSkfO5Farb6oQeYfJiOqcX9NzBUqg@mail.gmail.com>
-	<1333125733.8318.79.camel@rchatre.jf.intel.com>
-	<CAMKF1sp3LyDZrC0nHdxXYumiJbJVvr5pNKT8Ehhpk2qhWpnbrA@mail.gmail.com>
-In-Reply-To: <CAMKF1sp3LyDZrC0nHdxXYumiJbJVvr5pNKT8Ehhpk2qhWpnbrA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.7.198.150]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: care when using remove_packaging_data_files
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 848FDE0044D
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 11:40:35 -0700 (PDT)
+Received: by pbbjt11 with SMTP id jt11so2562319pbb.35
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 11:40:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
+	:to:x-mailer:x-gm-message-state:content-type
+	:content-transfer-encoding;
+	bh=iRf8HnlsxomWNcboOE3qAsf9GXZo50wq/GXSpDeWt3E=;
+	b=VdcA1DG3llnEHO6MZwvyb2eoOQsLAA9c8RHSR1qA3B6/RfrH+k41m9Zd/BTnNDf3PM
+	2eYuQpI4ii4wtpgZlZrKLhRp44Y36H2SZkvrwSSEP+Ni7XfZfHwOLDl585Jv6Q2O5Jl3
+	ZrSZAXEoM5SK2z4TSFDBGJaQ5yyOCpeVUxnTWE0Edt37/V7dd837gwM5wNfNCv1JIxSc
+	25t1Vbla2RSMLPh9XAzfnkflDcDJRCiAzTwtNzShEIxYBU6wO1//wVG2WMliV4Ldexvt
+	FeRaP5ZfJJVoLpTxl85qMiXCkuXMgUkFgv4yK9Jzx3agnrb+CmvzG739nhAlObFr09qv
+	M5hA==
+Received: by 10.68.201.6 with SMTP id jw6mr11709954pbc.92.1333132835309;
+	Fri, 30 Mar 2012 11:40:35 -0700 (PDT)
+Received: from [10.61.32.129] ([69.38.219.78])
+	by mx.google.com with ESMTPS id y3sm2398717pbh.59.2012.03.30.11.40.33
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 30 Mar 2012 11:40:34 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1257)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <4F75A3E5.6060608@linux.intel.com>
+Date: Fri, 30 Mar 2012 11:40:47 -0700
+Message-Id: <0259BBCD-EF2C-4207-B1A6-1C65339BBE9B@dominion.thruhere.net>
+References: <4F75A3E5.6060608@linux.intel.com>
+To: Bryan O'Donoghue <bryan.odonoghue@linux.intel.com>
+X-Mailer: Apple Mail (2.1257)
+X-Gm-Message-State: ALoCoQld2t6KRrOyFfAo9kDXfqJ6Cwf3hifzqCEulRzZByD1ELCAiclAXeKFpqwZEX/MVBeEGSyQ
+Cc: yocto@yoctoproject.org
+Subject: Re: udev configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,21 +45,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 18:02:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <55A3EB61A1414446A3C5E46618317AAA@intel.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 30 Mar 2012 18:40:35 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-T24gRnJpLCAyMDEyLTAzLTMwIGF0IDEwOjI3IC0wNzAwLCBLaGVtIFJhaiB3cm90ZToNCj4gT24g
-RnJpLCBNYXIgMzAsIDIwMTIgYXQgOTo0MiBBTSwgQ2hhdHJlLCBSZWluZXR0ZQ0KPiA8cmVpbmV0
-dGUuY2hhdHJlQGludGVsLmNvbT4gd3JvdGU6DQo+ID4gQWJzb2x1dGVseSwgYW4gb3B0aW9uIGlz
-IGluZGVlZCB0byBsb29rIGlmIHJlY2lwZSBjYW4gZG8gZXZlcnl0aGluZyB3aGVuDQo+ID4gaW1h
-Z2UgaXMgY3JlYXRlZC4gSSB3YXMganVzdCBzdXJwcmlzZWQgdG8gbGVhcm4gdGhhdCB0aGVzZSBt
-aW5pbWFsDQo+ID4gaW1hZ2VzIGJ5IGRlZmF1bHQgcHJldmVudCBhbGwgZmlyc3QgYm9vdCBwb3N0
-IGluc3RhbGwgc2NyaXB0cyBmcm9tDQo+ID4gcnVubmluZy4NCj4gDQo+IHJlbWVtYmVyIHRoZSBu
-YW1lIGhhcyAibWluaW1hbCIgaW4gaXQuDQoNCkdvb2QgcG9pbnQsIGJ1dCB3aGF0IEkgd2FudGVk
-IHRvIHBvaW50IG91dCBpcyB0aGF0IHRoZSBiZWhhdmlvciBhbW9uZw0KdGhlIGRpZmZlcmVudCBw
-YWNrYWdlIG1hbmFnZW1lbnQgc3lzdGVtcyB3aGVuIGRlYWxpbmcgd2l0aCB0aGlzIGlzDQpkaWZm
-ZXJlbnQuDQoNClJlaW5ldHRlDQo=
+
+Op 30 mrt. 2012, om 05:15 heeft Bryan O'Donoghue het volgende =
+geschreven:
+
+> Greetings list.
+>=20
+> I'm booting a yocto image a "core-image-minimal" and I've noticed that =
+not all of the serial ports have entries in /dev. More generally for =
+hardware coming down the line, I'd like to know how/where the =
+configuration for udev is supposed to go in a yocto BSP.
+
+For creating device nodes udev doesn't have a config anymore, it's all =
+handled by the kernel using devtmpfs. I suspect not all serial ports are =
+enabled in the kernel.
+
+regards,
+
+Koen=
 
