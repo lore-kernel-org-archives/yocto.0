@@ -1,31 +1,23 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CDE8E006C7
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 04:26:41 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 30 Mar 2012 04:26:41 -0700
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9873E00723
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 05:19:17 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 30 Mar 2012 05:19:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="147832893"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by fmsmga002.fm.intel.com with ESMTP; 30 Mar 2012 04:26:40 -0700
-Received: from irsmsx101.ger.corp.intel.com ([169.254.1.40]) by
-	IRSMSX103.ger.corp.intel.com ([169.254.3.225]) with mapi id
-	14.01.0355.002; Fri, 30 Mar 2012 12:26:16 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] Deleting layers in Hob
-Thread-Index: AQHNDmfrPz0YgkOEskKQXE703F6Xkw==
-Date: Fri, 30 Mar 2012 11:26:15 +0000
-Message-ID: <CB9B56AE.BE8E%belen.barros.pena@intel.com>
-In-Reply-To: <CAMKF1spx3rzKqcTMbiW0pxv58OrDEpAPAieV3q2EWUK5T7gnMA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.14.0.111121
-x-originating-ip: [10.254.199.101]
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="123588647"
+Received: from unknown (HELO helios.localnet) ([10.252.123.235])
+	by orsmga001.jf.intel.com with ESMTP; 30 Mar 2012 05:19:16 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 30 Mar 2012 13:19:15 +0100
+Message-ID: <2875706.c2lxvPnLMP@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-17-generic-pae; KDE/4.8.1; i686; ; )
+In-Reply-To: <CB9B56AE.BE8E%belen.barros.pena@intel.com>
+References: <CB9B56AE.BE8E%belen.barros.pena@intel.com>
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Giulia Piu <giulia@closertag.com>
+Cc: Giulia Piu <giulia@closertag.com>
 Subject: Re: Deleting layers in Hob
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -38,41 +30,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 11:26:41 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 30 Mar 2012 12:19:18 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <62C03DD087CE504C94C5991295D35786@intel.com>
-Content-Transfer-Encoding: quoted-printable
 
-Well: I don't know. Does anybody have an answer?
-
-Belen
-
-On 30/03/2012 07:32, "Khem Raj" <raj.khem@gmail.com> wrote:
-
->On Thu, Mar 29, 2012 at 4:05 AM, Barros Pena, Belen
-><belen.barros.pena@intel.com> wrote:
->> Do we have enough information to make a decision about the meta-yocto
->> layer? I don't understand all the technical details, but I am inclined
->>to
->> make it non-deletable in Hob (i.e. it is not possible to delete this
->>layer
->> in Hob).
->>
->> What do you think?
+On Friday 30 March 2012 11:26:15 Barros Pena, Belen wrote:
+> On 30/03/2012 07:32, "Khem Raj" <raj.khem@gmail.com> wrote:
+> >On Thu, Mar 29, 2012 at 4:05 AM, Barros Pena, Belen
+> ><belen.barros.pena@intel.com> wrote:
+> >> Do we have enough information to make a decision about the meta-yocto
+> >> layer? I don't understand all the technical details, but I am inclined
+> >> to make it non-deletable in Hob (i.e. it is not possible to delete this
+> >> layer in Hob).
+> >> 
+> >> What do you think?
+> >
+> >bad idea. Unless you intend to shackle hob to yocto. Is that the
+> >intention ?
 >
->bad idea. Unless you intend to shackle hob to yocto. Is that the
->intention ?
+> Well: I don't know. Does anybody have an answer?
 
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
+We don't want to tie hob to meta-yocto, no. The solution to this problem is to 
+have Hob understand when removing a layer is removing the DISTRO selection 
+that a user currently has made and warning them about it; if they respond in 
+affirmative then DISTRO can be set to empty (or we can allow them to select an 
+alternative, perhaps - something for the designers to consider). Fortunately 
+since DISTRO points directly to a file in conf/distro/ the detection part is 
+pretty easy to implement.
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+Cheers,
+Paul
 
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
