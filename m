@@ -1,34 +1,32 @@
 Return-Path: <belen.barros.pena@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C63E8E006C7
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 04:22:11 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 30 Mar 2012 04:22:10 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CDE8E006C7
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 04:26:41 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 30 Mar 2012 04:26:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="123573442"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="147832893"
 Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by orsmga001.jf.intel.com with ESMTP; 30 Mar 2012 04:22:10 -0700
-Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Fri, 30 Mar 2012 12:21:23 +0100
+	by fmsmga002.fm.intel.com with ESMTP; 30 Mar 2012 04:26:40 -0700
 Received: from irsmsx101.ger.corp.intel.com ([169.254.1.40]) by
-	IRSMSX151.ger.corp.intel.com ([169.254.4.127]) with mapi id
-	14.01.0355.002; Fri, 30 Mar 2012 12:21:23 +0100
+	IRSMSX103.ger.corp.intel.com ([169.254.3.225]) with mapi id
+	14.01.0355.002; Fri, 30 Mar 2012 12:26:16 +0100
 From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: filing enhancement for build appliance
-Thread-Index: AQHNDmc8Ni6KlHeFzkCFDOAp4LqAvA==
-Date: Fri, 30 Mar 2012 11:21:22 +0000
-Message-ID: <CB9B55A7.BE89%belen.barros.pena@intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C451AECBF@ORSMSX101.amr.corp.intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] Deleting layers in Hob
+Thread-Index: AQHNDmfrPz0YgkOEskKQXE703F6Xkw==
+Date: Fri, 30 Mar 2012 11:26:15 +0000
+Message-ID: <CB9B56AE.BE8E%belen.barros.pena@intel.com>
+In-Reply-To: <CAMKF1spx3rzKqcTMbiW0pxv58OrDEpAPAieV3q2EWUK5T7gnMA@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 user-agent: Microsoft-MacOutlook/14.14.0.111121
 x-originating-ip: [10.254.199.101]
 MIME-Version: 1.0
-Subject: Re: filing enhancement for build appliance
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Giulia Piu <giulia@closertag.com>
+Subject: Re: Deleting layers in Hob
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,56 +38,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 11:22:11 -0000
+X-List-Received-Date: Fri, 30 Mar 2012 11:26:41 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <42D435BD87693542AC13D04867B6E951@intel.com>
+Content-ID: <62C03DD087CE504C94C5991295D35786@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-I'll do that then. Thanks!!
+Well: I don't know. Does anybody have an answer?
 
 Belen
 
-On 29/03/2012 16:51, "Zhang, Jessica" <jessica.zhang@intel.com> wrote:
+On 30/03/2012 07:32, "Khem Raj" <raj.khem@gmail.com> wrote:
 
->Belen,
+>On Thu, Mar 29, 2012 at 4:05 AM, Barros Pena, Belen
+><belen.barros.pena@intel.com> wrote:
+>> Do we have enough information to make a decision about the meta-yocto
+>> layer? I don't understand all the technical details, but I am inclined
+>>to
+>> make it non-deletable in Hob (i.e. it is not possible to delete this
+>>layer
+>> in Hob).
+>>
+>> What do you think?
 >
->That should work.
->
->Thanks,
->Jessica
->
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org
->[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Barros Pena, Belen
->Sent: Thursday, March 29, 2012 8:16 AM
->To: yocto@yoctoproject.org
->Subject: [yocto] filing enhancement for build appliance
->
->I've just received an screenshot showing how Hob looks like in the build
->appliance, and I'd like to file an enhancement to include a GTK theme
->that will show Hob with a better face.
->
->Does anybody know how should I file it? Bugzilla under build system >
->general and indicating 'build appliance' in the title?
->
->Thanks
->
->Belen
->---------------------------------------------------------------------
->Intel Corporation (UK) Limited
->Registered No. 1134945 (England)
->Registered Office: Pipers Way, Swindon SN3 1RJ VAT No: 860 2173 47
->
->This e-mail and any attachments may contain confidential material for the
->sole use of the intended recipient(s). Any review or distribution by
->others is strictly prohibited. If you are not the intended recipient,
->please contact the sender and delete all copies.
->
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+>bad idea. Unless you intend to shackle hob to yocto. Is that the
+>intention ?
 
 ---------------------------------------------------------------------
 Intel Corporation (UK) Limited
