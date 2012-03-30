@@ -1,31 +1,39 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0A55E013D6
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 17:10:06 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 29 Mar 2012 17:10:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208,217";a="83309065"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by AZSMGA002.ch.intel.com with ESMTP; 29 Mar 2012 17:10:06 -0700
-Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 29 Mar 2012 17:10:05 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.154]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.199]) with mapi id
-	14.01.0355.002; Thu, 29 Mar 2012 17:10:05 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Bugs for 1.2 release
-Thread-Index: Ac0OCXMkVu3HepwTTrSaOQzHv7AKnQ==
-Date: Fri, 30 Mar 2012 00:10:04 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C451AF1E7@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC410E013D9
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 20:12:34 -0700 (PDT)
+Received: by pbbjt11 with SMTP id jt11so1318922pbb.35
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2012 20:12:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc
+	:x-gm-message-state:content-type;
+	bh=p0dJSkZRzJm45yimEBSSND5hygary0CRF3EER1ZMY2s=;
+	b=axLx3FDbSFfZ2wKhQitbhgMgUoAgMiwa51uDMNTZxJE1LyKufY6Br6jfsgw1t9Udrh
+	jBCRZaLViN5URIRQU/hzDiLW7vidAjnbVwgcp+VH1iFFDVou7iTXufCYe89a3jHflvGD
+	ZA+saoma2otF7dSsGfw2WyW1Y3CbNQScsUAyipPXLdALYwiUxJ2hgx2/Pd4rWh6HS+a8
+	F4UYbIXFGDTaeUfirXUWoLuj6/87eYN7sEs7rhkQcSn6UZuVMiNWJOMyxOU4lIwBwFP9
+	1yIdPUdf9sGDvF9w3Bni5lLJLhVP8AeNRc1c4htTYxU4QuFfG0Pcvp2zxVWu/+Fv8hlt
+	US/g==
 MIME-Version: 1.0
-Subject: Bugs for 1.2 release
+Received: by 10.68.189.138 with SMTP id gi10mr5012482pbc.89.1333077154638;
+	Thu, 29 Mar 2012 20:12:34 -0700 (PDT)
+Sender: rstreif@linuxfoundation.org
+Received: by 10.143.29.18 with HTTP; Thu, 29 Mar 2012 20:12:34 -0700 (PDT)
+In-Reply-To: <alpine.DEB.2.02.1203291826450.21523@oneiric>
+References: <alpine.DEB.2.02.1203291746350.19207@oneiric>
+	<CA+gsK-qYyhBU5gXHAECt=udaX8DpoAz0Y-t5urya8qqimXBgDQ@mail.gmail.com>
+	<alpine.DEB.2.02.1203291826450.21523@oneiric>
+Date: Thu, 29 Mar 2012 20:12:34 -0700
+X-Google-Sender-Auth: TgUAIGtajY3NFnFM-DEdQK41o7o
+Message-ID: <CA+gsK-rXemLsxH0NCOaX7xvFNQOYsn416_rEAWyg9s+4Qo6mJg@mail.gmail.com>
+From: Rudolf Streif <rudolf.streif@linux.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-Gm-Message-State: ALoCoQn9+ep3LPajqPWK5L+5DVgVtJyFJG1jVU98u7voHcGBJJHCnuNDcVbAx46xQYm7fc5zx2x2
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: which yocto doc explains bitbake assignment variations?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,112 +45,182 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 00:10:07 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C451AF1E7ORSMSX101amrcor_"
+X-List-Received-Date: Fri, 30 Mar 2012 03:12:35 -0000
+Content-Type: multipart/alternative; boundary=e89a8fb2091e42adaf04bc6d3695
 
---_000_C6510F6D410BB64A8C15398EDC6B847C451AF1E7ORSMSX101amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--e89a8fb2091e42adaf04bc6d3695
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi All,
+1. yes, = will always override any prior ?= or ??= and any subsequent ?= or
+??= will not change the setting anymore.
 
+2. yes, a ?= following a ??= will set the variable. Only a = will be
+override the setting of the ?=. Any following ?= and ??= will not change
+the setting.
 
-
-As we're approaching 1.2 release, the bug triage team comes up an addendum =
-to the existing process.  We're marking certain medium+normal bugs with a t=
-ag [1.2] in the whiteboard area.  This means these bugs are considered a de=
-sired to be fixed in the 1.2 release timeframe.  So for each of us that wor=
-king on bug fixing, the working order should be:  1st. critical, high major=
- bugs, 2nd, medium bugs with a [1.2] tag, 3rd. since we've already tagged R=
-C1,  then other medium bugs that shouldn't introduce a too invasive/massive=
- of a change.
+3. yes, a ?= or = following a ??= will set the variable.
 
 
+Just try it. Put a variable (FOO) in local.conf and use bitbake -e | grep
+FOO
 
-Thanks,
+FOO ??= "bar"
+FOO ?= "barbar"
 
-Jessica
+:rjs
 
+On Thu, Mar 29, 2012 at 3:34 PM, Robert P. J. Day <rpjday@crashcourse.ca>wrote:
 
-
-
-
-
---_000_C6510F6D410BB64A8C15398EDC6B847C451AF1E7ORSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">As we&#8217;re approaching 1.2 release, the bug tria=
-ge team comes up an addendum to the existing process.&nbsp; We&#8217;re mar=
-king certain medium&#43;normal bugs with a tag [1.2] in the whiteboard area=
-.&nbsp; This means these bugs are considered a desired to be
- fixed in the 1.2 release timeframe.&nbsp; So for each of us that working o=
-n bug fixing, the working order should be: &nbsp;1<sup>st</sup>. critical, =
-high major bugs, 2<sup>nd</sup>, medium bugs with a [1.2] tag, 3<sup>rd</su=
-p>. since we&#8217;ve already tagged RC1,&nbsp; then
- other medium bugs that shouldn&#8217;t introduce a too invasive/massive of=
- a change.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Jessica<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+>  just to be absolutely clear so i don't misunderstand:
+>
+> On Thu, 29 Mar 2012, Rudolf Streif wrote:
+>
+> > VAR = "value"
+> >
+> >     In this example, VAR is set to value.
+>
+>   so the "=" assignment will *always* set the variable to that value,
+> regardless of what combination of =, ?= or ??= has come before it,
+> correct?
+>
+> >     Early Default Value Assignment (?=)
+> >
+> >     A variable can be early-assigned a default value using
+> the ?= assignment operator:
+> >
+> > A ?= "1"
+> > B ?= "2"
+> > B ?= "3"
+> >
+> >     In this example A will contain 1 if it was not previously
+> set. B will contain 2 because
+> >     the ?= assignment operator is immediate meaning that if there are
+> multiple ?= assignments
+> >     to a single variable, the first one will be used.
+>
+>   and the first ?= will be processed, even if there were earlier ??=
+> assignments, correct?  (obviously not if there were earlier =
+> assignments.)
+>
+> > A ??= "1"
+> > B ??= "2"
+> > B ??= "3"
+> >
+> >     In this example A will contain 1 if it was not previously
+> set. B will contain 3 because
+> >     the ??= assignment operator is a late or lazy assignment operator
+> and assignment will not
+> >     take place until the end of the parsing process. If there are
+> multiple ??= assignments to a
+> >     single variable, the last one will be used.
+>
+>   however, this "weak" assignment is cancelled by the appearance of
+> either a = or a ?= assignment at any time, yes?
+>
+> rday
+>
+> --
+>
+> ========================================================================
+> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                        http://crashcourse.ca
+>
+> Twitter:                                       http://twitter.com/rpjday
+> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+> ========================================================================
+>
 
---_000_C6510F6D410BB64A8C15398EDC6B847C451AF1E7ORSMSX101amrcor_--
+--e89a8fb2091e42adaf04bc6d3695
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+1. yes, =3D will always override any prior ?=3D or ??=3D and any subsequent=
+ ?=3D or ??=3D will not change the setting anymore.<div><br></div><div>2. y=
+es, a ?=3D following a ??=3D will set the variable. Only a =3D will be over=
+ride the setting of the ?=3D. Any following ?=3D and ??=3D will not change =
+the setting.</div>
+<div><br></div><div>3. yes, a ?=3D or =3D following a ??=3D will set the va=
+riable.</div><div><br></div><div><br></div><div>Just try it. Put a variable=
+ (FOO) in local.conf and use bitbake -e | grep FOO</div><div><br></div><div=
+>FOO ??=3D &quot;bar&quot;</div>
+<div>FOO ?=3D &quot;barbar&quot;</div><div><br></div><div>:rjs<br><br><div =
+class=3D"gmail_quote">On Thu, Mar 29, 2012 at 3:34 PM, Robert P. J. Day <sp=
+an dir=3D"ltr">&lt;<a href=3D"mailto:rpjday@crashcourse.ca">rpjday@crashcou=
+rse.ca</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><br>
+ =A0just to be absolutely clear so i don&#39;t misunderstand:<br>
+<div class=3D"im"><br>
+On Thu, 29 Mar 2012, Rudolf Streif wrote:<br>
+<br>
+&gt; VAR =3D &quot;value&quot;<br>
+&gt;<br>
+&gt; =A0 =A0 In this example,=A0VAR=A0is set to=A0value.<br>
+<br>
+</div> =A0so the &quot;=3D&quot; assignment will *always* set the variable =
+to that value,<br>
+regardless of what combination of =3D, ?=3D or ??=3D has come before it,<br=
+>
+correct?<br>
+<div class=3D"im"><br>
+&gt; =A0 =A0 Early Default Value Assignment (?=3D)<br>
+&gt;<br>
+&gt; =A0 =A0 A variable can be early-assigned a default value using the=A0?=
+=3D=A0assignment operator:<br>
+&gt;<br>
+&gt; A ?=3D &quot;1&quot;<br>
+&gt; B ?=3D &quot;2&quot;<br>
+&gt; B ?=3D &quot;3&quot;<br>
+&gt;<br>
+&gt; =A0 =A0 In this example=A0A=A0will contain=A01=A0if it was not previou=
+sly set.=A0B=A0will contain=A02=A0because<br>
+&gt; =A0 =A0 the=A0?=3D=A0assignment operator is immediate meaning that if =
+there are multiple=A0?=3D=A0assignments<br>
+&gt; =A0 =A0 to a single variable, the first one will be used.<br>
+<br>
+</div> =A0and the first ?=3D will be processed, even if there were earlier =
+??=3D<br>
+assignments, correct? =A0(obviously not if there were earlier =3D<br>
+assignments.)<br>
+<div class=3D"im"><br>
+&gt; A ??=3D &quot;1&quot;<br>
+&gt; B ??=3D &quot;2&quot;<br>
+&gt; B ??=3D &quot;3&quot;<br>
+&gt;<br>
+&gt; =A0 =A0 In this example=A0A=A0will contain=A01=A0if it was not previou=
+sly set.=A0B=A0will contain=A03=A0because<br>
+&gt; =A0 =A0 the=A0??=3D=A0assignment operator is a late or lazy assignment=
+ operator and assignment will not<br>
+&gt; =A0 =A0 take place until the end of the parsing process. If there are =
+multiple=A0??=3D=A0assignments to a<br>
+&gt; =A0 =A0 single variable, the last one will be used.<br>
+<br>
+</div> =A0however, this &quot;weak&quot; assignment is cancelled by the app=
+earance of<br>
+either a =3D or a ?=3D assignment at any time, yes?<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+rday<br>
+<br>
+--<br>
+<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+Robert P. J. Day =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 Ottawa, Ontario, CANADA<br>
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0<a href=3D"http://crashcour=
+se.ca" target=3D"_blank">http://crashcourse.ca</a><br>
+<br>
+Twitter: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 <a href=3D"http://twitter.com/rpjday" target=3D"_blank">http://=
+twitter.com/rpjday</a><br>
+LinkedIn: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 <a hr=
+ef=3D"http://ca.linkedin.com/in/rpjday" target=3D"_blank">http://ca.linkedi=
+n.com/in/rpjday</a><br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div></d=
+iv></blockquote></div><br></div>
+
+--e89a8fb2091e42adaf04bc6d3695--
