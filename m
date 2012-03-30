@@ -1,31 +1,20 @@
-Return-Path: <dlazzari@leapfrog.com>
-Received: from mx3.leapfrog.com (mx3.leapfrog.com [63.114.26.253])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77A27E0044D
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 15:32:45 -0700 (PDT)
-Received: from mx3.leapfrog.com (localhost [127.0.0.1])
-	by localhost.leapfrog.com (Postfix) with ESMTP id B59515FA6
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 15:32:33 -0700 (PDT)
-Received: from NAEXCHHT01.na.leapfrog.com (unknown [10.15.6.13])
-	by mx3.leapfrog.com (Postfix) with ESMTP id 94B695EE1
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 15:32:33 -0700 (PDT)
-Received: from NAEMCASHT01.na.leapfrog.com (10.16.4.161) by
-	NAEXCHHT01.na.leapfrog.com (10.15.6.13) with Microsoft SMTP Server
-	(TLS) id 8.2.254.0; Fri, 30 Mar 2012 15:32:40 -0700
-Received: from NAEMMAIL01.na.leapfrog.com ([fe80::252e:28a6:3d8f:6991]) by
-	NAEMCASHT01.na.leapfrog.com ([::1]) with mapi id 14.01.0355.002;
-	Fri, 30 Mar 2012 15:32:40 -0700
-From: Daniel Lazzari <dlazzari@leapfrog.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Moving angstrom under the yocto banner
-Thread-Index: Ac0OxP6R1yER04oUTqeF9XmX9rVozw==
-Date: Fri, 30 Mar 2012 22:32:39 +0000
-Message-ID: <E7A9054A5ACABE48B0E540E46E862B0F04273D0E@NAEMMAIL01.na.leapfrog.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.100.2.5]
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E4ECE0044D
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 15:52:05 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 30 Mar 2012 15:52:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="127136624"
+Received: from nbuild0.sc.intel.com ([172.25.110.36])
+	by orsmga002.jf.intel.com with ESMTP; 30 Mar 2012 15:52:05 -0700
+From: nitin.a.kamble@intel.com
+To: yocto@yoctoproject.org
+Date: Fri, 30 Mar 2012 15:52:04 -0700
+Message-Id: <cover.1333145263.git.nitin.a.kamble@intel.com>
+X-Mailer: git-send-email 1.7.6.4
 MIME-Version: 1.0
-Subject: Re: Moving angstrom under the yocto banner
+Subject: [PATCH 0/3] Misc Fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,37 +26,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 22:32:45 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 30 Mar 2012 22:52:06 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-I just thought I'd chime in on this discussion as someone who is outside of=
- both groups. It's been difficult to explain to our teams internally the wh=
-ole Yocto Project vs. Angstrom-core terminology, and since everyone here is=
- familiar with Linux and distros, we decided to put it in those terms. Note=
- that not coming from these groups, there's a good chance we've been explai=
-ning it all wrong, in which case, feel free to correct and clarify and I'd =
-be happy to change our internal explanations.
+From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-We see bitbake/oe-core as Debian based Linux, Poky and Angstrom as distros =
-(like Ubuntu and Debian), and the Yocto Project as something like Canonical=
-. The Yocto Project regularly contributes to bitbake and oe-core, but also =
-maintains layers and products on top of that, like meta-yocto and the Eclip=
-se ADT plugin, all of which constitutes the Poky distro. The Yocto Project =
-then has regular releases of stable snapshots, much like you have Ubuntu 10=
-.04, 10.10, etc.
+The following changes since commit 06fc2d2ec8e72f063f2c67601b2f027f76971e05:
 
-That said, I personally feel (this is not necessarily representative of my =
-co-workers or company) that Angstrom, as a distro, should be allowed to use=
- the Yocto Project name and have the Yocto Project post information about A=
-ngstrom on their Projects page, if Angstrom can stick to a regular release =
-schedule that meets the same quality requirements that Poky does. I think t=
-hat would ensure that the Yocto Project trademark maintains a quality image=
- while helping users whose projects align better with the Angstrom distro t=
-han with Poky know that there are other oe-core distros out there.
+  documentation/dev-manual/dev-manual-common-tasks.xml: Title change (2012-03-30 17:20:51 +0100)
 
-Daniel Lazzari Jr.
-Firmware Engineer, LeapFrog
-dlazzari@leapfrog.com
+are available in the git repository at:
+  git://git.pokylinux.org/poky-contrib nitin/misc
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=nitin/misc
+
+Nitin A Kamble (3):
+  nasm: fix issue with repeat configure
+  cross-canadian.bbclass: fix rpath for sdk executables
+  poky-tiny: avoid eglibc locale packaging
+
+ meta-yocto/conf/distro/poky-tiny.conf   |    3 +++
+ meta/classes/cross-canadian.bbclass     |    4 +++-
+ meta/recipes-devtools/nasm/nasm_2.07.bb |    8 ++++----
+ 3 files changed, 10 insertions(+), 5 deletions(-)
+
+-- 
+1.7.6.4
+
 
