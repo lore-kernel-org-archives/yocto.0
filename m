@@ -1,32 +1,35 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D8FAE00723
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 06:18:47 -0700 (PDT)
-Received: by pbbjt11 with SMTP id jt11so2093341pbb.35
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 06:18:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=HB3yadqFiSmcJMBbYuSu9X4ASLl1m6YC2icwWCV8DHU=;
-	b=HNaixbm50pQ5GSnjY4qqvPfK97BNQXmDBDGDNBhNAsqTodiM9OiEfH91JAFImPmvP7
-	RlBUMi5EnEyzattIcCYBWHsD83hzZ6LeoR+Pb9ETYJ19TFPIoutB9E8JGpxh7MOA7K0C
-	xJIeaO45tHGG/zhLl+Oz/1+MIHpUNi7vDacB24yxDP9eBST2ieAht58EBT6QdvUKOoP4
-	TKtQCJagOzHiXg3EwRrBJVdjtnpMGObTkEb0scU8D5ih0j0+Fw4LdTneax5VjQWzXN+U
-	7JD8CGTfN+9928shJOoLz1GRdLhwxHl/i7CXgYnKNg4fPHvhASNREaJ4V76KknDo1R0Z
-	j/rg==
+Return-Path: <reinette.chatre@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67AECE01206
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 09:42:27 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 30 Mar 2012 09:42:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="123683120"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga001.jf.intel.com with ESMTP; 30 Mar 2012 09:42:27 -0700
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 30 Mar 2012 09:42:26 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.154]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.128]) with mapi id
+	14.01.0355.002; Fri, 30 Mar 2012 09:42:26 -0700
+From: "Chatre, Reinette" <reinette.chatre@intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] care when using remove_packaging_data_files
+Thread-Index: AQHNDc9R7ZpwM3ZgUkOu1hPq3POH55aC1nqAgACrXYA=
+Date: Fri, 30 Mar 2012 16:42:25 +0000
+Message-ID: <1333125733.8318.79.camel@rchatre.jf.intel.com>
+References: <1333041222.8318.46.camel@rchatre.jf.intel.com>
+	<CAMKF1sqCu--JUWwj4ehApYSkfO5Farb6oQeYfJiOqcX9NzBUqg@mail.gmail.com>
+In-Reply-To: <CAMKF1sqCu--JUWwj4ehApYSkfO5Farb6oQeYfJiOqcX9NzBUqg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.7.198.150]
 MIME-Version: 1.0
-Received: by 10.68.201.6 with SMTP id jw6mr9360987pbc.92.1333113527348; Fri,
-	30 Mar 2012 06:18:47 -0700 (PDT)
-Received: by 10.68.20.134 with HTTP; Fri, 30 Mar 2012 06:18:47 -0700 (PDT)
-In-Reply-To: <1333090420.10988.4.camel@localhost.localdomain>
-References: <1333090420.10988.4.camel@localhost.localdomain>
-Date: Fri, 30 Mar 2012 09:18:47 -0400
-Message-ID: <CADzUK1K28hYC=7f7MxiHYeoEhD4_FKPFZBeiu6jhZnsngrzcJg@mail.gmail.com>
-From: Autif Khan <autif.mlist@gmail.com>
-To: niqingliang@insigma.com.cn
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: how to install kernel module(s)?
+Subject: Re: care when using remove_packaging_data_files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,26 +41,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 13:18:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 30 Mar 2012 16:42:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <D5FF7C87CD9D7F4A882C984143E5FBFE@intel.com>
+Content-Transfer-Encoding: base64
 
-> Hi,
-> I have made a custom kernel bb file, and get some modules in
-> tmp/deploy/images/modules-3.3.0-r1-pangu-test.tgz,
->
-> but how to install the modules into the image?
-
-There is a chance that I completely misunderstand your scenario.
-
-Presumably, you have a recipe for your kernel modules - something akin
-to meta/recipes-kernel/hello-mod/hello-mod_0.1.bb
-
-In that case, to include the module, you need to add hello-mod to the
-IMAGE_INSTALL variable (either in local.conf or in your one
-meta-layer's images recipes)
-
-Now, if you are modifying the kernel's recipe to get the modules - I
-am not sure.
-
-Does this help? Can you please clarify, how the modules are built?
+T24gVGh1LCAyMDEyLTAzLTI5IGF0IDIzOjI4IC0wNzAwLCBLaGVtIFJhaiB3cm90ZToNCj4gT24g
+VGh1LCBNYXIgMjksIDIwMTIgYXQgMTA6MTMgQU0sIENoYXRyZSwgUmVpbmV0dGUNCj4gPHJlaW5l
+dHRlLmNoYXRyZUBpbnRlbC5jb20+IHdyb3RlOg0KPiA+IEhpLA0KPiA+DQo+ID4gSSBhbSBidWls
+ZGluZyBhbiBpbWFnZSB1c2luZyBpcGsgcGFja2FnZXMuIFRoZSBtaW5pbWFsIGltYWdlcyBhbGwg
+c2VlbQ0KPiA+IHRvIHNldCBST09URlNfUE9TVFBST0NFU1NfQ09NTUFORCB0byByZW1vdmVfcGFj
+a2FnaW5nX2RhdGFfZmlsZXMsIHdoaWNoDQo+ID4gKGZvciBhbGwgcGFja2FnZSBtYW5hZ2VtZW50
+IHN5c3RlbXMpIHJlY3Vyc2l2ZWx5IHJlbW92ZXMgdGhlIHBhY2thZ2VzDQo+ID4gZGlyZWN0b3J5
+IGluIC92YXIvbGliLiBUaGlzIHNlZW1zIGEgYml0IGhhcnNoIGNvbnNpZGVyaW5nIHRoYXQgc29t
+ZQ0KPiA+IHBhY2thZ2VzIG1heSBzdGlsbCBiZSBpbiB0aGUgdW5wYWNrZWQgc3RhdGUgYW5kIHRo
+dXMgaGF2ZSBhIHNjcmlwdCBpbg0KPiA+IHRoYXQgZGlyZWN0b3J5IHRoYXQgbmVlZHMgdG8gYmUg
+cnVuIHdoZW4gdGhlIGltYWdlIGJvb3RzLg0KPiANCj4gaG1tbSB3aGF0IGNhc2VkIGRpZCB5b3Ug
+ZmluZCA/IGlzIGl0IHBvc3NpYmxlIHRvIGZpeCB0aGUgcmVjaXBlIGl0c2VsZg0KPiB0byBoYXZl
+IHRob3NlIHNjcmlwdHMgcG9zdCBwcm9jZXNzZWQgb2ZmbGluZQ0KDQpBYnNvbHV0ZWx5LCBhbiBv
+cHRpb24gaXMgaW5kZWVkIHRvIGxvb2sgaWYgcmVjaXBlIGNhbiBkbyBldmVyeXRoaW5nIHdoZW4N
+CmltYWdlIGlzIGNyZWF0ZWQuIEkgd2FzIGp1c3Qgc3VycHJpc2VkIHRvIGxlYXJuIHRoYXQgdGhl
+c2UgbWluaW1hbA0KaW1hZ2VzIGJ5IGRlZmF1bHQgcHJldmVudCBhbGwgZmlyc3QgYm9vdCBwb3N0
+IGluc3RhbGwgc2NyaXB0cyBmcm9tDQpydW5uaW5nLg0KDQpSZWluZXR0ZQ0KDQo=
 
