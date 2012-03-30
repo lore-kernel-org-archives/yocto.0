@@ -1,27 +1,43 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40D34E0044D
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 16:53:39 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 30 Mar 2012 16:53:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="148044609"
-Received: from unknown (HELO envy.home) ([10.255.12.115])
-	by fmsmga002.fm.intel.com with ESMTP; 30 Mar 2012 16:53:38 -0700
-Message-ID: <4F764759.1070801@linux.intel.com>
-Date: Fri, 30 Mar 2012 16:52:57 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
-MIME-Version: 1.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A398EE004D2
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 16:58:28 -0700 (PDT)
+Received: by pbbjt11 with SMTP id jt11so2950258pbb.35
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 16:58:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer
+	:x-gm-message-state;
+	bh=4jPn97A4xA8yZkHqNSm093ju3mR6mgVSzowKVwBEC08=;
+	b=O6RjtMqKuOzFAt6WPt0j4D4iyi1UZTX8IMPik9gX0VBLb/u+a/1tFOcIN4wca0wS5Y
+	zPsedYeTyOAwFG5YqlcGcv0cjnDS5Gu++Qucr1xAwe4tC9DYebETGSxIn+dPOwURS3zX
+	PGk7tBhaA2CwaLe58Laifo1pnoZ3ANki1i/7rWWZRT6gkFNTCGtOPZUD3CfEPmWlYDFe
+	hV4GNwheS9+zu34/ptIkvDOjCuum2GVNgznwPL7SFTQ54+rUEQXD51OYLoSGf5KRzjjI
+	Dc0wcWsWurOyL016NBeNTIdfq89MebpUu2Mf1g32pIa9zLd7qR36Rc1JsXc0pwxanTyf
+	SBLw==
+Received: by 10.68.189.166 with SMTP id gj6mr1203875pbc.140.1333151908463;
+	Fri, 30 Mar 2012 16:58:28 -0700 (PDT)
+Received: from [10.61.32.129] ([69.38.219.78])
+	by mx.google.com with ESMTPS id x1sm8376021pbp.50.2012.03.30.16.58.27
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 30 Mar 2012 16:58:27 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1257)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <20120330234936.GC11451@bill-the-cat>
+Date: Fri, 30 Mar 2012 16:58:31 -0700
+Message-Id: <18E24F27-AC18-47AE-A4D7-3ED2ECB975FD@dominion.thruhere.net>
 References: <D044B647-8BCD-48B4-BABD-CE4751D023E0@dominion.thruhere.net>
 	<4F7608DC.1000402@windriver.com>
 	<26C6B15B-4A12-453A-A146-C884A5040178@dominion.thruhere.net>
 	<4F7614FE.5000107@windriver.com> <1333141865.18082.120.camel@ted>
-In-Reply-To: <1333141865.18082.120.camel@ted>
-X-Enigmail-Version: 1.4
-Cc: yocto@yoctoproject.org
+	<CDED78A957032E45B3239CDDA7642D15084B8EC1@ORSMSX105.amr.corp.intel.com>
+	<20120330234936.GC11451@bill-the-cat>
+To: Tom Rini <tom.rini@gmail.com>
+X-Mailer: Apple Mail (2.1257)
+X-Gm-Message-State: ALoCoQnbeyYo+PvZYIj2o/Z0bp9Wo7KQow+OK82bqSVs/06I/rNtYsPqY3XLfAZ17taNVlmg1/ZF
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Moving angstrom under the yocto banner
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -34,143 +50,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 23:53:39 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 30 Mar 2012 23:58:28 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
 
+Op 30 mrt. 2012, om 16:49 heeft Tom Rini het volgende geschreven:
 
-On 03/30/2012 02:11 PM, Richard Purdie wrote:
-> On Fri, 2012-03-30 at 15:18 -0500, Mark Hatle wrote:
->> On 3/30/12 2:33 PM, Koen Kooi wrote:
->>>
->>> Op 30 mrt. 2012, om 12:26 heeft Mark Hatle het volgende geschreven:
->>>
->>>> On 3/30/12 1:44 PM, Koen Kooi wrote:
->>>>> Hi,
->>>>>
->>>>> RP said I should raise this on the yocto lists, so here it is:
->>>>>
->>>>> The Angstrom core team would like to move angstrom under the yocto banner so
->>>>> we can formally claim to be 'yocto'.
-> 
-> In the interests of clarity, as Tracey will tell you there is no
-> "Yocto" (which is an SI prefix), only the "Yocto Project" :). I know
-> some of us have bad habits but since we're trying to ensure we're all
-> consistent, this is worth highlighting.
-> 
->>>> For it to be on the yocto project web site, it just need to have
->> the layers hosted on the git.yoctoproject.org.  But there is no
->> "yocto".. It's the Yocto Project, Poky, or specific git repositories.
->> There is no reason we can't have an angstrom repository.  It could be
->> in a similar format to the Poky repository (everything combined for a
->> single download), or it could be a layer [or layers] that sit on top
->> of Poky.
->>>
->>> Why on top of poky? I do not want poky, nor do my customers, oe-core is what
->>> we need and want. This proposal to move angstrom under yocto is targeted at
->>> eliminating 'poky' from the stack while still being able to say 'yocto'.
->>
->> Poky is a repository made up of bitbake + oe-core + meta-yocto, as well as a 
->> distribution definition (in meta-yocto).  I assume angstrom has it's own 
->> distribution definition.
->>
->> So my question is why NOT on top of Poky (the repository, not distribution 
->> definition)?
-> 
-> FWIW I don't think it has to be "on top of Poky". 
-> 
-> Basically the question is whether you'd include the meta-yocto layer or
-> not. I know that doesn't have its own repository yet (but that's purely
-> a time thing). I have no strong feelings either way about the inclusion
-> of that layer. Its purposefully not got that much in it (one distro
-> definition and some hardware/BSP addons).
-> 
-> Also, Angstrom has a different repository format in the way the user
-> fetches and interacts with layers. I don't think Yocto mandates any
-> requirement in that area, or that it needs to.
-> 
->>> We both know that saying it is 'yocto' is wrong and misleading, but that's
->>> what users are asking for and yocto advocates seem to push.
-> 
-> Try saying this in earshot of Tracey ;-). We are trying to do a better
-> job of saying "Yocto Project", please help us!
-> 
->>  Just watch the ELC
->>> videos for yocto related presentations, 'yocto' and 'poky' are used
->>> interchangeably in most of them.
->>>
->>> A 'reference' should be just that, a reference, not a mandated part.
->>
->> It's hard to call something Yocto Project based unless it used something from 
->> the Yocto Project.  meta-yocto being on of those components.
-> 
-> The criteria I see for being part of the Yocto Project are:
-> 
-> a) Sharing the project's objectives (e.g. making embedded Liunx 
->    development easier)
-> b) Willing to be part of the Yocto Project's governance structure
-> c) Bringing something new/beneficial to the Yocto Project (often with 
->    mutual benefit)
-> d) Have some kind of sustainable resource plan
-> 
+> On Fri, Mar 30, 2012 at 11:06:04PM +0000, Stewart, David C wrote:
+>=20
+>> Finally, Dr. Kooi has stated that he doesn't see YP as an upstream. =
+In fact, many=20
+>> of the OSVs (like Wind River, Mentor Graphics and now ENEA - yeah!) =
+absolutely
+>> want to use YP as their upstream. So I'm hoping we could change the =
+definition
+>> of YP/Poky/Angstrom so Angstrom could us Poky as its upstream ... no? =
+Too
+>> hard?
+>=20
+> Putting on my "me, myself and I" hat and apologizing for putting words
+> in a few peoples mouths, I think this speaks to the heart of the =
+problem
+> Koen is trying to express.
 
-I'll take a couple careful steps into this arena to offer just one more
-possible criteria.
+Exactly! I said that *poky* is not an upstream, nothing about YP.=20
 
-One of the touted goals/advantages/benefits of using the Yocto Project
-is to work with a vetted set of sources that are known to all work
-together, having had some level of QA performed. This is something the
-poky repository accomplishes by bringing specifc versions of bitbake and
-oe-core together (along with some other tooling). At some point, this
-gets rolled up into a release of the Yocto Project: 0.9, 1.1, and soon
-1.2. It's common for someone to refer to these release points as the
-base for their BSP.
+>  On a technical level, the goal has been
+> something (and I'm simplifying a bit here) to say that poky (the =
+distro)
+> is an implementation of policy for oe-core.  oe-core, bitbake and N
+> number of other layers (meta-intel, meta-fsl-ppc, meta-ti, meta-java,
+> meta-oe, meta-so-on-and-so-forth) will say that this is their metadata
+> for release X.  Some of these layers (bitbake, oe-core, poky the =
+distro)
+> are maintained by 'Yocto Project' folks like Richard.  Others are
+> maintained by community folks (Koen, Eric B.) or other companies
+> (Denys).
+>=20
+> Now, you say "YP is an upstream".  But "Yocto Project" is an upstream
+> for bitbake, and for openembedded-core and for poky (the distro) and a
+> lot of other stuff.  However, meta-yocto (what got us going in this
+> direction) is only an upstream for poky (the distro), and Richard has
+> said it's a TODO list item to move poky (the distro) into a separate
+> repository and thus make meta-yocto ONLY a conglomeration of other
+> repositories.
+>=20
+> It's GOOD that companies want to work with upstream, and at some high
+> level "Yocto Project" is where that is, in so far as bitbake,
+> openembedded-core, etc, get a lot of time and energy and resources of
+> "Yocto Project" people.  But these also get community resources too.
+> Koen for example DOES see "Yocto Project" as an upstream in that he
+> contributes to openembedded-core, etc, etc.  Angstrom also sees "Yocto
+> Project" as an upstream for the same reasons.  But on a technical =
+level,
+> none of us would say it that way.
 
-It therefor seems reasonable to me for a distribution definition (which
-is how I think of Angstrom - but feel free to correct me Koen) to make a
-statement like "This release of Angstrom builds with the Yocto Project
-X.Y release."
+Exactly.  I said that *poky* is not an upstream.
 
-I believe this is the sort of language that most outside developers
-would immediately understand and associate with being part of the Yocto
-Project.
+> And this is where the confusion emanates from I believe.  You're =
+saying
+> that Angstrom (the distro) should see poky (the distro) as it's
+> upstream.  If I was a runner, I could make an analogy you would say =
+"but
+> that's silly!" and I would say "exactly!" and we'd all be on the same
+> page.  So can we pretend I did?
+>=20
+>> Anyway, if we can't get to this level of interoperability, then =
+adding Angstrom=20
+>> to the Yocto project may add too much confusion.
+>=20
+> If someone makes a layer and it works with meta-yocto +
+> meta-SomeHWVendor and fails with meta-angstrom + openembedded-core +
+> bitbake + meta-SomeHWVendor (and you can replace meta-angstrom with
+> meta-arago or any other layer that provides distro policy) it's a bug,
+> not a feature, and not what anyone expects to happen today.
 
---
-Darren
-
-> Note that it I don't list "must use meta-yocto" there since I don't
-> think that is true.
-> 
-> I would want to be clear about where I'd see Angstrom positioned within
-> the Yocto Project which would be as a reference binary distribution.
-> 
-> This is in contrast with Poky which would remain as the getting started
-> and reference testing configuration (obviously building from
-> source/sstate in contrast to Angstrom).
-> 
-> I do have some questions related to some of the above points but I'm
-> going to hold off those for now and see where this discussion goes. I'd
-> also mention that I'd like to see what advice the advisory board has on
-> this topic too.
-> 
->> There is enough confusion about yocto vs poky vs..  It's slowly being reconciled 
->> and defined.. but it's a slow process for all of us.
-> 
-> Right, I think we are getting to grips with this slowly and there was a
-> good discussion about this on the meta-ti list recently.
-> 
-> Cheers,
-> 
-> Richard
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Like meta-ti won't build with binutils newer than 2.20.x. We all agree =
+that's a bug in meta-ti, not a bug in oe-core or poky (the distro).=
 
