@@ -1,19 +1,19 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A0F3E004D2
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 09:54:19 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6A72E004D2
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 09:57:16 -0700 (PDT)
 Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
 	([99.241.91.63] helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
 	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SDf5d-0006kq-CR; Fri, 30 Mar 2012 12:54:17 -0400
-Date: Fri, 30 Mar 2012 12:54:00 -0400 (EDT)
+	id 1SDf8V-0006vG-RQ; Fri, 30 Mar 2012 12:57:15 -0400
+Date: Fri, 30 Mar 2012 12:57:05 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
 In-Reply-To: <CB9A386E.BBFC%belen.barros.pena@intel.com>
-Message-ID: <alpine.DEB.2.02.1203301249550.24762@oneiric>
+Message-ID: <alpine.DEB.2.02.1203301254400.24762@oneiric>
 References: <CB9A386E.BBFC%belen.barros.pena@intel.com>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
@@ -39,26 +39,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 16:54:19 -0000
+X-List-Received-Date: Fri, 30 Mar 2012 16:57:16 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 On Thu, 29 Mar 2012, Barros Pena, Belen wrote:
 
-> Hi there,
->
-> I was in the process of installing Yocto from the master branch in
-> an Ubuntu 11.10 VM, and I used the Yocto Project Quick Start
-> information
-> (http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html)
-> to make sure I had all the required packages. However, I got a
-> couple errors while trying to install those packages:
->
->   * The information lists git-core as one of the required packages,
-> but I got an error saying the package could not be found. The
-> package needed seems to be called git now.
+>   * Finally, I forgot to install texinfo, and the error I got in the
+> command line said that I was missing makeinfo (see screenshot
+> attached). But when trying to install makeinfo I again got the
+> "package could not be found" error. If the error had said I needed
+> to install texinfo it would have made my life a bit easier.
 
-  git-core should still work, but it's a transitional dummy name and
-the new base package is indeed just git.
+  the problem is that, across distros, the same command might come as
+part of a different package, so sometimes it's very hard to tell which
+package you should advise installing.
+
+  on that note, however, would it be that hard to define a ubuntu meta
+or virtual package to install everything needed for yocto?  just to
+avoid this sort of problem?
 
 rday
 
