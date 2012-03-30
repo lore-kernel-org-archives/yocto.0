@@ -1,32 +1,42 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B52FE0044D
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 14:11:20 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2ULBDWd018102;
-	Fri, 30 Mar 2012 22:11:13 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 17350-03; Fri, 30 Mar 2012 22:11:08 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2ULB63w018096
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Fri, 30 Mar 2012 22:11:07 +0100
-Message-ID: <1333141865.18082.120.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Mark Hatle <mark.hatle@windriver.com>
-Date: Fri, 30 Mar 2012 22:11:05 +0100
-In-Reply-To: <4F7614FE.5000107@windriver.com>
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21C65E004D2
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 14:12:41 -0700 (PDT)
+Received: by pbbjt11 with SMTP id jt11so2786099pbb.35
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 14:12:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer
+	:x-gm-message-state;
+	bh=wKXyH7KYzMn7475PJli3fARrOzzdSt5ZDYz8Adm4m50=;
+	b=cibSTKXhPpD6uqeqDjlhAQ46xKkMTkJk+lPkuHXciCXw0+3xlsn3inFEMS2NNPKzr+
+	KREVItxt14UmVEwrqkICZg9tsp/490ddtx6b92RG/9Bjb4xdLjuo0rSEYfWCReqtGE5l
+	2475+eOSY9OVOQFRlEcL2MEfNCoWzS5YYQihU9tB8KMYcZEeTiKtNfqAvSTaJecXgsBp
+	ChO4UcX9iRmd++lAOEKISwCdpUddH/3X7NsndJckAjrdgoeHgafxA5Cp2Cov6Mhxnjtz
+	2K4VdZoI/8esslCI5GyTe1QMe5lqpt7HBW8fhnDA9Bn0h87UpCO+eE9O4DCxXYnWMWa9
+	j82A==
+Received: by 10.68.194.103 with SMTP id hv7mr503241pbc.133.1333141961763;
+	Fri, 30 Mar 2012 14:12:41 -0700 (PDT)
+Received: from [10.61.32.129] ([69.38.219.78])
+	by mx.google.com with ESMTPS id j10sm6082550pbf.0.2012.03.30.14.12.40
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 30 Mar 2012 14:12:40 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1257)
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <CALZ2gZXm0G+uie_H20j3M_d8FmnB_h+xbTHBF-fQhZfTn3cZ3Q@mail.gmail.com>
+Date: Fri, 30 Mar 2012 14:12:49 -0700
+Message-Id: <EA90E465-8DD4-44A6-8005-F8B3DE3350F0@dominion.thruhere.net>
 References: <D044B647-8BCD-48B4-BABD-CE4751D023E0@dominion.thruhere.net>
 	<4F7608DC.1000402@windriver.com>
 	<26C6B15B-4A12-453A-A146-C884A5040178@dominion.thruhere.net>
 	<4F7614FE.5000107@windriver.com>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org
+	<CALZ2gZXm0G+uie_H20j3M_d8FmnB_h+xbTHBF-fQhZfTn3cZ3Q@mail.gmail.com>
+To: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
+X-Mailer: Apple Mail (2.1257)
+X-Gm-Message-State: ALoCoQnJszJd8GzH6GUmTBbSm2xPuRsliCxdyuBVAmOyyGEG224DqEnXwNIKu/ETX9WhRw4VbuGk
+Cc: "yocto@yoctoproject.org list" <yocto@yoctoproject.org>
 Subject: Re: Moving angstrom under the yocto banner
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -39,106 +49,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 21:11:21 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 30 Mar 2012 21:12:42 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 2012-03-30 at 15:18 -0500, Mark Hatle wrote:
-> On 3/30/12 2:33 PM, Koen Kooi wrote:
-> >
-> > Op 30 mrt. 2012, om 12:26 heeft Mark Hatle het volgende geschreven:
-> >
-> >> On 3/30/12 1:44 PM, Koen Kooi wrote:
-> >>> Hi,
-> >>>
-> >>> RP said I should raise this on the yocto lists, so here it is:
-> >>>
-> >>> The Angstrom core team would like to move angstrom under the yocto banner so
-> >>> we can formally claim to be 'yocto'.
+My apologies for loosing the reply indent, I blame apple mail
 
-In the interests of clarity, as Tracey will tell you there is no
-"Yocto" (which is an SI prefix), only the "Yocto Project" :). I know
-some of us have bad habits but since we're trying to ensure we're all
-consistent, this is worth highlighting.
+Op 30 mrt. 2012, om 14:01 heeft Osier-mixon, Jeffrey het volgende =
+geschreven:
+>=20
+> Angstrom does use oe-core, but I don't think it uses linux-yocto =
+(right?) and definitely not meta-yocto.=20
 
-> >> For it to be on the yocto project web site, it just need to have
-> the layers hosted on the git.yoctoproject.org.  But there is no
-> "yocto".. It's the Yocto Project, Poky, or specific git repositories.
-> There is no reason we can't have an angstrom repository.  It could be
-> in a similar format to the Poky repository (everything combined for a
-> single download), or it could be a layer [or layers] that sit on top
-> of Poky.
-> >
-> > Why on top of poky? I do not want poky, nor do my customers, oe-core is what
-> > we need and want. This proposal to move angstrom under yocto is targeted at
-> > eliminating 'poky' from the stack while still being able to say 'yocto'.
-> 
-> Poky is a repository made up of bitbake + oe-core + meta-yocto, as well as a 
-> distribution definition (in meta-yocto).  I assume angstrom has it's own 
-> distribution definition.
-> 
-> So my question is why NOT on top of Poky (the repository, not distribution 
-> definition)?
+linux-yocto is a kernel, which is used by machines in meta-intel, which =
+angstrom supports (only fri2 atm), so the choice to use or not use =
+linux-yocto is up to th e BSP, not to angstrom. OE was founded on the =
+principle that machines, images and distros are orthogonal. Angstrom =
+does cheat a bit with images, but it is *not* changing any machine =
+definitions.
 
-FWIW I don't think it has to be "on top of Poky". 
+This is what angstrom is currently using:
 
-Basically the question is whether you'd include the meta-yocto layer or
-not. I know that doesn't have its own repository yet (but that's purely
-a time thing). I have no strong feelings either way about the inclusion
-of that layer. Its purposefully not got that much in it (one distro
-definition and some hardware/BSP addons).
+[koen@Angstrom-F16-vm-rpm setup-scripts]$ cat sources/layers.txt=20
+# Name,repo-uri,branch,rev
+bitbake,git://github.com/openembedded/bitbake.git,master,HEAD
+=
+meta-angstrom,git://github.com/Angstrom-distribution/meta-angstrom,master,=
+HEAD
+meta-openembedded,git://github.com/openembedded/meta-oe.git,master,HEAD
+meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD
+meta-ettus,git://github.com/balister/meta-ettus.git,master,HEAD
+meta-efikamx,git://github.com/kraj/meta-efikamx.git,master,HEAD
+meta-nslu2,git://github.com/kraj/meta-nslu2.git,master,HEAD
+=
+meta-smartphone,http://git.shr-project.org/repo/meta-smartphone.git,master=
+,HEAD
+meta-intel,git://git.yoctoproject.org/meta-intel,master,HEAD
+meta-xilinx,git://git.yoctoproject.org/meta-xilinx,master,HEAD
+=
+meta-openpandora,git://github.com/openpandora/meta-openpandora.git,master,=
+HEAD
+meta-handheld,git://git.openembedded.org/meta-handheld,master,HEAD
+meta-opie,git://github.com/bluelightning/meta-opie.git,master,HEAD
+meta-java,git://github.com/woglinde/meta-java.git,master,HEAD
+meta-mozilla,git://github.com/OSSystems/meta-mozilla.git,master,HEAD
+meta-mono,git://github.com/KokoFitClub/meta-mono.git,master,HEAD
+openembedded-core,git://github.com/openembedded/oe-core.git,master,HEAD
 
-Also, Angstrom has a different repository format in the way the user
-fetches and interacts with layers. I don't think Yocto mandates any
-requirement in that area, or that it needs to.
+It will add more bsp layers soon (fsl-ppc, fsl-arm, etc) before the =
+release.
 
-> > We both know that saying it is 'yocto' is wrong and misleading, but that's
-> > what users are asking for and yocto advocates seem to push.
+And the layer config:
 
-Try saying this in earshot of Tracey ;-). We are trying to do a better
-job of saying "Yocto Project", please help us!
+[koen@Angstrom-F16-vm-rpm setup-scripts]$ cat conf/bblayers.conf=20
+# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
+# changes incompatibly
+LCONF_VERSION =3D "4"
+TOPDIR :=3D "${@os.path.dirname(os.path.dirname(d.getVar('FILE', =
+True)))}"
 
->  Just watch the ELC
-> > videos for yocto related presentations, 'yocto' and 'poky' are used
-> > interchangeably in most of them.
-> >
-> > A 'reference' should be just that, a reference, not a mandated part.
-> 
-> It's hard to call something Yocto Project based unless it used something from 
-> the Yocto Project.  meta-yocto being on of those components.
+BBPATH =3D "${TOPDIR}"
 
-The criteria I see for being part of the Yocto Project are:
+BBFILES =3D ""
 
-a) Sharing the project's objectives (e.g. making embedded Liunx 
-   development easier)
-b) Willing to be part of the Yocto Project's governance structure
-c) Bringing something new/beneficial to the Yocto Project (often with 
-   mutual benefit)
-d) Have some kind of sustainable resource plan
+# These layers hold recipe metadata not found in OE-core, but lack any =
+machine or distro content
+BASELAYERS ?=3D " \
+  ${TOPDIR}/sources/meta-openembedded/meta-oe \
+  ${TOPDIR}/sources/meta-openembedded/toolchain-layer \
+  ${TOPDIR}/sources/meta-openembedded/meta-efl \
+  ${TOPDIR}/sources/meta-openembedded/meta-gpe \
+  ${TOPDIR}/sources/meta-openembedded/meta-gnome \
+  ${TOPDIR}/sources/meta-openembedded/meta-xfce \
+  ${TOPDIR}/sources/meta-openembedded/meta-initramfs \
+  ${TOPDIR}/sources/meta-opie \
+  ${TOPDIR}/sources/meta-java \
+  ${TOPDIR}/sources/meta-mozilla \
+"
 
-Note that it I don't list "must use meta-yocto" there since I don't
-think that is true.
+# These layers hold machine specific content, aka Board Support Packages
+BSPLAYERS ?=3D " \
+  ${TOPDIR}/sources/meta-ti \
+  ${TOPDIR}/sources/meta-efikamx \
+  ${TOPDIR}/sources/meta-nslu2 \
+  ${TOPDIR}/sources/meta-smartphone/meta-htc \
+  ${TOPDIR}/sources/meta-smartphone/meta-nokia \
+  ${TOPDIR}/sources/meta-smartphone/meta-openmoko \
+  ${TOPDIR}/sources/meta-smartphone/meta-palm \
+  ${TOPDIR}/sources/meta-handheld \
+  ${TOPDIR}/sources/meta-intel \
+  ${TOPDIR}/sources/meta-intel/meta-sugarbay \
+  ${TOPDIR}/sources/meta-intel/meta-crownbay \
+  ${TOPDIR}/sources/meta-intel/meta-emenlow \
+  ${TOPDIR}/sources/meta-intel/meta-fishriver \
+  ${TOPDIR}/sources/meta-intel/meta-jasperforest \
+  ${TOPDIR}/sources/meta-intel/meta-n450 \
+"
 
-I would want to be clear about where I'd see Angstrom positioned within
-the Yocto Project which would be as a reference binary distribution.
+# Add your overlay location to EXTRALAYERS
+# Make sure to have a conf/layers.conf in there
+EXTRALAYERS ?=3D ""
 
-This is in contrast with Poky which would remain as the getting started
-and reference testing configuration (obviously building from
-source/sstate in contrast to Angstrom).
+BBLAYERS =3D " \
+  ${TOPDIR}/sources/meta-angstrom \
+  ${BASELAYERS} \
+  ${BSPLAYERS} \
+  ${EXTRALAYERS} \
+  ${TOPDIR}/sources/openembedded-core/meta \
+  "
 
-I do have some questions related to some of the above points but I'm
-going to hold off those for now and see where this discussion goes. I'd
-also mention that I'd like to see what advice the advisory board has on
-this topic too.
+regards,
 
-> There is enough confusion about yocto vs poky vs..  It's slowly being reconciled 
-> and defined.. but it's a slow process for all of us.
-
-Right, I think we are getting to grips with this slowly and there was a
-good discussion about this on the meta-ti list recently.
-
-Cheers,
-
-Richard
-
+Koen=
 
