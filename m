@@ -1,29 +1,25 @@
-Return-Path: <gizero@gmail.com>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74F19E0044D
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 10:18:25 -0700 (PDT)
-Received: by qcsd1 with SMTP id d1so596891qcs.35
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 10:18:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:content-transfer-encoding;
-	bh=ZZUKzuhkqPP/MNYEWtzA5LqU9OsIpyPzBufif1ZoO28=;
-	b=sBm1Kw3mNL6+5xz1DnmZvifRA2Ra7fZD2wRCirW0vyuaresg40WH2Uy51WROQ5aI/8
-	FnLrsk0JRf4MXhzk0n1GlmjEzv3Ft5gO8HJseUSumRKGoAioJV9gDZWWccz2muJYT+jJ
-	ZPVFlI68U6qo8JT00IQRxBbgychLqXITz9qVHDr0lwGRPRNm5q95TbqR/fiSEnrCXWxs
-	flJeaSE8k9yuKiKjKKRu21w55u4z+GyftHEBigWHD0+yHW95kOskYfv58nl/HNdwVa7/
-	Q7PkqvjDsCNYDhsmqFrm/8PfjgHC/9HtXy1IhBsICa4MaUNWG9hgdNwdQdCspSVwFRhf
-	cthA==
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FED5E004D2
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 10:20:37 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q2UHKYPZ027074
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 30 Mar 2012 10:20:34 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 30 Mar 2012 10:20:35 -0700
+Message-ID: <4F75EB5C.3020909@windriver.com>
+Date: Fri, 30 Mar 2012 13:20:28 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-Received: by 10.229.136.195 with SMTP id s3mr1222501qct.60.1333127904782; Fri,
-	30 Mar 2012 10:18:24 -0700 (PDT)
-Received: by 10.229.157.199 with HTTP; Fri, 30 Mar 2012 10:18:24 -0700 (PDT)
-Date: Fri, 30 Mar 2012 19:18:24 +0200
-Message-ID: <CAC+thW2bpSsoHOC2feOEowp1POB2zFG4eSDiiKs6xa7xP+qwDg@mail.gmail.com>
-From: Andrea Galbusera <gizero@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Suspicious warnings while beta testing yocto 1.2
+To: Andrea Galbusera <gizero@gmail.com>
+References: <CAC+thW2bpSsoHOC2feOEowp1POB2zFG4eSDiiKs6xa7xP+qwDg@mail.gmail.com>
+In-Reply-To: <CAC+thW2bpSsoHOC2feOEowp1POB2zFG4eSDiiKs6xa7xP+qwDg@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Suspicious warnings while beta testing yocto 1.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,59 +31,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 17:18:25 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 30 Mar 2012 17:20:37 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-While beta testing yocto 1.2 I'm building for beagleboard with:
+On 12-03-30 01:18 PM, Andrea Galbusera wrote:
+> While beta testing yocto 1.2 I'm building for beagleboard with:
+>
+> OE Build Configuration:
+> BB_VERSION        = "1.15.1"
+> TARGET_ARCH       = "arm"
+> TARGET_OS         = "linux-gnueabi"
+> MACHINE           = "beagleboard"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.1+snapshot-20120330"
+> TUNE_FEATURES     = "armv7a vfp neon cortexa8"
+> TARGET_FPU        = "vfp-neon"
+> meta
+> meta-yocto        = "<unknown>:<unknown>"
+>
+> I see warnings complaining that some options set by the BSP are not
+> valid for the kernel being built. This is the first time I noticed and
+> it's confusing me. After some search I find a past conversation where
+> it was suggested that warnings like this for a Yocto maintained BSP
+> should be considered bugs. Can anyone explain this? Build is
+> completing successfully. Not yet tested the kernel on actual hardware.
+> Later I will see if something similar also happens in edison not.
 
-OE Build Configuration:
-BB_VERSION        =3D "1.15.1"
-TARGET_ARCH       =3D "arm"
-TARGET_OS         =3D "linux-gnueabi"
-MACHINE           =3D "beagleboard"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.1+snapshot-20120330"
-TUNE_FEATURES     =3D "armv7a vfp neon cortexa8"
-TARGET_FPU        =3D "vfp-neon"
-meta
-meta-yocto        =3D "<unknown>:<unknown>"
+There are a few outstanding items for 1.2 as part of M4 .. one of
+them is squashing the remaining configuration values that are
+causing warnings.
 
-I see warnings complaining that some options set by the BSP are not
-valid for the kernel being built. This is the first time I noticed and
-it's confusing me. After some search I find a past conversation where
-it was suggested that warnings like this for a Yocto maintained BSP
-should be considered bugs. Can anyone explain this? Build is
-completing successfully. Not yet tested the kernel on actual hardware.
-Later I will see if something similar also happens in edison not.
+Cheers,
 
-Here is the log:
+Bruce
 
-This BSP sets 15 invalid/obsolete kernel options.
-These config options are not offered anywhere within this kernel.
-The full list can be found in your workspace at:
-/home/gizero/Documents/research/yocto-1.2-beta/yp-beta-build/tmp/work/beagl=
-eboard-poky-linux-gnueabi/linux-yocto-3.0.23+git1+e559129b4a6f39f68b7514109=
-6b2d516cf7a7f35_1+fccd4e4041454f16f1e7a25569ec530eaa1bf89e-r4/linux/meta/cf=
-g/yocto/standard/beagleboard/invalid.cfg
+>
+> Here is the log:
+>
+> This BSP sets 15 invalid/obsolete kernel options.
+> These config options are not offered anywhere within this kernel.
+> The full list can be found in your workspace at:
+> /home/gizero/Documents/research/yocto-1.2-beta/yp-beta-build/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto-3.0.23+git1+e559129b4a6f39f68b75141096b2d516cf7a7f35_1+fccd4e4041454f16f1e7a25569ec530eaa1bf89e-r4/linux/meta/cfg/yocto/standard/beagleboard/invalid.cfg
+>
+> This BSP sets 50 kernel options that are possibly non-hardware related.
+> The full list can be found in your workspace at:
+> /home/gizero/Documents/research/yocto-1.2-beta/yp-beta-build/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto-3.0.23+git1+e559129b4a6f39f68b75141096b2d516cf7a7f35_1+fccd4e4041454f16f1e7a25569ec530eaa1bf89e-r4/linux/meta/cfg/yocto/standard/beagleboard/specified_non_hdw.cfg
+>
+> WARNING: There were 12 hardware options requested that do not
+>           have a corresponding value present in the final ".config" file.
+>           This probably means you aren't getting the config you wanted.
+> The full list can be found in your workspace at:
+> /home/gizero/Documents/research/yocto-1.2-beta/yp-beta-build/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto-3.0.23+git1+e559129b4a6f39f68b75141096b2d516cf7a7f35_1+fccd4e4041454f16f1e7a25569ec530eaa1bf89e-r4/linux/meta/cfg/yocto/standard/beagleboard/mismatch.cfg
+>
+> Waiting a second to make sure you get a chance to see this...
+>
+> If useful I can provide the list of options as per given log files.
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-This BSP sets 50 kernel options that are possibly non-hardware related.
-The full list can be found in your workspace at:
-/home/gizero/Documents/research/yocto-1.2-beta/yp-beta-build/tmp/work/beagl=
-eboard-poky-linux-gnueabi/linux-yocto-3.0.23+git1+e559129b4a6f39f68b7514109=
-6b2d516cf7a7f35_1+fccd4e4041454f16f1e7a25569ec530eaa1bf89e-r4/linux/meta/cf=
-g/yocto/standard/beagleboard/specified_non_hdw.cfg
-
-WARNING: There were 12 hardware options requested that do not
-         have a corresponding value present in the final ".config" file.
-         This probably means you aren't getting the config you wanted.
-The full list can be found in your workspace at:
-/home/gizero/Documents/research/yocto-1.2-beta/yp-beta-build/tmp/work/beagl=
-eboard-poky-linux-gnueabi/linux-yocto-3.0.23+git1+e559129b4a6f39f68b7514109=
-6b2d516cf7a7f35_1+fccd4e4041454f16f1e7a25569ec530eaa1bf89e-r4/linux/meta/cf=
-g/yocto/standard/beagleboard/mismatch.cfg
-
-Waiting a second to make sure you get a chance to see this...
-
-If useful I can provide the list of options as per given log files.
 
