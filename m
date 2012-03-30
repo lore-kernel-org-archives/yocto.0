@@ -1,43 +1,34 @@
-Return-Path: <SRS0=PGs/tu=CF=mindchasers.com=yocto@eigbox.net>
-Received: from bosmailout16.eigbox.net (bosmailout16.eigbox.net [66.96.184.16])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92C37E004D2
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 10:27:39 -0700 (PDT)
-Received: from bosmailscan07.eigbox.net ([10.20.15.7])
-	by bosmailout16.eigbox.net with esmtp (Exim) id 1SDfbv-0004sy-2d
-	for yocto@yoctoproject.org; Fri, 30 Mar 2012 13:27:39 -0400
-Received: from bosimpout02.eigbox.net ([10.20.55.2])
-	by bosmailscan07.eigbox.net with esmtp (Exim)
-	id 1SDfbs-0001QW-Gu; Fri, 30 Mar 2012 13:27:36 -0400
-Received: from bosauthsmtp09.eigbox.net ([10.20.18.9])
-	by bosimpout02.eigbox.net with NO UCE
-	id rtTd1i0040BkY8i01tTdga; Fri, 30 Mar 2012 13:27:37 -0400
-X-Authority-Analysis: v=2.0 cv=BexvJMR2 c=1 sm=1
-	a=ezw8LHFQp/lSHt//sRtX8Q==:17 a=mn2ndCrYJZwA:10 a=Na1N3YiFAQsA:10
-	a=G2WrdEGbwP8A:10 a=Lk7aQFya1KUA:10 a=8nJEP1OIZ-IA:10
-	a=SRvliW3Vm_kPYbrkRQkA:9 a=wPNLvfGTeEIA:10
-	a=+tcVrJynzLVJ9yqDAOBWjQ==:117
-X-EN-OrigOutIP: 10.20.18.9
-X-EN-IMPSID: rtTd1i0040BkY8i01tTdga
-Received: from pool-108-25-202-179.atclnj.east.verizon.net ([108.25.202.179]
-	helo=[192.168.1.3]) by bosauthsmtp09.eigbox.net with esmtpa (Exim)
-	id 1SDfbs-0008KU-QV; Fri, 30 Mar 2012 13:27:37 -0400
-Message-ID: <4F75ED03.3030205@mindchasers.com>
-Date: Fri, 30 Mar 2012 13:27:31 -0400
-From: Bob Cochran <yocto@mindchasers.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:11.0) Gecko/20120310 Thunderbird/11.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1AF01E0044D
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 10:28:07 -0700 (PDT)
+Received: by lagu2 with SMTP id u2so1342949lag.35
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 10:28:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=u+37bN/Evge1D6OoWQXHc7VjdXNnCvOck+svtnGPPv4=;
+	b=di9lcd0lD7ghZhvV02j9anGh2/Z4asU++JPNTWUtYs4wlD9XuW/FG9rMoj5gKcxx6x
+	EATeLn+SMnd+BNfCw02jD+EjiJNM+Z4EMbl8o3P0KllrB8QHuvbYaCjvf4NiTygReR0+
+	hddrXM73thxeNxreRDCGf5PT7sD1q4ZPz9UD8dQZ9CBtwRplmguecf01NL+5N/95OR6k
+	QLU+fDonXzpwGYOw33+5KZT9WwOYmz3auPvZ9OYhz18C9hjkK/ZgGjtGJ2Rf5/HQzDBE
+	38c0uAfXKtY1SgtGlh84a9wkL5NyulNvllPRhbCiPiWyWRHQ7B09BsbQ9H53aff7ZaBz
+	xo8A==
+Received: by 10.152.131.66 with SMTP id ok2mr3350061lab.10.1333128486853; Fri,
+	30 Mar 2012 10:28:06 -0700 (PDT)
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <CAC+thW2bpSsoHOC2feOEowp1POB2zFG4eSDiiKs6xa7xP+qwDg@mail.gmail.com>
-	<4F75EB5C.3020909@windriver.com>
-In-Reply-To: <4F75EB5C.3020909@windriver.com>
-X-EN-UserInfo: cb6d325fe03740ac93d537d78041f599:2186c883651a1065ea1e15c5a112545a
-X-EN-AuthUser: bcochran@mindchasers.com
-Sender: Bob Cochran <yocto@mindchasers.com>
-X-EN-OrigIP: 108.25.202.179
-X-EN-OrigHost: pool-108-25-202-179.atclnj.east.verizon.net
-Cc: yocto@yoctoproject.org
-Subject: Re: Suspicious warnings while beta testing yocto 1.2
+Received: by 10.152.3.161 with HTTP; Fri, 30 Mar 2012 10:27:36 -0700 (PDT)
+In-Reply-To: <1333125733.8318.79.camel@rchatre.jf.intel.com>
+References: <1333041222.8318.46.camel@rchatre.jf.intel.com>
+	<CAMKF1sqCu--JUWwj4ehApYSkfO5Farb6oQeYfJiOqcX9NzBUqg@mail.gmail.com>
+	<1333125733.8318.79.camel@rchatre.jf.intel.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 30 Mar 2012 10:27:36 -0700
+Message-ID: <CAMKF1sp3LyDZrC0nHdxXYumiJbJVvr5pNKT8Ehhpk2qhWpnbrA@mail.gmail.com>
+To: "Chatre, Reinette" <reinette.chatre@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: care when using remove_packaging_data_files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,19 +40,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 17:27:39 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 30 Mar 2012 17:28:08 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 03/30/2012 01:20 PM, Bruce Ashfield wrote:
-> There are a few outstanding items for 1.2 as part of M4 .. one of
-> them is squashing the remaining configuration values that are
-> causing warnings.
+On Fri, Mar 30, 2012 at 9:42 AM, Chatre, Reinette
+<reinette.chatre@intel.com> wrote:
+> Absolutely, an option is indeed to look if recipe can do everything when
+> image is created. I was just surprised to learn that these minimal
+> images by default prevent all first boot post install scripts from
+> running.
 
-I'm also seeing some kernel config errors for the MPC8315 while beta 
-testing.  Should I ignore or pursue?
-
-BTW, when I'm not beta testing, I work from the mainline and my own config.
-
-
+remember the name has "minimal" in it.
 
