@@ -1,24 +1,38 @@
-Return-Path: <nitin.a.kamble@intel.com>
+Return-Path: <david.c.stewart@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C1DDE004D2
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 15:52:07 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDFEEE0044D
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 16:06:08 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 30 Mar 2012 15:52:07 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 30 Mar 2012 16:06:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="135852189"
-Received: from nbuild0.sc.intel.com ([172.25.110.36])
-	by fmsmga001.fm.intel.com with ESMTP; 30 Mar 2012 15:52:06 -0700
-From: nitin.a.kamble@intel.com
-To: yocto@yoctoproject.org
-Date: Fri, 30 Mar 2012 15:52:06 -0700
-Message-Id: <f5f27094a325058b26b182ad0ea4a08b72f608af.1333145263.git.nitin.a.kamble@intel.com>
-X-Mailer: git-send-email 1.7.6.4
-In-Reply-To: <512eae1ae0678b247076db900304725702acc91e.1333145263.git.nitin.a.kamble@intel.com>
-References: <512eae1ae0678b247076db900304725702acc91e.1333145263.git.nitin.a.kamble@intel.com>
-In-Reply-To: <cover.1333145263.git.nitin.a.kamble@intel.com>
-References: <cover.1333145263.git.nitin.a.kamble@intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="135855377"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by fmsmga001.fm.intel.com with ESMTP; 30 Mar 2012 16:06:06 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 30 Mar 2012 16:06:04 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.199]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.32]) with mapi id
+	14.01.0355.002; Fri, 30 Mar 2012 16:06:04 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, Mark Hatle
+	<mark.hatle@windriver.com>
+Thread-Topic: [yocto] Moving angstrom under the yocto banner
+Thread-Index: AQHNDqUlRCeVvMdQd0Cca/O9pDQkyJaDrgYAgAAB/gCAAAx5AIAADs2A//+mzBA=
+Date: Fri, 30 Mar 2012 23:06:04 +0000
+Message-ID: <CDED78A957032E45B3239CDDA7642D15084B8EC1@ORSMSX105.amr.corp.intel.com>
+References: <D044B647-8BCD-48B4-BABD-CE4751D023E0@dominion.thruhere.net>
+	<4F7608DC.1000402@windriver.com>
+	<26C6B15B-4A12-453A-A146-C884A5040178@dominion.thruhere.net>
+	<4F7614FE.5000107@windriver.com> <1333141865.18082.120.camel@ted>
+In-Reply-To: <1333141865.18082.120.camel@ted>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Subject: [PATCH 3/3] poky-tiny: avoid eglibc locale packaging
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Moving angstrom under the yocto banner
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,80 +44,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 22:52:07 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 30 Mar 2012 23:06:08 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Nitin A Kamble <nitin.a.kamble@intel.com>
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Richard Purdie
+>Sent: Friday, March 30, 2012 2:11 PM
+>
+>The criteria I see for being part of the Yocto Project are:
+>
+>a) Sharing the project's objectives (e.g. making embedded Liunx
+>   development easier)
+>b) Willing to be part of the Yocto Project's governance structure
+>c) Bringing something new/beneficial to the Yocto Project (often with
+>   mutual benefit)
+>d) Have some kind of sustainable resource plan
 
-This fixes bug: [YOCTO #2089]
+I would add:
+e) there should be interoperability with the other parts of the YP.
 
-This avoids these errors
-NOTE: package eglibc-locale-2.13-r19: task do_populate_sysroot: Started
-ERROR: Error executing a python function in
-/opt/poky.git/meta/recipes-core/eglibc/eglibc-locale_2.13.bb:
-OSError: [Errno 2] No such file or directory:
-'/home/rchatre/concordia/dev/ccd-distro-work/tmp/work/core2-poky-linux/eglibc-locale-2.13-r19/package/usr/lib/gconv'
+Part of the benefit we're trying to create is that if someone invests in YP=
+=20
+for their device, they should get benefit from the whole thing.  If a board
+manufacturer creates a BSP for YP v1.2, there should be no doubt whatsoever
+that it will work with that system.  Can anyone assure me that such a BSP
+would work under Angstrom?
 
-ERROR: The stack trace of python calls that resulted in this exception/failure
-was:
-ERROR:   File "package_do_split_gconvs", line 264, in <module>
-ERROR:·
-ERROR:   File "package_do_split_gconvs", line 45, in package_do_split_gconvs
-ERROR:·
-ERROR:   File "package.bbclass", line 30, in do_split_packages
-ERROR:·
-ERROR: The code that was being executed was:
-ERROR:      0260:»------»-------bb.note("generation of binary locales disabled.
-this may break i18n!")
-ERROR:      0261:
-ERROR:      0262:
-ERROR:      0263:
-ERROR:  *** 0264:package_do_split_gconvs(d)
-ERROR:      0265:
-ERROR: (file: 'package_do_split_gconvs', lineno: 264, function: <module>)
-ERROR:      0041:»------»-------»-------d.setVar('RPROVIDES_%s' % pkg,
-pkg.replace(bpn, 'glibc'))
-ERROR:      0042:
-ERROR:      0043:»------do_split_packages(d, gconv_libdir,
-file_regex='^(.*)\.so$', output_pattern=bpn+'-gconv-%s', \
-ERROR:      0044:»------»-------description='gconv module for character set
-%s', hook=calc_gconv_deps, \
-ERROR:  *** 0045:»------»-------extra_depends=bpn+'-gconv')
-ERROR:      0046:
-ERROR:      0047:»------def calc_charmap_deps(fn, pkg, file_regex,
-output_pattern, group):
-ERROR:      0048:»------»-------deps = []
-ERROR:      0049:»------»-------f = open(fn, "r")
-ERROR: (file: 'package_do_split_gconvs', lineno: 45, function:
-package_do_split_gconvs)
-ERROR: Function failed: package_do_split_gconvs
-ERROR: Logfile of failure stored in:
-/home/rchatre/concordia/dev/ccd-distro-work/tmp/work/core2-poky-linux/eglibc-locale-2.13-r19/temp/log.do_package.31042
-NOTE: package eglibc-locale-2.13-r19: task do_package: Failed
-ERROR: Task 552 (/opt/poky.git/meta/recipes-core/eglibc/eglibc-locale_2.13.bb,
-do_package) failed with exit code '1'
+Or I develop a layer for an app on Angstrom. Do I know for sure that it wil=
+l for=20
+sure work on MEL, which has YP as its upstream?
 
-Signed-Off-By: Nitin A Kamble <nitin.a.kamble@intel.com>
----
- meta-yocto/conf/distro/poky-tiny.conf |    3 +++
- 1 files changed, 3 insertions(+), 0 deletions(-)
+See where I'm going with this?
 
-diff --git a/meta-yocto/conf/distro/poky-tiny.conf b/meta-yocto/conf/distro/poky-tiny.conf
-index 6fa4c90..a745338 100644
---- a/meta-yocto/conf/distro/poky-tiny.conf
-+++ b/meta-yocto/conf/distro/poky-tiny.conf
-@@ -74,6 +74,9 @@ DISTRO_FEATURES_LIBC = "${DISTRO_FEATURES_LIBC_TINY} \
-                         ${DISTRO_FEATURES_LIBC_NET} \
-                        "
- 
-+# This tells libc packaging that no locales are to be packaged
-+PACKAGE_NO_GCONV = "1"
-+
- # Comment out any of the lines below to disable them in the build
- # DISTRO_FEATURES options:
- # alsa bluetooth ext2 irda pcmcia usbgadget usbhost wifi nfs zeroconf pci
--- 
-1.7.6.4
+Finally, Dr. Kooi has stated that he doesn't see YP as an upstream. In fact=
+, many=20
+of the OSVs (like Wind River, Mentor Graphics and now ENEA - yeah!) absolut=
+ely
+want to use YP as their upstream. So I'm hoping we could change the definit=
+ion
+of YP/Poky/Angstrom so Angstrom could us Poky as its upstream ... no? Too
+hard?
 
+Anyway, if we can't get to this level of interoperability, then adding Angs=
+trom=20
+to the Yocto project may add too much confusion.
+
+Dave
 
