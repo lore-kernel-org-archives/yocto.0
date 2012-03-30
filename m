@@ -1,41 +1,38 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3813E0044D
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 13:51:39 -0700 (PDT)
-Received: by yenq4 with SMTP id q4so799985yen.35
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 13:51:39 -0700 (PDT)
+Return-Path: <jeffrey.osier-mixon@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96223E004D2
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 13:55:20 -0700 (PDT)
+Received: from mail-vx0-f180.google.com ([209.85.220.180])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 30 Mar 2012 13:55:18 -0700
+Received: by vcbfl10 with SMTP id fl10so622775vcb.25
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 13:55:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer
-	:x-gm-message-state;
-	bh=1idIhFhoScT0y8aMuH/dIfIVOzkWgPk//cEtaabzrVc=;
-	b=l7chEMYKQQyL1z72KrFPoSeI9BWkMt1vpvJAda3l/90uDSaNOMZ+72ZMSCIKKbBtov
-	DQg/1shHwTQtZ9V/7ZYfunNDW1tbIpOW3blzP6U11tNHKhk3nxtjGT1FcAPembmBNklu
-	RxdKUj69CnsJpwZgup96FmnqmGcW2WvDE+gDnVUqUKxVjxjWP1AffAwDqpNhdeZrrccR
-	xf7mUOGL3gFm9AHT4wQaBjdku7UrAGx3jFbxPzCsxY3KWpTnG/QPw7S0rrSUUcHhjsho
-	MleEdM3gWX8mNd534XlRm1bav2R19gNdCmb++fcY0IA5XQ8sz5GQASwq7w5CKAWatKvU
-	KQ4Q==
-Received: by 10.68.218.134 with SMTP id pg6mr631162pbc.111.1333140698841;
-	Fri, 30 Mar 2012 13:51:38 -0700 (PDT)
-Received: from [10.61.32.129] ([69.38.219.78])
-	by mx.google.com with ESMTPS id q5sm3570325pbp.28.2012.03.30.13.51.36
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 30 Mar 2012 13:51:37 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1257)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <20120330204516.GA11451@bill-the-cat>
-Date: Fri, 30 Mar 2012 13:51:46 -0700
-Message-Id: <681E6FE2-CE59-4D0C-BCF8-8163715310FF@dominion.thruhere.net>
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:x-gm-message-state:content-type;
+	bh=ceyWBzwOkcVaKh+n2erGCVWwEqU7NHHao6k567Rcczg=;
+	b=RIf43NVrQdN7RxP+Z9k0LGXnWgwFLr3vk2YSXtxKX8JHrhGu3500Z8x705He2DsSb1
+	kpydHD9VtAY2i0LOmLLC12ludKkVX39Zq8GJqATkf8HwXD3tre+yC7/yyhO588lfSmOM
+	5FAqoQjZsbeihBPDfFN9UCgNrD9/TLqPL0qI63bx2Y0C2WkvlePaAeFvO/KIEVs1pM5c
+	st8M+qHCkj9FVOo1TrGii3X6t8mpRwFha4mUQxs+z4iEPg+57S/cXe71G1mN2p0+02H7
+	XJAe9JHKPrh5l1UGm7KdIQ+sFXTmEUSC8qHLACs6gzEgspp5gpkzBQBKvwWb1BwJ9sqD
+	8Qcg==
+MIME-Version: 1.0
+Received: by 10.52.30.9 with SMTP id o9mr1383257vdh.52.1333140916955; Fri, 30
+	Mar 2012 13:55:16 -0700 (PDT)
+Received: by 10.52.30.52 with HTTP; Fri, 30 Mar 2012 13:55:16 -0700 (PDT)
+In-Reply-To: <681E6FE2-CE59-4D0C-BCF8-8163715310FF@dominion.thruhere.net>
 References: <D044B647-8BCD-48B4-BABD-CE4751D023E0@dominion.thruhere.net>
 	<4F7608DC.1000402@windriver.com>
 	<26C6B15B-4A12-453A-A146-C884A5040178@dominion.thruhere.net>
 	<4F7614FE.5000107@windriver.com>
 	<20120330204516.GA11451@bill-the-cat>
-To: Tom Rini <tom.rini@gmail.com>
-X-Mailer: Apple Mail (2.1257)
-X-Gm-Message-State: ALoCoQkV33r+vTmYACceL+5BJWTlgsmPN5SMUIPe4coT8VbQmCNi02vovxrqzRvS0EUlm12cR5IM
+	<681E6FE2-CE59-4D0C-BCF8-8163715310FF@dominion.thruhere.net>
+Date: Fri, 30 Mar 2012 13:55:16 -0700
+Message-ID: <CALZ2gZXKHg+K_q_-s4UqfzsTV6NGWeORJAdCgLDTKpfbHTwWzw@mail.gmail.com>
+From: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
+To: Koen Kooi <koen@dominion.thruhere.net>
+X-Gm-Message-State: ALoCoQmM7vn3vq4KNhiK7HkRKVMM2vqcuIM23L6onPGb0oOxQelvhXjL8fiumOEoae7+x5tmJsW8
 Cc: yocto@yoctoproject.org
 Subject: Re: Moving angstrom under the yocto banner
 X-BeenThere: yocto@yoctoproject.org
@@ -49,83 +46,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 20:51:39 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Fri, 30 Mar 2012 20:55:20 -0000
+Content-Type: multipart/alternative; boundary=20cf3079bc78ca6a3604bc7c0efd
+
+--20cf3079bc78ca6a3604bc7c0efd
+Content-Type: text/plain; charset=ISO-8859-1
+
+>
+> >> It's hard to call something Yocto Project based unless it used
+> >> something from the Yocto Project.  meta-yocto being on of those
+> >> components.
+> >
+> > So bitbake and oe-core don't count because they're external projects?
+>
+> If oe-core doesn't count, that will go directly against the agreement the
+> OE developers made with the yocto ones when deciding to drop OE classic and
+> start oe-core.
+> If that's really the position of the yocto project I think the OE project
+> will need to seriously reconsider the merge and its participation in the
+> yocto project.
+>
+
+Mark said above: "It's hard to call something YP based unless it uses
+something from the Yocto Project". meta-yocto is one example, but so is
+oe-core.
+
+oe-core is shared code between Yocto and OE. Thus, it is reasonable to say
+that any distribution that uses oe-core is representative of the Yocto
+Project, to some degree. So of course oe-core counts, as does bitbake,
+another shared component.
+
+
+
+>
+> regards,
+>
+> Koen
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+
+
+-- 
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
+
+--20cf3079bc78ca6a3604bc7c0efd
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
+<div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div><div class=
+=3D"h5">&gt;&gt; It&#39;s hard to call something Yocto Project based unless=
+ it used<br>
 
-Op 30 mrt. 2012, om 13:45 heeft Tom Rini het volgende geschreven:
+&gt;&gt; something from the Yocto Project. =A0meta-yocto being on of those<=
+br>
+&gt;&gt; components.<br>
+&gt;<br>
+&gt; So bitbake and oe-core don&#39;t count because they&#39;re external pr=
+ojects?<br>
+<br>
+</div></div>If oe-core doesn&#39;t count, that will go directly against the=
+ agreement the OE developers made with the yocto ones when deciding to drop=
+ OE classic and start oe-core.<br>
+If that&#39;s really the position of the yocto project I think the OE proje=
+ct will need to seriously reconsider the merge and its participation in the=
+ yocto project.<br></blockquote><div><br></div><div>Mark said above: &quot;=
+It&#39;s hard to call something YP based unless it uses something from the =
+Yocto Project&quot;. meta-yocto is one example, but so is oe-core.</div>
+<div><br></div><div>oe-core is shared code between Yocto and OE. Thus, it i=
+s reasonable to say that any distribution that uses oe-core is representati=
+ve of the Yocto Project, to some degree. So of course oe-core counts, as do=
+es bitbake, another shared component.</div>
+<div><br></div><div>=A0</div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+<br>
+regards,<br>
+<br>
+Koen<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
+Jeff Osier-Mixon=A0<a href=3D"http://jefro.net/blog" target=3D"_blank">http=
+://jefro.net/blog</a><div>Yocto Project Community Manager @Intel=A0<a href=
+=3D"http://yoctoproject.org/" target=3D"_blank">http://yoctoproject.org</a>=
+</div>
+<br>
 
-> On Fri, Mar 30, 2012 at 03:18:06PM -0500, Mark Hatle wrote:
->> On 3/30/12 2:33 PM, Koen Kooi wrote:
->>>=20
->>> Op 30 mrt. 2012, om 12:26 heeft Mark Hatle het volgende geschreven:
->>>=20
->>>> On 3/30/12 1:44 PM, Koen Kooi wrote:
->>>>> Hi,
->>>>>=20
->>>>> RP said I should raise this on the yocto lists, so here it is:
->>>>>=20
->>>>> The Angstrom core team would like to move angstrom under the yocto =
-banner so
->>>>> we can formally claim to be 'yocto'.
->>>>=20
->>>> For it to be on the yocto project web site, it just need to have =
-the layers hosted on the git.yoctoproject.org.  But there is no =
-"yocto".. It's the Yocto Project, Poky, or specific git repositories.  =
-There is no reason we can't have an angstrom repository.  It could be in =
-a similar format to the Poky repository (everything combined for a =
-single download), or it could be a layer [or layers] that sit on top of =
-Poky.
->>>=20
->>> Why on top of poky? I do not want poky, nor do my customers, oe-core =
-is what
->>> we need and want. This proposal to move angstrom under yocto is =
-targeted at
->>> eliminating 'poky' from the stack while still being able to say =
-'yocto'.
->>=20
->> Poky is a repository made up of bitbake + oe-core + meta-yocto, as
->> well as a distribution definition (in meta-yocto).  I assume
->> angstrom has it's own distribution definition.
->>=20
->> So my question is why NOT on top of Poky (the repository, not
->> distribution definition)?
->=20
-> What does being on top of poky buy the end user?  ${some_tool} will be
-> grabbing the repositories so it's not easier to grab bitbake + oe-core
-> as one.  It adds a barrier to end user to developer conversion since
-> we'll have a lot of "OK, thanks for your contribution but next time
-> please base against oe-core directly not poky".  Not to speak for =
-Denys
-> or Chase but for Arago, why would we want to have the poky sample =
-distro
-> around on top of our distro?
->=20
->>> We both know that saying it is 'yocto' is wrong and misleading, but =
-that's
->>> what users are asking for and yocto advocates seem to push. Just =
-watch the ELC
->>> videos for yocto related presentations, 'yocto' and 'poky' are used
->>> interchangeably in most of them.
->>>=20
->>> A 'reference' should be just that, a reference, not a mandated part.
->>=20
->> It's hard to call something Yocto Project based unless it used
->> something from the Yocto Project.  meta-yocto being on of those
->> components.
->=20
-> So bitbake and oe-core don't count because they're external projects?
-
-If oe-core doesn't count, that will go directly against the agreement =
-the OE developers made with the yocto ones when deciding to drop OE =
-classic and start oe-core.
-If that's really the position of the yocto project I think the OE =
-project will need to seriously reconsider the merge and its =
-participation in the yocto project.
-
-regards,
-
-Koen
-
-
+--20cf3079bc78ca6a3604bc7c0efd--
