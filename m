@@ -1,42 +1,26 @@
-Return-Path: <tom.rini@gmail.com>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9269E00596
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 16:14:10 -0700 (PDT)
-Received: by obbuo19 with SMTP id uo19so1116289obb.35
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 16:14:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:organization
-	:user-agent; bh=civFR0aWSPfbiJhVjjthqBiAl2EGDsYhgQzclsbqKgw=;
-	b=aEqUMOfEwrpks9IjKJ8S71lQNOj5NLkj8ykMLT5I7GIos83qixTQSfnWDB2cde4LCJ
-	fujQSz9H+b562GKjsWHgWXSL2XmksSlJWaZe+xNPeAwBBuXA3uUJlu/wpxH9nSwkjAjP
-	1KyS+mgvHfzAJdHINyP26XAZMivhxp6ece8YxeOEKPWCwnHOhte9u/vSC2usFEGee5+G
-	tPRHLaVt193vr+2hqHqbjtzkf8heG90ijuienP1NjDQxVdfCuIc6VZM0IAuAxV8Y9AZ9
-	uBDnU78CI7A1ijCB59c5minfLOIVOlfp82GPdY2Ez/P+flnDL8Z+tcCS/9iCoGOAderK
-	eLDg==
-Received: by 10.182.159.41 with SMTP id wz9mr230565obb.69.1333149250133;
-	Fri, 30 Mar 2012 16:14:10 -0700 (PDT)
-Received: from bill-the-cat (ip68-230-54-74.ph.ph.cox.net. [68.230.54.74])
-	by mx.google.com with ESMTPS id vp14sm8445812oeb.5.2012.03.30.16.14.08
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 30 Mar 2012 16:14:09 -0700 (PDT)
-Date: Fri, 30 Mar 2012 16:14:10 -0700
-From: Tom Rini <tom.rini@gmail.com>
-To: Chris Larson <clarson@kergoth.com>
-Message-ID: <20120330231410.GB11451@bill-the-cat>
-References: <D044B647-8BCD-48B4-BABD-CE4751D023E0@dominion.thruhere.net>
-	<4F7608DC.1000402@windriver.com>
-	<26C6B15B-4A12-453A-A146-C884A5040178@dominion.thruhere.net>
-	<4F7614FE.5000107@windriver.com> <1333141865.18082.120.camel@ted>
-	<CDED78A957032E45B3239CDDA7642D15084B8EC1@ORSMSX105.amr.corp.intel.com>
-	<CABcZANm-c9Q_S5sG-1wd-_c9iqc1ygcfzQw2MvgX7WVA2CqddA@mail.gmail.com>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DF7AE0044D
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2012 16:27:22 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 30 Mar 2012 16:27:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="83706019"
+Received: from unknown (HELO envy.home) ([10.255.12.115])
+	by AZSMGA002.ch.intel.com with ESMTP; 30 Mar 2012 16:27:21 -0700
+Message-ID: <4F764130.4080204@linux.intel.com>
+Date: Fri, 30 Mar 2012 16:26:40 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
 MIME-Version: 1.0
-In-Reply-To: <CABcZANm-c9Q_S5sG-1wd-_c9iqc1ygcfzQw2MvgX7WVA2CqddA@mail.gmail.com>
-Organization: Texas Instruments
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Moving angstrom under the yocto banner
+To: nitin.a.kamble@intel.com
+References: <512eae1ae0678b247076db900304725702acc91e.1333145263.git.nitin.a.kamble@intel.com>
+	<f5f27094a325058b26b182ad0ea4a08b72f608af.1333145263.git.nitin.a.kamble@intel.com>
+In-Reply-To: <f5f27094a325058b26b182ad0ea4a08b72f608af.1333145263.git.nitin.a.kamble@intel.com>
+X-Enigmail-Version: 1.4
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 3/3] poky-tiny: avoid eglibc locale packaging
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,45 +32,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2012 23:14:10 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 30 Mar 2012 23:27:22 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Mar 30, 2012 at 04:09:37PM -0700, Chris Larson wrote:
-> On Fri, Mar 30, 2012 at 4:06 PM, Stewart, David C
-> <david.c.stewart@intel.com> wrote:
-> >>From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> >>bounces@yoctoproject.org] On Behalf Of Richard Purdie
-> >>Sent: Friday, March 30, 2012 2:11 PM
-> >>
-> >>The criteria I see for being part of the Yocto Project are:
-> >>
-> >>a) Sharing the project's objectives (e.g. making embedded Liunx
-> >> ?? development easier)
-> >>b) Willing to be part of the Yocto Project's governance structure
-> >>c) Bringing something new/beneficial to the Yocto Project (often with
-> >> ?? mutual benefit)
-> >>d) Have some kind of sustainable resource plan
-> >
-> > I would add:
-> > e) there should be interoperability with the other parts of the YP.
-> >
-> > Part of the benefit we're trying to create is that if someone invests in YP
-> > for their device, they should get benefit from the whole thing. ??If a board
-> > manufacturer creates a BSP for YP v1.2, there should be no doubt whatsoever
-> > that it will work with that system. ??Can anyone assure me that such a BSP
-> > would work under Angstrom?
+On 03/30/2012 03:52 PM, nitin.a.kamble@intel.com wrote:
+> From: Nitin A Kamble <nitin.a.kamble@intel.com>
 > 
-> Given that an OE priority has *always* been that distro, machine, and
-> image are largely independent, orthogonal components, and generally
-> speaking one can combine any combination of the three and have at
-> least a good shot at functionality, I'd say that if such a BSP did not
-> work under Angstrom, that'd be a bug that we'd all agree would need to
-> be fixed. As far as I know, this priority and attribute of the system
-> still exists.
+> This fixes bug: [YOCTO #2089]
+> 
+> This avoids these errors
+> NOTE: package eglibc-locale-2.13-r19: task do_populate_sysroot: Started
+> ERROR: Error executing a python function in
+> /opt/poky.git/meta/recipes-core/eglibc/eglibc-locale_2.13.bb:
+> OSError: [Errno 2] No such file or directory:
+> '/home/rchatre/concordia/dev/ccd-distro-work/tmp/work/core2-poky-linux/eglibc-locale-2.13-r19/package/usr/lib/gconv'
+> 
+> ERROR: The stack trace of python calls that resulted in this exception/failure
+> was:
+> ERROR:   File "package_do_split_gconvs", line 264, in <module>
+> ERROR:·
+> ERROR:   File "package_do_split_gconvs", line 45, in package_do_split_gconvs
+> ERROR:·
+> ERROR:   File "package.bbclass", line 30, in do_split_packages
+> ERROR:·
+> ERROR: The code that was being executed was:
+> ERROR:      0260:»------»-------bb.note("generation of binary locales disabled.
+> this may break i18n!")
+> ERROR:      0261:
+> ERROR:      0262:
+> ERROR:      0263:
+> ERROR:  *** 0264:package_do_split_gconvs(d)
+> ERROR:      0265:
+> ERROR: (file: 'package_do_split_gconvs', lineno: 264, function: <module>)
+> ERROR:      0041:»------»-------»-------d.setVar('RPROVIDES_%s' % pkg,
+> pkg.replace(bpn, 'glibc'))
+> ERROR:      0042:
+> ERROR:      0043:»------do_split_packages(d, gconv_libdir,
+> file_regex='^(.*)\.so$', output_pattern=bpn+'-gconv-%s', \
+> ERROR:      0044:»------»-------description='gconv module for character set
+> %s', hook=calc_gconv_deps, \
+> ERROR:  *** 0045:»------»-------extra_depends=bpn+'-gconv')
+> ERROR:      0046:
+> ERROR:      0047:»------def calc_charmap_deps(fn, pkg, file_regex,
+> output_pattern, group):
+> ERROR:      0048:»------»-------deps = []
+> ERROR:      0049:»------»-------f = open(fn, "r")
+> ERROR: (file: 'package_do_split_gconvs', lineno: 45, function:
+> package_do_split_gconvs)
+> ERROR: Function failed: package_do_split_gconvs
+> ERROR: Logfile of failure stored in:
+> /home/rchatre/concordia/dev/ccd-distro-work/tmp/work/core2-poky-linux/eglibc-locale-2.13-r19/temp/log.do_package.31042
+> NOTE: package eglibc-locale-2.13-r19: task do_package: Failed
+> ERROR: Task 552 (/opt/poky.git/meta/recipes-core/eglibc/eglibc-locale_2.13.bb,
+> do_package) failed with exit code '1'
+> 
+> Signed-Off-By: Nitin A Kamble <nitin.a.kamble@intel.com>
+> ---
+>  meta-yocto/conf/distro/poky-tiny.conf |    3 +++
+>  1 files changed, 3 insertions(+), 0 deletions(-)
+> 
+> diff --git a/meta-yocto/conf/distro/poky-tiny.conf b/meta-yocto/conf/distro/poky-tiny.conf
+> index 6fa4c90..a745338 100644
+> --- a/meta-yocto/conf/distro/poky-tiny.conf
+> +++ b/meta-yocto/conf/distro/poky-tiny.conf
+> @@ -74,6 +74,9 @@ DISTRO_FEATURES_LIBC = "${DISTRO_FEATURES_LIBC_TINY} \
+>                          ${DISTRO_FEATURES_LIBC_NET} \
+>                         "
+>  
+> +# This tells libc packaging that no locales are to be packaged
+> +PACKAGE_NO_GCONV = "1"
+> +
+>  # Comment out any of the lines below to disable them in the build
+>  # DISTRO_FEATURES options:
+>  # alsa bluetooth ext2 irda pcmcia usbgadget usbhost wifi nfs zeroconf pci
 
-This is also my understanding and expectation.
+
+Thanks for looking into this Nitin! I'm fine with this fix if it gets
+things going. I wonder though, I presume omitting something from
+DISTRO_FEATURES_LIBC is what triggers this bug... could that same
+omission not be tested to avoid the failure? Seems strange to have to
+explicitly set PACKAGE_NO_GCONV.
+
+Thoughts?
 
 -- 
-Tom
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
