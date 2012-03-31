@@ -1,42 +1,24 @@
-Return-Path: <darren@apps.dvhart.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A6E6E013E4
-	for <yocto@yoctoproject.org>; Sat, 31 Mar 2012 07:45:02 -0700 (PDT)
-Received: by mail-pb0-f48.google.com with SMTP id jt11so3527025pbb.35
-	for <yocto@yoctoproject.org>; Sat, 31 Mar 2012 07:45:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=sender:from:to:subject:date:message-id:x-mailer:in-reply-to
-	:references:in-reply-to:references:x-gm-message-state;
-	bh=f56ZlfGDjw4vg2zVZcV0TNgTrPI3N9HXvAafM8BXd7s=;
-	b=FVuWA13fGKG2+Bo5u2z9nmAnQp/FlZOQYbU9Dl+vZ87FvWWRqrI/Ru8dR4etApbcEA
-	D77tEekaXPhOBnihxZcc+NlORxI0Vg8e9T4ccj+gFCTJtuqnFClMiKRvmKCfSinfHVp/
-	MTJkS8mET53MZZI7YM6a+pVCpEV+mi2QrDT+/X4x5SRH7+3ssT1qjsvUsm9bp3fScl9/
-	6fsvpLmpqPpPyDeYw3Sq9IULD76b9rf9GuSEzSdTPwnD+3eYYsf3gRURU29DOLowBKhj
-	pB5V9/LphCFFpiYxhKMY6w63tdrigH2pNo7L8t+y9AefS8aqXO4rSDfq67EapjK6ExjH
-	11bg==
-Received: by 10.68.136.162 with SMTP id qb2mr6268927pbb.67.1333205102030;
-	Sat, 31 Mar 2012 07:45:02 -0700 (PDT)
-Received: from localhost (static-50-53-99-101.bvtn.or.frontiernet.net.
-	[50.53.99.101])
-	by mx.google.com with ESMTPS id l4sm9821751pbl.27.2012.03.31.07.45.00
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 31 Mar 2012 07:45:01 -0700 (PDT)
-Sender: Darren Hart <darren@apps.dvhart.com>
-From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>,
-	Bruce Ashfield <bruce.ashfield@windriver.com>,
-	Tom Zanussi <tom.zanussi@intel.com>
-Date: Sat, 31 Mar 2012 07:44:45 -0700
-Message-Id: <2d5c8c0f13b1cb38fe073ff81d22d5e38fd4c174.1333204567.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <cover.1333204567.git.dvhart@linux.intel.com>
-References: <cover.1333204567.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1333204567.git.dvhart@linux.intel.com>
-References: <cover.1333204567.git.dvhart@linux.intel.com>
-X-Gm-Message-State: ALoCoQm8dalvujy3a53SIEy6MDBa7RVDnCaGuCdQrEhACA9DdX4Cave0cCRHEgRx5mqea5Ybf99t
-Subject: [PATCH 3/3] meta: Add common-pc-tiny.scc
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 281B3E01304
+	for <yocto@yoctoproject.org>; Sat, 31 Mar 2012 08:37:56 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 31 Mar 2012 08:37:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="148199103"
+Received: from unknown (HELO helios.localnet) ([10.252.123.233])
+	by fmsmga002.fm.intel.com with ESMTP; 31 Mar 2012 08:37:54 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Koen Kooi <koen@dominion.thruhere.net>
+Date: Sat, 31 Mar 2012 16:37:54 +0100
+Message-ID: <1558968.mplaJ6uI11@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-17-generic-pae; KDE/4.8.1; i686; ; )
+In-Reply-To: <D044B647-8BCD-48B4-BABD-CE4751D023E0@dominion.thruhere.net>
+References: <D044B647-8BCD-48B4-BABD-CE4751D023E0@dominion.thruhere.net>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: Moving angstrom under the yocto banner
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,38 +30,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 31 Mar 2012 14:45:02 -0000
+X-List-Received-Date: Sat, 31 Mar 2012 15:37:56 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Create the MACHINE-KTYPE description file for common-pc and tiny. This is
-used by the qemux86 machine for the linux-yocto-tiny kernel recipe. Add
-the common-pc hardware config, but not all the features included by the
-common-pc-standard.scc file.
+On Friday 30 March 2012 11:44:23 Koen Kooi wrote:
+> The Angstrom core team would like to move angstrom under the yocto banner so
+> we can formally claim to be 'yocto'.
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
----
- .../kernel-cache/bsp/common-pc/common-pc-tiny.scc  |   12 ++++++++++++
- 1 files changed, 12 insertions(+), 0 deletions(-)
- create mode 100644 meta/cfg/kernel-cache/bsp/common-pc/common-pc-tiny.scc
+I think a lot of points have been well addressed in this thread already, but I 
+wanted to add (and reiterate) a few things. None of this constitutes Yocto 
+Project policy, just my own opinions.
 
-diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-tiny.scc b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-tiny.scc
-new file mode 100644
-index 0000000..8d7a498
---- /dev/null
-+++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-tiny.scc
-@@ -0,0 +1,12 @@
-+define KMACHINE common-pc
-+define KTYPE tiny
-+define KARCH i386
-+
-+include ktypes/tiny
-+branch common-pc
-+
-+# Don't include common-pc.scc directly,
-+# it pulls in too many non-hardware options
-+kconf hardware common-pc.cfg
-+kconf hardware common-pc-gfx.cfg
-+
+I think it's perfectly reasonable if you base something upon the openembedded-
+core and bitbake repositories to state that it is based upon the Yocto Project 
+(aside from any other conditions which Richard has already talked about; I'm 
+sure LF has some trademark policies as well). If you're supplying your own 
+distro policy as many will in their projects, you would not need to have meta-
+yocto and it is reasonable if you are building a distribution such as Angstrom 
+to want to exclude it, since you will never be using anything in it. Whatever 
+you do though, I think you need to be able to demonstrate to your customers 
+that you are in fact basing your release on top of a Yocto Project release.
+
+This could be accomplished through the use of tags - if you state that you use 
+BitBake x.y and a specific OE-Core tag, and this matches up with the Yocto 
+Project release you state you have based upon, then that should be sufficient.
+
+A few other thoughts:
+
+1) Angstrom has a very distinct distro policy from the default provided by OE-
+Core (or indeed the Poky distro policy); it also currently uses different 
+versions of eglibc and the toolchain. This does make it for certain purposes a 
+slightly different platform from Poky or something else based on OE-Core. This 
+is not necessarily a problem, and is no doubt backed by sound reasoning, but 
+is worth noting and communicating to users.
+
+2) With Angstrom being primarily a binary distribution, I have the impression 
+that you expect that that its distro policy will not be deviated from. There's 
+definitely a good reason for this and value in having such a distribution; but 
+users need to be able to understand the distinction. The Yocto Project itself 
+in providing a way to produce custom Linux distributions does not have such 
+restrictions - we expect that users will make whatever customisations make 
+sense for their project, although of course we make some recommendations as to 
+how they might be implemented.
+
+Cheers,
+Paul
+
 -- 
-1.7.5.4
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
