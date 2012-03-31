@@ -1,41 +1,36 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FBF3E00596
-	for <yocto@yoctoproject.org>; Sat, 31 Mar 2012 00:06:45 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2V76f5k022066;
-	Sat, 31 Mar 2012 08:06:41 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 21307-03; Sat, 31 Mar 2012 08:06:37 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q2V76Vdj022060
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Sat, 31 Mar 2012 08:06:32 +0100
-Message-ID: <1333177590.18082.160.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Chris Larson <clarson@kergoth.com>
-Date: Sat, 31 Mar 2012 08:06:30 +0100
-In-Reply-To: <CABcZANm3gPp3zG0WHkgAgX_jC9uqfU46ieoRn_aYk99=6nYVkA@mail.gmail.com>
-References: <D044B647-8BCD-48B4-BABD-CE4751D023E0@dominion.thruhere.net>
-	<4F7608DC.1000402@windriver.com>
-	<26C6B15B-4A12-453A-A146-C884A5040178@dominion.thruhere.net>
-	<4F7614FE.5000107@windriver.com> <1333141865.18082.120.camel@ted>
-	<4F764759.1070801@linux.intel.com>
-	<1EF3F9CE-3074-4925-8C57-B6382C0DAD83@dominion.thruhere.net>
-	<4F764FB7.2080508@linux.intel.com>
-	<95AC7E09-D28F-46CE-A49B-30719BB50B1B@dominion.thruhere.net>
-	<4F765C0D.4000902@linux.intel.com>
-	<8986DA27-376D-447E-A9CF-5BEF1B309961@dominion.thruhere.net>
-	<4F766B84.9080505@linux.intel.com>
-	<CABcZANm3gPp3zG0WHkgAgX_jC9uqfU46ieoRn_aYk99=6nYVkA@mail.gmail.com>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
-Subject: Re: Moving angstrom under the yocto banner
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A9D6E00596
+	for <yocto@yoctoproject.org>; Sat, 31 Mar 2012 00:57:13 -0700 (PDT)
+Received: by wgbdq13 with SMTP id dq13so1022231wgb.11
+	for <yocto@yoctoproject.org>; Sat, 31 Mar 2012 00:57:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=EnX/O7GQqVwOI4K5zlRkl15Zqww7nscgqbB/xk0PuMw=;
+	b=ALE6qOqj8OiCp2osolHkM68awtok8738sVwsO3/KnaMibFXpCdEKi5QMCVHDKHjzdQ
+	yid4UkZ/EoXGxK95LXBw+goO9r9gPQi4XXGdCEK6EoV68vc+nbTeYN9gC+uyZ2qR22w2
+	3lDscpsmTlN8Kb5Loy9gzoN6xDohp9WcESLgdVrp0UDW5IDEFuZXC3gcL6QWfhKPkIi/
+	Zk21ih2RwPR7G7/BE6OCiIwP9cqStP0x+3zcZJWU1TFalg68oZrGzTQJzucg/WJStJtb
+	goh3Lsia4/0umlBUwrPDDvie2Oepap28c8mIUDsBQ9KKCEnFBCyJj2bzTnvohIanLdwW
+	AmIw==
+Received: by 10.180.102.3 with SMTP id fk3mr4284972wib.9.1333180632931;
+	Sat, 31 Mar 2012 00:57:12 -0700 (PDT)
+Received: from localhost ([94.230.152.246])
+	by mx.google.com with ESMTPS id 6sm13574928wiz.1.2012.03.31.00.57.11
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 31 Mar 2012 00:57:11 -0700 (PDT)
+Date: Sat, 31 Mar 2012 09:57:15 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: nitin.a.kamble@intel.com
+Message-ID: <20120331075715.GA3950@jama.jama.net>
+References: <cover.1333145263.git.nitin.a.kamble@intel.com>
+	<0f8cf941e9e7d9c25cd882bae083b536b715cd17.1333145263.git.nitin.a.kamble@intel.com>
+MIME-Version: 1.0
+In-Reply-To: <0f8cf941e9e7d9c25cd882bae083b536b715cd17.1333145263.git.nitin.a.kamble@intel.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 2/3] cross-canadian.bbclass: fix rpath for sdk executables
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,59 +42,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 31 Mar 2012 07:06:46 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 31 Mar 2012 07:57:14 -0000
+X-Groupsio-MsgNum: 5720
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="0F1p//8PRICkK4MW"
+Content-Disposition: inline
 
-On Fri, 2012-03-30 at 20:00 -0700, Chris Larson wrote:
-> Not to be terribly pendatic or difficult here, but technically, the
-> comparison you make here doesn't ring true. bitbake in poky *still*
-> has changes that never went into the upstream repository.
+--0F1p//8PRICkK4MW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I was surprised to hear that but its easy enough to test:
+On Fri, Mar 30, 2012 at 03:52:05PM -0700, nitin.a.kamble@intel.com wrote:
+> From: Nitin A Kamble <nitin.a.kamble@intel.com>
+>=20
+> This makes the libraries located in places like this findable:
+> /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/lib
+>=20
+> Which avoids linking cross canadian sdk executables with host libraries l=
+ike this:
+>=20
+> $ ldd /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/bin/x86_64=
+-oe-linux/x86_64-oe-linux-gdb
+>         linux-vdso.so.1 =3D>  (0x00007fffb7fff000)
+>         libreadline.so.6 =3D> /usr/local/oecore-x86_64/sysroots/x86_64-oe=
+sdk-linux/usr/lib/x86_64-oe-linux/../libreadline.so.6 (0x00007fbfb5511000)
+>         libdl.so.2 =3D> /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-li=
+nux/lib/libdl.so.2 (0x00007fbfb530c000)
+>         libncurses.so.5 =3D> /usr/local/oecore-x86_64/sysroots/x86_64-oes=
+dk-linux/lib/libncurses.so.5 (0x00007fbfb50e9000)
+>         libtinfo.so.5 =3D> /usr/local/oecore-x86_64/sysroots/x86_64-oesdk=
+-linux/lib/libtinfo.so.5 (0x00007fbfb4ec2000)
+>         libz.so.1 =3D> /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-lin=
+ux/usr/lib/x86_64-oe-linux/../libz.so.1 (0x00007fbfb4cac000)
+>         libm.so.6 =3D> /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-lin=
+ux/lib/libm.so.6 (0x00007fbfb4a2a000)
+>         libpthread.so.0 =3D> /usr/local/oecore-x86_64/sysroots/x86_64-oes=
+dk-linux/lib/libpthread.so.0 (0x00007fbfb480d000)
+>         libutil.so.1 =3D> /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-=
+linux/lib/libutil.so.1 (0x00007fbfb4609000)
+>         libexpat.so.1 =3D> /usr/local/oecore-x86_64/sysroots/x86_64-oesdk=
+-linux/usr/lib/x86_64-oe-linux/../libexpat.so.1 (0x00007fbfb43e0000)
+>         libc.so.6 =3D> /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-lin=
+ux/lib/libc.so.6 (0x00007fbfb4059000)
+>         /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/lib/ld-linux=
+-x86-64.so.2 =3D> /lib64/ld-linux-x86-64.so.2 (0x0000003f05000000)
+>=20
+> Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+> ---
+>  meta/classes/cross-canadian.bbclass |    4 +++-
+>  1 files changed, 3 insertions(+), 1 deletions(-)
+>=20
+> diff --git a/meta/classes/cross-canadian.bbclass b/meta/classes/cross-can=
+adian.bbclass
+> index e187b88..4ff092c 100644
+> --- a/meta/classes/cross-canadian.bbclass
+> +++ b/meta/classes/cross-canadian.bbclass
+> @@ -48,7 +48,9 @@ DPKG_ARCH =3D "${SDK_ARCH}"
+>  CPPFLAGS =3D "${BUILDSDK_CPPFLAGS}"
+>  CFLAGS =3D "${BUILDSDK_CFLAGS}"
+>  CXXFLAGS =3D "${BUILDSDK_CFLAGS}"
+> -LDFLAGS =3D "${BUILDSDK_LDFLAGS}"
+> +LDFLAGS =3D "${BUILDSDK_LDFLAGS} \
+> +	-Wl,-rpath-link,${STAGING_LIBDIR}/.. \
+> +	 -Wl,-rpath,${libdir}/.. "
 
-diff -ur bitbake/ ../bitbake/
-Only in bitbake//bin: bitbake-runtask
-Only in ../bitbake/: classes
-Only in ../bitbake/: conf
-Only in ../bitbake/: .git
-Only in ../bitbake/: .gitignore
-diff -ur bitbake//lib/bb/cooker.py ../bitbake//lib/bb/cooker.py
---- bitbake//lib/bb/cooker.py	2012-03-22 14:40:40.488135297 +0000
-+++ ../bitbake//lib/bb/cooker.py	2012-03-22 14:32:17.336127747 +0000
-@@ -178,7 +178,7 @@
-         self.configuration.data = bb.data.init()
- 
-         if not self.server_registration_cb:
--            bb.data.setVar("BB_WORKERCONTEXT", "1", self.configuration.data)
-+            self.configuration.data.setVar("BB_WORKERCONTEXT", "1")
- 
-         filtered_keys = bb.utils.approved_variables()
-         bb.data.inheritFromOS(self.configuration.data, self.savedenv, filtered_keys)
-Only in bitbake//lib/bb: shell.py
-Only in ../bitbake/: MANIFEST.in
-Only in ../bitbake/: setup.py
-Only in ../bitbake/: TODO
+https://wiki.yoctoproject.org/wiki/Recipe_%26_Patch_Style_Guide#White_Space=
+_Management
 
-(where one tree is on bitbake master and the other is poky master).
+says you should use spaces for indentation (except shell functions and
+some but not all python functions e.g populate_packages)
 
-Of these, the classes/conf/.git/setup.py/MANIFEST/TODO are deliberately
-removed. Those are upstream too. shell.py is still around as a reminder
-that at some point I think we should resurrect it in a new form. I also
-evidently never added bitbake-runtask upstream which I thought I had.
-
-So, yes, there is a one line change that we've screwed up merging and
-its not even functionally different.
+Maybe someone should write vim-syntax file for .bb and .bbclass :).
 
 Cheers,
 
-Richard
+> =20
+>  DEPENDS_GETTEXT =3D "gettext-native gettext-nativesdk"
+> =20
+> --=20
+> 1.7.6.4
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
+--0F1p//8PRICkK4MW
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
 
+iEYEARECAAYFAk92uNsACgkQN1Ujt2V2gBybUACghxJWwh5R7eeToxLIH1Eeo14V
+Rb4Anj/WxZfmKx32L2jmnZAYaOe41qBy
+=6oDk
+-----END PGP SIGNATURE-----
 
-
-
-
-
+--0F1p//8PRICkK4MW--
