@@ -1,49 +1,32 @@
-Return-Path: <giannis.damigos@gmail.com>
-Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0C64E0044A
-	for <yocto@yoctoproject.org>; Sun,  1 Apr 2012 11:11:01 -0700 (PDT)
-Received: by wgbdq13 with SMTP id dq13so1688758wgb.11
-	for <yocto@yoctoproject.org>; Sun, 01 Apr 2012 11:11:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type;
-	bh=oFqfMa+a5qctPuTi7fI/jR8rldhdMbxUPaKN3TbLcs0=;
-	b=acPF31sn/tUswxR5ePXKayzE3cDhe8edNMbnkd2UAyLENz6FV9IobDt9n5kmY4fRwt
-	/1CGBaL+CWowoZ77wC0GnPVL+WvvO6sA6EUDpxEj3mzr9Gt2KLlf3CHDC4qGKajTTRz/
-	atrp2PSaIMWqxDcpmygpx1fmykVpaAuUqBJUy3YAgECMhNDg0MtZjEKfEmn908PZJ4ua
-	lDbz5pEpEoQnROkFvXju7163PRhypTYfHFqvbg1gDJFD7qy1KiKIQsoY+gqXNmx/I/x5
-	vkxKrO2grkDtGSGQe9QB3jr7ibcOO3HGCZLPYak0Tgh8fRBO5gKyQGqSgsT8ABTQeEtn
-	7uTQ==
-Received: by 10.180.88.164 with SMTP id bh4mr17428012wib.22.1333303860446;
-	Sun, 01 Apr 2012 11:11:00 -0700 (PDT)
-Received: from [192.168.1.252] (athedsl-173654.home.otenet.gr. [85.75.221.244])
-	by mx.google.com with ESMTPS id b3sm27220500wib.4.2012.04.01.11.10.58
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sun, 01 Apr 2012 11:10:59 -0700 (PDT)
-Message-ID: <4F789A30.90709@gmail.com>
-Date: Sun, 01 Apr 2012 21:10:56 +0300
-From: Giannis Damigos <giannis.damigos@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:11.0) Gecko/20120328 Thunderbird/11.0.1
+Return-Path: <Sean_Hudson@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B32FE0044A
+	for <yocto@yoctoproject.org>; Sun,  1 Apr 2012 11:29:15 -0700 (PDT)
+Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
+	by relay1.mentorg.com with esmtp 
+	id 1SEPWc-0006LK-8z from Sean_Hudson@mentor.com ;
+	Sun, 01 Apr 2012 11:29:14 -0700
+Received: from SVR-ORW-FEM-05.mgc.mentorg.com ([147.34.97.43]) by
+	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
+	SMTPSVC(6.0.3790.4675); Sun, 1 Apr 2012 11:28:30 -0700
+Received: from NA-MBX-03.mgc.mentorg.com ([fe80::9a:1569:df57:45b8]) by
+	SVR-ORW-FEM-05.mgc.mentorg.com ([147.34.97.43]) with mapi id
+	14.01.0289.001; Sun, 1 Apr 2012 11:29:13 -0700
+From: "Hudson, Sean" <Sean_Hudson@mentor.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"Openembedded-core@lists.openembedded.org"
+	<Openembedded-core@lists.openembedded.org>
+Thread-Topic: Inaugural Yocto BSP Summit - Hosted by Mentor
+Thread-Index: Ac0QNVY+r2LWjdsfThCsB0GLkvrGcg==
+Date: Sun, 1 Apr 2012 18:29:13 +0000
+Message-ID: <4FA5F5BD-C00B-4998-96A4-E6B85127D3E7@mentor.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-To: niqingliang@insigma.com.cn
-References: <1332815600.25277.22.camel@localhost.localdomain>
-	<4F717F1A.8090108@communistcode.co.uk>
-	<1332842944.25277.42.camel@localhost.localdomain>
-	<1332926479.25277.66.camel@localhost.localdomain>
-	<4F72E29E.7000803@communistcode.co.uk>
-	<1332985943.25277.85.camel@localhost.localdomain>
-	<1332986753.25277.87.camel@localhost.localdomain>
-	<CAG5jFBqnxDK0ZBHGyupC0aBZQxO3jkWzcPQtmJDrvEa4cmaYyg@mail.gmail.com>
-	<1333007302.25277.114.camel@localhost.localdomain>
-	<CAG5jFBqnZ=Ob5OSFV2vnFpbBbLew3Ti-wReC7OzaTTZLYg1gbg@mail.gmail.com>
-	<1333012321.25277.127.camel@localhost.localdomain>
-	<1333089019.10988.1.camel@localhost.localdomain>
-	<CAG5jFBo0=FGsvMPmrsGCMzzirThfQi3KKw0geczAVScgeJa_eQ@mail.gmail.com>
-	<1333092897.10988.5.camel@localhost.localdomain>
-In-Reply-To: <1333092897.10988.5.camel@localhost.localdomain>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: who are using archlinux?
+X-OriginalArrivalTime: 01 Apr 2012 18:28:30.0796 (UTC)
+	FILETIME=[3D18D0C0:01CD1035]
+Subject: Inaugural Yocto BSP Summit - Hosted by Mentor
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,598 +38,250 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 01 Apr 2012 18:11:02 -0000
+X-List-Received-Date: Sun, 01 Apr 2012 18:29:15 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="------------090203020101040801060302"
-
---------------090203020101040801060302
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-On 03/30/2012 10:34 AM, Ni Qingliang wrote:
-> On Fri, 2012-03-30 at 15:23 +0800, Giannis Damigos wrote:
->> On Fri, Mar 30, 2012 at 9:30 AM, Ni Qingliang
->> <niqingliang@insigma.com.cn>  wrote:
->>> maybe we should report the two bugs?
->>>
->>> On Thu, 2012-03-29 at 17:12 +0800, 倪庆亮 wrote:
->>>> yes, you are right.
->>>>
->>>> the 32 bit lib and gconf is TWO problem, but maybe the reason is same,
->>>> the 'ld' search path.
->>>>
->>>> the 32 bit lib is only occured on NOT pure 64 bit arch. if you are using
->>>> 64 bit arch, and with this problem, maybe you have installed some 32 bit
->>>> libs. (my VM is a pure 64 bit arch, no this problem, and my host is
->>>> using multilib, with this problem)
->>>>
->>>> but the gconf problem is occured both on pure/NOT-pure 64 bit arch.
->>>>
->>>>
->>>> the former is focused on the arch (is 64 bit or 32 bit) of libs. and the
->>>> other one is focused on the dependency of libs.
->>>>
->>>> the gconf need libgtk/libgdk (found in the sysroot), and libgtk/libgdk
->>>> depends on libXrandr (found in host's rootfs), and libXrandr need glibc
->>>> 2.14 (not found in the sysroot, only glibc 2.13).
->>>>
->>>> so the search path is switch between the sysroot and host's rootfs back
->>>> and forth.
->>>>
->>>> On Thu, 2012-03-29 at 16:54 +0800, Giannis Damigos wrote:
->>>>> Installing package lib32-libxrandr, cleaning gconf and building it
->>>>> again does not solved the problem.
->>>>> Such problems on OE were solved by fixing the library path.
->>>>> Now gconf is looking for libXrandr in archlinux libraries and not in
->>>>> yocto's libraries in build directory.
->>>>>
->>>>>
->>>>> On Thu, Mar 29, 2012 at 10:48 AM, Ni Qingliang
->>>>> <niqingliang@insigma.com.cn>  wrote:
->>>>>> give you my hands. I have waited you so long time.:)
->>>>>>
->>>>>> indeed, I have the gcc-multilib problem also.
->>>>>> the ati driver catalyst-total need some 32 bit libs, once you installed
->>>>>> that, the poky compile fail, and then we need install other 32 bit libs
->>>>>> (like gcc-multilib you said). (with a pure 64 bit archlinux, all are OK)
->>>>>>
->>>>>> the only reason I doubt the 'ld', only because if I remove
->>>>>> libXrandr.so.2 in host's rootfs, the error info changed, the libXrandr
->>>>>> become another lib's name (maybe libXext, I can't remember clearly).
->>>>>>
->>>>>> and after several days experiments, I can ensure the problem is focused
->>>>>> on the 'ld' (belongs to binutils).
->>>>>>
->>>>>> On Thu, 2012-03-29 at 15:40 +0800, Giannis Damigos wrote:
->>>>>>> Hi,
->>>>>>>
->>>>>>> I had similar errors building an OE image for my Micro2440 board under
->>>>>>> archlinux x86-64. I solved the problem by installing gcc-multlib
->>>>>>> (https://wiki.archlinux.org/index.php/Arch64_FAQ#Multilib_Repository_-_Multilib_Project).
->>>>>>>
->>>>>>> But, I tried to bake gconf with yocto just adding MACHINE and DISTRO
->>>>>>> to my local.conf:
->>>>>>> MACHINE ?= "qemux86-64"
->>>>>>> DISTRO ?= "poky-lsb"
->>>>>>>
->>>>>>> and I had the same error.
->>>>>>>
->>>>>>> On Thu, Mar 29, 2012 at 5:05 AM, Ni Qingliang
->>>>>>> <niqingliang@insigma.com.cn>  wrote:
->>>>>>>> Oh, I lost something, before running the testgconf.sh, you should
->>>>>>>> cleanall gconf, and build gconf. If not, you can't run it.
->>>>>>>>
->>>>>>>> On Thu, 2012-03-29 at 09:52 +0800, 倪庆亮 wrote:
->>>>>>>>> what the custom script has done is only adding the build dir (which
->>>>>>>>> include the 'python' symlink) into the 'PATH', only that.
->>>>>>>>> AND: integrate the oe-init-build-env and bitbake together.
->>>>>>>>> indeed, no modification.
->>>>>>>>>
->>>>>>>>> using it, I can build anything with one command (call the script),
->>>>>>>>> without it, I must call init env script manually.
->>>>>>>>>
->>>>>>>>> archlinux: latest
->>>>>>>>> poky: latest
->>>>>>>>> build: clean (>  4times)
->>>>>>>>>
->>>>>>>>> indeed, the possibility you mentioned has been excluded by my test.
->>>>>>>>> you can build it succcessfully. what arch of arch you are using? x86 or
->>>>>>>>> x86-64? what about the local.conf? are you using the same as mine?.
->>>>>>>>>
->>>>>>>>> both of them from my side is x86-64.
->>>>>>>>>
->>>>>>>>> I doubt 'ld', only because of my test. the attachment 'testgconf.sh'
->>>>>>>>> contain the root cause of the problem. and I attached the local.conf I
->>>>>>>>> have used, just remove the 'SOURCE_MIRROR_URL' if test it.
->>>>>>>>>
->>>>>>>>> you can run it to check the output, before that, you should change the
->>>>>>>>> two var in the head of it:
->>>>>>>>> POKY_DIR="/media/pangu/optimus"
->>>>>>>>> COMPILE_DIR="/media/pangu/lsbt"
->>>>>>>>>
->>>>>>>>> in it, the modification I have done (modify 'PATH') has been removed.
->>>>>>>>>
->>>>>>>>> maybe you can run it success, but you can check the 'libXrandr.so.2'
->>>>>>>>> line in the output, if it like:
->>>>>>>>> found libXrandr.so.2 at /usr/lib/../lib/libXrandr.so.2
->>>>>>>>>
->>>>>>>>> that is the problem, even you success, it has problem.
->>>>>>>>> you can paste your output in the email. let's check it.
->>>>>>>>> the version of libxrandr on my host is 1.3.2-2.
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> On Wed, 2012-03-28 at 18:06 +0800, Jack Mitchell wrote:
->>>>>>>>>> On 28/03/12 10:21, Ni Qingliang wrote:
->>>>>>>>>>> no echo again?
->>>>>>>>>>>
->>>>>>>>>>> what's the problem?
->>>>>>>>>>>
->>>>>>>>>>> am I wrong? where?
->>>>>>>>>>>
->>>>>>>>>>> On Tue, 2012-03-27 at 18:09 +0800, 倪庆亮 wrote:
->>>>>>>>>>>> thanks your reply, indeed, this is not the first email thread about
->>>>>>>>>>>> the
->>>>>>>>>>>> gconf compile problem. it in there only because of no echo.
->>>>>>>>>>>>
->>>>>>>>>>>> I have installed python2, and made a symlink in the build
->>>>>>>>>>>> directory, and
->>>>>>>>>>>> exported to the env var PATH.
->>>>>>>>>>>>
->>>>>>>>>>>> this is the script I used to build (located in the build
->>>>>>>>>>>> directory):
->>>>>>>>>>>>   #!/bin/bash
->>>>>>>>>>>>   loc_dir="`pwd`"
->>>>>>>>>>>>   . ${loc_dir}/../optimus/oe-init-build-env ${loc_dir}
->>>>>>>>>>>>   export PATH="${loc_dir}:$PATH"
->>>>>>>>>>>>   bitbake $@
->>>>>>>>>>>>
->>>>>>>>>>>> OS: x86-64 arch / desktop env: gnome 3.2
->>>>>>>>>>>> local.conf ( modified section ):
->>>>>>>>>>>>   MACHINE ??= "qemux86-64"
->>>>>>>>>>>>   DISTRO ?= "poky-lsb"
->>>>>>>>>>>>   SOURCE_MIRROR_URL = "http://10.10.20.149/optimussources/"
->>>>>>>>>>>>   INHERIT += "own-mirrors"
->>>>>>>>>>>>   BB_GENERATE_MIRROR_TARBALLS = "0"
->>>>>>>>>>>>   INHERIT += "rm_work"
->>>>>>>>>>>>   CCACHE = ""
->>>>>>>>>>>>
->>>>>>>>>>>> when build gconf, got error:
->>>>>>>>>>>>    /usr/lib/../lib/libXrandr.so.2: undefined reference to
->>>>>>>>>>>> `memcpy@GLIBC_2.14'
->>>>>>>>>>>> when 'do_compile' at sanity-check step.
->>>>>>>>>>>>
->>>>>>>>>>>> the log of do_compile is attached, here is the last cmd (only
->>>>>>>>>>>> reserve
->>>>>>>>>>>> rpath):
->>>>>>>>>>>>   ../x86_64-poky-linux-libtool ...  -Wl,-rpath -Wl,/usr/lib/../lib
->>>>>>>>>>>>
->>>>>>>>>>>> the libXrandr.so.2 (depended by the libgtk/libgdk) not appear in
->>>>>>>>>>>> the
->>>>>>>>>>>> command explicitly.
->>>>>>>>>>>>
->>>>>>>>>>>> I have add --verbose in the command, and found the ld find it in
->>>>>>>>>>>> the
->>>>>>>>>>>> host's rootfs, but it should search it in the sysroot arg.
->>>>>>>>>>>>
->>>>>>>>>>>> If remove the rpath arg or with the rpath arg prefixed by sysroot
->>>>>>>>>>>> arg, I
->>>>>>>>>>>> can build success. (wich will search the libXrandr in the sysroot
->>>>>>>>>>>> arg
->>>>>>>>>>>> correctly)
->>>>>>>>>>>>
->>>>>>>>>>>> so I think the error is focused on the `ld' which should search in
->>>>>>>>>>>> the
->>>>>>>>>>>> sysroot arg at first for implicit dependended libs, but not host's
->>>>>>>>>>>> rootfs.
->>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>> On Tue, 2012-03-27 at 16:49 +0800, Jack Mitchell wrote:
->>>>>>>>>>>>> On 27/03/12 03:33, Ni Qingliang wrote:
->>>>>>>>>>>>>> who are using archlinux? I want to talk about gconf compile fail
->>>>>>>>>>>>>> problem.
->>>>>>>>>>>>>>
->>>>>>>>>>>>>>
->>>>>>>>>>>>> I use Archlinux for OE/Yocto, could you post your error so we can
->>>>>>>>>>>>> get an
->>>>>>>>>>>>> idea of the problem you are having?
->>>>>>>>>>>>>
->>>>>>>>>>>>> One note for Archlinux is that it ships Python 3 as default, to
->>>>>>>>>>>>> you must
->>>>>>>>>>>>> install Python2 from the repositories then symlink python2 to
->>>>>>>>>>>>> python in
->>>>>>>>>>>>> /usb/bin.
->>>>>>>>>>>>>
->>>>>>>>>>>>> Regards,
->>>>>>>>>>>>>
->>>>>>>>>> I'm not 100% sure what the issue is. How come you are using a custom
->>>>>>>>>> build script and not the one bundled with OE? I'm not an expert by any
->>>>>>>>>> stretch of the imagination but by not using the given initialisation
->>>>>>>>>> scripts leaves me completely out of ideas as you're running a custom
->>>>>>>>>> setup which I couldn't possibly know the extent of.
->>>>>>>>>>
->>>>>>>>>> All I can really comment on is that Yocto builds fine and consistently
->>>>>>>>>> with Archlinux using the latest packages (I update nearly everyday) so
->>>>>>>>>> the only issue I can see is that your build setup script doesn't cut
->>>>>>>>>> the
->>>>>>>>>> mustard. Have you tried a completely clean build with only the bare
->>>>>>>>>> git
->>>>>>>>>> clone and no modifications?
->>>>>>>>>>
->>>>>>>>>> Regards,
->>>>>>>>>>
->>>>>>>> --
->>>>>>>> Yi Qingliang
->>>>>>>> niqingliang@insigma.com.cn
->>>>>>>> https://niqingliang2003.wordpress.com
->>>>>>>>
->>>>>>>> _______________________________________________
->>>>>>>> yocto mailing list
->>>>>>>> yocto@yoctoproject.org
->>>>>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>>> --
->>>>>> Yi Qingliang
->>>>>> niqingliang@insigma.com.cn
->>>>>> https://niqingliang2003.wordpress.com
->>>>>>
->>> --
->>> Yi Qingliang
->>> niqingliang@insigma.com.cn
->>> https://niqingliang2003.wordpress.com
->>>
->> First, we should test if the problem happens to an other x86-64 linux
->> distro or i686 Archlinux installation.
->> I have to setup a VM because I only use Arch.
->>
->> PS:
->> I read the Mailing List Guidelines from the wiki and they suggest not
->> to top post and to use interleaved (bottom) posting. I should have
->> read it before my first reply.
-> the same problem on my side.:)
->
-I setup a VM machine with guest OS Linux Mint Debian Edition (LMDE) 
-x86_64 to test the problem.
-I create a new build for both Archlinux and LMDE, configuring local.conf 
-with:
-
-MACHINE ??= "qemux86-64"
-DISTRO ?= "poky"
-
-I bake a core-image-base on both Archlinux and LMDE.
-LMDE finish creating the image with no problems.
-Archlinux failed with error in stage do_compile for the gconf recipe (Error message//usr/lib/../lib/libXrandr.so.2: undefined reference to `memcpy@GLIBC_2.14').
-  /
-
-
-
-
---------------090203020101040801060302
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    On 03/30/2012 10:34 AM, Ni Qingliang wrote:
-    <blockquote
-      cite="mid:1333092897.10988.5.camel@localhost.localdomain"
-      type="cite">
-      <pre wrap="">On Fri, 2012-03-30 at 15:23 +0800, Giannis Damigos wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">On Fri, Mar 30, 2012 at 9:30 AM, Ni Qingliang
-<a class="moz-txt-link-rfc2396E" href="mailto:niqingliang@insigma.com.cn">&lt;niqingliang@insigma.com.cn&gt;</a> wrote:
-</pre>
-        <blockquote type="cite">
-          <pre wrap="">maybe we should report the two bugs?
-
-On Thu, 2012-03-29 at 17:12 +0800, 倪庆亮 wrote:
-</pre>
-          <blockquote type="cite">
-            <pre wrap="">yes, you are right.
-
-the 32 bit lib and gconf is TWO problem, but maybe the reason is same,
-the 'ld' search path.
-
-the 32 bit lib is only occured on NOT pure 64 bit arch. if you are using
-64 bit arch, and with this problem, maybe you have installed some 32 bit
-libs. (my VM is a pure 64 bit arch, no this problem, and my host is
-using multilib, with this problem)
-
-but the gconf problem is occured both on pure/NOT-pure 64 bit arch.
-
-
-the former is focused on the arch (is 64 bit or 32 bit) of libs. and the
-other one is focused on the dependency of libs.
-
-the gconf need libgtk/libgdk (found in the sysroot), and libgtk/libgdk
-depends on libXrandr (found in host's rootfs), and libXrandr need glibc
-2.14 (not found in the sysroot, only glibc 2.13).
-
-so the search path is switch between the sysroot and host's rootfs back
-and forth.
-
-On Thu, 2012-03-29 at 16:54 +0800, Giannis Damigos wrote:
-</pre>
-            <blockquote type="cite">
-              <pre wrap="">Installing package lib32-libxrandr, cleaning gconf and building it
-again does not solved the problem.
-Such problems on OE were solved by fixing the library path.
-Now gconf is looking for libXrandr in archlinux libraries and not in
-yocto's libraries in build directory.
-
-
-On Thu, Mar 29, 2012 at 10:48 AM, Ni Qingliang
-<a class="moz-txt-link-rfc2396E" href="mailto:niqingliang@insigma.com.cn">&lt;niqingliang@insigma.com.cn&gt;</a> wrote:
-</pre>
-              <blockquote type="cite">
-                <pre wrap="">give you my hands. I have waited you so long time.:)
-
-indeed, I have the gcc-multilib problem also.
-the ati driver catalyst-total need some 32 bit libs, once you installed
-that, the poky compile fail, and then we need install other 32 bit libs
-(like gcc-multilib you said). (with a pure 64 bit archlinux, all are OK)
-
-the only reason I doubt the 'ld', only because if I remove
-libXrandr.so.2 in host's rootfs, the error info changed, the libXrandr
-become another lib's name (maybe libXext, I can't remember clearly).
-
-and after several days experiments, I can ensure the problem is focused
-on the 'ld' (belongs to binutils).
-
-On Thu, 2012-03-29 at 15:40 +0800, Giannis Damigos wrote:
-</pre>
-                <blockquote type="cite">
-                  <pre wrap="">Hi,
-
-I had similar errors building an OE image for my Micro2440 board under
-archlinux x86-64. I solved the problem by installing gcc-multlib
-(<a class="moz-txt-link-freetext" href="https://wiki.archlinux.org/index.php/Arch64_FAQ#Multilib_Repository_-_Multilib_Project">https://wiki.archlinux.org/index.php/Arch64_FAQ#Multilib_Repository_-_Multilib_Project</a>).
-
-But, I tried to bake gconf with yocto just adding MACHINE and DISTRO
-to my local.conf:
-MACHINE ?= "qemux86-64"
-DISTRO ?= "poky-lsb"
-
-and I had the same error.
-
-On Thu, Mar 29, 2012 at 5:05 AM, Ni Qingliang
-<a class="moz-txt-link-rfc2396E" href="mailto:niqingliang@insigma.com.cn">&lt;niqingliang@insigma.com.cn&gt;</a> wrote:
-</pre>
-                  <blockquote type="cite">
-                    <pre wrap="">
-Oh, I lost something, before running the testgconf.sh, you should
-cleanall gconf, and build gconf. If not, you can't run it.
-
-On Thu, 2012-03-29 at 09:52 +0800, 倪庆亮 wrote:
-</pre>
-                    <blockquote type="cite">
-                      <pre wrap="">what the custom script has done is only adding the build dir (which
-include the 'python' symlink) into the 'PATH', only that.
-AND: integrate the oe-init-build-env and bitbake together.
-indeed, no modification.
-
-using it, I can build anything with one command (call the script),
-without it, I must call init env script manually.
-
-archlinux: latest
-poky: latest
-build: clean (&gt; 4times)
-
-indeed, the possibility you mentioned has been excluded by my test.
-you can build it succcessfully. what arch of arch you are using? x86 or
-x86-64? what about the local.conf? are you using the same as mine?.
-
-both of them from my side is x86-64.
-
-I doubt 'ld', only because of my test. the attachment 'testgconf.sh'
-contain the root cause of the problem. and I attached the local.conf I
-have used, just remove the 'SOURCE_MIRROR_URL' if test it.
-
-you can run it to check the output, before that, you should change the
-two var in the head of it:
-POKY_DIR="/media/pangu/optimus"
-COMPILE_DIR="/media/pangu/lsbt"
-
-in it, the modification I have done (modify 'PATH') has been removed.
-
-maybe you can run it success, but you can check the 'libXrandr.so.2'
-line in the output, if it like:
-found libXrandr.so.2 at /usr/lib/../lib/libXrandr.so.2
-
-that is the problem, even you success, it has problem.
-you can paste your output in the email. let's check it.
-the version of libxrandr on my host is 1.3.2-2.
-
-
-On Wed, 2012-03-28 at 18:06 +0800, Jack Mitchell wrote:
-</pre>
-                      <blockquote type="cite">
-                        <pre wrap="">On 28/03/12 10:21, Ni Qingliang wrote:
-</pre>
-                        <blockquote type="cite">
-                          <pre wrap="">no echo again?
-
-what's the problem?
-
-am I wrong? where?
-
-On Tue, 2012-03-27 at 18:09 +0800, 倪庆亮 wrote:
-</pre>
-                          <blockquote type="cite">
-                            <pre wrap="">thanks your reply, indeed, this is not the first email thread about
-the
-gconf compile problem. it in there only because of no echo.
-
-I have installed python2, and made a symlink in the build
-directory, and
-exported to the env var PATH.
-
-this is the script I used to build (located in the build
-directory):
- #!/bin/bash
- loc_dir="`pwd`"
- . ${loc_dir}/../optimus/oe-init-build-env ${loc_dir}
- export PATH="${loc_dir}:$PATH"
- bitbake $@
-
-OS: x86-64 arch / desktop env: gnome 3.2
-local.conf ( modified section ):
- MACHINE ??= "qemux86-64"
- DISTRO ?= "poky-lsb"
- SOURCE_MIRROR_URL = <a class="moz-txt-link-rfc2396E" href="http://10.10.20.149/optimussources/">"http://10.10.20.149/optimussources/"</a>
- INHERIT += "own-mirrors"
- BB_GENERATE_MIRROR_TARBALLS = "0"
- INHERIT += "rm_work"
- CCACHE = ""
-
-when build gconf, got error:
-  /usr/lib/../lib/libXrandr.so.2: undefined reference to
-`<a class="moz-txt-link-abbreviated" href="mailto:memcpy@GLIBC_2.14">memcpy@GLIBC_2.14</a>'
-when 'do_compile' at sanity-check step.
-
-the log of do_compile is attached, here is the last cmd (only
-reserve
-rpath):
- ../x86_64-poky-linux-libtool ...  -Wl,-rpath -Wl,/usr/lib/../lib
-
-the libXrandr.so.2 (depended by the libgtk/libgdk) not appear in
-the
-command explicitly.
-
-I have add --verbose in the command, and found the ld find it in
-the
-host's rootfs, but it should search it in the sysroot arg.
-
-If remove the rpath arg or with the rpath arg prefixed by sysroot
-arg, I
-can build success. (wich will search the libXrandr in the sysroot
-arg
-correctly)
-
-so I think the error is focused on the `ld' which should search in
-the
-sysroot arg at first for implicit dependended libs, but not host's
-rootfs.
-
-
-
-On Tue, 2012-03-27 at 16:49 +0800, Jack Mitchell wrote:
-</pre>
-                            <blockquote type="cite">
-                              <pre wrap="">On 27/03/12 03:33, Ni Qingliang wrote:
-</pre>
-                              <blockquote type="cite">
-                                <pre wrap="">who are using archlinux? I want to talk about gconf compile fail
-problem.
-
-
-</pre>
-                              </blockquote>
-                              <pre wrap="">I use Archlinux for OE/Yocto, could you post your error so we can
-get an
-idea of the problem you are having?
-
-One note for Archlinux is that it ships Python 3 as default, to
-you must
-install Python2 from the repositories then symlink python2 to
-python in
-/usb/bin.
-
-Regards,
-
-</pre>
-                            </blockquote>
-                          </blockquote>
-                        </blockquote>
-                        <pre wrap="">
-I'm not 100% sure what the issue is. How come you are using a custom
-build script and not the one bundled with OE? I'm not an expert by any
-stretch of the imagination but by not using the given initialisation
-scripts leaves me completely out of ideas as you're running a custom
-setup which I couldn't possibly know the extent of.
-
-All I can really comment on is that Yocto builds fine and consistently
-with Archlinux using the latest packages (I update nearly everyday) so
-the only issue I can see is that your build setup script doesn't cut
-the
-mustard. Have you tried a completely clean build with only the bare
-git
-clone and no modifications?
-
-Regards,
-
-</pre>
-                      </blockquote>
-                      <pre wrap="">
-</pre>
-                    </blockquote>
-                    <pre wrap="">
---
-Yi Qingliang
-<a class="moz-txt-link-abbreviated" href="mailto:niqingliang@insigma.com.cn">niqingliang@insigma.com.cn</a>
-<a class="moz-txt-link-freetext" href="https://niqingliang2003.wordpress.com">https://niqingliang2003.wordpress.com</a>
-
-_______________________________________________
-yocto mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
-</pre>
-                  </blockquote>
-                </blockquote>
-                <pre wrap="">
---
-Yi Qingliang
-<a class="moz-txt-link-abbreviated" href="mailto:niqingliang@insigma.com.cn">niqingliang@insigma.com.cn</a>
-<a class="moz-txt-link-freetext" href="https://niqingliang2003.wordpress.com">https://niqingliang2003.wordpress.com</a>
-
-</pre>
-              </blockquote>
-            </blockquote>
-            <pre wrap="">
-</pre>
-          </blockquote>
-          <pre wrap="">
---
-Yi Qingliang
-<a class="moz-txt-link-abbreviated" href="mailto:niqingliang@insigma.com.cn">niqingliang@insigma.com.cn</a>
-<a class="moz-txt-link-freetext" href="https://niqingliang2003.wordpress.com">https://niqingliang2003.wordpress.com</a>
-
-</pre>
-        </blockquote>
-        <pre wrap="">
-First, we should test if the problem happens to an other x86-64 linux
-distro or i686 Archlinux installation.
-I have to setup a VM because I only use Arch.
-
-PS:
-I read the Mailing List Guidelines from the wiki and they suggest not
-to top post and to use interleaved (bottom) posting. I should have
-read it before my first reply.
-</pre>
-      </blockquote>
-      <pre wrap="">the same problem on my side.:)
-
-</pre>
-    </blockquote>
-    <small>I setup a VM machine with guest OS Linux Mint Debian Edition
-      (LMDE) x86_64 to test the problem.<br>
-      I create a new build for both Archlinux and LMDE, configuring
-      local.conf with:<br>
-    </small>
-    <pre wrap="">MACHINE ??= "qemux86-64"
-DISTRO ?= "poky"
-
-I bake a core-image-base on both Archlinux and LMDE.
-LMDE finish creating the image with no problems.
-Archlinux failed with error in stage do_compile for the gconf recipe (Error message  <i>/usr/lib/../lib/libXrandr.so.2: undefined reference to `<a class="moz-txt-link-abbreviated" href="mailto:memcpy@GLIBC_2.14">memcpy@GLIBC_2.14</a>').
- </i></pre>
-    <small> <br>
-      <br>
-    </small>
-  </body>
-</html>
-
---------------090203020101040801060302--
+	boundary="_000_4FA5F5BDC00B499896A4E6B85127D3E7mentorcom_"
+
+--_000_4FA5F5BDC00B499896A4E6B85127D3E7mentorcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+SSBhbSBwbGVhc2VkIHRvIGFubm91bmNlIHRoYXQgTWVudG9yIEdyYXBoaWNzIGlzIGhvc3Rpbmcg
+dGhlIEluYXVndXJhbCBZb2N0byBCU1AgU3VtbWl0IG9uIEFwcmlsIDJuZCwgMjAxMiBhdCB0aGUg
+TWVudG9yIEdyYXBoaWNzIG9mZmljZSBpbiBGcmVtb250LCBDQS4NCg0KSSBhcG9sb2dpemUgZm9y
+IHRoZSBzaG9ydCBub3RpY2UgYW5kIHRoZSBsZW5ndGh5IGVtYWlsLCBidXQgdGhlcmUgYXJlIGEg
+bG90IG9mIGRldGFpbHMgdG8gY292ZXIuDQoNCkluIG9yZGVyIHRvIGFsbG93IGZvciByZW1vdGUg
+cGFydGljaXBhdGlvbiBmcm9tIHRoZSBjb21tdW5pdHkgYXQgdGhlIEJTUCBTdW1taXQsIE1lbnRv
+ciBHcmFwaGljcyB3aWxsIGJlIHByb3ZpZGluZyBhIFdlYkV4IHNlc3Npb24sIGEgbGl2ZSB2aWRl
+byBzdHJlYW0sIGFuZCByZWNvcmRpbmcgdGhlIHN0cmVhbSBmb3IgbGF0ZXIgdmlld2luZy4gIERl
+dGFpbHMgY2FuIGJlIGZvdW5kIGJlbG93Lg0KDQpJZiB5b3UgZ2V0IGEgY2hhbmNlLCBwbGVhc2Ug
+dGFrZSBhIG1vbWVudCB0byByZXNwb25kIHRvIHRoZSBmb2xsb3dpbmcgc2hvcnQgcXVlc3Rpb25z
+IHRvIGVpdGhlciBteXNlbGYgb3IgdG8gamVmZnJleS5vc2llci1taXhvbkBpbnRlbC5jb208bWFp
+bHRvOmplZmZyZXkub3NpZXItbWl4b25AaW50ZWwuY29tPi4NCg0KMS4gICAgIFdoYXQgaXMgeW91
+ciBiYWNrZ3JvdW5kIHdpdGggQlNQcyBhbmQgd2hhdCBkbyB5b3Ugd2FudCB0byBnZXQgb3V0IG9m
+IHRoaXMgc3VtbWl0Pw0KMi4gICAgIFdoYXQgYXJlIHRoZSBjaGFsbGVuZ2VzIHlvdSBmYWNlIGRl
+dmVsb3BpbmcgYW5kL29yIHVzaW5nIEJTUHM/DQozLiAgICAgV2hhdCBjb25jZXJucyBkbyB5b3Ug
+aGF2ZSBhYm91dCBjcmVhdGluZyBhbmQvb3IgbWFpbnRhaW5pbmcgQlNQcyBmb3IgWW9jdG8/DQoN
+CldoZW46ICBNb24gQXByIDIgOGFtIOKAkyA1cG0gVVMgLSBQYWNpZmljIFRpbWUNCg0KQSBmZXcg
+bm90ZXMgYWJvdXQgcmVtb3RlIHBhcnRpY2lwYXRpb246DQoxKSBSZWdpc3RyYXRpb24gd2lsbCBi
+ZSByZXF1aXJlZCBmb3IgdGhlIHdlYmV4IHNlc3Npb24uDQogICAgKFRoaXMgaXMgZm9yIGNvc3Qg
+Y29udHJvbCByZWFzb25zLCBub3QgdG8gZXhjbHVkZSBhbnlvbmUuKQ0KMikgQXMgdGhlIG1ham9y
+aXR5IG9mIHRoZSBzdW1taXQgd2lsbCBiZSBwcmVzZW50YXRpb25zIGFuZCB0byBtaW5pbWl6ZSBk
+aXNydXB0aW9uLCBhbGwgcmVtb3RlIHBhcnRpY2lwYW50cyBvbiB0aGUgY29uZmVyZW5jZSB3aWxs
+IGJlIHBsYWNlZCBvbiBtdXRlLiAgSG93ZXZlciwgd2Ugd2lsbCBtb25pdG9yIHRoZSAjeW9jdG8g
+YW5kICNvZSBjaGFubmVscyBvbiBmcmVlbm9kZSBhbmQgcmVsYXkgY29tbWVudHMvcXVlc3Rpb25z
+IGludG8gdGhlIHNlc3Npb25zLg0KDQpQbGFubmVkIEFnZW5kYTogICggYWxsIHRpbWVzIGFyZSBp
+biBVUy1QYWNpZmljIFRpbWUgKQ0KICAwODowMCAtIDA5OjAwIC0tIFNvY2lhbC9jb250aW5lbnRh
+bCBicmVha2Zhc3QgKG5vdCByZWNvcmRlZCkNCiAgMDk6MDAgLSAwOToxNSAtLSBXZWxjb21lIGFu
+ZCBpbnRyb2R1Y3Rpb24gKFNlYW4gSHVkc29uLCBNZW50b3IgR3JhcGhpY3MpDQogIDA5OjE1IC0g
+MTA6MTUgLS0gQ3VycmVudCBzdGF0ZSBvZiBZb2N0byBQcm9qZWN0IEJTUCBkZWZpbml0aW9uIChU
+b20gWmFudXNzaSwgSW50ZWwpDQogIDEwOjE1IC0gMTA6MzAgLS0gQnJlYWsNCiAgMTA6MzAgLSAx
+MTozMCAtLSBXb3JraW5nIHdpdGggbWV0YS10aSAoRGVueXMgRG1pdHJpeWVua28sIFRJKQ0KICAx
+MTozMCAtIDEyOjMwIC0tIEx1bmNoICYgaGFyZHdhcmUgc2V0dXANCiAgMTI6MzAgLSAxMzowMCAt
+LSBTdHJhdGVnaWMgUGxhdGZvcm1zIChCcnVjZSBBc2hmaWVsZCwgV2luZHJpdmVyKQ0KICAxMzow
+MCAtIDE0OjMwIC0tIFlvY3RvIFByb2plY3QgQlNQIG9wZW4gZGlzY3Vzc2lvbiAobW9kZXJhdG9y
+OiBTZWFuIEh1ZHNvbiwgTWVudG9yIEdyYXBoaWNzLCBub3RlczogSmVmZnJleSBPc2llci1NaXhv
+biwgSW50ZWwpDQogIDE0OjMwIC0gMTc6MDAgLS0gV29ya2luZyBzZXNzaW9ucyAoZmxleGlibGUg
+dGltZSkgKG1heSBub3QgYmUgcmVjb3JkZWQpDQogIDE3OjAwIC0gMTg6MzAgLS0gUGl6emEvYmVl
+ciBzb2NpYWwgKGFkZGl0aW9uYWwgd29ya2luZyB0aW1lIHRvbykgIChub3QgcmVjb3JkZWQpDQoN
+CklmIHlvdSBoYXZlIG5vdCBhbHJlYWR5IGRvbmUgc28sIHBsZWFzZSB0YWtlIGEgbW9tZW50IHRv
+IGxvb2sgb3ZlciB0aGUgdGhyZWUgcXVlc3Rpb25zIHNlbnQgb3V0IGFuZCBzZW5kIHJlc3BvbnNl
+cyB0byBteXNlbGYgb3IgSmVmZi4NCg0KVmlkZW8gY29uZmVyZW5jZSBhY2Nlc3MgaW5mb3JtYXRp
+b246DQogIENvbmZlcmVuY2UgSUQ6IDEwMQ0KDQogIE5vdGU6DQogICAgVGhlIHZpZGVvIGNvbmZl
+cmVuY2Ugd2lsbCBub3QgY29ubmVjdCB1bnRpbCB0aGUgY2FsbCBpcyBhY3RpdmUuDQogICAgSG93
+ZXZlciwgaXQgd2lsbCBjb25uZWN0IDE1IG1pbnV0ZXMgZWFybHkuDQoNCiAgVmlkZW8gcGFydGlj
+aXBhbnRzIHRoYXQgYXJlIGNvbm5lY3RpbmcgZnJvbSBvdXRzaWRlIHRoZSBNZW50b3IgTmV0d29y
+ayB3aWxsIG5lZWQgdG8gY2FsbCBpbnRvIHRoZSBWaWRlbyBDb25mZXJlbmNlIEJyaWRnZSB1c2lu
+ZyBvbmUgb2YgdGhlIGZvbGxvd2luZyBtZXRob2RzOg0KICAgIElQIEFkZHJlc3M6IDE5Mi45NC4z
+OC4yNDkNCiAgICBWaWRlbyBBZGRyZXNzIChILjMyMyBvciBTSVApOiB2aWRlb0BtZW50b3IuY29t
+PG1haWx0bzp2aWRlb0BtZW50b3IuY29tPg0KDQogIE9uY2UgY29ubmVjdGVkIHRvIHRoZSBCcmlk
+Z2UsIHBsZWFzZSBlbnRlciB0aGUgQ29uZmVyZW5jZSBJRCBmb2xsb3dlZCBieSB0aGUgIyBzaWdu
+Lg0KDQpXZWJleCBpbmZvcm1hdGlvbjoNCg0KTWVldGluZyBOdW1iZXI6IDc1OCAyMDEgNTcxDQpN
+ZWV0aW5nIFBhc3N3b3JkOiBPbmNlIHlvdSBoYXZlIHJlZ2lzdGVyZWQgZm9yIHRoZSBtZWV0aW5n
+LCB5b3Ugd2lsbCByZWNlaXZlIGFuIGVtYWlsIG1lc3NhZ2UgY29uZmlybWluZyB5b3VyIHJlZ2lz
+dHJhdGlvbi4gVGhpcyBtZXNzYWdlIHdpbGwgcHJvdmlkZSB0aGUgaW5mb3JtYXRpb24gdGhhdCB5
+b3UgbmVlZCB0byBqb2luIHRoZSBtZWV0aW5nLg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpUbyBqb2luIHRoaXMgbWVldGluZyAoTm93
+IGZyb20gbW9iaWxlIGRldmljZXMhKQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KMS4gR28gdG8gaHR0cHM6Ly9tZW50b3Iud2ViZXguY29t
+L21lbnRvci9qLnBocD9KPTc1ODIwMTU3MQ0KMi4gSWYgcmVxdWVzdGVkLCBlbnRlciB5b3VyIG5h
+bWUgYW5kIGVtYWlsIGFkZHJlc3MuDQozLiBJZiBhIHBhc3N3b3JkIGlzIHJlcXVpcmVkLCBlbnRl
+ciB0aGUgbWVldGluZyBwYXNzd29yZDogT25jZSB5b3UgaGF2ZSByZWdpc3RlcmVkIGZvciB0aGUg
+bWVldGluZywgeW91IHdpbGwgcmVjZWl2ZSBhbiBlbWFpbCBtZXNzYWdlIGNvbmZpcm1pbmcgeW91
+ciByZWdpc3RyYXRpb24uIFRoaXMgbWVzc2FnZSB3aWxsIHByb3ZpZGUgdGhlIGluZm9ybWF0aW9u
+IHRoYXQgeW91IG5lZWQgdG8gam9pbiB0aGUgbWVldGluZy4NCjQuIENsaWNrICJKb2luIi4NCjUu
+IEZvbGxvdyB0aGUgaW5zdHJ1Y3Rpb25zIHRoYXQgYXBwZWFyIG9uIHlvdXIgc2NyZWVuLg0KDQot
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpB
+dWRpbyBjb25mZXJlbmNlIGluZm9ybWF0aW9uDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpDb25mZXJlbmNlIElEOiAgMTAxDQoNClRlbGVw
+aG9uZSBvbmx5IHBhcnRpY2lwYW50cyBjYW4gam9pbiB0aGUgbWVldGluZyBieSBjYWxsaW5nIGVp
+dGhlcjoNCisxLTUwMy02ODUtMTIzNCAoODIxMy0xMjM0KSwgb3IgdG9sbC1mcmVlLCArMS04MDAt
+NTQ3LTMwMTENCiAoIEludGVybmF0aW9uYWwgZGlhbC1pbiBudW1iZXJzIGFyZSBhdmFpbGFibGUg
+b24gcmVxdWVzdC4gKQ0KDQpPbmNlIGNvbm5lY3RlZCB0byB0aGUgY29uZmVyZW5jZSBicmlkZ2Us
+IGVudGVyIHRoZSBDb25mZXJlbmNlIElEIGZvbGxvd2VkIGJ5IHRoZSAjIHNpZ24uDQoNCmh0dHA6
+Ly93d3cud2ViZXguY29tDQpXZSd2ZSBnb3QgdG8gc3RhcnQgbWVldGluZyBsaWtlIHRoaXMoVE0p
+DQoNCklNUE9SVEFOVCBOT1RJQ0U6IFRoaXMgV2ViRXggc2VydmljZSBpbmNsdWRlcyBhIGZlYXR1
+cmUgdGhhdCBhbGxvd3MgYXVkaW8gYW5kIGFueSBkb2N1bWVudHMgYW5kIG90aGVyIG1hdGVyaWFs
+cyBleGNoYW5nZWQgb3Igdmlld2VkIGR1cmluZyB0aGUgc2Vzc2lvbiB0byBiZSByZWNvcmRlZC4g
+Qnkgam9pbmluZyB0aGlzIHNlc3Npb24sIHlvdSBhdXRvbWF0aWNhbGx5IGNvbnNlbnQgdG8gc3Vj
+aCByZWNvcmRpbmdzLiBJZiB5b3UgZG8gbm90IGNvbnNlbnQgdG8gdGhlIHJlY29yZGluZywgZGlz
+Y3VzcyB5b3VyIGNvbmNlcm5zIHdpdGggdGhlIG1lZXRpbmcgaG9zdCBwcmlvciB0byB0aGUgc3Rh
+cnQgb2YgdGhlIHJlY29yZGluZyBvciBkbyBub3Qgam9pbiB0aGUgc2Vzc2lvbi4gUGxlYXNlIG5v
+dGUgdGhhdCBhbnkgc3VjaCByZWNvcmRpbmdzIG1heSBiZSBzdWJqZWN0IHRvIGRpc2NvdmVyeSBp
+biB0aGUgZXZlbnQgb2YgbGl0aWdhdGlvbi4NCg0K
+
+--_000_4FA5F5BDC00B499896A4E6B85127D3E7mentorcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <16530CB4E95E704C8FADDEC6B1383D51@mentor.com>
+Content-Transfer-Encoding: base64
+
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGJnY29sb3I9IiNGRkZG
+RkYiPg0KPGRpdj48c3BhbiBjbGFzcz0iQXBwbGUtc3R5bGUtc3BhbiIgc3R5bGU9ImZvbnQtZmFt
+aWx5OiBOb3Rld29ydGh5OyBmb250LXNpemU6IDE4cHg7IGZvbnQtd2VpZ2h0OiBib2xkOyBsaW5l
+LWhlaWdodDogMjRweDsgLXdlYmtpdC10YXAtaGlnaGxpZ2h0LWNvbG9yOiByZ2JhKDI2LCAyNiwg
+MjYsIDAuMjkyOTY5KTsgLXdlYmtpdC1jb21wb3NpdGlvbi1maWxsLWNvbG9yOiByZ2JhKDEzMCwg
+OTgsIDgzLCAwLjA4OTg0MzgpOyAtd2Via2l0LWNvbXBvc2l0aW9uLWZyYW1lLWNvbG9yOiByZ2Jh
+KDE5MSwgMTA3LCA4MiwgMC40OTYwOTQpOyAtd2Via2l0LXRleHQtc2l6ZS1hZGp1c3Q6IG5vbmU7
+ICI+PHNwYW4gY2xhc3M9IkFwcGxlLXN0eWxlLXNwYW4iIHN0eWxlPSItd2Via2l0LXRhcC1oaWdo
+bGlnaHQtY29sb3I6IHJnYmEoMjYsIDI2LCAyNiwgMC4yOTI5NjkpOyAtd2Via2l0LWNvbXBvc2l0
+aW9uLWZpbGwtY29sb3I6IHJnYmEoMTMwLCA5OCwgODMsIDAuMDg5ODQzOCk7ICI+SQ0KIGFtIHBs
+ZWFzZWQgdG8gYW5ub3VuY2UgdGhhdCZuYnNwOzwvc3Bhbj48c3BhbiBjbGFzcz0iQXBwbGUtc3R5
+bGUtc3BhbiIgc3R5bGU9Ii13ZWJraXQtY29tcG9zaXRpb24tZmlsbC1jb2xvcjogcmdiYSgxMzAs
+IDk4LCA4MywgMC4wODk4NDM4KTsgLXdlYmtpdC10YXAtaGlnaGxpZ2h0LWNvbG9yOiByZ2JhKDI2
+LCAyNiwgMjYsIDAuMjkyOTY5KTsgIj48c3BhbiBjbGFzcz0iQXBwbGUtc3R5bGUtc3BhbiIgc3R5
+bGU9Ii13ZWJraXQtdGFwLWhpZ2hsaWdodC1jb2xvcjogcmdiYSgyNiwgMjYsIDI2LCAwLjI5Mjk2
+OSk7IC13ZWJraXQtY29tcG9zaXRpb24tZmlsbC1jb2xvcjogcmdiYSgxMzAsIDk4LCA4MywgMC4w
+ODk4NDM4KTsgIj5NZW50b3INCiBHcmFwaGljcyBpcyBob3N0aW5nIHRoZSBJbmF1Z3VyYWwmbmJz
+cDs8L3NwYW4+PHNwYW4gY2xhc3M9IkFwcGxlLXN0eWxlLXNwYW4iIHN0eWxlPSItd2Via2l0LXRh
+cC1oaWdobGlnaHQtY29sb3I6IHJnYmEoMjYsIDI2LCAyNiwgMC4yOTI5NjkpOyAtd2Via2l0LWNv
+bXBvc2l0aW9uLWZpbGwtY29sb3I6IHJnYmEoMTMwLCA5OCwgODMsIDAuMDg5ODQzOCk7ICI+WW9j
+dG8gQlNQIFN1bW1pdCZuYnNwO29uIEFwcmlsIDJuZCwgMjAxMiZuYnNwO2F0IHRoZSBNZW50b3Ig
+R3JhcGhpY3MNCiBvZmZpY2UgaW4gRnJlbW9udCwgQ0EuJm5ic3A7PC9zcGFuPjwvc3Bhbj48L3Nw
+YW4+PHNwYW4gY2xhc3M9IkFwcGxlLXN0eWxlLXNwYW4iIHN0eWxlPSJmb250LWZhbWlseTogTm90
+ZXdvcnRoeTsgZm9udC1zaXplOiAxOHB4OyBmb250LXdlaWdodDogYm9sZDsgbGluZS1oZWlnaHQ6
+IDI0cHg7IC13ZWJraXQtY29tcG9zaXRpb24tZmlsbC1jb2xvcjogcmdiYSgxMzAsIDk4LCA4Mywg
+MC4wOTM3NSk7IC13ZWJraXQtY29tcG9zaXRpb24tZnJhbWUtY29sb3I6IHJnYmEoMTkxLCAxMDcs
+IDgyLCAwLjQ5NjA5NCk7IC13ZWJraXQtdGV4dC1zaXplLWFkanVzdDogbm9uZTsgLXdlYmtpdC10
+YXAtaGlnaGxpZ2h0LWNvbG9yOiByZ2JhKDI2LCAyNiwgMjYsIDAuMjk2ODc1KTsgIj4NCjxkaXY+
+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KSSBhcG9sb2dpemUgZm9yIHRoZSBzaG9ydCBub3RpY2UgYW5k
+IHRoZSBsZW5ndGh5IGVtYWlsLCBidXQgdGhlcmUgYXJlIGEgbG90IG9mIGRldGFpbHMgdG8gY292
+ZXIuPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5JbiBvcmRlciB0byBhbGxvdyBmb3Ig
+cmVtb3RlIHBhcnRpY2lwYXRpb24gZnJvbSB0aGUgY29tbXVuaXR5IGF0IHRoZSBCU1AgU3VtbWl0
+LCBNZW50b3IgR3JhcGhpY3Mgd2lsbCBiZSBwcm92aWRpbmcgYSBXZWJFeCBzZXNzaW9uLCBhIGxp
+dmUgdmlkZW8gc3RyZWFtLCBhbmQgcmVjb3JkaW5nIHRoZSBzdHJlYW0gZm9yIGxhdGVyIHZpZXdp
+bmcuICZuYnNwO0RldGFpbHMgY2FuIGJlIGZvdW5kIGJlbG93LjwvZGl2Pg0KPGRpdj48YnI+DQo8
+L2Rpdj4NCjxkaXY+SWYgeW91IGdldCBhIGNoYW5jZSwgcGxlYXNlIHRha2UgYSBtb21lbnQgdG8g
+cmVzcG9uZCB0byB0aGUgZm9sbG93aW5nIHNob3J0IHF1ZXN0aW9ucyB0byBlaXRoZXIgbXlzZWxm
+IG9yIHRvJm5ic3A7PGEgaHJlZj0ibWFpbHRvOmplZmZyZXkub3NpZXItbWl4b25AaW50ZWwuY29t
+Ij5qZWZmcmV5Lm9zaWVyLW1peG9uQGludGVsLmNvbTwvYT4uPC9kaXY+DQo8ZGl2Pjxicj4NCjwv
+ZGl2Pg0KPGRpdj4NCjxkaXY+MS4gJm5ic3A7ICZuYnNwOyBXaGF0IGlzIHlvdXIgYmFja2dyb3Vu
+ZCB3aXRoIEJTUHMgYW5kIHdoYXQgZG8geW91IHdhbnQgdG8gZ2V0IG91dCBvZiB0aGlzIHN1bW1p
+dD88L2Rpdj4NCjxkaXY+Mi4gJm5ic3A7ICZuYnNwOyBXaGF0IGFyZSB0aGUgY2hhbGxlbmdlcyB5
+b3UgZmFjZSBkZXZlbG9waW5nIGFuZC9vciB1c2luZyBCU1BzPzwvZGl2Pg0KPGRpdj4zLiAmbmJz
+cDsgJm5ic3A7IFdoYXQgY29uY2VybnMgZG8geW91IGhhdmUgYWJvdXQgY3JlYXRpbmcgYW5kL29y
+IG1haW50YWluaW5nIEJTUHMgZm9yIFlvY3RvPzwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxk
+aXY+V2hlbjogJm5ic3A7PHNwYW4gY2xhc3M9IkFwcGxlLXN0eWxlLXNwYW4iIHN0eWxlPSItd2Vi
+a2l0LWNvbXBvc2l0aW9uLWZpbGwtY29sb3I6IHJnYmEoMTMwLCA5OCwgODMsIDAuMDg5ODQzOCk7
+IC13ZWJraXQtdGFwLWhpZ2hsaWdodC1jb2xvcjogcmdiYSgyNiwgMjYsIDI2LCAwLjI5Mjk2OSk7
+ICI+TW9uIEFwciAyIDhhbSDigJMgNXBtPC9zcGFuPjxzcGFuIGNsYXNzPSJBcHBsZS1zdHlsZS1z
+cGFuIiBzdHlsZT0iLXdlYmtpdC1jb21wb3NpdGlvbi1maWxsLWNvbG9yOiByZ2JhKDEzMCwgOTgs
+IDgzLCAwLjA4OTg0MzgpOyAtd2Via2l0LXRhcC1oaWdobGlnaHQtY29sb3I6IHJnYmEoMjYsIDI2
+LCAyNiwgMC4yOTI5NjkpOyAiPiZuYnNwO1VTDQogLSBQYWNpZmljIFRpbWU8L3NwYW4+PC9kaXY+
+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5BIGZldyBub3RlcyBhYm91dCByZW1vdGUgcGFydGlj
+aXBhdGlvbjo8L2Rpdj4NCjxkaXY+MSkgUmVnaXN0cmF0aW9uIHdpbGwgYmUgcmVxdWlyZWQgZm9y
+IHRoZSB3ZWJleCBzZXNzaW9uLjwvZGl2Pg0KPGRpdj4mbmJzcDsgJm5ic3A7ICg8c3BhbiBjbGFz
+cz0iQXBwbGUtc3R5bGUtc3BhbiIgc3R5bGU9Ii13ZWJraXQtdGFwLWhpZ2hsaWdodC1jb2xvcjog
+cmdiYSgyNiwgMjYsIDI2LCAwLjI5Mjk2OSk7IC13ZWJraXQtY29tcG9zaXRpb24tZmlsbC1jb2xv
+cjogcmdiYSgxMzAsIDk4LCA4MywgMC4wODk4NDM4KTsgIj5UaGlzIGlzIGZvciBjb3N0IGNvbnRy
+b2wgcmVhc29ucywgbm90IHRvIGV4Y2x1ZGUgYW55b25lLik8L3NwYW4+PC9kaXY+DQo8ZGl2PjIp
+IEFzIHRoZSBtYWpvcml0eSBvZiB0aGUgc3VtbWl0IHdpbGwgYmUgcHJlc2VudGF0aW9ucyBhbmQg
+dG8gbWluaW1pemUgZGlzcnVwdGlvbiwgYWxsIHJlbW90ZSBwYXJ0aWNpcGFudHMgb24gdGhlIGNv
+bmZlcmVuY2Ugd2lsbCBiZSBwbGFjZWQgb24gbXV0ZS4gJm5ic3A7SG93ZXZlciwgd2Ugd2lsbCBt
+b25pdG9yIHRoZSAjeW9jdG8gYW5kICNvZSBjaGFubmVscyBvbiBmcmVlbm9kZSBhbmQgcmVsYXkg
+Y29tbWVudHMvcXVlc3Rpb25zIGludG8gdGhlDQogc2Vzc2lvbnMuPC9kaXY+DQo8ZGl2Pjxicj4N
+CjwvZGl2Pg0KPGRpdj5QbGFubmVkIEFnZW5kYTogJm5ic3A7KCBhbGwgdGltZXMgYXJlIGluIFVT
+LVBhY2lmaWMgVGltZSApPC9kaXY+DQo8ZGl2PiZuYnNwOyZuYnNwOzA4OjAwIC0gMDk6MDAmbmJz
+cDstLSBTb2NpYWwvY29udGluZW50YWwgYnJlYWtmYXN0IChub3QgcmVjb3JkZWQpPC9kaXY+DQo8
+ZGl2PiZuYnNwOyZuYnNwOzA5OjAwIC0gMDk6MTUmbmJzcDstLSBXZWxjb21lIGFuZCBpbnRyb2R1
+Y3Rpb24gKFNlYW4gSHVkc29uLCBNZW50b3IgR3JhcGhpY3MpPC9kaXY+DQo8ZGl2PiZuYnNwOyZu
+YnNwOzA5OjE1IC0gMTA6MTUmbmJzcDstLSBDdXJyZW50IHN0YXRlIG9mIFlvY3RvIFByb2plY3Qg
+QlNQIGRlZmluaXRpb24gKFRvbSBaYW51c3NpLCBJbnRlbCk8L2Rpdj4NCjxkaXY+Jm5ic3A7Jm5i
+c3A7MTA6MTUgLSAxMDozMCZuYnNwOy0tIEJyZWFrPC9kaXY+DQo8ZGl2PiZuYnNwOyZuYnNwOzEw
+OjMwIC0gMTE6MzAmbmJzcDstLSBXb3JraW5nIHdpdGggbWV0YS10aSAoRGVueXMgRG1pdHJpeWVu
+a28sIFRJKTwvZGl2Pg0KPGRpdj4mbmJzcDsmbmJzcDsxMTozMCAtIDEyOjMwJm5ic3A7LS0gTHVu
+Y2ggJmFtcDsgaGFyZHdhcmUgc2V0dXA8L2Rpdj4NCjxkaXY+Jm5ic3A7Jm5ic3A7MTI6MzAgLSAx
+MzowMCZuYnNwOy0tIFN0cmF0ZWdpYyBQbGF0Zm9ybXMgKEJydWNlIEFzaGZpZWxkLCBXaW5kcml2
+ZXIpPC9kaXY+DQo8ZGl2PiZuYnNwOyZuYnNwOzEzOjAwIC0gMTQ6MzAmbmJzcDstLSBZb2N0byBQ
+cm9qZWN0IEJTUCBvcGVuIGRpc2N1c3Npb248c3BhbiBjbGFzcz0iQXBwbGUtc3R5bGUtc3BhbiIg
+c3R5bGU9Ii13ZWJraXQtY29tcG9zaXRpb24tZmlsbC1jb2xvcjogcmdiYSgxMzAsIDk4LCA4Mywg
+MC4wODk4NDM4KTsgLXdlYmtpdC10YXAtaGlnaGxpZ2h0LWNvbG9yOiByZ2JhKDI2LCAyNiwgMjYs
+IDAuMjkyOTY5KTsgIj4mbmJzcDsobW9kZXJhdG9yOiBTZWFuIEh1ZHNvbiwgTWVudG9yIEdyYXBo
+aWNzLA0KIG5vdGVzOiBKZWZmcmV5IE9zaWVyLU1peG9uLCBJbnRlbCk8L3NwYW4+PC9kaXY+DQo8
+ZGl2PiZuYnNwOyZuYnNwOzE0OjMwIC0gMTc6MDAmbmJzcDstLSBXb3JraW5nIHNlc3Npb25zIChm
+bGV4aWJsZSB0aW1lKSAobWF5IG5vdCBiZSByZWNvcmRlZCk8L2Rpdj4NCjxkaXY+Jm5ic3A7Jm5i
+c3A7MTc6MDAgLSAxODozMCZuYnNwOy0tIFBpenphL2JlZXIgc29jaWFsIChhZGRpdGlvbmFsIHdv
+cmtpbmcgdGltZSB0b28pICZuYnNwOyhub3QgcmVjb3JkZWQpPC9kaXY+DQo8ZGl2Pjxicj4NCjwv
+ZGl2Pg0KSWYgeW91IGhhdmUgbm90IGFscmVhZHkgZG9uZSBzbywgcGxlYXNlIHRha2UgYSBtb21l
+bnQgdG8gbG9vayBvdmVyIHRoZSB0aHJlZSBxdWVzdGlvbnMgc2VudCBvdXQgYW5kIHNlbmQgcmVz
+cG9uc2VzIHRvIG15c2VsZiBvciBKZWZmLjwvZGl2Pg0KPGRpdj48YnI+DQo8ZGl2PlZpZGVvIGNv
+bmZlcmVuY2UgYWNjZXNzIGluZm9ybWF0aW9uOjwvZGl2Pg0KPGRpdj4mbmJzcDsgQ29uZmVyZW5j
+ZSBJRDogMTAxPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4mbmJzcDsgTm90ZTo8L2Rp
+dj4NCjxkaXY+Jm5ic3A7ICZuYnNwOyBUaGUgdmlkZW8gY29uZmVyZW5jZSB3aWxsIG5vdCBjb25u
+ZWN0IHVudGlsIHRoZSBjYWxsIGlzIGFjdGl2ZS48L2Rpdj4NCjxkaXY+Jm5ic3A7ICZuYnNwOyBI
+b3dldmVyLCBpdCB3aWxsIGNvbm5lY3QgMTUgbWludXRlcyBlYXJseS48L2Rpdj4NCjxkaXY+PGJy
+Pg0KPC9kaXY+DQo8ZGl2PiZuYnNwOyBWaWRlbyBwYXJ0aWNpcGFudHMgdGhhdCBhcmUgY29ubmVj
+dGluZyBmcm9tIG91dHNpZGUgdGhlIE1lbnRvciBOZXR3b3JrIHdpbGwgbmVlZCB0byBjYWxsIGlu
+dG8gdGhlIFZpZGVvIENvbmZlcmVuY2UgQnJpZGdlIHVzaW5nIG9uZSBvZiB0aGUgZm9sbG93aW5n
+IG1ldGhvZHM6PC9kaXY+DQo8ZGl2PiZuYnNwOyAmbmJzcDsgSVAgQWRkcmVzczogMTkyLjk0LjM4
+LjI0OTwvZGl2Pg0KPGRpdj4mbmJzcDsgJm5ic3A7IFZpZGVvIEFkZHJlc3MgKEguMzIzIG9yIFNJ
+UCk6Jm5ic3A7PGEgaHJlZj0ibWFpbHRvOnZpZGVvQG1lbnRvci5jb20iPnZpZGVvQG1lbnRvci5j
+b208L2E+PC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4mbmJzcDsgT25jZSBjb25uZWN0
+ZWQgdG8gdGhlIEJyaWRnZSwgcGxlYXNlIGVudGVyIHRoZSBDb25mZXJlbmNlIElEIGZvbGxvd2Vk
+IGJ5IHRoZSAjIHNpZ24uPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5XZWJleCBpbmZv
+cm1hdGlvbjo8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pk1lZXRpbmcgTnVtYmVyOiZu
+YnNwOzc1OCAyMDEgNTcxPC9kaXY+DQo8ZGl2Pk1lZXRpbmcgUGFzc3dvcmQ6IE9uY2UgeW91IGhh
+dmUgcmVnaXN0ZXJlZCBmb3IgdGhlIG1lZXRpbmcsIHlvdSB3aWxsIHJlY2VpdmUgYW4gZW1haWwg
+bWVzc2FnZSBjb25maXJtaW5nIHlvdXIgcmVnaXN0cmF0aW9uLiBUaGlzIG1lc3NhZ2Ugd2lsbCBw
+cm92aWRlIHRoZSBpbmZvcm1hdGlvbiB0aGF0IHlvdSBuZWVkIHRvIGpvaW4gdGhlIG1lZXRpbmcu
+PC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tPC9kaXY+DQo8ZGl2PlRvIGpvaW4gdGhpcyBt
+ZWV0aW5nIChOb3cgZnJvbSBtb2JpbGUgZGV2aWNlcyEpPC9kaXY+DQo8ZGl2Pi0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS08L2Rpdj4NCjxkaXY+
+MS4gR28gdG8mbmJzcDs8YSBocmVmPSJodHRwczovL21lbnRvci53ZWJleC5jb20vbWVudG9yL2ou
+cGhwP0o9NzU4MjAxNTcxIj5odHRwczovL21lbnRvci53ZWJleC5jb20vbWVudG9yL2oucGhwP0o9
+NzU4MjAxNTcxPC9hPjwvZGl2Pg0KPGRpdj4yLiBJZiByZXF1ZXN0ZWQsIGVudGVyIHlvdXIgbmFt
+ZSBhbmQgZW1haWwgYWRkcmVzcy48L2Rpdj4NCjxkaXY+My4gSWYgYSBwYXNzd29yZCBpcyByZXF1
+aXJlZCwgZW50ZXIgdGhlIG1lZXRpbmcgcGFzc3dvcmQ6IE9uY2UgeW91IGhhdmUgcmVnaXN0ZXJl
+ZCBmb3IgdGhlIG1lZXRpbmcsIHlvdSB3aWxsIHJlY2VpdmUgYW4gZW1haWwgbWVzc2FnZSBjb25m
+aXJtaW5nIHlvdXIgcmVnaXN0cmF0aW9uLiBUaGlzIG1lc3NhZ2Ugd2lsbCBwcm92aWRlIHRoZSBp
+bmZvcm1hdGlvbiB0aGF0IHlvdSBuZWVkIHRvIGpvaW4gdGhlIG1lZXRpbmcuPC9kaXY+DQo8ZGl2
+PjQuIENsaWNrICZxdW90O0pvaW4mcXVvdDsuPC9kaXY+DQo8ZGl2PjUuIEZvbGxvdyB0aGUgaW5z
+dHJ1Y3Rpb25zIHRoYXQgYXBwZWFyIG9uIHlvdXIgc2NyZWVuLjwvZGl2Pg0KPGRpdj48YnI+DQo8
+L2Rpdj4NCjxkaXY+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLTwvZGl2Pg0KPGRpdj5BdWRpbyBjb25mZXJlbmNlIGluZm9ybWF0aW9uPC9kaXY+
+DQo8ZGl2Pi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS08L2Rpdj4NCjxkaXY+Q29uZmVyZW5jZSBJRDogJm5ic3A7MTAxPC9kaXY+DQo8ZGl2Pjxi
+cj4NCjwvZGl2Pg0KPGRpdj5UZWxlcGhvbmUgb25seSBwYXJ0aWNpcGFudHMgY2FuIGpvaW4gdGhl
+IG1lZXRpbmcgYnkgY2FsbGluZyBlaXRoZXI6PC9kaXY+DQo8ZGl2PiYjNDM7MS01MDMtNjg1LTEy
+MzQmbmJzcDsoODIxMy0xMjM0KSwgb3IgdG9sbC1mcmVlLCZuYnNwOyYjNDM7MS04MDAtNTQ3LTMw
+MTE8L2Rpdj4NCjxkaXY+Jm5ic3A7KCBJbnRlcm5hdGlvbmFsIGRpYWwtaW4gbnVtYmVycyBhcmUg
+YXZhaWxhYmxlIG9uIHJlcXVlc3QuICk8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pk9u
+Y2UgY29ubmVjdGVkIHRvIHRoZSBjb25mZXJlbmNlIGJyaWRnZSwgZW50ZXIgdGhlIENvbmZlcmVu
+Y2UgSUQgZm9sbG93ZWQgYnkgdGhlICMgc2lnbi48L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8
+ZGl2PjxhIGhyZWY9Imh0dHA6Ly93d3cud2ViZXguY29tIj5odHRwOi8vd3d3LndlYmV4LmNvbTwv
+YT48L2Rpdj4NCjxkaXY+V2UndmUgZ290IHRvIHN0YXJ0IG1lZXRpbmcgbGlrZSB0aGlzKFRNKTwv
+ZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+SU1QT1JUQU5UIE5PVElDRTogVGhpcyBXZWJF
+eCBzZXJ2aWNlIGluY2x1ZGVzIGEgZmVhdHVyZSB0aGF0IGFsbG93cyBhdWRpbyBhbmQgYW55IGRv
+Y3VtZW50cyBhbmQgb3RoZXIgbWF0ZXJpYWxzIGV4Y2hhbmdlZCBvciB2aWV3ZWQgZHVyaW5nIHRo
+ZSBzZXNzaW9uIHRvIGJlIHJlY29yZGVkLiBCeSBqb2luaW5nIHRoaXMgc2Vzc2lvbiwgeW91IGF1
+dG9tYXRpY2FsbHkgY29uc2VudCB0byBzdWNoIHJlY29yZGluZ3MuIElmIHlvdSBkbyBub3QNCiBj
+b25zZW50IHRvIHRoZSByZWNvcmRpbmcsIGRpc2N1c3MgeW91ciBjb25jZXJucyB3aXRoIHRoZSBt
+ZWV0aW5nIGhvc3QgcHJpb3IgdG8gdGhlIHN0YXJ0IG9mIHRoZSByZWNvcmRpbmcgb3IgZG8gbm90
+IGpvaW4gdGhlIHNlc3Npb24uIFBsZWFzZSBub3RlIHRoYXQgYW55IHN1Y2ggcmVjb3JkaW5ncyBt
+YXkgYmUgc3ViamVjdCB0byBkaXNjb3ZlcnkgaW4gdGhlIGV2ZW50IG9mIGxpdGlnYXRpb24uPC9k
+aXY+DQo8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8L3NwYW4+DQo8ZGl2PjwvZGl2Pg0KPC9k
+aXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+
+--_000_4FA5F5BDC00B499896A4E6B85127D3E7mentorcom_--
