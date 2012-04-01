@@ -1,38 +1,25 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E8A1E0132F
-	for <yocto@yoctoproject.org>; Sat, 31 Mar 2012 17:52:11 -0700 (PDT)
-Received: by qcsd1 with SMTP id d1so1257120qcs.35
-	for <yocto@yoctoproject.org>; Sat, 31 Mar 2012 17:52:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=stmrhwSn0dopSLjGIkzxhMRGdDXKWOuAP8+WfaAatLo=;
-	b=tbFLOuq8Me2Ont1AWkCw9dmMTozO/yy/RAv8jaUex4fEF2Ygg/jREGsLtmb9Pm5vDc
-	WCWmLdUjlca8vBaL5QUkzgz3+/cSNCpcn7G41f3S/1EiPH0Q68pp312lTkR7MkfMRyZC
-	LLN5q7MYsaLgiVWOwOc64pOhcDj8VUDtFlZKEImLDQDb4OAlqgzr84263049+WEDkHE3
-	M2n+qMaTUZfXYLOLKj65ASl4DXFMyI48B0t91EWw2DVScOLiynbgqaQqW/4Pio+EbgYd
-	979Kgyd3/fel7GSNgALdXR1EZ/6jNI2a4NVTsJ/f3mlP0q4rdXKMRCqjpQ+2jl7yvMPb
-	kbng==
-Received: by 10.229.111.199 with SMTP id t7mr1381158qcp.84.1333241530734; Sat,
-	31 Mar 2012 17:52:10 -0700 (PDT)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00893E0138D
+	for <yocto@yoctoproject.org>; Sat, 31 Mar 2012 20:56:07 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q313u5kV010369
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sat, 31 Mar 2012 20:56:05 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Sat, 31 Mar 2012 20:56:06 -0700
+Message-ID: <4F77D1CF.2080800@windriver.com>
+Date: Sat, 31 Mar 2012 23:55:59 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.229.24.196 with HTTP; Sat, 31 Mar 2012 17:51:50 -0700 (PDT)
-In-Reply-To: <CAMKF1spxRhbgpbbfpvZ_Gui6KNaoCvt7tEA1NPqM9Ch1i3XNVw@mail.gmail.com>
-References: <D044B647-8BCD-48B4-BABD-CE4751D023E0@dominion.thruhere.net>
-	<4F7608DC.1000402@windriver.com>
-	<26C6B15B-4A12-453A-A146-C884A5040178@dominion.thruhere.net>
-	<4F7614FE.5000107@windriver.com> <1333141865.18082.120.camel@ted>
-	<CAMKF1spxRhbgpbbfpvZ_Gui6KNaoCvt7tEA1NPqM9Ch1i3XNVw@mail.gmail.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Sat, 31 Mar 2012 17:51:50 -0700
-X-Google-Sender-Auth: Sjnqs_pUtzCST18odoKB0wPT3tc
-Message-ID: <CABcZAN=Bg0VqTJwBZWGOUOP7ay+2PEQmOV_=pQ=OkQnj3N5MGA@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Moving angstrom under the yocto banner
+To: Darren Hart <dvhart@linux.intel.com>
+References: <cover.1333204567.git.dvhart@linux.intel.com>
+In-Reply-To: <cover.1333204567.git.dvhart@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/3][linux-yocto-3.2][meta] tiny: Refactor tiny ktype config
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,27 +31,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 01 Apr 2012 00:52:11 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 01 Apr 2012 03:56:08 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sat, Mar 31, 2012 at 9:30 AM, Khem Raj <raj.khem@gmail.com> wrote:
-> I think the repository format used for poky in yocto project
-> could also be confusing things. Since it does not clone openembedded-core
-> or bitbake from upstream locations but maintains a copy of its own. even
-> though they are ditto copies of upstream it still has logical separation
-> that can be source of confusion. So if there was a meta-poky that defined
-> the distro policies and another integration layer that
-> sources openembedded-core and bitbake meta-poky and other layers
-> would make it much clearer.
+On 12-03-31 10:44 AM, Darren Hart wrote:
+> Prepare for the linux-yocto-tiny_3.2 recipe by consolidating the tiny config
+> and factoring out what should be common functinionality.
 >
-> As such OE-Core is distroless as we all know and can be built standalone
-> and poky uses most of defaults so meta-poky could be a thin layer on top
-> right now I think poky combines distro policy layer and integration
-> layer into one
-> which could also be source of confusion. I think creating distinct layers
-> for these two will clear up the air quite a bit.
+> Once included, I'll send the linux-yocto-tiny_3.2 patch against oe-core with
+> the proper SRCREV_meta. The other linux-yocto recipes don't need an updated
+> meta SRCREV necessarily.
 
-I agree, and would love to see that happen.
--- 
-Christopher Larson
+I went ahead an bumped all the SRCREVs, best to keep them consistent, so
+configurations can be shared.
+
+Merged, pushed, and a pull request sent out.
+
+Cheers,
+
+Bruce
+
+>
+> The following changes since commit 867fc7a19f2ea74253d1f20c3d61b7829635175b:
+>
+>    common-pc: Add PCNET32 to the config (2012-03-26 09:49:06 -0400)
+>
+> are available in the git repository at:
+>    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib dvhart/meta/tiny
+>    http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=dvhart/meta/tiny
+>
+> Darren Hart (3):
+>    meta: common-pc add dependencies to cfg
+>    tiny: Minimize the tiny config
+>    meta: Add common-pc-tiny.scc
+>
+>   .../kernel-cache/bsp/common-pc/common-pc-tiny.scc  |   12 +
+>   meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg  |   13 +-
+>   .../tiny/serial.cfg =>  cfg/serial-8250.cfg}        |    0
+>   meta/cfg/kernel-cache/ktypes/tiny/debug.cfg        |    5 -
+>   meta/cfg/kernel-cache/ktypes/tiny/devtmpfs.cfg     |    6 -
+>   meta/cfg/kernel-cache/ktypes/tiny/ext2.cfg         |    1 -
+>   meta/cfg/kernel-cache/ktypes/tiny/ext3.cfg         |    2 -
+>   meta/cfg/kernel-cache/ktypes/tiny/fb.cfg           |   16 -
+>   meta/cfg/kernel-cache/ktypes/tiny/lzma.cfg         |    3 -
+>   meta/cfg/kernel-cache/ktypes/tiny/net.cfg          |   26 -
+>   meta/cfg/kernel-cache/ktypes/tiny/rtc-pc.cfg       |   13 -
+>   meta/cfg/kernel-cache/ktypes/tiny/smp.cfg          |    7 -
+>   meta/cfg/kernel-cache/ktypes/tiny/sysfs.cfg        |    2 -
+>   meta/cfg/kernel-cache/ktypes/tiny/tiny.cfg         |  613 +-------------------
+>   meta/cfg/kernel-cache/ktypes/tiny/tiny.scc         |   17 +-
+>   meta/cfg/kernel-cache/ktypes/tiny/vt.cfg           |    5 -
+>   .../ktypes/tiny/{core.cfg =>  yocto.cfg}            |   23 +-
+>   17 files changed, 63 insertions(+), 701 deletions(-)
+>   create mode 100644 meta/cfg/kernel-cache/bsp/common-pc/common-pc-tiny.scc
+>   rename meta/cfg/kernel-cache/{ktypes/tiny/serial.cfg =>  cfg/serial-8250.cfg} (100%)
+>   delete mode 100644 meta/cfg/kernel-cache/ktypes/tiny/debug.cfg
+>   delete mode 100644 meta/cfg/kernel-cache/ktypes/tiny/devtmpfs.cfg
+>   delete mode 100644 meta/cfg/kernel-cache/ktypes/tiny/ext2.cfg
+>   delete mode 100644 meta/cfg/kernel-cache/ktypes/tiny/ext3.cfg
+>   delete mode 100644 meta/cfg/kernel-cache/ktypes/tiny/fb.cfg
+>   delete mode 100644 meta/cfg/kernel-cache/ktypes/tiny/lzma.cfg
+>   delete mode 100644 meta/cfg/kernel-cache/ktypes/tiny/net.cfg
+>   delete mode 100644 meta/cfg/kernel-cache/ktypes/tiny/rtc-pc.cfg
+>   delete mode 100644 meta/cfg/kernel-cache/ktypes/tiny/smp.cfg
+>   delete mode 100644 meta/cfg/kernel-cache/ktypes/tiny/sysfs.cfg
+>   delete mode 100644 meta/cfg/kernel-cache/ktypes/tiny/vt.cfg
+>   rename meta/cfg/kernel-cache/ktypes/tiny/{core.cfg =>  yocto.cfg} (49%)
+>
+
 
