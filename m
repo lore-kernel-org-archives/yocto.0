@@ -1,36 +1,37 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 362C5E0138D
-	for <yocto@yoctoproject.org>; Sat, 31 Mar 2012 22:14:37 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 31 Mar 2012 22:14:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="83960731"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by AZSMGA002.ch.intel.com with ESMTP; 31 Mar 2012 22:14:36 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sat, 31 Mar 2012 22:14:36 -0700
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.128]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.160]) with mapi id
-	14.01.0355.002; Sat, 31 Mar 2012 22:14:35 -0700
-From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Thread-Topic: [yocto] [PATCH 3/3] poky-tiny: avoid eglibc locale packaging
-Thread-Index: AQHNDsyr7JOPLuJolUys1aN/+AFpWJaFbo6w
-Date: Sun, 1 Apr 2012 05:14:34 +0000
-Message-ID: <ADD6A3980E8C39419A432FF422031B4C01380564@ORSMSX106.amr.corp.intel.com>
-References: <512eae1ae0678b247076db900304725702acc91e.1333145263.git.nitin.a.kamble@intel.com>
-	<f5f27094a325058b26b182ad0ea4a08b72f608af.1333145263.git.nitin.a.kamble@intel.com>
-	<4F764130.4080204@linux.intel.com>
-In-Reply-To: <4F764130.4080204@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 3/3] poky-tiny: avoid eglibc locale packaging
+Return-Path: <darren@apps.dvhart.com>
+Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
+	[209.85.210.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA34CE0138D
+	for <yocto@yoctoproject.org>; Sun,  1 Apr 2012 00:23:33 -0700 (PDT)
+Received: by dajx4 with SMTP id x4so1345600daj.28
+	for <yocto@yoctoproject.org>; Sun, 01 Apr 2012 00:23:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=sender:from:to:subject:date:message-id:x-mailer:x-gm-message-state;
+	bh=KDlWqf0WuNkPb2ulg26zylbDlYVuTx/700U8g5zB3+s=;
+	b=ci+olVvD2KOvglKUvk54Jb337VP5Y+yN7R+R9n4zjGQXt0A2Ytuc4BAW7yfkf+qhPE
+	tYRH8Qw48buJPC5yzOcSmuBBzqlgEdopvPhaQfdR0p0n4eSobCQHeYTSntbk4O7IroPV
+	z5IGcB6kqLE31FPyGZhnwLG4Df/193T+0I+D7IVMPsNcthUC4dsIgvk4vGkWS29GN3KD
+	5EmwZGdxSKf81utltoX5y0aPs7sys2r2m1pePul+fKnMEsf37UjSW2XelbX/JRiQ12kL
+	puSZYcgmk/1aR6fmI9FNJi+BgCXgpxivPF99ZNFcTm+sBcoZGDcBMW3xLkptSNI4Puau
+	Zynw==
+Received: by 10.68.131.74 with SMTP id ok10mr5481048pbb.95.1333265013145;
+	Sun, 01 Apr 2012 00:23:33 -0700 (PDT)
+Received: from localhost (static-50-53-99-101.bvtn.or.frontiernet.net.
+	[50.53.99.101])
+	by mx.google.com with ESMTPS id i5sm11335995pbf.19.2012.04.01.00.23.31
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sun, 01 Apr 2012 00:23:32 -0700 (PDT)
+Sender: Darren Hart <darren@apps.dvhart.com>
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>,
+	Richard Purdie <richard.purdie@linuxfoundation.org>,
+	Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Sun,  1 Apr 2012 00:23:23 -0700
+Message-Id: <cover.1333264933.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.5.4
+X-Gm-Message-State: ALoCoQki2V2QoSAr7Xwu2CCmY3tNEielEIC4h6LWeRKvFvBjEleVrN2+aPmD1nknqEw4dEfyNqAS
+Subject: [PATCH 0/1] linux-yocto-tiny: Prefer 3.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,18 +43,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 01 Apr 2012 05:14:37 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Sun, 01 Apr 2012 07:23:33 -0000
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRGFycmVuIEhhcnQgW21h
-aWx0bzpkdmhhcnRAbGludXguaW50ZWwuY29tXQ0KPiANCj4gVGhhbmtzIGZvciBsb29raW5nIGlu
-dG8gdGhpcyBOaXRpbiEgSSdtIGZpbmUgd2l0aCB0aGlzIGZpeCBpZiBpdCBnZXRzDQo+IHRoaW5n
-cyBnb2luZy4gSSB3b25kZXIgdGhvdWdoLCBJIHByZXN1bWUgb21pdHRpbmcgc29tZXRoaW5nIGZy
-b20NCj4gRElTVFJPX0ZFQVRVUkVTX0xJQkMgaXMgd2hhdCB0cmlnZ2VycyB0aGlzIGJ1Zy4uLiBj
-b3VsZCB0aGF0IHNhbWUNCj4gb21pc3Npb24gbm90IGJlIHRlc3RlZCB0byBhdm9pZCB0aGUgZmFp
-bHVyZT8gU2VlbXMgc3RyYW5nZSB0byBoYXZlIHRvDQo+IGV4cGxpY2l0bHkgc2V0IFBBQ0tBR0Vf
-Tk9fR0NPTlYuDQo+IA0KPiBUaG91Z2h0cz8NCg0KTWFrZXMgc2Vuc2UsIEkgd2lsbCBsb29rIGlu
-dG8gc3VjaCBzb2x1dGlvbi4NCg0KTml0aW4NCg==
+The following changes since commit 140cb7973365f747f1a1c831ba3e160a9b9eb19c:
+
+  tiny: Update linux-yocto-tiny to 3.2 (2012-04-01 00:16:00 -0700)
+
+are available in the git repository at:
+  git://git.pokylinux.org/poky-contrib dvhart/tiny
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=dvhart/tiny
+
+Darren Hart (1):
+  linux-yocto-tiny: Prefer 3.2
+
+ meta-yocto/conf/distro/poky-tiny.conf |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+-- 
+1.7.5.4
+
 
