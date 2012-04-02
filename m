@@ -1,31 +1,32 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0620E01304
-	for <yocto@yoctoproject.org>; Mon,  2 Apr 2012 05:38:55 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q32CcpC6012318;
-	Mon, 2 Apr 2012 13:38:51 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 03987-10; Mon,  2 Apr 2012 13:38:47 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q32CceRL012312
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Mon, 2 Apr 2012 13:38:43 +0100
-Message-ID: <1333370320.647.30.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Shane Wang <shane.wang@intel.com>
-Date: Mon, 02 Apr 2012 13:38:40 +0100
-In-Reply-To: <5d0a3fc2ba2b0ba509a50dffcdaee298f1ac0e9d.1333358047.git.shane.wang@intel.com>
-References: <cover.1333358047.git.shane.wang@intel.com>
-	<5d0a3fc2ba2b0ba509a50dffcdaee298f1ac0e9d.1333358047.git.shane.wang@intel.com>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] meta-yocto/local.conf.sample: change = to ?= for BB_NUMBER_THREADS and PARALLEL_MAKE
+Return-Path: <jeffrey.osier-mixon@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C580FE013F3
+	for <yocto@yoctoproject.org>; Mon,  2 Apr 2012 08:43:20 -0700 (PDT)
+Received: from mail-vb0-f52.google.com ([209.85.212.52])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 02 Apr 2012 08:43:19 -0700
+Received: by mail-vb0-f52.google.com with SMTP id b23so1693348vbz.25
+	for <yocto@yoctoproject.org>; Mon, 02 Apr 2012 08:43:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:content-transfer-encoding:x-gm-message-state;
+	bh=xGsBSJ+xpaHyXTuzVgyoJNUL3+N8RSaKalR6N1sV1ls=;
+	b=Bg3ElHm5+A8js6sJAK8HVhn5Nm4Ss7CzLWzSWlD83xk1B9x3JjdsVtK9sbcyBRkwsQ
+	0VTFGNHJDmSwtFMjkpkVw9OElEXxgnPwjqszDjGNsdYoZ7/fN2bAZ1A3GQfkRNy/zF2A
+	rOcnXb53zPv6WU5CzBJiocimOfODc4R5bgJps32KJqjMgXGOh/Uovbw9m6ArIFjVBakl
+	jy3uUl7Vgavwdb9UD1YTa5I9tL59n+JtI2seUeGyjJR7BX6280ywkH4ByxnaeYuvHRg8
+	D8FJIif3Lv6TNtr72HRVC2h/+wxKx7EIkFBBULheovnMnp/z46Oq7MMubHSufvvzntdX
+	uqhA==
+MIME-Version: 1.0
+Received: by 10.52.21.51 with SMTP id s19mr3448215vde.35.1333381394925; Mon,
+	02 Apr 2012 08:43:14 -0700 (PDT)
+Received: by 10.52.30.52 with HTTP; Mon, 2 Apr 2012 08:43:14 -0700 (PDT)
+Date: Mon, 2 Apr 2012 08:43:14 -0700
+Message-ID: <CALZ2gZUSNEpfnS5rESQdHyiY9VjPiUiydK32vrS0Xtpe_6kJDg@mail.gmail.com>
+From: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
+To: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+X-Gm-Message-State: ALoCoQlRJYE820k7qchUW5kGxW/TIwSJTw3v+1COOWk07pDAwDXUbVC4LBrE3SBCf9pr+mYfltoo
+Subject: Yocto Project BSP Summit - IRC channel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,30 +38,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Apr 2012 12:38:56 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 02 Apr 2012 15:43:21 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2012-04-02 at 17:23 +0800, Shane Wang wrote:
-> In the current local.conf, BB_NUMBER_THREADS and PARALLEL_MAKE are assigned
-> by '=', which overwrites the values set from the Hob. To avoid that, use '?='
-> instead.
-> 
-> [Yocto #2210]
-> 
-> Signed-off-by: Shane Wang <shane.wang@intel.com>
-> ---
->  meta-yocto/conf/local.conf.sample |    4 ++--
->  1 files changed, 2 insertions(+), 2 deletions(-)
+For those attending the BSP Summit remotely, I have also set up an IRC
+channel for backchat. The channel is #yocto-bsp-summit on freenode.
+Join with your favorite IRC client or go to:
 
-If the user has used "=" in their configuration files, hob needs to deal
-with this. It is not acceptable to patch the world to revolve around
-hob.
+http://webchat.freenode.net/?channels=3D#yocto-bsp-summit
 
-So, no, I'm not going to take this patch, sorry.
-
-Cheers,
-
-Richard
-
+--=20
+Jeff Osier-Mixon=A0http://jefro.net/blog
+Yocto Project Community Manager @Intel=A0http://yoctoproject.org
 
