@@ -1,25 +1,24 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
-	[209.85.210.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01183E0070C
-	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 14:12:48 -0700 (PDT)
-Received: by dajx4 with SMTP id x4so158064daj.28
-	for <yocto@yoctoproject.org>; Tue, 03 Apr 2012 14:12:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=cKRnis6I9IXhDbwc+L2QGawcU4rJBNGwxi6ItYsecqw=;
-	b=LVr1E7Zy1cnrWGUE96+Azwqkby9cvZ2T3gZv72TJa8H4b8Yi1tAnpEFlbVzVFhX4zV
-	2HyjivnLi4mPlTvXrmlAsFW+dcIOM3PAtv3HTqFh9ztpxgvfbLCDi6hLCDMVkYjIoMRY
-	l8E9az0p3UWHRdYEvIS/pdXcf4z67Pp0I7GQtbUy21FW3T1iSJ8kUlTO+du8r0Dw/PF/
-	jcK4QhUmB9NnVlVBYoUgYeGUWgUrVijYUdTk29a2kF09kTAlhVuxxbVkuNkfpsvKYsZP
-	oLMpkkWBTesMARt1fDNCbYwHW1rSm8Y2KclsruMnZj4NLNu3E7XenDtPHwfAuA1Vf/GK
-	v9PA==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0FE9E01304
+	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 14:15:52 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 6F5D8F81243; Tue,  3 Apr 2012 15:15:52 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 4EA64F811DE;
+	Tue,  3 Apr 2012 15:15:51 -0600 (MDT)
+Message-ID: <4F7B6887.9040602@mlbassoc.com>
+Date: Tue, 03 Apr 2012 15:15:51 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
 MIME-Version: 1.0
-Received: by 10.68.211.135 with SMTP id nc7mr31906429pbc.113.1333487568752;
-	Tue, 03 Apr 2012 14:12:48 -0700 (PDT)
-Received: by 10.68.20.134 with HTTP; Tue, 3 Apr 2012 14:12:48 -0700 (PDT)
-In-Reply-To: <4F7B61B2.9050208@mlbassoc.com>
+To: Autif Khan <autif.mlist@gmail.com>
 References: <4F68A6F6.8080900@linux.intel.com>
 	<CAMKF1spVh7VR12eaUdbLQ5rCzT0ifziTWtFBgsLW7Or2+92XTw@mail.gmail.com>
 	<4F7461AC.7050202@linux.intel.com> <2917058.nSOBk0kvaU@helios>
@@ -28,10 +27,8 @@ References: <4F68A6F6.8080900@linux.intel.com>
 	<CADzUK1LHq12OB=gigH37empg5cr6amjozt_fPS2FQ5+v4ub9YA@mail.gmail.com>
 	<7E680CB2A76BB8438D08CF13C09FC53A46AF089A@ORSMSX101.amr.corp.intel.com>
 	<4F7B61B2.9050208@mlbassoc.com>
-Date: Tue, 3 Apr 2012 17:12:48 -0400
-Message-ID: <CADzUK1JrrBZu=gydnRE=m5sMp-U3qF32J0FzwSdOhAoq+E1Mag@mail.gmail.com>
-From: Autif Khan <autif.mlist@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
+	<CADzUK1JrrBZu=gydnRE=m5sMp-U3qF32J0FzwSdOhAoq+E1Mag@mail.gmail.com>
+In-Reply-To: <CADzUK1JrrBZu=gydnRE=m5sMp-U3qF32J0FzwSdOhAoq+E1Mag@mail.gmail.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: How to change the startup application
 X-BeenThere: yocto@yoctoproject.org
@@ -45,36 +42,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Apr 2012 21:12:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 03 Apr 2012 21:15:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
->> Hi Autif, thanks a lot for providing the answer here. Since no one is
->> showing any objections here, I updated the wiki page with your answer
->> (https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_change_and_add_startup).
->> Please let me know if there is any suggestions or concerns.
+On 2012-04-03 15:12, Autif Khan wrote:
+>>> Hi Autif, thanks a lot for providing the answer here. Since no one is
+>>> showing any objections here, I updated the wiki page with your answer
+>>> (https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_change_and_add_startup).
+>>> Please let me know if there is any suggestions or concerns.
+>>
+>>
+>> This rather narrow answer is only useful if you are running a MatchBox
+>> desktop.
+>> There are many other deployment scenarios which would require a different
+>> approach.
 >
+> That is true.
 >
-> This rather narrow answer is only useful if you are running a MatchBox
-> desktop.
-> There are many other deployment scenarios which would require a different
-> approach.
+> However, All over the Yocto Project's website - the common bitbake
+> commands for an image is either core-image-minimal or core-image-sato.
+> (core-image-sato-sdk also uses matchbox).
+>
+> minimal does not start any app - not counting daemons and gettys
+>
+> If the user chooses another window manager - they are/should be on their own.
+>
+> I just assumed that we are not trying to document the init process
+> (bootloader, kernel, initrd, inittab, init.d etc)
+>
+> We are trying to answer a less experienced developer to replace the
+> default window manager with their own app
 
-That is true.
+Then it should be made clear that this answer only covers that scope.
+The Wiki page title implies that it is a more generic answer.
 
-However, All over the Yocto Project's website - the common bitbake
-commands for an image is either core-image-minimal or core-image-sato.
-(core-image-sato-sdk also uses matchbox).
+>
+> There is a chance that I am not aware of the default application being
+> other than matchbox. Can you please provide me some counter example?
 
-minimal does not start any app - not counting daemons and gettys
+I can think of many, most that are headless (no window environment at all)
 
-If the user chooses another window manager - they are/should be on their own.
-
-I just assumed that we are not trying to document the init process
-(bootloader, kernel, initrd, inittab, init.d etc)
-
-We are trying to answer a less experienced developer to replace the
-default window manager with their own app
-
-There is a chance that I am not aware of the default application being
-other than matchbox. Can you please provide me some counter example?
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
