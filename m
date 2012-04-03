@@ -1,28 +1,39 @@
-Return-Path: <gizero@gmail.com>
-Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
-	[209.85.216.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD680E0044A
-	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 11:43:43 -0700 (PDT)
-Received: by qam2 with SMTP id 2so172836qam.14
-	for <yocto@yoctoproject.org>; Tue, 03 Apr 2012 11:43:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type;
-	bh=YW1pvLNlDedDzUnBwuELUcfnlyCimwCrAQJR3f1Jyg8=;
-	b=AwPo1q255WQ3DHU2NqgIy7xcZU1RN2EAm0DJd2EzNWRLpFbCxO7v+LIcB6rybMtGRz
-	uikM4aEIptK62Bcl7MAu8Tr6UCq5Vf5UgrYV+kRAnKOhfAezbqHVCVYnCCvKb33+Jcv0
-	79iXP+6vJO71zeeFDGEjgoiIsq7uOsOSzTR/Gox2fDT4a5QI5R7BgJI+257AOz9XyWFU
-	2i241tjZsVhYGThK1P7DiltYAro18OiMK/tzLviy7fmUuHun3Q/CEUISaUt+T6L8/Bv0
-	7snP/ZGx8eUI1Fgkj8p5wncBzOXlk6NlAJtGq/OxzkIgDgwVoLU/0MSlIJePr6uSKKGr
-	fZVA==
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89595E00596
+	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 13:34:26 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 03 Apr 2012 13:34:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="128342937"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga002.jf.intel.com with ESMTP; 03 Apr 2012 13:34:26 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 3 Apr 2012 13:34:25 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.154]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.160]) with mapi id
+	14.01.0355.002; Tue, 3 Apr 2012 13:34:25 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: Autif Khan <autif.mlist@gmail.com>
+Thread-Topic: [yocto] How to change the startup application
+Thread-Index: AQHNDev4RHBJHNzPq0ShVMObs12UzZaCaH+AgActGzA=
+Date: Tue, 3 Apr 2012 20:34:24 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A46AF089A@ORSMSX101.amr.corp.intel.com>
+References: <4F68A6F6.8080900@linux.intel.com>
+	<CAMKF1spVh7VR12eaUdbLQ5rCzT0ifziTWtFBgsLW7Or2+92XTw@mail.gmail.com>
+	<4F7461AC.7050202@linux.intel.com>	<2917058.nSOBk0kvaU@helios>
+	<CAMKF1sotGuDMJfb1xtxjVug6zL7Pr4MRwNpOVuEFMw-hdxQfRA@mail.gmail.com>
+	<7E680CB2A76BB8438D08CF13C09FC53A46AEA5A6@ORSMSX101.amr.corp.intel.com>
+	<CADzUK1LHq12OB=gigH37empg5cr6amjozt_fPS2FQ5+v4ub9YA@mail.gmail.com>
+In-Reply-To: <CADzUK1LHq12OB=gigH37empg5cr6amjozt_fPS2FQ5+v4ub9YA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Received: by 10.224.187.2 with SMTP id cu2mr18177155qab.88.1333478623040; Tue,
-	03 Apr 2012 11:43:43 -0700 (PDT)
-Received: by 10.229.157.199 with HTTP; Tue, 3 Apr 2012 11:43:43 -0700 (PDT)
-Date: Tue, 3 Apr 2012 20:43:43 +0200
-Message-ID: <CAC+thW0LdU-4re3d+4z+-PGpL9UFOZiQtXVBNnjm-VB=DJTn0w@mail.gmail.com>
-From: Andrea Galbusera <gizero@gmail.com>
-To: yocto@yoctoproject.org
-Subject: 1.2 beta testing report
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to change the startup application
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,60 +45,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Apr 2012 18:43:44 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 03 Apr 2012 20:34:26 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Experience survey of using Yocto 1.2
+Hi Autif, thanks a lot for providing the answer here. Since no one is showi=
+ng any objections here, I updated the wiki page with your answer (https://w=
+iki.yoctoproject.org/wiki/FAQ:How_do_I_change_and_add_startup). Please let =
+me know if there is any suggestions or concerns.
 
-Q: Which architecture did you choose to build?
+Song
 
-A: qemux86 and beagleboard
+-----Original Message-----
+From: Autif Khan [mailto:autif.mlist@gmail.com]=20
+Sent: Thursday, March 29, 2012 4:56 PM
+To: Liu, Song
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] How to change the startup application
 
-Q: How easily were you able to build an image and boot an image?
+> I got a question about how to change the startup application with Yocto f=
+or images generated with Yocto.
+> And I googled it and landed on this page:
+> https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_change_and_add_startup
+> _scripts. Pretty good, someone was thinking about the same thing. But=20
+> this page turns out to be empty. It seems that we need to get better than=
+ this.
+>
+> I'm wondering if someone could update this wiki page or if the informatio=
+n is somewhere else...
 
-A: This may be a lightly polarized answer, since my build host was
-already setup to work with edison. Anyways building and booting images
-for qemux86 was as easy as the Yocto Project Quick Start lets the
-reader hope.
+I do not know of if the information is elsewhere - I had to find this infor=
+mation for my project
 
-Q: Is there any surprise to you in the process of doing this Beta
-testing? If so, would you please describe
-it and tell us how you expected it to work?
+Here is my stab at it (already updated the wiki):
 
-A: The approach to building an image with the new 1.2 version is
-reasonably similar (at least the command line terminal based approach)
-to the one edison was based upon. So, no particular surprise here.
+Q: How do I change and add startup scripts?
 
-Q: How do you like our HOB interface? Please provide us with your
-thoughts and suggestions on HOB
-interface and functionality.
+A: Edit meta/recipes-sato/matchbox-sato/matchbox-session-sato/session.
+Of course, if you have your own meta-layer, append the matchbox-session-sat=
+o_0.1.bb recipe.
 
-A: It was the first time with HOB for me: heard about it but never
-tried before. Looks very promising expecially at simplifying life to
-new users. I personaly apprecieted the list of recipes and packages
-that gives a more usable overview of what's available for a given
-layers setup.
+Disable 'matchbox-desktop' and 'matchbox-panel', however, do not disable 'e=
+xec matchbox-window-manager ...'
 
-Q: Was it easy to find the support you needed to build and boot an image?
+Don't forget to run your app as a background process
 
-A: Online documentation was enought for this beta testing
+For example, the following code will start the fifteen game:
 
-Q: Which Bugzilla reports did you submit?
+#matchbox-desktop &
 
-A: None yet. Having some problem booting beagleboard image on real
-hardware, but still nvestigating if this is really an issue. But don't
-want to be late with the report here.
+# Lines containing feature-[foo] are removed at build time if the machine #=
+ doesn't have the feature "foo".
 
-Q: Did you try anything else with Yocto 1.2?
+#START_APPLETS=3Dshowdesktop,windowselector
+#END_APPLETS=3Dclock,battery,systray,startup-notify,notify
+#END_APPLETS=3Dopenmoko-panel-gsm,$END_APPLETS # feature-phone
 
-A: Tried the following bitbake targets for qemux86:
-core-image-minimal, core-image-sato, meta-toolchain,
-meta-toolchain-sdk, adt-installer, meta-ide-support.
+#matchbox-panel --titlebar --start-applets $START_APPLETS --end-applets $EN=
+D_APPLETS &
 
-Q: What would you like to have in Yocto Project for future releases?
+/usr/games/fifteen &
 
-A:
-
-Regards,
-Andrea
+exec matchbox-window-manager -theme Sato -use_desktop_mode decorated -use_c=
+ursor $SHOWCURSOR $@
 
