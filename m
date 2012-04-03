@@ -1,37 +1,28 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 514A0E0044A
-	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 11:04:01 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 03 Apr 2012 11:04:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="137187844"
-Received: from unknown (HELO envy.home) ([10.255.12.143])
-	by fmsmga001.fm.intel.com with ESMTP; 03 Apr 2012 11:04:00 -0700
-Message-ID: <4F7B3B68.3040101@linux.intel.com>
-Date: Tue, 03 Apr 2012 11:03:20 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
+Return-Path: <gizero@gmail.com>
+Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
+	[209.85.216.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD680E0044A
+	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 11:43:43 -0700 (PDT)
+Received: by qam2 with SMTP id 2so172836qam.14
+	for <yocto@yoctoproject.org>; Tue, 03 Apr 2012 11:43:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:cc:content-type;
+	bh=YW1pvLNlDedDzUnBwuELUcfnlyCimwCrAQJR3f1Jyg8=;
+	b=AwPo1q255WQ3DHU2NqgIy7xcZU1RN2EAm0DJd2EzNWRLpFbCxO7v+LIcB6rybMtGRz
+	uikM4aEIptK62Bcl7MAu8Tr6UCq5Vf5UgrYV+kRAnKOhfAezbqHVCVYnCCvKb33+Jcv0
+	79iXP+6vJO71zeeFDGEjgoiIsq7uOsOSzTR/Gox2fDT4a5QI5R7BgJI+257AOz9XyWFU
+	2i241tjZsVhYGThK1P7DiltYAro18OiMK/tzLviy7fmUuHun3Q/CEUISaUt+T6L8/Bv0
+	7snP/ZGx8eUI1Fgkj8p5wncBzOXlk6NlAJtGq/OxzkIgDgwVoLU/0MSlIJePr6uSKKGr
+	fZVA==
 MIME-Version: 1.0
-To: Brian Hutchinson <b.hutchman@gmail.com>
-References: <95AC7E09-D28F-46CE-A49B-30719BB50B1B@dominion.thruhere.net>
-	<4F765C0D.4000902@linux.intel.com>
-	<8986DA27-376D-447E-A9CF-5BEF1B309961@dominion.thruhere.net>
-	<4F766B84.9080505@linux.intel.com>
-	<20120402171356.GE4829@bill-the-cat>
-	<4F7B1EBD.1030500@linux.intel.com>
-	<20120403162541.GB3943@jama.jama.net>
-	<4F7B261B.1090101@linux.intel.com>
-	<20120403164432.GC3943@jama.jama.net>
-	<4F7B2E9C.7040600@linux.intel.com>
-	<20120403171540.GF4816@bill-the-cat>
-	<CABcZANnBGC_uhsO0aE-U3s8QjYGP+1JDupdqoTPW=XpNcOEcFA@mail.gmail.com>
-	<CAFZh4h947zMXK54SdSiHKFdo3eNXuCQtm3Wjk2g+t4zTBLbesw@mail.gmail.com>
-In-Reply-To: <CAFZh4h947zMXK54SdSiHKFdo3eNXuCQtm3Wjk2g+t4zTBLbesw@mail.gmail.com>
-X-Enigmail-Version: 1.4
-Cc: yocto@yoctoproject.org, Chris Larson <clarson@kergoth.com>
-Subject: Re: Moving angstrom under the yocto banner
+Received: by 10.224.187.2 with SMTP id cu2mr18177155qab.88.1333478623040; Tue,
+	03 Apr 2012 11:43:43 -0700 (PDT)
+Received: by 10.229.157.199 with HTTP; Tue, 3 Apr 2012 11:43:43 -0700 (PDT)
+Date: Tue, 3 Apr 2012 20:43:43 +0200
+Message-ID: <CAC+thW0LdU-4re3d+4z+-PGpL9UFOZiQtXVBNnjm-VB=DJTn0w@mail.gmail.com>
+From: Andrea Galbusera <gizero@gmail.com>
+To: yocto@yoctoproject.org
+Subject: 1.2 beta testing report
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,32 +34,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Apr 2012 18:04:01 -0000
+X-List-Received-Date: Tue, 03 Apr 2012 18:43:44 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
+Experience survey of using Yocto 1.2
 
+Q: Which architecture did you choose to build?
 
-On 04/03/2012 10:34 AM, Brian Hutchinson wrote:
-> On Tue, Apr 3, 2012 at 1:26 PM, Chris Larson <clarson@kergoth.com> wrote:
->> I really don't see what the issue is here. If you want a stable
->> branch, we can look into creating such a thing upstream, though I'm
->> personally of the opinion that master should remain release-quality,
->> and make better use of feature branches, potentially a
->> next/integration branch for forthcoming features, than trying to
->> cherry pick onto a "stable" branch. There's nothing poky's structure
->> provides that can't also be provided via branching policy in the
->> individual repositories.
-> 
-> I like what Chris said.  I vote for this.  It is standard SCM
-> practice.  All development goes on in a branch.  Integration on
-> another branch.  When good enough, it is merged to master and tagged
-> as a milestone release.
+A: qemux86 and beagleboard
 
-I'd really like to see this as well.
+Q: How easily were you able to build an image and boot an image?
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+A: This may be a lightly polarized answer, since my build host was
+already setup to work with edison. Anyways building and booting images
+for qemux86 was as easy as the Yocto Project Quick Start lets the
+reader hope.
+
+Q: Is there any surprise to you in the process of doing this Beta
+testing? If so, would you please describe
+it and tell us how you expected it to work?
+
+A: The approach to building an image with the new 1.2 version is
+reasonably similar (at least the command line terminal based approach)
+to the one edison was based upon. So, no particular surprise here.
+
+Q: How do you like our HOB interface? Please provide us with your
+thoughts and suggestions on HOB
+interface and functionality.
+
+A: It was the first time with HOB for me: heard about it but never
+tried before. Looks very promising expecially at simplifying life to
+new users. I personaly apprecieted the list of recipes and packages
+that gives a more usable overview of what's available for a given
+layers setup.
+
+Q: Was it easy to find the support you needed to build and boot an image?
+
+A: Online documentation was enought for this beta testing
+
+Q: Which Bugzilla reports did you submit?
+
+A: None yet. Having some problem booting beagleboard image on real
+hardware, but still nvestigating if this is really an issue. But don't
+want to be late with the report here.
+
+Q: Did you try anything else with Yocto 1.2?
+
+A: Tried the following bitbake targets for qemux86:
+core-image-minimal, core-image-sato, meta-toolchain,
+meta-toolchain-sdk, adt-installer, meta-ide-support.
+
+Q: What would you like to have in Yocto Project for future releases?
+
+A:
+
+Regards,
+Andrea
 
