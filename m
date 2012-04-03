@@ -1,31 +1,33 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CA2DE0070C
-	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 13:44:28 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SFAaZ-0007O7-TP
-	for yocto@yoctoproject.org; Tue, 03 Apr 2012 16:44:28 -0400
-Date: Tue, 3 Apr 2012 16:44:22 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1204031643440.5406@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36358E0070C
+	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 13:46:48 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id F2400F81225; Tue,  3 Apr 2012 14:46:46 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 56E75F811DE;
+	Tue,  3 Apr 2012 14:46:42 -0600 (MDT)
+Message-ID: <4F7B61B2.9050208@mlbassoc.com>
+Date: Tue, 03 Apr 2012 14:46:42 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH] Documentation: little fixes to the BSP Guide.
+To: yocto@yoctoproject.org
+References: <4F68A6F6.8080900@linux.intel.com>
+	<CAMKF1spVh7VR12eaUdbLQ5rCzT0ifziTWtFBgsLW7Or2+92XTw@mail.gmail.com>
+	<4F7461AC.7050202@linux.intel.com>	<2917058.nSOBk0kvaU@helios>
+	<CAMKF1sotGuDMJfb1xtxjVug6zL7Pr4MRwNpOVuEFMw-hdxQfRA@mail.gmail.com>
+	<7E680CB2A76BB8438D08CF13C09FC53A46AEA5A6@ORSMSX101.amr.corp.intel.com>
+	<CADzUK1LHq12OB=gigH37empg5cr6amjozt_fPS2FQ5+v4ub9YA@mail.gmail.com>
+	<7E680CB2A76BB8438D08CF13C09FC53A46AF089A@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A46AF089A@ORSMSX101.amr.corp.intel.com>
+Subject: Re: How to change the startup application
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,77 +39,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Apr 2012 20:44:28 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 03 Apr 2012 20:46:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 2012-04-03 14:34, Liu, Song wrote:
+> Hi Autif, thanks a lot for providing the answer here. Since no one is showing any objections here, I updated the wiki page with your answer (https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_change_and_add_startup). Please let me know if there is any suggestions or concerns.
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+This rather narrow answer is only useful if you are running a MatchBox desktop.
+There are many other deployment scenarios which would require a different approach.
 
----
-
-diff --git a/documentation/bsp-guide/bsp.xml b/documentation/bsp-guide/bsp.xml
-index 8a0e9a4..ef7d88c 100644
---- a/documentation/bsp-guide/bsp.xml
-+++ b/documentation/bsp-guide/bsp.xml
-@@ -95,7 +95,7 @@
-                 top of the BSP's root layer in order to be functional.
-                 For these cases, you also need to add those layers to the
-                 <filename>BBLAYERS</filename> variable in order to build the BSP.
--                You must also specify in the "Dependiencies" section of the BSP's
-+                You must also specify in the "Dependencies" section of the BSP's
-                 <filename>README</filename> file any requirements for additional
-                 layers and, preferably, any
-                 build instructions that might be contained elsewhere
-@@ -124,10 +124,12 @@
-      meta-&lt;bsp_name&gt;/
-      meta-&lt;bsp_name&gt;/&lt;bsp_license_file&gt;
-      meta-&lt;bsp_name&gt;/README
-+     meta-&lt;bsp_name&gt;/README.sources
-      meta-&lt;bsp_name&gt;/binary/&lt;bootable_images&gt;
-      meta-&lt;bsp_name&gt;/conf/layer.conf
-      meta-&lt;bsp_name&gt;/conf/machine/*.conf
-      meta-&lt;bsp_name&gt;/recipes-bsp/*
-+     meta-&lt;bsp_name&gt;/recipes-core/*
-      meta-&lt;bsp_name&gt;/recipes-graphics/*
-      meta-&lt;bsp_name&gt;/recipes-kernel/linux/linux-yocto_&lt;kernel_rev&gt;.bbappend
-                 </literallayout>
-@@ -140,7 +142,7 @@
-      meta-crownbay/COPYING.MIT
-      meta-crownbay/README
-      meta-crownbay/README.sources
--     meta-crownbay/binary
-+     meta-crownbay/binary/
-      meta-crownbay/conf/
-      meta-crownbay/conf/layer.conf
-      meta-crownbay/conf/machine/
-@@ -154,8 +156,8 @@
-      meta-crownbay/recipes-bsp/formfactor/formfactor/crownbay/machconfig
-      meta-crownbay/recipes-bsp/formfactor/formfactor/crownbay-noemgd/
-      meta-crownbay/recipes-bsp/formfactor/formfactor/crownbay-noemgd/machconfig
--     meta-crownbay/recipes-core
--     meta-crownbay/recipes-core/tasks
-+     meta-crownbay/recipes-core/
-+     meta-crownbay/recipes-core/tasks/
-      meta-crownbay/recipes-core/tasks/task-core-tools-profile.bbappend
-      meta-crownbay/recipes-graphics/
-      meta-crownbay/recipes-graphics/xorg-xserver/
-@@ -211,7 +215,7 @@
-
-             <para>
-                 This file provides information on how to boot the live images that are optionally
--                included in the <filename>/binary</filename> directory.
-+                included in the <filename>binary/</filename> directory.
-                 The <filename>README</filename> file also provides special information needed for
-                 building the image.
-             </para>
+> -----Original Message-----
+> From: Autif Khan [mailto:autif.mlist@gmail.com]
+> Sent: Thursday, March 29, 2012 4:56 PM
+> To: Liu, Song
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] How to change the startup application
+>
+>> I got a question about how to change the startup application with Yocto for images generated with Yocto.
+>> And I googled it and landed on this page:
+>> https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_change_and_add_startup
+>> _scripts. Pretty good, someone was thinking about the same thing. But
+>> this page turns out to be empty. It seems that we need to get better than this.
+>>
+>> I'm wondering if someone could update this wiki page or if the information is somewhere else...
+>
+> I do not know of if the information is elsewhere - I had to find this information for my project
+>
+> Here is my stab at it (already updated the wiki):
+>
+> Q: How do I change and add startup scripts?
+>
+> A: Edit meta/recipes-sato/matchbox-sato/matchbox-session-sato/session.
+> Of course, if you have your own meta-layer, append the matchbox-session-sato_0.1.bb recipe.
+>
+> Disable 'matchbox-desktop' and 'matchbox-panel', however, do not disable 'exec matchbox-window-manager ...'
+>
+> Don't forget to run your app as a background process
+>
+> For example, the following code will start the fifteen game:
+>
+> #matchbox-desktop&
+>
+> # Lines containing feature-[foo] are removed at build time if the machine # doesn't have the feature "foo".
+>
+> #START_APPLETS=showdesktop,windowselector
+> #END_APPLETS=clock,battery,systray,startup-notify,notify
+> #END_APPLETS=openmoko-panel-gsm,$END_APPLETS # feature-phone
+>
+> #matchbox-panel --titlebar --start-applets $START_APPLETS --end-applets $END_APPLETS&
+>
+> /usr/games/fifteen&
+>
+> exec matchbox-window-manager -theme Sato -use_desktop_mode decorated -use_cursor $SHOWCURSOR $@
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
