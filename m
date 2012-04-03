@@ -1,24 +1,35 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47EA1E0044A
-	for <Yocto@yoctoproject.org>; Tue,  3 Apr 2012 08:22:59 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 03 Apr 2012 08:22:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="124894639"
-Received: from unknown (HELO [10.255.12.141]) ([10.255.12.141])
-	by orsmga001.jf.intel.com with ESMTP; 03 Apr 2012 08:22:58 -0700
-Message-ID: <4F7B15D2.6030208@linux.intel.com>
-Date: Tue, 03 Apr 2012 08:22:58 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 565C6E0044D
+	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 08:31:29 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1SF5ha-00038U-LT; Tue, 03 Apr 2012 11:31:22 -0400
+Date: Tue, 3 Apr 2012 11:31:16 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237945178362@ORSMSX101.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1204031130360.20954@oneiric>
+References: <alpine.DEB.2.02.1203260815240.29065@oneiric>
+	<857BE142E5399E46B20FD45B9DB8A7BC0FD1C2FA@SHSMSX101.ccr.corp.intel.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237945178362@ORSMSX101.amr.corp.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: "Shih, Chiu-Pi" <chiu-pi.shih@intel.com>
-References: <EEBED312D613344FA54373CD9A08D4BD05AC7239@FMSMSX103.amr.corp.intel.com>
-In-Reply-To: <EEBED312D613344FA54373CD9A08D4BD05AC7239@FMSMSX103.amr.corp.intel.com>
-Cc: "Yocto@yoctoproject.org" <Yocto@yoctoproject.org>
-Subject: Re: Failure expanding variable OE_FEATURES - Poky-1.2_M2.final
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: ref manual, ch 5, claims that toolchain should be installed under /opt/poky
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,90 +41,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Apr 2012 15:22:59 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 03 Apr 2012 15:31:29 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On 03/16/2012 11:57 AM, Shih, Chiu-Pi wrote:
-> Hi,
->
-> I am getting the following error using poky-1.2_M2.final.
->
-Hi Chiu-Pi,
+On Tue, 3 Apr 2012, Rifenbark, Scott M wrote:
 
-The M2 release is a Milestone release, which should be suitable for testing.
+> According to Jessica, there has been no change in the behavior of
+> how the toolchain unpacks.  /opt/poky is still used.
+>
+> Scott
+>
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Lu, Lianhao
+> Sent: Monday, April 02, 2012 6:47 PM
+> To: Robert P. J. Day; Yocto discussion list
+> Subject: Re: [yocto] ref manual, ch 5, claims that toolchain should be installed under /opt/poky
+>
+>
+> Robert P. J. Day wrote on 2012-03-26:
+> >
+> >   currently, ch 5 of the reference manual claims that a generated
+> > "meta-toolchain" tarball should be unpacked under /opt/poky, which
+> > might be *historically* correct but i just baked a meta-toolchain and
+> > its tarball contents are all prefixed with "./usr/local/", which seems
+> > inconsistent with that.
+>
+> Did you include the meta-yocto layer when you bake the
+> meta-toolchain? "/opt/poky" is the default settings for the
+> toolchain generated using meta-yocto layer, while oe-core uses
+> "/usr/local". I don't know why your prefix is "./usr/local". The
+> location of toolchain should be configurable by the value of
+> variable SDKPATH, but we didn't test it with other values in the
+> context of meta-yocto layer.
 
-> [tmelab@fc16tmelab build]$ bitbake core-image-minimal
->
-> Pseudo is not present but is required, building this first before the
-> main build (guess this does not really matter? I did add user in
-> /etc/sudoers though)
->
-Pseudo is a tool that we use that does similar workas sudo, but keeps 
-better track of the state of files (permission and ownership), it needs 
-to be built first, which is what's happening there.
+  ah, i think i might have done this under oe-core, that would explain
+it.
 
-> ERROR: Failure expanding variable OE_FEATURES[:=], expression was
-> ${@features_to_uclibc_conf(d)} which triggered exception AttributeError:
-> 'NoneType' object has no attribute 'split'
->
-Do you have some other settings someplace?  Are you building generic 
-1.2_M2 or do you have additional layers?
+rday
 
-Sau!
+-- 
 
-> ERROR: Command execution failed: Exited with 1
->
-> Summary: There were 1 WARNING messages shown.
->
-> Summary: There were 1 ERROR messages shown, returning a non-zero exit code.
->
-> I did a search on the OE_FEATURES and found some instances, how do I fix
-> this?
->
-> Thanks,
->
-> Chiu-Pi
->
-> [tmelab@fc16tmelab poky-1.2_M2.final]$ find . -exec grep OE_FEATURES {}
-> \; -print
->
-> OE_FEATURES := "${@features_to_uclibc_conf(d)}"
->
-> if "${OE_FEATURES}":
->
-> ("\\n <file:///\\n>".join((bb.data.expand("${OE_FEATURES}",
-> d).split("\n")))))
->
-> *./meta/recipes-core/uclibc/uclibc.inc*
->
-> OE_FEATURES := "${@features_to_busybox_conf(d)}"
->
-> if "${OE_FEATURES}":
->
-> ("\\n <file:///\\n>".join((bb.data.expand("${OE_FEATURES}",
-> d).split("\n")))))
->
-> *./meta/recipes-core/busybox/busybox.inc*
->
-> OE_FEATURES = "${@features_to_eglibc_settings(d)}"
->
-> echo '${OE_FEATURES}' > ${B}/option-groups.config
->
-> *./meta/recipes-core/eglibc/eglibc.inc*
->
-> ERROR: Failure expanding variable OE_FEATURES[:=], expression was
-> ${@features_to_uclibc_conf(d)} which triggered exception AttributeError:
-> 'NoneType' object has no attribute 'split'
->
-> ./build/tmp/cooker.log.20120315204404
->
-> [tmelab@fc16tmelab poky-1.2_M2.final]$
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
