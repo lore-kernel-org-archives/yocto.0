@@ -1,35 +1,25 @@
-Return-Path: <lianhao.lu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A036E013F3
-	for <yocto@yoctoproject.org>; Mon,  2 Apr 2012 17:47:21 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 02 Apr 2012 17:47:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="84568506"
-Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
-	by AZSMGA002.ch.intel.com with ESMTP; 02 Apr 2012 17:47:21 -0700
-Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
-	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 2 Apr 2012 17:47:20 -0700
-Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.142]) by
-	SHSMSX151.ccr.corp.intel.com ([169.254.3.91]) with mapi id
-	14.01.0355.002; Tue, 3 Apr 2012 08:47:19 +0800
-From: "Lu, Lianhao" <lianhao.lu@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] ref manual, ch 5, claims that toolchain should be
-	installed under /opt/poky
-Thread-Index: AQHNC0qOcOi5fSHs1ketcQudkh3nzpaISggg
-Date: Tue, 3 Apr 2012 00:47:18 +0000
-Message-ID: <857BE142E5399E46B20FD45B9DB8A7BC0FD1C2FA@SHSMSX101.ccr.corp.intel.com>
-References: <alpine.DEB.2.02.1203260815240.29065@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1203260815240.29065@oneiric>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A584AE013F4
+	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 04:11:37 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id D62D7F81221; Tue,  3 Apr 2012 05:11:36 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 9CEBCF811DB;
+	Tue,  3 Apr 2012 05:11:34 -0600 (MDT)
+Message-ID: <4F7ADAE6.6070900@mlbassoc.com>
+Date: Tue, 03 Apr 2012 05:11:34 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
 MIME-Version: 1.0
-Subject: Re: ref manual, ch 5, claims that toolchain should be installed under /opt/poky
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: 1.2 Pre-Release survey
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,37 +31,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Apr 2012 00:47:21 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 03 Apr 2012 11:11:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
+As requested.
 
-Robert P. J. Day wrote on 2012-03-26:
->=20
->   currently, ch 5 of the reference manual claims that a generated
-> "meta-toolchain" tarball should be unpacked under /opt/poky, which
-> might be *historically* correct but i just baked a meta-toolchain and
-> its tarball contents are all prefixed with "./usr/local/", which seems
-> inconsistent with that.
+Q: Which architecture did you choose to build?
+A: qemuarm, qemumips
 
-Did you include the meta-yocto layer when you bake the meta-toolchain? "/op=
-t/poky" is the default settings for the toolchain generated using meta-yoct=
-o layer, while oe-core uses "/usr/local". I don't know why your prefix is "=
-./usr/local". The location of toolchain should be configurable by the value=
- of variable SDKPATH, but we didn't test it with other values in the contex=
-t of meta-yocto layer.
+Q: How easily were you able to build an image and boot an image?
+A: Easy
 
-I don't think you can untar the meta-toolchain to any arbitrary place and h=
-ave it work correctly.
+Q: Is there any surprise to you in the process of doing this Beta testing? If so, would you please describe it and tell us how you expected it to work?
+A: No "surprises" beyond the few bugs I reported
 
--Lianhao
+Q: How do you like our HOB interface? Please provide us with your thoughts and suggestions on HOB interface and functionality.
+A: Still thinking about this - I'm not fond of GUIs
 
->   is the toolchain tarball relocatable these days?
+Q: Was it easy to find the support you needed to build and boot an image?
+A: Mostly
 
-> rday
->
+Q: Which Bugzilla reports did you submit?
+A: 2154, 2172
 
+Q: Did you try anything else with Yocto 1.2?
+A:
 
+Q: What would you like to have in Yocto Project for future releases?
+A:
 
+n.b. I don't wait for releases to use/test/comment on Poky/Yocto/OE,
+I use it daily and keep up to date so my answers & experience may not
+be typical.
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
