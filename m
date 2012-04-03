@@ -1,24 +1,25 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0FE9E01304
-	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 14:15:52 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 6F5D8F81243; Tue,  3 Apr 2012 15:15:52 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 4EA64F811DE;
-	Tue,  3 Apr 2012 15:15:51 -0600 (MDT)
-Message-ID: <4F7B6887.9040602@mlbassoc.com>
-Date: Tue, 03 Apr 2012 15:15:51 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:10.0.1) Gecko/20120216 Thunderbird/10.0.1
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6F45E0070C
+	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 14:23:21 -0700 (PDT)
+Received: by pbbjt11 with SMTP id jt11so414239pbb.35
+	for <yocto@yoctoproject.org>; Tue, 03 Apr 2012 14:23:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=lEnIGl30YSt/hyzUx840bIqKEXfItT6eQtstPlaOxuw=;
+	b=k86eMrco7d9DN947w0AAQgiqcxjySdloCzrlHURPUr1TUynBpQEbY85GXs+jJbgpfU
+	ypqI6+E0lvf8SrbNVNPdw6UzcJ37mQysWf4CX1ZoNSgwsQwUSCwKrpUX258wW+jTYso+
+	k3QKCLnpfAgoQXWEAYrKR5l6kZcRqSQNJB79ZAuJtnXnqEfXqyEMDtIAUwLnGbpyjMPb
+	V4HMz/cK+ZpKuShec5Y5uyh8eNjLnzWQpSB/inps6jNtWZq2aYVgOePmaOOshn2kMVoa
+	Pz42py3al8i7nuaXFod/kZohHJ33ykuiPr6KcQxCpGE7w1Aby8vHiCPzGT8slIe9CRkn
+	2z8g==
 MIME-Version: 1.0
-To: Autif Khan <autif.mlist@gmail.com>
+Received: by 10.68.201.6 with SMTP id jw6mr32066287pbc.92.1333488201421; Tue,
+	03 Apr 2012 14:23:21 -0700 (PDT)
+Received: by 10.68.20.134 with HTTP; Tue, 3 Apr 2012 14:23:21 -0700 (PDT)
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A46AF089A@ORSMSX101.amr.corp.intel.com>
 References: <4F68A6F6.8080900@linux.intel.com>
 	<CAMKF1spVh7VR12eaUdbLQ5rCzT0ifziTWtFBgsLW7Or2+92XTw@mail.gmail.com>
 	<4F7461AC.7050202@linux.intel.com> <2917058.nSOBk0kvaU@helios>
@@ -26,10 +27,11 @@ References: <4F68A6F6.8080900@linux.intel.com>
 	<7E680CB2A76BB8438D08CF13C09FC53A46AEA5A6@ORSMSX101.amr.corp.intel.com>
 	<CADzUK1LHq12OB=gigH37empg5cr6amjozt_fPS2FQ5+v4ub9YA@mail.gmail.com>
 	<7E680CB2A76BB8438D08CF13C09FC53A46AF089A@ORSMSX101.amr.corp.intel.com>
-	<4F7B61B2.9050208@mlbassoc.com>
-	<CADzUK1JrrBZu=gydnRE=m5sMp-U3qF32J0FzwSdOhAoq+E1Mag@mail.gmail.com>
-In-Reply-To: <CADzUK1JrrBZu=gydnRE=m5sMp-U3qF32J0FzwSdOhAoq+E1Mag@mail.gmail.com>
-Cc: yocto@yoctoproject.org
+Date: Tue, 3 Apr 2012 17:23:21 -0400
+Message-ID: <CADzUK1JnSJQCh74GAyPAxFroWqKCHWFTTiGm3ko6-kAZFKAYgg@mail.gmail.com>
+From: Autif Khan <autif.mlist@gmail.com>
+To: "Liu, Song" <song.liu@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How to change the startup application
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,50 +44,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Apr 2012 21:15:52 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 03 Apr 2012 21:23:21 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On 2012-04-03 15:12, Autif Khan wrote:
->>> Hi Autif, thanks a lot for providing the answer here. Since no one is
->>> showing any objections here, I updated the wiki page with your answer
->>> (https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_change_and_add_startup).
->>> Please let me know if there is any suggestions or concerns.
+Hi Song,
+
+I thought that I already updated the wiki. It seems like you created
+an extra page. "_scripts" is missing from the link. It should be
+there.
+
+Source:
+https://wiki.yoctoproject.org/wiki/Category:FAQ
+
+What I added days ago:
+https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_change_and_add_startup_scri=
+pts
+
+What you added (which I think should be deleted):
+https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_change_and_add_startup
+
+Agree?
+
+On Tue, Apr 3, 2012 at 4:34 PM, Liu, Song <song.liu@intel.com> wrote:
+> Hi Autif, thanks a lot for providing the answer here. Since no one is sho=
+wing any objections here, I updated the wiki page with your answer (https:/=
+/wiki.yoctoproject.org/wiki/FAQ:How_do_I_change_and_add_startup). Please le=
+t me know if there is any suggestions or concerns.
+>
+> Song
+>
+> -----Original Message-----
+> From: Autif Khan [mailto:autif.mlist@gmail.com]
+> Sent: Thursday, March 29, 2012 4:56 PM
+> To: Liu, Song
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] How to change the startup application
+>
+>> I got a question about how to change the startup application with Yocto =
+for images generated with Yocto.
+>> And I googled it and landed on this page:
+>> https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_change_and_add_startup
+>> _scripts. Pretty good, someone was thinking about the same thing. But
+>> this page turns out to be empty. It seems that we need to get better tha=
+n this.
 >>
->>
->> This rather narrow answer is only useful if you are running a MatchBox
->> desktop.
->> There are many other deployment scenarios which would require a different
->> approach.
+>> I'm wondering if someone could update this wiki page or if the informati=
+on is somewhere else...
 >
-> That is true.
+> I do not know of if the information is elsewhere - I had to find this inf=
+ormation for my project
 >
-> However, All over the Yocto Project's website - the common bitbake
-> commands for an image is either core-image-minimal or core-image-sato.
-> (core-image-sato-sdk also uses matchbox).
+> Here is my stab at it (already updated the wiki):
 >
-> minimal does not start any app - not counting daemons and gettys
+> Q: How do I change and add startup scripts?
 >
-> If the user chooses another window manager - they are/should be on their own.
+> A: Edit meta/recipes-sato/matchbox-sato/matchbox-session-sato/session.
+> Of course, if you have your own meta-layer, append the matchbox-session-s=
+ato_0.1.bb recipe.
 >
-> I just assumed that we are not trying to document the init process
-> (bootloader, kernel, initrd, inittab, init.d etc)
+> Disable 'matchbox-desktop' and 'matchbox-panel', however, do not disable =
+'exec matchbox-window-manager ...'
 >
-> We are trying to answer a less experienced developer to replace the
-> default window manager with their own app
-
-Then it should be made clear that this answer only covers that scope.
-The Wiki page title implies that it is a more generic answer.
-
+> Don't forget to run your app as a background process
 >
-> There is a chance that I am not aware of the default application being
-> other than matchbox. Can you please provide me some counter example?
-
-I can think of many, most that are headless (no window environment at all)
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+> For example, the following code will start the fifteen game:
+>
+> #matchbox-desktop &
+>
+> # Lines containing feature-[foo] are removed at build time if the machine=
+ # doesn't have the feature "foo".
+>
+> #START_APPLETS=3Dshowdesktop,windowselector
+> #END_APPLETS=3Dclock,battery,systray,startup-notify,notify
+> #END_APPLETS=3Dopenmoko-panel-gsm,$END_APPLETS # feature-phone
+>
+> #matchbox-panel --titlebar --start-applets $START_APPLETS --end-applets $=
+END_APPLETS &
+>
+> /usr/games/fifteen &
+>
+> exec matchbox-window-manager -theme Sato -use_desktop_mode decorated -use=
+_cursor $SHOWCURSOR $@
 
