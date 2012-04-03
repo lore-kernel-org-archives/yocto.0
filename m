@@ -1,30 +1,20 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACA91E0044D
-	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 09:44:34 -0700 (PDT)
-Received: by wibhm17 with SMTP id hm17so3406499wib.11
-	for <yocto@yoctoproject.org>; Tue, 03 Apr 2012 09:44:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=fYukrabj/h0OtJBYEC/3SpPPPIJtZtVbnmkeHr5wkBY=;
-	b=qA3Y6wzTD8ToOg7YJ8/Pk0RTnvhsU4AgdPINGnb6q22ITdcAti4FFjJVSes97lyE9v
-	X4PjQE0/uavm347H4iTjbUfpGILk98KTFaDmIfpis1LOHoxQuVQTwW+PHZLcX/Y4Nqz0
-	6gEpO6iB93JwboJm4MibvWqFkZhlef0wp0DAy6kef3rSz8NyfH/rgTBO4GH6eJMRdo1o
-	S5qTV1slZIUVc/ZoYUQ4uIjBSOFaP2YOHbwZjbgwh3YXs4jECT2NbJBgxrzJ0Frt262k
-	zejwGf772+04AMHP5F+ou4KWE5ZY+Ytmm61uNvk8anooMBiEhkfl3gIdYAg1mQL1n4Q8
-	FVhQ==
-Received: by 10.180.102.129 with SMTP id fo1mr38047285wib.6.1333471473848;
-	Tue, 03 Apr 2012 09:44:33 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id ea6sm44063879wib.5.2012.04.03.09.44.32
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 03 Apr 2012 09:44:33 -0700 (PDT)
-Date: Tue, 3 Apr 2012 18:44:32 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Message-ID: <20120403164432.GC3943@jama.jama.net>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83CA5E0044A
+	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 10:08:10 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 03 Apr 2012 10:08:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="124932298"
+Received: from unknown (HELO envy.home) ([10.255.12.143])
+	by orsmga001.jf.intel.com with ESMTP; 03 Apr 2012 10:08:05 -0700
+Message-ID: <4F7B2E4C.5030408@linux.intel.com>
+Date: Tue, 03 Apr 2012 10:07:24 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
+MIME-Version: 1.0
+To: Tom Rini <tom.rini@gmail.com>
 References: <1EF3F9CE-3074-4925-8C57-B6382C0DAD83@dominion.thruhere.net>
 	<4F764FB7.2080508@linux.intel.com>
 	<95AC7E09-D28F-46CE-A49B-30719BB50B1B@dominion.thruhere.net>
@@ -35,9 +25,9 @@ References: <1EF3F9CE-3074-4925-8C57-B6382C0DAD83@dominion.thruhere.net>
 	<4F7B1EBD.1030500@linux.intel.com>
 	<20120403162541.GB3943@jama.jama.net>
 	<4F7B261B.1090101@linux.intel.com>
-MIME-Version: 1.0
-In-Reply-To: <4F7B261B.1090101@linux.intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+	<20120403164043.GE4816@bill-the-cat>
+In-Reply-To: <20120403164043.GE4816@bill-the-cat>
+X-Enigmail-Version: 1.4
 Cc: yocto@yoctoproject.org
 Subject: Re: Moving angstrom under the yocto banner
 X-BeenThere: yocto@yoctoproject.org
@@ -51,100 +41,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Apr 2012 16:44:35 -0000
-X-Groupsio-MsgNum: 5764
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="XMCwj5IQnwKtuyBG"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 03 Apr 2012 17:08:11 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
---XMCwj5IQnwKtuyBG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-On Tue, Apr 03, 2012 at 09:32:27AM -0700, Darren Hart wrote:
-> -----BEGIN PGP SIGNED MESSAGE-----
-> Hash: SHA1
->=20
->=20
->=20
-> On 04/03/2012 09:25 AM, Martin Jansa wrote:
-> > On Tue, Apr 03, 2012 at 09:01:01AM -0700, Darren Hart wrote:
-> >> -----BEGIN PGP SIGNED MESSAGE----- Clear reproducible testing
-> >> results. Whether or not a pair of git clones and some tinkering
-> >> can result in the same thing as a poky repository or not isn't
-> >> relevant in my opinion. I believe that we need a consistent mode
-> >> of validating support for a Yocto Project X.Y release. Now if
-> >> that is accomplished by building with the poky repository of the
-> >> same vintage or by running some script that pulls the right bits
-> >> together independently.... I honestly don't care, but I do think
-> >> it should be consistent.
-> >=20
-> > so teach setup script something like: poky.sh checkout X.Y (which
-> > checkouts whatever parts are needed for X.Y) poky.sh update X.Y
-> > (dtto)
-> >=20
-> > Which creates the same structure like poky repository has, but by=20
-> > checkouting upstream repositories or using submodules or whatever.
-> >=20
-> > That's what oebb.sh and SHR makefile does for master/shr HEADs, but
-> > can be extended do it for particular version too.
-> >=20
->=20
->=20
-> This is certainly doable, but it doesn't address the stabilization
-> buffer poky provides that I mentioned.
 
-And is it?
-OE @ ~ $ diff -rq openembedded-core/ projects/poky/ | grep -v '\.git'
-Files openembedded-core/README and projects/poky/README differ
-Only in projects/poky/: README.hardware
-Only in projects/poky/: bitbake
-Only in openembedded-core/: dev
-Only in projects/poky/: documentation
-Only in openembedded-core/meta/conf: bblayers.conf.sample
-Only in openembedded-core/meta/conf: local.conf.sample
-Only in openembedded-core/meta/conf: local.conf.sample.extended
-Only in openembedded-core/meta/conf: site.conf.sample
-Only in projects/poky/: meta-yocto
-Only in projects/poky/scripts: lib
-Files openembedded-core/scripts/oe-setup-builddir and projects/poky/scripts=
-/oe-setup-builddir differ
-Only in projects/poky/scripts: yocto-bsp
-Only in projects/poky/scripts: yocto-kernel
 
-OE @ ~ $ diff -rq projects/bitbake/ projects/poky/bitbake/ | grep -v '\.git'
-Only in projects/bitbake/: MANIFEST.in
-Only in projects/bitbake/: TODO
-Only in projects/poky/bitbake/bin: bitbake-runtask
-Only in projects/bitbake/: classes
-Only in projects/bitbake/: conf
-Only in projects/bitbake/lib/bb: fetch
-Only in projects/poky/bitbake/lib/bb: shell.py
-Only in projects/bitbake/: setup.py
+On 04/03/2012 09:40 AM, Tom Rini wrote:
+> On Tue, Apr 03, 2012 at 09:32:27AM -0700, Darren Hart wrote:
+>> -----BEGIN PGP SIGNED MESSAGE----- Hash: SHA1
+>> 
+>> On 04/03/2012 09:25 AM, Martin Jansa wrote:
+>>> On Tue, Apr 03, 2012 at 09:01:01AM -0700, Darren Hart wrote:
+>>>> -----BEGIN PGP SIGNED MESSAGE----- Clear reproducible
+>>>> testing results. Whether or not a pair of git clones and some
+>>>> tinkering can result in the same thing as a poky repository
+>>>> or not isn't relevant in my opinion. I believe that we need a
+>>>> consistent mode of validating support for a Yocto Project X.Y
+>>>> release. Now if that is accomplished by building with the
+>>>> poky repository of the same vintage or by running some script
+>>>> that pulls the right bits together independently.... I
+>>>> honestly don't care, but I do think it should be consistent.
+>>> 
+>>> so teach setup script something like: poky.sh checkout X.Y
+>>> (which checkouts whatever parts are needed for X.Y) poky.sh
+>>> update X.Y (dtto)
+>>> 
+>>> Which creates the same structure like poky repository has, but
+>>> by checkouting upstream repositories or using submodules or
+>>> whatever.
+>>> 
+>>> That's what oebb.sh and SHR makefile does for master/shr HEADs,
+>>> but can be extended do it for particular version too.
+>> 
+>> 
+>> This is certainly doable, but it doesn't address the
+>> stabilization buffer poky provides that I mentioned.
+> 
+> While I want to reply to your whole email, I want to ask now, is
+> there really a stabilization buffer being provided?  I could see
+> that being the case if we were talking about depending on something
+> independent of this effort (gcc, eglibc, make) but we're talking
+> about oe-core and bitbake.  The folks in charge of poky the repo
+> are in charge of oe-core and bitbake.  There might be an
+> unintentional lag between when Richard can push changes to poky the
+> repo, but I don't think it's great (and hey, freeing up Richard's
+> time for other stuff is probably a good thing :)).
+> 
 
-Those changes doesn't look like stabilization buffer.. which is fine we don=
-'t need=20
-bigger diff between oe-core repo and poky copy, smaller would be nice.
+I believe there is. It's a small temporal buffer though. I'd be
+interested in RP's thoughts here.
 
-And "dangerous" changes are stopped to oe-core AFAIK, see e.g. my 13 pendin=
-g patches...
-
-Cheers,
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---XMCwj5IQnwKtuyBG
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
+- -- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
+Version: GnuPG v1.4.11 (GNU/Linux)
+Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
 
-iEYEARECAAYFAk97KPAACgkQN1Ujt2V2gBzIhwCfYd7Q0jmTralWlWoy8psMZHXF
-A0YAn1C3mrJGQCQltbk83HXDAjOix0XS
-=K10U
+iQEcBAEBAgAGBQJPey5MAAoJEKbMaAwKp364g7oH/RJxQqfOJpCdIz4qaC81hQWt
+u0SUBpqS4FEUMT5JCgxRztaKsq8+irFTYUODvEDzVTDY8hJJ7rd+QKKnYlgSFT1o
+vB9qerea1fQZMEAw0J1CmXRCD9tuBN7nMec6Z36KIcJXp0KrAZrSMzgF20byeGTf
+YjusfkiNOIdVt3q1AtESlQbbAzmiFlvlGxSn4v8hLtXzL36XGyQ//1Lg1mr1ZXvm
+rqEgN3bA4CdI/tgg6AMjOAI0KnXKj2tWn7o4Gule9pcRycg18XdE+iGZGmSxDdGM
++4gE54rwQlrM/2cMM3n0qhzqAyB4o8vnsvPBQyt+DXCy6ErAaqnP25Y31rW7EvY=
+=MpXf
 -----END PGP SIGNATURE-----
 
---XMCwj5IQnwKtuyBG--
