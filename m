@@ -1,31 +1,20 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 818D6E0044A
-	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 13:16:15 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SFWco-000462-Fg
-	for yocto@yoctoproject.org; Wed, 04 Apr 2012 16:16:14 -0400
-Date: Wed, 4 Apr 2012 16:16:06 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1204041614430.11031@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: are there more yocto-bsp commands other than "create" and "list"?
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33A0BE0044A
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 13:45:24 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 04 Apr 2012 13:45:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="128757158"
+Received: from unknown (HELO localhost) ([10.255.12.143])
+	by orsmga002.jf.intel.com with ESMTP; 04 Apr 2012 13:45:23 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Wed,  4 Apr 2012 13:44:41 -0700
+Message-Id: <cover.1333572157.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.6.5
+Cc: Darren Hart <dvhart@linux.intel.com>, Ross Burton <ross.burton@intel.com>
+Subject: [PATCH 0/1][1.2] syslinux: Avoid using linux.ext2_fs.h if possible
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,39 +26,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Apr 2012 20:16:15 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 04 Apr 2012 20:45:24 -0000
 
+Please apply to poky for 1.2. Should also be applied to oe-core.
 
-  help for yocto-bsp reads:
+The following changes since commit cd4d346c0e83fc9bf5497dd0424368e9244b6e08:
 
- The most commonly used 'yocto-bsp' commands are:
-    create            Create a new Yocto BSP
-    list              List available values for options and BSP properties
+  documentation/yocto-project-qs/yocto-project-qs.xml: Added CentOS distro (2012-04-04 00:34:03 +0100)
 
-but from the script:
+are available in the git repository at:
+  git://git.pokylinux.org/poky-contrib dvhart/syslinux
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=dvhart/syslinux
 
-subcommands = {
-    "create": [yocto_bsp_create_subcommand,
-               yocto_bsp_create_usage,
-               yocto_bsp_create_help],
-    "list":   [yocto_bsp_list_subcommand,
-               yocto_bsp_list_usage,
-               yocto_bsp_list_help],
-}
+Darren Hart (1):
+  syslinux: Avoid using linux.ext2_fs.h if possible
 
-  so it's not so much they're the most common commands, aren't they
-the *only* commands?  or am i misreading something?
-
-rday
+ .../libinstaller-Avoid-using-linux-ext2_fs.h.patch |  975 ++++++++++++++++++++
+ meta/recipes-devtools/syslinux/syslinux_4.03.bb    |    5 +-
+ 2 files changed, 978 insertions(+), 2 deletions(-)
+ create mode 100644 meta/recipes-devtools/syslinux/files/libinstaller-Avoid-using-linux-ext2_fs.h.patch
 
 -- 
+1.7.6.5
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
