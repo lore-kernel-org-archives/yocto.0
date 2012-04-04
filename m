@@ -1,24 +1,38 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 794ADE0132F
-	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 00:59:49 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 04 Apr 2012 00:59:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="125147256"
-Received: from unknown (HELO helios.localnet) ([10.252.120.20])
-	by orsmga001.jf.intel.com with ESMTP; 04 Apr 2012 00:59:48 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Bob Cochran <yocto@mindchasers.com>
-Date: Wed, 04 Apr 2012 08:59:45 +0100
-Message-ID: <1429780.v52SXIBKRC@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.0 (Linux/3.0.0-17-generic-pae; KDE/4.8.1; i686; ; )
-In-Reply-To: <4F7BC4C0.10601@mindchasers.com>
-References: <4F7BC4C0.10601@mindchasers.com>
+Return-Path: <omprakash.pal@stericsson.com>
+Received: from eu1sys200aog114.obsmtp.com (eu1sys200aog114.obsmtp.com
+	[207.126.144.137])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F319E0137C
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 01:47:19 -0700 (PDT)
+Received: from beta.dmz-eu.st.com ([164.129.1.35]) (using TLSv1) by
+	eu1sys200aob114.postini.com ([207.126.147.11]) with SMTP
+	ID DSNKT3wKlrYbFdm/uqEH0pFzh47VJ9vgGmWe@postini.com;
+	Wed, 04 Apr 2012 08:47:19 UTC
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DFCF7E8
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 08:47:17 +0000 (GMT)
+Received: from relay1.stm.gmessaging.net (unknown [10.230.100.17])
+	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 623F31E83
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 08:47:17 +0000 (GMT)
+Received: from exdcvycastm003.EQ1STM.local (alteon-source-exch [10.230.100.61])
+	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
+	(Client CN "exdcvycastm003", Issuer "exdcvycastm003" (not verified))
+	by relay1.stm.gmessaging.net (Postfix) with ESMTPS id 185B424C2C0
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 10:47:12 +0200 (CEST)
+Received: from EXDCVYMBSTM006.EQ1STM.local ([10.6.6.68]) by
+	exdcvycastm003.EQ1STM.local ([10.230.100.1]) with mapi; Wed, 4 Apr 2012
+	10:47:16 +0200
+From: Om Prakash PAL <omprakash.pal@stericsson.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Wed, 4 Apr 2012 10:46:04 +0200
+Thread-Topic: Porting of specific Kernel/Driver into yocto.
+Thread-Index: AQHNEj9eaDzUe7//NUKptkePaWJtTw==
+Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: beta bug? MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS doesn't seem to work right...
+Subject: Porting of specific Kernel/Driver into yocto.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,52 +44,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Apr 2012 07:59:49 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Wed, 04 Apr 2012 08:47:20 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tuesday 03 April 2012 23:49:20 Bob Cochran wrote:
-> I set MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "bogus" in my local.conf.
-> 
-> This var is used in core-image-minimal; it's assigned to
-> RRECOMMENDS_task-core-boot inside task-core-boot.bb.
-> 
-> Per the yocto glossary: "... the image will build if a file in this list
-> is not found. "
-> 
-> But it doesn't build:
-> 
-> **********************
-> 
-> NOTE: Resolving any missing task queue dependencies
-> ERROR: Nothing RPROVIDES 'bogus' (but
-> /opt/beta/yp-beta/meta/recipes-core/tasks/task-core-boot.bb RDEPENDS on
-> or otherwise requires it)
-> NOTE: Runtime target 'bogus' is unbuildable, removing...
-> Missing or unbuildable dependency chain was: ['bogus']
-> NOTE: Runtime target 'task-core-boot' is unbuildable, removing...
-> Missing or unbuildable dependency chain was: ['task-core-boot', 'bogus']
-> ERROR: Required build target 'core-image-minimal' has no buildable
-> providers.
-> Missing or unbuildable dependency chain was: ['core-image-minimal',
-> 'task-core-boot', 'bogus']
-> 
-> ************************
-> 
-> 
-> Seems like a bug?
+Hi,
+I want to build my local kernel/Driver code, not the default one.=20
+please help how can i do it ?.
+any wiki/docs on this?.
 
-No, this is not how the RRECOMMENDS mechanism works. There must be at least a 
-possibility that the item in there exists (i.e., there must be a recipe that 
-has it in its RPROVIDES, PACKAGES or an expression that would match it in 
-PACKAGES_DYNAMIC). However, if a package corresponding to that item doesn't 
-actually get produced, that is the situation that is ignored.
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Best Regards,
+Om Prakash Pal=
 
