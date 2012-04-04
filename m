@@ -1,40 +1,24 @@
-Return-Path: <ashishpandey@huawei.com>
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [58.251.152.64])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 477DFE0132F
-	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 23:33:25 -0700 (PDT)
-Received: from huawei.com (szxga05-in [172.24.2.49])
-	by szxga05-in.huawei.com (iPlanet Messaging Server 5.2 HotFix 2.14
-	(built Aug
-	8 2006)) with ESMTP id <0M1X00C98ZHS1E@szxga05-in.huawei.com> for
-	yocto@yoctoproject.org; Wed, 04 Apr 2012 14:32:16 +0800 (CST)
-Received: from szxrg01-dlp.huawei.com ([172.24.2.119])
-	by szxga05-in.huawei.com (iPlanet Messaging Server 5.2 HotFix 2.14
-	(built Aug
-	8 2006)) with ESMTP id <0M1X004QRZHSAI@szxga05-in.huawei.com> for
-	yocto@yoctoproject.org; Wed, 04 Apr 2012 14:32:16 +0800 (CST)
-Received: from szxeml201-edg.china.huawei.com ([172.24.2.119])
-	by szxrg01-dlp.huawei.com (MOS 4.1.9-GA)	with ESMTP id AIA56827; Wed,
-	04 Apr 2012 14:32:15 +0800
-Received: from SZXEML421-HUB.china.huawei.com (10.82.67.160)
-	by szxeml201-edg.china.huawei.com (172.24.2.39) with Microsoft SMTP
-	Server (TLS) id 14.1.323.3; Wed, 04 Apr 2012 14:32:11 +0800
-Received: from SZXEML532-MBX.china.huawei.com ([fe80::79c7:7b0b:cec1:322c])
-	by szxeml421-hub.china.huawei.com ([10.82.67.160])
-	with mapi id 14.01.0323.003; Wed, 04 Apr 2012 14:32:12 +0800
-Date: Wed, 04 Apr 2012 06:32:12 +0000
-From: Ashish Pandey <ashishpandey@huawei.com>
-X-Originating-IP: [10.18.96.98]
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-id: <F3906846C0EDD246B5CF75E8EDA3C47E138A76C2@szxeml532-mbx.china.huawei.com>
-MIME-version: 1.0
-Accept-Language: en-IN, zh-CN, en-US
-Thread-topic: Can not run Qemu with "runqemu qemux86 " after successful build
-	on the Open Suse 12.1
-Thread-index: Ac0SLKseMbUJAptTSKOizhzfGSqvHA==
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-X-CFilter-Loop: Reflected
-Subject: Can not run Qemu with "runqemu qemux86 " after successful build on the Open Suse 12.1
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 794ADE0132F
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 00:59:49 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 04 Apr 2012 00:59:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="125147256"
+Received: from unknown (HELO helios.localnet) ([10.252.120.20])
+	by orsmga001.jf.intel.com with ESMTP; 04 Apr 2012 00:59:48 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Bob Cochran <yocto@mindchasers.com>
+Date: Wed, 04 Apr 2012 08:59:45 +0100
+Message-ID: <1429780.v52SXIBKRC@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-17-generic-pae; KDE/4.8.1; i686; ; )
+In-Reply-To: <4F7BC4C0.10601@mindchasers.com>
+References: <4F7BC4C0.10601@mindchasers.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: beta bug? MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS doesn't seem to work right...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,166 +30,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Apr 2012 06:33:26 -0000
-Content-type: multipart/alternative;
-	boundary="Boundary_(ID_NLKFtu7+NYn3GfAcM5sXJg)"
-Content-language: en-IN
+X-List-Received-Date: Wed, 04 Apr 2012 07:59:49 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---Boundary_(ID_NLKFtu7+NYn3GfAcM5sXJg)
-Content-type: text/plain; charset=iso-8859-1
-Content-transfer-encoding: 7BIT
+On Tuesday 03 April 2012 23:49:20 Bob Cochran wrote:
+> I set MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "bogus" in my local.conf.
+> 
+> This var is used in core-image-minimal; it's assigned to
+> RRECOMMENDS_task-core-boot inside task-core-boot.bb.
+> 
+> Per the yocto glossary: "... the image will build if a file in this list
+> is not found. "
+> 
+> But it doesn't build:
+> 
+> **********************
+> 
+> NOTE: Resolving any missing task queue dependencies
+> ERROR: Nothing RPROVIDES 'bogus' (but
+> /opt/beta/yp-beta/meta/recipes-core/tasks/task-core-boot.bb RDEPENDS on
+> or otherwise requires it)
+> NOTE: Runtime target 'bogus' is unbuildable, removing...
+> Missing or unbuildable dependency chain was: ['bogus']
+> NOTE: Runtime target 'task-core-boot' is unbuildable, removing...
+> Missing or unbuildable dependency chain was: ['task-core-boot', 'bogus']
+> ERROR: Required build target 'core-image-minimal' has no buildable
+> providers.
+> Missing or unbuildable dependency chain was: ['core-image-minimal',
+> 'task-core-boot', 'bogus']
+> 
+> ************************
+> 
+> 
+> Seems like a bug?
 
-Hi All ,
+No, this is not how the RRECOMMENDS mechanism works. There must be at least a 
+possibility that the item in there exists (i.e., there must be a recipe that 
+has it in its RPROVIDES, PACKAGES or an expression that would match it in 
+PACKAGES_DYNAMIC). However, if a package corresponding to that item doesn't 
+actually get produced, that is the situation that is ignored.
 
-   I am getting one error and I am not able to launch Qemu, when I am trying to run Qemu after building the image.
+Cheers,
+Paul
 
-Error :
+-- 
 
-yocto@linux-461v:~/poky-1.2_M4.rc1/build> runqemu qemux86
+Paul Eggleton
+Intel Open Source Technology Centre
 
-Continuing with the following parameters:
-KERNEL: [/home/yocto/poky-1.2_M4.rc1/build/tmp/deploy/images/bzImage-qemux86.bin]
-ROOTFS: [/home/yocto/poky-1.2_M4.rc1/build/tmp/deploy/images/core-image-sato-sdk-qemux86.ext3]
-FSTYPE: [ext3]
-Setting up tap interface under sudo
-root's password:
-Acquiring lockfile for tap0...
-WARNING: distccd not present, no distcc support loaded.
-Running qemu...
-/home/yocto/poky-1.2_M4.rc1/build/tmp/sysroots/i686-linux/usr/bin/qemu -kernel /home/yocto/poky-1.2_M4.rc1/build/tmp/deploy/images/bzImage-qemux86.bin -net nic,vlan=0 -net tap,vlan=0,ifname=tap0,script=no,downscript=no -hda /home/yocto/poky-1.2_M4.rc1/build/tmp/deploy/images/core-image-sato-sdk-qemux86.ext3 -show-cursor -usb -usbdevice wacom-tablet -vga vmware -enable-gl -no-reboot -m 128 --append "vga=0 root=/dev/hda rw mem=128M ip=192.168.7.2::192.168.7.1:255.255.255.0 oprofile.timer=1 "
-Enabling opengl
-No protocol specified
-No protocol specified
-Could not initialize SDL(No available video device) - exiting
-Set 'tap0' nonpersistent
-Releasing lockfile of preconfigured tap device 'tap0'
-
-This works fine is I use nographic option with runqemu "runqemu nographic qemux86".
-
-Steps:
-
-1) build Image with "bitbake core-image-sato-sdk" on "poky-1.2_M4.rc1".
-2) Run Qemu. "runqemu qemux86"
-
-Setup Detail :
-
-1) Open Suse 12.1
-
-yocto@linux-461v:~/poky-1.2_M4.rc1/build> uname -a
-Linux linux-461v 3.1.0-1.2-desktop #1 SMP PREEMPT Thu Nov 3 14:45:45 UTC 2011 (187dde0) i686 i686 i386 GNU/Linux
-
-
-I have checked X11 and SDL library , All library's are installed on the build Machine. Kindly help me to solve this problem.
-
-Thanks & Regards,
-Ashish
-
-
-
-Regards,
-
-Ashish
-
-Huawei Technology
-
-
-
-This e-mail and its attachments contain confidential information from HUAWEI, which is intended only for the person or entity whose address is listed above. Any use of the information contained herein in any way (including, but not limited to, total or partial disclosure, reproduction, or dissemination) by persons other than the intended recipient(s) is prohibited. If you receive this e-mail in error, please notify the sender by phone or email immediately and delete it!
-
---Boundary_(ID_NLKFtu7+NYn3GfAcM5sXJg)
-Content-type: text/html; charset=iso-8859-1
-Content-transfer-encoding: 7BIT
-
-<html dir="ltr">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<meta name="GENERATOR" content="MSHTML 8.00.6001.19170">
-<style id="owaParaStyle">P {
-	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
-}
-</style>
-</head>
-<body fPStyle="1" ocsi="0">
-<div style="direction: ltr;font-family: Tahoma;color: #000000;font-size: 10pt;">
-<div>
-<p><font face="Arial">Hi All ,</font> <br>
-<br>
-<font size="2" face="sans-serif">&nbsp; &nbsp;I am getting one error and I am not able to launch Qemu, when I am trying to run Qemu after building the image.</font>
-<br>
-<br>
-<font size="2" face="sans-serif">Error :</font> <br>
-<br>
-<font color="blue" size="2" face="sans-serif">yocto@linux-461v:~/poky-1.2_M4.rc1/build&gt;
-</font><font color="red" size="2" face="sans-serif">runqemu qemux86</font> <br>
-<br>
-<font color="blue" size="2" face="sans-serif">Continuing with the following parameters:</font>
-<br>
-<font color="blue" size="2" face="sans-serif">KERNEL: [/home/yocto/poky-1.2_M4.rc1/build/tmp/deploy/images/bzImage-qemux86.bin]</font>
-<br>
-<font color="blue" size="2" face="sans-serif">ROOTFS: [/home/yocto/poky-1.2_M4.rc1/build/tmp/deploy/images/core-image-sato-sdk-qemux86.ext3]</font>
-<br>
-<font color="blue" size="2" face="sans-serif">FSTYPE: [ext3]</font> <br>
-<font color="blue" size="2" face="sans-serif">Setting up tap interface under sudo</font>
-<br>
-<font color="blue" size="2" face="sans-serif">root's password:</font> <br>
-<font color="blue" size="2" face="sans-serif">Acquiring lockfile for tap0...</font>
-<br>
-<font color="blue" size="2" face="sans-serif">WARNING: distccd not present, no distcc support loaded.</font>
-<br>
-<font color="blue" size="2" face="sans-serif">Running qemu...</font> <br>
-<font color="blue" size="2" face="sans-serif">/home/yocto/poky-1.2_M4.rc1/build/tmp/sysroots/i686-linux/usr/bin/qemu -kernel /home/yocto/poky-1.2_M4.rc1/build/tmp/deploy/images/bzImage-qemux86.bin -net nic,vlan=0 -net tap,vlan=0,ifname=tap0,script=no,downscript=no
- -hda /home/yocto/poky-1.2_M4.rc1/build/tmp/deploy/images/core-image-sato-sdk-qemux86.ext3 -show-cursor -usb -usbdevice wacom-tablet -vga vmware -enable-gl -no-reboot -m 128 --append &quot;vga=0 root=/dev/hda rw mem=128M ip=192.168.7.2::192.168.7.1:255.255.255.0
- oprofile.timer=1 &quot;</font> <br>
-<font color="blue" size="2" face="sans-serif">Enabling opengl</font> <br>
-<font color="blue" size="2" face="sans-serif">No protocol specified</font> <br>
-<font color="blue" size="2" face="sans-serif">No protocol specified</font> <br>
-<font color="blue" size="2" face="sans-serif">Could not initialize SDL(No available video device) - exiting</font>
-<br>
-<font color="blue" size="2" face="sans-serif">Set 'tap0' nonpersistent</font> <br>
-<font color="blue" size="2" face="sans-serif">Releasing lockfile of preconfigured tap device 'tap0'</font>
-<br>
-<br>
-<font size="2" face="sans-serif">This works fine is I use nographic option with runqemu</font><font color="blue" size="2" face="sans-serif">
-</font><font color="red" size="2" face="sans-serif">&quot;runqemu nographic qemux86&quot;.</font>
-<br>
-<br>
-<font size="2" face="sans-serif">Steps:</font> <br>
-<br>
-<font size="2" face="sans-serif">1) build Image with</font><font color="red" size="2" face="sans-serif"> &quot;bitbake core-image-sato-sdk&quot;
-</font><font size="2" face="sans-serif">on</font><font color="red" size="2" face="sans-serif"> &quot;poky-1.2_M4.rc1&quot;.</font>
-<br>
-<font size="2" face="sans-serif">2) Run Qemu. </font><font color="red" size="2" face="sans-serif">&quot;runqemu qemux86&quot;</font>
-<br>
-<br>
-<font size="2" face="sans-serif">Setup Detail :</font> <br>
-<br>
-<font size="2" face="sans-serif">1) Open Suse 12.1</font> <br>
-<br>
-<font color="blue" size="2" face="sans-serif">yocto@linux-461v:~/poky-1.2_M4.rc1/build&gt; uname -a</font>
-<br>
-<font color="blue" size="2" face="sans-serif">Linux linux-461v 3.1.0-1.2-desktop #1 SMP PREEMPT Thu Nov 3 14:45:45 UTC 2011 (187dde0) i686 i686 i386 GNU/Linux</font>
-<br>
-<br>
-<br>
-<font size="2" face="sans-serif">I have checked X11 and SDL library , All library's are installed on the build Machine.&nbsp;Kindly help me to solve this problem.
-</font><br>
-<br>
-<font size="2" face="sans-serif">Thanks &amp; Regards,</font> <br>
-<font size="2" face="sans-serif">Ashish</font> </p>
-<p>&nbsp;</p>
-<div style="FONT-FAMILY: Tahoma; FONT-SIZE: 13px">
-<p><font color="#000080">Regards,</font></p>
-<p><font color="#000080">Ashish</font></p>
-<p><font color="#000080">Huawei Technology</font></p>
-<p><font color="#000080"></font>&nbsp;</p>
-<p><font color="#666699"><font size="2"><font face="Calibri">This e-mail and its attachments contain confidential information from HUAWEI, which is intended only for the person or entity whose address is listed above. Any use of the information contained herein
- in any way (including, but not limited to, total or partial disclosure, reproduction, or dissemination) by persons other than the intended recipient(s) is prohibited. If you receive this e-mail in error, please notify the sender by phone or email immediately
- and delete it! </font></font><br>
-</font></p>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---Boundary_(ID_NLKFtu7+NYn3GfAcM5sXJg)--
