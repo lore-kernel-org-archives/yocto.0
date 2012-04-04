@@ -1,33 +1,31 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BD00E0044A
-	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 12:11:13 -0700 (PDT)
-Received: from durham.keylevel.com ([109.224.134.115]:36305
-	helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1SFVbr-0007mY-10; Wed, 04 Apr 2012 20:11:11 +0100
-Mime-Version: 1.0 (Apple Message framework v1257)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <jli53s$3p3$1@dough.gmane.org>
-Date: Wed, 4 Apr 2012 20:11:08 +0100
-Message-Id: <B647F363-D32A-4810-B017-92A3CFC86F95@keylevel.com>
-References: <4F7C1F1F.4070806@r-finger.com>	<CAC+thW1Vah3pUPH=CNcQCH=C4QEj2RY17DX+tDHGd_MuCsxViQ@mail.gmail.com>	<4F7C438D.5020800@windriver.com>
-	<4F7C5651.60209@mlbassoc.com> <jli53s$3p3$1@dough.gmane.org>
-To: gmane@reliableembeddedsystems.com
-X-Mailer: Apple Mail (2.1257)
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 818D6E0044A
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 13:16:15 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1SFWco-000462-Fg
+	for yocto@yoctoproject.org; Wed, 04 Apr 2012 16:16:14 -0400
+Date: Wed, 4 Apr 2012 16:16:06 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1204041614430.11031@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
 	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
 X-AntiAbuse: Original Domain - yoctoproject.org
 X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: Not booting on BeagleBoard xM 0x2
+Subject: are there more yocto-bsp commands other than "create" and "list"?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,32 +37,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Apr 2012 19:11:13 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 04 Apr 2012 20:16:15 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On 4 Apr 2012, at 19:49, Robert Berger wrote:
 
-> Garry/Andrea,
->=20
-> I am currently giving a training based on the Beagle-XM an this error
-> happened at the same time on 5 boards with a 3.1 kernel.
->=20
->=20
->> error pattern.  It hangs at this point:
->>  Waiting for root device /dev/mmcblk0p2...
->>  mmc0: error -110 whilst initialising SD card
->>=20
->=20
-> The fix was to change the SD cards and use cards from a different
-> manufacturer, so yes, it seems to be related to some funny SD card =
-timings.
+  help for yocto-bsp reads:
 
-Not sure if it help, but the Raspberry Pi team have been having problems =
-with SD cards as well. Some work, some don't - even when they have the =
-same part numbers. Seems as if some silicon / firmware revision along =
-the way has changed something somewhere...
+ The most commonly used 'yocto-bsp' commands are:
+    create            Create a new Yocto BSP
+    list              List available values for options and BSP properties
 
-Chris
+but from the script:
 
+subcommands = {
+    "create": [yocto_bsp_create_subcommand,
+               yocto_bsp_create_usage,
+               yocto_bsp_create_help],
+    "list":   [yocto_bsp_list_subcommand,
+               yocto_bsp_list_usage,
+               yocto_bsp_list_help],
+}
+
+  so it's not so much they're the most common commands, aren't they
+the *only* commands?  or am i misreading something?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
