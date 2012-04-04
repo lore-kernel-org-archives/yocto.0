@@ -1,28 +1,34 @@
-Return-Path: <joaohf@gmail.com>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 568A8E0044A
-	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 15:05:07 -0700 (PDT)
-Received: by bkcji17 with SMTP id ji17so1103752bkc.35
-	for <yocto@yoctoproject.org>; Wed, 04 Apr 2012 15:05:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=qNBnfWWQfj8W7t78UV+a5LQiB3Y4MGXctx9rlgisGPI=;
-	b=OaaUyesk8O1tafDs5U5LkMsonxfZ5btSQQpJoxCZMB1NnQbrfM5cVXUoHCPgAVy81l
-	jjLohtWGgUqcgnYB4t9T3VkWHmg/OKQjVLeVqCGVKFvS7qNejm0mBSUL625NcvDjjov/
-	IWn4YibAj7wPFteEJiS1ikDEEklw16fCWrSm8w/KXfyPsgVO1CauWdvv5MXhhsvyIDFe
-	3zQT99F5WUWKj2174UH+d9isKfp1LfFcbdjXS0Q0PMZh+R4ujsfNEHaxESqQ0MngTHl8
-	5sFWA8MN+0I29GvDyvLPN2ks1p/d6GDR8ApmXCwrRHDFj7ivjcqlW4ycyRa+NvPCYSqp
-	mPdQ==
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C08BAE0044A
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 15:12:32 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 04 Apr 2012 15:12:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="127196151"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by azsmga001.ch.intel.com with ESMTP; 04 Apr 2012 15:12:22 -0700
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 4 Apr 2012 15:12:18 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.154]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.128]) with mapi id
+	14.01.0355.002; Wed, 4 Apr 2012 15:12:18 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH] Fix small number of misspellings of "subsequent".
+Thread-Index: AQHNEqvkIzXkljCPvUeH1ED6VsIjmZaLOgQQ
+Date: Wed, 4 Apr 2012 22:12:17 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB12379451789F6@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1204041741120.15339@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1204041741120.15339@oneiric>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.205.139.77 with SMTP id iv13mr32629bkc.91.1333577105794; Wed,
-	04 Apr 2012 15:05:05 -0700 (PDT)
-Received: by 10.205.40.4 with HTTP; Wed, 4 Apr 2012 15:05:05 -0700 (PDT)
-Date: Wed, 4 Apr 2012 19:05:05 -0300
-Message-ID: <CANFVK7_ahuH9aSOepVX__Zw1ppSeHNRr_SM=x5xgWMGd=APr6g@mail.gmail.com>
-From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Using vendo kernel with Yocto
+Subject: Re: [PATCH] Fix small number of misspellings of "subsequent".
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,79 +40,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Apr 2012 22:05:07 -0000
-Content-Type: multipart/alternative; boundary=0015174026ccabe58304bce19dba
-
---0015174026ccabe58304bce19dba
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 04 Apr 2012 22:12:32 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Robert,
 
-I have this situation:
+Can you create a patch just for the documentation?  I don't apply patches f=
+or other parts of the system.  If you don't want to do that I can just fix =
+the misspellings in the bsp guide.
 
-My vendor device provides a kernel (2.6.22.19) with a patch to its device.
-The device is a arm920t. And the vendor is Mindspeed.
+Scott
 
-I want to use Yocto to build the kernel and userland. In the past the
-vendor provided a very old debian-like userland.
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Robert P. J. Day
+Sent: Wednesday, April 04, 2012 3:43 PM
+To: Yocto discussion list
+Subject: [yocto] [PATCH] Fix small number of misspellings of "subsequent".
 
-I am trying the following:
 
-- create a recipe to build the kernel 2.6.22.19 with patch to the device
-supplied by vendor
-- build a image using core-image-minimal only to boot the device
-- I think that linux-libc-headers should be 2.6.22.19, but I am trying with
-linux-libc-headers-yocto
-- the device boots with kernel compiled with Yocto but I have some sort of
-problems with boot scripts. I am investigating.
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
-Questions:
+---
 
-With Yocto (1.2M3), I can use a kernel 2.6.22.19 with userland provide by
-Yocto project?
+diff --git a/documentation/bsp-guide/bsp.xml b/documentation/bsp-guide/bsp.=
+xml
+index 14a7197..548048f 100644
+--- a/documentation/bsp-guide/bsp.xml
++++ b/documentation/bsp-guide/bsp.xml
+@@ -877,7 +877,7 @@
+      ...
 
-What is the minimal version of the kernel supported by Yocto?
+      NOTE: Once created, you should add your new layer to your
+-     bblayers.conf file in order for it to be subsquently seen and
++     bblayers.conf file in order for it to be subsequently seen and
+      modified by the yocto-kernel tool.
 
-I have other way to choice like port the vendor patch to a newer kernel.
-But I prefer trying these way for now.
+      NOTE for x86- and x86_64-based BSPs: The generated BSP assumes the
+diff --git a/meta/classes/rm_work.bbclass b/meta/classes/rm_work.bbclass
+index 997dcd1..0bd81bd 100644
+--- a/meta/classes/rm_work.bbclass
++++ b/meta/classes/rm_work.bbclass
+@@ -26,7 +26,7 @@ do_rm_work () {
+             rm -rf $dir
+         fi
+     done
+-    # Need to add pseudo back or subsqeuent work in this workdir
++    # Need to add pseudo back or subsequent work in this workdir
+     # might fail since setscene may not rerun to recreate it
+     mkdir ${WORKDIR}/pseudo/
 
-Thanks.
+diff --git a/scripts/lib/bsp/help.py b/scripts/lib/bsp/help.py
+index 200a4f8..54501d8 100644
+--- a/scripts/lib/bsp/help.py
++++ b/scripts/lib/bsp/help.py
+@@ -156,7 +156,7 @@ DESCRIPTION
+     current directory, and is useful for debugging.
+
+     NOTE: Once created, you should add your new layer to your
+-    bblayers.conf file in order for it to be subsquently seen and
++    bblayers.conf file in order for it to be subsequently seen and
+     modified by the yocto-kernel tool.
+
+     NOTE for x86- and x86_64-based BSPs: The generated BSP assumes the
 
 --=20
------------------------------------------------------------
-Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
-Campinas-SP-Brasil
-BSD051283
-LPI 1
-http://www.joaohfreitas.eti.br
 
---0015174026ccabe58304bce19dba
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
-<br>Hello,<br><br>I have this situation:<br><br>My vendor device provides a=
- kernel (2.6.22.19) with a patch to its device. The device is a arm920t. An=
-d the vendor is Mindspeed.<br><br>I want to use Yocto to build the kernel a=
-nd userland. In the past the vendor provided a very old debian-like userlan=
-d.<br>
-<br>I am trying the following:<br><br>- create a recipe to build the kernel=
- 2.6.22.19 with patch to the device supplied by vendor<br>- build a image u=
-sing core-image-minimal only to boot the device<br>- I think that linux-lib=
-c-headers should be 2.6.22.19, but I am trying with linux-libc-headers-yoct=
-o<br>
-- the device boots with kernel compiled with Yocto but I have some sort of =
-problems with boot scripts. I am investigating.<br><br>Questions:<br><br>Wi=
-th Yocto (1.2M3), I can use a kernel 2.6.22.19 with userland provide by Yoc=
-to project? <br>
-<br>What is the minimal version of the kernel supported by Yocto?<br><br>I =
-have other way to choice like port the vendor patch to a newer kernel. But =
-I prefer trying these way for now.<br><br clear=3D"all">Thanks.<br><br>-- <=
-br>
------------------------------------------------------------<br>Jo=C3=A3o He=
-nrique Freitas - <a href=3D"http://joaohf_at_gmail.com">joaohf_at_gmail.com=
-</a><br>Campinas-SP-Brasil<br>BSD051283<br>LPI 1<br><a href=3D"http://www.j=
-oaohfreitas.eti.br">http://www.joaohfreitas.eti.br</a><br>
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
-
---0015174026ccabe58304bce19dba--
