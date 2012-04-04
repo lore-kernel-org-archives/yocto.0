@@ -1,21 +1,32 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C31D6E0044D
-	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 13:56:46 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 04 Apr 2012 13:56:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="125391503"
-Received: from unknown (HELO [10.255.12.137]) ([10.255.12.137])
-	by orsmga001.jf.intel.com with ESMTP; 04 Apr 2012 13:56:46 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-In-Reply-To: <alpine.DEB.2.02.1204041614430.11031@oneiric>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D6C4E0044A
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 14:10:46 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1SFXTZ-0006qa-KS; Wed, 04 Apr 2012 17:10:45 -0400
+Date: Wed, 4 Apr 2012 17:10:39 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Tom Zanussi <tom.zanussi@intel.com>
+In-Reply-To: <1333573006.2011.12.camel@elnicho>
+Message-ID: <alpine.DEB.2.02.1204041709150.13716@oneiric>
 References: <alpine.DEB.2.02.1204041614430.11031@oneiric>
-Date: Wed, 04 Apr 2012 15:56:46 -0500
-Message-ID: <1333573006.2011.12.camel@elnicho>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.30.3 
+	<1333573006.2011.12.camel@elnicho>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: are there more yocto-bsp commands other than "create" and "list"?
 X-BeenThere: yocto@yoctoproject.org
@@ -29,44 +40,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Apr 2012 20:56:46 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 04 Apr 2012 21:10:46 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Wed, 2012-04-04 at 16:16 -0400, Robert P. J. Day wrote:
-> help for yocto-bsp reads:
-> 
->  The most commonly used 'yocto-bsp' commands are:
->     create            Create a new Yocto BSP
->     list              List available values for options and BSP properties
-> 
-> but from the script:
-> 
-> subcommands = {
->     "create": [yocto_bsp_create_subcommand,
->                yocto_bsp_create_usage,
->                yocto_bsp_create_help],
->     "list":   [yocto_bsp_list_subcommand,
->                yocto_bsp_list_usage,
->                yocto_bsp_list_help],
-> }
-> 
->   so it's not so much they're the most common commands, aren't they
-> the *only* commands?  or am i misreading something?
-> 
+On Wed, 4 Apr 2012, Tom Zanussi wrote:
 
-At the moment, they are the only commands, and I guess therefore also
-the most commonly used.
+> On Wed, 2012-04-04 at 16:16 -0400, Robert P. J. Day wrote:
+> > help for yocto-bsp reads:
+> >
+> >  The most commonly used 'yocto-bsp' commands are:
+> >     create            Create a new Yocto BSP
+> >     list              List available values for options and BSP properties
+> >
+> > but from the script:
+> >
+> > subcommands = {
+> >     "create": [yocto_bsp_create_subcommand,
+> >                yocto_bsp_create_usage,
+> >                yocto_bsp_create_help],
+> >     "list":   [yocto_bsp_list_subcommand,
+> >                yocto_bsp_list_usage,
+> >                yocto_bsp_list_help],
+> > }
+> >
+> >   so it's not so much they're the most common commands, aren't they
+> > the *only* commands?  or am i misreading something?
+> >
+>
+> At the moment, they are the only commands, and I guess therefore also
+> the most commonly used.
+>
+> The interface is modeled after git and perf, which both use the same
+> text.  I suppose that to avoid being misleading, we should replace 'most
+> commonly' with 'available', also since I also don't envision adding any
+> 'rare' commands...
 
-The interface is modeled after git and perf, which both use the same
-text.  I suppose that to avoid being misleading, we should replace 'most
-commonly' with 'available', also since I also don't envision adding any
-'rare' commands...
+  that's pretty much the observation i was making.  the same holds for
+yocto-kernel.  i can submit a patch shortly, perhaps:
 
-Tom
+  Current yocto-<whatever> commands are:
 
-> rday
-> 
+does that work for you?
 
+rday
 
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
