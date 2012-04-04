@@ -1,25 +1,25 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 363A1E0137C
-	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 05:46:32 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11555E0137C
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 05:47:43 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q34CkTE9011050
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q34CleQG029702
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 4 Apr 2012 05:46:29 -0700 (PDT)
+	Wed, 4 Apr 2012 05:47:40 -0700 (PDT)
 Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 4 Apr 2012 05:46:29 -0700
-Message-ID: <4F7C429E.3000809@windriver.com>
-Date: Wed, 4 Apr 2012 08:46:22 -0400
+	Wed, 4 Apr 2012 05:47:39 -0700
+Message-ID: <4F7C42E5.8000301@windriver.com>
+Date: Wed, 4 Apr 2012 08:47:33 -0400
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-References: <alpine.DEB.2.02.1204040527590.4566@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1204040527590.4566@oneiric>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: should the dev docs match the dev yocto source?
+To: Om Prakash PAL <omprakash.pal@stericsson.com>
+References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
+In-Reply-To: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Porting of specific Kernel/Driver into yocto.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,28 +31,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Apr 2012 12:46:32 -0000
+X-List-Received-Date: Wed, 04 Apr 2012 12:47:43 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12-04-04 05:29 AM, Robert P. J. Day wrote:
->
->    just noticed that BSP guide suggests 3.0 is the preferred linux
-> kernel, while the source itself is now up to 3.2.  should those match?
-> this is for *development* streams of both.
+On 12-04-04 04:46 AM, Om Prakash PAL wrote:
+> Hi,
+> I want to build my local kernel/Driver code, not the default one.
+> please help how can i do it ?.
+> any wiki/docs on this?.
 
-Not necessarily. It depends on the target. We haven't moved everything
-to 3.2 yet.
-
-It should probably say something more generic that choosing one of the
-last two yocto validated kernels is the preferred starting point.
-
-Cheers,
+The BSP developer guides show how to extend the yocto kernels, and
+also have sections on custom/different kernel versions. Have you
+seen that doc yet ? Or have you seen it, and have specific questions ?
 
 Bruce
 
 >
-> rday
->
+> Best Regards,
+> Om Prakash Pal
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
