@@ -1,38 +1,31 @@
-Return-Path: <omprakash.pal@stericsson.com>
-Received: from eu1sys200aog114.obsmtp.com (eu1sys200aog114.obsmtp.com
-	[207.126.144.137])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F319E0137C
-	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 01:47:19 -0700 (PDT)
-Received: from beta.dmz-eu.st.com ([164.129.1.35]) (using TLSv1) by
-	eu1sys200aob114.postini.com ([207.126.147.11]) with SMTP
-	ID DSNKT3wKlrYbFdm/uqEH0pFzh47VJ9vgGmWe@postini.com;
-	Wed, 04 Apr 2012 08:47:19 UTC
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DFCF7E8
-	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 08:47:17 +0000 (GMT)
-Received: from relay1.stm.gmessaging.net (unknown [10.230.100.17])
-	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 623F31E83
-	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 08:47:17 +0000 (GMT)
-Received: from exdcvycastm003.EQ1STM.local (alteon-source-exch [10.230.100.61])
-	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
-	(Client CN "exdcvycastm003", Issuer "exdcvycastm003" (not verified))
-	by relay1.stm.gmessaging.net (Postfix) with ESMTPS id 185B424C2C0
-	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 10:47:12 +0200 (CEST)
-Received: from EXDCVYMBSTM006.EQ1STM.local ([10.6.6.68]) by
-	exdcvycastm003.EQ1STM.local ([10.230.100.1]) with mapi; Wed, 4 Apr 2012
-	10:47:16 +0200
-From: Om Prakash PAL <omprakash.pal@stericsson.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 4 Apr 2012 10:46:04 +0200
-Thread-Topic: Porting of specific Kernel/Driver into yocto.
-Thread-Index: AQHNEj9eaDzUe7//NUKptkePaWJtTw==
-Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43E16E0137C
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2012 02:29:19 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1SFMWk-00016s-Gt
+	for yocto@yoctoproject.org; Wed, 04 Apr 2012 05:29:18 -0400
+Date: Wed, 4 Apr 2012 05:29:15 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1204040527590.4566@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Subject: Porting of specific Kernel/Driver into yocto.
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: should the dev docs match the dev yocto source?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,16 +37,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Apr 2012 08:47:20 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 04 Apr 2012 09:29:19 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Hi,
-I want to build my local kernel/Driver code, not the default one.=20
-please help how can i do it ?.
-any wiki/docs on this?.
 
-Best Regards,
-Om Prakash Pal=
+  just noticed that BSP guide suggests 3.0 is the preferred linux
+kernel, while the source itself is now up to 3.2.  should those match?
+this is for *development* streams of both.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
