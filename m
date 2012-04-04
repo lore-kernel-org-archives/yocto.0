@@ -1,24 +1,40 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05D49E013FF
-	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 16:45:33 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 03 Apr 2012 16:45:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="128397939"
-Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.75])
-	by orsmga002.jf.intel.com with ESMTP; 03 Apr 2012 16:45:23 -0700
-From: kishore.k.bodke@intel.com
-To: tom.zanussi@intel.com,
-	yocto@yoctoproject.org
-Date: Tue,  3 Apr 2012 16:43:58 -0700
-Message-Id: <1377383bc9ade93f6bb303ca95fb76ceb396a0f4.1333496206.git.kishore.k.bodke@intel.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <64382e0b94ea439163d2f2dfa4681afac8e70e67.1333496206.git.kishore.k.bodke@intel.com>
-References: <64382e0b94ea439163d2f2dfa4681afac8e70e67.1333496206.git.kishore.k.bodke@intel.com>
-In-Reply-To: <cover.1333496206.git.kishore.k.bodke@intel.com>
-References: <cover.1333496206.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 7/7] Cedartrail: Update the README.
+Return-Path: <SRS0=diF0FZ=CK=mindchasers.com=yocto@eigbox.net>
+Received: from bosmailout16.eigbox.net (bosmailout16.eigbox.net [66.96.184.16])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF37AE0137C
+	for <yocto@yoctoproject.org>; Tue,  3 Apr 2012 20:49:23 -0700 (PDT)
+Received: from bosmailscan11.eigbox.net ([10.20.15.11])
+	by bosmailout16.eigbox.net with esmtp (Exim) id 1SFHDn-0002GF-2H
+	for yocto@yoctoproject.org; Tue, 03 Apr 2012 23:49:23 -0400
+Received: from bosimpout02.eigbox.net ([10.20.55.2])
+	by bosmailscan11.eigbox.net with esmtp (Exim) id 1SFHDm-0007I0-NU
+	for yocto@yoctoproject.org; Tue, 03 Apr 2012 23:49:22 -0400
+Received: from bosauthsmtp15.eigbox.net ([10.20.18.15])
+	by bosimpout02.eigbox.net with NO UCE
+	id tfpN1i0050KWaAJ01fpNSa; Tue, 03 Apr 2012 23:49:22 -0400
+X-Authority-Analysis: v=2.0 cv=BexvJMR2 c=1 sm=1
+	a=ezw8LHFQp/lSHt//sRtX8Q==:17 a=mn2ndCrYJZwA:10 a=Na1N3YiFAQsA:10
+	a=-Cc4rfkGnqMA:10 a=Lk7aQFya1KUA:10 a=8nJEP1OIZ-IA:10
+	a=_yYzlHR1iaECE4_SQPgA:9 a=Jlm9htDHZUXWCUiCglUA:7 a=wPNLvfGTeEIA:10
+	a=6thTdk0GfRoQwv0zj4iWMg==:117
+X-EN-OrigOutIP: 10.20.18.15
+X-EN-IMPSID: tfpN1i0050KWaAJ01fpNSa
+Received: from pool-108-25-202-179.atclnj.east.verizon.net ([108.25.202.179]
+	helo=[192.168.1.3]) by bosauthsmtp15.eigbox.net with esmtpa (Exim)
+	id 1SFHDm-00068g-FE
+	for yocto@yoctoproject.org; Tue, 03 Apr 2012 23:49:22 -0400
+Message-ID: <4F7BC4C0.10601@mindchasers.com>
+Date: Tue, 03 Apr 2012 23:49:20 -0400
+From: Bob Cochran <yocto@mindchasers.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120310 Thunderbird/11.0
+MIME-Version: 1.0
+To: Yocto discussion list <yocto@yoctoproject.org>
+X-EN-UserInfo: cb6d325fe03740ac93d537d78041f599:2186c883651a1065ea1e15c5a112545a
+X-EN-AuthUser: bcochran@mindchasers.com
+Sender: Bob Cochran <yocto@mindchasers.com>
+X-EN-OrigIP: 108.25.202.179
+X-EN-OrigHost: pool-108-25-202-179.atclnj.east.verizon.net
+Subject: beta bug? MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS doesn't seem to work right...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,85 +46,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Apr 2012 23:45:33 -0000
+X-List-Received-Date: Wed, 04 Apr 2012 03:49:24 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+I set MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "bogus" in my local.conf.
 
-Update the README file with instructions to build
-with pvr graphics driver.
+This var is used in core-image-minimal; it's assigned to 
+RRECOMMENDS_task-core-boot inside task-core-boot.bb.
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
----
- meta-cedartrail/README |   41 +++++++++++++++++++++++++++++++++++++++--
- 1 files changed, 39 insertions(+), 2 deletions(-)
+Per the yocto glossary: "... the image will build if a file in this list 
+is not found. "
 
-diff --git a/meta-cedartrail/README b/meta-cedartrail/README
-index 295e9ff..f482cca 100755
---- a/meta-cedartrail/README
-+++ b/meta-cedartrail/README
-@@ -52,10 +52,23 @@ common metadata shared between BSPs) e.g.:
-         yocto/meta-intel \  
- 	yocto/meta-intel/meta-cedartrail \
- 
--To enable the cedartrail layer, add the cedartrail MACHINE to local.conf:
-+To enable the cedartrail layer that supports Power VR graphics, 
-+add the cedartrail MACHINE to local.conf:
- 
-   MACHINE ?= "cedartrail"
- 
-+
-+Power VR Graphics user-space driver binaries are covered by a
-+"Intel Free Distribution Binary License". The build of this driver
-+can be enabled by adding the following line to the local.conf file:
-+
-+LICENSE_FLAGS_WHITELIST += "license_cdv-pvr-driver_1.0"
-+
-+To enable the layer that does not support Power VR graphics
-+add the following to the local.conf file:
-+
-+ MACHINE ?= "cedartrail-nopvr"
-+
- You should then be able to build a cedartrail image as such:
- 
-   $ source oe-init-build-env
-@@ -85,7 +98,7 @@ Under Linux, insert a USB flash drive.  Assuming the USB flash drive
- takes device /dev/sdf, use dd to copy the live image to it.  For
- example:
- 
--# dd if=core-image-sato-cedartrail-20120105232035.hddimg of=/dev/sdf
-+# dd if=core-image-sato-cedartrail-20120403210525.hddimg of=/dev/sdf
- # sync
- # eject /dev/sdf
- 
-@@ -109,3 +122,27 @@ the syslinux boot: prompt, or the boot: prompt contains strange
- characters), try doing this first:
- 
- # dd if=/dev/zero of=/dev/sdf bs=1M count=512
-+
-+Miscellaneous Notes
-+====================
-+
-+Video and Music Samples
-+-----------------------
-+This BSP includes recipes to download Ogg format video and
-+music files that can be played-back with the Video and music players
-+included in the sato images.  The sample files are installed in
-+/home/Music and /home/Videos directories.  
-+
-+
-+Adding Glxgears to image
-+-------------------------
-+Glxgears can be added to the generated image by adding "debug-tweaks"
-+option to the extra image features variable in the default local.conf
-+before building the BSP.
-+
-+e.g. to add Glxgears, locate the following line in local.conf
-+EXTRA_IMAGE_FEATURES = "debug-tweaks"
-+
-+and change above line to..
-+
-+EXTRA_IMAGE_FEATURES = "debug-tweaks tools-testapps"
--- 
-1.7.5.4
+But it doesn't build:
+
+**********************
+
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing RPROVIDES 'bogus' (but 
+/opt/beta/yp-beta/meta/recipes-core/tasks/task-core-boot.bb RDEPENDS on 
+or otherwise requires it)
+NOTE: Runtime target 'bogus' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['bogus']
+NOTE: Runtime target 'task-core-boot' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['task-core-boot', 'bogus']
+ERROR: Required build target 'core-image-minimal' has no buildable 
+providers.
+Missing or unbuildable dependency chain was: ['core-image-minimal', 
+'task-core-boot', 'bogus']
+
+************************
+
+
+Seems like a bug?
+
+
+Note, MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS worked fine with a valid recipe.
+
+
+
 
 
