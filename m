@@ -1,31 +1,24 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8110FE0070C
-	for <yocto@yoctoproject.org>; Thu,  5 Apr 2012 05:25:50 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SFll7-0007NH-EU
-	for yocto@yoctoproject.org; Thu, 05 Apr 2012 08:25:49 -0400
-Date: Thu, 5 Apr 2012 08:25:38 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1204050815450.21476@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 084B8E0137C
+	for <yocto@yoctoproject.org>; Thu,  5 Apr 2012 07:32:36 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 05 Apr 2012 07:32:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="149993343"
+Received: from unknown (HELO helios.localnet) ([10.252.120.33])
+	by fmsmga002.fm.intel.com with ESMTP; 05 Apr 2012 07:32:34 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: =?ISO-8859-1?Q?Jo=E3o?= Henrique Freitas <joaohf@gmail.com>,
+	yocto@yoctoproject.org
+Date: Thu, 05 Apr 2012 15:32:30 +0100
+Message-ID: <1634439.IYZyxqXxWH@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.0 (Linux/3.0.0-17-generic-pae; KDE/4.8.1; i686; ; )
+In-Reply-To: <CANFVK7_ahuH9aSOepVX__Zw1ppSeHNRr_SM=x5xgWMGd=APr6g@mail.gmail.com>
+References: <CANFVK7_ahuH9aSOepVX__Zw1ppSeHNRr_SM=x5xgWMGd=APr6g@mail.gmail.com>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: i think the meta-intel "BSP layer" needs to be clarified in BSP guide
+Subject: Re: Using vendo kernel with Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,39 +30,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Apr 2012 12:25:50 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 05 Apr 2012 14:32:36 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
+On Wednesday 04 April 2012 19:05:05 Jo=E3o Henrique Freitas wrote:
+> My vendor device provides a kernel (2.6.22.19) with a patch to its de=
+vice.
+> The device is a arm920t. And the vendor is Mindspeed.
+>=20
+> I want to use Yocto to build the kernel and userland. In the past the=
 
-  i think it would be useful if the BSP guide was expanded just a bit
-to make it much clearer that the alleged meta-intel "BSP layer" (since
-that's how it's referred to) is not *really* a full BSP layer but an
-umbrella over multiple intel-based BSP layers, with some common
-content.
+> vendor provided a very old debian-like userland.
+>=20
+> I am trying the following:
+>=20
+> - create a recipe to build the kernel 2.6.22.19 with patch to the dev=
+ice
+> supplied by vendor
+> - build a image using core-image-minimal only to boot the device
+> - I think that linux-libc-headers should be 2.6.22.19, but I am tryin=
+g with
+> linux-libc-headers-yocto
+> - the device boots with kernel compiled with Yocto but I have some so=
+rt of
+> problems with boot scripts. I am investigating.
+>=20
+> Questions:
+>=20
+> With Yocto (1.2M3), I can use a kernel 2.6.22.19 with userland provid=
+e by
+> Yocto project?
+>=20
+> What is the minimal version of the kernel supported by Yocto?
 
-  it's obviously useful to use a real example to explain how a BSP
-layer works, but it would have been more informative if the guide had
-used a truly standalone layer, *then* perhaps segued nicely into
-meta-layers like meta-intel and meta-ti, etc.
+That's a tough question, I'm not sure many people have experimented to =
+find the=20
+oldest kernel that will work.=20
 
-  as it is, i think the current explanation is a bit awkward given
-that the crownbay layer.conf file is explained before the first
-mention of the meta-intel layer.  a simple solution might be a
-prominent <note> before all that starts, emphasizing how what follows
-is a little bit different since it involves *two* layers, not just
-one.  then it would make much more sense.
+However, for one of my hobby projects I have been trying to get an iPAQ=
+ h2200=20
+(currently stuck with the 2.6.21-hh kernel) booting with a rootfs produ=
+ced=20
+using Poky. The first problem is that the current version of udev that =
+we have,=20
+164, requires version 2.6.27 or later of the kernel, so you will need t=
+o=20
+provide an older udev. I've been testing with udev 092, but I still hit=
+=20
+problems on boot - if I disable the initscript that calls "ifup -a" it =
+boots=20
+successfully, but with it the boot process hangs, even though there are=
+ no=20
+network interfaces other than lo and if I run "ifup -a" after booting t=
+hen it=20
+works fine. That was the state a few weeks ago and I haven't done any f=
+urther=20
+work on it since then.
 
-  thoughts?
+I guess what you can take from the above is it's almost certainly possi=
+ble to=20
+work with a kernel as old as 2.6.2x, however you will need to downgrade=
+ udev=20
+(most easily by just bringing across udev recipes from OE Classic) and=20=
 
-rday
+possibly other components, and you may still need to do additional=20
+troubleshooting.
 
--- 
+Have you contacted the vendor to see if they can provide an updated pat=
+ch?
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+Cheers,
+Paul
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
