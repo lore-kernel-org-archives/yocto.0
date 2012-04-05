@@ -1,41 +1,41 @@
 Return-Path: <darren@apps.dvhart.com>
 Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
 	[209.85.210.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84C16E013FB
-	for <yocto@yoctoproject.org>; Thu,  5 Apr 2012 14:10:03 -0700 (PDT)
-Received: by dajx4 with SMTP id x4so2331715daj.28
-	for <yocto@yoctoproject.org>; Thu, 05 Apr 2012 14:10:03 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51B8EE013A6
+	for <yocto@yoctoproject.org>; Thu,  5 Apr 2012 14:10:05 -0700 (PDT)
+Received: by mail-pz0-f41.google.com with SMTP id x4so2331715daj.28
+	for <yocto@yoctoproject.org>; Thu, 05 Apr 2012 14:10:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=sender:from:to:subject:date:message-id:x-mailer:in-reply-to
 	:references:in-reply-to:references:x-gm-message-state;
-	bh=d9gkuGDEsfGeb7MQokGuGAZpaLyLaEghjVcQn1sLCu4=;
-	b=K6kLOycTdffR0qvnbsHSvZuA5PqKl8BHsCVYN2kbzSeaBqXnBSXnLFSffUcFXktpTV
-	/qlQo5/hBtw2ShEwOTj+vLG4PQeYYIfnqGn2ISzqxEdzvRmKKOCza3QIjvEpa1FQOQ2j
-	8zP4rgSv90mOpaPERNax8Ctw5V2z1e9xmMMK+uq0FCdvrqpny9IiNrxR8yNm9SPSFZMi
-	lsghh0YuVttxYHVochcqp6M/EWhsJXKr7iw+27sBetul+oK7EM87JcoPiZZ+rzUmc/rz
-	5jimwQdjyPCpWNg2uIu/yYz5ZOxkz1niOtbKUUkfa6pYYIqdnB/e4qPycpvjeMdfwOw5
-	sDjA==
-Received: by 10.68.235.101 with SMTP id ul5mr10032783pbc.108.1333660203251;
-	Thu, 05 Apr 2012 14:10:03 -0700 (PDT)
+	bh=2f28Wpzva4lCHayNqN3TViN6xyY8zL/hSZR853hBBY8=;
+	b=Wy0ULhmbxXPm7bRQWwznyhZi5ajrTUlHWbyqUMPtT+Oj0BgtZgbq1AyXmpwnbElZmA
+	QyzfurRL4zzuimR6gjb0ATaKRxTLJAZOwjmtsH/TOcp9Q8wTN/Bac5oMRPmsQUORsI8W
+	/OPSVN+1SHeTUAKdcarIWiIjDza6a/PAfzFzbClX8bCGrS2GF4BoXd9/veQ+/EaqDAoP
+	XHoYfr9RALgA38fdckoT/i3IA3xSZgeYnK/oVBLuOfIjB88e+IRHbZab3tsf7cklfjpA
+	71WEB3vYcnI2Dy1YGNlGHrUlkGQv+ZgKjbbKRnDPIhfdjPa6d0cKlhOZuzQ9g5qRnSag
+	60Mg==
+Received: by 10.68.132.41 with SMTP id or9mr10150193pbb.8.1333660205194;
+	Thu, 05 Apr 2012 14:10:05 -0700 (PDT)
 Received: from localhost (static-50-53-99-101.bvtn.or.frontiernet.net.
 	[50.53.99.101])
-	by mx.google.com with ESMTPS id y5sm4224436pbk.5.2012.04.05.14.10.02
+	by mx.google.com with ESMTPS id v1sm4224787pbk.10.2012.04.05.14.10.03
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 05 Apr 2012 14:10:02 -0700 (PDT)
+	Thu, 05 Apr 2012 14:10:04 -0700 (PDT)
 Sender: Darren Hart <darren@apps.dvhart.com>
 From: Darren Hart <dvhart@linux.intel.com>
 To: Yocto Project <yocto@yoctoproject.org>,
 	josh@linux.intel.com
-Date: Thu,  5 Apr 2012 14:09:48 -0700
-Message-Id: <9b1d520a14832ebf15ef5130dbb26993dbffa280.1333660034.git.dvhart@linux.intel.com>
+Date: Thu,  5 Apr 2012 14:09:49 -0700
+Message-Id: <e70684c38e8715db7c9e73a63595524df69853a0.1333660034.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.5.4
 In-Reply-To: <cover.1333660034.git.dvhart@linux.intel.com>
 References: <cover.1333660034.git.dvhart@linux.intel.com>
 In-Reply-To: <cover.1333660034.git.dvhart@linux.intel.com>
 References: <cover.1333660034.git.dvhart@linux.intel.com>
-X-Gm-Message-State: ALoCoQmTAkulACtEej8QFdOWndgKvBvgsdC8bcaHZxt+25O970Wwj6/uGQUwh4+p2hNS+m+dyjTp
-Subject: [PATCH 3/4] bootimg: Fix a math thinko in the block count calculation
+X-Gm-Message-State: ALoCoQk4kq75Ja38vQKgkqcSLnl2sx7jTlOjsJqfGhSotAEGilYRj+d4iPRHNJgeArKCTQWY9fKA
+Subject: [PATCH 4/4] bootimg: Do not force FAT32 on all images, it violates the FAT specification
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,42 +47,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Apr 2012 21:10:03 -0000
+X-List-Received-Date: Thu, 05 Apr 2012 21:10:05 -0000
 
-Fixes [YOCTO #1852] ... again.
+Fixes [YOCTO #1940]
 
-The conversion from sectors to blocks was multiplying by 2 instead
-of dividing by 2. Blocks are 1024 bytes, sectors are 512 bytes. The
-result was images being much larger than intended.
+do_bootimg was performing the FAT overhead calculations assuming FAT32 and then
+forcing the use of FAT32 with "-F 32" to mkdosfs. The FAT specification is clear
+on cluster count being the determining factor for FAT size (even if the fs
+string is set to FAT32, go figure). Syslinux follows this spec, and rightly so,
+resulting in a failure on core-image-minimal:
 
-Reported-by: Tom Zanussi <tom.zanussi@intel.com>
-(From OE-Core rev: b35384fa3ca96b31c63d764322215abced2066e4)
+	syslinux: zero FAT sectors (FAT12/16)
+
+Drop the "-F 32" from mkdosfs to allow it to select the appropriate FAT size
+based on cluster count. Leave the FAT overhead calculation in FAT32. This will
+result in a little extra padding for really small images, but not enough extra
+to justify recalculating for FAT12 and FAT16.
+
+Tested with a core-image-minimal build for atom-pc. do_bootimg completed
+successfully, and the resulting image was FAT16.
+
+(From OE-Core rev: 634137704dd1a205e377a1131ef708f1c981f6b2)
 
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
-CC: Joshua Lock <josh@linux.intel.com>
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
 Backported to edison by Darren Hart.
 
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- meta/classes/bootimg.bbclass |    3 ++-
- 1 files changed, 2 insertions(+), 1 deletions(-)
+ meta/classes/bootimg.bbclass |    5 ++++-
+ 1 files changed, 4 insertions(+), 1 deletions(-)
 
 diff --git a/meta/classes/bootimg.bbclass b/meta/classes/bootimg.bbclass
-index c2d43c8..489819b 100644
+index 489819b..09f5b67 100644
 --- a/meta/classes/bootimg.bbclass
 +++ b/meta/classes/bootimg.bbclass
-@@ -92,7 +92,8 @@ build_boot_bin() {
- 	SECTORS=$(expr $SECTORS + $(expr $DIR_SECTORS + $FAT_SECTORS))
+@@ -73,6 +73,9 @@ build_boot_bin() {
+ 	# Account for the filesystem overhead. This includes directory
+ 	# entries in the clusters as well as the FAT itself.
+ 	# Assumptions:
++	#   FAT32 (12 or 16 may be selected by mkdosfs, but the extra
++	#   padding will be minimal on those smaller images and not
++	#   worth the logic here to caclulate the smaller FAT sizes)
+ 	#   < 16 entries per directory
+ 	#   8.3 filenames only
  
- 	# Determine the final size in blocks accounting for some padding
--	BLOCKS=$(expr $(expr $SECTORS \* 2) + ${BOOTIMG_EXTRA_SPACE})
-+	BLOCKS=$(expr $(expr $SECTORS / 2) + ${BOOTIMG_EXTRA_SPACE})
-+
+@@ -102,7 +105,7 @@ build_boot_bin() {
+ 	BLOCKS=$(expr $BLOCKS + $(expr 16 - $(expr $BLOCKS % 16)))
  
- 	# Ensure total sectors is an integral number of sectors per
- 	# track or mcopy will complain. Sectors are 512 bytes, and we
+ 	IMG=${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.hddimg
+-	mkdosfs -F 32 -n ${BOOTIMG_VOLUME_ID} -S 512 -C ${IMG} ${BLOCKS}
++	mkdosfs -n ${BOOTIMG_VOLUME_ID} -S 512 -C ${IMG} ${BLOCKS}
+ 	# Copy HDDDIR recursively into the image file directly
+ 	mcopy -i ${IMG} -s ${HDDDIR}/* ::/
+ 
 -- 
 1.7.5.4
 
