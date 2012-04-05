@@ -1,41 +1,25 @@
-Return-Path: <darren@apps.dvhart.com>
-Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
-	[209.85.210.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51B8EE013A6
-	for <yocto@yoctoproject.org>; Thu,  5 Apr 2012 14:10:05 -0700 (PDT)
-Received: by mail-pz0-f41.google.com with SMTP id x4so2331715daj.28
-	for <yocto@yoctoproject.org>; Thu, 05 Apr 2012 14:10:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=sender:from:to:subject:date:message-id:x-mailer:in-reply-to
-	:references:in-reply-to:references:x-gm-message-state;
-	bh=2f28Wpzva4lCHayNqN3TViN6xyY8zL/hSZR853hBBY8=;
-	b=Wy0ULhmbxXPm7bRQWwznyhZi5ajrTUlHWbyqUMPtT+Oj0BgtZgbq1AyXmpwnbElZmA
-	QyzfurRL4zzuimR6gjb0ATaKRxTLJAZOwjmtsH/TOcp9Q8wTN/Bac5oMRPmsQUORsI8W
-	/OPSVN+1SHeTUAKdcarIWiIjDza6a/PAfzFzbClX8bCGrS2GF4BoXd9/veQ+/EaqDAoP
-	XHoYfr9RALgA38fdckoT/i3IA3xSZgeYnK/oVBLuOfIjB88e+IRHbZab3tsf7cklfjpA
-	71WEB3vYcnI2Dy1YGNlGHrUlkGQv+ZgKjbbKRnDPIhfdjPa6d0cKlhOZuzQ9g5qRnSag
-	60Mg==
-Received: by 10.68.132.41 with SMTP id or9mr10150193pbb.8.1333660205194;
-	Thu, 05 Apr 2012 14:10:05 -0700 (PDT)
-Received: from localhost (static-50-53-99-101.bvtn.or.frontiernet.net.
-	[50.53.99.101])
-	by mx.google.com with ESMTPS id v1sm4224787pbk.10.2012.04.05.14.10.03
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 05 Apr 2012 14:10:04 -0700 (PDT)
-Sender: Darren Hart <darren@apps.dvhart.com>
-From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>,
-	josh@linux.intel.com
-Date: Thu,  5 Apr 2012 14:09:49 -0700
-Message-Id: <e70684c38e8715db7c9e73a63595524df69853a0.1333660034.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <cover.1333660034.git.dvhart@linux.intel.com>
-References: <cover.1333660034.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1333660034.git.dvhart@linux.intel.com>
-References: <cover.1333660034.git.dvhart@linux.intel.com>
-X-Gm-Message-State: ALoCoQk4kq75Ja38vQKgkqcSLnl2sx7jTlOjsJqfGhSotAEGilYRj+d4iPRHNJgeArKCTQWY9fKA
-Subject: [PATCH 4/4] bootimg: Do not force FAT32 on all images, it violates the FAT specification
+Return-Path: <darren.hart@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BED0E00723
+	for <yocto@yoctoproject.org>; Thu,  5 Apr 2012 16:21:27 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 05 Apr 2012 16:21:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="129236615"
+Received: from unknown (HELO envy.home) ([10.255.12.143])
+	by orsmga002.jf.intel.com with ESMTP; 05 Apr 2012 16:21:26 -0700
+Message-ID: <4F7E28CF.8000604@intel.com>
+Date: Thu, 05 Apr 2012 16:20:47 -0700
+From: Darren Hart <darren.hart@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
+MIME-Version: 1.0
+To: kishore.k.bodke@intel.com
+References: <cover.1333578511.git.kishore.k.bodke@intel.com>
+	<c5801db1ea89ecbfaa883023a5e37c37c6f4f976.1333578511.git.kishore.k.bodke@intel.com>
+In-Reply-To: <c5801db1ea89ecbfaa883023a5e37c37c6f4f976.1333578511.git.kishore.k.bodke@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/1] [meta-intel] Romley: Add new bbappend file for 3.2 kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,62 +31,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Apr 2012 21:10:05 -0000
+X-List-Received-Date: Thu, 05 Apr 2012 23:21:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Fixes [YOCTO #1940]
+On 04/04/2012 03:33 PM, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
+> 
+> Switching Romley to 3.2 kernel.
+> 
 
-do_bootimg was performing the FAT overhead calculations assuming FAT32 and then
-forcing the use of FAT32 with "-F 32" to mkdosfs. The FAT specification is clear
-on cluster count being the determining factor for FAT size (even if the fs
-string is set to FAT32, go figure). Syslinux follows this spec, and rightly so,
-resulting in a failure on core-image-minimal:
+Hi Kishore,
 
-	syslinux: zero FAT sectors (FAT12/16)
+A couple questions for you.
 
-Drop the "-F 32" from mkdosfs to allow it to select the appropriate FAT size
-based on cluster count. Leave the FAT overhead calculation in FAT32. This will
-result in a little extra padding for really small images, but not enough extra
-to justify recalculating for FAT12 and FAT16.
+1) This is boot tested I presume?
 
-Tested with a core-image-minimal build for atom-pc. do_bootimg completed
-successfully, and the resulting image was FAT16.
+2) Do you intend to leave the 3.0 recipes in place?
+   It's fine if you do, I just wanted to know.
 
-(From OE-Core rev: 634137704dd1a205e377a1131ef708f1c981f6b2)
+3) Do you have any patches in the common-pc-64/romley branch?
+   If so, these are not being used when building -rt.
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+--
+Darren
 
-Backported to edison by Darren Hart.
+> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+> ---
+>  meta-romley/conf/machine/romley.conf               |    3 +++
+>  .../linux/linux-yocto-rt_3.2.bbappend              |    8 ++++++++
+>  .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    9 +++++++++
+>  3 files changed, 20 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-romley/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+>  create mode 100644 meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> 
+> diff --git a/meta-romley/conf/machine/romley.conf b/meta-romley/conf/machine/romley.conf
+> index aa334c0..e6a755b 100644
+> --- a/meta-romley/conf/machine/romley.conf
+> +++ b/meta-romley/conf/machine/romley.conf
+> @@ -4,6 +4,9 @@
+>  #@DESCRIPTION: Machine configuration for Romley systems
+>  # i.e. Sandy Bridge + Patsburg Chipset
+>  
+> +
+> +PREFERRED_VERSION_linux-yocto ?= "3.2%"
+> +
+>  require conf/machine/include/tune-x86_64.inc
+>  require conf/machine/include/ia32-base.inc
+>  
+> diff --git a/meta-romley/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend b/meta-romley/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+> new file mode 100644
+> index 0000000..7a61749
+> --- /dev/null
+> +++ b/meta-romley/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+> @@ -0,0 +1,8 @@
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> +COMPATIBLE_MACHINE_romley = "romley"
+> +KMACHINE_romley  = "romley"
+> +
+> +# Update the following to use a different BSP branch or meta SRCREV
+> +#KBRANCH_romley  = "standard/preempt-rt/base"
+> +#SRCREV_machine_pn-linux-yocto-rt_romley ?= XXXX
+> +#SRCREV_meta_pn-linux-yocto-rt_romley ?= XXXX
+> diff --git a/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> new file mode 100644
+> index 0000000..803e772
+> --- /dev/null
+> +++ b/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> @@ -0,0 +1,9 @@
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> +
+> +COMPATIBLE_MACHINE_romley = "romley"
+> +
+> +KMACHINE_romley  = "romley"
+> +KBRANCH_romley  = "standard/default/common-pc-64/romley"
+> +
+> +SRCREV_machine_pn-linux-yocto_romley ?= "5c7f1c53b5b367858ae6a86c1d4de36d8c71bedb"
+> +SRCREV_meta_pn-linux-yocto_romley ?= "59f350ec3794e19fa806c1b73749d851f8ebf364"
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
----
- meta/classes/bootimg.bbclass |    5 ++++-
- 1 files changed, 4 insertions(+), 1 deletions(-)
 
-diff --git a/meta/classes/bootimg.bbclass b/meta/classes/bootimg.bbclass
-index 489819b..09f5b67 100644
---- a/meta/classes/bootimg.bbclass
-+++ b/meta/classes/bootimg.bbclass
-@@ -73,6 +73,9 @@ build_boot_bin() {
- 	# Account for the filesystem overhead. This includes directory
- 	# entries in the clusters as well as the FAT itself.
- 	# Assumptions:
-+	#   FAT32 (12 or 16 may be selected by mkdosfs, but the extra
-+	#   padding will be minimal on those smaller images and not
-+	#   worth the logic here to caclulate the smaller FAT sizes)
- 	#   < 16 entries per directory
- 	#   8.3 filenames only
- 
-@@ -102,7 +105,7 @@ build_boot_bin() {
- 	BLOCKS=$(expr $BLOCKS + $(expr 16 - $(expr $BLOCKS % 16)))
- 
- 	IMG=${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.hddimg
--	mkdosfs -F 32 -n ${BOOTIMG_VOLUME_ID} -S 512 -C ${IMG} ${BLOCKS}
-+	mkdosfs -n ${BOOTIMG_VOLUME_ID} -S 512 -C ${IMG} ${BLOCKS}
- 	# Copy HDDDIR recursively into the image file directly
- 	mcopy -i ${IMG} -s ${HDDDIR}/* ::/
- 
 -- 
-1.7.5.4
-
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
