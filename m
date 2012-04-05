@@ -1,32 +1,32 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26B08E0070C
-	for <yocto@yoctoproject.org>; Thu,  5 Apr 2012 02:09:29 -0700 (PDT)
-Received: by wgbdq13 with SMTP id dq13so901346wgb.11
-	for <yocto@yoctoproject.org>; Thu, 05 Apr 2012 02:09:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=jMA5w18H5r6/01jXUH9BjekA0pk79yBVLPhxrwz1dq0=;
-	b=T2+D7gaAp1Uzxi5Tmlq78jrf2ey+SeF/hCrA9dqNL536o3nog21GyBoaSaG4SGKIkn
-	jiXc4++5R+t5c/UerP/I83flOAH0fXAFvRf3xuHBr1Ea3jTtecXflvVBXNqAc6PiTzj8
-	UqTg4pKiRXYuIc/LmIup0XaHgNLpkzm5BdF0XVmLN0EC/tQMHFkGPxGhRRp5P5v7RlBG
-	+2SO2HTAmFFXnX5NvfysnVp6dYfYjp5iTci50+W3N48FqsDRa3fO2P4InH+AJIu65aS6
-	smjjwu8CaDua4LZRfI9YqwK3XjmsKdc6XcpOYwksN2bU2Z5hpG57xDSzMjVo9Ws5q6+R
-	/MQA==
-Received: by 10.216.131.98 with SMTP id l76mr1172713wei.62.1333616968667;
-	Thu, 05 Apr 2012 02:09:28 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id fl2sm14559878wib.4.2012.04.05.02.09.27
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 05 Apr 2012 02:09:27 -0700 (PDT)
-From: martin.jansa@gmail.com
-To: yocto@yoctoproject.org
-Date: Thu,  5 Apr 2012 11:09:20 +0200
-Message-Id: <4f7d6147.2266b40a.6f68.fffff72d@mx.google.com>
-X-Mailer: git-send-email 1.7.8.5
-In-Reply-To: <cover.1333058256.git.Martin.Jansa@gmail.com>
-References: <cover.1333058256.git.Martin.Jansa@gmail.com>
-Subject: [opkg-utils][PATCH 23/23] opkg-make-index: generate complete filelist
+Return-Path: <sophie.lennon@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8598BE0070C
+	for <yocto@yoctoproject.org>; Thu,  5 Apr 2012 03:11:25 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 05 Apr 2012 03:11:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; 
+	d="scan'208,217";a="128969150"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by orsmga002.jf.intel.com with ESMTP; 05 Apr 2012 03:11:24 -0700
+Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
+	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 5 Apr 2012 11:10:55 +0100
+Received: from irsmsx101.ger.corp.intel.com ([169.254.1.40]) by
+	IRSMSX151.ger.corp.intel.com ([169.254.4.127]) with mapi id
+	14.01.0355.002; Thu, 5 Apr 2012 11:10:54 +0100
+From: "Lennon, Sophie" <sophie.lennon@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: 32bit to a 64bit image build
+Thread-Index: Ac0TFGAytIsPPQ9kSnGOtACWIg72OA==
+Date: Thu, 5 Apr 2012 10:10:54 +0000
+Message-ID: <D217AB7137D8684EAF03C83444A0D7191877ED0E@IRSMSX101.ger.corp.intel.com>
+Accept-Language: en-IE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.182]
+MIME-Version: 1.0
+Subject: 32bit to a 64bit image build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,131 +38,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Apr 2012 09:09:30 -0000
+X-List-Received-Date: Thu, 05 Apr 2012 10:11:25 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_D217AB7137D8684EAF03C83444A0D7191877ED0EIRSMSX101gercor_"
 
-From: Martin Jansa <Martin.Jansa@gmail.com>
+--_000_D217AB7137D8684EAF03C83444A0D7191877ED0EIRSMSX101gercor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-* when '-l Packages.filelist' option is used together with '-r Packages.old',
-  then only 'new' packages are processed to create Packages.filelist
-  packages found in Packages.old doesn't have fn set so get_file_list()
-  was returning empty
-* now added get_file_list_dir() looks for filename in pkg_dir and if it
-  finds correct .ipk file it will use that to read its filelist, but it
-  also means that it will always unpack *all* Packages - very slow.
-* it would be nice to add new param for Packages.filelist.old and then
-  filter filelist for packages used from Packages.old and merge it
-  together with new Packages.filelist, but that's more difficult because
-  of files structure.
+Hi,
 
-Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
----
- opkg-make-index |   64 +++++++++++++++++++++++++++++-------------------------
- opkg.py         |   16 +++++++++++++
- 2 files changed, 50 insertions(+), 30 deletions(-)
+I am using a Fedora 16 64bit build server. I am using meta-n450 BSP. I have=
+ built a 32bit image that boots. I want to build a 64bit image. I added TAR=
+GET_ARCH =3D"x86_64"to my local.conf file. My build doesn't run successfull=
+y when this is changed:
 
-diff --git a/opkg-make-index b/opkg-make-index
-index 02c425f..4425107 100755
---- a/opkg-make-index
-+++ b/opkg-make-index
-@@ -190,34 +190,38 @@ if packages_filename:
-      os.rename(tmp_packages_filename, packages_filename)
-      os.rename(tmp_gzip_filename, gzip_filename)
- 
--if verbose:
--     sys.stderr.write("Generate Packages.filelist file\n")
--files = {}
--names = list(packages.packages.keys())
--names.sort()
--for name in names:
--     try:
--          fnlist = packages[name].get_file_list()
--     except OSError as e:
--          sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (name, e))
--          continue
--     except IOError as e:
--          sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (name, e))
--          continue
--     for fn in fnlist:
--          (h,t) = os.path.split(fn)
--          if not t: continue
--          if t not in files: files[t] = name+':'+fn
--          else: files[t] = files[t] + ',' + name+':'+fn
--
- if filelist_filename:
--     tmp_filelist_filename = ("%s.%d" % (filelist_filename, os.getpid()))
--     f = open(tmp_filelist_filename, "w")
--     names = list(files.keys())
--     names.sort()
--     for name in names:
--          f.write("%s %s\n" % (name, files[name]))
--     f.close()
--     if posixpath.exists(filelist_filename):
--          os.unlink(filelist_filename)
--     os.rename(tmp_filelist_filename, filelist_filename)
-+    if verbose:
-+        sys.stderr.write("Generate Packages.filelist file\n")
-+    files = {}
-+    names = list(packages.packages.keys())
-+    names.sort()
-+    for name in names:
-+        try:
-+            if verbose:
-+                sys.stderr.write("Reading filelist for package '%s'\n" % name)
-+#            sys.stderr.write("Package for name '%s':\n'%s'\n" % (name, packages[name]))
-+            fnlist = packages[name].get_file_list_dir(pkg_dir)
-+#            sys.stderr.write("Filelist for package '%s': '%s'\n" % (name, fnlist))
-+        except OSError as e:
-+            sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (name, e))
-+            continue
-+        except IOError as e:
-+            sys.stderr.write("Package %s disappeared on us!\n(%s)\n" % (name, e))
-+            continue
-+        for fn in fnlist:
-+            (h,t) = os.path.split(fn)
-+            if not t: continue
-+            if t not in files: files[t] = name+':'+fn
-+        else: files[t] = files[t] + ',' + name+':'+fn
-+
-+    tmp_filelist_filename = ("%s.%d" % (filelist_filename, os.getpid()))
-+    f = open(tmp_filelist_filename, "w")
-+    names = list(files.keys())
-+    names.sort()
-+    for name in names:
-+         f.write("%s %s\n" % (name, files[name]))
-+    f.close()
-+    if posixpath.exists(filelist_filename):
-+        os.unlink(filelist_filename)
-+    os.rename(tmp_filelist_filename, filelist_filename)
-diff --git a/opkg.py b/opkg.py
-index 27cbc2a..707a882 100644
---- a/opkg.py
-+++ b/opkg.py
-@@ -325,8 +325,24 @@ class Package:
-     def get_license(self, license):
-         return self.license
- 
-+    def get_file_list_dir(self, directory):
-+        if not self.fn:
-+            try:
-+                cmd = "find %s -name %s | head -n 1" % (directory, self.filename)
-+                rc = subprocess.check_output(cmd, shell=True)
-+                newfn = str(rc).split()[0]
-+#                sys.stderr.write("Package '%s' with empty fn and filename is '%s' was found in '%s', updating fn\n" % (self.package, self.filename, newfn))
-+                self.fn = newfn
-+            except OSError as e:
-+                sys.stderr.write("Cannot find current fn for package '%s' filename '%s' in dir '%s'\n(%s)\n" % (self.package, self.filename, directory, e))
-+            except IOError as e:
-+                sys.stderr.write("Cannot find current fn for package '%s' filename '%s' in dir '%s'\n(%s)\n" % (self.package, self.filename, directory, e))
-+        return self.get_file_list()
-+
-+
-     def get_file_list(self):
-         if not self.fn:
-+            sys.stderr.write("Package '%s' has empty fn returning empty filelist\n" % (self.package))
-             return []
-         f = open(self.fn, "rb")
-         ar = arfile.ArFile(f, self.fn)
--- 
-1.7.8.5
+/home/tester/yocto/N450QAT/tmp/work/atom_pc-poky-linux/core-image-minimal-i=
+nitramfs-1.0-r0/temp/run.do_rootfs.15179: line 119: x86_64-poky-
+linux-depmod: command not found
+ERROR: Function 'do_rootfs' failed (see /home/tester/yocto/N450QAT/tmp/work=
+/atom_pc-poky-linux/core-image-minimal-initramfs-1.0-r0/temp/log
+.do_rootfs.15179 for further information)
+
+Trying to find the correct procedure to change the target architecture syst=
+em
+--------------------------------------------------------------
+Intel Shannon Limited
+Registered in Ireland
+Registered Office: Collinstown Industrial Park, Leixlip, County Kildare
+Registered Number: 308263
+Business address: Dromore House, East Park, Shannon, Co. Clare
+
+This e-mail and any attachments may contain confidential material for the s=
+ole use of the intended recipient(s). Any review or distribution by others =
+is strictly prohibited. If you are not the intended recipient, please conta=
+ct the sender and delete all copies.
 
 
+--_000_D217AB7137D8684EAF03C83444A0D7191877ED0EIRSMSX101gercor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-IE" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi, <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am using a Fedora 16 64bit build server. I am usin=
+g meta-n450 BSP. I have built a 32bit image that boots. I want to build a 6=
+4bit image. I added TARGET_ARCH =3D&#8221;x86_64&#8221;to my local.conf fil=
+e. My build doesn&#8217;t run successfully when this is
+ changed: <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">/home/tester/yocto/N450QAT/tmp/work/atom_pc-poky-lin=
+ux/core-image-minimal-initramfs-1.0-r0/temp/run.do_rootfs.15179: line 119: =
+x86_64-poky-<o:p></o:p></p>
+<p class=3D"MsoNormal">linux-depmod: command not found<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Function 'do_rootfs' failed (see /home/tester=
+/yocto/N450QAT/tmp/work/atom_pc-poky-linux/core-image-minimal-initramfs-1.0=
+-r0/temp/log<o:p></o:p></p>
+<p class=3D"MsoNormal">.do_rootfs.15179 for further information)<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Trying to find the correct procedure to change the t=
+arget architecture system<o:p></o:p></p>
+</div>
+<font face=3D"monospace">--------------------------------------------------=
+------------<br>
+Intel Shannon Limited<br>
+Registered in Ireland<br>
+Registered Office: Collinstown Industrial Park, Leixlip, County Kildare<br>
+Registered Number: 308263<br>
+Business address: Dromore House, East Park, Shannon, Co. Clare<br>
+<br>
+This e-mail and any attachments may contain confidential material for the s=
+ole use of the intended recipient(s). Any review or distribution by others =
+is strictly prohibited. If you are not the intended recipient, please conta=
+ct the sender and delete all copies.<br>
+</font></body>
+</html>
+
+--_000_D217AB7137D8684EAF03C83444A0D7191877ED0EIRSMSX101gercor_--
