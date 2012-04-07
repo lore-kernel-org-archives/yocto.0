@@ -1,38 +1,31 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
-	[209.85.210.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E92EE0044A
-	for <yocto@yoctoproject.org>; Sat,  7 Apr 2012 00:09:19 -0700 (PDT)
-Received: by dajx4 with SMTP id x4so4032225daj.28
-	for <yocto@yoctoproject.org>; Sat, 07 Apr 2012 00:09:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:x-enigmail-version:content-type
-	:content-transfer-encoding;
-	bh=GXjNqWglYZGSlaYMjun7/UhgUSK7jjJY4P6HRmfuAc0=;
-	b=ObpmSuzIJEOuh+t0iMYz9kYQBeOJOLhaOoi6efy1FWaQy9xTyn5gJ8OGZSGKWDgMDV
-	utzOCmX/dgS+VMArdk3RhaR8jR4lgm854vOZXAXNnVtQL2Mf0OwF1A6/ZIpDFGjhuRdy
-	YU4BLfbSoznSBq7zkmcSGTUqvP7I1RXk6MJXnwA7pTWrDSQr4txXuO3+cNFd4wn4aNLp
-	YngTfDvEQgjJpHxP6IMEEcY30p8xDtJhZD7pb1drvOU4kg9at0oY6ROOhmwzfT7WFd2K
-	K0swjbeOH1udEsG14IA7VYyRCIAOsxAkOWKmHoAZpQxd0ca+t0Ej96YTA9GGhaoM0cws
-	NLXw==
-Received: by 10.68.190.225 with SMTP id gt1mr1929249pbc.76.1333782559181;
-	Sat, 07 Apr 2012 00:09:19 -0700 (PDT)
-Received: from [192.168.1.79] (99-57-140-209.lightspeed.sntcca.sbcglobal.net.
-	[99.57.140.209])
-	by mx.google.com with ESMTPS id y3sm8450116pbh.59.2012.04.07.00.09.17
-	(version=SSLv3 cipher=OTHER); Sat, 07 Apr 2012 00:09:18 -0700 (PDT)
-Message-ID: <4F7FE81B.9050306@gmail.com>
-Date: Sat, 07 Apr 2012 00:09:15 -0700
-From: Khem Raj <raj.khem@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:11.0) Gecko/20120402 Thunderbird/11.0.1
-MIME-Version: 1.0
+Return-Path: <caterwaul@163.com>
+Received: from m13-63.163.com (m13-63.163.com [220.181.13.63])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C57B0E006C7
+	for <yocto@yoctoproject.org>; Sat,  7 Apr 2012 10:08:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Received:Date:From:To:Message-ID:Subject:
+	MIME-Version:Content-Type; bh=t9IHTaa2zjQ3+5Sb7w9QOo1W3q1Wms6xio
+	1b0r2ICZY=; b=dVNBmZ8X1TS1Z+dAPnNXnTqONZgvOi+X6xBN4irgua/l/W+qZ7
+	MG/wAGrPtxgkxC7gcTzJwoEVWGh+fBfNJvZ/0wulbY35NbN3YnFBtI+mJPqxDsdl
+	h/IAWB0PLIz5J6i7sUh25vgXXtm7fpOAi2SgqTwy823wMs7cE9KBI+O+A=
+Received: from caterwaul ( [124.193.192.2] ) by ajax-webmail-wmsvr63
+	(Coremail) ; Sun, 8 Apr 2012 01:08:52 +0800 (CST)
+Date: Sun, 8 Apr 2012 01:08:52 +0800 (CST)
+From: caterwaul <caterwaul@163.com>
 To: yocto@yoctoproject.org
-References: <F3906846C0EDD246B5CF75E8EDA3C47E138A76C2@szxeml532-mbx.china.huawei.com>
-In-Reply-To: <F3906846C0EDD246B5CF75E8EDA3C47E138A76C2@szxeml532-mbx.china.huawei.com>
-X-Enigmail-Version: 1.4
-Subject: Re: Can not run Qemu with "runqemu qemux86 " after successful build on the Open Suse 12.1
+Message-ID: <9a297b0.eb5a.1368dc7a3a7.Coremail.caterwaul@163.com>
+MIME-Version: 1.0
+X-Originating-IP: [124.193.192.2]
+X-CM-HeaderCharset: GBK
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
+	20120307(17626.4462.4455) Copyright (c) 2002-2012 www.mailtech.cn
+	163com
+X-CM-CTRLDATA: f3/lUmZvb3Rlcl9odG09MTAwNTo4MQ==
+X-CM-TRANSID: P8GowECZOkGldIBP8v5+AA--.3032W
+X-CM-SenderInfo: pfdwv2hzdxzqqrwthudrp/1tbiWB2JJE9ozo0rLwAAsI
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Subject: Where does this object "d" come from?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,25 +37,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Apr 2012 07:09:19 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 07 Apr 2012 17:08:56 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_166797_1411912886.1333818532775"
+
+------=_Part_166797_1411912886.1333818532775
+Content-Type: text/plain; charset=GBK
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+Hi,
 
-On 04/03/2012 11:32 PM, Ashish Pandey wrote:
-> No protocol specified No protocol specified Could not initialize
-> SDL(No available video device) - exiting
 
-there are some GL packages that you might need IIRC for ubuntu and
-fedora the runqemu script tries to inform about them but not for SuSE
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
-Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+I'm just start to investigate how bitbake works and need your help about a question. Thank you in advance.
 
-iEYEARECAAYFAk9/6BsACgkQuwUzVZGdMxSwmwCeLHwHwob9aOJcuD6Wbe/sNXLS
-qNgAn2JKY+8G2BJV2V7B5qYOKMVPVJkR
-=xq4h
------END PGP SIGNATURE-----
 
+The object "d" in the pasted paragraph is passed down through the following Python scripts. But where does the object "d" come from? and where can I find the its definition?
+
+
+in the file poky-edison-6.0.1/meta/classes/base.bbclass
+......
+addtask fetch
+do_fetch[dirs] = "${DL_DIR}"
+python base_do_fetch() {
+
+
+src_uri = (bb.data.getVar('SRC_URI', d, True) or "").split()
+if len(src_uri) == 0:
+return
+
+
+......
+}
+......
+
+------=_Part_166797_1411912886.1333818532775
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: 7bit
+
+<div style="line-height:1.7;color:#000000;font-size:14px;font-family:arial"><div>Hi,</div><div><br></div><div>I'm just start to investigate how bitbake works and need your help about a question. Thank you in advance.</div><div><br></div><div>The object "d" in the pasted paragraph is passed down through the following Python scripts. But where does the object "d" come from? and where can I find the its definition?</div><div><br></div><div>in the file poky-edison-6.0.1/meta/classes/base.bbclass</div><div>......</div><div>addtask fetch</div><div>do_fetch[dirs] = "${DL_DIR}"</div><div>python base_do_fetch() {</div><div><br></div><div><span class="Apple-tab-span" style="white-space:pre">	</span>src_uri = (bb.data.getVar('SRC_URI', d, True) or "").split()</div><div><span class="Apple-tab-span" style="white-space:pre">	</span>if len(src_uri) == 0:</div><div><span class="Apple-tab-span" style="white-space:pre">		</span>return</div><div><br></div><div>......
+</div><div>}</div><div>......
+</div></div><br><br><span title="neteasefooter"><span id="netease_mail_footer"></span></span>
+
+------=_Part_166797_1411912886.1333818532775--
