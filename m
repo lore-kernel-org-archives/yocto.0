@@ -1,35 +1,27 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
-	[209.85.216.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6165AE0030B
-	for <yocto@yoctoproject.org>; Sun,  8 Apr 2012 08:14:37 -0700 (PDT)
-Received: by qam2 with SMTP id 2so1210991qam.14
-	for <yocto@yoctoproject.org>; Sun, 08 Apr 2012 08:14:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type
-	:content-transfer-encoding;
-	bh=EkgNN09exyeGiVaQ6Ij3LRwSVdTUdth3vQ5eKxdfYgA=;
-	b=orf71924C+MyBMk/o1GDCTAfzI2o62Ob/D1BKn5VJP+9WDcZKGd2Xh3BBnO0jZpt/R
-	1yYBDjLrDJ6YPNbhHlfWKgGRGl4MzUGFKq2O1zXbNzFMKLoi8zcSuqbffovo4IjxzKzq
-	H0x3DesK8DHZcmP7r9vrDpKyD8BV1e6XfrsYFIOg0SJbQHpXHKxqxwqmi5WdPEBlo/Uz
-	iBtzK8zB/XkapG2wcquOtfmQt3dJbbL5byjOMkjXQABsJucB8jRJiJhgygPbTlR2pSsK
-	GHHh4KlKu5MpJ8tZyOuZDVxiNBx/zHmg7bRGBJD7rePu67jIkAIC04QzJBFQwUMyvZY6
-	r/vA==
-Received: by 10.224.180.1 with SMTP id bs1mr5702008qab.2.1333898076606; Sun,
-	08 Apr 2012 08:14:36 -0700 (PDT)
+Return-Path: <446257357@qq.com>
+Received: from smtpbg55.qq.com (smtpbg55.qq.com [64.71.138.44])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 65E98E0059A
+	for <yocto@yoctoproject.org>; Sun,  8 Apr 2012 02:31:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s0907;
+	t=1333877515; bh=tCJbGbhYSwqk65uH9i4owPwU4TvP6vFJv4MNNMFAg40=;
+	h=X-QQ-mid:Received:X-QQ-SSF:Message-ID:Date:From:User-Agent:
+	MIME-Version:To:Subject:Content-Type:Content-Transfer-Encoding;
+	b=HRcnsB+7gBeZgEN1roEz9ik9BYEBZ0952t1rLyFEbs3jMpOjuAxuSzuWNEnlaW6oT
+	NjPJ1ZcHYbcy0UCy65MoxtBRFstqPkrQ4J5TAMNH4Mz62fI0F9uKfkrs4UUDHYS
+X-QQ-mid: esmtp1t1333877513t544t12561
+Received: from [58.198.103.18] (unknown [58.198.103.18])
+	by esmtp4.qq.com (ESMTP) with SMTP id 0
+	for <yocto@yoctoproject.org>; Sun, 08 Apr 2012 17:31:53 +0800 (CST)
+X-QQ-SSF: 00000000000000F0FNF001000000000
+Message-ID: <4F815B09.9090003@qq.com>
+Date: Sun, 08 Apr 2012 17:31:53 +0800
+From: shushm <446257357@qq.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.229.79.79 with HTTP; Sun, 8 Apr 2012 08:14:16 -0700 (PDT)
-In-Reply-To: <7a1d4d43.12213.1369234af01.Coremail.caterwaul@163.com>
-References: <7a1d4d43.12213.1369234af01.Coremail.caterwaul@163.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Sun, 8 Apr 2012 08:14:16 -0700
-X-Google-Sender-Auth: eR_qObF7KnvGJMmc9BvbuJd8OwI
-Message-ID: <CABcZANnzs23ZZM75FF4-BRKCzek1TLpu3d18XvWuwyZYQhYzew@mail.gmail.com>
-To: caterwaul <caterwaul@163.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: Problem about print in fetching
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Sun, 08 Apr 2012 08:32:02 -0700
+Subject: build the adt error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,46 +33,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 08 Apr 2012 15:14:37 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 08 Apr 2012 09:31:57 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-2012/4/8 caterwaul <caterwaul@163.com>:
-> I want to print out all the URI_SRC I use during the build. =C2=A0And I h=
-ave
-> tried 3 methods in 2 places as follow. But all of these can not print out
-> the src path. Did I make some mistakes? Could anyone help me on this? Tha=
-nk
-> you.
->
-> PLACE ONE =C2=A0in poky-edison-6.0.1/bitbake/lib/bb/fetch2/__init__.py
-> class Fetch(object):
-> =C2=A0 =C2=A0 def __init__(self, urls, d, cache =3D True):
-> ......
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 for url in urls:
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if url not in self.ud:
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 print('=3D=3D=3D=
-=3D%s' % url) # code I added
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.ud[url] =3D =
-FetchData(url, d)
-> ......
->
-> PLACE TWO =C2=A0in poky-edison-6.0.1/meta/classes/base.bbclass
-> python base_do_fetch() {
->
-> src_uri =3D (bb.data.getVar('SRC_URI', d, True) or "").split()
-> if len(src_uri) =3D=3D 0:
-> return
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0print('=3D=3D=3D=3D%s' % src_url)=C2=A0#=
- code I added
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.note('=3D=3D=3D=3D%s' % src_url)=C2=A0# co=
-de I added
-> }
+When I use the bitbake meta-toolchain-sdk,it comes the error: Failed 
+dependencies:
+|     libcurl.so.4 is needed by qemu-nativesdk-0.15.1-r4.i686.
+PS:I have checked the libcurl.so.4 in /usr/lib/i386-linux-gnu.
+How can I fix it? Thank you~
 
-Both of these will result in messages going to the log file for the
-task, but not the console output. By default, bitbake only shows
-warnings, errors, and critical messages to the console / bitbake's UI.
-Use bb.warn() or bb.error() for printf-style debugging.
---=20
-Christopher Larson
 
