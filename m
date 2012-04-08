@@ -1,31 +1,42 @@
-Return-Path: <caterwaul@163.com>
-Received: from m13-18.163.com (m13-18.163.com [220.181.13.18])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77BEAE01374
-	for <yocto@yoctoproject.org>; Sun,  8 Apr 2012 06:46:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Received:Date:From:To:Message-ID:Subject:
-	MIME-Version:Content-Type; bh=TLVqpj2UhKhOV/BJ4Q8mGhqRPtdcO3cUzR
-	/TXnRUhjM=; b=VGEz3ao+/ibPJXlTWa9B9m0nNuLLyQ1OwJLyrk6o/lu/f4YA7V
-	R809Xq7XbS4FUMv+7I/u3U/IVVoVAXkHnrmCGbr5084pLvT8/kWcHktbr+GEWt30
-	xcWhJMN5ZPy5m7nl7xb8cbei8BMOeZ78KrJb5NCrZwj2Snng7AeuE5wz4=
-Received: from caterwaul ( [121.18.126.73] ) by ajax-webmail-wmsvr18
-	(Coremail) ; Sun, 8 Apr 2012 21:46:27 +0800 (CST)
-Date: Sun, 8 Apr 2012 21:46:27 +0800 (CST)
-From: caterwaul <caterwaul@163.com>
-To: yocto <yocto@yoctoproject.org>
-Message-ID: <7a1d4d43.12213.1369234af01.Coremail.caterwaul@163.com>
+Return-Path: <omprakash.pal@stericsson.com>
+Received: from eu1sys200aog117.obsmtp.com (eu1sys200aog117.obsmtp.com
+	[207.126.144.143])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDBFBE0030B
+	for <yocto@yoctoproject.org>; Sun,  8 Apr 2012 07:05:03 -0700 (PDT)
+Received: from beta.dmz-eu.st.com ([164.129.1.35]) (using TLSv1) by
+	eu1sys200aob117.postini.com ([207.126.147.11]) with SMTP
+	ID DSNKT4GbCyNa+cDpUUE5MQCRgKtjmKBGzXKC@postini.com;
+	Sun, 08 Apr 2012 14:05:03 UTC
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 71C80A9;
+	Sun,  8 Apr 2012 14:04:45 +0000 (GMT)
+Received: from relay2.stm.gmessaging.net (unknown [10.230.100.18])
+	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 03A221F64;
+	Sun,  8 Apr 2012 14:04:45 +0000 (GMT)
+Received: from exdcvycastm022.EQ1STM.local (alteon-source-exch [10.230.100.61])
+	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
+	(Client CN "exdcvycastm022", Issuer "exdcvycastm022" (not verified))
+	by relay2.stm.gmessaging.net (Postfix) with ESMTPS id 03E33A807B;
+	Sun,  8 Apr 2012 16:04:39 +0200 (CEST)
+Received: from EXDCVYMBSTM006.EQ1STM.local ([10.6.6.68]) by
+	exdcvycastm022.EQ1STM.local ([10.230.100.30]) with mapi; Sun, 8 Apr 2012
+	16:04:44 +0200
+From: Om Prakash PAL <omprakash.pal@stericsson.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Sun, 8 Apr 2012 16:04:44 +0200
+Thread-Topic: [yocto] Porting of specific Kernel/Driver into yocto.
+Thread-Index: Ac0SYSDax9cXNc9UR9C2XTfF1XA3MQDLL9Ap
+Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35AE63C1B66@EXDCVYMBSTM006.EQ1STM.local>
+References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>,
+	<4F7C42E5.8000301@windriver.com>
+In-Reply-To: <4F7C42E5.8000301@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Originating-IP: [121.18.126.73]
-X-CM-HeaderCharset: GBK
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
-	20120307(17626.4462.4455) Copyright (c) 2002-2012 www.mailtech.cn
-	163com
-X-CM-CTRLDATA: QoSEpWZvb3Rlcl9odG09MTc2Njo4MQ==
-X-CM-TRANSID: EsGowGC5YELAloFPmJQtAA--.40422W
-X-CM-SenderInfo: pfdwv2hzdxzqqrwthudrp/1tbiKAGKJE9oyokdJgAAsY
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-Subject: Problem about print in fetching
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Porting of specific Kernel/Driver into yocto.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,49 +48,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 08 Apr 2012 13:46:46 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_205644_1712836411.1333892787969"
+X-List-Received-Date: Sun, 08 Apr 2012 14:05:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-------=_Part_205644_1712836411.1333892787969
-Content-Type: text/plain; charset=GBK
-Content-Transfer-Encoding: 7bit
+Hi Bruce,
+Thanks for your reply.
+I am totally new to Yocto.
+I have gone through the section BSP/Linux kernel configuration and if I am =
+not wrong then it explains how can we configure the kernel, not the how we =
+can add/replace a  component(driver etc).=20
+lets take the example of UART driver, I want to add my own UART driver code=
+.
+Should I write a separate recipe file (.bb) for UART Driver?.
+if yes then I have to write the recipe files for all my drivers that will b=
+e very time consuming.=20
+Is there any other way that I can port all my desired drivers into Yocto ke=
+rnel?.
+Please help me.
+Thanks a lot in advance.=20
 
-Hi,
+Best Regards,
+Om Prakash Pal =20
+________________________________________
+From: Bruce Ashfield [bruce.ashfield@windriver.com]
+Sent: Wednesday, April 04, 2012 6:17 PM
+To: Om Prakash PAL
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
+
+On 12-04-04 04:46 AM, Om Prakash PAL wrote:
+> Hi,
+> I want to build my local kernel/Driver code, not the default one.
+> please help how can i do it ?.
+> any wiki/docs on this?.
+
+The BSP developer guides show how to extend the yocto kernels, and
+also have sections on custom/different kernel versions. Have you
+seen that doc yet ? Or have you seen it, and have specific questions ?
+
+Bruce
+
+>
+> Best Regards,
+> Om Prakash Pal
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
-I want to print out all the URI_SRC I use during the build.  And I have tried 3 methods in 2 places as follow. But all of these can not print out the src path. Did I make some mistakes? Could anyone help me on this? Thank you.
-
-
-PLACE ONE  in poky-edison-6.0.1/bitbake/lib/bb/fetch2/__init__.py
-class Fetch(object):
-    def __init__(self, urls, d, cache = True):
-......
-        for url in urls:
-            if url not in self.ud:
-                print('====%s' % url) # code I added
-                self.ud[url] = FetchData(url, d)
-......
-
-
-PLACE TWO  in poky-edison-6.0.1/meta/classes/base.bbclass
-python base_do_fetch() {
-
-
-src_uri = (bb.data.getVar('SRC_URI', d, True) or "").split()
-if len(src_uri) == 0:
-return
-        print('====%s' % src_url) # code I added
-        bb.note('====%s' % src_url) # code I added
-}
-
-
-Jim Green
-
-------=_Part_205644_1712836411.1333892787969
-Content-Type: text/html; charset=GBK
-Content-Transfer-Encoding: 7bit
-
-<div style="line-height:1.7;color:#000000;font-size:14px;font-family:arial"><div style="line-height:1.7;color:#000000;font-size:14px;font-family:arial">Hi,<div><br></div><div>I want to print out all the URI_SRC I use during the build. &nbsp;And I have tried 3 methods in 2 places as follow. But all of these can not print out the src path. Did I make some mistakes? Could anyone help me on this? Thank you.</div><div><br></div><div>PLACE ONE &nbsp;in poky-edison-6.0.1/bitbake/lib/bb/fetch2/__init__.py</div><div><div>class Fetch(object):</div><div>&nbsp; &nbsp; def __init__(self, urls, d, cache = True):</div><div>......</div><div>&nbsp; &nbsp; &nbsp; &nbsp; for url in urls:</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if url not in self.ud:</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>print('====%s' % url) # code I added</b></div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.ud[url] = FetchData(url, d)</div></div><div>......</div><div><br></div><div>PLACE TWO &nbsp;in poky-edison-6.0.1/meta/classes/base.bbclass</div><div><div>python base_do_fetch() {</div><div><br></div><div><span class="Apple-tab-span" style="white-space:pre">	</span>src_uri = (bb.data.getVar('SRC_URI', d, True) or "").split()</div><div><span class="Apple-tab-span" style="white-space:pre">	</span>if len(src_uri) == 0:</div><div><span class="Apple-tab-span" style="white-space:pre">		</span>return</div><div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<b>print('====%s' % src_url)</b><b style="line-height: 1.7; ">&nbsp;# code I added</b></div><div><b>&nbsp; &nbsp; &nbsp; &nbsp; bb.note</b><b>('====%s' % src_url)</b><b style="line-height: 1.7; ">&nbsp;# code I added</b></div><div>}</div></div><div><br></div><div>Jim Green</div></div></div><br><br><span title="neteasefooter"><span id="netease_mail_footer"></span></span>
-
-------=_Part_205644_1712836411.1333892787969--
