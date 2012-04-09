@@ -1,27 +1,33 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AE45E0044D
-	for <yocto@yoctoproject.org>; Mon,  9 Apr 2012 12:50:17 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 09 Apr 2012 12:50:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="126979213"
-Received: from unknown (HELO envy.home) ([10.7.199.62])
-	by orsmga001.jf.intel.com with ESMTP; 09 Apr 2012 12:50:17 -0700
-Message-ID: <4F833D53.4020801@linux.intel.com>
-Date: Mon, 09 Apr 2012 12:49:39 -0700
-From: Darren Hart <dvhart@linux.intel.com>
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76B31E00596
+	for <yocto@yoctoproject.org>; Mon,  9 Apr 2012 13:33:24 -0700 (PDT)
+Received: by yhfq46 with SMTP id q46so2597238yhf.35
+	for <yocto@yoctoproject.org>; Mon, 09 Apr 2012 13:33:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=iFqpPW90HP/+LjdW4FNzpwCgRvzHJ13PEeZtXVhCgrM=;
+	b=L5+gh/gpA1FH16WPGXi3qQna8KM5L0WHASNskbyCqtDhM6ERPJVUUjiNWRd9nQZQbz
+	8GyTCL1mMtlTBj43Ww0wFjAzEOWX7qgNx3F3s+W20pNljEFAwWV3sAR21kpoTfHjzfEB
+	UHwCuVWK38Ruib9GdI8l0MeNi+HX1cmXX3zzz7H+WA/+cu2LhbZYbDDBGT+2NZcPTBnf
+	CuWofuryxEGytuTObg2rgDB+LzsMNXC3ro56QIZWbfXlqRnNNdP4CDG2uCbIXx4TwUjv
+	LOAsnjjOwLDWawmqzRAFBk+lRMbnfbZ6nokq1lwuShsvdo9+rPdcw0AjXvOnApleFefe
+	uVRg==
+Received: by 10.236.77.70 with SMTP id c46mr5310213yhe.5.1334003604075;
+	Mon, 09 Apr 2012 13:33:24 -0700 (PDT)
+Received: from [10.0.1.54] (nc-184-4-33-105.dhcp.embarqhsd.net. [184.4.33.105])
+	by mx.google.com with ESMTPS id d25sm69826397yhe.4.2012.04.09.13.33.22
+	(version=SSLv3 cipher=OTHER); Mon, 09 Apr 2012 13:33:23 -0700 (PDT)
+Message-ID: <4F834792.20402@gmail.com>
+Date: Mon, 09 Apr 2012 16:33:22 -0400
+From: jfabernathy <jfabernathy@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
 MIME-Version: 1.0
-To: Yang Shi <yang.shi@windriver.com>
-References: <1332796758-9702-1-git-send-email-yang.shi@windriver.com>
-	<1332796758-9702-3-git-send-email-yang.shi@windriver.com>
-	<4F830EC9.4050804@linux.intel.com> <4F832BBD.1040608@windriver.com>
-In-Reply-To: <4F832BBD.1040608@windriver.com>
-X-Enigmail-Version: 1.4
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 2/2] sato: Remove questioned ISO image
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: build error on core-image-sato-sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,77 +39,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Apr 2012 19:50:17 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 09 Apr 2012 20:33:24 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
+at the end of the build of core-image-sato-sdk I got the following 
+error.  I'm using the edison branch with the latest changes and also 
+building the meta-cedartrail.  I had previously built core-image-sato 
+successfully with this setup.
 
+Any ideas?
 
-On 04/09/2012 11:34 AM, Yang Shi wrote:
-> On 4/9/2012 9:31 AM, Darren Hart wrote:
->>
->> On 03/26/2012 02:19 PM, Yang Shi wrote:
->>> [YOCTO #1487]
->>>
->>> For the liveCD image, interactive bootup is needed, but psplash prevents from
->>> booting interactively. In such case ISO image is not usable, so remove ISO image
->>> and the corresponding link and throw error info to warn outside to enable
->>> unionfs in kenrel.
->>
->> The psplash only prevents interaction on the vga console right? If the
->> BSP supports a serial console as well there is not a problem right?
-> 
-> Yes, I think so. When I was doing the test, I disabled splash so that I 
-> can type 'enter' to make interaction move forward.
-> 
+ERROR: Function 'build_boot_bin' failed (see 
+/build/cdv-edison/tmp/work/cedartrail-poky-linux/core-image-sato-sdk-1.0-r0/temp/log.do_bootimg.25810 
+for further information)
+ERROR: Logfile of failure stored in: 
+/build/cdv-edison/tmp/work/cedartrail-poky-linux/core-image-sato-sdk-1.0-r0/temp/log.do_bootimg.25810
+Log data follows:
+| mkdosfs: seek failed
+| mkdosfs 2.10 (22 Sep 2003)
+| ERROR: Function 'build_boot_bin' failed (see 
+/build/cdv-edison/tmp/work/cedartrail-poky-linux/core-image-sato-sdk-1.0-r0/temp/log.do_bootimg.25810 
+for further information)
+NOTE: package core-image-sato-sdk-1.0-r0: task do_bootimg: Failed
+ERROR: Task 9 
+(/home/jim/poky/meta/recipes-sato/images/core-image-sato-sdk.bb, 
+do_bootimg) failed with exit code '1'
+ERROR: '/home/jim/poky/meta/recipes-sato/images/core-image-sato-sdk.bb' 
+failed
+jim@ubuntu-x64:/build/cdv-edison$
 
-In that case, deleting the iso links if Unionfs is not configured in
-does not seem appropriate. A bbwarn might be appropriate, but failing
-and destroying the deploy data is certainly not.
-
---
-Darren
-
-> Thanks,
-> Yang
-> 
->>
->> --
->> Darren
->>
->>> Signed-off-by: Yang Shi<yang.shi@windriver.com>
->>> ---
->>>   meta/recipes-sato/images/core-image-sato.bb |   16 ++++++++++++++++
->>>   1 files changed, 16 insertions(+), 0 deletions(-)
->>>
->>> diff --git a/meta/recipes-sato/images/core-image-sato.bb b/meta/recipes-sato/images/core-image-sato.bb
->>> index 11c3318..10e2239 100644
->>> --- a/meta/recipes-sato/images/core-image-sato.bb
->>> +++ b/meta/recipes-sato/images/core-image-sato.bb
->>> @@ -9,3 +9,19 @@ IMAGE_FEATURES += "apps-console-core ${SATO_IMAGE_FEATURES}"
->>>   LICENSE = "MIT"
->>>
->>>   inherit core-image
->>> +
->>> +LIVE = "${@base_contains('IMAGE_FSTYPES', 'live', 'yes', 'no', d)}"
->>> +
->>> +do_check_unionfs() {
->>> +        if [ "${NOISO}" = "1" ]; then
->>> +                return
->>> +        fi
->>> +
->>> +        if [ "${LIVE}" = "yes" ]&&  ! grep -q "CONFIG_UNION_FS=y" ${STAGING_KERNEL_DIR}/.config; then
->>> +                rm -f ${DEPLOY_DIR_IMAGE}/${IMAGE_LINK_NAME}.iso
->>> +                rm -f ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.iso
->>> +                bbfatal "Building LIVE CD without UNION FS enabled in kernel"
->>> +        fi
->>> +}
->>> +
->>> +addtask check_unionfs before do_build after do_bootimg
-> 
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
