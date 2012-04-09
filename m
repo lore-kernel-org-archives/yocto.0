@@ -1,44 +1,26 @@
-Return-Path: <omprakash.pal@stericsson.com>
-Received: from eu1sys200aog109.obsmtp.com (eu1sys200aog109.obsmtp.com
-	[207.126.144.127])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A88F3E0030B
-	for <yocto@yoctoproject.org>; Mon,  9 Apr 2012 09:31:35 -0700 (PDT)
-Received: from beta.dmz-us.st.com ([167.4.1.35]) (using TLSv1) by
-	eu1sys200aob109.postini.com ([207.126.147.11]) with SMTP
-	ID DSNKT4MO5FRDxY+muYkXJ4KvhCE2imviucHT@postini.com;
-	Mon, 09 Apr 2012 16:31:35 UTC
-Received: from zeta.dmz-us.st.com (ns4.st.com [167.4.16.71])
-	by beta.dmz-us.st.com (STMicroelectronics) with ESMTP id 277FA3D;
-	Mon,  9 Apr 2012 16:31:03 +0000 (GMT)
-Received: from relay1.stm.gmessaging.net (unknown [10.230.100.17])
-	by zeta.dmz-us.st.com (STMicroelectronics) with ESMTP id 6175A50;
-	Mon,  9 Apr 2012 14:32:34 +0000 (GMT)
-Received: from exdcvycastm003.EQ1STM.local (alteon-source-exch [10.230.100.61])
-	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
-	(Client CN "exdcvycastm003", Issuer "exdcvycastm003" (not verified))
-	by relay1.stm.gmessaging.net (Postfix) with ESMTPS id E53CF24C2C0;
-	Mon,  9 Apr 2012 18:31:08 +0200 (CEST)
-Received: from EXDCVYMBSTM006.EQ1STM.local ([10.6.6.68]) by
-	exdcvycastm003.EQ1STM.local ([10.230.100.1]) with mapi; Mon, 9 Apr 2012
-	18:31:17 +0200
-From: Om Prakash PAL <omprakash.pal@stericsson.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date: Mon, 9 Apr 2012 18:31:08 +0200
-Thread-Topic: [yocto] Porting of specific Kernel/Driver into yocto.
-Thread-Index: Ac0WBaJA4YGLEbHnSGe3hbSN/QhHJQAYtMdd
-Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35AE63C1B69@EXDCVYMBSTM006.EQ1STM.local>
-References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>,
-	<4F7C42E5.8000301@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35AE63C1B66@EXDCVYMBSTM006.EQ1STM.local>,
-	<4F825F65.4040706@windriver.com>
-In-Reply-To: <4F825F65.4040706@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9191CE00596
+	for <yocto@yoctoproject.org>; Mon,  9 Apr 2012 09:31:59 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 09 Apr 2012 09:31:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="130342517"
+Received: from unknown (HELO envy.home) ([10.7.199.62])
+	by orsmga002.jf.intel.com with ESMTP; 09 Apr 2012 09:31:42 -0700
+Message-ID: <4F830EC9.4050804@linux.intel.com>
+Date: Mon, 09 Apr 2012 09:31:05 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Porting of specific Kernel/Driver into yocto.
+To: Yang Shi <yang.shi@windriver.com>
+References: <1332796758-9702-1-git-send-email-yang.shi@windriver.com>
+	<1332796758-9702-3-git-send-email-yang.shi@windriver.com>
+In-Reply-To: <1332796758-9702-3-git-send-email-yang.shi@windriver.com>
+X-Enigmail-Version: 1.4
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 2/2] sato: Remove questioned ISO image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,112 +32,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Apr 2012 16:31:36 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 09 Apr 2012 16:31:59 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hi Bruce,
-Thanks for you help.
-As you have mentioned, its working properly.
-I want to know that is there any better way of doing same thing for my scen=
-ario ?:
-here is my scenario:
-We have development branch where we write/modify our kernel/driver code i.e=
-. thats our local kernel repository(git rep)
-and lots of driver/files being modified everyday-->so I have to take the sa=
-me effect into yocto kernel also----> so except  creating patches for all m=
-odified drivers and creating .bbappend files, is there any better way of do=
-ing same thing . =20
 
-Is there anyway that  instead of using yocto-kernel tree,  can we use our l=
-ocal kernel-tree for building images?. (should  I create separate BSP ?)
 
-Thanks in advance.
-Best Regards,
-Om Prakash Pal
-________________________________________
-From: Bruce Ashfield [bruce.ashfield@windriver.com]
-Sent: Monday, April 09, 2012 9:32 AM
-To: Om Prakash PAL
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
+On 03/26/2012 02:19 PM, Yang Shi wrote:
+> [YOCTO #1487]
+> 
+> For the liveCD image, interactive bootup is needed, but psplash prevents from
+> booting interactively. In such case ISO image is not usable, so remove ISO image
+> and the corresponding link and throw error info to warn outside to enable
+> unionfs in kenrel.
 
-On 12-04-08 10:04 AM, Om Prakash PAL wrote:
-> Hi Bruce,
-> Thanks for your reply.
-> I am totally new to Yocto.
-> I have gone through the section BSP/Linux kernel configuration and if I a=
-m not wrong then it explains how can we configure the kernel, not the how w=
-e can add/replace a  component(driver etc).
-> lets take the example of UART driver, I want to add my own UART driver co=
-de.
-> Should I write a separate recipe file (.bb) for UART Driver?.
-> if yes then I have to write the recipe files for all my drivers that will=
- be very time consuming.
-> Is there any other way that I can port all my desired drivers into Yocto =
-kernel?.
 
-No recipes are required per-driver, unless you are building them all
-as out of tree modules.
+The psplash only prevents interaction on the vga console right? If the
+BSP supports a serial console as well there is not a problem right?
 
-The typical way this is done is to simply work in the extracted linux
-src tree (build/tmp/work/<your board>/linux-yocto-<hashes>/linux), manually
-patch, or copy your drivers into the tree. At this point, you'll port
-the drivers, doing test builds (bitbake -f -c compile linux-yocto) to
-ensure that your port is working. When you've completed the build phase,
-boot tests would be in order. (Do not do a 'clean' or you'll lose in
-progress changes).
+--
+Darren
 
-When you are happy with the changes, the directory where you were working
-is with the kernel git repository. So you can simply commit your
-changes, and generate patches.
+> 
+> Signed-off-by: Yang Shi <yang.shi@windriver.com>
+> ---
+>  meta/recipes-sato/images/core-image-sato.bb |   16 ++++++++++++++++
+>  1 files changed, 16 insertions(+), 0 deletions(-)
+> 
+> diff --git a/meta/recipes-sato/images/core-image-sato.bb b/meta/recipes-sato/images/core-image-sato.bb
+> index 11c3318..10e2239 100644
+> --- a/meta/recipes-sato/images/core-image-sato.bb
+> +++ b/meta/recipes-sato/images/core-image-sato.bb
+> @@ -9,3 +9,19 @@ IMAGE_FEATURES += "apps-console-core ${SATO_IMAGE_FEATURES}"
+>  LICENSE = "MIT"
+>  
+>  inherit core-image
+> +
+> +LIVE = "${@base_contains('IMAGE_FSTYPES', 'live', 'yes', 'no', d)}"
+> +
+> +do_check_unionfs() {
+> +        if [ "${NOISO}" = "1" ]; then
+> +                return
+> +        fi
+> +
+> +        if [ "${LIVE}" = "yes" ] && ! grep -q "CONFIG_UNION_FS=y" ${STAGING_KERNEL_DIR}/.config; then
+> +                rm -f ${DEPLOY_DIR_IMAGE}/${IMAGE_LINK_NAME}.iso
+> +                rm -f ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.iso
+> +                bbfatal "Building LIVE CD without UNION FS enabled in kernel"
+> +        fi
+> +}
+> +
+> +addtask check_unionfs before do_build after do_bootimg
 
-    git format-patch -o <your directory> HEAD^ (or however many commits
-you have)
-
-Take those patches, create a layer with a bbappend and add them like
-any other patch to any package. They'll be applied to subsequent builds
-of the kernel.
-
-I'm skipping a lot of detail there, but it is all found in the various
-manuals, and I don't want to repeat it here.
-
-Cheers,
-
-Bruce
-
-> Please help me.
-> Thanks a lot in advance.
->
-> Best Regards,
-> Om Prakash Pal
-> ________________________________________
-> From: Bruce Ashfield [bruce.ashfield@windriver.com]
-> Sent: Wednesday, April 04, 2012 6:17 PM
-> To: Om Prakash PAL
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
->
-> On 12-04-04 04:46 AM, Om Prakash PAL wrote:
->> Hi,
->> I want to build my local kernel/Driver code, not the default one.
->> please help how can i do it ?.
->> any wiki/docs on this?.
->
-> The BSP developer guides show how to extend the yocto kernels, and
-> also have sections on custom/different kernel versions. Have you
-> seen that doc yet ? Or have you seen it, and have specific questions ?
->
-> Bruce
->
->>
->> Best Regards,
->> Om Prakash Pal
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
