@@ -1,24 +1,36 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01828E00596
-	for <yocto@yoctoproject.org>; Mon,  9 Apr 2012 11:07:32 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 09 Apr 2012 11:07:32 -0700
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52A3EE00596
+	for <yocto@yoctoproject.org>; Mon,  9 Apr 2012 11:17:15 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 09 Apr 2012 11:17:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="130378184"
-Received: from unknown (HELO [10.255.12.48]) ([10.255.12.48])
-	by orsmga002.jf.intel.com with ESMTP; 09 Apr 2012 11:07:32 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: kishore.k.bodke@intel.com
-In-Reply-To: <1377383bc9ade93f6bb303ca95fb76ceb396a0f4.1333496206.git.kishore.k.bodke@intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="139562314"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.226.10])
+	by fmsmga001.fm.intel.com with ESMTP; 09 Apr 2012 11:17:14 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx605.amr.corp.intel.com (10.22.226.10) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 9 Apr 2012 11:17:14 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.199]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.214]) with mapi id
+	14.01.0355.002; Mon, 9 Apr 2012 11:17:14 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: "Zanussi, Tom" <tom.zanussi@intel.com>
+Thread-Topic: [PATCH 0/7] [meta-intel] Cedartrail BSP updates with pvr
+	Graphics driver
+Thread-Index: AQHNEfN4ONQeGrnjwk+BBYB7bc1tmpaTQvWA//+Qh0A=
+Date: Mon, 9 Apr 2012 18:17:13 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE2036091FD@ORSMSX105.amr.corp.intel.com>
 References: <cover.1333496206.git.kishore.k.bodke@intel.com>
-	<1377383bc9ade93f6bb303ca95fb76ceb396a0f4.1333496206.git.kishore.k.bodke@intel.com>
-Date: Mon, 09 Apr 2012 13:06:44 -0500
-Message-ID: <1333994804.2335.75.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 7/7] Cedartrail: Update the README.
+	<1333993617.2335.57.camel@elmorro>
+In-Reply-To: <1333993617.2335.57.camel@elmorro>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/7] [meta-intel] Cedartrail BSP updates with pvr Graphics driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,95 +42,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Apr 2012 18:07:33 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 09 Apr 2012 18:17:15 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Tue, 2012-04-03 at 16:43 -0700, kishore.k.bodke@intel.com wrote:
-> From: Kishore Bodke <kishore.k.bodke@intel.com>
-> 
-> Update the README file with instructions to build
-> with pvr graphics driver.
-> 
-> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
-> ---
->  meta-cedartrail/README |   41 +++++++++++++++++++++++++++++++++++++++--
->  1 files changed, 39 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-cedartrail/README b/meta-cedartrail/README
-> index 295e9ff..f482cca 100755
-> --- a/meta-cedartrail/README
-> +++ b/meta-cedartrail/README
-> @@ -52,10 +52,23 @@ common metadata shared between BSPs) e.g.:
->          yocto/meta-intel \  
->  	yocto/meta-intel/meta-cedartrail \
->  
-> -To enable the cedartrail layer, add the cedartrail MACHINE to local.conf:
-> +To enable the cedartrail layer that supports Power VR graphics, 
-> +add the cedartrail MACHINE to local.conf:
->  
->    MACHINE ?= "cedartrail"
->  
-> +
-> +Power VR Graphics user-space driver binaries are covered by a
-> +"Intel Free Distribution Binary License". The build of this driver
-> +can be enabled by adding the following line to the local.conf file:
-> +
-> +LICENSE_FLAGS_WHITELIST += "license_cdv-pvr-driver_1.0"
-> +
-> +To enable the layer that does not support Power VR graphics
-> +add the following to the local.conf file:
-> +
-> + MACHINE ?= "cedartrail-nopvr"
-> +
->  You should then be able to build a cedartrail image as such:
->  
->    $ source oe-init-build-env
-> @@ -85,7 +98,7 @@ Under Linux, insert a USB flash drive.  Assuming the USB flash drive
->  takes device /dev/sdf, use dd to copy the live image to it.  For
->  example:
->  
-> -# dd if=core-image-sato-cedartrail-20120105232035.hddimg of=/dev/sdf
-> +# dd if=core-image-sato-cedartrail-20120403210525.hddimg of=/dev/sdf
->  # sync
->  # eject /dev/sdf
->  
-> @@ -109,3 +122,27 @@ the syslinux boot: prompt, or the boot: prompt contains strange
->  characters), try doing this first:
->  
->  # dd if=/dev/zero of=/dev/sdf bs=1M count=512
-> +
-> +Miscellaneous Notes
-> +====================
-> +
-> +Video and Music Samples
-> +-----------------------
-> +This BSP includes recipes to download Ogg format video and
-> +music files that can be played-back with the Video and music players
-> +included in the sato images.  The sample files are installed in
-> +/home/Music and /home/Videos directories.  
-> +
-> +
-> +Adding Glxgears to image
-> +-------------------------
-> +Glxgears can be added to the generated image by adding "debug-tweaks"
-> +option to the extra image features variable in the default local.conf
-> +before building the BSP.
-
-I think the thing that adds glxgears is tools-testapps and not
-debug-tweaks.  You have tools-testapps below which is probably why it
-works, but you might want to verify that and change the README text if
-so.
-
-Tom
-
-> +
-> +e.g. to add Glxgears, locate the following line in local.conf
-> +EXTRA_IMAGE_FEATURES = "debug-tweaks"
-> +
-> +and change above line to..
-> +
-> +EXTRA_IMAGE_FEATURES = "debug-tweaks tools-testapps"
-
-
+DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IFphbnVzc2ksIFRvbQ0KPlNl
+bnQ6IE1vbmRheSwgQXByaWwgMDksIDIwMTIgMTA6NDcgQU0NCj5UbzogQm9ka2UsIEtpc2hvcmUg
+Sw0KPkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+U3ViamVjdDogUmU6IFtQQVRDSCAwLzdd
+IFttZXRhLWludGVsXSBDZWRhcnRyYWlsIEJTUCB1cGRhdGVzIHdpdGggcHZyDQo+R3JhcGhpY3Mg
+ZHJpdmVyDQo+DQo+DQo+T24gVHVlLCAyMDEyLTA0LTAzIGF0IDE2OjQzIC0wNzAwLCBraXNob3Jl
+LmsuYm9ka2VAaW50ZWwuY29tIHdyb3RlOg0KPj4gRnJvbTogS2lzaG9yZSBCb2RrZSA8a2lzaG9y
+ZS5rLmJvZGtlQGludGVsLmNvbT4NCj4+DQo+PiBUaGVzZSBwYXRjaGVzIGFyZSBmb3IgYWRkaW5n
+IHRoZSBQVlIgZ3JhcGhpY3MgZHJpdmVyLCBFRkkgU3VwcG9ydCwNCj4+IGFuZCB0byBhZGQgQ2Vk
+YXJ0cmFpbCBBdWRpbyBhbmQgVmlkZW8gZmlsZXMgLg0KPj4NCj4+IFRoZXNlIGFsc28gdXBkYXRl
+cyB0aGUgU1JDUkVWUyBmb3IgYnVpbGQgd2l0aCBwdnIgYW5kIG5vLXB2ciB2ZXJzaW9ucy4NCj4+
+DQo+PiBQbGVhc2UgcHVsbCBpbnRvIG1ldGEtaW50ZWwvbWFzdGVyLg0KPj4NCj4NCj5IaSBLaXNo
+b3JlLA0KPg0KPlNvcnJ5IHRoaXMgaGFzIGJlZW4gZGVsYXllZCwganVzdCBnZXR0aW5nIGJhY2sg
+dG8gdGhpbmdzIG5vdyBhZnRlciBiZWluZw0KPm91dCBsYXN0IHdlZWsgZm9yIGNvbmZlcmVuY2Vz
+Lg0KPg0KPkluIGdlbmVyYWwsIHRoYW5rcyBmb3IgYnJlYWtpbmcgdGhpbmdzIHVwIG1vcmUgdGhp
+cyB0aW1lLCBidXQgdGhlcmUgYXJlDQo+c3RpbGwgYSBjb3VwbGUgdGhpbmdzIEkgdGhpbmsgc2hv
+dWxkIGJlIGRvbmUsIHdoaWNoIEknbGwgY29tbWVudCBvbiBpbg0KPnRob3NlIHBhdGNoZXMuDQo+
+DQo+QWxzbywgSSBkb24ndCB0aGluayBpdCBtYWtlcyBzZW5zZSB0byBwdWxsIGluIHRoZSBhdWRp
+byByZWNpcGUgc2luY2UNCj50aGF0IGhhcyBjaGFuZ2VkIGJldHdlZW4gZWRpc29uIGFuZCBtYXN0
+ZXIgLSBJIHRoaW5rIHRoZSB3YXkgdG8gZG8gdGhlDQo+c2FtZSB0aGluZyB5b3UncmUgZG9pbmcg
+dGhlcmUgaXMgdXNpbmcgYXNvdW5kLnN0YXRlIChzZWUNCj5tZXRhLWludGVsL21ldGEtbjQ1MC9y
+ZWNpcGVzLWJzcC9hbHNhLXN0YXRlL2Fsc2Etc3RhdGUvbjQ1MC9hc291bmQuc3RhdGUNCj5hcyBh
+biBleGFtcGxlKS4NCg0KSSB3aWxsIGNoYW5nZSB0aGlzIGF1ZGlvIHJlY2lwZSBhcyBwZXIgdGhl
+IG5ldyBjaGFuZ2VzIGluIHRoZSBtYXN0ZXIuDQoNCj4NCj5BbHNvLCBJJ20gd29uZGVyaW5nIGlm
+IGl0IG1ha2VzIHNlbnNlIHRvIGhhdmUgdGhlIGltYWdlIGJiYXBwZW5kcyByYXRoZXINCj50aGFu
+IGp1c3QgZGlmZmVyZW50bHktbmFtZWQgaW1hZ2UgcmVjaXBlcyAtIG90aGVyd2lzZSwgeW91IGNh
+bid0IGJ1aWxkIGENCj5yZWd1bGFyIHNhdG8gaW1hZ2UgZm9yIGV4YW1wbGUgd2l0aG91dCBhbHNv
+IGluY2x1ZGluZyBhbGwgdGhlIHRlc3QNCj5maWxlcy4NCg0KV2UgcHV0IHRoZXNlIGluIGltYWdl
+IGJiYXBwZW5kcyBiZWNhdXNlIHdlIHdhbnRlZCBhIHJlZ3VsYXIgc2F0byBpbWFnZSBoYXMgDQph
+bGwgdGhlIG5lZWRlZCBmaWxlcyBidWlsdGluIGJ5IGRlZmF1bHQuIA0KDQo+DQo+RmluYWxseSwg
+YXMgYSBuZXcgQlNQIGluIG1hc3RlciwgSSB0aGluayB0aGVyZSBzaG91bGQgYWxzbyBiZSBzdXBw
+b3J0DQo+Zm9yIHRoZSAzLjIga2VybmVsLCBvciBpcyB0aGVyZSBzb21lIHJlYXNvbiB5b3UgY291
+bGRuJ3QgZG8gdGhhdD8NCg0KUHZyIHBhdGNoZXMgaGF2ZSBub3QgeWV0IGdvdCBpbnRvIDMuMiBr
+ZXJuZWwsIGFzIHRoaXMgaGFzIG5vdCBiZWVuIHRlc3RlZCBmb3IgMy4yLg0KU28sIGN1cnJlbnRs
+eSB3ZSBhcmUgc3VwcG9ydGluZyAzLjAga2VybmVsIG9ubHkuIA0KRm9yIHRoZSBjdXJyZW50IHJl
+bGVhc2Ugd2UgYXJlIG9ubHkgdGFyZ2V0aW5nIDMuMCBrZXJuZWwuDQpXaXRoIDMuMiBrZXJuZWwg
+d2UgYXJlIHBsYW5uaW5nIHRvIGFkZCBjb3VwbGUgb2YgbmV3IGZlYXR1cmVzIGFkZGVkLg0KDQpU
+aGFua3MNCktpc2hvcmUuDQoNCj4NCj5UaGFua3MsDQo+DQo+VG9tDQo+DQo+PiBUaGFua3MNCj4+
+IEtpc2hvcmUuDQo+Pg0KPj4gVGhlIGZvbGxvd2luZyBjaGFuZ2VzIHNpbmNlIGNvbW1pdA0KPmY4
+OTQwNWUxMTVkNzM0MjZjOGE2NDUwYjZlNzk1YjU4ODVkNmJkZjM6DQo+Pg0KPj4gICBNQUlOVEFJ
+TkVSUzogQWRkIEZSSTIgbWFpbnRhaW5lciAoMjAxMi0wMy0yMyAwOTo0NjoxNSAtMDcwMCkNCj4+
+DQo+PiBhcmUgYXZhaWxhYmxlIGluIHRoZSBnaXQgcmVwb3NpdG9yeSBhdDoNCj4+ICAgZ2l0Oi8v
+Z2l0LnBva3lsaW51eC5vcmcvbWV0YS1pbnRlbC1jb250cmliIGtpc2hvcmUvY2VkYXJ0cmFpbC1w
+dnItDQo+dXBkYXRlcw0KPj4gICBodHRwOi8vZ2l0LnBva3lsaW51eC5vcmcvY2dpdC5jZ2kvbWV0
+YS1pbnRlbC0NCj5jb250cmliL2xvZy8/aD1raXNob3JlL2NlZGFydHJhaWwtcHZyLXVwZGF0ZXMN
+Cj4+DQo+PiBLaXNob3JlIEJvZGtlICg3KToNCj4+ICAgQ2VkYXJ0cmFpbDogQWRkIFBWUiBncmFw
+aGljcyBzdXBwb3J0Lg0KPj4gICBDZWRhcnRyYWlsOiBVcGRhdGUgU1JDUkVWUyBhbmQgYWRkIEVG
+SSBTdXBwb3J0Lg0KPj4gICBDZWRhcnRyYWlsOiBBZGQgbmV3IHJlY2lwZXMgZm9yIGF1ZGlvIGFu
+ZCB2aWRlbyBzYW1wbGVzLg0KPj4gICBDZWRhcnRyYWlsOiBBZGQgYmJhcHBlbmQgZmlsZXMgdG8g
+aW5zdGFsbCBBdWRpbyBhbmQgVmlkZW8gZmlsZXMuDQo+PiAgIENlZGFydHJhaWw6IFNlcGFydGUg
+b3V0IG1hY2hpbmUuY29uZiBmaWxlcy4NCj4+ICAgQ2VkYXJ0cmFpbDogQWRkIGEgbmV3IHJlY2lw
+ZSBmb3IgQXVkaW8uDQo+PiAgIENlZGFydHJhaWw6IFVwZGF0ZSB0aGUgUkVBRE1FLg0KPj4NCj4+
+ICBjb25mL21hY2hpbmUvaW5jbHVkZS9pYTMyLWJhc2UuaW5jICAgICAgICAgICAgICAgICB8ICAg
+IDIgKw0KPj4gIG1ldGEtY2VkYXJ0cmFpbC9SRUFETUUgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIHwgICA0MSArKysrKysrKy0NCj4+ICBtZXRhLWNlZGFydHJhaWwvY29uZi9tYWNoaW5lL2Nl
+ZGFydHJhaWwtbm9wdnIuY29uZiB8ICAgMjEgKysrKw0KPj4gIG1ldGEtY2VkYXJ0cmFpbC9jb25m
+L21hY2hpbmUvY2VkYXJ0cmFpbC5jb25mICAgICAgIHwgICAxMyArKy0NCj4+ICAuLi4vY2VkYXJ0
+cmFpbC1hdWRpby9jZWRhcnRyYWlsLWF1ZGlvLmJiICAgICAgICAgICB8ICAgMzAgKysrKysrDQo+
+PiAgLi4uL2NlZGFydHJhaWwtYXVkaW8vY2VkYXJ0cmFpbC1hdWRpbyAgICAgICAgICAgICAgfCAg
+IDQyICsrKysrKysrDQo+PiAgLi4uL2Zvcm1mYWN0b3IvY2VkYXJ0cmFpbC1ub3B2ci9tYWNoY29u
+ZmlnICAgICAgICAgfCAgICAzICsNCj4+ICAuLi4vdGFza3MvdGFzay1jb3JlLXRvb2xzLXByb2Zp
+bGUuYmJhcHBlbmQgICAgICAgICB8ICAgIDIgKy0NCj4+ICAuLi4veG9yZy1kcml2ZXIvY2R2LXB2
+ci1kcml2ZXIuaW5jICAgICAgICAgICAgICAgICB8ICAgMzkgKysrKysrKysNCj4+ICAuLi4veG9y
+Zy1kcml2ZXIvY2R2LXB2ci1kcml2ZXJfMS4wLmJiICAgICAgICAgICAgICB8ICAxMDENCj4rKysr
+KysrKysrKysrKysrKysrKw0KPj4gIC4uLi94c2VydmVyLXhmODYtY29uZmlnL2NlZGFydHJhaWwt
+bm9wdnIveG9yZy5jb25mIHwgICAyNiArKysrKw0KPj4gIC4uLi94c2VydmVyLXhmODYtY29uZmln
+L2NlZGFydHJhaWwveG9yZy5jb25mICAgICAgIHwgICAyNCArKy0tLQ0KPj4gIC4uLi9saW51eC9s
+aW51eC15b2N0by1ydF8zLjAuYmJhcHBlbmQgICAgICAgICAgICAgIHwgICAgOCArKw0KPj4gIC4u
+Li9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjAuYmJhcHBlbmQgIHwgICAxNiAr
+KystDQo+PiAgLi4uL29nZy1DQy1CWS0zLjAtbXVzaWMtc2FtcGxlc18wLjEuYmIgICAgICAgICAg
+ICAgfCAgIDIzICsrKysrDQo+PiAgLi4uL3ZpZGVvLXNhbXBsZXMvYmlnYnVja2J1bm55LW9nZy5i
+YiAgICAgICAgICAgICAgfCAgIDI0ICsrKysrDQo+PiAgLi4uL2ltYWdlcy9jb3JlLWltYWdlLXNh
+dG8tZGV2LmJiYXBwZW5kICAgICAgICAgICAgfCAgICAyICsNCj4+ICAuLi4vaW1hZ2VzL2NvcmUt
+aW1hZ2Utc2F0by1zZGsuYmJhcHBlbmQgICAgICAgICAgICB8ICAgIDIgKw0KPj4gIC4uLi9yZWNp
+cGVzLXNhdG8vaW1hZ2VzL2NvcmUtaW1hZ2Utc2F0by5iYmFwcGVuZCAgIHwgICAgMSArDQo+PiAg
+MTkgZmlsZXMgY2hhbmdlZCwgMzk2IGluc2VydGlvbnMoKyksIDI0IGRlbGV0aW9ucygtKQ0KPj4g
+IGNyZWF0ZSBtb2RlIDEwMDY0NCBtZXRhLWNlZGFydHJhaWwvY29uZi9tYWNoaW5lL2NlZGFydHJh
+aWwtbm9wdnIuY29uZg0KPj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBtZXRhLWNlZGFydHJhaWwvcmVj
+aXBlcy1ic3AvY2VkYXJ0cmFpbC0NCj5hdWRpby9jZWRhcnRyYWlsLWF1ZGlvLmJiDQo+PiAgY3Jl
+YXRlIG1vZGUgMTAwNjQ0IG1ldGEtY2VkYXJ0cmFpbC9yZWNpcGVzLWJzcC9jZWRhcnRyYWlsLQ0K
+PmF1ZGlvL2NlZGFydHJhaWwtYXVkaW8vY2VkYXJ0cmFpbC1hdWRpbw0KPj4gIGNyZWF0ZSBtb2Rl
+IDEwMDY0NCBtZXRhLWNlZGFydHJhaWwvcmVjaXBlcy0NCj5ic3AvZm9ybWZhY3Rvci9mb3JtZmFj
+dG9yL2NlZGFydHJhaWwtbm9wdnIvbWFjaGNvbmZpZw0KPj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBt
+ZXRhLWNlZGFydHJhaWwvcmVjaXBlcy1ncmFwaGljcy94b3JnLWRyaXZlci9jZHYtDQo+cHZyLWRy
+aXZlci5pbmMNCj4+ICBjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMt
+Z3JhcGhpY3MveG9yZy1kcml2ZXIvY2R2LQ0KPnB2ci1kcml2ZXJfMS4wLmJiDQo+PiAgY3JlYXRl
+IG1vZGUgMTAwNjQ0IG1ldGEtY2VkYXJ0cmFpbC9yZWNpcGVzLWdyYXBoaWNzL3hvcmctDQo+eHNl
+cnZlci94c2VydmVyLXhmODYtY29uZmlnL2NlZGFydHJhaWwtbm9wdnIveG9yZy5jb25mDQo+PiAg
+Y3JlYXRlIG1vZGUgMTAwNjQ0IG1ldGEtY2VkYXJ0cmFpbC9yZWNpcGVzLW1lZGlhc2FtcGxlcy9t
+dXNpYy0NCj5zYW1wbGVzL29nZy1DQy1CWS0zLjAtbXVzaWMtc2FtcGxlc18wLjEuYmINCj4+ICBj
+cmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMtbWVkaWFzYW1wbGVzL3Zp
+ZGVvLQ0KPnNhbXBsZXMvYmlnYnVja2J1bm55LW9nZy5iYg0KPj4gIGNyZWF0ZSBtb2RlIDEwMDY0
+NCBtZXRhLWNlZGFydHJhaWwvcmVjaXBlcy1zYXRvL2ltYWdlcy9jb3JlLWltYWdlLQ0KPnNhdG8t
+ZGV2LmJiYXBwZW5kDQo+PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IG1ldGEtY2VkYXJ0cmFpbC9yZWNp
+cGVzLXNhdG8vaW1hZ2VzL2NvcmUtaW1hZ2UtDQo+c2F0by1zZGsuYmJhcHBlbmQNCj4+ICBjcmVh
+dGUgbW9kZSAxMDA2NDQgbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMtc2F0by9pbWFnZXMvY29yZS1p
+bWFnZS0NCj5zYXRvLmJiYXBwZW5kDQo+Pg0KPg0KDQo=
 
