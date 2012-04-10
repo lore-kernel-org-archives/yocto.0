@@ -1,38 +1,28 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4831E00596
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 00:00:22 -0700 (PDT)
-Received: by pbbjt11 with SMTP id jt11so7285832pbb.35
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 00:00:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:organization:content-type:x-mailer:mime-version:x-gm-message-state;
-	bh=21fYTzguPkTuEoz++T10AszeLMwwKrI1TKodwzPpOLM=;
-	b=EB/cDhenC1F4VmpCpxDlVQrXu+tzJzq8dT7vTB/lDlb93uhxPpKUQOCe+CKPwnf+t+
-	4I4NHdkNTqys7rBr8aNWzTVpzfJC2yHoxO4n4ukpmOEwqxq6xEotg+vs/pntaGDok9uB
-	nqRhSsff74TStMoIOPwIj3an39xJLjaJzRTDYBCvWgmLJuyFWlaJNT93iy86y9rW8BwX
-	G+HdgBoaNvLBGHRLXJ7CxKh/B/DXD2OiDU1597/Ghtwy2Bu3RsezndomKYuWdpesUeRK
-	lneKZT/09bP95HhrN/MfZ3EMi3i6rPKnP2Vkxn2RZ7oR15MrK8OJk6t/ySW1r5a8SaHt
-	ktlg==
-Received: by 10.68.234.1 with SMTP id ua1mr8988944pbc.114.1334041222325;
-	Tue, 10 Apr 2012 00:00:22 -0700 (PDT)
-Received: from [192.168.10.207] ([59.99.251.45])
-	by mx.google.com with ESMTPS id q1sm17117388pbp.62.2012.04.10.00.00.18
-	(version=SSLv3 cipher=OTHER); Tue, 10 Apr 2012 00:00:21 -0700 (PDT)
-Message-ID: <1334041207.4111.3.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Darren Hart <dvhart@linux.intel.com>
-Date: Tue, 10 Apr 2012 12:30:07 +0530
-In-Reply-To: <4F835F6B.3010608@linux.intel.com>
-References: <4F834792.20402@gmail.com> <4F835F6B.3010608@linux.intel.com>
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1
-Mime-Version: 1.0
-X-Gm-Message-State: ALoCoQmpfP8KMsEwc2EYpFtvu+A+0FgI2a1mAgo12q8S8Zi5kEHrYZi3eXaykwcf2/LwqU2tXJxH
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: build error on core-image-sato-sdk
+Return-Path: <pcjegan@gmail.com>
+Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
+	[209.85.212.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01EDEE00596
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 00:21:16 -0700 (PDT)
+Received: by wibhr17 with SMTP id hr17so2776868wib.5
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 00:21:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=JbKDQvqAQ1Z/9ug1hxs/KXPXqbOV3w5SwgKJwPj3WDM=;
+	b=GeBs92RfkbflKxn/ZNgoL5yukITq+6I72rPKxrG5Y86c9FS+SGCv4iwqNGhD/Ogfjz
+	96FxeDhYgRPSv3ZUGTXAIkUvgE6uUTLpcaFS4YpbqukJl6d8TRVTCBiYIS3n/8hHuHIb
+	/PCvFOQgbiQNj3xEOaFUGJDYrfQ0GcnVicKPU8LXF+WrV7805LHT2lxMe6uSmmAXKaAD
+	5XjIR3kTC8bdkY0X+EZHq/aQ+VxtAxdwWw6FI+j+0kCw2B8mp7LXCnJUdEgu4NwkwHzB
+	HGQvAYQ9ynfhEavq0fFEfrDYsF5RKtNDArf7pt1nBgKLatTAXsw2F46QF6C3EVHm+bCy
+	DU+A==
+Received: by 10.180.102.100 with SMTP id fn4mr4381268wib.1.1334042475678; Tue,
+	10 Apr 2012 00:21:15 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.216.185.195 with HTTP; Tue, 10 Apr 2012 00:20:55 -0700 (PDT)
+From: Jegan Chandru <pcjegan@gmail.com>
+Date: Tue, 10 Apr 2012 12:50:55 +0530
+Message-ID: <CAAA4K6LukcBO8gH+oO8HeUhu4-uyoLPgLiV0t7oLss2CQp=Q8w@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: How to remove a particular package or packages collection for an image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,55 +34,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2012 07:00:22 -0000
-X-Groupsio-MsgNum: 5950
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-Uy1EbYjNK+TJdiC7S0zU"
+X-List-Received-Date: Tue, 10 Apr 2012 07:21:17 -0000
+Content-Type: multipart/alternative; boundary=f46d0444ef4fe0caaa04bd4df7be
 
---=-Uy1EbYjNK+TJdiC7S0zU
-Content-Type: text/plain; charset="UTF-8"
+--f46d0444ef4fe0caaa04bd4df7be
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi,
+
+I am using Yocto milestone release 1.1.1 for my custom root filesystem
+image creation. I just need some help in achieving it successfully.
+I wrote a custom task bb file which defines/includes the packages i need in
+my image. I also wrote a core-image-custom.bb file that includes these
+tasks + other tasks. I also inherited core-image.bbclass in
+core-image-custom.bb.  The file looks something like this,
+
+*IMAGE_INSTALL = "\*
+*    task-base \*
+*    task-core-basic \*
+*    task-core-boot \*
+*    .......*
+*    task-custom \*
+*    "*
+*inherit core-image*
+
+I did  dry-run on core-image-custom and I see mostly all packages from
+yocto included in my image, the packages that I do not need. So, how can I
+remove a particular package or a package collection, say graphics or some X
+packages for my image. Is it possible? or can core-image.bbclass is
+overwritable? Does my approach ok?
+
+Any help in achieving this is much appreciated.
+
+Thanks,
+JC
+
+--f46d0444ef4fe0caaa04bd4df7be
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hello Darren,
+Hi,<div><br></div><div>I am using Yocto milestone release 1.1.1 for my cust=
+om root filesystem image creation. I just need some help in achieving it su=
+ccessfully.=A0</div><div>I wrote a custom task bb file which defines/includ=
+es the packages i need in my image. I also wrote a <a href=3D"http://core-i=
+mage-custom.bb">core-image-custom.bb</a> file that includes these tasks + o=
+ther tasks. I also inherited core-image.bbclass in <a href=3D"http://core-i=
+mage-custom.bb">core-image-custom.bb</a>. =A0The file looks something like =
+this,</div>
 
-On Mon, 2012-04-09 at 15:15 -0700, Darren Hart wrote:
-> > ERROR: Function 'build_boot_bin' failed (see=20
-> > /build/cdv-edison/tmp/work/cedartrail-poky-linux/core-image-sato-sdk-1.=
-0-r0/temp/log.do_bootimg.25810=20
-> > for further information)
-> > ERROR: Logfile of failure stored in:=20
-> > /build/cdv-edison/tmp/work/cedartrail-poky-linux/core-image-sato-sdk-1.=
-0-r0/temp/log.do_bootimg.25810
-> > Log data follows:
-> > | mkdosfs: seek failed
->=20
-> Interesting.
->=20
-> Can you provide the "OE Build Configuration" blob that prints at the
-> start of the build - I'm mostly interested in your commit IDs for.=20
+<div><br></div><div><div><i>IMAGE_INSTALL =3D &quot;\</i></div><div><i>=A0 =
+=A0 task-base \</i></div><div><i>=A0 =A0 task-core-basic \</i></div><div><i=
+>=A0 =A0 task-core-boot \</i></div></div><div><i>=A0 =A0 .......</i></div><=
+div><i>=A0 =A0 task-custom \</i></div>
 
-I am familiar with this error ;) I have mentioned this in the comments
-section of bug #2138.
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D2138#c26
+<div><i>=A0 =A0 &quot;</i></div><div><i>inherit core-image</i></div><div><b=
+r></div><div>I did =A0dry-run on core-image-custom and I see mostly all pac=
+kages from yocto included in my image, the packages that I do not need. So,=
+ how can I remove a particular package or a package collection, say graphic=
+s or some X packages for my image. Is it possible? or can core-image.bbclas=
+s is overwritable? Does my approach ok?</div>
 
-Regards
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
+<div><br></div><div>Any help in=A0achieving=A0this is much appreciated.</di=
+v><div><br></div><div>Thanks,</div><div>JC<br clear=3D"all"><div><br></div>
+</div>
 
---=-Uy1EbYjNK+TJdiC7S0zU
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iEYEABECAAYFAk+D2ncACgkQWw85XwuSFMIIMgCeIec9+vXzz6G8sJn1tHYb0GK1
-KWsAn3/yX+h36iaTqWs7mpVAY3Z8ozsw
-=TdXA
------END PGP SIGNATURE-----
-
---=-Uy1EbYjNK+TJdiC7S0zU--
+--f46d0444ef4fe0caaa04bd4df7be--
