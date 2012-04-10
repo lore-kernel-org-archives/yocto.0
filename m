@@ -1,27 +1,30 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96AC5E0030B
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 10:11:22 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 08BAFF8120E; Tue, 10 Apr 2012 11:11:21 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 5BDB5F811FE;
-	Tue, 10 Apr 2012 11:11:21 -0600 (MDT)
-Message-ID: <4F8469B9.7020408@mlbassoc.com>
-Date: Tue, 10 Apr 2012 11:11:21 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95E4BE0030B
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 10:21:54 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q3AHLpGY026349
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 10 Apr 2012 10:21:52 -0700 (PDT)
+Received: from msp-dhcp19.wrs.com (172.25.34.19) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Tue, 10 Apr 2012 10:21:51 -0700
+Message-ID: <4F846C2E.8040304@windriver.com>
+Date: Tue, 10 Apr 2012 12:21:50 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
+	rv:11.0) Gecko/20120327 Thunderbird/11.0.1
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <F0BD60FF-D2C0-401B-A3D3-61742D20D91A@keylevel.com>
-In-Reply-To: <F0BD60FF-D2C0-401B-A3D3-61742D20D91A@keylevel.com>
-Subject: Re: Help debugging CF support under 3.0.18
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A46AE31E3@ORSMSX101.amr.corp.intel.com>
+	<F9AC6E797E022941A4CD80AAEDFAD67D43756F@PGSMSX103.gar.corp.intel.com>
+	<7E680CB2A76BB8438D08CF13C09FC53A46AF10FD@ORSMSX101.amr.corp.intel.com>
+	<2083054.YjdMd9bIMH@helios>
+In-Reply-To: <2083054.YjdMd9bIMH@helios>
+Cc: yocto@yoctoproject.org, "Khor, Boon
+ Pin" <boon.pin.khor@intel.com>
+Subject: Re: Yocto Project 1.2 Beta testing instructions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,30 +36,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2012 17:11:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Tue, 10 Apr 2012 17:21:54 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2012-04-10 11:03, Chris Tapp wrote:
-> I've been trying to get a BSP running under 6.0.1 using kernel 3.0.18 for an ALIX 3D3 board. I've done this before under 4.0.1 using 2.6.34.
+On 4/10/12 4:18 AM, Paul Eggleton wrote:
+> On Wednesday 04 April 2012 18:08:58 Liu, Song wrote:
+>> Can someone help answer the following question? This happens during Boon
+>> Pin's beta testing using the build at:
+>> http://git.yoctoproject.org/cgit/cgit.cgi/poky/snapshot/poky-8e9f6fc77ac476
+>> 3f4ed1f6e7b720420c220ba6e2.tar.bz2 .
+>> ...
+>> | Processing task-core-boot...
+>> | Manifest:
+>> | /home/nemo/yp-beta-build/tmp/work/qemux86-poky-linux/core-image-minimal-1
+>> | .0-r0/rootfs/install/install.manifest local: 1: -Uhv: bad variable name
+>>
+>> NOTE: package core-image-minimal-1.0-r0: task do_rootfs: Failed
+>> ERROR: Task 8
+>> (/home/nemo/yp-beta/meta/recipes-core/images/core-image-minimal.bb,
+>> do_rootfs) failed with exit code '1' NOTE: Tasks Summary: Attempted 1329
+>> tasks of which 287 didn't need to be rerun and 1 failed.
 >
-> It's nearly working, but I can't get partitions on the CF card (which works under 2.6.34) to show.
+> Sorry for the late reply, presumably this issue is still present?
 >
-> - The controller (CS5536) is showing as loaded in dmesg.
-> - hda is reported as using UDMA/33, but hda1 is not mentioned.
-> - /proc/partions does not show hda1.
-> - cat'ing /proc/ide/ide0/hda/model reports 'CF 1GB', which is what the CF is.
-> - The following kernel options are on : CONFIG_PCI, CONFIG_PCI_QUIRKS, CONFIG_BLK_IDEPCI, CONFIG_IDEPCI_PCIBUS_ORDER, CONFIG_BLK_DEV_IDEDMA.
+>> Maybe I am missing rpm packages in ubuntu ?
 >
-> I suspect I've turned 'something' off in the kernel configuration that I need, but it's not obvious (to me) what it could be. What's the best way of tracking this down? I'll start again using a base .config file, but it takes a long time to rebuild the kernel (I need a faster machine!) and it'll take a while to work out what I've touched in error.
+> You don't need to install rpm on the host system, we build rpm-native for
+> that.
 >
-> On a related note, I use SRCREV_machine_pn-linux-yocto_mybsp ?= "d7e81e7f975c57c581ce13446adf023f95d9fd9f" in my kernel bbappend (base 3.0.18 kernel). If I do a 'cleanall' and then build I have to wait for the kernel to be downloaded, even though I have a DL_DIR specified. Is it possible to stop this happening? If not, is there a better way to rebuild the kernel and get a new image in deploy/install?
+> Mark, any clues what could be going wrong here?
 
-Do you have CONFIG_HOTPLUG=y?
+I've never seen any problem like this before.  Below is some analysis and a 
+question at the very end...
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+There are only two places in the system where the string -Uhv exists:
+
+package_rpm.bbclass:
+
+         rpm_common_comand --replacepkgs \
+             -Uhv ${target_rootfs}/install/total_solution.manifest
+
+(rpm_common_comand is a shell function it appears... the arguments to the 
+function are passed, via $@ to an RPM command)
+
+rootfs_rpm.bbclass:
+
+rootfs_install_packages() {
+     # The pkg to be installed here is not controlled by the
+     # package_install_internal_rpm, so it may have already been
+     # installed(e.g, installed in the first time when generate the
+     # rootfs), use '--replacepkgs' to always install them
+         for pkg in $@; do
+                 ${RPM} --root ${IMAGE_ROOTFS} -D "_dbpath ${rpmlibdir}" \
+                         -D "__dbi_txn create nofsync private" \
+                         --noscripts --notriggers --noparentdirs --nolinktos \
+                         --replacepkgs -Uhv $pkg || true
+         done
+}
+
+I would guess from the error that it's the one in package_rpm.bbclass that 
+failed.. if that is the case, then all I can think of is what shell?  Are we 
+using a bash-ism?  Does "dash" on ubuntu have shell functions enabled in it, if 
+not that might be the problem.
+
+Please check your system's /bin/sh.. is it a symlink, if so, what does it point 
+to?  If it points to "dash", change it to "bash" and see if the error still occurs.
+
+--Mark
 
