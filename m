@@ -1,35 +1,33 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D224E00596
-	for <yocto@yoctoproject.org>; Mon,  9 Apr 2012 15:54:30 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 09 Apr 2012 15:54:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="87103828"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by AZSMGA002.ch.intel.com with ESMTP; 09 Apr 2012 15:54:29 -0700
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 9 Apr 2012 15:54:29 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.199]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.128]) with mapi id
-	14.01.0355.002; Mon, 9 Apr 2012 15:54:28 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: Mark Hatle <mark.hatle@windriver.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] 1.2_M2 build fails for syslinux_4.03.bb for Romley BSP
-Thread-Index: AQHNFqH8z7akC5KtL0aaLB8UuYrO0paTGeag
-Date: Mon, 9 Apr 2012 22:54:27 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE2036093C3@ORSMSX105.amr.corp.intel.com>
-References: <D956029D25CF204F948EA0FB515E1EE20360939E@ORSMSX105.amr.corp.intel.com>
-	<4F836594.8030304@windriver.com>
-In-Reply-To: <4F836594.8030304@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-vx0-f176.google.com (mail-vx0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A21CE00596
+	for <yocto@yoctoproject.org>; Mon,  9 Apr 2012 17:01:11 -0700 (PDT)
+Received: by vcbfl17 with SMTP id fl17so3312137vcb.35
+	for <yocto@yoctoproject.org>; Mon, 09 Apr 2012 17:01:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=0nHrgpU5Lqz2LtJTlOSUcV2/4vK9yFltLyIVYFCmkYA=;
+	b=nKnh1szupCkvlZ1X+K6CGOgVIXoNzMchrVjwc+KAsszhTAmnQ1k1Jy88ySTuzeGzRP
+	2xLhudbLVdJwuzANfVustyDCAWFU8nUs5txGl1X0d6iR4+8FPeeOXqA7Y9cXNYdGX9Tq
+	6/aD4mkhc1w3bYgG4faIb+tTLp+ktUbmxRYC78xSXjZeVTNm0qzjXWqCJyp3FK6i1I40
+	NgSfAT26+DJIi1eetxQzBHfFB2id3tjxrvk4ls8isvOVhDZsmf6v31T3DNE2TPq+t9CS
+	OPcdeZoP+Vz79CzaMmaxq/AGj0Ns/a9g4JU6tA6yY6OI757orCGJxz7/DNGQRVCXIdW/
+	HUNQ==
 MIME-Version: 1.0
-Subject: Re: 1.2_M2 build fails for syslinux_4.03.bb for Romley BSP
+Received: by 10.52.38.167 with SMTP id h7mr3729555vdk.109.1334016070469; Mon,
+	09 Apr 2012 17:01:10 -0700 (PDT)
+Received: by 10.52.20.1 with HTTP; Mon, 9 Apr 2012 17:01:10 -0700 (PDT)
+In-Reply-To: <4F835F6B.3010608@linux.intel.com>
+References: <4F834792.20402@gmail.com>
+	<4F835F6B.3010608@linux.intel.com>
+Date: Mon, 9 Apr 2012 20:01:10 -0400
+Message-ID: <CANFv2EmmbiTpFA2pS2iLXyxR9+0eCB0vJzvZAW2jxR9Scn6x6A@mail.gmail.com>
+From: James Abernathy <jfabernathy@gmail.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: build error on core-image-sato-sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,313 +39,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Apr 2012 22:54:30 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 10 Apr 2012 00:01:11 -0000
+Content-Type: multipart/alternative; boundary=bcaec51d21a401470304bd47d2dd
+
+--bcaec51d21a401470304bd47d2dd
+Content-Type: text/plain; charset=ISO-8859-1
+
+On Mon, Apr 9, 2012 at 6:15 PM, Darren Hart <dvhart@linux.intel.com> wrote:
+
+>
+>
+> On 04/09/2012 01:33 PM, jfabernathy wrote:
+> > at the end of the build of core-image-sato-sdk I got the following
+> > error.  I'm using the edison branch with the latest changes and also
+> > building the meta-cedartrail.  I had previously built core-image-sato
+> > successfully with this setup.
+> >
+> > Any ideas?
+> >
+> > ERROR: Function 'build_boot_bin' failed (see
+> >
+> /build/cdv-edison/tmp/work/cedartrail-poky-linux/core-image-sato-sdk-1.0-r0/temp/log.do_bootimg.25810
+> > for further information)
+> > ERROR: Logfile of failure stored in:
+> >
+> /build/cdv-edison/tmp/work/cedartrail-poky-linux/core-image-sato-sdk-1.0-r0/temp/log.do_bootimg.25810
+> > Log data follows:
+> > | mkdosfs: seek failed
+>
+> Interesting.
+>
+> Can you provide the "OE Build Configuration" blob that prints at the
+> start of the build - I'm mostly interested in your commit IDs for.
+>
+> Also, please include the HEAD of your poky edison tree.
+>
+> Is there a way to retreive the OE-Build Configuration blob after it rolls
+off the screen? Or should I just rerun and capture it then?
+
+
+> Thanks,
+>
+> --
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Linux Kernel
+>
+
+--bcaec51d21a401470304bd47d2dd
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
+<br><br>
+<div class=3D"gmail_quote">On Mon, Apr 9, 2012 at 6:15 PM, Darren Hart <spa=
+n dir=3D"ltr">&lt;<a href=3D"mailto:dvhart@linux.intel.com">dvhart@linux.in=
+tel.com</a>&gt;</span> wrote:<br>
+<blockquote style=3D"BORDER-LEFT:#ccc 1px solid;MARGIN:0px 0px 0px 0.8ex;PA=
+DDING-LEFT:1ex" class=3D"gmail_quote">
+<div class=3D"im"><br><br>On 04/09/2012 01:33 PM, jfabernathy wrote:<br>&gt=
+; at the end of the build of core-image-sato-sdk I got the following<br>&gt=
+; error. =A0I&#39;m using the edison branch with the latest changes and als=
+o<br>
+&gt; building the meta-cedartrail. =A0I had previously built core-image-sat=
+o<br>&gt; successfully with this setup.<br>&gt;<br>&gt; Any ideas?<br>&gt;<=
+br>&gt; ERROR: Function &#39;build_boot_bin&#39; failed (see<br>&gt; /build=
+/cdv-edison/tmp/work/cedartrail-poky-linux/core-image-sato-sdk-1.0-r0/temp/=
+log.do_bootimg.25810<br>
+&gt; for further information)<br>&gt; ERROR: Logfile of failure stored in:<=
+br>&gt; /build/cdv-edison/tmp/work/cedartrail-poky-linux/core-image-sato-sd=
+k-1.0-r0/temp/log.do_bootimg.25810<br>&gt; Log data follows:<br>&gt; | mkdo=
+sfs: seek failed<br>
+<br></div>Interesting.<br><br>Can you provide the &quot;OE Build Configurat=
+ion&quot; blob that prints at the<br>start of the build - I&#39;m mostly in=
+terested in your commit IDs for.<br><br>Also, please include the HEAD of yo=
+ur poky edison tree.<br>
+<br></blockquote>
+<div>Is there a way to retreive the OE-Build Configuration blob after it ro=
+lls off the screen? Or should I just rerun and capture it then?</div>
+<div>=A0</div>
+<blockquote style=3D"BORDER-LEFT:#ccc 1px solid;MARGIN:0px 0px 0px 0.8ex;PA=
+DDING-LEFT:1ex" class=3D"gmail_quote">Thanks,<br><span class=3D"HOEnZb"><fo=
+nt color=3D"#888888"><br>--<br>Darren Hart<br>Intel Open Source Technology =
+Center<br>
+Yocto Project - Linux Kernel<br></font></span></blockquote></div><br>
 
-
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Mark Hatle
->Sent: Monday, April 09, 2012 3:41 PM
->To: yocto@yoctoproject.org
->Subject: Re: [yocto] 1.2_M2 build fails for syslinux_4.03.bb for Romley
->BSP
->
->On 4/9/12 5:36 PM, Bodke, Kishore K wrote:
->> Hi ,
->>
->> Poky and meta-intel for 1.2_M2 build is failing for syslinux_4.03
->recipe.
->>
->> Did anyone saw this for other BSPs?
->>
->> ERROR: Function 'do_compile' failed (see
->> /home/tmelab/yocto/poky/poky-1.2_M2.final/build/tmp/work/x86_64-
->linux/syslinux-native-4.03-r3/temp/log.do_compile.53231
->> for further information)
->>
->> ERROR: Logfile of failure stored in:
->> /home/tmelab/yocto/poky/poky-1.2_M2.final/build/tmp/work/x86_64-
->linux/syslinux-native-4.03-r3/temp/log.do_compile.53231
->>
->> Log data follows:
->>
->> | ERROR: Function 'do_compile' failed (see
->> /home/tmelab/yocto/poky/poky-1.2_M2.final/build/tmp/work/x86_64-
->linux/syslinux-native-4.03-r3/temp/log.do_compile.53231
->> for further information)
->>
->> | NOTE: make -j 8
->> BINDIR=3D/home/tmelab/yocto/poky/poky-
->1.2_M2.final/build/tmp/sysroots/x86_64-linux/usr/bin
->> SBINDIR=3D/home/tmelab/yocto/poky/poky-
->1.2_M2.final/build/tmp/sysroots/x86_64-linux/usr/sbin
->> LIBDIR=3D/home/tmelab/yocto/poky/poky-
->1.2_M2.final/build/tmp/sysroots/x86_64-linux/usr/lib
->> DATADIR=3D/home/tmelab/yocto/poky/poky-
->1.2_M2.final/build/tmp/sysroots/x86_64-linux/usr/share
->> MANDIR=3D/home/tmelab/yocto/poky/poky-
->1.2_M2.final/build/tmp/sysroots/x86_64-linux/usr/share/man
->> INCDIR=3D/home/tmelab/yocto/poky/poky-
->1.2_M2.final/build/tmp/sysroots/x86_64-linux/usr/include
->> CC=3Dccache gcc installer
->>
->> | make -r installer-local
->>
->> | make[1]: Entering directory
->> `/home/tmelab/yocto/poky/poky-1.2_M2.final/build/tmp/work/x86_64-
->linux/syslinux-native-4.03-r3/syslinux-4.03'
->>
->> | make[1]: Nothing to be done for `installer-local'.
->>
->> | make[1]: Leaving directory
->> `/home/tmelab/yocto/poky/poky-1.2_M2.final/build/tmp/work/x86_64-
->linux/syslinux-native-4.03-r3/syslinux-4.03'
->>
->> | set -e ; for i in libinstaller mtools linux extlinux utils; do make
->-r -C $i
->> all ; done
->>
->> | make[1]: Entering directory
->> `/home/tmelab/yocto/poky/poky-1.2_M2.final/build/tmp/work/x86_64-
->linux/syslinux-native-4.03-r3/syslinux-4.03/libinstaller'
->>
->> | make[1]: Nothing to be done for `all'.
->>
->> | make[1]: Leaving directory
->> `/home/tmelab/yocto/poky/poky-1.2_M2.final/build/tmp/work/x86_64-
->linux/syslinux-native-4.03-r3/syslinux-4.03/libinstaller'
->>
->> | make[1]: Entering directory
->> `/home/tmelab/yocto/poky/poky-1.2_M2.final/build/tmp/work/x86_64-
->linux/syslinux-native-4.03-r3/syslinux-4.03/mtools'
->>
->> | make[1]: Nothing to be done for `all'.
->>
->> | make[1]: Leaving directory
->> `/home/tmelab/yocto/poky/poky-1.2_M2.final/build/tmp/work/x86_64-
->linux/syslinux-native-4.03-r3/syslinux-4.03/mtools'
->>
->> | make[1]: Entering directory
->> `/home/tmelab/yocto/poky/poky-1.2_M2.final/build/tmp/work/x86_64-
->linux/syslinux-native-4.03-r3/syslinux-4.03/linux'
->>
->> | ccache gcc -Wp,-MT,syslinux.o,-MMD,./.syslinux.o.d -W -Wall
->> -Wstrict-prototypes -D_FILE_OFFSET_BITS=3D64 -g -O0 -Dalloca=3Dmalloc -I=
-.
->-I..
->> -I../libinstaller -c -o syslinux.o syslinux.c
->>
->> | ccache gcc -Wp,-MT,syslxcom.o,-MMD,./.syslxcom.o.d -W -Wall
->> -Wstrict-prototypes -D_FILE_OFFSET_BITS=3D64 -g -O0 -Dalloca=3Dmalloc -I=
-.
->-I..
->> -I../libinstaller -c -o syslxcom.o ../libinstaller/syslxcom.c
->>
->> | In file included from ../libinstaller/linuxioctl.h:22:0,
->>
->> | from ../libinstaller/syslxcom.c:33:
->>
->> | /usr/include/linux/ext2_fs.h:178:41: error: unknown type name
->'umode_t'
->
->This looks like a bug in the libinstaller component of syslinux.  It is
->relying
->on the include files from the host system's kernel to gain access to
->kernel
->specific headers.
->
->Instead this thing should be cleaned of references to
->/usr/include/linux, and
->local versions (that are known to be correct) should be provided.
->
->Please be sure to file a bug in the bugzilla.yoctoproject.org system --
->or if
->you can't do that for some reason, let me know and I'll file it.
->
-
-Filed a bug.  BUG:2269.
-
-Thanks
-Kishore.
-
->--Mark
->
->> | make[1]: *** [syslxcom.o] Error 1
->>
->> | make[1]: *** Waiting for unfinished jobs....
->>
->> | In file included from ../libinstaller/linuxioctl.h:22:0,
->>
->> | from syslinux.c:50:
->>
->> | /usr/include/linux/ext2_fs.h:178:41: error: unknown type name
->'umode_t'
->>
->> | make[1]: *** [syslinux.o] Error 1
->>
->> | make[1]: Leaving directory
->> `/home/tmelab/yocto/poky/poky-1.2_M2.final/build/tmp/work/x86_64-
->linux/syslinux-native-4.03-r3/syslinux-4.03/linux'
->>
->> | make: *** [installer] Error 2
->>
->> | ERROR: oe_runmake failed
->>
->> NOTE: package syslinux-native-4.03-r3: task do_compile: Failed
->>
->> NOTE: package mtools-native-4.0.17-r0: task do_install: Started
->>
->> NOTE: package
->> linux-libc-headers-yocto-2.6.37+git-
->1+69cfbdf9f1ff461a75e5b77d6d7ba35e97db4cc3_1+69cfbdf9f1ff461a75e5b77d6d7
->ba35e97db4cc3-r4:
->> task do_validate_branches: Started
->>
->> NOTE: package
->> linux-libc-headers-yocto-2.6.37+git-
->1+69cfbdf9f1ff461a75e5b77d6d7ba35e97db4cc3_1+69cfbdf9f1ff461a75e5b77d6d7
->ba35e97db4cc3-r4:
->> task do_validate_branches: Succeeded
->>
->> NOTE: package gcc-cross-initial-4.6.2+svnr181430-r20: task
->do_populate_sysroot:
->> Started
->>
->> NOTE: Running task 2732 of 4771 (ID: 1998,
->> /home/tmelab/yocto/poky/poky-1.2_M2.final/meta/recipes-kernel/linux-
->libc-headers/linux-libc-headers-yocto_git.bb,
->> do_patch)
->>
->> NOTE: Running task 2733 of 4771 (ID: 4286,
->> /home/tmelab/yocto/poky/poky-1.2_M2.final/meta/recipes-
->devtools/gcc/gcc-cross-initial_4.6.bb,
->> do_package_write_rpm)
->>
->> ERROR: Task 152
->> (virtual:native:/home/tmelab/yocto/poky/poky-
->1.2_M2.final/meta/recipes-devtools/syslinux/syslinux_4.03.bb,
->> do_compile) failed with exit code '1'
->>
->> Waiting for 2 active tasks to finish:
->>
->> 0: mtools-native-4.0.17-r0 do_install (pid 53232)
->>
->> 1: gcc-cross-initial-4.6.2+svnr181430-r20 do_populate_sysroot (pid
->52951)
->>
->> Waiting for 3 active tasks to finish:
->>
->> 0: mtools-native-4.0.17-r0 do_install (pid 53232)
->>
->> 1:
->> linux-libc-headers-yocto-2.6.37+git-
->1+69cfbdf9f1ff461a75e5b77d6d7ba35e97db4cc3_1+69cfbdf9f1ff461a75e5b77d6d7
->ba35e97db4cc3-r4
->> do_patch (pid 53317)
->>
->> 2: gcc-cross-initial-4.6.2+svnr181430-r20 do_populate_sysroot (pid
->52951)
->>
->> NOTE: package
->> linux-libc-headers-yocto-2.6.37+git-
->1+69cfbdf9f1ff461a75e5b77d6d7ba35e97db4cc3_1+69cfbdf9f1ff461a75e5b77d6d7
->ba35e97db4cc3-r4:
->> task do_patch: Started
->>
->> Waiting for 2 active tasks to finish:
->>
->> 0: mtools-native-4.0.17-r0 do_install (pid 53232)
->>
->> 1: gcc-cross-initial-4.6.2+svnr181430-r20 do_populate_sysroot (pid
->52951)
->>
->> NOTE: package
->> linux-libc-headers-yocto-2.6.37+git-
->1+69cfbdf9f1ff461a75e5b77d6d7ba35e97db4cc3_1+69cfbdf9f1ff461a75e5b77d6d7
->ba35e97db4cc3-r4:
->> task do_patch: Succeeded
->>
->> Waiting for 1 active tasks to finish:
->>
->> 0: gcc-cross-initial-4.6.2+svnr181430-r20 do_populate_sysroot (pid
->52951)
->>
->> NOTE: package mtools-native-4.0.17-r0: task do_install: Succeeded
->>
->> Waiting for 2 active tasks to finish:
->>
->> 0: cdrtools-native-2.01-r2 do_populate_sysroot (pid 53310)
->>
->> 1: gcc-cross-initial-4.6.2+svnr181430-r20 do_populate_sysroot (pid
->52951)
->>
->> NOTE: package cdrtools-native-2.01-r2: task do_populate_sysroot:
->Started
->>
->> Waiting for 3 active tasks to finish:
->>
->> 0: gcc-cross-initial-4.6.2+svnr181430-r20 do_package_write_rpm (pid
->53320)
->>
->> 1: cdrtools-native-2.01-r2 do_populate_sysroot (pid 53310)
->>
->> 2: gcc-cross-initial-4.6.2+svnr181430-r20 do_populate_sysroot (pid
->52951)
->>
->> NOTE: package gcc-cross-initial-4.6.2+svnr181430-r20: task
->do_package_write_rpm:
->> Started
->>
->> Waiting for 2 active tasks to finish:
->>
->> 0: cdrtools-native-2.01-r2 do_populate_sysroot (pid 53310)
->>
->> 1: gcc-cross-initial-4.6.2+svnr181430-r20 do_populate_sysroot (pid
->52951)
->>
->> NOTE: package gcc-cross-initial-4.6.2+svnr181430-r20: task
->do_package_write_rpm:
->> Succeeded
->>
->> Waiting for 1 active tasks to finish:
->>
->> 0: gcc-cross-initial-4.6.2+svnr181430-r20 do_populate_sysroot (pid
->52951)
->>
->> NOTE: package cdrtools-native-2.01-r2: task do_populate_sysroot:
->Succeeded
->>
->> NOTE: package gcc-cross-initial-4.6.2+svnr181430-r20: task
->do_populate_sysroot:
->> Succeeded
->>
->> ERROR:
->> 'virtual:native:/home/tmelab/yocto/poky/poky-
->1.2_M2.final/meta/recipes-devtools/syslinux/syslinux_4.03.bb'
->> failed
->>
->> Summary: There were 2 WARNING messages shown.
->>
->> Summary: There were 2 ERROR messages shown, returning a non-zero exit
->code.
->>
->> Thanks
->>
->> Kishore.
->>
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
-
+--bcaec51d21a401470304bd47d2dd--
