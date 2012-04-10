@@ -1,30 +1,27 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED6FFE00596
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 12:23:05 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 5141DF81232; Tue, 10 Apr 2012 13:23:04 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 001A5F81232;
-	Tue, 10 Apr 2012 13:23:03 -0600 (MDT)
-Message-ID: <4F848897.6030102@mlbassoc.com>
-Date: Tue, 10 Apr 2012 13:23:03 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
+Return-Path: <Yang.Shi@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4439FE0044D
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 13:04:07 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q3AK46BH012964
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 10 Apr 2012 13:04:06 -0700 (PDT)
+Received: from [147.11.152.89] (147.11.152.89) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Tue, 10 Apr 2012 13:04:06 -0700
+Message-ID: <4F849235.900@windriver.com>
+Date: Tue, 10 Apr 2012 13:04:05 -0700
+From: Yang Shi <yang.shi@windriver.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
 MIME-Version: 1.0
-To: Chris Tapp <opensource@keylevel.com>
-References: <F0BD60FF-D2C0-401B-A3D3-61742D20D91A@keylevel.com>
-	<4F8469B9.7020408@mlbassoc.com>
-	<43CD100C-560F-49EF-BCD7-8687A44010F9@keylevel.com>
-In-Reply-To: <43CD100C-560F-49EF-BCD7-8687A44010F9@keylevel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Help debugging CF support under 3.0.18
+To: Saul Wold <sgw@linux.intel.com>
+References: <1334009754-3012-1-git-send-email-yang.shi@windriver.com>
+	<1334009754-3012-3-git-send-email-yang.shi@windriver.com>
+	<4F8484A4.30703@linux.intel.com>
+In-Reply-To: <4F8484A4.30703@linux.intel.com>
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
+Subject: Re: [PATCH 2/2] sato: Throw warning when building ISO image without unionfs enabled
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,40 +33,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2012 19:23:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Tue, 10 Apr 2012 20:04:07 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2012-04-10 13:19, Chris Tapp wrote:
-> On 10 Apr 2012, at 18:11, Gary Thomas wrote:
->
->> On 2012-04-10 11:03, Chris Tapp wrote:
->>> I've been trying to get a BSP running under 6.0.1 using kernel 3.0.18 for an ALIX 3D3 board. I've done this before under 4.0.1 using 2.6.34.
->>>
->>> It's nearly working, but I can't get partitions on the CF card (which works under 2.6.34) to show.
->>>
->>> - The controller (CS5536) is showing as loaded in dmesg.
->>> - hda is reported as using UDMA/33, but hda1 is not mentioned.
->>> - /proc/partions does not show hda1.
->>> - cat'ing /proc/ide/ide0/hda/model reports 'CF 1GB', which is what the CF is.
->>> - The following kernel options are on : CONFIG_PCI, CONFIG_PCI_QUIRKS, CONFIG_BLK_IDEPCI, CONFIG_IDEPCI_PCIBUS_ORDER, CONFIG_BLK_DEV_IDEDMA.
->>>
->>> I suspect I've turned 'something' off in the kernel configuration that I need, but it's not obvious (to me) what it could be. What's the best way of tracking this down? I'll start again using a base .config file, but it takes a long time to rebuild the kernel (I need a faster machine!) and it'll take a while to work out what I've touched in error.
->>>
->>> On a related note, I use SRCREV_machine_pn-linux-yocto_mybsp ?= "d7e81e7f975c57c581ce13446adf023f95d9fd9f" in my kernel bbappend (base 3.0.18 kernel). If I do a 'cleanall' and then build I have to wait for the kernel to be downloaded, even though I have a DL_DIR specified. Is it possible to stop this happening? If not, is there a better way to rebuild the kernel and get a new image in deploy/install?
+On 4/10/2012 12:06 PM, Saul Wold wrote:
+> On 04/09/2012 03:15 PM, Yang Shi wrote:
+>> [YOCTO #1487]
 >>
->> Do you have CONFIG_HOTPLUG=y?
->
-> Yes, that's set. However, CONFIG_HOTPLUG_PCI isn't.
->
-> Do I need hotplug? The CF card is the boot media (currently booting from USB while getting this fixed) and is present when the system starts.
+>> For the liveCD image, interactive bootup is needed, but psplash 
+>> prevents from
+>> booting interactively. In such case ISO image is not usable, so throw 
+>> warning
+>> info when building ISO image without unionfs enabled in kernel.
+>>
+>> Signed-off-by: Yang Shi<yang.shi@windriver.com>
+>> ---
+>>   meta/recipes-sato/images/core-image-sato.bb |   14 ++++++++++++++
+>>   1 files changed, 14 insertions(+), 0 deletions(-)
+>>
+>> diff --git a/meta/recipes-sato/images/core-image-sato.bb 
+>> b/meta/recipes-sato/images/core-image-sato.bb
+>> index 11c3318..871b227 100644
+>> --- a/meta/recipes-sato/images/core-image-sato.bb
+>> +++ b/meta/recipes-sato/images/core-image-sato.bb
+>> @@ -9,3 +9,17 @@ IMAGE_FEATURES += "apps-console-core 
+>> ${SATO_IMAGE_FEATURES}"
+>>   LICENSE = "MIT"
+>>
+>>   inherit core-image
+>> +
+>> +LIVE = "${@base_contains('IMAGE_FSTYPES', 'live', 'yes', 'no', d)}"
+>> +
+>> +do_check_unionfs() {
+>> +        if [ "${NOISO}" = "1" ]; then
+>> +                return
+>> +        fi
+>> +
+>> +        if [ "${LIVE}" = "yes" ]&&  ! grep -q "CONFIG_UNION_FS=y" 
+>> ${STAGING_KERNEL_DIR}/.config; then
+> I think you are missing a "]" at the end of this "if [" test.
 
-I think so, yes, that's [part of] the machinery the kernel uses to find
-and create devices, etc.
+It is 'if [ "${LIVE}" = "yes" ]'.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+>> +                bbwarn "Building LIVE CD without UNION FS enabled in 
+>> kernel"
+>> +        fi
+>> +}
+>> +
+>> +addtask check_unionfs before do_build after do_bootimg
+>
+> This change is causing a new failure:
+
+Yes, I mentioned this in my mail, the workaround is to add IMAGE_FSTYPE 
++= "live" in conf/local.conf
+
+Bruce pointed out this is a known problem in poky.
+
+Thanks,
+Yang
+
+>
+> Traceback (most recent call last):
+>   File 
+> "/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/server/process.py", 
+> line 122, in ProcessServer.idle_commands(delay=0.1):
+>                  try:
+> >                retval = function(self, data, False)
+>                      if retval is False:
+>   File 
+> "/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/cooker.py", 
+> line 1134, in buildTargetsIdle(server=<ProcessServer(ProcessServer-1, 
+> started)>, rq=<bb.runqueue.RunQueue instance at 0xb6891b8>, abort=False):
+>                  try:
+> >                retval = rq.execute_runqueue()
+>                  except runqueue.TaskFailure as exc:
+>   File 
+> "/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/runqueue.py", 
+> line 948, in RunQueue.execute_runqueue():
+>                  self.rqexe = RunQueueExecuteDummy(self)
+> >            if self.rqdata.prepare() == 0:
+>                      self.state = runQueueComplete
+>   File 
+> "/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/runqueue.py", 
+> line 719, in RunQueueData.prepare():
+>
+> procdep.append(self.taskData.fn_index[self.runq_fnid[dep]] + "." + 
+> self.runq_task[dep])
+> >                    self.runq_hash[task] = 
+> bb.parse.siggen.get_taskhash(self.taskData.fn_index[self.runq_fnid[task]], 
+> self.runq_task[task], procdep, self.dataCache)
+>
+>   File 
+> "/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/siggen.py", 
+> line 153, in 
+> SignatureGeneratorOEBasicHash.get_taskhash(fn='/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/meta/recipes-sato/images/core-image-sato.bb', 
+> task='do_bootimg', deps=[], dataCache=<bb.cache.CacheData object at 
+> 0x2ede190>):
+>              k = fn + "." + task
+> >        data = dataCache.basetaskhash[k]
+>              self.runtaskdeps[k] = []
+> KeyError: 
+> '/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/meta/recipes-sato/images/core-image-sato.bb.do_bootimg'
+>
+>
+
 
