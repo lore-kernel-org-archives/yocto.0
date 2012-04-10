@@ -1,36 +1,29 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B521E00596
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 09:07:09 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 10 Apr 2012 09:07:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="151979168"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 10 Apr 2012 09:07:09 -0700
-Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 10 Apr 2012 09:07:07 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.199]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.123]) with mapi id
-	14.01.0355.002; Tue, 10 Apr 2012 09:07:07 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: Koen Kooi <koen@dominion.thruhere.net>
-Thread-Topic: [yocto] Moving angstrom under the yocto banner
-Thread-Index: AQHNDqUlRCeVvMdQd0Cca/O9pDQkyJaDpriAgBD2+4D//6iTMA==
-Date: Tue, 10 Apr 2012 16:07:05 +0000
-Message-ID: <CDED78A957032E45B3239CDDA7642D15151514CC@ORSMSX105.amr.corp.intel.com>
-References: <D044B647-8BCD-48B4-BABD-CE4751D023E0@dominion.thruhere.net>
-	<CALZ2gZVhRwSbv86SDiFZY685c+R5P7tNSaK-Mf0204bAMLVOuA@mail.gmail.com>
-	<93E9DB02-0484-40E7-9FF1-E82AF7305CEE@dominion.thruhere.net>
-In-Reply-To: <93E9DB02-0484-40E7-9FF1-E82AF7305CEE@dominion.thruhere.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org list" <yocto@yoctoproject.org>
-Subject: Re: Moving angstrom under the yocto banner
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D88B1E0030B
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 10:03:53 -0700 (PDT)
+Received: from durham.keylevel.com ([109.224.134.115]:47147
+	helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1SHeTv-0001A4-5y
+	for yocto@yoctoproject.org; Tue, 10 Apr 2012 18:03:51 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Date: Tue, 10 Apr 2012 18:03:48 +0100
+Message-Id: <F0BD60FF-D2C0-401B-A3D3-61742D20D91A@keylevel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1257)
+X-Mailer: Apple Mail (2.1257)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Help debugging CF support under 3.0.18
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,90 +35,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2012 16:07:09 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 10 Apr 2012 17:03:54 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-[Note, Koen is trying to get davest to respond quickly by trying a top post=
-. Good work, Koen!]
+I've been trying to get a BSP running under 6.0.1 using kernel 3.0.18 =
+for an ALIX 3D3 board. I've done this before under 4.0.1 using 2.6.34.
 
->From: Koen Kooi [mailto:koen@dominion.thruhere.net]
->Sent: Tuesday, April 10, 2012 7:04 AM
->
->Dave,
->
->Coud summarize the discussion about this during bspfest, collab and the AB
->meeting please?
+It's nearly working, but I can't get partitions on the CF card (which =
+works under 2.6.34) to show.
 
-Evidently I created a firestorm of controversy with my previous stupid ques=
-tions on this topic. At the risk of doing so again, will soldier on.  Offic=
-ial minutes coming from Shane/Jefro in coming days.
+- The controller (CS5536) is showing as loaded in dmesg.
+- hda is reported as using UDMA/33, but hda1 is not mentioned.
+- /proc/partions does not show hda1.
+- cat'ing /proc/ide/ide0/hda/model reports 'CF 1GB', which is what the =
+CF is.
+- The following kernel options are on : CONFIG_PCI, CONFIG_PCI_QUIRKS, =
+CONFIG_BLK_IDEPCI, CONFIG_IDEPCI_PCIBUS_ORDER, CONFIG_BLK_DEV_IDEDMA.
 
-I think we're all in agreement with the intent of the Yocto Project - to mi=
-nimize or eliminate the redundant effort required currently in embedded Lin=
-ux. This is why we have people slaving away to QA our release bits and fix =
-bugs, for example.=20
+I suspect I've turned 'something' off in the kernel configuration that I =
+need, but it's not obvious (to me) what it could be. What's the best way =
+of tracking this down? I'll start again using a base .config file, but =
+it takes a long time to rebuild the kernel (I need a faster machine!) =
+and it'll take a while to work out what I've touched in error.
 
-With that intent clear, we're still trying to work out which parts of the p=
-rojects are intended to be upstreams and which are there just as examples. =
-There is some additional clarity we need in order to make this really clear=
-, and I think RP took the action to work on this. (Some of the lack of clar=
-ity is that there are still a lot of things called "poky" and go by fancy v=
-ideo game character names, which might need to change).
+On a related note, I use SRCREV_machine_pn-linux-yocto_mybsp ?=3D =
+"d7e81e7f975c57c581ce13446adf023f95d9fd9f" in my kernel bbappend (base =
+3.0.18 kernel). If I do a 'cleanall' and then build I have to wait for =
+the kernel to be downloaded, even though I have a DL_DIR specified. Is =
+it possible to stop this happening? If not, is there a better way to =
+rebuild the kernel and get a new image in deploy/install?
 
-In the AB meeting, we spent time talking about the use of the Yocto Project=
- (tm) logo and brand. We agreed to create a straw man spreadsheet of requir=
-ements for this and will discuss over the next month. The analogy here is t=
-o the CGL requirements form, only I'm hoping it's closer to maybe a dozen l=
-ines to fill in rather than 200. :-)
+Chris Tapp
 
-Dave
+opensource@keylevel.com
+www.keylevel.com
 
->regards,
->
->Koen
->
->Op 30 mrt. 2012, om 21:00 heeft Osier-mixon, Jeffrey het volgende
->geschreven:
->
->> As I understand it - Poky is sort of a "reference distro" for the Yocto =
-system.
->I think Angstrom would be an excellent addition as an alternative, and I'd=
- be
->happy to do anything needed on the community side to help.
->>
->> On Fri, Mar 30, 2012 at 11:44 AM, Koen Kooi
-><koen@dominion.thruhere.net> wrote:
->> Hi,
->>
->> RP said I should raise this on the yocto lists, so here it is:
->>
->> The Angstrom core team would like to move angstrom under the yocto
->banner so we can formally claim to be 'yocto'.
->>
->> What is the process to make that happen? I suspect OSVs will need to kno=
-w
->as well, since lately yocto is being defined as 'poky + 1 bsp layer' which=
- makes
->it impossible to provide any added value if you want to keep calling it 'y=
-octo' to
->your customers.
->
->>
->> regards,
->>
->> Koen
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->>
->> --
->> Jeff Osier-Mixon http://jefro.net/blog
->> Yocto Project Community Manager @Intel http://yoctoproject.org
->>
+
 
 
