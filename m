@@ -1,31 +1,31 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08F23E00596
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 15:13:06 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 10 Apr 2012 15:13:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208,217";a="87558883"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by AZSMGA002.ch.intel.com with ESMTP; 10 Apr 2012 15:13:06 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 10 Apr 2012 15:13:03 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.140]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.106]) with mapi id
-	14.01.0355.002; Tue, 10 Apr 2012 15:13:03 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Thread-Topic: package requirements for CentOS
-Thread-Index: Ac0XZyLIyIiuPkwRTe6y9gf2PbJpFg==
-Date: Tue, 10 Apr 2012 22:13:02 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237945186473@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06BECE01374
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 16:40:09 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q3ANe2pU007930
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 10 Apr 2012 16:40:02 -0700 (PDT)
+Received: from msp-dhcp19.wrs.com (172.25.34.19) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Tue, 10 Apr 2012 16:40:01 -0700
+Message-ID: <4F84C4CE.5050103@windriver.com>
+Date: Tue, 10 Apr 2012 18:39:58 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
+	rv:11.0) Gecko/20120327 Thunderbird/11.0.1
 MIME-Version: 1.0
-Subject: package requirements for CentOS
+To: "Khor, Boon Pin" <boon.pin.khor@intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A46AE31E3@ORSMSX101.amr.corp.intel.com>
+	<F9AC6E797E022941A4CD80AAEDFAD67D43756F@PGSMSX103.gar.corp.intel.com>
+	<7E680CB2A76BB8438D08CF13C09FC53A46AF10FD@ORSMSX101.amr.corp.intel.com>
+	<2083054.YjdMd9bIMH@helios> <4F846C2E.8040304@windriver.com>
+	<F9AC6E797E022941A4CD80AAEDFAD67D438425@PGSMSX103.gar.corp.intel.com>
+In-Reply-To: <F9AC6E797E022941A4CD80AAEDFAD67D438425@PGSMSX103.gar.corp.intel.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto Project 1.2 Beta testing instructions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,124 +37,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2012 22:13:07 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237945186473ORSMSX101amrcor_"
+X-List-Received-Date: Tue, 10 Apr 2012 23:40:10 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237945186473ORSMSX101amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-I have recently added the CentOS distribution to the YP QS.  The list now i=
-ncludes Ubuntu, Fedora, openSUSE, and CentOS.  Further down in the manual t=
-here are sections detailing the package requirements for Ubuntu, Fedora, an=
-d openSUSE.  I should address CentOS.  Here is the link to the sections cur=
-rently there.  Does anyone know the package requirements for CentOS?
-
-http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.h=
-tml#packages
-
-Scott
-
-Scott Rifenbark
-Intel Corporation
-Yocto Project Documentation
-503.712.2702
-503.341.0418 (cell)
-
-
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237945186473ORSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 4/10/12 6:06 PM, Khor, Boon Pin wrote:
+> Hi all
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">I have recently added the CentOS distribution to the=
- YP QS.&nbsp; The list now includes Ubuntu, Fedora, openSUSE, and CentOS.&n=
-bsp; Further down in the manual there are sections detailing the package re=
-quirements for Ubuntu, Fedora, and openSUSE.&nbsp;
- I should address CentOS.&nbsp; Here is the link to the sections currently =
-there.&nbsp; Does anyone know the package requirements for CentOS?<o:p></o:=
-p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><a href=3D"http://www.yoctoproject.org/docs/latest/y=
-octo-project-qs/yocto-project-qs.html#packages">http://www.yoctoproject.org=
-/docs/latest/yocto-project-qs/yocto-project-qs.html#packages</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Scott<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Arial&quot;,&quot;sans-serif&quot;;color:blue">Scott Rifenbark</span></b><=
-b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-=
-serif&quot;;color:blue"><o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
-al&quot;,&quot;sans-serif&quot;;color:blue">Intel Corporation</span><span s=
-tyle=3D"font-size:7.5pt;font-family:&quot;Times New Roman&quot;,&quot;serif=
-&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
-al&quot;,&quot;sans-serif&quot;;color:blue">Yocto Project Documentation<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
-al&quot;,&quot;sans-serif&quot;;color:blue">503.712.2702</span><span style=
-=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&qu=
-ot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
-al&quot;,&quot;sans-serif&quot;;color:blue">503.341.0418 (cell)</span><span=
- style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;se=
-rif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+>   On my ubuntu 11.10 64bits machines , once I change the default shell to bash , the problem solved .
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237945186473ORSMSX101amrcor_--
+I believe we expect dash to be fully supported, so this is a bug.
+
+Please file a bug in the Yocto Project bugzilla 
+(http://bugzilla.yoctoproject.org)  if you are not able to do so, let me know 
+and I will file it.
+
+--Mark
+
+> Thanks
+> Boon pin
+>
+> -----Original Message-----
+> From: Mark Hatle [mailto:mark.hatle@windriver.com]
+> Sent: Wednesday, April 11, 2012 1:22 AM
+> To: Paul Eggleton
+> Cc: yocto@yoctoproject.org; Liu, Song; Khor, Boon Pin
+> Subject: Re: [yocto] Yocto Project 1.2 Beta testing instructions
+>
+> On 4/10/12 4:18 AM, Paul Eggleton wrote:
+>> On Wednesday 04 April 2012 18:08:58 Liu, Song wrote:
+>>> Can someone help answer the following question? This happens during
+>>> Boon Pin's beta testing using the build at:
+>>> http://git.yoctoproject.org/cgit/cgit.cgi/poky/snapshot/poky-8e9f6fc7
+>>> 7ac476
+>>> 3f4ed1f6e7b720420c220ba6e2.tar.bz2 .
+>>> ...
+>>> | Processing task-core-boot...
+>>> | Manifest:
+>>> | /home/nemo/yp-beta-build/tmp/work/qemux86-poky-linux/core-image-min
+>>> | imal-1 .0-r0/rootfs/install/install.manifest local: 1: -Uhv: bad
+>>> | variable name
+>>>
+>>> NOTE: package core-image-minimal-1.0-r0: task do_rootfs: Failed
+>>> ERROR: Task 8
+>>> (/home/nemo/yp-beta/meta/recipes-core/images/core-image-minimal.bb,
+>>> do_rootfs) failed with exit code '1' NOTE: Tasks Summary: Attempted
+>>> 1329 tasks of which 287 didn't need to be rerun and 1 failed.
+>>
+>> Sorry for the late reply, presumably this issue is still present?
+>>
+>>> Maybe I am missing rpm packages in ubuntu ?
+>>
+>> You don't need to install rpm on the host system, we build rpm-native
+>> for that.
+>>
+>> Mark, any clues what could be going wrong here?
+>
+> I've never seen any problem like this before.  Below is some analysis and a question at the very end...
+>
+> There are only two places in the system where the string -Uhv exists:
+>
+> package_rpm.bbclass:
+>
+>           rpm_common_comand --replacepkgs \
+>               -Uhv ${target_rootfs}/install/total_solution.manifest
+>
+> (rpm_common_comand is a shell function it appears... the arguments to the function are passed, via $@ to an RPM command)
+>
+> rootfs_rpm.bbclass:
+>
+> rootfs_install_packages() {
+>       # The pkg to be installed here is not controlled by the
+>       # package_install_internal_rpm, so it may have already been
+>       # installed(e.g, installed in the first time when generate the
+>       # rootfs), use '--replacepkgs' to always install them
+>           for pkg in $@; do
+>                   ${RPM} --root ${IMAGE_ROOTFS} -D "_dbpath ${rpmlibdir}" \
+>                           -D "__dbi_txn create nofsync private" \
+>                           --noscripts --notriggers --noparentdirs --nolinktos \
+>                           --replacepkgs -Uhv $pkg || true
+>           done
+> }
+>
+> I would guess from the error that it's the one in package_rpm.bbclass that failed.. if that is the case, then all I can think of is what shell?  Are we using a bash-ism?  Does "dash" on ubuntu have shell functions enabled in it, if not that might be the problem.
+>
+> Please check your system's /bin/sh.. is it a symlink, if so, what does it point to?  If it points to "dash", change it to "bash" and see if the error still occurs.
+>
+> --Mark
+
+
