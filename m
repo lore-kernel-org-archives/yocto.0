@@ -1,30 +1,26 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95E4BE0030B
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 10:21:54 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q3AHLpGY026349
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 10 Apr 2012 10:21:52 -0700 (PDT)
-Received: from msp-dhcp19.wrs.com (172.25.34.19) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 10 Apr 2012 10:21:51 -0700
-Message-ID: <4F846C2E.8040304@windriver.com>
-Date: Tue, 10 Apr 2012 12:21:50 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:11.0) Gecko/20120327 Thunderbird/11.0.1
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9BF6E0044D
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 11:42:01 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 10 Apr 2012 11:42:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="152039410"
+Received: from unknown (HELO envy.home) ([10.255.12.43])
+	by fmsmga002.fm.intel.com with ESMTP; 10 Apr 2012 11:42:01 -0700
+Message-ID: <4F847ED4.3080207@linux.intel.com>
+Date: Tue, 10 Apr 2012 11:41:24 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A46AE31E3@ORSMSX101.amr.corp.intel.com>
-	<F9AC6E797E022941A4CD80AAEDFAD67D43756F@PGSMSX103.gar.corp.intel.com>
-	<7E680CB2A76BB8438D08CF13C09FC53A46AF10FD@ORSMSX101.amr.corp.intel.com>
-	<2083054.YjdMd9bIMH@helios>
-In-Reply-To: <2083054.YjdMd9bIMH@helios>
-Cc: yocto@yoctoproject.org, "Khor, Boon
- Pin" <boon.pin.khor@intel.com>
-Subject: Re: Yocto Project 1.2 Beta testing instructions
+To: Yang Shi <yang.shi@windriver.com>
+References: <1334009754-3012-1-git-send-email-yang.shi@windriver.com>
+	<1334009754-3012-2-git-send-email-yang.shi@windriver.com>
+In-Reply-To: <1334009754-3012-2-git-send-email-yang.shi@windriver.com>
+X-Enigmail-Version: 1.4
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/2] initrdscripts: fix init-live.sh and use unionfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,72 +32,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2012 17:21:54 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Tue, 10 Apr 2012 18:42:02 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 4/10/12 4:18 AM, Paul Eggleton wrote:
-> On Wednesday 04 April 2012 18:08:58 Liu, Song wrote:
->> Can someone help answer the following question? This happens during Boon
->> Pin's beta testing using the build at:
->> http://git.yoctoproject.org/cgit/cgit.cgi/poky/snapshot/poky-8e9f6fc77ac476
->> 3f4ed1f6e7b720420c220ba6e2.tar.bz2 .
->> ...
->> | Processing task-core-boot...
->> | Manifest:
->> | /home/nemo/yp-beta-build/tmp/work/qemux86-poky-linux/core-image-minimal-1
->> | .0-r0/rootfs/install/install.manifest local: 1: -Uhv: bad variable name
->>
->> NOTE: package core-image-minimal-1.0-r0: task do_rootfs: Failed
->> ERROR: Task 8
->> (/home/nemo/yp-beta/meta/recipes-core/images/core-image-minimal.bb,
->> do_rootfs) failed with exit code '1' NOTE: Tasks Summary: Attempted 1329
->> tasks of which 287 didn't need to be rerun and 1 failed.
->
-> Sorry for the late reply, presumably this issue is still present?
->
->> Maybe I am missing rpm packages in ubuntu ?
->
-> You don't need to install rpm on the host system, we build rpm-native for
-> that.
->
-> Mark, any clues what could be going wrong here?
 
-I've never seen any problem like this before.  Below is some analysis and a 
-question at the very end...
 
-There are only two places in the system where the string -Uhv exists:
+On 04/09/2012 03:15 PM, Yang Shi wrote:
+> [YOCTO #1487]
+> 
+> When booting up with liveCD image, init scripts can't work well on read-only filesystem. Unionfs,
+> which is supported in Yocto kernel, allows a filesystem to appear as writeable, but without
+> actually allowing writes to change the filesystem.
+> 
+> Use unionfs to mount rootfs and make root file system can be writen when using liveCD to boot up.
+> Set UNION_FS variable depending on kernel config, so that it can work with kernel which doesn't
+> have unionfs feature.
+> 
+> Signed-off-by: Yang Shi <yang.shi@windriver.com>
 
-package_rpm.bbclass:
+Acked-by: Darren Hart <dvhart@linux.intel.com>
 
-         rpm_common_comand --replacepkgs \
-             -Uhv ${target_rootfs}/install/total_solution.manifest
+> ---
+>  meta/recipes-core/initrdscripts/files/init-live.sh |   23 ++++++++++++++++---
+>  .../initrdscripts/initramfs-live-boot_1.0.bb       |    9 +++++++-
+>  2 files changed, 27 insertions(+), 5 deletions(-)
+> 
+> diff --git a/meta/recipes-core/initrdscripts/files/init-live.sh b/meta/recipes-core/initrdscripts/files/init-live.sh
+> index eb5ab5b..737dae4 100644
+> --- a/meta/recipes-core/initrdscripts/files/init-live.sh
+> +++ b/meta/recipes-core/initrdscripts/files/init-live.sh
+> @@ -7,6 +7,7 @@ ROOT_IMAGE="rootfs.img"
+>  MOUNT="/bin/mount"
+>  UMOUNT="/bin/umount"
+>  ISOLINUX=""
+> +UNIONFS="no"
+>  
+>  early_setup() {
+>      mkdir /proc
+> @@ -89,17 +90,31 @@ case $label in
+>  	mkdir $ROOT_MOUNT
+>  	mknod /dev/loop0 b 7 0 2>/dev/null
+>  
+> -	if ! $MOUNT -o rw,loop,noatime,nodiratime /media/$i/$ISOLINUX/$ROOT_IMAGE $ROOT_MOUNT ; then
+> -	    fatal "Couldnt mount rootfs image"
+> +	
+> +	if [ "$UNIONFS" = "yes" ]; then
+> +	    mkdir /rootfs-tmp
+> +
+> +	    if ! $MOUNT -o rw,loop,noatime,nodiratime /media/$i/$ISOLINUX/$ROOT_IMAGE /rootfs-tmp ; then
+> +		fatal "Could not mount rootfs image"
+> +	    else
+> +		mkdir /cow
+> +		mount -t tmpfs -o rw,noatime,mode=755 tmpfs /cow
+> +		mount -t unionfs -o dirs=/cow:/rootfs-tmp=ro unionfs $ROOT_MOUNT
+> +		boot_live_root
+> +	    fi
+>  	else
+> -	    boot_live_root
+> +	    if ! $MOUNT -o rw,loop,noatime,nodiratime /media/$i/$ISOLINUX/$ROOT_IMAGE $ROOT_MOUNT ; then
+> +		fatal "Could not mount rootfs image"
+> +	    else
+> +		boot_live_root
+> +	    fi
+>  	fi
+>  	;;
+>      install)
+>  	if [ -f /media/$i/$ISOLINUX/$ROOT_IMAGE ] ; then
+>  	    ./install.sh $i/$ISOLINUX $ROOT_IMAGE $video_mode $vga_mode
+>  	else
+> -	    fatal "Couldnt find install script"
+> +	    fatal "Could not find install script"
+>  	fi
+>  
+>  	# If we're getting here, we failed...
+> diff --git a/meta/recipes-core/initrdscripts/initramfs-live-boot_1.0.bb b/meta/recipes-core/initrdscripts/initramfs-live-boot_1.0.bb
+> index e85a0e1..f7f0c9d 100644
+> --- a/meta/recipes-core/initrdscripts/initramfs-live-boot_1.0.bb
+> +++ b/meta/recipes-core/initrdscripts/initramfs-live-boot_1.0.bb
+> @@ -2,10 +2,17 @@ DESCRIPTION = "A live image init script"
+>  LICENSE = "MIT"
+>  LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+>  RDEPENDS = "udev"
+> +DEPENDS = "virtual/kernel"
+>  SRC_URI = "file://init-live.sh"
+>  
+> -PR = "r7"
+> +PR = "r8"
+>  
+> +do_compile() {
+> +	if grep -q "CONFIG_UNION_FS=y" ${STAGING_KERNEL_DIR}/.config; then
+> +		sed -i 's/UNIONFS="no"/UNIONFS="yes"/g' ${WORKDIR}/init-live.sh
+> +	fi
+> +}
+> + 
+>  do_install() {
+>          install -m 0755 ${WORKDIR}/init-live.sh ${D}/init
+>  }
 
-(rpm_common_comand is a shell function it appears... the arguments to the 
-function are passed, via $@ to an RPM command)
-
-rootfs_rpm.bbclass:
-
-rootfs_install_packages() {
-     # The pkg to be installed here is not controlled by the
-     # package_install_internal_rpm, so it may have already been
-     # installed(e.g, installed in the first time when generate the
-     # rootfs), use '--replacepkgs' to always install them
-         for pkg in $@; do
-                 ${RPM} --root ${IMAGE_ROOTFS} -D "_dbpath ${rpmlibdir}" \
-                         -D "__dbi_txn create nofsync private" \
-                         --noscripts --notriggers --noparentdirs --nolinktos \
-                         --replacepkgs -Uhv $pkg || true
-         done
-}
-
-I would guess from the error that it's the one in package_rpm.bbclass that 
-failed.. if that is the case, then all I can think of is what shell?  Are we 
-using a bash-ism?  Does "dash" on ubuntu have shell functions enabled in it, if 
-not that might be the problem.
-
-Please check your system's /bin/sh.. is it a symlink, if so, what does it point 
-to?  If it points to "dash", change it to "bash" and see if the error still occurs.
-
---Mark
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
