@@ -1,24 +1,25 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15886E00596
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 11:57:10 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 10 Apr 2012 11:57:09 -0700
+Return-Path: <sgw@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 354ECE00596
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 12:06:13 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 10 Apr 2012 12:06:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="129291147"
-Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.90])
-	by azsmga001.ch.intel.com with ESMTP; 10 Apr 2012 11:57:09 -0700
-From: kishore.k.bodke@intel.com
-To: yocto@yoctoproject.org,
-	tom.zanussi@intel.com
-Date: Tue, 10 Apr 2012 11:55:39 -0700
-Message-Id: <510483a761c38b88e7c64c8e897ec94df1b21e35.1334083666.git.kishore.k.bodke@intel.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <8cb0b0ca1821875b7c2c140aade540917c40fc93.1334083666.git.kishore.k.bodke@intel.com>
-References: <8cb0b0ca1821875b7c2c140aade540917c40fc93.1334083666.git.kishore.k.bodke@intel.com>
-In-Reply-To: <cover.1334083666.git.kishore.k.bodke@intel.com>
-References: <cover.1334083666.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 9/9] [meta-intel] Cedartrail: Update the README.
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="140096037"
+Received: from unknown (HELO [10.255.12.159]) ([10.255.12.159])
+	by fmsmga001.fm.intel.com with ESMTP; 10 Apr 2012 12:06:12 -0700
+Message-ID: <4F8484A4.30703@linux.intel.com>
+Date: Tue, 10 Apr 2012 12:06:12 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
+MIME-Version: 1.0
+To: Yang Shi <yang.shi@windriver.com>
+References: <1334009754-3012-1-git-send-email-yang.shi@windriver.com>
+	<1334009754-3012-3-git-send-email-yang.shi@windriver.com>
+In-Reply-To: <1334009754-3012-3-git-send-email-yang.shi@windriver.com>
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
+Subject: Re: [PATCH 2/2] sato: Throw warning when building ISO image without unionfs enabled
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,91 +31,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2012 18:57:10 -0000
+X-List-Received-Date: Tue, 10 Apr 2012 19:06:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+On 04/09/2012 03:15 PM, Yang Shi wrote:
+> [YOCTO #1487]
+>
+> For the liveCD image, interactive bootup is needed, but psplash prevents from
+> booting interactively. In such case ISO image is not usable, so throw warning
+> info when building ISO image without unionfs enabled in kernel.
+>
+> Signed-off-by: Yang Shi<yang.shi@windriver.com>
+> ---
+>   meta/recipes-sato/images/core-image-sato.bb |   14 ++++++++++++++
+>   1 files changed, 14 insertions(+), 0 deletions(-)
+>
+> diff --git a/meta/recipes-sato/images/core-image-sato.bb b/meta/recipes-sato/images/core-image-sato.bb
+> index 11c3318..871b227 100644
+> --- a/meta/recipes-sato/images/core-image-sato.bb
+> +++ b/meta/recipes-sato/images/core-image-sato.bb
+> @@ -9,3 +9,17 @@ IMAGE_FEATURES += "apps-console-core ${SATO_IMAGE_FEATURES}"
+>   LICENSE = "MIT"
+>
+>   inherit core-image
+> +
+> +LIVE = "${@base_contains('IMAGE_FSTYPES', 'live', 'yes', 'no', d)}"
+> +
+> +do_check_unionfs() {
+> +        if [ "${NOISO}" = "1" ]; then
+> +                return
+> +        fi
+> +
+> +        if [ "${LIVE}" = "yes" ]&&  ! grep -q "CONFIG_UNION_FS=y" ${STAGING_KERNEL_DIR}/.config; then
+I think you are missing a "]" at the end of this "if [" test.
+> +                bbwarn "Building LIVE CD without UNION FS enabled in kernel"
+> +        fi
+> +}
+> +
+> +addtask check_unionfs before do_build after do_bootimg
 
-Add instructions on how to build with pvr graphics
-support and how to build with custom image.
+This change is causing a new failure:
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
----
- meta-cedartrail/README |   49 +++++++++++++++++++++++++++++++++++++++++++++++-
- 1 files changed, 48 insertions(+), 1 deletions(-)
+Traceback (most recent call last):
+   File 
+"/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/server/process.py", 
+line 122, in ProcessServer.idle_commands(delay=0.1):
+                  try:
+     >                retval = function(self, data, False)
+                      if retval is False:
+   File 
+"/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/cooker.py", 
+line 1134, in buildTargetsIdle(server=<ProcessServer(ProcessServer-1, 
+started)>, rq=<bb.runqueue.RunQueue instance at 0xb6891b8>, abort=False):
+                  try:
+     >                retval = rq.execute_runqueue()
+                  except runqueue.TaskFailure as exc:
+   File 
+"/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/runqueue.py", 
+line 948, in RunQueue.execute_runqueue():
+                  self.rqexe = RunQueueExecuteDummy(self)
+     >            if self.rqdata.prepare() == 0:
+                      self.state = runQueueComplete
+   File 
+"/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/runqueue.py", 
+line 719, in RunQueueData.prepare():
+ 
+procdep.append(self.taskData.fn_index[self.runq_fnid[dep]] + "." + 
+self.runq_task[dep])
+     >                    self.runq_hash[task] = 
+bb.parse.siggen.get_taskhash(self.taskData.fn_index[self.runq_fnid[task]], 
+self.runq_task[task], procdep, self.dataCache)
 
-diff --git a/meta-cedartrail/README b/meta-cedartrail/README
-index 295e9ff..493e831 100755
---- a/meta-cedartrail/README
-+++ b/meta-cedartrail/README
-@@ -52,15 +52,38 @@ common metadata shared between BSPs) e.g.:
-         yocto/meta-intel \  
- 	yocto/meta-intel/meta-cedartrail \
- 
--To enable the cedartrail layer, add the cedartrail MACHINE to local.conf:
-+To enable the cedartrail layer that supports Power VR graphics,
-+add the cedartrail MACHINE to local.conf:
- 
-   MACHINE ?= "cedartrail"
- 
-+Power VR Graphics user-space driver binaries are covered by a
-+"Intel Free Distribution Binary License". The build of this driver
-+can be enabled by adding the following line to the local.conf file:
-+
-+LICENSE_FLAGS_WHITELIST += "license_cdv-pvr-driver_1.0"
-+
-+To enable the layer that does not support Power VR graphics
-+add the following to the local.conf file:
-+
-+ MACHINE ?= "cedartrail-nopvr"
-+
-+
- You should then be able to build a cedartrail image as such:
- 
-   $ source oe-init-build-env
-   $ bitbake core-image-sato
- 
-+The above image will not give you the webkit feature and will not
-+have the Audio and Video media samples in the image.
-+
-+If you want the webkit feature and Audio , Video media samples built
-+into the image by default, You should build the custom image by 
-+doing the following:
-+
-+  $ source oe-init-build-env
-+  $ bitbake core-image-cdv-media
-+
- At the end of a successful build, you should have a live image that
- you can boot from a USB flash drive (see instructions on how to do
- that below, in the section 'Booting the images from /binary').
-@@ -109,3 +132,27 @@ the syslinux boot: prompt, or the boot: prompt contains strange
- characters), try doing this first:
- 
- # dd if=/dev/zero of=/dev/sdf bs=1M count=512
-+
-+Miscellaneous Notes
-+====================
-+
-+Video and Music Samples
-+-----------------------
-+This BSP includes recipes to download Ogg format video and
-+music files that can be played-back with the Video and music players
-+included in the sato images.  The sample files are installed in
-+/home/Music and /home/Videos directories.
-+
-+
-+Adding Glxgears to image
-+-------------------------
-+Glxgears can be added to the generated image by adding "tools-testapps"
-+option to the extra image features variable in the default local.conf
-+before building the BSP.
-+
-+e.g. to add Glxgears, locate the following line in local.conf
-+EXTRA_IMAGE_FEATURES = "debug-tweaks"
-+
-+and change above line to..
-+
-+EXTRA_IMAGE_FEATURES = "debug-tweaks tools-testapps"
--- 
-1.7.5.4
+   File 
+"/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/siggen.py", 
+line 153, in 
+SignatureGeneratorOEBasicHash.get_taskhash(fn='/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/meta/recipes-sato/images/core-image-sato.bb', 
+task='do_bootimg', deps=[], dataCache=<bb.cache.CacheData object at 
+0x2ede190>):
+              k = fn + "." + task
+     >        data = dataCache.basetaskhash[k]
+              self.runtaskdeps[k] = []
+KeyError: 
+'/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/meta/recipes-sato/images/core-image-sato.bb.do_bootimg'
 
 
