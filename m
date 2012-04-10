@@ -1,41 +1,26 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
-	[209.85.212.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCCFBE01374
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 07:04:24 -0700 (PDT)
-Received: by wibhr14 with SMTP id hr14so2986957wib.11
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 07:04:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer
-	:x-gm-message-state;
-	bh=9zIno5nVHrwPNMP5qjgSQ28TGQ2NUY3XoqQM9rBTKuw=;
-	b=K03hWceTtXNvm/SEaYqE+hNr9lyDz7UG5nB+MrshxR+JiqMYE02YiK99mFJnZw0nKT
-	ImojqfjGwp5G3JUao1/05kICirY0SHjygEF4rIvouf+DY+aOGcXd4bzFpV0wRPcWLQwd
-	LiFBnOTXIX0clYit7Sh8Zb2Pt8CDOa2fRP+LNUR0q38DQLD8Bte6Z05SefaZbJOEy2FA
-	XYW+cwGFLCaV5J/9fYoCWJHuFHvz/7erBUgQb+YzEmd4cuB35JzGMMc82+SkqEf1YR0n
-	BZoqa6JVhRzJ4b+/lbR3GruNBMFHcyIsFQF4erAFp7/JGs7D9mLAWRIrEtJ4/h9mwjWE
-	1MNA==
-Received: by 10.180.95.74 with SMTP id di10mr631828wib.1.1334066663795;
-	Tue, 10 Apr 2012 07:04:23 -0700 (PDT)
-Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl.
-	[84.80.112.235])
-	by mx.google.com with ESMTPS id gd4sm61425300wib.6.2012.04.10.07.04.20
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 10 Apr 2012 07:04:21 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1257)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <CALZ2gZVhRwSbv86SDiFZY685c+R5P7tNSaK-Mf0204bAMLVOuA@mail.gmail.com>
-Date: Tue, 10 Apr 2012 16:04:19 +0200
-Message-Id: <93E9DB02-0484-40E7-9FF1-E82AF7305CEE@dominion.thruhere.net>
-References: <D044B647-8BCD-48B4-BABD-CE4751D023E0@dominion.thruhere.net>
-	<CALZ2gZVhRwSbv86SDiFZY685c+R5P7tNSaK-Mf0204bAMLVOuA@mail.gmail.com>
-To: David C Stewart <david.c.stewart@intel.com>
-X-Mailer: Apple Mail (2.1257)
-X-Gm-Message-State: ALoCoQmyNlRa5CG95oCAAxWiaOhcYdwiVysxi83PDx7d7GbjcYhc4iCumP7kXiNW+6qPV4K3g7mg
-Cc: "yocto@yoctoproject.org list" <yocto@yoctoproject.org>
-Subject: Re: Moving angstrom under the yocto banner
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 006A8E01374
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 07:14:28 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 10 Apr 2012 07:14:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="87360332"
+Received: from unknown (HELO envy.home) ([10.255.12.43])
+	by AZSMGA002.ch.intel.com with ESMTP; 10 Apr 2012 07:14:28 -0700
+Message-ID: <4F84401E.1050803@linux.intel.com>
+Date: Tue, 10 Apr 2012 07:13:50 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
+MIME-Version: 1.0
+To: jfabernathy <jfabernathy@gmail.com>
+References: <4F834792.20402@gmail.com> <4F835F6B.3010608@linux.intel.com>
+	<4F842B3D.2070705@gmail.com>
+In-Reply-To: <4F842B3D.2070705@gmail.com>
+X-Enigmail-Version: 1.4
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: build error on core-image-sato-sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,54 +32,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2012 14:04:25 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 10 Apr 2012 14:14:29 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Dave,
 
-Coud summarize the discussion about this during bspfest, collab and the =
-AB meeting please?
 
-regards,
+On 04/10/2012 05:44 AM, jfabernathy wrote:
+> On 04/09/2012 06:15 PM, Darren Hart wrote:
+>>
+>> On 04/09/2012 01:33 PM, jfabernathy wrote:
+>>> at the end of the build of core-image-sato-sdk I got the following
+>>> error.  I'm using the edison branch with the latest changes and also
+>>> building the meta-cedartrail.  I had previously built core-image-sato
+>>> successfully with this setup.
+>>>
+>>> Any ideas?
+>>>
+>>> ERROR: Function 'build_boot_bin' failed (see
+>>> /build/cdv-edison/tmp/work/cedartrail-poky-linux/core-image-sato-sdk-1.0-r0/temp/log.do_bootimg.25810
+>>> for further information)
+>>> ERROR: Logfile of failure stored in:
+>>> /build/cdv-edison/tmp/work/cedartrail-poky-linux/core-image-sato-sdk-1.0-r0/temp/log.do_bootimg.25810
+>>> Log data follows:
+>>> | mkdosfs: seek failed
+>> Interesting.
+>>
+>> Can you provide the "OE Build Configuration" blob that prints at the
+>> start of the build - I'm mostly interested in your commit IDs for.
+> OE Build Configuration:
+> BB_VERSION        = "1.13.3"
+> TARGET_ARCH       = "i586"
+> TARGET_OS         = "linux"
+> MACHINE           = "cedartrail"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.1.1"
+> TUNE_FEATURES     = "m32 core2"
+> TARGET_FPU        = ""
+> meta
+> meta-yocto        = "edison:0fbd6a161576b2cafa8583adde0ffb15347c884a"
+> meta-cedartrail   = "edison:072c6e99616c25c31521e05560433c67fb2a0292"
+> meta-jfa          = "<unknown>:<unknown>"
+> 
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: Preparing runqueue
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> 
+>> Also, please include the HEAD of your poky edison tree.
+> Not sure what git command you want, but here is the git show:
+> 
+> jim@ubuntu-x64:~/poky$ git show edison
+> commit 0fbd6a161576b2cafa8583adde0ffb15347c884a
 
-Koen
+Thanks Jim and Joshua,
 
-Op 30 mrt. 2012, om 21:00 heeft Osier-mixon, Jeffrey het volgende =
-geschreven:
+It appears there is still something lacking in the edison
+bootimg.bbclass. I'll investigate. Please watch bug 2138 for updates.
 
-> As I understand it - Poky is sort of a "reference distro" for the =
-Yocto system. I think Angstrom would be an excellent addition as an =
-alternative, and I'd be happy to do anything needed on the community =
-side to help.
->=20
-> On Fri, Mar 30, 2012 at 11:44 AM, Koen Kooi =
-<koen@dominion.thruhere.net> wrote:
-> Hi,
->=20
-> RP said I should raise this on the yocto lists, so here it is:
->=20
-> The Angstrom core team would like to move angstrom under the yocto =
-banner so we can formally claim to be 'yocto'.
->=20
-> What is the process to make that happen? I suspect OSVs will need to =
-know as well, since lately yocto is being defined as 'poky + 1 bsp =
-layer' which makes it impossible to provide any added value if you want =
-to keep calling it 'yocto' to your customers.
->=20
-> regards,
->=20
-> Koen
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->=20
->=20
->=20
-> --=20
-> Jeff Osier-Mixon http://jefro.net/blog
-> Yocto Project Community Manager @Intel http://yoctoproject.org
->=20
-
+--
+Darren
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
