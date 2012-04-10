@@ -1,25 +1,33 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 354ECE00596
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 12:06:13 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 10 Apr 2012 12:06:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="140096037"
-Received: from unknown (HELO [10.255.12.159]) ([10.255.12.159])
-	by fmsmga001.fm.intel.com with ESMTP; 10 Apr 2012 12:06:12 -0700
-Message-ID: <4F8484A4.30703@linux.intel.com>
-Date: Tue, 10 Apr 2012 12:06:12 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
-MIME-Version: 1.0
-To: Yang Shi <yang.shi@windriver.com>
-References: <1334009754-3012-1-git-send-email-yang.shi@windriver.com>
-	<1334009754-3012-3-git-send-email-yang.shi@windriver.com>
-In-Reply-To: <1334009754-3012-3-git-send-email-yang.shi@windriver.com>
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
-Subject: Re: [PATCH 2/2] sato: Throw warning when building ISO image without unionfs enabled
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DE69E0044D
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 12:19:12 -0700 (PDT)
+Received: from durham.keylevel.com ([109.224.134.115]:26057
+	helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>)
+	id 1SHgaq-0004BG-CB; Tue, 10 Apr 2012 20:19:08 +0100
+Mime-Version: 1.0 (Apple Message framework v1257)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <4F8469B9.7020408@mlbassoc.com>
+Date: Tue, 10 Apr 2012 20:19:05 +0100
+Message-Id: <43CD100C-560F-49EF-BCD7-8687A44010F9@keylevel.com>
+References: <F0BD60FF-D2C0-401B-A3D3-61742D20D91A@keylevel.com>
+	<4F8469B9.7020408@mlbassoc.com>
+To: Gary Thomas <gary@mlbassoc.com>
+X-Mailer: Apple Mail (2.1257)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: Help debugging CF support under 3.0.18
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,88 +39,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2012 19:06:13 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 10 Apr 2012 19:19:12 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 04/09/2012 03:15 PM, Yang Shi wrote:
-> [YOCTO #1487]
->
-> For the liveCD image, interactive bootup is needed, but psplash prevents from
-> booting interactively. In such case ISO image is not usable, so throw warning
-> info when building ISO image without unionfs enabled in kernel.
->
-> Signed-off-by: Yang Shi<yang.shi@windriver.com>
-> ---
->   meta/recipes-sato/images/core-image-sato.bb |   14 ++++++++++++++
->   1 files changed, 14 insertions(+), 0 deletions(-)
->
-> diff --git a/meta/recipes-sato/images/core-image-sato.bb b/meta/recipes-sato/images/core-image-sato.bb
-> index 11c3318..871b227 100644
-> --- a/meta/recipes-sato/images/core-image-sato.bb
-> +++ b/meta/recipes-sato/images/core-image-sato.bb
-> @@ -9,3 +9,17 @@ IMAGE_FEATURES += "apps-console-core ${SATO_IMAGE_FEATURES}"
->   LICENSE = "MIT"
->
->   inherit core-image
-> +
-> +LIVE = "${@base_contains('IMAGE_FSTYPES', 'live', 'yes', 'no', d)}"
-> +
-> +do_check_unionfs() {
-> +        if [ "${NOISO}" = "1" ]; then
-> +                return
-> +        fi
-> +
-> +        if [ "${LIVE}" = "yes" ]&&  ! grep -q "CONFIG_UNION_FS=y" ${STAGING_KERNEL_DIR}/.config; then
-I think you are missing a "]" at the end of this "if [" test.
-> +                bbwarn "Building LIVE CD without UNION FS enabled in kernel"
-> +        fi
-> +}
-> +
-> +addtask check_unionfs before do_build after do_bootimg
+On 10 Apr 2012, at 18:11, Gary Thomas wrote:
 
-This change is causing a new failure:
+> On 2012-04-10 11:03, Chris Tapp wrote:
+>> I've been trying to get a BSP running under 6.0.1 using kernel 3.0.18 =
+for an ALIX 3D3 board. I've done this before under 4.0.1 using 2.6.34.
+>>=20
+>> It's nearly working, but I can't get partitions on the CF card (which =
+works under 2.6.34) to show.
+>>=20
+>> - The controller (CS5536) is showing as loaded in dmesg.
+>> - hda is reported as using UDMA/33, but hda1 is not mentioned.
+>> - /proc/partions does not show hda1.
+>> - cat'ing /proc/ide/ide0/hda/model reports 'CF 1GB', which is what =
+the CF is.
+>> - The following kernel options are on : CONFIG_PCI, =
+CONFIG_PCI_QUIRKS, CONFIG_BLK_IDEPCI, CONFIG_IDEPCI_PCIBUS_ORDER, =
+CONFIG_BLK_DEV_IDEDMA.
+>>=20
+>> I suspect I've turned 'something' off in the kernel configuration =
+that I need, but it's not obvious (to me) what it could be. What's the =
+best way of tracking this down? I'll start again using a base .config =
+file, but it takes a long time to rebuild the kernel (I need a faster =
+machine!) and it'll take a while to work out what I've touched in error.
+>>=20
+>> On a related note, I use SRCREV_machine_pn-linux-yocto_mybsp ?=3D =
+"d7e81e7f975c57c581ce13446adf023f95d9fd9f" in my kernel bbappend (base =
+3.0.18 kernel). If I do a 'cleanall' and then build I have to wait for =
+the kernel to be downloaded, even though I have a DL_DIR specified. Is =
+it possible to stop this happening? If not, is there a better way to =
+rebuild the kernel and get a new image in deploy/install?
+>=20
+> Do you have CONFIG_HOTPLUG=3Dy?
 
-Traceback (most recent call last):
-   File 
-"/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/server/process.py", 
-line 122, in ProcessServer.idle_commands(delay=0.1):
-                  try:
-     >                retval = function(self, data, False)
-                      if retval is False:
-   File 
-"/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/cooker.py", 
-line 1134, in buildTargetsIdle(server=<ProcessServer(ProcessServer-1, 
-started)>, rq=<bb.runqueue.RunQueue instance at 0xb6891b8>, abort=False):
-                  try:
-     >                retval = rq.execute_runqueue()
-                  except runqueue.TaskFailure as exc:
-   File 
-"/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/runqueue.py", 
-line 948, in RunQueue.execute_runqueue():
-                  self.rqexe = RunQueueExecuteDummy(self)
-     >            if self.rqdata.prepare() == 0:
-                      self.state = runQueueComplete
-   File 
-"/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/runqueue.py", 
-line 719, in RunQueueData.prepare():
- 
-procdep.append(self.taskData.fn_index[self.runq_fnid[dep]] + "." + 
-self.runq_task[dep])
-     >                    self.runq_hash[task] = 
-bb.parse.siggen.get_taskhash(self.taskData.fn_index[self.runq_fnid[task]], 
-self.runq_task[task], procdep, self.dataCache)
+Yes, that's set. However, CONFIG_HOTPLUG_PCI isn't.
 
-   File 
-"/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/siggen.py", 
-line 153, in 
-SignatureGeneratorOEBasicHash.get_taskhash(fn='/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/meta/recipes-sato/images/core-image-sato.bb', 
-task='do_bootimg', deps=[], dataCache=<bb.cache.CacheData object at 
-0x2ede190>):
-              k = fn + "." + task
-     >        data = dataCache.basetaskhash[k]
-              self.runtaskdeps[k] = []
-KeyError: 
-'/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/meta/recipes-sato/images/core-image-sato.bb.do_bootimg'
+Do I need hotplug? The CF card is the boot media (currently booting from =
+USB while getting this fixed) and is present when the system starts.
+
+Chris
 
 
