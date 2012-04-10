@@ -1,27 +1,29 @@
-Return-Path: <Yang.Shi@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4439FE0044D
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 13:04:07 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q3AK46BH012964
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 10 Apr 2012 13:04:06 -0700 (PDT)
-Received: from [147.11.152.89] (147.11.152.89) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 10 Apr 2012 13:04:06 -0700
-Message-ID: <4F849235.900@windriver.com>
-Date: Tue, 10 Apr 2012 13:04:05 -0700
-From: Yang Shi <yang.shi@windriver.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
-MIME-Version: 1.0
-To: Saul Wold <sgw@linux.intel.com>
-References: <1334009754-3012-1-git-send-email-yang.shi@windriver.com>
-	<1334009754-3012-3-git-send-email-yang.shi@windriver.com>
-	<4F8484A4.30703@linux.intel.com>
-In-Reply-To: <4F8484A4.30703@linux.intel.com>
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
-Subject: Re: [PATCH 2/2] sato: Throw warning when building ISO image without unionfs enabled
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3CB5E0044D
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 13:40:38 -0700 (PDT)
+Received: from durham.keylevel.com ([109.224.134.115]:60339
+	helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1SHhrg-0005ta-P5
+	for yocto@yoctoproject.org; Tue, 10 Apr 2012 21:40:36 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Date: Tue, 10 Apr 2012 21:40:34 +0100
+Message-Id: <8F9BD230-D053-4D52-AD15-97E27C84013D@keylevel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1257)
+X-Mailer: Apple Mail (2.1257)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Reconfiguring the kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,109 +35,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2012 20:04:07 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 10 Apr 2012 20:40:39 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 4/10/2012 12:06 PM, Saul Wold wrote:
-> On 04/09/2012 03:15 PM, Yang Shi wrote:
->> [YOCTO #1487]
->>
->> For the liveCD image, interactive bootup is needed, but psplash 
->> prevents from
->> booting interactively. In such case ISO image is not usable, so throw 
->> warning
->> info when building ISO image without unionfs enabled in kernel.
->>
->> Signed-off-by: Yang Shi<yang.shi@windriver.com>
->> ---
->>   meta/recipes-sato/images/core-image-sato.bb |   14 ++++++++++++++
->>   1 files changed, 14 insertions(+), 0 deletions(-)
->>
->> diff --git a/meta/recipes-sato/images/core-image-sato.bb 
->> b/meta/recipes-sato/images/core-image-sato.bb
->> index 11c3318..871b227 100644
->> --- a/meta/recipes-sato/images/core-image-sato.bb
->> +++ b/meta/recipes-sato/images/core-image-sato.bb
->> @@ -9,3 +9,17 @@ IMAGE_FEATURES += "apps-console-core 
->> ${SATO_IMAGE_FEATURES}"
->>   LICENSE = "MIT"
->>
->>   inherit core-image
->> +
->> +LIVE = "${@base_contains('IMAGE_FSTYPES', 'live', 'yes', 'no', d)}"
->> +
->> +do_check_unionfs() {
->> +        if [ "${NOISO}" = "1" ]; then
->> +                return
->> +        fi
->> +
->> +        if [ "${LIVE}" = "yes" ]&&  ! grep -q "CONFIG_UNION_FS=y" 
->> ${STAGING_KERNEL_DIR}/.config; then
-> I think you are missing a "]" at the end of this "if [" test.
+I think this is a summary of the steps needed to reconfigure the =
+kernel,based on the instructions in the 6.0.1 dev manual:
 
-It is 'if [ "${LIVE}" = "yes" ]'.
+1) bitbake linux-yocto -c clean
+2) bitbake linux-yocto -c menuconfig
+3) bitbake linux-yocto -c compile -f
+4) bitbake linux-yocto
 
->> +                bbwarn "Building LIVE CD without UNION FS enabled in 
->> kernel"
->> +        fi
->> +}
->> +
->> +addtask check_unionfs before do_build after do_bootimg
->
-> This change is causing a new failure:
+However, the bzimage in tmp/deploy/images is the same as the one that I =
+had before I executed the above. I'm not sure if the md5sum is the same =
+(will check next time round the loop), but it certainly doesn't seem to =
+pick up the new configuration that I'm generating within menuconfig.
 
-Yes, I mentioned this in my mail, the workaround is to add IMAGE_FSTYPE 
-+= "live" in conf/local.conf
+If I use 'cleanall' in step 1 (as shown in the manual) then I do get a =
+new image, but at the expense of having to download the kernel branch =
+again (even with a DL_DIR set). Can I get away with just using 'clean' =
+if I do something else as well ?
 
-Bruce pointed out this is a known problem in poky.
+Chris Tapp
 
-Thanks,
-Yang
-
->
-> Traceback (most recent call last):
->   File 
-> "/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/server/process.py", 
-> line 122, in ProcessServer.idle_commands(delay=0.1):
->                  try:
-> >                retval = function(self, data, False)
->                      if retval is False:
->   File 
-> "/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/cooker.py", 
-> line 1134, in buildTargetsIdle(server=<ProcessServer(ProcessServer-1, 
-> started)>, rq=<bb.runqueue.RunQueue instance at 0xb6891b8>, abort=False):
->                  try:
-> >                retval = rq.execute_runqueue()
->                  except runqueue.TaskFailure as exc:
->   File 
-> "/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/runqueue.py", 
-> line 948, in RunQueue.execute_runqueue():
->                  self.rqexe = RunQueueExecuteDummy(self)
-> >            if self.rqdata.prepare() == 0:
->                      self.state = runQueueComplete
->   File 
-> "/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/runqueue.py", 
-> line 719, in RunQueueData.prepare():
->
-> procdep.append(self.taskData.fn_index[self.runq_fnid[dep]] + "." + 
-> self.runq_task[dep])
-> >                    self.runq_hash[task] = 
-> bb.parse.siggen.get_taskhash(self.taskData.fn_index[self.runq_fnid[task]], 
-> self.runq_task[task], procdep, self.dataCache)
->
->   File 
-> "/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bitbake/lib/bb/siggen.py", 
-> line 153, in 
-> SignatureGeneratorOEBasicHash.get_taskhash(fn='/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/meta/recipes-sato/images/core-image-sato.bb', 
-> task='do_bootimg', deps=[], dataCache=<bb.cache.CacheData object at 
-> 0x2ede190>):
->              k = fn + "." + task
-> >        data = dataCache.basetaskhash[k]
->              self.runtaskdeps[k] = []
-> KeyError: 
-> '/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/meta/recipes-sato/images/core-image-sato.bb.do_bootimg'
->
->
+opensource@keylevel.com
+www.keylevel.com
 
 
