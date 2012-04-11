@@ -1,46 +1,27 @@
-Return-Path: <petertornel@yahoo.com>
-Received: from nm27-vm2.bullet.mail.ne1.yahoo.com
-	(nm27-vm2.bullet.mail.ne1.yahoo.com [98.138.91.215])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 0CBDEE00596
-	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 11:02:05 -0700 (PDT)
-Received: from [98.138.90.51] by nm27.bullet.mail.ne1.yahoo.com with NNFMP;
-	11 Apr 2012 18:02:05 -0000
-Received: from [98.138.87.7] by tm4.bullet.mail.ne1.yahoo.com with NNFMP;
-	11 Apr 2012 18:02:05 -0000
-Received: from [127.0.0.1] by omp1007.mail.ne1.yahoo.com with NNFMP;
-	11 Apr 2012 18:02:05 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 359873.533.bm@omp1007.mail.ne1.yahoo.com
-Received: (qmail 16191 invoked by uid 60001); 11 Apr 2012 18:02:05 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1334167325; bh=uhGc09YeH3ZBtSyNKfJxP2/j2PqX5skH6BMyUPd3Xns=;
-	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=Fxp0touwqAA1rs4O50dxF8HaEaQ4Np1+Q4Oorhd95wtmA4A4hR+dAFrevUxjhmMJz8Yu++7yY01v57NAtXb5JB6uVhzIB0h+7RGKPKF8LjM9zKgpKzXedj34Cn3LECQuH1DempHccJFEdGeJXCRDsG/ncb6uymrfwcjw5rnUTJY=
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
-	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=CEFAi0gBSwS4MUJE42gLzfJZIDfBVTB4DMm58jajf3Wi+X+s7kyoGu7LzlFklsWkM/lBW46sH/uNSq3CRbl6ZmGb95kMIS/UwLENdQWOhaoca/61utc+Glv4ue6xxDP/7Rd7upTHOMqclTlDbnbOICpP/m7mzZ5ScXAhaiQU0WQ=;
-X-YMail-OSG: HPOQEhEVM1m0uYCjeJN5mlWUCAOeQsgwdxZJaHLvex_RrbD
-	Anp.14sP77fddkPy7XHxsDvw2zzNREQM9a4X5F8BvdGAGbwAjoc_1vI7rZiy
-	2zFs07hZyactUcrhI1C6vbYAT1DKHsdG7vy3Z46fWajRFRGCQRZKOiIxOHqR
-	yDVKdWxMWiKE0tAOPiE2jYekFbAvQA7oC9VZALw20tYWTYtPMgEEtnEEM.tC
-	lwbhyQcOR7TOPagrr0D0s.yCBM_0NrOB1vZhC_c8fHqiT573DpANm8j9e022
-	Y7w2C1QPm5md8GHEWet91XB81CIzPMjejoIUcJDudX0BrmOF7Lgsl4py_Ndl
-	98bAxC9IvzJV8e1cSNdXJHfFPlOAcZgJqPQE8zFMgC3BmBlcuAV8ELvFFdAV
-	6as0Pvmri3c9sAR1b6zJMr_Vz7578FC8i3YOktCCIaKPW8XgBctOjI9F94lz
-	BPi2cF8OnKrbq7TMJt9Yd82c-
-Received: from [108.11.41.42] by web122203.mail.ne1.yahoo.com via HTTP;
-	Wed, 11 Apr 2012 11:02:05 PDT
-X-Mailer: YahooMailWebService/0.8.117.340979
-Message-ID: <1334167325.15462.YahooMailNeo@web122203.mail.ne1.yahoo.com>
-Date: Wed, 11 Apr 2012 11:02:05 -0700 (PDT)
-From: Peter Tornel <petertornel@yahoo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Return-Path: <sgw@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4ADC6E00596
+	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 11:17:27 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 11 Apr 2012 11:17:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="152478705"
+Received: from unknown (HELO [10.255.12.89]) ([10.255.12.89])
+	by fmsmga002.fm.intel.com with ESMTP; 11 Apr 2012 11:17:26 -0700
+Message-ID: <4F85CAB6.6070800@linux.intel.com>
+Date: Wed, 11 Apr 2012 11:17:26 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
 MIME-Version: 1.0
-Subject: confusion about IMAGE_INSTALL and getting packages into rootfs
+To: Yang Shi <yang.shi@windriver.com>
+References: <1334009754-3012-1-git-send-email-yang.shi@windriver.com>
+In-Reply-To: <1334009754-3012-1-git-send-email-yang.shi@windriver.com>
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
+Subject: Re: [V2 PATCH 0/2] Fix init-live.sh to use unionfs for live CD and remove questioned ISO image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Peter Tornel <petertornel@yahoo.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -49,38 +30,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Apr 2012 18:02:06 -0000
-Content-Type: multipart/alternative;
-	boundary="1629896970-273702181-1334167325=:15462"
+X-List-Received-Date: Wed, 11 Apr 2012 18:17:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---1629896970-273702181-1334167325=:15462
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+On 04/09/2012 03:15 PM, Yang Shi wrote:
+>
+> Changelog V1 ->  V2:
+> * Refined patch 1/2 log
+> * Fixed some spelling erros in patch 1/2
+> * Instead of removing questioned ISO images, just throw warning info in patch 2/2
+>
+>
+> When booting up with liveCD image, init scripts can't work well on read-only filesystem. Unionfs,
+> which is supported in Yocto kernel, allows a filesystem to appear as writeable, but without
+> actually allowing writes to change the filesystem.
+>
+> Use unionfs to mount rootfs and make root file system can be writen when using liveCD to boot up.
+> Set UNION_FS variable depending on kernel config, so that it can work with kernel which doesn't
+> have unionfs feature.
+>
+> For the liveCD image, interactive bootup is needed, but psplash prevents from
+> booting interactively. In such case ISO image is not usable, so throw warning
+> info when building ISO image without unionfs enabled in kernel.
+>
+> We tried a lot of different ways to achieve this:
+>
+> 1. Check if ISO image is built in initramfs-live-boot.bb or not, then prevent from generating ISO image.
+> But, we can't distinguish minimal image or sato image.
+>
+> 2. Check if x11 feature is included in initramfs-live-boot.bb or not, then prevent from generating ISO image.
+> But, x11 feature is contained in minimal image as well even though the package is not built.
+>
+> 3. Tried to append some check code in build_iso() in core-image-sato.bb, but poky can't support append code
+> in build_xxx functions like what we do for do_xxx funcitons.
+>
+> So, we came up with current solution. Any new suggestion is appreciated.
+>
+> One more thing is that if IMAGE_FSTYPE += "live" is not set in conf/local.conf with this fix, we will get below
+> error when building sato image:
+>
+> ERROR: Running idle function
+> Traceback (most recent call last):
+>    File "/home/yshi/yocto/poky/bitbake/lib/bb/server/process.py", line
+> 122, in ProcessServer.idle_commands(delay=0.1):
+>                   try:
+>      >                 retval = function(self, data, False)
+>                       if retval is False:
+>    File "/home/yshi/yocto/poky/bitbake/lib/bb/cooker.py", line 1130, in
+> buildTargetsIdle(server=<ProcessServer(ProcessServer-1, started)>,
+> rq=<bb.runqueue.RunQueue instance at 0x74e4638>, abort=False):
+>                   try:
+>      >                 retval = rq.execute_runqueue()
+>                   except runqueue.TaskFailure as exc:
+>    File "/home/yshi/yocto/poky/bitbake/lib/bb/runqueue.py", line 947,
+> in RunQueue.execute_runqueue():
+>                   self.rqexe = RunQueueExecuteDummy(self)
+>      >             if self.rqdata.prepare() == 0:
+>                       self.state = runQueueComplete
+>    File "/home/yshi/yocto/poky/bitbake/lib/bb/runqueue.py", line 719,
+> in RunQueueData.prepare():
+>
+> procdep.append(self.taskData.fn_index[self.runq_fnid[dep]] + "." +
+> self.runq_task[dep])
+>      >                     self.runq_hash[task] =
+> bb.parse.siggen.get_taskhash(self.taskData.fn_index[self.runq_fnid[task]],
+> self.runq_task[task], procdep, self.dataCache)
+>
+>    File "/home/yshi/yocto/poky/bitbake/lib/bb/siggen.py", line 153, in
+> SignatureGeneratorOEBasicHash.get_taskhash(fn='/home/yshi/yocto/poky/meta/recipes-sato/images/core-image-sato.bb',
+> task='do_bootimg', deps=[], dataCache=<bb.cache.CacheData object at
+> 0x2148490>):
+>               k = fn + "." + task
+>      >         data = dataCache.basetaskhash[k]
+>               self.runtaskdeps[k] = []
+> KeyError: '/home/yshi/yocto/poky/meta/recipes-sato/images/core-image-sato.bb.do_bootimg'
+>
+> NOTE: Preparing runqueue
+>
+> Bruce pointed out there was a large discussion about this on hte list last week, so this should be a known issue in poky.
+>
+I am not finding the discussion, maybe it's under some other title, can 
+someone please point me at this large discussion about the above failure?
 
-I'm working with the poky tree, master branch.=A0 I added a few packages to=
- IMAGE_INSTALL in core-image-minimal.bb.=A0 Everything builds fine, and I c=
-an see the built images in each tmp/work subdirectory for my IMAGE_INSTALL =
-packages.=A0 =0A=0A=0AHowever, I find that some of the image executables th=
-at were part of the packages specified in IMAGE_INSTALL wind up in my core-=
-image-minimal rootfs and some don't. =0A=0A=0AIs there a switch or variable=
- that I need to set to direct all packages specified in IMAGE_INSTALL to be=
- installed into my rootfs?=A0 
 
---1629896970-273702181-1334167325=:15462
-Content-Type: text/html; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+> The following changes since commit f81b0593e74a31cb2d992df0583948ff57e3ed98:
+>
+>    gdbm: Activate -enable-libgdbm-compat and add symlinks to headers in include/gdbm (2012-03-23 17:56:29 +0200)
+>
+> are available in the git repository at:
+>    git://git.yoctoproject.org/poky-contrib yshi/1487v2
+>    http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=yshi/1487v2
+>
+> Yang Shi (2):
+>        initrdscripts: fix init-live.sh and use unionfs
 
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:ti=
-mes new roman, new york, times, serif;font-size:12pt"><div>I'm working with=
- the poky tree, master branch.&nbsp; I added a few packages to IMAGE_INSTAL=
-L in core-image-minimal.bb.&nbsp; Everything builds fine, and I can see the=
- built images in each tmp/work subdirectory for my IMAGE_INSTALL packages.&=
-nbsp; <br></div><div><br></div><div>However, I find that some of the image =
-executables that were part of the packages specified in IMAGE_INSTALL wind =
-up in my core-image-minimal rootfs and some don't. <br></div><div><br></div=
-><div>Is there a switch or variable that I need to set to direct all packag=
-es specified in IMAGE_INSTALL to be installed into my rootfs?&nbsp; <br></d=
-iv><div><br></div><div><br></div><div><br></div><div><br></div></div></body=
-></html>
+merged this one in
 
---1629896970-273702181-1334167325=:15462--
+>        sato:  Throw warning when building ISO image without unionfs enabled
+>
+This is not merged since in the normal case with out live in 
+IMAGE_FSTYPES, the above error occurs, that is not the proper way to 
+handle this.
+
+The underlying issue needs to be addressed first.
+
+>   meta/recipes-core/initrdscripts/files/init-live.sh |   23 ++++++++++++++++---
+>   .../initrdscripts/initramfs-live-boot_1.0.bb       |    9 +++++++-
+>   meta/recipes-sato/images/core-image-sato.bb        |   14 ++++++++++++
+>   3 files changed, 41 insertions(+), 5 deletions(-)
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
