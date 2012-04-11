@@ -1,31 +1,31 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0319E0044D
-	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 08:56:23 -0700 (PDT)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 551EEE0044D
+	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 08:56:35 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q3BFuMwa003988
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q3BFuTZx013269
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 11 Apr 2012 08:56:22 -0700 (PDT)
-Received: from msp-dhcp19.wrs.com (172.25.34.19) by ALA-HCA.corp.ad.wrs.com
+	Wed, 11 Apr 2012 08:56:29 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 11 Apr 2012 08:56:22 -0700
-Message-ID: <4F85A9A5.2090305@windriver.com>
-Date: Wed, 11 Apr 2012 10:56:21 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:11.0) Gecko/20120327 Thunderbird/11.0.1
+	Wed, 11 Apr 2012 08:56:29 -0700
+Message-ID: <4F85A9A5.8080206@windriver.com>
+Date: Wed, 11 Apr 2012 11:56:21 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-To: "Xu, Dongxiao" <dongxiao.xu@intel.com>
-References: <1334157278.27917.25.camel@dongxiao-osel>
-	<4F85A274.8010906@windriver.com>
-	<1334158628.27917.28.camel@dongxiao-osel>
-	<4F85A706.3030508@windriver.com>
-	<1334159474.27917.30.camel@dongxiao-osel>
-In-Reply-To: <1334159474.27917.30.camel@dongxiao-osel>
-Cc: yocto <yocto@yoctoproject.org>,
-	"scott.a.garman@intel.com" <scott.a.garman@intel.com>
-Subject: Re: Installation order question with RPM backend
+To: Om Prakash PAL <omprakash.pal@stericsson.com>
+References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
+	<4F7C42E5.8000301@windriver.com>
+	<3ED83A9DB3B6D94CA68BF7C03F2981D35AE63C1B66@EXDCVYMBSTM006.EQ1STM.local>
+	<4F825F65.4040706@windriver.com>
+	<3ED83A9DB3B6D94CA68BF7C03F2981D35AE63C1B69@EXDCVYMBSTM006.EQ1STM.local>
+	<CADkTA4PnNWTbtpzVu=Qhegg87Ai=XNXgH5VD6c7mCK=BYj3dgg@mail.gmail.com>
+	<3ED83A9DB3B6D94CA68BF7C03F2981D35AE65C8E92@EXDCVYMBSTM006.EQ1STM.local>
+In-Reply-To: <3ED83A9DB3B6D94CA68BF7C03F2981D35AE65C8E92@EXDCVYMBSTM006.EQ1STM.local>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Porting of specific Kernel/Driver into yocto.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,110 +37,174 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Apr 2012 15:56:23 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-List-Received-Date: Wed, 11 Apr 2012 15:56:35 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 4/11/12 10:51 AM, Xu, Dongxiao wrote:
-> On Wed, 2012-04-11 at 10:45 -0500, Mark Hatle wrote:
->> On 4/11/12 10:37 AM, Xu, Dongxiao wrote:
->>> On Wed, 2012-04-11 at 10:25 -0500, Mark Hatle wrote:
->>>> On 4/11/12 10:14 AM, Xu, Dongxiao wrote:
->>>>> Hi Mark,
->>>>>
->>>>> I met a strange issue while using RPM to generate the rootfs.
->>>>>
->>>>> In the installation list, if we have 2 RPM packages, say A.rpm and
->>>>> B.rpm. package A RDEPENDS on package B. While installing the two
->>>>> packages? Does RPM ensures to install B first and then install A?
->>>>>
->>>>> The real issue is: we have certain packages that need to run
->>>>> useradd/groupadd at rootfs time, for example, the dbus. However the
->>>>> useradd/groupadd bbclass RDEPENDS on base-files, which provides
->>>>> the /etc/group file. While installing the final image, sometimes we saw
->>>>> it installs dbus firstly and then base-files, causing the
->>>>> useradd/groupadd script error since it could not find /etc/group file.
->>>>
->>>> it does enforce install order, however the /etc/group, /etc/passwd files (last
->>>> time I checked) were being put into place by the post install scripts.  The
->>>> scripting order is handled somewhat independently of the package install order.
->>>>     (post install scripts get delayed intentionally for performance reasons.
->>>> There is a way to hint a dependency for them as well...)
->>>>
->>>> The passwd/group files are fairly unique files, and generally are installed
->>>> -first- (individually) before any other packages on most RPM installations.
->>>> After that the methods and install ordering works...
->>>>
->>> But does the following log indicates the dbus-1 is installed before
->>> base-passwd?
->>>
->>> dbus-1                ##################################################
->>>    Adding system startup
->>> for /distro/sdb/build-basic/tmp/work/qemux86-poky-linux/hob-image-hob-basic-1.0-r0/rootfs/etc/init.d/dbus-1.
->>> kernel-module-uvesafb ##################################################
->>> libusb-compat         ##################################################
->>> base-passwd           ##################################################
->>
->> Certainly appears that way.. but we'd need to look into the packages and
->> understand the requirements as they are defined and trace them to see if there
->> is a problem w/ the ordering or if the packages have a problem.
->>
->> You will often see mysterious reordering when there is a circular dependency.
->> RPM has to break this dependency in some way, and it does it by simply choosing
->> one or the other.  (There is a hint mechanism for circular dependencies, but
->> we've never used it.)
->>
->> My suggestion is lets look at the package runtime dependenices and manually
->> trace them..  Focus on dbus-1 and base-passwd... and see if the order is right
->> or wrong or if there is a circular dependency.
+On 12-04-11 11:34 AM, Om Prakash PAL wrote:
+> Hi Bruce,
+> 	I need some more info
 >
-> I checked the dbus.spec and base-passwd.spec.
-> For dbus.spec, there is a line:
+> [1].I want to add kernel dir path into SRC_URI(in meta-<bsp_name>/recipe-kernel/linux/linux_3.0.bb), how can we add it ? i.e. lets imagine that my kernel is located in dir /local/kernel/*
+> How we can add this kernel into SRC_URI?.(imagine that we don't have git:// and http: path, we have just dir where my kernel is located)
+
+I do it this way in meta-kernel-dev:
+
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-extras/plain/meta-kernel-dev/recipes-kernel/linux/linux-yocto-dev.bbappend
+
+In particular the protocol=file should be noticed.
+
 >
-> %package -n dbus-1
-> Requires: base-passwd
+> [2] we want to create BSP for our board that is based on arm-cortex-A9 but we don't have meta/conf/machine/include/tune-armcortexa9.inc file in current yocto.
+> How can we create it?.
+
+Answered this one previously.
+
+Cheers,
+
+Bruce
+
 >
-> And for base-passwd, there is no dbus exists in base-passwd.spec.
-
-You need to query the binary packages for the real values..
-
-rpm -qp <package> --requires
-
-(and --provides will show what it provides..)  then match those two up.. If you 
-still don't come across some type of circular dependency, then let me know.. 
-I'll start investigating further. (there is additional dependency resolution 
-debugging I can enable, but it's difficult to explain how to interpret the tons 
-of lines..)
-
---Mark
-
 > Thanks,
-> Dongxiao
+>
+> Best Regards,
+> Om Prakash Pal
+>
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@gmail.com]
+> Sent: Monday, April 09, 2012 11:04 PM
+> To: Om Prakash PAL
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
+>
+> On Mon, Apr 9, 2012 at 12:31 PM, Om Prakash PAL
+> <omprakash.pal@stericsson.com>  wrote:
+>> Hi Bruce,
+>> Thanks for you help.
+>> As you have mentioned, its working properly.
+>> I want to know that is there any better way of doing same thing for my scenario ?:
+>> here is my scenario:
+>> We have development branch where we write/modify our kernel/driver code i.e. thats our local kernel repository(git rep)
+>> and lots of driver/files being modified everyday-->so I have to take the same effect into yocto kernel also---->  so except  creating patches for all modified drivers and creating .bbappend files, is there any better way of doing same thing .
+>
+> Aha. Missed that.
+>
+> Just create a simple recipe that points at your git repository in the SRC_URI.
+> If all the changes are in the tree, and you have a defconfig and you
+> are building
+> the master branch. Then pretty much everything you need can be specified in
+> the SRC_URI .. and that's the entire recipe.
+>
+> If you look in oe-classic, meta-ti or any one of a number of other
+> layers, you'll
+> find recipes that do just that.
+>
+> The meta-kernel-dev (in the poky extras) layer has an example of using the
+> kernel.org tree with the yocto kern tools, and once yocto 1.3 opens up for
+> submissions, I have a set of changes prep'd that make it relatively simple to
+> use the yocto kern tools against different types of repository.
+>
+> So the summary is: Depending on the type of tooling you need, and what baseline
+> you need for your work .. there are a number of ways to do things.
 >
 >>
->> (Also our version of RPM 5 is a bit old, and there are some known bugs in it..
->> as far as I know, none of them with the dependency resolution or code paths we
->> follow.)
+>> Is there anyway that  instead of using yocto-kernel tree,  can we use our local kernel-tree for building images?. (should  I create separate BSP ?)
+>
+> You should definitely create a BSP, that way you can tune the system specific
+> to your board,
+>
+> Cheers,
+>
+> Bruce
+>
 >>
->> --Mark
+>> Thanks in advance.
+>> Best Regards,
+>> Om Prakash Pal
+>> ________________________________________
+>> From: Bruce Ashfield [bruce.ashfield@windriver.com]
+>> Sent: Monday, April 09, 2012 9:32 AM
+>> To: Om Prakash PAL
+>> Cc: yocto@yoctoproject.org
+>> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
 >>
->>> Thanks,
->>> Dongxiao
+>> On 12-04-08 10:04 AM, Om Prakash PAL wrote:
+>>> Hi Bruce,
+>>> Thanks for your reply.
+>>> I am totally new to Yocto.
+>>> I have gone through the section BSP/Linux kernel configuration and if I am not wrong then it explains how can we configure the kernel, not the how we can add/replace a  component(driver etc).
+>>> lets take the example of UART driver, I want to add my own UART driver code.
+>>> Should I write a separate recipe file (.bb) for UART Driver?.
+>>> if yes then I have to write the recipe files for all my drivers that will be very time consuming.
+>>> Is there any other way that I can port all my desired drivers into Yocto kernel?.
+>>
+>> No recipes are required per-driver, unless you are building them all
+>> as out of tree modules.
+>>
+>> The typical way this is done is to simply work in the extracted linux
+>> src tree (build/tmp/work/<your board>/linux-yocto-<hashes>/linux), manually
+>> patch, or copy your drivers into the tree. At this point, you'll port
+>> the drivers, doing test builds (bitbake -f -c compile linux-yocto) to
+>> ensure that your port is working. When you've completed the build phase,
+>> boot tests would be in order. (Do not do a 'clean' or you'll lose in
+>> progress changes).
+>>
+>> When you are happy with the changes, the directory where you were working
+>> is with the kernel git repository. So you can simply commit your
+>> changes, and generate patches.
+>>
+>>     git format-patch -o<your directory>  HEAD^ (or however many commits
+>> you have)
+>>
+>> Take those patches, create a layer with a bbappend and add them like
+>> any other patch to any package. They'll be applied to subsequent builds
+>> of the kernel.
+>>
+>> I'm skipping a lot of detail there, but it is all found in the various
+>> manuals, and I don't want to repeat it here.
+>>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>> Please help me.
+>>> Thanks a lot in advance.
 >>>
->>>> --Mark
+>>> Best Regards,
+>>> Om Prakash Pal
+>>> ________________________________________
+>>> From: Bruce Ashfield [bruce.ashfield@windriver.com]
+>>> Sent: Wednesday, April 04, 2012 6:17 PM
+>>> To: Om Prakash PAL
+>>> Cc: yocto@yoctoproject.org
+>>> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
+>>>
+>>> On 12-04-04 04:46 AM, Om Prakash PAL wrote:
+>>>> Hi,
+>>>> I want to build my local kernel/Driver code, not the default one.
+>>>> please help how can i do it ?.
+>>>> any wiki/docs on this?.
+>>>
+>>> The BSP developer guides show how to extend the yocto kernels, and
+>>> also have sections on custom/different kernel versions. Have you
+>>> seen that doc yet ? Or have you seen it, and have specific questions ?
+>>>
+>>> Bruce
+>>>
 >>>>
->>>>> I tried ipk and it doesn't have problem since it ensures to install
->>>>> base-files firstly.
->>>>>
->>>>> Any comment is welcome.
->>>>>
->>>>> Thanks,
->>>>> Dongxiao
->>>>>
->>>>
->>>
+>>>> Best Regards,
+>>>> Om Prakash Pal
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
 >>>
 >>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
 >
 >
 
