@@ -1,44 +1,50 @@
-Return-Path: <boon.pin.khor@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10C9CE01374
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 16:57:33 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 10 Apr 2012 16:57:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="129399401"
-Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
-	by azsmga001.ch.intel.com with ESMTP; 10 Apr 2012 16:57:32 -0700
-Received: from pgsmsx152.gar.corp.intel.com (172.30.236.43) by
-	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 10 Apr 2012 16:57:31 -0700
-Received: from pgsmsx103.gar.corp.intel.com ([169.254.2.159]) by
-	PGSMSX152.gar.corp.intel.com ([169.254.5.105]) with mapi id
-	14.01.0355.002; Wed, 11 Apr 2012 07:57:29 +0800
-From: "Khor, Boon Pin" <boon.pin.khor@intel.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-Thread-Topic: [yocto] Yocto Project 1.2 Beta testing instructions
-Thread-Index: AQHNF3NEbpHiGFzO7UGdgVoRFdboTJaUvFLQ
-Date: Tue, 10 Apr 2012 23:57:29 +0000
-Message-ID: <F9AC6E797E022941A4CD80AAEDFAD67D438441@PGSMSX103.gar.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A46AE31E3@ORSMSX101.amr.corp.intel.com>
-	<F9AC6E797E022941A4CD80AAEDFAD67D43756F@PGSMSX103.gar.corp.intel.com>
-	<7E680CB2A76BB8438D08CF13C09FC53A46AF10FD@ORSMSX101.amr.corp.intel.com>
-	<2083054.YjdMd9bIMH@helios> <4F846C2E.8040304@windriver.com>
-	<F9AC6E797E022941A4CD80AAEDFAD67D438425@PGSMSX103.gar.corp.intel.com>
-	<4F84C4CE.5050103@windriver.com>
-In-Reply-To: <4F84C4CE.5050103@windriver.com>
+Return-Path: <B29882@freescale.com>
+Received: from db3outboundpool.messaging.microsoft.com
+	(db3ehsobe006.messaging.microsoft.com [213.199.154.144])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B34CE0044D
+	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 08:43:45 -0700 (PDT)
+Received: from mail30-db3-R.bigfish.com (10.3.81.251) by
+	DB3EHSOBE002.bigfish.com (10.3.84.22) with Microsoft SMTP Server id
+	14.1.225.23; Wed, 11 Apr 2012 15:43:44 +0000
+Received: from mail30-db3 (localhost [127.0.0.1])	by mail30-db3-R.bigfish.com
+	(Postfix) with ESMTP id 0D8621E04AC;
+	Wed, 11 Apr 2012 15:43:44 +0000 (UTC)
+X-SpamScore: -9
+X-BigFish: VS-9(zz9371I1432N98dKzz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hbe9i)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+Received: from mail30-db3 (localhost.localdomain [127.0.0.1]) by mail30-db3
+	(MessageSwitch) id 1334159022428275_13101;
+	Wed, 11 Apr 2012 15:43:42 +0000 (UTC)
+Received: from DB3EHSMHS011.bigfish.com (unknown [10.3.81.229])	by
+	mail30-db3.bigfish.com (Postfix) with ESMTP id 584C720004A;
+	Wed, 11 Apr 2012 15:43:42 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by DB3EHSMHS011.bigfish.com
+	(10.3.87.111) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Wed, 11 Apr 2012 15:43:41 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.132]) by
+	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
+	14.01.0355.003; Wed, 11 Apr 2012 10:43:40 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+Thread-Topic: [yocto] package requirements for CentOS
+Thread-Index: AQHNF/ndO4f3bMMeG0Gq7/bdb8uxsg==
+Date: Wed, 11 Apr 2012 15:43:39 +0000
+Message-ID: <CAEsOVNev-JtaYg9oxKMewu8tWnQL4FF9sxdDttv+VBmMbRL0og@mail.gmail.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB1237945186473@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237945186473@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.30.66.14]
+x-originating-ip: [99.47.177.27]
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 11 Apr 2012 08:40:50 -0700
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto Project 1.2 Beta testing instructions
+X-OriginatorOrg: freescale.com
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: package requirements for CentOS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -47,114 +53,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2012 23:57:33 -0000
+X-List-Received-Date: Wed, 11 Apr 2012 15:43:45 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <E09115590E771F4B8CDFD84F22C1974C@mgd.freescale.com>
 Content-Transfer-Encoding: quoted-printable
 
-I just filed this in bugzilla .=20
+On Tue, Apr 10, 2012 at 5:13 PM, Rifenbark, Scott M
+<scott.m.rifenbark@intel.com> wrote:
+> I have recently added the CentOS distribution to the YP QS.=A0 The list n=
+ow
+> includes Ubuntu, Fedora, openSUSE, and CentOS.=A0 Further down in the man=
+ual
+> there are sections detailing the package requirements for Ubuntu, Fedora,
+> and openSUSE.=A0 I should address CentOS.=A0 Here is the link to the sect=
+ions
+> currently there.=A0 Does anyone know the package requirements for CentOS?
+>
+>
+>
+> http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs=
+.html#packages
 
------Original Message-----
-From: Mark Hatle [mailto:mark.hatle@windriver.com]=20
-Sent: Wednesday, April 11, 2012 7:40 AM
-To: Khor, Boon Pin
-Cc: Paul Eggleton; yocto@yoctoproject.org; Liu, Song
-Subject: Re: [yocto] Yocto Project 1.2 Beta testing instructions
+We have some idea. The biggest difference looks to be chrpath is not
+available on CentOS/RHEL 5.x distro's by default. I thought the same
+could be said of python2.6 so I'm not sure at the moment how we handle
+that. (This is for edison so it should still be applicable)
 
-On 4/10/12 6:06 PM, Khor, Boon Pin wrote:
-> Hi all
->
->   On my ubuntu 11.10 64bits machines , once I change the default shell to=
- bash , the problem solved .
+#!/bin/sh
 
-I believe we expect dash to be fully supported, so this is a bug.
+echo "Install packages needed to build Yocto, please wait, it may take a wh=
+ile"
+PKGS=3D"tetex gawk sqlite-devel vim-common redhat-lsb xz \
+     m4 make wget curl ftp tar bzip2 gzip python-devel \
+     unzip perl texinfo texi2html diffstat openjade zlib-devel \
+     docbook-style-dsssl sed docbook-style-xsl docbook-dtds \
+     docbook-utils bc glibc-devel pcre pcre-devel \
+     groff linuxdoc-tools patch linuxdoc-tools cmake \
+     tcl-devel gettext ncurses apr \
+     SDL-devel mesa-libGL-devel mesa-libGLU-devel gnome-doc-utils \
+     autoconf automake libtool xterm"
+if [ "Fedora" =3D "$distro" ]; then
+    PKGS=3D"$PKGS hg ccache quilt help2man perl-ExtUtils-MakeMaker connect-=
+proxy"
+fi
+sudo yum -y groupinstall "development tools"
+sudo yum -y install $PKGS
 
-Please file a bug in the Yocto Project bugzilla
-(http://bugzilla.yoctoproject.org)  if you are not able to do so, let me kn=
-ow and I will file it.
+[ -r /etc/redhat-release ] && series=3D`sed -e 's,.*\([0-9]\)\..*,\1,g'
+/etc/redhat-release`
+# chrpath is ONLY availabe on RHEL 6.x
+if [ "Redhat" =3D "$distro" -a "6" !=3D "$series" ]; then
+    # check if chrpath is installed.
+    if [ -z "$(rpm -qa chrpath)" ]; then
+        echo "chrpath is required. Install it as follows:
+        (1) download the package from
+http://mirror.centos.org/centos/${series}/extras/
+        (2) sudo rpm -Uhv chrpath-0.13-3.el${series}.centos.i386.rpm
+            or
+            sudo rpm -Uhv chrpath-0.13-3.el${series}.centos.x86_64.rpm
+        Then re-run this script."
+    fi
+else
+    sudo yum -y install chrpath
+fi
 
---Mark
-
-> Thanks
-> Boon pin
->
-> -----Original Message-----
-> From: Mark Hatle [mailto:mark.hatle@windriver.com]
-> Sent: Wednesday, April 11, 2012 1:22 AM
-> To: Paul Eggleton
-> Cc: yocto@yoctoproject.org; Liu, Song; Khor, Boon Pin
-> Subject: Re: [yocto] Yocto Project 1.2 Beta testing instructions
->
-> On 4/10/12 4:18 AM, Paul Eggleton wrote:
->> On Wednesday 04 April 2012 18:08:58 Liu, Song wrote:
->>> Can someone help answer the following question? This happens during=20
->>> Boon Pin's beta testing using the build at:
->>> http://git.yoctoproject.org/cgit/cgit.cgi/poky/snapshot/poky-8e9f6fc
->>> 7
->>> 7ac476
->>> 3f4ed1f6e7b720420c220ba6e2.tar.bz2 .
->>> ...
->>> | Processing task-core-boot...
->>> | Manifest:
->>> | /home/nemo/yp-beta-build/tmp/work/qemux86-poky-linux/core-image-mi
->>> | n
->>> | imal-1 .0-r0/rootfs/install/install.manifest local: 1: -Uhv: bad=20
->>> | variable name
->>>
->>> NOTE: package core-image-minimal-1.0-r0: task do_rootfs: Failed
->>> ERROR: Task 8
->>> (/home/nemo/yp-beta/meta/recipes-core/images/core-image-minimal.bb,
->>> do_rootfs) failed with exit code '1' NOTE: Tasks Summary: Attempted
->>> 1329 tasks of which 287 didn't need to be rerun and 1 failed.
->>
->> Sorry for the late reply, presumably this issue is still present?
->>
->>> Maybe I am missing rpm packages in ubuntu ?
->>
->> You don't need to install rpm on the host system, we build rpm-native=20
->> for that.
->>
->> Mark, any clues what could be going wrong here?
->
-> I've never seen any problem like this before.  Below is some analysis and=
- a question at the very end...
->
-> There are only two places in the system where the string -Uhv exists:
->
-> package_rpm.bbclass:
->
->           rpm_common_comand --replacepkgs \
->               -Uhv ${target_rootfs}/install/total_solution.manifest
->
-> (rpm_common_comand is a shell function it appears... the arguments to=20
-> the function are passed, via $@ to an RPM command)
->
-> rootfs_rpm.bbclass:
->
-> rootfs_install_packages() {
->       # The pkg to be installed here is not controlled by the
->       # package_install_internal_rpm, so it may have already been
->       # installed(e.g, installed in the first time when generate the
->       # rootfs), use '--replacepkgs' to always install them
->           for pkg in $@; do
->                   ${RPM} --root ${IMAGE_ROOTFS} -D "_dbpath ${rpmlibdir}"=
- \
->                           -D "__dbi_txn create nofsync private" \
->                           --noscripts --notriggers --noparentdirs --nolin=
-ktos \
->                           --replacepkgs -Uhv $pkg || true
->           done
-> }
->
-> I would guess from the error that it's the one in package_rpm.bbclass tha=
-t failed.. if that is the case, then all I can think of is what shell?  Are=
- we using a bash-ism?  Does "dash" on ubuntu have shell functions enabled i=
-n it, if not that might be the problem.
->
-> Please check your system's /bin/sh.. is it a symlink, if so, what does it=
- point to?  If it points to "dash", change it to "bash" and see if the erro=
-r still occurs.
->
-> --Mark
+-M=
 
 
