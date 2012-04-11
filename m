@@ -1,31 +1,40 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACA47E00746
-	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 14:19:29 -0700 (PDT)
-Received: by pbbjt11 with SMTP id jt11so2215526pbb.35
-	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 14:19:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=6f2YmAx14OQhEIgDNt7KAKJLNvXr1snDqAo9ipcJ8xI=;
-	b=iinMjkY+gTGD3MVAVJlZy9KkEj2dxsaKuFepvnRfxWexawQjiS2z73+8a4+jCgcudn
-	t2gOg252uiJ5jJIgvdjfoixsPUYbMnlbeNFWGY0b0P45Lr3NegQqwDtyJh97qOp8fzXT
-	2+h68pLHdfFSlL8/8MV5uSQWpwa8kE/vKrsdVve+pfwEDeKWzI0zONkmNZmvpIpEpiMA
-	bc++SAYUFcTam699vY3r3CdD/5jhxa4gJRbfym7Pjgyr0V+4ukmA67Fn7SaZCn1cqf84
-	Va1gT2bY4gPvNRpkBoTc2f8ab2qa+miSORRwJKsh7EuabFOv0Aj7yCcONuHjyWSb27pX
-	iw/Q==
+Return-Path: <SRS0=BzwM9V=CR=mindchasers.com=yocto@eigbox.net>
+Received: from bosmailout20.eigbox.net (bosmailout20.eigbox.net [66.96.185.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D672DE00746
+	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 14:38:04 -0700 (PDT)
+Received: from bosmailscan04.eigbox.net ([10.20.15.4])
+	by bosmailout20.eigbox.net with esmtp (Exim) id 1SI5Ep-00024L-Av
+	for yocto@yoctoproject.org; Wed, 11 Apr 2012 17:38:03 -0400
+Received: from bosimpout01.eigbox.net ([10.20.55.1])
+	by bosmailscan04.eigbox.net with esmtp (Exim) id 1SI5Eo-0002gV-Az
+	for yocto@yoctoproject.org; Wed, 11 Apr 2012 17:38:02 -0400
+Received: from bosauthsmtp01.eigbox.net ([10.20.18.1])
+	by bosimpout01.eigbox.net with NO UCE
+	id wle21i01X01P9Sa01le2u0; Wed, 11 Apr 2012 17:38:02 -0400
+X-Authority-Analysis: v=2.0 cv=eq1oOPVX c=1 sm=1
+	a=1tk2KXT9X5KuiK9ZGSyBkw==:17 a=mn2ndCrYJZwA:10 a=5XsFQGJ3Uf0A:10
+	a=Lk7aQFya1KUA:10 a=8nJEP1OIZ-IA:10 a=wgQkHdUEAAAA:8 a=iGHA9ds3AAAA:8
+	a=SSSEZNxC1r6QWZtlfWEA:9 a=wPNLvfGTeEIA:10 a=5KiuuLRZHpkA:10
+	a=FLmnjis/JmE4jomwi6pJ+A==:117
+X-EN-OrigOutIP: 10.20.18.1
+X-EN-IMPSID: wle21i01X01P9Sa01le2u0
+Received: from [108.25.140.29] (helo=[192.168.1.41])
+	by bosauthsmtp01.eigbox.net with esmtpa (Exim) id 1SI5Eo-0003GD-Do
+	for yocto@yoctoproject.org; Wed, 11 Apr 2012 17:38:02 -0400
+Message-ID: <4F85F9B8.8060902@mindchasers.com>
+Date: Wed, 11 Apr 2012 17:38:00 -0400
+From: Bob Cochran <yocto@mindchasers.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
 MIME-Version: 1.0
-Received: by 10.68.130.196 with SMTP id og4mr751973pbb.155.1334179169488; Wed,
-	11 Apr 2012 14:19:29 -0700 (PDT)
-Received: by 10.68.14.166 with HTTP; Wed, 11 Apr 2012 14:19:29 -0700 (PDT)
-In-Reply-To: <1B707EEC-B001-45EA-BC0B-C0FF70BB7152@keylevel.com>
+To: yocto@yoctoproject.org
 References: <1B707EEC-B001-45EA-BC0B-C0FF70BB7152@keylevel.com>
-Date: Wed, 11 Apr 2012 17:19:29 -0400
-Message-ID: <CADzUK1JaG0NHMzNgyPuRom_968orJqsqOMAV8fG9gpz-aDxO=A@mail.gmail.com>
-From: Autif Khan <autif.mlist@gmail.com>
-To: Chris Tapp <opensource@keylevel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
+In-Reply-To: <1B707EEC-B001-45EA-BC0B-C0FF70BB7152@keylevel.com>
+X-EN-UserInfo: cb6d325fe03740ac93d537d78041f599:2186c883651a1065ea1e15c5a112545a
+X-EN-AuthUser: bcochran@mindchasers.com
+Sender: Bob Cochran <yocto@mindchasers.com>
+X-EN-OrigIP: 108.25.140.29
+X-EN-OrigHost: unknown
 Subject: Re: Build time data
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -38,44 +47,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Apr 2012 21:19:29 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 11 Apr 2012 21:38:05 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 04/11/2012 04:42 PM, Chris Tapp wrote:
 > Is there a page somewhere that gives a rough idea of how quickly a full build runs on various systems?
-
-I dont think there is a page anywhere.
-
-This is as rough as it can get on the two machine that I have not
-including the time it takes to download the source files.
-
-HP 2.8GHz core i-7 dual core hyper threaded machine with a 5400 rpm disk:
-
-BB_NUM_THREADS = "8"
-PARALLEL_MAKE = "8"
-
-core image minimal 2.5 hours
-core image sato 5 hours
-core image sdk 8-10 hours
-
-A build machine - Core i7-3960X 3.3 GHz - 6 cores hyperthreaded, with
-an SSD for build output and a 7200 rpm 6.0 Gbps claiming HDD for
-downloads, poky, whatever
-
-BB_NUM_THREADS = "24"
-PARALLEL_MAKE = "24"
-
-core image minimal 27 minutes
-core image sato 58-62 minutes
-core image sdk 110-120 minutes
-
-OS was always Ubuntu 11.10 - xubuntu on HP laptop, server in build machine.
-
+>
 > I need a faster build platform, but want to get a reasonable price / performance balance ;-)
 >
 > I'm looking at something like an i7-2700K but am not yet tied...
+>
+> Chris Tapp
+>
+> opensource@keylevel.com
+> www.keylevel.com
+>
+>
 
-The build machine cost about $3500 or so from tiger direct/newegg
 
-It was well worth it - instead of doing nightly builds, I can now do a
-clean build in under one hour.
+I haven't seen one, but it would be great to have this on the wiki where 
+everyone could post what they're seeing & using.
+
+Maybe the autobuilder has some useful statistics 
+(http://autobuilder.yoctoproject.org:8010/)?  Of course, you'll have to 
+be careful to determine whether anything else was running at the time of 
+the build.
+
+On a related note, I have been wondering whether I would get the bang 
+for the buck with an SSD for my build machines.  I would guess that 
+building embedded Linux images isn't a typical use pattern for an SSD. I 
+wonder if the long write & erase durations for FLASH technology would 
+show its ugly face during a poky build.  I would think that the embedded 
+micro inside the SSD managing the writes might get taxed to the limit 
+trying to slice the data.  I would appreciate anyone's experience with 
+SSDs on build machines.
 
