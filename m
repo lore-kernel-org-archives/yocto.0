@@ -1,35 +1,23 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EE9DE00596
-	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 08:46:31 -0700 (PDT)
-Received: by qcsd1 with SMTP id d1so802281qcs.35
-	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 08:46:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type
-	:content-transfer-encoding;
-	bh=rmSVGWiyyQUYB3KzKTzF4GGrkn3TTAFN8Td28sdn9rA=;
-	b=Po5iXv6/W0XARHjwxlJcmjZXhJPm2TPNWlAaCFJg/YbCpN6xKbSI75vy84QGFElFdE
-	vQTEJsWekcI+lNvr7PaUmsPZn4wQyJQsMhqPSDLXzV3GglNKe5bLHVUhEV8m3pjQw8X6
-	vDzRKH7+6sjcWWXdSGDVUvdm+q0KQpDMrgDoIZgskxz9dC+hRtcloo37jK4r66Bp7NLV
-	kYXY/t7nQrHYIOk0W5Dr64o7S6HWXl/drhdBS0ZhqunguOhC2sRWyHgF4Nwto0AlWXNF
-	TXrBFymAZkgcVjxdxlJyypO1OrPNFs1dDLbc+pOWyz7wrM/S7vR1bmxtww4LC/D+lkL/
-	hfdw==
-Received: by 10.224.33.134 with SMTP id h6mr2103037qad.28.1334159190376; Wed,
-	11 Apr 2012 08:46:30 -0700 (PDT)
+Return-Path: <josh@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 242D7E00596
+	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 08:49:47 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 11 Apr 2012 08:48:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="140500733"
+Received: from unknown (HELO [10.255.12.85]) ([10.255.12.85])
+	by fmsmga001.fm.intel.com with ESMTP; 11 Apr 2012 08:48:46 -0700
+Message-ID: <4F85A7DE.1090202@linux.intel.com>
+Date: Wed, 11 Apr 2012 08:48:46 -0700
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.229.79.79 with HTTP; Wed, 11 Apr 2012 08:46:10 -0700 (PDT)
-In-Reply-To: <CAEsOVNev-JtaYg9oxKMewu8tWnQL4FF9sxdDttv+VBmMbRL0og@mail.gmail.com>
+To: yocto@yoctoproject.org
 References: <41DEA4B02DBDEF40A0F3B6D0DDB1237945186473@ORSMSX101.amr.corp.intel.com>
 	<CAEsOVNev-JtaYg9oxKMewu8tWnQL4FF9sxdDttv+VBmMbRL0og@mail.gmail.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Wed, 11 Apr 2012 08:46:10 -0700
-X-Google-Sender-Auth: i0IoKtwim5zYV-aqaMqslP81ano
-Message-ID: <CABcZANnpe08W5enLiHScLd6vcqW374jiJYxe7kR-iCUhRNLpnA@mail.gmail.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
+In-Reply-To: <CAEsOVNev-JtaYg9oxKMewu8tWnQL4FF9sxdDttv+VBmMbRL0og@mail.gmail.com>
 Subject: Re: package requirements for CentOS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,39 +30,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Apr 2012 15:46:31 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 11 Apr 2012 15:49:47 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 11, 2012 at 8:43 AM, McClintock Matthew-B29882
-<B29882@freescale.com> wrote:
+
+
+On 11/04/12 08:43, McClintock Matthew-B29882 wrote:
 > On Tue, Apr 10, 2012 at 5:13 PM, Rifenbark, Scott M
-> <scott.m.rifenbark@intel.com> wrote:
->> I have recently added the CentOS distribution to the YP QS.=C2=A0 The li=
-st now
->> includes Ubuntu, Fedora, openSUSE, and CentOS.=C2=A0 Further down in the=
- manual
->> there are sections detailing the package requirements for Ubuntu, Fedora=
-,
->> and openSUSE.=C2=A0 I should address CentOS.=C2=A0 Here is the link to t=
-he sections
->> currently there.=C2=A0 Does anyone know the package requirements for Cen=
-tOS?
+> <scott.m.rifenbark@intel.com>  wrote:
+>> I have recently added the CentOS distribution to the YP QS.  The list now
+>> includes Ubuntu, Fedora, openSUSE, and CentOS.  Further down in the manual
+>> there are sections detailing the package requirements for Ubuntu, Fedora,
+>> and openSUSE.  I should address CentOS.  Here is the link to the sections
+>> currently there.  Does anyone know the package requirements for CentOS?
 >>
 >>
 >>
->> http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-q=
-s.html#packages
+>> http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.html#packages
 >
 > We have some idea. The biggest difference looks to be chrpath is not
 > available on CentOS/RHEL 5.x distro's by default. I thought the same
 > could be said of python2.6 so I'm not sure at the moment how we handle
 > that. (This is for edison so it should still be applicable)
 
+Most likely EPEL https://fedoraproject.org/wiki/EPEL ?
 
-We handle python 2.6 by adding the fedora EL yum repository and
-installing python2.6 from there (incidentally, other useful things
-like git are in that repo).
---=20
-Christopher Larson
+It's listed on the YP wiki page for getting extra dependencies on 
+CentOS: https://wiki.yoctoproject.org/wiki/Poky/GettingStarted/Dependencies
+
+Cheers,
+Joshua
+
+>
+> #!/bin/sh
+>
+> echo "Install packages needed to build Yocto, please wait, it may take a while"
+> PKGS="tetex gawk sqlite-devel vim-common redhat-lsb xz \
+>       m4 make wget curl ftp tar bzip2 gzip python-devel \
+>       unzip perl texinfo texi2html diffstat openjade zlib-devel \
+>       docbook-style-dsssl sed docbook-style-xsl docbook-dtds \
+>       docbook-utils bc glibc-devel pcre pcre-devel \
+>       groff linuxdoc-tools patch linuxdoc-tools cmake \
+>       tcl-devel gettext ncurses apr \
+>       SDL-devel mesa-libGL-devel mesa-libGLU-devel gnome-doc-utils \
+>       autoconf automake libtool xterm"
+> if [ "Fedora" = "$distro" ]; then
+>      PKGS="$PKGS hg ccache quilt help2man perl-ExtUtils-MakeMaker connect-proxy"
+> fi
+> sudo yum -y groupinstall "development tools"
+> sudo yum -y install $PKGS
+>
+> [ -r /etc/redhat-release ]&&  series=`sed -e 's,.*\([0-9]\)\..*,\1,g'
+> /etc/redhat-release`
+> # chrpath is ONLY availabe on RHEL 6.x
+> if [ "Redhat" = "$distro" -a "6" != "$series" ]; then
+>      # check if chrpath is installed.
+>      if [ -z "$(rpm -qa chrpath)" ]; then
+>          echo "chrpath is required. Install it as follows:
+>          (1) download the package from
+> http://mirror.centos.org/centos/${series}/extras/
+>          (2) sudo rpm -Uhv chrpath-0.13-3.el${series}.centos.i386.rpm
+>              or
+>              sudo rpm -Uhv chrpath-0.13-3.el${series}.centos.x86_64.rpm
+>          Then re-run this script."
+>      fi
+> else
+>      sudo yum -y install chrpath
+> fi
+>
+> -M
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+-- 
+Joshua Lock
+         Yocto Project
+         Intel Open Source Technology Centre
 
