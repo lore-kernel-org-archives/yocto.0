@@ -1,20 +1,36 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 298D7E013EB
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 17:16:50 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 10 Apr 2012 17:16:35 -0700
+Return-Path: <lianhao.lu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DA90E013A8
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2012 18:40:48 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 10 Apr 2012 18:40:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="140218010"
-Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.90])
-	by fmsmga001.fm.intel.com with ESMTP; 10 Apr 2012 17:16:35 -0700
-From: kishore.k.bodke@intel.com
-To: yocto@yoctoproject.org,
-	bruse.ashfield@windriver.com
-Date: Tue, 10 Apr 2012 17:15:16 -0700
-Message-Id: <cover.1334103101.git.kishore.k.bodke@intel.com>
-X-Mailer: git-send-email 1.7.5.4
-Subject: [PATCH 0/1] [KERNEL] Add igb driver to Romley Machine
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="87621516"
+Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
+	by AZSMGA002.ch.intel.com with ESMTP; 10 Apr 2012 18:40:47 -0700
+Received: from shsmsx101.ccr.corp.intel.com (10.239.4.153) by
+	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 10 Apr 2012 18:40:47 -0700
+Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.125]) by
+	SHSMSX101.ccr.corp.intel.com ([169.254.1.142]) with mapi id
+	14.01.0355.002; Wed, 11 Apr 2012 09:40:45 +0800
+From: "Lu, Lianhao" <lianhao.lu@intel.com>
+To: "Wold, Saul" <saul.wold@intel.com>
+Thread-Topic: autobuilder failure
+	http://autobuilder.pokylinux.org:8010/builders/nightly-x86/builds/433
+Thread-Index: Ac0XLNv4Z7andcq9S0KEcduOqasM/f//hmuA//7ev8A=
+Date: Wed, 11 Apr 2012 01:40:45 +0000
+Message-ID: <857BE142E5399E46B20FD45B9DB8A7BC0FD3456F@SHSMSX102.ccr.corp.intel.com>
+References: <857BE142E5399E46B20FD45B9DB8A7BC0FD33D27@SHSMSX102.ccr.corp.intel.com>
+	<4F84593D.7090109@intel.com>
+In-Reply-To: <4F84593D.7090109@intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: autobuilder failure http://autobuilder.pokylinux.org:8010/builders/nightly-x86/builds/433
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,33 +42,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Apr 2012 00:16:50 -0000
+X-List-Received-Date: Wed, 11 Apr 2012 01:40:48 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-Romley machine has builtin 82580 Giga bit Ethernet 
-Controller. Adding the relavent igb nic driver.
+Saul Wold wrote on 2012-04-11:
+> On 04/10/2012 08:16 AM, Lu, Lianhao wrote:
+>> Hi Saul,
+>>=20
+>> I think I might have some clues why the python-nativesdk failed at http:=
+//autobuilder.pokylinux.org:8010/builders/nightly-x86/builds/433.
+> It's due to the commit
+> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/commit/?h=3Dstage/=
+ma
+> ster_under_test&id=3Da1f1cc4c27b5091870b1dbd9ede7c24c38d 765dd.
+>>=20
+>> I guess the above commit which changed eglibc-nativesdk to version 2.15
+>> has some conflict to the sstate-cache the autobuilder used, which might
+>> contains content from old eglibc-nativesdk 2.13.
+>>=20
+> Yes, that would do it, I will hit the sstate reset button and do a build
+> that should clear this, but will cause problems for most people, I
+> wonder if we need a PR bump in eglibc also?
+>=20
 
-Please pull into linux-yocto-3.2/meta
+I think theoretically the PV change from 2.13 to 2.15 has the same effect o=
+f PR bump. I guess maybe some -nativesdk packages(other than eglibc-natives=
+dk) which was built upon eglibc-nativesdk 2.13 didn't get rebuilt somehow a=
+nd went from sstate-cache directly into sysroot.=20
 
-Thanks
-Kishore.
+Since I can't reproduce this compile failure on my local build, do we have =
+the failure environment on autobuilder which I can log on and check?
 
-The following changes since commit 59f350ec3794e19fa806c1b73749d851f8ebf364:
-
-  meta: Add common-pc-tiny.scc (2012-03-31 23:43:34 -0400)
-
-are available in the git repository at:
-  git://git.pokylinux.org/linux-yocto-2.6.37-contrib kishore/romley/meta
-  http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=kishore/romley/meta
-
-Kishore Bodke (1):
-  meta: Add igb.scc to Romley
-
- meta/cfg/kernel-cache/bsp/romley/romley.scc |    3 +--
- 1 files changed, 1 insertions(+), 2 deletions(-)
-
--- 
-1.7.5.4
+Best Regards,
+Lianhao
 
 
