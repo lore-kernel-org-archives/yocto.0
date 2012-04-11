@@ -1,23 +1,25 @@
-Return-Path: <dongxiao.xu@intel.com>
+Return-Path: <sgw@linux.intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30D0AE0070C
-	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 08:17:24 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EF45E00746
+	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 08:20:42 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 11 Apr 2012 08:17:23 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 11 Apr 2012 08:20:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="152410648"
-Received: from dongxiao-osel.sh.intel.com (HELO [10.239.36.11])
-	([10.239.36.11])
-	by fmsmga002.fm.intel.com with ESMTP; 11 Apr 2012 08:17:23 -0700
-From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-Date: Wed, 11 Apr 2012 23:14:38 +0800
-Message-ID: <1334157278.27917.25.camel@dongxiao-osel>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.32.2 
-Cc: yocto <yocto@yoctoproject.org>,
-	"scott.a.garman@intel.com" <scott.a.garman@intel.com>
-Subject: Installation order question with RPM backend
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="152411893"
+Received: from unknown (HELO [10.255.12.89]) ([10.255.12.89])
+	by fmsmga002.fm.intel.com with ESMTP; 11 Apr 2012 08:20:41 -0700
+Message-ID: <4F85A149.6030006@linux.intel.com>
+Date: Wed, 11 Apr 2012 08:20:41 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
+MIME-Version: 1.0
+To: Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+References: <cover.1334010389.git.nitin.a.kamble@intel.com>
+In-Reply-To: <cover.1334010389.git.nitin.a.kamble@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [OE-core] [PATCH 0/2] Misc bugfixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,31 +31,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Apr 2012 15:17:24 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 11 Apr 2012 15:20:42 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi Mark,
+On 04/09/2012 03:27 PM, nitin.a.kamble@intel.com wrote:
+> From: Nitin A Kamble<nitin.a.kamble@intel.com>
+>
+> The following changes since commit 190f6d791d51aaa4cfb9f1cf932bc205ff674fb5:
+>
+>    runqemu-internal: Add console=tty for qemuppc and NFS (2012-04-06 01:12:47 +0100)
+>
+> are available in the git repository at:
+>    git://git.pokylinux.org/poky-contrib nitin/bugfixes
+>    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=nitin/bugfixes
+>
+> Nitin A Kamble (2):
+>    tclibc-eglibc.inc: make locale packages dependency conditional
+>    poky-tiny.conf: adjust eglibc options for poky-tiny
+>
+>   meta-yocto/conf/distro/poky-tiny.conf      |    6 ++++++
+>   meta/conf/distro/include/tclibc-eglibc.inc |   23 ++++++++++++++++-------
+>   2 files changed, 22 insertions(+), 7 deletions(-)
+>
 
-I met a strange issue while using RPM to generate the rootfs.
+Nitin, in the future two emails and 2 seperate branches for fixes that 
+are OE-Core vs Poky.
 
-In the installation list, if we have 2 RPM packages, say A.rpm and
-B.rpm. package A RDEPENDS on package B. While installing the two
-packages? Does RPM ensures to install B first and then install A?
+Merged these into Poky Master and OE-Core as appropriate
 
-The real issue is: we have certain packages that need to run
-useradd/groupadd at rootfs time, for example, the dbus. However the
-useradd/groupadd bbclass RDEPENDS on base-files, which provides
-the /etc/group file. While installing the final image, sometimes we saw
-it installs dbus firstly and then base-files, causing the
-useradd/groupadd script error since it could not find /etc/group file.
-
-I tried ipk and it doesn't have problem since it ensures to install
-base-files firstly.
-
-Any comment is welcome.
-
-Thanks,
-Dongxiao
-
+Thanks
+	Sau!
 
