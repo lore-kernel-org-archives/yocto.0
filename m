@@ -1,36 +1,41 @@
 Return-Path: <darren@apps.dvhart.com>
 Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
 	[209.85.210.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5E0CE0059A
-	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 10:51:27 -0700 (PDT)
-Received: by dajx4 with SMTP id x4so1653838daj.28
-	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 10:51:27 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EE12E00746
+	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 10:51:29 -0700 (PDT)
+Received: by mail-pz0-f41.google.com with SMTP id x4so1653838daj.28
+	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 10:51:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=sender:from:to:subject:date:message-id:x-mailer:x-gm-message-state;
-	bh=gk+/9A/zzYipnJHbcMYmqw2I3SKiEFVjspW6tNnR9Dw=;
-	b=dTGxK1svh9tzuly+lZfz2vQA5/sQjeuqoynmBf90LmD4A5IiSBvEGxkCZgE1xaZkgW
-	0QFjlLiwR9Jy+kYRVSL7j9NLSCuKGHLMBG4GDSY648xFTUGjpOPS/kQTHxXPQGa3LcQ/
-	bQMNqOmkxsFnRkRKQSpxgtKRUinbFInV1l3gQwQeMfFut1AvRuzqRaZz+N6hjQ+nGJgT
-	Xz7KQtoU/eSaT3MwGUfApIqfZXfaGhXSp3G6z96SjJT1k+GJXoHvSnTgEWbrop0NT7fY
-	pheQX6Y16+SEEX2VbVD/IO+aQiXGe5EMe2YJL200KZXsMoB9gn+MsLlMpGtDdXwQjVWn
-	q8vQ==
-Received: by 10.68.233.102 with SMTP id tv6mr20700763pbc.12.1334166686617;
-	Wed, 11 Apr 2012 10:51:26 -0700 (PDT)
+	h=sender:from:to:subject:date:message-id:x-mailer:in-reply-to
+	:references:in-reply-to:references:x-gm-message-state;
+	bh=e3BzsRAUALKE0C1qZgU8iWkzJLuEBntSZsNk0N4Enr8=;
+	b=KaaQfRV7DTf32Vp9nR+xJZCZAwSiRZpTr9Pu9yFgHHrxto4+Jt5OKkQorWBLSEYdEu
+	p90Q2xdiTTUfNF6xWBzDEuJSlsW7wXxh0wjsZQei38D9Ok0lfct5/7qjfHCf1XINLRyN
+	Bs5q9HbSCaSkUpk1OpOzvcftMpn20CIzTkgZAp4z6SkvRnTGws53qAnSPhhbGjnhCHto
+	YE7e2+jhKsGSvAqDmXjV9sycnlKKMjH9WosY9O05q27T8Dctqds83v24jvr73Pcy1nyH
+	/6+flPQNMxME8g9uf3jEFGtV0WDpzOa7t/lW3dk3wNtvlfa9sNA2QKb/bsIimUSXATts
+	Ctlw==
+Received: by 10.68.224.99 with SMTP id rb3mr39690291pbc.79.1334166688720;
+	Wed, 11 Apr 2012 10:51:28 -0700 (PDT)
 Received: from localhost (static-50-53-99-101.bvtn.or.frontiernet.net.
 	[50.53.99.101])
-	by mx.google.com with ESMTPS id ms1sm3443313pbb.38.2012.04.11.10.51.25
+	by mx.google.com with ESMTPS id qo2sm3448845pbb.15.2012.04.11.10.51.27
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 11 Apr 2012 10:51:25 -0700 (PDT)
+	Wed, 11 Apr 2012 10:51:27 -0700 (PDT)
 Sender: Darren Hart <darren@apps.dvhart.com>
 From: Darren Hart <dvhart@linux.intel.com>
 To: Yocto Project <yocto@yoctoproject.org>, josh@linux.intel.com,
 	josh@hipro.co.in
-Date: Wed, 11 Apr 2012 10:51:09 -0700
-Message-Id: <cover.1334166452.git.dvhart@linux.intel.com>
+Date: Wed, 11 Apr 2012 10:51:10 -0700
+Message-Id: <c19d94f814ffde8e8bf38d0f1aafdfead363c196.1334166452.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.5.4
-X-Gm-Message-State: ALoCoQlj1qBJOVCw6s1PC4xODUEf5FY/2P336G56VyjuER8tHB28PXJBhLv+nVYplpZ4MZBitrbx
-Subject: [PATCH 0/8][edison] bootimg and dosfstools fixes
+In-Reply-To: <cover.1334166452.git.dvhart@linux.intel.com>
+References: <cover.1334166452.git.dvhart@linux.intel.com>
+In-Reply-To: <cover.1334166452.git.dvhart@linux.intel.com>
+References: <cover.1334166452.git.dvhart@linux.intel.com>
+X-Gm-Message-State: ALoCoQlodIAzcPblImdCYJBA/R3uKLz1l+q+k1S3XVwWq1yVsJqw8LQghD9K7aM5823YhWdy7hJI
+Subject: [PATCH 1/8] bootimg: Use mcopy to construct the hddimg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,61 +47,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Apr 2012 17:51:28 -0000
+X-List-Received-Date: Wed, 11 Apr 2012 17:51:29 -0000
 
-This is V2 for a fix for YOCTO 2138. V2 pulls in fixes to dosfstools
-which address a "Boot Error" message when attempting to boot in qemu.
-The dosfstools patches were cherry-picked directly from master with no
-modifications.
+Fixes [YOCTO 2138]
 
-The following changes since commit 0fbd6a161576b2cafa8583adde0ffb15347c884a:
+The initial directory support (-d) added to mkdosfs has proven to be incomplete
+and non-compliant with FAT. Rather than continue to maintain this feature and
+work around the various issues, we can use mcopy to construct the image.
 
-  poky.conf: Bumping SKD_VERSION (2012-03-14 15:49:33 -0700)
+bootimg.bbclass already depends on mtools-native (although it may not have
+needed to previously). No new dependencies are introduced. The image created
+passes dosfsck cleanly. Remove the call to dosfsck.
 
-are available in the git repository at:
-  git://git.pokylinux.org/poky-contrib dvhart/edison/bug/2138
-  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=dvhart/edison/bug/2138
+mcopy reported an error with the image we were creating:
+Total number of sectors (107574) not a multiple of sectors per track (32)!
 
-Darren Hart (4):
-  bootimg: Use mcopy to construct the hddimg
-  bootimg: Account for FAT filesystem overhead in image size
-  bootimg: Fix a math thinko in the block count calculation
-  bootimg: Do not force FAT32 on all images, it violates the FAT
-    specification
+Add some logic to ensure the total sector count is an integral number of sectors
+per track, including forcing the logical sector size to 512 in the mkdosfs
+command.
 
-Otavio Salvador (1):
-  dosfstools: update native to 2.11
+The du -bks arguments are contradictory, -b is equivalent to "--apparent-size
+--block-size=1" and -k is --block-size=1K. If reordered, -kbs will report the
+disk usage in bytes insteadk of 1k blocks. Eliminate the ambiguity by using:
+du --apparent-size -ks
 
-Richard Purdie (1):
-  dosfstools: Add patch to disable fat32 autoselection and behave as
-    2.10
+(From OE-Core rev: 92d2ea1a306354c6565a1b05b51b5719e481840f)
 
-Saul Wold (1):
-  dosfstools: Add SRC_URI Checksum
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+CC: Nitin A. Kamble <nitin.a.kamble@intel.com>
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Scott Garman (1):
-  dosfstools: add Upstream-Status to patches
+Backported to poky edison by Darren Hart.
 
- meta/classes/bootimg.bbclass                       |   53 ++++++++++++--
- .../dosfstools/dosfstools-native_2.10.bb           |   19 -----
- .../dosfstools/dosfstools/2.6.20-syscall.patch     |   65 -----------------
- .../dosfstools/dosfstools/alignment_hack.patch     |    4 +
- .../dosfstools/dosfstools-2.10-kernel-2.6.patch    |   74 -------------------
- .../dosfstools/dosfstools-msdos_fs-types.patch     |    7 ++
- .../dosfstools/include-linux-types.patch           |    5 ++
- .../dosfstools/dosfstools/mkdosfs-bootcode.patch   |   75 ++++++++++----------
- .../dosfstools/dosfstools/mkdosfs-dir.patch        |   67 +++++++++--------
- .../dosfstools/msdos_fat12_undefined.patch         |    7 ++
- .../dosfstools/dosfstools/nofat32_autoselect.patch |   27 +++++++
- .../recipes-devtools/dosfstools/dosfstools_2.10.bb |   21 ------
- .../recipes-devtools/dosfstools/dosfstools_2.11.bb |   12 +++-
- 13 files changed, 179 insertions(+), 257 deletions(-)
- delete mode 100644 meta/recipes-devtools/dosfstools/dosfstools-native_2.10.bb
- delete mode 100644 meta/recipes-devtools/dosfstools/dosfstools/2.6.20-syscall.patch
- delete mode 100644 meta/recipes-devtools/dosfstools/dosfstools/dosfstools-2.10-kernel-2.6.patch
- create mode 100644 meta/recipes-devtools/dosfstools/dosfstools/nofat32_autoselect.patch
- delete mode 100644 meta/recipes-devtools/dosfstools/dosfstools_2.10.bb
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+---
+ meta/classes/bootimg.bbclass |   22 +++++++++++++++-------
+ 1 files changed, 15 insertions(+), 7 deletions(-)
 
+diff --git a/meta/classes/bootimg.bbclass b/meta/classes/bootimg.bbclass
+index 49ee85e..bcae2ae 100644
+--- a/meta/classes/bootimg.bbclass
++++ b/meta/classes/bootimg.bbclass
+@@ -62,13 +62,21 @@ build_boot_bin() {
+ 
+ 	install -m 444 ${STAGING_LIBDIR}/syslinux/ldlinux.sys ${HDDDIR}/ldlinux.sys
+ 
+-	# Do a little math, bash style
+-	#BLOCKS=`du -s ${HDDDIR} | cut -f 1`
+-	BLOCKS=`du -bks ${HDDDIR} | cut -f 1`
+-	SIZE=`expr $BLOCKS + ${BOOTIMG_EXTRA_SPACE}`	
+-
+-	mkdosfs -n ${BOOTIMG_VOLUME_ID} -d ${HDDDIR} \
+-	-C ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.hddimg $SIZE 
++	# Determine the 1024 byte block count for the final image.
++	BLOCKS=`du --apparent-size -ks ${HDDDIR} | cut -f 1`
++	SIZE=`expr $BLOCKS + ${BOOTIMG_EXTRA_SPACE}`
++
++	# Ensure total sectors is an integral number of sectors per
++	# track or mcopy will complain. Sectors are 512 bytes, and and
++	# we generate images with 32 sectors per track. This calculation
++	# is done in blocks, which are twice the size of sectors, thus
++	# the 16 instead of 32.
++	SIZE=$(expr $SIZE + $(expr 16 - $(expr $SIZE % 16)))
++
++	IMG=${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.hddimg
++	mkdosfs -n ${BOOTIMG_VOLUME_ID} -S 512 -C ${IMG} ${SIZE}
++	# Copy HDDDIR recursively into the image file directly
++	mcopy -i ${IMG} -s ${HDDDIR}/* ::/
+ 
+ 	syslinux ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.hddimg
+ 	chmod 644 ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.hddimg
 -- 
 1.7.5.4
 
