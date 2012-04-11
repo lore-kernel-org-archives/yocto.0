@@ -1,25 +1,23 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB984E013A6
-	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 06:25:01 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q3BDP0XP011214
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 11 Apr 2012 06:25:00 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 11 Apr 2012 06:25:00 -0700
-Message-ID: <4F858624.8080708@windriver.com>
-Date: Wed, 11 Apr 2012 09:24:52 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:8.0) Gecko/20111124 Thunderbird/8.0
-MIME-Version: 1.0
-To: <kishore.k.bodke@intel.com>
-References: <cover.1334103101.git.kishore.k.bodke@intel.com>
-In-Reply-To: <cover.1334103101.git.kishore.k.bodke@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/1] [KERNEL] Add igb driver to Romley Machine
+Return-Path: <dongxiao.xu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30D0AE0070C
+	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 08:17:24 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 11 Apr 2012 08:17:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="152410648"
+Received: from dongxiao-osel.sh.intel.com (HELO [10.239.36.11])
+	([10.239.36.11])
+	by fmsmga002.fm.intel.com with ESMTP; 11 Apr 2012 08:17:23 -0700
+From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+To: Mark Hatle <mark.hatle@windriver.com>
+Date: Wed, 11 Apr 2012 23:14:38 +0800
+Message-ID: <1334157278.27917.25.camel@dongxiao-osel>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.32.2 
+Cc: yocto <yocto@yoctoproject.org>,
+	"scott.a.garman@intel.com" <scott.a.garman@intel.com>
+Subject: Installation order question with RPM backend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,44 +29,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Apr 2012 13:25:01 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Wed, 11 Apr 2012 15:17:24 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 12-04-10 08:15 PM, kishore.k.bodke@intel.com wrote:
-> From: Kishore Bodke<kishore.k.bodke@intel.com>
->
-> Romley machine has builtin 82580 Giga bit Ethernet
-> Controller. Adding the relavent igb nic driver.
+Hi Mark,
 
-Looks fine for the tree, no risk to other BSPs. Correct me
-if you'd rather this wait until after the 1.2 release.
+I met a strange issue while using RPM to generate the rootfs.
 
-I'll have this pushed out later today.
+In the installation list, if we have 2 RPM packages, say A.rpm and
+B.rpm. package A RDEPENDS on package B. While installing the two
+packages? Does RPM ensures to install B first and then install A?
 
-Cheers,
+The real issue is: we have certain packages that need to run
+useradd/groupadd at rootfs time, for example, the dbus. However the
+useradd/groupadd bbclass RDEPENDS on base-files, which provides
+the /etc/group file. While installing the final image, sometimes we saw
+it installs dbus firstly and then base-files, causing the
+useradd/groupadd script error since it could not find /etc/group file.
 
-Bruce
+I tried ipk and it doesn't have problem since it ensures to install
+base-files firstly.
 
->
-> Please pull into linux-yocto-3.2/meta
->
-> Thanks
-> Kishore.
->
-> The following changes since commit 59f350ec3794e19fa806c1b73749d851f8ebf364:
->
->    meta: Add common-pc-tiny.scc (2012-03-31 23:43:34 -0400)
->
-> are available in the git repository at:
->    git://git.pokylinux.org/linux-yocto-2.6.37-contrib kishore/romley/meta
->    http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=kishore/romley/meta
->
-> Kishore Bodke (1):
->    meta: Add igb.scc to Romley
->
->   meta/cfg/kernel-cache/bsp/romley/romley.scc |    3 +--
->   1 files changed, 1 insertions(+), 2 deletions(-)
->
+Any comment is welcome.
+
+Thanks,
+Dongxiao
 
 
