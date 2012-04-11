@@ -1,23 +1,16 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8384CE0044D
-	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 09:06:53 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3BG6kHM010617;
-	Wed, 11 Apr 2012 17:06:46 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 09578-06; Wed, 11 Apr 2012 17:06:41 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3BG6c7c010611
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 11 Apr 2012 17:06:40 +0100
-Message-ID: <1334160400.10826.197.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
+Return-Path: <dongxiao.xu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20AFDE0044D
+	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 09:07:18 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 11 Apr 2012 09:07:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="129690763"
+Received: from dongxiao-osel.sh.intel.com (HELO [10.239.36.11])
+	([10.239.36.11])
+	by azsmga001.ch.intel.com with ESMTP; 11 Apr 2012 09:07:16 -0700
+From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
 To: Mark Hatle <mark.hatle@windriver.com>
-Date: Wed, 11 Apr 2012 17:06:40 +0100
 In-Reply-To: <4F85A9A5.2090305@windriver.com>
 References: <1334157278.27917.25.camel@dongxiao-osel>
 	<4F85A274.8010906@windriver.com>
@@ -25,9 +18,10 @@ References: <1334157278.27917.25.camel@dongxiao-osel>
 	<4F85A706.3030508@windriver.com>
 	<1334159474.27917.30.camel@dongxiao-osel>
 	<4F85A9A5.2090305@windriver.com>
-X-Mailer: Evolution 3.2.2- 
+Date: Thu, 12 Apr 2012 00:04:31 +0800
+Message-ID: <1334160271.27917.36.camel@dongxiao-osel>
 Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
+X-Mailer: Evolution 2.32.2 
 Cc: yocto <yocto@yoctoproject.org>,
 	"scott.a.garman@intel.com" <scott.a.garman@intel.com>
 Subject: Re: Installation order question with RPM backend
@@ -42,7 +36,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Apr 2012 16:06:54 -0000
+X-List-Received-Date: Wed, 11 Apr 2012 16:07:18 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -111,34 +105,102 @@ On Wed, 2012-04-11 at 10:56 -0500, Mark Hatle wrote:
 > You need to query the binary packages for the real values..
 > 
 > rpm -qp <package> --requires
+
+Here I pasted the command output. I think there is no circular
+dependency here.
+
+It is relatively easy to reproduce this rootfs error:
+For a certain image bb file, say task-core-basic. Change the definition
+of the installation package with the following line:
+PACKAGE_INSTALL = "task-core-basic task-core-ssh-openssh
+task-core-apps-console task-core-boot"
+# bitbake core-image-basic
+
+Then you will see the useradd/groupadd error and the dependency order
+issue.
+
+Thanks,
+Dongxiao
+
+dongxiao@dongxiao-osel:/distro/sdb/build-basic/tmp/deploy/rpm/i586$ rpm
+-qp base-passwd-3.5.24-r0.i586.rpm --requires
+warning: base-passwd-3.5.24-r0.i586.rpm: Header V4 DSA/SHA1 Signature,
+key ID a8d359bb: NOKEY
+/bin/sh
+dongxiao@dongxiao-osel:/distro/sdb/build-basic/tmp/deploy/rpm/i586$ rpm
+-qp dbus-1-1.4.16-r3.0.i586.rpm --requires
+warning: dbus-1-1.4.16-r3.0.i586.rpm: Header V4 DSA/SHA1 Signature, key
+ID 2c60056d: NOKEY
+update-rc.d
+libdbus-1-3 >= 1.4.16
+libc6 >= 2.13
+shadow
+libexpat1 >= 2.0.1
+base-passwd
+/bin/sh
+/bin/sh
+/bin/sh
+/bin/sh
+/bin/sh
+rtld(GNU_HASH)
+libc.so.6(GLIBC_2.0)
+libc.so.6
+libc.so.6(GLIBC_2.1)
+libc.so.6(GLIBC_2.10)
+libpthread.so.0(GLIBC_2.0)
+libc.so.6(GLIBC_2.9)
+libc.so.6(GLIBC_2.2)
+librt.so.1
+librt.so.1(GLIBC_2.2)
+libpthread.so.0(GLIBC_2.3.2)
+libpthread.so.0
+libc.so.6(GLIBC_2.2.4)
+libexpat.so.1
+libc.so.6(GLIBC_2.1.2)
+libpthread.so.0(GLIBC_2.3.3)
+libc.so.6(GLIBC_2.4)
+libdbus-1.so.3
+
+
 > 
 > (and --provides will show what it provides..)  then match those two up.. If you 
 > still don't come across some type of circular dependency, then let me know.. 
 > I'll start investigating further. (there is additional dependency resolution 
 > debugging I can enable, but it's difficult to explain how to interpret the tons 
 > of lines..)
+> 
+> --Mark
+> 
+> > Thanks,
+> > Dongxiao
+> >
+> >>
+> >> (Also our version of RPM 5 is a bit old, and there are some known bugs in it..
+> >> as far as I know, none of them with the dependency resolution or code paths we
+> >> follow.)
+> >>
+> >> --Mark
+> >>
+> >>> Thanks,
+> >>> Dongxiao
+> >>>
+> >>>> --Mark
+> >>>>
+> >>>>> I tried ipk and it doesn't have problem since it ensures to install
+> >>>>> base-files firstly.
+> >>>>>
+> >>>>> Any comment is welcome.
+> >>>>>
+> >>>>> Thanks,
+> >>>>> Dongxiao
+> >>>>>
+> >>>>
+> >>>
+> >>>
+> >>
+> >
+> >
+> 
 
-Let me jump in here since I've looked at the rpm code paths in question
-before.
-
-RPM basically works its way through the install manifest so if you have
-for example:
-
-base-passwd
-shadow
-dbus-1
-libc
-
-then base-passwd and shadow will "stall" their installation until their
-dependency on libc is satisfied. Previously, we thought it was good
-enough to put base-passwd and shadow at the top but its now becoming
-clear we need all their dependencies at the top too.
-
-There are other ongoing discussions about the best way to fix this.
-There are failures on the autobuilder at the moment related to it.
-
-Cheers,
-
-Richard
 
 
