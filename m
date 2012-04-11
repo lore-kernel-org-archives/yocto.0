@@ -1,44 +1,46 @@
-Return-Path: <darren@apps.dvhart.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 476D8E01414
-	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 10:51:42 -0700 (PDT)
-Received: by mail-pb0-f48.google.com with SMTP id jt11so1947961pbb.35
-	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 10:51:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=sender:from:to:subject:date:message-id:x-mailer:in-reply-to
-	:references:in-reply-to:references:x-gm-message-state;
-	bh=d66uHcO66fNqwcDNnvweT/NQHKorZfe/GVhTJHt6QbE=;
-	b=gNUt8hwQIT+lpwuJBE580K9C1MCiNKYHvvC4q5tA4HcP+gyYA1SMepCGqthMp4TZ/c
-	DBC7cnN62gLpzzzrCfKtqBEp3l4mEtSsqJbqy9ekaEJ2ZbTMdVCk2yYnsk8lp6GwwqfQ
-	HoUTyP0cseV2SZWGzvibJYpkHF/m8MCihSCFaA2tjGXkU5LY4mLXOzqZJUR4MxkSNbxp
-	RlV4rJ1W/0CqpTI3CqLFgKnWBm3pXicpARKcsNEHqnwMSyy2+qTec1zVioP/eSECV9FO
-	bT/wH3FA0oSqZW7B6Tt1j4aQOgwPKg6Mig8ylhGJDHcikExdRV6fq+LRu6RTBBuvP31U
-	6PWA==
-Received: by 10.68.194.1 with SMTP id hs1mr39979997pbc.6.1334166702055;
-	Wed, 11 Apr 2012 10:51:42 -0700 (PDT)
-Received: from localhost (static-50-53-99-101.bvtn.or.frontiernet.net.
-	[50.53.99.101])
-	by mx.google.com with ESMTPS id pj1sm3441202pbc.44.2012.04.11.10.51.40
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 11 Apr 2012 10:51:41 -0700 (PDT)
-Sender: Darren Hart <darren@apps.dvhart.com>
-From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>, josh@linux.intel.com,
-	josh@hipro.co.in
-Date: Wed, 11 Apr 2012 10:51:17 -0700
-Message-Id: <b2f50eb25e5a6febdbb4ffade1cb535eff4edaa4.1334166452.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <cover.1334166452.git.dvhart@linux.intel.com>
-References: <cover.1334166452.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1334166452.git.dvhart@linux.intel.com>
-References: <cover.1334166452.git.dvhart@linux.intel.com>
-X-Gm-Message-State: ALoCoQmprSKRJAtijU7yGkr7UvozA64RWIwqB7PcxZy+WwdWbXoZ/WL1OORcq6cbJ26wlC+5BNuP
-Subject: [PATCH 8/8] dosfstools: Add patch to disable fat32 autoselection and behave as 2.10
+Return-Path: <petertornel@yahoo.com>
+Received: from nm27-vm2.bullet.mail.ne1.yahoo.com
+	(nm27-vm2.bullet.mail.ne1.yahoo.com [98.138.91.215])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 0CBDEE00596
+	for <yocto@yoctoproject.org>; Wed, 11 Apr 2012 11:02:05 -0700 (PDT)
+Received: from [98.138.90.51] by nm27.bullet.mail.ne1.yahoo.com with NNFMP;
+	11 Apr 2012 18:02:05 -0000
+Received: from [98.138.87.7] by tm4.bullet.mail.ne1.yahoo.com with NNFMP;
+	11 Apr 2012 18:02:05 -0000
+Received: from [127.0.0.1] by omp1007.mail.ne1.yahoo.com with NNFMP;
+	11 Apr 2012 18:02:05 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 359873.533.bm@omp1007.mail.ne1.yahoo.com
+Received: (qmail 16191 invoked by uid 60001); 11 Apr 2012 18:02:05 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
+	t=1334167325; bh=uhGc09YeH3ZBtSyNKfJxP2/j2PqX5skH6BMyUPd3Xns=;
+	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=Fxp0touwqAA1rs4O50dxF8HaEaQ4Np1+Q4Oorhd95wtmA4A4hR+dAFrevUxjhmMJz8Yu++7yY01v57NAtXb5JB6uVhzIB0h+7RGKPKF8LjM9zKgpKzXedj34Cn3LECQuH1DempHccJFEdGeJXCRDsG/ncb6uymrfwcjw5rnUTJY=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
+	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=CEFAi0gBSwS4MUJE42gLzfJZIDfBVTB4DMm58jajf3Wi+X+s7kyoGu7LzlFklsWkM/lBW46sH/uNSq3CRbl6ZmGb95kMIS/UwLENdQWOhaoca/61utc+Glv4ue6xxDP/7Rd7upTHOMqclTlDbnbOICpP/m7mzZ5ScXAhaiQU0WQ=;
+X-YMail-OSG: HPOQEhEVM1m0uYCjeJN5mlWUCAOeQsgwdxZJaHLvex_RrbD
+	Anp.14sP77fddkPy7XHxsDvw2zzNREQM9a4X5F8BvdGAGbwAjoc_1vI7rZiy
+	2zFs07hZyactUcrhI1C6vbYAT1DKHsdG7vy3Z46fWajRFRGCQRZKOiIxOHqR
+	yDVKdWxMWiKE0tAOPiE2jYekFbAvQA7oC9VZALw20tYWTYtPMgEEtnEEM.tC
+	lwbhyQcOR7TOPagrr0D0s.yCBM_0NrOB1vZhC_c8fHqiT573DpANm8j9e022
+	Y7w2C1QPm5md8GHEWet91XB81CIzPMjejoIUcJDudX0BrmOF7Lgsl4py_Ndl
+	98bAxC9IvzJV8e1cSNdXJHfFPlOAcZgJqPQE8zFMgC3BmBlcuAV8ELvFFdAV
+	6as0Pvmri3c9sAR1b6zJMr_Vz7578FC8i3YOktCCIaKPW8XgBctOjI9F94lz
+	BPi2cF8OnKrbq7TMJt9Yd82c-
+Received: from [108.11.41.42] by web122203.mail.ne1.yahoo.com via HTTP;
+	Wed, 11 Apr 2012 11:02:05 PDT
+X-Mailer: YahooMailWebService/0.8.117.340979
+Message-ID: <1334167325.15462.YahooMailNeo@web122203.mail.ne1.yahoo.com>
+Date: Wed, 11 Apr 2012 11:02:05 -0700 (PDT)
+From: Peter Tornel <petertornel@yahoo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+MIME-Version: 1.0
+Subject: confusion about IMAGE_INSTALL and getting packages into rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Peter Tornel <petertornel@yahoo.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -47,81 +49,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Apr 2012 17:51:42 -0000
+X-List-Received-Date: Wed, 11 Apr 2012 18:02:06 -0000
+Content-Type: multipart/alternative;
+	boundary="1629896970-273702181-1334167325=:15462"
 
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
+--1629896970-273702181-1334167325=:15462
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-It appears msdos image population and fat32 images are incompatible.
-This reverts to the 2.10 behaviour of defaulting to fat16 instead of
-using fat32 for large images, allowing image generation to work
-correctly. This is a workaround and a proper fix is really needed.
+I'm working with the poky tree, master branch.=A0 I added a few packages to=
+ IMAGE_INSTALL in core-image-minimal.bb.=A0 Everything builds fine, and I c=
+an see the built images in each tmp/work subdirectory for my IMAGE_INSTALL =
+packages.=A0 =0A=0A=0AHowever, I find that some of the image executables th=
+at were part of the packages specified in IMAGE_INSTALL wind up in my core-=
+image-minimal rootfs and some don't. =0A=0A=0AIs there a switch or variable=
+ that I need to set to direct all packages specified in IMAGE_INSTALL to be=
+ installed into my rootfs?=A0 
 
-(From OE-Core rev: c2de8d41236cf1293db9e6c69d69e8d14f55ffd1)
+--1629896970-273702181-1334167325=:15462
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
----
- .../dosfstools/dosfstools/nofat32_autoselect.patch |   27 ++++++++++++++++++++
- .../recipes-devtools/dosfstools/dosfstools_2.11.bb |    5 ++-
- 2 files changed, 30 insertions(+), 2 deletions(-)
- create mode 100644 meta/recipes-devtools/dosfstools/dosfstools/nofat32_autoselect.patch
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:ti=
+mes new roman, new york, times, serif;font-size:12pt"><div>I'm working with=
+ the poky tree, master branch.&nbsp; I added a few packages to IMAGE_INSTAL=
+L in core-image-minimal.bb.&nbsp; Everything builds fine, and I can see the=
+ built images in each tmp/work subdirectory for my IMAGE_INSTALL packages.&=
+nbsp; <br></div><div><br></div><div>However, I find that some of the image =
+executables that were part of the packages specified in IMAGE_INSTALL wind =
+up in my core-image-minimal rootfs and some don't. <br></div><div><br></div=
+><div>Is there a switch or variable that I need to set to direct all packag=
+es specified in IMAGE_INSTALL to be installed into my rootfs?&nbsp; <br></d=
+iv><div><br></div><div><br></div><div><br></div><div><br></div></div></body=
+></html>
 
-diff --git a/meta/recipes-devtools/dosfstools/dosfstools/nofat32_autoselect.patch b/meta/recipes-devtools/dosfstools/dosfstools/nofat32_autoselect.patch
-new file mode 100644
-index 0000000..21ebc10
---- /dev/null
-+++ b/meta/recipes-devtools/dosfstools/dosfstools/nofat32_autoselect.patch
-@@ -0,0 +1,27 @@
-+FAT32 appears to be broken when used with the -d option to populate the msdos
-+image. This disables the FAT32 autoselection code which means we don't get
-+broken images with the -d option. It can still be enabled on the commandline
-+at the users own risk. This changes us back to the 2.10 version's behaviour
-+which was known to work well even with large images.
-+
-+Upstream Status: Inapprioriate [depends on other patches we apply]
-+
-+RP 2011/12/13
-+
-+Index: dosfstools-2.11/mkdosfs/mkdosfs.c
-+===================================================================
-+--- dosfstools-2.11.orig/mkdosfs/mkdosfs.c	2011-12-13 13:54:37.538509391 +0000
-++++ dosfstools-2.11/mkdosfs/mkdosfs.c	2011-12-13 13:55:10.258508631 +0000
-+@@ -808,10 +808,12 @@
-+       bs.media = (char) 0xf8; /* Set up the media descriptor for a hard drive */
-+       bs.dir_entries[0] = (char) 0;	/* Default to 512 entries */
-+       bs.dir_entries[1] = (char) 2;
-++/*
-+       if (!size_fat && blocks*SECTORS_PER_BLOCK > 1064960) {
-+ 	  if (verbose) printf("Auto-selecting FAT32 for large filesystem\n");
-+ 	  size_fat = 32;
-+       }
-++*/
-+       if (size_fat == 32) {
-+ 	  /* For FAT32, try to do the same as M$'s format command:
-+ 	   * fs size < 256M: 0.5k clusters
-diff --git a/meta/recipes-devtools/dosfstools/dosfstools_2.11.bb b/meta/recipes-devtools/dosfstools/dosfstools_2.11.bb
-index 7d0080c..66eeb7c 100644
---- a/meta/recipes-devtools/dosfstools/dosfstools_2.11.bb
-+++ b/meta/recipes-devtools/dosfstools/dosfstools_2.11.bb
-@@ -7,7 +7,7 @@ DESCRIPTION = "DOS FAT Filesystem Utilities"
- SECTION = "base"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://mkdosfs/COPYING;md5=cbe67f08d6883bff587f615f0cc81aa8"
--PR = "r1"
-+PR = "r3"
- 
- SRC_URI = "ftp://ftp.uni-erlangen.de/pub/Linux/LOCAL/dosfstools/dosfstools-${PV}.src.tar.gz \
-            file://mkdosfs-bootcode.patch \
-@@ -15,7 +15,8 @@ SRC_URI = "ftp://ftp.uni-erlangen.de/pub/Linux/LOCAL/dosfstools/dosfstools-${PV}
-            file://alignment_hack.patch \
-            file://msdos_fat12_undefined.patch \
-            file://dosfstools-msdos_fs-types.patch \
--           file://include-linux-types.patch"
-+           file://include-linux-types.patch \
-+           file://nofat32_autoselect.patch "
- 
- SRC_URI[md5sum] = "407d405ade410f7597d364ab5dc8c9f6"
- SRC_URI[sha256sum] = "0eac6d12388b3d9ed78684529c1b0d9346fa2abbe406c4d4a3eb5a023c98a484"
--- 
-1.7.5.4
-
-
+--1629896970-273702181-1334167325=:15462--
