@@ -1,26 +1,25 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6504E00746
-	for <yocto@yoctoproject.org>; Thu, 12 Apr 2012 00:17:48 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 268ABE00746
+	for <yocto@yoctoproject.org>; Thu, 12 Apr 2012 00:17:49 -0700 (PDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 12 Apr 2012 00:17:48 -0700
+	by orsmga101.jf.intel.com with ESMTP; 12 Apr 2012 00:17:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="128173842"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="128173843"
 Received: from unknown (HELO envy.home) ([10.255.12.222])
 	by orsmga001.jf.intel.com with ESMTP; 12 Apr 2012 00:17:48 -0700
-Message-ID: <4F867FEB.1060301@linux.intel.com>
-Date: Thu, 12 Apr 2012 00:10:35 -0700
+Message-ID: <4F868123.9010902@linux.intel.com>
+Date: Thu, 12 Apr 2012 00:15:47 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
 MIME-Version: 1.0
-To: Bob Cochran <yocto@mindchasers.com>
-References: <1B707EEC-B001-45EA-BC0B-C0FF70BB7152@keylevel.com>
-	<4F862237.50200@linux.intel.com> <4F865C88.3080102@mindchasers.com>
-In-Reply-To: <4F865C88.3080102@mindchasers.com>
+To: Peter Tornel <petertornel@yahoo.com>
+References: <1334167325.15462.YahooMailNeo@web122203.mail.ne1.yahoo.com>
+In-Reply-To: <1334167325.15462.YahooMailNeo@web122203.mail.ne1.yahoo.com>
 X-Enigmail-Version: 1.4
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Build time data
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: confusion about IMAGE_INSTALL and getting packages into rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,30 +31,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Apr 2012 07:17:48 -0000
+X-List-Received-Date: Thu, 12 Apr 2012 07:17:49 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
 
 
-On 04/11/2012 09:39 PM, Bob Cochran wrote:
-> On 04/11/2012 08:30 PM, Darren Hart wrote:
->> SSDs are one way to
->> go, but we've been known to chew through them and they aren't priced as
->> consumables.
+On 04/11/2012 11:02 AM, Peter Tornel wrote:
+> I'm working with the poky tree, master branch.  I added a few packages
+> to IMAGE_INSTALL in core-image-minimal.bb.  Everything builds fine, and
+> I can see the built images in each tmp/work subdirectory for my
+> IMAGE_INSTALL packages. 
 > 
-> Hi Darren,
+> However, I find that some of the image executables that were part of the
+> packages specified in IMAGE_INSTALL wind up in my core-image-minimal
+> rootfs and some don't.
 > 
-> Could you please elaborate on "been known to chew through them"?
+> Is there a switch or variable that I need to set to direct all packages
+> specified in IMAGE_INSTALL to be installed into my rootfs? 
 > 
-> Are you running into an upper limit on write / erase cycles?  Are you 
-> encountering hard (or soft) failures?
+> 
 
-Some have reported early physical disk failure. Due to the cost of SSDs,
-not a lot of people seem to be trying it out. I *believe* the current
-generation of SSDs would perform admirably, but I haven't tested that. I
-know Deny builds with SSDs, perhaps he would care to comment?
+The preferred way modify the packages that get installed is via the
+CORE_IMAGE_EXTRA_INSTALL (POKY_EXTRA_INSTALL in the 1.1 edison release
+and earlier) variable in your local.conf. However, modifying the recipe
+itself - or writing a new image recipe that sets IMAGE_INSTALL should work.
 
+Can you provide an example of what you have tried that doesn't work?
+Keep in mind that you should be using package names here, not recipe names.
 
 -- 
 Darren Hart
