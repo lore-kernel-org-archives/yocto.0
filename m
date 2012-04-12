@@ -1,28 +1,26 @@
-Return-Path: <pcjegan@gmail.com>
-Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
-	[209.85.212.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46539E00746
-	for <yocto@yoctoproject.org>; Thu, 12 Apr 2012 00:09:50 -0700 (PDT)
-Received: by wibhr14 with SMTP id hr14so1458093wib.11
-	for <yocto@yoctoproject.org>; Thu, 12 Apr 2012 00:09:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=8ILrDFUNTc8qjYnQ3nUjnQ/BIPwigr2vKPoUryywoAI=;
-	b=M+DcS3+tjKthZLCnJ6pE+g9HB8L1/Q6XI6PpX87pwl/OEqLqdrMjFNk+JlQQO5uqQd
-	j7BuF+l1tSX4RMSXe/gCPlUPQkrmhZr3CE3FpaWQ5GS+/toc3t5EQ4EBKuV+u9vAALIn
-	FZJhFnBHK8I/jIBuE5kCjY6k61mFUsbLIxnaLT+X4AXkhlEdrJv/kYgmfw3CISilPR/M
-	1Sqcf7Bz+JJZ4xCgehaatbyGuJ8rft64xSrR4qwbenTp4dQzgjkslVMfizTdXkUnZusG
-	zQDWEQn/ATJLaT7J5xFli09VNJrgTIIL5G3JoV6yMDRIdhs5XBM2cuPCjuy2iAVKAv9W
-	OjIQ==
-Received: by 10.216.137.163 with SMTP id y35mr794550wei.33.1334214589052; Thu,
-	12 Apr 2012 00:09:49 -0700 (PDT)
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6504E00746
+	for <yocto@yoctoproject.org>; Thu, 12 Apr 2012 00:17:48 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 12 Apr 2012 00:17:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="128173842"
+Received: from unknown (HELO envy.home) ([10.255.12.222])
+	by orsmga001.jf.intel.com with ESMTP; 12 Apr 2012 00:17:48 -0700
+Message-ID: <4F867FEB.1060301@linux.intel.com>
+Date: Thu, 12 Apr 2012 00:10:35 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
 MIME-Version: 1.0
-Received: by 10.216.185.195 with HTTP; Thu, 12 Apr 2012 00:09:28 -0700 (PDT)
-From: Jegan Chandru <pcjegan@gmail.com>
-Date: Thu, 12 Apr 2012 12:39:28 +0530
-Message-ID: <CAAA4K6KJ461GgvDLiPQA5Ynym+u4gf+d2beneNgSetPPpd8eXw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: How to remove a particular package or packages
+To: Bob Cochran <yocto@mindchasers.com>
+References: <1B707EEC-B001-45EA-BC0B-C0FF70BB7152@keylevel.com>
+	<4F862237.50200@linux.intel.com> <4F865C88.3080102@mindchasers.com>
+In-Reply-To: <4F865C88.3080102@mindchasers.com>
+X-Enigmail-Version: 1.4
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Build time data
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,28 +32,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Apr 2012 07:09:50 -0000
+X-List-Received-Date: Thu, 12 Apr 2012 07:17:48 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Tomas,
 
-> The basic package selection in the Poky/Yocto images is done on basis of
-> the DISTRO_FEATURES variable, so you need to set this somewhere suitable
-> to only include the components you need (iirc, the default package
-> selection is quite rich).
 
-Thanks for pointing this out. I am using this variable in my custom
-image file now.
-I think i will get desired output with this.
-The need comes here that some of the packages are never gonna be used
-and explicitly asked to remove those.
+On 04/11/2012 09:39 PM, Bob Cochran wrote:
+> On 04/11/2012 08:30 PM, Darren Hart wrote:
+>> SSDs are one way to
+>> go, but we've been known to chew through them and they aren't priced as
+>> consumables.
+> 
+> Hi Darren,
+> 
+> Could you please elaborate on "been known to chew through them"?
+> 
+> Are you running into an upper limit on write / erase cycles?  Are you 
+> encountering hard (or soft) failures?
 
-> Other than that, bitbake -g <package> generates .dot files that show
-> package dependencies, so you can work out why particular package is
-> being included.
+Some have reported early physical disk failure. Due to the cost of SSDs,
+not a lot of people seem to be trying it out. I *believe* the current
+generation of SSDs would perform admirably, but I haven't tested that. I
+know Deny builds with SSDs, perhaps he would care to comment?
 
-It is helpful.
 
-Thanks,
--JC
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
