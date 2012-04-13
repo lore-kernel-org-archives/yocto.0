@@ -1,23 +1,31 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8A59E0070C
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2012 11:34:38 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 13 Apr 2012 11:34:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="130671953"
-Received: from kishore-desktop.sc.intel.com (HELO localhost)
-	([143.183.188.161])
-	by azsmga001.ch.intel.com with ESMTP; 13 Apr 2012 11:34:35 -0700
-From: kishore.k.bodke@intel.com
-To: tom.zanussi@intel.com,
-	yocto@yoctoproject.org
-Date: Fri, 13 Apr 2012 11:33:14 -0700
-Message-Id: <14148e7cb4f70f5dd448412626e9c46469f7cef9.1334341867.git.kishore.k.bodke@intel.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <cover.1334341867.git.kishore.k.bodke@intel.com>
-References: <cover.1334341867.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 1/1] [meta-intel] Romley: Update SRCREV
+Return-Path: <flihp@twobit.us>
+Received: from www.twobit.us (www.twobit.us [50.19.210.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CD9BE00723
+	for <yocto@yoctoproject.org>; Fri, 13 Apr 2012 14:22:45 -0700 (PDT)
+Received: from static-74-106-4-21.syrcny.fios.verizon.net ([74.106.4.21]
+	helo=[10.197.228.148])
+	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.72) (envelope-from <flihp@twobit.us>)
+	id 1SInx5-0006Z2-9W; Fri, 13 Apr 2012 21:22:44 +0000
+Message-ID: <4F8897F0.9050104@twobit.us>
+Date: Fri, 13 Apr 2012 17:17:36 -0400
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <4F86EA68.1070504@twobit.us> <4F876B6A.9030405@twobit.us>
+In-Reply-To: <4F876B6A.9030405@twobit.us>
+X-Enigmail-Version: 1.4
+X-SA-Exim-Connect-IP: 74.106.4.21
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
+X-SA-Exim-Scanned: Yes (on www.twobit.us)
+Subject: Re: native recipe and sysroot-destdir troubles
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,30 +37,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Apr 2012 18:34:38 -0000
+X-List-Received-Date: Fri, 13 Apr 2012 21:22:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+Worked out a solution to this issue.  For the sake of brevity it can be
+found here:
 
-Update the SRCREV to include the
-82580 Gigabit ethernet driver from meta branch
-for the romley machine.
+http://twobit.us/blog/2012/04/openembedded-yocto-native-hello-world/
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
----
- .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+Cheers,
+- Philip
 
-diff --git a/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
-index 803e772..517ab50 100644
---- a/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
-+++ b/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
-@@ -6,4 +6,4 @@ KMACHINE_romley  = "romley"
- KBRANCH_romley  = "standard/default/common-pc-64/romley"
- 
- SRCREV_machine_pn-linux-yocto_romley ?= "5c7f1c53b5b367858ae6a86c1d4de36d8c71bedb"
--SRCREV_meta_pn-linux-yocto_romley ?= "59f350ec3794e19fa806c1b73749d851f8ebf364"
-+SRCREV_meta_pn-linux-yocto_romley ?= "135c75bf9615334b5b8bb9108d612fe7dfbdb901"
--- 
-1.7.5.4
+On 04/12/2012 07:55 PM, Philip Tricca wrote:
+> More / better info:
+> 
+> On 04/12/2012 10:44 AM, Philip Tricca wrote:
+>> I'm working on two new recipes and both are working quite well.  Now I
+>> need native variants and online sources indicate this should be done
+>> through BBCLASSEXTEND = "native".  For one of my recipes this works
+>> fine, for the other not so much.
+>>
+>> The error I'm seeing seems to be in the staging of the sysroot-destdir
+>> which ends up being empty though the source code builds fine (image
+>> directory has everything expected). do_populate_sysroot seems to assume
+>> there's a directory structure present which ends up being empty causing
+>> an error when it trys to tar the directory up.  If I create the
+>> directories do_populate_sysroot expects the recipe runs to completion
+>> but sysroot-destdir still ends up being empty and no packages are built.
+> 
+> Image directiory is populated as expected (has lib, usr/include etc with
+> expected files).  Build is failing on populate_sysroot:
+> 
+> CalledProcessError: Command 'tar -cf - -C
+> /home/build/poky-edison-6.0/build/tmp/work/i686-linux/libmylib-native-2.1.4-r0/sysroot-destdir///home/build/poky-edison-6.0/build/tmp/sysroots/i686-linux
+> -ps . | tar -xf - -C
+> /home/build/poky-edison-6.0/build/tmp/sysroots/i686-linux' returned
+> non-zero exit status 2 with output tar:
+> /home/build/poky-edison-6.0/build/tmp/work/i686-linux/libmylib-native-2.1.4-r0/sysroot-destdir///home/build/poky-edison-6.0/build/tmp/sysroots/i686-linux:
+> Cannot chdir: No such file or directory
+> tar: Error is not recoverable: exiting now
+> 
+> The failure is obviously due to sysroot-destdir being empty.  The
+> question is why this directory is populated for libmylib but not for
+> libmylib-native ... they're built from the same recipe.
+> 
+> Stack trace:
+> 
+> ERROR: The stack trace of python calls that resulted in this
+> exception/failure was:
+> ERROR:   File "sstate_task_postfunc", line 10, in <module>
+> ERROR:
+> ERROR:   File "sstate_task_postfunc", line 4, in sstate_task_postfunc
+> ERROR:
+> ERROR:   File "sstate.bbclass", line 19, in sstate_install
+> ERROR:
+> ERROR:   File "/home/build/poky-edison-6.0/meta/lib/oe/path.py", line
+> 59, in copytree
+> ERROR:     check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+> ERROR:
+> ERROR:   File "/home/build/poky-edison-6.0/meta/lib/oe/path.py", line
+> 121, in check_output
+> ERROR:     raise CalledProcessError(retcode, cmd, output=output)
+> ERROR:
+> ERROR: The code that was being executed was:
+> ERROR:      0006:        bb.build.exec_func(intercept, d)
+> ERROR:      0007:    sstate_package(shared_state, d)
+> ERROR:      0008:
+> ERROR:      0009:
+> ERROR:  *** 0010:sstate_task_postfunc(d)
+> ERROR:      0011:
+> ERROR: (file: 'sstate_task_postfunc', lineno: 10, function: <module>)
+> ERROR:      0001:
+> ERROR:      0002:def sstate_task_postfunc(d):
+> ERROR:      0003:    shared_state = sstate_state_fromvars(d)
+> ERROR:  *** 0004:    sstate_install(shared_state, d)
+> ERROR:      0005:    for intercept in shared_state['interceptfuncs']:
+> ERROR:      0006:        bb.build.exec_func(intercept, d)
+> ERROR:      0007:    sstate_package(shared_state, d)
+> ERROR:      0008:
+> ERROR: (file: 'sstate_task_postfunc', lineno: 4, function:
+> sstate_task_postfunc)
+> ERROR: Function 'sstate_task_postfunc' failed
+> 
+> Thanks,
+> - Philip
+> 
 
 
