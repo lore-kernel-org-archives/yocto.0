@@ -1,37 +1,27 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
-	[209.85.212.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CADE3E01374
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2012 03:00:42 -0700 (PDT)
-Received: by wibhr14 with SMTP id hr14so2514613wib.11
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2012 03:00:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=pDUkawArUMWk0Wq+NhTIc8fqi1touTwJpWLWuI1MQuo=;
-	b=uL5Dd7HWybU/8mT4xo0fo8fQvqaNGqt76526oMzZU3v3VxIGeqAcq+RoLGZSB4oaTJ
-	n7GC+vs5BQXmHJ9CoHgIkK/pRYFBwiezvLjykqRNQF7wfIo7qEVMuvI9ohL5Fox8DzQL
-	JbsTL6ZSelWL2J6Bvyg8IZQp2kjsbU+Ph2N741or1VHGgm9pnDiP1qgORKRMK4n0zp/r
-	KPMk7Sf+l4/JhxG5ZT9eE8qoNM20yy3kvaqCqwTY9e71OYWet8qWIDPcmaxyHfoQjgHS
-	Bm39t6omy27eSjJhGxvF0/aVkYzVhD1vXGenTAWeA7uNm6LF0ygpIhpxt/X+M6qMfE9u
-	vDkw==
-Received: by 10.180.102.100 with SMTP id fn4mr3214734wib.1.1334311241675;
-	Fri, 13 Apr 2012 03:00:41 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id fl2sm6303377wib.2.2012.04.13.03.00.39
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 13 Apr 2012 03:00:39 -0700 (PDT)
-Date: Fri, 13 Apr 2012 12:00:39 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Saul Wold <sgw@linux.intel.com>
-Message-ID: <20120413100039.GC3651@jama.jama.net>
-References: <cover.1333058256.git.Martin.Jansa@gmail.com>
-	<4F7E30CA.6080306@linux.intel.com>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B439E00747
+	for <yocto@yoctoproject.org>; Fri, 13 Apr 2012 03:09:44 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id E842BF8127C; Fri, 13 Apr 2012 04:09:43 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=4.0 tests=ALL_TRUSTED,BAYES_00,
+	PLING_QUERY autolearn=no version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 3E8C7F81277;
+	Fri, 13 Apr 2012 04:09:43 -0600 (MDT)
+Message-ID: <4F87FB67.8030007@mlbassoc.com>
+Date: Fri, 13 Apr 2012 04:09:43 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
 MIME-Version: 1.0
-In-Reply-To: <4F7E30CA.6080306@linux.intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org, Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
-Subject: Re: [opkg-utils][PATCH 00/22] Partially prepare for python3 and fix old Packages file reuse
+To: yocto@yoctoproject.org
+References: <3d8f8726.e570.136ab20dc74.Coremail.2totoo@163.com>
+In-Reply-To: <3d8f8726.e570.136ab20dc74.Coremail.2totoo@163.com>
+Subject: Re: When building an image using yocto, I was puzzled by such errors, who can help me? thx!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,156 +33,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Apr 2012 10:00:43 -0000
-X-Groupsio-MsgNum: 6070
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="t0UkRYy7tHLRMCai"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 13 Apr 2012 10:09:44 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
---t0UkRYy7tHLRMCai
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2012-04-13 03:55, 云鹤 wrote:
+> When building an image using yocto, I was puzzled by such errors, who can help me? thx!
+>
+> I am new to yocto and I followed "Yocto Project Quick Start" document to start building an image. After typing "$ bitbake -k core-image-sato" ,error :
+> jackie@jackie-Lenovo:~/yocto/edison-6.0.1-build$ bitbake -k core-image-minimal
+> Loading cache: 100% |###########################################| ETA: 00:00:00
+> Loaded 1041 entries from dependency cache.
+>
+> OE Build Configuration:
+> BB_VERSION = "1.13.3"
+> TARGET_ARCH = "i586"
+> TARGET_OS = "linux"
+> MACHINE = "qemux86"
+> DISTRO = "poky"
+> DISTRO_VERSION = "1.1.1"
+> TUNE_FEATURES = "m32 i586"
+> TARGET_FPU = ""
+> meta
+> meta-yocto = "<unknown>:<unknown>"
+>
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: Preparing runqueue
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> NOTE: Running task 327 of 1827 (ID: 1009, /home/jackie/yocto/poky-edison-6.0.1/meta/recipes-kernel/linux-libc-headers/linux-libc-headers_2.6.37.2.bb, do_fetch)
+> NOTE: Running task 637 of 1827 (ID: 584, /home/jackie/yocto/poky-edison-6.0.1/meta/recipes-kernel/linux/linux-yocto_3.0.bb, do_fetch)
+> NOTE: package linux-libc-headers-2.6.37.2-r2: task do_fetch: Started
+> NOTE: package linux-yocto-3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+d7e81e7f975c57c581ce13446adf023f95d9fd9f-r3: task do_fetch: Started
+> ERROR: Function 'File: '/home/jackie/yocto/edison-6.0.1-build/downloads/linux-2.6.37.2.tar.bz2' has md5 checksum cdc3c12d007a0ff597a34b062907e8f7 when
+> 89f681bc7c917a84aa7470da6eed5101 was expected (from URL: 'http://kernel.org/pub/linux/kernel/v2.6/linux-2.6.37.2.tar.bz2')' failed
+> ERROR: Logfile of failure stored in: /home/jackie/yocto/edison-6.0.1-build/tmp/work/i586-poky-linux/linux-libc-headers-2.6.37.2-r2/temp/log.do_fetch.3886
+> Log data follows:
+> | ERROR: Function 'File: '/home/jackie/yocto/edison-6.0.1-build/downloads/linux-2.6.37.2.tar.bz2' has md5 checksum cdc3c12d007a0ff597a34b062907e8f7 when
+> 89f681bc7c917a84aa7470da6eed5101 was expected (from URL: 'http://kernel.org/pub/linux/kernel/v2.6/linux-2.6.37.2.tar.bz2')' failed
+> NOTE: package linux-libc-headers-2.6.37.2-r2: task do_fetch: Failed
+> ERROR: Task 1009 (/home/jackie/yocto/poky-edison-6.0.1/meta/recipes-kernel/linux-libc-headers/linux-libc-headers_2.6.37.2.bb, do_fetch) failed with exit code '1'
+> ………………
+> | ERROR: Function 'Fetcher failure for URL:
+> 'git://git.yoctoproject.org/linux-yocto-3.0-1.1.x.git;protocol=git;nocheckout=1;branch=yocto/standard/common-pc/base,meta;name=machine,meta'. Unable to fetch URL
+> git://git.yoctoproject.org/linux-yocto-3.0-1.1.x.git;protocol=git;nocheckout=1;branch=yocto/standard/common-pc/base,meta;name=machine,meta from any source.' failed
+> |
+> NOTE: package linux-yocto-3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+d7e81e7f975c57c581ce13446adf023f95d9fd9f-r3: task do_fetch: Failed
+> ERROR: Task 584 (/home/jackie/yocto/poky-edison-6.0.1/meta/recipes-kernel/linux/linux-yocto_3.0.bb, do_fetch) failed with exit code '1'
+> ERROR: '/home/jackie/yocto/poky-edison-6.0.1/meta/recipes-kernel/linux-libc-headers/linux-libc-headers_2.6.37.2.bb' failed
+> ERROR: '/home/jackie/yocto/poky-edison-6.0.1/meta/recipes-kernel/linux/linux-yocto_3.0.bb' failed
+>
+> who can help me? thanks all!
 
-On Thu, Apr 05, 2012 at 04:54:50PM -0700, Saul Wold wrote:
->=20
-> Martin,
->=20
-> Just wanted to let you know that this was received, I am holding off=20
-> doing anything about it right now until we get through the current=20
-> release process, this will be build and tested with early in the 1.3 as=
-=20
-> appropriate.
+The file downloaded as /home/jackie/yocto/edison-6.0.1-build/downloads/linux-2.6.37.2.tar.bz2 is corrupt.
+Try deleting it (and /home/jackie/yocto/edison-6.0.1-build/downloads/linux-2.6.37.2.tar.bz2.done as well)
+and start again.
 
-Hi,
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-can you please apply at least first patchset (just import of patches we
-already had), someone wanted to switch opkg-utils in oe-classic from svn
-to this git repo, so it would be nice to just use correct SRCREV instead
-of importing those local patches.
-
-Or import everything as it won't be used until we change SRCREV in
-recipe and we'll change SRCREV in 1.3 cycle.
-
-Thanks!
-
->=20
-> Thanks
-> 	Sau!
->=20
->=20
-> On 03/29/2012 03:21 PM, Martin Jansa wrote:
-> > First 5 patches are taken from oe-core.
-> >
-> > Then there are some cleanups and fixes for issues I've found while look=
-ing
-> > for cause of very long package-index calls.
-> >
-> > Some patches uses compatible changes from 2to3 (tested with python2.7),=
- but
-> > python3 support is not 100% complete, but were closer.
-> >
-> > And in the end I've found the cause.. printing long fields (e. g. descr=
-iption)
-> > with opkg.py was producing empty lines in Packages file (which are Pack=
-ages entry
-> > separators) so only first entries till first empty line were processed =
-=66rom old
-> > Packages file and the rest was always extracted from control files in p=
-ackaged .ipk.
-> >
-> > And this also fixes Packages.filelist generation.
-> >
-> > I don't use python very much, so please review.
-> >
-> > And the speedup? Almost 60 times :)
-> > before:
-> > real    20m10.484s
-> > user    18m32.335s
-> > sys     0m11.885s
-> >
-> > after
-> > real    0m24.492s
-> > user    0m23.748s
-> > sys     0m0.565s
-> >
-> > The following changes since commit 002d29bc605d7c2d02e4cf20a43c5277c15f=
-5597:
-> >
-> >    [opkg-utils] fix install fail problem  Thanks for khorben's patch :-=
-)  https://docs.openmoko.org/trac/attachment/ticket/2072/patch-opkg-utils_M=
-akefile_install_path.diff (2008-11-03 03:59:59 +0000)
-> >
-> > are available in the git repository at:
-> >    git://github.com/shr-project/opkg-utils jansa/pull
-> >    https://github.com/shr-project/opkg-utils/tree/jansa/pull
-> >
-> > Christopher Larson (1):
-> >    Use python via the PATH, rather than hardcoding /usr/bin/python
-> >
-> > Enrico Scholz (1):
-> >    opkg-make-index: convert mtime to int before comparing it
-> >
-> > Khem Raj (1):
-> >    opkg.py: Add knowledge about License field in ipk headers
-> >
-> > Martin Jansa (17):
-> >    opkg.py: use hashlib instead of old md5 module
-> >    opkg.py, arfile.py: report which file has wrong format and use the
-> >      same test
-> >    arfile: decode read lines as ascii string before getting fields from
-> >      it
-> >    2to3: use subprocess instead of commands
-> >    2to3: print fixes
-> >    2to3: dictionary fixes
-> >    2to3: exception handling fixes
-> >    opkg-make-index: show OSError/IOError
-> >    opkg.py: use string funtcions directly on string variable
-> >    opkg.py: catch TypeError when reading control file, to show which one
-> >      is failing
-> >    arfile: fix test
-> >    opkg-make-index: don't use stdout for Packages output and use __str__
-> >      instead of __repr__
-> >    opkg.py: cast lines from controlfile as string
-> >    opkg.py: computeFileMD5 only when we have fn, otherwise fails to read
-> >      None file
-> >    opkg.py: fix write_package when called from main test
-> >    opkg.py: use textwrap for description writing
-> >    opkg.py: improve test so it prints temporary control file with long
-> >      description and then reads it back
-> >
-> > Richard Purdie (1):
-> >    opkg-make-index: don't error out when some package disappears
-> >
-> > Scott Anderson (1):
-> >    arfile.py: handle six digit UIDs
-> >
-> >   arfile.py            |   55 +++++++++++++---------
-> >   makePackage          |    2 +-
-> >   opkg-compare-indexes |   22 ++++----
-> >   opkg-list-fields     |    4 +-
-> >   opkg-make-index      |   74 +++++++++++++++++++----------
-> >   opkg-show-deps       |   28 +++++------
-> >   opkg-unbuild         |    4 +-
-> >   opkg-update-index    |    5 +-
-> >   opkg.py              |  125 +++++++++++++++++++++++++++++------------=
---------
-> >   9 files changed, 186 insertions(+), 133 deletions(-)
-> >
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---t0UkRYy7tHLRMCai
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
-
-iEYEARECAAYFAk+H+UcACgkQN1Ujt2V2gBxeDQCggxnWTLi3Xbf0Y6gSRWw3InVR
-FzMAn0eaI8ZSeuKdKlQElJDYXEXTU1A6
-=Hq3k
------END PGP SIGNATURE-----
-
---t0UkRYy7tHLRMCai--
