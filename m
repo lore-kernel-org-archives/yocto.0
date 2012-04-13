@@ -1,30 +1,24 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EBE3E0059A
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2012 01:45:37 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3D8jTL7032273;
-	Fri, 13 Apr 2012 09:45:29 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 29772-10; Fri, 13 Apr 2012 09:45:25 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3D8jMi1032267
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Fri, 13 Apr 2012 09:45:23 +0100
-Message-ID: <1334306723.7309.54.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
+Return-Path: <bjst@giant.haxx.se>
+Received: from giant.haxx.se (giant.haxx.se [80.67.6.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0726DE0059A
+	for <yocto@yoctoproject.org>; Fri, 13 Apr 2012 01:47:07 -0700 (PDT)
+Received: from giant.haxx.se (localhost.localdomain [127.0.0.1])
+	by giant.haxx.se (8.14.4/8.14.4/Debian-2) with ESMTP id q3D8l2J1006291
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
+	Fri, 13 Apr 2012 10:47:02 +0200
+Received: (from bjst@localhost)
+	by giant.haxx.se (8.14.4/8.14.4/Submit) id q3D8l2ld006289;
+	Fri, 13 Apr 2012 10:47:02 +0200
+Date: Fri, 13 Apr 2012 10:47:02 +0200
+From: =?iso-8859-1?Q?Bj=F6rn?= Stenberg <bjst@enea.com>
 To: Darren Hart <dvhart@linux.intel.com>
-Date: Fri, 13 Apr 2012 09:45:23 +0100
-In-Reply-To: <4F86E7E0.4080704@linux.intel.com>
+Message-ID: <20120413084702.GA9382@giant>
 References: <1B707EEC-B001-45EA-BC0B-C0FF70BB7152@keylevel.com>
 	<4F862237.50200@linux.intel.com> <20120412140802.GA3176@giant>
 	<4F86E7E0.4080704@linux.intel.com>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
+MIME-Version: 1.0
+In-Reply-To: <4F86E7E0.4080704@linux.intel.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Build time data
 X-BeenThere: yocto@yoctoproject.org
@@ -38,87 +32,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Apr 2012 08:45:38 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 13 Apr 2012 08:47:08 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 
-On Thu, 2012-04-12 at 07:34 -0700, Darren Hart wrote:
-> 
-> On 04/12/2012 07:08 AM, BjÃ¶rn Stenberg wrote:
-> > Darren Hart wrote:
-> >> /dev/md0        /build          ext4 
-> >> noauto,noatime,nodiratime,commit=6000
-> > 
-> > A minor detail: 'nodiratime' is a subset of 'noatime', so there is no
-> > need to specify both.
-> 
-> Excellent, thanks for the tip.
+Darren Hart wrote:
+> One thing that comes to mind is the parallel settings, BB_NUMBER_THREADS
+> and PARALLEL_MAKE. I noticed a negative impact if I increased these
+> beyond 12 and 14 respectively. I tested this with bb-matrix
+> (scripts/contrib/bb-perf/bb-matrix.sh). The script is a bit fickle, but
+> can provide useful results and killer 3D surface plots of build time
+> with BB and PM on the axis.
 
-Note the key here is that for a system with large amounts of memory, you
-can effectively keep the build in memory due to the long commit time.
+Very nice! I ran a batch overnight with permutations of 8,12,16,24,64 cores:
 
-All the tests I've done show we are not IO bound anyway.
+BB PM %e %S %U %P %c %w %R %F %M %x
+8 8 2288.96 2611.37 10773.53 584% 810299 18460161 690464859 0 1715456 0
+8 12 2198.40 2648.57 10846.28 613% 839750 18559413 690563187 0 1982864 0
+8 16 2157.26 2672.79 10943.59 631% 898599 18487946 690761197 0 1715440 0
+8 24 2125.15 2916.33 11199.27 664% 800009 18412764 690856116 0 1715440 0
+8 64 2189.14 7084.14 12906.95 913% 1491503 18646891 699897733 0 1715440 0
+12 8 2277.66 2625.82 10805.21 589% 691752 18596208 690998433 0 1715440 0
+12 12 2194.04 2664.01 10934.65 619% 714997 18717017 691199925 0 1715440 0
+12 16 2183.95 2736.33 11162.30 636% 1090270 18359128 690559327 0 1715440 0
+12 24 2120.46 2907.63 11229.50 666% 829783 18644293 690729638 0 1715312 0
+12 64 2171.58 6767.09 12822.86 902% 1524683 18634668 690904549 0 1867456 0
+16 8 2294.59 2691.74 10813.69 588% 771621 18637582 686712129 0 1715344 0
+16 12 2201.51 2704.54 11017.23 623% 753662 18590533 699231236 0 1715424 0
+16 16 2154.54 2692.31 11023.28 636% 809586 18557781 691014487 0 1715440 0
+16 24 2130.33 2932.18 11259.09 666% 905669 18531776 691082307 0 2030992 0
+16 64 2184.01 6954.71 12922.39 910% 1467774 18800203 701770099 0 1715440 0
+24 8 2284.88 2645.88 10854.89 590% 833061 18523938 691067170 0 1715328 0
+24 12 2203.72 2696.96 11033.10 623% 931443 18457749 691187723 0 2016368 0
+24 16 2176.02 2727.94 11113.33 636% 940044 18420200 690959670 0 1715440 0
+24 24 2170.38 2938.80 11643.10 671% 1023328 18641215 686665448 15 1715440 0
+24 64 2200.02 7188.60 12902.42 913% 1509158 18924772 690615091 66 1715440 0
+64 8 2309.40 2702.33 10952.18 591% 753168 18687309 690927732 10 1867440 0
+64 12 2230.80 2765.98 11131.22 622% 875495 18744802 691213524 28 1715216 0
+64 16 2182.22 2786.22 11180.86 640% 881328 18724987 691020084 109 1768576 0
+64 24 2136.20 3001.36 11238.81 666% 898320 18646384 691239254 46 1715312 0
+64 64 2189.73 7154.10 12846.99 913% 1416830 18781801 690890798 41 1715424 0
 
+What it shows is that BB_NUMBER_THREADS makes no difference at all in this range. As for PARALLEL_MAKE, it shows 24 is better than 16 but 64 is too high, incurring a massive scheduling penalty. I wonder if newer kernel versions have become more efficient. In hindsight, I should have included 32 and 48 cores in the test.
 
-> > Yet for all the combined horsepower, I am unable to match your time
-> > of 30 minutes for core-image-minimal. I clock in at around 37 minutes
-> > for a qemux86-64 build with ipk output:
-> > 
-> > ------ NOTE: Tasks Summary: Attempted 1363 tasks of which 290 didn't
-> > need to be rerun and all succeeded.
-> > 
-> > real    36m32.118s user    214m39.697s sys     108m49.152s ------
-> > 
-> > These numbers also show that my build is running less than 9x
-> > realtime, indicating that 80% of my cores sit idle most of the time.
-> 
-> Yup, that sounds about right. The build has a linear component to it,
-> and anything above about 12 just doesn't help. In fact the added
-> scheduling overhead seems to hurt.
->
-> > This confirms what "ps xf" says during the builds: Only rarely is
-> > bitbake running more than a handful tasks at once, even with
-> > BB_NUMBER_THREADS at 64. And many of these tasks are in turn running
-> > sequential loops on a single core.
-> > 
-> > I'm hoping to find time soon to look deeper into this issue and
-> > suggest remedies. It my distinct feeling that we should be able to
-> > build significantly faster on powerful machines.
-> > 
-> 
-> Reducing the dependency chains that result in the linear component of
-> the build (forcing serialized execution) is one place we've focused, and
-> could probably still use some attention. CC'ing RP as he's done a lot there.
+Unfortunately I was unable to produce plots with bb-matrix-plot.sh. It gave me pretty png files, but missing any plotted data:
 
-The minimal build is about our worst case single threaded build as it is
-highly dependency ordered. We've already done a lot of work looking at
-the "single thread" of core dependencies and this is for example why we
-have gettext-minimal-native which unlocked some of the core path
-dependencies. When you look at what we build, there is a reason for most
-of it unfortunately. There are emails from me about what I looked and
-found on the mailing list, I tried to keep a record of it somewhere at
-least. You can get some wins with things like ASSUME_PROVIDED +=
-"git-native".
+# ../../poky/scripts/contrib/bb-perf/bb-matrix-plot.sh
+         line 0: Number of grid points must be in [2:1000] - not changed!
 
-For something like a sato build you should see more parallelism. 
+  Warning: Single isoline (scan) is not enough for a pm3d plot.
+           Hint: Missing blank lines in the data file? See 'help pm3d' and FAQ.
+  Warning: Single isoline (scan) is not enough for a pm3d plot.
+           Hint: Missing blank lines in the data file? See 'help pm3d' and FAQ.
+  Warning: Single isoline (scan) is not enough for a pm3d plot.
+           Hint: Missing blank lines in the data file? See 'help pm3d' and FAQ.
+  Warning: Single isoline (scan) is not enough for a pm3d plot.
+           Hint: Missing blank lines in the data file? See 'help pm3d' and FAQ.
 
-I do also have some small gains in some pending patches:
+Result: http://imgur.com/mfgWb
 
-http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=rpurdie/t2&id=2023801e25d81e8cffb643eac259c18b9fecda0b
-http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=rpurdie/t2&id=ecf5f5de8368fdcf90c3d38eafc689d6d265514b
-http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=rpurdie/t2&id=2190a51ffac71c9d19305601f8a3a46e467b745a
-
-which look at speeding up do_package, do_package_write_rpm and do_rootfs
-(with rpm). There were developed too late for 1.2 and are in some cases
-only partially complete but they show some ways we can squeeze some
-extra performance out the system.
-
-There are undoubtedly ways we can improve performance but I think we've
-done the low hanging fruit and we need some fresh ideas.
-
-Cheers,
-
-Richard
-
-
+-- 
+Björn
 
