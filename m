@@ -1,31 +1,39 @@
-Return-Path: <flihp@twobit.us>
-Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CD9BE00723
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2012 14:22:45 -0700 (PDT)
-Received: from static-74-106-4-21.syrcny.fios.verizon.net ([74.106.4.21]
-	helo=[10.197.228.148])
-	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.72) (envelope-from <flihp@twobit.us>)
-	id 1SInx5-0006Z2-9W; Fri, 13 Apr 2012 21:22:44 +0000
-Message-ID: <4F8897F0.9050104@twobit.us>
-Date: Fri, 13 Apr 2012 17:17:36 -0400
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
+Return-Path: <SRS0=rfAY0h=CT=mindchasers.com=yocto@eigbox.net>
+Received: from bosmailout06.eigbox.net (bosmailout06.eigbox.net [66.96.188.6])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F2CFE0059A
+	for <yocto@yoctoproject.org>; Fri, 13 Apr 2012 14:59:51 -0700 (PDT)
+Received: from bosmailscan18.eigbox.net ([10.20.15.18])
+	by bosmailout06.eigbox.net with esmtp (Exim) id 1SIoX0-0003NL-9a
+	for yocto@yoctoproject.org; Fri, 13 Apr 2012 17:59:50 -0400
+Received: from bosimpout01.eigbox.net ([10.20.55.1])
+	by bosmailscan18.eigbox.net with esmtp (Exim) id 1SIoX0-0000PT-0N
+	for yocto@yoctoproject.org; Fri, 13 Apr 2012 17:59:50 -0400
+Received: from bosauthsmtp07.eigbox.net ([10.20.18.7])
+	by bosimpout01.eigbox.net with NO UCE
+	id xZzq1i002099BUA01Zzq80; Fri, 13 Apr 2012 17:59:50 -0400
+X-Authority-Analysis: v=2.0 cv=eq1oOPVX c=1 sm=1
+	a=1tk2KXT9X5KuiK9ZGSyBkw==:17 a=mn2ndCrYJZwA:10 a=5XsFQGJ3Uf0A:10
+	a=qVlnbR704W4A:10 a=Lk7aQFya1KUA:10 a=8nJEP1OIZ-IA:10 a=jV2zTg0wAAAA:8
+	a=a92aKs14cRhwfEIInMIA:9 a=PjWPoXDUeezb8T-mQmoA:7 a=wPNLvfGTeEIA:10
+	a=2JmKTArPWNwA:10 a=x8qw8EAkfcRkIpZA8Q87Bg==:117
+X-EN-OrigOutIP: 10.20.18.7
+X-EN-IMPSID: xZzq1i002099BUA01Zzq80
+Received: from [108.25.140.29] (helo=[192.168.1.41])
+	by bosauthsmtp07.eigbox.net with esmtpa (Exim) id 1SIoWz-0005Lu-Nz
+	for yocto@yoctoproject.org; Fri, 13 Apr 2012 17:59:49 -0400
+Message-ID: <4F88A1D2.6070703@mindchasers.com>
+Date: Fri, 13 Apr 2012 17:59:46 -0400
+From: Bob Cochran <yocto@mindchasers.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4F86EA68.1070504@twobit.us> <4F876B6A.9030405@twobit.us>
-In-Reply-To: <4F876B6A.9030405@twobit.us>
-X-Enigmail-Version: 1.4
-X-SA-Exim-Connect-IP: 74.106.4.21
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
-X-SA-Exim-Scanned: Yes (on www.twobit.us)
-Subject: Re: native recipe and sysroot-destdir troubles
+To: Yocto discussion list <yocto@yoctoproject.org>
+X-EN-UserInfo: cb6d325fe03740ac93d537d78041f599:2186c883651a1065ea1e15c5a112545a
+X-EN-AuthUser: bcochran@mindchasers.com
+Sender: Bob Cochran <yocto@mindchasers.com>
+X-EN-OrigIP: 108.25.140.29
+X-EN-OrigHost: unknown
+Subject: [PATCH] Yocto Project Dev Manual - bad reference in dev-manual-common-tasks.xml
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,91 +45,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Apr 2012 21:22:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 13 Apr 2012 21:59:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Worked out a solution to this issue.  For the sake of brevity it can be
-found here:
+A reference to meta/recipes-sato/tasks/task-poky.bb is made as a good 
+example of a task; however, this file / recipe doesn't exist.  I 
+replaced it with meta/recipes-core/tasks/task-core-boot.bb, which I 
+think is a both useful and basic example to consider.
 
-http://twobit.us/blog/2012/04/openembedded-yocto-native-hello-world/
+Signed-off-by: Robert Cochran<yocto@mindchasers.com>
 
-Cheers,
-- Philip
+---
+  .../dev-manual/dev-manual-common-tasks.xml         |    2 +-
+  1 files changed, 1 insertions(+), 1 deletions(-)
 
-On 04/12/2012 07:55 PM, Philip Tricca wrote:
-> More / better info:
-> 
-> On 04/12/2012 10:44 AM, Philip Tricca wrote:
->> I'm working on two new recipes and both are working quite well.  Now I
->> need native variants and online sources indicate this should be done
->> through BBCLASSEXTEND = "native".  For one of my recipes this works
->> fine, for the other not so much.
->>
->> The error I'm seeing seems to be in the staging of the sysroot-destdir
->> which ends up being empty though the source code builds fine (image
->> directory has everything expected). do_populate_sysroot seems to assume
->> there's a directory structure present which ends up being empty causing
->> an error when it trys to tar the directory up.  If I create the
->> directories do_populate_sysroot expects the recipe runs to completion
->> but sysroot-destdir still ends up being empty and no packages are built.
-> 
-> Image directiory is populated as expected (has lib, usr/include etc with
-> expected files).  Build is failing on populate_sysroot:
-> 
-> CalledProcessError: Command 'tar -cf - -C
-> /home/build/poky-edison-6.0/build/tmp/work/i686-linux/libmylib-native-2.1.4-r0/sysroot-destdir///home/build/poky-edison-6.0/build/tmp/sysroots/i686-linux
-> -ps . | tar -xf - -C
-> /home/build/poky-edison-6.0/build/tmp/sysroots/i686-linux' returned
-> non-zero exit status 2 with output tar:
-> /home/build/poky-edison-6.0/build/tmp/work/i686-linux/libmylib-native-2.1.4-r0/sysroot-destdir///home/build/poky-edison-6.0/build/tmp/sysroots/i686-linux:
-> Cannot chdir: No such file or directory
-> tar: Error is not recoverable: exiting now
-> 
-> The failure is obviously due to sysroot-destdir being empty.  The
-> question is why this directory is populated for libmylib but not for
-> libmylib-native ... they're built from the same recipe.
-> 
-> Stack trace:
-> 
-> ERROR: The stack trace of python calls that resulted in this
-> exception/failure was:
-> ERROR:   File "sstate_task_postfunc", line 10, in <module>
-> ERROR:
-> ERROR:   File "sstate_task_postfunc", line 4, in sstate_task_postfunc
-> ERROR:
-> ERROR:   File "sstate.bbclass", line 19, in sstate_install
-> ERROR:
-> ERROR:   File "/home/build/poky-edison-6.0/meta/lib/oe/path.py", line
-> 59, in copytree
-> ERROR:     check_output(cmd, shell=True, stderr=subprocess.STDOUT)
-> ERROR:
-> ERROR:   File "/home/build/poky-edison-6.0/meta/lib/oe/path.py", line
-> 121, in check_output
-> ERROR:     raise CalledProcessError(retcode, cmd, output=output)
-> ERROR:
-> ERROR: The code that was being executed was:
-> ERROR:      0006:        bb.build.exec_func(intercept, d)
-> ERROR:      0007:    sstate_package(shared_state, d)
-> ERROR:      0008:
-> ERROR:      0009:
-> ERROR:  *** 0010:sstate_task_postfunc(d)
-> ERROR:      0011:
-> ERROR: (file: 'sstate_task_postfunc', lineno: 10, function: <module>)
-> ERROR:      0001:
-> ERROR:      0002:def sstate_task_postfunc(d):
-> ERROR:      0003:    shared_state = sstate_state_fromvars(d)
-> ERROR:  *** 0004:    sstate_install(shared_state, d)
-> ERROR:      0005:    for intercept in shared_state['interceptfuncs']:
-> ERROR:      0006:        bb.build.exec_func(intercept, d)
-> ERROR:      0007:    sstate_package(shared_state, d)
-> ERROR:      0008:
-> ERROR: (file: 'sstate_task_postfunc', lineno: 4, function:
-> sstate_task_postfunc)
-> ERROR: Function 'sstate_task_postfunc' failed
-> 
-> Thanks,
-> - Philip
-> 
-
+diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml 
+b/documentation/dev-manual/dev-manual-common-tasks.xml
+index a32085d..a81b656 100644
+--- a/documentation/dev-manual/dev-manual-common-tasks.xml
++++ b/documentation/dev-manual/dev-manual-common-tasks.xml
+@@ -495,7 +495,7 @@
+                  For complex custom images, the best approach is to 
+create a custom task package
+                  that is used to build the image or images.
+                  A good example of a tasks package is
+-                <filename>meta/recipes-sato/tasks/task-poky.bb</filename>.
++ 
+<filename>meta/recipes-core/tasks/task-core-boot.bb</filename>
+                  The
+                  <filename><ulink 
+url='&YOCTO_DOCS_REF_URL;#var-PACKAGES'>PACKAGES</ulink></filename>
+                  variable lists the task packages to build along with 
+the complementary
+-- 
+1.7.5.4
 
