@@ -1,34 +1,49 @@
-Return-Path: <flihp@twobit.us>
-Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFFC2E0059A
-	for <yocto@yoctoproject.org>; Thu, 12 Apr 2012 17:00:28 -0700 (PDT)
-Received: from static-74-106-4-21.syrcny.fios.verizon.net ([74.106.4.21]
-	helo=[10.197.228.148])
-	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.72) (envelope-from <flihp@twobit.us>)
-	id 1SITwA-00053Y-Eh; Fri, 13 Apr 2012 00:00:27 +0000
-Message-ID: <4F876B6A.9030405@twobit.us>
-Date: Thu, 12 Apr 2012 19:55:22 -0400
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.24) Gecko/20111114 Icedove/3.1.16
+Return-Path: <petertornel@yahoo.com>
+Received: from nm27-vm1.bullet.mail.ne1.yahoo.com
+	(nm27-vm1.bullet.mail.ne1.yahoo.com [98.138.90.59])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id DB72BE0059A
+	for <yocto@yoctoproject.org>; Thu, 12 Apr 2012 17:10:49 -0700 (PDT)
+Received: from [98.138.90.56] by nm27.bullet.mail.ne1.yahoo.com with NNFMP;
+	13 Apr 2012 00:10:49 -0000
+Received: from [98.138.88.237] by tm9.bullet.mail.ne1.yahoo.com with NNFMP;
+	13 Apr 2012 00:10:49 -0000
+Received: from [127.0.0.1] by omp1037.mail.ne1.yahoo.com with NNFMP;
+	13 Apr 2012 00:10:49 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 332592.57408.bm@omp1037.mail.ne1.yahoo.com
+Received: (qmail 47951 invoked by uid 60001); 13 Apr 2012 00:10:49 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
+	t=1334275849; bh=5buPOvLQnL2LnjpOB90sJYainV8Wv2Aiovh0yN3cPRU=;
+	h=X-YMail-OSG:Received:X-Mailer:References:Message-ID:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type;
+	b=KDfSfhr+c55+U4hVCN+G9avd5Ni1WmaAK5TlGn0Q/Z2WhT510382ClSyqbhW/+xVbFlvO5PXRI65u8K42qwOcmqK2djL2M5VLMIhUROpIyZKYQS1IucbfnnJE09r0cSKFuEsVs6z2q842Ug0RxA43Wj0QT5cdssNexAX783Llw0=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
+	h=X-YMail-OSG:Received:X-Mailer:References:Message-ID:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type;
+	b=ORGzjLS+/dwRYS5A2i4l+rKbiL9aegffBjtYgW3wyAR2s4Cgqb7SQiVb18CVjqcvbkT49VXmdVtlhKeN/4cGnNn4YCfgDrMUHwiEKxFGRD6NQPoajtYjNNWCcjTprO+U0kl7M6nQuTixyGDX3GhgcFa4tLG8ZMW53MEy8e3HW48=;
+X-YMail-OSG: cEoJbd4VM1nFZLBRUtX8mA8BWy9_DlIpj8t26DLmdh4u2Or
+	lTLfPxZ0uOsbxUH2ba9jwvyexddXYsTYf1tzL5yE0fU1PJQT8UTJk.fWB3wq
+	rN2t124xeLCBWU1c8fUgnL31q2XNz7NqAjiO5Sayk.3_QBomM8NGT7HGCaA1
+	yGA0W2DT2VWPG5xZKyfnuLBSxWr141N6u8A3VR8uJFg8BEbOvdXyZLO3oglR
+	x0Cxk0EpMldsZxwwec733xUz1R.t_Y.b3XhCxcBx1IT8IVzH.3.jPOo1Mv1Q
+	0h3Pu.j46KgiqAHm31NyRCD2jQVg5ILe62GXkyjA2LvkMdWI7BpDLPwxZyvC
+	Ly7usu_39SKMmXJDPiTTdbXc3WrHXBGgliV0BZ1AGNZR4wQufWtdtNJhKxw_
+	49XJ_9mL.cTseUcCq34EttxY-
+Received: from [108.11.41.42] by web122203.mail.ne1.yahoo.com via HTTP;
+	Thu, 12 Apr 2012 17:10:49 PDT
+X-Mailer: YahooMailWebService/0.8.117.340979
+References: <1334167325.15462.YahooMailNeo@web122203.mail.ne1.yahoo.com>
+	<4F868123.9010902@linux.intel.com>
+Message-ID: <1334275849.46498.YahooMailNeo@web122203.mail.ne1.yahoo.com>
+Date: Thu, 12 Apr 2012 17:10:49 -0700 (PDT)
+From: Peter Tornel <petertornel@yahoo.com>
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4F868123.9010902@linux.intel.com>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4F86EA68.1070504@twobit.us>
-In-Reply-To: <4F86EA68.1070504@twobit.us>
-X-Enigmail-Version: 1.1.2
-X-SA-Exim-Connect-IP: 74.106.4.21
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
-X-SA-Exim-Scanned: Yes (on www.twobit.us)
-Subject: Re: native recipe and sysroot-destdir troubles
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: confusion about IMAGE_INSTALL and getting packages into rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Peter Tornel <petertornel@yahoo.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -37,81 +52,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Apr 2012 00:00:28 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 13 Apr 2012 00:10:50 -0000
+Content-Type: multipart/alternative;
+	boundary="1629896970-1202608122-1334275849=:46498"
 
-More / better info:
+--1629896970-1202608122-1334275849=:46498
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On 04/12/2012 10:44 AM, Philip Tricca wrote:
-> I'm working on two new recipes and both are working quite well.  Now I
-> need native variants and online sources indicate this should be done
-> through BBCLASSEXTEND = "native".  For one of my recipes this works
-> fine, for the other not so much.
-> 
-> The error I'm seeing seems to be in the staging of the sysroot-destdir
-> which ends up being empty though the source code builds fine (image
-> directory has everything expected). do_populate_sysroot seems to assume
-> there's a directory structure present which ends up being empty causing
-> an error when it trys to tar the directory up.  If I create the
-> directories do_populate_sysroot expects the recipe runs to completion
-> but sysroot-destdir still ends up being empty and no packages are built.
+"Keep in mind that you should be using package names here, not recipe names=
+."=0A=0A=0AThank you for the reply Darren.=A0 I'm not sure I understand the=
+ difference yet, but I'm working on it.=A0 
 
-Image directiory is populated as expected (has lib, usr/include etc with
-expected files).  Build is failing on populate_sysroot:
+--1629896970-1202608122-1334275849=:46498
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-CalledProcessError: Command 'tar -cf - -C
-/home/build/poky-edison-6.0/build/tmp/work/i686-linux/libmylib-native-2.1.4-r0/sysroot-destdir///home/build/poky-edison-6.0/build/tmp/sysroots/i686-linux
--ps . | tar -xf - -C
-/home/build/poky-edison-6.0/build/tmp/sysroots/i686-linux' returned
-non-zero exit status 2 with output tar:
-/home/build/poky-edison-6.0/build/tmp/work/i686-linux/libmylib-native-2.1.4-r0/sysroot-destdir///home/build/poky-edison-6.0/build/tmp/sysroots/i686-linux:
-Cannot chdir: No such file or directory
-tar: Error is not recoverable: exiting now
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:ti=
+mes new roman, new york, times, serif;font-size:12pt"><div>"Keep in mind th=
+at you should be using package names here, not recipe names."</div><div><br=
+></div><div><br></div><div>Thank you for the reply Darren.&nbsp; I'm not su=
+re I understand the difference yet, but I'm working on it.&nbsp; <br></div>=
+<div><br></div><br> <div style=3D"font-family: times new roman, new york, t=
+imes, serif; font-size: 12pt;"> </div>  </div></body></html>
 
-The failure is obviously due to sysroot-destdir being empty.  The
-question is why this directory is populated for libmylib but not for
-libmylib-native ... they're built from the same recipe.
-
-Stack trace:
-
-ERROR: The stack trace of python calls that resulted in this
-exception/failure was:
-ERROR:   File "sstate_task_postfunc", line 10, in <module>
-ERROR:
-ERROR:   File "sstate_task_postfunc", line 4, in sstate_task_postfunc
-ERROR:
-ERROR:   File "sstate.bbclass", line 19, in sstate_install
-ERROR:
-ERROR:   File "/home/build/poky-edison-6.0/meta/lib/oe/path.py", line
-59, in copytree
-ERROR:     check_output(cmd, shell=True, stderr=subprocess.STDOUT)
-ERROR:
-ERROR:   File "/home/build/poky-edison-6.0/meta/lib/oe/path.py", line
-121, in check_output
-ERROR:     raise CalledProcessError(retcode, cmd, output=output)
-ERROR:
-ERROR: The code that was being executed was:
-ERROR:      0006:        bb.build.exec_func(intercept, d)
-ERROR:      0007:    sstate_package(shared_state, d)
-ERROR:      0008:
-ERROR:      0009:
-ERROR:  *** 0010:sstate_task_postfunc(d)
-ERROR:      0011:
-ERROR: (file: 'sstate_task_postfunc', lineno: 10, function: <module>)
-ERROR:      0001:
-ERROR:      0002:def sstate_task_postfunc(d):
-ERROR:      0003:    shared_state = sstate_state_fromvars(d)
-ERROR:  *** 0004:    sstate_install(shared_state, d)
-ERROR:      0005:    for intercept in shared_state['interceptfuncs']:
-ERROR:      0006:        bb.build.exec_func(intercept, d)
-ERROR:      0007:    sstate_package(shared_state, d)
-ERROR:      0008:
-ERROR: (file: 'sstate_task_postfunc', lineno: 4, function:
-sstate_task_postfunc)
-ERROR: Function 'sstate_task_postfunc' failed
-
-Thanks,
-- Philip
-
-
+--1629896970-1202608122-1334275849=:46498--
