@@ -1,27 +1,31 @@
-Return-Path: <koenig@inmach.de>
-Received: from moutng.kundenserver.de (moutng.kundenserver.de [212.227.17.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C84FE00747
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2012 02:53:21 -0700 (PDT)
-Received: from farbauti.inmach.dnsalias.com (pd956e4d9.dip0.t-ipconnect.de
-	[217.86.228.217])
-	by mrelayeu.kundenserver.de (node=mrbap2) with ESMTP (Nemesis)
-	id 0Lsf1t-1SBWVl1QV7-011uUz; Fri, 13 Apr 2012 11:53:20 +0200
-To: yocto@yoctoproject.org
-Date: Fri, 13 Apr 2012 11:53:16 +0200
+Return-Path: <2totoo@163.com>
+Received: from m13-47.163.com (m13-47.163.com [220.181.13.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F336E01374
+	for <yocto@yoctoproject.org>; Fri, 13 Apr 2012 02:55:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Received:Date:From:To:Message-ID:Subject:
+	MIME-Version:Content-Type; bh=k4ilkdAYPDjyW3Y+SEoOVCMXPPFgYZl4Fl
+	dfFYe3TUg=; b=S+D0osNFQPlW2qDhLp7u2DZvaxG6/1FMVhKTrJbrOV3P+G8m+V
+	+jvvOn4nCwPtFbUhQUlVbE/62C6RBBZ0fvlAWnZPt0RAx8EUlrAE40FFq2GvWjUR
+	sh+sEMXaZTckA1UXzhsxfgi4sqMXipCDbYlbqCsV/7qm2D0ClwmsWsvuE=
+Received: from 2totoo ( [114.255.122.12] ) by ajax-webmail-wmsvr47
+	(Coremail) ; Fri, 13 Apr 2012 17:55:19 +0800 (CST)
+Date: Fri, 13 Apr 2012 17:55:19 +0800 (CST)
+From: =?GBK?B?1Ma61w==?= <2totoo@163.com>
+To: yocto <yocto@yoctoproject.org>
+Message-ID: <3d8f8726.e570.136ab20dc74.Coremail.2totoo@163.com>
 MIME-Version: 1.0
-From: =?iso-8859-15?Q?Johannes_K=F6nig?= <koenig@inmach.de>
-Message-ID: <op.wco6222ky8ugr7@farbauti.inmach.dnsalias.com>
-User-Agent: Opera Mail/11.62 (Win32)
-X-Provags-ID: V02:K0:5BepTD4jEdBefABlSuH+PjEI9uNkpyGbKj10dPCFJSi
-	yGo7fCkQroFMp2OLJkDBD9cflPdL+07ik9pyLc/JhnKWYRjbyi
-	rX4AEgFWLgDKGmXrpFA7k6kV99CDXpobHMMXEhqUms8r5u+5XA
-	rMR6TPtMLjt821/M0wPnXxs5ETO756sNmAGk3H2PN2iRpofuti
-	FmuUpC/LZztWlid88FgJ03q8074PmYI+jbNYyXi4k3MSRacgMB
-	2vQmL0OzWA72dnJ4nzEOlroUnzPKlNkUnoUwipudN2ejOQlo1s
-	cbWfKUM+5zmF8mweFDgJSO02DfVV0KN5TLAdgPDmeXBODf2N8N
-	9f0psF2nENU+Iehc0LNEUCkUfB0wSpBnMzGjtaGZdsqYHRbUzP
-	S8mNsfVdUyIkJsEXD99YfSU2G+0zw4pXYE=
-Subject: bitbake gets confused with ~/user-config.jam
+X-Originating-IP: [114.255.122.12]
+X-CM-HeaderCharset: GBK
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
+	20120307(17626.4462.4455) Copyright (c) 2002-2012 www.mailtech.cn
+	163com
+X-CM-CTRLDATA: OdaXpGZvb3Rlcl9odG09Mzg5Njo4MQ==
+X-CM-TRANSID: L8GowGCZQ0UH+IdPT5V2AA--.8658W
+X-CM-SenderInfo: wswr30rr6rljoofrz/xtbBFBSPak9opbMX9wAAs0
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Subject: When building an image using yocto, I was puzzled by such errors, who can help me? thx!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,97 +37,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Apr 2012 09:53:21 -0000
-Content-Type: text/plain; charset=iso-8859-15; format=flowed; delsp=yes
-Content-Transfer-Encoding: Quoted-Printable
+X-List-Received-Date: Fri, 13 Apr 2012 09:55:23 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_156557_1917020972.1334310919284"
 
-Hi,
+------=_Part_156557_1917020972.1334310919284
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: base64
 
-It seems that bitbake (or more precisely the boost_1.44.0.bb recipe) get=
-s
-confused with an user-config.jam file in the users home directory.
+V2hlbiBidWlsZGluZyBhbiBpbWFnZSB1c2luZyB5b2N0bywgSSB3YXMgcHV6emxlZCBieSBzdWNo
+IGVycm9ycywgd2hvIGNhbiBoZWxwIG1lPyB0aHghCgpJIGFtIG5ldyB0byB5b2N0byBhbmQgSSBm
+b2xsb3dlZCAiWW9jdG8gUHJvamVjdCBRdWljayBTdGFydCIgZG9jdW1lbnQgdG8gc3RhcnQgYnVp
+bGRpbmcgYW4gaW1hZ2UuIEFmdGVyIHR5cGluZyAiJCBiaXRiYWtlIC1rIGNvcmUtaW1hZ2Utc2F0
+byIgLGVycm9yIDoKamFja2llQGphY2tpZS1MZW5vdm86fi95b2N0by9lZGlzb24tNi4wLjEtYnVp
+bGQkIGJpdGJha2UgLWsgY29yZS1pbWFnZS1taW5pbWFsCkxvYWRpbmcgY2FjaGU6IDEwMCUgfCMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyN8IEVUQTogIDAwOjAwOjAw
+CkxvYWRlZCAxMDQxIGVudHJpZXMgZnJvbSBkZXBlbmRlbmN5IGNhY2hlLgoKT0UgQnVpbGQgQ29u
+ZmlndXJhdGlvbjoKQkJfVkVSU0lPTiAgICAgICAgPSAiMS4xMy4zIgpUQVJHRVRfQVJDSCAgICAg
+ICA9ICJpNTg2IgpUQVJHRVRfT1MgICAgICAgICA9ICJsaW51eCIKTUFDSElORSAgICAgICAgICAg
+PSAicWVtdXg4NiIKRElTVFJPICAgICAgICAgICAgPSAicG9reSIKRElTVFJPX1ZFUlNJT04gICAg
+PSAiMS4xLjEiClRVTkVfRkVBVFVSRVMgICAgID0gIm0zMiBpNTg2IgpUQVJHRVRfRlBVICAgICAg
+ICA9ICIiCm1ldGEgICAgICAgICAgICAgCm1ldGEteW9jdG8gICAgICAgID0gIjx1bmtub3duPjo8
+dW5rbm93bj4iCgpOT1RFOiBSZXNvbHZpbmcgYW55IG1pc3NpbmcgdGFzayBxdWV1ZSBkZXBlbmRl
+bmNpZXMKTk9URTogUHJlcGFyaW5nIHJ1bnF1ZXVlCk5PVEU6IEV4ZWN1dGluZyBTZXRTY2VuZSBU
+YXNrcwpOT1RFOiBFeGVjdXRpbmcgUnVuUXVldWUgVGFza3MKTk9URTogUnVubmluZyB0YXNrIDMy
+NyBvZiAxODI3IChJRDogMTAwOSwgL2hvbWUvamFja2llL3lvY3RvL3Bva3ktZWRpc29uLTYuMC4x
+L21ldGEvcmVjaXBlcy1rZXJuZWwvbGludXgtbGliYy1oZWFkZXJzL2xpbnV4LWxpYmMtaGVhZGVy
+c18yLjYuMzcuMi5iYiwgZG9fZmV0Y2gpCk5PVEU6IFJ1bm5pbmcgdGFzayA2Mzcgb2YgMTgyNyAo
+SUQ6IDU4NCwgL2hvbWUvamFja2llL3lvY3RvL3Bva3ktZWRpc29uLTYuMC4xL21ldGEvcmVjaXBl
+cy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4wLmJiLCBkb19mZXRjaCkKTk9URTogcGFja2Fn
+ZSBsaW51eC1saWJjLWhlYWRlcnMtMi42LjM3LjItcjI6IHRhc2sgZG9fZmV0Y2g6IFN0YXJ0ZWQK
+Tk9URTogcGFja2FnZSBsaW51eC15b2N0by0zLjAuMTgrZ2l0MStkMzg2ZTA5ZjMxNmUwMzA2MWMw
+ODhkMmIxM2E0ODYwNWMyMGZiM2E2XzErZDdlODFlN2Y5NzVjNTdjNTgxY2UxMzQ0NmFkZjAyM2Y5
+NWQ5ZmQ5Zi1yMzogdGFzayBkb19mZXRjaDogU3RhcnRlZApFUlJPUjogRnVuY3Rpb24gJ0ZpbGU6
+ICcvaG9tZS9qYWNraWUveW9jdG8vZWRpc29uLTYuMC4xLWJ1aWxkL2Rvd25sb2Fkcy9saW51eC0y
+LjYuMzcuMi50YXIuYnoyJyBoYXMgbWQ1IGNoZWNrc3VtIGNkYzNjMTJkMDA3YTBmZjU5N2EzNGIw
+NjI5MDdlOGY3IHdoZW4gODlmNjgxYmM3YzkxN2E4NGFhNzQ3MGRhNmVlZDUxMDEgd2FzIGV4cGVj
+dGVkIChmcm9tIFVSTDogJ2h0dHA6Ly9rZXJuZWwub3JnL3B1Yi9saW51eC9rZXJuZWwvdjIuNi9s
+aW51eC0yLjYuMzcuMi50YXIuYnoyJyknIGZhaWxlZApFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJl
+IHN0b3JlZCBpbjogL2hvbWUvamFja2llL3lvY3RvL2VkaXNvbi02LjAuMS1idWlsZC90bXAvd29y
+ay9pNTg2LXBva3ktbGludXgvbGludXgtbGliYy1oZWFkZXJzLTIuNi4zNy4yLXIyL3RlbXAvbG9n
+LmRvX2ZldGNoLjM4ODYKTG9nIGRhdGEgZm9sbG93czoKfCBFUlJPUjogRnVuY3Rpb24gJ0ZpbGU6
+ICcvaG9tZS9qYWNraWUveW9jdG8vZWRpc29uLTYuMC4xLWJ1aWxkL2Rvd25sb2Fkcy9saW51eC0y
+LjYuMzcuMi50YXIuYnoyJyBoYXMgbWQ1IGNoZWNrc3VtIGNkYzNjMTJkMDA3YTBmZjU5N2EzNGIw
+NjI5MDdlOGY3IHdoZW4gODlmNjgxYmM3YzkxN2E4NGFhNzQ3MGRhNmVlZDUxMDEgd2FzIGV4cGVj
+dGVkIChmcm9tIFVSTDogJ2h0dHA6Ly9rZXJuZWwub3JnL3B1Yi9saW51eC9rZXJuZWwvdjIuNi9s
+aW51eC0yLjYuMzcuMi50YXIuYnoyJyknIGZhaWxlZApOT1RFOiBwYWNrYWdlIGxpbnV4LWxpYmMt
+aGVhZGVycy0yLjYuMzcuMi1yMjogdGFzayBkb19mZXRjaDogRmFpbGVkCkVSUk9SOiBUYXNrIDEw
+MDkgKC9ob21lL2phY2tpZS95b2N0by9wb2t5LWVkaXNvbi02LjAuMS9tZXRhL3JlY2lwZXMta2Vy
+bmVsL2xpbnV4LWxpYmMtaGVhZGVycy9saW51eC1saWJjLWhlYWRlcnNfMi42LjM3LjIuYmIsIGRv
+X2ZldGNoKSBmYWlsZWQgd2l0aCBleGl0IGNvZGUgJzEnCqGtoa2hraGtoa2hrQp8IEVSUk9SOiBG
+dW5jdGlvbiAnRmV0Y2hlciBmYWlsdXJlIGZvciBVUkw6ICdnaXQ6Ly9naXQueW9jdG9wcm9qZWN0
+Lm9yZy9saW51eC15b2N0by0zLjAtMS4xLnguZ2l0O3Byb3RvY29sPWdpdDtub2NoZWNrb3V0PTE7
+YnJhbmNoPXlvY3RvL3N0YW5kYXJkL2NvbW1vbi1wYy9iYXNlLG1ldGE7bmFtZT1tYWNoaW5lLG1l
+dGEnLiBVbmFibGUgdG8gZmV0Y2ggVVJMIGdpdDovL2dpdC55b2N0b3Byb2plY3Qub3JnL2xpbnV4
+LXlvY3RvLTMuMC0xLjEueC5naXQ7cHJvdG9jb2w9Z2l0O25vY2hlY2tvdXQ9MTticmFuY2g9eW9j
+dG8vc3RhbmRhcmQvY29tbW9uLXBjL2Jhc2UsbWV0YTtuYW1lPW1hY2hpbmUsbWV0YSBmcm9tIGFu
+eSBzb3VyY2UuJyBmYWlsZWQKfApOT1RFOiBwYWNrYWdlIGxpbnV4LXlvY3RvLTMuMC4xOCtnaXQx
+K2QzODZlMDlmMzE2ZTAzMDYxYzA4OGQyYjEzYTQ4NjA1YzIwZmIzYTZfMStkN2U4MWU3Zjk3NWM1
+N2M1ODFjZTEzNDQ2YWRmMDIzZjk1ZDlmZDlmLXIzOiB0YXNrIGRvX2ZldGNoOiBGYWlsZWQKRVJS
+T1I6IFRhc2sgNTg0ICgvaG9tZS9qYWNraWUveW9jdG8vcG9reS1lZGlzb24tNi4wLjEvbWV0YS9y
+ZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjAuYmIsIGRvX2ZldGNoKSBmYWlsZWQg
+d2l0aCBleGl0IGNvZGUgJzEnCkVSUk9SOiAnL2hvbWUvamFja2llL3lvY3RvL3Bva3ktZWRpc29u
+LTYuMC4xL21ldGEvcmVjaXBlcy1rZXJuZWwvbGludXgtbGliYy1oZWFkZXJzL2xpbnV4LWxpYmMt
+aGVhZGVyc18yLjYuMzcuMi5iYicgZmFpbGVkCkVSUk9SOiAnL2hvbWUvamFja2llL3lvY3RvL3Bv
+a3ktZWRpc29uLTYuMC4xL21ldGEvcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4w
+LmJiJyBmYWlsZWQKCndobyBjYW4gaGVscCBtZT8gdGhhbmtzIGFsbCEKCg==
 
-When trying to build core-image-sato (or zypper) the build aborts due to=
+------=_Part_156557_1917020972.1334310919284
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: base64
 
-an error in the zypper package. I use poky-edison-6.0.1.tar.gz.
+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
+Zm9udC1mYW1pbHk6YXJpYWwiPldoZW4gYnVpbGRpbmcgYW4gaW1hZ2UgdXNpbmcgeW9jdG8sIEkg
+d2FzIHB1enpsZWQgYnkgc3VjaCBlcnJvcnMsIHdobyBjYW4gaGVscCBtZT8gdGh4ITxicj48YnI+
+SSBhbSBuZXcgdG8geW9jdG8gYW5kIEkgZm9sbG93ZWQgIllvY3RvIFByb2plY3QgUXVpY2sgU3Rh
+cnQiIGRvY3VtZW50IHRvIHN0YXJ0IGJ1aWxkaW5nIGFuIGltYWdlLiBBZnRlciB0eXBpbmcgIiQg
+Yml0YmFrZSAtayBjb3JlLWltYWdlLXNhdG8iICxlcnJvciA6PGJyPmphY2tpZUBqYWNraWUtTGVu
+b3ZvOn4veW9jdG8vZWRpc29uLTYuMC4xLWJ1aWxkJCBiaXRiYWtlIC1rIGNvcmUtaW1hZ2UtbWlu
+aW1hbDxicj5Mb2FkaW5nIGNhY2hlOiAxMDAlIHwjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjfCBFVEE6Jm5ic3A7IDAwOjAwOjAwPGJyPkxvYWRlZCAxMDQxIGVudHJp
+ZXMgZnJvbSBkZXBlbmRlbmN5IGNhY2hlLjxicj48YnI+T0UgQnVpbGQgQ29uZmlndXJhdGlvbjo8
+YnI+QkJfVkVSU0lPTiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA9
+ICIxLjEzLjMiPGJyPlRBUkdFVF9BUkNIJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7ID0gImk1ODYiPGJyPlRBUkdFVF9PUyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyA9ICJsaW51eCI8YnI+TUFDSElORSZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA9ICJxZW11eDg2Ijxicj5E
+SVNUUk8mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsgPSAicG9reSI8YnI+RElTVFJPX1ZFUlNJT04mbmJzcDsmbmJzcDsmbmJz
+cDsgPSAiMS4xLjEiPGJyPlRVTkVfRkVBVFVSRVMmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgPSAi
+bTMyIGk1ODYiPGJyPlRBUkdFVF9GUFUmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsgPSAiIjxicj5tZXRhJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDxicj5tZXRhLXlvY3Rv
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ID0gIiZsdDt1bmtub3du
+Jmd0OzombHQ7dW5rbm93biZndDsiPGJyPjxicj5OT1RFOiBSZXNvbHZpbmcgYW55IG1pc3Npbmcg
+dGFzayBxdWV1ZSBkZXBlbmRlbmNpZXM8YnI+Tk9URTogUHJlcGFyaW5nIHJ1bnF1ZXVlPGJyPk5P
+VEU6IEV4ZWN1dGluZyBTZXRTY2VuZSBUYXNrczxicj5OT1RFOiBFeGVjdXRpbmcgUnVuUXVldWUg
+VGFza3M8YnI+Tk9URTogUnVubmluZyB0YXNrIDMyNyBvZiAxODI3IChJRDogMTAwOSwgL2hvbWUv
+amFja2llL3lvY3RvL3Bva3ktZWRpc29uLTYuMC4xL21ldGEvcmVjaXBlcy1rZXJuZWwvbGludXgt
+bGliYy1oZWFkZXJzL2xpbnV4LWxpYmMtaGVhZGVyc18yLjYuMzcuMi5iYiwgZG9fZmV0Y2gpPGJy
+Pk5PVEU6IFJ1bm5pbmcgdGFzayA2Mzcgb2YgMTgyNyAoSUQ6IDU4NCwgL2hvbWUvamFja2llL3lv
+Y3RvL3Bva3ktZWRpc29uLTYuMC4xL21ldGEvcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9j
+dG9fMy4wLmJiLCBkb19mZXRjaCk8YnI+Tk9URTogcGFja2FnZSBsaW51eC1saWJjLWhlYWRlcnMt
+Mi42LjM3LjItcjI6IHRhc2sgZG9fZmV0Y2g6IFN0YXJ0ZWQ8YnI+Tk9URTogcGFja2FnZSBsaW51
+eC15b2N0by0zLjAuMTgrZ2l0MStkMzg2ZTA5ZjMxNmUwMzA2MWMwODhkMmIxM2E0ODYwNWMyMGZi
+M2E2XzErZDdlODFlN2Y5NzVjNTdjNTgxY2UxMzQ0NmFkZjAyM2Y5NWQ5ZmQ5Zi1yMzogdGFzayBk
+b19mZXRjaDogU3RhcnRlZDxicj5FUlJPUjogRnVuY3Rpb24gJ0ZpbGU6ICcvaG9tZS9qYWNraWUv
+eW9jdG8vZWRpc29uLTYuMC4xLWJ1aWxkL2Rvd25sb2Fkcy9saW51eC0yLjYuMzcuMi50YXIuYnoy
+JyBoYXMgbWQ1IGNoZWNrc3VtIGNkYzNjMTJkMDA3YTBmZjU5N2EzNGIwNjI5MDdlOGY3IHdoZW4g
+ODlmNjgxYmM3YzkxN2E4NGFhNzQ3MGRhNmVlZDUxMDEgd2FzIGV4cGVjdGVkIChmcm9tIFVSTDog
+J2h0dHA6Ly9rZXJuZWwub3JnL3B1Yi9saW51eC9rZXJuZWwvdjIuNi9saW51eC0yLjYuMzcuMi50
+YXIuYnoyJyknIGZhaWxlZDxicj5FUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjog
+L2hvbWUvamFja2llL3lvY3RvL2VkaXNvbi02LjAuMS1idWlsZC90bXAvd29yay9pNTg2LXBva3kt
+bGludXgvbGludXgtbGliYy1oZWFkZXJzLTIuNi4zNy4yLXIyL3RlbXAvbG9nLmRvX2ZldGNoLjM4
+ODY8YnI+TG9nIGRhdGEgZm9sbG93czo8YnI+fCBFUlJPUjogRnVuY3Rpb24gJ0ZpbGU6ICcvaG9t
+ZS9qYWNraWUveW9jdG8vZWRpc29uLTYuMC4xLWJ1aWxkL2Rvd25sb2Fkcy9saW51eC0yLjYuMzcu
+Mi50YXIuYnoyJyBoYXMgbWQ1IGNoZWNrc3VtIGNkYzNjMTJkMDA3YTBmZjU5N2EzNGIwNjI5MDdl
+OGY3IHdoZW4gODlmNjgxYmM3YzkxN2E4NGFhNzQ3MGRhNmVlZDUxMDEgd2FzIGV4cGVjdGVkIChm
+cm9tIFVSTDogJ2h0dHA6Ly9rZXJuZWwub3JnL3B1Yi9saW51eC9rZXJuZWwvdjIuNi9saW51eC0y
+LjYuMzcuMi50YXIuYnoyJyknIGZhaWxlZDxicj5OT1RFOiBwYWNrYWdlIGxpbnV4LWxpYmMtaGVh
+ZGVycy0yLjYuMzcuMi1yMjogdGFzayBkb19mZXRjaDogRmFpbGVkPGJyPkVSUk9SOiBUYXNrIDEw
+MDkgKC9ob21lL2phY2tpZS95b2N0by9wb2t5LWVkaXNvbi02LjAuMS9tZXRhL3JlY2lwZXMta2Vy
+bmVsL2xpbnV4LWxpYmMtaGVhZGVycy9saW51eC1saWJjLWhlYWRlcnNfMi42LjM3LjIuYmIsIGRv
+X2ZldGNoKSBmYWlsZWQgd2l0aCBleGl0IGNvZGUgJzEnPGJyPqGtoa2hraGtoa2hrTxicj58IEVS
+Uk9SOiBGdW5jdGlvbiAnRmV0Y2hlciBmYWlsdXJlIGZvciBVUkw6ICdnaXQ6Ly9naXQueW9jdG9w
+cm9qZWN0Lm9yZy9saW51eC15b2N0by0zLjAtMS4xLnguZ2l0O3Byb3RvY29sPWdpdDtub2NoZWNr
+b3V0PTE7YnJhbmNoPXlvY3RvL3N0YW5kYXJkL2NvbW1vbi1wYy9iYXNlLG1ldGE7bmFtZT1tYWNo
+aW5lLG1ldGEnLiBVbmFibGUgdG8gZmV0Y2ggVVJMIGdpdDovL2dpdC55b2N0b3Byb2plY3Qub3Jn
+L2xpbnV4LXlvY3RvLTMuMC0xLjEueC5naXQ7cHJvdG9jb2w9Z2l0O25vY2hlY2tvdXQ9MTticmFu
+Y2g9eW9jdG8vc3RhbmRhcmQvY29tbW9uLXBjL2Jhc2UsbWV0YTtuYW1lPW1hY2hpbmUsbWV0YSBm
+cm9tIGFueSBzb3VyY2UuJyBmYWlsZWQ8YnI+fCA8YnI+Tk9URTogcGFja2FnZSBsaW51eC15b2N0
+by0zLjAuMTgrZ2l0MStkMzg2ZTA5ZjMxNmUwMzA2MWMwODhkMmIxM2E0ODYwNWMyMGZiM2E2XzEr
+ZDdlODFlN2Y5NzVjNTdjNTgxY2UxMzQ0NmFkZjAyM2Y5NWQ5ZmQ5Zi1yMzogdGFzayBkb19mZXRj
+aDogRmFpbGVkPGJyPkVSUk9SOiBUYXNrIDU4NCAoL2hvbWUvamFja2llL3lvY3RvL3Bva3ktZWRp
+c29uLTYuMC4xL21ldGEvcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4wLmJiLCBk
+b19mZXRjaCkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJzxicj5FUlJPUjogJy9ob21lL2phY2tp
+ZS95b2N0by9wb2t5LWVkaXNvbi02LjAuMS9tZXRhL3JlY2lwZXMta2VybmVsL2xpbnV4LWxpYmMt
+aGVhZGVycy9saW51eC1saWJjLWhlYWRlcnNfMi42LjM3LjIuYmInIGZhaWxlZDxicj5FUlJPUjog
+Jy9ob21lL2phY2tpZS95b2N0by9wb2t5LWVkaXNvbi02LjAuMS9tZXRhL3JlY2lwZXMta2VybmVs
+L2xpbnV4L2xpbnV4LXlvY3RvXzMuMC5iYicgZmFpbGVkPGJyPjxicj53aG8gY2FuIGhlbHAgbWU/
+IHRoYW5rcyBhbGwhPGJyPjxicj48L2Rpdj48YnI+PGJyPjxzcGFuIHRpdGxlPSJuZXRlYXNlZm9v
+dGVyIj48c3BhbiBpZD0ibmV0ZWFzZV9tYWlsX2Zvb3RlciI+PC9zcGFuPjwvc3Bhbj4=
 
-Relevant part of the do_compile.log:
-
-> build/tmp/sysroots/x86_64-linux/usr/libexec/core2-poky-linux/gcc/i586-=
-poky-linux/4.6.3/ld:  =
-
-> skipping incompatible  =
-
-> build/tmp/sysroots/crownbay/usr/lib/libboost_signals-mt.so when  =
-
-> searching for -lboost_signals-mt
-> build/tmp/sysroots/x86_64-linux/usr/libexec/core2-poky-linux/gcc/i586-=
-poky-linux/4.6.3/ld:  =
-
-> skipping incompatible  =
-
-> build/tmp/sysroots/crownbay/usr/lib/libboost_signals-mt.a when searchi=
-ng  =
-
-> for -lboost_signals-mt
-> build/tmp/sysroots/x86_64-linux/usr/libexec/core2-poky-linux/gcc/i586-=
-poky-linux/4.6.3/ld:  =
-
-> skipping incompatible  =
-
-> build/tmp/sysroots/crownbay/usr/lib/libboost_signals-mt.so when  =
-
-> searching for -lboost_signals-mt
-> build/tmp/sysroots/x86_64-linux/usr/libexec/core2-poky-linux/gcc/i586-=
-poky-linux/4.6.3/ld:  =
-
-> skipping incompatible  =
-
-> build/tmp/sysroots/crownbay/usr/lib/libboost_signals-mt.a when searchi=
-ng  =
-
-> for -lboost_signals-mt
-> build/tmp/sysroots/x86_64-linux/usr/libexec/core2-poky-linux/gcc/i586-=
-poky-linux/4.6.3/ld:  =
-
-> cannot find -lboost_signals-mt
-> collect2: ld returned 1 exit status
-> make[2]: *** [zypp/libzypp.so.810.1.0] Error 1
-> make[2]: Leaving directory  =
-
-> `build/tmp/work/crownbay-poky-linux/libzypp-0.0-git1+15b6c52260bbc52b3=
-d8e585e271b67e10cc7c433-r16/git'
-> make[1]: *** [zypp/CMakeFiles/zypp.dir/all] Error 2
-> make[1]: Leaving directory  =
-
-> `build/tmp/work/crownbay-poky-linux/libzypp-0.0-git1+15b6c52260bbc52b3=
-d8e585e271b67e10cc7c433-r16/git'
-> make: *** [all] Error 2
-> ERROR: oe_runmake failed
-> ERROR: Function 'do_compile' failed (see  =
-
-> build/tmp/work/crownbay-poky-linux/libzypp-0.0-git1+15b6c52260bbc52b3d=
-8e585e271b67e10cc7c433-r16/temp/log.do_compile.31334  =
-
-> for further information)
-
-After removing the ~/user-config.jam file and recompiling zypper with
-
-     bitbake -c cleanall libzypp boost zypper && bitbake zypper
-
-no more errors are reported.
-
-Content of the ~/user-config.jam file is:
-
-> using gcc ;
-
-(Usually I have more options in my user-config.jam, but I can strip it
-down to the single line above to reproduce the error.)
-
-
-Can this problem be fixed without removeing the user-config.jam?
-
--- =
-
-Johannes K=F6nig
-
+------=_Part_156557_1917020972.1334310919284--
