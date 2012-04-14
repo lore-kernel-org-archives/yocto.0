@@ -1,22 +1,35 @@
-Return-Path: <alex@redfish.com.au>
-Received: from mail.redfish.com.au (unknown [203.206.170.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90459E0059A
-	for <yocto@yoctoproject.org>; Sat, 14 Apr 2012 02:08:29 -0700 (PDT)
-Received: from EXCHANGE.redfish.local ([fe80::a5d8:d572:ea9a:cac7]) by
-	exchange.redfish.local ([fe80::a5d8:d572:ea9a:cac7%10]) with mapi;
-	Sat, 14 Apr 2012 19:08:15 +1000
-From: Alex Robenko <alex@redfish.com.au>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Library objects and headers are not installed in sysroots
-	directory
-Thread-Index: Ac0aHh+flWe/RpzgTH+myuTDeN8GeQ==
-Date: Sat, 14 Apr 2012 09:08:14 +0000
-Message-ID: <9305BFBA7387494D9AF3CAFF867C24D345F9DF98@exchange.redfish.local>
-Accept-Language: en-US, en-AU
+Return-Path: <lianhao.lu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E224E0137C
+	for <yocto@yoctoproject.org>; Sat, 14 Apr 2012 03:22:37 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 14 Apr 2012 03:22:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="130853115"
+Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
+	by azsmga001.ch.intel.com with ESMTP; 14 Apr 2012 03:22:36 -0700
+Received: from shsmsx101.ccr.corp.intel.com (10.239.4.153) by
+	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Sat, 14 Apr 2012 03:22:36 -0700
+Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.125]) by
+	SHSMSX101.ccr.corp.intel.com ([169.254.1.195]) with mapi id
+	14.01.0355.002; Sat, 14 Apr 2012 18:22:34 +0800
+From: "Lu, Lianhao" <lianhao.lu@intel.com>
+To: jack <woailinux@hotmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] error: runqemu command not fonund, when "$ runqemu
+	qemux86 bzImage-qemux86.bin core-image-lsb-qt3-qemux86.ext3" THx!
+Thread-Index: AQHNGfN9zKyH6g9kJ0qD7zVbV28AsJaaHLSA
+Date: Sat, 14 Apr 2012 10:22:33 +0000
+Message-ID: <857BE142E5399E46B20FD45B9DB8A7BC0FD377DB@SHSMSX102.ccr.corp.intel.com>
+References: <BLU0-SMTP1211642316DA9A003041503B9380@phx.gbl>
+In-Reply-To: <BLU0-SMTP1211642316DA9A003041503B9380@phx.gbl>
+Accept-Language: zh-CN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-Subject: Library objects and headers are not installed in sysroots directory
+Subject: Re: error: runqemu command not fonund, when "$ runqemu qemux86 bzImage-qemux86.bin core-image-lsb-qt3-qemux86.ext3" THx!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,73 +41,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 14 Apr 2012 09:08:30 -0000
+X-List-Received-Date: Sat, 14 Apr 2012 10:22:37 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9305BFBA7387494D9AF3CAFF867C24D345F9DF98exchangeredfish_"
-
---_000_9305BFBA7387494D9AF3CAFF867C24D345F9DF98exchangeredfish_
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 
-Hi all,
-I'm trying to use "poky-edison-6.0.1" to build an image for freescale mx28e=
-vk based platform using "core-image-minimal" as a basis with several additi=
-onal libraries such as "boost" and "openssl" (IMAGE_INSTALL +=3D "openssl b=
-oost"). The image itself and the root file system with shared libraries are=
- built correctly. However it seems that "do_populate_sysroot" is not execut=
-ed for these libraries when the command "bitbake <image>" is used. As a res=
-ult "build/tmp/sysroots/mx28evk" doesn't contain headers and static/shared =
-objects of the libraries.
-When I try to build the libraries directly using "bitbake boost" or "bitbak=
-e openssl" everything works as expected (headers, static and shared objects=
- are installed in the directory mentioned above).
-Does anyone have any idea why it happens? Do I forget to put something esse=
-ntial in the image recipe? Is there any way to make the headers and objects=
- of the libraries to be installed in "sysroots" when the whole image is bui=
-lt?
+jack wrote on 2012-04-14:
+> hi,all! I Use a pre-built image and run it in the QEMU emulator.
+> I have downloaded and installed
+> "poky-eglibc-i686-i586-toolchain-gmae-1.1.1.tar.bz2", then I downloaded
+> "bzImage-qemux86.bin"  and  "core-image-lsb-qt3-qemux86.ext3"
+> but when
+> "$ runqemu qemux86 bzImage-qemux86.bin core-image-lsb-qt3-qemux86.ext3"
+> error like below:
+> error: runqemu command not fonund
+>=20
+You may need to "source /opt/poky/1.1.1/environment-setup-i586-poky-linux" =
+first before you "runqemu".
 
-Thanks,
-Alex
+Best Regards,
+Lianhao
 
---_000_9305BFBA7387494D9AF3CAFF867C24D345F9DF98exchangeredfish_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
 
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
-0;}</style>
-</head>
-<body ocsi=3D"0" fpstyle=3D"1">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-13px;">
-<div style=3D"">&nbsp;</div>
-Hi all,<br>
-I'm trying to use &quot;poky-edison-6.0.1&quot; to build an image for frees=
-cale mx28evk based platform using &quot;core-image-minimal&quot; as a basis=
- with several additional libraries such as &quot;boost&quot; and &quot;open=
-ssl&quot; (IMAGE_INSTALL &#43;=3D &quot;openssl boost&quot;). The image its=
-elf and the root
- file system with shared libraries are built correctly. However it seems th=
-at &quot;do_populate_sysroot&quot; is not executed for these libraries when=
- the command &quot;bitbake &lt;image&gt;&quot; is used. As a result &quot;b=
-uild/tmp/sysroots/mx28evk&quot; doesn't contain headers and static/shared
- objects of the libraries.<br>
-When I try to build the libraries directly using &quot;bitbake boost&quot; =
-or &quot;bitbake openssl&quot; everything works as expected (headers, stati=
-c and shared objects are installed in the directory mentioned above).<br>
-Does anyone have any idea why it happens? Do I forget to put something esse=
-ntial in the image recipe? Is there any way to make the headers and objects=
- of the libraries to be installed in &quot;sysroots&quot; when the whole im=
-age is built?<br>
-<br>
-Thanks,<br>
-Alex</div>
-</body>
-</html>
-
---_000_9305BFBA7387494D9AF3CAFF867C24D345F9DF98exchangeredfish_--
