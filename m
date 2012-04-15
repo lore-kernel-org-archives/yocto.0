@@ -1,28 +1,31 @@
-Return-Path: <tom@vdbroek.mine.nu>
-Received: from cpsmtp-fia01.kpnxchange.com (cpsmtp-fia01.kpnxchange.com
-	[195.121.247.4])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 023ABE0044A
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2012 09:33:45 -0700 (PDT)
-Received: from vdbroek.mine.nu ([86.90.233.189]) by
-	cpsmtp-fia01.kpnxchange.com with Microsoft SMTPSVC(6.0.3790.4675); 
-	Fri, 13 Apr 2012 18:33:44 +0200
-Received: from [192.168.2.114] ([192.168.2.114]:55094)
-	by vdbroek.mine.nu with [XMail 1.25 ESMTP Server]
-	id <S31A8> for <yocto@yoctoproject.org> from <tom@vdbroek.mine.nu>;
-	Fri, 13 Apr 2012 16:32:01 -0000
-Message-ID: <4F885567.3000706@vdbroek.mine.nu>
-Date: Fri, 13 Apr 2012 18:33:43 +0200
-From: "tom@vdbroek.mine.nu" <tom@vdbroek.mine.nu>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4F29DA7D.1000003@linux.intel.com>
-In-Reply-To: <4F29DA7D.1000003@linux.intel.com>
-X-OriginalArrivalTime: 13 Apr 2012 16:33:44.0450 (UTC)
-	FILETIME=[3178CE20:01CD1993]
-X-Mailman-Approved-At: Sat, 14 Apr 2012 15:03:00 -0700
-Subject: Re: meta-kernel-dev forces a rebuild of linux-yocto from do_fetch every time
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73376E0059A
+	for <yocto@yoctoproject.org>; Sun, 15 Apr 2012 04:26:59 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3FBQoSV020778;
+	Sun, 15 Apr 2012 12:26:50 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 18284-05; Sun, 15 Apr 2012 12:26:46 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3FBQgSs020772
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Sun, 15 Apr 2012 12:26:43 +0100
+Message-ID: <1334489204.16992.3.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Philip Tricca <flihp@twobit.us>
+Date: Sun, 15 Apr 2012 12:26:44 +0100
+In-Reply-To: <4F8897F0.9050104@twobit.us>
+References: <4F86EA68.1070504@twobit.us> <4F876B6A.9030405@twobit.us>
+	<4F8897F0.9050104@twobit.us>
+X-Mailer: Evolution 3.2.2- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org
+Subject: Re: native recipe and sysroot-destdir troubles
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,9 +37,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Apr 2012 16:33:46 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 15 Apr 2012 11:27:00 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
+On Fri, 2012-04-13 at 17:17 -0400, Philip Tricca wrote:
+> Worked out a solution to this issue.  For the sake of brevity it can be
+> found here:
+> 
+> http://twobit.us/blog/2012/04/openembedded-yocto-native-hello-world/
+
+So just to follow up here too for the list archives:
+
+This “craziness” does have a rational explanation. “native” targets are
+meant to run on the system they’re built on and run in the location
+they’re installed to. This means they install to a destination of “/”
+and PREFIX is inside the native sysroot directory.
+
+We install them to a DESTDIR to allow us to manipulate them before they
+then get moved to a final DESTDIR of “/”.
+
+Most Makefiles handle this correctly by doing:
+
+DESTDIR ?= “”
+prefix ?= “/usrr”
+bindir ?= “$(prefix)/bin”
+
+and then, importantly, install in the form:
+
+install -d $(DESTDIR)$(bindir)
+
+so both prefix and DESTDIR are used. Whilst this is a convention, its a
+widely adopted and followed one. As you’ve found, you can call into a
+custom makefile and set the variables manually if the makefile doesn’t
+follow the convention.
+
+Cheers,
+
+Richard
 
 
