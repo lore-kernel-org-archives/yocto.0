@@ -1,31 +1,30 @@
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
 	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73376E0059A
-	for <yocto@yoctoproject.org>; Sun, 15 Apr 2012 04:26:59 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 501BFE0030B
+	for <yocto@yoctoproject.org>; Sun, 15 Apr 2012 15:30:48 -0700 (PDT)
 Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3FBQoSV020778;
-	Sun, 15 Apr 2012 12:26:50 +0100
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3FMUkHR025388;
+	Sun, 15 Apr 2012 23:30:46 +0100
 Received: from tim.rpsys.net ([127.0.0.1])
 	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
 	port 10024) with LMTP
-	id 18284-05; Sun, 15 Apr 2012 12:26:46 +0100 (BST)
+	id 25291-01; Sun, 15 Apr 2012 23:30:42 +0100 (BST)
 Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3FBQgSs020772
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3FMUaGP025381
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Sun, 15 Apr 2012 12:26:43 +0100
-Message-ID: <1334489204.16992.3.camel@ted>
+	Sun, 15 Apr 2012 23:30:36 +0100
+Message-ID: <1334529038.16992.58.camel@ted>
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Philip Tricca <flihp@twobit.us>
-Date: Sun, 15 Apr 2012 12:26:44 +0100
-In-Reply-To: <4F8897F0.9050104@twobit.us>
-References: <4F86EA68.1070504@twobit.us> <4F876B6A.9030405@twobit.us>
-	<4F8897F0.9050104@twobit.us>
+To: Johannes =?ISO-8859-1?Q?K=F6nig?= <koenig@inmach.de>
+Date: Sun, 15 Apr 2012 23:30:38 +0100
+In-Reply-To: <op.wco6222ky8ugr7@farbauti.inmach.dnsalias.com>
+References: <op.wco6222ky8ugr7@farbauti.inmach.dnsalias.com>
 X-Mailer: Evolution 3.2.2- 
 Mime-Version: 1.0
 X-Virus-Scanned: amavisd-new at rpsys.net
 Cc: yocto@yoctoproject.org
-Subject: Re: native recipe and sysroot-destdir troubles
+Subject: Re: bitbake gets confused with ~/user-config.jam
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,43 +36,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 15 Apr 2012 11:27:00 -0000
+X-List-Received-Date: Sun, 15 Apr 2012 22:30:48 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
-On Fri, 2012-04-13 at 17:17 -0400, Philip Tricca wrote:
-> Worked out a solution to this issue.  For the sake of brevity it can be
-> found here:
+On Fri, 2012-04-13 at 11:53 +0200, Johannes König wrote:
+> Hi,
 > 
-> http://twobit.us/blog/2012/04/openembedded-yocto-native-hello-world/
+> It seems that bitbake (or more precisely the boost_1.44.0.bb recipe) gets
+> confused with an user-config.jam file in the users home directory.
+> 
+> When trying to build core-image-sato (or zypper) the build aborts due to
+> an error in the zypper package. I use poky-edison-6.0.1.tar.gz.
+> 
+> Relevant part of the do_compile.log:
+> 
+> > build/tmp/sysroots/x86_64-linux/usr/libexec/core2-poky-linux/gcc/i586-poky-linux/4.6.3/ld:  
+> > skipping incompatible  
+> > build/tmp/sysroots/crownbay/usr/lib/libboost_signals-mt.so when  
+> > searching for -lboost_signals-mt
+> > build/tmp/sysroots/x86_64-linux/usr/libexec/core2-poky-linux/gcc/i586-poky-linux/4.6.3/ld:  
+> > skipping incompatible  
+> > build/tmp/sysroots/crownbay/usr/lib/libboost_signals-mt.a when searching  
+> > for -lboost_signals-mt
+> > build/tmp/sysroots/x86_64-linux/usr/libexec/core2-poky-linux/gcc/i586-poky-linux/4.6.3/ld:  
+> > skipping incompatible  
+> > build/tmp/sysroots/crownbay/usr/lib/libboost_signals-mt.so when  
+> > searching for -lboost_signals-mt
+> > build/tmp/sysroots/x86_64-linux/usr/libexec/core2-poky-linux/gcc/i586-poky-linux/4.6.3/ld:  
+> > skipping incompatible  
+> > build/tmp/sysroots/crownbay/usr/lib/libboost_signals-mt.a when searching  
+> > for -lboost_signals-mt
+> > build/tmp/sysroots/x86_64-linux/usr/libexec/core2-poky-linux/gcc/i586-poky-linux/4.6.3/ld:  
+> > cannot find -lboost_signals-mt
+> > collect2: ld returned 1 exit status
+> > make[2]: *** [zypp/libzypp.so.810.1.0] Error 1
+> > make[2]: Leaving directory  
+> > `build/tmp/work/crownbay-poky-linux/libzypp-0.0-git1+15b6c52260bbc52b3d8e585e271b67e10cc7c433-r16/git'
+> > make[1]: *** [zypp/CMakeFiles/zypp.dir/all] Error 2
+> > make[1]: Leaving directory  
+> > `build/tmp/work/crownbay-poky-linux/libzypp-0.0-git1+15b6c52260bbc52b3d8e585e271b67e10cc7c433-r16/git'
+> > make: *** [all] Error 2
+> > ERROR: oe_runmake failed
+> > ERROR: Function 'do_compile' failed (see  
+> > build/tmp/work/crownbay-poky-linux/libzypp-0.0-git1+15b6c52260bbc52b3d8e585e271b67e10cc7c433-r16/temp/log.do_compile.31334  
+> > for further information)
+> 
+> After removing the ~/user-config.jam file and recompiling zypper with
+> 
+>      bitbake -c cleanall libzypp boost zypper && bitbake zypper
+> 
+> no more errors are reported.
+> 
+> Content of the ~/user-config.jam file is:
+> 
+> > using gcc ;
+> 
+> (Usually I have more options in my user-config.jam, but I can strip it
+> down to the single line above to reproduce the error.)
+>
+> Can this problem be fixed without removeing the user-config.jam?
 
-So just to follow up here too for the list archives:
+This sounds like a host contamination issue, we shoudn't be looking at
+files like that during the build. We probably need to stop the system
+looking at those files but I'm not familiar with boost to know enough
+about how to stop it doing that.
 
-This “craziness” does have a rational explanation. “native” targets are
-meant to run on the system they’re built on and run in the location
-they’re installed to. This means they install to a destination of “/”
-and PREFIX is inside the native sysroot directory.
-
-We install them to a DESTDIR to allow us to manipulate them before they
-then get moved to a final DESTDIR of “/”.
-
-Most Makefiles handle this correctly by doing:
-
-DESTDIR ?= “”
-prefix ?= “/usrr”
-bindir ?= “$(prefix)/bin”
-
-and then, importantly, install in the form:
-
-install -d $(DESTDIR)$(bindir)
-
-so both prefix and DESTDIR are used. Whilst this is a convention, its a
-widely adopted and followed one. As you’ve found, you can call into a
-custom makefile and set the variables manually if the makefile doesn’t
-follow the convention.
+I'd recommend filing a bug in the bugzilla to ensure this doesn't get
+forgotten about...
 
 Cheers,
 
 Richard
+
+
 
 
