@@ -1,35 +1,37 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0FDBE01363
-	for <yocto@yoctoproject.org>; Mon, 16 Apr 2012 07:01:40 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 16 Apr 2012 07:01:40 -0700
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76FF5E01363
+	for <yocto@yoctoproject.org>; Mon, 16 Apr 2012 07:24:31 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 16 Apr 2012 07:24:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="154167106"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="133042178"
 Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 16 Apr 2012 07:01:40 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	by orsmga002.jf.intel.com with ESMTP; 16 Apr 2012 07:24:31 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
 	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 16 Apr 2012 07:01:39 -0700
+	(TLS) id 8.2.255.0; Mon, 16 Apr 2012 07:24:30 -0700
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.140]) by
-	ORSMSX153.amr.corp.intel.com ([10.22.226.247]) with mapi id
-	14.01.0355.002; Mon, 16 Apr 2012 07:01:39 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Bob Cochran <yocto@mindchasers.com>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH] Yocto Project Dev Manual - bad reference in
-	dev-manual-common-tasks.xml
-Thread-Index: AQHNG9lxv6Dz26Qu/06MSTKeQBEkNw==
-Date: Mon, 16 Apr 2012 14:01:39 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237945188862@ORSMSX101.amr.corp.intel.com>
-References: <4F88A1D2.6070703@mindchasers.com>
-In-Reply-To: <4F88A1D2.6070703@mindchasers.com>
+	ORSMSX102.amr.corp.intel.com ([169.254.1.141]) with mapi id
+	14.01.0355.002; Mon, 16 Apr 2012 07:24:30 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: jack <woailinux@hotmail.com>, "Lu, Lianhao" <lianhao.lu@intel.com>
+Thread-Topic: [yocto] error: runqemu command not fonund, when "$ runqemu
+	qemux86 bzImage-qemux86.bin core-image-lsb-qt3-qemux86.ext3" THx!
+Thread-Index: AQHNGfN8eoI4wEL1vkCJySsQ3KMN0paaknOAgAMukID//8NuoA==
+Date: Mon, 16 Apr 2012 14:24:30 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C451CACCA@ORSMSX101.amr.corp.intel.com>
+References: <BLU0-SMTP1211642316DA9A003041503B9380@phx.gbl>
+	<857BE142E5399E46B20FD45B9DB8A7BC0FD377DB@SHSMSX102.ccr.corp.intel.com>
+	<BLU0-SMTP574C166F80A87118D4937CB93E0@phx.gbl>
+In-Reply-To: <BLU0-SMTP574C166F80A87118D4937CB93E0@phx.gbl>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: Re: [PATCH] Yocto Project Dev Manual - bad reference in dev-manual-common-tasks.xml
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: error: runqemu command not fonund, when "$ runqemu qemux86 bzImage-qemux86.bin core-image-lsb-qt3-qemux86.ext3" THx!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,60 +43,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Apr 2012 14:01:41 -0000
+X-List-Received-Date: Mon, 16 Apr 2012 14:24:31 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Robert,
-
-Patch applied to the Development Manual.  Thanks for submitting the change.=
-  For now, you can view the updated manual at http://www.yoctoproject.org/d=
-ocs/latest/dev-manual/dev-manual.html.
-
-Scott
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Bob Cochran
-Sent: Friday, April 13, 2012 4:00 PM
-To: Yocto discussion list
-Subject: [yocto] [PATCH] Yocto Project Dev Manual - bad reference in dev-ma=
-nual-common-tasks.xml
-
-A reference to meta/recipes-sato/tasks/task-poky.bb is made as a good=20
-example of a task; however, this file / recipe doesn't exist.  I=20
-replaced it with meta/recipes-core/tasks/task-core-boot.bb, which I=20
-think is a both useful and basic example to consider.
-
-Signed-off-by: Robert Cochran<yocto@mindchasers.com>
-
----
-  .../dev-manual/dev-manual-common-tasks.xml         |    2 +-
-  1 files changed, 1 insertions(+), 1 deletions(-)
-
-diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml=20
-b/documentation/dev-manual/dev-manual-common-tasks.xml
-index a32085d..a81b656 100644
---- a/documentation/dev-manual/dev-manual-common-tasks.xml
-+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
-@@ -495,7 +495,7 @@
-                  For complex custom images, the best approach is to=20
-create a custom task package
-                  that is used to build the image or images.
-                  A good example of a tasks package is
--                <filename>meta/recipes-sato/tasks/task-poky.bb</filename>.
-+=20
-<filename>meta/recipes-core/tasks/task-core-boot.bb</filename>
-                  The
-                  <filename><ulink=20
-url=3D'&YOCTO_DOCS_REF_URL;#var-PACKAGES'>PACKAGES</ulink></filename>
-                  variable lists the task packages to build along with=20
-the complementary
---=20
-1.7.5.4
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+SGkgSmFjaywNCg0KQ2FuIHlvdSBjaGVjayB0aGF0IHlvdSBoYXZlIHJ1bnFlbXUgdW5kZXIgL29w
+dC9wb2t5LzEuMS4xL3N5c3Jvb3RzL2k2ODYtcG9reXNkay1saW51eC91c3IvYmluLz8gIEFuZCBj
+YW4geW91IGRvICJlY2hvICRQQVRIIiB0byBjaGVjayB5b3VyIFBBVEggc3RhcnRzIHdpdGggL29w
+dC9wb2t5LzEuMS4xL3N5c3Jvb3RzL2k2ODYtcG9reXNkay1saW51eC91c3IvYmluLw0KDQpUaGFu
+a3MsDQpKZXNzaWNhDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogeW9jdG8tYm91
+bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qu
+b3JnXSBPbiBCZWhhbGYgT2YgamFjaw0KU2VudDogTW9uZGF5LCBBcHJpbCAxNiwgMjAxMiAzOjU4
+IEFNDQpUbzogTHUsIExpYW5oYW8NCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0
+OiBSZTogW3lvY3RvXSBlcnJvcjogcnVucWVtdSBjb21tYW5kIG5vdCBmb251bmQsIHdoZW4gIiQg
+cnVucWVtdSBxZW11eDg2IGJ6SW1hZ2UtcWVtdXg4Ni5iaW4gY29yZS1pbWFnZS1sc2ItcXQzLXFl
+bXV4ODYuZXh0MyIgVEh4IQ0KDQpPbiAyMDEy5bm0MDTmnIgxNOaXpSAxODoyMiwgTHUsIExpYW5o
+YW8gd3JvdGU6DQo+IGphY2sgd3JvdGUgb24gMjAxMi0wNC0xNDoNCj4+IGhpLGFsbCEgSSBVc2Ug
+YSBwcmUtYnVpbHQgaW1hZ2UgYW5kIHJ1biBpdCBpbiB0aGUgUUVNVSBlbXVsYXRvci4NCj4+IEkg
+aGF2ZSBkb3dubG9hZGVkIGFuZCBpbnN0YWxsZWQNCj4+ICJwb2t5LWVnbGliYy1pNjg2LWk1ODYt
+dG9vbGNoYWluLWdtYWUtMS4xLjEudGFyLmJ6MiIsIHRoZW4gSQ0KPj4gZG93bmxvYWRlZCAiYnpJ
+bWFnZS1xZW11eDg2LmJpbiIgIGFuZCAgImNvcmUtaW1hZ2UtbHNiLXF0My1xZW11eDg2LmV4dDMi
+DQo+PiBidXQgd2hlbg0KPj4gIiQgcnVucWVtdSBxZW11eDg2IGJ6SW1hZ2UtcWVtdXg4Ni5iaW4g
+Y29yZS1pbWFnZS1sc2ItcXQzLXFlbXV4ODYuZXh0MyINCj4+IGVycm9yIGxpa2UgYmVsb3c6DQo+
+PiBlcnJvcjogcnVucWVtdSBjb21tYW5kIG5vdCBmb251bmQNCj4+DQo+IFlvdSBtYXkgbmVlZCB0
+byAic291cmNlIC9vcHQvcG9reS8xLjEuMS9lbnZpcm9ubWVudC1zZXR1cC1pNTg2LXBva3ktbGlu
+dXgiIGZpcnN0IGJlZm9yZSB5b3UgInJ1bnFlbXUiLg0KPg0KPiBCZXN0IFJlZ2FyZHMsDQo+IExp
+YW5oYW8NCj4NCj4NCj4NCmhlbGxvLCBMaWFuaGFvISBUaGFuayB5b3UgZm9yIHlvdXIgYW5zd2Vy
+LiBCdXQgSSBkaWQgInNvdXJjZSAvb3B0L3Bva3kvMS4xLjEvZW52aXJvbm1lbnQtc2V0dXAtaTU4
+Ni1wb2t5LWxpbnV4IiBmaXJzdCBiZWZvcmUgInJ1bnFlbXUiLmVycm9yIHN0aWxsIGxpa2UgdGhp
+cywgZXJyb3I6IHJ1bnFlbXUgY29tbWFuZCBub3QgZm9udW4uIENvdWxkIHlvdSBoZWxwIG1lID8N
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQp5b2N0byBt
+YWlsaW5nIGxpc3QNCnlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCmh0dHBzOi8vbGlzdHMueW9jdG9w
+cm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0K
 
