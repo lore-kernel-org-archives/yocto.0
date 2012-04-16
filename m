@@ -1,21 +1,30 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFBDEE01304
-	for <yocto@yoctoproject.org>; Sun, 15 Apr 2012 19:56:24 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 15 Apr 2012 19:56:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="153987114"
-Received: from unknown (HELO localhost) ([10.255.12.66])
-	by fmsmga002.fm.intel.com with ESMTP; 15 Apr 2012 19:56:24 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Sun, 15 Apr 2012 21:56:30 -0500
-Message-Id: <a5ad9cd77e0801ba4cfb20718f196b5cb85289a8.1334544668.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1334544668.git.tom.zanussi@intel.com>
-References: <cover.1334544668.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/1] yocto-bsp: update help to match property list changes
+Return-Path: <woailinux@hotmail.com>
+Received: from blu0-omc2-s9.blu0.hotmail.com (blu0-omc2-s9.blu0.hotmail.com
+	[65.55.111.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD3F4E013A0
+	for <yocto@yoctoproject.org>; Mon, 16 Apr 2012 03:58:10 -0700 (PDT)
+Received: from BLU0-SMTP57 ([65.55.111.71]) by blu0-omc2-s9.blu0.hotmail.com
+	with Microsoft SMTPSVC(6.0.3790.4675); 
+	Mon, 16 Apr 2012 03:58:09 -0700
+X-Originating-IP: [114.255.122.12]
+X-Originating-Email: [woailinux@hotmail.com]
+Message-ID: <BLU0-SMTP574C166F80A87118D4937CB93E0@phx.gbl>
+Received: from [172.21.23.12] ([114.255.122.12]) by BLU0-SMTP57.phx.gbl over
+	TLS secured channel with Microsoft SMTPSVC(6.0.3790.4675); 
+	Mon, 16 Apr 2012 03:58:09 -0700
+Date: Mon, 16 Apr 2012 18:57:59 +0800
+From: jack <woailinux@hotmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
+MIME-Version: 1.0
+To: "Lu, Lianhao" <lianhao.lu@intel.com>
+References: <BLU0-SMTP1211642316DA9A003041503B9380@phx.gbl>
+	<857BE142E5399E46B20FD45B9DB8A7BC0FD377DB@SHSMSX102.ccr.corp.intel.com>
+In-Reply-To: <857BE142E5399E46B20FD45B9DB8A7BC0FD377DB@SHSMSX102.ccr.corp.intel.com>
+X-OriginalArrivalTime: 16 Apr 2012 10:58:09.0385 (UTC)
+	FILETIME=[CF46F590:01CD1BBF]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: error: runqemu command not fonund, when "$ runqemu qemux86 bzImage-qemux86.bin core-image-lsb-qt3-qemux86.ext3" THx!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,107 +36,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Apr 2012 02:56:24 -0000
+X-List-Received-Date: Mon, 16 Apr 2012 10:58:10 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
-
-The interface to the 'list properties' command changed to allow nested
-properties, along with some changes to the property names used in the
-documentation.  Update the help text to match.
-
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- scripts/lib/bsp/help.py |   48 +++++++++++++++++++++++++++-------------------
- 1 files changed, 28 insertions(+), 20 deletions(-)
-
-diff --git a/scripts/lib/bsp/help.py b/scripts/lib/bsp/help.py
-index f78b09b..d7c1e8f 100644
---- a/scripts/lib/bsp/help.py
-+++ b/scripts/lib/bsp/help.py
-@@ -246,18 +246,14 @@ DESCRIPTION
-     "kernel_choice" : {
-         "prio" : 10
-         "default" : linux-yocto_3.2
--        "depends-on" : use_default_kernel
--        "depends-on-val" : n
-         "msg" : Please choose the kernel to use in this BSP =>
-         "type" : choicelist
-         "gen" : bsp.kernel.kernels
-     }
-     "if kernel_choice == "linux-yocto_3.0":" : {
--        "base_kbranch_linux_yocto_3_0" : {
-+        "new_kbranch" : {
-             "prio" : 20
-             "default" : yocto/standard
--            "depends-on" : new_kbranch_linux_yocto_3_0
--            "depends-on-val" : y
-             "msg" : Please choose a machine branch to base this BSP on =>
-             "type" : choicelist
-             "gen" : bsp.kernel.all_branches
-@@ -269,20 +265,16 @@ DESCRIPTION
-     Each entry in the output consists of the name of the input element
-     e.g. "touchscreen", followed by the properties defined for that
-     element enclosed in braces.  This information should provide
--    sufficient information to create a complete user interface with.
--    Two features of the scheme provide for conditional input.  First,
--    if a Python "if" statement appears in place of an input element
--    name, the set of enclosed input elements apply and should be
--    presented to the user only if the 'if' statement evaluates to
--    true.  The test in the if statement will always reference another
--    input element in the list, which means that the element being
--    tested should be presented to the user before the elements
--    enclosed by the if block.  Secondly, in a similar way, some
--    elements contain "depends-on" and depends-on-val" tags, which mean
--    that the affected input element should only be presented to the
--    user if the element it depends on has already been presented to
--    the user and the user has selected the specified value for that
--    element.
-+    sufficient information with which to create a complete user
-+    interface.  Conditional input can be provided by enclosing other
-+    elements within a Python "if" statement.  If a Python "if"
-+    statement appears in place of an input element name, the set of
-+    enclosed input elements apply and should be presented to the user
-+    only if the "if" statement evaluates to true.  The test in the
-+    "if" statement will always reference another input element in the
-+    list, which means that the element being tested should be
-+    presented to the user before the elements enclosed by the if
-+    block.
- 
-     The third form enumerates all the possible values that exist and
-     can be specified for any of the enumerable properties of the given
-@@ -298,7 +290,19 @@ DESCRIPTION
-         ["xserver_emgd", "EMGD xserver support (proprietary)"]
-         ["xserver_i915", "i915 xserver support"]
- 
--    $ yocto-bsp list arm property base_kbranch_linux_yocto_3_0
-+    In order to allow nested properties to be unambiguously specified,
-+    standard JSON '.' notation is supported.  For example, to name the
-+    'base_kbranch' property in the listing above, the full
-+    specification would be:
-+
-+    $ yocto-bsp list i386 property "if kernel_choice == "linux-yocto_3.2":".new_kbranch
-+
-+    However, as a usability feature, a subset of the top-level
-+    property can also be specified instead.  It will return the first
-+    match, so the subset should be unique.  Here specifying just the
-+    kernel name produces the desired result:
-+
-+    $ yocto-bsp list i386 property "linux-yocto_3.0".new_kbranch
-         Getting branches from remote repo git://git.yoctoproject.org/linux-yocto-3.0...
-         ["yocto/base", "yocto/base"]
-         ["yocto/eg20t", "yocto/eg20t"]
-@@ -316,6 +320,10 @@ DESCRIPTION
-         ["yocto/standard/qemu-ppc32", "yocto/standard/qemu-ppc32"]
-         ["yocto/standard/routerstationpro", "yocto/standard/routerstationpro"]
- 
-+    Note that because the property separator is '.', if a portion of
-+    the nested property itself contains a '.', that part of the nested
-+    property should be enclosed in double quotes.
-+
-     The third form as well is meant mainly for developers of
-     alternative interfaces - it allows the developer to fetch the
-     possible values for a given input element on-demand.  This
--- 
-1.7.0.4
-
+On 2012年04月14日 18:22, Lu, Lianhao wrote:
+> jack wrote on 2012-04-14:
+>> hi,all! I Use a pre-built image and run it in the QEMU emulator.
+>> I have downloaded and installed
+>> "poky-eglibc-i686-i586-toolchain-gmae-1.1.1.tar.bz2", then I downloaded
+>> "bzImage-qemux86.bin"  and  "core-image-lsb-qt3-qemux86.ext3"
+>> but when
+>> "$ runqemu qemux86 bzImage-qemux86.bin core-image-lsb-qt3-qemux86.ext3"
+>> error like below:
+>> error: runqemu command not fonund
+>>
+> You may need to "source /opt/poky/1.1.1/environment-setup-i586-poky-linux" first before you "runqemu".
+>
+> Best Regards,
+> Lianhao
+>
+>
+>
+hello, Lianhao! Thank you for your answer. But I did "source 
+/opt/poky/1.1.1/environment-setup-i586-poky-linux" first before 
+"runqemu".error still like this, error: runqemu command not fonun. Could 
+you help me ?
 
