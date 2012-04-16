@@ -1,30 +1,35 @@
-Return-Path: <woailinux@hotmail.com>
-Received: from blu0-omc2-s9.blu0.hotmail.com (blu0-omc2-s9.blu0.hotmail.com
-	[65.55.111.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD3F4E013A0
-	for <yocto@yoctoproject.org>; Mon, 16 Apr 2012 03:58:10 -0700 (PDT)
-Received: from BLU0-SMTP57 ([65.55.111.71]) by blu0-omc2-s9.blu0.hotmail.com
-	with Microsoft SMTPSVC(6.0.3790.4675); 
-	Mon, 16 Apr 2012 03:58:09 -0700
-X-Originating-IP: [114.255.122.12]
-X-Originating-Email: [woailinux@hotmail.com]
-Message-ID: <BLU0-SMTP574C166F80A87118D4937CB93E0@phx.gbl>
-Received: from [172.21.23.12] ([114.255.122.12]) by BLU0-SMTP57.phx.gbl over
-	TLS secured channel with Microsoft SMTPSVC(6.0.3790.4675); 
-	Mon, 16 Apr 2012 03:58:09 -0700
-Date: Mon, 16 Apr 2012 18:57:59 +0800
-From: jack <woailinux@hotmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0FDBE01363
+	for <yocto@yoctoproject.org>; Mon, 16 Apr 2012 07:01:40 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 16 Apr 2012 07:01:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="154167106"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga002.fm.intel.com with ESMTP; 16 Apr 2012 07:01:40 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 16 Apr 2012 07:01:39 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.140]) by
+	ORSMSX153.amr.corp.intel.com ([10.22.226.247]) with mapi id
+	14.01.0355.002; Mon, 16 Apr 2012 07:01:39 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Bob Cochran <yocto@mindchasers.com>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH] Yocto Project Dev Manual - bad reference in
+	dev-manual-common-tasks.xml
+Thread-Index: AQHNG9lxv6Dz26Qu/06MSTKeQBEkNw==
+Date: Mon, 16 Apr 2012 14:01:39 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237945188862@ORSMSX101.amr.corp.intel.com>
+References: <4F88A1D2.6070703@mindchasers.com>
+In-Reply-To: <4F88A1D2.6070703@mindchasers.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-To: "Lu, Lianhao" <lianhao.lu@intel.com>
-References: <BLU0-SMTP1211642316DA9A003041503B9380@phx.gbl>
-	<857BE142E5399E46B20FD45B9DB8A7BC0FD377DB@SHSMSX102.ccr.corp.intel.com>
-In-Reply-To: <857BE142E5399E46B20FD45B9DB8A7BC0FD377DB@SHSMSX102.ccr.corp.intel.com>
-X-OriginalArrivalTime: 16 Apr 2012 10:58:09.0385 (UTC)
-	FILETIME=[CF46F590:01CD1BBF]
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: error: runqemu command not fonund, when "$ runqemu qemux86 bzImage-qemux86.bin core-image-lsb-qt3-qemux86.ext3" THx!
+Subject: Re: [PATCH] Yocto Project Dev Manual - bad reference in dev-manual-common-tasks.xml
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,30 +41,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Apr 2012 10:58:10 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 16 Apr 2012 14:01:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 2012年04月14日 18:22, Lu, Lianhao wrote:
-> jack wrote on 2012-04-14:
->> hi,all! I Use a pre-built image and run it in the QEMU emulator.
->> I have downloaded and installed
->> "poky-eglibc-i686-i586-toolchain-gmae-1.1.1.tar.bz2", then I downloaded
->> "bzImage-qemux86.bin"  and  "core-image-lsb-qt3-qemux86.ext3"
->> but when
->> "$ runqemu qemux86 bzImage-qemux86.bin core-image-lsb-qt3-qemux86.ext3"
->> error like below:
->> error: runqemu command not fonund
->>
-> You may need to "source /opt/poky/1.1.1/environment-setup-i586-poky-linux" first before you "runqemu".
->
-> Best Regards,
-> Lianhao
->
->
->
-hello, Lianhao! Thank you for your answer. But I did "source 
-/opt/poky/1.1.1/environment-setup-i586-poky-linux" first before 
-"runqemu".error still like this, error: runqemu command not fonun. Could 
-you help me ?
+Robert,
+
+Patch applied to the Development Manual.  Thanks for submitting the change.=
+  For now, you can view the updated manual at http://www.yoctoproject.org/d=
+ocs/latest/dev-manual/dev-manual.html.
+
+Scott
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Bob Cochran
+Sent: Friday, April 13, 2012 4:00 PM
+To: Yocto discussion list
+Subject: [yocto] [PATCH] Yocto Project Dev Manual - bad reference in dev-ma=
+nual-common-tasks.xml
+
+A reference to meta/recipes-sato/tasks/task-poky.bb is made as a good=20
+example of a task; however, this file / recipe doesn't exist.  I=20
+replaced it with meta/recipes-core/tasks/task-core-boot.bb, which I=20
+think is a both useful and basic example to consider.
+
+Signed-off-by: Robert Cochran<yocto@mindchasers.com>
+
+---
+  .../dev-manual/dev-manual-common-tasks.xml         |    2 +-
+  1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml=20
+b/documentation/dev-manual/dev-manual-common-tasks.xml
+index a32085d..a81b656 100644
+--- a/documentation/dev-manual/dev-manual-common-tasks.xml
++++ b/documentation/dev-manual/dev-manual-common-tasks.xml
+@@ -495,7 +495,7 @@
+                  For complex custom images, the best approach is to=20
+create a custom task package
+                  that is used to build the image or images.
+                  A good example of a tasks package is
+-                <filename>meta/recipes-sato/tasks/task-poky.bb</filename>.
++=20
+<filename>meta/recipes-core/tasks/task-core-boot.bb</filename>
+                  The
+                  <filename><ulink=20
+url=3D'&YOCTO_DOCS_REF_URL;#var-PACKAGES'>PACKAGES</ulink></filename>
+                  variable lists the task packages to build along with=20
+the complementary
+--=20
+1.7.5.4
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
