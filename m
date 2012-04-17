@@ -1,30 +1,30 @@
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
 	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31CFEE0044A
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2012 06:16:43 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB888E0044D
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2012 06:19:34 -0700 (PDT)
 Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3HDGf2c013515;
-	Tue, 17 Apr 2012 14:16:41 +0100
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3HDJWl2013536;
+	Tue, 17 Apr 2012 14:19:32 +0100
 Received: from tim.rpsys.net ([127.0.0.1])
 	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
 	port 10024) with LMTP
-	id 12559-08; Tue, 17 Apr 2012 14:16:37 +0100 (BST)
+	id 12606-07; Tue, 17 Apr 2012 14:19:27 +0100 (BST)
 Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3HDGZt0013509
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3HDJPg6013530
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Tue, 17 Apr 2012 14:16:36 +0100
-Message-ID: <1334668598.616.90.camel@ted>
+	Tue, 17 Apr 2012 14:19:26 +0100
+Message-ID: <1334668768.616.92.camel@ted>
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: tom.zanussi@intel.com
-Date: Tue, 17 Apr 2012 14:16:38 +0100
-In-Reply-To: <cover.1334633179.git.tom.zanussi@intel.com>
-References: <cover.1334633179.git.tom.zanussi@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Date: Tue, 17 Apr 2012 14:19:28 +0100
+In-Reply-To: <4F8CE449.8060501@linux.intel.com>
+References: <4F8CE449.8060501@linux.intel.com>
 X-Mailer: Evolution 3.2.2- 
 Mime-Version: 1.0
 X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/3] kernel26 cleanup
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Writing do_install_append for target and virtclass-native in a bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,33 +36,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Apr 2012 13:16:44 -0000
+X-List-Received-Date: Tue, 17 Apr 2012 13:19:35 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Mon, 2012-04-16 at 22:29 -0500, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi <tom.zanussi@intel.com>
+On Mon, 2012-04-16 at 20:32 -0700, Darren Hart wrote:
+> I'm trying to address a symlink naming issue in the bzip2 package when
+> used with Chrome. Chrome is looking for a specific soname, which the
+> default install of bzip2 doesn't setup. I can address this easily by
+> adding the symlink via a bzip2 bbappend in do_install_append().
+> Unfortunately, this fails for the virtclass-native variant. I tried
+> adding and empty:
 > 
-> This (post-1.2) patchset removes the last vestiges of kernel26 from poky.
+> do_install_append_virtclass-native() {
+> 	:
+> }
 > 
-> The following changes since commit c936fca6e163bc19bc08cbd0036b31ca6f6c3ed6:
->   Richard Purdie (1):
->         bitbake.conf: Add PARALLEL_MAKE to BB_HASHBASE_WHITELIST
+> function to the bbappend, which still failed. I then added an echo
+> statement which appeared in the output, but it still ran non-native
+> do_install_append() and failed. Switching the order of the functions
+> made the echo output disappear, but the native variant still failed.
 > 
-> are available in the git repository at:
-> 
->   git://git.yoctoproject.org/poky-contrib.git tzanussi/kernel26-removal
->   http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=tzanussi/kernel26-removal
-> 
-> Tom Zanussi (3):
->   yocto-bsp: remove kernel26 machine feature from templates
->   meta-yocto: remove kernel26 machine feature usage
+> I figure I must be missing something rather fundamental here. Any ideas
+> what it might be?
 
-I've merged these, thanks.
+_append variables stack so if you do:
 
->   dev-manual: remove kernel26 machine feature mention
+A_append = "x"
+A_append = "y"
+A_append = "z"
 
-and I've passed this on to Scott to handle.
+You'll end up with A = "xyz".
+
+You can do something a little more ugly to work around it like:
+
+do_install_append () {
+	${SYMLINK}
+}
+
+SYMLINK = "ln -s a b"
+SYMLINK_virtclass-native = ":"
 
 Cheers,
 
