@@ -1,26 +1,25 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFE14E013BA
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2012 08:37:04 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q3HFb4wd013632
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2012 08:37:04 -0700 (PDT)
-Received: from msp-dhcp23.wrs.com (172.25.34.23) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 17 Apr 2012 08:37:03 -0700
-Message-ID: <4F8D8E1F.2070203@windriver.com>
-Date: Tue, 17 Apr 2012 10:37:03 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:11.0) Gecko/20120327 Thunderbird/11.0.1
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 713A1E0132F
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2012 09:12:39 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 17 Apr 2012 09:12:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="90073345"
+Received: from unknown (HELO envy.home) ([10.255.12.120])
+	by AZSMGA002.ch.intel.com with ESMTP; 17 Apr 2012 09:12:38 -0700
+Message-ID: <4F8D9655.9090109@linux.intel.com>
+Date: Tue, 17 Apr 2012 09:12:05 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <1334624465.26744.4.camel@dongxiao-osel>
-	<CAGiJk9fWzFjW5_T03JFNX9XE2n=XaR_EE2dT_3AtkQ9gjnqAQQ@mail.gmail.com>
-In-Reply-To: <CAGiJk9fWzFjW5_T03JFNX9XE2n=XaR_EE2dT_3AtkQ9gjnqAQQ@mail.gmail.com>
-Subject: Re: A question about PACKAGE_ARCH renaming
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+References: <4F8CE449.8060501@linux.intel.com> <1334668768.616.92.camel@ted>
+In-Reply-To: <1334668768.616.92.camel@ted>
+X-Enigmail-Version: 1.4
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Writing do_install_append for target and virtclass-native in a bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,56 +31,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Apr 2012 15:37:04 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Tue, 17 Apr 2012 16:12:39 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 4/17/12 1:43 AM, Samuel Stirtzel wrote:
-> 2012/4/17 Xu, Dongxiao<dongxiao.xu@intel.com>:
->> Hi,
+
+
+On 04/17/2012 06:19 AM, Richard Purdie wrote:
+> On Mon, 2012-04-16 at 20:32 -0700, Darren Hart wrote:
+>> I'm trying to address a symlink naming issue in the bzip2 package when
+>> used with Chrome. Chrome is looking for a specific soname, which the
+>> default install of bzip2 doesn't setup. I can address this easily by
+>> adding the symlink via a bzip2 bbappend in do_install_append().
+>> Unfortunately, this fails for the virtclass-native variant. I tried
+>> adding and empty:
 >>
->> I am testing beagleboard with RPM, and there is a question I am confused
->> with that PACKAGE_ARCH is renamed for certain packages. For example the
->> "acl" package, whose expected PACKAGE_ARCH is "armv7a-vfp-neon", however
->> in RPM file, the arch is renamed to "armv7a", see
->> "acl-2.2.51-r2.armv7a.rpm". However IPK package still shows
->> "acl_2.2.51-r2_armv7a-vfp-neon.ipk".
+>> do_install_append_virtclass-native() {
+>> 	:
+>> }
 >>
->> Could anybody give hint on this?
->
-> Hi,
-> if applications need to be machine / hardware specific they can
-> indicate so by setting PACKAGE_ARCH.
->
-> For example I use it for recipes that build different when other
-> machine dependent packages are used by them:
-> kde-workspace can use the OpenGL ES driver which is machine dependent
-> so if it is used I set PACKAGE_ARCH = "${MACHINE_ARCH}".
->
-> AFAIK the vfp-neon arch indicates that the package uses hard float (or
-> "vector floating point") libraries instead of soft float.
-> See mfloat-abi at http://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html
-
-Just want to clarify...
-
-VFP indicates it's using the VFP hardware for floating point, but the ABI 
-remains as the standard EABI.  (adding 'hf' means that it's using the 
-EABI-hardware floating point ABI instead.  Original EABI is defined to allow 
-multiple instruction sets, processor units, etc to interact with a compatible 
-ABI.  While EABI-hf requires vfp support.)
-
---Mark
-
+>> function to the bbappend, which still failed. I then added an echo
+>> statement which appeared in the output, but it still ran non-native
+>> do_install_append() and failed. Switching the order of the functions
+>> made the echo output disappear, but the native variant still failed.
 >>
->> Thanks,
->> Dongxiao
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
->
->
+>> I figure I must be missing something rather fundamental here. Any ideas
+>> what it might be?
+> 
+> _append variables stack so if you do:
+> 
+> A_append = "x"
+> A_append = "y"
+> A_append = "z"
+> 
+> You'll end up with A = "xyz".
+> 
+> You can do something a little more ugly to work around it like:
+> 
+> do_install_append () {
+> 	${SYMLINK}
+> }
+> 
+> SYMLINK = "ln -s a b"
+> SYMLINK_virtclass-native = ":"
+> 
 
+Thank you RP, that does the trick.
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
