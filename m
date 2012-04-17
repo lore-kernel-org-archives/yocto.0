@@ -1,39 +1,27 @@
-Return-Path: <darren@apps.dvhart.com>
-Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
-	[209.85.210.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B55BBE01363
-	for <yocto@yoctoproject.org>; Mon, 16 Apr 2012 18:06:16 -0700 (PDT)
-Received: by dajx4 with SMTP id x4so8492260daj.28
-	for <yocto@yoctoproject.org>; Mon, 16 Apr 2012 18:06:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references:x-gm-message-state;
-	bh=+R900EMgeEej+tcQFCsO9KMkygV1W6ZE7YZxeMr9AU0=;
-	b=eifjf1n1U3PKLz3oGFmdcjSJ8X0V1wLPUuH06VHlo7M91tXPp0CsGkquZ2yOpL5o2e
-	NUnriLeyN7hSTpQLRpsZwkWQD3QhEY4XKYtdk7WANLqQKm3HgZFtFu7chvGB1xxsNq6X
-	csUa3FpbRmJsv5b2dPRr6tOPXRP1k3+ZwVsKdwYbjpae846CC344zyu2gcQ3mWoe5Eu+
-	RfO8G7hRyFUUV02iIvMTpD/Q0qblwyxG7KTX1/WbE6v3Ch5FD9fNOxd8SSUV97viEiq0
-	T8CG2Qq80nX/lm50zpwvDIZ+AYieP5bq2yqU2zY++yXoKjxeuyXptt776honWlrKpVX2
-	SCMw==
-Received: by 10.68.236.197 with SMTP id uw5mr32028554pbc.27.1334624776151;
-	Mon, 16 Apr 2012 18:06:16 -0700 (PDT)
-Received: from localhost (static-50-53-99-101.bvtn.or.frontiernet.net.
-	[50.53.99.101])
-	by mx.google.com with ESMTPS id r10sm19158240pbf.22.2012.04.16.18.06.14
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 16 Apr 2012 18:06:14 -0700 (PDT)
-Sender: Darren Hart <darren@apps.dvhart.com>
-From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Mon, 16 Apr 2012 18:06:12 -0700
-Message-Id: <c1922f73308b4c2ef021c55adb3cdc0f25cb45bc.1334624662.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <cover.1334624662.git.dvhart@linux.intel.com>
-References: <cover.1334624662.git.dvhart@linux.intel.com>
-X-Gm-Message-State: ALoCoQmClRn6tMt8egDzMHgpfMUlubfw6lINdyD/3G5njXUhvEkOIr12Yl4VmZuLOiYXxtRlvcm3
-Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [PATCH 1/1] poky-tiny: Separate the libc features required for meta-toolchain
+Return-Path: <s-uDdtJ8Vgq3gqfrE77BotMuC9-EQbfrWGweojihhOFKgHfUYZT2U4fO@bounce.linkedin.com>
+Received: from maile-ab.linkedin.com (maile-ab.linkedin.com [69.28.147.165])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52D8FE0044A
+	for <yocto@yoctoproject.org>; Mon, 16 Apr 2012 18:16:49 -0700 (PDT)
+DomainKey-Signature: q=dns; a=rsa-sha1; c=nofws; s=prod; d=linkedin.com;
+	h=DKIM-Signature:Sender:Date:From:To:Message-ID:Subject:MIME-Version:Content-Type:X-LinkedIn-Template:X-LinkedIn-Class:X-LinkedIn-fbl;
+	b=rQtuDzqudaJgOYrxiFbZNTVAmohEF2EHEHST/YZR6PaCCoCEZfYCi3oT7Jx0m9jh
+	QGbmDReJ8m/Vxpsq3lzsBHrSRztHi2+nsWAbYI9oQrnaEPwY5PylrkMPJWUH5cbd
+DKIM-Signature: v=1; a=rsa-sha1; d=linkedin.com; s=proddkim; c=relaxed/relaxed;
+	q=dns/txt; i=@linkedin.com; t=1334625408;
+	h=From:Subject:Date:To:MIME-Version:Content-Type:X-LinkedIn-Class:X-LinkedIn-fbl:
+	X-LinkedIn-Template; bh=GHbWRD2sNIBuiQBMGPwDPNg4A5E=;
+	b=e5eY+oqC8rQIziSQRP1RKPF3hwcl/Oj78c0/ExjMrh5Bxs0Kxi4YT+FrI2ei6oX/
+	3TnYVbZzECJkjw8xMJc7YrAXRGin82FS6cmpxZuXUP/l/bDBfgH0DM/eXO9K9+I1;
+Sender: messages-noreply@bounce.linkedin.com
+Date: Tue, 17 Apr 2012 01:16:48 +0000 (UTC)
+From: =?UTF-8?Q?=E7=8E=8B=E5=8A=B2=E7=94=B7_James_Wang?= <wjn740@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <1285193688.2850556.1334625408522.JavaMail.app@ela4-bed79.prod>
+MIME-Version: 1.0
+X-LinkedIn-Template: invite_guest_59
+X-LinkedIn-Class: INVITE-GUEST
+X-LinkedIn-fbl: s-uDdtJ8Vgq3gqfrE77BotMuC9-EQbfrWGweojihhOFKgHfUYZT2U4fO
+Subject: Invitation to connect on LinkedIn
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,92 +33,130 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Apr 2012 01:06:16 -0000
+X-List-Received-Date: Tue, 17 Apr 2012 01:16:49 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2850555_800515810.1334625408520"
 
-This fixes bug [YOCTO #2295]
+------=_Part_2850555_800515810.1334625408520
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-eglibc needs libc-posix-regexp-glibc & libc-libm-big enabled in its
-configuration to avoid following eglibc build issue. Thanks to
-Nitin for identifying the required features.
-
-    ...
-    | In file included from xregex.c:634:0:
-    | xregex.c: In function 'byte_regex_compile':
-    | xregex.c:3395:8: error: too few arguments to function 'findidx'
-    | ../locale/weight.h:23:1: note: declared here
-    ...
-
-The libc features added to support building meta-toolchain add 461KB to the C
-libraries. 320KB directly to libc (a 32% increase in size). If not building
-meta-toolchain, the user should be able to easily configure these out.
-
-Create a new variable to capture these dependencies,
-DISTRO_FEATURES_LIBC_TOOLCHAIN, keeping them separate from the core tiny
-requirements. Make it clear how to disable these if meta-toolchain is not
-needed.
-
-This patch has been tested by running the following for the qemux86 machine with
-DISTRO=poky-tiny:
-
-    $ bitbake -c cleansstate eglibc
-    $ bitbake meta-toolchain
-    $ bitbake core-image-minimal
-
-The libc comparisons were made from core-image-minimal ext2 filesystems build
-before and after the applicaiton of this patch and Nitin's previous poky-tiny
-libc features patch in support of meta-toolchain:
-
-    commit 8c48ab6183934fd32600997cc33e0cd3bf63139b
-    Author: Nitin A Kamble <nitin.a.kamble@intel.com>
-    Date:   Mon Apr 9 15:15:01 2012 -0700
-
-        poky-tiny.conf: adjust eglibc options for poky-tiny
-
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
-CC: Nitin A. Kamble <nitin.a.kamble@intel.com>
-CC: Saul Wold <sgw@linux.intel.com>
-CC: Richard Purdie <richard.purdie@linuxfoundation.org>
----
- meta-yocto/conf/distro/poky-tiny.conf |   18 ++++++++++++------
- 1 files changed, 12 insertions(+), 6 deletions(-)
-
-diff --git a/meta-yocto/conf/distro/poky-tiny.conf b/meta-yocto/conf/distro/poky-tiny.conf
-index 58d64ec..327cc1e 100644
---- a/meta-yocto/conf/distro/poky-tiny.conf
-+++ b/meta-yocto/conf/distro/poky-tiny.conf
-@@ -63,12 +63,17 @@ ASSUME_PROVIDED += "pkgconfig$"
- # Reconfigure eglibc for a smaller installation
- # Comment out any of the lines below to disable them in the build
- DISTRO_FEATURES_LIBC_TINY = "libc-libm libc-crypt"
--# for gettext
--DISTRO_FEATURES_LIBC_TINY += "libc-posix-clang-wchar"
--# for m4
--DISTRO_FEATURES_LIBC_TINY += "libc-spawn libc-locale-code"
--# for elfutils
--DISTRO_FEATURES_LIBC_TINY += "libc-ftraverse"
-+
-+# Building meta-toolchain currently imposes some additional requirements:
-+# If you do not plan to build meta-toolchain, you can save ~461KB by
-+# commenting out the DISTRO_FEATURES_LIBC_TOOLCHAIN assignment
-+# gettext needs wchar, m4 needs spawn and locale, elfutils needs ftraverse
-+DISTRO_FEATURES_LIBC_TOOLCHAIN = "libc-posix-clang-wchar \
-+                                  libc-spawn libc-locale-code \
-+                                  libc-ftraverse libc-libm-big \
-+                                  libc-posix-regexp-glibc \
-+                                 "
-+
- # Required for "who"
- DISTRO_FEATURES_LIBC_MINIMAL = "libc-utmp libc-getlogin"
- DISTRO_FEATURES_LIBC_REGEX = "libc-posix-regexp"
-@@ -78,6 +83,7 @@ DISTRO_FEATURES_LIBC = "${DISTRO_FEATURES_LIBC_TINY} \
-                         ${DISTRO_FEATURES_LIBC_MINIMAL} \
-                         ${DISTRO_FEATURES_LIBC_REGEX} \
-                         ${DISTRO_FEATURES_LIBC_NET} \
-+                        ${DISTRO_FEATURES_LIBC_TOOLCHAIN} \
-                        "
- 
- # Comment out any of the lines below to disable them in the build
--- 
-1.7.5.4
+LinkedIn
+------------
 
 
+
+I'd like to add you to my professional network on LinkedIn.
+
+- James
+
+=E7=8E=8B=E5=8A=B2=E7=94=B7 James Wang
+Engineer at Wind River
+China
+
+Confirm that you know =E7=8E=8B=E5=8A=B2=E7=94=B7 James Wang:
+https://www.linkedin.com/e/nd2fjz-h149ibye-6/isd/6707608582/-xUk1LxI/?hs=3D=
+false&tok=3D2lBmARnL2Iqlc1
+
+--
+You are receiving Invitation to Connect emails. Click to unsubscribe:
+http://www.linkedin.com/e/nd2fjz-h149ibye-6/vGbzErNZNH9pQ6uemd-zK7w298WpQgs=
+b6vy/goo/yocto%40yoctoproject%2Eorg/20061/I2319394057_1/?hs=3Dfalse&tok=3D3=
+YkCBcmveIqlc1
+
+(c) 2012 LinkedIn Corporation. 2029 Stierlin Ct, Mountain View, CA 94043, U=
+SA.
+
+
+------=_Part_2850555_800515810.1334625408520
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+<html>
+  <body >
+
+
+
+
+  
+  
+      <table border="0" cellspacing="0" cellpadding="0" style="font-family:Arial;" width="100%" bgcolor="#F4F4F4"><tr><td align="center">
+
+
+
+
+<table border="0" cellspacing="0" cellpadding="0" style="font-family:Arial;" width="550">
+  <tr><td>
+    <table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:10px;font-size:10px;line-height:10px;">&nbsp;</div></td></tr></table>
+  </td></tr>
+  <tr><td align="left">
+    <img src="http://www.linkedin.com/scds/common/u/img/logos/logo_emails_trans_98x24.png" alt="LinkedIn" border="0" height="24" width="98">
+  </td></tr>
+  <tr><td>
+    <table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:10px;font-size:10px;line-height:10px;">&nbsp;</div></td></tr></table>
+  </td></tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" style="font-family:Arial;border:solid 1px #DDDDDD;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;" bgcolor="#FFFFFF" width="550"><tr><td colspan="3"><table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:15px;font-size:15px;line-height:15px;">&nbsp;</div></td></tr></table></td></tr><tr><td width="1%"><table width="15" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:0px;font-size:0px;line-height:0px;">&nbsp;</div></td></tr></table></td><td width="98%" valign="top" align="">
+  <table border="0" cellspacing="0" cellpadding="0" style="font-family:Arial;" width="100%">
+    <tr>
+        <td width="50" rowspan="3" valign="top">
+            <IMG alt="&#x738b;&#x52b2;&#x7537; James Wang" border="0" height="40" style="padding:5px" src="http://media.linkedin.com/media/p/1/000/11d/023/2a9b8b5.jpg" width="40">
+        </td>
+        <td rowspan="3"><table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:0px;font-size:0px;line-height:0px;">&nbsp;</div></td></tr></table></td>
+      <td style="font-family:Arial,sans-serif;font-size:12px">
+        <div>
+          <b style="font-size:16px;margin-right:12px">From &#x738b;&#x52b2;&#x7537; James Wang</b>
+        </div>
+           <table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:6px;font-size:6px;line-height:6px;">&nbsp;</div></td></tr></table>
+           <div style="color:#666666">Engineer at Wind River</div>
+            <div style="color:#666666">China</div>
+        <table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:16px;font-size:16px;line-height:16px;">&nbsp;</div></td></tr></table>
+      </td>
+    </tr>
+    <tr>
+      <td style="border:1px dotted #DDDDDD;border-width:1px 0">
+        <table border="0" cellspacing="0" cellpadding="0" style="font-family:Arial;background:#F2FAFF;width:100%" >
+        <tr><td colspan="3"><table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:4px;font-size:4px;line-height:4px;">&nbsp;</div></td></tr></table></td></tr>
+        <tr>
+          <td><table width="5" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:0px;font-size:0px;line-height:0px;">&nbsp;</div></td></tr></table></td>
+          <td style="font-family:Arial,sans-serif;font-size:12px">
+            <p>
+              I'd like to add you to my professional network on LinkedIn.<br/>
+<br/>
+- James
+            </p>
+          </td>
+          <td><table width="5" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:0px;font-size:0px;line-height:0px;">&nbsp;</div></td></tr></table></td>
+        </tr>
+        <tr><td colspan="3"><table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:5px;font-size:5px;line-height:5px;">&nbsp;</div></td></tr></table></td></tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:12px;font-size:12px;line-height:12px;">&nbsp;</div></td></tr></table>
+          <table border="0" cellpadding="6" cellspacing="1" align=""><tr><td align="center" valign="middle" bgcolor="#FFE86C" background="http://www.linkedin.com/scds/common/u/img/bg/yellow_button_back.png" style="background:url(http://www.linkedin.com/scds/common/u/img/bg/yellow_button_back.png) repeat-x scroll 100% 0 #FFE86C;background-color:#FFE86C;border:1px solid #E8B463;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;"><div style="padding-right:10px;padding-left:10px;"><a href="https://www.linkedin.com/e/nd2fjz-h149ibye-6/isd/6707608582/-xUk1LxI/?hs=false&amp;tok=2lBmARnL2Iqlc1" style="text-decoration:none;"><span style="font-size:12px;font-family:Arial;font-weight:bold;color:#333333;white-space:nowrap;display:block;">Confirm that you know James</span></a></div></td></tr></table>
+      </td>
+    </tr>
+  </table>
+</td><td width="1%"><table width="15" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:0px;font-size:0px;line-height:0px;">&nbsp;</div></td></tr></table></td></tr><tr><td colspan="3"><table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:15px;font-size:15px;line-height:15px;">&nbsp;</div></td></tr></table></td></tr></table>
+<table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:5px;font-size:5px;line-height:5px;">&nbsp;</div></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0" style="font-family:Arial;width:550px" >
+  <tr>
+    <td style="color:#999;font-family:Arial,sans-serif;font-size:11px;line-height:15px">
+      <div>You are receiving Invitation to Connect emails. <a href="http://www.linkedin.com/e/nd2fjz-h149ibye-6/vGbzErNZNH9pQ6uemd-zK7w298WpQgsb6vy/goo/yocto%40yoctoproject%2Eorg/20061/I2319394057_1/?hs=false&amp;tok=3YkCBcmveIqlc1">Unsubscribe</a></div>
+      <div>&copy; 2012, LinkedIn Corporation. 2029 Stierlin Ct. Mountain View, CA 94043, USA<table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><div style="height:1px;font-size:1px;line-height:1px;">&nbsp;</div></td></tr></table></div>
+    </td>
+  </tr>
+</table>
+
+
+    </td></tr></table>
+
+
+<img src="http://www.linkedin.com/emimp/nd2fjz-h149ibye-6.gif" style="width:1px; height:1px;"/></body>
+</html>
+
+------=_Part_2850555_800515810.1334625408520--
