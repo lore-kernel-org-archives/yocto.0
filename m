@@ -1,30 +1,26 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B75F6E00596
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2012 06:20:24 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3HDKIZB013592;
-	Tue, 17 Apr 2012 14:20:18 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 13561-01; Tue, 17 Apr 2012 14:20:14 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3HDKBNH013586
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Tue, 17 Apr 2012 14:20:12 +0100
-Message-ID: <1334668814.616.93.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Date: Tue, 17 Apr 2012 14:20:14 +0100
-In-Reply-To: <2015392.m3Bv0akb5L@helios>
-References: <4F8CE449.8060501@linux.intel.com> <2015392.m3Bv0akb5L@helios>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
-Subject: Re: Writing do_install_append for target and virtclass-native in a bbappend
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B39D5E0132F
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2012 07:04:43 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 17 Apr 2012 07:04:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="131917164"
+Received: from unknown (HELO envy.home) ([10.255.12.120])
+	by azsmga001.ch.intel.com with ESMTP; 17 Apr 2012 07:04:41 -0700
+Message-ID: <4F8D7857.1070508@linux.intel.com>
+Date: Tue, 17 Apr 2012 07:04:07 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
+MIME-Version: 1.0
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+References: <cover.1334624662.git.dvhart@linux.intel.com>
+	<1334650153.616.29.camel@ted>
+In-Reply-To: <1334650153.616.29.camel@ted>
+X-Enigmail-Version: 1.4
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/1] [1.2] poky-tiny: Separate the libc features required for meta-toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,41 +32,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Apr 2012 13:20:25 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 17 Apr 2012 14:04:43 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Tue, 2012-04-17 at 10:32 +0100, Paul Eggleton wrote:
-> On Monday 16 April 2012 20:32:25 Darren Hart wrote:
-> > I'm trying to address a symlink naming issue in the bzip2 package when
-> > used with Chrome. Chrome is looking for a specific soname, which the
-> > default install of bzip2 doesn't setup. I can address this easily by
-> > adding the symlink via a bzip2 bbappend in do_install_append().
-> > Unfortunately, this fails for the virtclass-native variant. I tried
-> > adding and empty:
-> > 
-> > do_install_append_virtclass-native() {
-> > 
-> > }
-> > 
-> > function to the bbappend, which still failed. I then added an echo
-> > statement which appeared in the output, but it still ran non-native
-> > do_install_append() and failed. Switching the order of the functions
-> > made the echo output disappear, but the native variant still failed.
-> > 
-> > I figure I must be missing something rather fundamental here. Any ideas
-> > what it might be?
+
+
+On 04/17/2012 01:09 AM, Richard Purdie wrote:
+> On Mon, 2012-04-16 at 18:06 -0700, Darren Hart wrote:
+>> This addresses [YOCTO #2295], in which the meta-toolchain target would fail for
+>> the poky-tiny DISTRO definition due to its reduced libc feature set. This is not
+>> an optimal solution as it significantly increases the size of the C libraries
+>> (by 461KB). However, by making the features easily removed, those looking for
+>> truly tiny libc configurations can easily revert to the smaller set. Out of the
+>> box, we want poky-tiny to be able to build meta-toolchain.
+>>
+>> In the future, we need to address WHY meta-toolchain cannot be built without
+>> these features and look at how to reduce the impact of meta-toolchain on the
+>> target eglibc build.
 > 
-> Unfortunately the virtclass overrides can't help you when you want to just 
-> append something in the target case; however, what we usually do is just do an 
-> normal append and then check within it if [ "${PN}" = "${BPN}" ] which will be 
-> false for -native, -nativesdk etc.
+> I had a thought about this:
+> 
+> diff --git a/meta/conf/distro/include/default-distrovars.inc b/meta/conf/distro/include/default-distrovars.inc
+> index 16b3108..f770919 100644
+> --- a/meta/conf/distro/include/default-distrovars.inc
+> +++ b/meta/conf/distro/include/default-distrovars.inc
+> @@ -10,12 +10,14 @@ LIMIT_BUILT_LOCALES ?= "POSIX en_US en_GB"
+>  ENABLE_BINARY_LOCALE_GENERATION ?= "1"
+>  LOCALE_UTF8_ONLY ?= "0"
+>  
+> -DISTRO_FEATURES_LIBC ?= "ipv4 ipv6 libc-backtrace libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt \
+> +DISTRO_FEATURES_LIBC_DEFAULT ?= "ipv4 ipv6 libc-backtrace libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt \
+>                                         libc-crypt-ufc libc-db-aliases libc-envz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse \
+>                                         libc-getlogin libc-idn libc-inet-anl libc-libm libc-libm-big libc-locales libc-locale-code \
+>                                         libc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn libc-streams libc-sunrpc \
+>                                         libc-utmp libc-utmpx libc-wordexp libc-posix-clang-wchar libc-posix-regexp libc-posix-regexp-glibc \
+>                                         libc-posix-wchar-io"
+> +DISTRO_FEATURES_LIBC ?= "${DISTRO_FEATURES_LIBC_DEFAULT}"
+> +DISTRO_FEATURES_LIBC_virtclass-nativesdk = "${DISTRO_FEATURES_LIBC_DEFAULT}"
+>  DISTRO_FEATURES ?= "alsa argp bluetooth ext2 irda largefile pcmcia usbgadget usbhost wifi xattr nfs zeroconf pci 3g x11 ${DISTRO_FEATURES_LIBC}"
+>  
+>  IMAGE_FEATURES ?= ""
+> 
+> Probably not something for release at this point but maybe after it...
 
-We're going to need to get out of this habit since it breaks for
-multilibs :(
+Interesting.... I need to investigate the meta-toolchain build a bit
+more. I didn't think it was just the nativesdk recipes that were failing.
 
-Cheers,
+--
+Darren
 
-Richard
+> 
+> Cheers,
+> 
+> Richard
+> 
 
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
