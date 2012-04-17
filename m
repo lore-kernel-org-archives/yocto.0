@@ -1,34 +1,30 @@
-Return-Path: <dexuan.cui@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55214E01408
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2012 00:59:11 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 17 Apr 2012 00:59:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="89901286"
-Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
-	by AZSMGA002.ch.intel.com with ESMTP; 17 Apr 2012 00:55:59 -0700
-Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
-	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 17 Apr 2012 00:55:59 -0700
-Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.125]) by
-	SHSMSX151.ccr.corp.intel.com ([169.254.3.53]) with mapi id
-	14.01.0355.002; Tue, 17 Apr 2012 09:24:41 +0800
-From: "Cui, Dexuan" <dexuan.cui@intel.com>
-To: =?gb2312?B?Isnyu6rD90BxcSI=?= <446257357@qq.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Can not boot with USB
-Thread-Index: AQHNG+CoG69/v3+q9UymhKp1YrljE5aeN3Ig
-Date: Tue, 17 Apr 2012 01:24:40 +0000
-Message-ID: <A25F549E4D43CD42B4C02DF47A1913230FD0475B@SHSMSX102.ccr.corp.intel.com>
-References: <4F8A45D4.5070705@qq.com>
-In-Reply-To: <4F8A45D4.5070705@qq.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
-MIME-Version: 1.0
-Subject: Re: Can not boot with USB
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91543E01363
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2012 01:09:25 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3H89K9o009809;
+	Tue, 17 Apr 2012 09:09:20 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 08017-10; Tue, 17 Apr 2012 09:09:16 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3H89A4E009803
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Tue, 17 Apr 2012 09:09:11 +0100
+Message-ID: <1334650153.616.29.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Darren Hart <dvhart@linux.intel.com>
+Date: Tue, 17 Apr 2012 09:09:13 +0100
+In-Reply-To: <cover.1334624662.git.dvhart@linux.intel.com>
+References: <cover.1334624662.git.dvhart@linux.intel.com>
+X-Mailer: Evolution 3.2.2- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/1] [1.2] poky-tiny: Separate the libc features required for meta-toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,31 +36,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Apr 2012 07:59:11 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 17 Apr 2012 08:09:26 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-SGksDQpUaGUgaW1hZ2Ugc2l6ZSBvZiB0aGUgc2F0by1zZGsgaW1hZ2UgY2FuIGV4Y2VlZHMgMUdC
-LiBJbiB0aGlzIGNhc2UsIGR1ZSB0byBhbiBvbGQgYnVnKGh0dHBzOi8vYnVnemlsbGEueW9jdG9w
-cm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjEzOCwgdGhhdCBoYXMgYmVlbiBmaXhlZCBpbiB0
-aGUgbGF0ZXN0IHBva3kgbWFzdGVyJ3MgY29kZSkgLCBkaXJlY3RseSBkb2luZyBkZCB0aGUgaW1h
-Z2UgaW50byBhIFVTQiBkaXNrIGNhbid0IG1ha2UgYSBib290YWJsZSBVU0IgZGlzayhpdCBzaG93
-cyAiTm8gREVGQVVMVCBvciBVSSBjb25maWd1cmF0aW9uIGRpcmVjdGl2ZSBmb3VuZCIpLg0KDQpQ
-bGVhc2UgdHJ5IHRoZSBsYXRlc3QgcG9reSBtYXN0ZXIncyBjb2RlLg0KT3IsIHdlIGNhbiB1c2Ug
-YW5vdGhlciB3YXkgdG8gY29wZSB3aXRoIHRoZSBpc3N1ZTogcGxlYXNlIHVzZSB0aGUgbWV0aG9k
-IG1rZGlza2ltYWdlL21rZGlyL21vdW50L2NwL3Vtb3VudC9zeXNsaW51eCBtZW50aW9uZWQgaW4g
-dGhlIGJlbG93IHBhZ2UgaHR0cDovL2dpdC55b2N0b3Byb2plY3Qub3JnL2NnaXQvY2dpdC5jZ2kv
-cG9reS90cmVlL1JFQURNRS5oYXJkd2FyZQ0KDQpUaGFua3MsDQotLSBEZXh1YW4NCg0KDQo+IC0t
-LS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9q
-ZWN0Lm9yZw0KPiBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10gT24gQmVo
-YWxmIE9mICLJ8ruqw/dAcXEiDQo+IFNlbnQ6IFN1bmRheSwgQXByaWwgMTUsIDIwMTIgMTE6NTIg
-QU0NCj4gVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogW3lvY3RvXSBDYW4g
-bm90IGJvb3Qgd2l0aCBVU0INCj4gDQo+IEhlbGxvLA0KPiAgICAgIEkgd2FudCB0byB1c2UgdGhl
-IHNkayBpbWFnZSBib290aW5nIHdpdGggdXNiIGZsYXNoIGRpc2ssYnV0IHRoZQ0KPiBib2FyZCBj
-YW4gbm90IGJvb3QgLi4uIFdoaWxlIEkgdXNlIG90aGVyIGltYWdlIHdpdGhvdXQgc2RrIHRoZSBi
-b2FyZCBjYW4NCj4gYm9vdC5Bbnlib2R5IGNhbiBoZWxwIG1lPw0KPiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiB5b2N0byBtYWlsaW5nIGxpc3QNCj4g
-eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcv
-bGlzdGluZm8veW9jdG8NCg==
+On Mon, 2012-04-16 at 18:06 -0700, Darren Hart wrote:
+> This addresses [YOCTO #2295], in which the meta-toolchain target would fail for
+> the poky-tiny DISTRO definition due to its reduced libc feature set. This is not
+> an optimal solution as it significantly increases the size of the C libraries
+> (by 461KB). However, by making the features easily removed, those looking for
+> truly tiny libc configurations can easily revert to the smaller set. Out of the
+> box, we want poky-tiny to be able to build meta-toolchain.
+> 
+> In the future, we need to address WHY meta-toolchain cannot be built without
+> these features and look at how to reduce the impact of meta-toolchain on the
+> target eglibc build.
+
+I had a thought about this:
+
+diff --git a/meta/conf/distro/include/default-distrovars.inc b/meta/conf/distro/include/default-distrovars.inc
+index 16b3108..f770919 100644
+--- a/meta/conf/distro/include/default-distrovars.inc
++++ b/meta/conf/distro/include/default-distrovars.inc
+@@ -10,12 +10,14 @@ LIMIT_BUILT_LOCALES ?= "POSIX en_US en_GB"
+ ENABLE_BINARY_LOCALE_GENERATION ?= "1"
+ LOCALE_UTF8_ONLY ?= "0"
+ 
+-DISTRO_FEATURES_LIBC ?= "ipv4 ipv6 libc-backtrace libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt \
++DISTRO_FEATURES_LIBC_DEFAULT ?= "ipv4 ipv6 libc-backtrace libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt \
+                                        libc-crypt-ufc libc-db-aliases libc-envz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse \
+                                        libc-getlogin libc-idn libc-inet-anl libc-libm libc-libm-big libc-locales libc-locale-code \
+                                        libc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn libc-streams libc-sunrpc \
+                                        libc-utmp libc-utmpx libc-wordexp libc-posix-clang-wchar libc-posix-regexp libc-posix-regexp-glibc \
+                                        libc-posix-wchar-io"
++DISTRO_FEATURES_LIBC ?= "${DISTRO_FEATURES_LIBC_DEFAULT}"
++DISTRO_FEATURES_LIBC_virtclass-nativesdk = "${DISTRO_FEATURES_LIBC_DEFAULT}"
+ DISTRO_FEATURES ?= "alsa argp bluetooth ext2 irda largefile pcmcia usbgadget usbhost wifi xattr nfs zeroconf pci 3g x11 ${DISTRO_FEATURES_LIBC}"
+ 
+ IMAGE_FEATURES ?= ""
+
+Probably not something for release at this point but maybe after it...
+
+Cheers,
+
+Richard
+
 
