@@ -1,31 +1,31 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 396A3E01408
-	for <yocto@yoctoproject.org>; Wed, 18 Apr 2012 05:13:42 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3ICDbG4001234;
-	Wed, 18 Apr 2012 13:13:37 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 32694-06; Wed, 18 Apr 2012 13:13:33 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3ICDQv7001224
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 18 Apr 2012 13:13:27 +0100
-Message-ID: <1334751210.24091.77.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Darren Hart <dvhart@linux.intel.com>
-Date: Wed, 18 Apr 2012 13:13:30 +0100
-In-Reply-To: <4F8D7857.1070508@linux.intel.com>
-References: <cover.1334624662.git.dvhart@linux.intel.com>
-	<1334650153.616.29.camel@ted> <4F8D7857.1070508@linux.intel.com>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/1] [1.2] poky-tiny: Separate the libc features required for meta-toolchain
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D227CE0140A
+	for <yocto@yoctoproject.org>; Wed, 18 Apr 2012 05:45:11 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb [147.11.189.41])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q3ICj90N029318
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 18 Apr 2012 05:45:09 -0700 (PDT)
+Received: from ALA-MBA.corp.ad.wrs.com ([169.254.1.100]) by
+	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.01.0255.000;
+	Wed, 18 Apr 2012 05:45:08 -0700
+From: "Hatle, Mark" <mark.hatle@windriver.com>
+To: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+Thread-Topic: A question about PACKAGE_ARCH renaming
+Thread-Index: AQHNHPvxOMDzdnvKpEqRRK4yDGk4p5aggT4AgAAG9fw=
+Date: Wed, 18 Apr 2012 12:45:11 +0000
+Message-ID: <C3CEA23F-CADF-4127-AFBE-191B2CE602BC@windriver.com>
+References: <1334624465.26744.4.camel@dongxiao-osel>
+	<4F8D8DB7.6030301@windriver.com>
+	<1334709480.26744.10.camel@dongxiao-osel>,
+	<1334726414.26744.21.camel@dongxiao-osel>
+In-Reply-To: <1334726414.26744.21.camel@dongxiao-osel>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+MIME-Version: 1.0
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: A question about PACKAGE_ARCH renaming
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,82 +37,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Apr 2012 12:13:42 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 18 Apr 2012 12:45:12 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2012-04-17 at 07:04 -0700, Darren Hart wrote:
-> On 04/17/2012 01:09 AM, Richard Purdie wrote:
-> > I had a thought about this:
-> > 
-> > diff --git a/meta/conf/distro/include/default-distrovars.inc b/meta/conf/distro/include/default-distrovars.inc
-> > index 16b3108..f770919 100644
-> > --- a/meta/conf/distro/include/default-distrovars.inc
-> > +++ b/meta/conf/distro/include/default-distrovars.inc
-> > @@ -10,12 +10,14 @@ LIMIT_BUILT_LOCALES ?= "POSIX en_US en_GB"
-> >  ENABLE_BINARY_LOCALE_GENERATION ?= "1"
-> >  LOCALE_UTF8_ONLY ?= "0"
-> >  
-> > -DISTRO_FEATURES_LIBC ?= "ipv4 ipv6 libc-backtrace libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt \
-> > +DISTRO_FEATURES_LIBC_DEFAULT ?= "ipv4 ipv6 libc-backtrace libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt \
-> >                                         libc-crypt-ufc libc-db-aliases libc-envz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse \
-> >                                         libc-getlogin libc-idn libc-inet-anl libc-libm libc-libm-big libc-locales libc-locale-code \
-> >                                         libc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn libc-streams libc-sunrpc \
-> >                                         libc-utmp libc-utmpx libc-wordexp libc-posix-clang-wchar libc-posix-regexp libc-posix-regexp-glibc \
-> >                                         libc-posix-wchar-io"
-> > +DISTRO_FEATURES_LIBC ?= "${DISTRO_FEATURES_LIBC_DEFAULT}"
-> > +DISTRO_FEATURES_LIBC_virtclass-nativesdk = "${DISTRO_FEATURES_LIBC_DEFAULT}"
-> >  DISTRO_FEATURES ?= "alsa argp bluetooth ext2 irda largefile pcmcia usbgadget usbhost wifi xattr nfs zeroconf pci 3g x11 ${DISTRO_FEATURES_LIBC}"
-> >  
-> >  IMAGE_FEATURES ?= ""
-> > 
-> > Probably not something for release at this point but maybe after it...
-> 
-> Interesting.... I need to investigate the meta-toolchain build a bit
-> more. I didn't think it was just the nativesdk recipes that were failing.
+There is/was a conversion that changed - to _ in the package arch.  And yes=
+ this needs to be fixed ASAP.
 
-I screwed up and accidentally merged the above in another commit.
-Thankfully the code actually works and I'm therefore not going to revert
-it and it will go into the release. I tried a quick build with poky-tiny
-and I think this diff is a good summary for a working meta-toolchain:
 
-diff --git a/meta-yocto/conf/distro/poky-tiny.conf b/meta-yocto/conf/distro/poky-tiny.conf
-index 327cc1e..503444f 100644
---- a/meta-yocto/conf/distro/poky-tiny.conf
-+++ b/meta-yocto/conf/distro/poky-tiny.conf
-@@ -68,11 +68,7 @@ DISTRO_FEATURES_LIBC_TINY = "libc-libm libc-crypt"
- # If you do not plan to build meta-toolchain, you can save ~461KB by
- # commenting out the DISTRO_FEATURES_LIBC_TOOLCHAIN assignment
- # gettext needs wchar, m4 needs spawn and locale, elfutils needs ftraverse
--DISTRO_FEATURES_LIBC_TOOLCHAIN = "libc-posix-clang-wchar \
--                                  libc-spawn libc-locale-code \
--                                  libc-ftraverse libc-libm-big \
--                                  libc-posix-regexp-glibc \
--                                 "
-+DISTRO_FEATURES_LIBC_TOOLCHAIN = ""
- 
- # Required for "who"
- DISTRO_FEATURES_LIBC_MINIMAL = "libc-utmp libc-getlogin"
-diff --git a/meta/classes/gettext.bbclass b/meta/classes/gettext.bbclass
-index 89faa30..95818c6 100644
---- a/meta/classes/gettext.bbclass
-+++ b/meta/classes/gettext.bbclass
-@@ -15,7 +15,7 @@ def gettext_oeconf(d):
-         return '--disable-nls'
-     return "--enable-nls"
- 
--DEPENDS_GETTEXT = "virtual/gettext gettext-native"
-+DEPENDS_GETTEXT ??= "virtual/gettext gettext-native"
- 
- BASEDEPENDS =+ "${@gettext_dependencies(d)}"
- EXTRA_OECONF_append = " ${@gettext_oeconf(d)}"
 
-so we should be able to drop DISTRO_FEATURES_LIBC_TOOLCHAIN early in the
-1.3 cycle, we just need to tweak the gettext class (it was overwriting
-the value of DEPENDS_GETTEXT set in canadian-cross.bbclass).
+On Apr 18, 2012, at 12:23 AM, "Xu, Dongxiao" <dongxiao.xu@intel.com> wrote:
 
-Cheers,
-
-Richard 
-
+> On Wed, 2012-04-18 at 08:38 +0800, Xu, Dongxiao wrote:
+>> On Tue, 2012-04-17 at 10:35 -0500, Mark Hatle wrote:
+>>> On 4/16/12 8:01 PM, Xu, Dongxiao wrote:
+>>>> Hi,
+>>>>=20
+>>>> I am testing beagleboard with RPM, and there is a question I am confus=
+ed
+>>>> with that PACKAGE_ARCH is renamed for certain packages. For example th=
+e
+>>>> "acl" package, whose expected PACKAGE_ARCH is "armv7a-vfp-neon", howev=
+er
+>>>> in RPM file, the arch is renamed to "armv7a", see
+>>>> "acl-2.2.51-r2.armv7a.rpm". However IPK package still shows
+>>>> "acl_2.2.51-r2_armv7a-vfp-neon.ipk".
+>>>>=20
+>>>> Could anybody give hint on this?
+>>>>=20
+>>>> Thanks,
+>>>> Dongxiao
+>>>>=20
+>>>=20
+>>> I've not seen that happen before.  Can you checked if an=20
+>>> acl-...armv7a-vfp-neon.rpm was generated and RPM is simply not using it=
+, or was=20
+>>> it never generated?
+>>=20
+>> No, there is no acl-xxx.armv7a-vfp-neon.rpm, only acl-xxx.armv7a.rpm
+>> created.
+>=20
+> Just looked at this issue with Lianhao, and we got some clues.
+>=20
+> It seems that we don't allow '-' exists in architecture label within
+> RPM. Here for the beagleboard case, we use the parameter as:
+>=20
+> rpm ... --target "armv7a-vfp-neon-poky-linux"
+>=20
+> I think the RPM internal strips all the contents after the first '-' and
+> use "armv7a" as the architecture label.
+>=20
+> Similar is the multilib case, we can see from the code that, we use
+> 'lib64_qemux86' instead of 'lib64-qemux86' as the architecture label.
+>=20
+> If our thoughts are right, I think we need a fix for that before 1.2
+> release?
+>=20
+> Thanks,
+> Dongxiao
+>=20
+>>=20
+>> Actually I think this issue does exist since our 1.1 release, you can
+>> have a look at the package repo:
+>>=20
+>> http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/rpm/armv7a-vf=
+p-neon/
+>>=20
+>> The directory is named as "armv7a-vfp-neon", however all the packages
+>> under the directory are of "armv7a" architecture.
+>>=20
+>> While see the ipk part:
+>> http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/ipk/armv7a-vf=
+p-neon/
+>> The directory name and rpm architecture name are the same.
+>>=20
+>> Thanks,
+>> Dongxiao
+>>=20
+>>>=20
+>>> As another user mentioned, it is possible for a package to say it wants=
+ a=20
+>>> specific arch type, but if it did -- it should be consistent between pa=
+ckaging=20
+>>> systems.
+>>>=20
+>>> --Mark
+>>=20
+>=20
+>=20
 
