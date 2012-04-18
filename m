@@ -1,26 +1,32 @@
-Return-Path: <denis@denix.org>
-Received: from vms173003pub.verizon.net (vms173003pub.verizon.net
-	[206.46.173.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF18AE013BA
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2012 14:01:52 -0700 (PDT)
-Received: from gandalf.denix.org ([unknown] [71.178.225.66])
-	by vms173003.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0M2N00G5U6ELL3Q1@vms173003.mailsrvcs.net> for
-	yocto@yoctoproject.org; Tue, 17 Apr 2012 16:01:34 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id C474F201A7; Tue,
-	17 Apr 2012 17:01:33 -0400 (EDT)
-Date: Tue, 17 Apr 2012 17:01:33 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Eric B?nard <eric@eukrea.com>
-Message-id: <20120417210133.GD8228@denix.org>
-References: <20120417224028.5f80ebd7@eb-e6520>
-MIME-version: 1.0
-In-reply-to: <20120417224028.5f80ebd7@eb-e6520>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org,
-	openembedded-core@lists.openembedded.org
-Subject: Re: meta-chromium
+Return-Path: <jeffrey.osier-mixon@intel.com>
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9970AE0140A
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2012 17:26:56 -0700 (PDT)
+Received: from mail-vx0-f180.google.com ([209.85.220.180])
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 17 Apr 2012 17:26:55 -0700
+Received: by vcbfl10 with SMTP id fl10so4361037vcb.25
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2012 17:26:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:content-transfer-encoding:x-gm-message-state;
+	bh=/hGuWAPWoJXxrPhEFN+h+P6MGlepkO+jnijg7qMdJik=;
+	b=Xqd5wJtNRubSKfmN1A3HZyFAZmRIFm/7u2WuzJ/bM5v0Ev+XL2B7pdMyQDXUUmsknf
+	WjrT6erBqEbv4edapO+KySN61EFODiGqxuxUBvsFmDkqLwifE112iB9GYZ+Xc1BXdB67
+	eu5fDYxRymt5ssXVdF4+DI83l7YVVV3NMV0+8NYDoAj2SOAcqCP8XCH1TJa1ArO0hpIn
+	sUlyruCTNHnU3Sj4Z6OsJf2duQhRlG/uVEpn5maH71w2sR+uBuMmFFDVnFeHH+w0ld0L
+	sKM7/cG33Th1+gzKpytoT3jlnedSguAvVfQj+Rv1YTDkcSvx7ABMN2TfYIJxK7JzaOgh
+	u1eA==
+MIME-Version: 1.0
+Received: by 10.220.151.133 with SMTP id c5mr152287vcw.1.1334708814538; Tue,
+	17 Apr 2012 17:26:54 -0700 (PDT)
+Received: by 10.52.31.74 with HTTP; Tue, 17 Apr 2012 17:26:54 -0700 (PDT)
+Date: Tue, 17 Apr 2012 17:26:54 -0700
+Message-ID: <CALZ2gZWY=cqVHX-oCLBLpcEB739Hvb+x2n59+ZSxgF363N6hTg@mail.gmail.com>
+From: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQmAXenVFdmIJu+C/Ds9KV8y/kOTTEo0a7j/XufgaipLSfUgrSC8lIHM3kobcFtOFumMLpEx
+Subject: Fresh hot Yocto Project statistics
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,35 +38,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Apr 2012 21:01:53 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Wed, 18 Apr 2012 00:26:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 17, 2012 at 10:40:28PM +0200, Eric B?nard wrote:
-> Hi,
-> 
-> we have pushed the begining of our (Eukr?a Electromatique's team and
-> especially Denis) work to get Chromium to build with OpenEmbedded Core
-> to : git://github.com/eukrea/meta-chromium.git
-> https://github.com/eukrea/meta-chromium
-> 
-> For the moment it's only tested on ARMv7 platforms (i.MX515 and i.MX535
-> based) where it seems robust and quite fast on most of the HTML5 tests
-> we ran (only WebGL doesn't yet work).
-> 
-> Feel free to send patches to improve the recipes and add support for
-> other platforms.
-> 
-> TODO :
-> - enable WebGL with OpenGL ES support
-> - support other platforms than armv7
-> - merge with meta-mozilla to create a meta-browser layer
+Updated to March 2012, and now including social media metrics:
 
-Eric, Denis,
+https://wiki.yoctoproject.org/wiki/Community_Statistics
 
-Great news! Thanks for your work!
-
--- 
-Denys
-
+--=20
+Jeff Osier-Mixon=A0http://jefro.net/blog
+Yocto Project Community Manager @Intel=A0http://yoctoproject.org
 
