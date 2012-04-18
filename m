@@ -1,30 +1,26 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DA7CE013BA
-	for <yocto@yoctoproject.org>; Wed, 18 Apr 2012 08:20:53 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3IFKoPc002983;
-	Wed, 18 Apr 2012 16:20:50 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 02534-06; Wed, 18 Apr 2012 16:20:45 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3IFKhdU002976
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 18 Apr 2012 16:20:44 +0100
-Message-ID: <1334762445.24091.110.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D1E4E01405
+	for <yocto@yoctoproject.org>; Wed, 18 Apr 2012 08:56:38 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 18 Apr 2012 08:56:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="155181525"
+Received: from unknown (HELO envy.home) ([10.255.12.120])
+	by fmsmga002.fm.intel.com with ESMTP; 18 Apr 2012 08:56:38 -0700
+Message-ID: <4F8EE415.4030308@linux.intel.com>
+Date: Wed, 18 Apr 2012 08:56:05 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.1) Gecko/20120209 Thunderbird/10.0.1
+MIME-Version: 1.0
 To: Patches and discussions about the oe-core layer
 	<openembedded-core@lists.openembedded.org>
-Date: Wed, 18 Apr 2012 16:20:45 +0100
-In-Reply-To: <20120418145330.GM3635@jama.jama.net>
 References: <1334760467.24091.100.camel@ted>
 	<20120418145330.GM3635@jama.jama.net>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
+	<1334762445.24091.110.camel@ted>
+In-Reply-To: <1334762445.24091.110.camel@ted>
+X-Enigmail-Version: 1.4
 Cc: yocto <yocto@yoctoproject.org>
 Subject: Re: [OE-core] Yocto Project 1.2 Release Status
 X-BeenThere: yocto@yoctoproject.org
@@ -38,41 +34,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Apr 2012 15:20:54 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 18 Apr 2012 15:56:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2012-04-18 at 16:53 +0200, Martin Jansa wrote:
-> On Wed, Apr 18, 2012 at 03:47:47PM +0100, Richard Purdie wrote:
-> > I thought I'd update everyone with the current 1.2 status.
-> > 
-> > I'm going to branch master for release at this point. We've fixed a lot
-> > of issues, I'm hoping the -rc4 build will be a good one. There are signs
-> > there are some more minor issues around and bugs do keep getting opened.
-> > These are still being investigated so we'll continue to let that happen.
-> > Once we have a QA report for -rc4, we'll be in a better position to make
-> > a call on how things are looking.
+
+
+On 04/18/2012 08:20 AM, Richard Purdie wrote:
+> On Wed, 2012-04-18 at 16:53 +0200, Martin Jansa wrote:
+>> On Wed, Apr 18, 2012 at 03:47:47PM +0100, Richard Purdie wrote:
+>>> I thought I'd update everyone with the current 1.2 status.
+>>>
+>>> I'm going to branch master for release at this point. We've fixed a lot
+>>> of issues, I'm hoping the -rc4 build will be a good one. There are signs
+>>> there are some more minor issues around and bugs do keep getting opened.
+>>> These are still being investigated so we'll continue to let that happen.
+>>> Once we have a QA report for -rc4, we'll be in a better position to make
+>>> a call on how things are looking.
+>>
+>> Does it mean that after creating branch, master will be open for
+>> postponed patches from ML and master-next or do you want to keep master
+>> as close to release branch as possible for some time (e.g. for those
+>> 1.2.1 fixes)?
 > 
-> Does it mean that after creating branch, master will be open for
-> postponed patches from ML and master-next or do you want to keep master
-> as close to release branch as possible for some time (e.g. for those
-> 1.2.1 fixes)?
+> I have hoped people would work more on the stabilisation and testing but
+> I don't think I'll be able to hold off the pressure to start master
+> rolling again at some point relatively soon.
+> 
+> It won't happen immediately as the 1.2 release is building which means I
+> have no resources to test master right now so I will hold off until
+> those are available.
+> 
+> To be honest at a personal level, I'm also pretty worn out after the
+> past couple of weeks of bug fixing, triage and review and would ideally
+> like to disappear for a couple of weeks. Realistically this isn't going
+> to happen now but maybe in a few weeks...
+> 
 
-I have hoped people would work more on the stabilisation and testing but
-I don't think I'll be able to hold off the pressure to start master
-rolling again at some point relatively soon.
+I think I'll be proposing a forced vacation policy for RP which includes
+temporarily locking out his user id on all yoctoproject resources....
 
-It won't happen immediately as the 1.2 release is building which means I
-have no resources to test master right now so I will hold off until
-those are available.
-
-To be honest at a personal level, I'm also pretty worn out after the
-past couple of weeks of bug fixing, triage and review and would ideally
-like to disappear for a couple of weeks. Realistically this isn't going
-to happen now but maybe in a few weeks...
-
-Cheers,
-
-Richard
-
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
