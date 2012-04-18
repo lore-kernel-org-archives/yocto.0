@@ -1,36 +1,36 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4278EE0044A
-	for <yocto@yoctoproject.org>; Wed, 18 Apr 2012 11:56:39 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3IIuavx005253;
-	Wed, 18 Apr 2012 19:56:36 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 04516-04; Wed, 18 Apr 2012 19:56:32 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3IIuSGG005245
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 18 Apr 2012 19:56:29 +0100
-Message-ID: <1334775390.24091.173.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Date: Wed, 18 Apr 2012 19:56:30 +0100
-In-Reply-To: <CABcZANmrzmSPJNZH2VqtO0o=L_Wk0-VK_PEP4m0+TRWQ8cYMjg@mail.gmail.com>
-References: <1334760467.24091.100.camel@ted>
-	<20120418145330.GM3635@jama.jama.net> <1334762445.24091.110.camel@ted>
-	<CABcZANkaABCKZ+WmhhGTZEvFnHYwrP7uNSSvNTxxKxfun4JaPA@mail.gmail.com>
-	<1334768537.24091.156.camel@ted>
-	<CABcZANk+nFT1F7=WBNdE_z3pj=zAzrSQBuD6-DcKT8+OCLKr9g@mail.gmail.com>
-	<CABcZANmrzmSPJNZH2VqtO0o=L_Wk0-VK_PEP4m0+TRWQ8cYMjg@mail.gmail.com>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: [OE-core] Yocto Project 1.2 Release Status
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05F4CE0044A
+	for <yocto@yoctoproject.org>; Wed, 18 Apr 2012 12:41:22 -0700 (PDT)
+Received: from durham.keylevel.com ([109.224.134.115]:9108
+	helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>)
+	id 1SKakh-000442-B0; Wed, 18 Apr 2012 20:41:19 +0100
+Mime-Version: 1.0 (Apple Message framework v1257)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <4F875D98.7020100@linux.intel.com>
+Date: Wed, 18 Apr 2012 20:41:17 +0100
+Message-Id: <E3DA5E46-34FB-449B-BDE2-E5E0F8EFECFD@keylevel.com>
+References: <1B707EEC-B001-45EA-BC0B-C0FF70BB7152@keylevel.com>
+	<4F862237.50200@linux.intel.com> <20120412140802.GA3176@giant>
+	<4F86E7E0.4080704@linux.intel.com>
+	<9AE35C40-C519-49ED-9790-0E4BC9A42F39@keylevel.com>
+	<4F875D98.7020100@linux.intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+X-Mailer: Apple Mail (2.1257)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Build time data
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,75 +42,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Apr 2012 18:56:39 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 18 Apr 2012 19:41:22 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 2012-04-18 at 10:11 -0700, Chris Larson wrote:
-> On Wed, Apr 18, 2012 at 10:06 AM, Chris Larson <clarson@kergoth.com> wrote:
-> > On Wed, Apr 18, 2012 at 10:02 AM, Richard Purdie
-> > <richard.purdie@linuxfoundation.org> wrote:
-> >> On Wed, 2012-04-18 at 09:22 -0700, Chris Larson wrote:
-> >>> On Wed, Apr 18, 2012 at 8:20 AM, Richard Purdie
-> >>> <richard.purdie@linuxfoundation.org> wrote:
-> >>> > On Wed, 2012-04-18 at 16:53 +0200, Martin Jansa wrote:
-> >>> Just because people have things to push or are pushing things which
-> >>> aren't bugfixes doesn't mean their time is being taken up by anything
-> >>> but stabilization right now. Your statement implies that everything
-> >>> being pushed is being currently worked on, which is incorrect. I'm
-> >>> sure Mentor isn't the only company with a backlog of already complete
-> >>> local changes to get upstream..
-> >>
-> >> So you're saying Mentor has been working on stabilization and has a
-> >> queue of bugfixes which they've not shared?
-> >
-> > No, I never said they were just bugfixes. If they were low impact
-> > bugfixes, they'd have a shot at making it into the release, especially
-> > if they're critical, no?
+On 12 Apr 2012, at 23:56, Darren Hart wrote:
+> Get back to us with times, and we'll build up a wiki page.
 
-They would have had a shot until very recently, yes. I'm hoping we're
-about done with the release at this point as a line has to be drawn
-somewhere and I think now is it.
+Some initial results / comments:
 
-> Further, again you're ignoring previous work. Whether we've been
-> working on stabilization right now is irrelevent given we have
-> previous work to push. Mentor has been using OE for its products for
-> years, to expect that a very small team which has to focus on customer
-> issues is going to catch up on all of that effort in a short period of
-> time is unreasonable. We've been working against our backlog for
-> months, and will continue to do so until we're caught up. The frozen
-> tree just slows that down even more.
->
-> If you want folks like us working more closely with upstream, then you
-> have to realize that folks are going to have changes to push which
-> aren't bugfixes (or aren't critical), and contrary to your
-> implication, does not imply that folks are ignoring the stabilization
-> efffort. Previous work needs to go up, and isn't occupying current
-> development effort.
+I'm running on:
+ - i7 3820 (quad core, hyper-treading, 3.6GHz)
+ - 16GB RAM (1600MHz XMP profile)
+ - Asus P9X79 Pro motherboard
+ - Ubuntu 11.10 x86_64 server installed on a 60GB OCZ Vertex 3 SSD on a =
+3Gb/s interface
+ - Two 60GB OCZ Vertex 3s as RAID-0 on 6Gb/s interfaces.
 
-Let me be clear, nothing I said is meant as a criticism as we all have
-constraints to work within, me included and I'm familiar with the
-problem. 
+The following results use a DL_DIR on the OS SSD (pre-populated) - I'm =
+not interested in the speed of the internet, especially as I've only got =
+a relatively slow connection ;-)
 
-In the Mentor case I can feel some sympathy as I remember ELC-E 2007
-where Embedded Alley presented about OE. I was sitting next to Holger in
-the audience and they announced major improvements to BitBake. This was
-somewhat of a surprise to the BitBake developers sitting there and I
-went and asked where the patches were. I'm not sure we ever did get
-them. I can therefore imagine some of the backlog you speak of. I know
-this is going to change and get better in future, we need to work
-through the backlog and that will take time on all sides. Every partner
-in the project has some issues they are working through in one form or
-another  be it backlog, transition or otherwise.
+Poky-6.0.1 is also installed on the OS SSD.
 
-Posting non-bugfixes is fine at the moment as long as people have a
-reasonable expectation about the fact they won't merge immediately. I
-appreciate you understand that, equally there are others on this mailing
-list who don't and I do have to keep mentioning it for that reason :(.
+I've done a few builds of core-image-minimal:
 
-Cheers,
+1) Build dir on the OS SSD
+2) Build dir on the SSD RAID + various bits of tuning.
 
-Richard
+The results are basically the same, so it seems as if the SSD RAID makes =
+no difference. Benchmarking it does show twice the read/write =
+performance of the OS SSD, as expected. Disabling journalling and =
+increasing the commit time to 6000 also made no significant difference =
+to the build times, which were (to the nearest minute):
 
+Real   : 42m
+User   : 133m
+System : 19m
 
+These time were starting from nothing, and seem to fit with your 30 =
+minutes with 3 times as many cores! BTW, BB_NUMBER_THREADS was set to 16 =
+and PARALLEL_MAKE to 12.
+
+I also tried rebuilding the kernel:
+   bitbake -c clean linux-yocto
+   rm -rf the sstate bits for the above
+   bitbake linux-yocto
+
+and got the following times:
+
+Real   : 39m
+User   : 105m
+System : 16m
+
+Which kind of fits with an observation. The minimal build had something =
+like 1530 stages to complete. The first 750 to 800 of these flew past =
+with all 8 'cores' running at just about 100% all the time. Load average =
+(short term) was about 19, so plenty ready to run. However, round about =
+the time python-native, the kernel, libxslt, gettext kicked in the cpu =
+usage dropped right off - to the point that the short term load average =
+dropped below 3. It did pick up again later on (after the kernel was =
+completed) before slowing down again towards the end (when it would seem =
+reasonable to expect that less can run in parallel).
+
+It seems as if some of these bits (or others around this time) aren't =
+making use of parallel make or there is a queue of dependent tasks that =
+needs to be serialized.
+
+The kernel build is a much bigger part of the build than I was =
+expecting, but this is only a small image. However, it looks as if the =
+main compilation phase completes very early on and a lot of time is then =
+spent building the modules (in a single thread, it seems) and in =
+packaging - which leads me to ask if RPM is the best option (speed =
+wise)? I don't use the packages myself (though understand they are =
+needed internally), so I can use the fastest (if there is one).
+
+Is there anything else I should be considering to improve build times? =
+As I said above, this is just a rough-cut at some benchmarking and I =
+plan to do some more, especially if there are other things to try and/or =
+any other information that would be useful.
+
+Still, it's looking much, much faster than my old build system :-)
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
 
