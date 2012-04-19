@@ -1,38 +1,41 @@
-Return-Path: <wd@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EDC5E013A6
-	for <yocto@yoctoproject.org>; Thu, 19 Apr 2012 03:25:26 -0700 (PDT)
-Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3VYGYJ59XCz4LDfJ;
-	Thu, 19 Apr 2012 12:25:24 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.8.164])
-	by mail.m-online.net (Postfix) with ESMTP id 3VYGYJ4zTNz4KK3S;
-	Thu, 19 Apr 2012 12:25:24 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from smtp-auth.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.8.164]) (amavisd-new,
-	port 10024)
-	with ESMTP id 3ckTg3-giLtc; Thu, 19 Apr 2012 12:25:23 +0200 (CEST)
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
-	Thu, 19 Apr 2012 12:25:23 +0200 (CEST)
-Received: from gemini.denx.de (unknown [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id 1E4A81A292A;
-	Thu, 19 Apr 2012 12:25:23 +0200 (CEST)
-Received: from gemini.denx.de (localhost [127.0.0.1])
-	by gemini.denx.de (Postfix) with ESMTP id 00657202B35;
-	Thu, 19 Apr 2012 12:25:23 +0200 (CEST)
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-From: Wolfgang Denk <wd@denx.de>
-MIME-Version: 1.0
-In-reply-to: <CAPhnLPCs-57NxB5-O=YSiqbPzQk0xhigEEfDEhwrGB2_qtgJ3Q@mail.gmail.com>
-References: <CAPhnLPCs-57NxB5-O=YSiqbPzQk0xhigEEfDEhwrGB2_qtgJ3Q@mail.gmail.com>
-Comments: In-reply-to "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-	message dated "Wed, 18 Apr 2012 17:21:51 -0700."
-Date: Thu, 19 Apr 2012 12:25:22 +0200
-Message-Id: <20120419102523.00657202B35@gemini.denx.de>
-Cc: yocto@yoctoproject.org
-Subject: Re: 1.2 release candidate 4 now available.
+Return-Path: <josh@hipro.co.in>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E0E9E0140E
+	for <yocto@yoctoproject.org>; Thu, 19 Apr 2012 05:48:20 -0700 (PDT)
+Received: by pbbjt11 with SMTP id jt11so13075305pbb.35
+	for <yocto@yoctoproject.org>; Thu, 19 Apr 2012 05:48:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:organization:content-type:x-mailer:mime-version:x-gm-message-state;
+	bh=PLaJQAh0OvHiV1yQmp8PxVLe9ljqxsnZN41b9DwTBLQ=;
+	b=WTXqKpR2opf4EFn9Ztx++7fiMl7Unw6vkM77B0r/zMp/oFY1yihEJD0TxxwspOASsx
+	NzQNuQU4/JvahHVyQhg2g4ateU3hhPktbeudsoa0JsyPmKeaq1/kMe8YvtYF5h23TeEV
+	AozgdLu5Dh6egyU7xuu1qAnPLc/Aa6NvNUvCt+UCTPW/3aSl0dkc151MvFFgXFygymsm
+	23AspNAtL5PGSxT78a9nzdP9+jKArfyi17CWpaCyBP9srKW2hzMWgehgive03kf+FQHA
+	koCp2ym+LnGvUj3KOhSK3mLhzjjPW/xkszXFWRBX6s2Hz5dgTUSTCp8UOOEcvLfeBeQM
+	JJSA==
+Received: by 10.68.236.197 with SMTP id uw5mr3415489pbc.27.1334839700212;
+	Thu, 19 Apr 2012 05:48:20 -0700 (PDT)
+Received: from [192.168.10.211] ([59.99.251.45])
+	by mx.google.com with ESMTPS id wf6sm2190137pbc.8.2012.04.19.05.48.16
+	(version=SSLv3 cipher=OTHER); Thu, 19 Apr 2012 05:48:19 -0700 (PDT)
+Message-ID: <1334839692.2799.61.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date: Thu, 19 Apr 2012 18:18:12 +0530
+In-Reply-To: <1334306723.7309.54.camel@ted>
+References: <1B707EEC-B001-45EA-BC0B-C0FF70BB7152@keylevel.com>
+	<4F862237.50200@linux.intel.com> <20120412140802.GA3176@giant>
+	<4F86E7E0.4080704@linux.intel.com> <1334306723.7309.54.camel@ted>
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.2.2-1 
+Mime-Version: 1.0
+X-Gm-Message-State: ALoCoQmblk54mhY4rG2bE7l21RnTOwxzLWZQj9/QoYE18b4nA/9qoFJkczmqsgpYC3htWKdRNqtP
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: Build time data
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,29 +47,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Apr 2012 10:25:26 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Thu, 19 Apr 2012 12:48:20 -0000
+X-Groupsio-MsgNum: 6176
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-Sg1KiIvVM6eNndu2pmzr"
 
-Dear Elizabeth,
+--=-Sg1KiIvVM6eNndu2pmzr
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-In message <CAPhnLPCs-57NxB5-O=YSiqbPzQk0xhigEEfDEhwrGB2_qtgJ3Q@mail.gmail.com> you wrote:
-> 
-> Release candidate 4 for 1.2 is now available for testing:
+Hello,
 
-Thanks.
+On Fri, 2012-04-13 at 09:45 +0100, Richard Purdie wrote:
+> There are undoubtedly ways we can improve performance but I think
+> we've done the low hanging fruit and we need some fresh ideas.
 
+Is there a way to integrate distcc in yocto so that we could distribute
+the build across machines.
+--=20
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
 
-Sorry, here is a new Bug 2347 - libtool library files broken
+--=-Sg1KiIvVM6eNndu2pmzr
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
 
-Best regards,
+iEYEABECAAYFAk+QCYwACgkQWw85XwuSFMLbGwCgnlLapf9ucyciJ7KmSCgpjouU
+BoUAoIV7MIDSndFY0P/gGtKcKKsywJ1J
+=h4JI
+-----END PGP SIGNATURE-----
 
-Wolfgang Denk
-
--- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-Overdrawn?  But I still have checks left!
-
+--=-Sg1KiIvVM6eNndu2pmzr--
