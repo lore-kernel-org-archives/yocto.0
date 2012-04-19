@@ -1,23 +1,32 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFC86E013FB
-	for <yocto@yoctoproject.org>; Wed, 18 Apr 2012 14:26:44 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 18 Apr 2012 14:26:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="155304915"
-Received: from unknown (HELO localhost) ([10.255.12.196])
-	by fmsmga002.fm.intel.com with ESMTP; 18 Apr 2012 14:26:44 -0700
-From: tom.zanussi@intel.com
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4974E0030B
+	for <yocto@yoctoproject.org>; Wed, 18 Apr 2012 17:21:53 -0700 (PDT)
+Received: from mail-lb0-f180.google.com ([209.85.217.180])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 18 Apr 2012 17:21:53 -0700
+Received: by lbbgi4 with SMTP id gi4so359877lbb.25
+	for <yocto@yoctoproject.org>; Wed, 18 Apr 2012 17:21:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=E0zVn2vaNVYKLT99vLRQLFQv+LkboUBTc7H3Qb8ngfk=;
+	b=jj6kfkl4kizYLV+3rWh9MXDTIKmSyQVs9+lqGrcxJcnbuIWBzr89s+oFT8Spfefuhu
+	OskpWJc8U+LtQtrGbMZZkCxkYnoE3kN2Z5vR6gOk8xKQ8vMilshypFMNaMUU1AZHcOug
+	Slh2vK0wP0O5hBck2TfhLCQTYIrblyInpW4lx52tbq9oxLkqULFNdkqwmtquQJUFeExJ
+	qZtOPf9MATENiAjwWde1djQyw878PZesMXUmL/8J0ZaCo2F6eYWLa1HKTnALDn5uzzUV
+	X1u4caOgNdzdN3b0YpxygUhzh9zSSb/Er6NkAMi2fnJ5CR6mA9k15gzLwBDwx6f1qY6P
+	9uCg==
+MIME-Version: 1.0
+Received: by 10.152.103.239 with SMTP id fz15mr3924177lab.42.1334794911101;
+	Wed, 18 Apr 2012 17:21:51 -0700 (PDT)
+Received: by 10.112.102.5 with HTTP; Wed, 18 Apr 2012 17:21:51 -0700 (PDT)
+Date: Wed, 18 Apr 2012 17:21:51 -0700
+Message-ID: <CAPhnLPCs-57NxB5-O=YSiqbPzQk0xhigEEfDEhwrGB2_qtgJ3Q@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 18 Apr 2012 16:26:43 -0500
-Message-Id: <266faf71ffdb15e1f6777b520fbe4acaeb26457d.1334784305.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <e181fc2fd029f7853acab1ba7b66bc9f5c87126d.1334784305.git.tom.zanussi@intel.com>
-References: <e181fc2fd029f7853acab1ba7b66bc9f5c87126d.1334784305.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1334784305.git.tom.zanussi@intel.com>
-References: <cover.1334784305.git.tom.zanussi@intel.com>
-Subject: [PATCH 2/2] yocto-bsp: clarify help with reference to meta-intel
+X-Gm-Message-State: ALoCoQkDxAaOfUzAxT+8DcbVySCMEdw7ViyoWS7sIIUq1nbGMXm+qpgeMJ5DtvuV6TCmQ6V8ND9J
+Subject: 1.2 release candidate 4 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,86 +38,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Apr 2012 21:26:45 -0000
+X-List-Received-Date: Thu, 19 Apr 2012 00:21:54 -0000
+Content-Type: multipart/alternative; boundary=f46d04088e9f86334c04bdfd289c
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+--f46d04088e9f86334c04bdfd289c
+Content-Type: text/plain; charset=ISO-8859-1
 
-The current yocto-bsp help assumes knowledge that the meta-intel layer
-needs to be cloned before it's put into the BBLAYERS.  Avoid the
-guesswork and state the details explicitly in the help.
+All,
 
-Also, the shorter 'usage' string doesn't mention it at all; it would
-help to at minimum mention it and refer the user to the detailed help.
+Release candidate 4 for 1.2 is now available for testing:
 
-Fixes [YOCTO #2330].
+http://autobuilder.yoctoproject.org/pub/nightly/20120418-2/
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- scripts/lib/bsp/help.py |   40 ++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 40 insertions(+), 0 deletions(-)
+This is based off of:
 
-diff --git a/scripts/lib/bsp/help.py b/scripts/lib/bsp/help.py
-index f78b09b..f849833 100644
---- a/scripts/lib/bsp/help.py
-+++ b/scripts/lib/bsp/help.py
-@@ -115,6 +115,18 @@ yocto_bsp_create_usage = """
-  'properties' that will be used to fill out the BSP-specific portions
-  of the BSP.  The possible values for the 'karch' paramter can be
-  listed via 'yocto-bsp list karch'.
-+
-+ NOTE: Once created, you should add your new layer to your
-+ bblayers.conf file in order for it to be subsquently seen and
-+ modified by the yocto-kernel tool.
-+
-+ See 'yocto bsp help create' for more detailed instructions.
-+
-+ NOTE for x86- and x86_64-based BSPs: The generated BSP assumes the
-+ presence of the of the meta-intel layer, so you should also have a
-+ meta-intel layer present and added to your bblayers.conf as well.
-+
-+ See 'yocto bsp help create' for more detailed instructions.
- """
- 
- yocto_bsp_create_help = """
-@@ -159,9 +171,37 @@ DESCRIPTION
-     bblayers.conf file in order for it to be subsquently seen and
-     modified by the yocto-kernel tool.
- 
-+    For example, assuming your poky repo is at /path/to/poky, your
-+    your new BSP layer is at /path/to/poky/meta-mybsp, and your build
-+    directory is /path/to/build:
-+
-+    $ gedit /path/to/build/conf/bblayers.conf
-+
-+    BBLAYERS ?= " \\
-+      /path/to/poky/meta \\
-+      /path/to/poky/meta-yocto \\
-+      /path/to/poky/meta-mybsp \\
-+      "
-+
-     NOTE for x86- and x86_64-based BSPs: The generated BSP assumes the
-     presence of the of the meta-intel layer, so you should also have a
-     meta-intel layer present and added to your bblayers.conf as well.
-+
-+    For example, assuming your poky repo is at /path/to/poky, your
-+    your new BSP layer is at /path/to/poky/meta-mybsp, and your build
-+    directory is /path/to/build:
-+
-+    $ cd /path/to/poky
-+    $ git clone git://git.yoctoproject.org/meta-intel.git
-+
-+    $ gedit /path/to/build/conf/bblayers.conf
-+
-+    BBLAYERS ?= " \\
-+      /path/to/poky/meta \\
-+      /path/to/poky/meta-yocto \\
-+      /path/to/poky/meta-intel \\
-+      /path/to/poky/meta-mybsp \\
-+      "
- """
- 
- yocto_bsp_list_usage = """
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/log/?h=denzil
+
+We had two additional documentation patches past the tag
+1.2_M4.rc4.0<http://git.yoctoproject.org/cgit/cgit.cgi/poky/tag/?h=denzil&id=1.2_M4.rc4.0>.
+These were included in the release candidate.
+
+The adt repository is currently being populated with the results of this
+buildout.
+
+
+
 -- 
-1.7.0.4
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
+--f46d04088e9f86334c04bdfd289c
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+All,<br><br>Release candidate 4 for 1.2 is now available for testing:<br><b=
+r><a href=3D"http://autobuilder.yoctoproject.org/pub/nightly/20120418-2/">h=
+ttp://autobuilder.yoctoproject.org/pub/nightly/20120418-2/</a><br><br>This =
+is based off of:<br>
+<br><a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/log/?h=3Ddenz=
+il">http://git.yoctoproject.org/cgit/cgit.cgi/poky/log/?h=3Ddenzil</a><br><=
+br>We had two additional documentation patches past the tag <a class=3D"tag=
+-deco" href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/tag/?h=3Ddenz=
+il&amp;id=3D1.2_M4.rc4.0">1.2_M4.rc4.0</a>. These were included in the rele=
+ase candidate.<br>
+<br>The adt repository is currently being populated with the results of thi=
+s buildout.<br><br><br clear=3D"all"><br>-- <br>Elizabeth Flanagan<br>Yocto=
+ Project<br>Build and Release<br>
+
+--f46d04088e9f86334c04bdfd289c--
