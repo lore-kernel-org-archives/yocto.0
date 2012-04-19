@@ -1,40 +1,38 @@
-Return-Path: <koen@dominion.thruhere.net>
-Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D240BE013E5
-	for <yocto@yoctoproject.org>; Thu, 19 Apr 2012 03:00:51 -0700 (PDT)
-Received: by wgbfg15 with SMTP id fg15so3128262wgb.11
-	for <yocto@yoctoproject.org>; Thu, 19 Apr 2012 03:00:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date
-	:content-transfer-encoding:message-id:references:to:x-mailer
-	:x-gm-message-state;
-	bh=sIdPiRYvF/sJEh5ovfoV8mT3zKib0DCFxWgJNM2PHa8=;
-	b=mNg85f+ZN6MNG6p3n+cdQQWuD0Ssz588JK8K1ZguWR7jNnVte7lueVzsF5ul0VZbHb
-	PG+sKT3wr7NO3jndPQfvqCtkJNAr0vPG6bo2yUiYpnvUKPVO3sofk3Wvx1lVKyi/0Ucs
-	qCIAFgEI3EbQqKC9C+NA+uxrHTfsWcJPhHwTOdqZs/WR2jotG67lHN+5rB9jUJVLhqsb
-	on2Z/3ydMbx/0zYmJ3z61eEUoWoPJh6EGA2A53DHTZiPrpBQ7/RWQAzsGUDEHVryNgkE
-	uA4OcLXuDyFQv4tupTQ9MJMzHb4Cjj2xEh9stK7ry8J+H/uIpNpQveDwbXRUWBaXMiRb
-	dqWw==
-Received: by 10.180.81.198 with SMTP id c6mr3644870wiy.18.1334829650755;
-	Thu, 19 Apr 2012 03:00:50 -0700 (PDT)
-Received: from [172.20.1.36] (ip545070eb.adsl-surfen.hetnet.nl.
-	[84.80.112.235])
-	by mx.google.com with ESMTPS id ff2sm6664131wib.9.2012.04.19.03.00.48
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 19 Apr 2012 03:00:49 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1257)
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <1334306723.7309.54.camel@ted>
-Date: Thu, 19 Apr 2012 12:00:54 +0200
-Message-Id: <A1812F33-640B-413F-8E3A-0B3784A9630C@dominion.thruhere.net>
-References: <1B707EEC-B001-45EA-BC0B-C0FF70BB7152@keylevel.com>
-	<4F862237.50200@linux.intel.com> <20120412140802.GA3176@giant>
-	<4F86E7E0.4080704@linux.intel.com> <1334306723.7309.54.camel@ted>
-To: Yocto Project <yocto@yoctoproject.org>
-X-Mailer: Apple Mail (2.1257)
-X-Gm-Message-State: ALoCoQncZe1ZDbCCNET3djroGxDcvzk7s2+N+xbyFAIB1/Lwlwcyyn7aZ0pvRbMY0cq6V2ztnPI+
-Subject: Re: Build time data
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EDC5E013A6
+	for <yocto@yoctoproject.org>; Thu, 19 Apr 2012 03:25:26 -0700 (PDT)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3VYGYJ59XCz4LDfJ;
+	Thu, 19 Apr 2012 12:25:24 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.8.164])
+	by mail.m-online.net (Postfix) with ESMTP id 3VYGYJ4zTNz4KK3S;
+	Thu, 19 Apr 2012 12:25:24 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.8.164]) (amavisd-new,
+	port 10024)
+	with ESMTP id 3ckTg3-giLtc; Thu, 19 Apr 2012 12:25:23 +0200 (CEST)
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Thu, 19 Apr 2012 12:25:23 +0200 (CEST)
+Received: from gemini.denx.de (unknown [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 1E4A81A292A;
+	Thu, 19 Apr 2012 12:25:23 +0200 (CEST)
+Received: from gemini.denx.de (localhost [127.0.0.1])
+	by gemini.denx.de (Postfix) with ESMTP id 00657202B35;
+	Thu, 19 Apr 2012 12:25:23 +0200 (CEST)
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+From: Wolfgang Denk <wd@denx.de>
+MIME-Version: 1.0
+In-reply-to: <CAPhnLPCs-57NxB5-O=YSiqbPzQk0xhigEEfDEhwrGB2_qtgJ3Q@mail.gmail.com>
+References: <CAPhnLPCs-57NxB5-O=YSiqbPzQk0xhigEEfDEhwrGB2_qtgJ3Q@mail.gmail.com>
+Comments: In-reply-to "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+	message dated "Wed, 18 Apr 2012 17:21:51 -0700."
+Date: Thu, 19 Apr 2012 12:25:22 +0200
+Message-Id: <20120419102523.00657202B35@gemini.denx.de>
+Cc: yocto@yoctoproject.org
+Subject: Re: 1.2 release candidate 4 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,51 +44,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Apr 2012 10:00:52 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 19 Apr 2012 10:25:26 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
+
+Dear Elizabeth,
+
+In message <CAPhnLPCs-57NxB5-O=YSiqbPzQk0xhigEEfDEhwrGB2_qtgJ3Q@mail.gmail.com> you wrote:
+> 
+> Release candidate 4 for 1.2 is now available for testing:
+
+Thanks.
 
 
-Op 13 apr. 2012, om 10:45 heeft Richard Purdie het volgende geschreven:
+Sorry, here is a new Bug 2347 - libtool library files broken
 
-> On Thu, 2012-04-12 at 07:34 -0700, Darren Hart wrote:
->>=20
->> On 04/12/2012 07:08 AM, Bj=F6rn Stenberg wrote:
->>> Darren Hart wrote:
->>>> /dev/md0        /build          ext4=20
->>>> noauto,noatime,nodiratime,commit=3D6000
->>>=20
->>> A minor detail: 'nodiratime' is a subset of 'noatime', so there is =
-no
->>> need to specify both.
->>=20
->> Excellent, thanks for the tip.
->=20
-> Note the key here is that for a system with large amounts of memory, =
-you
-> can effectively keep the build in memory due to the long commit time.
->=20
-> All the tests I've done show we are not IO bound anyway.
 
-Consider this scenario:
+Best regards,
 
-OS disk on spinning rust (sda1, /)
-BUILDDIR on spinning rust (sdb1, /OE)
-WORKDIR on SSD (sdc1, /OE/build/tmp/work)
-SD card in USB reader (sde1)
+Wolfgang Denk
 
-When I do the following during a build all CPUs will enter IO wait and =
-the build grinds to a halt:
-
-cd /media ; xz -d -c foo.img.xz | pv -s 3488M > /dev/sde
-
-That only touches the OS disk and the SD card, but for some reason the =
-3.2.8 kernel stops IO to the OE disks as well. do_patch for my kernel =
-recipe has been taking more than an hour now, it usually completes in =
-less than 5 minutes (a few hundred patches applied with a custom =
-patcher, git-am).
-
-regards,
-
-Koen=
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+Overdrawn?  But I still have checks left!
 
