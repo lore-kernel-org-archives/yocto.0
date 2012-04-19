@@ -1,31 +1,35 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CE8EE0044A
-	for <yocto@yoctoproject.org>; Thu, 19 Apr 2012 05:52:38 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3JCqYtA014031;
-	Thu, 19 Apr 2012 13:52:34 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 12639-09; Thu, 19 Apr 2012 13:52:29 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3JCqRCT014024
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Thu, 19 Apr 2012 13:52:28 +0100
-Message-ID: <1334839951.13017.1.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Joshua Immanuel <josh@hipro.co.in>
-Date: Thu, 19 Apr 2012 13:52:31 +0100
-In-Reply-To: <1334839692.2799.61.camel@babel.joshhome>
+Return-Path: <s.stirtzel@googlemail.com>
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05C03E006C7
+	for <yocto@yoctoproject.org>; Thu, 19 Apr 2012 06:47:09 -0700 (PDT)
+Received: by werc1 with SMTP id c1so7350235wer.35
+	for <yocto@yoctoproject.org>; Thu, 19 Apr 2012 06:47:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=e8Z3I16rLq5bZjLb1d8vp59+FbFmPbKJXKjEyiHJgio=;
+	b=kH2YTD+fmawMnxz/KVzGyGuFQunBpZrZdKOSqRZArk7wNw9ywMAweL5sqdCMAqBB6s
+	o0LCD5cXTT5gJoo1rHeY5CBPlKZyu1+KpcEZ4xWww/TEJ443ks0U8DAF8wAhBj9Rw0TF
+	tp/BEuOFoXe2RengpLO5jGj/nw6eUKtfsLHNUKp9KNEy4RBRkOrECKYN7Rsg1yM7XNQ7
+	vKqXGrgwfolpt4MW+sKBkji6+sG4nEIdNmiw23WF1Khyu3v35eliBiWjToDNFTHj1rxu
+	iJoCEllRa22scnsdAfMFT77uEQ+ZDL6JYLRLIZ6tK6drWw0fxD37ww6205UhNCsBV+pl
+	tPfA==
+MIME-Version: 1.0
+Received: by 10.216.132.40 with SMTP id n40mr1371889wei.68.1334843228722; Thu,
+	19 Apr 2012 06:47:08 -0700 (PDT)
+Received: by 10.223.14.149 with HTTP; Thu, 19 Apr 2012 06:47:08 -0700 (PDT)
+In-Reply-To: <1334839951.13017.1.camel@ted>
 References: <1B707EEC-B001-45EA-BC0B-C0FF70BB7152@keylevel.com>
 	<4F862237.50200@linux.intel.com> <20120412140802.GA3176@giant>
 	<4F86E7E0.4080704@linux.intel.com> <1334306723.7309.54.camel@ted>
 	<1334839692.2799.61.camel@babel.joshhome>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
+	<1334839951.13017.1.camel@ted>
+Date: Thu, 19 Apr 2012 15:47:08 +0200
+Message-ID: <CAGiJk9ej+ksqtJD2GgZZKtyk2gvCwE0TfBOiONbuSnFzGR4R4A@mail.gmail.com>
+From: Samuel Stirtzel <s.stirtzel@googlemail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
 Cc: Yocto Project <yocto@yoctoproject.org>,
 	Darren Hart <dvhart@linux.intel.com>
 Subject: Re: Build time data
@@ -40,25 +44,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Apr 2012 12:52:38 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 19 Apr 2012 13:47:10 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Thu, 2012-04-19 at 18:18 +0530, Joshua Immanuel wrote:
-> Hello,
-> 
-> On Fri, 2012-04-13 at 09:45 +0100, Richard Purdie wrote:
-> > There are undoubtedly ways we can improve performance but I think
-> > we've done the low hanging fruit and we need some fresh ideas.
-> 
-> Is there a way to integrate distcc in yocto so that we could distribute
-> the build across machines.
+2012/4/19 Richard Purdie <richard.purdie@linuxfoundation.org>:
+> On Thu, 2012-04-19 at 18:18 +0530, Joshua Immanuel wrote:
+>> Hello,
+>>
+>> On Fri, 2012-04-13 at 09:45 +0100, Richard Purdie wrote:
+>> > There are undoubtedly ways we can improve performance but I think
+>> > we've done the low hanging fruit and we need some fresh ideas.
+>>
+>> Is there a way to integrate distcc in yocto so that we could distribute
+>> the build across machines.
+>
+> See icecream.bbclass but compiling is not the bottleneck, its configure,
+> install and packaging...
 
-See icecream.bbclass but compiling is not the bottleneck, its configure,
-install and packaging...
+Multi threaded package managers come to my mind, also multi threaded
+bzip2 (see [1])
+Maybe multi threaded autotools / cmake, but that will be future talk
+(and a headache for the developers).
 
-Cheers,
 
-Richard
+>
+> Cheers,
+>
+> Richard
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
+
+[1] http://compression.ca/pbzip2/
+
+-- 
+Regards
+Samuel
 
