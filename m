@@ -1,19 +1,29 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08F60E013E7
-	for <yocto@yoctoproject.org>; Tue, 24 Apr 2012 03:20:49 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 24 Apr 2012 03:20:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="145211528"
-Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.120.52])
-	by fmsmga001.fm.intel.com with ESMTP; 24 Apr 2012 03:20:47 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
+Return-Path: <pcjegan@gmail.com>
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B2C4E01402
+	for <yocto@yoctoproject.org>; Tue, 24 Apr 2012 06:23:37 -0700 (PDT)
+Received: by werc1 with SMTP id c1so521893wer.35
+	for <yocto@yoctoproject.org>; Tue, 24 Apr 2012 06:23:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:cc:content-type;
+	bh=3dyKUKSDzXzfS1zCdIuMvMWEoNhGLb4PM1wOsCAA6e4=;
+	b=XET9FYsPwu0LuLa4z/1t2TQK/ptCowUK9IMUa8VM7EqUNc8ZVN048O4wj/vZQZBEPt
+	li+icRitsbmT6X4UkZ5JabZey3HFoXMRlfAmkCug5KxDQz2jpZIdUAEpGmo4iNGfvWUc
+	J0fmuTnyQ4zMDVv5pmEjlWShE8/QOWH9Y9zrO1puS5ddyaO3ekvhcU38TUgS4NdAYEd0
+	IUBWXtvrzPJZ6PUMMYnZFU2frCwK8aQ5TEMZDWfdMaJEDwpQ0lllqOl1VQn9TGAv/xfI
+	b7xDX5b68zWdT8rfM7kN49z3a3DNmMgGjBwBlhV6zlbGIpRlNJ6tdtKXmOKiyUA9Gk0s
+	kt9Q==
+Received: by 10.180.85.70 with SMTP id f6mr31534050wiz.5.1335273815984; Tue,
+	24 Apr 2012 06:23:35 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.216.185.195 with HTTP; Tue, 24 Apr 2012 06:23:14 -0700 (PDT)
+From: Jegan Chandru <pcjegan@gmail.com>
+Date: Tue, 24 Apr 2012 18:53:14 +0530
+Message-ID: <CAAA4K6J1SNRCr0uM1tT=DjyV47mk-KqGUZjT+B8qgujANw9ZTQ@mail.gmail.com>
 To: yocto@yoctoproject.org
-Date: Tue, 24 Apr 2012 11:20:38 +0100
-Message-Id: <1335262838-5764-1-git-send-email-paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 1.7.5.4
-Subject: [yocto-docs] [PATCH] documentation/yocto-project-qs/yocto-project-qs.xml: tidy up dependencies
+Cc: openembedded-core@lists.openembedded.org
+Subject: adding package nss in rootfs failed with dependency "/usr/local/bin/perl"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,64 +35,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Apr 2012 10:20:49 -0000
+X-List-Received-Date: Tue, 24 Apr 2012 13:23:37 -0000
+Content-Type: multipart/alternative; boundary=f46d041825587ac98504be6ca9f8
 
-The following packages no longer need to be installed on the host
-system:
+--f46d041825587ac98504be6ca9f8
+Content-Type: text/plain; charset=ISO-8859-1
 
-* python-psyco
-* help2man
-* cvs
-* hg
+Hi,
 
-Additionally, linuxdoc-tools was mentioned twice in the Fedora list.
+I have cross compiled NSS 3.13.1 for x86 64 bit environment, but when I try
+to add NSS package in rootfs, i am getting the following error,
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- .../yocto-project-qs/yocto-project-qs.xml          |   12 ++++++------
- 1 files changed, 6 insertions(+), 6 deletions(-)
+*error: Failed dependencies:
+       /usr/local/bin/perl is needed by nss-3.13.1-r0.x86_64*
 
-diff --git a/documentation/yocto-project-qs/yocto-project-qs.xml b/documentation/yocto-project-qs/yocto-project-qs.xml
-index 812db9f..4f0fcb8 100644
---- a/documentation/yocto-project-qs/yocto-project-qs.xml
-+++ b/documentation/yocto-project-qs/yocto-project-qs.xml
-@@ -228,9 +228,9 @@
-             </para>
- 
-                 <literallayout class='monospaced'>
--     $ sudo apt-get install sed wget cvs subversion git-core coreutils \
-+     $ sudo apt-get install sed wget subversion git-core coreutils \
-      unzip texi2html texinfo libsdl1.2-dev docbook-utils fop gawk \
--     python-pysqlite2 diffstat help2man make gcc build-essential xsltproc \
-+     python-pysqlite2 diffstat make gcc build-essential xsltproc \
-      g++ desktop-file-utils chrpath libgl1-mesa-dev libglu1-mesa-dev \
-      mercurial autoconf automake groff libtool xterm libxml-parser-perl
-                 </literallayout>
-@@ -246,11 +246,11 @@
- 
-                 <literallayout class='monospaced'>
-      $ sudo yum groupinstall "development tools"
--     $ sudo yum install python m4 make wget curl ftp hg tar bzip2 gzip \
--     unzip python-psyco perl texinfo texi2html diffstat openjade \
-+     $ sudo yum install python m4 make wget curl ftp tar bzip2 gzip \
-+     unzip perl texinfo texi2html diffstat openjade \
-      docbook-style-dsssl sed docbook-style-xsl docbook-dtds fop xsltproc \
-      docbook-utils sed bc eglibc-devel ccache pcre pcre-devel quilt \
--     groff linuxdoc-tools patch linuxdoc-tools cmake help2man \
-+     groff linuxdoc-tools patch cmake \
-      perl-ExtUtils-MakeMaker tcl-devel gettext chrpath ncurses apr \
-      SDL-devel mesa-libGL-devel mesa-libGLU-devel gnome-doc-utils \
-      autoconf automake libtool xterm
-@@ -278,7 +278,7 @@
- 
-                 <literallayout class='monospaced'>
-      $ sudo zypper install python gcc gcc-c++ libtool fop \
--     subversion git chrpath automake make wget help2man xsltproc \
-+     subversion git chrpath automake make wget xsltproc \
-      diffstat texinfo mercurial freeglut-devel libSDL-devel
-                 </literallayout>
-         </section>
--- 
-1.7.5.4
+I know perl is needed for nss, but the path which is trying to look perl,
+is quite confusing me, for perl doesn't exist in that location at all. Can
+anyone please tell me whats going on here and what have I missed?
 
+P.S: I am using Yocto-1.1.1 and Ubuntu host-11.10 64 bit.
 
+Thanks all for your help,
+JC
+
+--f46d041825587ac98504be6ca9f8
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<br><br>I have cross compiled NSS 3.13.1 for x86 64 bit environment, but=
+ when I try to add NSS package in rootfs, i am getting the following error,=
+<br><br><i>error: Failed dependencies:<br> =A0 =A0 =A0 =A0/usr/local/bin/pe=
+rl is needed by nss-3.13.1-r0.x86_64</i><br>
+
+<br>I know perl is needed for nss, but the path which is trying to look per=
+l, is quite confusing me, for perl doesn&#39;t exist in that location at al=
+l. Can anyone please tell me whats going on here and what have I missed?<br=
+>
+
+<br>P.S: I am using Yocto-1.1.1 and Ubuntu host-11.10 64 bit.<br><br><div>T=
+hanks all for your help,</div><div>JC</div>
+
+--f46d041825587ac98504be6ca9f8--
