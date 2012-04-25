@@ -1,27 +1,20 @@
-Return-Path: <Zumeng.Chen@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22DDCE0070C
-	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 18:18:23 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q3Q1INDZ020844
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 18:18:23 -0700 (PDT)
-Received: from [128.224.162.183] (128.224.162.183) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 25 Apr 2012 18:18:22 -0700
-Message-ID: <4F98A1D0.5040102@windriver.com>
-Date: Thu, 26 Apr 2012 09:16:00 +0800
-From: Zumeng Chen <zumeng.chen@windriver.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.24) Gecko/20111108 Lightning/1.0b2 Thunderbird/3.1.16
-MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <1335348389-12781-1-git-send-email-kai.kang@windriver.com>
-	<4F980070.2070303@windriver.com> <4F989DF9.1070308@windriver.com>
-	<4F98A1A0.4060601@windriver.com>
-In-Reply-To: <4F98A1A0.4060601@windriver.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] mm/msync: tweak tmpfs patch for syscall msync
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C45BE00596
+	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 18:30:16 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 25 Apr 2012 18:30:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="158448851"
+Received: from rsaxena-desktop.sc.intel.com (HELO localhost) ([143.183.188.84])
+	by fmsmga002.fm.intel.com with ESMTP; 25 Apr 2012 18:30:15 -0700
+From: rahul.saxena@intel.com
+To: yocto@yoctoproject.org, bruce.ashfield@windriver.org,
+	tom.zanussi@intel.com, kishore.k.bodke@intel.com
+Date: Wed, 25 Apr 2012 11:17:53 -0700
+Message-Id: <cover.1335393639.git.rahul.saxena@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [kernel][PATCH 0/3] Cover letter to update pvr patches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,117 +26,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Apr 2012 01:18:23 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 26 Apr 2012 01:30:16 -0000
 
-于 2012年04月26日 09:15, Bruce Ashfield 写道:
-> On 12-04-25 8:59 PM, Zumeng Chen wrote:
->> That was my last version, you can google to get by "msync zumeng"
->> So feel free to merge it.
->
-> Sounds good, but we should still get the header updates, since the
-> first version merged into the tree already.
-Yes, NP, I'm OK with all changes. :)
+From: Rahul Saxena <rahul.saxena@intel.com>
 
-Regards,
-Zumeng
->
-> Bruce
->
->>
->> Regards,
->> Zumeng
->> 于 2012年04月25日 21:47, Bruce Ashfield 写道:
->>> On 12-04-25 06:06 AM, Kang Kai wrote:
->>>> Commit 1c3ae5441 fixes MIPS CPU cache alias problem. But it makes
->>>
->>> Put a short log after the commit ID, that way we can read what the
->>> old commit was trying to do right in this commit.
->>>
->>>> posix test cases mlockall/3-6 3-7 fail.
->>>
->>> Can we expand on what the test is doing ? That way the commit
->>> header is stand alone. I know that I haven't memorized what all the
->>> posix tests do :)
->>>
->>>> Tweak the patch to:
->>>> 1 check the vma and its flags first
->>>
->>> Can you expand here as well. Do you really mean that you've moved
->>> the CONFIG_TMPFS block down in the function so that the normal
->>> vma flag checking will occur ?
->>>
->>>> 2 don't quit the function when meet first vma belongs to tmpfs file
->>>
->>> And for this part, can you (or Zumeng) explain why we used to need
->>> to exit immediately and now we don't ?
->>>
->>> The patch looks good though, thanks for looking into this tricky
->>> area of code.
->>>
->>> Cheers,
->>>
->>> Bruce
->>>
->>>>
->>>> Signed-off-by: Kang Kai<kai.kang@windriver.com>
->>>> ---
->>>> mm/msync.c | 30 +++++++++++++-----------------
->>>> 1 files changed, 13 insertions(+), 17 deletions(-)
->>>>
->>>> diff --git a/mm/msync.c b/mm/msync.c
->>>> index ced6215..31cd311 100644
->>>> --- a/mm/msync.c
->>>> +++ b/mm/msync.c
->>>> @@ -60,23 +60,6 @@ SYSCALL_DEFINE3(msync, unsigned long, start,
->>>> size_t, len, int, flags)
->>>> down_read(&mm->mmap_sem);
->>>> vma = find_vma(mm, start);
->>>>
->>>> -#ifdef CONFIG_TMPFS
->>>> - /*
->>>> - * For tmpfs, no matter which flag(ASYNC or SYNC) gets from msync,
->>>> - * there is not so much thing to do for CPUs without cache alias,
->>>> - * But for some CPUs with cache alias, msync has to flush cache
->>>> - * explicitly, which makes sure the data coherency between memory
->>>> - * file and cache.
->>>> - */
->>>> - file = vma->vm_file;
->>>> - if (file&& (file->f_op ==&shmem_file_operations)) {
->>>> - if(CPU_HAS_CACHE_ALIAS)
->>>> - flush_cache_range(vma, start, start+len);
->>>> - error = 0;
->>>> - goto out_unlock;
->>>> - }
->>>> -#endif
->>>> -
->>>> for (;;) {
->>>>
->>>> /* Still start< end. */
->>>> @@ -97,6 +80,19 @@ SYSCALL_DEFINE3(msync, unsigned long, start,
->>>> size_t, len, int, flags)
->>>> goto out_unlock;
->>>> }
->>>> file = vma->vm_file;
->>>> +#ifdef CONFIG_TMPFS
->>>> + /*
->>>> + * For tmpfs, no matter which flag(ASYNC or SYNC) gets from msync,
->>>> + * there is not so much thing to do for CPUs without cache alias,
->>>> + * But for some CPUs with cache alias, msync has to flush cache
->>>> + * explicitly, which makes sure the data coherency between memory
->>>> + * file and cache.
->>>> + */
->>>> + if (file&& (file->f_op ==&shmem_file_operations)) {
->>>> + if(CPU_HAS_CACHE_ALIAS)
->>>> + flush_cache_range(vma, start, start+len);
->>>> + }
->>>> +#endif
->>>> start = vma->vm_end;
->>>> if ((flags& MS_SYNC)&& file&&
->>>> (vma->vm_flags& VM_SHARED)) {
->>>
->>
->
+Cover letter to update pvr patches. 
+A updated version of linux-3.0.0-cdv patch for pvr driver that
+includes vaapi (Video Acceleration API) related fixes was recently released by MeeGo.
+A revert of the existing version of this patch is done and then the new
+version is added. A new patch to handle TTM page allocation from
+high memory is also added.
+
+Please pull into yocto/pvr branch of linux-yocto-3.0
+
+Signed-off-by: Rahul Saxena <rahul.saxena@intel.com>
+--
+
+The following changes since commit 9d0264753e869d21ec4d9a6dd5558de73d64f94d:
+
+  yocto/pvr: add hdmi/acpi definitions (2012-03-09 14:50:44 -0500)
+
+are available in the git repository at:
+  git://git.pokylinux.org/linux-yocto-2.6.37-contrib rsaxena-yocto/pvr
+  http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=rsaxena-yocto/pvr
+
+Rahul Saxena (3):
+  Revert "yocto/pvr: integrate pvr support"
+  add updated version of linux-3.0.0-cdv.patch
+  add patch linux-3.0.0-ttm-clear-high.patch
+
+ drivers/gpu/drm/ttm/ttm_page_alloc.c               |    5 +-
+ drivers/staging/cdv/Kconfig                        |    1 +
+ drivers/staging/cdv/Makefile                       |    2 +-
+ drivers/staging/cdv/drv/psb_drm.h                  |    3 +
+ drivers/staging/cdv/drv/psb_drv.c                  |   73 +++--
+ drivers/staging/cdv/drv/psb_drv.h                  |   24 +-
+ drivers/staging/cdv/drv/psb_fb.c                   |  134 ++++-----
+ drivers/staging/cdv/drv/psb_gtt.c                  |   29 +-
+ drivers/staging/cdv/drv/psb_intel_bios.c           |   90 +++++-
+ drivers/staging/cdv/drv/psb_intel_bios.h           |   35 ++-
+ drivers/staging/cdv/drv/psb_intel_display.c        |  310 +++++++++++++-------
+ drivers/staging/cdv/drv/psb_intel_dpll_cdv.c       |   85 +++++-
+ drivers/staging/cdv/drv/psb_intel_drv.h            |   12 +-
+ drivers/staging/cdv/drv/psb_intel_lvds.c           |  178 +++++++++++-
+ drivers/staging/cdv/drv/psb_intel_opregion.c       |    2 +-
+ drivers/staging/cdv/drv/psb_intel_reg.h            |   36 +++-
+ drivers/staging/cdv/drv/psb_irq.c                  |   12 +-
+ drivers/staging/cdv/drv/psb_powermgmt.c            |   29 ++-
+ drivers/staging/cdv/drv/psb_pvr_glue.c             |    4 +-
+ drivers/staging/cdv/drv/psb_reg.h                  |    8 +-
+ drivers/staging/cdv/imgv/psb_msvdx.c               |   25 ++-
+ drivers/staging/cdv/imgv/psb_msvdx.h               |    7 +-
+ drivers/staging/cdv/imgv/psb_msvdxinit.c           |   51 +++-
+ .../3rdparty/linux_framebuffer_mrst/mrstlfb.h      |    6 +
+ .../linux_framebuffer_mrst/mrstlfb_displayclass.c  |  125 +++++++-
+ .../linux_framebuffer_mrst/mrstlfb_linux.c         |    8 +-
+ .../pvr/services4/srvkm/devices/sgx/sgxconfig.h    |   65 ++++
+ .../cdv/pvr/services4/srvkm/hwdefs/sgxerrata.h     |    4 +
+ .../pvr/services4/srvkm/hwdefs/sgxfeaturedefs.h    |    3 +-
+ .../cdv/pvr/services4/system/unified/sysconfig.c   |   11 +-
+ .../cdv/pvr/services4/system/unified/sysconfig.h   |   30 --
+ 31 files changed, 1021 insertions(+), 386 deletions(-)
+
+-- 
+1.7.4.1
 
 
