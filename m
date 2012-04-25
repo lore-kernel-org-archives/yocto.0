@@ -1,32 +1,23 @@
-Return-Path: <pcjegan@gmail.com>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B9BDE013B7
-	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 01:54:35 -0700 (PDT)
-Received: by wibhm17 with SMTP id hm17so4202063wib.11
-	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 01:54:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=9ENrcUxv3m50XAulAhIDhbVEs+DRFEDhAOT7+7FEhP0=;
-	b=d9QdltUH/taDfndZut0Jmp6+BgSl+a/CIUCWdTBBKtFrQWK2ntxgBS6cm6CDXkUKbL
-	hEzuwnbwgN3AmKwG6IKPitVXj1EYi125cQqPPy/pgSFdmGjSQmpizqui8442PnHMgtkw
-	Vw95AyixOrClNR1rC399bpUwFhwbcQEynqjMzXLYDMXg149+MLBw3CEelPb64AgYlBQS
-	mLwJ/iVsAYYZwxEA0+v51XXBdEIvtc5YbtiuBCR1GKfDo0MhRIO7FKdy7Vbrcan0zkun
-	ZqN4Z+rzTWC8JuZS5hLqb79GeWV2CwJjZgRoL0gcFXdTIntHjZfHM3JjutU/iofj99yH
-	p0zQ==
-Received: by 10.180.83.72 with SMTP id o8mr4579612wiy.5.1335344074189; Wed, 25
-	Apr 2012 01:54:34 -0700 (PDT)
+Return-Path: <Kai.Kang@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 804A2E013B7
+	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 03:06:24 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q3PA6Ouo027089
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 03:06:24 -0700 (PDT)
+Received: from localhost.localdomain (128.224.162.164) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server
+	(TLS) id 14.1.255.0; Wed, 25 Apr 2012 03:06:23 -0700
+From: Kang Kai <kai.kang@windriver.com>
+To: <bruce.ashfield@windriver.com>
+Date: Wed, 25 Apr 2012 18:06:29 +0800
+Message-ID: <1335348389-12781-1-git-send-email-kai.kang@windriver.com>
+X-Mailer: git-send-email 1.7.5.4
 MIME-Version: 1.0
-Received: by 10.216.185.195 with HTTP; Wed, 25 Apr 2012 01:54:13 -0700 (PDT)
-In-Reply-To: <CAAA4K6J1SNRCr0uM1tT=DjyV47mk-KqGUZjT+B8qgujANw9ZTQ@mail.gmail.com>
-References: <CAAA4K6J1SNRCr0uM1tT=DjyV47mk-KqGUZjT+B8qgujANw9ZTQ@mail.gmail.com>
-From: Jegan Chandru <pcjegan@gmail.com>
-Date: Wed, 25 Apr 2012 14:24:13 +0530
-Message-ID: <CAAA4K6L7GxoqUdOdn8MCd0YX8pKtJz-noEmbMarO93zYGCAmxw@mail.gmail.com>
-To: openembedded-core@lists.openembedded.org
+X-Originating-IP: [128.224.162.164]
 Cc: yocto@yoctoproject.org
-Subject: Re: adding package nss in rootfs failed with dependency "/usr/local/bin/perl"
+Subject: [PATCH] mm/msync: tweak tmpfs patch for syscall msync
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,57 +29,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Apr 2012 08:54:35 -0000
-Content-Type: multipart/alternative; boundary=f46d0442887e31ea4004be7d0508
+X-List-Received-Date: Wed, 25 Apr 2012 10:06:24 -0000
+Content-Type: text/plain
 
---f46d0442887e31ea4004be7d0508
-Content-Type: text/plain; charset=ISO-8859-1
+Commit 1c3ae5441 fixes MIPS CPU cache alias problem. But it makes
+posix test cases mlockall/3-6 3-7 fail.
+Tweak the patch to:
+1 check the vma and its flags first
+2 don't quit the function when meet first vma belongs to tmpfs file
 
-> This is a bug in the nss package.  It has an executable shell script that
-has a:
+Signed-off-by: Kang Kai <kai.kang@windriver.com>
+---
+ mm/msync.c |   30 +++++++++++++-----------------
+ 1 files changed, 13 insertions(+), 17 deletions(-)
 
-> #! /usr/local/bin/perl
+diff --git a/mm/msync.c b/mm/msync.c
+index ced6215..31cd311 100644
+--- a/mm/msync.c
++++ b/mm/msync.c
+@@ -60,23 +60,6 @@ SYSCALL_DEFINE3(msync, unsigned long, start, size_t, len, int, flags)
+ 	down_read(&mm->mmap_sem);
+ 	vma = find_vma(mm, start);
+ 
+-#ifdef CONFIG_TMPFS
+-	/*
+-	 * For tmpfs, no matter which flag(ASYNC or SYNC) gets from msync,
+-	 * there is not so much thing to do for CPUs without cache alias,
+-	 * But for some CPUs with cache alias, msync has to flush cache
+-	 * explicitly, which makes sure the data coherency between memory
+-	 * file and cache.
+-	 */
+-	file =  vma->vm_file;
+-	if (file && (file->f_op == &shmem_file_operations)) {
+-		if(CPU_HAS_CACHE_ALIAS)
+-			flush_cache_range(vma, start, start+len);
+-		error = 0;
+-		goto out_unlock;
+-	}
+-#endif
+-
+ 	for (;;) {
+ 
+ 		/* Still start < end. */
+@@ -97,6 +80,19 @@ SYSCALL_DEFINE3(msync, unsigned long, start, size_t, len, int, flags)
+ 			goto out_unlock;
+ 		}
+ 		file = vma->vm_file;
++#ifdef CONFIG_TMPFS
++		/*
++		 * For tmpfs, no matter which flag(ASYNC or SYNC) gets from msync,
++		 * there is not so much thing to do for CPUs without cache alias,
++		 * But for some CPUs with cache alias, msync has to flush cache
++		 * explicitly, which makes sure the data coherency between memory
++		 * file and cache.
++		 */
++		if (file && (file->f_op == &shmem_file_operations)) {
++			if(CPU_HAS_CACHE_ALIAS)
++				flush_cache_range(vma, start, start+len);
++		}
++#endif
+ 		start = vma->vm_end;
+ 		if ((flags & MS_SYNC) && file &&
+ 				(vma->vm_flags & VM_SHARED)) {
+-- 
+1.7.5.4
 
-> in it, which causes RPM to add a dependency on that specific path, and
-nothing
-> is providing the path.
 
-> The fix is either, decide this is a sample/demo shell script and remove
-it from
-> the nss package -- or fix the script to use the proper perl location of
-> "${bindir}/perl"
-
-Thanks Mark for pointing it out. That solved it. I fixed the script to use
-proper perl and added nss in rootfs with no problem.
-
--JC
-
---f46d0442887e31ea4004be7d0508
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div class=3D"gmail_extra">&gt; This is a bug in the nss package. =A0It has=
- an executable shell script that has a:</div><div class=3D"gmail_extra"><br=
-></div><div class=3D"gmail_extra">&gt; #! /usr/local/bin/perl</div><div cla=
-ss=3D"gmail_extra">
-
-<br></div><div class=3D"gmail_extra">&gt; in it, which causes RPM to add a =
-dependency on that specific path, and nothing=A0</div><div class=3D"gmail_e=
-xtra">&gt; is providing the path.</div><div class=3D"gmail_extra"><br></div=
-><div class=3D"gmail_extra">
-
-&gt; The fix is either, decide this is a sample/demo shell script and remov=
-e it from=A0</div><div class=3D"gmail_extra">&gt; the nss package -- or fix=
- the script to use the proper perl location of=A0</div><div class=3D"gmail_=
-extra">
-
-&gt; &quot;${bindir}/perl&quot;</div><div class=3D"gmail_extra"><br></div><=
-div class=3D"gmail_extra">Thanks Mark for pointing it out. That solved it. =
-I fixed the script to use proper perl and added nss in rootfs with no probl=
-em.</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">-JC</div><d=
-iv class=3D"gmail_extra"><br><br>
-</div>
-
---f46d0442887e31ea4004be7d0508--
